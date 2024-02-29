@@ -75,7 +75,6 @@ config = {
                 "type": "raster",
                 "url": window.BaseURL + "tiff/nyc-hi-afternoon.tiff",
                 "exclusive": true
-
             }
         },
         {
@@ -85,9 +84,8 @@ config = {
                 "type": "raster",
                 "url": window.BaseURL + "tiff/nyc-hi-evening.tiff",
                 "exclusive": true
-
-          }
-       },
+            }
+        },
 
        /*
        {
@@ -142,39 +140,39 @@ config = {
        }, 
        */
 
-       {
-          "property": {
-             "id": "redline",
-             "name": "Redlined Areas",
-             "type": "redlined",
-             "urls": {
-                "Class A": window.BaseURL + "maps/HOLC_map/data/HOLCClassA_3.js",
-                "Class B": window.BaseURL + "maps/HOLC_map/data/HOLCClassB_2.js",
-                "Class C": window.BaseURL + "maps/HOLC_map/data/HOLCClassC_1.js",
-                "Class D": window.BaseURL + "maps/HOLC_map/data/HOLCClassD_0.js"
-             },
-             "args": {
-                "colorFeatureProperty": "holc_grade",
-                "defaultColor": "grey",
-                "colorMap": {
-                    "A": "green",
-                    "B": "blue",
-                    "C": "yellow",
-                    "D": "red"
+        {
+            "property": {
+                "id": "redline",
+                "name": "Redlined Areas",
+                "type": "redlined",
+                "urls": {
+                    "Class A": window.BaseURL + "maps/HOLC_map/data/HOLCClassA_3.js",
+                    "Class B": window.BaseURL + "maps/HOLC_map/data/HOLCClassB_2.js",
+                    "Class C": window.BaseURL + "maps/HOLC_map/data/HOLCClassC_1.js",
+                    "Class D": window.BaseURL + "maps/HOLC_map/data/HOLCClassD_0.js"
                 },
-                "opacity": 0.6,
-                "legendDescription": "This 1930s-era HOLC redlining map shows the four grades that were assigned to neighborhoods based on race, and helps us understand the nature of racism, poverty, and health in our society. Read more about redlining here."
-             },
-             "displayProperties": {
-                "displayPropertyArgs": [
-                   {
-                      "id": "holc_grade",
-                      "displayName": "Redline Grade:"
-                   }
-                ]
-             }
-          }
-       },
+                "args": {
+                    "colorFeatureProperty": "holc_grade",
+                    "defaultColor": "grey",
+                    "colorMap": {
+                        "A": "green",
+                        "B": "blue",
+                        "C": "yellow",
+                        "D": "red"
+                    },
+                    "opacity": 0.6,
+                    "legendDescription": "This 1930s-era HOLC redlining map shows the four grades that were assigned to neighborhoods based on race, and helps us understand the nature of racism, poverty, and health in our society. Read more about redlining here."
+                },
+                "displayProperties": {
+                    "displayPropertyArgs": [
+                        {
+                            "id": "holc_grade",
+                            "displayName": "Redline Grade:"
+                        }
+                    ]
+                }
+            }
+        },
        
        /*
        {    
@@ -301,38 +299,36 @@ config = {
        */
       
        {
-          "property": {
-             "id": "air_quality",
-             "name": "Air Quality - PM2.5",
-             "type": "measureData",
-             "units": "μg/m3",
-             "measureInfo": {
-                "indicatorID": 2023,
-                "measureID": 365,
-                "geoType": "UHF42",
-                "time": "Summer 2021",
-              },
-             "args": {
-                "colorFeatureProperty": "Black Carbon - Mean",
-                "minColor": "#054fb9",
-                "maxColor": "#c44601",
-                "color": "black",
-                "opacity": 0.6,
-                "legendDescription": "<strong> PM2.5 </strong> are fine particles that are emitted by vehicles, building boilers, and other combustion - and are a major form of air pollution that harms health. It can be long, it can be short, it can include <a href=\"#\">links</a>."
-             },
-             "displayProperties": {
-                "missingDisplay": "N/A",
-                "displayPropertyArgs": [
-                   {
-                      "displayName": "Black Carbon - Mean",
-                      "format": "float"
-                   }
-                ]
-             }
-          }
-      },
-
-
+            "property": {
+                "id": "air_quality",
+                "name": "Air Quality - PM2.5",
+                "type": "measureData",
+                "units": "μg/m3",
+                "measureInfo": {
+                    "indicatorID": 2023,
+                    "measureID": 365,
+                    "geoType": "UHF42",
+                    "time": "Summer 2021",
+                },
+                "args": {
+                    "colorFeatureProperty": "Black carbon, Mean",
+                    "minColor": "#054fb9",
+                    "maxColor": "#c44601",
+                    "color": "black",
+                    "opacity": 0.6,
+                    "legendDescription": "<strong> PM2.5 </strong> are fine particles that are emitted by vehicles, building boilers, and other combustion - and are a major form of air pollution that harms health. It can be long, it can be short, it can include <a href=\"#\">links</a>."
+                },
+                "displayProperties": {
+                    "missingDisplay": "N/A",
+                    "displayPropertyArgs": [
+                        {
+                            "displayName": "Black carbon, Mean",
+                            "format": "float"
+                        }
+                    ]
+                }
+            }
+        },
         {
             "property": {
                 "id": "Heat_vulnerability_index",
@@ -343,7 +339,7 @@ config = {
                     "measureID": 822,
                     "geoType": "CDTA2020",
                     "time": "2023",
-                    },
+                },
                 "args": {
                     "colorFeatureProperty": "HVI",
                     "minColor": "green",
@@ -374,19 +370,19 @@ config = {
                     "time": "2017",
                 },
                 "args": {
-                    "colorFeatureProperty": "Black Carbon - Mean",
+                    "colorFeatureProperty": "Grass and tree cover, Percent",
                     "minColor": "blue",
                     "maxColor": "green",
                     "color": "black",
-                    "opacity": 0.75,
+                    "opacity": 0.6,
                     "legendDescription": "Vegetative cover is the land covered by trees, grass, or other plants instead of a hard surface like roads, sidewalks, or buildings. Vegetative cover tends to reduce temperatures in the immediate area and may increase air quality."
                 },
                 "displayProperties": {
                     "missingDisplay": "N/A",
                     "displayPropertyArgs": [
                         {
-                            "id": "Black Carbon - Mean",
-                            "displayName": "Black Carbon - Mean"
+                            "id": "Grass and tree cover, Percent",
+                            "displayName": "Grass and tree cover, Percent"
                         }
                     ]
                 }
@@ -399,19 +395,18 @@ config = {
                 "type": "geojson",
                 "url": window.BaseURL + "geojson/heat-stress.geojson",
                 "args": {
-                    "colorFeatureProperty": "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Rate",
+                    "colorFeatureProperty": "Heat hospitalizations, Average annual age-adjusted rate",
                     "minColor": "#054fb9",
                     "maxColor": "#c44601",
                     "color": "black",
                     "opacity": 0.6
-
                 },
                 "displayProperties": {
                     "missingDisplay": "N/A",
                     "displayPropertyArgs": [
                         {
-                            "id": "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Age-Adjusted  Rate",
-                            "displayName": "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Age-Adjusted  Rate"
+                            "id": "Heat hospitalizations, Average annual age-adjusted rate",
+                            "displayName": "Heat hospitalizations, Average annual age-adjusted rate"
                         },
                         /*
                         {
@@ -512,20 +507,19 @@ config = {
                     "time": "2017-21",
                 },
                 "args": {
-                    "colorFeatureProperty": "Black Carbon - Mean",
+                    "colorFeatureProperty": "Neighborhood poverty %",
                     "minColor": "blue",
                     "maxColor": "green",
                     "color": "black",
                     "opacity": 0.6,
                     "legendDescription": "The percent of households with incomes below the federal poverty level. Households without sufficient resources are often deprived of access to items such as health care and good quality housing that are needed to maintain good health."
-
                 },
                 "displayProperties": {
                     "missingDisplay": "N/A",
                     "displayPropertyArgs": [
                         {
-                            "id": "Black Carbon - Mean",
-                            "displayName": "Black Carbon - Mean"
+                            "id": "Neighborhood poverty %",
+                            "displayName": "Neighborhood poverty %"
                         }
                     ]
                 }

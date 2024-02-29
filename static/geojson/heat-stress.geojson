@@ -12,7 +12,7 @@
             "properties": {
                 "geo_entity_id": 101.0,
                 "geo_type_name": "CD",
-                "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Age-Adjusted  Rate": 0.6,
+                "Heat hospitalizations, Average annual age-adjusted rate": 0.6,
                 "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Rate": 0.6,
                 "5-Year Heat Stress Hospitalizations - 5-Year Total Number": null,
                 "Heat Stress Emergency Department Visits - Age-Adjusted Rate": 0.7,
@@ -190,7 +190,7 @@
             "properties": {
                 "geo_entity_id": 102.0,
                 "geo_type_name": "CD",
-                "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Age-Adjusted  Rate": 0.3,
+                "Heat hospitalizations, Average annual age-adjusted rate": 0.3,
                 "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Rate": 0.4,
                 "5-Year Heat Stress Hospitalizations - 5-Year Total Number": null,
                 "Heat Stress Emergency Department Visits - Age-Adjusted Rate": 7.1,
@@ -282,7 +282,7 @@
             "properties": {
                 "geo_entity_id": 103.0,
                 "geo_type_name": "CD",
-                "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Age-Adjusted  Rate": 0.8,
+                "Heat hospitalizations, Average annual age-adjusted rate": 0.8,
                 "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Rate": 1.0,
                 "5-Year Heat Stress Hospitalizations - 5-Year Total Number": null,
                 "Heat Stress Emergency Department Visits - Age-Adjusted Rate": 1.1,
@@ -378,7 +378,7 @@
             "properties": {
                 "geo_entity_id": 104.0,
                 "geo_type_name": "CD",
-                "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Age-Adjusted  Rate": 0.7,
+                "Heat hospitalizations, Average annual age-adjusted rate": 0.7,
                 "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Rate": 0.8,
                 "5-Year Heat Stress Hospitalizations - 5-Year Total Number": null,
                 "Heat Stress Emergency Department Visits - Age-Adjusted Rate": 4.7,
@@ -478,7 +478,7 @@
             "properties": {
                 "geo_entity_id": 105.0,
                 "geo_type_name": "CD",
-                "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Age-Adjusted  Rate": 1.2,
+                "Heat hospitalizations, Average annual age-adjusted rate": 1.2,
                 "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Rate": 1.5,
                 "5-Year Heat Stress Hospitalizations - 5-Year Total Number": null,
                 "Heat Stress Emergency Department Visits - Age-Adjusted Rate": 0.0,
@@ -570,7 +570,7 @@
             "properties": {
                 "geo_entity_id": 106.0,
                 "geo_type_name": "CD",
-                "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Age-Adjusted  Rate": 0.7,
+                "Heat hospitalizations, Average annual age-adjusted rate": 0.7,
                 "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Rate": 1.0,
                 "5-Year Heat Stress Hospitalizations - 5-Year Total Number": null,
                 "Heat Stress Emergency Department Visits - Age-Adjusted Rate": 2.1,
@@ -670,7 +670,7 @@
             "properties": {
                 "geo_entity_id": 107.0,
                 "geo_type_name": "CD",
-                "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Age-Adjusted  Rate": 0.9,
+                "Heat hospitalizations, Average annual age-adjusted rate": 0.9,
                 "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Rate": 1.0,
                 "5-Year Heat Stress Hospitalizations - 5-Year Total Number": 11.0,
                 "Heat Stress Emergency Department Visits - Age-Adjusted Rate": 2.7,
@@ -734,7 +734,7 @@
             "properties": {
                 "geo_entity_id": 108.0,
                 "geo_type_name": "CD",
-                "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Age-Adjusted  Rate": 0.6,
+                "Heat hospitalizations, Average annual age-adjusted rate": 0.6,
                 "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Rate": 0.9,
                 "5-Year Heat Stress Hospitalizations - 5-Year Total Number": null,
                 "Heat Stress Emergency Department Visits - Age-Adjusted Rate": 1.1,
@@ -848,7 +848,7 @@
             "properties": {
                 "geo_entity_id": 109.0,
                 "geo_type_name": "CD",
-                "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Age-Adjusted  Rate": 1.7,
+                "Heat hospitalizations, Average annual age-adjusted rate": 1.7,
                 "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Rate": 1.6,
                 "5-Year Heat Stress Hospitalizations - 5-Year Total Number": null,
                 "Heat Stress Emergency Department Visits - Age-Adjusted Rate": 3.6,
@@ -952,7 +952,7 @@
             "properties": {
                 "geo_entity_id": 110.0,
                 "geo_type_name": "CD",
-                "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Age-Adjusted  Rate": 1.5,
+                "Heat hospitalizations, Average annual age-adjusted rate": 1.5,
                 "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Rate": 1.6,
                 "5-Year Heat Stress Hospitalizations - 5-Year Total Number": null,
                 "Heat Stress Emergency Department Visits - Age-Adjusted Rate": 5.9,
@@ -1072,7 +1072,7 @@
             "properties": {
                 "geo_entity_id": 111.0,
                 "geo_type_name": "CD",
-                "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Age-Adjusted  Rate": 2.3,
+                "Heat hospitalizations, Average annual age-adjusted rate": 2.3,
                 "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Rate": 2.3,
                 "5-Year Heat Stress Hospitalizations - 5-Year Total Number": 14.0,
                 "Heat Stress Emergency Department Visits - Age-Adjusted Rate": 4.2,
@@ -1254,7 +1254,7 @@
             "properties": {
                 "geo_entity_id": 112.0,
                 "geo_type_name": "CD",
-                "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Age-Adjusted  Rate": 0.9,
+                "Heat hospitalizations, Average annual age-adjusted rate": 0.9,
                 "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Rate": 1.0,
                 "5-Year Heat Stress Hospitalizations - 5-Year Total Number": null,
                 "Heat Stress Emergency Department Visits - Age-Adjusted Rate": 7.6,
@@ -1390,7 +1390,7 @@
             "properties": {
                 "geo_entity_id": 201.0,
                 "geo_type_name": "CD",
-                "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Age-Adjusted  Rate": 2.3,
+                "Heat hospitalizations, Average annual age-adjusted rate": 2.3,
                 "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Rate": 1.9,
                 "5-Year Heat Stress Hospitalizations - 5-Year Total Number": null,
                 "Heat Stress Emergency Department Visits - Age-Adjusted Rate": 3.0,
@@ -1498,7 +1498,7 @@
             "properties": {
                 "geo_entity_id": 202.0,
                 "geo_type_name": "CD",
-                "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Age-Adjusted  Rate": 2.2,
+                "Heat hospitalizations, Average annual age-adjusted rate": 2.2,
                 "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Rate": 1.8,
                 "5-Year Heat Stress Hospitalizations - 5-Year Total Number": null,
                 "Heat Stress Emergency Department Visits - Age-Adjusted Rate": 3.7,
@@ -1644,7 +1644,7 @@
             "properties": {
                 "geo_entity_id": 203.0,
                 "geo_type_name": "CD",
-                "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Age-Adjusted  Rate": 1.9,
+                "Heat hospitalizations, Average annual age-adjusted rate": 1.9,
                 "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Rate": 1.3,
                 "5-Year Heat Stress Hospitalizations - 5-Year Total Number": null,
                 "Heat Stress Emergency Department Visits - Age-Adjusted Rate": 6.7,
@@ -1736,7 +1736,7 @@
             "properties": {
                 "geo_entity_id": 204.0,
                 "geo_type_name": "CD",
-                "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Age-Adjusted  Rate": 2.9,
+                "Heat hospitalizations, Average annual age-adjusted rate": 2.9,
                 "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Rate": 2.5,
                 "5-Year Heat Stress Hospitalizations - 5-Year Total Number": 19.0,
                 "Heat Stress Emergency Department Visits - Age-Adjusted Rate": 3.3,
@@ -1804,7 +1804,7 @@
             "properties": {
                 "geo_entity_id": 205.0,
                 "geo_type_name": "CD",
-                "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Age-Adjusted  Rate": 1.8,
+                "Heat hospitalizations, Average annual age-adjusted rate": 1.8,
                 "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Rate": 1.2,
                 "5-Year Heat Stress Hospitalizations - 5-Year Total Number": null,
                 "Heat Stress Emergency Department Visits - Age-Adjusted Rate": 2.9,
@@ -1888,7 +1888,7 @@
             "properties": {
                 "geo_entity_id": 206.0,
                 "geo_type_name": "CD",
-                "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Age-Adjusted  Rate": 2.5,
+                "Heat hospitalizations, Average annual age-adjusted rate": 2.5,
                 "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Rate": 1.9,
                 "5-Year Heat Stress Hospitalizations - 5-Year Total Number": null,
                 "Heat Stress Emergency Department Visits - Age-Adjusted Rate": 5.3,
@@ -2008,7 +2008,7 @@
             "properties": {
                 "geo_entity_id": 207.0,
                 "geo_type_name": "CD",
-                "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Age-Adjusted  Rate": 1.9,
+                "Heat hospitalizations, Average annual age-adjusted rate": 1.9,
                 "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Rate": 1.7,
                 "5-Year Heat Stress Hospitalizations - 5-Year Total Number": 12.0,
                 "Heat Stress Emergency Department Visits - Age-Adjusted Rate": 6.3,
@@ -2156,7 +2156,7 @@
             "properties": {
                 "geo_entity_id": 208.0,
                 "geo_type_name": "CD",
-                "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Age-Adjusted  Rate": 1.1,
+                "Heat hospitalizations, Average annual age-adjusted rate": 1.1,
                 "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Rate": 1.4,
                 "5-Year Heat Stress Hospitalizations - 5-Year Total Number": null,
                 "Heat Stress Emergency Department Visits - Age-Adjusted Rate": 4.5,
@@ -2292,7 +2292,7 @@
             "properties": {
                 "geo_entity_id": 209.0,
                 "geo_type_name": "CD",
-                "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Age-Adjusted  Rate": 2.3,
+                "Heat hospitalizations, Average annual age-adjusted rate": 2.3,
                 "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Rate": 2.2,
                 "5-Year Heat Stress Hospitalizations - 5-Year Total Number": 20.0,
                 "Heat Stress Emergency Department Visits - Age-Adjusted Rate": 3.9,
@@ -2456,7 +2456,7 @@
             "properties": {
                 "geo_entity_id": 210.0,
                 "geo_type_name": "CD",
-                "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Age-Adjusted  Rate": 1.2,
+                "Heat hospitalizations, Average annual age-adjusted rate": 1.2,
                 "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Rate": 1.7,
                 "5-Year Heat Stress Hospitalizations - 5-Year Total Number": null,
                 "Heat Stress Emergency Department Visits - Age-Adjusted Rate": 4.2,
@@ -2982,7 +2982,7 @@
             "properties": {
                 "geo_entity_id": 211.0,
                 "geo_type_name": "CD",
-                "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Age-Adjusted  Rate": 1.9,
+                "Heat hospitalizations, Average annual age-adjusted rate": 1.9,
                 "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Rate": 2.3,
                 "5-Year Heat Stress Hospitalizations - 5-Year Total Number": 13.0,
                 "Heat Stress Emergency Department Visits - Age-Adjusted Rate": 0.0,
@@ -3102,7 +3102,7 @@
             "properties": {
                 "geo_entity_id": 212.0,
                 "geo_type_name": "CD",
-                "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Age-Adjusted  Rate": 2.4,
+                "Heat hospitalizations, Average annual age-adjusted rate": 2.4,
                 "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Rate": 2.5,
                 "5-Year Heat Stress Hospitalizations - 5-Year Total Number": 19.0,
                 "Heat Stress Emergency Department Visits - Age-Adjusted Rate": 2.6,
@@ -3330,7 +3330,7 @@
             "properties": {
                 "geo_entity_id": 301.0,
                 "geo_type_name": "CD",
-                "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Age-Adjusted  Rate": 0.8,
+                "Heat hospitalizations, Average annual age-adjusted rate": 0.8,
                 "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Rate": 0.7,
                 "5-Year Heat Stress Hospitalizations - 5-Year Total Number": null,
                 "Heat Stress Emergency Department Visits - Age-Adjusted Rate": 3.1,
@@ -3486,7 +3486,7 @@
             "properties": {
                 "geo_entity_id": 302.0,
                 "geo_type_name": "CD",
-                "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Age-Adjusted  Rate": 1.9,
+                "Heat hospitalizations, Average annual age-adjusted rate": 1.9,
                 "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Rate": 1.8,
                 "5-Year Heat Stress Hospitalizations - 5-Year Total Number": 11.0,
                 "Heat Stress Emergency Department Visits - Age-Adjusted Rate": 4.0,
@@ -3634,7 +3634,7 @@
             "properties": {
                 "geo_entity_id": 303.0,
                 "geo_type_name": "CD",
-                "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Age-Adjusted  Rate": 2.4,
+                "Heat hospitalizations, Average annual age-adjusted rate": 2.4,
                 "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Rate": 2.2,
                 "5-Year Heat Stress Hospitalizations - 5-Year Total Number": 17.0,
                 "Heat Stress Emergency Department Visits - Age-Adjusted Rate": 8.0,
@@ -3694,7 +3694,7 @@
             "properties": {
                 "geo_entity_id": 304.0,
                 "geo_type_name": "CD",
-                "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Age-Adjusted  Rate": 3.1,
+                "Heat hospitalizations, Average annual age-adjusted rate": 3.1,
                 "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Rate": 2.7,
                 "5-Year Heat Stress Hospitalizations - 5-Year Total Number": 15.0,
                 "Heat Stress Emergency Department Visits - Age-Adjusted Rate": 3.3,
@@ -3798,7 +3798,7 @@
             "properties": {
                 "geo_entity_id": 305.0,
                 "geo_type_name": "CD",
-                "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Age-Adjusted  Rate": 2.1,
+                "Heat hospitalizations, Average annual age-adjusted rate": 2.1,
                 "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Rate": 2.1,
                 "5-Year Heat Stress Hospitalizations - 5-Year Total Number": 19.0,
                 "Heat Stress Emergency Department Visits - Age-Adjusted Rate": 7.6,
@@ -3970,7 +3970,7 @@
             "properties": {
                 "geo_entity_id": 306.0,
                 "geo_type_name": "CD",
-                "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Age-Adjusted  Rate": 1.1,
+                "Heat hospitalizations, Average annual age-adjusted rate": 1.1,
                 "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Rate": 0.7,
                 "5-Year Heat Stress Hospitalizations - 5-Year Total Number": null,
                 "Heat Stress Emergency Department Visits - Age-Adjusted Rate": 6.2,
@@ -4138,7 +4138,7 @@
             "properties": {
                 "geo_entity_id": 307.0,
                 "geo_type_name": "CD",
-                "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Age-Adjusted  Rate": 2.1,
+                "Heat hospitalizations, Average annual age-adjusted rate": 2.1,
                 "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Rate": 2.0,
                 "5-Year Heat Stress Hospitalizations - 5-Year Total Number": 13.0,
                 "Heat Stress Emergency Department Visits - Age-Adjusted Rate": 1.4,
@@ -4318,7 +4318,7 @@
             "properties": {
                 "geo_entity_id": 308.0,
                 "geo_type_name": "CD",
-                "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Age-Adjusted  Rate": 2.3,
+                "Heat hospitalizations, Average annual age-adjusted rate": 2.3,
                 "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Rate": 2.3,
                 "5-Year Heat Stress Hospitalizations - 5-Year Total Number": 11.0,
                 "Heat Stress Emergency Department Visits - Age-Adjusted Rate": 9.4,
@@ -4406,7 +4406,7 @@
             "properties": {
                 "geo_entity_id": 309.0,
                 "geo_type_name": "CD",
-                "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Age-Adjusted  Rate": 2.9,
+                "Heat hospitalizations, Average annual age-adjusted rate": 2.9,
                 "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Rate": 2.9,
                 "5-Year Heat Stress Hospitalizations - 5-Year Total Number": 14.0,
                 "Heat Stress Emergency Department Visits - Age-Adjusted Rate": 1.9,
@@ -4470,7 +4470,7 @@
             "properties": {
                 "geo_entity_id": 310.0,
                 "geo_type_name": "CD",
-                "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Age-Adjusted  Rate": 1.5,
+                "Heat hospitalizations, Average annual age-adjusted rate": 1.5,
                 "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Rate": 1.6,
                 "5-Year Heat Stress Hospitalizations - 5-Year Total Number": 11.0,
                 "Heat Stress Emergency Department Visits - Age-Adjusted Rate": 0.9,
@@ -4582,7 +4582,7 @@
             "properties": {
                 "geo_entity_id": 311.0,
                 "geo_type_name": "CD",
-                "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Age-Adjusted  Rate": 0.9,
+                "Heat hospitalizations, Average annual age-adjusted rate": 0.9,
                 "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Rate": 1.1,
                 "5-Year Heat Stress Hospitalizations - 5-Year Total Number": 11.0,
                 "Heat Stress Emergency Department Visits - Age-Adjusted Rate": 2.2,
@@ -4698,7 +4698,7 @@
             "properties": {
                 "geo_entity_id": 312.0,
                 "geo_type_name": "CD",
-                "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Age-Adjusted  Rate": 1.1,
+                "Heat hospitalizations, Average annual age-adjusted rate": 1.1,
                 "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Rate": 0.9,
                 "5-Year Heat Stress Hospitalizations - 5-Year Total Number": null,
                 "Heat Stress Emergency Department Visits - Age-Adjusted Rate": 1.6,
@@ -4794,7 +4794,7 @@
             "properties": {
                 "geo_entity_id": 313.0,
                 "geo_type_name": "CD",
-                "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Age-Adjusted  Rate": 1.7,
+                "Heat hospitalizations, Average annual age-adjusted rate": 1.7,
                 "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Rate": 2.5,
                 "5-Year Heat Stress Hospitalizations - 5-Year Total Number": 13.0,
                 "Heat Stress Emergency Department Visits - Age-Adjusted Rate": 1.9,
@@ -4962,7 +4962,7 @@
             "properties": {
                 "geo_entity_id": 314.0,
                 "geo_type_name": "CD",
-                "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Age-Adjusted  Rate": 1.4,
+                "Heat hospitalizations, Average annual age-adjusted rate": 1.4,
                 "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Rate": 1.5,
                 "5-Year Heat Stress Hospitalizations - 5-Year Total Number": 12.0,
                 "Heat Stress Emergency Department Visits - Age-Adjusted Rate": 2.3,
@@ -5082,7 +5082,7 @@
             "properties": {
                 "geo_entity_id": 315.0,
                 "geo_type_name": "CD",
-                "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Age-Adjusted  Rate": 1.0,
+                "Heat hospitalizations, Average annual age-adjusted rate": 1.0,
                 "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Rate": 1.2,
                 "5-Year Heat Stress Hospitalizations - 5-Year Total Number": null,
                 "Heat Stress Emergency Department Visits - Age-Adjusted Rate": 2.0,
@@ -5298,7 +5298,7 @@
             "properties": {
                 "geo_entity_id": 316.0,
                 "geo_type_name": "CD",
-                "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Age-Adjusted  Rate": 3.6,
+                "Heat hospitalizations, Average annual age-adjusted rate": 3.6,
                 "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Rate": 3.3,
                 "5-Year Heat Stress Hospitalizations - 5-Year Total Number": 14.0,
                 "Heat Stress Emergency Department Visits - Age-Adjusted Rate": 10.2,
@@ -5366,7 +5366,7 @@
             "properties": {
                 "geo_entity_id": 317.0,
                 "geo_type_name": "CD",
-                "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Age-Adjusted  Rate": 1.9,
+                "Heat hospitalizations, Average annual age-adjusted rate": 1.9,
                 "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Rate": 2.1,
                 "5-Year Heat Stress Hospitalizations - 5-Year Total Number": 16.0,
                 "Heat Stress Emergency Department Visits - Age-Adjusted Rate": 2.1,
@@ -5462,7 +5462,7 @@
             "properties": {
                 "geo_entity_id": 318.0,
                 "geo_type_name": "CD",
-                "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Age-Adjusted  Rate": 1.3,
+                "Heat hospitalizations, Average annual age-adjusted rate": 1.3,
                 "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Rate": 1.4,
                 "5-Year Heat Stress Hospitalizations - 5-Year Total Number": 14.0,
                 "Heat Stress Emergency Department Visits - Age-Adjusted Rate": 5.3,
@@ -5764,7 +5764,7 @@
             "properties": {
                 "geo_entity_id": 401.0,
                 "geo_type_name": "CD",
-                "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Age-Adjusted  Rate": 1.1,
+                "Heat hospitalizations, Average annual age-adjusted rate": 1.1,
                 "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Rate": 1.2,
                 "5-Year Heat Stress Hospitalizations - 5-Year Total Number": 12.0,
                 "Heat Stress Emergency Department Visits - Age-Adjusted Rate": 5.1,
@@ -6022,7 +6022,7 @@
             "properties": {
                 "geo_entity_id": 402.0,
                 "geo_type_name": "CD",
-                "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Age-Adjusted  Rate": 0.5,
+                "Heat hospitalizations, Average annual age-adjusted rate": 0.5,
                 "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Rate": 0.6,
                 "5-Year Heat Stress Hospitalizations - 5-Year Total Number": null,
                 "Heat Stress Emergency Department Visits - Age-Adjusted Rate": 0.0,
@@ -6198,7 +6198,7 @@
             "properties": {
                 "geo_entity_id": 403.0,
                 "geo_type_name": "CD",
-                "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Age-Adjusted  Rate": 1.0,
+                "Heat hospitalizations, Average annual age-adjusted rate": 1.0,
                 "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Rate": 1.0,
                 "5-Year Heat Stress Hospitalizations - 5-Year Total Number": null,
                 "Heat Stress Emergency Department Visits - Age-Adjusted Rate": 0.5,
@@ -6306,7 +6306,7 @@
             "properties": {
                 "geo_entity_id": 404.0,
                 "geo_type_name": "CD",
-                "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Age-Adjusted  Rate": 0.9,
+                "Heat hospitalizations, Average annual age-adjusted rate": 0.9,
                 "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Rate": 0.9,
                 "5-Year Heat Stress Hospitalizations - 5-Year Total Number": null,
                 "Heat Stress Emergency Department Visits - Age-Adjusted Rate": 3.4,
@@ -6390,7 +6390,7 @@
             "properties": {
                 "geo_entity_id": 405.0,
                 "geo_type_name": "CD",
-                "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Age-Adjusted  Rate": 1.5,
+                "Heat hospitalizations, Average annual age-adjusted rate": 1.5,
                 "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Rate": 1.6,
                 "5-Year Heat Stress Hospitalizations - 5-Year Total Number": 13.0,
                 "Heat Stress Emergency Department Visits - Age-Adjusted Rate": 3.4,
@@ -6614,7 +6614,7 @@
             "properties": {
                 "geo_entity_id": 406.0,
                 "geo_type_name": "CD",
-                "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Age-Adjusted  Rate": 0.7,
+                "Heat hospitalizations, Average annual age-adjusted rate": 0.7,
                 "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Rate": 1.1,
                 "5-Year Heat Stress Hospitalizations - 5-Year Total Number": null,
                 "Heat Stress Emergency Department Visits - Age-Adjusted Rate": 0.7,
@@ -6738,7 +6738,7 @@
             "properties": {
                 "geo_entity_id": 407.0,
                 "geo_type_name": "CD",
-                "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Age-Adjusted  Rate": 0.4,
+                "Heat hospitalizations, Average annual age-adjusted rate": 0.4,
                 "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Rate": 0.5,
                 "5-Year Heat Stress Hospitalizations - 5-Year Total Number": null,
                 "Heat Stress Emergency Department Visits - Age-Adjusted Rate": 2.9,
@@ -7168,7 +7168,7 @@
             "properties": {
                 "geo_entity_id": 408.0,
                 "geo_type_name": "CD",
-                "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Age-Adjusted  Rate": 0.9,
+                "Heat hospitalizations, Average annual age-adjusted rate": 0.9,
                 "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Rate": 1.0,
                 "5-Year Heat Stress Hospitalizations - 5-Year Total Number": null,
                 "Heat Stress Emergency Department Visits - Age-Adjusted Rate": 2.2,
@@ -7352,7 +7352,7 @@
             "properties": {
                 "geo_entity_id": 409.0,
                 "geo_type_name": "CD",
-                "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Age-Adjusted  Rate": 1.3,
+                "Heat hospitalizations, Average annual age-adjusted rate": 1.3,
                 "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Rate": 1.1,
                 "5-Year Heat Stress Hospitalizations - 5-Year Total Number": null,
                 "Heat Stress Emergency Department Visits - Age-Adjusted Rate": 3.1,
@@ -7488,7 +7488,7 @@
             "properties": {
                 "geo_entity_id": 410.0,
                 "geo_type_name": "CD",
-                "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Age-Adjusted  Rate": 1.0,
+                "Heat hospitalizations, Average annual age-adjusted rate": 1.0,
                 "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Rate": 1.1,
                 "5-Year Heat Stress Hospitalizations - 5-Year Total Number": null,
                 "Heat Stress Emergency Department Visits - Age-Adjusted Rate": 4.4,
@@ -7684,7 +7684,7 @@
             "properties": {
                 "geo_entity_id": 411.0,
                 "geo_type_name": "CD",
-                "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Age-Adjusted  Rate": 1.0,
+                "Heat hospitalizations, Average annual age-adjusted rate": 1.0,
                 "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Rate": 1.2,
                 "5-Year Heat Stress Hospitalizations - 5-Year Total Number": null,
                 "Heat Stress Emergency Department Visits - Age-Adjusted Rate": 3.4,
@@ -7896,7 +7896,7 @@
             "properties": {
                 "geo_entity_id": 412.0,
                 "geo_type_name": "CD",
-                "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Age-Adjusted  Rate": 1.9,
+                "Heat hospitalizations, Average annual age-adjusted rate": 1.9,
                 "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Rate": 2.1,
                 "5-Year Heat Stress Hospitalizations - 5-Year Total Number": 24.0,
                 "Heat Stress Emergency Department Visits - Age-Adjusted Rate": 4.1,
@@ -8020,7 +8020,7 @@
             "properties": {
                 "geo_entity_id": 413.0,
                 "geo_type_name": "CD",
-                "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Age-Adjusted  Rate": 0.7,
+                "Heat hospitalizations, Average annual age-adjusted rate": 0.7,
                 "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Rate": 0.8,
                 "5-Year Heat Stress Hospitalizations - 5-Year Total Number": null,
                 "Heat Stress Emergency Department Visits - Age-Adjusted Rate": 0.9,
@@ -8296,7 +8296,7 @@
             "properties": {
                 "geo_entity_id": 414.0,
                 "geo_type_name": "CD",
-                "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Age-Adjusted  Rate": 0.9,
+                "Heat hospitalizations, Average annual age-adjusted rate": 0.9,
                 "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Rate": 1.1,
                 "5-Year Heat Stress Hospitalizations - 5-Year Total Number": null,
                 "Heat Stress Emergency Department Visits - Age-Adjusted Rate": 3.2,
@@ -8858,7 +8858,7 @@
             "properties": {
                 "geo_entity_id": 501.0,
                 "geo_type_name": "CD",
-                "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Age-Adjusted  Rate": 2.9,
+                "Heat hospitalizations, Average annual age-adjusted rate": 2.9,
                 "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Rate": 2.9,
                 "5-Year Heat Stress Hospitalizations - 5-Year Total Number": 26.0,
                 "Heat Stress Emergency Department Visits - Age-Adjusted Rate": 6.6,
@@ -9176,7 +9176,7 @@
             "properties": {
                 "geo_entity_id": 502.0,
                 "geo_type_name": "CD",
-                "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Age-Adjusted  Rate": 1.6,
+                "Heat hospitalizations, Average annual age-adjusted rate": 1.6,
                 "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Rate": 1.9,
                 "5-Year Heat Stress Hospitalizations - 5-Year Total Number": 13.0,
                 "Heat Stress Emergency Department Visits - Age-Adjusted Rate": 4.9,
@@ -9650,7 +9650,7 @@
             "properties": {
                 "geo_entity_id": 503.0,
                 "geo_type_name": "CD",
-                "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Age-Adjusted  Rate": 1.4,
+                "Heat hospitalizations, Average annual age-adjusted rate": 1.4,
                 "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Rate": 1.6,
                 "5-Year Heat Stress Hospitalizations - 5-Year Total Number": 13.0,
                 "Heat Stress Emergency Department Visits - Age-Adjusted Rate": 5.1,
