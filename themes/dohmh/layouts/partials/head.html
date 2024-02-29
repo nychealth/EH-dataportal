@@ -3,39 +3,39 @@
 
 {{ if eq hugo.Environment "production" "prod_prod" }}
 
-{{ warnf (print "prod environment: " hugo.Environment) }}
+    {{ warnf (print "prod environment: " hugo.Environment) }}
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-64BWDRHRGB"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-64BWDRHRGB"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
-    gtag('config', 'G-64BWDRHRGB');
-</script>
+        gtag('config', 'G-64BWDRHRGB');
+    </script>
 
-<!-- Google will index this page -->
-<meta name="robots" content="all" />
+    <!-- Google will index this page -->
+    <meta name="robots" content="all" />
 
-{{/*  add GA code for dev data  */}}
+    {{/*  add GA code for dev data  */}}
 
 {{ else }}
 
-{{ warnf (print "dev environment: " hugo.Environment) }}
+    {{ warnf (print "dev environment: " hugo.Environment) }}
 
-<!-- Google won't index this page or follow links -->
-<meta name="robots" content="noindex, nofollow">
+    <!-- Google won't index this page or follow links -->
+    <meta name="robots" content="noindex, nofollow">
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-PB98MPZ31B"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PB98MPZ31B"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
-    gtag('config', 'G-PB98MPZ31B');
-</script>
+        gtag('config', 'G-PB98MPZ31B');
+    </script>
 
 {{ end }}
 
@@ -49,8 +49,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 <title>{{ block "title" . }}
-    {{- if .Params.seo_title -}}{{ .Params.seo_title }}{{- else -}}{{ .Title }}{{ end }} &#x7c; {{ .Site.Title }}
-{{- end -}}</title>
+    {{- if .Params.seo_title -}}{{ .Params.seo_title }}{{- else -}}{{ .Title }}{{ end }} &#x7c; {{ .Site.Title }}{{- end -}}
+</title>
 
 <!-- build datetime -->
 <meta name="build_datetime" content='{{ time.Now.Local.Format "2006-01-02 15:04:05" }}'>
@@ -60,16 +60,16 @@
 {{- /*  content translations  */}}
 
 {{- if .IsTranslated -}}
-	{{- range .Translations -}}
-	<link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .RelPermalink }}" title="{{ .Language.LanguageName }}">
-	{{- end -}}
+    {{- range .Translations -}}
+        <link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .RelPermalink }}" title="{{ .Language.LanguageName }}">
+    {{- end -}}
 {{- end -}}
 
 {{- partial "seo" . }}
 
 {{- if .Params.mapLib }}
-<!-- nyc-lib css (for maps in the core framework)-->
-<link href="https://maps.nyc.gov/nyc-lib/v1.2.79/css/nyc-basic-lib.css" rel="stylesheet">
+    <!-- nyc-lib css (for maps in the core framework)-->
+    <link href="https://maps.nyc.gov/nyc-lib/v1.2.79/css/nyc-basic-lib.css" rel="stylesheet">
 {{- end }}
 
 <!-- jQuery (full, compressed version) -->
@@ -139,7 +139,7 @@
 
 <script src="{{ $dompurify.RelPermalink }}" integrity="{{ $dompurify.Data.Integrity }}"></script>
 
-<!--Other data libraries. To call, have datatables: true in a page's frontmatter-->
+<!-- Other data libraries. To call, have datatables: true in a page's frontmatter -->
 
 {{- if .Params.datatables -}}
 
@@ -174,6 +174,7 @@
 {{- end }}
 
 <!-- Arquero -->
+
 {{- if .Params.arquero }}
 
     {{- /*  Arquero  */}}
@@ -222,7 +223,8 @@
 
 {{- end -}}
 
-<!--Other data libraries. To call, have data: true in a page's frontmatter-->
+<!-- Other data libraries. To call, have data: true in a page's frontmatter -->
+
 {{- if .Params.datalibraries -}}
 
     {{- /*  D3  */ -}}
@@ -264,28 +266,27 @@
 {{/*  set the section type for pagefind filters  */}}
 
 {{- if (eq .Section "data-stories") -}}
-<meta data-pagefind-filter="section[content]" content="Data Stories">
+    <meta data-pagefind-filter="section[content]" content="Data Stories">
 {{ end }}
 
 {{- if (eq .Section "neighborhood-reports") -}}
-<meta data-pagefind-filter="section[content]" content="Neighborhood Reports">
+    <meta data-pagefind-filter="section[content]" content="Neighborhood Reports">
 {{ end }}
 
 {{- if (eq .Section "data-explorer") -}}
-<meta data-pagefind-filter="section[content]" content="Data Explorer">
+    <meta data-pagefind-filter="section[content]" content="Data Explorer">
 {{ end }}
 
 {{- if (eq .Section "key-topics") -}}
-<meta data-pagefind-filter="section[content]" content="Key Topics">
+    <meta data-pagefind-filter="section[content]" content="Key Topics">
 {{ end }}
 
 <script>
+
     let baseURL = {{ relURL "" }}
     let data_repo = "{{ $.Site.Params.data_repo }}";
     let data_branch = "{{ $.Site.Params.data_branch }}";
     let hugoEnv = "{{ hugo.Environment }}"
-
-    {{/*  console.log('Build environment: {{ hugo.Environment }}' )  */}}
 
 </script>
 
