@@ -22,7 +22,6 @@ function init() {
 
     setupMap();
     addListeners();
-    // createLegend();
     loadMetadata().catch(console.log);
 }
 
@@ -1079,7 +1078,7 @@ async function addLayerToMap(layerId) {
             button.classList.add("active");
         }
 
-        // createLegend()
+        createLegend("addLayerToMap")
     }
 }
 
@@ -1104,7 +1103,7 @@ function removeLayerFromMap(layerId) {
         }
     }
 
-    // createLegend()
+    createLegend("removeLayerFromMap")
 
 }
 
@@ -1606,25 +1605,9 @@ let lastLayerEventHash = {id: null, type: null};
  * and gets added below the map in a separate div
  */
 
-function createLegend(layerEvent) {
+function createLegend(fun) {
 
-    // console.log("* createLegend");
-
-    // console.log("layerEvent", layerEvent);
-    
-    const layerEventHash = {
-        id: layerEvent?.layer?.options[CUSTOM_ID_FIELD],
-        type: layerEvent?.type
-    };
-
-    // compare to prior event to see if we need to continue making the legend
-
-    if (layerEventHash.id == lastLayerEventHash.id && layerEventHash.type == lastLayerEventHash.type) {
-        console.log("* createLegend (return)");
-        return;
-    }
-
-    console.log("* createLegend (continue)");
+    console.log("* createLegend [", fun, "]");
     
     let legendDescriptions = [];
 
@@ -1636,14 +1619,8 @@ function createLegend(layerEvent) {
             return;
         }
 
-        // layers get added and removed for all their sub-layers, which means we may still see the layer in this
-        // function while removing it. this line makes sure that layer does not make a legend
-
-        if (layerEvent.type == 'layerremove' && _layer.options[CUSTOM_ID_FIELD] == layerEvent?.layer?.options[CUSTOM_ID_FIELD]) {
-            return;
-        }
-
         legendDescriptions.push(config?.property?.args?.legendDescription);
+
     });
 
     // combine descriptions and add to the div
@@ -1654,10 +1631,11 @@ function createLegend(layerEvent) {
     if (legendControl != null) {
         map.removeControl(legendControl);
     }
-    legendControl = L.control.legend(layerGroup, { label: 'Legend', properties: { layerEventHash } });
+
+    legendControl = L.control.legend(layerGroup, { label: 'Legend' });
     legendControl.addTo(map);
 
-    lastLayerEventHash = layerEventHash;
+
 }
 
 
@@ -1950,15 +1928,6 @@ function addListeners() {
         await resetMapState();
     });
 
-
-    // ----------------------------------------------------------------------- //
-    // adding legends
-    // ----------------------------------------------------------------------- //
-
-    // FIXME this gets called a lot. can we have it called less? or at least do less
-
-    map.on('layeradd', createLegend);
-    map.on('layerremove', createLegend);
 
 }
 
