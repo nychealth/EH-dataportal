@@ -21,7 +21,7 @@ BC: >-
     truck traffic related to warehouses.
 
     - In 2022, seasonal average NO concentrations across NYCCAS monitoring sites
-    ranged from 2.8 to 102 ppb.
+    ranged from 2.8 to 58 ppb.
 NO2: >-
     - Citywide, annual average levels of Nitrogen Dioxide declined by 41%
     between 2009 and 2022, an average of 0.84 parts per billion per year. 
