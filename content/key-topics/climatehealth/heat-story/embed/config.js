@@ -568,10 +568,11 @@ config = {
         // }
     ],
     "stories": [
+        /*
         {
             "id": "getting-started",
             "title": "Getting Started",
-            "content": "<span style=\"text-align: center;\">This story map can be used to visualize the results of NYC and northeastern NJ's 2021 urban heat island mapping campaign combined with personal experience stories about extreme heat, as well as historical and demographic information that <strong><a href=\"unequal.html\">show how heat connects to social inequities and health disparities</a></strong>.</span><p style=\"text-align: center;\">To see different data visualizations, first select layers (see top right on the map) and then adjust your options from the 'CONTROLS' panel.</p><p style=\"text-align: center;\">Do you live within the study area (Northern Manhattan, South Bronx, Jersey City, Newark, and Elizabeth) and would like to tell your story about extreme heat here?<br><strong><a href=\"submit.html\">Please submit your story here for a chance to win a $50 gift card.</a></strong></p>",
+            "content": "<span style=\"text-align: center;\">This story map can be used to visualize the results of NYC's 2021 urban heat island mapping campaign combined with personal experience stories about extreme heat, as well as historical and demographic information that <strong><a href=\"unequal.html\">show how heat connects to social inequities and health disparities</a></strong>.</span><p style=\"text-align: center;\">To see different data visualizations, first select layers (see top right on the map) and then adjust your options from the 'CONTROLS' panel.</p><p style=\"text-align: center;\">Do you live within the study area (Northern Manhattan, South Bronx, Jersey City, Newark, and Elizabeth) and would like to tell your story about extreme heat here?<br><strong><a href=\"submit.html\">Please submit your story here for a chance to win a $50 gift card.</a></strong></p>",
             "mapState": {
                 "lat": 40.715554,
                 "lng": -74.0026642,
@@ -579,6 +580,7 @@ config = {
                 "layers": [ ]
             }
         },
+        */
         {
             "id": "heat-traffic-pollution",
             "title": "Heat + traffic + pollution + odors",
@@ -665,7 +667,7 @@ config = {
         },
         {
             "id": "open-hydrants",
-            "title": "Open Hydrants Have Repercussions",
+            "title": "Open hydrants have repercussions",
             "content": "Mid-80s open hydrants meant top floor apt. dwellers lost water pressure. My neighbors had to walk down 5 flights and carry buckets back upstairs.<br><br>*Additions from the storymap team: <br>Are you struggling from similar issues with fire hydrants in your area? You can get a spray cap from your local fire station and access an outreach program that can teach you how to use it - <a href=\"https://www1.nyc.gov/html/dep/html/press_releases/14-062pr.shtml#.Yvw7t3bMK73\" target=\"_blank\">more info here</a>. For a long-standing issue, you can file a complaint <a href=\"https://portal.311.nyc.gov/article/?kanumber=KA-01034\" target=\"_blank\">here</a>.<br>In case of interest: <a href=\"https://www.atlasobscura.com/articles/new-yorkers-have-been-illicitly-cracking-open-fire-hydrants-for-centuries\" target=\"_blank\">A historical dive into fire hydrant cracking in NYC</a>.",
             "marker": {
                 "lat": 40.8082044,

@@ -16,7 +16,7 @@ function init() {
 
     drawStoryCardDropdown();
 
-    drawStoryCard("getting-started");
+    /*drawStoryCard("getting-started");*/
     $("#btn-getting-started").addClass("active");
     $("#btn-getting-started").attr('aria-selected', true);
 
