@@ -151,6 +151,7 @@ config = {
                     "Class C": window.BaseURL + "maps/HOLC_map/data/HOLCClassC_1.js",
                     "Class D": window.BaseURL + "maps/HOLC_map/data/HOLCClassD_0.js"
                 },
+                "exclusive": false,
                 "args": {
                     "colorFeatureProperty": "holc_grade",
                     "defaultColor": "grey",
@@ -310,6 +311,7 @@ config = {
                     "geoType": "UHF42",
                     "time": "Summer 2021",
                 },
+                "exclusive": true,
                 "args": {
                     "colorFeatureProperty": "Black carbon, Mean",
                     "minColor": "#054fb9",
@@ -340,6 +342,7 @@ config = {
                     "geoType": "CDTA2020",
                     "time": "2023",
                 },
+                "exclusive": true,
                 "args": {
                     "colorFeatureProperty": "HVI",
                     "minColor": "green",
@@ -368,6 +371,7 @@ config = {
                     "measureID": 690,
                     "geoType": "CD",
                     "time": "2017",
+                "exclusive": false,
                 },
                 "args": {
                     "colorFeatureProperty": "Grass and tree cover, Percent",
@@ -401,6 +405,7 @@ config = {
                     "color": "black",
                     "opacity": 0.6
                 },
+                "exclusive": true,
                 "displayProperties": {
                     "missingDisplay": "N/A",
                     "displayPropertyArgs": [
@@ -506,6 +511,7 @@ config = {
                     "geoType": "CDTA2020",
                     "time": "2017-21",
                 },
+                "exclusive": true,
                 "args": {
                     "colorFeatureProperty": "Neighborhood poverty %",
                     "minColor": "blue",
@@ -536,6 +542,7 @@ config = {
                     "geoType": "Subboro",
                     "time": "2017",
                 },
+                "exclusive": true,
                 "args": {
                     "colorFeatureProperty": "Household air conditioning %",
                     "minColor": "red",
