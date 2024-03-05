@@ -525,6 +525,36 @@ config = {
                 }
             }
         },
+        {
+            "property": {
+                "id": "Household_air_conditioning",
+                "name": "Households with AC %",
+                "type": "measureData",
+                "measureInfo": {
+                    "indicatorID": 2185,
+                    "measureID": 781,
+                    "geoType": "Subboro",
+                    "time": "2017",
+                },
+                "args": {
+                    "colorFeatureProperty": "Neighborhood poverty %",
+                    "minColor": "red",
+                    "maxColor": "blue",
+                    "color": "black",
+                    "opacity": 0.7,
+                    "legendDescription": "The percent of households with incomes below the federal poverty level. Households without sufficient resources are often deprived of access to items such as health care and good quality housing that are needed to maintain good health."
+                },
+                "displayProperties": {
+                    "missingDisplay": "N/A",
+                    "displayPropertyArgs": [
+                        {
+                            "id": "Households with AC %",
+                            "displayName": "Households with AC %"
+                        }
+                    ]
+                }
+            }
+        },
         // {
         //     "property": {
         //         "id": "social_economic",
