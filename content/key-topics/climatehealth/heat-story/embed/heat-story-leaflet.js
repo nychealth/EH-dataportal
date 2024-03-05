@@ -1286,15 +1286,17 @@ async function resetMapState() {
 function formatValue(value, type) {
 
     // console.log("* formatValue");
+    // console.log(">> value [formatValue]", value);
+    // console.log(">> type [formatValue]", type);
     
     // FIXME handle NaN
     if (type == null || value == null) return value;
 
     switch(type) {
     case 'float':
-        return `${(value * 100).toFixed(2)}`;
+        return `${value.toFixed(1)}`;
     case 'percentage':
-        return `${(value * 100).toFixed(2)}%`;
+        return `${(value * 100).toFixed(1)}%`;
     case 'currency':
         // code block
         return value.toLocaleString('en-US', {
@@ -1322,7 +1324,7 @@ function featureInfoToHtmlForPopup(feature, layer) {
     // console.log("* featureInfoToHtmlForPopup");
 
     // console.log("feature [featureInfoToHtmlForPopup]", feature);
-    // console.log("layer [featureInfoToHtmlForPopup]", layer);
+    console.log("layer [featureInfoToHtmlForPopup]", layer);
     
     const displayProperties = layer.options.displayProperties;
 

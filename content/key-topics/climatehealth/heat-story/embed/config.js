@@ -386,7 +386,8 @@ config = {
                     "displayPropertyArgs": [
                         {
                             "id": "Grass and tree cover, Percent",
-                            "displayName": "Grass and tree cover, Percent"
+                            "displayName": "Grass and tree cover, Percent",
+                            "format": "float"
                         }
                     ]
                 }
@@ -411,7 +412,8 @@ config = {
                     "displayPropertyArgs": [
                         {
                             "id": "Heat hospitalizations, Average annual age-adjusted rate",
-                            "displayName": "Heat hospitalizations, Average annual age-adjusted rate"
+                            "displayName": "Heat hospitalizations, Average annual age-adjusted rate",
+                            "format": "float"
                         },
                         /*
                         {
@@ -524,8 +526,9 @@ config = {
                     "missingDisplay": "N/A",
                     "displayPropertyArgs": [
                         {
-                            "id": "Neighborhood poverty %",
-                            "displayName": "Neighborhood poverty %"
+                            "id": "Neighborhood poverty, Percent",
+                            "displayName": "Neighborhood poverty, Percent",
+                            "format": "float"
                         }
                     ]
                 }
@@ -555,8 +558,9 @@ config = {
                     "missingDisplay": "N/A",
                     "displayPropertyArgs": [
                         {
-                            "id": "Households with AC %",
-                            "displayName": "Households with AC %"
+                            "id": "Households with AC, Percent",
+                            "displayName": "Households with AC, Percent",
+                            "format": "float"
                         }
                     ]
                 }
