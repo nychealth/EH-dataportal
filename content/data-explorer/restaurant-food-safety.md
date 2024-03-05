@@ -3,7 +3,8 @@ title: Restaurant food safety
 date: 2021-05-28 18:02:58.806398
 draft: false
 seo_title: "Restaurant food safety data for NYC"
-seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods.."
+seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
+description: "Datasets and visualizations of restaurant food safety in NYC."
 tags: 
 categories: ["foodanddrink"]
 keywords: ["food","restaurants","safety","food and drink","drink","inspection"]
