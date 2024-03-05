@@ -537,12 +537,12 @@ config = {
                     "time": "2017",
                 },
                 "args": {
-                    "colorFeatureProperty": "Neighborhood poverty %",
+                    "colorFeatureProperty": "Household air conditioning %",
                     "minColor": "red",
-                    "maxColor": "blue",
+                    "maxColor": "white",
                     "color": "black",
                     "opacity": 0.7,
-                    "legendDescription": "The percent of households with incomes below the federal poverty level. Households without sufficient resources are often deprived of access to items such as health care and good quality housing that are needed to maintain good health."
+                    "legendDescription": "Estimated number of households in an area reporting having functioning air conditioning, divided by the number of households in the area; expressed as percent."
                 },
                 "displayProperties": {
                     "missingDisplay": "N/A",
