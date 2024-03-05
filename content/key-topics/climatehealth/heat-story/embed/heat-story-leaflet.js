@@ -1352,11 +1352,11 @@ function featureInfoToHtmlForPopup(feature, layer) {
 
     const geoTypePretty = prettifyGeoType(feature.properties.GeoType);
 
-    // console.log("geoTypePretty", geoTypePretty);
+    // console.log("GEOTypePretty", geoTypePretty);
 
     // then create that into an html table
     const featureTable = Object.entries(featureMap)
-        .map(x => `<tr><td>${x[0]}</td><td style="text-align: left;">${x[1] ?? missingDisplay}</td></tr>`);
+        .map(x => `<tr class="fs-sm"><td>${x[0]}</td><td style="text-align: left;">${x[1] ?? missingDisplay}</td></tr>`);
 
     // console.log("featureTable [featureInfoToHtmlForPopup]", featureTable);
 
@@ -1364,18 +1364,18 @@ function featureInfoToHtmlForPopup(feature, layer) {
 
     if (!featureTable.length || !featureTable.length) {
         return missingDisplay != null
-            ? `<h3 class="h5">${layer.options.name}</h3>${missingDisplay}`
+            ? `<h3 class="h6">${layer.options.name}</h3>${missingDisplay}`
             : '';
     }
 
     // return `<h5>${layer.options.name}</h5><table class="table popup-table table-bordered" style="width:100%">${featureTable.join('')}</table>`;
 
     let popup_html = 
-        `<h3 class="h5">${layer.options.name}</h3>` +
+        `<h3 class="h6">${layer.options.name}</h3>` +
         // `<table class="table popup-table" rules="all" style="width:100%">` + 
         `<table class="table popup-table" style="width:100%">` + 
         // `<tr><th>${layer.options.name}</th></tr>` + 
-        `<tr><td>Neighborhood (${geoTypePretty})</td><td>${geoName}</td></tr>` +
+        `<tr class="fs-sm"><td>Neighborhood (${geoTypePretty})</td><td>${geoName}</td></tr>` +
         `${featureTable.join('')}</table>`
 
     return popup_html;
