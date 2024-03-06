@@ -122,7 +122,8 @@ function printToPage(x) {
     document.getElementById('zoneName').innerHTML = name;
 
     const zoneData = ratData.filter(zone => zone.ID == x)
-    // console.log(zoneData)
+
+    /*
     document.getElementById('totalInspections').innerHTML = Number(zoneData[0].Inspections).toLocaleString()
     document.getElementById('agency').innerHTML = Number(zoneData[0].cityAgencyReferral).toLocaleString() + ' (' + (100 * Number(zoneData[0].cityAgencyReferral) / Number(zoneData[0].Inspections)).toFixed(1) + '% of inspections)'
     document.getElementById('cota').innerHTML = Number(zoneData[0].privatePropertyCOTA).toLocaleString() + ' (' + (100 * Number(zoneData[0].privatePropertyCOTA) / Number(zoneData[0].Inspections)).toFixed(1) + '% of inspections)'
@@ -142,7 +143,7 @@ function printToPage(x) {
     document.getElementById('mouse').innerHTML = Number(zoneData[0].mouseSighting).toLocaleString()
     document.getElementById('rat').innerHTML = Number(zoneData[0].ratSighting).toLocaleString()
     document.getElementById('signs').innerHTML = Number(zoneData[0].signsOfRodents).toLocaleString()
-
+    */
 }
 
 
@@ -166,3 +167,182 @@ function showInfo(x) {
     document.getElementById('info').innerHTML = content
 
 }
+
+
+// 311 Complaints spec
+var specOne = {
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": "container",
+    "height": "container",
+    "title": {
+      "text": "",
+      "subtitlePadding": 10,
+      "fontWeight": "normal",
+      "anchor": "start",
+      "fontSize": 13,
+      "font": "sans-serif",
+      "baseline": "top",
+      "dy": -10,
+      "subtitleFontSize": 13
+    },
+    "config": {
+      "view": {"stroke": null},
+      "axisX": {"labelAngle": 0, "grid": false,"tickCount": 5},
+      "axisY": {"tickCount": 3}
+    },
+    "data": {
+      "url": "https://gist.githubusercontent.com/mmontesanonyc/0fb07f8e1064ff37e09021c4871d331a/raw/6b3f16e070086344903da8d16890999e9a62d057/rmz-reformat.csv"
+    },
+    "transform": [{"filter": "datum.RMZ=='Bronx-GC'"}],
+    "encoding": {
+      "x": {
+        "field": "Date",
+        "type": "temporal",
+        "title": "",
+        "axis": {"format": "%b %Y"}
+      }
+    },
+    "layer": [
+      {
+        "encoding": {
+          "color": {
+            "field": "ComplaintType",
+            "type": "nominal",
+            "legend": null,
+            "scale": {
+                "domain": ["RatSighting", "MouseSighting", "SignsOfRodents", "ConditionAttractingRodents"],
+                "range": ["#2b3fde", "#a494ea", "#a7bf88", "#588f1d"]
+              }
+          },
+          "y": {"field": "Number", "type": "quantitative", "title": ""}
+        },
+        "layer": [
+          {"mark": {"type": "line", "point": {"size": 100}, "strokeWidth": 4}},
+          {
+            "transform": [{"filter": {"param": "hover", "empty": false}}],
+            "mark": "point"
+          }
+        ]
+      },
+      {
+        "transform": [
+          {"pivot": "ComplaintType", "value": "Number", "groupby": ["Date"]}
+        ],
+        "mark": "rule",
+        "encoding": {
+          "opacity": {
+            "condition": {"value": 0.3, "param": "hover", "empty": false},
+            "value": 0
+          },
+          "tooltip": [
+            {"field": "RatSighting", "type": "quantitative"},
+            {"field": "MouseSighting", "type": "quantitative"},
+            {"field": "SignsOfRodents", "type": "quantitative"},
+            {"field": "ConditionAttractingRodents", "type": "quantitative"},
+            {"field": "Date", "type": "temporal", "title": "For 6 months ending:"}
+          ]
+        },
+        "params": [
+          {
+            "name": "hover",
+            "select": {
+              "type": "point",
+              "fields": ["Date"],
+              "nearest": true,
+              "on": "pointerover",
+              "clear": "pointerout"
+            }
+          }
+        ]
+      }
+    ]
+  }
+
+  vegaEmbed("#vizOne", specOne, {actions: false})
+
+var specTwo = {
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": "container",
+    "height": "container",
+    "title": {
+      "text": "",
+      "subtitlePadding": 10,
+      "fontWeight": "normal",
+      "anchor": "start",
+      "fontSize": 13,
+      "font": "sans-serif",
+      "baseline": "top",
+      "dy": -10,
+      "subtitleFontSize": 13
+    },
+    "config": {
+      "view": {"stroke": null},
+      "axisX": {"labelAngle": 0, "grid": false,"tickCount": 4},
+      "axisY": {"tickCount": 3}
+    },
+    "data": {
+      "url": "https://gist.githubusercontent.com/mmontesanonyc/57e037e5a258a0c91315bc2ff61a089e/raw/5fd0f640c233bb0863f67fa959b73ec3028f9993/bronx-initial.csv"
+    },
+    "encoding": {
+      "x": {
+        "field": "Date",
+        "type": "temporal",
+        "title": "",
+        "axis": {"format": "%b %Y"}
+      }
+    },
+    "layer": [
+      {
+        "encoding": {
+          "color": {
+            "field": "Type",
+            "type": "nominal",
+            "legend": null
+          },
+          "y": {"field": "Number", "type": "quantitative", "title": ""}
+        },
+        "layer": [
+            {"mark": {"type": "line", "point": {"size": 100}, "strokeWidth": 4}},
+          {
+            "transform": [{"filter": {"param": "hover", "empty": false}}],
+            "mark": "point"
+          }
+        ]
+      },
+      {
+        "transform": [
+          {"pivot": "Type", "value": "Number", "groupby": ["Date"]}
+        ],
+        "mark": "rule",
+        "encoding": {
+          "opacity": {
+            "condition": {"value": 0.3, "param": "hover", "empty": false},
+            "value": 0
+          },
+          "tooltip": [
+            {"field": "Initial inspection", "type": "quantitative"},
+            {"field": "City agency", "type": "quantitative"},
+            {"field": "Private property", "type": "quantitative"},
+            {"field": "ARS Fail", "type": "quantitative"},
+            {"field": "Date", "type": "temporal", "title": "For 6 months ending:"}
+          ]
+        },
+        "params": [
+          {
+            "name": "hover",
+            "select": {
+              "type": "point",
+              "fields": ["Date"],
+              "nearest": true,
+              "on": "pointerover",
+              "clear": "pointerout"
+            }
+          }
+        ]
+      }
+    ]
+  }
+
+  vegaEmbed("#vizTwo", specTwo, {actions: false})
+
+  

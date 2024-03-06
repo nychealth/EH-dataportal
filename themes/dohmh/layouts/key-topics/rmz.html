@@ -33,99 +33,45 @@
 
         <div class="col-md-6 mr-auto">
                 <div class="p-1" style="border-left: 8px solid #841972 !important; background-color: #fafafa">
-                <div class="row mb-1">
+                <div class="row">
                     <div class="col-2">
                         <p><span class="home-label">Zone:</span> </p>
 
                     </div>
                     <div class="col-8">
-                        <p><span id="zoneName" class="fwm fs-xl">&nbsp;</span></p>
+                        <h2 class="fwm fs-xl" id="zoneName">&nbsp;</h2>
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="col-2">
-                        <p><span class="home-label">Data for:</span></p>
-
-                    </div>
-                    <div class="col-8">
-                        <p><span style="font-weight:bold">Calendar year 2022</span>
-                        </p>
-                    </div>
-                </div>
                 </div>
 
 
-                <div class="row my-2">  
-                    <div class="col-12 border-bottom">
-                        <p><strong><span class="home-label">311 complaints for:</span></strong></p>
+                <div class="row mt-2">  
+                    <div class="col-12 mt-2">
+                        <h3 class="home-label font-weigt-bold">311 complaints</h3>
+                        <p class="fs-sm">Complaints for <strong style="color: #2b3fde">rat sighting</strong>, <strong style="color: #a494ea">mouse sighting</strong>, <strong style="color: #a7bf88">signs of rodents</strong>, or <strong style="color: #588f1d">conditions attracting rodents</strong>.</p>
+                        <div style="width:100%; height: 200px;" id="vizOne"></div>
                     </div> 
-                    <div class="col-6">
-                       <p>
-                            <span class="home-label">Rodent conditions:</span>
-                                <span id="attracting" class="fwm"></span><br>
-                            <span class="home-label">Mouse sighting:</span>
-                                <span id="mouse" class="fwm"></span></p>
-                    </div>
 
-                    <div class="col-6">
-                        <p>
-                            <span class="home-label">Rat sighting:</span>
-                                <span id="rat" class="fwm"></span><br>
-                            <span class="home-label">Rodent signs:</span>
-                                <span id="signs" class="fwm"></span></p>
-                    </div>
-                </div>
+                    <div class="col-12 mt-4">
+                        <span class="float-right home-label">Number | Percent</span>
+                        <h3 class="home-label font-weigt-bold">Initial inspections</h3>
 
-                <div class="row border-top mb-2">    
-    
-                    <div class="col-6">
-                        <p><a href="#map" onclick="showInfo(0)"class="question-hover"><i class="fas fa-question-circle mr-1 mt-1 text-info"></i></a><span class="home-label">Initial inspections:</span><br>
-                            <span id="totalInspections" class="fwm  fs-xl">&nbsp;</span></p>
+                        <p class="fs-sm">Inspections are initiated by the Health Department, or after a 311 complaint. When a <strong>private property fails</strong> an inspection, they are mailed an abatement order with guidance to remediate the issue. If a <strong>city property fails</strong>, the agency that owns it is asked to remiate the conditions.</p>
+                        <div style="width:100%; height: 200px;" id="vizTwo"></div>
+                    </div> 
 
-                    </div>
-
-                    <div class="col-6">
-                        <p><a href="#map" onclick="showInfo(1)"><i class="fas fa-question-circle mr-1 mt-1 text-info"></i></a><span class="home-label">Resulting in agency referrals:</span><br>
-                            <span id="agency" class="fwm">&nbsp;</span></p>
-                    </div>
-
-                    <div class="col-6 ml-auto mt-2">
-                        <p><a href="#map" onclick="showInfo(2)"><i class="fas fa-question-circle mr-1 mt-1 text-info"></i></a><span class="home-label">Resulting in abatement orders:</span><br>
-                            <span id="cota" class="fwm">&nbsp;</span></p>
-                    </div>
+                    <div class="col-12 mt-4">
+                        <span class="float-right home-label">Number | Percent</span>
+                        <h3 class="home-label font-weigt-bold">Compliance inspections</h3>
+                        <p class="fs-sm">Compliance inspections are done at properties that fail initial inspections, 2 to 3 weeks after an abatement order is mailed. If a property <strong>fails a compliance inspection</strong>, the owner is issued a summons. The Health Department might send an exterminator to apply bait (rodenticides) and monitor the property; the owner is billed for this work.</p>
+                        <div style="width:100%; height: 200px; border: 1px solid black">VIZ</div>
+                    </div> 
 
 
                 </div>
-    
-                <div class="row border-top my-2">
-                    <div class="col-6">
-                        <p><a href="#map" onclick="showInfo(3)"><i class="fas fa-question-circle mr-1 mt-1 text-info"></i></a><span class="home-label">Compliance inspections:</span><br>
-                            <span id="comp" class="fwm  fs-xl">&nbsp;</span></p>
-                    </div>
 
-                    <div class="col-6">
-                        <p><span class="home-label">Failed:</span><br>
-                            <span id="failed" class="fwm">&nbsp;</span></p>
-                    </div>
-    
-                    <div class="col-6 ml-auto mt-2">
-                        <p><span class="home-label">Passed:</span><br>
-                            <span id="passed" class="fwm">&nbsp;</span></p>
-                    </div>
-                </div>
-    
-                <div class="row border-top my-2">
-                    <div class="col-6">
-                        <p><a href="#map" onclick="showInfo(5)"><i class="fas fa-question-circle mr-1 mt-1 text-info"></i></a><span class="home-label">Visits by NYC Health exterminator:</span><br>
-                            <span id="exterminator" class="fwm  fs-xl">&nbsp;</span></p>
-                    </div>
-    
-                    <div class="col-6">
-                        <p><span class="home-label">Visits with bait applied:</span><br>
-                            <span id="bait" class="fwm">&nbsp;</span></p>
-                    </div>
-                </div>
+
         </div>
     </div>
 
@@ -164,20 +110,6 @@
                     <a class="btn btn-outline-primary btn-block mt-1" href="../rat-information-portal">For individual property inspection results, visit the Rat Information Portal</a>
                 </div>
             </div>
-
-            <div class="row my-4">
-                <div class="col-12">
-                    <h4>Inspection data:</h4>
-                    <iframe title="2022 RMZ data" aria-label="Table" id="datawrapper-chart-5uPau" src="https://datawrapper.dwcdn.net/5uPau/4/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="271" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
-                    </script>
-        
-                    <h4 class="mt-4">Complaint data:</h4>
-                    <iframe title="2022 rodent-related complaint data" aria-label="Table" id="datawrapper-chart-KQXDt" src="https://datawrapper.dwcdn.net/KQXDt/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="290" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
-                    </script>
-                </div>
-            </div>
-
-
         </div>
 
 
