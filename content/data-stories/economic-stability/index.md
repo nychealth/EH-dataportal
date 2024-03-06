@@ -5,7 +5,7 @@ draft: false
 seo_title: "How economic stability creates health "
 seo_description: "A data story about how economic stability creates health"
 tags:
-categories: ["housing", "social", "childhealth", "neighborhoods"]
+categories: ["housing", "social", "childhealth", "foodanddrink"]
 keywords:
   [
     "health equity",
@@ -13,6 +13,13 @@ keywords:
     "inequities",
     "affordable housing",
     "social determinants",
+    "poverty",
+    "food insecurity",
+    "healthy food",
+    "health care",
+    "medical debt"
+    "racism",
+    "inequality"
   ]
 image: CrownHeights_JulienneSchaer-065.JPG
 photocredit: JulienneSchaer
