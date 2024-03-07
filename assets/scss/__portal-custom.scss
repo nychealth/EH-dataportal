@@ -24,13 +24,41 @@
 
 // ==== pagefind modal styles ==== //
 
-// checked filter name
-
-.pagefind-ui__filter-value--checked .pagefind-ui__filter-label {
-    font-weight: bold !important;
+#searchModal .modal-dialog{
+    overflow-y: initial !important;
+}
+#searchModal .modal-body{
+    height: 75vh;
+    overflow-y: auto;
 }
 
+#searchModal .pagefind-ui__filter-block {
+    position: sticky;
+    top: 0;
+}
+
+#searchModal .pagefind-ui__filter-name {
+    font-size: 1.1rem;
+}
+
+#searchModal .pagefind-ui__message {
+    font-size: 1.1rem;
+}
+
+#searchModal .pagefind-ui__filter-label {
+    font-size: 1.0rem;
+}
+
+
+// checked filter name
+
+#searchModal .pagefind-ui__filter-value--checked .pagefind-ui__filter-label {
+    font-weight: bolder !important;
+}
+
+
 // ==== Index page styles ==== //
+
 .bg-lightgray {
     background-color: #fbfbfb !important;
     border-left: 10px solid #dddddd !important;
@@ -42,6 +70,7 @@
 }
 
 // ==== All tile-color classes are for custom page cards  ==== //
+
 .tile-green {
     width: 100%;
     display: inline-block;
