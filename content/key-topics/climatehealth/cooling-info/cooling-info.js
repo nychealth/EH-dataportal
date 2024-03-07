@@ -266,6 +266,18 @@ function runFinal() {
   var finalMessageText = document.getElementById('finalMessages')
   finalMessageText.innerHTML = ''
 
+  // Message 0 - default / look at resources.
+  if (aqi > 0 && currentTemp < 70) {
+  msg = "<p><strong> Today's temperature is not too warm. </strong> Before it gets too hot find out if your friends, family members, or neighbors have AC, and make sure you know of places people can go to stay cool. It could save someone's life.</p>"
+    finalMessageText.innerHTML+= msg + '<hr class="my-2">'
+  }
+
+  // Message 0.5 - default low aqi / look at resources 
+  if (currentTemp < 70) {
+    msg = "<p><strong> The air quality is fine.</strong> Before an AQ event, make sure you know what to do and what supplies you need to stay safe. </p>"
+      finalMessageText.innerHTML+= msg + '<hr class="my-2">'
+  }
+
   // Message 1 - AQI / wear a mask
   if (aqi > 3 || 
     (aqi > 2 && sensitiveGroup === 'Yes')) {
