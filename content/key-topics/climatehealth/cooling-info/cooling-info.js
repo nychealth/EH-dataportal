@@ -275,7 +275,7 @@ function runFinal() {
 
   // Message 2 - warm and no AC? Use a fan. 
   if (hasAC === 'No' && currentTemp > 78 && hasFan === 'Yes') {
-    msg = '<p><strong>It’s warm, and you don’t have an AC</strong>. Your fan can help cool you down. But it won’t cool the air – if it’s too hot inside, it’s just moving hot air around, and can make you even warmer.</p><p>When the Air Quality Index is elevated, you can also use your fan as a DIY air purifier: Research on DIY Air Cleaners to Reduce Wildfire Smoke Indoors | US EPA</p>'
+    msg = '<p><strong>It’s warm, and you don’t have an AC</strong>. Your fan can help cool you down. But it won’t cool the air – if it’s too hot inside, it’s just moving hot air around, and can make you even warmer.</p><p>When the Air Quality Index is elevated, you can also use your fan as a DIY air purifier: <a href=https://www.epa.gov/air-research/research-diy-air-cleaners-reduce-wildfire-smoke-indoors> Research on DIY Air Cleaners to Reduce Wildfire Smoke Indoors | US EPA</a></p>'
     finalMessageText.innerHTML += msg + '<hr class="my-2">'
   }
 
@@ -363,7 +363,7 @@ function runFinal() {
 
   // uses EME
   if (usesEME === 'Yes') {
-    msg = '<p><strong>You use electric medical equipment</strong>. You can register electronic medical equipment such as wheelchairs, nebulizers, respirators, or dialysis machines with your utility provider in the event of an emergency (such as a power outage during a heatwave!). A medical certificate is required. ConEd customers Call 1-877-582-6633 or use “MyAccount” online. PSEG customers can call Call 1-800-490-0025. </p>'
+    msg = '<p><strong>You use electric medical equipment, (like a wheelchair, nebulizer, respirator, or dialysis machine). </strong>. You can register electronic medical equipment such as wheelchairs, nebulizers, respirators, or dialysis machines with your utility provider in the event of an emergency (such as a power outage during a heatwave!). A medical certificate is required. ConEd customers Call 1-877-582-6633 or use “MyAccount” online. PSEG customers can call Call 1-800-490-0025. </p>'
     finalMessageText.innerHTML += msg + '<hr class="my-2">'
   }
 

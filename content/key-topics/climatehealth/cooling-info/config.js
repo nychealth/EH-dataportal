@@ -44,7 +44,7 @@ var content = [
             {
                 "optionID": 1,
                 "copy": "Yes",
-                "message": "Make sure to have an emergency plan back up batteries. You can also register your equipment with your utility provider: <br> CON ED: 1-800-752-6633 <br> PSEG: 1-800-490-0025",
+                "message": "Make sure to have an emergency plan back up batteries. You can also <a href=https://www.coned.com/en/accounts-billing/payment-plans-assistance/special-services>register your equipment with your utility provider:<a> <br> CON ED: 1-800-752-6633 <br> PSEG: 1-800-490-0025",
                 "setVariable": "eme('Yes')",
                 "goTo": 3
             },
@@ -95,14 +95,14 @@ var content = [
             {
                 "optionID": 1,
                 "copy": "Yes",
-                "message": "Great! You have an air conditioner.",
+                "message": "Great! You have an air conditioner. Different types of air conditioning are able to provide varying levels of cooling and air filtration during hot weather. BTU is a measure of how powerful your air conditioner is. Look for a small label. A 5,000 BTU air conditioner can effectively cool a small bedroom or a room that is 100 to 150 square feet. Every additional 100 square feet requires 1,000 more BTUs. If your air conditioner is not powerful enough to cool several rooms, confining the AC to one room can be a way to ensure part of your space stays cool.",
                 "setVariable": "ac('Yes')",
                 "goTo": 5
             },
             {   
                 "optionID": 2,
                 "copy": "No",
-                "message": "Different types of air conditioning are able to provide varying levels of cooling and air filtration during hot weather. BTU is a measure of how powerful your air conditioner is. Look for a small label <br> A 5,000 BTU air conditioner can effectively cool a small bedroom or a room that is 100 to 150 square feet. Every additional 100 square feet requires 1,000 more BTUs. <br> If your air conditioner is not powerful enough to cool several rooms, confining the AC to one room can be a way to ensure part of your space stays cool.",
+                "message": "When it's hot AC is the best way to stay cool, but let's find other ways you can stay cool.",
                 "setVariable": "ac('No')",
                 "goTo": 5
             }
@@ -122,7 +122,7 @@ var content = [
             {
                 "optionID": 1,
                 "copy": "Yes",
-                "message": "There are resources such as HEAP and CON ED's Energy Affordability Program that can help make air conditioning your home more affordable.",
+                "message": "There are resources such as <a href=https://www.nyc.gov/site/hra/help/energy-assistance.page>HEAP</a> and <a href=https://www.coned.com/en/accounts-billing/payment-plans-assistance/help-paying-your-bill>CON ED's Energy Affordability Program</a> that can help make air conditioning your home more affordable.",
                 "setVariable": "limitAC('Yes')",
                 "goTo": 6
             },
