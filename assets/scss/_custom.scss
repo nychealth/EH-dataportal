@@ -43,3 +43,85 @@ table {
     margin-top: .75rem !important;
   }
 }
+
+$color-key-topics: #800080;
+$color-data-stories: #D75047;
+$color-n-reports: #197BBD;
+$color-data-explorer: #0A408A;
+
+
+
+.key-topics {
+ svg path {
+  fill: $color-key-topics;
+ }
+}
+
+.data-stories {
+  svg path {
+    fill: $color-data-stories;
+   }
+}
+
+.n-reports {
+  svg path {
+    fill: $color-n-reports;
+   }
+}
+
+.data-explorer {
+  svg path {
+    fill: $color-data-explorer;
+   }
+}
+
+.link-w-underline {
+  border-bottom: 1px solid $gray-300;
+  padding: 5px 10px;
+  font-size: 1.1875rem;
+  font-weight: 700;
+}
+
+.card-left-border {
+  border-left: 10px solid #008939;
+}
+
+.neighborhood-list-button,
+.neighborhood-list-button:hover,
+.neighborhood-list-button.active {
+  background-color: #EFFAF4 !important;
+  color: $primary !important;
+}
+
+.neighborhood-list-button .minus {
+  display: none;
+}
+
+.neighborhood-list-button.active .minus {
+  display: block;
+}
+
+.neighborhood-list-button.active .plus {
+  display: none;
+}
+
+.neighborhood-list-button.active {
+  border-bottom: none;
+}
+
+.neighborhood-list {
+  background-color: #EFFAF4;
+  font-size: 18px;
+}
+
+.neighborhood-list li {
+  margin-bottom: 5px;
+}
+
+
+@include media-breakpoint-up(xl) {
+  .container {
+    padding-left: 100px;
+    padding-right: 100px;
+  }
+}

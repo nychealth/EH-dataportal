@@ -110,7 +110,7 @@ h1 {
 
 .nav-item {
     &:hover, &.active {
-        background-color: #EFFAF4;
+        background-color: rgba(128,0,128,.09);
         text-decoration: none;
     }
     @include media-breakpoint-down(lg) {
@@ -132,7 +132,7 @@ h1 {
     border-color: #D1F0C8 !important;
 }
 .nav {
-    border-bottom: 1px solid !important;
+
 }
 
 .nav-link:hover {
@@ -315,8 +315,9 @@ h1 {
 .content-card {
     .card-content {
         height: 100%;
+        display: flex;
+        flex-direction: column;
         box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.18), 0 3px 10px 0 rgba(0, 0, 0, 0.17);
-        border-bottom: 8px solid $primary ;
         .card-title {
             font-size: 1.5rem;
             line-height: 1.75rem;
@@ -330,6 +331,23 @@ h1 {
                 font-weight: 700;
             }
         }
+        .link {
+            flex: 1;
+            display: flex;
+            align-items: flex-end;
+        }
+    }
+    .card-content.n-reports {
+        border-bottom: 8px solid $color-n-reports;
+    }
+    .card-content.data-stories {
+        border-bottom: 8px solid $color-data-stories;
+    }
+    .card-content.data-explorer {
+        border-bottom: 8px solid $color-data-explorer;
+    }
+    .card-content.key-topics {
+        border-bottom: 8px solid $color-key-topics;
     }
 }
 
@@ -714,17 +732,25 @@ span.th-sub {
 // Section styles
 
 .ds-accent {
-    color:#197BBD!important;
+    svg path {
+        fill: $color-data-stories;
+    }
 }
 
 .kt-accent {
-    color:#800080!important
+    svg path {
+        fill: $color-key-topics;
+    }
 }
 
 .nr-accent {
-    color:#D75047!important;
+    svg path {
+        fill: $color-n-reports;
+    }
 }
 
 .de-accent {
-    color:#00923E!important
+    svg path {
+        fill: $color-data-explorer;
+    }
 }
