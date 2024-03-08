@@ -80,7 +80,10 @@ function zoomToFeature(e) {
     geog.resetStyle()
     map.fitBounds(e.target.getBounds());
     id = e.target.feature.properties.OBJECTID
-    // console.log('Name: ' + e.target.feature.properties.Label) 
+    console.log('Filtering data for: ')
+    console.log('Name: ' + e.target.feature.properties.Label) 
+    console.log('ID: ', id)
+    redrawChart(id)
     name = e.target.feature.properties.Label
     printToPage(id);
     // The above gets id and name, puts them into global variables, for other selection display
@@ -191,9 +194,9 @@ var specOne = {
       "axisY": {"tickCount": 3}
     },
     "data": {
-      "url": "https://gist.githubusercontent.com/mmontesanonyc/0fb07f8e1064ff37e09021c4871d331a/raw/6b3f16e070086344903da8d16890999e9a62d057/rmz-reformat.csv"
+      "url": "311-complaints.csv"
     },
-    "transform": [{"filter": "datum.RMZ=='Bronx-GC'"}],
+    "transform": [{"filter": "datum.zoneID=='2'"}],
     "encoding": {
       "x": {
         "field": "Date",
@@ -210,7 +213,7 @@ var specOne = {
             "type": "nominal",
             "legend": null,
             "scale": {
-                "domain": ["RatSighting", "MouseSighting", "SignsOfRodents", "ConditionAttractingRodents"],
+                "domain": ["Rat sighting", "Mouse sighting", "Signs of rodents", "Condition attracting rodents"],
                 "range": ["#2b3fde", "#a494ea", "#a7bf88", "#588f1d"]
               }
           },
@@ -235,10 +238,10 @@ var specOne = {
             "value": 0
           },
           "tooltip": [
-            {"field": "RatSighting", "type": "quantitative"},
-            {"field": "MouseSighting", "type": "quantitative"},
-            {"field": "SignsOfRodents", "type": "quantitative"},
-            {"field": "ConditionAttractingRodents", "type": "quantitative"},
+            {"field": "Rat sighting", "type": "quantitative"},
+            {"field": "Mouse sighting", "type": "quantitative"},
+            {"field": "Signs of rodents", "type": "quantitative"},
+            {"field": "Condition attracting rodents", "type": "quantitative"},
             {"field": "Date", "type": "temporal", "title": "For 6 months ending:"}
           ]
         },
@@ -258,7 +261,24 @@ var specOne = {
     ]
   }
 
-  vegaEmbed("#vizOne", specOne, {actions: false})
+//  vegaEmbed("#vizOne", specOne, {actions: false})
+// vegaEmbed("#vizOne", specOne)
+
+function redrawChart(zoneID) {
+  console.log('drawing chart for zone ', zoneID);
+  
+  specOne.transform[0].filter = `datum.zoneID == '${zoneID}'`
+  vegaEmbed("#vizOne", specOne)
+
+  specTwo.transform[0].filter = `datum.zoneID == '${zoneID}'`
+  vegaEmbed("#vizTwo", specTwo)
+
+  specThree.transform[0].filter = `datum.zoneID == '${zoneID}'`
+  vegaEmbed("#vizThree", specThree)
+  
+
+}
+
 
 var specTwo = {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
@@ -281,8 +301,14 @@ var specTwo = {
       "axisY": {"tickCount": 3}
     },
     "data": {
-      "url": "https://gist.githubusercontent.com/mmontesanonyc/57e037e5a258a0c91315bc2ff61a089e/raw/5fd0f640c233bb0863f67fa959b73ec3028f9993/bronx-initial.csv"
+      "url": "initial-inspections.csv"
     },
+    "transform": [
+      {"filter": "datum.zoneID=='2'"},
+      {"filter": "datum.Type!='City agency'"},
+      {"filter": "datum.Type!='Private property'"}
+
+    ],
     "encoding": {
       "x": {
         "field": "Date",
@@ -297,7 +323,11 @@ var specTwo = {
           "color": {
             "field": "Type",
             "type": "nominal",
-            "legend": null
+            "legend": null,
+            "scale": {
+              "domain": ["Initial inspections", "All fail", "ARS fail"],
+              "range": ["#00008B", "#c73866", "#D77393"]
+            }
           },
           "y": {"field": "Number", "type": "quantitative", "title": ""}
         },
@@ -320,10 +350,9 @@ var specTwo = {
             "value": 0
           },
           "tooltip": [
-            {"field": "Initial inspection", "type": "quantitative"},
-            {"field": "City agency", "type": "quantitative"},
-            {"field": "Private property", "type": "quantitative"},
-            {"field": "ARS Fail", "type": "quantitative"},
+            {"field": "Initial inspections", "type": "quantitative"},
+            {"field": "All fail", "type": "quantitative"},
+            {"field": "ARS fail", "type": "quantitative"},
             {"field": "Date", "type": "temporal", "title": "For 6 months ending:"}
           ]
         },
@@ -343,6 +372,97 @@ var specTwo = {
     ]
   }
 
-  vegaEmbed("#vizTwo", specTwo, {actions: false})
+  // vegaEmbed("#vizTwo", specTwo, {actions: false})
 
-  
+  // vegaEmbed("#vizTwo", specTwo)
+
+
+  var specThree = {
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": "container",
+    "height": "container",
+    "title": {
+      "text": "",
+      "subtitlePadding": 10,
+      "fontWeight": "normal",
+      "anchor": "start",
+      "fontSize": 13,
+      "font": "sans-serif",
+      "baseline": "top",
+      "dy": -10,
+      "subtitleFontSize": 13
+    },
+    "config": {
+      "view": {"stroke": null},
+      "axisX": {"labelAngle": 0, "grid": false,"tickCount": 4},
+      "axisY": {"tickCount": 3}
+    },
+    "data": {
+      "url": "compliance-inspections.csv"
+    },
+    "transform": [
+      {"filter": "datum.zoneID=='2'"},
+      {"filter": "datum.Type!='Passed'"},
+    ],
+    "encoding": {
+      "x": {
+        "field": "Date",
+        "type": "temporal",
+        "title": "",
+        "axis": {"format": "%b %Y"}
+      }
+    },
+    "layer": [
+      {
+        "encoding": {
+          "color": {
+            "field": "Type",
+            "type": "nominal",
+            "legend": null,
+            "scale": {
+              "domain": ["Compliance inspections", "Failed, summons issued", "ARS fail"],
+              "range": ["#00008B", "#c73866", "#D77393"]
+            }
+          },
+          "y": {"field": "Number", "type": "quantitative", "title": ""}
+        },
+        "layer": [
+            {"mark": {"type": "line", "point": {"size": 100}, "strokeWidth": 4}},
+          {
+            "transform": [{"filter": {"param": "hover", "empty": false}}],
+            "mark": "point"
+          }
+        ]
+      },
+      {
+        "transform": [
+          {"pivot": "Type", "value": "Number", "groupby": ["Date"]}
+        ],
+        "mark": "rule",
+        "encoding": {
+          "opacity": {
+            "condition": {"value": 0.3, "param": "hover", "empty": false},
+            "value": 0
+          },
+          "tooltip": [
+            {"field": "Compliance inspections", "type": "quantitative"},
+            {"field": "Failed, summons issued", "type": "quantitative"},
+            {"field": "ARS fail", "type": "quantitative"},
+            {"field": "Date", "type": "temporal", "title": "For 6 months ending:"}
+          ]
+        },
+        "params": [
+          {
+            "name": "hover",
+            "select": {
+              "type": "point",
+              "fields": ["Date"],
+              "nearest": true,
+              "on": "pointerover",
+              "clear": "pointerout"
+            }
+          }
+        ]
+      }
+    ]
+  }
