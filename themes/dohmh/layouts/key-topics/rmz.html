@@ -30,6 +30,19 @@
             <div id="map" class="border">
             </div>
 
+            <div class="dropdown">
+                <button class="btn btn-outline-primary btn-block btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Choose zone
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" onclick="zoomToFeature(2)" href="#map">Bronx: Grand Concourse</a>
+                  <a class="dropdown-item" href="#map">Manhattan: Harlem</a>
+                  <a class="dropdown-item" href="#map">Manhattan: East Village/Chinatown</a>
+                  <a class="dropdown-item" href="#map">Brooklyn: Bed Stuy/Bushwick</a>
+
+                </div>
+              </div>
+
             <div class="border p-2 mt-4">
                 <h4>Rat Mitigation Zones</h4>
                 <p>NYC has a robust approach to rat control and uses different techniques depending on the level of rat activity in a neighborhood.</p>
@@ -67,7 +80,7 @@
                     <div class="col-12 mt-4">
                         <span class="float-right home-label hide">Number | Percent</span>
                         <h3 class="home-label font-weigt-bold">Compliance inspections</h3>
-                        <p class="fs-sm"><span style="color: #00008B;font-weight:bold;">Initial inspections</span>  are done at properties that fail initial inspections, 2 to 3 weeks after an abatement order is mailed. If a property <span style="color: #c73866;font-weight:bold;">fails a compliance inspection</span>, the owner is issued a summons. The Health Department might send an exterminator to apply bait (rodenticides) and monitor the property; the owner is billed for this work. The chart also shows <span style="color:#D77393;font-weight:bold;">properties that fail for active rat signs</span>.</p>
+                        <p class="fs-sm"><span style="color: #00008B;font-weight:bold;">Compliance inspections</span>  are done at properties that fail initial inspections, 2 to 3 weeks after an abatement order is mailed. If a property <span style="color: #c73866;font-weight:bold;">fails a compliance inspection</span>, the owner is issued a summons. The Health Department might send an exterminator to apply bait (rodenticides) and monitor the property; the owner is billed for this work. The chart also shows <span style="color:#D77393;font-weight:bold;">properties that fail for active rat signs</span>.</p>
                         <div style="width:100%; height: 200px;" id="vizThree"><span class="px-4 mt-4">Choose a neighborhood to see data</span></div>
                     </div> 
 
@@ -86,20 +99,35 @@
 
 
 
-    <div class="row my-4">
+    <div class="row my-2">
         <div class="col-md-11 mx-auto">
             <div class="row">
-                <div class="col-md-8 mx-auto">
+                <div class="col-md-8">
                     <div class="border p-2">
                         <h4>Are you in an RMZ? Here's what you need to know.</h4>
                         <p>If you live or work in an RMZ, you can expect more frequent inspections for rats and the conditions that attract them. The NYC Health Department will work with the NYC Departments of Parks and Recreation, Department of Sanitation, Department of Education, and Housing Authority to address rat conditions on city-owned property. </p>
                         <p></p>
 
 
-                        <p>The Health Department also works to control rats in areas that are not RMZs.   Visit <a href="https://www.nyc.gov/rats">www.nyc.gov/rats</a> for information and resources on how to address rats in your neighborhood, or to <a href="https://www.nyc.gov/site/doh/services/rats-control-training.page">sign up for a free Rat Academy training</a>.</p>
+                        <p>The Health Department also works to control rats in areas that are not RMZs.  Get <a href="https://www.nyc.gov/rats">information and resources on how to address rats</a> in your neighborhood, or to <a href="https://www.nyc.gov/site/doh/services/rats-control-training.page">sign up for a free Rat Academy training</a>.</p>
                     </div>
 
-                    <a class="btn btn-outline-primary btn-block mt-1" href="../rat-information-portal">For individual property inspection results, visit the Rat Information Portal</a>
+                </div>
+
+                <div class="col-md-4">
+
+                    <div class="border p-1">
+                        <h3 class="home-label font-weight-bold"><i class="fas fa-file-download mr-1" aria-hidden="true"></i>Download data:</h3>
+                        <ul>
+                            <li><a href="311-complaints.csv">311 complaints</a></li>
+                            <li><a href="initial-inspections.csv">Initial inspections</a></li>
+                            <li><a href="compliance-inspections.csv">Compliance inspections</a></li>
+                        </ul>
+                    </div>
+
+                    <a class="btn btn-outline-primary btn-block my-2" href="../rat-information-portal">For individual property inspection results, visit the Rat Information Portal</a>
+
+
                 </div>
             </div>
         </div>
