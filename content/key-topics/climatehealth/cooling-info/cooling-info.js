@@ -212,7 +212,7 @@ function answer(question, answer, next) {
     rec.classList.add('active') // we can change this to trigger a recommendation, running through a rec script that reads the temp and aqi variables.
   } else {
     console.log('no rec for this answer')
-    // Need to figure out how to turn off Active if somebody changes their ansewr !!!!!!
+    // Need to figure out how to turn off Active if somebody changes their answer !!!!!!
   }
   */
 
@@ -278,6 +278,12 @@ function runFinal() {
       finalMessageText.innerHTML+= msg + '<hr class="my-2">'
   }
 
+   // Message 0.75 - default bad aqi / declares bad aqi
+   if (aqi >= 3 ) {
+    msg = "<p><strong> The air quality is bad. Your recommendations will reflect this. </strong></p>"
+      finalMessageText.innerHTML+= msg + '<hr class="my-2">'
+  }
+
 
 
   // Message 1 - AQI / wear a mask
@@ -298,7 +304,7 @@ function runFinal() {
     (hasAC === 'Yes' && currentTemp > 70 && aqi > 3) || 
     (hasAC === 'Yes' && currentTemp > 70 && aqi > 2 && sensitiveGroup === 'Yes')
     ) {
-      msg = '<p><strong>The Air Quality Index</strong> is bad today. Close your windows to prevent the air pollution from getting in. Closed windows can make your space warmer, so use your AC to stay cool and comfortable if you need to. </p>'
+      msg = "<p><strong>Given today's air quality</strong>, close your windows to prevent the air pollution from getting in. Closed windows can make your space warmer, so use your AC to stay cool and comfortable if you need to. </p>"
       finalMessageText.innerHTML += msg + '<hr class="my-2">'
     }
 
