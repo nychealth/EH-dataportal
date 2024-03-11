@@ -1,4 +1,5 @@
 // ==== Title hover effect ==== //
+
 .title-hover {
     position: relative;
 }
@@ -24,10 +25,10 @@
 
 // ==== pagefind modal styles ==== //
 
-#searchModal .modal-dialog{
+#searchModal .modal-dialog {
     overflow-y: initial !important;
 }
-#searchModal .modal-body{
+#searchModal .modal-body {
     height: 75vh;
     overflow-y: auto;
 }
@@ -64,7 +65,6 @@
     border-left: 10px solid #dddddd !important;
 }
 
-
 .hide {
     display: none;
 }
@@ -84,6 +84,7 @@
 }
 
 // ==== hover for page cards that are single full-div links ==== //
+
 .tile-green:hover {
     background-color: #4e8771;
     box-shadow: 10px 10px 5px grey;
