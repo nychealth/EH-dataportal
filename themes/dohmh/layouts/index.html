@@ -66,7 +66,7 @@
               </div>
 
               <div class="col-8 ml-auto h-100 pl-2">
-                <p class="text-black"><span class="font-weight-bold">{{ .Title }}</span> {{ .Content | plainify | truncate 100 | htmlUnescape }} </p>
+                <p class="text-black fs-md"><span class="font-weight-bold">{{ .Title }}</span> {{ .Content | plainify | truncate 100 | htmlUnescape }} </p>
               </div>
             </a>
 
@@ -137,12 +137,12 @@
       </div>
 
       <div class="col-lg-4 col-sm-10 card content-card">
-        <div class="card-content nr-accent mb-4">
+        <div class="card-content n-reports mb-4">
           <a href={{ relURL "neighborhood-reports" }}>
             <img class="card-img-top" src={{ relURL "images/home-sample-image-NR.png" }}>
           </a>
           <div class="card-body">
-            <h3>Neighborhood Reports</h3>
+            <h3 class="card-title">Neighborhood Reports</h3>
             <p>Search for your neighborhood and get data</p>
             <div class="d-flex justify-content-end">
               <a class="fs-sm font-weight-bold" href={{ relURL "neighborhood-reports" }}>Search here &gt;</a>
