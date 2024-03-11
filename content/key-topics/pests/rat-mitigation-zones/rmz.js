@@ -77,10 +77,12 @@ function resetHighlight(e) {
 }
 
 function zoomToFeature(e) {
+  console.log('zoom to feature:'),
+  console.log(e)
+  console.log(rmz)
     geog.resetStyle()
     map.fitBounds(e.target.getBounds());
     id = e.target.feature.properties.OBJECTID
-    console.log(e)
     console.log('Filtering data for: ')
     console.log('Name: ' + e.target.feature.properties.Label) 
     console.log('ID: ', id)
@@ -126,6 +128,21 @@ function printToPage(x) {
     document.getElementById('zoneName').innerHTML = name;
 
     const zoneData = ratData.filter(zone => zone.ID == x)
+}
+
+// update map and page from dropdown
+function update(x) {
+  console.log('updated for: ', x)
+  let zone = x - 1
+  let layerzone = rmz.features[zone]
+
+  var bounds = L.geoJSON(layerzone).getBounds()
+  var center = bounds.getCenter()
+  map.setView(center, 14)
+
+  document.getElementById('zoneName').innerHTML = layerzone.properties.Label
+
+  redrawChart(x)
 }
 
 
