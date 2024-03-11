@@ -199,7 +199,7 @@ var specOne = {
             {"field": "Mouse sighting", "type": "quantitative"},
             {"field": "Signs of rodents", "type": "quantitative"},
             {"field": "Condition attracting rodents", "type": "quantitative"},
-            {"field": "Date", "type": "temporal", "title": "For 6 months ending:"}
+            {"field": "Date", "type": "temporal", "title": "For 6 months ending"}
           ]
         },
         "params": [
@@ -232,6 +232,9 @@ function redrawChart(zoneID) {
 
   specThree.transform[0].filter = `datum.zoneID == '${zoneID}'`
   vegaEmbed("#vizThree", specThree)
+
+  specFour.transform[0].filter = `datum.zoneID == '${zoneID}'`
+  vegaEmbed("#vizFour", specFour)
   
 
 }
@@ -307,9 +310,9 @@ var specTwo = {
           },
           "tooltip": [
             {"field": "Initial inspections", "type": "quantitative"},
-            {"field": "All fail", "type": "quantitative"},
-            {"field": "ARS fail", "type": "quantitative"},
-            {"field": "Date", "type": "temporal", "title": "For 6 months ending:"}
+            {"field": "All fail", "type": "quantitative","title": "Failed"},
+            {"field": "ARS fail", "type": "quantitative", "title": "Active rat signs"},
+            {"field": "Date", "type": "temporal", "title": "For 6 months ending"}
           ]
         },
         "params": [
@@ -403,8 +406,96 @@ var specTwo = {
           "tooltip": [
             {"field": "Compliance inspections", "type": "quantitative"},
             {"field": "Failed, summons issued", "type": "quantitative"},
-            {"field": "ARS fail", "type": "quantitative"},
-            {"field": "Date", "type": "temporal", "title": "For 6 months ending:"}
+            {"field": "ARS fail", "type": "quantitative","title": "Active rat signs"},
+            {"field": "Date", "type": "temporal", "title": "For 6 months ending"}
+          ]
+        },
+        "params": [
+          {
+            "name": "hover",
+            "select": {
+              "type": "point",
+              "fields": ["Date"],
+              "nearest": true,
+              "on": "pointerover",
+              "clear": "pointerout"
+            }
+          }
+        ]
+      }
+    ]
+  }
+
+  specFour = {
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": "container",
+    "height": "container",
+    "title": {
+      "text": "",
+      "subtitlePadding": 10,
+      "fontWeight": "normal",
+      "anchor": "start",
+      "fontSize": 13,
+      "font": "sans-serif",
+      "baseline": "top",
+      "dy": -10,
+      "subtitleFontSize": 13
+    },
+    "config": {
+      "view": {"stroke": null},
+      "axisX": {"labelAngle": 0, "grid": false,"tickCount": 4},
+      "axisY": {"tickCount": 3}
+    },
+    "data": {
+      "url": "exterminator-visits.csv"
+    },
+    "transform": [
+      {"filter": "datum.zoneID=='2'"}
+    ],
+    "encoding": {
+      "x": {
+        "field": "Date",
+        "type": "temporal",
+        "title": "",
+        "axis": {"format": "%b %Y"}
+      }
+    },
+    "layer": [
+      {
+        "encoding": {
+          "color": {
+            "field": "Thing",
+            "type": "nominal",
+            "legend": null,
+            "scale": {
+              "domain": ["Exterminator visits", "Bait applied"],
+              "range": ["#00008B", "#c73866"]
+            }
+          },
+          "y": {"field": "Number", "type": "quantitative", "title": ""}
+        },
+        "layer": [
+            {"mark": {"type": "line", "point": {"size": 100}, "strokeWidth": 4}},
+          {
+            "transform": [{"filter": {"param": "hover", "empty": false}}],
+            "mark": "point"
+          }
+        ]
+      },
+      {
+        "transform": [
+          {"pivot": "Thing", "value": "Number", "groupby": ["Date"]}
+        ],
+        "mark": "rule",
+        "encoding": {
+          "opacity": {
+            "condition": {"value": 0.3, "param": "hover", "empty": false},
+            "value": 0
+          },
+          "tooltip": [
+            {"field": "Exterminator visits", "type": "quantitative"},
+            {"field": "Bait applied", "type": "quantitative"},
+            {"field": "Date", "type": "temporal", "title": "For 6 months ending"}
           ]
         },
         "params": [
