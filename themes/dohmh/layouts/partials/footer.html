@@ -221,11 +221,35 @@
                         },
                         processResult: function (result) {
 
+                            // ----------------------------------------------------------------------- //
+                            // clean some fields
+                            // ----------------------------------------------------------------------- //
+
+                            // replace (in place) HTML entites in titles
+
+                            result.meta.title = result.meta.title
+                                .replace(/&#(\d+);/g, ((match, dec) => `${String.fromCharCode(dec)}`))
+                                .replaceAll("&amp;", "&");
+                            
+                            // process sub-results
+
                             result.sub_results.forEach(sub => {
+
+                                // replace (in place) default DE indicatore anchor with DE query string
 
                                 sub.url = sub.url.replace("#IndicatorID-", "?id=");
 
+                                // replace (in place) HTML entites in titles
+
+                                sub.title = sub.title
+                                    .replace(/&#(\d+);/g, ((match, dec) => `${String.fromCharCode(dec)}`))
+                                    .replaceAll("&amp;", "&");
+
                             });
+
+                            // ----------------------------------------------------------------------- //
+                            // add Google Analytics tag to each result
+                            // ----------------------------------------------------------------------- //
 
                             // Get all search results
                             var allResults = document.getElementsByClassName('pagefind-ui__result-link');
