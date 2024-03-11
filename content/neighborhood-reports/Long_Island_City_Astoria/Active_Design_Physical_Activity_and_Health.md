@@ -5,7 +5,7 @@ summary: "The design and conditions of buildings, streets, public transportation
 data_json: "Active Design Physical Activity and Health in Long Island City - Astoria"
 content_yml: "Active_Design_Physical_Activity_and_Health"
 type: location
-seo_title: "Active Design Physical Activity and Health in Long Island City - Astoria"
+seo_title: "Active Design in Long Island City - Astoria"
 seo_description: "Active Design Physical Activity and Health data profile for the Long Island City - Astoria neighborhood of NYC."
 seo_image: "images/nyc_health_report_active_design_health.jpg"
 vega: true

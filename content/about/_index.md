@@ -4,6 +4,7 @@ date: 2021-11-24T13:30:21-05:00
 draft: false
 seo_title: "About the Environment and Health Data Portal"
 seo_description: "This site is a project of the NYC Department of Health."
+description: "About the EH Data Portal, a project from the NYC Department of Health."
 ---
 
 The NYC Environment & Health Data Portal shows how environments affect health, by publishing data and information that explain the connection. Public health professionals, community-based organizations, community boards, city agencies, elected officials, health workers, advocates, and everyday New Yorkers use this website to get important information that they need to do their jobs and make important, informed decisions about health.

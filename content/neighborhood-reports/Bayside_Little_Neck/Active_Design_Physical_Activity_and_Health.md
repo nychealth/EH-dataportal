@@ -5,7 +5,7 @@ summary: "The design and conditions of buildings, streets, public transportation
 data_json: "Active Design Physical Activity and Health in Bayside - Little Neck"
 content_yml: "Active_Design_Physical_Activity_and_Health"
 type: location
-seo_title: "Active Design Physical Activity and Health in Bayside - Little Neck"
+seo_title: "Active Design in Bayside - Little Neck"
 seo_description: "Active Design Physical Activity and Health data profile for the Bayside - Little Neck neighborhood of NYC."
 seo_image: "images/nyc_health_report_active_design_health.jpg"
 vega: true

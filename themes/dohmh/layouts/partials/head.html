@@ -49,8 +49,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 <title>{{ block "title" . }}
-    {{- if .Params.seo_title -}}{{ .Params.seo_title }}{{- else -}}{{ .Title }}{{ end }} &#x7c; {{ .Site.Title }}{{- end -}}
-</title>
+    {{- if .Params.seo_title -}}{{ .Params.seo_title }}{{- else -}}{{ .Title }}{{ end }}
+{{- end -}}</title>
 
 <!-- build datetime -->
 <meta name="build_datetime" content='{{ time.Now.Local.Format "2006-01-02 15:04:05" }}'>
@@ -251,7 +251,9 @@
     {{- $dataTablesButtonsPrint := resources.Get "node_modules/datatables.net-buttons/js/buttons.print.min.js" }}
     {{- $dataTablesRowGroup := resources.Get "node_modules/datatables.net-rowgroup/js/dataTables.rowGroup.min.js" }}
     
-    {{- $dataTablesBundleJS := slice $dataTables $dataTablesButtons $dataTablesButtonsHtml5 $dataTablesButtonsPrint $dataTablesRowGroup | resources.Concat "js/dataTableBundle.js" | resources.Fingerprint "sha512" }}
+    {{- $dataTablesButtonsDt := resources.Get "node_modules/datatables.net-buttons-dt/js/buttons.dataTables.min.js" }}
+
+    {{- $dataTablesBundleJS := slice $dataTables $dataTablesButtons $dataTablesButtonsHtml5 $dataTablesButtonsPrint $dataTablesRowGroup $dataTablesButtonsDt | resources.Concat "js/dataTableBundle.js" | resources.Fingerprint "sha512" }}
 
     <script src="{{ $dataTablesBundleJS.RelPermalink }}" integrity="{{ $dataTablesBundleJS.Data.Integrity }}"></script>
 

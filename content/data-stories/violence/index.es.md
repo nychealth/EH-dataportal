@@ -68,7 +68,7 @@ Un mapa de los tiroteos recientes se alinea con las áreas considerablemente d
 
 {{< rawhtml >}}
 <div class="my-3">
-<iframe src="HOLC-shootings/map.html" scrolling="no" frameborder="0" style="position: relative; height: 600px; width: 100%;"></iframe>
+<iframe src="../../../maps/HOLC-shootings/map.html" scrolling="no" frameborder="0" style="position: relative; height: 600px; width: 100%;"></iframe>
 </div>
 {{< /rawhtml >}}
 

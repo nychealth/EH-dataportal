@@ -5,7 +5,7 @@ summary: "The design and conditions of buildings, streets, public transportation
 data_json: "Active Design Physical Activity and Health in Gramercy Park - Murray Hill"
 content_yml: "Active_Design_Physical_Activity_and_Health"
 type: location
-seo_title: "Active Design Physical Activity and Health in Gramercy Park - Murray Hill"
+seo_title: "Active Design in Gramercy Park - Murray Hill"
 seo_description: "Active Design Physical Activity and Health data profile for the Gramercy Park - Murray Hill neighborhood of NYC."
 seo_image: "images/nyc_health_report_active_design_health.jpg"
 vega: true

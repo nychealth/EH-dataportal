@@ -5,7 +5,7 @@ summary: "The design and conditions of buildings, streets, public transportation
 data_json: "Active Design Physical Activity and Health in Washington Heights"
 content_yml: "Active_Design_Physical_Activity_and_Health"
 type: location
-seo_title: "Active Design Physical Activity and Health in Washington Heights"
+seo_title: "Active Design in Washington Heights"
 seo_description: "Active Design Physical Activity and Health data profile for the Washington Heights neighborhood of NYC."
 seo_image: "images/nyc_health_report_active_design_health.jpg"
 vega: true

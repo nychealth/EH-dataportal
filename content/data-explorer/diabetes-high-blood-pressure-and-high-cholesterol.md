@@ -3,7 +3,8 @@ title: Diabetes, High Blood Pressure and High Cholesterol
 date: 2021-05-28 18:02:58.723926
 draft: true
 seo_title: "Diabetes data for NYC"
-seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods.."
+seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
+description: "Datasets and visualizations of diabetes data in NYC."
 tags: 
 categories: ["healthoutcomes"]
 keywords: ["diabetes","high blood pressure","cholesterol","chronic illness"]

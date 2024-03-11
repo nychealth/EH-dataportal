@@ -5,7 +5,7 @@ summary: "The design and conditions of buildings, streets, public transportation
 data_json: "Active Design Physical Activity and Health in Upper East Side"
 content_yml: "Active_Design_Physical_Activity_and_Health"
 type: location
-seo_title: "Active Design Physical Activity and Health in Upper East Side"
+seo_title: "Active Design in Upper East Side"
 seo_description: "Active Design Physical Activity and Health data profile for the Upper East Side neighborhood of NYC."
 seo_image: "images/nyc_health_report_active_design_health.jpg"
 vega: true

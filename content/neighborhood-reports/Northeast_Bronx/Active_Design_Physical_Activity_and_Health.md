@@ -5,7 +5,7 @@ summary: "The design and conditions of buildings, streets, public transportation
 data_json: "Active Design Physical Activity and Health in Northeast Bronx"
 content_yml: "Active_Design_Physical_Activity_and_Health"
 type: location
-seo_title: "Active Design Physical Activity and Health in Northeast Bronx"
+seo_title: "Active Design in Northeast Bronx"
 seo_description: "Active Design Physical Activity and Health data profile for the Northeast Bronx neighborhood of NYC."
 seo_image: "images/nyc_health_report_active_design_health.jpg"
 vega: true
