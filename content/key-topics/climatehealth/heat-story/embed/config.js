@@ -622,7 +622,7 @@ config = {
         {
             "id": "getting-started",
             "title": "Explore the heat story map",
-            "content": "<p style=\"text-align: left;\">Select a story to learn about how heat is affecting New Yorkers. Browse data sets that show disparities in temperature, heat stress, neighborhood poverty, and AC access, and then add a layer to look at how these data next to redlining and green cover maps. <br><strong></strong></p>",
+            "content": "<p style=\"text-align: left;\">Select a story to learn about how heat is affecting New Yorkers. Browse data sets that show disparities in temperature, heat stress, neighborhood poverty, and AC access, and then add a layer to look at these data next to redlining and green cover maps. <br><strong></strong></p>",
             "mapState": {
                 "lat": 40.715554,
                 "lng": -74.0026642,
