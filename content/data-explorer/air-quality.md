@@ -3,7 +3,8 @@ title: Air quality
 date: 2021-05-28 18:02:58.755365
 draft: false
 seo_title: "Air quality data for NYC"
-seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods.."
+seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
+description: "Datasets and visualizations of air quality data in NYC."
 tags: 
 categories: ["airquality","childhealth","transportation","neighborhoods"]
 keywords: ["air quality","pollution","emissions","exhaust","pollutants","pm2.5","asthma","breathing","lungs"]

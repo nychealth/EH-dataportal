@@ -3,7 +3,7 @@ title: Brownfields
 date: 2021-05-28 18:02:58.750940
 draft: true
 seo_title: "Brownfields data for NYC"
-seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods.."
+seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
 tags: 
 categories: ["neighborhoods"]
 keywords: ["pollution","neighborhoods"]
