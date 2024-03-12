@@ -1324,7 +1324,7 @@ function featureInfoToHtmlForPopup(feature, layer) {
     // console.log("* featureInfoToHtmlForPopup");
 
     // console.log("feature [featureInfoToHtmlForPopup]", feature);
-    console.log("layer [featureInfoToHtmlForPopup]", layer);
+    // console.log("layer [featureInfoToHtmlForPopup]", layer);
     
     const displayProperties = layer.options.displayProperties;
 
@@ -1343,10 +1343,24 @@ function featureInfoToHtmlForPopup(feature, layer) {
     // create a map of unique keys to values
     const featureMap = Object.entries(feature.properties)
         .filter(x => x[0] in displayPropertyArgs)
-        .map(x => [displayPropertyArgs[x[0]]?.displayName ?? x[0], formatValue(x[1], displayPropertyArgs[x[0]]?.format)])
+        .map(x => {
+
+            let displayName = displayPropertyArgs[x[0]]?.displayName ?? x[0];
+            let units = displayPropertyArgs[x[0]]?.units ?? "";
+            let display_units = `${displayName}${units && ` (${units})`}`
+
+            // console.log("disp", [displayName, units, display_units]);
+
+            let ret = [
+                `${display_units}`, 
+                formatValue(x[1], displayPropertyArgs[x[0]]?.format)
+            ]
+            
+            return ret;
+
+        })
         .reduce((m, [k, v]) => {m[k] = v ?? m[k]; return m;}, {});
 
-    // console.log("featureMap [featureInfoToHtmlForPopup]", featureMap);
 
     // EITHER NEED TO EDIT THE GEOJSON ETC. SOURCES TO CONTAIN STANDARDIZED FIELD NAMES, OR USE CONDITIONALS
 

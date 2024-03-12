@@ -304,7 +304,6 @@ config = {
                 "id": "air_quality",
                 "name": "Air Quality - PM2.5",
                 "type": "measureData",
-                "units": "μg/m3",
                 "measureInfo": {
                     "indicatorID": 2023,
                     "measureID": 365,
@@ -325,6 +324,7 @@ config = {
                     "displayPropertyArgs": [
                         {
                             "displayName": "Black carbon, Mean",
+                            "units": "μg/m3",
                             "format": "float"
                         }
                     ]
@@ -413,12 +413,15 @@ config = {
                         {
                             "id": "Heat hospitalizations, Average annual age-adjusted rate",
                             "displayName": "Heat hospitalizations, Average annual age-adjusted rate",
-                            "format": "float"
+                            "format": "float",
+                            "units": "per 100,000"
                         },
                         /*
                         {
                             "id": "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Rate",
-                            "displayName": "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Rate"
+                            "displayName": "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Rate",
+                            "format": "float",
+                            "units": "per 100,000"
                         },
                         
                         {
@@ -427,15 +430,21 @@ config = {
                         },
                         {
                             "id": "Heat Stress Emergency Department Visits - Age-Adjusted Rate",
-                            "displayName": "Heat Stress Emergency Department Visits - Age-Adjusted Rate"
+                            "displayName": "Heat Stress Emergency Department Visits - Age-Adjusted Rate",
+                            "format": "float",
+                            "units": "per 100,000"
                         },
                         {
                             "id": "Heat Stress Emergency Department Visits - Estimated Annual Rate",
-                            "displayName": "Heat Stress Emergency Department Visits - Estimated Annual Rate"
+                            "displayName": "Heat Stress Emergency Department Visits - Estimated Annual Rate",
+                            "format": "float",
+                            "units": "per 100,000"
                         },
                         {
                             "id": "Heat Stress Hospitalizations - Estimated Annual Rate",
-                            "displayName": "Heat Stress Hospitalizations - Estimated Annual Rate"
+                            "displayName": "Heat Stress Hospitalizations - Estimated Annual Rate",
+                            "format": "float",
+                            "units": "per 100,000"
                         }
                         */
                     ]
