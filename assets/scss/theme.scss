@@ -108,9 +108,35 @@ h1 {
     }
 }
 
+#global-header .nav-pills .nav-item {
+    
+    &:hover {
+        background-color: #eef9f4;
+        border-bottom: 1px solid #7bd6a4;
+        margin-bottom: -1px;
+    }
+
+    &.active {
+        background-clip: border-box;
+        border-bottom: 3px solid #7bd6a4;
+        margin-bottom: -3px;
+    }
+}
+
+#global-header .nav-item-search {
+    
+    &:hover {
+        text-decoration: none;
+        background-color: #eef9f4;
+        border-bottom: 1px solid #7bd6a4 !important;
+        margin-bottom: -1px;
+    }
+
+}
+
+
 .nav-item {
     &:hover, &.active {
-        background-color: #EFFAF4;
         text-decoration: none;
     }
     @include media-breakpoint-down(lg) {
@@ -121,9 +147,7 @@ h1 {
     }
 }
 
-#global-header .nav-pills .nav-item {
-    border-right: 1px solid #D1F0C8;
-}
+
 
 #global-header .nav-pills {
     border-left: 1px solid #D1F0C8;
