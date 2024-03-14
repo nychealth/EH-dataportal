@@ -641,7 +641,7 @@ config = {
             "mapState": {
                 "lat": 40.805985,
                 "lng": -73.925476,
-                "zoom": 16,
+                "zoom": 15,
                 "layers": [
                     "nycHiEvening",
                 ]
@@ -654,10 +654,11 @@ config = {
             "mapState": {
                 "lat": 40.844771,
                 "lng": -73.937088,
-                "zoom": 15,
+                "zoom": 14,
                 "layers": [ 
                     "nycAfternoon",
-                    "Heat_vulnerability_index"]
+                    "Heat_vulnerability_index"
+                ]
             }
         },
         {
@@ -698,7 +699,7 @@ config = {
             "mapState": {
                 "lat": 40.8124376119,
                 "lng": -73.9186380,
-                "zoom": 16,
+                "zoom": 15,
                 "layers": [
                     /*
                     "bronx-grayspace",
@@ -715,7 +716,7 @@ config = {
             "mapState": {
                 "lat": 40.7256087,
                 "lng": -74.1529999,
-                "zoom": 14,
+                "zoom": 13,
                 "layers": [ "nycAfternoon" ],
                 "marker": {
                     "lat": 40.7256087,
@@ -734,7 +735,7 @@ config = {
             "mapState": {
                 "lat": 40.8082044,
                 "lng": -73.9232586,
-                "zoom": 15,
+                "zoom": 14,
                 "layers": [ 
                     "nycAfternoon", 
                     "heat_stress" 
