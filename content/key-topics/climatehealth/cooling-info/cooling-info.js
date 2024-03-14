@@ -289,7 +289,7 @@ function runFinal() {
   // Message 1 - AQI / wear a mask
   if (aqi > 3 || 
     (aqi > 2 && sensitiveGroup === 'Yes')) {
-    msg = '<p><strong>You are more sensitive to air pollution</strong>. Consider staying indoors as much as possible to reduce health risks. If you must be outdoors, limit exercise and strenuous activity. Consider wearing a mask outside. <a href="https://www.nyc.gov/site/doh/health/health-topics/air-quality-fire-smoke-and-effect-on-air-quality.page> Read more about when to use a mask.</a></p>'
+    msg = '<p><strong>You are more sensitive to air pollution. </strong> Consider staying indoors as much as possible to reduce health risks. If you must be outdoors, limit exercise and strenuous activity. Consider wearing a mask outside. <a href="https://www.nyc.gov/site/doh/health/health-topics/air-quality-fire-smoke-and-effect-on-air-quality.page> Read more about when to use a mask.</a></p>'
     finalMessageText.innerHTML += msg + '<hr class="my-2">'
   }
 
@@ -322,7 +322,7 @@ function runFinal() {
     ( hasAC === 'Yes') &&
     ((sensitiveGroup === 'Yes' && aqi > 2) || (aqi > 3))
     ) {
-      msg = "<p><strong>Because of the bad air quality</strong>, you may want to take some precautions. Air purifiers with filters can help remove some air pollution from the air. Air cleaners that kill viruses or bacteria using ultraviolet (UV) light will not remove air pollution from the air. Some air cleaners release ozone gas, which is bad for your lungs and an asthma trigger. Don't use these under any conditions.</p> <p> Closing the vent on your AC or setting to re-circulate will help you stay cool while preventing your AC unit from blowing polluted air inside. Remember to change the filter every during the summer months and after a large AQ event.</p> <p> If you can't find a way to close the vent or set the AC to re-circulate, you should still use the AC regardless of the AQ outside. Remember that when it’s this hot outside, being overheated can make you very sick much more quickly than breathing in polluted air. Staying cool is the priority. <a href=https://www.nyc.gov/site/doh/health/health-topics/indoor-air-quality.page> Learn more about indoor air quality.</a></p>"
+      msg = "<p><strong>Because of the bad air quality</strong>, you may want to take some precautions. Air purifiers with filters can help remove some air pollution from the air. Air cleaners that kill viruses or bacteria using ultraviolet (UV) light will not remove air pollution from the air. Some air cleaners release ozone gas, which is bad for your lungs and an asthma trigger. Don't use these under any conditions.</p> <p> Closing the vent on your AC or setting to re-circulate will help you stay cool while preventing your AC unit from blowing polluted air inside. Remember to change the filter every month during the summer and after an air quality emergency.</p> <p> If you can't find a way to close the vent or set the AC to re-circulate, you should still use the AC regardless of the AQ outside. Remember that when it’s this hot outside, being overheated can make you very sick much more quickly than breathing in polluted air. Staying cool is the priority. <a href=https://www.nyc.gov/site/doh/health/health-topics/indoor-air-quality.page> Learn more about indoor air quality.</a></p>"
       finalMessageText.innerHTML += msg + '<hr class="my-2">'
     }
 
