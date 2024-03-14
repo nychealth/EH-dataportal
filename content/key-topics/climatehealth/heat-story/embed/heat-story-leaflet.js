@@ -316,6 +316,24 @@ function drawStoryCardDropdown() {
 // get story ID from click event
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
+// custom map pin marker
+
+// map_pin = fa-map-pin
+
+let size = 50;
+let half = size/2;
+
+var map_pin = L.icon({
+    // iconUrl: 'map_pin.png',
+    iconUrl: 'map-pin.svg',
+    iconSize: [size, size],
+    iconAnchor: [half, size] // [x, y] from top left
+});
+
+console.log("map_pin", map_pin);
+
+// story click
+
 const handleStoryClick = (e) => {
 
     console.log("** handleStoryClick");
@@ -346,7 +364,8 @@ const handleStoryClick = (e) => {
 
     if (story.marker) {
 
-        const marker = L.marker([story.marker.lat, story.marker.lng]);
+        const marker = L.marker([story.marker.lat, story.marker.lng], {icon: map_pin});
+
         storyMarkerLayerGroup.addLayer(marker);
 
         storyMarkerLayerGroup.addTo(map);
