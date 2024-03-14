@@ -713,15 +713,15 @@ config = {
             "id": "walking-to-corner-store",
             "title": "Walking to the corner store in the heat",
             "content": "Summers in extreme heat, very little green space to cool down under. Walking to the corner store was enough for my asthma to act up and to feel exhausted and worn down by the sun.",
+            "marker": {
+                "lat": 40.7256087,
+                "lng": -74.1529999,
+            },
             "mapState": {
                 "lat": 40.7256087,
                 "lng": -74.1529999,
                 "zoom": 13,
                 "layers": [ "nycAfternoon" ],
-                "marker": {
-                    "lat": 40.7256087,
-                    "lng": -74.1529999,
-                }
             }
         },
         {
