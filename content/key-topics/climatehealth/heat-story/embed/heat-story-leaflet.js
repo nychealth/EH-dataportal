@@ -30,14 +30,15 @@ function init() {
 // initial map state
 // ----------------------------------------------------------------------- //
 
-var map = L.map('map').setView([40.715554, -74.0026642], 11); // [Lat, Long], Zoom
+// set based on "getting-started" card
 
-var lastMapState = {
-    lat: null,
-    lng: null,
-    zoom: null,
-    layers: [ ]
-};
+const getting_started = config.stories.find(s => s.id == "getting-started");
+let lastMapState = JSON.parse(JSON.stringify(getting_started.mapState));
+
+
+// var map = L.map('map').setView([40.715554, -74.0026642], 11); // [Lat, Long], Zoom
+var map = L.map('map').setView([getting_started.mapState.lat, getting_started.mapState.lng], getting_started.mapState.zoom); // [Lat, Long], Zoom
+
 
 
 // ----------------------------------------------------------------------- //
@@ -56,6 +57,7 @@ var popupContent = "";
 // set up layers
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
+var tileLayerGroup = L.layerGroup();
 var layerGroup = L.layerGroup();
 var storyMarkerLayerGroup = L.layerGroup();
 
@@ -201,7 +203,13 @@ function setupMap() {
         'https://api.maptiler.com/maps/basic-v2/{z}/{x}/{y}.png?key=dwIJ8hO2KsTMegUfEpYE',{
         attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank" rel="noopener noreferrer">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>',
     }).addTo(map);
+
+    // add tile layer group to map
     
+    tileLayerGroup.addTo(map);
+
+    // add data layer group to map (though nothing to show yet)
+
     layerGroup.addTo(map);
 
 }
@@ -327,6 +335,23 @@ const handleStoryClick = (e) => {
 
     $(e.target).addClass("active");
     $(e.target).attr('aria-selected', true);
+
+    // add story marker if it exists
+
+    const story = config.stories.find(s => s.id == id);
+
+    // clear story layers
+
+    storyMarkerLayerGroup.clearLayers();
+
+    if (story.marker) {
+
+        const marker = L.marker([story.marker.lat, story.marker.lng]);
+        storyMarkerLayerGroup.addLayer(marker);
+
+        storyMarkerLayerGroup.addTo(map);
+
+    }
 
 }
 
@@ -780,12 +805,6 @@ async function createGeoJsonLayer({ id, name, url, args, displayProperties }) {
             name: name
         });
 
-    // setting extra options down here, because they don't get passed to the geojson points layer
-
-    // layer.options.displayProperties = layer.options.displayProperties ? layer.options.displayProperties : displayProperties
-    // layer.options._custom_id = layer.options._custom_id ? layer.options._custom_id : id
-    // layer.options.name = layer.options.name ? layer.options.name : name
-
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
     // create legend
@@ -1080,6 +1099,11 @@ async function addLayerToMap(layerId) {
 
         createLegend("addLayerToMap")
     }
+
+    // show reset button
+
+    $("#refreshButton").css("visibility", "visible");
+    
 }
 
 
@@ -1172,7 +1196,7 @@ function saveCurrentMapState() {
 async function updateMapStateForStory(storyId) {
 
     console.log("* updateMapStateForStory");
-    
+
     const storyConfig = config.stories.find(s => s.id == storyId);
 
     if (storyConfig == null) {
@@ -1192,20 +1216,20 @@ async function updateMapStateForStory(storyId) {
 
     var layersVisible = []
     layerGroup.eachLayer(l => layersVisible.push(l.options[CUSTOM_ID_FIELD]));
-    // add the layers that are not in the visible layer
 
+    // add the layers that are not in the visible layer
     layers.filter(l => !(l in layersVisible)).forEach(async l => {
         await addLayerToMap(l);
     });
-    // remove
 
+    // remove
     layersVisible.filter(l => !(l in layers)).forEach(async l => {
         removeLayerFromMap(l)
     });
 
     // clear out the layer markers
     // map.removeLayer(storyMarkerLayerGroup);
-    $("#refreshButton").css("visibility", "visible");
+    // $("#refreshButton").css("visibility", "visible");
 }
 
 
@@ -1220,41 +1244,28 @@ async function resetMapState() {
 
     console.log("* resetMapState");
 
-    // save map state
+    // reset map state var to "getting-started" state
+
+    lastMapState = JSON.parse(JSON.stringify(getting_started.mapState));
+
+    // reset map view
+
+    console.log("getting_started.mapState", getting_started.mapState);
+
+    map.setView([getting_started.mapState.lat, getting_started.mapState.lng], getting_started.mapState.zoom); // [Lat, Long], Zoom
+
+    // clear data layers
+
+    Object.keys(layersVisible).forEach(layerId => removeLayerFromMap(layerId));
     
-    const { lat, lng, zoom, layers } = lastMapState;
+    // clear story layers
 
-    if ( lat != null && lng != null && zoom != null ) {
-        map.flyTo([lat, lng], zoom);
-    }
+    storyMarkerLayerGroup.clearLayers();
 
-    // save visible layers
-
-    var layersVisible = []
-    layerGroup.eachLayer(l => layersVisible.push(l.options[CUSTOM_ID_FIELD]));
-
-    // find the difference between what is visible now and what should be visible.
-    // add and remove accordingly
-
-    layers.filter(l => !(l in layersVisible)).forEach(async l => {
-        await addLayerToMap(l);
-    });
-    layersVisible.filter(l => !(l in layers)).forEach(async l => {
-        removeLayerFromMap(l)
-    });
-
-    // reset map state var
-
-    lastMapState = {
-        lat: null,
-        lng: null,
-        zoom: null,
-        layers: [ ]
-    };
-
-    // map.addLayer(storyMarkerLayerGroup);
-    // $("#refreshButton").css("visibility", "hidden");
-
+    // hide the reset button
+    
+    $("#refreshButton").css("visibility", "hidden");
+    
     // reset the story card and dropdown
 
     $('.story-dropdown-item').removeClass("active");
@@ -1264,6 +1275,11 @@ async function resetMapState() {
     $("#btn-getting-started").attr('aria-selected', true);
 
     drawStoryCard("getting-started");
+
+    // reset the layer buttons
+
+    $('.layer-button').removeClass("active");
+    $('.layer-button').attr('aria-selected', false);
 
 }
 
@@ -1293,6 +1309,7 @@ function formatValue(value, type) {
     if (type == null || value == null) return value;
 
     switch(type) {
+
     case 'float':
         return `${value.toFixed(1)}`;
     case 'percentage':
@@ -1303,8 +1320,10 @@ function formatValue(value, type) {
             style: 'currency',
             currency: 'USD',
         });
+
     default:
         return value;
+
     }
 }
 
@@ -1904,7 +1923,6 @@ function addListeners() {
 
         s.addEventListener('click', async () => {
 
-            mapElement.scrollIntoView({ behavior: "smooth" });
             await updateMapStateForStory(s.dataset.storyId);
 
         });
