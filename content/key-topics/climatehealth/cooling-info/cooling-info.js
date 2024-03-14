@@ -289,7 +289,7 @@ function runFinal() {
   // Message 1 - AQI / wear a mask
   if (aqi > 3 || 
     (aqi > 2 && sensitiveGroup === 'Yes')) {
-    msg = '<p><strong>You are more sensitive to air pollution. </strong> Consider staying indoors as much as possible to reduce health risks. If you must be outdoors, limit exercise and strenuous activity. Consider wearing a mask outside. <a href="https://www.nyc.gov/site/doh/health/health-topics/air-quality-fire-smoke-and-effect-on-air-quality.page> Read more about when to use a mask.</a></p>'
+    msg = '<p><strong>You are more sensitive to air pollution. </strong>. Consider staying indoors as much as possible to reduce health risks. If you must be outdoors, limit exercise and strenuous activity. Consider wearing a mask outside. <a href="https://www.nyc.gov/site/doh/health/health-topics/air-quality-fire-smoke-and-effect-on-air-quality.page> Read more about when to use a mask.</a></p>'
     finalMessageText.innerHTML += msg + '<hr class="my-2">'
   }
 
