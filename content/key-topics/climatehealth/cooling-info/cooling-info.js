@@ -322,7 +322,7 @@ function runFinal() {
     ( hasAC === 'Yes') &&
     ((sensitiveGroup === 'Yes' && aqi > 2) || (aqi > 3))
     ) {
-      msg = "<p><strong>Because of the bad air quality</strong>, you may want to take some precautions. Air purifiers with filters can help remove some air pollution from the air. Air cleaners that kill viruses or bacteria using ultraviolet (UV) light will not remove air pollution from the air. Some air cleaners release ozone gas, which is bad for your lungs and an asthma trigger. Don't use these under any conditions.</p> <p> Closing the vent on your AC or setting to re-circulate will help you stay cool while preventing your AC unit from blowing polluted air inside. Remember to change the filter every month during the summer and after an air quality emergency.</p> <p> If you can't find a way to close the vent or set the AC to re-circulate, you should still use the AC regardless of the AQ outside. Remember that when it’s this hot outside, being overheated can make you very sick much more quickly than breathing in polluted air. Staying cool is the priority. <a href=https://www.nyc.gov/site/doh/health/health-topics/indoor-air-quality.page> Learn more about indoor air quality.</a></p>"
+      msg = "<p><strong>Because of the bad air quality</strong>, you may want to take some precautions. Air purifiers with filters can help remove some air pollution from the air. Air cleaners that kill viruses or bacteria using ultraviolet (UV) light will not remove air pollution from the air. Some air cleaners release ozone gas, which is bad for your lungs and an asthma trigger. Don't use these under any conditions.</p> <p> Closing the vent on your AC or setting to re-circulate will help you stay cool while preventing your AC unit from blowing polluted air inside. Remember to change the filter every month during the summer and after an air quality emergency.</p> <p> If you can't find a way to close the vent or set the AC to re-circulate, you should still use the AC regardless of the air quality outside. Remember that when it’s this hot outside, being overheated can make you very sick much more quickly than breathing in polluted air. Staying cool is the priority. <a href=https://www.nyc.gov/site/doh/health/health-topics/indoor-air-quality.page> Learn more about indoor air quality.</a></p>"
       finalMessageText.innerHTML += msg + '<hr class="my-2">'
     }
 
@@ -382,7 +382,7 @@ function runFinal() {
   if ( hasAnimal === 'Yes' && 
       (currentTemp > 80 || aqi > 3)
   ) {
-    msg = '<p><strong>Your animals </strong> can’t tell you when they are not feeling well. Keep them safe by watching them for signs of heat exhaustion or the effects of poor air quality. </p> <p>Generally, if it is more than 80 degrees outside, animals need AC. And if the AQ is unhealthy for the general public, animals may need to spend more time indoors than usual. </p><p><a href=https://www.heat.gov/> Learn more about who is most at risk during extreme heat. </a></p>'
+    msg = '<p><strong>Your animals </strong> can’t tell you when they are not feeling well. Keep them safe by watching them for signs of heat exhaustion or the effects of poor air quality. </p> <p>Generally, if it is more than 80 degrees outside, animals need AC. And if the air quality is unhealthy for the general public, animals may need to spend more time indoors than usual. </p><p><a href=https://www.heat.gov/> Learn more about who is most at risk during extreme heat. </a></p>'
     finalMessageText.innerHTML += msg + '<hr class="my-2">'
   }
 
