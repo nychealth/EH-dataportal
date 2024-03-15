@@ -330,7 +330,6 @@ var map_pin = L.icon({
     iconAnchor: [half, size] // [x, y] from top left
 });
 
-console.log("map_pin", map_pin);
 
 // story click
 
@@ -583,7 +582,7 @@ async function createMeasuresLayer({ id, name, measureInfo, args, displayPropert
 
     console.log("* createMeasuresLayer");
     
-    // console.log("measureInfo [createMeasuresLayer]", measureInfo);
+    console.log("measureInfo [createMeasuresLayer]", measureInfo);
 
     const { indicatorID, measureID, geoType, time } = measureInfo;
     const data = await loadIndicator(indicatorID, measureID, geoType, time);
@@ -1085,7 +1084,7 @@ async function addLayerToMap(layerId) {
     
     const layer = await getOrCreateLayer(layerId);
 
-    console.log("layer [addLayerToMap]", layer);
+    // console.log("layer [addLayerToMap]", layer);
 
     if (layer != null && !map.hasLayer(layer)) {
 
@@ -1720,8 +1719,6 @@ async function loadIndicator(indicatorID, measureID, geoType, time) {
 
     console.log("* loadIndicator");
 
-    console.log("indicatorID:", indicatorID, "measureID:", measureID, "geoType:", geoType, "time:", time);
-    
     // indicators have measures. we want to search both
     /*
     const sampleIndicatorID = 2024; // Black carbon
