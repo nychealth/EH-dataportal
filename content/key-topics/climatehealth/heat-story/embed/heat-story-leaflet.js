@@ -394,9 +394,6 @@ function drawStoryCard(id) {
         <div class="story-card" id="story-card-${id}">
             <div class="card content-card">
                 <div class="card-content">
-                    <div class="story-card-button-container">
-                        <button class="story-card-button btn-sm btn-outline-secondary" value=${story.id}>Show On Map</button>
-                    </div>
                     <div class="card-body story-card-content">
                         <h5 class="card-title">${story.title}</h5>
                         <blockquote class="blockquote mb-0">

@@ -191,7 +191,7 @@ config = {
        },
        */
 
-       /*
+
        {
           "property": {
              "id": "greenspace",
@@ -227,7 +227,7 @@ config = {
              }
           }
        },
-       */
+
        /*
        {
           "property": {
@@ -364,21 +364,21 @@ config = {
         {
             "property": {
                 "id": "Vegetative_cover",
-                "name": "Vegetative cover %",
+                "name": "Vegetative cover",
                 "type": "measureData",
                 "measureInfo": {
                     "indicatorID": 2143,
                     "measureID": 690,
                     "geoType": "CD",
                     "time": "2017",
-                "exclusive": false,
                 },
+                "exclusive": true,
                 "args": {
                     "colorFeatureProperty": "Grass and tree cover, Percent",
-                    "minColor": "blue",
+                    "minColor": "white",
                     "maxColor": "green",
                     "color": "black",
-                    "opacity": 0.6,
+                    "opacity": 0.8,
                     "legendDescription": "Vegetative cover is the land covered by trees, grass, or other plants instead of a hard surface like roads, sidewalks, or buildings. Vegetative cover tends to reduce temperatures in the immediate area and may increase air quality."
                 },
                 "displayProperties": {
@@ -514,7 +514,7 @@ config = {
         {
             "property": {
                 "id": "Neighborhood_poverty",
-                "name": "Neighborhood poverty %",
+                "name": "Neighborhood poverty",
                 "type": "measureData",
                 "measureInfo": {
                     "indicatorID": 103,
@@ -525,10 +525,10 @@ config = {
                 "exclusive": true,
                 "args": {
                     "colorFeatureProperty": "Neighborhood poverty %",
-                    "minColor": "blue",
-                    "maxColor": "green",
+                    "minColor": "white",
+                    "maxColor": "purple",
                     "color": "black",
-                    "opacity": 0.7,
+                    "opacity": 0.9,
                     "legendDescription": "The percent of households with incomes below the federal poverty level. Households without sufficient resources are often deprived of access to items such as health care and good quality housing that are needed to maintain good health."
                 },
                 "displayProperties": {
@@ -546,7 +546,7 @@ config = {
         {
             "property": {
                 "id": "Household_air_conditioning",
-                "name": "Households with AC %",
+                "name": "Households with AC",
                 "type": "measureData",
                 "measureInfo": {
                     "indicatorID": 2185,
@@ -558,7 +558,7 @@ config = {
                 "args": {
                     "colorFeatureProperty": "Household air conditioning %",
                     "minColor": "red",
-                    "maxColor": "white",
+                    "maxColor": "lightblue",
                     "color": "black",
                     "opacity": 0.7,
                     "legendDescription": "Estimated number of households in an area reporting having functioning air conditioning, divided by the number of households in the area; expressed as percent."
@@ -624,7 +624,7 @@ config = {
         
         {
             "id": "getting-started",
-            "title": "Start here: Explore the heat story map",
+            "title": "Explore New Yorkers' heat stories",
             "content": "<p style=\"text-align: left;\">Select a story to learn about how heat is affecting New Yorkers. Browse data sets that show disparities in temperature, heat stress, neighborhood poverty, and AC access, and then add a layer to look at these data next to redlining and green cover maps. <br><strong></strong></p>",
             "mapState": {
                 "lat": 40.715554,
@@ -637,7 +637,7 @@ config = {
         {
             "id": "heat-traffic-pollution",
             "title": "Heat, traffic, pollution and odors make the summer heat exhausting",
-            "content": "From Dr. Melissa Barber: I live on Bruckner Boulevard, between Alexander and Willis Avenues, directly adjacent to the Willis Avenue Bridge. Heat during the summer months is completely exhausting because it not only brings the smell of hot trash from the waste transfer station, exacerbates the smog of the heavy highway traffic that usually starts about 5 am and reminds me of the ensuing high electric bill from the use of fans and air conditioners, there is very little tree coverage or shade to block the sun's rays or cool even the outside temperatures. From the moment Lilah and I leave the building, heat hits us and follows us throughout the entire neighborhood<div><img src=\"https://raw.githubusercontent.com/OpenStoryMap/geodata/main/nyc-heat-watch-2021/stories/melissa-barber/road1.jpeg\"></div><div><img src=\"https://raw.githubusercontent.com/OpenStoryMap/geodata/main/nyc-heat-watch-2021/stories/melissa-barber/road2.jpeg\"></div><div><img src=\"https://raw.githubusercontent.com/OpenStoryMap/geodata/main/nyc-heat-watch-2021/stories/melissa-barber/road3.jpeg\"></div>",
+            "content": "From Dr. Melissa Barber: I live on Bruckner Boulevard, between Alexander and Willis Avenues, directly adjacent to the Willis Avenue Bridge. Heat during the summer months is completely exhausting because it not only brings the smell of hot trash from the waste transfer station, exacerbates the smog of the heavy highway traffic that usually starts about 5 am and reminds me of the ensuing high electric bill from the use of fans and air conditioners, there is very little tree coverage or shade to block the sun's rays or cool even the outside temperatures. From the moment Lilah and I leave the building, heat hits us and follows us throughout the entire neighborhood.<div><img src=\"https://raw.githubusercontent.com/OpenStoryMap/geodata/main/nyc-heat-watch-2021/stories/melissa-barber/road3.jpeg\"></div>",
             "mapState": {
                 "lat": 40.805985,
                 "lng": -73.925476,
@@ -691,7 +691,7 @@ config = {
         {
             "id": "no-green-in-green-space",
             "title": 'No green in our "green space"',
-            "content": "How good is a green space when there is little to no green to be found? That's the situation we face in the South Bronx. So-called parks and playgrounds designated as green space by the City are often concrete slabs with very little tree canopy. See below for examples of what some of these spaces look like.<h4>Carlos Lozada</h4><div><img src=\"https://raw.githubusercontent.com/OpenStoryMap/geodata/main/nyc-heat-watch-2021/stories/bronx-greenspace/carlos-lozada.jpg\"></div><h4>Clark Playground</h4><div><img src=\"https://raw.githubusercontent.com/OpenStoryMap/geodata/main/nyc-heat-watch-2021/stories/bronx-greenspace/clark-playground.jpg\"></div><h4>Graham Triangle 138th St side</h4><div><img src=\"https://raw.githubusercontent.com/OpenStoryMap/geodata/main/nyc-heat-watch-2021/stories/bronx-greenspace/graham-triangle.jpg\"></div><h4>Pulaski</h4><div><img src=\"https://raw.githubusercontent.com/OpenStoryMap/geodata/main/nyc-heat-watch-2021/stories/bronx-greenspace/pulaski.jpg\"></div><h4>Ranaqua</h4><div><img src=\"https://raw.githubusercontent.com/OpenStoryMap/geodata/main/nyc-heat-watch-2021/stories/bronx-greenspace/ranaqua.jpg\"></div><h4>Willis Playground 140 extension</h4><div><img src=\"https://raw.githubusercontent.com/OpenStoryMap/geodata/main/nyc-heat-watch-2021/stories/bronx-greenspace/willis-playground.jpg\"></div>",
+            "content": "How good is a green space when there is little to no green to be found? That's the situation we face in the South Bronx. So-called parks and playgrounds designated as green space by the City are often concrete slabs with very little tree canopy. See below for examples of what some of these spaces look like.<h4>Carlos Lozada</h4><div><img src=\"https://raw.githubusercontent.com/OpenStoryMap/geodata/main/nyc-heat-watch-2021/stories/bronx-greenspace/carlos-lozada.jpg\"></div>",
             "marker": {
                 "lat": 40.8124376119,
                 "lng": -73.9186380,
