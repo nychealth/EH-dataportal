@@ -124,10 +124,10 @@
     <div class="col-md-11 mx-auto mt-4">
       <nav aria-label="breadcrumb" class="mb-4">
         <ul class="breadcrumb">
-          <li class="breadcrumb-item"><a href="#">Home</a></li>
-          <li class="breadcrumb-item"><a href="../../">Key Topics</a></li>
+          <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
+          <li class="breadcrumb-item"><a href={{ relURL "key-topics/" }}>Key Topics</a></li>
           <li class="breadcrumb-item">
-            <a href="../">Climate and Health</a>
+            <a href={{ relURL "key-topics/climatehealth/" }}>Climate and Health</a>
           </li>
           <li class="breadcrumb-item active" aria-current="page">
             {{ .Title }}
@@ -145,7 +145,6 @@
         >{{ .Title }}
       </h1>
 
-      {{/*  no actual content  */}}
       {{- .Content -}}
     </div>
   </div>
@@ -165,8 +164,8 @@
     </div>
 
     <div class="col-md-3">
-      <div id="baseLayerButtons" class="float-right">
-        <h4 class="home-label" class="float-right text-align-right">Add layers</h4>
+      <div id="baseLayerButtons" class="">
+        <h4 class="home-label" class="text-align-right">Add layers</h4>
         <div id="buttonHolderAdditional" style="display: inline-block"></div>
     </div>
     </div>
@@ -315,6 +314,7 @@
 
 <script>
   window.BaseURL = {{ site.BaseURL }};
+  console.log("window.BaseURL", window.BaseURL);
 </script>
 
 

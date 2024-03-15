@@ -11,7 +11,7 @@ leaflet: true
 arquero: true
 ---
 
-As climate change worsens, extreme heat becomes more frequent and more intense. Extreme heat can <a href="../../../data-stories/heat/">harm people's health</a> and in the United States, more people die each year from heat than from all other weather-related disasters combined.
+As climate change worsens, extreme heat becomes more frequent and more intense. Extreme heat can <a href="{{< baseurl >}}data-stories/heat/">harm people's health</a> and in the United States, more people die each year from heat than from all other weather-related disasters combined.
 
 **How does heat affect your life?**  It may affect your home, neighborhood, your commute, your daily routines—and your health. This map combines urban heat mapping, public health data, and personal stories about heat to show the relationship between the disproportionate impacts of extreme heat, social inequities, and health. 
 
