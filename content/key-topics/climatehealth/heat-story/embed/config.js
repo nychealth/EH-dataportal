@@ -146,10 +146,10 @@ config = {
                 "name": "Redlined Areas",
                 "type": "redlined",
                 "urls": {
-                    "Class A": window.BaseURL + "maps/HOLC_map/data/HOLCClassA_3.js",
-                    "Class B": window.BaseURL + "maps/HOLC_map/data/HOLCClassB_2.js",
-                    "Class C": window.BaseURL + "maps/HOLC_map/data/HOLCClassC_1.js",
-                    "Class D": window.BaseURL + "maps/HOLC_map/data/HOLCClassD_0.js"
+                    "Class A": window.BaseURL + "maps/HOLC_map/data/HOLCClassA_3.json",
+                    "Class B": window.BaseURL + "maps/HOLC_map/data/HOLCClassB_2.json",
+                    "Class C": window.BaseURL + "maps/HOLC_map/data/HOLCClassC_1.json",
+                    "Class D": window.BaseURL + "maps/HOLC_map/data/HOLCClassD_0.json"
                 },
                 "exclusive": false,
                 "args": {
