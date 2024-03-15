@@ -223,47 +223,6 @@
 
 {{- end -}}
 
-<!--Other data libraries. To call, have data: true in a page's frontmatter-->
-{{- if .Params.datalibraries -}}
-
-    {{- /*  D3  */ -}}
-
-    {{- $d3 := resources.Get "node_modules/d3/dist/d3.min.js" | resources.Fingerprint "sha512" -}}
-
-    <script src="{{ $d3.RelPermalink }}" integrity="{{ $d3.Data.Integrity }}"></script>
-
-     {{- /*  DataTables  */ -}}
-
-     {{- /*  CSS  */ -}}
-
-    {{- $dataTablesCSS := resources.Get "node_modules/datatables.net-dt/css/jquery.dataTables.min.css" -}}
-    {{- $dataTablesButtonsCSS := resources.Get "node_modules/datatables.net-buttons-dt/css/buttons.dataTables.min.css" }}
-    {{- $dtCSS := slice $dataTablesCSS $dataTablesButtonsCSS | resources.Concat "css/dtCSS.css" }}
-
-    <link rel="stylesheet" href="{{ $dtCSS.RelPermalink }}" >
-
-    {{- /*  JS  */}}
-
-    {{- $dataTables := resources.Get "node_modules/datatables.net/js/jquery.dataTables.min.js" }}
-    {{- $dataTablesButtons := resources.Get "node_modules/datatables.net-buttons/js/dataTables.buttons.min.js" }}
-    {{- $dataTablesButtonsHtml5 := resources.Get "node_modules/datatables.net-buttons/js/buttons.html5.min.js" }}
-    {{- $dataTablesButtonsPrint := resources.Get "node_modules/datatables.net-buttons/js/buttons.print.min.js" }}
-    {{- $dataTablesRowGroup := resources.Get "node_modules/datatables.net-rowgroup/js/dataTables.rowGroup.min.js" }}
-    
-    {{- $dataTablesButtonsDt := resources.Get "node_modules/datatables.net-buttons-dt/js/buttons.dataTables.min.js" }}
-
-    {{- $dataTablesBundleJS := slice $dataTables $dataTablesButtons $dataTablesButtonsHtml5 $dataTablesButtonsPrint $dataTablesRowGroup $dataTablesButtonsDt | resources.Concat "js/dataTableBundle.js" | resources.Fingerprint "sha512" }}
-
-    <script src="{{ $dataTablesBundleJS.RelPermalink }}" integrity="{{ $dataTablesBundleJS.Data.Integrity }}"></script>
-
-    {{- /*  Arquero  */}}
-
-    {{- $arquero := resources.Get "node_modules/arquero/dist/arquero.min.js" | resources.Fingerprint "sha512" }}
-
-    <script src="{{ $arquero.RelPermalink }}" integrity="{{ $arquero.Data.Integrity }}"></script>
-
-{{- end }}
-
 <script>
     let baseURL = {{ relURL "" }}
     let data_repo = "{{ $.Site.Params.data_repo }}";

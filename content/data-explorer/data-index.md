@@ -10,7 +10,8 @@ categories:
 keyTopic: 
 keywords: 
 layout: data-index
-datalibraries: true
+datatables: true
+arquero: true
 ---
 
 Search by term, see available years and geographies, and filter by data source.
