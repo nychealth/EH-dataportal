@@ -144,14 +144,14 @@
         <i class="fas fa-star" aria-hidden="true" style="margin-right: 10px"></i
         >{{ .Title }}
       </h1>
-    
+
+      {{/*  no actual content  */}}
       {{- .Content -}}
     </div>
   </div>
 
   <div class="row no-padding mt-4 mb-0"></div>
-<!-- testing out adding a card with an img on another top line row - to eventually replace accordion as story selector if possible-->
-<div class="row gx-5 gy-5 card-container" id="story-cards"> </div>
+
 <div id="wholeMap">
   <div class="row">
     <div class="col-11 mt-2 pt-0">
@@ -314,23 +314,59 @@
 <div class="row pt-5"></div>
 
 </article>
-<script
-  src="https://cdnjs.cloudflare.com/ajax/libs/chroma-js/2.4.2/chroma.min.js"
-  integrity="sha512-zInFF17qBFVvvvFpIfeBzo7Tj7+rQxLeTJDmbxjBz5/zIr89YVbTNelNhdTT+/DCrxoVzBeUPVFJsczKbB7sew=="
-  crossorigin="anonymous"
-  referrerpolicy="no-referrer"
-></script>
-<script src="https://cdn.jsdelivr.net/npm/arquero@latest"></script>
+
 <script>
   window.BaseURL = {{ site.BaseURL }};
 </script>
-<script type="text/javascript" src="embed/config.js"></script>
+
+
+<!-- chroma-js -->
+
+{{- $chroma := resources.Get "node_modules/chroma-js/chroma.min.js" | resources.Fingerprint "sha512" }}
+
+
 <!-- GeoTIFF plugins -->
-<script src="https://unpkg.com/@mapbox/leaflet-pip@latest/leaflet-pip.js"></script>
+
+{{- /*  leaflet-pip  */}}
+
+{{- $leaflet_pip := resources.Get "node_modules/leaflet-pip/leaflet-pip.min.js" | resources.Fingerprint "sha512" }}
+
+
+{{- /*  georaster  */}}
+
+{{- $georaster := resources.Get "node_modules/georaster/dist/georaster.browser.bundle.min.js" | resources.Fingerprint "sha512" }}
+
+
+{{- /*  georaster-layer-for-leaflet  */}}
+
+{{- $georaster_leaflet := resources.Get "node_modules/georaster-layer-for-leaflet/dist/georaster-layer-for-leaflet.min.js" | resources.Fingerprint "sha512" }}
+
+
+{{- /*  geoblaze  */}}
+
+{{/*  {{- $geoblaze := resources.Get "node_modules/geoblaze/dist/geoblaze.web.min.js" | resources.Fingerprint "sha512" }}  */}}
+
+
+<!-- topojson -->
+
+{{- $topojson := resources.Get "node_modules/topojson-client/dist/topojson-client.min.js" | resources.Fingerprint "sha512" }}
+
+
+{{- /*  bundling heat story dependencies  */}}
+
+{{- $heat_story_js_libs := slice $chroma $leaflet_pip $georaster $georaster_leaflet $topojson | resources.Concat "js/heat-story-js-libs.js" -}}
+{{- $heat_story_js_libs_secure := $heat_story_js_libs | resources.Fingerprint "sha512" -}}
+
+
+<!-- heat story libraries -->
+
+<script type="text/javascript" src="{{ $heat_story_js_libs_secure.RelPermalink }}" integrity="{{ $heat_story_js_libs_secure.Data.Integrity }}"></script>
+
+
+<!-- data feature embeds -->
+
+<script type="text/javascript" src="embed/config.js"></script>
 <script async type="text/javascript" src="embed/heat-story-leaflet.js"></script>
-<script src="https://unpkg.com/georaster"></script>
-<script src="https://unpkg.com/georaster-layer-for-leaflet/dist/georaster-layer-for-leaflet.min.js"></script>
-<script src="https://unpkg.com/geoblaze"></script>
-<script src="https://unpkg.com/topojson@3.0.2/dist/topojson.min.js"></script>
+
 
 {{- end -}}

@@ -7,7 +7,6 @@ seo_description: "Explore this summer's high temps and health effects."
 categories: [climatehealth]
 keywords: ["interactive","heat","weather","hot weather","extreme heat","heat mortality","heat-related illness","emergency room","emergency department","ED visit"]
 layout: heatstory
-vega: true
 leaflet: true
+arquero: true
 ---
-
