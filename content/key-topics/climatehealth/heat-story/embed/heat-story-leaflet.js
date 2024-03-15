@@ -444,23 +444,8 @@ async function createRedlinedLayer({ id, name, urls, args, displayProperties }) 
 
         let responseText = await response.text(); 
 
-        try {
-            // assume the file is in the format var something = {[ json ]}
-            // parse using regex
-            const groups = /var [\w\d_]+ = (?<json>.*);?/.exec(responseText).groups
+        data[name] = JSON.parse(responseText);
 
-            console.log("groups [createRedlinedLayer]", groups);
-
-            if (groups == null || groups.json == null) {
-                console.log(`Could not parse ${name} as valid json. Please check ${url}`);
-            }
-            data[name] = JSON.parse(groups.json);
-
-        } catch (error) {
-
-            console.log(`Could not parse ${name} as valid json. Please check ${url}`);
-
-        }
     }
 
 
