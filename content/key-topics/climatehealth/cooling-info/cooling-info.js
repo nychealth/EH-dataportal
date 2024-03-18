@@ -191,17 +191,10 @@ function answer(question, answer, next) {
     })
   } else {
     document.getElementById('question-'+ next).classList.remove('hide')
-    window.scrollBy({
-      top: 400,
-      behavior: "smooth",
-    });
-
-
-    /* 
-    document.querySelector(`#message-`+thisAnswer.optionID).scrollIntoView({
+    document.getElementById('question-'+ next).scrollIntoView({
       behavior: 'smooth'
-    });
-    */
+    })
+
   }
 
 
