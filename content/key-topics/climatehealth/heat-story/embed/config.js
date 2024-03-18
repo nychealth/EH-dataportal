@@ -278,7 +278,7 @@ config = {
           }
        },
        /*
-       /*
+       */
 
        {
           "property": {
@@ -297,8 +297,6 @@ config = {
              }
           }
        },
-       */
-      
        {
             "property": {
                 "id": "air_quality",
@@ -644,6 +642,7 @@ config = {
                 "zoom": 15,
                 "layers": [
                     "nycHiEvening",
+                    "bruckner"
                 ]
             }
         },
