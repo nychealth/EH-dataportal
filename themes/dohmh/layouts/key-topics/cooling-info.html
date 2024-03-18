@@ -38,17 +38,20 @@
         <div class="" id="recsHolder">
           <span class="home-label font-weight-bold">About you:</span>
           <div class="fs-md">
-            <p>Over 80F: <span id="over80F" class="float-right"></span></p>
-            <p>AQI: <span id="aqiNum" class="float-right"></span></p>
+            <div class="hide">
+              <p>Over 80F: <span id="over80F" class="float-right"></span></p>
+              <p>AQI: <span id="aqiNum" class="float-right"></span></p>
+              <hr class="my-1">
+            </div>
+
+            <p>More sensitive to air pollution: <span id="sensitiveGroup" class="float-right"></span></p>
             <hr class="my-1">
-            <p>Sensitive group: <span id="sensitiveGroup" class="float-right"></span></p>
-            <hr class="my-1">
-            <p>Uses EME: <span id="usesEME" class="float-right"></span></p>
-            <p>Has animal: <span id="hasAnimal" class="float-right"></span></p>
+            <p>Uses electrical medical equipment: <span id="usesEME" class="float-right"></span></p>
+            <p>Has an animal: <span id="hasAnimal" class="float-right"></span></p>
             <hr class="my-1">
             <p>Has AC: <span id="hasAC" class="float-right"></span></p>
             <p>Limits AC use: <span id="limitsAC" class="float-right"></span></p>
-            <p>Has Fan: <span id="hasFan" class="float-right"></span></p>
+            <p>Has a fan: <span id="hasFan" class="float-right"></span></p>
           </div>
 
 
@@ -88,19 +91,20 @@
         <div id="finalMessages">
           <!-- Final messages get printed here --> 
         </div>
+
+        <button class="btn btn-sm btn-outline-primary float-right" onclick="setUpTest()">See other recommendations?</button>
       </div>
 
       <div id="testInfo" class="hide mt-4">
-        <h2>TESTING ZONE</h2>
-        <p>Use this section to change the value of variables. You'll see them change on the left-hand panel, and new messages will appear. Use this to test logic. </p>
-        <button onclick="setUpTest()" class="btn btn-primary">Click to set up test</button><br><br>
-
-        <button id='btn-sensitiveGroup' class="btn btn-sm btn-outline-primary testbtn">Sensitive Group?</button><br>
-        <button id='btn-usesEME' class="btn btn-sm btn-outline-primary testbtn">Uses EME?</button><br>
-        <button id='btn-hasAnimal' class="btn btn-sm btn-outline-primary testbtn">Has animal?</button><br>
-        <button id='btn-hasAC' class="btn btn-sm btn-outline-primary testbtn">Has AC?</button><br>
-        <button id='btn-limitsAC' class="btn btn-sm btn-outline-primary testbtn">Limits AC?</button><br>
-        <button id='btn-hasFan' class="btn btn-sm btn-outline-primary testbtn">Has Fan?</button><br>
+        <p>Use these buttons to change answers, and new recommendations will appear. </p>
+          
+        <button id='btn-sensitiveGroup' class="btn btn-sm btn-outline-primary testbtn mr-1">Sensitive group</button>
+        <button id='btn-usesEME' class="btn btn-sm btn-outline-primary testbtn  mr-1">Uses electrical medical equipment</button>
+        <button id='btn-hasAnimal' class="btn btn-sm btn-outline-primary testbtn  mr-1">Has an animal</button>
+        <button id='btn-hasAC' class="btn btn-sm btn-outline-primary testbtn mr-1">Has AC at home</button>
+        <button id='btn-limitsAC' class="btn btn-sm btn-outline-primary testbtn mr-1">Limits AC because of cost</button>
+        <button id='btn-hasFan' class="btn btn-sm btn-outline-primary testbtn mr-1">Has a fan at home</button>
+        <br>
         <label for="temp">Current Temp:</label>
         <input type="number" id="input-currentTemp" name="temp" min="60" max="110" value=""><br>
 

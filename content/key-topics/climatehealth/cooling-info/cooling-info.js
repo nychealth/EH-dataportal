@@ -91,11 +91,16 @@ function printToPage() {
       aqiMeaning.style.color = 'white'
     } else if (aqi == '5') {
       aqiInterpretation = 'Very unhealthy'
+      aqiMeaning.style['background-color'] = '#993399'
+      aqiMeaning.style.color = 'white'
+    } else if (aqi == '6') {
+      aqiInterpretation = 'Hazardous'
       aqiMeaning.style['background-color'] = '#7E0023'
       aqiMeaning.style.color = 'white'
     }
     aqiMeaning.innerHTML = aqiInterpretation
     document.getElementById('aqiNum').innerHTML = aqi
+
 
 }
 
@@ -261,7 +266,7 @@ function runFinal() {
   console.log('We are reviewing your data')
 
   document.getElementById('finalInfo').classList.remove('hide')
-  document.getElementById('testInfo').classList.remove('hide')
+  // document.getElementById('testInfo').classList.remove('hide')
 
   var finalMessageText = document.getElementById('finalMessages')
   finalMessageText.innerHTML = ''
@@ -287,7 +292,7 @@ function runFinal() {
       finalMessageText.innerHTML+= msg + '<hr class="my-2">'
    }
 
-   if (aqi > 3 ) {
+   if (aqi > 3 && sensitiveGroup != 'Yes' ) {
     msg = "<p><strong> The air quality is bad.</strong> Your recommendations will reflect this. Limit strenuous and prolonged (over 1 hour) outdoor activities.  <a href='https://www.nyc.gov/assets/doh/downloads/pdf/eode/aqi-guidelines-general.pdf'>More info on what to do when the air quality is bad</a>. </p>"
       finalMessageText.innerHTML+= msg + '<hr class="my-2">'
   }
@@ -328,11 +333,9 @@ function runFinal() {
     ( hasAC === 'Yes') &&
     ((sensitiveGroup === 'Yes' && aqi > 2) || (aqi > 3))
     ) {
-      msg = "<p><strong>Because of the bad air quality</strong>, you may want to take some precautions. Air purifiers with filters can help remove some air pollution from the air. Air cleaners that kill viruses or bacteria using ultraviolet (UV) light will not remove air pollution from the air. Some air cleaners release ozone gas, which is bad for your lungs and an asthma trigger. Don't use these under any conditions.</p> <p> Closing the vent on your AC or setting to re-circulate will help you stay cool while preventing your AC unit from blowing polluted air inside. Remember to change the filter every month during the summer and after an air quality emergency.</p> <p> If you can't find a way to close the vent or set the AC to re-circulate, you should still use the AC regardless of the air quality outside. Remember that when it’s this hot outside, being overheated can make you very sick much more quickly than breathing in polluted air. Staying cool is the priority. <a href=https://www.nyc.gov/site/doh/health/health-topics/indoor-air-quality.page> Learn more about indoor air quality.</a></p>"
+      msg = "<p><strong>Because of the bad air quality</strong>, you may want to take some precautions. Air purifiers with filters can help remove some air pollution from the air. Air cleaners that kill viruses or bacteria using ultraviolet (UV) light will not remove air pollution from the air. Some air cleaners release ozone gas, which is bad for your lungs and an asthma trigger. Don't use these under any conditions.</p> <p> Closing the vent on your AC or setting to re-circulate will help you stay cool while preventing your AC unit from blowing polluted air inside. Remember to change the filter every month during the summer and after an air quality emergency.</p> <p> If you can't find a way to close the vent or set the AC to re-circulate, you should still use the AC regardless of the air quality outside. Remember that when it’s this hot outside, being overheated can make you very sick much more quickly than breathing in polluted air. Staying cool is the priority. <a href='https://www.nyc.gov/site/doh/health/health-topics/indoor-air-quality.page'> Learn more about indoor air quality.</a></p>"
       finalMessageText.innerHTML += msg + '<hr class="my-2">'
     }
-
-
 
 
     // Message 4 - warm and no AC
@@ -344,21 +347,15 @@ function runFinal() {
 
   // Message 2 - warm and no AC? Use a fan. 
   if (hasAC === 'No' && currentTemp > 78 && hasFan === 'Yes') {
-    msg = '<p>Your fan can help cool you down. But it won’t cool the air – if it’s too hot inside, it’s just moving hot air around, and can make you even warmer.</p><p>When the Air Quality Index is bad, <a href=https://www.epa.gov/air-research/research-diy-air-cleaners-reduce-wildfire-smoke-indoors> you can also use your fan as a DIY air purifier.</a> </p>'
+    msg = '<p>Your fan can help cool you down. But it won’t cool the air – if it’s too hot inside, it’s just moving hot air around, and can make you even warmer.</p><p>When the Air Quality Index is bad, <a href="https://www.epa.gov/air-research/research-diy-air-cleaners-reduce-wildfire-smoke-indoors"> you can also use your fan as a DIY air purifier.</a> </p>'
     finalMessageText.innerHTML += msg + '<hr class="my-2">'
   }
 
   // no AC
   if (hasAC === 'No') {
-    msg = `<p>About 9% of NYC households are like you, and don't have an AC - but it's the best way to stay safe when it's hot. <a href=https://portal.311.nyc.gov/article/?kanumber=KA-02529> HEAP </a> and <a href=https://www.coned.com/en/accounts-billing/payment-plans-assistance/help-paying-your-bill> Con Ed's Energy Affordability Program </a> can help make air conditioning your home more affordable.</p>`
+    msg = `<p>About 9% of NYC households are like you, and don't have an AC - but it's the best way to stay safe when it's hot. <a href="https://portal.311.nyc.gov/article/?kanumber=KA-02529"> HEAP </a> and <a href="https://www.coned.com/en/accounts-billing/payment-plans-assistance/help-paying-your-bill"> Con Ed's Energy Affordability Program </a> can help make air conditioning your home more affordable.</p>`
     finalMessageText.innerHTML += msg + '<hr class="my-2">'
   }
-
-
-
-
-
-
 
 
   // Message 5 - hot and AC
@@ -370,19 +367,19 @@ function runFinal() {
 
   // Message 6 - hot and no AC
   if ( currentTemp > 85 && hasAC === 'No') {
-    msg = "<p><strong>Air conditioning is the best way to stay safe when it’s this hot</strong>. Since you don't have AC, visit a cool public place, or friend or family member who has AC. When you are at home, continue to be mindful of the heat and make sure to drink enough water.<a href='https://ny.curbed.com/maps/nyc-summer-public-spaces-air-conditioning'>Get a list of public air-conditioned spaces here</a>.  </p>"
+    msg = "<p><strong>Air conditioning is the best way to stay safe when it’s this hot</strong>. Since you don't have AC, visit a cool public place, or friend or family member who has AC. When you are at home, continue to be mindful of the heat and make sure to drink enough water. </p>"
     finalMessageText.innerHTML += msg + '<hr class="my-2">'
   }
 
   // Limits AC, not warm
   if (limitsAC === 'Yes' && currentTemp <= 78) {
-    msg = "<p><strong>You have an AC, but sometimes limit use because of the cost</strong>. This is common. Before it gets hot, get help with your home cooling. <a href=https://portal.311.nyc.gov/article/?kanumber=KA-02529> HEAP </a> and <a href=https://www.coned.com/en/accounts-billing/payment-plans-assistance/help-paying-your-bill> Con Ed's Energy Affordability Program </a> can help make air conditioning your home more affordable.</p>"
+    msg = "<p><strong>You have an AC, but sometimes limit use because of the cost</strong>. This is common. Before it gets hot, get help with your home cooling. <a href='https://portal.311.nyc.gov/article/?kanumber=KA-02529'> HEAP </a> and <a href='https://www.coned.com/en/accounts-billing/payment-plans-assistance/help-paying-your-bill'> Con Ed's Energy Affordability Program </a> can help make air conditioning your home more affordable.</p>"
     finalMessageText.innerHTML += msg + '<hr class="my-2">'
   }
 
   // Limits AC and is warm
   if (limitsAC === 'Yes' && currentTemp > 78) {
-    msg = "<p><strong>You have an AC, but sometimes limit use because of the cost</strong>. This is common. Using AC for even a few hours a day on 'low cool' or 78 degrees can keep your home from getting dangerously hot. <a href=https://portal.311.nyc.gov/article/?kanumber=KA-02529> HEAP </a> and <a href=https://www.coned.com/en/accounts-billing/payment-plans-assistance/help-paying-your-bill> Con Ed's Energy Affordability Program </a> can help make air conditioning your home more affordable.</p>"
+    msg = "<p><strong>You have an AC, but sometimes limit use because of the cost</strong>. This is common. Using AC for even a few hours a day on 'low cool' or 78 degrees can keep your home from getting dangerously hot. <a href='https://portal.311.nyc.gov/article/?kanumber=KA-02529'> HEAP </a> and <a href='https://www.coned.com/en/accounts-billing/payment-plans-assistance/help-paying-your-bill'> Con Ed's Energy Affordability Program </a> can help make air conditioning your home more affordable.</p>"
     finalMessageText.innerHTML += msg + '<hr class="my-2">'
   }
 
@@ -392,7 +389,7 @@ function runFinal() {
   if ( hasAnimal === 'Yes' && 
       (currentTemp > 80 || aqi > 3)
   ) {
-    msg = '<p><strong>Your animals </strong> can’t tell you when they are not feeling well. Keep them safe by watching them for signs of heat exhaustion or the effects of poor air quality. </p> <p>Generally, if it is more than 80 degrees outside, animals need AC. And if the air quality is unhealthy for the general public, animals may need to spend more time indoors than usual. </p><p><a href=https://www.heat.gov/> Learn more about who is most at risk during extreme heat. </a></p>'
+    msg = '<p><strong>Your animals </strong> can’t tell you when they are not feeling well. Keep them safe by watching them for signs of heat exhaustion or the effects of poor air quality. </p> <p>Generally, if it is more than 80 degrees outside, animals need AC. And if the air quality is unhealthy for the general public, animals may need to spend more time indoors than usual. </p><p><a href="https://www.heat.gov/"> Learn more about who is most at risk during extreme heat. </a></p>'
     finalMessageText.innerHTML += msg + '<hr class="my-2">'
   }
 
@@ -437,6 +434,8 @@ if (isSummerDate()) {
 // -------------------------------------------------------------------------- //
 
 function setUpTest() {
+  document.getElementById('testInfo').classList.remove('hide')
+
   document.getElementById('input-currentTemp').setAttribute('value',currentTemp);
   document.getElementById('input-aqinum').setAttribute('value',aqi);
   if (sensitiveGroup === 'Yes') {
@@ -463,8 +462,6 @@ function setUpTest() {
     document.getElementById('btn-hasFan').classList.add('active')
   }
 }
-
-
 
 // put event listeners on each button to toggle state and variable
 var btnSensitiveGroup = document.getElementById('btn-sensitiveGroup');
@@ -540,6 +537,26 @@ if (inputCurrentTemp) {
       console.log('Current temperature:', currentValue);
       currentTemp = currentValue
       document.getElementById('currentTemp').innerHTML = currentValue
+
+      var hotText = document.getElementById('hot')
+      if (currentValue > 78 & currentValue < 85) {
+        hotText.innerHTML = 'warm'
+        hotText.style['background-color'] = "orange";
+    } else if (currentValue > 85 & currentValue < 90) {
+        hotText.innerHTML = 'hot'
+        hotText.style['background-color'] = "red";
+        hotText.style.color = 'white'
+    } else if (currentValue > 90 ) {
+        hotText.innerHTML = 'very hot'
+        hotText.style['background-color'] = "darkred"
+        hotText.style.color = 'white'
+    } else {
+        hotText.innerHTML = 'mild'
+        hotText.style['background-color'] = "blue"
+        hotText.style.color = 'white';
+        over80F = 'No'
+    }
+
       runFinal()
   })
 };
@@ -552,6 +569,34 @@ if (inputAQI) {
       console.log('Current temperature:', currentValue);
       aqi = currentValue
       document.getElementById('aqiNum').innerHTML = currentValue
+
+      // re-style AQI text
+      var aqiMeaning = document.getElementById('aqimeaning')
+      if (aqi == '1') {
+        aqiInterpretation = 'Good'
+        aqiMeaning.style['background-color'] = '#00E400'
+      } else if (aqi == '2') {
+        aqiInterpretation = 'Moderate'
+        aqiMeaning.style['background-color'] = '#FFFF00'
+      } else if (aqi == '3') {
+        aqiInterpretation = 'Unhealthy for sensitive groups'
+        aqiMeaning.style['background-color'] = '#FF7E00'
+      } else if (aqi == '4') {
+        aqiInterpretation = 'Unhealthy'
+        aqiMeaning.style['background-color'] = '#FF0000'
+        aqiMeaning.style.color = 'white'
+      } else if (aqi == '5') {
+        aqiInterpretation = 'Very unhealthy'
+        aqiMeaning.style['background-color'] = '#993399'
+        aqiMeaning.style.color = 'white'
+      } else if (aqi == '6') {
+        aqiInterpretation = 'Hazardous'
+        aqiMeaning.style['background-color'] = '#7E0023'
+        aqiMeaning.style.color = 'white'
+      }
+      aqiMeaning.innerHTML = aqiInterpretation
+      document.getElementById('aqiNum').innerHTML = aqi
+
       runFinal()
   })
 };
