@@ -181,13 +181,22 @@ function answer(question, answer, next) {
   message.classList.remove('hide')
   message.innerHTML = thisAnswer.message 
 
-  console.log('next',next)
+  // console.log('next',next)
   // This exposes the next question, specified by goTo
   if (next === 99) {
-    console.log('next is 99')
+    // console.log('next is 99')
     runFinal()
+    document.getElementById('messageResults').scrollIntoView({
+      behavior: 'smooth'
+    })
   } else {
     document.getElementById('question-'+ next).classList.remove('hide')
+    window.scrollBy({
+      top: 400,
+      behavior: "smooth",
+    });
+
+
     /* 
     document.querySelector(`#message-`+thisAnswer.optionID).scrollIntoView({
       behavior: 'smooth'
