@@ -281,15 +281,21 @@ function runFinal() {
 
   // AQI BUNDLE:
    // Message 0.75 - default bad aqi / declares bad aqi
-   if (aqi >= 3 ) {
-    msg = "<p><strong> The air quality is bad. Your recommendations will reflect this. </strong></p>"
+
+   if (sensitiveGroup === 'Yes' && aqi > 2) {
+      msg = "<p><strong> The air quality is bad, and you're more sensitive to air pollution</strong>. Your recommendations will reflect this.  Limit strenuous and prolonged (over 1 hour) outdoor activities. <a href='https://www.nyc.gov/assets/doh/downloads/pdf/eode/aqi-guidelines-general.pdf'>More info on what to do when the air quality is bad</a>.</p>"
+      finalMessageText.innerHTML+= msg + '<hr class="my-2">'
+   }
+
+   if (aqi > 3 ) {
+    msg = "<p><strong> The air quality is bad.</strong> Your recommendations will reflect this. Limit strenuous and prolonged (over 1 hour) outdoor activities.  <a href='https://www.nyc.gov/assets/doh/downloads/pdf/eode/aqi-guidelines-general.pdf'>More info on what to do when the air quality is bad</a>. </p>"
       finalMessageText.innerHTML+= msg + '<hr class="my-2">'
   }
 
   // Message 1 - AQI / wear a mask
   if (aqi > 3 || 
     (aqi > 2 && sensitiveGroup === 'Yes')) {
-    msg = '<p><strong>You are more sensitive to air pollution. </strong>. Consider staying indoors as much as possible to reduce health risks. If you must be outdoors, limit exercise and strenuous activity. Consider wearing a mask outside. <a href="https://www.nyc.gov/site/doh/health/health-topics/air-quality-fire-smoke-and-effect-on-air-quality.page> Read more about when to use a mask.</a></p>'
+    msg = '<p><strong>Because of the air quality today</strong>, consider staying indoors as much as possible to reduce health risks. If you must be outdoors, limit exercise and strenuous activity. Consider wearing a mask outside. <a href="https://www.nyc.gov/site/doh/health/health-topics/air-quality-fire-smoke-and-effect-on-air-quality.page> Read more about when to use a mask.</a></p>'
     finalMessageText.innerHTML += msg + '<hr class="my-2">'
   }
 
@@ -331,10 +337,16 @@ function runFinal() {
 
     // Message 4 - warm and no AC
     if (hasAC === 'No' && currentTemp > 78) {
-      msg = '<p><strong>It’s hot, and you don’t have an AC</strong>.</p>'
+      msg = '<p><strong>It’s hot, and you don’t have an AC</strong>. Open your window to try to keep your home cool.</p>'
       finalMessageText.innerHTML += msg + '<hr class="my-2">'
   
     }
+
+  // Message 2 - warm and no AC? Use a fan. 
+  if (hasAC === 'No' && currentTemp > 78 && hasFan === 'Yes') {
+    msg = '<p>Your fan can help cool you down. But it won’t cool the air – if it’s too hot inside, it’s just moving hot air around, and can make you even warmer.</p><p>When the Air Quality Index is bad, <a href=https://www.epa.gov/air-research/research-diy-air-cleaners-reduce-wildfire-smoke-indoors> you can also use your fan as a DIY air purifier.</a> </p>'
+    finalMessageText.innerHTML += msg + '<hr class="my-2">'
+  }
 
   // no AC
   if (hasAC === 'No') {
@@ -343,11 +355,7 @@ function runFinal() {
   }
 
 
-  // Message 2 - warm and no AC? Use a fan. 
-  if (hasAC === 'No' && currentTemp > 78 && hasFan === 'Yes') {
-    msg = '<p>Your fan can help cool you down. But it won’t cool the air – if it’s too hot inside, it’s just moving hot air around, and can make you even warmer.</p><p>When the Air Quality Index is bad, <a href=https://www.epa.gov/air-research/research-diy-air-cleaners-reduce-wildfire-smoke-indoors> you can also use your fan as a DIY air purifier.</a> </p>'
-    finalMessageText.innerHTML += msg + '<hr class="my-2">'
-  }
+
 
 
 
@@ -355,7 +363,7 @@ function runFinal() {
 
   // Message 5 - hot and AC
   if ( currentTemp > 85 && hasAC === 'Yes') {
-    msg = '<p><strong>Air conditioning is the best way to stay safe when it’s this hot. </strong> Reach out to friends to make sure they have a place to cool off.  <a href="https://ny.curbed.com/maps/nyc-summer-public-spaces-air-conditioning">Get a list of public air-conditioned spaces here</a>.  </p>'
+    msg = '<p><strong>Air conditioning is the best way to stay safe when it’s this hot. </strong> Reach out to friends to make sure they have a place to cool off. </p>'
   finalMessageText.innerHTML += msg + '<hr class="my-2">'
 
   }
@@ -366,9 +374,11 @@ function runFinal() {
     finalMessageText.innerHTML += msg + '<hr class="my-2">'
   }
 
-
-
-
+  // Limits AC, not warm
+  if (limitsAC === 'Yes' && currentTemp <= 78) {
+    msg = "<p><strong>You have an AC, but sometimes limit use because of the cost</strong>. This is common. Before it gets hot, get help with your home cooling. <a href=https://portal.311.nyc.gov/article/?kanumber=KA-02529> HEAP </a> and <a href=https://www.coned.com/en/accounts-billing/payment-plans-assistance/help-paying-your-bill> Con Ed's Energy Affordability Program </a> can help make air conditioning your home more affordable.</p>"
+    finalMessageText.innerHTML += msg + '<hr class="my-2">'
+  }
 
   // Limits AC and is warm
   if (limitsAC === 'Yes' && currentTemp > 78) {
