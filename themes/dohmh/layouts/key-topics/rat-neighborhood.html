@@ -1,0 +1,158 @@
+{{- define "main" -}}
+
+<article class="container-fluid" id="skip-header-target">
+    
+    <div class="row">
+        <div class="col-md-11 mx-auto mt-4 pl-0">
+            <nav aria-label="breadcrumb" class="mb-4">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
+                    <li class="breadcrumb-item"><a href={{ relURL "key-topics" }}>Key Topics</a></li>
+                    <li class="breadcrumb-item"><a href="..">
+                        {{- with .Parent -}} {{ .Title }} </a></li>{{- end -}}
+                        <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <!-- Main 11-column container -->
+        <div class="col-md-11 mx-auto pl-0">
+            <div class="row">
+                <div class="col-md-7 mb-4 mr-auto">
+                    <h2>{{ .Title }}</h2>
+                    <p>{{ .Content }}</p>
+                </div>
+            </div>
+
+            <script>
+                function showHider() {
+                    event.preventDefault()
+                    document.getElementById('reveal').classList.remove('hide')
+                    console.log('show once')
+
+                    rmz(2)
+                }
+            </script>
+
+            <div class="row mb-4">
+                <div class="col-md-6 mx-auto">
+                    <form class="form-inline" style="width:100%;">
+                        <div class="form-group mb-2" style="width:75%">
+                          <label for="inputPassword2" class="sr-only">Enter address</label>
+                          <input type="password" class="form-control" id="inputPassword2" placeholder="125 Worth Street" style="width:100%;">
+                        </div>
+                        <button onclick="showHider()" class="btn btn-primary mb-2">Search</button>
+                    </form>
+
+                    <div class="my-4" style="width:100%;">
+                        <span class="home-label">Dummy buttons</span>
+                        <button class="btn btn-sm btn-outline-secondary " onclick="rmz(1)">RMZ</button>
+                        <button class="btn btn-sm btn-outline-secondary " onclick="rmz(2)">Near RMZ</button>
+                        <button class="btn btn-sm btn-outline-secondary " onclick="rmz(3)">No RMZ</button>
+                        </div>
+
+                        <script>
+                            function rmz(x) {
+                                document.getElementById('rmz1').classList.add('hide')
+                                document.getElementById('rmz2').classList.add('hide')
+                                document.getElementById('rmz3').classList.add('hide')
+
+                                var chosen = 'rmz' + x
+                                document.getElementById(chosen).classList.remove('hide')
+
+                            }
+                        </script>
+                </div>
+
+                <div class="col-md-6">
+                    <div id="reveal" class="">
+                        <p class="fs-xl">You are in <strong>Manhattan Community District 1</strong> <a href=""><i class="fas fa-info-circle ml-1"></i></a>.</p>
+                       <p>In 2023, the Health Department inspected <strong>XX% of properties</strong> in your neighborhood for rat activity.</p>
+                        <div class="border mb-2" style="width:100%">
+                            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/obesityP_402.svg" style="width:100%;">
+                        </div>
+                       <p>A property may fail an inspection for active rat signs, or for conditions that support rats: garbage and harborage. Of the properties inspected, <strong>YY% failed</strong><a href=""><i class="fas fa-info-circle ml-1"></i></a> - and <strong>ZZ% had active rat signs</strong>.</p>
+                       <div class="border mb-2" style="width:100%">
+                        <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/pedEDAA_402.svg" style="width:100%;">
+                        </div>
+                        <p>When a property fails a rat inspection, the owner receives a letter detailing the issues and with instructions to fix the problems.</p>
+
+                        <div class="l-green-border px-1 hide mt-4" id="rmz1">
+                        <p class="fs-xl mt-2">Your neighborhood is <strong>in a Rat Mitigation Zone</strong>. </p>
+                        <p>RMZs are areas with high rat activity, where City agencies focus resources to address rats and the conditions that support them. Each property in an RMZ is inspected twice per year, and efforts to control rat populations are done on a block-by-block basis, rather than done one property at a time.</p>
+
+                        <div class="row my-2">
+                            <div class="col-4">
+                                <div style="min-height:365px"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/aE9vN/embed.js?v=1" charset="utf-8"></script><noscript><img src="https://datawrapper.dwcdn.net/aE9vN/full.png" alt="" /></noscript></div>
+                            </div>
+
+                            <div class="col-8">
+                                <p>In this RMZ, the Health Department <strong>inspected X,XXX properties</strong>. Of these, <strong>XX% failed</strong>. </p>
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="row my-2">
+                            <div class="col-4">
+                                <div style="min-height:365px"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/Eh3Xh/embed.js?v=1" charset="utf-8"></script><noscript><img src="https://datawrapper.dwcdn.net/Eh3Xh/full.png" alt="" /></noscript></div>
+                            </div>
+
+                            <div class="col-8">
+                                <p>About 30 days after a failed inspection, the Health Department conducts a complaince inspection. Of Y,YYY compliance inspections, <strong>ZZ% failed</strong>.</p>
+
+                            </div>
+                        </div>
+
+                        <p>When a property fails a compliance inspector, the Health Department may send an exterminator to monitor the property or apply bait (the property owner is billed for this work). There were <strong>Z,ZZZ exterminator visits</strong> in this RMZ.</p>
+                        <a href="" class="btn btn-block btn-primary text-white my-1">Get data on all RMZs here</a>
+                        </div>
+
+                        <div class="l-green-border px-1 hide mt-4" id="rmz2">
+                        <p class="fs-xl mt-2">Your neighborhood is <strong>near the East Village / Chinatown Rat Mitigation Zone</strong>.</p>
+                        <p>RMZs are areas with high rat activity, where City agencies focus resources to address rats and the conditions that support them. Each property in an RMZ is inspected twice per year, and efforts to control rat populations are done on a block-by-block basis, rather than done one property at a time.</p>
+                        <img src="rmz-map.png" style="width:100%">
+                        <a href="" class="btn btn-block btn-primary text-white my-1">Get data on all RMZs here</a>
+                        </div>
+
+                        <div class="l-green-border px-1 hide mt-4" id="rmz3">
+                        <p>Your neighborhood isn't in one of NYC's 4 rat mitigation zones. In your neighborhood, properties are <strong>inspected in response to 311 complaints</strong>, or proactively inspected in areas of known rat activity. If you've seen rats, garbage, or signs of rat activity, <a href="">file a 311 complaint here</a>.</p>
+                        <p>311 complaints for rat activity help the Health Department figure out what areas need inspection, but they don't tell us everything we need to know about rat activity in the city. <a href="">Read this data story on how we use 311 complaints and other data to identify rat activity</a>.</p>
+                        </div>
+
+
+                        <h2 class="h4 mt-4">Look up specific properties</h2>
+                        <p>You can get an individual property's inspection history at the Rat Information Portal. You can look up your property and see its inspection history, or you can look at properties in your neighborhood to see where there is recent rat activity.</p>
+                        <img src="rip-snip.png" style="width:100%">
+
+                        <a href="" class="btn btn-block btn-primary text-white my-1">Rat information portal</a>
+                        <p>If you see rat activity somewhere but the Rat Information Portal says that there hasn't been a recent inspection <a href="">file a 311 complaint</a>. The Health Department will send an inspector soon to do an inspection.</p>
+
+
+                        <h2 class="h4 mt-4">What you can do</h2>
+                        <ul>
+                            <li>Rat Academy</li>
+                            <li>File a rat complaint with 311</li>
+                            <li>DOHMH Rat Page</li>
+                        </ul>
+
+
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <!-- end 11-column container -->
+        
+    </div>
+    
+    
+</article>
+
+{{- end -}}
