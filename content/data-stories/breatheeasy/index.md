@@ -25,7 +25,7 @@ Over the years, though, the number of advisory days has gone down. That’s good
 Since the winter of 2008/2009, the Health Department has been measuring air quality through the NYC Community Air Survey (NYCCAS). It’s the largest urban air monitoring program in the USA, and measures six different kinds of air pollution at about 100 locations around the city.
 
 {{< rawhtml >}}
-<iframe width="800" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" title="NYCCAS Sites" src="//nycdohmh.maps.arcgis.com/apps/Embed/index.html?webmap=414f6c00466e456a9b8b994017cfc728&extent=-74.4827,40.5223,-73.5962,40.9116&home=true&zoom=true&previewImage=false&scale=true&disable_scroll=false&theme=light"></iframe>
+<div style="min-height:656px" class="my-4"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/d7DDS/embed.js?v=1" charset="utf-8"></script><noscript><img src="https://datawrapper.dwcdn.net/d7DDS/full.png" alt="" /></noscript></div>
 
 {{< /rawhtml >}}
 
