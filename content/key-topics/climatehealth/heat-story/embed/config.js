@@ -315,7 +315,7 @@ config = {
                     "maxColor": "#c44601",
                     "color": "black",
                     "opacity": 0.6,
-                    "legendDescription": "<strong> PM2.5 </strong> are fine particles that are emitted by vehicles, building boilers, and other combustion - and are a major form of air pollution that harms health. It can be long, it can be short, it can include <a href=\"#\">links</a>."
+                    "legendDescription": "<strong> PM2.5 </strong> are fine particles that are emitted by vehicles, building boilers, and other combustion - and are a major form of air pollution that harms health."
                 },
                 "displayProperties": {
                     "missingDisplay": "N/A",
