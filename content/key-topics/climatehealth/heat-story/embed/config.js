@@ -310,7 +310,7 @@ config = {
                 },
                 "exclusive": true,
                 "args": {
-                    "colorFeatureProperty": "Black carbon, Mean",
+                    "colorFeatureProperty": "PM2.5",
                     "minColor": "#054fb9",
                     "maxColor": "#c44601",
                     "color": "black",
@@ -321,7 +321,7 @@ config = {
                     "missingDisplay": "N/A",
                     "displayPropertyArgs": [
                         {
-                            "displayName": "Black carbon, Mean",
+                            "displayName": "PM2.5",
                             "units": "μg/m3",
                             "format": "float"
                         }
