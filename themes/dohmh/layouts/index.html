@@ -4,7 +4,7 @@
   <div class="wide container">
     <div class="py-4 mb-4 border-bottom">
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6 px-20">
           <div class="row">
             <h2 class="">Explore your city - through data</h2>
             <p class="text-muted my-2">
@@ -13,14 +13,14 @@
           </div>
 
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-6 px-20">
               <ul class="list-unstyled">
                 <li class="link-w-underline px-0 font-weight-normal"><a href={{ relURL "key-topics/airquality" }}>Air quality</a></li>
                 <li class="link-w-underline px-0 font-weight-normal"><a href={{ relURL "key-topics/climatehealth" }}>Climate</a></li>
                 <li class="link-w-underline px-0 font-weight-normal"><a href={{ relURL "key-topics/housing" }}>Housing</a></li>
               </ul>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 px-2 px-20">
               <ul class="list-unstyled">
                 <li class="link-w-underline px-0 font-weight-normal"><a href={{ relURL "key-topics/transportation" }}>Public space</a></li>
                 <li class="link-w-underline px-0 font-weight-normal"><a href={{ relURL "key-topics/healthoutcomes" }}>Health</a></li>
@@ -32,12 +32,12 @@
             </div>
           </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 px-20">
           <div class="card content-card">
             <div class="card-content data-stories">
               <div style='height: 400px; width: 100%; background-image: url({{ relURL ( urls.JoinPath "images" .Params.featured_image ) }}); background-position: center; background-size: cover;'></div>
               <div class="card-body">
-                <h3><a href="{{ relURL .Params.featured_link }}">{{ .Params.featured_title }}</h3>
+                <h3><a href="{{ relURL .Params.featured_link }}">{{ .Params.featured_title }}</a></h3>
                 <p>{{ .Params.featured_text }}</p>
                 <div class="d-flex justify-content-end mb-4 mb-md-0">
                   <a class="fs-sm font-weight-bold" href={{ relURL "data-stories" }}>All data stories &gt;</a>
@@ -52,13 +52,13 @@
 
   <div class="container wide">
     <div class="row">
-      <div class="col-md-4">
+      <div class="col-lg-4 px-20">
         <h2 class="fs-lg data-stories border-bottom pb-2"><i class="fas fa-passport mr-1" aria-hidden="true"></i>New data stories:</h2>
         <div class="card-content mb-4">
           <div>
             {{- range first 3 ((where .Site.RegularPages "Section" "data-stories")) -}}
 
-            <a href="{{ .RelPermalink }}" class="row no-gutters border-bottom py-2">
+            <a href="{{ .RelPermalink }}" class="row no-gutters border-bottom py-3">
               <div class="col-4">
                 {{ $src := .Resources.GetMatch .Params.image }}
                 {{ $image := $src.Resize "740x"}}
@@ -77,7 +77,7 @@
           </div>
         </div>
       </div>
-      <div class="col-md-4">
+      <div class="col-lg-4 px-20">
 
         <h2 class="fs-lg data-explorer border-bottom pb-2"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Recently updated data:</h2>
 
@@ -87,13 +87,13 @@
         </div>
         {{- end -}}
 
-        <div class="d-flex justify-content-end mt-1 mb-4 mb-md-0">
+        <div class="d-flex justify-content-end mt-1 mb-4">
           <a class="font-weight-bold" href={{ relURL "data-explorer" }}>All data &gt;</a>
         </div>
 
 
       </div>
-      <div class="col-md-4">
+      <div class="col-lg-4 px-20">
         <div class="shadow-sm mb-3 p-3 card-left-border">
           <div class="row no-gutters">
             <div class="col-11">

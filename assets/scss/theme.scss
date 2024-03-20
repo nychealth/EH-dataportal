@@ -109,9 +109,24 @@ h1 {
 }
 
 .nav-item {
-    &:hover, &.active {
-        background-color: rgba(128,0,128,.09);
+    &:hover {
         text-decoration: none;
+    }
+    &:hover #nav-item-05,
+    &.active #nav-item-05 {
+        background-color: rgba(128,0,128,.09);
+    }
+    &:hover #nav-item-02,
+    &.active #nav-item-02 {
+        background-color: rgba(215,80,71,.09);
+    }
+    &:hover #nav-item-04,
+    &.active #nav-item-04 {
+        background-color: rgba(25,123,189,.09);
+    }
+    &:hover #nav-item-03,
+    &.active #nav-item-03 {
+        background-color: rgba(10,64,138,.09);
     }
     @include media-breakpoint-down(lg) {
         font-size: 1rem;
