@@ -26,6 +26,7 @@
     "leaflet": "^1.9.3",
     "leaflet-easybutton": "^2.4.0",
     "lunr": "^2.3.9",
+    "nyc-lib": "^1.4.89",
     "pdfmake": "^0.2.7",
     "seedrandom": "^3.0.5",
     "string": "^3.3.3",
