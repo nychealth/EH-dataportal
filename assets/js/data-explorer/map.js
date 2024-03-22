@@ -198,8 +198,8 @@ const renderMap = (
                         },
                         "mark": {
                             "type": "geoshape",
-                            "stroke": "#afafaf",
-                            "fill": "#e2e2e2",
+                            "stroke": "#cbcbcb",
+                            "fill": "#e7e7e7",
                             "strokeWidth": 0.5
                         }
                     },
@@ -238,7 +238,7 @@ const renderMap = (
                             "stroke": {
                                 "condition": [{"param": "highlight", "empty": false, "value": "cyan"}],
                                 // "value": "#161616"
-                                "value": "#dadada"
+                                "value": "#2d2d2d"
                             },
                             "strokeWidth": {
                                 "condition": [{"param": "highlight", "empty": false, "value": strokeWidth}],
