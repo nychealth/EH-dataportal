@@ -31,6 +31,32 @@ const renderMap = (
     let mapTime = mapTimes[0];
     let topoFile = '';
 
+    // ----------------------------------------------------------------------- //
+    // bubble map for non-rates (counts/numbers)
+    // ----------------------------------------------------------------------- //
+    let markType              = 'geoshape'  
+    let encode                = {"shape": {"field": "geo", "type": "geojson"}}
+    let strokeWidth = 1.25
+
+    if (mapMeasurementType.includes('Number') ||
+        mapMeasurementType.includes('number') || 
+        mapMeasurementType.includes('Total population')) {
+            markType = 'circle'
+            encode = {        
+                "latitude": {"field": "Lat", "type": "quantitative"},
+                "longitude": {"field": "Long", "type": "quantitative"},
+                "size": {"bin": false, "field": "Value","type": "quantitative","scale": {"range": [0,750]},"legend": null}
+                    }
+            strokeWidth = 2
+    } else {        
+            markType = 'geoshape'
+            encode  = {
+                "shape": {"field": "geo", "type": "geojson"}
+                    }
+            strokeWidth = 1.25
+    }
+
+
     var color = 'purplered'
     var rankReverse = defaultMapMetadata[0].VisOptions[0].Map[0]?.RankReverse
     if (rankReverse === 0) {
@@ -159,10 +185,28 @@ const renderMap = (
                             "strokeWidth": 0.5
                         }
                     },
+                    // Second neighborhood data layer - for count-dot map underlayer (ok to leave on for rates)
                     {
                         "height": 500,
                         "width": "container",
-                        "mark": {"type": "geoshape", "invalid": null},
+                        "data": {
+                            "url": `${data_repo}${data_branch}/geography/${topoFile}`,
+                            "format": {
+                                "type": "topojson",
+                                "feature": "collection"
+                            }
+                        },
+                        "mark": {
+                            "type": "geoshape",
+                            "stroke": "#afafaf",
+                            "fill": "#e2e2e2",
+                            "strokeWidth": 0.5
+                        }
+                    },
+                    {
+                        "height": 500,
+                        "width": "container",
+                        "mark": {"type": markType, "invalid": null},
                         "params": [
                             {"name": "highlight", "select": {"type": "point", "on": "mouseover", "clear": "mouseout"}}
                         ],
@@ -180,7 +224,7 @@ const renderMap = (
                             }
                         ],
                         "encoding": {
-                            "shape": {"field": "geo", "type": "geojson"},
+                            ...encode,
                             "color": {
                                 "condition": {
                                     "test": "isValid(datum.Value)",
@@ -197,7 +241,7 @@ const renderMap = (
                                 "value": "#dadada"
                             },
                             "strokeWidth": {
-                                "condition": [{"param": "highlight", "empty": false, "value": 1.25}],
+                                "condition": [{"param": "highlight", "empty": false, "value": strokeWidth}],
                                 "value": 0.5
                             },
                             "order": {
@@ -284,6 +328,8 @@ const renderMap = (
     // ----------------------------------------------------------------------- //
 
     vegaEmbed("#map", mapspec);
+
+    console.log(mapspec)
 
     // ----------------------------------------------------------------------- //
     // Send chart data to download
