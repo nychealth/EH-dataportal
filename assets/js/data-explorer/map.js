@@ -147,7 +147,7 @@ const renderMap = (
         "projection": {"type": "mercator"},
         "hconcat": [
             {
-                "height": "container",
+                "height": 500,
                 "width": barWidth,
                 "config": {
                     "axisY": {
@@ -167,7 +167,8 @@ const renderMap = (
                         "axis": {
                             "labelAngle": 0,
                             "labelFontSize": 11,
-                            "tickCount": 3
+                            "tickCount": 3,
+                            "orient": "top"
                         }
                     },
                     "tooltip": [
@@ -201,7 +202,7 @@ const renderMap = (
             {
                 "layer": [
                     {
-                        "height": "container",
+                        "height": 500,
                         "width": mapWidth,
                         "data": {
                             "url": `${data_repo}${data_branch}/geography/borough.topo.json`,
@@ -218,7 +219,7 @@ const renderMap = (
                         }
                     },
                     {
-                        "height": "container",
+                        "height": 500,
                         "width": mapWidth,
                         "mark": {"type": "geoshape", "invalid": null},
                         "params": [
