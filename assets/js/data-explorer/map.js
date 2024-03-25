@@ -184,7 +184,7 @@ const renderMap = (
                             "fill": "#C5C5C5",
                             "strokeWidth": 0.5
                         }
-                    },
+                    }, 
                     // Second neighborhood data layer - for count-dot map underlayer (ok to leave on for rates)
                     {
                         "height": 500,
@@ -198,7 +198,7 @@ const renderMap = (
                         },
                         "mark": {
                             "type": "geoshape",
-                            "stroke": "#cbcbcb",
+                            "stroke": "#a2a2a2",
                             "fill": "#e7e7e7",
                             "strokeWidth": 0.5
                         }
@@ -329,7 +329,7 @@ const renderMap = (
 
     vegaEmbed("#map", mapspec);
 
-    console.log(mapspec)
+    // console.log(mapspec)
 
     // ----------------------------------------------------------------------- //
     // Send chart data to download
