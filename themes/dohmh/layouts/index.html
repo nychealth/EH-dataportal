@@ -1,46 +1,48 @@
 {{ define "main" }}
 
-<article class="container-fluid overflow-hidden" id="primary-content">
-  <div class="wide container">
-    <div class="py-4 mb-4 border-bottom">
-      <div class="row">
-        <div class="col-md-6 px-20">
-          <div class="row">
-            <h2 class="">Explore your city - through data</h2>
-            <p class="text-muted my-2">
-              <span class="font-weight-bold">The environment is everything around us:</span> our air and water, the climate, our city's buildings and streets, and the society that we live in:
-            </p>
-          </div>
+<article class="container-fluid p-0 overflow-hidden" id="primary-content">
+  <div class="row no-gutters">
+    <div class="container wide">
+      <div class="py-4 mb-4 border-bottom">
+        <div class="row">
+          <div class="col-md-6 px-20">
+            <div class="row px-2">
+              <h2 class="">Explore your city - through data</h2>
+              <p class="text-muted my-2">
+                <span class="font-weight-bold">The environment is everything around us:</span> our air and water, the climate, our city's buildings and streets, and the society that we live in:
+              </p>
+            </div>
 
-          <div class="row">
-            <div class="col-md-6 px-20">
-              <ul class="list-unstyled">
-                <li class="link-w-underline px-0 font-weight-normal"><a href={{ relURL "key-topics/airquality" }}>Air quality</a></li>
-                <li class="link-w-underline px-0 font-weight-normal"><a href={{ relURL "key-topics/climatehealth" }}>Climate</a></li>
-                <li class="link-w-underline px-0 font-weight-normal"><a href={{ relURL "key-topics/housing" }}>Housing</a></li>
-              </ul>
-            </div>
-            <div class="col-md-6 px-2 px-20">
-              <ul class="list-unstyled">
-                <li class="link-w-underline px-0 font-weight-normal"><a href={{ relURL "key-topics/transportation" }}>Public space</a></li>
-                <li class="link-w-underline px-0 font-weight-normal"><a href={{ relURL "key-topics/healthoutcomes" }}>Health</a></li>
-                <li class="link-w-underline px-0 font-weight-normal"><a href={{ relURL "key-topics/social" }}>Inequality</a></li>
-              </ul>
-            </div>
-            <div class="d-flex justify-content-center mt-3 w-100 mb-4 mb-md-0">
-              <a class="btn btn-primary" href={{ relURL "key-topics" }}>See all topics &gt;</a>
+            <div class="row">
+              <div class="col-md-6 px-20">
+                <ul class="list-unstyled font-weight-bold">
+                  <li class="link-w-underline px-0"><a href={{ relURL "key-topics/airquality" }}>Air quality</a></li>
+                  <li class="link-w-underline px-0"><a href={{ relURL "key-topics/climatehealth" }}>Climate</a></li>
+                  <li class="link-w-underline px-0"><a href={{ relURL "key-topics/housing" }}>Housing</a></li>
+                </ul>
+              </div>
+              <div class="col-md-6 px-2 px-20">
+                <ul class="list-unstyled font-weight-bold">
+                  <li class="link-w-underline px-0"><a href={{ relURL "key-topics/transportation" }}>Public space</a></li>
+                  <li class="link-w-underline px-0"><a href={{ relURL "key-topics/healthoutcomes" }}>Health</a></li>
+                  <li class="link-w-underline px-0"><a href={{ relURL "key-topics/social" }}>Inequality</a></li>
+                </ul>
+              </div>
+              <div class="d-flex justify-content-center mt-3 w-100 mb-4 mb-md-0">
+                <a class="btn btn-primary" href={{ relURL "key-topics" }}>See all topics &gt;</a>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="col-md-6 px-20">
-          <div class="card content-card">
-            <div class="card-content data-stories">
-              <div style='height: 400px; width: 100%; background-image: url({{ relURL ( urls.JoinPath "images" .Params.featured_image ) }}); background-position: center; background-size: cover;'></div>
-              <div class="card-body">
-                <h3><a href="{{ relURL .Params.featured_link }}">{{ .Params.featured_title }}</a></h3>
-                <p>{{ .Params.featured_text }}</p>
-                <div class="d-flex justify-content-end mb-4 mb-md-0">
-                  <a class="fs-sm font-weight-bold" href={{ relURL "data-stories" }}>All data stories &gt;</a>
+          <div class="col-md-6 px-20">
+            <div class="card content-card">
+              <div class="card-content data-stories">
+                <div style='height: 330px; width: 100%; background-image: url({{ relURL ( urls.JoinPath "images" .Params.featured_image ) }}); background-position: center; background-size: cover;'></div>
+                <div class="card-body">
+                  <h3><a href="{{ relURL .Params.featured_link }}">{{ .Params.featured_title }}</a></h3>
+                  <p>{{ .Params.featured_text }}</p>
+                  <div class="d-flex justify-content-end mb-4 mb-md-0">
+                    <a class="fs-sm font-weight-bold" href={{ relURL "data-stories" }}>All data stories &gt;</a>
+                  </div>
                 </div>
               </div>
             </div>
@@ -48,168 +50,168 @@
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="container wide">
-    <div class="row">
-      <div class="col-lg-4 px-20">
-        <h2 class="fs-lg data-stories border-bottom pb-2"><i class="fas fa-passport mr-1" aria-hidden="true"></i>New data stories:</h2>
-        <div class="card-content mb-4">
-          <div>
-            {{- range first 3 ((where .Site.RegularPages "Section" "data-stories")) -}}
-
-            <a href="{{ .RelPermalink }}" class="row no-gutters border-bottom py-3">
-              <div class="col-4">
-                {{ $src := .Resources.GetMatch .Params.image }}
-                {{ $image := $src.Resize "740x"}}
-                <img src="{{ $image.RelPermalink }}">
-              </div>
-
-              <div class="col-8 ml-auto h-100 pl-2">
-                <p class="text-black fs-md"><span class="font-weight-bold">{{ .Title }}</span> {{ .Content | plainify | truncate 100 | htmlUnescape }} </p>
-              </div>
-            </a>
-
-              {{- end -}}
-              <div class="d-flex justify-content-end mt-1 mb-4 mb-md-0">
-                <a href={{ relURL "data-stories" }} class="font-weight-bold">All data stories &gt;</a>
-              </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 px-20">
-
-        <h2 class="fs-lg data-explorer border-bottom pb-2"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Recently updated data:</h2>
-
-        {{- range .Site.Data.recently_updated_data.featured -}}
-        <div class="link-w-underline">
-          <a href="{{ relURL .link }}">{{ .copy }}</a>
-        </div>
-        {{- end -}}
-
-        <div class="d-flex justify-content-end mt-1 mb-4">
-          <a class="font-weight-bold" href={{ relURL "data-explorer" }}>All data &gt;</a>
-        </div>
-
-
-      </div>
-      <div class="col-lg-4 px-20">
-        <div class="shadow-sm mb-3 p-3 card-left-border">
-          <div class="row no-gutters">
-            <div class="col-11">
-              <h3 class="text-black fs-xl pr-2 mb-2">Get updates and announcements</h3>
-            </div>
-            <div class="col-1">
-              <svg xmlns="http://www.w3.org/2000/svg" width="33.385" height="30.909"><g fill="#008939" fill-rule="nonzero"><path d="M24.275 3.09a35.413 35.413 0 0 1-16.76 4.207C3.365 7.297 0 10.79 0 15.102c0 3.978 2.865 7.261 6.568 7.745a31.92 31.92 0 0 0 2.388 6.52 2.715 2.715 0 0 0 3.853 1.151l1.627-.975c1.365-.819 1.767-2.579 1.106-3.945a23.973 23.973 0 0 1-.842-1.958 35.465 35.465 0 0 1 9.574 3.474 36.274 36.274 0 0 0 2.03-12.012c0-4.218-.717-8.264-2.03-12.011Z"/><path d="M26.45 2.117a39.148 39.148 0 0 1 2.32 13.338c0 4.696-.82 9.19-2.32 13.337l-.055.149c-.273.747.084 1.585.797 1.872.714.286 1.515-.087 1.789-.834a42.018 42.018 0 0 0 2.422-11.099c1.178-.646 1.982-1.937 1.982-3.425 0-1.49-.804-2.78-1.982-3.426A42.017 42.017 0 0 0 28.98.931C28.707.183 27.906-.19 27.192.096c-.713.287-1.07 1.125-.797 1.872l.055.15Z"/></g></svg>
-            </div>
-          </div>
-          <p class="text-black mb-5"><a class="font-weight-bold" href="#">Sign up here!</a> We won't share your email address</p>
-        </div>
-
-        <div class="shadow-sm mb-3 p-3 card-left-border">
-          <div class="row no-gutters">
-            <div class="">
-              <h3 class="text-black fs-xl pr-2 mb-2">Search the site</h3>
-            </div>
-          </div>
-          <p class="text-black mb-5">We should get page find live to see how we can handle this.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="container wide">
-    <h3>Tools</h3>
-    <div class="row mt-4 mb-2 justify-content-center mx-auto">
-      <div class="col-lg-4 col-sm-10 card content-card">
-        <div class="card-content data-stories mb-4">
-          <a href={{ relURL "data-stories" }}>
-            <img class="card-img-top" src={{ relURL "images/home-sample-image-datastory.png" }}>
-          </a>
-          <div class="card-body">
-            <h3>Data stories</h3>
-            <p>Perspectives and explainers on important health issues.</p>
-            <div class="d-flex justify-content-end">
-              <a class="fs-sm font-weight-bold" href={{ relURL "data-stories" }}>All data stories &gt;</a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-4 col-sm-10 card content-card">
-        <div class="card-content n-reports mb-4">
-          <a href={{ relURL "neighborhood-reports" }}>
-            <img class="card-img-top" src={{ relURL "images/home-sample-image-NR.png" }}>
-          </a>
-          <div class="card-body">
-            <h3 class="card-title">Neighborhood Reports</h3>
-            <p>Search for your neighborhood and get data</p>
-            <div class="d-flex justify-content-end">
-              <a class="fs-sm font-weight-bold" href={{ relURL "neighborhood-reports" }}>Search here &gt;</a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-4 col-sm-10 card content-card">
-        <div class="card-content data-explorer mb-4">
-          <a href={{ relURL "data-explorer" }}>
-            <img class="card-img-top" src={{ relURL "images/home-sample-image-DE-5.png" }}>
-          </a>
-          <div class="card-body">
-            <h3>Data Explorer</h3>
-            <p>Maps, trends, tables, and more: get datasets on hundreds of topics.</p>
-            <div class="d-flex justify-content-end">
-              <a class="fs-sm font-weight-bold" href={{ relURL "data-explorer" }}>Get data &gt;</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="mt-4 py-4" style="background-color: #EEEDEA;">
     <div class="container wide">
       <div class="row">
-        <div class="col-md-11 mx-auto">
-          <div class="row">
-            <div class="col-md-4 my-2">
-              <div class="card card-left-border shadow-sm h-100">
-                <div class="card-body">
-                  <h5 class="card-title fs-sm mb-1">About us</h5>
-                  <p class="fs-sm flex-grow-1">Learn more about the Environment & Health Data Portal, and the Health Department team behind it.</p>
-                  {{- with .Site.GetPage "about/_index.md" -}}
-                    <div class="d-flex justify-content-end">
-                      <a class="fs-sm font-weight-bold" href="{{ .RelPermalink }}">About Us &gt;</a>
-                    </div>
-                    {{- end -}}
+        <div class="col-lg-4 px-20">
+          <h2 class="fs-xl data-stories border-bottom pb-2"><i class="fas fa-passport mr-1" aria-hidden="true"></i>New data stories:</h2>
+          <div class="card-content mb-4">
+            <div>
+              {{- range first 3 ((where .Site.RegularPages "Section" "data-stories")) -}}
+
+              <a href="{{ .RelPermalink }}" class="row no-gutters border-bottom py-3">
+                <div class="col-4">
+                  {{ $src := .Resources.GetMatch .Params.image }}
+                  {{ $image := $src.Resize "740x"}}
+                  <img src="{{ $image.RelPermalink }}">
                 </div>
+
+                <div class="col-8 ml-auto h-100 pl-2">
+                  <p class="text-black fs-md"><span class="font-weight-bold">{{ .Title }}</span> {{ .Content | plainify | truncate 100 | htmlUnescape }} </p>
+                </div>
+              </a>
+
+                {{- end -}}
+                <div class="d-flex justify-content-end mt-1 mb-4 mb-md-0">
+                  <a href={{ relURL "data-stories" }} class="font-weight-bold">All data stories &gt;</a>
+                </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 px-20">
+
+          <h2 class="fs-xl data-explorer border-bottom pb-2"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Recently updated data:</h2>
+
+          {{- range .Site.Data.recently_updated_data.featured -}}
+          <div class="link-w-underline">
+            <a href="{{ relURL .link }}">{{ .copy }}</a>
+          </div>
+          {{- end -}}
+
+          <div class="d-flex justify-content-end mt-1 mb-4">
+            <a class="font-weight-bold" href={{ relURL "data-explorer" }}>All data &gt;</a>
+          </div>
+
+
+        </div>
+        <div class="col-lg-4 px-20">
+          <div class="shadow-sm mb-3 p-3 card-left-border">
+            <div class="row no-gutters">
+              <div class="col-11">
+                <h3 class="text-black fs-xl pr-2 mb-2">Get updates and announcements</h3>
+              </div>
+              <div class="col-1">
+                <svg xmlns="http://www.w3.org/2000/svg" width="33.385" height="30.909"><g fill="#008939" fill-rule="nonzero"><path d="M24.275 3.09a35.413 35.413 0 0 1-16.76 4.207C3.365 7.297 0 10.79 0 15.102c0 3.978 2.865 7.261 6.568 7.745a31.92 31.92 0 0 0 2.388 6.52 2.715 2.715 0 0 0 3.853 1.151l1.627-.975c1.365-.819 1.767-2.579 1.106-3.945a23.973 23.973 0 0 1-.842-1.958 35.465 35.465 0 0 1 9.574 3.474 36.274 36.274 0 0 0 2.03-12.012c0-4.218-.717-8.264-2.03-12.011Z"/><path d="M26.45 2.117a39.148 39.148 0 0 1 2.32 13.338c0 4.696-.82 9.19-2.32 13.337l-.055.149c-.273.747.084 1.585.797 1.872.714.286 1.515-.087 1.789-.834a42.018 42.018 0 0 0 2.422-11.099c1.178-.646 1.982-1.937 1.982-3.425 0-1.49-.804-2.78-1.982-3.426A42.017 42.017 0 0 0 28.98.931C28.707.183 27.906-.19 27.192.096c-.713.287-1.07 1.125-.797 1.872l.055.15Z"/></g></svg>
               </div>
             </div>
+            <p class="text-black mb-5"><a class="font-weight-bold" href="#">Sign up here!</a> We won't share your email address</p>
+          </div>
 
-            <div class="col-md-4 my-2">
-              <div class="card card-left-border shadow-sm h-100">
-                <div class="card-body">
-                  <h5 class="card-title fs-sm mb-1">Visit our Github repo</h5>
-                  <p class="fs-sm flex-grow-1">Found a bug? Know code? Visit our Github repo to get code, file an issue, or download data.</p>
-                  <div class="d-flex justify-content-end">
-                    <a class="fs-sm font-weight-bold" href="https://www.github.com/nychealth/EH-dataportal">Github &gt;</a>
+          <div class="shadow-sm mb-3 p-3 card-left-border">
+            <div class="row no-gutters">
+              <div class="">
+                <h3 class="text-black fs-xl pr-2 mb-2">Search the site</h3>
+              </div>
+            </div>
+            <p class="text-black mb-5">We should get page find live to see how we can handle this.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container wide">
+      <h3>Tools</h3>
+      <div class="row mt-4 mb-2 justify-content-center mx-auto">
+        <div class="col-lg-4 col-sm-10 card content-card">
+          <div class="card-content data-stories mb-4">
+            <a href={{ relURL "data-stories" }}>
+              <img class="card-img-top" src={{ relURL "images/home-sample-image-datastory.png" }}>
+            </a>
+            <div class="card-body">
+              <h3>Data stories</h3>
+              <p>Perspectives and explainers on important health issues.</p>
+              <div class="d-flex justify-content-end">
+                <a class="fs-sm font-weight-bold" href={{ relURL "data-stories" }}>All data stories &gt;</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-sm-10 card content-card">
+          <div class="card-content n-reports mb-4">
+            <a href={{ relURL "neighborhood-reports" }}>
+              <img class="card-img-top" src={{ relURL "images/home-sample-image-NR.png" }}>
+            </a>
+            <div class="card-body">
+              <h3 class="card-title">Neighborhood Reports</h3>
+              <p>Search for your neighborhood and get data</p>
+              <div class="d-flex justify-content-end">
+                <a class="fs-sm font-weight-bold" href={{ relURL "neighborhood-reports" }}>Search here &gt;</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-sm-10 card content-card">
+          <div class="card-content data-explorer mb-4">
+            <a href={{ relURL "data-explorer" }}>
+              <img class="card-img-top" src={{ relURL "images/home-sample-image-DE-5.png" }}>
+            </a>
+            <div class="card-body">
+              <h3>Data Explorer</h3>
+              <p>Maps, trends, tables, and more: get datasets on hundreds of topics.</p>
+              <div class="d-flex justify-content-end">
+                <a class="fs-sm font-weight-bold" href={{ relURL "data-explorer" }}>Get data &gt;</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-4 py-4 w-100" style="background-color: #EEEDEA;">
+      <div class="container wide">
+        <div class="row">
+          <div class="col-md-11 mx-auto">
+            <div class="row">
+              <div class="col-md-4 my-2">
+                <div class="card card-left-border shadow-sm h-100">
+                  <div class="card-body">
+                    <h5 class="card-title fs-sm mb-1">About us</h5>
+                    <p class="fs-sm flex-grow-1">Learn more about the Environment & Health Data Portal, and the Health Department team behind it.</p>
+                    {{- with .Site.GetPage "about/_index.md" -}}
+                      <div class="d-flex justify-content-end">
+                        <a class="fs-sm font-weight-bold" href="{{ .RelPermalink }}">About Us &gt;</a>
+                      </div>
+                      {{- end -}}
                   </div>
-
                 </div>
               </div>
-            </div>
 
-            <div class="col-md-4 my-2">
-              <div class="card card-left-border shadow-sm h-100">
-                <div class="card-body">
-                  <h5 class="card-title fs-sm mb-1">Join our team</h5>
-                  <p class="fs-sm flex-grow-1">Passionate about health, environmental justice, and technology? Check out our open positions.</p>
-                  {{- with .Site.GetPage "about/jobs.md" -}}
+              <div class="col-md-4 my-2">
+                <div class="card card-left-border shadow-sm h-100">
+                  <div class="card-body">
+                    <h5 class="card-title fs-sm mb-1">Visit our Github repo</h5>
+                    <p class="fs-sm flex-grow-1">Found a bug? Know code? Visit our Github repo to get code, file an issue, or download data.</p>
                     <div class="d-flex justify-content-end">
-                      <a href="{{ .RelPermalink }}" class="fs-sm font-weight-bold">Jobs &gt;</a>
+                      <a class="fs-sm font-weight-bold" href="https://www.github.com/nychealth/EH-dataportal">Github &gt;</a>
                     </div>
-                  {{- end -}}
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4 my-2">
+                <div class="card card-left-border shadow-sm h-100">
+                  <div class="card-body">
+                    <h5 class="card-title fs-sm mb-1">Join our team</h5>
+                    <p class="fs-sm flex-grow-1">Passionate about health, environmental justice, and technology? Check out our open positions.</p>
+                    {{- with .Site.GetPage "about/jobs.md" -}}
+                      <div class="d-flex justify-content-end">
+                        <a href="{{ .RelPermalink }}" class="fs-sm font-weight-bold">Jobs &gt;</a>
+                      </div>
+                    {{- end -}}
+                  </div>
                 </div>
               </div>
             </div>
@@ -218,7 +220,6 @@
       </div>
     </div>
   </div>
-
 </article>
 
 {{- end -}}
