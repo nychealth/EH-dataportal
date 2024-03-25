@@ -108,6 +108,12 @@ const renderMap = (
         topoFile = 'borough.topo.json';
     }
 
+            // get dimensions for hconcat
+            var holderWidth = document.getElementById('tabs-01-content').offsetWidth
+            console.log('holder width: ', holderWidth)
+            let barWidth = holderWidth / 4
+            let mapWidth = 3 * holderWidth / 4
+
     // ----------------------------------------------------------------------- //
     // define spec
     // ----------------------------------------------------------------------- //
@@ -139,12 +145,64 @@ const renderMap = (
             "axisY": {"domain": false,"ticks": false},
         },
         "projection": {"type": "mercator"},
-        "vconcat": [
+        "hconcat": [
+            {
+                "height": "container",
+                "width": barWidth,
+                "config": {
+                    "axisY": {
+                        "labelAngle": 0,
+                        "labelFontSize": 13,
+                    }
+                },
+                "mark": {"type": "bar", "tooltip": true, "stroke": "#161616"},
+                "params": [
+                    {"name": "highlight", "select": {"type": "point", "on": "mouseover", "clear": "mouseout"}}
+                ],
+                "encoding": {
+                    "x": {
+                        "field": "Value", 
+                        "type": "quantitative", 
+                        "title": null,
+                        "axis": {
+                            "labelAngle": 0,
+                            "labelFontSize": 11,
+                            "tickCount": 3
+                        }
+                    },
+                    "tooltip": [
+                        {
+                            "field": "Geography", 
+                            "title": geoTypeShortDesc
+                        },
+                        {
+                            "field": "DisplayValue", 
+                            "title": mapMeasurementType
+                        },
+                    ],
+                    "y": {"field": "GeoID", "sort": "-x", "axis": null},
+                    "color": {
+                        "bin": false,
+                        "field": "Value",
+                        "type": "quantitative",
+                        "scale": {"scheme": {"name": color, "extent": [0.25, 1.25]}},
+                        "legend": null
+                    },
+                    "stroke": {
+                        "condition": [{"param": "highlight", "empty": false, "value": "cyan"}],
+                        "value": "white"
+                    },
+                    "strokeWidth": {
+                        "condition": [{"param": "highlight", "empty": false, "value": 3}],
+                        "value": 0
+                    }
+                }
+            },
             {
                 "layer": [
                     {
-                        "height": 500,
-                        "width": "container",
+                        "height": "container",
+                        "width": mapWidth,
                         "data": {
                             "url": `${data_repo}${data_branch}/geography/borough.topo.json`,
                             "format": {
@@ -160,8 +218,8 @@ const renderMap = (
                         }
                     },
                     {
-                        "height": 500,
-                        "width": "container",
+                        "height": "container",
+                        "width": mapWidth,
                         "mark": {"type": "geoshape", "invalid": null},
                         "params": [
                             {"name": "highlight", "select": {"type": "point", "on": "mouseover", "clear": "mouseout"}}
@@ -217,64 +275,6 @@ const renderMap = (
                         },
                     }
                 ]
-            },
-            {
-                "height": 150,
-                "width": "container",
-                "config": {
-                    "axisY": {
-                        "labelAngle": 0,
-                        "labelFontSize": 13,
-                    }
-                },
-                "mark": {"type": "bar", "tooltip": true, "stroke": "#161616"},
-                "params": [
-                    {"name": "highlight", "select": {"type": "point", "on": "mouseover", "clear": "mouseout"}}
-                ],
-                "encoding": {
-                    "y": {
-                        "field": "Value", 
-                        "type": "quantitative", 
-                        "title": null,
-                        "axis": {
-                            "labelAngle": 0,
-                            "labelFontSize": 11,
-                            "tickCount": 3
-                        }
-                    },
-                    "tooltip": [
-                        {
-                            "field": "Geography", 
-                            "title": geoTypeShortDesc
-                        },
-                        {
-                            "field": "DisplayValue", 
-                            "title": mapMeasurementType
-                        },
-                    ],
-                    "x": {"field": "GeoID", "sort": "y", "axis": null},
-                    "color": {
-                        "bin": false,
-                        "field": "Value",
-                        "type": "quantitative",
-                        "scale": {"scheme": {"name": color, "extent": [0.25, 1.25]}},
-                        "legend": {
-                            "direction": "horizontal", 
-                            "orient": "top-left",
-                            "title": null,
-                            "offset": -30,
-                            "padding": 10,
-                        }
-                    },
-                    "stroke": {
-                        "condition": [{"param": "highlight", "empty": false, "value": "cyan"}],
-                        "value": "white"
-                    },
-                    "strokeWidth": {
-                        "condition": [{"param": "highlight", "empty": false, "value": 3}],
-                        "value": 0
-                    }
-                }
             }
         ]
     }
@@ -284,6 +284,7 @@ const renderMap = (
     // ----------------------------------------------------------------------- //
 
     vegaEmbed("#map", mapspec);
+
 
     // ----------------------------------------------------------------------- //
     // Send chart data to download
