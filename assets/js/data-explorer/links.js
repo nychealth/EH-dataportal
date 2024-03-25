@@ -300,7 +300,7 @@ const renderLinksChart = (
     // render chart
     // ----------------------------------------------------------------------- //
 
-    vegaEmbed("#links", linkspec);
+    // vegaEmbed("#links", linkspec);
 
     // ----------------------------------------------------------------------- //
     // Send chart data to download

@@ -110,6 +110,8 @@ const renderMap = (
 
             // get dimensions for hconcat
             var holderWidth = document.getElementById('tabs-01-content').offsetWidth
+            var mapHeight = document.getElementById('map').offsetHeight
+            console.log('mapHeight: ', mapHeight)
             console.log('holder width: ', holderWidth)
             let barWidth = holderWidth / 4
             let mapWidth = 3 * holderWidth / 4
@@ -146,8 +148,8 @@ const renderMap = (
         },
         "projection": {"type": "mercator"},
         "hconcat": [
+            /*
             {
-                "height": 500,
                 "width": barWidth,
                 "config": {
                     "axisY": {
@@ -198,12 +200,11 @@ const renderMap = (
                         "value": 0
                     }
                 }
-            },
+            },*/
             {
                 "layer": [
                     {
-                        "height": 500,
-                        "width": mapWidth,
+                        "height": "container",
                         "data": {
                             "url": `${data_repo}${data_branch}/geography/borough.topo.json`,
                             "format": {
@@ -219,8 +220,7 @@ const renderMap = (
                         }
                     },
                     {
-                        "height": 500,
-                        "width": mapWidth,
+                        "height": "container",
                         "mark": {"type": "geoshape", "invalid": null},
                         "params": [
                             {"name": "highlight", "select": {"type": "point", "on": "mouseover", "clear": "mouseout"}}
@@ -285,6 +285,8 @@ const renderMap = (
     // ----------------------------------------------------------------------- //
 
     vegaEmbed("#map", mapspec);
+
+    console.log(mapspec)
 
 
     // ----------------------------------------------------------------------- //
