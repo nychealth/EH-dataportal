@@ -364,6 +364,9 @@
                 <!-- TABLE TAB -->
 
                 <div class="tab-pane fade show active py-2" id="tab-table" aria-labelledby="tab-btn-table" role="tabpanel">
+
+                    <button class="btn btn-sm float-right btn-outline-light text-dark" data-toggle="modal" data-target="#datamodal"><i class="fas fa-question-circle"></i></button>
+
                     <div class="dropdown">
                         <button class="btn btn-sm float-right btn-outline-secondary dropdown-toggle mb-1" type="button"
                                 id="dropdownTableTimes" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Time </button>
@@ -395,6 +398,8 @@
                 <!-- MAP TAB -->
 
                 <div class="tab-pane fade py-2" id="tab-map" aria-labelledby="tab-btn-map" role="tabpanel">
+
+                    <button class="btn btn-sm float-right btn-outline-light text-dark" data-toggle="modal" data-target="#datamodal"><i class="fas fa-question-circle"></i></button>
 
                     <div class="dropdown">
                         <button class="btn btn-sm float-right btn-outline-secondary dropdown-toggle mb-1" type="button"
@@ -436,6 +441,8 @@
 
                 <div class="tab-pane fade py-2" id="tab-trend" aria-labelledby="tab-btn-trend" role="tabpanel">
 
+                    <button class="btn btn-sm float-right btn-outline-light text-dark" data-toggle="modal" data-target="#datamodal"><i class="fas fa-question-circle"></i></button>
+
                     <div class="dropdown dropdownTrendComparisons">
 
                         <!-- comparisons button -->
@@ -461,6 +468,9 @@
                 <!-- LINKS TAB -->
 
                 <div class="tab-pane fade py-2" id="tab-links" aria-labelledby="tab-btn-links" role="tabpanel">
+
+                    <button class="btn btn-sm float-right btn-outline-light text-dark" data-toggle="modal" data-target="#datamodal"><i class="fas fa-question-circle"></i></button>
+
                     <div class="dropdown">
                         <button class="btn btn-sm float-right btn-outline-secondary dropdown-toggle mb-1" type="button"
                                 id="dropdownLinksMeasures" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Link to </button>
@@ -635,6 +645,38 @@
             </div>
         </div>
     </div>
+
+    <!-- Data Modal -->
+    <div class="modal fade" id="datamodal" tabindex="-1" role="dialog" aria-labelledby="dataModalLabel"
+    aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="dataModalLabel">Are there more recent data?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        Getting data from a doctor's office, hospital visit, or a survey telephone call to public health agencies is a long, complicated process. Ensuring that data are accurately reported and complete, cleaning data, analyzing it, and making it available to others is a process that can take years. That means that it's normal for public health surveillance data to 'lag' by several years.
+                    </p>
+
+                    <p>Some data sources update every year, like ED visits and hospitalizations, or data from the American Community Survey. Other data sources update less frequently: for example, the Housing and Vacancy Survey is conducted every 3 years. Other data varies for other reasons - for example, some questions are only periodically asked on our Community Health Survey; if it's not asked one year, then we won't have data available for that year. 
+                    </p>
+
+                    <p>On the EH Data Portal, we try to make data available as soon as we can. Because we take data from a variety of different sources (some from within the Health Department, and some from other government agencies), some datasets might be more recent than others. For our own data, we can sometimes provide data in near real-time. For other data sources, we must wait until complete data are released by their original owners. </p>
+
+                    <p>The bottom line is that sometimes, data that look a few years out of data are actually the most up-to-date data we have available.
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
 </article>
 
