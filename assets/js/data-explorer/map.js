@@ -108,13 +108,18 @@ const renderMap = (
         topoFile = 'borough.topo.json';
     }
 
-            // get dimensions for hconcat
-            var holderWidth = document.getElementById('tabs-01-content').offsetWidth
-            var mapHeight = document.getElementById('map').offsetHeight
-            console.log('mapHeight: ', mapHeight)
-            console.log('holder width: ', holderWidth)
-            let barWidth = holderWidth / 4
-            let mapWidth = 3 * holderWidth / 4
+    // get dimensions for hconcat
+    var holderWidth = document.getElementById('tabs-01-content').offsetWidth
+    var mapHeight = document.getElementById('tab-map').offsetHeight
+    console.log('mapHeight: ', mapHeight)
+    console.log('holder width: ', holderWidth)
+    console.log('hopeful height: ', document.getElementById('map').getBoundingClientRect().height)
+    let barWidth = holderWidth / 4
+    let mapWidth = 3 * holderWidth / 4
+
+    // hardcode height; set width dynamically; use resize listener to resize
+
+
 
     // ----------------------------------------------------------------------- //
     // define spec
@@ -148,8 +153,8 @@ const renderMap = (
         },
         "projection": {"type": "mercator"},
         "hconcat": [
-            /*
             {
+                "height": 500,
                 "width": barWidth,
                 "config": {
                     "axisY": {
@@ -188,7 +193,7 @@ const renderMap = (
                         "bin": false,
                         "field": "Value",
                         "type": "quantitative",
-                        "scale": {"scheme": {"name": color, "extent": [0.25, 1.25]}},
+                        "scale": {"scheme": {"name": color, "extent": [0.125, 1.25]}},
                         "legend": null
                     },
                     "stroke": {
@@ -200,11 +205,12 @@ const renderMap = (
                         "value": 0
                     }
                 }
-            },*/
+            },
             {
                 "layer": [
                     {
-                        "height": "container",
+                        "width": mapWidth,
+                        "height": 500,
                         "data": {
                             "url": `${data_repo}${data_branch}/geography/borough.topo.json`,
                             "format": {
@@ -220,7 +226,7 @@ const renderMap = (
                         }
                     },
                     {
-                        "height": "container",
+                        "height": 500,
                         "mark": {"type": "geoshape", "invalid": null},
                         "params": [
                             {"name": "highlight", "select": {"type": "point", "on": "mouseover", "clear": "mouseout"}}
@@ -246,7 +252,7 @@ const renderMap = (
                                     "bin": false,
                                     "field": "Value",
                                     "type": "quantitative",
-                                    "scale": {"scheme": {"name": color, "extent": [0.125, 1.125]}}
+                                    "scale": {"scheme": {"name": color, "extent": [0.125, 1.25]}}
                                 },
                                 "value": "#808080"
                             },
@@ -284,9 +290,11 @@ const renderMap = (
     // render chart
     // ----------------------------------------------------------------------- //
 
-    vegaEmbed("#map", mapspec);
+     vegaEmbed("#map", mapspec);
 
     console.log(mapspec)
+
+
 
 
     // ----------------------------------------------------------------------- //
