@@ -45,7 +45,13 @@ const renderMap = (
             encode = {        
                 "latitude": {"field": "Lat", "type": "quantitative"},
                 "longitude": {"field": "Long", "type": "quantitative"},
-                "size": {"bin": false, "field": "Value","type": "quantitative","scale": {"range": [0,750]},"legend": null}
+                "size": {"bin": false, "field": "Value","type": "quantitative","scale": {"range": [0,750]},"legend": {
+                    "orient": "top-left",
+                    "direction": "vertical",
+                    "title": null,
+                    "tickCount": 4,
+                    "padding": 10
+                  }}
                     }
             strokeWidth = 2
     } else {        
@@ -231,7 +237,16 @@ const renderMap = (
                                     "bin": false,
                                     "field": "Value",
                                     "type": "quantitative",
-                                    "scale": {"scheme": {"name": color, "extent": [0.125, 1.125]}}
+                                    "scale": {"scheme": {"name": color, "extent": [0.125, 1.125]}},
+                                    "legend": {
+                                        "direction": "vertical",
+                                        "orient": "top-left",
+                                        "title": null,
+                                        "tickCount": 3,
+                                        "offset": -30,
+                                        "padding": 10,
+                                        "gradientLength": 100
+                                    }
                                 },
                                 "value": "#808080"
                             },
@@ -302,13 +317,7 @@ const renderMap = (
                         "field": "Value",
                         "type": "quantitative",
                         "scale": {"scheme": {"name": color, "extent": [0.25, 1.25]}},
-                        "legend": {
-                            "direction": "horizontal", 
-                            "orient": "top-left",
-                            "title": null,
-                            "offset": -30,
-                            "padding": 10,
-                        }
+                        "legend": false
                     },
                     "stroke": {
                         "condition": [{"param": "highlight", "empty": false, "value": "cyan"}],
