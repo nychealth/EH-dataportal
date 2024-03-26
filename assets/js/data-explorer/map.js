@@ -48,9 +48,8 @@ const renderMap = (
                 "size": {"bin": false, "field": "Value","type": "quantitative","scale": {"range": [0,750]},"legend": {
                     "direction": "horizontal",
                     "title": "",
-                    "offset": -35,
+                    "offset": -25,
                     "orient": "top-left",
-                    "padding": 10,
                     "tickCount": 4,
                     "fill": "color",
                     "gradientLength": {"signal": "clamp(childHeight, 64, 200)"},
@@ -73,8 +72,7 @@ const renderMap = (
                 "orient": "top-left",
                 "title": null,
                 "tickCount": 3,
-                "offset": -35,
-                "padding": 10,
+                "offset": -25,
                 "gradientLength": 200
             }}
     }
