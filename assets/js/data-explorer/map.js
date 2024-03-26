@@ -46,20 +46,37 @@ const renderMap = (
                 "latitude": {"field": "Lat", "type": "quantitative"},
                 "longitude": {"field": "Long", "type": "quantitative"},
                 "size": {"bin": false, "field": "Value","type": "quantitative","scale": {"range": [0,750]},"legend": {
+                    "direction": "horizontal",
+                    "title": "",
+                    "offset": -35,
                     "orient": "top-left",
-                    "direction": "vertical",
-                    "title": null,
+                    "padding": 10,
                     "tickCount": 4,
-                    "padding": 10
-                  }}
+                    "fill": "color",
+                    "gradientLength": {"signal": "clamp(childHeight, 64, 200)"},
+                    "encode": {"gradient": {"update": {"opacity": {"value": 0.7}}}},
+                    "symbolType": "circle",
+                    "size": "size"
+      }
+                }
                     }
             strokeWidth = 2
+            var legend = {}
     } else {        
             markType = 'geoshape'
             encode  = {
                 "shape": {"field": "geo", "type": "geojson"}
                     }
             strokeWidth = 1.25
+            var legend = {"legend": {
+                "direction": "horizontal",
+                "orient": "top-left",
+                "title": null,
+                "tickCount": 3,
+                "offset": -35,
+                "padding": 10,
+                "gradientLength": 200
+            }}
     }
 
 
@@ -169,6 +186,7 @@ const renderMap = (
             "concat": {"spacing": 20}, 
             "view": {"stroke": "transparent"},
             "axisY": {"domain": false,"ticks": false},
+            "legend": {"disable": true}
         },
         "projection": {"type": "mercator"},
         "vconcat": [
@@ -238,15 +256,7 @@ const renderMap = (
                                     "field": "Value",
                                     "type": "quantitative",
                                     "scale": {"scheme": {"name": color, "extent": [0.125, 1.125]}},
-                                    "legend": {
-                                        "direction": "vertical",
-                                        "orient": "top-left",
-                                        "title": null,
-                                        "tickCount": 3,
-                                        "offset": -30,
-                                        "padding": 10,
-                                        "gradientLength": 100
-                                    }
+                                    ...legend    
                                 },
                                 "value": "#808080"
                             },
