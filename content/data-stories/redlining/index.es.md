@@ -58,7 +58,7 @@ El mapa a continuación muestra el alcance del redlining en la ciudad de Nueva Y
 
 {{< rawhtml >}}
 <div class="py-0">
-    <iframe src="/maps/HOLC_map/HOLC_map.html" scrolling="no" frameborder="0"
+    <iframe src="{{< baseurl >}}maps/HOLC_map/HOLC_map.html" scrolling="no" frameborder="0"
         style="position: relative; height: 600px; width: 100%;"></iframe>
 </div>
 {{< /rawhtml >}}
@@ -172,7 +172,7 @@ Se discriminaron grandes áreas de la ciudad de Nueva York. Explore el alcance d
 En la ciudad de Nueva York, muchos vecindarios que alguna vez fueron prósperos sufrieron una grave falta de inversión como resultado del redlining, lo que provocó desigualdades que continuaron de una generación a otra. Los vecindarios discriminados en la década de 1930 tienen índices de pobreza más altos incluso en la actualidad, casi 90 años después de la creación de los mapas. Según [la Coalición Nacional de Reinversión Comunitaria](https://ncrc.org/holc/), 3 de cada 4 vecindarios en los EE. UU. que fueron discriminados en la década de 1930 aún son de ingresos bajos a moderados en la actualidad, y 2 de cada 3 poseen una población mayoritariamente negra. 
 
 El redlining es el principal ejemplo de {{< rawhtml >}}  <a href="#disinvestmentCollapseTwo" data-toggle="collapse"
-class="badge badge-pill badge-warning">la falta de inversión en los vecindarios</a>{{< /rawhtml >}}: : negar o retener fondos públicos y privados, servicios de la ciudad y otros recursos que los vecindarios y sus residentes necesitan para progresar. Cuando se retienen estos recursos, se crean [“entornos que enferman [a las personas]”]((https://www.who.int/hdp/poverty/en/)). 
+class="badge badge-pill badge-warning">la falta de inversión en los vecindarios</a>{{< /rawhtml >}}: : negar o retener fondos públicos y privados, servicios de la ciudad y otros recursos que los vecindarios y sus residentes necesitan para progresar. Cuando se retienen estos recursos, se crean [“entornos que enferman [a las personas]”](https://www.who.int/hdp/poverty/en/). 
 
 {{< rawhtml >}}
 <div class="collapse py-2 px-2 mx-2 fs-sm" id="disinvestmentCollapseTwo"
