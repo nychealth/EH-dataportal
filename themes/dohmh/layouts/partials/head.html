@@ -49,6 +49,8 @@
 <meta name="build_environment" content='{{ hugo.Environment }}'>
 <meta name="git_branch" content='{{ getenv "HUGO_GIT_BRANCH" }}'>
 
+{{ warnf (print "git_branch: " (getenv "HUGO_GIT_BRANCH")) }}
+
 
 {{/*  content translations  */}}
 
