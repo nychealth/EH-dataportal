@@ -130,3 +130,18 @@ $color-data-explorer: #0A408A;
   padding-left: 20px;
   padding-right: 20px;
 }
+
+.btn-light-green-bg {
+  background-color: #EFFAF4;
+  &:hover {
+    background-color: #008939;
+  }
+}
+
+.nr-flexdatalist {
+  height: 64px;
+}
+
+.breadcrumb-item.active a {
+  color: #000;
+}
