@@ -9,6 +9,12 @@ tags:
 categories: ["social","transportation","healthoutcomes","housing","climatehealth"]
 keywords: ["mental health","mental illness","health care","health care access","health","depression","hospitalization","suicide","self-harm","violence"]
 indicators: 
+- header: null
+  IndicatorID:
+  - 2417
+  - 2418
+  - 2419
+  - 2420
 ---
 
 Mental health is a person’s emotional, psychological, and social wellbeing. It is an important part of overall health.
