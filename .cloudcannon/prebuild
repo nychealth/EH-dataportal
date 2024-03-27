@@ -1,3 +1,5 @@
 #!/bin/bash
 
 npm install
+
+export HUGO_GIT_BRANCH=$(git branch --show-current)
