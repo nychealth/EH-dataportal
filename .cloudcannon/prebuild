@@ -2,4 +2,4 @@
 
 npm install
 
-export HUGO_GIT_BRANCH=$(git branch --show-current)
+env HUGO_GIT_BRANCH=$(git branch --show-current)
