@@ -37,22 +37,22 @@
       <!-- Visible, interactive neighborhood/report selector -->
       <div class="row" aria-hidden="true">
         <div class="col-12">
-          <h3>1. Choose report:</h3>
+          <h3 class="mb-2">1. Choose report:</h3>
           <div class="row">
-            <div class="col">
-              <button class="btn btn-lg btn-block btn-outline-primary active text-decoration-none" onclick="buttonChange('Asthma')" id="Asthma">Asthma</button>
+            <div class="col-lg mb-2 mb-lg-0">
+              <button class="btn btn-lg btn-block btn-outline-primary active text-decoration-none btn-light-green-bg py-2" onclick="buttonChange('Asthma')" id="Asthma">Asthma</button>
             </div>
-            <div class="col">
-              <button class="btn btn-lg btn-block btn-outline-primary text-decoration-none" onclick="buttonChange('Active')" id="Active">Active design</button>
+            <div class="col-lg mb-2 mb-lg-0">
+              <button class="btn btn-lg btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2" onclick="buttonChange('Active')" id="Active">Active design</button>
             </div>
-            <div class="col">
-              <button class="btn btn-lg  btn-block btn-outline-primary text-decoration-none" onclick="buttonChange('Climate')" id="Climate">Climate</button>
+            <div class="col-lg mb-2 mb-lg-0">
+              <button class="btn btn-lg  btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2" onclick="buttonChange('Climate')" id="Climate">Climate</button>
             </div>
-            <div class="col">
-              <button class="btn btn-lg btn-block btn-outline-primary text-decoration-none" onclick="buttonChange('Housing')" id="Housing">Housing</button>
+            <div class="col-lg mb-2 mb-lg-0">
+              <button class="btn btn-lg btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2" onclick="buttonChange('Housing')" id="Housing">Housing</button>
             </div>
-            <div class="col">
-              <button class="btn btn-lg btn-block btn-outline-primary text-decoration-none" onclick="buttonChange('Outdoor')" id="Outdoor">Outdoor Air</button>
+            <div class="col-md mb-2 mb-lg-0">
+              <button class="btn btn-lg btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2" onclick="buttonChange('Outdoor')" id="Outdoor">Outdoor Air</button>
             </div>
           </div>
 
@@ -61,25 +61,20 @@
               <p id="descr"></p>
             </div>
           </div>
-          <hr class="my-2" />
+          <hr class="mt-2 mb-3" />
         </div>
 
         <div class="col-12">
           <h3>2. Choose Neighborhood</h3>
 
-          <div class="row">
-            <div class="col-7">
-              <div class="nr-clickable-uhf" style="height:550px" aria-hidden="true">
-                {{- partial "nr-clickable-uhf" . -}}
-              </div>
-            </div>
-            <div class="col-5">
+          <div class="row d-flex flex-md-row-reverse">
+            <div class="col-md-5">
               <div class="btn-group" role="group" style="width:100%;">
 
                 <input
                     id="flex_search"
                     type='search'
-                    class='flexdatalist form-control'
+                    class='flexdatalist form-control nr-flexdatalist'
                     name='indicator_name_suggestion'
                     style="width:100%;"
                 />
@@ -87,13 +82,18 @@
                 <button id="clear" class="btn btn-md btn-primary">Clear</button>
 
               </div>
-              <button class="d-flex btn btn-md text-left btn-outline-primary mt-1 w-100 text-decoration-none neighborhood-list-button" onclick="showNeighborhoods()">
+              <button class="d-flex btn btn-md text-left btn-outline-primary mt-1 w-100 text-decoration-none neighborhood-list-button p-2" onclick="showNeighborhoods()">
                 <span class="flex-grow-1 fs-lg">See neighborhood list</span>
-                <span class="plus">&plus;</span>
+                <span class="plus fs-lg">&plus;</span>
                 <span class="minus">&minus;</span>
               </button>
               <div class="hide" id="showNeighbs">
                 <ul class="list-unstyled p-2 border border-top-0 border-primary neighborhood-list" id="neighborhoodList2"></ul>
+              </div>
+            </div>
+            <div class="col-md-7">
+              <div class="nr-clickable-uhf" style="height:550px" aria-hidden="true">
+                {{- partial "nr-clickable-uhf" . -}}
               </div>
             </div>
           </div>
