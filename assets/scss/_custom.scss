@@ -93,6 +93,14 @@ $color-data-explorer: #0A408A;
   color: $primary !important;
 }
 
+.neighborhood-list-button .plus,
+.neighborhood-list-button .minus {
+  font-size: 2.5rem;
+  line-height: 1.8rem;
+  margin-bottom: 5px;
+  margin-top: -5px;
+}
+
 .neighborhood-list-button .minus {
   display: none;
 }
