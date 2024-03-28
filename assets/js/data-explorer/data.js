@@ -367,10 +367,10 @@ const loadGeo = async () => {
     await aq.loadJSON(geoUrl, {autoType: false})
         .then(async (data) => {
 
-            geoTable = await data.select(aq.not('Lat', 'Long'));
+            geoTable = await data;
 
-            // console.log("geoTable [loadGeo]");
-            // geoTable.print()
+             console.log("geoTable [loadGeo]");
+             geoTable.print()
 
     });
 }
