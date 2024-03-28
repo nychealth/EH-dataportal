@@ -3,7 +3,7 @@ title: "Housing and Health"
 neighborhood: "Jamaica"
 summary: "This report provides a neighborhood summary of housing conditions and related health outcomes. It also describes population characteristics that can increase vulnerability to housing hazards."
 data_json: "Housing and Health in Jamaica"
-content_yml: "housing"
+content_yml: "Housing_and_Health"
 type: location
 seo_title: "Housing and Health in Jamaica"
 seo_description: "Housing and Health data profile for the Jamaica neighborhood of NYC."

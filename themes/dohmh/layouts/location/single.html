@@ -138,7 +138,7 @@
 
 </div>
 
-<section class="container-fluid" id="skip-header-target">
+<section class="container-fluid" id="skip-header-target" data-pagefind-ignore="all">
 
     <div class="row mt-4">
         <div class="col-lg-10 mx-auto col-12">
@@ -385,7 +385,7 @@
 
 {{- $content := index $.Site.Data.globals.NR_footer $.Params.content_yml -}}
 
-<section class="related-reading d-print-none">
+<section class="related-reading d-print-none" data-pagefind-ignore="all">
     <div class="container">
         <div class="row">
             
@@ -441,12 +441,12 @@
 {{- end -}}
     
 <!-- Modal-Rank -->
-<div class="modal fade report-modal" id="modal-rank" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-aria-hidden="true">
+<div class="modal fade report-modal" id="modal-rank" tabindex="-1" role="dialog" aria-labelledby="rankModalLabel"
+aria-hidden="true" data-pagefind-ignore="all">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="exampleModalLabel">Indicator ranking</h4>
+                <div class="modal-title h4" id="rankModalLabel">Indicator ranking</div>
                 <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
                     <span class="fas fa-times-circle"></span>
                 </button>
