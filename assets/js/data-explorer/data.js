@@ -229,11 +229,15 @@ const loadIndicator = async (this_indicatorId, dont_add_to_history) => {
     $(".indicator-dropdown-item").removeClass("active");
     $(".indicator-dropdown-item").attr('aria-selected', false);
 
+    $(".indicator-arrows").addClass("hide");
+    document.getElementById(`arrow-${indicatorId}`).classList.remove('hide')
+
     // get the list element for this indicator (in buttons and dropdowns)
     const thisIndicatorEl = document.querySelectorAll(`button[data-indicator-id='${indicatorId}']`)
 
     // set this element as active & selected
     $(thisIndicatorEl).addClass("active");
+    console.log('this indicator: ', thisIndicatorEl)
     $(thisIndicatorEl).attr('aria-selected', true);
 
     // indicatorId comes in as  a string, so "find" uses '==' instead of '==='
