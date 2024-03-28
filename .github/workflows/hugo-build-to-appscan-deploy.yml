@@ -13,6 +13,10 @@ on:
       - closed
   workflow_dispatch:
 
+env:
+  HUGO_GIT_BRANCH: build-to-appscan-deploy
+
+
 jobs:
 
   # ------------------

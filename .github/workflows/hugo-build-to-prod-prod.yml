@@ -9,7 +9,11 @@ on:
     types:
       - closed
   workflow_dispatch:
-  
+
+env:
+  HUGO_GIT_BRANCH: production
+
+
 jobs:
 
   # ------------------
