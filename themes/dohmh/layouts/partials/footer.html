@@ -210,6 +210,7 @@
                         baseUrl: baseURL,
                         showEmptyFilters: true,
                         debounceTimeoutMs: 500,
+                        // autofocus: true,
                         processTerm: function (term) {
 
                             gtag('event', 'search', {
@@ -268,7 +269,22 @@
 
                         }
                     });
+
+                    // set focus into box when loaded, b/c autofocus attr doesn't work on bootstrap modals
+
+                    // https://getbootstrap.com/docs/4.3/components/modal/
+
+                    const searchModal = document.getElementById('searchModal')
+                    const searchInput = document.getElementsByClassName('pagefind-ui__search-input')[0]
+
+                    $(searchModal).on('shown.bs.modal', () => {
+                        searchInput.focus();
+                        searchInput.select();
+                    })
+
+
                 });
+
 
             </script>
         </div>
@@ -277,4 +293,9 @@
         </div>
       </div>
     </div>
-  </div>
+</div>
+
+<script>
+
+
+</script>
