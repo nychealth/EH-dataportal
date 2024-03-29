@@ -4,17 +4,25 @@
 
 
 
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-64BWDRHRGB"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+
     
-    gtag('config', 'G-64BWDRHRGB');
-</script>
+
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-64BWDRHRGB"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-64BWDRHRGB');
+    </script>
+
+    
+    <meta name="robots" content="all" />
+
+    
 
 
-<meta name="robots" content="all" />
 
 
 
@@ -22,17 +30,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 
+
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 <title>Housing and Health in High Bridge - Morrisania</title>
 
 
-<meta name="build_datetime" content='2024-03-28 17:24:04'>
+<meta name="build_datetime" content='2024-03-29 01:12:27'>
 <meta name="build_environment" content='prod_prod'>
 <meta name="git_branch" content='production'>
 
 
-<meta name="git_short_hash" content='d1f4543f1'>
+<meta name="git_short_hash" content='11ab1e598'>
 
 
 
@@ -71,7 +80,7 @@
 <script src="/IndicatorPublic/node_modules/@fortawesome/fontawesome-free/js/all.min.196cd5adc1a5a344f14d1bf3f6db62a32609f96c24f429341bcd43f9e3badc16aa1da2776195fdc2eaa3c207dc57f32b0763e16955fd0e461585b1694ad9eaa5.js" integrity="sha512-GWzVrcGlo0TxTRvz9ttioyYJ&#43;Wwk9Ck0G81D&#43;eO63BaqHaJ3YZX9wuqjwgfcV/MrB2PhaVX9DkYVhbFpStnqpQ==" crossorigin="anonymous"></script>
 
 
-<link rel="stylesheet" href="/IndicatorPublic/scss/theme.79006eaddd47ff11fa528e7bffb2a4bb944f5a67697d6dc912aeadc88f4476600a3c8bcae5ace5782f08a4c3da116cf46be10d82f0fe360e10d61f8aa2df2a8f.css" integrity="sha512-eQBurd1H/xH6Uo57/7Kku5RPWmdpfW3JEq6tyI9EdmAKPIvK5azleC8IpMPaEWz0a&#43;ENgvD&#43;Ng4Q1h&#43;Kot8qjw==" />
+<link rel="stylesheet" href="/IndicatorPublic/scss/theme.93eedffd28d4702b89a3020c0eff852ea14226d650f38a6b59b5e5eb628de0d3b0941ab60ce45a6887fffc75078c7d1089830b1474e102938667d0ac6f54621f.css" integrity="sha512-k&#43;7f/SjUcCuJowIMDv&#43;FLqFCJtZQ84prWbXl62KN4NOwlBq2DORaaIf//HUHjH0QiYMLFHThApOGZ9Csb1RiHw==" />
 
 <script src="/IndicatorPublic/js/vegaBundle.f6fd3e035c7d93ace48d58ec8c5b40bc8af3f1803a3363b5402b2e7c27dc8dd5c0308c17e4b3a3f0dcd0cfc2dde5cddb97844ebfb38ebd4c42e6f003d0c87289.js" integrity="sha512-9v0&#43;A1x9k6zkjVjsjFtAvIrz8YA6M2O1QCsufCfcjdXAMIwX5LOj8NzQz8Ld5c3bl4ROv7OOvUxC5vAD0MhyiQ=="></script>
 
@@ -83,23 +92,32 @@
 
     <script src="/IndicatorPublic/node_modules/arquero/dist/arquero.min.a76a5717703559cd2aee63d11c568cbecbce011e681b632e8ead2b4d0ea1dab4838e548a1487c0d5a7d8222a32ba6acc90aec2df908b1830889e75479c59b0a5.js" integrity="sha512-p2pXF3A1Wc0q7mPRHFaMvsvOAR5oG2Mujq0rTQ6h2rSDjlSKFIfA1afYIioyumrMkK7C35CLGDCInnVHnFmwpQ=="></script>
 
+<meta data-pagefind-filter="section[content]" content="Neighborhood Reports">
 
 
 <script>
+
     let baseURL = "/IndicatorPublic/"
     let data_repo = "https:\/\/raw.githubusercontent.com\/nychealth\/EHDP-data\/";
     let data_branch = "production";
     let hugoEnv = "prod_prod"
 
-    
-
 </script>
+
+
+
+
+<meta 
+        data-pagefind-meta="title:Housing and Health | High Bridge - Morrisania"
+        class="d-none"
+    >
+
   </head>
 
 
 
 <body>
-  
+
   
 <a class="sr-only sr-only-focusable skip-menu" href="#skip-header-target">Skip Header</a>
 
@@ -214,14 +232,10 @@
                                         </button>
                                     </li>
                                     <li>
-                                        <button class="btn nav-item-search d-lg-none" type="button" title="Search"
-                                        data-toggle="collapse" data-target="#global-search"
-                                        aria-controls="global-search" aria-expanded="false">
-
-                                        <span class="sr-only">Search</span>
-                                        <i class="fa fa-magnifying-glass fa-lg"></i>
-
-                                    </button>
+                                        <button type="button" data-toggle="modal" data-target="#searchModal" class="btn nav-item-search d-lg-none" title="Search">
+                                            <span class="sr-only">Search</span>
+                                            <i class="fa fa-magnifying-glass fa-lg text-body"></i>
+                                        </button>
                                 </li>
 
                                 </ul>
@@ -281,14 +295,16 @@
 
                         <a class="nav-link" href="/IndicatorPublic/data-explorer/" id="nav-item-03"><span class='text-primary'><i class='fas fa-chart-line' aria-hidden='true'></i></span> Data Explorer</a>
 
-                    </div><button class="btn nav-item-search d-none d-lg-block" type="button" title="Search"
-                            data-toggle="collapse" data-target="#global-search"
-                            aria-controls="global-search" aria-expanded="false">
+                    </div>
 
-                        <span class="sr-only">Search</span>
-                        <i class="fa fa-magnifying-glass fa-lg"></i>
+                        <button type="button" data-toggle="modal" data-target="#searchModal" class="btn nav-item-search d-none d-lg-block" title="Search">
 
-                    </button></nav>
+                            <span class="sr-only">Search</span>
+                            <i class="fa fa-magnifying-glass fa-lg text-body mt-1"></i>
+
+                        </button>
+
+                    </nav>
 
             </div>
 
@@ -325,7 +341,7 @@
     </div>
 
 </header>
-<main id="skip-header-target" role="main">
+<main id="skip-header-target" role="main" data-pagefind-body>
 
 <script>
     let topicIndicators;
@@ -443,7 +459,7 @@
 
 </div>
 
-<section class="container-fluid" id="skip-header-target">
+<section class="container-fluid" id="skip-header-target" data-pagefind-ignore="all">
 
     <div class="row mt-4">
         <div class="col-lg-10 mx-auto col-12">
@@ -573,21 +589,21 @@
 </button>
 
 
-<div class="modal fade report-modal" id="modal-Chil777-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade report-modal" id="modal-Chil777-1" tabindex="-1" role="dialog" aria-labelledby="indicatorModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header text-left">
-                <h2 class="modal-title fs-xl" id="exampleModalLabel">Child lead poisoning</h2>
+                <h2 class="modal-title fs-xl" id="indicatorModalLabel" data-pagefind-ignore="all">Child lead poisoning</h2>
                 <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
                     <span class="fas fa-times-circle"></span>
                 </button>
             </div>
             <div class="modal-body">
-                <h2 class="fs-xl">Elevated blood levels (under age 6), 2021</h2>
+                <h2 class="fs-xl" data-pagefind-ignore="all">Elevated blood levels (under age 6), 2021</h2>
                 <p>In <strong>High Bridge - Morrisania</strong>, elevated blood levels (under age 6) is <span class="middle">Middle</span> compared to the NYC average.</p>Elevated blood lead levels are 5+ mcg/dL. There is no safe level of lead in the blood. Lead poisoning can cause learning and behavior problems, and delay growth and mental development.</div>
             <hr>
             <div class="modal-body">
-                <h3>Neighborhood Comparison</h3>
+                <h2 data-pagefind-ignore="all">Neighborhood Comparison</h2>
                 <div class="row comparison">
                     <div class="col-sm-4 text-primary">High Bridge - Morrisania <span class="indicator-value">9.2</span></div>
                     <div class="col-sm-4">Bronx <span class="indicator-value">10</span></div>
@@ -596,7 +612,7 @@
                 <p><em>Rate (5&#43; mcg/dL) per 1,000 tested</em></p><div class="data-note"> Blood lead testing rates in children dropped during the COVID-19 pandemic, and so 2020 and 2021 surveillance data should be interpreted with caution.</div></div>
             <hr>
             <div class="modal-body">
-                <h3>Elevated blood levels (under age 6), 2021</h3>
+                <h3 data-pagefind-ignore="all">Elevated blood levels (under age 6), 2021</h3>
                 <p>  <em>Rate (5&#43; mcg/dL) per 1,000 tested</em></p>
                 <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Chil777-1"></div>
 
@@ -604,7 +620,7 @@
             <hr>
             <div class="modal-body">
 
-                <h3>Trends Over Time</h3>
+                <h3 data-pagefind-ignore="all">Trends Over Time</h3>
                 <p><em>Rate (5&#43; mcg/dL) per 1,000 tested</em></p>
                 <div style="width:100%; height:50vmin; z-index:10000;" id="trend-Chil777-1"></div>
 
@@ -612,7 +628,7 @@
             <hr>
             <div class="modal-body">
 
-                <h3>By Neighborhood</h3>
+                <h3 data-pagefind-ignore="all">By Neighborhood</h3>
                 <p><em>Rate (5&#43; mcg/dL) per 1,000 tested</em></p>
                 <div style="width:100%; height:60vmin; z-index:10000;" id="map-Chil777-1"></div>
 
@@ -758,22 +774,22 @@
 </button>
 
 
-<div class="modal fade report-modal" id="modal-Heat540-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade report-modal" id="modal-Heat540-2" tabindex="-1" role="dialog" aria-labelledby="indicatorModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header text-left">
-                <h2 class="modal-title fs-xl" id="exampleModalLabel">Heat hospitalizations</h2>
+                <h2 class="modal-title fs-xl" id="indicatorModalLabel" data-pagefind-ignore="all">Heat hospitalizations</h2>
                 <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
                     <span class="fas fa-times-circle"></span>
                 </button>
             </div>
             <div class="modal-body">
-                <h2 class="fs-xl">Heat stress: hospitalizations, 2015</h2>
+                <h2 class="fs-xl" data-pagefind-ignore="all">Heat stress: hospitalizations, 2015</h2>
                 <p>In <strong>High Bridge - Morrisania</strong>, heat stress: hospitalizations is <span class="worse">Worse</span> compared to the NYC average.</p>Heat stress hospitalizations due to heat-related illnesses, such as heat stroke and heat exhaustion, represent part of the public health burden of hot weather. Data aggregated over five years provides enough stability to display neighborhood impacts.
 </div>
             <hr>
             <div class="modal-body">
-                <h3>Neighborhood Comparison</h3>
+                <h2 data-pagefind-ignore="all">Neighborhood Comparison</h2>
                 <div class="row comparison">
                     <div class="col-sm-4 text-primary">High Bridge - Morrisania <span class="indicator-value">2.4*</span></div>
                     <div class="col-sm-4">Bronx <span class="indicator-value">1.4</span></div>
@@ -782,7 +798,7 @@
                 <p><em>Age-adjusted rate per 100,000</em></p><div class="data-note">* Estimate is based on small numbers so should be interpreted with caution.</div></div>
             <hr>
             <div class="modal-body">
-                <h3>Heat stress: hospitalizations, 2015</h3>
+                <h3 data-pagefind-ignore="all">Heat stress: hospitalizations, 2015</h3>
                 <p>  <em>Age-adjusted rate per 100,000</em></p>
                 <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Heat540-2"></div>
 
@@ -790,7 +806,7 @@
             <hr>
             <div class="modal-body">
 
-                <h3>Trends Over Time</h3>
+                <h3 data-pagefind-ignore="all">Trends Over Time</h3>
                 <p><em>Age-adjusted rate per 100,000</em></p>
                 <div style="width:100%; height:50vmin; z-index:10000;" id="trend-Heat540-2"></div>
 
@@ -798,7 +814,7 @@
             <hr>
             <div class="modal-body">
 
-                <h3>By Neighborhood</h3>
+                <h3 data-pagefind-ignore="all">By Neighborhood</h3>
                 <p><em>Age-adjusted rate per 100,000</em></p>
                 <div style="width:100%; height:60vmin; z-index:10000;" id="map-Heat540-2"></div>
 
@@ -944,21 +960,21 @@
 </button>
 
 
-<div class="modal fade report-modal" id="modal-Asth1201-3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade report-modal" id="modal-Asth1201-3" tabindex="-1" role="dialog" aria-labelledby="indicatorModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header text-left">
-                <h2 class="modal-title fs-xl" id="exampleModalLabel">Asthma hospitalizations (age 5 to 17)</h2>
+                <h2 class="modal-title fs-xl" id="indicatorModalLabel" data-pagefind-ignore="all">Asthma hospitalizations (age 5 to 17)</h2>
                 <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
                     <span class="fas fa-times-circle"></span>
                 </button>
             </div>
             <div class="modal-body">
-                <h2 class="fs-xl">Asthma hospitalizations (age 5 to 17), 2020</h2>
+                <h2 class="fs-xl" data-pagefind-ignore="all">Asthma hospitalizations (age 5 to 17), 2020</h2>
                 <p>In <strong>High Bridge - Morrisania</strong>, asthma hospitalizations (age 5 to 17) is <span class="worse">Worse</span> compared to the NYC average.</p>Asthma hospitalizations are more severe asthma outcomes. They're often clustered in high-poverty neighborhoods, where disinvestment and poor housing conditions expose residents to triggers.</div>
             <hr>
             <div class="modal-body">
-                <h3>Neighborhood Comparison</h3>
+                <h2 data-pagefind-ignore="all">Neighborhood Comparison</h2>
                 <div class="row comparison">
                     <div class="col-sm-4 text-primary">High Bridge - Morrisania <span class="indicator-value">19.1</span></div>
                     <div class="col-sm-4">Bronx <span class="indicator-value">15.9</span></div>
@@ -967,7 +983,7 @@
                 <p><em>Estimated annual rate per 10,000</em></p><div class="data-note"> The start of COVID-19 in Spring 2020 reduced the overall volume of ED visits, including those for asthma, which may have contributed to decreases in asthma ED visit and hospitalization counts and rates in 2020.</div></div>
             <hr>
             <div class="modal-body">
-                <h3>Asthma hospitalizations (age 5 to 17), 2020</h3>
+                <h3 data-pagefind-ignore="all">Asthma hospitalizations (age 5 to 17), 2020</h3>
                 <p>  <em>Estimated annual rate per 10,000</em></p>
                 <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Asth1201-3"></div>
 
@@ -975,7 +991,7 @@
             <hr>
             <div class="modal-body">
 
-                <h3>Trends Over Time</h3>
+                <h3 data-pagefind-ignore="all">Trends Over Time</h3>
                 <p><em>Estimated annual rate per 10,000</em></p>
                 <div style="width:100%; height:50vmin; z-index:10000;" id="trend-Asth1201-3"></div>
 
@@ -983,7 +999,7 @@
             <hr>
             <div class="modal-body">
 
-                <h3>By Neighborhood</h3>
+                <h3 data-pagefind-ignore="all">By Neighborhood</h3>
                 <p><em>Estimated annual rate per 10,000</em></p>
                 <div style="width:100%; height:60vmin; z-index:10000;" id="map-Asth1201-3"></div>
 
@@ -1129,21 +1145,21 @@
 </button>
 
 
-<div class="modal fade report-modal" id="modal-Asth1204-4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade report-modal" id="modal-Asth1204-4" tabindex="-1" role="dialog" aria-labelledby="indicatorModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header text-left">
-                <h2 class="modal-title fs-xl" id="exampleModalLabel">Asthma hospitalizations (adults)</h2>
+                <h2 class="modal-title fs-xl" id="indicatorModalLabel" data-pagefind-ignore="all">Asthma hospitalizations (adults)</h2>
                 <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
                     <span class="fas fa-times-circle"></span>
                 </button>
             </div>
             <div class="modal-body">
-                <h2 class="fs-xl">Asthma hospitalizations (adults), 2020</h2>
+                <h2 class="fs-xl" data-pagefind-ignore="all">Asthma hospitalizations (adults), 2020</h2>
                 <p>In <strong>High Bridge - Morrisania</strong>, asthma hospitalizations (adults) is <span class="worse">Worse</span> compared to the NYC average.</p>Asthma hospitalizations are more severe asthma outcomes. They're often clustered in high-poverty neighborhoods, where disinvestment and poor housing conditions expose residents to triggers.</div>
             <hr>
             <div class="modal-body">
-                <h3>Neighborhood Comparison</h3>
+                <h2 data-pagefind-ignore="all">Neighborhood Comparison</h2>
                 <div class="row comparison">
                     <div class="col-sm-4 text-primary">High Bridge - Morrisania <span class="indicator-value">17.8</span></div>
                     <div class="col-sm-4">Bronx <span class="indicator-value">13.4</span></div>
@@ -1152,7 +1168,7 @@
                 <p><em>Age-adjusted rate per 10,000</em></p><div class="data-note"> The start of COVID-19 in Spring 2020 reduced the overall volume of ED visits, including those for asthma, which may have contributed to decreases in asthma ED visit and hospitalization counts and rates in 2020.</div></div>
             <hr>
             <div class="modal-body">
-                <h3>Asthma hospitalizations (adults), 2020</h3>
+                <h3 data-pagefind-ignore="all">Asthma hospitalizations (adults), 2020</h3>
                 <p>  <em>Age-adjusted rate per 10,000</em></p>
                 <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Asth1204-4"></div>
 
@@ -1160,7 +1176,7 @@
             <hr>
             <div class="modal-body">
 
-                <h3>Trends Over Time</h3>
+                <h3 data-pagefind-ignore="all">Trends Over Time</h3>
                 <p><em>Age-adjusted rate per 10,000</em></p>
                 <div style="width:100%; height:50vmin; z-index:10000;" id="trend-Asth1204-4"></div>
 
@@ -1168,7 +1184,7 @@
             <hr>
             <div class="modal-body">
 
-                <h3>By Neighborhood</h3>
+                <h3 data-pagefind-ignore="all">By Neighborhood</h3>
                 <p><em>Age-adjusted rate per 10,000</em></p>
                 <div style="width:100%; height:60vmin; z-index:10000;" id="map-Asth1204-4"></div>
 
@@ -1378,21 +1394,21 @@
 </button>
 
 
-<div class="modal fade report-modal" id="modal-Home76-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade report-modal" id="modal-Home76-1" tabindex="-1" role="dialog" aria-labelledby="indicatorModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header text-left">
-                <h2 class="modal-title fs-xl" id="exampleModalLabel">Cracks</h2>
+                <h2 class="modal-title fs-xl" id="indicatorModalLabel" data-pagefind-ignore="all">Cracks</h2>
                 <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
                     <span class="fas fa-times-circle"></span>
                 </button>
             </div>
             <div class="modal-body">
-                <h2 class="fs-xl">Homes with cracks or holes, 2017</h2>
+                <h2 class="fs-xl" data-pagefind-ignore="all">Homes with cracks or holes, 2017</h2>
                 <p>In <strong>High Bridge - Morrisania</strong>, homes with cracks or holes is <span class="worse">Worse</span> compared to the NYC average.</p>Cracks or holes are a maintenance deficiency linked to the presence of mice, rats, and cockroaches - which can harm residents' health.</div>
             <hr>
             <div class="modal-body">
-                <h3>Neighborhood Comparison</h3>
+                <h2 data-pagefind-ignore="all">Neighborhood Comparison</h2>
                 <div class="row comparison">
                     <div class="col-sm-4 text-primary">High Bridge - Morrisania <span class="indicator-value">20.5</span></div>
                     <div class="col-sm-4">Bronx <span class="indicator-value">20</span></div>
@@ -1401,7 +1417,7 @@
                 <p><em>Percent </em></p><div class="data-note"></div></div>
             <hr>
             <div class="modal-body">
-                <h3>Homes with cracks or holes, 2017</h3>
+                <h3 data-pagefind-ignore="all">Homes with cracks or holes, 2017</h3>
                 <p>  <em>Percent </em></p>
                 <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Home76-1"></div>
 
@@ -1409,7 +1425,7 @@
             <hr>
             <div class="modal-body">
 
-                <h3>Trends Over Time</h3>
+                <h3 data-pagefind-ignore="all">Trends Over Time</h3>
                 <p><em>Percent </em></p>
                 <div style="width:100%; height:50vmin; z-index:10000;" id="trend-Home76-1"></div>
 
@@ -1417,7 +1433,7 @@
             <hr>
             <div class="modal-body">
 
-                <h3>By Neighborhood</h3>
+                <h3 data-pagefind-ignore="all">By Neighborhood</h3>
                 <p><em>Percent </em></p>
                 <div style="width:100%; height:60vmin; z-index:10000;" id="map-Home76-1"></div>
 
@@ -1563,21 +1579,21 @@
 </button>
 
 
-<div class="modal fade report-modal" id="modal-Pre-78-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade report-modal" id="modal-Pre-78-2" tabindex="-1" role="dialog" aria-labelledby="indicatorModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header text-left">
-                <h2 class="modal-title fs-xl" id="exampleModalLabel">Peeling paint</h2>
+                <h2 class="modal-title fs-xl" id="indicatorModalLabel" data-pagefind-ignore="all">Peeling paint</h2>
                 <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
                     <span class="fas fa-times-circle"></span>
                 </button>
             </div>
             <div class="modal-body">
-                <h2 class="fs-xl">Old homes with peeling paint, 2017</h2>
+                <h2 class="fs-xl" data-pagefind-ignore="all">Old homes with peeling paint, 2017</h2>
                 <p>In <strong>High Bridge - Morrisania</strong>, old homes with peeling paint is <span class="worse">Worse</span> compared to the NYC average.</p>Older housing (built before 1960) that has peeling paint can put residents at risk of lead poisoning, due to lead paint. Lead paint was banned from household paints in New York City in 1960 and in the USA in 1978.</div>
             <hr>
             <div class="modal-body">
-                <h3>Neighborhood Comparison</h3>
+                <h2 data-pagefind-ignore="all">Neighborhood Comparison</h2>
                 <div class="row comparison">
                     <div class="col-sm-4 text-primary">High Bridge - Morrisania <span class="indicator-value">6.7*</span></div>
                     <div class="col-sm-4">Bronx <span class="indicator-value">7</span></div>
@@ -1586,7 +1602,7 @@
                 <p><em>Percent </em></p><div class="data-note">* Estimate is based on small numbers so should be interpreted with caution.</div></div>
             <hr>
             <div class="modal-body">
-                <h3>Old homes with peeling paint, 2017</h3>
+                <h3 data-pagefind-ignore="all">Old homes with peeling paint, 2017</h3>
                 <p>  <em>Percent </em></p>
                 <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Pre-78-2"></div>
 
@@ -1594,7 +1610,7 @@
             <hr>
             <div class="modal-body">
 
-                <h3>Trends Over Time</h3>
+                <h3 data-pagefind-ignore="all">Trends Over Time</h3>
                 <p><em>Percent </em></p>
                 <div style="width:100%; height:50vmin; z-index:10000;" id="trend-Pre-78-2"></div>
 
@@ -1602,7 +1618,7 @@
             <hr>
             <div class="modal-body">
 
-                <h3>By Neighborhood</h3>
+                <h3 data-pagefind-ignore="all">By Neighborhood</h3>
                 <p><em>Percent </em></p>
                 <div style="width:100%; height:60vmin; z-index:10000;" id="map-Pre-78-2"></div>
 
@@ -1748,21 +1764,21 @@
 </button>
 
 
-<div class="modal fade report-modal" id="modal-Home80-3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade report-modal" id="modal-Home80-3" tabindex="-1" role="dialog" aria-labelledby="indicatorModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header text-left">
-                <h2 class="modal-title fs-xl" id="exampleModalLabel">Leaks</h2>
+                <h2 class="modal-title fs-xl" id="indicatorModalLabel" data-pagefind-ignore="all">Leaks</h2>
                 <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
                     <span class="fas fa-times-circle"></span>
                 </button>
             </div>
             <div class="modal-body">
-                <h2 class="fs-xl">Homes with leaks, 2017</h2>
+                <h2 class="fs-xl" data-pagefind-ignore="all">Homes with leaks, 2017</h2>
                 <p>In <strong>High Bridge - Morrisania</strong>, homes with leaks is <span class="worse">Worse</span> compared to the NYC average.</p>Leaks are a maintenance deficiency that can harm health by introducing mold, which can worsen respiratory conditions like asthma.</div>
             <hr>
             <div class="modal-body">
-                <h3>Neighborhood Comparison</h3>
+                <h2 data-pagefind-ignore="all">Neighborhood Comparison</h2>
                 <div class="row comparison">
                     <div class="col-sm-4 text-primary">High Bridge - Morrisania <span class="indicator-value">22.5</span></div>
                     <div class="col-sm-4">Bronx <span class="indicator-value">20.4</span></div>
@@ -1771,7 +1787,7 @@
                 <p><em>Percent </em></p><div class="data-note"></div></div>
             <hr>
             <div class="modal-body">
-                <h3>Homes with leaks, 2017</h3>
+                <h3 data-pagefind-ignore="all">Homes with leaks, 2017</h3>
                 <p>  <em>Percent </em></p>
                 <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Home80-3"></div>
 
@@ -1779,7 +1795,7 @@
             <hr>
             <div class="modal-body">
 
-                <h3>Trends Over Time</h3>
+                <h3 data-pagefind-ignore="all">Trends Over Time</h3>
                 <p><em>Percent </em></p>
                 <div style="width:100%; height:50vmin; z-index:10000;" id="trend-Home80-3"></div>
 
@@ -1787,7 +1803,7 @@
             <hr>
             <div class="modal-body">
 
-                <h3>By Neighborhood</h3>
+                <h3 data-pagefind-ignore="all">By Neighborhood</h3>
                 <p><em>Percent </em></p>
                 <div style="width:100%; height:60vmin; z-index:10000;" id="map-Home80-3"></div>
 
@@ -1933,21 +1949,21 @@
 </button>
 
 
-<div class="modal fade report-modal" id="modal-Home90-4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade report-modal" id="modal-Home90-4" tabindex="-1" role="dialog" aria-labelledby="indicatorModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header text-left">
-                <h2 class="modal-title fs-xl" id="exampleModalLabel">Supplemental heat</h2>
+                <h2 class="modal-title fs-xl" id="indicatorModalLabel" data-pagefind-ignore="all">Supplemental heat</h2>
                 <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
                     <span class="fas fa-times-circle"></span>
                 </button>
             </div>
             <div class="modal-body">
-                <h2 class="fs-xl">Homes using supplemental heat, 2017</h2>
+                <h2 class="fs-xl" data-pagefind-ignore="all">Homes using supplemental heat, 2017</h2>
                 <p>In <strong>High Bridge - Morrisania</strong>, homes using supplemental heat is <span class="worse">Worse</span> compared to the NYC average.</p>The need for supplemental heat may mean a building's main heat source doesn't work - and can indicate the presence of other health-threatening maintenance deficiencies.</div>
             <hr>
             <div class="modal-body">
-                <h3>Neighborhood Comparison</h3>
+                <h2 data-pagefind-ignore="all">Neighborhood Comparison</h2>
                 <div class="row comparison">
                     <div class="col-sm-4 text-primary">High Bridge - Morrisania <span class="indicator-value">22.8</span></div>
                     <div class="col-sm-4">Bronx <span class="indicator-value">19.7</span></div>
@@ -1956,7 +1972,7 @@
                 <p><em>Percent </em></p><div class="data-note"></div></div>
             <hr>
             <div class="modal-body">
-                <h3>Homes using supplemental heat, 2017</h3>
+                <h3 data-pagefind-ignore="all">Homes using supplemental heat, 2017</h3>
                 <p>  <em>Percent </em></p>
                 <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Home90-4"></div>
 
@@ -1964,7 +1980,7 @@
             <hr>
             <div class="modal-body">
 
-                <h3>Trends Over Time</h3>
+                <h3 data-pagefind-ignore="all">Trends Over Time</h3>
                 <p><em>Percent </em></p>
                 <div style="width:100%; height:50vmin; z-index:10000;" id="trend-Home90-4"></div>
 
@@ -1972,7 +1988,7 @@
             <hr>
             <div class="modal-body">
 
-                <h3>By Neighborhood</h3>
+                <h3 data-pagefind-ignore="all">By Neighborhood</h3>
                 <p><em>Percent </em></p>
                 <div style="width:100%; height:60vmin; z-index:10000;" id="map-Home90-4"></div>
 
@@ -2118,21 +2134,21 @@
 </button>
 
 
-<div class="modal fade report-modal" id="modal-Carb716-5" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade report-modal" id="modal-Carb716-5" tabindex="-1" role="dialog" aria-labelledby="indicatorModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header text-left">
-                <h2 class="modal-title fs-xl" id="exampleModalLabel">Carbon monoxide</h2>
+                <h2 class="modal-title fs-xl" id="indicatorModalLabel" data-pagefind-ignore="all">Carbon monoxide</h2>
                 <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
                     <span class="fas fa-times-circle"></span>
                 </button>
             </div>
             <div class="modal-body">
-                <h2 class="fs-xl">Carbon monoxide incidents (without a detector), 2014-2016</h2>
+                <h2 class="fs-xl" data-pagefind-ignore="all">Carbon monoxide incidents (without a detector), 2014-2016</h2>
                 <p>In <strong>High Bridge - Morrisania</strong>, carbon monoxide incidents (without a detector) is <span class="worse">Worse</span> compared to the NYC average.</p>Carbon monoxide detectors are required in NYC homes by law. Failure to provide or maintain a detector can put people at risk for carbon monoxide poisoning and death.</div>
             <hr>
             <div class="modal-body">
-                <h3>Neighborhood Comparison</h3>
+                <h2 data-pagefind-ignore="all">Neighborhood Comparison</h2>
                 <div class="row comparison">
                     <div class="col-sm-4 text-primary">High Bridge - Morrisania <span class="indicator-value">3.0*</span></div>
                     <div class="col-sm-4">Bronx <span class="indicator-value">2.5</span></div>
@@ -2141,7 +2157,7 @@
                 <p><em>Average annual rate per 10,000 buildings</em></p><div class="data-note">* Estimate is based on small numbers so should be interpreted with caution.</div></div>
             <hr>
             <div class="modal-body">
-                <h3>Carbon monoxide incidents (without a detector), 2014-2016</h3>
+                <h3 data-pagefind-ignore="all">Carbon monoxide incidents (without a detector), 2014-2016</h3>
                 <p>  <em>Average annual rate per 10,000 buildings</em></p>
                 <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Carb716-5"></div>
 
@@ -2149,7 +2165,7 @@
             <hr>
             <div class="modal-body">
 
-                <h3>Trends Over Time</h3>
+                <h3 data-pagefind-ignore="all">Trends Over Time</h3>
                 <p><em>Average annual rate per 10,000 buildings</em></p>
                 <div style="width:100%; height:50vmin; z-index:10000;" id="trend-Carb716-5"></div>
 
@@ -2157,7 +2173,7 @@
             <hr>
             <div class="modal-body">
 
-                <h3>By Neighborhood</h3>
+                <h3 data-pagefind-ignore="all">By Neighborhood</h3>
                 <p><em>Average annual rate per 10,000 buildings</em></p>
                 <div style="width:100%; height:60vmin; z-index:10000;" id="map-Carb716-5"></div>
 
@@ -2303,21 +2319,21 @@
 </button>
 
 
-<div class="modal fade report-modal" id="modal-Hous781-6" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade report-modal" id="modal-Hous781-6" tabindex="-1" role="dialog" aria-labelledby="indicatorModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header text-left">
-                <h2 class="modal-title fs-xl" id="exampleModalLabel">Households with AC</h2>
+                <h2 class="modal-title fs-xl" id="indicatorModalLabel" data-pagefind-ignore="all">Households with AC</h2>
                 <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
                     <span class="fas fa-times-circle"></span>
                 </button>
             </div>
             <div class="modal-body">
-                <h2 class="fs-xl">Household air conditioning, 2017</h2>
+                <h2 class="fs-xl" data-pagefind-ignore="all">Household air conditioning, 2017</h2>
                 <p>In <strong>High Bridge - Morrisania</strong>, household air conditioning is <span class="worse">Worse</span> compared to the NYC average.</p>Air conditioning is an important way to avoid heat stress, especially for persons with limited mobility.</div>
             <hr>
             <div class="modal-body">
-                <h3>Neighborhood Comparison</h3>
+                <h2 data-pagefind-ignore="all">Neighborhood Comparison</h2>
                 <div class="row comparison">
                     <div class="col-sm-4 text-primary">High Bridge - Morrisania <span class="indicator-value">82.4</span></div>
                     <div class="col-sm-4">Bronx <span class="indicator-value">85.6</span></div>
@@ -2326,7 +2342,7 @@
                 <p><em>Percent (with AC) </em></p><div class="data-note"></div></div>
             <hr>
             <div class="modal-body">
-                <h3>Household air conditioning, 2017</h3>
+                <h3 data-pagefind-ignore="all">Household air conditioning, 2017</h3>
                 <p>  <em>Percent (with AC) </em></p>
                 <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Hous781-6"></div>
 
@@ -2334,7 +2350,7 @@
             <hr>
             <div class="modal-body">
 
-                <h3>Trends Over Time</h3>
+                <h3 data-pagefind-ignore="all">Trends Over Time</h3>
                 <p><em>Percent (with AC) </em></p>
                 <div style="width:100%; height:50vmin; z-index:10000;" id="trend-Hous781-6"></div>
 
@@ -2342,7 +2358,7 @@
             <hr>
             <div class="modal-body">
 
-                <h3>By Neighborhood</h3>
+                <h3 data-pagefind-ignore="all">By Neighborhood</h3>
                 <p><em>Percent (with AC) </em></p>
                 <div style="width:100%; height:60vmin; z-index:10000;" id="map-Hous781-6"></div>
 
@@ -2488,21 +2504,21 @@
 </button>
 
 
-<div class="modal fade report-modal" id="modal-Rent1248-7" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade report-modal" id="modal-Rent1248-7" tabindex="-1" role="dialog" aria-labelledby="indicatorModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header text-left">
-                <h2 class="modal-title fs-xl" id="exampleModalLabel">Maintenance problems</h2>
+                <h2 class="modal-title fs-xl" id="indicatorModalLabel" data-pagefind-ignore="all">Maintenance problems</h2>
                 <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
                     <span class="fas fa-times-circle"></span>
                 </button>
             </div>
             <div class="modal-body">
-                <h2 class="fs-xl">Renter-occupied homes with any health-related maintenance problems, 2017</h2>
+                <h2 class="fs-xl" data-pagefind-ignore="all">Renter-occupied homes with any health-related maintenance problems, 2017</h2>
                 <p>In <strong>High Bridge - Morrisania</strong>, renter-occupied homes with any health-related maintenance problems is <span class="worse">Worse</span> compared to the NYC average.</p>Homes with maintenance deficiencies can threaten the health of the people who live there.</div>
             <hr>
             <div class="modal-body">
-                <h3>Neighborhood Comparison</h3>
+                <h2 data-pagefind-ignore="all">Neighborhood Comparison</h2>
                 <div class="row comparison">
                     <div class="col-sm-4 text-primary">High Bridge - Morrisania <span class="indicator-value">78.1</span></div>
                     <div class="col-sm-4">Bronx <span class="indicator-value">76</span></div>
@@ -2511,7 +2527,7 @@
                 <p><em>Percent </em></p><div class="data-note"></div></div>
             <hr>
             <div class="modal-body">
-                <h3>Renter-occupied homes with any health-related maintenance problems, 2017</h3>
+                <h3 data-pagefind-ignore="all">Renter-occupied homes with any health-related maintenance problems, 2017</h3>
                 <p>  <em>Percent </em></p>
                 <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Rent1248-7"></div>
 
@@ -2519,7 +2535,7 @@
             <hr>
             <div class="modal-body">
 
-                <h3>Trends Over Time</h3>
+                <h3 data-pagefind-ignore="all">Trends Over Time</h3>
                 <p><em>Percent </em></p>
                 <div style="width:100%; height:50vmin; z-index:10000;" id="trend-Rent1248-7"></div>
 
@@ -2527,7 +2543,7 @@
             <hr>
             <div class="modal-body">
 
-                <h3>By Neighborhood</h3>
+                <h3 data-pagefind-ignore="all">By Neighborhood</h3>
                 <p><em>Percent </em></p>
                 <div style="width:100%; height:60vmin; z-index:10000;" id="map-Rent1248-7"></div>
 
@@ -2737,21 +2753,21 @@
 </button>
 
 
-<div class="modal fade report-modal" id="modal-Adul292-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade report-modal" id="modal-Adul292-1" tabindex="-1" role="dialog" aria-labelledby="indicatorModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header text-left">
-                <h2 class="modal-title fs-xl" id="exampleModalLabel">Smoke-free homes</h2>
+                <h2 class="modal-title fs-xl" id="indicatorModalLabel" data-pagefind-ignore="all">Smoke-free homes</h2>
                 <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
                     <span class="fas fa-times-circle"></span>
                 </button>
             </div>
             <div class="modal-body">
-                <h2 class="fs-xl">No smoke-free home policy, 2013</h2>
+                <h2 class="fs-xl" data-pagefind-ignore="all">No smoke-free home policy, 2013</h2>
                 <p>In <strong>High Bridge - Morrisania</strong>, no smoke-free home policy is <span class="middle">Middle</span> compared to the NYC average.</p>Adults without a smoke-free home policy. A smoke-free home policy can limit people's exposure to secondhand smoke, which is especially dangerous to children.</div>
             <hr>
             <div class="modal-body">
-                <h3>Neighborhood Comparison</h3>
+                <h2 data-pagefind-ignore="all">Neighborhood Comparison</h2>
                 <div class="row comparison">
                     <div class="col-sm-4 text-primary">High Bridge - Morrisania <span class="indicator-value">20.8</span></div>
                     <div class="col-sm-4">Bronx <span class="indicator-value">21</span></div>
@@ -2760,7 +2776,7 @@
                 <p><em>Percent </em></p><div class="data-note"></div></div>
             <hr>
             <div class="modal-body">
-                <h3>No smoke-free home policy, 2013</h3>
+                <h3 data-pagefind-ignore="all">No smoke-free home policy, 2013</h3>
                 <p>  <em>Percent </em></p>
                 <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Adul292-1"></div>
 
@@ -2768,7 +2784,7 @@
             <hr>
             <div class="modal-body">
 
-                <h3>Trends Over Time</h3>
+                <h3 data-pagefind-ignore="all">Trends Over Time</h3>
                 <p><em>Percent </em></p>
                 <div style="width:100%; height:50vmin; z-index:10000;" id="trend-Adul292-1"></div>
 
@@ -2776,7 +2792,7 @@
             <hr>
             <div class="modal-body">
 
-                <h3>By Neighborhood</h3>
+                <h3 data-pagefind-ignore="all">By Neighborhood</h3>
                 <p><em>Percent </em></p>
                 <div style="width:100%; height:60vmin; z-index:10000;" id="map-Adul292-1"></div>
 
@@ -2922,21 +2938,21 @@
 </button>
 
 
-<div class="modal fade report-modal" id="modal-Home94-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade report-modal" id="modal-Home94-2" tabindex="-1" role="dialog" aria-labelledby="indicatorModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header text-left">
-                <h2 class="modal-title fs-xl" id="exampleModalLabel">Mice or rats (in the building)</h2>
+                <h2 class="modal-title fs-xl" id="indicatorModalLabel" data-pagefind-ignore="all">Mice or rats (in the building)</h2>
                 <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
                     <span class="fas fa-times-circle"></span>
                 </button>
             </div>
             <div class="modal-body">
-                <h2 class="fs-xl">Homes with mice or rats in the building, 2017</h2>
+                <h2 class="fs-xl" data-pagefind-ignore="all">Homes with mice or rats in the building, 2017</h2>
                 <p>In <strong>High Bridge - Morrisania</strong>, homes with mice or rats in the building is <span class="worse">Worse</span> compared to the NYC average.</p>The presence of mice or rats in the home is often associated with poor housing maintenance. These pests can contaminate food and worsen asthma.</div>
             <hr>
             <div class="modal-body">
-                <h3>Neighborhood Comparison</h3>
+                <h2 data-pagefind-ignore="all">Neighborhood Comparison</h2>
                 <div class="row comparison">
                     <div class="col-sm-4 text-primary">High Bridge - Morrisania <span class="indicator-value">41.6</span></div>
                     <div class="col-sm-4">Bronx <span class="indicator-value">31.9</span></div>
@@ -2945,7 +2961,7 @@
                 <p><em>Percent </em></p><div class="data-note"></div></div>
             <hr>
             <div class="modal-body">
-                <h3>Homes with mice or rats in the building, 2017</h3>
+                <h3 data-pagefind-ignore="all">Homes with mice or rats in the building, 2017</h3>
                 <p>  <em>Percent </em></p>
                 <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Home94-2"></div>
 
@@ -2953,7 +2969,7 @@
             <hr>
             <div class="modal-body">
 
-                <h3>Trends Over Time</h3>
+                <h3 data-pagefind-ignore="all">Trends Over Time</h3>
                 <p><em>Percent </em></p>
                 <div style="width:100%; height:50vmin; z-index:10000;" id="trend-Home94-2"></div>
 
@@ -2961,7 +2977,7 @@
             <hr>
             <div class="modal-body">
 
-                <h3>By Neighborhood</h3>
+                <h3 data-pagefind-ignore="all">By Neighborhood</h3>
                 <p><em>Percent </em></p>
                 <div style="width:100%; height:60vmin; z-index:10000;" id="map-Home94-2"></div>
 
@@ -3107,21 +3123,21 @@
 </button>
 
 
-<div class="modal fade report-modal" id="modal-Home245-3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade report-modal" id="modal-Home245-3" tabindex="-1" role="dialog" aria-labelledby="indicatorModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header text-left">
-                <h2 class="modal-title fs-xl" id="exampleModalLabel">Cockroaches</h2>
+                <h2 class="modal-title fs-xl" id="indicatorModalLabel" data-pagefind-ignore="all">Cockroaches</h2>
                 <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
                     <span class="fas fa-times-circle"></span>
                 </button>
             </div>
             <div class="modal-body">
-                <h2 class="fs-xl">Homes with cockroaches, 2017</h2>
+                <h2 class="fs-xl" data-pagefind-ignore="all">Homes with cockroaches, 2017</h2>
                 <p>In <strong>High Bridge - Morrisania</strong>, homes with cockroaches is <span class="worse">Worse</span> compared to the NYC average.</p>The presence of cockroaches in the home is often associated with poor housing maintenance. Cockroaches in the home can contaminate food and worsen asthma.</div>
             <hr>
             <div class="modal-body">
-                <h3>Neighborhood Comparison</h3>
+                <h2 data-pagefind-ignore="all">Neighborhood Comparison</h2>
                 <div class="row comparison">
                     <div class="col-sm-4 text-primary">High Bridge - Morrisania <span class="indicator-value">43.0</span></div>
                     <div class="col-sm-4">Bronx <span class="indicator-value">39.4</span></div>
@@ -3130,7 +3146,7 @@
                 <p><em>Percent </em></p><div class="data-note"></div></div>
             <hr>
             <div class="modal-body">
-                <h3>Homes with cockroaches, 2017</h3>
+                <h3 data-pagefind-ignore="all">Homes with cockroaches, 2017</h3>
                 <p>  <em>Percent </em></p>
                 <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Home245-3"></div>
 
@@ -3138,7 +3154,7 @@
             <hr>
             <div class="modal-body">
 
-                <h3>Trends Over Time</h3>
+                <h3 data-pagefind-ignore="all">Trends Over Time</h3>
                 <p><em>Percent </em></p>
                 <div style="width:100%; height:50vmin; z-index:10000;" id="trend-Home245-3"></div>
 
@@ -3146,7 +3162,7 @@
             <hr>
             <div class="modal-body">
 
-                <h3>By Neighborhood</h3>
+                <h3 data-pagefind-ignore="all">By Neighborhood</h3>
                 <p><em>Percent </em></p>
                 <div style="width:100%; height:60vmin; z-index:10000;" id="map-Home245-3"></div>
 
@@ -3356,21 +3372,21 @@
 </button>
 
 
-<div class="modal fade report-modal" id="modal-Crow25-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade report-modal" id="modal-Crow25-1" tabindex="-1" role="dialog" aria-labelledby="indicatorModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header text-left">
-                <h2 class="modal-title fs-xl" id="exampleModalLabel">Crowding</h2>
+                <h2 class="modal-title fs-xl" id="indicatorModalLabel" data-pagefind-ignore="all">Crowding</h2>
                 <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
                     <span class="fas fa-times-circle"></span>
                 </button>
             </div>
             <div class="modal-body">
-                <h2 class="fs-xl">Household crowding, 2017-21</h2>
+                <h2 class="fs-xl" data-pagefind-ignore="all">Household crowding, 2017-21</h2>
                 <p>In <strong>High Bridge - Morrisania</strong>, household crowding is <span class="worse">Worse</span> compared to the NYC average.</p>Households with more than one person per room are considered crowded.</div>
             <hr>
             <div class="modal-body">
-                <h3>Neighborhood Comparison</h3>
+                <h2 data-pagefind-ignore="all">Neighborhood Comparison</h2>
                 <div class="row comparison">
                     <div class="col-sm-4 text-primary">High Bridge - Morrisania <span class="indicator-value">15.4</span></div>
                     <div class="col-sm-4">Bronx <span class="indicator-value">12.4</span></div>
@@ -3379,7 +3395,7 @@
                 <p><em>Percent </em></p><div class="data-note"></div></div>
             <hr>
             <div class="modal-body">
-                <h3>Household crowding, 2017-21</h3>
+                <h3 data-pagefind-ignore="all">Household crowding, 2017-21</h3>
                 <p>  <em>Percent </em></p>
                 <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Crow25-1"></div>
 
@@ -3387,7 +3403,7 @@
             <hr>
             <div class="modal-body">
 
-                <h3>Trends Over Time</h3>
+                <h3 data-pagefind-ignore="all">Trends Over Time</h3>
                 <p><em>Percent </em></p>
                 <div style="width:100%; height:50vmin; z-index:10000;" id="trend-Crow25-1"></div>
 
@@ -3395,7 +3411,7 @@
             <hr>
             <div class="modal-body">
 
-                <h3>By Neighborhood</h3>
+                <h3 data-pagefind-ignore="all">By Neighborhood</h3>
                 <p><em>Percent </em></p>
                 <div style="width:100%; height:60vmin; z-index:10000;" id="map-Crow25-1"></div>
 
@@ -3541,21 +3557,21 @@
 </button>
 
 
-<div class="modal fade report-modal" id="modal-Chil755-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade report-modal" id="modal-Chil755-2" tabindex="-1" role="dialog" aria-labelledby="indicatorModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header text-left">
-                <h2 class="modal-title fs-xl" id="exampleModalLabel">Child poverty</h2>
+                <h2 class="modal-title fs-xl" id="indicatorModalLabel" data-pagefind-ignore="all">Child poverty</h2>
                 <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
                     <span class="fas fa-times-circle"></span>
                 </button>
             </div>
             <div class="modal-body">
-                <h2 class="fs-xl">Child poverty (under age 5), 2017-21</h2>
+                <h2 class="fs-xl" data-pagefind-ignore="all">Child poverty (under age 5), 2017-21</h2>
                 <p>In <strong>High Bridge - Morrisania</strong>, child poverty (under age 5) is <span class="worse">Worse</span> compared to the NYC average.</p>Poverty is a major determinant of health, since poverty deprives people of access to health and safety resources.</div>
             <hr>
             <div class="modal-body">
-                <h3>Neighborhood Comparison</h3>
+                <h2 data-pagefind-ignore="all">Neighborhood Comparison</h2>
                 <div class="row comparison">
                     <div class="col-sm-4 text-primary">High Bridge - Morrisania <span class="indicator-value">48.8</span></div>
                     <div class="col-sm-4">Bronx <span class="indicator-value">36</span></div>
@@ -3564,7 +3580,7 @@
                 <p><em>Percent </em></p><div class="data-note"></div></div>
             <hr>
             <div class="modal-body">
-                <h3>Child poverty (under age 5), 2017-21</h3>
+                <h3 data-pagefind-ignore="all">Child poverty (under age 5), 2017-21</h3>
                 <p>  <em>Percent </em></p>
                 <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Chil755-2"></div>
 
@@ -3572,7 +3588,7 @@
             <hr>
             <div class="modal-body">
 
-                <h3>Trends Over Time</h3>
+                <h3 data-pagefind-ignore="all">Trends Over Time</h3>
                 <p><em>Percent </em></p>
                 <div style="width:100%; height:50vmin; z-index:10000;" id="trend-Chil755-2"></div>
 
@@ -3580,7 +3596,7 @@
             <hr>
             <div class="modal-body">
 
-                <h3>By Neighborhood</h3>
+                <h3 data-pagefind-ignore="all">By Neighborhood</h3>
                 <p><em>Percent </em></p>
                 <div style="width:100%; height:60vmin; z-index:10000;" id="map-Chil755-2"></div>
 
@@ -3819,10 +3835,10 @@
         drawChart(geocode)
 
         
-        var zips = document.getElementById('zips')
-        if (typeof zips !== 'undefined' && zips != null) {
-          zips.innerHTML = neighb[0].ZIPS
-        } else {}
+        
+        
+        
+        
 
         
         var link = document.getElementById('neighbLink')
@@ -3901,7 +3917,7 @@
         
 
         let arqTable;
-        let downloadLoc = "https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/data/viz/housing.json"
+        let downloadLoc = "https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/data/viz/Housing_and_Health.json"
 
         
 
@@ -3949,7 +3965,7 @@
 
     </script>
 
-</section><section class="related-reading d-print-none">
+</section><section class="related-reading d-print-none" data-pagefind-ignore="all">
     <div class="container">
         <div class="row">
             
@@ -3995,12 +4011,12 @@
         </div>
     </div>
 </section>
-<div class="modal fade report-modal" id="modal-rank" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-aria-hidden="true">
+<div class="modal fade report-modal" id="modal-rank" tabindex="-1" role="dialog" aria-labelledby="rankModalLabel"
+aria-hidden="true" data-pagefind-ignore="all">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="exampleModalLabel">Indicator ranking</h4>
+                <div class="modal-title h4" id="rankModalLabel">Indicator ranking</div>
                 <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
                     <span class="fas fa-times-circle"></span>
                 </button>
@@ -4229,6 +4245,100 @@ aria-hidden="true">
   
 
 </footer>
+
+
+<div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="searchModalLabel" data-pagefind-ignore="all">Search</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <link href=/IndicatorPublic/pagefind/pagefind-ui.css rel="stylesheet">
+            <script src=/IndicatorPublic/pagefind/pagefind-ui.js type="text/javascript"></script>
+            <div id="search"></div>
+            <script>
+
+                window.addEventListener('DOMContentLoaded', (event) => {
+
+                    new PagefindUI({
+                        element: "#search",
+                        showSubResults: true,
+                        showImages: false,
+                        baseUrl: baseURL,
+                        showEmptyFilters: true,
+                        debounceTimeoutMs: 500,
+                        processTerm: function (term) {
+
+                            gtag('event', 'search', {
+                                search_term: term
+                            });
+
+                            return term;
+
+                        },
+                        processResult: function (result) {
+
+                            
+                            
+                            
+
+                            
+
+                            result.meta.title = result.meta.title
+                                .replace(/&#(\d+);/g, ((match, dec) => `${String.fromCharCode(dec)}`))
+                                .replaceAll("&amp;", "&");
+                            
+                            
+
+                            result.sub_results.forEach(sub => {
+
+                                
+
+                                sub.url = sub.url.replace("#IndicatorID-", "?id=");
+
+                                
+
+                                sub.title = sub.title
+                                    .replace(/&#(\d+);/g, ((match, dec) => `${String.fromCharCode(dec)}`))
+                                    .replaceAll("&amp;", "&");
+
+                            });
+
+                            
+                            
+                            
+
+                            
+                            var allResults = document.getElementsByClassName('pagefind-ui__result-link');
+
+                            
+                            for (h = 0; h < allResults.length; h += 1) {
+
+                                allResults[h].setAttribute('onclick',"gtag('event', 'search_click', { page_viewed: '" + allResults[h].href + "' });");
+
+                            }
+
+                            
+
+                            console.log("@ result:", result);
+                            
+
+                        }
+                    });
+                });
+
+            </script>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
   
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
     integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"

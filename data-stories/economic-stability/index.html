@@ -4,17 +4,25 @@
 
 
 
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-64BWDRHRGB"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+
     
-    gtag('config', 'G-64BWDRHRGB');
-</script>
+
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-64BWDRHRGB"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-64BWDRHRGB');
+    </script>
+
+    
+    <meta name="robots" content="all" />
+
+    
 
 
-<meta name="robots" content="all" />
 
 
 
@@ -22,12 +30,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 
+
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 <title>How economic stability creates health </title>
 
 
-<meta name="build_datetime" content='2024-03-28 17:23:53'>
+<meta name="build_datetime" content='2024-03-29 01:12:16'>
 <meta name="build_environment" content='prod_prod'>
 <meta name="git_branch" content='production'>
 
@@ -71,7 +80,7 @@
 <script src="/IndicatorPublic/node_modules/@fortawesome/fontawesome-free/js/all.min.196cd5adc1a5a344f14d1bf3f6db62a32609f96c24f429341bcd43f9e3badc16aa1da2776195fdc2eaa3c207dc57f32b0763e16955fd0e461585b1694ad9eaa5.js" integrity="sha512-GWzVrcGlo0TxTRvz9ttioyYJ&#43;Wwk9Ck0G81D&#43;eO63BaqHaJ3YZX9wuqjwgfcV/MrB2PhaVX9DkYVhbFpStnqpQ==" crossorigin="anonymous"></script>
 
 
-<link rel="stylesheet" href="/IndicatorPublic/scss/theme.79006eaddd47ff11fa528e7bffb2a4bb944f5a67697d6dc912aeadc88f4476600a3c8bcae5ace5782f08a4c3da116cf46be10d82f0fe360e10d61f8aa2df2a8f.css" integrity="sha512-eQBurd1H/xH6Uo57/7Kku5RPWmdpfW3JEq6tyI9EdmAKPIvK5azleC8IpMPaEWz0a&#43;ENgvD&#43;Ng4Q1h&#43;Kot8qjw==" />
+<link rel="stylesheet" href="/IndicatorPublic/scss/theme.93eedffd28d4702b89a3020c0eff852ea14226d650f38a6b59b5e5eb628de0d3b0941ab60ce45a6887fffc75078c7d1089830b1474e102938667d0ac6f54621f.css" integrity="sha512-k&#43;7f/SjUcCuJowIMDv&#43;FLqFCJtZQ84prWbXl62KN4NOwlBq2DORaaIf//HUHjH0QiYMLFHThApOGZ9Csb1RiHw==" />
 
 <script src="/IndicatorPublic/node_modules/dompurify/dist/purify.min.71ed1f9ae1205aba6721758a42b4a027916c06caff8673acc5d5af93996ed464e17246ac2f073e4c014444b348c169d6a81a1657818f0c98b3d8f48f9ed8a754.js" integrity="sha512-ce0fmuEgWrpnIXWKQrSgJ5FsBsr/hnOsxdWvk5lu1GThckasLwc&#43;TAFERLNIwWnWqBoWV4GPDJiz2PSPntinVA=="></script>
 
@@ -79,23 +88,32 @@
 
 
 
+<meta data-pagefind-filter="section[content]" content="Data Stories">
 
 
 <script>
+
     let baseURL = "/IndicatorPublic/"
     let data_repo = "https:\/\/raw.githubusercontent.com\/nychealth\/EHDP-data\/";
     let data_branch = "production";
     let hugoEnv = "prod_prod"
 
-    
-
 </script>
+
+
+
+
+<meta 
+        data-pagefind-meta="title:Economic stability creates health | Data-Stories"
+        class="d-none"
+    >
+
   </head>
 
 
 
 <body>
-  
+
   
 <a class="sr-only sr-only-focusable skip-menu" href="#skip-header-target">Skip Header</a>
 
@@ -187,14 +205,16 @@
 
                     <a class="nav-link" href="/IndicatorPublic/data-explorer/" id="nav-item-03"><span class='text-primary'><i class='fas fa-chart-line' aria-hidden='true'></i></span> Data Explorer</a>
 
-                </div><button class="btn nav-item-search d-none d-lg-block" type="button" title="Search"
-                        data-toggle="collapse" data-target="#global-search"
-                        aria-controls="global-search" aria-expanded="false">
+                </div>
 
-                    <span class="sr-only">Search</span>
-                    <i class="fa fa-magnifying-glass fa-lg"></i>
+                    <button type="button" data-toggle="modal" data-target="#searchModal" class="btn nav-item-search d-none d-lg-block" title="Search">
 
-                </button></nav>
+                        <span class="sr-only">Search</span>
+                        <i class="fa fa-magnifying-glass fa-lg text-body mt-1"></i>
+
+                    </button>
+
+                </nav>
 
         </div>
 
@@ -230,7 +250,7 @@
 
 </div>
 </header>
-<main id="skip-header-target" role="main"><div class="container-fluid px-0">
+<main id="skip-header-target" role="main" data-pagefind-body><div class="container-fluid px-0">
 
     
     
@@ -280,7 +300,7 @@
 <div class="my-4 py-2 border-top border-bottom">
 <iframe title="Premature deaths rates are twice as high in poor neighborhoods as in wealthier ones " aria-label="Map" id="datawrapper-chart-56Vg1" src="https://datawrapper.dwcdn.net/56Vg1/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="786" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
 </div>
-<h3 id="poverty-forces-people-to-do-without-necessities-that-keep-them-healthy-like-food-and-medical-care">Poverty forces people to do without necessities that keep them healthy, like food and medical care.</h3>
+<h3>Poverty forces people to do without necessities that keep them healthy, like food and medical care.</h3>
 <div class="pullquote my-4">
 <figure class="my-2">
     <figcaption>“[…] Adequate, decent, and fair housing...it gives folks the opportunity to think about something other than those basic needs.” </figcaption>
@@ -293,7 +313,7 @@
 </div>
 <p>Nearly one-third of renting households in the City experience severe rent burden — spending at least half their income on rent.</p>
 <p>We see severe rent burden among New Yorkers of all income levels — but low-income people feel these effects more. Severe rent burden impacts nearly half (44%) of households that earn between $25,000 and $50,000, and 85% of households that earn less than $25,000. People who are rent burdened must make difficult choices between housing and necessities that support health. For example, they may choose not to use an air conditioner because of the electricity bill <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/heat/"> despite this increasing their risk for heat-related illness and death.</a></p>
-<h3 id="one-out-of-every-10-new-yorkers-experiences-food-insecurity">One out of every 10 New Yorkers experiences food insecurity.</h3>
+<h3>One out of every 10 New Yorkers experiences food insecurity.</h3>
 <div class="pullquote my-4">
 <p>“I have to make sure that my children eat, I cannot see a starving child. I will go without food. If anything, I will go without a meal. But my children, I can’t see them without food. I just can’t.” <p>
 <p>—Participant in the <a href="https://www.nyc.gov/assets/opportunity/pdf/evidence/nycgov-povertymeasure-enhancedstudy.pdf"><i>Qualitative Study to Enhance the NYCgov Poverty Measure</i></a></p>
@@ -307,7 +327,7 @@
 <iframe title="Neighborhoods with higher poverty have less access to healthy foods - a higher ratio of bodegas to supermarkets" aria-label="Scatter Plot" id="datawrapper-chart-we5Yo" src="https://datawrapper.dwcdn.net/we5Yo/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="600" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
 </div>
 <p><a href="https://www.nyc.gov/site/doh/health/neighborhood-health/shop-health.page">The City’s Shop Healthy NYC! initiative encourages residents to talk to their bodega owners about offering more healthy options. </a></p>
-<h3 id="with-no-money-to-spare-after-rent-and-food-many-new-yorkers-go-without-the-health-care-or-medicines-they-need">With no money to spare after rent and food, many New Yorkers go without the health care or medicines they need.</h3>
+<h3>With no money to spare after rent and food, many New Yorkers go without the health care or medicines they need.</h3>
 <p>Residents living in high-poverty neighborhoods are more likely to postpone health care. By going without these services, diseases can be more difficult to prevent, catch early, and treat, leading to more serious and costly health conditions.</p>
 <div class="my-4 border-top border-bottom py-2">
 <iframe title="Households in higher-poverty neighborhoods are more likely to postpone medical care" aria-label="Dot Plot" id="datawrapper-chart-W8Je1" src="https://datawrapper.dwcdn.net/W8Je1/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="523" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
@@ -324,10 +344,10 @@
 </figure>
 </div>
 <p>Getting care for a medical issue can be costly, even with insurance. Medical debt occurs when people can’t pay bills.</p>
-<h3 id="medical-debt-creates-stress-and-disproportionately-affects-people-of-color">Medical debt creates stress and disproportionately affects people of color.</h3>
+<h3>Medical debt creates stress and disproportionately affects people of color.</h3>
 <p>Six percent of all New Yorkers — about 1 in 20 people — have medical debt in collections. People living in communities of color tend to experience a higher rate of, and owe more money in, medical debt than people living in White communities. In Brooklyn, for example, <a href="https://apps.urban.org/features/debt-interactive-map/?type=medical&variable=medcoll&state=36&county=36047">communities of color have double the amount of residents with medical debt in collections.</a> <a href="https://www.nyc.gov/office-of-the-mayor/news/062-24/mayor-adams-relieve-2-billion-medical-debt-hundreds-thousands-working-class#/0"> A medical debt relief program is planned to help alleviate some of this burden. </a></p>
 <p>Chronic stress related to finances can be debilitating because the factors causing it are difficult to resolve, and many worsen over time. Long-term stress increases the risk of mental health issues and other health problems.</p>
-<h3 id="racism-shapes-who-experiences-poverty--and-its-health-effects--in-nyc">Racism shapes who experiences poverty — and its health effects — in NYC.</h3>
+<h3>Racism shapes who experiences poverty — and its health effects — in NYC.</h3>
 <p>In NYC, as in most places in the United States, there are more Black and Latino residents living in poverty than residents of other races. <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/housing/">This is a product of racism</a> and a history of policies that deprive people of color of access to home ownership, education and jobs, and other opportunities to build wealth and economic stability.</p>
 <div class="my-4 border-top border-bottom py-2">
 <iframe title="Poverty rates in segregated NYC neighborhoods" aria-label="Scatter Plot" id="datawrapper-chart-qBcx4" src="https://datawrapper.dwcdn.net/qBcx4/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="703" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
@@ -336,7 +356,7 @@
 <div class="my-4 border-top border-bottom py-2">
 <iframe title="Self-reported health status" aria-label="Split Bars" id="datawrapper-chart-26GS0" src="https://datawrapper.dwcdn.net/26GS0/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="291" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
 </div>
-<h3 id="new-yorkers-who-participated-in-community-conversations-describe-ways-to-decrease-poverty-and-improve-health">New Yorkers who participated in community conversations describe ways to decrease poverty and improve health</h3>
+<h3>New Yorkers who participated in community conversations describe ways to decrease poverty and improve health</h3>
 <br>
 <strong>Increasing job opportunities:</strong>
 <div class="pullquote my-4">
@@ -404,7 +424,7 @@
         <div class="col-xl-2 border-xl-left">
 
             <div class="py-3 mt-3 mt-xl-0 sticky-top" style="z-index: 0">
-<section class="social-share">
+<section class="social-share" data-pagefind-ignore="all">
     <ul class="share-icons">
 
       
@@ -442,10 +462,12 @@
 
     </ul>
   </section>
-<hr class="my-2"><div class="keywords p-1"><a href="/IndicatorPublic/keywords/health-equity/">health equity</a> |&#32;<a href="/IndicatorPublic/keywords/inequalities/">inequalities</a> |&#32;<a href="/IndicatorPublic/keywords/inequities/">inequities</a> |&#32;<a href="/IndicatorPublic/keywords/affordable-housing/">affordable housing</a> |&#32;<a href="/IndicatorPublic/keywords/social-determinants/">social determinants</a> |&#32;</div>
+<hr class="my-2"><div class="keywords p-1" data-pagefind-ignore="all"><a href="/IndicatorPublic/keywords/health-equity/">health equity</a> |&#32;<a href="/IndicatorPublic/keywords/inequalities/">inequalities</a> |&#32;<a href="/IndicatorPublic/keywords/inequities/">inequities</a> |&#32;<a href="/IndicatorPublic/keywords/affordable-housing/">affordable housing</a> |&#32;<a href="/IndicatorPublic/keywords/social-determinants/">social determinants</a> |&#32;</div>
 <hr class="my-2">
 
-                <div class="fs-sm"><i class="fas fa-images mr-1"></i><strong class="keywords">Banner image:</strong><br>JulienneSchaer<hr class="my-2"><strong class="keywords">Published on:</strong><br>February 8, 2024</div>
+                <div class="fs-sm"><i class="fas fa-images mr-1"></i><strong class="keywords">Banner image:</strong><br>JulienneSchaer<hr class="my-2">
+
+                    <strong class="keywords">Published on:</strong><br>February 8, 2024</div>
 
 
 
@@ -463,7 +485,7 @@
 </article>
 
 
-<section class="related-reading">
+<section class="related-reading" data-pagefind-ignore="all">
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -518,11 +540,11 @@
                   <div class="card bg-white text-black mb-2">
                     <div class="card-header"><h4 class="fs-md text-muted"><i class="fas fa-map-marked-alt text-muted mr-1" aria-hidden="true"></i>Neighborhood Reports</h4>
                     </div>
-                    <div class="card-body fs-sm"><a href="/IndicatorPublic/neighborhood-reports/activedesign/">Active Design, Physical Activity and Health</a>
-            <hr class="my-1"><a href="/IndicatorPublic/neighborhood-reports/asthma/">Asthma and the Environment</a>
-            <hr class="my-1"><a href="/IndicatorPublic/neighborhood-reports/climateandhealth/">Climate and Health</a>
-            <hr class="my-1"><a href="/IndicatorPublic/neighborhood-reports/housing/">Housing and Health</a>
-            <hr class="my-1"><a href="/IndicatorPublic/neighborhood-reports/outdoorair/">Outdoor Air and Health</a>
+                    <div class="card-body fs-sm"><a href="/IndicatorPublic/neighborhood-reports/active_design_physical_activity_and_health/">Active Design, Physical Activity and Health</a>
+            <hr class="my-1"><a href="/IndicatorPublic/neighborhood-reports/asthma_and_the_environment/">Asthma and the Environment</a>
+            <hr class="my-1"><a href="/IndicatorPublic/neighborhood-reports/climate_and_health/">Climate and Health</a>
+            <hr class="my-1"><a href="/IndicatorPublic/neighborhood-reports/housing_and_health/">Housing and Health</a>
+            <hr class="my-1"><a href="/IndicatorPublic/neighborhood-reports/outdoor_air_and_health/">Outdoor Air and Health</a>
             <hr class="my-1"></div>
                   </div>
               </div>
@@ -755,6 +777,100 @@
   
 
 </footer>
+
+
+<div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="searchModalLabel" data-pagefind-ignore="all">Search</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <link href=/IndicatorPublic/pagefind/pagefind-ui.css rel="stylesheet">
+            <script src=/IndicatorPublic/pagefind/pagefind-ui.js type="text/javascript"></script>
+            <div id="search"></div>
+            <script>
+
+                window.addEventListener('DOMContentLoaded', (event) => {
+
+                    new PagefindUI({
+                        element: "#search",
+                        showSubResults: true,
+                        showImages: false,
+                        baseUrl: baseURL,
+                        showEmptyFilters: true,
+                        debounceTimeoutMs: 500,
+                        processTerm: function (term) {
+
+                            gtag('event', 'search', {
+                                search_term: term
+                            });
+
+                            return term;
+
+                        },
+                        processResult: function (result) {
+
+                            
+                            
+                            
+
+                            
+
+                            result.meta.title = result.meta.title
+                                .replace(/&#(\d+);/g, ((match, dec) => `${String.fromCharCode(dec)}`))
+                                .replaceAll("&amp;", "&");
+                            
+                            
+
+                            result.sub_results.forEach(sub => {
+
+                                
+
+                                sub.url = sub.url.replace("#IndicatorID-", "?id=");
+
+                                
+
+                                sub.title = sub.title
+                                    .replace(/&#(\d+);/g, ((match, dec) => `${String.fromCharCode(dec)}`))
+                                    .replaceAll("&amp;", "&");
+
+                            });
+
+                            
+                            
+                            
+
+                            
+                            var allResults = document.getElementsByClassName('pagefind-ui__result-link');
+
+                            
+                            for (h = 0; h < allResults.length; h += 1) {
+
+                                allResults[h].setAttribute('onclick',"gtag('event', 'search_click', { page_viewed: '" + allResults[h].href + "' });");
+
+                            }
+
+                            
+
+                            console.log("@ result:", result);
+                            
+
+                        }
+                    });
+                });
+
+            </script>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
   
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
     integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"

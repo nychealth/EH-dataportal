@@ -4,17 +4,25 @@
 
 
 
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-64BWDRHRGB"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+
     
-    gtag('config', 'G-64BWDRHRGB');
-</script>
+
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-64BWDRHRGB"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-64BWDRHRGB');
+    </script>
+
+    
+    <meta name="robots" content="all" />
+
+    
 
 
-<meta name="robots" content="all" />
 
 
 
@@ -22,12 +30,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 
+
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 <title>Restaurants and air quality in NYC.</title>
 
 
-<meta name="build_datetime" content='2024-03-28 17:23:48'>
+<meta name="build_datetime" content='2024-03-29 01:12:11'>
 <meta name="build_environment" content='prod_prod'>
 <meta name="git_branch" content='production'>
 
@@ -71,7 +80,7 @@
 <script src="/IndicatorPublic/node_modules/@fortawesome/fontawesome-free/js/all.min.196cd5adc1a5a344f14d1bf3f6db62a32609f96c24f429341bcd43f9e3badc16aa1da2776195fdc2eaa3c207dc57f32b0763e16955fd0e461585b1694ad9eaa5.js" integrity="sha512-GWzVrcGlo0TxTRvz9ttioyYJ&#43;Wwk9Ck0G81D&#43;eO63BaqHaJ3YZX9wuqjwgfcV/MrB2PhaVX9DkYVhbFpStnqpQ==" crossorigin="anonymous"></script>
 
 
-<link rel="stylesheet" href="/IndicatorPublic/scss/theme.79006eaddd47ff11fa528e7bffb2a4bb944f5a67697d6dc912aeadc88f4476600a3c8bcae5ace5782f08a4c3da116cf46be10d82f0fe360e10d61f8aa2df2a8f.css" integrity="sha512-eQBurd1H/xH6Uo57/7Kku5RPWmdpfW3JEq6tyI9EdmAKPIvK5azleC8IpMPaEWz0a&#43;ENgvD&#43;Ng4Q1h&#43;Kot8qjw==" />
+<link rel="stylesheet" href="/IndicatorPublic/scss/theme.93eedffd28d4702b89a3020c0eff852ea14226d650f38a6b59b5e5eb628de0d3b0941ab60ce45a6887fffc75078c7d1089830b1474e102938667d0ac6f54621f.css" integrity="sha512-k&#43;7f/SjUcCuJowIMDv&#43;FLqFCJtZQ84prWbXl62KN4NOwlBq2DORaaIf//HUHjH0QiYMLFHThApOGZ9Csb1RiHw==" />
 
 <script src="/IndicatorPublic/node_modules/dompurify/dist/purify.min.71ed1f9ae1205aba6721758a42b4a027916c06caff8673acc5d5af93996ed464e17246ac2f073e4c014444b348c169d6a81a1657818f0c98b3d8f48f9ed8a754.js" integrity="sha512-ce0fmuEgWrpnIXWKQrSgJ5FsBsr/hnOsxdWvk5lu1GThckasLwc&#43;TAFERLNIwWnWqBoWV4GPDJiz2PSPntinVA=="></script>
 
@@ -79,23 +88,32 @@
 
 
 
+<meta data-pagefind-filter="section[content]" content="Data Stories">
 
 
 <script>
+
     let baseURL = "/IndicatorPublic/"
     let data_repo = "https:\/\/raw.githubusercontent.com\/nychealth\/EHDP-data\/";
     let data_branch = "production";
     let hugoEnv = "prod_prod"
 
-    
-
 </script>
+
+
+
+
+<meta 
+        data-pagefind-meta="title:Tracking changes in New York City&#39;s sources of air pollution | Data-Stories"
+        class="d-none"
+    >
+
   </head>
 
 
 
 <body>
-  
+
   
 <a class="sr-only sr-only-focusable skip-menu" href="#skip-header-target">Skip Header</a>
 
@@ -187,14 +205,16 @@
 
                     <a class="nav-link" href="/IndicatorPublic/data-explorer/" id="nav-item-03"><span class='text-primary'><i class='fas fa-chart-line' aria-hidden='true'></i></span> Data Explorer</a>
 
-                </div><button class="btn nav-item-search d-none d-lg-block" type="button" title="Search"
-                        data-toggle="collapse" data-target="#global-search"
-                        aria-controls="global-search" aria-expanded="false">
+                </div>
 
-                    <span class="sr-only">Search</span>
-                    <i class="fa fa-magnifying-glass fa-lg"></i>
+                    <button type="button" data-toggle="modal" data-target="#searchModal" class="btn nav-item-search d-none d-lg-block" title="Search">
 
-                </button></nav>
+                        <span class="sr-only">Search</span>
+                        <i class="fa fa-magnifying-glass fa-lg text-body mt-1"></i>
+
+                    </button>
+
+                </nav>
 
         </div>
 
@@ -230,7 +250,7 @@
 
 </div>
 </header>
-<main id="skip-header-target" role="main"><div class="container-fluid px-0">
+<main id="skip-header-target" role="main" data-pagefind-body><div class="container-fluid px-0">
 
     
     
@@ -334,7 +354,7 @@ quality data at the NYCCAS Annual Report</a>.
     </script>
 </div>
 <div class="narrow">
-<h2 id="what-can-we-do-about-this">What can we do about this?</h2>
+<h2>What can we do about this?</h2>
 <p>In 2015, New York City took a step forward in addressing this pollutant source when City Council passed Local Law 38, which updated the NYC Air Code to include commercial cooking emissions. Following input from an advisory committee made up of representatives from health and environmental organizations, as well as the restaurant industry, the New York City Department of Environmental Protection created regulations requiring the registration of commercial charbroilers and the installation of emissions control devices on new grills and charbroilers in restaurants that cook significant amounts of meat. Like with building boiler emissions, knowing where charbroilers are located will help us better understand the impact on neighborhood air quality. With this information, government and industry must think creatively about how to support all impacted restaurants - large and small - in reducing emissions from commercial cooking. Together NYC can continue to clean up its air – and protect the lungs of New Yorkers.</p>
 </div>
 
@@ -361,7 +381,7 @@ quality data at the NYCCAS Annual Report</a>.
         <div class="col-xl-2 border-xl-left">
 
             <div class="py-3 mt-3 mt-xl-0 sticky-top" style="z-index: 0">
-<section class="social-share">
+<section class="social-share" data-pagefind-ignore="all">
     <ul class="share-icons">
 
       
@@ -399,10 +419,12 @@ quality data at the NYCCAS Annual Report</a>.
 
     </ul>
   </section>
-<hr class="my-2"><div class="keywords p-1"><a href="/IndicatorPublic/keywords/air-quality/">air quality</a> |&#32;<a href="/IndicatorPublic/keywords/pm2.5/">PM2.5</a> |&#32;<a href="/IndicatorPublic/keywords/fine-particles/">fine particles</a> |&#32;<a href="/IndicatorPublic/keywords/cooking/">cooking</a> |&#32;<a href="/IndicatorPublic/keywords/restaurants/">restaurants</a> |&#32;<a href="/IndicatorPublic/keywords/buildings/">buildings</a> |&#32;<a href="/IndicatorPublic/keywords/density/">density</a> |&#32;<a href="/IndicatorPublic/keywords/emissions/">emissions</a> |&#32;<a href="/IndicatorPublic/keywords/pollution/">pollution</a> |&#32;<a href="/IndicatorPublic/keywords/air-pollution/">air pollution</a> |&#32;<a href="/IndicatorPublic/keywords/lungs/">lungs</a> |&#32;<a href="/IndicatorPublic/keywords/breathing/">breathing</a> |&#32;</div>
+<hr class="my-2"><div class="keywords p-1" data-pagefind-ignore="all"><a href="/IndicatorPublic/keywords/air-quality/">air quality</a> |&#32;<a href="/IndicatorPublic/keywords/pm2.5/">PM2.5</a> |&#32;<a href="/IndicatorPublic/keywords/fine-particles/">fine particles</a> |&#32;<a href="/IndicatorPublic/keywords/cooking/">cooking</a> |&#32;<a href="/IndicatorPublic/keywords/restaurants/">restaurants</a> |&#32;<a href="/IndicatorPublic/keywords/buildings/">buildings</a> |&#32;<a href="/IndicatorPublic/keywords/density/">density</a> |&#32;<a href="/IndicatorPublic/keywords/emissions/">emissions</a> |&#32;<a href="/IndicatorPublic/keywords/pollution/">pollution</a> |&#32;<a href="/IndicatorPublic/keywords/air-pollution/">air pollution</a> |&#32;<a href="/IndicatorPublic/keywords/lungs/">lungs</a> |&#32;<a href="/IndicatorPublic/keywords/breathing/">breathing</a> |&#32;</div>
 <hr class="my-2">
 
-                <div class="fs-sm"><i class="fas fa-images mr-1"></i><strong class="keywords">Banner image:</strong><br>Michael Appleton/Mayoral Photography Office<hr class="my-2"><strong class="keywords">Published on:</strong><br>April 12, 2021</div>
+                <div class="fs-sm"><i class="fas fa-images mr-1"></i><strong class="keywords">Banner image:</strong><br>Michael Appleton/Mayoral Photography Office<hr class="my-2">
+
+                    <strong class="keywords">Published on:</strong><br>April 12, 2021</div>
 
 
 
@@ -420,7 +442,7 @@ quality data at the NYCCAS Annual Report</a>.
 </article>
 
 
-<section class="related-reading">
+<section class="related-reading" data-pagefind-ignore="all">
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -473,11 +495,11 @@ quality data at the NYCCAS Annual Report</a>.
                   <div class="card bg-white text-black mb-2">
                     <div class="card-header"><h4 class="fs-md text-muted"><i class="fas fa-map-marked-alt text-muted mr-1" aria-hidden="true"></i>Neighborhood Reports</h4>
                     </div>
-                    <div class="card-body fs-sm"><a href="/IndicatorPublic/neighborhood-reports/activedesign/">Active Design, Physical Activity and Health</a>
-            <hr class="my-1"><a href="/IndicatorPublic/neighborhood-reports/asthma/">Asthma and the Environment</a>
-            <hr class="my-1"><a href="/IndicatorPublic/neighborhood-reports/climateandhealth/">Climate and Health</a>
-            <hr class="my-1"><a href="/IndicatorPublic/neighborhood-reports/housing/">Housing and Health</a>
-            <hr class="my-1"><a href="/IndicatorPublic/neighborhood-reports/outdoorair/">Outdoor Air and Health</a>
+                    <div class="card-body fs-sm"><a href="/IndicatorPublic/neighborhood-reports/active_design_physical_activity_and_health/">Active Design, Physical Activity and Health</a>
+            <hr class="my-1"><a href="/IndicatorPublic/neighborhood-reports/asthma_and_the_environment/">Asthma and the Environment</a>
+            <hr class="my-1"><a href="/IndicatorPublic/neighborhood-reports/climate_and_health/">Climate and Health</a>
+            <hr class="my-1"><a href="/IndicatorPublic/neighborhood-reports/housing_and_health/">Housing and Health</a>
+            <hr class="my-1"><a href="/IndicatorPublic/neighborhood-reports/outdoor_air_and_health/">Outdoor Air and Health</a>
             <hr class="my-1"></div>
                   </div>
               </div>
@@ -698,6 +720,100 @@ quality data at the NYCCAS Annual Report</a>.
   
 
 </footer>
+
+
+<div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="searchModalLabel" data-pagefind-ignore="all">Search</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <link href=/IndicatorPublic/pagefind/pagefind-ui.css rel="stylesheet">
+            <script src=/IndicatorPublic/pagefind/pagefind-ui.js type="text/javascript"></script>
+            <div id="search"></div>
+            <script>
+
+                window.addEventListener('DOMContentLoaded', (event) => {
+
+                    new PagefindUI({
+                        element: "#search",
+                        showSubResults: true,
+                        showImages: false,
+                        baseUrl: baseURL,
+                        showEmptyFilters: true,
+                        debounceTimeoutMs: 500,
+                        processTerm: function (term) {
+
+                            gtag('event', 'search', {
+                                search_term: term
+                            });
+
+                            return term;
+
+                        },
+                        processResult: function (result) {
+
+                            
+                            
+                            
+
+                            
+
+                            result.meta.title = result.meta.title
+                                .replace(/&#(\d+);/g, ((match, dec) => `${String.fromCharCode(dec)}`))
+                                .replaceAll("&amp;", "&");
+                            
+                            
+
+                            result.sub_results.forEach(sub => {
+
+                                
+
+                                sub.url = sub.url.replace("#IndicatorID-", "?id=");
+
+                                
+
+                                sub.title = sub.title
+                                    .replace(/&#(\d+);/g, ((match, dec) => `${String.fromCharCode(dec)}`))
+                                    .replaceAll("&amp;", "&");
+
+                            });
+
+                            
+                            
+                            
+
+                            
+                            var allResults = document.getElementsByClassName('pagefind-ui__result-link');
+
+                            
+                            for (h = 0; h < allResults.length; h += 1) {
+
+                                allResults[h].setAttribute('onclick',"gtag('event', 'search_click', { page_viewed: '" + allResults[h].href + "' });");
+
+                            }
+
+                            
+
+                            console.log("@ result:", result);
+                            
+
+                        }
+                    });
+                });
+
+            </script>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
   
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
     integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"

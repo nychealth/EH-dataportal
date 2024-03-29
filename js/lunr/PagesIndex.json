@@ -2719,6 +2719,30 @@
         "href": "key-topics/transportation/beaches"
     },
     {
+        "displayTitle": "Active Design, Physical Activity and Health in NYC",
+        "categories": [
+            "airquality",
+            "transportation",
+            "housing",
+            "neighborhoods"
+        ],
+        "content": "The design and conditions of buildings streets public transportation and parks influence physical activity use of active transportation and other healthy behavior A neighborhoods features can also impact the safety of its residents",
+        "href": "neighborhood-reports/active_design_physical_activity_and_health"
+    },
+    {
+        "displayTitle": "Asthma and the Environment in NYC",
+        "categories": [
+            "airquality",
+            "transportation",
+            "childhealth",
+            "social",
+            "housing",
+            "neighborhoods"
+        ],
+        "content": "Asthma is a common lung disease and a leading cause of hospitalizations for children under 15 years old This report provides a summary of asthma indicators by neighborhood It also describes housing and neighborhood characteristics that can make asthma worse",
+        "href": "neighborhood-reports/asthma_and_the_environment"
+    },
+    {
         "displayTitle": "Active Design in Bayside - Little Neck",
         "neighborhood": "Bayside - Little Neck",
         "content": "",
@@ -2927,6 +2951,17 @@
         "displayTitle": "Chelsea - Clinton",
         "content": "",
         "href": "neighborhood-reports/chelsea_clinton"
+    },
+    {
+        "displayTitle": "Neighborhood reports on climate and health in NYC | Environment and Health Data Portal",
+        "categories": [
+            "climatehealth",
+            "housing",
+            "social",
+            "neighborhoods"
+        ],
+        "content": "Extreme heat coastal storms and flooding are climaterelated hazards that are increasing because of climate change They have important public health impacts in New York City Extreme weather can cause power outages which also threaten public health This report provides neighborhood indicators of climaterelated hazards populations that may be most affected built environment factors that can increase risk and health impacts",
+        "href": "neighborhood-reports/climate_and_health"
     },
     {
         "displayTitle": "Active Design in Coney Island - Sheepshead Bay",
@@ -3384,6 +3419,17 @@
         "href": "neighborhood-reports/high_bridge_morrisania"
     },
     {
+        "displayTitle": "Housing and Health in NYC",
+        "categories": [
+            "housing",
+            "childhealth",
+            "social",
+            "neighborhoods"
+        ],
+        "content": "This report provides a neighborhood summary of housing conditions and related health outcomes It also describes population characteristics that can increase vulnerability to housing hazards",
+        "href": "neighborhood-reports/housing_and_health"
+    },
+    {
         "displayTitle": "Active Design in Hunts Point - Mott Haven",
         "neighborhood": "Hunts Point - Mott Haven",
         "content": "",
@@ -3592,6 +3638,17 @@
         "displayTitle": "Northeast Bronx",
         "content": "",
         "href": "neighborhood-reports/northeast_bronx"
+    },
+    {
+        "displayTitle": "Outdoor Air and Health in NYC",
+        "categories": [
+            "airquality",
+            "childhealth",
+            "transportation",
+            "neighborhoods"
+        ],
+        "content": "Air pollution is one of the most important environmental threats to urban populations and while all people are exposed pollutant emissions levels of exposure and population vulnerability vary across neighborhoods Exposures to common air pollutants have been linked to respiratory and cardiovascular diseases cancers and premature deaths",
+        "href": "neighborhood-reports/outdoor_air_and_health"
     },
     {
         "displayTitle": "Active Design in Pelham - Throgs Neck",
@@ -4158,34 +4215,6 @@
         "href": "neighborhood-reports"
     },
     {
-        "displayTitle": "Active Design, Physical Activity and Health in NYC",
-        "categories": [
-            "airquality",
-            "transportation",
-            "housing",
-            "neighborhoods"
-        ],
-        "content": "The design and conditions of buildings streets public transportation and parks influence physical activity use of active transportation and other healthy behavior A neighborhoods features can also impact the safety of its residents",
-        "href": "neighborhood-reports/activedesign"
-    },
-    {
-        "title": "Asthma and the Environment",
-        "displayTitle": "Asthma and the Environment",
-        "indicator_names": "",
-        "indicator_descriptions": "",
-        "categories": [
-            "airquality",
-            "transportation",
-            "childhealth",
-            "social",
-            "housing",
-            "neighborhoods"
-        ],
-        "seo_title": "Asthma and the Environment in NYC",
-        "content": "Asthma is a common lung disease and a leading cause of hospitalizations for children under 15 years old This report provides a summary of asthma indicators by neighborhood It also describes housing and neighborhood characteristics that can make asthma worse",
-        "href": "neighborhood-reports/asthma"
-    },
-    {
         "displayTitle": "Active Design in Canarsie - Flatlands",
         "neighborhood": "Canarsie - Flatlands",
         "content": "",
@@ -4219,51 +4248,6 @@
         "neighborhood": "Canarsie - Flatlands",
         "content": "",
         "href": "neighborhood-reports/canarsie_flatlands/housing_and_health"
-    },
-    {
-        "title": "Climate and Health",
-        "displayTitle": "Climate and Health",
-        "indicator_names": "",
-        "indicator_descriptions": "",
-        "categories": [
-            "climatehealth",
-            "housing",
-            "social",
-            "neighborhoods"
-        ],
-        "seo_title": "Neighborhood reports on climate and health in NYC | Environment and Health Data Portal",
-        "content": "Extreme heat coastal storms and flooding are climaterelated hazards that are increasing because of climate change They have important public health impacts in New York City Extreme weather can cause power outages which also threaten public health This report provides neighborhood indicators of climaterelated hazards populations that may be most affected built environment factors that can increase risk and health impacts",
-        "href": "neighborhood-reports/climateandhealth"
-    },
-    {
-        "title": "Housing and Health",
-        "displayTitle": "Housing and Health",
-        "indicator_names": "",
-        "indicator_descriptions": "",
-        "categories": [
-            "housing",
-            "childhealth",
-            "social",
-            "neighborhoods"
-        ],
-        "seo_title": "Housing and Health in NYC",
-        "content": "This report provides a neighborhood summary of housing conditions and related health outcomes It also describes population characteristics that can increase vulnerability to housing hazards",
-        "href": "neighborhood-reports/housing"
-    },
-    {
-        "title": "Outdoor Air and Health",
-        "displayTitle": "Outdoor Air and Health",
-        "indicator_names": "",
-        "indicator_descriptions": "",
-        "categories": [
-            "airquality",
-            "childhealth",
-            "transportation",
-            "neighborhoods"
-        ],
-        "seo_title": "Outdoor Air and Health in NYC",
-        "content": "Air pollution is one of the most important environmental threats to urban populations and while all people are exposed pollutant emissions levels of exposure and population vulnerability vary across neighborhoods Exposures to common air pollutants have been linked to respiratory and cardiovascular diseases cancers and premature deaths",
-        "href": "neighborhood-reports/outdoorair"
     },
     {
         "title": "Search Results",

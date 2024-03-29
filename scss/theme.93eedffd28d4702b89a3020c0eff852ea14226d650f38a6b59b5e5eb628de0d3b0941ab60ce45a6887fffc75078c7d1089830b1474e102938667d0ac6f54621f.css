@@ -8770,6 +8770,29 @@ In this file:
   transform-origin: left;
   transform: scaleX(1); }
 
+#searchModal .modal-dialog {
+  overflow-y: initial !important; }
+
+#searchModal .modal-body {
+  height: 75vh;
+  overflow-y: auto; }
+
+#searchModal .pagefind-ui__filter-block {
+  position: sticky;
+  top: 0; }
+
+#searchModal .pagefind-ui__filter-name {
+  font-size: 1.1rem; }
+
+#searchModal .pagefind-ui__message {
+  font-size: 1.1rem; }
+
+#searchModal .pagefind-ui__filter-label {
+  font-size: 1.0rem; }
+
+#searchModal .pagefind-ui__filter-value--checked .pagefind-ui__filter-label {
+  font-weight: bolder !important; }
+
 .bg-lightgray {
   background-color: #fbfbfb !important;
   border-left: 10px solid #dddddd !important; }
@@ -8777,7 +8800,6 @@ In this file:
 .hide {
   display: none; }
 
-/* All tile-color classes are for custom page cards*/
 .tile-green {
   width: 100%;
   display: inline-block;
@@ -8789,7 +8811,6 @@ In this file:
   color: #FFF;
   box-shadow: 5px 5px 2px grey; }
 
-/* hover for page cards that are single full-div links*/
 .tile-green:hover {
   background-color: #4e8771;
   box-shadow: 10px 10px 5px grey;
@@ -9200,9 +9221,9 @@ input[type=range]:focus::-ms-fill-upper {
   padding-right: 3px; }
 
 /*
-    .hlt {
-        border-bottom: 2px solid darkgreen;
-    } */
+.hlt {
+    border-bottom: 2px solid darkgreen;
+} */
 .pinkdot {
   width: 8px;
   height: 8px;
@@ -9307,10 +9328,12 @@ input[type=range]:focus::-ms-fill-upper {
   padding-bottom: 10px;
   background-color: #fffcfd; }
 
-.crossing-header-red h2 {
+.crossing-header-red h2,
+.crossing-header-red.h2 {
   color: #991e39; }
 
-.crossing-header-red h3 {
+.crossing-header-red h3,
+.crossing-header-red.h3 {
   color: #991e39; }
 
 .offset-sticky {
@@ -9383,7 +9406,8 @@ input[type=range]:focus::-ms-fill-upper {
   padding: 0.25em;
   width: 2em; }
 
-.social-share-nav .share-btn h3 {
+.social-share-nav .share-btn h3,
+.social-share-nav .share-btn .h3 {
   color: #ffffff; }
 
 ul.share-icons {
@@ -9488,7 +9512,8 @@ ul.share-icons li > * .label {
 .share-btn.email:hover {
   background: #363636; }
 
-.topiccontainer h3 {
+.topiccontainer h3,
+.topiccontainer .h3 {
   font-size: 18px;
   color: #656565; }
 

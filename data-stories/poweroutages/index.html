@@ -4,17 +4,25 @@
 
 
 
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-64BWDRHRGB"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+
     
-    gtag('config', 'G-64BWDRHRGB');
-</script>
+
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-64BWDRHRGB"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-64BWDRHRGB');
+    </script>
+
+    
+    <meta name="robots" content="all" />
+
+    
 
 
-<meta name="robots" content="all" />
 
 
 
@@ -22,12 +30,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 
+
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 <title>How Power Outages Affect Health</title>
 
 
-<meta name="build_datetime" content='2024-03-28 17:23:56'>
+<meta name="build_datetime" content='2024-03-29 01:12:19'>
 <meta name="build_environment" content='prod_prod'>
 <meta name="git_branch" content='production'>
 
@@ -71,7 +80,7 @@
 <script src="/IndicatorPublic/node_modules/@fortawesome/fontawesome-free/js/all.min.196cd5adc1a5a344f14d1bf3f6db62a32609f96c24f429341bcd43f9e3badc16aa1da2776195fdc2eaa3c207dc57f32b0763e16955fd0e461585b1694ad9eaa5.js" integrity="sha512-GWzVrcGlo0TxTRvz9ttioyYJ&#43;Wwk9Ck0G81D&#43;eO63BaqHaJ3YZX9wuqjwgfcV/MrB2PhaVX9DkYVhbFpStnqpQ==" crossorigin="anonymous"></script>
 
 
-<link rel="stylesheet" href="/IndicatorPublic/scss/theme.79006eaddd47ff11fa528e7bffb2a4bb944f5a67697d6dc912aeadc88f4476600a3c8bcae5ace5782f08a4c3da116cf46be10d82f0fe360e10d61f8aa2df2a8f.css" integrity="sha512-eQBurd1H/xH6Uo57/7Kku5RPWmdpfW3JEq6tyI9EdmAKPIvK5azleC8IpMPaEWz0a&#43;ENgvD&#43;Ng4Q1h&#43;Kot8qjw==" />
+<link rel="stylesheet" href="/IndicatorPublic/scss/theme.93eedffd28d4702b89a3020c0eff852ea14226d650f38a6b59b5e5eb628de0d3b0941ab60ce45a6887fffc75078c7d1089830b1474e102938667d0ac6f54621f.css" integrity="sha512-k&#43;7f/SjUcCuJowIMDv&#43;FLqFCJtZQ84prWbXl62KN4NOwlBq2DORaaIf//HUHjH0QiYMLFHThApOGZ9Csb1RiHw==" />
 
 <script src="/IndicatorPublic/node_modules/dompurify/dist/purify.min.71ed1f9ae1205aba6721758a42b4a027916c06caff8673acc5d5af93996ed464e17246ac2f073e4c014444b348c169d6a81a1657818f0c98b3d8f48f9ed8a754.js" integrity="sha512-ce0fmuEgWrpnIXWKQrSgJ5FsBsr/hnOsxdWvk5lu1GThckasLwc&#43;TAFERLNIwWnWqBoWV4GPDJiz2PSPntinVA=="></script>
 
@@ -79,23 +88,32 @@
 
 
 
+<meta data-pagefind-filter="section[content]" content="Data Stories">
 
 
 <script>
+
     let baseURL = "/IndicatorPublic/"
     let data_repo = "https:\/\/raw.githubusercontent.com\/nychealth\/EHDP-data\/";
     let data_branch = "production";
     let hugoEnv = "prod_prod"
 
-    
-
 </script>
+
+
+
+
+<meta 
+        data-pagefind-meta="title:How power outages affect health | Data-Stories"
+        class="d-none"
+    >
+
   </head>
 
 
 
 <body>
-  
+
   
 <a class="sr-only sr-only-focusable skip-menu" href="#skip-header-target">Skip Header</a>
 
@@ -187,14 +205,16 @@
 
                     <a class="nav-link" href="/IndicatorPublic/data-explorer/" id="nav-item-03"><span class='text-primary'><i class='fas fa-chart-line' aria-hidden='true'></i></span> Data Explorer</a>
 
-                </div><button class="btn nav-item-search d-none d-lg-block" type="button" title="Search"
-                        data-toggle="collapse" data-target="#global-search"
-                        aria-controls="global-search" aria-expanded="false">
+                </div>
 
-                    <span class="sr-only">Search</span>
-                    <i class="fa fa-magnifying-glass fa-lg"></i>
+                    <button type="button" data-toggle="modal" data-target="#searchModal" class="btn nav-item-search d-none d-lg-block" title="Search">
 
-                </button></nav>
+                        <span class="sr-only">Search</span>
+                        <i class="fa fa-magnifying-glass fa-lg text-body mt-1"></i>
+
+                    </button>
+
+                </nav>
 
         </div>
 
@@ -230,7 +250,7 @@
 
 </div>
 </header>
-<main id="skip-header-target" role="main"><div class="container-fluid px-0">
+<main id="skip-header-target" role="main" data-pagefind-body><div class="container-fluid px-0">
 
     
     
@@ -256,7 +276,7 @@
         <div class="narrow my-2"><p>Imagine your child has asthma. One summer night, a powerful storm rolls in and knocks the power out.</p>
 <p>Your child starts to have trouble breathing. Usually, you’d use a home nebulizer, an electric machine that turns liquid medicine into a mist that your child breathes in through a face mask.</p>
 <p>But the power is out. Without the nebulizer, your child’s breathing gets worse - and you wonder, is it time to go to the hospital again?</p>
-<h4 id="this-scenario---or-something-like-it---is-a-reality-for-many-new-yorkers">This scenario - or something like it - is a reality for many New Yorkers.</h4>
+<h4>This scenario - or something like it - is a reality for many New Yorkers.</h4>
 <p>Asthma and many other medical conditions are treated at-home with electrical medical equipment. <a href="/IndicatorPublic/data-explorer/housing-safety/?id=2377">Citywide, 7.6% of households include someone who uses electric medical equipment, with some neighborhoods at nearly 17%</a>.</p>
 <!-- CHART 1 -->
 </div>
@@ -277,7 +297,7 @@
 </div>
 
 
-<h4 id="power-outages-threaten-health">Power outages threaten health.</h4>
+<h4>Power outages threaten health.</h4>
 <p>On Thursday, August 14, 2003, a widespread power outage stretched from NYC to Ontario, Canada, affecting 55 million people. Many areas, including here in New York City, were without power for days.</p>
 <p>In New York City, the power outage started around 4:10pm on the 14th, a day when temperatures were in the 90s. While the power was restored in some neighborhoods by early morning on the 15th, full power for the entire city did not return until that evening.</p>
 <p>That blackout was dangerous for NYC residents, and we can see the effects in health data. Hospitalizations for respiratory problems spiked above predicted levels.</p>
@@ -307,7 +327,7 @@
 <div class="narrow">
 <p>The deaths could have been caused by many dangers of power outages: people not being able to charge medical equipment, not being able to use air conditioning on hot days, or experiencing increased physical and mental stress and isolation of living without elevators or subways.</p>
 <p>And, when we studied hospitalization and mortality data around NYC’s smaller blackouts in July 1999 and July 2006, we saw that <a href="https://pubmed.ncbi.nlm.nih.gov/29894117/">localized power outages also threaten health</a>. We found an increase in hospitalizations for respiratory disease, renal (kidney) disease, and an increase in all-cause mortality (deaths).</p>
-<h4 id="climate-change-is-likely-to-bring-more-power-outages">Climate change is likely to bring more power outages&hellip;</h4>
+<h4>Climate change is likely to bring more power outages&hellip;</h4>
 <p>Weather-related power outages are increasing, as climate change brings more frequent, more powerful storms that threaten our power grid and other physical infrastructure.</p>
 <p>The chart below from <a href="https://www.climatecentral.org">www.climatecentral.org</a> shows the increasing frequency of weather-related power outages over the last 20 years. While there are year-to-year differences, the overall increasing trend is clear.</p>
 <!-- CHART 4 --> 
@@ -320,10 +340,10 @@
     </script>
 </div>
 <div class="narrow">
-<h4 id="but-not-all-nyc-residents-are-prepared">&hellip;but not all NYC residents are prepared.</h4>
+<h4>&hellip;but not all NYC residents are prepared.</h4>
 <p><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6181821/">Our survey found that 58% of NYC residents have basic preparation for power outages</a>: a working flashlight and a 3-day supply of water and food.</p>
 <p>People with household members who depend on electrical medical equipment are more likely to be prepared for power outages (70% vs. 56% of respondents without electric-dependent household members). However, even though they are more prepared, they report not <em>feeling</em> more prepared as they face the challenge of ensuring that their medical equipment runs during power outages: when you need electricity to stay healthy, it’s hard to feel completely prepared for a blackout.</p>
-<h4 id="stay-prepared">Stay prepared.</h4>
+<h4>Stay prepared.</h4>
 <p>It’s important for our City to build a power grid that is resilient, since we expect more extreme weather as our climate continues to change. As we experience this changing climate, a reliable supply of electricity is crucial to support life-saving equipment. And it’s vital that this resiliency be equitable, so that people in high-poverty neighborhoods that have been deprived of resources aren’t made additionally vulnerable by climate change and power outages.</p>
 <p>But we can also expect some power outages, so it’s important for residents to be prepared, especially if you or somebody in your household uses medical equipment that requires electricity - including nebulizers, dialysis machines, apnea monitors, or portable oxygen.</p>
 <p><strong>Tell your utility provider if you use electric-powered medical equipment.</strong> They can let you know if power problems are expected in your area. If utilities are included in your rent, you can still register for this service from your building’s utility provider:</p>
@@ -369,7 +389,7 @@
         <div class="col-xl-2 border-xl-left">
 
             <div class="py-3 mt-3 mt-xl-0 sticky-top" style="z-index: 0">
-<section class="social-share">
+<section class="social-share" data-pagefind-ignore="all">
     <ul class="share-icons">
 
       
@@ -407,10 +427,12 @@
 
     </ul>
   </section>
-<hr class="my-2"><div class="keywords p-1"><a href="/IndicatorPublic/keywords/asthma/">asthma</a> |&#32;<a href="/IndicatorPublic/keywords/weather/">weather</a> |&#32;<a href="/IndicatorPublic/keywords/mortality/">mortality</a> |&#32;<a href="/IndicatorPublic/keywords/death/">death</a> |&#32;<a href="/IndicatorPublic/keywords/cooling/">cooling</a> |&#32;<a href="/IndicatorPublic/keywords/air-conditioning/">air conditioning</a> |&#32;<a href="/IndicatorPublic/keywords/built-environment/">built environment</a> |&#32;</div>
+<hr class="my-2"><div class="keywords p-1" data-pagefind-ignore="all"><a href="/IndicatorPublic/keywords/asthma/">asthma</a> |&#32;<a href="/IndicatorPublic/keywords/weather/">weather</a> |&#32;<a href="/IndicatorPublic/keywords/mortality/">mortality</a> |&#32;<a href="/IndicatorPublic/keywords/death/">death</a> |&#32;<a href="/IndicatorPublic/keywords/cooling/">cooling</a> |&#32;<a href="/IndicatorPublic/keywords/air-conditioning/">air conditioning</a> |&#32;<a href="/IndicatorPublic/keywords/built-environment/">built environment</a> |&#32;</div>
 <hr class="my-2">
 
-                <div class="fs-sm"><i class="fas fa-images mr-1"></i><strong class="keywords">Banner image:</strong><br>Benjamin Kanter/Mayoral Photography Office<hr class="my-2"><strong class="keywords">Published on:</strong><br>January 10, 2022</div>
+                <div class="fs-sm"><i class="fas fa-images mr-1"></i><strong class="keywords">Banner image:</strong><br>Benjamin Kanter/Mayoral Photography Office<hr class="my-2">
+
+                    <strong class="keywords">Published on:</strong><br>January 10, 2022</div>
 
 
 
@@ -428,7 +450,7 @@
 </article>
 
 
-<section class="related-reading">
+<section class="related-reading" data-pagefind-ignore="all">
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -481,9 +503,9 @@
                   <div class="card bg-white text-black mb-2">
                     <div class="card-header"><h4 class="fs-md text-muted"><i class="fas fa-map-marked-alt text-muted mr-1" aria-hidden="true"></i>Neighborhood Reports</h4>
                     </div>
-                    <div class="card-body fs-sm"><a href="/IndicatorPublic/neighborhood-reports/asthma/">Asthma and the Environment</a>
-            <hr class="my-1"><a href="/IndicatorPublic/neighborhood-reports/climateandhealth/">Climate and Health</a>
-            <hr class="my-1"><a href="/IndicatorPublic/neighborhood-reports/housing/">Housing and Health</a>
+                    <div class="card-body fs-sm"><a href="/IndicatorPublic/neighborhood-reports/asthma_and_the_environment/">Asthma and the Environment</a>
+            <hr class="my-1"><a href="/IndicatorPublic/neighborhood-reports/climate_and_health/">Climate and Health</a>
+            <hr class="my-1"><a href="/IndicatorPublic/neighborhood-reports/housing_and_health/">Housing and Health</a>
             <hr class="my-1"></div>
                   </div>
               </div>
@@ -712,6 +734,100 @@
   
 
 </footer>
+
+
+<div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="searchModalLabel" data-pagefind-ignore="all">Search</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <link href=/IndicatorPublic/pagefind/pagefind-ui.css rel="stylesheet">
+            <script src=/IndicatorPublic/pagefind/pagefind-ui.js type="text/javascript"></script>
+            <div id="search"></div>
+            <script>
+
+                window.addEventListener('DOMContentLoaded', (event) => {
+
+                    new PagefindUI({
+                        element: "#search",
+                        showSubResults: true,
+                        showImages: false,
+                        baseUrl: baseURL,
+                        showEmptyFilters: true,
+                        debounceTimeoutMs: 500,
+                        processTerm: function (term) {
+
+                            gtag('event', 'search', {
+                                search_term: term
+                            });
+
+                            return term;
+
+                        },
+                        processResult: function (result) {
+
+                            
+                            
+                            
+
+                            
+
+                            result.meta.title = result.meta.title
+                                .replace(/&#(\d+);/g, ((match, dec) => `${String.fromCharCode(dec)}`))
+                                .replaceAll("&amp;", "&");
+                            
+                            
+
+                            result.sub_results.forEach(sub => {
+
+                                
+
+                                sub.url = sub.url.replace("#IndicatorID-", "?id=");
+
+                                
+
+                                sub.title = sub.title
+                                    .replace(/&#(\d+);/g, ((match, dec) => `${String.fromCharCode(dec)}`))
+                                    .replaceAll("&amp;", "&");
+
+                            });
+
+                            
+                            
+                            
+
+                            
+                            var allResults = document.getElementsByClassName('pagefind-ui__result-link');
+
+                            
+                            for (h = 0; h < allResults.length; h += 1) {
+
+                                allResults[h].setAttribute('onclick',"gtag('event', 'search_click', { page_viewed: '" + allResults[h].href + "' });");
+
+                            }
+
+                            
+
+                            console.log("@ result:", result);
+                            
+
+                        }
+                    });
+                });
+
+            </script>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
   
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
     integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
