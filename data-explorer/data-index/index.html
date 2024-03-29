@@ -51,7 +51,8 @@
 <meta property="og:title" content="Index of Data on the Environment and Health Data Portal  &ndash; Environment &amp; Health Data Portal" />
 <meta property="og:description" content="Browse an index of datasets on the Environment and Health Data Portal. " />
 <meta property="og:site_name" content="Environment &amp; Health Data Portal" />
-<meta property="og:image" content="/IndicatorPublic/images/report_bottom_background_hu55023dbc37de342337a21cf33dcc5889_222582_2400x1260_fill_q95_mitchellnetravali_smart1.jpg"><meta property="og:see_also" content="https://twitter.com/nycHealthy" />
+<meta property="og:image" content="/IndicatorPublic/images/report_bottom_background_hu55023dbc37de342337a21cf33dcc5889_222582_2400x1260_fill_q95_mitchellnetravali_smart1.jpg">
+<meta property="og:see_also" content="https://twitter.com/nycHealthy" />
 <meta name="twitter:title" content="Index of Data on the Environment and Health Data Portal  &ndash; Environment &amp; Health Data Portal">
 <meta name="twitter:description" content=" Browse an index of datasets on the Environment and Health Data Portal. ">
 <meta name="twitter:image" content=" /IndicatorPublic/images/report_bottom_background.jpg">
@@ -80,16 +81,15 @@
 
 
 
-<script src="/IndicatorPublic/node_modules/d3/dist/d3.min.bdce7caafbc176b0d1e1eb5bc4c7654ede06050935aa3bf23914769ebb0fb053f2aecfbfbb9737fb50adeaea4e81d668225edeaba9376b550f0d2340422ff7d8.js" integrity="sha512-vc58qvvBdrDR4etbxMdlTt4GBQk1qjvyORR2nrsPsFPyrs&#43;/u5c3&#43;1Ct6upOgdZoIl7eq6k3a1UPDSNAQi/32A=="></script>
+
+
+    <script src="/IndicatorPublic/node_modules/d3/dist/d3.min.bdce7caafbc176b0d1e1eb5bc4c7654ede06050935aa3bf23914769ebb0fb053f2aecfbfbb9737fb50adeaea4e81d668225edeaba9376b550f0d2340422ff7d8.js" integrity="sha512-vc58qvvBdrDR4etbxMdlTt4GBQk1qjvyORR2nrsPsFPyrs&#43;/u5c3&#43;1Ct6upOgdZoIl7eq6k3a1UPDSNAQi/32A=="></script>
 
     <link rel="stylesheet" href="/IndicatorPublic/css/dtCSS.css" >
 
     <script src="/IndicatorPublic/js/dataTableBundle.01e1330c6719cbde6e96507c9063003b2396d7b863673b3055c40554f31ad822d158f68a64605e31ed1d803f1ab4a244aa2c6056d21ba68ac7cfda0f0f8704ed.js" integrity="sha512-AeEzDGcZy95ullB8kGMAOyOW17hjZzswVcQFVPMa2CLRWPaKZGBeMe0dgD8atKJEqixgVtIbporHz9oPD4cE7Q=="></script>
 
-    <script src="/IndicatorPublic/node_modules/arquero/dist/arquero.min.a76a5717703559cd2aee63d11c568cbecbce011e681b632e8ead2b4d0ea1dab4838e548a1487c0d5a7d8222a32ba6acc90aec2df908b1830889e75479c59b0a5.js" integrity="sha512-p2pXF3A1Wc0q7mPRHFaMvsvOAR5oG2Mujq0rTQ6h2rSDjlSKFIfA1afYIioyumrMkK7C35CLGDCInnVHnFmwpQ=="></script><meta data-pagefind-filter="section[content]" content="Data Explorer">
-
-
-<script>
+    <script src="/IndicatorPublic/node_modules/arquero/dist/arquero.min.a76a5717703559cd2aee63d11c568cbecbce011e681b632e8ead2b4d0ea1dab4838e548a1487c0d5a7d8222a32ba6acc90aec2df908b1830889e75479c59b0a5.js" integrity="sha512-p2pXF3A1Wc0q7mPRHFaMvsvOAR5oG2Mujq0rTQ6h2rSDjlSKFIfA1afYIioyumrMkK7C35CLGDCInnVHnFmwpQ=="></script><meta data-pagefind-filter="section[content]" content="Data Explorer"><script>
 
     let baseURL = "/IndicatorPublic/"
     let data_repo = "https:\/\/raw.githubusercontent.com\/nychealth\/EHDP-data\/";
@@ -97,8 +97,6 @@
     let hugoEnv = "prod_prod"
 
 </script>
-
-
 
 
 <meta 
@@ -1030,6 +1028,7 @@
                         baseUrl: baseURL,
                         showEmptyFilters: true,
                         debounceTimeoutMs: 500,
+                        
                         processTerm: function (term) {
 
                             gtag('event', 'search', {
@@ -1088,7 +1087,22 @@
 
                         }
                     });
+
+                    
+
+                    
+
+                    const searchModal = document.getElementById('searchModal')
+                    const searchInput = document.getElementsByClassName('pagefind-ui__search-input')[0]
+
+                    $(searchModal).on('shown.bs.modal', () => {
+                        searchInput.focus();
+                        searchInput.select();
+                    })
+
+
                 });
+
 
             </script>
         </div>
@@ -1097,7 +1111,12 @@
         </div>
       </div>
     </div>
-  </div>
+</div>
+
+<script>
+
+
+</script>
   
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
     integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"

@@ -36,8 +36,10 @@
 <title>transportation</title>
 
 
+        <link rel="alternate" hreflang="es" href="/IndicatorPublic/es/keywords/transportation/" title="Español">
+        <link rel="alternate" hreflang="zh" href="/IndicatorPublic/zh/keywords/transportation/" title="中文">
 
-<link rel="alternate" hreflang="es" href="/IndicatorPublic/es/keywords/transportation/" title="Español"><link rel="alternate" hreflang="zh" href="/IndicatorPublic/zh/keywords/transportation/" title="中文">
+
 <meta name="description" content=" Explore data on how environments shape health in New York City&#39;s neighborhoods.">
 <link rel="canonical" href="/IndicatorPublic/keywords/transportation/" />
 <meta name="geo.region" content="" />
@@ -51,7 +53,8 @@
 <meta property="og:title" content=" transportation &ndash; Environment &amp; Health Data Portal" />
 <meta property="og:description" content=" Explore data on how environments shape health in New York City&#39;s neighborhoods." />
 <meta property="og:site_name" content="Environment &amp; Health Data Portal" />
-<meta property="og:image" content="/IndicatorPublic/images/report_bottom_background_hu55023dbc37de342337a21cf33dcc5889_222582_2400x1260_fill_q95_mitchellnetravali_smart1.jpg"><meta property="og:see_also" content="https://twitter.com/nycHealthy" />
+<meta property="og:image" content="/IndicatorPublic/images/report_bottom_background_hu55023dbc37de342337a21cf33dcc5889_222582_2400x1260_fill_q95_mitchellnetravali_smart1.jpg">
+<meta property="og:see_also" content="https://twitter.com/nycHealthy" />
 <meta name="twitter:title" content=" transportation &ndash; Environment &amp; Health Data Portal">
 <meta name="twitter:description" content=" Explore data on how environments shape health in New York City&#39;s neighborhoods.">
 <meta name="twitter:image" content=" /IndicatorPublic/images/report_bottom_background.jpg">
@@ -80,8 +83,6 @@
 
 
 
-
-
 <script>
 
     let baseURL = "/IndicatorPublic/"
@@ -90,8 +91,6 @@
     let hugoEnv = "prod_prod"
 
 </script>
-
-
 
 
 <meta 
@@ -641,6 +640,7 @@
                         baseUrl: baseURL,
                         showEmptyFilters: true,
                         debounceTimeoutMs: 500,
+                        
                         processTerm: function (term) {
 
                             gtag('event', 'search', {
@@ -699,7 +699,22 @@
 
                         }
                     });
+
+                    
+
+                    
+
+                    const searchModal = document.getElementById('searchModal')
+                    const searchInput = document.getElementsByClassName('pagefind-ui__search-input')[0]
+
+                    $(searchModal).on('shown.bs.modal', () => {
+                        searchInput.focus();
+                        searchInput.select();
+                    })
+
+
                 });
+
 
             </script>
         </div>
@@ -708,7 +723,12 @@
         </div>
       </div>
     </div>
-  </div>
+</div>
+
+<script>
+
+
+</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
     integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
     crossorigin="anonymous"></script>

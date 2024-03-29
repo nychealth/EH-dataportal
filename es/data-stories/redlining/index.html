@@ -36,8 +36,10 @@
 <title>Una breve historia del redlining</title>
 
 
+        <link rel="alternate" hreflang="en" href="/IndicatorPublic/data-stories/redlining/" title="English">
+        <link rel="alternate" hreflang="zh" href="/IndicatorPublic/zh/data-stories/redlining/" title="中文">
 
-<link rel="alternate" hreflang="en" href="/IndicatorPublic/data-stories/redlining/" title="English"><link rel="alternate" hreflang="zh" href="/IndicatorPublic/zh/data-stories/redlining/" title="中文">
+
 <meta name="description" content=" La política financiera de 90 años que daña nuestra salud . ">
 <link rel="canonical" href="/IndicatorPublic/es/data-stories/redlining/" />
 <meta name="geo.region" content="" />
@@ -51,7 +53,8 @@
 <meta property="og:title" content="Una breve historia del redlining  &ndash; Environment &amp; Health Data Portal" />
 <meta property="og:description" content="La política financiera de 90 años que daña nuestra salud . " />
 <meta property="og:site_name" content="Environment &amp; Health Data Portal" />
-<meta property="og:image" content="/IndicatorPublic/images/report_bottom_background_hu55023dbc37de342337a21cf33dcc5889_222582_2400x1260_fill_q95_mitchellnetravali_smart1.jpg"><meta property="og:see_also" content="https://twitter.com/nycHealthy" />
+<meta property="og:image" content="/IndicatorPublic/images/report_bottom_background_hu55023dbc37de342337a21cf33dcc5889_222582_2400x1260_fill_q95_mitchellnetravali_smart1.jpg">
+<meta property="og:see_also" content="https://twitter.com/nycHealthy" />
 <meta name="twitter:title" content="Una breve historia del redlining  &ndash; Environment &amp; Health Data Portal">
 <meta name="twitter:description" content=" La política financiera de 90 años que daña nuestra salud . ">
 <meta name="twitter:image" content=" /IndicatorPublic/images/report_bottom_background.jpg">
@@ -80,10 +83,7 @@
 
 
 
-<meta data-pagefind-filter="section[content]" content="Data Stories">
-
-
-<script>
+<meta data-pagefind-filter="section[content]" content="Data Stories"><script>
 
     let baseURL = "/IndicatorPublic/"
     let data_repo = "https:\/\/raw.githubusercontent.com\/nychealth\/EHDP-data\/";
@@ -91,8 +91,6 @@
     let hugoEnv = "prod_prod"
 
 </script>
-
-
 
 
 <meta 
@@ -808,6 +806,7 @@ Las políticas como el redlining nos demuestran que la pobreza no se trata solo 
                         baseUrl: baseURL,
                         showEmptyFilters: true,
                         debounceTimeoutMs: 500,
+                        
                         processTerm: function (term) {
 
                             gtag('event', 'search', {
@@ -866,7 +865,22 @@ Las políticas como el redlining nos demuestran que la pobreza no se trata solo 
 
                         }
                     });
+
+                    
+
+                    
+
+                    const searchModal = document.getElementById('searchModal')
+                    const searchInput = document.getElementsByClassName('pagefind-ui__search-input')[0]
+
+                    $(searchModal).on('shown.bs.modal', () => {
+                        searchInput.focus();
+                        searchInput.select();
+                    })
+
+
                 });
+
 
             </script>
         </div>
@@ -875,7 +889,12 @@ Las políticas como el redlining nos demuestran que la pobreza no se trata solo 
         </div>
       </div>
     </div>
-  </div>
+</div>
+
+<script>
+
+
+</script>
   
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
     integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
