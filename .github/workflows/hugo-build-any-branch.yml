@@ -144,12 +144,12 @@ jobs:
         run: hugo --environment ${{ inputs.environment }} --baseURL ${{ inputs.baseURL }} --cleanDestinationDir --logLevel debug 
 
 
-      # run gruntfile action
+      # run pagefind
 
-      - name: Build index with Grunt
+      - name: Build search with pagefind
         run: |
           cd '${{ github.workspace }}'
-          grunt lunr-index --stack
+          npx -y pagefind --site docs
 
       # commit built index
 

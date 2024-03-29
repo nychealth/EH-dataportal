@@ -1,5 +1,9 @@
 #!/bin/bash
 
-npm install
+# npm install
+# npm install pagefind
+# hugo --environment production --quiet --cleanDestinationDir --ignoreCache
 
 export HUGO_GIT_BRANCH=$(git branch --show-current)
+export HUGO_GIT_LAST_HASH=$(git log -1 --format=%h --abbrev=10)
+export HUGO_GIT_LAST_MSG=$(git log -1 --format=%s)
