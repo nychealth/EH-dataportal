@@ -66,14 +66,15 @@
 {{- /*  {{ partial "warn_counter" (print "++ " "IsHome = " .Page.IsHome ": " .Page.RelPermalink) }}  */ -}}
 
 
+{{- /*  content translations  */ -}}
 
 {{- if .IsTranslated -}}
-    {{- range .Translations -}}
+    {{- range .Translations }}
         <link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .RelPermalink }}" title="{{ .Language.LanguageName }}">
     {{- end -}}
-{{- end -}}
+{{- end }}
 
-{{- partial "seo" . }}
+{{ partial "seo" . }}
 
 {{- if .Params.mapLib }}
     <!-- nyc-lib css (for maps in the core framework)-->
@@ -157,12 +158,12 @@
 
     <script src="{{ $d3.RelPermalink }}" integrity="{{ $d3.Data.Integrity }}"></script>
 
-     {{- /*  DataTables  */}}
+     {{- /*  DataTables  */ -}}
 
-     {{- /*  CSS  */}}
+     {{- /*  CSS  */ -}}
 
-    {{- $dataTablesCSS := resources.Get "node_modules/datatables.net-dt/css/jquery.dataTables.min.css" }}
-    {{- $dataTablesButtonsCSS := resources.Get "node_modules/datatables.net-buttons-dt/css/buttons.dataTables.min.css" }}
+    {{- $dataTablesCSS := resources.Get "node_modules/datatables.net-dt/css/jquery.dataTables.min.css" -}}
+    {{- $dataTablesButtonsCSS := resources.Get "node_modules/datatables.net-buttons-dt/css/buttons.dataTables.min.css" -}}
     {{- $dtCSS := slice $dataTablesCSS $dataTablesButtonsCSS | resources.Concat "css/dtCSS.css" }}
 
     <link rel="stylesheet" href="{{ $dtCSS.RelPermalink }}" >
@@ -187,7 +188,7 @@
 
     {{- /*  Arquero  */}}
 
-    {{- $arquero := resources.Get "node_modules/arquero/dist/arquero.min.js" | resources.Fingerprint "sha512" }}
+    {{- $arquero := resources.Get "node_modules/arquero/dist/arquero.min.js" | resources.Fingerprint "sha512" -}}
 
     <script src="{{ $arquero.RelPermalink }}" integrity="{{ $arquero.Data.Integrity }}"></script>
 
@@ -225,7 +226,7 @@
     <!-- Leaflet.colorIcon -->
     <!-- https://github.com/shevekk/Leaflet.ColorIcon -->
 
-    {{ $colorIcon := resources.Get "js/L.colorIcon.js" | resources.Fingerprint "sha512" }} <!-- need to use Hugo Pipes to get file from assets dir -->
+    {{- $colorIcon := resources.Get "js/L.colorIcon.js" | resources.Fingerprint "sha512" }} <!-- need to use Hugo Pipes to get file from assets dir -->
 
     <script src="{{ $colorIcon.RelPermalink }}" integrity="{{ $colorIcon.Data.Integrity }}"></script>
 
@@ -237,7 +238,7 @@
 
     {{- /*  D3  */ -}}
 
-    {{- $d3 := resources.Get "node_modules/d3/dist/d3.min.js" | resources.Fingerprint "sha512" -}}
+    {{- $d3 := resources.Get "node_modules/d3/dist/d3.min.js" | resources.Fingerprint "sha512" }}
 
     <script src="{{ $d3.RelPermalink }}" integrity="{{ $d3.Data.Integrity }}"></script>
 
@@ -277,19 +278,21 @@
 
 {{- if (eq .Section "data-stories") -}}
     <meta data-pagefind-filter="section[content]" content="Data Stories">
-{{ end }}
+{{- end }}
 
 {{- if (eq .Section "neighborhood-reports") -}}
     <meta data-pagefind-filter="section[content]" content="Neighborhood Reports">
-{{ end }}
+{{- end }}
 
 {{- if (eq .Section "data-explorer") -}}
     <meta data-pagefind-filter="section[content]" content="Data Explorer">
-{{ end }}
+{{- end }}
 
 {{- if (eq .Section "key-topics") -}}
     <meta data-pagefind-filter="section[content]" content="Key Topics">
-{{ end }}
+{{- end -}}
+
+{{- /*  set site params  */ -}}
 
 <script>
 
@@ -301,9 +304,9 @@
 </script>
 
 
-{{/* ====  set title for pagefind search results  ==== */}}
+{{/* ====  set title for pagefind search results  ==== */ -}}
 
-{{ if (and (.Parent) (.Parent.Kind ) (ne .Parent.Kind "home")) -}}
+{{- if (and (.Parent) (.Parent.Kind ) (ne .Parent.Kind "home")) -}}
 
     <meta 
         data-pagefind-meta="title:{{ .Title }} | {{ .Parent.Title }}"
@@ -317,4 +320,4 @@
         class="d-none"
     >
 
-{{ end }}
+{{- end }}
