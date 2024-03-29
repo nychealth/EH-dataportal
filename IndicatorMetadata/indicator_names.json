@@ -634,31 +634,6 @@
     "description": "Structural racism, which includes neighborhood disinvestment, racist housing policies, fewer job opportunities and lower pay, and less access to high-quality education and health care, means that our society often deprives people of color of the resources they need to stay healthy.",
     "name": "Race and ethnicity"
   },
-  "2326": {
-    "IndicatorID": 2326,
-    "description": null,
-    "name": "Race and Ethnicity (ICE 1)"
-  },
-  "2327": {
-    "IndicatorID": 2327,
-    "description": null,
-    "name": "Race and Ethnicity (ICE 2)"
-  },
-  "2328": {
-    "IndicatorID": 2328,
-    "description": null,
-    "name": "ICE 1"
-  },
-  "2329": {
-    "IndicatorID": 2329,
-    "description": null,
-    "name": "ICE 2"
-  },
-  "2330": {
-    "IndicatorID": 2330,
-    "description": null,
-    "name": "ICE 3"
-  },
   "2334": {
     "IndicatorID": 2334,
     "description": "People age 25 years and over who have completed high school or high school equivalency.",
@@ -874,11 +849,6 @@
     "description": "Falls are a leading cause of injury among older adults.",
     "name": "Homes with reported falls (age 65+)"
   },
-  "2404": {
-    "IndicatorID": 2404,
-    "description": "The number of children aged 1-13 years exposed to tobacco smoke at home all of the time, most of the time, or occasionally. Secondhand smoke is harmful to children and can cause or worsen respiratory and asthma issues and ear infections.",
-    "name": "Secondhand smoke exposure at home (children)"
-  },
   "2405": {
     "IndicatorID": 2405,
     "description": "Carbon monoxide (CO) exposure can be life-threatening or fatal. ED visits and hospitalizations allows us to understand the burden of CO-related health impacts.",
@@ -924,35 +894,10 @@
     "description": "Sanitation supports public health by providing clean, healthy public spaces for people to live, work, and get around. Litter baskets, or trash cans, are associated with a decrease in littering. Enclosed, non-wire baskets are generally better than wire baskets.",
     "name": "Litter basket coverage"
   },
-  "2417": {
-    "IndicatorID": 2417,
-    "description": "Adults with probable depression in the past 2 weeks (from when they were surveyed). Depression is a common mental health disorder. Symptoms include feeling sad or hopeless, having little interest in doing things and feeling tired.",
-    "name": "Depression (adults)"
-  },
-  "2418": {
-    "IndicatorID": 2418,
-    "description": "A psychiatric hospitalization is defined as an overnight stay or longer in a psychiatric inpatient unit (excluding emergency room visits without an inpatient admission) for individuals with behaviors or symptoms that are likely to result in harm to themselves or others.",
-    "name": "Psychiatric hospitalizations (adults)"
-  },
-  "2419": {
-    "IndicatorID": 2419,
-    "description": "Serious psychological distress includes mental health problems that impact social, occupational, and educational functioning.",
-    "name": "Serious psychological distress (adults)"
-  },
-  "2420": {
-    "IndicatorID": 2420,
-    "description": "An intentional injury death that results from self-harm.",
-    "name": "Suicide deaths"
-  },
   "2421": {
     "IndicatorID": 2421,
     "description": "Retail locations that sell tobacco products. Neighborhoods with higher densities of tobacco retailers increase access to tobacco and may increase smoking rates.",
     "name": "Tobacco retailers"
-  },
-  "2422": {
-    "IndicatorID": 2422,
-    "description": "E-cigarette smoke: The number of children aged 1-13 years exposed to e-cigarette smoke at home all of the time, most of the time, or occasionally. Chemicals in the vapor from e-cigarettes can be harmful to kids.",
-    "name": "E-cigarette vapor exposure at home (children)"
   },
   "2425": {
     "IndicatorID": 2425,
@@ -978,11 +923,6 @@
     "IndicatorID": 2429,
     "description": "Children ages 1 to 13 who have had an asthma attack in the past year. Asthma attacks are a measureable adverse health outcome of asthma.",
     "name": "Children with an asthma attack (past 12 months)"
-  },
-  "2430": {
-    "IndicatorID": 2430,
-    "description": "Children who live in homes with visible mold/mildew. Mold and mildew can trigger asthma attacks in children.",
-    "name": "Children in homes with visible mold or mildew (age 1-13)"
   },
   "2431": {
     "IndicatorID": 2431,

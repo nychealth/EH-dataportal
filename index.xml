@@ -6,8 +6,21 @@
     <description>Recent content in The Environment and Health Data Portal: Home page on Environment &amp; Health Data Portal</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 18 Oct 2023 13:11:44 -0400</lastBuildDate>
     <atom:link href="https://gcappbesp307.health.dohmh.nycnet/dev-stage/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Housing creates health</title>
+      <link>https://gcappbesp307.health.dohmh.nycnet/dev-stage/data-stories/housing-creates-health/</link>
+      <pubDate>Tue, 05 Mar 2024 01:18:56 -0400</pubDate>
+      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-stage/data-stories/housing-creates-health/</guid>
+      <description>Health is determined by many factors, and people tend to be healthier when they have economic stability, live in quality housing and have access to public space and safe, connected communities. In 2020, the NYC Health Department held a series of community conversations with residents and local stakeholders across 26 neighborhoods. New Yorkers shared personal stories that illuminate their priorities for building healthier neighborhoods, healthier childhoods and more. This is one part of a three-part series on how housing, economic stability and public space create health.</description>
+    </item>
+    <item>
+      <title>Economic stability creates health</title>
+      <link>https://gcappbesp307.health.dohmh.nycnet/dev-stage/data-stories/economic-stability/</link>
+      <pubDate>Thu, 08 Feb 2024 09:01:00 -0400</pubDate>
+      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-stage/data-stories/economic-stability/</guid>
+      <description>Health is determined by many factors, and people tend to be healthier when they have economic stability, live in quality housing and have access to public space and safe, connected communities. In 2020, the NYC Health Department held a series of community conversations with residents and local stakeholders across 26 neighborhoods. New Yorkers shared personal stories that illuminate their priorities for building healthier neighborhoods, healthier childhoods and more. This is one part of a three-part series on how housing, economic stability, and public space create health.</description>
+    </item>
     <item>
       <title>Injury deaths in NYC</title>
       <link>https://gcappbesp307.health.dohmh.nycnet/dev-stage/data-stories/injury-deaths/</link>
@@ -426,7 +439,7 @@
       <link>https://gcappbesp307.health.dohmh.nycnet/dev-stage/data-explorer/restaurant-food-safety/</link>
       <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       <guid>https://gcappbesp307.health.dohmh.nycnet/dev-stage/data-explorer/restaurant-food-safety/</guid>
-      <description>New York City has approximately 24,000 restaurants that the Health Department inspects every year to monitor compliance with city and state food safety regulations. At the end of an inspection, the Health Department gives restaurants a score, which is eventually converted to a grade of A, B or C. This site describes the distribution of A grades across New York City restaurants.&#xA;Restaurant Food Safety and Health Safe food handling can protect diners from foodborne illness.</description>
+      <description>New York City has approximately 28,000 restaurants that the Health Department inspects every year to monitor compliance with city and state food safety regulations. At the end of an inspection, the Health Department gives restaurants a score, which is eventually converted to a grade of A, B or C. This site describes the distribution of A grades across New York City restaurants.&#xA;Restaurant Food Safety and Health Safe food handling can protect diners from foodborne illness.</description>
     </item>
     <item>
       <title>Social conditions</title>
@@ -605,9 +618,9 @@
     </item>
     <item>
       <title>Active Design, Physical Activity and Health</title>
-      <link>https://gcappbesp307.health.dohmh.nycnet/dev-stage/neighborhood-reports/activedesign/</link>
+      <link>https://gcappbesp307.health.dohmh.nycnet/dev-stage/neighborhood-reports/active_design_physical_activity_and_health/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-stage/neighborhood-reports/activedesign/</guid>
+      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-stage/neighborhood-reports/active_design_physical_activity_and_health/</guid>
       <description>The design and conditions of buildings, streets, public transportation and parks influence physical activity, use of active transportation and other healthy behavior. A neighborhood&amp;rsquo;s features can also impact the safety of its residents.</description>
     </item>
     <item>
@@ -906,9 +919,9 @@
     </item>
     <item>
       <title>Asthma and the Environment</title>
-      <link>https://gcappbesp307.health.dohmh.nycnet/dev-stage/neighborhood-reports/asthma/</link>
+      <link>https://gcappbesp307.health.dohmh.nycnet/dev-stage/neighborhood-reports/asthma_and_the_environment/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-stage/neighborhood-reports/asthma/</guid>
+      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-stage/neighborhood-reports/asthma_and_the_environment/</guid>
       <description>Asthma is a common lung disease and a leading cause of hospitalizations for children under 15 years old. This report provides a summary of asthma indicators by neighborhood. It also describes housing and neighborhood characteristics that can make asthma worse.</description>
     </item>
     <item>
@@ -1256,10 +1269,10 @@
     </item>
     <item>
       <title>Climate and Health</title>
-      <link>https://gcappbesp307.health.dohmh.nycnet/dev-stage/neighborhood-reports/climateandhealth/</link>
+      <link>https://gcappbesp307.health.dohmh.nycnet/dev-stage/neighborhood-reports/climate_and_health/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-stage/neighborhood-reports/climateandhealth/</guid>
-      <description>Extreme heat, coastal storms, flooding and episodes of elevated ozone are climate-related hazards that may increase with climate change and have important public health impacts in New York City. Extreme weather can cause power outages, which also threaten public health. This report provides neighborhood indicators of climate-related hazards, vulnerability and health impacts.</description>
+      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-stage/neighborhood-reports/climate_and_health/</guid>
+      <description>Extreme heat, coastal storms, and flooding are climate-related hazards that are increasing because of climate change. They have important public health impacts in New York City. Extreme weather can cause power outages, which also threaten public health. This report provides neighborhood indicators of climate-related hazards, populations that may be most affected, built environment factors that can increase risk, and health impacts.</description>
     </item>
     <item>
       <title>Climate and Health</title>
@@ -1648,9 +1661,9 @@
     </item>
     <item>
       <title>Housing and Health</title>
-      <link>https://gcappbesp307.health.dohmh.nycnet/dev-stage/neighborhood-reports/housing/</link>
+      <link>https://gcappbesp307.health.dohmh.nycnet/dev-stage/neighborhood-reports/housing_and_health/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-stage/neighborhood-reports/housing/</guid>
+      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-stage/neighborhood-reports/housing_and_health/</guid>
       <description>This report provides a neighborhood summary of housing conditions and related health outcomes. It also describes population characteristics that can increase vulnerability to housing hazards.</description>
     </item>
     <item>
@@ -1991,9 +2004,9 @@
     </item>
     <item>
       <title>Outdoor Air and Health</title>
-      <link>https://gcappbesp307.health.dohmh.nycnet/dev-stage/neighborhood-reports/outdoorair/</link>
+      <link>https://gcappbesp307.health.dohmh.nycnet/dev-stage/neighborhood-reports/outdoor_air_and_health/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-stage/neighborhood-reports/outdoorair/</guid>
+      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-stage/neighborhood-reports/outdoor_air_and_health/</guid>
       <description>Air pollution is one of the most important environmental threats to urban populations and while all people are exposed, pollutant emissions, levels of exposure, and population vulnerability vary across neighborhoods. Exposures to common air pollutants have been linked to respiratory and cardiovascular diseases, cancers, and premature deaths.</description>
     </item>
     <item>
