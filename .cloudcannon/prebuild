@@ -1,6 +1,6 @@
 #!/bin/bash
 
-has_git=$(git status)
+has_git=$(git -C . rev-parse 2>/dev/null; echo $?)
 
 if [[ "$has_git" ]]; then 
 
