@@ -38,9 +38,25 @@
                 <i class="fas fa-star" aria-hidden="true" style="margin-right: 10px"></i>{{ .Title }}
             </h1>
             <div class="row">
-                <div class="col-md-8 mr-auto">
+                <div class="col-md-8">
                     {{ .Content }}
 
+                </div>
+
+                <div class="col-md-4 border-left">
+                    <div class="fs-sm">
+                        <h4>About the data</h4>
+                        <p>Data are hourly measurements of PM2.5, in micrograms per cubic meter of air (µg/m<sup>3</sup>). External factors can sometimes affect monitor functioning. Data are preliminary and subject to change.</p>
+            
+                        <strong>Street-level monitors</strong>
+                        <p>Data come from the <a href="../nyccas">NYC Community Air Survey</a>'s street-level monitors, which measure ground-level exposures. We apply a calibration factor to make our data comparable to DEC data and historical EPA data.</p>
+                        
+                        <strong>NYS DEC monitors</strong>
+                        <p>We show the average readings from 11 rooftop monitors from the <a href="https://www.dec.ny.gov/index.html">NY State Department of Environmental Conservation (DEC)</a>, which collects data for the Federal Clean Air Act.</p> 
+                        <a href="#accordion-01" class="float-right fs-sm">Download archived data.</a>
+            
+                    
+                    </div>
                 </div>
             </div>
         </div>
@@ -48,58 +64,69 @@
 
     {{- /* map + chart */}}
 
+    <div class="row">
+        <div class="col-md-10 mx-auto col-sm-12">
+            <div class="row mt-4">
+                <div class="col-md-4">
+
+                    <div class="dropright">
+                        <button class="btn btn-outline-secondary btn-block btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Choose location
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="btnDropdownMenu" style="padding: 0px!important;">
+                        </div>
+                      </div>
+                    <div id="map" class="d-none d-md-block">
+                    </div>
+                    <button onclick="restore()" type="button" id="btnrestore" class="btn btn-sm btn-outline-dark btn-block">
+                        Reset</button>
+                </div>
+
+                <div class="col-md-8">
+                    <div class="border-bottom">
+
+
+                        <!-- Chart set -->
+                        <div id="numberinput" class="float-right pt-1"
+                        style="font-size: 12px;">
+                            <label for="inputNum" style="display:inline-block; font-size: 12px;">Show last</label>
+                            <input inputmode="numeric" pattern="[0-9]*" type="number" style="display:inline-block" id="inputNum" name="inputNum" min="1" max="7">
+                            days.
+                            </form>
+                                </div>
+                        </div>
+            
+
+                        <div style="width:100%">
+                            <span class="fs-sm">Hourly PM2.5 measurements (in µg/m<sup>3</sup>)</span> | <span class="fs-sm" style="color:red">NAAQS 24-hour PM2.5 standard (35 µg/m<sup>3</sup>)</span>
+                        </div>
+            
+                        <div id="vis2" style="width: 100%; height: 400px;" class="mt-1">
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
 
     <div class="row">
         <div class="col-md-10 mx-auto col-sm-12">
 
-            <div class="row mt-4">
+            <div class="row mt-4 hide">
                 <div class="col-md-3">
-                    <div id="buttonHolder">
+                    <div id="buttonHolder" class="hide">
                         <!-- JavaScript creates buttons from available monitor feeds and inserts them here -->
                     </div>
-
-                    <button onclick="restore()" type="button" id="btnrestore" class="mb-1 btn btn-sm btn-block btn-dark">
-                        Reset</button>
-                </div>
-        
-                <div class="col-md-5 ">
-                    <div id="map" class="d-none d-md-block">
-                    </div>
-                </div>
-        
-                <div class="col-md-4">
-                    <div class="fs-sm">
-                    <h4>About the data</h4>
-                    <p>Data are hourly measurements of PM2.5, in micrograms per cubic meter of air (µg/m<sup>3</sup>). External factors can sometimes affect monitor functioning. Data are preliminary and subject to change.</p>
-        
-                    <strong>Street-level monitors</strong>
-                    <p>Data come from the <a href="../nyccas">NYC Community Air Survey</a>'s street-level monitors, which measure ground-level exposures. We apply a calibration factor to make our data comparable to DEC data and historical EPA data.</p>
-                    
-                    <strong>NYS DEC monitors</strong>
-                    <p>We show the average readings from 11 rooftop monitors from the <a href="https://www.dec.ny.gov/index.html">NY State Department of Environmental Conservation (DEC)</a>, which collects data for the Federal Clean Air Act.</p> 
-                    <a href="#accordion-01" class="float-right fs-sm">Download archived data.</a>
-        
-                
-                </div>
-                </div>
-        
-                <div class="col-12">
-
                 </div>
             </div>
 
-            <div class="row mt-3">
+            <div class="row mt-1">
                 <div class="col-12">
-
-                    <!-- Choose a location -->
-                    <div class="rtaqbox p-1 my-1" id="chooseBox">
-                        <p class="fs-md ">Choose a location above to highlight it on the chart below.</p>
-                    </div>
 
                     <!-- Average value box -->
                     <div class="rtaqbox p-1 hide my-1" id="averageBox">
-                        <p class="fs-md align-right">Over the last 24 hours, the average PM2.5 at this location is <span id="locAverage" style="font-weight:bold;" class="badge badge-primary">XX</span>. This is <span id="aboveBelow" style="font-weight:bold;">XX</span> the <a href="https://www.epa.gov/criteria-air-pollutants/naaqs-table">24-hour NAAQS standard of 35</a>.</p>
+                        <p class="fs-md align-right"><span id="locColor"><i class="fas fa-square mr-1"></i></span><span id="locationSend" class="home-label font-weight-bold">LOCATION</span>: Over the last 24 hours, the average PM2.5 at this location is <span id="locAverage" style="font-weight:bold;" class="badge badge-primary">XX</span>. This is <span id="aboveBelow" style="font-weight:bold;">XX</span> the <a href="https://www.epa.gov/criteria-air-pollutants/naaqs-table">24-hour NAAQS standard of 35</a>.</p>
                     </div>
                 
                     <!-- last 24-hour info box -->
@@ -123,25 +150,7 @@
 
             <div class="row mt-3">
                 <div class="col-12">
-                    <div class="border-bottom">
 
-            
-                            <div id="numberinput" class="float-right pt-1"
-                            style="font-size: 12px;">
-                                <label for="inputNum" style="display:inline-block; font-size: 12px;">Show last</label>
-                                <input inputmode="numeric" pattern="[0-9]*" type="number" style="display:inline-block" id="inputNum" name="inputNum" min="1" max="7">
-                                days.
-                                </form>
-                            </div>
-                    </div>
-        
-    
-                    <div style="width:100%">
-                        <span class="fs-sm">Hourly PM2.5 measurements (in µg/m<sup>3</sup>)</span> | <span class="fs-sm" style="color:red">NAAQS 24-hour PM2.5 standard (35 µg/m<sup>3</sup>)</span>
-                    </div>
-        
-                    <div id="vis2" style="width: 100%; height: 400px;" class="mt-1">
-                    </div>
         
                 </div>
 
@@ -162,7 +171,7 @@
 
 
 
-    <div class="row my-4">
+    <div class="row my-2">
         <div class="col-md-10 mx-auto col-sm-12">
             <div class="row border p-2">
                 <div class="col-md-8 ml-auto">
