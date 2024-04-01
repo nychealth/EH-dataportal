@@ -164,8 +164,8 @@ var specOne = {
     },
     "config": {
       "view": {"stroke": null},
-      "axisX": {"labelAngle": 0, "grid": false,"tickCount": 5},
-      "axisY": {"tickCount": 3}
+      "axisX": {"labelAngle": 0, "grid": false, "tickCount": {"interval": "month", "step": 6}},
+      "axisY": {"tickCount": 2}
     },
     "data": {
       "url": "311-complaints.csv"
@@ -176,7 +176,8 @@ var specOne = {
         "field": "Date",
         "type": "temporal",
         "title": "",
-        "axis": {"format": "%b %Y"}
+        "axis": {"format": "%b %Y"},
+        "scale": {"domainMin": 1650841000000}
       }
     },
     "layer": [
@@ -287,7 +288,7 @@ var specTwo = {
     },
     "config": {
       "view": {"stroke": null},
-      "axisX": {"labelAngle": 0, "grid": false,"tickCount": 4},
+      "axisX": {"labelAngle": 0, "grid": false, "tickCount": {"interval": "month", "step": 6}},
       "axisY": {"tickCount": 3}
     },
     "data": {
@@ -303,7 +304,8 @@ var specTwo = {
         "field": "Date",
         "type": "temporal",
         "title": "",
-        "axis": {"format": "%b %Y"}
+        "axis": {"format": "%b %Y"},
+        "scale": {"domainMin": 1650841000000}
       }
     },
     "layer": [
@@ -396,7 +398,7 @@ var specTwo = {
     },
     "config": {
       "view": {"stroke": null},
-      "axisX": {"labelAngle": 0, "grid": false,"tickCount": 4},
+      "axisX": {"labelAngle": 0, "grid": false, "tickCount": {"interval": "month", "step": 6}},
       "axisY": {"tickCount": 3}
     },
     "data": {
@@ -411,7 +413,8 @@ var specTwo = {
         "field": "Date",
         "type": "temporal",
         "title": "",
-        "axis": {"format": "%b %Y"}
+        "axis": {"format": "%b %Y"},
+        "scale": {"domainMin": 1650841000000}
       }
     },
     "layer": [
@@ -499,7 +502,7 @@ var specTwo = {
     },
     "config": {
       "view": {"stroke": null},
-      "axisX": {"labelAngle": 0, "grid": false,"tickCount": 4},
+      "axisX": {"labelAngle": 0, "grid": false, "tickCount": {"interval": "month", "step": 6}},
       "axisY": {"tickCount": 3}
     },
     "data": {
@@ -513,7 +516,8 @@ var specTwo = {
         "field": "Date",
         "type": "temporal",
         "title": "",
-        "axis": {"format": "%b %Y"}
+        "axis": {"format": "%b %Y"},
+        "scale": {"domainMin": 1650841000000}
       }
     },
     "layer": [
