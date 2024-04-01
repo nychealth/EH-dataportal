@@ -2,10 +2,6 @@
 
 {{ if eq hugo.Environment "production" "prod_prod" }}
 
-{{/*  add GA code for prod data  */}}
-
-{{ if eq hugo.Environment "production" "prod_prod" }}
-
     {{ warnf (print "prod environment: " hugo.Environment) }}
 
     <!-- Google tag (gtag.js) -->
