@@ -198,6 +198,19 @@ var specOne = {
           {
             "transform": [{"filter": {"param": "hover", "empty": false}}],
             "mark": "point"
+          },
+          {
+            "encoding": {
+              "x": {"aggregate": "max", "field": "Date"},
+              "y": {"aggregate": {"argmax": "Date"}, "field": "Number"}
+            },
+            "layer": [
+              {"mark": {"type": "circle"}},
+              {
+                "mark": {"type": "text", "align": "left", "dx": 14},
+                "encoding": {"text": {"field": "ComplaintType", "type": "nominal"}}
+              }
+            ]
           }
         ]
       },
@@ -312,6 +325,19 @@ var specTwo = {
           {
             "transform": [{"filter": {"param": "hover", "empty": false}}],
             "mark": "point"
+          },
+          {
+            "encoding": {
+              "x": {"aggregate": "max", "field": "Date"},
+              "y": {"aggregate": {"argmax": "Date"}, "field": "Number"}
+            },
+            "layer": [
+              {"mark": {"type": "circle"}},
+              {
+                "mark": {"type": "text", "align": "left", "dx": 14},
+                "encoding": {"text": {"field": "Type", "type": "nominal"}}
+              }
+            ]
           }
         ]
       },
@@ -407,6 +433,19 @@ var specTwo = {
           {
             "transform": [{"filter": {"param": "hover", "empty": false}}],
             "mark": "point"
+          },
+          {
+            "encoding": {
+              "x": {"aggregate": "max", "field": "Date"},
+              "y": {"aggregate": {"argmax": "Date"}, "field": "Number"}
+            },
+            "layer": [
+              {"mark": {"type": "circle"}},
+              {
+                "mark": {"type": "text", "align": "left", "dx": 14},
+                "encoding": {"text": {"field": "Type", "type": "nominal"}}
+              }
+            ]
           }
         ]
       },
@@ -496,6 +535,19 @@ var specTwo = {
           {
             "transform": [{"filter": {"param": "hover", "empty": false}}],
             "mark": "point"
+          },
+          {
+            "encoding": {
+              "x": {"aggregate": "max", "field": "Date"},
+              "y": {"aggregate": {"argmax": "Date"}, "field": "Number"}
+            },
+            "layer": [
+              {"mark": {"type": "circle"}},
+              {
+                "mark": {"type": "text", "align": "left", "dx": 14},
+                "encoding": {"text": {"field": "Thing", "type": "nominal"}}
+              }
+            ]
           }
         ]
       },
