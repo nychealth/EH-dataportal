@@ -18,7 +18,7 @@
         <div id="datastoryheader" style="background-image: URL({{ $image.RelPermalink }}); background-position: 50% 25%">
     
             <div class="medium my-auto">
-                <h1 class="titleheader py-2 px-4">
+                <h1 class="titleheader py-2 px-4" data-pagefind-weight="10.0">
                     {{ .Title }}
                 </h1>
             </div>
@@ -43,7 +43,7 @@
         <div class="col-md-2 mr-auto"></div>
     </div>
 
-    <div class="row">
+    <div class="row" data-pagefind-weight="7.0">
         <div class="col-md-8 col-sm-12 mx-auto">
             <!-- Introduction and Key Findings -->
             <div class="medium mb-2">        
@@ -55,7 +55,7 @@
             <!-- Pollutants and Methods -->
 
     <div class="row">
-        <div class="col-md-10 col-sm-12 mx-auto">
+        <div class="col-md-10 col-sm-12 mx-auto" data-pagefind-weight="7.0">
             <hr class="my-2">
             <div class="row">
                 <div class="col-sm-6 col-xs-12">
@@ -241,11 +241,11 @@
             </div>
 
             <!-- Modal -->
-<div class="modal fade" id="mapModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="mapModal" tabindex="-1" role="dialog" aria-labelledby="yearsModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Pollutants: All Years</h5>
+          <h5 class="modal-title" id="yearsModalLabel" data-pagefind-ignore="all">Pollutants: All Years</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>

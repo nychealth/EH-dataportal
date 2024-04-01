@@ -13,7 +13,7 @@
 <meta property="og:description" content="{{ if .Params.seo_description -}} {{ .Params.seo_description }} {{ else }} {{ .Site.Data.globals.seo_defaults.seo_description }} {{- end }}" />
 <meta property="og:site_name" content="{{ .Site.Title }}" />
 {{ if .Params.seo_image }}{{ $src := resources.Get .Params.seo_image }}{{ $image := $src.Fill "2400x1260"}}<meta property="og:image" content="{{ $image.RelPermalink }}">{{ else }}{{ $src := resources.Get .Site.Data.globals.seo_defaults.seo_image }}{{ $image := $src.Fill "2400x1260"}}<meta property="og:image" content="{{ $image.RelPermalink }}">{{- end -}}
-{{- range .Site.Data.globals.social.social_destinations -}}
+{{- range .Site.Data.globals.social.social_destinations }}
 <meta property="og:see_also" content="{{ .url }}" />{{- end -}}
 
 <!-- Twitter OpenGraph -->
