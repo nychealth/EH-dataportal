@@ -148,7 +148,7 @@ var btns;
 function drawButtons() {
     var button = 'hi :) '
     for (let i = 0; i < activeMonitors.length; i++) {
-        button = `<button type="button" id="${activeMonitors[i].loc_col}" class="mb-1 ml-1 selectorbtn btn btn-sm btn-outline-secondary no-underline">
+        button = `<button type="button" id="${activeMonitors[i].loc_col}" class="mb-1 selectorbtn btn btn-sm btn-outline-light text-dark btn-block no-underline">
         <span style="color: ${activeMonitors[i].Color};">
             <i class="fas fa-square mr-1"></i>
         </span>
@@ -195,14 +195,16 @@ function updateData(x) {
         // zoom to the corresponding leaflet marker
         map.setView(monitors[index].getLatLng(), 13);
 
-        document.getElementById('decInfo').classList.add('hide')
+        // document.getElementById('decInfo').classList.add('hide')
 
 
     } else {
         resetZoom();
-        document.getElementById('decInfo').classList.remove('hide')
+        // document.getElementById('decInfo').classList.remove('hide')
     }
 
+    // hide regular box
+    document.getElementById('chooseBox').classList.add('hide')
 
 
     // update opacity for selected and deselected series, and redraw Chart:
@@ -451,6 +453,9 @@ function restore() {
     document.getElementById('averageBox').classList.add('hide')
     current_spec.layer[2].encoding.opacity.value = 0.0
     vegaEmbed('#vis2', current_spec)
+
+    document.getElementById('chooseBox').classList.remove('hide')
+
 
 }
 

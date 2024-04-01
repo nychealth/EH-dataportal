@@ -34,8 +34,8 @@
           "type": "line", 
           "interpolate": "monotone",
           "point": {
-            "size": 5,
-            "opacity": 0.5
+            "size": 15,
+            "opacity": 0
           }, 
           "tooltip": true
           },
