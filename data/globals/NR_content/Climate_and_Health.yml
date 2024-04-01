@@ -1,0 +1,27 @@
+report_topics:
+  - report_topic: Climate Hazards
+    report_topic_description: ""
+    MeasureID:
+      - 687
+      - 688
+  - report_topic: Health Outcomes
+    report_topic_description: ""
+    MeasureID:
+      - 539
+      - 1196
+  - report_topic: Built Environment
+    report_topic_description: ""
+    MeasureID:
+      - 88
+      - 690
+      - 706
+      - 47
+  - report_topic: Priority Populations
+    report_topic_description: ""
+    MeasureID:
+      - 506
+      - 221
+      - 691
+      - 692
+      - 693
+      - 2377

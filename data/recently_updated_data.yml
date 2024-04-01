@@ -1,17 +1,12 @@
 ---
 featured:
-- copy: Farmers markets
-  link: data-explorer/healthy-eating/?id=2432#display=summary
-- copy: Children with an asthma attack (past 12 months)
-  link: data-explorer/asthma/?id=2429#display=summary
-- copy: Heat vulnerability index
-  link: data-explorer/weather-related-illness/?id=2191#display=summary
-- copy: Average Citi Bike availability
-  link: data-explorer/active-design/?id=2425#display=summary
-- copy: Annual vehicle miles traveled
-  link: data-explorer/walking-driving-and-cycling/?id=2112#display=summary
+- copy: Harbor water quality
+  link: data-explorer/waterways/
 - copy: Commuting modes
   link: data-explorer/walking-driving-and-cycling/?id=2415#display=summary
-- copy: Litter basket coverage
-  link: data-explorer/mice-and-rats/?id=2416#display=summary
-
+- copy: Neighborhood poverty
+  link: data-explorer/economic-conditions/?id=103#display=summary
+- copy: Unemployment
+  link: data-explorer/economic-conditions/?id=2337#display=summary
+- copy: Heat vulnerability index
+  link: data-explorer/weather-related-illness/?id=2191#display=summary

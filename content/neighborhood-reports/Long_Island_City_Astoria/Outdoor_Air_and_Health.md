@@ -3,7 +3,7 @@ title: "Outdoor Air and Health"
 neighborhood: "Long Island City - Astoria"
 summary: "Air pollution is one of the most important environmental threats to urban populations and while all people are exposed, pollutant emissions, levels of exposure, and population vulnerability vary across neighborhoods. Exposures to common air pollutants have been linked to respiratory and cardiovascular diseases, cancers, and premature deaths."
 data_json: "Outdoor Air and Health in Long Island City - Astoria"
-content_yml: "outdoor"
+content_yml: "Outdoor_Air_and_Health"
 type: location
 seo_title: "Outdoor Air and Health in Long Island City - Astoria"
 seo_description: "Outdoor Air and Health data profile for the Long Island City - Astoria neighborhood of NYC."

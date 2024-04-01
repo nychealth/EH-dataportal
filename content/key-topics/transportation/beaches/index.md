@@ -4,6 +4,7 @@ date: 2021-09-08T11:14:56-04:00
 draft: false
 seo_title: "Data on beach water quality"
 seo_description: "Data, findings, and more."
+description: "Data on beach water quality in NYC."
 tags: 
 categories: [transportation]
 keywords: ["beaches", "beach","water","quality","bacteria","sewage","park","parks","swimming","sewage"]

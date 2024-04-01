@@ -68,7 +68,7 @@ photocredit: "Benjamin Kanter/Mayoral Photography Office"
 
 {{< rawhtml >}}
 <div class="my-3">
-<iframe src="HOLC-shootings/map.html" scrolling="no" frameborder="0" style="position: relative; height: 600px; width: 100%;"></iframe>
+<iframe src="../../../maps/HOLC-shootings/map.html" scrolling="no" frameborder="0" style="position: relative; height: 600px; width: 100%;"></iframe>
 </div>
 {{< /rawhtml >}}
 
@@ -257,7 +257,7 @@ data-target="#dataModal"><i class="fas fa-question-circle"></i>&nbsp;关于数�
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="dataModalTitle">关于数据 </h5>
+                <h5 class="modal-title" id="dataModalTitle" data-pagefind-ignore="all">关于数据 </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

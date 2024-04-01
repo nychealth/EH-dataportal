@@ -1,0 +1,30 @@
+---
+city:
+- entry: 
+  copy: "Enforces tenant and housing laws: landlords must keep homes free of pests and mold."
+  link: https://www1.nyc.gov/assets/doh/downloads/pdf/asthma/local-law-55.pdf
+- entry:
+  copy: "Helps low-income households buy and install air conditioners."
+  link: https://access.nyc.gov/programs/cooling-assistance-benefit/
+- entry: 
+  copy: "Supports comprehensive lead poisoning prevention efforts."
+  link: https://www.nyc.gov/site/doh/health/health-topics/lead-poisoning-prevention.page
+- entry: 
+  copy: "Offers free Healthy Homes Community Workshops."
+  link: https://www1.nyc.gov/site/doh/health/health-topics/healthy-home-workshops.page
+
+you:
+- entry: 
+  copy: "Don’t allow smoking in your home or car."
+  link: https://www1.nyc.gov/site/doh/health/health-topics/smoking-smoke-free-housing.page
+- entry: 
+  copy: "Reduce dust levels in your home. Removing clutter and cleaning regularly can help."
+  link: https://www.nyc.gov/site/doh/health/health-topics/indoor-air-quality.page
+- entry: 
+  copy: "Fix leaks in your home to prevent mold. Notify your landlord. If they do not fix leaks promptly, call 311."
+  link: https://www1.nyc.gov/site/doh/health/health-topics/healthy-home.page
+
+data:
+- entry: 
+  copy: NYC Community Health Profiles.
+  link: https://www1.nyc.gov/site/doh/data/data-publications/profiles.page

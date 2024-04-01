@@ -1,3 +1,5 @@
 #!/bin/bash
 
-npx -y grunt lunr-index --stack
+# npm_config_yes=true npx pagefind --site docs --output-subdir pagefind
+# npm_config_yes=true npx pagefind --site docs
+npx -y pagefind --site docs
