@@ -236,11 +236,11 @@
 
 
 
-<script>
-    var topic_indicators = {{ $topic_indicators_map.Get "topic_indicators" }};
-    // console.log(topic_indicators)
+    <script>
+        var topic_indicators = {{ $topic_indicators_map.Get "topic_indicators" }};
+        // console.log(topic_indicators)
 
-    var destination = document.getElementById('indicatorNames')    
+        var destination = document.getElementById('indicatorNames')    
 
     function changeKT(x) {
         // console.log(x)
@@ -253,13 +253,15 @@
         // console.log('chosen: ' + chosen)
         document.getElementById(chosen).classList.remove('hide')
 
-        const KTs = document.querySelectorAll('.kt')
-        KTs.forEach((kt) => {
-            kt.classList.remove('active')
-        });
+            const KTs = document.querySelectorAll('.kt')
+            KTs.forEach((kt) => {
+                kt.classList.remove('active')
+            });
 
-        const link = 'kt'+x
-        document.getElementById(link).classList.add('active')
-    }
+            const link = 'kt'+x
+            document.getElementById(link).classList.add('active')
+        }
 
-</script>
+    </script>
+
+{{/*  {{- end }}  */}}
