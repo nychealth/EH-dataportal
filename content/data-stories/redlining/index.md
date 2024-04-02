@@ -58,7 +58,7 @@ The map below shows the extent of redlining in New York City.
 
 {{< rawhtml >}}
 <div class="py-0">
-    <iframe src="/maps/HOLC_map/HOLC_map.html" scrolling="no" frameborder="0"
+    <iframe src="{{< baseurl >}}maps/HOLC_map/HOLC_map.html" scrolling="no" frameborder="0"
         style="position: relative; height: 600px; width: 100%;"></iframe>
 </div>
 {{< /rawhtml >}}
