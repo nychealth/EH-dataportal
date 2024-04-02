@@ -59,7 +59,7 @@ const renderComparisonsChart = (
     let compIndicatorLabel  = [... new Set(metadata.array("IndicatorLabel"))];
     let compMeasurementType = [... new Set(metadata.array("MeasurementType"))];
     let compDisplayTypes    = [... new Set(metadata.array("DisplayType"))].filter(dt => dt != "");
-    let compNoCompare       = [... new Set(metadata.array("TrendNoCompare"))].filter(nc => nc != null)
+    let compNoCompare       = [... new Set(metadata.array("TrendNoCompare"))].filter(nc => nc != null)[0]
 
     console.log(">>>> compNoCompare", compNoCompare);
 
@@ -256,9 +256,25 @@ const renderComparisonsChart = (
     // create "don't compare" line JSON
     // ----------------------------------------------------------------------- //
 
+    // getting latest end period in the data
+
+    let maxDataEndPeriod = Math.max(...new Set(data.array("end_period")))
+    
+    // getting "no compare" end period from time period metadata
+
+    let noCompareEndPeriod = timeTable
+        .filter(`d => d.TimePeriod == ${compNoCompare}`)
+        .array("end_period")[0]
+
+    // testing to see if the data has later time periods than the "no compare" time
+
+    let hasGreaterEndPeriod = maxDataEndPeriod >= noCompareEndPeriod;
+
+    // if there's a "no compare" time, and there's data later than that, show the line
+
     let noCompare;
 
-    if (compNoCompare[0]) {
+    if (compNoCompare && hasGreaterEndPeriod) {
 
         // if a time period exists, return vertical rule JSON
 
@@ -266,7 +282,7 @@ const renderComparisonsChart = (
             "mark": "rule",
             "encoding": {
                 "x": {
-                    "datum": compNoCompare[0]
+                    "datum": compNoCompare
                 },
                 "xOffset": {"value": 0.5},
                 "color": {"value": "gray"},
@@ -275,7 +291,7 @@ const renderComparisonsChart = (
             }
         }]
 
-        let noCompareFootnote = `Because of a method change, data before ${compNoCompare[0]} shouldn't be compared to later data.`
+        let noCompareFootnote = `Because of a method change, data before ${compNoCompare} shouldn't be compared to later time periods.`
         document.querySelector("#trend-unreliability").innerHTML += "<div class='fs-sm text-muted'>" + noCompareFootnote + "</div>" ;
 
 
