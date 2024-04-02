@@ -105,7 +105,7 @@ The map below shows how New York City's neighborhoods were categorized.
 </div>
 <div class="wide my-4">
 <div class="py-0 mb-4">
-    <iframe src="/maps/HOLC_map/HOLC_map.html" scrolling="no" frameborder="0"
+    <iframe src="{{< baseurl >}}maps/HOLC_map/HOLC_map.html" scrolling="no" frameborder="0"
         style="position: relative; height: 600px; width: 100%;"></iframe>
 </div>
 </div>
