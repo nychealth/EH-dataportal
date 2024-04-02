@@ -3,6 +3,12 @@
     "width": "container",
     "height": "container",
     "autosize": {"type": "fit", "contains": "content", "resize": true},
+    "config": {
+      "axisY": {
+        "tickCount": 4
+      },
+      "view": {"stroke": "transparent"}
+    },
     "data": {"name": "summaryData"},
     "mark": {"type": "bar", "tooltip": true},
     "params": [

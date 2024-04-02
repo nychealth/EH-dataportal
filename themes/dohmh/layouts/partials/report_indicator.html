@@ -89,22 +89,22 @@
                 <table class="table">
                     <thead>
                       <tr>
-                        <th scope="col"  style="width:40%">Comparison</th>
-                        <th scope="col">{{ .data.measurement_type }} {{ .data.units }}</th>
+                        <th scope="col"  style="width:60%">&nbsp;</th>
+                        <th scope="col text-right">{{ .data.measurement_type }} {{ .data.units }}</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
                         <th scope="row"><span class="text-primary fs-xl">{{ .neighborhood }}</span></th>
-                        <td><span class="indicator-value fs-xl">{{ .data.data_value_geo_entity }}</span></td>
+                        <td><span class="indicator-value fs-xl text-primary font-weight-bold">{{ .data.data_value_geo_entity }}</span></td>
                       </tr>
                       <tr>
                         <th scope="row"><span class="fs-xl">{{ .borough }}</span></th>
-                        <td><span class="fs-xl">{{ .data.data_value_boro }}</span></td>
+                        <td><span class="fs-xl text-right">{{ .data.data_value_boro }}</span></td>
                       </tr>
                       <tr>
                         <th scope="row"><span class="fs-xl">New York City</span></th>
-                        <td><span class="fs-xl">{{ .data.data_value_nyc }}</span></td>
+                        <td><span class="fs-xl text-right">{{ .data.data_value_nyc }}</span></td>
                       </tr>
                     </tbody>
                   </table>
@@ -116,17 +116,16 @@
             </div>
             <hr>
             <div class="modal-body">
-                <span class="home-label font-weight-bold">For {{ lower .data.indicator_name }}:</span>
-                <p class="fs-lg">Compared to other NYC neighborhoods, <strong class="text-primary">{{ .neighborhood }}</strong> is {{ if eq (string .data.data_value_rank) "1" }}<span class="worse">worse</span> than most neighborhoods {{- else if eq (string .data.data_value_rank) "2" -}} in the <span class="middle">middle</span>{{- else -}}<span class="better">better</span> than most neighborhoods{{ end }}.</p>
+                <span class="home-label font-weight-bold">Comparison:</span>
+                <p class="fs-lg">For {{ lower .data.indicator_name }}, <strong class="text-primary">{{ .neighborhood }}</strong> is {{ if eq (string .data.data_value_rank) "1" }}<span class="worse">worse</span> than most neighborhoods {{- else if eq (string .data.data_value_rank) "2" -}} in the <span class="middle">middle</span>{{- else -}}<span class="better">better</span> than most neighborhoods{{ end }}.</p>
                 <p class="fs-sm">  <em>{{ .data.measurement_type }} {{ .data.units }}</em></p>
                 <div style="width:100%; height:30vmin; z-index:10000;" id="summary-{{ .data.indicator_data_name }}-{{ .count }}"></div>
 
             </div>
             <hr>
-            <div class="modal-body hide">
-
-                <h3 data-pagefind-ignore="all">Trends Over Time</h3>
-                <p><em>{{ .data.measurement_type }} {{ .data.units }}</em></p>
+            <div class="modal-body">
+                <span class="home-label font-weight-bold">Trends over time</span>
+                <p class="fs-sm"><em>{{ .data.measurement_type }} {{ .data.units }}</em></p>
                 <div style="width:100%; height:50vmin; z-index:10000;" id="trend-{{ .data.indicator_data_name }}-{{ .count }}"></div>
 
             </div>
