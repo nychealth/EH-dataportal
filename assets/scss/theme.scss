@@ -651,8 +651,8 @@ h2.report-info {
         }
     }
     .modal-body, .modal-footer {
-        padding-top: 40px;
-        padding-bottom: 40px;
+        padding-top: 20px;
+        padding-bottom: 20px;
         padding-left: 1rem;
         padding-right: 1rem;
         @include media-breakpoint-up(md){

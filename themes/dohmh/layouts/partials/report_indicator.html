@@ -80,22 +80,34 @@
             </div>
 
             <div class="modal-body">
-                <h2 class="fs-xl" data-pagefind-ignore="all">{{ .data.indicator_long_name }}</h2>
+                <h2 class="fs-xl" data-pagefind-ignore="all">{{ .data.indicator_long_name }} <span class="font-weight-normal">(YEAR)</span></h2>
+                <span class="home-label font-weight-bold">About {{ .data.indicator_short_name }}</span>
                 <p>{{- .data.indicator_description | safeHTML -}}</p>
-                <hr class="my-2">
-                <p>In <strong class="text-primary">{{ .neighborhood }}</strong>, {{ lower .data.indicator_name }} is {{ if eq (string .data.data_value_rank) "1" }}<span class="worse">Worse</span>{{- else if eq (string .data.data_value_rank) "2" -}}<span class="middle">Middle</span>{{- else -}}<span class="better">Better</span>{{ end }} compared to the NYC average.</p>
-
             </div>
 
-            <hr>
             <div class="modal-body">
-                <h2 data-pagefind-ignore="all">Neighborhood Comparison</h2>
-                <div class="row comparison">
-                    <div class="col-sm-4 text-primary">{{ .neighborhood }} <span class="indicator-value">{{ .data.data_value_geo_entity }}</span></div>
-                    <div class="col-sm-4">{{ .borough }} <span class="indicator-value">{{ .data.data_value_boro }}</span></div>
-                    <div class="col-sm-4">New York City <span class="indicator-value">{{ .data.data_value_nyc }}</span></div>
-                </div>
-                <p><em>{{ .data.measurement_type }} {{ .data.units }}</em></p>
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col"  style="width:40%">Comparison</th>
+                        <th scope="col">{{ .data.measurement_type }} {{ .data.units }}</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row"><span class="text-primary fs-xl">{{ .neighborhood }}</span></th>
+                        <td><span class="indicator-value fs-xl">{{ .data.data_value_geo_entity }}</span></td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl">{{ .borough }}</span></th>
+                        <td><span class="fs-xl">{{ .data.data_value_boro }}</span></td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl">New York City</span></th>
+                        <td><span class="fs-xl">{{ .data.data_value_nyc }}</span></td>
+                      </tr>
+                    </tbody>
+                  </table>
 
                 {{- if isset .data "nbr_data_note" -}}
                 <div class="data-note">{{ .data.nbr_data_note }}</div>
@@ -104,13 +116,14 @@
             </div>
             <hr>
             <div class="modal-body">
-                <h3 data-pagefind-ignore="all">{{- .data.indicator_long_name -}}</h3>
-                <p>  <em>{{ .data.measurement_type }} {{ .data.units }}</em></p>
+                <span class="home-label font-weight-bold">For {{ lower .data.indicator_name }}:</span>
+                <p class="fs-lg">Compared to other NYC neighborhoods, <strong class="text-primary">{{ .neighborhood }}</strong> is {{ if eq (string .data.data_value_rank) "1" }}<span class="worse">worse</span> than most neighborhoods {{- else if eq (string .data.data_value_rank) "2" -}} in the <span class="middle">middle</span>{{- else -}}<span class="better">better</span> than most neighborhoods{{ end }}.</p>
+                <p class="fs-sm">  <em>{{ .data.measurement_type }} {{ .data.units }}</em></p>
                 <div style="width:100%; height:30vmin; z-index:10000;" id="summary-{{ .data.indicator_data_name }}-{{ .count }}"></div>
 
             </div>
             <hr>
-            <div class="modal-body">
+            <div class="modal-body hide">
 
                 <h3 data-pagefind-ignore="all">Trends Over Time</h3>
                 <p><em>{{ .data.measurement_type }} {{ .data.units }}</em></p>
@@ -119,9 +132,8 @@
             </div>
             <hr>
             <div class="modal-body">
-
-                <h3 data-pagefind-ignore="all">By Neighborhood</h3>
-                <p><em>{{ .data.measurement_type }} {{ .data.units }}</em></p>
+                <span class="home-label font-weight-bold">By neighborhood</span>
+                <p class="fs-sm"><em>{{ .data.measurement_type }} {{ .data.units }}</em></p>
                 <div style="width:100%; height:60vmin; z-index:10000;" id="map-{{ .data.indicator_data_name }}-{{ .count }}"></div>
 
             </div>
