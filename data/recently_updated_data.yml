@@ -5,8 +5,8 @@ featured:
 - copy: Commuting modes
   link: data-explorer/walking-driving-and-cycling/?id=2415#display=summary
 - copy: Neighborhood poverty
-  link: data-explorer/social-conditions/?id=103#display=summary
+  link: data-explorer/economic-conditions/?id=103#display=summary
 - copy: Unemployment
-  link: data-explorer/social-conditions/?id=2337#display=summary
+  link: data-explorer/economic-conditions/?id=2337#display=summary
 - copy: Heat vulnerability index
   link: data-explorer/weather-related-illness/?id=2191#display=summary

@@ -2,7 +2,7 @@
 # don't track resources folder (temp files for serve)
 resources/_gen/
 
-# don't track mac file 
+# don't track mac file
 .DS_Store
 .DS_Store?
 
@@ -56,3 +56,4 @@ assets/js/data-explorer/some notes on refactoring.txt
 hugo-help.txt
 hugo-server-help.txt
 hugo_completion_powershell.ps1
+pagefind CSS.css
