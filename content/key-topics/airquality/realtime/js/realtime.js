@@ -150,6 +150,9 @@ var holder = document.getElementById('buttonHolder')
 var btns;
 function drawButtons() {
     var button = 'hi :) '
+
+    // Create location individual buttons
+    /*
     for (let i = 0; i < activeMonitors.length; i++) {
         button = `<button type="button" id="${activeMonitors[i].loc_col}" class="mb-1 selectorbtn btn btn-sm btn-outline-light text-dark btn-block no-underline">
         <span style="color: ${activeMonitors[i].Color};">
@@ -159,8 +162,9 @@ function drawButtons() {
     </button>`
         holder.innerHTML += button;
     };
+    */
 
-    // alt dropdown set
+    // Dropdown menu for locations
     for (let i = 0; i < activeMonitors.length; i++) {
         let ddb = `<button type="button" id="${activeMonitors[i].loc_col}" class="selectorbtn btn btn-sm btn-outline-light text-dark btn-block no-underline" style="margin-top: 0px!important; text-align: left!important;">
         <span style="color: ${activeMonitors[i].Color};">
