@@ -78,11 +78,15 @@
                     <span class="fas fa-times-circle"></span>
                 </button>
             </div>
+
             <div class="modal-body">
                 <h2 class="fs-xl" data-pagefind-ignore="all">{{ .data.indicator_long_name }}</h2>
-                <p>In <strong>{{ .neighborhood }}</strong>, {{ lower .data.indicator_name }} is {{ if eq (string .data.data_value_rank) "1" }}<span class="worse">Worse</span>{{- else if eq (string .data.data_value_rank) "2" -}}<span class="middle">Middle</span>{{- else -}}<span class="better">Better</span>{{ end }} compared to the NYC average.</p>
-                {{- .data.indicator_description | safeHTML -}}
+                <p>{{- .data.indicator_description | safeHTML -}}</p>
+                <hr class="my-2">
+                <p>In <strong class="text-primary">{{ .neighborhood }}</strong>, {{ lower .data.indicator_name }} is {{ if eq (string .data.data_value_rank) "1" }}<span class="worse">Worse</span>{{- else if eq (string .data.data_value_rank) "2" -}}<span class="middle">Middle</span>{{- else -}}<span class="better">Better</span>{{ end }} compared to the NYC average.</p>
+
             </div>
+
             <hr>
             <div class="modal-body">
                 <h2 data-pagefind-ignore="all">Neighborhood Comparison</h2>
