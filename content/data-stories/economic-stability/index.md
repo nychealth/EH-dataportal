@@ -17,9 +17,9 @@ keywords:
     "food insecurity",
     "healthy food",
     "health care",
-    "medical debt"
+    "medical debt",
     "racism",
-    "inequality"
+    "inequality",
   ]
 image: CrownHeights_JulienneSchaer-065.JPG
 photocredit: JulienneSchaer
