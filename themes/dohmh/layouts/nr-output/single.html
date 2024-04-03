@@ -22,7 +22,7 @@
     
     get_topic_indicators();
     
-    // this is called when an indicator is clicked. it produces the indicator's data-explorer URL and sends it to the modal in report_indicator.html.
+    // this is called when an indicator is clicked. it produces the indicator's data-explorer URL and sends it to the modal in nr-indicator.html.
     
     const getURL = async (indID, dataname) => {
         
@@ -114,7 +114,7 @@
 
 {{ $zip_codes := "" -}}
 
-{{- /*  variables for location_sub_nav partial  */}}
+{{- /*  variables for nr-sub_nav partial  */}}
 
 {{- /*  set hugo provided vars as local vars so that we can use them in different scopes  */}}
 
@@ -252,7 +252,7 @@
 
                                             {{- $count := add $index 1 -}}
                                             
-                                            {{- partial "report_indicator.html" (dict "neighborhood" $.Params.neighborhood "borough" $row.borough_name "data" $row "count" $count) -}}
+                                            {{- partial "nr-indicator.html" (dict "neighborhood" $.Params.neighborhood "borough" $row.borough_name "data" $row "count" $count) -}}
                                                     
                                         {{- end -}}
 
@@ -296,7 +296,7 @@
                     <nav role="navigation">
                         <div class="">
 
-                            {{- partial "location_sub_nav" (dict  "neighborhood_dir" $neighborhood_dir  "report_filename" $report_filename) -}}
+                            {{- partial "nr-sub_nav" (dict  "neighborhood_dir" $neighborhood_dir  "report_filename" $report_filename) -}}
                         </div>
                     </nav>
 
