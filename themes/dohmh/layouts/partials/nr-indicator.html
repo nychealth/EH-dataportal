@@ -10,26 +10,23 @@
     function renderComparisonChart(n,b,c,nid,bid,cid) {
         // pass into an array
         var values = []
-        values.push(n)
-        values.push(b)
-        values.push(c)
+        values.push(Number(n))
+        values.push(Number(b))
+        values.push(Number(c))
 
         // names of divs to shape
         console.log(nid,bid,cid)
 
-        console.log(values)
-
         // get maximum value
         var max = Math.max(...values)
-        console.log('max value is: ' + max)
 
         // denom for percent widths
         var denom = max * 1.2
         var nWidth = n / denom
         var bWidth = b / denom
         var cWidth = c / denom
-        console.log(nWidth, bWidth, cWidth)
 
+        // style chart divs
         document.getElementById(nid).style.width = 100 * nWidth + '%' 
         document.getElementById(bid).style.width = 100 * bWidth + '%'
         document.getElementById(cid).style.width = 100 * cWidth + '%'
@@ -158,18 +155,7 @@
                 {{- end -}}
 
                 <script>
-                    // create name from individual indicator
-                    var name =  {{ replace ( urlize .data.indicator_short_name ) "-" "" }}  
-
-                    // create anonymous function using indicator name
-                    var func = new Function(
-                        "return function " + name + "(){ console.log('{{ .data.indicator_short_name }}');var neighbValue = Number({{ .data.data_value_geo_entity }});var boroValue = Number({{ .data.data_value_boro }});var cityValue = Number({{ .data.data_value_nyc }});console.log(neighbValue, boroValue, cityValue);renderComparisonChart(neighbValue, boroValue, cityValue,'n-{{ urlize .data.indicator_short_name }}','b-{{ urlize .data.indicator_short_name }}','c-{{ urlize .data.indicator_short_name }}')}"
-                    )();
-                    
-                    // call function
-                    func();
-
-                    // this passes the neighborhood, boro, and city values for one indicator into renderComparisonChart (you'll also need to pass in the div ids)
+                    renderComparisonChart({{ .data.data_value_geo_entity }}, {{ .data.data_value_boro }}, {{ .data.data_value_nyc }},'n-{{ urlize .data.indicator_short_name }}','b-{{ urlize .data.indicator_short_name }}','c-{{ urlize .data.indicator_short_name }}')
                 </script>
 
             </div>
@@ -211,6 +197,7 @@
     .compBar {
         padding-left: 5px;
         border-left: 3px solid darkgray;
+        max-height: 36px;
 
     }
 
