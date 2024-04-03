@@ -350,9 +350,11 @@
                             <!-- INSERT MENU ITEMS HERE -->
                         </div>
                     </div>
+
+                    <button class="btn btn-sm float-right btn-outline-light text-dark mr-1" data-toggle="modal" data-target="#geoModal"><i class="fas fa-question-circle"></i></button>
             
                     <div class="dropdown">
-                        <button class="btn btn-sm mr-1 float-right btn-outline-secondary dropdown-toggle mb-1" type="button"
+                        <button class="btn btn-sm float-right btn-outline-secondary dropdown-toggle mb-1" type="button"
                                 id="dropdownTableGeos" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Geography </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownTableGeos">
                             <!-- INSERT MENU ITEMS HERE -->
@@ -386,17 +388,22 @@
 
                     </div>
 
+                    <button class="btn btn-sm float-right btn-outline-light text-dark mr-1" data-toggle="modal" data-target="#geoModal"><i class="fas fa-question-circle"></i></button>
+
+
 
                     <div class="dropdown">
-                        <button class="btn btn-sm mr-1 float-right btn-outline-secondary dropdown-toggle mb-1" type="button"
+                        <button class="btn btn-sm  float-right btn-outline-secondary dropdown-toggle mb-1" type="button"
                                 id="dropdownMapGeos" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Geography </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMapGeos">
                             <!-- INSERT MENU ITEMS HERE -->
                         </div>
                     </div>
 
+                    <button class="btn btn-sm float-right btn-outline-light text-dark mr-1" data-toggle="modal" data-target="#measureModal"><i class="fas fa-question-circle"></i></button>
+
                     <div class="dropdown">
-                        <button class="btn btn-sm mr-1 float-right btn-outline-secondary dropdown-toggle mb-1" type="button"
+                        <button class="btn btn-sm float-right btn-outline-secondary dropdown-toggle mb-1" type="button"
                             id="dropdownMapMeasures" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Measure </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMapMeasures">
                             <!-- INSERT MENU ITEMS HERE -->
@@ -417,7 +424,7 @@
 
                 <div class="tab-pane fade py-2" id="tab-trend" aria-labelledby="tab-btn-trend" role="tabpanel">
 
-                    <button class="btn btn-sm float-right btn-outline-light text-dark" data-toggle="modal" data-target="#datamodal"><i class="fas fa-question-circle"></i></button>
+                    <button class="btn btn-sm float-right btn-outline-light text-dark" data-toggle="modal" data-target="#trendmodal"><i class="fas fa-question-circle"></i></button>
 
                     <div class="dropdown dropdownTrendComparisons">
 
@@ -445,7 +452,7 @@
 
                 <div class="tab-pane fade py-2" id="tab-links" aria-labelledby="tab-btn-links" role="tabpanel">
 
-                    <button class="btn btn-sm float-right btn-outline-light text-dark" data-toggle="modal" data-target="#datamodal"><i class="fas fa-question-circle"></i></button>
+                    <button class="btn btn-sm float-right btn-outline-light text-dark" data-toggle="modal" data-target="#linksModal"><i class="fas fa-question-circle"></i></button>
 
                     <div class="dropdown">
                         <button class="btn btn-sm float-right btn-outline-secondary dropdown-toggle mb-1" type="button"
@@ -612,13 +619,13 @@
         </div>
     </div>
 
-    <!-- Data Modal -->
+    <!-- Data Modal - Time -->
     <div class="modal fade" id="datamodal" tabindex="-1" role="dialog" aria-labelledby="dataModalLabel"
     aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="dataModalLabel">Are there more recent data?</h5>
+                    <h5 class="modal-title" id="dataModalLabel">Available years of data</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -635,6 +642,96 @@
 
                     <p>The bottom line is that sometimes, data that look a few years out of data are actually the most up-to-date data we have available.
                     </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Data Modal - Trend -->
+    <div class="modal fade" id="trendmodal" tabindex="-1" role="dialog" aria-labelledby="trendModalLabel"
+    aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="trendModalLabel">About trend charts</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>When we have multiple years of data, we show the data as trend charts.</p>
+                    <p>Trends for individual neighborhoods tend to be very 'bouncy' so we usually aggregate up to the Borough level to show clearer trends.</p>
+                    <p>"Compare by" options, if available, let you compare this indicator to other similar indicators.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Data Modal - Geography -->
+    <div class="modal fade" id="geoModal" tabindex="-1" role="dialog" aria-labelledby="geoModalLabel"
+    aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="geoModalLabel">About geographies</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>There are many different schemes of neighborhood boundaries - 'geographies' - available for different datasets. It would be convenient if each dataset could be made available at the same geography, but unfortunately they cannot - what neighborhood units are available depends on specifics of the underlying dataset.</p>
+                    <p>We try to make data available at as fine a geographic resolution as we can.</p>
+                    <p><a href="../../data-stories/geographies/">Read more about geographies at this data story</a>.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Data Modal - Measures -->
+    <div class="modal fade" id="measureModal" tabindex="-1" role="dialog" aria-labelledby="measureModalLabel"
+    aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="measureModalLabel">Measures</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Measures are the numeric ways that a dataset (or indicator) are expressed. Examples of different measures might be: number; percent; or rate. </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Data Modal - Links -->
+    <div class="modal fade" id="linksModal" tabindex="-1" role="dialog" aria-labelledby="linksModalLabel"
+    aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="linksModalLabel">About links</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>On this site, we try to show how environmental factors might be connected to health outcomes. One way we do this is with the <strong>Links display</strong>. We choose potentially-related datasets and display them on a scatterplot so you can see how these two datasets are correlated.</p>
+                    <p>The <strong>Disparities view</strong> displays neighborhoods by poverty category to show underlying disparities in the data.</p>
+                    <p><a href="../../data-stories/povasthma">Read more about correlation here</a>.</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
