@@ -13,7 +13,7 @@ var content = [
         "id": 1,
         "text": "Do any of these describe you?",
         "prompt": "Certain health conditions and life situations can make you more vulnerable to extreme heat and bad air quality. <ul> <li><strong>Health conditions</strong>: difficulty breathing, heart disease, asthma or other breathing condition, pregnant, diabetic, limited mobility, immunocompromised, mental health, cognitive, or developmental condition </li> <li><strong>Life situations</strong>:  work or exercise outside, limited access to indoor shelter, misuse drugs or alcohol, take medicine that makes it difficult for your body to stay cool, living alone </li> <li><strong>Age</strong>: Over 60 or under  16 </li></ul>",
-
+        "image": "Parrot_pet.svg",
         "options": [
             {
                 "optionID": 1,
@@ -40,6 +40,7 @@ var content = [
         "id": 2,
         "text": "Do you rely on electronic medical equipment to keep you healthy?",
         "prompt": "If the power goes out during a heat wave, your equipment may run out of battery, which can be dangerous.", 
+        "image": "Parrot_pet.svg",
         "options": [
             {
                 "optionID": 1,
@@ -66,6 +67,7 @@ var content = [
         "id": 3,
         "text": "Do you have any pets or working animals?",
         "prompt": "Pets and working animals are also vulnerable to heat and air quality.",
+        "image": "Parrot_pet.svg",
         "options": [
             {
                 "optionID": 1,
@@ -91,6 +93,7 @@ var content = [
         "id": 4,
         "text": "The best way to stay safe in hot weather is with air conditioning. Does your indoor environment have air conditioning?",
         "prompt": "On a hot day, the inside of an apartment without AC can be up to 10 degrees hotter than outside — and can stay hotter for days. Using AC at home is the best way to stay safe when it's hot outside..", 
+        "image": "Parrot_pet.svg",
         "options": [
             {
                 "optionID": 1,
@@ -118,6 +121,7 @@ var content = [
         "id": 5,
         "text": "Do you limit your use of AC because of the cost?",
         "prompt": "If you limit your use of AC, the most important times to still use it are when the outdoor temperature is greater than 80 degrees and at night when apartments are still hot from earlier in the day. Setting your unit to 78 degrees or 'low cool' is a way to reduce energy consumption and remain safe from the heat.", 
+        "image": "Parrot_pet.svg",
         "options": [
             {
                 "optionID": 1,
@@ -144,6 +148,7 @@ var content = [
         "id": 6,
         "text": "Do you have a fan?",
         "prompt": "Fans can help cool you down by moving air around to increase sweat evaporation which can be especially helpful in a humid environment or to pull in cooler air from outside. However, fans do not cool the air so the air currents flowing over the body must be cooler than your body temperature to cool you down. When it’s hot, a fan alone is not enough.", 
+        "image": "Parrot_pet.svg",
         "options": [
             {
                 "optionID": 1,
