@@ -40,7 +40,7 @@ var content = [
         "id": 2,
         "text": "Do you rely on electronic medical equipment to keep you healthy?",
         "prompt": "If the power goes out during a heat wave, your equipment may run out of battery, which can be dangerous.", 
-        "image": "Parrot_pet.svg",
+        "image": "Pacemaker.svg",
         "options": [
             {
                 "optionID": 1,
@@ -121,7 +121,7 @@ var content = [
         "id": 5,
         "text": "Do you limit your use of AC because of the cost?",
         "prompt": "If you limit your use of AC, the most important times to still use it are when the outdoor temperature is greater than 80 degrees and at night when apartments are still hot from earlier in the day. Setting your unit to 78 degrees or 'low cool' is a way to reduce energy consumption and remain safe from the heat.", 
-        "image": "Parrot_pet.svg",
+        "image": "Piggy_bank.svg",
         "options": [
             {
                 "optionID": 1,
@@ -148,7 +148,7 @@ var content = [
         "id": 6,
         "text": "Do you have a fan?",
         "prompt": "Fans can help cool you down by moving air around to increase sweat evaporation which can be especially helpful in a humid environment or to pull in cooler air from outside. However, fans do not cool the air so the air currents flowing over the body must be cooler than your body temperature to cool you down. When it’s hot, a fan alone is not enough.", 
-        "image": "Parrot_pet.svg",
+        "image": "Fan.svg",
         "options": [
             {
                 "optionID": 1,
