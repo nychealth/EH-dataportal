@@ -1,7 +1,7 @@
 ---
 title: "Public space creates health"
 date: 2024-03-05T01:18:56-04:00
-draft: true
+draft: false
 seo_title: "Public space creates health"
 seo_description: "A data story about how quality and affordable housing enhances public health"
 tags:
