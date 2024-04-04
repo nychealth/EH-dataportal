@@ -1,3 +1,11 @@
 #!/bin/bash
 
-npm install
+has_git=$(git -C . rev-parse 2>/dev/null; echo $?)
+
+if [[ "$has_git" ]]; then 
+
+    export HUGO_GIT_BRANCH=$(git branch --show-current)
+    export HUGO_GIT_LAST_HASH=$(git log -1 --format=%h --abbrev=10)
+    export HUGO_GIT_LAST_MSG=$(git log -1 --format=%s)
+
+fi

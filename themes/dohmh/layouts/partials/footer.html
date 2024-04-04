@@ -184,3 +184,118 @@
   <!-- #nyc-bottom-footer -->
 
 </footer>
+
+<!-- Modal -->
+<div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="searchModalLabel" data-pagefind-ignore="all">Search</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <link href={{ relURL "pagefind/pagefind-ui.css" }} rel="stylesheet">
+            <script src={{ relURL "pagefind/pagefind-ui.js" }} type="text/javascript"></script>
+            <div id="search"></div>
+            <script>
+
+                window.addEventListener('DOMContentLoaded', (event) => {
+
+                    new PagefindUI({
+                        element: "#search",
+                        showSubResults: true,
+                        showImages: false,
+                        baseUrl: baseURL,
+                        showEmptyFilters: true,
+                        debounceTimeoutMs: 500,
+                        // autofocus: true,
+                        processTerm: function (term) {
+
+                            gtag('event', 'search', {
+                                search_term: term
+                            });
+
+                            return term;
+
+                        },
+                        processResult: function (result) {
+
+                            // ----------------------------------------------------------------------- //
+                            // clean some fields
+                            // ----------------------------------------------------------------------- //
+
+                            // replace (in place) HTML entites in titles
+
+                            result.meta.title = result.meta.title
+                                .replace(/&#(\d+);/g, ((match, dec) => `${String.fromCharCode(dec)}`))
+                                .replaceAll("&amp;", "&");
+                            
+                            // process sub-results
+
+                            result.sub_results.forEach(sub => {
+
+                                // replace (in place) default DE indicatore anchor with DE query string
+
+                                sub.url = sub.url.replace("#IndicatorID-", "?id=");
+
+                                // replace (in place) HTML entites in titles
+
+                                sub.title = sub.title
+                                    .replace(/&#(\d+);/g, ((match, dec) => `${String.fromCharCode(dec)}`))
+                                    .replaceAll("&amp;", "&");
+
+                            });
+
+                            // ----------------------------------------------------------------------- //
+                            // add Google Analytics tag to each result
+                            // ----------------------------------------------------------------------- //
+
+                            // Get all search results
+                            var allResults = document.getElementsByClassName('pagefind-ui__result-link');
+
+                            // add a click listener to each result
+                            for (h = 0; h < allResults.length; h += 1) {
+
+                                allResults[h].setAttribute('onclick',"gtag('event', 'search_click', { page_viewed: '" + allResults[h].href + "' });");
+
+                            }
+
+                            // log results to console for debugging
+
+                            console.log("@ result:", result);
+                            // result.sub_results.forEach(r => console.log("<> sub url:", r.url));
+
+                        }
+                    });
+
+                    // set focus into box when loaded, b/c autofocus attr doesn't work on bootstrap modals
+
+                    // https://getbootstrap.com/docs/4.3/components/modal/
+
+                    const searchModal = document.getElementById('searchModal')
+                    const searchInput = document.getElementsByClassName('pagefind-ui__search-input')[0]
+
+                    $(searchModal).on('shown.bs.modal', () => {
+                        searchInput.focus();
+                        searchInput.select();
+                    })
+
+
+                });
+
+
+            </script>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+<script>
+
+
+</script>
