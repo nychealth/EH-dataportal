@@ -3,7 +3,7 @@ title: "Active Design, Physical Activity and Health"
 neighborhood: "Fresh Meadows"
 summary: "The design and conditions of buildings, streets, public transportation and parks influence physical activity, use of active transportation and other healthy behavior. A neighborhood's features can also impact the safety of its residents."
 data_json: "Active Design Physical Activity and Health in Fresh Meadows"
-content_yml: "active_design"
+content_yml: "Active_Design_Physical_Activity_and_Health"
 type: location
 seo_title: "Active Design in Fresh Meadows"
 seo_description: "Active Design Physical Activity and Health data profile for the Fresh Meadows neighborhood of NYC."

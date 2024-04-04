@@ -1,7 +1,7 @@
 {{ define "main" }}
 
 <article class="container-fluid overflow-hidden" id="primary-content">
-  
+
   <div class="row mt-4">
     <div class="col-lg-8 col-md-12 mb-3">
 
@@ -34,13 +34,13 @@
       <a href={{ relURL "data-explorer" }} class="text-info font-weight-bold ml-1">All&nbsp;data&nbsp;></a>
       
     </div>
-    
+
     <div class="col-lg-4 card content-card pt-0 h-100">
       <h2 class="fs-lg text-info"><i class="fas fa-passport mr-1" aria-hidden="true"></i>New data stories:</h2>
       <div class="card-content mb-4">
         <div class="card-body">
           {{- range first 4 ((where .Site.RegularPages "Section" "data-stories")) -}}
-          
+
           <div class="row no-gutters mt-2">
             <div class="col-4 border">
               {{ $src := .Resources.GetMatch .Params.image }}
@@ -48,12 +48,12 @@
               <a href="{{ .RelPermalink }}">
                 <div style="width:100%; height:100%; background-image: URL({{ $image.RelPermalink }}); background-size: cover; background-position: center center; "></div></a>
               </div>
-              
+
               <div class="col-8 ml-auto h-100 pl-1 mb-2">
                 <p class="fs-sm"><a class="text-info font-weight-bold" href="{{ .RelPermalink }}">{{ .Title }}</a> {{ .Content | plainify | truncate 100 | htmlUnescape }} </p>
               </div>
             </div>
-            
+
             {{- end -}}
             <hr class="my-2">
             <a href={{ relURL "data-stories" }} class="text-info font-weight-bold my-1 float-right">All data stories > </a>
@@ -62,9 +62,9 @@
         </div>
       </div>
     </div>
-    
+
   </div>
-  
+
   <div class="row">
     <div class="col-10 mx-auto">
 
@@ -76,7 +76,7 @@
       <hr>
     </div>
   </div>
-  
+
   <div class="row mt-4">
     <div class="col-md-7 mx-auto">
       <h2 class="text-info">Explore your city - through data</h2>
@@ -85,7 +85,7 @@
       </p>
     </div>
   </div>
-  
+
   <div class="row justify-content-center mx-auto">
     
     <a href={{ relURL "key-topics/airquality" }} class="btn btn-outline-light border border-info text-primary mt-1 mx-1 py-2 px-1 col-xl-1 col-sm-4 col-xs-6">Air quality</a> 
@@ -96,15 +96,15 @@
     <a href={{ relURL "key-topics/social" }} class="btn btn-outline-light border border-info text-primary mt-1 mx-1 py-2 px-1 col-xl-1 col-sm-4 col-xs-6">Inequality</a>
     
   </div>
-  
+
   <div class="row">
     <div class="col-md-7 mx-auto">
       <p class="text-muted mt-3">We collect data from many different sources and put them together to show you how <span class="font-weight-bold text-primary">the environment shapes our health</span>. <a href={{ relURL "key-topics" }} class="text-info font-weight-bold">See all topics</a>.</p>
       
     </div>
   </div>
-  
-  
+
+
   <div class="row mt-4 mb-2 justify-content-center mx-auto">
     <div class="col-lg-4 col-sm-10 card content-card">
       <div class="card-content mb-4">
@@ -119,7 +119,7 @@
         </div>
       </div>
     </div>
-    
+
     <div class="col-lg-4 col-sm-10 card content-card">
       <div class="card-content mb-4">
         <a href={{ relURL "neighborhood-reports" }}>
@@ -132,7 +132,7 @@
         </div>
       </div>
     </div>
-    
+
     <div class="col-lg-4 col-sm-10 card content-card">
       <div class="card-content mb-4">
         <a href={{ relURL "data-explorer" }}>
@@ -145,26 +145,26 @@
         </div>
       </div>
     </div>
-    
+
   </div>
-  
-  
+
+
   <div class="row my-1">
     <div class="col" style="text-align: center;">
       <h4 class="text-muted"><i class="fas fa-bullhorn mr-1" aria-hidden="true"></i>Get updates and announcements</h4>
       <p class="fs-sm">
         <a href="https://docs.google.com/forms/d/e/1FAIpQLSfUg3JE5ODNc6aqBPJwM8mZ80TYtK6ISw-OM7PBwKuoN3M--g/viewform?embedded=true">Sign up here</a>
-        
+
         <em>We won't share your email address with anybody. </em></p>
-        
+
     </div>
   </div>
-  
-  
+
+
   <div class="row my-4">
     <div class="col-md-10 mx-auto">
       <div class="row">
-        
+
         <div class="col-md-4 my-2">
           <div class="card bg-lightgray mt-1">
             <div class="card-body">
@@ -177,18 +177,18 @@
             </div>
           </div>
         </div>
-          
+
         <div class="col-md-4 my-2">
           <div class="card bg-lightgray mt-1">
             <div class="card-body">
               <h5 class="card-title text-muted fs-sm">Visit our Github repo</h5>
               <p class="fs-sm">Found a bug? Know code? Visit our Github repo to get code, file an issue, or download data.</p>
               <a href="https://www.github.com/nychealth/EH-dataportal" class="btn btn-outline-gray btn-block btn-sm mt-2">Github<i class="fas fa-chevron-circle-right ml-1" aria-hidden="true"></i></a>
-              
+
             </div>
           </div>
         </div>
-          
+
         <div class="col-md-4 my-2">
           <div class="card bg-lightgray mt-1">
             <div class="card-body">
@@ -200,7 +200,7 @@
             </div>
           </div>
         </div>
-        
+
       </div>
     </div>
   </div>

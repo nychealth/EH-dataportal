@@ -18,6 +18,7 @@ keywords:
 seo_title: 2023 heat mortality annual report in NYC | Environment and Health Data Portal
 seo_description: Data and findings on the impact of heat in NYC.
 description: Data and findings on the impact of heat in NYC.
+content_weight: 6.0
 layout: report
 ---
 

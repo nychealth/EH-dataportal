@@ -1,0 +1,67 @@
+<!-- Generate JSON object with topic pages and keys, and internal_ids in arrays -->
+
+{{/*  {{-  warnf (print "@@@ indicator-names.html @@@: >>> " .Title " <<<") -}}  */}}
+
+{{- $topic_indicators_dict := newScratch -}}
+{{- $topic_indicators_map := newScratch -}}
+
+{{/*  create a slice for an array of all internal_ids  */}}
+
+{{- $all_indicator_ids := slice -}}
+
+{{/*  iterate over all pages on the site  */}}
+
+{{- range .Site.Pages -}}
+    
+    {{/*  create a new "slice" (i.e., an array)  */}}
+    
+    {{- $indicators := slice -}}
+    {{- $topic_name := slice -}}
+    
+    {{/*  only process if it's a data explorer page */}}
+    
+    {{- if ( and ( eq .Kind "page" ) ( strings.Contains .RelPermalink "/data-explorer" ) ( not ( or ( strings.Contains .RelPermalink "data-index" ) ( strings.Contains .RelPermalink "indicator-catalog" ) ) ) ) -}}
+        
+        {{/*  turn params into strings  */}}
+        
+        {{- $topic := .RelPermalink | path.Base | string -}}
+
+        {{/*  topic names  */}}
+        
+        {{- $topic_title := .Title -}}
+
+        {{/*  get internal_ids  */}}
+        
+        {{- range .Params.indicators -}}
+            
+            {{/*  create an array of internal_ids  */}}
+            
+            {{- $indicators = $indicators | append .IndicatorID -}}
+
+        {{- end -}}
+        
+        {{/*  create a map with topic as key and array of internal_ids as value */}}
+        
+        {{- $topic_indicators_dict := dict "topic_name" $topic_title "IndicatorID" $indicators -}}
+        {{- $topic_indicators_map.SetInMap "topic_indicators" $topic ($topic_indicators_dict) -}}
+
+    {{- end -}}
+
+    {{- $all_indicator_ids = $all_indicator_ids | append $indicators -}}
+    
+{{- end -}}
+
+
+{{-  $all_unique_indicator_ids := $all_indicator_ids | uniq | sort  -}}
+
+{{/*  {{-  warnf "all_unique_indicator_ids " $all_unique_indicator_ids  -}}  */}}
+
+{{/*  Also outputting a JSON version of the list to "IndicatorData/topic_indicators.json" */}}
+
+{{- $all_unique_indicator_ids_json := $all_unique_indicator_ids | jsonify | resources.FromString "/IndicatorData/all_unique_indicator_ids.json" -}}
+
+{{-  warnf (print "all_unique_indicator_ids_json.RelPermalink >>> " $all_unique_indicator_ids_json.RelPermalink " <<<")  -}}
+
+{{/*  return the map from the partial, so that pages can use it  */}}
+
+{{ return $topic_indicators_map }}
