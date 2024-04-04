@@ -231,7 +231,7 @@ var specOne = {
             "legend": null,
             "scale": {
                 "domain": ["Rat sighting", "Mouse sighting", "Signs of rodents", "Condition attracting rodents"],
-                "range": ["#2b3fde", "#a494ea", "#a7bf88", "#588f1d"]
+                "range": ['#2b3fde', '#8670e6', '#82ad49', '#1d8f3f']
               }
           },
           "y": {"field": "Number", "type": "quantitative", "title": ""}
