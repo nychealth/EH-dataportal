@@ -59,9 +59,9 @@ const renderComparisonsChart = (
     let compIndicatorLabel  = [... new Set(metadata.array("IndicatorLabel"))];
     let compMeasurementType = [... new Set(metadata.array("MeasurementType"))];
     let compDisplayTypes    = [... new Set(metadata.array("DisplayType"))].filter(dt => dt != "");
-    let compGeoIDs          = metadata.objects()[0].GeoID ? [... new Set(metadata.array("GeoID"))] : null;
+    let compNoCompare       = [... new Set(metadata.array("TrendNoCompare"))].filter(nc => nc != null)[0]
 
-    // console.log(">>>> compGeoIDs", compGeoIDs);
+    console.log(">>>> compNoCompare", compNoCompare);
 
     // console.log(">> compName", compName);
     // console.log(">> compIndicatorLabel", compIndicatorLabel);
@@ -253,6 +253,58 @@ const renderComparisonsChart = (
 
 
     // ----------------------------------------------------------------------- //
+    // create "don't compare" line JSON
+    // ----------------------------------------------------------------------- //
+
+    // getting latest end period in the data
+
+    let maxDataEndPeriod = Math.max(...new Set(data.array("end_period")))
+    
+    // getting "no compare" end period from time period metadata
+
+    let noCompareEndPeriod = timeTable
+        .filter(`d => d.TimePeriod == ${compNoCompare}`)
+        .array("end_period")[0]
+
+    // testing to see if the data has later time periods than the "no compare" time
+
+    let hasGreaterEndPeriod = maxDataEndPeriod >= noCompareEndPeriod;
+
+    // if there's a "no compare" time, and there's data later than that, show the line
+
+    let noCompare;
+
+    if (compNoCompare && hasGreaterEndPeriod) {
+
+        // if a time period exists, return vertical rule JSON
+
+        noCompare = [{
+            "mark": "rule",
+            "encoding": {
+                "x": {
+                    "datum": compNoCompare
+                },
+                "xOffset": {"value": 0.5},
+                "color": {"value": "gray"},
+                "size": {"value": 2},
+                "strokeDash": {"value": [2, 2]}
+            }
+        }]
+
+        let noCompareFootnote = `Because of a method change, data before ${compNoCompare} shouldn't be compared to later time periods.`
+        document.querySelector("#trend-unreliability").innerHTML += "<div class='fs-sm text-muted'>" + noCompareFootnote + "</div>" ;
+
+
+    } else {
+
+        // if no time period, return an empty array
+
+        noCompare = []
+
+    }
+
+
+    // ----------------------------------------------------------------------- //
     // define spec
     // ----------------------------------------------------------------------- //
     
@@ -411,7 +463,8 @@ const renderComparisonsChart = (
                         }
                     }
                 ]
-            }
+            },
+            ...noCompare
         ]
     }
     
