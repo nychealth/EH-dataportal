@@ -13,7 +13,7 @@ var content = [
         "id": 1,
         "text": "Do any of these describe you?",
         "prompt": "Certain health conditions and life situations can make you more vulnerable to extreme heat and bad air quality. <ul> <li><strong>Health conditions</strong>: difficulty breathing, heart disease, asthma or other breathing condition, pregnant, diabetic, limited mobility, immunocompromised, mental health, cognitive, or developmental condition </li> <li><strong>Life situations</strong>:  work or exercise outside, limited access to indoor shelter, misuse drugs or alcohol, take medicine that makes it difficult for your body to stay cool, living alone </li> <li><strong>Age</strong>: Over 60 or under  16 </li></ul>",
-        "image": "Parrot_pet.svg",
+        "image": "Vulnerable_groups1.svg",
         "options": [
             {
                 "optionID": 1,
@@ -93,7 +93,7 @@ var content = [
         "id": 4,
         "text": "The best way to stay safe in hot weather is with air conditioning. Does your indoor environment have air conditioning?",
         "prompt": "On a hot day, the inside of an apartment without AC can be up to 10 degrees hotter than outside — and can stay hotter for days. Using AC at home is the best way to stay safe when it's hot outside..", 
-        "image": "Parrot_pet.svg",
+        "image": "AC.svg",
         "options": [
             {
                 "optionID": 1,

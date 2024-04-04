@@ -1,39 +1,50 @@
 {{- define "main" -}}
 
-
 <article class="container-fluid" id="skip-header-target">
-
   <div class="row">
     <div class="col-md-11 mx-auto mt-4">
-        <nav aria-label="breadcrumb" class="mb-4">
-            <ul class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item"><a href="/key-topics/">Key Topics</a></li>
-                <li class="breadcrumb-item"><a href="/key-topics/climatehealth/">Climate and Health</a></li>
-                <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
-            </ul>
-        </nav>
+      <nav aria-label="breadcrumb" class="mb-4">
+        <ul class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#">Home</a></li>
+          <li class="breadcrumb-item"><a href="/key-topics/">Key Topics</a></li>
+          <li class="breadcrumb-item">
+            <a href="/key-topics/climatehealth/">Climate and Health</a>
+          </li>
+          <li class="breadcrumb-item active" aria-current="page">
+            {{ .Title }}
+          </li>
+        </ul>
+      </nav>
 
-            <h1>{{ .Title }}</h1>
-            <p>{{ .Content }}</p>
+      <h1>{{ .Title }}</h1>
+      <p>{{ .Content }}</p>
     </div>
   </div>
 
-
   <div class="row my-4">
-
     <!--left-hand sticky column-->
     <div class="col-md-4 ml-auto">
-
       <div class="sticky-top border p-2" style="z-index: 0">
-        <p>Today's weather is <span id="hot" class="font-weight-bold p-1">HOT</span>. The current temp is <span id="currentTemp">XX</span> and it might reach <span id="maxTemp">YY</span> today. <a href="https://forecast7.com/en/40d71n74d01/new-york/?unit=us">Get a full weather forecast here</a>.
+        <p>
+          Today's weather is
+          <span id="hot" class="font-weight-bold p-1">HOT</span>. The current
+          temp is <span id="currentTemp">XX</span> and it might reach
+          <span id="maxTemp">YY</span> today.
+          <a href="https://forecast7.com/en/40d71n74d01/new-york/?unit=us"
+            >Get a full weather forecast here</a
+          >.
+        </p>
 
-        <hr class="my-2">
+        <hr class="my-2" />
 
-        <p>The current air quality is <span id="aqimeaning" class="font-weight-bold p-1">AQI interpretation</span>.
+        <p>
+          The current air quality is
+          <span id="aqimeaning" class="font-weight-bold p-1"
+            >AQI interpretation</span
+          >.
+        </p>
 
-
-        <hr class="my-2">
+        <hr class="my-2" />
 
         <div class="" id="recsHolder">
           <span class="home-label font-weight-bold">About you:</span>
@@ -41,42 +52,59 @@
             <div class="hide">
               <p>Over 80F: <span id="over80F" class="float-right"></span></p>
               <p>AQI: <span id="aqiNum" class="float-right"></span></p>
-              <hr class="my-1">
+              <hr class="my-1" />
             </div>
 
-            <p>More sensitive to air pollution: <span id="sensitiveGroup" class="float-right"></span></p>
-            <hr class="my-1">
-            <p>Uses electrical medical equipment: <span id="usesEME" class="float-right"></span></p>
-            <p>Has an animal: <span id="hasAnimal" class="float-right"></span></p>
-            <hr class="my-1">
+            <p>
+              <i class="fa-solid fa-mask-face"></i> More sensitive to air
+              pollution: <span id="sensitiveGroup" class="float-right"></span>
+            </p>
+            <hr class="my-1" />
+            <p>
+              Uses electrical medical equipment:
+              <span id="usesEME" class="float-right"></span>
+            </p>
+            <p>
+              Has an animal: <span id="hasAnimal" class="float-right"></span>
+            </p>
+            <hr class="my-1" />
             <p>Has AC: <span id="hasAC" class="float-right"></span></p>
-            <p>Limits AC use: <span id="limitsAC" class="float-right"></span></p>
+            <p>
+              Limits AC use: <span id="limitsAC" class="float-right"></span>
+            </p>
             <p>Has a fan: <span id="hasFan" class="float-right"></span></p>
           </div>
 
-
-
           <!-- Recommendations pane -->
-          <ul class="list-group fs-sm" id="sidebarRecs">
-            
-          </ul>
+          <ul class="list-group fs-sm" id="sidebarRecs"></ul>
         </div>
-
-
       </div>
     </div>
     <!-- .col -->
 
     <!-- main content column -->
     <div class="col-md-7 overflow-hidden fs-rg mr-auto" id="primary-content">
-
       <div class="border p-1 mb-4">
-        <strong><i class="fas fa-exclamation-triangle mr-1" aria-hidden="true"></i>Before we get started:</strong> if you are feeling very hot, with nausea or vomiting, fast pulse, weakness or dizziness, you may need medical help. <a href="https://www.cdc.gov/disasters/extremeheat/warning.html">See a full list of symptoms of heat-related illness</a>.
+        <strong
+          ><i class="fas fa-exclamation-triangle mr-1" aria-hidden="true"></i
+          >Before we get started:</strong
+        >
+        if you are feeling very hot, with nausea or vomiting, fast pulse,
+        weakness or dizziness, you may need medical help.
+        <a href="https://www.cdc.gov/disasters/extremeheat/warning.html"
+          >See a full list of symptoms of heat-related illness</a
+        >.
       </div>
 
       <div id="start">
         <div class="col-md-6 mx-auto">
-          <button class="btn btn btn-block btn-outline-secondary mx-auto py-2" onclick="runQuestions()"><i class="fas fa-arrow-circle-down mr-1" aria-hidden="true"></i>Let's get started</button>
+          <button
+            class="btn btn btn-block btn-outline-secondary mx-auto py-2"
+            onclick="runQuestions()"
+          >
+            <i class="fas fa-arrow-circle-down mr-1" aria-hidden="true"></i
+            >Let's get started
+          </button>
         </div>
       </div>
 
@@ -86,48 +114,96 @@
 
       <div class="p-2 border mt-4 hide" id="finalInfo">
         <h4 id="messageResults">Let's take a look at your situation.</h4>
-        <p>Here are some recommendations, tailored just for you, that can help keep you cool and safe in hot weather or bad air quality.</p>
+        <p>
+          Here are some recommendations, tailored just for you, that can help
+          keep you cool and safe in hot weather or bad air quality.
+        </p>
 
         <div id="finalMessages">
-          <!-- Final messages get printed here --> 
+          <!-- Final messages get printed here -->
         </div>
 
-        <button class="btn btn-sm btn-outline-primary float-right" onclick="setUpTest()">See other recommendations?</button>
+        <button
+          class="btn btn-sm btn-outline-primary float-right"
+          onclick="setUpTest()"
+        >
+          See other recommendations?
+        </button>
       </div>
 
       <div id="testInfo" class="hide mt-4">
-        <p>Use these buttons to change answers, and new recommendations will appear. </p>
-          
-        <button id='btn-sensitiveGroup' class="btn btn-sm btn-outline-primary testbtn mr-1">Sensitive group</button>
-        <button id='btn-usesEME' class="btn btn-sm btn-outline-primary testbtn  mr-1">Uses electrical medical equipment</button>
-        <button id='btn-hasAnimal' class="btn btn-sm btn-outline-primary testbtn  mr-1">Has an animal</button>
-        <button id='btn-hasAC' class="btn btn-sm btn-outline-primary testbtn mr-1">Has AC at home</button>
-        <button id='btn-limitsAC' class="btn btn-sm btn-outline-primary testbtn mr-1">Limits AC because of cost</button>
-        <button id='btn-hasFan' class="btn btn-sm btn-outline-primary testbtn mr-1">Has a fan at home</button>
-        <br>
+        <p>
+          Use these buttons to change answers, and new recommendations will
+          appear.
+        </p>
+
+        <button
+          id="btn-sensitiveGroup"
+          class="btn btn-sm btn-outline-primary testbtn mr-1"
+        >
+          Sensitive group
+        </button>
+        <button
+          id="btn-usesEME"
+          class="btn btn-sm btn-outline-primary testbtn mr-1"
+        >
+          Uses electrical medical equipment
+        </button>
+        <button
+          id="btn-hasAnimal"
+          class="btn btn-sm btn-outline-primary testbtn mr-1"
+        >
+          Has an animal
+        </button>
+        <button
+          id="btn-hasAC"
+          class="btn btn-sm btn-outline-primary testbtn mr-1"
+        >
+          Has AC at home
+        </button>
+        <button
+          id="btn-limitsAC"
+          class="btn btn-sm btn-outline-primary testbtn mr-1"
+        >
+          Limits AC because of cost
+        </button>
+        <button
+          id="btn-hasFan"
+          class="btn btn-sm btn-outline-primary testbtn mr-1"
+        >
+          Has a fan at home
+        </button>
+        <br />
         <label for="temp">Current Temp:</label>
-        <input type="number" id="input-currentTemp" name="temp" min="60" max="110" value=""><br>
+        <input
+          type="number"
+          id="input-currentTemp"
+          name="temp"
+          min="60"
+          max="110"
+          value=""
+        /><br />
 
         <label for="aqinum">AQI:</label>
-        <input type="number" id="input-aqinum" name="aqinum" min="1" max="6" value="">
-
-
+        <input
+          type="number"
+          id="input-aqinum"
+          name="aqinum"
+          min="1"
+          max="6"
+          value=""
+        />
       </div>
     </div>
     <!-- .col (main) -->
-
-
-
   </div>
   <!-- .row -->
-
 </article>
 <!-- #primary-content -->
 
-<!-- add JS --> 
+<!-- add JS -->
 <script type="text/javascript" src="{{ .Params.config }}"></script>
 
 <script type="text/javascript" src="{{ .Params.customJS }}"></script>
-
 
 {{- end -}}
