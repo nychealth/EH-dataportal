@@ -37,7 +37,7 @@
           </div>
           <div class="col-md-6 px-20">
             <div class="card content-card">
-              <div class="card-content key-topics">
+              <div class="card-content primary">
                 <div style='height: 330px; width: 100%; background-image: url({{ relURL ( urls.JoinPath "images" .Params.featured_image ) }}); background-position: center; background-size: cover;'></div>
                 <div class="card-body">
                   <h3><a href="{{ relURL .Params.featured_link }}">{{ .Params.featured_title }}</a></h3>
@@ -130,7 +130,7 @@
               <img class="card-img-top" src={{ relURL "images/home-sample-image-datastory.png" }}>
             </a>
             <div class="card-body">
-              <h3>Data stories</h3>
+              <h3 class="card-title">Data stories</h3>
               <p>Perspectives and explainers on important health issues.</p>
               <div class="d-flex justify-content-end">
                 <a class="fs-sm font-weight-bold" href={{ relURL "data-stories" }}>All data stories<i class="fas fa-arrow-circle-right ml-1" aria-hidden="true"></i></a>
@@ -160,7 +160,7 @@
               <img class="card-img-top" src={{ relURL "images/home-sample-image-DE-5.png" }}>
             </a>
             <div class="card-body">
-              <h3>Data Explorer</h3>
+              <h3 class="card-title">Data Explorer</h3>
               <p>Maps, trends, tables, and more: get datasets on hundreds of topics.</p>
               <div class="d-flex justify-content-end">
                 <a class="fs-sm font-weight-bold" href={{ relURL "data-explorer" }}>Get data <i class="fas fa-arrow-circle-right ml-1" aria-hidden="true"></i></a>

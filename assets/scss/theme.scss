@@ -366,6 +366,9 @@ h1 {
     .card-content.key-topics {
         border-bottom: 8px solid $color-key-topics;
     }
+    .card-content.primary {
+        border-bottom: 8px solid $primary;
+    }
 }
 
 // Report Title
