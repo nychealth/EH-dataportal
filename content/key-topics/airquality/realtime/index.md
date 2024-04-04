@@ -19,3 +19,5 @@ Fine particles (PM2.5) are among the most harmful pollutants. Long-term exposure
 The air quality in NYC is generally good and has been improving over time. For PM2.5, NYC meets the National Ambient Air Quality Standard of an annual average under 12 μg/m<sup>3</sup>, and a 24-hour average under 35 μg/m<sup>3</sup>. 
 
 But hour to hour, there is large variation in our air quality - even in neighborhoods with the cleanest air. PM2.5 levels can spike to levels that can harm health, especially for people sensitive to air pollution. These higher levels are driven by daily changes in traffic volume, weather patterns that can trap emissions, and other short-term events.
+
+**Explore real-time data on PM2.5 (fine particles) from our network of realtime air quality monitors around NYC.** 

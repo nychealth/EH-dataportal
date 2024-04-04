@@ -19,7 +19,7 @@
 <article class="container-fluid" id="skip-header-target">
 
     <div class="row">
-        <div class="col-md-11 mx-auto mt-4">
+        <div class="col-md-10 mx-auto mt-4">
             <nav aria-label="breadcrumb" class="mb-4">
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
@@ -33,168 +33,163 @@
     </div>
 
     <div class="row">
-        <div class="col-11 mx-auto">
+        <div class="col-10 mx-auto">
             <h1 class="h2" data-pagefind-weight="10.0">
                 <i class="fas fa-star" aria-hidden="true" style="margin-right: 10px"></i>{{ .Title }}
             </h1>
+            <div class="sr-only">
+                <h2 class="sr-only">Download accessible data</h2>
+                <p>This page contains visualizations. If you are using a screenreader, you can <a href="https://azdohv2staticweb.blob.core.windows.net/$web/nyccas_realtime_DEC.csv">download a CSV file of the last 7 days of realtime air quality data.</a></p>
+                </div>
+            <div class="row">
+                <div class="col-md-8">
+                    {{ .Content }}
+
+                </div>
+
+                <div class="col-md-4 border-left">
+                    <div class="fs-sm">
+                        <h4>About the data</h4>
+                        <p>Data are hourly measurements of PM2.5, in micrograms per cubic meter of air (µg/m<sup>3</sup>). External factors can sometimes affect monitor functioning. Data are preliminary and subject to change.</p>
+            
+                        <strong>Street-level monitors</strong>
+                        <p>Data come from the <a href="../nyccas">NYC Community Air Survey</a>'s street-level monitors, which measure ground-level exposures. We apply a calibration factor to make our data comparable to DEC data and historical EPA data.</p>
+                        
+                        <strong>NYS DEC monitors</strong>
+                        <p>We show the average readings from 11 rooftop monitors from the <a href="https://www.dec.ny.gov/index.html">NY State Department of Environmental Conservation (DEC)</a>, which collects data for the Federal Clean Air Act.</p> 
+                        <a href="#accordion-01" class="float-right fs-sm">Download archived data.</a>
+            
+                    
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
     {{- /* map + chart */}}
 
-    <!-- location selection buttons -->
-    
-    <div class="row no-padding mt-4 mb-0">
-        
-        <div class="col-12 ml-auto">
+    <div class="row">
+        <div class="col-md-10 mx-auto col-sm-12">
+            <div class="row mt-4">
+                <div class="col-md-4">
 
-            <button onclick="restore()" type="button" id="btnrestore" class="mb-1 btn btn-sm btn-dark">
-                Reset</button>
+                    <div class="dropright">
+                        <button class="btn btn-outline-secondary btn-block btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Choose location
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="btnDropdownMenu" style="padding: 0px!important;">
+                        </div>
+                      </div>
+                    <div id="map" class="d-none d-md-block">
+                    </div>
+                    <button onclick="restore()" type="button" id="btnrestore" class="btn btn-sm btn-outline-dark btn-block">
+                        Reset</button>
+                </div>
 
-            <div id="buttonHolder" style="display:inline-block;">
-                <!-- JavaScript creates buttons from available monitor feeds and inserts them here -->
-            </div>
+                <div class="col-md-8">
+                    <div class="border-bottom">
+
+
+                        <!-- Chart set -->
+                        <div id="numberinput" class="float-right pt-1"
+                        style="font-size: 12px;">
+                            <label for="inputNum" style="display:inline-block; font-size: 12px;">Show last</label>
+                            <input inputmode="numeric" pattern="[0-9]*" type="number" style="display:inline-block" id="inputNum" name="inputNum" min="1" max="7">
+                            days.
+                            </form>
+                                </div>
+                        </div>
             
 
-            <div id="numberinput" class="float-right pt-1"
-            style="font-size: 12px;">
-                <label for="inputNum" style="display:inline-block; font-size: 12px;">Show last</label>
-                <input inputmode="numeric" pattern="[0-9]*" type="number" style="display:inline-block" id="inputNum" name="inputNum" min="1" max="7">
-                days.
-                </form>
-            </div>
-
-        </div>
-        
-    </div>
-
-
-    
-    <!-- map element -->
-    <div class="row align-self-center">
-        <div class="col-md-4 mt-2 pt-0">
-            <div id="map" class="d-none d-md-block">
-            </div>
-        </div>
-        
-        <!-- chart element -->
-        <div class="col-md-8">
-            <div class="row">
-                <div class="col pl-2 mt-1">
-
-                    <!--
-                    <div id="error">
-                        <hr class="mt-2">
-                        <p class="pl-2"><i class="fas fa-exclamation-triangle mr-1 font-weight-bold"></i>Our realtime air quality monitors are currently down. We're working on getting them back up as soon as we can.</p>
-                    </div>
-                -->
-
-                    
-                    <em class="pl-2 fs-sm">Hourly PM2.5 measurements (in µg/m<sup>3</sup>)</em> | <span class="fs-sm" style="color:red">NAAQS 24-hour PM2.5 standard (35 µg/m<sup>3</sup>)</span>
-
-                    <div id="vis2" style="width: 100%; height: 400px;" class="mt-1">
-                    </div>
-                    
+                        <div style="width:100%">
+                            <span class="fs-sm">Hourly PM2.5 measurements (in µg/m<sup>3</sup>)</span> | <span class="fs-sm" style="color:red">NAAQS 24-hour PM2.5 standard (35 µg/m<sup>3</sup>)</span>
+                        </div>
+            
+                        <div id="vis2" style="width: 100%; height: 400px;" class="mt-1">
+                        </div>
                 </div>
             </div>
         </div>
-        <div class="col-2 ml-auto">
-            
-            <a href="#accordion-01" class="float-right fs-sm">Download archived data</a>
-
-        </div>
     </div>
-
-
 
     <div class="row">
-        <div class="col-12">
-            <div style="background-color:#f2f2f275; border-left: 2px solid darkgray;" class="p-1 hide" id="averageBox">
-                <p class="fs-sm align-right">Over the last 24 hours, the average PM2.5 at this location is <span id="locAverage" style="font-weight:bold;" class="badge badge-primary">XX</span>. This is <span id="aboveBelow" style="font-weight:bold;">XX</span> the <a href="https://www.epa.gov/criteria-air-pollutants/naaqs-table">24-hour NAAQS standard of 35</a>.</p>
-            </div>
+        <div class="col-md-10 mx-auto col-sm-12">
+            <div class="row mt-1">
+                <div class="col-12">
 
-            <div style="background-color:#f2f2f275; border-left: 2px solid darkgray;" class="p-1 hide mt-1" id="decInfo">
-                <p class="fs-sm">Note: "DEC Monitor Average" is the average value of 11 roof-top monitors operated by the New York State Department of Environmental Conservation.</p>
-            </div>
-
-
-
-
-            <!-- last 24-hour info box -->
-            <div class="infobox" id="locInfoBox" style="display:none">
-                <div id="locInfoDesc">
-
-                    <p class=fs-sm><strong>No value:</strong> sometimes monitors go down or have other problems. We only produce average values if there are more than 18 hourly readings over the last 24 hours.</p>
-                    
-                    {{- /*  <div class="col mx-1">
-                        <p>Most recent 24-hour average reading by this monitor: <span class="badge badge-primary badge-custom badge-custom-dark"><span id="24av">n/a</span> µg/m3</span>. This is <span id="comparison" class="badge badge-primary badge-custom">N/A</span> the <a href="https://www.epa.gov/criteria-air-pollutants/naaqs-table">national standard</a> of 35 µg/m3 for 24 hours. <span id="goodBad" class="badge badge-primary badge-custom"></span></p>
-                    </div>  */}}
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row mt-4">
-        <div class="col-11 mx-auto">
-            <div class="row">        
-                <div class="col-md-6 mr-auto">
-                    <h4>About the data</h4>
-                    <p>Data are hourly measurements of PM2.5, in micrograms per cubic meter of air (µg/m<sup>3</sup>). External factors can sometimes affect monitor functioning. Data are preliminary and subject to change.</p>
-
-                    <strong>Street-level monitors</strong>
-                    <p>Data come from the <a href="../nyccas">NYC Community Air Survey</a>'s street-level monitors, which measure ground-level exposures. We apply a calibration factor to make our data comparable to DEC data and historical EPA data.</p>
-                    
-                    <strong>NYS DEC monitors</strong>
-                    <p>We show the average readings from 11 rooftop monitors from the <a href="https://www.dec.ny.gov/index.html">NY State Department of Environmental Conservation (DEC)</a>, which collects data for the Federal Clean Air Act.</p> 
-        
-                    <p></p>
-        
-                 </div>
-
-                 <div class="col-md-6 col-sm-12 ml-auto">
-                    <h4>About PM2.5 air pollution</h4>
-                    {{- .Content  -}}
-                </div>
-            </div>
-        </div>
-
-    </div>
-
-    
-    <div class="row my-4 border py-2 mx-2">
-        <div class="col-md-8 ml-auto">
-            <h3>The Air Quality Index</h3>
-            <p><a href="https://www.airnow.gov/aqi/aqi-basics/">The Air Quality Index is the US Environmental Protection Agency's way of reporting air quality</a>. It reports whether any of five major pollutants (ground-level ozone, fine particles, carbon monoxide, sulfur dioxide and nitrogen dioxide) are at levels that can harm health.             </p>
-
-            <iframe title="AQI" aria-label="Table" id="datawrapper-chart-TyG0B" src="https://datawrapper.dwcdn.net/TyG0B/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="366" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
-            </script>
-        </div>
-
-        <div class="col-md-3 mr-auto">
-            <iframe class="my-2 float-right" title="Example 1" height="340" width="230" src="https://widget.airnow.gov/aq-dial-widget-primary-pollutant/?city=New%20York%20City&state=NY&country=USA&transparent=true" style="border: none; border-radius: 25px;"></iframe>
-        </div>
-
-        <div class="col-11 mx-auto">
-            <div class="row">
-                <div class="col-6">
-                    <div class="p-2 border">
-                        <a href="https://www.nyc.gov/site/doh/health/health-topics/air-quality-fire-smoke-and-effect-on-air-quality.page">Protect yourself during bad air quality.</a>
+                    <!-- Average value box -->
+                    <div class="rtaqbox p-1 hide my-1" id="averageBox">
+                        <p class="fs-md align-right"><span id="locColor"><i class="fas fa-square mr-1"></i></span><span id="locationSend" class="home-label font-weight-bold">LOCATION</span>: Over the last 24 hours, the average PM2.5 at this location is <span id="locAverage" style="font-weight:bold;" class="badge badge-primary">XX</span>. This is <span id="aboveBelow" style="font-weight:bold;">XX</span> the <a href="https://www.epa.gov/criteria-air-pollutants/naaqs-table">24-hour NAAQS standard of 35</a>.</p>
                     </div>
-                </div>
-                <div class="col-6">
-                    <div class="p-2 border">
-                        <a href="https://www.airnow.gov/sites/default/files/2023-03/air-quality-guide-for-particle-pollution_0.pdf">What to do at different AQI levels.</a>
+                
+                    <!-- last 24-hour info box -->
+                    <div class="infobox rtaqbox" id="locInfoBox" style="display:none">
+                        <div id="locInfoDesc">
+        
+                            <p class="fs-md"><strong>No value:</strong> sometimes monitors go down or have other problems. We only produce average values if there are more than 18 hourly readings over the last 24 hours.</p>
+                            
+                            {{- /*  <div class="col mx-1">
+                                <p>Most recent 24-hour average reading by this monitor: <span class="badge badge-primary badge-custom badge-custom-dark"><span id="24av">n/a</span> µg/m3</span>. This is <span id="comparison" class="badge badge-primary badge-custom">N/A</span> the <a href="https://www.epa.gov/criteria-air-pollutants/naaqs-table">national standard</a> of 35 µg/m3 for 24 hours. <span id="goodBad" class="badge badge-primary badge-custom"></span></p>
+                            </div>  */}}
+                        </div>
+                    </div>
+
+                    <!-- DEC info box -->
+                    <div class="rtaqbox p-1 hide mt-1" id="decInfo">
+                        <p class="fs-md">Note: "DEC Monitor Average" is the average value of 11 roof-top monitors operated by the New York State Department of Environmental Conservation.</p>
                     </div>
                 </div>
             </div>
+
         </div>
 
     </div>
 
 
-    <div class="row my-4" data-pagefind-weight="7.0">
-        <div class="col-11 mx-auto">
-            <div class="row">
+
+
+    <style>
+        .rtaqbox {
+            background-color: #f2f2f275;
+            border-left: 2px solid darkgray
+        }
+    </style>
+
+
+
+    <div class="row my-2">
+        <div class="col-md-10 mx-auto col-sm-12">
+            <div class="row border p-2">
+                <div class="col-md-8 ml-auto">
+                    <h3>The Air Quality Index</h3>
+                    <p><a href="https://www.airnow.gov/aqi/aqi-basics/">The Air Quality Index is the US Environmental Protection Agency's way of reporting air quality</a>. It reports whether any of five major pollutants (ground-level ozone, fine particles, carbon monoxide, sulfur dioxide and nitrogen dioxide) are at levels that can harm health.             </p>
+        
+                    <iframe title="AQI" aria-label="Table" id="datawrapper-chart-TyG0B" src="https://datawrapper.dwcdn.net/TyG0B/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="366" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+                    </script>
+                </div>
+        
+                <div class="col-md-3 mr-auto">
+                    <iframe class="my-2 float-right" title="Example 1" height="340" width="230" src="https://widget.airnow.gov/aq-dial-widget-primary-pollutant/?city=New%20York%20City&state=NY&country=USA&transparent=true" style="border: none; border-radius: 25px;"></iframe>
+                </div>
+        
+                <div class="col-11 mx-auto">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="p-2 border">
+                                <a href="https://www.nyc.gov/site/doh/health/health-topics/air-quality-fire-smoke-and-effect-on-air-quality.page">Protect yourself during bad air quality.</a>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="p-2 border">
+                                <a href="https://www.airnow.gov/sites/default/files/2023-03/air-quality-guide-for-particle-pollution_0.pdf">What to do at different AQI levels.</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- next row -->
+            <div class="row my-4" data-pagefind-weight="7.0">
                 <div class="col-md-6 col-sm-12">
                     <h3>Air quality varies because sources vary</h3>
                     <p>In NYC, about 30% of PM2.5 comes from far-away sources like coal-burning power plants
@@ -235,7 +230,7 @@
         
                 <div class="col-md-6 col-sm-12">
                     <h3>Common patterns in the data</h3>
-                    <p>There are several patterns that commonly show up in the data from our air quality monitors. Look at the recent data and see if you can see patterns that indicate:</p>
+                    <p>There are several patterns that commonly show up in the data from our air quality monitors. Look at recent data for patterns that indicate:</p>
                     
                     <div class="card content-card mb-4">
                         <div class="card-content">
@@ -267,39 +262,43 @@
                 </div>
         
             </div>
-        </div>
-    </div>
 
-    <div class="row my-4">
-        <div class="col-11 mx-auto">
-            <div class="accordion-group my-3" role="tablist" id="accordion-01">
+            <div class="row my-4">
+                <div class="col-12">
+                    <div class="accordion-group my-3" role="tablist" id="accordion-01">
 
-                <div class="card">
-            
-                    <a class="card-header h4 collapse collapsed" id="acc-button-01" data-toggle="collapse" href="#panel-acc-button-01"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-01">
-                        <span class="title" role="heading" aria-level="3">Data archive</span>
-                    </a>
-            
-                    <div class="collapse" id="panel-acc-button-01" role="tabpanel" aria-labelledby="acc-button-01" data-parent="#accordion-01">
-            
-                        <div class="card-body bg-white border">
-                            <!-- Download interface -->
-                            {{- partial "realtime-download" . -}}
-
-                            {{- with .Resources.GetMatch "data-archive-text.md" -}}
-                                {{ .Content }}
-                            {{- end -}}
+                        <div class="card">
+                    
+                            <a class="card-header h4 collapse collapsed" id="acc-button-01" data-toggle="collapse" href="#panel-acc-button-01"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-01">
+                                <span class="title" role="heading" aria-level="3">Data archive</span>
+                            </a>
+                    
+                            <div class="collapse" id="panel-acc-button-01" role="tabpanel" aria-labelledby="acc-button-01" data-parent="#accordion-01">
+                    
+                                <div class="card-body bg-white border">
+                                    <!-- Download interface -->
+                                    {{- partial "realtime-download" . -}}
+        
+                                    {{- with .Resources.GetMatch "data-archive-text.md" -}}
+                                        {{ .Content }}
+                                    {{- end -}}
+                                </div>
+                    
+                            </div>
+                            <!-- .collapse -->
+                    
                         </div>
-            
+                        <!-- .card (end of first accordion, repeat as needed) -->
+                    
                     </div>
-                    <!-- .collapse -->
-            
                 </div>
-                <!-- .card (end of first accordion, repeat as needed) -->
-            
             </div>
+
         </div>
+
     </div>
+
+    
 
 <!-- Modal -->
 <div class="modal fade" id="sevenModal" tabindex="-1" role="dialog" aria-labelledby="sevenModalLongTitle" aria-hidden="true">
