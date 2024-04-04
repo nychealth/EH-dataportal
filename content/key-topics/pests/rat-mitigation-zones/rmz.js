@@ -89,6 +89,8 @@ function zoomToFeature(e) {
     redrawChart(id)
     name = e.target.feature.properties.Label
     printToPage(id);
+    interpretInitial(id)
+    interpretCompliance(id)
     // The above gets id and name, puts them into global variables, for other selection display
 
     // this sets style on click (but it won't stick)
@@ -143,6 +145,33 @@ function update(x) {
   document.getElementById('zoneName').innerHTML = layerzone.properties.Label
 
   redrawChart(x)
+
+  interpretInitial(x)
+
+  interpretCompliance(x)
+}
+
+// get recent data function (Initial Inspect)
+function interpretInitial(x) {
+  // filter recent Initial Inspections data for this neighborhood
+  thisRecent = recent.filter (y => y.zoneID == x)
+  console.log('recent data:')
+  console.table(thisRecent)
+
+  // get ARS fail number
+  var ars = thisRecent.filter(x => x.Type === 'Active rat signs')
+  var arsfail = ars[0].Number
+
+  // get total inspections
+  var entry = thisRecent.filter(x => x.Type === 'Initial inspections')
+  var initial = entry[0].Number 
+
+  // calculate percent
+  var percent = 100 * arsfail / initial
+  console.log(percent)
+
+  document.getElementById('failpercent').innerHTML = parseFloat(percent).toFixed(1)
+
 }
 
 
@@ -176,7 +205,9 @@ var specOne = {
         "field": "Date",
         "type": "temporal",
         "title": "",
-        "axis": {"format": "%b %Y"},
+        "axis": {
+          "values": [1656561600000,1672462800000,1688097600000,1703998800000],
+          "format": "%b %Y"},
         "scale": {"domainMin": 1650841000000}
       }
     },
@@ -304,7 +335,9 @@ var specTwo = {
         "field": "Date",
         "type": "temporal",
         "title": "",
-        "axis": {"format": "%b %Y"},
+        "axis": {
+          "values": [1656561600000,1672462800000,1688097600000,1703998800000],
+          "format": "%b %Y"},
         "scale": {"domainMin": 1650841000000}
       }
     },
@@ -316,7 +349,7 @@ var specTwo = {
             "type": "nominal",
             "legend": null,
             "scale": {
-              "domain": ["Initial inspections", "All fail", "ARS fail"],
+              "domain": ["Initial inspections", "All fail", "Active rat signs"],
               "range": ["#00008B", "#c73866", "#D77393"]
             }
           },
@@ -356,7 +389,7 @@ var specTwo = {
           "tooltip": [
             {"field": "Initial inspections", "type": "quantitative"},
             {"field": "All fail", "type": "quantitative","title": "Failed"},
-            {"field": "ARS fail", "type": "quantitative", "title": "Active rat signs"},
+            {"field": "Active rat signs", "type": "quantitative", "title": "Active rat signs"},
             {"field": "Date", "type": "temporal", "title": "For 6 months ending"}
           ]
         },
@@ -413,7 +446,9 @@ var specTwo = {
         "field": "Date",
         "type": "temporal",
         "title": "",
-        "axis": {"format": "%b %Y"},
+        "axis": {
+          "values": [1656561600000,1672462800000,1688097600000,1703998800000],
+          "format": "%b %Y"},
         "scale": {"domainMin": 1650841000000}
       }
     },
@@ -425,7 +460,7 @@ var specTwo = {
             "type": "nominal",
             "legend": null,
             "scale": {
-              "domain": ["Compliance inspections", "Failed, summons issued", "ARS fail"],
+              "domain": ["Compliance inspections", "Failed, summons issued", "Active rat signs"],
               "range": ["#00008B", "#c73866", "#D77393"]
             }
           },
@@ -465,7 +500,7 @@ var specTwo = {
           "tooltip": [
             {"field": "Compliance inspections", "type": "quantitative"},
             {"field": "Failed, summons issued", "type": "quantitative"},
-            {"field": "ARS fail", "type": "quantitative","title": "Active rat signs"},
+            {"field": "Active rat signs", "type": "quantitative","title": "Active rat signs"},
             {"field": "Date", "type": "temporal", "title": "For 6 months ending"}
           ]
         },
@@ -516,7 +551,9 @@ var specTwo = {
         "field": "Date",
         "type": "temporal",
         "title": "",
-        "axis": {"format": "%b %Y"},
+        "axis": {
+          "values": [1656561600000,1672462800000,1688097600000,1703998800000],
+          "format": "%b %Y"},
         "scale": {"domainMin": 1650841000000}
       }
     },
@@ -586,3 +623,67 @@ var specTwo = {
       }
     ]
   }
+
+  //// ----- Get most recent data for Initial Inspections ------ ////
+
+  var initialData = [];
+  var recent = [];
+  var thisRecent = [];
+  d3.csv('initial-inspections.csv').then(data => {
+    // ingest data
+    initialData = data
+
+    // get final date
+    var finalPos = initialData.length - 1    
+    var mostRecentDate = initialData[finalPos].Date
+
+    // get data for final date installment
+    recent = initialData.filter(x => x.Date === mostRecentDate)
+  })
+
+    //// ----- Get most recent data for Compliance Inspections ------ ////
+  var complianceData = [];
+  var complianceRecent = [];
+  var thisCompliance = [];
+  d3.csv('compliance-inspections.csv').then(data => {
+    complianceData = data;
+    var finalPosition = complianceData.length - 1
+    var mostRecentDate = complianceData[finalPosition].Date
+    complianceRecent = complianceData.filter(x => x.Date === mostRecentDate)
+  })
+
+// get recent data function (Initial Inspect)
+function interpretInitial(x) {
+  // filter recent Initial Inspections data for this neighborhood
+  thisRecent = recent.filter (y => y.zoneID == x)
+
+  // get ARS fail number
+  var ars = thisRecent.filter(y => y.Type === 'Active rat signs')
+  var arsfail = ars[0].Number
+
+  // get total inspections
+  var entry = thisRecent.filter(y => y.Type === 'Initial inspections')
+  var initial = entry[0].Number 
+
+  // calculate percent
+  var percent = 100 * arsfail / initial
+
+  document.getElementById('failpercent').innerHTML = parseFloat(percent).toFixed(1)
+  document.getElementById('interpret-1').classList.remove('hide')
+
+}
+
+function interpretCompliance(x) {
+  thisCompliance = complianceRecent.filter(y => y.zoneID == x)
+  console.log('recent data compliance:', thisCompliance)
+  var comp = thisCompliance.filter(y => y.Type === 'Compliance inspections')
+  var compI = comp[0].Number
+
+  var ars = thisCompliance.filter(y => y.Type === 'Active rat signs')
+  var arsfail = ars[0].Number
+
+  var percent = 100 * arsfail / compI
+  document.getElementById('failpercent2').innerHTML = parseFloat(percent).toFixed(1)
+  document.getElementById('interpret-2').classList.remove('hide')
+
+}
