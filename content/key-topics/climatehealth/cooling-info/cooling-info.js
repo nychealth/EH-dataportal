@@ -117,10 +117,11 @@ function runQuestions() {
     var questionBlock = document.createElement('div')
     questionBlock.setAttribute('class', 'border-top mb-4 p-1 hide')
     questionBlock.setAttribute('id','question-'+question.id)
+    questionBlock.innerHTML = `<div class="row"><div class="col-9"><h3 class="h5 mt-2">${question.text}</h3><p>${question.prompt}</p></div><div class="col-3"><img src="img/${question.image}" style="width:100%"></div></div>`
 
     // Question and prompt
-    questionBlock.innerHTML += `<div class="float-right p-1" style="height: 200px;"><img src="img/${question.image}" style="height:100%"></div><p></p>` + '<h3 class="h5 mt-2">' + question.text + '</h3>'
-    questionBlock.innerHTML += `<p>` + question.prompt + `</p>`
+    // questionBlock.innerHTML += `<div class="float-right p-1" style="height: 200px;"><img src="img/${question.image}" style="height:100%"></div><p></p>` + '<h3 class="h5 mt-2">' + question.text + '</h3>'
+    // questionBlock.innerHTML += `<p>` + question.prompt + `</p>`
 
     // Draw answer buttons
     question.options.forEach(option => {
