@@ -3,7 +3,7 @@ console.log("Config file loaded.")
 var content = [
 
     
-    /* Question 0 */
+
 
     
 
@@ -45,7 +45,7 @@ var content = [
             {
                 "optionID": 1,
                 "copy": "Yes",
-                "message": "Make sure to have an emergency plan back up batteries. You can also <a href='https://www.coned.com/en/accounts-billing/payment-plans-assistance/special-services'>register your equipment with your utility provider:<a> <ul><li> CON ED: 1-800-752-6633 <li>PSEG: 1-800-490-0025</ul>",
+                "message": "Make sure to have an emergency plan and back up batteries. You can also <a href='https://www.coned.com/en/accounts-billing/payment-plans-assistance/special-services'>register your equipment with your utility provider:<a> <ul><li> CON ED: 1-800-752-6633 <li>PSEG: 1-800-490-0025</ul>",
                 "setVariable": "eme('Yes')",
                 "goTo": 3
             },
