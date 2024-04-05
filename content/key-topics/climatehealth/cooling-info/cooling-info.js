@@ -506,7 +506,7 @@ btnhasAC.addEventListener('click', function(event) {
   if (hasAC === 'Yes') {
     hasAC = 'No'
   } else { hasAC = 'Yes'}
-  document.getElementById('hasAnimal').innerHTML = hasAC;
+  document.getElementById('hasAC').innerHTML = hasAC;
   runFinal()
 });
 
@@ -517,7 +517,7 @@ btnlimitsAC.addEventListener('click', function(event) {
   if (limitsAC === 'Yes') {
     limitsAC = 'No'
   } else { limitsAC = 'Yes'}
-  document.getElementById('hasAnimal').innerHTML = limitsAC;
+  document.getElementById('limitsAC').innerHTML = limitsAC;
   runFinal()
 });
 
@@ -528,7 +528,7 @@ btnhasFan.addEventListener('click', function(event) {
   if (hasFan === 'Yes') {
     hasFan = 'No'
   } else { hasFan = 'Yes'}
-  document.getElementById('hasAnimal').innerHTML = hasFan;
+  document.getElementById('hasFan').innerHTML = hasFan;
   runFinal()
 });
 
