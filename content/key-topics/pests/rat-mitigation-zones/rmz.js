@@ -704,7 +704,11 @@ function redrawChart(zoneID) {
     specOne.layer[2].encoding.color.value = "transparent";
     specTwo.layer[2].encoding.color.value = "transparent";
     specThree.layer[2].encoding.color.value = "transparent";
-    specFour.layer[2].encoding.color.value = "transparent"
+    specFour.layer[2].encoding.color.value = "transparent";
+    const harlemNotes = document.querySelectorAll('.harlem-note');
+    harlemNotes.forEach(note => {
+        note.classList.add('hide');
+    });
   }
 
 
