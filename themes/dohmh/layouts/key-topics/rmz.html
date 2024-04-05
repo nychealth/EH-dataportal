@@ -35,19 +35,6 @@
             <div id="map" class="border d-sm-none d-md-block">
             </div>
 
-            <div class="dropdown mb-2">
-                <button class="btn btn-outline-primary btn-block btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Choose zone
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <a class="dropdown-item" onclick="update(2)" href="#map">Bronx: Grand Concourse</a>
-                  <a class="dropdown-item" onclick="update(4)" href="#map">Manhattan: Harlem</a>
-                  <a class="dropdown-item" onclick="update(3)" href="#map">Manhattan: East Village/Chinatown</a>
-                  <a class="dropdown-item" onclick="update(1)" href="#map">Brooklyn: Bed Stuy/Bushwick</a>
-
-                </div>
-              </div>
-
             <div class="border p-2 mt-4 d-sm-none d-md-block">
                 <h4>Rat Mitigation Zones</h4>
                 <p>NYC has a robust approach to rat control and uses different techniques depending on the level of rat activity in a neighborhood.</p>
@@ -71,9 +58,23 @@
 
         <div class="col-md-6 mr-auto">
 
-                <div class="row border-top">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="dropdown mb-2">
+                            <button class="btn btn-outline-primary btn-block btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              Choose zone
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                              <a class="dropdown-item" onclick="update(2)" href="#map">Bronx: Grand Concourse</a>
+                              <a class="dropdown-item" onclick="update(4)" href="#map">Manhattan: Harlem</a>
+                              <a class="dropdown-item" onclick="update(3)" href="#map">Manhattan: East Village/Chinatown</a>
+                              <a class="dropdown-item" onclick="update(1)" href="#map">Brooklyn: Bed Stuy/Bushwick</a>
+            
+                            </div>
+                          </div>
+                    </div>
                     <div class="col-12 pt-1">
-                        <h2 class="fwm" id="zoneName">CHOOSE A ZONE</h2>
+                        <h2 class="fwm" id="zoneName">&nbsp;</h2>
 
                         <div class="fs-sm harlem-note hide "><i class="fas fa-asterisk font-weight-bold mr-1" style="color:red;"aria-hidden='true'></i>Harlem became a Rat Mitigation Zone in January 2023.</div>
                     </div>
@@ -89,14 +90,22 @@
                     <div class="col-12 mt-2 border-top pt-1">
                         <h3 class="home-label font-weight-bold">311 complaints</h3>
                         <p class="fs-sm">For <strong style="color: #2b3fde">rat sighting</strong>, <strong style="color: #8670e6">mouse sighting</strong>, <strong style="color: #82ad49">signs of rodents</strong>, or <strong style="color: #1d8f3f">conditions attracting rodents</strong>.</p>
-                        <div style="width:100%; height: 200px;" id="vizOne" class="pl-1"><span class="px-4 mt-4">Choose a zone to see data</span></div>
+                        <div style="width:100%; height: 200px;" id="vizOne" class="pl-1">
+                            <div style="background-color:#fafafa; height: 100%;">
+                            <span class="px-4 mt-4">Choose a zone to see data</span>
+                            </div>
+                        </div>
 
                     </div> 
 
                     <div class="col-12 mt-4 border-top pt-1">
                         <h3 class="home-label font-weight-bold">Initial inspections</h3>
                         <p class="fs-sm"><span style="color: #00008B;font-weight:bold;">Initial inspections</span> follow a 311 complaint, or are initiated proactively by the Health Department.  <span style="color: #c73866;font-weight:bold;">Properties that fail</span> may fail for active rat signs, garbage, or conditions that harbor rats. When a property fails an intiial inspection, the owner receives an abatement order.</p>
-                        <div style="width:100%; height: 200px;" id="vizTwo" class="pl-1"><span class="px-4 mt-4">Choose a zone to see data</span></div>
+                        <div style="width:100%; height: 200px;" id="vizTwo" class="pl-1">
+                            <div style="background-color:#fafafa; height: 100%;">
+                                <span class="px-4 mt-4">Choose a zone to see data</span>
+                            </div>
+                        </div>
                         <div class="border hide p-2" id="interpret-1" >
                         <p><i class="fas fa-flag mr-1 font-weight-bold" aria-hidden="true"></i>In the most recent round, <span id="failpercent" class="font-weight-bold">XX</span><span class="font-weight-bold">%</span> of initial inspections failed for <span style="color:#D77393;font-weight:bold;">active rat signs</span>.</p>
                         </div>
@@ -105,7 +114,11 @@
                     <div class="col-12 mt-4 border-top pt-1">
                         <h3 class="home-label font-weight-bold">Compliance inspections</h3>
                         <p class="fs-sm"><span style="color: #00008B;font-weight:bold;">Compliance inspections</span>  follow failed initial inspections, 2 to 3 weeks after an abatement order. If a property <span style="color: #c73866;font-weight:bold;">fails a compliance inspection</span>, the owner is issued a summons.</p>
-                        <div style="width:100%; height: 200px;" id="vizThree" class="pl-1"><span class="px-4 mt-4">Choose a zone to see data</span></div>
+                        <div style="width:100%; height: 200px;" id="vizThree" class="pl-1">
+                            <div style="background-color:#fafafa; height: 100%;">
+                                <span class="px-4 mt-4">Choose a zone to see data</span>
+                            </div>
+                        </div>
                         <div class="border hide p-2" id="interpret-2">
                         <p><i class="fas fa-flag mr-1 font-weight-bold" aria-hidden="true"></i>In the most recent round, <span id="failpercent2" class="font-weight-bold">XX</span><span class="font-weight-bold">%</span> of compliance inspections failed for <span style="color:#D77393;font-weight:bold;">active rat signs</span>.</p>
                         </div>
@@ -114,7 +127,10 @@
                     <div class="col-12 mt-4 border-top pt-1">
                         <h3 class="home-label font-weight-bold">Exterminator visits</h3>
                         <p class="fs-sm">The Health Department may send <span style="color: #00008B;font-weight:bold;">exterminators to visit a property</span>  when an owner fails a compliance inspection. These may result in <span style="color: #c73866;font-weight:bold;">bait applied</span> (rodenticides), or the exterminator may monitor the property to see if remediation is working. The owner is billed for this work.</span></p>
-                        <div style="width:100%; height: 200px;" id="vizFour" class="pl-1"><span class="px-4 mt-4">Choose a zone to see data</span></div>
+                        <div style="width:100%; height: 200px;" id="vizFour" class="pl-1">
+                            <div style="background-color:#fafafa; height: 100%;">
+                                <span class="p-4 mt-4">Choose a zone to see data</span>
+                                </div>
                     </div> 
 
 
