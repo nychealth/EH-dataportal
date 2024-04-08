@@ -105,9 +105,9 @@ var content = [
             {   
                 "optionID": 2,
                 "copy": "No",
-                "message": "When it's hot AC is the best way to stay cool, but let's find other ways you can stay cool. Skip to question 6.",
+                "message": "When it's hot AC is the best way to stay cool, but let's find other ways you can stay cool. Skip to the next question.",
                 "setVariable": "ac('No')",
-                "goTo": 5
+                "goTo": 6
             }
         ]
 
