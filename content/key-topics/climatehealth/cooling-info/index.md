@@ -1,5 +1,5 @@
 ---
-title: "Protect yourself during hot weather"
+title: "Protect yourself during hot weather and bad air quality"
 date: 2023-08-01T11:51:01-04:00
 draft: false
 seo_title: "Protect yourself during hot weather and bad air quality."
