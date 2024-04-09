@@ -282,7 +282,7 @@ function runFinal() {
 
   // Message 0.5 - default low aqi / look at resources 
   if (aqi < 3 ) {
-    msg = "<p><strong> The air quality is fine.</strong> Before an air quality emergency, make sure you know what to do and what supplies you need to stay safe. </p>"
+    msg = "<p><strong> The air quality today is fine for you.</strong> Before an air quality emergency, make sure you know what to do and what supplies you need to stay safe. </p>"
       finalMessageText.innerHTML+= msg + '<hr class="my-2">'
   }
 
@@ -342,8 +342,15 @@ function runFinal() {
 
 
     // Message 4 - warm and no AC
-    if (hasAC === 'No' && currentTemp > 78) {
+    if (hasAC === 'No' && currentTemp > 78 && aqi < 3) {
       msg = '<p><strong>It’s hot, and you don’t have an AC</strong>. Open your window to try to keep your home cool.</p>'
+      finalMessageText.innerHTML += msg + '<hr class="my-2">'
+  
+    }
+
+    // Message 4a - warm and no AC, plus bad AQ
+    if (hasAC === 'No' && currentTemp > 78 && aqi >= 3) {
+      msg = '<p><strong>It’s hot, and you don’t have an AC</strong>. Open your window to try to keep your home cool. Even though the air quality is poor, it is more important to stay cool right now.</p>'
       finalMessageText.innerHTML += msg + '<hr class="my-2">'
   
     }
