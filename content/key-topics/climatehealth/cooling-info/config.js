@@ -79,7 +79,7 @@ var content = [
             {
                 "optionID": 2,
                 "copy": "No",
-                "message": "",
+                "message": "Great, let's move on.",
                 "setVariable": "animal('No')",
                 "goTo": 4
             }
