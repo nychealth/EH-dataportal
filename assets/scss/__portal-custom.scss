@@ -1220,3 +1220,8 @@ th.tablehead {
     margin: 25px 0px;
     // background-color: #e5f4eb50;
 }
+
+// slightly wider dropdown menu for the Tools header dropdown
+.wider-menu {
+    min-width: 14rem!important;
+}
