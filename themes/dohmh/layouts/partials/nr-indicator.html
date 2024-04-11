@@ -102,6 +102,17 @@
 
 <!-- Indicator modal -->
 <div class="modal fade report-modal" id="modal-{{ .data.indicator_data_name }}-{{ .count }}" tabindex="-1" role="dialog" aria-labelledby="indicatorModalLabel" aria-hidden="true">
+   <script>
+    // Returns each indicator's year formatted to print to page
+     function getYear(x,y) {
+        var endDate = new Date(x) ;
+        console.log('end date:', endDate) ;
+        var year = endDate.getYear() + 1900
+        console.log(year)
+        document.getElementById(y).innerHTML = year
+    }
+   </script>
+   
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header text-left">
@@ -112,10 +123,14 @@
             </div>
 
             <div class="modal-body">
-                <h2 class="fs-xl" data-pagefind-ignore="all">{{ .data.indicator_long_name }} <span class="font-weight-normal">(YEAR)</span></h2>
-                <span class="home-label font-weight-bold">About {{ .data.indicator_short_name }}</span>
+                <h2 class="fs-xl" data-pagefind-ignore="all">{{ .data.indicator_name }} <span class="font-weight-normal">(<span id="year-{{ urlize .data.indicator_short_name }}">YEAR</span>)</span></h2>
                 <p>{{- .data.indicator_description | safeHTML -}}</p>
             </div>
+
+            <script>
+                // call the get year function and print it to each indicator's year spot
+                getYear(`{{ .data.end_date }}`,`year-{{ urlize .data.indicator_short_name }}`)
+            </script>
 
             <div class="modal-body">
                 <table class="table">
