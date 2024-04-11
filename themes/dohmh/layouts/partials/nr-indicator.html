@@ -10,12 +10,15 @@
     function renderComparisonChart(n,b,c,nid,bid,cid) {
         // pass into an array
         var values = []
+
         values.push(Number(n))
         values.push(Number(b))
         values.push(Number(c))
 
-        // names of divs to shape
-        console.log(nid,bid,cid)
+        // drop '*' from string!
+
+        console.log('values:')
+        console.log(values)
 
         // get maximum value
         var max = Math.max(...values)
@@ -155,14 +158,14 @@
                 {{- end -}}
 
                 <script>
-                    renderComparisonChart({{ .data.data_value_geo_entity }}, {{ .data.data_value_boro }}, {{ .data.data_value_nyc }},'n-{{ urlize .data.indicator_short_name }}','b-{{ urlize .data.indicator_short_name }}','c-{{ urlize .data.indicator_short_name }}')
+                    renderComparisonChart({{ .data.unmodified_data_value_geo_entity }}, {{ .data.data_value_boro }}, {{ .data.data_value_nyc }},'n-{{ urlize .data.indicator_short_name }}','b-{{ urlize .data.indicator_short_name }}','c-{{ urlize .data.indicator_short_name }}')
                 </script>
 
             </div>
             <hr>
             <div class="modal-body">
                 <span class="home-label font-weight-bold">Comparison</span>
-                <p class="fs-lg">For {{ lower .data.indicator_name }}, <strong class="text-primary">{{ .neighborhood }}</strong> is {{ if eq (string .data.data_value_rank) "1" }}<span class="worse">worse</span> than most neighborhoods {{- else if eq (string .data.data_value_rank) "2" -}} in the <span class="middle">middle</span> of NYC neighborhoods.{{- else -}}<span class="better">better</span> than most neighborhoods{{ end }}.</p>
+                <p class="fs-lg">For {{ lower .data.indicator_name }}, <strong class="text-primary">{{ .neighborhood }}</strong> is {{ if eq (string .data.data_value_rank) "1" }}<span class="worse">worse</span> than most neighborhoods {{- else if eq (string .data.data_value_rank) "2" -}} in the <span class="middle">middle</span> of NYC neighborhoods{{- else -}}<span class="better">better</span> than most neighborhoods{{ end }}.</p>
                 <p class="fs-sm">  <em>{{ .data.measurement_type }} {{ .data.units }}</em></p>
                 <div style="width:100%; height:30vmin; z-index:10000;" id="summary-{{ .data.indicator_data_name }}-{{ .count }}"></div>
 
