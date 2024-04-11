@@ -36,6 +36,14 @@
 
     }
 
+    function checkTrend(x,y) {
+        if (x == 0 ) {
+            document.getElementById('t-'+y).classList.add('hide');
+            document.getElementById('ta-'+y).classList.remove('hide');
+            console.log(y)
+        } else {}
+    }
+
 </script>
 
 
@@ -174,6 +182,7 @@
 
                 <script>
                     renderComparisonChart({{ .data.unmodified_data_value_geo_entity }}, {{ .data.data_value_boro }}, {{ .data.data_value_nyc }},'n-{{ urlize .data.indicator_short_name }}','b-{{ urlize .data.indicator_short_name }}','c-{{ urlize .data.indicator_short_name }}')
+                    // console.log('{{ .data.trend_flag }}', '{{ urlize .data.indicator_short_name }}')
                 </script>
 
             </div>
@@ -186,12 +195,20 @@
 
             </div>
             <hr>
-            <div class="modal-body">
+            <div class="modal-body" id="t-{{ urlize .data.indicator_short_name }}">
                 <span class="home-label font-weight-bold">Trends over time</span>
                 <p class="fs-sm"><em>{{ .data.measurement_type }} {{ .data.units }}</em></p>
                 <div style="width:100%; height:50vmin; z-index:10000;" id="trend-{{ .data.indicator_data_name }}-{{ .count }}"></div>
 
             </div>
+            <!-- Alt Trend section for single-year indicators -->
+            <div class="modal-body hide" id="ta-{{ urlize .data.indicator_short_name }}">
+                <span class="home-label font-weight-bold">Trends over time (not available)</span>
+                <p class="fs-sm"><em>There's only a single year of data available for this indicator, so we can't show a trend.</em></p>
+            </div>
+            <script>
+                checkTrend('{{ .data.trend_flag }}','{{ urlize .data.indicator_short_name }}')
+            </script>
             <hr>
             <div class="modal-body">
                 <span class="home-label font-weight-bold">By neighborhood</span>
