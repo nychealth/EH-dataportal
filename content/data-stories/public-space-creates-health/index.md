@@ -40,11 +40,13 @@ Health is determined by many factors, and people tend to be healthier when they 
 </figure>
 </div>
 
-Affordable, good quality, stable housing supports health. Living without access to these resources can create poor health that worsens over time. Living in low quality housing as a child also poses particular health risks.
+or most New Yorkers, their own backyard isn’t typically a fenced-in lawn or a private patio—it’s the city. Our public spaces are our streets, sidewalks, parks, pools, waterfront, plazas, subways, beaches, and other places that are open to all. These spaces help us get from point A to point B and offer opportunities to enjoy the outdoors, be active, play, connect with others, and just be.
 
-People living in higher-poverty neighborhoods are more likely to experience negative health effects of poor housing. People of color disproportionately experience housing injustices as a result of policies like redlining and blockbusting that are examples of systemic racism.
+At their best, NYC public spaces are clean, safe, pleasant, accessible to everyone, and promote health and well-being for all.
 
-### Housing affordability: lack of affordable housing forces difficult choices between essentials.
+Public spaces that are designed to reflect community priorities advance equity for all residents, and support health and well-being.
+
+### When streets are designed with everybody in mind—regardless of their age, type of transportation, or mobility—we all benefit.
 
 <div class="pullquote my-4">
 <figure class="">
@@ -57,9 +59,20 @@ People living in higher-poverty neighborhoods are more likely to experience nega
 </figure>
 </div>
 
-Across New York, half of all households are rent-burdened, meaning that more than 30% of their household income goes to rent. Spending so much on rent can leave too little money for food and other essentials. <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/economic-stability/"> Learn more about the health implications of experiencing rent burden in "How economic stability creates health." </a>
+Covering 8,000 miles, streets make up most of the public space in NYC. Cars and other motor vehicles dominate these many miles of public space. <a href="https://nationalequityatlas.org/indicators/Car_access?geo=07000000003651000&breakdown=by-race-ethnicity">Fifty-five of New York City households do not have a car </a> and only 41% of adults report having driven a car in the past 30 days. People in vehicles use most of the space on the roads but people outside of vehicles have the most roadway deaths. In New York City each year, more pedestrians die in road crashes than drivers or passengers. In addition, <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/transportation-related-injuries/?id=2094#display=summary"> each￼year there are more than 8,000 emergency department visits for pedestrian injuries.</a> In places where New York City has redesigned streets there have been fewer injuries.
 
-A person who has a high rent burden is often confronting other housing challenges as well, like overcrowding (defined as more than one person per room). Overcrowding occurs much more often in high-poverty areas, and can have many negative effects, including facilitating spread of disease and making it difficult for children to find a quiet place to study.
+<div class="bg-light px-2 py-2 my-4">
+<strong> Vision Zero </strong><br>
+<a href="https://www.nyc.gov/content/visionzero/pages/"> Redesigning streets for safety is a key part of Vision Zero, </a> New York City’s effort to eliminate roadway deaths and serious injuries. As part of Vision Zero, <a href="https://www.nyc.gov/html/dot/html/pedestrians/safeseniors.shtml"> Pedestrian safety initiatives like Safe Streets for Seniors, study crash data, conduct outreach, and develop ways to increase safety for all road users.</a>
+</div>
+
+<iframe title="Ped Injury ED visit rate" aria-label="Map" id="datawrapper-chart-hhMJr" src="https://datawrapper.dwcdn.net/hhMJr/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="675" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
+
+### Designing streets for people walking and biking—not just people using cars—can improve safety.
+
+In areas with more bike safety infrastructure (including bike lanes and protected bike lanes), we see more people traveling by bike and lower rates of bike injuries. This is the case in Manhattan, which has more than double the number of bike lanes as Brooklyn and a correspondingly lower rate of bicycle injury ED visits although both boroughs have similar percentages of bike commuters.
+
+--
 
 <div class="pullquote my-4">
 <figure class="">
