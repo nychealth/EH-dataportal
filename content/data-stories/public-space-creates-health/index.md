@@ -70,9 +70,20 @@ Covering 8,000 miles, streets make up most of the public space in NYC. Cars and 
 
 ### Designing streets for people walking and biking—not just people using cars—can improve safety.
 
-In areas with more bike safety infrastructure (including bike lanes and protected bike lanes), we see more people traveling by bike and lower rates of bike injuries. This is the case in Manhattan, which has more than double the number of bike lanes as Brooklyn and a correspondingly lower rate of bicycle injury ED visits although both boroughs have similar percentages of bike commuters.
+<a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/active-design/?id=2390#display=summary">In areas with more bike safety infrastructure (including bike lanes and protected bike lanes),</a> we see more people traveling by bike and lower rates of bike injuries. This is the case in Manhattan, which has more than double the number of bike lanes as Brooklyn and a correspondingly lower rate of bicycle injury ED visits although both boroughs have similar percentages of bike commuters.
 
---
+<iframe title="In boroughs with more bike network coverage, there are fewer bike commuter injuries" aria-label="Split Bars" id="datawrapper-chart-nba07" src="https://datawrapper.dwcdn.net/nba07/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="291" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+</script>
+
+New Yorkers own fewer cars than people in many other U.S. cities. That means our streets and sidewalks provide a special opportunity (and responsibility) to make active forms of transit like walking, biking, and e-biking more dependable, functional, and appealing. <a href="https://www.nyc.gov/assets/planning/download/pdf/plans-studies/active-design-guidelines/adguidelines.pdf">The Active Design Guidelines provide evidence-informed strategies to promote health through the design of the built environment.</a> The guidelines help designers and planners think about the best way to design streets and the public realm to make it easy, safe, and comfortable to cycle, walk, and use other forms of active transit to get around. This includes infrastructure like protected bike lanes and well-maintained sidewalks that provide connections and access to plazas, parks, open spaces, and the City’s public spaces inclusive of all New Yorkers regardless of identity or ability. The guidelines align and build upon design guidelines and ongoing initiatives at NYC Department of Transportation and the NYC Parks department. <a href="https://www.nyc.gov/html/dot/html/pedestrians/pedestrian-mobility.shtml">The NYC Pedestrian Mobility Plan incorporates pedestrian needs into different street types to create a more comfortable and convenient experience.</a> <a href="https://www.nyc.gov/html/dot/downloads/pdf/nyc-streets-plan-update-2023.pdf">The NYCStreetsPlan addresses street safety through inspections, added accessible signals, and bike lanes.</a>
+
+### Lowering levels of air, noise, and light pollution from roadway and commercial activity help us stay healthy in our shared environment.
+
+Neighborhoods closest to highways are impacted by increased noise and air pollution and experience long-term consequences from the fracturing of communities that result from highway construction in the first place. <a href="https://www.nyc.gov/office-of-the-mayor/news/919-22/mayor-adams-kicks-off-landmark-study-reimagine-cross-bronx-expressway#/0">Community-informed impact studies on highways like the Brooklyn Queens Expressway (BQE) and the Cross Bronx Expressway (CBE) will work to mitigate the degree of these negative effects.</a> They aim to increase connectivity and resource access for those living close to a highway while reducing exposure to noise and pollution.
+
+<a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/breatheeasy/">Though New York City’s air quality is overall improving, air quality can vary between neighborhoods due to a variety of factors,</a> such as their traffic levels. All neighborhoods can benefit from strategic car-free zones, which have been associated with cleaner air; and policies that reduce vehicle traffic which can result in reduced noise, light, and air pollution, and encourage active transit.
+
+### Maintaining public spaces is critical to ensuring that all New Yorkers can use them.
 
 <div class="pullquote my-4">
 <figure class="">
@@ -86,6 +97,10 @@ In areas with more bike safety infrastructure (including bike lanes and protecte
 </figure>
 </div>
 
+<a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/sanitation/"> To enjoy public spaces and their public health benefits, people need them to be clean.</a> Trash, pests, and other unsanitary things on the streets or in parks can discourage play for neighborhood residents, spread disease, and impact mental health. Parks also need to be well-maintained, and have enough waste bins, public restrooms, and water fountains. The NYC Parks Department has a program that inspects their properties for maintenance issues. Additional maintenance complaints can be filed via 311.
+
+### Public spaces should be designed with all New Yorkers in mind. 
+
 <div class="pullquote my-4">
 <figure class="">
     <figcaption figcaption class="mb-2"> “It’s a nightmare to travel with strollers, wheelchairs or special equipment.” <br><span class="float-right"></span> </figcaption>
@@ -97,9 +112,20 @@ In areas with more bike safety infrastructure (including bike lanes and protecte
 </figure>
 </div>
 
-### Housing quality: Over half of renter-occupied homes in NYC have health-related maintenance problems.
+<a href="https://data.census.gov/table/ACSST5Y2020.S1810?q=Disability&g=160XX00US3651000&tid=ACSST5Y2020.S1810">Seven percent of New Yorkers have a disability that affects their ability to walk.</a> Smooth and even sidewalks, paths, and streets, well-placed pedestrian ramps (including curb extensions from the sidewalk into the street), and elevators are necessary for all New Yorkers to use public space safely and efficiently. <a href="NYC’s Department of Transportation (DOT) is working on upgrading and installing pedestrian ramps to make pedestrian space safer and more accessible for all road users."> NYC’s Department of Transportation (DOT) is working on upgrading and installing pedestrian ramps to make pedestrian space safer and more accessible for all road users. </a>
 
-When housing is unaffordable, options become limited, and people often end up in lower-quality housing with maintenance deficiencies that can cause or worsen health conditions.
+Public spaces have countless benefits and should be inclusive for all. <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7967628/"> Outdoor physical activity and socialization have been shown to increase brain function, boost confidence and self-esteem, and lower stress in adolescents.</a> Where trees, grass, and shrubs are found, outdoor temperatures are cooler, helping fight the urban heat island effect and making streets and public spaces more comfortable. <a href="https://www.nyc.gov/assets/genderequity/downloads/pdf/cge-tip-card-public-spaces.pdf"> Public spaces designed with gender inclusion in mind help create a welcoming and safe environment for everyone that visits them. </a> Lighting, signage, available facilities, and other amenities can be designed to meet the needs of all visitors.
+
+Designing public spaces for people also means creating parks, pools, and other recreation areas that everyone can access. In most NYC neighborhoods, residents live within walking distance (within a half a mile) to a park. But in some neighborhoods, residents still don’t have this level of access to public space.
+
+<iframe title="In most neighborhoods, residents live within walking distance to a park" aria-label="Map" id="datawrapper-chart-h8KUM" src="https://datawrapper.dwcdn.net/h8KUM/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="781" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+</script>
+
+Currently 84.6% of New Yorkers live within walking distance to a park. <a href="https://www.nycgovparks.org/planning-and-building/planning/walk-to-a-park"> Resources are being directed to increasing the number of New Yorkers that live in walking distance to a park through the Walk to a Park Initiative.</a> Park access is hugely beneficial to everyone, but not everyone feels equally comfortable using this form of public space. People using parks shouldn’t have to fear harassment, though they often experience it based on their race or housing status.
+
+#### Feeling safe in public space helps people enjoy and use them.
+
+<a href="https://www.nyc.gov/assets/doh/downloads/pdf/environmental/promoting-safety.pdf"> Whether people perceive their neighborhood as safe can affect how comfortable they feel spending time outside, using parks, and using active transit.</a> Perceptions of safety can also affect residents’ mental well-being. People who live in high-poverty neighborhoods are much less likely to perceive their neighborhoods as safe than people who live in low-poverty neighborhoods. Disinvestment can create unsafe conditions over time, which can connect to these perceptions.
 
 <div class="pullquote my-4">
 <figure class="">
@@ -112,49 +138,14 @@ When housing is unaffordable, options become limited, and people often end up in
 </figure>
 </div>
 
-The consequences of these deficiencies can be dangerous. For example, people whose homes lack adequate heating might use space heaters, which are a fire risk. In January 2022, a malfunctioning space heater sparked a fire that killed 17 people in a high-rise building in the Bronx.
+<iframe title="In higher-poverty neighborhoods, fewer people perceive their neighborhoods as safe." aria-label="Scatter Plot" id="datawrapper-chart-Y1J7m" src="https://datawrapper.dwcdn.net/Y1J7m/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="527" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+</script>
 
-Affordability and barriers to cooling can also result in consequences to health. Lack of air conditioning can result in heat stress during warmer weather and periods of extreme heat, making existing health conditions worse and, in extreme cases, resulting in hospitalization and even death.
+### NYC’s public spaces are the building blocks of our city and our lives.
 
-### Housing instability: when people’s living situations become unstable their mental and physical health is at stake.
+As places everyone uses and depends on daily, prioritizing community engagement in the development and planning of these building blocks is critical to their success. Such engagement builds trust and accountability and is an essential part of environmental justice work and advancing equity at the city level. When public space is built with community representation, it better reflects meaningful priorities, lived experiences, and local culture.
 
-A lack of affordable housing often leads to housing instability. Most evictions occur because the tenant can’t pay rent, and can result in frequent moves and homelessness, both of which threaten health in the short term and over time. New Yorkers living in high-poverty neighborhoods experience eviction at more than four times the rate of those living in low-poverty neighborhoods.
-
-<a href ="https://www.healthaffairs.org/do/10.1377/hpb20210315.747908/"> Eviction is associated with many poor health outcomes.</a> These include babies that are born too small or early, and a higher rate of infant death. Adults who have been evicted have worse physical and mental health, go to the emergency department more often, and are more likely to die by suicide.
-
-<a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9502670/"> A person facing even the possibility of eviction is more likely to report poor health, </a> including high blood pressure, depression, anxiety, and psychological distress.
-
-When COVID-19 hit, New York City paused evictions, recognizing the twin threats of serious financial hardship and health risks created and made worse through experiencing homelessness. This was an effort to keep people housed — but also to keep people out of shelters, where the spread of COVID was hard to contain.
-
-<div class="my-4 py-2 border-top border-bottom">
-<iframe title="Evictions plummeted in 2020" class="" aria-label="Interactive line chart" id="datawrapper-chart-xy1ku" src="https://datawrapper.dwcdn.net/xy1ku/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="423" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
-</div>
-
-When the eviction pause ended in 2021, homelessness in NYC began to rise at a staggering rate, with Black and Latino residents affected more than other racial groups. <a href="https://www.coalitionforthehomeless.org/facts-about-homelessness/#:~:text=In%20November%202023%2C%2092%2C824%20people,see%20the%20shelter%20census%20breakdown.&text=In%20November%202023%2C%2021%2C769%20families,breakdown%20of%20the%20census%20below."> This happened amid a backdrop of steadily increasing rates of homelessness over the past two decades, with roots that extend beyond the pandemic.</a>
-
-Implementing programs that incorporate similar strategies coupled with expanding housing options could help reduce homelessness now and in the future.
-
-The NYC Health Department has a supportive housing program offering 11,200 permanent, affordable housing units for people with substance use or mental health diagnoses who are at risk of homelessness. Supportive housing is also available for people who have been homeless for extended periods of time and includes those coming from street outreach and shelters, foster care, the legal system, and more. In addition to a roof, supportive housing offers tenants assistance in getting jobs, reuniting with families, and getting treatment and support. The City also offers public housing, which houses more than 400,000 low-income New Yorkers—1 in every 11 renters—in over 174,000 public housing units.
-
-### High-quality, affordable and stable housing is essential to public health.
-
-Effective policy must take into consideration how individual needs are shaped by their experience and can also change at every stage of life. Accessibility and support for older adults should be part of housing discussions too. <a href="https://wherewelive.cityofnewyork.us/">The NYC Department of Housing Preservation and Development undertook the Where We Live (WWL) project to hear from residents, government, and community leaders </a> about their experiences with housing access, accessibility, and discrimination. WWL initiatives draw on this feedback to <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/housing/"> prioritize the equitable expansion of housing opportunities in neighborhoods harmed by structural racism.</a>
-
-Also, individuals can call 311 to report health and safety hazards and problems that landlords must legally address.
-
-In summary, when housing is...
-
-- Safe and comfortable
-
-- Affordable and stable
-
-- High-quality
-
-...it supports mental, physical, and emotional health.
-
-<hr class="my-2">
-
-To hear more from New Yorkers about how they view housing and health, listen to recordings from the community conversations:
+To hear more from New Yorkers about how they view public space and health, listen to recordings from the community conversations:
 
 <video width="100%" height="auto" controls>
   <source src="https://media.sparemin.com/embed-video/videos/5e/ec/17/f7/5eec17f7-bcc2-49cb-bbfe-7c16a77ab02c_10793404.mp4" type="video/mp4">
