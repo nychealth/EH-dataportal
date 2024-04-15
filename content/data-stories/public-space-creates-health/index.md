@@ -3,23 +3,21 @@ title: "Public space creates health"
 date: 2024-03-05T01:18:56-04:00
 draft: false
 seo_title: "Public space creates health"
-seo_description: "A data story about how quality and affordable housing enhances public health"
+seo_description: "A data story about how quality and accessible public space enhances public health"
 tags:
-categories: ["housing", "social", "childhealth", "neighborhoods"]
+categories: ["active design", "social", "transportation", "neighborhoods"]
 keywords:
   [
-    "housing",
+    "public space",
     "income inequality",
-    "eviction",
+    "bicycle lanes",
     "inequality",
     "injustice",
-    "renting",
-    "maintenance deficiencies",
-    "disrepair",
-    "mold",
-    "lead",
-    "lead paint",
-    "lead poisoning",
+    "noise pollution",
+    "light pollution",
+    "parks",
+    "sidewalks",
+    "safe streets",
     "poverty",
   ]
 image: ds-public-space_fort_greene_Alexander_Thompson.jpg
@@ -72,8 +70,12 @@ Covering 8,000 miles, streets make up most of the public space in NYC. Cars and 
 
 <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/active-design/?id=2390#display=summary">In areas with more bike safety infrastructure (including bike lanes and protected bike lanes),</a> we see more people traveling by bike and lower rates of bike injuries. This is the case in Manhattan, which has more than double the number of bike lanes as Brooklyn and a correspondingly lower rate of bicycle injury ED visits although both boroughs have similar percentages of bike commuters.
 
+<div class="my-4 py-2 border-top border-bottom">
+
 <iframe title="In boroughs with more bike network coverage, there are fewer bike commuter injuries" aria-label="Split Bars" id="datawrapper-chart-nba07" src="https://datawrapper.dwcdn.net/nba07/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="291" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
 </script>
+
+</div>
 
 New Yorkers own fewer cars than people in many other U.S. cities. That means our streets and sidewalks provide a special opportunity (and responsibility) to make active forms of transit like walking, biking, and e-biking more dependable, functional, and appealing. <a href="https://www.nyc.gov/assets/planning/download/pdf/plans-studies/active-design-guidelines/adguidelines.pdf">The Active Design Guidelines provide evidence-informed strategies to promote health through the design of the built environment.</a> The guidelines help designers and planners think about the best way to design streets and the public realm to make it easy, safe, and comfortable to cycle, walk, and use other forms of active transit to get around. This includes infrastructure like protected bike lanes and well-maintained sidewalks that provide connections and access to plazas, parks, open spaces, and the City’s public spaces inclusive of all New Yorkers regardless of identity or ability. The guidelines align and build upon design guidelines and ongoing initiatives at NYC Department of Transportation and the NYC Parks department. <a href="https://www.nyc.gov/html/dot/html/pedestrians/pedestrian-mobility.shtml">The NYC Pedestrian Mobility Plan incorporates pedestrian needs into different street types to create a more comfortable and convenient experience.</a> <a href="https://www.nyc.gov/html/dot/downloads/pdf/nyc-streets-plan-update-2023.pdf">The NYCStreetsPlan addresses street safety through inspections, added accessible signals, and bike lanes.</a>
 
@@ -97,7 +99,7 @@ Neighborhoods closest to highways are impacted by increased noise and air pollut
 </figure>
 </div>
 
-<a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/sanitation/"> To enjoy public spaces and their public health benefits, people need them to be clean.</a> Trash, pests, and other unsanitary things on the streets or in parks can discourage play for neighborhood residents, spread disease, and impact mental health. Parks also need to be well-maintained, and have enough waste bins, public restrooms, and water fountains. The NYC Parks Department has a program that inspects their properties for maintenance issues. Additional maintenance complaints can be filed via 311.
+<a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/sanitation/"> To enjoy public spaces and their public health benefits, people need them to be clean.</a> Trash, pests, and other unsanitary things on the streets or in parks can discourage play for neighborhood residents, spread disease, and impact mental health. <a href="https://www.nycgovparks.org/park-features/parks-inspection-program">Parks also need to be well-maintained, and have enough waste bins, public restrooms, and water fountains. </a> The NYC Parks Department has a program that inspects their properties for maintenance issues. Additional maintenance complaints can be filed via 311.
 
 ### Public spaces should be designed with all New Yorkers in mind. 
 
@@ -148,5 +150,5 @@ As places everyone uses and depends on daily, prioritizing community engagement 
 To hear more from New Yorkers about how they view public space and health, listen to recordings from the community conversations:
 
 <video width="100%" height="auto" controls>
-  <source src="https://media.sparemin.com/embed-video/videos/5e/ec/17/f7/5eec17f7-bcc2-49cb-bbfe-7c16a77ab02c_10793404.mp4" type="video/mp4">
+  <source src="https://media.sparemin.com/embed-video/videos/1e/5c/8e/ca/1e5c8eca-a800-4ffb-9633-59e0dbe716d3_7237065.mp4" type="video/mp4">
 </video>
