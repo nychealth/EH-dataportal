@@ -21,6 +21,8 @@ indicators:
   - 2021
 - header: Asthma triggers
   IndicatorID: 
+  - 2422
+  - 2404
   - 25
 ---
 

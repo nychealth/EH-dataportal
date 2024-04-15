@@ -9,6 +9,18 @@ tags:
 categories: ["airquality","childhealth","housing","transportation","climatehealth","healthoutcomes","social","pests"]
 keywords: ["asthma","children","hospitalizations","emergency department visits","breathing","housing","physical activity"]
 indicators:
+- header: "Prevalence: Adults"
+  IndicatorID:
+  - 2414
+  - 18
+- header: "Prevalence: Children"
+  IndicatorID:
+  - 2392
+  - 2339
+  - 2147
+  - 2149
+  - 2429
+  - 2431
 - header: Asthma Emergency Department Visits
   IndicatorID:
   - 2380
@@ -25,15 +37,6 @@ indicators:
   - 2385
   - 2381
   - 2386
-- header: Prevalence
-  IndicatorID:
-  - 18
-  - 2392
-  - 2147
-  - 2149
-  - 2339
-  - 2414
-  - 2429
 ---
 
 Asthma is a **common disease in which the lungs become swollen, making breathing difficult**. Symptoms include wheezing, coughing, shortness of breath and tightness in the chest. The exact causes of asthma are not known. **Asthma cannot be cured, but it can be controlled**.
