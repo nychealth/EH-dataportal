@@ -120,8 +120,10 @@ Public spaces have countless benefits and should be inclusive for all. <a href="
 
 Designing public spaces for people also means creating parks, pools, and other recreation areas that everyone can access. In most NYC neighborhoods, residents live within walking distance (within a half a mile) to a park. But in some neighborhoods, residents still don’t have this level of access to public space.
 
+<div class="my-4 py-2 border-top border-bottom">
 <iframe title="In most neighborhoods, residents live within walking distance to a park" aria-label="Map" id="datawrapper-chart-h8KUM" src="https://datawrapper.dwcdn.net/h8KUM/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="781" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
 </script>
+</div>
 
 Currently 84.6% of New Yorkers live within walking distance to a park. <a href="https://www.nycgovparks.org/planning-and-building/planning/walk-to-a-park"> Resources are being directed to increasing the number of New Yorkers that live in walking distance to a park through the Walk to a Park Initiative.</a> Park access is hugely beneficial to everyone, but not everyone feels equally comfortable using this form of public space. People using parks shouldn’t have to fear harassment, though they often experience it based on their race or housing status.
 
@@ -140,8 +142,10 @@ Currently 84.6% of New Yorkers live within walking distance to a park. <a href="
 </figure>
 </div>
 
+<div class="my-4 py-2 border-top border-bottom">
 <iframe title="In higher-poverty neighborhoods, fewer people perceive their neighborhoods as safe." aria-label="Scatter Plot" id="datawrapper-chart-Y1J7m" src="https://datawrapper.dwcdn.net/Y1J7m/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="527" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
 </script>
+</div>
 
 ### NYC’s public spaces are the building blocks of our city and our lives.
 
