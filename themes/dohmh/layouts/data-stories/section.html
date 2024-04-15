@@ -4,7 +4,7 @@
 
     <div class="data-stories">
         <div class="row">
-            <div class="col-md-10 col-sm-12 mt-4 mb-2">
+            <div class="col-md-10 col-sm-12 mt-2 mb-2">
                 <nav aria-label="breadcrumb" class="">
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
@@ -43,7 +43,7 @@
                     <h3 class="card-title"><a class="text-black" href="{{ .RelPermalink }}" class="text-primary">{{ .Title }}</a></h3>
                     <div class="mb-2">{{ .Content | truncate 100 | plainify }}</div>
                     <div class="d-flex justify-content-end link">
-                        <a class="fs-sm font-weight-bold" href="{{ .RelPermalink }}">Read more &gt;</a>
+                        <a class="fs-sm font-weight-bold" href="{{ .RelPermalink }}">Read more <i class="fa-solid fa-angle-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -106,7 +106,7 @@
                                     <h3 class="card-title"><a class="text-black" href="{{ .RelPermalink }}" class="text-primary">{{ .Title }}</a></h3>
                                     <div class="mb-2">{{ .Content | truncate 100 | plainify }}</div>
                                     <div class="d-flex justify-content-end link">
-                                        <a class="fs-sm font-weight-bold" href="{{ .RelPermalink }}">Read more &gt;</a>
+                                        <a class="fs-sm font-weight-bold" href="{{ .RelPermalink }}">Read more <i class="fa-solid fa-angle-right"></i></a>
                                     </div>
                                 </div>
                             </div>
