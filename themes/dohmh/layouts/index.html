@@ -38,7 +38,9 @@
           <div class="col-md-6 px-20">
             <div class="card content-card">
               <div class="card-content primary">
-                <div style='height: 330px; width: 100%; background-image: url({{ relURL ( urls.JoinPath "images" .Params.featured_image ) }}); background-position: center; background-size: cover;'></div>
+                <div class="position-relative" style='height: 330px; width: 100%; background-image: url({{ relURL ( urls.JoinPath "images" .Params.featured_image ) }}); background-position: center; background-size: cover;'>
+                  <div class="overlay-trends"></div>
+                </div>
                 <div class="card-body">
                   <h3><a href="{{ relURL .Params.featured_link }}">{{ .Params.featured_title }}</a></h3>
                   <p>{{ .Params.featured_text }}</p>
@@ -115,7 +117,9 @@
                 <h3 class="text-black fs-xl pr-2 mb-2">Search the site</h3>
               </div>
             </div>
-            <p class="text-black mb-5">We should get page find live to see how we can handle this.</p>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#searchModal" class="btn nav-item-search d-none d-lg-block" title="Search">
+              Search
+            </button>
           </div>
         </div>
       </div>
@@ -126,8 +130,9 @@
       <div class="row mt-4 mb-2 justify-content-center mx-auto">
         <div class="col-lg-4 col-sm-10 card content-card">
           <div class="card-content data-stories mb-4">
-            <a href={{ relURL "data-stories" }}>
-              <img class="card-img-top" src={{ relURL "images/home-sample-image-datastory.png" }}>
+            <a class="position-relative" href={{ relURL "data-stories" }}>
+              <div class="tab-data-stories h-100 w-100 position-absolute"></div>
+              <img class="card-img-top" src={{ relURL "images/image_tab_data_stories.jpg" }}>
             </a>
             <div class="card-body">
               <h3 class="card-title">Data stories</h3>
@@ -141,8 +146,9 @@
 
         <div class="col-lg-4 col-sm-10 card content-card">
           <div class="card-content n-reports mb-4">
-            <a href={{ relURL "neighborhood-reports" }}>
-              <img class="card-img-top" src={{ relURL "images/home-sample-image-NR.png" }}>
+            <a class="position-relative" href={{ relURL "neighborhood-reports" }}>
+              <div class="tab-neighborhood-reports h-100 w-100 position-absolute"></div>
+              <img class="card-img-top" src={{ relURL "images/image_tab_neighborhood_reports.jpg" }}>
             </a>
             <div class="card-body">
               <h3 class="card-title">Neighborhood Reports</h3>
@@ -156,8 +162,9 @@
 
         <div class="col-lg-4 col-sm-10 card content-card">
           <div class="card-content data-explorer mb-4">
-            <a href={{ relURL "data-explorer" }}>
-              <img class="card-img-top" src={{ relURL "images/home-sample-image-DE-5.png" }}>
+            <a class="position-relative" href={{ relURL "data-explorer" }}>
+              <div class="tab-data-explorer h-100 w-100 position-absolute"></div>
+              <img class="card-img-top" src={{ relURL "images/image_tab_key_topics.jpg" }}>
             </a>
             <div class="card-body">
               <h3 class="card-title">Data Explorer</h3>
