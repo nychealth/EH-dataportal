@@ -144,32 +144,42 @@
                 <table class="table">
                     <thead>
                       <tr>
-                        <th scope="col"  style="width:60%; border-top:none!important">&nbsp;</th>
-                        <th scope="col text-right" style="border-top:none!important;">{{ .data.measurement_type }} {{ .data.units }}</th>
+                        <th scope="col"  style="width:40%; border-top:none!important">&nbsp;</th>
+                        <th scope="col" style="border-top:none!important;"><span class="sr-only">{{ .data.measurement_type }} {{ .data.units }}</span></th>
+                        <th scope="col"style="width:40%;"><span class="">{{ .data.measurement_type }} {{ .data.units }}</span></th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
                         <th scope="row"><span class="text-primary fs-xl">{{ .neighborhood }}</span></th>
                         <td>
+                            <p class="indicator-value fs-xl font-weight-bold float-right text-primary">{{ .data.data_value_geo_entity }}</p>
+                        </td>
+                        <td>
                             <div id="n-{{ urlize .data.indicator_short_name }}" style="width:90%;" class="compBar neighb">
-                            <span class="indicator-value fs-xl text-white font-weight-bold">{{ .data.data_value_geo_entity }}</span>
+                                &nbsp;
                             </div>
                         </td>
                       </tr>
                       <tr>
                         <th scope="row"><span class="fs-xl">{{ .borough }}</span></th>
                         <td>
+                            <span class="fs-xl float-right">{{ .data.data_value_boro }}</span>
+                        </td>
+                        <td>
                             <div id="b-{{ urlize .data.indicator_short_name }}" style="width:90%;" class="compBar nonNeighb">
-                            <span class="fs-xl text-right">{{ .data.data_value_boro }}</span>
+                                &nbsp;
                             </div>
                         </td>
                       </tr>
                       <tr>
                         <th scope="row"><span class="fs-xl">New York City</span></th>
                         <td>
+                            <span class="fs-xl float-right">{{ .data.data_value_nyc }}</span>
+                        </td>
+                        <td>
                             <div id="c-{{ urlize .data.indicator_short_name }}" style="width:90%;" class="compBar nonNeighb">
-                            <span class="fs-xl text-right">{{ .data.data_value_nyc }}</span>
+                                &nbsp;
                             </div>
                         </td>
                       </tr>
@@ -177,7 +187,7 @@
                   </table>
 
                 {{- if isset .data "nbr_data_note" -}}
-                <div class="data-note">{{ .data.nbr_data_note }}</div>
+                <div class="data-note float-right">{{ .data.nbr_data_note }}</div>
                 {{- end -}}
 
                 <script>
@@ -241,6 +251,7 @@
 
 <style>
     .compBar {
+        margin-top: 5px;
         padding-left: 5px;
         border-left: 3px solid darkgray;
         max-height: 36px;
