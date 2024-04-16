@@ -150,7 +150,7 @@
                     </thead>
                     <tbody>
                       <tr>
-                        <th scope="row"><span class="text-primary fs-xl float-right">{{ .neighborhood }} <span class="ml-2">{{ .data.data_value_geo_entity }}</span></span></th>
+                        <th scope="row"><span class="text-primary fs-xl float-right">{{ .neighborhood }} <span class="ml-2 float-right">{{ .data.data_value_geo_entity }}</span></span></th>
 
                         <td>
                             <div id="n-{{ urlize .data.indicator_short_name }}" style="width:90%;" class="compBar neighb">
@@ -160,7 +160,7 @@
                         </td>
                       </tr>
                       <tr>
-                        <th scope="row"><span class="fs-xl float-right">{{ .borough }} <span class="ml-2">{{ .data.data_value_boro }}</span></span></th>
+                        <th scope="row"><span class="fs-xl float-right">{{ .borough }} <span class="ml-2 float-right">{{ .data.data_value_boro }}</span></span></th>
                         <td>
                             <div id="b-{{ urlize .data.indicator_short_name }}" style="width:90%;" class="compBar nonNeighb">
                                 &nbsp;
@@ -169,7 +169,7 @@
                         </td>
                       </tr>
                       <tr>
-                        <th scope="row"><span class="fs-xl float-right">New York City <span class="ml-2">{{ .data.data_value_nyc }}</span></span></th>
+                        <th scope="row"><span class="fs-xl float-right">New York City <span class="ml-2 float-right">{{ .data.data_value_nyc }}</span></span></th>
                         <td>
                             <div id="c-{{ urlize .data.indicator_short_name }}" style="width:90%;" class="compBar nonNeighb">
                                 &nbsp;
