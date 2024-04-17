@@ -22,7 +22,7 @@
     
     get_topic_indicators();
     
-    // this is called when an indicator is clicked. it produces the indicator's data-explorer URL and sends it to the modal in report_indicator.html.
+    // this is called when an indicator is clicked. it produces the indicator's data-explorer URL and sends it to the modal in nr-indicator.html.
     
     const getURL = async (indID, dataname) => {
         
@@ -114,7 +114,7 @@
 
 {{ $zip_codes := "" -}}
 
-{{- /*  variables for location_sub_nav partial  */}}
+{{- /*  variables for nr-sub_nav partial  */}}
 
 {{- /*  set hugo provided vars as local vars so that we can use them in different scopes  */}}
 
@@ -159,7 +159,7 @@
 
 
             <div class="row">
-                <div class="col-md-9 h-100">
+                <div class="col-md-9 h-100 col-print-12">
     
                 <!-- REPORT CONTENT -->
                 <div class="row">
@@ -204,7 +204,7 @@
                                         <!-- Only show on print -->
 
                                         <div class="row indicator-headings mb-2 print-only">
-                                            <div class="col-4 font-weight-bold">
+                                            <div class="col-4 font-weight-bold pl-3">
                                                 Topic
                                             </div>
                                             <div class="col-8">
@@ -252,7 +252,7 @@
 
                                             {{- $count := add $index 1 -}}
                                             
-                                            {{- partial "report_indicator.html" (dict "neighborhood" $.Params.neighborhood "borough" $row.borough_name "data" $row "count" $count) -}}
+                                            {{- partial "nr-indicator.html" (dict "neighborhood" $.Params.neighborhood "borough" $row.borough_name "data" $row "count" $count) -}}
                                                     
                                         {{- end -}}
 
@@ -275,7 +275,7 @@
                 </div>
     
                 <!-- NAV RIGHT SIDEBAR -->
-                <div class="col-md-3 h-100">
+                <div class="col-md-3 h-100 d-print-none">
                     <div class="border mb-2 nr-map-highlight" style="height: 100%">
                         <div class="p-1">
                             <p><strong style="color:#00923E">{{ $.Params.neighborhood }}</strong> includes ZIP Codes: 
@@ -296,7 +296,7 @@
                     <nav role="navigation">
                         <div class="">
 
-                            {{- partial "location_sub_nav" (dict  "neighborhood_dir" $neighborhood_dir  "report_filename" $report_filename) -}}
+                            {{- partial "nr-sub_nav" (dict  "neighborhood_dir" $neighborhood_dir  "report_filename" $report_filename) -}}
                         </div>
                     </nav>
 

@@ -6,6 +6,46 @@
         - count - the nth indicator in this report topic, used for making unique element IDs
 */}}
 
+<script>
+    function renderComparisonChart(n,b,c,nid,bid,cid) {
+        // pass into an array
+        var values = []
+
+        values.push(Number(n))
+        values.push(Number(b))
+        values.push(Number(c))
+
+        // drop '*' from string!
+
+        console.log('values:')
+        console.log(values)
+
+        // get maximum value
+        var max = Math.max(...values)
+
+        // denom for percent widths
+        var denom = max * 1.2
+        var nWidth = n / denom
+        var bWidth = b / denom
+        var cWidth = c / denom
+
+        // style chart divs
+        document.getElementById(nid).style.width = 100 * nWidth + '%' 
+        document.getElementById(bid).style.width = 100 * bWidth + '%'
+        document.getElementById(cid).style.width = 100 * cWidth + '%'
+
+    }
+
+    function checkTrend(x,y) {
+        if (x == 0 ) {
+            document.getElementById('t-'+y).classList.add('hide');
+            document.getElementById('ta-'+y).classList.remove('hide');
+            console.log(y)
+        } else {}
+    }
+
+</script>
+
 
 <!--Modal button also fires getURL() -->
 
@@ -70,6 +110,17 @@
 
 <!-- Indicator modal -->
 <div class="modal fade report-modal" id="modal-{{ .data.indicator_data_name }}-{{ .count }}" tabindex="-1" role="dialog" aria-labelledby="indicatorModalLabel" aria-hidden="true">
+   <script>
+    // Returns each indicator's year formatted to print to page
+     function getYear(x,y) {
+        var endDate = new Date(x) ;
+        console.log('end date:', endDate) ;
+        var year = endDate.getYear() + 1900
+        console.log(year)
+        document.getElementById(y).innerHTML = year
+    }
+   </script>
+   
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header text-left">
@@ -78,48 +129,107 @@
                     <span class="fas fa-times-circle"></span>
                 </button>
             </div>
+
             <div class="modal-body">
-                <h2 class="fs-xl" data-pagefind-ignore="all">{{ .data.indicator_long_name }}</h2>
-                <p>In <strong>{{ .neighborhood }}</strong>, {{ lower .data.indicator_name }} is {{ if eq (string .data.data_value_rank) "1" }}<span class="worse">Worse</span>{{- else if eq (string .data.data_value_rank) "2" -}}<span class="middle">Middle</span>{{- else -}}<span class="better">Better</span>{{ end }} compared to the NYC average.</p>
-                {{- .data.indicator_description | safeHTML -}}
+                <h2 class="fs-xl" data-pagefind-ignore="all">{{ .data.indicator_name }} <span class="font-weight-normal">(<span id="year-{{ urlize .data.indicator_short_name }}">YEAR</span>)</span></h2>
+                <p>{{- .data.indicator_description | safeHTML -}}</p>
             </div>
-            <hr>
+
+            <script>
+                // call the get year function and print it to each indicator's year spot
+                getYear(`{{ .data.end_date }}`,`year-{{ urlize .data.indicator_short_name }}`)
+            </script>
+
             <div class="modal-body">
-                <h2 data-pagefind-ignore="all">Neighborhood Comparison</h2>
-                <div class="row comparison">
-                    <div class="col-sm-4 text-primary">{{ .neighborhood }} <span class="indicator-value">{{ .data.data_value_geo_entity }}</span></div>
-                    <div class="col-sm-4">{{ .borough }} <span class="indicator-value">{{ .data.data_value_boro }}</span></div>
-                    <div class="col-sm-4">New York City <span class="indicator-value">{{ .data.data_value_nyc }}</span></div>
-                </div>
-                <p><em>{{ .data.measurement_type }} {{ .data.units }}</em></p>
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col"  style="width:35%; border-top:none!important">&nbsp;</th>
+                        <th scope="col"style="width:40%;"><span class="">{{ .data.measurement_type }} {{ .data.units }}</span></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row"><span class="text-primary fs-xl float-right">{{ .neighborhood }} <span class="ml-2 float-right">{{ .data.data_value_geo_entity }}</span></span></th>
+
+                        <td>
+                            <div id="n-{{ urlize .data.indicator_short_name }}" style="width:90%;" class="compBar neighb">
+                                &nbsp;
+                                <span class="sr-only">{{ .data.data_value_geo_entity }}</span>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl float-right">{{ .borough }} <span class="ml-2 float-right">{{ .data.data_value_boro }}</span></span></th>
+                        <td>
+                            <div id="b-{{ urlize .data.indicator_short_name }}" style="width:90%;" class="compBar nonNeighb">
+                                &nbsp;
+                                <span class="sr-only">{{ .data.data_value_boro }}</span>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl float-right">New York City <span class="ml-2 float-right">{{ .data.data_value_nyc }}</span></span></th>
+                        <td>
+                            <div id="c-{{ urlize .data.indicator_short_name }}" style="width:90%;" class="compBar nonNeighb">
+                                &nbsp;
+                                <span class="sr-only">{{ .data.data_value_nyc }}</span>
+                            </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
 
                 {{- if isset .data "nbr_data_note" -}}
-                <div class="data-note">{{ .data.nbr_data_note }}</div>
+                <div class="data-note float-right">{{ .data.nbr_data_note }}</div>
                 {{- end -}}
+
+                <script>
+                    renderComparisonChart({{ .data.unmodified_data_value_geo_entity }}, {{ .data.data_value_boro }}, {{ .data.data_value_nyc }},'n-{{ urlize .data.indicator_short_name }}','b-{{ urlize .data.indicator_short_name }}','c-{{ urlize .data.indicator_short_name }}')
+                    // console.log('{{ .data.trend_flag }}', '{{ urlize .data.indicator_short_name }}')
+                </script>
 
             </div>
             <hr>
             <div class="modal-body">
-                <h3 data-pagefind-ignore="all">{{- .data.indicator_long_name -}}</h3>
-                <p>  <em>{{ .data.measurement_type }} {{ .data.units }}</em></p>
+                <span class="home-label font-weight-bold">Comparison</span>
+                <p class="fs-lg">For {{ lower .data.indicator_name }}, <strong class="text-primary">{{ .neighborhood }}</strong> is {{ if eq (string .data.data_value_rank) "1" }}<span class="worse">worse</span> than most neighborhoods {{- else if eq (string .data.data_value_rank) "2" -}} in the <span class="middle">middle</span> of NYC neighborhoods{{- else -}}<span class="better">better</span> than most neighborhoods{{ end }}.</p>
+                <p class="fs-sm">  <em>{{ .data.measurement_type }} {{ .data.units }}</em></p>
                 <div style="width:100%; height:30vmin; z-index:10000;" id="summary-{{ .data.indicator_data_name }}-{{ .count }}"></div>
 
             </div>
             <hr>
-            <div class="modal-body">
+            <div class="modal-body" id="t-{{ urlize .data.indicator_short_name }}">
+                <span class="home-label font-weight-bold">Trends over time</span>
+                <p class="fs-sm"><em>{{ .data.measurement_type }} {{ .data.units }}</em></p>
+                <div style="width:100%; height:50vmin; z-index:10000;display:block;" id="trend-{{ .data.indicator_data_name }}-{{ .count }}"></div>
+                
 
-                <h3 data-pagefind-ignore="all">Trends Over Time</h3>
-                <p><em>{{ .data.measurement_type }} {{ .data.units }}</em></p>
-                <div style="width:100%; height:50vmin; z-index:10000;" id="trend-{{ .data.indicator_data_name }}-{{ .count }}"></div>
-
+                {{- if isset .data "nbr_data_note" -}}
+                <div class="data-note mt-3">Some years of data may have unstable rates or estimates suppressed due to low numbers.</div>
+                {{- end -}}
+                            </div>
+            <!-- Alt Trend section for single-year indicators -->
+            <div class="modal-body hide" id="ta-{{ urlize .data.indicator_short_name }}">
+                <span class="home-label font-weight-bold">Trends over time (not available)</span>
+                <p class="fs-sm"><em>There's only a single year of data available for this indicator, so we can't show a trend.</em></p>
             </div>
+            <script>
+                checkTrend('{{ .data.trend_flag }}','{{ urlize .data.indicator_short_name }}')
+            </script>
             <hr>
             <div class="modal-body">
-
-                <h3 data-pagefind-ignore="all">By Neighborhood</h3>
-                <p><em>{{ .data.measurement_type }} {{ .data.units }}</em></p>
+                <span class="home-label font-weight-bold">By neighborhood</span>
+                <p class="fs-sm"><em>{{ .data.measurement_type }} {{ .data.units }}</em></p>
                 <div style="width:100%; height:60vmin; z-index:10000;" id="map-{{ .data.indicator_data_name }}-{{ .count }}"></div>
+                {{- if isset .data "nbr_data_note" -}}
+                <div class="data-note mt-3">Some neighborhoods may have estimates suppressed due to low numbers.</div>
+                {{- end -}}
+            </div>
 
+            <div class="modal-body">
+                <span class="home-label font-weight-bold">Source: </span><br> 
+                <span class="fs-sm">{{ .data.data_source_list }}</span>
             </div>
 
             <!-- .modal-body -->
@@ -132,6 +242,24 @@
         </div>
     </div>
 </div>
+
+<style>
+    .compBar {
+        margin-top: 5px;
+        padding-left: 5px;
+        border-left: 3px solid darkgray;
+        max-height: 36px;
+
+    }
+
+    .nonNeighb {
+        background-color: #D8D8D8;
+    }
+
+    .neighb {
+        background-color: #00923E;
+    }
+</style>
 
 <!-- .modal -->
 
