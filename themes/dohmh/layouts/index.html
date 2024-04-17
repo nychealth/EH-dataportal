@@ -39,7 +39,9 @@
             <div class="card content-card">
               <div class="card-content primary">
                 <div class="position-relative" style='height: 330px; width: 100%; background-image: url({{ relURL ( urls.JoinPath "images" .Params.featured_image ) }}); background-position: center; background-size: cover;'>
-                  <div class="overlay-trends"></div>
+                  <div class="overlay-trends">
+                    <!-- Can use overlay-trends, overlay-map or overlay-topics -->
+                  </div>
                 </div>
                 <div class="card-body">
                   <h3><a href="{{ relURL .Params.featured_link }}">{{ .Params.featured_title }}</a></h3>
