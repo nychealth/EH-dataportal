@@ -1,6 +1,6 @@
 baseURL = "https://gcappbesp307.health.dohmh.nycnet/dev-stage/"
 [params]
-    data_branch = "feature-pagefind-search"
+    data_branch = "staging"
 
 [caches]
     [caches.getresource]
