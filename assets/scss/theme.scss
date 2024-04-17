@@ -71,8 +71,8 @@ h1 {
 
 .site-title {
     display: block;
-    font-size: 1.25rem;
-    line-height: 1.5rem;
+    font-size: 2.25rem;
+    line-height: 2.375rem;
     font-weight: 700;
     @include media-breakpoint-up(md){
         font-size: 2.625rem;
@@ -90,8 +90,8 @@ h1 {
 .site-subtitle {
     display: block;
     font-weight: 700;
-    font-size: 11px;
-    line-height: 14px;
+    font-size: 20px;
+    line-height: 22px;
     @include media-breakpoint-up(md){
         font-size: 1.25rem;
         line-height: 1.5rem;
