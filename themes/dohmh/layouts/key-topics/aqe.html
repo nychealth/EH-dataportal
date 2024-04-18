@@ -20,10 +20,11 @@
 
     <div class="row">
         <div class="col-11 mx-auto pl-0 mb-2">
-            <h1 class="h2"><i class="fas fa-star" aria-hidden="true" style="margin-right: 10px"></i>
-                Your Neighborhood's Air Quality</h1>
+            <h1 class="h2" data-pagefind-weight="10.0">
+                <i class="fas fa-star" aria-hidden="true" style="margin-right: 10px"></i>{{ .Title }}
+            </h1>
 
-            <div class="row">
+            <div class="row" data-pagefind-weight="7.0">
                 <div class="col-md-6">
                     <p>We combine data from our air quality monitoring network, NYCCAS, with other data to understand what
                         makes one neighborhood's air quality different from another's. We found that building emissions,
@@ -168,7 +169,7 @@
 
                 </div>
 
-                <div class="col-sm-5 col-xs-12">
+                <div class="col-sm-5 col-xs-12" data-pagefind-weight="7.0">
                     <div class="sourceBox sourceBox-active" id="sourceBox1" onclick="changeSource(1)">
                         <h3 class="fs-rg">Buliding emissions: <span class="badge" id="BE">XXX</span></h3>
                         <p class="fs-md">Like vehicles, buildings burn fuel: their boilers run on oil or gas to produce heat and hot water. These boilers emit pollutants that affect your neighborhood's air quality.

@@ -13,11 +13,23 @@
           </ul>
         </nav>
 
-        <h1 class="report-title border-bottom mt-4">Neighborhood Reports for 
+        <h1 class="report-title border-bottom mt-4" data-pagefind-ignore="all">Neighborhood Reports for 
           <span class="sub-title">{{ .Title }}</span>
         </h1>
 
-        <p class="report-description fs-lg mt-2 mb-4">{{ .Title }} includes ZIP Codes: <span id="zips" class="home-label font-weight-bold"></span></p>
+        {{- $uhflist := ( resources.Get "js/uhflist.json" ) | transform.Unmarshal -}}
+
+        {{/*  get neighborhood name  */}}
+
+        {{- $neighborhood_dir := .Page.File.Dir | path.Base | lower -}}
+
+        {{- /*  get zip codes - first get element for neighborhood, then extract zip codes  */ -}}
+        {{- /*  "where" returns an array, so you need to unbox it with index 0  */ -}}
+
+        {{- $zip_codes := ( index ( where $uhflist "page_name" $neighborhood_dir ) 0 "Zipcodes" ) -}}
+
+
+        <p class="report-description fs-lg mt-2 mb-4">{{ .Title }} includes ZIP Codes: <span id="zips" class="home-label font-weight-bold">{{- $zip_codes -}}.</span></p>
 
         <div class="row">
           <div class="col-md-9">
@@ -36,7 +48,7 @@
                     <a href="{{ .RelPermalink }}"><img src="{{ $image.RelPermalink }}" class="card-img-top" alt="City photograph for the {{ lower .Title }} report"></a>
                     {{- end -}}
                     
-                    <div class="card-body">
+                    <div class="card-body" data-pagefind-ignore="all">
                       <h2 class="card-title fs-md"><a href="{{ .RelPermalink }}" class="text-primary">{{ .Title }}</a></h2>
                       <p class="card-text fs-md">
                           {{ .Summary }}

@@ -279,7 +279,7 @@ line for New York City residents, or <a href="https://www1.nyc.gov/site/ocdv/get
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="dataModalTitle">About the data</h5>
+                <h5 class="modal-title" id="dataModalTitle" data-pagefind-ignore="all">About the data</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
