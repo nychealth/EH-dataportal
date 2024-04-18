@@ -16,9 +16,15 @@
             <li class="breadcrumb-item active"><a href={{ relURL "neighborhood-reports" }}>{{ .Title }}</a></li>
         </ul>
       </nav>
-  
-      <h1 class="nr-accent mt-4 border-bottom"><i class="fas fa-map-marked-alt mr-1" aria-hidden="true"></i>{{ .Title }}</h1>
-      <p>{{- .Content -}}</p>
+
+      <div class="nr-accent">
+        <div class="row">
+          <div class="col-md-8 col-sm-12 my-4">
+            <h1><i class="fas fa-map-marked-alt mr-1" aria-hidden="true"></i>{{ .Title }}</h1>
+            <p>{{- .Content -}}</p>
+          </div>
+        </div>
+      </div>
 
       <!-- Hidden, accessible list of clickable neighborhoods: rendered by JavaScript -->
       <div class="row sr-only">
@@ -30,61 +36,73 @@
 
       <!-- Visible, interactive neighborhood/report selector -->
       <div class="row" aria-hidden="true">
-        <div class="col-sm-5">
-          <p class="home-label border-bottom font-weight-bold">Choose report:</p>
-          <button class="btn btn-lg btn-block btn-outline-primary active" onclick="buttonChange('Asthma')" id="Asthma">Asthma</button>
-          <button class="btn btn-lg btn-block btn-outline-primary" onclick="buttonChange('Active')" id="Active">Active design</button>
-          <button class="btn btn-lg  btn-block btn-outline-primary" onclick="buttonChange('Climate')" id="Climate">Climate</button>
-          <button class="btn btn-lg btn-block btn-outline-primary" onclick="buttonChange('Housing')" id="Housing">Housing</button>
-          <button class="btn btn-lg btn-block btn-outline-primary" onclick="buttonChange('Outdoor')" id="Outdoor">Outdoor Air</button>
-
-          <div class="l-green-border px-1 mb-2">
-            <p class="mt-2" id="descr"></p>
-          </div>
-    
-        </div>
-    
-        <div class="col-sm-7">
-          <p class="home-label border-bottom font-weight-bold">Choose neighborhood</p>
-
+        <div class="col-12">
+          <h3 class="mb-2">1. Choose report:</h3>
           <div class="row">
-            <div class="col-12">
+            <div class="col-lg mb-2 mb-lg-0">
+              <button class="btn btn-lg btn-block btn-outline-primary active text-decoration-none btn-light-green-bg py-2" onclick="buttonChange('Asthma')" id="Asthma">Asthma</button>
+            </div>
+            <div class="col-lg mb-2 mb-lg-0">
+              <button class="btn btn-lg btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2" onclick="buttonChange('Active')" id="Active">Active design</button>
+            </div>
+            <div class="col-lg mb-2 mb-lg-0">
+              <button class="btn btn-lg  btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2" onclick="buttonChange('Climate')" id="Climate">Climate</button>
+            </div>
+            <div class="col-lg mb-2 mb-lg-0">
+              <button class="btn btn-lg btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2" onclick="buttonChange('Housing')" id="Housing">Housing</button>
+            </div>
+            <div class="col-md mb-2 mb-lg-0">
+              <button class="btn btn-lg btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2" onclick="buttonChange('Outdoor')" id="Outdoor">Outdoor Air</button>
+            </div>
+          </div>
+
+          <div class="row my-3">
+            <div class="col-md-8">
+              <p id="descr"></p>
+            </div>
+          </div>
+          <hr class="mt-2 mb-3" />
+        </div>
+
+        <div class="col-12">
+          <h3>2. Choose Neighborhood</h3>
+
+          <div class="row d-flex flex-md-row-reverse">
+            <div class="col-md-5">
               <div class="btn-group" role="group" style="width:100%;">
 
-                <input 
+                <input
                     id="flex_search"
                     type='search'
-                    class='flexdatalist form-control'
+                    class='flexdatalist form-control nr-flexdatalist'
                     name='indicator_name_suggestion'
                     style="width:100%;"
+                    placeholder="Search"
                 />
 
-                <button id="clear" class="btn btn-md btn-warning">Clear</button>
+                <button id="clear" class="btn btn-md btn-primary">Clear</button>
 
+              </div>
+              <button class="d-flex btn btn-md text-left btn-outline-primary mt-1 w-100 text-decoration-none neighborhood-list-button p-2" onclick="showNeighborhoods()">
+                <span class="flex-grow-1 text-lg">See neighborhood list</span>
+                <span class="plus">&plus;</span>
+                <span class="minus">&minus;</span>
+              </button>
+              <div class="hide" id="showNeighbs">
+                <ul class="list-unstyled p-2 border border-top-0 border-primary neighborhood-list" id="neighborhoodList2"></ul>
+              </div>
             </div>
+            <div class="col-md-7 d-none d-md-block">
+              <div class="nr-clickable-uhf" style="height:550px" aria-hidden="true">
+                {{- partial "nr-clickable-uhf" . -}}
+              </div>
             </div>
           </div>
-
-          <div class="border-bottom nr-clickable-uhf" style="height:550px" aria-hidden="true">
-            {{- partial "nr-clickable-uhf" . -}}
-
-          </div>
-
-
-
-          <button class="btn btn-sm float-right btn-outline-primary mt-1" onclick="showNeighborhoods()">Show neighborhood list</button>
-          <div class="hide mt-2" id="showNeighbs">
-            <h3>All neighborhoods:</h3>
-            <ul id="neighborhoodList2">
-
-            </ul>
-          </div>
-
         </div>
-    
+
       </div>
 
-      
+
     </div>
   </div>
 
@@ -165,16 +183,16 @@
   <script type="text/javascript" src="{{ $flexdatalist_js.RelPermalink }}"></script>
 
 
-<script type="text/javascript"> 
+<script type="text/javascript">
 
 // establish report, and reportURL - change this with a toggle on the report buttons
-var report; 
+var report;
 var reportURL = '' // this is used in nr-clickable-uhf
 
 // button Change function. Pass first word into function from buttons
 function buttonChange(x) {
   report = x
-  window.location.hash = report + "report"; // changing hash - we'll use this later. 
+  window.location.hash = report + "report"; // changing hash - we'll use this later.
 
   var copyHolder = x + 'Descr'
   var copy = document.getElementById(copyHolder).innerHTML
@@ -221,6 +239,8 @@ function showNeighborhoods() {
 
     document.getElementById('showNeighbs').classList.toggle('hide')
     document.getElementById('showNeighbs').classList.toggle('show')
+    let button = document.querySelector('.neighborhood-list-button');
+    button.classList.toggle('active');
 
   }
 
@@ -254,16 +274,16 @@ function loadList() {
   // ----- add flexdatalist select handler -------------------------------------------------- //
 
   $input.on('select:flexdatalist', (e, set) => {
-    
+
     // console.log("set", set);
-    
+
     // SEND TO NEIGHBORHOOD...!
 
     // console.log('chosen neighb:')
     // console.log(set.page_name);
 
-    window.location.href = {{ relURL "neighborhood-reports/" }} + set.page_name + reportURL 
-    
+    window.location.href = {{ relURL "neighborhood-reports/" }} + set.page_name + reportURL
+
 })
 
 // ----- add clear button handler -------------------------------------------------- //
@@ -273,7 +293,7 @@ $("#clear").on("click", (e) => {
     // console.log("e [clear click]", e);
 
     $($input).find("~input").val("").trigger( "focus" )
-    
+
 })
 
 }
