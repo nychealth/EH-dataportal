@@ -9,6 +9,7 @@ theme = "dohmh"
 publishDir = "docs"
 paginate = 9
 ignoreFiles = ['Simplified.Chinese', 'Spanish']
+# enableGitInfo = true
 
 [params]
   data_repo = "https://raw.githubusercontent.com/nychealth/EHDP-data/"
@@ -25,8 +26,15 @@ ignoreFiles = ['Simplified.Chinese', 'Spanish']
   quality = 95
   resampleFilter = 'MitchellNetravali'
 
+[markup.goldmark.parser]
+  autoHeadingID = false # remove md headings from pagefind results
+
 [markup.goldmark.renderer]
   unsafe = true # Allow HTML in md files
+
+[markup.goldmark.parser.attribute]
+  block = false
+  title = true # allow apending attributes to md headings
 
 [languages.en]
   languageName = "English"

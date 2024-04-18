@@ -36,8 +36,13 @@ collections_config:
     name: Data Stories
     singular_name: Data Stories
     singular_key: data-stories
-    description: Data Stories collection.
-    sort_options: *default-sort_options
+    _editables: {}
+    _inputs: {}
+    _select_data: {}
+    _structures: {}
+    disable_add: false
+    disable_add_folder: false
+    disable_file_actions: false
     schemas:
       default:
         <<: *base-schema
@@ -169,7 +174,46 @@ _editables:
     removeformat: false
     copyformatting: false
     snippet: true
-
+    strike: false
+    subscript: false
+    superscript: false
+    table: false
+    underline: false
+    undo: false
+base_url: /
+data_config: {}
+editor:
+  default_path:
+timezone: America/New_York
+x-default_sort_options:
+  - key: date
+    order: desc
+  - key: date
+  - key: title
+  - key: title
+    order: desc
+x-base-schema:
+  hide_extra_inputs: true
+  remove_empty_inputs: true
+  remove_extra_inputs: false
+x-base-collection:
+  sort_options:
+    - key: date
+      order: desc
+    - key: date
+    - key: title
+    - key: title
+      order: desc
+  icon: article
+  schemas:
+    default:
+      reorder_inputs: true
+      hide_extra_inputs: true
+      remove_empty_inputs: true
+      remove_extra_inputs: false
+      icon: notes
+x-hidden:
+  hidden: true
 _snippets:
   datawrapper:
     template: hugo_shortcode_named_args

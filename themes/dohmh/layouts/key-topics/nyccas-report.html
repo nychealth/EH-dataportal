@@ -18,7 +18,7 @@
         <div id="datastoryheader" style="background-image: URL({{ $image.RelPermalink }}); background-position: 50% 25%">
     
             <div class="medium my-auto">
-                <h1 class="titleheader py-2 px-4">
+                <h1 class="titleheader py-2 px-4" data-pagefind-weight="10.0">
                     {{ .Title }}
                 </h1>
             </div>
@@ -44,7 +44,7 @@
     </div>
 
     <!-- Introduction and Key Findings -->
-    <div class="row">
+    <div class="row" data-pagefind-weight="7.0">
         <div class="col-md-8 col-sm-12 mx-auto">
             <div class="medium mb-2">        
                 {{- .Content  -}}
@@ -54,7 +54,7 @@
 
     <!-- Two-column section -->
     <div class="row">
-        <div class="col-md-10 col-sm-12 mx-auto">
+        <div class="col-md-10 col-sm-12 mx-auto" data-pagefind-weight="7.0">
             <hr class="my-2">
 
             <!-- Methods, pollutants -->

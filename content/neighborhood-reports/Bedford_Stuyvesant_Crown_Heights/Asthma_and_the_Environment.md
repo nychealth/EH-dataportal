@@ -3,7 +3,7 @@ title: "Asthma and the Environment"
 neighborhood: "Bedford Stuyvesant - Crown Heights"
 summary: "Asthma is a common lung disease and a leading cause of hospitalizations for children under 15 years old. This report provides a summary of asthma indicators by neighborhood. It also describes housing and neighborhood characteristics that can make asthma worse."
 data_json: "Asthma and the Environment in Bedford Stuyvesant - Crown Heights"
-content_yml: "asthma"
+content_yml: "Asthma_and_the_Environment"
 type: location
 seo_title: "Asthma and the Environment in Bedford Stuyvesant - Crown Heights"
 seo_description: "Asthma and the Environment data profile for the Bedford Stuyvesant - Crown Heights neighborhood of NYC."

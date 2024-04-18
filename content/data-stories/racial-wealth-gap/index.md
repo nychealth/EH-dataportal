@@ -78,7 +78,7 @@ Greater wealth allows people to live in neighborhoods with fewer environmental h
         <span class="title" role="heading" aria-level="3">Wealth can reduce stress from financial challenges.</span>
       </a>
 
-<div class="collapse" id="panel-acc-button-03" role="tabpanel" aria-labelledby="acc-button-01" data-parent="#accordion-01">
+<div class="collapse" id="panel-acc-button-03" role="tabpanel" aria-labelledby="acc-button-03" data-parent="#accordion-01">
     <div class="card-body fs-md">
 <p>
    Wealth can protect families from the negative consequences of financial hardship, including job loss, homelessness or housing insecurity, food insecurity, and the negative psychological effects associated with financial hardship. Intergenerational wealth passed down through inheritance can provide educational and social opportunities that can benefit health in the long run. 
@@ -93,7 +93,7 @@ Greater wealth allows people to live in neighborhoods with fewer environmental h
         <span class="title" role="heading" aria-level="3">Debt and tight budgets lead to reduced spending on medical care and preventative lifestyle habits.</span>
       </a>
 
-<div class="collapse" id="panel-acc-button-04" role="tabpanel" aria-labelledby="acc-button-01" data-parent="#accordion-01">
+<div class="collapse" id="panel-acc-button-04" role="tabpanel" aria-labelledby="acc-button-04" data-parent="#accordion-01">
     <div class="card-body  fs-md">
 <p>
  Conversely, research shows that when household budgets are constrained, families tend to reduce spending on medical care, groceries, and other health-related goods. Households with limited liquid assets may be less able to afford health-promoting opportunities (for example, quality medical care, physical activity, etc.) and more likely to forgo preventative or emergency medical treatments. Financial hardship is consistently correlated with poorer self-rated health, more chronic diseases, and depressive symptoms in children and adults. 
@@ -169,7 +169,7 @@ Effective solutions to racial inequities in wealth and health must simultaneousl
   <i class="fas fa-file-pdf mr-1"></i>
   Analyzing the Racial Wealth Gap and Implications for Health Equity (full report).</a> 
   <a class="btn btn-block btn-outline-primary mt-1"  href="https://www.youtube.com/watch?v=yDgGR-r2xdc" target="_blank"> <i class="fas fa-play-circle mr-1"></i> Reimagining Public Health: A Discussion on the Racial Wealth Gap and Health Equity</a> 
-  <button type="button" class="btn btn-block btn-outline-primary mt-1" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-book-open mr-1"></i>Glossary</button>
+  <button type="button" class="btn btn-block btn-outline-primary mt-1" data-toggle="modal" data-target="#glossaryModal"><i class="fas fa-book-open mr-1"></i>Glossary</button>
 
   </div>
     <div class="col-md-5 col-xs-12">
@@ -183,11 +183,11 @@ Effective solutions to racial inequities in wealth and health must simultaneousl
 
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="glossaryModal" tabindex="-1" role="dialog" aria-labelledby="glossaryModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Glossary</h5>
+        <h5 class="modal-title" id="glossaryModalLabel" data-pagefind-ignore="all">Glossary</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>

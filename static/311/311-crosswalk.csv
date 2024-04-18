@@ -363,8 +363,8 @@ Pest Control Guidance,KA-01110,2370,NYC agency use of rodenticides
 Mosquitoes,KA-02263,2371,NYC Agency Use of Mosquito Adulticides
 Mosquitoes,KA-02263,2372,NYC Agency Use of Mosquito Larvicides
 Mosquitoes,KA-02263,2374,NYC agency use of mosquito control
-Assault,KA-01515,2375,Assault hospitalizations (non-fatal)
-Sexual Assault,KA-02049,2375,Assault hospitalizations (non-fatal)
+2375,Assault hospitalizations (non-fatal)
+2375,Assault hospitalizations (non-fatal)
 Winter Weather Safety,KA-03098,2376,Cold stress: deaths
 Severe Weather,KA-03457,2376,Cold stress: deaths
 Hurricane Preparedness,KA-02810,2377,Households using electric medical equipment
@@ -394,9 +394,9 @@ Heat Complaint in a Residential Building,KA-01036,2396,Children in homes with su
 Carbon Monoxide,KA-02608,2398,Carbon monoxide deaths
 NYCHA Public Housing Maintenance Complaint,KA-01076,2399,Renter-occupied homes with any health-related maintenance problems
 Apartment Maintenance Complaint,KA-01074,2399,Renter-occupied homes with any health-related maintenance problems
-Assault,KA-01515,2400,Assault emergency department visits (non-fatal)
-Sexual Assault,KA-02049,2400,Assault emergency department visits (non-fatal)
-Sexual Assault Victim Support,KA-01621,2400,Assault emergency department visits (non-fatal)
+2400,Assault emergency department visits (non-fatal)
+2400,Assault emergency department visits (non-fatal)
+2400,Assault emergency department visits (non-fatal)
 NYC Care,KA-03317,2401,Postponing health care
 Community Health Profile,KA-02655,2401,Postponing health care
 Asthma,KA-02563,2402,Public School Children (K-8) with Active Asthma

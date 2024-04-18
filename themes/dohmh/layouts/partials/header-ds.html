@@ -91,14 +91,18 @@
 
                 {{- else -}}
 
-                <button class="btn nav-item-search d-none d-lg-block" type="button" title="Search"
+                {{/*  <button class="btn nav-item-search d-none d-lg-block" type="button" title="Search"
                         data-toggle="collapse" data-target="#global-search"
-                        aria-controls="global-search" aria-expanded="false">
+                        aria-controls="global-search" aria-expanded="false">  */}}
 
-                    <span class="sr-only">Search</span>
-                    <i class="fa fa-magnifying-glass fa-lg"></i>
+                    <button type="button" data-toggle="modal" data-target="#searchModal" class="btn nav-item-search d-none d-lg-block" title="Search">
 
-                </button>
+                        <span class="sr-only">Search</span>
+                        <i class="fa fa-magnifying-glass fa-lg text-body mt-1"></i>
+
+                    </button>
+
+                {{/*  </button>  */}}
 
                 {{- end -}}
 

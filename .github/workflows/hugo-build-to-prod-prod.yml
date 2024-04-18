@@ -9,7 +9,11 @@ on:
     types:
       - closed
   workflow_dispatch:
-  
+
+env:
+  HUGO_GIT_BRANCH: production
+
+
 jobs:
 
   # ------------------
@@ -69,7 +73,7 @@ jobs:
 
       - name: Cache node_modules
         id: cache-nodemodules
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         env:
           cache-name: cache-node-modules
         with:
@@ -103,7 +107,7 @@ jobs:
       # cache Hugo modules
 
       - name: Hugo cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: /tmp/hugo_cache
           key: ${{ runner.os }}-hugomod-${{ hashFiles('**/go.sum') }}
@@ -113,14 +117,17 @@ jobs:
       # build site with Hugo
 
       - name: Hugo Build
-        run: hugo --environment prod_prod --cleanDestinationDir --logLevel debug
+        run: | 
+          export HUGO_GIT_LAST_HASH=${{ steps.last_commit.outputs.last_hash }}
+          export HUGO_GIT_LAST_MSG=${{ steps.last_commit.outputs.last_msg }}
+          hugo --environment prod_prod --cleanDestinationDir --logLevel debug
 
-      # run gruntfile action
+      # run pagefind
 
-      - name: Build index with Grunt
+      - name: Build search with pagefind
         run: |
           cd '${{ github.workspace }}'
-          grunt lunr-index --stack
+          npx -y pagefind --site docs
 
       # commit built index
 
