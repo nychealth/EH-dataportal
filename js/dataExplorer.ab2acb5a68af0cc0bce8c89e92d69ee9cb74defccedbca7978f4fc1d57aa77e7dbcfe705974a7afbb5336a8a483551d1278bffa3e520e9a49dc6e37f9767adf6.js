@@ -628,8 +628,8 @@ const loadGeo = async () => {
 
             geoTable = await data;
 
-             console.log("geoTable [loadGeo]");
-             geoTable.print()
+            //  console.log("geoTable [loadGeo]");
+            //  geoTable.print()
 
     });
 }

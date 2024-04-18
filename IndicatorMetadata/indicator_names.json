@@ -106,8 +106,8 @@
   },
   "2028": {
     "IndicatorID": 2028,
-    "description": "Nitrogen oxides (NOx), including nitric oxide (NO) and nitrogen dioxide (NO2), are a group of pollutants formed by combusion that damage lung tissue, cause breathing problems, and contribute to smog and acid rain.",
-    "name": "Nitric oxide (NOx)"
+    "description": "Nitric oxide (NO) is formed by combustion, especially in vehicles, that damages lung tissue, causes breathing problems, and contributes to smog and acid rain.",
+    "name": "Nitric oxide (NO)"
   },
   "2030": {
     "IndicatorID": 2030,
@@ -849,6 +849,11 @@
     "description": "Falls are a leading cause of injury among older adults.",
     "name": "Homes with reported falls (age 65+)"
   },
+  "2404": {
+    "IndicatorID": 2404,
+    "description": "The number of children aged 1-13 years exposed to tobacco smoke at home all of the time, most of the time, or occasionally. Secondhand smoke is harmful to children and can cause or worsen respiratory and asthma issues and ear infections.",
+    "name": "Secondhand smoke exposure at home (children)"
+  },
   "2405": {
     "IndicatorID": 2405,
     "description": "Carbon monoxide (CO) exposure can be life-threatening or fatal. ED visits and hospitalizations allows us to understand the burden of CO-related health impacts.",
@@ -923,6 +928,11 @@
     "IndicatorID": 2429,
     "description": "Children ages 1 to 13 who have had an asthma attack in the past year. Asthma attacks are a measureable adverse health outcome of asthma.",
     "name": "Children with an asthma attack (past 12 months)"
+  },
+  "2430": {
+    "IndicatorID": 2430,
+    "description": "Children who live in homes with visible mold/mildew. Mold and mildew can trigger asthma attacks in children.",
+    "name": "Children in homes with visible mold or mildew (age 1-13)"
   },
   "2431": {
     "IndicatorID": 2431,
