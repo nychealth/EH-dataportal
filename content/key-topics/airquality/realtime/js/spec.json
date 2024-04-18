@@ -34,8 +34,8 @@
           "type": "line", 
           "interpolate": "monotone",
           "point": {
-            "size": 5,
-            "opacity": 0.5
+            "size": 15,
+            "opacity": 0
           }, 
           "tooltip": true
           },
@@ -74,12 +74,14 @@
             "field": "SiteName", 
             "type": "nominal",
             "scale": {
-              "range": ["blue", "yellow", "orange", "red", "green","gray"]
+              "range": ["lightgray"]
               },
-            "condition": [
-              {"test": "datum.SiteName === 'Broadway_35th_St'","value": "blue"},
-              {"test": "datum.SiteName === 'Cross_Bronx_Expy'","value": "red"}
-            ]
+              "condition": [
+                {
+                  "test": "datum.SiteName === 'Broadway_35th_St'",
+                  "value": "lightgray"
+                }
+              ]
             },
             "opacity": {
               "value": 0.7
