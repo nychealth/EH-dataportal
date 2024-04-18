@@ -99,7 +99,7 @@ Neighborhoods closest to highways are impacted by increased noise and air pollut
 </figure>
 </div>
 
-<a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/sanitation/"> To enjoy public spaces and their public health benefits, people need them to be clean.</a> Trash, pests, and other unsanitary things on the streets or in parks can discourage play for neighborhood residents, spread disease, and impact mental health. <a href="https://www.nycgovparks.org/park-features/parks-inspection-program">Parks also need to be well-maintained, and have enough waste bins, public restrooms, and water fountains. </a> The NYC Parks Department has a program that inspects their properties for maintenance issues. Additional maintenance complaints can be filed via 311.
+<a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/sanitation/"> Clean, well maintained, and attractive public spaces are essential to maximize the benefits to public health. </a> Broken equipment and seating, cracked and uneven sidewalks, trash, pests, and other unsanitary things on the streets or in parks may make these spaces feel unsafe, discourage play for neighborhood residents, spread disease, and impact mental health. <a href="https://www.nycgovparks.org/park-features/parks-inspection-program">Parks also need to be well-maintained, and have enough waste bins, public restrooms, and water fountains. </a> The NYC Parks Department has a program that inspects their properties for maintenance issues and the NYC Department of Transportation responds to maintenance issues of streets and sidewalks and coordinates with the Department of Sanitation for waste pick-up. Additional maintenance complaints can be filed via 311.
 
 ### Public spaces should be designed with all New Yorkers in mind. 
 
@@ -125,7 +125,7 @@ Designing public spaces for people also means creating parks, pools, and other r
 </script>
 </div>
 
-Currently 84.6% of New Yorkers live within walking distance to a park. <a href="https://www.nycgovparks.org/planning-and-building/planning/walk-to-a-park"> Resources are being directed to increasing the number of New Yorkers that live in walking distance to a park through the Walk to a Park Initiative.</a> Park access is hugely beneficial to everyone, but not everyone feels equally comfortable using this form of public space. People using parks shouldn’t have to fear harassment, though they often experience it based on their race or housing status.
+Currently 84.6% of New Yorkers live within walking distance to a park. <a href="https://www.nycgovparks.org/planning-and-building/planning/walk-to-a-park"> Resources are being directed to increasing the number of New Yorkers that live in walking distance to a park through the Walk to a Park Initiative.</a> Park access is hugely beneficial to everyone, but not everyone feels equally comfortable using this form of public space and many report harassment based on race or housing status.
 
 #### Feeling safe in public space helps people enjoy and use them.
 
