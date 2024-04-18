@@ -1,39 +1,22 @@
-%YAML 1.1
----
-collections_config_override: true
-timezone: America/New_York
+source: docs
 paths:
-  data: data
   uploads: content/[collection]/{title|slugify}
-  static: ''
-x-default_sort_options: &default-sort_options
-- key: date
-  order: desc
-- key: date
-- key: title
-- key: title
-  order: desc
-
-x-base-schema: &base-schema
-  hide_extra_inputs: true
-  remove_empty_inputs: true
-  remove_extra_inputs: false
-
-x-base-collection: &base-collection
-  sort_options: *default-sort_options
-  icon: article
-  schemas:
-    default:
-      <<: *base-schema
-
-x-hidden: &hidden
-  hidden: true
-
+  static:
+  data:
 collections_config:
   data-stories:
-    <<: *base-collection
     path: content/data-stories
+    output: true
     name: Data Stories
+    description: Data Stories collection.
+    icon: article
+    sort_options:
+      - key: date
+        order: desc
+      - key: date
+      - key: title
+      - key: title
+        order: desc
     singular_name: Data Stories
     singular_key: data-stories
     _editables: {}
@@ -45,50 +28,97 @@ collections_config:
     disable_file_actions: false
     schemas:
       default:
-        <<: *base-schema
         path: .cloudcannon/schemas/data-stories.md
+        reorder_inputs: true
+        hide_extra_inputs: true
+        remove_empty_inputs: true
+        remove_extra_inputs: false
+        icon: notes
   data-explorer:
-    <<: *base-collection
     path: content/data-explorer
+    output: true
     name: Data Explorer
+    description: Data Explorer collection.
+    icon: article
+    sort_options:
+      - key: date
+        order: desc
+      - key: date
+      - key: title
+      - key: title
+        order: desc
     singular_name: Data Explorer
     singular_key: data-explorer
-    description: Data Explorer collection.
-    sort_options: *default-sort_options
+    disable_add: false
+    disable_add_folder: false
+    disable_file_actions: false
     schemas:
       default:
-        <<: *base-schema
         path: .cloudcannon/schemas/data-explorer.md
+        reorder_inputs: true
+        hide_extra_inputs: true
+        remove_empty_inputs: true
+        remove_extra_inputs: false
+        icon: notes
   key-topics:
-    <<: *base-collection
     path: content/key-topics
-    name: Key Topics
-    singular_name: Key Topics
-    singular_key: key-topics
-    description: Key Topics collection.
-    sort_options: *default-sort_options
-    schemas:
-      default:
-        <<: *base-schema
-        path: .cloudcannon/schemas/key-topics.md
+    output: true
     filter:
       exclude:
         - airquality/aqe
         - airquality/nycca
         - climatehealth/hvi
         - climatehealth/syndromic
-  about:
-    <<: *base-collection
-    path: content/about
-    name: About
-    singular_name: About
-    singular_key: about
-    description: About collection.
-    sort_options: *default-sort_options
+    name: Key Topics
+    description: Key Topics collection.
+    icon: article
+    sort_options:
+      - key: date
+        order: desc
+      - key: date
+      - key: title
+      - key: title
+        order: desc
+    singular_name: Key Topics
+    singular_key: key-topics
+    disable_add: false
+    disable_add_folder: false
+    disable_file_actions: false
     schemas:
       default:
-        <<: *base-schema
+        path: .cloudcannon/schemas/key-topics.md
+        reorder_inputs: true
+        hide_extra_inputs: true
+        remove_empty_inputs: true
+        remove_extra_inputs: false
+        icon: notes
+  about:
+    path: content/about
+    output: true
+    name: About
+    description: About collection.
+    icon: article
+    sort_options:
+      - key: date
+        order: desc
+      - key: date
+      - key: title
+      - key: title
+        order: desc
+    singular_name: About
+    singular_key: about
+    disable_add: false
+    disable_add_folder: false
+    disable_file_actions: false
+    schemas:
+      default:
         path: .cloudcannon/schemas/about.md
+        reorder_inputs: true
+        hide_extra_inputs: true
+        remove_empty_inputs: true
+        remove_extra_inputs: false
+        icon: notes
+collections_config_override: true
 collection_groups:
   - heading: Content
     collections:
@@ -96,40 +126,59 @@ collection_groups:
       - data-explorer
       - key-topics
       - about
-
-
-#####################
-# INPUTS ####
-# This where global inputs configuration go.
-###################
+_enabled_editors:
+  - content
+  - data
 _inputs:
-  menu: *hidden
-  date: *hidden
-  datetime: *hidden
-  layout: *hidden
+  menu:
+    type: auto
+    hidden: true
+    cascade: true
+  date:
+    type: auto
+    hidden: true
+    cascade: true
+  datetime:
+    type: auto
+    hidden: true
+    cascade: true
+  layout:
+    type: auto
+    hidden: true
+    cascade: true
   keywords:
     type: multiselect
     options:
-      values: _select_data.keywords
       allow_create: true
+      empty_type: array
+      values: _select_data.keywords
+    cascade: true
   categories:
     type: multiselect
     options:
-      values: _select_data.categories
       allow_create: true
+      empty_type: array
+      values: _select_data.categories
+    cascade: true
   keyTopic:
     type: multiselect
     options:
-      values: _select_data.categories
       allow_create: true
+      empty_type: array
+      values: _select_data.categories
+    cascade: true
   pollutantMaps:
     type: textarea
+    cascade: true
   pollutantTrends:
     type: textarea
+    cascade: true
   conclusion:
     type: textarea
+    cascade: true
   moreInfo:
     type: textarea
+    cascade: true
 _select_data:
   categories:
     - housing
@@ -143,36 +192,26 @@ _select_data:
     - pests
   indicators:
     comment: Select an indicator
-
-
-_enabled_editors:
-  - content
-  - data
+_structures: {}
 _editables:
   content:
-    format: p h2 h3
-    image_size_attributes: false
     blockquote: false
-    link: true
     bold: true
-    italic: true
-    strike: false
-    subscript: false
-    superscript: false
-    underline: false
     bulletedlist: true
-    indent: false
-    numberedlist: true
-    outdent: false
     code: false
+    copyformatting: false
     embed: false
+    format: p h2 h3
     horizontalrule: false
     image: true
-    table: false
-    undo: false
+    image_size_attributes: false
+    indent: false
+    italic: true
+    link: true
+    numberedlist: true
+    outdent: false
     redo: false
     removeformat: false
-    copyformatting: false
     snippet: true
     strike: false
     subscript: false
