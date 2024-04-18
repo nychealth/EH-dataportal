@@ -73,7 +73,7 @@
 <script src="/IndicatorPublic/node_modules/@fortawesome/fontawesome-free/js/all.min.bb77cf03b57ca909a104f353e6abaf69755ad669e72d25d47a9e4f4b5aa8e4d4731f01b5f5a1e63499e3d50f21a40fe705666d643e2be005fa60eb79ca72cdda.js" integrity="sha512-u3fPA7V8qQmhBPNT5quvaXVa1mnnLSXUep5PS1qo5NRzHwG19aHmNJnj1Q8hpA/nBWZtZD4r4AX6YOt5ynLN2g==" crossorigin="anonymous"></script>
 
 
-<link rel="stylesheet" href="/IndicatorPublic/scss/theme.93eedffd28d4702b89a3020c0eff852ea14226d650f38a6b59b5e5eb628de0d3b0941ab60ce45a6887fffc75078c7d1089830b1474e102938667d0ac6f54621f.css" integrity="sha512-k&#43;7f/SjUcCuJowIMDv&#43;FLqFCJtZQ84prWbXl62KN4NOwlBq2DORaaIf//HUHjH0QiYMLFHThApOGZ9Csb1RiHw==" />
+<link rel="stylesheet" href="/IndicatorPublic/scss/theme.0390bf6318c75775949357904a205296964b423f2e033ba74b0a67fd816df115666afa34a9701be11c1c06b9bf44455bcc39c3c1009a0a4195bceb192349e949.css" integrity="sha512-A5C/YxjHV3WUk1eQSiBSlpZLQj8uAzunSwpn/YFt8RVmavo0qXAb4RwcBrm/REVbzDnDwQCaCkGVvOsZI0npSQ==" />
 
 <script src="/IndicatorPublic/node_modules/dompurify/dist/purify.min.642b111ea85d0d7aeae224d75592e4181b0e7c396f86f1e110c4250a8b1ff4eab2d69eb18b31752d259aeaeb88486a9e87d3e60b37e778671866f73db7f86369.js" integrity="sha512-ZCsRHqhdDXrq4iTXVZLkGBsOfDlvhvHhEMQlCosf9Oqy1p6xizF1LSWa6uuISGqeh9PmCzfneGcYZvc9t/hjaQ=="></script>
 
@@ -172,62 +172,140 @@
 
                 <div class="row align-items-center">
 
-                    <div class="col-lg py-2 pl-md-5">
-
+                    <div class="col-lg py-3">
                         <div class="d-flex justify-content-center justify-content-lg-start">
+                            <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/"><img src="https://a816-dohbesp.nyc.gov/IndicatorPublic/7618350_heatmap_business_analytics_statistics_icon-gpr.ico" style="height: 67px" class="pr-1"></a>
 
-                            <p class="text-white">
-                                <span class="site-title title-hover"><a href=/IndicatorPublic/ class="link-no-dec">Environment and Health Data Portal</span>
-                                <span class="site-subtitle">Understand how environments shape health in New York City</a></span>
+                            <p class="text-white title-hover">
+                                <span class="site-subtitle"><a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/" class="link-no-dec">Environment & Health</span>
+                                <span class="site-title">Data Portal</a></span>
                             </p>
 
 
                         </div>
                         
-
                     </div>
                     
 
                     <div class="col-lg-auto border-top border-lg-0 d-print-none">
 
-                        <div class="row no-gutters justify-content-between py-2">
+                        <div class="d-lg-flex align-items-center">
 
                             
-                            <div class="col-auto d-flex d-lg-none">
 
-                                <button class="no-btn-style" type="button" data-toggle="collapse"
-                                    data-target="#nav-primary" aria-controls="nav-primary" aria-expanded="false"
-                                    aria-label="Toggle navigation">
-                                    <span class="fas fa-bars fa-lg"></span>
-                                </button>
-
-                            </div>
-                            
-
-                            <div class="col-auto justify-content-end">
-
-                                <ul class="extensible-list horizontal justify-content-end">
-                                    <li>
-                                        <button class="no-btn-style" type="button" title="Language"
-                                            data-toggle="collapse" data-target="#global-language"
-                                            aria-controls="global-language" aria-expanded="false">
-                                            <span class="sr-only">Language</span>
-                                            <span class="fas fa-language fa-2x"></span>
-                                        </button>
-                                    </li>
-                                    <li>
-                                        <button type="button" data-toggle="modal" data-target="#searchModal" class="btn nav-item-search d-lg-none" title="Search">
-                                            <span class="sr-only">Search</span>
-                                            <i class="fa fa-magnifying-glass fa-lg text-body"></i>
-                                        </button>
+                            <ul class="extensible-list horizontal justify-content-between my-2 d-lg-none">
+                                <li>
+                                    <button class="navbar-toggler no-btn-style" type="button" title="Main Menu" data-toggle="collapse"
+                                        data-target="#nav-primary" aria-controls="nav-primary" aria-expanded="false"
+                                        aria-label="Toggle navigation">
+                                        <span class="sr-only">Main Menu</span>
+                                        <span class="fas fa-bars fa-lg text-white" ></span>
+                                    </button>
                                 </li>
 
-                                </ul>
+                                <li>
+                                    <a class="nav-link" href="#" type="button" data-toggle="modal" data-target="#searchModal" title="Search" data-toggle="collapse">
+                                        <span class="sr-only">Search</span>
+                                        <i class="fa fa-magnifying-glass text-white"></i>
+                                    </a>
+                                </li>
+                            </ul>
 
-                                <a class="btn-sm text-white font-weight-bold mr-2" style="border: 1px solid lightgray; border-radius: 3px;" href=/IndicatorPublic/about>About us</a>
+                            <div class="collapse d-lg-block mx-n2 mx-lg-2" id="nav-primary">
+
+                                <nav class="nav" role="navigation">
+
+                                    <div class="nav-item bg-white text-primary border dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="nav-item-topic"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Topics
+                                        </a>
+
+                                        <div class="dropdown-menu wider-menu" aria-labelledby="nav-item-topic">
+                                            <ul class="extensible-list p-0">
+                                                
+                                                <a class="" href="/IndicatorPublic/key-topics/transportation/"> <li class="">Active design, public space, and transportation</li></a>
+                                                <hr class="my-1">
+                                                
+
+                                                
+                                                <a class="" href="/IndicatorPublic/key-topics/airquality/"> <li class="">Air quality</li></a>
+                                                <hr class="my-1">
+                                                
+
+                                                
+                                                <a class="" href="/IndicatorPublic/key-topics/childhealth/"> <li class="">Child health</li></a>
+                                                <hr class="my-1">
+                                                
+
+                                                
+                                                <a class="" href="/IndicatorPublic/key-topics/climatehealth/"> <li class="">Climate and health</li></a>
+                                                <hr class="my-1">
+                                                
+
+                                                
+                                                <a class="" href="/IndicatorPublic/key-topics/foodanddrink/"> <li class="">Food and drink</li></a>
+                                                <hr class="my-1">
+                                                
+
+                                                
+                                                <a class="" href="/IndicatorPublic/key-topics/healthoutcomes/"> <li class="">Environmental health outcomes</li></a>
+                                                <hr class="my-1">
+                                                
+
+                                                
+                                                <a class="" href="/IndicatorPublic/key-topics/housing/"> <li class="">Housing</li></a>
+                                                <hr class="my-1">
+                                                
+
+                                                
+                                                <a class="" href="/IndicatorPublic/key-topics/social/"> <li class="">Inequality and health inequities</li></a>
+                                                <hr class="my-1">
+                                                
+
+                                                
+                                                <a class="" href="/IndicatorPublic/key-topics/pests/"> <li class="">Pests and pesticides</li></a>
+                                                <hr class="my-1">
+                                                
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    
+
+                                    <div class="nav-item bg-white text-primary border dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="nav-item-type"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Explore
+                                        </a>
+
+                                        <div class="dropdown-menu wider-menu" aria-labelledby="nav-item-type">
+                                            <ul class="extensible-list p-0"><a href="/IndicatorPublic/data-stories/"> <li><span class="mr-1"><span class='text-primary ds-accent'><i class='fas fa-passport' aria-hidden='true'></i></span></span>Data Stories</li></a>
+                                                   <hr class="my-1"><a href="/IndicatorPublic/neighborhood-reports/"> <li><span class="mr-1"><span class='text-primary nr-accent'><i class='fas fa-map-marked-alt' aria-hidden='true'></i></span></span>Neighborhood Reports</li></a>
+                                                   <hr class="my-1"><a href="/IndicatorPublic/data-explorer/"> <li><span class="mr-1"><span class='text-primary de-accent'><i class='fas fa-chart-line' aria-hidden='true'></i></span></span>Data Explorer</li></a>
+                                                   <hr class="my-1"></ul>
+                                        </div>
+                                    </div>
+                                    
+
+                                    <div class="nav-item bg-white text-primary border"><a class="nav-link " href="/IndicatorPublic/about/">
+                                            About
+                                        </a></div>
+                                    
+
+                                    
+
+                                    <div class="nav-item bg-white text-primary border d-none d-lg-block">
+                                        <a class="nav-link" href="#" type="button" data-toggle="modal" data-target="#searchModal" title="Search" data-toggle="collapse">
+                                                    <span class="sr-only">Search</span>
+                                                    <i class="fa fa-magnifying-glass text-body"></i>
+                                                </a>
+                                    </div>
+                                    
+
+                                </nav>
 
                             </div>
-                            
 
                         </div>
                         
@@ -252,232 +330,182 @@
 
 
         </div>
-        <div class="container-fluid collapse d-lg-block px-0 border-lg-top d-print-none" id="nav-primary">
-
-            <div class="wide">
-
-                <nav class="nav nav-pills border-bottom border-right justify-content-center" role="navigation"><span id="File.Path" style="display: none">key-topics/_index.md</span>
-                <span id="FirstSection.RelPermalink" style="display: none">/IndicatorPublic/key-topics/</span>
-
-                <div class="nav-item-search border-right">
-                    <a class="nav-link" id="nav-item-01" href=/IndicatorPublic/>
-                    <span class='text-primary'><i class='fa fa-home' aria-hidden='true'></i><span class="sr-only">Home</span></span>
-                    </a>
-                </div><div class="nav-item active">
-
-                        <a class="nav-link" href="/IndicatorPublic/key-topics/" id="nav-item-05"><span class='text-primary'><i class='fas fa-star' aria-hidden='true'></i></span> Key Topics</a>
-
-                    </div><div class="nav-item">
-
-                        <a class="nav-link" href="/IndicatorPublic/data-stories/" id="nav-item-02"><span class='text-primary'><i class='fas fa-passport' aria-hidden='true'></i></span> Data Stories</a>
-
-                    </div><div class="nav-item">
-
-                        <a class="nav-link" href="/IndicatorPublic/neighborhood-reports/" id="nav-item-04"><span class='text-primary'><i class='fas fa-map-marked-alt' aria-hidden='true'></i></span> Neighborhood Reports</a>
-
-                    </div><div class="nav-item">
-
-                        <a class="nav-link" href="/IndicatorPublic/data-explorer/" id="nav-item-03"><span class='text-primary'><i class='fas fa-chart-line' aria-hidden='true'></i></span> Data Explorer</a>
-
-                    </div>
-
-                        <button type="button" data-toggle="modal" data-target="#searchModal" class="btn nav-item-search d-none d-lg-block" title="Search">
-
-                            <span class="sr-only">Search</span>
-                            <i class="fa fa-magnifying-glass fa-lg text-body mt-1"></i>
-
-                        </button>
-
-                    </nav>
-
-            </div>
-
-        </div>
-
-        <div class="container-fluid-lg border-top collapse" id="global-search">
-
-            <form class="narrow py-2" aria-label="Search" role="search">
-
-                <div class="input-group">
-
-                    <label class="sr-only" for="global-search-bar">Search</label>
-
-                    <input class="form-control form-control-lg" id="global-search-bar" placeholder="Search">
-
-                    <div class="input-group-btn">
-
-                        <button class="btn btn-primary btn-lg" type="button" title="Search">
-
-                            <span class="sr-only">Search</span>
-                            <span class="fas fa-arrow-right"></span>
-
-                        </button>
-
-                    </div>
-
-                </div>
-
-            </form>
-
-
-            
-
-    </div>
 
 </header>
-<main id="skip-header-target" role="main" data-pagefind-body><article id="skip-header-target">
+<main id="skip-header-target" role="main" data-pagefind-body><article class="container wide" id="skip-header-target">
 
-<div class="container">
-    <div class="col-md-10 col-sm-12 mx-auto my-4">
-        <h1 class="kt-accent"><i class="fas fa-star" aria-hidden="true" style="margin-right: 10px"></i>Key Topics in Environmental Health</h1>
-        <p><p><strong>What creates health?</strong>  Often, our environment does. The world around us shapes our health, our behavior, the resources we can access and the threats we encounter.</p>
+    <div class="key-topics">
+        <div class="row">
+            <div class="col-md-10 col-sm-12 mt-4 mb-2">
+                <nav aria-label="breadcrumb" class="">
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href=/IndicatorPublic/>Home</a></li>
+                        <li class="breadcrumb-item active"><a href=/IndicatorPublic/key-topics>Key Topics</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 col-sm-12 my-4">
+
+                <h1><i class="fas fa-star mr-1" aria-hidden="true"></i>Key Topics in Environmental Health</h1>
+                <p><p><strong>What creates health?</strong>  Often, our environment does. The world around us shapes our health, our behavior, the resources we can access and the threats we encounter.</p>
 <p>These key topics in environmental health offer data and resources from across the portal on different ways that our environments shape our health.</p>
 </p>
+            </div>
+        </div>
     </div>
-</div>
 
-<div class="container-fluid">
-    <div class="row"><div class="card content-card mb-4 col-sm-6 col-md-4">
-        <div class="card-content">
-            <a href="/IndicatorPublic/key-topics/airquality/">
+    <div>
+        <div class="row"><div class="card content-card mb-4 col-sm-6 col-md-4">
+                <div class="card-content key-topics">
+                    <a href="/IndicatorPublic/key-topics/airquality/">
+                        
+                        
+                        <div style="width:100%; height:250px; background-image: url(/IndicatorPublic/key-topics/airquality/outdoor-air_hu05a99e1bb480215933cdbe31c1b38a32_291618_740x0_resize_q95_mitchellnetravali.jpg); background-size:cover"></div>
+                    </a>
 
-                
-                
-                <div style="width:100%; height:250px; background-image: url(/IndicatorPublic/key-topics/airquality/outdoor-air_hu05a99e1bb480215933cdbe31c1b38a32_291618_740x0_resize_q95_mitchellnetravali.jpg); background-size:cover"></div></a>
+                    <div class="card-body">
+                        <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/key-topics/airquality/" class="text-primary">Air quality</a></h3>
+                        <div class="mb-2"><p>New York City&rsquo;s air contains particles, drops of liquid, gasses, and other pollution that can affect health. Bad air quality can be particularly …</p></div>
+                        <div class="d-flex justify-content-end link">
+                            <a class="fs-sm font-weight-bold" href="/IndicatorPublic/key-topics/airquality/">Get data, info, and more <i class="fa-solid fa-angle-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                <div class="card-content key-topics">
+                    <a href="/IndicatorPublic/key-topics/climatehealth/">
+                        
+                        
+                        <div style="width:100%; height:250px; background-image: url(/IndicatorPublic/key-topics/climatehealth/nyc-climate_hu098823fc1efa39dee5df50e77029244f_1783811_740x0_resize_q95_mitchellnetravali.jpg); background-size:cover"></div>
+                    </a>
 
-            <div class="card-body">
-            <h2 class="card-title"><a href="/IndicatorPublic/key-topics/airquality/" class="text-primary">Air quality</a></h5>
-            <p class="fs-sm"><p>New York City&rsquo;s air contains particles, drops of liquid, gasses, and other pollution that can affect health. Bad air quality can be particularly …</p></p>
-            <p class="fs-sm text-primary float-right mb-2"><a href="/IndicatorPublic/key-topics/airquality/">Get data, info, and more <i
-                class="fas fa-arrow-circle-right"></i></a></p>
-          </div>
-        </div>
-      </div><div class="card content-card mb-4 col-sm-6 col-md-4">
-        <div class="card-content">
-            <a href="/IndicatorPublic/key-topics/climatehealth/">
+                    <div class="card-body">
+                        <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/key-topics/climatehealth/" class="text-primary">Climate and health</a></h3>
+                        <div class="mb-2"><p>Climate, including extreme weather, has a direct impact on health. As NYC&rsquo;s climate changes, along with the world&rsquo;s climate, we expect …</p></div>
+                        <div class="d-flex justify-content-end link">
+                            <a class="fs-sm font-weight-bold" href="/IndicatorPublic/key-topics/climatehealth/">Get data, info, and more <i class="fa-solid fa-angle-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                <div class="card-content key-topics">
+                    <a href="/IndicatorPublic/key-topics/housing/">
+                        
+                        
+                        <div style="width:100%; height:250px; background-image: url(/IndicatorPublic/key-topics/housing/nyc-housing_huc0a32de224d6bf703b0d73895594231b_521571_740x0_resize_q95_mitchellnetravali.jpg); background-size:cover"></div>
+                    </a>
 
-                
-                
-                <div style="width:100%; height:250px; background-image: url(/IndicatorPublic/key-topics/climatehealth/nyc-climate_hu098823fc1efa39dee5df50e77029244f_1783811_740x0_resize_q95_mitchellnetravali.jpg); background-size:cover"></div></a>
+                    <div class="card-body">
+                        <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/key-topics/housing/" class="text-primary">Housing</a></h3>
+                        <div class="mb-2"><p>Most people spend most of their time at home - so the household environment can significantly affect health. Disrepair that stems from long-term …</p></div>
+                        <div class="d-flex justify-content-end link">
+                            <a class="fs-sm font-weight-bold" href="/IndicatorPublic/key-topics/housing/">Get data, info, and more <i class="fa-solid fa-angle-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                <div class="card-content key-topics">
+                    <a href="/IndicatorPublic/key-topics/social/">
+                        
+                        
+                        <div style="width:100%; height:250px; background-image: url(/IndicatorPublic/key-topics/social/nyc-neighborhood_hu3a8825abee4898105d589e2774f8c130_467354_740x0_resize_q95_mitchellnetravali.jpg); background-size:cover"></div>
+                    </a>
 
-            <div class="card-body">
-            <h2 class="card-title"><a href="/IndicatorPublic/key-topics/climatehealth/" class="text-primary">Climate and health</a></h5>
-            <p class="fs-sm"><p>Climate, including extreme weather, has a direct impact on health. As NYC&rsquo;s climate changes, along with the world&rsquo;s climate, we expect …</p></p>
-            <p class="fs-sm text-primary float-right mb-2"><a href="/IndicatorPublic/key-topics/climatehealth/">Get data, info, and more <i
-                class="fas fa-arrow-circle-right"></i></a></p>
-          </div>
-        </div>
-      </div><div class="card content-card mb-4 col-sm-6 col-md-4">
-        <div class="card-content">
-            <a href="/IndicatorPublic/key-topics/housing/">
+                    <div class="card-body">
+                        <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/key-topics/social/" class="text-primary">Inequality and health inequities</a></h3>
+                        <div class="mb-2"><p>Inequality is a significant driver of bad health: a society that deprives people of resources to stay healthy is a society where many people become …</p></div>
+                        <div class="d-flex justify-content-end link">
+                            <a class="fs-sm font-weight-bold" href="/IndicatorPublic/key-topics/social/">Get data, info, and more <i class="fa-solid fa-angle-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                <div class="card-content key-topics">
+                    <a href="/IndicatorPublic/key-topics/transportation/">
+                        
+                        
+                        <div style="width:100%; height:250px; background-image: url(/IndicatorPublic/key-topics/transportation/nyc-active-design_hu1c6b28cf585c0e08f1af219b393e3296_457290_740x0_resize_q95_mitchellnetravali.jpg); background-size:cover"></div>
+                    </a>
 
-                
-                
-                <div style="width:100%; height:250px; background-image: url(/IndicatorPublic/key-topics/housing/nyc-housing_huc0a32de224d6bf703b0d73895594231b_521571_740x0_resize_q95_mitchellnetravali.jpg); background-size:cover"></div></a>
+                    <div class="card-body">
+                        <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/key-topics/transportation/" class="text-primary">Active design, public space, and transportation</a></h3>
+                        <div class="mb-2"><p>Physical activity and healthy eating rank among the leading ways to get and stay healthy.</p>
+<p>Active design is an applied, evidence-informed approach to …</p></div>
+                        <div class="d-flex justify-content-end link">
+                            <a class="fs-sm font-weight-bold" href="/IndicatorPublic/key-topics/transportation/">Get data, info, and more <i class="fa-solid fa-angle-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                <div class="card-content key-topics">
+                    <a href="/IndicatorPublic/key-topics/healthoutcomes/">
+                        
+                        
+                        <div style="width:100%; height:250px; background-image: url(/IndicatorPublic/key-topics/healthoutcomes/medgar-evers_huf58625e0a292ba8b4583ddb191c86312_5331230_740x0_resize_q95_mitchellnetravali.jpg); background-size:cover"></div>
+                    </a>
 
-            <div class="card-body">
-            <h2 class="card-title"><a href="/IndicatorPublic/key-topics/housing/" class="text-primary">Housing</a></h5>
-            <p class="fs-sm"><p>Most people spend most of their time at home - so the household environment can significantly affect health. Disrepair that stems from long-term …</p></p>
-            <p class="fs-sm text-primary float-right mb-2"><a href="/IndicatorPublic/key-topics/housing/">Get data, info, and more <i
-                class="fas fa-arrow-circle-right"></i></a></p>
-          </div>
-        </div>
-      </div><div class="card content-card mb-4 col-sm-6 col-md-4">
-        <div class="card-content">
-            <a href="/IndicatorPublic/key-topics/social/">
+                    <div class="card-body">
+                        <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/key-topics/healthoutcomes/" class="text-primary">Environmental health outcomes</a></h3>
+                        <div class="mb-2"><p>Our environment - the world around us - affects our health. Here are datasets on health outcomes that people experience that may be linked to the …</p></div>
+                        <div class="d-flex justify-content-end link">
+                            <a class="fs-sm font-weight-bold" href="/IndicatorPublic/key-topics/healthoutcomes/">Get data, info, and more <i class="fa-solid fa-angle-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                <div class="card-content key-topics">
+                    <a href="/IndicatorPublic/key-topics/childhealth/">
+                        
+                        
+                        <div style="width:100%; height:250px; background-image: url(/IndicatorPublic/key-topics/childhealth/nyc-children-playing_hub337c1a52911da742d41cad844f9d8de_8178577_740x0_resize_q95_mitchellnetravali.jpg); background-size:cover"></div>
+                    </a>
 
-                
-                
-                <div style="width:100%; height:250px; background-image: url(/IndicatorPublic/key-topics/social/nyc-neighborhood_hu3a8825abee4898105d589e2774f8c130_467354_740x0_resize_q95_mitchellnetravali.jpg); background-size:cover"></div></a>
+                    <div class="card-body">
+                        <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/key-topics/childhealth/" class="text-primary">Child health</a></h3>
+                        <div class="mb-2"><p>Lifelong health can be determined by your health when you are a child. Plus, children can be fragile, and can be more harmed by environmental threats. …</p></div>
+                        <div class="d-flex justify-content-end link">
+                            <a class="fs-sm font-weight-bold" href="/IndicatorPublic/key-topics/childhealth/">Get data, info, and more <i class="fa-solid fa-angle-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                <div class="card-content key-topics">
+                    <a href="/IndicatorPublic/key-topics/pests/">
+                        
+                        
+                        <div style="width:100%; height:250px; background-image: url(/IndicatorPublic/key-topics/pests/cockroaches_hu1875605067ca1a955e27d4c59d262411_131326_740x0_resize_q95_mitchellnetravali.jpeg); background-size:cover"></div>
+                    </a>
 
-            <div class="card-body">
-            <h2 class="card-title"><a href="/IndicatorPublic/key-topics/social/" class="text-primary">Inequality and health inequities</a></h5>
-            <p class="fs-sm"><p>Inequality is a significant driver of bad health: a society that deprives people of resources to stay healthy is a society where many people become …</p></p>
-            <p class="fs-sm text-primary float-right mb-2"><a href="/IndicatorPublic/key-topics/social/">Get data, info, and more <i
-                class="fas fa-arrow-circle-right"></i></a></p>
-          </div>
-        </div>
-      </div><div class="card content-card mb-4 col-sm-6 col-md-4">
-        <div class="card-content">
-            <a href="/IndicatorPublic/key-topics/transportation/">
+                    <div class="card-body">
+                        <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/key-topics/pests/" class="text-primary">Pests and pesticides</a></h3>
+                        <div class="mb-2"><p>Pests and pesticides can both have health effects. Household pests like mice, rats, and cockroaches can trigger asthma, while bed bugs are a …</p></div>
+                        <div class="d-flex justify-content-end link">
+                            <a class="fs-sm font-weight-bold" href="/IndicatorPublic/key-topics/pests/">Get data, info, and more <i class="fa-solid fa-angle-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                <div class="card-content key-topics">
+                    <a href="/IndicatorPublic/key-topics/foodanddrink/">
+                        
+                        
+                        <div style="width:100%; height:250px; background-image: url(/IndicatorPublic/key-topics/foodanddrink/nyc-food-and-drink_hu417d5c96fa1688ab452a1d616d10ff52_1600426_740x0_resize_q95_mitchellnetravali.jpg); background-size:cover"></div>
+                    </a>
 
-                
-                
-                <div style="width:100%; height:250px; background-image: url(/IndicatorPublic/key-topics/transportation/nyc-active-design_hu1c6b28cf585c0e08f1af219b393e3296_457290_740x0_resize_q95_mitchellnetravali.jpg); background-size:cover"></div></a>
-
-            <div class="card-body">
-            <h2 class="card-title"><a href="/IndicatorPublic/key-topics/transportation/" class="text-primary">Active design, public space, and transportation</a></h5>
-            <p class="fs-sm"><p>Physical activity and healthy eating rank among the leading ways to get and stay healthy.</p>
-<p>Active design is an applied, evidence-informed approach to …</p></p>
-            <p class="fs-sm text-primary float-right mb-2"><a href="/IndicatorPublic/key-topics/transportation/">Get data, info, and more <i
-                class="fas fa-arrow-circle-right"></i></a></p>
-          </div>
-        </div>
-      </div><div class="card content-card mb-4 col-sm-6 col-md-4">
-        <div class="card-content">
-            <a href="/IndicatorPublic/key-topics/healthoutcomes/">
-
-                
-                
-                <div style="width:100%; height:250px; background-image: url(/IndicatorPublic/key-topics/healthoutcomes/medgar-evers_huf58625e0a292ba8b4583ddb191c86312_5331230_740x0_resize_q95_mitchellnetravali.jpg); background-size:cover"></div></a>
-
-            <div class="card-body">
-            <h2 class="card-title"><a href="/IndicatorPublic/key-topics/healthoutcomes/" class="text-primary">Environmental health outcomes</a></h5>
-            <p class="fs-sm"><p>Our environment - the world around us - affects our health. Here are datasets on health outcomes that people experience that may be linked to the …</p></p>
-            <p class="fs-sm text-primary float-right mb-2"><a href="/IndicatorPublic/key-topics/healthoutcomes/">Get data, info, and more <i
-                class="fas fa-arrow-circle-right"></i></a></p>
-          </div>
-        </div>
-      </div><div class="card content-card mb-4 col-sm-6 col-md-4">
-        <div class="card-content">
-            <a href="/IndicatorPublic/key-topics/childhealth/">
-
-                
-                
-                <div style="width:100%; height:250px; background-image: url(/IndicatorPublic/key-topics/childhealth/nyc-children-playing_hub337c1a52911da742d41cad844f9d8de_8178577_740x0_resize_q95_mitchellnetravali.jpg); background-size:cover"></div></a>
-
-            <div class="card-body">
-            <h2 class="card-title"><a href="/IndicatorPublic/key-topics/childhealth/" class="text-primary">Child health</a></h5>
-            <p class="fs-sm"><p>Lifelong health can be determined by your health when you are a child. Plus, children can be fragile, and can be more harmed by environmental threats. …</p></p>
-            <p class="fs-sm text-primary float-right mb-2"><a href="/IndicatorPublic/key-topics/childhealth/">Get data, info, and more <i
-                class="fas fa-arrow-circle-right"></i></a></p>
-          </div>
-        </div>
-      </div><div class="card content-card mb-4 col-sm-6 col-md-4">
-        <div class="card-content">
-            <a href="/IndicatorPublic/key-topics/pests/">
-
-                
-                
-                <div style="width:100%; height:250px; background-image: url(/IndicatorPublic/key-topics/pests/cockroaches_hu1875605067ca1a955e27d4c59d262411_131326_740x0_resize_q95_mitchellnetravali.jpeg); background-size:cover"></div></a>
-
-            <div class="card-body">
-            <h2 class="card-title"><a href="/IndicatorPublic/key-topics/pests/" class="text-primary">Pests and pesticides</a></h5>
-            <p class="fs-sm"><p>Pests and pesticides can both have health effects. Household pests like mice, rats, and cockroaches can trigger asthma, while bed bugs are a …</p></p>
-            <p class="fs-sm text-primary float-right mb-2"><a href="/IndicatorPublic/key-topics/pests/">Get data, info, and more <i
-                class="fas fa-arrow-circle-right"></i></a></p>
-          </div>
-        </div>
-      </div><div class="card content-card mb-4 col-sm-6 col-md-4">
-        <div class="card-content">
-            <a href="/IndicatorPublic/key-topics/foodanddrink/">
-
-                
-                
-                <div style="width:100%; height:250px; background-image: url(/IndicatorPublic/key-topics/foodanddrink/nyc-food-and-drink_hu417d5c96fa1688ab452a1d616d10ff52_1600426_740x0_resize_q95_mitchellnetravali.jpg); background-size:cover"></div></a>
-
-            <div class="card-body">
-            <h2 class="card-title"><a href="/IndicatorPublic/key-topics/foodanddrink/" class="text-primary">Food and drink</a></h5>
-            <p class="fs-sm"><p>We all make choices around food and drink, but sometimes, those choices are made for us by our food environments.</p>
-<p>Our food environments include …</p></p>
-            <p class="fs-sm text-primary float-right mb-2"><a href="/IndicatorPublic/key-topics/foodanddrink/">Get data, info, and more <i
-                class="fas fa-arrow-circle-right"></i></a></p>
-          </div>
-        </div>
-      </div></div>
-
-</div>
-
+                    <div class="card-body">
+                        <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/key-topics/foodanddrink/" class="text-primary">Food and drink</a></h3>
+                        <div class="mb-2"><p>We all make choices around food and drink, but sometimes, those choices are made for us by our food environments.</p>
+<p>Our food environments include …</p></div>
+                        <div class="d-flex justify-content-end link">
+                            <a class="fs-sm font-weight-bold" href="/IndicatorPublic/key-topics/foodanddrink/">Get data, info, and more <i class="fa-solid fa-angle-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div></div>
+    </div>
 </article><ul id="results"></ul>
   </main>
   
@@ -714,7 +742,7 @@
                             result.meta.title = result.meta.title
                                 .replace(/&#(\d+);/g, ((match, dec) => `${String.fromCharCode(dec)}`))
                                 .replaceAll("&amp;", "&");
-                            
+
                             
 
                             result.sub_results.forEach(sub => {
@@ -772,7 +800,7 @@
             </script>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
         </div>
       </div>
     </div>

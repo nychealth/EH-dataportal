@@ -73,7 +73,7 @@
 <script src="/IndicatorPublic/node_modules/@fortawesome/fontawesome-free/js/all.min.bb77cf03b57ca909a104f353e6abaf69755ad669e72d25d47a9e4f4b5aa8e4d4731f01b5f5a1e63499e3d50f21a40fe705666d643e2be005fa60eb79ca72cdda.js" integrity="sha512-u3fPA7V8qQmhBPNT5quvaXVa1mnnLSXUep5PS1qo5NRzHwG19aHmNJnj1Q8hpA/nBWZtZD4r4AX6YOt5ynLN2g==" crossorigin="anonymous"></script>
 
 
-<link rel="stylesheet" href="/IndicatorPublic/scss/theme.93eedffd28d4702b89a3020c0eff852ea14226d650f38a6b59b5e5eb628de0d3b0941ab60ce45a6887fffc75078c7d1089830b1474e102938667d0ac6f54621f.css" integrity="sha512-k&#43;7f/SjUcCuJowIMDv&#43;FLqFCJtZQ84prWbXl62KN4NOwlBq2DORaaIf//HUHjH0QiYMLFHThApOGZ9Csb1RiHw==" />
+<link rel="stylesheet" href="/IndicatorPublic/scss/theme.0390bf6318c75775949357904a205296964b423f2e033ba74b0a67fd816df115666afa34a9701be11c1c06b9bf44455bcc39c3c1009a0a4195bceb192349e949.css" integrity="sha512-A5C/YxjHV3WUk1eQSiBSlpZLQj8uAzunSwpn/YFt8RVmavo0qXAb4RwcBrm/REVbzDnDwQCaCkGVvOsZI0npSQ==" />
 
 <script src="/IndicatorPublic/node_modules/dompurify/dist/purify.min.642b111ea85d0d7aeae224d75592e4181b0e7c396f86f1e110c4250a8b1ff4eab2d69eb18b31752d259aeaeb88486a9e87d3e60b37e778671866f73db7f86369.js" integrity="sha512-ZCsRHqhdDXrq4iTXVZLkGBsOfDlvhvHhEMQlCosf9Oqy1p6xizF1LSWa6uuISGqeh9PmCzfneGcYZvc9t/hjaQ=="></script>
 
@@ -168,62 +168,140 @@
 
                 <div class="row align-items-center">
 
-                    <div class="col-lg py-2 pl-md-5">
-
+                    <div class="col-lg py-3">
                         <div class="d-flex justify-content-center justify-content-lg-start">
+                            <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/"><img src="https://a816-dohbesp.nyc.gov/IndicatorPublic/7618350_heatmap_business_analytics_statistics_icon-gpr.ico" style="height: 67px" class="pr-1"></a>
 
-                            <p class="text-white">
-                                <span class="site-title title-hover"><a href=/IndicatorPublic/ class="link-no-dec">Environment and Health Data Portal</span>
-                                <span class="site-subtitle">Understand how environments shape health in New York City</a></span>
+                            <p class="text-white title-hover">
+                                <span class="site-subtitle"><a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/" class="link-no-dec">Environment & Health</span>
+                                <span class="site-title">Data Portal</a></span>
                             </p>
 
 
                         </div>
                         
-
                     </div>
                     
 
                     <div class="col-lg-auto border-top border-lg-0 d-print-none">
 
-                        <div class="row no-gutters justify-content-between py-2">
+                        <div class="d-lg-flex align-items-center">
 
                             
-                            <div class="col-auto d-flex d-lg-none">
 
-                                <button class="no-btn-style" type="button" data-toggle="collapse"
-                                    data-target="#nav-primary" aria-controls="nav-primary" aria-expanded="false"
-                                    aria-label="Toggle navigation">
-                                    <span class="fas fa-bars fa-lg"></span>
-                                </button>
-
-                            </div>
-                            
-
-                            <div class="col-auto justify-content-end">
-
-                                <ul class="extensible-list horizontal justify-content-end">
-                                    <li>
-                                        <button class="no-btn-style" type="button" title="Language"
-                                            data-toggle="collapse" data-target="#global-language"
-                                            aria-controls="global-language" aria-expanded="false">
-                                            <span class="sr-only">Language</span>
-                                            <span class="fas fa-language fa-2x"></span>
-                                        </button>
-                                    </li>
-                                    <li>
-                                        <button type="button" data-toggle="modal" data-target="#searchModal" class="btn nav-item-search d-lg-none" title="Search">
-                                            <span class="sr-only">Search</span>
-                                            <i class="fa fa-magnifying-glass fa-lg text-body"></i>
-                                        </button>
+                            <ul class="extensible-list horizontal justify-content-between my-2 d-lg-none">
+                                <li>
+                                    <button class="navbar-toggler no-btn-style" type="button" title="Main Menu" data-toggle="collapse"
+                                        data-target="#nav-primary" aria-controls="nav-primary" aria-expanded="false"
+                                        aria-label="Toggle navigation">
+                                        <span class="sr-only">Main Menu</span>
+                                        <span class="fas fa-bars fa-lg text-white" ></span>
+                                    </button>
                                 </li>
 
-                                </ul>
+                                <li>
+                                    <a class="nav-link" href="#" type="button" data-toggle="modal" data-target="#searchModal" title="Search" data-toggle="collapse">
+                                        <span class="sr-only">Search</span>
+                                        <i class="fa fa-magnifying-glass text-white"></i>
+                                    </a>
+                                </li>
+                            </ul>
 
-                                <a class="btn-sm text-white font-weight-bold mr-2" style="border: 1px solid lightgray; border-radius: 3px;" href=/IndicatorPublic/about>About us</a>
+                            <div class="collapse d-lg-block mx-n2 mx-lg-2" id="nav-primary">
+
+                                <nav class="nav" role="navigation">
+
+                                    <div class="nav-item bg-white text-primary border dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="nav-item-topic"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Topics
+                                        </a>
+
+                                        <div class="dropdown-menu wider-menu" aria-labelledby="nav-item-topic">
+                                            <ul class="extensible-list p-0">
+                                                
+                                                <a class="" href="/IndicatorPublic/key-topics/transportation/"> <li class="">Active design, public space, and transportation</li></a>
+                                                <hr class="my-1">
+                                                
+
+                                                
+                                                <a class="" href="/IndicatorPublic/key-topics/airquality/"> <li class="">Air quality</li></a>
+                                                <hr class="my-1">
+                                                
+
+                                                
+                                                <a class="" href="/IndicatorPublic/key-topics/childhealth/"> <li class="">Child health</li></a>
+                                                <hr class="my-1">
+                                                
+
+                                                
+                                                <a class="" href="/IndicatorPublic/key-topics/climatehealth/"> <li class="">Climate and health</li></a>
+                                                <hr class="my-1">
+                                                
+
+                                                
+                                                <a class="" href="/IndicatorPublic/key-topics/foodanddrink/"> <li class="">Food and drink</li></a>
+                                                <hr class="my-1">
+                                                
+
+                                                
+                                                <a class="" href="/IndicatorPublic/key-topics/healthoutcomes/"> <li class="">Environmental health outcomes</li></a>
+                                                <hr class="my-1">
+                                                
+
+                                                
+                                                <a class="" href="/IndicatorPublic/key-topics/housing/"> <li class="">Housing</li></a>
+                                                <hr class="my-1">
+                                                
+
+                                                
+                                                <a class="" href="/IndicatorPublic/key-topics/social/"> <li class="">Inequality and health inequities</li></a>
+                                                <hr class="my-1">
+                                                
+
+                                                
+                                                <a class="" href="/IndicatorPublic/key-topics/pests/"> <li class="">Pests and pesticides</li></a>
+                                                <hr class="my-1">
+                                                
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    
+
+                                    <div class="nav-item bg-white text-primary border dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="nav-item-type"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Explore
+                                        </a>
+
+                                        <div class="dropdown-menu wider-menu" aria-labelledby="nav-item-type">
+                                            <ul class="extensible-list p-0"><a href="/IndicatorPublic/data-stories/"> <li><span class="mr-1"><span class='text-primary ds-accent'><i class='fas fa-passport' aria-hidden='true'></i></span></span>Data Stories</li></a>
+                                                   <hr class="my-1"><a href="/IndicatorPublic/neighborhood-reports/"> <li><span class="mr-1"><span class='text-primary nr-accent'><i class='fas fa-map-marked-alt' aria-hidden='true'></i></span></span>Neighborhood Reports</li></a>
+                                                   <hr class="my-1"><a href="/IndicatorPublic/data-explorer/"> <li><span class="mr-1"><span class='text-primary de-accent'><i class='fas fa-chart-line' aria-hidden='true'></i></span></span>Data Explorer</li></a>
+                                                   <hr class="my-1"></ul>
+                                        </div>
+                                    </div>
+                                    
+
+                                    <div class="nav-item bg-white text-primary border"><a class="nav-link " href="/IndicatorPublic/about/">
+                                            About
+                                        </a></div>
+                                    
+
+                                    
+
+                                    <div class="nav-item bg-white text-primary border d-none d-lg-block">
+                                        <a class="nav-link" href="#" type="button" data-toggle="modal" data-target="#searchModal" title="Search" data-toggle="collapse">
+                                                    <span class="sr-only">Search</span>
+                                                    <i class="fa fa-magnifying-glass text-body"></i>
+                                                </a>
+                                    </div>
+                                    
+
+                                </nav>
 
                             </div>
-                            
 
                         </div>
                         
@@ -248,77 +326,6 @@
 
 
         </div>
-        <div class="container-fluid collapse d-lg-block px-0 border-lg-top d-print-none" id="nav-primary">
-
-            <div class="wide">
-
-                <nav class="nav nav-pills border-bottom border-right justify-content-center" role="navigation"><span id="File.Path" style="display: none"></span>
-                <span id="FirstSection.RelPermalink" style="display: none">/IndicatorPublic/</span>
-
-                <div class="nav-item-search border-right">
-                    <a class="nav-link" id="nav-item-01" href=/IndicatorPublic/>
-                    <span class='text-primary'><i class='fa fa-home' aria-hidden='true'></i><span class="sr-only">Home</span></span>
-                    </a>
-                </div><div class="nav-item">
-
-                        <a class="nav-link" href="/IndicatorPublic/key-topics/" id="nav-item-05"><span class='text-primary'><i class='fas fa-star' aria-hidden='true'></i></span> Key Topics</a>
-
-                    </div><div class="nav-item">
-
-                        <a class="nav-link" href="/IndicatorPublic/data-stories/" id="nav-item-02"><span class='text-primary'><i class='fas fa-passport' aria-hidden='true'></i></span> Data Stories</a>
-
-                    </div><div class="nav-item">
-
-                        <a class="nav-link" href="/IndicatorPublic/neighborhood-reports/" id="nav-item-04"><span class='text-primary'><i class='fas fa-map-marked-alt' aria-hidden='true'></i></span> Neighborhood Reports</a>
-
-                    </div><div class="nav-item">
-
-                        <a class="nav-link" href="/IndicatorPublic/data-explorer/" id="nav-item-03"><span class='text-primary'><i class='fas fa-chart-line' aria-hidden='true'></i></span> Data Explorer</a>
-
-                    </div>
-
-                        <button type="button" data-toggle="modal" data-target="#searchModal" class="btn nav-item-search d-none d-lg-block" title="Search">
-
-                            <span class="sr-only">Search</span>
-                            <i class="fa fa-magnifying-glass fa-lg text-body mt-1"></i>
-
-                        </button>
-
-                    </nav>
-
-            </div>
-
-        </div>
-
-        <div class="container-fluid-lg border-top collapse" id="global-search">
-
-            <form class="narrow py-2" aria-label="Search" role="search">
-
-                <div class="input-group">
-
-                    <label class="sr-only" for="global-search-bar">Search</label>
-
-                    <input class="form-control form-control-lg" id="global-search-bar" placeholder="Search">
-
-                    <div class="input-group-btn">
-
-                        <button class="btn btn-primary btn-lg" type="button" title="Search">
-
-                            <span class="sr-only">Search</span>
-                            <span class="fas fa-arrow-right"></span>
-
-                        </button>
-
-                    </div>
-
-                </div>
-
-            </form>
-
-
-            
-
-    </div>
 
 </header>
 
@@ -326,12 +333,11 @@
     <main id="skip-header-target" role="main">
     <div class="row mt-4">
         <div class="col-8 mx-auto">
-            <h1 class="mb-2">More content about <span style="color: #00923E">cancer</span>:</h1><div class="card content-card mb-3 px-0 mx-0 fs-sm">
+            <h1 class="mb-2">More content about <span style="color: #008939">cancer</span>:</h1><div class="card content-card mb-3 px-0 mx-0 fs-sm">
                     <div class="card-content">
                         <div class="card-body">
                             <h4 class="card-title">
-                                <a href="/IndicatorPublic/data-explorer/cancer/" class="text-primary fs-rg mb-1">Cancer</a>
-                            </h4>
+                                <a href="/IndicatorPublic/data-explorer/cancer/" class="text-primary fs-rg mb-1">Cancer</a></h4>
                                 <p class="card-text mt-0">Cancer is the general name for a group of more than 100 diseases in which cells in a part of the body begin to grow out of control.
 In New York City …</p>
                         </div>
@@ -340,8 +346,7 @@ In New York City …</p>
                     <div class="card-content">
                         <div class="card-body">
                             <h4 class="card-title">
-                                <a href="/IndicatorPublic/data-explorer/cancers-in-children/" class="text-primary fs-rg mb-1">Cancers in children</a>
-                            </h4>
+                                <a href="/IndicatorPublic/data-explorer/cancers-in-children/" class="text-primary fs-rg mb-1">Cancers in children</a></h4>
                                 <p class="card-text mt-0">Cancer begins when cells in a part of the body start to grow out of control. There are many kinds of cancer, but they all start because of …</p>
                         </div>
                     </div>
@@ -349,8 +354,7 @@ In New York City …</p>
                     <div class="card-content">
                         <div class="card-body">
                             <h4 class="card-title">
-                                <a href="/IndicatorPublic/data-explorer/cigarette-smoke/" class="text-primary fs-rg mb-1">Cigarette smoke</a>
-                            </h4>
+                                <a href="/IndicatorPublic/data-explorer/cigarette-smoke/" class="text-primary fs-rg mb-1">Cigarette smoke</a></h4>
                                 <p class="card-text mt-0">Smoking causes over a dozen cancers, heart disease, stroke, type 2 diabetes and many other diseases; it remains a leading cause of death in New York …</p>
                         </div>
                     </div>
@@ -595,7 +599,7 @@ In New York City …</p>
                             result.meta.title = result.meta.title
                                 .replace(/&#(\d+);/g, ((match, dec) => `${String.fromCharCode(dec)}`))
                                 .replaceAll("&amp;", "&");
-                            
+
                             
 
                             result.sub_results.forEach(sub => {
@@ -653,7 +657,7 @@ In New York City …</p>
             </script>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
         </div>
       </div>
     </div>

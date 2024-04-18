@@ -73,7 +73,7 @@
 <script src="/IndicatorPublic/node_modules/@fortawesome/fontawesome-free/js/all.min.bb77cf03b57ca909a104f353e6abaf69755ad669e72d25d47a9e4f4b5aa8e4d4731f01b5f5a1e63499e3d50f21a40fe705666d643e2be005fa60eb79ca72cdda.js" integrity="sha512-u3fPA7V8qQmhBPNT5quvaXVa1mnnLSXUep5PS1qo5NRzHwG19aHmNJnj1Q8hpA/nBWZtZD4r4AX6YOt5ynLN2g==" crossorigin="anonymous"></script>
 
 
-<link rel="stylesheet" href="/IndicatorPublic/scss/theme.93eedffd28d4702b89a3020c0eff852ea14226d650f38a6b59b5e5eb628de0d3b0941ab60ce45a6887fffc75078c7d1089830b1474e102938667d0ac6f54621f.css" integrity="sha512-k&#43;7f/SjUcCuJowIMDv&#43;FLqFCJtZQ84prWbXl62KN4NOwlBq2DORaaIf//HUHjH0QiYMLFHThApOGZ9Csb1RiHw==" />
+<link rel="stylesheet" href="/IndicatorPublic/scss/theme.0390bf6318c75775949357904a205296964b423f2e033ba74b0a67fd816df115666afa34a9701be11c1c06b9bf44455bcc39c3c1009a0a4195bceb192349e949.css" integrity="sha512-A5C/YxjHV3WUk1eQSiBSlpZLQj8uAzunSwpn/YFt8RVmavo0qXAb4RwcBrm/REVbzDnDwQCaCkGVvOsZI0npSQ==" />
 
 <script src="/IndicatorPublic/js/vegaBundle.0b5ca52926fb3c685a9a6b6e0c8f39f41f281d947e9137e30d6660861b701a2e923156c6630246c5b57d701679077f18e28a96e170f8d89227e49651cd473c90.js" integrity="sha512-C1ylKSb7PGhammtuDI859B8oHZR&#43;kTfjDWZghhtwGi6SMVbGYwJGxbV9cBZ5B38Y4oqW4XD42JIn5JZRzUc8kA=="></script>
 
@@ -174,62 +174,140 @@
 
                 <div class="row align-items-center">
 
-                    <div class="col-lg py-2 pl-md-5">
-
+                    <div class="col-lg py-3">
                         <div class="d-flex justify-content-center justify-content-lg-start">
+                            <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/"><img src="https://a816-dohbesp.nyc.gov/IndicatorPublic/7618350_heatmap_business_analytics_statistics_icon-gpr.ico" style="height: 67px" class="pr-1"></a>
 
-                            <p class="text-white">
-                                <span class="site-title title-hover"><a href=/IndicatorPublic/ class="link-no-dec">Environment and Health Data Portal</span>
-                                <span class="site-subtitle">Understand how environments shape health in New York City</a></span>
+                            <p class="text-white title-hover">
+                                <span class="site-subtitle"><a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/" class="link-no-dec">Environment & Health</span>
+                                <span class="site-title">Data Portal</a></span>
                             </p>
 
 
                         </div>
                         
-
                     </div>
                     
 
                     <div class="col-lg-auto border-top border-lg-0 d-print-none">
 
-                        <div class="row no-gutters justify-content-between py-2">
+                        <div class="d-lg-flex align-items-center">
 
                             
-                            <div class="col-auto d-flex d-lg-none">
 
-                                <button class="no-btn-style" type="button" data-toggle="collapse"
-                                    data-target="#nav-primary" aria-controls="nav-primary" aria-expanded="false"
-                                    aria-label="Toggle navigation">
-                                    <span class="fas fa-bars fa-lg"></span>
-                                </button>
-
-                            </div>
-                            
-
-                            <div class="col-auto justify-content-end">
-
-                                <ul class="extensible-list horizontal justify-content-end">
-                                    <li>
-                                        <button class="no-btn-style" type="button" title="Language"
-                                            data-toggle="collapse" data-target="#global-language"
-                                            aria-controls="global-language" aria-expanded="false">
-                                            <span class="sr-only">Language</span>
-                                            <span class="fas fa-language fa-2x"></span>
-                                        </button>
-                                    </li>
-                                    <li>
-                                        <button type="button" data-toggle="modal" data-target="#searchModal" class="btn nav-item-search d-lg-none" title="Search">
-                                            <span class="sr-only">Search</span>
-                                            <i class="fa fa-magnifying-glass fa-lg text-body"></i>
-                                        </button>
+                            <ul class="extensible-list horizontal justify-content-between my-2 d-lg-none">
+                                <li>
+                                    <button class="navbar-toggler no-btn-style" type="button" title="Main Menu" data-toggle="collapse"
+                                        data-target="#nav-primary" aria-controls="nav-primary" aria-expanded="false"
+                                        aria-label="Toggle navigation">
+                                        <span class="sr-only">Main Menu</span>
+                                        <span class="fas fa-bars fa-lg text-white" ></span>
+                                    </button>
                                 </li>
 
-                                </ul>
+                                <li>
+                                    <a class="nav-link" href="#" type="button" data-toggle="modal" data-target="#searchModal" title="Search" data-toggle="collapse">
+                                        <span class="sr-only">Search</span>
+                                        <i class="fa fa-magnifying-glass text-white"></i>
+                                    </a>
+                                </li>
+                            </ul>
 
-                                <a class="btn-sm text-white font-weight-bold mr-2" style="border: 1px solid lightgray; border-radius: 3px;" href=/IndicatorPublic/about>About us</a>
+                            <div class="collapse d-lg-block mx-n2 mx-lg-2" id="nav-primary">
+
+                                <nav class="nav" role="navigation">
+
+                                    <div class="nav-item bg-white text-primary border dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="nav-item-topic"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Topics
+                                        </a>
+
+                                        <div class="dropdown-menu wider-menu" aria-labelledby="nav-item-topic">
+                                            <ul class="extensible-list p-0">
+                                                
+                                                <a class="" href="/IndicatorPublic/key-topics/transportation/"> <li class="">Active design, public space, and transportation</li></a>
+                                                <hr class="my-1">
+                                                
+
+                                                
+                                                <a class="" href="/IndicatorPublic/key-topics/airquality/"> <li class="">Air quality</li></a>
+                                                <hr class="my-1">
+                                                
+
+                                                
+                                                <a class="" href="/IndicatorPublic/key-topics/childhealth/"> <li class="">Child health</li></a>
+                                                <hr class="my-1">
+                                                
+
+                                                
+                                                <a class="" href="/IndicatorPublic/key-topics/climatehealth/"> <li class="">Climate and health</li></a>
+                                                <hr class="my-1">
+                                                
+
+                                                
+                                                <a class="" href="/IndicatorPublic/key-topics/foodanddrink/"> <li class="">Food and drink</li></a>
+                                                <hr class="my-1">
+                                                
+
+                                                
+                                                <a class="" href="/IndicatorPublic/key-topics/healthoutcomes/"> <li class="">Environmental health outcomes</li></a>
+                                                <hr class="my-1">
+                                                
+
+                                                
+                                                <a class="" href="/IndicatorPublic/key-topics/housing/"> <li class="">Housing</li></a>
+                                                <hr class="my-1">
+                                                
+
+                                                
+                                                <a class="" href="/IndicatorPublic/key-topics/social/"> <li class="">Inequality and health inequities</li></a>
+                                                <hr class="my-1">
+                                                
+
+                                                
+                                                <a class="" href="/IndicatorPublic/key-topics/pests/"> <li class="">Pests and pesticides</li></a>
+                                                <hr class="my-1">
+                                                
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    
+
+                                    <div class="nav-item bg-white text-primary border dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="nav-item-type"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Explore
+                                        </a>
+
+                                        <div class="dropdown-menu wider-menu" aria-labelledby="nav-item-type">
+                                            <ul class="extensible-list p-0"><a href="/IndicatorPublic/data-stories/"> <li><span class="mr-1"><span class='text-primary ds-accent'><i class='fas fa-passport' aria-hidden='true'></i></span></span>Data Stories</li></a>
+                                                   <hr class="my-1"><a href="/IndicatorPublic/neighborhood-reports/"> <li><span class="mr-1"><span class='text-primary nr-accent'><i class='fas fa-map-marked-alt' aria-hidden='true'></i></span></span>Neighborhood Reports</li></a>
+                                                   <hr class="my-1"><a href="/IndicatorPublic/data-explorer/"> <li><span class="mr-1"><span class='text-primary de-accent'><i class='fas fa-chart-line' aria-hidden='true'></i></span></span>Data Explorer</li></a>
+                                                   <hr class="my-1"></ul>
+                                        </div>
+                                    </div>
+                                    
+
+                                    <div class="nav-item bg-white text-primary border"><a class="nav-link " href="/IndicatorPublic/about/">
+                                            About
+                                        </a></div>
+                                    
+
+                                    
+
+                                    <div class="nav-item bg-white text-primary border d-none d-lg-block">
+                                        <a class="nav-link" href="#" type="button" data-toggle="modal" data-target="#searchModal" title="Search" data-toggle="collapse">
+                                                    <span class="sr-only">Search</span>
+                                                    <i class="fa fa-magnifying-glass text-body"></i>
+                                                </a>
+                                    </div>
+                                    
+
+                                </nav>
 
                             </div>
-                            
 
                         </div>
                         
@@ -254,77 +332,6 @@
 
 
         </div>
-        <div class="container-fluid collapse d-lg-block px-0 border-lg-top d-print-none" id="nav-primary">
-
-            <div class="wide">
-
-                <nav class="nav nav-pills border-bottom border-right justify-content-center" role="navigation"><span id="File.Path" style="display: none">neighborhood-reports/Fordham_Bronx_Pk/Housing_and_Health.md</span>
-                <span id="FirstSection.RelPermalink" style="display: none">/IndicatorPublic/neighborhood-reports/</span>
-
-                <div class="nav-item-search border-right">
-                    <a class="nav-link" id="nav-item-01" href=/IndicatorPublic/>
-                    <span class='text-primary'><i class='fa fa-home' aria-hidden='true'></i><span class="sr-only">Home</span></span>
-                    </a>
-                </div><div class="nav-item">
-
-                        <a class="nav-link" href="/IndicatorPublic/key-topics/" id="nav-item-05"><span class='text-primary'><i class='fas fa-star' aria-hidden='true'></i></span> Key Topics</a>
-
-                    </div><div class="nav-item">
-
-                        <a class="nav-link" href="/IndicatorPublic/data-stories/" id="nav-item-02"><span class='text-primary'><i class='fas fa-passport' aria-hidden='true'></i></span> Data Stories</a>
-
-                    </div><div class="nav-item active">
-
-                        <a class="nav-link" href="/IndicatorPublic/neighborhood-reports/" id="nav-item-04"><span class='text-primary'><i class='fas fa-map-marked-alt' aria-hidden='true'></i></span> Neighborhood Reports</a>
-
-                    </div><div class="nav-item">
-
-                        <a class="nav-link" href="/IndicatorPublic/data-explorer/" id="nav-item-03"><span class='text-primary'><i class='fas fa-chart-line' aria-hidden='true'></i></span> Data Explorer</a>
-
-                    </div>
-
-                        <button type="button" data-toggle="modal" data-target="#searchModal" class="btn nav-item-search d-none d-lg-block" title="Search">
-
-                            <span class="sr-only">Search</span>
-                            <i class="fa fa-magnifying-glass fa-lg text-body mt-1"></i>
-
-                        </button>
-
-                    </nav>
-
-            </div>
-
-        </div>
-
-        <div class="container-fluid-lg border-top collapse" id="global-search">
-
-            <form class="narrow py-2" aria-label="Search" role="search">
-
-                <div class="input-group">
-
-                    <label class="sr-only" for="global-search-bar">Search</label>
-
-                    <input class="form-control form-control-lg" id="global-search-bar" placeholder="Search">
-
-                    <div class="input-group-btn">
-
-                        <button class="btn btn-primary btn-lg" type="button" title="Search">
-
-                            <span class="sr-only">Search</span>
-                            <span class="fas fa-arrow-right"></span>
-
-                        </button>
-
-                    </div>
-
-                </div>
-
-            </form>
-
-
-            
-
-    </div>
 
 </header>
 <main id="skip-header-target" role="main" data-pagefind-body>
@@ -466,7 +473,7 @@
 
 
             <div class="row">
-                <div class="col-md-9 h-100">
+                <div class="col-md-9 h-100 col-print-12">
     
                 
                 <div class="row">
@@ -505,7 +512,7 @@
                                         
 
                                         <div class="row indicator-headings mb-2 print-only">
-                                            <div class="col-4 font-weight-bold">
+                                            <div class="col-4 font-weight-bold pl-3">
                                                 Topic
                                             </div>
                                             <div class="col-8">
@@ -532,6 +539,46 @@
                                         
                                         
                                         
+
+<script>
+    function renderComparisonChart(n,b,c,nid,bid,cid) {
+        
+        var values = []
+
+        values.push(Number(n))
+        values.push(Number(b))
+        values.push(Number(c))
+
+        
+
+        console.log('values:')
+        console.log(values)
+
+        
+        var max = Math.max(...values)
+
+        
+        var denom = max * 1.2
+        var nWidth = n / denom
+        var bWidth = b / denom
+        var cWidth = c / denom
+
+        
+        document.getElementById(nid).style.width = 100 * nWidth + '%' 
+        document.getElementById(bid).style.width = 100 * bWidth + '%'
+        document.getElementById(cid).style.width = 100 * cWidth + '%'
+
+    }
+
+    function checkTrend(x,y) {
+        if (x == 0 ) {
+            document.getElementById('t-'+y).classList.add('hide');
+            document.getElementById('ta-'+y).classList.remove('hide');
+            console.log(y)
+        } else {}
+    }
+
+</script>
 
 
 
@@ -576,6 +623,17 @@
 
 
 <div class="modal fade report-modal" id="modal-Heat540-1" tabindex="-1" role="dialog" aria-labelledby="indicatorModalLabel" aria-hidden="true">
+   <script>
+    
+     function getYear(x,y) {
+        var endDate = new Date(x) ;
+        console.log('end date:', endDate) ;
+        var year = endDate.getYear() + 1900
+        console.log(year)
+        document.getElementById(y).innerHTML = year
+    }
+   </script>
+   
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header text-left">
@@ -584,41 +642,92 @@
                     <span class="fas fa-times-circle"></span>
                 </button>
             </div>
+
             <div class="modal-body">
-                <h2 class="fs-xl" data-pagefind-ignore="all">Heat stress: hospitalizations, 2015</h2>
-                <p>In <strong>Fordham - Bronx Pk</strong>, heat stress: hospitalizations is <span class="worse">Worse</span> compared to the NYC average.</p>Heat stress hospitalizations due to heat-related illnesses, such as heat stroke and heat exhaustion, represent part of the public health burden of hot weather. Data aggregated over five years provides enough stability to display neighborhood impacts.
-</div>
+                <h2 class="fs-xl" data-pagefind-ignore="all">Heat stress: hospitalizations <span class="font-weight-normal">(<span id="year-heat-hospitalizations">YEAR</span>)</span></h2>
+                <p>Heat stress hospitalizations due to heat-related illnesses, such as heat stroke and heat exhaustion, represent part of the public health burden of hot weather. Data aggregated over five years provides enough stability to display neighborhood impacts.
+</p>
+            </div>
+
+            <script>
+                
+                getYear(`2015-12-31`,`year-heat-hospitalizations`)
+            </script>
+
+            <div class="modal-body">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col"  style="border-top:none!important"><span class="sr-only">Location:</span></th>
+                        <th scope="col"style="width:35%;"><span class="">Age-adjusted rate per 100,000</span></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row"><span class="text-primary fs-xl float-right">Fordham - Bronx Pk <span class="ml-2 float-right">1.5*</span></span></th>
+
+                        <td>
+                            <div id="n-heat-hospitalizations" style="width:90%;" class="compBar neighb">
+                                &nbsp;
+                                <span class="sr-only">1.5*</span>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl float-right">Bronx <span class="ml-2 float-right">1.4</span></span></th>
+                        <td>
+                            <div id="b-heat-hospitalizations" style="width:90%;" class="compBar nonNeighb">
+                                &nbsp;
+                                <span class="sr-only">1.4</span>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl float-right">New York City <span class="ml-2 float-right">0.8</span></span></th>
+                        <td>
+                            <div id="c-heat-hospitalizations" style="width:90%;" class="compBar nonNeighb">
+                                &nbsp;
+                                <span class="sr-only">0.8</span>
+                            </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table><div class="data-note float-right">* Estimate is based on small numbers so should be interpreted with caution.</div><script>
+                    renderComparisonChart( 1.5 ,  1.4 ,  0.8 ,'n-heat-hospitalizations','b-heat-hospitalizations','c-heat-hospitalizations')
+                    
+                </script>
+
+            </div>
             <hr>
             <div class="modal-body">
-                <h2 data-pagefind-ignore="all">Neighborhood Comparison</h2>
-                <div class="row comparison">
-                    <div class="col-sm-4 text-primary">Fordham - Bronx Pk <span class="indicator-value">1.5*</span></div>
-                    <div class="col-sm-4">Bronx <span class="indicator-value">1.4</span></div>
-                    <div class="col-sm-4">New York City <span class="indicator-value">0.8</span></div>
-                </div>
-                <p><em>Age-adjusted rate per 100,000</em></p><div class="data-note">* Estimate is based on small numbers so should be interpreted with caution.</div></div>
-            <hr>
-            <div class="modal-body">
-                <h3 data-pagefind-ignore="all">Heat stress: hospitalizations, 2015</h3>
-                <p>  <em>Age-adjusted rate per 100,000</em></p>
+                <span class="home-label font-weight-bold">Comparison</span>
+                <p class="fs-lg">For heat stress: hospitalizations, <strong class="text-primary">Fordham - Bronx Pk</strong> is <span class="worse">worse</span> than most neighborhoods.</p>
+                <p class="fs-sm">  <em>Age-adjusted rate per 100,000</em></p>
                 <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Heat540-1"></div>
 
             </div>
             <hr>
-            <div class="modal-body">
-
-                <h3 data-pagefind-ignore="all">Trends Over Time</h3>
-                <p><em>Age-adjusted rate per 100,000</em></p>
-                <div style="width:100%; height:50vmin; z-index:10000;" id="trend-Heat540-1"></div>
-
+            <div class="modal-body" id="t-heat-hospitalizations">
+                <span class="home-label font-weight-bold">Trends over time</span>
+                <p class="fs-sm"><em>Age-adjusted rate per 100,000</em></p>
+                <div style="width:100%; height:50vmin; z-index:10000;display:block;" id="trend-Heat540-1"></div><div class="data-note mt-3">Some years of data may have unstable rates or estimates suppressed due to low numbers.</div></div>
+            
+            <div class="modal-body hide" id="ta-heat-hospitalizations">
+                <span class="home-label font-weight-bold">Trends over time (not available)</span>
+                <p class="fs-sm"><em>There's only a single year of data available for this indicator, so we can't show a trend.</em></p>
             </div>
+            <script>
+                checkTrend('1','heat-hospitalizations')
+            </script>
             <hr>
             <div class="modal-body">
+                <span class="home-label font-weight-bold">By neighborhood</span>
+                <p class="fs-sm"><em>Age-adjusted rate per 100,000</em></p>
+                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Heat540-1"></div><div class="data-note mt-3">Some neighborhoods may have estimates suppressed due to low numbers.</div></div>
 
-                <h3 data-pagefind-ignore="all">By Neighborhood</h3>
-                <p><em>Age-adjusted rate per 100,000</em></p>
-                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Heat540-1"></div>
-
+            <div class="modal-body">
+                <span class="home-label font-weight-bold">Source: </span><br> 
+                <span class="fs-sm">New York State Statewide Planning and Research Cooperative System (SPARCS) Deidentified Hospital Discharge Data; United States Census</span>
             </div>
 
             
@@ -629,6 +738,24 @@
         </div>
     </div>
 </div>
+
+<style>
+    .compBar {
+        margin-top: 5px;
+        padding-left: 5px;
+        border-left: 3px solid darkgray;
+        max-height: 36px;
+
+    }
+
+    .nonNeighb {
+        background-color: #D8D8D8;
+    }
+
+    .neighb {
+        background-color: #00923E;
+    }
+</style>
 
 
 
@@ -719,6 +846,46 @@
     </script>
 
 
+<script>
+    function renderComparisonChart(n,b,c,nid,bid,cid) {
+        
+        var values = []
+
+        values.push(Number(n))
+        values.push(Number(b))
+        values.push(Number(c))
+
+        
+
+        console.log('values:')
+        console.log(values)
+
+        
+        var max = Math.max(...values)
+
+        
+        var denom = max * 1.2
+        var nWidth = n / denom
+        var bWidth = b / denom
+        var cWidth = c / denom
+
+        
+        document.getElementById(nid).style.width = 100 * nWidth + '%' 
+        document.getElementById(bid).style.width = 100 * bWidth + '%'
+        document.getElementById(cid).style.width = 100 * cWidth + '%'
+
+    }
+
+    function checkTrend(x,y) {
+        if (x == 0 ) {
+            document.getElementById('t-'+y).classList.add('hide');
+            document.getElementById('ta-'+y).classList.remove('hide');
+            console.log(y)
+        } else {}
+    }
+
+</script>
+
 
 
 
@@ -762,6 +929,17 @@
 
 
 <div class="modal fade report-modal" id="modal-Chil777-2" tabindex="-1" role="dialog" aria-labelledby="indicatorModalLabel" aria-hidden="true">
+   <script>
+    
+     function getYear(x,y) {
+        var endDate = new Date(x) ;
+        console.log('end date:', endDate) ;
+        var year = endDate.getYear() + 1900
+        console.log(year)
+        document.getElementById(y).innerHTML = year
+    }
+   </script>
+   
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header text-left">
@@ -770,40 +948,91 @@
                     <span class="fas fa-times-circle"></span>
                 </button>
             </div>
+
             <div class="modal-body">
-                <h2 class="fs-xl" data-pagefind-ignore="all">Elevated blood levels (under age 6), 2021</h2>
-                <p>In <strong>Fordham - Bronx Pk</strong>, elevated blood levels (under age 6) is <span class="worse">Worse</span> compared to the NYC average.</p>Elevated blood lead levels are 5+ mcg/dL. There is no safe level of lead in the blood. Lead poisoning can cause learning and behavior problems, and delay growth and mental development.</div>
+                <h2 class="fs-xl" data-pagefind-ignore="all">Elevated blood levels (under age 6) <span class="font-weight-normal">(<span id="year-child-lead-poisoning">YEAR</span>)</span></h2>
+                <p>Elevated blood lead levels are 5+ mcg/dL. There is no safe level of lead in the blood. Lead poisoning can cause learning and behavior problems, and delay growth and mental development.</p>
+            </div>
+
+            <script>
+                
+                getYear(`2021-12-31`,`year-child-lead-poisoning`)
+            </script>
+
+            <div class="modal-body">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col"  style="border-top:none!important"><span class="sr-only">Location:</span></th>
+                        <th scope="col"style="width:35%;"><span class="">Rate (5&#43; mcg/dL) per 1,000 tested</span></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row"><span class="text-primary fs-xl float-right">Fordham - Bronx Pk <span class="ml-2 float-right">11.7</span></span></th>
+
+                        <td>
+                            <div id="n-child-lead-poisoning" style="width:90%;" class="compBar neighb">
+                                &nbsp;
+                                <span class="sr-only">11.7</span>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl float-right">Bronx <span class="ml-2 float-right">10</span></span></th>
+                        <td>
+                            <div id="b-child-lead-poisoning" style="width:90%;" class="compBar nonNeighb">
+                                &nbsp;
+                                <span class="sr-only">10</span>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl float-right">New York City <span class="ml-2 float-right">10.8</span></span></th>
+                        <td>
+                            <div id="c-child-lead-poisoning" style="width:90%;" class="compBar nonNeighb">
+                                &nbsp;
+                                <span class="sr-only">10.8</span>
+                            </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table><div class="data-note float-right"> Blood lead testing rates in children dropped during the COVID-19 pandemic, and so 2020 and 2021 surveillance data should be interpreted with caution.</div><script>
+                    renderComparisonChart( 11.7 ,  10 ,  10.8 ,'n-child-lead-poisoning','b-child-lead-poisoning','c-child-lead-poisoning')
+                    
+                </script>
+
+            </div>
             <hr>
             <div class="modal-body">
-                <h2 data-pagefind-ignore="all">Neighborhood Comparison</h2>
-                <div class="row comparison">
-                    <div class="col-sm-4 text-primary">Fordham - Bronx Pk <span class="indicator-value">11.7</span></div>
-                    <div class="col-sm-4">Bronx <span class="indicator-value">10</span></div>
-                    <div class="col-sm-4">New York City <span class="indicator-value">10.8</span></div>
-                </div>
-                <p><em>Rate (5&#43; mcg/dL) per 1,000 tested</em></p><div class="data-note"> Blood lead testing rates in children dropped during the COVID-19 pandemic, and so 2020 and 2021 surveillance data should be interpreted with caution.</div></div>
-            <hr>
-            <div class="modal-body">
-                <h3 data-pagefind-ignore="all">Elevated blood levels (under age 6), 2021</h3>
-                <p>  <em>Rate (5&#43; mcg/dL) per 1,000 tested</em></p>
+                <span class="home-label font-weight-bold">Comparison</span>
+                <p class="fs-lg">For elevated blood levels (under age 6), <strong class="text-primary">Fordham - Bronx Pk</strong> is <span class="worse">worse</span> than most neighborhoods.</p>
+                <p class="fs-sm">  <em>Rate (5&#43; mcg/dL) per 1,000 tested</em></p>
                 <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Chil777-2"></div>
 
             </div>
             <hr>
-            <div class="modal-body">
-
-                <h3 data-pagefind-ignore="all">Trends Over Time</h3>
-                <p><em>Rate (5&#43; mcg/dL) per 1,000 tested</em></p>
-                <div style="width:100%; height:50vmin; z-index:10000;" id="trend-Chil777-2"></div>
-
+            <div class="modal-body" id="t-child-lead-poisoning">
+                <span class="home-label font-weight-bold">Trends over time</span>
+                <p class="fs-sm"><em>Rate (5&#43; mcg/dL) per 1,000 tested</em></p>
+                <div style="width:100%; height:50vmin; z-index:10000;display:block;" id="trend-Chil777-2"></div><div class="data-note mt-3">Some years of data may have unstable rates or estimates suppressed due to low numbers.</div></div>
+            
+            <div class="modal-body hide" id="ta-child-lead-poisoning">
+                <span class="home-label font-weight-bold">Trends over time (not available)</span>
+                <p class="fs-sm"><em>There's only a single year of data available for this indicator, so we can't show a trend.</em></p>
             </div>
+            <script>
+                checkTrend('1','child-lead-poisoning')
+            </script>
             <hr>
             <div class="modal-body">
+                <span class="home-label font-weight-bold">By neighborhood</span>
+                <p class="fs-sm"><em>Rate (5&#43; mcg/dL) per 1,000 tested</em></p>
+                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Chil777-2"></div><div class="data-note mt-3">Some neighborhoods may have estimates suppressed due to low numbers.</div></div>
 
-                <h3 data-pagefind-ignore="all">By Neighborhood</h3>
-                <p><em>Rate (5&#43; mcg/dL) per 1,000 tested</em></p>
-                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Chil777-2"></div>
-
+            <div class="modal-body">
+                <span class="home-label font-weight-bold">Source: </span><br> 
+                <span class="fs-sm">New York City Healthy Homes Program</span>
             </div>
 
             
@@ -814,6 +1043,24 @@
         </div>
     </div>
 </div>
+
+<style>
+    .compBar {
+        margin-top: 5px;
+        padding-left: 5px;
+        border-left: 3px solid darkgray;
+        max-height: 36px;
+
+    }
+
+    .nonNeighb {
+        background-color: #D8D8D8;
+    }
+
+    .neighb {
+        background-color: #00923E;
+    }
+</style>
 
 
 
@@ -904,6 +1151,46 @@
     </script>
 
 
+<script>
+    function renderComparisonChart(n,b,c,nid,bid,cid) {
+        
+        var values = []
+
+        values.push(Number(n))
+        values.push(Number(b))
+        values.push(Number(c))
+
+        
+
+        console.log('values:')
+        console.log(values)
+
+        
+        var max = Math.max(...values)
+
+        
+        var denom = max * 1.2
+        var nWidth = n / denom
+        var bWidth = b / denom
+        var cWidth = c / denom
+
+        
+        document.getElementById(nid).style.width = 100 * nWidth + '%' 
+        document.getElementById(bid).style.width = 100 * bWidth + '%'
+        document.getElementById(cid).style.width = 100 * cWidth + '%'
+
+    }
+
+    function checkTrend(x,y) {
+        if (x == 0 ) {
+            document.getElementById('t-'+y).classList.add('hide');
+            document.getElementById('ta-'+y).classList.remove('hide');
+            console.log(y)
+        } else {}
+    }
+
+</script>
+
 
 
 
@@ -947,6 +1234,17 @@
 
 
 <div class="modal fade report-modal" id="modal-Asth1201-3" tabindex="-1" role="dialog" aria-labelledby="indicatorModalLabel" aria-hidden="true">
+   <script>
+    
+     function getYear(x,y) {
+        var endDate = new Date(x) ;
+        console.log('end date:', endDate) ;
+        var year = endDate.getYear() + 1900
+        console.log(year)
+        document.getElementById(y).innerHTML = year
+    }
+   </script>
+   
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header text-left">
@@ -955,40 +1253,91 @@
                     <span class="fas fa-times-circle"></span>
                 </button>
             </div>
+
             <div class="modal-body">
-                <h2 class="fs-xl" data-pagefind-ignore="all">Asthma hospitalizations (age 5 to 17), 2020</h2>
-                <p>In <strong>Fordham - Bronx Pk</strong>, asthma hospitalizations (age 5 to 17) is <span class="worse">Worse</span> compared to the NYC average.</p>Asthma hospitalizations are more severe asthma outcomes. They're often clustered in high-poverty neighborhoods, where disinvestment and poor housing conditions expose residents to triggers.</div>
+                <h2 class="fs-xl" data-pagefind-ignore="all">Asthma hospitalizations (age 5 to 17) <span class="font-weight-normal">(<span id="year-asthma-hospitalizations-age-5-to-17">YEAR</span>)</span></h2>
+                <p>Asthma hospitalizations are more severe asthma outcomes. They're often clustered in high-poverty neighborhoods, where disinvestment and poor housing conditions expose residents to triggers.</p>
+            </div>
+
+            <script>
+                
+                getYear(`2020-12-31`,`year-asthma-hospitalizations-age-5-to-17`)
+            </script>
+
+            <div class="modal-body">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col"  style="border-top:none!important"><span class="sr-only">Location:</span></th>
+                        <th scope="col"style="width:35%;"><span class="">Estimated annual rate per 10,000</span></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row"><span class="text-primary fs-xl float-right">Fordham - Bronx Pk <span class="ml-2 float-right">16.9</span></span></th>
+
+                        <td>
+                            <div id="n-asthma-hospitalizations-age-5-to-17" style="width:90%;" class="compBar neighb">
+                                &nbsp;
+                                <span class="sr-only">16.9</span>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl float-right">Bronx <span class="ml-2 float-right">15.9</span></span></th>
+                        <td>
+                            <div id="b-asthma-hospitalizations-age-5-to-17" style="width:90%;" class="compBar nonNeighb">
+                                &nbsp;
+                                <span class="sr-only">15.9</span>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl float-right">New York City <span class="ml-2 float-right">8.3</span></span></th>
+                        <td>
+                            <div id="c-asthma-hospitalizations-age-5-to-17" style="width:90%;" class="compBar nonNeighb">
+                                &nbsp;
+                                <span class="sr-only">8.3</span>
+                            </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table><div class="data-note float-right"> The start of COVID-19 in Spring 2020 reduced the overall volume of ED visits, including those for asthma, which may have contributed to decreases in asthma ED visit and hospitalization counts and rates in 2020.</div><script>
+                    renderComparisonChart( 16.9 ,  15.9 ,  8.3 ,'n-asthma-hospitalizations-age-5-to-17','b-asthma-hospitalizations-age-5-to-17','c-asthma-hospitalizations-age-5-to-17')
+                    
+                </script>
+
+            </div>
             <hr>
             <div class="modal-body">
-                <h2 data-pagefind-ignore="all">Neighborhood Comparison</h2>
-                <div class="row comparison">
-                    <div class="col-sm-4 text-primary">Fordham - Bronx Pk <span class="indicator-value">16.9</span></div>
-                    <div class="col-sm-4">Bronx <span class="indicator-value">15.9</span></div>
-                    <div class="col-sm-4">New York City <span class="indicator-value">8.3</span></div>
-                </div>
-                <p><em>Estimated annual rate per 10,000</em></p><div class="data-note"> The start of COVID-19 in Spring 2020 reduced the overall volume of ED visits, including those for asthma, which may have contributed to decreases in asthma ED visit and hospitalization counts and rates in 2020.</div></div>
-            <hr>
-            <div class="modal-body">
-                <h3 data-pagefind-ignore="all">Asthma hospitalizations (age 5 to 17), 2020</h3>
-                <p>  <em>Estimated annual rate per 10,000</em></p>
+                <span class="home-label font-weight-bold">Comparison</span>
+                <p class="fs-lg">For asthma hospitalizations (age 5 to 17), <strong class="text-primary">Fordham - Bronx Pk</strong> is <span class="worse">worse</span> than most neighborhoods.</p>
+                <p class="fs-sm">  <em>Estimated annual rate per 10,000</em></p>
                 <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Asth1201-3"></div>
 
             </div>
             <hr>
-            <div class="modal-body">
-
-                <h3 data-pagefind-ignore="all">Trends Over Time</h3>
-                <p><em>Estimated annual rate per 10,000</em></p>
-                <div style="width:100%; height:50vmin; z-index:10000;" id="trend-Asth1201-3"></div>
-
+            <div class="modal-body" id="t-asthma-hospitalizations-age-5-to-17">
+                <span class="home-label font-weight-bold">Trends over time</span>
+                <p class="fs-sm"><em>Estimated annual rate per 10,000</em></p>
+                <div style="width:100%; height:50vmin; z-index:10000;display:block;" id="trend-Asth1201-3"></div><div class="data-note mt-3">Some years of data may have unstable rates or estimates suppressed due to low numbers.</div></div>
+            
+            <div class="modal-body hide" id="ta-asthma-hospitalizations-age-5-to-17">
+                <span class="home-label font-weight-bold">Trends over time (not available)</span>
+                <p class="fs-sm"><em>There's only a single year of data available for this indicator, so we can't show a trend.</em></p>
             </div>
+            <script>
+                checkTrend('1','asthma-hospitalizations-age-5-to-17')
+            </script>
             <hr>
             <div class="modal-body">
+                <span class="home-label font-weight-bold">By neighborhood</span>
+                <p class="fs-sm"><em>Estimated annual rate per 10,000</em></p>
+                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Asth1201-3"></div><div class="data-note mt-3">Some neighborhoods may have estimates suppressed due to low numbers.</div></div>
 
-                <h3 data-pagefind-ignore="all">By Neighborhood</h3>
-                <p><em>Estimated annual rate per 10,000</em></p>
-                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Asth1201-3"></div>
-
+            <div class="modal-body">
+                <span class="home-label font-weight-bold">Source: </span><br> 
+                <span class="fs-sm">New York State Statewide Planning and Research Cooperative System (SPARCS) Deidentified Hospital Discharge Data</span>
             </div>
 
             
@@ -999,6 +1348,24 @@
         </div>
     </div>
 </div>
+
+<style>
+    .compBar {
+        margin-top: 5px;
+        padding-left: 5px;
+        border-left: 3px solid darkgray;
+        max-height: 36px;
+
+    }
+
+    .nonNeighb {
+        background-color: #D8D8D8;
+    }
+
+    .neighb {
+        background-color: #00923E;
+    }
+</style>
 
 
 
@@ -1089,6 +1456,46 @@
     </script>
 
 
+<script>
+    function renderComparisonChart(n,b,c,nid,bid,cid) {
+        
+        var values = []
+
+        values.push(Number(n))
+        values.push(Number(b))
+        values.push(Number(c))
+
+        
+
+        console.log('values:')
+        console.log(values)
+
+        
+        var max = Math.max(...values)
+
+        
+        var denom = max * 1.2
+        var nWidth = n / denom
+        var bWidth = b / denom
+        var cWidth = c / denom
+
+        
+        document.getElementById(nid).style.width = 100 * nWidth + '%' 
+        document.getElementById(bid).style.width = 100 * bWidth + '%'
+        document.getElementById(cid).style.width = 100 * cWidth + '%'
+
+    }
+
+    function checkTrend(x,y) {
+        if (x == 0 ) {
+            document.getElementById('t-'+y).classList.add('hide');
+            document.getElementById('ta-'+y).classList.remove('hide');
+            console.log(y)
+        } else {}
+    }
+
+</script>
+
 
 
 
@@ -1132,6 +1539,17 @@
 
 
 <div class="modal fade report-modal" id="modal-Asth1204-4" tabindex="-1" role="dialog" aria-labelledby="indicatorModalLabel" aria-hidden="true">
+   <script>
+    
+     function getYear(x,y) {
+        var endDate = new Date(x) ;
+        console.log('end date:', endDate) ;
+        var year = endDate.getYear() + 1900
+        console.log(year)
+        document.getElementById(y).innerHTML = year
+    }
+   </script>
+   
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header text-left">
@@ -1140,40 +1558,91 @@
                     <span class="fas fa-times-circle"></span>
                 </button>
             </div>
+
             <div class="modal-body">
-                <h2 class="fs-xl" data-pagefind-ignore="all">Asthma hospitalizations (adults), 2020</h2>
-                <p>In <strong>Fordham - Bronx Pk</strong>, asthma hospitalizations (adults) is <span class="worse">Worse</span> compared to the NYC average.</p>Asthma hospitalizations are more severe asthma outcomes. They're often clustered in high-poverty neighborhoods, where disinvestment and poor housing conditions expose residents to triggers.</div>
+                <h2 class="fs-xl" data-pagefind-ignore="all">Asthma hospitalizations (adults) <span class="font-weight-normal">(<span id="year-asthma-hospitalizations-adults">YEAR</span>)</span></h2>
+                <p>Asthma hospitalizations are more severe asthma outcomes. They're often clustered in high-poverty neighborhoods, where disinvestment and poor housing conditions expose residents to triggers.</p>
+            </div>
+
+            <script>
+                
+                getYear(`2020-12-31`,`year-asthma-hospitalizations-adults`)
+            </script>
+
+            <div class="modal-body">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col"  style="border-top:none!important"><span class="sr-only">Location:</span></th>
+                        <th scope="col"style="width:35%;"><span class="">Age-adjusted rate per 10,000</span></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row"><span class="text-primary fs-xl float-right">Fordham - Bronx Pk <span class="ml-2 float-right">13.4</span></span></th>
+
+                        <td>
+                            <div id="n-asthma-hospitalizations-adults" style="width:90%;" class="compBar neighb">
+                                &nbsp;
+                                <span class="sr-only">13.4</span>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl float-right">Bronx <span class="ml-2 float-right">13.4</span></span></th>
+                        <td>
+                            <div id="b-asthma-hospitalizations-adults" style="width:90%;" class="compBar nonNeighb">
+                                &nbsp;
+                                <span class="sr-only">13.4</span>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl float-right">New York City <span class="ml-2 float-right">5.5</span></span></th>
+                        <td>
+                            <div id="c-asthma-hospitalizations-adults" style="width:90%;" class="compBar nonNeighb">
+                                &nbsp;
+                                <span class="sr-only">5.5</span>
+                            </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table><div class="data-note float-right"> The start of COVID-19 in Spring 2020 reduced the overall volume of ED visits, including those for asthma, which may have contributed to decreases in asthma ED visit and hospitalization counts and rates in 2020.</div><script>
+                    renderComparisonChart( 13.4 ,  13.4 ,  5.5 ,'n-asthma-hospitalizations-adults','b-asthma-hospitalizations-adults','c-asthma-hospitalizations-adults')
+                    
+                </script>
+
+            </div>
             <hr>
             <div class="modal-body">
-                <h2 data-pagefind-ignore="all">Neighborhood Comparison</h2>
-                <div class="row comparison">
-                    <div class="col-sm-4 text-primary">Fordham - Bronx Pk <span class="indicator-value">13.4</span></div>
-                    <div class="col-sm-4">Bronx <span class="indicator-value">13.4</span></div>
-                    <div class="col-sm-4">New York City <span class="indicator-value">5.5</span></div>
-                </div>
-                <p><em>Age-adjusted rate per 10,000</em></p><div class="data-note"> The start of COVID-19 in Spring 2020 reduced the overall volume of ED visits, including those for asthma, which may have contributed to decreases in asthma ED visit and hospitalization counts and rates in 2020.</div></div>
-            <hr>
-            <div class="modal-body">
-                <h3 data-pagefind-ignore="all">Asthma hospitalizations (adults), 2020</h3>
-                <p>  <em>Age-adjusted rate per 10,000</em></p>
+                <span class="home-label font-weight-bold">Comparison</span>
+                <p class="fs-lg">For asthma hospitalizations (adults), <strong class="text-primary">Fordham - Bronx Pk</strong> is <span class="worse">worse</span> than most neighborhoods.</p>
+                <p class="fs-sm">  <em>Age-adjusted rate per 10,000</em></p>
                 <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Asth1204-4"></div>
 
             </div>
             <hr>
-            <div class="modal-body">
-
-                <h3 data-pagefind-ignore="all">Trends Over Time</h3>
-                <p><em>Age-adjusted rate per 10,000</em></p>
-                <div style="width:100%; height:50vmin; z-index:10000;" id="trend-Asth1204-4"></div>
-
+            <div class="modal-body" id="t-asthma-hospitalizations-adults">
+                <span class="home-label font-weight-bold">Trends over time</span>
+                <p class="fs-sm"><em>Age-adjusted rate per 10,000</em></p>
+                <div style="width:100%; height:50vmin; z-index:10000;display:block;" id="trend-Asth1204-4"></div><div class="data-note mt-3">Some years of data may have unstable rates or estimates suppressed due to low numbers.</div></div>
+            
+            <div class="modal-body hide" id="ta-asthma-hospitalizations-adults">
+                <span class="home-label font-weight-bold">Trends over time (not available)</span>
+                <p class="fs-sm"><em>There's only a single year of data available for this indicator, so we can't show a trend.</em></p>
             </div>
+            <script>
+                checkTrend('1','asthma-hospitalizations-adults')
+            </script>
             <hr>
             <div class="modal-body">
+                <span class="home-label font-weight-bold">By neighborhood</span>
+                <p class="fs-sm"><em>Age-adjusted rate per 10,000</em></p>
+                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Asth1204-4"></div><div class="data-note mt-3">Some neighborhoods may have estimates suppressed due to low numbers.</div></div>
 
-                <h3 data-pagefind-ignore="all">By Neighborhood</h3>
-                <p><em>Age-adjusted rate per 10,000</em></p>
-                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Asth1204-4"></div>
-
+            <div class="modal-body">
+                <span class="home-label font-weight-bold">Source: </span><br> 
+                <span class="fs-sm">New York State Statewide Planning and Research Cooperative System (SPARCS) Deidentified Hospital Discharge Data</span>
             </div>
 
             
@@ -1184,6 +1653,24 @@
         </div>
     </div>
 </div>
+
+<style>
+    .compBar {
+        margin-top: 5px;
+        padding-left: 5px;
+        border-left: 3px solid darkgray;
+        max-height: 36px;
+
+    }
+
+    .nonNeighb {
+        background-color: #D8D8D8;
+    }
+
+    .neighb {
+        background-color: #00923E;
+    }
+</style>
 
 
 
@@ -1310,7 +1797,7 @@
                                         
 
                                         <div class="row indicator-headings mb-2 print-only">
-                                            <div class="col-4 font-weight-bold">
+                                            <div class="col-4 font-weight-bold pl-3">
                                                 Topic
                                             </div>
                                             <div class="col-8">
@@ -1337,6 +1824,46 @@
                                         
                                         
                                         
+
+<script>
+    function renderComparisonChart(n,b,c,nid,bid,cid) {
+        
+        var values = []
+
+        values.push(Number(n))
+        values.push(Number(b))
+        values.push(Number(c))
+
+        
+
+        console.log('values:')
+        console.log(values)
+
+        
+        var max = Math.max(...values)
+
+        
+        var denom = max * 1.2
+        var nWidth = n / denom
+        var bWidth = b / denom
+        var cWidth = c / denom
+
+        
+        document.getElementById(nid).style.width = 100 * nWidth + '%' 
+        document.getElementById(bid).style.width = 100 * bWidth + '%'
+        document.getElementById(cid).style.width = 100 * cWidth + '%'
+
+    }
+
+    function checkTrend(x,y) {
+        if (x == 0 ) {
+            document.getElementById('t-'+y).classList.add('hide');
+            document.getElementById('ta-'+y).classList.remove('hide');
+            console.log(y)
+        } else {}
+    }
+
+</script>
 
 
 
@@ -1381,6 +1908,17 @@
 
 
 <div class="modal fade report-modal" id="modal-Carb716-1" tabindex="-1" role="dialog" aria-labelledby="indicatorModalLabel" aria-hidden="true">
+   <script>
+    
+     function getYear(x,y) {
+        var endDate = new Date(x) ;
+        console.log('end date:', endDate) ;
+        var year = endDate.getYear() + 1900
+        console.log(year)
+        document.getElementById(y).innerHTML = year
+    }
+   </script>
+   
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header text-left">
@@ -1389,40 +1927,91 @@
                     <span class="fas fa-times-circle"></span>
                 </button>
             </div>
+
             <div class="modal-body">
-                <h2 class="fs-xl" data-pagefind-ignore="all">Carbon monoxide incidents (without a detector), 2014-2016</h2>
-                <p>In <strong>Fordham - Bronx Pk</strong>, carbon monoxide incidents (without a detector) is <span class="middle">Middle</span> compared to the NYC average.</p>Carbon monoxide detectors are required in NYC homes by law. Failure to provide or maintain a detector can put people at risk for carbon monoxide poisoning and death.</div>
+                <h2 class="fs-xl" data-pagefind-ignore="all">Carbon monoxide incidents (without a detector) <span class="font-weight-normal">(<span id="year-carbon-monoxide">YEAR</span>)</span></h2>
+                <p>Carbon monoxide detectors are required in NYC homes by law. Failure to provide or maintain a detector can put people at risk for carbon monoxide poisoning and death.</p>
+            </div>
+
+            <script>
+                
+                getYear(`2016-12-31`,`year-carbon-monoxide`)
+            </script>
+
+            <div class="modal-body">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col"  style="border-top:none!important"><span class="sr-only">Location:</span></th>
+                        <th scope="col"style="width:35%;"><span class="">Average annual rate per 10,000 buildings</span></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row"><span class="text-primary fs-xl float-right">Fordham - Bronx Pk <span class="ml-2 float-right">1.8*</span></span></th>
+
+                        <td>
+                            <div id="n-carbon-monoxide" style="width:90%;" class="compBar neighb">
+                                &nbsp;
+                                <span class="sr-only">1.8*</span>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl float-right">Bronx <span class="ml-2 float-right">2.5</span></span></th>
+                        <td>
+                            <div id="b-carbon-monoxide" style="width:90%;" class="compBar nonNeighb">
+                                &nbsp;
+                                <span class="sr-only">2.5</span>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl float-right">New York City <span class="ml-2 float-right">0.9</span></span></th>
+                        <td>
+                            <div id="c-carbon-monoxide" style="width:90%;" class="compBar nonNeighb">
+                                &nbsp;
+                                <span class="sr-only">0.9</span>
+                            </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table><div class="data-note float-right">* Estimate is based on small numbers so should be interpreted with caution.</div><script>
+                    renderComparisonChart( 1.8 ,  2.5 ,  0.9 ,'n-carbon-monoxide','b-carbon-monoxide','c-carbon-monoxide')
+                    
+                </script>
+
+            </div>
             <hr>
             <div class="modal-body">
-                <h2 data-pagefind-ignore="all">Neighborhood Comparison</h2>
-                <div class="row comparison">
-                    <div class="col-sm-4 text-primary">Fordham - Bronx Pk <span class="indicator-value">1.8*</span></div>
-                    <div class="col-sm-4">Bronx <span class="indicator-value">2.5</span></div>
-                    <div class="col-sm-4">New York City <span class="indicator-value">0.9</span></div>
-                </div>
-                <p><em>Average annual rate per 10,000 buildings</em></p><div class="data-note">* Estimate is based on small numbers so should be interpreted with caution.</div></div>
-            <hr>
-            <div class="modal-body">
-                <h3 data-pagefind-ignore="all">Carbon monoxide incidents (without a detector), 2014-2016</h3>
-                <p>  <em>Average annual rate per 10,000 buildings</em></p>
+                <span class="home-label font-weight-bold">Comparison</span>
+                <p class="fs-lg">For carbon monoxide incidents (without a detector), <strong class="text-primary">Fordham - Bronx Pk</strong> is in the <span class="middle">middle</span> of NYC neighborhoods.</p>
+                <p class="fs-sm">  <em>Average annual rate per 10,000 buildings</em></p>
                 <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Carb716-1"></div>
 
             </div>
             <hr>
-            <div class="modal-body">
-
-                <h3 data-pagefind-ignore="all">Trends Over Time</h3>
-                <p><em>Average annual rate per 10,000 buildings</em></p>
-                <div style="width:100%; height:50vmin; z-index:10000;" id="trend-Carb716-1"></div>
-
+            <div class="modal-body" id="t-carbon-monoxide">
+                <span class="home-label font-weight-bold">Trends over time</span>
+                <p class="fs-sm"><em>Average annual rate per 10,000 buildings</em></p>
+                <div style="width:100%; height:50vmin; z-index:10000;display:block;" id="trend-Carb716-1"></div><div class="data-note mt-3">Some years of data may have unstable rates or estimates suppressed due to low numbers.</div></div>
+            
+            <div class="modal-body hide" id="ta-carbon-monoxide">
+                <span class="home-label font-weight-bold">Trends over time (not available)</span>
+                <p class="fs-sm"><em>There's only a single year of data available for this indicator, so we can't show a trend.</em></p>
             </div>
+            <script>
+                checkTrend('1','carbon-monoxide')
+            </script>
             <hr>
             <div class="modal-body">
+                <span class="home-label font-weight-bold">By neighborhood</span>
+                <p class="fs-sm"><em>Average annual rate per 10,000 buildings</em></p>
+                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Carb716-1"></div><div class="data-note mt-3">Some neighborhoods may have estimates suppressed due to low numbers.</div></div>
 
-                <h3 data-pagefind-ignore="all">By Neighborhood</h3>
-                <p><em>Average annual rate per 10,000 buildings</em></p>
-                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Carb716-1"></div>
-
+            <div class="modal-body">
+                <span class="home-label font-weight-bold">Source: </span><br> 
+                <span class="fs-sm">Fire Department of New York City (FDNY) Carbon Monoxide Incidents</span>
             </div>
 
             
@@ -1433,6 +2022,24 @@
         </div>
     </div>
 </div>
+
+<style>
+    .compBar {
+        margin-top: 5px;
+        padding-left: 5px;
+        border-left: 3px solid darkgray;
+        max-height: 36px;
+
+    }
+
+    .nonNeighb {
+        background-color: #D8D8D8;
+    }
+
+    .neighb {
+        background-color: #00923E;
+    }
+</style>
 
 
 
@@ -1523,6 +2130,46 @@
     </script>
 
 
+<script>
+    function renderComparisonChart(n,b,c,nid,bid,cid) {
+        
+        var values = []
+
+        values.push(Number(n))
+        values.push(Number(b))
+        values.push(Number(c))
+
+        
+
+        console.log('values:')
+        console.log(values)
+
+        
+        var max = Math.max(...values)
+
+        
+        var denom = max * 1.2
+        var nWidth = n / denom
+        var bWidth = b / denom
+        var cWidth = c / denom
+
+        
+        document.getElementById(nid).style.width = 100 * nWidth + '%' 
+        document.getElementById(bid).style.width = 100 * bWidth + '%'
+        document.getElementById(cid).style.width = 100 * cWidth + '%'
+
+    }
+
+    function checkTrend(x,y) {
+        if (x == 0 ) {
+            document.getElementById('t-'+y).classList.add('hide');
+            document.getElementById('ta-'+y).classList.remove('hide');
+            console.log(y)
+        } else {}
+    }
+
+</script>
+
 
 
 
@@ -1566,6 +2213,17 @@
 
 
 <div class="modal fade report-modal" id="modal-Home76-2" tabindex="-1" role="dialog" aria-labelledby="indicatorModalLabel" aria-hidden="true">
+   <script>
+    
+     function getYear(x,y) {
+        var endDate = new Date(x) ;
+        console.log('end date:', endDate) ;
+        var year = endDate.getYear() + 1900
+        console.log(year)
+        document.getElementById(y).innerHTML = year
+    }
+   </script>
+   
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header text-left">
@@ -1574,40 +2232,91 @@
                     <span class="fas fa-times-circle"></span>
                 </button>
             </div>
+
             <div class="modal-body">
-                <h2 class="fs-xl" data-pagefind-ignore="all">Homes with cracks or holes, 2017</h2>
-                <p>In <strong>Fordham - Bronx Pk</strong>, homes with cracks or holes is <span class="worse">Worse</span> compared to the NYC average.</p>Cracks or holes are a maintenance deficiency linked to the presence of mice, rats, and cockroaches - which can harm residents' health.</div>
+                <h2 class="fs-xl" data-pagefind-ignore="all">Homes with cracks or holes <span class="font-weight-normal">(<span id="year-cracks">YEAR</span>)</span></h2>
+                <p>Cracks or holes are a maintenance deficiency linked to the presence of mice, rats, and cockroaches - which can harm residents' health.</p>
+            </div>
+
+            <script>
+                
+                getYear(`2017-12-31`,`year-cracks`)
+            </script>
+
+            <div class="modal-body">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col"  style="border-top:none!important"><span class="sr-only">Location:</span></th>
+                        <th scope="col"style="width:35%;"><span class="">Percent </span></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row"><span class="text-primary fs-xl float-right">Fordham - Bronx Pk <span class="ml-2 float-right">23.6</span></span></th>
+
+                        <td>
+                            <div id="n-cracks" style="width:90%;" class="compBar neighb">
+                                &nbsp;
+                                <span class="sr-only">23.6</span>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl float-right">Bronx <span class="ml-2 float-right">20</span></span></th>
+                        <td>
+                            <div id="b-cracks" style="width:90%;" class="compBar nonNeighb">
+                                &nbsp;
+                                <span class="sr-only">20</span>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl float-right">New York City <span class="ml-2 float-right">12.3</span></span></th>
+                        <td>
+                            <div id="c-cracks" style="width:90%;" class="compBar nonNeighb">
+                                &nbsp;
+                                <span class="sr-only">12.3</span>
+                            </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table><div class="data-note float-right"></div><script>
+                    renderComparisonChart( 23.6 ,  20 ,  12.3 ,'n-cracks','b-cracks','c-cracks')
+                    
+                </script>
+
+            </div>
             <hr>
             <div class="modal-body">
-                <h2 data-pagefind-ignore="all">Neighborhood Comparison</h2>
-                <div class="row comparison">
-                    <div class="col-sm-4 text-primary">Fordham - Bronx Pk <span class="indicator-value">23.6</span></div>
-                    <div class="col-sm-4">Bronx <span class="indicator-value">20</span></div>
-                    <div class="col-sm-4">New York City <span class="indicator-value">12.3</span></div>
-                </div>
-                <p><em>Percent </em></p><div class="data-note"></div></div>
-            <hr>
-            <div class="modal-body">
-                <h3 data-pagefind-ignore="all">Homes with cracks or holes, 2017</h3>
-                <p>  <em>Percent </em></p>
+                <span class="home-label font-weight-bold">Comparison</span>
+                <p class="fs-lg">For homes with cracks or holes, <strong class="text-primary">Fordham - Bronx Pk</strong> is <span class="worse">worse</span> than most neighborhoods.</p>
+                <p class="fs-sm">  <em>Percent </em></p>
                 <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Home76-2"></div>
 
             </div>
             <hr>
-            <div class="modal-body">
-
-                <h3 data-pagefind-ignore="all">Trends Over Time</h3>
-                <p><em>Percent </em></p>
-                <div style="width:100%; height:50vmin; z-index:10000;" id="trend-Home76-2"></div>
-
+            <div class="modal-body" id="t-cracks">
+                <span class="home-label font-weight-bold">Trends over time</span>
+                <p class="fs-sm"><em>Percent </em></p>
+                <div style="width:100%; height:50vmin; z-index:10000;display:block;" id="trend-Home76-2"></div><div class="data-note mt-3">Some years of data may have unstable rates or estimates suppressed due to low numbers.</div></div>
+            
+            <div class="modal-body hide" id="ta-cracks">
+                <span class="home-label font-weight-bold">Trends over time (not available)</span>
+                <p class="fs-sm"><em>There's only a single year of data available for this indicator, so we can't show a trend.</em></p>
             </div>
+            <script>
+                checkTrend('1','cracks')
+            </script>
             <hr>
             <div class="modal-body">
+                <span class="home-label font-weight-bold">By neighborhood</span>
+                <p class="fs-sm"><em>Percent </em></p>
+                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Home76-2"></div><div class="data-note mt-3">Some neighborhoods may have estimates suppressed due to low numbers.</div></div>
 
-                <h3 data-pagefind-ignore="all">By Neighborhood</h3>
-                <p><em>Percent </em></p>
-                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Home76-2"></div>
-
+            <div class="modal-body">
+                <span class="home-label font-weight-bold">Source: </span><br> 
+                <span class="fs-sm">New York City Housing and Vacancy Survey (HVS)</span>
             </div>
 
             
@@ -1618,6 +2327,24 @@
         </div>
     </div>
 </div>
+
+<style>
+    .compBar {
+        margin-top: 5px;
+        padding-left: 5px;
+        border-left: 3px solid darkgray;
+        max-height: 36px;
+
+    }
+
+    .nonNeighb {
+        background-color: #D8D8D8;
+    }
+
+    .neighb {
+        background-color: #00923E;
+    }
+</style>
 
 
 
@@ -1708,6 +2435,46 @@
     </script>
 
 
+<script>
+    function renderComparisonChart(n,b,c,nid,bid,cid) {
+        
+        var values = []
+
+        values.push(Number(n))
+        values.push(Number(b))
+        values.push(Number(c))
+
+        
+
+        console.log('values:')
+        console.log(values)
+
+        
+        var max = Math.max(...values)
+
+        
+        var denom = max * 1.2
+        var nWidth = n / denom
+        var bWidth = b / denom
+        var cWidth = c / denom
+
+        
+        document.getElementById(nid).style.width = 100 * nWidth + '%' 
+        document.getElementById(bid).style.width = 100 * bWidth + '%'
+        document.getElementById(cid).style.width = 100 * cWidth + '%'
+
+    }
+
+    function checkTrend(x,y) {
+        if (x == 0 ) {
+            document.getElementById('t-'+y).classList.add('hide');
+            document.getElementById('ta-'+y).classList.remove('hide');
+            console.log(y)
+        } else {}
+    }
+
+</script>
+
 
 
 
@@ -1751,6 +2518,17 @@
 
 
 <div class="modal fade report-modal" id="modal-Pre-78-3" tabindex="-1" role="dialog" aria-labelledby="indicatorModalLabel" aria-hidden="true">
+   <script>
+    
+     function getYear(x,y) {
+        var endDate = new Date(x) ;
+        console.log('end date:', endDate) ;
+        var year = endDate.getYear() + 1900
+        console.log(year)
+        document.getElementById(y).innerHTML = year
+    }
+   </script>
+   
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header text-left">
@@ -1759,40 +2537,91 @@
                     <span class="fas fa-times-circle"></span>
                 </button>
             </div>
+
             <div class="modal-body">
-                <h2 class="fs-xl" data-pagefind-ignore="all">Old homes with peeling paint, 2017</h2>
-                <p>In <strong>Fordham - Bronx Pk</strong>, old homes with peeling paint is <span class="worse">Worse</span> compared to the NYC average.</p>Older housing (built before 1960) that has peeling paint can put residents at risk of lead poisoning, due to lead paint. Lead paint was banned from household paints in New York City in 1960 and in the USA in 1978.</div>
+                <h2 class="fs-xl" data-pagefind-ignore="all">Old homes with peeling paint <span class="font-weight-normal">(<span id="year-peeling-paint">YEAR</span>)</span></h2>
+                <p>Older housing (built before 1960) that has peeling paint can put residents at risk of lead poisoning, due to lead paint. Lead paint was banned from household paints in New York City in 1960 and in the USA in 1978.</p>
+            </div>
+
+            <script>
+                
+                getYear(`2017-12-31`,`year-peeling-paint`)
+            </script>
+
+            <div class="modal-body">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col"  style="border-top:none!important"><span class="sr-only">Location:</span></th>
+                        <th scope="col"style="width:35%;"><span class="">Percent </span></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row"><span class="text-primary fs-xl float-right">Fordham - Bronx Pk <span class="ml-2 float-right">8.6*</span></span></th>
+
+                        <td>
+                            <div id="n-peeling-paint" style="width:90%;" class="compBar neighb">
+                                &nbsp;
+                                <span class="sr-only">8.6*</span>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl float-right">Bronx <span class="ml-2 float-right">7</span></span></th>
+                        <td>
+                            <div id="b-peeling-paint" style="width:90%;" class="compBar nonNeighb">
+                                &nbsp;
+                                <span class="sr-only">7</span>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl float-right">New York City <span class="ml-2 float-right">3.9</span></span></th>
+                        <td>
+                            <div id="c-peeling-paint" style="width:90%;" class="compBar nonNeighb">
+                                &nbsp;
+                                <span class="sr-only">3.9</span>
+                            </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table><div class="data-note float-right">* Estimate is based on small numbers so should be interpreted with caution.</div><script>
+                    renderComparisonChart( 8.6 ,  7 ,  3.9 ,'n-peeling-paint','b-peeling-paint','c-peeling-paint')
+                    
+                </script>
+
+            </div>
             <hr>
             <div class="modal-body">
-                <h2 data-pagefind-ignore="all">Neighborhood Comparison</h2>
-                <div class="row comparison">
-                    <div class="col-sm-4 text-primary">Fordham - Bronx Pk <span class="indicator-value">8.6*</span></div>
-                    <div class="col-sm-4">Bronx <span class="indicator-value">7</span></div>
-                    <div class="col-sm-4">New York City <span class="indicator-value">3.9</span></div>
-                </div>
-                <p><em>Percent </em></p><div class="data-note">* Estimate is based on small numbers so should be interpreted with caution.</div></div>
-            <hr>
-            <div class="modal-body">
-                <h3 data-pagefind-ignore="all">Old homes with peeling paint, 2017</h3>
-                <p>  <em>Percent </em></p>
+                <span class="home-label font-weight-bold">Comparison</span>
+                <p class="fs-lg">For old homes with peeling paint, <strong class="text-primary">Fordham - Bronx Pk</strong> is <span class="worse">worse</span> than most neighborhoods.</p>
+                <p class="fs-sm">  <em>Percent </em></p>
                 <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Pre-78-3"></div>
 
             </div>
             <hr>
-            <div class="modal-body">
-
-                <h3 data-pagefind-ignore="all">Trends Over Time</h3>
-                <p><em>Percent </em></p>
-                <div style="width:100%; height:50vmin; z-index:10000;" id="trend-Pre-78-3"></div>
-
+            <div class="modal-body" id="t-peeling-paint">
+                <span class="home-label font-weight-bold">Trends over time</span>
+                <p class="fs-sm"><em>Percent </em></p>
+                <div style="width:100%; height:50vmin; z-index:10000;display:block;" id="trend-Pre-78-3"></div><div class="data-note mt-3">Some years of data may have unstable rates or estimates suppressed due to low numbers.</div></div>
+            
+            <div class="modal-body hide" id="ta-peeling-paint">
+                <span class="home-label font-weight-bold">Trends over time (not available)</span>
+                <p class="fs-sm"><em>There's only a single year of data available for this indicator, so we can't show a trend.</em></p>
             </div>
+            <script>
+                checkTrend('1','peeling-paint')
+            </script>
             <hr>
             <div class="modal-body">
+                <span class="home-label font-weight-bold">By neighborhood</span>
+                <p class="fs-sm"><em>Percent </em></p>
+                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Pre-78-3"></div><div class="data-note mt-3">Some neighborhoods may have estimates suppressed due to low numbers.</div></div>
 
-                <h3 data-pagefind-ignore="all">By Neighborhood</h3>
-                <p><em>Percent </em></p>
-                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Pre-78-3"></div>
-
+            <div class="modal-body">
+                <span class="home-label font-weight-bold">Source: </span><br> 
+                <span class="fs-sm">New York City Housing and Vacancy Survey (HVS)</span>
             </div>
 
             
@@ -1803,6 +2632,24 @@
         </div>
     </div>
 </div>
+
+<style>
+    .compBar {
+        margin-top: 5px;
+        padding-left: 5px;
+        border-left: 3px solid darkgray;
+        max-height: 36px;
+
+    }
+
+    .nonNeighb {
+        background-color: #D8D8D8;
+    }
+
+    .neighb {
+        background-color: #00923E;
+    }
+</style>
 
 
 
@@ -1893,6 +2740,46 @@
     </script>
 
 
+<script>
+    function renderComparisonChart(n,b,c,nid,bid,cid) {
+        
+        var values = []
+
+        values.push(Number(n))
+        values.push(Number(b))
+        values.push(Number(c))
+
+        
+
+        console.log('values:')
+        console.log(values)
+
+        
+        var max = Math.max(...values)
+
+        
+        var denom = max * 1.2
+        var nWidth = n / denom
+        var bWidth = b / denom
+        var cWidth = c / denom
+
+        
+        document.getElementById(nid).style.width = 100 * nWidth + '%' 
+        document.getElementById(bid).style.width = 100 * bWidth + '%'
+        document.getElementById(cid).style.width = 100 * cWidth + '%'
+
+    }
+
+    function checkTrend(x,y) {
+        if (x == 0 ) {
+            document.getElementById('t-'+y).classList.add('hide');
+            document.getElementById('ta-'+y).classList.remove('hide');
+            console.log(y)
+        } else {}
+    }
+
+</script>
+
 
 
 
@@ -1936,6 +2823,17 @@
 
 
 <div class="modal fade report-modal" id="modal-Home80-4" tabindex="-1" role="dialog" aria-labelledby="indicatorModalLabel" aria-hidden="true">
+   <script>
+    
+     function getYear(x,y) {
+        var endDate = new Date(x) ;
+        console.log('end date:', endDate) ;
+        var year = endDate.getYear() + 1900
+        console.log(year)
+        document.getElementById(y).innerHTML = year
+    }
+   </script>
+   
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header text-left">
@@ -1944,40 +2842,91 @@
                     <span class="fas fa-times-circle"></span>
                 </button>
             </div>
+
             <div class="modal-body">
-                <h2 class="fs-xl" data-pagefind-ignore="all">Homes with leaks, 2017</h2>
-                <p>In <strong>Fordham - Bronx Pk</strong>, homes with leaks is <span class="worse">Worse</span> compared to the NYC average.</p>Leaks are a maintenance deficiency that can harm health by introducing mold, which can worsen respiratory conditions like asthma.</div>
+                <h2 class="fs-xl" data-pagefind-ignore="all">Homes with leaks <span class="font-weight-normal">(<span id="year-leaks">YEAR</span>)</span></h2>
+                <p>Leaks are a maintenance deficiency that can harm health by introducing mold, which can worsen respiratory conditions like asthma.</p>
+            </div>
+
+            <script>
+                
+                getYear(`2017-12-31`,`year-leaks`)
+            </script>
+
+            <div class="modal-body">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col"  style="border-top:none!important"><span class="sr-only">Location:</span></th>
+                        <th scope="col"style="width:35%;"><span class="">Percent </span></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row"><span class="text-primary fs-xl float-right">Fordham - Bronx Pk <span class="ml-2 float-right">23.0</span></span></th>
+
+                        <td>
+                            <div id="n-leaks" style="width:90%;" class="compBar neighb">
+                                &nbsp;
+                                <span class="sr-only">23.0</span>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl float-right">Bronx <span class="ml-2 float-right">20.4</span></span></th>
+                        <td>
+                            <div id="b-leaks" style="width:90%;" class="compBar nonNeighb">
+                                &nbsp;
+                                <span class="sr-only">20.4</span>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl float-right">New York City <span class="ml-2 float-right">13.4</span></span></th>
+                        <td>
+                            <div id="c-leaks" style="width:90%;" class="compBar nonNeighb">
+                                &nbsp;
+                                <span class="sr-only">13.4</span>
+                            </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table><div class="data-note float-right"></div><script>
+                    renderComparisonChart( 23 ,  20.4 ,  13.4 ,'n-leaks','b-leaks','c-leaks')
+                    
+                </script>
+
+            </div>
             <hr>
             <div class="modal-body">
-                <h2 data-pagefind-ignore="all">Neighborhood Comparison</h2>
-                <div class="row comparison">
-                    <div class="col-sm-4 text-primary">Fordham - Bronx Pk <span class="indicator-value">23.0</span></div>
-                    <div class="col-sm-4">Bronx <span class="indicator-value">20.4</span></div>
-                    <div class="col-sm-4">New York City <span class="indicator-value">13.4</span></div>
-                </div>
-                <p><em>Percent </em></p><div class="data-note"></div></div>
-            <hr>
-            <div class="modal-body">
-                <h3 data-pagefind-ignore="all">Homes with leaks, 2017</h3>
-                <p>  <em>Percent </em></p>
+                <span class="home-label font-weight-bold">Comparison</span>
+                <p class="fs-lg">For homes with leaks, <strong class="text-primary">Fordham - Bronx Pk</strong> is <span class="worse">worse</span> than most neighborhoods.</p>
+                <p class="fs-sm">  <em>Percent </em></p>
                 <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Home80-4"></div>
 
             </div>
             <hr>
-            <div class="modal-body">
-
-                <h3 data-pagefind-ignore="all">Trends Over Time</h3>
-                <p><em>Percent </em></p>
-                <div style="width:100%; height:50vmin; z-index:10000;" id="trend-Home80-4"></div>
-
+            <div class="modal-body" id="t-leaks">
+                <span class="home-label font-weight-bold">Trends over time</span>
+                <p class="fs-sm"><em>Percent </em></p>
+                <div style="width:100%; height:50vmin; z-index:10000;display:block;" id="trend-Home80-4"></div><div class="data-note mt-3">Some years of data may have unstable rates or estimates suppressed due to low numbers.</div></div>
+            
+            <div class="modal-body hide" id="ta-leaks">
+                <span class="home-label font-weight-bold">Trends over time (not available)</span>
+                <p class="fs-sm"><em>There's only a single year of data available for this indicator, so we can't show a trend.</em></p>
             </div>
+            <script>
+                checkTrend('1','leaks')
+            </script>
             <hr>
             <div class="modal-body">
+                <span class="home-label font-weight-bold">By neighborhood</span>
+                <p class="fs-sm"><em>Percent </em></p>
+                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Home80-4"></div><div class="data-note mt-3">Some neighborhoods may have estimates suppressed due to low numbers.</div></div>
 
-                <h3 data-pagefind-ignore="all">By Neighborhood</h3>
-                <p><em>Percent </em></p>
-                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Home80-4"></div>
-
+            <div class="modal-body">
+                <span class="home-label font-weight-bold">Source: </span><br> 
+                <span class="fs-sm">New York City Housing and Vacancy Survey (HVS)</span>
             </div>
 
             
@@ -1988,6 +2937,24 @@
         </div>
     </div>
 </div>
+
+<style>
+    .compBar {
+        margin-top: 5px;
+        padding-left: 5px;
+        border-left: 3px solid darkgray;
+        max-height: 36px;
+
+    }
+
+    .nonNeighb {
+        background-color: #D8D8D8;
+    }
+
+    .neighb {
+        background-color: #00923E;
+    }
+</style>
 
 
 
@@ -2078,6 +3045,46 @@
     </script>
 
 
+<script>
+    function renderComparisonChart(n,b,c,nid,bid,cid) {
+        
+        var values = []
+
+        values.push(Number(n))
+        values.push(Number(b))
+        values.push(Number(c))
+
+        
+
+        console.log('values:')
+        console.log(values)
+
+        
+        var max = Math.max(...values)
+
+        
+        var denom = max * 1.2
+        var nWidth = n / denom
+        var bWidth = b / denom
+        var cWidth = c / denom
+
+        
+        document.getElementById(nid).style.width = 100 * nWidth + '%' 
+        document.getElementById(bid).style.width = 100 * bWidth + '%'
+        document.getElementById(cid).style.width = 100 * cWidth + '%'
+
+    }
+
+    function checkTrend(x,y) {
+        if (x == 0 ) {
+            document.getElementById('t-'+y).classList.add('hide');
+            document.getElementById('ta-'+y).classList.remove('hide');
+            console.log(y)
+        } else {}
+    }
+
+</script>
+
 
 
 
@@ -2121,6 +3128,17 @@
 
 
 <div class="modal fade report-modal" id="modal-Home90-5" tabindex="-1" role="dialog" aria-labelledby="indicatorModalLabel" aria-hidden="true">
+   <script>
+    
+     function getYear(x,y) {
+        var endDate = new Date(x) ;
+        console.log('end date:', endDate) ;
+        var year = endDate.getYear() + 1900
+        console.log(year)
+        document.getElementById(y).innerHTML = year
+    }
+   </script>
+   
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header text-left">
@@ -2129,40 +3147,91 @@
                     <span class="fas fa-times-circle"></span>
                 </button>
             </div>
+
             <div class="modal-body">
-                <h2 class="fs-xl" data-pagefind-ignore="all">Homes using supplemental heat, 2017</h2>
-                <p>In <strong>Fordham - Bronx Pk</strong>, homes using supplemental heat is <span class="worse">Worse</span> compared to the NYC average.</p>The need for supplemental heat may mean a building's main heat source doesn't work - and can indicate the presence of other health-threatening maintenance deficiencies.</div>
+                <h2 class="fs-xl" data-pagefind-ignore="all">Homes using supplemental heat <span class="font-weight-normal">(<span id="year-supplemental-heat">YEAR</span>)</span></h2>
+                <p>The need for supplemental heat may mean a building's main heat source doesn't work - and can indicate the presence of other health-threatening maintenance deficiencies.</p>
+            </div>
+
+            <script>
+                
+                getYear(`2017-12-31`,`year-supplemental-heat`)
+            </script>
+
+            <div class="modal-body">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col"  style="border-top:none!important"><span class="sr-only">Location:</span></th>
+                        <th scope="col"style="width:35%;"><span class="">Percent </span></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row"><span class="text-primary fs-xl float-right">Fordham - Bronx Pk <span class="ml-2 float-right">21.0</span></span></th>
+
+                        <td>
+                            <div id="n-supplemental-heat" style="width:90%;" class="compBar neighb">
+                                &nbsp;
+                                <span class="sr-only">21.0</span>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl float-right">Bronx <span class="ml-2 float-right">19.7</span></span></th>
+                        <td>
+                            <div id="b-supplemental-heat" style="width:90%;" class="compBar nonNeighb">
+                                &nbsp;
+                                <span class="sr-only">19.7</span>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl float-right">New York City <span class="ml-2 float-right">13.3</span></span></th>
+                        <td>
+                            <div id="c-supplemental-heat" style="width:90%;" class="compBar nonNeighb">
+                                &nbsp;
+                                <span class="sr-only">13.3</span>
+                            </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table><div class="data-note float-right"></div><script>
+                    renderComparisonChart( 21 ,  19.7 ,  13.3 ,'n-supplemental-heat','b-supplemental-heat','c-supplemental-heat')
+                    
+                </script>
+
+            </div>
             <hr>
             <div class="modal-body">
-                <h2 data-pagefind-ignore="all">Neighborhood Comparison</h2>
-                <div class="row comparison">
-                    <div class="col-sm-4 text-primary">Fordham - Bronx Pk <span class="indicator-value">21.0</span></div>
-                    <div class="col-sm-4">Bronx <span class="indicator-value">19.7</span></div>
-                    <div class="col-sm-4">New York City <span class="indicator-value">13.3</span></div>
-                </div>
-                <p><em>Percent </em></p><div class="data-note"></div></div>
-            <hr>
-            <div class="modal-body">
-                <h3 data-pagefind-ignore="all">Homes using supplemental heat, 2017</h3>
-                <p>  <em>Percent </em></p>
+                <span class="home-label font-weight-bold">Comparison</span>
+                <p class="fs-lg">For homes using supplemental heat, <strong class="text-primary">Fordham - Bronx Pk</strong> is <span class="worse">worse</span> than most neighborhoods.</p>
+                <p class="fs-sm">  <em>Percent </em></p>
                 <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Home90-5"></div>
 
             </div>
             <hr>
-            <div class="modal-body">
-
-                <h3 data-pagefind-ignore="all">Trends Over Time</h3>
-                <p><em>Percent </em></p>
-                <div style="width:100%; height:50vmin; z-index:10000;" id="trend-Home90-5"></div>
-
+            <div class="modal-body" id="t-supplemental-heat">
+                <span class="home-label font-weight-bold">Trends over time</span>
+                <p class="fs-sm"><em>Percent </em></p>
+                <div style="width:100%; height:50vmin; z-index:10000;display:block;" id="trend-Home90-5"></div><div class="data-note mt-3">Some years of data may have unstable rates or estimates suppressed due to low numbers.</div></div>
+            
+            <div class="modal-body hide" id="ta-supplemental-heat">
+                <span class="home-label font-weight-bold">Trends over time (not available)</span>
+                <p class="fs-sm"><em>There's only a single year of data available for this indicator, so we can't show a trend.</em></p>
             </div>
+            <script>
+                checkTrend('1','supplemental-heat')
+            </script>
             <hr>
             <div class="modal-body">
+                <span class="home-label font-weight-bold">By neighborhood</span>
+                <p class="fs-sm"><em>Percent </em></p>
+                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Home90-5"></div><div class="data-note mt-3">Some neighborhoods may have estimates suppressed due to low numbers.</div></div>
 
-                <h3 data-pagefind-ignore="all">By Neighborhood</h3>
-                <p><em>Percent </em></p>
-                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Home90-5"></div>
-
+            <div class="modal-body">
+                <span class="home-label font-weight-bold">Source: </span><br> 
+                <span class="fs-sm">New York City Housing and Vacancy Survey (HVS)</span>
             </div>
 
             
@@ -2173,6 +3242,24 @@
         </div>
     </div>
 </div>
+
+<style>
+    .compBar {
+        margin-top: 5px;
+        padding-left: 5px;
+        border-left: 3px solid darkgray;
+        max-height: 36px;
+
+    }
+
+    .nonNeighb {
+        background-color: #D8D8D8;
+    }
+
+    .neighb {
+        background-color: #00923E;
+    }
+</style>
 
 
 
@@ -2263,6 +3350,46 @@
     </script>
 
 
+<script>
+    function renderComparisonChart(n,b,c,nid,bid,cid) {
+        
+        var values = []
+
+        values.push(Number(n))
+        values.push(Number(b))
+        values.push(Number(c))
+
+        
+
+        console.log('values:')
+        console.log(values)
+
+        
+        var max = Math.max(...values)
+
+        
+        var denom = max * 1.2
+        var nWidth = n / denom
+        var bWidth = b / denom
+        var cWidth = c / denom
+
+        
+        document.getElementById(nid).style.width = 100 * nWidth + '%' 
+        document.getElementById(bid).style.width = 100 * bWidth + '%'
+        document.getElementById(cid).style.width = 100 * cWidth + '%'
+
+    }
+
+    function checkTrend(x,y) {
+        if (x == 0 ) {
+            document.getElementById('t-'+y).classList.add('hide');
+            document.getElementById('ta-'+y).classList.remove('hide');
+            console.log(y)
+        } else {}
+    }
+
+</script>
+
 
 
 
@@ -2306,6 +3433,17 @@
 
 
 <div class="modal fade report-modal" id="modal-Hous781-6" tabindex="-1" role="dialog" aria-labelledby="indicatorModalLabel" aria-hidden="true">
+   <script>
+    
+     function getYear(x,y) {
+        var endDate = new Date(x) ;
+        console.log('end date:', endDate) ;
+        var year = endDate.getYear() + 1900
+        console.log(year)
+        document.getElementById(y).innerHTML = year
+    }
+   </script>
+   
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header text-left">
@@ -2314,40 +3452,91 @@
                     <span class="fas fa-times-circle"></span>
                 </button>
             </div>
+
             <div class="modal-body">
-                <h2 class="fs-xl" data-pagefind-ignore="all">Household air conditioning, 2017</h2>
-                <p>In <strong>Fordham - Bronx Pk</strong>, household air conditioning is <span class="worse">Worse</span> compared to the NYC average.</p>Air conditioning is an important way to avoid heat stress, especially for persons with limited mobility.</div>
+                <h2 class="fs-xl" data-pagefind-ignore="all">Household air conditioning <span class="font-weight-normal">(<span id="year-households-with-ac">YEAR</span>)</span></h2>
+                <p>Air conditioning is an important way to avoid heat stress, especially for persons with limited mobility.</p>
+            </div>
+
+            <script>
+                
+                getYear(`2017-12-31`,`year-households-with-ac`)
+            </script>
+
+            <div class="modal-body">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col"  style="border-top:none!important"><span class="sr-only">Location:</span></th>
+                        <th scope="col"style="width:35%;"><span class="">Percent (with AC) </span></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row"><span class="text-primary fs-xl float-right">Fordham - Bronx Pk <span class="ml-2 float-right">85.7</span></span></th>
+
+                        <td>
+                            <div id="n-households-with-ac" style="width:90%;" class="compBar neighb">
+                                &nbsp;
+                                <span class="sr-only">85.7</span>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl float-right">Bronx <span class="ml-2 float-right">85.6</span></span></th>
+                        <td>
+                            <div id="b-households-with-ac" style="width:90%;" class="compBar nonNeighb">
+                                &nbsp;
+                                <span class="sr-only">85.6</span>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl float-right">New York City <span class="ml-2 float-right">91</span></span></th>
+                        <td>
+                            <div id="c-households-with-ac" style="width:90%;" class="compBar nonNeighb">
+                                &nbsp;
+                                <span class="sr-only">91</span>
+                            </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table><div class="data-note float-right"></div><script>
+                    renderComparisonChart( 85.7 ,  85.6 ,  91 ,'n-households-with-ac','b-households-with-ac','c-households-with-ac')
+                    
+                </script>
+
+            </div>
             <hr>
             <div class="modal-body">
-                <h2 data-pagefind-ignore="all">Neighborhood Comparison</h2>
-                <div class="row comparison">
-                    <div class="col-sm-4 text-primary">Fordham - Bronx Pk <span class="indicator-value">85.7</span></div>
-                    <div class="col-sm-4">Bronx <span class="indicator-value">85.6</span></div>
-                    <div class="col-sm-4">New York City <span class="indicator-value">91</span></div>
-                </div>
-                <p><em>Percent (with AC) </em></p><div class="data-note"></div></div>
-            <hr>
-            <div class="modal-body">
-                <h3 data-pagefind-ignore="all">Household air conditioning, 2017</h3>
-                <p>  <em>Percent (with AC) </em></p>
+                <span class="home-label font-weight-bold">Comparison</span>
+                <p class="fs-lg">For household air conditioning, <strong class="text-primary">Fordham - Bronx Pk</strong> is <span class="worse">worse</span> than most neighborhoods.</p>
+                <p class="fs-sm">  <em>Percent (with AC) </em></p>
                 <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Hous781-6"></div>
 
             </div>
             <hr>
-            <div class="modal-body">
-
-                <h3 data-pagefind-ignore="all">Trends Over Time</h3>
-                <p><em>Percent (with AC) </em></p>
-                <div style="width:100%; height:50vmin; z-index:10000;" id="trend-Hous781-6"></div>
-
+            <div class="modal-body" id="t-households-with-ac">
+                <span class="home-label font-weight-bold">Trends over time</span>
+                <p class="fs-sm"><em>Percent (with AC) </em></p>
+                <div style="width:100%; height:50vmin; z-index:10000;display:block;" id="trend-Hous781-6"></div><div class="data-note mt-3">Some years of data may have unstable rates or estimates suppressed due to low numbers.</div></div>
+            
+            <div class="modal-body hide" id="ta-households-with-ac">
+                <span class="home-label font-weight-bold">Trends over time (not available)</span>
+                <p class="fs-sm"><em>There's only a single year of data available for this indicator, so we can't show a trend.</em></p>
             </div>
+            <script>
+                checkTrend('1','households-with-ac')
+            </script>
             <hr>
             <div class="modal-body">
+                <span class="home-label font-weight-bold">By neighborhood</span>
+                <p class="fs-sm"><em>Percent (with AC) </em></p>
+                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Hous781-6"></div><div class="data-note mt-3">Some neighborhoods may have estimates suppressed due to low numbers.</div></div>
 
-                <h3 data-pagefind-ignore="all">By Neighborhood</h3>
-                <p><em>Percent (with AC) </em></p>
-                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Hous781-6"></div>
-
+            <div class="modal-body">
+                <span class="home-label font-weight-bold">Source: </span><br> 
+                <span class="fs-sm">New York City Housing and Vacancy Survey (HVS)</span>
             </div>
 
             
@@ -2358,6 +3547,24 @@
         </div>
     </div>
 </div>
+
+<style>
+    .compBar {
+        margin-top: 5px;
+        padding-left: 5px;
+        border-left: 3px solid darkgray;
+        max-height: 36px;
+
+    }
+
+    .nonNeighb {
+        background-color: #D8D8D8;
+    }
+
+    .neighb {
+        background-color: #00923E;
+    }
+</style>
 
 
 
@@ -2448,6 +3655,46 @@
     </script>
 
 
+<script>
+    function renderComparisonChart(n,b,c,nid,bid,cid) {
+        
+        var values = []
+
+        values.push(Number(n))
+        values.push(Number(b))
+        values.push(Number(c))
+
+        
+
+        console.log('values:')
+        console.log(values)
+
+        
+        var max = Math.max(...values)
+
+        
+        var denom = max * 1.2
+        var nWidth = n / denom
+        var bWidth = b / denom
+        var cWidth = c / denom
+
+        
+        document.getElementById(nid).style.width = 100 * nWidth + '%' 
+        document.getElementById(bid).style.width = 100 * bWidth + '%'
+        document.getElementById(cid).style.width = 100 * cWidth + '%'
+
+    }
+
+    function checkTrend(x,y) {
+        if (x == 0 ) {
+            document.getElementById('t-'+y).classList.add('hide');
+            document.getElementById('ta-'+y).classList.remove('hide');
+            console.log(y)
+        } else {}
+    }
+
+</script>
+
 
 
 
@@ -2491,6 +3738,17 @@
 
 
 <div class="modal fade report-modal" id="modal-Rent1248-7" tabindex="-1" role="dialog" aria-labelledby="indicatorModalLabel" aria-hidden="true">
+   <script>
+    
+     function getYear(x,y) {
+        var endDate = new Date(x) ;
+        console.log('end date:', endDate) ;
+        var year = endDate.getYear() + 1900
+        console.log(year)
+        document.getElementById(y).innerHTML = year
+    }
+   </script>
+   
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header text-left">
@@ -2499,40 +3757,91 @@
                     <span class="fas fa-times-circle"></span>
                 </button>
             </div>
+
             <div class="modal-body">
-                <h2 class="fs-xl" data-pagefind-ignore="all">Renter-occupied homes with any health-related maintenance problems, 2017</h2>
-                <p>In <strong>Fordham - Bronx Pk</strong>, renter-occupied homes with any health-related maintenance problems is <span class="worse">Worse</span> compared to the NYC average.</p>Homes with maintenance deficiencies can threaten the health of the people who live there.</div>
+                <h2 class="fs-xl" data-pagefind-ignore="all">Renter-occupied homes with any health-related maintenance problems <span class="font-weight-normal">(<span id="year-maintenance-problems">YEAR</span>)</span></h2>
+                <p>Homes with maintenance deficiencies can threaten the health of the people who live there.</p>
+            </div>
+
+            <script>
+                
+                getYear(`2017-12-31`,`year-maintenance-problems`)
+            </script>
+
+            <div class="modal-body">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col"  style="border-top:none!important"><span class="sr-only">Location:</span></th>
+                        <th scope="col"style="width:35%;"><span class="">Percent </span></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row"><span class="text-primary fs-xl float-right">Fordham - Bronx Pk <span class="ml-2 float-right">76.3*</span></span></th>
+
+                        <td>
+                            <div id="n-maintenance-problems" style="width:90%;" class="compBar neighb">
+                                &nbsp;
+                                <span class="sr-only">76.3*</span>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl float-right">Bronx <span class="ml-2 float-right">76</span></span></th>
+                        <td>
+                            <div id="b-maintenance-problems" style="width:90%;" class="compBar nonNeighb">
+                                &nbsp;
+                                <span class="sr-only">76</span>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl float-right">New York City <span class="ml-2 float-right">61.5</span></span></th>
+                        <td>
+                            <div id="c-maintenance-problems" style="width:90%;" class="compBar nonNeighb">
+                                &nbsp;
+                                <span class="sr-only">61.5</span>
+                            </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table><div class="data-note float-right">* Estimate is based on small numbers so should be interpreted with caution.</div><script>
+                    renderComparisonChart( 76.3 ,  76 ,  61.5 ,'n-maintenance-problems','b-maintenance-problems','c-maintenance-problems')
+                    
+                </script>
+
+            </div>
             <hr>
             <div class="modal-body">
-                <h2 data-pagefind-ignore="all">Neighborhood Comparison</h2>
-                <div class="row comparison">
-                    <div class="col-sm-4 text-primary">Fordham - Bronx Pk <span class="indicator-value">76.3*</span></div>
-                    <div class="col-sm-4">Bronx <span class="indicator-value">76</span></div>
-                    <div class="col-sm-4">New York City <span class="indicator-value">61.5</span></div>
-                </div>
-                <p><em>Percent </em></p><div class="data-note">* Estimate is based on small numbers so should be interpreted with caution.</div></div>
-            <hr>
-            <div class="modal-body">
-                <h3 data-pagefind-ignore="all">Renter-occupied homes with any health-related maintenance problems, 2017</h3>
-                <p>  <em>Percent </em></p>
+                <span class="home-label font-weight-bold">Comparison</span>
+                <p class="fs-lg">For renter-occupied homes with any health-related maintenance problems, <strong class="text-primary">Fordham - Bronx Pk</strong> is <span class="worse">worse</span> than most neighborhoods.</p>
+                <p class="fs-sm">  <em>Percent </em></p>
                 <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Rent1248-7"></div>
 
             </div>
             <hr>
-            <div class="modal-body">
-
-                <h3 data-pagefind-ignore="all">Trends Over Time</h3>
-                <p><em>Percent </em></p>
-                <div style="width:100%; height:50vmin; z-index:10000;" id="trend-Rent1248-7"></div>
-
+            <div class="modal-body" id="t-maintenance-problems">
+                <span class="home-label font-weight-bold">Trends over time</span>
+                <p class="fs-sm"><em>Percent </em></p>
+                <div style="width:100%; height:50vmin; z-index:10000;display:block;" id="trend-Rent1248-7"></div><div class="data-note mt-3">Some years of data may have unstable rates or estimates suppressed due to low numbers.</div></div>
+            
+            <div class="modal-body hide" id="ta-maintenance-problems">
+                <span class="home-label font-weight-bold">Trends over time (not available)</span>
+                <p class="fs-sm"><em>There's only a single year of data available for this indicator, so we can't show a trend.</em></p>
             </div>
+            <script>
+                checkTrend('1','maintenance-problems')
+            </script>
             <hr>
             <div class="modal-body">
+                <span class="home-label font-weight-bold">By neighborhood</span>
+                <p class="fs-sm"><em>Percent </em></p>
+                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Rent1248-7"></div><div class="data-note mt-3">Some neighborhoods may have estimates suppressed due to low numbers.</div></div>
 
-                <h3 data-pagefind-ignore="all">By Neighborhood</h3>
-                <p><em>Percent </em></p>
-                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Rent1248-7"></div>
-
+            <div class="modal-body">
+                <span class="home-label font-weight-bold">Source: </span><br> 
+                <span class="fs-sm">New York City Housing and Vacancy Survey (HVS)</span>
             </div>
 
             
@@ -2543,6 +3852,24 @@
         </div>
     </div>
 </div>
+
+<style>
+    .compBar {
+        margin-top: 5px;
+        padding-left: 5px;
+        border-left: 3px solid darkgray;
+        max-height: 36px;
+
+    }
+
+    .nonNeighb {
+        background-color: #D8D8D8;
+    }
+
+    .neighb {
+        background-color: #00923E;
+    }
+</style>
 
 
 
@@ -2669,7 +3996,7 @@
                                         
 
                                         <div class="row indicator-headings mb-2 print-only">
-                                            <div class="col-4 font-weight-bold">
+                                            <div class="col-4 font-weight-bold pl-3">
                                                 Topic
                                             </div>
                                             <div class="col-8">
@@ -2696,6 +4023,46 @@
                                         
                                         
                                         
+
+<script>
+    function renderComparisonChart(n,b,c,nid,bid,cid) {
+        
+        var values = []
+
+        values.push(Number(n))
+        values.push(Number(b))
+        values.push(Number(c))
+
+        
+
+        console.log('values:')
+        console.log(values)
+
+        
+        var max = Math.max(...values)
+
+        
+        var denom = max * 1.2
+        var nWidth = n / denom
+        var bWidth = b / denom
+        var cWidth = c / denom
+
+        
+        document.getElementById(nid).style.width = 100 * nWidth + '%' 
+        document.getElementById(bid).style.width = 100 * bWidth + '%'
+        document.getElementById(cid).style.width = 100 * cWidth + '%'
+
+    }
+
+    function checkTrend(x,y) {
+        if (x == 0 ) {
+            document.getElementById('t-'+y).classList.add('hide');
+            document.getElementById('ta-'+y).classList.remove('hide');
+            console.log(y)
+        } else {}
+    }
+
+</script>
 
 
 
@@ -2740,6 +4107,17 @@
 
 
 <div class="modal fade report-modal" id="modal-Adul292-1" tabindex="-1" role="dialog" aria-labelledby="indicatorModalLabel" aria-hidden="true">
+   <script>
+    
+     function getYear(x,y) {
+        var endDate = new Date(x) ;
+        console.log('end date:', endDate) ;
+        var year = endDate.getYear() + 1900
+        console.log(year)
+        document.getElementById(y).innerHTML = year
+    }
+   </script>
+   
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header text-left">
@@ -2748,40 +4126,91 @@
                     <span class="fas fa-times-circle"></span>
                 </button>
             </div>
+
             <div class="modal-body">
-                <h2 class="fs-xl" data-pagefind-ignore="all">No smoke-free home policy, 2013</h2>
-                <p>In <strong>Fordham - Bronx Pk</strong>, no smoke-free home policy is <span class="middle">Middle</span> compared to the NYC average.</p>Adults without a smoke-free home policy. A smoke-free home policy can limit people's exposure to secondhand smoke, which is especially dangerous to children.</div>
+                <h2 class="fs-xl" data-pagefind-ignore="all">No smoke-free home policy <span class="font-weight-normal">(<span id="year-smoke-free-homes">YEAR</span>)</span></h2>
+                <p>Adults without a smoke-free home policy. A smoke-free home policy can limit people's exposure to secondhand smoke, which is especially dangerous to children.</p>
+            </div>
+
+            <script>
+                
+                getYear(`2013-12-31`,`year-smoke-free-homes`)
+            </script>
+
+            <div class="modal-body">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col"  style="border-top:none!important"><span class="sr-only">Location:</span></th>
+                        <th scope="col"style="width:35%;"><span class="">Percent </span></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row"><span class="text-primary fs-xl float-right">Fordham - Bronx Pk <span class="ml-2 float-right">20.3</span></span></th>
+
+                        <td>
+                            <div id="n-smoke-free-homes" style="width:90%;" class="compBar neighb">
+                                &nbsp;
+                                <span class="sr-only">20.3</span>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl float-right">Bronx <span class="ml-2 float-right">21</span></span></th>
+                        <td>
+                            <div id="b-smoke-free-homes" style="width:90%;" class="compBar nonNeighb">
+                                &nbsp;
+                                <span class="sr-only">21</span>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl float-right">New York City <span class="ml-2 float-right">22.9</span></span></th>
+                        <td>
+                            <div id="c-smoke-free-homes" style="width:90%;" class="compBar nonNeighb">
+                                &nbsp;
+                                <span class="sr-only">22.9</span>
+                            </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table><div class="data-note float-right"></div><script>
+                    renderComparisonChart( 20.3 ,  21 ,  22.9 ,'n-smoke-free-homes','b-smoke-free-homes','c-smoke-free-homes')
+                    
+                </script>
+
+            </div>
             <hr>
             <div class="modal-body">
-                <h2 data-pagefind-ignore="all">Neighborhood Comparison</h2>
-                <div class="row comparison">
-                    <div class="col-sm-4 text-primary">Fordham - Bronx Pk <span class="indicator-value">20.3</span></div>
-                    <div class="col-sm-4">Bronx <span class="indicator-value">21</span></div>
-                    <div class="col-sm-4">New York City <span class="indicator-value">22.9</span></div>
-                </div>
-                <p><em>Percent </em></p><div class="data-note"></div></div>
-            <hr>
-            <div class="modal-body">
-                <h3 data-pagefind-ignore="all">No smoke-free home policy, 2013</h3>
-                <p>  <em>Percent </em></p>
+                <span class="home-label font-weight-bold">Comparison</span>
+                <p class="fs-lg">For no smoke-free home policy, <strong class="text-primary">Fordham - Bronx Pk</strong> is in the <span class="middle">middle</span> of NYC neighborhoods.</p>
+                <p class="fs-sm">  <em>Percent </em></p>
                 <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Adul292-1"></div>
 
             </div>
             <hr>
-            <div class="modal-body">
-
-                <h3 data-pagefind-ignore="all">Trends Over Time</h3>
-                <p><em>Percent </em></p>
-                <div style="width:100%; height:50vmin; z-index:10000;" id="trend-Adul292-1"></div>
-
+            <div class="modal-body" id="t-smoke-free-homes">
+                <span class="home-label font-weight-bold">Trends over time</span>
+                <p class="fs-sm"><em>Percent </em></p>
+                <div style="width:100%; height:50vmin; z-index:10000;display:block;" id="trend-Adul292-1"></div><div class="data-note mt-3">Some years of data may have unstable rates or estimates suppressed due to low numbers.</div></div>
+            
+            <div class="modal-body hide" id="ta-smoke-free-homes">
+                <span class="home-label font-weight-bold">Trends over time (not available)</span>
+                <p class="fs-sm"><em>There's only a single year of data available for this indicator, so we can't show a trend.</em></p>
             </div>
+            <script>
+                checkTrend('1','smoke-free-homes')
+            </script>
             <hr>
             <div class="modal-body">
+                <span class="home-label font-weight-bold">By neighborhood</span>
+                <p class="fs-sm"><em>Percent </em></p>
+                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Adul292-1"></div><div class="data-note mt-3">Some neighborhoods may have estimates suppressed due to low numbers.</div></div>
 
-                <h3 data-pagefind-ignore="all">By Neighborhood</h3>
-                <p><em>Percent </em></p>
-                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Adul292-1"></div>
-
+            <div class="modal-body">
+                <span class="home-label font-weight-bold">Source: </span><br> 
+                <span class="fs-sm">New York City Community Health Survey (CHS)</span>
             </div>
 
             
@@ -2792,6 +4221,24 @@
         </div>
     </div>
 </div>
+
+<style>
+    .compBar {
+        margin-top: 5px;
+        padding-left: 5px;
+        border-left: 3px solid darkgray;
+        max-height: 36px;
+
+    }
+
+    .nonNeighb {
+        background-color: #D8D8D8;
+    }
+
+    .neighb {
+        background-color: #00923E;
+    }
+</style>
 
 
 
@@ -2882,6 +4329,46 @@
     </script>
 
 
+<script>
+    function renderComparisonChart(n,b,c,nid,bid,cid) {
+        
+        var values = []
+
+        values.push(Number(n))
+        values.push(Number(b))
+        values.push(Number(c))
+
+        
+
+        console.log('values:')
+        console.log(values)
+
+        
+        var max = Math.max(...values)
+
+        
+        var denom = max * 1.2
+        var nWidth = n / denom
+        var bWidth = b / denom
+        var cWidth = c / denom
+
+        
+        document.getElementById(nid).style.width = 100 * nWidth + '%' 
+        document.getElementById(bid).style.width = 100 * bWidth + '%'
+        document.getElementById(cid).style.width = 100 * cWidth + '%'
+
+    }
+
+    function checkTrend(x,y) {
+        if (x == 0 ) {
+            document.getElementById('t-'+y).classList.add('hide');
+            document.getElementById('ta-'+y).classList.remove('hide');
+            console.log(y)
+        } else {}
+    }
+
+</script>
+
 
 
 
@@ -2925,6 +4412,17 @@
 
 
 <div class="modal fade report-modal" id="modal-Home94-2" tabindex="-1" role="dialog" aria-labelledby="indicatorModalLabel" aria-hidden="true">
+   <script>
+    
+     function getYear(x,y) {
+        var endDate = new Date(x) ;
+        console.log('end date:', endDate) ;
+        var year = endDate.getYear() + 1900
+        console.log(year)
+        document.getElementById(y).innerHTML = year
+    }
+   </script>
+   
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header text-left">
@@ -2933,40 +4431,91 @@
                     <span class="fas fa-times-circle"></span>
                 </button>
             </div>
+
             <div class="modal-body">
-                <h2 class="fs-xl" data-pagefind-ignore="all">Homes with mice or rats in the building, 2017</h2>
-                <p>In <strong>Fordham - Bronx Pk</strong>, homes with mice or rats in the building is <span class="worse">Worse</span> compared to the NYC average.</p>The presence of mice or rats in the home is often associated with poor housing maintenance. These pests can contaminate food and worsen asthma.</div>
+                <h2 class="fs-xl" data-pagefind-ignore="all">Homes with mice or rats in the building <span class="font-weight-normal">(<span id="year-mice-or-rats-in-the-building">YEAR</span>)</span></h2>
+                <p>The presence of mice or rats in the home is often associated with poor housing maintenance. These pests can contaminate food and worsen asthma.</p>
+            </div>
+
+            <script>
+                
+                getYear(`2017-12-31`,`year-mice-or-rats-in-the-building`)
+            </script>
+
+            <div class="modal-body">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col"  style="border-top:none!important"><span class="sr-only">Location:</span></th>
+                        <th scope="col"style="width:35%;"><span class="">Percent </span></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row"><span class="text-primary fs-xl float-right">Fordham - Bronx Pk <span class="ml-2 float-right">31.5</span></span></th>
+
+                        <td>
+                            <div id="n-mice-or-rats-in-the-building" style="width:90%;" class="compBar neighb">
+                                &nbsp;
+                                <span class="sr-only">31.5</span>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl float-right">Bronx <span class="ml-2 float-right">31.9</span></span></th>
+                        <td>
+                            <div id="b-mice-or-rats-in-the-building" style="width:90%;" class="compBar nonNeighb">
+                                &nbsp;
+                                <span class="sr-only">31.9</span>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl float-right">New York City <span class="ml-2 float-right">18.8</span></span></th>
+                        <td>
+                            <div id="c-mice-or-rats-in-the-building" style="width:90%;" class="compBar nonNeighb">
+                                &nbsp;
+                                <span class="sr-only">18.8</span>
+                            </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table><div class="data-note float-right"></div><script>
+                    renderComparisonChart( 31.5 ,  31.9 ,  18.8 ,'n-mice-or-rats-in-the-building','b-mice-or-rats-in-the-building','c-mice-or-rats-in-the-building')
+                    
+                </script>
+
+            </div>
             <hr>
             <div class="modal-body">
-                <h2 data-pagefind-ignore="all">Neighborhood Comparison</h2>
-                <div class="row comparison">
-                    <div class="col-sm-4 text-primary">Fordham - Bronx Pk <span class="indicator-value">31.5</span></div>
-                    <div class="col-sm-4">Bronx <span class="indicator-value">31.9</span></div>
-                    <div class="col-sm-4">New York City <span class="indicator-value">18.8</span></div>
-                </div>
-                <p><em>Percent </em></p><div class="data-note"></div></div>
-            <hr>
-            <div class="modal-body">
-                <h3 data-pagefind-ignore="all">Homes with mice or rats in the building, 2017</h3>
-                <p>  <em>Percent </em></p>
+                <span class="home-label font-weight-bold">Comparison</span>
+                <p class="fs-lg">For homes with mice or rats in the building, <strong class="text-primary">Fordham - Bronx Pk</strong> is <span class="worse">worse</span> than most neighborhoods.</p>
+                <p class="fs-sm">  <em>Percent </em></p>
                 <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Home94-2"></div>
 
             </div>
             <hr>
-            <div class="modal-body">
-
-                <h3 data-pagefind-ignore="all">Trends Over Time</h3>
-                <p><em>Percent </em></p>
-                <div style="width:100%; height:50vmin; z-index:10000;" id="trend-Home94-2"></div>
-
+            <div class="modal-body" id="t-mice-or-rats-in-the-building">
+                <span class="home-label font-weight-bold">Trends over time</span>
+                <p class="fs-sm"><em>Percent </em></p>
+                <div style="width:100%; height:50vmin; z-index:10000;display:block;" id="trend-Home94-2"></div><div class="data-note mt-3">Some years of data may have unstable rates or estimates suppressed due to low numbers.</div></div>
+            
+            <div class="modal-body hide" id="ta-mice-or-rats-in-the-building">
+                <span class="home-label font-weight-bold">Trends over time (not available)</span>
+                <p class="fs-sm"><em>There's only a single year of data available for this indicator, so we can't show a trend.</em></p>
             </div>
+            <script>
+                checkTrend('1','mice-or-rats-in-the-building')
+            </script>
             <hr>
             <div class="modal-body">
+                <span class="home-label font-weight-bold">By neighborhood</span>
+                <p class="fs-sm"><em>Percent </em></p>
+                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Home94-2"></div><div class="data-note mt-3">Some neighborhoods may have estimates suppressed due to low numbers.</div></div>
 
-                <h3 data-pagefind-ignore="all">By Neighborhood</h3>
-                <p><em>Percent </em></p>
-                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Home94-2"></div>
-
+            <div class="modal-body">
+                <span class="home-label font-weight-bold">Source: </span><br> 
+                <span class="fs-sm">New York City Housing and Vacancy Survey (HVS)</span>
             </div>
 
             
@@ -2977,6 +4526,24 @@
         </div>
     </div>
 </div>
+
+<style>
+    .compBar {
+        margin-top: 5px;
+        padding-left: 5px;
+        border-left: 3px solid darkgray;
+        max-height: 36px;
+
+    }
+
+    .nonNeighb {
+        background-color: #D8D8D8;
+    }
+
+    .neighb {
+        background-color: #00923E;
+    }
+</style>
 
 
 
@@ -3067,6 +4634,46 @@
     </script>
 
 
+<script>
+    function renderComparisonChart(n,b,c,nid,bid,cid) {
+        
+        var values = []
+
+        values.push(Number(n))
+        values.push(Number(b))
+        values.push(Number(c))
+
+        
+
+        console.log('values:')
+        console.log(values)
+
+        
+        var max = Math.max(...values)
+
+        
+        var denom = max * 1.2
+        var nWidth = n / denom
+        var bWidth = b / denom
+        var cWidth = c / denom
+
+        
+        document.getElementById(nid).style.width = 100 * nWidth + '%' 
+        document.getElementById(bid).style.width = 100 * bWidth + '%'
+        document.getElementById(cid).style.width = 100 * cWidth + '%'
+
+    }
+
+    function checkTrend(x,y) {
+        if (x == 0 ) {
+            document.getElementById('t-'+y).classList.add('hide');
+            document.getElementById('ta-'+y).classList.remove('hide');
+            console.log(y)
+        } else {}
+    }
+
+</script>
+
 
 
 
@@ -3110,6 +4717,17 @@
 
 
 <div class="modal fade report-modal" id="modal-Home245-3" tabindex="-1" role="dialog" aria-labelledby="indicatorModalLabel" aria-hidden="true">
+   <script>
+    
+     function getYear(x,y) {
+        var endDate = new Date(x) ;
+        console.log('end date:', endDate) ;
+        var year = endDate.getYear() + 1900
+        console.log(year)
+        document.getElementById(y).innerHTML = year
+    }
+   </script>
+   
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header text-left">
@@ -3118,40 +4736,91 @@
                     <span class="fas fa-times-circle"></span>
                 </button>
             </div>
+
             <div class="modal-body">
-                <h2 class="fs-xl" data-pagefind-ignore="all">Homes with cockroaches, 2017</h2>
-                <p>In <strong>Fordham - Bronx Pk</strong>, homes with cockroaches is <span class="worse">Worse</span> compared to the NYC average.</p>The presence of cockroaches in the home is often associated with poor housing maintenance. Cockroaches in the home can contaminate food and worsen asthma.</div>
+                <h2 class="fs-xl" data-pagefind-ignore="all">Homes with cockroaches <span class="font-weight-normal">(<span id="year-cockroaches">YEAR</span>)</span></h2>
+                <p>The presence of cockroaches in the home is often associated with poor housing maintenance. Cockroaches in the home can contaminate food and worsen asthma.</p>
+            </div>
+
+            <script>
+                
+                getYear(`2017-12-31`,`year-cockroaches`)
+            </script>
+
+            <div class="modal-body">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col"  style="border-top:none!important"><span class="sr-only">Location:</span></th>
+                        <th scope="col"style="width:35%;"><span class="">Percent </span></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row"><span class="text-primary fs-xl float-right">Fordham - Bronx Pk <span class="ml-2 float-right">41.5</span></span></th>
+
+                        <td>
+                            <div id="n-cockroaches" style="width:90%;" class="compBar neighb">
+                                &nbsp;
+                                <span class="sr-only">41.5</span>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl float-right">Bronx <span class="ml-2 float-right">39.4</span></span></th>
+                        <td>
+                            <div id="b-cockroaches" style="width:90%;" class="compBar nonNeighb">
+                                &nbsp;
+                                <span class="sr-only">39.4</span>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl float-right">New York City <span class="ml-2 float-right">24.1</span></span></th>
+                        <td>
+                            <div id="c-cockroaches" style="width:90%;" class="compBar nonNeighb">
+                                &nbsp;
+                                <span class="sr-only">24.1</span>
+                            </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table><div class="data-note float-right"></div><script>
+                    renderComparisonChart( 41.5 ,  39.4 ,  24.1 ,'n-cockroaches','b-cockroaches','c-cockroaches')
+                    
+                </script>
+
+            </div>
             <hr>
             <div class="modal-body">
-                <h2 data-pagefind-ignore="all">Neighborhood Comparison</h2>
-                <div class="row comparison">
-                    <div class="col-sm-4 text-primary">Fordham - Bronx Pk <span class="indicator-value">41.5</span></div>
-                    <div class="col-sm-4">Bronx <span class="indicator-value">39.4</span></div>
-                    <div class="col-sm-4">New York City <span class="indicator-value">24.1</span></div>
-                </div>
-                <p><em>Percent </em></p><div class="data-note"></div></div>
-            <hr>
-            <div class="modal-body">
-                <h3 data-pagefind-ignore="all">Homes with cockroaches, 2017</h3>
-                <p>  <em>Percent </em></p>
+                <span class="home-label font-weight-bold">Comparison</span>
+                <p class="fs-lg">For homes with cockroaches, <strong class="text-primary">Fordham - Bronx Pk</strong> is <span class="worse">worse</span> than most neighborhoods.</p>
+                <p class="fs-sm">  <em>Percent </em></p>
                 <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Home245-3"></div>
 
             </div>
             <hr>
-            <div class="modal-body">
-
-                <h3 data-pagefind-ignore="all">Trends Over Time</h3>
-                <p><em>Percent </em></p>
-                <div style="width:100%; height:50vmin; z-index:10000;" id="trend-Home245-3"></div>
-
+            <div class="modal-body" id="t-cockroaches">
+                <span class="home-label font-weight-bold">Trends over time</span>
+                <p class="fs-sm"><em>Percent </em></p>
+                <div style="width:100%; height:50vmin; z-index:10000;display:block;" id="trend-Home245-3"></div><div class="data-note mt-3">Some years of data may have unstable rates or estimates suppressed due to low numbers.</div></div>
+            
+            <div class="modal-body hide" id="ta-cockroaches">
+                <span class="home-label font-weight-bold">Trends over time (not available)</span>
+                <p class="fs-sm"><em>There's only a single year of data available for this indicator, so we can't show a trend.</em></p>
             </div>
+            <script>
+                checkTrend('1','cockroaches')
+            </script>
             <hr>
             <div class="modal-body">
+                <span class="home-label font-weight-bold">By neighborhood</span>
+                <p class="fs-sm"><em>Percent </em></p>
+                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Home245-3"></div><div class="data-note mt-3">Some neighborhoods may have estimates suppressed due to low numbers.</div></div>
 
-                <h3 data-pagefind-ignore="all">By Neighborhood</h3>
-                <p><em>Percent </em></p>
-                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Home245-3"></div>
-
+            <div class="modal-body">
+                <span class="home-label font-weight-bold">Source: </span><br> 
+                <span class="fs-sm">New York City Housing and Vacancy Survey (HVS)</span>
             </div>
 
             
@@ -3162,6 +4831,24 @@
         </div>
     </div>
 </div>
+
+<style>
+    .compBar {
+        margin-top: 5px;
+        padding-left: 5px;
+        border-left: 3px solid darkgray;
+        max-height: 36px;
+
+    }
+
+    .nonNeighb {
+        background-color: #D8D8D8;
+    }
+
+    .neighb {
+        background-color: #00923E;
+    }
+</style>
 
 
 
@@ -3288,7 +4975,7 @@
                                         
 
                                         <div class="row indicator-headings mb-2 print-only">
-                                            <div class="col-4 font-weight-bold">
+                                            <div class="col-4 font-weight-bold pl-3">
                                                 Topic
                                             </div>
                                             <div class="col-8">
@@ -3315,6 +5002,46 @@
                                         
                                         
                                         
+
+<script>
+    function renderComparisonChart(n,b,c,nid,bid,cid) {
+        
+        var values = []
+
+        values.push(Number(n))
+        values.push(Number(b))
+        values.push(Number(c))
+
+        
+
+        console.log('values:')
+        console.log(values)
+
+        
+        var max = Math.max(...values)
+
+        
+        var denom = max * 1.2
+        var nWidth = n / denom
+        var bWidth = b / denom
+        var cWidth = c / denom
+
+        
+        document.getElementById(nid).style.width = 100 * nWidth + '%' 
+        document.getElementById(bid).style.width = 100 * bWidth + '%'
+        document.getElementById(cid).style.width = 100 * cWidth + '%'
+
+    }
+
+    function checkTrend(x,y) {
+        if (x == 0 ) {
+            document.getElementById('t-'+y).classList.add('hide');
+            document.getElementById('ta-'+y).classList.remove('hide');
+            console.log(y)
+        } else {}
+    }
+
+</script>
 
 
 
@@ -3359,6 +5086,17 @@
 
 
 <div class="modal fade report-modal" id="modal-Crow25-1" tabindex="-1" role="dialog" aria-labelledby="indicatorModalLabel" aria-hidden="true">
+   <script>
+    
+     function getYear(x,y) {
+        var endDate = new Date(x) ;
+        console.log('end date:', endDate) ;
+        var year = endDate.getYear() + 1900
+        console.log(year)
+        document.getElementById(y).innerHTML = year
+    }
+   </script>
+   
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header text-left">
@@ -3367,40 +5105,91 @@
                     <span class="fas fa-times-circle"></span>
                 </button>
             </div>
+
             <div class="modal-body">
-                <h2 class="fs-xl" data-pagefind-ignore="all">Household crowding, 2017-21</h2>
-                <p>In <strong>Fordham - Bronx Pk</strong>, household crowding is <span class="worse">Worse</span> compared to the NYC average.</p>Households with more than one person per room are considered crowded.</div>
+                <h2 class="fs-xl" data-pagefind-ignore="all">Household crowding <span class="font-weight-normal">(<span id="year-crowding">YEAR</span>)</span></h2>
+                <p>Households with more than one person per room are considered crowded.</p>
+            </div>
+
+            <script>
+                
+                getYear(`2021-12-31`,`year-crowding`)
+            </script>
+
+            <div class="modal-body">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col"  style="border-top:none!important"><span class="sr-only">Location:</span></th>
+                        <th scope="col"style="width:35%;"><span class="">Percent </span></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row"><span class="text-primary fs-xl float-right">Fordham - Bronx Pk <span class="ml-2 float-right">16.9</span></span></th>
+
+                        <td>
+                            <div id="n-crowding" style="width:90%;" class="compBar neighb">
+                                &nbsp;
+                                <span class="sr-only">16.9</span>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl float-right">Bronx <span class="ml-2 float-right">12.4</span></span></th>
+                        <td>
+                            <div id="b-crowding" style="width:90%;" class="compBar nonNeighb">
+                                &nbsp;
+                                <span class="sr-only">12.4</span>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl float-right">New York City <span class="ml-2 float-right">9</span></span></th>
+                        <td>
+                            <div id="c-crowding" style="width:90%;" class="compBar nonNeighb">
+                                &nbsp;
+                                <span class="sr-only">9</span>
+                            </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table><div class="data-note float-right"></div><script>
+                    renderComparisonChart( 16.9 ,  12.4 ,  9 ,'n-crowding','b-crowding','c-crowding')
+                    
+                </script>
+
+            </div>
             <hr>
             <div class="modal-body">
-                <h2 data-pagefind-ignore="all">Neighborhood Comparison</h2>
-                <div class="row comparison">
-                    <div class="col-sm-4 text-primary">Fordham - Bronx Pk <span class="indicator-value">16.9</span></div>
-                    <div class="col-sm-4">Bronx <span class="indicator-value">12.4</span></div>
-                    <div class="col-sm-4">New York City <span class="indicator-value">9</span></div>
-                </div>
-                <p><em>Percent </em></p><div class="data-note"></div></div>
-            <hr>
-            <div class="modal-body">
-                <h3 data-pagefind-ignore="all">Household crowding, 2017-21</h3>
-                <p>  <em>Percent </em></p>
+                <span class="home-label font-weight-bold">Comparison</span>
+                <p class="fs-lg">For household crowding, <strong class="text-primary">Fordham - Bronx Pk</strong> is <span class="worse">worse</span> than most neighborhoods.</p>
+                <p class="fs-sm">  <em>Percent </em></p>
                 <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Crow25-1"></div>
 
             </div>
             <hr>
-            <div class="modal-body">
-
-                <h3 data-pagefind-ignore="all">Trends Over Time</h3>
-                <p><em>Percent </em></p>
-                <div style="width:100%; height:50vmin; z-index:10000;" id="trend-Crow25-1"></div>
-
+            <div class="modal-body" id="t-crowding">
+                <span class="home-label font-weight-bold">Trends over time</span>
+                <p class="fs-sm"><em>Percent </em></p>
+                <div style="width:100%; height:50vmin; z-index:10000;display:block;" id="trend-Crow25-1"></div><div class="data-note mt-3">Some years of data may have unstable rates or estimates suppressed due to low numbers.</div></div>
+            
+            <div class="modal-body hide" id="ta-crowding">
+                <span class="home-label font-weight-bold">Trends over time (not available)</span>
+                <p class="fs-sm"><em>There's only a single year of data available for this indicator, so we can't show a trend.</em></p>
             </div>
+            <script>
+                checkTrend('1','crowding')
+            </script>
             <hr>
             <div class="modal-body">
+                <span class="home-label font-weight-bold">By neighborhood</span>
+                <p class="fs-sm"><em>Percent </em></p>
+                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Crow25-1"></div><div class="data-note mt-3">Some neighborhoods may have estimates suppressed due to low numbers.</div></div>
 
-                <h3 data-pagefind-ignore="all">By Neighborhood</h3>
-                <p><em>Percent </em></p>
-                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Crow25-1"></div>
-
+            <div class="modal-body">
+                <span class="home-label font-weight-bold">Source: </span><br> 
+                <span class="fs-sm">American Community Survey</span>
             </div>
 
             
@@ -3411,6 +5200,24 @@
         </div>
     </div>
 </div>
+
+<style>
+    .compBar {
+        margin-top: 5px;
+        padding-left: 5px;
+        border-left: 3px solid darkgray;
+        max-height: 36px;
+
+    }
+
+    .nonNeighb {
+        background-color: #D8D8D8;
+    }
+
+    .neighb {
+        background-color: #00923E;
+    }
+</style>
 
 
 
@@ -3501,6 +5308,46 @@
     </script>
 
 
+<script>
+    function renderComparisonChart(n,b,c,nid,bid,cid) {
+        
+        var values = []
+
+        values.push(Number(n))
+        values.push(Number(b))
+        values.push(Number(c))
+
+        
+
+        console.log('values:')
+        console.log(values)
+
+        
+        var max = Math.max(...values)
+
+        
+        var denom = max * 1.2
+        var nWidth = n / denom
+        var bWidth = b / denom
+        var cWidth = c / denom
+
+        
+        document.getElementById(nid).style.width = 100 * nWidth + '%' 
+        document.getElementById(bid).style.width = 100 * bWidth + '%'
+        document.getElementById(cid).style.width = 100 * cWidth + '%'
+
+    }
+
+    function checkTrend(x,y) {
+        if (x == 0 ) {
+            document.getElementById('t-'+y).classList.add('hide');
+            document.getElementById('ta-'+y).classList.remove('hide');
+            console.log(y)
+        } else {}
+    }
+
+</script>
+
 
 
 
@@ -3544,6 +5391,17 @@
 
 
 <div class="modal fade report-modal" id="modal-Chil755-2" tabindex="-1" role="dialog" aria-labelledby="indicatorModalLabel" aria-hidden="true">
+   <script>
+    
+     function getYear(x,y) {
+        var endDate = new Date(x) ;
+        console.log('end date:', endDate) ;
+        var year = endDate.getYear() + 1900
+        console.log(year)
+        document.getElementById(y).innerHTML = year
+    }
+   </script>
+   
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header text-left">
@@ -3552,40 +5410,91 @@
                     <span class="fas fa-times-circle"></span>
                 </button>
             </div>
+
             <div class="modal-body">
-                <h2 class="fs-xl" data-pagefind-ignore="all">Child poverty (under age 5), 2017-21</h2>
-                <p>In <strong>Fordham - Bronx Pk</strong>, child poverty (under age 5) is <span class="worse">Worse</span> compared to the NYC average.</p>Poverty is a major determinant of health, since poverty deprives people of access to health and safety resources.</div>
+                <h2 class="fs-xl" data-pagefind-ignore="all">Child poverty (under age 5) <span class="font-weight-normal">(<span id="year-child-poverty">YEAR</span>)</span></h2>
+                <p>Poverty is a major determinant of health, since poverty deprives people of access to health and safety resources.</p>
+            </div>
+
+            <script>
+                
+                getYear(`2021-12-31`,`year-child-poverty`)
+            </script>
+
+            <div class="modal-body">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col"  style="border-top:none!important"><span class="sr-only">Location:</span></th>
+                        <th scope="col"style="width:35%;"><span class="">Percent </span></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row"><span class="text-primary fs-xl float-right">Fordham - Bronx Pk <span class="ml-2 float-right">34.1</span></span></th>
+
+                        <td>
+                            <div id="n-child-poverty" style="width:90%;" class="compBar neighb">
+                                &nbsp;
+                                <span class="sr-only">34.1</span>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl float-right">Bronx <span class="ml-2 float-right">36</span></span></th>
+                        <td>
+                            <div id="b-child-poverty" style="width:90%;" class="compBar nonNeighb">
+                                &nbsp;
+                                <span class="sr-only">36</span>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl float-right">New York City <span class="ml-2 float-right">22.5</span></span></th>
+                        <td>
+                            <div id="c-child-poverty" style="width:90%;" class="compBar nonNeighb">
+                                &nbsp;
+                                <span class="sr-only">22.5</span>
+                            </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table><div class="data-note float-right"></div><script>
+                    renderComparisonChart( 34.1 ,  36 ,  22.5 ,'n-child-poverty','b-child-poverty','c-child-poverty')
+                    
+                </script>
+
+            </div>
             <hr>
             <div class="modal-body">
-                <h2 data-pagefind-ignore="all">Neighborhood Comparison</h2>
-                <div class="row comparison">
-                    <div class="col-sm-4 text-primary">Fordham - Bronx Pk <span class="indicator-value">34.1</span></div>
-                    <div class="col-sm-4">Bronx <span class="indicator-value">36</span></div>
-                    <div class="col-sm-4">New York City <span class="indicator-value">22.5</span></div>
-                </div>
-                <p><em>Percent </em></p><div class="data-note"></div></div>
-            <hr>
-            <div class="modal-body">
-                <h3 data-pagefind-ignore="all">Child poverty (under age 5), 2017-21</h3>
-                <p>  <em>Percent </em></p>
+                <span class="home-label font-weight-bold">Comparison</span>
+                <p class="fs-lg">For child poverty (under age 5), <strong class="text-primary">Fordham - Bronx Pk</strong> is <span class="worse">worse</span> than most neighborhoods.</p>
+                <p class="fs-sm">  <em>Percent </em></p>
                 <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Chil755-2"></div>
 
             </div>
             <hr>
-            <div class="modal-body">
-
-                <h3 data-pagefind-ignore="all">Trends Over Time</h3>
-                <p><em>Percent </em></p>
-                <div style="width:100%; height:50vmin; z-index:10000;" id="trend-Chil755-2"></div>
-
+            <div class="modal-body" id="t-child-poverty">
+                <span class="home-label font-weight-bold">Trends over time</span>
+                <p class="fs-sm"><em>Percent </em></p>
+                <div style="width:100%; height:50vmin; z-index:10000;display:block;" id="trend-Chil755-2"></div><div class="data-note mt-3">Some years of data may have unstable rates or estimates suppressed due to low numbers.</div></div>
+            
+            <div class="modal-body hide" id="ta-child-poverty">
+                <span class="home-label font-weight-bold">Trends over time (not available)</span>
+                <p class="fs-sm"><em>There's only a single year of data available for this indicator, so we can't show a trend.</em></p>
             </div>
+            <script>
+                checkTrend('1','child-poverty')
+            </script>
             <hr>
             <div class="modal-body">
+                <span class="home-label font-weight-bold">By neighborhood</span>
+                <p class="fs-sm"><em>Percent </em></p>
+                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Chil755-2"></div><div class="data-note mt-3">Some neighborhoods may have estimates suppressed due to low numbers.</div></div>
 
-                <h3 data-pagefind-ignore="all">By Neighborhood</h3>
-                <p><em>Percent </em></p>
-                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Chil755-2"></div>
-
+            <div class="modal-body">
+                <span class="home-label font-weight-bold">Source: </span><br> 
+                <span class="fs-sm">American Community Survey</span>
             </div>
 
             
@@ -3596,6 +5505,24 @@
         </div>
     </div>
 </div>
+
+<style>
+    .compBar {
+        margin-top: 5px;
+        padding-left: 5px;
+        border-left: 3px solid darkgray;
+        max-height: 36px;
+
+    }
+
+    .nonNeighb {
+        background-color: #D8D8D8;
+    }
+
+    .neighb {
+        background-color: #00923E;
+    }
+</style>
 
 
 
@@ -3697,7 +5624,7 @@
                 </div>
     
                 
-                <div class="col-md-3 h-100">
+                <div class="col-md-3 h-100 d-print-none">
                     <div class="border mb-2 nr-map-highlight" style="height: 100%">
                         <div class="p-1">
                             <p><strong style="color:#00923E">Fordham - Bronx Pk</strong> includes ZIP Codes: 
@@ -4278,7 +6205,7 @@ aria-hidden="true" data-pagefind-ignore="all">
                             result.meta.title = result.meta.title
                                 .replace(/&#(\d+);/g, ((match, dec) => `${String.fromCharCode(dec)}`))
                                 .replaceAll("&amp;", "&");
-                            
+
                             
 
                             result.sub_results.forEach(sub => {
@@ -4336,7 +6263,7 @@ aria-hidden="true" data-pagefind-ignore="all">
             </script>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
         </div>
       </div>
     </div>

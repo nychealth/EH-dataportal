@@ -73,7 +73,7 @@
 <script src="/IndicatorPublic/node_modules/@fortawesome/fontawesome-free/js/all.min.bb77cf03b57ca909a104f353e6abaf69755ad669e72d25d47a9e4f4b5aa8e4d4731f01b5f5a1e63499e3d50f21a40fe705666d643e2be005fa60eb79ca72cdda.js" integrity="sha512-u3fPA7V8qQmhBPNT5quvaXVa1mnnLSXUep5PS1qo5NRzHwG19aHmNJnj1Q8hpA/nBWZtZD4r4AX6YOt5ynLN2g==" crossorigin="anonymous"></script>
 
 
-<link rel="stylesheet" href="/IndicatorPublic/scss/theme.93eedffd28d4702b89a3020c0eff852ea14226d650f38a6b59b5e5eb628de0d3b0941ab60ce45a6887fffc75078c7d1089830b1474e102938667d0ac6f54621f.css" integrity="sha512-k&#43;7f/SjUcCuJowIMDv&#43;FLqFCJtZQ84prWbXl62KN4NOwlBq2DORaaIf//HUHjH0QiYMLFHThApOGZ9Csb1RiHw==" />
+<link rel="stylesheet" href="/IndicatorPublic/scss/theme.0390bf6318c75775949357904a205296964b423f2e033ba74b0a67fd816df115666afa34a9701be11c1c06b9bf44455bcc39c3c1009a0a4195bceb192349e949.css" integrity="sha512-A5C/YxjHV3WUk1eQSiBSlpZLQj8uAzunSwpn/YFt8RVmavo0qXAb4RwcBrm/REVbzDnDwQCaCkGVvOsZI0npSQ==" />
 
 <script src="/IndicatorPublic/js/vegaBundle.0b5ca52926fb3c685a9a6b6e0c8f39f41f281d947e9137e30d6660861b701a2e923156c6630246c5b57d701679077f18e28a96e170f8d89227e49651cd473c90.js" integrity="sha512-C1ylKSb7PGhammtuDI859B8oHZR&#43;kTfjDWZghhtwGi6SMVbGYwJGxbV9cBZ5B38Y4oqW4XD42JIn5JZRzUc8kA=="></script>
 
@@ -174,62 +174,140 @@
 
                 <div class="row align-items-center">
 
-                    <div class="col-lg py-2 pl-md-5">
-
+                    <div class="col-lg py-3">
                         <div class="d-flex justify-content-center justify-content-lg-start">
+                            <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/"><img src="https://a816-dohbesp.nyc.gov/IndicatorPublic/7618350_heatmap_business_analytics_statistics_icon-gpr.ico" style="height: 67px" class="pr-1"></a>
 
-                            <p class="text-white">
-                                <span class="site-title title-hover"><a href=/IndicatorPublic/ class="link-no-dec">Environment and Health Data Portal</span>
-                                <span class="site-subtitle">Understand how environments shape health in New York City</a></span>
+                            <p class="text-white title-hover">
+                                <span class="site-subtitle"><a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/" class="link-no-dec">Environment & Health</span>
+                                <span class="site-title">Data Portal</a></span>
                             </p>
 
 
                         </div>
                         
-
                     </div>
                     
 
                     <div class="col-lg-auto border-top border-lg-0 d-print-none">
 
-                        <div class="row no-gutters justify-content-between py-2">
+                        <div class="d-lg-flex align-items-center">
 
                             
-                            <div class="col-auto d-flex d-lg-none">
 
-                                <button class="no-btn-style" type="button" data-toggle="collapse"
-                                    data-target="#nav-primary" aria-controls="nav-primary" aria-expanded="false"
-                                    aria-label="Toggle navigation">
-                                    <span class="fas fa-bars fa-lg"></span>
-                                </button>
-
-                            </div>
-                            
-
-                            <div class="col-auto justify-content-end">
-
-                                <ul class="extensible-list horizontal justify-content-end">
-                                    <li>
-                                        <button class="no-btn-style" type="button" title="Language"
-                                            data-toggle="collapse" data-target="#global-language"
-                                            aria-controls="global-language" aria-expanded="false">
-                                            <span class="sr-only">Language</span>
-                                            <span class="fas fa-language fa-2x"></span>
-                                        </button>
-                                    </li>
-                                    <li>
-                                        <button type="button" data-toggle="modal" data-target="#searchModal" class="btn nav-item-search d-lg-none" title="Search">
-                                            <span class="sr-only">Search</span>
-                                            <i class="fa fa-magnifying-glass fa-lg text-body"></i>
-                                        </button>
+                            <ul class="extensible-list horizontal justify-content-between my-2 d-lg-none">
+                                <li>
+                                    <button class="navbar-toggler no-btn-style" type="button" title="Main Menu" data-toggle="collapse"
+                                        data-target="#nav-primary" aria-controls="nav-primary" aria-expanded="false"
+                                        aria-label="Toggle navigation">
+                                        <span class="sr-only">Main Menu</span>
+                                        <span class="fas fa-bars fa-lg text-white" ></span>
+                                    </button>
                                 </li>
 
-                                </ul>
+                                <li>
+                                    <a class="nav-link" href="#" type="button" data-toggle="modal" data-target="#searchModal" title="Search" data-toggle="collapse">
+                                        <span class="sr-only">Search</span>
+                                        <i class="fa fa-magnifying-glass text-white"></i>
+                                    </a>
+                                </li>
+                            </ul>
 
-                                <a class="btn-sm text-white font-weight-bold mr-2" style="border: 1px solid lightgray; border-radius: 3px;" href=/IndicatorPublic/about>About us</a>
+                            <div class="collapse d-lg-block mx-n2 mx-lg-2" id="nav-primary">
+
+                                <nav class="nav" role="navigation">
+
+                                    <div class="nav-item bg-white text-primary border dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="nav-item-topic"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Topics
+                                        </a>
+
+                                        <div class="dropdown-menu wider-menu" aria-labelledby="nav-item-topic">
+                                            <ul class="extensible-list p-0">
+                                                
+                                                <a class="" href="/IndicatorPublic/key-topics/transportation/"> <li class="">Active design, public space, and transportation</li></a>
+                                                <hr class="my-1">
+                                                
+
+                                                
+                                                <a class="" href="/IndicatorPublic/key-topics/airquality/"> <li class="">Air quality</li></a>
+                                                <hr class="my-1">
+                                                
+
+                                                
+                                                <a class="" href="/IndicatorPublic/key-topics/childhealth/"> <li class="">Child health</li></a>
+                                                <hr class="my-1">
+                                                
+
+                                                
+                                                <a class="" href="/IndicatorPublic/key-topics/climatehealth/"> <li class="">Climate and health</li></a>
+                                                <hr class="my-1">
+                                                
+
+                                                
+                                                <a class="" href="/IndicatorPublic/key-topics/foodanddrink/"> <li class="">Food and drink</li></a>
+                                                <hr class="my-1">
+                                                
+
+                                                
+                                                <a class="" href="/IndicatorPublic/key-topics/healthoutcomes/"> <li class="">Environmental health outcomes</li></a>
+                                                <hr class="my-1">
+                                                
+
+                                                
+                                                <a class="" href="/IndicatorPublic/key-topics/housing/"> <li class="">Housing</li></a>
+                                                <hr class="my-1">
+                                                
+
+                                                
+                                                <a class="" href="/IndicatorPublic/key-topics/social/"> <li class="">Inequality and health inequities</li></a>
+                                                <hr class="my-1">
+                                                
+
+                                                
+                                                <a class="" href="/IndicatorPublic/key-topics/pests/"> <li class="">Pests and pesticides</li></a>
+                                                <hr class="my-1">
+                                                
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    
+
+                                    <div class="nav-item bg-white text-primary border dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="nav-item-type"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Explore
+                                        </a>
+
+                                        <div class="dropdown-menu wider-menu" aria-labelledby="nav-item-type">
+                                            <ul class="extensible-list p-0"><a href="/IndicatorPublic/data-stories/"> <li><span class="mr-1"><span class='text-primary ds-accent'><i class='fas fa-passport' aria-hidden='true'></i></span></span>Data Stories</li></a>
+                                                   <hr class="my-1"><a href="/IndicatorPublic/neighborhood-reports/"> <li><span class="mr-1"><span class='text-primary nr-accent'><i class='fas fa-map-marked-alt' aria-hidden='true'></i></span></span>Neighborhood Reports</li></a>
+                                                   <hr class="my-1"><a href="/IndicatorPublic/data-explorer/"> <li><span class="mr-1"><span class='text-primary de-accent'><i class='fas fa-chart-line' aria-hidden='true'></i></span></span>Data Explorer</li></a>
+                                                   <hr class="my-1"></ul>
+                                        </div>
+                                    </div>
+                                    
+
+                                    <div class="nav-item bg-white text-primary border"><a class="nav-link " href="/IndicatorPublic/about/">
+                                            About
+                                        </a></div>
+                                    
+
+                                    
+
+                                    <div class="nav-item bg-white text-primary border d-none d-lg-block">
+                                        <a class="nav-link" href="#" type="button" data-toggle="modal" data-target="#searchModal" title="Search" data-toggle="collapse">
+                                                    <span class="sr-only">Search</span>
+                                                    <i class="fa fa-magnifying-glass text-body"></i>
+                                                </a>
+                                    </div>
+                                    
+
+                                </nav>
 
                             </div>
-                            
 
                         </div>
                         
@@ -254,77 +332,6 @@
 
 
         </div>
-        <div class="container-fluid collapse d-lg-block px-0 border-lg-top d-print-none" id="nav-primary">
-
-            <div class="wide">
-
-                <nav class="nav nav-pills border-bottom border-right justify-content-center" role="navigation"><span id="File.Path" style="display: none">neighborhood-reports/Upper_East_Side/Active_Design_Physical_Activity_and_Health.md</span>
-                <span id="FirstSection.RelPermalink" style="display: none">/IndicatorPublic/neighborhood-reports/</span>
-
-                <div class="nav-item-search border-right">
-                    <a class="nav-link" id="nav-item-01" href=/IndicatorPublic/>
-                    <span class='text-primary'><i class='fa fa-home' aria-hidden='true'></i><span class="sr-only">Home</span></span>
-                    </a>
-                </div><div class="nav-item">
-
-                        <a class="nav-link" href="/IndicatorPublic/key-topics/" id="nav-item-05"><span class='text-primary'><i class='fas fa-star' aria-hidden='true'></i></span> Key Topics</a>
-
-                    </div><div class="nav-item">
-
-                        <a class="nav-link" href="/IndicatorPublic/data-stories/" id="nav-item-02"><span class='text-primary'><i class='fas fa-passport' aria-hidden='true'></i></span> Data Stories</a>
-
-                    </div><div class="nav-item active">
-
-                        <a class="nav-link" href="/IndicatorPublic/neighborhood-reports/" id="nav-item-04"><span class='text-primary'><i class='fas fa-map-marked-alt' aria-hidden='true'></i></span> Neighborhood Reports</a>
-
-                    </div><div class="nav-item">
-
-                        <a class="nav-link" href="/IndicatorPublic/data-explorer/" id="nav-item-03"><span class='text-primary'><i class='fas fa-chart-line' aria-hidden='true'></i></span> Data Explorer</a>
-
-                    </div>
-
-                        <button type="button" data-toggle="modal" data-target="#searchModal" class="btn nav-item-search d-none d-lg-block" title="Search">
-
-                            <span class="sr-only">Search</span>
-                            <i class="fa fa-magnifying-glass fa-lg text-body mt-1"></i>
-
-                        </button>
-
-                    </nav>
-
-            </div>
-
-        </div>
-
-        <div class="container-fluid-lg border-top collapse" id="global-search">
-
-            <form class="narrow py-2" aria-label="Search" role="search">
-
-                <div class="input-group">
-
-                    <label class="sr-only" for="global-search-bar">Search</label>
-
-                    <input class="form-control form-control-lg" id="global-search-bar" placeholder="Search">
-
-                    <div class="input-group-btn">
-
-                        <button class="btn btn-primary btn-lg" type="button" title="Search">
-
-                            <span class="sr-only">Search</span>
-                            <span class="fas fa-arrow-right"></span>
-
-                        </button>
-
-                    </div>
-
-                </div>
-
-            </form>
-
-
-            
-
-    </div>
 
 </header>
 <main id="skip-header-target" role="main" data-pagefind-body>
@@ -466,7 +473,7 @@
 
 
             <div class="row">
-                <div class="col-md-9 h-100">
+                <div class="col-md-9 h-100 col-print-12">
     
                 
                 <div class="row">
@@ -505,7 +512,7 @@
                                         
 
                                         <div class="row indicator-headings mb-2 print-only">
-                                            <div class="col-4 font-weight-bold">
+                                            <div class="col-4 font-weight-bold pl-3">
                                                 Topic
                                             </div>
                                             <div class="col-8">
@@ -532,6 +539,46 @@
                                         
                                         
                                         
+
+<script>
+    function renderComparisonChart(n,b,c,nid,bid,cid) {
+        
+        var values = []
+
+        values.push(Number(n))
+        values.push(Number(b))
+        values.push(Number(c))
+
+        
+
+        console.log('values:')
+        console.log(values)
+
+        
+        var max = Math.max(...values)
+
+        
+        var denom = max * 1.2
+        var nWidth = n / denom
+        var bWidth = b / denom
+        var cWidth = c / denom
+
+        
+        document.getElementById(nid).style.width = 100 * nWidth + '%' 
+        document.getElementById(bid).style.width = 100 * bWidth + '%'
+        document.getElementById(cid).style.width = 100 * cWidth + '%'
+
+    }
+
+    function checkTrend(x,y) {
+        if (x == 0 ) {
+            document.getElementById('t-'+y).classList.add('hide');
+            document.getElementById('ta-'+y).classList.remove('hide');
+            console.log(y)
+        } else {}
+    }
+
+</script>
 
 
 
@@ -576,6 +623,17 @@
 
 
 <div class="modal fade report-modal" id="modal-obesityP-1" tabindex="-1" role="dialog" aria-labelledby="indicatorModalLabel" aria-hidden="true">
+   <script>
+    
+     function getYear(x,y) {
+        var endDate = new Date(x) ;
+        console.log('end date:', endDate) ;
+        var year = endDate.getYear() + 1900
+        console.log(year)
+        document.getElementById(y).innerHTML = year
+    }
+   </script>
+   
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header text-left">
@@ -584,40 +642,91 @@
                     <span class="fas fa-times-circle"></span>
                 </button>
             </div>
+
             <div class="modal-body">
-                <h2 class="fs-xl" data-pagefind-ignore="all">Overweight or obesity (adults), 2020</h2>
-                <p>In <strong>Upper East Side</strong>, overweight or obesity (adults) is <span class="better">Better</span> compared to the NYC average.</p>People who are overweight or obese are at increased risk for heart disease and diabetes.</div>
+                <h2 class="fs-xl" data-pagefind-ignore="all">Overweight or obesity (adults) <span class="font-weight-normal">(<span id="year-overweight">YEAR</span>)</span></h2>
+                <p>People who are overweight or obese are at increased risk for heart disease and diabetes.</p>
+            </div>
+
+            <script>
+                
+                getYear(`2020-12-31`,`year-overweight`)
+            </script>
+
+            <div class="modal-body">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col"  style="border-top:none!important"><span class="sr-only">Location:</span></th>
+                        <th scope="col"style="width:35%;"><span class="">Percent </span></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row"><span class="text-primary fs-xl float-right">Upper East Side <span class="ml-2 float-right">39.1</span></span></th>
+
+                        <td>
+                            <div id="n-overweight" style="width:90%;" class="compBar neighb">
+                                &nbsp;
+                                <span class="sr-only">39.1</span>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl float-right">Manhattan <span class="ml-2 float-right">45.8</span></span></th>
+                        <td>
+                            <div id="b-overweight" style="width:90%;" class="compBar nonNeighb">
+                                &nbsp;
+                                <span class="sr-only">45.8</span>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl float-right">New York City <span class="ml-2 float-right">57.7</span></span></th>
+                        <td>
+                            <div id="c-overweight" style="width:90%;" class="compBar nonNeighb">
+                                &nbsp;
+                                <span class="sr-only">57.7</span>
+                            </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table><div class="data-note float-right"></div><script>
+                    renderComparisonChart( 39.1 ,  45.8 ,  57.7 ,'n-overweight','b-overweight','c-overweight')
+                    
+                </script>
+
+            </div>
             <hr>
             <div class="modal-body">
-                <h2 data-pagefind-ignore="all">Neighborhood Comparison</h2>
-                <div class="row comparison">
-                    <div class="col-sm-4 text-primary">Upper East Side <span class="indicator-value">39.1</span></div>
-                    <div class="col-sm-4">Manhattan <span class="indicator-value">45.8</span></div>
-                    <div class="col-sm-4">New York City <span class="indicator-value">57.7</span></div>
-                </div>
-                <p><em>Percent </em></p><div class="data-note"></div></div>
-            <hr>
-            <div class="modal-body">
-                <h3 data-pagefind-ignore="all">Overweight or obesity (adults), 2020</h3>
-                <p>  <em>Percent </em></p>
+                <span class="home-label font-weight-bold">Comparison</span>
+                <p class="fs-lg">For overweight or obesity (adults), <strong class="text-primary">Upper East Side</strong> is <span class="better">better</span> than most neighborhoods.</p>
+                <p class="fs-sm">  <em>Percent </em></p>
                 <div style="width:100%; height:30vmin; z-index:10000;" id="summary-obesityP-1"></div>
 
             </div>
             <hr>
-            <div class="modal-body">
-
-                <h3 data-pagefind-ignore="all">Trends Over Time</h3>
-                <p><em>Percent </em></p>
-                <div style="width:100%; height:50vmin; z-index:10000;" id="trend-obesityP-1"></div>
-
+            <div class="modal-body" id="t-overweight">
+                <span class="home-label font-weight-bold">Trends over time</span>
+                <p class="fs-sm"><em>Percent </em></p>
+                <div style="width:100%; height:50vmin; z-index:10000;display:block;" id="trend-obesityP-1"></div><div class="data-note mt-3">Some years of data may have unstable rates or estimates suppressed due to low numbers.</div></div>
+            
+            <div class="modal-body hide" id="ta-overweight">
+                <span class="home-label font-weight-bold">Trends over time (not available)</span>
+                <p class="fs-sm"><em>There's only a single year of data available for this indicator, so we can't show a trend.</em></p>
             </div>
+            <script>
+                checkTrend('1','overweight')
+            </script>
             <hr>
             <div class="modal-body">
+                <span class="home-label font-weight-bold">By neighborhood</span>
+                <p class="fs-sm"><em>Percent </em></p>
+                <div style="width:100%; height:60vmin; z-index:10000;" id="map-obesityP-1"></div><div class="data-note mt-3">Some neighborhoods may have estimates suppressed due to low numbers.</div></div>
 
-                <h3 data-pagefind-ignore="all">By Neighborhood</h3>
-                <p><em>Percent </em></p>
-                <div style="width:100%; height:60vmin; z-index:10000;" id="map-obesityP-1"></div>
-
+            <div class="modal-body">
+                <span class="home-label font-weight-bold">Source: </span><br> 
+                <span class="fs-sm">New York City Community Health Survey (CHS)</span>
             </div>
 
             
@@ -628,6 +737,24 @@
         </div>
     </div>
 </div>
+
+<style>
+    .compBar {
+        margin-top: 5px;
+        padding-left: 5px;
+        border-left: 3px solid darkgray;
+        max-height: 36px;
+
+    }
+
+    .nonNeighb {
+        background-color: #D8D8D8;
+    }
+
+    .neighb {
+        background-color: #00923E;
+    }
+</style>
 
 
 
@@ -718,6 +845,46 @@
     </script>
 
 
+<script>
+    function renderComparisonChart(n,b,c,nid,bid,cid) {
+        
+        var values = []
+
+        values.push(Number(n))
+        values.push(Number(b))
+        values.push(Number(c))
+
+        
+
+        console.log('values:')
+        console.log(values)
+
+        
+        var max = Math.max(...values)
+
+        
+        var denom = max * 1.2
+        var nWidth = n / denom
+        var bWidth = b / denom
+        var cWidth = c / denom
+
+        
+        document.getElementById(nid).style.width = 100 * nWidth + '%' 
+        document.getElementById(bid).style.width = 100 * bWidth + '%'
+        document.getElementById(cid).style.width = 100 * cWidth + '%'
+
+    }
+
+    function checkTrend(x,y) {
+        if (x == 0 ) {
+            document.getElementById('t-'+y).classList.add('hide');
+            document.getElementById('ta-'+y).classList.remove('hide');
+            console.log(y)
+        } else {}
+    }
+
+</script>
+
 
 
 
@@ -761,6 +928,17 @@
 
 
 <div class="modal fade report-modal" id="modal-bikeEDAA-2" tabindex="-1" role="dialog" aria-labelledby="indicatorModalLabel" aria-hidden="true">
+   <script>
+    
+     function getYear(x,y) {
+        var endDate = new Date(x) ;
+        console.log('end date:', endDate) ;
+        var year = endDate.getYear() + 1900
+        console.log(year)
+        document.getElementById(y).innerHTML = year
+    }
+   </script>
+   
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header text-left">
@@ -769,40 +947,91 @@
                     <span class="fas fa-times-circle"></span>
                 </button>
             </div>
+
             <div class="modal-body">
-                <h2 class="fs-xl" data-pagefind-ignore="all">Bicycle injury emergency department visits, 2014</h2>
-                <p>In <strong>Upper East Side</strong>, bicycle injury emergency department visits is <span class="better">Better</span> compared to the NYC average.</p>Bicycle injury ED visits can indicate the overall safety of cycling in the city - for transporation or other purposes.</div>
+                <h2 class="fs-xl" data-pagefind-ignore="all">Bicycle injury emergency department visits <span class="font-weight-normal">(<span id="year-bicycle-injuries">YEAR</span>)</span></h2>
+                <p>Bicycle injury ED visits can indicate the overall safety of cycling in the city - for transporation or other purposes.</p>
+            </div>
+
+            <script>
+                
+                getYear(`2014-12-31`,`year-bicycle-injuries`)
+            </script>
+
+            <div class="modal-body">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col"  style="border-top:none!important"><span class="sr-only">Location:</span></th>
+                        <th scope="col"style="width:35%;"><span class="">Age-adjusted rate per 100,000</span></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row"><span class="text-primary fs-xl float-right">Upper East Side <span class="ml-2 float-right">50.9</span></span></th>
+
+                        <td>
+                            <div id="n-bicycle-injuries" style="width:90%;" class="compBar neighb">
+                                &nbsp;
+                                <span class="sr-only">50.9</span>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl float-right">Manhattan <span class="ml-2 float-right">88.8</span></span></th>
+                        <td>
+                            <div id="b-bicycle-injuries" style="width:90%;" class="compBar nonNeighb">
+                                &nbsp;
+                                <span class="sr-only">88.8</span>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl float-right">New York City <span class="ml-2 float-right">96.4</span></span></th>
+                        <td>
+                            <div id="c-bicycle-injuries" style="width:90%;" class="compBar nonNeighb">
+                                &nbsp;
+                                <span class="sr-only">96.4</span>
+                            </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table><div class="data-note float-right"></div><script>
+                    renderComparisonChart( 50.9 ,  88.8 ,  96.4 ,'n-bicycle-injuries','b-bicycle-injuries','c-bicycle-injuries')
+                    
+                </script>
+
+            </div>
             <hr>
             <div class="modal-body">
-                <h2 data-pagefind-ignore="all">Neighborhood Comparison</h2>
-                <div class="row comparison">
-                    <div class="col-sm-4 text-primary">Upper East Side <span class="indicator-value">50.9</span></div>
-                    <div class="col-sm-4">Manhattan <span class="indicator-value">88.8</span></div>
-                    <div class="col-sm-4">New York City <span class="indicator-value">96.4</span></div>
-                </div>
-                <p><em>Age-adjusted rate per 100,000</em></p><div class="data-note"></div></div>
-            <hr>
-            <div class="modal-body">
-                <h3 data-pagefind-ignore="all">Bicycle injury emergency department visits, 2014</h3>
-                <p>  <em>Age-adjusted rate per 100,000</em></p>
+                <span class="home-label font-weight-bold">Comparison</span>
+                <p class="fs-lg">For bicycle injury emergency department visits, <strong class="text-primary">Upper East Side</strong> is <span class="better">better</span> than most neighborhoods.</p>
+                <p class="fs-sm">  <em>Age-adjusted rate per 100,000</em></p>
                 <div style="width:100%; height:30vmin; z-index:10000;" id="summary-bikeEDAA-2"></div>
 
             </div>
             <hr>
-            <div class="modal-body">
-
-                <h3 data-pagefind-ignore="all">Trends Over Time</h3>
-                <p><em>Age-adjusted rate per 100,000</em></p>
-                <div style="width:100%; height:50vmin; z-index:10000;" id="trend-bikeEDAA-2"></div>
-
+            <div class="modal-body" id="t-bicycle-injuries">
+                <span class="home-label font-weight-bold">Trends over time</span>
+                <p class="fs-sm"><em>Age-adjusted rate per 100,000</em></p>
+                <div style="width:100%; height:50vmin; z-index:10000;display:block;" id="trend-bikeEDAA-2"></div><div class="data-note mt-3">Some years of data may have unstable rates or estimates suppressed due to low numbers.</div></div>
+            
+            <div class="modal-body hide" id="ta-bicycle-injuries">
+                <span class="home-label font-weight-bold">Trends over time (not available)</span>
+                <p class="fs-sm"><em>There's only a single year of data available for this indicator, so we can't show a trend.</em></p>
             </div>
+            <script>
+                checkTrend('1','bicycle-injuries')
+            </script>
             <hr>
             <div class="modal-body">
+                <span class="home-label font-weight-bold">By neighborhood</span>
+                <p class="fs-sm"><em>Age-adjusted rate per 100,000</em></p>
+                <div style="width:100%; height:60vmin; z-index:10000;" id="map-bikeEDAA-2"></div><div class="data-note mt-3">Some neighborhoods may have estimates suppressed due to low numbers.</div></div>
 
-                <h3 data-pagefind-ignore="all">By Neighborhood</h3>
-                <p><em>Age-adjusted rate per 100,000</em></p>
-                <div style="width:100%; height:60vmin; z-index:10000;" id="map-bikeEDAA-2"></div>
-
+            <div class="modal-body">
+                <span class="home-label font-weight-bold">Source: </span><br> 
+                <span class="fs-sm">New York State Statewide Planning and Research Cooperative System (SPARCS) inpatient data 2016, updated January 2018. NYC DOHMH population estimates, modified from US Census Bureau interpolated intercensal population estimates, 2018, updated September 2019. </span>
             </div>
 
             
@@ -813,6 +1042,24 @@
         </div>
     </div>
 </div>
+
+<style>
+    .compBar {
+        margin-top: 5px;
+        padding-left: 5px;
+        border-left: 3px solid darkgray;
+        max-height: 36px;
+
+    }
+
+    .nonNeighb {
+        background-color: #D8D8D8;
+    }
+
+    .neighb {
+        background-color: #00923E;
+    }
+</style>
 
 
 
@@ -903,6 +1150,46 @@
     </script>
 
 
+<script>
+    function renderComparisonChart(n,b,c,nid,bid,cid) {
+        
+        var values = []
+
+        values.push(Number(n))
+        values.push(Number(b))
+        values.push(Number(c))
+
+        
+
+        console.log('values:')
+        console.log(values)
+
+        
+        var max = Math.max(...values)
+
+        
+        var denom = max * 1.2
+        var nWidth = n / denom
+        var bWidth = b / denom
+        var cWidth = c / denom
+
+        
+        document.getElementById(nid).style.width = 100 * nWidth + '%' 
+        document.getElementById(bid).style.width = 100 * bWidth + '%'
+        document.getElementById(cid).style.width = 100 * cWidth + '%'
+
+    }
+
+    function checkTrend(x,y) {
+        if (x == 0 ) {
+            document.getElementById('t-'+y).classList.add('hide');
+            document.getElementById('ta-'+y).classList.remove('hide');
+            console.log(y)
+        } else {}
+    }
+
+</script>
+
 
 
 
@@ -946,6 +1233,17 @@
 
 
 <div class="modal fade report-modal" id="modal-pedEDAA-3" tabindex="-1" role="dialog" aria-labelledby="indicatorModalLabel" aria-hidden="true">
+   <script>
+    
+     function getYear(x,y) {
+        var endDate = new Date(x) ;
+        console.log('end date:', endDate) ;
+        var year = endDate.getYear() + 1900
+        console.log(year)
+        document.getElementById(y).innerHTML = year
+    }
+   </script>
+   
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header text-left">
@@ -954,40 +1252,91 @@
                     <span class="fas fa-times-circle"></span>
                 </button>
             </div>
+
             <div class="modal-body">
-                <h2 class="fs-xl" data-pagefind-ignore="all">Pedestrian injury emergency department visits, 2014</h2>
-                <p>In <strong>Upper East Side</strong>, pedestrian injury emergency department visits is <span class="better">Better</span> compared to the NYC average.</p>Pedestrian injury ED visits can indicate the safety of walking for transporation.</div>
+                <h2 class="fs-xl" data-pagefind-ignore="all">Pedestrian injury emergency department visits <span class="font-weight-normal">(<span id="year-pedestrian-injuries">YEAR</span>)</span></h2>
+                <p>Pedestrian injury ED visits can indicate the safety of walking for transporation.</p>
+            </div>
+
+            <script>
+                
+                getYear(`2014-12-31`,`year-pedestrian-injuries`)
+            </script>
+
+            <div class="modal-body">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col"  style="border-top:none!important"><span class="sr-only">Location:</span></th>
+                        <th scope="col"style="width:35%;"><span class="">Age-adjusted rate per 100,000</span></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row"><span class="text-primary fs-xl float-right">Upper East Side <span class="ml-2 float-right">64.5</span></span></th>
+
+                        <td>
+                            <div id="n-pedestrian-injuries" style="width:90%;" class="compBar neighb">
+                                &nbsp;
+                                <span class="sr-only">64.5</span>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl float-right">Manhattan <span class="ml-2 float-right">78.9</span></span></th>
+                        <td>
+                            <div id="b-pedestrian-injuries" style="width:90%;" class="compBar nonNeighb">
+                                &nbsp;
+                                <span class="sr-only">78.9</span>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl float-right">New York City <span class="ml-2 float-right">103.1</span></span></th>
+                        <td>
+                            <div id="c-pedestrian-injuries" style="width:90%;" class="compBar nonNeighb">
+                                &nbsp;
+                                <span class="sr-only">103.1</span>
+                            </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table><div class="data-note float-right"></div><script>
+                    renderComparisonChart( 64.5 ,  78.9 ,  103.1 ,'n-pedestrian-injuries','b-pedestrian-injuries','c-pedestrian-injuries')
+                    
+                </script>
+
+            </div>
             <hr>
             <div class="modal-body">
-                <h2 data-pagefind-ignore="all">Neighborhood Comparison</h2>
-                <div class="row comparison">
-                    <div class="col-sm-4 text-primary">Upper East Side <span class="indicator-value">64.5</span></div>
-                    <div class="col-sm-4">Manhattan <span class="indicator-value">78.9</span></div>
-                    <div class="col-sm-4">New York City <span class="indicator-value">103.1</span></div>
-                </div>
-                <p><em>Age-adjusted rate per 100,000</em></p><div class="data-note"></div></div>
-            <hr>
-            <div class="modal-body">
-                <h3 data-pagefind-ignore="all">Pedestrian injury emergency department visits, 2014</h3>
-                <p>  <em>Age-adjusted rate per 100,000</em></p>
+                <span class="home-label font-weight-bold">Comparison</span>
+                <p class="fs-lg">For pedestrian injury emergency department visits, <strong class="text-primary">Upper East Side</strong> is <span class="better">better</span> than most neighborhoods.</p>
+                <p class="fs-sm">  <em>Age-adjusted rate per 100,000</em></p>
                 <div style="width:100%; height:30vmin; z-index:10000;" id="summary-pedEDAA-3"></div>
 
             </div>
             <hr>
-            <div class="modal-body">
-
-                <h3 data-pagefind-ignore="all">Trends Over Time</h3>
-                <p><em>Age-adjusted rate per 100,000</em></p>
-                <div style="width:100%; height:50vmin; z-index:10000;" id="trend-pedEDAA-3"></div>
-
+            <div class="modal-body" id="t-pedestrian-injuries">
+                <span class="home-label font-weight-bold">Trends over time</span>
+                <p class="fs-sm"><em>Age-adjusted rate per 100,000</em></p>
+                <div style="width:100%; height:50vmin; z-index:10000;display:block;" id="trend-pedEDAA-3"></div><div class="data-note mt-3">Some years of data may have unstable rates or estimates suppressed due to low numbers.</div></div>
+            
+            <div class="modal-body hide" id="ta-pedestrian-injuries">
+                <span class="home-label font-weight-bold">Trends over time (not available)</span>
+                <p class="fs-sm"><em>There's only a single year of data available for this indicator, so we can't show a trend.</em></p>
             </div>
+            <script>
+                checkTrend('1','pedestrian-injuries')
+            </script>
             <hr>
             <div class="modal-body">
+                <span class="home-label font-weight-bold">By neighborhood</span>
+                <p class="fs-sm"><em>Age-adjusted rate per 100,000</em></p>
+                <div style="width:100%; height:60vmin; z-index:10000;" id="map-pedEDAA-3"></div><div class="data-note mt-3">Some neighborhoods may have estimates suppressed due to low numbers.</div></div>
 
-                <h3 data-pagefind-ignore="all">By Neighborhood</h3>
-                <p><em>Age-adjusted rate per 100,000</em></p>
-                <div style="width:100%; height:60vmin; z-index:10000;" id="map-pedEDAA-3"></div>
-
+            <div class="modal-body">
+                <span class="home-label font-weight-bold">Source: </span><br> 
+                <span class="fs-sm">New York State Statewide Planning and Research Cooperative System (SPARCS) inpatient data 2016, updated January 2018. NYC DOHMH population estimates, modified from US Census Bureau interpolated intercensal population estimates, 2018, updated September 2019. </span>
             </div>
 
             
@@ -998,6 +1347,24 @@
         </div>
     </div>
 </div>
+
+<style>
+    .compBar {
+        margin-top: 5px;
+        padding-left: 5px;
+        border-left: 3px solid darkgray;
+        max-height: 36px;
+
+    }
+
+    .nonNeighb {
+        background-color: #D8D8D8;
+    }
+
+    .neighb {
+        background-color: #00923E;
+    }
+</style>
 
 
 
@@ -1088,6 +1455,46 @@
     </script>
 
 
+<script>
+    function renderComparisonChart(n,b,c,nid,bid,cid) {
+        
+        var values = []
+
+        values.push(Number(n))
+        values.push(Number(b))
+        values.push(Number(c))
+
+        
+
+        console.log('values:')
+        console.log(values)
+
+        
+        var max = Math.max(...values)
+
+        
+        var denom = max * 1.2
+        var nWidth = n / denom
+        var bWidth = b / denom
+        var cWidth = c / denom
+
+        
+        document.getElementById(nid).style.width = 100 * nWidth + '%' 
+        document.getElementById(bid).style.width = 100 * bWidth + '%'
+        document.getElementById(cid).style.width = 100 * cWidth + '%'
+
+    }
+
+    function checkTrend(x,y) {
+        if (x == 0 ) {
+            document.getElementById('t-'+y).classList.add('hide');
+            document.getElementById('ta-'+y).classList.remove('hide');
+            console.log(y)
+        } else {}
+    }
+
+</script>
+
 
 
 
@@ -1131,6 +1538,17 @@
 
 
 <div class="modal fade report-modal" id="modal-preMorAA-4" tabindex="-1" role="dialog" aria-labelledby="indicatorModalLabel" aria-hidden="true">
+   <script>
+    
+     function getYear(x,y) {
+        var endDate = new Date(x) ;
+        console.log('end date:', endDate) ;
+        var year = endDate.getYear() + 1900
+        console.log(year)
+        document.getElementById(y).innerHTML = year
+    }
+   </script>
+   
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header text-left">
@@ -1139,40 +1557,91 @@
                     <span class="fas fa-times-circle"></span>
                 </button>
             </div>
+
             <div class="modal-body">
-                <h2 class="fs-xl" data-pagefind-ignore="all">Premature mortality, 2016</h2>
-                <p>In <strong>Upper East Side</strong>, premature mortality is <span class="better">Better</span> compared to the NYC average.</p>The rate of people who die before age 65 can indicate the overall health of a population.</div>
+                <h2 class="fs-xl" data-pagefind-ignore="all">Premature mortality <span class="font-weight-normal">(<span id="year-death-before-65">YEAR</span>)</span></h2>
+                <p>The rate of people who die before age 65 can indicate the overall health of a population.</p>
+            </div>
+
+            <script>
+                
+                getYear(`2016-12-31`,`year-death-before-65`)
+            </script>
+
+            <div class="modal-body">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col"  style="border-top:none!important"><span class="sr-only">Location:</span></th>
+                        <th scope="col"style="width:35%;"><span class="">Age-adjusted rate per 100,000</span></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row"><span class="text-primary fs-xl float-right">Upper East Side <span class="ml-2 float-right">82.0</span></span></th>
+
+                        <td>
+                            <div id="n-death-before-65" style="width:90%;" class="compBar neighb">
+                                &nbsp;
+                                <span class="sr-only">82.0</span>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl float-right">Manhattan <span class="ml-2 float-right">131.5</span></span></th>
+                        <td>
+                            <div id="b-death-before-65" style="width:90%;" class="compBar nonNeighb">
+                                &nbsp;
+                                <span class="sr-only">131.5</span>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl float-right">New York City <span class="ml-2 float-right">162.9</span></span></th>
+                        <td>
+                            <div id="c-death-before-65" style="width:90%;" class="compBar nonNeighb">
+                                &nbsp;
+                                <span class="sr-only">162.9</span>
+                            </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table><div class="data-note float-right"></div><script>
+                    renderComparisonChart( 82 ,  131.5 ,  162.9 ,'n-death-before-65','b-death-before-65','c-death-before-65')
+                    
+                </script>
+
+            </div>
             <hr>
             <div class="modal-body">
-                <h2 data-pagefind-ignore="all">Neighborhood Comparison</h2>
-                <div class="row comparison">
-                    <div class="col-sm-4 text-primary">Upper East Side <span class="indicator-value">82.0</span></div>
-                    <div class="col-sm-4">Manhattan <span class="indicator-value">131.5</span></div>
-                    <div class="col-sm-4">New York City <span class="indicator-value">162.9</span></div>
-                </div>
-                <p><em>Age-adjusted rate per 100,000</em></p><div class="data-note"></div></div>
-            <hr>
-            <div class="modal-body">
-                <h3 data-pagefind-ignore="all">Premature mortality, 2016</h3>
-                <p>  <em>Age-adjusted rate per 100,000</em></p>
+                <span class="home-label font-weight-bold">Comparison</span>
+                <p class="fs-lg">For premature mortality, <strong class="text-primary">Upper East Side</strong> is <span class="better">better</span> than most neighborhoods.</p>
+                <p class="fs-sm">  <em>Age-adjusted rate per 100,000</em></p>
                 <div style="width:100%; height:30vmin; z-index:10000;" id="summary-preMorAA-4"></div>
 
             </div>
             <hr>
-            <div class="modal-body">
-
-                <h3 data-pagefind-ignore="all">Trends Over Time</h3>
-                <p><em>Age-adjusted rate per 100,000</em></p>
-                <div style="width:100%; height:50vmin; z-index:10000;" id="trend-preMorAA-4"></div>
-
+            <div class="modal-body" id="t-death-before-65">
+                <span class="home-label font-weight-bold">Trends over time</span>
+                <p class="fs-sm"><em>Age-adjusted rate per 100,000</em></p>
+                <div style="width:100%; height:50vmin; z-index:10000;display:block;" id="trend-preMorAA-4"></div><div class="data-note mt-3">Some years of data may have unstable rates or estimates suppressed due to low numbers.</div></div>
+            
+            <div class="modal-body hide" id="ta-death-before-65">
+                <span class="home-label font-weight-bold">Trends over time (not available)</span>
+                <p class="fs-sm"><em>There's only a single year of data available for this indicator, so we can't show a trend.</em></p>
             </div>
+            <script>
+                checkTrend('0','death-before-65')
+            </script>
             <hr>
             <div class="modal-body">
+                <span class="home-label font-weight-bold">By neighborhood</span>
+                <p class="fs-sm"><em>Age-adjusted rate per 100,000</em></p>
+                <div style="width:100%; height:60vmin; z-index:10000;" id="map-preMorAA-4"></div><div class="data-note mt-3">Some neighborhoods may have estimates suppressed due to low numbers.</div></div>
 
-                <h3 data-pagefind-ignore="all">By Neighborhood</h3>
-                <p><em>Age-adjusted rate per 100,000</em></p>
-                <div style="width:100%; height:60vmin; z-index:10000;" id="map-preMorAA-4"></div>
-
+            <div class="modal-body">
+                <span class="home-label font-weight-bold">Source: </span><br> 
+                <span class="fs-sm">New York City Bureau of Vital Statistics; New York City Bureau of Vital Statistics; United States Census </span>
             </div>
 
             
@@ -1183,6 +1652,24 @@
         </div>
     </div>
 </div>
+
+<style>
+    .compBar {
+        margin-top: 5px;
+        padding-left: 5px;
+        border-left: 3px solid darkgray;
+        max-height: 36px;
+
+    }
+
+    .nonNeighb {
+        background-color: #D8D8D8;
+    }
+
+    .neighb {
+        background-color: #00923E;
+    }
+</style>
 
 
 
@@ -1309,7 +1796,7 @@
                                         
 
                                         <div class="row indicator-headings mb-2 print-only">
-                                            <div class="col-4 font-weight-bold">
+                                            <div class="col-4 font-weight-bold pl-3">
                                                 Topic
                                             </div>
                                             <div class="col-8">
@@ -1336,6 +1823,46 @@
                                         
                                         
                                         
+
+<script>
+    function renderComparisonChart(n,b,c,nid,bid,cid) {
+        
+        var values = []
+
+        values.push(Number(n))
+        values.push(Number(b))
+        values.push(Number(c))
+
+        
+
+        console.log('values:')
+        console.log(values)
+
+        
+        var max = Math.max(...values)
+
+        
+        var denom = max * 1.2
+        var nWidth = n / denom
+        var bWidth = b / denom
+        var cWidth = c / denom
+
+        
+        document.getElementById(nid).style.width = 100 * nWidth + '%' 
+        document.getElementById(bid).style.width = 100 * bWidth + '%'
+        document.getElementById(cid).style.width = 100 * cWidth + '%'
+
+    }
+
+    function checkTrend(x,y) {
+        if (x == 0 ) {
+            document.getElementById('t-'+y).classList.add('hide');
+            document.getElementById('ta-'+y).classList.remove('hide');
+            console.log(y)
+        } else {}
+    }
+
+</script>
 
 
 
@@ -1380,6 +1907,17 @@
 
 
 <div class="modal fade report-modal" id="modal-sidwalkP-1" tabindex="-1" role="dialog" aria-labelledby="indicatorModalLabel" aria-hidden="true">
+   <script>
+    
+     function getYear(x,y) {
+        var endDate = new Date(x) ;
+        console.log('end date:', endDate) ;
+        var year = endDate.getYear() + 1900
+        console.log(year)
+        document.getElementById(y).innerHTML = year
+    }
+   </script>
+   
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header text-left">
@@ -1388,40 +1926,91 @@
                     <span class="fas fa-times-circle"></span>
                 </button>
             </div>
+
             <div class="modal-body">
-                <h2 class="fs-xl" data-pagefind-ignore="all">Sidewalk area, 2014</h2>
-                <p>In <strong>Upper East Side</strong>, sidewalk area is <span class="better">Better</span> compared to the NYC average.</p>Sidewalks are important for commuting, businesses, and physical activity. Greater sidewalk area can contribute to a safer pedestrian environment, support vibrant business districts and can foster social interaction among residents.</div>
+                <h2 class="fs-xl" data-pagefind-ignore="all">Sidewalk area <span class="font-weight-normal">(<span id="year-sidewalk-area">YEAR</span>)</span></h2>
+                <p>Sidewalks are important for commuting, businesses, and physical activity. Greater sidewalk area can contribute to a safer pedestrian environment, support vibrant business districts and can foster social interaction among residents.</p>
+            </div>
+
+            <script>
+                
+                getYear(`2014-12-31`,`year-sidewalk-area`)
+            </script>
+
+            <div class="modal-body">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col"  style="border-top:none!important"><span class="sr-only">Location:</span></th>
+                        <th scope="col"style="width:35%;"><span class="">Percent of land area</span></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row"><span class="text-primary fs-xl float-right">Upper East Side <span class="ml-2 float-right">10.7</span></span></th>
+
+                        <td>
+                            <div id="n-sidewalk-area" style="width:90%;" class="compBar neighb">
+                                &nbsp;
+                                <span class="sr-only">10.7</span>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl float-right">Manhattan <span class="ml-2 float-right">9.9</span></span></th>
+                        <td>
+                            <div id="b-sidewalk-area" style="width:90%;" class="compBar nonNeighb">
+                                &nbsp;
+                                <span class="sr-only">9.9</span>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl float-right">New York City <span class="ml-2 float-right">6.6</span></span></th>
+                        <td>
+                            <div id="c-sidewalk-area" style="width:90%;" class="compBar nonNeighb">
+                                &nbsp;
+                                <span class="sr-only">6.6</span>
+                            </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table><div class="data-note float-right"></div><script>
+                    renderComparisonChart( 10.7 ,  9.9 ,  6.6 ,'n-sidewalk-area','b-sidewalk-area','c-sidewalk-area')
+                    
+                </script>
+
+            </div>
             <hr>
             <div class="modal-body">
-                <h2 data-pagefind-ignore="all">Neighborhood Comparison</h2>
-                <div class="row comparison">
-                    <div class="col-sm-4 text-primary">Upper East Side <span class="indicator-value">10.7</span></div>
-                    <div class="col-sm-4">Manhattan <span class="indicator-value">9.9</span></div>
-                    <div class="col-sm-4">New York City <span class="indicator-value">6.6</span></div>
-                </div>
-                <p><em>Percent of land area</em></p><div class="data-note"></div></div>
-            <hr>
-            <div class="modal-body">
-                <h3 data-pagefind-ignore="all">Sidewalk area, 2014</h3>
-                <p>  <em>Percent of land area</em></p>
+                <span class="home-label font-weight-bold">Comparison</span>
+                <p class="fs-lg">For sidewalk area, <strong class="text-primary">Upper East Side</strong> is <span class="better">better</span> than most neighborhoods.</p>
+                <p class="fs-sm">  <em>Percent of land area</em></p>
                 <div style="width:100%; height:30vmin; z-index:10000;" id="summary-sidwalkP-1"></div>
 
             </div>
             <hr>
-            <div class="modal-body">
-
-                <h3 data-pagefind-ignore="all">Trends Over Time</h3>
-                <p><em>Percent of land area</em></p>
-                <div style="width:100%; height:50vmin; z-index:10000;" id="trend-sidwalkP-1"></div>
-
+            <div class="modal-body" id="t-sidewalk-area">
+                <span class="home-label font-weight-bold">Trends over time</span>
+                <p class="fs-sm"><em>Percent of land area</em></p>
+                <div style="width:100%; height:50vmin; z-index:10000;display:block;" id="trend-sidwalkP-1"></div><div class="data-note mt-3">Some years of data may have unstable rates or estimates suppressed due to low numbers.</div></div>
+            
+            <div class="modal-body hide" id="ta-sidewalk-area">
+                <span class="home-label font-weight-bold">Trends over time (not available)</span>
+                <p class="fs-sm"><em>There's only a single year of data available for this indicator, so we can't show a trend.</em></p>
             </div>
+            <script>
+                checkTrend('0','sidewalk-area')
+            </script>
             <hr>
             <div class="modal-body">
+                <span class="home-label font-weight-bold">By neighborhood</span>
+                <p class="fs-sm"><em>Percent of land area</em></p>
+                <div style="width:100%; height:60vmin; z-index:10000;" id="map-sidwalkP-1"></div><div class="data-note mt-3">Some neighborhoods may have estimates suppressed due to low numbers.</div></div>
 
-                <h3 data-pagefind-ignore="all">By Neighborhood</h3>
-                <p><em>Percent of land area</em></p>
-                <div style="width:100%; height:60vmin; z-index:10000;" id="map-sidwalkP-1"></div>
-
+            <div class="modal-body">
+                <span class="home-label font-weight-bold">Source: </span><br> 
+                <span class="fs-sm">The Built Environment &amp; Health Project (BEH), Columbia University</span>
             </div>
 
             
@@ -1432,6 +2021,24 @@
         </div>
     </div>
 </div>
+
+<style>
+    .compBar {
+        margin-top: 5px;
+        padding-left: 5px;
+        border-left: 3px solid darkgray;
+        max-height: 36px;
+
+    }
+
+    .nonNeighb {
+        background-color: #D8D8D8;
+    }
+
+    .neighb {
+        background-color: #00923E;
+    }
+</style>
 
 
 
@@ -1522,6 +2129,46 @@
     </script>
 
 
+<script>
+    function renderComparisonChart(n,b,c,nid,bid,cid) {
+        
+        var values = []
+
+        values.push(Number(n))
+        values.push(Number(b))
+        values.push(Number(c))
+
+        
+
+        console.log('values:')
+        console.log(values)
+
+        
+        var max = Math.max(...values)
+
+        
+        var denom = max * 1.2
+        var nWidth = n / denom
+        var bWidth = b / denom
+        var cWidth = c / denom
+
+        
+        document.getElementById(nid).style.width = 100 * nWidth + '%' 
+        document.getElementById(bid).style.width = 100 * bWidth + '%'
+        document.getElementById(cid).style.width = 100 * cWidth + '%'
+
+    }
+
+    function checkTrend(x,y) {
+        if (x == 0 ) {
+            document.getElementById('t-'+y).classList.add('hide');
+            document.getElementById('ta-'+y).classList.remove('hide');
+            console.log(y)
+        } else {}
+    }
+
+</script>
+
 
 
 
@@ -1565,6 +2212,17 @@
 
 
 <div class="modal fade report-modal" id="modal-parkDisP-2" tabindex="-1" role="dialog" aria-labelledby="indicatorModalLabel" aria-hidden="true">
+   <script>
+    
+     function getYear(x,y) {
+        var endDate = new Date(x) ;
+        console.log('end date:', endDate) ;
+        var year = endDate.getYear() + 1900
+        console.log(year)
+        document.getElementById(y).innerHTML = year
+    }
+   </script>
+   
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header text-left">
@@ -1573,40 +2231,91 @@
                     <span class="fas fa-times-circle"></span>
                 </button>
             </div>
+
             <div class="modal-body">
-                <h2 class="fs-xl" data-pagefind-ignore="all">Walking distance to a park, 2017</h2>
-                <p>In <strong>Upper East Side</strong>, walking distance to a park is <span class="better">Better</span> compared to the NYC average.</p>The percentage of the population who live within walking distance to a park: a quarter-mile or less to entrances of smaller sites, such as sitting areas and playgrounds, and half-mile or less to entrances of larger parks. Increased access to green space and open space can contribute to increased levels of physical activity.</div>
+                <h2 class="fs-xl" data-pagefind-ignore="all">Walking distance to a park <span class="font-weight-normal">(<span id="year-park-access">YEAR</span>)</span></h2>
+                <p>The percentage of the population who live within walking distance to a park: a quarter-mile or less to entrances of smaller sites, such as sitting areas and playgrounds, and half-mile or less to entrances of larger parks. Increased access to green space and open space can contribute to increased levels of physical activity.</p>
+            </div>
+
+            <script>
+                
+                getYear(`2017-12-31`,`year-park-access`)
+            </script>
+
+            <div class="modal-body">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col"  style="border-top:none!important"><span class="sr-only">Location:</span></th>
+                        <th scope="col"style="width:35%;"><span class="">Percent </span></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row"><span class="text-primary fs-xl float-right">Upper East Side <span class="ml-2 float-right">95.0</span></span></th>
+
+                        <td>
+                            <div id="n-park-access" style="width:90%;" class="compBar neighb">
+                                &nbsp;
+                                <span class="sr-only">95.0</span>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl float-right">Manhattan <span class="ml-2 float-right">97</span></span></th>
+                        <td>
+                            <div id="b-park-access" style="width:90%;" class="compBar nonNeighb">
+                                &nbsp;
+                                <span class="sr-only">97</span>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl float-right">New York City <span class="ml-2 float-right">81</span></span></th>
+                        <td>
+                            <div id="c-park-access" style="width:90%;" class="compBar nonNeighb">
+                                &nbsp;
+                                <span class="sr-only">81</span>
+                            </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table><div class="data-note float-right"></div><script>
+                    renderComparisonChart( 95 ,  97 ,  81 ,'n-park-access','b-park-access','c-park-access')
+                    
+                </script>
+
+            </div>
             <hr>
             <div class="modal-body">
-                <h2 data-pagefind-ignore="all">Neighborhood Comparison</h2>
-                <div class="row comparison">
-                    <div class="col-sm-4 text-primary">Upper East Side <span class="indicator-value">95.0</span></div>
-                    <div class="col-sm-4">Manhattan <span class="indicator-value">97</span></div>
-                    <div class="col-sm-4">New York City <span class="indicator-value">81</span></div>
-                </div>
-                <p><em>Percent </em></p><div class="data-note"></div></div>
-            <hr>
-            <div class="modal-body">
-                <h3 data-pagefind-ignore="all">Walking distance to a park, 2017</h3>
-                <p>  <em>Percent </em></p>
+                <span class="home-label font-weight-bold">Comparison</span>
+                <p class="fs-lg">For walking distance to a park, <strong class="text-primary">Upper East Side</strong> is <span class="better">better</span> than most neighborhoods.</p>
+                <p class="fs-sm">  <em>Percent </em></p>
                 <div style="width:100%; height:30vmin; z-index:10000;" id="summary-parkDisP-2"></div>
 
             </div>
             <hr>
-            <div class="modal-body">
-
-                <h3 data-pagefind-ignore="all">Trends Over Time</h3>
-                <p><em>Percent </em></p>
-                <div style="width:100%; height:50vmin; z-index:10000;" id="trend-parkDisP-2"></div>
-
+            <div class="modal-body" id="t-park-access">
+                <span class="home-label font-weight-bold">Trends over time</span>
+                <p class="fs-sm"><em>Percent </em></p>
+                <div style="width:100%; height:50vmin; z-index:10000;display:block;" id="trend-parkDisP-2"></div><div class="data-note mt-3">Some years of data may have unstable rates or estimates suppressed due to low numbers.</div></div>
+            
+            <div class="modal-body hide" id="ta-park-access">
+                <span class="home-label font-weight-bold">Trends over time (not available)</span>
+                <p class="fs-sm"><em>There's only a single year of data available for this indicator, so we can't show a trend.</em></p>
             </div>
+            <script>
+                checkTrend('0','park-access')
+            </script>
             <hr>
             <div class="modal-body">
+                <span class="home-label font-weight-bold">By neighborhood</span>
+                <p class="fs-sm"><em>Percent </em></p>
+                <div style="width:100%; height:60vmin; z-index:10000;" id="map-parkDisP-2"></div><div class="data-note mt-3">Some neighborhoods may have estimates suppressed due to low numbers.</div></div>
 
-                <h3 data-pagefind-ignore="all">By Neighborhood</h3>
-                <p><em>Percent </em></p>
-                <div style="width:100%; height:60vmin; z-index:10000;" id="map-parkDisP-2"></div>
-
+            <div class="modal-body">
+                <span class="home-label font-weight-bold">Source: </span><br> 
+                <span class="fs-sm">New York City Department of Parks and Recreation; New York City DOHMH population estimates, modified from US Census Bureau inter-censal population estimates</span>
             </div>
 
             
@@ -1617,6 +2326,24 @@
         </div>
     </div>
 </div>
+
+<style>
+    .compBar {
+        margin-top: 5px;
+        padding-left: 5px;
+        border-left: 3px solid darkgray;
+        max-height: 36px;
+
+    }
+
+    .nonNeighb {
+        background-color: #D8D8D8;
+    }
+
+    .neighb {
+        background-color: #00923E;
+    }
+</style>
 
 
 
@@ -1707,6 +2434,46 @@
     </script>
 
 
+<script>
+    function renderComparisonChart(n,b,c,nid,bid,cid) {
+        
+        var values = []
+
+        values.push(Number(n))
+        values.push(Number(b))
+        values.push(Number(c))
+
+        
+
+        console.log('values:')
+        console.log(values)
+
+        
+        var max = Math.max(...values)
+
+        
+        var denom = max * 1.2
+        var nWidth = n / denom
+        var bWidth = b / denom
+        var cWidth = c / denom
+
+        
+        document.getElementById(nid).style.width = 100 * nWidth + '%' 
+        document.getElementById(bid).style.width = 100 * bWidth + '%'
+        document.getElementById(cid).style.width = 100 * cWidth + '%'
+
+    }
+
+    function checkTrend(x,y) {
+        if (x == 0 ) {
+            document.getElementById('t-'+y).classList.add('hide');
+            document.getElementById('ta-'+y).classList.remove('hide');
+            console.log(y)
+        } else {}
+    }
+
+</script>
+
 
 
 
@@ -1750,6 +2517,17 @@
 
 
 <div class="modal fade report-modal" id="modal-bikeLanP-3" tabindex="-1" role="dialog" aria-labelledby="indicatorModalLabel" aria-hidden="true">
+   <script>
+    
+     function getYear(x,y) {
+        var endDate = new Date(x) ;
+        console.log('end date:', endDate) ;
+        var year = endDate.getYear() + 1900
+        console.log(year)
+        document.getElementById(y).innerHTML = year
+    }
+   </script>
+   
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header text-left">
@@ -1758,40 +2536,91 @@
                     <span class="fas fa-times-circle"></span>
                 </button>
             </div>
+
             <div class="modal-body">
-                <h2 class="fs-xl" data-pagefind-ignore="all">Bicycle network coverage, 2017</h2>
-                <p>In <strong>Upper East Side</strong>, bicycle network coverage is <span class="better">Better</span> compared to the NYC average.</p>Bike lanes can improve bicyclist and pedestrian safety, physical activity, and sustainable transportation use. An increase in percentage of streets with bike lanes can indicate a safer cycling environment in a neighborhood which may increase overall cycling.</div>
+                <h2 class="fs-xl" data-pagefind-ignore="all">Bicycle network coverage <span class="font-weight-normal">(<span id="year-bike-lanes">YEAR</span>)</span></h2>
+                <p>Bike lanes can improve bicyclist and pedestrian safety, physical activity, and sustainable transportation use. An increase in percentage of streets with bike lanes can indicate a safer cycling environment in a neighborhood which may increase overall cycling.</p>
+            </div>
+
+            <script>
+                
+                getYear(`2017-12-31`,`year-bike-lanes`)
+            </script>
+
+            <div class="modal-body">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col"  style="border-top:none!important"><span class="sr-only">Location:</span></th>
+                        <th scope="col"style="width:35%;"><span class="">Percent </span></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row"><span class="text-primary fs-xl float-right">Upper East Side <span class="ml-2 float-right">25.0</span></span></th>
+
+                        <td>
+                            <div id="n-bike-lanes" style="width:90%;" class="compBar neighb">
+                                &nbsp;
+                                <span class="sr-only">25.0</span>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl float-right">Manhattan <span class="ml-2 float-right">29</span></span></th>
+                        <td>
+                            <div id="b-bike-lanes" style="width:90%;" class="compBar nonNeighb">
+                                &nbsp;
+                                <span class="sr-only">29</span>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl float-right">New York City <span class="ml-2 float-right">10</span></span></th>
+                        <td>
+                            <div id="c-bike-lanes" style="width:90%;" class="compBar nonNeighb">
+                                &nbsp;
+                                <span class="sr-only">10</span>
+                            </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table><div class="data-note float-right"></div><script>
+                    renderComparisonChart( 25 ,  29 ,  10 ,'n-bike-lanes','b-bike-lanes','c-bike-lanes')
+                    
+                </script>
+
+            </div>
             <hr>
             <div class="modal-body">
-                <h2 data-pagefind-ignore="all">Neighborhood Comparison</h2>
-                <div class="row comparison">
-                    <div class="col-sm-4 text-primary">Upper East Side <span class="indicator-value">25.0</span></div>
-                    <div class="col-sm-4">Manhattan <span class="indicator-value">29</span></div>
-                    <div class="col-sm-4">New York City <span class="indicator-value">10</span></div>
-                </div>
-                <p><em>Percent </em></p><div class="data-note"></div></div>
-            <hr>
-            <div class="modal-body">
-                <h3 data-pagefind-ignore="all">Bicycle network coverage, 2017</h3>
-                <p>  <em>Percent </em></p>
+                <span class="home-label font-weight-bold">Comparison</span>
+                <p class="fs-lg">For bicycle network coverage, <strong class="text-primary">Upper East Side</strong> is <span class="better">better</span> than most neighborhoods.</p>
+                <p class="fs-sm">  <em>Percent </em></p>
                 <div style="width:100%; height:30vmin; z-index:10000;" id="summary-bikeLanP-3"></div>
 
             </div>
             <hr>
-            <div class="modal-body">
-
-                <h3 data-pagefind-ignore="all">Trends Over Time</h3>
-                <p><em>Percent </em></p>
-                <div style="width:100%; height:50vmin; z-index:10000;" id="trend-bikeLanP-3"></div>
-
+            <div class="modal-body" id="t-bike-lanes">
+                <span class="home-label font-weight-bold">Trends over time</span>
+                <p class="fs-sm"><em>Percent </em></p>
+                <div style="width:100%; height:50vmin; z-index:10000;display:block;" id="trend-bikeLanP-3"></div><div class="data-note mt-3">Some years of data may have unstable rates or estimates suppressed due to low numbers.</div></div>
+            
+            <div class="modal-body hide" id="ta-bike-lanes">
+                <span class="home-label font-weight-bold">Trends over time (not available)</span>
+                <p class="fs-sm"><em>There's only a single year of data available for this indicator, so we can't show a trend.</em></p>
             </div>
+            <script>
+                checkTrend('0','bike-lanes')
+            </script>
             <hr>
             <div class="modal-body">
+                <span class="home-label font-weight-bold">By neighborhood</span>
+                <p class="fs-sm"><em>Percent </em></p>
+                <div style="width:100%; height:60vmin; z-index:10000;" id="map-bikeLanP-3"></div><div class="data-note mt-3">Some neighborhoods may have estimates suppressed due to low numbers.</div></div>
 
-                <h3 data-pagefind-ignore="all">By Neighborhood</h3>
-                <p><em>Percent </em></p>
-                <div style="width:100%; height:60vmin; z-index:10000;" id="map-bikeLanP-3"></div>
-
+            <div class="modal-body">
+                <span class="home-label font-weight-bold">Source: </span><br> 
+                <span class="fs-sm">New York City Department of Transportation </span>
             </div>
 
             
@@ -1802,6 +2631,24 @@
         </div>
     </div>
 </div>
+
+<style>
+    .compBar {
+        margin-top: 5px;
+        padding-left: 5px;
+        border-left: 3px solid darkgray;
+        max-height: 36px;
+
+    }
+
+    .nonNeighb {
+        background-color: #D8D8D8;
+    }
+
+    .neighb {
+        background-color: #00923E;
+    }
+</style>
 
 
 
@@ -1892,6 +2739,46 @@
     </script>
 
 
+<script>
+    function renderComparisonChart(n,b,c,nid,bid,cid) {
+        
+        var values = []
+
+        values.push(Number(n))
+        values.push(Number(b))
+        values.push(Number(c))
+
+        
+
+        console.log('values:')
+        console.log(values)
+
+        
+        var max = Math.max(...values)
+
+        
+        var denom = max * 1.2
+        var nWidth = n / denom
+        var bWidth = b / denom
+        var cWidth = c / denom
+
+        
+        document.getElementById(nid).style.width = 100 * nWidth + '%' 
+        document.getElementById(bid).style.width = 100 * bWidth + '%'
+        document.getElementById(cid).style.width = 100 * cWidth + '%'
+
+    }
+
+    function checkTrend(x,y) {
+        if (x == 0 ) {
+            document.getElementById('t-'+y).classList.add('hide');
+            document.getElementById('ta-'+y).classList.remove('hide');
+            console.log(y)
+        } else {}
+    }
+
+</script>
+
 
 
 
@@ -1935,6 +2822,17 @@
 
 
 <div class="modal fade report-modal" id="modal-subDistP-4" tabindex="-1" role="dialog" aria-labelledby="indicatorModalLabel" aria-hidden="true">
+   <script>
+    
+     function getYear(x,y) {
+        var endDate = new Date(x) ;
+        console.log('end date:', endDate) ;
+        var year = endDate.getYear() + 1900
+        console.log(year)
+        document.getElementById(y).innerHTML = year
+    }
+   </script>
+   
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header text-left">
@@ -1943,40 +2841,91 @@
                     <span class="fas fa-times-circle"></span>
                 </button>
             </div>
+
             <div class="modal-body">
-                <h2 class="fs-xl" data-pagefind-ignore="all">Walking distance to a subway station, 2018</h2>
-                <p>In <strong>Upper East Side</strong>, walking distance to a subway station is <span class="better">Better</span> compared to the NYC average.</p>The percentage of population within a quarter-mile of a subway station entrance. When more people have convenient access to the transit system, they're more likely to use it. Subway access encourages active transportation, which improves the health of residents.</div>
+                <h2 class="fs-xl" data-pagefind-ignore="all">Walking distance to a subway station <span class="font-weight-normal">(<span id="year-subway-access">YEAR</span>)</span></h2>
+                <p>The percentage of population within a quarter-mile of a subway station entrance. When more people have convenient access to the transit system, they're more likely to use it. Subway access encourages active transportation, which improves the health of residents.</p>
+            </div>
+
+            <script>
+                
+                getYear(`2018-12-31`,`year-subway-access`)
+            </script>
+
+            <div class="modal-body">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col"  style="border-top:none!important"><span class="sr-only">Location:</span></th>
+                        <th scope="col"style="width:35%;"><span class="">Percent </span></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row"><span class="text-primary fs-xl float-right">Upper East Side <span class="ml-2 float-right">74.0</span></span></th>
+
+                        <td>
+                            <div id="n-subway-access" style="width:90%;" class="compBar neighb">
+                                &nbsp;
+                                <span class="sr-only">74.0</span>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl float-right">Manhattan <span class="ml-2 float-right">79</span></span></th>
+                        <td>
+                            <div id="b-subway-access" style="width:90%;" class="compBar nonNeighb">
+                                &nbsp;
+                                <span class="sr-only">79</span>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl float-right">New York City <span class="ml-2 float-right">48</span></span></th>
+                        <td>
+                            <div id="c-subway-access" style="width:90%;" class="compBar nonNeighb">
+                                &nbsp;
+                                <span class="sr-only">48</span>
+                            </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table><div class="data-note float-right"></div><script>
+                    renderComparisonChart( 74 ,  79 ,  48 ,'n-subway-access','b-subway-access','c-subway-access')
+                    
+                </script>
+
+            </div>
             <hr>
             <div class="modal-body">
-                <h2 data-pagefind-ignore="all">Neighborhood Comparison</h2>
-                <div class="row comparison">
-                    <div class="col-sm-4 text-primary">Upper East Side <span class="indicator-value">74.0</span></div>
-                    <div class="col-sm-4">Manhattan <span class="indicator-value">79</span></div>
-                    <div class="col-sm-4">New York City <span class="indicator-value">48</span></div>
-                </div>
-                <p><em>Percent </em></p><div class="data-note"></div></div>
-            <hr>
-            <div class="modal-body">
-                <h3 data-pagefind-ignore="all">Walking distance to a subway station, 2018</h3>
-                <p>  <em>Percent </em></p>
+                <span class="home-label font-weight-bold">Comparison</span>
+                <p class="fs-lg">For walking distance to a subway station, <strong class="text-primary">Upper East Side</strong> is <span class="better">better</span> than most neighborhoods.</p>
+                <p class="fs-sm">  <em>Percent </em></p>
                 <div style="width:100%; height:30vmin; z-index:10000;" id="summary-subDistP-4"></div>
 
             </div>
             <hr>
-            <div class="modal-body">
-
-                <h3 data-pagefind-ignore="all">Trends Over Time</h3>
-                <p><em>Percent </em></p>
-                <div style="width:100%; height:50vmin; z-index:10000;" id="trend-subDistP-4"></div>
-
+            <div class="modal-body" id="t-subway-access">
+                <span class="home-label font-weight-bold">Trends over time</span>
+                <p class="fs-sm"><em>Percent </em></p>
+                <div style="width:100%; height:50vmin; z-index:10000;display:block;" id="trend-subDistP-4"></div><div class="data-note mt-3">Some years of data may have unstable rates or estimates suppressed due to low numbers.</div></div>
+            
+            <div class="modal-body hide" id="ta-subway-access">
+                <span class="home-label font-weight-bold">Trends over time (not available)</span>
+                <p class="fs-sm"><em>There's only a single year of data available for this indicator, so we can't show a trend.</em></p>
             </div>
+            <script>
+                checkTrend('0','subway-access')
+            </script>
             <hr>
             <div class="modal-body">
+                <span class="home-label font-weight-bold">By neighborhood</span>
+                <p class="fs-sm"><em>Percent </em></p>
+                <div style="width:100%; height:60vmin; z-index:10000;" id="map-subDistP-4"></div><div class="data-note mt-3">Some neighborhoods may have estimates suppressed due to low numbers.</div></div>
 
-                <h3 data-pagefind-ignore="all">By Neighborhood</h3>
-                <p><em>Percent </em></p>
-                <div style="width:100%; height:60vmin; z-index:10000;" id="map-subDistP-4"></div>
-
+            <div class="modal-body">
+                <span class="home-label font-weight-bold">Source: </span><br> 
+                <span class="fs-sm">Metropolitan Transportation Authority ; United States Census</span>
             </div>
 
             
@@ -1987,6 +2936,24 @@
         </div>
     </div>
 </div>
+
+<style>
+    .compBar {
+        margin-top: 5px;
+        padding-left: 5px;
+        border-left: 3px solid darkgray;
+        max-height: 36px;
+
+    }
+
+    .nonNeighb {
+        background-color: #D8D8D8;
+    }
+
+    .neighb {
+        background-color: #00923E;
+    }
+</style>
 
 
 
@@ -2077,6 +3044,46 @@
     </script>
 
 
+<script>
+    function renderComparisonChart(n,b,c,nid,bid,cid) {
+        
+        var values = []
+
+        values.push(Number(n))
+        values.push(Number(b))
+        values.push(Number(c))
+
+        
+
+        console.log('values:')
+        console.log(values)
+
+        
+        var max = Math.max(...values)
+
+        
+        var denom = max * 1.2
+        var nWidth = n / denom
+        var bWidth = b / denom
+        var cWidth = c / denom
+
+        
+        document.getElementById(nid).style.width = 100 * nWidth + '%' 
+        document.getElementById(bid).style.width = 100 * bWidth + '%'
+        document.getElementById(cid).style.width = 100 * cWidth + '%'
+
+    }
+
+    function checkTrend(x,y) {
+        if (x == 0 ) {
+            document.getElementById('t-'+y).classList.add('hide');
+            document.getElementById('ta-'+y).classList.remove('hide');
+            console.log(y)
+        } else {}
+    }
+
+</script>
+
 
 
 
@@ -2120,6 +3127,17 @@
 
 
 <div class="modal fade report-modal" id="modal-treeCovP-5" tabindex="-1" role="dialog" aria-labelledby="indicatorModalLabel" aria-hidden="true">
+   <script>
+    
+     function getYear(x,y) {
+        var endDate = new Date(x) ;
+        console.log('end date:', endDate) ;
+        var year = endDate.getYear() + 1900
+        console.log(year)
+        document.getElementById(y).innerHTML = year
+    }
+   </script>
+   
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header text-left">
@@ -2128,40 +3146,91 @@
                     <span class="fas fa-times-circle"></span>
                 </button>
             </div>
+
             <div class="modal-body">
-                <h2 class="fs-xl" data-pagefind-ignore="all">Tree canopy cover, 2014</h2>
-                <p>In <strong>Upper East Side</strong>, tree canopy cover is <span class="middle">Middle</span> compared to the NYC average.</p>Tree canopy coverage is the percent of a neighborhood that is shaded by trees. Tree shade can lower a neighborhood's temperatures, can make it more comfortable and attractive to walk and stay active.</div>
+                <h2 class="fs-xl" data-pagefind-ignore="all">Tree canopy cover <span class="font-weight-normal">(<span id="year-tree-shade">YEAR</span>)</span></h2>
+                <p>Tree canopy coverage is the percent of a neighborhood that is shaded by trees. Tree shade can lower a neighborhood's temperatures, can make it more comfortable and attractive to walk and stay active.</p>
+            </div>
+
+            <script>
+                
+                getYear(`2014-12-31`,`year-tree-shade`)
+            </script>
+
+            <div class="modal-body">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col"  style="border-top:none!important"><span class="sr-only">Location:</span></th>
+                        <th scope="col"style="width:35%;"><span class="">Percent of land area</span></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row"><span class="text-primary fs-xl float-right">Upper East Side <span class="ml-2 float-right">17.0</span></span></th>
+
+                        <td>
+                            <div id="n-tree-shade" style="width:90%;" class="compBar neighb">
+                                &nbsp;
+                                <span class="sr-only">17.0</span>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl float-right">Manhattan <span class="ml-2 float-right">17.2</span></span></th>
+                        <td>
+                            <div id="b-tree-shade" style="width:90%;" class="compBar nonNeighb">
+                                &nbsp;
+                                <span class="sr-only">17.2</span>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl float-right">New York City <span class="ml-2 float-right">21.1</span></span></th>
+                        <td>
+                            <div id="c-tree-shade" style="width:90%;" class="compBar nonNeighb">
+                                &nbsp;
+                                <span class="sr-only">21.1</span>
+                            </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table><div class="data-note float-right"></div><script>
+                    renderComparisonChart( 17 ,  17.2 ,  21.1 ,'n-tree-shade','b-tree-shade','c-tree-shade')
+                    
+                </script>
+
+            </div>
             <hr>
             <div class="modal-body">
-                <h2 data-pagefind-ignore="all">Neighborhood Comparison</h2>
-                <div class="row comparison">
-                    <div class="col-sm-4 text-primary">Upper East Side <span class="indicator-value">17.0</span></div>
-                    <div class="col-sm-4">Manhattan <span class="indicator-value">17.2</span></div>
-                    <div class="col-sm-4">New York City <span class="indicator-value">21.1</span></div>
-                </div>
-                <p><em>Percent of land area</em></p><div class="data-note"></div></div>
-            <hr>
-            <div class="modal-body">
-                <h3 data-pagefind-ignore="all">Tree canopy cover, 2014</h3>
-                <p>  <em>Percent of land area</em></p>
+                <span class="home-label font-weight-bold">Comparison</span>
+                <p class="fs-lg">For tree canopy cover, <strong class="text-primary">Upper East Side</strong> is in the <span class="middle">middle</span> of NYC neighborhoods.</p>
+                <p class="fs-sm">  <em>Percent of land area</em></p>
                 <div style="width:100%; height:30vmin; z-index:10000;" id="summary-treeCovP-5"></div>
 
             </div>
             <hr>
-            <div class="modal-body">
-
-                <h3 data-pagefind-ignore="all">Trends Over Time</h3>
-                <p><em>Percent of land area</em></p>
-                <div style="width:100%; height:50vmin; z-index:10000;" id="trend-treeCovP-5"></div>
-
+            <div class="modal-body" id="t-tree-shade">
+                <span class="home-label font-weight-bold">Trends over time</span>
+                <p class="fs-sm"><em>Percent of land area</em></p>
+                <div style="width:100%; height:50vmin; z-index:10000;display:block;" id="trend-treeCovP-5"></div><div class="data-note mt-3">Some years of data may have unstable rates or estimates suppressed due to low numbers.</div></div>
+            
+            <div class="modal-body hide" id="ta-tree-shade">
+                <span class="home-label font-weight-bold">Trends over time (not available)</span>
+                <p class="fs-sm"><em>There's only a single year of data available for this indicator, so we can't show a trend.</em></p>
             </div>
+            <script>
+                checkTrend('0','tree-shade')
+            </script>
             <hr>
             <div class="modal-body">
+                <span class="home-label font-weight-bold">By neighborhood</span>
+                <p class="fs-sm"><em>Percent of land area</em></p>
+                <div style="width:100%; height:60vmin; z-index:10000;" id="map-treeCovP-5"></div><div class="data-note mt-3">Some neighborhoods may have estimates suppressed due to low numbers.</div></div>
 
-                <h3 data-pagefind-ignore="all">By Neighborhood</h3>
-                <p><em>Percent of land area</em></p>
-                <div style="width:100%; height:60vmin; z-index:10000;" id="map-treeCovP-5"></div>
-
+            <div class="modal-body">
+                <span class="home-label font-weight-bold">Source: </span><br> 
+                <span class="fs-sm">The Built Environment &amp; Health Project (BEH), Columbia University</span>
             </div>
 
             
@@ -2172,6 +3241,24 @@
         </div>
     </div>
 </div>
+
+<style>
+    .compBar {
+        margin-top: 5px;
+        padding-left: 5px;
+        border-left: 3px solid darkgray;
+        max-height: 36px;
+
+    }
+
+    .nonNeighb {
+        background-color: #D8D8D8;
+    }
+
+    .neighb {
+        background-color: #00923E;
+    }
+</style>
 
 
 
@@ -2298,7 +3385,7 @@
                                         
 
                                         <div class="row indicator-headings mb-2 print-only">
-                                            <div class="col-4 font-weight-bold">
+                                            <div class="col-4 font-weight-bold pl-3">
                                                 Topic
                                             </div>
                                             <div class="col-8">
@@ -2325,6 +3412,46 @@
                                         
                                         
                                         
+
+<script>
+    function renderComparisonChart(n,b,c,nid,bid,cid) {
+        
+        var values = []
+
+        values.push(Number(n))
+        values.push(Number(b))
+        values.push(Number(c))
+
+        
+
+        console.log('values:')
+        console.log(values)
+
+        
+        var max = Math.max(...values)
+
+        
+        var denom = max * 1.2
+        var nWidth = n / denom
+        var bWidth = b / denom
+        var cWidth = c / denom
+
+        
+        document.getElementById(nid).style.width = 100 * nWidth + '%' 
+        document.getElementById(bid).style.width = 100 * bWidth + '%'
+        document.getElementById(cid).style.width = 100 * cWidth + '%'
+
+    }
+
+    function checkTrend(x,y) {
+        if (x == 0 ) {
+            document.getElementById('t-'+y).classList.add('hide');
+            document.getElementById('ta-'+y).classList.remove('hide');
+            console.log(y)
+        } else {}
+    }
+
+</script>
 
 
 
@@ -2369,6 +3496,17 @@
 
 
 <div class="modal fade report-modal" id="modal-poveACSP-1" tabindex="-1" role="dialog" aria-labelledby="indicatorModalLabel" aria-hidden="true">
+   <script>
+    
+     function getYear(x,y) {
+        var endDate = new Date(x) ;
+        console.log('end date:', endDate) ;
+        var year = endDate.getYear() + 1900
+        console.log(year)
+        document.getElementById(y).innerHTML = year
+    }
+   </script>
+   
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header text-left">
@@ -2377,40 +3515,91 @@
                     <span class="fas fa-times-circle"></span>
                 </button>
             </div>
+
             <div class="modal-body">
-                <h2 class="fs-xl" data-pagefind-ignore="all">Neighborhood poverty, 2017-21</h2>
-                <p>In <strong>Upper East Side</strong>, neighborhood poverty is <span class="better">Better</span> compared to the NYC average.</p>The percent of households with incomes below the federal poverty level. Households without sufficient resources are often deprived of access to items such as health care and good quality housing that are needed to maintain good health.</div>
+                <h2 class="fs-xl" data-pagefind-ignore="all">Neighborhood poverty <span class="font-weight-normal">(<span id="year-poverty">YEAR</span>)</span></h2>
+                <p>The percent of households with incomes below the federal poverty level. Households without sufficient resources are often deprived of access to items such as health care and good quality housing that are needed to maintain good health.</p>
+            </div>
+
+            <script>
+                
+                getYear(`2021-12-31`,`year-poverty`)
+            </script>
+
+            <div class="modal-body">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col"  style="border-top:none!important"><span class="sr-only">Location:</span></th>
+                        <th scope="col"style="width:35%;"><span class="">Percent </span></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row"><span class="text-primary fs-xl float-right">Upper East Side <span class="ml-2 float-right">6.8</span></span></th>
+
+                        <td>
+                            <div id="n-poverty" style="width:90%;" class="compBar neighb">
+                                &nbsp;
+                                <span class="sr-only">6.8</span>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl float-right">Manhattan <span class="ml-2 float-right">15.6</span></span></th>
+                        <td>
+                            <div id="b-poverty" style="width:90%;" class="compBar nonNeighb">
+                                &nbsp;
+                                <span class="sr-only">15.6</span>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl float-right">New York City <span class="ml-2 float-right">17</span></span></th>
+                        <td>
+                            <div id="c-poverty" style="width:90%;" class="compBar nonNeighb">
+                                &nbsp;
+                                <span class="sr-only">17</span>
+                            </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table><div class="data-note float-right"></div><script>
+                    renderComparisonChart( 6.8 ,  15.6 ,  17 ,'n-poverty','b-poverty','c-poverty')
+                    
+                </script>
+
+            </div>
             <hr>
             <div class="modal-body">
-                <h2 data-pagefind-ignore="all">Neighborhood Comparison</h2>
-                <div class="row comparison">
-                    <div class="col-sm-4 text-primary">Upper East Side <span class="indicator-value">6.8</span></div>
-                    <div class="col-sm-4">Manhattan <span class="indicator-value">15.6</span></div>
-                    <div class="col-sm-4">New York City <span class="indicator-value">17</span></div>
-                </div>
-                <p><em>Percent </em></p><div class="data-note"></div></div>
-            <hr>
-            <div class="modal-body">
-                <h3 data-pagefind-ignore="all">Neighborhood poverty, 2017-21</h3>
-                <p>  <em>Percent </em></p>
+                <span class="home-label font-weight-bold">Comparison</span>
+                <p class="fs-lg">For neighborhood poverty, <strong class="text-primary">Upper East Side</strong> is <span class="better">better</span> than most neighborhoods.</p>
+                <p class="fs-sm">  <em>Percent </em></p>
                 <div style="width:100%; height:30vmin; z-index:10000;" id="summary-poveACSP-1"></div>
 
             </div>
             <hr>
-            <div class="modal-body">
-
-                <h3 data-pagefind-ignore="all">Trends Over Time</h3>
-                <p><em>Percent </em></p>
-                <div style="width:100%; height:50vmin; z-index:10000;" id="trend-poveACSP-1"></div>
-
+            <div class="modal-body" id="t-poverty">
+                <span class="home-label font-weight-bold">Trends over time</span>
+                <p class="fs-sm"><em>Percent </em></p>
+                <div style="width:100%; height:50vmin; z-index:10000;display:block;" id="trend-poveACSP-1"></div><div class="data-note mt-3">Some years of data may have unstable rates or estimates suppressed due to low numbers.</div></div>
+            
+            <div class="modal-body hide" id="ta-poverty">
+                <span class="home-label font-weight-bold">Trends over time (not available)</span>
+                <p class="fs-sm"><em>There's only a single year of data available for this indicator, so we can't show a trend.</em></p>
             </div>
+            <script>
+                checkTrend('1','poverty')
+            </script>
             <hr>
             <div class="modal-body">
+                <span class="home-label font-weight-bold">By neighborhood</span>
+                <p class="fs-sm"><em>Percent </em></p>
+                <div style="width:100%; height:60vmin; z-index:10000;" id="map-poveACSP-1"></div><div class="data-note mt-3">Some neighborhoods may have estimates suppressed due to low numbers.</div></div>
 
-                <h3 data-pagefind-ignore="all">By Neighborhood</h3>
-                <p><em>Percent </em></p>
-                <div style="width:100%; height:60vmin; z-index:10000;" id="map-poveACSP-1"></div>
-
+            <div class="modal-body">
+                <span class="home-label font-weight-bold">Source: </span><br> 
+                <span class="fs-sm">American Community Survey</span>
             </div>
 
             
@@ -2421,6 +3610,24 @@
         </div>
     </div>
 </div>
+
+<style>
+    .compBar {
+        margin-top: 5px;
+        padding-left: 5px;
+        border-left: 3px solid darkgray;
+        max-height: 36px;
+
+    }
+
+    .nonNeighb {
+        background-color: #D8D8D8;
+    }
+
+    .neighb {
+        background-color: #00923E;
+    }
+</style>
 
 
 
@@ -2511,6 +3718,46 @@
     </script>
 
 
+<script>
+    function renderComparisonChart(n,b,c,nid,bid,cid) {
+        
+        var values = []
+
+        values.push(Number(n))
+        values.push(Number(b))
+        values.push(Number(c))
+
+        
+
+        console.log('values:')
+        console.log(values)
+
+        
+        var max = Math.max(...values)
+
+        
+        var denom = max * 1.2
+        var nWidth = n / denom
+        var bWidth = b / denom
+        var cWidth = c / denom
+
+        
+        document.getElementById(nid).style.width = 100 * nWidth + '%' 
+        document.getElementById(bid).style.width = 100 * bWidth + '%'
+        document.getElementById(cid).style.width = 100 * cWidth + '%'
+
+    }
+
+    function checkTrend(x,y) {
+        if (x == 0 ) {
+            document.getElementById('t-'+y).classList.add('hide');
+            document.getElementById('ta-'+y).classList.remove('hide');
+            console.log(y)
+        } else {}
+    }
+
+</script>
+
 
 
 
@@ -2554,6 +3801,17 @@
 
 
 <div class="modal fade report-modal" id="modal-nabSafeP-2" tabindex="-1" role="dialog" aria-labelledby="indicatorModalLabel" aria-hidden="true">
+   <script>
+    
+     function getYear(x,y) {
+        var endDate = new Date(x) ;
+        console.log('end date:', endDate) ;
+        var year = endDate.getYear() + 1900
+        console.log(year)
+        document.getElementById(y).innerHTML = year
+    }
+   </script>
+   
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header text-left">
@@ -2562,40 +3820,91 @@
                     <span class="fas fa-times-circle"></span>
                 </button>
             </div>
+
             <div class="modal-body">
-                <h2 class="fs-xl" data-pagefind-ignore="all">Perception of neighborhood safety, 2016</h2>
-                <p>In <strong>Upper East Side</strong>, perception of neighborhood safety is <span class="better">Better</span> compared to the NYC average.</p>Adults reporting their neighborhood is safe from crime. Whether people perceive their neighborhood as safe can affect whether they will spend time outside, use parks, and use active and sustainable forms of transportation. It can also affect mental well-being.</div>
+                <h2 class="fs-xl" data-pagefind-ignore="all">Perception of neighborhood safety <span class="font-weight-normal">(<span id="year-neighborhood-safety">YEAR</span>)</span></h2>
+                <p>Adults reporting their neighborhood is safe from crime. Whether people perceive their neighborhood as safe can affect whether they will spend time outside, use parks, and use active and sustainable forms of transportation. It can also affect mental well-being.</p>
+            </div>
+
+            <script>
+                
+                getYear(`2016-12-31`,`year-neighborhood-safety`)
+            </script>
+
+            <div class="modal-body">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col"  style="border-top:none!important"><span class="sr-only">Location:</span></th>
+                        <th scope="col"style="width:35%;"><span class="">Percent </span></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row"><span class="text-primary fs-xl float-right">Upper East Side <span class="ml-2 float-right">97.6</span></span></th>
+
+                        <td>
+                            <div id="n-neighborhood-safety" style="width:90%;" class="compBar neighb">
+                                &nbsp;
+                                <span class="sr-only">97.6</span>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl float-right">Manhattan <span class="ml-2 float-right">89.8</span></span></th>
+                        <td>
+                            <div id="b-neighborhood-safety" style="width:90%;" class="compBar nonNeighb">
+                                &nbsp;
+                                <span class="sr-only">89.8</span>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl float-right">New York City <span class="ml-2 float-right">85.5</span></span></th>
+                        <td>
+                            <div id="c-neighborhood-safety" style="width:90%;" class="compBar nonNeighb">
+                                &nbsp;
+                                <span class="sr-only">85.5</span>
+                            </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table><div class="data-note float-right"></div><script>
+                    renderComparisonChart( 97.6 ,  89.8 ,  85.5 ,'n-neighborhood-safety','b-neighborhood-safety','c-neighborhood-safety')
+                    
+                </script>
+
+            </div>
             <hr>
             <div class="modal-body">
-                <h2 data-pagefind-ignore="all">Neighborhood Comparison</h2>
-                <div class="row comparison">
-                    <div class="col-sm-4 text-primary">Upper East Side <span class="indicator-value">97.6</span></div>
-                    <div class="col-sm-4">Manhattan <span class="indicator-value">89.8</span></div>
-                    <div class="col-sm-4">New York City <span class="indicator-value">85.5</span></div>
-                </div>
-                <p><em>Percent </em></p><div class="data-note"></div></div>
-            <hr>
-            <div class="modal-body">
-                <h3 data-pagefind-ignore="all">Perception of neighborhood safety, 2016</h3>
-                <p>  <em>Percent </em></p>
+                <span class="home-label font-weight-bold">Comparison</span>
+                <p class="fs-lg">For perception of neighborhood safety, <strong class="text-primary">Upper East Side</strong> is <span class="better">better</span> than most neighborhoods.</p>
+                <p class="fs-sm">  <em>Percent </em></p>
                 <div style="width:100%; height:30vmin; z-index:10000;" id="summary-nabSafeP-2"></div>
 
             </div>
             <hr>
-            <div class="modal-body">
-
-                <h3 data-pagefind-ignore="all">Trends Over Time</h3>
-                <p><em>Percent </em></p>
-                <div style="width:100%; height:50vmin; z-index:10000;" id="trend-nabSafeP-2"></div>
-
+            <div class="modal-body" id="t-neighborhood-safety">
+                <span class="home-label font-weight-bold">Trends over time</span>
+                <p class="fs-sm"><em>Percent </em></p>
+                <div style="width:100%; height:50vmin; z-index:10000;display:block;" id="trend-nabSafeP-2"></div><div class="data-note mt-3">Some years of data may have unstable rates or estimates suppressed due to low numbers.</div></div>
+            
+            <div class="modal-body hide" id="ta-neighborhood-safety">
+                <span class="home-label font-weight-bold">Trends over time (not available)</span>
+                <p class="fs-sm"><em>There's only a single year of data available for this indicator, so we can't show a trend.</em></p>
             </div>
+            <script>
+                checkTrend('1','neighborhood-safety')
+            </script>
             <hr>
             <div class="modal-body">
+                <span class="home-label font-weight-bold">By neighborhood</span>
+                <p class="fs-sm"><em>Percent </em></p>
+                <div style="width:100%; height:60vmin; z-index:10000;" id="map-nabSafeP-2"></div><div class="data-note mt-3">Some neighborhoods may have estimates suppressed due to low numbers.</div></div>
 
-                <h3 data-pagefind-ignore="all">By Neighborhood</h3>
-                <p><em>Percent </em></p>
-                <div style="width:100%; height:60vmin; z-index:10000;" id="map-nabSafeP-2"></div>
-
+            <div class="modal-body">
+                <span class="home-label font-weight-bold">Source: </span><br> 
+                <span class="fs-sm">New York City Community Health Survey (CHS)</span>
             </div>
 
             
@@ -2606,6 +3915,24 @@
         </div>
     </div>
 </div>
+
+<style>
+    .compBar {
+        margin-top: 5px;
+        padding-left: 5px;
+        border-left: 3px solid darkgray;
+        max-height: 36px;
+
+    }
+
+    .nonNeighb {
+        background-color: #D8D8D8;
+    }
+
+    .neighb {
+        background-color: #00923E;
+    }
+</style>
 
 
 
@@ -2696,6 +4023,46 @@
     </script>
 
 
+<script>
+    function renderComparisonChart(n,b,c,nid,bid,cid) {
+        
+        var values = []
+
+        values.push(Number(n))
+        values.push(Number(b))
+        values.push(Number(c))
+
+        
+
+        console.log('values:')
+        console.log(values)
+
+        
+        var max = Math.max(...values)
+
+        
+        var denom = max * 1.2
+        var nWidth = n / denom
+        var bWidth = b / denom
+        var cWidth = c / denom
+
+        
+        document.getElementById(nid).style.width = 100 * nWidth + '%' 
+        document.getElementById(bid).style.width = 100 * bWidth + '%'
+        document.getElementById(cid).style.width = 100 * cWidth + '%'
+
+    }
+
+    function checkTrend(x,y) {
+        if (x == 0 ) {
+            document.getElementById('t-'+y).classList.add('hide');
+            document.getElementById('ta-'+y).classList.remove('hide');
+            console.log(y)
+        } else {}
+    }
+
+</script>
+
 
 
 
@@ -2739,6 +4106,17 @@
 
 
 <div class="modal fade report-modal" id="modal-ratRepoP-3" tabindex="-1" role="dialog" aria-labelledby="indicatorModalLabel" aria-hidden="true">
+   <script>
+    
+     function getYear(x,y) {
+        var endDate = new Date(x) ;
+        console.log('end date:', endDate) ;
+        var year = endDate.getYear() + 1900
+        console.log(year)
+        document.getElementById(y).innerHTML = year
+    }
+   </script>
+   
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header text-left">
@@ -2747,40 +4125,91 @@
                     <span class="fas fa-times-circle"></span>
                 </button>
             </div>
+
             <div class="modal-body">
-                <h2 class="fs-xl" data-pagefind-ignore="all">Adults reporting mice or rats outside, 2010</h2>
-                <p>In <strong>Upper East Side</strong>, adults reporting mice or rats outside is <span class="middle">Middle</span> compared to the NYC average.</p>Mice and rats are a source of household allergens connected to developing or worsening asthma.</div>
+                <h2 class="fs-xl" data-pagefind-ignore="all">Adults reporting mice or rats outside <span class="font-weight-normal">(<span id="year-mice-or-rats-outside">YEAR</span>)</span></h2>
+                <p>Mice and rats are a source of household allergens connected to developing or worsening asthma.</p>
+            </div>
+
+            <script>
+                
+                getYear(`2010-12-31`,`year-mice-or-rats-outside`)
+            </script>
+
+            <div class="modal-body">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col"  style="border-top:none!important"><span class="sr-only">Location:</span></th>
+                        <th scope="col"style="width:35%;"><span class="">Percent </span></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row"><span class="text-primary fs-xl float-right">Upper East Side <span class="ml-2 float-right">27.8</span></span></th>
+
+                        <td>
+                            <div id="n-mice-or-rats-outside" style="width:90%;" class="compBar neighb">
+                                &nbsp;
+                                <span class="sr-only">27.8</span>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl float-right">Manhattan <span class="ml-2 float-right">42</span></span></th>
+                        <td>
+                            <div id="b-mice-or-rats-outside" style="width:90%;" class="compBar nonNeighb">
+                                &nbsp;
+                                <span class="sr-only">42</span>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl float-right">New York City <span class="ml-2 float-right">27.3</span></span></th>
+                        <td>
+                            <div id="c-mice-or-rats-outside" style="width:90%;" class="compBar nonNeighb">
+                                &nbsp;
+                                <span class="sr-only">27.3</span>
+                            </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table><div class="data-note float-right"></div><script>
+                    renderComparisonChart( 27.8 ,  42 ,  27.3 ,'n-mice-or-rats-outside','b-mice-or-rats-outside','c-mice-or-rats-outside')
+                    
+                </script>
+
+            </div>
             <hr>
             <div class="modal-body">
-                <h2 data-pagefind-ignore="all">Neighborhood Comparison</h2>
-                <div class="row comparison">
-                    <div class="col-sm-4 text-primary">Upper East Side <span class="indicator-value">27.8</span></div>
-                    <div class="col-sm-4">Manhattan <span class="indicator-value">42</span></div>
-                    <div class="col-sm-4">New York City <span class="indicator-value">27.3</span></div>
-                </div>
-                <p><em>Percent </em></p><div class="data-note"></div></div>
-            <hr>
-            <div class="modal-body">
-                <h3 data-pagefind-ignore="all">Adults reporting mice or rats outside, 2010</h3>
-                <p>  <em>Percent </em></p>
+                <span class="home-label font-weight-bold">Comparison</span>
+                <p class="fs-lg">For adults reporting mice or rats outside, <strong class="text-primary">Upper East Side</strong> is in the <span class="middle">middle</span> of NYC neighborhoods.</p>
+                <p class="fs-sm">  <em>Percent </em></p>
                 <div style="width:100%; height:30vmin; z-index:10000;" id="summary-ratRepoP-3"></div>
 
             </div>
             <hr>
-            <div class="modal-body">
-
-                <h3 data-pagefind-ignore="all">Trends Over Time</h3>
-                <p><em>Percent </em></p>
-                <div style="width:100%; height:50vmin; z-index:10000;" id="trend-ratRepoP-3"></div>
-
+            <div class="modal-body" id="t-mice-or-rats-outside">
+                <span class="home-label font-weight-bold">Trends over time</span>
+                <p class="fs-sm"><em>Percent </em></p>
+                <div style="width:100%; height:50vmin; z-index:10000;display:block;" id="trend-ratRepoP-3"></div><div class="data-note mt-3">Some years of data may have unstable rates or estimates suppressed due to low numbers.</div></div>
+            
+            <div class="modal-body hide" id="ta-mice-or-rats-outside">
+                <span class="home-label font-weight-bold">Trends over time (not available)</span>
+                <p class="fs-sm"><em>There's only a single year of data available for this indicator, so we can't show a trend.</em></p>
             </div>
+            <script>
+                checkTrend('1','mice-or-rats-outside')
+            </script>
             <hr>
             <div class="modal-body">
+                <span class="home-label font-weight-bold">By neighborhood</span>
+                <p class="fs-sm"><em>Percent </em></p>
+                <div style="width:100%; height:60vmin; z-index:10000;" id="map-ratRepoP-3"></div><div class="data-note mt-3">Some neighborhoods may have estimates suppressed due to low numbers.</div></div>
 
-                <h3 data-pagefind-ignore="all">By Neighborhood</h3>
-                <p><em>Percent </em></p>
-                <div style="width:100%; height:60vmin; z-index:10000;" id="map-ratRepoP-3"></div>
-
+            <div class="modal-body">
+                <span class="home-label font-weight-bold">Source: </span><br> 
+                <span class="fs-sm">New York City Community Health Survey (CHS)</span>
             </div>
 
             
@@ -2791,6 +4220,24 @@
         </div>
     </div>
 </div>
+
+<style>
+    .compBar {
+        margin-top: 5px;
+        padding-left: 5px;
+        border-left: 3px solid darkgray;
+        max-height: 36px;
+
+    }
+
+    .nonNeighb {
+        background-color: #D8D8D8;
+    }
+
+    .neighb {
+        background-color: #00923E;
+    }
+</style>
 
 
 
@@ -2917,7 +4364,7 @@
                                         
 
                                         <div class="row indicator-headings mb-2 print-only">
-                                            <div class="col-4 font-weight-bold">
+                                            <div class="col-4 font-weight-bold pl-3">
                                                 Topic
                                             </div>
                                             <div class="col-8">
@@ -2944,6 +4391,46 @@
                                         
                                         
                                         
+
+<script>
+    function renderComparisonChart(n,b,c,nid,bid,cid) {
+        
+        var values = []
+
+        values.push(Number(n))
+        values.push(Number(b))
+        values.push(Number(c))
+
+        
+
+        console.log('values:')
+        console.log(values)
+
+        
+        var max = Math.max(...values)
+
+        
+        var denom = max * 1.2
+        var nWidth = n / denom
+        var bWidth = b / denom
+        var cWidth = c / denom
+
+        
+        document.getElementById(nid).style.width = 100 * nWidth + '%' 
+        document.getElementById(bid).style.width = 100 * bWidth + '%'
+        document.getElementById(cid).style.width = 100 * cWidth + '%'
+
+    }
+
+    function checkTrend(x,y) {
+        if (x == 0 ) {
+            document.getElementById('t-'+y).classList.add('hide');
+            document.getElementById('ta-'+y).classList.remove('hide');
+            console.log(y)
+        } else {}
+    }
+
+</script>
 
 
 
@@ -2988,6 +4475,17 @@
 
 
 <div class="modal fade report-modal" id="modal-recBikeP-1" tabindex="-1" role="dialog" aria-labelledby="indicatorModalLabel" aria-hidden="true">
+   <script>
+    
+     function getYear(x,y) {
+        var endDate = new Date(x) ;
+        console.log('end date:', endDate) ;
+        var year = endDate.getYear() + 1900
+        console.log(year)
+        document.getElementById(y).innerHTML = year
+    }
+   </script>
+   
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header text-left">
@@ -2996,40 +4494,91 @@
                     <span class="fas fa-times-circle"></span>
                 </button>
             </div>
+
             <div class="modal-body">
-                <h2 class="fs-xl" data-pagefind-ignore="all">Monthly bicycle use, 2020</h2>
-                <p>In <strong>Upper East Side</strong>, monthly bicycle use is <span class="better">Better</span> compared to the NYC average.</p>Adults reporting having ridden a bicycle at least once a month in the past year.</div>
+                <h2 class="fs-xl" data-pagefind-ignore="all">Monthly bicycle use <span class="font-weight-normal">(<span id="year-regular-biking">YEAR</span>)</span></h2>
+                <p>Adults reporting having ridden a bicycle at least once a month in the past year.</p>
+            </div>
+
+            <script>
+                
+                getYear(`2020-12-31`,`year-regular-biking`)
+            </script>
+
+            <div class="modal-body">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col"  style="border-top:none!important"><span class="sr-only">Location:</span></th>
+                        <th scope="col"style="width:35%;"><span class="">Percent </span></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row"><span class="text-primary fs-xl float-right">Upper East Side <span class="ml-2 float-right">19.9</span></span></th>
+
+                        <td>
+                            <div id="n-regular-biking" style="width:90%;" class="compBar neighb">
+                                &nbsp;
+                                <span class="sr-only">19.9</span>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl float-right">Manhattan <span class="ml-2 float-right">21.6</span></span></th>
+                        <td>
+                            <div id="b-regular-biking" style="width:90%;" class="compBar nonNeighb">
+                                &nbsp;
+                                <span class="sr-only">21.6</span>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl float-right">New York City <span class="ml-2 float-right">16.4</span></span></th>
+                        <td>
+                            <div id="c-regular-biking" style="width:90%;" class="compBar nonNeighb">
+                                &nbsp;
+                                <span class="sr-only">16.4</span>
+                            </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table><div class="data-note float-right"></div><script>
+                    renderComparisonChart( 19.9 ,  21.6 ,  16.4 ,'n-regular-biking','b-regular-biking','c-regular-biking')
+                    
+                </script>
+
+            </div>
             <hr>
             <div class="modal-body">
-                <h2 data-pagefind-ignore="all">Neighborhood Comparison</h2>
-                <div class="row comparison">
-                    <div class="col-sm-4 text-primary">Upper East Side <span class="indicator-value">19.9</span></div>
-                    <div class="col-sm-4">Manhattan <span class="indicator-value">21.6</span></div>
-                    <div class="col-sm-4">New York City <span class="indicator-value">16.4</span></div>
-                </div>
-                <p><em>Percent </em></p><div class="data-note"></div></div>
-            <hr>
-            <div class="modal-body">
-                <h3 data-pagefind-ignore="all">Monthly bicycle use, 2020</h3>
-                <p>  <em>Percent </em></p>
+                <span class="home-label font-weight-bold">Comparison</span>
+                <p class="fs-lg">For monthly bicycle use, <strong class="text-primary">Upper East Side</strong> is <span class="better">better</span> than most neighborhoods.</p>
+                <p class="fs-sm">  <em>Percent </em></p>
                 <div style="width:100%; height:30vmin; z-index:10000;" id="summary-recBikeP-1"></div>
 
             </div>
             <hr>
-            <div class="modal-body">
-
-                <h3 data-pagefind-ignore="all">Trends Over Time</h3>
-                <p><em>Percent </em></p>
-                <div style="width:100%; height:50vmin; z-index:10000;" id="trend-recBikeP-1"></div>
-
+            <div class="modal-body" id="t-regular-biking">
+                <span class="home-label font-weight-bold">Trends over time</span>
+                <p class="fs-sm"><em>Percent </em></p>
+                <div style="width:100%; height:50vmin; z-index:10000;display:block;" id="trend-recBikeP-1"></div><div class="data-note mt-3">Some years of data may have unstable rates or estimates suppressed due to low numbers.</div></div>
+            
+            <div class="modal-body hide" id="ta-regular-biking">
+                <span class="home-label font-weight-bold">Trends over time (not available)</span>
+                <p class="fs-sm"><em>There's only a single year of data available for this indicator, so we can't show a trend.</em></p>
             </div>
+            <script>
+                checkTrend('1','regular-biking')
+            </script>
             <hr>
             <div class="modal-body">
+                <span class="home-label font-weight-bold">By neighborhood</span>
+                <p class="fs-sm"><em>Percent </em></p>
+                <div style="width:100%; height:60vmin; z-index:10000;" id="map-recBikeP-1"></div><div class="data-note mt-3">Some neighborhoods may have estimates suppressed due to low numbers.</div></div>
 
-                <h3 data-pagefind-ignore="all">By Neighborhood</h3>
-                <p><em>Percent </em></p>
-                <div style="width:100%; height:60vmin; z-index:10000;" id="map-recBikeP-1"></div>
-
+            <div class="modal-body">
+                <span class="home-label font-weight-bold">Source: </span><br> 
+                <span class="fs-sm">New York City Community Health Survey (CHS)</span>
             </div>
 
             
@@ -3040,6 +4589,24 @@
         </div>
     </div>
 </div>
+
+<style>
+    .compBar {
+        margin-top: 5px;
+        padding-left: 5px;
+        border-left: 3px solid darkgray;
+        max-height: 36px;
+
+    }
+
+    .nonNeighb {
+        background-color: #D8D8D8;
+    }
+
+    .neighb {
+        background-color: #00923E;
+    }
+</style>
 
 
 
@@ -3130,6 +4697,46 @@
     </script>
 
 
+<script>
+    function renderComparisonChart(n,b,c,nid,bid,cid) {
+        
+        var values = []
+
+        values.push(Number(n))
+        values.push(Number(b))
+        values.push(Number(c))
+
+        
+
+        console.log('values:')
+        console.log(values)
+
+        
+        var max = Math.max(...values)
+
+        
+        var denom = max * 1.2
+        var nWidth = n / denom
+        var bWidth = b / denom
+        var cWidth = c / denom
+
+        
+        document.getElementById(nid).style.width = 100 * nWidth + '%' 
+        document.getElementById(bid).style.width = 100 * bWidth + '%'
+        document.getElementById(cid).style.width = 100 * cWidth + '%'
+
+    }
+
+    function checkTrend(x,y) {
+        if (x == 0 ) {
+            document.getElementById('t-'+y).classList.add('hide');
+            document.getElementById('ta-'+y).classList.remove('hide');
+            console.log(y)
+        } else {}
+    }
+
+</script>
+
 
 
 
@@ -3173,6 +4780,17 @@
 
 
 <div class="modal fade report-modal" id="modal-recExerP-2" tabindex="-1" role="dialog" aria-labelledby="indicatorModalLabel" aria-hidden="true">
+   <script>
+    
+     function getYear(x,y) {
+        var endDate = new Date(x) ;
+        console.log('end date:', endDate) ;
+        var year = endDate.getYear() + 1900
+        console.log(year)
+        document.getElementById(y).innerHTML = year
+    }
+   </script>
+   
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header text-left">
@@ -3181,40 +4799,91 @@
                     <span class="fas fa-times-circle"></span>
                 </button>
             </div>
+
             <div class="modal-body">
-                <h2 class="fs-xl" data-pagefind-ignore="all">Recent exercise, 2020</h2>
-                <p>In <strong>Upper East Side</strong>, recent exercise is <span class="better">Better</span> compared to the NYC average.</p>Adults reporting exercise in the past 30 days (from when they were surveyed). Regular exercise is a key way to stay healthy.</div>
+                <h2 class="fs-xl" data-pagefind-ignore="all">Recent exercise <span class="font-weight-normal">(<span id="year-exercise">YEAR</span>)</span></h2>
+                <p>Adults reporting exercise in the past 30 days (from when they were surveyed). Regular exercise is a key way to stay healthy.</p>
+            </div>
+
+            <script>
+                
+                getYear(`2020-12-31`,`year-exercise`)
+            </script>
+
+            <div class="modal-body">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col"  style="border-top:none!important"><span class="sr-only">Location:</span></th>
+                        <th scope="col"style="width:35%;"><span class="">Percent </span></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row"><span class="text-primary fs-xl float-right">Upper East Side <span class="ml-2 float-right">85.4</span></span></th>
+
+                        <td>
+                            <div id="n-exercise" style="width:90%;" class="compBar neighb">
+                                &nbsp;
+                                <span class="sr-only">85.4</span>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl float-right">Manhattan <span class="ml-2 float-right">79.1</span></span></th>
+                        <td>
+                            <div id="b-exercise" style="width:90%;" class="compBar nonNeighb">
+                                &nbsp;
+                                <span class="sr-only">79.1</span>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl float-right">New York City <span class="ml-2 float-right">71.5</span></span></th>
+                        <td>
+                            <div id="c-exercise" style="width:90%;" class="compBar nonNeighb">
+                                &nbsp;
+                                <span class="sr-only">71.5</span>
+                            </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table><div class="data-note float-right"></div><script>
+                    renderComparisonChart( 85.4 ,  79.1 ,  71.5 ,'n-exercise','b-exercise','c-exercise')
+                    
+                </script>
+
+            </div>
             <hr>
             <div class="modal-body">
-                <h2 data-pagefind-ignore="all">Neighborhood Comparison</h2>
-                <div class="row comparison">
-                    <div class="col-sm-4 text-primary">Upper East Side <span class="indicator-value">85.4</span></div>
-                    <div class="col-sm-4">Manhattan <span class="indicator-value">79.1</span></div>
-                    <div class="col-sm-4">New York City <span class="indicator-value">71.5</span></div>
-                </div>
-                <p><em>Percent </em></p><div class="data-note"></div></div>
-            <hr>
-            <div class="modal-body">
-                <h3 data-pagefind-ignore="all">Recent exercise, 2020</h3>
-                <p>  <em>Percent </em></p>
+                <span class="home-label font-weight-bold">Comparison</span>
+                <p class="fs-lg">For recent exercise, <strong class="text-primary">Upper East Side</strong> is <span class="better">better</span> than most neighborhoods.</p>
+                <p class="fs-sm">  <em>Percent </em></p>
                 <div style="width:100%; height:30vmin; z-index:10000;" id="summary-recExerP-2"></div>
 
             </div>
             <hr>
-            <div class="modal-body">
-
-                <h3 data-pagefind-ignore="all">Trends Over Time</h3>
-                <p><em>Percent </em></p>
-                <div style="width:100%; height:50vmin; z-index:10000;" id="trend-recExerP-2"></div>
-
+            <div class="modal-body" id="t-exercise">
+                <span class="home-label font-weight-bold">Trends over time</span>
+                <p class="fs-sm"><em>Percent </em></p>
+                <div style="width:100%; height:50vmin; z-index:10000;display:block;" id="trend-recExerP-2"></div><div class="data-note mt-3">Some years of data may have unstable rates or estimates suppressed due to low numbers.</div></div>
+            
+            <div class="modal-body hide" id="ta-exercise">
+                <span class="home-label font-weight-bold">Trends over time (not available)</span>
+                <p class="fs-sm"><em>There's only a single year of data available for this indicator, so we can't show a trend.</em></p>
             </div>
+            <script>
+                checkTrend('1','exercise')
+            </script>
             <hr>
             <div class="modal-body">
+                <span class="home-label font-weight-bold">By neighborhood</span>
+                <p class="fs-sm"><em>Percent </em></p>
+                <div style="width:100%; height:60vmin; z-index:10000;" id="map-recExerP-2"></div><div class="data-note mt-3">Some neighborhoods may have estimates suppressed due to low numbers.</div></div>
 
-                <h3 data-pagefind-ignore="all">By Neighborhood</h3>
-                <p><em>Percent </em></p>
-                <div style="width:100%; height:60vmin; z-index:10000;" id="map-recExerP-2"></div>
-
+            <div class="modal-body">
+                <span class="home-label font-weight-bold">Source: </span><br> 
+                <span class="fs-sm">New York City Community Health Survey (CHS)</span>
             </div>
 
             
@@ -3225,6 +4894,24 @@
         </div>
     </div>
 </div>
+
+<style>
+    .compBar {
+        margin-top: 5px;
+        padding-left: 5px;
+        border-left: 3px solid darkgray;
+        max-height: 36px;
+
+    }
+
+    .nonNeighb {
+        background-color: #D8D8D8;
+    }
+
+    .neighb {
+        background-color: #00923E;
+    }
+</style>
 
 
 
@@ -3326,7 +5013,7 @@
                 </div>
     
                 
-                <div class="col-md-3 h-100">
+                <div class="col-md-3 h-100 d-print-none">
                     <div class="border mb-2 nr-map-highlight" style="height: 100%">
                         <div class="p-1">
                             <p><strong style="color:#00923E">Upper East Side</strong> includes ZIP Codes: 
@@ -3904,7 +5591,7 @@ aria-hidden="true" data-pagefind-ignore="all">
                             result.meta.title = result.meta.title
                                 .replace(/&#(\d+);/g, ((match, dec) => `${String.fromCharCode(dec)}`))
                                 .replaceAll("&amp;", "&");
-                            
+
                             
 
                             result.sub_results.forEach(sub => {
@@ -3962,7 +5649,7 @@ aria-hidden="true" data-pagefind-ignore="all">
             </script>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
         </div>
       </div>
     </div>
