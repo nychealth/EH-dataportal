@@ -18,7 +18,6 @@ photocredit: "Mayoral Photography Office"
         <nav class="mx-xl-n2 pt-4 py-xl-0" role="navigation" id="myScrollspy">
             <a class="sr-only sr-only-focusable skip-menu" href="#primary-content">Skip Nav</a>
             <div class="list-group list-group-flush border-bottom fs-rg" role="list">
-                <div class="px-2 py-2 text-center border-bottom"><strong>Air quality snapshots: 10 years of NYC air quality monitoring</strong></div>
                 <a href="#section1" class="list-group-item">
                     A traffic health threat: air toxics
                 </a>
