@@ -92,20 +92,20 @@ var content = [
     {
         "id": 4,
         "text": "The best way to stay safe in hot weather is with air conditioning. Does your indoor environment have air conditioning?",
-        "prompt": "On a hot day, the inside of an apartment without AC can be up to 10 degrees hotter than outside — and can stay hotter for days after it cools down outside. Using AC at home is the best way to stay safe when it's hot outside..", 
+        "prompt": "On a hot day, the inside of an apartment without air conditioning can be up to 10 degrees hotter than outside — and can stay hotter for days after it cools down outside. Using air conditioning at home is the best way to stay safe when it's hot outside.", 
         "image": "AC.svg",
         "options": [
             {
                 "optionID": 1,
                 "copy": "Yes",
-                "message": "Great! You have an air conditioner. Different types of air conditioning are able to provide varying levels of cooling and air filtration during hot weather. BTU is a measure of how powerful your air conditioner is. Look for a small label. <ul><li>A 5,000 BTU air conditioner can effectively cool a small bedroom or a room that is 100 to 150 square feet.<li> Every additional 100 square feet requires 1,000 more BTUs.</ul> If your air conditioner is not powerful enough to cool several rooms, confining the AC to one room can be a way to ensure part of your space stays cool.",
+                "message": "Great! You have an air conditioner. Different types of air conditioning are able to provide varying levels of cooling and air filtration during hot weather. BTU is a measure of how powerful your air conditioner is. Look for a small label. <ul><li>A 5,000 BTU air conditioner can effectively cool a small bedroom or a room that is 100 to 150 square feet.<li> Every additional 100 square feet requires 1,000 more BTUs.</ul> If your air conditioner is not powerful enough to cool several rooms, confining the air conditioner to one room can be a way to ensure part of your space stays cool.",
                 "setVariable": "ac('Yes')",
                 "goTo": 5
             },
             {   
                 "optionID": 2,
                 "copy": "No",
-                "message": "When it's hot AC is the best way to stay cool, but let's find other ways you can stay cool. Skip to the next question.",
+                "message": "When it's hot air conditioner is the best way to stay cool, but let's find other ways you can stay cool. Skip to the next question.",
                 "setVariable": "ac('No')",
                 "goTo": 6
             }
@@ -119,7 +119,7 @@ var content = [
 
     {
         "id": 5,
-        "text": "Do you limit your use of AC because of the cost?",
+        "text": "Do you limit your use of air conditioning because of the cost?",
         "prompt": "If you limit your use of AC, the most important times to still use it are when the outdoor temperature is greater than 80 degrees and at night when apartments are still hot from earlier in the day. Setting your unit to 78 degrees or 'low cool' is a way to reduce energy consumption and remain safe from the heat.", 
         "image": "Piggy_bank.svg",
         "options": [

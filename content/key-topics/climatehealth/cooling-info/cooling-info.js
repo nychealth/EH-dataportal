@@ -276,7 +276,7 @@ function runFinal() {
 
   // Message 0 - default / look at resources.
   if (currentTemp < 70) {
-  msg = "<p><strong> Today's temperature is not too warm. </strong> Before it gets too hot find out if your friends, family members, or neighbors have AC, and make sure you know of nearby public places to go to stay cool. It could save someone's life.</p>"
+  msg = "<p><strong> Today's temperature is not too warm. </strong> Before it gets too hot find out if your friends, family members, or neighbors have AC, and make sure you know of nearby public places to go to stay cool to recommend to others who don't have AC. It could save someone's life.</p>"
     finalMessageText.innerHTML+= msg + '<hr class="my-2">'
   }
 
