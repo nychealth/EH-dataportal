@@ -405,7 +405,7 @@ function runFinal() {
 
   // uses EME
   if (usesEME === 'Yes') {
-    msg = '<p><strong>Like 7.6% of New York City households, you use electric medical equipment, (like a wheelchair, nebulizer, respirator, or dialysis machine). </strong> You can register these with your utility provider so they can contact you during an emergency, like a power outage during a heatwave. You will need a medical certificate. <p>ConEd customers Call 1-877-582-6633 or use “MyAccount” online. PSEG customers can call Call 1-800-490-0025. </p>'
+    msg = '<p><strong>Like 7.6% of New York City households, you use electric medical equipment, (like a wheelchair, nebulizer, respirator, or dialysis machine). </strong> You can register these with your utility provider so they can contact you during an emergency, like a power outage during a heatwave. You will need a medical certificate. <p>ConEd customers call 1-877-582-6633 or use “MyAccount” online. PSEG customers can call Call 1-800-490-0025. </p>'
     finalMessageText.innerHTML += msg + '<hr class="my-2">'
   }
 

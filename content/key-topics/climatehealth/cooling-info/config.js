@@ -92,7 +92,7 @@ var content = [
     {
         "id": 4,
         "text": "The best way to stay safe in hot weather is with air conditioning. Does your indoor environment have air conditioning?",
-        "prompt": "On a hot day, the inside of an apartment without AC can be up to 10 degrees hotter than outside — and can stay hotter for days. Using AC at home is the best way to stay safe when it's hot outside..", 
+        "prompt": "On a hot day, the inside of an apartment without AC can be up to 10 degrees hotter than outside — and can stay hotter for days after it cools down outside. Using AC at home is the best way to stay safe when it's hot outside..", 
         "image": "AC.svg",
         "options": [
             {
@@ -126,7 +126,7 @@ var content = [
             {
                 "optionID": 1,
                 "copy": "Yes",
-                "message": "There are resources such as <a href='https://www.nyc.gov/site/hra/help/energy-assistance.page'>HEAP</a> and <a href='https://www.coned.com/en/accounts-billing/payment-plans-assistance/help-paying-your-bill'>CON ED's Energy Affordability Program</a> that can help make air conditioning your home more affordable.",
+                "message": "Find out if you are eligible for <a href='https://www.nyc.gov/site/hra/help/energy-assistance.page'>HEAP</a> and <a href='https://www.coned.com/en/accounts-billing/payment-plans-assistance/help-paying-your-bill'>CON ED's Energy Affordability Program</a>, which can help make air conditioning your home more affordable.",
                 "setVariable": "limitAC('Yes')",
                 "goTo": 6
             },
@@ -147,7 +147,7 @@ var content = [
     {
         "id": 6,
         "text": "Do you have a fan?",
-        "prompt": "Fans can help cool you down by moving air around to increase sweat evaporation which can be especially helpful in a humid environment or to pull in cooler air from outside. However, fans do not cool the air so the air currents flowing over the body must be cooler than your body temperature to cool you down. When it’s hot, a fan alone is not enough.", 
+        "prompt": "Fans can help cool you down by moving air around to increase sweat evaporation, which can be especially helpful in a humid environment, or to pull in cooler air from outside. However, fans do not cool the air so the air currents flowing over the body must be cooler than your body temperature to cool you down. When it’s hot, a fan alone is not enough.", 
         "image": "Fan.svg",
         "options": [
             {

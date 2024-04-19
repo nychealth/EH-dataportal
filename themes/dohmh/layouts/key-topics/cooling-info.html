@@ -21,17 +21,29 @@
           <h1>{{ .Title }}</h1>
         </div>
 
-        <div class="col-md-8">
+        <div class="col-md-7">
           <p>{{ .Content }}</p>
         </div>
 
-        <div class="col-md-4">
-          <div class="border fs-sm p-1 mt-2">
-            Learn more about heat, air quality, and how to <a href="https://www.nyc.gov/site/doh/health/emergency-preparedness/emergencies-extreme-weather-heat.page#:~:text=Signs%20of%20Heat%20Illness&text=Heat%20stroke%20occurs%20when%20the,Confusion%2C%20hallucinations%20and%20disorientation"> prevent weather-related illness</a>.
-              <ul>
-              <li> <a href="../../climatehealth/hvi/"> Learn more about heat and the built environment in your neighborhood. </a></li>
-              <li> <a href="../../airquality/realtime/"> Learn more about air quality in your neighborhood.</a> </li>
-              </ul>
+        <div class="col-md-5">
+          <div class="border p-1 mt-2">
+            <ul></ul>
+              <li>Learn more about heat, air quality, and how to
+                <a href="https://www.nyc.gov/site/doh/health/emergency-preparedness/emergencies-extreme-weather-heat.page#:~:text=Signs%20of%20Heat%20Illness&text=Heat%20stroke%20occurs%20when%20the,Confusion%2C%20hallucinations%20and%20disorientation">prevent weather-related illness.
+                </a>
+              </li>
+              <li>
+                <a href="../../climatehealth/hvi/">
+                  Learn more about heat and the built environment in your
+                  neighborhood.
+                </a>
+              </li>
+              <li>
+                <a href="../../airquality/realtime/">
+                  Learn more about air quality in your neighborhood.</a
+                >
+              </li>
+            </ul>
           </div>
         </div>
       </div>
@@ -40,7 +52,7 @@
 
   <div class="row no-gutters">
     <div class="col-12">
-      <img src="img/hero_6.svg" style="width:100%;">
+      <img src="img/hero_6.svg" style="width: 100%" />
     </div>
   </div>
 
@@ -79,12 +91,15 @@
             </div>
 
             <p>
-              <i class="fa-solid fa-mask-face mr-1 fs-lg" aria-hidden="true"></i>More sensitive to air pollution:
+              <i class="fa-solid fa-mask-face mr-1 fs-lg" aria-hidden="true"></i
+              >More sensitive to air pollution:
               <span id="sensitiveGroup" class="float-right"></span>
-             
             </p>
             <p>
-              <i class="fas fa-hand-holding-medical mr-1 fs-lg" aria-hidden="true"></i>
+              <i
+                class="fas fa-hand-holding-medical mr-1 fs-lg"
+                aria-hidden="true"
+              ></i>
               Uses electrical medical equipment:
               <span id="usesEME" class="float-right"></span>
             </p>
@@ -93,15 +108,23 @@
               Has an animal: <span id="hasAnimal" class="float-right"></span>
             </p>
             <p>
-              <i class="fas fa-temperature-low mr-1 fs-lg" aria-hidden="true"></i>
-              Has AC: <span id="hasAC" class="float-right"></span></p>
+              <i
+                class="fas fa-temperature-low mr-1 fs-lg"
+                aria-hidden="true"
+              ></i>
+              Has AC: <span id="hasAC" class="float-right"></span>
+            </p>
             <p>
-              <i class="fas fa-money-bill-wave mr-1 fs-lg" aria-hidden="true"></i>
+              <i
+                class="fas fa-money-bill-wave mr-1 fs-lg"
+                aria-hidden="true"
+              ></i>
               Limits AC use: <span id="limitsAC" class="float-right"></span>
             </p>
             <p>
               <i class="fas fa-fan mr-1 fs-lg" aria-hidden="true"></i>
-              Has a fan: <span id="hasFan" class="float-right"></span></p>
+              Has a fan: <span id="hasFan" class="float-right"></span>
+            </p>
           </div>
 
           <!-- Recommendations pane -->
@@ -117,7 +140,7 @@
         <strong
           ><i class="fas fa-exclamation-triangle mr-1" aria-hidden="true"></i
           >Before we get started:</strong
-        >
+        ><br>
         if you are feeling very hot, with nausea or vomiting, fast pulse,
         weakness or dizziness, you may need medical help.
         <a href="https://www.cdc.gov/disasters/extremeheat/warning.html"
@@ -152,10 +175,7 @@
           <!-- Final messages get printed here -->
         </div>
 
-        <button
-          class="btn btn-sm btn-outline-primary"
-          onclick="setUpTest()"
-        >
+        <button class="btn btn-sm btn-outline-primary" onclick="setUpTest()">
           See other recommendations?
         </button>
       </div>
