@@ -7,7 +7,7 @@
   <body>
 
     <!--
-      For data stories: 
+      For data stories:
         - Regular Pages (individual data stories) to have header-ds.html
         - DS landing page & all others to have header.html
     -->
@@ -27,19 +27,18 @@
     <main id="skip-header-target" role="main">
     <div class="row mt-4">
         <div class="col-8 mx-auto">
-            <h1 class="mb-2">More content about <span style="color: #00923E">{{ .Title }}</span>:</h1>
+            <h1 class="mb-2">More content about <span style="color: #008939">{{ .Title }}</span>:</h1>
 
                 {{- range .Paginator.Pages -}}
                 <div class="card content-card mb-3 px-0 mx-0 fs-sm">
                     <div class="card-content">
                         <div class="card-body">
                             <h4 class="card-title">
-                                <a href="{{ .RelPermalink }}" class="text-primary fs-rg mb-1">{{ .Title }}</a>
-                            </h4>
-                                <p class="card-text mt-0">{{ htmlUnescape .Content | plainify | truncate 150 }}</p>
+                                <a href="{{ .RelPermalink }}" class="text-primary fs-rg mb-1">{{ .Title }}</a></h4>
+                                <p class="card-text mt-0">{{ .Content | plainify | truncate 150 | htmlUnescape }}</p>
                         </div>
                     </div>
-                </div>                
+                </div>
                 {{- end -}}
 
                 <div class="row my-3">

@@ -1,10 +1,11 @@
 ---
 title: "The Environment and Health Data Portal: Home page"
 draft: false
-seo_title: "Explore data on how environments shape health in New York City's neighborhoods."
-seo_description: "A project by the NYC Health Department."
-featured_title: "Keep yourself cool"
-featured_text: "Tips on staying cool in hot weather or bad air quality"
-featured_link: "key-topics/climatehealth/cooling-info/"
-featured_image: realtime-screenshot.png
+seo_title: "NYC Environment and Health Data Portal."
+seo_description: "Data on how environments shape health in NYC."
+description: "Data on how environments shape health in NYC."
+featured_title: "Data on rat inspections"
+featured_text: "Get data on NYC's rat mitigation zones."
+featured_link: "key-topics/pests/rat-mitigation-zones/"
+featured_image: rmz.png
 ---
