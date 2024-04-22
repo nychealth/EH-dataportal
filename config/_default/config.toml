@@ -101,7 +101,7 @@ ignoreFiles = ['Simplified.Chinese', 'Spanish']
   [[menu.main]]
     identifier = "07"
     name = "Data Features"
-    pre = "<span class='key-topics'><i class='fas fa-chart-bar' aria-hidden='true'></i></span>"
+    pre = "<span class='df-accent'><i class='fas fa-chart-bar' aria-hidden='true'></i></span>"
     url = "/data-features/"
     weight = -95
 
