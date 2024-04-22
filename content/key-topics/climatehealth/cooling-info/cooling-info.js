@@ -303,7 +303,7 @@ function runFinal() {
   // Message 1 - AQI / wear a mask
   if (aqi > 3 || 
     (aqi > 2 && sensitiveGroup === 'Yes')) {
-    msg = '<p><strong>Because of the air quality today</strong>, consider staying indoors as much as possible to reduce health risks. If you need to open a window to stay cool, that is fine too — staying cool is always the most important. If you must be outdoors, limit exercise and strenuous activity. Consider wearing a mask outside. <a href="https://www.nyc.gov/site/doh/health/health-topics/air-quality-fire-smoke-and-effect-on-air-quality.page> Read more about when to use a mask.</a></p>'
+    msg = '<p><strong>Because of the air quality today</strong>, consider staying indoors as much as possible to reduce health risks. If you need to open a window to stay cool, that is fine too — staying cool is always the most important. If you must be outdoors, limit exercise and strenuous activity. Consider wearing a mask outside or inside if you open the windows. <a href="https://www.nyc.gov/site/doh/health/health-topics/air-quality-fire-smoke-and-effect-on-air-quality.page> Read more about when to use a mask.</a></p>'
     finalMessageText.innerHTML += msg + '<hr class="my-2">'
   }
 
@@ -336,7 +336,7 @@ function runFinal() {
     ( hasAC === 'Yes') &&
     ((sensitiveGroup === 'Yes' && aqi > 2) || (aqi > 3))
     ) {
-      msg = "<p><strong>Because of the bad air quality</strong>, you may want to take some precautions. Air purifiers with filters can help remove some air pollution from the air. Air cleaners that kill viruses or bacteria using ultraviolet (UV) light will not remove air pollution from the air. Some air cleaners release ozone gas, which is bad for your lungs and an asthma trigger. Don't use these under any conditions.</p> <p> Closing the vent on your AC or setting to re-circulate will help you stay cool while preventing your AC unit from blowing polluted air inside. Remember to change the filter every month during the summer and after an air quality emergency.</p> <p> If you can't find a way to close the vent or set the AC to re-circulate, you should still use the AC regardless of the air quality outside. Remember that when it’s this hot outside, being overheated can make you very sick much more quickly than breathing in polluted air. Staying cool is the priority. <a href='https://www.nyc.gov/site/doh/health/health-topics/indoor-air-quality.page'> Learn more about indoor air quality.</a></p>"
+      msg = "<p><strong>Because of the bad air quality</strong>, you may want to take some precautions. Air purifiers with filters can help remove some air pollution from the air. Air cleaners that kill viruses or bacteria using ultraviolet (UV) light will not remove air pollution from the air. Some air cleaners release ozone gas, which is bad for your lungs and an asthma trigger. Don't use these under any conditions.</p> <p> Closing the vent on your AC or setting it to re-circulate will help you stay cool while preventing your AC unit from blowing polluted air inside. Remember to change the filter every month during the summer and after any air quality emergency.</p> <p> If you can't find a way to close the vent or set the AC to re-circulate, you should still use the AC regardless of the air quality outside. Remember that when it’s this hot outside, being overheated can make you very sick much more quickly than breathing in polluted air. Staying cool is the priority. <a href='https://www.nyc.gov/site/doh/health/health-topics/indoor-air-quality.page'> Learn more about indoor air quality.</a></p>"
       finalMessageText.innerHTML += msg + '<hr class="my-2">'
     }
 
@@ -363,7 +363,7 @@ function runFinal() {
 
   // no AC
   if (hasAC === 'No') {
-    msg = `<p>About 9% of NYC households are like you, and don't have an AC - but it's the best way to stay safe when it's hot. <a href="https://portal.311.nyc.gov/article/?kanumber=KA-02529"> HEAP </a> and <a href="https://www.coned.com/en/accounts-billing/payment-plans-assistance/help-paying-your-bill"> Con Ed's Energy Affordability Program </a> can help make air conditioning your home more affordable.</p>`
+    msg = `<p>About 9% of NYC households are like you, and don't have an AC - but it's the best way to stay safe when it's hot. Find out if you're eligible for <a href="https://portal.311.nyc.gov/article/?kanumber=KA-02529"> HEAP </a> and <a href="https://www.coned.com/en/accounts-billing/payment-plans-assistance/help-paying-your-bill"> Con Ed's Energy Affordability Program, </a> which can help make air conditioning your home more affordable.</p>`
     finalMessageText.innerHTML += msg + '<hr class="my-2">'
   }
 
@@ -377,19 +377,19 @@ function runFinal() {
 
   // Message 6 - hot and no AC
   if ( currentTemp > 85 && hasAC === 'No') {
-    msg = "<p><strong>Air conditioning is the best way to stay safe when it’s this hot</strong>. Since you don't have AC, visit a cool public place, or friend or family member who has AC. When you are at home, continue to be mindful of the heat and make sure to drink enough water. </p>"
+    msg = "<p><strong>Air conditioning is the best way to stay safe when it’s this hot</strong>. Since you don't have AC, visit a cool public place, or friend or family member who has AC. Taking a cool shower can also help temporarily. hen you are at home, continue to be mindful of the heat and make sure to drink enough water. </p>"
     finalMessageText.innerHTML += msg + '<hr class="my-2">'
   }
 
   // Limits AC, not warm
   if (limitsAC === 'Yes' && currentTemp <= 78) {
-    msg = "<p><strong>You have an AC, but sometimes limit use because of the cost</strong>. This is common. Before it gets hot, get help with your home cooling. <a href='https://portal.311.nyc.gov/article/?kanumber=KA-02529'> HEAP </a> and <a href='https://www.coned.com/en/accounts-billing/payment-plans-assistance/help-paying-your-bill'> Con Ed's Energy Affordability Program </a> can help make air conditioning your home more affordable.</p>"
+    msg = "<p><strong>You have an AC, but sometimes limit use because of the cost</strong>. This is common. Before it gets hot, get help with your home cooling. Find out if you're eligible for <a href='https://portal.311.nyc.gov/article/?kanumber=KA-02529'> HEAP </a> and <a href='https://www.coned.com/en/accounts-billing/payment-plans-assistance/help-paying-your-bill'> Con Ed's Energy Affordability Program, </a> which can help make air conditioning your home more affordable.</p>"
     finalMessageText.innerHTML += msg + '<hr class="my-2">'
   }
 
   // Limits AC and is warm
   if (limitsAC === 'Yes' && currentTemp > 78) {
-    msg = "<p><strong>You have an AC, but sometimes limit use because of the cost</strong>. This is common. Using AC for even a few hours a day on 'low cool' or 78 degrees can keep your home from getting dangerously hot. <a href='https://portal.311.nyc.gov/article/?kanumber=KA-02529'> HEAP </a> and <a href='https://www.coned.com/en/accounts-billing/payment-plans-assistance/help-paying-your-bill'> Con Ed's Energy Affordability Program </a> can help make air conditioning your home more affordable.</p>"
+    msg = "<p><strong>You have an AC, but sometimes limit use because of the cost</strong>. This is common. Using AC for even a few hours a day on 'low cool' or 78 degrees can keep your home from getting dangerously hot. Find out if you're eligible for <a href='https://portal.311.nyc.gov/article/?kanumber=KA-02529'> HEAP </a> and <a href='https://www.coned.com/en/accounts-billing/payment-plans-assistance/help-paying-your-bill'> Con Ed's Energy Affordability Program, </a> which can help make air conditioning your home more affordable.</p>"
     finalMessageText.innerHTML += msg + '<hr class="my-2">'
   }
 
