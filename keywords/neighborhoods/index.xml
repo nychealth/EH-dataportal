@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>neighborhoods on Environment &amp; Health Data Portal</title>
+    <link>https://stgbespweb600.health.dohmh.nycnet/IndicatorPublic/keywords/neighborhoods/</link>
+    <description>Recent content in neighborhoods on Environment &amp; Health Data Portal</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 19 Mar 2023 08:49:22 -0400</lastBuildDate>
+    <atom:link href="https://stgbespweb600.health.dohmh.nycnet/IndicatorPublic/keywords/neighborhoods/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>A walk through history</title>
+      <link>https://stgbespweb600.health.dohmh.nycnet/IndicatorPublic/data-stories/block-by-block/</link>
+      <pubDate>Sun, 19 Mar 2023 08:49:22 -0400</pubDate>
+      <guid>https://stgbespweb600.health.dohmh.nycnet/IndicatorPublic/data-stories/block-by-block/</guid>
+      <description>A neighborhood is not only shaped by its residents, but also by governmental practices and policies. Some of these have discriminated against residents because of the color of their skin and have segregated neighborhoods across the nation - including in New York City. This timeline is a selection of key processes and policies that shaped the physical environment and population of East Harlem, and some of the efforts to respond to local issues.</description>
+    </item>
+    <item>
+      <title>Real-Time Air Quality: PM2.5 in NYC</title>
+      <link>https://stgbespweb600.health.dohmh.nycnet/IndicatorPublic/key-topics/airquality/realtime/</link>
+      <pubDate>Tue, 22 Mar 2022 19:30:55 -0400</pubDate>
+      <guid>https://stgbespweb600.health.dohmh.nycnet/IndicatorPublic/key-topics/airquality/realtime/</guid>
+      <description>Fine particles (PM2.5) are among the most harmful pollutants. Long-term exposure to PM2.5 contributes to an estimated 2,000 excess deaths from lung and heart disease each year in NYC (1 out of every 25 deaths in NYC), and short-term exposure contributes to asthma incidents severe enough to require a trip to the emergency department, and other health threats.&#xA;The air quality in NYC is generally good and has been improving over time.</description>
+    </item>
+    <item>
+      <title>Healthy eating</title>
+      <link>https://stgbespweb600.health.dohmh.nycnet/IndicatorPublic/data-explorer/healthy-eating/</link>
+      <pubDate>Wed, 17 Nov 2021 12:01:22 -0500</pubDate>
+      <guid>https://stgbespweb600.health.dohmh.nycnet/IndicatorPublic/data-explorer/healthy-eating/</guid>
+      <description>Healthy eating is associated with better health, including a reduced risk of cardiovascular disease. That means that having access to healthy, safe, and affordable food choices is crucial for a person to achieve healthy eating habits.&#xA;Food access is influenced by many environmental factors, including proximity to food retail outlets and neighborhood-level resources (like neighborhood poverty, and availability of public transportation).&#xA;Sugary drinks contribute to a higher-calorie diet, increased risk of heart disease and diabetes, and long-term weight gain.</description>
+    </item>
+    <item>
+      <title>Your Neighborhood&#39;s Air Quality</title>
+      <link>https://stgbespweb600.health.dohmh.nycnet/IndicatorPublic/key-topics/airquality/aqe/</link>
+      <pubDate>Tue, 24 Aug 2021 12:04:44 -0400</pubDate>
+      <guid>https://stgbespweb600.health.dohmh.nycnet/IndicatorPublic/key-topics/airquality/aqe/</guid>
+      <description>We combine data from our air quality monitoring network, NYCCAS, with other data to understand what makes air quality in one neighborhood different from air quality in another. We found that building emissions, building density, industrial areas, and traffic density are associated with differences in air quality.&#xA;If we don&amp;rsquo;t have an air quality monitor in one neighborhood, but we know its building density, its industrial area, and its traffic, then we can model (estimate or predict) its air quality - based on monitored air quality in similar neighborhoods.</description>
+    </item>
+    <item>
+      <title>Asthma triggers at home</title>
+      <link>https://stgbespweb600.health.dohmh.nycnet/IndicatorPublic/data-explorer/asthma-triggers/</link>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
+      <guid>https://stgbespweb600.health.dohmh.nycnet/IndicatorPublic/data-explorer/asthma-triggers/</guid>
+      <description>Housing conditions can trigger asthma. In New York City, childhood asthma is a significant health threat that affects thousands of children per year.&#xA;No family should have to choose between affordable and healthy housing. All tenants are entitled to safe, decent and sanitary housing, which prevents disease and injury.</description>
+    </item>
+    <item>
+      <title>Housing maintenance</title>
+      <link>https://stgbespweb600.health.dohmh.nycnet/IndicatorPublic/data-explorer/housing-maintenance/</link>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
+      <guid>https://stgbespweb600.health.dohmh.nycnet/IndicatorPublic/data-explorer/housing-maintenance/</guid>
+      <description>Buildings with maintenance issues and disrepair can harm health. Across NYC, low-income neighborhoods have a higher percentage of buildings in disrepair due to past and present disinvestment and housing discrimination. This housing disrepair harms residents&amp;rsquo; health.&#xA;No family should have to choose between affordable and healthy housing. All tenants are entitled to safe, decent and sanitary housing, which prevents disease and injury. All building owners are required by law to provide essential services such as heat and hot water, make timely repairs, and maintain a pest-free building.</description>
+    </item>
+    <item>
+      <title>Housing safety</title>
+      <link>https://stgbespweb600.health.dohmh.nycnet/IndicatorPublic/data-explorer/housing-safety/</link>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
+      <guid>https://stgbespweb600.health.dohmh.nycnet/IndicatorPublic/data-explorer/housing-safety/</guid>
+      <description>Most people spend most of their time in their home. That makes the home a crucial environment that can affect one&amp;rsquo;s health - both in terms of safety characteristics within the home, and in terms of factors that affect housing stability.&#xA;Safety characteristics A home&amp;rsquo;s safety characteristics might include:&#xA;Air conditioning, which is a vital tool to protect people who are at risk of heat-related illness and death Electric medical equipment.</description>
+    </item>
+    <item>
+      <title>Housing stability</title>
+      <link>https://stgbespweb600.health.dohmh.nycnet/IndicatorPublic/data-explorer/housing-stability/</link>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
+      <guid>https://stgbespweb600.health.dohmh.nycnet/IndicatorPublic/data-explorer/housing-stability/</guid>
+      <description>Most people spend most of their time in their home. That makes the home a crucial environment that can affect one&amp;rsquo;s health.&#xA;Housing stability In NYC, about one out of every three homes is owned by the person living there - about half the national average. Owning a home is a powerful way to build intergenerational wealth, but historical and contemporary disinvestment and housing discrimination has made it hard for many New Yorkers to own homes.</description>
+    </item>
+    <item>
+      <title>Violence</title>
+      <link>https://stgbespweb600.health.dohmh.nycnet/IndicatorPublic/data-explorer/violence/</link>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
+      <guid>https://stgbespweb600.health.dohmh.nycnet/IndicatorPublic/data-explorer/violence/</guid>
+      <description>Violence is the use of physical, verbal, and/or emotional force to injure, harm, abuse, damage, or destroy. Interpersonal violence includes child abuse and neglect, youth violence, intimate partner violence, sexual violence, and elder abuse. Violence can involve injury to self, including self-harm, suicide attempts, and death by suicide. Violence can also take the form of power against a group or community.&#xA;Violence is a public health issue because it is a cause of morbidity and mortality, leading to physical and emotional harm, an increase in negative health outcomes, premature death, psychological trauma and persistent fear to individuals and communities.</description>
+    </item>
+    <item>
+      <title>Why violence is a public health issue</title>
+      <link>https://stgbespweb600.health.dohmh.nycnet/IndicatorPublic/data-stories/violence/</link>
+      <pubDate>Mon, 08 Feb 2021 08:07:31 -0400</pubDate>
+      <guid>https://stgbespweb600.health.dohmh.nycnet/IndicatorPublic/data-stories/violence/</guid>
+      <description>Using public health to prevent violence Experiencing violence affects people in many ways. It not only causes physical injury or death, but being exposed to it can also cause emotional and psychological trauma. Violence doesn’t just affect the immediate victim, it affects their surrounding community, too.&#xA;Violence can affect people throughout their lives: it is associated with worse birth outcomes, childhood developmental delays, physical and mental illness, and premature deaths.</description>
+    </item>
+    <item>
+      <title>Neighborhood boundaries on the EH Data Portal</title>
+      <link>https://stgbespweb600.health.dohmh.nycnet/IndicatorPublic/data-stories/geographies/</link>
+      <pubDate>Sat, 01 Aug 2020 08:33:22 -0400</pubDate>
+      <guid>https://stgbespweb600.health.dohmh.nycnet/IndicatorPublic/data-stories/geographies/</guid>
+      <description>New York City has hundreds of neighborhoods and nearly as many ways of drawing neighborhood boundaries. When you visit the Environment &amp;amp; Health Data Portal, you might notice that data is available in several different neighborhood schemes.&#xA;For example, dig around in the asthma data pages and you&amp;rsquo;ll find Adults with Asthma presented by UHF34 neighborhoods, Public School Children with Asthma presented by UHF42 neighborhoods, and Asthma emergency department visits are offered by NTAs.</description>
+    </item>
+  </channel>
+</rss>

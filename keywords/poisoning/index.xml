@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>poisoning on Environment &amp; Health Data Portal</title>
+    <link>https://stgbespweb600.health.dohmh.nycnet/IndicatorPublic/keywords/poisoning/</link>
+    <description>Recent content in poisoning on Environment &amp; Health Data Portal</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 28 May 2021 18:02:58 +0000</lastBuildDate>
+    <atom:link href="https://stgbespweb600.health.dohmh.nycnet/IndicatorPublic/keywords/poisoning/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Carbon monoxide</title>
+      <link>https://stgbespweb600.health.dohmh.nycnet/IndicatorPublic/data-explorer/carbon-monoxide-incidents/</link>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
+      <guid>https://stgbespweb600.health.dohmh.nycnet/IndicatorPublic/data-explorer/carbon-monoxide-incidents/</guid>
+      <description>Carbon monoxide (CO) is a poisonous gas that forms when fuel or other materials are burned. It is invisible and has no odor. Even short-term exposure to high levels of carbon monoxide can be fatal. Carbon monoxide blocks oxygen transport in the body. Symptoms of mild carbon monoxide poisoning include headache, nausea, fatigue, dizziness and disorientation. Breathing high concentrations of carbon monoxide can cause somebody to lose consciousness and have permanent neurological injury - or even death.</description>
+    </item>
+    <item>
+      <title>Lead poisoning</title>
+      <link>https://stgbespweb600.health.dohmh.nycnet/IndicatorPublic/data-explorer/lead/</link>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
+      <guid>https://stgbespweb600.health.dohmh.nycnet/IndicatorPublic/data-explorer/lead/</guid>
+      <description>Lead is a metal that is toxic to people. There is no safe level of lead in your body. It can cause learning and behavior problems, and delay physical growth and mental development.&#xA;In the past, it was used in gasoline, paint, ceramics, caulking, pipes and solder. In 1960, NYC banned the use of lead-based paint in homes. A national ban came into effect in 1978. Leaded gasoline was phased out beginning in the 1970&amp;rsquo;s.</description>
+    </item>
+  </channel>
+</rss>

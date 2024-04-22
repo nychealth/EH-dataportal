@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>parks on Environment &amp; Health Data Portal</title>
+    <link>https://stgbespweb600.health.dohmh.nycnet/IndicatorPublic/keywords/parks/</link>
+    <description>Recent content in parks on Environment &amp; Health Data Portal</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 08 Sep 2021 11:14:56 -0400</lastBuildDate>
+    <atom:link href="https://stgbespweb600.health.dohmh.nycnet/IndicatorPublic/keywords/parks/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Beach Water Quality</title>
+      <link>https://stgbespweb600.health.dohmh.nycnet/IndicatorPublic/key-topics/transportation/beaches/</link>
+      <pubDate>Wed, 08 Sep 2021 11:14:56 -0400</pubDate>
+      <guid>https://stgbespweb600.health.dohmh.nycnet/IndicatorPublic/key-topics/transportation/beaches/</guid>
+      <description>One month before New York City&amp;rsquo;s beaches open to the public, the Health Departments starts sampling and monitoring beaches. Sampling provides data about current water quality conditions, and monitoring identifies sources of pollution that affect water quality.&#xA;Each beach is monitored and sampled every week, except for Rockaway and Breezy Point beaches, which are sampled twice each week. Samples are tested for bacteria, debris, animal waste, medical or infectious waste, toxic contaminants, petroleum products, and sewage and wastewater discharge following heavy rainfall.</description>
+    </item>
+    <item>
+      <title>The urban heat island effect in NYC</title>
+      <link>https://stgbespweb600.health.dohmh.nycnet/IndicatorPublic/data-stories/localtemp/</link>
+      <pubDate>Fri, 20 Aug 2021 12:52:43 -0400</pubDate>
+      <guid>https://stgbespweb600.health.dohmh.nycnet/IndicatorPublic/data-stories/localtemp/</guid>
+      <description>In New York City and across the country, more people die from extreme heat than from all other natural disasters combined. To understand how to keep New Yorkers safe from extreme heat, we studied neighborhood factors that affect temperature, and found that grass, shrubs, and trees can play a major role. Let’s take a look.&#xA;At 6.00 PM on June 30, 2018, the air temperature at the LaGuardia Airport Weather Station was 89° Fahrenheit (F).</description>
+    </item>
+  </channel>
+</rss>

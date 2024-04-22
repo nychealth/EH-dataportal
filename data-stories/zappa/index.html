@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+
+
+
+
+    
+
+    
+    <meta name="robots" content="noindex, nofollow">
+
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PB98MPZ31B"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-PB98MPZ31B');
+    </script>
+
+
+
+
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<title>ZAPPA: a tool to understand air quality policies.</title>
+
+
+
+
+<meta name="description" content=" A data story on ZAPPA, a tool to understand air quality policies. ">
+<link rel="canonical" href="/IndicatorPublic/data-stories/zappa/" />
+<meta name="geo.region" content="" />
+<meta name="geo.placename" content="Environment &amp; Health Data Portal" />
+
+
+<meta property="fb:profile_id" content="0" />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="en_us" />
+<meta property="og:url" content="/IndicatorPublic/data-stories/zappa/" />
+<meta property="og:title" content="ZAPPA: a tool to understand air quality policies.  &ndash; Environment &amp; Health Data Portal" />
+<meta property="og:description" content="A data story on ZAPPA, a tool to understand air quality policies. " />
+<meta property="og:site_name" content="Environment &amp; Health Data Portal" />
+<meta property="og:image" content="/IndicatorPublic/images/report_bottom_background_hu55023dbc37de342337a21cf33dcc5889_222582_2400x1260_fill_q95_mitchellnetravali_smart1.jpg">
+<meta property="og:see_also" content="https://twitter.com/nycHealthy" />
+<meta name="twitter:title" content="ZAPPA: a tool to understand air quality policies.  &ndash; Environment &amp; Health Data Portal">
+<meta name="twitter:description" content=" A data story on ZAPPA, a tool to understand air quality policies. ">
+<meta name="twitter:image" content=" /IndicatorPublic/images/report_bottom_background.jpg">
+<meta name="twitter:site" content="@nycHealthy">
+<meta name="twitter:creator" content="@nycHealthy">
+
+
+
+<script src="/IndicatorPublic/node_modules/jquery/dist/jquery.min.a6e981b23351186aa43f32879dd64c6801be6e2af7ef8b0e472cccdeeba52d5d7894de4bcb292a364f1e11e525524077534338140a72687ada4fae62849843a5.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG&#43;bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous"></script>
+
+
+
+
+<link rel="icon" href=/IndicatorPublic/7618350_heatmap_business_analytics_statistics_icon-gpr.ico>
+
+<link rel="stylesheet" href="/IndicatorPublic/node_modules/@fortawesome/fontawesome-free/css/all.min.css" />
+
+<script src="/IndicatorPublic/node_modules/@fortawesome/fontawesome-free/js/all.min.196cd5adc1a5a344f14d1bf3f6db62a32609f96c24f429341bcd43f9e3badc16aa1da2776195fdc2eaa3c207dc57f32b0763e16955fd0e461585b1694ad9eaa5.js" integrity="sha512-GWzVrcGlo0TxTRvz9ttioyYJ&#43;Wwk9Ck0G81D&#43;eO63BaqHaJ3YZX9wuqjwgfcV/MrB2PhaVX9DkYVhbFpStnqpQ==" crossorigin="anonymous"></script>
+
+
+<link rel="stylesheet" href="/IndicatorPublic/scss/theme.0390bf6318c75775949357904a205296964b423f2e033ba74b0a67fd816df115666afa34a9701be11c1c06b9bf44455bcc39c3c1009a0a4195bceb192349e949.css" integrity="sha512-A5C/YxjHV3WUk1eQSiBSlpZLQj8uAzunSwpn/YFt8RVmavo0qXAb4RwcBrm/REVbzDnDwQCaCkGVvOsZI0npSQ==" />
+
+<script src="/IndicatorPublic/node_modules/dompurify/dist/purify.min.f7e8a500e79763cab2d9bc3f879d4c9a588d347bddca14e92c896a0e65690f6eb3f158d526c509b64e6b85b0c852f6220fe1291a802ed314daecc859a211508c.js" integrity="sha512-9&#43;ilAOeXY8qy2bw/h51MmliNNHvdyhTpLIlqDmVpD26z8VjVJsUJtk5rhbDIUvYiD&#43;EpGoAu0xTa7MhZohFQjA=="></script>
+
+
+
+
+
+<meta data-pagefind-filter="section[content]" content="Data Stories"><script>
+
+    let baseURL = "/IndicatorPublic/"
+    let data_repo = "https:\/\/raw.githubusercontent.com\/nychealth\/EHDP-data\/";
+    let data_branch = "production";
+    let hugoEnv = "appscan_deploy"
+
+</script>
+
+
+<meta 
+        data-pagefind-meta="title:ZAPPA: A tool to understand air quality policies | Data Stories"
+        class="d-none"
+    >
+
+  </head>
+
+
+
+<body>
+
+  
+<a class="sr-only sr-only-focusable skip-menu" href="#skip-header-target">Skip Header</a>
+
+<header id="global-header" role="banner">
+
+    <div class="bg-black text-white" id="nyc-top-header">
+
+        <div class="container-fluid wide">
+
+            <div class="row py-1 align-items-center justify-content-between">
+
+                <div class="col-auto">
+                    <p class="d-none d-md-flex fs-md">
+                        <a class="text-reset" href="https://www1.nyc.gov/">
+                            <strong>nyc.gov</strong>
+                        </a>
+                        <span class="mx-1" aria-hidden="true">></span>
+                        <a class="text-reset" href="https://www1.nyc.gov/">
+                            Health
+                        </a>
+                        <span class="mx-1" aria-hidden="true">></span>
+                        <a class="text-reset" href="/IndicatorPublic/data-stories/zappa/">
+                        EH Data Portal
+                        </a>
+                    </p>
+                </div>
+                
+
+                <div class="col-auto">
+
+                    <ul class="extensible-list horizontal fs-md">
+                        <li class="d-print-none">
+                            <a class="text-reset" href="https://www1.nyc.gov/">
+                                <strong>
+                                    311
+                                </strong>
+                            </a>
+                        </li>
+                        <li class="d-print-none">
+                            <a class="text-reset" href="https://www1.nyc.gov/home/search/index.page">
+                                <strong>
+                                    Search all NYC.gov
+                                </strong>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www1.nyc.gov/" title="Go to nyc.gov">
+                                <img class="d-block" src=/IndicatorPublic/images/nyc-bubble-logo.svg width="45" alt="NYC Logo">
+                            </a>
+                        </li>
+                    </ul>
+
+                </div>
+                
+
+            </div>
+            
+
+        </div>
+        
+
+    </div>
+    
+    <div class="site-header bg-primary" style='background-image: url(/IndicatorPublic/images/header_background.jpg)'>
+        <div class="wrap-header">
+
+            <div class="container-fluid wide">
+
+                <div class="row align-items-center">
+
+                    <div class="col-lg py-3">
+                        <div class="d-flex justify-content-center justify-content-lg-start">
+                            <a href="https://stgbespweb600.health.dohmh.nycnet/IndicatorPublic/"><img src="https://stgbespweb600.health.dohmh.nycnet/IndicatorPublic/7618350_heatmap_business_analytics_statistics_icon-gpr.ico" style="height: 67px" class="pr-1"></a>
+
+                            <p class="text-white title-hover">
+                                <span class="site-subtitle"><a href="https://stgbespweb600.health.dohmh.nycnet/IndicatorPublic/" class="link-no-dec">Environment & Health</span>
+                                <span class="site-title">Data Portal</a></span>
+                            </p>
+
+
+                        </div>
+                        
+                    </div>
+                    
+
+                    <div class="col-lg-auto border-top border-lg-0 d-print-none">
+
+                        <div class="d-lg-flex align-items-center">
+
+                            
+
+                            <ul class="extensible-list horizontal justify-content-between my-2 d-lg-none">
+                                <li>
+                                    <button class="navbar-toggler no-btn-style" type="button" title="Main Menu" data-toggle="collapse"
+                                        data-target="#nav-primary" aria-controls="nav-primary" aria-expanded="false"
+                                        aria-label="Toggle navigation">
+                                        <span class="sr-only">Main Menu</span>
+                                        <span class="fas fa-bars fa-lg text-white" ></span>
+                                    </button>
+                                </li>
+
+                                <li>
+                                    <a class="nav-link" href="#" type="button" data-toggle="modal" data-target="#searchModal" title="Search" data-toggle="collapse">
+                                        <span class="sr-only">Search</span>
+                                        <i class="fa fa-magnifying-glass text-white"></i>
+                                    </a>
+                                </li>
+                            </ul>
+
+                            <div class="collapse d-lg-block mx-n2 mx-lg-2" id="nav-primary">
+
+                                <nav class="nav" role="navigation">
+
+                                    <div class="nav-item bg-white text-primary border dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="nav-item-topic"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Topics
+                                        </a>
+
+                                        <div class="dropdown-menu wider-menu" aria-labelledby="nav-item-topic">
+                                            <ul class="extensible-list p-0">
+                                                
+                                                <a class="" href="/IndicatorPublic/key-topics/transportation/"> <li class="">Active design, public space, and transportation</li></a>
+                                                <hr class="my-1">
+                                                
+
+                                                
+                                                <a class="" href="/IndicatorPublic/key-topics/airquality/"> <li class="">Air quality</li></a>
+                                                <hr class="my-1">
+                                                
+
+                                                
+                                                <a class="" href="/IndicatorPublic/key-topics/childhealth/"> <li class="">Child health</li></a>
+                                                <hr class="my-1">
+                                                
+
+                                                
+                                                <a class="" href="/IndicatorPublic/key-topics/climatehealth/"> <li class="">Climate and health</li></a>
+                                                <hr class="my-1">
+                                                
+
+                                                
+                                                <a class="" href="/IndicatorPublic/key-topics/foodanddrink/"> <li class="">Food and drink</li></a>
+                                                <hr class="my-1">
+                                                
+
+                                                
+                                                <a class="" href="/IndicatorPublic/key-topics/healthoutcomes/"> <li class="">Environmental health outcomes</li></a>
+                                                <hr class="my-1">
+                                                
+
+                                                
+                                                <a class="" href="/IndicatorPublic/key-topics/housing/"> <li class="">Housing</li></a>
+                                                <hr class="my-1">
+                                                
+
+                                                
+                                                <a class="" href="/IndicatorPublic/key-topics/social/"> <li class="">Inequality and health inequities</li></a>
+                                                <hr class="my-1">
+                                                
+
+                                                
+                                                <a class="" href="/IndicatorPublic/key-topics/pests/"> <li class="">Pests and pesticides</li></a>
+                                                <hr class="my-1">
+                                                
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    
+
+                                    <div class="nav-item bg-white text-primary border dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="nav-item-type"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Explore
+                                        </a>
+
+                                        <div class="dropdown-menu wider-menu" aria-labelledby="nav-item-type">
+                                            <ul class="extensible-list p-0"><a href="/IndicatorPublic/data-stories/"> <li><span class="mr-1"><span class='text-primary ds-accent'><i class='fas fa-passport' aria-hidden='true'></i></span></span>Data Stories</li></a>
+                                                   <hr class="my-1"><a href="/IndicatorPublic/neighborhood-reports/"> <li><span class="mr-1"><span class='text-primary nr-accent'><i class='fas fa-map-marked-alt' aria-hidden='true'></i></span></span>Neighborhood Reports</li></a>
+                                                   <hr class="my-1"><a href="/IndicatorPublic/data-explorer/"> <li><span class="mr-1"><span class='text-primary de-accent'><i class='fas fa-chart-line' aria-hidden='true'></i></span></span>Data Explorer</li></a>
+                                                   <hr class="my-1"></ul>
+                                        </div>
+                                    </div>
+                                    
+
+                                    <div class="nav-item bg-white text-primary border"><a class="nav-link " href="/IndicatorPublic/about/">
+                                            About
+                                        </a></div>
+                                    
+
+                                    
+
+                                    <div class="nav-item bg-white text-primary border d-none d-lg-block">
+                                        <a class="nav-link" href="#" type="button" data-toggle="modal" data-target="#searchModal" title="Search" data-toggle="collapse">
+                                                    <span class="sr-only">Search</span>
+                                                    <i class="fa fa-magnifying-glass text-body"></i>
+                                                </a>
+                                    </div>
+                                    
+
+                                </nav>
+
+                            </div>
+
+                        </div>
+                        
+
+                    </div>
+                    
+
+                </div>
+                
+
+            </div>
+            
+
+        </div>
+        
+
+        <div class="container-fluid border-top collapse" id="global-language">
+            <div class="narrow py-2">
+                <div id="google_translate_element"></div>
+            </div>
+        </div>
+
+
+        </div>
+
+</header>
+<main id="skip-header-target" role="main" data-pagefind-body><div class="container-fluid px-0">
+
+    
+    
+    <div id="datastoryheader" style="background-image: URL(/IndicatorPublic/data-stories/zappa/ds-road-traffic_huef7e75945ba34d12093c82a8903640ce_3217646_1920x0_resize_q95_mitchellnetravali.jpg); background-position: 50% 25%">
+
+        <div class="medium my-auto">
+            <h1 class="titleheader py-2 px-4">
+                ZAPPA: A tool to understand air quality policies
+            </h1>
+        </div>
+    </div>
+</div>
+
+<article class="container-fluid" id="skip-header-target">
+
+    <div class="row">
+        <div class="col-xl-2"></div>
+        
+
+        
+        <div class="col-xl-8 overflow-hidden fs-rg" id="primary-content">
+
+        <div class="row mt-2">
+            <div class="col-12">
+                <nav aria-label="breadcrumb" class="border-top">
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href=/IndicatorPublic/>Home</a></li>
+                        <li class="breadcrumb-item"><a href=/IndicatorPublic/data-stories>Data Stories</a></li>
+                        <li class="breadcrumb-item active"><a href="/IndicatorPublic/data-stories/zappa/">ZAPPA: A tool to understand air quality policies</a></li>
+
+                    </ul>
+                </nav>
+            </div>
+        </div>
+
+        <div class="narrow my-2"><h2>How do we know what air quality policies will have the biggest effect?</h2>
+<p>New York City’s air quality is generally good and has been improving over time. Still, air pollution threatens health: two pollutants, <a href="/IndicatorPublic/data-explorer/health-impacts-of-air-pollution/?id=2122#display=summary">ozone and PM2.5 cause about 2,400 deaths per year in NYC, and thousands more emergency department visits and hospitalizations for asthma, heart, and lung problems</a>.</p>
+<p>It’s important to clean up the air to protect New Yorkers, and we know how to do it: reduce emissions from buildings, vehicles, restaurants, power plants, and other sources of pollutants.</p>
+<p>But how can New Yorkers decide which policies to push for? How can we know what changes will have the greatest benefits?</p>
+<p>To help answer these questions, the Health Department developed <a href="https://treehug-app.its.unc.edu/nyserda/">ZAPPA — the ZIP Code Air Pollution Policy Assessment</a> — a free, online tool that that uses emissions data and atmospheric chemistry models to predict the effects of different policy proposals to reduce emissions.</p>
+<p>Planners, advocates, scientists and others can use ZAPPA to see how proposed policy changes would affect air pollution, health outcomes, and costs, including at the neighborhood level.</p>
+<p>Let’s try it.</p>
+<h3>Modelling different scenarios using ZAPPA</h3>
+<p><strong>Scenario 1: What if we eliminated electric power generation in NYC?</strong></p>
+<p>Some New Yorkers advocate closing all power plants in NYC and relying only on renewable energy sources like hydro, wind, or solar power. What does ZAPPA tell us about the impact of such a proposal?</p>
+<p>Generating electricity releases pollutants like nitrogen oxides and sulfur dioxide, which help create PM2.5. Many of New York City’s power plants are “peaker plants” that are only activated at times of high electricity demand.</p>
+<p>ZAPPA shows us that if we closed all the city’s power plants, we would see a fairly small reduction in average PM2.5 across the city: citywide PM2.5 would go down by 0.12 µg/m3. This would prevent only 5 deaths per million people aged 30 and older and avoid only 9 asthma emergency department visits per million people.</p>
+<div class="medium my-4">
+<style>
+td {
+    padding-right: 15px;
+}
+</style>
+<table>
+<thead>
+<tr>
+<th><strong>Reductions in:</strong></th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>PM2.5 (citywide average)</strong></td>
+<td><strong>0.12</strong> µg/m3</td>
+</tr>
+<tr>
+<td><strong>Deaths</strong></td>
+<td><strong>5</strong> <em>per 1,000,000 people 30 and above per year</em></td>
+</tr>
+<tr>
+<td><strong>Asthma ED visits</strong></td>
+<td><strong>9</strong> <em>per 1,000,000 people per year</em></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>There may be more significant local effects in some ZIP Codes. To explore these, follow the directions below on how to run ZAPPA and get ZIP-Code level results.</p>
+<p><strong>Scenario 2: Which ZIP Codes would benefit the most from going car-free?</strong></p>
+<p>Some policy-makers are considering limiting vehicle use in parts of the City. Which limits would make the most difference?</p>
+<ul>
+<li>What if Midtown were a car-free zone?</li>
+<li>How would that compare to creating a car-free zone in the South Bronx?</li>
+<li>And, what if we eliminated vehicle traffic in the whole city?</li>
+</ul>
+<p>Midtown has some of the worst air quality in all of NYC, while the South Bronx has some of the worst health impacts due to air quality. So, what would be the health impact of creating car-free zones in these neighborhoods?</p>
+</div>
+<div class="wide my-4">
+<iframe title="ZAPPA Car-free scenario models" aria-label="Table" id="datawrapper-chart-F4ifN" src="https://datawrapper.dwcdn.net/F4ifN/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="208" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();
+</script>
+</div>
+<div class="narrow">
+<p>If we stopped traffic from entering Midtown, we would see PM2.5 go down an average of 0.85 µg/m3 in those ZIP Codes, leading to about 37 fewer deaths per million people aged 30 and older and about 19 ED fewer visits for asthma per million people.</p>
+<p>Instead, if we stopped traffic from entering the South Bronx, we would see PM2.5 go down an average of 0.20 µg/m3 in the corresponding ZIP Codes. ZAPPA shows us that each year, we would reduce annual deaths by 12 per million people aged 30 and older and avoid almost 33 ED visits for asthma per million people per year in the South Bronx.</p>
+<p>And if we stopped traffic from entering any part of NYC, we would experience an average decrease of 0.46 µg/m3 in PM2.5 citywide, and as a result, there would be 20 fewer deaths per million for people aged 30 and older, and 20 ED visits for asthma avoided per million people.</p>
+<p>Using ZAPPA, we learn that neighborhoods with higher air pollution see greater reductions in pollution, and neighborhoods with worse health impacts from air pollution would see greater health improvements than the citywide average.</p>
+ </div>
+ <div class="wide my-4">
+<iframe title="Greater PM2.5 reductions in Midtown..." aria-label="Arrow Plot" id="datawrapper-chart-kKZ8g" src="https://datawrapper.dwcdn.net/kKZ8g/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="132"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();
+</script>
+<br><br>
+<iframe title="" aria-label="Arrow Plot" id="datawrapper-chart-W9qln" src="https://datawrapper.dwcdn.net/W9qln/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="101"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();
+</script>
+</div>
+<div class="narrow">
+<p>Compared to Midtown, the South Bronx has a smaller average reduction in PM2.5 but a higher reduction in emergency department visits for asthma in this traffic scenario. That’s because the worst health impacts of air pollution are not found in neighborhoods with the most air pollution.</p>
+<h3>Key takeaways</h3>
+<p>ZAPPA—a new, free online tool created by the NYC Health Department with Institute for the Environment at UNC-Chapel Hill–-can help New Yorkers understand the health outcomes of proposed emission-reduction policies. ZAPPA uses fine-grained, ZIP-Code level data to produce precise, reliable estimates. It lets us compare outcomes by neighborhood, and provides data that can inform air quality policy development, program planning, and advocacy, and enable users to center equity and public health in environmental measures.</p>
+<hr>
+<br>
+<h2>Step-by-Step: How do we use ZAPPA?</h2>
+<p><strong>First, create an account.</strong>
+<a href="https://treehug-app.its.unc.edu/nyserda/">Visit ZAPPA and create an account</a>. Your estimates and results will be saved to your account.</p>
+<p><strong>Next, start a new run.</strong><br>
+Select Start a new NYC run. Give it a name and description - the model and results will be saved to your account.</p>
+<p><strong>Select ZIP Codes.</strong>
+These are the ZIP Codes you’d like to focus on.</p>
+<figure><img src="Zappa1.png"
+         alt="Left hand side has a menu with dropdowns. Top to bottom it says: Name and Description, ZIP Codes and waterways, Modify Traffic &amp; Emissions, Advanced, and Review changes. The right hand side has a map of NYC with all ZIP Codes outlined in yellow."/>
+</figure>
+
+<p>For the scenarios in this data story, here’s what we used:</p>
+<p><em>Power generation scenario</em>: All ZIP Codes</p>
+<p><em>Car-free scenarios</em>:</p>
+<ul>
+<li>NYC: all ZIP Codes</li>
+<li>Midtown: 10001, 10016, 10017, 10018, 10019, 10022, 10036</li>
+<li>South Bronx: 10451, 10452, 10454, 10455, 10456, 10474</li>
+</ul>
+<p><strong>Then, Select Traffic &amp; Emissions Types</strong></p>
+<p>Next, you’ll tell ZAPPA what traffic or emissions you want to change, and how. Click through the menus for different tiers and options. This can get complicated, and may require a lot of knowledge about a proposed policy - like how much it will actually affect emissions or traffic.</p>
+<p><em>For the scenarios in this data story, here’s what we used:</em></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Power generation scenario</th>
+<th>Car-free scenario</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tier 1</td>
+<td>Fuel Combustion: Electric Utility</td>
+<td>Highway vehicles</td>
+</tr>
+<tr>
+<td>Tier 2</td>
+<td>All</td>
+<td>All</td>
+</tr>
+<tr>
+<td>Tier 3</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+</tbody>
+</table>
+<figure><img src="Zappa2.png"
+         alt="The menu with dropdown has &#39;All ZIP Codes&#39; selected. The &#39;Modify Traffic &amp; Emissions&#39; also open and can be edited."/>
+</figure>
+
+<p><strong>Next, Input emissions or traffic change</strong></p>
+<p>Select Set emissions changes. You’ll have the option of changing emissions by a specific amount of tons per year, or just by a percent change. For some scenarios, you would change the emissions while for others, you would set traffic changes.</p>
+<p><em>For the scenarios in this data story, here’s what we used:</em></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Power generation scenario</th>
+<th>Car-free scenario</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Emissions changes</td>
+<td>-100% for each pollutant</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>Traffic changes</td>
+<td>N/A</td>
+<td>Electric fuel source**:</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>87.46 for passenger vehicles</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>4.98 for small commercial trucks</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>0.43 for school buses</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>0.99 for transit buses</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>4.69 for large commercial trucks</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>1.45 for other large trucks</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<ul>
+<li><em>If we eliminated all electric power generation within NYC, we would remove all related emissions. To represent this emissions change in ZAPPA, we would zero out the pollutants by getting the pollutant modified value to 0 under “Set Emissions Changes”. This change can be done using the percent change or specifying ton per year change.</em></li>
+<li><em>If we created car-free zones, we would change Fleet Mix so there is no gasoline, diesel, CNG or E-85 use. Preserve each row’s percent distribution and move it into “Electric”. Moving the fleet mix distributions into “electric” in this way means there are no pollutant emissions from those other fuel sources, effectively modeling that there is no vehicle traffic on the street.</em></li>
+</ul>
+ <br>
+<p><strong>Set Emissions or Traffic Changes</strong>
+<figure><img src="Zappa3.png"
+         alt="Grey window that says &#39;Set Emissions Changes&#39; and &#39;Fuel Combustion: Electric Utility&#39; with Pollutant, Percent Change, Base Value, Modified Value, and Change as column headers. Percent change is editable and user has input -100% on each line of pollutants. There is Set and Cancel buttons"/>
+</figure>
+</p>
+<hr>
+<figure><img src="Zappa4.png"
+         alt="Grey window that says &#39;Set Traffic Changes&#39; and &#39;Fleet Mix&#39; with Vehicle type, Gasoline, Diesel, CNG, E-85, and Electric as column headers. There are numbers in each cell corresponding to six vehicle types. Fleet mix total is 100.00% "/>
+</figure>
+
+<figure><img src="Zappa5.png"
+         alt="Grey window that says  &#39;Set Traffic Changes&#39; and &#39;Fleet Mix&#39; with Vehicle type, Gasoline, Diesel, CNG, E-85, and Electric as column headers. All numbers are assigned in electric only now."/>
+</figure>
+
+<p><strong>Finally, review changes made to model</strong>
+<figure><img src="Zappa6.png"
+         alt="Grey window that says &#39;Emissions changes&#39; and &#39;Hover over the emissions tier to see the full tier names&#39;. The column headers are # of ZIP Codes, # of waterways, emission tier, NH3, NO2, PM2.5, SO2, and VOC. There are buttons for: show shapes, delete, and close."/>
+</figure>
+</p>
+<p>We can review the emissions and traffic changes made (if any) in the “Review Changes” dropdown menu. Then, name the model, save, and then click run!</p>
+<p><strong>Lastly, review the results of the completed model</strong>
+After running the model, the saved and run model will appear in “Model Runs” of your account.</p>
+<figure><img src="Zappa7.png"
+         alt="Image of Model run results for: Electric_Power_Generation_All_Zips. The dropdown menu notes the description, displayed metric (total health benefits), ZIP Code result details, citywide totals, and download results. The map of NYC has all ZIP Codes outlined in black with varying shades of blue."/>
+</figure>
+
+<p>You can toggle through the estimated impacts of the policy change in the final model.</p>
+<figure><img src="Zappa8.png"
+         alt="Grey drop down menu of Category: Concentrations, Health Impacts, Economic Impacts and Health Impacts is selected."/>
+</figure>
+
+<figure><img src="Zappa9.png"
+         alt="Displayed results for Health Impacts and Metric of Mortality (low estimate) with citywide totals listed. The map of NYC has all ZIP Codes outlined in black with varying shades of blue."/>
+</figure>
+
+</div>
+
+            <footer class="narrow my-4" id="article-footer">
+
+                <div class="border-top border-dark">
+                    <ul class="extensible-list text-muted mt-3">
+                        <li>
+                            <p class="text-muted" >
+                                <span class="fa fa-envelope"></span> Questions about this data story? Ideas
+                                for another one? Email us at <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#101;&#104;&#100;&#112;&#64;&#104;&#101;&#97;&#108;&#116;&#104;&#46;&#110;&#121;&#99;&#46;&#103;&#111;&#118;">&#101;&#104;&#100;&#112;&#64;&#104;&#101;&#97;&#108;&#116;&#104;&#46;&#110;&#121;&#99;&#46;&#103;&#111;&#118;</a></p>
+                        </li>
+                    </ul>
+                </div>
+                
+
+            </footer>
+            
+
+        </div>
+        
+
+        
+        <div class="col-xl-2 border-xl-left">
+
+            <div class="py-3 mt-3 mt-xl-0 sticky-top" style="z-index: 0">
+<section class="social-share" data-pagefind-ignore="all">
+    <ul class="share-icons">
+
+      
+      <li>
+        <a href="mailto:?subject=Environment%20%26%20Health%20Data%20Portal - ZAPPA%3a%20A%20tool%20to%20understand%20air%20quality%20policies&amp;body=ZAPPA%3a%20A%20tool%20to%20understand%20air%20quality%20policies%2c%20by%20Environment%20%26%20Health%20Data%20Portal%0aA%20data%20story%20on%20ZAPPA%2c%20a%20tool%20to%20understand%20air%20quality%20policies.%0a%0ahttps%3a%2f%2fstgbespweb600.health.dohmh.nycnet%2fIndicatorPublic%2fdata-stories%2fzappa%2f%0a" target="_blank" rel="noopener noreferrer" class="share-btn email">
+          <i class="fas fa-envelope fs-xl"></i>
+          <p>Email</p>
+        </a>
+      </li> 
+
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?&amp;url=https%3a%2f%2fstgbespweb600.health.dohmh.nycnet%2fIndicatorPublic%2fdata-stories%2fzappa%2f&amp;text=ZAPPA%3a%20A%20tool%20to%20understand%20air%20quality%20policies" target="_blank" rel="noopener noreferrer" aria-label="Share on Twitter" class="share-btn twitter">
+          <i class="fab fa-twitter-square fs-xl"></i>
+          <p>Twitter</p>
+          </a>
+      </li>
+
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fstgbespweb600.health.dohmh.nycnet%2fIndicatorPublic%2fdata-stories%2fzappa%2f" target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook" class="share-btn facebook">
+          <i class="fab fa-facebook-square fs-xl"></i>
+          <p>Facebook</p>
+          </a>
+      </li>
+
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2fstgbespweb600.health.dohmh.nycnet%2fIndicatorPublic%2fdata-stories%2fzappa%2f" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn" class="share-btn linkedin">
+          <i class="fab fa-linkedin fs-xl"></i>
+            <p>LinkedIn</p>
+          </a>
+      </li>
+
+
+    </ul>
+  </section>
+<hr class="my-2"><div class="keywords p-1" data-pagefind-ignore="all"><a href="/IndicatorPublic/keywords/air-quality/">air quality</a> |&#32;<a href="/IndicatorPublic/keywords/traffic/">traffic</a> |&#32;<a href="/IndicatorPublic/keywords/transportation/">transportation</a> |&#32;<a href="/IndicatorPublic/keywords/air-pollution/">air pollution</a> |&#32;<a href="/IndicatorPublic/keywords/lungs/">lungs</a> |&#32;<a href="/IndicatorPublic/keywords/breathing/">breathing</a> |&#32;<a href="/IndicatorPublic/keywords/pm2.5/">pm2.5</a> |&#32;<a href="/IndicatorPublic/keywords/fine-particles/">fine particles</a> |&#32;<a href="/IndicatorPublic/keywords/fine-particulate-matter/">fine particulate matter</a> |&#32;<a href="/IndicatorPublic/keywords/health-impacts/">health impacts</a> |&#32;<a href="/IndicatorPublic/keywords/zappa/">ZAPPA</a> |&#32;<a href="/IndicatorPublic/keywords/modelling/">modelling</a> |&#32;<a href="/IndicatorPublic/keywords/data-science/">data science</a> |&#32;<a href="/IndicatorPublic/keywords/computer-modelling/">computer modelling</a> |&#32;<a href="/IndicatorPublic/keywords/model/">model</a> |&#32;<a href="/IndicatorPublic/keywords/policies/">policies</a> |&#32;<a href="/IndicatorPublic/keywords/policy/">policy</a> |&#32;<a href="/IndicatorPublic/keywords/health-impacts/">health impacts</a> |&#32;<a href="/IndicatorPublic/keywords/health-impact-assessment/">health impact assessment</a> |&#32;</div>
+<hr class="my-2">
+
+                <div class="fs-sm"><i class="fas fa-images mr-1"></i><strong class="keywords">Banner image:</strong><br>Ed Reed/Mayoral Photography Office<hr class="my-2">
+
+                    <strong class="keywords">Published on:</strong><br>December 3, 2022</div>
+
+
+
+
+
+            </div>
+            
+
+        </div>
+        
+
+    </div>
+    
+
+</article>
+
+
+<section class="related-reading" data-pagefind-ignore="all">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="card bg-white text-green mb-2 p-2 text-primary fs-lg">
+                   <strong class="border-bottom">Related content</strong>
+                </div>
+            </div>
+
+            <div class="col-lg">
+                <div class="card bg-white text-black mb-2">
+                  <div class="card-header"><h4 class="fs-md text-muted"><i class="fas fa-passport text-muted mr-1" aria-hidden="true"></i>Data Stories</h4>
+                  </div>
+                  <div class="card-body fs-sm overflow-fade-about" style="height:400px; overflow-y:scroll;"><a href="/IndicatorPublic/data-stories/sanitation/">Why trash is a public health issue</a>
+            <hr class="my-1"><a href="/IndicatorPublic/data-stories/block-by-block/">A walk through history</a>
+            <hr class="my-1"><a href="/IndicatorPublic/data-stories/hia/">Efforts to reduce air pollution should focus on neighborhoods with the worst health impacts.</a>
+            <hr class="my-1"><a href="/IndicatorPublic/data-stories/aqcovid2/">An update on air quality during COVID-19</a>
+            <hr class="my-1"><a href="/IndicatorPublic/data-stories/aq-cooking/">Tracking changes in New York City&#39;s sources of air pollution</a>
+            <hr class="my-1"><a href="/IndicatorPublic/data-stories/traffic-and-air-pollution/">The Public Health Impacts of PM2.5 from Traffic Air Pollution</a>
+            <hr class="my-1"><a href="/IndicatorPublic/data-stories/streets/">Environments matter: the road to street safety in NYC</a>
+            <hr class="my-1"><a href="/IndicatorPublic/data-stories/aqcovid/">Air quality during COVID-19</a>
+            <hr class="my-1"><a href="/IndicatorPublic/data-stories/aqsnapshots/">Air quality snapshots: special findings from 10 years of NYCCAS</a>
+            <hr class="my-1"><a href="/IndicatorPublic/data-stories/aqts/">Air quality in car-free areas</a>
+            <hr class="my-1"><a href="/IndicatorPublic/data-stories/aq2/">What our air quality monitors tell us about NYC&#39;s neighborhoods</a>
+            <hr class="my-1"><a href="/IndicatorPublic/data-stories/breatheeasy/">Breathe easy: NYC&#39;s air quality is improving</a>
+            <hr class="my-1"></div>
+                </div>
+              </div>
+              
+        
+              <div class="col-lg">
+                <div class="card bg-white text-black mb-2">
+                    <div class="card-header"><h4 class="fs-md text-muted"><i class="fas fa-star text-muted mr-1" aria-hidden="true"></i>Key Topics</h4>
+
+                    </div>
+                    <div class="card-body fs-sm">
+                        <a href="/IndicatorPublic/key-topics/airquality/">Air quality</a>
+                        <hr class="my-1"><a href="/IndicatorPublic/key-topics/transportation/">Active design, public space, and transportation</a>
+                        <hr class="my-1"></div>
+                  </div>
+
+                  <div class="card bg-white text-black mb-2">
+                    <div class="card-header"><h4 class="fs-md text-muted"><i class="fas fa-map-marked-alt text-muted mr-1" aria-hidden="true"></i>Neighborhood Reports</h4>
+                    </div>
+                    <div class="card-body fs-sm"><a href="/IndicatorPublic/neighborhood-reports/active_design_physical_activity_and_health/">Active Design, Physical Activity and Health</a>
+            <hr class="my-1"><a href="/IndicatorPublic/neighborhood-reports/asthma_and_the_environment/">Asthma and the Environment</a>
+            <hr class="my-1"><a href="/IndicatorPublic/neighborhood-reports/outdoor_air_and_health/">Outdoor Air and Health</a>
+            <hr class="my-1"></div>
+                  </div>
+              </div>
+              
+        
+              <div class="col-lg">
+                <div class="card bg-white text-black">
+                  <div class="card-header"><h4 class="fs-md text-muted"><i class="fas fa-chart-line text-muted mr-1" aria-hidden="true"></i>Data Explorer</h4>
+                  </div>
+                  <div class="card-body fs-sm overflow-fade-about" style="height:400px; overflow-y:scroll;"><a href="/IndicatorPublic/data-explorer/active-design/">Active design</a>
+            <hr class="my-1"><a href="/IndicatorPublic/data-explorer/air-quality/">Air quality</a>
+            <hr class="my-1"><a href="/IndicatorPublic/data-explorer/asthma/">Asthma</a>
+            <hr class="my-1"><a href="/IndicatorPublic/data-explorer/health-impacts-of-air-pollution/">Health impacts of air pollution</a>
+            <hr class="my-1"><a href="/IndicatorPublic/data-explorer/physical-activity/">Physical activity</a>
+            <hr class="my-1"><a href="/IndicatorPublic/data-explorer/transportation-related-injuries/">Transportation-related injuries</a>
+            <hr class="my-1"><a href="/IndicatorPublic/data-explorer/walking-driving-and-cycling/">Walking, driving, and cycling</a>
+            <hr class="my-1"></div>
+                </div>
+              </div>
+              
+        </div>
+    </div>
+</section><ul id="results"></ul>
+  </main>
+  
+  <footer class="bg-black" id="global-footer" role="contentinfo">
+
+  <h2 class="sr-only">
+      Page Footer
+  </h2>
+
+  <div class="bg-opacity-black-25 text-white" id="nyc-footer">
+
+      <div class="container py-3 d-none" id="languages">
+
+          <div class="row fs-md d-print-none">
+
+              <div class="col-6 col-md-4 col-lg mb-2 mb-lg-0">
+                  <ul class="extensible-list">
+                      <li><a class="lang-select text-reset" href="#" data-lang="ar">عربى</a></li>
+                      <li><a class="lang-select text-reset" href="#" data-lang="bn">বাঙালি</a></li>
+                  </ul>
+              </div>
+              <div class="col-6 col-md-4 col-lg mb-2 mb-lg-0">
+                  <ul class="extensible-list">
+                      <li><a class="lang-select text-reset" href="#" data-lang="zh-CN">中文</a></li>
+                      <li><a class="lang-select text-reset" href="#" data-lang="fr">français</a></li>
+                  </ul>
+              </div>
+              <div class="col-6 col-md-4 col-lg mb-2 mb-lg-0">
+                  <ul class="extensible-list">
+                      <li><a class="lang-select text-reset" href="#" data-lang="ht">Kreyòl Ayisyen</a></li>
+                      <li><a class="lang-select text-reset" href="#" data-lang="ko">한국어</a></li>
+                  </ul>
+              </div>
+              <div class="col-6 col-md-4 col-lg mb-2 mb-lg-0">
+                  <ul class="extensible-list">
+                      <li><a class="lang-select text-reset" href="#" data-lang="pl">Polskie</a></li>
+                      <li><a class="lang-select text-reset" href="#" data-lang="ru">русский</a></li>
+                  </ul>
+              </div>
+              <div class="col-6 col-md-4 col-lg">
+                  <ul class="extensible-list">
+                      <li><a class="lang-select text-reset" href="#" data-lang="es">Español</a></li>
+                      <li><a class="lang-select text-reset" href="#" data-lang="ur">اردو</a></li>
+                  </ul>
+              </div>
+          </div>
+
+      </div>
+      
+
+      <div class="container py-3 d-print-none" id="languages">
+
+          <ul class="fs-md" role="list">
+              <li><a class="lang-select text-reset" href="#" data-lang="ar">عربى</a></li>
+              <li><a class="lang-select text-reset" href="#" data-lang="bn">বাঙালি</a></li>
+              <li><a class="lang-select text-reset" href="#" data-lang="zh-CN">中文</a></li>
+              <li><a class="lang-select text-reset" href="#" data-lang="fr">français</a></li>
+              <li><a class="lang-select text-reset" href="#" data-lang="ht">Kreyòl Ayisyen</a></li>
+              <li><a class="lang-select text-reset" href="#" data-lang="ko">한국어</a></li>
+              <li><a class="lang-select text-reset" href="#" data-lang="pl">Polskie</a></li>
+              <li><a class="lang-select text-reset" href="#" data-lang="ru">русский</a></li>
+              <li><a class="lang-select text-reset" href="#" data-lang="es">Español</a></li>
+              <li><a class="lang-select text-reset" href="#" data-lang="ur">اردو</a></li>
+          </ul>
+
+      </div>
+      
+
+      <hr class="opacity-10" aria-hidden="true">
+
+      <div class="container py-3">
+          <div class="row">
+              <div class="col-md-6 col-lg-8 mb-3 mb-lg-0">
+                  <nav class="row fs-md d-print-none" role="navigation">
+                      <div class="col-lg mb-3 mb-lg-0">
+                          <ul class="extensible-list">
+                              <li>
+                                  <a class="text-reset" href="https://www1.nyc.gov/nyc-resources/agencies.page">
+                                      <strong>Directory of City Agencies</strong>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a class="text-reset" href="https://a858-nycnotify.nyc.gov/notifynyc/">
+                                      <strong>Notify NYC</strong>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a class="text-reset"
+                                      href="https://www1.nyc.gov/connect/mobile-applications.page">
+                                      <strong>NYC Mobile Apps</strong>
+                                  </a>
+                              </li>
+                          </ul>
+                      </div>
+                      
+
+                      <div class="col-lg mb-3 mb-lg-0">
+
+                          <ul class="extensible-list">
+                              <li>
+                                  <a class="text-reset" href="https://www1.nyc.gov/home/contact-us.page">
+                                      <strong>Contact NYC Government</strong>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a class="text-reset" href="https://a856-citystore.nyc.gov/">
+                                      <strong>CityStore</strong>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a class="text-reset" href="https://www.nyc.gov/nyc-resources/nyc-maps.page">
+                                      <strong>Maps</strong>
+                                  </a>
+                              </li>
+                          </ul>
+
+                      </div>
+                      
+
+                      <div class="col-lg mb-3 mb-lg-0">
+
+                          <ul class="extensible-list">
+                              <li>
+                                  <a class="text-reset"
+                                      href="https://a127-ess.nyc.gov/psp/prdess/?cmd=login&languageCd=ENG&">
+                                      <strong>City Employees</strong>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a class="text-reset" href="https://www1.nyc.gov/connect/social-media.page">
+                                      <strong>Stay Connected</strong>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a class="text-reset"
+                                      href="https://www1.nyc.gov/nyc-resources/resident-toolkit.page">
+                                      <strong>Resident Toolkit</strong>
+                                  </a>
+                              </li>
+                          </ul>
+                      </div>
+                      
+
+                  </nav>
+              </div>
+              
+
+              <div class="col-md-6 col-lg-4">
+
+                  <a class="mb-2" href="https://www1.nyc.gov" title="Go to nyc.gov" target="_blank" rel="noopener noreferrer">
+                      
+                      <img class="mb-2" src="/IndicatorPublic/images/nyc-bubble-logo.svg" width="90" alt="NYC Logo">
+                      <span class="sr-only">(opens in a new tab)</span>
+                  </a>
+                  <p class="fs-sm">© City of New York. 2022 All Rights Reserved,<br>NYC is a trademark and service mark of the City of New
+                    York.</p>
+
+                  <ul class="extensible-list horizontal fs-sm d-print-none">
+                      <li>
+                          <a class="text-reset" href="https://www1.nyc.gov/home/privacy-policy.page">Privacy
+                              Policy</a>
+                      </li>
+                      <li>
+                          <a class="text-reset" href="https://www1.nyc.gov/home/terms-of-use.page">Terms
+                              of Use</a>
+                      </li>
+                      <li>
+                          <a class="text-reset" href="https://www1.nyc.gov/site/mopd/index.page"
+                              title="Mayor's Office for People with Disabilities">
+                              <span class="sr-only">Learn more about Digital Accessibility
+                                from the Mayor's Office for People with Disabilities.</span>
+                              <span class="fab fa-lg fa-accessible-icon"></span>
+                          </a>
+                      </li>
+                  </ul>
+
+              </div>
+              
+
+          </div>
+          
+
+      </div>
+      
+
+  </div>
+  
+
+</footer>
+
+
+<div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="searchModalLabel" data-pagefind-ignore="all">Search</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <link href=/IndicatorPublic/pagefind/pagefind-ui.css rel="stylesheet">
+            <script src=/IndicatorPublic/pagefind/pagefind-ui.js type="text/javascript"></script>
+            <div id="search"></div>
+            <script>
+
+                window.addEventListener('DOMContentLoaded', (event) => {
+
+                    new PagefindUI({
+                        element: "#search",
+                        showSubResults: true,
+                        showImages: false,
+                        baseUrl: baseURL,
+                        showEmptyFilters: true,
+                        debounceTimeoutMs: 500,
+                        
+                        processTerm: function (term) {
+
+                            gtag('event', 'search', {
+                                search_term: term
+                            });
+
+                            return term;
+
+                        },
+                        processResult: function (result) {
+
+                            
+                            
+                            
+
+                            
+
+                            result.meta.title = result.meta.title
+                                .replace(/&#(\d+);/g, ((match, dec) => `${String.fromCharCode(dec)}`))
+                                .replaceAll("&amp;", "&");
+
+                            
+
+                            result.sub_results.forEach(sub => {
+
+                                
+
+                                sub.url = sub.url.replace("#IndicatorID-", "?id=");
+
+                                
+
+                                sub.title = sub.title
+                                    .replace(/&#(\d+);/g, ((match, dec) => `${String.fromCharCode(dec)}`))
+                                    .replaceAll("&amp;", "&");
+
+                            });
+
+                            
+                            
+                            
+
+                            
+                            var allResults = document.getElementsByClassName('pagefind-ui__result-link');
+
+                            
+                            for (h = 0; h < allResults.length; h += 1) {
+
+                                allResults[h].setAttribute('onclick',"gtag('event', 'search_click', { page_viewed: '" + allResults[h].href + "' });");
+
+                            }
+
+                            
+
+                            console.log("@ result:", result);
+                            
+
+                        }
+                    });
+
+                    
+
+                    
+
+                    const searchModal = document.getElementById('searchModal')
+                    const searchInput = document.getElementsByClassName('pagefind-ui__search-input')[0]
+
+                    $(searchModal).on('shown.bs.modal', () => {
+                        searchInput.focus();
+                        searchInput.select();
+                    })
+
+
+                });
+
+
+            </script>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+<script>
+
+
+</script>
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+
+
+<script>
+  function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+          pageLanguage: 'en'
+      }, 'google_translate_element');
+
+      
+      document.querySelectorAll("div[class^=VI] svg").forEach(e => e.outerHTML = "");
+  }
+</script>
+
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+<script type="text/javascript" src="/IndicatorPublic/node_modules/lunr/lunr.min.e31525fdde83e931eb0275c0c066a35e4a1669e30dc0428ae2235fab90e8b446cb3c07e4e854b148fdf274dc6a0e00b0d5cff4675260e8bf21da3fbefbd0599a.js" integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j&#43;&#43;&#43;9BZmg=="></script>
+
+<script type="text/javascript" 
+    src="/IndicatorPublic/js/main.552c9e0eb5b9f567a863809d88dfdb9dfc2e5062f1aa7ae313abbdf21a346fd773ae265f5ff618d8322e2b96b95be1b319c681eb0ea7b818a3c6485a84b6ad5a.js" 
+    integrity="sha512-VSyeDrW59WeoY4CdiN/bnfwuUGLxqnrjE6u98ho0b9dzriZfX/YY2DIuK5a5W&#43;GzGcaB6w6nuBijxkhahLatWg=="></script>
+
+<script type="text/javascript" 
+    src="/IndicatorPublic/js/search.5332590626a6aa935d122347c2c99089e9a328a8e08882b46a430570150c8d2f238b3758b581c006ee488c927a70aac5a8f53761d32d922e08ad7172db6b3abf.js" 
+    integrity="sha512-UzJZBiamqpNdEiNHwsmQiemjKKjgiIK0akMFcBUMjS8jizdYtYHABu5IjJJ6cKrFqPU3YdMtki4IrXFy22s6vw=="></script>
+  
+  
+</body>
+</html>

@@ -1,0 +1,2321 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+
+
+
+
+    
+
+    
+    <meta name="robots" content="noindex, nofollow">
+
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PB98MPZ31B"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-PB98MPZ31B');
+    </script>
+
+
+
+
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<title>Data Stories - NYC Environment and Health Data Portal</title>
+
+
+        <link rel="alternate" hreflang="es" href="/IndicatorPublic/es/data-stories/" title="Español">
+        <link rel="alternate" hreflang="zh" href="/IndicatorPublic/zh/data-stories/" title="中文">
+
+
+<meta name="description" content="Data on how environments shape health in NYC. ">
+<link rel="canonical" href="/IndicatorPublic/data-stories/" />
+<meta name="geo.region" content="" />
+<meta name="geo.placename" content="Environment &amp; Health Data Portal" />
+
+
+<meta property="fb:profile_id" content="0" />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="en_us" />
+<meta property="og:url" content="/IndicatorPublic/data-stories/" />
+<meta property="og:title" content="Data Stories - NYC Environment and Health Data Portal  &ndash; Environment &amp; Health Data Portal" />
+<meta property="og:description" content="Explainers and data on health in NYC. " />
+<meta property="og:site_name" content="Environment &amp; Health Data Portal" />
+<meta property="og:image" content="/IndicatorPublic/images/report_bottom_background_hu55023dbc37de342337a21cf33dcc5889_222582_2400x1260_fill_q95_mitchellnetravali_smart1.jpg">
+<meta property="og:see_also" content="https://twitter.com/nycHealthy" />
+<meta name="twitter:title" content="Data Stories - NYC Environment and Health Data Portal  &ndash; Environment &amp; Health Data Portal">
+<meta name="twitter:description" content=" Explainers and data on health in NYC. ">
+<meta name="twitter:image" content=" /IndicatorPublic/images/report_bottom_background.jpg">
+<meta name="twitter:site" content="@nycHealthy">
+<meta name="twitter:creator" content="@nycHealthy">
+
+
+
+<script src="/IndicatorPublic/node_modules/jquery/dist/jquery.min.a6e981b23351186aa43f32879dd64c6801be6e2af7ef8b0e472cccdeeba52d5d7894de4bcb292a364f1e11e525524077534338140a72687ada4fae62849843a5.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG&#43;bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous"></script>
+
+
+
+
+<link rel="icon" href=/IndicatorPublic/7618350_heatmap_business_analytics_statistics_icon-gpr.ico>
+
+<link rel="stylesheet" href="/IndicatorPublic/node_modules/@fortawesome/fontawesome-free/css/all.min.css" />
+
+<script src="/IndicatorPublic/node_modules/@fortawesome/fontawesome-free/js/all.min.196cd5adc1a5a344f14d1bf3f6db62a32609f96c24f429341bcd43f9e3badc16aa1da2776195fdc2eaa3c207dc57f32b0763e16955fd0e461585b1694ad9eaa5.js" integrity="sha512-GWzVrcGlo0TxTRvz9ttioyYJ&#43;Wwk9Ck0G81D&#43;eO63BaqHaJ3YZX9wuqjwgfcV/MrB2PhaVX9DkYVhbFpStnqpQ==" crossorigin="anonymous"></script>
+
+
+<link rel="stylesheet" href="/IndicatorPublic/scss/theme.0390bf6318c75775949357904a205296964b423f2e033ba74b0a67fd816df115666afa34a9701be11c1c06b9bf44455bcc39c3c1009a0a4195bceb192349e949.css" integrity="sha512-A5C/YxjHV3WUk1eQSiBSlpZLQj8uAzunSwpn/YFt8RVmavo0qXAb4RwcBrm/REVbzDnDwQCaCkGVvOsZI0npSQ==" />
+
+<script src="/IndicatorPublic/node_modules/dompurify/dist/purify.min.f7e8a500e79763cab2d9bc3f879d4c9a588d347bddca14e92c896a0e65690f6eb3f158d526c509b64e6b85b0c852f6220fe1291a802ed314daecc859a211508c.js" integrity="sha512-9&#43;ilAOeXY8qy2bw/h51MmliNNHvdyhTpLIlqDmVpD26z8VjVJsUJtk5rhbDIUvYiD&#43;EpGoAu0xTa7MhZohFQjA=="></script>
+
+
+
+
+
+<meta data-pagefind-filter="section[content]" content="Data Stories"><script>
+
+    let baseURL = "/IndicatorPublic/"
+    let data_repo = "https:\/\/raw.githubusercontent.com\/nychealth\/EHDP-data\/";
+    let data_branch = "production";
+    let hugoEnv = "appscan_deploy"
+
+</script>
+
+
+<meta 
+        data-pagefind-meta="title:Data Stories | Environment &amp; Health Data Portal"
+        class="d-none"
+    >
+
+  </head>
+
+
+
+<body>
+
+  
+<a class="sr-only sr-only-focusable skip-menu" href="#skip-header-target">Skip Header</a>
+
+<header id="global-header" role="banner">
+
+    <div class="bg-black text-white" id="nyc-top-header">
+
+        <div class="container-fluid wide">
+
+            <div class="row py-1 align-items-center justify-content-between">
+
+                <div class="col-auto">
+                    <p class="d-none d-md-flex fs-md">
+                        <a class="text-reset" href="https://www1.nyc.gov/">
+                            <strong>nyc.gov</strong>
+                        </a>
+                        <span class="mx-1" aria-hidden="true">></span>
+                        <a class="text-reset" href="https://www1.nyc.gov/">
+                            Health
+                        </a>
+                        <span class="mx-1" aria-hidden="true">></span>
+                        <a class="text-reset" href="/IndicatorPublic/data-stories/">
+                        EH Data Portal
+                        </a>
+                    </p>
+                </div>
+                
+
+                <div class="col-auto">
+
+                    <ul class="extensible-list horizontal fs-md">
+                        <li class="d-print-none">
+                            <a class="text-reset" href="https://www1.nyc.gov/">
+                                <strong>
+                                    311
+                                </strong>
+                            </a>
+                        </li>
+                        <li class="d-print-none">
+                            <a class="text-reset" href="https://www1.nyc.gov/home/search/index.page">
+                                <strong>
+                                    Search all NYC.gov
+                                </strong>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www1.nyc.gov/" title="Go to nyc.gov">
+                                <img class="d-block" src=/IndicatorPublic/images/nyc-bubble-logo.svg width="45" alt="NYC Logo">
+                            </a>
+                        </li>
+                    </ul>
+
+                </div>
+                
+
+            </div>
+            
+
+        </div>
+        
+
+    </div>
+    
+    <div class="site-header bg-primary" style='background-image: url(/IndicatorPublic/images/header_background.jpg)'>
+        <div class="wrap-header">
+
+            <div class="container-fluid wide">
+
+                <div class="row align-items-center">
+
+                    <div class="col-lg py-3">
+                        <div class="d-flex justify-content-center justify-content-lg-start">
+                            <a href="https://stgbespweb600.health.dohmh.nycnet/IndicatorPublic/"><img src="https://stgbespweb600.health.dohmh.nycnet/IndicatorPublic/7618350_heatmap_business_analytics_statistics_icon-gpr.ico" style="height: 67px" class="pr-1"></a>
+
+                            <p class="text-white title-hover">
+                                <span class="site-subtitle"><a href="https://stgbespweb600.health.dohmh.nycnet/IndicatorPublic/" class="link-no-dec">Environment & Health</span>
+                                <span class="site-title">Data Portal</a></span>
+                            </p>
+
+
+                        </div>
+                        
+                    </div>
+                    
+
+                    <div class="col-lg-auto border-top border-lg-0 d-print-none">
+
+                        <div class="d-lg-flex align-items-center">
+
+                            
+
+                            <ul class="extensible-list horizontal justify-content-between my-2 d-lg-none">
+                                <li>
+                                    <button class="navbar-toggler no-btn-style" type="button" title="Main Menu" data-toggle="collapse"
+                                        data-target="#nav-primary" aria-controls="nav-primary" aria-expanded="false"
+                                        aria-label="Toggle navigation">
+                                        <span class="sr-only">Main Menu</span>
+                                        <span class="fas fa-bars fa-lg text-white" ></span>
+                                    </button>
+                                </li>
+
+                                <li>
+                                    <a class="nav-link" href="#" type="button" data-toggle="modal" data-target="#searchModal" title="Search" data-toggle="collapse">
+                                        <span class="sr-only">Search</span>
+                                        <i class="fa fa-magnifying-glass text-white"></i>
+                                    </a>
+                                </li>
+                            </ul>
+
+                            <div class="collapse d-lg-block mx-n2 mx-lg-2" id="nav-primary">
+
+                                <nav class="nav" role="navigation">
+
+                                    <div class="nav-item bg-white text-primary border dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="nav-item-topic"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Topics
+                                        </a>
+
+                                        <div class="dropdown-menu wider-menu" aria-labelledby="nav-item-topic">
+                                            <ul class="extensible-list p-0">
+                                                
+                                                <a class="" href="/IndicatorPublic/key-topics/transportation/"> <li class="">Active design, public space, and transportation</li></a>
+                                                <hr class="my-1">
+                                                
+
+                                                
+                                                <a class="" href="/IndicatorPublic/key-topics/airquality/"> <li class="">Air quality</li></a>
+                                                <hr class="my-1">
+                                                
+
+                                                
+                                                <a class="" href="/IndicatorPublic/key-topics/childhealth/"> <li class="">Child health</li></a>
+                                                <hr class="my-1">
+                                                
+
+                                                
+                                                <a class="" href="/IndicatorPublic/key-topics/climatehealth/"> <li class="">Climate and health</li></a>
+                                                <hr class="my-1">
+                                                
+
+                                                
+                                                <a class="" href="/IndicatorPublic/key-topics/foodanddrink/"> <li class="">Food and drink</li></a>
+                                                <hr class="my-1">
+                                                
+
+                                                
+                                                <a class="" href="/IndicatorPublic/key-topics/healthoutcomes/"> <li class="">Environmental health outcomes</li></a>
+                                                <hr class="my-1">
+                                                
+
+                                                
+                                                <a class="" href="/IndicatorPublic/key-topics/housing/"> <li class="">Housing</li></a>
+                                                <hr class="my-1">
+                                                
+
+                                                
+                                                <a class="" href="/IndicatorPublic/key-topics/social/"> <li class="">Inequality and health inequities</li></a>
+                                                <hr class="my-1">
+                                                
+
+                                                
+                                                <a class="" href="/IndicatorPublic/key-topics/pests/"> <li class="">Pests and pesticides</li></a>
+                                                <hr class="my-1">
+                                                
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    
+
+                                    <div class="nav-item bg-white text-primary border dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="nav-item-type"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Explore
+                                        </a>
+
+                                        <div class="dropdown-menu wider-menu" aria-labelledby="nav-item-type">
+                                            <ul class="extensible-list p-0"><a href="/IndicatorPublic/data-stories/"> <li><span class="mr-1"><span class='text-primary ds-accent'><i class='fas fa-passport' aria-hidden='true'></i></span></span>Data Stories</li></a>
+                                                   <hr class="my-1"><a href="/IndicatorPublic/neighborhood-reports/"> <li><span class="mr-1"><span class='text-primary nr-accent'><i class='fas fa-map-marked-alt' aria-hidden='true'></i></span></span>Neighborhood Reports</li></a>
+                                                   <hr class="my-1"><a href="/IndicatorPublic/data-explorer/"> <li><span class="mr-1"><span class='text-primary de-accent'><i class='fas fa-chart-line' aria-hidden='true'></i></span></span>Data Explorer</li></a>
+                                                   <hr class="my-1"></ul>
+                                        </div>
+                                    </div>
+                                    
+
+                                    <div class="nav-item bg-white text-primary border"><a class="nav-link " href="/IndicatorPublic/about/">
+                                            About
+                                        </a></div>
+                                    
+
+                                    
+
+                                    <div class="nav-item bg-white text-primary border d-none d-lg-block">
+                                        <a class="nav-link" href="#" type="button" data-toggle="modal" data-target="#searchModal" title="Search" data-toggle="collapse">
+                                                    <span class="sr-only">Search</span>
+                                                    <i class="fa fa-magnifying-glass text-body"></i>
+                                                </a>
+                                    </div>
+                                    
+
+                                </nav>
+
+                            </div>
+
+                        </div>
+                        
+
+                    </div>
+                    
+
+                </div>
+                
+
+            </div>
+            
+
+        </div>
+        
+
+        <div class="container-fluid border-top collapse" id="global-language">
+            <div class="narrow py-2">
+                <div id="google_translate_element"></div>
+            </div>
+        </div>
+
+
+        </div>
+
+</header>
+<main id="skip-header-target" role="main" data-pagefind-body><article class="container wide" id="skip-header-target">
+
+    <div class="data-stories">
+        <div class="row">
+            <div class="col-md-10 col-sm-12 mt-4 mb-2">
+                <nav aria-label="breadcrumb" class="">
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href=/IndicatorPublic/>Home</a></li>
+                        <li class="breadcrumb-item active"><a href=/IndicatorPublic/data-stories>Data Stories</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 col-sm-12 my-4">
+                <h1><i class="fas fa-passport" aria-hidden="true" style="margin-right: 10px"></i>Data Stories</h1>
+                <p>Explainers and perspectives on important health and environment topics.</p>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row mt-4">
+        <div class="col">
+            <h2>Latest data stories</h2>
+        </div>
+    </div>
+
+    <div class="row mt-2"><div class="card content-card mb-4 col-sm-6 col-md-4">
+            <div class="card-content data-stories">
+                <a href="/IndicatorPublic/data-stories/housing-creates-health/">
+                    
+                    
+                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/housing-creates-health/ds-housing-health_WillSteacy_huc22503651d81b45fcd83c6d170b55d3a_7163127_740x0_resize_q95_mitchellnetravali.jpg); background-size: cover"></div>
+                </a>
+
+                <div class="card-body">
+                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/housing-creates-health/" class="text-primary">Housing creates health</a></h3>
+                    <div class="mb-2">Health is determined by many factors, and people tend to be healthier when they have economic …
+</div>
+                    <div class="d-flex justify-content-end link">
+                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/housing-creates-health/">Read more <i class="fa-solid fa-angle-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+            <div class="card-content data-stories">
+                <a href="/IndicatorPublic/data-stories/economic-stability/">
+                    
+                    
+                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/economic-stability/CrownHeights_JulienneSchaer-065_hu75a4c2b23d8d0410bfe96c1ebcbd66a0_11176649_740x0_resize_q95_mitchellnetravali.JPG); background-size: cover"></div>
+                </a>
+
+                <div class="card-body">
+                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/economic-stability/" class="text-primary">Economic stability creates health</a></h3>
+                    <div class="mb-2">Health is determined by many factors, and people tend to be healthier when they have economic …
+</div>
+                    <div class="d-flex justify-content-end link">
+                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/economic-stability/">Read more <i class="fa-solid fa-angle-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+            <div class="card-content data-stories">
+                <a href="/IndicatorPublic/data-stories/injury-deaths/">
+                    
+                    
+                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/injury-deaths/ds-aqcovid_hu6f00cbe9d883d4bf1385a12897341333_3698525_740x0_resize_q95_mitchellnetravali.jpeg); background-size: cover"></div>
+                </a>
+
+                <div class="card-body">
+                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/injury-deaths/" class="text-primary">Injury deaths in NYC</a></h3>
+                    <div class="mb-2">Injury deaths among young and middle-aged adults in New York City: with a focus on homicide and …</div>
+                    <div class="d-flex justify-content-end link">
+                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/injury-deaths/">Read more <i class="fa-solid fa-angle-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div></div>
+
+    <div class="row mt-4">
+        <div class="col">
+            <h2>All data stories</h2>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <ul class="nav nav-pills mb-3 border-bottom" id="pills-tab" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link" id="pills-aq-tab" data-toggle="pill" href="#pills-aq" role="tab" aria-controls="pills-aq" aria-selected="false">Air quality</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="pills-transportation-tab" data-toggle="pill" href="#pills-transportation" role="tab" aria-controls="pills-transportation" aria-selected="false">Transportation</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="pills-justice-tab" data-toggle="pill" href="#pills-justice" role="tab" aria-controls="pills-justice" aria-selected="false">Social justice</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="pills-climate-tab" data-toggle="pill" href="#pills-climate" role="tab" aria-controls="pills-climate" aria-selected="false">Climate</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="pills-housing-tab" data-toggle="pill" href="#pills-housing" role="tab" aria-controls="pills-housing" aria-selected="false">Housing</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="pills-food-tab" data-toggle="pill" href="#pills-food" role="tab" aria-controls="pills-food" aria-selected="false">Food and drink</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="pills-how-tab" data-toggle="pill" href="#pills-how" role="tab" aria-controls="pills-how" aria-selected="false">How we work</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" id="pills-all-tab" data-toggle="pill" href="#pills-all" role="tab" aria-controls="pills-all" aria-selected="true">All data stories</a>
+              </li>
+          </ul>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <div class="tab-content" id="pills-tabContent">
+                <div class="tab-pane fade show active" id="pills-all" role="tabpanel" aria-labelledby="pills-all-tab">
+
+                    <div class="row pb-2"><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/IndicatorPublic/data-stories/housing-creates-health/">
+                                    
+                                    
+                                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/housing-creates-health/ds-housing-health_WillSteacy_huc22503651d81b45fcd83c6d170b55d3a_7163127_740x0_resize_q95_mitchellnetravali.jpg); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/housing-creates-health/" class="text-primary">Housing creates health</a></h3>
+                                    <div class="mb-2">Health is determined by many factors, and people tend to be healthier when they have economic …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/housing-creates-health/">Read more <i class="fa-solid fa-angle-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/IndicatorPublic/data-stories/economic-stability/">
+                                    
+                                    
+                                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/economic-stability/CrownHeights_JulienneSchaer-065_hu75a4c2b23d8d0410bfe96c1ebcbd66a0_11176649_740x0_resize_q95_mitchellnetravali.JPG); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/economic-stability/" class="text-primary">Economic stability creates health</a></h3>
+                                    <div class="mb-2">Health is determined by many factors, and people tend to be healthier when they have economic …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/economic-stability/">Read more <i class="fa-solid fa-angle-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/IndicatorPublic/data-stories/injury-deaths/">
+                                    
+                                    
+                                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/injury-deaths/ds-aqcovid_hu6f00cbe9d883d4bf1385a12897341333_3698525_740x0_resize_q95_mitchellnetravali.jpeg); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/injury-deaths/" class="text-primary">Injury deaths in NYC</a></h3>
+                                    <div class="mb-2">Injury deaths among young and middle-aged adults in New York City: with a focus on homicide and …</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/injury-deaths/">Read more <i class="fa-solid fa-angle-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/IndicatorPublic/data-stories/adult-lead/">
+                                    
+                                    
+                                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/adult-lead/OneWorldObservatory_TaggerYanceyIV_6565_hu6cdc33f06942b0bc63e2251ac93ca099_19512282_740x0_resize_q95_mitchellnetravali.jpg); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/adult-lead/" class="text-primary">Lead poisoning affects adults too</a></h3>
+                                    <div class="mb-2">Lead poisoning affects adults too Lead is a harmful metal that can cause serious health issues. When …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/adult-lead/">Read more <i class="fa-solid fa-angle-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/IndicatorPublic/data-stories/racial-wealth-gap/">
+                                    
+                                    
+                                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/racial-wealth-gap/CrownHeights_JulienneSchaer-065_hu75a4c2b23d8d0410bfe96c1ebcbd66a0_11176649_740x0_resize_q95_mitchellnetravali.JPG); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/racial-wealth-gap/" class="text-primary">The racial wealth gap has big implications for public health and health equity</a></h3>
+                                    <div class="mb-2">Throughout history, the distribution of wealth in the U.S. has, and continues to be, largely unequal …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/racial-wealth-gap/">Read more <i class="fa-solid fa-angle-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/IndicatorPublic/data-stories/sanitation/">
+                                    
+                                    
+                                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/sanitation/ds-sanitation-trucks_hue6953120da93037c77ea3a523fe160a5_2608873_740x0_resize_q95_mitchellnetravali.jpg); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/sanitation/" class="text-primary">Why trash is a public health issue</a></h3>
+                                    <div class="mb-2">Why trash service is crucial for public health New York City’s modern history of public health …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/sanitation/">Read more <i class="fa-solid fa-angle-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/IndicatorPublic/data-stories/block-by-block/">
+                                    
+                                    
+                                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/block-by-block/redlining-in-harlem_hu272db9ffebd25080daf1242cef3c9a9a_4329321_740x0_resize_mitchellnetravali_3.png); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/block-by-block/" class="text-primary">A walk through history</a></h3>
+                                    <div class="mb-2">A neighborhood is not only shaped by its residents, but also by governmental practices and policies. …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/block-by-block/">Read more <i class="fa-solid fa-angle-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/IndicatorPublic/data-stories/hia/">
+                                    
+                                    
+                                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/hia/ds-geographies_hu340a3b6f063c63347307132c2586a018_1911570_740x0_resize_q95_mitchellnetravali.jpg); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/hia/" class="text-primary">Efforts to reduce air pollution should focus on neighborhoods with the worst health impacts.</a></h3>
+                                    <div class="mb-2">Every year in NYC between 2015 and 2017 (the most recent years for which this analysis is …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/hia/">Read more <i class="fa-solid fa-angle-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/IndicatorPublic/data-stories/cold/">
+                                    
+                                    
+                                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/cold/winter-weather_huf071dde5826ad10157fff3f12461591b_1472534_740x0_resize_mitchellnetravali_3.png); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/cold/" class="text-primary">Staying safe in cold weather</a></h3>
+                                    <div class="mb-2">Cold weather can be dangerous. Here are some tips for staying safe this winter.
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/cold/">Read more <i class="fa-solid fa-angle-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/IndicatorPublic/data-stories/zappa/">
+                                    
+                                    
+                                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/zappa/ds-road-traffic_huef7e75945ba34d12093c82a8903640ce_3217646_740x0_resize_q95_mitchellnetravali.jpg); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/zappa/" class="text-primary">ZAPPA: A tool to understand air quality policies</a></h3>
+                                    <div class="mb-2">How do we know what air quality policies will have the biggest effect? New York City’s air quality …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/zappa/">Read more <i class="fa-solid fa-angle-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/IndicatorPublic/data-stories/redesign/">
+                                    
+                                    
+                                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/redesign/ds-codesign-team_hua759450ab7037b64bf6f2e0d03c11252_2172418_740x0_resize_q95_mitchellnetravali.jpg); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/redesign/" class="text-primary">The redesigned EH Data Portal</a></h3>
+                                    <div class="mb-2">The Environment and Health Data Portal looks a little bit different! We recently redesigned our site …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/redesign/">Read more <i class="fa-solid fa-angle-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/IndicatorPublic/data-stories/aqcovid2/">
+                                    
+                                    
+                                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/aqcovid2/ds-aqcovid_hu6f00cbe9d883d4bf1385a12897341333_3698525_740x0_resize_q95_mitchellnetravali.jpeg); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/aqcovid2/" class="text-primary">An update on air quality during COVID-19</a></h3>
+                                    <div class="mb-2">Big improvements in outdoor air quality during COVID-19 reveal impacts of traffic and commercial …</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/aqcovid2/">Read more <i class="fa-solid fa-angle-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/IndicatorPublic/data-stories/poweroutages/">
+                                    
+                                    
+                                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/poweroutages/title7_hu8e2a6c327907705111c7c36b65d607ea_3246029_740x0_resize_q95_mitchellnetravali.jpg); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/poweroutages/" class="text-primary">How power outages affect health</a></h3>
+                                    <div class="mb-2">Imagine your child has asthma. One summer night, a powerful storm rolls in and knocks the power out. …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/poweroutages/">Read more <i class="fa-solid fa-angle-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/IndicatorPublic/data-stories/localtemp/">
+                                    
+                                    
+                                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/localtemp/ds-localtemp_hu098823fc1efa39dee5df50e77029244f_1783811_740x0_resize_q95_mitchellnetravali.jpeg); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/localtemp/" class="text-primary">The urban heat island effect in NYC</a></h3>
+                                    <div class="mb-2">In New York City and across the country, more people die from extreme heat than from all other …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/localtemp/">Read more <i class="fa-solid fa-angle-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/IndicatorPublic/data-stories/aq-cooking/">
+                                    
+                                    
+                                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/aq-cooking/ds-aq-cooking_hu098823fc1efa39dee5df50e77029244f_1783811_740x0_resize_q95_mitchellnetravali.jpeg); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/aq-cooking/" class="text-primary">Tracking changes in New York City&#39;s sources of air pollution</a></h3>
+                                    <div class="mb-2">As city life changes, so does its air quality, as sources of emissions that affect the city&amp;rsquo;s …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/aq-cooking/">Read more <i class="fa-solid fa-angle-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/IndicatorPublic/data-stories/violence/">
+                                    
+                                    
+                                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/violence/ds-violence_hu6182672d2bc7dc090625beee39a7dab9_4320773_740x0_resize_q95_mitchellnetravali.jpg); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/violence/" class="text-primary">Why violence is a public health issue</a></h3>
+                                    <div class="mb-2">Using public health to prevent violence Experiencing violence affects people in many ways. It not …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/violence/">Read more <i class="fa-solid fa-angle-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/IndicatorPublic/data-stories/traffic-and-air-pollution/">
+                                    
+                                    
+                                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/traffic-and-air-pollution/ESB_sunrise_JulienneSchaer-066_huff57916973dc8349e9dedcf2269ca825_1358262_740x0_resize_q95_mitchellnetravali.JPG); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/traffic-and-air-pollution/" class="text-primary">The Public Health Impacts of PM2.5 from Traffic Air Pollution</a></h3>
+                                    <div class="mb-2">What is PM2.5 and why is it a health risk? PM2.5—or fine particulate matter—are tiny particles that …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/traffic-and-air-pollution/">Read more <i class="fa-solid fa-angle-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/IndicatorPublic/data-stories/redlining/">
+                                    
+                                    
+                                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/redlining/ds-redlining_hu6b252481458558718de479ea1428e8ac_261393_740x0_resize_q95_mitchellnetravali.jpeg); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/redlining/" class="text-primary">A brief history of redlining</a></h3>
+                                    <div class="mb-2">Inside the 90-year-old financial policy that harms our health In public health, we often cite …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/redlining/">Read more <i class="fa-solid fa-angle-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/IndicatorPublic/data-stories/housing/">
+                                    
+                                    
+                                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/housing/ds-housing_hu6b252481458558718de479ea1428e8ac_261393_740x0_resize_q95_mitchellnetravali.jpeg); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/housing/" class="text-primary">Health, housing, and history</a></h3>
+                                    <div class="mb-2">For health, place matters What determines whether or not you’re healthy? You may think about what …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/housing/">Read more <i class="fa-solid fa-angle-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/IndicatorPublic/data-stories/streets/">
+                                    
+                                    
+                                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/streets/ds-streets_hu46977409501ce132d1c8258e941d2087_2749927_740x0_resize_q95_mitchellnetravali.jpg); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/streets/" class="text-primary">Environments matter: the road to street safety in NYC</a></h3>
+                                    <div class="mb-2">The COVID-19 public health emergency has changed New York City in many ways—including how we get …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/streets/">Read more <i class="fa-solid fa-angle-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/IndicatorPublic/data-stories/heat/">
+                                    
+                                    
+                                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/heat/ds-heat_hucfb7cfabc81cb4ce932c87a30d6d8b57_1052250_740x0_resize_q95_mitchellnetravali.jpg); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/heat/" class="text-primary">Protecting New Yorkers from extreme heat</a></h3>
+                                    <div class="mb-2">Hot weather is dangerous. In New York City and across the country, more people on average die from …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/heat/">Read more <i class="fa-solid fa-angle-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/IndicatorPublic/data-stories/geographies/">
+                                    
+                                    
+                                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/geographies/ds-geographies_hu340a3b6f063c63347307132c2586a018_1911570_740x0_resize_q95_mitchellnetravali.jpg); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/geographies/" class="text-primary">Neighborhood boundaries on the EH Data Portal</a></h3>
+                                    <div class="mb-2">New York City has hundreds of neighborhoods and nearly as many ways of drawing neighborhood …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/geographies/">Read more <i class="fa-solid fa-angle-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/IndicatorPublic/data-stories/roadmap/">
+                                    
+                                    
+                                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/roadmap/ds-codesign-team_hua759450ab7037b64bf6f2e0d03c11252_2172418_740x0_resize_q95_mitchellnetravali.jpg); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/roadmap/" class="text-primary">Our Roadmap: An Open Path Forward</a></h3>
+                                    <div class="mb-2">In 2020, we partnered with Open Tech Strategies to review the Environment and Health Data Portal and …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/roadmap/">Read more <i class="fa-solid fa-angle-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/IndicatorPublic/data-stories/aqcovid/">
+                                    
+                                    
+                                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/aqcovid/ds-aqcovid_hu6f00cbe9d883d4bf1385a12897341333_3698525_740x0_resize_q95_mitchellnetravali.jpeg); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/aqcovid/" class="text-primary">Air quality during COVID-19</a></h3>
+                                    <div class="mb-2">What happens when NYC stays home? The COVID-19 pandemic upended the lives of all New Yorkers. The …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/aqcovid/">Read more <i class="fa-solid fa-angle-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/IndicatorPublic/data-stories/aqsnapshots/">
+                                    
+                                    
+                                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/aqsnapshots/ds-AQsnapshots_hu9e6d0f5484da571ed2d61b4d1898b23e_11352714_740x0_resize_q95_mitchellnetravali.jpg); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/aqsnapshots/" class="text-primary">Air quality snapshots: special findings from 10 years of NYCCAS</a></h3>
+                                    <div class="mb-2"> Skip Nav A traffic …</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/aqsnapshots/">Read more <i class="fa-solid fa-angle-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/IndicatorPublic/data-stories/assaults/">
+                                    
+                                    
+                                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/assaults/ds-assaults_hue09b638813906699188828853c895056_5270715_740x0_resize_q95_mitchellnetravali.jpg); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/assaults/" class="text-primary">Disparities in violence</a></h3>
+                                    <div class="mb-2">Violence has profound effects. An assault, a shooting, a homicide, or any use of force affects …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/assaults/">Read more <i class="fa-solid fa-angle-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/IndicatorPublic/data-stories/codesign/">
+                                    
+                                    
+                                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/codesign/ds-codesign_hu7af45c05e7eaab656aeab8d5fe153c59_137232_740x0_resize_q95_mitchellnetravali.jpg); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/codesign/" class="text-primary">Why we&#39;re working with you to redesign the data portal</a></h3>
+                                    <div class="mb-2">We&amp;rsquo;re making changes, and we need your help.
+A few months ago, when we redesigned the home …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/codesign/">Read more <i class="fa-solid fa-angle-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/IndicatorPublic/data-stories/aqts/">
+                                    
+                                    
+                                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/aqts/ds-aqts_hu03a3e93990d629b07c1ce93d81e9fda1_7631614_740x0_resize_q95_mitchellnetravali.jpeg); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/aqts/" class="text-primary">Air quality in car-free areas</a></h3>
+                                    <div class="mb-2">Does the air improve in car-free zones? People often ask us this, and it&amp;rsquo;s a great question. …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/aqts/">Read more <i class="fa-solid fa-angle-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/IndicatorPublic/data-stories/aq2/">
+                                    
+                                    
+                                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/aq2/ds-aq2_hu098823fc1efa39dee5df50e77029244f_1783811_740x0_resize_q95_mitchellnetravali.jpeg); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/aq2/" class="text-primary">What our air quality monitors tell us about NYC&#39;s neighborhoods</a></h3>
+                                    <div class="mb-2">In Part 1, we looked at data from the New York City Community Air Survey (NYCCAS) - a network of …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/aq2/">Read more <i class="fa-solid fa-angle-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/IndicatorPublic/data-stories/breatheeasy/">
+                                    
+                                    
+                                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/breatheeasy/ds-breatheeasy_hu336432ea62a187e48325081b1ed74bf3_9863502_740x0_resize_q95_mitchellnetravali.jpg); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/breatheeasy/" class="text-primary">Breathe easy: NYC&#39;s air quality is improving</a></h3>
+                                    <div class="mb-2">The air we breathe can have a major effect on our health — air pollution can make asthma worse and …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/breatheeasy/">Read more <i class="fa-solid fa-angle-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/IndicatorPublic/data-stories/food/">
+                                    
+                                    
+                                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/food/ds-food_hu417d5c96fa1688ab452a1d616d10ff52_1600426_740x0_resize_q95_mitchellnetravali.JPG); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/food/" class="text-primary">What hot weather means for food safety</a></h3>
+                                    <div class="mb-2">New Yorkers eat out more than a billion times a year. To help keep diners safe, the Health …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/food/">Read more <i class="fa-solid fa-angle-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/IndicatorPublic/data-stories/povasthma/">
+                                    
+                                    
+                                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/povasthma/ds-povasthma_hub337c1a52911da742d41cad844f9d8de_8178577_740x0_resize_q95_mitchellnetravali.jpg); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/povasthma/" class="text-primary">Why asthma is a social justice issue</a></h3>
+                                    <div class="mb-2">Poverty affects health in many ways. In New York City, the story of asthma clearly illustrates this …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/povasthma/">Read more <i class="fa-solid fa-angle-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div></div>
+                </div>
+
+                <div class="tab-pane fade" id="pills-aq" role="tabpanel" aria-labelledby="pills-aq-tab">
+                    <div class="row"><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/IndicatorPublic/data-stories/hia/">
+                                    
+                                    
+                                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/hia/ds-geographies_hu340a3b6f063c63347307132c2586a018_1911570_740x0_resize_q95_mitchellnetravali.jpg); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/hia/" class="text-primary">Efforts to reduce air pollution should focus on neighborhoods with the worst health impacts.</a></h3>
+                                    <div class="mb-2">Every year in NYC between 2015 and 2017 (the most recent years for which this analysis is …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/hia/">Read more &gt;</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/IndicatorPublic/data-stories/zappa/">
+                                    
+                                    
+                                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/zappa/ds-road-traffic_huef7e75945ba34d12093c82a8903640ce_3217646_740x0_resize_q95_mitchellnetravali.jpg); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/zappa/" class="text-primary">ZAPPA: A tool to understand air quality policies</a></h3>
+                                    <div class="mb-2">How do we know what air quality policies will have the biggest effect? New York City’s air quality …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/zappa/">Read more &gt;</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/IndicatorPublic/data-stories/aqcovid2/">
+                                    
+                                    
+                                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/aqcovid2/ds-aqcovid_hu6f00cbe9d883d4bf1385a12897341333_3698525_740x0_resize_q95_mitchellnetravali.jpeg); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/aqcovid2/" class="text-primary">An update on air quality during COVID-19</a></h3>
+                                    <div class="mb-2">Big improvements in outdoor air quality during COVID-19 reveal impacts of traffic and commercial …</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/aqcovid2/">Read more &gt;</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/IndicatorPublic/data-stories/aq-cooking/">
+                                    
+                                    
+                                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/aq-cooking/ds-aq-cooking_hu098823fc1efa39dee5df50e77029244f_1783811_740x0_resize_q95_mitchellnetravali.jpeg); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/aq-cooking/" class="text-primary">Tracking changes in New York City&#39;s sources of air pollution</a></h3>
+                                    <div class="mb-2">As city life changes, so does its air quality, as sources of emissions that affect the city&amp;rsquo;s …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/aq-cooking/">Read more &gt;</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/IndicatorPublic/data-stories/traffic-and-air-pollution/">
+                                    
+                                    
+                                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/traffic-and-air-pollution/ESB_sunrise_JulienneSchaer-066_huff57916973dc8349e9dedcf2269ca825_1358262_740x0_resize_q95_mitchellnetravali.JPG); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/traffic-and-air-pollution/" class="text-primary">The Public Health Impacts of PM2.5 from Traffic Air Pollution</a></h3>
+                                    <div class="mb-2">What is PM2.5 and why is it a health risk? PM2.5—or fine particulate matter—are tiny particles that …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/traffic-and-air-pollution/">Read more &gt;</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/IndicatorPublic/data-stories/aqcovid/">
+                                    
+                                    
+                                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/aqcovid/ds-aqcovid_hu6f00cbe9d883d4bf1385a12897341333_3698525_740x0_resize_q95_mitchellnetravali.jpeg); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/aqcovid/" class="text-primary">Air quality during COVID-19</a></h3>
+                                    <div class="mb-2">What happens when NYC stays home? The COVID-19 pandemic upended the lives of all New Yorkers. The …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/aqcovid/">Read more &gt;</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/IndicatorPublic/data-stories/aqsnapshots/">
+                                    
+                                    
+                                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/aqsnapshots/ds-AQsnapshots_hu9e6d0f5484da571ed2d61b4d1898b23e_11352714_740x0_resize_q95_mitchellnetravali.jpg); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/aqsnapshots/" class="text-primary">Air quality snapshots: special findings from 10 years of NYCCAS</a></h3>
+                                    <div class="mb-2"> Skip Nav A traffic …</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/aqsnapshots/">Read more &gt;</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/IndicatorPublic/data-stories/aqts/">
+                                    
+                                    
+                                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/aqts/ds-aqts_hu03a3e93990d629b07c1ce93d81e9fda1_7631614_740x0_resize_q95_mitchellnetravali.jpeg); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/aqts/" class="text-primary">Air quality in car-free areas</a></h3>
+                                    <div class="mb-2">Does the air improve in car-free zones? People often ask us this, and it&amp;rsquo;s a great question. …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/aqts/">Read more &gt;</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/IndicatorPublic/data-stories/aq2/">
+                                    
+                                    
+                                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/aq2/ds-aq2_hu098823fc1efa39dee5df50e77029244f_1783811_740x0_resize_q95_mitchellnetravali.jpeg); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/aq2/" class="text-primary">What our air quality monitors tell us about NYC&#39;s neighborhoods</a></h3>
+                                    <div class="mb-2">In Part 1, we looked at data from the New York City Community Air Survey (NYCCAS) - a network of …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/aq2/">Read more &gt;</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/IndicatorPublic/data-stories/breatheeasy/">
+                                    
+                                    
+                                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/breatheeasy/ds-breatheeasy_hu336432ea62a187e48325081b1ed74bf3_9863502_740x0_resize_q95_mitchellnetravali.jpg); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/breatheeasy/" class="text-primary">Breathe easy: NYC&#39;s air quality is improving</a></h3>
+                                    <div class="mb-2">The air we breathe can have a major effect on our health — air pollution can make asthma worse and …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/breatheeasy/">Read more &gt;</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div></div>
+                </div>
+
+                <div class="tab-pane fade" id="pills-transportation" role="tabpanel" aria-labelledby="pills-transportation-tab">
+                    <div class="row"><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/IndicatorPublic/data-stories/sanitation/">
+                                    
+                                    
+                                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/sanitation/ds-sanitation-trucks_hue6953120da93037c77ea3a523fe160a5_2608873_740x0_resize_q95_mitchellnetravali.jpg); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/sanitation/" class="text-primary">Why trash is a public health issue</a></h3>
+                                    <div class="mb-2">Why trash service is crucial for public health New York City’s modern history of public health …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/sanitation/">Read more &gt;</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/IndicatorPublic/data-stories/block-by-block/">
+                                    
+                                    
+                                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/block-by-block/redlining-in-harlem_hu272db9ffebd25080daf1242cef3c9a9a_4329321_740x0_resize_mitchellnetravali_3.png); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/block-by-block/" class="text-primary">A walk through history</a></h3>
+                                    <div class="mb-2">A neighborhood is not only shaped by its residents, but also by governmental practices and policies. …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/block-by-block/">Read more &gt;</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/IndicatorPublic/data-stories/hia/">
+                                    
+                                    
+                                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/hia/ds-geographies_hu340a3b6f063c63347307132c2586a018_1911570_740x0_resize_q95_mitchellnetravali.jpg); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/hia/" class="text-primary">Efforts to reduce air pollution should focus on neighborhoods with the worst health impacts.</a></h3>
+                                    <div class="mb-2">Every year in NYC between 2015 and 2017 (the most recent years for which this analysis is …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/hia/">Read more &gt;</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/IndicatorPublic/data-stories/zappa/">
+                                    
+                                    
+                                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/zappa/ds-road-traffic_huef7e75945ba34d12093c82a8903640ce_3217646_740x0_resize_q95_mitchellnetravali.jpg); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/zappa/" class="text-primary">ZAPPA: A tool to understand air quality policies</a></h3>
+                                    <div class="mb-2">How do we know what air quality policies will have the biggest effect? New York City’s air quality …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/zappa/">Read more &gt;</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/IndicatorPublic/data-stories/aqcovid2/">
+                                    
+                                    
+                                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/aqcovid2/ds-aqcovid_hu6f00cbe9d883d4bf1385a12897341333_3698525_740x0_resize_q95_mitchellnetravali.jpeg); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/aqcovid2/" class="text-primary">An update on air quality during COVID-19</a></h3>
+                                    <div class="mb-2">Big improvements in outdoor air quality during COVID-19 reveal impacts of traffic and commercial …</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/aqcovid2/">Read more &gt;</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/IndicatorPublic/data-stories/traffic-and-air-pollution/">
+                                    
+                                    
+                                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/traffic-and-air-pollution/ESB_sunrise_JulienneSchaer-066_huff57916973dc8349e9dedcf2269ca825_1358262_740x0_resize_q95_mitchellnetravali.JPG); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/traffic-and-air-pollution/" class="text-primary">The Public Health Impacts of PM2.5 from Traffic Air Pollution</a></h3>
+                                    <div class="mb-2">What is PM2.5 and why is it a health risk? PM2.5—or fine particulate matter—are tiny particles that …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/traffic-and-air-pollution/">Read more &gt;</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/IndicatorPublic/data-stories/streets/">
+                                    
+                                    
+                                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/streets/ds-streets_hu46977409501ce132d1c8258e941d2087_2749927_740x0_resize_q95_mitchellnetravali.jpg); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/streets/" class="text-primary">Environments matter: the road to street safety in NYC</a></h3>
+                                    <div class="mb-2">The COVID-19 public health emergency has changed New York City in many ways—including how we get …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/streets/">Read more &gt;</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/IndicatorPublic/data-stories/aqcovid/">
+                                    
+                                    
+                                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/aqcovid/ds-aqcovid_hu6f00cbe9d883d4bf1385a12897341333_3698525_740x0_resize_q95_mitchellnetravali.jpeg); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/aqcovid/" class="text-primary">Air quality during COVID-19</a></h3>
+                                    <div class="mb-2">What happens when NYC stays home? The COVID-19 pandemic upended the lives of all New Yorkers. The …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/aqcovid/">Read more &gt;</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/IndicatorPublic/data-stories/aqsnapshots/">
+                                    
+                                    
+                                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/aqsnapshots/ds-AQsnapshots_hu9e6d0f5484da571ed2d61b4d1898b23e_11352714_740x0_resize_q95_mitchellnetravali.jpg); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/aqsnapshots/" class="text-primary">Air quality snapshots: special findings from 10 years of NYCCAS</a></h3>
+                                    <div class="mb-2"> Skip Nav A traffic …</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/aqsnapshots/">Read more &gt;</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/IndicatorPublic/data-stories/aqts/">
+                                    
+                                    
+                                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/aqts/ds-aqts_hu03a3e93990d629b07c1ce93d81e9fda1_7631614_740x0_resize_q95_mitchellnetravali.jpeg); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/aqts/" class="text-primary">Air quality in car-free areas</a></h3>
+                                    <div class="mb-2">Does the air improve in car-free zones? People often ask us this, and it&amp;rsquo;s a great question. …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/aqts/">Read more &gt;</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/IndicatorPublic/data-stories/aq2/">
+                                    
+                                    
+                                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/aq2/ds-aq2_hu098823fc1efa39dee5df50e77029244f_1783811_740x0_resize_q95_mitchellnetravali.jpeg); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/aq2/" class="text-primary">What our air quality monitors tell us about NYC&#39;s neighborhoods</a></h3>
+                                    <div class="mb-2">In Part 1, we looked at data from the New York City Community Air Survey (NYCCAS) - a network of …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/aq2/">Read more &gt;</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div></div>
+                </div>
+
+                <div class="tab-pane fade" id="pills-justice" role="tabpanel" aria-labelledby="pills-justice-tab">
+                    <div class="row"><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/IndicatorPublic/data-stories/housing-creates-health/">
+                                    
+                                    
+                                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/housing-creates-health/ds-housing-health_WillSteacy_huc22503651d81b45fcd83c6d170b55d3a_7163127_740x0_resize_q95_mitchellnetravali.jpg); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/housing-creates-health/" class="text-primary">Housing creates health</a></h3>
+                                    <div class="mb-2">Health is determined by many factors, and people tend to be healthier when they have economic …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/housing-creates-health/">Read more &gt;</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/IndicatorPublic/data-stories/economic-stability/">
+                                    
+                                    
+                                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/economic-stability/CrownHeights_JulienneSchaer-065_hu75a4c2b23d8d0410bfe96c1ebcbd66a0_11176649_740x0_resize_q95_mitchellnetravali.JPG); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/economic-stability/" class="text-primary">Economic stability creates health</a></h3>
+                                    <div class="mb-2">Health is determined by many factors, and people tend to be healthier when they have economic …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/economic-stability/">Read more &gt;</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/IndicatorPublic/data-stories/injury-deaths/">
+                                    
+                                    
+                                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/injury-deaths/ds-aqcovid_hu6f00cbe9d883d4bf1385a12897341333_3698525_740x0_resize_q95_mitchellnetravali.jpeg); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/injury-deaths/" class="text-primary">Injury deaths in NYC</a></h3>
+                                    <div class="mb-2">Injury deaths among young and middle-aged adults in New York City: with a focus on homicide and …</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/injury-deaths/">Read more &gt;</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/IndicatorPublic/data-stories/adult-lead/">
+                                    
+                                    
+                                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/adult-lead/OneWorldObservatory_TaggerYanceyIV_6565_hu6cdc33f06942b0bc63e2251ac93ca099_19512282_740x0_resize_q95_mitchellnetravali.jpg); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/adult-lead/" class="text-primary">Lead poisoning affects adults too</a></h3>
+                                    <div class="mb-2">Lead poisoning affects adults too Lead is a harmful metal that can cause serious health issues. When …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/adult-lead/">Read more &gt;</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/IndicatorPublic/data-stories/racial-wealth-gap/">
+                                    
+                                    
+                                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/racial-wealth-gap/CrownHeights_JulienneSchaer-065_hu75a4c2b23d8d0410bfe96c1ebcbd66a0_11176649_740x0_resize_q95_mitchellnetravali.JPG); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/racial-wealth-gap/" class="text-primary">The racial wealth gap has big implications for public health and health equity</a></h3>
+                                    <div class="mb-2">Throughout history, the distribution of wealth in the U.S. has, and continues to be, largely unequal …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/racial-wealth-gap/">Read more &gt;</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/IndicatorPublic/data-stories/sanitation/">
+                                    
+                                    
+                                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/sanitation/ds-sanitation-trucks_hue6953120da93037c77ea3a523fe160a5_2608873_740x0_resize_q95_mitchellnetravali.jpg); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/sanitation/" class="text-primary">Why trash is a public health issue</a></h3>
+                                    <div class="mb-2">Why trash service is crucial for public health New York City’s modern history of public health …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/sanitation/">Read more &gt;</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/IndicatorPublic/data-stories/block-by-block/">
+                                    
+                                    
+                                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/block-by-block/redlining-in-harlem_hu272db9ffebd25080daf1242cef3c9a9a_4329321_740x0_resize_mitchellnetravali_3.png); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/block-by-block/" class="text-primary">A walk through history</a></h3>
+                                    <div class="mb-2">A neighborhood is not only shaped by its residents, but also by governmental practices and policies. …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/block-by-block/">Read more &gt;</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/IndicatorPublic/data-stories/hia/">
+                                    
+                                    
+                                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/hia/ds-geographies_hu340a3b6f063c63347307132c2586a018_1911570_740x0_resize_q95_mitchellnetravali.jpg); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/hia/" class="text-primary">Efforts to reduce air pollution should focus on neighborhoods with the worst health impacts.</a></h3>
+                                    <div class="mb-2">Every year in NYC between 2015 and 2017 (the most recent years for which this analysis is …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/hia/">Read more &gt;</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/IndicatorPublic/data-stories/poweroutages/">
+                                    
+                                    
+                                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/poweroutages/title7_hu8e2a6c327907705111c7c36b65d607ea_3246029_740x0_resize_q95_mitchellnetravali.jpg); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/poweroutages/" class="text-primary">How power outages affect health</a></h3>
+                                    <div class="mb-2">Imagine your child has asthma. One summer night, a powerful storm rolls in and knocks the power out. …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/poweroutages/">Read more &gt;</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/IndicatorPublic/data-stories/violence/">
+                                    
+                                    
+                                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/violence/ds-violence_hu6182672d2bc7dc090625beee39a7dab9_4320773_740x0_resize_q95_mitchellnetravali.jpg); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/violence/" class="text-primary">Why violence is a public health issue</a></h3>
+                                    <div class="mb-2">Using public health to prevent violence Experiencing violence affects people in many ways. It not …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/violence/">Read more &gt;</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/IndicatorPublic/data-stories/redlining/">
+                                    
+                                    
+                                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/redlining/ds-redlining_hu6b252481458558718de479ea1428e8ac_261393_740x0_resize_q95_mitchellnetravali.jpeg); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/redlining/" class="text-primary">A brief history of redlining</a></h3>
+                                    <div class="mb-2">Inside the 90-year-old financial policy that harms our health In public health, we often cite …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/redlining/">Read more &gt;</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/IndicatorPublic/data-stories/housing/">
+                                    
+                                    
+                                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/housing/ds-housing_hu6b252481458558718de479ea1428e8ac_261393_740x0_resize_q95_mitchellnetravali.jpeg); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/housing/" class="text-primary">Health, housing, and history</a></h3>
+                                    <div class="mb-2">For health, place matters What determines whether or not you’re healthy? You may think about what …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/housing/">Read more &gt;</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/IndicatorPublic/data-stories/heat/">
+                                    
+                                    
+                                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/heat/ds-heat_hucfb7cfabc81cb4ce932c87a30d6d8b57_1052250_740x0_resize_q95_mitchellnetravali.jpg); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/heat/" class="text-primary">Protecting New Yorkers from extreme heat</a></h3>
+                                    <div class="mb-2">Hot weather is dangerous. In New York City and across the country, more people on average die from …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/heat/">Read more &gt;</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/IndicatorPublic/data-stories/assaults/">
+                                    
+                                    
+                                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/assaults/ds-assaults_hue09b638813906699188828853c895056_5270715_740x0_resize_q95_mitchellnetravali.jpg); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/assaults/" class="text-primary">Disparities in violence</a></h3>
+                                    <div class="mb-2">Violence has profound effects. An assault, a shooting, a homicide, or any use of force affects …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/assaults/">Read more &gt;</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/IndicatorPublic/data-stories/povasthma/">
+                                    
+                                    
+                                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/povasthma/ds-povasthma_hub337c1a52911da742d41cad844f9d8de_8178577_740x0_resize_q95_mitchellnetravali.jpg); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/povasthma/" class="text-primary">Why asthma is a social justice issue</a></h3>
+                                    <div class="mb-2">Poverty affects health in many ways. In New York City, the story of asthma clearly illustrates this …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/povasthma/">Read more &gt;</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div></div>
+                </div>
+
+                <div class="tab-pane fade" id="pills-climate" role="tabpanel" aria-labelledby="pills-climate-tab">
+                    <div class="row"><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/IndicatorPublic/data-stories/cold/">
+                                    
+                                    
+                                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/cold/winter-weather_huf071dde5826ad10157fff3f12461591b_1472534_740x0_resize_mitchellnetravali_3.png); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/cold/" class="text-primary">Staying safe in cold weather</a></h3>
+                                    <div class="mb-2">Cold weather can be dangerous. Here are some tips for staying safe this winter.
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/cold/">Read more &gt;</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/IndicatorPublic/data-stories/poweroutages/">
+                                    
+                                    
+                                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/poweroutages/title7_hu8e2a6c327907705111c7c36b65d607ea_3246029_740x0_resize_q95_mitchellnetravali.jpg); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/poweroutages/" class="text-primary">How power outages affect health</a></h3>
+                                    <div class="mb-2">Imagine your child has asthma. One summer night, a powerful storm rolls in and knocks the power out. …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/poweroutages/">Read more &gt;</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/IndicatorPublic/data-stories/localtemp/">
+                                    
+                                    
+                                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/localtemp/ds-localtemp_hu098823fc1efa39dee5df50e77029244f_1783811_740x0_resize_q95_mitchellnetravali.jpeg); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/localtemp/" class="text-primary">The urban heat island effect in NYC</a></h3>
+                                    <div class="mb-2">In New York City and across the country, more people die from extreme heat than from all other …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/localtemp/">Read more &gt;</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/IndicatorPublic/data-stories/heat/">
+                                    
+                                    
+                                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/heat/ds-heat_hucfb7cfabc81cb4ce932c87a30d6d8b57_1052250_740x0_resize_q95_mitchellnetravali.jpg); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/heat/" class="text-primary">Protecting New Yorkers from extreme heat</a></h3>
+                                    <div class="mb-2">Hot weather is dangerous. In New York City and across the country, more people on average die from …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/heat/">Read more &gt;</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/IndicatorPublic/data-stories/food/">
+                                    
+                                    
+                                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/food/ds-food_hu417d5c96fa1688ab452a1d616d10ff52_1600426_740x0_resize_q95_mitchellnetravali.JPG); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/food/" class="text-primary">What hot weather means for food safety</a></h3>
+                                    <div class="mb-2">New Yorkers eat out more than a billion times a year. To help keep diners safe, the Health …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/food/">Read more &gt;</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div></div>
+                </div>
+
+                <div class="tab-pane fade" id="pills-housing" role="tabpanel" aria-labelledby="pills-housing-tab">
+                    <div class="row"><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/IndicatorPublic/data-stories/housing-creates-health/">
+                                    
+                                    
+                                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/housing-creates-health/ds-housing-health_WillSteacy_huc22503651d81b45fcd83c6d170b55d3a_7163127_740x0_resize_q95_mitchellnetravali.jpg); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/housing-creates-health/" class="text-primary">Housing creates health</a></h3>
+                                    <div class="mb-2">Health is determined by many factors, and people tend to be healthier when they have economic …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/housing-creates-health/">Read more &gt;</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/IndicatorPublic/data-stories/economic-stability/">
+                                    
+                                    
+                                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/economic-stability/CrownHeights_JulienneSchaer-065_hu75a4c2b23d8d0410bfe96c1ebcbd66a0_11176649_740x0_resize_q95_mitchellnetravali.JPG); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/economic-stability/" class="text-primary">Economic stability creates health</a></h3>
+                                    <div class="mb-2">Health is determined by many factors, and people tend to be healthier when they have economic …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/economic-stability/">Read more &gt;</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/IndicatorPublic/data-stories/block-by-block/">
+                                    
+                                    
+                                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/block-by-block/redlining-in-harlem_hu272db9ffebd25080daf1242cef3c9a9a_4329321_740x0_resize_mitchellnetravali_3.png); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/block-by-block/" class="text-primary">A walk through history</a></h3>
+                                    <div class="mb-2">A neighborhood is not only shaped by its residents, but also by governmental practices and policies. …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/block-by-block/">Read more &gt;</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/IndicatorPublic/data-stories/cold/">
+                                    
+                                    
+                                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/cold/winter-weather_huf071dde5826ad10157fff3f12461591b_1472534_740x0_resize_mitchellnetravali_3.png); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/cold/" class="text-primary">Staying safe in cold weather</a></h3>
+                                    <div class="mb-2">Cold weather can be dangerous. Here are some tips for staying safe this winter.
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/cold/">Read more &gt;</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/IndicatorPublic/data-stories/violence/">
+                                    
+                                    
+                                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/violence/ds-violence_hu6182672d2bc7dc090625beee39a7dab9_4320773_740x0_resize_q95_mitchellnetravali.jpg); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/violence/" class="text-primary">Why violence is a public health issue</a></h3>
+                                    <div class="mb-2">Using public health to prevent violence Experiencing violence affects people in many ways. It not …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/violence/">Read more &gt;</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/IndicatorPublic/data-stories/redlining/">
+                                    
+                                    
+                                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/redlining/ds-redlining_hu6b252481458558718de479ea1428e8ac_261393_740x0_resize_q95_mitchellnetravali.jpeg); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/redlining/" class="text-primary">A brief history of redlining</a></h3>
+                                    <div class="mb-2">Inside the 90-year-old financial policy that harms our health In public health, we often cite …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/redlining/">Read more &gt;</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/IndicatorPublic/data-stories/housing/">
+                                    
+                                    
+                                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/housing/ds-housing_hu6b252481458558718de479ea1428e8ac_261393_740x0_resize_q95_mitchellnetravali.jpeg); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/housing/" class="text-primary">Health, housing, and history</a></h3>
+                                    <div class="mb-2">For health, place matters What determines whether or not you’re healthy? You may think about what …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/housing/">Read more &gt;</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/IndicatorPublic/data-stories/povasthma/">
+                                    
+                                    
+                                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/povasthma/ds-povasthma_hub337c1a52911da742d41cad844f9d8de_8178577_740x0_resize_q95_mitchellnetravali.jpg); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/povasthma/" class="text-primary">Why asthma is a social justice issue</a></h3>
+                                    <div class="mb-2">Poverty affects health in many ways. In New York City, the story of asthma clearly illustrates this …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/povasthma/">Read more &gt;</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div></div>
+                </div>
+
+                <div class="tab-pane fade" id="pills-food" role="tabpanel" aria-labelledby="pills-food-tab">
+                    <div class="row"><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/IndicatorPublic/data-stories/aqcovid2/">
+                                    
+                                    
+                                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/aqcovid2/ds-aqcovid_hu6f00cbe9d883d4bf1385a12897341333_3698525_740x0_resize_q95_mitchellnetravali.jpeg); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/aqcovid2/" class="text-primary">An update on air quality during COVID-19</a></h3>
+                                    <div class="mb-2">Big improvements in outdoor air quality during COVID-19 reveal impacts of traffic and commercial …</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/aqcovid2/">Read more &gt;</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/IndicatorPublic/data-stories/aq-cooking/">
+                                    
+                                    
+                                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/aq-cooking/ds-aq-cooking_hu098823fc1efa39dee5df50e77029244f_1783811_740x0_resize_q95_mitchellnetravali.jpeg); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/aq-cooking/" class="text-primary">Tracking changes in New York City&#39;s sources of air pollution</a></h3>
+                                    <div class="mb-2">As city life changes, so does its air quality, as sources of emissions that affect the city&amp;rsquo;s …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/aq-cooking/">Read more &gt;</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/IndicatorPublic/data-stories/food/">
+                                    
+                                    
+                                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/food/ds-food_hu417d5c96fa1688ab452a1d616d10ff52_1600426_740x0_resize_q95_mitchellnetravali.JPG); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/food/" class="text-primary">What hot weather means for food safety</a></h3>
+                                    <div class="mb-2">New Yorkers eat out more than a billion times a year. To help keep diners safe, the Health …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/food/">Read more &gt;</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div></div>
+                </div>
+
+                <div class="tab-pane fade" id="pills-how" role="tabpanel" aria-labelledby="pills-how-tab">
+                    <div class="row"><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/IndicatorPublic/data-stories/redesign/">
+                                    
+                                    
+                                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/redesign/ds-codesign-team_hua759450ab7037b64bf6f2e0d03c11252_2172418_740x0_resize_q95_mitchellnetravali.jpg); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/redesign/" class="text-primary">The redesigned EH Data Portal</a></h3>
+                                    <div class="mb-2">The Environment and Health Data Portal looks a little bit different! We recently redesigned our site …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/redesign/">Read more &gt;</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/IndicatorPublic/data-stories/geographies/">
+                                    
+                                    
+                                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/geographies/ds-geographies_hu340a3b6f063c63347307132c2586a018_1911570_740x0_resize_q95_mitchellnetravali.jpg); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/geographies/" class="text-primary">Neighborhood boundaries on the EH Data Portal</a></h3>
+                                    <div class="mb-2">New York City has hundreds of neighborhoods and nearly as many ways of drawing neighborhood …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/geographies/">Read more &gt;</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/IndicatorPublic/data-stories/roadmap/">
+                                    
+                                    
+                                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/roadmap/ds-codesign-team_hua759450ab7037b64bf6f2e0d03c11252_2172418_740x0_resize_q95_mitchellnetravali.jpg); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/roadmap/" class="text-primary">Our Roadmap: An Open Path Forward</a></h3>
+                                    <div class="mb-2">In 2020, we partnered with Open Tech Strategies to review the Environment and Health Data Portal and …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/roadmap/">Read more &gt;</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/IndicatorPublic/data-stories/codesign/">
+                                    
+                                    
+                                    <div style="width:100%; height:250px; background-image: URL(/IndicatorPublic/data-stories/codesign/ds-codesign_hu7af45c05e7eaab656aeab8d5fe153c59_137232_740x0_resize_q95_mitchellnetravali.jpg); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/data-stories/codesign/" class="text-primary">Why we&#39;re working with you to redesign the data portal</a></h3>
+                                    <div class="mb-2">We&amp;rsquo;re making changes, and we need your help.
+A few months ago, when we redesigned the home …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/IndicatorPublic/data-stories/codesign/">Read more &gt;</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+        
+
+</article><ul id="results"></ul>
+  </main>
+  
+  <footer class="bg-black" id="global-footer" role="contentinfo">
+
+  <h2 class="sr-only">
+      Page Footer
+  </h2>
+
+  <div class="bg-opacity-black-25 text-white" id="nyc-footer">
+
+      <div class="container py-3 d-none" id="languages">
+
+          <div class="row fs-md d-print-none">
+
+              <div class="col-6 col-md-4 col-lg mb-2 mb-lg-0">
+                  <ul class="extensible-list">
+                      <li><a class="lang-select text-reset" href="#" data-lang="ar">عربى</a></li>
+                      <li><a class="lang-select text-reset" href="#" data-lang="bn">বাঙালি</a></li>
+                  </ul>
+              </div>
+              <div class="col-6 col-md-4 col-lg mb-2 mb-lg-0">
+                  <ul class="extensible-list">
+                      <li><a class="lang-select text-reset" href="#" data-lang="zh-CN">中文</a></li>
+                      <li><a class="lang-select text-reset" href="#" data-lang="fr">français</a></li>
+                  </ul>
+              </div>
+              <div class="col-6 col-md-4 col-lg mb-2 mb-lg-0">
+                  <ul class="extensible-list">
+                      <li><a class="lang-select text-reset" href="#" data-lang="ht">Kreyòl Ayisyen</a></li>
+                      <li><a class="lang-select text-reset" href="#" data-lang="ko">한국어</a></li>
+                  </ul>
+              </div>
+              <div class="col-6 col-md-4 col-lg mb-2 mb-lg-0">
+                  <ul class="extensible-list">
+                      <li><a class="lang-select text-reset" href="#" data-lang="pl">Polskie</a></li>
+                      <li><a class="lang-select text-reset" href="#" data-lang="ru">русский</a></li>
+                  </ul>
+              </div>
+              <div class="col-6 col-md-4 col-lg">
+                  <ul class="extensible-list">
+                      <li><a class="lang-select text-reset" href="#" data-lang="es">Español</a></li>
+                      <li><a class="lang-select text-reset" href="#" data-lang="ur">اردو</a></li>
+                  </ul>
+              </div>
+          </div>
+
+      </div>
+      
+
+      <div class="container py-3 d-print-none" id="languages">
+
+          <ul class="fs-md" role="list">
+              <li><a class="lang-select text-reset" href="#" data-lang="ar">عربى</a></li>
+              <li><a class="lang-select text-reset" href="#" data-lang="bn">বাঙালি</a></li>
+              <li><a class="lang-select text-reset" href="#" data-lang="zh-CN">中文</a></li>
+              <li><a class="lang-select text-reset" href="#" data-lang="fr">français</a></li>
+              <li><a class="lang-select text-reset" href="#" data-lang="ht">Kreyòl Ayisyen</a></li>
+              <li><a class="lang-select text-reset" href="#" data-lang="ko">한국어</a></li>
+              <li><a class="lang-select text-reset" href="#" data-lang="pl">Polskie</a></li>
+              <li><a class="lang-select text-reset" href="#" data-lang="ru">русский</a></li>
+              <li><a class="lang-select text-reset" href="#" data-lang="es">Español</a></li>
+              <li><a class="lang-select text-reset" href="#" data-lang="ur">اردو</a></li>
+          </ul>
+
+      </div>
+      
+
+      <hr class="opacity-10" aria-hidden="true">
+
+      <div class="container py-3">
+          <div class="row">
+              <div class="col-md-6 col-lg-8 mb-3 mb-lg-0">
+                  <nav class="row fs-md d-print-none" role="navigation">
+                      <div class="col-lg mb-3 mb-lg-0">
+                          <ul class="extensible-list">
+                              <li>
+                                  <a class="text-reset" href="https://www1.nyc.gov/nyc-resources/agencies.page">
+                                      <strong>Directory of City Agencies</strong>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a class="text-reset" href="https://a858-nycnotify.nyc.gov/notifynyc/">
+                                      <strong>Notify NYC</strong>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a class="text-reset"
+                                      href="https://www1.nyc.gov/connect/mobile-applications.page">
+                                      <strong>NYC Mobile Apps</strong>
+                                  </a>
+                              </li>
+                          </ul>
+                      </div>
+                      
+
+                      <div class="col-lg mb-3 mb-lg-0">
+
+                          <ul class="extensible-list">
+                              <li>
+                                  <a class="text-reset" href="https://www1.nyc.gov/home/contact-us.page">
+                                      <strong>Contact NYC Government</strong>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a class="text-reset" href="https://a856-citystore.nyc.gov/">
+                                      <strong>CityStore</strong>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a class="text-reset" href="https://www.nyc.gov/nyc-resources/nyc-maps.page">
+                                      <strong>Maps</strong>
+                                  </a>
+                              </li>
+                          </ul>
+
+                      </div>
+                      
+
+                      <div class="col-lg mb-3 mb-lg-0">
+
+                          <ul class="extensible-list">
+                              <li>
+                                  <a class="text-reset"
+                                      href="https://a127-ess.nyc.gov/psp/prdess/?cmd=login&languageCd=ENG&">
+                                      <strong>City Employees</strong>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a class="text-reset" href="https://www1.nyc.gov/connect/social-media.page">
+                                      <strong>Stay Connected</strong>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a class="text-reset"
+                                      href="https://www1.nyc.gov/nyc-resources/resident-toolkit.page">
+                                      <strong>Resident Toolkit</strong>
+                                  </a>
+                              </li>
+                          </ul>
+                      </div>
+                      
+
+                  </nav>
+              </div>
+              
+
+              <div class="col-md-6 col-lg-4">
+
+                  <a class="mb-2" href="https://www1.nyc.gov" title="Go to nyc.gov" target="_blank" rel="noopener noreferrer">
+                      
+                      <img class="mb-2" src="/IndicatorPublic/images/nyc-bubble-logo.svg" width="90" alt="NYC Logo">
+                      <span class="sr-only">(opens in a new tab)</span>
+                  </a>
+                  <p class="fs-sm">© City of New York. 2022 All Rights Reserved,<br>NYC is a trademark and service mark of the City of New
+                    York.</p>
+
+                  <ul class="extensible-list horizontal fs-sm d-print-none">
+                      <li>
+                          <a class="text-reset" href="https://www1.nyc.gov/home/privacy-policy.page">Privacy
+                              Policy</a>
+                      </li>
+                      <li>
+                          <a class="text-reset" href="https://www1.nyc.gov/home/terms-of-use.page">Terms
+                              of Use</a>
+                      </li>
+                      <li>
+                          <a class="text-reset" href="https://www1.nyc.gov/site/mopd/index.page"
+                              title="Mayor's Office for People with Disabilities">
+                              <span class="sr-only">Learn more about Digital Accessibility
+                                from the Mayor's Office for People with Disabilities.</span>
+                              <span class="fab fa-lg fa-accessible-icon"></span>
+                          </a>
+                      </li>
+                  </ul>
+
+              </div>
+              
+
+          </div>
+          
+
+      </div>
+      
+
+  </div>
+  
+
+</footer>
+
+
+<div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="searchModalLabel" data-pagefind-ignore="all">Search</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <link href=/IndicatorPublic/pagefind/pagefind-ui.css rel="stylesheet">
+            <script src=/IndicatorPublic/pagefind/pagefind-ui.js type="text/javascript"></script>
+            <div id="search"></div>
+            <script>
+
+                window.addEventListener('DOMContentLoaded', (event) => {
+
+                    new PagefindUI({
+                        element: "#search",
+                        showSubResults: true,
+                        showImages: false,
+                        baseUrl: baseURL,
+                        showEmptyFilters: true,
+                        debounceTimeoutMs: 500,
+                        
+                        processTerm: function (term) {
+
+                            gtag('event', 'search', {
+                                search_term: term
+                            });
+
+                            return term;
+
+                        },
+                        processResult: function (result) {
+
+                            
+                            
+                            
+
+                            
+
+                            result.meta.title = result.meta.title
+                                .replace(/&#(\d+);/g, ((match, dec) => `${String.fromCharCode(dec)}`))
+                                .replaceAll("&amp;", "&");
+
+                            
+
+                            result.sub_results.forEach(sub => {
+
+                                
+
+                                sub.url = sub.url.replace("#IndicatorID-", "?id=");
+
+                                
+
+                                sub.title = sub.title
+                                    .replace(/&#(\d+);/g, ((match, dec) => `${String.fromCharCode(dec)}`))
+                                    .replaceAll("&amp;", "&");
+
+                            });
+
+                            
+                            
+                            
+
+                            
+                            var allResults = document.getElementsByClassName('pagefind-ui__result-link');
+
+                            
+                            for (h = 0; h < allResults.length; h += 1) {
+
+                                allResults[h].setAttribute('onclick',"gtag('event', 'search_click', { page_viewed: '" + allResults[h].href + "' });");
+
+                            }
+
+                            
+
+                            console.log("@ result:", result);
+                            
+
+                        }
+                    });
+
+                    
+
+                    
+
+                    const searchModal = document.getElementById('searchModal')
+                    const searchInput = document.getElementsByClassName('pagefind-ui__search-input')[0]
+
+                    $(searchModal).on('shown.bs.modal', () => {
+                        searchInput.focus();
+                        searchInput.select();
+                    })
+
+
+                });
+
+
+            </script>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+<script>
+
+
+</script>
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+
+
+<script>
+  function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+          pageLanguage: 'en'
+      }, 'google_translate_element');
+
+      
+      document.querySelectorAll("div[class^=VI] svg").forEach(e => e.outerHTML = "");
+  }
+</script>
+
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+<script type="text/javascript" src="/IndicatorPublic/node_modules/lunr/lunr.min.e31525fdde83e931eb0275c0c066a35e4a1669e30dc0428ae2235fab90e8b446cb3c07e4e854b148fdf274dc6a0e00b0d5cff4675260e8bf21da3fbefbd0599a.js" integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j&#43;&#43;&#43;9BZmg=="></script>
+
+<script type="text/javascript" 
+    src="/IndicatorPublic/js/main.552c9e0eb5b9f567a863809d88dfdb9dfc2e5062f1aa7ae313abbdf21a346fd773ae265f5ff618d8322e2b96b95be1b319c681eb0ea7b818a3c6485a84b6ad5a.js" 
+    integrity="sha512-VSyeDrW59WeoY4CdiN/bnfwuUGLxqnrjE6u98ho0b9dzriZfX/YY2DIuK5a5W&#43;GzGcaB6w6nuBijxkhahLatWg=="></script>
+
+<script type="text/javascript" 
+    src="/IndicatorPublic/js/search.5332590626a6aa935d122347c2c99089e9a328a8e08882b46a430570150c8d2f238b3758b581c006ee488c927a70aac5a8f53761d32d922e08ad7172db6b3abf.js" 
+    integrity="sha512-UzJZBiamqpNdEiNHwsmQiemjKKjgiIK0akMFcBUMjS8jizdYtYHABu5IjJJ6cKrFqPU3YdMtki4IrXFy22s6vw=="></script>
+  
+  
+</body>
+</html>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>cycling on Environment &amp; Health Data Portal</title>
+    <link>https://stgbespweb600.health.dohmh.nycnet/IndicatorPublic/keywords/cycling/</link>
+    <description>Recent content in cycling on Environment &amp; Health Data Portal</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 30 Sep 2021 07:58:01 -0400</lastBuildDate>
+    <atom:link href="https://stgbespweb600.health.dohmh.nycnet/IndicatorPublic/keywords/cycling/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Active design, public space, and transportation</title>
+      <link>https://stgbespweb600.health.dohmh.nycnet/IndicatorPublic/key-topics/transportation/</link>
+      <pubDate>Thu, 30 Sep 2021 07:58:01 -0400</pubDate>
+      <guid>https://stgbespweb600.health.dohmh.nycnet/IndicatorPublic/key-topics/transportation/</guid>
+      <description>Physical activity and healthy eating rank among the leading ways to get and stay healthy.&#xA;Active design is an applied, evidence-informed approach to improve physical, mental and social health outcomes through the design of the built environment. Active design leverages the expertise of architects, planners, developers, community members, designers, and other stakeholders.&#xA;Designing to increase access to high quality parks, pedestrian plazas, sidewalks, quiet spaces, trees and other greenery, secure bicycle storage, gathering spaces, and stairways can have a measurable effect on people’s ability to safely maintain their physical, mental, and social health.</description>
+    </item>
+    <item>
+      <title>Transportation-related injuries</title>
+      <link>https://stgbespweb600.health.dohmh.nycnet/IndicatorPublic/data-explorer/transportation-related-injuries/</link>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
+      <guid>https://stgbespweb600.health.dohmh.nycnet/IndicatorPublic/data-explorer/transportation-related-injuries/</guid>
+      <description>Traffic injuries are no accident. Like other public health concerns, they are preventable through data driven solutions. In NYC, traffic injuries, which include injuries among pedestrians, bicyclists, motorcyclists, and motor vehicle occupants, are a leading cause of injury-related hospitalizations and emergency department visits.&#xA;In February 2014, NYC launched “Vision Zero”, an action plan to reduce injuries and deaths on city streets. Vision Zero is a multi-agency effort, incorporating road engineering, traffic enforcement, community outreach and education, and policy work to make NYC streets safer.</description>
+    </item>
+    <item>
+      <title>Walking, driving, and cycling</title>
+      <link>https://stgbespweb600.health.dohmh.nycnet/IndicatorPublic/data-explorer/walking-driving-and-cycling/</link>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
+      <guid>https://stgbespweb600.health.dohmh.nycnet/IndicatorPublic/data-explorer/walking-driving-and-cycling/</guid>
+      <description>People get around New York City in many ways - public transit, walking, cycling, driving, and other modes too. When these individual behaviors are added up, they shape our city and our health.&#xA;Our built environment influences these behaviors. The design of our streets and presence of infrastructure like bicycle lanes, well maintained sidewalks, safe street crossings, dedicated bus lanes and convenient access to the subway have the potential to increase both the usage and safety of these forms of transportation.</description>
+    </item>
+    <item>
+      <title>Environments matter: the road to street safety in NYC</title>
+      <link>https://stgbespweb600.health.dohmh.nycnet/IndicatorPublic/data-stories/streets/</link>
+      <pubDate>Sun, 20 Sep 2020 10:54:51 -0400</pubDate>
+      <guid>https://stgbespweb600.health.dohmh.nycnet/IndicatorPublic/data-stories/streets/</guid>
+      <description>The COVID-19 public health emergency has changed New York City in many ways—including how we get around the city. As the city continues to adapt to COVID-19, New Yorkers will look for ways to get around that feel safe—redistributing transit among different modes to ease crowding and increase safety on public transportation.&#xA;As more New Yorkers use bicycles, let&amp;rsquo;s take a look at safety on our streets.&#xA;Cyclist safety in public health data New York City’s streets offer opportunities for active transportation, like cycling and walking, but can also pose risks from collisions.</description>
+    </item>
+    <item>
+      <title>Air quality in car-free areas</title>
+      <link>https://stgbespweb600.health.dohmh.nycnet/IndicatorPublic/data-stories/aqts/</link>
+      <pubDate>Mon, 25 Nov 2019 13:24:52 -0400</pubDate>
+      <guid>https://stgbespweb600.health.dohmh.nycnet/IndicatorPublic/data-stories/aqts/</guid>
+      <description>Does the air improve in car-free zones? People often ask us this, and it&amp;rsquo;s a great question. To answer, we turn to the NYC Community Air Survey, or NYCCAS. NYCCAS is our network of air quality monitors around the city.&#xA;NYCCAS monitors air with nearly 100 sensors across the city We use these monitors to measure levels of six different pollutants: fine particles (PM2.5), nitrogen dioxide (NO2), nitric oxide (NO), sulfur dioxide (SO2), ozone (O3), and black carbon (BC).</description>
+    </item>
+    <item>
+      <title>What our air quality monitors tell us about NYC&#39;s neighborhoods</title>
+      <link>https://stgbespweb600.health.dohmh.nycnet/IndicatorPublic/data-stories/aq2/</link>
+      <pubDate>Mon, 25 Nov 2019 13:24:52 -0400</pubDate>
+      <guid>https://stgbespweb600.health.dohmh.nycnet/IndicatorPublic/data-stories/aq2/</guid>
+      <description>In Part 1, we looked at data from the New York City Community Air Survey (NYCCAS) - a network of about 100 air quality monitors - to see if air quality improves in areas that go car-free. And the answer is yes.&#xA;NYCCAS tells us that more traffic means more air pollution nearby. So, even if we don&amp;rsquo;t have a nearby monitor, we can predict that an area that goes car-free (like Park Drive in Prospect Park, for example) sees an improvement in air quality.</description>
+    </item>
+  </channel>
+</rss>

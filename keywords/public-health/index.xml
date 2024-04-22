@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>public health on Environment &amp; Health Data Portal</title>
+    <link>https://stgbespweb600.health.dohmh.nycnet/IndicatorPublic/keywords/public-health/</link>
+    <description>Recent content in public health on Environment &amp; Health Data Portal</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 03 Oct 2021 12:33:17 -0400</lastBuildDate>
+    <atom:link href="https://stgbespweb600.health.dohmh.nycnet/IndicatorPublic/keywords/public-health/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Climate and health</title>
+      <link>https://stgbespweb600.health.dohmh.nycnet/IndicatorPublic/key-topics/climatehealth/</link>
+      <pubDate>Sun, 03 Oct 2021 12:33:17 -0400</pubDate>
+      <guid>https://stgbespweb600.health.dohmh.nycnet/IndicatorPublic/key-topics/climatehealth/</guid>
+      <description>Climate, including extreme weather, has a direct impact on health. As NYC&amp;rsquo;s climate changes, along with the world&amp;rsquo;s climate, we expect more frequent and intense heat waves, increased rainfall and more severe storms. These will add to existing weather-related risks. Already, heat kills more people than all other natural disasters combined.&#xA;In New York City, those most vulnerable to the dangers of hot weather are older adults and people with health conditions like heart disease, diabetes, and cognitive impairment - especially those in low-income, Black, and Brown communities.</description>
+    </item>
+    <item>
+      <title>Inequality and health inequities</title>
+      <link>https://stgbespweb600.health.dohmh.nycnet/IndicatorPublic/key-topics/social/</link>
+      <pubDate>Fri, 01 Oct 2021 07:59:16 -0400</pubDate>
+      <guid>https://stgbespweb600.health.dohmh.nycnet/IndicatorPublic/key-topics/social/</guid>
+      <description>Inequality is a significant driver of bad health: a society that deprives people of resources to stay healthy is a society where many people become sick, injured, or die because of factors outside of their control.&#xA;People tend to be healthier when they have access to economic and financial stability, higher education, adequate health care, healthy neighborhoods, and safe, strong communities.&#xA;Health inequities are systematic differences in health outcomes that result from differences in access to the conditions that keep people healthy.</description>
+    </item>
+    <item>
+      <title>Environmental health outcomes</title>
+      <link>https://stgbespweb600.health.dohmh.nycnet/IndicatorPublic/key-topics/healthoutcomes/</link>
+      <pubDate>Wed, 04 Aug 2021 12:32:15 -0400</pubDate>
+      <guid>https://stgbespweb600.health.dohmh.nycnet/IndicatorPublic/key-topics/healthoutcomes/</guid>
+      <description>Our environment - the world around us - affects our health. Here are datasets on health outcomes that people experience that may be linked to the environment.&#xA;Some of these have clear links to the environment, like lead poisoning. Others have some uncertain links, and are still being investigated and understood.&#xA;But while specific health outcomes may have stronger or weaker links to the environment, the environment&amp;rsquo;s overall effect on our health is clear - we know that one of the strongest predictors of health is where you&amp;rsquo;re born.</description>
+    </item>
+    <item>
+      <title>Disparities in violence</title>
+      <link>https://stgbespweb600.health.dohmh.nycnet/IndicatorPublic/data-stories/assaults/</link>
+      <pubDate>Thu, 13 Feb 2020 08:29:34 -0400</pubDate>
+      <guid>https://stgbespweb600.health.dohmh.nycnet/IndicatorPublic/data-stories/assaults/</guid>
+      <description>Violence has profound effects. An assault, a shooting, a homicide, or any use of force affects people in many deep ways.&#xA;Violence causes physical and emotional harm. It can inflict fear, a constant sense of unease. It can cause short- and long-term trauma. Violence can affect people throughout their lives - including their health. It can lead to poor birth outcomes, compromised childhood development, negative health behaviors, physical and mental illness, and premature deaths.</description>
+    </item>
+  </channel>
+</rss>
