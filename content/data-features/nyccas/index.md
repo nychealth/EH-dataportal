@@ -1,6 +1,8 @@
 ---
 _schema: default
 title: The New York City Community Air Survey
+aliases:
+    - /key-topics/airquality/nyccas/
 draft: false
 date: 2022-11-08T11:14:56-04:00
 categories:
