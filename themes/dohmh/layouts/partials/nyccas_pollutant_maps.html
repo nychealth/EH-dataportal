@@ -1,0 +1,176 @@
+<div id="pollutantMaps">
+  <hr>
+  <div class="row">
+
+      <div class="col">
+          <button type="button" class="btn btn-outline yearbtn" id="btn1" disabled>2022:</button>
+          <button type="button" class="btn polbtn btn-outline-dark active" value="bc">BC</button>
+          <button type="button" class="btn polbtn btn-outline-dark" value="no">NO</button>
+          <button type="button" class="btn polbtn btn-outline-dark" value="no2">NO<sub>2</sub></button>
+          <button type="button" class="btn polbtn  btn-outline-dark" value="o3">O<sub>3</sub></button>
+          <button type="button" class="btn polbtn btn-outline-dark" value="pm25">PM<sub>2.5</sub></button>
+          <button type="button" class="btn btn-outline-dark mb-2 float-right" id="btn2" data-toggle="modal" data-target="#mapModal">All years</button>
+      </div>
+  </div>
+
+  <div class="row" style="height: 550px;">
+      <div class="col-sm-7" style="min-height: 350px;max-height: 550px;">
+          <iframe id="iframeEmbed" src="raster/bc_2022.html" style="width:100%;height:100%;" frameborder="off"></iframe>
+      </div>
+
+      <div class="col-sm-5" id="mapText">
+          <div id="bcText" class="polText">
+            {{- with .Resources.GetMatch "map-text.md" -}}
+                {{ .Params.BC | markdownify }}
+          </div>
+
+          <div id="noText" class="polText hide">
+            {{ .Params.NO | markdownify }}
+
+          </div>
+
+          <div id="no2Text" class="polText hide">
+            {{ .Params.NO2 | markdownify }}
+
+          </div>
+
+          <div id="o3Text" class="polText hide">
+            {{ .Params.O3 | markdownify }}
+
+          </div>
+
+          <div id="pm25Text" class="polText hide">
+            {{ .Params.PM | markdownify }}
+
+          </div>
+          {{- end -}}
+      </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="mapModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog modal-lg" role="document">
+<div class="modal-content">
+<div class="modal-header">
+<h5 class="modal-title" id="exampleModalLabel">Pollutants: All Years</h5>
+<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+<span aria-hidden="true">&times;</span>
+</button>
+</div>
+<div class="modal-body">
+<div class="row no-gutters mb-1">
+  <div class="col-sm-8">
+      <button type="button" class="btn mtBtn btn-sm btn-outline-dark active" value="BC">BC</button>
+      <button type="button" class="btn mtBtn btn-sm btn-outline-dark" value="NO">NO</button>
+      <button type="button" class="btn mtBtn btn-sm btn-outline-dark" value="NO2">NO<sub>2</sub></button>
+      <button type="button" class="btn mtBtn btn-sm btn-outline-dark" value="O3">O<sub>3</sub></button>
+      <button type="button" class="btn mtBtn btn-sm btn-outline-dark" value="PM25">PM<sub>2.5</sub></button>
+      <button type="button" class="btn mtBtn btn-sm btn-outline-dark" value="SO2">SO<sub>2</sub></button>
+
+  </div>
+
+  <div class="col-sm-3 ml-auto">
+      <div class="float-right">
+          <button id="btnPlus" class="btnYearChange btn btn-sm btn-outline-dark" onclick="changeYear(-1)">-</button>
+          <button id="yearPrint" class="font-weight-bold btn btn-sm btn-dark" disabled>2022</button>
+          <button id="btnMinus" class="btnYearChange btn btn-sm btn-outline-dark" onclick="changeYear(1)">+</button>
+      </div>
+  </div>
+
+
+
+</div>
+
+<div class="row no-gutters">
+  <div class="col-9 mx-auto">
+    <img id="raster" src="embed/map-images/BC_2022.png" style="width:100%; height: auto;">
+
+  </div>
+</div>
+
+<script>
+  // update image
+  var thisYear = 2024
+  var chosenYear = thisYear - 2
+  var mtPol = "BC"
+
+  function updateRaster() {
+  var filename = mtPol + "_" + chosenYear + ".png"
+  // console.log(filename)
+  document.getElementById('raster').src = "embed/map-images/" + filename
+
+  }
+
+  // Change var pollutant and polYear on Button Click
+  const mtBtns = document.querySelectorAll(".mtBtn ")
+  for (var i = 0; i < mtBtns.length; i++) {
+  mtBtns[i].addEventListener("click", function() {
+  for (let button of mtBtns) button.classList.remove('active');
+  this.className += " active";
+  mtPol = this.value
+  polYear = mtPol+chosenYear
+  updateRaster()
+  });
+  }
+
+
+  // change year value on button click
+  function changeYear(x) {
+      x = Number(x)
+      chosenYear = Number(chosenYear)
+
+      if (chosenYear + x < (thisYear - 1) && chosenYear + x > 2008) {
+          chosenYear = chosenYear + x
+          polYear = mtPol+chosenYear
+          document.getElementById('yearPrint').innerHTML = chosenYear
+          updateRaster()
+      } else {}
+
+  }
+
+  updateRaster()
+
+
+</script>
+
+
+
+</div>
+</div>
+</div>
+</div>
+
+<style>
+  .show {
+      display: block;
+  }
+
+  .hide {
+  display: none;
+  }
+</style>
+
+<script>
+  const polbtns = document.querySelectorAll('.polbtn')
+  var mapPol;
+  var embed;
+  for (let i = 0; i < polbtns.length; i++) {
+      polbtns[i].addEventListener("click", function() {
+          mapPol = this.value
+          //Turns off highlights on everything based on class
+          for (let button of document.querySelectorAll('.polbtn')) button.classList.remove('active');
+          this.classList.add('active')
+          embed = 'raster/' + this.value + '_2022.html'
+          document.getElementById('iframeEmbed').src = embed;
+
+          const mapTexts = document.querySelectorAll('.polText')
+          for (let div of document.querySelectorAll('.polText')) div.classList.add('hide')
+          var chosenText = mapPol+'Text'
+          document.getElementById(chosenText).classList.remove('hide')
+
+      })
+  }
+
+
+</script>
