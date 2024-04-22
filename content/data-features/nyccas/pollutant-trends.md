@@ -1,6 +1,7 @@
 ---
 _schema: default
 draft: false
+hide: true
 ---
 Since monitoring began in winter 2008-2009 in New York City, we have seen a decrease in most of the air pollutants we measure. However, the concentrations of NO<sub>2</sub>, NO and PM<sub>2.5</sub> continue to be higher in industrial zones with more diesel truck traffic, neighborhoods with large numbers of restaurants, and areas of higher traffic and building density.
 

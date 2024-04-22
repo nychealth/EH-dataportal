@@ -1,6 +1,7 @@
 ---
 _schema: default
 draft: false
+hide: true
 BC: >-
     - Citywide, annual average levels of Black Carbon declined by 48% between
     2009 and 2022, an average of 0.05 micrograms per cubic meter per year. 

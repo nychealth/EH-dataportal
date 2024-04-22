@@ -18,6 +18,7 @@ seo_description: Data, findings, and more from NYC's citywide air quality monito
 vega: true
 image: images/nyccas-banner-2.jpeg
 layout: nyccas-report
+report: true
 ---
 ## NYCCAS Report: 2008-2022
 

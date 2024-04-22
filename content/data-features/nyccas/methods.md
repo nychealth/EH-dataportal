@@ -1,6 +1,7 @@
 ---
 _schema: default
 draft: false
+hide: true
 pollutantsMeasured:
     -
         name: Fine Particles

@@ -66,21 +66,21 @@ ignoreFiles = ['Simplified.Chinese', 'Spanish']
   [[menu.main]]
     identifier = "02"
     name = "Data Stories"
-    pre = "<span class='text-primary ds-accent'><i class='fas fa-passport' aria-hidden='true'></i></span>"
+    pre = "<span class='text-primary data-stories'><i class='fas fa-passport' aria-hidden='true'></i></span>"
     url = "/data-stories/"
     weight = -100
 
   [[menu.main]]
     identifier = "03"
     name = "Data Explorer"
-    pre = "<span class='text-primary de-accent'><i class='fas fa-chart-line' aria-hidden='true'></i></span>"
+    pre = "<span class='text-primary data-explorer'><i class='fas fa-chart-line' aria-hidden='true'></i></span>"
     url = "/data-explorer/"
     weight = -70
 
   [[menu.main]]
     identifier = "04"
     name = "Neighborhood Reports"
-    pre = "<span class='text-primary nr-accent'><i class='fas fa-map-marked-alt' aria-hidden='true'></i></span>"
+    pre = "<span class='text-primary n-reports'><i class='fas fa-map-marked-alt' aria-hidden='true'></i></span>"
     url = "/neighborhood-reports/"
     weight = -90
 
@@ -97,6 +97,13 @@ ignoreFiles = ['Simplified.Chinese', 'Spanish']
     # pre = "<span class='sr-only'>Search</span><span class='fas fa-search fa-lg'></span>"
     # url = ""
     weight = -50
+
+  [[menu.main]]
+    identifier = "07"
+    name = "Data Features"
+    pre = "<span class='key-topics'><i class='fas fa-chart-bar' aria-hidden='true'></i></span>"
+    url = "/data-features/"
+    weight = -95
 
 
 [module]
