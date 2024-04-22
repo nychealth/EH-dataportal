@@ -364,7 +364,10 @@ h1 {
         border-bottom: 8px solid $color-data-explorer;
     }
     .card-content.key-topics {
-        border-bottom: 8px solid $color-key-topics;
+        border-bottom: 8px solid $primary;
+    }
+    .card-content.data-features {
+        border-bottom: 8px solid $color-data-features;
     }
     .card-content.primary {
         border-bottom: 8px solid $primary;
@@ -759,7 +762,13 @@ span.th-sub {
 
 .kt-accent {
     svg path {
-        fill: $color-key-topics;
+        fill: $primary;
+    }
+}
+
+.df-accent {
+    svg path {
+        fill: $color-data-features;
     }
 }
 

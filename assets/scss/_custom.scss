@@ -45,7 +45,8 @@ table {
 }
 
 
-$color-key-topics: #800080;
+// $color-key-topics: #800080;
+$color-data-features: #800080;
 $color-data-stories: #D75047;
 $color-n-reports: #197BBD;
 $color-data-explorer: #0A408A;
@@ -54,9 +55,15 @@ $color-data-explorer: #0A408A;
 
 .key-topics {
  svg path {
-  fill: $color-key-topics;
+  fill: $primary;
  }
 }
+
+.data-features {
+  svg path {
+   fill: $color-data-features;
+  }
+ }
 
 .data-stories {
   svg path {
@@ -211,6 +218,14 @@ $color-data-explorer: #0A408A;
 
 .tab-key-topics {
   background-image: url('../images/tab_key_topics.png');
+  z-index: 100;
+  background-size: 33%;
+  background-repeat: no-repeat;
+  background-position: 0 20px;
+}
+
+.tab-data-features {
+  background-image: url('../images/tab_data_features.png');
   z-index: 100;
   background-size: 33%;
   background-repeat: no-repeat;
