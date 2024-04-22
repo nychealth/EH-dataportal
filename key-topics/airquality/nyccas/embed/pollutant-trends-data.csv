@@ -1658,3 +1658,126 @@ SO2,2017,Winter,High,Boilers Using Residual Oil,0.331032392
 SO2,2017,Winter,Low,Night-Time Population Density,0.156311157
 SO2,2017,Winter,Medium,Night-Time Population Density,0.162801291
 SO2,2017,Winter,High,Night-Time Population Density,0.320991418
+PM2.5,2022,Winter,Low,Traffic Density,6.665872111
+PM2.5,2022,Winter,Medium,Traffic Density,7.060434504
+PM2.5,2022,Winter,High,Traffic Density,8.359295839
+PM2.5,2022,Spring,Low,Traffic Density,4.695765925
+PM2.5,2022,Spring,Medium,Traffic Density,4.620674619
+PM2.5,2022,Spring,High,Traffic Density,6.128915727
+PM2.5,2022,Summer,Low,Traffic Density,6.921648164
+PM2.5,2022,Summer,Medium,Traffic Density,6.67854811
+PM2.5,2022,Summer,High,Traffic Density,8.103653685
+PM2.5,2022,Fall,Low,Traffic Density,5.267702941
+PM2.5,2022,Fall,Medium,Traffic Density,5.471732502
+PM2.5,2022,Fall,High,Traffic Density,6.887448964
+PM2.5,2022,Winter,Low,Commercial Cooking,6.913328399
+PM2.5,2022,Winter,Medium,Commercial Cooking,6.987996255
+PM2.5,2022,Winter,High,Commercial Cooking,8.180544407
+PM2.5,2022,Spring,Low,Commercial Cooking,4.62428822
+PM2.5,2022,Spring,Medium,Commercial Cooking,4.650708474
+PM2.5,2022,Spring,High,Commercial Cooking,6.169038565
+PM2.5,2022,Summer,Low,Commercial Cooking,6.905822845
+PM2.5,2022,Summer,Medium,Commercial Cooking,6.70241397
+PM2.5,2022,Summer,High,Commercial Cooking,8.105783588
+PM2.5,2022,Fall,Low,Commercial Cooking,5.333699545
+PM2.5,2022,Fall,Medium,Commercial Cooking,5.455604332
+PM2.5,2022,Fall,High,Commercial Cooking,6.831485291
+PM2.5,2022,Winter,Low,Boiler PM₂.₅ Emissions,6.917757982
+PM2.5,2022,Winter,Medium,Boiler PM₂.₅ Emissions,6.948440886
+PM2.5,2022,Winter,High,Boiler PM₂.₅ Emissions,8.219403586
+PM2.5,2022,Spring,Low,Boiler PM₂.₅ Emissions,4.537631914
+PM2.5,2022,Spring,Medium,Boiler PM₂.₅ Emissions,4.818642606
+PM2.5,2022,Spring,High,Boiler PM₂.₅ Emissions,6.08908175
+PM2.5,2022,Summer,Low,Boiler PM₂.₅ Emissions,6.579634441
+PM2.5,2022,Summer,Medium,Boiler PM₂.₅ Emissions,7.146961944
+PM2.5,2022,Summer,High,Boiler PM₂.₅ Emissions,7.977253573
+PM2.5,2022,Fall,Low,Boiler PM₂.₅ Emissions,5.43163015
+PM2.5,2022,Fall,Medium,Boiler PM₂.₅ Emissions,5.44359871
+PM2.5,2022,Fall,High,Boiler PM₂.₅ Emissions,6.751655546
+O3,2022,Summer,Low,Traffic Density,33.37935868
+O3,2022,Summer,Medium,Traffic Density,31.830767
+O3,2022,Summer,High,Traffic Density,30.85867298
+NO2,2022,Winter,Low,Building Density,20.47259163
+NO2,2022,Winter,Medium,Building Density,22.90175816
+NO2,2022,Winter,High,Building Density,25.0845708
+NO2,2022,Spring,Low,Building Density,12.64279635
+NO2,2022,Spring,Medium,Building Density,14.86197026
+NO2,2022,Spring,High,Building Density,17.92539704
+NO2,2022,Summer,Low,Building Density,11.53188039
+NO2,2022,Summer,Medium,Building Density,12.70172756
+NO2,2022,Summer,High,Building Density,16.04221864
+NO2,2022,Fall,Low,Building Density,16.94592446
+NO2,2022,Fall,Medium,Building Density,17.59950256
+NO2,2022,Fall,High,Building Density,21.50558491
+NO2,2022,Winter,Low,Traffic Density,22.25710966
+NO2,2022,Winter,Medium,Traffic Density,21.632983
+NO2,2022,Winter,High,Traffic Density,24.56882793
+NO2,2022,Spring,Low,Traffic Density,14.52407234
+NO2,2022,Spring,Medium,Traffic Density,13.39805243
+NO2,2022,Spring,High,Traffic Density,17.50803889
+NO2,2022,Summer,Low,Traffic Density,11.92803625
+NO2,2022,Summer,Medium,Traffic Density,11.74007337
+NO2,2022,Summer,High,Traffic Density,16.60771696
+NO2,2022,Fall,Low,Traffic Density,17.52399915
+NO2,2022,Fall,Medium,Traffic Density,17.30513879
+NO2,2022,Fall,High,Traffic Density,21.22187399
+NO,2022,Winter,Low,Boiler Density,18.89197815
+NO,2022,Winter,Medium,Boiler Density,22.29474482
+NO,2022,Winter,High,Boiler Density,22.55300215
+NO,2022,Spring,Low,Boiler Density,10.34880417
+NO,2022,Spring,Medium,Boiler Density,10.7110412
+NO,2022,Spring,High,Boiler Density,14.13878927
+NO,2022,Summer,Low,Boiler Density,6.049006843
+NO,2022,Summer,Medium,Boiler Density,6.839540974
+NO,2022,Summer,High,Boiler Density,9.030167625
+NO,2022,Fall,Low,Boiler Density,17.66600441
+NO,2022,Fall,Medium,Boiler Density,17.54098165
+NO,2022,Fall,High,Boiler Density,24.90310783
+NO,2022,Winter,Low,Traffic NOx Emissions,19.15066254
+NO,2022,Winter,Medium,Traffic NOx Emissions,17.06545687
+NO,2022,Winter,High,Traffic NOx Emissions,27.5236057
+NO,2022,Spring,Low,Traffic NOx Emissions,9.801708445
+NO,2022,Spring,Medium,Traffic NOx Emissions,9.007566531
+NO,2022,Spring,High,Traffic NOx Emissions,16.38935966
+NO,2022,Summer,Low,Traffic NOx Emissions,6.267038843
+NO,2022,Summer,Medium,Traffic NOx Emissions,5.153477326
+NO,2022,Summer,High,Traffic NOx Emissions,10.49819927
+NO,2022,Fall,Low,Traffic NOx Emissions,18.99778002
+NO,2022,Fall,Medium,Traffic NOx Emissions,14.40257298
+NO,2022,Fall,High,Traffic NOx Emissions,26.70974089
+BC,2022,Winter,Low,Commercial Cooking,0.710855695
+BC,2022,Winter,Medium,Commercial Cooking,0.638226211
+BC,2022,Winter,High,Commercial Cooking,0.762325749
+BC,2022,Spring,Low,Commercial Cooking,0.549255786
+BC,2022,Spring,Medium,Commercial Cooking,0.482419918
+BC,2022,Spring,High,Commercial Cooking,0.72462793
+BC,2022,Summer,Low,Commercial Cooking,0.81449144
+BC,2022,Summer,Medium,Commercial Cooking,0.569314656
+BC,2022,Summer,High,Commercial Cooking,0.966193907
+BC,2022,Fall,Low,Commercial Cooking,0.695224621
+BC,2022,Fall,Medium,Commercial Cooking,0.615703866
+BC,2022,Fall,High,Commercial Cooking,0.867546585
+BC,2022,Winter,Low,Industrial Areas,0.674178216
+BC,2022,Winter,Medium,Industrial Areas,0.589712596
+BC,2022,Winter,High,Industrial Areas,0.843885368
+BC,2022,Spring,Low,Industrial Areas,0.55261347
+BC,2022,Spring,Medium,Industrial Areas,0.519147841
+BC,2022,Spring,High,Industrial Areas,0.68120053
+BC,2022,Summer,Low,Industrial Areas,0.665416536
+BC,2022,Summer,Medium,Industrial Areas,0.674080643
+BC,2022,Summer,High,Industrial Areas,0.998243985
+BC,2022,Fall,Low,Industrial Areas,0.693287573
+BC,2022,Fall,Medium,Industrial Areas,0.653397299
+BC,2022,Fall,High,Industrial Areas,0.827814162
+BC,2022,Winter,Low,Traffic Density,0.65631508
+BC,2022,Winter,Medium,Traffic Density,0.638631563
+BC,2022,Winter,High,Traffic Density,0.812829538
+BC,2022,Spring,Low,Traffic Density,0.507644775
+BC,2022,Spring,Medium,Traffic Density,0.486681797
+BC,2022,Spring,High,Traffic Density,0.758635268
+BC,2022,Summer,Low,Traffic Density,0.593193143
+BC,2022,Summer,Medium,Traffic Density,0.71261033
+BC,2022,Summer,High,Traffic Density,1.031937692
+BC,2022,Fall,Low,Traffic Density,0.629677054
+BC,2022,Fall,Medium,Traffic Density,0.682444661
+BC,2022,Fall,High,Traffic Density,0.86237732
