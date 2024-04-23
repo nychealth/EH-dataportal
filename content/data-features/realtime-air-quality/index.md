@@ -14,6 +14,7 @@ layout: realtime
 vega: true
 arquero: true
 leaflet: true
+image: images/realtime-screenshot.png
 ---
 
 Fine particles (PM2.5) are among the most harmful pollutants. Long-term exposure to PM2.5 contributes to an estimated 2,000 excess deaths from lung and heart disease each year in NYC (1 out of every 25 deaths in NYC), and short-term exposure contributes to asthma incidents severe enough to require a trip to the emergency department, and other health threats.

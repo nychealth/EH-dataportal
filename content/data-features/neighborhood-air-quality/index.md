@@ -14,6 +14,7 @@ layout: aqe
 customJS: aqe.js
 accessibleAutocomplete: /js/accessible-autocomplete.min.js
 vega: true
+image: aqe.png
 ---
 
 We combine data from our air quality monitoring network, NYCCAS, with other data to understand what makes air quality in one neighborhood different from air quality in another. We found that building emissions, building density, industrial areas, and traffic density are associated with differences in air quality.

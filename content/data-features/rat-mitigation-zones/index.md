@@ -14,6 +14,7 @@ layout: rmz
 vega: true
 arquero: true
 leaflet: true
+image: rmz.png
 ---
 
 Rats can contaminate food, spread disease and reduce our quality of life. Rat Mitigation Zones (RMZ) are areas with high levels of rat activity, where City agencies focus resources to address rats and the conditions that support them.

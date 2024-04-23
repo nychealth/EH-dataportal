@@ -12,6 +12,7 @@ keywords: ["interactive","heat","heat mortality","data","disparities","disparity
 layout: hvi
 customJS: hvi.js
 vega: true
+image: hvi.png
 ---
 
 Use this Heat Vulnerability Explorer to look up your the heat vulnerability of your neighborhood, and the neighborhood characteristics that affect it.

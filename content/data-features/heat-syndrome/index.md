@@ -12,6 +12,7 @@ keywords: ["interactive","heat","weather","hot weather","extreme heat","heat mor
 layout: syndromic
 vega: true
 js: heatsyndrome.js 
+image: syndromic.png
 ---
 
 The weather forecast is the best way to predict heat-related health outcomes.  

@@ -21,6 +21,7 @@ seo_title: Annual Report on heat mortality in NYC.
 seo_description: Data and findings on the impact of heat in NYC.
 layout: report
 report: true
+image: 2023/rev-fig-4.jpeg
 ---
 ## Summary
 
