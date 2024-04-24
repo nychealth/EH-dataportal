@@ -153,7 +153,7 @@ As places everyone uses and depends on daily, prioritizing community engagement 
 
 **Additional resources:**
 
-- <a href="https://www.nycgovparks.org/about/framework-for-an-equitable-future/community-parks-initiative">Learn more about the community parks initiative </a>
+- <a href="https://www.nycgovparks.org/about/framework-for-an-equitable-future/community-parks-initiative">Learn more about the Community Parks Initiative. </a>
 
 - <a href="https://www.nyc.gov/assets/ddc/downloads/LL12_5-Year-Accessibility-Plan_DDC.pdf"> Learn more about the five-year design and construction accessibility plan </a>
 
