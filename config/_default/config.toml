@@ -9,6 +9,7 @@ theme = "dohmh"
 publishDir = "docs"
 paginate = 9
 ignoreFiles = ['Simplified.Chinese', 'Spanish']
+# enableGitInfo = true
 
 [params]
   data_repo = "https://raw.githubusercontent.com/nychealth/EHDP-data/"
@@ -25,8 +26,15 @@ ignoreFiles = ['Simplified.Chinese', 'Spanish']
   quality = 95
   resampleFilter = 'MitchellNetravali'
 
+[markup.goldmark.parser]
+  autoHeadingID = false # remove md headings from pagefind results
+
 [markup.goldmark.renderer]
   unsafe = true # Allow HTML in md files
+
+[markup.goldmark.parser.attribute]
+  block = false
+  title = true # allow apending attributes to md headings
 
 [languages.en]
   languageName = "English"
@@ -58,28 +66,28 @@ ignoreFiles = ['Simplified.Chinese', 'Spanish']
   [[menu.main]]
     identifier = "02"
     name = "Data Stories"
-    pre = "<span class='text-primary'><i class='fas fa-passport' aria-hidden='true'></i></span>"
+    pre = "<span class='text-primary ds-accent'><i class='fas fa-passport' aria-hidden='true'></i></span>"
     url = "/data-stories/"
     weight = -100
-  
+
   [[menu.main]]
     identifier = "03"
     name = "Data Explorer"
-    pre = "<span class='text-primary'><i class='fas fa-chart-line' aria-hidden='true'></i></span>"
+    pre = "<span class='text-primary de-accent'><i class='fas fa-chart-line' aria-hidden='true'></i></span>"
     url = "/data-explorer/"
     weight = -70
-  
+
   [[menu.main]]
     identifier = "04"
     name = "Neighborhood Reports"
-    pre = "<span class='text-primary'><i class='fas fa-map-marked-alt' aria-hidden='true'></i></span>"
+    pre = "<span class='text-primary nr-accent'><i class='fas fa-map-marked-alt' aria-hidden='true'></i></span>"
     url = "/neighborhood-reports/"
     weight = -90
 
   [[menu.main]]
     identifier = "05"
     name = "Key Topics"
-    pre = "<span class='text-primary'><i class='fas fa-star' aria-hidden='true'></i></span>"
+    pre = "<span class='text-primary kt-accent'><i class='fas fa-star' aria-hidden='true'></i></span>"
     url = "/key-topics/"
     weight = -110
 

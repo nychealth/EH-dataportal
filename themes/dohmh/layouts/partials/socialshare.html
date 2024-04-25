@@ -5,7 +5,7 @@
   {{- $url := printf "%s" .Permalink -}}
   {{- $body := print $title ", by " .Site.Title "\n" .Params.seo_description "\n\n" $url "\n" -}}
 
-  <section class="social-share">
+  <section class="social-share" data-pagefind-ignore="all">
     <ul class="share-icons">
 
       <!-- Email -->

@@ -19,6 +19,10 @@ collections_config:
         order: desc
     singular_name: Data Stories
     singular_key: data-stories
+    _editables: {}
+    _inputs: {}
+    _select_data: {}
+    _structures: {}
     disable_add: false
     disable_add_folder: false
     disable_file_actions: false
@@ -215,6 +219,7 @@ _editables:
     table: false
     underline: false
     undo: false
+base_url: /
 data_config: {}
 editor:
   default_path:

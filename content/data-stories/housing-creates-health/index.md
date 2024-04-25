@@ -1,7 +1,7 @@
 ---
 title: "Housing creates health"
-date: 2024-01-09T08:18:56-04:00
-draft: true
+date: 2024-03-05T01:18:56-04:00
+draft: false
 seo_title: "Housing creates health"
 seo_description: "A data story about how quality and affordable housing enhances public health"
 tags:
@@ -11,11 +11,11 @@ image: ds-housing-health_WillSteacy.jpg
 photocredit: "Will Steacy/NYC & Company"
 ---
 
-Health is determined by many factors, and people tend to be healthier when they have economic stability, live in quality housing and have access to public space and safe, connected communities. In 2020, the NYC Health Department held a series of community conversations with residents and local stakeholders across 26 neighborhoods. New Yorkers shared personal stories that illuminate their priorities for building healthier neighborhoods, healthier childhoods and more. This is one part of a three-part series on how <strong> housing, economic stability, and public space create health.</strong>
+Health is determined by many factors, and people tend to be healthier when they have economic stability, live in quality housing and have access to public space and safe, connected communities. In 2020, the NYC Health Department held a series of community conversations with residents and local stakeholders across 26 neighborhoods. New Yorkers shared personal stories that illuminate their priorities for building healthier neighborhoods, healthier childhoods and more. This is one part of a three-part series on how <strong> housing, <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/economic-stability/"> economic stability </a> and public space create health.</strong>
 
 <div class="pullquote my-4">
 <figure class="">
-    <figcaption>“When someone has a decent house with security…they can lock their door at night, they can sleep at night, know their children are safe. That can create a better frame of mind of how you’re living your life.” <br><span class="float-right">—NYC community conversation participant</span></figcaption>
+    <figcaption>“When someone has a decent house with security…they can lock their door at night, they can sleep at night, know their children are safe. That can create a better frame of mind of how you’re living your life.” <br><span class="float-right"></span></figcaption>
     <audio controls src="frame-of-mind.mp3" style="width:100%;" class="mt-2">
             <a href="frame-of-mind.mp3">
                 Download audio
@@ -28,11 +28,11 @@ Affordable, good quality, stable housing supports health. Living without access 
 
 People living in higher-poverty neighborhoods are more likely to experience negative health effects of poor housing. People of color disproportionately experience housing injustices as a result of policies like redlining and blockbusting that are examples of systemic racism.
 
-### Housing affordability: lack of affordable housing forces difficult choices between essentials
+### Housing affordability: lack of affordable housing forces difficult choices between essentials.
 
 <div class="pullquote my-4">
 <figure class="">
-    <figcaption figcaption class="mb-2">“Many people have moved to the neighborhood with different and higher incomes that may skew the definition of affordable housing, thereby creating a gap of income and services.” <br> <span class="float-right">—NYC community conversation participant</span>   </figcaption>
+    <figcaption figcaption class="mb-2">“Many people have moved to the neighborhood with different and higher incomes that may skew the definition of affordable housing, thereby creating a gap of income and services.” <br> <span class="float-right"></span>   </figcaption>
     <audio controls src="clip-gap-of-services.mp3" style="width:100%;" class="mt-2">
             <a href="clip-gap-of-services.mp3">
                 Download audio
@@ -41,7 +41,7 @@ People living in higher-poverty neighborhoods are more likely to experience nega
 </figure>
 </div>
 
-Across New York, half of all households are rent-burdened, meaning that more than 30% of their household income goes to rent. Spending so much on rent can leave too little money for food and other essentials. <!-- Learn more about the health implications of experiencing rent burden in How economic stability creates health. -->
+Across New York, half of all households are rent-burdened, meaning that more than 30% of their household income goes to rent. Spending so much on rent can leave too little money for food and other essentials. <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/economic-stability/"> Learn more about the health implications of experiencing rent burden in "How economic stability creates health." </a>
 
 <div class="my-4 py-2 border-top border-bottom">
 
@@ -53,7 +53,7 @@ A person who has a high rent burden is often confronting other housing challenge
 
 <div class="pullquote my-4">
 <figure class="">
-    <figcaption figcaption class="mb-2"> "… like many people I choose between paying my internet or food…” <br><span class="float-right">—NYC community conversation participant</span>
+    <figcaption figcaption class="mb-2"> "… like many people I choose between paying my internet or food…” <br><span class="float-right"></span>
  </figcaption>
     <audio controls src="clip-internet-or-food.mp3" style="width:100%;" class="mt-2">
             <a href="clip-internet-or-food.mp3">
@@ -115,7 +115,7 @@ function changeBoro(x) {
 
 <div class="pullquote my-4">
 <figure class="">
-    <figcaption figcaption class="mb-2"> “A lot of the young people I work with openly share that maybe they’re sharing a bed with several siblings.” <br><span class="float-right">—NYC community conversation participant</span> </figcaption>
+    <figcaption figcaption class="mb-2"> “A lot of the young people I work with openly share that maybe they’re sharing a bed with several siblings.” <br><span class="float-right"></span> </figcaption>
     <audio controls src="clip-sharing-space.mp3" style="width:100%;" class="mt-2">
             <a href="clip-sharing-space.mp3">
                 Download audio
@@ -130,7 +130,7 @@ When housing is unaffordable, options become limited, and people often end up in
 
 <div class="pullquote my-4">
 <figure class="">
-    <figcaption figcaption class="mb-2"> “We didn’t have any heat for last year up until the middle of December. And then we didn’t have any air conditioning through the middle of August.” <br><span class="float-right">—NYC community conversation participant</span> </figcaption>
+    <figcaption figcaption class="mb-2"> “We didn’t have any heat for last year up until the middle of December. And then we didn’t have any air conditioning through the middle of August.” <br><span class="float-right"></span> </figcaption>
     <audio controls src="clip-ac-and-heat.mp3" style="width:100%;" class="mt-2">
             <a href="clip-ac-and-heat.mp3">
                 Download audio
@@ -211,7 +211,7 @@ A lack of affordable housing often leads to housing instability. Most evictions 
 
 <div class="pullquote my-4">
 <figure class="">
-    <figcaption figcaption class="mb-2"> “Children whose families are homeless, and they're being shuffled from place to place—they need to have stability. I think that needs to be addressed. Because it also affects their schooling, their mental health, their medical, you know, needs for both parents and the children. And I think the children are impacted most.” <br><span class="float-right">—NYC community conversation participant</span></figcaption>
+    <figcaption figcaption class="mb-2"> “Children whose families are homeless, and they're being shuffled from place to place—they need to have stability. I think that needs to be addressed. Because it also affects their schooling, their mental health, their medical, you know, needs for both parents and the children. And I think the children are impacted most.” <br><span class="float-right"></span></figcaption>
     <audio controls src="clip-place-to-place.mp3" style="width:100%;" class="mt-2">
             <a href="clip-place-to-place.mp3">
                 Download audio
@@ -230,8 +230,7 @@ When COVID-19 hit, New York City paused evictions, recognizing the twin threats 
 <iframe title="Evictions plummeted in 2020" class="" aria-label="Interactive line chart" id="datawrapper-chart-xy1ku" src="https://datawrapper.dwcdn.net/xy1ku/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="423" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
 </div>
 
-When the eviction pause ended in 2021, homelessness in NYC began to rise at a staggering rate, with Black and Latino residents affected more than other racial groups. <a href="https://www.coalitionforthehomeless.org/facts-about-homelessness/#:~:text=In%20November%202023%2C%2092%2C824%20people,see%20the%20shelter%20census%20breakdown.&text=In%20November%202023%2C%2021%2C769%20families,breakdown%20of%20the%20census%20below.
-"> This happened amid a backdrop of steadily increasing rates of homelessness over the past two decades, with roots that extend beyond the pandemic.</a>
+When the eviction pause ended in 2021, homelessness in NYC began to rise at a staggering rate, with Black and Latino residents affected more than other racial groups. <a href="https://www.coalitionforthehomeless.org/facts-about-homelessness/#:~:text=In%20November%202023%2C%2092%2C824%20people,see%20the%20shelter%20census%20breakdown.&text=In%20November%202023%2C%2021%2C769%20families,breakdown%20of%20the%20census%20below."> This happened amid a backdrop of steadily increasing rates of homelessness over the past two decades, with roots that extend beyond the pandemic.</a>
 
 Implementing programs that incorporate similar strategies coupled with expanding housing options could help reduce homelessness now and in the future.
 

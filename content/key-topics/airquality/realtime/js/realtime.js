@@ -1,11 +1,13 @@
 /* // ---- REALTIME AQ ---- //
-If a monitor is in the datafeed, it needs an entry in monitor_locations.csv. loc_col needs to equal SiteName in the datafeed.
+
+Variable rtaqData is set in realtime.html template, determining whether this is local or live.
+
+If a monitor is in the feed, it needs an entry in monitor_locations.csv; loc_col needs to equal SiteName in the datafeed.
 
 This app excludes DEC_Avg from conventional functionality: 
 - monitors_group_noDEC sets the map bounds without the DEC Average monitor - which is given an abitrary off-coast lat/long
 - if (x != 'DEC_Avg') changes what happens to the map zoom on button click - just zooming to the initial extent if somebody selects the DEC_Avg option.
 
-Because of CORS restrictions to localhost1313, test by copying the contents of the azure feed to data/nyccas_realtime_DEC.csv, and replace the locations both in the initial ingestion (below) and in spec.json.
 */
 
 // initialize variables (other variables are initialized closer to their prime use)
@@ -18,9 +20,7 @@ var floorDate;
 var maxTime;
 var maxTimeMinusDay;
 
-
-
-
+ 
 // ---- INITIAL: ingest data feed ---- // 
 aq.loadCSV(rtaqData).then(data => {
 
@@ -39,8 +39,6 @@ aq.loadCSV(rtaqData).then(data => {
     maxTime = Date.parse(maxTime)
     maxTimeMinusDay = maxTime - 86400000
 
-
-    
     // console.log("fullTable:", fullTable);
     getStationsFromData();
 
@@ -127,17 +125,20 @@ function getColors() {
         colors.push(activeMonitors[i].Color)
     }
     // colors.push('darkgray') // if DEC_Avg is present.
-    current_spec.layer[0].encoding.color.scale.range = colors
+    // current_spec.layer[0].encoding.color.scale.range = colors
 
     // use activeMonitors to send color conditional to spec
     console.log('activeMonitors:', activeMonitors)
     var siteColors = [];
+
+    /*
     for (let i = 0; i < activeMonitors.length; i ++) {
         var condition = {"test": `datum.SiteName === '${activeMonitors[i].loc_col}'`,"value": `${activeMonitors[i].Color}`}
         siteColors.push(condition)
     }
 
     current_spec.layer[0].encoding.color.condition = siteColors
+    */
 
     console.log('siteColors:',siteColors)
 
@@ -149,8 +150,11 @@ var holder = document.getElementById('buttonHolder')
 var btns;
 function drawButtons() {
     var button = 'hi :) '
+
+    // Create location individual buttons
+    /*
     for (let i = 0; i < activeMonitors.length; i++) {
-        button = `<button type="button" id="${activeMonitors[i].loc_col}" class="mb-1 ml-1 selectorbtn btn btn-sm btn-outline-secondary no-underline">
+        button = `<button type="button" id="${activeMonitors[i].loc_col}" class="mb-1 selectorbtn btn btn-sm btn-outline-light text-dark btn-block no-underline">
         <span style="color: ${activeMonitors[i].Color};">
             <i class="fas fa-square mr-1"></i>
         </span>
@@ -158,7 +162,23 @@ function drawButtons() {
     </button>`
         holder.innerHTML += button;
     };
+    */
+
+    // Dropdown menu for locations
+    for (let i = 0; i < activeMonitors.length; i++) {
+        let ddb = `<button type="button" id="${activeMonitors[i].loc_col}" class="selectorbtn btn btn-sm btn-outline-light text-dark btn-block no-underline" style="margin-top: 0px!important; text-align: left!important;">
+        <span style="color: ${activeMonitors[i].Color};">
+            <i class="fas fa-square mr-1"></i>
+        </span>
+        ${activeMonitors[i].Location}
+    </button>`
+
+        document.getElementById('btnDropdownMenu').innerHTML += ddb
+    }
+
+
     btns = document.querySelectorAll('.selectorbtn')
+
 
 }
 
@@ -197,15 +217,21 @@ function updateData(x) {
         // zoom to the corresponding leaflet marker
         map.setView(monitors[index].getLatLng(), 13);
 
-        document.getElementById('decInfo').classList.add('hide')
+        // document.getElementById('decInfo').classList.add('hide')
 
 
     } else {
         resetZoom();
-        document.getElementById('decInfo').classList.remove('hide')
+        // document.getElementById('decInfo').classList.remove('hide')
     }
 
-
+    // filter activeMonitors based on location; get color - pipe it below
+    let thisMonitor = activeMonitors.filter(monitor => monitor.loc_col === x)
+    var thisColor = thisMonitor[0].Color
+    var thisName = thisMonitor[0].Location
+    document.getElementById('locationSend').innerHTML = thisName
+    document.getElementById('dropdownMenuButton').innerHTML = `<span style="color: ${thisColor}"><i class="fas fa-square mr-1"></i></span>` + thisName
+    document.getElementById('locColor').style.color = thisColor
 
     // update opacity for selected and deselected series, and redraw Chart:
     opacity = {
@@ -213,7 +239,7 @@ function updateData(x) {
               "test": "datum['SiteName'] === 'CCNY'",
               "value": 1
             },
-          "value": 0.2
+          "value": 0.5
         }
     stroke = {
         "condition": {
@@ -222,6 +248,10 @@ function updateData(x) {
             },
           "value": 1
         }
+
+
+    current_spec.layer[0].encoding.color.condition[0].test = `datum.SiteName === '${x}'`
+    current_spec.layer[0].encoding.color.condition[0].value = thisColor
 
     current_spec.layer[0].encoding.opacity = opacity
     current_spec.layer[0].encoding.opacity.condition.test = `datum['SiteName'] === '${x}'`
@@ -453,6 +483,9 @@ function restore() {
     document.getElementById('averageBox').classList.add('hide')
     current_spec.layer[2].encoding.opacity.value = 0.0
     vegaEmbed('#vis2', current_spec)
+
+    document.getElementById('dropdownMenuButton').innerHTML = 'Choose location'
+
 
 }
 

@@ -4,6 +4,7 @@ date: 2022-09-30T08:15:58-04:00
 draft: true
 seo_title: "Partner with us!"
 seo_description: "Health Department colleagues: here's how we can work together."
+description: "Health Department colleagues: here's how we can work together."
 ---
 
 We work to make data easier to access, understand, and use - on the belief that when we do so, we make our data - and our knowledge - more influential. Much of the data on the Environment & Health Data Portal comes through partnerships with the many experts here at the Health Department.

@@ -27,7 +27,7 @@ But the improvements in pollution from winter to spring were much greater in 202
 {{< rawhtml >}}
 </div>
 <div class="medium my-4 py-2">
-    <H3 class="fs-lg">Both NO2 and PM2.5 fell during NY Pause - more than in 2019. </H3>
+    <h3 class="fs-lg">Both NO2 and PM2.5 fell during NY Pause - more than in 2019. </h3>
     <div class="row">
         <div class="col-6">
             <iframe title="NO2 fell during NY Pause in 2020..." aria-label="Interactive line chart" id="datawrapper-chart-9jeJb" src="https://datawrapper.dwcdn.net/9jeJb/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="398"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();
@@ -108,7 +108,7 @@ Because congestion pricing specifically targets traffic going into the CBD, we c
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
     <div class="modal-content">
         <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Air quality changes from Spring 2019 to Spring 2020</h5>
+        <h5 class="modal-title" id="ModalCenterTitle">Air quality changes from Spring 2019 to Spring 2020</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
