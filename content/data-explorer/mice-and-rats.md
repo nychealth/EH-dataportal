@@ -16,6 +16,8 @@ indicators:
   - 24
   - 48
   - 2416
+  - 2433
+  - 2434
 ---
 
 Rats and mice are common, but preventable. In NYC, rats tend to be seen on streets and sidewalks, and in backyards and basements, while mice are almost always found inside homes.
