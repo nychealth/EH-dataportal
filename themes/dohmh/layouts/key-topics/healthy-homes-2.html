@@ -32,6 +32,7 @@
         <img tabindex="0" class="superimpose" id="moldOverlay" alt="" src="mold.svg" />
         <img tabindex="0" class="superimpose" id="crackinwallOverlay" alt="" src="crackinwall.svg" />
         <img tabindex="0" class="superimpose" id="peelingpaintOverlay" alt="" src="peelingpaint.svg" />
+        <img tabindex="0" class="superimpose" id="smokedetector_1Overlay" alt="" src="smokedetector_1.svg" style="position:absolute;top: 3%;left: 25%;" />
 
 
         <div class="clickables">
@@ -40,6 +41,7 @@
             <a id="moldDot" onclick="mold()" aria-label="..." style="position:absolute;top: 40%;left: 39.5%;" tabindex="0" class="dot dot-border" data-toggle="modal" data-target="#moldModal" ></a>
             <a id="crackinwallDot" onclick="crackinwall()" aria-label="..." style="position:absolute;top: 40%;left: 30%;" tabindex="0" class="dot dot-border" data-toggle="modal" data-target="#crackinwallModal" ></a>
             <a id="peelingpaintDot" onclick="peelingpaint()" aria-label="..." style="position:absolute;top: 55%;left: 3%;" tabindex="0" class="dot dot-border" data-toggle="modal" data-target="#peelingpaintModal" ></a>
+            <a id="smokedetector_1Dot" onclick="peelingpaint()" aria-label="..." style="position:absolute;top: 33%;left: 86%;" tabindex="0" class="dot dot-border" data-toggle="modal" data-target="#smokedetector_1Modal" ></a>
         </div>
     </div>
 </div>
@@ -331,7 +333,7 @@
     </div>
   </div>
 
-  <div class="modal fade" id="peelingpaintModal" tabindex="-1" role="dialog" aria-labelledby="peelingpaintDot" aria-hidden="true">
+  <div class="modal fade" id="smokedetector_1Modal" tabindex="-1" role="dialog" aria-labelledby="smokedectector_1Dot" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-body">
@@ -380,6 +382,12 @@
     function peelingpaint() {
       document.getElementById('peelingpaintOverlay').classList.add('hide')
       document.getElementById('peelingpaintDot').classList.remove('dot-border')
+
+    }
+
+    function smokedetector_1() {
+      document.getElementById('smokedetector_1Overlay').classList.add('hide')
+      document.getElementById('smokedetector_1Dot').classList.remove('dot-border')
 
     }
 
