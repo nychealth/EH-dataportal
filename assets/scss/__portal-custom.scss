@@ -1080,6 +1080,20 @@ input[type=range]:focus::-ms-fill-upper {
 }
 
 
+// RMZ
+
+.RMZ {
+    color: black;
+    background-color: #69696964;
+    border-color: dimgray;
+}
+
+.RMZ:hover, .RMZ.active  {
+    color: white;
+    background-color: dimgray;
+    border-color: dimgray;
+}
+
 // Subboro
 
 .Subboro {
@@ -1092,6 +1106,21 @@ input[type=range]:focus::-ms-fill-upper {
     color: white;
     background-color: #ae9141;
     border-color: #ae9141;
+}
+
+
+// NYCKIDS
+
+.NYCKIDS {
+    color: black;
+    background-color: #1ebbd764;
+    border-color: #1ebbd7;
+}
+
+.NYCKIDS:hover, .NYCKIDS.active  {
+    color: white;
+    background-color: #1EBBD7;
+    border-color: #1ebbd7;
 }
 
 
