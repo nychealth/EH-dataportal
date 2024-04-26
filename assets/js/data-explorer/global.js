@@ -170,6 +170,8 @@ const assignGeoRank = (GeoType) => {
             return 9;
         case 'NYHarbor':
             return 10;
+        case 'RMZ':
+            return 11;
     }
 }
 
