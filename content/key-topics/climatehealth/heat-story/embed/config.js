@@ -21,6 +21,7 @@
  *         time: the time for the data set. the datasets usually have a time field.
  *         dataFormat: data format type. Can be percent|float|int
  *         url: file location for the layer
+ *         buttonSection: section to add the button. Options are studyArea | base | additional. Default is additional
  *         exclusive: if true, then this is an exclusive layer. only one exclusive layer can be shown at a time
  *         args: 
  *             colorFeatureProperty: data property to use for setting the layer color
@@ -65,6 +66,7 @@ config = {
                 "name": "Morning Heat Index",
                 "type": "raster",
                 "url": window.BaseURL + "tiff/nyc-hi-morning.tiff",
+                "buttonSection": "studyArea",
                 "exclusive": true
             }
         },
@@ -74,6 +76,7 @@ config = {
                 "name": "Afternoon Heat Index",
                 "type": "raster",
                 "url": window.BaseURL + "tiff/nyc-hi-afternoon.tiff",
+                "buttonSection": "studyArea",
                 "exclusive": true
             }
         },
@@ -83,6 +86,7 @@ config = {
                 "name": "Evening Heat Index",
                 "type": "raster",
                 "url": window.BaseURL + "tiff/nyc-hi-evening.tiff",
+                "buttonSection": "studyArea",
                 "exclusive": true
             }
         },
@@ -151,6 +155,7 @@ config = {
                     "Class C": window.BaseURL + "maps/HOLC_map/data/HOLCClassC_1.json",
                     "Class D": window.BaseURL + "maps/HOLC_map/data/HOLCClassD_0.json"
                 },
+                "buttonSection": "additional",
                 "exclusive": false,
                 "args": {
                     "colorFeatureProperty": "holc_grade",
@@ -198,6 +203,7 @@ config = {
              "name": "Greenspace",
              "type": "geojson",
              "url": window.BaseURL + "geojson/greenspace.geojson",
+             "buttonSection": "additional",
              "args": {
                 "color": "green",
                 "fillColor": "green",
@@ -286,6 +292,7 @@ config = {
              "name": "Bruckner Boulevard",
              "type": "geojson",
              "url": window.BaseURL + "geojson/bruckner.geojson",
+             "buttonSection": "additional",
              "ignoreOpacity": true,
              "displayProperties": {
                 "displayPropertyArgs": [
@@ -302,6 +309,7 @@ config = {
                 "id": "air_quality",
                 "name": "Air Quality - PM2.5",
                 "type": "measureData",
+                "buttonSection": "base",
                 "measureInfo": {
                     "indicatorID": 2023,
                     "measureID": 365,
@@ -334,6 +342,7 @@ config = {
                 "id": "Heat_vulnerability_index",
                 "name": "Heat vulnerability index",
                 "type": "measureData",
+                "buttonSection": "base",
                 "measureInfo": {
                     "indicatorID": 2191,
                     "measureID": 822,
@@ -343,10 +352,15 @@ config = {
                 "exclusive": true,
                 "args": {
                     "colorFeatureProperty": "HVI",
-                    "minColor": "green",
-                    "maxColor": "red",
-                    "color": "black",
-                    "opacity": 0.6
+                    "defaultColor": "grey",
+                    "colorMap": {
+                        1: "green",
+                        2: "blue",
+                        3: "yellow",
+                        4: "red",
+                        5: "pink"
+                    },
+                    "opacity": 0.6,
                 },
                 "displayProperties": {
                     "missingDisplay": "N/A",
@@ -364,6 +378,7 @@ config = {
                 "id": "Vegetative_cover",
                 "name": "Vegetative cover",
                 "type": "measureData",
+                "buttonSection": "base",
                 "measureInfo": {
                     "indicatorID": 2143,
                     "measureID": 690,
@@ -396,6 +411,7 @@ config = {
                 "id": "heat_stress",
                 "name": "Heat stress hospitalizations",
                 "type": "geojson",
+                "buttonSection": "base",
                 "url": window.BaseURL + "geojson/heat-stress.geojson",
                 "args": {
                     "colorFeatureProperty": "Heat hospitalizations, Average annual age-adjusted rate",
@@ -514,6 +530,7 @@ config = {
                 "id": "Neighborhood_poverty",
                 "name": "Neighborhood poverty",
                 "type": "measureData",
+                "buttonSection": "base",
                 "measureInfo": {
                     "indicatorID": 103,
                     "measureID": 221,
@@ -552,6 +569,7 @@ config = {
                     "geoType": "Subboro",
                     "time": "2017",
                 },
+                "buttonSection": "base",
                 "exclusive": true,
                 "args": {
                     "colorFeatureProperty": "Household air conditioning %",

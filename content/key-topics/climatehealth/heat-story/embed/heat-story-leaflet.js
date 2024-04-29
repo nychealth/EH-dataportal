@@ -223,8 +223,15 @@ function setupMap() {
 // get the elements to append
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
+var buttonHolderStudyArea = document.getElementById('buttonHolderStudyArea')
 var buttonHolderBase = document.getElementById('buttonHolderBase')
 var buttonHolderAdditional = document.getElementById('buttonHolderAdditional')
+
+var buttonHolders = {
+    studyArea: buttonHolderStudyArea,
+    base: buttonHolderBase,
+    additional: buttonHolderAdditional
+};
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 // define function to create buttons
@@ -247,15 +254,10 @@ function addLayerButtons() {
                 ${layer.property.name}
             </button>`
 
+        const buttonHolder = buttonHolders[layer.property?.buttonSection ?? "base"];
+        buttonHolder.innerHTML += button;
         if (layer.property?.exclusive === true) {
-
-            buttonHolderBase.innerHTML += button;
             layersExclusive.add(layer.property.id);
-
-        } else {
-
-            buttonHolderAdditional.innerHTML += button;
-
         }
     };
 }
@@ -585,7 +587,9 @@ async function createMeasuresLayer({ id, name, measureInfo, args, displayPropert
     
     const onStyle = (feature) => {
 
-        const fillColor = colorChroma(feature.properties.Value);
+        const fillColor = args?.colorMap != null
+            ? args.colorMap[feature.properties.Value]
+            : colorChroma(feature.properties.Value);
 
         const colors = ({
             ...(fillColor != null && { fillColor: fillColor }),
