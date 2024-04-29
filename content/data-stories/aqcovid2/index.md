@@ -32,12 +32,20 @@ But the improvements in pollution from winter to spring were much greater in 202
         <div class="col-6">
             <iframe title="NO2 fell during NY Pause in 2020..." aria-label="Interactive line chart" id="datawrapper-chart-9jeJb" src="https://datawrapper.dwcdn.net/9jeJb/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="398"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();
             </script>
-            <div style="background-color:blanchedalmond; padding: 10px; border-radius: 5px"><p class="fs-sm">Nitrogen dioxide (NO2) is part of a group of pollutants called “oxides of nitrogen” (NOX). Exposures to NOX are linked to increased emergency department visits and hospitalizations for respiratory conditions, particularly asthma.  </p></div>
+            <div class="card card-left-border shadow-sm">
+                <div class="card-body">
+                    <p class="fs-sm">Nitrogen dioxide (NO2) is part of a group of pollutants called “oxides of nitrogen” (NOX). Exposures to NOX are linked to increased emergency department visits and hospitalizations for respiratory conditions, particularly asthma.</p>
+                </div>
+            </div>
         </div>
         <div class="col-6">
             <iframe title="So did PM2.5 - more than in 2019." aria-label="Interactive line chart" id="datawrapper-chart-WHK8J" src="https://datawrapper.dwcdn.net/WHK8J/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="398"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();
             </script>
-            <div style="background-color:blanchedalmond; padding: 10px; border-radius: 5px"><p class="fs-sm">Fine particles (PM2.5) are tiny airborne solid and liquid particles less than 2.5 microns in diameter. PM2.5 is the most harmful urban air pollutant. It is small enough to penetrate the lungs and enter the bloodstream, which can worsen lung and heart disease.  </p></div>
+            <div class="card card-left-border shadow-sm">
+                <div class="card-body">
+                <p class="fs-sm">Fine particles (PM2.5) are tiny airborne solid and liquid particles less than 2.5 microns in diameter. PM2.5 is the most harmful urban air pollutant. It is small enough to penetrate the lungs and enter the bloodstream, which can worsen lung and heart disease.</p>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -48,7 +56,7 @@ But the improvements in pollution from winter to spring were much greater in 202
 With many New Yorkers staying home, activity in the CBD fell drastically. Explore the changes in the maps below.
 
 {{< rawhtml >}}
-<div style="background-color:blanchedalmond; margin: 10px 50px; padding: 10px; border-radius: 5px"><p class="fs-sm">Our land-use regression models incorporate data from nearly 100 air quality monitoring sites. <a href="https://nyccas.cityofnewyork.us/nyccas2021v9/report/2">For more information, visit NYCCAS</a>. </p></div>
+<div class="asidebox"><p class="fs-sm">Our land-use regression models incorporate data from nearly 100 air quality monitoring sites. <a href="https://nyccas.cityofnewyork.us/nyccas2021v9/report/2">For more information, visit NYCCAS</a>. </p></div>
 
 </div>
 <div class="medium my-4">

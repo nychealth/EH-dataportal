@@ -49,8 +49,8 @@ At 6.00 PM on June 30, 2018, the air temperature at the LaGuardia Airport Weathe
 This is an example of the Urban Heat Island Effect: when some areas in a city are {{< rawhtml >}}<a href="#collapseOne" data-toggle="collapse" class="badge badge-pill badge-warning">hotter than others</a>{{< /rawhtml >}}. Temperatures can even vary from block to block.
 
 {{< rawhtml >}}
-<div class="collapse py-2 px-2 mx-2 fs-sm" id="collapseOne"
-style="margin-top: 0px!important; background-color: #f9f9f9;">
+<div class="collapse asidebox m-2 fs-sm" id="collapseOne"
+style="margin-top: 0px!important;">
 <p>LaGuardia Airport is an open space without many structures surrounding it. It doesn't trap heat the way other places in the city do, so we often use it as a reference temperature. It is almost always cooler than other parts of NYC, where building boilers and vehicle engines generate heat, manufactured surfaces like roofs and roads absorb heat, and there’s less vegetation to cool things down. 
 </p>
 </div>
@@ -443,7 +443,7 @@ As the climate changes, NYC faces rising average temperatures and heat waves tha
 {{< rawhtml >}}
 </div>
 <div class="wide">
-    <div class="mb-4" style="background-color:rgb(231, 231, 231); padding: 10px; border-radius: 5px;">
+    <div class="mb-4 asidebox">
     <p><strong>More info:</strong></p>
     <p>Learn how  other ways NYC is working to counter the risks of rising temperatures, such as <a href="{{< baseurl >}}data-stories/heat/">by ensuring equitable access to air conditioning</a>.
     </p>
@@ -468,7 +468,7 @@ As the climate changes, NYC faces rising average temperatures and heat waves tha
         <img src="tree.png" width="15px" alt="A tree icon."> Temperature sensor mounted on tree.
     </div>
     <br><br><br><br>
-    <div style="background-color:rgb(231, 231, 231); padding: 10px; border-radius: 5px;">
+    <div class="asidebox">
         <span style="font-weight: bold; color: #5e5e5e;">More about NYC's greening efforts</span>
         <p>There are numerous efforts to increase tree canopy and green space overall in NYC. The City plants and cares for <a href="https://www.nycgovparks.org/trees/street-tree-planting">street trees</a> along the right-of-way; forbs, shrubs, and trees in parkland; <a href="https://www1.nyc.gov/site/dep/water/rain-gardens.page">rain gardens</a> and <a href="https://www1.nyc.gov/site/dep/water/green-infrastructure.page">other green infrastructure</a> to capture stormwater; and more. Many tree plantings have been concentrated in areas with <a href="https://www.milliontreesnyc.org/html/million_trees/neighborhoods.shtml">higher than average rates of asthma</a> and <a href="{{< baseurl >}}key-topics/climatehealth/hvi/">heat-vulnerable neighborhoods</a>.</p>
         <p>Trust for Public Land’s <a href="https://www.tpl.org/our-work/new-york-city-playgrounds">New York City Playgrounds program</a> has transformed over 200 playgrounds from using asphalt to using cooler, greener materials. There are also <a href="https://naturalareasnyc.org/map">forests in all five boroughs</a>, and the Department of Parks and Recreation and the Natural Areas Conservancy have developed the <a href="https://naturalareasnyc.org/forests">Forest Management Framework for New York City</a>, a 25-year plan that lays out the process, costs, best practices, and goals for caring for forests in the city.  </p>

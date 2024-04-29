@@ -99,15 +99,9 @@ Features a primary color left border.
 Use these for secondary items on the Home Page, or as call-out boxes on other content. The green left border sets them aside from main content cards with bottom borders.
 -->
 
-<div class="card card-left-border shadow-sm h-100">
+<div class="card card-left-border shadow-sm">
     <div class="card-body">
-      <h5 class="card-title fs-sm mb-1">About us</h5>
-      <p class="fs-sm flex-grow-1">Learn more about the Environment & Health Data Portal, and the Health Department team behind it.</p>
-      {{- with .Site.GetPage "about/_index.md" -}}
-        <div class="d-flex justify-content-end">
-          <a class="fs-sm font-weight-bold" href="{{ .RelPermalink }}">About Us<i class="fas fa-arrow-circle-right ml-1" aria-hidden="true"></i></a>
-        </div>
-        {{- end -}}
+        <p>Body here</p>
     </div>
   </div>
 
