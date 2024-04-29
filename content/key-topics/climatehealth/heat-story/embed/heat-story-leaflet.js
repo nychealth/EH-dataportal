@@ -254,7 +254,7 @@ function addLayerButtons() {
                 ${layer.property.name}
             </button>`
 
-        const buttonHolder = buttonHolders[layer.property?.buttonSection ?? "base"];
+        const buttonHolder = buttonHolders[layer.property?.buttonSection ?? "additional"];
         buttonHolder.innerHTML += button;
         if (layer.property?.exclusive === true) {
             layersExclusive.add(layer.property.id);
