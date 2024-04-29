@@ -35,7 +35,7 @@
         <img tabindex="0" class="superimpose" id="smokedetector_1Overlay" alt="" src="smokedetector_1.svg" style="position:absolute;top: 3%;left: 25%;" />
         <img tabindex="0" class="superimpose" id="stovespillOverlay" alt="" src="stovespill.svg" style="position:absolute;top: -8%;left: 23%;" />
         <img tabindex="0" class="superimpose" id="shoesOverlay" alt="" src="shoes.svg" style="position:absolute;top: 10%;left: 25%;" />
-
+        <img tabindex="0" class="superimpose" id="shoesOverlay" alt="" src="pestdrop.svg" style="position:absolute;top: 10%;left: 25%;" />
 
         <div class="clickables">
             <a id="spillDot" onclick="spill()" aria-label="..." style="position:absolute;top: 65%;left: 27%;" tabindex="0" class="dot dot-border" data-toggle="modal" data-target="#spillModal" ></a>
@@ -45,7 +45,8 @@
             <a id="peelingpaintDot" onclick="peelingpaint()" aria-label="..." style="position:absolute;top: 55%;left: 3%;" tabindex="0" class="dot dot-border" data-toggle="modal" data-target="#peelingpaintModal" ></a>
             <a id="smokedetector_1Dot" onclick="smokedetector_1()" aria-label="..." style="position:absolute;top: 33%;left: 86%;" tabindex="0" class="dot dot-border" data-toggle="modal" data-target="#smokedetector_1Modal" ></a>
             <a id="stovespillDot" onclick="stovespill()" aria-label="..." style="position:absolute;top: 50%;left: 50%;" tabindex="0" class="dot dot-border" data-toggle="modal" data-target="#stovespillModal" ></a>
-            <a id="shoesDot" onclick="shoes()" aria-label="..." style="position:absolute;top: 50%;left: 86%;" tabindex="0" class="dot dot-border" data-toggle="modal" data-target="#shoesModal" ></a>
+            <a id="shoesDot" onclick="shoes()" aria-label="..." style="position:absolute;top: 60%;left: 26%;" tabindex="0" class="dot dot-border" data-toggle="modal" data-target="#shoesModal" ></a>
+            <a id="shoesDot" onclick="pestdrop()" aria-label="..." style="position:absolute;top: 60%;left: 26%;" tabindex="0" class="dot dot-border" data-toggle="modal" data-target="#pestdropModal" ></a>
         </div>
     </div>
 </div>
@@ -404,6 +405,12 @@
     function shoes() {
       document.getElementById('shoesOverlay').classList.add('hide')
       document.getElementById('shoesDot').classList.remove('dot-border')
+
+    }
+
+    function pestdrop() {
+      document.getElementById('pestdropOverlay').classList.add('hide')
+      document.getElementById('pestdropDot').classList.remove('dot-border')
 
     }
 
