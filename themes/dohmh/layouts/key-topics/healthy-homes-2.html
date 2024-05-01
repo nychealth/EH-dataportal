@@ -35,18 +35,23 @@
         <img tabindex="0" class="superimpose" id="smokedetector_1Overlay" alt="" src="smokedetector_1.svg" style="position:absolute;top: 3%;left: 25%;" />
         <img tabindex="0" class="superimpose" id="stovespillOverlay" alt="" src="stovespill.svg" style="position:absolute;top: -8%;left: 23%;" />
         <img tabindex="0" class="superimpose" id="shoesOverlay" alt="" src="shoes.svg" style="position:absolute;top: 10%;left: 25%;" />
-        <img tabindex="0" class="superimpose" id="shoesOverlay" alt="" src="pestdrop.svg" style="position:absolute;top: 10%;left: 25%;" />
+        <img tabindex="0" class="superimpose" id="pestdropOverlay" alt="" src="pestdrop.svg" style="position:absolute;top: 10%;left: 25%;" />
+        <img tabindex="0" class="superimpose" id="bottleOverlay" alt="" src="bottle.svg" style="position:absolute;top: 6%;left: -3%;" />
+        <img tabindex="0" class="superimpose" id="ceramicwareOverlay" alt="" src="ceramicware.svg" style="position:absolute;top: 6%;left: -3%;" />
+        <img tabindex="0" class="superimpose" id="cleanersOverlay" alt="" src="cleaners.svg" style="position:absolute;top: 4%;left: -0.5%;" />
 
         <div class="clickables">
-            <a id="spillDot" onclick="spill()" aria-label="..." style="position:absolute;top: 65%;left: 27%;" tabindex="0" class="dot dot-border" data-toggle="modal" data-target="#spillModal" ></a>
-            <a id="bowlDot" onclick="bowl()" aria-label="..." style="position:absolute;top: 72%;left: 5%;" tabindex="0" class="dot dot-border" data-toggle="modal" data-target="#bowlModal" ></a>
+            <a id="spillDot" onclick="spill()" aria-label="..." style="position:absolute;top: 65%;left: 28%;" tabindex="0" class="dot dot-border" data-toggle="modal" data-target="#spillModal" ></a>
+            <a id="bowlDot" onclick="bowl()" aria-label="..." style="position:absolute;top: 72%;left: 6%;" tabindex="0" class="dot dot-border" data-toggle="modal" data-target="#bowlModal" ></a>
             <a id="moldDot" onclick="mold()" aria-label="..." style="position:absolute;top: 40%;left: 39.5%;" tabindex="0" class="dot dot-border" data-toggle="modal" data-target="#moldModal" ></a>
             <a id="crackinwallDot" onclick="crackinwall()" aria-label="..." style="position:absolute;top: 40%;left: 30%;" tabindex="0" class="dot dot-border" data-toggle="modal" data-target="#crackinwallModal" ></a>
             <a id="peelingpaintDot" onclick="peelingpaint()" aria-label="..." style="position:absolute;top: 55%;left: 3%;" tabindex="0" class="dot dot-border" data-toggle="modal" data-target="#peelingpaintModal" ></a>
             <a id="smokedetector_1Dot" onclick="smokedetector_1()" aria-label="..." style="position:absolute;top: 33%;left: 86%;" tabindex="0" class="dot dot-border" data-toggle="modal" data-target="#smokedetector_1Modal" ></a>
-            <a id="stovespillDot" onclick="stovespill()" aria-label="..." style="position:absolute;top: 50%;left: 50%;" tabindex="0" class="dot dot-border" data-toggle="modal" data-target="#stovespillModal" ></a>
-            <a id="shoesDot" onclick="shoes()" aria-label="..." style="position:absolute;top: 60%;left: 26%;" tabindex="0" class="dot dot-border" data-toggle="modal" data-target="#shoesModal" ></a>
-            <a id="pestdropDot" onclick="pestdrop()" aria-label="..." style="position:absolute;top: 40%;left: 76%;" tabindex="0" class="dot dot-border" data-toggle="modal" data-target="#pestdropModal" ></a>
+            <a id="shoesDot" onclick="shoes()" aria-label="..." style="position:absolute;top: 85%;left: 40%;" tabindex="0" class="dot dot-border" data-toggle="modal" data-target="#shoesModal" ></a>
+            <a id="pestdropDot" onclick="pestdrop()" aria-label="..." style="position:absolute;top: 73%;left: 34%;" tabindex="0" class="dot dot-border" data-toggle="modal" data-target="#pestdropModal" ></a>
+            <a id="bottleDot" onclick="bottle()" aria-label="..." style="position:absolute;top: 46%;left: 13%;" tabindex="0" class="dot dot-border" data-toggle="modal" data-target="#bottleModal" ></a>
+            <a id="ceramicwareDot" onclick="ceramicware()" aria-label="..." style="position:absolute;top: 44%;left: 51%;" tabindex="0" class="dot dot-border" data-toggle="modal" data-target="#ceramicwareModal" ></a>
+            <a id="cleanersDot" onclick="cleaners()" aria-label="..." style="position:absolute;top: 60%;left: 24%;" tabindex="0" class="dot dot-border" data-toggle="modal" data-target="#cleanersModal" ></a>
         </div>
     </div>
 </div>
@@ -321,7 +326,7 @@
     </div>
   </div>
 
-  <div class="modal fade" id="cleaners" tabindex="-1" role="dialog" aria-labelledby="cleanersDot" aria-hidden="true">
+  <div class="modal fade" id="cleanersModal" tabindex="-1" role="dialog" aria-labelledby="cleanersDot" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-body">
@@ -411,6 +416,18 @@
     function pestdrop() {
       document.getElementById('pestdropOverlay').classList.add('hide')
       document.getElementById('pestdropDot').classList.remove('dot-border')
+
+    }
+
+    function ceramicware) {
+      document.getElementById('ceramicwareOverlay').classList.add('hide')
+      document.getElementById('ceramicwareDot').classList.remove('dot-border')
+
+    }
+
+    function cleaners() {
+      document.getElementById('cleanersOverlay').classList.add('hide')
+      document.getElementById('cleanersDot').classList.remove('dot-border')
 
     }
 
