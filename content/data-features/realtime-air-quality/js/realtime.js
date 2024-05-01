@@ -79,6 +79,7 @@ function loadMonitorLocations() {
         drawCheckboxes();
         listenButtons();
         getSpec();
+        getSpec2();
     })
 }
 
@@ -99,7 +100,7 @@ function GetSortOrder(prop) {
 // ---- Getting the initial chart spec, inserts color and  earliest date in the data feed to it ---- // 
 var filter
 function getSpec() {
-    d3.json("js/spec2.json").then(data => {
+    d3.json("js/spec.json").then(data => {
         current_spec = $.extend({}, data);
         current_spec.data.url = rtaqData
 
@@ -202,7 +203,7 @@ function drawCheckboxes() {
 }
 
 //-- Event listener on checkboxes --//
-var checked = [];
+var checkedSites = [];
 var getChecked;
 function listenBoxes() {
 
@@ -217,7 +218,7 @@ function listenBoxes() {
             // console.log(checkChecked)
 
             // loop through node list and push name and value to checked array
-            checked = []; // clear the array of checked items
+            checkedSites = []; // clear the array of checked items
             for (let i = 0; i < getChecked.length; i++) {
                 var siteName = getChecked[i].name
                 var siteColor = getChecked[i].value
@@ -225,10 +226,10 @@ function listenBoxes() {
                     "siteName": `${siteName}`,
                     "color": `${siteColor}`
                 }
-                checked.push(thisSite)
+                checkedSites.push(thisSite)
             }
 
-            console.log('checked sites:', checked)
+            updateSpec()
           
         })
     })
@@ -237,13 +238,74 @@ function listenBoxes() {
 
 }
 
+var revisedSpecTwo = {};
+
 function updateSpec() {
-    
+    console.log('checked sites:')
+    console.table(checkedSites)
+
+    revisedSpecTwo = specTwo
+    revisedSpecTwo.layer.length = 3
+
+    // loop through checkedSites and add them to revisedSpecTwo
+
+    for (let i = 0; i < checkedSites.length; i++) {
+
+        var template =  {
+            "mark": {
+              "type": "line",
+              "interpolate": "monotone",
+              "point": {"size": 20, "opacity": 0},
+              "tooltip": true
+            },
+            "transform": [
+              {"filter": `datum.SiteName === '${checkedSites[i].siteName}'`}
+              ],
+            "encoding": {
+              "x": {
+                "field": "starttime",
+                "type": "temporal",
+                "title": ""
+              },
+              "y": {
+                "field": "Value",
+                "type": "quantitative",
+                "title": " "
+              },
+              "color": {
+                "condition": [
+                  {
+                    "test": `datum.SiteName === '${checkedSites[i].siteName}'`, 
+                    "value": `${checkedSites[i].color}`
+                  }
+                ]
+              },
+              "opacity": {"value": 0.7},
+              "strokeWidth": {"value": 1.5},
+              "tooltip": [
+                {"field": "SiteName", "title": "Location"},
+                {"field": "Value", "title": "PM2.5 (µg/m3)"},
+                {
+                  "field": "starttime",
+                  "type": "temporal",
+                  "title": "Time",
+                  "timeUnit": "hoursminutes",
+                  "format": "%I:%M %p"
+                },
+                {"field": "starttime", "type": "temporal", "title": "Date"}
+              ]
+            }
+          }
+
+        // push it to spec
+        revisedSpecTwo.layer.push(template)
+
+    }
+
+    vegaEmbed('#vis',revisedSpecTwo)
 }
 
-// Ingest Spec2
 
-// Draw Spec2 Chart
 
 
 
@@ -598,3 +660,29 @@ function updateTime(x) {
     drawChart(current_spec)
 }
 
+
+
+
+/// drawing spectwo
+
+var filter2;
+var specTwo;
+function getSpec2() {
+    d3.json("js/spec2.json").then(data => {
+        specTwo = $.extend({}, data);
+        specTwo.data.url = rtaqData
+
+
+        // get floor date and filter by floor date:
+        filter = `datum.starttime > ${floorDate}`
+        specTwo.layer[0].transform[0] = {"filter": filter}
+        specTwo.layer[2].encoding.x2.datum = maxTimeMinusDay
+        // drawChart(current_spec)
+
+        reDrawSpecTwo()
+    });
+}
+
+function reDrawSpecTwo(){
+    vegaEmbed("#vis", specTwo)
+}
