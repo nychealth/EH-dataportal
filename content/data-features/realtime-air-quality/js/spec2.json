@@ -1,0 +1,85 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "PM2.5 in micrograms per cubic meter",
+  "data": {
+    "url": "https://gist.githubusercontent.com/mmontesanonyc/6f006ef043cbb437439b725e8da639ab/raw/99bf35d35f88c8e9bc9c7cea7eab3fe9b279cbee/rtaq.csv"
+  },
+  "config": {
+    "legend": {"disable": true},
+    "background": "#ffffff00",
+    "axisX": {
+      "grid": false, "ticks": true, "labels": true,
+      "offset": 0,
+      "domainDashOffset": 30,
+      "labelAlign": "center",
+      "labelExpr": "[timeFormat(datum.value, '%H') == 0 ? timeFormat(datum.value, '%b %e') : timeFormat(datum.value, '%-I %p')]",
+      "labelPadding": 4,
+      "labelOverlap": "parity",
+      "tickSize": {
+        "condition": {
+          "test": {"field": "value", "timeUnit": "hours", "equal": 0},
+          "value": 15
+        },
+        "value": 9
+      },
+      "tickWidth": {
+        "condition": {
+          "test": {"field": "value", "timeUnit": "hours", "equal": 0},
+          "value": 1.25
+        },
+        "value": 0.5
+      }
+      },
+    "axisY": {"domain": false, "ticks": false, "gridDash": [2], "gridWidth": 1,"offset": 10},
+    "view": {"stroke": "transparent"}
+  },
+  "height": "container",
+  "width": "container",
+  "layer": [
+    {
+      "mark": {
+        "type": "line",
+        "interpolate": "monotone",
+        "point": {"size": 5, "opacity": 0},
+        "tooltip": null
+      },
+      "transform": [{"filter": "datum.starttime > 1712084400000"}],
+      "encoding": {
+        "x": {
+          "field": "starttime",
+          "type": "temporal",
+          "title": ""
+        },
+        "y": {
+          "field": "Value",
+          "type": "quantitative",
+          "title": " "
+        },
+        "color": {
+          "field": "SiteName",
+          "type": "nominal",
+          "scale": {"range": ["lightgray"]}
+        },
+        "opacity": {"value": 0.7},
+        "strokeWidth": {"value": 1.5}
+      }
+    },
+    {
+      "mark": "rule",
+      "encoding": {
+        "y": {"datum": 35},
+        "color": {"value": "red"},
+        "size": {"value": 2},
+        "strokeDash": {"value": [2, 2]}
+      }
+    },
+    {
+      "mark": "rect",
+      "encoding": {
+        "x": {"aggregate": "max", "field": "starttime", "type": "temporal"},
+        "x2": {"datum": 1712682000000, "type": "temporal"},
+        "opacity": {"value": 0}
+      }
+    }
+  ]
+}

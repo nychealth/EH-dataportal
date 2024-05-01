@@ -75,7 +75,8 @@ function loadMonitorLocations() {
 
         // Draws map, buttons, listener, and retrieves chart spec
         drawMap()
-        drawButtons()
+        drawButtons();
+        drawCheckboxes();
         listenButtons();
         getSpec();
     })
@@ -98,7 +99,7 @@ function GetSortOrder(prop) {
 // ---- Getting the initial chart spec, inserts color and  earliest date in the data feed to it ---- // 
 var filter
 function getSpec() {
-    d3.json("js/spec.json").then(data => {
+    d3.json("js/spec2.json").then(data => {
         current_spec = $.extend({}, data);
         current_spec.data.url = rtaqData
 
@@ -181,6 +182,54 @@ function drawButtons() {
 
 
 }
+
+
+
+function drawCheckboxes() {
+    console.log('drawing checkboxes...')
+
+    for (let i = 0; i < activeMonitors.length; i++) {
+
+        let ddb =   `<div class="px-1"><input type="checkbox" id="${activeMonitors[i].loc_col}" name="${activeMonitors[i].loc_col}" value="${activeMonitors[i].Color}">
+                     <label for="vehicle1">        
+                        <span style="color: ${activeMonitors[i].Color};"><i class="fas fa-square"></i></span>
+                        ${activeMonitors[i].Location}</label><br></div>`
+
+        document.getElementById('btnCheckboxes').innerHTML += ddb
+    }
+
+    listenBoxes()
+}
+
+//-- Event listener on checkboxes --//
+var checked = [];
+function listenBoxes() {
+
+    document.querySelector('#btnCheckboxes').onclick = function(ev) {
+        // console.log(ev.target.checked, ev.target.name, ev.target.value);
+        var siteName = ev.target.name
+        var siteColor = ev.target.value
+
+        if (ev.target.checked = true) {
+            var thisSite = {
+                "siteName": `${siteName}`,
+                "color": `${siteColor}`
+            }
+            // push to array of checked things
+            checked.push(thisSite)
+            console.log(checked)
+        }
+
+        // var checkChecked = document.querySelectorAll('input[type=checkbox]:checked');
+
+        // Run a function that takes [checked] and dumps it into current_spec
+      }
+}
+
+function updateSpec() {
+    
+}
+
 
 // ---- Event listener on the buttons runs updateData and passes in the button's id (loc_col) ---- // 
 function listenButtons() {
