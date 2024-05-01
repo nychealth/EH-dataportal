@@ -2,7 +2,7 @@
 
 <style>
     #map {
-        height: 400px;
+        height: 45vh;
         width: 600px;
         max-width: 100%;
         max-height: 100%;
@@ -76,14 +76,19 @@
     <div class="row my-4">
         <div class="col-md-10 mx-auto col-sm-12 border">
             <div class="row">
-                <div class="col-md-6 border">
-                    <div id="map2" class="d-none d-md-block">
+                <div class="col-md-4 border">
+                    <div id="map" class="d-none d-md-block">
                         MAP
                     </div>
                 </div>
-                <div class="col-md-6 border">
+                <div class="col-md-4 border">
                     <div id="btnCheckboxes" class="fs-sm">
                     </div>
+                </div>
+
+                <div class="col-md-4 border">
+                    Notes:<br>
+                    Look at updateData() which runs on mapmarker click - change this to affect new chart.<br> Then look at getRecentAverage() and apply that to table idea. <br>Plan to remove plenty of old code.
                 </div>
         
                 <div class="col-12 border">
@@ -107,8 +112,6 @@
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="btnDropdownMenu" style="padding: 0px!important;">
                         </div>
                       </div>
-                    <div id="map" class="d-none d-md-block">
-                    </div>
                     <button onclick="restore()" type="button" id="btnrestore" class="btn btn-sm btn-outline-dark btn-block">
                         Reset</button>
                 </div>
