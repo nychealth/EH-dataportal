@@ -190,10 +190,10 @@ function drawCheckboxes() {
 
     for (let i = 0; i < activeMonitors.length; i++) {
 
-        let ddb =   `<div class="px-1"><input type="checkbox" id="${activeMonitors[i].loc_col}" name="${activeMonitors[i].loc_col}" value="${activeMonitors[i].Color}">
-                     <label for="vehicle1">        
+        let ddb =   `<input type="checkbox" id="${activeMonitors[i].loc_col}" name="${activeMonitors[i].loc_col}" value="${activeMonitors[i].Color}">
+                     <label for="${activeMonitors[i].loc_col}">        
                         <span style="color: ${activeMonitors[i].Color};"><i class="fas fa-square"></i></span>
-                        ${activeMonitors[i].Location}</label><br></div>`
+                        ${activeMonitors[i].Location}</label><br>`
 
         document.getElementById('btnCheckboxes').innerHTML += ddb
     }
@@ -203,32 +203,55 @@ function drawCheckboxes() {
 
 //-- Event listener on checkboxes --//
 var checked = [];
+var getChecked;
 function listenBoxes() {
 
-    document.querySelector('#btnCheckboxes').onclick = function(ev) {
-        // console.log(ev.target.checked, ev.target.name, ev.target.value);
-        var siteName = ev.target.name
-        var siteColor = ev.target.value
+    var boxes = document.querySelectorAll('input[type=checkbox]');
+    boxes.forEach(box => {
+        box.addEventListener('click', (ev) => {
 
-        if (ev.target.checked = true) {
-            var thisSite = {
-                "siteName": `${siteName}`,
-                "color": `${siteColor}`
+            // console.log(ev.target.checked, ev.target.name, ev.target.value);
+
+            // create nodelist of all checked items
+            getChecked = document.querySelectorAll('input[type=checkbox]:checked');
+            // console.log(checkChecked)
+
+            // loop through node list and push name and value to checked array
+            checked = []; // clear the array of checked items
+            for (let i = 0; i < getChecked.length; i++) {
+                var siteName = getChecked[i].name
+                var siteColor = getChecked[i].value
+                var thisSite = {
+                    "siteName": `${siteName}`,
+                    "color": `${siteColor}`
+                }
+                checked.push(thisSite)
             }
-            // push to array of checked things
-            checked.push(thisSite)
-            console.log(checked)
-        }
 
-        // var checkChecked = document.querySelectorAll('input[type=checkbox]:checked');
+            console.log('checked sites:', checked)
+          
+        })
+    })
+    
 
-        // Run a function that takes [checked] and dumps it into current_spec
-      }
+
 }
 
 function updateSpec() {
     
 }
+
+// Ingest Spec2
+
+// Draw Spec2 Chart
+
+
+
+
+
+
+
+
 
 
 // ---- Event listener on the buttons runs updateData and passes in the button's id (loc_col) ---- // 
