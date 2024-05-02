@@ -2,8 +2,8 @@
 
 <style>
     #map {
-        height: 45vh;
-        width: 600px;
+        height: 35vh;
+        width: 100%;
         max-width: 100%;
         max-height: 100%;
     }
@@ -70,122 +70,113 @@
     <style>
         label {
         font-size: .875rem
-    }
-    </style>
+        }
 
-    <div class="row my-4">
-        <div class="col-md-10 mx-auto col-sm-12 border">
-            <div class="row">
-                <div class="col-md-4 border">
-                    <div id="map" class="d-none d-md-block">
-                        MAP
-                    </div>
-                </div>
-                <div class="col-md-4 border">
-                    <div id="btnCheckboxes" class="fs-sm">
-                    </div>
-                </div>
+        .table-tight th, tr, td {
+        padding: 0px 3px!important;
+        }
 
-                <div class="col-md-4 border">
-                    Notes:<br>
-                    Look at updateData() which runs on mapmarker click - change this to affect new chart.<br> Then look at getRecentAverage() and apply that to table idea. <br>Plan to remove plenty of old code.
-                </div>
-        
-                <div class="col-12 border">
-                    <div id="vis" style="width: 100%; height: 350px;" class="mt-1">
-                        CHART
-                    </div>
-                </div>
-            </div>
-        </div>
-        </div>
+        .table-tight td:nth-child(2) { 
+            text-align: end; 
+        }
 
-    <div class="row">
-        <div class="col-md-10 mx-auto col-sm-12">
-            <div class="row mt-4">
-                <div class="col-md-4">
+        .table-tight td:nth-child(3) { 
+            text-align: end; 
+        }
 
-                    <div class="dropright">
-                        <button class="btn btn-outline-secondary btn-block btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          Choose location
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="btnDropdownMenu" style="padding: 0px!important;">
-                        </div>
-                      </div>
-                    <button onclick="restore()" type="button" id="btnrestore" class="btn btn-sm btn-outline-dark btn-block">
-                        Reset</button>
-                </div>
-
-                <div class="col-md-8">
-                    <div class="border-bottom">
+        .table-tight th {
+        border-top: 0px!important;
+        }
 
 
-                        <!-- Chart set -->
-                        <div id="numberinput" class="float-right pt-1"
-                        style="font-size: 12px;">
-                            <label for="inputNum" style="display:inline-block; font-size: 12px;">Show last</label>
-                            <input inputmode="numeric" pattern="[0-9]*" type="number" style="display:inline-block" id="inputNum" name="inputNum" min="1" max="7">
-                            days.
-                            </form>
-                                </div>
-                        </div>
-            
-
-                        <div style="width:100%">
-                            <span class="fs-sm">Hourly PM2.5 measurements (in µg/m<sup>3</sup>)</span> | <span class="fs-sm" style="color:red">NAAQS 24-hour PM2.5 standard (35 µg/m<sup>3</sup>)</span>
-                        </div>
-            
-                        <div id="vis2" style="width: 100%; height: 400px;" class="mt-1">
-                        </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-10 mx-auto col-sm-12">
-            <div class="row mt-1">
-                <div class="col-12">
-
-                    <!-- Average value box -->
-                    <div class="rtaqbox p-1 hide my-1" id="averageBox">
-                        <p class="fs-md align-right"><span id="locColor"><i class="fas fa-square mr-1"></i></span><span id="locationSend" class="home-label font-weight-bold">LOCATION</span>: Over the last 24 hours, the average PM2.5 at this location is <span id="locAverage" style="font-weight:bold;" class="badge badge-primary">XX</span>. This is <span id="aboveBelow" style="font-weight:bold;">XX</span> the <a href="https://www.epa.gov/criteria-air-pollutants/naaqs-table">24-hour NAAQS standard of 35</a>.</p>
-                    </div>
-                
-                    <!-- last 24-hour info box -->
-                    <div class="infobox rtaqbox" id="locInfoBox" style="display:none">
-                        <div id="locInfoDesc">
-        
-                            <p class="fs-md"><strong>No value:</strong> sometimes monitors go down or have other problems. We only produce average values if there are more than 18 hourly readings over the last 24 hours.</p>
-                            
-                            {{- /*  <div class="col mx-1">
-                                <p>Most recent 24-hour average reading by this monitor: <span class="badge badge-primary badge-custom badge-custom-dark"><span id="24av">n/a</span> µg/m3</span>. This is <span id="comparison" class="badge badge-primary badge-custom">N/A</span> the <a href="https://www.epa.gov/criteria-air-pollutants/naaqs-table">national standard</a> of 35 µg/m3 for 24 hours. <span id="goodBad" class="badge badge-primary badge-custom"></span></p>
-                            </div>  */}}
-                        </div>
-                    </div>
-
-                    <!-- DEC info box -->
-                    <div class="rtaqbox p-1 hide mt-1" id="decInfo">
-                        <p class="fs-md">Note: "DEC Monitor Average" is the average value of 11 roof-top monitors operated by the New York State Department of Environmental Conservation.</p>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-    </div>
-
-
-
-
-    <style>
-        .rtaqbox {
-            background-color: #f2f2f275;
-            border-left: 2px solid darkgray
+        .table-highlight {
+            background-color: lightyellow;
         }
     </style>
 
+    <div class="row my-4">
+        <div class="col-12">
+            <div class="row">
+                <div class="col-md-4">
+                    <table class="table table-tight" id="table24">
+                        <thead>
+                            <tr>
+                                <th scope="col">Location</th>
+                                <th scope="col" class="hide">Sort</th>
+                                <th scope="col" style="text-align: end;">Last 24 hours <span class="font-weight-normal">(µg/m<sup>3</sup>)</span></th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody">
+                        </tbody>
+                    </table>
+                    <div class="float-right">
+                    <p class="fs-sm text-align-right"><em>*Insufficient data: monitor reported less than 18 hours in the last day.</em></p>
+                    </div>
+                </div>
+                <div class="col-md-8 border-left">
+                    <div id="map" class="d-none d-md-block">
+                        MAP
+                    </div>
 
+                    <!-- Chart set -->
+                    <div id="numberinput" class="float-right pt-1"
+                    style="font-size: 12px;">
+                        <label for="inputNum" style="display:inline-block; font-size: 12px;">Show last</label>
+                        <input inputmode="numeric" pattern="[0-9]*" type="number" style="display:inline-block" id="inputNum" name="inputNum" min="1" max="7">
+                        days.
+                        </form>
+                    </div>
+
+                    <div style="width:100%">
+                        <span class="fs-sm">Hourly PM2.5 measurements (in µg/m<sup>3</sup>)</span> | <span class="fs-sm" style="color:red">NAAQS 24-hour PM2.5 standard (35 µg/m<sup>3</sup>)</span>
+                    </div>
+                
+                    <div id="vis" style="width: 100%; height: 45vh;" class="mt-1">
+                    CHART
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row my-4">
+        <div class="col-md-10 mx-auto col-sm-12">
+            <div class="row">
+                <div class="col-md-5">
+
+                </div>
+                <div class="col-md-7">
+
+                </div>
+
+
+        
+                <div class="col-12 mt-2 border-top pt-1">
+
+                </div>
+            </div>
+        </div>
+        </div>
+
+    <div class="row hide">
+        <!-- Average value box -->
+        <div class="rtaqbox p-1 hide my-1" id="averageBox">
+            <p class="fs-md"><strong>Last 24 hours:</strong></p>
+
+            <p class="fs-md"><span id="locColor"><i class="fas fa-square mr-1"></i></span><span id="locationSend" class="home-label font-weight-bold">LOCATION</span>: the average PM2.5 at this location is <span id="locAverage" style="font-weight:bold;" class="badge badge-primary">XX</span>. This is <span id="aboveBelow" style="font-weight:bold;">XX</span> the <a href="https://www.epa.gov/criteria-air-pollutants/naaqs-table">24-hour NAAQS standard of 35</a>.</p>
+        </div>
+
+        <!-- last 24-hour info box -->
+        <div class="infobox rtaqbox hide" id="locInfoBox">
+            <div id="locInfoDesc">
+
+                <p class="fs-md"><strong>Last 24 hours</strong> </p>
+                <p class="fs-md">No value from the <span id="locColor2"><i class="fas fa-square mr-1"></i></span><span id="locationSend2" class="font-weight-bold"></span> monitor. Sometimes monitors go down or have other problems. We only produce average values if there are more than 18 hourly readings over the last 24 hours.</p>
+                
+            </div>
+        </div>
+    </div>
 
     <div class="row my-2">
         <div class="col-md-10 mx-auto col-sm-12">

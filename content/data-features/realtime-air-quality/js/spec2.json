@@ -35,6 +35,7 @@
   },
   "height": "container",
   "width": "container",
+  "transform": [{"filter": "datum.starttime > 1712084400000"}],
   "layer": [
     {
       "mark": {
@@ -43,7 +44,6 @@
         "point": {"size": 5, "opacity": 0},
         "tooltip": null
       },
-      "transform": [{"filter": "datum.starttime > 1712084400000"}],
       "encoding": {
         "x": {
           "field": "starttime",
