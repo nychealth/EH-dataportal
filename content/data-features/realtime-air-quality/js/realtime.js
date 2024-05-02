@@ -133,8 +133,11 @@ function drawCheckboxes() {
                     <input type="checkbox" id="${activeMonitors[i].loc_col}" name="${activeMonitors[i].loc_col}" value="${activeMonitors[i].Color}">
                     <label for="${activeMonitors[i].loc_col}"><span style="color: ${activeMonitors[i].Color};"><i class="fas fa-square mx-1"></i></span>${activeMonitors[i].Location}</label>
                     </th>
-                <td id="value-${activeMonitors[i].loc_col}-1" class="hide">XXX µg/m<sup>3</sup></td>
-                <td id="value-${activeMonitors[i].loc_col}-2">XXX µg/m<sup>3</sup></td>
+                <td id="value-${activeMonitors[i].loc_col}-1" class="hide">Invisible column with all values - for sorting</td>
+                <td>
+                    <div id="value-${activeMonitors[i].loc_col}-2">
+                    </div>
+                </td>
 
                 </tr>
                 `
@@ -287,6 +290,8 @@ function getIndex(x) {
 
 
 // ---- PRINT RECENT AVERAGE TO TABLE ---- //
+var values = [];
+var max;
 function printRecentAverage() {
     console.log('print recent average running...')
     // original getRecentAverage ran based on loc_col being passed into it.
@@ -344,6 +349,8 @@ function printRecentAverage() {
     
             average = totals / 24
             average = Math.round(average * 100) / 100
+
+            values.push(average)
     
             console.log(activeMonitors[i].loc_col + ' average for this location over the last 24 hours: ' + average)
             var print = 'value-'+activeMonitors[i].loc_col+'-1'
@@ -362,6 +369,12 @@ function printRecentAverage() {
     }
 
     sortTable()
+
+    // get max value
+    max = Math.max(...values)
+    console.log('max value is: ' + max)
+
+    // loop through locations again and style row as bar chart
 
 }
 
@@ -579,7 +592,9 @@ function updateData2(x) {
 }
 
 
-
+/*
+SORT TABLE function relies on an invisible column of just values. Values displayed as * are given a 0 in this column. 
+*/
 function sortTable() {
     console.log('sort table running')
     var table, rows, switching, i, x, y, shouldSwitch;
