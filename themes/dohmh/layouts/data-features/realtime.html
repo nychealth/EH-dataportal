@@ -72,8 +72,13 @@
         font-size: .875rem
         }
 
-        .table-tight th, tr, td {
+        .table-tight th, td {
         padding: 0px 3px!important;
+        border-top: 0px!important;
+        }
+
+        .table-tight thead {
+            border-bottom: 1px solid lightgray;
         }
 
         .table-tight td:nth-child(2) { 
@@ -85,12 +90,15 @@
         }
 
         .table-tight th {
-        /* border-top: 0px!important; */
+            border-top: 0px!important;
         }
-
 
         .table-highlight {
             background-color: lightyellow;
+        }
+
+        .barchart {
+            border-left: 1px solid black;
         }
     </style>
 
@@ -103,14 +111,18 @@
                             <tr>
                                 <th scope="col">Location</th>
                                 <th scope="col" class="hide">Sort</th>
-                                <th scope="col" style="text-align: end;">Last 24 hours <span class="font-weight-normal">(µg/m<sup>3</sup>)</span></th>
+                                <th scope="col">Last 24 hours <span class="font-weight-normal">(µg/m<sup>3</sup>)</span></th>
                             </tr>
                         </thead>
                         <tbody id="tableBody">
                         </tbody>
                     </table>
-                    <div class="float-right">
-                    <p class="fs-sm text-align-right"><em>*Insufficient data: monitor reported less than 18 hours in the last day.</em></p>
+                    <a href="#table24" class="fs-sm" onclick="restore()">Clear all</a>
+                    <hr class="my-1">
+                    <div class="">
+                    <p class="fs-sm"><em>*Insufficient data: 
+                        <br>
+                        Monitor reported less than 18 hours in the last day.</em></p>
                     </div>
                 </div>
                 <div class="col-md-8 border-left">
@@ -119,6 +131,8 @@
                     </div>
 
                     <!-- Chart set -->
+                    <div style="width:100%" class="border-top mt-1">
+
                     <div id="numberinput" class="float-right pt-1"
                     style="font-size: 12px;">
                         <label for="inputNum" style="display:inline-block; font-size: 12px;">Show last</label>
@@ -127,11 +141,10 @@
                         </form>
                     </div>
 
-                    <div style="width:100%">
                         <span class="fs-sm">Hourly PM2.5 measurements (in µg/m<sup>3</sup>)</span> | <span class="fs-sm" style="color:red">NAAQS 24-hour PM2.5 standard (35 µg/m<sup>3</sup>)</span>
                     </div>
                 
-                    <div id="vis" style="width: 100%; height: 45vh;" class="mt-1">
+                    <div id="vis" style="width: 100%; height: 45vh;" class="mt-2">
                     CHART
                     </div>
 
@@ -140,24 +153,7 @@
         </div>
     </div>
 
-    <div class="row my-4">
-        <div class="col-md-10 mx-auto col-sm-12">
-            <div class="row">
-                <div class="col-md-5">
 
-                </div>
-                <div class="col-md-7">
-
-                </div>
-
-
-        
-                <div class="col-12 mt-2 border-top pt-1">
-
-                </div>
-            </div>
-        </div>
-        </div>
 
     <div class="row hide">
         <!-- Average value box -->

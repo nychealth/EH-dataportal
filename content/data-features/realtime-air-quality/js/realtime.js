@@ -18,6 +18,22 @@ var res;
 var floorDate;
 var maxTime;
 var maxTimeMinusDay;
+var filter;
+var stations = [];
+var allMonitorLocations;
+var activeMonitors = [];
+var checkedSites = [];
+var getChecked;
+var boxes;
+var revisedSpecTwo = {};
+var opacity;
+var stroke; 
+var loc;
+var locData = [];
+var values = [];
+var max;
+var filter2;
+var specTwo;
 
  
 // ---- INITIAL: ingest data feed ---- // 
@@ -41,11 +57,9 @@ aq.loadCSV(rtaqData).then(data => {
     // console.log("fullTable:", fullTable);
     getStationsFromData();
 
-    
 });
 
-// ---- Gets stations currently reporting data ---- // 
-var stations = [];
+// ---- NEXT: GET STATIONS REPORTING DATA ---- // 
 function getStationsFromData() {
     var sites = [];
     for (let i = 0; i<fullTable.length; i++) {
@@ -57,9 +71,7 @@ function getStationsFromData() {
     loadMonitorLocations();
 }
 
-// ---- Creates list of active monitors and their metadata (lat/longs, colors, etc) and run other functions ---- //
-var allMonitorLocations;
-var activeMonitors = [];
+// ---- LOAD LOCATIONS: Creates list of active monitors and their metadata (lat/longs, colors, etc) ---- //
 function loadMonitorLocations() {
     d3.csv("data/monitor_locations.csv").then(data => {
         allMonitorLocations = data;
@@ -75,51 +87,15 @@ function loadMonitorLocations() {
         console.log('ACTIVE MONITORS:')
         console.table(activeMonitors)
 
-        // Draws map, buttons, listener, and retrieves chart spec
+        // Draws map, table, and gets chart spec
         drawMap()
         drawCheckboxes();
-        getSpec();
         getSpec2();
         printRecentAverage()
     })
 }
 
-//Comparer Function    
-function GetSortOrder(prop) {    
-    return function(a, b) {    
-        if (a[prop] > b[prop]) {    
-            return 1;    
-        } else if (a[prop] < b[prop]) {    
-            return -1;    
-        }    
-        return 0;    
-    }    
-}  
-
-
-
-// ---- Getting the initial chart spec, inserts color and  earliest date in the data feed to it ---- // 
-var filter
-function getSpec() {
-    d3.json("js/spec.json").then(data => {
-        current_spec = $.extend({}, data);
-        current_spec.data.url = rtaqData
-
-        // get floor date and filter by floor date:
-        filter = `datum.starttime > ${floorDate}`
-        current_spec.layer[0].transform[0] = {"filter": filter}
-        current_spec.layer[2].encoding.x2.datum = maxTimeMinusDay
-        // drawChart(current_spec)
-    });
-}
-
-
-
-// ---- Creates buttons based on active monitors coming via the file ---- // 
-var holder = document.getElementById('buttonHolder')
-
-
-
+// ---- DRAW CHECKBOXES, table, and box listener ---- //
 
 function drawCheckboxes() {
     console.log('drawing checkboxes...')
@@ -135,7 +111,7 @@ function drawCheckboxes() {
                     </th>
                 <td id="value-${activeMonitors[i].loc_col}-1" class="hide">Invisible column with all values - for sorting</td>
                 <td>
-                    <div id="value-${activeMonitors[i].loc_col}-2">
+                    <div id="value-${activeMonitors[i].loc_col}-2" style="background-color:lightblue;width:0%;" class="pr-1 my-1 barchart">
                     </div>
                 </td>
 
@@ -151,9 +127,7 @@ function drawCheckboxes() {
 }
 
 //-- Event listener on checkboxes --//
-var checkedSites = [];
-var getChecked;
-var boxes
+
 function listenBoxes() {
 
     boxes = document.querySelectorAll('input[type=checkbox]');
@@ -180,9 +154,9 @@ function listenBoxes() {
           
         })
     })
-
 }
 
+// ---- gets checked sites, updates spec ---- // 
 function getCheckedSites() {
     getChecked = document.querySelectorAll('input[type=checkbox]:checked');
 
@@ -201,8 +175,8 @@ function getCheckedSites() {
 
 }
 
-var revisedSpecTwo = {};
 
+// ---- UPDATE CHART SPEC --- // 
 function updateSpec() {
     // console.log('checked sites:')
     // console.table(checkedSites)
@@ -268,35 +242,9 @@ function updateSpec() {
     vegaEmbed('#vis',revisedSpecTwo)
 }
 
-
-
-
-
-// ---- UPDATE DATA FUNCTION TO DEVELOP: takes loc_col as an argument ---- // 
-var opacity;
-var stroke; 
-var loc;
-var locData = [];
-
-
-
-function getIndex(x) {
-    for (let i = 0; i < activeMonitors.length; i++) {
-        if (activeMonitors[i].loc_col === x) {
-            return i
-        }
-    } 
-}
-
-
 // ---- PRINT RECENT AVERAGE TO TABLE ---- //
-var values = [];
-var max;
-function printRecentAverage() {
-    console.log('print recent average running...')
-    // original getRecentAverage ran based on loc_col being passed into it.
-    // new printRecentAverage should loop through activeMonitors and print for each. 
 
+function printRecentAverage() {
     // first, creating convertData that has starttime in milliseconds 
     var convertData = []
     for (let i = 0; i < fullTable.length; i++) {
@@ -324,6 +272,38 @@ function printRecentAverage() {
     }
 
     console.log('last 24 hours:', last24HoursData)
+
+    // first, loop through and get values, and get max value
+    for (let i = 0; i < activeMonitors.length; i++) {
+        var thisLast = []
+        thisLast = last24HoursData.filter(s => s.SiteName === activeMonitors[i].loc_col)
+        // console.log('this last:', thisLast)
+
+        // count if there are 17 entries
+        if (thisLast.length > 17) {
+            var average;
+            var sum = []
+            for (let i = 0; i < thisLast.length; i ++ ) {
+                sum.push(thisLast[i].Value)
+            }
+    
+            let totals = 0
+            for (let i = 0; i < sum.length; i ++ ) {
+                totals += sum[i]
+            }
+    
+            average = totals / 24
+            average = Math.round(average * 100) / 100
+
+            values.push(average)
+        }
+    }
+
+    // get max value
+    max = Math.max(...values)
+    console.log('max value is: ' + max)
+    var maxWidth = max * 1.1
+
 
     // get all names of active Monitors
     for (let i = 0; i < activeMonitors.length; i++) {
@@ -358,28 +338,29 @@ function printRecentAverage() {
             document.getElementById(print).innerHTML = average 
             document.getElementById(print2).innerHTML = average 
 
+            var cont = 'value-' + activeMonitors[i].loc_col + '-2';
+            var widthPercent = 100 * average / maxWidth
+            document.getElementById(cont).style.width = widthPercent + "%"
+
         } else {
             console.log(activeMonitors[i].loc_col + " doesn't have enough data")
             var print = 'value-'+activeMonitors[i].loc_col+'-1'
             var print2 = 'value-'+activeMonitors[i].loc_col+'-2'
 
             document.getElementById(print).innerHTML = 0
-            document.getElementById(print2).innerHTML = '*'        
+            document.getElementById(print2).innerHTML = '*'    
+            
+            var cont = 'value-' + activeMonitors[i].loc_col + '-2';
+            document.getElementById(cont).style.backgroundColor = "white";
+
         }
     }
 
     sortTable()
-
-    // get max value
-    max = Math.max(...values)
-    console.log('max value is: ' + max)
-
-    // loop through locations again and style row as bar chart
-
 }
 
 
-// ---- Create leaflet map ---- // 
+// --------------------------------------- CREATE LEAFLET MAP ---- // 
 var map;
 var monitors_group = L.featureGroup();
 var monitors_group_noDEC = L.featureGroup();
@@ -492,7 +473,6 @@ function resetZoom() {
 function restore() {
     resetZoom();
 
-    getSpec();
     document.getElementById('inputNum').value = 7
 
     document.getElementById('averageBox').classList.add('hide')
@@ -542,12 +522,8 @@ function updateTime(x) {
 }
 
 
+// ---- DRAW CHART SPEC ---- // 
 
-
-/// drawing spectwo
-
-var filter2;
-var specTwo;
 function getSpec2() {
     d3.json("js/spec2.json").then(data => {
         specTwo = $.extend({}, data);
@@ -568,10 +544,8 @@ function reDrawSpecTwo(){
     vegaEmbed("#vis", specTwo)
 }
 
-
+// ---- Update data based on map click ---- // 
 function updateData2(x) {
-    console.log('running update data 2 for ' + x)
-
     // look in active monitors for x.
     var thisLocation = activeMonitors.filter(loc => loc.loc_col === x)
 
@@ -592,8 +566,9 @@ function updateData2(x) {
 }
 
 
+// --- SORT TABLE FUNCTION ---- //
 /*
-SORT TABLE function relies on an invisible column of just values. Values displayed as * are given a 0 in this column. 
+Note: relies on an invisible column of just values. Values displayed as * are given a 0 in this column. 
 */
 function sortTable() {
     console.log('sort table running')
@@ -626,3 +601,15 @@ function sortTable() {
       }
     }
   }
+
+// Comparer Function - used later    
+function GetSortOrder(prop) {    
+    return function(a, b) {    
+        if (a[prop] > b[prop]) {    
+            return 1;    
+        } else if (a[prop] < b[prop]) {    
+            return -1;    
+        }    
+        return 0;    
+    }    
+}  
