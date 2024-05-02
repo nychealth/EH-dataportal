@@ -2,7 +2,7 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "PM2.5 in micrograms per cubic meter",
   "data": {
-    "url": "https://gist.githubusercontent.com/mmontesanonyc/6f006ef043cbb437439b725e8da639ab/raw/99bf35d35f88c8e9bc9c7cea7eab3fe9b279cbee/rtaq.csv"
+    "url": "https://azdohv2staticweb.blob.core.windows.net/$web/nyccas_realtime_DEC.csv"
   },
   "config": {
     "legend": {"disable": true},
