@@ -36,7 +36,7 @@ var max;
 var filter2;
 var specTwo;
 var ftl;
-var dataWithNulls;
+var dataWithNulls = aq.table();
 
  
 // ---- INITIAL: ingest data feed ---- // 
@@ -71,30 +71,32 @@ function getStationsFromData() {
     }
     stations = [...new Set(sites)]
 
-    // NULL HANDLING: get stations data, and join to list of unique timestamps
-    times = dt.select('starttime').dedupe() // creats an arquero table of only times
-    times.print()
+    times = dt.select('starttime','timeofday').dedupe('starttime') // creats an arquero table of only times
 
-    for (let i = 0; i < stations.length; i ++) {
-        // filter main data table to one site
-        var thisStation = dt.filter(aq.escape(d => d.SiteName === stations[i]))
-        // thisStation.print()
-        var thisStationFull = times.join_full(thisStation, 'starttime') // join to all timestamps
-        // thisStationFull.print()
+    var accumulatedRows = [];
+    for (let i = 0; i < stations.length; i++) {
+ 
+        times = dt
+                    .select('starttime','timeofday')
+                    .dedupe('starttime')
+                    .derive({ SiteName: aq.escape(stations[i])})
         
-        dataWithNulls = dt.concat(thisStationFull)
+
+        var thisStation = dt.filter(aq.escape(d => d.SiteName === stations[i]))      // for this station, get data
+        thisStation = thisStation.select(aq.not('SiteName','Operator','timeofday'))  // drop the other cols but starttime and Value              
+
+        var thisStationFull = times.join_full(thisStation, 'starttime')             // join to times
+
+        thisStationFull.print()
+        
+        // put thisStationFull into one table
+
+
     }
 
-    // testing section - 
-    var wbb = dt.filter(d => d.SiteName === 'Williamsburg_Bridge')
-    var wbbview = wbb.objects()
-    console.log('original:')
-    console.table(wbbview)
 
-    console.log('revised:')
-    var wbb2 = dataWithNulls.filter(d => d.SiteName === 'Williamsburg_Bridge')
-    var wbb2View = wbb2.objects()
-    console.table(wbb2View)
+    // last, send this data object to the chart     
+
 
     // with stations in hand, load locations from data file
     loadMonitorLocations();
