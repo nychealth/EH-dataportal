@@ -41,7 +41,7 @@
                 <p>This page contains visualizations. If you are using a screenreader, you can <a href="https://azdohv2staticweb.blob.core.windows.net/$web/nyccas_realtime_DEC.csv">download a CSV file of the last 7 days of realtime air quality data.</a></p>
                 </div>
             <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-8 mb-2">
                     {{ .Content }}
 
                 </div>
@@ -117,13 +117,11 @@
                         <tbody id="tableBody">
                         </tbody>
                     </table>
-                    <a href="#table24" class="fs-sm" onclick="restore()">Clear all</a>
-                    <hr class="my-1">
-                    <div class="">
-                    <p class="fs-sm"><em>*Insufficient data: 
+                        <p class="fs-xs"><em>*Insufficient data: 
                         <br>
                         Monitor reported less than 18 hours in the last day.</em></p>
-                    </div>
+                    <a href="#table24" class="fs-sm btn btn-sm btn-light btn-block mb-2" onclick="restore()">Clear all</a>
+                    <hr class="mb-2">
                 </div>
                 <div class="col-md-8 border-left">
 
@@ -139,7 +137,7 @@
                         </form>
                     </div>
 
-                        <span class="fs-sm">Hourly PM2.5 measurements (in µg/m<sup>3</sup>)</span> | <span class="fs-sm" style="color:red">NAAQS 24-hour PM2.5 standard (35 µg/m<sup>3</sup>)</span>
+                        <span class="fs-sm"><span class="font-weight-bold">Hourly PM2.5 measurements (in µg/m<sup>3</sup>)</span> and <span style="color:red">NAAQS&nbsp;24-hour&nbsp;PM2.5&nbsp;standard&nbsp;(35 µg/m<sup>3</sup>)</span></span>
                     </div>
                 
                     <div id="vis" style="width: 100%; height: 45vh;" class="mt-2">

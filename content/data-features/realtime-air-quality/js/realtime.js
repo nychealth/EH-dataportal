@@ -98,7 +98,7 @@ function loadMonitorLocations() {
 // ---- DRAW CHECKBOXES, table, and box listener ---- //
 
 function drawCheckboxes() {
-    console.log('drawing checkboxes...')
+    // console.log('drawing checkboxes...')
 
     for (let i = 0; i < activeMonitors.length; i++) {
 
@@ -258,10 +258,7 @@ function printRecentAverage() {
 
     // then, get the largest one
     var mostRecentTime = convertData[convertData.length - 1].starttime
-    console.log('most recent time:', mostRecentTime)
-
     var startingTime = mostRecentTime - 86400000
-    console.log('starting time:',startingTime)
 
     // then, filter everything over largest one minus 24 hours of milliseconds
     var last24HoursData = []
@@ -271,13 +268,10 @@ function printRecentAverage() {
         } else {}
     }
 
-    console.log('last 24 hours:', last24HoursData)
-
     // first, loop through and get values, and get max value
     for (let i = 0; i < activeMonitors.length; i++) {
         var thisLast = []
         thisLast = last24HoursData.filter(s => s.SiteName === activeMonitors[i].loc_col)
-        // console.log('this last:', thisLast)
 
         // count if there are 17 entries
         if (thisLast.length > 17) {
@@ -301,13 +295,12 @@ function printRecentAverage() {
 
     // get max value
     max = Math.max(...values)
-    console.log('max value is: ' + max)
     var maxWidth = max * 1.1
 
 
     // get all names of active Monitors
     for (let i = 0; i < activeMonitors.length; i++) {
-        console.log(activeMonitors[i].loc_col)
+        // console.log(activeMonitors[i].loc_col)
 
         // for each of those names, filter last 24 hours of data
         var thisLast = []
@@ -332,7 +325,7 @@ function printRecentAverage() {
 
             values.push(average)
     
-            console.log(activeMonitors[i].loc_col + ' average for this location over the last 24 hours: ' + average)
+            // console.log(activeMonitors[i].loc_col + ' average for this location over the last 24 hours: ' + average)
             var print = 'value-'+activeMonitors[i].loc_col+'-1'
             var print2 = 'value-'+activeMonitors[i].loc_col+'-2'
             document.getElementById(print).innerHTML = average 
@@ -343,7 +336,7 @@ function printRecentAverage() {
             document.getElementById(cont).style.width = widthPercent + "%"
 
         } else {
-            console.log(activeMonitors[i].loc_col + " doesn't have enough data")
+            // console.log(activeMonitors[i].loc_col + " doesn't have enough data")
             var print = 'value-'+activeMonitors[i].loc_col+'-1'
             var print2 = 'value-'+activeMonitors[i].loc_col+'-2'
 
@@ -476,11 +469,8 @@ function restore() {
     document.getElementById('inputNum').value = 7
 
     document.getElementById('averageBox').classList.add('hide')
-    current_spec.layer[2].encoding.opacity.value = 0.0
-    vegaEmbed('#vis2', current_spec)
-
-    document.getElementById('dropdownMenuButton').innerHTML = 'Choose location'
-
+    specTwo.layer[2].encoding.opacity.value = 0.0
+    vegaEmbed('#vis', specTwo)
 
 }
 
@@ -563,6 +553,9 @@ function updateData2(x) {
     // get all checked sites and update spec:
     getCheckedSites()
 
+    // scroll chart into view (for mobile)
+    document.getElementById('vis').scrollIntoView();
+
 }
 
 
@@ -571,7 +564,7 @@ function updateData2(x) {
 Note: relies on an invisible column of just values. Values displayed as * are given a 0 in this column. 
 */
 function sortTable() {
-    console.log('sort table running')
+    // console.log('sort table running')
     var table, rows, switching, i, x, y, shouldSwitch;
     table = document.getElementById("table24");
     switching = true;
