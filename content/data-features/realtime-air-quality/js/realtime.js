@@ -12,6 +12,7 @@ USING DEC_AVG: This app excludes DEC_Avg from conventional functionality. monito
 // initialize variables (other variables are initialized closer to their prime use)
 var current_spec;
 var dt;
+var times;
 var fullTable;
 var locSelect = "No location"
 var res;
@@ -34,6 +35,8 @@ var values = [];
 var max;
 var filter2;
 var specTwo;
+var ftl;
+var dataWithNulls;
 
  
 // ---- INITIAL: ingest data feed ---- // 
@@ -41,7 +44,8 @@ aq.loadCSV(rtaqData).then(data => {
 
     dt = data
         .derive({starttime: d => op.parse_date(d.starttime)})
-        .orderby("starttime");
+        .orderby("starttime")
+        .print()
     
     fullTable = dt.objects(); // puts the data into fullTable to use. 
     floorDate = new Date(fullTable[0].starttime) // creates earliest date in 7-day feed - used for time filter
@@ -49,7 +53,7 @@ aq.loadCSV(rtaqData).then(data => {
     floorDate = Date.parse(floorDate) // converting to milliseconds
 
     // get most recent time
-    var ftl = fullTable.length - 1
+    ftl = fullTable.length - 1
     maxTime = fullTable[ftl].starttime
     maxTime = Date.parse(maxTime)
     maxTimeMinusDay = maxTime - 86400000
@@ -66,6 +70,31 @@ function getStationsFromData() {
         sites.push(fullTable[i].SiteName)
     }
     stations = [...new Set(sites)]
+
+    // NULL HANDLING: get stations data, and join to list of unique timestamps
+    times = dt.select('starttime').dedupe() // creats an arquero table of only times
+    times.print()
+
+    for (let i = 0; i < stations.length; i ++) {
+        // filter main data table to one site
+        var thisStation = dt.filter(aq.escape(d => d.SiteName === stations[i]))
+        // thisStation.print()
+        var thisStationFull = times.join_full(thisStation, 'starttime') // join to all timestamps
+        // thisStationFull.print()
+        
+        dataWithNulls = dt.concat(thisStationFull)
+    }
+
+    // testing section - 
+    var wbb = dt.filter(d => d.SiteName === 'Williamsburg_Bridge')
+    var wbbview = wbb.objects()
+    console.log('original:')
+    console.table(wbbview)
+
+    console.log('revised:')
+    var wbb2 = dataWithNulls.filter(d => d.SiteName === 'Williamsburg_Bridge')
+    var wbb2View = wbb2.objects()
+    console.table(wbb2View)
 
     // with stations in hand, load locations from data file
     loadMonitorLocations();
@@ -84,8 +113,8 @@ function loadMonitorLocations() {
         // alphabetize activeMonitors for color coordination
         activeMonitors.sort(GetSortOrder("loc_col"))
 
-        console.log('ACTIVE MONITORS:')
-        console.table(activeMonitors)
+        // console.log('ACTIVE MONITORS:')
+        // console.table(activeMonitors)
 
         // Draws map, table, and gets chart spec
         drawMap()
@@ -295,7 +324,7 @@ function printRecentAverage() {
 
     // get max value
     max = Math.max(...values)
-    var maxWidth = max * 1.1
+    var maxWidth = max * 1
 
 
     // get all names of active Monitors
@@ -329,10 +358,10 @@ function printRecentAverage() {
             var print = 'value-'+activeMonitors[i].loc_col+'-1'
             var print2 = 'value-'+activeMonitors[i].loc_col+'-2'
             document.getElementById(print).innerHTML = average 
-            document.getElementById(print2).innerHTML = average 
+            document.getElementById(print2).innerHTML = Math.round(average) // round to integer
 
             var cont = 'value-' + activeMonitors[i].loc_col + '-2';
-            var widthPercent = 100 * average / maxWidth
+            var widthPercent = 100 * Math.round(average)  / maxWidth
             document.getElementById(cont).style.width = widthPercent + "%"
 
         } else {
