@@ -117,10 +117,9 @@
                         <tbody id="tableBody">
                         </tbody>
                     </table>
-                        <p class="fs-xs"><em>*Insufficient data: 
-                        <br>
-                        Monitor reported less than 18 hours in the last day.</em></p>
-                    <a href="#table24" class="fs-sm btn btn-sm btn-light btn-block mb-2" onclick="restore()">Clear all</a>
+                        <p class="fs-sm hide" id="exceeds" style="color:red;"><i class="fas fa-exclamation-circle mr-1"></i>Exceeds NAAQS 24-hour standard</p>
+                        <p class="fs-xs hide" id="insufficient"><em>*Monitor reported less than 18 hours in the last day.</em></p>
+                    <a href="#table24" class="fs-sm btn btn-sm btn-light btn-block mb-2" onclick="resetZoom()">Clear all</a>
                     <hr class="mb-2">
                 </div>
                 <div class="col-md-8 border-left">

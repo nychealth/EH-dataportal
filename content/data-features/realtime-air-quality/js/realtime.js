@@ -37,6 +37,7 @@ var filter2;
 var specTwo;
 var ftl;
 var dataWithNulls = aq.table();
+var chartStart // takes either floorDate or filtered date
 
  
 // ---- INITIAL: ingest data feed ---- // 
@@ -47,10 +48,11 @@ aq.loadCSV(rtaqData).then(data => {
         .orderby("starttime")
         .print()
     
-    fullTable = dt.objects(); // puts the data into fullTable to use. 
-    floorDate = new Date(fullTable[0].starttime) // creates earliest date in 7-day feed - used for time filter
+    fullTable = dt.objects();                       // puts the data into fullTable to use. 
+    floorDate = new Date(fullTable[0].starttime)    // creates earliest date in 7-day feed - used for time filter
     console.log('Showing data since: ' + floorDate)
-    floorDate = Date.parse(floorDate) // converting to milliseconds
+    floorDate = Date.parse(floorDate)               // converting to milliseconds
+    chartStart = floorDate
 
     // get most recent time
     ftl = fullTable.length - 1
@@ -75,28 +77,38 @@ function getStationsFromData() {
 
     var accumulatedRows = [];
     for (let i = 0; i < stations.length; i++) {
+
+        if (i == 0 ) {
+            times = dt
+            .select('starttime','timeofday')
+            .dedupe('starttime')
+            .derive({ SiteName: aq.escape(stations[i])})
+
+
+            var thisStation = dt.filter(aq.escape(d => d.SiteName === stations[i]))      // for this station, get data
+            thisStation = thisStation.select(aq.not('SiteName','Operator','timeofday'))  // drop the other cols but starttime and Value              
+
+            var thisStationFull = times.join_full(thisStation, 'starttime')             // join to times
+
+            dataWithNulls = thisStationFull; // sets up initial table
+
+        } else {
+            times = dt
+            .select('starttime','timeofday')
+            .dedupe('starttime')
+            .derive({ SiteName: aq.escape(stations[i])})
+
+
+            var thisStation = dt.filter(aq.escape(d => d.SiteName === stations[i]))      // for this station, get data
+            thisStation = thisStation.select(aq.not('SiteName','Operator','timeofday'))  // drop the other cols but starttime and Value              
+
+            var thisStationFull = times.join_full(thisStation, 'starttime')             // join to times
+
+            // put thisStationFull into one table
+            dataWithNulls = dataWithNulls.concat(thisStationFull); // adds subsequent loops to the fll table
+        }
  
-        times = dt
-                    .select('starttime','timeofday')
-                    .dedupe('starttime')
-                    .derive({ SiteName: aq.escape(stations[i])})
-        
-
-        var thisStation = dt.filter(aq.escape(d => d.SiteName === stations[i]))      // for this station, get data
-        thisStation = thisStation.select(aq.not('SiteName','Operator','timeofday'))  // drop the other cols but starttime and Value              
-
-        var thisStationFull = times.join_full(thisStation, 'starttime')             // join to times
-
-        thisStationFull.print()
-        
-        // put thisStationFull into one table
-
-
     }
-
-
-    // last, send this data object to the chart     
-
 
     // with stations in hand, load locations from data file
     loadMonitorLocations();
@@ -121,7 +133,7 @@ function loadMonitorLocations() {
         // Draws map, table, and gets chart spec
         drawMap()
         drawCheckboxes();
-        getSpec2();
+        renderSpec(dataWithNulls.objects())
         printRecentAverage()
     })
 }
@@ -181,7 +193,7 @@ function listenBoxes() {
                 checkedSites.push(thisSite)
             }
         
-            updateSpec()
+            renderSpec(dataWithNulls, checkedSites)
           
         })
     })
@@ -202,76 +214,10 @@ function getCheckedSites() {
         checkedSites.push(thisSite)
     }
 
-    updateSpec()
+    renderSpec(dataWithNulls, checkedSites)
 
 }
 
-
-// ---- UPDATE CHART SPEC --- // 
-function updateSpec() {
-    // console.log('checked sites:')
-    // console.table(checkedSites)
-
-    revisedSpecTwo = specTwo
-    revisedSpecTwo.layer.length = 3
-
-    // loop through checkedSites and add them to revisedSpecTwo
-
-    for (let i = 0; i < checkedSites.length; i++) {
-
-        var template =  {
-            "mark": {
-              "type": "line",
-              "interpolate": "monotone",
-              "point": {"size": 20, "opacity": 0},
-              "tooltip": true
-            },
-            "transform": [
-              {"filter": `datum.SiteName === '${checkedSites[i].siteName}'`}
-              ],
-            "encoding": {
-              "x": {
-                "field": "starttime",
-                "type": "temporal",
-                "title": ""
-              },
-              "y": {
-                "field": "Value",
-                "type": "quantitative",
-                "title": " "
-              },
-              "color": {
-                "condition": [
-                  {
-                    "test": `datum.SiteName === '${checkedSites[i].siteName}'`, 
-                    "value": `${checkedSites[i].color}`
-                  }
-                ]
-              },
-              "opacity": {"value": 0.7},
-              "strokeWidth": {"value": 1.5},
-              "tooltip": [
-                {"field": "SiteName", "title": "Location"},
-                {"field": "Value", "title": "PM2.5 (µg/m3)"},
-                {
-                  "field": "starttime",
-                  "type": "temporal",
-                  "title": "Time",
-                  "timeUnit": "hoursminutes",
-                  "format": "%I:%M %p"
-                },
-                {"field": "starttime", "type": "temporal", "title": "Date"}
-              ]
-            }
-          }
-
-        // push it to spec
-        revisedSpecTwo.layer.push(template)
-
-    }
-
-    vegaEmbed('#vis',revisedSpecTwo)
-}
 
 // ---- PRINT RECENT AVERAGE TO TABLE ---- //
 
@@ -354,6 +300,8 @@ function printRecentAverage() {
             average = totals / 24
             average = Math.round(average * 100) / 100
 
+
+
             values.push(average)
     
             // console.log(activeMonitors[i].loc_col + ' average for this location over the last 24 hours: ' + average)
@@ -361,6 +309,11 @@ function printRecentAverage() {
             var print2 = 'value-'+activeMonitors[i].loc_col+'-2'
             document.getElementById(print).innerHTML = average 
             document.getElementById(print2).innerHTML = Math.round(average) // round to integer
+
+                if (average > 35 ) {
+                    document.getElementById('exceeds').classList.remove('hide')
+                    document.getElementById(print2).innerHTML += '<i class="fas fa-exclamation-circle ml-1" style="color:red">'
+                }
 
             var cont = 'value-' + activeMonitors[i].loc_col + '-2';
             var widthPercent = 100 * Math.round(average)  / maxWidth
@@ -376,6 +329,7 @@ function printRecentAverage() {
             
             var cont = 'value-' + activeMonitors[i].loc_col + '-2';
             document.getElementById(cont).style.backgroundColor = "white";
+            document.getElementById('insufficient').classList.remove('hide')
 
         }
     }
@@ -430,7 +384,7 @@ function drawMap() {
         
         this_monitor.on('click', function (e) {
             map.setView(e.latlng, 13);
-            updateData2(monitor_locations[i].loc_col)
+            updateData(monitor_locations[i].loc_col)
         });
         
     });
@@ -489,20 +443,7 @@ function resetZoom() {
     sites.forEach(site => site.checked = false)
 
     checkedSites = [];
-    updateSpec();
-}
-
-// ---- function to reset on Restore ---- //
-
-function restore() {
-    resetZoom();
-
-    document.getElementById('inputNum').value = 7
-
-    document.getElementById('averageBox').classList.add('hide')
-    specTwo.layer[2].encoding.opacity.value = 0.0
-    vegaEmbed('#vis', specTwo)
-
+    renderSpec(dataWithNulls)
 }
 
 // ---- TIME FILTER ---- //
@@ -525,48 +466,17 @@ function updateTime(x) {
     var last = fullTable.pop()
     const date = new Date(last.starttime)
     let dateInMsec = Date.parse(date)
-    // console.log('most recent date: ' + dateInMsec) // this is the most recent date, in milliseconds since 1970
-    // console.log('filter for dates larger than: ') // you could be able to filter starttime
-    // console.log(dateInMsec - x * 86400000)
     var filterTo = dateInMsec - x * 86400000
 
-    // send date filter to spec and re-draw Chart
-    filter = `datum.starttime > ${filterTo}`
-    specTwo.transform[0] = {"filter": filter}
+    chartStart = filterTo                   
 
-    // use filter to filter data file; update activeMonitors
-    // use new activeMonitors to get updated colors array
-    // send updated colors array to spec
+    renderSpec(dataWithNulls, checkedSites)
 
-    // console.log(current_spec)
-    reDrawSpecTwo()
 }
 
-
-// ---- DRAW CHART SPEC ---- // 
-
-function getSpec2() {
-    d3.json("js/spec2.json").then(data => {
-        specTwo = $.extend({}, data);
-        specTwo.data.url = rtaqData
-
-
-        // get floor date and filter by floor date:
-        filter = `datum.starttime > ${floorDate}`
-        specTwo.transform[0] = {"filter": filter}
-        specTwo.layer[2].encoding.x2.datum = maxTimeMinusDay
-        // drawChart(current_spec)
-
-        reDrawSpecTwo()
-    });
-}
-
-function reDrawSpecTwo(){
-    vegaEmbed("#vis", specTwo)
-}
 
 // ---- Update data based on map click ---- // 
-function updateData2(x) {
+function updateData(x) {
     // look in active monitors for x.
     var thisLocation = activeMonitors.filter(loc => loc.loc_col === x)
 
@@ -637,3 +547,163 @@ function GetSortOrder(prop) {
         return 0;    
     }    
 }  
+
+
+
+
+const renderSpec = (
+    data,
+    checkedSites
+) => { 
+
+    let chartSpec = {
+        "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+        "description": "PM2.5 in micrograms per cubic meter",
+        "data": {
+            "values": data,
+            "format": {
+                "parse": {
+                    "Value": "number"
+                }
+            }
+        },
+        "config": {
+          "legend": {"disable": true},
+          "background": "#ffffff00",
+          "axisX": {
+            "grid": false, "ticks": true, "labels": true,
+            "offset": 0,
+            "domainDashOffset": 30,
+            "labelAlign": "center",
+            "labelExpr": "[timeFormat(datum.value, '%H') == 0 ? timeFormat(datum.value, '%b %e') : timeFormat(datum.value, '%-I %p')]",
+            "labelPadding": 4,
+            "labelOverlap": "parity",
+            "tickSize": {
+              "condition": {
+                "test": {"field": "value", "timeUnit": "hours", "equal": 0},
+                "value": 15
+              },
+              "value": 9
+            },
+            "tickWidth": {
+              "condition": {
+                "test": {"field": "value", "timeUnit": "hours", "equal": 0},
+                "value": 1.25
+              },
+              "value": 0.5
+            }
+            },
+          "axisY": {"domain": false, "ticks": false, "gridDash": [2], "gridWidth": 1,"offset": 10},
+          "view": {"stroke": "transparent"}
+        },
+        "height": "container",
+        "width": "container",
+        "transform": [{"filter": `datum.starttime > ${chartStart}`}],
+        "layer": [
+          {
+            "mark": {
+              "type": "line",
+              "interpolate": "monotone",
+              "point": {"size": 5, "opacity": 0},
+              "tooltip": null
+            },
+            "encoding": {
+              "x": {
+                "field": "starttime",
+                "type": "temporal",
+                "title": ""
+              },
+              "y": {
+                "field": "Value",
+                "type": "quantitative",
+                "title": " "
+              },
+              "color": {
+                "field": "SiteName",
+                "type": "nominal",
+                "scale": {"range": ["lightgray"]}
+              },
+              "opacity": {"value": 0.7},
+              "strokeWidth": {"value": 1.5}
+            }
+          },
+          {
+            "mark": "rule",
+            "encoding": {
+              "y": {"datum": 35},
+              "color": {"value": "red"},
+              "size": {"value": 2},
+              "strokeDash": {"value": [2, 2]}
+            }
+          },
+          {
+            "mark": "rect",
+            "encoding": {
+              "x": {"aggregate": "max", "field": "starttime", "type": "temporal"},
+              "x2": {"datum": maxTimeMinusDay, "type": "temporal"},
+              "opacity": {"value": 0}
+            }
+          }
+        ]
+      }
+
+      chartSpec.layer.length = 3
+
+      // if there are checkedSites, then, push to spec.
+      if (checkedSites) {
+        for (let i = 0; i < checkedSites.length; i++) {
+
+            var template =  {
+                "mark": {
+                  "type": "line",
+                  "interpolate": "monotone",
+                  "point": {"size": 20, "opacity": 0},
+                  "tooltip": true
+                },
+                "transform": [
+                  {"filter": `datum.SiteName === '${checkedSites[i].siteName}'`}
+                  ],
+                "encoding": {
+                  "x": {
+                    "field": "starttime",
+                    "type": "temporal",
+                    "title": ""
+                  },
+                  "y": {
+                    "field": "Value",
+                    "type": "quantitative",
+                    "title": " "
+                  },
+                  "color": {
+                    "condition": [
+                      {
+                        "test": `datum.SiteName === '${checkedSites[i].siteName}'`, 
+                        "value": `${checkedSites[i].color}`
+                      }
+                    ]
+                  },
+                  "opacity": {"value": 0.7},
+                  "strokeWidth": {"value": 1.5},
+                  "tooltip": [
+                    {"field": "SiteName", "title": "Location"},
+                    {"field": "Value", "title": "PM2.5 (µg/m3)"},
+                    {
+                      "field": "starttime",
+                      "type": "temporal",
+                      "title": "Time",
+                      "timeUnit": "hoursminutes",
+                      "format": "%I:%M %p"
+                    },
+                    {"field": "starttime", "type": "temporal", "title": "Date"}
+                  ]
+                }
+              }
+    
+            // push it to spec
+            chartSpec.layer.push(template)
+    
+        }
+      }
+
+      vegaEmbed('#vis',chartSpec)
+}
