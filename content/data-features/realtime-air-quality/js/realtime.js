@@ -5,6 +5,8 @@ CHOOSING DATA: Variable rtaqData is set in realtime.html template, determining w
 
 READING MONITORS: If a monitor is in the feed, it needs an entry in monitor_locations.csv; loc_col needs to equal SiteName in the datafeed.
 
+NULL HANDLING: in getStationsFromData, we get unique times and join that to the data for each station, getting dataWithNulls that has null values rather than no rows for each monitor-x-starttime. This creates interrupted lines when there are no readings.
+
 USING DEC_AVG: This app excludes DEC_Avg from conventional functionality. monitors_group_noDEC sets the map bounds without the DEC Average monitor, which is given an abitrary off-coast lat/long. if (x != 'DEC_Avg') changes what happens to the map zoom on button click - just zooming to the initial extent if somebody selects the DEC_Avg option.
 
 */
@@ -65,7 +67,7 @@ aq.loadCSV(rtaqData).then(data => {
 
 });
 
-// ---- NEXT: GET STATIONS REPORTING DATA ---- // 
+// ---- NEXT: GET STATIONS REPORTING DATA & begin Null handling---- // 
 function getStationsFromData() {
     var sites = [];
     for (let i = 0; i<fullTable.length; i++) {
@@ -73,6 +75,7 @@ function getStationsFromData() {
     }
     stations = [...new Set(sites)]
 
+    // Null Handling
     times = dt.select('starttime','timeofday').dedupe('starttime') // creats an arquero table of only times
 
     var accumulatedRows = [];
@@ -83,7 +86,6 @@ function getStationsFromData() {
             .select('starttime','timeofday')
             .dedupe('starttime')
             .derive({ SiteName: aq.escape(stations[i])})
-
 
             var thisStation = dt.filter(aq.escape(d => d.SiteName === stations[i]))      // for this station, get data
             thisStation = thisStation.select(aq.not('SiteName','Operator','timeofday'))  // drop the other cols but starttime and Value              
@@ -110,7 +112,7 @@ function getStationsFromData() {
  
     }
 
-    // with stations in hand, load locations from data file
+    // with stations, load locations from data file
     loadMonitorLocations();
 }
 
@@ -127,10 +129,7 @@ function loadMonitorLocations() {
         // alphabetize activeMonitors for color coordination
         activeMonitors.sort(GetSortOrder("loc_col"))
 
-        // console.log('ACTIVE MONITORS:')
-        // console.table(activeMonitors)
-
-        // Draws map, table, and gets chart spec
+        // Draw page
         drawMap()
         drawCheckboxes();
         renderSpec(dataWithNulls.objects())
@@ -162,7 +161,6 @@ function drawCheckboxes() {
                 `
         
         document.getElementById('tableBody').innerHTML += tableCheckBox
-
 
     }
 
@@ -217,7 +215,6 @@ function getCheckedSites() {
     renderSpec(dataWithNulls, checkedSites)
 
 }
-
 
 // ---- PRINT RECENT AVERAGE TO TABLE ---- //
 
@@ -274,7 +271,6 @@ function printRecentAverage() {
     max = Math.max(...values)
     var maxWidth = max * 1
 
-
     // get all names of active Monitors
     for (let i = 0; i < activeMonitors.length; i++) {
         // console.log(activeMonitors[i].loc_col)
@@ -299,8 +295,6 @@ function printRecentAverage() {
     
             average = totals / 24
             average = Math.round(average * 100) / 100
-
-
 
             values.push(average)
     
@@ -431,7 +425,7 @@ function drawMap() {
     }).addTo(map);      
 }
 
-// ---- function to reset zoom on click ---- //
+// ---- reset zoom on click ---- //
 
 function resetZoom() {
     map.setView(monitors_center, 11).fitBounds(monitors_bounds);
@@ -549,8 +543,7 @@ function GetSortOrder(prop) {
 }  
 
 
-
-
+// ---- RENDER CHART SPEC ---- // 
 const renderSpec = (
     data,
     checkedSites
