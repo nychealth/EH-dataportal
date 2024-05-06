@@ -1,24 +1,45 @@
-/* // ---- REALTIME AQ ---- //
+/* 
+// ---- REALTIME AQ ---- //
 
-Variable rtaqData is set in realtime.html template, determining whether this is local or live.
+CHOOSING DATA: Variable rtaqData is set in realtime.html template, determining whether this is local or live.
 
-If a monitor is in the feed, it needs an entry in monitor_locations.csv; loc_col needs to equal SiteName in the datafeed.
+READING MONITORS: If a monitor is in the feed, it needs an entry in monitor_locations.csv; loc_col needs to equal SiteName in the datafeed.
 
-This app excludes DEC_Avg from conventional functionality: 
-- monitors_group_noDEC sets the map bounds without the DEC Average monitor - which is given an abitrary off-coast lat/long
-- if (x != 'DEC_Avg') changes what happens to the map zoom on button click - just zooming to the initial extent if somebody selects the DEC_Avg option.
+NULL HANDLING: in getStationsFromData, we get unique times and join that to the data for each station, getting dataWithNulls that has null values rather than no rows for each monitor-x-starttime. This creates interrupted lines when there are no readings.
+
+USING DEC_AVG: This app excludes DEC_Avg from conventional functionality. monitors_group_noDEC sets the map bounds without the DEC Average monitor, which is given an abitrary off-coast lat/long. if (x != 'DEC_Avg') changes what happens to the map zoom on button click - just zooming to the initial extent if somebody selects the DEC_Avg option.
 
 */
 
 // initialize variables (other variables are initialized closer to their prime use)
 var current_spec;
 var dt;
+var times;
 var fullTable;
 var locSelect = "No location"
 var res;
 var floorDate;
 var maxTime;
 var maxTimeMinusDay;
+var filter;
+var stations = [];
+var allMonitorLocations;
+var activeMonitors = [];
+var checkedSites = [];
+var getChecked;
+var boxes;
+var revisedSpecTwo = {};
+var opacity;
+var stroke; 
+var loc;
+var locData = [];
+var values = [];
+var max;
+var filter2;
+var specTwo;
+var ftl;
+var dataWithNulls = aq.table();
+var chartStart // takes either floorDate or filtered date
 
  
 // ---- INITIAL: ingest data feed ---- // 
@@ -26,15 +47,17 @@ aq.loadCSV(rtaqData).then(data => {
 
     dt = data
         .derive({starttime: d => op.parse_date(d.starttime)})
-        .orderby("starttime");
+        .orderby("starttime")
+        .print()
     
-    fullTable = dt.objects(); // puts the data into fullTable to use. 
-    floorDate = new Date(fullTable[0].starttime) // creates earliest date in 7-day feed - used for time filter
+    fullTable = dt.objects();                       // puts the data into fullTable to use. 
+    floorDate = new Date(fullTable[0].starttime)    // creates earliest date in 7-day feed - used for time filter
     console.log('Showing data since: ' + floorDate)
-    floorDate = Date.parse(floorDate) // converting to milliseconds
+    floorDate = Date.parse(floorDate)               // converting to milliseconds
+    chartStart = floorDate
 
     // get most recent time
-    var ftl = fullTable.length - 1
+    ftl = fullTable.length - 1
     maxTime = fullTable[ftl].starttime
     maxTime = Date.parse(maxTime)
     maxTimeMinusDay = maxTime - 86400000
@@ -42,11 +65,9 @@ aq.loadCSV(rtaqData).then(data => {
     // console.log("fullTable:", fullTable);
     getStationsFromData();
 
-    
 });
 
-// ---- Gets stations currently reporting data ---- // 
-var stations = [];
+// ---- NEXT: GET STATIONS REPORTING DATA & begin Null handling---- // 
 function getStationsFromData() {
     var sites = [];
     for (let i = 0; i<fullTable.length; i++) {
@@ -54,13 +75,48 @@ function getStationsFromData() {
     }
     stations = [...new Set(sites)]
 
-    // with stations in hand, load locations from data file
+    // Null Handling
+    times = dt.select('starttime','timeofday').dedupe('starttime') // creats an arquero table of only times
+
+    var accumulatedRows = [];
+    for (let i = 0; i < stations.length; i++) {
+
+        if (i == 0 ) {
+            times = dt
+            .select('starttime','timeofday')
+            .dedupe('starttime')
+            .derive({ SiteName: aq.escape(stations[i])})
+
+            var thisStation = dt.filter(aq.escape(d => d.SiteName === stations[i]))      // for this station, get data
+            thisStation = thisStation.select(aq.not('SiteName','Operator','timeofday'))  // drop the other cols but starttime and Value              
+
+            var thisStationFull = times.join_full(thisStation, 'starttime')             // join to times
+
+            dataWithNulls = thisStationFull; // sets up initial table
+
+        } else {
+            times = dt
+            .select('starttime','timeofday')
+            .dedupe('starttime')
+            .derive({ SiteName: aq.escape(stations[i])})
+
+
+            var thisStation = dt.filter(aq.escape(d => d.SiteName === stations[i]))      // for this station, get data
+            thisStation = thisStation.select(aq.not('SiteName','Operator','timeofday'))  // drop the other cols but starttime and Value              
+
+            var thisStationFull = times.join_full(thisStation, 'starttime')             // join to times
+
+            // put thisStationFull into one table
+            dataWithNulls = dataWithNulls.concat(thisStationFull); // adds subsequent loops to the fll table
+        }
+ 
+    }
+
+    // with stations, load locations from data file
     loadMonitorLocations();
 }
 
-// ---- Creates list of active monitors and their metadata (lat/longs, colors, etc) and run other functions ---- //
-var allMonitorLocations;
-var activeMonitors = [];
+// ---- LOAD LOCATIONS: Creates list of active monitors and their metadata (lat/longs, colors, etc) ---- //
 function loadMonitorLocations() {
     d3.csv("data/monitor_locations.csv").then(data => {
         allMonitorLocations = data;
@@ -73,211 +129,96 @@ function loadMonitorLocations() {
         // alphabetize activeMonitors for color coordination
         activeMonitors.sort(GetSortOrder("loc_col"))
 
-        // Draws map, buttons, listener, and retrieves chart spec
+        // Draw page
         drawMap()
-        drawButtons()
-        listenButtons();
-        getSpec();
+        drawCheckboxes();
+        renderSpec(dataWithNulls.objects())
+        printRecentAverage()
     })
 }
 
-//Comparer Function    
-function GetSortOrder(prop) {    
-    return function(a, b) {    
-        if (a[prop] > b[prop]) {    
-            return 1;    
-        } else if (a[prop] < b[prop]) {    
-            return -1;    
-        }    
-        return 0;    
-    }    
-}  
+// ---- DRAW CHECKBOXES, table, and box listener ---- //
 
+function drawCheckboxes() {
+    // console.log('drawing checkboxes...')
 
-
-// ---- Getting the initial chart spec, inserts color and  earliest date in the data feed to it ---- // 
-var filter
-function getSpec() {
-    d3.json("js/spec.json").then(data => {
-        current_spec = $.extend({}, data);
-        current_spec.data.url = rtaqData
-
-        getColors(); // gets colors from monitor_locations and inserts them into spec
-
-        // get floor date and filter by floor date:
-        filter = `datum.starttime > ${floorDate}`
-        current_spec.layer[0].transform[0] = {"filter": filter}
-        current_spec.layer[2].encoding.x2.datum = maxTimeMinusDay
-        drawChart(current_spec)
-    });
-}
-
-// ---- DRAWS CHART! ---- //
-function drawChart(spec) {
-    vegaEmbed("#vis2", spec)
-}
-
-// ---- Create array of colors based on colors in activeMonitors. This gets sent to the json spec ---- //
-var colors
-function getColors() {
-    colors = [];
     for (let i = 0; i < activeMonitors.length; i++) {
-        colors.push(activeMonitors[i].Color)
-    }
-    // colors.push('darkgray') // if DEC_Avg is present.
-    // current_spec.layer[0].encoding.color.scale.range = colors
 
-    // use activeMonitors to send color conditional to spec
-    console.log('activeMonitors:', activeMonitors)
-    var siteColors = [];
+        let tableCheckBox = 
+                `
+                <tr id="row-${activeMonitors[i].loc_col}">
+                <th scope="row">
+                    <input type="checkbox" id="${activeMonitors[i].loc_col}" name="${activeMonitors[i].loc_col}" value="${activeMonitors[i].Color}">
+                    <label for="${activeMonitors[i].loc_col}"><span style="color: ${activeMonitors[i].Color};"><i class="fas fa-square mx-1"></i></span>${activeMonitors[i].Location}</label>
+                    </th>
+                <td id="value-${activeMonitors[i].loc_col}-1" class="hide">Invisible column with all values - for sorting</td>
+                <td>
+                    <div id="value-${activeMonitors[i].loc_col}-2" style="background-color:lightblue;width:0%;" class="pr-1 my-1 barchart">
+                    </div>
+                </td>
 
-    /*
-    for (let i = 0; i < activeMonitors.length; i ++) {
-        var condition = {"test": `datum.SiteName === '${activeMonitors[i].loc_col}'`,"value": `${activeMonitors[i].Color}`}
-        siteColors.push(condition)
+                </tr>
+                `
+        
+        document.getElementById('tableBody').innerHTML += tableCheckBox
+
     }
 
-    current_spec.layer[0].encoding.color.condition = siteColors
-    */
-
-    console.log('siteColors:',siteColors)
-
+    listenBoxes()
 }
 
+//-- Event listener on checkboxes --//
 
-// ---- Creates buttons based on active monitors coming via the file ---- // 
-var holder = document.getElementById('buttonHolder')
-var btns;
-function drawButtons() {
-    var button = 'hi :) '
+function listenBoxes() {
 
-    // Create location individual buttons
-    /*
-    for (let i = 0; i < activeMonitors.length; i++) {
-        button = `<button type="button" id="${activeMonitors[i].loc_col}" class="mb-1 selectorbtn btn btn-sm btn-outline-light text-dark btn-block no-underline">
-        <span style="color: ${activeMonitors[i].Color};">
-            <i class="fas fa-square mr-1"></i>
-        </span>
-        ${activeMonitors[i].Location}
-    </button>`
-        holder.innerHTML += button;
-    };
-    */
+    boxes = document.querySelectorAll('input[type=checkbox]');
+    boxes.forEach(box => {
+        box.addEventListener('click', (ev) => {
 
-    // Dropdown menu for locations
-    for (let i = 0; i < activeMonitors.length; i++) {
-        let ddb = `<button type="button" id="${activeMonitors[i].loc_col}" class="selectorbtn btn btn-sm btn-outline-light text-dark btn-block no-underline" style="margin-top: 0px!important; text-align: left!important;">
-        <span style="color: ${activeMonitors[i].Color};">
-            <i class="fas fa-square mr-1"></i>
-        </span>
-        ${activeMonitors[i].Location}
-    </button>`
+            // console.log(ev.target.checked, ev.target.name, ev.target.value);
 
-        document.getElementById('btnDropdownMenu').innerHTML += ddb
-    }
+            // create nodelist of all checked items
+            getChecked = document.querySelectorAll('input[type=checkbox]:checked');
 
-
-    btns = document.querySelectorAll('.selectorbtn')
-
-
-}
-
-// ---- Event listener on the buttons runs updateData and passes in the button's id (loc_col) ---- // 
-function listenButtons() {
-    btns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            updateData(btn.id)
+            checkedSites = []; // clear the array of checked items
+            for (let i = 0; i < getChecked.length; i++) {
+                var siteName = getChecked[i].name
+                var siteColor = getChecked[i].value
+                var thisSite = {
+                    "siteName": `${siteName}`,
+                    "color": `${siteColor}`
+                }
+                checkedSites.push(thisSite)
+            }
+        
+            renderSpec(dataWithNulls, checkedSites)
+          
         })
     })
-
 }
 
-// ---- UPDATE DATA FUNCTION TO DEVELOP: takes loc_col as an argument ---- // 
-var opacity;
-var stroke; 
-var loc;
-var locData = [];
+// ---- gets checked sites, updates spec ---- // 
+function getCheckedSites() {
+    getChecked = document.querySelectorAll('input[type=checkbox]:checked');
 
-function updateData(x) {
-    // document to console:
-    console.log('Showing data for: ' + x)
-
-    getRecentAverage(x)
-
-    // /remove active classes, and highlight selected
-    btns.forEach(x => {
-        x.classList.remove('active') // remove from all 
-    })
-    document.getElementById(x).classList.add('active')
-
-    if (x != 'DEC_Avg') {
-        // find index of where x = activeMonitors.loc_col
-        var index = getIndex(x)
-
-        // zoom to the corresponding leaflet marker
-        map.setView(monitors[index].getLatLng(), 13);
-
-        // document.getElementById('decInfo').classList.add('hide')
-
-
-    } else {
-        resetZoom();
-        // document.getElementById('decInfo').classList.remove('hide')
+    checkedSites = []; // clear the array of checked items
+    for (let i = 0; i < getChecked.length; i++) {
+        var siteName = getChecked[i].name
+        var siteColor = getChecked[i].value
+        var thisSite = {
+            "siteName": `${siteName}`,
+            "color": `${siteColor}`
+        }
+        checkedSites.push(thisSite)
     }
 
-    // filter activeMonitors based on location; get color - pipe it below
-    let thisMonitor = activeMonitors.filter(monitor => monitor.loc_col === x)
-    var thisColor = thisMonitor[0].Color
-    var thisName = thisMonitor[0].Location
-    document.getElementById('locationSend').innerHTML = thisName
-    document.getElementById('dropdownMenuButton').innerHTML = `<span style="color: ${thisColor}"><i class="fas fa-square mr-1"></i></span>` + thisName
-    document.getElementById('locColor').style.color = thisColor
-
-    // update opacity for selected and deselected series, and redraw Chart:
-    opacity = {
-        "condition": {
-              "test": "datum['SiteName'] === 'CCNY'",
-              "value": 1
-            },
-          "value": 0.5
-        }
-    stroke = {
-        "condition": {
-              "test": "datum['SiteName'] === 'CCNY'",
-              "value": 2.5
-            },
-          "value": 1
-        }
-
-
-    current_spec.layer[0].encoding.color.condition[0].test = `datum.SiteName === '${x}'`
-    current_spec.layer[0].encoding.color.condition[0].value = thisColor
-
-    current_spec.layer[0].encoding.opacity = opacity
-    current_spec.layer[0].encoding.opacity.condition.test = `datum['SiteName'] === '${x}'`
-    current_spec.layer[0].encoding.strokeWidth = stroke
-    current_spec.layer[0].encoding.strokeWidth.condition.test = `datum['SiteName'] === '${x}'`
-    
-    current_spec.layer[2].encoding.x2.datum = maxTimeMinusDay
-    current_spec.layer[2].encoding.opacity.value = 0.1
-
-
-    vegaEmbed('#vis2', current_spec)
-
+    renderSpec(dataWithNulls, checkedSites)
 
 }
 
-function getIndex(x) {
-    for (let i = 0; i < activeMonitors.length; i++) {
-        if (activeMonitors[i].loc_col === x) {
-            return i
-        }
-    } 
-}
+// ---- PRINT RECENT AVERAGE TO TABLE ---- //
 
-var recentAverageData = [];
-function getRecentAverage(x) {
-
+function printRecentAverage() {
     // first, creating convertData that has starttime in milliseconds 
     var convertData = []
     for (let i = 0; i < fullTable.length; i++) {
@@ -287,14 +228,11 @@ function getRecentAverage(x) {
         convertData[i].starttime = dateInMsec
     }
 
-    console.log('convertData', convertData)
+    // console.log('convertData', convertData)
 
     // then, get the largest one
     var mostRecentTime = convertData[convertData.length - 1].starttime
-    console.log('mrt', mostRecentTime)
-
     var startingTime = mostRecentTime - 86400000
-    console.log('st:',startingTime)
 
     // then, filter everything over largest one minus 24 hours of milliseconds
     var last24HoursData = []
@@ -304,61 +242,98 @@ function getRecentAverage(x) {
         } else {}
     }
 
-    console.log('last 24 hours:', last24HoursData)
+    // first, loop through and get values, and get max value
+    for (let i = 0; i < activeMonitors.length; i++) {
+        var thisLast = []
+        thisLast = last24HoursData.filter(s => s.SiteName === activeMonitors[i].loc_col)
 
-
-    // see if location is in there
-    var thisLast24 = [];
-
-    for (let i = 0; i < last24HoursData.length; i++) {
-        if (last24HoursData[i].SiteName === x) {
-            thisLast24.push(last24HoursData[i])
-        } else {}
-    }
-
-    console.log('thisLast', thisLast24)
+        // count if there are 17 entries
+        if (thisLast.length > 17) {
+            var average;
+            var sum = []
+            for (let i = 0; i < thisLast.length; i ++ ) {
+                sum.push(thisLast[i].Value)
+            }
     
-    loc = x
+            let totals = 0
+            for (let i = 0; i < sum.length; i ++ ) {
+                totals += sum[i]
+            }
+    
+            average = totals / 24
+            average = Math.round(average * 100) / 100
 
-    // if there's more than 16 hours of readings...
-    if (thisLast24.length > 17) {
-        // show box
-        document.getElementById('averageBox').classList.remove('hide')
-
-        // average the readings
-        var average;
-        var sum = []
-        for (let i = 0; i < thisLast24.length; i ++ ) {
-            sum.push(thisLast24[i].Value)
+            values.push(average)
         }
-
-        let totals = 0
-        for (let i = 0; i < sum.length; i ++ ) {
-            totals += sum[i]
-        }
-
-        average = totals / 24
-        average = Math.round(average * 100) / 100
-
-        console.log('average for this location over the last 24 hours: ' + average)
-
-        // send values to page
-        document.getElementById('locAverage').innerHTML = average + ' μg/m<sup>3</sup>'
-        average > 35 ? document.getElementById('aboveBelow').innerHTML = 'above' : document.getElementById('aboveBelow').innerHTML = 'below'
-        average > 35 ? document.getElementById('aboveBelow').classList.add('badge') : document.getElementById('aboveBelow').classList.add('badge')
-        average > 35 ? document.getElementById('aboveBelow').classList.add('badge-warning') : document.getElementById('aboveBelow').classList.add('badge-success')
-
-    } else {
-        // Do nothing...
-        document.getElementById('averageBox').classList.add('hide')
     }
 
+    // get max value
+    max = Math.max(...values)
+    var maxWidth = max * 1
 
+    // get all names of active Monitors
+    for (let i = 0; i < activeMonitors.length; i++) {
+        // console.log(activeMonitors[i].loc_col)
+
+        // for each of those names, filter last 24 hours of data
+        var thisLast = []
+        thisLast = last24HoursData.filter(s => s.SiteName === activeMonitors[i].loc_col)
+        // console.log('this last:', thisLast)
+
+        // count if there are 17 entries
+        if (thisLast.length > 17) {
+            var average;
+            var sum = []
+            for (let i = 0; i < thisLast.length; i ++ ) {
+                sum.push(thisLast[i].Value)
+            }
+    
+            let totals = 0
+            for (let i = 0; i < sum.length; i ++ ) {
+                totals += sum[i]
+            }
+    
+            average = totals / 24
+            average = Math.round(average * 100) / 100
+
+            values.push(average)
+    
+            // console.log(activeMonitors[i].loc_col + ' average for this location over the last 24 hours: ' + average)
+            var print = 'value-'+activeMonitors[i].loc_col+'-1'
+            var print2 = 'value-'+activeMonitors[i].loc_col+'-2'
+            document.getElementById(print).innerHTML = average 
+            document.getElementById(print2).innerHTML = Math.round(average) // round to integer
+
+                if (average > 35 ) {
+                    document.getElementById('exceeds').classList.remove('hide')
+                    document.getElementById('allUnder').classList.add('hide')
+                    document.getElementById(print2).innerHTML += '<i class="fas fa-exclamation-circle ml-1" style="color:red">'
+                }
+
+            var cont = 'value-' + activeMonitors[i].loc_col + '-2';
+            var widthPercent = 100 * Math.round(average)  / maxWidth
+            document.getElementById(cont).style.width = widthPercent + "%"
+
+        } else {
+            // console.log(activeMonitors[i].loc_col + " doesn't have enough data")
+            var print = 'value-'+activeMonitors[i].loc_col+'-1'
+            var print2 = 'value-'+activeMonitors[i].loc_col+'-2'
+
+            document.getElementById(print).innerHTML = 0
+            document.getElementById(print2).innerHTML = '*'    
+            
+            var cont = 'value-' + activeMonitors[i].loc_col + '-2';
+            document.getElementById(cont).style.backgroundColor = "white";
+            document.getElementById('insufficient').classList.remove('hide')
+
+        }
+    }
+
+    sortTable()
 }
 
 
-
-// ---- Create leaflet map ---- // 
+// --------------------------------------- CREATE LEAFLET MAP ---- // 
 var map;
 var monitors_group = L.featureGroup();
 var monitors_group_noDEC = L.featureGroup();
@@ -399,19 +374,6 @@ function drawMap() {
 
         var this_tooltip = this_monitor.getTooltip();
         
-        this_monitor.on('mouseover', function (e) {
-
-            this_tooltip._container.style.borderColor = color_convert.to_hex(monitor_locations[i].Color);
-            this_tooltip.bringToFront();
-            this_tooltip.setOpacity(1.0);
-        });
-
-        this_monitor.on('mouseout', function (e) {
-
-            this_tooltip.setOpacity(0.85);
-            this_tooltip._container.style.borderColor = "";
-
-        });
 
         // setting up zoom on click
         
@@ -464,29 +426,19 @@ function drawMap() {
     }).addTo(map);      
 }
 
-// ---- function to reset zoom on click ---- //
+// ---- reset zoom on click ---- //
 
 function resetZoom() {
     map.setView(monitors_center, 11).fitBounds(monitors_bounds);
-}
+    // loop through rows and remove .table-highlight
+    var rows = document.querySelectorAll('.table-highlight')
+    rows.forEach(row => row.classList.remove('table-highlight'))
 
-// ---- function to reset on Restore ---- //
+    var sites = document.querySelectorAll('input[type=checkbox]:checked');
+    sites.forEach(site => site.checked = false)
 
-function restore() {
-    resetZoom();
-    btns.forEach(x => {
-        x.classList.remove('active') // remove from all 
-    })
-    getSpec();
-    document.getElementById('inputNum').value = 7
-
-    document.getElementById('averageBox').classList.add('hide')
-    current_spec.layer[2].encoding.opacity.value = 0.0
-    vegaEmbed('#vis2', current_spec)
-
-    document.getElementById('dropdownMenuButton').innerHTML = 'Choose location'
-
-
+    checkedSites = [];
+    renderSpec(dataWithNulls)
 }
 
 // ---- TIME FILTER ---- //
@@ -509,20 +461,243 @@ function updateTime(x) {
     var last = fullTable.pop()
     const date = new Date(last.starttime)
     let dateInMsec = Date.parse(date)
-    // console.log('most recent date: ' + dateInMsec) // this is the most recent date, in milliseconds since 1970
-    // console.log('filter for dates larger than: ') // you could be able to filter starttime
-    // console.log(dateInMsec - x * 86400000)
     var filterTo = dateInMsec - x * 86400000
 
-    // send date filter to spec and re-draw Chart
-    filter = `datum.starttime > ${filterTo}`
-    current_spec.layer[0].transform[0] = {"filter": filter}
+    chartStart = filterTo                   
 
-    // use filter to filter data file; update activeMonitors
-    // use new activeMonitors to get updated colors array
-    // send updated colors array to spec
+    renderSpec(dataWithNulls, checkedSites)
 
-    // console.log(current_spec)
-    drawChart(current_spec)
 }
 
+
+// ---- Update data based on map click ---- // 
+function updateData(x) {
+    // look in active monitors for x.
+    var thisLocation = activeMonitors.filter(loc => loc.loc_col === x)
+
+    var thisLoc = document.getElementById(thisLocation[0].loc_col)
+    thisLoc.checked = true
+
+    // loop through rows and remove .table-highlight
+    var rows = document.querySelectorAll('.table-highlight')
+    rows.forEach(row => row.classList.remove('table-highlight'))
+
+    // add table row highlight...?
+    var row = 'row-'+x
+    document.getElementById(row).classList.add('table-highlight')
+
+    // get all checked sites and update spec:
+    getCheckedSites()
+
+    // scroll chart into view (for mobile)
+    document.getElementById('vis').scrollIntoView();
+
+}
+
+
+// --- SORT TABLE FUNCTION ---- //
+/*
+Note: relies on an invisible column of just values. Values displayed as * are given a 0 in this column. 
+*/
+function sortTable() {
+    // console.log('sort table running')
+    var table, rows, switching, i, x, y, shouldSwitch;
+    table = document.getElementById("table24");
+    switching = true;
+    // Make a loop that will continue until no switching has been done:*/
+    while (switching) {
+      //start by saying: no switching is done:
+      switching = false;
+      rows = table.rows;
+      // Loop through all table rows (except the first, which contains table headers):*/
+      for (i = 1; i < (rows.length - 1); i++) {
+        //start by saying there should be no switching:
+        shouldSwitch = false;
+        // Get the two elements you want to compare, one from current row and one from the next:*/
+        x = rows[i].getElementsByTagName("td")[0];
+        y = rows[i + 1].getElementsByTagName("td")[0];
+        // check if the two rows should switch place:
+        if (Number(x.innerHTML) < Number(y.innerHTML)) {
+          // if so, mark as a switch and break the loop:
+          shouldSwitch = true;
+          break;
+        }
+      }
+      if (shouldSwitch) {
+        // If a switch has been marked, make the switch and mark that a switch has been done:*/
+        rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+        switching = true;
+      }
+    }
+  }
+
+// Comparer Function - used later    
+function GetSortOrder(prop) {    
+    return function(a, b) {    
+        if (a[prop] > b[prop]) {    
+            return 1;    
+        } else if (a[prop] < b[prop]) {    
+            return -1;    
+        }    
+        return 0;    
+    }    
+}  
+
+
+// ---- RENDER CHART SPEC ---- // 
+const renderSpec = (
+    data,
+    checkedSites
+) => { 
+
+    let chartSpec = {
+        "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+        "description": "PM2.5 in micrograms per cubic meter",
+        "data": {
+            "values": data,
+            "format": {
+                "parse": {
+                    "Value": "number"
+                }
+            }
+        },
+        "config": {
+          "legend": {"disable": true},
+          "background": "#ffffff00",
+          "axisX": {
+            "grid": false, "ticks": true, "labels": true,
+            "offset": 0,
+            "domainDashOffset": 30,
+            "labelAlign": "center",
+            "labelExpr": "[timeFormat(datum.value, '%H') == 0 ? timeFormat(datum.value, '%b %e') : timeFormat(datum.value, '%-I %p')]",
+            "labelPadding": 4,
+            "labelOverlap": "parity",
+            "tickSize": {
+              "condition": {
+                "test": {"field": "value", "timeUnit": "hours", "equal": 0},
+                "value": 15
+              },
+              "value": 9
+            },
+            "tickWidth": {
+              "condition": {
+                "test": {"field": "value", "timeUnit": "hours", "equal": 0},
+                "value": 1.25
+              },
+              "value": 0.5
+            }
+            },
+          "axisY": {"domain": false, "ticks": false, "gridDash": [2], "gridWidth": 1,"offset": 10},
+          "view": {"stroke": "transparent"}
+        },
+        "height": "container",
+        "width": "container",
+        "transform": [{"filter": `datum.starttime > ${chartStart}`}],
+        "layer": [
+          {
+            "mark": {
+              "type": "line",
+              "interpolate": "monotone",
+              "point": {"size": 5, "opacity": 0},
+              "tooltip": null
+            },
+            "encoding": {
+              "x": {
+                "field": "starttime",
+                "type": "temporal",
+                "title": ""
+              },
+              "y": {
+                "field": "Value",
+                "type": "quantitative",
+                "title": " "
+              },
+              "color": {
+                "field": "SiteName",
+                "type": "nominal",
+                "scale": {"range": ["lightgray"]}
+              },
+              "opacity": {"value": 0.7},
+              "strokeWidth": {"value": 1.5}
+            }
+          },
+          {
+            "mark": "rule",
+            "encoding": {
+              "y": {"datum": 35},
+              "color": {"value": "red"},
+              "size": {"value": 2},
+              "strokeDash": {"value": [2, 2]}
+            }
+          },
+          {
+            "mark": "rect",
+            "encoding": {
+              "x": {"aggregate": "max", "field": "starttime", "type": "temporal"},
+              "x2": {"datum": maxTimeMinusDay, "type": "temporal"},
+              "opacity": {"value": 0}
+            }
+          }
+        ]
+      }
+
+      chartSpec.layer.length = 3
+
+      // if there are checkedSites, then, push to spec.
+      if (checkedSites) {
+        for (let i = 0; i < checkedSites.length; i++) {
+
+            var template =  {
+                "mark": {
+                  "type": "line",
+                  "interpolate": "monotone",
+                  "point": {"size": 20, "opacity": 0},
+                  "tooltip": true
+                },
+                "transform": [
+                  {"filter": `datum.SiteName === '${checkedSites[i].siteName}'`}
+                  ],
+                "encoding": {
+                  "x": {
+                    "field": "starttime",
+                    "type": "temporal",
+                    "title": ""
+                  },
+                  "y": {
+                    "field": "Value",
+                    "type": "quantitative",
+                    "title": " "
+                  },
+                  "color": {
+                    "condition": [
+                      {
+                        "test": `datum.SiteName === '${checkedSites[i].siteName}'`, 
+                        "value": `${checkedSites[i].color}`
+                      }
+                    ]
+                  },
+                  "opacity": {"value": 0.7},
+                  "strokeWidth": {"value": 1.5},
+                  "tooltip": [
+                    {"field": "SiteName", "title": "Location"},
+                    {"field": "Value", "title": "PM2.5 (µg/m3)"},
+                    {
+                      "field": "starttime",
+                      "type": "temporal",
+                      "title": "Time",
+                      "timeUnit": "hoursminutes",
+                      "format": "%I:%M %p"
+                    },
+                    {"field": "starttime", "type": "temporal", "title": "Date"}
+                  ]
+                }
+              }
+    
+            // push it to spec
+            chartSpec.layer.push(template)
+    
+        }
+      }
+
+      vegaEmbed('#vis',chartSpec)
+}
