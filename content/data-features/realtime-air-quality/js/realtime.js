@@ -306,6 +306,7 @@ function printRecentAverage() {
 
                 if (average > 35 ) {
                     document.getElementById('exceeds').classList.remove('hide')
+                    document.getElementById('allUnder').classList.add('hide')
                     document.getElementById(print2).innerHTML += '<i class="fas fa-exclamation-circle ml-1" style="color:red">'
                 }
 
