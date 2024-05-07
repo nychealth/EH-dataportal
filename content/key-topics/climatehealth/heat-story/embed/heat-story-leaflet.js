@@ -85,7 +85,7 @@ const CUSTOM_ID_FIELD = '_custom_id';
 
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-// functioin to prettify geo types
+// function to prettify geo types
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
 const prettifyGeoType = (GeoType) => {
