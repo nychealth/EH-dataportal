@@ -1,5 +1,7 @@
 ---
 title: "Air quality snapshots: special findings from 10 years of NYCCAS"
+aliases:
+    - /data-stories/AQsnapshots/
 date: 2020-04-21T13:37:45-04:00
 draft: false
 seo_title: "Air quality snapshots"

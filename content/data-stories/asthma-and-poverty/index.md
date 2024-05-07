@@ -1,5 +1,7 @@
 ---
 title: "Why asthma is a social justice issue"
+aliases:
+    - /data-stories/povasthma/
 date: 2019-10-24T08:18:56-04:00
 draft: false
 seo_title: "Why asthma is a social justice issue"

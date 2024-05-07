@@ -1,5 +1,7 @@
 ---
 title: "What our air quality monitors tell us about NYC's neighborhoods"
+aliases:
+    - /data-stories/aq2/
 date: 2019-11-25T13:24:52-04:00
 draft: false
 seo_title: "About NYC's air quality, neighborhood by neighborhood."
@@ -11,7 +13,7 @@ image: ds-aq2.jpeg
 photocredit: "Michael Appleton/Mayoral Photography Office"
 ---
 
-In [Part 1]({{< ref "/data-stories/aqts" >}}), we looked at data from the New York City Community Air Survey (NYCCAS) - a network of about 100 air quality monitors - to see if air quality improves in areas that go car-free. And the answer is yes.
+In [Part 1]({{< ref "/data-stories/car-free-zones" >}}), we looked at data from the New York City Community Air Survey (NYCCAS) - a network of about 100 air quality monitors - to see if air quality improves in areas that go car-free. And the answer is yes.
 
 NYCCAS tells us that more traffic means more air pollution nearby. So, even if we don't have a nearby monitor, we can predict that an area that goes car-free (like Park Drive in Prospect Park, for example) sees an improvement in air quality.
 

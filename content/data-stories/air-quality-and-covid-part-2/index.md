@@ -1,5 +1,7 @@
 ---
 title: "An update on air quality during COVID-19"
+aliases:
+    - /data-stories/aqcovid2/
 date: 2022-04-20T08:33:22-04:00
 draft: false
 seo_title: "How COVID-19 affected air quality"
@@ -14,7 +16,7 @@ photocredit: "Ed Reed/Mayoral Photography Office"
 ## Big improvements in outdoor air quality during COVID-19 reveal impacts of traffic and commercial cooking
 On March 20, 2020, New York State announced the COVID-19 shutdown, officially known as NY Pause. In NYC, it lasted until June 8, 2020.
 
-With stay-at-home orders in NY and other states, New York City's air quality changed significantly. Earlier, [we looked at data collected from real-time air pollution monitors to see how day-to-day pollution changed when people started to stay home]({{< ref "data-stories/aqcovid" >}}).
+With stay-at-home orders in NY and other states, New York City's air quality changed significantly. Earlier, [we looked at data collected from real-time air pollution monitors to see how day-to-day pollution changed when people started to stay home]({{< ref "data-stories/air-quality-and-covid" >}}).
 
 More recently, we used data from our network of air quality monitors to examine air pollution changes over time and across neighborhoods.
 
