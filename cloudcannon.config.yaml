@@ -178,7 +178,6 @@ base_url: /
 data_config: {}
 editor:
   default_path:
-timezone: America/New_York
 x-default_sort_options:
   - key: date
     order: desc
