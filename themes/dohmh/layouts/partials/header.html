@@ -197,11 +197,11 @@
 
                                                 {{- range $index, $menu := $want_menus -}}
 
-                                                    {{- /*  adding 1 to index b/c of 0-indexing  */ -}}
+                                                    {{- /*  check if last item (adding 1 to index b/c of 0-indexing)  */ -}}
 
                                                     {{- $last := eq ( add $index 1 ) $count -}}
 
-                                                    {{- /*  only add an element if it's not one of the ecluded menus  */ -}}
+                                                    {{- /*  add element  */ -}}
 
                                                     <a href="{{ .URL }}"><li><span class="mr-1">{{ $menu.Pre }}</span>{{ $menu.Name }}</li></a>
 
