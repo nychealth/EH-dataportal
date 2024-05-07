@@ -1,34 +1,41 @@
 
-{{ if eq hugo.Environment "production" "Production" "prod" "prod_prod" }}
+{{/*  add GA code for prod data  */}}
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-64BWDRHRGB"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    
-    gtag('config', 'G-64BWDRHRGB');
-</script>
+{{ if eq hugo.Environment "production" "prod_prod" }}
 
-<!-- Google will index this page -->
-<meta name="robots" content="all" />
+    {{ warnf (print "prod environment: " hugo.Environment) }}
 
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-64BWDRHRGB"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
-{{ else if eq hugo.Environment "development" }}
+        gtag('config', 'G-64BWDRHRGB');
+    </script>
 
-<!-- Google won't index this page or follow links -->
-<meta name="robots" content="noindex, nofollow">
+    <!-- Google will index this page -->
+    <meta name="robots" content="all" />
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-PB98MPZ31B"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    
-    gtag('config', 'G-PB98MPZ31B');
-</script>
+    {{/*  add GA code for dev data  */}}
+
+{{ else }}
+
+    {{ warnf (print "dev environment: " hugo.Environment) }}
+
+    <!-- Google won't index this page or follow links -->
+    <meta name="robots" content="noindex, nofollow">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PB98MPZ31B"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-PB98MPZ31B');
+    </script>
 
 {{ end }}
 
@@ -36,32 +43,42 @@
 <!-- Required meta tags -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+{{/*  <meta data-pagefind-filter="section[content]" content="Data Stories">  */}}
 
 <!-- Corrects IE Compatibility Mode -->
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 <title>{{ block "title" . }}
-    {{- if .Params.seo_title -}}{{ .Params.seo_title }}{{- else -}}{{ .Title }}{{ end }} &#x7c; {{ .Site.Title }}
+    {{- if .Params.seo_title -}}{{ .Params.seo_title }}{{- else -}}{{ .Title }}{{ end }}
 {{- end -}}</title>
 
-<!-- build datetime -->
+{{ if .Page.IsHome -}}
+
+<!-- build info -->
 <meta name="build_datetime" content='{{ time.Now.Local.Format "2006-01-02 15:04:05" }}'>
 <meta name="build_environment" content='{{ hugo.Environment }}'>
+<meta name="git_branch" content='{{ getenv "HUGO_GIT_BRANCH" }}'>
+<meta name="git_last_hash" content='{{ getenv "HUGO_GIT_LAST_HASH" }}'>
+<meta name="git_last_msg" content='{{ getenv "HUGO_GIT_LAST_MSG" }}'>
+
+{{ end -}}
+
+{{- /*  {{ partial "warn_counter" (print "++ " "IsHome = " .Page.IsHome ": " .Page.RelPermalink) }}  */ -}}
 
 
-{{- /*  content translations  */}}
+{{- /*  content translations  */ -}}
 
 {{- if .IsTranslated -}}
-	{{- range .Translations -}}
-	<link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .RelPermalink }}" title="{{ .Language.LanguageName }}">
-	{{- end -}}
-{{- end -}}
+    {{- range .Translations }}
+        <link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .RelPermalink }}" title="{{ .Language.LanguageName }}">
+    {{- end -}}
+{{- end }}
 
-{{- partial "seo" . }}
+{{ partial "seo" . }}
 
 {{- if .Params.mapLib }}
-<!-- nyc-lib css (for maps in the core framework)-->
-<link href="https://maps.nyc.gov/nyc-lib/v1.2.79/css/nyc-basic-lib.css" rel="stylesheet">
+    <!-- nyc-lib css (for maps in the core framework)-->
+    <link href="https://maps.nyc.gov/nyc-lib/v1.2.79/css/nyc-basic-lib.css" rel="stylesheet">
 {{- end }}
 
 <!-- jQuery (full, compressed version) -->
@@ -131,7 +148,7 @@
 
 <script src="{{ $dompurify.RelPermalink }}" integrity="{{ $dompurify.Data.Integrity }}"></script>
 
-<!--Other data libraries. To call, have datatables: true in a page's frontmatter-->
+<!-- Other data libraries. To call, have datatables: true in a page's frontmatter -->
 
 {{- if .Params.datatables -}}
 
@@ -141,12 +158,12 @@
 
     <script src="{{ $d3.RelPermalink }}" integrity="{{ $d3.Data.Integrity }}"></script>
 
-     {{- /*  DataTables  */}}
+     {{- /*  DataTables  */ -}}
 
-     {{- /*  CSS  */}}
+     {{- /*  CSS  */ -}}
 
-    {{- $dataTablesCSS := resources.Get "node_modules/datatables.net-dt/css/jquery.dataTables.min.css" }}
-    {{- $dataTablesButtonsCSS := resources.Get "node_modules/datatables.net-buttons-dt/css/buttons.dataTables.min.css" }}
+    {{- $dataTablesCSS := resources.Get "node_modules/datatables.net-dt/css/jquery.dataTables.min.css" -}}
+    {{- $dataTablesButtonsCSS := resources.Get "node_modules/datatables.net-buttons-dt/css/buttons.dataTables.min.css" -}}
     {{- $dtCSS := slice $dataTablesCSS $dataTablesButtonsCSS | resources.Concat "css/dtCSS.css" }}
 
     <link rel="stylesheet" href="{{ $dtCSS.RelPermalink }}" >
@@ -166,11 +183,12 @@
 {{- end }}
 
 <!-- Arquero -->
+
 {{- if .Params.arquero }}
 
     {{- /*  Arquero  */}}
 
-    {{- $arquero := resources.Get "node_modules/arquero/dist/arquero.min.js" | resources.Fingerprint "sha512" }}
+    {{- $arquero := resources.Get "node_modules/arquero/dist/arquero.min.js" | resources.Fingerprint "sha512" -}}
 
     <script src="{{ $arquero.RelPermalink }}" integrity="{{ $arquero.Data.Integrity }}"></script>
 
@@ -208,18 +226,19 @@
     <!-- Leaflet.colorIcon -->
     <!-- https://github.com/shevekk/Leaflet.ColorIcon -->
 
-    {{ $colorIcon := resources.Get "js/L.colorIcon.js" | resources.Fingerprint "sha512" }} <!-- need to use Hugo Pipes to get file from assets dir -->
+    {{- $colorIcon := resources.Get "js/L.colorIcon.js" | resources.Fingerprint "sha512" }} <!-- need to use Hugo Pipes to get file from assets dir -->
 
     <script src="{{ $colorIcon.RelPermalink }}" integrity="{{ $colorIcon.Data.Integrity }}"></script>
 
 {{- end -}}
 
-<!--Other data libraries. To call, have data: true in a page's frontmatter-->
+<!-- Other data libraries. To call, have data: true in a page's frontmatter -->
+
 {{- if .Params.datalibraries -}}
 
     {{- /*  D3  */ -}}
 
-    {{- $d3 := resources.Get "node_modules/d3/dist/d3.min.js" | resources.Fingerprint "sha512" -}}
+    {{- $d3 := resources.Get "node_modules/d3/dist/d3.min.js" | resources.Fingerprint "sha512" }}
 
     <script src="{{ $d3.RelPermalink }}" integrity="{{ $d3.Data.Integrity }}"></script>
 
@@ -241,7 +260,9 @@
     {{- $dataTablesButtonsPrint := resources.Get "node_modules/datatables.net-buttons/js/buttons.print.min.js" }}
     {{- $dataTablesRowGroup := resources.Get "node_modules/datatables.net-rowgroup/js/dataTables.rowGroup.min.js" }}
     
-    {{- $dataTablesBundleJS := slice $dataTables $dataTablesButtons $dataTablesButtonsHtml5 $dataTablesButtonsPrint $dataTablesRowGroup | resources.Concat "js/dataTableBundle.js" | resources.Fingerprint "sha512" }}
+    {{- $dataTablesButtonsDt := resources.Get "node_modules/datatables.net-buttons-dt/js/buttons.dataTables.min.js" }}
+
+    {{- $dataTablesBundleJS := slice $dataTables $dataTablesButtons $dataTablesButtonsHtml5 $dataTablesButtonsPrint $dataTablesRowGroup $dataTablesButtonsDt | resources.Concat "js/dataTableBundle.js" | resources.Fingerprint "sha512" }}
 
     <script src="{{ $dataTablesBundleJS.RelPermalink }}" integrity="{{ $dataTablesBundleJS.Data.Integrity }}"></script>
 
@@ -251,14 +272,52 @@
 
     <script src="{{ $arquero.RelPermalink }}" integrity="{{ $arquero.Data.Integrity }}"></script>
 
+{{- end -}}
+
+{{/*  set the section type for pagefind filters  */}}
+
+{{- if (eq .Section "data-stories") -}}
+    <meta data-pagefind-filter="section[content]" content="Data Stories">
 {{- end }}
 
+{{- if (eq .Section "neighborhood-reports") -}}
+    <meta data-pagefind-filter="section[content]" content="Neighborhood Reports">
+{{- end }}
+
+{{- if (eq .Section "data-explorer") -}}
+    <meta data-pagefind-filter="section[content]" content="Data Explorer">
+{{- end }}
+
+{{- if (eq .Section "key-topics") -}}
+    <meta data-pagefind-filter="section[content]" content="Key Topics">
+{{- end -}}
+
+{{- /*  set site params  */ -}}
+
 <script>
+
     let baseURL = {{ relURL "" }}
     let data_repo = "{{ $.Site.Params.data_repo }}";
     let data_branch = "{{ $.Site.Params.data_branch }}";
     let hugoEnv = "{{ hugo.Environment }}";
 
-    console.log('Build environment:', hugoEnv )
-
 </script>
+
+
+{{/* ====  set title for pagefind search results  ==== */ -}}
+
+{{- if (and (.Parent) (.Parent.Kind ) (ne .Parent.Kind "home")) -}}
+
+    <meta 
+        data-pagefind-meta="title:{{ .Title }} | {{ .Parent.Title }}"
+        class="d-none"
+    >
+
+{{- else -}}
+
+    <meta 
+        data-pagefind-meta="title:{{ .Title }} | {{ .Site.Title }}"
+        class="d-none"
+    >
+
+{{- end }}

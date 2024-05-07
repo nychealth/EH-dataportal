@@ -3,7 +3,8 @@ title: Cockroaches
 date: 2021-05-28 18:02:58.860064
 draft: false
 seo_title: "Cockroaches data for NYC"
-seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods.."
+seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
+description: "Datasets and visualizations of cockroach data in NYC."
 tags: 
 categories: ["pests","housing","neighborhoods"]
 keywords: ["pests","cockroaches","roaches","bugs","housing"]

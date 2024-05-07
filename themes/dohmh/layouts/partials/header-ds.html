@@ -62,11 +62,11 @@
     </div>
     <!-- #nyc-top-header -->
 
-    <div class="container-fluid collapse d-lg-block px-0 border-lg-top d-print-none" id="nav-primary">
+    <div class="container-fluid collapse d-lg-block px-0 border-lg-top border-lg-bottom d-print-none" id="nav-primary">
 
         <div class="wide">
 
-            <nav class="nav nav-pills border-bottom border-right justify-content-center" role="navigation">
+            <nav class="nav nav-pills border-right justify-content-center" role="navigation">
 
                 {{- $currentPage := . -}}
 
@@ -91,14 +91,18 @@
 
                 {{- else -}}
 
-                <button class="btn nav-item-search d-none d-lg-block" type="button" title="Search"
+                {{/*  <button class="btn nav-item-search d-none d-lg-block" type="button" title="Search"
                         data-toggle="collapse" data-target="#global-search"
-                        aria-controls="global-search" aria-expanded="false">
+                        aria-controls="global-search" aria-expanded="false">  */}}
 
-                    <span class="sr-only">Search</span>
-                    <i class="fa fa-magnifying-glass fa-lg"></i>
+                    <button type="button" data-toggle="modal" data-target="#searchModal" class="btn nav-item-search d-none d-lg-block" title="Search">
 
-                </button>
+                        <span class="sr-only">Search</span>
+                        <i class="fa fa-magnifying-glass fa-lg text-body mt-1"></i>
+
+                    </button>
+
+                {{/*  </button>  */}}
 
                 {{- end -}}
 

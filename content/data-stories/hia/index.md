@@ -35,7 +35,7 @@ We can use data modelling tools to predict which policies to improve air quality
 
 [A recent health impact assessment estimates the effects of reducing 80% of greenhouse gas emissions by 2050](https://pubs.acs.org/doi/full/10.1021/acs.est.0c00694), a policy called “80 x 50.” This policy would reduce fine particulate matter (also called PM2.5) throughout the city, regardless of neighborhood poverty level: 
 
-{{< datawrapper src="pt7no/1/" height="168" title="Reductions in PM2.5 would be similar across neighborhoods..." >}}
+{{< datawrapper src="pt7no/1/" height="168" title="Reductions in PM2.5 would be similar across neighborhoods.." >}}
 
 But, despite similar improvements in air quality, high poverty neighborhoods would have much greater health benefits. **Simply put, efforts to improve air quality have the most health impact in high-poverty neighborhoods.**
 
