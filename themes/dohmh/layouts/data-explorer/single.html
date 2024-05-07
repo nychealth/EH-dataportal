@@ -294,6 +294,10 @@
                 </div>
             </div>
 
+        {{- if .Params.archive -}}
+            <div class="border p-1"><p><strong>Note:&nbsp;</strong>{{- .Params.archive | safeHTML -}}</p></div>
+        {{- end -}}
+
         <!-- Indicator title and description -->
         <div style="clear:both; border-left: 8px solid #00923E50;" class="px-1">
             <span class="border-bottom mt-2 font-weight-bold d-none d-lg-block"><span id="indicatorTitle">Loading data...</span></span>
