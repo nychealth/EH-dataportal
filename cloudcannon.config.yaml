@@ -174,11 +174,6 @@ _editables:
     removeformat: false
     copyformatting: false
     snippet: true
-    subscript: false
-    superscript: false
-    table: false
-    underline: false
-    undo: false
 base_url: /
 data_config: {}
 editor:
