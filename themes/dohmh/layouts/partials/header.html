@@ -161,7 +161,6 @@
 
                                                 {{ with .GetPage "key-topics/pests" }}
                                                 <a class="" href="{{ .RelPermalink }}"> <li class="">{{ .Params.title }}</li></a>
-                                                <hr class="my-1">
                                                 {{ end }}
 
                                             </ul>
@@ -177,14 +176,43 @@
 
                                         <div class="dropdown-menu wider-menu" aria-labelledby="nav-item-type">
                                             <ul class="extensible-list p-0">
-                                                {{- range .Site.Menus.main -}}
 
-                                                {{- if and (ne .Name "Search") (ne .Name "Key Topics") -}}
+                                                {{/*  get all menus  */ -}}
 
-                                                   <a href="{{ .URL }}"> <li><span class="mr-1">{{ .Pre }}</span>{{ .Name }}</li></a>
-                                                   <hr class="my-1">
+                                                {{- $all_menus := .Site.Menus.main -}}
 
-                                                {{- end -}}
+                                                {{- /*  set exclusions  */ -}}
+
+                                                {{- $exclude := ( slice "Search" "Key Topics" ) -}}
+
+                                                {{- /*  filter menus  */ -}}
+
+                                                {{- $want_menus := where $all_menus "Name" "not in" $exclude -}}
+
+                                                {{- /*  get filtered count  */ -}}
+
+                                                {{- $count := len $want_menus -}}
+
+                                                {{- /*  range over wanted menus  */ -}}
+
+                                                {{- range $index, $menu := $want_menus -}}
+
+                                                    {{- /*  adding 1 to index b/c of 0-indexing  */ -}}
+
+                                                    {{- $last := eq ( add $index 1 ) $count -}}
+
+                                                    {{- /*  only add an element if it's not one of the ecluded menus  */ -}}
+
+                                                    <a href="{{ .URL }}"><li><span class="mr-1">{{ $menu.Pre }}</span>{{ $menu.Name }}</li></a>
+
+                                                    {{- /*  only add the horizontal bar if it's not the last item  */ -}}
+
+                                                    {{- if not $last }}
+
+                                                        <hr class="my-1">
+
+                                                    {{ end -}}
+
                                                 {{- end -}}
 
 
@@ -194,7 +222,7 @@
                                     <!-- .nav-item -->
 
                                     <div class="nav-item bg-white text-primary border">
-                                        {{- with .GetPage "about" -}}
+                                        {{ with .GetPage "about" -}}
                                         <a class="nav-link " href="{{ .RelPermalink }}">
                                             About
                                         </a>
