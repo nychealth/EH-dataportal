@@ -5,14 +5,28 @@ draft: false
 seo_title: "Your NYC heat story"
 seo_description: "Explore this summer's high temps and health effects."
 categories: [climatehealth]
-keywords: ["interactive","heat","weather","hot weather","extreme heat","heat mortality","heat-related illness","emergency room","emergency department","ED visit"]
+keywords:
+  [
+    "interactive",
+    "heat",
+    "weather",
+    "hot weather",
+    "extreme heat",
+    "heat mortality",
+    "heat-related illness",
+    "emergency room",
+    "emergency department",
+    "ED visit",
+  ]
 layout: heatstory
 leaflet: true
 arquero: true
 ---
 
-As climate change worsens, extreme heat becomes more frequent and more intense. Extreme heat can <a href="{{< baseurl >}}data-stories/heat/">harm people's health</a> and in the United States, more people die each year from heat than from all other weather-related disasters combined.
+As climate change worsens, extreme heat becomes more frequent and more intense. <a href="{{<baseurl>}}data-stories/localtemp/"> Cities get even hotter because of the urban heat island effect.</a> But even within New York City, some areas are hotter than others.
 
-**How does heat affect your life?**  It may affect your home, neighborhood, your commute, your daily routines—and your health. This map combines urban heat mapping, public health data, and personal stories about heat to show the relationship between the disproportionate impacts of extreme heat, social inequities, and health. 
+Extreme heat can <a href="{{< baseurl >}}data-stories/heat/"> harm people’s health and about 350 people die from related causes each year in New York City.</a> But these health impacts are not distributed equally. For example, <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/key-topics/climatehealth/heat-report/"> death rates are higher among Black New Yorkers and in neighborhoods with more residents living below the poverty line.</a>
 
-Below, explore your neighbors' stories about how heat affects them. You can also <a href="https://docs.google.com/forms/d/e/1FAIpQLSdwGh2hb4LeLsQxH-w9awMAF2qc_UgOsD_bBYhRVa3ECxM8Bg/viewform" target="_blank"> submit your own story </a> about how heat has affected your life.
+Heat story focuses on personal stories from neighborhoods that have faced historic racist patterns of discrimination and disinvestment — to show the relationship between the disproportionate impacts of heat, social, economic, and racial inequities, and public health.
+
+<!-- Explore your neighbors' stories about how heat affects them. You can also <a href="https://docs.google.com/forms/d/e/1FAIpQLSdwGh2hb4LeLsQxH-w9awMAF2qc_UgOsD_bBYhRVa3ECxM8Bg/viewform" target="_blank"> submit your own story </a> about how heat has affected your life. -->
