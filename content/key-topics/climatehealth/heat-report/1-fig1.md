@@ -1,8 +1,8 @@
 ---
+_schema: default
 draft: false
 ---
-
-**Figure 1:** Heat-stress deaths and maximum heat index by year, NYC residents (2012-2021)
+**Figure 1:** Heat-stress deaths and maximum heat index by year, NYC residents (2013-2022)
 
 <iframe src="Fig_1_interactive.html" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none; height:400px;"></iframe>
 
