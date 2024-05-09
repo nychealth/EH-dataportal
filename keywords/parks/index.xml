@@ -10,16 +10,16 @@
     <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/parks/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Beach Water Quality</title>
-      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/key-topics/transportation/beaches/</link>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/beaches/</link>
       <pubDate>Wed, 08 Sep 2021 11:14:56 -0400</pubDate>
-      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/key-topics/transportation/beaches/</guid>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/beaches/</guid>
       <description>One month before New York City&amp;rsquo;s beaches open to the public, the Health Departments starts sampling and monitoring beaches. Sampling provides data about current water quality conditions, and monitoring identifies sources of pollution that affect water quality.&#xA;Each beach is monitored and sampled every week, except for Rockaway and Breezy Point beaches, which are sampled twice each week. Samples are tested for bacteria, debris, animal waste, medical or infectious waste, toxic contaminants, petroleum products, and sewage and wastewater discharge following heavy rainfall.</description>
     </item>
     <item>
       <title>The urban heat island effect in NYC</title>
-      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/localtemp/</link>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/urban-heat-island/</link>
       <pubDate>Fri, 20 Aug 2021 12:52:43 -0400</pubDate>
-      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/localtemp/</guid>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/urban-heat-island/</guid>
       <description>In New York City and across the country, more people die from extreme heat than from all other natural disasters combined. To understand how to keep New Yorkers safe from extreme heat, we studied neighborhood factors that affect temperature, and found that grass, shrubs, and trees can play a major role. Let’s take a look.&#xA;At 6.00 PM on June 30, 2018, the air temperature at the LaGuardia Airport Weather Station was 89° Fahrenheit (F).</description>
     </item>
   </channel>

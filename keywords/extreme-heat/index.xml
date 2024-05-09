@@ -10,9 +10,9 @@
     <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/extreme-heat/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Real-time heat-related illness</title>
-      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/key-topics/climatehealth/syndromic/</link>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-syndrome/</link>
       <pubDate>Mon, 30 Aug 2021 11:51:01 -0400</pubDate>
-      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/key-topics/climatehealth/syndromic/</guid>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-syndrome/</guid>
       <description>The weather forecast is the best way to predict heat-related health outcomes.&#xA;We can also track heat-related illness with near real-time electronic data from emergency departments at hospitals throughout NYC. These data include illnesses directly attributed to heat (including heat exhaustion, muscle cramps, fainting and heat stroke), not the full burden of heat-related health impacts.</description>
     </item>
   </channel>

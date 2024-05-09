@@ -235,9 +235,11 @@
     <lastmod>2023-06-16T09:01:00-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/data-stories/racial-wealth-gap/</loc>
     <lastmod>2023-06-16T09:01:00-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/data-features/</loc>
+    <lastmod>2023-06-01T11:14:56-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/categories/pests/</loc>
     <lastmod>2023-06-01T11:14:56-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/key-topics/pests/rat-mitigation-zones/</loc>
+    <loc>/IndicatorPublic/data-features/rat-mitigation-zones/</loc>
     <lastmod>2023-06-01T11:14:56-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/garbage/</loc>
     <lastmod>2023-03-20T13:11:44-04:00</lastmod></url><url>
@@ -501,7 +503,7 @@
     <lastmod>2022-11-08T11:14:56-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/report/</loc>
     <lastmod>2022-11-08T11:14:56-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/key-topics/airquality/nyccas/</loc>
+    <loc>/IndicatorPublic/data-features/nyccas/</loc>
     <lastmod>2022-11-08T11:14:56-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/about/advanced-tools/</loc>
     <lastmod>2022-11-07T08:49:22-04:00</lastmod></url><url>
@@ -547,7 +549,7 @@
     <lastmod>2022-08-08T14:20:53-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/take-action/</loc>
     <lastmod>2022-08-08T14:20:53-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/data-stories/aqcovid2/</loc>
+    <loc>/IndicatorPublic/data-stories/air-quality-and-covid-part-2/</loc>
     <lastmod>2022-04-20T08:33:22-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/coronavirus/</loc>
     <lastmod>2022-04-20T08:33:22-04:00</lastmod><xhtml:link
@@ -603,7 +605,7 @@
     <lastmod>2022-03-22T19:30:55-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/interactive/</loc>
     <lastmod>2022-03-22T19:30:55-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/key-topics/airquality/realtime/</loc>
+    <loc>/IndicatorPublic/data-features/realtime-air-quality/</loc>
     <lastmod>2022-03-22T19:30:55-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/air-conditioning/</loc>
     <lastmod>2022-01-10T12:34:38-04:00</lastmod></url><url>
@@ -679,7 +681,7 @@
     <lastmod>2021-10-02T07:56:00-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/displacement/</loc>
     <lastmod>2021-10-02T07:56:00-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/key-topics/housing/displacement/</loc>
+    <loc>/IndicatorPublic/data-features/displacement-risk/</loc>
     <lastmod>2021-10-02T07:56:00-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/equity/</loc>
     <lastmod>2021-10-02T07:56:00-04:00</lastmod></url><url>
@@ -775,17 +777,17 @@
     <lastmod>2021-09-30T07:58:01-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/key-topics/</loc>
     <lastmod>2021-09-10T13:58:59-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/key-topics/climatehealth/2021-heat-report/</loc>
+    <loc>/IndicatorPublic/data-features/heat-report-archive/2021/</loc>
     <lastmod>2021-09-08T11:14:56-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/key-topics/climatehealth/2022-heat-report/</loc>
+    <loc>/IndicatorPublic/data-features/heat-report-archive/2022/</loc>
     <lastmod>2021-09-08T11:14:56-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/key-topics/climatehealth/heat-report/</loc>
+    <loc>/IndicatorPublic/data-features/heat-report/</loc>
     <lastmod>2021-09-08T11:14:56-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/bacteria/</loc>
     <lastmod>2021-09-08T11:14:56-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/beach/</loc>
     <lastmod>2021-09-08T11:14:56-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/key-topics/transportation/beaches/</loc>
+    <loc>/IndicatorPublic/data-features/beaches/</loc>
     <lastmod>2021-09-08T11:14:56-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/beaches/</loc>
     <lastmod>2021-09-08T11:14:56-04:00</lastmod></url><url>
@@ -799,7 +801,7 @@
     <lastmod>2021-09-08T11:14:56-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/quality/</loc>
     <lastmod>2021-09-08T11:14:56-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/key-topics/pests/rat-information-portal/</loc>
+    <loc>/IndicatorPublic/data-features/rat-information-portal/</loc>
     <lastmod>2021-09-08T11:14:56-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/sewage/</loc>
     <lastmod>2021-09-08T11:14:56-04:00</lastmod></url><url>
@@ -833,7 +835,7 @@
     <lastmod>2021-08-30T11:51:01-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/hot-weather/</loc>
     <lastmod>2021-08-30T11:51:01-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/key-topics/climatehealth/syndromic/</loc>
+    <loc>/IndicatorPublic/data-features/heat-syndrome/</loc>
     <lastmod>2021-08-30T11:51:01-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/disparity/</loc>
     <lastmod>2021-08-25T10:49:05-04:00</lastmod></url><url>
@@ -841,11 +843,11 @@
     <lastmod>2021-08-25T10:49:05-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/inequity/</loc>
     <lastmod>2021-08-25T10:49:05-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/key-topics/climatehealth/hvi/</loc>
+    <loc>/IndicatorPublic/data-features/hvi/</loc>
     <lastmod>2021-08-25T10:49:05-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/vulnerability/</loc>
     <lastmod>2021-08-25T10:49:05-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/key-topics/airquality/aqe/</loc>
+    <loc>/IndicatorPublic/data-features/neighborhood-air-quality/</loc>
     <lastmod>2021-08-24T12:04:44-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/building/</loc>
     <lastmod>2021-08-20T12:52:43-04:00</lastmod></url><url>
@@ -857,7 +859,7 @@
     <lastmod>2021-08-20T12:52:43-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/heat-island/</loc>
     <lastmod>2021-08-20T12:52:43-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/data-stories/localtemp/</loc>
+    <loc>/IndicatorPublic/data-stories/urban-heat-island/</loc>
     <lastmod>2021-08-20T12:52:43-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/urban-heat-island/</loc>
     <lastmod>2021-08-20T12:52:43-04:00</lastmod></url><url>
@@ -1115,7 +1117,7 @@
     <lastmod>2021-04-12T12:02:09-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/density/</loc>
     <lastmod>2021-04-12T12:02:09-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/data-stories/aq-cooking/</loc>
+    <loc>/IndicatorPublic/data-stories/restaurants-and-air-quality/</loc>
     <lastmod>2021-04-12T12:02:09-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/assaults/</loc>
     <lastmod>2021-02-08T08:07:31-04:00</lastmod><xhtml:link
@@ -1289,21 +1291,21 @@
                 /></url><url>
     <loc>/IndicatorPublic/data-stories/roadmap/</loc>
     <lastmod>2020-07-07T08:49:22-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/data-stories/aqcovid/</loc>
+    <loc>/IndicatorPublic/data-stories/air-quality-and-covid/</loc>
     <lastmod>2020-04-22T08:33:22-04:00</lastmod><xhtml:link
                 rel="alternate"
                 hreflang="es"
-                href="/IndicatorPublic/es/data-stories/aqcovid/"
+                href="/IndicatorPublic/es/data-stories/air-quality-and-covid/"
                 /><xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="/IndicatorPublic/zh/data-stories/aqcovid/"
+                href="/IndicatorPublic/zh/data-stories/air-quality-and-covid/"
                 /><xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/IndicatorPublic/data-stories/aqcovid/"
+                href="/IndicatorPublic/data-stories/air-quality-and-covid/"
                 /></url><url>
-    <loc>/IndicatorPublic/data-stories/aqsnapshots/</loc>
+    <loc>/IndicatorPublic/data-stories/air-quality-snapshots/</loc>
     <lastmod>2020-04-21T13:37:45-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/environmental-justice/</loc>
     <lastmod>2020-04-21T13:37:45-04:00</lastmod></url><url>
@@ -1331,7 +1333,7 @@
     <lastmod>2020-02-13T08:29:34-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/data-stories/codesign/</loc>
     <lastmod>2020-02-13T08:29:34-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/data-stories/aqts/</loc>
+    <loc>/IndicatorPublic/data-stories/car-free-zones/</loc>
     <lastmod>2019-11-25T13:24:52-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/car-free/</loc>
     <lastmod>2019-11-25T13:24:52-04:00</lastmod></url><url>
@@ -1339,7 +1341,7 @@
     <lastmod>2019-11-25T13:24:52-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/pedestrians/</loc>
     <lastmod>2019-11-25T13:24:52-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/data-stories/aq2/</loc>
+    <loc>/IndicatorPublic/data-stories/air-quality-by-neighborhood/</loc>
     <lastmod>2019-11-25T13:24:52-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/data-stories/breatheeasy/</loc>
     <lastmod>2019-10-24T08:18:56-04:00</lastmod></url><url>
@@ -1377,19 +1379,19 @@
     <lastmod>2019-10-24T08:18:56-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/data-stories/food/</loc>
     <lastmod>2019-10-24T08:18:56-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/data-stories/povasthma/</loc>
+    <loc>/IndicatorPublic/data-stories/asthma-and-poverty/</loc>
     <lastmod>2019-10-24T08:18:56-04:00</lastmod><xhtml:link
                 rel="alternate"
                 hreflang="es"
-                href="/IndicatorPublic/es/data-stories/povasthma/"
+                href="/IndicatorPublic/es/data-stories/asthma-and-poverty/"
                 /><xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="/IndicatorPublic/zh/data-stories/povasthma/"
+                href="/IndicatorPublic/zh/data-stories/asthma-and-poverty/"
                 /><xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/IndicatorPublic/data-stories/povasthma/"
+                href="/IndicatorPublic/data-stories/asthma-and-poverty/"
                 /></url><url>
     <loc>/IndicatorPublic/neighborhood-reports/active_design_physical_activity_and_health/</loc></url><url>
     <loc>/IndicatorPublic/neighborhood-reports/bayside_little_neck/active_design_physical_activity_and_health/</loc></url><url>
