@@ -14,7 +14,7 @@ image: ds-redlining.jpeg
 ### Inside the 90-year-old financial policy that harms our health
 In public health, we often cite structural racism to help explain health patterns in our society. But what, specifically, does this mean? A close look at the history of redlining shows this connection.
 
-When we analyze data on the health of New Yorkers, we often find the same geographic patterns, with higher rates of preventable health conditions in high-poverty neighborhoods. For example, [we've written about how asthma and poverty are closely connected]({{< ref "/data-stories/povasthma" >}}).
+When we analyze data on the health of New Yorkers, we often find the same geographic patterns, with higher rates of preventable health conditions in high-poverty neighborhoods. For example, [we've written about how asthma and poverty are closely connected]({{< ref "/data-stories/asthma-and-poverty" >}}).
 
 These high-poverty neighborhoods are also home to a higher proportion of people of color than other communities.
 

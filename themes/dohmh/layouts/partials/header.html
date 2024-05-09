@@ -119,49 +119,18 @@
 
                                         <div class="dropdown-menu wider-menu" aria-labelledby="nav-item-topic">
                                             <ul class="extensible-list p-0">
-                                                {{ with .GetPage "key-topics/transportation" }}
-                                                <a class="" href="{{ .RelPermalink }}"> <li class="">{{ .Params.title }}</li></a>
-                                                <hr class="my-1">
+                                                {{ range where .Site.Pages "Section" "key-topics" }}
+                                                {{ if not .Params.hide }}
+                                                    {{ if .Params.shortTitle }}
+                                                    <a class="" href="{{ .RelPermalink }}"> <li class="">{{ .Params.shortTitle }}</li></a>
+                                                    <hr class="my-1">
+                                                    {{ else }}
+                                                    <a class="" href="{{ .RelPermalink }}"> <li class="">{{ .Params.title }}</li></a>
+                                                    <hr class="my-1">
+                                                    {{ end }}
                                                 {{ end }}
-
-                                                {{ with .GetPage "key-topics/airquality" }}
-                                                <a class="" href="{{ .RelPermalink }}"> <li class="">{{ .Params.title }}</li></a>
-                                                <hr class="my-1">
                                                 {{ end }}
-
-                                                {{ with .GetPage "key-topics/childhealth" }}
-                                                <a class="" href="{{ .RelPermalink }}"> <li class="">{{ .Params.title }}</li></a>
-                                                <hr class="my-1">
-                                                {{ end }}
-
-                                                {{ with .GetPage "key-topics/climatehealth" }}
-                                                <a class="" href="{{ .RelPermalink }}"> <li class="">{{ .Params.title }}</li></a>
-                                                <hr class="my-1">
-                                                {{ end }}
-
-                                                {{ with .GetPage "key-topics/foodanddrink" }}
-                                                <a class="" href="{{ .RelPermalink }}"> <li class="">{{ .Params.title }}</li></a>
-                                                <hr class="my-1">
-                                                {{ end }}
-
-                                                {{ with .GetPage "key-topics/healthoutcomes" }}
-                                                <a class="" href="{{ .RelPermalink }}"> <li class="">{{ .Params.title }}</li></a>
-                                                <hr class="my-1">
-                                                {{ end }}
-
-                                                {{ with .GetPage "key-topics/housing" }}
-                                                <a class="" href="{{ .RelPermalink }}"> <li class="">{{ .Params.title }}</li></a>
-                                                <hr class="my-1">
-                                                {{ end }}
-
-                                                {{ with .GetPage "key-topics/social" }}
-                                                <a class="" href="{{ .RelPermalink }}"> <li class="">{{ .Params.title }}</li></a>
-                                                <hr class="my-1">
-                                                {{ end }}
-
-                                                {{ with .GetPage "key-topics/pests" }}
-                                                <a class="" href="{{ .RelPermalink }}"> <li class="">{{ .Params.title }}</li></a>
-                                                {{ end }}
+                                                    <a href={{ relURL "key-topics" }}>All topics</a>
 
                                             </ul>
                                         </div>

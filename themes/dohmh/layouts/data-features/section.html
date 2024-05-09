@@ -1,0 +1,137 @@
+{{- define "main" -}}
+
+<article id="skip-header-target">
+<div class="container-fluid data-features">
+    <div class="row">
+        <div class="col-md-10 mx-auto mt-4">
+            <nav aria-label="breadcrumb" class="mb-2">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
+                    <li class="breadcrumb-item active"><a href="/data-features/">Data Features</a></li>
+                </ul>
+              </nav>
+            <h1 class="mt-4"><i class='fas fa-chart-bar mr-1' aria-hidden='true'></i>Data Features</h1>
+            <p>Interactive infographics, real-time data feeds, and annual reports on important environmental health topics.</p>
+
+
+            <div class="row my-4">
+                <div class="col-12">
+                    <p class="home-label font-weight-bold">Interactives</p>
+                    <div class="row">
+                    {{ range where .Pages "Params.hide" "ne" true }}
+
+                        {{- if and (not (.Params.report)) (not (.Params.externalPortal))  -}}
+                        <div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-features">
+                                {{- if .Params.image -}}
+                                <a href="{{ .RelPermalink}}">
+                                    {{ $src := .Resources.GetMatch .Params.image }}
+                                    {{ $image := $src.Resize "740x"}}
+                                    <div style="width:100%; height:250px; background-image: url({{ $image.RelPermalink }}); background-size:cover"></div>
+                                </a>
+                                {{- else -}}
+                                <a class="" href="{{ .RelPermalink }}">
+                                <div style="width:100%; height:250px; background-image: URL('{{ .Site.BaseURL }}/images/home-sample-image-DE-5.png'); background-size: cover"></div></a>
+                                
+                                {{- end -}}
+            
+                                <div class="card-body">
+                                    <h3 class="h5"><a class="text-black" href="{{ .RelPermalink }}" class="text-primary">{{ .Title }}</a></h3>
+                                    <div class="mb-2">{{ .Content | truncate 150 }}</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="{{ .RelPermalink }}">Get the data</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {{- end -}}
+
+                    {{- end -}}
+                </div>
+                </div>
+
+            </div>
+
+            <div class="row my-4">
+                <div class="col-12">
+                    <p class="home-label font-weight-bold">Reports</p>
+                    <div class="row">
+                        {{ range where .Pages "Params.hide" "ne" true }}
+    
+                            {{- if .Params.report -}}
+                            <div class="card content-card mb-4 col-sm-6 col-md-3">
+                                <div class="card-content data-features">
+                                    {{- if .Params.image -}}
+                                    <a href="{{ .RelPermalink}}">
+                                        {{ $src := .Resources.GetMatch .Params.image }}
+                                        {{ $image := $src.Resize "740x"}}
+                                        <div style="width:100%; height:250px; background-image: url({{ $image.RelPermalink }}); background-size:cover"></div>
+                                    </a>
+                                    {{- else -}}
+                                    <a class="" href="{{ .RelPermalink }}">
+                                    <div style="width:100%; height:250px; background-image: URL('{{ .Site.BaseURL }}/images/home-sample-image-DE-5.png'); background-size: cover"></div></a>
+                                    
+                                    {{- end -}}
+                
+                                    <div class="card-body">
+                                        <h3 class="h5"><a class="text-black" href="{{ .RelPermalink }}" class="text-primary">{{ .Title }}</a></h3>
+                                        <div class="mb-2 fs-sm">{{ .Content | plainify | truncate 150 }}</div>
+                                        <div class="d-flex justify-content-end link">
+                                            <a class="fs-sm font-weight-bold" href="{{ .RelPermalink }}">Get the data</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {{- end -}}
+    
+                        {{- end -}}
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row my-4">
+                <div class="col-12">
+                    <p class="home-label font-weight-bold">Portals</p>
+                    <div class="row">
+                        {{ range where .Pages "Params.hide" "ne" true }}
+    
+                            {{- if .Params.externalPortal -}}
+                            <div class="card content-card mb-4 col-sm-6 col-md-3">
+                                <div class="card-content card-body">
+                                    {{- if .Params.image -}}
+                                        {{ $src := .Resources.GetMatch .Params.image }}
+                                        
+                        
+                                        {{ $image := $src.Resize "740x"}}
+                                        <a class="" href="{{ .RelPermalink }}">
+                                        <div style="width:100%; height:150px; background-image: URL({{ $image.Permalink }}); background-size: cover"></div></a>
+                                    {{- else -}}
+                                        <a class="" href="{{ .RelPermalink }}">
+                                        <div style="width:100%; height:150px; background-image: URL('{{ .Site.BaseURL }}/images/home-sample-image-DE-5.png'); background-size: cover"></div></a>
+                                        
+                                    {{- end -}}
+                                    <h4 class="fs-md mt-1"><a class="" href="{{ .RelPermalink }}" class="text-primary">{{ .Title }}</a></h4>
+                                    <p class="fs-sm">{{ .Content | plainify | truncate 175 | htmlUnescape }}
+                                    </p>
+                                    <p class="fs-sm text-primary float-right mb-1"><a class="font-weight-bold float-right" href="{{ .RelPermalink }}">Get the data</a></p>
+                                </div>
+                            </div>
+                            {{- end -}}
+    
+                        {{- end -}}
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div> 
+    </div>
+
+
+
+</div>
+</article>
+
+{{- end -}}

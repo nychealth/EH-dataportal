@@ -108,13 +108,25 @@ We have also investigated numerous cases of lead poisoning in children and adult
 </div>
   <div class="wide row my-4 fs-sm">
     <div class="col-sm-4 col-xs-12">
-      <a href="https://ajph.aphapublications.org/doi/10.2105/AJPH.2022.306906"><i>Traditional health remedies</i></a> including certain Ayurvedic medications prescribed or purchased over the counter in the U.S. or abroad. 
+    <div class="card card-left-border shadow-sm h-100">
+      <div class="card-body">
+          <p>      <a href="https://ajph.aphapublications.org/doi/10.2105/AJPH.2022.306906"><i>Traditional health remedies</i></a> including certain Ayurvedic medications prescribed or purchased over the counter in the U.S. or abroad. </p>
+      </div>
+    </div>
     </div>
     <div class="col-sm-4 col-xs-12">
-      <a href="https://www.cdc.gov/mmwr/volumes/71/wr/mm7122a3.htm"><i>Traditional or handmade ceramic and metal dishware</i></a> that may contain lead at levels thousands of times higher than regulatory limits. Lead in dishware can transfer to the food or drinks that are prepared, stored or served in these products.  
+    <div class="card card-left-border shadow-sm h-100">
+      <div class="card-body">
+          <p>      <a href="https://www.cdc.gov/mmwr/volumes/71/wr/mm7122a3.htm"><i>Traditional or handmade ceramic and metal dishware</i></a> that may contain lead at levels thousands of times higher than regulatory limits. Lead in dishware can transfer to the food or drinks that are prepared, stored or served in these products.  </p>
+      </div>
+    </div>
     </div>
     <div class="col-sm-4 col-xs-12">
-      <a href="https://www.nyc.gov/site/doh/health/health-topics/hazardous-cosmetics-powders.page"><i>Cultural powders</i></a> such as kohl, kajal, surma and sindoor. Lead can get into the body if a person touches their mouth after handling these products. 
+    <div class="card card-left-border shadow-sm h-100">
+      <div class="card-body">
+          <p>      <a href="https://www.nyc.gov/site/doh/health/health-topics/hazardous-cosmetics-powders.page"><i>Cultural powders</i></a> such as kohl, kajal, surma and sindoor. Lead can get into the body if a person touches their mouth after handling these products. </p>
+      </div>
+    </div>
     </div>
   </div>
 
@@ -139,4 +151,4 @@ If you think you or your family members are at risk for lead poisoning, <strong>
 <a href="https://www.nyc.gov/lead">Visit nyc.gov/lead or call 311 for more information</a>. 
 
 <hr class="my-4">
-<div style="font-size: 12px" class="mb-2"> Source: <a href="https://pubmed.ncbi.nlm.nih.gov/30507772/">Hore, Paromita PhD, MPH; Alex-Oni, Kolapo MPH; Sedlar, Slavenka MA; Nagin, Deborah MPH. A Spoonful of Lead: A 10-Year Look at Spices as a Potential Source of Lead Exposure. Journal of Public Health Management and Practice: January/February 2019 - Volume 25 - Issue - p S63-S70 doi: 10.1097/PHH.0000000000000876</a></div>
+<div class="asidebox mb-2"> Source: <a href="https://pubmed.ncbi.nlm.nih.gov/30507772/">Hore, Paromita PhD, MPH; Alex-Oni, Kolapo MPH; Sedlar, Slavenka MA; Nagin, Deborah MPH. A Spoonful of Lead: A 10-Year Look at Spices as a Potential Source of Lead Exposure. Journal of Public Health Management and Practice: January/February 2019 - Volume 25 - Issue - p S63-S70 doi: 10.1097/PHH.0000000000000876</a></div>
