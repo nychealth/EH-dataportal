@@ -27,6 +27,6 @@ config: config.js
 
 Extreme heat and bad air quality can harm your health and may become more common due to climate change. When the air outside is unhealthy, how can you stay safe?
 
-This website can help. We'll ask yourself a few questions: about you, your health, and your indoor environment. We'll make some recommendations about how you can protect yourself during extreme heat and bad air quality. But remember, these are general health recommendations, not personal medical advice. Your top priority should be to listen to your own body—whether indoors, outdoors, in the workplace, or otherwise—and to get cool if you feel too hot.
+This website can help. We'll ask a few questions: about you, your health, and your indoor environment. We'll make some recommendations about how you can protect yourself during extreme heat and bad air quality. But remember, these are general health recommendations, not personal medical advice. Your top priority should be to listen to your own body—whether indoors, outdoors, in the workplace, or otherwise—and to get cool if you feel too hot.
 
 <strong>Answer the questions below.</strong>
