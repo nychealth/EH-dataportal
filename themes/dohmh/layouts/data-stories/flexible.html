@@ -33,6 +33,17 @@
     {{- end -}}
     
     <div class="row">
+            <div class="col-12 mt-2">
+                <nav aria-label="breadcrumb" class="border-top">
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
+                        <li class="breadcrumb-item"><a href={{ relURL "data-stories" }}>Data Stories</a></li>
+                        <li class="breadcrumb-item active"><a href="{{ .Page.RelPermalink }}">{{ .Title }}</a></li>
+
+                    </ul>
+                </nav>
+            </div>
+
         {{- .Content -}}
     </div>
 
