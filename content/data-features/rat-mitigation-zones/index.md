@@ -1,5 +1,7 @@
 ---
 title: "Rat Mitigation Zones"
+aliases: 
+    - /key-topics/pests/rat-mitigation-zones/
 date: 2023-06-01T11:14:56-04:00
 draft: false
 seo_title: "NYC's rat mitigation zones | Environment and Health Data Portal"
