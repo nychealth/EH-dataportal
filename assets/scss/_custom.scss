@@ -45,7 +45,8 @@ table {
 }
 
 
-$color-key-topics: #800080;
+// $color-key-topics: #800080;
+$color-data-features: #800080;
 $color-data-stories: #D75047;
 $color-n-reports: #197BBD;
 $color-data-explorer: #0A408A;
@@ -54,9 +55,15 @@ $color-data-explorer: #0A408A;
 
 .key-topics {
  svg path {
-  fill: $color-key-topics;
+  fill: $primary;
  }
 }
+
+.data-features {
+  svg path {
+   fill: $color-data-features;
+  }
+ }
 
 .data-stories {
   svg path {
@@ -176,7 +183,7 @@ $color-data-explorer: #0A408A;
 }
 
 .overlay-topics {
-  background-image: url('../images/overlay_topics.png');
+  background-image: url('../images/tab_overlay_key_topics.svg');
   background-size: cover;
   z-index: 100;
   position: absolute;
@@ -186,7 +193,7 @@ $color-data-explorer: #0A408A;
 }
 
 .tab-data-stories {
-  background-image: url('../images/tab_data_stories.png');
+  background-image: url('../images/tab_overlay_data stories.svg');
   z-index: 100;
   background-size: 33%;
   background-repeat: no-repeat;
@@ -194,7 +201,7 @@ $color-data-explorer: #0A408A;
 }
 
 .tab-neighborhood-reports {
-  background-image: url('../images/tab_neighborhood_reports.png');
+  background-image: url('../images/tab_overlay_neighborhood_reports.svg');
   z-index: 100;
   background-size: 33%;
   background-repeat: no-repeat;
@@ -202,7 +209,7 @@ $color-data-explorer: #0A408A;
 }
 
 .tab-data-explorer {
-  background-image: url('../images/tab_data_explorer.png');
+  background-image: url('../images/tab_overlay_data_explorer.svg');
   z-index: 100;
   background-size: 33%;
   background-repeat: no-repeat;
@@ -211,6 +218,14 @@ $color-data-explorer: #0A408A;
 
 .tab-key-topics {
   background-image: url('../images/tab_key_topics.png');
+  z-index: 100;
+  background-size: 33%;
+  background-repeat: no-repeat;
+  background-position: 0 20px;
+}
+
+.tab-data-features {
+  background-image: url('../images/tab_data_features.png');
   z-index: 100;
   background-size: 33%;
   background-repeat: no-repeat;
