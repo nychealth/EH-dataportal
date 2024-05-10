@@ -17,13 +17,14 @@ function init() {
     if (fileExists == true) {
       for (let i = year; i > 2016; i--) {
         allYears.push(i)
-        changeYear(year)
+        console.log(i)
+        // changeYear(year)
       }
     } else {
       for (let i = year-1; i > 2016; i--) {
         allYears.push(i)
         var lastYear = year-1
-        changeYear(lastYear)
+        // changeYear(lastYear)
       }
     }
 
@@ -42,6 +43,9 @@ function init() {
       } else {}
 
     }
+
+    // run for most recent year
+    changeYear(allYears[0])
 
     // check if it's after September
     if (month > 8) {
