@@ -354,13 +354,13 @@ config = {
                     "colorFeatureProperty": "HVI",
                     "defaultColor": "grey",
                     "colorMap": {
-                        1: "green",
-                        2: "blue",
-                        3: "yellow",
-                        4: "red",
-                        5: "pink"
+                        1: "#00bf7d",
+                        2: "#00b4c5",
+                        3: "#0073e6",
+                        4: "#2546f0",
+                        5: "#5928ed"
                     },
-                    "opacity": 0.6,
+                    "opacity": 0.7,
                 },
                 "displayProperties": {
                     "missingDisplay": "N/A",
