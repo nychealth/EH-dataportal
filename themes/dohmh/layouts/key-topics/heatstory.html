@@ -28,12 +28,17 @@
   }
   
   .story-card-content {
-    height: auto;
+    max-height: 68vh;
     overflow-y: auto;
   }
 
   .story-card {
     padding-bottom: 25px;
+  }
+
+  .content-card-height {
+    height: 70vh;
+    overflow-y:scroll;
   }
 
   .story-card-button {
@@ -145,14 +150,17 @@
         >{{ .Title }}
       </h1>
 
-      {{- .Content -}}
+      <div class="row">
+        <div class="col-md-8 col-sm-12">
+          {{- .Content -}}
+        </div>
+      </div>
+
     </div>
   </div>
 
   <hr class="my-2 px-6">
 
-
-  <div class="row no-padding mt-4 mb-0"></div>
 
 <div id="wholeMap">
   <div class="row">
@@ -179,8 +187,13 @@
   </div>
 
   <div class="row my-3">
-    <div class="col-4 mx-auto">
+    <div class="col">
+      <h3 class="h4">Explore New Yorkers' heat stories</h3>
+    </div>
+  </div>
 
+  <div class="row my-3">
+    <div class="col-4 mx-auto">
       <div id="story-dropdown" class="dropdown" >
         <button class="btn btn-outline-primary btn-block dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           View story

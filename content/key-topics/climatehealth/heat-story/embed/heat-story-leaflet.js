@@ -247,7 +247,7 @@ function addLayerButtons() {
         const layer = layers[i];
         const color = layer.property?.args?.color ?? "grey";
         const button = `
-            <button type="button" id="${layer.property.id}" class="mb-1 ml-1 layer-button btn btn-sm btn-outline-secondary no-underline">
+            <button type="button" id="${layer.property.id}" class="mb-1 mr-1 layer-button btn btn-sm btn-outline-secondary no-underline">
                 <span style="color: ${color};">
                     <i class="fas fa-square mr-1"></i>
                 </span>
@@ -394,12 +394,12 @@ function drawStoryCard(id) {
 
     const storyCard = `
         <div class="story-card" id="story-card-${id}">
-            <div class="card content-card">
-                <div class="card-content">
+            <div class="card content-card ">
+                <div class="card-content content-card-height">
                     <div class="card-body story-card-content">
-                        <h5 class="card-title">${story.title}</h5>
-                        <blockquote class="blockquote mb-0">
-                            <p class="card-text">${story.content}</p>
+                        <span class="fs-md font-weight-bold">${story.title}</span>
+                        <blockquote class="blockquote mb-0 fs-md">
+                            <p class="card-text"><em>${story.content}</em></p>
                         </blockquote>
                     </div>
                 </div>
