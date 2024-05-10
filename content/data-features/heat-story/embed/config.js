@@ -353,6 +353,7 @@ config = {
                 "args": {
                     "colorFeatureProperty": "HVI",
                     "defaultColor": "grey",
+                    "color": "black",
                     "colorMap": {
                         1: "#efc22f",
                         2: "#ed9223",
@@ -360,7 +361,7 @@ config = {
                         4: "#bd3f37",
                         5: "darkred"
                     },
-                    "opacity": 0.9,
+                    "opacity": 0.8,
                 },
                 "displayProperties": {
                     "missingDisplay": "N/A",
