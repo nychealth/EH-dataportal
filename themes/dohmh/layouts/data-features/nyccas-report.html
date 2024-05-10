@@ -1,0 +1,195 @@
+{{- define "main" -}}
+
+<style type="text/css">hr {
+    margin-top: 25px;
+    margin-bottom: 25px;
+   }
+
+   .greenleftborder {
+    border-left: 8px solid #00923E50;
+    padding-left: 10px;
+}
+</style>
+
+<div class="container-fluid px-0">
+    <div class="row no-gutters px-0">
+        {{ $src := .Resources.GetMatch .Params.image }}
+        {{ $image := $src.Resize "1920x"}}
+        <div id="datastoryheader" style="background-image: URL({{ $image.RelPermalink }}); background-position: 50% 25%">
+    
+            <div class="medium my-auto">
+                <h1 class="titleheader py-2 px-4" data-pagefind-weight="10.0">
+                    {{ .Title }}
+                </h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<article class="container-fluid" id="skip-header-target">
+
+    <div class="row">
+        <div class="col-md-11 mx-auto mt-4 pl-0">
+            <nav aria-label="breadcrumb" class="mb-4">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
+                    <li class="breadcrumb-item"><a href={{ relURL "data-features" }}>Data Features</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
+                </ul>
+            </nav>
+        </div>
+        <div class="col-md-2 mr-auto"></div>
+    </div>
+
+    <!-- Introduction and Key Findings -->
+    <div class="row" data-pagefind-weight="7.0">
+        <div class="col-md-8 col-sm-12 mx-auto">
+            <div class="medium mb-2">        
+                {{- .Content  -}}
+            </div>
+    </div>
+
+
+    <!-- Two-column section -->
+    <div class="row">
+        <div class="col-md-10 col-sm-12 mx-auto" data-pagefind-weight="7.0">
+            <hr class="my-2">
+
+            <!-- Methods, pollutants -->
+            <div class="row">
+                <div class="col-sm-6 col-xs-12">
+                    <div class="greenleftborder">
+                        <h3>Methods</h3>
+                        {{- with .Resources.GetMatch "methods.md" -}}
+                            {{ .Content }}
+                        {{- end -}}
+                    </div>
+                </div>
+
+                <div class="col-sm-6 col-xs-12">
+                    <h3>Pollutants Measured</h3>
+
+                    <div class="accordion-group mt-2 mb-3" role="tablist" id="accordion-01">
+
+                        {{- with .Resources.GetMatch "methods.md" -}}
+                        {{- range .Params.pollutantsMeasured -}}
+
+                        <div class="card accordion-item border">
+                            <a class="card-header font-weight-bold collapse" id="acc-button-{{ .number }}" data-toggle="collapse" href="#panel-acc-button-{{ .number }}" role="tab" aria-expanded="false" aria-controls="panel-acc-button-{{ .number }}">
+                                <span class="title" role="heading" aria-level="3">
+                                    {{ .name }}
+                                </span>
+                            </a>
+                            <div class="collapse" id="panel-acc-button-{{ .number }}" role="tabpanel" aria-labelledby="acc-button-{{ .number }}" data-parent="#accordion-01">
+                                <div class="card-body bg-white text-black">
+                                    {{ .copy | markdownify }}
+                                </div>
+                            </div>
+                        </div>
+
+                        {{- end -}}
+                        {{- end -}}
+
+                    </div>
+                </div>
+            </div>
+            <hr class="my-2">
+
+            <!-- NYCCAS sites -->
+            <div class="row">
+                <div class="col-sm-6 col-cx-12">
+                    <div class="greenleftborder">
+                        <h3>NYCCAS Sites</h3>
+
+                        {{- with .Resources.GetMatch "nyccas-sites.md" -}}
+                            {{ .Content }}
+                        {{- end -}}
+
+                    </div>
+                </div>
+                <div class="col-sm-6 col-cx-12">
+                    <iframe src="embed/nyccas-sites-leaflet.html" frameborder="no" style="width: 100%; height: 550px"></iframe>
+                </div>
+
+            </div>
+
+            <hr class="my-2">
+
+        </div>
+    </div>
+
+    <!-- single column -->
+    
+    <!-- Pollutant maps: text to FMV, maps to template -->
+
+    <div class="row">
+        <div class="col-md-8 col-sm-12 mx-auto">
+            <h2>Pollutant Maps</h2>
+            <img src="images/NyccasInstall_red.jpg" alt="NYCCAS installation" align="right" style="width:50%;" class="my-2 pl-2"> 
+
+            {{- with .Resources.GetMatch "pollutant-maps.md" -}}
+                {{ .Content }}
+            {{- end -}}
+
+            {{ partial "nyccas_pollutant_maps.html" . }}
+
+            <hr>
+        </div>
+    </div>
+
+    <!-- Pollutant trends --> 
+    <div class="row mt-4">
+        <div class="col-md-8 col-sm-12 mx-auto">
+            <h2>Pollutant Trends</h2>
+            {{- with .Resources.GetMatch "pollutant-trends.md" -}}
+                {{ .Content }}
+            {{- end -}}
+            <hr>
+
+            {{ partial "nyccas_pollutant_trends" . }}
+
+            
+        </div>
+    </div>
+
+
+    <!-- Pollutant predictors: template -->
+    <div class="row mt-4">
+        <div class="col-md-8 col-sm-12 mx-auto">
+            <h2>Pollutant Predictors</h2>
+            {{- with .Resources.GetMatch "pollutant-predictors.md" -}}
+                {{ .Content }}
+            {{- end -}}
+
+            <hr>
+
+            {{ partial "nyccas_pollutant_table" . }}
+
+        </div>
+    </div>
+
+    <!-- Conclusion and more info -->
+    <div class="row my-2">
+        <div class="col-sm-8 mx-auto col-xs-12">
+            <h2>Conclusion</h2>
+            {{- with .Resources.GetMatch "conclusion.md" -}}
+                {{ .Content }}
+            {{- end -}}
+            <hr>
+            <div class="greenleftborder mb-4">
+                <strong>More information</strong>
+                {{- with .Resources.GetMatch "more-info.md" -}}
+                    {{ .Content }}
+                {{- end -}}
+                </div>
+
+        </div>
+    </div>
+
+
+
+
+
+</article>
+
+{{- end -}}

@@ -1,0 +1,495 @@
+{{- define "main" -}}
+
+{{- /* ==== get topics and measures for this report ==== */}}
+
+{{- $report_topics := ( index ( index $.Site.Data.globals.NR_content $.Params.content_yml) "report_topics" ) -}}
+
+
+{{- /*  ==== javascript for producing VL charts ====  */}}
+
+<script>
+    let topicIndicators;
+    let sti;
+    let thisInd;
+    let NeighborhoodName = "{{ $.Params.neighborhood }}"; // setting for use in visualizations
+    
+    // this gets a json of topics and nested indicators
+    async function get_topic_indicators() {
+        d3.json('{{ relURL "IndicatorMetadata/topic_indicators.json" }}').then(data => {
+            topicIndicators = data
+        });
+    }
+    
+    get_topic_indicators();
+    
+    // this is called when an indicator is clicked. it produces the indicator's data-explorer URL and sends it to the modal in nr-indicator.html.
+    
+    const getURL = async (indID, dataname) => {
+        
+        // console.log("getURL:", indID);
+        
+        let thisTopic = '';
+        let topicArray = [];
+        let ind = Number(indID)
+        let URL;
+
+        // console.log('getURL running for ' + ind)
+        
+        for (let y in topicIndicators) {
+
+            topicArray = topicIndicators[y].IndicatorID
+
+            if (topicArray.includes(ind)) {
+
+                thisTopic = y
+                // console.log('topic is: ' + ind + ": " + thisTopic)
+                URL = {{ relURL "data-explorer/" }} + thisTopic + "/?id=" + ind; // creates URL
+                document.getElementById(dataname).style.display = "block";
+                document.getElementById(dataname).href = URL; // sends it to unique ID - Get the Dataset button
+
+                return
+
+            } else {
+                // console.log('for ' + ind + ", no topic.")
+                // document.getElementById(dataname).style.display = "none";
+            }
+        }
+    }
+    
+    // ==== loading specs ==== //
+    
+    // ---- summary ---- //
+    
+    let summarySpec;
+
+    d3.json({{ relURL "js/neighborhood-reports/spec/summarySpec.json" }} ).then(data => {
+
+        summarySpec = data;
+
+        // highlight current neighborhood
+
+        summarySpec.encoding.color.condition.test = "datum.neighborhood=='" + NeighborhoodName + "'";
+        
+    })
+    
+    // ---- map ---- //
+    
+    let mapSpec;
+
+    d3.json({{ relURL "js/neighborhood-reports/spec/mapSpec.json" }} ).then(data => {
+
+        mapSpec = data;
+
+        // highlight current neighborhood
+
+        mapSpec.layer[2].encoding.stroke.condition.test = "datum.neighborhood == '" + NeighborhoodName + "'";
+        
+        // set data branch for geo files
+
+        mapSpec.transform[0].from['data'].url = "{{ site.Params.data_repo }}{{ site.Params.data_branch }}/geography/UHF42.topo.json"
+        mapSpec.layer[0].data.url = "{{ site.Params.data_repo }}{{ site.Params.data_branch }}/geography/borough.topo.json"
+
+    });
+    
+    // ---- trend ---- //
+    
+    let trendSpec;
+
+    d3.json({{ relURL "js/neighborhood-reports/spec/trendSpec.json" }} ).then(data => {
+
+        trendSpec = data;
+
+        // highlight current neighborhood
+
+        trendSpec.layer[1].encoding.color.condition.test = "datum.neighborhood=='" + NeighborhoodName + "'";
+
+    });
+    
+</script>
+
+
+{{- /*  ==== HTML for producing report ====  */}}
+
+{{- /*  create zip code var in outer scope  */}}
+
+{{ $zip_codes := "" -}}
+
+{{- /*  variables for nr-sub_nav partial  */}}
+
+{{- /*  set hugo provided vars as local vars so that we can use them in different scopes  */}}
+
+{{- $neighborhood_dir := .Parent.File.Dir -}}
+{{- $report_filename := .File.BaseFileName -}}
+
+
+<div class="d-flex flex-column report-header d-print-none">
+
+    <!-- Toggle #sidebar-nav on mobile -->
+    <div class="container-fluid p-0 d-lg-none">
+        <div>
+            <div class="btn-toggle">
+                <button class="btn btn-block btn-lg btn-primary shadow" data-toggle="collapse"
+                    data-target="#sidebar-nav" aria-expanded="false" aria-controls="sidebar-nav">
+                    <span class="title">Reports</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<section class="container-fluid" id="skip-header-target" data-pagefind-ignore="all">
+
+    <div class="row mt-4">
+        <div class="col-lg-10 mx-auto col-12">
+            <nav aria-label="breadcrumb" class="mb-2">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
+                    <li class="breadcrumb-item"><a href={{ relURL "neighborhood-reports" }}>Neighborhood Reports</a></li>
+                    <li class="breadcrumb-item"><a href=".." id="neighbLink">{{ $.Params.neighborhood }}</a></li>
+                    <li class="breadcrumb-item active"><a href="{{ .RelPermalink }}">{{ $.Params.title }}</a></li>
+                </ul>
+            </nav>
+
+            <h1 class="report-title border-bottom mt-4">{{ $.Params.title }} in 
+                <span class="sub-title">{{ $.Params.neighborhood }}</span>
+            </h1>
+
+            <p class="report-description fs-lg mt-2 mb-4">{{ $.Params.summary }}</p>
+
+
+            <div class="row">
+                <div class="col-md-9 h-100 col-print-12">
+    
+                <!-- REPORT CONTENT -->
+                <div class="row">
+                    <div class="col-12">
+                        <div>
+                            
+                            {{- range $index, $rt := $report_topics -}}
+                            
+                                <div class="report-topic">
+                                    
+                                    <div class="topic-header">
+                                        <h2>
+                                            {{- $rt.report_topic -}} {{- /*  from YAML  */}}
+                                        </h2> 
+                                        <p>
+                                            {{- $rt.report_topic_description -}} {{- /*  from YAML  */}}
+                                        </p>
+                                    </div>
+                                    
+                                    <div class="container-fluid px-0 mb-4">
+
+                                        <!-- Hide on print -->
+
+                                        <div class="row indicator-headings mb-2 d-print-none">
+                                            <div class="col-6 col-md-5 pl-3">
+                                                Topic
+                                            </div>
+                                            <div class="col-6 col-md-4">
+                                                
+                                                <div class="position-relative">
+                                                    <span class="meta">Compared to other neighborhoods<a href="#" data-toggle="modal" data-target="#modal-rank"
+                                                        class="info-modal meta"><i class="fas fa-question-circle fs-rg ml-1"></i> </span></a>
+
+                                                </div>
+                                                
+                                            </div>
+                                            <div class="d-none d-md-inline col-md-3">
+                                                <span class="meta">All neighborhoods</span>
+                                            </div>
+                                        </div>
+
+                                        <!-- Only show on print -->
+
+                                        <div class="row indicator-headings mb-2 print-only">
+                                            <div class="col-4 font-weight-bold pl-3">
+                                                Topic
+                                            </div>
+                                            <div class="col-8">
+
+                                                <div class="position-relative">
+                                                    <span class="meta">Compared to other neighborhoods</span>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        {{- /*  filter measures for this topic  */}}
+
+                                        {{- /*  length = number of indicators in this report topic x 42 neighborhoods  */}}
+
+                                        {{ $count := math.Counter }}
+
+                                        {{ $clean_report_topic := replace $rt.report_topic ":" "" }}
+                                        
+                                        {{ $data_path := print site.Params.data_repo site.Params.data_branch "/neighborhood-reports/data/report/" $.Params.content_yml " " $clean_report_topic ".json" }}
+
+                                        {{ $topic_data := dict }}
+
+                                        {{ with resources.GetRemote $data_path }}
+                                            {{ with .Err }}
+                                                {{ warnf "%s" . }}
+                                            {{ else }}
+                                                {{ $topic_data = transform.Unmarshal . }}
+                                            {{ end }}
+                                        {{ else }}
+                                            {{ warnf "Unable to get remote resource %q" $data_path }}
+                                        {{ end }}
+
+                                        {{- /*  filter by neighborhood  */}}
+
+                                        {{- /*  length = number of indicators in this report topic  */}}
+
+                                        {{- $neighborhood_topic_data := where $topic_data "neighborhood" $.Params.neighborhood -}}
+
+                                        {{- /*  range through indicators to build this topic  */}}
+                                        
+                                        {{ range $index, $row := (sort $neighborhood_topic_data "data_value_rank" "desc") }}
+
+                                            {{- /*  length = 1  */}}
+
+                                            {{- $count := add $index 1 -}}
+                                            
+                                            {{- partial "nr-indicator.html" (dict "neighborhood" $.Params.neighborhood "borough" $row.borough_name "data" $row "count" $count) -}}
+                                                    
+                                        {{- end -}}
+
+                                        {{ $zip_codes =  index $neighborhood_topic_data 0 "zip_code" -}}
+                                    
+                                    </div>
+                                    <!-- .container -->
+                                    
+                                </div>
+                                <!-- .report-topic -->
+
+                            {{- end -}}
+
+                        </div>
+                            
+                    </div>
+                </div>
+                <!-- .narrow -->
+
+                </div>
+    
+                <!-- NAV RIGHT SIDEBAR -->
+                <div class="col-md-3 h-100 d-print-none">
+                    <div class="border mb-2 nr-map-highlight" style="height: 100%">
+                        <div class="p-1">
+                            <p><strong style="color:#00923E">{{ $.Params.neighborhood }}</strong> includes ZIP Codes: 
+                                <span class="home-label font-weight-bold" id="zips"> 
+                                    
+                                    {{- /*  insert zip code  */}}
+
+                                    {{- print $zip_codes -}}
+                                    
+                                </span>.
+                            </p>
+                        </div>
+
+                        {{- partial "nr-map-highlight" . -}}
+
+                    </div>
+
+                    <nav role="navigation">
+                        <div class="">
+
+                            {{- partial "nr-sub_nav" (dict  "neighborhood_dir" $neighborhood_dir  "report_filename" $report_filename) -}}
+                        </div>
+                    </nav>
+
+                    <hr class="my-2">
+                    <button onclick="window.print()" class="btn btn-sm btn-block btn-report mt-2" target="_blank"><i class="fas fa-print mr-1"></i>Print Report</button>
+
+                    <button onclick="downloadData()" class="btn btn-sm btn-block btn-report mt-2" target="_blank"><i class="fa fa-download mr-1"></i>Download Report Data <span class="sr-only">(opens in a new tab)</span></button>
+
+
+
+                </div>
+            </div>
+    <!-- .row -->
+
+            
+        </div>
+
+
+
+    </div>
+
+    <script>
+
+        let report_name = "{{ $.Params.title }}"
+
+        // loading report CSV data here, so it only loads once per location
+
+        {{- /*  use NR_content folder YAML to group indicators by report. Then we can remove report title etc. from database but still get data by report  */}}
+
+        let arqTable;
+        let downloadLoc = {{ ( print site.Params.data_repo site.Params.data_branch "/neighborhood-reports/data/viz/" $.Params.content_yml ".json" ) }}
+
+        // loading report-level CSV data
+
+        aq.loadJSON(
+            downloadLoc,
+            { autoMax: 10000,  parse: { time: String } }
+        )
+        .then(data => { 
+
+            arqTable = data 
+            
+            // console.log("arqTable", arqTable);
+
+        })
+
+
+
+        // set data download location
+        let reportData;
+        let download;
+
+        // create an element, create the CSV, and download it
+        function downloadData() {
+
+            download = arqTable
+                .select(aq.not('report_id','indicator_id','indicator_data_name','start_date','end_date')) // drop unnecessary columns
+                .filter(d => d.neighborhood == '{{ $.Params.neighborhood }}')
+
+            let downloadTableCSV = download.toCSV(); // format as CSV
+            // Data URI
+            let csvData = 'data:application/csv;charset=utf-8,' + encodeURIComponent(downloadTableCSV);
+            let hiddenElement = document.createElement('a');
+            hiddenElement.href = csvData;
+            hiddenElement.target = '_blank';
+            hiddenElement.download = 'NYC EH Data Portal - Neighborhood Report - ' + report_name + " - {{ $.Params.neighborhood }}.csv";
+            hiddenElement.click();
+
+            gtag('event', 'file_download', {
+                'file_name': hiddenElement.download,
+                'file_extension': '.csv',
+                'link_text': 'Download Report Data'
+            });
+
+        };
+
+    </script>
+
+</section>
+
+{{- /* Make sure we know what report content to load and that content_yml is set. If not we dont display the content */}}
+
+{{- if $.Params.content_yml -}}
+
+{{- /* Variable to load the the data file from the content_yml frontmatter */}}
+
+{{- $content := index $.Site.Data.globals.NR_footer $.Params.content_yml -}}
+
+<section class="related-reading d-print-none" data-pagefind-ignore="all">
+    <div class="container">
+        <div class="row">
+            
+            <div class="col-lg">
+                <div class="card bg-white text-black mb-2">
+                    <div class="card-header">What is the City doing?</div>
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            {{- range $content.city -}}
+                            <li class="list-group-item border-0 py-1 bg-transparent">{{ if .link }}<a
+                                href="{{ .link }}">{{- end -}}{{ .copy }}{{ if .link }}</a>{{- end -}}</li>
+                                {{- end -}}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- .col for city -->
+            
+            <div class="col-lg">
+                <div class="card bg-white text-black mb-2">
+                    <div class="card-header">What can you do?</div>
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            {{- range $content.you -}}
+                            <li class="list-group-item border-0 py-1 bg-transparent">{{ if .link }}<a
+                                href="{{ .link }}">{{- end -}}{{ .copy }}{{ if .link }}</a>{{- end -}}</li>
+                                {{- end -}}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- .col for you -->
+            
+            <div class="col-lg">
+                <div class="card bg-white text-black">
+                    <div class="card-header">More NYC neighborhood data</div>
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            {{- range $content.data -}}
+                            <li class="list-group-item border-0 py-1 bg-transparent">{{ if .link }}<a
+                                href="{{ .link }}">{{- end -}}{{ .copy }}{{ if .link }}</a>{{- end -}}</li>
+                                {{- end -}}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- .col for data -->
+            
+            <!-- .row -->
+        </div>
+    </div>
+</section>
+{{- end -}}
+    
+<!-- Modal-Rank -->
+<div class="modal fade report-modal" id="modal-rank" tabindex="-1" role="dialog" aria-labelledby="rankModalLabel"
+aria-hidden="true" data-pagefind-ignore="all">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title h4" id="rankModalLabel">Indicator ranking</div>
+                <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+                    <span class="fas fa-times-circle"></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Each indicator is placed in one of three categories:</p>
+                <ul>
+                    <li class="mb-2"><span class="better">Better</span></li>
+                    <li class="mb-2"><span class="middle">Middle</span></li>
+                    <li><span class="worse">Worse</span></li>
+                </ul>
+                <p>This shows us how the neighborhood compares to other NYC neighborhoods, if you ranked all of the NYC
+                    neighborhoods based on this indicator.</p>
+                <ul>
+                    <li><strong>Better:</strong> in the top 1/3rd of all NYC neighorhoods.</li>
+                    <li><strong>Middle:</strong> it's close to the NYC median - ranking somewhere in the middle third of
+                        all neighborhoods.</li>
+                        <li><strong>Worse:</strong> in the bottom 1/3rd of NYC neighborhoods.</li>
+                </ul>
+                <p>These are only based on the distribution of data values, not the range. The absolute values of
+                    indicators in different categories may not be all that different.</p>
+                    
+            </div>
+            <!-- .modal-body -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{{- $js := resources.Get "js/uhflist.js" -}}
+{{ $secureJS := $js | resources.Fingerprint "sha512" }}
+<script type="text/javascript" src="{{ $secureJS.RelPermalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
+
+<script type="text/javascript">
+    // get report path relative to section starting with "neighborhood-reports"
+    let thisURL = window.location.pathname.match(/neighborhood-reports.*/)
+    let thisNeighb = thisURL[0].split("/")[1]; // get this neighborhood
+    let report = thisURL[0].split("/")[2]; // get this report
+    reportURL = '/' + report // get URL extension
+
+</script>
+
+{{- end -}}
