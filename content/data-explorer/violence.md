@@ -13,6 +13,12 @@ indicators:
   IndicatorID:
   - 2400
   - 2375
+  - 2435
+  - 2436
+  - 2437
+  - 2438
+  - 2439
+  - 2440
 ---
 
 Violence is the use of physical, verbal, and/or emotional force to injure, harm, abuse, damage, or destroy. Interpersonal violence includes child abuse and neglect, youth violence, intimate partner violence, sexual violence, and elder abuse. Violence can involve injury to self, including self-harm, suicide attempts, and death by suicide. Violence can also take the form of power against a group or community.
