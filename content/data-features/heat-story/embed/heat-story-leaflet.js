@@ -1667,8 +1667,8 @@ function createLegend(fun) {
 
     // combine descriptions and add to the div
 
-    const legendDescriptionsDiv = document.getElementById("legendDescriptions");
-    legendDescriptionsDiv.innerHTML = legendDescriptions.join('<br />');
+    // const legendDescriptionsDiv = document.getElementById("legendDescriptions");
+    // legendDescriptionsDiv.innerHTML = legendDescriptions.join('<br />');
 
     if (legendControl != null) {
         map.removeControl(legendControl);
