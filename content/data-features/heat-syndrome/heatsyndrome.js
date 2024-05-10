@@ -17,10 +17,13 @@ function init() {
     if (fileExists == true) {
       for (let i = year; i > 2016; i--) {
         allYears.push(i)
+        changeYear(year)
       }
     } else {
       for (let i = year-1; i > 2016; i--) {
         allYears.push(i)
+        var lastYear = year-1
+        changeYear(lastYear)
       }
     }
 
@@ -39,9 +42,12 @@ function init() {
       } else {}
 
     }
-}
 
-init()
+    // check if it's after September
+    if (month > 8) {
+      console.log('Updates have ended for the year.')
+    }
+}
 
 function UrlExists(url) {
     console.log('checking ' + url)
@@ -419,3 +425,6 @@ var scatterplotTwo = {
     ]
   }
 }
+
+
+init()
