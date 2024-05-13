@@ -92,6 +92,32 @@ collections_config:
         remove_empty_inputs: true
         remove_extra_inputs: false
         icon: notes
+  data-features:
+        path: content/data-features
+    output: true
+    name: Data Features
+    description: Data Features collection.
+    icon: article
+    sort_options:
+      - key: date
+        order: desc
+      - key: date
+      - key: title
+      - key: title
+        order: desc
+    singular_name: Data Features
+    singular_key: data-features
+    disable_add: false
+    disable_add_folder: false
+    disable_file_actions: false
+    schemas:
+      default:
+        path: .cloudcannon/schemas/data-features.md
+        reorder_inputs: true
+        hide_extra_inputs: true
+        remove_empty_inputs: true
+        remove_extra_inputs: false
+        icon: notes
   about:
     path: content/about
     output: true
