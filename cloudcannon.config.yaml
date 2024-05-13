@@ -19,10 +19,10 @@ collections_config:
         order: desc
     singular_name: Data Stories
     singular_key: data-stories
-    _editables: {}
-    _inputs: {}
-    _select_data: {}
-    _structures: {}
+    _editables:
+    _inputs:
+    _select_data:
+    _structures:
     disable_add: false
     disable_add_folder: false
     disable_file_actions: false
@@ -107,6 +107,10 @@ collections_config:
         order: desc
     singular_name: Data Features
     singular_key: data-features
+    _editables:
+    _inputs:
+    _select_data:
+    _structures:
     disable_add: false
     disable_add_folder: false
     disable_file_actions: false
@@ -144,7 +148,7 @@ collections_config:
         remove_empty_inputs: true
         remove_extra_inputs: false
         icon: notes
-collections_config_override: true
+collections_config_override: false
 collection_groups:
   - heading: Content
     collections:
@@ -218,9 +222,10 @@ _select_data:
     - pests
   indicators:
     comment: Select an indicator
-_structures: {}
 _editables:
   content:
+    allow_custom_markup: false
+    remove_custom_markup: false
     blockquote: false
     bold: true
     bulletedlist: true
