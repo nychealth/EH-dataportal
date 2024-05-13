@@ -93,7 +93,7 @@ collections_config:
         remove_extra_inputs: false
         icon: notes
   data-features:
-        path: content/data-features
+    path: content/data-features
     output: true
     name: Data Features
     description: Data Features collection.
