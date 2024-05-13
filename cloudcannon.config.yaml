@@ -148,7 +148,7 @@ collections_config:
         remove_empty_inputs: true
         remove_extra_inputs: false
         icon: notes
-collections_config_override: false
+collections_config_override: true
 collection_groups:
   - heading: Content
     collections:
