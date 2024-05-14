@@ -323,7 +323,7 @@ config = {
                     "maxColor": "#c44601",
                     "color": "black",
                     "opacity": 0.6,
-                    "legendDescription": "<strong> PM2.5 </strong> are fine particles that are emitted by vehicles, building boilers, and other combustion - and are a major form of air pollution that harms health."
+                    "legendDescription": "<strong> PM2.5 </strong> are fine particles that are emitted by vehicles, building boilers, and other combustion - and are a major form of air pollution that harms health. <a href='../../data-explorer/air-quality/?id=2023#display=summary'>Get full data</a>."
                 },
                 "displayProperties": {
                     "missingDisplay": "N/A",
@@ -362,6 +362,7 @@ config = {
                         5: "darkred"
                     },
                     "opacity": 0.8,
+                    "legendDescription": "The HVI shows the risk of community-level heat impacts, like deaths, due to extreme heat events. It is made up of data on surface temperature, green space, air conditioning access, median income, and Black population (the population most excluded from heat resources due to structural racism). <a href='../../data-explorer/climate/?id=2191#display=summary'>Get full data here</a>.",
                 },
                 "displayProperties": {
                     "missingDisplay": "N/A",
@@ -393,7 +394,7 @@ config = {
                     "maxColor": "green",
                     "color": "black",
                     "opacity": 0.8,
-                    "legendDescription": "Vegetative cover is the land covered by trees, grass, or other plants instead of a hard surface like roads, sidewalks, or buildings. Vegetative cover tends to reduce temperatures in the immediate area and may increase air quality."
+                    "legendDescription": "Vegetative cover is land covered by trees, grass, or other plants instead of a hard surface like roads, sidewalks, or buildings. It tends to reduce temperatures in the immediate area and may increase air quality. <a href='../../data-explorer/climate/?id=2143#display=summary'>Get full data</a>."
                 },
                 "displayProperties": {
                     "missingDisplay": "N/A",
@@ -419,7 +420,8 @@ config = {
                     "minColor": "#054fb9",
                     "maxColor": "#c44601",
                     "color": "black",
-                    "opacity": 0.6
+                    "opacity": 0.6,
+                    "legendDescription": "Heat stress hospitalizations due to heat-related illnesses, such as heat stroke and heat exhaustion, represent part of the public health burden of hot weather. <a href='../../data-explorer/weather-related-illness/?id=2076#display=summary'>Get full data</a>."
                 },
                 "exclusive": true,
                 "displayProperties": {
@@ -545,14 +547,14 @@ config = {
                     "maxColor": "purple",
                     "color": "black",
                     "opacity": 0.9,
-                    "legendDescription": "The percent of households with incomes below the federal poverty level. Households without sufficient resources are often deprived of access to items such as health care and good quality housing that are needed to maintain good health."
+                    "legendDescription": "The percent of households with incomes below the federal poverty level. Households without sufficient resources are often deprived of access to items such as health care and good quality housing that are needed to maintain good health.<a href='../../data-explorer/economic-conditions/?id=103#display=summary'>Get full data</a>."
                 },
                 "displayProperties": {
                     "missingDisplay": "N/A",
                     "displayPropertyArgs": [
                         {
-                            "id": "Neighborhood poverty, Percent",
-                            "displayName": "Neighborhood poverty, Percent",
+                            "id": "Neighborhood poverty, percent",
+                            "displayName": "Neighborhood poverty, percent",
                             "format": "float"
                         }
                     ]
@@ -578,7 +580,7 @@ config = {
                     "maxColor": "lightblue",
                     "color": "black",
                     "opacity": 0.7,
-                    "legendDescription": "Estimated number of households in an area reporting having functioning air conditioning, divided by the number of households in the area; expressed as percent."
+                    "legendDescription": "Estimated number of households in an area reporting having functioning air conditioning, divided by the number of households in the area; expressed as percent.<a href='../../data-explorer/climate/?id=2185#display=summary'> Get full data<a>"
                 },
                 "displayProperties": {
                     "missingDisplay": "N/A",

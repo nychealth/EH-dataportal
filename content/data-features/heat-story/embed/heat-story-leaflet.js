@@ -684,7 +684,7 @@ async function createMeasuresLayer({ id, name, measureInfo, args, displayPropert
 
         if (args.legendDescription) {
             const collapseId = `${id}LegendCollapse`;
-            legend += `<br /><div style="display: block; width: 100%; max-width: 250px;"><a data-toggle="collapse" href="#${collapseId}" role="button" aria-expanded="false" aria-controls="${collapseId}">More info about ${name}</a>`
+            legend += `<br /><div style="display: block; width: 100%; max-width: 275px; font-size: 90%"><a data-toggle="collapse" href="#${collapseId}" role="button" aria-expanded="false" aria-controls="${collapseId}">More info about ${name}</a>`
                 + `<div class="collapse" id="${collapseId}">${args.legendDescription}</div></div>`;
         }
 
