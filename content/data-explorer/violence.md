@@ -9,47 +9,49 @@ tags:
 categories: ["social","healthoutcomes"]
 keywords: ["violence","injury","neighborhoods","social","justice","poverty"]
 indicators:
-- header: null
+- header: 'Assaults'
   IndicatorID:
   - 2400
-  - 2375
   - 2435
-  - 2436
-  - 2437
+  - 2375
   - 2438
-  - 2439
+- header: 'Firems-related'
+  IndicatorID:
+  - 2437
+  - 2436  
   - 2440
+  - 2439
 ---
 
-Violence is the use of physical, verbal, and/or emotional force to injure, harm, abuse, damage, or destroy. Interpersonal violence includes child abuse and neglect, youth violence, intimate partner violence, sexual violence, and elder abuse. Violence can involve injury to self, including self-harm, suicide attempts, and death by suicide. Violence can also take the form of power against a group or community.
+Violence is the use of physical, verbal, and/or emotional force to injure, harm, abuse, damage, or destroy. Its persistent and inequitable contributions to morbidity and premature mortality in NYC make it a public health priority. Violence disproportionately affects groups oppressed as a result of their socioeconomic status, race/ethnicity, sexual orientation, gender identity, geographic location, or some combination of these factors 
 
-Violence is a public health issue because it is a cause of morbidity and mortality, leading to physical and emotional harm, an increase in negative health outcomes, premature death, psychological trauma and persistent fear to individuals and communities.
+Violence is frequently described through homicide statistics. While homicide is a leading cause of death and captures the most severe form of violence, non-fatal violence-related injuries are much more common and help paint the larger picture on the burden of violence and its impact on the health and future of individuals, families, and communities. 
 
-Violence is also an equity issue because it disproportionately affects groups that have been oppressed due to their socioeconomic status, race/ethnicity, sexual orientation, gender identity, geographic location, or some combination of these factors. Data from multiple sources illustrate tremendous disparities in the distribution and burden of violence throughout NYC. For instance, rates of firearm-related violence are at least two times higher in high poverty neighborhoods when compared to lower poverty neighborhoods. And, violence persists as a leading cause of premature death among NYC’s men of color. 
+Data that capture non-fatal violence-related injuries are best understood when integrating details on the context for the violence and the systems that gives rise to. Interpreting data this way illuminates ways to mitigate the social, political, economic, historical, and environmental factors that contribute to violence. Some of these factors include:
+- Firearms as the source of violence 
+- Poverty and neighborhood disinvestment 
+- Housing and historic redlining practices 
+- Education and employment opportunities 
+- Policing and incarceration practices 
+- Chronic stress and intergenerational trauma Community and social norms 
+- Access to health and health care 
+- Built environment 
 
-### Factors that Contribute to Violence
+### Data sources and analysis
+Analyses of non-fatal violence-related injuries feature data from New York State Department of Health (NYSDOH), Statewide Planning and Research Cooperative System (SPARCS 2018-2021). These data were cut by NYSDOH in November 2023. Internal analyses by New York City Department of Health and Mental Hygiene were conducted in April 2024. Because of slight variations between datasets, results might differ from those calculated using a different extract of SPARCS. 
 
-Restricting the explanation of disparities in violence to differences in individuals and group characteristics most affected by the violence only initiates bias and constrains problem-solving*.* To understand what drives violence, it is important to look at the context and systems within which it occurs and consider the negative impact that historic practices (e.g., redlining) and ongoing social structures (e.g., institutional racism) have on particular groups and communities.
+All calculations include hospitalizations and emergency department visits involving a firearm that are categorized with intent as intentional, undetermined, unintentional or legal intervention/war operations – meaning all firearm related visits in NYC are considered as indicators of non-fatal violence. Firearm visits categorized as intentional self-harm are excluded.  
 
-For example, [racialized systems have created and upheld stereotypes that link Black men and criminality](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5004736/), while ignoring the imbalanced distribution of power and resources experienced by Black men and Black communities. A myriad of  social, political, economic, historical, and environmental factors contribute to violence. These factors convey messages about which populations and communities are deprived of society’s resources and which are privileged by them. Some of these factors include:
+The number of NYC non-fatal assault hospitalizations and emergency department visits were identified using the following International Classification of Disease Clinical Modification (ICD10-CM) codes: T36, T38-T52, T54-T60, T62-T63, T65, T71, T74, T76, W32-W34, X92-X99, Y00-Y04, Y07-Y09, Y22-Y24, Y35, Y38. 
 
-* Poverty and neighborhood disinvestment
-* Housing and historic redlining practices
-* Education and employment opportunities
-* Policing and incarceration practices
-* Chronic stress and intergenerational trauma Community and social norms
-* Access to health and health care
-* Built environment
-* Racism and other forms of oppression
+Only live discharges and initial encounters are included.
 
-Examining factors like these that disproportionately marginalize certain populations illuminate opportunities for prevention.
+All figures include NYC residents only. 
 
-### About the Data and Indicators
+Rates are age-specific and age-adjusted.  Age-specific rates involve the number of non-fatal violence-related injury hospitalizations and ED visits among NYC residents 15-34 years old, divided by the NYC population of 15-34 year olds, using NYC DOHMH intercensal estimates; they are expressed as visits per 100,000 residents. Age-adjusted rates involve the number of non-fatal violence-related injury hospitalizations and ED visits among NYC residents summed within five age groups (0-17, 18-24, 25-44, 45-64, 65+) and divided by the population in each age group, using NYC DOHMH intercensal estimates. Quotients are multiplied by the proportion of the 2000 US population in each age group. The age-adjusted rate is the sum of the weighted age-specific rates, expressed as cases per 100,000 residents. NYC DOHMH population estimates are modified from US Census Bureau interpolated intercensal population estimates, 2000-2021. Updated September 2022. 
 
-Violence is frequently described through homicide statistics. While it is a leading cause of death and captures the most severe form of violence, non-fatal violence-related injuries are much more common and help paint the larger picture on the burden of violence and its impact on the health and future of individuals, families, and communities.
+*SPARCS Data Disclaimer*
+These data were produced from raw data purchased from or provided by the New York State Department of Health (NYSDOH). However, the calculations, metrics, conclusions derived, and views expressed herein are those of the author(s) and do not reflect the conclusions or views of NYSDOH. NYSDOH, its employees, officers, and agents make no representation, warranty or guarantee as to the accuracy, completeness, currency, or suitability of the information provided here.   
 
-### Interpreting the Data and Informing Solutions
 
-Violence-related data must be interpreted in ways where we move beyond demonizing those causing the harm and instead look at the context and systems that gives rise to violence. Interpreting data this way illuminates ways to mitigate the social, political, economic, historical, and environmental factors that contribute to violence.
 
-With any public health epidemic, be it influenza, obesity, opioid addiction or gun violence, prevention is key.  Prevention is achievable in ways that are similar to multi-pronged approaches that have been used to address the risk and resilient factors for health outcomes like asthma, motor vehicle crashes, and opioid overdoses. Indeed, multi-faceted approaches to health promotion that empower individuals, families, communities, and systems equitably are where sustainable solutions for violence reduction and prevention reside.
