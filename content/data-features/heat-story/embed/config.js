@@ -410,11 +410,17 @@ config = {
         },
         {
             "property": {
-                "id": "heat_stress",
+                "id": "Heat_stress_hospitalizations",
                 "name": "Heat stress hospitalizations",
-                "type": "geojson",
+                "type": "measureData",
                 "buttonSection": "base",
-                "url": window.BaseURL + "geojson/heat-stress.geojson",
+                "measureInfo" : {
+                    "indicatorID": 2410,
+                    "measureID": 1283,
+                    "geoType": "CD",
+                    "time": "2012-2016",
+                },
+                "exclusive": true,
                 "args": {
                     "colorFeatureProperty": "Heat hospitalizations, Average annual age-adjusted rate",
                     "minColor": "#054fb9",
@@ -423,7 +429,6 @@ config = {
                     "opacity": 0.6,
                     "legendDescription": "Heat stress hospitalizations due to heat-related illnesses, such as heat stroke and heat exhaustion, represent part of the public health burden of hot weather. <a href='../../data-explorer/weather-related-illness/?id=2076#display=summary'>Get full data</a>."
                 },
-                "exclusive": true,
                 "displayProperties": {
                     "missingDisplay": "N/A",
                     "displayPropertyArgs": [
@@ -433,101 +438,10 @@ config = {
                             "format": "float",
                             "units": "per 100,000"
                         },
-                        /*
-                        {
-                            "id": "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Rate",
-                            "displayName": "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Rate",
-                            "format": "float",
-                            "units": "per 100,000"
-                        },
-                        
-                        {
-                            "id": "5-Year Heat Stress Hospitalizations - 5-Year Total Number",
-                            "displayName": "5-Year Heat Stress Hospitalizations - 5-Year Total Number"
-                        },
-                        {
-                            "id": "Heat Stress Emergency Department Visits - Age-Adjusted Rate",
-                            "displayName": "Heat Stress Emergency Department Visits - Age-Adjusted Rate",
-                            "format": "float",
-                            "units": "per 100,000"
-                        },
-                        {
-                            "id": "Heat Stress Emergency Department Visits - Estimated Annual Rate",
-                            "displayName": "Heat Stress Emergency Department Visits - Estimated Annual Rate",
-                            "format": "float",
-                            "units": "per 100,000"
-                        },
-                        {
-                            "id": "Heat Stress Hospitalizations - Estimated Annual Rate",
-                            "displayName": "Heat Stress Hospitalizations - Estimated Annual Rate",
-                            "format": "float",
-                            "units": "per 100,000"
-                        }
-                        */
                     ]
                 }
             }
         },
-        // {
-        //     "property": {
-        //         "id": "health_impacts_of_air_pollution",
-        //         "name": "Health Impacts Of Air Pollution",
-        //         "type": "geojson",
-        //         "url": window.BaseURL + "geojson/health-impacts-of-air-pollution.geojson",
-        //         "args": {
-        //             "colorFeatureProperty": "PM2.5-Attributable Respiratory Hospitalizations (Adults 20 Yrs and Older) - Estimated Annual Rate",
-        //             "minColor": "white",
-        //             "maxColor": "black",
-        //             "color": "darkgrey",
-        //             "opacity": 0.6
-        //         },
-        //         "displayProperties": {
-        //             "missingDisplay": "N/A",
-        //             "displayPropertyArgs": [
-        //                 {
-        //                     "id": "PM2.5-Attributable Asthma Emergency Department Visits - Estimated Annual Number - 18 Yrs and Older",
-        //                     "displayName": "PM2.5-Attributable Asthma Emergency Department Visits - Estimated Annual Number - 18 Yrs and Older"
-        //                 },
-        //                 {
-        //                     "id": "PM2.5-Attributable Asthma Emergency Department Visits - Estimated Annual Number - Children 0 to 17 Yrs Old",
-        //                     "displayName": "PM2.5-Attributable Asthma Emergency Department Visits - Estimated Annual Number - Children 0 to 17 Yrs Old"
-        //                 },
-        //                 {
-        //                     "id": "PM2.5-Attributable Asthma Emergency Department Visits - Estimated Annual Rate- 18 Yrs and Older",
-        //                     "displayName": "PM2.5-Attributable Asthma Emergency Department Visits - Estimated Annual Rate- 18 Yrs and Older"
-        //                 },
-        //                 {
-        //                     "id": "PM2.5-Attributable Asthma Emergency Department Visits - Estimated Annual Rate- Children 0 to 17 Yrs Old",
-        //                     "displayName": "PM2.5-Attributable Asthma Emergency Department Visits - Estimated Annual Rate- Children 0 to 17 Yrs Old"
-        //                 },
-        //                 {
-        //                     "id": "PM2.5-Attributable Cardiovascular Hospitalizations (Adults 40 Yrs and Older) - Estimated Annual Number",
-        //                     "displayName": "PM2.5-Attributable Cardiovascular Hospitalizations (Adults 40 Yrs and Older) - Estimated Annual Number"
-        //                 },
-        //                 {
-        //                     "id": "PM2.5-Attributable Cardiovascular Hospitalizations (Adults 40 Yrs and Older) - Estimated Annual Rate",
-        //                     "displayName": "PM2.5-Attributable Cardiovascular Hospitalizations (Adults 40 Yrs and Older) - Estimated Annual Rate"
-        //                 },
-        //                 {
-        //                     "id": "PM2.5-Attributable Deaths - Estimated Annual Number - Adults 30 Yrs and Older",
-        //                     "displayName": "PM2.5-Attributable Deaths - Estimated Annual Number - Adults 30 Yrs and Older"
-        //                 },
-        //                 {
-        //                     "id": "PM2.5-Attributable Deaths - Estimated Annual Rate - Adults 30 Yrs and Older",
-        //                     "displayName": "PM2.5-Attributable Deaths - Estimated Annual Rate - Adults 30 Yrs and Older"
-        //                 },
-        //                 {
-        //                     "id": "PM2.5-Attributable Respiratory Hospitalizations (Adults 20 Yrs and Older) - Estimated Annual Number",
-        //                     "displayName": "PM2.5-Attributable Respiratory Hospitalizations (Adults 20 Yrs and Older) - Estimated Annual Number"
-        //                 },
-        //                 {
-        //                     "id": "PM2.5-Attributable Respiratory Hospitalizations (Adults 20 Yrs and Older) - Estimated Annual Rate",
-        //                     "displayName": "PM2.5-Attributable Respiratory Hospitalizations (Adults 20 Yrs and Older) - Estimated Annual Rate"
-        //                 }
-        //             ]
-        //         }
-        //     }
-        // },
         {
             "property": {
                 "id": "Neighborhood_poverty",
@@ -635,6 +549,159 @@ config = {
         //         }
         //     }
         // }
+
+/* unused layers 
+
+ /* commenting out geojson
+        "url": window.BaseURL + "geojson/heat-stress.geojson",
+        "args": {
+            "colorFeatureProperty": "Heat hospitalizations, Average annual age-adjusted rate",
+            "minColor": "#054fb9",
+            "maxColor": "#c44601",
+            "color": "black",
+            "opacity": 0.6,
+            "legendDescription": "Heat stress hospitalizations due to heat-related illnesses, such as heat stroke and heat exhaustion, represent part of the public health burden of hot weather. <a href='../../data-explorer/weather-related-illness/?id=2076#display=summary'>Get full data</a>."
+        },
+            "exclusive": true,
+            "displayProperties": {
+            "missingDisplay": "N/A",
+            "displayPropertyArgs": [
+                {
+                    "id": "Heat hospitalizations, Average annual age-adjusted rate",
+                    "displayName": "Heat hospitalizations, Average annual age-adjusted rate",
+                    "format": "float",
+                    "units": "per 100,000"
+                },
+            ]
+        }
+    }
+},
+
+        {
+            "property": {
+                "id": "heat_stress",
+                "name": "Heat stress hospitalizations",
+                "type": "geojson",
+                "buttonSection": "base",
+                "url": window.BaseURL + "geojson/heat-stress.geojson",
+                "args": {
+                    "colorFeatureProperty": "Heat hospitalizations, Average annual age-adjusted rate",
+                    "minColor": "#054fb9",
+                    "maxColor": "#c44601",
+                    "color": "black",
+                    "opacity": 0.6,
+                    "legendDescription": "Heat stress hospitalizations due to heat-related illnesses, such as heat stroke and heat exhaustion, represent part of the public health burden of hot weather. <a href='../../data-explorer/weather-related-illness/?id=2076#display=summary'>Get full data</a>."
+                },
+                "exclusive": true,
+                "displayProperties": {
+                    "missingDisplay": "N/A",
+                    "displayPropertyArgs": [
+                        {
+                            "id": "Heat hospitalizations, Average annual age-adjusted rate",
+                            "displayName": "Heat hospitalizations, Average annual age-adjusted rate",
+                            "format": "float",
+                            "units": "per 100,000"
+                        },
+                        
+                        {
+                            
+    //                           "id": "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Rate",
+    //                            "displayName": "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Rate",
+    //                            "format": "float",
+    //                            "units": "per 100,000"
+    //                        },
+    //                        
+    //                        {
+    //                            "id": "5-Year Heat Stress Hospitalizations - 5-Year Total Number",
+    //                            "displayName": "5-Year Heat Stress Hospitalizations - 5-Year Total Number"
+    //                        },
+    //                        {
+    //                            "id": "Heat Stress Emergency Department Visits - Age-Adjusted Rate",
+    //                            "displayName": "Heat Stress Emergency Department Visits - Age-Adjusted Rate",
+    //                            "format": "float",
+    //                            "units": "per 100,000"
+    //                        },
+    //                        {
+    //                            "id": "Heat Stress Emergency Department Visits - Estimated Annual Rate",
+    //                            "displayName": "Heat Stress Emergency Department Visits - Estimated Annual Rate",
+    //                            "format": "float",
+    //                            "units": "per 100,000"
+    //                        },
+    //                        {
+    //                            "id": "Heat Stress Hospitalizations - Estimated Annual Rate",
+    //                            "displayName": "Heat Stress Hospitalizations - Estimated Annual Rate",
+    //                            "format": "float",
+    //                           "units": "per 100,000"
+                        }
+                        
+                    ]
+                }
+            }
+        },
+
+        // {
+        //     "property": {
+        //         "id": "health_impacts_of_air_pollution",
+        //         "name": "Health Impacts Of Air Pollution",
+        //         "type": "geojson",
+        //         "url": window.BaseURL + "geojson/health-impacts-of-air-pollution.geojson",
+        //         "args": {
+        //             "colorFeatureProperty": "PM2.5-Attributable Respiratory Hospitalizations (Adults 20 Yrs and Older) - Estimated Annual Rate",
+        //             "minColor": "white",
+        //             "maxColor": "black",
+        //             "color": "darkgrey",
+        //             "opacity": 0.6
+        //         },
+        //         "displayProperties": {
+        //             "missingDisplay": "N/A",
+        //             "displayPropertyArgs": [
+        //                 {
+        //                     "id": "PM2.5-Attributable Asthma Emergency Department Visits - Estimated Annual Number - 18 Yrs and Older",
+        //                     "displayName": "PM2.5-Attributable Asthma Emergency Department Visits - Estimated Annual Number - 18 Yrs and Older"
+        //                 },
+        //                 {
+        //                     "id": "PM2.5-Attributable Asthma Emergency Department Visits - Estimated Annual Number - Children 0 to 17 Yrs Old",
+        //                     "displayName": "PM2.5-Attributable Asthma Emergency Department Visits - Estimated Annual Number - Children 0 to 17 Yrs Old"
+        //                 },
+        //                 {
+        //                     "id": "PM2.5-Attributable Asthma Emergency Department Visits - Estimated Annual Rate- 18 Yrs and Older",
+        //                     "displayName": "PM2.5-Attributable Asthma Emergency Department Visits - Estimated Annual Rate- 18 Yrs and Older"
+        //                 },
+        //                 {
+        //                     "id": "PM2.5-Attributable Asthma Emergency Department Visits - Estimated Annual Rate- Children 0 to 17 Yrs Old",
+        //                     "displayName": "PM2.5-Attributable Asthma Emergency Department Visits - Estimated Annual Rate- Children 0 to 17 Yrs Old"
+        //                 },
+        //                 {
+        //                     "id": "PM2.5-Attributable Cardiovascular Hospitalizations (Adults 40 Yrs and Older) - Estimated Annual Number",
+        //                     "displayName": "PM2.5-Attributable Cardiovascular Hospitalizations (Adults 40 Yrs and Older) - Estimated Annual Number"
+        //                 },
+        //                 {
+        //                     "id": "PM2.5-Attributable Cardiovascular Hospitalizations (Adults 40 Yrs and Older) - Estimated Annual Rate",
+        //                     "displayName": "PM2.5-Attributable Cardiovascular Hospitalizations (Adults 40 Yrs and Older) - Estimated Annual Rate"
+        //                 },
+        //                 {
+        //                     "id": "PM2.5-Attributable Deaths - Estimated Annual Number - Adults 30 Yrs and Older",
+        //                     "displayName": "PM2.5-Attributable Deaths - Estimated Annual Number - Adults 30 Yrs and Older"
+        //                 },
+        //                 {
+        //                     "id": "PM2.5-Attributable Deaths - Estimated Annual Rate - Adults 30 Yrs and Older",
+        //                     "displayName": "PM2.5-Attributable Deaths - Estimated Annual Rate - Adults 30 Yrs and Older"
+        //                 },
+        //                 {
+        //                     "id": "PM2.5-Attributable Respiratory Hospitalizations (Adults 20 Yrs and Older) - Estimated Annual Number",
+        //                     "displayName": "PM2.5-Attributable Respiratory Hospitalizations (Adults 20 Yrs and Older) - Estimated Annual Number"
+        //                 },
+        //                 {
+        //                     "id": "PM2.5-Attributable Respiratory Hospitalizations (Adults 20 Yrs and Older) - Estimated Annual Rate",
+        //                     "displayName": "PM2.5-Attributable Respiratory Hospitalizations (Adults 20 Yrs and Older) - Estimated Annual Rate"
+        //                 }
+        //             ]
+        //         }
+        //     }
+        //    },
+*/
+
+
 
 
         // Stories start here // 
