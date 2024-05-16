@@ -42,6 +42,7 @@
         <div class="clickables">
             <a id="spillDot" onclick="spill()" aria-label="..." style="position:absolute;top: 65%;left: 28%; size: 200%" tabindex="0" class="dot dot-border" data-toggle="modal" data-target="#spillModal" ></a>
             <a id="bowlDot" onclick="bowl()" aria-label="..." style="position:absolute;top: 72%;left: 6%;" tabindex="0" class="dot dot-border" data-toggle="modal" data-target="#bowlModal" ></a>
+            <!-- for trash/radiator, add another clickable that runs bowl() -->
             <a id="moldDot" onclick="mold()" aria-label="..." style="position:absolute;top: 40%;left: 39.5%;" tabindex="0" class="dot dot-border" data-toggle="modal" data-target="#moldModal" ></a>
             <a id="crackinwallDot" onclick="crackinwall()" aria-label="..." style="position:absolute;top: 40%;left: 30%;" tabindex="0" class="dot dot-border" data-toggle="modal" data-target="#crackinwallModal" ></a>
             <a id="peelingpaintDot" onclick="peelingpaint()" aria-label="..." style="position:absolute;top: 55%;left: 3%;" tabindex="0" class="dot dot-border" data-toggle="modal" data-target="#peelingpaintModal" ></a>
@@ -395,7 +396,7 @@
     }
 
     function smokedetector_1() {
-      document.getElementById('smokedetector_1Overlay').classList.add('hide')
+      // document.getElementById('smokedetector_1Overlay').classList.add('hide')
       document.getElementById('smokedetector_1Dot').classList.remove('dot-border')
 
     }
@@ -418,7 +419,7 @@
 
     }
 
-    function ceramicware) {
+    function ceramicware() {
       document.getElementById('ceramicwareOverlay').classList.add('hide')
       document.getElementById('ceramicwareDot').classList.remove('dot-border')
 
