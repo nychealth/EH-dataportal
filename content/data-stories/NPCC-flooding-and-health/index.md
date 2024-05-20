@@ -2,7 +2,7 @@
 title: What Hurricane Ida and Superstorm Sandy taught us about flooding and health
 date: 2024-02-08T09:01:00-04:00
 draft: false
-seo_title: "How economic stability creates health "
+seo_title: "What Hurricane Ida and Superstorm Sandy taught us about flooding and health"
 seo_description: "A data story about the health impacts from climate change-related flooding"
 tags:
 categories: ["housing", "social", "climate", "neighborhoods"]
@@ -45,15 +45,16 @@ After the storm, damage from water getting into buildings, homes, infrastructure
 </div>
 
 <!-- trying out callout box designs -->
-<div class="asidebox">
-<p>
 
-  <h5> Why is coastal flooding risk increasing? </h5>
-    As the ocean warms, it takes up more space. Kind of like when you notice that you can’t remove your ring in the summer because your fingers are swollen in the hot temperatures. As the global average temperature rises, the ocean absorbs heat and warms, and when it expands, we get storm surges that are higher than average.
-  <h5> What will the future of coastal flooding look like in NYC? </h5>
-    The sea level in NYC is rising, which makes powerful storm surges (like what happened during Sandy) worse. Scientists warn that the sea level will rise further over the coming decades -- by up to 81 inches in the 2080s and 114 inches by 2100. We’re not sure how quickly it’ll happen and not every area of NYC will be affected equally because the ground is higher in some areas and some areas are further from the shore. Single and two-family homes and lower-level apartments and basements are at higher risk for flooding and damage.
-  <h5> Tidal flooding also will play a role </h5>
-    With climate change, tides are likely to be higher more often, causing more frequent tidal flooding, which is when tides temporarily flood low-lying areas independently of high winds from storms. Data show that there was a 200% increase in high tide flood days from 2000 to 2021. Flooding from tides that are higher than they have been historically means flooding can happen even when there is no severe weather. </p>
+<div class="card card-left-border shadow-sm mb-2">
+  <div class="card-body">
+    <h5> Why is coastal flooding risk increasing? </h5>
+      <p style="font-size:16px";>As the ocean warms, it takes up more space. Kind of like when you notice that you can’t remove your ring in the summer because your fingers are swollen in the hot temperatures. As the global average temperature rises, the ocean absorbs heat and warms, and when it expands, we get storm surges that are higher than average.</p><br>
+    <h5> What will the future of coastal flooding look like in NYC? </h5>
+      <p style="font-size:16px";>The sea level in NYC is rising, which makes powerful storm surges (like what happened during Sandy) worse. Scientists warn that the sea level will rise further over the coming decades -- by up to 81 inches in the 2080s and 114 inches by 2100. We’re not sure how quickly it’ll happen and not every area of NYC will be affected equally because the ground is higher in some areas and some areas are further from the shore. Single and two-family homes and lower-level apartments and basements are at higher risk for flooding and damage.<p><br>
+    <h5> Tidal flooding also will play a role </h5>
+      <p style="font-size:16px";>With climate change, tides are likely to be higher more often, causing more frequent tidal flooding, which is when tides temporarily flood low-lying areas independently of high winds from storms. Data show that there was a 200% increase in high tide flood days from 2000 to 2021. Flooding from tides that are higher than they have been historically means flooding can happen even when there is no severe weather. </p>
+  </div>
 </div>
 
 <div class="narrow">
@@ -93,7 +94,7 @@ Most of the NYC people who died during Ida died in unregulated basement apartmen
 
 ### Both coastal and rainfall flooding are increasing in NYC...
 
-<div class="asidebox mb-2 bg-color: info">
+<div class="asidebox mb-2" style="background-color:cyan";>
 <h5>Coastal flooding</h5>
 
 Bottom line:Because of higher sea levels, flooding from coastal storms is likely to increase in NYC. Hurricanes with stronger winds can also push more water onto land, making storm surge worse. Higher tides are also a contributor to the magnitude of coastal flooding.
@@ -108,7 +109,7 @@ Who is most at risk: People living in basement apartments and lower-lying areas 
 
 </div>
 
-###...But flooding won’t impact everyone equally
+### ...But flooding won’t impact everyone equally
 
 Certain populations are more vulnerable to the health risks of flooding and may find it difficult to evacuate.
 
@@ -117,6 +118,10 @@ Certain populations are more vulnerable to the health risks of flooding and may 
 - People with less access to resources to prepare or evacuate, including people who might not receive warning information because of isolation or language barriers, people socially or economically marginalized, or people with unstable living situations.
 
 - People with less control over their environment, such as those who are living in institutional settings or are incarcerated.
+
+<div class="asidebox">
+    <em><i class="fas fa-hands-helping text-center mr-1"></i>New Yorkers seeking support with their mental health can connect to trained counselors, for free and in over 200 languages, through 988. For 24/7 support, call or text 988. If you or someone you know is at immediate risk of hurting themselves, or in immediate danger, call 911.</em>
+</div>
 
 ## People living along the coasts with less access to resources are the most vulnerable to storm surge
 
