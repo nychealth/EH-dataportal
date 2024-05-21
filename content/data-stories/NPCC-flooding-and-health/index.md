@@ -114,7 +114,7 @@ Certain populations are more vulnerable to the health risks of flooding and may 
 
 - People with less control over their environment, such as those who are living in institutional settings or are incarcerated.
 
-### People living along the coasts with less access to resources are the most vulnerable to storm surge
+#### People living along the coasts with less access to resources are the most vulnerable to storm surge
 
 <div class="card card-left-border shadow-sm mb-2 fs-s">
     <div class="card-body">
@@ -127,7 +127,7 @@ Certain populations are more vulnerable to the health risks of flooding and may 
 <div class="my-4 border-top border-bottom py-2">
 <iframe title="Flood Vulnerability Index" aria-label="Map" id="datawrapper-chart-HAWCl" src="https://datawrapper.dwcdn.net/HAWCl/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="691" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
 
-### Be prepared for the next flood: sign-up for emergency alerts, make a plan, and know your risk
+#### Be prepared for the next flood: sign-up for emergency alerts, make a plan, and know your risk
 
 Impacts to your health can happen before, during, and after a flood. During the flood these risks include injury and death from drowning, traveling during a flood, or electrocution. After the flood these risks may be related to cleaning up near or in standing water, lack of access to medical care and medication from power outages, lack of access to safe and healthy housing, and other related health risks. You can take some simple steps to prepare for flooding and keep yourself and your family safe.
 
@@ -139,7 +139,7 @@ Impacts to your health can happen before, during, and after a flood. During the 
 
 - Make a meeting plan and prepare emergency supplies. <a href="https://www.nyc.gov/site/em/ready/get-prepared.page"> Read comprehensive flood and storm preparation tips.</a> Check on friends, relatives, and neighbors, especially older adults and people with disabilities, access and functional needs, or health conditions to see if they need help with a plan or supplies.
 
-### Preventing future tragedy from flooding means prioritizing housing, infrastructure, and communities
+#### Preventing future tragedy from flooding means prioritizing housing, infrastructure, and communities
 
 The City’s approach considers present and future flooding risks. The Department of Environmental Protection is improving New York’s drainage systems so that when it rains very hard, the water can drain faster. <a href="https://www.nyc.gov/site/dep/water/green-infrastructure.page"> Additionally, more grey and green infrastructure is being installed to collect, store, and move rainfall.</a> This will help keep surrounding areas dry during and after heavy storms. Initiatives like Rainproof NYC will help manage severe rainfall by expanding natural wetlands, which help absorb water.
 
