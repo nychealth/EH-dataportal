@@ -26,15 +26,15 @@ photocredit: JulienneSchaer
 
 When superstorm Sandy hit New York City in October 2012, 52 people died as a result of injuries and there were increases in deaths from other causes, such as chronic health conditions. Thousands of people were evacuated from hospitals, nursing homes and other facilities, two million homes and facilities lost power, and the storm caused billions of dollars of damage to people’s homes and businesses.
 
-The majority of the homes damaged and destroyed during Sandy were in coastal areas (closer to the ocean) where higher-than-normal tides (due to time of day, sea level rise, and lunar cycles) and powerful winds combined to send water rushing onto the shoreline. This is a storm surge.
+The majority of the homes damaged and destroyed during Sandy were in <span style="color: #0E6655 ; font-weight: bold; background-color: lightblue;">coastal areas (closer to the ocean)</span> where higher-than-normal tides (due to time of day, sea level rise, and lunar cycles) and powerful winds combined to send water rushing onto the shoreline. This is a storm surge.
 
-### Most injury deaths during Sandy occurred at home
+#### Most injury deaths during Sandy occurred at home
 
 Most of the 52 injury deaths that were both indirectly and directly caused by Sandy took place along the coasts in Staten Island (44%), Queens (25%) and Brooklyn (23%), in zones where the mayor ordered an evacuation of residents. Not everyone chose to or was able to evacuate, and some tried to evacuate in dangerous conditions, resulting in injury and death. Almost half of those who died (48%) were ages 65 and older.
 
 Thirty-six people drowned as a result of the flooding. At least one third of those who drowned at home (9 people) were found in the basement or lived in a basement apartment.
 
-### People with less access to resources were more vulnerable to the effects of flooding and power outages
+#### People with less access to resources were more vulnerable to the effects of flooding and power outages
 
 After the storm, damage from water getting into buildings, homes, infrastructure and the interruption of essential services harmed under-resourced communities and older adults. Food pantries were flooded and lost inventory, and power outages stranded older adults and those with mobility access needs in high-rises, cutting off access to medication and other essentials. Residents of public housing developments along the waterfront felt these impacts particularly strongly.
 
@@ -44,20 +44,20 @@ After the storm, damage from water getting into buildings, homes, infrastructure
 </div>
 <!-- trying out callout box designs -->
 
-<div class="card card-left-border shadow-sm mb-2 fs-xs" style="border-color: #138D75;">
+<div class="card card-left-border shadow-sm mb-2" style="border-color: #138D75;">
   <div class="card-body">
-    <h6 class="card title"> Why is coastal flooding risk increasing? </h6>
-      <p>As the ocean warms, it takes up more space. Kind of like when you notice that you can’t remove your ring in the summer because your fingers are swollen in the hot temperatures. As the global average temperature rises, the ocean absorbs heat and warms, and when it expands, we get storm surges that are higher than average.</p><br>
-    <h6> What will the future of coastal flooding look like in NYC? </h6>
-      <p>The sea level in NYC is rising, which makes powerful storm surges (like what happened during Sandy) worse. Scientists warn that the sea level will rise further over the coming decades -- by up to 81 inches in the 2080s and 114 inches by 2100. We’re not sure how quickly it’ll happen and not every area of NYC will be affected equally because the ground is higher in some areas and some areas are further from the shore. Single and two-family homes and lower-level apartments and basements are at higher risk for flooding and damage.<p><br>
-    <h6> Tidal flooding also will play a role </h6>
-      <p>With climate change, tides are likely to be higher more often, causing more frequent tidal flooding, which is when tides temporarily flood low-lying areas independently of high winds from storms. Data show that there was a 200% increase in high tide flood days from 2000 to 2021. Flooding from tides that are higher than they have been historically means flooding can happen even when there is no severe weather. </p>
+    <h5 class="card title"> Why is coastal flooding risk increasing? </h5>
+      <p class="card-text" style="font-size: 16px">As the ocean warms, it takes up more space. Kind of like when you notice that you can’t remove your ring in the summer because your fingers are swollen in the hot temperatures. As the global average temperature rises, the ocean absorbs heat and warms, and when it expands, we get storm surges that are higher than average.</p>
+    <h5 class="card-title"> What will the future of coastal flooding look like in NYC? </h5>
+      <p class="card-text" style="font-size: 16px">The sea level in NYC is rising, which makes powerful storm surges (like what happened during Sandy) worse. Scientists warn that the sea level will rise further over the coming decades -- by up to 81 inches in the 2080s and 114 inches by 2100. We’re not sure how quickly it’ll happen and not every area of NYC will be affected equally because the ground is higher in some areas and some areas are further from the shore. Single and two-family homes and lower-level apartments and basements are at higher risk for flooding and damage.<p>
+    <h5 class="card-title"> Tidal flooding also will play a role </h5>
+      <p class="card-text" style="font-size: 16px" >With climate change, tides are likely to be higher more often, causing more frequent tidal flooding, which is when tides temporarily flood low-lying areas independently of high winds from storms. Data show that there was a 200% increase in high tide flood days from 2000 to 2021. Flooding from tides that are higher than they have been historically means flooding can happen even when there is no severe weather. </p>
   </div>
 </div>
 
 ### Ida’s extreme rainfall broke records and flooded basement apartments
 
-When Hurricane Ida hit New York City in September 2021, rain fell faster than could be drained away through stormwater infrastructure. This caused unprecedented inland flooding, especially in low-lying areas and basement apartments. Unlike the flooding that happened during Sandy, which mostly affected coastal areas, rainfall (or pluvial) flooding can happen anywhere in the city.
+When Hurricane Ida hit New York City in September 2021, rain fell faster than could be drained away through stormwater infrastructure. This caused unprecedented inland flooding, especially in low-lying areas and basement apartments. Unlike the flooding that happened during Sandy, which mostly affected coastal areas, <span style="color: #0E6655 ; font-weight: bold; background-color: lightblue;">rainfall (or pluvial) flooding</span> can happen anywhere in the city.
 
 Nine inches of rain fell at an unprecedented rate per hour.
 
@@ -79,11 +79,11 @@ The first-ever flash flood emergency warning for New York City was issued by the
 <div class="narrow my-4 py-2 border-top border-bottom">
   <iframe title="NYC's annual precipitation has increased about 20% since 1960" aria-label="Scatter Plot" id="datawrapper-chart-r4fxY" src="https://datawrapper.dwcdn.net/r4fxY/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="606" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
 
-### Rainfall <em> intensity </em> has increased in New York City over the last 70 years
+#### Rainfall <em> intensity </em> has increased in New York City over the last 70 years
 
 <!-- rainfall intensity chart / caption -->
 
-### Housing and socioeconomic status, were important factors for who was most at risk during Ida
+#### Housing and socioeconomic status, were important factors for who was most at risk during Ida
 
 Most of the NYC people who died during Ida died in unregulated basement apartments. They were mostly Asian (71%) and born outside the U.S (71%). New Yorkers who live in these basement apartments may have limited housing options and these may be the only affordable option available to them. These deaths from Ida reflect how a housing crisis makes people more vulnerable to the health burden of the climate crisis, and how this disproportionately affects immigrants and New Yorkers living in poverty.
 
