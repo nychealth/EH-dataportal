@@ -21,13 +21,7 @@
                 <h1>{{ .Title }}</h1>
                     {{- .Content  -}}
 
-                    {{- with .Resources.GetMatch "a-summary.md" -}}
-                        {{ .Content }}
-                    {{- end -}}
-
-                    <hr class="my-4">
-
-                    {{- with .Resources.GetMatch "a-introduction.md" -}}
+                    {{- with .Resources.GetMatch "0-summary-intro.md" -}}
                         {{ .Content }}
                     {{- end -}}
     
@@ -125,19 +119,10 @@
         </div>
     </div>
 
-    <div class="row mt-3">
+    <div class="row mt-1 mb-3">
         <div class="col-md-10 col-sm-12 mx-auto my-1">
             <h2>Heat Exacerbated Deaths</h2>
         </div>
-        <div class="col-md-5 ml-auto col-sm-12">
-            {{- with .Resources.GetMatch "5a-heat-ex-intro.md" -}}
-                {{ .Content }}
-            {{- end -}}
-        </div>
-        <div class="col-md-5 mr-auto"></div>
-    </div>
-
-    <div class="row mt-1 mb-3">
         <div class="col-md-5 ml-auto col-sm-12">
             {{- with .Resources.GetMatch "5-heat-ex-deaths.md" -}}
                 {{ .Content }}
@@ -146,7 +131,7 @@
 
         <div class="col-md-5 mr-auto col-sm-12">
             <div class="p-2 border">
-                {{- with .Resources.GetMatch "5-fig-3.md" -}}
+                {{- with .Resources.GetMatch "5-fig-3-4.md" -}}
                 {{ .Content }}
                 {{- end -}}
             </div>
@@ -155,17 +140,17 @@
 
     <div class="row my-3">
         <div class="col-md-10 col-sm-12 mx-auto my-1">
-            <h3>Heat Exacerbated Mortality Risk</h3>
+            <h3>Risk Factors Associated With Heat-Exacerbated Deaths</h3>
         </div>
         <div class="col-md-5 ml-auto col-sm-12">
-            {{- with .Resources.GetMatch "6-mort-risk.md" -}}
+            {{- with .Resources.GetMatch "6-risk.md" -}}
                 {{ .Content }}
             {{- end -}}
         </div>
 
         <div class="col-md-5 mr-auto col-sm-12">
             <div class="p-2 border">
-                {{- with .Resources.GetMatch "6-fig-4.md" -}}
+                {{- with .Resources.GetMatch "6-fig-5-6.md" -}}
                 {{ .Content }}
                 {{- end -}}
             </div>
@@ -177,52 +162,13 @@
             <h3>Hotter summers</h3>
         </div>
         <div class="col-md-5 ml-auto col-sm-12">
-            {{- with .Resources.GetMatch "7a-hotter-summers-intro.md" -}}
+            {{- with .Resources.GetMatch "7-hotter-summers.md" -}}
                 {{ .Content }}
             {{- end -}}
         </div>
         <div class="col-md-5 mr-auto">
             <div class="p-2 border">
-                {{- with .Resources.GetMatch "7-fig-5.md" -}}
-                {{ .Content }}
-                {{- end -}}
-            </div>
-        </div>
-    </div>
-
-
-    <div class="row my-3">
-        <div class="col-md-5 ml-auto col-sm-12">
-            {{- with .Resources.GetMatch "7b-hotter-summers.md" -}}
-                {{ .Content }}
-            {{- end -}}
-        </div>
-
-        <div class="col-md-5 mr-auto col-sm-12">
-            <div class="p-2 border">
-                {{- with .Resources.GetMatch "7-fig-6.md" -}}
-                {{ .Content }}
-                {{- end -}}
-            </div>
-        </div>
-    </div>
-
-
-
-
-    <div class="row my-3">
-        <div class="col-md-10 mx-auto col-sm-12 my-1">
-            <h3>Air conditioning prevalence</h3>
-        </div>
-        <div class="col-md-5 ml-auto col-sm-12">
-            {{- with .Resources.GetMatch "8-AC.md" -}}
-                {{ .Content }}
-            {{- end -}}
-        </div>
-
-        <div class="col-md-5 mr-auto col-sm-12">
-            <div class="p-2 border">
-                {{- with .Resources.GetMatch "8-fig-7.md" -}}
+                {{- with .Resources.GetMatch "7-fig-7.md" -}}
                 {{ .Content }}
                 {{- end -}}
             </div>
@@ -237,21 +183,15 @@
 
     <div class="row my-3">
         <div class="col-md-10 mx-auto col-sm-12 my-1">
-            <h2>Neighborhood Impacts</h2>
+            <h2>Community-Level Impacts</h2>
         </div>
         <div class="col-md-5 ml-auto col-sm-12">
-            {{- with .Resources.GetMatch "9-neighborhood-impacts.md" -}}
+            {{- with .Resources.GetMatch "9-impacts.md" -}}
                 {{ .Content }}
             {{- end -}}
         </div>
 
         <div class="col-md-5 mr-auto col-sm-12">
-            <div class="p-2 border">
-                {{- with .Resources.GetMatch "9-fig-8.md" -}}
-                {{ .Content }}
-                {{- end -}}
-            </div>
-
             <div class="p-2 border mt-2">
                 {{- with .Resources.GetMatch "9-maps.md" -}}
                 {{ .Content }}
@@ -268,7 +208,7 @@
 
     <div class="row my-3">
         <div class="col-md-7 mx-auto col-sm-12">
-            {{- with .Resources.GetMatch "z-conclusion.md" -}}
+            {{- with .Resources.GetMatch "10-conclusion.md" -}}
             {{ .Content }}
             {{- end -}}
         </div>
