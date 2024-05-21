@@ -67,7 +67,7 @@ The first-ever flash flood emergency warning for New York City was issued by the
 
 </div>
 
-<div class="card card-left-border shadow-sm mb-2 fs-xs">
+<div class="card card-left-border shadow-sm mb-2 fs-s">
     <div class="card-body">
       <h5>Why is rainfall flooding increasing?</h5>
       <p> Climate change is making it rain more intensely (intensity is measured by amount of rainfall in a given time period) because warmer air holds more moisture. It has rained (measured as precipitation) more each year on average since 1960 in NYC.<p>
@@ -89,19 +89,15 @@ Most of the NYC people who died during Ida died in unregulated basement apartmen
 
 ### Both coastal and rainfall flooding are increasing in NYC...
 
-<div class="asidebox mb-2" style="background-color:#76D7C4; border-color: #138D75; border-radius: 10px;">
-<h5>Coastal flooding</h5>
-
-Bottom line:Because of higher sea levels, flooding from coastal storms is likely to increase in NYC. Hurricanes with stronger winds can also push more water onto land, making storm surge worse. Higher tides are also a contributor to the magnitude of coastal flooding.
-
-Who is most at risk: People in neighborhoods closest to the coasts living in evacuation zones and people with health conditions, physical environments and social contexts, such as having a lower income or living in public housing that increase risk.
-
-<h5>Rainfall flooding</h5>
-
-Bottom line: Flooding from more intense rainfall is likely to increase in NYC.
-
-Who is most at risk: People living in basement apartments and lower-lying areas and people with health conditions, physical environments and social contexts that increase risk.
-
+<div class="card card-left-border shadow-sm mb-2" style="border-color: #138D75;">
+  <div class="card-body">
+    <h5 class="card title"> Coastal flooding</h5>
+      <p class="card-text" style="font-size: 16px">Bottom line:Because of higher sea levels, flooding from coastal storms is likely to increase in NYC. Hurricanes with stronger winds can also push more water onto land, making storm surge worse. Higher tides are also a contributor to the magnitude of coastal flooding.
+      <p>Who is most at risk: People in neighborhoods closest to the coasts living in evacuation zones and people with health conditions, physical environments and social contexts, such as having a lower income or living in public housing that increase risk.</p>
+    <h5 class="card-title"> Rainfall flooding </h5>
+      <p class="card-text" style="font-size: 16px">Bottom line: Flooding from more intense rainfall is likely to increase in NYC.
+      <p> Who is most at risk: People living in basement apartments and lower-lying areas and people with health conditions, physical environments and social contexts that increase risk.<p>
+  </div>
 </div>
 
 ### ...But flooding won’t impact everyone equally
@@ -126,6 +122,7 @@ Certain populations are more vulnerable to the health risks of flooding and may 
 
 <div class="my-4 border-top border-bottom py-2">
 <iframe title="Flood Vulnerability Index" aria-label="Map" id="datawrapper-chart-HAWCl" src="https://datawrapper.dwcdn.net/HAWCl/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="691" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
+</div>
 
 #### Be prepared for the next flood: sign-up for emergency alerts, make a plan, and know your risk
 
