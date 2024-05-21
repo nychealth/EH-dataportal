@@ -45,7 +45,7 @@ After the storm, damage from water getting into buildings, homes, infrastructure
 
 <div class="card card-left-border shadow-sm mb-2 fs-sm">
   <div class="card-body">
-    <strong> Why is coastal flooding risk increasing? </strong>
+    <strong> Why is coastal flooding risk increasing? </strong><br>
       <p class="card-text" style="font-size: 16px">As the ocean warms, it takes up more space. Kind of like when you notice that you can’t remove your ring in the summer because your fingers are swollen in the hot temperatures. As the global average temperature rises, the ocean absorbs heat and warms, and when it expands, we get storm surges that are higher than average.</p>
     <strong> What will the future of coastal flooding look like in NYC? </strong>
       <p class="card-text" style="font-size: 16px">The sea level in NYC is rising, which makes powerful storm surges (like what happened during Sandy) worse. Scientists warn that the sea level will rise further over the coming decades -- by up to 81 inches in the 2080s and 114 inches by 2100. We’re not sure how quickly it’ll happen and not every area of NYC will be affected equally because the ground is higher in some areas and some areas are further from the shore. Single and two-family homes and lower-level apartments and basements are at higher risk for flooding and damage.<p>
