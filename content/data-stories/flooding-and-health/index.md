@@ -115,7 +115,7 @@ Certain populations are more vulnerable to the health risks of flooding and may 
 
 #### People living along the coasts with less access to resources are the most vulnerable to storm surge
 
-<div class="card card-left-border shadow-sm mb-2 fs-s">
+<div class="card card-left-border shadow-sm mb-2 fs-sm">
     <div class="card-body">
       <p>The <a href="https://experience.arcgis.com/experience/6a3da7b920f248af961554bdf01d668b"> storm surge Flooding Vulnerability Index (FVI) can show you the estimated risk in your area to the impacts of coastal flooding.</a> The FVI combines risk of physical exposure to different flooding types with socioeconomic factors that increase risk of harm and/or affect how difficult it may be to recover. Many of these factors are listed above, but the index also includes things like home ownership, which may increase the costs and time it takes to recover.</p>
       <p>You can see that coastal areas have the highest risk to flooding. And even within coastal areas, this risk level may change depending upon housing types, median income, and other demographics.</p>
