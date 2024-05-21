@@ -1,6 +1,6 @@
 ---
 title: What Hurricane Ida and Superstorm Sandy taught us about flooding and health
-date: 2024-02-08T09:01:00-04:00
+date: 2024-05-20T09:01:00-04:00
 draft: false
 seo_title: "What Hurricane Ida and Superstorm Sandy taught us about flooding and health"
 seo_description: "A data story about the health impacts from climate change-related flooding"
@@ -8,8 +8,8 @@ tags:
 categories: ["housing", "social", "climate", "neighborhoods"]
 keywords:
   [
-    "health equity",
-    "inequalities",
+    "flooding",
+    "storms",
     "inequities",
     "affordable housing",
     "social determinants",
@@ -26,11 +26,16 @@ photocredit: JulienneSchaer
 
 When superstorm Sandy hit New York City in October 2012, 52 people died as a result of injuries and there were increases in deaths from other causes, such as chronic health conditions. Thousands of people were evacuated from hospitals, nursing homes and other facilities, two million homes and facilities lost power, and the storm caused billions of dollars of damage to people’s homes and businesses.
 
-The majority of the homes damaged and destroyed during Sandy were in <span style="color: #0E6655 ; font-weight: bold; background-color: lightblue;">coastal areas (closer to the ocean)</span> where higher-than-normal tides (due to time of day, sea level rise, and lunar cycles) and powerful winds combined to send water rushing onto the shoreline. This is a storm surge.
+The majority of the homes damaged and destroyed during Sandy were in <span style="font-weight: bold;">coastal areas (closer to the ocean)</span> where higher-than-normal tides (due to time of day, sea level rise, and lunar cycles) and powerful winds combined to send water rushing onto the shoreline. This is a storm surge.
 
 #### Most injury deaths during Sandy occurred at home
 
 Most of the 52 injury deaths that were both indirectly and directly caused by Sandy took place along the coasts in Staten Island (44%), Queens (25%) and Brooklyn (23%), in zones where the mayor ordered an evacuation of residents. Not everyone chose to or was able to evacuate, and some tried to evacuate in dangerous conditions, resulting in injury and death. Almost half of those who died (48%) were ages 65 and older.
+
+<div class="my-4 py-2 border-top border-bottom">
+<iframe title="Most deaths from Hurricane Sandy were in coastal areas" aria-label="Locator maps" id="datawrapper-chart-5BFtT" src="https://datawrapper.dwcdn.net/5BFtT/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="648" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+</script>
+</div>
 
 Thirty-six people drowned as a result of the flooding. At least one third of those who drowned at home (9 people) were found in the basement or lived in a basement apartment.
 
@@ -38,26 +43,20 @@ Thirty-six people drowned as a result of the flooding. At least one third of tho
 
 After the storm, damage from water getting into buildings, homes, infrastructure and the interruption of essential services harmed under-resourced communities and older adults. Food pantries were flooded and lost inventory, and power outages stranded older adults and those with mobility access needs in high-rises, cutting off access to medication and other essentials. Residents of public housing developments along the waterfront felt these impacts particularly strongly.
 
-<!-- Sandy death and injury chart -->
-<div class="my-4 py-2 border-top border-bottom">
-<iframe title="Most deaths from Hurricane Sandy were in coastal areas" aria-label="Locator maps" id="datawrapper-chart-5BFtT" src="https://datawrapper.dwcdn.net/5BFtT/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="648" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
-</div>
-<!-- trying out callout box designs -->
-
-<div class="card card-left-border shadow-sm mb-2" style="border-color: #138D75;">
+<div class="card card-left-border shadow-sm mb-2 fs-sm">
   <div class="card-body">
-    <h5 class="card title"> Why is coastal flooding risk increasing? </h5>
+    <strong> Why is coastal flooding risk increasing? </strong>
       <p class="card-text" style="font-size: 16px">As the ocean warms, it takes up more space. Kind of like when you notice that you can’t remove your ring in the summer because your fingers are swollen in the hot temperatures. As the global average temperature rises, the ocean absorbs heat and warms, and when it expands, we get storm surges that are higher than average.</p>
-    <h5 class="card-title"> What will the future of coastal flooding look like in NYC? </h5>
+    <strong> What will the future of coastal flooding look like in NYC? </strong>
       <p class="card-text" style="font-size: 16px">The sea level in NYC is rising, which makes powerful storm surges (like what happened during Sandy) worse. Scientists warn that the sea level will rise further over the coming decades -- by up to 81 inches in the 2080s and 114 inches by 2100. We’re not sure how quickly it’ll happen and not every area of NYC will be affected equally because the ground is higher in some areas and some areas are further from the shore. Single and two-family homes and lower-level apartments and basements are at higher risk for flooding and damage.<p>
-    <h5 class="card-title"> Tidal flooding also will play a role </h5>
-      <p class="card-text" style="font-size: 16px" >With climate change, tides are likely to be higher more often, causing more frequent tidal flooding, which is when tides temporarily flood low-lying areas independently of high winds from storms. Data show that there was a 200% increase in high tide flood days from 2000 to 2021. Flooding from tides that are higher than they have been historically means flooding can happen even when there is no severe weather. </p>
+    <strong> Tidal flooding also will play a role </strong>
+      <p class="card-text" style="font-size: 16px" >With climate change, tides are likely to be higher more often, causing more frequent <strong>tidal flooding, which is when tides temporarily flood low-lying areas independently of high winds from storms.</strong> Data show that there was a 200% increase in high tide flood days from 2000 to 2021. Flooding from tides that are higher than they have been historically means flooding can happen even when there is no severe weather. </p>
   </div>
 </div>
 
 ### Ida’s extreme rainfall broke records and flooded basement apartments
 
-When Hurricane Ida hit New York City in September 2021, rain fell faster than could be drained away through stormwater infrastructure. This caused unprecedented inland flooding, especially in low-lying areas and basement apartments. Unlike the flooding that happened during Sandy, which mostly affected coastal areas, <span style="color: #0E6655 ; font-weight: bold; background-color: lightblue;">rainfall (or pluvial) flooding</span> can happen anywhere in the city.
+When Hurricane Ida hit New York City in September 2021, rain fell faster than could be drained away through stormwater infrastructure. This caused unprecedented inland flooding, especially in low-lying areas and basement apartments. Unlike the flooding that happened during Sandy, which mostly affected coastal areas, <span style="font-weight: bold;">rainfall (or pluvial) flooding</span> can happen anywhere in the city.
 
 Nine inches of rain fell at an unprecedented rate per hour.
 
@@ -65,13 +64,11 @@ Record-breaking 3.5 inches/hour of maximum rainfall in some areas, exceeding NYC
 
 The first-ever flash flood emergency warning for New York City was issued by the National Weather Service. Flash flooding occurs when heavy rainfall happens in a short period of time so quickly that people are often caught off guard, making it very dangerous. Fourteen people died from causes related to Ida, most of them (71% or 10 deaths) by drowning in unregulated (i.e. illegal) basement apartments.
 
-</div>
-
-<div class="card card-left-border shadow-sm mb-2 fs-s">
+<div class="card card-left-border shadow-sm mb-2 fs-sm">
     <div class="card-body">
-      <h5>Why is rainfall flooding increasing?</h5>
+      <strong>Why is rainfall flooding increasing?</strong><br>
       <p> Climate change is making it rain more intensely (intensity is measured by amount of rainfall in a given time period) because warmer air holds more moisture. It has rained (measured as precipitation) more each year on average since 1960 in NYC.<p>
-      <h5> What will the future of rainfall flooding look like in NYC? </h5>
+      <strong>What will the future of rainfall flooding look like in NYC? </strong>
       <p> Rainfall intensity and frequency is increasing, which is associated with inland flooding, like what we saw during Ida. Exactly how and where rainfall-based flooding will occur can be difficult to predict, but we know that low-lying areas, including basement apartments, are at higher risk. Average annual rainfall is projected to increase by a minimum of 2 – 7% by the 2030s and a maximum of 7 – 17% by the 2080s.</p>
       </div>
 </div>
@@ -79,7 +76,11 @@ The first-ever flash flood emergency warning for New York City was issued by the
 <div class="narrow my-4 py-2 border-top border-bottom">
   <iframe title="NYC's annual precipitation has increased about 20% since 1960" aria-label="Scatter Plot" id="datawrapper-chart-r4fxY" src="https://datawrapper.dwcdn.net/r4fxY/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="606" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
 
-#### Rainfall <em> intensity </em> has increased in New York City over the last 70 years
+</div>
+
+#### But it's not just volume of rainfall that's increasing, it's intensity
+
+Rainfall <em> intensity,</em> which is measured by an amount of rainfall that falls in a given time period, has been increasing in New York City over the last 70 years. Observations comparing rainfall intensity in Central Park since 1950 show that the amount of rain that can fall in a very short period of time, like an hour or two, has increased significantly from previous decades.
 
 <!-- rainfall intensity chart / caption -->
 
@@ -89,14 +90,16 @@ Most of the NYC people who died during Ida died in unregulated basement apartmen
 
 ### Both coastal and rainfall flooding are increasing in NYC...
 
-<div class="card card-left-border shadow-sm mb-2" style="border-color: #138D75;">
+<div class="card card-left-border shadow-sm mb-2 fs-sm">
   <div class="card-body">
-    <h5 class="card title"> Coastal flooding</h5>
-      <p class="card-text" style="font-size: 16px">Bottom line:Because of higher sea levels, flooding from coastal storms is likely to increase in NYC. Hurricanes with stronger winds can also push more water onto land, making storm surge worse. Higher tides are also a contributor to the magnitude of coastal flooding.
-      <p>Who is most at risk: People in neighborhoods closest to the coasts living in evacuation zones and people with health conditions, physical environments and social contexts, such as having a lower income or living in public housing that increase risk.</p>
-    <h5 class="card-title"> Rainfall flooding </h5>
-      <p class="card-text" style="font-size: 16px">Bottom line: Flooding from more intense rainfall is likely to increase in NYC.
-      <p> Who is most at risk: People living in basement apartments and lower-lying areas and people with health conditions, physical environments and social contexts that increase risk.<p>
+    <strong><u> Coastal flooding</u></strong>
+      <p class="card-text">
+      <strong>Bottom line:</strong> Because of higher sea levels, flooding from coastal storms is likely to increase in NYC. Hurricanes with stronger winds can also push more water onto land, making storm surge worse. Higher tides are also a contributor to the magnitude of coastal flooding.
+      <strong>Who is most at risk:</strong> People in neighborhoods closest to the coasts living in evacuation zones and people with health conditions, physical environments and social contexts, such as having a lower income or living in public housing that increase risk.</p>
+    <strong><u>Rainfall flooding </u></strong>
+      <p class="card-text">
+      <strong>Bottom line:</strong> Flooding from more intense rainfall is likely to increase in NYC.
+      <strong>Who is most at risk: </strong> People living in basement apartments and lower-lying areas and people with health conditions, physical environments and social contexts that increase risk.<p>
   </div>
 </div>
 
@@ -114,7 +117,7 @@ Certain populations are more vulnerable to the health risks of flooding and may 
 
 <div class="card card-left-border shadow-sm mb-2 fs-s">
     <div class="card-body">
-      <p>The storm surge Flooding Vulnerability Index (FVI) can show you the estimated risk in your area to the impacts of coastal flooding. The FVI combines risk of physical exposure to different flooding types with socioeconomic factors that increase risk of harm and/or affect how difficult it may be to recover. Many of these factors are listed above, but the index also includes things like home ownership, which may increase the costs and time it takes to recover.</p>
+      <p>The <a href="https://experience.arcgis.com/experience/6a3da7b920f248af961554bdf01d668b"> storm surge Flooding Vulnerability Index (FVI) can show you the estimated risk in your area to the impacts of coastal flooding.</a> The FVI combines risk of physical exposure to different flooding types with socioeconomic factors that increase risk of harm and/or affect how difficult it may be to recover. Many of these factors are listed above, but the index also includes things like home ownership, which may increase the costs and time it takes to recover.</p>
       <p>You can see that coastal areas have the highest risk to flooding. And even within coastal areas, this risk level may change depending upon housing types, median income, and other demographics.</p>
       <p><em>The FVI was created by researchers at the New School and Columbia University for the City.</em></p>
       </div>
