@@ -19,5 +19,5 @@ seo_title: 2024 heat mortality annual report in NYC | Environment and Health Dat
 seo_description: Data and findings on the impact of heat in NYC.
 layout: 2024-heat-report
 content_weight: 6.0
-image: rev-fig-4.jpeg
+image: fig-4.jpeg
 ---
