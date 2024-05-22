@@ -83,6 +83,9 @@ let timeTable;
 
 const CUSTOM_ID_FIELD = '_custom_id';
 
+// to adjust the weights by the zoom, we use a scale factor. the larger it is, the thinner the lines
+const ZOOM_WEIGHT_SCALE_FACTOR = 8;
+
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 // function to prettify geo types
@@ -211,6 +214,12 @@ function setupMap() {
     // add data layer group to map (though nothing to show yet)
 
     layerGroup.addTo(map);
+
+  map.on("zoomend", () => {
+    zoom = map.getZoom();
+    // scale the weight based on the zoom layer so it looks good zooming in and out
+    layerGroup.eachLayer((layer) => layer.setStyle({ weight: zoom / ZOOM_WEIGHT_SCALE_FACTOR }))
+  });
 
 }
 
@@ -509,51 +518,7 @@ async function createRedlinedLayer({ id, name, urls, args, displayProperties }) 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
     // create legend
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-    
-    const legendFunc = () => {
-
-        // console.log("** legendFunc [createRedlinedLayer]");
-    
-        if (!args?.colorMap) {
-            return '';
-        }
-
-        const colorMapEntries = Object.entries(args.colorMap).sort();
-        let gradients = [];
-        let labels = [];
-        // split into even parts
-        // see an example https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_images/Using_CSS_gradients#creating_color_bands_stripes
-        const percent = 100 / colorMapEntries.length;
-
-        for (let i = 0; i < colorMapEntries.length; i++) {
-
-            const [value, color] = colorMapEntries[i];
-
-            if (i > 0) {
-                gradients.push(`${color} ${i * percent}%`);
-            }
-
-            gradients.push(`${color} ${(i + 1) * percent}%`);
-            labels.push(`<div style="float: left; width: ${percent}%; text-align: center;">${value}</div>`);
-
-        }
-
-        const backgroundCss = `background: linear-gradient(to right, ${gradients.join(', ')});`
-
-        var legend = name + '<span style="'
-            + backgroundCss
-            + ' height: 20px; width: 100%;'
-            + ' display: block; background-repeat: no-repeat;'
-            + ' "></span>'
-            + " <style> .redlined-row:after { content: \"\"; display: table; clear: both; } </style>"
-            + ' <div class="redlined-row">'
-            + labels.join('')
-            + '</div>';
-
-        return legend;
-    }
-
-    layer.options.legendFunc = legendFunc;
+    layer.options.legendFunc = legendFuncForLayer(id, name, args, layer);
 
     // console.log("layer [createRedlinedLayer]", layer);
 
@@ -644,54 +609,7 @@ async function createMeasuresLayer({ id, name, measureInfo, args, displayPropert
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
     // create legend
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-    
-    const legendFunc = () => {
-
-        // console.log("** legendFunc [createMeasuresLayer]");
-    
-        if (!args?.fillColor && !args?.color && !args?.minColor && !args?.maxColor) {
-            return '';
-        }
-
-        const background = args?.fillColor
-            ? `background: ${args.fillColor};`
-            : args?.legendColor
-            ? `background: ${args.legendColor};`
-            : '';
-
-        // const borderColor = args?.color ? `border-width: 0px; border-color: ${args?.color}; border-style: solid;` : '';
-        const borderColor = '';
-
-        const backgroundCss = (args.colorFeatureProperty != null
-                && args?.minColor != null && args?.maxColor != null)
-            ? `background-image: linear-gradient(to right, ${args.minColor}, ${args?.maxColor});`
-            : ('' + background + borderColor);
-
-        var legend = name + '<span style="'
-            + backgroundCss
-            + ' height: 20px;  width: 100%;'
-            + ' display: block; background-repeat: no-repeat; '
-            + ' "></span>'
-
-        if (args.colorFeatureProperty) {
-            const values = layer.getLayers()
-                .map(x => x.feature.properties.Value)
-                .filter(x => x != null && !isNaN(x));
-            legend += '<div style="display: block; width: 100%;">'
-                + `<div style="float: left;">${Math.min(...values)}</div>`
-                + `<div style="float: right;">${Math.max(...values)}</div></div>`;
-        }
-
-        if (args.legendDescription) {
-            const collapseId = `${id}LegendCollapse`;
-            legend += `<br /><div style="display: block; width: 100%; max-width: 275px; font-size: 90%"><a data-toggle="collapse" href="#${collapseId}" role="button" aria-expanded="false" aria-controls="${collapseId}">More info about ${name}</a>`
-                + `<div class="collapse" id="${collapseId}">${args.legendDescription}</div></div>`;
-        }
-
-        return legend;
-    }
-
-    layer.options.legendFunc = legendFunc;
+    layer.options.legendFunc = legendFuncForLayer(id, name, args, layer);
 
     // console.log("layer [createMeasuresLayer]", layer);
 
@@ -816,54 +734,7 @@ async function createGeoJsonLayer({ id, name, url, args, displayProperties }) {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
     // create legend
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-
-    // this comes after the layer func because it needs layer
-    
-    const legendFunc = () => {
-
-        // console.log("** legendFunc [createGeoJsonLayer]");
-    
-        if (!args?.fillColor && !args?.color && !args?.minColor && !args?.maxColor) {
-            return '';
-        }
-
-        const background = args?.fillColor
-            ? `background: ${args.fillColor};`
-            : args?.legendColor
-            ? `background: ${args.legendColor};`
-            : '';
-
-        // const borderColor = args?.color ? `border-width: 0px; border-color: ${args?.color}; border-style: solid;` : '';
-        const borderColor = ''
-
-        const backgroundCss = (args.colorFeatureProperty != null
-                && args?.minColor != null && args?.maxColor != null)
-            ? `background-image: linear-gradient(to right, ${args.minColor}, ${args?.maxColor});`
-            : ('' + background + borderColor);
-
-        var legend = name + '<span style="'
-            + backgroundCss
-            + ' height: 20px;   width: 100%;'
-            + ' display: block; background-repeat: no-repeat;'
-            + ' "></span>'
-
-        if (args?.colorFeatureProperty) {
-
-            const values = layer.getLayers()
-                .map(x => x.feature.properties[args.colorFeatureProperty])
-                .filter(x => x != null && !isNaN(x));
-
-            legend += '<div style="display: block; width: 100%;">'
-                + `<div style="float: left;">${Math.min(...values)}</div>`
-                + `<div style="float: right;">${Math.max(...values)}</div></div>`;
-
-        }
-
-        return legend;
-
-    }
-
-    layer.options.legendFunc = legendFunc;
+    layer.options.legendFunc = legendFuncForLayer(id, name, args, layer);
 
     // console.log("layer [createGeoJsonLayer]", layer);
 
@@ -1078,6 +949,8 @@ async function addLayerToMap(layerId) {
     if (layer != null && !map.hasLayer(layer)) {
 
         layerGroup.addLayer(layer);
+        const zoom = map.getZoom();
+        layer.setStyle({ weight: zoom / ZOOM_WEIGHT_SCALE_FACTOR });
 
         // only one active one at a time
         if ( layersExclusive.has(layerId) ) {
@@ -1678,6 +1551,115 @@ function createLegend(fun) {
     legendControl.addTo(map);
 
 
+}
+
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// create legend for color maps
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+/*
+ * Create the legend for a layer that uses a color map
+ */
+const legendFuncForColorMap = (name, args) => {
+
+    // console.log("** legendFunc [createRedlinedLayer]");
+
+    if (!args?.colorMap) {
+        return '';
+    }
+
+    const colorMapEntries = Object.entries(args.colorMap).sort();
+    let gradients = [];
+    let labels = [];
+    // split into even parts
+    // see an example https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_images/Using_CSS_gradients#creating_color_bands_stripes
+    const percent = 100 / colorMapEntries.length;
+
+    for (let i = 0; i < colorMapEntries.length; i++) {
+
+        const [value, color] = colorMapEntries[i];
+
+        if (i > 0) {
+            gradients.push(`${color} ${i * percent}%`);
+        }
+
+        gradients.push(`${color} ${(i + 1) * percent}%`);
+        labels.push(`<div style="float: left; width: ${percent}%; text-align: center;">${value}</div>`);
+
+    }
+
+    const backgroundCss = `background: linear-gradient(to right, ${gradients.join(', ')});`
+
+    var legend = name + '<span style="'
+        + backgroundCss
+        + ' height: 20px; width: 100%;'
+        + ' display: block; background-repeat: no-repeat;'
+        + ' "></span>'
+        + " <style> .redlined-row:after { content: \"\"; display: table; clear: both; } </style>"
+        + ' <div class="redlined-row">'
+        + labels.join('')
+        + '</div>';
+
+    return legend;
+}
+
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// create legend function
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+/*
+ * Generic function to create legend for layers. Calls the colorMap function if a colorMap is found.
+ * Doesn't work for geotiffs
+ */
+const legendFuncForLayer = (id, name, args, layer) => {
+
+    return () => {
+        // console.log("** legendFunc [createMeasuresLayer]");
+        if (args?.colorMap) {
+            return legendFuncForColorMap(name, args);
+        }
+
+        if (!args?.fillColor && !args?.color && !args?.minColor && !args?.maxColor) {
+            return '';
+        }
+
+        const background = args?.fillColor
+            ? `background: ${args.fillColor};`
+            : args?.legendColor
+            ? `background: ${args.legendColor};`
+            : '';
+
+        // const borderColor = args?.color ? `border-width: 0px; border-color: ${args?.color}; border-style: solid;` : '';
+        const borderColor = '';
+
+        const backgroundCss = (args.colorFeatureProperty != null
+                && args?.minColor != null && args?.maxColor != null)
+            ? `background-image: linear-gradient(to right, ${args.minColor}, ${args?.maxColor});`
+            : ('' + background + borderColor);
+
+        var legend = name + '<span style="'
+            + backgroundCss
+            + ' height: 20px;  width: 100%;'
+            + ' display: block; background-repeat: no-repeat; '
+            + ' "></span>'
+
+        if (args.colorFeatureProperty) {
+            const values = layer.getLayers()
+                .map(x => x.feature.properties.Value)
+                .filter(x => x != null && !isNaN(x));
+            legend += '<div style="display: block; width: 100%;">'
+                + `<div style="float: left;">${Math.min(...values).toFixed(2)}</div>`
+                + `<div style="float: right;">${Math.max(...values).toFixed(2)}</div></div>`;
+        }
+
+        if (args.legendDescription) {
+            const collapseId = `${id}LegendCollapse`;
+            legend += `<br /><div style="display: block; width: 100%; max-width: 275px; font-size: 90%"><a data-toggle="collapse" href="#${collapseId}" role="button" aria-expanded="false" aria-controls="${collapseId}">More info about ${name}</a>`
+                + `<div class="collapse" id="${collapseId}">${args.legendDescription}</div></div>`;
+        }
+
+        return legend;
+    }
 }
 
 
