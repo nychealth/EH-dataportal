@@ -55,7 +55,7 @@ After the storm, damage from water getting into buildings, homes, infrastructure
   <div class="col-md-12 col-sm-12">
       <div class="card card-left-border shadow-sm mb-2 fs-sm">
       <div class="card-body">
-          <p class="card-text"><strong> What will the future of coastal flooding look like in NYC? </strong>The sea level in NYC is rising, which makes powerful storm surges (like what happened during Sandy) worse. Scientists warn that the sea level will rise further over the coming decades -- by up to 81 inches in the 2080s and 114 inches by 2100. We’re not sure how quickly it’ll happen and not every area of NYC will be affected equally because the ground is higher in some areas and some areas are further from the shore. Single and two-family homes and lower-level apartments and basements are at higher risk for flooding and damage.<p>
+          <p class="card-text"><strong> What will the future of coastal flooding look like in NYC? </strong>The sea level in NYC is rising, which makes powerful storm surges (like what happened during Sandy) worse. Scientists warn that the sea level will rise further over the coming decades -- by up to 45 inches in the 2080s and 65 inches by 2100. We’re not sure how quickly it’ll happen and not every area of NYC will be affected equally because the ground is higher in some areas and some areas are further from the shore. Single and two-family homes and lower-level apartments and basements are at higher risk for flooding and damage.<p>
       </div>
     </div>
   </div>
@@ -163,7 +163,7 @@ Resilience to flooding also means access to affordable and safe housing for all 
 
 Resources you can explore to understand more about the City’s climate resilience plans are:
 
-- <a href="https://climate.cityofnewyork.us/initiatives/adaptnyc/"> PlaNYC and Adapt NYC - Comprehensive climate action and adaptation plans.</a>
+- <a href="https://climate.cityofnewyork.us/initiatives/planyc-getting-sustainability-done/"> PlaNYC and Adapt NYC - Comprehensive climate action and adaptation plans.</a>
 
 - <a href="https://dataviz.floodnet.nyc/dashboard/projects/174/map"> FloodNet - Data will be collected from more than 500 sensors around the city to help understand and prevent flooding impacts.</a>
 
