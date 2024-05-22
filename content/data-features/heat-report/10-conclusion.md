@@ -9,27 +9,22 @@ Heat contributes to the deaths of about 350 New Yorkers, on average, each year d
 To prepare for a hotter future and prevent heat-related deaths, the City needs long-lasting, structural interventions alongside heat emergency preparedness and response. Adapting to a hotter climate means the City must:
 
 * Ensure equitable access to life-saving residential cooling for all New Yorkers.
-
-* Implement maximum temperature regulations during the summer months for tenants as laid out in 2023 <a href="https://climate.cityofnewyork.us/initiatives/planyc-getting-sustainability-done/" target="_blank" rel="noreferrer noopener">PlaNYC: Getting Sustainability Done</a>.
-* Consider mandates on property owners to provide tenants with AC without additional surcharges.
-* Help eligible residents apply for a free air conditioner with installation through the Home Energy Assistance Program (HEAP)’s <a href="https://otda.ny.gov/programs/heap/#cooling-assistance" target="_blank" rel="noreferrer noopener">Cooling Assistance Component</a>.
-* Protect the electrical grid, which can be strained during hot weather, including by discouraging excess cooling in offices and commercial establishments.
-
+  * Implement maximum temperature regulations during the summer months for tenants as laid out in 2023 <a href="https://climate.cityofnewyork.us/initiatives/planyc-getting-sustainability-done/" target="_blank" rel="noreferrer noopener">PlaNYC: Getting Sustainability Done</a>.
+  * Consider mandates on property owners to provide tenants with AC without additional surcharges.
+  * Help eligible residents apply for a free air conditioner with installation through the Home Energy Assistance Program (HEAP)’s <a href="https://otda.ny.gov/programs/heap/#cooling-assistance" target="_blank" rel="noreferrer noopener">Cooling Assistance Component</a>.
+  * Protect the electrical grid, which can be strained during hot weather, including by discouraging excess cooling in offices and commercial establishments.
 * Advocate for the State and utilities to make summertime utility costs affordable for low- and middle-income New Yorkers so they can use AC to protect themselves from the heat.
-
-* Expand HEAP Cooling Assistance Component benefits to include summer utility costs.
-* Prohibit electricity disconnections during hot weather, even if bills are unpaid.
-* Make energy prices affordable for all New Yorkers through affordable energy rates for low- and middle-income customers.
-* Fund energy efficient home improvements to help reduce family energy costs and decrease pressure on the electrical grid.
-
+  * Expand HEAP Cooling Assistance Component benefits to include summer utility costs.
+  * Prohibit electricity disconnections during hot weather, even if bills are unpaid.
+  * Make energy prices affordable for all New Yorkers through affordable energy rates for low- and middle-income customers.
+  * Fund energy efficient home improvements to help reduce family energy costs and decrease pressure on the electrical grid.
 * Invest in local resiliency to make all NYC neighborhoods and residents cooler and safer.
-
-* Implement green infrastructure projects, especially in high HVI neighborhoods, including planting trees and other greenery and expanding cool roofs.
-* Support community-based organizations (CBO) working to reduce the health impacts of climate change.
-* Include CBOs and residents in decision-making about and investments in community infrastructure and public space.
-* Fund and provide technical assistance for programs that support CBOs to build community resilience through social cohesion and access to physical and mental health resources that can help people stay safe in the heat.
-* Work with local, state, and federal partners to ensure that indoor and outdoor workplaces are safe during hot weather.
-* Continue to strengthen emergency response to extreme heat, such as opening cooling centers, expanding awareness of other cool indoor spaces, and issuing heat-health warnings, prioritizing people and communities with the greatest need.
+  * Implement green infrastructure projects, especially in high HVI neighborhoods, including planting trees and other greenery and expanding cool roofs.
+  * Support community-based organizations (CBO) working to reduce the health impacts of climate change.
+  * Include CBOs and residents in decision-making about and investments in community infrastructure and public space.
+  * Fund and provide technical assistance for programs that support CBOs to build community resilience through social cohesion and access to physical and mental health resources that can help people stay safe in the heat.
+  * Work with local, state, and federal partners to ensure that indoor and outdoor workplaces are safe during hot weather.
+  * Continue to strengthen emergency response to extreme heat, such as opening cooling centers, expanding awareness of other cool indoor spaces, and issuing heat-health warnings, prioritizing people and communities with the greatest need.
 
 More data and information about heat, climate, and health is available on the NYC Health Department’s&nbsp;[Climate and Health page.](..) Learn more about what the City is doing to mitigate the effects of heat as part of [PlaNYC: Getting Sustainability Done](https://climate.cityofnewyork.us/initiatives/planyc-getting-sustainability-done/).&nbsp;
 
