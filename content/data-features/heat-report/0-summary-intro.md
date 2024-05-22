@@ -5,7 +5,7 @@ draft: false
 Each summer, on average, **an estimated 350 New Yorkers die prematurely because of hot weather** in New York City (NYC). These heat-related deaths account for about 2% of all deaths over the warm season months of May through September. Of the 350 deaths:
 
 * There were an average of **7 heat-stress deaths** (caused directly by heat) per year.
-* There were an average of about **338 heat-exacerbated deaths** (caused indirectly by heat aggravating an underlying illness) per year.
+* There were an average of about **340 heat-exacerbated deaths** (caused indirectly by heat aggravating an underlying illness) per year.
 
 **Heat-exacerbated deaths increased in the past decade**, mainly due to hotter summers overall with more “non-extreme hot days” of 82°F up to but below the extreme heat threshold (95°F). Death counts have remained steady in the most recent years.
 
