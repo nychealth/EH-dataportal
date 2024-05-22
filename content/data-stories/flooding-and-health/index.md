@@ -101,7 +101,7 @@ Rainfall <em> intensity,</em> which is measured by an amount of rainfall that fa
 
 #### Housing and socioeconomic status, were important factors for who was most at risk during Ida
 
-Most of the NYC people who died during Ida died in unregulated basement apartments. They were mostly Asian (71%) and born outside the U.S (71%). New Yorkers who live in these basement apartments may have limited housing options and these may be the only affordable option available to them. These deaths from Ida reflect how a housing crisis makes people more vulnerable to the health burden of the climate crisis, and how this disproportionately affects immigrants and New Yorkers living in poverty.
+Most of the NYC people who died during Ida died in unregulated basement apartments. <a href="https://www.cambridge.org/core/journals/disaster-medicine-and-public-health-preparedness/article/immediate-injury-deaths-related-to-the-remnants-from-hurricane-ida-in-new-york-city-september-12-2021/69BD8C527FD016A2CAC703C7023B2251">They were mostly Asian (71%) and born outside the U.S (71%).</a> New Yorkers who live in these basement apartments may have limited housing options and these may be the only affordable option available to them. These deaths from Ida reflect how a housing crisis makes people more vulnerable to the health burden of the climate crisis, and how this disproportionately affects immigrants and New Yorkers living in poverty.
 
 ### Both coastal and rainfall flooding are increasing in NYC...
 
@@ -173,4 +173,4 @@ Resources you can explore to understand more about the City’s climate resilien
 
 While severe storms like Ida and Sandy won’t be the last climate disasters we face as a city, by becoming more prepared and informed, along with improvements to our infrastructure and outreach, New Yorkers can stay safe and avoid the health risks of flooding.
 
-To learn more about how flood risk and health impacts are changing in NYC, <a href="https://climateassessment.nyc/assessment/climate-change-and-new-york-citys-health-risk/">read the NPCC4 Climate and Health chapter.</a>
+<em>To learn more about how flood risk and health impacts are changing in NYC, <a href="https://climateassessment.nyc/assessment/climate-change-and-new-york-citys-health-risk/">read the NPCC4 Climate and Health chapter.</a> <a href="https://climateassessment.nyc/assessment/overview/"> There are also dedicated chapters in NPCC4 on Flooding, Climate Science, and more at the New York City Panel on Climate Change website,</a> where you can real the full assessment along with key messages and special reports.</em>
