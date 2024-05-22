@@ -8,4 +8,5 @@ draft: false
 * Rates of heat-stress deaths were higher among males compared to females.
 * Age-adjusted death rates were highest in Brooklyn.
 
+
 <div class="asidebox"><strong>Note on race and ethnicity:</strong> Deaths are grouped into four race and ethnicity categories due to the small sample size of deaths and the availability of denominator data. However, these categories represent an oversimplification of the ethnically and racially diverse population found in NYC. The Hispanic category includes people of any race. Differences in mortality rates among racial and ethnic groups are due to long-term structural racism, not biological or personal traits. Structural racism — centuries of racist policies and discriminatory practices across institutions, including government agencies, and society — prevents communities of color from accessing vital resources (such as health care and healthy housing) and opportunities (such as employment and education), and negatively affects overall health and well-being. [See Appendix Methods and Supplemental Data for more information on numbers and percentages by race and ethnicity.](2024-Heat-Mortality-Report-Appendix.pdf).</div>
