@@ -1,12 +1,12 @@
 ---
 featured:
+- copy: Firearm ED visits
+  link: data-explorer/violence/?id=2437#display=summary
+- copy: Assault ED visits
+  link: data-explorer/violence/
 - copy: Harbor water quality
   link: data-explorer/waterways/
 - copy: Commuting modes
   link: data-explorer/walking-driving-and-cycling/?id=2415#display=summary
 - copy: Neighborhood poverty
   link: data-explorer/economic-conditions/?id=103#display=summary
-- copy: Unemployment
-  link: data-explorer/economic-conditions/?id=2337#display=summary
-- copy: Heat vulnerability index
-  link: data-explorer/weather-related-illness/?id=2191#display=summary
