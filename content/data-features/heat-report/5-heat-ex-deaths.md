@@ -2,7 +2,7 @@
 _schema: default
 draft: false
 ---
-Deaths from chronic conditions that are not recognized as heat-related on death certificates can be estimated using statistical models. There are many more of these deaths than those from heat stress. They are called “excess deaths” or “heat-exacerbated deaths.” Unlike heat-stress deaths, which can be individually identified and investigated, excess deaths can be estimated only as aggregate counts. However, estimating heat-exacerbated deaths – or “mortality” – better captures the true extent of how many New Yorkers are dying due to heat.
+Deaths from chronic conditions that are not recognized as heat-related on death certificates can be estimated using statistical models. There are many more of these deaths than those from heat stress. They are called “excess deaths” or “heat-exacerbated deaths.” Unlike heat-stress deaths, which can be individually identified and investigated, excess deaths can be estimated only as aggregate counts. However, estimating heat-exacerbated deaths — or “mortality” — better captures the true extent of how many New Yorkers are dying due to heat.
 
 We report estimated heat-exacerbated deaths for the current and historical data in five-year rolling time windows to characterize trends. The average natural death count per year was about 18,000 for May through September for the most recent 5-year period (2017-2021). We used time-series statistical models to compare deaths on hot days with those on cooler days. We estimated heat-exacerbated deaths using:
 
