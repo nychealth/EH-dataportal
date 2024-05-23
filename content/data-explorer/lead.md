@@ -3,7 +3,8 @@ title: Lead poisoning
 date: 2021-05-28 18:02:58.848903
 draft: false
 seo_title: "Lead exposure and poisoning in NYC"
-seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods.."
+seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
+description: "Datasets and visualizations of lead poisoning in NYC."
 tags: 
 categories: ["housing","childhealth","social","neighborhoods"]
 keywords: ["lead","poisoning","housing","children","child","testing","blood"]

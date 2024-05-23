@@ -39,6 +39,8 @@
                     
                 </table>
 
+                <button class="btn btn-sm btn-outline-primary my-2" onclick="tableToCSV()"><i class="fas fa-download mr-1" aria-hidden="true"></i>Download table</button>
+
                 <hr class="my-2">
                 <p><i class="fas fa-exclamation-circle mr-1"></i><em>Can't find what you're looking for?</em> Try these other Health Department resources:
                 <ul>
@@ -160,8 +162,12 @@
                         // loop through Available Geographies
                         // var finestGeography = [];
                         for (let y = 0; y < indicators[i].Measures[n].AvailableGeoTypes.length; y++) {
-                            geographies.push(indicators[i].Measures[n].AvailableGeoTypes[y].GeoType)
+
+                            geographies.push(indicators[i].Measures[n].AvailableGeoTypes[y])
+
+                            // console.log("AvailableGeoTypes", indicators[i].Measures[n].AvailableGeoTypes);
                             // here, can embed a loop through geographies to find the finest.
+
                         }
                         
                         // get time period IDs for this measure
@@ -375,6 +381,80 @@
                         return GeoType;
 
                 }
+            }
+
+            // RUN THIS FUNCTION TO TRIGGER A DOWNLOAD
+            function tableToCSV() {
+ 
+                // Variable to store the final csv data
+                let csv_data = [];
+             
+                // Get each row data
+                let rows = document.getElementsByTagName('tr');
+                for (let i = 0; i < rows.length; i++) {
+             
+                    // Get each column data
+                    let cols = rows[i].querySelectorAll('td,th');
+             
+                    // Stores each csv row data
+                    let csvrow = [];
+                    for (let j = 0; j < cols.length; j++) {
+             
+                        // Get the text data of each cell of
+                        // a row and push it to csvrow
+                        let string = `"` + removeTags(cols[j].innerHTML) + `"`
+
+                        csvrow.push(string); // run contents through removeTags() to strip HTML
+                    }
+             
+                    // Combine each column value with comma
+                    csv_data.push(csvrow.join(","));
+                }
+                // Combine each row data with new line character
+                csv_data = csv_data.join('\n');
+             
+                /* We will use this function later to download the data in a csv file downloadCSVFile(csv_data); */
+                // console.table(csv_data)
+                downloadCSVFile(csv_data);
+            }
+
+            // TRIGGERS DOWNLOAD
+            function downloadCSVFile(csv_data) {
+ 
+                // Create CSV file object and feed our
+                // csv_data into it
+                CSVFile = new Blob([csv_data], { type: "text/csv" });
+             
+                // Create to temporary link to initiate
+                // download process
+                let temp_link = document.createElement('a');
+             
+                // Download csv file
+                temp_link.download = "EHDP-data-index.csv";
+                let url = window.URL.createObjectURL(CSVFile);
+                temp_link.href = url;
+             
+                // This link should not be displayed
+                temp_link.style.display = "none";
+                document.body.appendChild(temp_link);
+             
+                // Automatically click the link to trigger download 
+                temp_link.click();
+                document.body.removeChild(temp_link);
+            }
+
+               
+            function removeTags(str) {
+                if ((str === null) || (str === ''))
+                    return false;
+                else
+                    // append comma to </li> tags not followed by a <\ul> tag, so that it'll be a comma separated list when tags are removed
+                    str = str.toString().replace(/(<\/li>)/ig, '$1, ').replace(/(<\/li>, <\/ul>)/ig, '<\/li><\/ul>');
+
+                // Regular expression to identify HTML tags in
+                // the input string. Replacing the identified
+                // HTML tag with a null string.
+                return str.replace(/(<([^>]+)>)/ig, '');
             }
             
         </script>

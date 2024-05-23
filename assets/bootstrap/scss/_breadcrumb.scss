@@ -35,7 +35,8 @@
     text-decoration: none;
   }
 
-  &.active {
-    color: $breadcrumb-active-color;
+  &.active,
+  &.active a {
+    color: $breadcrumb-active-color !important;
   }
 }

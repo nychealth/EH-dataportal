@@ -3,7 +3,8 @@ title: Transportation-related injuries
 date: 2021-05-28 18:02:58.745496
 draft: false
 seo_title: "Transportation-related injury data for NYC"
-seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods.."
+seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
+description: "Datasets and visualizations of transportation-related injuries in NYC."
 tags: 
 categories: ["transportation","healthoutcomes","injuryandviolence"]
 keywords: ["transportation","traffic","cars","trucks","roads","streets","safety","emissions","driving","cars","hospitalizations","emergency department visits","biking","cycling","bikes"]
