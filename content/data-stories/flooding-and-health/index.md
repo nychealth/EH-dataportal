@@ -132,8 +132,8 @@ Certain populations are more vulnerable to the health risks of flooding and may 
 
 <div class="card card-left-border shadow-sm mb-2 mt-2 fs-sm">
     <div class="card-body">
-      <strong>Flooding Vulnerability Index</strong><br>
-      <p>The <a href="https://experience.arcgis.com/experience/6a3da7b920f248af961554bdf01d668b"> storm surge Flooding Vulnerability Index (FVI) can show you the estimated risk in your area to the impacts of coastal flooding.</a> The FVI combines risk of physical exposure to different flooding types with socioeconomic factors that increase risk of harm and/or affect how difficult it may be to recover. Many of these factors are listed above, but the index also includes things like home ownership, which may increase the costs and time it takes to recover.</p>
+      <strong>Flood Vulnerability Index</strong><br>
+      <p>The <a href="https://experience.arcgis.com/experience/6a3da7b920f248af961554bdf01d668b"> storm surge Flood Vulnerability Index (FVI) can show you the estimated risk in your area to the impacts of coastal flooding.</a> The FVI combines risk of physical exposure to different flooding types with socioeconomic factors that increase risk of harm and/or affect how difficult it may be to recover. Many of these factors are listed above, but the index also includes things like home ownership, which may increase the costs and time it takes to recover.</p>
       <p>You can see that coastal areas have the highest risk to flooding. And even within coastal areas, this risk level may change depending upon housing types, median income, and other demographics.</p>
       <p><em>The FVI was created by researchers at the New School and Columbia University for the City.</em></p>
       </div>
@@ -147,7 +147,7 @@ Certain populations are more vulnerable to the health risks of flooding and may 
 
 Impacts to your health can happen before, during, and after a flood. During the flood these risks include injury and death from drowning, traveling during a flood, or electrocution. After the flood these risks may be related to cleaning up near or in standing water, lack of access to medical care and medication from power outages, lack of access to safe and healthy housing, and other related health risks. You can take some simple steps to prepare for flooding and keep yourself and your family safe.
 
-- <a href="https://a858-nycnotify.nyc.gov/notifynyc/"> Sign up for emergency alerts at Notify NYC (available in multiple languages) </a>
+- <a href="https://a858-nycnotify.nyc.gov/notifynyc/"> Sign up for emergency alerts at Notify NYC</a>
 
 - <a href="https://www.nyc.gov/site/em/ready/coastal-storms-hurricanes.page"> Know Your Zone – learn whether you live in an area where you may need to evacuate the next time there is a hurricane,</a> and <a href="https://www.nyc.gov/site/em/ready/flooding.page"> learn more about what to do before, during, and after a flood at NYC Emergency Management’s flood page</a> and at <a href="https://www.nyc.gov/site/dep/whats-new/prepare-for-the-storm.page">Rainfall Ready NYC.</a>
 
