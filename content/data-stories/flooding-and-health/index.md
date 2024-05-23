@@ -55,7 +55,7 @@ After the storm, damage from water getting into buildings, homes, infrastructure
   <div class="col-md-12 col-sm-12">
       <div class="card card-left-border shadow-sm mb-2 fs-sm">
       <div class="card-body">
-          <p class="card-text"><strong> What will the future of coastal flooding look like in NYC? </strong>The sea level in NYC is rising, which makes powerful storm surges (like what happened during Sandy) worse. Scientists warn that the sea level will rise further over the coming decades -- by up to 45 inches in the 2080s and 65 inches by 2100. We’re not sure how quickly it’ll happen and not every area of NYC will be affected equally because the ground is higher in some areas and some areas are further from the shore. Single and two-family homes and lower-level apartments and basements are at higher risk for flooding and damage.<p>
+          <p class="card-text"><strong> What will the future of coastal flooding look like in NYC? </strong>The sea level in NYC is rising, which makes powerful storm surges (like what happened during Sandy) worse. Scientists warn that the sea level will rise further over the coming decades — <a href="https://climateassessment.nyc/assessment/nyc-climate-risk-information-2022-observations-and-projections/"> mid-range projections estimate between 25 - 39 inches in the 2080s and 30 - 50 inches by 2100.</a> We’re not sure how quickly it’ll happen and not every area of NYC will be affected equally because the ground is higher in some areas and some areas are further from the shore. Single and two-family homes and lower-level apartments and basements are at higher risk for flooding and damage.<p>
       </div>
     </div>
   </div>
@@ -157,9 +157,9 @@ Impacts to your health can happen before, during, and after a flood. During the 
 
 #### Preventing future tragedy from flooding means prioritizing housing, infrastructure, and communities
 
-The City’s approach considers present and future flooding risks. The Department of Environmental Protection is improving New York’s drainage systems so that when it rains very hard, the water can drain faster. <a href="https://www.nyc.gov/site/dep/water/green-infrastructure.page"> Additionally, more grey and green infrastructure is being installed to collect, store, and move rainfall.</a> This will help keep surrounding areas dry during and after heavy storms. Initiatives like Rainproof NYC will help manage severe rainfall by expanding natural wetlands, which help absorb water.
+The City’s approach considers present and future flooding risks. <a href="https://www.nyc.gov/assets/dep/downloads/pdf/water/stormwater/2024-stormwater-analysis-report.pdf">The Department of Environmental Protection is improving New York’s drainage systems</a> so that when it rains very hard, the water can drain faster.<a href="https://www.nyc.gov/site/dep/water/green-infrastructure.page"> Additionally, more green infrastructure is being installed to collect, store, and move rainfall.</a> This will help keep surrounding areas dry during and after heavy storms. Initiatives like Rainproof NYC will help manage severe rainfall by expanding natural wetlands, which help absorb water.
 
-Resilience to flooding also means access to affordable and safe housing for all New Yorkers. There are programs and resources available for homes impacted by Sandy and Ida.
+Resilience to flooding also means access to affordable and safe housing for all New Yorkers. <a href="https://www.nyc.gov/site/housingrecovery/index.page">There are programs and resources available for homes impacted by Sandy and Ida.</a>
 
 Resources you can explore to understand more about the City’s climate resilience plans are:
 
@@ -173,4 +173,4 @@ Resources you can explore to understand more about the City’s climate resilien
 
 While severe storms like Ida and Sandy won’t be the last climate disasters we face as a city, by becoming more prepared and informed, along with improvements to our infrastructure and outreach, New Yorkers can stay safe and avoid the health risks of flooding.
 
-<em>To learn more about how flood risk and health impacts are changing in NYC, <a href="https://climateassessment.nyc/assessment/climate-change-and-new-york-citys-health-risk/">read the NPCC4 Climate and Health chapter.</a> <a href="https://climateassessment.nyc/assessment/overview/"> There are also dedicated chapters in NPCC4 on Flooding, Climate Science, and more at the New York City Panel on Climate Change website,</a> where you can real the full assessment along with key messages and special reports.</em>
+<em>To learn more about how flood risk and health impacts are changing in NYC, <a href="https://climateassessment.nyc/assessment/climate-change-and-new-york-citys-health-risk/">read the NPCC4 Climate and Health chapter.</a> <a href="https://climateassessment.nyc/assessment/overview/"> There are also dedicated chapters in NPCC4 on Flooding, Climate Science, and more at the New York City Panel on Climate Change website,</a> where you can real the full assessment along with overviews, key messages, and special reports.</em>
