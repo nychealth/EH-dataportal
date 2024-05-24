@@ -47,7 +47,7 @@ After the storm, damage to buildings, homes and infrastructure and the interrupt
   <div class="col-md-12 col-sm-12">
     <div class="card card-left-border shadow-sm mb-2 fs-sm">
       <div class="card-body">
-      <p class="card-text"><strong> Why is coastal flooding risk increasing? </strong>One reason is that as the ocean warms, it takes up more space. It's the same effect that happens when you can’t remove your ring in the summer because your fingers swell in the hot temperatures. As the global average temperature rises, the ocean absorbs heat and warms. When it expands, we get storm surges that are higher than average. The melting of glaciers is also adding water to the ocean, causing the sea levels to rise. </p>
+      <p class="card-text"><strong> Why is coastal flooding risk increasing? </strong> As the global average temperature rises, glaciers and sea ice are melting, adding more water to the ocean. The ocean is also absorbing heat, making it take up more space. It's the same effect that happens when you can’t remove your ring in the summer because your fingers swell in the hot temperatures. As the ocean expands from these, and other factors, we get storm surges that are higher than average. </p>
       </div>
     </div>
   </div>
@@ -55,7 +55,7 @@ After the storm, damage to buildings, homes and infrastructure and the interrupt
   <div class="col-md-12 col-sm-12">
       <div class="card card-left-border shadow-sm mb-2 fs-sm">
       <div class="card-body">
-          <p class="card-text"><strong> What will the future of coastal flooding look like in NYC? </strong>The sea level in NYC is rising, which makes powerful storm surges worse. Scientists warn that the sea level will rise further over the coming decades — <a href="https://climateassessment.nyc/assessment/nyc-climate-risk-information-2022-observations-and-projections/"> mid-range projections estimate between 25 - 39 inches in the 2080s and 30 - 50 inches by 2100.</a> We’re not sure how quickly it’ll happen and not every area of NYC will be affected equally because some areas are on higher ground or are further from the shore. Single and two-family homes and lower-level apartments and basements are at higher risk for flooding and damage.<p>
+          <p class="card-text"><strong> What will the future of coastal flooding look like in NYC? </strong>The sea level in NYC is rising, which makes powerful storm surges worse. Scientists warn that the sea level will rise further over the coming decades — <a href="https://climateassessment.nyc/assessment/nyc-climate-risk-information-2022-observations-and-projections/"> top-range projections estimate 45 inches in the 2080s and 65 inches 2100.</a> We’re not sure how quickly it’ll happen and not every area of NYC will be affected equally because some areas are on higher ground or are further from the shore. Single and two-family homes and lower-level apartments and basements are at higher risk for flooding and damage.<p>
       </div>
     </div>
   </div>
@@ -71,7 +71,7 @@ After the storm, damage to buildings, homes and infrastructure and the interrupt
 
 ### Ida’s extreme rainfall broke records and flooded basement apartments
 
-When Hurricane Ida hit New York City in September 2021, rain fell faster than it could drain away through stormwater infrastructure. This caused unprecedented inland flooding, especially in low-lying areas and basement apartments. Unlike the flooding that happened during Sandy, which mostly affected coastal areas, <span style="font-weight: bold;">rainfall (or pluvial) flooding</span> can happen anywhere in the city.
+When Hurricane Ida hit New York City in September 2021, rain fell faster than it could drain away through storm water infrastructure. This caused unprecedented inland flooding, especially in low-lying areas and basement apartments. Unlike the flooding that happened during Sandy, which mostly affected coastal areas, <span style="font-weight: bold;">rainfall (or pluvial) flooding</span> can happen anywhere in the city.
 
 - Nine inches of rain fell at an unprecedented rate per hour.
 
@@ -135,7 +135,7 @@ Certain populations are more vulnerable to the health risks of flooding and may 
       <strong>Flood Vulnerability Index</strong><br>
       <p>The <a href="https://experience.arcgis.com/experience/6a3da7b920f248af961554bdf01d668b"> storm surge Flood Vulnerability Index (FVI) can show you the estimated risk in your area to the impacts of coastal flooding.</a> The FVI combines risk of physical exposure to different flooding types with socioeconomic factors that increase risk of harm and affect how difficult it may be to recover. Many of these are listed above, but the index also includes factors like home ownership, which may increase the costs and time it takes to recover.</p>
       <p>Coastal areas have the highest risk of flooding. Within coastal areas, this risk level may vary by housing type, median income, and other demographics.</p>
-      <p><em>The FVI was created by researchers at the New School and Columbia University for the City.</em></p>
+      <p><em>The FVI is part of the <a href="https://climate.cityofnewyork.us/initiatives/vulnerability-impacts-and-adaptation-analysis/"> Vulnerability, Impacts, and Adaptation report (VIA) and can be fully accessed as part of the EJNYC Mapping Tool</a></em></p>
       </div>
 </div>
 
@@ -163,13 +163,13 @@ Resilience to flooding also means access to affordable and safe housing for all 
 
 Resources you can explore to understand more about the City’s climate resilience plans are:
 
-- <a href="https://climate.cityofnewyork.us/initiatives/planyc-getting-sustainability-done/"> PlaNYC and Adapt NYC: Comprehensive climate action and adaptation plans.</a>
+- <a href="https://climate.cityofnewyork.us/initiatives/planyc-getting-sustainability-done/"> <strong>PlaNYC and Adapt NYC:</strong> Comprehensive climate action and adaptation plans.</a>
 
-- <a href="https://dataviz.floodnet.nyc/dashboard/projects/174/map"> FloodNet: Data will be collected from more than 500 sensors around the city to help understand and prevent flooding impacts.</a>
+- <a href="https://dataviz.floodnet.nyc/dashboard/projects/174/map"> <strong>FloodNet:</strong> Data will be collected from more than 500 sensors around the city to help understand and prevent flooding impacts.</a>
 
-- <a href="https://floodhelpny.org/"> FloodHelpNY: Helps to educate New Yorkers about how to protect their homes from flooding.</a>
+- <a href="https://floodhelpny.org/"> <strong>FloodHelpNY:</strong> Helps to educate New Yorkers about how to protect their homes from flooding.</a>
 
-- <a href="https://climate.cityofnewyork.us/initiatives/climate-strong-communities/"> Climate strong communities: conducts local workshops to ensure that community members can guide priorities and learn how to protect themselves and their families.</a>
+- <a href="https://climate.cityofnewyork.us/initiatives/climate-strong-communities/"> <strong>Climate strong communities:</strong> conducts local workshops to ensure that community members can guide priorities and learn how to protect themselves and their families.</a>
 
 While severe storms like Ida and Sandy won’t be the last climate disasters we face as a city, by becoming more prepared and informed, along with improvements to our infrastructure and outreach, New Yorkers can stay safe and avoid the health risks of flooding.
 
