@@ -47,7 +47,7 @@ After the storm, damage to buildings, homes and infrastructure and the interrupt
   <div class="col-md-12 col-sm-12">
     <div class="card card-left-border shadow-sm mb-2 fs-sm">
       <div class="card-body">
-      <p class="card-text"><strong> Why is coastal flooding risk increasing? </strong> As the global average temperature rises, glaciers and sea ice are melting, adding more water to the ocean. The ocean is also absorbing heat, making it take up more space. It's the same effect that happens when you can’t remove your ring in the summer because your fingers swell in the hot temperatures. As the ocean expands from these, and other factors, we get storm surges that are higher than average. </p>
+      <p class="card-text"><strong> Why is coastal flooding risk increasing? </strong> As the global average temperature rises, glaciers and sea ice are melting, adding more water to the ocean. The ocean is also absorbing heat, making it take up more space. It's the same effect that happens when you can’t remove your ring in the summer because your fingers swell in the hot temperatures. <a href="https://sealevel.nasa.gov/understanding-sea-level/global-sea-level/overview/">As the ocean expands from these, and other factors,</a> we get storm surges that are higher than average. </p>
       </div>
     </div>
   </div>
@@ -173,4 +173,4 @@ Resources you can explore to understand more about the City’s climate resilien
 
 While severe storms like Ida and Sandy won’t be the last climate disasters we face as a city, by becoming more prepared and informed, along with improvements to our infrastructure and outreach, New Yorkers can stay safe and avoid the health risks of flooding.
 
-<em>To learn more about how flood risk and health impacts are changing in NYC, <a href="https://climateassessment.nyc/assessment/climate-change-and-new-york-citys-health-risk/">read the NPCC4 Climate and Health chapter.</a> <a href="https://climateassessment.nyc/assessment/overview/"> There are also dedicated chapters in NPCC4 on Flooding, Climate Science, and more at the New York City Panel on Climate Change website,</a> where you can real the full assessment along with overviews, key messages, and special reports.</em>
+<em>To learn more about how flood risk and health impacts are changing in NYC, <a href="https://climateassessment.nyc/assessment/climate-change-and-new-york-citys-health-risk/">read the NPCC4 Climate and Health chapter.</a> <a href="https://climateassessment.nyc/assessment/overview/"> There are also dedicated chapters in NPCC4 on flooding, climate justice, and more at the New York City Panel on Climate Change website,</a> where you can real the full assessment along with overviews, key messages, and special reports.</em>
