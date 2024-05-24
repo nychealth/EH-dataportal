@@ -55,7 +55,7 @@ After the storm, damage to buildings, homes and infrastructure and the interrupt
   <div class="col-md-12 col-sm-12">
       <div class="card card-left-border shadow-sm mb-2 fs-sm">
       <div class="card-body">
-          <p class="card-text"><strong> What will the future of coastal flooding look like in NYC? </strong>The sea level in NYC is rising, which makes powerful storm surges worse. Scientists warn that the sea level will rise further over the coming decades — <a href="https://climateassessment.nyc/assessment/nyc-climate-risk-information-2022-observations-and-projections/"> top-range projections estimate 45 inches in the 2080s and 65 inches 2100.</a> We’re not sure how quickly it’ll happen and not every area of NYC will be affected equally because some areas are on higher ground or are further from the shore. Single and two-family homes and lower-level apartments and basements are at higher risk for flooding and damage.<p>
+          <p class="card-text"><strong> What will the future of coastal flooding look like in NYC? </strong>The sea level in NYC is rising, which makes powerful storm surges worse. Scientists warn that the sea level will rise further over the coming decades — <a href="https://climateassessment.nyc/assessment/nyc-climate-risk-information-2022-observations-and-projections/"> top-range projections estimate 45 inches in the 2080s and 65 inches by 2100.</a> We’re not sure how quickly it’ll happen and not every area of NYC will be affected equally because some areas are on higher ground or are further from the shore. Single and two-family homes and lower-level apartments and basements are at higher risk for flooding and damage.<p>
       </div>
     </div>
   </div>
