@@ -105,7 +105,7 @@ Most of the NYC people who died during Ida died in unregulated basement apartmen
 
 ### Both coastal and rainfall flooding are increasing in NYC...
 
-<div class="card card-left-border shadow-sm mb-4 fs-sm">
+<div class="card card-left-border shadow-sm mt-2 mb-4 fs-sm">
   <div class="card-body">
     <strong><u> Coastal flooding</u></strong>
       <p class="card-text">
