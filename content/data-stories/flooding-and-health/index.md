@@ -77,7 +77,7 @@ When Hurricane Ida hit New York City in September 2021, rain fell faster than it
 
 - Record-breaking 3.5 inches per hour of rainfall fell in some areas, exceeding NYC’s sewer capacity of 1.75 inches per hour
 
-The National Weather Service issued its first-ever flash flood emergency warning for New York City was issued by the National Weather Service. Flash flooding occurs when heavy rainfall happens in a short period of time so quickly that people are often caught off guard. Fourteen people died from causes related to Ida. Most of them (71%, or 10 deaths) by drowning in unregulated (illegal) basement apartments.
+The National Weather Service issued its first-ever flash flood emergency warning for New York City. Flash flooding occurs when heavy rainfall happens in a short period of time so quickly that people are often caught off guard. Fourteen people died from causes related to Ida. Most of them (71%, or 10 deaths) by drowning in unregulated (illegal) basement apartments.
 
 <div class="card card-left-border shadow-sm mb-2 fs-sm">
     <div class="card-body">
