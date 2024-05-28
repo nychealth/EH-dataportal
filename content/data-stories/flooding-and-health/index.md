@@ -47,7 +47,7 @@ After the storm, damage to buildings, homes and infrastructure and the interrupt
   <div class="col-md-12 col-sm-12">
     <div class="card card-left-border shadow-sm mb-2 fs-sm">
       <div class="card-body">
-      <p class="card-text"><strong> Why is coastal flooding risk increasing? </strong> As the global average temperature rises, glaciers and sea ice are melting, adding more water to the ocean. The ocean is also absorbing heat, making it take up more space. It's the same effect that happens when you can’t remove your ring in the summer because your fingers swell in the hot temperatures. <a href="https://sealevel.nasa.gov/understanding-sea-level/global-sea-level/overview/">As the ocean expands from these, and other factors,</a> we get storm surges that are higher than average. </p>
+      <p class="card-text"><strong> Why is coastal flooding risk increasing? </strong> As the global average temperature rises, glaciers and sea ice are melting, adding more water to the ocean. The ocean is also absorbing heat, making it take up more space. It's the same effect that happens when you can’t remove a ring in the summer because your fingers swell in the hot temperatures. <a href="https://sealevel.nasa.gov/understanding-sea-level/global-sea-level/overview/">As the ocean expands from these, and other factors,</a> we get storm surges that are higher than average. </p>
       </div>
     </div>
   </div>
@@ -163,13 +163,13 @@ Resilience to flooding also means access to affordable and safe housing for all 
 
 Resources you can explore to understand more about the City’s climate resilience plans are:
 
-- <a href="https://climate.cityofnewyork.us/initiatives/planyc-getting-sustainability-done/"> <strong>PlaNYC and Adapt NYC:</strong> Comprehensive climate action and adaptation plans.</a>
+- <strong>PlaNYC and Adapt NYC:</strong><a href="https://climate.cityofnewyork.us/initiatives/planyc-getting-sustainability-done/"> Comprehensive climate action and adaptation plans.</a>
 
-- <a href="https://dataviz.floodnet.nyc/dashboard/projects/174/map"> <strong>FloodNet:</strong> Data will be collected from more than 500 sensors around the city to help understand and prevent flooding impacts.</a>
+- <strong>FloodNet:</strong><a href="https://dataviz.floodnet.nyc/dashboard/projects/174/map"> Data will be collected from more than 500 sensors around the city to help understand and prevent flooding impacts.</a>
 
-- <a href="https://floodhelpny.org/"> <strong>FloodHelpNY:</strong> Helps to educate New Yorkers about how to protect their homes from flooding.</a>
+- <strong>FloodHelpNY:</strong><a href="https://floodhelpny.org/"> Helps to educate New Yorkers about how to protect their homes from flooding.</a>
 
-- <a href="https://climate.cityofnewyork.us/initiatives/climate-strong-communities/"> <strong>Climate strong communities:</strong> conducts local workshops to ensure that community members can guide priorities and learn how to protect themselves and their families.</a>
+- <strong>Climate strong communities:</strong><a href="https://climate.cityofnewyork.us/initiatives/climate-strong-communities/"> Conducts local workshops to ensure that community members can guide priorities and learn how to protect themselves and their families.</a>
 
 While severe storms like Ida and Sandy won’t be the last climate disasters we face as a city, by becoming more prepared and informed, along with improvements to our infrastructure and outreach, New Yorkers can stay safe and avoid the health risks of flooding.
 
