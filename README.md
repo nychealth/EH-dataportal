@@ -1,11 +1,11 @@
 # The NYC Environment and Health Data Portal website
 
-This repository contains source code for the Environment and Health Data Portal. You can view a staged development version [here](https://nychealth.github.io/EH-dataportal/) and the live production version [here](https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/). 
+This repository contains source code for the Environment and Health Data Portal. You can view a staged development version [here](https://nychealth.github.io/EH-dataportal/) and the live production version [here](https://a816-dohbesp.nyc.gov/IndicatorPublic/). 
 
 This repository contains the website's source code. [To get the raw data that the site displays, visit our data repo](https://www.github.com/nychealth/EHDP-data).
 
 Ths site is an ongoing work in progress. We are always interested in people willing to do user testing and co-design work, so if you're interested in helping develop the site, you can:
-- [email us](mailto:trackingportal@health.nyc.gov)
+- [email us](mailto:ehdp@health.nyc.gov)
 - [File an issue](https://github.com/nychealth/EH-dataportal/issues) or [open a pull request](https://github.com/nychealth/EH-dataportal/pulls).
 
 ## General Development
@@ -39,19 +39,18 @@ After committing, working branches can be merged into `development` for testing 
 ### Branches
 A run-down of main branches, actions, and purposes are:
 
-| Branch name:  | Action on merge:         | `EHDP-data` branch:  | Deploy to | Used for:                          |
-|---------------|--------------------------|----------------------|------------|------------------------------------|
-| `development` | Builds to `gh-pages`     | `production`         | github pages | General development                |
-| `development` | Builds to `dev-test`     | `staging`            | 307 (internal) | Demoing data & content        |
-| `production`  | Builds to `data-staging` | `staging`            | (307 (internal)) | Demoing data  |
-| `production`  | Builds to `prod-deploy ` | `production`         | Production servers | Live site          |
+| Deploy to          | `EH-dataportal` branch: | `EHDP-data` branch: | Action on merge:             | Used for:              |
+|--------------------|-------------------------|---------------------|------------------------------|------------------------|
+| Production servers | `production`            | `production`        | Builds to `builds/prod-prod` | Live site              |
+| GitHub Pages       | `development`           | `production`        | Builds to `builds/dev-prod`  | General development    |
+| 307 (internal)     | `development`           | `staging`           | Builds to `builds/dev-stage` | Demoing data & content |
 
-On merge, these branches are automatically [built](https://github.com/peaceiris/actions-hugo and [served](https://github.com/peaceiris/actions-gh-pages) to other branches using Github Actions (triggerd by a merged pull request).  _(Note that this requires a workflow YAML file in both [`main`](https://github.com/nychealth/EH-dataportal/blob/main/.github/workflows/hugo-build-gh-pages.yml) and [`development`](https://github.com/nychealth/EH-dataportal/blob/development/.github/workflows/hugo-build-gh-pages.yml).)_
+On merge, these branches are automatically [built](https://github.com/peaceiris/actions-hugo and [served](https://github.com/peaceiris/actions-gh-pages) to other branches using Github Actions (triggerd by a merged pull request).  _(Note that this requires a workflow YAML file in both [`main`](https://github.com/nychealth/EH-dataportal/blob/main/.github/workflows/hugo-build-dev-prod.yml) and [`development`](https://github.com/nychealth/EH-dataportal/blob/development/.github/workflows/hugo-build-dev-prod.yml).)_
 
 ### Automated actions
 When changed are merged into `development` or `production`, in addition to automated builds, these actions are triggered:
 - The site runs a CodeQL analysis on merges/builds, and is set up to use Github's Depandabot to review dependencies for vulnerabilities.
-- On merge to `development`, a Github Action builds and commits the site files to `gh-pages`. On merge to `production`, an Action bulids and commits the site files to `prod-deploy`. We deploy this branch to our server to serve up the production site. 
+- On merge to `development`, a Github Action builds and commits the site files to `builds/dev-prod`. On merge to `production`, an Action bulids and commits the site files to `builds/prod-prod`. We deploy this branch to our server to serve up the production site. 
 - `Gruntfile.js` runs to create `/static/js/lunr/PagesIndex.json`, which powers the search function (`search-results.js`  uses Lunr functions to search `PagesIndex.json` and display results on the `search-results.html` template).
 
 ### Environments
@@ -59,7 +58,6 @@ The `/config` folder includes subfolders with environment-specific configuration
 
 Some key uses of environment-specific variables in the `config` are:
 - Setting the BaseURL
-- Setting the variable `sitepath` (inserted into the templates to fix path issues)
 - Setting the variable `data_repo`, which tells the site to read data from `staging` or `production` branches of [EHDP-data](https://www.github.com/nychealth/EHDP-data).
 
 To deploy to a new environment, update the baseURL in `config.toml`. Update the path, if necessary, in the environment-specific `config.toml` file. And, you may need to update paths in other files, like `search-results.js`. Crtl-F is your friend.
@@ -147,7 +145,7 @@ We use a variety of environment-specific code to produce:
 - ...and possibly other stuff. 
 
 ### Generating topic_indicators.json
-`data-index.html`, on site build, assembles a json file of topics and indicators. It ranges over DE topic frontmatter and produces a cross-reference of topics and indicators ([file](https://github.com/nychealth/EH-dataportal/blob/prod-deploy/IndicatorData/topic_indicators.json). This is used on `data-index.html` as well as on the Neighborhood Reports: when an indicator is clicked, it runs `getURL()` to find the parent topic for the indicator, generates a URL, and produces the Get The Dataset button. 
+`data-index.html`, on site build, assembles a json file of topics and indicators. It ranges over DE topic frontmatter and produces a cross-reference of topics and indicators ([file](https://github.com/nychealth/EH-dataportal/blob/builds/prod-prod/IndicatorData/topic_indicators.json). This is used on `data-index.html` as well as on the Neighborhood Reports: when an indicator is clicked, it runs `getURL()` to find the parent topic for the indicator, generates a URL, and produces the Get The Dataset button. 
 
 ### Cloudcannon integration
 The repo includes some files to integrate with Cloudcannon, an online CMS provider. Specifically:

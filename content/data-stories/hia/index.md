@@ -14,9 +14,9 @@ seo_description: "Air pollution causes significant illness and death in New York
 ---
 
 Every year in NYC between 2015 and 2017 (the most recent years for which this analysis is available), fine particulate matter pollution from motor vehicles and burning fossil fuels caused:
-- At least [2,000 deaths](/data-explorer/health-impacts-of-air-pollution/?id=2108#display=summary)
-- About 1,400 hospital admissions for [lung](/data-explorer/health-impacts-of-air-pollution/?id=2119#display=summary) and [heart conditions](/data-explorer/health-impacts-of-air-pollution/?id=2120#display=summary)
-- [3,750 emergency department admissions for asthma](/data-explorer/health-impacts-of-air-pollution/?id=2117#display=summary)
+- At least [2,000 deaths]({{< baseurl >}}data-explorer/health-impacts-of-air-pollution/?id=2108#display=summary)
+- About 1,400 hospital admissions for [lung]({{< baseurl >}}data-explorer/health-impacts-of-air-pollution/?id=2119#display=summary) and [heart conditions]({{< baseurl >}}data-explorer/health-impacts-of-air-pollution/?id=2120#display=summary)
+- [3,750 emergency department admissions for asthma]({{< baseurl >}}data-explorer/health-impacts-of-air-pollution/?id=2117#display=summary)
 
 Since air pollution causes significant illness and death in New York City, it's important to reduce air pollution. So where do we start?
 
@@ -35,7 +35,7 @@ We can use data modelling tools to predict which policies to improve air quality
 
 [A recent health impact assessment estimates the effects of reducing 80% of greenhouse gas emissions by 2050](https://pubs.acs.org/doi/full/10.1021/acs.est.0c00694), a policy called “80 x 50.” This policy would reduce fine particulate matter (also called PM2.5) throughout the city, regardless of neighborhood poverty level: 
 
-{{< datawrapper src="pt7no/1/" height="168" title="Reductions in PM2.5 would be similar across neighborhoods..." >}}
+{{< datawrapper src="pt7no/1/" height="168" title="Reductions in PM2.5 would be similar across neighborhoods.." >}}
 
 But, despite similar improvements in air quality, high poverty neighborhoods would have much greater health benefits. **Simply put, efforts to improve air quality have the most health impact in high-poverty neighborhoods.**
 

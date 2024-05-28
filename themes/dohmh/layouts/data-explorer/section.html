@@ -1,124 +1,84 @@
 {{- define "main" -}}
 
-<article class="container-fluid" id="skip-header-target">
+<article class="container-fluid" id="skip-header-target" data-pagefind-ignore="all">
 
-    <div class="col-lg-10 col-md-12 mx-auto my-4">
-        <h1 class="de-accent"><i class="fas fa-chart-line" aria-hidden="true" style="margin-right: 10px"></i>{{ .Title }}</h1>
-        {{- .Content -}}
-
-
-
+    <div class="col-lg-10 col-md-12 mx-auto">
         <div class="row">
-            <div class="col-md-6 p-2 pl-0 ml-auto">
-                <p class="text-info font-weight-bold">Select a topic to view data:</p>
-                 {{ partial "de-chooser-accordion.html" . }}
-
-             </div>
-
-             <div class="col-md-4 p-2 mr-auto">
-                <div class="mt-4">
-                    {{ partial "featured-data.html" . }}
-
-                </div>
-                </div>
-
-            </div>
-
-        <div class="row">
-            <div class="col-10 mx-auto">
-                <p class="mt-2 fs-sm"><i class="fas fa-exclamation-circle mr-1"></i><em>Can't find what you're looking for?</em> <a class="text-info font-weight-bold" href='{{ ref . "/content/data-explorer/all-data.md" }}'>Browse an index of all our datasets</a>.
-                </p>
-            </div>
-        </div>
-
-            <div class="row mt-6">
-                <hr class="my-2">
-                <div class="col-12">
-                    <h2 class="text-muted fs-lg">About the Data Explorer</h2>
-                    <p class="fs-sm">Our site's data explorer contains hundreds of datasets. Choose a topic to browse available datasets. View data by neighborhood on ways that environments affect health. 
-Get maps, trends, and more - on ways that your neighborhood shapes your health. </p>
-                </div>
-            </div>
-
-
-            <div class="row mt-4">
-                <div class="col-md-4 card content-card">
-                    <div class="card-content">
-                        <div class="card-body">
-                            <img class="card-img-top" src="{{ .Site.BaseURL }}images/trend-chart-4.png" alt="Card image cap">
-                        </div>
-                      </div>
-
-                </div>
-
-                <div class="col-md-4 card content-card">
-                    <div class="card-content">
-                        <div class="card-body">
-                            <img class="card-img-top" src="{{ .Site.BaseURL }}images/data-map-5.png" alt="Card image cap">
-                        </div>
-                      </div>
-
-                </div>
-
-                <div class="col-md-4 card content-card">
-                    <div class="card-content">
-                        <div class="card-body">
-                            <img class="card-img-top" src="{{ .Site.BaseURL }}images/links-chart-4.png" alt="Card image cap">
-                        </div>
-                      </div>
-
-                </div>
-    
+            <div class="col-md-10 col-sm-12 mt-4 my-2">
+                <nav aria-label="breadcrumb" class="">
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
+                        <li class="breadcrumb-item active"><a href={{ relURL "data-explorer" }}>Data Explorer</a></li>
+                    </ul>
+                </nav>
             </div>
         </div>
 
 
+        <div class="row mt-2">
+            <div class="col-12">
+                <h1 class="de-accent"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>{{ .Title }}</h1>
+            </div>
+        </div>
+
+        <div class="row mt-2">
+            <div class="col-md-7 col-sm-12">
+                {{ .Content }}
+
+                {{- partial "de-topic-indicators.html" . -}}
+
+                <div class="my-3">
+                    <p class="text-info font-weight-bold">Search datasets:</p>
+                    {{- partial "de-text-search.html" . -}}
+                </div>
+
+                <div class="l-green-border p-1">
+                    <!-- Recently updated data -->
+                    <p class="home-label"><i class="fas fa-table mr-1" aria-hidden="true"></i>Recently updated datasets:</p>
+                    {{ range .Site.Data.recently_updated_data.featured}}
+                    <a href="{{ relURL .link }}" class="btn btn-outline-primary mr-1 mb-1 btn-sm">{{ .copy }}</a> 
+                    {{ end }}
+                </div>
 
 
+            </div>
+
+            <div class="col-md-5 col-sm-12">
+
+                <div class="card-content mb-4">
+                    <img class="card-img-top cardshadow" src={{ relURL "images/home-sample-image-DE-5.png" }}>
+                </div>
+
+            </div>
+            
+        </div>
+
+        <div class="row mt-2">
+            <div class="col-12">
+                <p class="text-info font-weight-bold">Or, browse by category and topic:</p>
+                {{ partial "de-chooser-accordion.html" (dict "layout" "double" "context" .)  }}
+
+            </div>
+
+        </div>
+
+        <hr class="my-4">
+
+        <div class="row my-4 l-green-border">
+            <div class="col-12 mb-2">
+                <p class="fs-lg text-info font-weight-bold"><i class="fas fa-exclamation-circle mr-1"></i><em>Can't find what you're looking for?</em></p>
+            </div>
+
+            <div class="col-md-6">
+                <p><a class="font-weight-bold" href='{{ relURL "data-explorer/data-index/" }}'>Browse an index of our datasets</a>: Search by term, see available years and geographies, and filter by data source.</p>
+                <p><a class="font-weight-bold" href='{{ relURL "data-explorer/indicator-catalog/" }}'>Browse a catalog of our indicators</a>: Search by term, get metadata and download links.</p>
+            </div>
+        </div>
+
+    </div>
 
     </div>
     
 </article>
 
-{{ $js := resources.Get "js/accessible-autocomplete.min.js" -}}
-{{ $secureJS := $js | resources.Fingerprint "sha512" }}
-<script type="text/javascript" src="{{ $secureJS.RelPermalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
-
-<script type="text/javascript"> 
-
-    // https://www.aspsnippets.com/Articles/Populate-DropDownList-from-JSON-Array-using-JavaScript.aspx
-
-    function populateDropDownList() {
-        var ddlData = document.getElementById("all-data");
-        {{- range .Pages -}} // range through data-explorer pages
-        var option = document.createElement("OPTION");
-        //Set Neighborhood Name in Text part.
-        option.innerHTML = {{ .Title }}
-        // set the option value - this adds the environment variable to give it the base URL.
-        option.value = '{{ .RelPermalink }}'
-        //Add the Option element to DropDownList.
-        ddlData && ddlData.options.add(option);
-        {{- end -}}
-    };
-    
-    populateDropDownList(); // runs the function above.
-    
-    // this handles AA highlighting.
-    var selectEl = document.querySelector('#all-data')
-    accessibleAutocomplete.enhanceSelectElement({
-        autoselect: true,
-        confirmOnBlur: true,
-        defaultValue: "",
-        minLength: 2,
-        selectElement: selectEl
-    });
-    
-    // this takes the AA form and on submit, sends page to a new location.
-    var dataSearchForm = document.getElementById('all-data-select') // this isn't all-data, but all-data-select because of changes applied by the AA JS.
-    document.querySelector('form.autocomplete-form').addEventListener("submit", function (e) {
-        e.preventDefault(); // prevent page re-load
-        window.location.assign(DOMPurify.sanitize(dataSearchForm.options[dataSearchForm.selectedIndex].value))
-      });
-   </script>
-
-{{- end -}}
+{{ end }}

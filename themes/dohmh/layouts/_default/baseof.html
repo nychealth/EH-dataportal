@@ -4,35 +4,29 @@
   {{- partial "head.html" . }}
   {{ block "js_top" . -}}{{- end -}}
 </head>
+
+{{/*  {{ warnf ( print ( printf "[%d] " math.Counter ) ( string .RelPermalink ) ) }}  */}}
+
 <body>
-  
+
   <!--
-    For data stories: 
+    For data stories:
     - Regular Pages (individual data stories) to have header-ds.html
     - DS landing page & all others to have header.html
   -->
   
-  {{- if or (ne .Section "data-stories") ( eq .RelPermalink "/data-stories/") -}}
   {{- partial "header.html" . -}}
-  {{- end -}}
-  
-  
-  {{- if and (eq .Section "data-stories") ( ne .RelPermalink "/data-stories/") -}}
-  {{- partial "header-ds.html" . -}}
-  {{- end -}}
-  
-  <main id="skip-header-target" role="main">
+
+
+
+  <main id="skip-header-target" role="main" data-pagefind-body>
     {{- block "main" . -}}{{- end -}}
     <ul id="results"></ul>
   </main>
   
-  {{/*  put conditional modal JS and CSS at the bottom of every page  */}}
-  
-  {{- partial "conditional-modal.html" -}}
-  
-  {{- partial "footer.html" . -}}
-  {{- partial "js_bottom.html" -}}
-  {{- block "js_bot" . -}}{{- end -}}
+  {{ partial "footer.html" . }}
+  {{ partial "js_bottom.html" }}
+  {{ block "js_bot" . }}{{ end }}
   
 </body>
 </html>

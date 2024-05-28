@@ -1,0 +1,175 @@
+{{- define "main" -}}
+    <!--D3-->
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+
+<article class="container-fluid overflow-hidden" id="primary-content">
+
+  <div class="row my-4">
+    <div class="col-md-11 col-sm-12 mx-auto">
+      <!--start main column-->
+
+      <nav aria-label="breadcrumb" class="mb-2">
+        <ul class="breadcrumb mr-auto">
+            <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
+            <li class="breadcrumb-item"><a href="..">
+              {{- with .Parent -}} {{ .Title }} </a></li>{{- end -}}
+            <li class="breadcrumb-item active">{{ .Title }}</li>
+        </ul>                
+    </nav>
+
+      <h1>{{ .Title }}</h1>
+      <p>{{ .Content }}</p>
+
+      <div class="row pt-2">
+      
+        <div class="col-md-6 col-sm-12">
+
+          <div class="row">
+            <p style="margin-left: 15px">
+              Select a neighborhood:
+            </p>
+            <br>
+          </div>
+
+          <div style="width:300px;height:100px;border:1px solid rgb(125, 125, 125);">
+            <br>
+            &emsp;&emsp; scrollable/clickable list of
+            <br> &emsp;&emsp;&emsp;&emsp; neighborhoods
+          </div>
+
+          <div class="row">
+            <p style="margin-left: 55px">
+              <font size="-1"><em>Enter a neighborhood or Zip Code</em></font>
+            </p>
+            <br>
+          </div>
+
+          <div class="row">
+            <p style="margin-left: 15px">
+              Do you:
+              <br style="text-indent: 15px"> ["live here", "work here", "live and work here", "frequently visit here"]
+            </p>
+            <br>
+          </div>
+
+          <div style="width:300px;height:30px;border:1px solid rgb(125, 125, 125);">dropdown list</div>
+          <br>
+
+          <div class="row">
+            <p style="margin-left: 15px">
+              What topic(s) would you like to talk about with us?
+            </p>
+            <br>
+          </div>
+
+          <div style="width:300px;height:100px;border:1px solid rgb(125, 125, 125);">
+            <br>
+            &ensp;&nbsp; scrollable/clickable list of topics
+          </div>
+          <br>
+
+          <div class="row">
+              <p style="margin-left: 15px">
+                Tell us about your experience with this topic(s) and how it relates to our data:
+              </p>
+              <br>
+          </div>
+
+          <div style="width:500px;height:500px;border:1px solid rgb(125, 125, 125);">
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp; text entry
+          </div>
+          <br>
+
+          <div class="row">
+            <p style="margin-left: 15px">
+              Add your name if you would like
+              <br> (first name or nickname is fine)
+            </p>
+            <br>
+          </div>
+
+          <div style="width:300px;height:30px;border:1px solid rgb(125, 125, 125);">text entry</div>
+          <br>
+
+          <div class="row">
+            <p style="margin-left: 15px">
+              What is an email address that we can reach you at to continue the conversation?
+              <br> (optional)
+            </p>
+            <br>
+          </div>
+
+          <div style="width:300px;height:30px;border:1px solid rgb(125, 125, 125);">text entry</div>
+          <br>
+
+        </div>
+
+        <div class="class-md-6 class-sm-12">
+
+          <div style="width:630px;height:60px;border:1px solid rgb(125, 125, 125);">
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; Why we want to hear from you
+            <br> &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; [button]
+          </div>
+          <br>
+
+          <div class="row">
+            <p style="margin-left: 125px">
+              <b>Here's what your message to us will look like:</b>
+              <br>
+              <br>
+            </p>
+          </div>
+
+          <div style="width:630px;height:980px;border:1px solid rgb(125, 125, 125);">
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; compilation of user's input on left
+            <br> &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;user cannot directly edit
+          </div>
+          <br>
+
+          <div style="width:630px;height:40px;border:1px solid rgb(125, 125, 125);">
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; Send my message! [button]
+          </div>
+          <br>
+
+          <div class="row">
+            <p style="margin-left: 75px">
+              Check this box if you'd like to join our email list &emsp;
+              <br> and receive updates about the portal
+            </p>
+
+            <div style="width:25px;height:25px;border:1px solid rgb(125, 125, 125);"></div>
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+
+    </div>
+    <!--end main column-->
+  </div>
+
+</article>
+
+{{- end -}}

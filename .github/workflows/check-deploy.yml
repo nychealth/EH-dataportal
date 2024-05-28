@@ -5,6 +5,7 @@ name: Check deployment
 on:
   schedule:
     - cron: '30 11 * * 1-5' # every weekday at 7:30 Eastern
+  workflow_dispatch:
 
 jobs:
   check_deploy:
@@ -17,10 +18,10 @@ jobs:
 
       # checkout
       
-      - name: checkout prod-deploy
-        uses: actions/checkout@v3
+      - name: checkout builds/prod-prod
+        uses: actions/checkout@v4
         with:
-          ref: prod-deploy
+          ref: builds/prod-prod
           fetch-depth: 0
       
       # built hash
@@ -36,7 +37,7 @@ jobs:
       - name: get deployed hash
         id: d_hash
         run: |
-          echo "deployed_hash=$(curl https://a816-dohbesp.nyc.gov/indicatorpublic/beta/commit_hash.txt -s -o -)" >> $GITHUB_OUTPUT
+          echo "deployed_hash=$(curl https://a816-dohbesp.nyc.gov/indicatorpublic/commit_hash.txt -s -o -)" >> $GITHUB_OUTPUT
 
       # echo hash
 

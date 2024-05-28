@@ -3,7 +3,8 @@ title: Asthma triggers at home
 date: 2021-05-28 18:02:58.817845
 draft: false
 seo_title: "Data on asthma triggers in NYC"
-seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods.."
+seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
+description: "Datasets and visualizations of asthma trigger data in NYC."
 tags: 
 categories: ["housing","social","neighborhoods"]
 keywords: ["built environments","neighborhoods","social","housing","maintenance","maintenance deficiencies","healthy housing","asthma","allergies","trigger","childhood asthma"]

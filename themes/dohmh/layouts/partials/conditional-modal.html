@@ -11,7 +11,7 @@
     <div class='modal-dialog modal-lg modal-dialog-centered' role='document'>
         <div class='modal-content'>
             <div class='modal-header'>
-                <h5 class='modal-title'>Welcome to the  Environment & Health Data Portal. </h5>
+                <h5 class='modal-title'>Welcome to the Environment & Health Data Portal. </h5>
             </div>
             <div class='modal-body'>
                 <p><strong>Please sign up for our email list</strong>. We will email you every few months with updates,
@@ -39,9 +39,9 @@
 </script>
 
 
-{{/*  evaluate script after modal definition  */}}
+{{- /*  evaluate script after modal definition  */}}
 
-<script src="{{ site.BaseURL }}js/conditional-modal.js"></script>
+<script src={{ relURL "js/conditional-modal.js" }}></script>
 
 {{- end -}} 
 
@@ -55,7 +55,7 @@
                 <h5 class='modal-title'>Welcome to the Prototype EH Data website. </h5>
             </div>
             <div class='modal-body'>
-                <p>Welcome to our <em>development</em> site. Not all of the data or information on this site is final. <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/">Please visit our production site here</a>.
+                <p>Welcome to our <em>development</em> site. Not all of the data or information on this site is final. <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/">Please visit our production site here</a>.
                 </p>
             </div>
             <hr>
@@ -64,16 +64,16 @@
     </div>
 </div>
 
-{{/*  evaluate script after modal definition  */}}
+{{- /*  evaluate script after modal definition  */}}
 
-<script src="{{ site.BaseURL }}js/conditional-modal.js"></script>
+<script src={{ relURL "js/conditional-modal.js" }}></script>
 
 {{- end -}} 
 
 
 {{- if eq hugo.Environment "data_staging" -}} 
 
-{{/*  don't show the modal for data staging  */}}
+{{- /*  don't show the modal for data staging  */}}
 
 <div class="modal" tabindex="-1" role="dialog" id="prototypeModal">
     <div class='modal-dialog modal-lg modal-dialog-centered' role='document'>
@@ -106,17 +106,17 @@
 
     original_url = original_url ? original_url : "/IndicatorPublic/";
     
-    {{/*  console.log("original_url", original_url);  */}}
+    {{- /*  console.log("original_url", original_url);  */}}
     
     // redirect to originally clicked URL
 
-    {{/*  document.querySelector("#want_old_site").href = original_url;  */}}
+    {{- /*  document.querySelector("#want_old_site").href = original_url;  */}}
     
 </script>
 
 
-{{/*  evaluate script after modal definition  */}}
+{{- /*  evaluate script after modal definition  */}}
 
-<script src="{{ site.BaseURL }}js/conditional-modal.js"></script>
+<script src={{ relURL "js/conditional-modal.js" }}></script>
 
 {{- end -}} 

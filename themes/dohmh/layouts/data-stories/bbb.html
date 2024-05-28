@@ -4,7 +4,7 @@
 
     {{ $src := .Resources.GetMatch .Params.image }}
     {{ $image := $src.Resize "1920x"}}
-    <div id="datastoryheader" style="background-image: URL({{$image.Permalink}}); background-position: 50% 25%">
+    <div id="datastoryheader" style="background-image: URL({{$image.RelPermalink}}); background-position: 50% 25%">
 
         <div class="medium my-auto">
             <h1 class="titleheader py-2 px-4">
@@ -15,6 +15,19 @@
 </div>
 
 <article class="container-fluid" id="skip-header-target">
+
+    <div class="row mt-2">
+        <div class="col-12">
+            <nav aria-label="breadcrumb" class="border-top">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
+                    <li class="breadcrumb-item"><a href={{ relURL "data-stories" }}>Data Stories</a></li>
+                    <li class="breadcrumb-item active"><a href="{{ .Page.RelPermalink }}">{{ .Title }}</a></li>
+
+                </ul>
+            </nav>
+        </div>
+    </div>
 
     <div class="row">
         <div class="col-xl-2"></div>
@@ -216,7 +229,7 @@
 
                     <div class="alt-event housing">
                         <p class="date">1934</p>
-                        <p class="txt">Congress creates the Federal Housing Administration, which ranks neighborhoods from most to least desirable in the racist practice known as redlining. Black and Latino neighborhoods are outlined in read - meaning high risk - on maps guiding real estate investments. Redlining devastates the East Harlem housing market, contributes to racial residential segregation and impacts the neighborhood for the next several decades. <a href="/data-stories/redlining/">Read more about redlining</a>.
+                        <p class="txt">Congress creates the Federal Housing Administration, which ranks neighborhoods from most to least desirable in the racist practice known as redlining. Black and Latino neighborhoods are outlined in red - meaning high risk - on maps guiding real estate investments. Redlining devastates the East Harlem housing market, contributes to racial residential segregation and impacts the neighborhood for the next several decades. <a href={{ relURL "data-stories/redlining" }}>Read more about redlining</a>.
                         </p>
                     </div>
 
@@ -248,12 +261,12 @@
 
                     <div class="alt-event housing right">
                         <p class="date">1968</p>
-                        <p class="txt">The Fair Housing Act is passed to protect people from discrimination when renting, buying or getting financing for housing. <a href="/data-stories/housing/">More about health, housing, and history</a>.</p>
+                        <p class="txt">The Fair Housing Act is passed to protect people from discrimination when renting, buying or getting financing for housing. <a href={{ relURL "data-stories/housing" }}>More about health, housing, and history</a>.</p>
                     </div>
 
                     <div class="alt-event  health">
                         <p class="date">1969</p>
-                        <p class="txt">The Young Lords Party, a Puerto Rican activist group, starts the Garbage Offensive to improve sanitation in East Harlem after the neighborhood is denied street cleaning by the Department of Sanitation. <a href="/data-stories/sanitation/">Read more about sanitation and public health</a>.</p>
+                        <p class="txt">The Young Lords Party, a Puerto Rican activist group, starts the Garbage Offensive to improve sanitation in East Harlem after the neighborhood is denied street cleaning by the Department of Sanitation. <a href={{ relURL "data-stories/sanitation" }}>Read more about sanitation and public health</a>.</p>
                     </div>
 
                     <div class="alt-event dis right">
@@ -280,7 +293,7 @@
 
                     <div class="alt-event pop right">
                         <p class="date">1980s</p>
-                        <p class="txt">A wave of immigrants from Mexico, Central and South America, the Caribbean, West Africa and Asia come to NYC - many settle in East Harlem. <a href="/data-explorer/social-conditions/?id=14#display=summary">Get data on foreign-born residents</a>.</p>
+                        <p class="txt">A wave of immigrants from Mexico, Central and South America, the Caribbean, West Africa and Asia come to NYC - many settle in East Harlem. <a href={{ relURL "data-explorer/social-conditions/?id=14#display=summary" }}>Get data on foreign-born residents</a>.</p>
                     </div>
 
                     <div class="alt-event  dis">
@@ -290,30 +303,30 @@
 
                     <div class="alt-event health right">
                         <p class="date">2003</p>
-                        <p class="txt">The Health Department launches three District Public Health Offices, including one in Harlem, to focus public health resources in NYC neighborhoods with the highest rates of illness and premature death. <a href="/data-explorer/health-care/?id=2151#display=summary">Get data on health care</a> and <a href="/data-explorer/mortality/?id=2322#display=summary">data on premature mortality</a>.
+                        <p class="txt">The Health Department launches three District Public Health Offices, including one in Harlem, to focus public health resources in NYC neighborhoods with the highest rates of illness and premature death. <a href={{ relURL "data-explorer/health-care/?id=2151#display=summary" }}>Get data on health care</a> and <a href={{ relURL "data-explorer/mortality/?id=2322#display=summary" }}>data on premature mortality</a>.
                         </p>
                     </div>
 
                     <div class="alt-event transpo ">
                         <p class="date">2003</p>
-                        <p class="txt">Protected bike lanes are extended to East Harlem along First and Second Avenues. <a href="/data-explorer/active-design/?id=2390#display=summary">Get data on bike lanes</a>.</p>
+                        <p class="txt">Protected bike lanes are extended to East Harlem along First and Second Avenues. <a href={{ relURL "data-explorer/active-design/?id=2390#display=summary" }}>Get data on bike lanes</a>.</p>
                     </div>
 
                     <div class="alt-event dis right">
                         <p class="date">2016</p>
-                        <p class="txt">The NYC Department of City Planning presents a rezoning plan for East Harlem, which would create new housing. Residents worry that the plan will make the area unaffordable and lead to displacement. <a href="data-explorer/housing-stability/?id=2365#display=summary">Get data on housing stability</a>.</p>
+                        <p class="txt">The NYC Department of City Planning presents a rezoning plan for East Harlem, which would create new housing. Residents worry that the plan will make the area unaffordable and lead to displacement. <a href="/data-explorer/housing-stability/?id=2365#display=summary">Get data on housing stability</a>.</p>
                         </p>
                     </div>
 
                     <div class="alt-event health">
                         <p class="date">2016</p>
-                        <p class="txt">The East Harlem Community Walking Trail is created to promote physical activity and build a sense of community. <a href="/data-explorer/active-design/?id=2133#display=summary">Get data on walkability</a>.</p>
+                        <p class="txt">The East Harlem Community Walking Trail is created to promote physical activity and build a sense of community. <a href={{ relURL "data-explorer/active-design/?id=2133#display=summary" }}>Get data on walkability</a>.</p>
                         </p>
                     </div>
 
                     <div class="alt-event transpo right">
                         <p class="date">2016</p>
-                        <p class="txt">Citi Bike, the NYC bike share program, expands to East Harlem. <a href="/data-explorer/walking-driving-and-cycling/?id=2059#display=summary">Get data on bicycling</a>.</p>
+                        <p class="txt">Citi Bike, the NYC bike share program, expands to East Harlem. <a href={{ relURL "data-explorer/walking-driving-and-cycling/?id=2059#display=summary" }}>Get data on bicycling</a>.</p>
                         </p>
                     </div>
 
@@ -325,12 +338,12 @@
 
                     <div class="alt-event transpo right">
                         <p class="date">2017</p>
-                        <p class="txt">The Second Avenue Subway is completed with plans to extend the line to East Harlem in the coming years. <a href="/data-explorer/active-design/?id=2391#display=summary">Get data on subway access</a>.</p>
+                        <p class="txt">The Second Avenue Subway is completed with plans to extend the line to East Harlem in the coming years. <a href={{ relURL "data-explorer/active-design/?id=2391#display=summary" }}>Get data on subway access</a>.</p>
                     </div>
 
                     <div class="alt-event transpo">
                         <p class="date">2017</p>
-                        <p class="txt"><a href="https://www.youtube.com/watch?v=JTq9nRLL2J4" target="_blank"> El Barrio Bikes</a> a community-based organization, is formed with Harlem Neighborhood of Health Partners <a href="https://muse.jhu.edu/pub/1/article/842150" target="_blank">to promote inclusivity and eliminate obstacles to biking in East and Central Harlem</a>.</p>
+                        <p class="txt"><a href="https://www.youtube.com/watch?v=JTq9nRLL2J4" target="_blank" rel="noopener noreferrer"> El Barrio Bikes</a> a community-based organization, is formed with Harlem Neighborhood of Health Partners <a href="https://muse.jhu.edu/pub/1/article/842150" target="_blank" rel="noopener noreferrer">to promote inclusivity and eliminate obstacles to biking in East and Central Harlem</a>.</p>
                     </div>
 
                     <div class="alt-event health right">
@@ -340,7 +353,7 @@
 
                     <div class="alt-event dis">
                         <p class="date">2022</p>
-                        <p class="txt">Announcements are made by NYC DOT and NYC Parks that work is set to take place to <a href="https://edc.nyc/project/harlem-river-greenway" target="_blank"> develop the 125th street Greenways</a> connecting safe, active-friendly routes to everyday destinations for East Harlem residents, pedestrians and cyclists. </p>
+                        <p class="txt">Announcements are made by NYC DOT and NYC Parks that work is set to take place to <a href="https://edc.nyc/project/harlem-river-greenway" target="_blank" rel="noopener noreferrer"> develop the 125th street Greenways</a> connecting safe, active-friendly routes to everyday destinations for East Harlem residents, pedestrians and cyclists. </p>
                     </div>
 
                   </div>
@@ -353,10 +366,9 @@
             <div class="border-top border-dark">
                 <ul class="extensible-list text-muted mt-3">
                     <li>
-                        <a class="text-muted" href="mailto:trackingportal@health.nyc.gov"
-                            title="Share through email">
-                            <span class="fa fa-envelope mr-1"></span> Questions about this data story? Ideas
-                            for another one? Email us.</a>
+                        <p class="text-muted" >
+                            <span class="fa fa-envelope"></span> Questions about this data story? Ideas
+                            for another one? Email us at <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#101;&#104;&#100;&#112;&#64;&#104;&#101;&#97;&#108;&#116;&#104;&#46;&#110;&#121;&#99;&#46;&#103;&#111;&#118;">&#101;&#104;&#100;&#112;&#64;&#104;&#101;&#97;&#108;&#116;&#104;&#46;&#110;&#121;&#99;&#46;&#103;&#111;&#118;</a></p>
                     </li>
                 </ul>
             </div>
@@ -385,7 +397,7 @@
                         <i class="fas fa-images mr-1"></i><strong class="keywords">Banner image:</strong><br>
                         {{- .Params.photocredit -}}
                         <hr class="my-2">
-                    {{- end -}}
+                    {{- end }}
 
                     <strong class="keywords">Published on:</strong><br>
                     {{- .Date.Format "January 2, 2006" -}}

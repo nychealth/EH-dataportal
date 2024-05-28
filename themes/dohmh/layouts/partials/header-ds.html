@@ -19,7 +19,7 @@
                             Health
                         </a>
                         <span class="mx-1" aria-hidden="true">></span>
-                        <a class="text-reset" href="{{ site.BaseURL }}">
+                        <a class="text-reset" href={{ relURL "" }}>
                         EH Data Portal
                         </a>
                     </p>
@@ -45,7 +45,7 @@
                         </li>
                         <li>
                             <a href="https://www1.nyc.gov/" title="Go to nyc.gov">
-                                <img class="d-block" src="{{ site.BaseURL }}images/nyc-bubble-logo.svg" width="45" alt="NYC Logo">
+                                <img class="d-block" src={{ relURL "images/nyc-bubble-logo.svg" }} width="45" alt="NYC Logo">
                             </a>
                         </li>
                     </ul>
@@ -62,83 +62,87 @@
     </div>
     <!-- #nyc-top-header -->
 
-    <div class="container-fluid collapse d-lg-block px-0 border-lg-top" id="nav-primary">
-            
-        <div class="wide"> 
-                
-            <nav class="nav nav-pills border-bottom border-right justify-content-center" role="navigation">
+    <div class="container-fluid collapse d-lg-block px-0 border-lg-top border-lg-bottom d-print-none" id="nav-primary">
+
+        <div class="wide">
+
+            <nav class="nav nav-pills border-right justify-content-center" role="navigation">
 
                 {{- $currentPage := . -}}
 
-            <span id="File.Path" style="display: none">{{ $currentPage.File.Path }}</span>
+            <span id="File.Path" style="display: none">{{ with $currentPage.File }}{{- .Path -}}{{ end }}</span>
             <span id="FirstSection.RelPermalink" style="display: none">{{ $currentPage.FirstSection.RelPermalink }}</span>
 
             <div class="nav-item-search border-right">
-                <a class="nav-link" id="nav-item-01" href="{{ site.BaseURL }}">
-                <span class='text-primary'><i class='fa fa-home' aria-hidden='true'></i><span class="sr-only">Home</span></span> 
+                <a class="nav-link" id="nav-item-01" href={{ relURL "" }}>
+                <span class='text-primary'><i class='fa fa-home' aria-hidden='true'></i><span class="sr-only">Home</span></span>
                 </a>
             </div>
 
                 {{- range .Site.Menus.main -}}
 
                 {{- if (ne .Name "Search") -}}
-                
+
                 <div class="nav-item {{- if (eq $currentPage.FirstSection.RelPermalink .URL) }} active {{- end -}}">
-                    
+
                     <a class="nav-link" href="{{ .URL }}" id="nav-item-{{ .Identifier }}">{{ .Pre }} {{ .Name }}</a>
-                    
+
                 </div>
-                
+
                 {{- else -}}
 
-                <button class="btn nav-item-search d-none d-lg-block" type="button" title="Search" 
-                        data-toggle="collapse" data-target="#global-search" 
-                        aria-controls="global-search" aria-expanded="false">
-                        
-                    <span class="sr-only">Search</span>
-                    <i class="fa fa-magnifying-glass fa-lg"></i>
-                
-                </button>
-                
+                {{/*  <button class="btn nav-item-search d-none d-lg-block" type="button" title="Search"
+                        data-toggle="collapse" data-target="#global-search"
+                        aria-controls="global-search" aria-expanded="false">  */}}
+
+                    <button type="button" data-toggle="modal" data-target="#searchModal" class="btn nav-item-search d-none d-lg-block" title="Search">
+
+                        <span class="sr-only">Search</span>
+                        <i class="fa fa-magnifying-glass fa-lg text-body mt-1"></i>
+
+                    </button>
+
+                {{/*  </button>  */}}
+
                 {{- end -}}
-                
+
                 <!-- .nav-item -->
                 {{- end -}}
-                    
+
             </nav>
-                
+
         </div>
-            
+
     </div>
-    
+
     <div class="container-fluid-lg border-top collapse" id="global-search">
-        
+
         <form class="narrow py-2" aria-label="Search" role="search">
-            
+
             <div class="input-group">
-                
+
                 <label class="sr-only" for="global-search-bar">Search</label>
-                
+
                 <input class="form-control form-control-lg" id="global-search-bar" placeholder="Search">
-                
+
                 <div class="input-group-btn">
-                    
+
                     <button class="btn btn-primary btn-lg" type="button" title="Search">
-                        
+
                         <span class="sr-only">Search</span>
                         <span class="fas fa-arrow-right"></span>
-                        
+
                     </button>
-                    
+
                 </div>
 
             </div>
 
         </form>
-        
-        
+
+
         <!-- .wide -->
-        
+
 </div>
 </header>
 <!-- #global-header -->

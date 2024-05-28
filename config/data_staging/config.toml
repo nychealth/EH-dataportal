@@ -1,9 +1,0 @@
-baseURL = "http://gcappbesp307/IndicatorPublic/beta/"
-[params]
-    # sitepath = "/EH-dataportal"
-    data_branch = "staging"
-
-[caches]
-    [caches.getresource]
-      dir = ':cacheDir/:project'
-      maxAge = 0

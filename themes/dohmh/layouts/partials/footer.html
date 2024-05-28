@@ -8,7 +8,7 @@
 
       <div class="container py-3 d-none" id="languages">
 
-          <div class="row fs-md">
+          <div class="row fs-md d-print-none">
 
               <div class="col-6 col-md-4 col-lg mb-2 mb-lg-0">
                   <ul class="extensible-list">
@@ -45,7 +45,7 @@
       </div>
       <!-- #languages -->
 
-      <div class="container py-3" id="languages">
+      <div class="container py-3 d-print-none" id="languages">
 
           <ul class="fs-md" role="list">
               <li><a class="lang-select text-reset" href="#" data-lang="ar">عربى</a></li>
@@ -68,7 +68,7 @@
       <div class="container py-3">
           <div class="row">
               <div class="col-md-6 col-lg-8 mb-3 mb-lg-0">
-                  <nav class="row fs-md" role="navigation">
+                  <nav class="row fs-md d-print-none" role="navigation">
                       <div class="col-lg mb-3 mb-lg-0">
                           <ul class="extensible-list">
                               <li>
@@ -144,7 +144,7 @@
 
               <div class="col-md-6 col-lg-4">
 
-                  <a class="mb-2" href="https://www1.nyc.gov" title="Go to nyc.gov" target="_blank">
+                  <a class="mb-2" href="https://www1.nyc.gov" title="Go to nyc.gov" target="_blank" rel="noopener noreferrer">
                       {{ $logo := resources.Get "images/nyc-bubble-logo.svg" }}
                       <img class="mb-2" src="{{ $logo.RelPermalink }}" width="90" alt="NYC Logo">
                       <span class="sr-only">(opens in a new tab)</span>
@@ -152,7 +152,7 @@
                   <p class="fs-sm">© City of New York. 2022 All Rights Reserved,<br>NYC is a trademark and service mark of the City of New
                     York.</p>
 
-                  <ul class="extensible-list horizontal fs-sm">
+                  <ul class="extensible-list horizontal fs-sm d-print-none">
                       <li>
                           <a class="text-reset" href="https://www1.nyc.gov/home/privacy-policy.page">Privacy
                               Policy</a>
@@ -184,3 +184,118 @@
   <!-- #nyc-bottom-footer -->
 
 </footer>
+
+<!-- Modal -->
+<div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="searchModalLabel" data-pagefind-ignore="all">Search</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <link href={{ relURL "pagefind/pagefind-ui.css" }} rel="stylesheet">
+            <script src={{ relURL "pagefind/pagefind-ui.js" }} type="text/javascript"></script>
+            <div id="search"></div>
+            <script>
+
+                window.addEventListener('DOMContentLoaded', (event) => {
+
+                    new PagefindUI({
+                        element: "#search",
+                        showSubResults: true,
+                        showImages: false,
+                        baseUrl: baseURL,
+                        showEmptyFilters: true,
+                        debounceTimeoutMs: 500,
+                        // autofocus: true,
+                        processTerm: function (term) {
+
+                            gtag('event', 'search', {
+                                search_term: term
+                            });
+
+                            return term;
+
+                        },
+                        processResult: function (result) {
+
+                            // ----------------------------------------------------------------------- //
+                            // clean some fields
+                            // ----------------------------------------------------------------------- //
+
+                            // replace (in place) HTML entites in titles
+
+                            result.meta.title = result.meta.title
+                                .replace(/&#(\d+);/g, ((match, dec) => `${String.fromCharCode(dec)}`))
+                                .replaceAll("&amp;", "&");
+
+                            // process sub-results
+
+                            result.sub_results.forEach(sub => {
+
+                                // replace (in place) default DE indicatore anchor with DE query string
+
+                                sub.url = sub.url.replace("#IndicatorID-", "?id=");
+
+                                // replace (in place) HTML entites in titles
+
+                                sub.title = sub.title
+                                    .replace(/&#(\d+);/g, ((match, dec) => `${String.fromCharCode(dec)}`))
+                                    .replaceAll("&amp;", "&");
+
+                            });
+
+                            // ----------------------------------------------------------------------- //
+                            // add Google Analytics tag to each result
+                            // ----------------------------------------------------------------------- //
+
+                            // Get all search results
+                            var allResults = document.getElementsByClassName('pagefind-ui__result-link');
+
+                            // add a click listener to each result
+                            for (h = 0; h < allResults.length; h += 1) {
+
+                                allResults[h].setAttribute('onclick',"gtag('event', 'search_click', { page_viewed: '" + allResults[h].href + "' });");
+
+                            }
+
+                            // log results to console for debugging
+
+                            console.log("@ result:", result);
+                            // result.sub_results.forEach(r => console.log("<> sub url:", r.url));
+
+                        }
+                    });
+
+                    // set focus into box when loaded, b/c autofocus attr doesn't work on bootstrap modals
+
+                    // https://getbootstrap.com/docs/4.3/components/modal/
+
+                    const searchModal = document.getElementById('searchModal')
+                    const searchInput = document.getElementsByClassName('pagefind-ui__search-input')[0]
+
+                    $(searchModal).on('shown.bs.modal', () => {
+                        searchInput.focus();
+                        searchInput.select();
+                    })
+
+
+                });
+
+
+            </script>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+<script>
+
+
+</script>

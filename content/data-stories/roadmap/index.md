@@ -35,6 +35,6 @@ We built this site for you, so please help us continue developing it:&nbsp;
 
 * [Sign up for our email list](https://docs.google.com/forms/d/e/1FAIpQLSfUg3JE5ODNc6aqBPJwM8mZ80TYtK6ISw-OM7PBwKuoN3M--g/viewform?embedded=true)&nbsp;– we'll send occasional requests for users to participate in user testing or co-design work&nbsp;
 * Visit our Github repositories ([site](https://github.com/nychealth/EH-dataportal), [data](https://github.com/nychealth/EHDP-data)) and explore the code, file an issue, or suggest features&nbsp;
-* [Email us with any questions you have](mailto:trackingportal@health.nyc.gov) – we're here to help.&nbsp;&nbsp;
+* Email us with any questions you have at <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#101;&#104;&#100;&#112;&#64;&#104;&#101;&#97;&#108;&#116;&#104;&#46;&#110;&#121;&#99;&#46;&#103;&#111;&#118;">&#101;&#104;&#100;&#112;&#64;&#104;&#101;&#97;&#108;&#116;&#104;&#46;&#110;&#121;&#99;&#46;&#103;&#111;&#118;</a> – we're here to help.&nbsp;&nbsp;
 
 &nbsp;

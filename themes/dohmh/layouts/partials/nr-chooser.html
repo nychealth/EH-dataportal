@@ -1,8 +1,9 @@
-<form action="/neighborhood-reports" method="get" class="autocomplete-form">
+<form action={{ relURL "neighborhood-reports" }} method="get" class="autocomplete-form">
     <div class="row no-gutters mb-2">
       <div class="d-block" style="width:100%">
-        <label for="last-neighborhood" class="font-weight-bold h4 mb-1 fs-sm"><p>Choose a
-          neighborhood:</p></label>
+        <label for="last-neighborhood" class="font-weight-bold h4 mb-1 fs-sm">
+          <p>Choose a neighborhood:</p>
+        </label>
       </div>
 
         <div class="autocomplete-wrapper" class="d-inline mr-1" style="width:80%;">
@@ -56,6 +57,6 @@
         document.querySelector('form.autocomplete-form').addEventListener("submit", function (e) {
           e.preventDefault(); // prevent page re-load
           var locVal = searchForm.options[searchForm.selectedIndex].value;
-          window.location ='{{ site.BaseURL }}neighborhood-reports/'+ DOMPurify.sanitize(locVal);
+          window.location = {{ relURL "neighborhood-reports/" }} + DOMPurify.sanitize(locVal);
         });
       </script>

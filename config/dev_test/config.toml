@@ -1,4 +1,0 @@
-baseURL = "http://gcappbesp307/dev-test/beta/"
-[params]
-    # sitepath = "/EH-dataportal"
-    data_branch = "staging"

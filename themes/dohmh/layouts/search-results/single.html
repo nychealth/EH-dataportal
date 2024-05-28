@@ -1,5 +1,5 @@
 {{- define "main" -}}
-  <article class="container-fluid overflow-hidden" id="primary-content">
+  <article class="container-fluid overflow-hidden" id="primary-content" data-pagefind-ignore="all">
     <div class="col-md-10 mx-auto my-4">
       <p style="font-size:180%;" class="search-results-title mb-4"></p>
 
@@ -37,7 +37,7 @@
     
   </article>
 
-  <section class="related-reading">
+  <section class="related-reading" data-pagefind-ignore="all">
     <div class="container">
       <div class="row">
         <div class="col-10 mx-auto">
@@ -47,7 +47,8 @@
 
           <div class="card bg-white text-green mb-2 p-2 text-black fs-rg">
             <p>
-            <a href='{{ ref . "/content/data-explorer/all-data.md" }}'>Browse an index of all of the datasets on the Environment & Health Data Portal</a>: .</p>
+              Browse an <a class="font-weight-bold" href='{{ relURL "data-explorer/data-index/" }}'>index of datasets</a> or a <a class="font-weight-bold" href='{{ relURL "data-explorer/indicator-catalog/" }}'>catalog of indicators</a> on the Environment & Health Data Portal.
+            </p>
             <p>Or, try these other Health Department resources:
             <ul>
               <li><a href="https://a816-health.nyc.gov/hdi/epiquery/">EpiQuery</a>: Analyze and visualize NYC health data from surveys, disease reports and vital records by sex, race/ethnicity, age and other stratifications.
@@ -55,10 +56,11 @@
               <li><a href="https://a816-health.nyc.gov/hdi/profiles/">Community Health Profiles</a>: Learn about the social, economic and health conditions and outcomes of New Yorkers, neighborhood-by-neighborhood.
               </li>
             </ul>
-          </p><p>
-            <a href="https://www1.nyc.gov/site/doh/data/data-home.page">See all Health Department data resources here</a>.
-            </p>
-         </div>
+          </p>
+          <p>
+            Or <a href="https://www1.nyc.gov/site/doh/data/data-home.page">see all Health Department data resources here</a>.
+          </p>
+        </div>
       </div>
 
       </div>

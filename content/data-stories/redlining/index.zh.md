@@ -14,7 +14,7 @@ image: ds-redlining.jpeg
 ### 危害我们健康90年的金融政策 
 在公共卫生领域，我们经常引用结构性种族主义来解读我们社会的健康模式。但是，具体来说，这意味着什么？仔细看一下红线圈定的历史就可以看出这种联系。 
 
-当我们分析纽约人健康的数据时，我们经常会发现相同的地理模式，在高贫困率的社区中，可预防的健康状况发生率更高。[例如，我们已经写过哮喘和贫困是如何密切相关的]({{< ref "/data-stories/povasthma" >}})。 
+当我们分析纽约人健康的数据时，我们经常会发现相同的地理模式，在高贫困率的社区中，可预防的健康状况发生率更高。[例如，我们已经写过哮喘和贫困是如何密切相关的]({{< ref "/data-stories/asthma-and-poverty" >}})。 
 
 这些高贫困率的社区中，有色人种的比例也高于其他社区。 
 
@@ -58,7 +58,7 @@ image: ds-redlining.jpeg
 
 {{< rawhtml >}}
 <div class="py-0">
-    <iframe src="/maps/HOLC_map/HOLC_map.html" scrolling="no" frameborder="0"
+    <iframe src="{{< baseurl >}}maps/HOLC_map/HOLC_map.html" scrolling="no" frameborder="0"
         style="position: relative; height: 600px; width: 100%;"></iframe>
 </div>
 {{< /rawhtml >}}

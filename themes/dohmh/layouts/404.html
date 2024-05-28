@@ -1,25 +1,104 @@
 {{- define "main" -}}
 
-<article class="container-fluid overflow-hidden" id="primary-content">
+<article class="container-fluid overflow-hidden" id="primary-content" data-pagefind-ignore="all">
 
   <div class="row">
     <div class="col-md-10 col-sm-12 mx-auto">
+
       <!--start main column-->
-        <div class="row mt-4">
-            <div class="col-9 mx-auto">
-                <h1>Oops!</h1><br>
-                <p>This isn't a page on this site. 
+        <div class="chunk row my-4 mb-6" id="main404">
+            <div class="col-9 mx-auto mb-6">
+                <h1>Oops!</h1>
+                <p>This isn't a page on this site. </p>
+                <p>
                     {{- with .Site.GetPage "_index.md" -}}
-                    Return to the <a href="{{ .RelPermalink }}">
-                        Environment and Health Data Portal Home Page
-                    </a>.{{- end -}}</p>
+                    You'll be redirected to the <a href="{{ .RelPermalink }}">
+                        Environment and Health Data Portal Home Page</a> in <span id="sec">a few</span> seconds.{{- end -}}</p>
             </div>
-          
         </div>
+
+        <div class="chunk row my-4 hide mb-6" id="redirectBeta">
+            <div class="col-9 mx-auto mb-6">
+              <h1>Time to update your bookmarks!</h1>
+              <p>We're no longer at <code class="text-secondary">/beta</code>. We'll send you to your correct URL.</p>
+
+            </div>
+
+        </div>
+
+
 
     </div>
     <!--end main column-->
   </div>
+
+<script>
+// ---------- Get URL, and hide page content options -------------------------------------- // 
+
+ var url = window.location.href                              // use this when live
+
+// var url = 'http://localhost:1313/IndicatorPublic/beta'   // test URL
+
+var chunks = document.querySelectorAll('.chunk')
+
+chunks.forEach(x => x.classList.add('hide'))
+
+
+// ---------- does the URL include beta? ---------- // 
+
+url.includes("beta") ? removeBeta(url) : redirectHome()
+
+
+// ----------  remove /beta from URL and redirect to otherwise same URL -------------------- // 
+
+function removeBeta(x) {
+  // expose page content
+  document.getElementById('redirectBeta').classList.remove('hide')
+  //console.log('It is a beta URL')
+
+  // remove beta from URL
+  url = x.replace('/beta','')
+  // console.log('new url: ', url)
+
+  // send to new location
+  setTimeout(() => {
+    window.location.href = url
+  }, 2000)
+}
+
+// ----------  redirect to Home Page -------------------------------------------------------- // 
+
+function redirectHome() {
+  // expose content
+  document.getElementById('main404').classList.remove('hide')
+
+  // start countdown
+  countDown(5)
+}
+
+
+function countDown(x) {
+
+  if (x > 0) {
+    var print = document.getElementById('sec')
+    print.innerHTML = x
+    var oneLess = x - 1
+    setTimeout(() => {
+      countDown(oneLess)
+    }, 1000)
+
+  } else {
+    sendHome()
+  }
+}
+
+function sendHome() {
+  setTimeout(() => {
+    window.location.href = {{ relURL "" }}
+  }, 1000)
+}
+
+</script>
   
 </article>
 {{- end -}}

@@ -4,36 +4,25 @@ date: 2021-11-24T13:30:21-05:00
 draft: false
 seo_title: "Our bureau is hiring"
 seo_description: "Join our team at the NYC Department of Health."
+description: "Join our team at the NYC Department of Health. Explore job postings here."
 ---
 
-Join our team! See below for open positions in our bureau.
+Join our team! See below for open positions in our bureau - or, [search cityjobs.nyc.gov for 'BESP'](https://cityjobs.nyc.gov/jobs?q=BESP&options=&page=1).
 
 ---
+
 <br>
 
-**Senior Director of Environmental Health Policy**
-
-We are looking for an experienced- high-level professional well-versed in applying research to policy and program, who will oversee our growing work in climate health and health equity in planning.
-- Visit [NYC Jobs](https://www1.nyc.gov/jobs/index.page) and search for job ID 559175.
+[**Community Resilience Coordinator**](https://cityjobs.nyc.gov/job/community-resiliency-coordinator-bureau-of-health-equity-capacity-building-in-queens-jid-19551): We're hiring a Community Resilience Coordinator to support the Bureau of Health Equity Capacity Building in engaging with community organizations such as houses of worship, medical clinics, and senior centers about climate resiliency through trainings, presentations, and communication plans. This role will also involve the development of tools for internal leadership, decisionmakers, and policymakers, and strategizing on incorporating evidence-based climate resiliency activities into existing public health programs.
 
 ---
+
 <br>
 
-**Director of Climate Health Programs**
-We're looking for a leader experienced in applying research to program design and implementation to manage our team overseeing Be A Buddy and other community resiliency programs.
-- Visit  [NYC Jobs](https://www1.nyc.gov/jobs/index.page) and search for job number 552896.
+[**Climate Health Program Director**](https://cityjobs.nyc.gov/job/climate-health-program-director-bureau-of-health-equity-capacity-building-in-queens-jid-19555): We're hiring a Climate Health Program Director to support the Bureau of Health Equity Capacity Building by managing the Climate Health Program. Responsibilities include extensive research and assessment in accordance with the agency's climate health policy agenda, with outcomes focused on developing opportunities to promote climate resiliency and justice strategies, identify service gaps, and translate findings to programs and communications.
 
 ---
+
 <br>
 
-**Environmental Review Policy Analyst**
-We're looking for an urban planning or environmental policy expert who works at the intersection of environment and health equity.
-- Visit  [NYC Jobs](https://www1.nyc.gov/jobs/index.page) and search for job number 528335.
-
----
-<br>
-
-**Division Counsel/Appeals Officer**
-
-Support the Bureau of Child Care on all legal matters regarding the implementation of Comprehensive Background Checks, including serving as an Appeals Officer.
-- Visit [NYC Jobs](https://www1.nyc.gov/jobs/index.page) and search for job number 558051.
+[**Senior Evaluator**](https://cityjobs.nyc.gov/job/senior-evaluator-bureau-of-environmental-surveillance-and-policy-in-queens-jid-13557): We are hiring an experienced evaluator who will develop and implement of an evaluation strategy for the agency's community climate resiliency program portfolio, and oversee and implement analytic plans for program evaluation projects.

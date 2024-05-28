@@ -1,0 +1,443 @@
+﻿topic,kaLink,IndicatorID,IndicatorName
+Childcare Care Financial Assistance,KA-03118,1,Preterm birth
+Pregnancy Support,KA-02928,1,Preterm birth
+Developmentally Delayed Infant Services,KA-02092,1,Preterm birth
+Childcare Care Financial Assistance,KA-03118,2,Very preterm birth
+Developmentally Delayed Infant Services,KA-02092,2,Very preterm birth
+Pregnancy Support,KA-02928,2,Very preterm birth
+Childcare Care Financial Assistance,KA-03118,3,Very low birthweight
+Childcare Care Financial Assistance,KA-03118,4,Low birthweight at full term
+Stillbirth or Miscarriage Certificate,KA-03562,5,Death (infants)
+Stillbirth or Miscarriage Certificate,KA-03562,6,Death (neonatal)
+Stillbirth or Miscarriage Certificate,KA-03562,7,Death (perinatal)
+Stillbirth or Miscarriage Certificate,KA-03562,8,Death (postneonatal)
+Health Services for Women,KA-03100,9,Total lifetime fertility
+"Historic Birth, Death, or Marriage Record",KA-02750,10,Sex ratio
+"Historic Birth, Death, or Marriage Record",KA-02750,14,Foreign-born
+Healthy Homes,KA-01565,16,Very old homes
+Home Ownership,KA-02786,17,Owner-occupied homes
+Asthma,KA-02563,18,Adults with asthma (past 12 months)
+Asthma,KA-02563,19,Asthma in the Past 12 Months (Children)
+Children with Special Health Care Needs,KA-01528,19,Asthma in the Past 12 Months (Children)
+Pest Control Guidance,KA-01110,20,"Personal Use of Pesticide Sprays, Bombs, or Foggers"
+Mosquitos,KA-02263,20,"Personal Use of Pesticide Sprays, Bombs, or Foggers"
+Pest Complaint,KA-02278,22,Adults reporting cockroaches
+Rat or Mouse Complaint,KA-01107,24,Adults reporting mice or rats outside
+Secondhand Smoke,KA-01493,25,Secondhand smoke at home
+Child With Special Health Cares Needs,KA-01528,26,Anencephaly
+Child With Special Health Cares Needs,KA-01528,27,Spina bifida (without anencephaly)
+Child With Special Health Cares Needs,KA-01529,28,Hypoplastic left heart syndrome
+Child With Special Health Cares Needs,KA-01530,29,Transposition of the great arteries (vessels)
+Child With Special Health Cares Needs,KA-01531,30,Cleft lip (with or without cleft palate)
+Child With Special Health Cares Needs,KA-01532,31,Cleft palate (without cleft lip)
+Child With Special Health Cares Needs,KA-01533,32,Hypospadias
+Child With Special Health Cares Needs,KA-01534,33,Gastroschisis
+Child With Special Health Cares Needs,KA-01535,34,Upper limb deficiencies
+Child With Special Health Cares Needs,KA-01536,35,Lower limb Deficiencies
+Child With Special Health Cares Needs,KA-01537,36,Down Syndrome (Mother under age 35)
+Child With Special Health Cares Needs,KA-01538,37,Down Syndrome (Mother age 35 and up)
+Carbon monoxide,KA-02608,38,Carbon monoxide incidents
+NYCHA Public Housing Maintenance Complaint,KA-01076,40,Homes with cracks or holes
+Apartment Maintenance Complaint,KA-01074,40,Homes with cracks or holes
+NYCHA Public Housing Maintenance Complaint,KA-01076,41,Old homes with peeling paint
+Apartment Maintenance Complaint,KA-01074,41,Old homes with peeling paint
+NYCHA Public Housing Maintenance Complaint,KA-01076,42,Homes with leaks
+Water Leak in a Building,KA-01509,42,Homes with leaks
+NYCHA Public Housing Maintenance Complaint,KA-01076,44,Homes in Deteriorating or Dilapidated Buildings
+Apartment Maintenance Complaint,KA-01074,44,Homes in Deteriorating or Dilapidated Buildings
+NYCHA Public Housing Maintenance Complaint,KA-01076,45,Homes with 3+ maintenance deficiencies
+Apartment Maintenance Complaint,KA-01074,45,Homes with 3+ maintenance deficiencies
+HEAP Energy Assistance,KA-02529,47,Homes using supplemental heat
+Rat or Mouse Complaint,KA-01107,48,Homes with mice or rats in the building
+Air Pollution,KA-01408,55,Ozone action days
+Air Pollution,KA-01408,57,Fine particles (PM 2.5) action days
+Mammogram,KA-02853,60,Breast cancer (in females)
+Cancer,KA-01521,60,Cancer
+Health Services for Women,KA-03100,60,Breast cancer (in females)
+Cancer,KA-01521,63,Lung and bronchus cancer
+Cancer,KA-01521,64,Pancreatic cancer
+Cancer,KA-01521,66,Brain and other nervous system cancer
+Cancer,KA-01521,71,Non-Hodgkin's lymphomas
+Cancer,KA-01521,73,Leukemia
+Cancer,KA-01521,74,Acute myeloid leukemia
+Carbon monoxide,KA-02608,78,Carbon Monoxide Poison Control Center (PCC) Calls
+Asthma,KA-02563,84,Asthma hospitalizations (age 4 and under)
+Asthma,KA-02563,85,Asthma Hospitalizations (Children 5 to 14 Yrs Old)
+Asthma,KA-02563,86,Asthma Hospitalizations (Youths and Adults)
+Carbon monoxide,KA-02608,87,Carbon Monoxide Hospitalizations (Fire-Related)
+Carbon monoxide,KA-02608,88,Carbon Monoxide Hospitalizations (Other Causes)
+Carbon monoxide,KA-02608,89,Carbon Monoxide Hospitalizations (Unknown Cause)
+Pest Control Guidance,KA-01110,91,Regular exterminator service
+Air Pollution,KA-01408,92,Air quality action days
+Pest Control Guidance,KA-01110,93,Commercial use of insecticides
+Pesticide Application without Notice,KA-01597,93,Commercial use of insecticides
+Pest Control Guidance,KA-01110,94,Commercial use of herbicides
+Pest Control Guidance,KA-01110,96,Commercial use of fungicides
+Pest Control Guidance,KA-01110,97,Commercial use of insecticides (Organophosphate)
+Mosquitoes,KA-02263,97,Commercial use of insecticides (Organophosphate)
+Pest Control Guidance,KA-01110,98,Commercial use of insecticides (Pyrethroid/Pyrethrin)
+Mosquitoes,KA-02263,98,Commercial use of insecticides (Pyrethroid/Pyrethrin)
+Pest Control Guidance,KA-01110,99,Insecticides (carbamate)
+Pest Control Guidance,KA-01110,100,"Commercial use of ""Best Practice"" products"
+Child With Special Health Cares Needs,KA-01537,101,Tetralogy of Fallot
+Pest Control Guidance,KA-01110,102,Commercial use of rodenticides
+Pest Complaint,KA-02278,107,Homes with cockroaches
+Cancer,KA-01521,690,Thyroid cancer
+Cancer,KA-01521,770,Chronic lymphocytic leukemia
+Department of Design and Construction (DDC) Services and Projects,KA-01181,774,State of Good Repair
+Parks,KA-02500,775,Park Distance
+Drinking Water,KA-01402,2001,Drinking Water Demand
+Affordable Housing,KA-01966,2003,Housing Affordability
+NYC Green Infrastructure Plan,KA-02892,2004,Housing Sustainability
+Clean Energy Systems Exemption,KA-03554,2005,Cleaner Energy
+Green Energy Training,KA-01552,2005,Cleaner Energy
+ElectrifyNYC,KA-03452,2005,Cleaner Energy
+Benchmark Energy Efficiency Grading Requirements,KA-02573,2007,Energy Efficiency
+NYC Accelerator,KA-02895,2007,Energy Efficiency
+ElectrifyNYC,KA-03452,2007,Energy Efficiency
+City Environmental Quality Review,KA-01151,2008,New York Harbor Water Quality
+Drinking Water,KA-01402,2009,Drinking Water Quality
+Active Design,KA-02544,2011,Modal Shift - All Travel
+Bike Map,KA-02575,2011,Modal Shift - All Travel
+Dockless Bike Share,KA-02688,2011,Modal Shift - All Travel
+Smoke Free Air Act,KA-03007,2017,No smoke-free home policy
+Smoke-Free Housing,KA-03008,2017,No smoke-free home policy
+Smoking Policy Disclosure,KA-03009,2017,No smoke-free home policy
+Quit Smoking,KA-02946,2019,Cigarette smoking (adults)
+Secondhand Smoke,KA-01493,2020,Secondhand smoke at work
+Smoking Complaint,KA-02295,2020,Secondhand smoke at work
+Quit Smoking,KA-02946,2021,Cigarette smoking (youth)
+Air Pollution,KA-01408,2023,Fine particles (PM 2.5)
+Air Pollution,KA-01408,2024,Black carbon
+Air Pollution,KA-01408,2025,Nitrogen dioxide (NO2)
+Air Pollution,KA-01408,2026,Sulfur dioxide (SO2)
+Air Pollution,KA-01409,2027,Ozone (O3)
+Air Pollution,KA-01410,2028,Nitric oxide (NOx)
+Bed Bug Prevention and Control,KA-01793,2030,Bed bugs
+Bed Bug Complaint,KA-01236,2030,Bed bugs
+Preventing and Getting Rid of Bed Bugs Safely Brochure,KA-03229,2030,Bed bugs
+Pest Complaint,KA-02278,2030,Bed bugs
+Bed Bug Annual Report,KA-03574,2030,Bed bugs
+Cancer,KA-01521,2031,Leukemia (children)
+Child With Special Health Cares Needs,KA-01528,2031,Leukemia (children)
+Cancer,KA-01521,2033,Brain and other nervous system cancer (children)
+Child With Special Health Cares Needs,KA-01528,2033,Brain and other nervous system cancer (children)
+Cancer,KA-01521,2035,Acute myeloid leukemia (children)
+Child With Special Health Cares Needs,KA-01528,2035,Acute myeloid leukemia (children)
+Cancer,KA-01521,2037,Acute lymphocytic leukemia (children)
+Child With Special Health Cares Needs,KA-01528,2037,Acute lymphocytic leukemia (children)
+Cancer,KA-01521,2039,All cancer (children)
+Child With Special Health Cares Needs,KA-01528,2039,All cancer (children)
+Drinking Water,KA-01402,2041,Nitrate
+Drinking Water,KA-01402,2043,Disinfection by-products (HAA5)
+Drinking Water,KA-01402,2044,Arsenic
+Asthma,KA-02563,2046,Asthma Emergency Department Visits (Children 5 to 14 Yrs Old)
+Asthma,KA-02563,2047,Asthma Emergency Department Visits (Youths and Adults)
+Asthma,KA-02563,2048,Asthma emergency department visits (age 4 and under)
+Drug and Alcohol Treatment,KA-02698,2050,Heavy drinking (adults)
+Excessive Drinking,KA-02718,2050,Heavy drinking (adults)
+Drug and Alcohol Treatment,KA-02698,2051,Binge drinking (adults)
+Excessive Drinking,KA-02718,2051,Binge drinking (adults)
+Carbon monoxide,KA-02608,2052,Carbon Monoxide Emergency Department Visits (Fire-Related)
+Carbon monoxide,KA-02609,2053,Carbon Monoxide Emergency Department Visits (Other Causes)
+Carbon monoxide,KA-02610,2054,Carbon Monoxide Emergency Department Visits (Unknown Cause)
+Drug and Alcohol Treatment,KA-02698,2055,Binge drinking (youth)
+Excessive Drinking,KA-02718,2055,Binge drinking (youth)
+Drug and Alcohol Treatment,KA-02698,2056,Underage drinking
+Excessive Drinking,KA-02718,2056,Underage drinking
+Drug and Alcohol Treatment,KA-02698,2057,Alcohol access (youth)
+Excessive Drinking,KA-02718,2057,Alcohol access (youth)
+Active Design,KA-02544,2058,Walking or biking for transportation
+Bike Map,KA-02575,2059,Monthly bicycle use
+Make NYC Your Gym Health Bulletin,KA-03234,2060,Recent exercise
+Heart Age Calculator,KA-02771,2061,Overweight or obesity (adults)
+Healthy Weight for Children Booklet,KA-02770,2062,Overweight or obesity (youth)
+Heart Age Calculator,KA-02771,2063,Obesity (adults)
+Healthy Weight for Children Booklet,KA-02770,2064,Obesity (youth)
+Restaurant and Mobile Food Letter Grading,KA-01057,2065,Restaurants with A grades
+Restaurant Inspection,KA-02955,2065,Restaurants with A grades
+Summer Heat Health Tips,KA-03034,2074,Heat stress: deaths
+Cooling Centers,KA-02663,2074,Heat stress: deaths
+HEAP Cooling Assistance,KA-02552,2074,Heat stress: deaths
+Cool it! NYC,KA-03323,2074,Heat stress: deaths
+Summer Heat Health Tips,KA-03034,2075,Heat stress: emergency department visits
+Cooling Centers,KA-02663,2075,Heat stress: emergency department visits
+HEAP Cooling Assistance,KA-02552,2075,Heat stress: emergency department visits
+Cool it! NYC,KA-03323,2075,Heat stress: emergency department visits
+Summer Heat Health Tips,KA-03034,2076,Heat stress: hospitalizations
+Cooling Centers,KA-02663,2076,Heat stress: hospitalizations
+HEAP Cooling Assistance,KA-02552,2076,Heat stress: hospitalizations
+Cool it! NYC,KA-03323,2076,Heat stress: hospitalizations
+Cancer,KA-01521,2077,Esophageal cancer
+Summer Heat Health Tips,KA-03034,2083,Longest Heat Wave of the Year
+Cooling Centers,KA-02663,2083,Longest Heat Wave of the Year
+Summer Heat Health Tips,KA-03034,2084,Heat events
+Cooling Centers,KA-02663,2084,Heat events
+Accident with Injury,KA-01513,2086,Bicycle injury hospitalizations
+Cancer,KA-01521,2087,Kidney and renal pelvis cancer
+Cancer,KA-01521,2088,Larynx cancer
+Cancer,KA-01521,2089,Liver and intrahepatic bile duct cancer
+Cancer,KA-01521,2090,Melanoma of the skin
+Cancer,KA-01521,2091,Oral cavity and pharynx cancer
+Accident with Injury,KA-01513,2092,Bicycle injury emergency department visits
+Pedestrian Safety,KA-02919,2093,Pedestrian injury hospitalizations
+Pedestrian Safety,KA-02919,2094,Pedestrian injury emergency department visits
+Cancer,KA-01521,2095,Mesothelioma
+Cancer,KA-01521,2096,Bladder cancer
+Eating Healthy,KA-02734,2097,Sugary drink consumption (adults)
+Eating Healthy,KA-02734,2098,Sugary drink consumption (youth)
+Asthma,KA-02563,2099,Children with asthma in the past 12 months (ages 0-12 years)
+Mold Complaint,KA-02262,2101,Mold in homes
+Mold Cleaning and Health Guidelines,KA-02871,2101,Mold in homes
+Healthy Homes,KA-01565,2101,Mold in homes
+Air Conditioner Installation Guidelines,KA-02551,2104,Adults with air conditioners
+Rat or Mouse Complaint,KA-01107,2105,Adults reporting mice or rats inside
+Census,KA-03388,2106,Neighborhood Race/Ethnicity - Non Hispanic Black
+Census,KA-03388,2107,Neighborhood Race/Ethnicity - Non Hispanic White
+Air Pollution,KA-01408,2108,Deaths due to PM2.5
+Air Pollution,KA-01408,2109,Boiler Emissions- Total SO2 Emissions
+Air Pollution,KA-01408,2110,Boiler Emissions- Total PM2.5 Emissions
+Air Pollution,KA-01408,2111,Boiler Emissions- Total NOx Emissions
+Air Pollution,KA-01408,2115,Outdoor Air Toxics - Benzene
+Air Pollution,KA-01408,2116,Outdoor Air Toxics - Formaldehyde
+Asthma,KA-02563,2117,Asthma emergency department visits due to PM2.5
+Air Pollution,KA-01408,2117,Asthma emergency department visits due to PM2.5
+Air Pollution,KA-01408,2119,Respiratory hospitalizations due to PM2.5 (age 20+)
+Air Pollution,KA-01408,2120,Cardiovascular hospitalizations due to PM2.5 (age 40+)
+Air Pollution,KA-01408,2121,Cardiac and respiratory deaths due to Ozone
+Asthma,KA-02563,2122,Asthma emergency departments visits due to Ozone
+Air Pollution,KA-01408,2122,Asthma emergency departments visits due to Ozone
+Asthma,KA-02563,2124,Asthma hospitalizations due to Ozone
+Air Pollution,KA-01408,2124,Asthma hospitalizations due to Ozone
+Health Insurance,KA-02767,2132,Health insurance (adults)
+Health Insurance for Seniors,KA-02439,2132,Health insurance (adults)
+Health Insurance for People with Disabilities,KA-02438,2132,Health insurance (adults)
+Accessible Pedestrian Signal Request,KA-02515,2133,Walkability index
+Broken Sidewalk,KA-02235,2133,Walkability index
+Dirty Sidewalk,KA-01803,2133,Walkability index
+Noise,KA-02125,2134,Disruptive Noise Exposure
+Dangerous Location or Situation,KA-01033,2135,Fall-related emergency department visits (age 65+)
+Dangerous Location or Situation,KA-01033,2136,Fall-related hospitalizations (age 65+)
+Know Your Zone,KA-03485,2140,Area in hurricane evacuation zone
+Summer Heat Health Tips,KA-03034,2141,Daytime summer surface temperature
+Census,KA-03388,2142,Neighborhood Poverty (ACS)
+Greenstreets Program,KA-01554,2143,Vegetative cover
+NYC Well and Mental Health Support,KA-01682,2144,Serious psychological distress
+Depression Health Bulletin,KA-02686,2144,Serious psychological distress
+Mental Health Services for Older Adults,KA-01326,2145,Independent living difficulty (adults)
+Home Care,KA-02782,2145,Independent living difficulty (adults)
+Older Adult Centers,KA-02353,2145,Independent living difficulty (adults)
+Friendly Visiting Program for Older Adults,KA-02744,2145,Independent living difficulty (adults)
+Housing Options for Older Adults,KA-01069,2145,Independent living difficulty (adults)
+Mental Health Services for Older Adults,KA-01326,2146,Older adults living alone
+Home Care,KA-02782,2146,Older adults living alone
+Older Adult Centers,KA-02353,2146,Older adults living alone
+Friendly Visiting Program for Older Adults,KA-02744,2146,Older adults living alone
+Housing Options for Older Adults,KA-01069,2146,Older adults living alone
+Asthma,KA-02563,2147,Asthma in public school children (age 5 to 14)
+Asthma,KA-02563,2149,Persistent asthma in public school children (age 5 to 14)
+Find a Doctor,KA-03254,2151,Adults with a personal doctor
+Tree Planting,KA-01895,2157,Tree canopy cover
+Buses and Subways,KA-01014,2158,Subway station density
+Carbon Monoxide,KA-02608,2168,Carbon monoxide incidents (without a detector)
+Diabetes,KA-02687,2169,Adults with Diabetes
+High Blood Pressure,KA-02773,2170,Adults with High Blood Pressure
+Health Screenings,KA-02769,2171,Adults with High Cholesterol
+Biking Health Bulletin,KA-02578,2173,Recent biking
+HEAP Energy Assistance,KA-02529,2174,Cold stress: hospitalizations
+Winter Weather Safety,KA-03098,2174,Cold stress: hospitalizations
+HEAP Energy Assistance,KA-02529,2175,Cold stress: emergency department visits
+Winter Weather Safety,KA-03098,2175,Cold stress: emergency department visits
+Parenting Support,KA-02911,2176,Child poverty (under age 5)
+Healthy Homes,KA-01565,2179,Renter-occupied homes with no maintenance deficiencies
+Carbon Monoxide,KA-02608,2180,Homes with Working Carbon Monoxide Detector
+Sidewalk Installation,KA-01364,2181,Sidewalk area
+Storefront Improvement Program,KA-01761,2182,Neighborhood Physical Disorder Score
+Blood Lead Test,KA-03244,2184,Elevated blood levels (under age 6)
+Lead Safety,KA-02842,2184,Elevated blood levels (under age 6)
+Summer Heat Health Tips,KA-03034,2185,Household air conditioning
+Home Repair Assistance for Seniors,KA-03277,2188,Homes with grab bars in bathroom (among older adult households)
+Blood Lead Test,KA-03244,2189,Lead testing (by age 3)
+Cooling Centers,KA-02663,2191,Heat vulnerability index
+HEAP Cooling Assistance,KA-02552,2191,Heat vulnerability index
+Cool it! NYC,KA-03323,2191,Heat vulnerability index
+Noise,KA-02125,2193,Adults Reporting Frequent Disruptive Noise Exposure
+Noise from Vehicle,KA-01102,2194,Adults Reporting Disruptive Noise from Traffic
+Noise from Neighbor,KA-01017,2195,Adults Reporting Disruptive Noise from Neighbors
+Noise from Construction,KA-01091,2196,Adults Reporting Disruptive Noise from Construction
+Noise from Vehicle,KA-01102,2197,Adults Reporting Disruptive Noise from Sirens
+"Noise from Bar, Club, or Restaurant",KA-01085,2198,Adults Reporting Disruptive Noise from Restaurant
+Noise from Street or Sidewalk,KA-01092,2199,Adults Reporting Disruptive Noise from Street
+Noise from Dog or Other Animal,KA-01087,2200,Adults Reporting Disruptive Noise from Animals
+Noise,KA-02125,2201,Adults Reporting Disruptive Noise from Subways or Trains
+Drinking Water,KA-01402,2207,Disinfection by-products (TTHM)
+Asbestos Health Effects,KA-01122,2208,Asbestosis hospitalizations
+Blood Lead Test,KA-03244,2209,Elevated blood lead levels (age 16+)
+Lead Paint Repair Grant,KA-02841,2209,Elevated blood lead levels (age 16+)
+Asbestos Health Effects,KA-01122,2210,Pneumoconiosis hospitalizations
+Workers' Compensation,KA-03101,2211,Hospitalizations billed to workers' compensation
+Workers' Compensation,KA-03101,2214,Work-related deaths (all industries)
+Workers' Compensation,KA-03101,2215,"Work-related deaths (construction industry), Citywide"
+Blood Lead Test,KA-03244,2216,"Elevated blood levels (under age 6), by NTA"
+Ticks,KA-03057,2218,Babesiosis
+Community Health Profile,KA-02655,2232,Self-reported health
+Pest Control Guidance,KA-01110,2235,Adults reporting personal use of pesticides
+Reckless Driving,KA-01615,2237,Recent messaging while driving
+Traffic Ticket,KA-02058,2238,Recent speeding
+Construction Site Safety,KA-02658,2239,"Work-related deaths (construction industry), by borough"
+Workers' Compensation,KA-03101,2239,"Work-related deaths (construction industry), by borough"
+Pest Control Guidance,KA-01110,2255,Type of Pesticide Used Among Users
+Pest Control Guidance,KA-01110,2311,Tempo Use (Person-Level)
+Pest Control Guidance,KA-01110,2312,Commercial insecticide use
+Census,KA-03388,2314,All Cause Mortality
+Community Health Profile,KA-02655,2315,Avertable Deaths
+Adult Education,KA-02111,2316,Educational Attainment
+Letter of Incarceration,KA-01195,2317,Jail incarceration
+Incarcerated Person Location and Information,KA-01960,2317,Jail incarceration
+Incarcerated Person Account,KA-01959,2317,Jail incarceration
+Incarcerated Person Visit,KA-02002,2317,Jail incarceration
+Mental Health Care for Formerly Incarcerated People,KA-02081,2317,Jail incarceration
+Incarcerated Person Jail Release Services,KA-02820,2317,Jail incarceration
+City Jail System Facilities,KA-02416,2317,Jail incarceration
+Prenatal Care,KA-02932,2318,Late or No Prenatal Care
+Community Health Profile,KA-02655,2319,Life Expectancy
+Census,KA-03388,2320,Overall Population
+Census,KA-03388,2321,Total Population by Age
+Community Health Profile,KA-02655,2322,Premature mortality
+Student Attendance and Absense,KA-03028,2323,School absenteeism
+NYC Care,KA-03317,2324,Went Without Needed Medical Care
+Community Health Profile,KA-02655,2324,Went Without Needed Medical Care
+Census,KA-03388,2325,Race and ethnicity
+Census,KA-03388,2326,Race and Ethnicity (ICE 1)
+Census,KA-03388,2327,Race and Ethnicity (ICE 2)
+Census,KA-03388,2328,ICE 1
+Census,KA-03388,2329,ICE 2
+Census,KA-03388,2330,ICE 3
+School Records,KA-03033,2334,Graduated high school
+City Agency Language Access Feedback,KA-02630,2334,Limited English
+Bilingual Education,KA-02975,2335,Limited English
+Connect with NYC311 in Other Languages,KA-03540,2335,Limited English
+School Document Translation,KA-02973,2335,Limited English
+Rent Regulated Apartments,KA-02346,2336,Rent-burdened households
+Rent Freeze Program Assistance,KA-02344,2336,Rent-burdened households
+Rent Freeze Program for Seniors,KA-02289,2336,Rent-burdened households
+Unemployment Insurance,KA-01767,2337,Unemployment
+Job Training,KA-01316,2337,Unemployment
+Smoke-Free Housing,KA-03008,2338,Secondhand smoke at home (from outside sources)
+Smoking Complaint,KA-02295,2338,Secondhand smoke at home (from outside sources)
+Secondhand Smoke,KA-01493,2338,Secondhand smoke at home (from outside sources)
+Asthma,KA-02563,2339,Youth asthma (past 12 months)
+West Nile Virus,KA-01394,2340,West Nile virus
+Health Screenings,KA-02769,2341,Chronic Obstructive Pulmonary Disease Hospitalization
+Health Screenings,KA-02769,2343,Chronic Obstructive Pulmonary Disease Emergency Department Visits
+Mold Cleaning and Health Guidelines,KA-02871,2344,Homes with Musty or Moldy Smells
+Mold Complaint,KA-02262,2344,Homes with Musty or Moldy Smells
+Pest Control Guidance,KA-01110,2345,"All Agency Use of ""Best Practice"" Products"
+Pest Control Guidance,KA-01110,2346,"DOE Use of ""Best Practice"" Products"
+Pest Control Guidance,KA-01110,2347,"NYCHA Use of ""Best Practice"" Products"
+Mold Cleaning and Health Guidelines,KA-02871,2348,All Agency Use of Fungicides
+Mold Cleaning and Health Guidelines,KA-02871,2349,Parks (Excluding Golf Courses) Use of Fungicides
+Mold Cleaning and Health Guidelines,KA-02871,2350,Parks (Golf Courses) Use of Fungicides
+Mold Cleaning and Health Guidelines,KA-02871,2351,All Agency Use of Herbicides
+Overgrown Grass or Weeds,KA-02271,2352,Parks (Excluding Golf Courses) Use of Herbicides
+Overgrown Grass or Weeds,KA-02271,2353,Parks (Golf Courses) Use of Herbicides
+Pest Control Guidance,KA-01110,2354,All Agency Use of Insecticides
+Pest Control Guidance,KA-01110,2355,DOE Use of Insecticides
+Pest Control Guidance,KA-01110,2356,NYCHA Use of Insecticides
+Pest Control Guidance,KA-01110,2357,All Agency Use of Rodenticides
+Pest Control Guidance,KA-01110,2358,DOE Use of Rodenticides
+Pest Control Guidance,KA-01110,2359,DOHMH Use of Rodenticides
+Mosquitoes,KA-02263,2360,DOHMH Use of Mosquito Adulticides
+Mosquitoes,KA-02263,2361,DOHMH Use of Mosquito Larvicides
+Overgrown Grass or Weeds,KA-02271,2362,All Agency Use of Glyphosate
+Overgrown Grass or Weeds,KA-02271,2363,Parks Use of Glyphosate
+Mold Cleaning and Health Guidelines,KA-02871,2364,NYC agency use of fungicides
+Eviction Prevention and Homebase,KA-01041,2365,Evictions (court-ordered)
+Pest Control Guidance,KA-01110,2366,"NYC agency use of ""Best Practice"" products"
+Mosquitoes,KA-02263,2366,"NYC agency use of ""Best Practice"" products"
+Overgrown Grass or Weeds,KA-02271,2367,NYC agency use of glyphosate
+Overgrown Grass or Weeds,KA-02271,2368,NYC agency use of herbicides
+Pest Control Guidance,KA-01110,2369,NYC agency use of insecticides
+Rat Poison Sign,KA-01350,2370,NYC agency use of rodenticides
+Pest Control Guidance,KA-01110,2370,NYC agency use of rodenticides
+Mosquitoes,KA-02263,2371,NYC Agency Use of Mosquito Adulticides
+Mosquitoes,KA-02263,2372,NYC Agency Use of Mosquito Larvicides
+Mosquitoes,KA-02263,2374,NYC agency use of mosquito control
+2375,Assault hospitalizations (non-fatal)
+2375,Assault hospitalizations (non-fatal)
+Winter Weather Safety,KA-03098,2376,Cold stress: deaths
+Severe Weather,KA-03457,2376,Cold stress: deaths
+Hurricane Preparedness,KA-02810,2377,Households using electric medical equipment
+Asthma,KA-02563,2378,"Asthma emergency department visits (age 4 and under), by NTA"
+Asthma,KA-02563,2379,Asthma emergency department visits (age 5 to 17)
+Asthma,KA-02563,2380,Asthma emergency department visits (adults)
+Asthma,KA-02563,2381,Asthma hospitalizations (age 5 to 17)
+Asthma,KA-02563,2382,Asthma hospitalizations (adults)
+Asthma,KA-02563,2383,"Asthma emergency department visits (age 5 to 17), by NTA"
+Asthma,KA-02563,2384,"Asthma emergency department visits (adults), by NTA"
+Asthma,KA-02563,2385,"Asthma hospitalizations (age 4 and under), by NTA"
+Asthma,KA-02563,2386,"Asthma hospitalizations (age 5 to 17), by NTA"
+Asthma,KA-02563,2387,"Asthma hospitalizations (adults), by NTA"
+Parks,KA-02500,2388,Walking distance to a park
+Good Choice Health Food Program for Distributors,KA-02754,2389,Unhealthy food access
+Eating Healthy,KA-02734,2389,Unhealthy food access
+Bike Map,KA-02575,2390,Bicycle network coverage
+Bike Lane,KA-01260,2390,Bicycle network coverage
+Buses and Subways,KA-01014,2391,Walking distance to a subway station
+Asthma,KA-02563,2392,Children ever diagnosed with asthma
+Pest Complaint,KA-02278,2393,Children in homes with cockroaches (age 1-13)
+Pest Complaint,KA-02278,2394,Children in homes with mice (age 1-13)
+NYCHA Public Housing Maintenance Complaint,KA-01076,2395,Children in homes with cracks or holes (age 1-13)
+Apartment Maintenance Complaint,KA-01074,2395,Children in homes with cracks or holes (age 1-13)
+HEAP Energy Assistance,KA-02529,2396,Children in homes with supplemental heat (age 13 and under)
+Heat Complaint in a Residential Building,KA-01036,2396,Children in homes with supplemental heat (age 13 and under)
+Carbon Monoxide,KA-02608,2398,Carbon monoxide deaths
+NYCHA Public Housing Maintenance Complaint,KA-01076,2399,Renter-occupied homes with any health-related maintenance problems
+Apartment Maintenance Complaint,KA-01074,2399,Renter-occupied homes with any health-related maintenance problems
+2400,Assault emergency department visits (non-fatal)
+2400,Assault emergency department visits (non-fatal)
+2400,Assault emergency department visits (non-fatal)
+NYC Care,KA-03317,2401,Postponing health care
+Community Health Profile,KA-02655,2401,Postponing health care
+Asthma,KA-02563,2402,Public School Children (K-8) with Active Asthma
+Dangerous Location or Situation,KA-01033,2403,Homes with reported falls (age 65+)
+Secondhand Smoke,KA-01493,2404,Secondhand smoke exposure at home (children)
+Carbon Monoxide,KA-02608,2405,Carbon monoxide emergency department visits
+Carbon Monoxide,KA-02608,2406,Carbon monoxide hospitalizations
+Asthma,KA-02563,2407,Asthma Medication Administration Form Use Among Public School Children (Grades K-8)
+Dangerous Location or Situation,KA-01033,2408,Home fall-related emergency department visits (age 65+)
+Benefits Guide for Older Adults,KA-01259,2408,Home fall-related emergency department visits (age 65+)
+Dangerous Location or Situation,KA-01033,2409,Home fall-related hospitalizations (age 65+)
+Cooling Centers,KA-02663,2410,Heat stress: hospitalizations
+Summer Heat Health Tips,KA-03034,2410,Heat stress: hospitalizations
+Summer Heat Health Tips,KA-03034,2411,Heat vulnerability index (NTA)
+Cooling Centers,KA-02663,2411,Heat vulnerability index (NTA)
+Summer Heat Health Tips,KA-03034,2412,3-Year Heat Stress Emergency Department Visits
+Cooling Centers,KA-02663,2412,3-Year Heat Stress Emergency Department Visits
+Asthma,KA-02563,2414,Adults with asthma
+Carpool or RideMatch,KA-01522,2415,Commuting modes
+Sheltered Bike Parking,KA-02355,2415,Commuting modes
+Citi Bike,KA-02221,2415,Commuting modes
+Buses and Subways,KA-01014,2415,Commuting modes
+Sponsor a Litter Basket,KA-01759,2416,Litter basket coverage
+Litter Basket Request,KA-02357,2416,Litter basket coverage
+Litter Basket Complaint,KA-02143,2416,Litter basket coverage
+Depression Health Bulletin,KA-02686,2417,Depression (adults)
+NYC Well and Mental Health Support,KA-01682,2418,Psychiatric hospitalizations (adults)
+NYC Well and Mental Health Support,KA-01682,2419,Serious psychological distress (adults)
+Suicide,KA-01635,2420,Suicide deaths
+Electronic Cigarette Retail Dealer License,KA-01834,2421,Tobacco retailers
+Cigarette Wholesaler License,KA-01146,2421,Tobacco retailers
+Cigarette Tax,KA-02628,2421,Tobacco retailers
+Smoke Free Air Act,KA-03007,2422,E-cigarette vapor exposure at home (children)
+Citi Bike,KA-02221,2425,Average Citi Bike availability
+Citi Bike,KA-02221,2426,Citi Bike stations
+Leptospirosis,KA-02846,2427,Bacteria
+Tuberculosis,KA-03066,2427,Bacteria
+Meningitis,KA-02864,2427,Bacteria
+Legionnaire's Disease,KA-02845,2427,Bacteria
+City Environmental Quality Review,KA-01151,2428,Dissolved oxygen (DO)
+Asthma,KA-02563,2429,Children with an asthma attack
+Mold Complaint,KA-02262,2430,Children in homes with visible mold or mildew (age 1-13)
+Asthma,KA-02563,2431,Children still with asthma
+Greenmarkets and Farmers Markets,KA-02028,2432,Farmers markets

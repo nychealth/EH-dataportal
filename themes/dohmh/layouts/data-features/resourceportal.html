@@ -1,0 +1,38 @@
+{{- define "main" -}}
+
+<article class="container-fluid" id="skip-header-target">
+    
+    <div class="row">
+        <div class="col-md-11 mx-auto mt-4 pl-0">
+            <nav aria-label="breadcrumb" class="mb-4">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
+                    <li class="breadcrumb-item"><a href={{ relURL "data-features" }}>Data Features</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-11 mx-auto pl-0" data-pagefind-weight="7.0">
+            <div class="row">
+                <div class="col-md-7 mb-4">
+                    <h1 class="h2" data-pagefind-weight="10.0">{{ .Title }}</h1>
+                    <p>{{ .Content }}</p>
+                    <a href="{{ relURL .Params.destination }}" class="button btn btn-lg btn-primary mb-4" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link mr-1"></i>Launch the {{ .Title }} Portal</a>
+                </div>
+                <div class="col-md-5">
+                    <img src="{{ .Params.image }}" class="mb-4">
+                </div>
+
+            </div>
+        </div>
+        
+    </div>
+    
+    
+</article>
+
+{{- end -}}

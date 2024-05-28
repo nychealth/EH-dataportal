@@ -1,6 +1,6 @@
 {{- define "main" -}}
 
-<article class="container overflow-hidden" id="primary-content">
+<article class="container-fluid overflow-hidden" id="primary-content" data-pagefind-ignore="all">
   
   <style>
     .selectedOption {
@@ -8,86 +8,160 @@
     }
   </style>
 
-  <div class="col-md-10 mx-auto mt-4">
-    <h1 class="nr-accent"><i class="fas fa-map-marked-alt" aria-hidden="true" style="margin-right: 10px"></i>{{ .Title }}</h1>
-    <p>{{- .Content -}}</p>
-  </div>
+  <div class="row">
+    <div class="col-md-10 mx-auto my-4">
+      <nav aria-label="breadcrumb" class="mb-2">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
+            <li class="breadcrumb-item active"><a href={{ relURL "neighborhood-reports" }}>{{ .Title }}</a></li>
+        </ul>
+      </nav>
 
-  <div class="row my-4">
-    <div class="col-md-6">
-      <h3>1. Choose report</h3>
-      <select class="form-control form-control-lg" id="report" name="report" required size="5" style="overflow-y:hidden;">
-          <option value="Asthma" class="topic-list-option" id="AsthmaOption">Asthma and the environment</option>
-          <option value="Climate" class="topic-list-option" id="ClimateOption">Climate and health</option>
-          <option value="Housing" class="topic-list-option" id="HousingOption">Housing and health</option>
-          <option value="Outdoor" class="topic-list-option" id="OutdoorOption">Outdoor air and health</option>
-          <option value="Active" class="topic-list-option" id="ActiveOption">Active design, physical activity, and health</option>
-
-      </select>
-    <br>
-
-      <div id="Asthma" class="tab-container"> <h4>Asthma and the environment</h4>
-          <p>Asthma is a leading cause of hospitalizations for children. It can be made worse by housing and neighborhood characteristics. There are powerful inequities that drive racial disparities in asthma in NYC.</p></div>
-      <div id="Climate" class="tab-container"> <h4>Climate and health</h4>
-          <p>As the climate changes, we track New York City's risk for extreme heat, storms and flooding, and episodes of elevated ozone. These have important public health impacts: already, heat kills more people than all other natural disasters.</p></div>
-      <div id="Housing" class="tab-container"> <h4>Housing and health</h4>
-          <p>Housing conditions can drive health outcomes like asthma, lead poisoning, and carbon monoxide poisoning. We track housing neighborhood characteristics that can put people at risk - and special populations that are vulnernerable.</p></div>
-      <div id="Outdoor" class="tab-container">  <h4>Outdoor air and health</h4>
-          <p>Air pollution is one of the most important environmental threats to people who live in urban areas. Exposures are linked to respiratory and heart diseases, cancers, and premature deaths. Meanwhile, emissions, levels of exposure, and population vulnerability vary across neighborhoods. </p></div>
-      <div id="Active" class="tab-container"> <h4>Active design, physical activity, and health</h4>
-          <p>The design and condition of buildings, streets, public transportation, and parks influence how much physical activity people get, how much they use active transportation, and how much other healthy behavior they do. A neighborhood built environment can also affect the safety of its residents. </p></div>
-    </div>
-
-    <div class="col-md-6">
-      <h3>2. Choose Neighborhood</h3>
-      <div class="bg-active p-2 p-md-4 mb-4">
-        <form action="/neighborhood-reports" method="get" class="autocomplete-form">
-          <div class="row no-gutters">
-            <label for="last-neighborhood" class="block col-sm-12 font-weight-bold h4 mb-3 sr-only">What NYC neighborhood are you interested in?</label>
-            <div class="col-8">
-              <div class="autocomplete-wrapper">
-                <select name="last-neighborhood" id="last-neighborhood">
-                  <option value="">Select a neighborhood</option>
-                </select>
-              </div>
-            </div>
-            <div class="col-4">
-              <button type="submit" id="submitbutton" class="btn-primary btn btn-block" disabled>3. Get Report!</button> 
-            </div>
-            <div class="fs-sm"><em>Enter a neighborhood or ZIP Code</em></div>
+      <div class="nr-accent">
+        <div class="row">
+          <div class="col-md-8 col-sm-12 my-4">
+            <h1><i class="fas fa-map-marked-alt mr-1" aria-hidden="true"></i>{{ .Title }}</h1>
+            <p>{{- .Content -}}</p>
           </div>
-        </form>
-      </div>
-
-      <div id="warning" style="display: none;">
-        <div class="py-2 px-2" style="background: #f1f1f1;">
-          <h4 style="color:purple;"><i class="fas fa-exclamation-triangle mr-2" aria-hidden="true" ></i>Oops!</h4>
-          Make sure to choose both a report and a neighborhood. Not sure what neighborhood to choose?   <a data-toggle="collapse" href="#neighborhoodCollapse" role="button" aria-expanded="false" aria-controls="neighborhoodCollapse">
-            List all neighborhoods
-          </a>.
         </div>
       </div>
 
-    </div>
-  </div>
+      <!-- Hidden, accessible list of clickable neighborhoods: rendered by JavaScript -->
+      <div class="row sr-only">
+        <h2>Select neighborhood</h2>
+        <ul id="neighborhoodList">
 
-  <div class="row my-5">
-    <div class="col-md-6 ml-auto">
-
-      <div class="collapse" id="neighborhoodCollapse">
-        <h2 class="h2 h4">Neighborhood List</h2>
-
-        <ul class="list-unstyled">
-          <!-- Ranges through content/neighborhood-reports/NEIGHBORHOOD/*.md -->          
-          {{- range .Sections.ByTitle -}}
-            <li>
-                <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-            </li>
-          {{- end -}}
         </ul>
       </div>
+
+      <!-- Visible, interactive neighborhood/report selector -->
+      <div class="row" aria-hidden="true">
+        <div class="col-12">
+          <h3 class="mb-2">1. Choose report:</h3>
+          <div class="row">
+            <div class="col-lg mb-2 mb-lg-0">
+              <button class="btn btn-lg btn-block btn-outline-primary active text-decoration-none btn-light-green-bg py-2" onclick="buttonChange('Asthma')" id="Asthma">Asthma</button>
+            </div>
+            <div class="col-lg mb-2 mb-lg-0">
+              <button class="btn btn-lg btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2" onclick="buttonChange('Active')" id="Active">Active design</button>
+            </div>
+            <div class="col-lg mb-2 mb-lg-0">
+              <button class="btn btn-lg  btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2" onclick="buttonChange('Climate')" id="Climate">Climate</button>
+            </div>
+            <div class="col-lg mb-2 mb-lg-0">
+              <button class="btn btn-lg btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2" onclick="buttonChange('Housing')" id="Housing">Housing</button>
+            </div>
+            <div class="col-md mb-2 mb-lg-0">
+              <button class="btn btn-lg btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2" onclick="buttonChange('Outdoor')" id="Outdoor">Outdoor Air</button>
+            </div>
+          </div>
+
+          <div class="row my-3">
+            <div class="col-md-8">
+              <p id="descr"></p>
+            </div>
+          </div>
+          <hr class="mt-2 mb-3" />
+        </div>
+
+        <div class="col-12">
+          <h3>2. Choose Neighborhood</h3>
+
+          <div class="row d-flex flex-md-row-reverse">
+            <div class="col-md-5">
+              <div class="btn-group" role="group" style="width:100%;">
+
+                <input
+                    id="flex_search"
+                    type='search'
+                    class='flexdatalist form-control nr-flexdatalist'
+                    name='indicator_name_suggestion'
+                    style="width:100%;"
+                    placeholder="Search"
+                />
+
+                <button id="clear" class="btn btn-md btn-primary">Clear</button>
+
+              </div>
+              <button class="d-flex btn btn-md text-left btn-outline-primary mt-1 w-100 text-decoration-none neighborhood-list-button p-2" onclick="showNeighborhoods()">
+                <span class="flex-grow-1 text-lg">See neighborhood list</span>
+                <span class="plus">&plus;</span>
+                <span class="minus">&minus;</span>
+              </button>
+              <div class="hide" id="showNeighbs">
+                <ul class="list-unstyled p-2 border border-top-0 border-primary neighborhood-list" id="neighborhoodList2"></ul>
+              </div>
+            </div>
+            <div class="col-md-7 d-none d-md-block">
+              <div class="nr-clickable-uhf" style="height:550px" aria-hidden="true">
+                {{- partial "nr-clickable-uhf" . -}}
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+
     </div>
   </div>
+
+<div class="hide" id="AsthmaDescr">
+  Asthma is a leading cause of hospitalizations for children. It can be made worse by housing and neighborhood characteristics. There are powerful inequities that drive racial disparities in asthma in NYC.
+</div>
+
+<div class="hide" id="ClimateDescr">
+  As the climate changes, we track New York City's risk for extreme heat, storms and flooding, and episodes of elevated ozone. These have important public health impacts: already, heat kills more people than all other natural disasters.
+</div>
+
+<div class="hide" id="ActiveDescr">
+  The design and condition of buildings, streets, public transportation, and parks influence how much physical activity people get, how much they use active transportation, and how much other healthy behavior they do. A neighborhood built environment can also affect the safety of its residents.
+</div>
+
+<div class="hide" id="HousingDescr">
+  Housing conditions can drive health outcomes like asthma, lead poisoning, and carbon monoxide poisoning. We track housing neighborhood characteristics that can put people at risk - and special populations that are vulnernerable.
+</div>
+
+<div class="hide" id="OutdoorDescr">
+  Air pollution is one of the most important environmental threats to people who live in urban areas. Exposures are linked to respiratory and heart diseases, cancers, and premature deaths. Meanwhile, emissions, levels of exposure, and population vulnerability vary across neighborhoods.
+</div>
+
+
+
+<style>
+
+/* ------------------------------------------------------------------------------------- */
+/* Flexdatalist custom style for properties text */
+/* ------------------------------------------------------------------------------------- */
+
+.flexdatalist-results span:not(:first-child):not(.highlight) {
+  padding-left: 10px;
+  display: inline-block;
+  font-size: 90%;
+  color: rgba(0, 0, 0, 0.90);
+}
+.flexdatalist-results li.active span:not(:first-child):not(.highlight) {
+  color: rgba(255, 255, 255, 0.70);
+}
+.flexdatalist-results li span.highlight {
+  font-weight: 500;
+  text-decoration: none;
+  color: #000000;
+  background: #feff7f;
+}
+
+.flex_search-flexdatalist input:placeholder-shown {
+  background-color: white;
+}
+.flex_search-flexdatalist input::placeholder {
+  color: gray;
+  font-weight: normal;
+  font-style: italic;
+}
+
+
+</style>
+
 
 </article>
 
@@ -96,135 +170,139 @@
 {{ define "js_bot" }}
 
 
-  {{- $js := resources.Get "js/accessible-autocomplete.min.js" -}}
-  {{ $secureJS := $js | resources.Fingerprint "sha512" }}
-  <script type="text/javascript" src="{{ $secureJS.RelPermalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
-
-  {{/*  {{- $js := resources.Get "js/accessible-autocomplete.min.js.map" -}}
-  {{ $secureJS := $js | resources.Fingerprint "sha512" }}
-  <script type="text/javascript" src="{{ $secureJS.RelPermalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>  */}}
-
   {{- $js := resources.Get "js/uhflist.js" -}}
   {{ $secureJS := $js | resources.Fingerprint "sha512" }}
   <script type="text/javascript" src="{{ $secureJS.RelPermalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
 
+  <!-- flexdatalist -->
 
-<script type="text/javascript"> 
-// this script controls the topic menu
-var report; // establish report. We'll use this once we select the neighborhood. 
-var reportURL;
+  {{- $flexdatalist_css := resources.Get "node_modules/jquery-flexdatalist/jquery.flexdatalist.min.css" -}}
+  <link rel="stylesheet" href="{{ $flexdatalist_css.RelPermalink }}"/>
 
-document.getElementById('report').addEventListener('change', function(event) {
-  event.preventDefault(); // prevents default action
-  var target = event.target.value; // retrieving the choice from the list. 
-  report = target; // assigning target to global variable
-  window.location.hash = target + "report"; // changing hash - we'll use this later. 
-  changeDescription(target)
+  {{- $flexdatalist_js := resources.Get "node_modules/jquery-flexdatalist/jquery.flexdatalist.min.js" -}}
+  <script type="text/javascript" src="{{ $flexdatalist_js.RelPermalink }}"></script>
 
-  var submitbtn = document.getElementById('submitbutton')
 
-  // assigning reportURL based on report - this feeds the location output
+<script type="text/javascript">
+
+// establish report, and reportURL - change this with a toggle on the report buttons
+var report;
+var reportURL = '' // this is used in nr-clickable-uhf
+
+// button Change function. Pass first word into function from buttons
+function buttonChange(x) {
+  report = x
+  window.location.hash = report + "report"; // changing hash - we'll use this later.
+
+  var copyHolder = x + 'Descr'
+  var copy = document.getElementById(copyHolder).innerHTML
+  // console.log(copy)
+  document.getElementById('descr').innerHTML = copy
+
+  // this checks
   if (report=="Asthma") {
     reportURL = '/asthma_and_the_environment/'
-    submitbtn.disabled = false;
   } else if (report=="Climate") {
     reportURL = '/climate_and_health/'
-    submitbtn.disabled = false;
   } else if (report=="Housing") {
     reportURL = '/housing_and_health/'
-    submitbtn.disabled = false;
   } else if (report=="Outdoor") {
     reportURL = '/outdoor_air_and_health/'
-    submitbtn.disabled = false;
   } else if (report=="Active") {
     reportURL = '/active_design_physical_activity_and_health/'
-    submitbtn.disabled = false;
   };
-});
 
-function changeDescription(x) {
-  // this changes the description
-  document.querySelectorAll('.tab-container').forEach(container => container.classList.remove('open')) // hiding containers
-  document.getElementById(x).classList.add('open') // showing selected container
-
-  //and this styles the selection
-  document.querySelectorAll('.topic-list-option').forEach(option => option.classList.remove('selectedOption')) // hiding containers
-  var option = x+"Option";
-  document.getElementById(option).classList.add('selectedOption')
+  // loop through buttons and set styles
+  var buttons = document.querySelectorAll(".btn-outline-primary")
+  for (let i = 0; i < buttons.length; i ++) {
+    buttons[i].classList.remove("active")
+  }
+  document.getElementById(report).classList.add("active")
 
 }
 
-// this checks the hash and changes the description accordingly
-  if (window.location.hash=="#Asthmareport") {
-    changeDescription("Asthma");
-    reportURL = '/asthma_and_the_environment/'
-  } else if (window.location.hash=="#Climatereport") {
-    changeDescription("Climate");
-    reportURL = '/climate_and_health/'
-  } else if (window.location.hash=="#Housingreport") {
-    changeDescription("Housing");
-    reportURL = '/housing_and_health/'
-  }  else if (window.location.hash=="#Outdoorreport") {
-    changeDescription("Outdoor");
-    reportURL = '/outdoor_air_and_health/'
-  }  else if (window.location.hash=="#Activereport") {
-    changeDescription("Active");
-    reportURL = '/active_design_physical_activity_and_health/'
-  };
+// run initial
+buttonChange('Asthma')
+
+// populate accessible neighborhood-selection
+var ul = document.getElementById("neighborhoodList");
+var ul2 = document.getElementById("neighborhoodList2");
+
+neighborhoods.forEach(function (neighborhood) {
+  var li = document.createElement("li");
+  li.innerHTML = "<a href='" + {{ relURL "neighborhood-reports/" }} + neighborhood.page_name + "/" + "'>" + neighborhood.UHF_name + "</a>: " + neighborhood.Zipcodes
+  ul.appendChild(li);
+  ul2.appendChild(li)
+});
+
+function showNeighborhoods() {
+
+    document.getElementById('showNeighbs').classList.toggle('hide')
+    document.getElementById('showNeighbs').classList.toggle('show')
+    let button = document.querySelector('.neighborhood-list-button');
+    button.classList.toggle('active');
+
+  }
 
 
-  // this populates the neighborhood dropdown list from uhflist.js
-  // https://www.aspsnippets.com/Articles/Populate-DropDownList-from-JSON-Array-using-JavaScript.aspx
-  function PopulateDropDownList() {
-        // Build an array containing Neighborhood records.
-        // UHFList.js contains a variable 'neighborhoods' with names zips and ids
-         var ddlNeighborhoods = document.getElementById("last-neighborhood");
-        
-         // Add the Options to the DropDownList.
-         for (var i = 0; i < neighborhoods.length; i++) {
 
-             var option = document.createElement("OPTION");
+// ===== load flexdatalist ================================================== //
 
-             // Set Neighborhood Name in Text part.
-             option.innerHTML = neighborhoods[i].namezip;
+function loadList() {
+  // console.log(neighborhoods)
 
-             // Set Neighborhood Id in Value part.
-             option.value = neighborhoods[i].page_name;
+  // ----- init flexdatalist -------------------------------------------------- //
 
-             // Add the Option element to DropDownList.
-             ddlNeighborhoods.options.add(option);
-         }
-     }
+  let $input = $('.flexdatalist').flexdatalist({
+    minLength: 0,
+    valueProperty: ["UHF_id", "UHF_name"],
+    textProperty: "{UHF_name}",
+    selectionRequired: false,
+    focusFirstResult: true,
+    visibleProperties: ["UHF_id", "UHF_name", "Zipcodes"],
+    searchIn: ["UHF_name", "Zipcodes"],
+    searchContain: true,
+    searchByWord: true,
+    redoSearchOnFocus: true,
+    toggleSelected: true,
+    cache: false,
+    data: neighborhoods
+});
 
-   // runs the list population
-   PopulateDropDownList();
+  // console.log("$input", $input);
 
-   // controls accessible autocomplete dynamic styling
-   var selectEl = document.querySelector('#last-neighborhood')
-   accessibleAutocomplete.enhanceSelectElement({
-    autoselect: true,
-    confirmOnBlur: true,
-    defaultValue: "",
-    minLength: 2,
-    selectElement: selectEl
-  });
+  // ----- add flexdatalist select handler -------------------------------------------------- //
 
-    // this takes the form and on submit, sends page to a new location.
-    var searchForm = document.getElementById('last-neighborhood-select') // this is last-neighborhood-select because of changes applied by the AA JS.
+  $input.on('select:flexdatalist', (e, set) => {
 
-    document.querySelector('form.autocomplete-form').addEventListener("submit", function (e) {
+    // console.log("set", set);
 
-    e.preventDefault(); // prevent page re-load
+    // SEND TO NEIGHBORHOOD...!
 
-    var locVal = searchForm.options[searchForm.selectedIndex].value
+    // console.log('chosen neighb:')
+    // console.log(set.page_name);
 
-    if (locVal) {
-      //window.location = baseURL + 'neighborhood-reports/'+ DOMPurify.sanitize(locVal) + reportURL
-      window.location = '{{ site.BaseURL }}neighborhood-reports/'+ DOMPurify.sanitize(locVal) + reportURL
-    } else {
-      document.getElementById('warning').style.display = "block" // this is our error handling
-    }
-    });
+    window.location.href = {{ relURL "neighborhood-reports/" }} + set.page_name + reportURL
+
+})
+
+// ----- add clear button handler -------------------------------------------------- //
+
+$("#clear").on("click", (e) => {
+
+    // console.log("e [clear click]", e);
+
+    $($input).find("~input").val("").trigger( "focus" )
+
+})
+
+}
+
+loadList()
+
+
+
+
   </script>
 
 {{- end -}}

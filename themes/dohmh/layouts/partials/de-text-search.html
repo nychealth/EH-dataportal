@@ -1,0 +1,104 @@
+<div class="row no-gutters">
+    <div class="col-12">
+        <div class="btn-group" role="group" style="width:100%!important;">
+
+            <input 
+                id="flex_search"
+                type='search'
+                class='flexdatalist form-control'
+                name='indicator_name_suggestion'
+            />
+
+            <button id="clear" class="btn btn-sm btn-warning">Clear</button>
+
+        </div>
+    </div>
+
+</div>
+
+
+<!-- flexdatalist -->
+
+{{- $flexdatalist_css := resources.Get "node_modules/jquery-flexdatalist/jquery.flexdatalist.min.css" -}}
+<link rel="stylesheet" href="{{ $flexdatalist_css.RelPermalink }}"/>
+
+{{- $flexdatalist_js := resources.Get "node_modules/jquery-flexdatalist/jquery.flexdatalist.min.js" -}}
+<script type="text/javascript" src="{{ $flexdatalist_js.RelPermalink }}"></script>
+
+
+<script>
+
+// ===== load flexdatalist ================================================== //
+
+const load_flexdatalist = async () => {
+
+    // ----- get Indicators.json -------------------------------------------------- //
+    
+    await fetch(`${data_repo}${data_branch}/indicators/metadata/metadata.json`)
+        .then(response => response.json())
+        .then(data => {
+
+            let indicatorJSON = data;
+            // console.log("indicator JSON:", indicatorJSON);
+            // console.log(indicatorJSON[0])
+            
+            // ----- init flexdatalist -------------------------------------------------- //
+
+            let $input = $('.flexdatalist').flexdatalist({
+                minLength: 0,
+                valueProperty: ["IndicatorID", "IndicatorName"],
+                textProperty: "{IndicatorName}",
+                selectionRequired: false,
+                focusFirstResult: true,
+                visibleProperties: ["IndicatorName", "IndicatorLabel", "IndicatorDescription"],
+                searchIn: ["IndicatorName", "IndicatorLabel", "IndicatorDescription", "IndicatorID"],
+                searchContain: true,
+                searchByWord: true,
+                redoSearchOnFocus: true,
+                toggleSelected: true,
+                cache: false,
+                data: indicatorJSON
+            });
+
+            
+            // ----- add flexdatalist select handler -------------------------------------------------- //
+            $input.on('select:flexdatalist', (e, set) => {
+                
+                // run page print (for data reference)
+                if (typeof printToPage === "function") {
+                    printToPage(set) // on indicator-catalog.html
+                } else {
+                    sendToIndicator(set) // for section.html
+                }
+                
+            })
+
+
+            // ----- add clear button handler -------------------------------------------------- //
+            $("#clear").on("click", (e) => {
+
+                // console.log("e [clear click]", e);
+
+                $($input).find("~input").val("").trigger( "focus" )
+                
+            })
+
+        })
+
+}
+
+// ----- call loader function -------------------------------------------------- //
+
+load_flexdatalist()
+
+// ----- send to DE output page ----------------------------------------- //
+
+function sendToIndicator(x) {
+
+    var id = x.IndicatorID
+
+    const topics = topicIndicatorsTable.filter((ind) => ind.IndicatorID === x.IndicatorID);
+    window.location.href = {{ relURL "data-explorer/" }} + topics[0].topic + '/?id=' + x.IndicatorID 
+}
+
+</script>

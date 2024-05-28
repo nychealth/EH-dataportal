@@ -68,7 +68,7 @@ Un mapa de los tiroteos recientes se alinea con las áreas considerablemente d
 
 {{< rawhtml >}}
 <div class="my-3">
-<iframe src="HOLC-shootings/map.html" scrolling="no" frameborder="0" style="position: relative; height: 600px; width: 100%;"></iframe>
+<iframe src="../../../maps/HOLC-shootings/map.html" scrolling="no" frameborder="0" style="position: relative; height: 600px; width: 100%;"></iframe>
 </div>
 {{< /rawhtml >}}
 
@@ -257,31 +257,31 @@ Significa que podemos prevenir la violencia eliminando la pobreza; ofreciendo em
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="dataModalTitle">About the data</h5>
+                <h5 class="modal-title" id="dataModalTitle" data-pagefind-ignore="all">About the data</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
                 <p><strong>Pobreza:</strong> thel porcentaje de personas cuyos ingresos anuales son inferiores al 100 % del nivel de pobreza federal, Encuesta Comunitaria Estadounidense (American Community Survey) de 2013-2017. <a
-                        href=/data-explorer/economic-conditions/?id=103#display=summary">Explore los datos</a>.</p>
+                        href="{{< baseurl >}}data-explorer/economic-conditions/?id=103#display=summary">Explore los datos</a>.</p>
                 <p><strong>Pobreza infantil:</strong> niños menores de 5 años que viven en la pobreza, Encuesta Comunitaria Estadounidense de 2013-2017. <a
-                        href=/data-explorer/economic-conditions/?id=2176#display=summary">Explore los datos</a>.</p>
+                        href="{{< baseurl >}}data-explorer/economic-conditions/?id=2176#display=summary">Explore los datos</a>.</p>
                 <p><strong>Desamparo infantil:</strong> niños sin hogar de entre 0 y 17 años, por cada 1,000 personas, Departamento de Servicios para Personas sin Hogar (Department of Homeless Services), 2015.  <a
                         href="https://www.data2go.nyc/map/?id=107*36047015900*homeless_children_rate_cd!undefined!ns*!other_pop_cd_506~ahdi_puma_1~sch_enrol_cd_112~age_pyramid_male_85_plus_cd_20~median_household_income_puma_397~median_personal_earnings_puma_400~dis_y_perc_puma_102~poverty_ceo_cd_417~unemployment_cd_408~pre_k_cd_107!*air_qual_cd~ahdi_puma*family_homeless_cd_245#10/40.8273/-73.9586">Explore
                         the data</a>.</p>
                 <p><strong>Educación secundaria incompleta:</strong> porcentaje estimado de personas mayores de 25 años que no se graduaron de la escuela secundaria, Encuesta Comunitaria Estadounidense de 2013-2017. <a
-                        href=/data-explorer/social-conditions/?id=2334#display=summary">Explore los datos</a>.</p>
+                        href="{{< baseurl >}}data-explorer/social-conditions/?id=2334#display=summary">Explore los datos</a>.</p>
                 <p><strong>Juventud desconectada:</strong> porcentaje de personas de entre 16 y 24 años que no se graduaron de la escuela secundaria y están desempleadas, Encuesta Comunitaria Estadounidense de 2015-2017. <a
                         href="https://www.data2go.nyc/map/?id=107*36047015900*dis_y_perc_puma!undefined!ns*!other_pop_cd_506~ahdi_puma_1~sch_enrol_cd_112~age_pyramid_male_85_plus_cd_20~median_household_income_puma_397~median_personal_earnings_puma_400~dis_y_perc_puma_102~poverty_ceo_cd_417~unemployment_cd_408~pre_k_cd_107!*air_qual_cd~ahdi_puma*family_homeless_cd_245#10/40.8273/-73.9586">Explore los datos</a>.</p>
                 <p><strong>Desempleo:</strong> porcentaje estimado de personas mayores de 16 años en la fuerza laboral civil que están desempleadas, Encuesta Comunitaria Estadounidense de 2013-2017. <a
-                        href=/data-explorer/economic-conditions/?id=2337#display=summary">Explore los datos</a>.</p>
+                        href="{{< baseurl >}}data-explorer/economic-conditions/?id=2337#display=summary">Explore los datos</a>.</p>
                 <p><strong>Desalojos:</strong> desalojos ordenados por un tribunal, 2017. <a
-                        href=/data-explorer/economic-conditions/?id=2365#display=summary">Explore los datos</a>.</p>
+                        href="{{< baseurl >}}data-explorer/economic-conditions/?id=2365#display=summary">Explore los datos</a>.</p>
                 <p><strong>Ejecuciones hipotecarias</strong>: índice de ejecuciones hipotecarias por cada 1,000 propiedades familiares de 1 a 4, 2018. <a
                         href="https://www.data2go.nyc/map/?id=107*36047015900*foreclosure_cd!undefined!ns*!other_pop_cd_506~ahdi_puma_1~sch_enrol_cd_112~age_pyramid_male_85_plus_cd_20~median_household_income_puma_397~median_personal_earnings_puma_400~dis_y_perc_puma_102~poverty_ceo_cd_417~unemployment_cd_408~pre_k_cd_107!*air_qual_cd~ahdi_puma*family_homeless_cd_245#10/40.8273/-73.9586">Explore los datos</a>. </p>
                 <p><strong>Hospitalizaciones por agresiones:</strong> índice ajustado según la edad de hospitalizaciones por agresiones no mortales, por cada 100,000 personas, 2016. <a
-                        href=/data-explorer/violence/?id=2375#display=summary">Explore los datos</a>. </p>
+                        href="{{< baseurl >}}data-explorer/violence/?id=2375#display=summary">Explore los datos</a>. </p>
                 <p><strong>Tiroteos</strong>: cantidad de tiroteos desde 2008 hasta 2018. <a
                         href="https://data.cityofnewyork.us/Public-Safety/NYPD-Shooting-Incident-Data-Historic-/833y-fsy8">Explore los datos</a>.</p>
                 <p><strong>Homicidios:</strong> índice de homicidios por cada 100,000 personas desde 2013 hasta 2016. <a

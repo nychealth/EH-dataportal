@@ -1,11 +1,27 @@
 {{- define "main" -}}
 
-<article class="container" id="skip-header-target">
+<article class="container wide" id="skip-header-target">
 
-    <div class="col-md-10 mx-auto mt-4">
-        <h1 class="ds-accent"><i class="fas fa-passport" aria-hidden="true" style="margin-right: 10px"></i>Data Stories</h1>
-        <p>Explainers and perspectives on important health and environment topics.</p>
+    <div class="data-stories">
+        <div class="row">
+            <div class="col-md-10 col-sm-12 mt-4 mb-2">
+                <nav aria-label="breadcrumb" class="">
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
+                        <li class="breadcrumb-item active"><a href={{ relURL "data-stories" }}>Data Stories</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 col-sm-12 my-4">
+                <h1><i class="fas fa-passport" aria-hidden="true" style="margin-right: 10px"></i>Data Stories</h1>
+                <p>Explainers and perspectives on important health and environment topics.</p>
+            </div>
+        </div>
     </div>
+
 
     <div class="row mt-4">
         <div class="col">
@@ -14,41 +30,35 @@
     </div>
 
     <div class="row mt-2">
-
         {{- range first 3 ((where .Site.RegularPages "Section" "data-stories")) -}}
-        <div class="col-md-4 mb-2">
-            <div class="card content-card mb-4">
-                <div class="card-content">
-                    <a href="{{ .RelPermalink}}">
+        <div class="card content-card mb-4 col-sm-6 col-md-4">
+            <div class="card-content data-stories">
+                <a href="{{ .RelPermalink}}">
+                    {{ $src := .Resources.GetMatch .Params.image }}
+                    {{ $image := $src.Resize "740x"}}
+                    <div style="width:100%; height:250px; background-image: URL({{ $image.RelPermalink }}); background-size: cover"></div>
+                </a>
 
-                        {{ $src := .Resources.GetMatch .Params.image }}
-                        {{ $image := $src.Resize "740x"}}
-                        <div style="width:100%; height:250px; background-image: URL({{ $image.Permalink }}); background-size: cover"></div></a>
-
-                    <div class="card-body">
-                    <p class="fs-sm card-title fs-sm"><a href="{{ .RelPermalink }}" class="text-primary">{{ .Title }}</a></p>
-                    <p class="fs-sm">{{ .Content | truncate 100 | plainify }}</p>
-                    <p class="fs-sm text-primary float-right mb-2"><a href="{{ .RelPermalink }}">Read more <i
-                        class="fas fa-arrow-circle-right"></i></a></p>
-                  </div>
+                <div class="card-body">
+                    <h3 class="card-title"><a class="text-black" href="{{ .RelPermalink }}" class="text-primary">{{ .Title }}</a></h3>
+                    <div class="mb-2">{{ .Content | truncate 100 | plainify }}</div>
+                    <div class="d-flex justify-content-end link">
+                        <a class="fs-sm font-weight-bold" href="{{ .RelPermalink }}">Read more <i class="fa-solid fa-angle-right"></i></a>
+                    </div>
                 </div>
-              </div>
+            </div>
         </div>
         {{- end -}}
+    </div>
 
-      </div>
-
-      <div class="row mt-4">
+    <div class="row mt-4">
         <div class="col">
             <h2>All data stories</h2>
         </div>
     </div>
 
     <div class="row mt-4">
-        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-            <li class="nav-item">
-              <a class="nav-link active" id="pills-all-tab" data-toggle="pill" href="#pills-all" role="tab" aria-controls="pills-all" aria-selected="true">All data stories</a>
-            </li>
+        <ul class="nav nav-pills mb-3 border-bottom" id="pills-tab" role="tablist">
             <li class="nav-item">
               <a class="nav-link" id="pills-aq-tab" data-toggle="pill" href="#pills-aq" role="tab" aria-controls="pills-aq" aria-selected="false">Air quality</a>
             </li>
@@ -70,6 +80,9 @@
               <li class="nav-item">
                 <a class="nav-link" id="pills-how-tab" data-toggle="pill" href="#pills-how" role="tab" aria-controls="pills-how" aria-selected="false">How we work</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link active" id="pills-all-tab" data-toggle="pill" href="#pills-all" role="tab" aria-controls="pills-all" aria-selected="true">All data stories</a>
+              </li>
           </ul>
     </div>
 
@@ -79,29 +92,48 @@
                 <div class="tab-pane fade show active" id="pills-all" role="tabpanel" aria-labelledby="pills-all-tab">
 
                     <div class="row pb-2">
-                        
-                            {{- range .RegularPages -}}
-                            <div class="col-md-4">
-                                <div class=" my-2 p-2 borderbox itemfocus">
-                                    <a class="h2 fs-md" href="{{ .RelPermalink }}">{{ .Title }}</a>
-                                    <p class="fs-sm">{{ htmlUnescape .Content | plainify | truncate 150 }}</p> 
-                                    <p class="text-right fs-sm"><a href="{{ .RelPermalink }}">Read more...</a></p>
-                                    </div>
-                            </div>
 
-                            {{- end -}}
+                        {{- range .RegularPages -}}
+                        <div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="{{ .RelPermalink}}">
+                                    {{ $src := .Resources.GetMatch .Params.image }}
+                                    {{ $image := $src.Resize "740x"}}
+                                    <div style="width:100%; height:250px; background-image: URL({{ $image.RelPermalink }}); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="{{ .RelPermalink }}" class="text-primary">{{ .Title }}</a></h3>
+                                    <div class="mb-2">{{ .Content | truncate 100 | plainify }}</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="{{ .RelPermalink }}">Read more <i class="fa-solid fa-angle-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {{- end -}}
                     </div>
                 </div>
 
                 <div class="tab-pane fade" id="pills-aq" role="tabpanel" aria-labelledby="pills-aq-tab">
                     <div class="row">
                         {{- range where .RegularPages "Params.categories" "intersect" (slice "airquality") -}}
-                        <div class="col-md-4">
-                            <div class=" my-2 p-2 borderbox itemfocus">
-                                <a class="h2 fs-md" href="{{ .RelPermalink }}">{{ .Title }}</a>
-                                <p class="fs-sm">{{ htmlUnescape .Content | plainify | truncate 150 }}</p> 
-                                <p class="text-right fs-sm"><a href="{{ .RelPermalink }}">Read more...</a></p>
+                        <div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="{{ .RelPermalink}}">
+                                    {{ $src := .Resources.GetMatch .Params.image }}
+                                    {{ $image := $src.Resize "740x"}}
+                                    <div style="width:100%; height:250px; background-image: URL({{ $image.RelPermalink }}); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="{{ .RelPermalink }}" class="text-primary">{{ .Title }}</a></h3>
+                                    <div class="mb-2">{{ .Content | truncate 100 | plainify }}</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="{{ .RelPermalink }}">Read more &gt;</a>
+                                    </div>
                                 </div>
+                            </div>
                         </div>
                         {{- end -}}
                     </div>
@@ -110,82 +142,142 @@
                 <div class="tab-pane fade" id="pills-transportation" role="tabpanel" aria-labelledby="pills-transportation-tab">
                     <div class="row">
                         {{- range where .RegularPages "Params.categories" "intersect" (slice "transportation") -}}
-                        <div class="col-md-4">
-                            <div class=" my-2 p-2 borderbox itemfocus">
-                                <a class="h2 fs-md" href="{{ .RelPermalink }}">{{ .Title }}</a>
-                                <p class="fs-sm">{{ htmlUnescape .Content | plainify | truncate 150 }}</p> 
-                                <p class="text-right fs-sm"><a href="{{ .RelPermalink }}">Read more...</a></p>
+                        <div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="{{ .RelPermalink}}">
+                                    {{ $src := .Resources.GetMatch .Params.image }}
+                                    {{ $image := $src.Resize "740x"}}
+                                    <div style="width:100%; height:250px; background-image: URL({{ $image.RelPermalink }}); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="{{ .RelPermalink }}" class="text-primary">{{ .Title }}</a></h3>
+                                    <div class="mb-2">{{ .Content | truncate 100 | plainify }}</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="{{ .RelPermalink }}">Read more &gt;</a>
+                                    </div>
                                 </div>
+                            </div>
                         </div>
                         {{- end -}}
                     </div>
                 </div>
-    
+
                 <div class="tab-pane fade" id="pills-justice" role="tabpanel" aria-labelledby="pills-justice-tab">
                     <div class="row">
                         {{- range where .RegularPages "Params.categories" "intersect" (slice "social") -}}
-                        <div class="col-md-4">
-                            <div class=" my-2 p-2 borderbox itemfocus">
-                                <a class="h2 fs-md" href="{{ .RelPermalink }}">{{ .Title }}</a>
-                                <p class="fs-sm">{{ htmlUnescape .Content | plainify | truncate 150 }}</p> 
-                                <p class="text-right fs-sm"><a href="{{ .RelPermalink }}">Read more...</a></p>
+                        <div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="{{ .RelPermalink}}">
+                                    {{ $src := .Resources.GetMatch .Params.image }}
+                                    {{ $image := $src.Resize "740x"}}
+                                    <div style="width:100%; height:250px; background-image: URL({{ $image.RelPermalink }}); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="{{ .RelPermalink }}" class="text-primary">{{ .Title }}</a></h3>
+                                    <div class="mb-2">{{ .Content | truncate 100 | plainify }}</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="{{ .RelPermalink }}">Read more &gt;</a>
+                                    </div>
                                 </div>
+                            </div>
                         </div>
                         {{- end -}}
                     </div>
                 </div>
-    
+
                 <div class="tab-pane fade" id="pills-climate" role="tabpanel" aria-labelledby="pills-climate-tab">
                     <div class="row">
                         {{- range where .RegularPages "Params.categories" "intersect" (slice "climatehealth") -}}
-                        <div class="col-md-4">
-                            <div class=" my-2 p-2 borderbox itemfocus">
-                                <a class="h2 fs-md" href="{{ .RelPermalink }}">{{ .Title }}</a>
-                                <p class="fs-sm">{{ htmlUnescape .Content | plainify | truncate 150 }}</p> 
-                                <p class="text-right fs-sm"><a href="{{ .RelPermalink }}">Read more...</a></p>
+                        <div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="{{ .RelPermalink}}">
+                                    {{ $src := .Resources.GetMatch .Params.image }}
+                                    {{ $image := $src.Resize "740x"}}
+                                    <div style="width:100%; height:250px; background-image: URL({{ $image.RelPermalink }}); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="{{ .RelPermalink }}" class="text-primary">{{ .Title }}</a></h3>
+                                    <div class="mb-2">{{ .Content | truncate 100 | plainify }}</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="{{ .RelPermalink }}">Read more &gt;</a>
+                                    </div>
                                 </div>
+                            </div>
                         </div>
                         {{- end -}}
                     </div>
                 </div>
-    
+
                 <div class="tab-pane fade" id="pills-housing" role="tabpanel" aria-labelledby="pills-housing-tab">
                     <div class="row">
                         {{- range where .RegularPages "Params.categories" "intersect" (slice "housing") -}}
-                        <div class="col-md-4">
-                            <div class=" my-2 p-2 borderbox itemfocus">
-                                <a class="h2 fs-md" href="{{ .RelPermalink }}">{{ .Title }}</a>
-                                <p class="fs-sm">{{ htmlUnescape .Content | plainify | truncate 150 }}</p> 
-                                <p class="text-right fs-sm"><a href="{{ .RelPermalink }}">Read more...</a></p>
+                        <div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="{{ .RelPermalink}}">
+                                    {{ $src := .Resources.GetMatch .Params.image }}
+                                    {{ $image := $src.Resize "740x"}}
+                                    <div style="width:100%; height:250px; background-image: URL({{ $image.RelPermalink }}); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="{{ .RelPermalink }}" class="text-primary">{{ .Title }}</a></h3>
+                                    <div class="mb-2">{{ .Content | truncate 100 | plainify }}</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="{{ .RelPermalink }}">Read more &gt;</a>
+                                    </div>
                                 </div>
+                            </div>
                         </div>
                         {{- end -}}
                     </div>
                 </div>
-    
+
                 <div class="tab-pane fade" id="pills-food" role="tabpanel" aria-labelledby="pills-food-tab">
                     <div class="row">
                         {{- range where .RegularPages "Params.categories" "intersect" (slice "foodanddrink") -}}
-                        <div class="col-md-4">
-                            <div class=" my-2 p-2 borderbox itemfocus">
-                                <a class="h2 fs-md" href="{{ .RelPermalink }}">{{ .Title }}</a>
-                                <p class="fs-sm">{{ htmlUnescape .Content | plainify | truncate 150 }}</p> 
-                                <p class="text-right fs-sm"><a href="{{ .RelPermalink }}">Read more...</a></p>
+                        <div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="{{ .RelPermalink}}">
+                                    {{ $src := .Resources.GetMatch .Params.image }}
+                                    {{ $image := $src.Resize "740x"}}
+                                    <div style="width:100%; height:250px; background-image: URL({{ $image.RelPermalink }}); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="{{ .RelPermalink }}" class="text-primary">{{ .Title }}</a></h3>
+                                    <div class="mb-2">{{ .Content | truncate 100 | plainify }}</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="{{ .RelPermalink }}">Read more &gt;</a>
+                                    </div>
                                 </div>
+                            </div>
                         </div>
                         {{- end -}}
                     </div>
                 </div>
-    
+
                 <div class="tab-pane fade" id="pills-how" role="tabpanel" aria-labelledby="pills-how-tab">
                     <div class="row">
                         {{- range where .RegularPages "Params.categories" "intersect" (slice "internal") -}}
-                        <div class="col-md-4">
-                            <div class=" my-2 p-2 borderbox itemfocus">
-                                <a class="h2 fs-md" href="{{ .RelPermalink }}">{{ .Title }}</a>
-                                <p class="fs-sm">{{ htmlUnescape .Content | plainify | truncate 150 }}</p> 
-                                <p class="text-right fs-sm"><a href="{{ .RelPermalink }}">Read more...</a></p>
+                        <div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="{{ .RelPermalink}}">
+                                    {{ $src := .Resources.GetMatch .Params.image }}
+                                    {{ $image := $src.Resize "740x"}}
+                                    <div style="width:100%; height:250px; background-image: URL({{ $image.RelPermalink }}); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="{{ .RelPermalink }}" class="text-primary">{{ .Title }}</a></h3>
+                                    <div class="mb-2">{{ .Content | truncate 100 | plainify }}</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="{{ .RelPermalink }}">Read more &gt;</a>
+                                    </div>
                                 </div>
+                            </div>
                         </div>
                         {{- end -}}
                     </div>
@@ -202,12 +294,12 @@
                         <div class="card-content">
                             <div class="card-body">
                                 <h3 class="card-title">Cold Weather Safety</h3>
-                                <p>Winter weather can be dangerous. <a href="http://a816-dohbesp.nyc.gov/IndicatorPublic/Cold/index.html">Here's how to stay safe and be prepared, inside and outside</a>.</p>    
+                                <p>Winter weather can be dangerous. <a href="http://a816-dohbesp.nyc.gov/IndicatorPublic/Cold/index.html">Here's how to stay safe and be prepared, inside and outside</a>.</p>
                             </div>
                         </div>
                     </div>
                 </div>
-    
+
                 <div class="col-md-6">
                     <div class="card content-card mb-4">
                         <div class="card-content">
@@ -219,38 +311,36 @@
                         </div>
                     </div>
                 </div>
-    
+
                 <div class="col-md-6">
                     <div class="card content-card mb-4">
                         <div class="card-content">
                             <div class="card-body">
                                 <h3 class="card-title">Asthma and Housing</h3>
                                 <p>Housing conditions are a common trigger for asthma. <a href="http://a816-dohbesp.nyc.gov/IndicatorPublic/asthma/index.html">Learn more with the Asthma and Housing infographic</a>.</p>
-    
-        
+
+
                             </div>
                         </div>
                     </div>
                 </div>
-    
+
                 <div class="col-md-6">
                     <div class="card content-card mb-4">
                         <div class="card-content">
                             <div class="card-body">
                                 <h3 class="card-title">Health Impacts of Traffic Air Pollution</h3>
-    
+
                                 <p>PM2.5 is one of the most harmful air pollutants. <a href="http://a816-dohbesp.nyc.gov/IndicatorPublic/Traffic/index.html">The health impacts of traffic
                                         air
                                         pollution are highest in poorer neighborhoods</a>.</p>
-        
+
                             </div>
                         </div>
                     </div>
                 </div>
         </div>
     -->
-        
-        <hr class="my-4 portalhr">
 
 </article>
 

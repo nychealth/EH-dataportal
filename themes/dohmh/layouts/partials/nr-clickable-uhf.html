@@ -1,0 +1,101 @@
+<div id="vis1" class="chartdest" style="width: 100%; height: 100%;"></div>
+<!-- vis1 container needs to be put in a sized container - will take on the size of its parent -->
+
+<style>
+
+      .marks:hover {
+        cursor: pointer
+      }
+</style>
+
+<!-- spec -->
+<script type="text/javascript">
+    var spec = {
+        "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+        "width": "container",
+        "height": "container",
+        "autosize": {"type": "fit", "contains": "padding"},
+        "config": {
+          "view": {"stroke": "transparent"}
+        },
+        "layer": [
+          {
+            "data": {
+              "url": "{{ site.Params.data_repo }}{{ site.Params.data_branch }}/geography/UHF42.topo.json",
+              "format": {"type": "topojson", "feature": "collection"}
+            },
+            "mark": {"type": "geoshape", "stroke": "#ffffff", "fill": "lightgray"}
+          },
+          {
+            "data": {
+              "url": "{{ site.Params.data_repo }}{{ site.Params.data_branch }}/geography/UHF42.topo.json",
+              "format": {"type": "topojson", "feature": "collection"}
+            },
+            "transform": [
+              {
+                "lookup": "properties.GEOCODE",
+                "from": {
+                  "data": {
+                    "url": {{ relURL "UHF42.csv" }}
+                    },
+                  "key": "GEOCODE",
+                  "fields": ["GEOCODE", "Name", "GEONAME", "VALUE"]
+                },
+                "default": "no data"
+              }
+            ],
+            "mark": {"type": "geoshape", "stroke": "#ffffff"},
+            "params": [
+              {
+                "name": "highlight",
+                "select": {
+                  "type": "point",
+                  "on": "mouseover",
+                  "clear": "mouseout"
+                }
+              }
+            ],
+            "encoding": {
+              "color": {
+                "bin": false,
+                "field": "VALUE",
+                "type": "quantitative",
+                "legend": null,
+                "scale": {"scheme": {"name": "blues", "extent": [0.25, 0.75]}}
+              },
+              "stroke": {
+                "condition": {"param": "highlight", "empty": false, "value": "cyan"},
+                "value": "#dadada"
+              },
+              "strokeWidth": {
+                "condition": {"param": "highlight", "empty": false, "value": 2.5},
+                "value": 0.5
+              },
+              "order": {
+                "condition": {"param": "highlight", "empty": false, "value": 1},
+                "value": 0
+              },
+              "tooltip": [
+                {"field": "Name", "type": "nominal", "title": "Neighborhood"}        ]
+            }
+          }
+        ]
+      }
+
+      // draw map, with event listener to power clickability
+      function drawMap() {
+        // console.log('map drawn.')
+        vegaEmbed('#vis1', spec, {"actions": false}).then(result => {
+          result.view.addEventListener('click', function(event, item) {
+             // console.log('CLICK', event, item);
+            // console.log(item.datum)
+
+            // send to new page
+            window.location = {{ relURL "neighborhood-reports/" }} + DOMPurify.sanitize(item.datum.GEONAME) + reportURL
+          });
+          }).catch(console.warn);
+      }
+
+      drawMap() // on page load
+
+</script>

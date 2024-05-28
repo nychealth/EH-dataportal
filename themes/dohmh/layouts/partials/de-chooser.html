@@ -192,38 +192,40 @@
 {{- $topic_indicators_dict := newScratch -}}
 {{- $topic_indicators_map := newScratch -}}
 
-{{/*  iterate over all pages on the site  */}}
+{{- /*  iterate over all pages on the site  */}}
 
 {{- range .Site.Pages -}}
     
-    {{/*  create a new "slice" (i.e., an array)  */}}
+    {{- /*  create a new "slice" (i.e., an array)  */}}
     
     {{- $indicators := slice -}}
     {{- $topic_name := slice -}}
     
-    {{/*  only process if it's a data explorer page */}}
+    {{- /*  only process if it's a data explorer page */}}
     
-    {{- if (and (eq .Kind "page") (hasPrefix .RelPermalink "/data-explorer") (ne (path.Base .RelPermalink) "all-data")) -}}
+
+    {{- if ( and ( eq .Kind "page" ) ( strings.Contains .RelPermalink "/data-explorer" ) ( not ( or ( strings.Contains .RelPermalink "data-index" ) ( strings.Contains .RelPermalink "indicator-catalog" ) ) ) ) -}}
+
         
-        {{/*  turn params into strings  */}}
+        {{- /*  turn params into strings  */}}
         
         {{- $topic := .RelPermalink | path.Base | string -}}
 
-        {{/*  topic names  */}}
+        {{- /*  topic names  */}}
         
         {{- $topic_title := .Title -}}
 
-        {{/*  get internal_ids  */}}
+        {{- /*  get internal_ids  */}}
         
         {{- range .Params.indicators -}}
             
-            {{/*  create an array of internal_ids  */}}
+            {{- /*  create an array of internal_ids  */}}
             
             {{- $indicators = $indicators | append .IndicatorID -}}
         
         {{- end -}}
         
-        {{/*  create a map with topic as key and array of internal_ids as value */}}
+        {{- /*  create a map with topic as key and array of internal_ids as value */}}
         
         {{- $topic_indicators_dict := dict "topic_name" $topic_title "IndicatorID" $indicators -}}
         {{- $topic_indicators_map.SetInMap "topic_indicators" $topic ($topic_indicators_dict) -}}
@@ -234,30 +236,32 @@
 
 
 
-<script>
-    var topic_indicators = {{ $topic_indicators_map.Get "topic_indicators" }};
-    // console.log(topic_indicators)
+    <script>
+        var topic_indicators = {{ $topic_indicators_map.Get "topic_indicators" }};
+        // console.log(topic_indicators)
 
-    var destination = document.getElementById('indicatorNames')    
+        var destination = document.getElementById('indicatorNames')    
 
     function changeKT(x) {
-        console.log(x)
+        // console.log(x)
         const all = document.querySelectorAll('.dumps')
         all.forEach((dump) => {
             dump.classList.remove('show')
             dump.classList.add('hide')
         });
         const chosen = 'output'+x
-        console.log('chosen: ' + chosen)
+        // console.log('chosen: ' + chosen)
         document.getElementById(chosen).classList.remove('hide')
 
-        const KTs = document.querySelectorAll('.kt')
-        KTs.forEach((kt) => {
-            kt.classList.remove('active')
-        });
+            const KTs = document.querySelectorAll('.kt')
+            KTs.forEach((kt) => {
+                kt.classList.remove('active')
+            });
 
-        const link = 'kt'+x
-        document.getElementById(link).classList.add('active')
-    }
+            const link = 'kt'+x
+            document.getElementById(link).classList.add('active')
+        }
 
-</script>
+    </script>
+
+{{/*  {{- end }}  */}}

@@ -1,6 +1,6 @@
-<div class="keywords">
-{{- if .Params.keywords -}}<strong>Keywords:</strong> <br>
-    {{- range .Params.keywords -}}<a href="{{ "/keywords/" | relLangURL }}{{ . | urlize }}/">{{ . }}</a> |&#32;
+<div class="keywords p-1" data-pagefind-ignore="all">
+{{- if .Params.keywords -}}
+    {{- range .Params.keywords -}}<a href="{{ "keywords/" | relLangURL }}{{ . | urlize }}/">{{ . }}</a> |&#32;
     {{- end -}}
 {{- end -}}
 </div>

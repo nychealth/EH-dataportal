@@ -1,0 +1,56 @@
+{{- define "main" -}}
+
+<article class="container-fluid overflow-hidden" id="primary-content">
+
+  <div class="row my-4">
+    <div class="col-md-8 col-sm-12 mx-auto">
+
+      <nav aria-label="breadcrumb" class="mb-2">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">About</li>
+        </ul>
+      </nav>
+
+      <!--start main column-->
+      <h1>{{- .Title -}}</h1>
+        {{- .Content -}}
+
+      <!-- Start posts -->
+      <p class="home-label mt-4">Recent posts:</p>
+      <div class="row">
+        {{- range first 3 ((where .Site.RegularPages.ByDate "Section" "about")) -}}
+        <div class="col-md-6 mb-2">
+            <div class="card content-card mb-4">
+                <div class="card-content">
+    
+                    <div class="card-body">
+                    <p class="fs-sm card-title fs-sm"><a href="{{ .RelPermalink }}" class="text-primary">{{ .Title }}</a></p>
+                    <p class="fs-sm">{{ .Content | truncate 100 | plainify }}</p>
+                    <p class="fs-sm text-primary float-right mb-2"><a href="{{ .RelPermalink }}">Read more <i
+                        class="fas fa-arrow-circle-right"></i></a></p>
+                  </div>
+                </div>
+              </div>
+        </div>
+        {{- end -}}
+      </div>
+
+      <!-- Start footer HD resources -->
+      <h2 class="mt-4">Browse other Health Department data resources</h2>
+      <p>Can't find what you're looking for on our site? Try these other Health Department data resources:
+        <ul>
+          <li><a href="https://a816-health.nyc.gov/hdi/epiquery/">EpiQuery</a>: Analyze and visualize NYC health data from surveys, disease reports and vital records by sex, race/ethnicity, age and other stratifications.</li>
+          <li><a href="https://a816-health.nyc.gov/hdi/profiles/">Community Health Profiles</a>: Learn about the social, economic and health conditions and outcomes of New Yorkers, neighborhood-by-neighborhood.</li>
+          <li><a href="https://www1.nyc.gov/site/doh/data/data-home.page">All Health Department data resources</a> </li>
+          <li><a href="https://www1.nyc.gov/site/doh/health/health-topics.page">Health Topics A to Z</a>: Comprehensive information about health topics and services that can help you out. </li>
+        </ul>
+      </p>
+
+    </div>
+    <!--end main column-->
+
+  </div>
+
+</article>
+{{- end -}}

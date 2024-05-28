@@ -10,7 +10,7 @@
 
     {{ $src := .Resources.GetMatch .Params.image }}
     {{ $image := $src.Resize "1920x"}}
-    <div id="datastoryheader" style="background-image: URL({{ $image.Permalink }}); background-position: 50% 25%">
+    <div id="datastoryheader" style="background-image: URL({{ $image.RelPermalink }}); background-position: 50% 25%">
 
 
         <div class="medium my-auto">
@@ -33,6 +33,20 @@
 </div>
 
 <article class="container-fluid" id="skip-header-target">
+    
+    <div class="row mt-2">
+        <div class="col-12">
+            <nav aria-label="breadcrumb" class="border-top">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
+                    <li class="breadcrumb-item"><a href={{ relURL "data-stories" }}>Data Stories</a></li>
+                    <li class="breadcrumb-item active"><a href="{{ .Page.RelPermalink }}">{{ .Title }}</a></li>
+
+                </ul>
+            </nav>
+        </div>
+    </div>
+
 
     <div class="row">
 
@@ -75,10 +89,9 @@
                 <div class="border-top border-dark">
                     <ul class="extensible-list horizontal text-muted mt-3">
                         <li>
-                            <a class="text-muted" href="mailto:trackingportal@health.nyc.gov"
-                                title="Share through email">
+                            <p class="text-muted" >
                                 <span class="fa fa-envelope"></span> Questions about this data story? Ideas
-                                for another one? Email us.</a>
+                                for another one? Email us at <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#101;&#104;&#100;&#112;&#64;&#104;&#101;&#97;&#108;&#116;&#104;&#46;&#110;&#121;&#99;&#46;&#103;&#111;&#118;">&#101;&#104;&#100;&#112;&#64;&#104;&#101;&#97;&#108;&#116;&#104;&#46;&#110;&#121;&#99;&#46;&#103;&#111;&#118;</a></p>
                         </li>
                     </ul>
                 </div>
@@ -108,7 +121,7 @@
                         <i class="fas fa-images mr-1"></i><strong class="keywords">Banner image:</strong><br>
                         {{- .Params.photocredit -}}
                         <hr class="my-2">
-                    {{- end -}}
+                    {{- end }}
 
                     <strong class="keywords">Published on:</strong><br>
                     {{- .Date.Format "January 2, 2006" -}}

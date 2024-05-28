@@ -12,17 +12,17 @@ const renderTable = () => {
 
     // console.log("tableData", tableData);
 
-    const filteredTableYearData = tableData.filter(d => selectedTableYears.includes(d.Time))
+    const filteredTableTimeData = tableData.filter(d => selectedTableTimes.includes(d.TimePeriod))
 
     // ----------------------------------------------------------------------- //
     // format geography dropdown checkboxes
     // ----------------------------------------------------------------------- //
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-    // get (pretty) geoTypes available for this year
+    // get (pretty) geoTypes available for this time period
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
-    const dataGeos = [...new Set(filteredTableYearData.map(d => prettifyGeoType(d.GeoType)))];
+    const dataGeos = [...new Set(filteredTableTimeData.map(d => prettifyGeoType(d.GeoType)))];
 
     // console.log("dataGeos", dataGeos);
 
@@ -45,7 +45,7 @@ const renderTable = () => {
     $(allGeoChecks).removeClass("disabled");
     $(allGeoChecks).attr('aria-disabled', false);
     
-    // now add disabled class for geos not available for this year
+    // now add disabled class for geos not available for this year period
 
     for (const checkbox of allGeoChecks) {
 
@@ -70,7 +70,7 @@ const renderTable = () => {
     if (selectedTableGeography.length > 0) {
         
         filteredTableData = 
-            filteredTableYearData
+            filteredTableTimeData
             .filter(d => selectedTableGeography.includes(prettifyGeoType(d.GeoType)))
 
     } else {
@@ -126,14 +126,14 @@ const renderTable = () => {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
     const filteredTableAqData = aq.from(filteredTableData)
-        .groupby("Time", "GeoTypeDesc", "GeoID", "GeoRank", "Geography")
+        .groupby("TimePeriod", "GeoTypeDesc", "GeoID", "GeoRank", "Geography")
         .pivot("MeasurementDisplay", "DisplayCI")
     
         // need to put this down here because the data might be missing one of the measures, which will be undefined after the pivot
         // .impute(measureImputeObj) 
         
         // these 4 columns always exist, and we always want to hide them, so let's put them first, respecting the original relative order
-        .relocate(["Time", "GeoTypeDesc", "GeoID", "GeoRank"], { before: 0 }) 
+        .relocate(["TimePeriod", "GeoTypeDesc", "GeoID", "GeoRank"], { before: 0 }) 
     
     // console.log("filteredTableAqData [renderTable]");
     // filteredTableAqData.print({limit: 40})
@@ -162,7 +162,7 @@ const renderTable = () => {
     // specify DataTable
     // ----------------------------------------------------------------------- //
     
-    const groupColumnYear = 0
+    const groupColumnTime = 0
     const groupColumnGeo = 1;
 
     $('#tableID').DataTable({
@@ -191,7 +191,7 @@ const renderTable = () => {
             const GeoTypeDesc = data[1];
             if (time && GeoTypeDesc) {
                 row.setAttribute(`data-group`, `${time}-${GeoTypeDesc}`)
-                row.setAttribute(`data-year`, `${time}`);
+                row.setAttribute(`data-time`, `${time}`);
             }
         },
         "drawCallback": function ( settings ) {
@@ -202,7 +202,7 @@ const renderTable = () => {
             const visibleColumnsCount =  totaleColumnsCount - 4;
             
             let last = null;
-            let lastYr = null;
+            let lastTime = null;
             
             const createGroupRow = (groupColumn, lvl) => {
 
@@ -214,30 +214,30 @@ const renderTable = () => {
                     // console.log("group", group);
                     // console.log("i", i);
                     
-                    const year = data[i][0]
-                    const groupName = `${year}-${group}`
+                    const time = data[i][0]
+                    const groupName = `${time}-${group}`
                     
-                    // console.log("year", year);
+                    // console.log("time", time);
 
-                    if ( last !== group || lastYr !== year ) {
+                    if ( last !== group || lastTime !== time ) {
                         
                         $(rows).eq( i ).before(
-                            `<tr class="group"><td colspan="${visibleColumnsCount}" data-year="${year}" data-group="${group}" data-group-level="${lvl}"> ${group}</td></tr>`
+                            `<tr class="group"><td colspan="${visibleColumnsCount}" data-time="${time}" data-group="${group}" data-group-level="${lvl}"> ${group}</td></tr>`
                             );
                             last = group;
-                            lastYr = year
+                            lastTime = time
                             
-                        }
-                    });
-                }
-                
-                createGroupRow(groupColumnYear, 0);
-                createGroupRow(groupColumnGeo, 1);
-                handleToggle();
+                    }
+                });
             }
-        })
+            
+            createGroupRow(groupColumnTime, 0);
+            createGroupRow(groupColumnGeo, 1);
+            handleToggle();
+        }
+    })
 
-    }
+}
 
 
 // ----------------------------------------------------------------------- //
@@ -256,8 +256,8 @@ const handleToggle = () => {
 
         const handleGroupToggle = () => {
 
-            const subGroupToggle = $(`td[data-year="${group}"][data-group-level="1"]`);
-            const subGroupRow = $(`tr[data-year="${group}"]`);
+            const subGroupToggle = $(`td[data-time="${group}"][data-group-level="1"]`);
+            const subGroupRow = $(`tr[data-time="${group}"]`);
 
             if (subGroupToggle.css('display') === 'none') {
 

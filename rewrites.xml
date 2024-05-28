@@ -84,8 +84,26 @@
         
         
         <rules>
-          
-          <!-- if the user has requested the old site, give them that -->
+
+    <!-- redirect the user testing url -->
+
+          <rule name="User testing redirect" stopProcessing="true">
+
+            <match url="/?test/?" />
+
+            <conditions logicalGrouping="MatchAll" trackAllCaptures="false" />
+
+            <serverVariables>
+
+              <set name="HTTP_COOKIE" value="want_old_site=true" />
+
+            </serverVariables>
+
+            <action type="Redirect" url="." appendQueryString="false" redirectType="Temporary" />
+
+          </rule>
+
+    <!-- if the user has requested the old site, give them that -->
           
           <rule name="no-redirect" stopProcessing="true">
             
@@ -100,27 +118,29 @@
             <action type="None" />
             
           </rule>
-          
-          <!-- ## home page ## -->
+
+    <!-- ## home page ## -->
           
           <rule name="Home" stopProcessing="true">
             
-            <match url="(^/?$|PublicTracking.aspx)" />
+            <match url="(PublicTracking.aspx)" />
             
-            <conditions trackAllCaptures="true">
+              <conditions logicalGrouping="MatchAll" trackAllCaptures="true">
               
               <add input="{HTTP_COOKIE}" pattern="want_old_site=true" negate="true" />
+              <add input="{UNENCODED_URL}" pattern="/?test/?" negate="true" />
+              <add input="{UNENCODED_URL}" pattern="/?#$" negate="true" />
               
             </conditions>
             
             <action type="Redirect" url="beta/" appendQueryString="false" redirectType="Temporary" />
             
           </rule>
-          
-          
-          <!-- ## hub pages ## -->
-          
-          <!-- Heat Hub -->
+
+
+    <!-- ## hub pages ## -->
+
+    <!-- Heat Hub -->
           
           <rule name="heat-hub-index" stopProcessing="true">
             
@@ -135,8 +155,8 @@
             <action type="Redirect" url="beta/key-topics/climatehealth/{R:1}/" redirectType="Temporary" />
             
           </rule>
-          
-          <!-- Air Quality Hub -->
+
+    <!-- Air Quality Hub -->
           
           <rule name="aq-hub-index" stopProcessing="true">
             
@@ -158,9 +178,9 @@
             <action type="Redirect" url="beta/key-topics/airquality/realtime/" redirectType="Temporary" />
             
           </rule>
-          
-          
-          <!-- ## cold infographic ## -->
+
+
+    <!-- ## cold infographic ## -->
           
           <rule name="cold-infographic" stopProcessing="true">
             
@@ -169,8 +189,8 @@
             
           </rule>
 
-          
-          <!-- ## data stories ## -->
+
+    <!-- ## data stories ## -->
           
           <rule name="data-stories" stopProcessing="true">
             
@@ -178,9 +198,9 @@
             <action type="Redirect" url="beta/data-stories/{R:1}/" redirectType="Temporary" />
             
           </rule>
-          
-          
-          <!-- ## data explorer topics, using rewrite map ## -->
+
+
+    <!-- ## data explorer topics, using rewrite map ## -->
           
           <rule name="data-explorer-topics" stopProcessing="true">
             
@@ -193,11 +213,11 @@
             <action type="Redirect" url="beta/data-explorer/{C:1}/" appendQueryString="False" redirectType="Temporary" />
             
           </rule>
-          
-        
-          <!-- ## Top-tier pages ## -->
-          
-          <!-- data explorer landing page -->
+
+
+    <!-- ## Top-tier pages ## -->
+
+    <!-- data explorer landing page -->
           
           <rule name="data-explorer" stopProcessing="true">
             
@@ -205,8 +225,17 @@
             <action type="Redirect" url="beta/data-explorer/" appendQueryString="false" redirectType="Temporary" />
             
           </rule>
+
+    <!-- learn more -->
           
-          <!-- data story landing page -->
+          <rule name="learn-more" stopProcessing="true">
+            
+            <match url="^LearnMore.aspx$" />
+            <action type="Redirect" url="beta/" appendQueryString="false" redirectType="Temporary" />
+            
+          </rule>
+
+    <!-- data story landing page -->
           
           <rule name="data-story-landing" stopProcessing="true">
             
@@ -214,8 +243,8 @@
             <action type="Redirect" url="beta/data-stories/" appendQueryString="false" redirectType="Temporary" />
             
           </rule>
-          
-          <!-- full neighborhood reports path -->
+
+    <!-- full neighborhood reports path -->
           
           <rule name="neighborhood-reports" stopProcessing="true">
             
@@ -223,16 +252,16 @@
             <action type="Redirect" url="beta/neighborhood-reports/{R:1}" appendQueryString="false" redirectType="Temporary" />
             
           </rule>
-          
-          
-          <!-- ## data explorer tabs, using rewrite map ## -->
+
+
+    <!-- ## data explorer tabs, using rewrite map ## -->
           
           <rule name="data-explorer-tabs" stopProcessing="true">
             
             <match url="VisualizationData.aspx" />
             <conditions trackAllCaptures="true">
-              
-              <!--pattern => C:1 = internal_id/IndicatorID, C:2 = subtopic_id, C:3 = tab name -->
+
+        <!--pattern => C:1 = internal_id/IndicatorID, C:2 = subtopic_id, C:3 = tab name -->
               <add input="{QUERY_STRING}" pattern="id=([0-9]+),\w*,(\d*),([a-zA-Z]+)" /> 
               <add input="{Subtopic-To-DE-Topic:{C:2}}" pattern="(.+)" /> <!-- pattern => C:4 = topic name -->
               <add input="{DE-Tab:{C:3}}" pattern="(.+)" /> <!-- pattern => C:5 = new tab name -->
@@ -246,8 +275,8 @@
         
         
         <outboundRules>
-          
-          <!-- set cookie with original URL -->
+
+    <!-- set cookie with original URL -->
           
           <rule name="set-url-cookie">
             
@@ -261,6 +290,24 @@
             
             <action type="Rewrite" value="original_url={UNENCODED_URL}; {R:0}" />
             
+          </rule> 
+
+    <!-- set cookie with want old site -->
+
+          <rule name="want-old-site-true" stopProcessing="true">
+              <match filterByTags="None" serverVariable="RESPONSE_Set_Cookie" pattern=".*" />
+              <conditions>
+                  <add input="{UNENCODED_URL}" pattern="/?beta/?" negate="true" />
+              </conditions>
+              <action type="Rewrite" value="want_old_site=true" replace="true" />
+          </rule>
+          
+          <rule name="want-old-site-false">
+              <match serverVariable="RESPONSE_Set_Cookie" pattern=".*" />
+              <conditions>
+                  <add input="{UNENCODED_URL}" pattern="/?beta/?" />
+              </conditions>
+              <action type="Rewrite" value="want_old_site=false" />
           </rule> 
           
           

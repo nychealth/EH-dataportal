@@ -5,8 +5,8 @@
 
 <style>
     .kt-bg-image {
-        background-image: url("{{ $image.Permalink }}");
-        background-size: cover; 
+        background-image: url("{{ $image.RelPermalink }}");
+        background-size: cover;
         height: 350px;
     }
 </style>
@@ -17,18 +17,19 @@
             <div class="col-md-10 col-sm-12 mx-auto mt-4 mb-2">
                 <nav aria-label="breadcrumb" class="">
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item"><a href="/key-topics/">Key Topics</a></li>
+                        <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
+                        <li class="breadcrumb-item"><a href={{ relURL "key-topics" }}>Key Topics</a></li>
                         <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
                     </ul>
                 </nav>
             </div>
         </div>
 
-        <div class="row">
+        <div class="row key-topics">
             <div class="col-lg-10 col-md-12 mx-auto">
-                <h1 class="greenfill"><i class="fas fa-star" aria-hidden="true" style="margin-right: 10px"></i>
-                    {{ .Title }}</h1>
+                <h1 class="h2" data-pagefind-weight="10.0">
+                    <i class="fas fa-star mr-1" aria-hidden="true"></i>{{ .Title }}
+                </h1>
             </div>
         </div>
 
@@ -44,14 +45,48 @@
 
         </div>
 
+        {{- if where ( where .Site.RegularPages "Section" "data-features") ".Params.categories" "intersect" ( slice .Params.keyTopic ) -}}
+        <div class="row mt-4">
+            <div class="col-lg-10 col-md-12 mx-auto">
+                <div class="row">
+                    <div class="col">
+                        <div class="df-accent">
+                            <span class="h3 fs-lg"><i class="fas fa-chart-bar mr-1 key-topics" aria-hidden="true"></i>Data Features:</span> <span class="home-label">Interactive infographics and reports</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row my-2">
+                    {{- range where ( where .Site.RegularPages "Section" "data-features") ".Params.categories" "intersect" ( slice .Params.keyTopic ) -}}
+                    {{- if not .Params.hide -}}
+                        <div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content card-body">
+                                <h4 class="fs-md"><a class="link-track" href="{{ .RelPermalink }}" class="text-primary">{{ .Title }}</a></h4>
+                                <p class="fs-sm">{{ .Content | plainify | truncate 175 | htmlUnescape }}
+                                </p>
+                                <p class="fs-sm text-primary float-right mb-2"><a class="link-track" href="{{ .RelPermalink }}">Get the data... <i
+                                    class="fas fa-arrow-circle-right"></i></a></p>
+                            </div>
+                        </div>
+                        {{- end -}}
+                    {{- end -}}
+
+                </div>
+
+            </div>
+        </div>
+
+        {{- end -}}
+
 
         <div class="row mt-4">
             <div class="col-lg-10 col-md-12 mx-auto">
                 <div class="row">
                     <div class="col-md-6 col-sm-12">
-
-                        <h3 class="greenfill fs-lg"><i class="fas fa-chart-line pr-1" aria-hidden="true"></i>Data Sets</h3>
-                        <span class="home-label">Use our Data Explorer to get table, maps, and trends </span>
+                        <div class="de-accent">
+                            <span class="h3 fs-lg"><i class="fas fa-chart-line pr-1" aria-hidden="true"></i>Data Sets:</span>
+                            <span class="home-label">Get tables, maps, and trends </span>
+                        </div>
                         <div class="card content-card mt-2 mb-4">
                             <div class="card-content">
                                 <div class="card-body">
@@ -59,67 +94,53 @@
 
                               </div>
                             </div>
-                          </div>   
-
-                          {{- if where ( where .Site.RegularPages "Section" "key-topics") ".Params.categories" "intersect" ( slice .Params.keyTopic ) -}}
-                          <h3 class="greenfill fs-lg"><i class="fas fa-chart-bar mr-1" aria-hidden="true"></i>Data Features</h3>
-                          <span class="home-label">Reports and interactives</span>
-  
-                          <div class="card content-card mt-2 mb-4">
-                              <div class="card-content">
-                                  <div class="card-body">
-                                      {{- partial "related" (dict "section" "key-topics" "layout" "button" "content" . ) -}}     
-                                </div>
-                              </div>
-                            </div>
-                      {{- end -}}
-  
-                      {{- if where ( where .Site.RegularPages "Section" "neighborhood-reports") ".Params.categories" "intersect" ( slice .Params.keyTopic ) -}}
-                      <h3 class="greenfill fs-lg"><i class="fas fa-map-marked-alt mr-1" aria-hidden="true"></i>Neighborhood Reports</h3>
-                      <span class="home-label ">Get data for your neighborhood on:</span>
-  
-                      <div class="card content-card mt-2 mb-4">
-                          <div class="card-content">
-                              <div class="card-body">
-                                  {{- partial "related" (dict "section" "neighborhood-reports" "layout" "button" "content" . ) -}}
-                              </div>
                           </div>
-                        </div>
+
+                      {{- if where ( where .Site.RegularPages "Section" "neighborhood-reports") ".Params.categories" "intersect" ( slice .Params.keyTopic ) -}}
+                      <div class="nr-accent">
+                        <span class="h3 fs-lg"><i class="fas fa-map-marked-alt mr-1" aria-hidden="true"></i>Neighborhood Reports:</span>
+                        <span class="home-label ">Get data for your neighborhood on</span>
+                      </div>
+                          <div class="mt-2">
+                            {{- partial "related" (dict "section" "neighborhood-reports" "layout" "button" "extraClass" "link-track" "content" . ) -}}
+                          </div>
                   {{- end -}}
 
 
-        
+
                     </div>
 
                     <div class="col-md-6 col-sm-12">
                         {{- if where ( where .Site.RegularPages "Section" "data-stories") ".Params.categories" "intersect" ( slice .Params.keyTopic ) -}}
-                            <h3 class="fs-lg mt-2 text-info border-bottom"><i class="fas fa-passport mr-1" aria-hidden="true"></i>Related Data Stories</h3>
+                        <div class="ds-accent">
+                            <span class="h3 fs-lg"><i class="fas fa-passport mr-1" aria-hidden="true"></i>Data Stories:</span>
+                            <span class="home-label ">Narratives and explainers</span>
+
+                        </div>
 
 
                             {{- range where ( where .Site.RegularPages "Section" "data-stories") ".Params.categories" "intersect" ( slice .Params.keyTopic ) -}}
                             <div class="row no-gutters mt-2">
-
-                    
                                 <div class="col-9 ml-auto h-100 pr-1">
-                                  <p class="fs-sm text-align-right h-100 pl-1 mb-1"><a class="text-primary font-weight-bold" href="{{ .RelPermalink }}">{{ .Title }}</a> {{ .Content | plainify | truncate 125 | htmlUnescape }} </p>
+                                  <p class="fs-sm text-align-right h-100 pl-1 mb-1"><a class="link-track text-primary font-weight-bold" href="{{ .RelPermalink }}">{{ .Title }}</a> {{ .Content | plainify | truncate 125 | htmlUnescape }} </p>
                                 </div>
 
                                 <div class="col-3 border mh-100">
                                     {{ $src := .Resources.GetMatch .Params.image }}
                                         {{ $image := $src.Resize "740x"}}
-                                        <a href="{{ .RelPermalink }}">
-                                        <div style="width:100%; height:100%; background-image: URL({{ $image.Permalink }}); background-size: cover"></div></a>
+                                        <a class="link-track" href="{{ .RelPermalink }}">
+                                        <div style="width:100%; height:100%; background-image: URL({{ $image.RelPermalink }}); background-size: cover"></div></a>
                                   </div>
                               </div>
 
                               <hr class="my-2 mx-6">
-        
+
                             {{- end -}}
 
 
                         {{- end -}}
                     </div>
-        
+
 
                 </div>
 
@@ -143,6 +164,18 @@
     </div>
 
 </article>
+
+<script>
+    var linkTrack = document.getElementsByClassName("link-track");
+
+    for(let i = 0; i < linkTrack.length; i++) {
+        linkTrack[i].addEventListener("click", function(event) {
+            gtag("event", "click_topic_link", {
+            'click_url': this.getAttribute("href")
+            })
+        })
+    }
+</script>
 
 
 

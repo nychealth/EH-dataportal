@@ -15,7 +15,7 @@ photocredit: "Edwin J. Torres/Mayoral Photography Office"
 
 La ciudad de Nueva York posee cientos de vecindarios y casi la misma cantidad de formas de diagramar los límites de los vecindarios. Cuando visita el Portal de Datos Ambientales y Sanitarios u otros recursos de datos del Departamento de Salud (Health Department), es posible que note que la información está disponible en diferentes esquemas de vecindarios.
 
-Por ejemplo, si busca en las páginas de datos sobre asma, encontrará que [los adultos con asma](/data-explorer/asthma/?id=18) se presentan por vecindario de UHF34, [los niños de escuelas públicas con asma](/data-explorer/asthma/?id=2147) se presentan por vecindarios de UHF42 y [las visitas por asma a la sala de emergencias](/data-explorer/asthma/?id=2384) se ofrecen por NTA. Se ofrecen otros datos del portal por CD, código postal, PUMA y, en ocasiones, incluso por distrito policial. **¿Qué son estos esquemas de vecindarios, por qué usamos uno y no el otro, y por qué no está integrado todo el sistema?**
+Por ejemplo, si busca en las páginas de datos sobre asma, encontrará que [los adultos con asma]({{< baseurl >}}data-explorer/asthma/?id=18) se presentan por vecindario de UHF34, [los niños de escuelas públicas con asma]({{< baseurl >}}data-explorer/asthma/?id=2147) se presentan por vecindarios de UHF42 y [las visitas por asma a la sala de emergencias]({{< baseurl >}}data-explorer/asthma/?id=2384) se ofrecen por NTA. Se ofrecen otros datos del portal por CD, código postal, PUMA y, en ocasiones, incluso por distrito policial. **¿Qué son estos esquemas de vecindarios, por qué usamos uno y no el otro, y por qué no está integrado todo el sistema?**
 
 Los límites más comunes de vecindarios en los datos del Departamento de Salud son vecindarios de Distritos Comunitarios (Community Districts, CD), Áreas de Microdatos de Uso Público (Public Use Microdata Areas, PUMA) y Fondo Hospitalario Unido (United Hospital Fund, UHF). Estos tres esquemas de vecindarios tradicionales poseen diferentes pilares principales. Analicémoslos.
 
@@ -221,9 +221,7 @@ En el siguiente mapa, observe cómo **tres vecindarios de UHF42 en South Bronx**
 
 
 ### ¿Cómo escoger cuando los límites se superponen?
-Estos límites de vecindarios diferentes pueden complicar las cosas. Por ejemplo, supongamos que usted vive en Ditmas Park y quiere obtener algunos datos sanitarios para una reunión de su Junta Comunitaria. Ditmas Park es parte del Distrito Comunitario 14, Flatbush/Midwood. Pero el CD14 abarca dos vecindarios diferentes de UHF.
-
-Tenemos [una herramienta que ayuda a ver la superposición y las diferencias](https://a816-dohbesp.nyc.gov/IndicatorPublic/CommunityDistrict.aspx) para que pueda elegir qué informe de vecindario usar; sin embargo, sigue surgiendo una pregunta difícil: ¿los datos de qué vecindario llevará a la reunión de la Junta Comunitaria?
+Estos límites de vecindarios diferentes pueden complicar las cosas. Por ejemplo, supongamos que usted vive en Ditmas Park y quiere obtener algunos datos sanitarios para una reunión de su Junta Comunitaria. Ditmas Park es parte del Distrito Comunitario 14, Flatbush/Midwood. Pero el CD14 abarca dos vecindarios diferentes de UHF. Sigue surgiendo una pregunta difícil: ¿los datos de qué vecindario llevará a la reunión de la Junta Comunitaria?
 
 {{< figure src="overlap.png" alt="An example of a Community District that overlaps two UHF42 neighborhoods.">}}
 

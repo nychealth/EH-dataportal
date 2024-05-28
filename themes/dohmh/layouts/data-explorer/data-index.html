@@ -7,8 +7,8 @@
             <div class="col">
                 <nav aria-label="breadcrumb" class="my-3">
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item"><a href="{{ .Site.BaseURL }}data-explorer/">Data Explorer</a></li>
+                        <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
+                        <li class="breadcrumb-item"><a href={{ relURL "data-explorer" }}>Data Explorer</a></li>
                         <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
                     </ul>
                 </nav>
@@ -18,97 +18,8 @@
         <h1><i class="fas fa-chart-line" aria-hidden="true" style="margin-right: 10px"></i>{{ .Title }}</h1>
         {{- .Content -}}
 
-        <!-- Generate JSON object with topic pages and keys, and internal_ids in arrays -->
-
-        {{- $topic_indicators_dict := newScratch -}}
-        {{- $topic_indicators_map := newScratch -}}
-        
-        {{/*  create a slice for an array of all internal_ids  */}}
-
-        {{- $all_indicator_ids := slice -}}
-        
-        {{/*  iterate over all pages on the site  */}}
-
-        {{- range .Site.Pages -}}
-            
-            {{/*  create a new "slice" (i.e., an array)  */}}
-            
-            {{- $indicators := slice -}}
-            {{- $topic_name := slice -}}
-            
-            {{/*  only process if it's a data explorer page */}}
-            
-            {{- if (and (eq .Kind "page") (hasPrefix .RelPermalink "/data-explorer") (ne (path.Base .RelPermalink) "all-data")) -}}
-                
-                {{/*  turn params into strings  */}}
-                
-                {{- $topic := .RelPermalink | path.Base | string -}}
-
-                {{/*  topic names  */}}
-                
-                {{- $topic_title := .Title -}}
-
-                {{/*  get internal_ids  */}}
-                
-                {{- range .Params.indicators -}}
-                    
-                    {{/*  create an array of internal_ids  */}}
-                    
-                    {{- $indicators = $indicators | append .IndicatorID -}}
-
-                {{- end -}}
-                
-                {{/*  create a map with topic as key and array of internal_ids as value */}}
-                
-                {{- $topic_indicators_dict := dict "topic_name" $topic_title "IndicatorID" $indicators -}}
-                {{- $topic_indicators_map.SetInMap "topic_indicators" $topic ($topic_indicators_dict) -}}
-
-            {{- end -}}
-
-            {{- $all_indicator_ids = $all_indicator_ids | append $indicators -}}
-            
-        {{- end -}}
-
-        {{-  $all_unique_indicator_ids := $all_indicator_ids | uniq | sort  -}}
-
-        {{/*  {{-  warnf "all_unique_indicator_ids >>>> " $all_unique_indicator_ids  -}}  */}}
-        
-        {{- $all_unique_indicator_ids_json := $all_unique_indicator_ids | jsonify | resources.FromString "/IndicatorData/all_unique_indicator_ids.json" -}}
-        
-        {{-  warnf ">>>> all_unique_indicator_ids_json.RelPermalink >>>> " $all_unique_indicator_ids_json.RelPermalink  -}}
-        
-        <p class="sr-only">This produces a list of topics and IndicatorIDs, stored in the variable <code>$topic_indicators</code>, 
-            and printed to the console as a JavaScript variable, and then as an Arquero table.</p>
-            
-            <script>
-
-                var topic_indicators = {{ $topic_indicators_map.Get "topic_indicators" }};
-
-                var arqTable = aq.from(topic_indicators)
-                .rename({key: "topic"})
-                .derive({
-                    IndicatorID: d => d.value.IndicatorID,
-                    topic_name: d => d.value.topic_name
-                })
-                .select(aq.not("value"))
-                .unroll("IndicatorID");
-                
-                var topicIndicatorsTable = arqTable.objects();
-                
-                
-            </script>
-            
-            <p class="sr-only">Also outputting a JSON version of the list to <code><a href="{{ .Site.BaseURL }}IndicatorData/topic_indicators.json">/IndicatorData/topic_indicators.json</code></a> 
-                (which on build will be put into <code>/docs/IndicatorData/</code>)</strong>
-                
-                {{- $si_json_output_path := "/IndicatorData/topic_indicators.json" -}}
-                {{- $si_resource := $topic_indicators_map.Get "topic_indicators" | jsonify (dict "indent" "  ") | resources.FromString $si_json_output_path -}}
-                
-                <script>
-                    // console.log("$si_json_output_path", {{$si_json_output_path }})
-                    // console.log("$si_resource.RelPermalink", {{$si_resource.RelPermalink }})
-                </script>
-                
+        {{- partial "de-topic-indicators.html" . -}}
+                                
                 <table id="indicators" class="display fs-sm my-1" style="font-size:12px; width:100%">
                     <thead>
                         <tr>
@@ -128,6 +39,8 @@
                     
                 </table>
 
+                <button class="btn btn-sm btn-outline-primary my-2" onclick="tableToCSV()"><i class="fas fa-download mr-1" aria-hidden="true"></i>Download table</button>
+
                 <hr class="my-2">
                 <p><i class="fas fa-exclamation-circle mr-1"></i><em>Can't find what you're looking for?</em> Try these other Health Department resources:
                 <ul>
@@ -144,19 +57,40 @@
         </article>
         
         <script>
-            var indicators;
-            var indicatorIndex = []
+
+            let indicators;
+            let indicatorIndex = []
+            let time_periods;
             
             
-            // First, load Indicators.json
-            d3.json('{{ site.Params.data_repo }}{{ site.Params.data_branch }}/indicators/indicators.json').then(function (data) {
-                indicators = data;
-                loopThroughIndicators() // run loops.
-                
-            }); 
+            // First, load metadata.json
+
+            d3.json('{{ site.Params.data_repo }}{{ site.Params.data_branch }}/indicators/metadata/metadata.json')
+                .then(metadata => {
+
+                    // assign to global indicators object
+
+                    indicators = metadata;
+
+                    d3.json('{{ site.Params.data_repo }}{{ site.Params.data_branch }}/indicators/metadata/TimePeriods.json')
+                        .then(tp => {
+
+                            // assign to global time_periods object
+
+                            time_periods = tp;
+                                
+                            loopThroughIndicators() // run loops.
+                            
+                        })
+                });
+            
+
             
             // Separating json load from subsequent functions, so we can filter or modify later without reloading json
             function loopThroughIndicators() {
+
+
+
                 //  loop through indicators
                 
                 for (let i = 0; i < indicators.length; i++) {  // change the 1 to indicators.length to get back to normal
@@ -176,7 +110,7 @@
                     
                     if (topics.length > 0) {
 
-                        cell_1.innerHTML = "<a href='" + {{ .Site.BaseURL }} + "data-explorer/" + topics[0].topic + "/" + "?id=" + indicators[i].IndicatorID + "'>" + indicators[i].IndicatorName + "</a>"
+                        cell_1.innerHTML = "<a href='" + {{ relURL "data-explorer" }} + "/" + topics[0].topic + "/" + "?id=" + indicators[i].IndicatorID + "'>" + indicators[i].IndicatorName + "</a>"
 
                     } else {
 
@@ -205,7 +139,7 @@
                     for (st = 0; st < topics.length; st++) {
 
                         let li = document.createElement('li');
-                        li.innerHTML = "<a href='" + {{ .Site.BaseURL }} + "data-explorer/" + topics[st].topic + "/'>" + topics[st].topic_name + "</a>"
+                        li.innerHTML = "<a href='" + {{ relURL "data-explorer" }} + "/" + topics[st].topic + "/'>" + topics[st].topic_name + "</a>"
                         // can eventually add an anchor or other deep-linking method
         
                         st_li.appendChild(li)
@@ -227,19 +161,24 @@
                         
                         // loop through Available Geographies
                         // var finestGeography = [];
-                        for (let y = 0; y < indicators[i].Measures[n].AvailableGeographyTypes.length; y++) {
-                            geographies.push(indicators[i].Measures[n].AvailableGeographyTypes[y].GeoType)
+                        for (let y = 0; y < indicators[i].Measures[n].AvailableGeoTypes.length; y++) {
+
+                            geographies.push(indicators[i].Measures[n].AvailableGeoTypes[y])
+
+                            // console.log("AvailableGeoTypes", indicators[i].Measures[n].AvailableGeoTypes);
                             // here, can embed a loop through geographies to find the finest.
+
                         }
                         
-                        //loop through times
-                        
-                        for (let z = 0; z < indicators[i].Measures[n].AvailableTimes.length; z++) {
+                        // get time period IDs for this measure
+                        let AvailableTimePeriodIDs = indicators[i].Measures[n].AvailableTimePeriodIDs;
+
+                        // get end periods for this measure
+                        let end_periods = time_periods.filter(tp => AvailableTimePeriodIDs.includes(tp.TimePeriodID)).map(tp => tp.end_period);
+
+                        // push end periods to times array
+                        times.push(...end_periods);
                             
-                            times.push(new Date(indicators[i].Measures[n].AvailableTimes[z].end_period));
-                            
-                        }
-                        
                         // push Sources
                         sources.push(indicators[i].Measures[n].Sources)
                         
@@ -262,7 +201,7 @@
                     
                     // geographies
 
-                    const geos_order = ["Citywide", "Borough", "NYCKIDS2017", "NYCKIDS2019", "UHF33", "UHF34", "UHF42", "Subboro", "CD", "CDTA", "NTA2010", "NTA2020"];
+                    const geos_order = ["Citywide", "Borough", "NYCKIDS2017", "NYCKIDS2019", "NYCKIDS2021", "UHF33", "UHF34", "UHF42", "Subboro", "CD", "CDTA", "NTA2010", "NTA2020"];
                     let unique_geographies = [...new Set(geographies)];
                     
                     // sorting unique_geographies based on order of geos_order
@@ -290,7 +229,7 @@
                         // setting 'onclick' action for each geography, with the geo as the argument
                         
                         li.addEventListener('click', e => {
-                            console.log("classList [e]", e.target.classList)
+                            // console.log("classList [e]", e.target.classList)
                             toggle_button(e);
                         });
                         
@@ -304,6 +243,8 @@
                     maxTime = new Date(Math.max(...times));
                     cell_5.innerHTML = maxTime.getFullYear();
                     row_i.appendChild(cell_5)
+                    
+                    // console.log("maxTime", maxTime);
 
 
                     // sources
@@ -424,6 +365,9 @@
                     case 'NYCKIDS2019':
                         return 'NYCKIDS';
 
+                    case 'NYCKIDS2021':
+                        return 'NYCKIDS';
+
                     case 'CDTA2020':
                         return 'CDTA';
 
@@ -434,10 +378,83 @@
                         return 'NTA';
 
                     default:
-                        {{/*  console.log("**default**");  */}}
                         return GeoType;
 
                 }
+            }
+
+            // RUN THIS FUNCTION TO TRIGGER A DOWNLOAD
+            function tableToCSV() {
+ 
+                // Variable to store the final csv data
+                let csv_data = [];
+             
+                // Get each row data
+                let rows = document.getElementsByTagName('tr');
+                for (let i = 0; i < rows.length; i++) {
+             
+                    // Get each column data
+                    let cols = rows[i].querySelectorAll('td,th');
+             
+                    // Stores each csv row data
+                    let csvrow = [];
+                    for (let j = 0; j < cols.length; j++) {
+             
+                        // Get the text data of each cell of
+                        // a row and push it to csvrow
+                        let string = `"` + removeTags(cols[j].innerHTML) + `"`
+
+                        csvrow.push(string); // run contents through removeTags() to strip HTML
+                    }
+             
+                    // Combine each column value with comma
+                    csv_data.push(csvrow.join(","));
+                }
+                // Combine each row data with new line character
+                csv_data = csv_data.join('\n');
+             
+                /* We will use this function later to download the data in a csv file downloadCSVFile(csv_data); */
+                // console.table(csv_data)
+                downloadCSVFile(csv_data);
+            }
+
+            // TRIGGERS DOWNLOAD
+            function downloadCSVFile(csv_data) {
+ 
+                // Create CSV file object and feed our
+                // csv_data into it
+                CSVFile = new Blob([csv_data], { type: "text/csv" });
+             
+                // Create to temporary link to initiate
+                // download process
+                let temp_link = document.createElement('a');
+             
+                // Download csv file
+                temp_link.download = "EHDP-data-index.csv";
+                let url = window.URL.createObjectURL(CSVFile);
+                temp_link.href = url;
+             
+                // This link should not be displayed
+                temp_link.style.display = "none";
+                document.body.appendChild(temp_link);
+             
+                // Automatically click the link to trigger download 
+                temp_link.click();
+                document.body.removeChild(temp_link);
+            }
+
+               
+            function removeTags(str) {
+                if ((str === null) || (str === ''))
+                    return false;
+                else
+                    // append comma to </li> tags not followed by a <\ul> tag, so that it'll be a comma separated list when tags are removed
+                    str = str.toString().replace(/(<\/li>)/ig, '$1, ').replace(/(<\/li>, <\/ul>)/ig, '<\/li><\/ul>');
+
+                // Regular expression to identify HTML tags in
+                // the input string. Replacing the identified
+                // HTML tag with a null string.
+                return str.replace(/(<([^>]+)>)/ig, '');
             }
             
         </script>

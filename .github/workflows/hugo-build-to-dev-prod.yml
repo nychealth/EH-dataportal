@@ -1,0 +1,141 @@
+name: Hugo Build to `builds/dev-prod` (deploy to GitHub Pages)
+
+# run action on a merged PR on "development"
+
+on:
+  # pull_request:
+  #   branches:
+  #     - development
+  #   types:
+  #     - closed
+  workflow_dispatch:
+
+jobs:
+
+  # ------------------
+  # build to dev-prod
+  # ------------------
+
+  build:
+    name: Build `development` to `builds/dev-prod`
+    runs-on: ubuntu-20.04
+
+    # only run the action if it's a push, or the PR was merged, or it was manually triggered
+
+    if: github.event_name == 'push' || github.event.pull_request.merged == true || github.event_name == 'workflow_dispatch'
+
+    # wait for other triggered jobs to finish before running this
+
+    concurrency: # don't run two of these jobs at the same time
+      group: ${{ github.workflow }}-${{ github.ref_name }} # ref name is branch name, so only one job on a branch will run at a time
+      cancel-in-progress: true # this makes it so that only the most recent job is run
+
+    # define job's steps
+
+    steps:
+
+      # setting line endings to LF to match line endings in source files (which were used to compute resource integrity)
+
+      - name: set git EOL
+        run: |
+          git config --global core.eol lf
+          git config --global core.autocrlf input
+
+      # using checkout action
+
+      - name: Checkout
+        uses: actions/checkout@v4
+        with: 
+          ref: development
+          fetch-depth: 0
+
+      # get last commit
+
+      - name: get last commit
+        id: last_commit
+        run: |
+          echo "last_hash=$(git log -1 --format=%h --abbrev=10)" >> $GITHUB_OUTPUT
+          echo "last_msg=$(git log -1 --format=%s)" >> $GITHUB_OUTPUT
+      
+      # set up node and cache for npm
+
+      - name: Setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: "npm"
+
+      # set up cache for node modules
+
+      - name: Cache node_modules
+        id: cache-nodemodules
+        uses: actions/cache@v4
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+
+      # update npm dependencies (if cached)
+
+      - name: Update dependencies
+        if: steps.cache-nodemodules.outputs.cache-hit == 'true'
+        run: npm update
+
+      # install npm dependencies (if not cached)
+
+      - name: Install dependencies
+        if: steps.cache-nodemodules.outputs.cache-hit != 'true'
+        run: npm install
+
+      # set up Hugo
+
+      - name: Hugo setup
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: "0.121.0"
+          extended: true
+
+      # cache Hugo modules
+
+      - name: Hugo cache
+        uses: actions/cache@v4
+        with:
+          path: /tmp/hugo_cache
+          key: ${{ runner.os }}-hugomod-${{ hashFiles('**/go.sum') }}
+          restore-keys: |
+            ${{ runner.os }}-hugomod-
+
+      # build site with Hugo
+
+      - name: Hugo Build
+        run: hugo --environment dev_prod --cleanDestinationDir --logLevel debug
+
+      # run pagefind
+
+      - name: Build search with pagefind
+        run: |
+          cd '${{ github.workspace }}'
+          npx -y pagefind --site docs
+
+      # commit built index
+
+      - name: Commit changes to PagesIndex.json, package.json, & package-lock.json
+        uses: elstudio/actions-js-build/commit@v4
+        with:
+          commitMessage: Update index & NPM package list
+
+      # publish to "builds/dev-prod" branch
+
+      - name: Publish to "builds/dev-prod"
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          full_commit_message: "Build ${{ steps.last_commit.outputs.last_hash }} (${{ steps.last_commit.outputs.last_msg }})"
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: builds/dev-prod
+          publish_dir: ./docs/
+          enable_jekyll: false

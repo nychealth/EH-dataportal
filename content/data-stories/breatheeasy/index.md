@@ -25,7 +25,7 @@ Over the years, though, the number of advisory days has gone down. That’s good
 Since the winter of 2008/2009, the Health Department has been measuring air quality through the NYC Community Air Survey (NYCCAS). It’s the largest urban air monitoring program in the USA, and measures six different kinds of air pollution at about 100 locations around the city.
 
 {{< rawhtml >}}
-<iframe width="800" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" title="NYCCAS Sites" src="//nycdohmh.maps.arcgis.com/apps/Embed/index.html?webmap=414f6c00466e456a9b8b994017cfc728&extent=-74.4827,40.5223,-73.5962,40.9116&home=true&zoom=true&previewImage=false&scale=true&disable_scroll=false&theme=light"></iframe>
+<div style="min-height:656px" class="my-4"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/d7DDS/embed.js?v=1" charset="utf-8"></script><noscript><img src="https://datawrapper.dwcdn.net/d7DDS/full.png" alt="" /></noscript></div>
 
 {{< /rawhtml >}}
 
@@ -43,7 +43,7 @@ So it’s good news that since monitoring neighborhood-level air pollution began
 
 {{< datawrapper title="Chart: PM2.5 levels have decreased by 28%" src="DLHxS/3/" height="400" >}}
 
-By burning heating oil, New York City's buildings are responsible for about 50 percent of the city’s PM2.5 emissions — and traffic is responsible for another 17 percent (see a data story on the Public Health Impacts of PM2.5 from Air Pollution). That means that reducing traffic and working to make sure that buildings burn cleaner fuel are great ways to clean up the air and help keep our air cleaner - and both are important parts of OneNYC, the city’s sustainability plan.
+By burning heating oil, New York City's buildings are responsible for about 22 percent of the city’s PM2.5 emissions—and traffic is responsible for another 17 percent (see a data story on the <a href="../traffic-and-air-pollution/">Public Health Impacts of PM2.5 from Traffic Air Pollution).</a> That means that reducing traffic and working to make sure that buildings burn cleaner fuel are great ways to clean up the air and help keep our air cleaner - and both are important parts of OneNYC, the city’s sustainability plan.
 
 But since 20 to 30 percent of PM2.5 in NYC comes from outside the city, rollbacks of federal regulations like the Clean Power Plan will also affect the quality of our air. The City is providing comments to the Environmental Protection Agency in support of stricter emissions standards for power plants, cars, and trucks so that NYC's air quality continues to improve.
 

@@ -7,13 +7,15 @@ const renderComparisonsChart = (
     metadata
 ) => {
 
-    console.log("** renderComparisonsChart");
+    console.log("*** renderComparisonsChart");
 
-    // console.log(">>> comp metadata");
+    // console.log("metadata [renderComparisonsChart]");
     // metadata.print()
     
-    // console.log(">>> comp data:");
-    // data.print(100)
+    // console.log("data [renderComparisonsChart]");
+    // data.print(Infinity)
+
+    // console.log("data objects", data.objects());
 
     // ----------------------------------------------------------------------- //
     // get unique unreliability notes (dropping empty)
@@ -53,10 +55,17 @@ const renderComparisonsChart = (
     // extract measure metadata for chart text
     // ----------------------------------------------------------------------- //
     
-    let compName =            [... new Set(metadata.array("ComparisonName"))];
-    let compIndicatorLabel =  [... new Set(metadata.array("IndicatorLabel"))];
+    let compName            = [... new Set(metadata.array("ComparisonName"))];
+    let compIndicatorLabel  = [... new Set(metadata.array("IndicatorLabel"))];
     let compMeasurementType = [... new Set(metadata.array("MeasurementType"))];
-    let compDisplayTypes =    [... new Set(metadata.array("DisplayType"))].filter(dt => dt != "");
+    let compDisplayTypes    = [... new Set(metadata.array("DisplayType"))].filter(dt => dt != "");
+    let compGeoIDs          = metadata.objects()[0].GeoID ? [... new Set(metadata.array("GeoID"))] : null;
+
+    // console.log(">>>> compGeoIDs", compGeoIDs);
+
+    // console.log(">> compName", compName);
+    // console.log(">> compIndicatorLabel", compIndicatorLabel);
+    // console.log(">> compMeasurementType", compMeasurementType);
 
 
     // ----------------------------------------------------------------------- //
@@ -67,15 +76,17 @@ const renderComparisonsChart = (
     let plotSubtitle;
     let plotTitle;
 
-    let suppressSubtitleBy = [564, 565, 566, 704, 715];
+    let suppressSubtitleBy = [564, 565, 566, 704, 715, 716, 717, 718, 719, 720, 721, 722, 723, 724, 725, 726, 727, 728, 729, 730];
 
     // comparison group label is either measure, indicator, or combo. can include geo eventually
 
     if (compName[0] === "Boroughs") {
 
-        // ----- by boros: 1 indicator, 1 measure, 5 boros -------------------------------------------------- //
+        // ----- by boros: 1 indicator, 1 measure, 5 boros --------------------------------------------------- //
 
         // console.log("boros");
+
+        // console.log("indicatorName", indicatorName);
 
         // if this is a boro comparison, tweak some things
 
@@ -86,16 +97,22 @@ const renderComparisonsChart = (
         plotSubtitle = compMeasurementType + (compDisplayTypes.length > 0 ? ` (${compDisplayTypes})` : "") + (hasBoros ? " by Borough" : "");
         comp_group_col = "Geography"
 
+        // console.log(">> compGroupLabel", compGroupLabel);
+        // console.log(">> plotTitle", plotTitle);
+        // console.log(">> plotSubtitle", plotSubtitle);
+
 
     } else if (compIndicatorLabel.length == 1) {
 
-        // ----- by measure: 1 indicator, 2+ measures, 1 citywide -------------------------------------------------- //
+        // ----- by measure: 1 indicator, 2+ measures, 1 citywide --------------------------------------------------- //
 
         // console.log("1 indicator");
+
+        // console.log("indicatorName", indicatorName);
         
-        let compId = [... new Set(metadata.array("ComparisonID"))][0];
-        let compLegendTitle = [... new Set(metadata.array("LegendTitle"))]
-        let compY_axis_title = [... new Set(metadata.array("Y_axis_title"))]
+        let compId           = [... new Set(metadata.array("ComparisonID"))][0];
+        let compLegendTitle  = [... new Set(metadata.array("LegendTitle"))];
+        let compY_axis_title = [... new Set(metadata.array("Y_axis_title"))];
 
         // console.log("compId", compId);
         
@@ -107,7 +124,7 @@ const renderComparisonsChart = (
 
             // console.log(">>> SUPPRESS by", compId);
 
-            plotSubtitle = compY_axis_title;
+            plotSubtitle = compY_axis_title + (compDisplayTypes.length > 0 ? ` (${compDisplayTypes})` : "");
 
         } else {
 
@@ -121,12 +138,21 @@ const renderComparisonsChart = (
         compGroupLabel = compMeasurementType;
         comp_group_col = "MeasurementType"
 
+        // reset column count based on number of lines
+
+        columns = compGroupLabel.length > 3 ? 3 : columns;
+
+        // console.log(">> compGroupLabel", compGroupLabel);
+        // console.log(">> plotTitle", plotTitle);
+        // console.log(">> plotSubtitle", plotSubtitle);
 
     } else if (compMeasurementType.length == 1) {
 
-        // ----- by indicator: 2+ indicators, 1 measure, 1 citywide -------------------------------------------------- //
+        // ----- by indicator: 2+ indicators, 1 measure, 1 citywide --------------------------------------------------- //
 
         // console.log("1 measure");
+
+        // console.log("indicatorName", indicatorName);
 
         let compId = [... new Set(metadata.array("ComparisonID"))][0];
         let compLegendTitle = [... new Set(metadata.array("LegendTitle"))]
@@ -141,7 +167,7 @@ const renderComparisonsChart = (
 
             // console.log(">>> SUPPRESS by", compId);
 
-            plotSubtitle = compMeasurementType;
+            plotSubtitle = compMeasurementType + (compDisplayTypes.length > 0 ? ` (${compDisplayTypes})` : "");
 
         } else {
 
@@ -154,12 +180,21 @@ const renderComparisonsChart = (
         compGroupLabel = compIndicatorLabel;
         comp_group_col = "IndicatorLabel"
 
+        // reset column count based on number of lines
+
+        columns = compGroupLabel.length > 3 ? 3 : columns;
+
+        // console.log(">> compGroupLabel", compGroupLabel);
+        // console.log(">> plotTitle", plotTitle);
+        // console.log(">> plotSubtitle", plotSubtitle);
 
     } else if (compMeasurementType.length > 1 && compIndicatorLabel.length > 1) {
         
-        // ----- by combo: 2+ indicators, 2+ measures, 1 citywide -------------------------------------------------- //
+        // ----- by combo: 2+ indicators, 2+ measures, 1 citywide --------------------------------------------------- //
 
         // console.log("> 1 measure & indicator");
+
+        // console.log("indicatorName", indicatorName);
 
         let compId = [... new Set(metadata.array("ComparisonID"))][0];
         let compLegendTitle = [... new Set(metadata.array("LegendTitle"))]
@@ -175,7 +210,7 @@ const renderComparisonsChart = (
 
             // console.log(">>> SUPPRESS by", compId);
 
-            plotSubtitle = compY_axis_title;
+            plotSubtitle = compY_axis_title + (compDisplayTypes.length > 0 ? ` (${compDisplayTypes})` : "");
 
         } else {
 
@@ -188,8 +223,22 @@ const renderComparisonsChart = (
         compGroupLabel = [... new Set(metadata.array("IndicatorMeasure"))];
         comp_group_col = "IndicatorMeasure"
 
+        // reset column count based on number of lines
+
+        columns = compGroupLabel.length > 3 ? 3 : columns;
+
+        // console.log(">> compGroupLabel", compGroupLabel);
+        // console.log(">> plotTitle", plotTitle);
+        // console.log(">> plotSubtitle", plotSubtitle);
+
     }
 
+
+    // ----------------------------------------------------------------------- //
+    // create transform after pivot that replaces "undefined" with ""
+    // ----------------------------------------------------------------------- //
+
+    let compReplaceInvalid = compGroupLabel.map(x => {return {"calculate": `isValid(datum[\"${x}\"]) ? datum[\"${x}\"] : ""`, "as": `${x}`}})
 
     // ----------------------------------------------------------------------- //
     // create tooltips JSON
@@ -197,7 +246,10 @@ const renderComparisonsChart = (
 
     // will be spliced into the spec
     
+    // let compTooltips = compGroupLabel.map(x => {return {"field": x, "type": "nominal", "format": ",.1~f"}})
     let compTooltips = compGroupLabel.map(x => {return {"field": x, "type": "nominal"}})
+
+    // console.log("compTooltips", compTooltips);
 
 
     // ----------------------------------------------------------------------- //
@@ -240,7 +292,7 @@ const renderComparisonsChart = (
             }
         },
         "data": {
-            "values":  data,
+            "values":  data.objects(),
         },
         "width": "container",
         "height": height,
@@ -258,7 +310,7 @@ const renderComparisonsChart = (
         },
         "encoding": {
             "x": {
-                "field": "Time",
+                "field": "TimePeriod",
                 "type": "nominal",
                 "title": null
             }
@@ -293,7 +345,7 @@ const renderComparisonsChart = (
                     {
                         "mark": {
                             "type": "line",
-                            "interpolate": "monotone",
+                            "interpolate": "linear",
                             "point": { 
                                 "filled": false, 
                                 "fill": "white", 
@@ -320,11 +372,11 @@ const renderComparisonsChart = (
                 "transform": [
                     {
                         "pivot": comp_group_col,
-                        "value": "Value",
-                        "groupby": [
-                            "Time"
-                        ]
-                    }
+                        "value": "DisplayValue",
+                        "groupby": ["TimePeriod"],
+                        "op": "max"
+                    },
+                    ...compReplaceInvalid
                 ],
                 "mark": "rule",
                 "encoding": {
@@ -339,7 +391,7 @@ const renderComparisonsChart = (
                     "tooltip": [
                         {
                             "title": "Year",
-                            "field": "Time",
+                            "field": "TimePeriod",
                             "type": "nominal"
                         },
                         ...compTooltips,
@@ -351,7 +403,7 @@ const renderComparisonsChart = (
                         "select": {
                             "type": "point",
                             "fields": [
-                                "Time"
+                                "TimePeriod"
                             ],
                             "nearest": true,
                             "on": "mouseover",
@@ -368,5 +420,20 @@ const renderComparisonsChart = (
     // ----------------------------------------------------------------------- //
     
     vegaEmbed("#trend", compspec);
+
+    // ----------------------------------------------------------------------- //
+    // Send chart data to download
+    // ----------------------------------------------------------------------- //
+
+    let dataForDownload = [...compspec.data.values] // create a copy
+
+    let downloadTable = aq.from(dataForDownload)
+        .derive({Indicator: `'${indicatorName}: ${plotTitle} ${plotSubtitle}'`}) // add indicator name and type column
+        .select(aq.not("GeoType", "GeoTypeDesc", "GeoTypeShortDesc", "GeoRank", "MeasureID", "ban_summary_flag", "DisplayValue", "start_period", "end_period"))
+
+        // console.log("downloadTable [renderComparisonsChart]");
+        // downloadTable.print()
+
+    CSVforDownload = downloadTable.toCSV()
     
 }
