@@ -25,6 +25,7 @@ const renderMap = (
     let mapGeoType            = data[0]?.GeoType;
     let geoTypeShortDesc      = data[0]?.GeoTypeShortDesc;
     let mapMeasurementType    = metadata[0]?.MeasurementType;
+    console.log(metadata)
     let displayType           = metadata[0]?.DisplayType;
     let mapGeoTypeDescription = [...new Set(geoTable.filter(aq.escape(d => d.GeoType === mapGeoType)).array("GeoTypeShortDesc"))];
 
@@ -117,7 +118,7 @@ const renderMap = (
 
     map_unreliability.forEach(element => {
 
-        document.querySelector("#map-unreliability").innerHTML += "<div class='fs-sm text-muted'>" + element + "</div>" ;
+        document.querySelector("#map-unreliability").innerHTML += "<div class='fs-xs text-muted'>" + element + "</div>" ;
         
     });
 
@@ -169,7 +170,7 @@ const renderMap = (
             "fontSize": 18, 
             "font": "sans-serif",
             "baseline": "top",
-            "subtitle": `${mapMeasurementType}${displayType && ` (${displayType})`}, by ${mapGeoTypeDescription} (${mapTime})`,
+            "subtitle": `${mapMeasurementType}${displayType && ` ${displayType}`} (${mapTime})`,
             "subtitleFontSize": 13
         },
         "data": {
@@ -278,7 +279,7 @@ const renderMap = (
                                 },
                                 {
                                     "field": "DisplayValue",
-                                    "title": mapMeasurementType
+                                    "title": `${mapMeasurementType} ${displayType}`
                                 },
                             ],
                         },
@@ -316,7 +317,7 @@ const renderMap = (
                         },
                         {
                             "field": "DisplayValue", 
-                            "title": mapMeasurementType
+                            "title": `${mapMeasurementType} ${displayType}`
                         },
                     ],
                     "x": {"field": "GeoID", "sort": "y", "axis": null},
@@ -324,7 +325,7 @@ const renderMap = (
                         "bin": false,
                         "field": "Value",
                         "type": "quantitative",
-                        "scale": {"scheme": {"name": color, "extent": [0.25, 1.25]}},
+                        "scale": {"scheme": {"name": color, "extent": [0.125, 1.125]}},
                         "legend": false
                     },
                     "stroke": {

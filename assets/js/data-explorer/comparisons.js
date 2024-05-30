@@ -27,7 +27,7 @@ const renderComparisonsChart = (
 
     comp_unreliability.forEach(element => {
 
-        document.querySelector("#trend-unreliability").innerHTML += "<div class='fs-sm text-muted'>" + element + "</div>" ;
+        document.querySelector("#trend-unreliability").innerHTML += "<div class='fs-xs text-muted'>" + element + "</div>" ;
         
     });
 

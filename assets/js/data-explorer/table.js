@@ -101,7 +101,7 @@ const renderTable = () => {
 
     table_unreliability.forEach(element => {
         
-        document.querySelector("#table-unreliability").innerHTML += "<div class='fs-sm text-muted'>" + element + "</div>" ;
+        document.querySelector("#table-unreliability").innerHTML += "<div class='fs-xs text-muted'>" + element + "</div>" ;
         
     });
     
