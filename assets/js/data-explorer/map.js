@@ -7,6 +7,14 @@ const renderMap = (
     metadata
 ) => {
 
+    var windowWidth = window.innerWidth
+    var windowHeight = window.innerHeight
+    var height = windowHeight * .7
+    console.log('window width: ' + windowWidth)
+    var mapPaneWidth = windowWidth * .57
+    var mapWidth = mapPaneWidth * .75
+    var barWidth = mapPaneWidth * .25
+
     console.log("** renderMap");
 
     // console.log("data [renderMap]", data);
@@ -25,7 +33,7 @@ const renderMap = (
     let mapGeoType            = data[0]?.GeoType;
     let geoTypeShortDesc      = data[0]?.GeoTypeShortDesc;
     let mapMeasurementType    = metadata[0]?.MeasurementType;
-    console.log(metadata)
+    // console.log(metadata)
     let displayType           = metadata[0]?.DisplayType;
     let mapGeoTypeDescription = [...new Set(geoTable.filter(aq.escape(d => d.GeoType === mapGeoType)).array("GeoTypeShortDesc"))];
 
@@ -188,12 +196,65 @@ const renderMap = (
             "legend": {"disable": true}
         },
         "projection": {"type": "mercator"},
-        "vconcat": [
+        "hconcat": [
+            {
+                "height": height,
+                "width": barWidth,
+                "config": {
+                    "axisY": {
+                        "labelAngle": 0,
+                        "labelFontSize": 13,
+                    }
+                },
+                "mark": {"type": "bar", "tooltip": true, "stroke": "#161616"},
+                "params": [
+                    {"name": "highlight", "select": {"type": "point", "on": "mouseover", "clear": "mouseout"}}
+                ],
+                "encoding": {
+                    "x": {
+                        "field": "Value", 
+                        "type": "quantitative", 
+                        "title": null,
+                        "axis": {
+                            "labelAngle": 0,
+                            "labelFontSize": 11,
+                            "tickCount": 3,
+                            "orient": "top"
+                        }
+                    },
+                    "tooltip": [
+                        {
+                            "field": "Geography", 
+                            "title": geoTypeShortDesc
+                        },
+                        {
+                            "field": "DisplayValue", 
+                            "title": `${mapMeasurementType} ${displayType}`
+                        },
+                    ],
+                    "y": {"field": "GeoID", "sort": "-x", "axis": null},
+                    "color": {
+                        "bin": false,
+                        "field": "Value",
+                        "type": "quantitative",
+                        "scale": {"scheme": {"name": color, "extent": [0.125, 1.125]}},
+                        "legend": false
+                    },
+                    "stroke": {
+                        "condition": [{"param": "highlight", "empty": false, "value": "cyan"}],
+                        "value": "white"
+                    },
+                    "strokeWidth": {
+                        "condition": [{"param": "highlight", "empty": false, "value": 3}],
+                        "value": 0
+                    }
+                }
+            },
             {
                 "layer": [
                     {
-                        "height": 500,
-                        "width": "container",
+                        "height": height,
+                        "width": mapWidth,
                         "data": {
                             "url": `${data_repo}${data_branch}/geography/borough.topo.json`,
                             "format": {
@@ -210,8 +271,8 @@ const renderMap = (
                     }, 
                     // Second neighborhood data layer - for count-dot map underlayer (ok to leave on for rates)
                     {
-                        "height": 500,
-                        "width": "container",
+                        "height": height,
+                        "width": mapWidth,
                         "data": {
                             "url": `${data_repo}${data_branch}/geography/${topoFile}`,
                             "format": {
@@ -227,8 +288,8 @@ const renderMap = (
                         }
                     },
                     {
-                        "height": 500,
-                        "width": "container",
+                        "height": height,
+                        "width": mapWidth,
                         "mark": {"type": markType, "invalid": null},
                         "params": [
                             {"name": "highlight", "select": {"type": "point", "on": "mouseover", "clear": "mouseout"}}
@@ -285,58 +346,6 @@ const renderMap = (
                         },
                     }
                 ]
-            },
-            {
-                "height": 150,
-                "width": "container",
-                "config": {
-                    "axisY": {
-                        "labelAngle": 0,
-                        "labelFontSize": 13,
-                    }
-                },
-                "mark": {"type": "bar", "tooltip": true, "stroke": "#161616"},
-                "params": [
-                    {"name": "highlight", "select": {"type": "point", "on": "mouseover", "clear": "mouseout"}}
-                ],
-                "encoding": {
-                    "y": {
-                        "field": "Value", 
-                        "type": "quantitative", 
-                        "title": null,
-                        "axis": {
-                            "labelAngle": 0,
-                            "labelFontSize": 11,
-                            "tickCount": 3
-                        }
-                    },
-                    "tooltip": [
-                        {
-                            "field": "Geography", 
-                            "title": geoTypeShortDesc
-                        },
-                        {
-                            "field": "DisplayValue", 
-                            "title": `${mapMeasurementType} ${displayType}`
-                        },
-                    ],
-                    "x": {"field": "GeoID", "sort": "y", "axis": null},
-                    "color": {
-                        "bin": false,
-                        "field": "Value",
-                        "type": "quantitative",
-                        "scale": {"scheme": {"name": color, "extent": [0.125, 1.125]}},
-                        "legend": false
-                    },
-                    "stroke": {
-                        "condition": [{"param": "highlight", "empty": false, "value": "cyan"}],
-                        "value": "white"
-                    },
-                    "strokeWidth": {
-                        "condition": [{"param": "highlight", "empty": false, "value": 3}],
-                        "value": 0
-                    }
-                }
             }
         ]
     }
