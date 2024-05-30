@@ -192,6 +192,7 @@ const renderMap = (
         "config": {
             "concat": {"spacing": 20}, 
             "view": {"stroke": "transparent"},
+            "axis": {"grid": false},
             "axisY": {"domain": false,"ticks": false},
             "legend": {"disable": true}
         },
