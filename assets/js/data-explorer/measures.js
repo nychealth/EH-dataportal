@@ -2583,7 +2583,7 @@ const renderMeasures = async () => {
     indicatorMeasures.map(measure => {
 
         measureAbout +=
-            `<p class="fs-sm"><strong>${measure.MeasurementType}:</strong> ${measure.how_calculated} plus doink</p>`;
+            `<p class="fs-sm"><strong>${measure.MeasurementType}:</strong> ${measure.how_calculated}</p>`;
 
         measureSources +=
             `<p class="fs-sm"><strong>${measure.MeasurementType}:</strong> ${measure.Sources}</p>`;
