@@ -119,7 +119,7 @@
 
                                         <div class="dropdown-menu wider-menu" aria-labelledby="nav-item-topic">
                                             <ul class="extensible-list p-0">
-                                                {{ range where .Site.Pages "Section" "key-topics" }}
+                                                {{ range sort (where .Site.Pages "Section" "key-topics") ".Params.shortTitle" }}
                                                 {{ if not .Params.hide }}
                                                     {{ if .Params.shortTitle }}
                                                     <a class="" href="{{ .RelPermalink }}"> <li class="">{{ .Params.shortTitle }}</li></a>

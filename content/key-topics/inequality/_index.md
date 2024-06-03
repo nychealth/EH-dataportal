@@ -1,5 +1,7 @@
 ---
 title: "Inequality and health inequities"
+aliases:
+    - /key-topics/social/
 shortTitle: "Inequality"
 date: 2021-10-01T07:59:16-04:00
 draft: false

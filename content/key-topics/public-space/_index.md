@@ -1,7 +1,9 @@
 ---
 title: "Active design, public space, and transportation"
+aliases:
+    - /key-topics/transportation
 shortTitle: "Public space"
-date: 2021-09-30T07:58:01-04:00
+date: 2021-05-05T07:59:02-04:00
 draft: false
 seo_title: "Transportation and Active Design in NYC"
 seo_description: "Data, data stories, interactives, and more on active design, public space, and transportation."
