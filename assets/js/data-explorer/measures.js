@@ -653,12 +653,10 @@ const updateTrendComparisonsData = (e) => {
     aqComparisonsIndicatorsMetadata.objects().forEach(m => {
 
         selectedComparisonAbout +=
-            `<h6>${m.IndicatorName} - ${m.MeasurementType}</h6>
-            <p>${m.how_calculated}</p>`;
+            `<p class="fs-sm"><strong>${m.IndicatorName} - ${m.MeasurementType}:</strong>${m.how_calculated}</p>`;
 
         selectedComparisonSources +=
-            `<h6>${m.IndicatorName} - ${m.MeasurementType}</h6>
-            <p>${m.Sources}</p>`;
+            `<p class="fs-sm"><strong>${m.IndicatorName} - ${m.MeasurementType}: ${m.Sources}</p>`;
     })
 
     // render the measure info boxes
@@ -2591,12 +2589,10 @@ const renderMeasures = async () => {
     indicatorMeasures.map(measure => {
 
         measureAbout +=
-            `<h6>${measure.MeasurementType}</h6>
-            <p>${measure.how_calculated}</p>`;
+            `<p class="fs-sm"><strong>${measure.MeasurementType}:</strong> ${measure.how_calculated}</p>`;
 
         measureSources +=
-            `<h6>${measure.MeasurementType}</h6>
-            <p>${measure.Sources}</p>`;
+            `<p class="fs-sm"><strong>${measure.MeasurementType}:</strong> ${measure.Sources}</p>`;
 
     })
 
