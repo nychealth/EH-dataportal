@@ -478,92 +478,78 @@
             </div>
             
             
-            <hr>
-
-<!--Vis footer-->
-
-<div class="row my-2">
-    <div class="col-md-4 col-sm-12">
-        <div class="dropdown">
-            <button class="btn btn-sm btn-block btn-outline-light text-secondary dropdown-toggle mb-1" 
-            type="button"
-            id="downloadDD" 
-            data-toggle="dropdown" 
-            aria-haspopup="true" 
-            aria-expanded="false"
-            ><i class="fa fa-download mr-1"></i>Download Data
-        </button>
-        <div class="dropdown-menu dropdown-menu-right" 
-        aria-labelledby="downloadDD">
-        <a class="dropdown-item buttons-csv btn-outline-info" id="chartView">This view</a>
-        <a class="dropdown-item buttons-csv btn-outline-info" id="allData">Full table</a>
-        <!--<a class="dropdown-item buttons-csv btn-outline-info" id="thisView">Current table view</a>-->        
-        <!--<a class="dropdown-item buttons-csv btn-outline-info" id="rawData">Raw data for this indicator</a>-->
-    </div>
-</div>
-</div>
-
-<div class="col-md-4 col-sm-12">
-    <a href="https://github.com/nychealth/EHDP-data/tree/production/indicators" targe="_blank"><button class="btn btn-sm btn-block btn-outline-light text-secondary mb-1">
-        <i class="fas fa-external-link-alt mr-1"></i>Full data Github repo
-    </button></a>
-</div>
-
-<div class="col-md-4 col-sm-12">
-    <button class="btn float-right btn-sm btn-block btn-outline-light text-secondary mb-1"
-    onclick="copyCitation()" id="citeButton"><i class="fas fa-copy mr-1"></i>Copy citation</button>
-    <input type="text" id="citeText" value=""
-    style="display:inline-block; width:100%; height: 40px; font-size: 14px;"
-    class="my-2 sr-only">
-</div>
-</div>
-
-<!-- About and sources -->
-
-<!-- Insert from `How_Calculated' -->
-<div class="row mb-2">
-    <div class="col-md-6 col-xs-12">
-        <div class="btn-toggle">
-            <button class="btn btn-block btn-md btn-outline-light text-secondary mb-1"
-            data-toggle="collapse" data-target="#toggle-target" aria-expanded="false"
-            aria-controls="toggle-target">
-            <span class="title"><i class="fas fa-info-circle mr-1"></i>About the Measures</span>
-        </button>
-    </div>
-    
-    <div class="collapse p-2 border" id="toggle-target" role="navigation">
-        <p class="fs-sm indicator-measures"></p>
+                        <!-- FOOTER BUSINESS -->
+                        <div class="row mb-2">
+                            <div class="col-md-6 col-sm-12 h-100">
+                                <div class="">
+                                    <span class="home-label font-weight-bold"><i class="fas fa-info-circle mr-1"></i>How calculated</span>
+                                </div>
+                                <div class="asidebox visFooterBox">
+                                    <p class="fs-sm indicator-measures"></p>
+                        
+                        
+                                </div>
+                        
+                            </div>
+                        
+                            <div class="col-md-6 col-sm-12 h-100">
+                                <div class="">
+                                    <span class="home-label font-weight-bold"><i class="fas fa-database mr-1"></i>Data sources</span>
+                                </div>
+                                <div class="asidebox visFooterBox">
+                                <p class="fs-sm indicator-sources"></p>
+                        
+                                </div>
+                                
+                            </div>
             
-        </div>
-    </div>
-    
-    <div class="col-md-6 col-xs-12">
-        <div class="btn-toggle">
-            <button class="btn btn-block btn-md btn-outline-light text-secondary mb-1"
-            data-toggle="collapse" data-target="#toggle-target-2" aria-expanded="false"
-            aria-controls="toggle-target-2">
-            <span class="title"><i class="fas fa-database mr-1"></i>Data sources</span>
-        </button>
-    </div>
-    
-    <!-- Insert from `Sources' -->
-    <div class="collapse p-2 border" id="toggle-target-2" role="navigation">
-        <p class="fs-sm indicator-sources"></p>
+                            <div class="col-sm-12">
+                                <div class="row my-4">
+                                    <div class="col-md-4 col-sm-12">
+                                        <div class="dropdown">
+                                            <button class="btn btn-sm btn-block btn-outline-light text-secondary dropdown-toggle mb-1" 
+                                            type="button"
+                                            id="downloadDD" 
+                                            data-toggle="dropdown" 
+                                            aria-haspopup="true" 
+                                            aria-expanded="false"
+                                            ><i class="fa fa-download mr-1"></i>Download Data
+                                        </button>
+                                        <div class="dropdown-menu dropdown-menu-right" 
+                                        aria-labelledby="downloadDD">
+                                        <a class="dropdown-item buttons-csv btn-outline-info" id="chartView">This view</a>
+                                        <a class="dropdown-item buttons-csv btn-outline-info" id="allData">Full table</a>
+                                        <!--<a class="dropdown-item buttons-csv btn-outline-info" id="thisView">Current table view</a>-->        
+                                        <!--<a class="dropdown-item buttons-csv btn-outline-info" id="rawData">Raw data for this indicator</a>-->
+                                    </div>
+                                </div>
+                                </div>
+                                
+                                <div class="col-md-4 col-sm-12">
+                                    <a href="https://github.com/nychealth/EHDP-data/tree/production/indicators" target="_blank"><button class="btn btn-sm btn-block btn-outline-light text-secondary mb-1">
+                                        <i class="fas fa-external-link-alt mr-1"></i>Full data Github repo
+                                    </button></a>
+                                </div>
+                                
+                                <div class="col-md-4 col-sm-12">
+                                    <button class="btn float-right btn-sm btn-block btn-outline-light text-secondary mb-1"
+                                    onclick="copyCitation()" id="citeButton"><i class="fas fa-copy mr-1"></i>Copy citation</button>
+                                    <input type="text" id="citeText" value=""
+                                    style="display:inline-block; width:100%; height: 40px; font-size: 14px;"
+                                    class="my-2 sr-only">
+                                </div>
+                                </div>
             
-        </div>
+                            </div>
+                        </div>
+                        <!--.footer -->
+
+
+
     </div>
 
-    <div class="col-sm-12">
-        <!-- Take Action partial -->
-        <div class="d-block d-lg-none l-green-border mb-2 px-1">
-            {{- partial "takeaction" . -}}
-        </div>
-    </div>
-</div>
-</div>
 
 
-</div>
 
     <!-- Topic Selection Modal -->
 
