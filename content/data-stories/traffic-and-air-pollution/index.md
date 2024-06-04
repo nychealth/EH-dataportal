@@ -104,7 +104,7 @@ Some neighborhoods in New York City experience higher concentrations of PM2.5 fr
 
 ## PM2.5 pollution from traffic contributes to adverse health effects
 
-PM2.5 pollution from traffic in the NYC region contributes to an estimated 320 premature deaths and 870 emergency department (ED) visits and hospitalizations each year.
+PM2.5 pollution from traffic in the NYC region contributes to an estimated 320 premature deaths and 870 emergency department (ED) visits and hospitalizations each year in New York City.
 
 </div>
 <div class="wide my-4">
