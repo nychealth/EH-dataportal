@@ -28,7 +28,7 @@ photocredit: "Michael Appleton/Mayoral Photography Office"
 
 In Fall 2021, the Metropolitan Transportation Authority started work on [a Central Business District Tolling Program](https://new.mta.info/project/CBDTP), also known as congestion pricing. Through this plan, cars and trucks that enter Manhattan below 60th street&mdash;the central business district&mdash;would be charged a toll. By law, the toll money would fund important improvements to New York City’s transit system of subways, buses, and railroads. ([Read the law here](https://www.nysenate.gov/legislation/laws/VAT/T8A44-C).)
 
-Traffic is a huge part of our environment in New York City, and it imposes a cost on every New Yorker. It affects our quality of life, our air quality, and the safety of walking, cycling, and other ways New Yorkers get around our city. Congestion pricing was scheduled to begin in June 2024 but has been paused indefinitely by Governor Hochul.
+Traffic is a huge part of our environment in New York City, and it imposes a cost on every New Yorker. It affects our quality of life, our air quality, and the safety of walking, cycling, and other ways New Yorkers get around our city. Congestion pricing was scheduled to begin in June 2024 but has been paused indefinitely.
 
 <div class="asidebox p-2 fs-sm my-2">
 
