@@ -32,7 +32,7 @@ Traffic is a huge part of our environment in New York City, and it imposes a cos
 
 <div class="asidebox p-2 fs-sm my-2">
 
-Congestion in the New York City region continues to cost the city greatly; it has been estimated that it will cost the city $100 billion by 2027.
+Congestion in the New York City region continues to cost the city greatly; it has been estimated that it costs the city an estimated $20 billion annually.
 
 <hr class="my-2">
 Every year, each New Yorker loses an average of 133 hours due to traffic&mdash;and nearly $1,900 in lost productivity and other costs.  <em>-<a href="https://new.mta.info/project/CBDTP/why-NYC-needs-central-business-district-tolling">From mta.info</a></em>
