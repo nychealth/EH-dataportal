@@ -40,7 +40,7 @@ Every year, each New Yorker loses an average of 133 hours due to traffic&mdash;a
 
 By decreasing traffic density, congestion pricing could change our environment and improve our health. But its biggest promise lies in funding transit&mdash;modernizing our buses, subways, and trains.
 
-However, congestion pricing was scheduled to begin in June 2024 but has been paused indefinitely. Without congestion pricing, the city and state will lose desperately needed funding for repairs and upgrades to NYC’s subway and bus system. In addition, government partners will have to renege on commitments to Environmental Justice communities without the funding that was earmarked for investments in parks, asthma programming and projects to electrify trucks and improve indoor air quality in schools.
+However, congestion pricing was scheduled to begin in June 2024 but has been paused indefinitely. Without congestion pricing, the city and state will lose this source of desperately needed funding for repairs and upgrades to NYC’s subway and bus system. In addition, government partners will have to renege on commitments to Environmental Justice communities without the funding that was earmarked for investments in parks, asthma programming and projects to electrify trucks and improve indoor air quality in schools.
 
 A strong transit system is the backbone of our city and contributes to our public health. Congestion pricing would fund more capacity, reliability, and accessibility, and expand the transit system into parts of NYC that are not currently served&mdash;providing a revolutionary investment in our city.
 
