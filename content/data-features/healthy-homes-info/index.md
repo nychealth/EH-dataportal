@@ -12,6 +12,6 @@ layout: healthy-homes
 image: hh-preview.png
 ---
 
-The image below contains common health hazards that are found in the home. You can learn more about what to look for, what to do about it, and how to find out more information on prevention through the interactive image and information pane below.
+The image below contains common health hazards that are found in the home. Click on each problem to get more information on how to prevent home healthy hazards. 
 
 <a href=".">Reset</a>

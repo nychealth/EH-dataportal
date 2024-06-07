@@ -3,7 +3,7 @@
 <article class="container-fluid" id="skip-header-target">
 
     <div class="row">
-        <div class="col-md-11 mx-auto mt-4 pl-0">
+        <div class="col-md-11 mx-auto mt-4">
             <nav aria-label="breadcrumb" class="mb-4">
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item"><a href="#">Home</a></li>
@@ -27,138 +27,56 @@
 <div class="bucket border px-4 my-2">
     <div>
         <img tabindex="0" class="superimpose" id="backgroundImage" alt="" src="background.svg" />
-        <img tabindex="0" class="superimpose" id="bowlOverlay" alt="" src="openfood.svg" style="position: absolute;top:-3%;left: 15%;" />
-        <img tabindex="0" class="superimpose" id="moldOverlay" alt="" src="mold2.svg" style="position:absolute; top: 5%; left: -2%;"/>
         <img tabindex="0" class="superimpose" id="crackinwallOverlay" alt="" src="crackinwall.svg" />
         <img tabindex="0" class="superimpose" id="peelingpaintOverlay" alt="" src="peelingpaint.svg" />
+        <img tabindex="0" class="superimpose" id="bowlOverlay" alt="" src="openfood.svg" style="position: absolute;top:-3%;left: 15%;" />
+        <img tabindex="0" class="superimpose" id="moldOverlay" alt="" src="mold2.svg" style="position:absolute; top: 5%; left: -2%;"/>
         <img tabindex="0" class="superimpose" id="smokedetector_1Overlay" alt="" src="smokedetector_1.svg" style="position:absolute;top: 3%;left: 25%;" />
-        <!-- COMMENTING OUT SHOE <img tabindex="0" class="superimpose" id="shoesOverlay" alt="" src="shoes.svg" style="position:absolute;top: 10%;left: 25%;" /> -->
         <img tabindex="0" class="superimpose" id="pestdropOverlay" alt="" src="chewdrop.svg" style="position:absolute;top: 4.5%;left: -1%;" />
         <img tabindex="0" class="superimpose" id="bottleOverlay" alt="" src="bottle.svg" style="position:absolute;top: 6%;left: -3%;" />
         <img tabindex="0" class="superimpose" id="ceramicwareOverlay" alt="" src="ceramicware.svg" style="position:absolute;top: 5%;left: -3%;" />
-        <img tabindex="0" class="superimpose" id="cleanersOverlay" alt="" src="cleaners.svg" style="position:absolute;top: 4%;left: -0.5%;" />
-        <img tabindex="0" class="superimpose" id="stovespillOverlay" alt="" src="stovespill.svg" style="position:absolute;top: 50%;left: -0.5%;" />
+        <img tabindex="0" class="superimpose" id="cleanersOverlay" alt="" src="cleaners.svg" style="position:absolute;top: 4%;left: -0.5%;" />        
         <img tabindex="0" class="superimpose" id="spillOverlay" alt="" src="spill.svg" style="position: absolute; top: 5%;left: -0.5%;"/>
         <img tabindex="0" class="superimpose" id="leakingpipeOverlay" alt="" src="leakingpipe.svg" style="position: absolute; top: 5%;left: -0.5%;"/>
         <img tabindex="0" class="superimpose" id="regularpipeOverlay" alt="" src="regularpipe.svg" style="position: absolute; top: 5%;left: -0.5%;"/>
 
-
     <div class="clickables">
-            <a id="spillDot" onclick="spill()" aria-label="..." style="position:absolute;top: 65%;left: 28%; size: 200%" tabindex="0" class="dot dot-border" data-toggle="modal" data-target="#spillModal" ></a>
-            <a id="leakingpipeDot" onclick="spill()" aria-label="..." style="position:absolute;top: 65%;left: 28%; size: 200%" tabindex="0" class="dot dot-border" data-toggle="modal" data-target="#spillModal" ></a>
+      <a id="crackinwallDot" onclick="crackinwall()" aria-label="..." style="position:absolute;top: 40%;left: 30%;" tabindex="0" class="dot dot-border" data-toggle="modal" data-target="#crackinwallModal" ></a>
+      <a id="peelingpaintDot" onclick="peelingpaint()" aria-label="..." style="position:absolute;top: 55%;left: 3%;" tabindex="0" class="dot dot-border" data-toggle="modal" data-target="#peelingpaintModal" ></a>
+      <a id="bowlDot" onclick="bowl()" aria-label="..." style="position:absolute;top: 74%;left: 18%;" tabindex="0" class="dot dot-border" data-toggle="modal" data-target="#bowlModal" ></a>
+      <a id="bowl2Dot" onclick="bowl()" aria-label="..." style="position:absolute;top: 74%;left: 80%;" tabindex="0" class="dot-lg dot-border" data-toggle="modal" data-target="#bowlModal" ></a>
 
+      <a id="bottleDot" onclick="bottle()" aria-label="..." style="position:absolute;top: 46%;left: 13%;" tabindex="0" class="dot dot-border" data-toggle="modal" data-target="#bottleModal" ></a>
+      <a id="pestdropDot" onclick="pestdrop()" aria-label="..." style="position:absolute;top: 67%;left: 5%;" tabindex="0" class="dot-lg dot-border" data-toggle="modal" data-target="#pestdropModal" ></a>
+      <a id="ceramicwareDot" onclick="ceramicware()" aria-label="..." style="position:absolute;top: 44%;left: 51%;" tabindex="0" class="dot-lg dot-border" data-toggle="modal" data-target="#ceramicwareModal" ></a>
+      <a id="moldDot" onclick="mold()" aria-label="..." style="position:absolute;top: 40%;left: 39.5%;" tabindex="0" class="dot dot-border" data-toggle="modal" data-target="#moldModal" ></a>
+      <a id="smokedetector_1Dot" onclick="smokedetector_1()" aria-label="..." style="position:absolute;top: 33%;left: 86%;" tabindex="0" class="dot dot-border" data-toggle="modal" data-target="#smokedetector_1Modal" ></a>
+      <a id="spillDot" onclick="spill()" aria-label="..." style="position:absolute;top: 65%;left: 28%; size: 200%" tabindex="0" class="dot dot-border" data-toggle="modal" data-target="#spillModal" ></a>
+      <a id="cleanersDot" onclick="cleaners()" aria-label="..." style="position:absolute;top: 60%;left: 24%;" tabindex="0" class="dot dot-border" data-toggle="modal" data-target="#cleanersModal" ></a>
 
-            <a id="bowlDot" onclick="bowl()" aria-label="..." style="position:absolute;top: 74%;left: 18%;" tabindex="0" class="dot dot-border" data-toggle="modal" data-target="#bowlModal" ></a>
-            <!-- for trash/radiator, add another clickable that runs bowl() -->
-            <a id="moldDot" onclick="mold()" aria-label="..." style="position:absolute;top: 40%;left: 39.5%;" tabindex="0" class="dot dot-border" data-toggle="modal" data-target="#moldModal" ></a>
-            <a id="crackinwallDot" onclick="crackinwall()" aria-label="..." style="position:absolute;top: 40%;left: 30%;" tabindex="0" class="dot dot-border" data-toggle="modal" data-target="#crackinwallModal" ></a>
-            <a id="peelingpaintDot" onclick="peelingpaint()" aria-label="..." style="position:absolute;top: 55%;left: 3%;" tabindex="0" class="dot dot-border" data-toggle="modal" data-target="#peelingpaintModal" ></a>
-            <a id="smokedetector_1Dot" onclick="smokedetector_1()" aria-label="..." style="position:absolute;top: 33%;left: 86%;" tabindex="0" class="dot dot-border" data-toggle="modal" data-target="#smokedetector_1Modal" ></a>
-            <!-- COMMENTING OUT SHOE FOR NOW 
-              
-            <a id="shoesDot" onclick="shoes()" aria-label="..." style="position:absolute;top: 85%;left: 40%;" tabindex="0" class="dot dot-border" data-toggle="modal" data-target="#shoesModal" ></a> 
-            -->
-            <a id="pestdropDot" onclick="pestdrop()" aria-label="..." style="position:absolute;top: 67%;left: 5%;" tabindex="0" class="dot-lg dot-border" data-toggle="modal" data-target="#pestdropModal" ></a>
-            <a id="bottleDot" onclick="bottle()" aria-label="..." style="position:absolute;top: 46%;left: 13%;" tabindex="0" class="dot dot-border" data-toggle="modal" data-target="#bottleModal" ></a>
-            <a id="ceramicwareDot" onclick="ceramicware()" aria-label="..." style="position:absolute;top: 44%;left: 51%;" tabindex="0" class="dot-lg dot-border" data-toggle="modal" data-target="#ceramicwareModal" ></a>
-            <a id="cleanersDot" onclick="cleaners()" aria-label="..." style="position:absolute;top: 60%;left: 24%;" tabindex="0" class="dot dot-border" data-toggle="modal" data-target="#cleanersModal" ></a>
-            <a id="stovespillDot" onclick="stovespill()" aria-label="..." style="position:absolute;top: 60%;left: 24%;" tabindex="0" class="dot dot-border" data-toggle="modal" data-target="#bowlModal" ></a>
         </div>
     </div>
 </div>
-<div class="row ml-5"><p><em><small class="text-primary"> If repairs are not being made or you think that repair work is being done unsafely, call <strong>311.</strong></p>&nbsp;<p>NYCHA residents should call 718-707-7771 to report a maintenance problem.</em></small></p></div>
-
 
 <!-- Resource cards -->
 
-
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-11 mx-auto mb-2 pl-0"><h3> Learn more about keeping your home healthy</h3></div>
-    </div>
-    
-  <div class="row">
-    <div class="col-md-3 col-sm-12">
+    <div class="col-md-11 mx-auto mb-4">
+      <p class="fs-sm"><em>If repairs are not being made or you think that repair work is being done unsafely, <strong>call 311.</strong> NYCHA residents should call 718-707-7771 to report a maintenance problem.</em></p>
 
-      <div class="card content-card mb-2">
-        <div class="card-content">
-        <div class="card-body">
-          <p><span class="card-title text-primary h3">Prevent and get rid of pests</span></p>
-          <p>
-            <ul class="list-group">
-              <li class="list-group-item"><strong>For building residents </strong> <a href="s://www.nyc.gov/assets/doh/downloads/pdf/pesticide/mgmt-tips.pdf"> IPM toolkit </a>
-              <li class="list-group-item"><strong>For owners, managers, and supers </strong> <a href="https://www.nyc.gov/assets/doh/downloads/pdf/pesticide/ipm-toolkit.pdf"> IPM toolkit for managers </a>
-              <li class="list-group-item"><a href="Nyc.gov/health/healthyhomes">Healthy homes program</a>
-            </ul>
-          </p>
-          
-        </div>
-        </div>
-    </div>
-
-    </div>
-
-    <div class="col-md-3 col-sm-12">
-
-      <div class="card content-card mb-2">
-        <div class="card-content">
-          <div class="card-body">
-            <p><span class="card-title text-primary h3">Prevent and get rid of mold </span></p>
-            <p>
-              <ul class="list-group">
-                <li class="list-group-item"><a href="https://www.nyc.gov/assets/doh/downloads/pdf/epi/prevent-and-get-rid-of-mold.pdf"> Mold prevention brochure </a>
-                <li class="list-group-item"><strong> NYC Healthy Neighborhood Programs </strong> <a href="https://www.nyc.gov/site/doh/health/health-topics/healthy-neighborhoods-asthma-triggers.page"> Request a free home assessment of asthma triggers </a>
-                <li class="list-group-item"><a href="https://www.nyc.gov/site/doh/health/health-topics/mold.page">Learn more about mold </a>
-              </ul>
-            </p>
-            
-          </div>
-        </div>
-    </div>
-
-    </div>
-
-    <div class="col-md-3 col-sm-12">
-          <div class="card content-card mb-2">
-            <div class="card-content">
-            <div class="card-body">
-              <p><span class="card-title text-primary h3">Prevent poisoning from lead and hazardous products </span></p>
-              <p>
-                <ul class="list-group">
-                  <li class="list-group-item"><a href="nyc.gov/lead"> Visit NYC.gov/lead</a> and <a href="Nyc.gov/hazardousproducts">learn about which consumer products may contain lead </a>
-                  <li class="list-group-item"> Learn about <a href="https://www.nyc.gov/assets/doh/downloads/pdf/lead/children-lead-mini-brochure.pdf"> children and lead poisoning </a>
-                  <li class="list-group-item"> Learn about <a href="https://www.nyc.gov/assets/doh/downloads/pdf/lead/lead-pregnancy-brochure.pdf"> pregnancy and lead poisoning </a>
-                  <li class="list-group-item"> Read our <a href="https://www.nyc.gov/assets/doh/downloads/pdf/lead/adult-lead-safety-brochure.pdf"> lead safety brochure </a>
-                  <li class="list-group-item"> Learn how to <a href="https://www.nyc.gov/assets/doh/downloads/pdf/poison/poison-brochure-proof.pdf"> poison-proof your home </a>
-                </ul>
-              </p>
-              
-            </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-md-3 col-sm-12">
-
-      <div class="card content-card mb-2">
-        <div class="card-content">
-          <div class="card-body">
-            <p><span class="card-title text-primary h3">Prevent fires and carbon monoxide poisoning </span></p>
-            <p>
-              <ul class="list-group">
-                <li class="list-group-item"><a href="https://www.nyc.gov/assets/doh/downloads/pdf/epi/prevent-and-get-rid-of-mold.pdf"> Mold prevention brochure </a>
-                <li class="list-group-item"><strong> NYC Healthy Neighborhood Programs </strong> <a href="https://www.nyc.gov/site/doh/health/health-topics/healthy-neighborhoods-asthma-triggers.page"> Request a free home assessment of asthma triggers </a>
-                <li class="list-group-item"><a href="https://www.nyc.gov/site/doh/health/health-topics/mold.page">Learn more about mold </a>
-              </ul>
-            </p>
-            
-          </div>
-        </div>
-    </div>
-
+      <h3 class="mt-4">Keep your home healthy</h3>
+      <p><ul>
+        <li>To manage pests, get the Integrated Pest Management toolkit <a href="https://www.nyc.gov/assets/doh/downloads/pdf/pesticide/mgmt-tips.pdf"><span class="sr-only">integrated pest management</span> for residents</a> or <a href="https://www.nyc.gov/assets/doh/downloads/pdf/pesticide/ipm-toolkit.pdf"><span class="sr-only">integrated pest management</span> for building managers</a>.</li>
+        <li>To manage mold, <a href="https://www.nyc.gov/assets/doh/downloads/pdf/epi/prevent-and-get-rid-of-mold.pdf">download this mold prevention brochure</a>. </li>
+        <li><a href="https://www.nyc.gov/site/doh/health/health-topics/healthy-neighborhoods-asthma-triggers.page">Request a free home assessment of asthma triggers</a>.</li>
+        <li><a href="https://www.nyc.gov/assets/doh/downloads/pdf/poison/poison-brochure-proof.pdf">Poison-proof your home</a> and <a href="https://www.nyc.gov/lead">visit nyc.gov/lead for resources on lead poisoning preveition</a>.</li>
+        <li><a href="https://www.nyc.gov/site/doh/health/health-topics/carbon-monoxide.page">Protect your family from carbon monoxide poisoning</a>.</li>
+      </ul></p>
+      <p><a href="https://www.nyc.gov/health/healthyhomes">Get more resources on keeping your home healthy at the Healthy Homes webpage</a>.</p>
     </div>
   </div>
-
+    
 </div>
 
 <!-- Modals -->
@@ -381,14 +299,21 @@
   <script>
     function spill() {
             document.getElementById('spillOverlay').classList.add('hide')
+            document.getElementById('leakingpipeOverlay').classList.add('hide')
             document.getElementById('spillDot').classList.remove('dot-border')
     
+    }
+
+    function bottle() {
+      document.getElementById('bottleOverlay').classList.add('hide')
+      document.getElementById('bottleDot').classList.remove('dot-border')
+
     }
 
     function bowl() {
       document.getElementById('bowlOverlay').classList.add('hide')
       document.getElementById('bowlDot').classList.remove('dot-border')
-
+      document.getElementById('bowl2Dot').classList.remove('dot-border')
     }
 
     function mold() {
