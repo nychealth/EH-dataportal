@@ -236,7 +236,7 @@
                     <li class="nav-item ml-auto d-none d-lg-block">
                         <button type="button" class="btn btn-sm btn-outline-primary" data-toggle="modal"
                                 data-target="#topicModal">
-                            Change topic
+                                <i class="fas fa-bars font-weight-bold" aria-hidden="true"></i>
                         </button>
                     </li>
                 </ul>
@@ -253,7 +253,12 @@
     
             <div class="d-none d-lg-block">
             <!-- Indicator buttons (hidden on mobile)-->
-            <span class='home-label d-none d-md-block border-bottom mb-1 font-weight-bold'><h1 class="home-label" style="display: inline-block;" data-pagefind-ignore="all">{{ .Title }}</h1> datasets:</span>
+            <span class='home-label d-none d-md-block border-bottom mb-1 font-weight-bold'>
+                <button type="button" class="btn btn-sm btn-outline-primary" data-toggle="modal"
+                data-target="#topicModal">
+                <i class="fas fa-bars font-weight-bold" aria-hidden="true"></i>
+                </button>
+                <span class="home-label" style="display: inline-block;" data-pagefind-ignore="all">{{ .Title }}</span> datasets:</span>
             <div class="l-green-border de-dash-borderbottom" style="">
             <div id="indicatorButtons" class="pb-0 overflow-fade-ind mb-0">
                     <!--Rendered via renderIndicatorButtons function -->

@@ -33,6 +33,10 @@ const setDefaultMapMeasure = (visArray) => {
         measure.MeasurementType.includes('Percent')
     )
 
+    const hasPercent2 = visArray.filter(measure =>
+        measure.MeasurementType.includes('percent')
+    )
+
     const hasDensity = visArray.filter(measure =>
         measure.MeasurementType.includes('Density')
     )
@@ -60,6 +64,9 @@ const setDefaultMapMeasure = (visArray) => {
 
     } else if (hasPercent.length) {
         defaultArray.push(hasPercent[0]);
+
+    } else if (hasPercent2.length) {
+        defaultArray.push(hasPercent2[0]);
 
     } else if (hasDensity.length) {
         defaultArray.push(hasDensity[0]);
@@ -105,6 +112,10 @@ const setDefaultTrendMeasure = (visArray) => {
             measure.MeasurementType.includes('Percent')
         )
 
+        const hasPercent2 = visArray.filter(measure =>
+            measure.MeasurementType.includes('percent')
+        )
+
         const hasDensity = visArray.filter(measure =>
             measure.MeasurementType.includes('Density')
         )
@@ -133,6 +144,9 @@ const setDefaultTrendMeasure = (visArray) => {
 
         } else if (hasPercent.length) {
             defaultArray.push(hasPercent[0]);
+
+        } else if (hasPercent2.length) {
+            defaultArray.push(hasPercent2[0]);
 
         } else if (hasDensity.length) {
             defaultArray.push(hasDensity[0]);
@@ -178,6 +192,10 @@ const setDefaultLinksMeasure = async (visArray) => {
             measure.MeasurementType.includes('Percent')
         )
 
+        const hasPercent2 = visArray.filter(measure =>
+            measure.MeasurementType.includes('percent')
+        )
+
         const hasDensity = visArray.filter(measure =>
             measure.MeasurementType.includes('Density')
         )
@@ -205,6 +223,9 @@ const setDefaultLinksMeasure = async (visArray) => {
 
         } else if (hasPercent.length) {
             defaultArray.push(hasPercent[0]);
+
+        } else if (hasPercent2.length) {
+            defaultArray.push(hasPercent2[0]);
 
         } else if (hasDensity.length) {
             defaultArray.push(hasDensity[0]);
@@ -275,6 +296,10 @@ const setDefaultDisparitiesMeasure = (visArray) => {
             measure.MeasurementType.includes('Percent')
         )
 
+        const hasPercent2 = visArray.filter(measure =>
+            measure.MeasurementType.includes('percent')
+        )
+
         const hasDensity = visArray.filter(measure =>
             measure.MeasurementType.includes('Density')
         )
@@ -303,6 +328,9 @@ const setDefaultDisparitiesMeasure = (visArray) => {
 
         } else if (hasPercent.length) {
             defaultArray.push(hasPercent[0]);
+
+        } else if (hasPercent2.length) {
+            defaultArray.push(hasPercent2[0]);
 
         } else if (hasDensity.length) {
             defaultArray.push(hasDensity[0]);
