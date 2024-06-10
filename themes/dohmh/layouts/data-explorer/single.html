@@ -233,12 +233,6 @@
                     <li class="breadcrumb-item"><a href={{ relURL "data-explorer" }}>Data Explorer</a></li>
 
                     <li class="breadcrumb-item active"><strong><a href="{{ .Page.RelPermalink }}">{{ .Title }}</a></strong></li>
-                    <li class="nav-item ml-auto d-none d-lg-block">
-                        <button type="button" class="btn btn-sm btn-outline-primary" data-toggle="modal"
-                                data-target="#topicModal">
-                                <i class="fas fa-bars font-weight-bold" aria-hidden="true"></i>
-                        </button>
-                    </li>
                 </ul>
             </nav>
         </div>
@@ -253,10 +247,10 @@
     
             <div class="d-none d-lg-block">
             <!-- Indicator buttons (hidden on mobile)-->
-            <span class='home-label d-none d-md-block border-bottom mb-1 font-weight-bold'>
+            <span class='home-label d-none d-md-block border-bottom mb-1 pb-1 font-weight-bold'>
                 <button type="button" class="btn btn-sm btn-outline-primary" data-toggle="modal"
                 data-target="#topicModal">
-                <i class="fas fa-bars font-weight-bold" aria-hidden="true"></i>
+                <i class="fas fa-ellipsis-h font-weight-bold" aria-hidden="true"></i>
                 </button>
                 <span class="home-label" style="display: inline-block;" data-pagefind-ignore="all">{{ .Title }}</span> datasets:</span>
             <div class="l-green-border de-dash-borderbottom" style="">
@@ -270,7 +264,7 @@
                 <span class='home-label d-none d-md-block border-bottom mt-3 mb-1 font-weight-bold'>About {{ .Title }}</span>
                 <div class="card mb-2 l-green-border de-dash-borderbottom">
                     <div class="card-content">
-                        <div class="card-body overflow-fade-about topic-text pb-3 mb-1">
+                        <div class="p-1 overflow-fade-about topic-text mb-1">
                             {{ .Content  }}
                         </div>
                     </div>
