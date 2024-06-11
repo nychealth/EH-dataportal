@@ -233,13 +233,12 @@
                     <li class="breadcrumb-item"><a href={{ relURL "data-explorer" }}>Data Explorer</a></li>
                 </ul>
             </nav>
-
+            <div class="float-right px-3">
+                {{- partial "socialshare" . -}}
+            </div>
             <h1 class="h2">{{ .Title }} </h1>
             <p>Get maps, charts, tables, or download data on datasets about {{ lower .Title }}.</p>
-            <div class="float-right">
-                {{- partial "socialshare" . -}}
-            
-            </div>
+
         </div>
     </div>
 
