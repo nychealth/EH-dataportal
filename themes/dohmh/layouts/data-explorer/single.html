@@ -6,7 +6,7 @@
     /* set overall row styles */
     #vg-tooltip-element table tr {
         border-bottom: 1px solid #d9d9d9;
-        {{- /*  width: max-content;  */}}
+        {{- /*  width: max-content;  */ -}}
     }
     /* remove bottom border from last row */
     #vg-tooltip-element table tr:last-child {
@@ -226,15 +226,20 @@
 
 <article class="container-fluid" id="skip-header-target">
     <div class="row">
-        <div class="col-12 mt-4 border-top">
+        <div class="col-12 my-4">
             <nav aria-label="breadcrumb" class="mb-2">
                 <ul class="breadcrumb mr-auto">
                     <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
                     <li class="breadcrumb-item"><a href={{ relURL "data-explorer" }}>Data Explorer</a></li>
-
-                    <li class="breadcrumb-item active"><strong><a href="{{ .Page.RelPermalink }}">{{ .Title }}</a></strong></li>
                 </ul>
             </nav>
+
+            <h1 class="h2">{{ .Title }} </h1>
+            <p>Get maps, charts, tables, or download data on datasets about {{ lower .Title }}.</p>
+            <div class="float-right">
+                {{- partial "socialshare" . -}}
+            
+            </div>
         </div>
     </div>
 
@@ -248,7 +253,7 @@
             <div class="d-none d-lg-block">
             <!-- Indicator buttons (hidden on mobile)-->
             <span class='home-label d-none d-md-block border-bottom mb-1 pb-1 font-weight-bold'>
-                <button type="button" class="btn btn-sm btn-outline-primary" data-toggle="modal"
+                <button type="button" class="btn btn-sm btn-outline-light text-primary float-right" data-toggle="modal"
                 data-target="#topicModal">
                 <i class="fas fa-ellipsis-h font-weight-bold" aria-hidden="true"></i>
                 </button>
@@ -303,6 +308,7 @@
         {{- end -}}
 
         <!-- Indicator title and description -->
+        <span class="home-label font-weight-bold">Dataset</span>
         <div style="clear:both; border-left: 8px solid #00923E50;" class="px-1">
             <span class="border-bottom mt-2 font-weight-bold d-none d-lg-block"><span id="indicatorTitle">Loading data...</span></span>
             <p class="fs-sm indicator-description">Just a moment...</p>
