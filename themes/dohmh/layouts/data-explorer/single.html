@@ -275,15 +275,17 @@
                 </div>
             </div>
 
+            <!-- Keywords partial -->
+            <div class="d-none d-lg-block mt-1 mb-2">
+                {{- partial "keywords" . -}}
+            </div>
+
             <!-- Take Action partial -->
-            <div class="d-none d-lg-block l-green-border mb-2 px-1">
+            <div class="d-none d-lg-block border-top p-1 mt-4 fs-sm">
                 {{- partial "takeaction" . -}}
             </div>
 
-            <!-- Keywords partial -->
-            <div class="d-none d-lg-block my-2 l-green-border">
-                {{- partial "keywords" . -}}
-            </div>
+
             
 
         </div>
