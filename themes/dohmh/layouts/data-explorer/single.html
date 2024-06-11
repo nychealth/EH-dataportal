@@ -789,7 +789,7 @@
 
                     indicator = indicators.find(indicator => indicator.IndicatorID === {{ $id }});
                     this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
-                    indicatorDropdown.innerHTML += "<button class='indicator-dropdown-item dropdown-item' onclick='loadIndicator({{ $id }})' data-indicator-id='{{ $id }}'>" + this_indicatorName + "</button>";
+                    indicatorDropdown.innerHTML += "<button class='indicator-dropdown-item dropdown-item' onclick='loadIndicator({{ $id }})' data-indicator-id='{{ $id }}'>" + this_indicatorName + `</button>`;
 
                 {{ end }}
             {{- end }}
@@ -816,7 +816,7 @@
 
                     indicator = indicators.find(indicator => indicator.IndicatorID === {{ $id }});
                     this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
-                    indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' onclick='loadIndicator({{ $id }})' data-indicator-id='{{ $id }}'>" + this_indicatorName + "</button>";
+                    indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' onclick='loadIndicator({{ $id }})' data-indicator-id='{{ $id }}'>" + this_indicatorName + `<i class="indicator-arrows fas fa-arrow-circle-right float-right font-weight-bold hide" id="arrow-{{ $id }}" aria-hidden="true"></i></button>`;
                     
                 {{- end }}
             {{- end }}

@@ -229,6 +229,9 @@ const loadIndicator = async (this_indicatorId, dont_add_to_history) => {
     $(".indicator-dropdown-item").removeClass("active");
     $(".indicator-dropdown-item").attr('aria-selected', false);
 
+    $(".indicator-arrows").addClass("hide");
+    document.getElementById(`arrow-${indicatorId}`).classList.remove('hide')
+
     // get the list element for this indicator (in buttons and dropdowns)
     const thisIndicatorEl = document.querySelectorAll(`button[data-indicator-id='${indicatorId}']`)
 
