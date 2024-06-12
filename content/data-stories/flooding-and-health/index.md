@@ -149,7 +149,7 @@ Impacts to your health can happen during and after a flood. During the flood the
 
 - <a href="https://a858-nycnotify.nyc.gov/notifynyc/"> Sign up for emergency alerts at Notify NYC</a>
 
-- <a href="https://www.nyc.gov/site/em/ready/coastal-storms-hurricanes.page"> Know Your Zone: Learn whether you live in an area where you may need to evacuate the next time there is a hurricane,</a> and <a href="https://www.nyc.gov/site/em/ready/flooding.page"> learn more about what to do before, during and after a flood at NYC Emergency Management’s flood page</a> and at <a href="https://www.nyc.gov/site/dep/whats-new/prepare-for-the-storm.page">Rainfall Ready NYC.</a>
+- <a href="https://www.nyc.gov/site/em/ready/coastal-storms-hurricanes.page"> Know Your Zone: Learn whether you live in an area where you may need to evacuate the next time there is a hurricane,</a> and learn more about what to do before, during and after a flood at NYC Emergency Management’s flood page</a> and at <a href="https://www.nyc.gov/site/dep/whats-new/prepare-for-the-storm.page">Rainfall Ready NYC.</a>
 
 - If you live in a basement apartment: <a href="https://www.nyc.gov/site/em/ready/flooding.page"> Prepare to move to higher ground during periods of heavy rain.</a> Sign up for special basement alerts on Notify NYC.
 
