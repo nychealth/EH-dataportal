@@ -163,14 +163,14 @@ Resilience to flooding also means access to affordable and safe housing for all 
 
 Resources you can explore to understand more about the City’s climate resilience plans are:
 
-- <strong>PlaNYC and Adapt NYC:</strong><a href="https://climate.cityofnewyork.us/initiatives/planyc-getting-sustainability-done/"> Comprehensive climate action and adaptation plans.</a>
+- <strong>PlaNYC and Adapt NYC:</strong><a href="https://climate.cityofnewyork.us/initiatives/planyc-getting-sustainability-done/">Comprehensive climate action and adaptation plans.</a>
 
-- <strong>FloodNet:</strong><a href="https://dataviz.floodnet.nyc/dashboard/projects/174/map"> Data will be collected from more than 500 sensors around the city to help understand and prevent flooding impacts.</a>
+- <strong>FloodNet:</strong><a href="https://dataviz.floodnet.nyc/dashboard/projects/174/map">Data will be collected from more than 500 sensors around the city to help understand and prevent flooding impacts.</a>
 
-- <strong>FloodHelpNY:</strong><a href="https://floodhelpny.org/"> Helps to educate New Yorkers about how to protect their homes from flooding.</a>
+- <strong>FloodHelpNY:</strong><a href="https://floodhelpny.org/">Helps to educate New Yorkers about how to protect their homes from flooding.</a>
 
-- <strong>Climate strong communities:</strong><a href="https://climate.cityofnewyork.us/initiatives/climate-strong-communities/"> Conducts local workshops to ensure that community members can guide priorities and learn how to protect themselves and their families.</a>
+- <strong>Climate strong communities:</strong><a href="https://climate.cityofnewyork.us/initiatives/climate-strong-communities/">Conducts local workshops to ensure that community members can guide priorities and learn how to protect themselves and their families.</a>
 
 While severe storms like Ida and Sandy won’t be the last climate disasters we face as a city, by becoming more prepared and informed, along with improvements to our infrastructure and outreach, New Yorkers can stay safe and avoid the health risks of flooding.
 
-<em>To learn more about how flood risk and health impacts are changing in NYC, <a href="https://climateassessment.nyc/assessment/climate-change-and-new-york-citys-health-risk/">read the NPCC4 Climate and Health chapter.</a> <a href="https://climateassessment.nyc/assessment/overview/"> There are also dedicated chapters in NPCC4 on flooding, climate justice, and more at the New York City Panel on Climate Change website,</a> where you can real the full assessment along with overviews, key messages, and special reports.</em>
+<em>To learn more about how flood risk and health impacts are changing in NYC, <a href="https://climateassessment.nyc/assessment/climate-change-and-new-york-citys-health-risk/">read the NPCC4 Climate and Health chapter.</a> <a href="https://climateassessment.nyc/assessment/overview/">There are also dedicated chapters in NPCC4 on flooding, climate justice, and more at the New York City Panel on Climate Change website,</a> where you can real the full assessment along with overviews, key messages, and special reports.</em>
