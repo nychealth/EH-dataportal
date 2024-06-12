@@ -464,10 +464,10 @@ const updateMapData = (e) => {
     // "indicatorName" is set in loadIndicator
 
     selectedMapAbout   =
-        `<p class="fs-sm"><strong>${indicatorName} - ${measurementType}:</strong> ${about}</p>`;
+        `<p><strong>${indicatorName} - ${measurementType}:</strong> ${about}</p>`;
 
     selectedMapSources =
-        `<p class="fs-sm"><strong>${indicatorName} - ${measurementType}:</strong> ${sources}</p>`;
+        `<p><strong>${indicatorName} - ${measurementType}:</strong> ${sources}</p>`;
 
     // render measure info boxes
 
@@ -556,12 +556,10 @@ const updateTrendData = (e) => {
     // ----- set measure info boxes --------------------------------------------------- //
 
     selectedTrendAbout =
-        `<h6>${indicatorName} - ${measurementType}</h6>
-        <p>${about}</p>`;
+        `<p><strong>${indicatorName} - ${measurementType}</strong>: ${about}</p>`;
 
     selectedTrendSources =
-        `<h6>${indicatorName} - ${measurementType}</h6>
-        <p>${sources}</p>`;
+        `<p><strong>${indicatorName} - ${measurementType}</strong>: ${sources}</p>`;
 
     // render measure info boxes
 
@@ -679,10 +677,10 @@ const updateTrendComparisonsData = (e) => {
     aqComparisonsIndicatorsMetadata.objects().forEach(m => {
 
         selectedComparisonAbout +=
-            `<p class="fs-sm"><strong>${m.IndicatorName} - ${m.MeasurementType}:</strong> ${m.how_calculated}</p>`;
+            `<p><strong>${m.IndicatorName} - ${m.MeasurementType}:</strong> ${m.how_calculated}</p>`;
 
         selectedComparisonSources +=
-            `<p class="fs-sm"><strong>${m.IndicatorName} - ${m.MeasurementType}:</strong> ${m.Sources}</p>`;
+            `<p><strong>${m.IndicatorName} - ${m.MeasurementType}:</strong> ${m.Sources}</p>`;
     })
 
     // render the measure info boxes
@@ -835,16 +833,12 @@ const updateLinksData = async (e) => {
     // ----- set measure info boxes --------------------------------------------------- //
 
     selectedLinksAbout =
-        `<h6>${primaryIndicatorName} - ${primaryMeasurementType}</h6>
-        <p>${primaryAbout}</p>
-        <h6>${secondaryIndicatorName} - ${secondaryMeasurementType}</h6>
-        <p>${secondaryAbout}</p>`;
+        `<p><strong>${primaryIndicatorName} - ${primaryMeasurementType}</strong>: ${primaryAbout}</p>
+        <p><strong>${secondaryIndicatorName} - ${secondaryMeasurementType}</strong>: ${secondaryAbout}</p>`;
 
     selectedLinksSources =
-        `<h6>${primaryIndicatorName} - ${primaryMeasurementType}</h6>
-        <p>${primarySources}</p>
-        <h6>${secondaryIndicatorName} - ${secondaryMeasurementType}</h6>
-        <p>${secondarySources}</p>`;
+        `<p><strong>${primaryIndicatorName} - ${primaryMeasurementType}</strong>: ${primarySources}</p>
+        <p><strong>${secondaryIndicatorName} - ${secondaryMeasurementType}</strong>: ${secondarySources}</p>`;
 
     // render the measure info boxes
 
@@ -1581,10 +1575,10 @@ const renderMeasures = async () => {
             // ----- set measure info boxes --------------------------------------------------- //
 
             defaultMapAbout   =
-                `<p class="fs-sm"><strong>${indicatorName} - ${measure}:</strong> ${about}</p>`;
+                `<p><strong>${indicatorName} - ${measure}:</strong> ${about}</p>`;
 
             defaultMapSources =
-                `<p class="fs-sm"><strong>${indicatorName} - ${measure}:</strong> ${sources}</p>`;
+                `<p><strong>${indicatorName} - ${measure}:</strong> ${sources}</p>`;
 
             // render measure info boxes
 
@@ -1828,12 +1822,10 @@ const renderMeasures = async () => {
             // ----- set measure info boxes --------------------------------------------------- //
 
             defaultTrendAbout =
-                `<h6>${indicatorName} - ${measure}</h6>
-                <p>${about}</p>`;
+                `<p><strong>${indicatorName} - ${measure}</strong>: ${about}</p>`;
 
             defaultTrendSources =
-                `<h6>${indicatorName} - ${measure}</h6>
-                <p>${sources}</p>`;
+                `<p><strong>${indicatorName} - ${measure}</strong>: ${sources}</p>`;
 
             renderTitleDescription(indicatorShortName, indicatorDesc);
             renderAboutSources(defaultTrendAbout, defaultTrendSources);
@@ -1984,10 +1976,10 @@ const renderMeasures = async () => {
             aqComparisonsIndicatorsMetadata.objects().forEach(m => {
 
                 selectedComparisonAbout +=
-                    `<p class="fs-sm"><strong>${m.IndicatorName} - ${m.MeasurementType}:</strong> ${m.how_calculated}</p>`;
+                    `<p><strong>${m.IndicatorName} - ${m.MeasurementType}:</strong> ${m.how_calculated}</p>`;
 
                 selectedComparisonSources +=
-                    `<p class="fs-sm"><strong>${m.IndicatorName} - ${m.MeasurementType}:</strong> ${m.Sources}</p>`;
+                    `<p><strong>${m.IndicatorName} - ${m.MeasurementType}:</strong> ${m.Sources}</p>`;
             })
 
             // render the measure info boxes
@@ -2218,16 +2210,12 @@ const renderMeasures = async () => {
                 // creating indicator & measure info
 
                 defaultLinksAbout =
-                    `<h6>${primaryIndicatorName} - ${primaryMeasure}</h6>
-                    <p>${primaryAbout}</p>
-                    <h6>${secondaryIndicatorName} - ${secondaryMeasure}</h6>
-                    <p>${secondaryAbout}</p>`;
+                    `<p><strong>${primaryIndicatorName} - ${primaryMeasure}</strong>: ${primaryAbout}</p>
+                    <p><strong>${secondaryIndicatorName} - ${secondaryMeasure}</strong>: ${secondaryAbout}</p>`;
 
                 defaultLinksSources =
-                    `<h6>${primaryIndicatorName} - ${primaryMeasure}</h6>
-                    <p>${primarySources}</p>
-                    <h6>${secondaryIndicatorName} - ${secondaryMeasure}</h6>
-                    <p>${secondarySources}</p>`;
+                    `<p><strong>${primaryIndicatorName} - ${primaryMeasure}</strong>: ${primarySources}</p>
+                    <p><strong>${secondaryIndicatorName} - ${secondaryMeasure}</strong>: ${secondarySources}</p>`;
 
 
                 // ----- create dataset - - - - - - - - - - - - - - - - - - - - - - - - - - //
@@ -2611,10 +2599,10 @@ const renderMeasures = async () => {
     indicatorMeasures.map(measure => {
 
         measureAbout +=
-            `<p class="fs-sm"><strong>${measure.MeasurementType}:</strong> ${measure.how_calculated}</p>`;
+            `<p><strong>${measure.MeasurementType}:</strong> ${measure.how_calculated}</p>`;
 
         measureSources +=
-            `<p class="fs-sm"><strong>${measure.MeasurementType}:</strong> ${measure.Sources}</p>`;
+            `<p><strong>${measure.MeasurementType}:</strong> ${measure.Sources}</p>`;
 
     })
 

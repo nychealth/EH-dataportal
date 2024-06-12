@@ -150,16 +150,12 @@ const renderDisparitiesChart = async (
     // ----------------------------------------------------------------------- //
 
     const combinedAbout =
-        `<h6>${primaryIndicatorName} - ${primaryMeasurementType}</h6>
-        <p>${primaryAbout}</p>
-        <h6>${disparityIndicatorName} - ${disparityMeasurementType}</h6>
-        <p>${disparitysAbout}</p>`;
+        `<p><strong>${primaryIndicatorName} - ${primaryMeasurementType}</strong>: ${primaryAbout}</p>
+        <p><strong>${disparityIndicatorName} - ${disparityMeasurementType}</strong>: ${disparitysAbout}</p>`;
 
     const combinedSources =
-        `<h6>${primaryIndicatorName} - ${primaryMeasurementType}</h6>
-        <p>${primarySources}</p>
-        <h6>${disparityIndicatorName} - ${disparityMeasurementType}</h6>
-        <p>${disparitySources}</p>`;
+        `<p><strong>${primaryIndicatorName} - ${primaryMeasurementType}</strong>: ${primarySources}</p>
+        <p><strong>${disparityIndicatorName} - ${disparityMeasurementType}</strong>: ${disparitySources}</p>`;
 
     // render combined info
 
