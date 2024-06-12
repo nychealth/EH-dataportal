@@ -203,7 +203,7 @@ config = {
              "name": "Greenspace",
              "type": "geojson",
              "url": window.BaseURL + "geojson/greenspace.geojson",
-             "buttonSection": "additional",
+             "buttonSection": "studyArea",
              "args": {
                 "color": "green",
                 "fillColor": "green",
@@ -286,6 +286,7 @@ config = {
        /*
        */
 
+       /*
        {
           "property": {
              "id": "bruckner",
@@ -304,6 +305,7 @@ config = {
              }
           }
        },
+       */
        {
             "property": {
                 "id": "air_quality",
@@ -729,8 +731,7 @@ config = {
                 "lng": -73.925476,
                 "zoom": 15,
                 "layers": [
-                    "nycHiEvening",
-                    "bruckner"
+                    "nycHiEvening"
                 ]
             }
         },

@@ -28,6 +28,6 @@ As climate change worsens, extreme heat becomes more frequent and more intense. 
 
 Extreme heat can <a href="{{< baseurl >}}data-stories/heat/"> harm people’s health and about 350 people die from related causes each year in New York City.</a> But these health impacts are not distributed equally. For example, <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/key-topics/climatehealth/heat-report/"> death rates are higher among Black New Yorkers and in neighborhoods with more residents living below the poverty line.</a>
 
-Heat story focuses on personal stories from neighborhoods that have faced historic racist patterns of discrimination and disinvestment — to show the relationship between the disproportionate impacts of heat, social, economic, and racial inequities, and public health.
+In this Heat Story study, community groups took local heat measurements and combined them with personal stories on how heat and neighborhood factors affect people's lives, and they show how historic racist patterns of discrimination and disinvestment creates disproportionate impacts of heat, social, economic, and racial inequities, and public health. <a href="#communityScience">Read more about this study</a>.
 
 <!-- Explore your neighbors' stories about how heat affects them. You can also <a href="https://docs.google.com/forms/d/e/1FAIpQLSdwGh2hb4LeLsQxH-w9awMAF2qc_UgOsD_bBYhRVa3ECxM8Bg/viewform" target="_blank"> submit your own story </a> about how heat has affected your life. -->
