@@ -233,7 +233,7 @@
                     <li class="breadcrumb-item"><a href={{ relURL "data-explorer" }}>Data Explorer</a></li>
                 </ul>
             </nav>
-            <div class="float-right px-3 d-sm-none d-lg-block">
+            <div class="float-right pr-4 d-sm-none d-lg-block">
                 {{- partial "socialshare" . -}}
             </div>
             <h1 class="h2">{{ .Title }} </h1>
@@ -516,7 +516,7 @@
             
                             <div class="col-sm-12">
                                 <div class="row my-4">
-                                    <div class="col-md-4 col-sm-12">
+                                    <div class="col-md-4 ml-auto col-sm-12">
                                         <div class="dropdown">
                                             <button class="btn btn-sm btn-block btn-outline-light text-secondary dropdown-toggle mb-1" 
                                             type="button"
@@ -532,23 +532,19 @@
                                         <a class="dropdown-item buttons-csv btn-outline-info" id="allData">Full table</a>
                                         <!--<a class="dropdown-item buttons-csv btn-outline-info" id="thisView">Current table view</a>-->        
                                         <!--<a class="dropdown-item buttons-csv btn-outline-info" id="rawData">Raw data for this indicator</a>-->
+                                        </div>
                                     </div>
-                                </div>
-                                </div>
-                                
-                                <div class="col-md-4 col-sm-12">
-                                    <a href="https://github.com/nychealth/EHDP-data/tree/production/indicators" target="_blank"><button class="btn btn-sm btn-block btn-outline-light text-secondary mb-1">
-                                        <i class="fas fa-external-link-alt mr-1"></i>Full data Github repo
-                                    </button></a>
-                                </div>
-                                
-                                <div class="col-md-4 col-sm-12">
                                     <button class="btn float-right btn-sm btn-block btn-outline-light text-secondary mb-1"
                                     onclick="copyCitation()" id="citeButton"><i class="fas fa-copy mr-1"></i>Copy citation</button>
                                     <input type="text" id="citeText" value=""
                                     style="display:inline-block; width:100%; height: 40px; font-size: 14px;"
                                     class="my-2 sr-only">
+                                    <p class="fs-sm text-center"><a href="https://github.com/nychealth/EHDP-data/tree/production/indicators" target="_blank">
+                                        <i class="fas fa-external-link-alt mr-1"></i>Full data Github repo
+                                   </a></p>
+
                                 </div>
+                                
                                 </div>
             
                             </div>
