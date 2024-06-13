@@ -119,6 +119,8 @@ const renderMap = (
     map_unreliability.forEach(element => {
 
         document.querySelector("#map-unreliability").innerHTML += "<div class='fs-sm text-muted'>" + element + "</div>" ;
+        document.getElementById('map-unreliability').classList.remove('hide')
+
         
     });
 

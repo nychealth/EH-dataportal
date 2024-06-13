@@ -349,12 +349,12 @@
             
             
                 <!-- visualization elements -->
-                <div class="tab-content bg-white mb-4" id="tabs-01-content">
+                <div class="tab-content bg-white mb-2" id="tabs-01-content">
             
 
                 <!-- TABLE TAB -->
 
-                <div class="tab-pane fade show active py-2" id="tab-table" aria-labelledby="tab-btn-table" role="tabpanel">
+                <div class="tab-pane fade show active pt-2" id="tab-table" aria-labelledby="tab-btn-table" role="tabpanel">
                     <div class="dropdown">
                         <button class="btn btn-sm float-right btn-outline-secondary dropdown-toggle mb-1" type="button"
                                 id="dropdownTableTimes" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Time </button>
@@ -376,7 +376,7 @@
                         <!-- INSERT SUMMARY TABLE HERE -->
                     </div>
 
-                    <div id="table-unreliability" class="pt-2">
+                    <div id="table-unreliability" class="pt-2 asidebox hide my-1">
                         <!-- INSERT UNRELIABILITY FLAGS HERE -->
                     </div>
 
@@ -385,7 +385,7 @@
 
                 <!-- MAP TAB -->
 
-                <div class="tab-pane fade py-2" id="tab-map" aria-labelledby="tab-btn-map" role="tabpanel">
+                <div class="tab-pane fade pt-2" id="tab-map" aria-labelledby="tab-btn-map" role="tabpanel">
 
                     <div class="dropdown">
                         <button class="btn btn-sm float-right btn-outline-secondary dropdown-toggle mb-1" type="button"
@@ -416,7 +416,7 @@
                 
                     <div id="map" class="vis-bucket"></div>
 
-                    <div id="map-unreliability" class="pt-3">
+                    <div id="map-unreliability" class="pt-2 asidebox hide my-1">
                         <!-- INSERT UNRELIABILITY FLAGS HERE -->
                     </div>
 
@@ -425,7 +425,7 @@
 
                 <!-- TREND TAB -->
 
-                <div class="tab-pane fade py-2" id="tab-trend" aria-labelledby="tab-btn-trend" role="tabpanel">
+                <div class="tab-pane fade pt-2" id="tab-trend" aria-labelledby="tab-btn-trend" role="tabpanel">
 
                     <div class="dropdown dropdownTrendComparisons">
 
@@ -442,7 +442,7 @@
                     <!-- INSERT TREND CHART HERE -->
                     <div id="trend" class="vis-bucket"></div>
 
-                    <div id="trend-unreliability" class="pt-3">
+                    <div id="trend-unreliability" class="pt-2 asidebox hide my-1">
                         <!-- INSERT UNRELIABILITY FLAGS HERE -->
                     </div>
 
@@ -451,7 +451,7 @@
 
                 <!-- LINKS TAB -->
 
-                <div class="tab-pane fade py-2" id="tab-links" aria-labelledby="tab-btn-links" role="tabpanel">
+                <div class="tab-pane fade pt-2" id="tab-links" aria-labelledby="tab-btn-links" role="tabpanel">
                     <div class="dropdown">
                         <button class="btn btn-sm float-right btn-outline-secondary dropdown-toggle mb-1" type="button"
                                 id="dropdownLinksMeasures" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Link to </button>
@@ -480,17 +480,19 @@
                     <!-- INSERT LINKS CHART HERE -->
                     <div id="links" class="vis-bucket"></div>
 
-                    <div id="links-unreliability" class="pt-3">
+                    <div id="links-unreliability" class="pt-2 asidebox hide my-1">
                         <!-- INSERT UNRELIABILITY FLAGS HERE -->
                     </div>
 
                 </div>
                 </div>
             </div>
+
+            <hr class="my-1 px-6">
             
             
                         <!-- FOOTER BUSINESS -->
-                        <div class="row mt-1">
+                        <div class="row">
                             <div class="col-md-6 col-sm-12">
                                 <div class="dropdown">
                                     <button class="btn btn-sm btn-block btn-outline-light text-secondary dropdown-toggle mb-1" 
