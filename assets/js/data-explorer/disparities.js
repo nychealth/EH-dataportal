@@ -137,7 +137,7 @@ const renderDisparitiesChart = async (
     // console.log("disp_unreliability", disp_unreliability);
 
     document.querySelector("#links-unreliability").innerHTML = ""; // blank to start
-    document.querySelector("#links-unreliability").classList.add('hide') = "" // blank to start
+    document.getElementById("links-unreliability").classList.add('hide') // blank to start
 
 
     disp_unreliability.forEach(element => {

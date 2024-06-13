@@ -98,7 +98,7 @@ const renderTable = () => {
     const table_unreliability = [...new Set(filteredTableData.map(d => d.Note))].filter(d => !d == "");
 
     document.querySelector("#table-unreliability").innerHTML = "" // blank to start
-    document.querySelector("#table-unreliability").classList.add('hide') = "" // blank to start
+    document.getElementById("table-unreliability").classList.add('hide') // blank to start
 
 
     table_unreliability.forEach(element => {

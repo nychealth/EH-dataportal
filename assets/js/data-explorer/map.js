@@ -115,7 +115,7 @@ const renderMap = (
     const map_unreliability = [...new Set(data.map(d => d.Note))].filter(d => !d == "");
 
     document.querySelector("#map-unreliability").innerHTML = ""; // blank to start
-    document.querySelector("#map-unreliability").classList.add('hide') = "" // blank to start
+    document.getElementById("map-unreliability").classList.add('hide')  // blank to start
 
 
     map_unreliability.forEach(element => {
