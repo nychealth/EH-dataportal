@@ -283,7 +283,7 @@ const renderMap = (
                                 },
                                 {
                                     "field": "DisplayValue",
-                                    "title": mapMeasurementType
+                                    "title": `${mapMeasurementType} ${displayType}`
                                 },
                             ],
                         },
@@ -321,7 +321,7 @@ const renderMap = (
                         },
                         {
                             "field": "DisplayValue", 
-                            "title": mapMeasurementType
+                            "title": `${mapMeasurementType} ${displayType}`
                         },
                     ],
                     "x": {"field": "GeoID", "sort": "y", "axis": null},
