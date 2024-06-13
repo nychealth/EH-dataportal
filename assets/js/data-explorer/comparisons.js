@@ -24,6 +24,8 @@ const renderComparisonsChart = (
     const comp_unreliability = [...new Set(data.objects().map(d => d.Note))].filter(d => !d == "");
 
     document.querySelector("#trend-unreliability").innerHTML = ""; // blank to start
+    document.querySelector("#trend-unreliability").classList.add('hide') = "" // blank to start
+
 
     comp_unreliability.forEach(element => {
 
