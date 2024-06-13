@@ -7,7 +7,11 @@
     <div id="datastoryheader" style="background-image: URL({{ $image.RelPermalink }}); background-position: 50% 25%">
 
         <div class="medium my-auto">
-            <h1 class="titleheader py-2 px-4">
+            <h1 class="titleheader d-none d-sm-block py-2 px-4">
+                {{ .Title }}
+            </h1>
+
+            <h1 class="titleheader-mobile d-xs-block d-md-none py-2 px-4">
                 {{ .Title }}
             </h1>
         </div>
@@ -29,7 +33,7 @@
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
                         <li class="breadcrumb-item"><a href={{ relURL "data-stories" }}>Data Stories</a></li>
-                        <li class="breadcrumb-item active"><a href="{{ .Page.RelPermalink }}">{{ .Title }}</a></li>
+                        <li class="breadcrumb-item active d-none d-sm-block"><a href="{{ .Page.RelPermalink }}">{{ .Title }}</a></li>
 
                     </ul>
                 </nav>
