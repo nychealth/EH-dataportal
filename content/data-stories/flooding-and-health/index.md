@@ -82,7 +82,7 @@ The National Weather Service issued its first-ever flash flood emergency warning
 <div class="card card-left-border shadow-sm mb-2 fs-sm">
     <div class="card-body">
       <strong>Why is rainfall flooding increasing?</strong><br>
-      <p> Climate change is making it rain more intensely because warmer air holds more moisture. It has rained larger amounts each year on average since 1960 in NYC.<p>
+      <p> Climate change is making it rain more intensely because warmer air holds more moisture. <a href="https://climateassessment.nyc/assessment/tail-risk-climate-drivers-of-extreme-heat-and-new-methods-for-extreme-event-projections/">It has rained larger amounts each year on average since 1960 in NYC.</a><p>
       <strong>What will the future of rainfall flooding look like in NYC? </strong>
       <p> Rainfall intensity and frequency is increasing, which is associated with inland flooding, like what we saw during Ida. Exactly how and where rainfall-based flooding will occur can be difficult to predict, but we know that low-lying areas, including basement apartments, are at higher risk. Average annual rainfall is projected to increase by a minimum of 2 – 7% by the 2030s and a maximum of 7 – 17% by the 2080s.</p>
       </div>
