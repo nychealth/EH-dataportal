@@ -1,0 +1,143 @@
+{{- define "main" -}}
+
+<style>
+  .map {
+    width: 100%;
+    height: 550px;
+  }
+</style>
+
+<article class="container-fluid" id="skip-header-target">
+
+    <div class="row">
+        <div class="col-md-11 mx-auto my-4">
+            <nav aria-label="breadcrumb" class="mb-4">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
+                    <li class="breadcrumb-item"><a href={{ relURL "data-features" }}>Data Features</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
+                </ul>
+            </nav>
+
+            <div class="row">
+              <div class="col-md-8 mx-auto col-sm-12">
+                <h1><i class="fas fa-star" aria-hidden="true" style="margin-right: 10px"></i>{{ .Title }}</h1>
+                {{- .Content  -}}
+
+                <div id="iceMap" class="map"></div>
+
+                <em>INTERNAL NOTE: mock data above</em>
+
+                <h2 class="h4 mt-4">How it works</h2>
+                  <ul>
+                  <li>You define a population that you consider to be privileged</li>
+                  <li>You define a population that you consider to be unprivileged, or deprived</li>
+                  </ul>
+                  <p>For each neighborhood, you calculate a score:</p>
+                  <div class="px-6 my-4 text-center font-weight-bold">
+                  (Privileged population – deprived population) 
+                  <hr class="my-1">
+                  Total population 
+                  </div>
+                  <p>For each neighborhood, this results in a score that ranges from –1 to 1. Here's what it means:</p>
+
+                <div class="row my-4">
+                  <div class="col-md-4 border py-2">
+                    <p class="text-center"><span class="h4">-1</span></p>
+                    <p class="fs-sm">All of the neighborhood's population is in the deprived category </p>
+                  </div>
+
+                  <div class="col-md-4 border py-2">
+                    <p class="text-center"><span class="h4">0</span></p>
+                    <p class="fs-sm">Either the neighborhood has even numbers of people in the deprived and privileged categories, or it has none of either category </p>
+                  </div>
+
+                  <div class="col-md-4 border py-2">
+                    <p class="text-center"><span class="h4">1</span></p>
+                    <p class="fs-sm">All of the neighborhood's population is in the privileged category </p>
+                  </div>
+                </div>
+
+
+                <h2 class="h4">Our Segregation Score</h2>
+                <p>When we calculate this segregation score, we use the following definitions:</p>
+
+                <div class="row my-2">
+                  <div class="col-md-6 border py-1">
+                    <p class="text-center"><span class="h5">Privileged</span></p>
+                    <p>White, non-Hispanic households with incomes higher than 80% of New Yorkers</p>
+                  </div>
+
+                  <div class="col-md-6 border py-1">
+                    <p class="text-center"><span class="h5">Deprived</span></p>
+                    <p>Black, Hispanic, or Asian households with incomes lower than 80% of New Yorkers</p>
+                    
+                  </div>
+                </div>
+
+                <p>Public health has a history of referring to some populations as "at-risk" or "vulnerable," as if the health disparities that they experience are a product of some characteristic of the people in this groups. Rather, these disparities are produced by a system of inequality and racism that provides resources to privileged groups and withholds them from deprived groups. </p>
+                <p>This approach to the Segregation Score captures the joint impacts of economic inequality, racial/ethnic inequality, and spatial segregation on the health of New Yorkers - and helps put the blame on an unjust system.</p>
+
+
+              <h2 class="h4">Calculate a Segregation Score using your own assumptions</h2>
+              <p>This 'index of concentration at the extremes' can be used to look at how any two populations are segregated. In the widget below, choose any two populations, and the map will show how they're segregated throughout New York City. </p>
+
+              <div class="dropdown" style="display:inline-block;width: 49%;">
+                <button class="btn btn-outline-secondary btn-block dropdown-toggle" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="fas fa-square mr-1" style="color:purple"></i><span id="firstPop">First population</span>
+                </button>
+                <div class="dropdown-menu" id="dd" aria-labelledby="dropdownMenuButton1">
+                  <!--
+                  <a class="dropdown-item" href="#">Action</a> -->
+
+                </div>
+              </div>
+
+              <div class="dropdown" style="display:inline-block;width: 49%;">
+                <button class="btn btn-outline-secondary btn-block dropdown-toggle" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="fas fa-square mr-1" style="color:orange"></i><span id="secondPop">Second population</span>
+                </button>
+                <div class="dropdown-menu" id="dd2" aria-labelledby="dropdownMenuButton2">
+                </div>
+              </div>
+
+              <div id="mapTwo" class="map mb-4"></div>
+
+              <h2 class="h4 mt-4">More about analyzing health disparities</h2>
+              <p>It's widely known that in New York City (as elsewhere), people with lower socio-economic status bear a higher burden of poor health and premature death. To address this, it's important to analyze health data using socioeconomic data. In 2011, the Health Department adopted a policy of using neighborhood-level poverty (the percent of people in an area living below the federal poverty threshold) in its analysis of data on health outcomes. <a href="https://www.nyc.gov/assets/doh/downloads/pdf/epi/epiresearch-SES-measure.pdf">Read about the rationale for using neighborhood poverty</a>.</p>
+              <p>There are many good reasons to use neighborhood poverty. It's a good proxy for when individual-level data (eg personal income) are unavailable. And, it's been shown to predict a wide range of health outcomes, including mortality.  </p>
+              <p>But neighborhood poverty doesn't fully capture the factors that affect health. Low poverty areas – with under 10% of residents living below the federal poverty threshold) include residents with a wide range of incomes – bundling people with very different experiences and resources. Furthermore, we see time and again how structural racism exposes people of color to greater health threats and erects barriers to resources that protect health, like education, health care, employment, housing, and economic stability. Neighborhood poverty captures how economic factors affect health, but not how social factors like racism play a role.   </p>
+              <p>More recently, <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4815605/">Health Department researchers published a paper showing that another measure, 'the index of concentration at the extremes,' does a better job of showing disparities</a>. This means that the Segregation Score showed greater differences in health outcomes between groups on each end of it, compared to things like neighborhood poverty. In other words, it more accurately captures differences in neigborhoods.</p>
+
+              <h2 class="h4">Using Segregation Score to analyze health data</h2>
+              <p>When we put neighborhoods into 5 buckets (quintiles) by their segregation score, and use that to look at health data, we can see significant disparities. For example, below are asthma ED visits for children age 5 to 17, sorted by segregation score.  
+              </p>
+              <div style="min-height:567px" class="my-2"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/HU0HI/embed.js?v=1" charset="utf-8"></script><noscript><img src="https://datawrapper.dwcdn.net/HU0HI/full.png" alt="" /></noscript></div>
+
+              <p>We can clearly see that while there's a lot of overlap between the five categories, the most deprived neighborhoods have much higher rates of childhood asthma ED visits – while the most privileged neighborhoods have uniformly low rates.  </p>
+
+              <p><strong>Read more:</strong></p>
+              <ul>
+                <li>Declaring racism a public health crisis</li>
+              </ul>
+
+              </div>
+              <!-- end content -->
+
+            </div>
+
+
+
+
+        </div>
+    </div>
+
+
+
+
+</article>
+
+<!--bring in JS -->
+<script type="text/javascript" src="ice.js"></script>
+
+{{- end -}}
