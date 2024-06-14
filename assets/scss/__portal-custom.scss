@@ -243,6 +243,12 @@
     list-style: none;
     background-color: $breadcrumb-bg;
     @include border-radius($border-radius);
+    font-size: 1rem;
+    line-height: 1.25px;
+    @include media-breakpoint-up(md) {
+        font-size: 1.0625rem;
+        line-height: 1.3rem;
+    }
 }
 
 .breadcrumb-item {
@@ -1214,7 +1220,7 @@ th.tablehead {
 }
 
 .pullquote {
-    font-family: Baskerville, "Baskerville Old Face", "Goudy Old Style", Garamond, "Times New Roman", serif;
+    font-family: Helvetica, Arial, sans-serif;
     font-weight: bold;
     padding: 40px 40px 30px 40px;
     margin: 25px 0px;
