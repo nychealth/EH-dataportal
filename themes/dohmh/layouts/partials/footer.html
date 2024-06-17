@@ -231,7 +231,7 @@
                             result.meta.title = result.meta.title
                                 .replace(/&#(\d+);/g, ((match, dec) => `${String.fromCharCode(dec)}`))
                                 .replaceAll("&amp;", "&");
-                            
+
                             // process sub-results
 
                             result.sub_results.forEach(sub => {
@@ -289,7 +289,7 @@
             </script>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
         </div>
       </div>
     </div>

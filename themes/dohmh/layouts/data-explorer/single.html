@@ -221,7 +221,7 @@
 
 <article class="container-fluid" id="skip-header-target">
     <div class="row">
-        <div class="col-12 mt-4">
+        <div class="col-12 mt-4 border-top">
             <nav aria-label="breadcrumb" class="mb-2">
                 <ul class="breadcrumb mr-auto">
                     <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
@@ -294,6 +294,10 @@
                 </div>
             </div>
 
+        {{- if .Params.archive -}}
+            <div class="border p-1"><p><strong>Note:&nbsp;</strong>{{- .Params.archive | safeHTML -}}</p></div>
+        {{- end -}}
+
         <!-- Indicator title and description -->
         <div style="clear:both; border-left: 8px solid #00923E50;" class="px-1">
             <span class="border-bottom mt-2 font-weight-bold d-none d-lg-block"><span id="indicatorTitle">Loading data...</span></span>
@@ -303,7 +307,7 @@
         <!-- view selection buttons -->
         <div class="mt-3">
             <!-- Nav buttons -->
-            <div class="nav nav-pills bg-white device-xs" role="tablist">
+            <div class="nav nav-pills bg-white device-xs border-bottom" role="tablist">
         
                 <a class="nav-item nav-link flex-fill" id="tab-btn-table" href="#tab-table" data-toggle="pill"
                    aria-controls="tab-table" aria-selected="false" role="tab" style="text-decoration:none">
