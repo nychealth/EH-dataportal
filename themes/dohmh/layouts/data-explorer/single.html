@@ -231,6 +231,10 @@
                 <ul class="breadcrumb mr-auto">
                     <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
                     <li class="breadcrumb-item"><a href={{ relURL "data-explorer" }}>Data Explorer</a></li>
+                    <li class="breadcrumb-item"><button type="button" class="btn btn-sm btn-outline-light text-primary" data-toggle="modal"
+                        data-target="#topicModal">
+                        <i class="fas fa-ellipsis-h font-weight-bold" aria-hidden="true"></i>
+                        </button></li>
                 </ul>
             </nav>
             <div class="float-right pr-4 d-sm-none d-lg-block">
@@ -252,10 +256,7 @@
             <div class="d-none d-lg-block">
             <!-- Indicator buttons (hidden on mobile)-->
             <span class='home-label d-none d-md-block border-bottom mb-1 pb-1 font-weight-bold'>
-                <button type="button" class="btn btn-sm btn-outline-light text-primary float-right" data-toggle="modal"
-                data-target="#topicModal">
-                <i class="fas fa-ellipsis-h font-weight-bold" aria-hidden="true"></i>
-                </button>
+
                 <span class="home-label" style="display: inline-block;" data-pagefind-ignore="all">{{ .Title }}</span> datasets:</span>
             <div class="l-green-border de-dash-borderbottom" style="">
             <div id="indicatorButtons" class="pb-0 overflow-fade-ind mb-0">
@@ -309,11 +310,8 @@
         {{- end -}}
 
         <!-- Indicator title and description -->
-        <span class="home-label font-weight-bold d-sm-none d-lg-block">Dataset</span>
-        <div style="clear:both; border-left: 8px solid #00923E50;" class="px-1">
-            <span class="border-bottom mt-2 font-weight-bold d-none d-lg-block"><span id="indicatorTitle">Loading data...</span></span>
-            <p class="fs-sm indicator-description">Just a moment...</p>
-        </div>
+        <span class="border-bottom font-weight-bold d-none d-lg-block"><span id="indicatorTitle">Loading data...</span></span>
+        <p class="fs-sm indicator-description">Just a moment...</p>
         
         <!-- view selection buttons -->
         <div class="mt-3">
@@ -372,7 +370,7 @@
                     </div>
             
                     <span id="tableTitle" class="home-label border-bottom"></span>
-                    <div id="summary-table" class="" style="height:550px!important">
+                    <div id="summary-table" class="" style="height:600px!important">
                         <!-- INSERT SUMMARY TABLE HERE -->
                     </div>
 
