@@ -1,6 +1,6 @@
 ---
 _schema: default
-title: 2024 NYC Heat-Related Mortality Report - Draft
+title: 2024 NYC Heat-Related Mortality Report
 draft: false
 date: 2021-09-08T11:14:56-04:00
 categories:
