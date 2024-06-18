@@ -217,9 +217,13 @@ const renderLinksChart = (
                     },
                     "x": {
                         "title": [`${xIndicatorName && `${xIndicatorName}`}`, `${xMeasure} ${xDisplay && `(${xDisplay})`} (${xTimePeriod})`],
+                        "subtitle": "Subtitle string",
                         "field": xValue,
                         "type": "quantitative",
-                        "scale": {"domainMin": xMin, "nice": true}
+                        "scale": {"domainMin": xMin, "nice": true},
+                        "axis": {
+                            "titleAlign": "left"
+                          }
                     },
                     "tooltip": [
                         {
