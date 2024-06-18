@@ -23,11 +23,20 @@ const renderMap = (
 
     // console.log("mapTimes [map.js]", mapTimes);
 
+    console.log(data[0])
+
     let mapGeoType            = data[0]?.GeoType;
     let geoTypeShortDesc      = data[0]?.GeoTypeShortDesc;
+    let GeoTypeDesc           = data[0]?.GeoTypeDesc;
     let mapMeasurementType    = metadata[0]?.MeasurementType;
-    let displayType           = metadata[0]?.DisplayType;
     let mapGeoTypeDescription = [...new Set(geoTable.filter(aq.escape(d => d.GeoType === mapGeoType)).array("GeoTypeShortDesc"))];
+    var displayType;
+
+    if (mapMeasurementType.includes('Percent') || mapMeasurementType.includes('percent')) {
+        displayType       = '%'
+    } else {
+        displayType       = metadata[0]?.DisplayType;
+    }
 
     let mapTime = mapTimes[0];
     let topoFile = '';
@@ -174,7 +183,7 @@ const renderMap = (
             "fontSize": 18, 
             "font": "sans-serif",
             "baseline": "top",
-            "subtitle": `${mapMeasurementType}${displayType && ` (${displayType})`}, by ${mapGeoTypeDescription} (${mapTime})`,
+            "subtitle": `${mapMeasurementType}${displayType && ` (${displayType})`}`,
             "subtitleFontSize": 13
         },
         "data": {
@@ -192,6 +201,12 @@ const renderMap = (
             "legend": {"disable": true}
         },
         "projection": {"type": "mercator"},
+        "transform": [
+            {
+                "calculate": `datum.DisplayValue + ' ${displayType}'`,
+                "as": "valueLabel"
+            }
+        ],
         "vconcat": [
             {
                 "layer": [
@@ -258,7 +273,7 @@ const renderMap = (
                                     "bin": false,
                                     "field": "Value",
                                     "type": "quantitative",
-                                    "scale": {"scheme": {"name": color, "extent": [0.125, 1.125]}},
+                                    "scale": {"scheme": {"name": color, "extent": [0.125, 1.25]}},
                                     ...legend    
                                 },
                                 "value": "#808080"
@@ -279,11 +294,11 @@ const renderMap = (
                             "tooltip": [
                                 {
                                     "field": "Geography", 
-                                    "title": geoTypeShortDesc
+                                    "title": GeoTypeDesc
                                 },
                                 {
-                                    "field": "DisplayValue",
-                                    "title": `${mapMeasurementType} ${displayType}`
+                                    "field": "valueLabel",
+                                    "title": `${mapMeasurementType}`
                                 },
                             ],
                         },
@@ -329,7 +344,7 @@ const renderMap = (
                         "bin": false,
                         "field": "Value",
                         "type": "quantitative",
-                        "scale": {"scheme": {"name": color, "extent": [0.25, 1.25]}},
+                        "scale": {"scheme": {"name": color, "extent": [0.125, 1.25]}},
                         "legend": false
                     },
                     "stroke": {
