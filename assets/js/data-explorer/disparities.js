@@ -176,6 +176,8 @@ const renderDisparitiesChart = async (
     // define spec
     // ----------------------------------------------------------------------- //
 
+    console.log('display types: ', primaryDisplay)
+
     let disspec = {
         "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
         "description": `${primaryIndicatorName} ${primaryMeasurementType} and poverty scatterplot`,
@@ -223,6 +225,16 @@ const renderDisparitiesChart = async (
         "data": {
             "values": disparityData
         },
+        "transform": [
+            {
+              "calculate": `(datum.DisplayValue_1 + ' ${primaryDisplay}')`,
+              "as": "valueLabel"
+            },
+            {
+                "calculate": `(datum.DisplayValue_2 + '%')`,
+                "as": "povLabel"
+            }
+          ],
         "layer": [
         {
             "mark": {
@@ -261,35 +273,23 @@ const renderDisparitiesChart = async (
                 "xOffset": {"field": "randomOffsetX", "type": "quantitative"}, // Jitter
                 "tooltip": [
                 {
-                    "title": "Borough", 
-                    "field": "Borough", 
-                    "type": "nominal"
-                },
-                {
                     "title": geoTypeShortDesc, 
                     "field": "Geography_1", 
                     "type": "nominal"
                 },
                 {
-                    "title": "Time Period", 
-                    "field": "TimePeriod_2", 
+                    "title": "Borough", 
+                    "field": "Borough", 
                     "type": "nominal"
                 },
                 {
                     "title": primaryMeasureName,
-                    "field": "Value_1",
-                    "type": "quantitative",
-                    "format": ",.1~f"
+                    "field": "valueLabel",
+                    "type": "nominal"
                 },
                 {
                     "title": disparityMeasureName,
-                    "field": "Value_2",
-                    "type": "quantitative",
-                    "format": ",.1~f"
-                },
-                {
-                    "title": disparityIndicatorName,
-                    "field": "PovCat",
+                    "field": "povLabel",
                     "type": "nominal"
                 }
                 ],
