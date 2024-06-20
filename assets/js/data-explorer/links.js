@@ -28,14 +28,28 @@ const renderLinksChart = (
 
     const primaryMeasurementType = primaryMetadata[0]?.MeasurementType;
     const primaryMeasureName     = primaryMetadata[0]?.MeasureName;
-    const primaryDisplay         = primaryMetadata[0]?.DisplayType;
+
+    let primaryDisplay
+    if (primaryMeasurementType.includes('Percent') || primaryMeasurementType.includes('percent') && !primaryMeasurementType.includes('percentile')) {
+        primaryDisplay = '%' // assigns a % displayType for anything that includes percent (but NOT percentile) in its measurementType
+    } else {
+        primaryDisplay         = primaryMetadata[0]?.DisplayType; // else, the pre-existing assignment
+    }
+
     const primaryTimePeriod      = data[0]?.TimePeriod_1;
     const geoTypeShortDesc       = data[0]?.GeoTypeShortDesc_1;
 
     const secondaryMeasurementType = secondaryMetadata[0]?.MeasurementType
     const secondaryMeasureName     = secondaryMetadata[0]?.MeasureName
     const secondaryMeasureId       = secondaryMetadata[0]?.MeasureID
-    const secondaryDisplay         = secondaryMetadata[0]?.DisplayType;
+
+    let secondaryDisplay;
+    if (secondaryMeasurementType.includes('Percent') || secondaryMeasurementType.includes('percent') && !secondaryMeasurementType.includes('percentile')) {
+        secondaryDisplay = '%' // assigns a % displayType for anything that includes percent (but NOT percentile) in its measurementType
+    } else {
+        secondaryDisplay         = secondaryMetadata[0]?.DisplayType; // else, the pre-existing assignment
+    }
+
     const secondaryTimePeriod      = data[0]?.TimePeriod_2;
 
     const SecondaryAxis = 
