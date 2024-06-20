@@ -98,7 +98,7 @@ const renderComparisonsChart = (
         let hasBoros = compGroupLabel.length > 1 ? true : false; 
         
         plotTitle = indicatorName;
-        plotSubtitle = compMeasurementType + (compDisplayTypes.length > 0 ? ` (${compDisplayTypes})` : "") + (hasBoros ? " by Borough" : "");
+        plotSubtitle = compMeasurementType + (compDisplayTypes.length > 0 ? ` (${compDisplayTypes})` : "") + (hasBoros ? "" : "");
         console.log('compDisplayTypes 0: ', compDisplayTypes)
 
         comp_group_col = "Geography"
