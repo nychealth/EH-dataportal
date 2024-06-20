@@ -300,6 +300,10 @@ const renderMap = (
                                     "field": "valueLabel",
                                     "title": `${mapMeasurementType}`
                                 },
+                                {
+                                    "field": "TimePeriod",
+                                    "title": "Time period"
+                                }
                             ],
                         },
                     }
@@ -338,6 +342,10 @@ const renderMap = (
                             "field": "DisplayValue", 
                             "title": `${mapMeasurementType} ${displayType}`
                         },
+                        {
+                            "field": "TimePeriod",
+                            "title": "Time period"
+                        }
                     ],
                     "x": {"field": "GeoID", "sort": "y", "axis": null},
                     "color": {
