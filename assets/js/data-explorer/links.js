@@ -186,6 +186,16 @@ const renderLinksChart = (
         "data": {
             "values": data
         },
+        "transform": [
+            {
+                "calculate": `(datum.DisplayValue_1 + ' ${xDisplay}')`,
+                "as": "xLabel"
+            },
+            {
+                "calculate": `(datum.DisplayValue_2 + ' ${yDisplay}')`,
+                "as": "yLabel"
+            }
+        ],
         "layer":[
             {
                 "mark": { 
@@ -227,31 +237,24 @@ const renderLinksChart = (
                     },
                     "tooltip": [
                         {
-                            "title": "Borough",
-                            "field": "Borough",
-                            "type": "nominal"
-                        },
-                        {
                             "title": geoTypeShortDesc,
                             "field": "Geography_1",
                             "type": "nominal"
                         },
                         {
-                            "title": "Time Period",
-                            "field": "TimePeriod_2",
+                            "title": "Borough",
+                            "field": "Borough",
                             "type": "nominal"
                         },
                         {
                             "title": yMeasureName,
-                            "field": yValue,
-                            "type": "quantitative",
-                            "format": ",.1~f"
+                            "field": "yLabel",
+                            "type": "nominal"
                         },
                         {
                             "title": xMeasureName,
-                            "field": xValue,
-                            "type": "quantitative",
-                            "format": ",.1~f"
+                            "field": "xLabel",
+                            "type": "nominal"
                         }
                     ],
                     "color": {
