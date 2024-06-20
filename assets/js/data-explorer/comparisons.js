@@ -99,6 +99,8 @@ const renderComparisonsChart = (
         
         plotTitle = indicatorName;
         plotSubtitle = compMeasurementType + (compDisplayTypes.length > 0 ? ` (${compDisplayTypes})` : "") + (hasBoros ? " by Borough" : "");
+        console.log('compDisplayTypes 0: ', compDisplayTypes)
+
         comp_group_col = "Geography"
 
         // console.log(">> compGroupLabel", compGroupLabel);
@@ -172,10 +174,12 @@ const renderComparisonsChart = (
             // console.log(">>> SUPPRESS by", compId);
 
             plotSubtitle = compMeasurementType + (compDisplayTypes.length > 0 ? ` (${compDisplayTypes})` : "");
+            console.log('compDisplayTypes 1: ', compDisplayTypes)
 
         } else {
 
             plotSubtitle = compMeasurementType + (compDisplayTypes.length > 0 ? ` (${compDisplayTypes})` : "") + " by " + compLegendTitle;
+            console.log('compDisplayTypes 2: ', compDisplayTypes)
 
         }
 
@@ -242,7 +246,7 @@ const renderComparisonsChart = (
     // create transform after pivot that replaces "undefined" with ""
     // ----------------------------------------------------------------------- //
 
-    let compReplaceInvalid = compGroupLabel.map(x => {return {"calculate": `isValid(datum[\"${x}\"]) ? datum[\"${x}\"] : ""`, "as": `${x}`}})
+    let compReplaceInvalid = compGroupLabel.map(x => {return {"calculate": `isValid(datum[\"${x}\"]) ? (datum[\"${x}\"] + ' ${compDisplayTypes}') : ""`, "as": `${x}`}})
 
     // ----------------------------------------------------------------------- //
     // create tooltips JSON
