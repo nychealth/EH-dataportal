@@ -36,7 +36,15 @@ const renderDisparitiesChart = async (
     const primaryMeasureName     = primaryMetadata[0]?.MeasureName;
     const primaryAbout           = primaryMetadata[0]?.how_calculated;
     const primarySources         = primaryMetadata[0]?.Sources;
-    const primaryDisplay         = primaryMetadata[0]?.DisplayType;
+
+    console.log(primaryMetadata[0])
+
+    let primaryDisplay;
+    if (primaryMeasurementType.includes('Percent') || primaryMeasurementType.includes('percent') && !primaryMeasurementType.includes('percentile')) {
+        primaryDisplay = '%' // assigns a % displayType for anything that includes percent (but NOT percentile) in its measurementType
+    } else {
+        primaryDisplay         = primaryMetadata[0]?.DisplayType; // else, the pre-existing assignment
+    }
 
     // console.log("primaryMeasureId [renderDisparitiesChart]", primaryMeasureId);
 
@@ -283,12 +291,12 @@ const renderDisparitiesChart = async (
                     "type": "nominal"
                 },
                 {
-                    "title": primaryMeasureName,
+                    "title": primaryIndicatorName,
                     "field": "valueLabel",
                     "type": "nominal"
                 },
                 {
-                    "title": disparityMeasureName,
+                    "title": disparityIndicatorName,
                     "field": "povLabel",
                     "type": "nominal"
                 }
