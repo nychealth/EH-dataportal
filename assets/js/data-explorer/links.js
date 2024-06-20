@@ -232,7 +232,8 @@ const renderLinksChart = (
                         "type": "quantitative",
                         "scale": {"domainMin": xMin, "nice": true},
                         "axis": {
-                            "titleAlign": "left"
+                            "titleAlign": "left",
+                            "tickCount": 4
                           }
                     },
                     "tooltip": [
