@@ -72,6 +72,8 @@
 
                     indicators = metadata;
 
+                    createMeasureMetadata();
+
                     d3.json('{{ site.Params.data_repo }}{{ site.Params.data_branch }}/indicators/metadata/TimePeriods.json')
                         .then(tp => {
 
@@ -84,6 +86,30 @@
                         })
                 });
             
+            var object = [];
+
+            function createMeasureMetadata() {
+                // create object of indicators, measures and text metadata
+                for (let i = 0; i < indicators.length; i++) {
+
+                    for (let j = 0; j < indicators[i].Measures.length; j ++) {
+                        
+                        var measure = {};
+                        measure.indicatorName    = indicators[i].IndicatorName
+                        measure.indicatorDesc    = indicators[i].IndicatorDescription
+                        measure.measureName      = indicators[i].Measures[j].MeasureName
+                        measure.measurementType  = indicators[i].Measures[j].MeasurementType
+                        measure.displayType      = indicators[i].Measures[j].DisplayType
+                        
+                        object.push(measure)
+                    }
+
+                }
+    
+                console.log(object)
+            }
+            
+
 
             
             // Separating json load from subsequent functions, so we can filter or modify later without reloading json
