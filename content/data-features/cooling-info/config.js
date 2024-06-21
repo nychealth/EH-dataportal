@@ -147,7 +147,7 @@ var content = [
     {
         "id": 6,
         "text": "Do you have a fan?",
-        "prompt": "Fans can help cool you down by moving air around to increase sweat evaporation, which can be especially helpful in a humid environment, or to pull in cooler air from outside. However, fans do not cool the air so the air currents flowing over the body must be cooler than your body temperature to cool you down. When it’s hot, a fan alone is not enough.", 
+        "prompt": "Fans can help cool you down by moving air around to increase sweat evaporation, which can be especially helpful in a humid environment, or to pull in cooler air from outside. However, fans do not cool the air so the air currents flowing over the body must be cooler than your body temperature to cool you down. When it’s hot, a fan alone is not enough. Spending time in air conditioning — even for an hour or two — can help you stay safe. <a href='https://finder.nyc.gov/coolingcenters'>Visit a cool place when it is hot outside.</a>", 
         "image": "Fan.svg",
         "options": [
             {
