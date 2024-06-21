@@ -268,14 +268,14 @@ const renderDisparitiesChart = async (
                     },
                 },
                 "x": {
-                    "title": [`${disparityIndicatorName && `${disparityIndicatorName}`}`, `(${disparityTime})`],
+                    "title": [`${disparityIndicatorName && `${disparityIndicatorName}`} (${disparityTime})`],
                     "field": "PovRank", // Changed
                     "type": "ordinal",
                     "axis": {
                         "labelExpr": "(datum.value == 4 ? 'Very high (over 30%)' : (datum.value == 3  ? 'High (20 - 29.9%)' : ( datum.value == 2  ? 'Medium (10 - 19.9%)' : 'Low (0 - 9.9%)')))",
                         "labelAlign": "center",
                         "labelAngle": 0,
-                        "titleAlign": "left"
+                        "titleAlign": "center"
                     }
                 },
                 "xOffset": {"field": "randomOffsetX", "type": "quantitative"}, // Jitter
