@@ -17,7 +17,7 @@
         <div class="row">
             <div class="col-md-8 col-sm-12 my-4">
 
-                <h1><i class="fas fa-star mr-1" aria-hidden="true"></i>Key Topics in Environmental Health</h1>
+                <h1><i class="fas fa-star mr-1 text-primary" aria-hidden="true"></i>Key Topics in Environmental Health</h1>
                 <p>{{- .Content -}}</p>
             </div>
         </div>
@@ -27,7 +27,7 @@
         <div class="row">
             {{- range .Pages -}}
             <div class="card content-card mb-4 col-sm-6 col-md-4">
-                <div class="card-content key-topics">
+                <div class="card-content primary">
                     <a href="{{ .RelPermalink}}">
                         {{ $src := .Resources.GetMatch .Params.image }}
                         {{ $image := $src.Resize "740x"}}

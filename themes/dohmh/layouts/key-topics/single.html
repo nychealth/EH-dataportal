@@ -45,36 +45,37 @@
 
         </div>
 
-        {{- if where ( where .Site.RegularPages "Section" "key-topics") ".Params.categories" "intersect" ( slice .Params.keyTopic ) -}}
+        {{- if where ( where .Site.RegularPages "Section" "data-features") ".Params.categories" "intersect" ( slice .Params.keyTopic ) -}}
         <div class="row mt-4">
             <div class="col-lg-10 col-md-12 mx-auto">
                 <div class="row">
-                    <div class="col key-topics">
-                        <div>
-                            <span class="h3 fs-lg"><i class="fas fa-chart-bar mr-1" aria-hidden="true"></i>Data Features:</span> <span class="home-label">Reports and interactives</span>
+                    <div class="col">
+                        <div class="df-accent">
+                            <span class="h3 fs-lg"><i class="fas fa-chart-bar mr-1 key-topics" aria-hidden="true"></i>Data Features:</span> <span class="home-label">Interactive infographics and reports</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="row mt-2">
-                    <!-- Range through-->
-                    {{- range where ( where .Site.RegularPages "Section" "key-topics") ".Params.categories" "intersect" ( slice .Params.keyTopic ) -}}
-                    <div class="card content-card mb-4 col-sm-6 col-md-4">
-                        <div class="card-content card-body">
-                            <h4 class="fs-md"><a class="link-track" href="{{ .RelPermalink }}" class="text-primary">{{ .Title }}</a></h4>
-                            <p class="fs-sm">{{ .Content | plainify | truncate 175 | htmlUnescape }}
-                            </p>
-                            <p class="fs-sm text-primary float-right mb-2"><a class="link-track" href="{{ .RelPermalink }}">Get the data... <i
-                                class="fas fa-arrow-circle-right"></i></a></p>
+                <div class="row my-2">
+                    {{- range where ( where .Site.RegularPages "Section" "data-features") ".Params.categories" "intersect" ( slice .Params.keyTopic ) -}}
+                    {{- if not .Params.hide -}}
+                        <div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content card-body">
+                                <h4 class="fs-md"><a class="link-track" href="{{ .RelPermalink }}" class="text-primary">{{ .Title }}</a></h4>
+                                <p class="fs-sm">{{ .Content | plainify | truncate 175 | htmlUnescape }}
+                                </p>
+                                <p class="fs-sm text-primary float-right mb-2"><a class="link-track" href="{{ .RelPermalink }}">Get the data... <i
+                                    class="fas fa-arrow-circle-right"></i></a></p>
+                            </div>
                         </div>
-                      </div>
+                        {{- end -}}
                     {{- end -}}
 
-
-
                 </div>
+
             </div>
         </div>
+
         {{- end -}}
 
 

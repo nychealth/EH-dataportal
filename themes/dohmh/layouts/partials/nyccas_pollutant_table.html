@@ -1,0 +1,88 @@
+<div id="pollutantPredictors">
+  <div class="row">
+      <div class="col-md-7">
+              <div class="">
+                  <button type="button" class="btn srcbtn btn-outline-dark active" onclick="changePollutant('bc')" id="bcbtn" value="bc">BC</button>
+                  <button type="button" class="btn srcbtn btn-outline-dark" onclick="changePollutant('no')" id="nobtn" value="no">NO</button>
+                  <button type="button" class="btn srcbtn btn-outline-dark" onclick="changePollutant('no2')" id="no2btn" value="no2">NO<sub>2</sub></button>
+                  <button type="button" class="btn srcbtn btn-outline-dark" onclick="changePollutant('o3')" id="o3btn" value="o3">O<sub>3</sub></button>
+                  <button type="button" class="btn srcbtn btn-outline-dark" onclick="changePollutant('pm')" id="pmbtn" value="pm">PM<sub>2.5</sub></button>
+              </div>
+      </div>
+  </div>
+
+  <div class="row">
+      <div class="col">
+          <div class="mt-1">
+
+                  <!--table placeholder-->
+                  <table class="table" id="mainTable">
+                      <thead>
+                        <tr>
+                          <th scope="col" style="width:20%">Indicator</th>
+                          <th scope="col" style="width: 35%">Description</th>
+                          <th scope="col">Associated sources</th>
+                        </tr>
+                      </thead>
+                      <tbody id="tableBody">
+                        <!-- source info gets deposited here -->
+                      </tbody>
+                    </table>
+
+
+
+          </div>
+      </div>
+  </div>
+  <hr>
+
+  <script>
+      var pollutant = 'bc' // default
+      var polTable = []
+      var filteredTable
+      var table = document.getElementById('tableBody')
+
+      function changePollutant(x) {
+          pollutant = x;
+          console.log('pollutant: ', x)
+
+          // remove active classes from .polbtn & add active class to x_btn
+          const btns = document.querySelectorAll(".srcbtn")
+            for (var i = 0; i < btns.length; i++) {
+                btns[i].classList.remove('active')
+            }
+          document.getElementById(x+'btn').classList.add('active')
+
+          // filter data table for selected pollutant
+          filterData(x)
+        }
+
+
+      function filterData(x) {
+        filteredTable = polTable.filter(row => row.Pollutant === x);
+        table.innerHTML = ''
+        for (let i = 0; i < filteredTable.length; i++) {
+          // console.log(filteredTable[i].Indicator)
+              var row = table.insertRow()
+
+              // Create cells for Indicator, Description, and Sources
+              var cell1 = row.insertCell(0);
+              var cell2 = row.insertCell(1);
+              var cell3 = row.insertCell(2);
+
+              // Set the content of each cell
+              cell1.innerHTML = filteredTable[i].Indicator;
+              cell2.innerHTML = filteredTable[i].Description;
+              cell3.innerHTML = filteredTable[i].Sources;
+        }
+      }
+
+    // Initialize: ingest spatial model CSV, and filter for default pollutant
+    d3.csv(`embed/spatial-model.csv`)
+    .then(async data => {
+        polTable = data;
+        filterData('bc')
+    })
+
+  </script>
+</div>
