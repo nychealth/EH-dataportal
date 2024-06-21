@@ -1,5 +1,7 @@
 ---
 title: "Protect yourself during hot weather and bad air quality"
+aliases:
+  - /key-topics/climatehealth/cooling-info/
 date: 2023-08-01T11:51:01-04:00
 draft: false
 seo_title: "Protect yourself during hot weather and bad air quality."
@@ -23,6 +25,7 @@ keywords:
 layout: cooling-info
 customJS: cooling-info.js
 config: config.js
+image: AC.png
 ---
 
 Extreme heat and bad air quality can harm your health and may become more common due to climate change. When the air outside is unhealthy, how can you stay safe?

@@ -35,6 +35,25 @@ fetch('https://api.weatherapi.com/v1/forecast.json?key=0d4a042ad8ec468da7b135156
     printToPage()
   })
 
+
+fetch('https://feeds.airnowapi.org/rss/realtime/94.xml')
+    .then(response => {
+      if (!response.ok) {
+          throw new Error('Network response was not ok');
+      }
+      return response.text();
+    })
+    .then(xmlText => {
+      const parser = new DOMParser();
+      const xmlDoc = parser.parseFromString(xmlText,'text/xml');
+
+      // Now you can work with the parsed XML document
+      console.log(xmlDoc);
+    })
+    .catch(error => {
+      console.error(`There was a problem with the fetch operation:`, error);
+    });
+
 function printToPage() {
     // Print current temp, max temp, and AQI
     currentTemp = apiData.current.temp_f
