@@ -33,7 +33,7 @@ const renderLinksChart = (
     if (primaryMeasurementType.includes('Percent') || primaryMeasurementType.includes('percent') && !primaryMeasurementType.includes('percentile')) {
         primaryDisplay = '%' // assigns a % displayType for anything that includes percent (but NOT percentile) in its measurementType
     } else {
-        primaryDisplay         = primaryMetadata[0]?.DisplayType; // else, the pre-existing assignment
+        primaryDisplay         = " " + primaryMetadata[0]?.DisplayType; // else, the pre-existing assignment
     }
 
     const primaryTimePeriod      = data[0]?.TimePeriod_1;
@@ -47,7 +47,7 @@ const renderLinksChart = (
     if (secondaryMeasurementType.includes('Percent') || secondaryMeasurementType.includes('percent') && !secondaryMeasurementType.includes('percentile')) {
         secondaryDisplay = '%' // assigns a % displayType for anything that includes percent (but NOT percentile) in its measurementType
     } else {
-        secondaryDisplay         = secondaryMetadata[0]?.DisplayType; // else, the pre-existing assignment
+        secondaryDisplay         = " " + secondaryMetadata[0]?.DisplayType; // else, the pre-existing assignment
     }
 
     const secondaryTimePeriod      = data[0]?.TimePeriod_2;
@@ -195,11 +195,11 @@ const renderLinksChart = (
         },
         "transform": [
             {
-                "calculate": `(datum.${xValue} + ' ${xDisplay}')`,
+                "calculate": `(datum.${xValue} + '${xDisplay}')`,
                 "as": "xLabel"
             },
             {
-                "calculate": `(datum.${yValue} + ' ${yDisplay}')`,
+                "calculate": `(datum.${yValue} + '${yDisplay}')`,
                 "as": "yLabel"
             }
         ],
