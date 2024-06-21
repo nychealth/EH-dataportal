@@ -195,11 +195,11 @@ const renderLinksChart = (
         },
         "transform": [
             {
-                "calculate": `(datum.${xValue} + '${xDisplay}')`,
+                "calculate": `format(datum.${xValue}, '.1f') + '${xDisplay}'`,
                 "as": "xLabel"
             },
             {
-                "calculate": `(datum.${yValue} + '${yDisplay}')`,
+                "calculate": `format(datum.${yValue},  '.1f') + '${yDisplay}'`,
                 "as": "yLabel"
             }
         ],
