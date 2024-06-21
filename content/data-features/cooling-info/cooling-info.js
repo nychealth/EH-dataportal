@@ -403,7 +403,7 @@ function runFinal() {
 
   // Message 6 - hot and no AC
   if ( currentTemp > 85 && hasAC === 'No') {
-    msg = "<p><strong>Air conditioning is the best way to stay safe when it’s this hot</strong>. Since you don't have AC, visit a cool public place, or friend or family member who has AC. Taking a cool shower can also help temporarily. hen you are at home, continue to be mindful of the heat and make sure to drink enough water. </p>"
+    msg = "<p><strong>Air conditioning is the best way to stay safe when it’s this hot</strong>. Since you don't have AC, <a href='https://finder.nyc.gov/coolingcenters/'>visit a cool public place</a>, or friend or family member who has AC. Taking a cool shower can also help temporarily. When you are at home, continue to be mindful of the heat and make sure to drink enough water. </p>"
     finalMessageText.innerHTML += msg + '<hr class="my-2">'
   }
 
