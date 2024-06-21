@@ -41,16 +41,20 @@ fetch('https://api.weatherapi.com/v1/forecast.json?key=0d4a042ad8ec468da7b135156
 // https://docs.airnowapi.org/ForecastsByZip/docs
 
 var aqiAPI;
-var epaAQI;
 function getAQI() {
-  fetch('https://www.airnowapi.org/aq/forecast/zipCode/?format=application/json&zipCode=10013&API_KEY=B34C7BA1-26C7-4DD2-9B1C-AAFD7AF4F12F')
+  fetch('https://www.airnowapi.org/aq/observation/zipCode/current/?format=application/json&zipCode=10013&distance=25&API_KEY=B34C7BA1-26C7-4DD2-9B1C-AAFD7AF4F12F')
   .then(response => {return response.json()})
   .then(data => {
     console.log(data)
     aqiAPI = data
-    epaAQI = aqiAPI[0].Category.Number
-    console.log('aqi is: ' + epaAQI)
-    aqi = epaAQI
+
+    if (aqiAPI[0].AQI > aqiAPI[1].AQI) {
+      aqi = aqiAPI[0].Category.Number
+    } else {
+      aqi = aqiAPI[1].Category.Number
+    }
+
+    console.log('aqi is: ' + aqi)
 
     // print to page and style
     var aqiMeaning = document.getElementById('aqimeaning')
