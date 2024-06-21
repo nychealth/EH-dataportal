@@ -188,13 +188,6 @@ const renderLinksChart = (
                     "#55b74896", 
                     "#80008096"
                 ]
-            },
-            "text": {
-                "color": "#1696d2",
-                "fontSize": 11,
-                "align": "center",
-                "fontWeight": 400,
-                "size": 11
             }
         },
         "data": {
@@ -202,11 +195,11 @@ const renderLinksChart = (
         },
         "transform": [
             {
-                "calculate": `(datum.DisplayValue_1 + ' ${xDisplay}')`,
+                "calculate": `(datum.${xValue} + ' ${xDisplay}')`,
                 "as": "xLabel"
             },
             {
-                "calculate": `(datum.DisplayValue_2 + ' ${yDisplay}')`,
+                "calculate": `(datum.${yValue} + ' ${yDisplay}')`,
                 "as": "yLabel"
             }
         ],
@@ -241,12 +234,11 @@ const renderLinksChart = (
                     },
                     "x": {
                         "title": [`${xIndicatorName && `${xIndicatorName}`}`, `${xMeasure} ${xDisplay && `(${xDisplay})`} (${xTimePeriod})`],
-                        "subtitle": "Subtitle string",
                         "field": xValue,
                         "type": "quantitative",
                         "scale": {"domainMin": xMin, "nice": true},
                         "axis": {
-                            "titleAlign": "left",
+                            "titleAlign": "center",
                             "tickCount": 4
                           }
                     },
@@ -262,12 +254,12 @@ const renderLinksChart = (
                             "type": "nominal"
                         },
                         {
-                            "title": yMeasureName,
+                            "title": yIndicatorName,
                             "field": "yLabel",
                             "type": "nominal"
                         },
                         {
-                            "title": xMeasureName,
+                            "title": xIndicatorName,
                             "field": "xLabel",
                             "type": "nominal"
                         }
@@ -295,7 +287,8 @@ const renderLinksChart = (
                     }
                 }
             },
-            {"mark": {
+            {
+                "mark": {
                 "type": "line",
                 "color": "darkgray"
                 },
