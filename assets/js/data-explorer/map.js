@@ -294,11 +294,11 @@ const renderMap = (
                             "tooltip": [
                                 {
                                     "field": "Geography", 
-                                    "title": GeoTypeDesc
+                                    "title": "Neighborhood"
                                 },
                                 {
                                     "field": "valueLabel",
-                                    "title": `${mapMeasurementType}`
+                                    "title": `${indicatorName}`
                                 },
                                 {
                                     "field": "TimePeriod",
@@ -336,11 +336,11 @@ const renderMap = (
                     "tooltip": [
                         {
                             "field": "Geography", 
-                            "title": geoTypeShortDesc
+                            "title": "Neighborhood"
                         },
                         {
-                            "field": "DisplayValue", 
-                            "title": `${mapMeasurementType} ${displayType}`
+                            "field": "valueLabel",
+                            "title": `${indicatorName}`
                         },
                         {
                             "field": "TimePeriod",
