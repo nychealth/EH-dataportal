@@ -33,26 +33,55 @@ fetch('https://api.weatherapi.com/v1/forecast.json?key=0d4a042ad8ec468da7b135156
     apiData = data
 
     printToPage()
+    getAQI()
   })
 
+// WeatherAPI.com returns different AQI than EPA/Airnow, so, using different call for consistent AQI data.
+// https://docs.airnowapi.org/forecastsbyzip/query
+// https://docs.airnowapi.org/ForecastsByZip/docs
 
-fetch('https://feeds.airnowapi.org/rss/realtime/94.xml')
-    .then(response => {
-      if (!response.ok) {
-          throw new Error('Network response was not ok');
-      }
-      return response.text();
-    })
-    .then(xmlText => {
-      const parser = new DOMParser();
-      const xmlDoc = parser.parseFromString(xmlText,'text/xml');
+var aqiAPI;
+var epaAQI;
+function getAQI() {
+  fetch('https://www.airnowapi.org/aq/forecast/zipCode/?format=application/json&zipCode=10013&API_KEY=B34C7BA1-26C7-4DD2-9B1C-AAFD7AF4F12F')
+  .then(response => {return response.json()})
+  .then(data => {
+    console.log(data)
+    aqiAPI = data
+    epaAQI = aqiAPI[0].Category.Number
+    console.log('aqi is: ' + epaAQI)
+    aqi = epaAQI
 
-      // Now you can work with the parsed XML document
-      console.log(xmlDoc);
-    })
-    .catch(error => {
-      console.error(`There was a problem with the fetch operation:`, error);
-    });
+    // print to page and style
+    var aqiMeaning = document.getElementById('aqimeaning')
+    if (aqi == '1') {
+      aqiInterpretation = 'Good'
+      aqiMeaning.style['background-color'] = '#00E400'
+    } else if (aqi == '2') {
+      aqiInterpretation = 'Moderate'
+      aqiMeaning.style['background-color'] = '#FFFF00'
+    } else if (aqi == '3') {
+      aqiInterpretation = 'Unhealthy for sensitive groups'
+      aqiMeaning.style['background-color'] = '#FF7E00'
+    } else if (aqi == '4') {
+      aqiInterpretation = 'Unhealthy'
+      aqiMeaning.style['background-color'] = '#FF0000'
+      aqiMeaning.style.color = 'white'
+    } else if (aqi == '5') {
+      aqiInterpretation = 'Very unhealthy'
+      aqiMeaning.style['background-color'] = '#993399'
+      aqiMeaning.style.color = 'white'
+    } else if (aqi == '6') {
+      aqiInterpretation = 'Hazardous'
+      aqiMeaning.style['background-color'] = '#7E0023'
+      aqiMeaning.style.color = 'white'
+    }
+    aqiMeaning.innerHTML = aqiInterpretation
+    document.getElementById('aqiNum').innerHTML = aqi
+  })
+}
+
+
 
 function printToPage() {
     // Print current temp, max temp, and AQI
@@ -63,8 +92,7 @@ function printToPage() {
     var maxTemp = apiData.forecast.forecastday[0].day.maxtemp_f
     document.getElementById('maxTemp').innerHTML = maxTemp  + '° F'
 
-    aqi = apiData.current.air_quality["us-epa-index"]
-    // document.getElementById('aqi').innerHTML = aqi
+    // aqi = apiData.current.air_quality["us-epa-index"]
 
     // Style temp interpretation
       var hotText = document.getElementById('hot')
@@ -93,34 +121,6 @@ function printToPage() {
 
     document.getElementById('over80F').innerHTML = over80F
 
-
-    var aqiMeaning = document.getElementById('aqimeaning')
-    if (aqi == '1') {
-      aqiInterpretation = 'Good'
-      aqiMeaning.style['background-color'] = '#00E400'
-    } else if (aqi == '2') {
-      aqiInterpretation = 'Moderate'
-      aqiMeaning.style['background-color'] = '#FFFF00'
-    } else if (aqi == '3') {
-      aqiInterpretation = 'Unhealthy for sensitive groups'
-      aqiMeaning.style['background-color'] = '#FF7E00'
-    } else if (aqi == '4') {
-      aqiInterpretation = 'Unhealthy'
-      aqiMeaning.style['background-color'] = '#FF0000'
-      aqiMeaning.style.color = 'white'
-    } else if (aqi == '5') {
-      aqiInterpretation = 'Very unhealthy'
-      aqiMeaning.style['background-color'] = '#993399'
-      aqiMeaning.style.color = 'white'
-    } else if (aqi == '6') {
-      aqiInterpretation = 'Hazardous'
-      aqiMeaning.style['background-color'] = '#7E0023'
-      aqiMeaning.style.color = 'white'
-    }
-    aqiMeaning.innerHTML = aqiInterpretation
-    document.getElementById('aqiNum').innerHTML = aqi
-
-
 }
 
 // -------------------------------------------------------------------------- //
@@ -128,7 +128,6 @@ function printToPage() {
 // -------------------------------------------------------------------------- //
 
 function runQuestions() {
-
 
   content.forEach(question => {
 
@@ -166,6 +165,10 @@ function runQuestions() {
   // end question loop
 
 document.getElementById('question-1').classList.remove('hide')
+document.getElementById('question-1').scrollIntoView({
+      behavior: 'smooth'
+    })
+
 
 }
 
@@ -211,7 +214,7 @@ function answer(question, answer, next) {
     })
   } else {
     document.getElementById('question-'+ next).classList.remove('hide')
-    document.getElementById('question-'+ next).scrollIntoView({
+    document.getElementById('message-'+ thisQuestion.id).scrollIntoView({
       behavior: 'smooth'
     })
 
