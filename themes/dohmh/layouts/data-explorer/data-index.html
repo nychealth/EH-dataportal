@@ -72,7 +72,8 @@
 
                     indicators = metadata;
 
-                    createMeasureMetadata();
+                    // createMeasureMetadata();
+                    // getNoMaps()
 
                     d3.json('{{ site.Params.data_repo }}{{ site.Params.data_branch }}/indicators/metadata/TimePeriods.json')
                         .then(tp => {
@@ -87,31 +88,6 @@
                 });
             
             var object = [];
-
-            function createMeasureMetadata() {
-                // create object of indicators, measures and text metadata
-                for (let i = 0; i < indicators.length; i++) {
-
-                    for (let j = 0; j < indicators[i].Measures.length; j ++) {
-                        
-                        var measure = {};
-                        measure.indicatorName    = indicators[i].IndicatorName
-                        measure.indicatorID      = indicators[i].IndicatorID
-                        measure.indicatorDesc    = indicators[i].IndicatorDescription
-                        measure.measureName      = indicators[i].Measures[j].MeasureName
-                        measure.measureID        = indicators[i].Measures[j].MeasureID
-                        measure.measurementType  = indicators[i].Measures[j].MeasurementType
-                        measure.displayType      = indicators[i].Measures[j].DisplayType
-                        
-                        object.push(measure)
-                    }
-
-                }
-    
-                console.log(object)
-            }
-            
-
 
             
             // Separating json load from subsequent functions, so we can filter or modify later without reloading json
@@ -483,6 +459,64 @@
                 // the input string. Replacing the identified
                 // HTML tag with a null string.
                 return str.replace(/(<([^>]+)>)/ig, '');
+            }
+
+
+            // ------------------------------------------------------------------------------------- // 
+            // -------    These are some basic assistance / data extraction functions.    ---------- //
+            // ------------------------------------------------------------------------------------- //
+
+
+            function createMeasureMetadata() {
+                console.log('object of indicators, measures, and text metadata:')
+                // create object of indicators, measures and text metadata
+                for (let i = 0; i < indicators.length; i++) {
+
+                    for (let j = 0; j < indicators[i].Measures.length; j ++) {
+                        
+                        var measure = {};
+                        measure.indicatorName    = indicators[i].IndicatorName
+                        measure.indicatorID      = indicators[i].IndicatorID
+                        measure.indicatorDesc    = indicators[i].IndicatorDescription
+                        measure.measureName      = indicators[i].Measures[j].MeasureName
+                        measure.measureID        = indicators[i].Measures[j].MeasureID
+                        measure.measurementType  = indicators[i].Measures[j].MeasurementType
+                        measure.displayType      = indicators[i].Measures[j].DisplayType
+                        
+                        object.push(measure)
+                    }
+
+                }
+    
+                console.log(object)
+            }
+
+            function getNoMaps() {
+                var noMapObject = [];
+                console.log('indicators without a mapped measure:')
+                // loop through indicators
+                for (let i = 0; i < indicators.length; i++) {
+                    var maps = [];
+                    // loop through measures
+                    for (let j = 0; j < indicators[i].Measures.length; j ++) {
+                        // for each measure, get measure - visOptions - map - geotype
+                        maps.push(indicators[i].Measures[j].VisOptions[0].Map[0].GeoType)
+                        }
+
+                        // test if all values of maps is null
+                        const isNull = (geotype) => geotype == null
+                        if (maps.every(isNull) == true) {
+                            // send indicator info to object
+                            var indicator = {}
+                            indicator.indicatorName    = indicators[i].IndicatorName
+                            indicator.indicatorID      = indicators[i].IndicatorID
+                            indicator.mapGeoTypes      = maps
+    
+                            noMapObject.push(indicator)
+                        } else {}
+
+                    }
+                    console.log(noMapObject)
             }
             
         </script>
