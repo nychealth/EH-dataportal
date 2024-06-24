@@ -1,0 +1,22 @@
+
+{{- $page_link := $.content.RelPermalink -}}
+{{- $cats := $.content.Params.categories -}}
+{{- $layout := .layout -}}
+
+{{- $extraClass := .extraClass -}}
+{{- range first 2 (where $.content.Site.RegularPages "Section" .section) -}}
+    {{- $page := . }}
+    {{- $has_common_cats := intersect $cats .Params.categories | len | lt 0 -}}
+        {{- if and $has_common_cats (ne $page_link $page.RelPermalink) -}}
+
+          {{- if eq $layout "singlelist" -}}
+          <a class="text-black font-weight-bold" href="{{ .RelPermalink }}">
+            {{ .Title }}
+          </a>
+          <hr class="my-2">
+
+          {{- end -}}
+
+        {{- end -}}
+
+{{- end -}}
