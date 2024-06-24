@@ -65,6 +65,9 @@ const renderComparisonsChart = (
     let compDisplayTypes    = [... new Set(metadata.array("DisplayType"))].filter(dt => dt != "");
     let compGeoIDs          = metadata.objects()[0].GeoID ? [... new Set(metadata.array("GeoID"))] : null;
 
+    console.log('compMeasurementType', compMeasurementType)
+    console.log('compDisplayTypes', compDisplayTypes)
+
     // console.log(">>>> compGeoIDs", compGeoIDs);
 
     // console.log(">> compName", compName);
@@ -100,6 +103,10 @@ const renderComparisonsChart = (
         plotTitle = indicatorName;
         plotSubtitle = compMeasurementType + (compDisplayTypes.length > 0 ? ` (${compDisplayTypes})` : "") + (hasBoros ? "" : "");
         console.log('compDisplayTypes 0: ', compDisplayTypes)
+        
+        if (compMeasurementType[0].includes('Percent') | compMeasurementType[0].includes('percent') && !compMeasurementType[0].includes('Percentile')) {
+            compDisplayTypes = '%'
+        } else {}
 
         comp_group_col = "Geography"
 
