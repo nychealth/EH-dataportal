@@ -37,7 +37,7 @@ const renderDisparitiesChart = async (
     const primaryAbout           = primaryMetadata[0]?.how_calculated;
     const primarySources         = primaryMetadata[0]?.Sources;
 
-    console.log(primaryMetadata[0])
+    // console.log(primaryMetadata[0])
 
     var subtitle;
 
