@@ -265,6 +265,30 @@
       </div>
     </div>
   </div>
+
+
+
+  <!-- Invisible button to trigger modal -->
+  <button id="openModalBtn" type="button" class="btn btn-primary hide" data-toggle="modal" data-target="#wxModal">Open Modal</button>
+
+  <div class="modal" tabindex="-1" role="dialog" id="wxModal">
+    <div class='modal-dialog modal-lg modal-dialog-centered' role='document'>
+        <div class='modal-content'>
+            <div class='modal-header'>
+                <h5 class='modal-title'>Weather modal 1</h5>
+            </div>
+            <div class='modal-body'>
+                <p>Weather modal content here</p>
+            </div>
+            <hr>
+            <button type="button" class="btn btn-outline-primary close-dialog" data-dismiss="modal">Close</button>
+        </div>
+    </div>
+</div>
+
+
+
+
 </article>
 
 {{- end -}}
@@ -279,5 +303,21 @@
 {{- $js := resources.Get "js/uhflist.js" -}}
 {{ $secureJS := $js | resources.Fingerprint "sha512" }}
 <script type="text/javascript" src="{{ $secureJS.RelPermalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Select the button element
+    var button = document.getElementById('openModalBtn');
+
+    // Add an event listener to the button to handle the click event
+    button.addEventListener('click', function() {
+        console.log('Button was clicked!');
+    });
+
+    // Simulate the button click
+    button.click();
+    });
+
+</script>
 
 {{- end -}}
