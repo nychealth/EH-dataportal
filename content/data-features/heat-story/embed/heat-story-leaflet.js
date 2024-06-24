@@ -218,7 +218,7 @@ function setupMap() {
   map.on("zoomend", () => {
     zoom = map.getZoom();
     // scale the weight based on the zoom layer so it looks good zooming in and out
-    layerGroup.eachLayer((layer) => layer.setStyle({ weight: zoom / ZOOM_WEIGHT_SCALE_FACTOR }))
+    layerGroup.eachLayer((layer) => layer.setStyle && layer.setStyle({ weight: zoom / ZOOM_WEIGHT_SCALE_FACTOR }))
   });
 
 }
@@ -950,7 +950,7 @@ async function addLayerToMap(layerId) {
 
         layerGroup.addLayer(layer);
         const zoom = map.getZoom();
-        layer.setStyle({ weight: zoom / ZOOM_WEIGHT_SCALE_FACTOR });
+        layer.setStyle && layer.setStyle({ weight: zoom / ZOOM_WEIGHT_SCALE_FACTOR });
 
         // only one active one at a time
         if ( layersExclusive.has(layerId) ) {
