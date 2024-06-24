@@ -39,11 +39,15 @@ const renderDisparitiesChart = async (
 
     console.log(primaryMetadata[0])
 
+    var subtitle;
+
     let primaryDisplay;
     if (primaryMeasurementType.includes('Percent') || primaryMeasurementType.includes('percent') && !primaryMeasurementType.includes('percentile')) {
         primaryDisplay = '%' // assigns a % displayType for anything that includes percent (but NOT percentile) in its measurementType
+        subtitle = primaryMeasurementType
     } else {
         primaryDisplay         = ' ' + primaryMetadata[0]?.DisplayType; // else, the pre-existing assignment
+        subtitle = primaryMeasurementType + ` (${primaryDisplay})`
     }
 
     // console.log("primaryMeasureId [renderDisparitiesChart]", primaryMeasureId);
@@ -199,7 +203,7 @@ const renderDisparitiesChart = async (
             "baseline": "top",
             "dy": -10,
             "limit": 1000,
-            "subtitle": `${primaryMeasurementType && `${primaryMeasurementType}`} ${primaryDisplay && `${primaryDisplay}`} (${primaryTime})`,
+            "subtitle": subtitle,
             "subtitleFontSize": 13
         },
         "width": "container",
