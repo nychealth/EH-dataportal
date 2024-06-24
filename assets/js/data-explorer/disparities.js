@@ -188,7 +188,7 @@ const renderDisparitiesChart = async (
     // define spec
     // ----------------------------------------------------------------------- //
 
-    console.log('display types: ', primaryDisplay)
+    // console.log('display types: ', primaryDisplay)
 
     let disspec = {
         "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
