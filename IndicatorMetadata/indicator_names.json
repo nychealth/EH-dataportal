@@ -711,8 +711,8 @@
   },
   "2375": {
     "IndicatorID": 2375,
-    "description": "Violence is frequently described through homicide statistics, but non-fatal violence-related injuries resulting in hospitalizations are more common and help paint the larger picture on the burden of violence and its impact on the health and future of individuals, families, and communities.",
-    "name": "Assault hospitalizations (non-fatal)"
+    "description": "Non-fatal, violence-related injuries that result in hospitalizations. These are more common than homicides and help paint the larger picture of the burden of violence on communities.",
+    "name": "Violence-related hospitalizations (all ages)"
   },
   "2376": {
     "IndicatorID": 2376,
@@ -836,8 +836,8 @@
   },
   "2400": {
     "IndicatorID": 2400,
-    "description": "Violence is frequently described through homicide statistics, but non-fatal violence-related injuries resulting in emergency department visits are much more common and help paint the larger picture on the burden of violence and its impact on the health and future of individuals, families, and communities.",
-    "name": "Assault emergency department visits (non-fatal)"
+    "description": "Non-fatal, violence-related injuries that result in emergency department visits. These are more common than homicides and help paint the larger picture of the burden of violence on communities. ",
+    "name": "Violence-related emergency department visits (all ages)"
   },
   "2401": {
     "IndicatorID": 2401,
