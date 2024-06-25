@@ -92,7 +92,7 @@ var content = [
     {
         "id": 4,
         "text": "The best way to stay safe in hot weather is with air conditioning. Does your indoor environment have air conditioning?",
-        "prompt": "On a hot day, the inside of an apartment without air conditioning can be up to 10 degrees hotter than outside — and can stay hotter for days after it cools down outside. Using air conditioning at home is the best way to stay safe when it's hot outside.", 
+        "prompt": "On a hot day, the inside of an apartment without air conditioning can be up to 10 degrees hotter than outside — and can stay hotter for days after it cools down outside. Being in air conditioning is the best way to stay safe when it's hot outside.", 
         "image": "AC.svg",
         "options": [
             {
