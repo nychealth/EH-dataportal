@@ -87,7 +87,6 @@
                         })
                 });
             
-            var object = [];
 
             
             // Separating json load from subsequent functions, so we can filter or modify later without reloading json
@@ -466,7 +465,7 @@
             // -------    These are some basic assistance / data extraction functions.    ---------- //
             // ------------------------------------------------------------------------------------- //
 
-
+            var object = [];
             function createMeasureMetadata() {
                 console.log('object of indicators, measures, and text metadata:')
                 // create object of indicators, measures and text metadata
@@ -517,6 +516,41 @@
 
                     }
                     console.log(noMapObject)
+            }
+
+            function measureViewSummary() {
+                var mvs = [];
+                console.log('object of indicators, measures, and text metadata:')
+                // create object of indicators, measures and text metadata
+                for (let i = 0; i < indicators.length; i++) {
+
+                    for (let j = 0; j < indicators[i].Measures.length; j ++) {
+                        
+                        var measure = {};
+                        measure.indicatorName    = indicators[i].IndicatorName
+                        measure.indicatorID      = indicators[i].IndicatorID
+                        measure.indicatorDesc    = indicators[i].IndicatorDescription
+                        measure.measureName      = indicators[i].Measures[j].MeasureName
+                        measure.measureID        = indicators[i].Measures[j].MeasureID
+                        measure.map              = 
+                        measure.trend            = 
+                        measure.links            = 
+                        measure.disparities      = 
+
+                        /*
+                            if Map[0].GeoType != null, then it has a map
+                            if Trend[0].GeoType != null, then it has a trend
+                            .Links[0].Measures[0].MeasureID != null, then it has links
+                            if .Links[0].Disparities != 0, then it has disparities
+                        */
+
+                        
+                        mvs.push(measure)
+                    }
+
+                }
+    
+                console.log(mvs)
             }
             
         </script>
