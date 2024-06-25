@@ -200,7 +200,7 @@
     }
 
     .overflow-fade-ind {
-        max-height: 32vmin; overflow-y:scroll; overflow-x:hidden;
+        max-height: 55vmin; overflow-y:scroll; overflow-x:hidden;
       }
     
     .overflow-fade-about {
@@ -254,27 +254,40 @@
                     data-toggle="modal" data-target="#aboutModal">About {{ .Title }}</button>
     
             <div class="d-none d-lg-block">
-            <!-- Indicator buttons (hidden on mobile)-->
-            <span class='home-label d-none d-md-block border-bottom mb-1 pb-1 font-weight-bold'>
 
-                <span class="home-label" style="display: inline-block;" data-pagefind-ignore="all">{{ .Title }}</span> datasets:</span>
-            <div class="l-green-border de-dash-borderbottom" style="">
-            <div id="indicatorButtons" class="pb-0 overflow-fade-ind mb-0">
-                    <!--Rendered via renderIndicatorButtons function -->
-            </div>
-            </div>
-            </div>
-            <!-- About text (hidden on mobile)-->
-            <div class="d-none d-lg-block">
-                <span class='home-label d-none d-md-block border-bottom mt-3 mb-1 font-weight-bold'>About {{ .Title }}</span>
-                <div class="card mb-2 l-green-border de-dash-borderbottom">
-                    <div class="card-content">
+                <div class="nav nav-pills device-md border-bottom" role="tablist">
+
+                    <a class="nav-item nav-link active fs-sm border" id="tab-btn-02-a" href="#tab-02-a" data-toggle="tab"
+                        aria-controls="tab-02-a" aria-selected="true" role="tab">
+                        <i class="fas fa-table mr-1" aria-hidden="true"></i>Datasets
+                    </a>
+                
+                    <a class="nav-item nav-link fs-sm border" id="tab-btn-02-b" href="#tab-02-b" data-toggle="tab"
+                        aria-controls="tab-02-b" aria-selected="false" role="tab">
+                        <i class="fas fa-info-circle mr-1" aria-hidden="true"></i>About {{ .Title }}
+                    </a>
+                </div>
+                
+                <div class="tab-content l-green-border de-dash-borderbottom" id="tabs-02-content">
+                
+                    <div class="tab-pane fade show active" id="tab-02-a" aria-labelledby="tab-btn-02-a"
+                        role="tabpanel">
+                        <div id="indicatorButtons" class="pb-0 overflow-fade-ind mb-0">
+                            <!--Rendered via renderIndicatorButtons function -->
+                    </div>
+                    </div>
+                
+                    <div class="tab-pane fade" id="tab-02-b" aria-labelledby="tab-btn-02-b" role="tabpanel">
                         <div class="p-1 overflow-fade-about topic-text mb-1">
                             {{ .Content  }}
                         </div>
                     </div>
+
                 </div>
+
+
             </div>
+
 
             <!-- Keywords partial -->
             <div class="d-none d-lg-block mt-1 mb-2">
@@ -340,7 +353,7 @@
                 <a class="nav-item nav-link flex-fill" id="tab-btn-links" href="#tab-links" data-toggle="pill"
                    aria-controls="tab-links" aria-selected="false" aria-disabled="true" role="tab" style="text-decoration:none">
                     <i class="fas fa-link fa-fw"></i>
-                    <div class="d-none d-lg-inline-block">Links</div>
+                    <div class="d-none d-lg-inline-block">Correlate</div>
                 </a>
         
             </div>
