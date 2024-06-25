@@ -353,7 +353,7 @@ function runFinal() {
   
   // Message 7 - hot or high AQI
   if (currentTemp > 85 || aqi > 3) {
-    msg = '<p>Activities such as cooking can heat up your home and gas stoves can pollute your indoor air. When it is really hot out or the Air Quality Index is bad, cooking less with appliances that heat the home can help. Consider cooking with a microwave. </p> <p>Other activities that can worsen indoor air: smoking or vaping tobacco or cannabis products, vacuuming, burning candles or incense, or using a fireplace.</p>'    
+    msg = '<p>Cooking can heat up your home and gas stoves can pollute your indoor air. When it is really hot out or the Air Quality Index is bad, cooking less with appliances that heat the home can help. Consider cooking with a microwave. </p> <p>Other activities that can worsen indoor air: smoking or vaping tobacco or cannabis products, vacuuming, burning candles or incense, or using a fireplace.</p>'    
     finalMessageText.innerHTML += msg + '<hr class="my-2">'
   }
 
@@ -369,7 +369,7 @@ function runFinal() {
 
     // Message 4 - warm and no AC
     if (hasAC === 'No' && currentTemp > 78 && aqi < 3) {
-      msg = '<p><strong>It’s hot, and you don’t have an AC</strong>. Open your window to try to keep your home cool.</p>'
+      msg = '<p><strong>It’s hot, and you don’t have an AC</strong>. If it’s hotter inside than outside, open your window to try to keep your home cool.</p>'
       finalMessageText.innerHTML += msg + '<hr class="my-2">'
   
     }
@@ -383,7 +383,7 @@ function runFinal() {
 
   // Message 2 - warm and no AC? Use a fan. 
   if (hasAC === 'No' && currentTemp > 78 && hasFan === 'Yes') {
-    msg = '<p>Your fan can help cool you down. But it won’t cool the air – if it’s too hot inside, it’s just moving hot air around, and can make you even warmer.</p><p>When the Air Quality Index is bad, <a href="https://www.epa.gov/air-research/research-diy-air-cleaners-reduce-wildfire-smoke-indoors"> you can also use your fan as a DIY air purifier.</a> </p>'
+    msg = '<p>Your fan can help cool you down. But it won’t cool the air – if it’s too hot inside, it’s just moving hot air around, and can make you even warmer. <a href="https://finder.nyc.gov/coolingcenters/">Find a cool place to go</a>.</p><p>When the Air Quality Index is bad, <a href="https://www.epa.gov/air-research/research-diy-air-cleaners-reduce-wildfire-smoke-indoors"> you can also use your fan as a DIY air purifier.</a> </p>'
     finalMessageText.innerHTML += msg + '<hr class="my-2">'
   }
 
