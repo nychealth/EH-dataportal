@@ -529,13 +529,34 @@
                         var measure = {};
                         measure.indicatorName    = indicators[i].IndicatorName
                         measure.indicatorID      = indicators[i].IndicatorID
-                        measure.indicatorDesc    = indicators[i].IndicatorDescription
+                        // measure.indicatorDesc    = indicators[i].IndicatorDescription
                         measure.measureName      = indicators[i].Measures[j].MeasureName
                         measure.measureID        = indicators[i].Measures[j].MeasureID
+
+                        if (indicators[i].Measures[j].VisOptions[0].Map[0].GeoType != null) {
+                            measure.map = 1
+                        } else {
+                            measure.map = 0
+                        }
+
+                        if (indicators[i].Measures[j].VisOptions[0].Trend[0].GeoType != null) {
+                            measure.trend = 1
+                        } else {measure.trend = 0}
+
+                        if (indicators[i].Measures[j].VisOptions[0].Links[0].Measures[0].MeasureID != null) {
+                            measure.links = 1
+                        } else {measure.links = 0}
+
+                        if (indicators[i].Measures[j].VisOptions[0].Links[0].Disparities == 1) {
+                            measure.disparities = 1
+                        } else {measure.disparities = 0}
+
+                        /*
                         measure.map              = 
                         measure.trend            = 
                         measure.links            = 
                         measure.disparities      = 
+                        */
 
                         /*
                             if Map[0].GeoType != null, then it has a map
