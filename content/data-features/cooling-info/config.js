@@ -105,7 +105,7 @@ var content = [
             {   
                 "optionID": 2,
                 "copy": "No",
-                "message": "When it's hot air conditioner is the best way to stay cool, but let's find other ways you can stay cool. Skip to the next question.",
+                "message": "When it's hot, air conditioning is the best way to stay cool, but let's find other ways you can stay cool. Skip to the next question.",
                 "setVariable": "ac('No')",
                 "goTo": 6
             }
