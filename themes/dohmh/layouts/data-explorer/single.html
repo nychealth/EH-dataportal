@@ -241,7 +241,7 @@
                 {{- partial "socialshare" . -}}
             </div>
             <h1 class="h2">{{ .Title }} </h1>
-            <p>Get maps, charts, tables, or download data on datasets about {{ lower .Title }}.</p>
+            <p>Get maps, charts, tables, and data about {{ lower .Title }}.</p>
 
         </div>
     </div>
@@ -259,12 +259,12 @@
 
                     <a class="nav-item nav-link active fs-sm border" id="tab-btn-02-a" href="#tab-02-a" data-toggle="tab"
                         aria-controls="tab-02-a" aria-selected="true" role="tab">
-                        <i class="fas fa-table mr-1" aria-hidden="true"></i>Datasets
+                        <i class="fas fa-list fa-fw" aria-hidden="true"></i>Datasets
                     </a>
                 
                     <a class="nav-item nav-link fs-sm border" id="tab-btn-02-b" href="#tab-02-b" data-toggle="tab"
                         aria-controls="tab-02-b" aria-selected="false" role="tab">
-                        <i class="fas fa-info-circle mr-1" aria-hidden="true"></i>About {{ .Title }}
+                        <i class="fas fa-info-circle mr-1" aria-hidden="true"></i>About {{ lower .Title }}
                     </a>
                 </div>
                 
@@ -333,26 +333,26 @@
         
                 <a class="nav-item nav-link flex-fill" id="tab-btn-table" href="#tab-table" data-toggle="pill"
                    aria-controls="tab-table" aria-selected="false" role="tab" style="text-decoration:none">
-                    <i class="fas fa-list fa-fw"></i>
-                    <div class="d-none d-lg-inline-block">Summary</div>
+                    <i class="fas fa-table mr-1" aria-hidden="true"></i>
+                    <div class="d-none d-lg-inline-block" aria-hidden="true">Table</div>
                 </a>
         
                 <a class="nav-item nav-link flex-fill" id="tab-btn-map" href="#tab-map" data-toggle="pill"
                    aria-controls="tab-map" aria-selected="false" role="tab" style="text-decoration:none">
                     <i class="fas fa-map-marker-alt fa-fw"></i>
-                    <div class="d-none d-lg-inline-block">Map</div>
+                    <div class="d-none d-lg-inline-block" aria-hidden="true">Map</div>
                 </a>
         
                 <a class="nav-item nav-link flex-fill" id="tab-btn-trend" href="#tab-trend" data-toggle="pill"
                    aria-controls="tab-trend" aria-selected="false" role="tab" style="text-decoration:none">
-                    <i class="fas fa-chart-line fa-fw"></i>
+                    <i class="fas fa-chart-line fa-fw" aria-hidden="true"></i>
                     <div class="d-none d-lg-inline-block">Trend</div>
                 </a>
         
         
                 <a class="nav-item nav-link flex-fill" id="tab-btn-links" href="#tab-links" data-toggle="pill"
                    aria-controls="tab-links" aria-selected="false" aria-disabled="true" role="tab" style="text-decoration:none">
-                    <i class="fas fa-link fa-fw"></i>
+                   <i class="fas fa-project-diagram" aria-hidden="true"></i>
                     <div class="d-none d-lg-inline-block">Correlate</div>
                 </a>
         
