@@ -32,14 +32,17 @@ const renderMap = (
     let mapGeoTypeDescription = [...new Set(geoTable.filter(aq.escape(d => d.GeoType === mapGeoType)).array("GeoTypeShortDesc"))];
     var displayType;
     var subtitle;
+    var isPercent;
 
-    if (mapMeasurementType.includes('Percent') || mapMeasurementType.includes('percent')) {
+    if (mapMeasurementType.includes('Percent') || mapMeasurementType.includes('percent') && !mapMeasurementType.includes('percentile')) {
+        isPercent = true
         displayType         = '%'
         subtitle = mapMeasurementType
         
     } else {
+        isPercent = false
         displayType         = metadata[0]?.DisplayType;
-        subtitle = mapMeasurementType + ` (${displayType})`
+        subtitle = mapMeasurementType + `${displayType ? ` (${displayType})` : ''}`
     }
 
     let mapTime = mapTimes[0];
@@ -302,7 +305,7 @@ const renderMap = (
                                 },
                                 {
                                     "field": "valueLabel",
-                                    "title": `${indicatorName}`
+                                    "title": `${mapMeasurementType}`
                                 },
                                 {
                                     "field": "TimePeriod",
@@ -344,7 +347,7 @@ const renderMap = (
                         },
                         {
                             "field": "valueLabel",
-                            "title": `${indicatorName}`
+                            "title": `${mapMeasurementType}`
                         },
                         {
                             "field": "TimePeriod",
