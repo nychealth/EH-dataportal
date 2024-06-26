@@ -27,6 +27,7 @@ indicators:
       - 2028
       - 2025
       - 2027
+      - 2026
   - header: Citywide Regulatory Monitoring
     IndicatorID:
       - 92
@@ -34,7 +35,6 @@ indicators:
       - 55
   - header: null
     IndicatorID:
-      - 2026
 ---
 
 Air quality is a **measure of the condition of the air around us**. The less air pollution there is, the better the air quality.

@@ -11,8 +11,8 @@ keywords: ["mice", "rats", "rodents", "pests", "housing"]
 indicators:
   - header: null
     IndicatorID:
-      - 2394
       - 24
+      - 2394
       - 48
       - 2416
 ---

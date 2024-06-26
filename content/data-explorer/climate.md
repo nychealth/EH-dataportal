@@ -19,8 +19,8 @@ keywords:
 indicators:
   - header: Heat Stress
     IndicatorID:
-      - 2191
       - 2411
+      - 2191
       - 2084
   - header: null
     IndicatorID:
@@ -28,7 +28,6 @@ indicators:
       - 2143
   - header: Safety
     IndicatorID:
-      - 2104
       - 2185
       - 2377
 ---
