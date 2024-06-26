@@ -47,7 +47,8 @@ const renderDisparitiesChart = async (
         subtitle = primaryMeasurementType
     } else {
         primaryDisplay         = ' ' + primaryMetadata[0]?.DisplayType; // else, the pre-existing assignment
-        subtitle = primaryMeasurementType + ` (${primaryDisplay})`
+        subtitle = primaryMeasurementType + `${primaryMetadata[0]?.DisplayType ? ` (${primaryDisplay})` : ''}`
+        console.log(primaryDisplay, primaryMeasurementType)
     }
 
     // console.log("primaryMeasureId [renderDisparitiesChart]", primaryMeasureId);
@@ -203,7 +204,7 @@ const renderDisparitiesChart = async (
             "baseline": "top",
             "dy": -10,
             "limit": 1000,
-            "subtitle": subtitle,
+            "subtitle": subtitle + ` (${primaryTime})`,
             "subtitleFontSize": 13
         },
         "width": "container",
