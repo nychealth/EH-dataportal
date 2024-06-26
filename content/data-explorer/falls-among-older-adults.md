@@ -24,12 +24,10 @@ indicators:
     IndicatorID:
       - 2136
       - 2409
-  - header: null
-    IndicatorID:
-      - 2403
   - header: Safety
     IndicatorID:
       - 2188
+      - 2403
 ---
 
 Each year, one in three older adults (65 years and older) falls. Among New York City's older adults, there are approximately 30,500 emergency department (ED) visits, 16,600 hospitalizations, and 300 deaths each year. Falls are not a normal part of aging, and research shows that many falls can be prevented.
