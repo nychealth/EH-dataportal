@@ -1728,21 +1728,6 @@
         
         
         <h1 
-            id="IndicatorID-2403" 
-            class="d-none"> 
-            Homes with reported falls (age 65&#43;)
-        </h1>
-        <h2
-            class="d-none"> 
-            Falls are a leading cause of injury among older adults.
-        </h2>
-
-    
-    
-
-        
-        
-        <h1 
             id="IndicatorID-2135" 
             class="d-none"> 
             Fall-related emergency department visits (age 65&#43;)
@@ -1810,6 +1795,21 @@
         <h2
             class="d-none"> 
             Grab bars in bathrooms can help prevent falls among older adults.
+        </h2>
+
+    
+    
+
+        
+        
+        <h1 
+            id="IndicatorID-2403" 
+            class="d-none"> 
+            Homes with reported falls (age 65&#43;)
+        </h1>
+        <h2
+            class="d-none"> 
+            Falls are a leading cause of injury among older adults.
         </h2>
 
     
@@ -2267,19 +2267,6 @@
             let this_indicatorName;
             let header;
 
-                header = '';
-                indicatorDropdown.innerHTML += header.length ? '<div class="dropdown-title"><strong>' + header + '</strong></div>' : '';
-
-                
-
-                     defaultIndicatorId =  2403  
-
-                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2403 );
-                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
-                    indicatorDropdown.innerHTML += "<button class='indicator-dropdown-item dropdown-item' onclick='loadIndicator(2403)' data-indicator-id='2403'>" + this_indicatorName + "</button>";
-
-                
-
                 header = 'Emergency Department Visits';
                 indicatorDropdown.innerHTML += header.length ? '<div class="dropdown-title"><strong>' + header + '</strong></div>' : '';
 
@@ -2335,6 +2322,14 @@
 
                 
 
+                    
+
+                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2403 );
+                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
+                    indicatorDropdown.innerHTML += "<button class='indicator-dropdown-item dropdown-item' onclick='loadIndicator(2403)' data-indicator-id='2403'>" + this_indicatorName + "</button>";
+
+                
+
         }
         
 
@@ -2345,15 +2340,6 @@
             const indicatorButtons = document.getElementById("indicatorButtons");
             let this_indicatorName;
             let header;
-
-                header = '';
-                indicatorButtons.innerHTML += header.length ? '<div class="pl-1 pt-2 home-label border">' + header + '</div>': '';
-
-                defaultIndicatorId =  2403 
-
-                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2403 );
-                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
-                    indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' onclick='loadIndicator(2403)' data-indicator-id='2403'>" + this_indicatorName + "</button>";
 
                 header = 'Emergency Department Visits';
                 indicatorButtons.innerHTML += header.length ? '<div class="pl-1 pt-2 home-label border">' + header + '</div>': '';
@@ -2389,6 +2375,10 @@
                     indicator = indicators.find(indicator => indicator.IndicatorID ===  2188 );
                     this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
                     indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' onclick='loadIndicator(2188)' data-indicator-id='2188'>" + this_indicatorName + "</button>";
+
+                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2403 );
+                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
+                    indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' onclick='loadIndicator(2403)' data-indicator-id='2403'>" + this_indicatorName + "</button>";
         }
 
         function createCitation() {

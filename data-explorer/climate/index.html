@@ -641,7 +641,7 @@
 <li>For air conditioners with a thermostat, a setting of 78°F is recommended to provide comfort while not wasting energy.</li>
 <li>Check on those at-risk and assist them in staying cool and well hydrated. Seek medical attention immediately if the victim has a rapid heart rate, trouble breathing, is no longer sweating, displays very unusual behavior, or loses consciousness.</li>
 </ul>
-<p>Being prepared is key to weathering hurricanes and coastal storms safely. </p>
+<p>Being prepared is key to weathering hurricanes and coastal storms safely.</p>
 <ul>
 <li>Find out if you live in an evacuation zone, and stay tuned to TV and radio evacuation messages when a storm approaches. Information can be found at <a href="https://www.nyc.gov">www.nyc.gov</a> by searching “Hurricane Zones,” or by calling 311.</li>
 <li>Have a “Go Bag” ready for evacuation, with copies of IDs and insurance cards, bottled water and non-perishable snacks, a list of medications and dosages, doctors’ phone numbers, a first aid kit, extra keys, a flashlight and battery operated radio, and small personal or family care items. .</li>
@@ -1716,7 +1716,7 @@
 <li>For air conditioners with a thermostat, a setting of 78°F is recommended to provide comfort while not wasting energy.</li>
 <li>Check on those at-risk and assist them in staying cool and well hydrated. Seek medical attention immediately if the victim has a rapid heart rate, trouble breathing, is no longer sweating, displays very unusual behavior, or loses consciousness.</li>
 </ul>
-<p>Being prepared is key to weathering hurricanes and coastal storms safely. </p>
+<p>Being prepared is key to weathering hurricanes and coastal storms safely.</p>
 <ul>
 <li>Find out if you live in an evacuation zone, and stay tuned to TV and radio evacuation messages when a storm approaches. Information can be found at <a href="https://www.nyc.gov">www.nyc.gov</a> by searching “Hurricane Zones,” or by calling 311.</li>
 <li>Have a “Go Bag” ready for evacuation, with copies of IDs and insurance cards, bottled water and non-perishable snacks, a list of medications and dosages, doctors’ phone numbers, a first aid kit, extra keys, a flashlight and battery operated radio, and small personal or family care items. .</li>
@@ -1746,43 +1746,13 @@
         
         
         <h1 
-            id="IndicatorID-2141" 
+            id="IndicatorID-2411" 
             class="d-none"> 
-            Daytime summer surface temperature
+            Heat vulnerability index (NTA)
         </h1>
         <h2
             class="d-none"> 
-            Surface temperatures vary based on vegetative cover (which promotes cooling), as well as by materials that retain heat (like paved roads, sidewalks, and buildings). Hotter neighborhoods tend to have more heat-exacerbated deaths associated with extreme heat events.
-        </h2>
-
-    
-    
-
-        
-        
-        <h1 
-            id="IndicatorID-2143" 
-            class="d-none"> 
-            Vegetative cover
-        </h1>
-        <h2
-            class="d-none"> 
-            Vegetative cover is the land covered by trees, grass, or other plants instead of a hard surface like roads, sidewalks, or buildings. Vegetative cover tends to reduce temperatures in the immediate area and may increase air quality.
-        </h2>
-
-    
-    
-
-        
-        
-        <h1 
-            id="IndicatorID-2084" 
-            class="d-none"> 
-            Heat events
-        </h1>
-        <h2
-            class="d-none"> 
-            Heat events threaten health. More people die due to extreme heat than all other extreme weather events combined. As the climate continues to warm, we can expect more severe and more frequent heat events.
+            The HVI shows the risk of community-level heat impacts, like deaths, due to extreme heat events. It is made up of data on surface temperature, green space, air conditioning access, median income, and Black population (the population most excluded from heat resources). Differences in community-level heat impacts stem from structural racism, which limits access to preventive resources. &lt;a href=&#34;../../key-topics/climatehealth/hvi&#34;&gt;See our interactive Heat Vulnerability Index&lt;/a&gt;
         </h2>
 
     
@@ -1806,13 +1776,13 @@
         
         
         <h1 
-            id="IndicatorID-2411" 
+            id="IndicatorID-2084" 
             class="d-none"> 
-            Heat vulnerability index (NTA)
+            Heat events
         </h1>
         <h2
             class="d-none"> 
-            The HVI shows the risk of community-level heat impacts, like deaths, due to extreme heat events. It is made up of data on surface temperature, green space, air conditioning access, median income, and Black population (the population most excluded from heat resources). Differences in community-level heat impacts stem from structural racism, which limits access to preventive resources. &lt;a href=&#34;../../key-topics/climatehealth/hvi&#34;&gt;See our interactive Heat Vulnerability Index&lt;/a&gt;
+            Heat events threaten health. More people die due to extreme heat than all other extreme weather events combined. As the climate continues to warm, we can expect more severe and more frequent heat events.
         </h2>
 
     
@@ -1821,13 +1791,13 @@
         
         
         <h1 
-            id="IndicatorID-2155" 
+            id="IndicatorID-2141" 
             class="d-none"> 
-            Older adults with air conditioners (age 65&#43;)
+            Daytime summer surface temperature
         </h1>
         <h2
             class="d-none"> 
-            Older adults (over 65) are more vulnerable to hot weather and heat stress. Air conditioning reduces the risk of heat stroke and other heat-related illness.
+            Surface temperatures vary based on vegetative cover (which promotes cooling), as well as by materials that retain heat (like paved roads, sidewalks, and buildings). Hotter neighborhoods tend to have more heat-exacerbated deaths associated with extreme heat events.
         </h2>
 
     
@@ -1836,13 +1806,13 @@
         
         
         <h1 
-            id="IndicatorID-2104" 
+            id="IndicatorID-2143" 
             class="d-none"> 
-            Adults with air conditioners
+            Vegetative cover
         </h1>
         <h2
             class="d-none"> 
-            Adults reporting having an air conditioner. Air conditioning reduces the risk of heat stroke and other heat-related illness.
+            Vegetative cover is the land covered by trees, grass, or other plants instead of a hard surface like roads, sidewalks, or buildings. Vegetative cover tends to reduce temperatures in the immediate area and may increase air quality.
         </h2>
 
     
@@ -2297,6 +2267,35 @@
             let this_indicatorName;
             let header;
 
+                header = 'Heat Stress';
+                indicatorDropdown.innerHTML += header.length ? '<div class="dropdown-title"><strong>' + header + '</strong></div>' : '';
+
+                
+
+                     defaultIndicatorId =  2411  
+
+                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2411 );
+                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
+                    indicatorDropdown.innerHTML += "<button class='indicator-dropdown-item dropdown-item' onclick='loadIndicator(2411)' data-indicator-id='2411'>" + this_indicatorName + "</button>";
+
+                
+
+                    
+
+                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2191 );
+                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
+                    indicatorDropdown.innerHTML += "<button class='indicator-dropdown-item dropdown-item' onclick='loadIndicator(2191)' data-indicator-id='2191'>" + this_indicatorName + "</button>";
+
+                
+
+                    
+
+                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2084 );
+                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
+                    indicatorDropdown.innerHTML += "<button class='indicator-dropdown-item dropdown-item' onclick='loadIndicator(2084)' data-indicator-id='2084'>" + this_indicatorName + "</button>";
+
+                
+
                 header = '';
                 indicatorDropdown.innerHTML += header.length ? '<div class="dropdown-title"><strong>' + header + '</strong></div>' : '';
 
@@ -2318,57 +2317,12 @@
 
                 
 
-                header = 'Heat Stress';
-                indicatorDropdown.innerHTML += header.length ? '<div class="dropdown-title"><strong>' + header + '</strong></div>' : '';
-
-                
-
-                     defaultIndicatorId =  2084  
-
-                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2084 );
-                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
-                    indicatorDropdown.innerHTML += "<button class='indicator-dropdown-item dropdown-item' onclick='loadIndicator(2084)' data-indicator-id='2084'>" + this_indicatorName + "</button>";
-
-                
-
-                    
-
-                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2191 );
-                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
-                    indicatorDropdown.innerHTML += "<button class='indicator-dropdown-item dropdown-item' onclick='loadIndicator(2191)' data-indicator-id='2191'>" + this_indicatorName + "</button>";
-
-                
-
-                    
-
-                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2411 );
-                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
-                    indicatorDropdown.innerHTML += "<button class='indicator-dropdown-item dropdown-item' onclick='loadIndicator(2411)' data-indicator-id='2411'>" + this_indicatorName + "</button>";
-
-                
-
                 header = 'Safety';
                 indicatorDropdown.innerHTML += header.length ? '<div class="dropdown-title"><strong>' + header + '</strong></div>' : '';
 
                 
 
-                     defaultIndicatorId =  2155  
-
-                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2155 );
-                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
-                    indicatorDropdown.innerHTML += "<button class='indicator-dropdown-item dropdown-item' onclick='loadIndicator(2155)' data-indicator-id='2155'>" + this_indicatorName + "</button>";
-
-                
-
-                    
-
-                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2104 );
-                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
-                    indicatorDropdown.innerHTML += "<button class='indicator-dropdown-item dropdown-item' onclick='loadIndicator(2104)' data-indicator-id='2104'>" + this_indicatorName + "</button>";
-
-                
-
-                    
+                     defaultIndicatorId =  2185  
 
                     indicator = indicators.find(indicator => indicator.IndicatorID ===  2185 );
                     this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
@@ -2395,6 +2349,23 @@
             let this_indicatorName;
             let header;
 
+                header = 'Heat Stress';
+                indicatorButtons.innerHTML += header.length ? '<div class="pl-1 pt-2 home-label border">' + header + '</div>': '';
+
+                defaultIndicatorId =  2411 
+
+                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2411 );
+                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
+                    indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' onclick='loadIndicator(2411)' data-indicator-id='2411'>" + this_indicatorName + "</button>";
+
+                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2191 );
+                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
+                    indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' onclick='loadIndicator(2191)' data-indicator-id='2191'>" + this_indicatorName + "</button>";
+
+                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2084 );
+                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
+                    indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' onclick='loadIndicator(2084)' data-indicator-id='2084'>" + this_indicatorName + "</button>";
+
                 header = '';
                 indicatorButtons.innerHTML += header.length ? '<div class="pl-1 pt-2 home-label border">' + header + '</div>': '';
 
@@ -2408,35 +2379,10 @@
                     this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
                     indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' onclick='loadIndicator(2143)' data-indicator-id='2143'>" + this_indicatorName + "</button>";
 
-                header = 'Heat Stress';
-                indicatorButtons.innerHTML += header.length ? '<div class="pl-1 pt-2 home-label border">' + header + '</div>': '';
-
-                defaultIndicatorId =  2084 
-
-                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2084 );
-                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
-                    indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' onclick='loadIndicator(2084)' data-indicator-id='2084'>" + this_indicatorName + "</button>";
-
-                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2191 );
-                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
-                    indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' onclick='loadIndicator(2191)' data-indicator-id='2191'>" + this_indicatorName + "</button>";
-
-                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2411 );
-                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
-                    indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' onclick='loadIndicator(2411)' data-indicator-id='2411'>" + this_indicatorName + "</button>";
-
                 header = 'Safety';
                 indicatorButtons.innerHTML += header.length ? '<div class="pl-1 pt-2 home-label border">' + header + '</div>': '';
 
-                defaultIndicatorId =  2155 
-
-                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2155 );
-                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
-                    indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' onclick='loadIndicator(2155)' data-indicator-id='2155'>" + this_indicatorName + "</button>";
-
-                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2104 );
-                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
-                    indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' onclick='loadIndicator(2104)' data-indicator-id='2104'>" + this_indicatorName + "</button>";
+                defaultIndicatorId =  2185 
 
                     indicator = indicators.find(indicator => indicator.IndicatorID ===  2185 );
                     this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';

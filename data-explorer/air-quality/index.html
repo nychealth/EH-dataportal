@@ -630,7 +630,7 @@
 <p>Like many cities, New York City&rsquo;s air contains particles, liquid droplets, gases, and other contaminants that could impact health. Two pollutants, particulate matter and ground-level ozone, are of particular health concern.</p>
 <p>Although New York City&rsquo;s air does not currently meet federal air quality standards, <strong>it has improved significantly over the past two decades</strong>.</p>
 <h3>Air Pollution and Health</h3>
-<p>Pollutants may affect human health negatively in a variety of ways. People may experience symptoms and health issues such as: </p>
+<p>Pollutants may affect human health negatively in a variety of ways. People may experience symptoms and health issues such as:</p>
 <ul>
 <li>Coughing</li>
 <li>Tightness in the chest</li>
@@ -1709,7 +1709,7 @@
 <p>Like many cities, New York City&rsquo;s air contains particles, liquid droplets, gases, and other contaminants that could impact health. Two pollutants, particulate matter and ground-level ozone, are of particular health concern.</p>
 <p>Although New York City&rsquo;s air does not currently meet federal air quality standards, <strong>it has improved significantly over the past two decades</strong>.</p>
 <h3>Air Pollution and Health</h3>
-<p>Pollutants may affect human health negatively in a variety of ways. People may experience symptoms and health issues such as: </p>
+<p>Pollutants may affect human health negatively in a variety of ways. People may experience symptoms and health issues such as:</p>
 <ul>
 <li>Coughing</li>
 <li>Tightness in the chest</li>
@@ -1754,43 +1754,13 @@
         
         
         <h1 
-            id="IndicatorID-92" 
+            id="IndicatorID-2023" 
             class="d-none"> 
-            Air quality action days
-        </h1>
-        <h2
-            class="d-none"> 
-            Action days for sensitive groups are counted when either ozone or PM2.5 levels are above 100, and for the general population when levels are above 150.
-        </h2>
-
-    
-    
-
-        
-        
-        <h1 
-            id="IndicatorID-57" 
-            class="d-none"> 
-            Fine particles (PM 2.5) action days
+            Fine particles (PM 2.5)
         </h1>
         <h2
             class="d-none"> 
             Fine particles are emitted by vehicles, building boilers, and other combustion - and are a major form of air pollution that harms health.
-        </h2>
-
-    
-    
-
-        
-        
-        <h1 
-            id="IndicatorID-55" 
-            class="d-none"> 
-            Ozone action days
-        </h1>
-        <h2
-            class="d-none"> 
-            Ozone is a common air pollutant that can harm breathing and worsen asthma and other respiratory conditions.
         </h2>
 
     
@@ -1806,21 +1776,6 @@
         <h2
             class="d-none"> 
             Black carbon is a major component of fine particles in the air. Fine particles are easily inhaled and contribute to both short-term acute health effects, as well as long-term chronic illness.
-        </h2>
-
-    
-    
-
-        
-        
-        <h1 
-            id="IndicatorID-2023" 
-            class="d-none"> 
-            Fine particles (PM 2.5)
-        </h1>
-        <h2
-            class="d-none"> 
-            Fine particles are emitted by vehicles, building boilers, and other combustion - and are a major form of air pollution that harms health.
         </h2>
 
     
@@ -1881,6 +1836,66 @@
         <h2
             class="d-none"> 
             Sulfur dioxide comes from burning some kinds of fuel oil. As an air pollutant, it can can worsen lung diseases.
+        </h2>
+
+    
+    
+
+        
+        
+        <h1 
+            id="IndicatorID-92" 
+            class="d-none"> 
+            Air quality action days
+        </h1>
+        <h2
+            class="d-none"> 
+            Action days for sensitive groups are counted when either ozone or PM2.5 levels are above 100, and for the general population when levels are above 150.
+        </h2>
+
+    
+    
+
+        
+        
+        <h1 
+            id="IndicatorID-57" 
+            class="d-none"> 
+            Fine particles (PM 2.5) action days
+        </h1>
+        <h2
+            class="d-none"> 
+            Fine particles are emitted by vehicles, building boilers, and other combustion - and are a major form of air pollution that harms health.
+        </h2>
+
+    
+    
+
+        
+        
+        <h1 
+            id="IndicatorID-55" 
+            class="d-none"> 
+            Ozone action days
+        </h1>
+        <h2
+            class="d-none"> 
+            Ozone is a common air pollutant that can harm breathing and worsen asthma and other respiratory conditions.
+        </h2>
+
+    
+    
+
+        
+        
+        <h1 
+            id="IndicatorID-" 
+            class="d-none"> 
+            
+        </h1>
+        <h2
+            class="d-none"> 
+            
         </h2>
 
     
@@ -2343,6 +2358,59 @@
             let this_indicatorName;
             let header;
 
+                header = 'Neighborhood Air Quality';
+                indicatorDropdown.innerHTML += header.length ? '<div class="dropdown-title"><strong>' + header + '</strong></div>' : '';
+
+                
+
+                     defaultIndicatorId =  2023  
+
+                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2023 );
+                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
+                    indicatorDropdown.innerHTML += "<button class='indicator-dropdown-item dropdown-item' onclick='loadIndicator(2023)' data-indicator-id='2023'>" + this_indicatorName + "</button>";
+
+                
+
+                    
+
+                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2024 );
+                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
+                    indicatorDropdown.innerHTML += "<button class='indicator-dropdown-item dropdown-item' onclick='loadIndicator(2024)' data-indicator-id='2024'>" + this_indicatorName + "</button>";
+
+                
+
+                    
+
+                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2028 );
+                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
+                    indicatorDropdown.innerHTML += "<button class='indicator-dropdown-item dropdown-item' onclick='loadIndicator(2028)' data-indicator-id='2028'>" + this_indicatorName + "</button>";
+
+                
+
+                    
+
+                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2025 );
+                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
+                    indicatorDropdown.innerHTML += "<button class='indicator-dropdown-item dropdown-item' onclick='loadIndicator(2025)' data-indicator-id='2025'>" + this_indicatorName + "</button>";
+
+                
+
+                    
+
+                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2027 );
+                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
+                    indicatorDropdown.innerHTML += "<button class='indicator-dropdown-item dropdown-item' onclick='loadIndicator(2027)' data-indicator-id='2027'>" + this_indicatorName + "</button>";
+
+                
+
+                    
+
+                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2026 );
+                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
+                    indicatorDropdown.innerHTML += "<button class='indicator-dropdown-item dropdown-item' onclick='loadIndicator(2026)' data-indicator-id='2026'>" + this_indicatorName + "</button>";
+
+                
+
                 header = 'Citywide Regulatory Monitoring';
                 indicatorDropdown.innerHTML += header.length ? '<div class="dropdown-title"><strong>' + header + '</strong></div>' : '';
 
@@ -2372,61 +2440,8 @@
 
                 
 
-                header = 'Neighborhood Air Quality';
-                indicatorDropdown.innerHTML += header.length ? '<div class="dropdown-title"><strong>' + header + '</strong></div>' : '';
-
-                
-
-                     defaultIndicatorId =  2024  
-
-                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2024 );
-                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
-                    indicatorDropdown.innerHTML += "<button class='indicator-dropdown-item dropdown-item' onclick='loadIndicator(2024)' data-indicator-id='2024'>" + this_indicatorName + "</button>";
-
-                
-
-                    
-
-                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2023 );
-                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
-                    indicatorDropdown.innerHTML += "<button class='indicator-dropdown-item dropdown-item' onclick='loadIndicator(2023)' data-indicator-id='2023'>" + this_indicatorName + "</button>";
-
-                
-
-                    
-
-                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2028 );
-                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
-                    indicatorDropdown.innerHTML += "<button class='indicator-dropdown-item dropdown-item' onclick='loadIndicator(2028)' data-indicator-id='2028'>" + this_indicatorName + "</button>";
-
-                
-
-                    
-
-                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2025 );
-                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
-                    indicatorDropdown.innerHTML += "<button class='indicator-dropdown-item dropdown-item' onclick='loadIndicator(2025)' data-indicator-id='2025'>" + this_indicatorName + "</button>";
-
-                
-
-                    
-
-                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2027 );
-                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
-                    indicatorDropdown.innerHTML += "<button class='indicator-dropdown-item dropdown-item' onclick='loadIndicator(2027)' data-indicator-id='2027'>" + this_indicatorName + "</button>";
-
-                
-
                 header = '';
                 indicatorDropdown.innerHTML += header.length ? '<div class="dropdown-title"><strong>' + header + '</strong></div>' : '';
-
-                
-
-                     defaultIndicatorId =  2026  
-
-                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2026 );
-                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
-                    indicatorDropdown.innerHTML += "<button class='indicator-dropdown-item dropdown-item' onclick='loadIndicator(2026)' data-indicator-id='2026'>" + this_indicatorName + "</button>";
 
                 
 
@@ -2440,6 +2455,35 @@
             const indicatorButtons = document.getElementById("indicatorButtons");
             let this_indicatorName;
             let header;
+
+                header = 'Neighborhood Air Quality';
+                indicatorButtons.innerHTML += header.length ? '<div class="pl-1 pt-2 home-label border">' + header + '</div>': '';
+
+                defaultIndicatorId =  2023 
+
+                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2023 );
+                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
+                    indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' onclick='loadIndicator(2023)' data-indicator-id='2023'>" + this_indicatorName + "</button>";
+
+                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2024 );
+                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
+                    indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' onclick='loadIndicator(2024)' data-indicator-id='2024'>" + this_indicatorName + "</button>";
+
+                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2028 );
+                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
+                    indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' onclick='loadIndicator(2028)' data-indicator-id='2028'>" + this_indicatorName + "</button>";
+
+                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2025 );
+                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
+                    indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' onclick='loadIndicator(2025)' data-indicator-id='2025'>" + this_indicatorName + "</button>";
+
+                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2027 );
+                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
+                    indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' onclick='loadIndicator(2027)' data-indicator-id='2027'>" + this_indicatorName + "</button>";
+
+                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2026 );
+                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
+                    indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' onclick='loadIndicator(2026)' data-indicator-id='2026'>" + this_indicatorName + "</button>";
 
                 header = 'Citywide Regulatory Monitoring';
                 indicatorButtons.innerHTML += header.length ? '<div class="pl-1 pt-2 home-label border">' + header + '</div>': '';
@@ -2458,39 +2502,10 @@
                     this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
                     indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' onclick='loadIndicator(55)' data-indicator-id='55'>" + this_indicatorName + "</button>";
 
-                header = 'Neighborhood Air Quality';
-                indicatorButtons.innerHTML += header.length ? '<div class="pl-1 pt-2 home-label border">' + header + '</div>': '';
-
-                defaultIndicatorId =  2024 
-
-                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2024 );
-                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
-                    indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' onclick='loadIndicator(2024)' data-indicator-id='2024'>" + this_indicatorName + "</button>";
-
-                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2023 );
-                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
-                    indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' onclick='loadIndicator(2023)' data-indicator-id='2023'>" + this_indicatorName + "</button>";
-
-                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2028 );
-                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
-                    indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' onclick='loadIndicator(2028)' data-indicator-id='2028'>" + this_indicatorName + "</button>";
-
-                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2025 );
-                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
-                    indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' onclick='loadIndicator(2025)' data-indicator-id='2025'>" + this_indicatorName + "</button>";
-
-                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2027 );
-                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
-                    indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' onclick='loadIndicator(2027)' data-indicator-id='2027'>" + this_indicatorName + "</button>";
-
                 header = '';
                 indicatorButtons.innerHTML += header.length ? '<div class="pl-1 pt-2 home-label border">' + header + '</div>': '';
 
-                defaultIndicatorId =  2026 
-
-                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2026 );
-                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
-                    indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' onclick='loadIndicator(2026)' data-indicator-id='2026'>" + this_indicatorName + "</button>";
+                
         }
 
         function createCitation() {

@@ -1706,6 +1706,21 @@
         
         
         <h1 
+            id="IndicatorID-2432" 
+            class="d-none"> 
+            Farmers markets
+        </h1>
+        <h2
+            class="d-none"> 
+            Farmers markets are a great source of fresh produce and other healthy food options and can help mitigate the negative effects of food deserts.
+        </h2>
+
+    
+    
+
+        
+        
+        <h1 
             id="IndicatorID-2389" 
             class="d-none"> 
             Unhealthy food access
@@ -1743,21 +1758,6 @@
         <h2
             class="d-none"> 
             Youths reporting that they drink 1 or more sugary drinks per day. Sugary drinks contribute to an unhealthy, high-calorie diet.
-        </h2>
-
-    
-    
-
-        
-        
-        <h1 
-            id="IndicatorID-2432" 
-            class="d-none"> 
-            Farmers markets
-        </h1>
-        <h2
-            class="d-none"> 
-            Farmers markets are a great source of fresh produce and other healthy food options and can help mitigate the negative effects of food deserts.
         </h2>
 
     
@@ -2208,7 +2208,15 @@
 
                 
 
-                     defaultIndicatorId =  2389  
+                     defaultIndicatorId =  2432  
+
+                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2432 );
+                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
+                    indicatorDropdown.innerHTML += "<button class='indicator-dropdown-item dropdown-item' onclick='loadIndicator(2432)' data-indicator-id='2432'>" + this_indicatorName + "</button>";
+
+                
+
+                    
 
                     indicator = indicators.find(indicator => indicator.IndicatorID ===  2389 );
                     this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
@@ -2232,14 +2240,6 @@
 
                 
 
-                    
-
-                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2432 );
-                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
-                    indicatorDropdown.innerHTML += "<button class='indicator-dropdown-item dropdown-item' onclick='loadIndicator(2432)' data-indicator-id='2432'>" + this_indicatorName + "</button>";
-
-                
-
         }
         
 
@@ -2254,7 +2254,11 @@
                 header = '';
                 indicatorButtons.innerHTML += header.length ? '<div class="pl-1 pt-2 home-label border">' + header + '</div>': '';
 
-                defaultIndicatorId =  2389 
+                defaultIndicatorId =  2432 
+
+                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2432 );
+                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
+                    indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' onclick='loadIndicator(2432)' data-indicator-id='2432'>" + this_indicatorName + "</button>";
 
                     indicator = indicators.find(indicator => indicator.IndicatorID ===  2389 );
                     this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
@@ -2267,10 +2271,6 @@
                     indicator = indicators.find(indicator => indicator.IndicatorID ===  2098 );
                     this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
                     indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' onclick='loadIndicator(2098)' data-indicator-id='2098'>" + this_indicatorName + "</button>";
-
-                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2432 );
-                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
-                    indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' onclick='loadIndicator(2432)' data-indicator-id='2432'>" + this_indicatorName + "</button>";
         }
 
         function createCitation() {

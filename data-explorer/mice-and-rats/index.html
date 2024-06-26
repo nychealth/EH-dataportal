@@ -1746,36 +1746,6 @@
         
         
         <h1 
-            id="IndicatorID-2394" 
-            class="d-none"> 
-            Children in homes with mice (age 1-13)
-        </h1>
-        <h2
-            class="d-none"> 
-            The presence of mice or rats in the home is often associated with poor housing maintenance. These pests can contaminate food and worsen asthma.
-        </h2>
-
-    
-    
-
-        
-        
-        <h1 
-            id="IndicatorID-2105" 
-            class="d-none"> 
-            Adults reporting mice or rats inside
-        </h1>
-        <h2
-            class="d-none"> 
-            Mice and rats are a source of household allergens connected to developing or worsening asthma.
-        </h2>
-
-    
-    
-
-        
-        
-        <h1 
             id="IndicatorID-24" 
             class="d-none"> 
             Adults reporting mice or rats outside
@@ -1783,6 +1753,21 @@
         <h2
             class="d-none"> 
             Mice and rats are a source of household allergens connected to developing or worsening asthma.
+        </h2>
+
+    
+    
+
+        
+        
+        <h1 
+            id="IndicatorID-2394" 
+            class="d-none"> 
+            Children in homes with mice (age 1-13)
+        </h1>
+        <h2
+            class="d-none"> 
+            The presence of mice or rats in the home is often associated with poor housing maintenance. These pests can contaminate food and worsen asthma.
         </h2>
 
     
@@ -2261,27 +2246,19 @@
 
                 
 
-                     defaultIndicatorId =  2394  
-
-                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2394 );
-                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
-                    indicatorDropdown.innerHTML += "<button class='indicator-dropdown-item dropdown-item' onclick='loadIndicator(2394)' data-indicator-id='2394'>" + this_indicatorName + "</button>";
-
-                
-
-                    
-
-                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2105 );
-                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
-                    indicatorDropdown.innerHTML += "<button class='indicator-dropdown-item dropdown-item' onclick='loadIndicator(2105)' data-indicator-id='2105'>" + this_indicatorName + "</button>";
-
-                
-
-                    
+                     defaultIndicatorId =  24  
 
                     indicator = indicators.find(indicator => indicator.IndicatorID ===  24 );
                     this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
                     indicatorDropdown.innerHTML += "<button class='indicator-dropdown-item dropdown-item' onclick='loadIndicator(24)' data-indicator-id='24'>" + this_indicatorName + "</button>";
+
+                
+
+                    
+
+                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2394 );
+                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
+                    indicatorDropdown.innerHTML += "<button class='indicator-dropdown-item dropdown-item' onclick='loadIndicator(2394)' data-indicator-id='2394'>" + this_indicatorName + "</button>";
 
                 
 
@@ -2315,19 +2292,15 @@
                 header = '';
                 indicatorButtons.innerHTML += header.length ? '<div class="pl-1 pt-2 home-label border">' + header + '</div>': '';
 
-                defaultIndicatorId =  2394 
-
-                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2394 );
-                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
-                    indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' onclick='loadIndicator(2394)' data-indicator-id='2394'>" + this_indicatorName + "</button>";
-
-                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2105 );
-                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
-                    indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' onclick='loadIndicator(2105)' data-indicator-id='2105'>" + this_indicatorName + "</button>";
+                defaultIndicatorId =  24 
 
                     indicator = indicators.find(indicator => indicator.IndicatorID ===  24 );
                     this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
                     indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' onclick='loadIndicator(24)' data-indicator-id='24'>" + this_indicatorName + "</button>";
+
+                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2394 );
+                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
+                    indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' onclick='loadIndicator(2394)' data-indicator-id='2394'>" + this_indicatorName + "</button>";
 
                     indicator = indicators.find(indicator => indicator.IndicatorID ===  48 );
                     this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';

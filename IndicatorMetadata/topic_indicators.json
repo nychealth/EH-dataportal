@@ -1,8 +1,8 @@
 {
   "active-design": {
     "IndicatorID": [
-      2133,
       2388,
+      2133,
       2181,
       2416,
       2389,
@@ -18,15 +18,16 @@
   },
   "air-quality": {
     "IndicatorID": [
-      92,
-      57,
-      55,
-      2024,
       2023,
+      2024,
       2028,
       2025,
       2027,
-      2026
+      2026,
+      92,
+      57,
+      55,
+      null
     ],
     "topic_name": "Air quality"
   },
@@ -67,11 +68,10 @@
   },
   "asthma-triggers": {
     "IndicatorID": [
+      107,
       2101,
-      25,
       2393,
       2394,
-      107,
       48
     ],
     "topic_name": "Asthma triggers at home"
@@ -157,9 +157,6 @@
   },
   "cigarette-smoke": {
     "IndicatorID": [
-      2338,
-      2020,
-      2017,
       2421,
       2019,
       2021,
@@ -169,13 +166,11 @@
   },
   "climate": {
     "IndicatorID": [
+      2411,
+      2191,
+      2084,
       2141,
       2143,
-      2084,
-      2191,
-      2411,
-      2155,
-      2104,
       2185,
       2377
     ],
@@ -215,12 +210,12 @@
   },
   "falls-among-older-adults": {
     "IndicatorID": [
-      2403,
       2135,
       2408,
       2136,
       2409,
-      2188
+      2188,
+      2403
     ],
     "topic_name": "Falls among older adults"
   },
@@ -247,10 +242,10 @@
   },
   "healthy-eating": {
     "IndicatorID": [
+      2432,
       2389,
       2097,
-      2098,
-      2432
+      2098
     ],
     "topic_name": "Healthy eating"
   },
@@ -300,9 +295,8 @@
   },
   "mice-and-rats": {
     "IndicatorID": [
-      2394,
-      2105,
       24,
+      2394,
       48,
       2416
     ],
@@ -328,8 +322,8 @@
   },
   "pesticides": {
     "IndicatorID": [
-      2235,
       91,
+      2235,
       100,
       2312,
       96,
@@ -352,10 +346,8 @@
   "physical-activity": {
     "IndicatorID": [
       2060,
-      2173,
-      2172,
-      2058,
-      2059
+      2059,
+      2058
     ],
     "topic_name": "Physical activity"
   },

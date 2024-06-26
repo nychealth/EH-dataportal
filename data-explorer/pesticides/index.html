@@ -1748,13 +1748,13 @@
         
         
         <h1 
-            id="IndicatorID-2235" 
+            id="IndicatorID-91" 
             class="d-none"> 
-            Adults reporting personal use of pesticides
+            Regular exterminator service
         </h1>
         <h2
             class="d-none"> 
-            Pesticide use in the home. This does not include pesticide applications by professional exterminators.
+            Households that report using a regular exterminator service.
         </h2>
 
     
@@ -1763,13 +1763,13 @@
         
         
         <h1 
-            id="IndicatorID-91" 
+            id="IndicatorID-2235" 
             class="d-none"> 
-            Regular exterminator service
+            Adults reporting personal use of pesticides
         </h1>
         <h2
             class="d-none"> 
-            Households that report using a regular exterminator service.
+            Pesticide use in the home. This does not include pesticide applications by professional exterminators.
         </h2>
 
     
@@ -2433,19 +2433,19 @@
 
                 
 
-                     defaultIndicatorId =  2235  
+                     defaultIndicatorId =  91  
 
-                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2235 );
+                    indicator = indicators.find(indicator => indicator.IndicatorID ===  91 );
                     this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
-                    indicatorDropdown.innerHTML += "<button class='indicator-dropdown-item dropdown-item' onclick='loadIndicator(2235)' data-indicator-id='2235'>" + this_indicatorName + "</button>";
+                    indicatorDropdown.innerHTML += "<button class='indicator-dropdown-item dropdown-item' onclick='loadIndicator(91)' data-indicator-id='91'>" + this_indicatorName + "</button>";
 
                 
 
                     
 
-                    indicator = indicators.find(indicator => indicator.IndicatorID ===  91 );
+                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2235 );
                     this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
-                    indicatorDropdown.innerHTML += "<button class='indicator-dropdown-item dropdown-item' onclick='loadIndicator(91)' data-indicator-id='91'>" + this_indicatorName + "</button>";
+                    indicatorDropdown.innerHTML += "<button class='indicator-dropdown-item dropdown-item' onclick='loadIndicator(2235)' data-indicator-id='2235'>" + this_indicatorName + "</button>";
 
                 
 
@@ -2601,15 +2601,15 @@
                 header = '';
                 indicatorButtons.innerHTML += header.length ? '<div class="pl-1 pt-2 home-label border">' + header + '</div>': '';
 
-                defaultIndicatorId =  2235 
-
-                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2235 );
-                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
-                    indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' onclick='loadIndicator(2235)' data-indicator-id='2235'>" + this_indicatorName + "</button>";
+                defaultIndicatorId =  91 
 
                     indicator = indicators.find(indicator => indicator.IndicatorID ===  91 );
                     this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
                     indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' onclick='loadIndicator(91)' data-indicator-id='91'>" + this_indicatorName + "</button>";
+
+                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2235 );
+                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
+                    indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' onclick='loadIndicator(2235)' data-indicator-id='2235'>" + this_indicatorName + "</button>";
 
                 header = 'Commercial Use';
                 indicatorButtons.innerHTML += header.length ? '<div class="pl-1 pt-2 home-label border">' + header + '</div>': '';

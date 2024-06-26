@@ -631,7 +631,7 @@
 <p>To improve health, we can:</p>
 <ul>
 <li>Increase access to public parks and recreation</li>
-<li>Create pedestrian plazas,  and maintain sidewalks</li>
+<li>Create pedestrian plazas, and maintain sidewalks</li>
 <li>Plant street trees</li>
 <li>Provide safer cycling infrastructure and secure bicycle storage</li>
 <li>Make stairways attractive and accessible</li>
@@ -1693,7 +1693,7 @@
 <p>To improve health, we can:</p>
 <ul>
 <li>Increase access to public parks and recreation</li>
-<li>Create pedestrian plazas,  and maintain sidewalks</li>
+<li>Create pedestrian plazas, and maintain sidewalks</li>
 <li>Plant street trees</li>
 <li>Provide safer cycling infrastructure and secure bicycle storage</li>
 <li>Make stairways attractive and accessible</li>
@@ -1720,13 +1720,13 @@
         
         
         <h1 
-            id="IndicatorID-2133" 
+            id="IndicatorID-2388" 
             class="d-none"> 
-            Walkability index
+            Walking distance to a park
         </h1>
         <h2
             class="d-none"> 
-            This score summarizes features that promote walking, including density of residences, intersections, subway stops, and retail area. Higher scores indicate greater walkability. Neighborhoods range from -4.0 to 9.4, with zero as an approximate NYC average. This indicator excludes some factors that may impact access and walkability, like maintenance, ADA access, neighborhood safety, and street trees.
+            The percentage of the population who live within walking distance to a park: a quarter-mile or less to entrances of smaller sites, such as sitting areas and playgrounds, and half-mile or less to entrances of larger parks. Increased access to green space and open space can contribute to increased levels of physical activity.
         </h2>
 
     
@@ -1735,13 +1735,13 @@
         
         
         <h1 
-            id="IndicatorID-2388" 
+            id="IndicatorID-2133" 
             class="d-none"> 
-            Walking distance to a park
+            Walkability index
         </h1>
         <h2
             class="d-none"> 
-            The percentage of the population who live within walking distance to a park: a quarter-mile or less to entrances of smaller sites, such as sitting areas and playgrounds, and half-mile or less to entrances of larger parks. Increased access to green space and open space can contribute to increased levels of physical activity.
+            This score summarizes features that promote walking, including density of residences, intersections, subway stops, and retail area. Higher scores indicate greater walkability. Neighborhoods range from -4.0 to 9.4, with zero as an approximate NYC average. This indicator excludes some factors that may impact access and walkability, like maintenance, ADA access, neighborhood safety, and street trees.
         </h2>
 
     
@@ -2348,24 +2348,24 @@
             let this_indicatorName;
             let header;
 
-                header = 'Walking distance to amenities';
+                header = 'Neighborhood characteristics';
                 indicatorDropdown.innerHTML += header.length ? '<div class="dropdown-title"><strong>' + header + '</strong></div>' : '';
 
                 
 
-                     defaultIndicatorId =  2133  
+                     defaultIndicatorId =  2388  
 
-                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2133 );
+                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2388 );
                     this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
-                    indicatorDropdown.innerHTML += "<button class='indicator-dropdown-item dropdown-item' onclick='loadIndicator(2133)' data-indicator-id='2133'>" + this_indicatorName + "</button>";
+                    indicatorDropdown.innerHTML += "<button class='indicator-dropdown-item dropdown-item' onclick='loadIndicator(2388)' data-indicator-id='2388'>" + this_indicatorName + "</button>";
 
                 
 
                     
 
-                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2388 );
+                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2133 );
                     this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
-                    indicatorDropdown.innerHTML += "<button class='indicator-dropdown-item dropdown-item' onclick='loadIndicator(2388)' data-indicator-id='2388'>" + this_indicatorName + "</button>";
+                    indicatorDropdown.innerHTML += "<button class='indicator-dropdown-item dropdown-item' onclick='loadIndicator(2133)' data-indicator-id='2133'>" + this_indicatorName + "</button>";
 
                 
 
@@ -2470,18 +2470,18 @@
             let this_indicatorName;
             let header;
 
-                header = 'Walking distance to amenities';
+                header = 'Neighborhood characteristics';
                 indicatorButtons.innerHTML += header.length ? '<div class="pl-1 pt-2 home-label border">' + header + '</div>': '';
 
-                defaultIndicatorId =  2133 
-
-                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2133 );
-                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
-                    indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' onclick='loadIndicator(2133)' data-indicator-id='2133'>" + this_indicatorName + "</button>";
+                defaultIndicatorId =  2388 
 
                     indicator = indicators.find(indicator => indicator.IndicatorID ===  2388 );
                     this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
                     indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' onclick='loadIndicator(2388)' data-indicator-id='2388'>" + this_indicatorName + "</button>";
+
+                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2133 );
+                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
+                    indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' onclick='loadIndicator(2133)' data-indicator-id='2133'>" + this_indicatorName + "</button>";
 
                     indicator = indicators.find(indicator => indicator.IndicatorID ===  2181 );
                     this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';

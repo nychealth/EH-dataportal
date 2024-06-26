@@ -1702,13 +1702,13 @@
         
         
         <h1 
-            id="IndicatorID-2101" 
+            id="IndicatorID-107" 
             class="d-none"> 
-            Mold in homes
+            Homes with cockroaches
         </h1>
         <h2
             class="d-none"> 
-            Adults reporting mold in the home. Mold can worsen respiratory conditions like asthma, and indicate maintenance deficiencies in a building.
+            The presence of cockroaches in the home is often associated with poor housing maintenance. Cockroaches in the home can contaminate food and worsen asthma.
         </h2>
 
     
@@ -1717,13 +1717,13 @@
         
         
         <h1 
-            id="IndicatorID-25" 
+            id="IndicatorID-2101" 
             class="d-none"> 
-            Secondhand smoke at home
+            Mold in homes
         </h1>
         <h2
             class="d-none"> 
-            Adults reporting secondhand smoke at home. Secondhand smoke, especially indoors, is bad for health - particularly for the health of children.
+            Adults reporting mold in the home. Mold can worsen respiratory conditions like asthma, and indicate maintenance deficiencies in a building.
         </h2>
 
     
@@ -1754,21 +1754,6 @@
         <h2
             class="d-none"> 
             The presence of mice or rats in the home is often associated with poor housing maintenance. These pests can contaminate food and worsen asthma.
-        </h2>
-
-    
-    
-
-        
-        
-        <h1 
-            id="IndicatorID-107" 
-            class="d-none"> 
-            Homes with cockroaches
-        </h1>
-        <h2
-            class="d-none"> 
-            The presence of cockroaches in the home is often associated with poor housing maintenance. Cockroaches in the home can contaminate food and worsen asthma.
         </h2>
 
     
@@ -2253,19 +2238,19 @@
 
                 
 
-                     defaultIndicatorId =  2101  
+                     defaultIndicatorId =  107  
 
-                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2101 );
+                    indicator = indicators.find(indicator => indicator.IndicatorID ===  107 );
                     this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
-                    indicatorDropdown.innerHTML += "<button class='indicator-dropdown-item dropdown-item' onclick='loadIndicator(2101)' data-indicator-id='2101'>" + this_indicatorName + "</button>";
+                    indicatorDropdown.innerHTML += "<button class='indicator-dropdown-item dropdown-item' onclick='loadIndicator(107)' data-indicator-id='107'>" + this_indicatorName + "</button>";
 
                 
 
                     
 
-                    indicator = indicators.find(indicator => indicator.IndicatorID ===  25 );
+                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2101 );
                     this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
-                    indicatorDropdown.innerHTML += "<button class='indicator-dropdown-item dropdown-item' onclick='loadIndicator(25)' data-indicator-id='25'>" + this_indicatorName + "</button>";
+                    indicatorDropdown.innerHTML += "<button class='indicator-dropdown-item dropdown-item' onclick='loadIndicator(2101)' data-indicator-id='2101'>" + this_indicatorName + "</button>";
 
                 
 
@@ -2282,14 +2267,6 @@
                     indicator = indicators.find(indicator => indicator.IndicatorID ===  2394 );
                     this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
                     indicatorDropdown.innerHTML += "<button class='indicator-dropdown-item dropdown-item' onclick='loadIndicator(2394)' data-indicator-id='2394'>" + this_indicatorName + "</button>";
-
-                
-
-                    
-
-                    indicator = indicators.find(indicator => indicator.IndicatorID ===  107 );
-                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
-                    indicatorDropdown.innerHTML += "<button class='indicator-dropdown-item dropdown-item' onclick='loadIndicator(107)' data-indicator-id='107'>" + this_indicatorName + "</button>";
 
                 
 
@@ -2315,15 +2292,15 @@
                 header = 'Asthma triggers';
                 indicatorButtons.innerHTML += header.length ? '<div class="pl-1 pt-2 home-label border">' + header + '</div>': '';
 
-                defaultIndicatorId =  2101 
+                defaultIndicatorId =  107 
+
+                    indicator = indicators.find(indicator => indicator.IndicatorID ===  107 );
+                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
+                    indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' onclick='loadIndicator(107)' data-indicator-id='107'>" + this_indicatorName + "</button>";
 
                     indicator = indicators.find(indicator => indicator.IndicatorID ===  2101 );
                     this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
                     indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' onclick='loadIndicator(2101)' data-indicator-id='2101'>" + this_indicatorName + "</button>";
-
-                    indicator = indicators.find(indicator => indicator.IndicatorID ===  25 );
-                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
-                    indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' onclick='loadIndicator(25)' data-indicator-id='25'>" + this_indicatorName + "</button>";
 
                     indicator = indicators.find(indicator => indicator.IndicatorID ===  2393 );
                     this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
@@ -2332,10 +2309,6 @@
                     indicator = indicators.find(indicator => indicator.IndicatorID ===  2394 );
                     this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
                     indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' onclick='loadIndicator(2394)' data-indicator-id='2394'>" + this_indicatorName + "</button>";
-
-                    indicator = indicators.find(indicator => indicator.IndicatorID ===  107 );
-                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
-                    indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' onclick='loadIndicator(107)' data-indicator-id='107'>" + this_indicatorName + "</button>";
 
                     indicator = indicators.find(indicator => indicator.IndicatorID ===  48 );
                     this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';

@@ -1753,28 +1753,13 @@
         
         
         <h1 
-            id="IndicatorID-2173" 
+            id="IndicatorID-2059" 
             class="d-none"> 
-            Recent biking
+            Monthly bicycle use
         </h1>
         <h2
             class="d-none"> 
-            Adults reporting biking for transportation in the last 7 days (from when they were surveyed).
-        </h2>
-
-    
-    
-
-        
-        
-        <h1 
-            id="IndicatorID-2172" 
-            class="d-none"> 
-            Recent walking
-        </h1>
-        <h2
-            class="d-none"> 
-            Adults reporting walking for transportation in the last 7 days (from when they were surveyed)
+            Adults reporting having ridden a bicycle at least once a month in the past year.
         </h2>
 
     
@@ -1790,21 +1775,6 @@
         <h2
             class="d-none"> 
             Adults reporting walking or biking for transportation in the last 30 days (from when they were surveyed). Regularly walking or biking for transportation is good for you.
-        </h2>
-
-    
-    
-
-        
-        
-        <h1 
-            id="IndicatorID-2059" 
-            class="d-none"> 
-            Monthly bicycle use
-        </h1>
-        <h2
-            class="d-none"> 
-            Adults reporting having ridden a bicycle at least once a month in the past year.
         </h2>
 
     
@@ -2252,17 +2222,9 @@
 
                     
 
-                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2173 );
+                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2059 );
                     this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
-                    indicatorDropdown.innerHTML += "<button class='indicator-dropdown-item dropdown-item' onclick='loadIndicator(2173)' data-indicator-id='2173'>" + this_indicatorName + "</button>";
-
-                
-
-                    
-
-                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2172 );
-                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
-                    indicatorDropdown.innerHTML += "<button class='indicator-dropdown-item dropdown-item' onclick='loadIndicator(2172)' data-indicator-id='2172'>" + this_indicatorName + "</button>";
+                    indicatorDropdown.innerHTML += "<button class='indicator-dropdown-item dropdown-item' onclick='loadIndicator(2059)' data-indicator-id='2059'>" + this_indicatorName + "</button>";
 
                 
 
@@ -2271,14 +2233,6 @@
                     indicator = indicators.find(indicator => indicator.IndicatorID ===  2058 );
                     this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
                     indicatorDropdown.innerHTML += "<button class='indicator-dropdown-item dropdown-item' onclick='loadIndicator(2058)' data-indicator-id='2058'>" + this_indicatorName + "</button>";
-
-                
-
-                    
-
-                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2059 );
-                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
-                    indicatorDropdown.innerHTML += "<button class='indicator-dropdown-item dropdown-item' onclick='loadIndicator(2059)' data-indicator-id='2059'>" + this_indicatorName + "</button>";
 
                 
 
@@ -2302,21 +2256,13 @@
                     this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
                     indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' onclick='loadIndicator(2060)' data-indicator-id='2060'>" + this_indicatorName + "</button>";
 
-                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2173 );
+                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2059 );
                     this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
-                    indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' onclick='loadIndicator(2173)' data-indicator-id='2173'>" + this_indicatorName + "</button>";
-
-                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2172 );
-                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
-                    indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' onclick='loadIndicator(2172)' data-indicator-id='2172'>" + this_indicatorName + "</button>";
+                    indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' onclick='loadIndicator(2059)' data-indicator-id='2059'>" + this_indicatorName + "</button>";
 
                     indicator = indicators.find(indicator => indicator.IndicatorID ===  2058 );
                     this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
                     indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' onclick='loadIndicator(2058)' data-indicator-id='2058'>" + this_indicatorName + "</button>";
-
-                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2059 );
-                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
-                    indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' onclick='loadIndicator(2059)' data-indicator-id='2059'>" + this_indicatorName + "</button>";
         }
 
         function createCitation() {
