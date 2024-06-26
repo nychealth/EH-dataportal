@@ -518,6 +518,51 @@
                     console.log(noMapObject)
             }
 
+            var inds = [];
+            function indicatorsWithFullViews() {
+                console.log('object of indicators with a full-view measure')
+                // for each indicator...
+                for (let i = 0; i < indicators.length; i++) {
+                    var thisIndicator = [];
+                    
+                    // loop through their measures
+                    for (let j = 0; j < indicators[i].Measures.length; j ++) { 
+                        // Count views for each measure...
+                        var thisMeasure = {};
+                        if (indicators[i].Measures[j].VisOptions[0].Map[0].GeoType != null) {thisMeasure.map = 1} else {thisMeasure.map = 0}
+                        if (indicators[i].Measures[j].VisOptions[0].Trend[0].GeoType != null) {thisMeasure.trend = 1} else {thisMeasure.trend = 0}
+                            let links; 
+                            let disparities;
+                            if (indicators[i].Measures[j].VisOptions[0].Links[0].Measures[0].MeasureID != null) {links = 1} else {links = 0}
+                            if (indicators[i].Measures[j].VisOptions[0].Links[0].Disparities == 1) {disparities = 1} else {disparities = 0}
+                            thisMeasure.LD = links + disparities
+                        thisMeasure.measureName    = indicators[i].Measures[j].MeasureName
+                        thisMeasure.measureID      = indicators[i].Measures[j].MeasureID
+                        thisMeasure.measureViewSum = thisMeasure.map + thisMeasure.trend + thisMeasure.LD
+                        // ...and push the count to indicator info
+                        thisIndicator.push(thisMeasure)
+
+                    } // end measure loop
+
+                    inds.push(thisIndicator)
+
+                }  // end indicator loop 
+
+                /*
+                // then, loop through inds and return the number of measures that have a viewSum > 1.
+                for (let i = 0; i < inds.length; i++) {
+                    var count = 0
+                            // loop through ind[i].length
+
+                            // if ind[i][j].measureViewSum > 1
+                            count = count + 1
+                    ind[i].count = count
+                }
+                */
+
+                console.log(inds)
+            }
+
             function measureViewSummary() {
                 var mvs = [];
                 console.log('object of indicators, measures, and text metadata:')
@@ -533,23 +578,13 @@
                         measure.measureName      = indicators[i].Measures[j].MeasureName
                         measure.measureID        = indicators[i].Measures[j].MeasureID
 
-                        if (indicators[i].Measures[j].VisOptions[0].Map[0].GeoType != null) {
-                            measure.map = 1
-                        } else {
-                            measure.map = 0
-                        }
+                        if (indicators[i].Measures[j].VisOptions[0].Map[0].GeoType != null) {measure.map = 1} else {measure.map = 0}
 
-                        if (indicators[i].Measures[j].VisOptions[0].Trend[0].GeoType != null) {
-                            measure.trend = 1
-                        } else {measure.trend = 0}
+                        if (indicators[i].Measures[j].VisOptions[0].Trend[0].GeoType != null) {measure.trend = 1} else {measure.trend = 0}
 
-                        if (indicators[i].Measures[j].VisOptions[0].Links[0].Measures[0].MeasureID != null) {
-                            measure.links = 1
-                        } else {measure.links = 0}
+                        if (indicators[i].Measures[j].VisOptions[0].Links[0].Measures[0].MeasureID != null) {measure.links = 1} else {measure.links = 0}
 
-                        if (indicators[i].Measures[j].VisOptions[0].Links[0].Disparities == 1) {
-                            measure.disparities = 1
-                        } else {measure.disparities = 0}
+                        if (indicators[i].Measures[j].VisOptions[0].Links[0].Disparities == 1) {measure.disparities = 1} else {measure.disparities = 0}
 
                         /*
                         measure.map              = 
