@@ -296,12 +296,12 @@ const renderDisparitiesChart = async (
                     "type": "nominal"
                 },
                 {
-                    "title": primaryIndicatorName,
+                    "title": primaryMeasureName,
                     "field": "valueLabel",
                     "type": "nominal"
                 },
                 {
-                    "title": disparityIndicatorName,
+                    "title": disparityMeasureName,
                     "field": "povLabel",
                     "type": "nominal"
                 }

@@ -268,12 +268,12 @@ const renderLinksChart = (
                             "type": "nominal"
                         },
                         {
-                            "title": yIndicatorName,
+                            "title": yMeasureName,
                             "field": "yLabel",
                             "type": "nominal"
                         },
                         {
-                            "title": xIndicatorName,
+                            "title": xMeasureName,
                             "field": "xLabel",
                             "type": "nominal"
                         }
