@@ -519,6 +519,7 @@
             }
 
             var inds = [];
+            var fullInds = [];
             function indicatorsWithFullViews() {
                 console.log('object of indicators with a full-view measure')
                 // for each indicator...
@@ -548,19 +549,24 @@
 
                 }  // end indicator loop 
 
-                /*
+
                 // then, loop through inds and return the number of measures that have a viewSum > 1.
                 for (let i = 0; i < inds.length; i++) {
+                    var thisIndicator = {};
                     var count = 0
-                            // loop through ind[i].length
-
-                            // if ind[i][j].measureViewSum > 1
-                            count = count + 1
-                    ind[i].count = count
+                            // loop through inds[i].length
+                            for (let j = 0; j < inds[i].length; j ++) {
+                                if (inds[i][j].measureViewSum > 1) {
+                                    count = count+1
+                                }
+                            }
+                    inds[i].measuresTwoPlus = count
+                    if (inds[i].measuresTwoPlus > 0) {
+                        fullInds.push(inds[i])
+                    } else {}
                 }
-                */
-
                 console.log(inds)
+                console.log(fullInds)
             }
 
             function measureViewSummary() {
