@@ -24,11 +24,8 @@ indicators:
   - 101
   - 29
   - 34
+archive: 'We are no longer updating birth defects data on this site. Much is unknown about the relationship between environmental exposures and birth defects. Research is ongoing. <a href="https://www.health.ny.gov/statistics/environmental/public_health_tracking/health/birth_defects.htm">New York State tracks and collects birth defects information here</a>.'
 ---
-**Note:** We are no longer updating birth defects data on the EH Data Portal. [For more recent data, visit the New York State Environmental Public Health Tracker](https://apps.health.ny.gov/statistics/environmental/public_health_tracking/tracker/index.html#/bdcounty).
-
----
-<br>
 
 Birth defects (also called congenital malformations) are conditions that happen when a baby does not develop normally during pregnancy. Structural defects may include missing limbs, malformed hearts, spina bifida and genetic conditions like Down Syndrome. Most birth defects happen during the first three months of pregnancy and are detected within the first year of life. Some birth defects (such as cleft lip or clubfoot) are easy to see, but others (such as heart defects or hearing loss) are found using special tests (such as x-rays, CT scans, or hearing tests). Birth defects can vary from mild to severe.
 

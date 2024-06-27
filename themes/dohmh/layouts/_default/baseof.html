@@ -15,14 +15,9 @@
     - DS landing page & all others to have header.html
   -->
   
-  {{- if or (ne .Section "data-stories") ( eq .RelPermalink (relURL "data-stories" ) ) -}}
   {{- partial "header.html" . -}}
-  {{- end -}}
-  
-  
-  {{- if and (eq .Section "data-stories") ( ne .RelPermalink (relURL "data-stories" )) -}}
-  {{- partial "header-ds.html" . -}}
-  {{- end -}}
+
+
 
   <main id="skip-header-target" role="main" data-pagefind-body>
     {{- block "main" . -}}{{- end -}}
