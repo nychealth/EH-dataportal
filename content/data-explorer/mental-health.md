@@ -1,7 +1,7 @@
 ---
 title: Mental health
 date: 2021-05-28 18:02:58.738512
-draft: false
+draft: true
 seo_title: "Mental health data in NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
 description: "Datasets and visualizations of mental health in NYC."

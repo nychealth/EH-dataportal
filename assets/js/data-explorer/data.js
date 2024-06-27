@@ -79,6 +79,10 @@ const createComparisonData = async (comps) => {
     
     // console.log("comps [createComparisonData]:", comps);
 
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // get comparisons-specific metadata
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
     // will be used by renderMeasures to create dropdown
     
     comparisonsMetadata = await comps.filter(
@@ -118,6 +122,10 @@ const createComparisonData = async (comps) => {
     let comparisonsIndicatorIDs = [... new Set(aqComparisonsMetadata.array("IndicatorID"))]
     let comparisonsMeasureIDs = [... new Set(aqComparisonsMetadata.array("MeasureID"))]
 
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // join comparisons metadata with indicators from metadata.json
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
     let comparisonsIndicatorsMetadata = indicators.filter(
         ind => comparisonsIndicatorIDs.includes(ind.IndicatorID)
     )
@@ -134,7 +142,8 @@ const createComparisonData = async (comps) => {
             MeasurementType: d => d.Measures.MeasurementType,
             Sources:         d => d.Measures.Sources,
             how_calculated:  d => d.Measures.how_calculated,
-            DisplayType:     d => d.Measures.DisplayType
+            DisplayType:     d => d.Measures.DisplayType,
+            TrendNoCompare:  d => d.Measures.TrendNoCompare
         })
         .derive({IndicatorMeasure: d => d.IndicatorLabel + ": " + d.MeasurementType})
         .select(aq.not("Measures"))
@@ -151,6 +160,10 @@ const createComparisonData = async (comps) => {
 
     // console.log("aqCombinedComparisonsMetadata [createComparisonData]");
     // aqCombinedComparisonsMetadata.print()
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // fetch data files for all comp indicators
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
     // Promise.all takes the array of promises returned by map, and then the `then` callback executes after they've all resolved
 
@@ -367,10 +380,10 @@ const loadGeo = async () => {
     await aq.loadJSON(geoUrl, {autoType: false})
         .then(async (data) => {
 
-            geoTable = await data.select(aq.not('Lat', 'Long'));
+            geoTable = await data;
 
-            // console.log("geoTable [loadGeo]");
-            // geoTable.print()
+            //  console.log("geoTable [loadGeo]");
+            //  geoTable.print()
 
     });
 }

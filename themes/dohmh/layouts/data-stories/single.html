@@ -7,7 +7,11 @@
     <div id="datastoryheader" style="background-image: URL({{ $image.RelPermalink }}); background-position: 50% 25%">
 
         <div class="medium my-auto">
-            <h1 class="titleheader py-2 px-4">
+            <h1 class="titleheader d-none d-md-block py-2 px-4">
+                {{ .Title }}
+            </h1>
+
+            <h1 class="titleheader-mobile d-xs-block d-md-none py-2 px-4">
                 {{ .Title }}
             </h1>
         </div>
@@ -23,20 +27,33 @@
         <!--start main content section-->
         <div class="col-xl-8 overflow-hidden fs-rg" id="primary-content">
 
+        <div class="row mt-2">
+            <div class="col-12">
+                <nav aria-label="breadcrumb" class="border-top">
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
+                        <li class="breadcrumb-item"><a href={{ relURL "data-stories" }}>Data Stories</a></li>
+                        <li class="breadcrumb-item active d-none d-sm-block"><a href="{{ .Page.RelPermalink }}">{{ .Title }}</a></li>
+
+                    </ul>
+                </nav>
+            </div>
+        </div>
+
         <!-- language selection -->
         {{- if .IsTranslated -}}
             <nav class="navbar navbar-default my-2">
                     <ul class="nav navbar-nav fs-sm">
-                        <span class="mr-2">Read this data story in:</span> 
+                        <span class="mr-2">Read this data story in:</span>
                         {{- range .Translations -}}
-                        <li class="mb-1"><a href="{{ .RelPermalink }}">{{ .Language.LanguageName }}</a>&nbsp;|&nbsp;</li>  
+                        <li class="mb-1"><a href="{{ .RelPermalink }}">{{ .Language.LanguageName }}</a>&nbsp;|&nbsp;</li>
                         {{- end -}}
                     </ul>
             </nav>
         {{- end -}}
 
         <div class="narrow my-2">
-                {{- .Content -}}
+            {{- .Content -}}
         </div>
 
             <footer class="narrow my-4" id="article-footer">
@@ -75,7 +92,7 @@
                         <i class="fas fa-images mr-1"></i><strong class="keywords">Banner image:</strong><br>
                         {{- .Params.photocredit -}}
                         <hr class="my-2">
-                    {{- end -}}
+                    {{- end }}
 
                     <strong class="keywords">Published on:</strong><br>
                     {{- .Date.Format "January 2, 2006" -}}
