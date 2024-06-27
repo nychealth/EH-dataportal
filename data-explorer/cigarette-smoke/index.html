@@ -1734,6 +1734,51 @@
         
         
         <h1 
+            id="IndicatorID-2338" 
+            class="d-none"> 
+            Secondhand smoke at home (from outside sources)
+        </h1>
+        <h2
+            class="d-none"> 
+            Adults reporting secondhand smoke at home, from outside sources. Secondhand smoke, especially indoors, is bad for health - especially for the health of children.
+        </h2>
+
+    
+    
+
+        
+        
+        <h1 
+            id="IndicatorID-2020" 
+            class="d-none"> 
+            Secondhand smoke at work
+        </h1>
+        <h2
+            class="d-none"> 
+            Adults reporting secondhand smoke at work. Secondhand smoke, especially indoors, is bad for health.
+        </h2>
+
+    
+    
+
+        
+        
+        <h1 
+            id="IndicatorID-2017" 
+            class="d-none"> 
+            No smoke-free home policy
+        </h1>
+        <h2
+            class="d-none"> 
+            Adults without a smoke-free home policy. A smoke-free home policy can limit people&#39;s exposure to secondhand smoke, which is especially dangerous to children.
+        </h2>
+
+    
+    
+
+        
+        
+        <h1 
             id="IndicatorID-2421" 
             class="d-none"> 
             Tobacco retailers
@@ -1771,6 +1816,36 @@
         <h2
             class="d-none"> 
             High school students who smoked in the past 30 days (from when they were surveyed). Cigarette smoking is the leading cause of preventable deaths in the USA. It causes many diseases and greatly harms health.
+        </h2>
+
+    
+    
+
+        
+        
+        <h1 
+            id="IndicatorID-2422" 
+            class="d-none"> 
+            
+        </h1>
+        <h2
+            class="d-none"> 
+            
+        </h2>
+
+    
+    
+
+        
+        
+        <h1 
+            id="IndicatorID-2404" 
+            class="d-none"> 
+            Secondhand smoke exposure at home (children)
+        </h1>
+        <h2
+            class="d-none"> 
+            The number of children aged 1-13 years exposed to tobacco smoke at home all of the time, most of the time, or occasionally. Secondhand smoke is harmful to children and can cause or worsen respiratory and asthma issues and ear infections.
         </h2>
 
     
@@ -2236,7 +2311,31 @@
 
                 
 
-                     defaultIndicatorId =  2421  
+                     defaultIndicatorId =  2338  
+
+                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2338 );
+                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
+                    indicatorDropdown.innerHTML += "<button class='indicator-dropdown-item dropdown-item' onclick='loadIndicator(2338)' data-indicator-id='2338'>" + this_indicatorName + "</button>";
+
+                
+
+                    
+
+                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2020 );
+                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
+                    indicatorDropdown.innerHTML += "<button class='indicator-dropdown-item dropdown-item' onclick='loadIndicator(2020)' data-indicator-id='2020'>" + this_indicatorName + "</button>";
+
+                
+
+                    
+
+                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2017 );
+                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
+                    indicatorDropdown.innerHTML += "<button class='indicator-dropdown-item dropdown-item' onclick='loadIndicator(2017)' data-indicator-id='2017'>" + this_indicatorName + "</button>";
+
+                
+
+                    
 
                     indicator = indicators.find(indicator => indicator.IndicatorID ===  2421 );
                     this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
@@ -2270,7 +2369,23 @@
 
                 
 
-                     defaultIndicatorId =  25  
+                     defaultIndicatorId =  2422  
+
+                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2422 );
+                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
+                    indicatorDropdown.innerHTML += "<button class='indicator-dropdown-item dropdown-item' onclick='loadIndicator(2422)' data-indicator-id='2422'>" + this_indicatorName + "</button>";
+
+                
+
+                    
+
+                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2404 );
+                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
+                    indicatorDropdown.innerHTML += "<button class='indicator-dropdown-item dropdown-item' onclick='loadIndicator(2404)' data-indicator-id='2404'>" + this_indicatorName + "</button>";
+
+                
+
+                    
 
                     indicator = indicators.find(indicator => indicator.IndicatorID ===  25 );
                     this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
@@ -2292,7 +2407,19 @@
                 header = '';
                 indicatorButtons.innerHTML += header.length ? '<div class="pl-1 pt-2 home-label border">' + header + '</div>': '';
 
-                defaultIndicatorId =  2421 
+                defaultIndicatorId =  2338 
+
+                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2338 );
+                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
+                    indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' onclick='loadIndicator(2338)' data-indicator-id='2338'>" + this_indicatorName + "</button>";
+
+                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2020 );
+                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
+                    indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' onclick='loadIndicator(2020)' data-indicator-id='2020'>" + this_indicatorName + "</button>";
+
+                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2017 );
+                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
+                    indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' onclick='loadIndicator(2017)' data-indicator-id='2017'>" + this_indicatorName + "</button>";
 
                     indicator = indicators.find(indicator => indicator.IndicatorID ===  2421 );
                     this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
@@ -2314,7 +2441,15 @@
                 header = 'Asthma triggers';
                 indicatorButtons.innerHTML += header.length ? '<div class="pl-1 pt-2 home-label border">' + header + '</div>': '';
 
-                defaultIndicatorId =  25 
+                defaultIndicatorId =  2422 
+
+                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2422 );
+                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
+                    indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' onclick='loadIndicator(2422)' data-indicator-id='2422'>" + this_indicatorName + "</button>";
+
+                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2404 );
+                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
+                    indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' onclick='loadIndicator(2404)' data-indicator-id='2404'>" + this_indicatorName + "</button>";
 
                     indicator = indicators.find(indicator => indicator.IndicatorID ===  25 );
                     this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';

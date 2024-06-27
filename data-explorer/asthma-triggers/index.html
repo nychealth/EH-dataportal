@@ -1772,6 +1772,21 @@
         </h2>
 
     
+    
+
+        
+        
+        <h1 
+            id="IndicatorID-2430" 
+            class="d-none"> 
+            Children in homes with visible mold or mildew (age 1-13)
+        </h1>
+        <h2
+            class="d-none"> 
+            Children who live in homes with visible mold/mildew. Mold and mildew can trigger asthma attacks in children.
+        </h2>
+
+    
     <section class="related-reading" data-pagefind-ignore="all">
     <div class="container">
         <div class="row">
@@ -2278,6 +2293,14 @@
 
                 
 
+                    
+
+                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2430 );
+                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
+                    indicatorDropdown.innerHTML += "<button class='indicator-dropdown-item dropdown-item' onclick='loadIndicator(2430)' data-indicator-id='2430'>" + this_indicatorName + "</button>";
+
+                
+
         }
         
 
@@ -2313,6 +2336,10 @@
                     indicator = indicators.find(indicator => indicator.IndicatorID ===  48 );
                     this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
                     indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' onclick='loadIndicator(48)' data-indicator-id='48'>" + this_indicatorName + "</button>";
+
+                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2430 );
+                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
+                    indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' onclick='loadIndicator(2430)' data-indicator-id='2430'>" + this_indicatorName + "</button>";
         }
 
         function createCitation() {
