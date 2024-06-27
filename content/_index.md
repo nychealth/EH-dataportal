@@ -4,8 +4,8 @@ draft: false
 seo_title: "NYC Environment and Health Data Portal."
 seo_description: "Data on how environments shape health in NYC."
 description: "Data on how environments shape health in NYC."
-featured_title: "Real-time air quality"
-featured_text: "Hourly PM2.5 data from our network of monitors."
-featured_link: "key-topics/airquality/realtime/"
-featured_image: realtime-screenshot.png
+featured_title: "Updated: Annual heat mortality report"
+featured_text: "Details and data on deaths due to heat in NYC."
+featured_link: "data-features/heat-report/"
+featured_image: ds-heat.jpg
 ---

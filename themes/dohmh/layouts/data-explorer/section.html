@@ -2,8 +2,20 @@
 
 <article class="container-fluid" id="skip-header-target" data-pagefind-ignore="all">
 
-    <div class="col-lg-10 col-md-12 mx-auto my-4">
+    <div class="col-lg-10 col-md-12 mx-auto">
         <div class="row">
+            <div class="col-md-10 col-sm-12 mt-4 my-2">
+                <nav aria-label="breadcrumb" class="">
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
+                        <li class="breadcrumb-item active"><a href={{ relURL "data-explorer" }}>Data Explorer</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+
+
+        <div class="row mt-2">
             <div class="col-12">
                 <h1 class="de-accent"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>{{ .Title }}</h1>
             </div>
@@ -43,7 +55,7 @@
 
         <div class="row mt-2">
             <div class="col-12">
-                <p class="text-info font-weight-bold">Or, browse by category and topic:</p>
+                <p class="text-info font-weight-bold">Browse:</p>
                 {{ partial "de-chooser-accordion.html" (dict "layout" "double" "context" .)  }}
 
             </div>
