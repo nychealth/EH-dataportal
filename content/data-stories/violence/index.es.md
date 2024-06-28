@@ -6,10 +6,8 @@ seo_title: "Por qué la violencia es un problema de salud pública"
 seo_description: "Uso de la salud pública para prevenir la violencia."
 categories: ["housing","social","childhealth","healthoutcomes","neighborhoods"]
 keywords: ["violence","assaults","injustice","poverty","social determinants","redlining","disinvestment","racism","neighborhoods"]
-image: ds-povasthma.jpg
 image: ds-violence.jpg
 vega: true
-layout: advanced
 photocredit: "Benjamin Kanter/Mayoral Photography Office"
 ---
 ## Uso de la salud pública para prevenir la violencia 
@@ -80,7 +78,11 @@ Las décadas de {{< rawhtml >}}<a href="#disinvestmentCollapse" data-toggle="col
 
 Como resultado de esta falta de inversión, vemos **una clara relación entre la pobreza y la violencia**. Cuando el nivel de pobreza de un vecindario aumenta, las agresiones también lo hacen. 
 
-{{< datawrapper title="Poverty and assaults in NYC" src="qIuF8/1/" height="533" >}}
+<iframe title='Poverty and assaults - ranks' aria-label="Interactive chart" id="datawrapper-chart-O0SUA"
+    src='//datawrapper.dwcdn.net/639n0/1/' scrolling="no" frameborder="0"
+    style="width: 0; min-width: 100% !important; border: none;" height='600'></iframe>
+<script type="text/javascript">!function () { "use strict"; window.addEventListener("message", function (a) { if (void 0 !== a.data["datawrapper-height"]) for (var e in a.data["datawrapper-height"]) { var t = document.getElementById("datawrapper-chart-" + e) || document.querySelector("iframe[src*='" + e + "']"); t && (t.style.height = a.data["datawrapper-height"][e] + "px") } }) }();
+</script>
 
 ### La falta de inversión crea entornos que atentan contra la salud. 
 {{< rawhtml >}}

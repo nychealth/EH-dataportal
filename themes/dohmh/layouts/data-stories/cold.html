@@ -2,18 +2,7 @@
 
 <article class="container-fluid" id="skip-header-target">
 
-    <div class="row mt-2">
-        <div class="col-12">
-            <nav aria-label="breadcrumb" class="border-top">
-                <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
-                    <li class="breadcrumb-item"><a href={{ relURL "data-stories" }}>Data Stories</a></li>
-                    <li class="breadcrumb-item active"><a href="{{ .Page.RelPermalink }}">{{ .Title }}</a></li>
 
-                </ul>
-            </nav>
-        </div>
-    </div>
 
     <div class="row">
         <div class="col-xl-2"></div>
@@ -21,6 +10,19 @@
 
         <!--start main content section-->
         <div class="col-xl-8 overflow-hidden fs-rg" id="primary-content">
+
+            <div class="row mt-2">
+                <div class="col-12">
+                    <nav aria-label="breadcrumb" class="border-top">
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
+                            <li class="breadcrumb-item"><a href={{ relURL "data-stories" }}>Data Stories</a></li>
+                            <li class="breadcrumb-item active"><a href="{{ .Page.RelPermalink }}">{{ .Title }}</a></li>
+        
+                        </ul>
+                    </nav>
+                </div>
+            </div>
 
 
 
@@ -36,8 +38,8 @@
             </nav>
         {{- end -}}
 
-        <div class="narrow my-2">
-            <h1 class="pt-4">{{ .Title }}</h1>
+        <div class="my-4">
+            <h1 class="">{{ .Title }}</h1>
                 {{- .Content -}}
         </div>
 
@@ -45,7 +47,7 @@
             <iframe src="source/index.html" frameborder="off" style="width:100%;height: 700px;"></iframe>
         </div>
 
-        <div class="narrow my-2">
+        <div class="my-2">
             <a href="https://www1.nyc.gov/site/doh/health/emergency-preparedness/emergencies-extreme-weather-cold-weather.page" aria-label="Learn more about cold weather health risks." tabindex="0" class="more-info">Learn more about cold weather health risks</a>, and get resources to help you stay safe this winter.
         </div>
 
