@@ -1776,36 +1776,6 @@
         
         
         <h1 
-            id="IndicatorID-2317" 
-            class="d-none"> 
-            Jail incarceration
-        </h1>
-        <h2
-            class="d-none"> 
-            Each component of the criminal justice continuum - from arrest to re-entry - carries various health consequences, and a growing body of literature has documented severe adverse health outcomes associated with incarceration on the individual, their families, and neighborhoods.
-        </h2>
-
-    
-    
-
-        
-        
-        <h1 
-            id="IndicatorID-2073" 
-            class="d-none"> 
-            Perception of neighborhood safety
-        </h1>
-        <h2
-            class="d-none"> 
-            Adults reporting their neighborhood is safe from crime. Whether people perceive their neighborhood as safe can affect whether they will spend time outside, use parks, and use active and sustainable forms of transportation. It can also affect mental well-being.
-        </h2>
-
-    
-    
-
-        
-        
-        <h1 
             id="IndicatorID-17" 
             class="d-none"> 
             Owner-occupied homes
@@ -2350,22 +2320,6 @@
 
                 
 
-                    
-
-                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2317 );
-                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
-                    indicatorDropdown.innerHTML += "<button class='indicator-dropdown-item dropdown-item' onclick='loadIndicator(2317)' data-indicator-id='2317'>" + this_indicatorName + "</button>";
-
-                
-
-                    
-
-                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2073 );
-                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
-                    indicatorDropdown.innerHTML += "<button class='indicator-dropdown-item dropdown-item' onclick='loadIndicator(2073)' data-indicator-id='2073'>" + this_indicatorName + "</button>";
-
-                
-
                 header = 'Housing';
                 indicatorDropdown.innerHTML += header.length ? '<div class="dropdown-title"><strong>' + header + '</strong></div>' : '';
 
@@ -2434,14 +2388,6 @@
                     indicator = indicators.find(indicator => indicator.IndicatorID ===  2132 );
                     this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
                     indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' onclick='loadIndicator(2132)' data-indicator-id='2132'>" + this_indicatorName + "</button>";
-
-                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2317 );
-                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
-                    indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' onclick='loadIndicator(2317)' data-indicator-id='2317'>" + this_indicatorName + "</button>";
-
-                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2073 );
-                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
-                    indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' onclick='loadIndicator(2073)' data-indicator-id='2073'>" + this_indicatorName + "</button>";
 
                 header = 'Housing';
                 indicatorButtons.innerHTML += header.length ? '<div class="pl-1 pt-2 home-label border">' + header + '</div>': '';

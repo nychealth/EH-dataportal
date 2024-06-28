@@ -618,7 +618,312 @@
 
 
 
-<button data-toggle="modal" data-target="#modal-Asth1199-1" onclick='getURL( 2380 , "Asth1199")' class="indicator-anchor">
+<button data-toggle="modal" data-target="#modal-Adul31-1" onclick='getURL( 18 , "Adul31")' class="indicator-anchor">
+    <div class="row align-items-center d-print-none">
+        <div class="col-6 col-md-5">
+            <span class="indicator-short-name">Asthma (adults)</span>
+            <div class="print-only">Adults with asthma (past 12 months), 2022</div>
+        </div>
+        <div class="col-6 col-md-4 topic-list">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/Adul31_406.svg" alt="Visualization showing neighborhood rank of 36 out of 42 for Asthma (adults) in Fresh Meadows." width="100%" class="viz d-md-none mb-1"><span class="better">Better</span></div>
+        <div class="d-none d-md-inline col-md-3">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/Adul31_406.svg" alt="Visualization showing neighborhood rank of 36 out of 42 for Asthma (adults) in Fresh Meadows." class="viz">
+        </div>
+    </div>
+
+    
+    <div class="print-only row">
+        <div class="col-4 small border-right">
+            <span class="indicator-short-name">Asthma (adults)</span>
+            <div style="font-size: 12px;">Adults with asthma (past 12 months), 2022</div>
+        </div>
+        <div class="col-3 topic-list">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/Adul31_406.svg" alt="Visualization showing neighborhood rank of 36 out of 42 for Asthma (adults) in Fresh Meadows." width="100%" class="viz d-md-none mb-1"><span class="better">Better</span></div>
+        <div class="col-5 border-left">
+            <div class="comparison">
+                <div class="row">
+                    <div class="col">
+                        Fresh Meadows: <span class="float-right">N/A**</span><br>
+                        Queens: <span class="float-right">3.1</span><br>
+                        New York City: <span class="float-right">4.3</span>
+                     </div>
+
+                </div>
+            </div>
+            <p style="font-size: 12px;"><em>Age-adjusted percent </em></p>
+        </div>
+    </div>
+
+</button>
+
+
+<div class="modal fade report-modal" id="modal-Adul31-1" tabindex="-1" role="dialog" aria-labelledby="indicatorModalLabel" aria-hidden="true">
+   <script>
+    
+     function getYear(x,y) {
+        var endDate = new Date(x) ;
+        console.log('end date:', endDate) ;
+        var year = endDate.getYear() + 1900
+        console.log(year)
+        document.getElementById(y).innerHTML = year
+    }
+   </script>
+   
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header text-left">
+                <h2 class="modal-title fs-xl" id="indicatorModalLabel" data-pagefind-ignore="all">Asthma (adults)</h2>
+                <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+                    <span class="fas fa-times-circle"></span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <h2 class="fs-xl" data-pagefind-ignore="all">Adults with asthma (past 12 months) <span class="font-weight-normal">(<span id="year-asthma-adults">YEAR</span>)</span></h2>
+                <p>Asthma is a common disease characterized by breathing difficulty. Poor air quality and housing issues increase risk of developing and triggering asthma.</p>
+            </div>
+
+            <script>
+                
+                getYear(`2022-12-31`,`year-asthma-adults`)
+            </script>
+
+            <div class="modal-body">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col"  style="border-top:none!important"><span class="sr-only">Location:</span></th>
+                        <th scope="col"style="width:35%;"><span class="">Age-adjusted percent </span></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row"><span class="text-primary fs-xl float-right">Fresh Meadows <span class="ml-2 float-right">N/A**</span></span></th>
+
+                        <td>
+                            <div id="n-asthma-adults" style="width:90%;" class="compBar neighb">
+                                &nbsp;
+                                <span class="sr-only">N/A**</span>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl float-right">Queens <span class="ml-2 float-right">3.1</span></span></th>
+                        <td>
+                            <div id="b-asthma-adults" style="width:90%;" class="compBar nonNeighb">
+                                &nbsp;
+                                <span class="sr-only">3.1</span>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl float-right">New York City <span class="ml-2 float-right">4.3</span></span></th>
+                        <td>
+                            <div id="c-asthma-adults" style="width:90%;" class="compBar nonNeighb">
+                                &nbsp;
+                                <span class="sr-only">4.3</span>
+                            </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table><div class="data-note float-right">** Estimate is suppressed due to insufficient data.</div><script>
+                    renderComparisonChart( null ,  3.1 ,  4.3 ,'n-asthma-adults','b-asthma-adults','c-asthma-adults')
+                    
+                </script>
+
+            </div>
+            <hr>
+            <div class="modal-body">
+                <span class="home-label font-weight-bold">Comparison</span>
+                <p class="fs-lg">For adults with asthma (past 12 months), <strong class="text-primary">Fresh Meadows</strong> is <span class="better">better</span> than most neighborhoods.</p>
+                <p class="fs-sm">  <em>Age-adjusted percent </em></p>
+                <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Adul31-1"></div>
+
+            </div>
+            <hr>
+            <div class="modal-body" id="t-asthma-adults">
+                <span class="home-label font-weight-bold">Trends over time</span>
+                <p class="fs-sm"><em>Age-adjusted percent </em></p>
+                <div style="width:100%; height:50vmin; z-index:10000;display:block;" id="trend-Adul31-1"></div><div class="data-note mt-3">Some years of data may have unstable rates or estimates suppressed due to low numbers.</div></div>
+            
+            <div class="modal-body hide" id="ta-asthma-adults">
+                <span class="home-label font-weight-bold">Trends over time (not available)</span>
+                <p class="fs-sm"><em>There's only a single year of data available for this indicator, so we can't show a trend.</em></p>
+            </div>
+            <script>
+                checkTrend('1','asthma-adults')
+            </script>
+            <hr>
+            <div class="modal-body">
+                <span class="home-label font-weight-bold">By neighborhood</span>
+                <p class="fs-sm"><em>Age-adjusted percent </em></p>
+                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Adul31-1"></div><div class="data-note mt-3">Some neighborhoods may have estimates suppressed due to low numbers.</div></div>
+
+            <div class="modal-body">
+                <span class="home-label font-weight-bold">Source: </span><br> 
+                <span class="fs-sm">New York City Community Health Survey (CHS)</span>
+            </div>
+
+            
+            <div class="flex-column p-2"><a id="Adul31" style="display:none">
+                <button type="button" class="btn btn-inline btn-outline-secondary px-4 float-left">Get the data</button></a>
+                <button type="button" class="btn btn-primary px-4 float-right" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .compBar {
+        margin-top: 5px;
+        padding-left: 5px;
+        border-left: 3px solid darkgray;
+        max-height: 36px;
+
+    }
+
+    .nonNeighb {
+        background-color: #D8D8D8;
+    }
+
+    .neighb {
+        background-color: #00923E;
+    }
+</style>
+
+
+
+<script type="text/javascript">
+
+    $( "#modal-Adul31-1" ).on('shown.bs.modal', function() {
+
+        
+
+        gtag('event', 'click_modal', {
+                'modal_name': 'Asthma (adults)'
+            });
+
+        var opt = {"renderer": "svg"};
+
+            
+
+            
+
+            var summaryData =
+                arqTable
+                .filter(d => d.indicator_data_name == "Adul31")
+                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
+                .dedupe()
+                .groupby("neighborhood")
+                .orderby("neighborhood", aq.desc("end_date"))
+                .slice(0,1) 
+                .ungroup()
+                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
+                .orderby("unmodified_data_value_geo_entity") 
+                .select(aq.not("end_date"))
+                .objects()
+
+
+            vegaEmbed(
+                "#summary-Adul31-1",
+                summarySpec,
+                opt
+            ).then((res) => {
+
+                res.view.insert("summaryData", summaryData).run()
+
+            }).catch(console.error);;
+
+
+            
+
+            
+
+            var mapData = summaryData;
+
+
+            vegaEmbed(
+                "#map-Adul31-1",
+                mapSpec,
+                opt
+            ).then((res) => {
+
+                res.view.insert("mapData", mapData).run()
+
+            }).catch(console.error);
+
+
+            
+
+            
+
+            var trendData =
+                arqTable
+                .filter(d => d.indicator_data_name == "Adul31")
+                .select("start_date", "time", "geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note")
+                .dedupe()
+                .objects()
+
+
+            vegaEmbed(
+                "#trend-Adul31-1",
+                trendSpec,
+                opt
+            ).then((res) => {
+
+                res.view.insert("trendData", trendData).run()
+
+            }).catch(console.error);;
+
+    });
+
+    </script>
+
+
+<script>
+    function renderComparisonChart(n,b,c,nid,bid,cid) {
+        
+        var values = []
+
+        values.push(Number(n))
+        values.push(Number(b))
+        values.push(Number(c))
+
+        
+
+        console.log('values:')
+        console.log(values)
+
+        
+        var max = Math.max(...values)
+
+        
+        var denom = max * 1.2
+        var nWidth = n / denom
+        var bWidth = b / denom
+        var cWidth = c / denom
+
+        
+        document.getElementById(nid).style.width = 100 * nWidth + '%' 
+        document.getElementById(bid).style.width = 100 * bWidth + '%'
+        document.getElementById(cid).style.width = 100 * cWidth + '%'
+
+    }
+
+    function checkTrend(x,y) {
+        if (x == 0 ) {
+            document.getElementById('t-'+y).classList.add('hide');
+            document.getElementById('ta-'+y).classList.remove('hide');
+            console.log(y)
+        } else {}
+    }
+
+</script>
+
+
+
+
+<button data-toggle="modal" data-target="#modal-Asth1199-2" onclick='getURL( 2380 , "Asth1199")' class="indicator-anchor">
     <div class="row align-items-center d-print-none">
         <div class="col-6 col-md-5">
             <span class="indicator-short-name">Asthma ED visits (adults)</span>
@@ -657,7 +962,7 @@
 </button>
 
 
-<div class="modal fade report-modal" id="modal-Asth1199-1" tabindex="-1" role="dialog" aria-labelledby="indicatorModalLabel" aria-hidden="true">
+<div class="modal fade report-modal" id="modal-Asth1199-2" tabindex="-1" role="dialog" aria-labelledby="indicatorModalLabel" aria-hidden="true">
    <script>
     
      function getYear(x,y) {
@@ -737,14 +1042,14 @@
                 <span class="home-label font-weight-bold">Comparison</span>
                 <p class="fs-lg">For asthma emergency department visits (adults), <strong class="text-primary">Fresh Meadows</strong> is <span class="better">better</span> than most neighborhoods.</p>
                 <p class="fs-sm">  <em>Age-adjusted rate per 10,000</em></p>
-                <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Asth1199-1"></div>
+                <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Asth1199-2"></div>
 
             </div>
             <hr>
             <div class="modal-body" id="t-asthma-ed-visits-adults">
                 <span class="home-label font-weight-bold">Trends over time</span>
                 <p class="fs-sm"><em>Age-adjusted rate per 10,000</em></p>
-                <div style="width:100%; height:50vmin; z-index:10000;display:block;" id="trend-Asth1199-1"></div><div class="data-note mt-3">Some years of data may have unstable rates or estimates suppressed due to low numbers.</div></div>
+                <div style="width:100%; height:50vmin; z-index:10000;display:block;" id="trend-Asth1199-2"></div><div class="data-note mt-3">Some years of data may have unstable rates or estimates suppressed due to low numbers.</div></div>
             
             <div class="modal-body hide" id="ta-asthma-ed-visits-adults">
                 <span class="home-label font-weight-bold">Trends over time (not available)</span>
@@ -757,7 +1062,7 @@
             <div class="modal-body">
                 <span class="home-label font-weight-bold">By neighborhood</span>
                 <p class="fs-sm"><em>Age-adjusted rate per 10,000</em></p>
-                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Asth1199-1"></div><div class="data-note mt-3">Some neighborhoods may have estimates suppressed due to low numbers.</div></div>
+                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Asth1199-2"></div><div class="data-note mt-3">Some neighborhoods may have estimates suppressed due to low numbers.</div></div>
 
             <div class="modal-body">
                 <span class="home-label font-weight-bold">Source: </span><br> 
@@ -795,7 +1100,7 @@
 
 <script type="text/javascript">
 
-    $( "#modal-Asth1199-1" ).on('shown.bs.modal', function() {
+    $( "#modal-Asth1199-2" ).on('shown.bs.modal', function() {
 
         
 
@@ -825,7 +1130,7 @@
 
 
             vegaEmbed(
-                "#summary-Asth1199-1",
+                "#summary-Asth1199-2",
                 summarySpec,
                 opt
             ).then((res) => {
@@ -843,7 +1148,7 @@
 
 
             vegaEmbed(
-                "#map-Asth1199-1",
+                "#map-Asth1199-2",
                 mapSpec,
                 opt
             ).then((res) => {
@@ -866,7 +1171,7 @@
 
 
             vegaEmbed(
-                "#trend-Asth1199-1",
+                "#trend-Asth1199-2",
                 trendSpec,
                 opt
             ).then((res) => {
@@ -923,7 +1228,7 @@
 
 
 
-<button data-toggle="modal" data-target="#modal-Asth1204-2" onclick='getURL( 2382 , "Asth1204")' class="indicator-anchor">
+<button data-toggle="modal" data-target="#modal-Asth1204-3" onclick='getURL( 2382 , "Asth1204")' class="indicator-anchor">
     <div class="row align-items-center d-print-none">
         <div class="col-6 col-md-5">
             <span class="indicator-short-name">Asthma hospitalizations (adults)</span>
@@ -962,7 +1267,7 @@
 </button>
 
 
-<div class="modal fade report-modal" id="modal-Asth1204-2" tabindex="-1" role="dialog" aria-labelledby="indicatorModalLabel" aria-hidden="true">
+<div class="modal fade report-modal" id="modal-Asth1204-3" tabindex="-1" role="dialog" aria-labelledby="indicatorModalLabel" aria-hidden="true">
    <script>
     
      function getYear(x,y) {
@@ -1042,14 +1347,14 @@
                 <span class="home-label font-weight-bold">Comparison</span>
                 <p class="fs-lg">For asthma hospitalizations (adults), <strong class="text-primary">Fresh Meadows</strong> is <span class="better">better</span> than most neighborhoods.</p>
                 <p class="fs-sm">  <em>Age-adjusted rate per 10,000</em></p>
-                <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Asth1204-2"></div>
+                <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Asth1204-3"></div>
 
             </div>
             <hr>
             <div class="modal-body" id="t-asthma-hospitalizations-adults">
                 <span class="home-label font-weight-bold">Trends over time</span>
                 <p class="fs-sm"><em>Age-adjusted rate per 10,000</em></p>
-                <div style="width:100%; height:50vmin; z-index:10000;display:block;" id="trend-Asth1204-2"></div><div class="data-note mt-3">Some years of data may have unstable rates or estimates suppressed due to low numbers.</div></div>
+                <div style="width:100%; height:50vmin; z-index:10000;display:block;" id="trend-Asth1204-3"></div><div class="data-note mt-3">Some years of data may have unstable rates or estimates suppressed due to low numbers.</div></div>
             
             <div class="modal-body hide" id="ta-asthma-hospitalizations-adults">
                 <span class="home-label font-weight-bold">Trends over time (not available)</span>
@@ -1062,7 +1367,7 @@
             <div class="modal-body">
                 <span class="home-label font-weight-bold">By neighborhood</span>
                 <p class="fs-sm"><em>Age-adjusted rate per 10,000</em></p>
-                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Asth1204-2"></div><div class="data-note mt-3">Some neighborhoods may have estimates suppressed due to low numbers.</div></div>
+                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Asth1204-3"></div><div class="data-note mt-3">Some neighborhoods may have estimates suppressed due to low numbers.</div></div>
 
             <div class="modal-body">
                 <span class="home-label font-weight-bold">Source: </span><br> 
@@ -1100,7 +1405,7 @@
 
 <script type="text/javascript">
 
-    $( "#modal-Asth1204-2" ).on('shown.bs.modal', function() {
+    $( "#modal-Asth1204-3" ).on('shown.bs.modal', function() {
 
         
 
@@ -1130,7 +1435,7 @@
 
 
             vegaEmbed(
-                "#summary-Asth1204-2",
+                "#summary-Asth1204-3",
                 summarySpec,
                 opt
             ).then((res) => {
@@ -1148,7 +1453,7 @@
 
 
             vegaEmbed(
-                "#map-Asth1204-2",
+                "#map-Asth1204-3",
                 mapSpec,
                 opt
             ).then((res) => {
@@ -1171,312 +1476,7 @@
 
 
             vegaEmbed(
-                "#trend-Asth1204-2",
-                trendSpec,
-                opt
-            ).then((res) => {
-
-                res.view.insert("trendData", trendData).run()
-
-            }).catch(console.error);;
-
-    });
-
-    </script>
-
-
-<script>
-    function renderComparisonChart(n,b,c,nid,bid,cid) {
-        
-        var values = []
-
-        values.push(Number(n))
-        values.push(Number(b))
-        values.push(Number(c))
-
-        
-
-        console.log('values:')
-        console.log(values)
-
-        
-        var max = Math.max(...values)
-
-        
-        var denom = max * 1.2
-        var nWidth = n / denom
-        var bWidth = b / denom
-        var cWidth = c / denom
-
-        
-        document.getElementById(nid).style.width = 100 * nWidth + '%' 
-        document.getElementById(bid).style.width = 100 * bWidth + '%'
-        document.getElementById(cid).style.width = 100 * cWidth + '%'
-
-    }
-
-    function checkTrend(x,y) {
-        if (x == 0 ) {
-            document.getElementById('t-'+y).classList.add('hide');
-            document.getElementById('ta-'+y).classList.remove('hide');
-            console.log(y)
-        } else {}
-    }
-
-</script>
-
-
-
-
-<button data-toggle="modal" data-target="#modal-Adul31-3" onclick='getURL( 18 , "Adul31")' class="indicator-anchor">
-    <div class="row align-items-center d-print-none">
-        <div class="col-6 col-md-5">
-            <span class="indicator-short-name">Asthma (adults)</span>
-            <div class="print-only">Adults with asthma (past 12 months), 2020</div>
-        </div>
-        <div class="col-6 col-md-4 topic-list">
-            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/Adul31_406.svg" alt="Visualization showing neighborhood rank of 21 out of 42 for Asthma (adults) in Fresh Meadows." width="100%" class="viz d-md-none mb-1"><span class="middle">Middle</span></div>
-        <div class="d-none d-md-inline col-md-3">
-            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/Adul31_406.svg" alt="Visualization showing neighborhood rank of 21 out of 42 for Asthma (adults) in Fresh Meadows." class="viz">
-        </div>
-    </div>
-
-    
-    <div class="print-only row">
-        <div class="col-4 small border-right">
-            <span class="indicator-short-name">Asthma (adults)</span>
-            <div style="font-size: 12px;">Adults with asthma (past 12 months), 2020</div>
-        </div>
-        <div class="col-3 topic-list">
-            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/Adul31_406.svg" alt="Visualization showing neighborhood rank of 21 out of 42 for Asthma (adults) in Fresh Meadows." width="100%" class="viz d-md-none mb-1"><span class="middle">Middle</span></div>
-        <div class="col-5 border-left">
-            <div class="comparison">
-                <div class="row">
-                    <div class="col">
-                        Fresh Meadows: <span class="float-right">3.6*</span><br>
-                        Queens: <span class="float-right">2.6</span><br>
-                        New York City: <span class="float-right">3.8</span>
-                     </div>
-
-                </div>
-            </div>
-            <p style="font-size: 12px;"><em>Age-adjusted percent </em></p>
-        </div>
-    </div>
-
-</button>
-
-
-<div class="modal fade report-modal" id="modal-Adul31-3" tabindex="-1" role="dialog" aria-labelledby="indicatorModalLabel" aria-hidden="true">
-   <script>
-    
-     function getYear(x,y) {
-        var endDate = new Date(x) ;
-        console.log('end date:', endDate) ;
-        var year = endDate.getYear() + 1900
-        console.log(year)
-        document.getElementById(y).innerHTML = year
-    }
-   </script>
-   
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header text-left">
-                <h2 class="modal-title fs-xl" id="indicatorModalLabel" data-pagefind-ignore="all">Asthma (adults)</h2>
-                <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
-                    <span class="fas fa-times-circle"></span>
-                </button>
-            </div>
-
-            <div class="modal-body">
-                <h2 class="fs-xl" data-pagefind-ignore="all">Adults with asthma (past 12 months) <span class="font-weight-normal">(<span id="year-asthma-adults">YEAR</span>)</span></h2>
-                <p>Asthma is a common disease characterized by breathing difficulty. Poor air quality and housing issues increase risk of developing and triggering asthma.</p>
-            </div>
-
-            <script>
-                
-                getYear(`2020-12-31`,`year-asthma-adults`)
-            </script>
-
-            <div class="modal-body">
-                <table class="table">
-                    <thead>
-                      <tr>
-                        <th scope="col"  style="border-top:none!important"><span class="sr-only">Location:</span></th>
-                        <th scope="col"style="width:35%;"><span class="">Age-adjusted percent </span></th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th scope="row"><span class="text-primary fs-xl float-right">Fresh Meadows <span class="ml-2 float-right">3.6*</span></span></th>
-
-                        <td>
-                            <div id="n-asthma-adults" style="width:90%;" class="compBar neighb">
-                                &nbsp;
-                                <span class="sr-only">3.6*</span>
-                            </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <th scope="row"><span class="fs-xl float-right">Queens <span class="ml-2 float-right">2.6</span></span></th>
-                        <td>
-                            <div id="b-asthma-adults" style="width:90%;" class="compBar nonNeighb">
-                                &nbsp;
-                                <span class="sr-only">2.6</span>
-                            </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <th scope="row"><span class="fs-xl float-right">New York City <span class="ml-2 float-right">3.8</span></span></th>
-                        <td>
-                            <div id="c-asthma-adults" style="width:90%;" class="compBar nonNeighb">
-                                &nbsp;
-                                <span class="sr-only">3.8</span>
-                            </div>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table><div class="data-note float-right">* Estimate is based on small numbers so should be interpreted with caution.</div><script>
-                    renderComparisonChart( 3.6 ,  2.6 ,  3.8 ,'n-asthma-adults','b-asthma-adults','c-asthma-adults')
-                    
-                </script>
-
-            </div>
-            <hr>
-            <div class="modal-body">
-                <span class="home-label font-weight-bold">Comparison</span>
-                <p class="fs-lg">For adults with asthma (past 12 months), <strong class="text-primary">Fresh Meadows</strong> is in the <span class="middle">middle</span> of NYC neighborhoods.</p>
-                <p class="fs-sm">  <em>Age-adjusted percent </em></p>
-                <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Adul31-3"></div>
-
-            </div>
-            <hr>
-            <div class="modal-body" id="t-asthma-adults">
-                <span class="home-label font-weight-bold">Trends over time</span>
-                <p class="fs-sm"><em>Age-adjusted percent </em></p>
-                <div style="width:100%; height:50vmin; z-index:10000;display:block;" id="trend-Adul31-3"></div><div class="data-note mt-3">Some years of data may have unstable rates or estimates suppressed due to low numbers.</div></div>
-            
-            <div class="modal-body hide" id="ta-asthma-adults">
-                <span class="home-label font-weight-bold">Trends over time (not available)</span>
-                <p class="fs-sm"><em>There's only a single year of data available for this indicator, so we can't show a trend.</em></p>
-            </div>
-            <script>
-                checkTrend('1','asthma-adults')
-            </script>
-            <hr>
-            <div class="modal-body">
-                <span class="home-label font-weight-bold">By neighborhood</span>
-                <p class="fs-sm"><em>Age-adjusted percent </em></p>
-                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Adul31-3"></div><div class="data-note mt-3">Some neighborhoods may have estimates suppressed due to low numbers.</div></div>
-
-            <div class="modal-body">
-                <span class="home-label font-weight-bold">Source: </span><br> 
-                <span class="fs-sm">New York City Community Health Survey (CHS)</span>
-            </div>
-
-            
-            <div class="flex-column p-2"><a id="Adul31" style="display:none">
-                <button type="button" class="btn btn-inline btn-outline-secondary px-4 float-left">Get the data</button></a>
-                <button type="button" class="btn btn-primary px-4 float-right" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<style>
-    .compBar {
-        margin-top: 5px;
-        padding-left: 5px;
-        border-left: 3px solid darkgray;
-        max-height: 36px;
-
-    }
-
-    .nonNeighb {
-        background-color: #D8D8D8;
-    }
-
-    .neighb {
-        background-color: #00923E;
-    }
-</style>
-
-
-
-<script type="text/javascript">
-
-    $( "#modal-Adul31-3" ).on('shown.bs.modal', function() {
-
-        
-
-        gtag('event', 'click_modal', {
-                'modal_name': 'Asthma (adults)'
-            });
-
-        var opt = {"renderer": "svg"};
-
-            
-
-            
-
-            var summaryData =
-                arqTable
-                .filter(d => d.indicator_data_name == "Adul31")
-                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
-                .dedupe()
-                .groupby("neighborhood")
-                .orderby("neighborhood", aq.desc("end_date"))
-                .slice(0,1) 
-                .ungroup()
-                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
-                .orderby("unmodified_data_value_geo_entity") 
-                .select(aq.not("end_date"))
-                .objects()
-
-
-            vegaEmbed(
-                "#summary-Adul31-3",
-                summarySpec,
-                opt
-            ).then((res) => {
-
-                res.view.insert("summaryData", summaryData).run()
-
-            }).catch(console.error);;
-
-
-            
-
-            
-
-            var mapData = summaryData;
-
-
-            vegaEmbed(
-                "#map-Adul31-3",
-                mapSpec,
-                opt
-            ).then((res) => {
-
-                res.view.insert("mapData", mapData).run()
-
-            }).catch(console.error);
-
-
-            
-
-            
-
-            var trendData =
-                arqTable
-                .filter(d => d.indicator_data_name == "Adul31")
-                .select("start_date", "time", "geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note")
-                .dedupe()
-                .objects()
-
-
-            vegaEmbed(
-                "#trend-Adul31-3",
+                "#trend-Asth1204-3",
                 trendSpec,
                 opt
             ).then((res) => {
@@ -7780,12 +7780,12 @@
     <div class="row align-items-center d-print-none">
         <div class="col-6 col-md-5">
             <span class="indicator-short-name">Health insurance (adults)</span>
-            <div class="print-only">Health insurance (adults), 2020</div>
+            <div class="print-only">Health insurance (adults), 2022</div>
         </div>
         <div class="col-6 col-md-4 topic-list">
-            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/Adul672_406.svg" alt="Visualization showing neighborhood rank of 28 out of 42 for Health insurance (adults) in Fresh Meadows." width="100%" class="viz d-md-none mb-1"><span class="better">Better</span></div>
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/Adul672_406.svg" alt="Visualization showing neighborhood rank of 20 out of 42 for Health insurance (adults) in Fresh Meadows." width="100%" class="viz d-md-none mb-1"><span class="middle">Middle</span></div>
         <div class="d-none d-md-inline col-md-3">
-            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/Adul672_406.svg" alt="Visualization showing neighborhood rank of 28 out of 42 for Health insurance (adults) in Fresh Meadows." class="viz">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/Adul672_406.svg" alt="Visualization showing neighborhood rank of 20 out of 42 for Health insurance (adults) in Fresh Meadows." class="viz">
         </div>
     </div>
 
@@ -7793,17 +7793,17 @@
     <div class="print-only row">
         <div class="col-4 small border-right">
             <span class="indicator-short-name">Health insurance (adults)</span>
-            <div style="font-size: 12px;">Health insurance (adults), 2020</div>
+            <div style="font-size: 12px;">Health insurance (adults), 2022</div>
         </div>
         <div class="col-3 topic-list">
-            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/Adul672_406.svg" alt="Visualization showing neighborhood rank of 28 out of 42 for Health insurance (adults) in Fresh Meadows." width="100%" class="viz d-md-none mb-1"><span class="better">Better</span></div>
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/Adul672_406.svg" alt="Visualization showing neighborhood rank of 20 out of 42 for Health insurance (adults) in Fresh Meadows." width="100%" class="viz d-md-none mb-1"><span class="middle">Middle</span></div>
         <div class="col-5 border-left">
             <div class="comparison">
                 <div class="row">
                     <div class="col">
-                        Fresh Meadows: <span class="float-right">90.7</span><br>
-                        Queens: <span class="float-right">80.1</span><br>
-                        New York City: <span class="float-right">84.3</span>
+                        Fresh Meadows: <span class="float-right">88.5</span><br>
+                        Queens: <span class="float-right">86.6</span><br>
+                        New York City: <span class="float-right">88.3</span>
                      </div>
 
                 </div>
@@ -7843,7 +7843,7 @@
 
             <script>
                 
-                getYear(`2020-12-31`,`year-health-insurance-adults`)
+                getYear(`2022-12-31`,`year-health-insurance-adults`)
             </script>
 
             <div class="modal-body">
@@ -7856,36 +7856,36 @@
                     </thead>
                     <tbody>
                       <tr>
-                        <th scope="row"><span class="text-primary fs-xl float-right">Fresh Meadows <span class="ml-2 float-right">90.7</span></span></th>
+                        <th scope="row"><span class="text-primary fs-xl float-right">Fresh Meadows <span class="ml-2 float-right">88.5</span></span></th>
 
                         <td>
                             <div id="n-health-insurance-adults" style="width:90%;" class="compBar neighb">
                                 &nbsp;
-                                <span class="sr-only">90.7</span>
+                                <span class="sr-only">88.5</span>
                             </div>
                         </td>
                       </tr>
                       <tr>
-                        <th scope="row"><span class="fs-xl float-right">Queens <span class="ml-2 float-right">80.1</span></span></th>
+                        <th scope="row"><span class="fs-xl float-right">Queens <span class="ml-2 float-right">86.6</span></span></th>
                         <td>
                             <div id="b-health-insurance-adults" style="width:90%;" class="compBar nonNeighb">
                                 &nbsp;
-                                <span class="sr-only">80.1</span>
+                                <span class="sr-only">86.6</span>
                             </div>
                         </td>
                       </tr>
                       <tr>
-                        <th scope="row"><span class="fs-xl float-right">New York City <span class="ml-2 float-right">84.3</span></span></th>
+                        <th scope="row"><span class="fs-xl float-right">New York City <span class="ml-2 float-right">88.3</span></span></th>
                         <td>
                             <div id="c-health-insurance-adults" style="width:90%;" class="compBar nonNeighb">
                                 &nbsp;
-                                <span class="sr-only">84.3</span>
+                                <span class="sr-only">88.3</span>
                             </div>
                         </td>
                       </tr>
                     </tbody>
                   </table><div class="data-note float-right"></div><script>
-                    renderComparisonChart( 90.7 ,  80.1 ,  84.3 ,'n-health-insurance-adults','b-health-insurance-adults','c-health-insurance-adults')
+                    renderComparisonChart( 88.5 ,  86.6 ,  88.3 ,'n-health-insurance-adults','b-health-insurance-adults','c-health-insurance-adults')
                     
                 </script>
 
@@ -7893,7 +7893,7 @@
             <hr>
             <div class="modal-body">
                 <span class="home-label font-weight-bold">Comparison</span>
-                <p class="fs-lg">For health insurance (adults), <strong class="text-primary">Fresh Meadows</strong> is <span class="better">better</span> than most neighborhoods.</p>
+                <p class="fs-lg">For health insurance (adults), <strong class="text-primary">Fresh Meadows</strong> is in the <span class="middle">middle</span> of NYC neighborhoods.</p>
                 <p class="fs-sm">  <em>Percent </em></p>
                 <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Adul672-2"></div>
 

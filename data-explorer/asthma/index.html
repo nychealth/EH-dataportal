@@ -1800,36 +1800,6 @@
         
         
         <h1 
-            id="IndicatorID-2147" 
-            class="d-none"> 
-            Asthma in public school children (age 5 to 14)
-        </h1>
-        <h2
-            class="d-none"> 
-            Asthma is a common disease characterized by breathing difficulty. Poor air quality and housing issues increase risk of developing and triggering asthma.
-        </h2>
-
-    
-    
-
-        
-        
-        <h1 
-            id="IndicatorID-2149" 
-            class="d-none"> 
-            Persistent asthma in public school children (age 5 to 14)
-        </h1>
-        <h2
-            class="d-none"> 
-            Persistent asthma is when symptom occur more than twice per week.
-        </h2>
-
-    
-    
-
-        
-        
-        <h1 
             id="IndicatorID-2429" 
             class="d-none"> 
             Children with an asthma attack (past 12 months)
@@ -2562,22 +2532,6 @@
 
                     
 
-                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2147 );
-                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
-                    indicatorDropdown.innerHTML += "<button class='indicator-dropdown-item dropdown-item' onclick='loadIndicator(2147)' data-indicator-id='2147'>" + this_indicatorName + "</button>";
-
-                
-
-                    
-
-                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2149 );
-                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
-                    indicatorDropdown.innerHTML += "<button class='indicator-dropdown-item dropdown-item' onclick='loadIndicator(2149)' data-indicator-id='2149'>" + this_indicatorName + "</button>";
-
-                
-
-                    
-
                     indicator = indicators.find(indicator => indicator.IndicatorID ===  2429 );
                     this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
                     indicatorDropdown.innerHTML += "<button class='indicator-dropdown-item dropdown-item' onclick='loadIndicator(2429)' data-indicator-id='2429'>" + this_indicatorName + "</button>";
@@ -2734,14 +2688,6 @@
                     indicator = indicators.find(indicator => indicator.IndicatorID ===  2339 );
                     this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
                     indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' onclick='loadIndicator(2339)' data-indicator-id='2339'>" + this_indicatorName + "</button>";
-
-                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2147 );
-                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
-                    indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' onclick='loadIndicator(2147)' data-indicator-id='2147'>" + this_indicatorName + "</button>";
-
-                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2149 );
-                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
-                    indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' onclick='loadIndicator(2149)' data-indicator-id='2149'>" + this_indicatorName + "</button>";
 
                     indicator = indicators.find(indicator => indicator.IndicatorID ===  2429 );
                     this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
