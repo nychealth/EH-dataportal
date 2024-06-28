@@ -36,8 +36,6 @@ indicators:
   IndicatorID:
   - 2392
   - 2339
-  - 2147
-  - 2149
   - 2429
   - 2431
 - header: Asthma Emergency Department Visits
