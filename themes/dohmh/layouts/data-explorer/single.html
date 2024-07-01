@@ -423,7 +423,7 @@
 
                     <div class="dropdown">
                         <button class="btn btn-sm float-right btn-outline-secondary dropdown-toggle mb-1" type="button"
-                            id="dropdownMapTimes" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Time </button>
+                            id="dropdownMapTimes" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Time period </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMapTimes">
                             <!-- INSERT MENU ITEMS HERE -->
                         </div>
@@ -433,7 +433,7 @@
 
                     <div class="dropdown">
                         <button class="btn btn-sm mr-1 float-right btn-outline-secondary dropdown-toggle mb-1" type="button"
-                                id="dropdownMapGeos" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Geography </button>
+                                id="dropdownMapGeos" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Boundaries </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMapGeos">
                             <!-- INSERT MENU ITEMS HERE -->
                         </div>
@@ -441,7 +441,7 @@
 
                     <div class="dropdown">
                         <button class="btn btn-sm mr-1 float-right btn-outline-secondary dropdown-toggle mb-1" type="button"
-                            id="dropdownMapMeasures" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Measure </button>
+                            id="dropdownMapMeasures" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Show as </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMapMeasures">
                             <!-- INSERT MENU ITEMS HERE -->
                         </div>
@@ -487,12 +487,7 @@
 
                 <div class="tab-pane fade pt-2" id="tab-links" aria-labelledby="tab-btn-links" role="tabpanel">
                     <div class="dropdown">
-                        <button class="btn btn-sm float-right btn-outline-secondary dropdown-toggle mb-1" type="button"
-                                id="dropdownLinksMeasures" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Link to </button>
 
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownLinksMeasures">
-                            <!-- INSERT MENU ITEMS HERE -->
-                        </div>
 
                         <!-- disparities button - display style changed to show or hide (currently hidden full time due to glitch on percents-->
 
@@ -501,12 +496,20 @@
                             <label class="btn btn-sm mr-1 float-right btn-outline-secondary" id="show-disparities">
                                 <input type="radio" name="options" id="disparities-btn" autocomplete="off"> Disparities
                             </label>
+
+
                             <label class="btn btn-sm float-right btn-outline-secondary active" id="show-links">
-                                <input type="radio" name="options" id="links-btn" autocomplete="off" checked> Links
+                                <input type="radio" name="options" id="links-btn" autocomplete="off" checked> Correlates
                             </label>
 
-                            <span class="float-right mr-1">Show:</span>
 
+                        </div>
+
+                        <button class="btn btn-sm float-right btn-outline-secondary dropdown-toggle mb-1" type="button"
+                        id="dropdownLinksMeasures" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <!-- choose dataset --> </button>
+
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownLinksMeasures">
+                            <!-- INSERT MENU ITEMS HERE -->
                         </div>
                         
                     </div>
