@@ -1,7 +1,7 @@
-<!-- 
+<!--
 SECTION-SPECIFIC CARDS WITH SECTION-COLOR ON THE BOTTOM BORDER:
-    These have the following class options: 
-        data-features, data-stories, n-reports, data-explorer 
+    These have the following class options:
+        data-features, data-stories, n-reports, data-explorer
     The example below includes the image and tab overlay.
 
     Use this for a specific section's content cards on its home page; may consider using it to link to that section from another area (eg on a Key Topics page...)
@@ -28,7 +28,7 @@ SECTION-SPECIFIC CARDS WITH SECTION-COLOR ON THE BOTTOM BORDER:
 <div class="card content-card mb-4 col-sm-6 col-md-4">
     <div class="card-content data-features">
         {{- if .Params.image -}}
-        <a href="{{ .RelPermalink}}">
+        <a class="w-100" href="{{ .RelPermalink}}">
             {{ $src := .Resources.GetMatch .Params.image }}
             {{ $image := $src.Resize "740x"}}
             <div style="width:100%; height:250px; background-image: url({{ $image.RelPermalink }}); background-size:cover"></div>
@@ -36,7 +36,7 @@ SECTION-SPECIFIC CARDS WITH SECTION-COLOR ON THE BOTTOM BORDER:
         {{- else -}}
         <a class="" href="{{ .RelPermalink }}">
         <div style="width:100%; height:250px; background-image: URL('{{ .Site.BaseURL }}/images/home-sample-image-DE-5.png'); background-size: cover"></div></a>
-        
+
         {{- end -}}
 
         <div class="card-body">
@@ -49,17 +49,17 @@ SECTION-SPECIFIC CARDS WITH SECTION-COLOR ON THE BOTTOM BORDER:
     </div>
 </div>
 
-<!-- 
+<!--
     Home Page Card Overlays
         On home page, use:
             .overlay-trends
             .overlay-map
             .overlay-topics
-        
+
         ...to illustrate featured box links.
 
         Use:
-            .tab-data-stories 
+            .tab-data-stories
             .tab-neighborhood-reports, etc
 
         ...to illustrate links to sections.
@@ -68,14 +68,14 @@ SECTION-SPECIFIC CARDS WITH SECTION-COLOR ON THE BOTTOM BORDER:
 
 
 <!--
-PRIMARY CARD. 
+PRIMARY CARD.
 
 This is like the section-specific card, but uses the primary green. Use this for Key Topics, since they're not really a content type - they're a content-organizing principle.
 -->
 
 <div class="card content-card mb-4 col-sm-6 col-md-4">
     <div class="card-content primary">
-        <a href="{{ .RelPermalink}}">
+        <a class="w-100" href="{{ .RelPermalink}}">
             {{ $src := .Resources.GetMatch .Params.image }}
             {{ $image := $src.Resize "740x"}}
             <div style="width:100%; height:250px; background-image: url({{ $image.RelPermalink }}); background-size:cover"></div>
@@ -92,7 +92,7 @@ This is like the section-specific card, but uses the primary green. Use this for
 </div>
 
 <!--
-SECONDARY CARD. 
+SECONDARY CARD.
 
 Features a primary color left border.
 

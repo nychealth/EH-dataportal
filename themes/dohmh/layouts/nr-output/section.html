@@ -13,7 +13,7 @@
           </ul>
         </nav>
 
-        <h1 class="report-title border-bottom mt-4" data-pagefind-ignore="all">Neighborhood Reports for 
+        <h1 class="report-title border-bottom mt-4" data-pagefind-ignore="all">Neighborhood Reports for
           <span class="sub-title">{{ .Title }}</span>
         </h1>
 
@@ -35,19 +35,19 @@
           <div class="col-md-9">
 
             <div class="row">
-  
+
               {{- range .Pages -}}
-              
+
                 <div class="card content-card mb-4 col-sm-6 col-md-4">
                   <div class="card-content">
-                    
+
                     {{- if .Params.seo_image -}}
                     {{- $src := resources.Get .Params.seo_image -}}
                     {{- $image := $src.Fill "740x400" -}}
-                    
-                    <a href="{{ .RelPermalink }}"><img src="{{ $image.RelPermalink }}" class="card-img-top" alt="City photograph for the {{ lower .Title }} report"></a>
+
+                    <a class="w-100" href="{{ .RelPermalink }}"><img src="{{ $image.RelPermalink }}" class="card-img-top" alt="City photograph for the {{ lower .Title }} report"></a>
                     {{- end -}}
-                    
+
                     <div class="card-body" data-pagefind-ignore="all">
                       <h2 class="card-title fs-md"><a href="{{ .RelPermalink }}" class="text-primary">{{ .Title }}</a></h2>
                       <p class="card-text fs-md">
@@ -57,11 +57,11 @@
                     </div>
                   </div>
                 </div>
-              
+
               {{- end -}}
             </div>
 
-            
+
           </div>
 
           <div class="col-md-3">
@@ -85,21 +85,21 @@
 </div>
 
 
-            <!-- 
+            <!--
             {{- range .Pages -}}
             <div class="row no-gutters mb-3" style="box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.18), 0 3px 10px 0 rgba(0, 0, 0, 0.17);">
               <div class="col-4 border mh-100">
                 {{- if .Params.seo_image -}}
                 {{- $src := resources.Get .Params.seo_image -}}
                 {{- $image := $src.Fill "740x400" -}}
-                
+
                 <a href="{{ .RelPermalink }}"><img src="{{ $image.RelPermalink }}" class="card-img-top" alt="City photograph for the {{ lower .Title }} report"></a>
                 {{- end -}}
               </div>
 
               <div class="col-8 ml-auto h-100 p-1">
                 <p class="h4"><a class="link-track text-primary font-weight-bold" href="">{{ .Title }}</a></p>
-                 <p class="fs-md">{{ .Summary }}  
+                 <p class="fs-md">{{ .Summary }}
                   <a href="{{ .RelPermalink }}">See Report ></a>
                 </p>
               </div>
