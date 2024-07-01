@@ -1,8 +1,8 @@
-<section data-pagefind-ignore="all">
+<section data-pagefind-ignore="all" class="mt-lg-5">
     <div class="container mb-5">
         <div class="row">
 
-              <div class="col-lg-9">
+              <div class="col-lg-8 pr-lg-3">
                 <div class="related-border mb-2">
                   <div class="mt-2">
                     <h4 class="h3">See more related to "{{ .Title }}"</h4>
@@ -15,12 +15,12 @@
               </div>
               <!-- .col for city -->
 
-              <div class="col-lg-3">
+              <div class="col-lg-4 pl-lg-3">
                 <div class="related-border">
-                  <h4 class="h4 mt-2">You might also be intersted in</h4>
+                  <h4 class="h3 mt-2">You might also be intersted in</h4>
                   <hr class="my-2">
                 </div>
-                  <div class="fs-sm">
+                  <div>
                     {{- partial "mod-related-small" (dict "section" "data-explorer" "layout" "singlelist" "content" . ) -}}
                 </div>
                 </div>
