@@ -24,7 +24,7 @@
                         <div class="card content-card mb-4 col-sm-6 col-md-4">
                             <div class="card-content data-features">
                                 {{- if .Params.image -}}
-                                <a class="w-100" href="{{ .RelPermalink}}">
+                                <a href="{{ .RelPermalink}}">
                                     {{ $src := .Resources.GetMatch .Params.image }}
                                     {{ $image := $src.Resize "740x"}}
                                     <div style="width:100%; height:250px; background-image: url({{ $image.RelPermalink }}); background-size:cover"></div>
@@ -62,13 +62,13 @@
                             <div class="card content-card mb-4 col-sm-6 col-md-3">
                                 <div class="card-content data-features">
                                     {{- if .Params.image -}}
-                                    <a class="w-100" href="{{ .RelPermalink}}">
+                                    <a href="{{ .RelPermalink}}">
                                         {{ $src := .Resources.GetMatch .Params.image }}
                                         {{ $image := $src.Resize "740x"}}
                                         <div style="width:100%; height:250px; background-image: url({{ $image.RelPermalink }}); background-size:cover"></div>
                                     </a>
                                     {{- else -}}
-                                    <a class="w-100" href="{{ .RelPermalink }}">
+                                    <a class="" href="{{ .RelPermalink }}">
                                     <div style="width:100%; height:250px; background-image: URL('{{ .Site.BaseURL }}/images/home-sample-image-DE-5.png'); background-size: cover"></div></a>
 
                                     {{- end -}}
@@ -104,10 +104,10 @@
 
 
                                         {{ $image := $src.Resize "740x"}}
-                                        <a class="w-100" href="{{ .RelPermalink }}">
+                                        <a class="" href="{{ .RelPermalink }}">
                                         <div style="width:100%; height:150px; background-image: URL({{ $image.Permalink }}); background-size: cover"></div></a>
                                     {{- else -}}
-                                        <a class="w-100" href="{{ .RelPermalink }}">
+                                        <a class="" href="{{ .RelPermalink }}">
                                         <div style="width:100%; height:150px; background-image: URL('{{ .Site.BaseURL }}/images/home-sample-image-DE-5.png'); background-size: cover"></div></a>
 
                                     {{- end -}}

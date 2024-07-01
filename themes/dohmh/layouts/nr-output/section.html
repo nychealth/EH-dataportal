@@ -45,7 +45,7 @@
                     {{- $src := resources.Get .Params.seo_image -}}
                     {{- $image := $src.Fill "740x400" -}}
 
-                    <a class="w-100" href="{{ .RelPermalink }}"><img src="{{ $image.RelPermalink }}" class="card-img-top" alt="City photograph for the {{ lower .Title }} report"></a>
+                    <a href="{{ .RelPermalink }}"><img src="{{ $image.RelPermalink }}" class="card-img-top" alt="City photograph for the {{ lower .Title }} report"></a>
                     {{- end -}}
 
                     <div class="card-body" data-pagefind-ignore="all">

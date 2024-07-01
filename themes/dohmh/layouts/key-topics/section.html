@@ -28,7 +28,7 @@
             {{- range .Pages -}}
             <div class="card content-card mb-4 col-sm-6 col-md-4">
                 <div class="card-content primary">
-                    <a class="w-100" href="{{ .RelPermalink}}">
+                    <a href="{{ .RelPermalink}}">
                         {{ $src := .Resources.GetMatch .Params.image }}
                         {{ $image := $src.Resize "740x"}}
                         <div style="width:100%; height:250px; background-image: url({{ $image.RelPermalink }}); background-size:cover"></div>
