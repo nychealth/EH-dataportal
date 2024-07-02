@@ -12,9 +12,9 @@ layout: single
 image: ds-violence.jpg
 ---
 
-Injuries, whether intentional (like violence or suicide) or unintentional, are the main causes of death for New Yorkers aged 15 to 44. These deaths are tragic, unnecessary, and can be prevented. 
+Violence is a public health issue. Injuries, whether intentional (like violence or suicide) or unintentional, are the main causes of death for New Yorkers aged 15 to 44. These deaths are tragic, unnecessary, and can be prevented. 
 
-Violence is a special kind of injury because it affects not just the victim but also the community around them. Experiencing violence can lead to worse birth outcomes, developmental delays in children, physical and mental illness, and early death. If we think of violence as a public health issue that affects everyone, we can focus on changing the environments and systems that contribute to violence. This gives us new ways to protect people’s health.
+Violence is a special kind of injury because it affects not just the victim but also the community around them. Experiencing and witnessing violence can lead to poor birth outcomes, developmental delays in children, physical and mental illness, and early death. If we understand violence as a public health issue that affects everyone, we can focus on changing the environments and systems that contribute to violence. This gives us new ways to protect people’s health.
 
-When we look at how and why these injuries happen, we see that factors like education, housing, healthcare, and jobs play a big role. By understanding these  factors, we can create better ways to prevent injuries and make sure everyone has access to the resources they need to stay safe. Additionally, by analyzing these injuries by means (how they occur), we can reduce risk by restricting access to the means of inflicting or experiencing these injuries.
+When we look at how and why these injuries happen, we see that social factors like education, housing, healthcare, and jobs play a big role. By understanding these  factors, we can create better ways to prevent injuries and make sure everyone has access to the resources they need to stay safe. Additionally, by analyzing these injuries by means (how they occur), we can reduce risk by restricting access to the means of inflicting or experiencing these injuries.
 
