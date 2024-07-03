@@ -93,7 +93,7 @@ function printToPage() {
     document.getElementById('currentTemp').innerHTML = currentTemp + '° F'
 
 
-    var maxTemp = apiData.forecast.forecastday[0].day.maxtemp_f
+    var maxTemp = Number(apiData.forecast.forecastday[0].day.maxtemp_f)
     document.getElementById('maxTemp').innerHTML = maxTemp  + '° F'
 
     // aqi = apiData.current.air_quality["us-epa-index"]
@@ -105,18 +105,18 @@ function printToPage() {
         over78F = 'Yes'
       }
 
-    if (maxTemp > 80 & maxTemp < 85) {
+    if (maxTemp >= 78 & maxTemp < 85) {
         hotText.innerHTML = 'warm'
         hotText.style['background-color'] = "orange";
-    } else if (maxTemp > 85 & maxTemp < 90) {
+    } else if (maxTemp >= 85 & maxTemp < 90) {
         hotText.innerHTML = 'hot'
         hotText.style['background-color'] = "red";
         hotText.style.color = 'white'
-    } else if (maxTemp > 90 ) {
+    } else if (maxTemp >= 90 ) {
         hotText.innerHTML = 'very hot'
         hotText.style['background-color'] = "darkred"
         hotText.style.color = 'white'
-    } else {
+    } else if (maxTemp < 80) {
         hotText.innerHTML = 'mild'
         hotText.style['background-color'] = "blue"
         hotText.style.color = 'white';
@@ -578,15 +578,15 @@ if (inputCurrentTemp) {
       if (currentValue > 78 & currentValue < 85) {
         hotText.innerHTML = 'warm'
         hotText.style['background-color'] = "orange";
-    } else if (currentValue > 85 & currentValue < 90) {
+    } else if (currentValue >= 85 & currentValue < 90) {
         hotText.innerHTML = 'hot'
         hotText.style['background-color'] = "red";
         hotText.style.color = 'white'
-    } else if (currentValue > 90 ) {
+    } else if (currentValue >= 90 ) {
         hotText.innerHTML = 'very hot'
         hotText.style['background-color'] = "darkred"
         hotText.style.color = 'white'
-    } else {
+    } else if (currentValue < 78) {
         hotText.innerHTML = 'mild'
         hotText.style['background-color'] = "blue"
         hotText.style.color = 'white';
