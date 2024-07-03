@@ -20,11 +20,40 @@
           <h1>{{ .Title }}</h1>
         </div>
 
-        <div class="col-md-7">
+        <div class="col-md-6">
           <p>{{ .Content }}</p>
+
+          <div class="asidebox p-1 my-3">
+            <strong
+              ><i
+                class="fas fa-exclamation-triangle mr-1"
+                aria-hidden="true"
+              ></i
+              >Before we get started:</strong
+            ><br />
+            if you are feeling very hot, with nausea or vomiting, fast pulse,
+            weakness or dizziness, you may need medical help.
+            <a href="https://www.cdc.gov/disasters/extremeheat/warning.html"
+              >See a full list of symptoms of heat-related illness</a
+            >.
+          </div>
+
+              <div class="mt-4">
+              <button
+              class="btn btn-block btn-outline-secondary py-2 px-4 float-right"
+              onclick="runQuestions()"
+            >
+              <i class="fas fa-arrow-circle-down mr-1" aria-hidden="true"></i>Get
+              started
+            </button>
+          </div>
         </div>
 
-        <div class="col-md-5">
+
+
+        <div class="col-md-6">
+          <img src="img/hero_7.3.png" style="width: 100%" />
+
           <!--
           <div class="border p-1 mt-2">
             Learn more about: 
@@ -48,30 +77,19 @@
           </div>
         -->
 
-          <div class="border p-1 mb-4">
-            <strong
-              ><i
-                class="fas fa-exclamation-triangle mr-1"
-                aria-hidden="true"
-              ></i
-              >Before we get started:</strong
-            ><br />
-            if you are feeling very hot, with nausea or vomiting, fast pulse,
-            weakness or dizziness, you may need medical help.
-            <a href="https://www.cdc.gov/disasters/extremeheat/warning.html"
-              >See a full list of symptoms of heat-related illness</a
-            >.
-          </div>
+
         </div>
       </div>
     </div>
   </div>
 
-  <div class="row no-gutters">
-    <div class="col-md-8 mx-auto">
-      <img src="img/hero_7.3.png" style="width: 100%" />
+  <div class="row my-2">
+    <div class="col-6 mx-auto">
+      <hr>
     </div>
   </div>
+
+
 
   <div class="row my-4">
     <!--left-hand sticky column-->
@@ -155,13 +173,7 @@
     <div class="col-md-7 overflow-hidden fs-rg mr-auto" id="primary-content">
       <div id="start">
         <div class="col-md-6 mx-auto">
-          <button
-            class="btn btn btn-block btn-outline-secondary mx-auto py-2"
-            onclick="runQuestions()"
-          >
-            <i class="fas fa-arrow-circle-down mr-1" aria-hidden="true"></i>Get
-            started
-          </button>
+
         </div>
       </div>
 
