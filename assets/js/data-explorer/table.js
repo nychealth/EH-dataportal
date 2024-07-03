@@ -171,7 +171,7 @@ const renderTable = () => {
     const groupColumnGeo = 1;
 
     $('#tableID').DataTable({
-        scrollY: 525,
+        scrollY: 500,
         scrollX: true,
         scrollCollapse: true,
         searching: false,
