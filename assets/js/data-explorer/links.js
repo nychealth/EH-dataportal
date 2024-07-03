@@ -12,6 +12,8 @@ const renderLinksChart = (
 
     console.log("** renderLinksChart");
 
+    document.getElementById('viewDescription').innerHTML = 'View scatterplots, correlations, and disparities.'
+
     // console.log("data [renderLinksChart]", data);
 
     // ----------------------------------------------------------------------- //

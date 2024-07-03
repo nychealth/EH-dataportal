@@ -9,6 +9,8 @@ const renderMap = (
 
     console.log("** renderMap");
 
+    document.getElementById('viewDescription').innerHTML = 'This map shows data by different boundaries.'
+
     // console.log("data [renderMap]", data);
     console.log("metadata [renderMap]", metadata);
     renderAboutSources(metadata[0].how_calculated,metadata[0].Sources)

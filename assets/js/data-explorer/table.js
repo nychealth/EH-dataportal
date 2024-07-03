@@ -6,6 +6,8 @@ const renderTable = () => {
 
     console.log("** renderTable");
 
+    document.getElementById('viewDescription').innerHTML = 'This table shows all data for this dataset.'
+
     // ----------------------------------------------------------------------- //
     // prep data
     // ----------------------------------------------------------------------- //
