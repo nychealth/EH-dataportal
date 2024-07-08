@@ -9,7 +9,7 @@ const renderComparisonsChart = (
 
     console.log("*** renderComparisonsChart");
 
-    document.getElementById('viewDescription').innerHTML = 'Data by time is shown by boro for more stable rates.'
+    document.getElementById('viewDescription').innerHTML = 'Trends are shown by boro for stable rates.'
 
     // console.log("metadata [renderComparisonsChart]");
     // metadata.print()
