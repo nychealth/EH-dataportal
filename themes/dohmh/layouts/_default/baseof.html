@@ -15,7 +15,11 @@
     - DS landing page & all others to have header.html
   -->
   
-  {{- partial "header.html" . -}}
+  {{ if not .Params.newDataExplorer }}
+      {{ partial "header" . }}
+  {{ else }}
+      {{ partial "header-de" . }}
+  {{ end }}
 
 
 
@@ -24,7 +28,10 @@
     <ul id="results"></ul>
   </main>
   
-  {{ partial "footer.html" . }}
+  {{ if not .Params.newDataExplorer }}
+    {{ partial "footer.html" . }}
+  {{ end }}
+
   {{ partial "js_bottom.html" }}
   {{ block "js_bot" . }}{{ end }}
   

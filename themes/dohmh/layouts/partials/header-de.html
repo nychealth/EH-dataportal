@@ -1,0 +1,63 @@
+<!-- For keyboard users -->
+<a class="sr-only sr-only-focusable skip-menu" href="#skip-header-target">Skip Header</a>
+
+<header id="global-header" role="banner">
+
+    <div class="site-header bg-primary" style='background-image: url({{ relURL "images/header_background.jpg" }})'>
+
+        <nav class="nav" role="navigation">
+
+            <div class="nav-item">
+
+                <a href={{ relURL "" }} class="nav-link text-white font-weight-bold">
+                    <img src="{{ site.BaseURL }}7618350_heatmap_business_analytics_statistics_icon-gpr.ico" style="height: 20px" class="pr-1">Home</a>
+                </a>
+
+            </div>
+            <!-- .nav-item -->
+
+            <div class="nav-item">
+
+                <a href={{ relURL "data-explorer" }} class="nav-link text-white font-weight-bold">
+                    Data Explorer
+                </a>
+
+            </div>
+            <!-- .nav-item -->
+
+            <div class="nav-item">
+
+                <a href={{ .RelPermalink }} class="nav-link text-white font-weight-bold">
+                    {{ .Title }}
+                </a>
+
+            </div>
+            <!-- .nav-item -->
+
+            <div class="nav-item">
+
+                <a href="#" class="nav-link text-white font-weight-bold" data-toggle="modal"
+                data-target="#topicModal">
+                Change topic
+                </a>
+
+            </div>
+            <!-- .nav-item -->
+
+            <div class="nav-item ml-auto">
+                <a class="nav-link" href="#" type="button" data-toggle="modal" data-target="#searchModal" title="Search" data-toggle="collapse">
+                    <span class="sr-only">Search</span>
+                    <i class="fa fa-magnifying-glass text-white"></i>
+                </a>
+            </div>
+
+
+
+
+
+        </nav>
+
+    </div>
+
+</header>
+<!-- #global-header -->
