@@ -24,10 +24,14 @@ const renderComparisonsChart = (
     const comp_unreliability = [...new Set(data.objects().map(d => d.Note))].filter(d => !d == "");
 
     document.querySelector("#trend-unreliability").innerHTML = ""; // blank to start
+    document.getElementById("trend-unreliability").classList.add('hide') // blank to start
+
 
     comp_unreliability.forEach(element => {
 
         document.querySelector("#trend-unreliability").innerHTML += "<div class='fs-sm text-muted'>" + element + "</div>" ;
+        document.getElementById('trend-unreliability').classList.remove('hide')
+
         
     });
 
@@ -60,6 +64,9 @@ const renderComparisonsChart = (
     let compMeasurementType = [... new Set(metadata.array("MeasurementType"))];
     let compDisplayTypes    = [... new Set(metadata.array("DisplayType"))].filter(dt => dt != "");
     let compNoCompare       = [... new Set(metadata.array("TrendNoCompare"))].filter(nc => nc != null)[0]
+
+    console.log('compMeasurementType', compMeasurementType)
+    console.log('compDisplayTypes', compDisplayTypes)
 
     console.log(">>>> compNoCompare", compNoCompare);
 
@@ -94,7 +101,13 @@ const renderComparisonsChart = (
         let hasBoros = compGroupLabel.length > 1 ? true : false; 
         
         plotTitle = indicatorName;
-        plotSubtitle = compMeasurementType + (compDisplayTypes.length > 0 ? ` (${compDisplayTypes})` : "") + (hasBoros ? " by Borough" : "");
+        plotSubtitle = compMeasurementType + (compDisplayTypes.length > 0 ? ` (${compDisplayTypes})` : "") + (hasBoros ? "" : "");
+        console.log('compDisplayTypes 0: ', compDisplayTypes)
+        
+        if (compMeasurementType[0].includes('Percent') | compMeasurementType[0].includes('percent') && !compMeasurementType[0].includes('Percentile')) {
+            compDisplayTypes = '%'
+        } else {}
+
         comp_group_col = "Geography"
 
         // console.log(">> compGroupLabel", compGroupLabel);
@@ -168,10 +181,12 @@ const renderComparisonsChart = (
             // console.log(">>> SUPPRESS by", compId);
 
             plotSubtitle = compMeasurementType + (compDisplayTypes.length > 0 ? ` (${compDisplayTypes})` : "");
+            console.log('compDisplayTypes 1: ', compDisplayTypes)
 
         } else {
 
             plotSubtitle = compMeasurementType + (compDisplayTypes.length > 0 ? ` (${compDisplayTypes})` : "") + " by " + compLegendTitle;
+            console.log('compDisplayTypes 2: ', compDisplayTypes)
 
         }
 
@@ -238,7 +253,7 @@ const renderComparisonsChart = (
     // create transform after pivot that replaces "undefined" with ""
     // ----------------------------------------------------------------------- //
 
-    let compReplaceInvalid = compGroupLabel.map(x => {return {"calculate": `isValid(datum[\"${x}\"]) ? datum[\"${x}\"] : ""`, "as": `${x}`}})
+    let compReplaceInvalid = compGroupLabel.map(x => {return {"calculate": `isValid(datum[\"${x}\"]) ? (datum[\"${x}\"] + ' ${compDisplayTypes}') : ""`, "as": `${x}`}})
 
     // ----------------------------------------------------------------------- //
     // create tooltips JSON

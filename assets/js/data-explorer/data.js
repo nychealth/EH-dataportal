@@ -242,6 +242,9 @@ const loadIndicator = async (this_indicatorId, dont_add_to_history) => {
     $(".indicator-dropdown-item").removeClass("active");
     $(".indicator-dropdown-item").attr('aria-selected', false);
 
+    $(".indicator-arrows").addClass("hide");
+    document.getElementById(`arrow-${indicatorId}`).classList.remove('hide')
+
     // get the list element for this indicator (in buttons and dropdowns)
     const thisIndicatorEl = document.querySelectorAll(`button[data-indicator-id='${indicatorId}']`)
 
@@ -1002,7 +1005,7 @@ function draw311Buttons(indicator_id) {
 
             // Creates label if there are 311 links
             if (filteredCrosswalk.length > 0) {
-                document.getElementById('311label').innerHTML = 'Contact 311 about:'
+                document.getElementById('311label').innerHTML = '<i class="fas fa-external-link-alt mr-1"></i>Or, contact 311 to get resources about:'
                 dest.forEach(element => element.classList.remove('hide'))
             } else {
                 document.getElementById('311label').innerHTML = ''
@@ -1013,7 +1016,7 @@ function draw311Buttons(indicator_id) {
             for (let i = 0; i < filteredCrosswalk.length; i ++ ) {
                 var title = filteredCrosswalk[i].topic
                 var destination = filteredCrosswalk[i].kaLink
-                var btn = `<a href="https://portal.311.nyc.gov/article/?kanumber=${destination}" class="badge badge-pill badge-primary mr-1" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt mr-1"></i>${title}</a>`
+                var btn = `<a href="https://portal.311.nyc.gov/article/?kanumber=${destination}" class="mr-1" target="_blank" rel="noopener noreferrer">${title}</a>| `
                 dest.forEach(element => element.innerHTML += btn)
             }
     })
