@@ -33,6 +33,10 @@ const setDefaultMapMeasure = (visArray) => {
         measure.MeasurementType.includes('Percent')
     )
 
+    const hasPercent2 = visArray.filter(measure =>
+        measure.MeasurementType.includes('percent')
+    )
+
     const hasDensity = visArray.filter(measure =>
         measure.MeasurementType.includes('Density')
     )
@@ -60,6 +64,9 @@ const setDefaultMapMeasure = (visArray) => {
 
     } else if (hasPercent.length) {
         defaultArray.push(hasPercent[0]);
+
+    } else if (hasPercent2.length) {
+        defaultArray.push(hasPercent2[0]);
 
     } else if (hasDensity.length) {
         defaultArray.push(hasDensity[0]);
@@ -105,6 +112,10 @@ const setDefaultTrendMeasure = (visArray) => {
             measure.MeasurementType.includes('Percent')
         )
 
+        const hasPercent2 = visArray.filter(measure =>
+            measure.MeasurementType.includes('percent')
+        )
+
         const hasDensity = visArray.filter(measure =>
             measure.MeasurementType.includes('Density')
         )
@@ -133,6 +144,9 @@ const setDefaultTrendMeasure = (visArray) => {
 
         } else if (hasPercent.length) {
             defaultArray.push(hasPercent[0]);
+
+        } else if (hasPercent2.length) {
+            defaultArray.push(hasPercent2[0]);
 
         } else if (hasDensity.length) {
             defaultArray.push(hasDensity[0]);
@@ -178,6 +192,10 @@ const setDefaultLinksMeasure = async (visArray) => {
             measure.MeasurementType.includes('Percent')
         )
 
+        const hasPercent2 = visArray.filter(measure =>
+            measure.MeasurementType.includes('percent')
+        )
+
         const hasDensity = visArray.filter(measure =>
             measure.MeasurementType.includes('Density')
         )
@@ -205,6 +223,9 @@ const setDefaultLinksMeasure = async (visArray) => {
 
         } else if (hasPercent.length) {
             defaultArray.push(hasPercent[0]);
+
+        } else if (hasPercent2.length) {
+            defaultArray.push(hasPercent2[0]);
 
         } else if (hasDensity.length) {
             defaultArray.push(hasDensity[0]);
@@ -275,6 +296,10 @@ const setDefaultDisparitiesMeasure = (visArray) => {
             measure.MeasurementType.includes('Percent')
         )
 
+        const hasPercent2 = visArray.filter(measure =>
+            measure.MeasurementType.includes('percent')
+        )
+
         const hasDensity = visArray.filter(measure =>
             measure.MeasurementType.includes('Density')
         )
@@ -303,6 +328,9 @@ const setDefaultDisparitiesMeasure = (visArray) => {
 
         } else if (hasPercent.length) {
             defaultArray.push(hasPercent[0]);
+
+        } else if (hasPercent2.length) {
+            defaultArray.push(hasPercent2[0]);
 
         } else if (hasDensity.length) {
             defaultArray.push(hasDensity[0]);
@@ -436,12 +464,10 @@ const updateMapData = (e) => {
     // "indicatorName" is set in loadIndicator
 
     selectedMapAbout   =
-        `<h6>${indicatorName} - ${measurementType}</h6>
-        <p>${about}</p>`;
+        `<p><strong>${indicatorName} - ${measurementType}:</strong> ${about}</p>`;
 
     selectedMapSources =
-        `<h6>${indicatorName} - ${measurementType}</h6>
-        <p>${sources}</p>`;
+        `<p><strong>${indicatorName} - ${measurementType}:</strong> ${sources}</p>`;
 
     // render measure info boxes
 
@@ -533,12 +559,10 @@ const updateTrendData = (e) => {
     // ----- set measure info boxes --------------------------------------------------- //
 
     selectedTrendAbout =
-        `<h6>${indicatorName} - ${measurementType}</h6>
-        <p>${about}</p>`;
+        `<p><strong>${indicatorName} - ${measurementType}</strong>: ${about}</p>`;
 
     selectedTrendSources =
-        `<h6>${indicatorName} - ${measurementType}</h6>
-        <p>${sources}</p>`;
+        `<p><strong>${indicatorName} - ${measurementType}</strong>: ${sources}</p>`;
 
     // render measure info boxes
 
@@ -656,12 +680,10 @@ const updateTrendComparisonsData = (e) => {
     aqComparisonsIndicatorsMetadata.objects().forEach(m => {
 
         selectedComparisonAbout +=
-            `<h6>${m.IndicatorName} - ${m.MeasurementType}</h6>
-            <p>${m.how_calculated}</p>`;
+            `<p><strong>${m.IndicatorName} - ${m.MeasurementType}:</strong> ${m.how_calculated}</p>`;
 
         selectedComparisonSources +=
-            `<h6>${m.IndicatorName} - ${m.MeasurementType}</h6>
-            <p>${m.Sources}</p>`;
+            `<p><strong>${m.IndicatorName} - ${m.MeasurementType}:</strong> ${m.Sources}</p>`;
     })
 
     // render the measure info boxes
@@ -814,16 +836,12 @@ const updateLinksData = async (e) => {
     // ----- set measure info boxes --------------------------------------------------- //
 
     selectedLinksAbout =
-        `<h6>${primaryIndicatorName} - ${primaryMeasurementType}</h6>
-        <p>${primaryAbout}</p>
-        <h6>${secondaryIndicatorName} - ${secondaryMeasurementType}</h6>
-        <p>${secondaryAbout}</p>`;
+        `<p><strong>${primaryIndicatorName} - ${primaryMeasurementType}</strong>: ${primaryAbout}</p>
+        <p><strong>${secondaryIndicatorName} - ${secondaryMeasurementType}</strong>: ${secondaryAbout}</p>`;
 
     selectedLinksSources =
-        `<h6>${primaryIndicatorName} - ${primaryMeasurementType}</h6>
-        <p>${primarySources}</p>
-        <h6>${secondaryIndicatorName} - ${secondaryMeasurementType}</h6>
-        <p>${secondarySources}</p>`;
+        `<p><strong>${primaryIndicatorName} - ${primaryMeasurementType}</strong>: ${primarySources}</p>
+        <p><strong>${secondaryIndicatorName} - ${secondaryMeasurementType}</strong>: ${secondarySources}</p>`;
 
     // render the measure info boxes
 
@@ -1560,12 +1578,10 @@ const renderMeasures = async () => {
             // ----- set measure info boxes --------------------------------------------------- //
 
             defaultMapAbout   =
-                `<h6>${indicatorName} - ${measure}</h6>
-                <p>${about}</p>`;
+                `<p><strong>${indicatorName} - ${measure}:</strong> ${about}</p>`;
 
             defaultMapSources =
-                `<h6>${indicatorName} - ${measure}</h6>
-                <p>${sources}</p>`;
+                `<p><strong>${indicatorName} - ${measure}:</strong> ${sources}</p>`;
 
             // render measure info boxes
 
@@ -1809,12 +1825,10 @@ const renderMeasures = async () => {
             // ----- set measure info boxes --------------------------------------------------- //
 
             defaultTrendAbout =
-                `<h6>${indicatorName} - ${measure}</h6>
-                <p>${about}</p>`;
+                `<p><strong>${indicatorName} - ${measure}</strong>: ${about}</p>`;
 
             defaultTrendSources =
-                `<h6>${indicatorName} - ${measure}</h6>
-                <p>${sources}</p>`;
+                `<p><strong>${indicatorName} - ${measure}</strong>: ${sources}</p>`;
 
             renderTitleDescription(indicatorShortName, indicatorDesc);
             renderAboutSources(defaultTrendAbout, defaultTrendSources);
@@ -1965,12 +1979,10 @@ const renderMeasures = async () => {
             aqComparisonsIndicatorsMetadata.objects().forEach(m => {
 
                 selectedComparisonAbout +=
-                    `<h6>${m.IndicatorName} - ${m.MeasurementType}</h6>
-                    <p>${m.how_calculated}</p>`;
+                    `<p><strong>${m.IndicatorName} - ${m.MeasurementType}:</strong> ${m.how_calculated}</p>`;
 
                 selectedComparisonSources +=
-                    `<h6>${m.IndicatorName} - ${m.MeasurementType}</h6>
-                    <p>${m.Sources}</p>`;
+                    `<p><strong>${m.IndicatorName} - ${m.MeasurementType}:</strong> ${m.Sources}</p>`;
             })
 
             // render the measure info boxes
@@ -2201,16 +2213,12 @@ const renderMeasures = async () => {
                 // creating indicator & measure info
 
                 defaultLinksAbout =
-                    `<h6>${primaryIndicatorName} - ${primaryMeasure}</h6>
-                    <p>${primaryAbout}</p>
-                    <h6>${secondaryIndicatorName} - ${secondaryMeasure}</h6>
-                    <p>${secondaryAbout}</p>`;
+                    `<p><strong>${primaryIndicatorName} - ${primaryMeasure}</strong>: ${primaryAbout}</p>
+                    <p><strong>${secondaryIndicatorName} - ${secondaryMeasure}</strong>: ${secondaryAbout}</p>`;
 
                 defaultLinksSources =
-                    `<h6>${primaryIndicatorName} - ${primaryMeasure}</h6>
-                    <p>${primarySources}</p>
-                    <h6>${secondaryIndicatorName} - ${secondaryMeasure}</h6>
-                    <p>${secondarySources}</p>`;
+                    `<p><strong>${primaryIndicatorName} - ${primaryMeasure}</strong>: ${primarySources}</p>
+                    <p><strong>${secondaryIndicatorName} - ${secondaryMeasure}</strong>: ${secondarySources}</p>`;
 
 
                 // ----- create dataset - - - - - - - - - - - - - - - - - - - - - - - - - - //
@@ -2594,12 +2602,10 @@ const renderMeasures = async () => {
     indicatorMeasures.map(measure => {
 
         measureAbout +=
-            `<h6>${measure.MeasurementType}</h6>
-            <p>${measure.how_calculated}</p>`;
+            `<p><strong>${measure.MeasurementType}:</strong> ${measure.how_calculated}</p>`;
 
         measureSources +=
-            `<h6>${measure.MeasurementType}</h6>
-            <p>${measure.Sources}</p>`;
+            `<p><strong>${measure.MeasurementType}:</strong> ${measure.Sources}</p>`;
 
     })
 
