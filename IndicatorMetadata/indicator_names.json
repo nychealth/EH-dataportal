@@ -106,8 +106,8 @@
   },
   "2028": {
     "IndicatorID": 2028,
-    "description": "Nitrogen oxides (NOx), including nitric oxide (NO) and nitrogen dioxide (NO2), are a group of pollutants formed by combusion that damage lung tissue, cause breathing problems, and contribute to smog and acid rain.",
-    "name": "Nitric oxide (NOx)"
+    "description": "Nitric oxide (NO) is formed by combustion, especially in vehicles, that damages lung tissue, causes breathing problems, and contributes to smog and acid rain.",
+    "name": "Nitric oxide (NO)"
   },
   "2030": {
     "IndicatorID": 2030,
@@ -634,6 +634,31 @@
     "description": "Structural racism, which includes neighborhood disinvestment, racist housing policies, fewer job opportunities and lower pay, and less access to high-quality education and health care, means that our society often deprives people of color of the resources they need to stay healthy.",
     "name": "Race and ethnicity"
   },
+  "2326": {
+    "IndicatorID": 2326,
+    "description": null,
+    "name": "Race and Ethnicity (ICE 1)"
+  },
+  "2327": {
+    "IndicatorID": 2327,
+    "description": null,
+    "name": "Race and Ethnicity (ICE 2)"
+  },
+  "2328": {
+    "IndicatorID": 2328,
+    "description": null,
+    "name": "ICE 1"
+  },
+  "2329": {
+    "IndicatorID": 2329,
+    "description": null,
+    "name": "ICE 2"
+  },
+  "2330": {
+    "IndicatorID": 2330,
+    "description": null,
+    "name": "ICE 3"
+  },
   "2334": {
     "IndicatorID": 2334,
     "description": "People age 25 years and over who have completed high school or high school equivalency.",
@@ -711,8 +736,8 @@
   },
   "2375": {
     "IndicatorID": 2375,
-    "description": "Violence is frequently described through homicide statistics, but non-fatal violence-related injuries resulting in hospitalizations are more common and help paint the larger picture on the burden of violence and its impact on the health and future of individuals, families, and communities.",
-    "name": "Assault hospitalizations (non-fatal)"
+    "description": "Non-fatal, violence-related injuries that result in hospitalizations. These are more common than homicides and help paint the larger picture of the burden of violence on communities.",
+    "name": "Violence-related hospitalizations (all ages)"
   },
   "2376": {
     "IndicatorID": 2376,
@@ -836,8 +861,8 @@
   },
   "2400": {
     "IndicatorID": 2400,
-    "description": "Violence is frequently described through homicide statistics, but non-fatal violence-related injuries resulting in emergency department visits are much more common and help paint the larger picture on the burden of violence and its impact on the health and future of individuals, families, and communities.",
-    "name": "Assault emergency department visits (non-fatal)"
+    "description": "Non-fatal, violence-related injuries that result in emergency department visits. These are more common than homicides and help paint the larger picture of the burden of violence on communities. ",
+    "name": "Violence-related emergency department visits (all ages)"
   },
   "2401": {
     "IndicatorID": 2401,
@@ -848,6 +873,11 @@
     "IndicatorID": 2403,
     "description": "Falls are a leading cause of injury among older adults.",
     "name": "Homes with reported falls (age 65+)"
+  },
+  "2404": {
+    "IndicatorID": 2404,
+    "description": "The number of children aged 1-13 years exposed to tobacco smoke at home all of the time, most of the time, or occasionally. Secondhand smoke is harmful to children and can cause or worsen respiratory and asthma issues and ear infections.",
+    "name": "Secondhand smoke exposure at home (children)"
   },
   "2405": {
     "IndicatorID": 2405,
@@ -894,10 +924,35 @@
     "description": "Sanitation supports public health by providing clean, healthy public spaces for people to live, work, and get around. Litter baskets, or trash cans, are associated with a decrease in littering. Enclosed, non-wire baskets are generally better than wire baskets.",
     "name": "Litter basket coverage"
   },
+  "2417": {
+    "IndicatorID": 2417,
+    "description": "Adults with probable depression in the past 2 weeks (from when they were surveyed). Depression is a common mental health disorder. Symptoms include feeling sad or hopeless, having little interest in doing things and feeling tired.",
+    "name": "Depression (adults)"
+  },
+  "2418": {
+    "IndicatorID": 2418,
+    "description": "A psychiatric hospitalization is defined as an overnight stay or longer in a psychiatric inpatient unit (excluding emergency room visits without an inpatient admission) for individuals with behaviors or symptoms that are likely to result in harm to themselves or others.",
+    "name": "Psychiatric hospitalizations (adults)"
+  },
+  "2419": {
+    "IndicatorID": 2419,
+    "description": "Serious psychological distress includes mental health problems that impact social, occupational, and educational functioning.",
+    "name": "Serious psychological distress (adults)"
+  },
+  "2420": {
+    "IndicatorID": 2420,
+    "description": "An intentional injury death that results from self-harm.",
+    "name": "Suicide deaths"
+  },
   "2421": {
     "IndicatorID": 2421,
     "description": "Retail locations that sell tobacco products. Neighborhoods with higher densities of tobacco retailers increase access to tobacco and may increase smoking rates.",
     "name": "Tobacco retailers"
+  },
+  "2422": {
+    "IndicatorID": 2422,
+    "description": "E-cigarette smoke: The number of children aged 1-13 years exposed to e-cigarette smoke at home all of the time, most of the time, or occasionally. Chemicals in the vapor from e-cigarettes can be harmful to kids.",
+    "name": "E-cigarette vapor exposure at home (children)"
   },
   "2425": {
     "IndicatorID": 2425,
@@ -924,6 +979,11 @@
     "description": "Children ages 1 to 13 who have had an asthma attack in the past year. Asthma attacks are a measureable adverse health outcome of asthma.",
     "name": "Children with an asthma attack (past 12 months)"
   },
+  "2430": {
+    "IndicatorID": 2430,
+    "description": "Children who live in homes with visible mold/mildew. Mold and mildew can trigger asthma attacks in children.",
+    "name": "Children in homes with visible mold or mildew (age 1-13)"
+  },
   "2431": {
     "IndicatorID": 2431,
     "description": "Children ages 1 to 13 that currently have asthma. Not every asthma diagnosis is correct. The number of children who still have asthma is usually smaller than the number of children who have ever been diagnosed with asthma.",
@@ -933,6 +993,46 @@
     "IndicatorID": 2432,
     "description": "Farmers markets are a great source of fresh produce and other healthy food options and can help mitigate the negative effects of food deserts.",
     "name": "Farmers markets"
+  },
+  "2433": {
+    "IndicatorID": 2433,
+    "description": "Rat indexing is a comprehensive approach for rat mitigation and means that every single property within a certain boundary is inspected for signs of rats and/or the conditions that attract them. Indexing includes Rat Mitigation Zones, which are inspected every six months due to their higher burden of rat activity.",
+    "name": "Rat indexing in Rat Mitigation Zones (RMZs)"
+  },
+  "2434": {
+    "IndicatorID": 2434,
+    "description": "Rat inspections are conducted for signs of rats and/or the conditions that attract them.?",
+    "name": "Rat inspections"
+  },
+  "2435": {
+    "IndicatorID": 2435,
+    "description": "Non-fatal, violence-related injuries that result in emergency department visits. These are more common than homicides and help paint the larger picture of the burden of violence on communities.",
+    "name": "Violence-related emergency department visits (ages 15-34)"
+  },
+  "2436": {
+    "IndicatorID": 2436,
+    "description": "Non-fatal injuries from firearms that result in emergency department visits. Violence from firearms causes physical and emotional harm, and trauma to both individuals and communities.  ",
+    "name": "Firearm emergency department visits (ages 15-34)"
+  },
+  "2437": {
+    "IndicatorID": 2437,
+    "description": "Non-fatal injuries from firearms that result in emergency department visits. Violence from firearms causes physical and emotional harm, and trauma to both individuals and communities.  ",
+    "name": "Firearm emergency department visits (all ages)"
+  },
+  "2438": {
+    "IndicatorID": 2438,
+    "description": "Non-fatal, violence-related injuries that result in hospitalizations. These are more common than homicides and help paint the larger picture of the burden of violence on communities.",
+    "name": "Violence-related hospitalizations (ages 15-34)"
+  },
+  "2439": {
+    "IndicatorID": 2439,
+    "description": "Non-fatal injuries from firearms that result in hospitalizations. Violence from firearms causes physical and emotional harm, and trauma to both individuals and communities. ",
+    "name": "Firearm hospitalizations (ages 15-34)"
+  },
+  "2440": {
+    "IndicatorID": 2440,
+    "description": "Non-fatal injuries from firearms that result in hospitalizations. Violence from firearms causes physical and emotional harm, and trauma to both individuals and communities. ",
+    "name": "Firearm hospitalizations (all ages)"
   },
   "25": {
     "IndicatorID": 25,

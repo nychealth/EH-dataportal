@@ -1,8 +1,8 @@
 {
   "active-design": {
     "IndicatorID": [
-      2133,
       2388,
+      2133,
       2181,
       2416,
       2389,
@@ -18,15 +18,16 @@
   },
   "air-quality": {
     "IndicatorID": [
-      92,
-      57,
-      55,
-      2024,
       2023,
+      2024,
       2028,
       2025,
       2027,
-      2026
+      2026,
+      92,
+      57,
+      55,
+      null
     ],
     "topic_name": "Air quality"
   },
@@ -43,6 +44,12 @@
   },
   "asthma": {
     "IndicatorID": [
+      2414,
+      18,
+      2392,
+      2339,
+      2429,
+      2431,
       2380,
       2384,
       2048,
@@ -54,25 +61,18 @@
       84,
       2385,
       2381,
-      2386,
-      18,
-      2392,
-      2147,
-      2149,
-      2339,
-      2414,
-      2429
+      2386
     ],
     "topic_name": "Asthma"
   },
   "asthma-triggers": {
     "IndicatorID": [
+      107,
       2101,
-      25,
       2393,
       2394,
-      107,
-      48
+      48,
+      2430
     ],
     "topic_name": "Asthma triggers at home"
   },
@@ -163,18 +163,19 @@
       2421,
       2019,
       2021,
+      2422,
+      2404,
       25
     ],
     "topic_name": "Cigarette smoke"
   },
   "climate": {
     "IndicatorID": [
+      2411,
+      2191,
+      2084,
       2141,
       2143,
-      2084,
-      2191,
-      2411,
-      2155,
       2104,
       2185,
       2377
@@ -204,8 +205,6 @@
       2176,
       2337,
       2132,
-      2317,
-      2073,
       17,
       2336,
       15,
@@ -215,12 +214,12 @@
   },
   "falls-among-older-adults": {
     "IndicatorID": [
-      2403,
       2135,
       2408,
       2136,
       2409,
-      2188
+      2188,
+      2403
     ],
     "topic_name": "Falls among older adults"
   },
@@ -247,10 +246,10 @@
   },
   "healthy-eating": {
     "IndicatorID": [
+      2432,
       2389,
       2097,
-      2098,
-      2432
+      2098
     ],
     "topic_name": "Healthy eating"
   },
@@ -272,6 +271,7 @@
   "housing-safety": {
     "IndicatorID": [
       2188,
+      2104,
       2185,
       2377
     ],
@@ -309,9 +309,8 @@
   },
   "mice-and-rats": {
     "IndicatorID": [
-      2394,
-      2105,
       24,
+      2394,
       48,
       2416
     ],
@@ -337,8 +336,8 @@
   },
   "pesticides": {
     "IndicatorID": [
-      2235,
       91,
+      2235,
       100,
       2312,
       96,
@@ -361,10 +360,8 @@
   "physical-activity": {
     "IndicatorID": [
       2060,
-      2173,
-      2172,
-      2058,
-      2059
+      2059,
+      2058
     ],
     "topic_name": "Physical activity"
   },

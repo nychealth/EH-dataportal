@@ -17,10 +17,10 @@
     </item>
     <item>
       <title>The New York City Community Air Survey</title>
-      <link>https://gcappbesp307.health.dohmh.nycnet/dev-stage/key-topics/airquality/nyccas/</link>
+      <link>https://gcappbesp307.health.dohmh.nycnet/dev-stage/data-features/nyccas/</link>
       <pubDate>Tue, 08 Nov 2022 11:14:56 -0400</pubDate>
-      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-stage/key-topics/airquality/nyccas/</guid>
-      <description>NYCCAS Report: 2008-2021 In 2007, the New York City Department of Health and Mental Hygiene (Health Department) established the New York City Community Air Survey (NYCCAS), the largest ongoing urban air monitoring program of any U.S. city. NYCCAS, which began collecting data in December 2008, is a collaboration between the Health Department and Queens College of the City University of New York and provides data to:&#xA;Help inform PlaNYC, the City’s sustainability plan Track changes in air quality over time Estimate exposures for health research Inform the public about local topics, such as recent air quality improvements, car-free zones, changes in the sources of air pollution, unique air quality studies conducted in New York City, efforts to reduce health impacts and differences in air quality and related health impacts across NYC neighborhoods.</description>
+      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-stage/data-features/nyccas/</guid>
+      <description>NYCCAS Report: 2008-2022 In 2007, the New York City Department of Health and Mental Hygiene (Health Department) established the New York City Community Air Survey (NYCCAS), the largest ongoing urban air monitoring program of any U.S. city. NYCCAS, which began collecting data in December 2008, is a collaboration between the Health Department and Queens College of the City University of New York and provides data to:&#xA;Help inform PlaNYC, the City’s sustainability plan Track changes in air quality over time Estimate exposures for health research Inform the public about local topics, such as recent air quality improvements, car-free zones, changes in the sources of air pollution, unique air quality studies conducted in New York City, efforts to reduce health impacts and differences in air quality and related health impacts across NYC neighborhoods.</description>
     </item>
     <item>
       <title>Air quality</title>
@@ -45,9 +45,9 @@
     </item>
     <item>
       <title>Tracking changes in New York City&#39;s sources of air pollution</title>
-      <link>https://gcappbesp307.health.dohmh.nycnet/dev-stage/data-stories/aq-cooking/</link>
+      <link>https://gcappbesp307.health.dohmh.nycnet/dev-stage/data-stories/restaurants-and-air-quality/</link>
       <pubDate>Mon, 12 Apr 2021 12:02:09 -0400</pubDate>
-      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-stage/data-stories/aq-cooking/</guid>
+      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-stage/data-stories/restaurants-and-air-quality/</guid>
       <description>As city life changes, so does its air quality, as sources of emissions that affect the city&amp;rsquo;s outdoor air quality, like truck traffic, building boilers and restaurants, also change. For more than a decade, we have been tracking air quality through the NYC Community Air Survey (NYCCAS) and exploring the factors that drive neighborhood differences. We have found some interesting changes in the sources of air pollution across NYC neighborhoods.</description>
     </item>
     <item>

@@ -35,7 +35,7 @@
 <title>Environment &amp; Health Data Portal</title>
 
 
-<meta name="build_datetime" content='2024-03-29 21:11:01'>
+<meta name="build_datetime" content='2024-07-09 17:16:05'>
 <meta name="build_environment" content='dev_stage'>
 <meta name="git_branch" content='build-to-dev-stage'>
 <meta name="git_last_hash" content=''>
@@ -78,12 +78,12 @@
 
 <link rel="stylesheet" href="/dev-stage/node_modules/@fortawesome/fontawesome-free/css/all.min.css" />
 
-<script src="/dev-stage/node_modules/@fortawesome/fontawesome-free/js/all.min.196cd5adc1a5a344f14d1bf3f6db62a32609f96c24f429341bcd43f9e3badc16aa1da2776195fdc2eaa3c207dc57f32b0763e16955fd0e461585b1694ad9eaa5.js" integrity="sha512-GWzVrcGlo0TxTRvz9ttioyYJ&#43;Wwk9Ck0G81D&#43;eO63BaqHaJ3YZX9wuqjwgfcV/MrB2PhaVX9DkYVhbFpStnqpQ==" crossorigin="anonymous"></script>
+<script src="/dev-stage/node_modules/@fortawesome/fontawesome-free/js/all.min.bb77cf03b57ca909a104f353e6abaf69755ad669e72d25d47a9e4f4b5aa8e4d4731f01b5f5a1e63499e3d50f21a40fe705666d643e2be005fa60eb79ca72cdda.js" integrity="sha512-u3fPA7V8qQmhBPNT5quvaXVa1mnnLSXUep5PS1qo5NRzHwG19aHmNJnj1Q8hpA/nBWZtZD4r4AX6YOt5ynLN2g==" crossorigin="anonymous"></script>
 
 
-<link rel="stylesheet" href="/dev-stage/scss/theme.93eedffd28d4702b89a3020c0eff852ea14226d650f38a6b59b5e5eb628de0d3b0941ab60ce45a6887fffc75078c7d1089830b1474e102938667d0ac6f54621f.css" integrity="sha512-k&#43;7f/SjUcCuJowIMDv&#43;FLqFCJtZQ84prWbXl62KN4NOwlBq2DORaaIf//HUHjH0QiYMLFHThApOGZ9Csb1RiHw==" />
+<link rel="stylesheet" href="/dev-stage/scss/theme.52ee3143724c31fe4c04d98f97f1624d464973378a2fb8c80515e3c253dbf9fa0f1932d238aa0b541c0e856fc25696044165e4b1f8ac87834696c04cda0462fe.css" integrity="sha512-Uu4xQ3JMMf5MBNmPl/FiTUZJczeKL7jIBRXjwlPb&#43;foPGTLSOKoLVBwOhW/CVpYEQWXksfish4NGlsBM2gRi/g==" />
 
-<script src="/dev-stage/node_modules/dompurify/dist/purify.min.71ed1f9ae1205aba6721758a42b4a027916c06caff8673acc5d5af93996ed464e17246ac2f073e4c014444b348c169d6a81a1657818f0c98b3d8f48f9ed8a754.js" integrity="sha512-ce0fmuEgWrpnIXWKQrSgJ5FsBsr/hnOsxdWvk5lu1GThckasLwc&#43;TAFERLNIwWnWqBoWV4GPDJiz2PSPntinVA=="></script>
+<script src="/dev-stage/node_modules/dompurify/dist/purify.min.8c1d1391305e402f594a406a0e17667d3bf5a9d7db5a9184ef6c89ff4d52aeaea1133648cf6c64cf57b9ee9f5a8bb21e1ccc041bb1e9cc6e8d769b428627f93e.js" integrity="sha512-jB0TkTBeQC9ZSkBqDhdmfTv1qdfbWpGE72yJ/01Srq6hEzZIz2xkz1e57p9ai7IeHMwEG7HpzG6NdptChif5Pg=="></script>
 
 
 
@@ -93,7 +93,7 @@
 
     let baseURL = "/dev-stage/"
     let data_repo = "https:\/\/raw.githubusercontent.com\/nychealth\/EHDP-data\/";
-    let data_branch = "feature-pagefind-search";
+    let data_branch = "staging";
     let hugoEnv = "dev_stage"
 
 </script>
@@ -180,62 +180,108 @@
 
                 <div class="row align-items-center">
 
-                    <div class="col-lg py-2 pl-md-5">
-
+                    <div class="col-lg py-3">
                         <div class="d-flex justify-content-center justify-content-lg-start">
+                            <a href="https://gcappbesp307.health.dohmh.nycnet/dev-stage/"><img src="https://gcappbesp307.health.dohmh.nycnet/dev-stage/7618350_heatmap_business_analytics_statistics_icon-gpr.ico" style="height: 67px" class="pr-1"></a>
 
-                            <p class="text-white">
-                                <span class="site-title title-hover"><a href=/dev-stage/ class="link-no-dec">Environment and Health Data Portal</span>
-                                <span class="site-subtitle">Understand how environments shape health in New York City</a></span>
+                            <p class="text-white title-hover">
+                                <span class="site-subtitle"><a href="https://gcappbesp307.health.dohmh.nycnet/dev-stage/" class="link-no-dec">Environment & Health</span>
+                                <span class="site-title">Data Portal</a></span>
                             </p>
 
 
                         </div>
                         
-
                     </div>
                     
 
                     <div class="col-lg-auto border-top border-lg-0 d-print-none">
 
-                        <div class="row no-gutters justify-content-between py-2">
+                        <div class="d-lg-flex align-items-center">
 
                             
-                            <div class="col-auto d-flex d-lg-none">
 
-                                <button class="no-btn-style" type="button" data-toggle="collapse"
-                                    data-target="#nav-primary" aria-controls="nav-primary" aria-expanded="false"
-                                    aria-label="Toggle navigation">
-                                    <span class="fas fa-bars fa-lg"></span>
-                                </button>
-
-                            </div>
-                            
-
-                            <div class="col-auto justify-content-end">
-
-                                <ul class="extensible-list horizontal justify-content-end">
-                                    <li>
-                                        <button class="no-btn-style" type="button" title="Language"
-                                            data-toggle="collapse" data-target="#global-language"
-                                            aria-controls="global-language" aria-expanded="false">
-                                            <span class="sr-only">Language</span>
-                                            <span class="fas fa-language fa-2x"></span>
-                                        </button>
-                                    </li>
-                                    <li>
-                                        <button type="button" data-toggle="modal" data-target="#searchModal" class="btn nav-item-search d-lg-none" title="Search">
-                                            <span class="sr-only">Search</span>
-                                            <i class="fa fa-magnifying-glass fa-lg text-body"></i>
-                                        </button>
+                            <ul class="extensible-list horizontal justify-content-between my-2 d-lg-none">
+                                <li>
+                                    <button class="navbar-toggler no-btn-style" type="button" title="Main Menu" data-toggle="collapse"
+                                        data-target="#nav-primary" aria-controls="nav-primary" aria-expanded="false"
+                                        aria-label="Toggle navigation">
+                                        <span class="sr-only">Main Menu</span>
+                                        <span class="fas fa-bars fa-lg text-white" ></span>
+                                    </button>
                                 </li>
 
-                                </ul>
+                                <li>
+                                    <a class="nav-link" href="#" type="button" data-toggle="modal" data-target="#searchModal" title="Search" data-toggle="collapse">
+                                        <span class="sr-only">Search</span>
+                                        <i class="fa fa-magnifying-glass text-white"></i>
+                                    </a>
+                                </li>
+                            </ul>
 
-                                <a class="btn-sm text-white font-weight-bold mr-2" style="border: 1px solid lightgray; border-radius: 3px;" href=/dev-stage/about>About us</a>
+                            <div class="collapse d-lg-block mx-n2 mx-lg-2" id="nav-primary">
+
+                                <nav class="nav" role="navigation">
+
+                                    <div class="nav-item bg-white text-primary border dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="nav-item-topic"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Topics
+                                        </a>
+
+                                        <div class="dropdown-menu wider-menu" aria-labelledby="nav-item-topic">
+                                            <ul class="extensible-list p-0">
+                                                
+                                                    <a href=/dev-stage/key-topics>All topics</a>
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    
+
+                                    <div class="nav-item bg-white text-primary border dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="nav-item-type"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Explore
+                                        </a>
+
+                                        <div class="dropdown-menu wider-menu" aria-labelledby="nav-item-type">
+                                            <ul class="extensible-list p-0">
+
+                                                <a href="/dev-stage/data-stories/"><li><span class="mr-1"><span class='text-primary data-stories'><i class='fas fa-passport' aria-hidden='true'></i></span></span>Data Stories</li></a>
+
+                                                        <hr class="my-1">
+
+                                                    <a href="/dev-stage/data-features/"><li><span class="mr-1"><span class='df-accent'><i class='fas fa-chart-bar' aria-hidden='true'></i></span></span>Data Features</li></a>
+
+                                                        <hr class="my-1">
+
+                                                    <a href="/dev-stage/neighborhood-reports/"><li><span class="mr-1"><span class='text-primary n-reports'><i class='fas fa-map-marked-alt' aria-hidden='true'></i></span></span>Neighborhood Reports</li></a>
+
+                                                        <hr class="my-1">
+
+                                                    <a href="/dev-stage/data-explorer/"><li><span class="mr-1"><span class='text-primary data-explorer'><i class='fas fa-chart-line' aria-hidden='true'></i></span></span>Data Explorer</li></a></ul>
+                                        </div>
+                                    </div>
+                                    
+
+                                    <div class="nav-item bg-white text-primary border">
+                                        </div>
+                                    
+
+                                    
+
+                                    <div class="nav-item bg-white text-primary border d-none d-lg-block">
+                                        <a class="nav-link" href="#" type="button" data-toggle="modal" data-target="#searchModal" title="Search" data-toggle="collapse">
+                                                    <span class="sr-only">Search</span>
+                                                    <i class="fa fa-magnifying-glass text-body"></i>
+                                                </a>
+                                    </div>
+                                    
+
+                                </nav>
 
                             </div>
-                            
 
                         </div>
                         
@@ -260,302 +306,282 @@
 
 
         </div>
-        <div class="container-fluid collapse d-lg-block px-0 border-lg-top d-print-none" id="nav-primary">
-
-            <div class="wide">
-
-                <nav class="nav nav-pills border-bottom border-right justify-content-center" role="navigation"><span id="File.Path" style="display: none"></span>
-                <span id="FirstSection.RelPermalink" style="display: none">/dev-stage/zh/</span>
-
-                <div class="nav-item-search border-right">
-                    <a class="nav-link" id="nav-item-01" href=/dev-stage/>
-                    <span class='text-primary'><i class='fa fa-home' aria-hidden='true'></i><span class="sr-only">Home</span></span>
-                    </a>
-                </div><div class="nav-item">
-
-                        <a class="nav-link" href="/dev-stage/key-topics/" id="nav-item-05"><span class='text-primary'><i class='fas fa-star' aria-hidden='true'></i></span> Key Topics</a>
-
-                    </div><div class="nav-item">
-
-                        <a class="nav-link" href="/dev-stage/data-stories/" id="nav-item-02"><span class='text-primary'><i class='fas fa-passport' aria-hidden='true'></i></span> Data Stories</a>
-
-                    </div><div class="nav-item">
-
-                        <a class="nav-link" href="/dev-stage/neighborhood-reports/" id="nav-item-04"><span class='text-primary'><i class='fas fa-map-marked-alt' aria-hidden='true'></i></span> Neighborhood Reports</a>
-
-                    </div><div class="nav-item">
-
-                        <a class="nav-link" href="/dev-stage/data-explorer/" id="nav-item-03"><span class='text-primary'><i class='fas fa-chart-line' aria-hidden='true'></i></span> Data Explorer</a>
-
-                    </div>
-
-                        <button type="button" data-toggle="modal" data-target="#searchModal" class="btn nav-item-search d-none d-lg-block" title="Search">
-
-                            <span class="sr-only">Search</span>
-                            <i class="fa fa-magnifying-glass fa-lg text-body mt-1"></i>
-
-                        </button>
-
-                    </nav>
-
-            </div>
-
-        </div>
-
-        <div class="container-fluid-lg border-top collapse" id="global-search">
-
-            <form class="narrow py-2" aria-label="Search" role="search">
-
-                <div class="input-group">
-
-                    <label class="sr-only" for="global-search-bar">Search</label>
-
-                    <input class="form-control form-control-lg" id="global-search-bar" placeholder="Search">
-
-                    <div class="input-group-btn">
-
-                        <button class="btn btn-primary btn-lg" type="button" title="Search">
-
-                            <span class="sr-only">Search</span>
-                            <span class="fas fa-arrow-right"></span>
-
-                        </button>
-
-                    </div>
-
-                </div>
-
-            </form>
-
-
-            
-
-    </div>
 
 </header>
 <main id="skip-header-target" role="main" data-pagefind-body>
 
-<article class="container-fluid overflow-hidden" id="primary-content">
+<article class="container-fluid p-0 overflow-hidden" id="primary-content">
+  <div class="row no-gutters">
+    <div class="container wide">
+      <div class="py-4 mb-4 border-bottom">
+        <div class="row">
+          <div class="col-md-6 px-20">
+            <div class="row px-2">
+              <h2 class="">Explore your city - through data.</h2>
+              <p class="text-muted my-2">
+                <span class="font-weight-bold">The environment is everything around us</span> - our air and water, the climate, our city's buildings and streets, and the society that we live in:
+              </p>
+            </div>
 
-  <div class="row mt-4">
-    <div class="col-lg-8 col-md-12 mb-3">
-
-
-      <div class="card content-card mb-2">
-        <h1 class="fs-lg text-info"><i class="fas fa-star mr-1" aria-hidden="true"></i>Featured:</h1>
-        <a href="/dev-stage/">
-        <div class="card-content">
-          <div style='height: 400px; width: 100%; background-image: url(/dev-stage/images); background-position: center; background-size: cover;'></div>
-
-        </a> 
-
-        <div class="card-body">
-          <h1 class="card-title text-primary"><a href="/dev-stage/"></h1>
-          <span class="card-text mt-2"></span></a>
-          
-        </div>
-        </div>
-
-      </div>
-    </a>
-      
-      
-      <h2 class="fs-lg text-info mt-4 mb-2 border-bottom"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Recently updated data:</h2><a href="/dev-stage/data-explorer/waterways/" class="btn btn-sm btn-outline-primary mr-1 mb-1"><i class="fas fa-table mr-1" aria-hidden="true"></i>Harbor water quality</a><a href="/dev-stage/data-explorer/walking-driving-and-cycling/?id=2415#display=summary" class="btn btn-sm btn-outline-primary mr-1 mb-1"><i class="fas fa-table mr-1" aria-hidden="true"></i>Commuting modes</a><a href="/dev-stage/data-explorer/economic-conditions/?id=103#display=summary" class="btn btn-sm btn-outline-primary mr-1 mb-1"><i class="fas fa-table mr-1" aria-hidden="true"></i>Neighborhood poverty</a><a href="/dev-stage/data-explorer/economic-conditions/?id=2337#display=summary" class="btn btn-sm btn-outline-primary mr-1 mb-1"><i class="fas fa-table mr-1" aria-hidden="true"></i>Unemployment</a><a href="/dev-stage/data-explorer/weather-related-illness/?id=2191#display=summary" class="btn btn-sm btn-outline-primary mr-1 mb-1"><i class="fas fa-table mr-1" aria-hidden="true"></i>Heat vulnerability index</a><a href=/dev-stage/data-explorer class="text-info font-weight-bold ml-1">All&nbsp;data&nbsp;></a>
-      
-    </div>
-
-    <div class="col-lg-4 card content-card pt-0 h-100">
-      <h2 class="fs-lg text-info"><i class="fas fa-passport mr-1" aria-hidden="true"></i>New data stories:</h2>
-      <div class="card-content mb-4">
-        <div class="card-body"><div class="row no-gutters mt-2">
-            <div class="col-4 border">
-              
-              
-              <a href="/dev-stage/zh/data-stories/violence/">
-                <div style="width:100%; height:100%; background-image: URL(/dev-stage/zh/data-stories/violence/ds-violence_hu6182672d2bc7dc090625beee39a7dab9_4320773_740x0_resize_q95_mitchellnetravali.jpg); background-size: cover; background-position: center center; "></div></a>
+            <div class="row">
+              <div class="col-md-6 px-20">
+                <ul class="list-unstyled font-weight-bold">
+                  <li class="link-w-underline px-0"><a href=/dev-stage/key-topics/airquality>Air quality</a></li>
+                  <li class="link-w-underline px-0"><a href=/dev-stage/key-topics/climatehealth>Climate</a></li>
+                  <li class="link-w-underline px-0"><a href=/dev-stage/key-topics/social>Inequality</a></li>
+                  <li class="link-w-underline px-0"><a href=/dev-stage/key-topics/pests>Pests</a></li>
+                </ul>
               </div>
-
-              <div class="col-8 ml-auto h-100 pl-1 mb-2">
-                <p class="fs-sm"><a class="text-info font-weight-bold" href="/dev-stage/zh/data-stories/violence/">为什么暴力是一个公共卫生问题 </a> 利用公共卫生预防暴力 经历暴力会以多种方式影响人们。它不仅会导致身体伤害或死亡，而且接触它还会导致情感和心理创伤。暴力不仅会影响直接受害者，还会影响他们周围的群众。
-暴力会影响人们的一生：会导致糟糕的 … </p>
+              <div class="col-md-6 px-20">
+                <ul class="list-unstyled font-weight-bold">
+                  <li class="link-w-underline px-0"><a href=/dev-stage/key-topics/transportation>Public space</a></li>
+                  <li class="link-w-underline px-0"><a href=/dev-stage/key-topics/housing>Housing</a></li>
+                  <li class="link-w-underline px-0"><a href=/dev-stage/key-topics/childhealth>Child health</a></li>
+                  <li class="link-w-underline px-0"><a href=/dev-stage/key-topics/foodanddrink>Food and drink</a></li>
+                </ul>
               </div>
-            </div><div class="row no-gutters mt-2">
-            <div class="col-4 border">
-              
-              
-              <a href="/dev-stage/zh/data-stories/redlining/">
-                <div style="width:100%; height:100%; background-image: URL(/dev-stage/zh/data-stories/redlining/ds-redlining_hu6b252481458558718de479ea1428e8ac_261393_740x0_resize_q95_mitchellnetravali.jpeg); background-size: cover; background-position: center center; "></div></a>
+              <div class="d-flex mt-3 w-100 mb-4 mb-md-0 pl-2">
+                <a class="btn btn-primary" href=/dev-stage/key-topics>See all topics<i class="fas fa-arrow-circle-right ml-1" aria-hidden="true"></i></a>
               </div>
-
-              <div class="col-8 ml-auto h-100 pl-1 mb-2">
-                <p class="fs-sm"><a class="text-info font-weight-bold" href="/dev-stage/zh/data-stories/redlining/">红线圈定的简史 </a> 危害我们健康90年的金融政策 在公共卫生领域，我们经常引用结构性种族主义来解读我们社会的健康模式。但是，具体来说，这意味着什么？仔细看一下红线圈定的历史就可以看出这种联系。
-当我们分析纽约人健康的数据 … </p>
+            </div>
+          </div>
+          <div class="col-md-6 px-20">
+            <div class="card content-card">
+              <div class="card-content primary">
+                <div class="position-relative" style='height: 330px; width: 100%; background-image: url(/dev-stage/images); background-position: center; background-size: cover;'>
+                  <div class="overlay-trends">
+                    
+                  </div>
+                </div>
+                <div class="card-body">
+                  <h3><a href="/dev-stage/"></a></h3>
+                  <p></p>
+                  <div class="d-flex justify-content-end mb-4 mb-md-0">
+                    
+                  </div>
+                </div>
               </div>
-            </div><div class="row no-gutters mt-2">
-            <div class="col-4 border">
-              
-              
-              <a href="/dev-stage/zh/data-stories/housing/">
-                <div style="width:100%; height:100%; background-image: URL(/dev-stage/zh/data-stories/housing/ds-housing_hu6b252481458558718de479ea1428e8ac_261393_740x0_resize_q95_mitchellnetravali.jpeg); background-size: cover; background-position: center center; "></div></a>
-              </div>
-
-              <div class="col-8 ml-auto h-100 pl-1 mb-2">
-                <p class="fs-sm"><a class="text-info font-weight-bold" href="/dev-stage/zh/data-stories/housing/">健康、住房和历史。</a> 为了健康，地点很重要。 什么决定您是否健康？您可能会考虑您吃了什么，您是否锻炼，您是否吸烟和您的家庭病史。
-但您可能不会想到 您的住房会怎样影响您的健康 - 您可能也不会考虑会影响您选择住房的因素。  … </p>
-              </div>
-            </div><div class="row no-gutters mt-2">
-            <div class="col-4 border">
-              
-              
-              <a href="/dev-stage/zh/data-stories/geographies/">
-                <div style="width:100%; height:100%; background-image: URL(/dev-stage/zh/data-stories/geographies/ds-geographies_hu340a3b6f063c63347307132c2586a018_1911570_740x0_resize_q95_mitchellnetravali.jpg); background-size: cover; background-position: center center; "></div></a>
-              </div>
-
-              <div class="col-8 ml-auto h-100 pl-1 mb-2">
-                <p class="fs-sm"><a class="text-info font-weight-bold" href="/dev-stage/zh/data-stories/geographies/">环境与健康数据门户上的社区边界</a> 纽约市有数百个社区和几乎同样多的划分社区边界的方法。当您访问环境与健康数据门户网站或卫生局（Health Department）的其他数据资源时，您可能会注意到数据以多种不同的社区方案呈现。
-例如，深 … </p>
-              </div>
-            </div><hr class="my-2">
-            <a href=/dev-stage/data-stories class="text-info font-weight-bold my-1 float-right">All data stories > </a>
-            
+            </div>
           </div>
         </div>
       </div>
     </div>
 
-  </div>
-
-  <div class="row">
-    <div class="col-10 mx-auto">
-
-
-
-
-
-
-      <hr>
-    </div>
-  </div>
-
-  <div class="row mt-4">
-    <div class="col-md-7 mx-auto">
-      <h2 class="text-info">Explore your city - through data</h2>
-      <p class="text-muted my-2">
-        <span class="text-primary font-weight-bold">The environment is everything around us:</span> our air and water, the climate, our city's buildings and streets, and the society that we live in:
-      </p>
-    </div>
-  </div>
-
-  <div class="row justify-content-center mx-auto">
-    
-    <a href=/dev-stage/key-topics/airquality class="btn btn-outline-light border border-info text-primary mt-1 mx-1 py-2 px-1 col-xl-1 col-sm-4 col-xs-6">Air quality</a> 
-    <a href=/dev-stage/key-topics/climatehealth class="btn btn-outline-light border border-info text-primary mt-1 mx-1 py-2 px-1 col-xl-1 col-sm-4 col-xs-6">Climate</a>
-    <a href=/dev-stage/key-topics/housing class="btn btn-outline-light  border border-info text-primary mt-1 mx-1 py-2 px-1 col-xl-1 col-sm-4 col-xs-6">Housing</a>
-    <a href=/dev-stage/key-topics/transportation class="btn btn-outline-light  border border-info text-primary mt-1 mx-1 py-2 px-1 col-xl-1 col-sm-4 col-xs-6">Public space</a>
-    <a href=/dev-stage/key-topics/healthoutcomes class="btn btn-outline-light border border-info text-primary mt-1 mx-1 py-2 px-1 col-xl-1 col-sm-4 col-xs-6">Health</a>
-    <a href=/dev-stage/key-topics/social class="btn btn-outline-light border border-info text-primary mt-1 mx-1 py-2 px-1 col-xl-1 col-sm-4 col-xs-6">Inequality</a>
-    
-  </div>
-
-  <div class="row">
-    <div class="col-md-7 mx-auto">
-      <p class="text-muted mt-3">We collect data from many different sources and put them together to show you how <span class="font-weight-bold text-primary">the environment shapes our health</span>. <a href=/dev-stage/key-topics class="text-info font-weight-bold">See all topics</a>.</p>
-      
-    </div>
-  </div>
-
-
-  <div class="row mt-4 mb-2 justify-content-center mx-auto">
-    <div class="col-lg-4 col-sm-10 card content-card">
-      <div class="card-content mb-4">
-        <a href=/dev-stage/data-stories>
-          <img class="card-img-top" src=/dev-stage/images/home-sample-image-datastory.png>
-        </a>
-        <div class="card-body">
-          <h3 class="text-info"><i class="fas fa-passport mr-1" aria-hidden="true"></i>Data stories</h3>
-          <p>Perspectives and explainers on important health issues. <a class="" href=/dev-stage/data-stories>All data stories</a>.</p>
-          
-          
-        </div>
-      </div>
-    </div>
-
-    <div class="col-lg-4 col-sm-10 card content-card">
-      <div class="card-content mb-4">
-        <a href=/dev-stage/neighborhood-reports>
-          <img class="card-img-top" src=/dev-stage/images/home-sample-image-NR.png>
-        </a>
-        <div class="card-body">
-          <h3 class="text-info"><i class="fas fa-map-marked-alt mr-1" aria-hidden="true"></i>Neighborhood Reports</h3>
-          <p>Search for your neighborhood and get data. <a class="" href=/dev-stage/neighborhood-reports>Search here</a>.</p>
-          
-        </div>
-      </div>
-    </div>
-
-    <div class="col-lg-4 col-sm-10 card content-card">
-      <div class="card-content mb-4">
-        <a href=/dev-stage/data-explorer>
-          <img class="card-img-top" src=/dev-stage/images/home-sample-image-DE-5.png>
-        </a>
-        <div class="card-body">
-          <h3 class="text-info"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Data Explorer</h3>
-          <p>Maps, trends, tables, and more: get datasets on hundreds of topics. <a class="" href=/dev-stage/data-explorer>Get data</a>.</p>
-          
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-
-  <div class="row my-1">
-    <div class="col" style="text-align: center;">
-      <h4 class="text-muted"><i class="fas fa-bullhorn mr-1" aria-hidden="true"></i>Get updates and announcements</h4>
-      <p class="fs-sm">
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfUg3JE5ODNc6aqBPJwM8mZ80TYtK6ISw-OM7PBwKuoN3M--g/viewform?embedded=true">Sign up here</a>
-
-        <em>We won't share your email address with anybody. </em></p>
-
-    </div>
-  </div>
-
-
-  <div class="row my-4">
-    <div class="col-md-10 mx-auto">
+    <div class="container wide">
       <div class="row">
+        <div class="col-lg-4 px-20">
+          <h2 class="fs-xl data-stories border-bottom pb-2"><i class="fas fa-passport mr-1" aria-hidden="true"></i>New data stories</h2>
+          <div class="card-content mb-4">
+            <div><a href="/dev-stage/zh/data-stories/violence/" class="row no-gutters border-bottom py-3">
+                <div class="col-4">
+                  
+                  
+                  <img src="/dev-stage/zh/data-stories/violence/ds-violence_hu6182672d2bc7dc090625beee39a7dab9_4320773_740x0_resize_q95_mitchellnetravali.jpg">
+                </div>
 
-        <div class="col-md-4 my-2">
-          <div class="card bg-lightgray mt-1">
-            <div class="card-body">
-              <h5 class="card-title text-muted fs-sm">About us</h5>
-              <p class="fs-sm">Learn more about the Environment & Health Data Portal, and the Health Department team behind it.</p></div>
+                <div class="col-8 ml-auto h-100 pl-2">
+                  <p class="text-black fs-md"><span class="font-weight-bold">为什么暴力是一个公共卫生问题 </span> 利用公共卫生预防暴力 经历暴力会以多种方式影响人们。它不仅会导致身体伤害或死亡，而且接触它还会导致情感和心理创伤。暴力不仅会影响直接受害者，还会影响他们周围的群众。
+暴力会影响人们的一生：会导致糟糕的 … </p>
+                </div>
+              </a><a href="/dev-stage/zh/data-stories/redlining/" class="row no-gutters border-bottom py-3">
+                <div class="col-4">
+                  
+                  
+                  <img src="/dev-stage/zh/data-stories/redlining/ds-redlining_hu6b252481458558718de479ea1428e8ac_261393_740x0_resize_q95_mitchellnetravali.jpeg">
+                </div>
+
+                <div class="col-8 ml-auto h-100 pl-2">
+                  <p class="text-black fs-md"><span class="font-weight-bold">红线圈定的简史 </span> 危害我们健康90年的金融政策 在公共卫生领域，我们经常引用结构性种族主义来解读我们社会的健康模式。但是，具体来说，这意味着什么？仔细看一下红线圈定的历史就可以看出这种联系。
+当我们分析纽约人健康的数据 … </p>
+                </div>
+              </a><a href="/dev-stage/zh/data-stories/housing/" class="row no-gutters border-bottom py-3">
+                <div class="col-4">
+                  
+                  
+                  <img src="/dev-stage/zh/data-stories/housing/ds-housing_hu6b252481458558718de479ea1428e8ac_261393_740x0_resize_q95_mitchellnetravali.jpeg">
+                </div>
+
+                <div class="col-8 ml-auto h-100 pl-2">
+                  <p class="text-black fs-md"><span class="font-weight-bold">健康、住房和历史。</span> 为了健康，地点很重要。 什么决定您是否健康？您可能会考虑您吃了什么，您是否锻炼，您是否吸烟和您的家庭病史。
+但您可能不会想到 您的住房会怎样影响您的健康 - 您可能也不会考虑会影响您选择住房的因素。  … </p>
+                </div>
+              </a><div class="d-flex justify-content-end mt-1 mb-4 mb-md-0">
+                  <a href=/dev-stage/data-stories class="font-weight-bold">All data stories <i class="fas fa-arrow-circle-right ml-1" aria-hidden="true"></i></a>
+                </div>
+            </div>
           </div>
         </div>
+        <div class="col-lg-4 px-20">
 
-        <div class="col-md-4 my-2">
-          <div class="card bg-lightgray mt-1">
-            <div class="card-body">
-              <h5 class="card-title text-muted fs-sm">Visit our Github repo</h5>
-              <p class="fs-sm">Found a bug? Know code? Visit our Github repo to get code, file an issue, or download data.</p>
-              <a href="https://www.github.com/nychealth/EH-dataportal" class="btn btn-outline-gray btn-block btn-sm mt-2">Github<i class="fas fa-chevron-circle-right ml-1" aria-hidden="true"></i></a>
+          <h2 class="fs-xl data-explorer border-bottom pb-2"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Recently updated data</h2><div class="link-w-underline">
+            <a href="/dev-stage/data-explorer/weather-related-illness/?id=2075#display=summary">Heat stress: emergency department visits</a>
+          </div><div class="link-w-underline">
+            <a href="/dev-stage/data-explorer/climate/?id=2104#display=summary">Adults with air conditioners</a>
+          </div><div class="link-w-underline">
+            <a href="/dev-stage/data-explorer/health-impacts-of-air-pollution/?id=2108#display=summary">Deaths due to PM2.5</a>
+          </div><div class="link-w-underline">
+            <a href="/dev-stage/data-explorer/alcohol-use/?id=2050#display=summary">Binge drinking (adults)</a>
+          </div><div class="link-w-underline">
+            <a href="/dev-stage/data-explorer/walking-driving-and-cycling/?id=2059#display=summary">Monthly bicycle use</a>
+          </div><div class="d-flex justify-content-end mt-1 mb-4">
+            <a class="font-weight-bold" href=/dev-stage/data-explorer>All data <i class="fas fa-arrow-circle-right ml-1" aria-hidden="true"></i></a>
+          </div>
 
+
+        </div>
+        <div class="col-lg-4 px-20">
+          <div class="shadow-sm mb-3 p-3 card-left-border">
+            <div class="row no-gutters">
+              <div class="col-11">
+                <h3 class="text-black fs-xl pr-2 mb-2">Get updates and announcements</h3>
+              </div>
+              <div class="col-1">
+                <i class="fas fa-bullhorn h2 text-primary" aria-hidden="true"></i>
+              </div>
+            </div>
+            <p class="text-black mb-4"><a class="font-weight-bold" href="https://forms.gle/qcQvmLUWvBwjkFMRA" target="_blank">Sign up here!</a> We won't share your email address.</p>
+          </div>
+
+          <div class="shadow-sm mb-3 p-3 card-left-border">
+            <div class="row no-gutters">
+              <div class="col-11">
+                <h3 class="text-black fs-xl pr-2 mb-2">Find what you need</h3>
+              </div>
+              <div class="col-1">
+                <i class="fas fa-search h2 text-primary" aria-hidden="true"></i>
+
+              </div>
+            </div>
+            <button type="button" class="btn btn-primary btn-block mt-1" data-toggle="modal" data-target="#searchModal" class="btn nav-item-search d-none d-lg-block" title="Search">
+              <i class="fas fa-search mr-1" aria-hidden="true"></i>Search the site
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container wide">
+      <div class="row">
+        <div class="col-12 mb-2">
+          <h3>Tools</h3>
+        </div>
+
+        <div class="col-lg-3 col-sm-6">
+          <div class="card content-card">
+            <div class="card-content data-stories mb-4">
+              <a class="position-relative" href=/dev-stage/data-stories>
+                <div class="tab-data-stories h-100 w-100 position-absolute"></div>
+                <img class="card-img-top" src=/dev-stage/images/image_tab_data_stories.jpg>
+              </a>
+              <div class="card-body">
+                <h3 class="card-title">Data stories</h3>
+                <p>Explainers on important health issues.</p>
+                <div class="d-flex justify-content-end">
+                  <a class="fs-sm font-weight-bold" href=/dev-stage/data-stories>All data stories<i class="fas fa-arrow-circle-right ml-1" aria-hidden="true"></i></a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
-        <div class="col-md-4 my-2">
-          <div class="card bg-lightgray mt-1">
-            <div class="card-body">
-              <h5 class="card-title text-muted fs-sm">Join our team</h5>
-              <p class="fs-sm">Passionate about health, environmental justice, and technology? Check out our open positions.</p></div>
+        <div class="col-lg-3 col-sm-6">
+          <div class="card content-card">
+            <div class="card-content data-features mb-4">
+              <a class="position-relative" href=/dev-stage/data-features>
+                <div class="tab-data-features h-100 w-100 position-absolute"></div>
+                <img class="card-img-top" src=/dev-stage/images/image_key_topics.jpg>
+              </a>
+              <div class="card-body">
+                <h3 class="card-title">Data Features</h3>
+                <p>Custom interactives, dashboards and reports.</p>
+                <div class="d-flex justify-content-end">
+                  <a class="fs-sm font-weight-bold" href=/dev-stage/data-features>Get data <i class="fas fa-arrow-circle-right ml-1" aria-hidden="true"></i></a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
+        <div class="col-lg-3 col-sm-6">
+          <div class="card content-card">
+            <div class="card-content n-reports mb-4">
+              <a class="position-relative" href=/dev-stage/neighborhood-reports>
+                <div class="tab-neighborhood-reports h-100 w-100 position-absolute"></div>
+                <img class="card-img-top" src=/dev-stage/images/image_tab_neighborhood_reports.jpg>
+              </a>
+              <div class="card-body">
+                <h3 class="card-title">Neighborhood Reports</h3>
+                <p>Data on key neighborhood issues.</p>
+                <div class="d-flex justify-content-end">
+                  <a class="fs-sm font-weight-bold" href=/dev-stage/neighborhood-reports>Search here <i class="fas fa-arrow-circle-right ml-1" aria-hidden="true"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+        <div class="col-lg-3 col-sm-6">
+          <div class="card content-card">
+            <div class="card-content data-explorer mb-4">
+              <a class="position-relative" href=/dev-stage/data-explorer>
+                <div class="tab-data-explorer h-100 w-100 position-absolute"></div>
+                <img class="card-img-top" src=/dev-stage/images/image_tab_key_topics.jpg>
+              </a>
+              <div class="card-body">
+                <h3 class="card-title">Data Explorer</h3>
+                <p>Maps, trends, tables, and more: hundreds of datasets.</p>
+                <div class="d-flex justify-content-end">
+                  <a class="fs-sm font-weight-bold" href=/dev-stage/data-explorer>Get data <i class="fas fa-arrow-circle-right ml-1" aria-hidden="true"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="mt-4 py-4 w-100" style="background-color: #EEEDEA;">
+      <div class="container wide">
+        <div class="row">
+          <div class="col-md-11 mx-auto">
+            <div class="row">
+              <div class="col-md-4 my-2">
+                <div class="card card-left-border shadow-sm h-100">
+                  <div class="card-body">
+                    <h5 class="card-title fs-sm mb-1">About us</h5>
+                    <p class="fs-sm flex-grow-1">Learn more about the Environment & Health Data Portal, and the Health Department team behind it.</p></div>
+                </div>
+              </div>
+
+              <div class="col-md-4 my-2">
+                <div class="card card-left-border shadow-sm h-100">
+                  <div class="card-body">
+                    <h5 class="card-title fs-sm mb-1">Visit our Github repo</h5>
+                    <p class="fs-sm flex-grow-1">Found a bug? Know code? Visit our Github repo to get code, file an issue, or download data.</p>
+                    <div class="d-flex justify-content-end">
+                      <a class="fs-sm font-weight-bold" href="https://www.github.com/nychealth/EH-dataportal">Github<i class="fas fa-arrow-circle-right ml-1" aria-hidden="true"></i></a>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4 my-2">
+                <div class="card card-left-border shadow-sm h-100">
+                  <div class="card-body">
+                    <h5 class="card-title fs-sm mb-1">Join our team</h5>
+                    <p class="fs-sm flex-grow-1">Passionate about health, environmental justice, and technology? Check out our open positions.</p></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-  
 </article><ul id="results"></ul>
   </main>
   
@@ -792,7 +818,7 @@
                             result.meta.title = result.meta.title
                                 .replace(/&#(\d+);/g, ((match, dec) => `${String.fromCharCode(dec)}`))
                                 .replaceAll("&amp;", "&");
-                            
+
                             
 
                             result.sub_results.forEach(sub => {
@@ -850,7 +876,7 @@
             </script>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
         </div>
       </div>
     </div>

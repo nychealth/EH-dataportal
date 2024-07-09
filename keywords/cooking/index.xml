@@ -10,9 +10,9 @@
     <atom:link href="https://gcappbesp307.health.dohmh.nycnet/dev-stage/keywords/cooking/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Tracking changes in New York City&#39;s sources of air pollution</title>
-      <link>https://gcappbesp307.health.dohmh.nycnet/dev-stage/data-stories/aq-cooking/</link>
+      <link>https://gcappbesp307.health.dohmh.nycnet/dev-stage/data-stories/restaurants-and-air-quality/</link>
       <pubDate>Mon, 12 Apr 2021 12:02:09 -0400</pubDate>
-      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-stage/data-stories/aq-cooking/</guid>
+      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-stage/data-stories/restaurants-and-air-quality/</guid>
       <description>As city life changes, so does its air quality, as sources of emissions that affect the city&amp;rsquo;s outdoor air quality, like truck traffic, building boilers and restaurants, also change. For more than a decade, we have been tracking air quality through the NYC Community Air Survey (NYCCAS) and exploring the factors that drive neighborhood differences. We have found some interesting changes in the sources of air pollution across NYC neighborhoods.</description>
     </item>
   </channel>

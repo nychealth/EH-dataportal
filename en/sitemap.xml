@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml"><url>
+    <loc>/dev-stage/keywords/affordable-housing/</loc>
+    <lastmod>2024-06-11T09:01:00-04:00</lastmod></url><url>
     <loc>/dev-stage/categories/</loc>
-    <lastmod>2024-03-28T13:33:58-04:00</lastmod><xhtml:link
+    <lastmod>2024-06-11T09:01:00-04:00</lastmod><xhtml:link
                 rel="alternate"
                 hreflang="es"
                 href="/dev-stage/es/categories/"
@@ -15,22 +17,10 @@
                 hreflang="en"
                 href="/dev-stage/categories/"
                 /></url><url>
-    <loc>/dev-stage/categories/childhealth/</loc>
-    <lastmod>2024-03-08T10:26:15-05:00</lastmod><xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="/dev-stage/es/categories/childhealth/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="/dev-stage/zh/categories/childhealth/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/dev-stage/categories/childhealth/"
-                /></url><url>
+    <loc>/dev-stage/categories/climate/</loc>
+    <lastmod>2024-06-11T09:01:00-04:00</lastmod></url><url>
     <loc>/dev-stage/data-stories/</loc>
-    <lastmod>2024-03-08T10:26:15-05:00</lastmod><xhtml:link
+    <lastmod>2024-06-11T09:01:00-04:00</lastmod><xhtml:link
                 rel="alternate"
                 hreflang="es"
                 href="/dev-stage/es/data-stories/"
@@ -43,24 +33,10 @@
                 hreflang="en"
                 href="/dev-stage/data-stories/"
                 /></url><url>
-    <loc>/dev-stage/keywords/eviction/</loc>
-    <lastmod>2024-03-05T14:47:52-05:00</lastmod></url><url>
-    <loc>/dev-stage/keywords/housing/</loc>
-    <lastmod>2024-03-05T14:47:52-05:00</lastmod><xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="/dev-stage/es/keywords/housing/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="/dev-stage/zh/keywords/housing/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/dev-stage/keywords/housing/"
-                /></url><url>
+    <loc>/dev-stage/keywords/flooding/</loc>
+    <lastmod>2024-06-11T09:01:00-04:00</lastmod></url><url>
     <loc>/dev-stage/categories/housing/</loc>
-    <lastmod>2024-03-27T18:19:29-04:00</lastmod><xhtml:link
+    <lastmod>2024-06-11T09:01:00-04:00</lastmod><xhtml:link
                 rel="alternate"
                 hreflang="es"
                 href="/dev-stage/es/categories/housing/"
@@ -73,12 +49,10 @@
                 hreflang="en"
                 href="/dev-stage/categories/housing/"
                 /></url><url>
-    <loc>/dev-stage/data-stories/housing-creates-health/</loc>
-    <lastmod>2024-03-05T14:47:52-05:00</lastmod></url><url>
-    <loc>/dev-stage/keywords/income-inequality/</loc>
-    <lastmod>2024-03-05T14:47:52-05:00</lastmod></url><url>
+    <loc>/dev-stage/keywords/inequities/</loc>
+    <lastmod>2024-06-11T09:01:00-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/</loc>
-    <lastmod>2024-03-28T13:33:58-04:00</lastmod><xhtml:link
+    <lastmod>2024-06-11T09:01:00-04:00</lastmod><xhtml:link
                 rel="alternate"
                 hreflang="es"
                 href="/dev-stage/es/keywords/"
@@ -92,7 +66,7 @@
                 href="/dev-stage/keywords/"
                 /></url><url>
     <loc>/dev-stage/categories/neighborhoods/</loc>
-    <lastmod>2024-03-08T10:26:15-05:00</lastmod><xhtml:link
+    <lastmod>2024-06-11T09:01:00-04:00</lastmod><xhtml:link
                 rel="alternate"
                 hreflang="es"
                 href="/dev-stage/es/categories/neighborhoods/"
@@ -106,7 +80,7 @@
                 href="/dev-stage/categories/neighborhoods/"
                 /></url><url>
     <loc>/dev-stage/categories/social/</loc>
-    <lastmod>2024-03-28T13:33:58-04:00</lastmod><xhtml:link
+    <lastmod>2024-06-11T09:01:00-04:00</lastmod><xhtml:link
                 rel="alternate"
                 hreflang="es"
                 href="/dev-stage/es/categories/social/"
@@ -119,18 +93,8 @@
                 hreflang="en"
                 href="/dev-stage/categories/social/"
                 /></url><url>
-    <loc>/dev-stage/keywords/affordable-housing/</loc>
-    <lastmod>2024-02-15T13:57:01-05:00</lastmod></url><url>
-    <loc>/dev-stage/data-stories/economic-stability/</loc>
-    <lastmod>2024-02-15T13:57:01-05:00</lastmod></url><url>
-    <loc>/dev-stage/keywords/health-equity/</loc>
-    <lastmod>2024-03-08T10:26:15-05:00</lastmod></url><url>
-    <loc>/dev-stage/keywords/inequalities/</loc>
-    <lastmod>2024-03-08T10:26:15-05:00</lastmod></url><url>
-    <loc>/dev-stage/keywords/inequities/</loc>
-    <lastmod>2024-03-08T10:26:15-05:00</lastmod></url><url>
     <loc>/dev-stage/keywords/social-determinants/</loc>
-    <lastmod>2024-03-08T10:26:15-05:00</lastmod><xhtml:link
+    <lastmod>2024-06-11T09:01:00-04:00</lastmod><xhtml:link
                 rel="alternate"
                 hreflang="es"
                 href="/dev-stage/es/keywords/social-determinants/"
@@ -143,12 +107,70 @@
                 hreflang="en"
                 href="/dev-stage/keywords/social-determinants/"
                 /></url><url>
+    <loc>/dev-stage/keywords/storms/</loc>
+    <lastmod>2024-06-11T09:01:00-04:00</lastmod></url><url>
+    <loc>/dev-stage/</loc>
+    <lastmod>2024-06-11T09:01:00-04:00</lastmod><xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="/dev-stage/es/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/dev-stage/zh/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/dev-stage/"
+                /></url><url>
+    <loc>/dev-stage/data-stories/flooding-and-health/</loc>
+    <lastmod>2024-06-11T09:01:00-04:00</lastmod></url><url>
+    <loc>/dev-stage/categories/childhealth/</loc>
+    <lastmod>2024-03-05T01:18:56-04:00</lastmod><xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="/dev-stage/es/categories/childhealth/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/dev-stage/zh/categories/childhealth/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/dev-stage/categories/childhealth/"
+                /></url><url>
+    <loc>/dev-stage/keywords/eviction/</loc>
+    <lastmod>2024-03-05T01:18:56-04:00</lastmod></url><url>
+    <loc>/dev-stage/keywords/housing/</loc>
+    <lastmod>2024-03-05T01:18:56-04:00</lastmod><xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="/dev-stage/es/keywords/housing/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/dev-stage/zh/keywords/housing/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/dev-stage/keywords/housing/"
+                /></url><url>
+    <loc>/dev-stage/data-stories/housing-creates-health/</loc>
+    <lastmod>2024-03-05T01:18:56-04:00</lastmod></url><url>
+    <loc>/dev-stage/keywords/income-inequality/</loc>
+    <lastmod>2024-03-05T01:18:56-04:00</lastmod></url><url>
+    <loc>/dev-stage/data-stories/economic-stability/</loc>
+    <lastmod>2024-02-08T09:01:00-04:00</lastmod></url><url>
+    <loc>/dev-stage/keywords/health-equity/</loc>
+    <lastmod>2024-02-08T09:01:00-04:00</lastmod></url><url>
+    <loc>/dev-stage/keywords/inequalities/</loc>
+    <lastmod>2024-02-08T09:01:00-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/accidents/</loc>
-    <lastmod>2023-11-30T11:47:15-05:00</lastmod></url><url>
+    <lastmod>2023-10-18T13:11:44-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/deaths/</loc>
-    <lastmod>2023-11-30T11:47:15-05:00</lastmod></url><url>
+    <lastmod>2023-10-18T13:11:44-04:00</lastmod></url><url>
     <loc>/dev-stage/categories/healthoutcomes/</loc>
-    <lastmod>2024-03-27T18:19:29-04:00</lastmod><xhtml:link
+    <lastmod>2023-10-18T13:11:44-04:00</lastmod><xhtml:link
                 rel="alternate"
                 hreflang="es"
                 href="/dev-stage/es/categories/healthoutcomes/"
@@ -162,21 +184,21 @@
                 href="/dev-stage/categories/healthoutcomes/"
                 /></url><url>
     <loc>/dev-stage/keywords/homicide/</loc>
-    <lastmod>2023-11-30T11:47:15-05:00</lastmod></url><url>
+    <lastmod>2023-10-18T13:11:44-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/injuries/</loc>
-    <lastmod>2023-12-06T16:03:15-05:00</lastmod></url><url>
+    <lastmod>2023-10-18T13:11:44-04:00</lastmod></url><url>
     <loc>/dev-stage/data-stories/injury-deaths/</loc>
-    <lastmod>2023-11-30T11:47:15-05:00</lastmod></url><url>
+    <lastmod>2023-10-18T13:11:44-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/means-reduction/</loc>
-    <lastmod>2023-11-30T11:47:15-05:00</lastmod></url><url>
+    <lastmod>2023-10-18T13:11:44-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/mortality/</loc>
-    <lastmod>2024-03-28T13:33:58-04:00</lastmod></url><url>
+    <lastmod>2023-10-18T13:11:44-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/suicide/</loc>
-    <lastmod>2024-03-27T18:19:29-04:00</lastmod></url><url>
+    <lastmod>2023-10-18T13:11:44-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/unintentional-injury/</loc>
-    <lastmod>2023-11-30T11:47:15-05:00</lastmod></url><url>
+    <lastmod>2023-10-18T13:11:44-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/violence/</loc>
-    <lastmod>2024-03-27T18:19:29-04:00</lastmod><xhtml:link
+    <lastmod>2023-10-18T13:11:44-04:00</lastmod><xhtml:link
                 rel="alternate"
                 hreflang="es"
                 href="/dev-stage/es/keywords/violence/"
@@ -190,49 +212,51 @@
                 href="/dev-stage/keywords/violence/"
                 /></url><url>
     <loc>/dev-stage/keywords/climate/</loc>
-    <lastmod>2024-03-28T13:33:58-04:00</lastmod></url><url>
+    <lastmod>2023-08-15T15:10:00+00:00</lastmod></url><url>
     <loc>/dev-stage/keywords/climatehealth/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2023-08-15T15:10:00+00:00</lastmod></url><url>
     <loc>/dev-stage/categories/climatehealth/</loc>
-    <lastmod>2024-03-28T13:33:58-04:00</lastmod></url><url>
+    <lastmod>2023-08-15T15:10:00+00:00</lastmod></url><url>
     <loc>/dev-stage/keywords/harbor/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2023-08-15T15:10:00+00:00</lastmod></url><url>
     <loc>/dev-stage/keywords/pollution/</loc>
-    <lastmod>2024-02-21T08:30:17-05:00</lastmod></url><url>
+    <lastmod>2023-08-15T15:10:00+00:00</lastmod></url><url>
     <loc>/dev-stage/keywords/water/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2023-08-15T15:10:00+00:00</lastmod></url><url>
     <loc>/dev-stage/data-explorer/waterways/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2023-08-15T15:10:00+00:00</lastmod></url><url>
     <loc>/dev-stage/keywords/elevated-blood-lead-levels/</loc>
-    <lastmod>2023-12-06T12:24:45-05:00</lastmod></url><url>
+    <lastmod>2023-07-13T08:29:34-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/employment/</loc>
-    <lastmod>2023-12-06T12:24:45-05:00</lastmod></url><url>
+    <lastmod>2023-07-13T08:29:34-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/lead/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2023-07-13T08:29:34-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/lead-poisoning/</loc>
-    <lastmod>2023-12-06T12:24:45-05:00</lastmod></url><url>
+    <lastmod>2023-07-13T08:29:34-04:00</lastmod></url><url>
     <loc>/dev-stage/data-stories/adult-lead/</loc>
-    <lastmod>2023-12-06T12:24:45-05:00</lastmod></url><url>
+    <lastmod>2023-07-13T08:29:34-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/worker-health/</loc>
-    <lastmod>2023-12-06T12:24:45-05:00</lastmod></url><url>
+    <lastmod>2023-07-13T08:29:34-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/workers/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2023-07-13T08:29:34-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/racial-wealth-gap/</loc>
-    <lastmod>2024-03-08T10:26:15-05:00</lastmod></url><url>
+    <lastmod>2023-06-16T09:01:00-04:00</lastmod></url><url>
     <loc>/dev-stage/data-stories/racial-wealth-gap/</loc>
-    <lastmod>2024-03-08T10:26:15-05:00</lastmod></url><url>
+    <lastmod>2023-06-16T09:01:00-04:00</lastmod></url><url>
+    <loc>/dev-stage/data-features/</loc>
+    <lastmod>2023-06-01T11:14:56-04:00</lastmod></url><url>
     <loc>/dev-stage/categories/pests/</loc>
-    <lastmod>2024-02-21T17:26:38-05:00</lastmod></url><url>
-    <loc>/dev-stage/key-topics/pests/rat-mitigation-zones/</loc>
-    <lastmod>2024-02-21T17:26:38-05:00</lastmod></url><url>
+    <lastmod>2023-06-01T11:14:56-04:00</lastmod></url><url>
+    <loc>/dev-stage/data-features/rat-mitigation-zones/</loc>
+    <lastmod>2023-06-01T11:14:56-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/garbage/</loc>
-    <lastmod>2024-01-31T15:25:13-05:00</lastmod></url><url>
+    <lastmod>2023-03-20T13:11:44-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/inequitites/</loc>
-    <lastmod>2024-01-31T15:25:13-05:00</lastmod></url><url>
+    <lastmod>2023-03-20T13:11:44-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/justice/</loc>
-    <lastmod>2024-02-21T15:38:12-05:00</lastmod></url><url>
+    <lastmod>2023-03-20T13:11:44-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/pests/</loc>
-    <lastmod>2024-02-21T17:26:38-05:00</lastmod><xhtml:link
+    <lastmod>2023-03-20T13:11:44-04:00</lastmod><xhtml:link
                 rel="alternate"
                 hreflang="es"
                 href="/dev-stage/es/keywords/pests/"
@@ -246,11 +270,11 @@
                 href="/dev-stage/keywords/pests/"
                 /></url><url>
     <loc>/dev-stage/keywords/rats/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2023-03-20T13:11:44-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/sanitation/</loc>
-    <lastmod>2024-01-31T15:25:13-05:00</lastmod></url><url>
+    <lastmod>2023-03-20T13:11:44-04:00</lastmod></url><url>
     <loc>/dev-stage/categories/transportation/</loc>
-    <lastmod>2024-03-27T18:19:29-04:00</lastmod><xhtml:link
+    <lastmod>2023-03-20T13:11:44-04:00</lastmod><xhtml:link
                 rel="alternate"
                 hreflang="es"
                 href="/dev-stage/es/categories/transportation/"
@@ -264,19 +288,19 @@
                 href="/dev-stage/categories/transportation/"
                 /></url><url>
     <loc>/dev-stage/keywords/trash/</loc>
-    <lastmod>2024-01-31T15:25:13-05:00</lastmod></url><url>
+    <lastmod>2023-03-20T13:11:44-04:00</lastmod></url><url>
     <loc>/dev-stage/data-stories/sanitation/</loc>
-    <lastmod>2024-01-31T15:25:13-05:00</lastmod></url><url>
+    <lastmod>2023-03-20T13:11:44-04:00</lastmod></url><url>
     <loc>/dev-stage/data-stories/block-by-block/</loc>
-    <lastmod>2024-02-21T15:38:12-05:00</lastmod></url><url>
+    <lastmod>2023-03-19T08:49:22-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/built-environment/</loc>
-    <lastmod>2024-02-21T15:38:12-05:00</lastmod></url><url>
+    <lastmod>2023-03-19T08:49:22-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/community-development/</loc>
-    <lastmod>2024-02-21T15:38:12-05:00</lastmod></url><url>
+    <lastmod>2023-03-19T08:49:22-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/community-engagement/</loc>
-    <lastmod>2024-02-21T15:38:12-05:00</lastmod></url><url>
+    <lastmod>2023-03-19T08:49:22-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/disinvestment/</loc>
-    <lastmod>2024-03-08T10:26:15-05:00</lastmod><xhtml:link
+    <lastmod>2023-03-19T08:49:22-04:00</lastmod><xhtml:link
                 rel="alternate"
                 hreflang="es"
                 href="/dev-stage/es/keywords/disinvestment/"
@@ -290,9 +314,9 @@
                 href="/dev-stage/keywords/disinvestment/"
                 /></url><url>
     <loc>/dev-stage/keywords/east-harlem/</loc>
-    <lastmod>2024-02-21T15:38:12-05:00</lastmod></url><url>
+    <lastmod>2023-03-19T08:49:22-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/neighborhoods/</loc>
-    <lastmod>2024-03-08T10:26:15-05:00</lastmod><xhtml:link
+    <lastmod>2023-03-19T08:49:22-04:00</lastmod><xhtml:link
                 rel="alternate"
                 hreflang="es"
                 href="/dev-stage/es/keywords/neighborhoods/"
@@ -306,7 +330,7 @@
                 href="/dev-stage/keywords/neighborhoods/"
                 /></url><url>
     <loc>/dev-stage/keywords/redlining/</loc>
-    <lastmod>2024-03-08T10:26:15-05:00</lastmod><xhtml:link
+    <lastmod>2023-03-19T08:49:22-04:00</lastmod><xhtml:link
                 rel="alternate"
                 hreflang="es"
                 href="/dev-stage/es/keywords/redlining/"
@@ -320,9 +344,9 @@
                 href="/dev-stage/keywords/redlining/"
                 /></url><url>
     <loc>/dev-stage/keywords/reinvestment/</loc>
-    <lastmod>2024-02-21T15:38:12-05:00</lastmod></url><url>
+    <lastmod>2023-03-19T08:49:22-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/transportation/</loc>
-    <lastmod>2024-03-08T10:26:15-05:00</lastmod><xhtml:link
+    <lastmod>2023-03-19T08:49:22-04:00</lastmod><xhtml:link
                 rel="alternate"
                 hreflang="es"
                 href="/dev-stage/es/keywords/transportation/"
@@ -336,7 +360,7 @@
                 href="/dev-stage/keywords/transportation/"
                 /></url><url>
     <loc>/dev-stage/keywords/air-pollution/</loc>
-    <lastmod>2024-03-08T10:26:15-05:00</lastmod><xhtml:link
+    <lastmod>2022-12-15T15:23:23-05:00</lastmod><xhtml:link
                 rel="alternate"
                 hreflang="es"
                 href="/dev-stage/es/keywords/air-pollution/"
@@ -350,7 +374,7 @@
                 href="/dev-stage/keywords/air-pollution/"
                 /></url><url>
     <loc>/dev-stage/keywords/air-quality/</loc>
-    <lastmod>2024-03-08T10:26:15-05:00</lastmod><xhtml:link
+    <lastmod>2022-12-15T15:23:23-05:00</lastmod><xhtml:link
                 rel="alternate"
                 hreflang="es"
                 href="/dev-stage/es/keywords/air-quality/"
@@ -364,7 +388,7 @@
                 href="/dev-stage/keywords/air-quality/"
                 /></url><url>
     <loc>/dev-stage/categories/airquality/</loc>
-    <lastmod>2024-03-08T10:26:15-05:00</lastmod><xhtml:link
+    <lastmod>2022-12-15T15:23:23-05:00</lastmod><xhtml:link
                 rel="alternate"
                 hreflang="es"
                 href="/dev-stage/es/categories/airquality/"
@@ -378,7 +402,7 @@
                 href="/dev-stage/categories/airquality/"
                 /></url><url>
     <loc>/dev-stage/keywords/breathing/</loc>
-    <lastmod>2024-03-08T10:26:15-05:00</lastmod><xhtml:link
+    <lastmod>2022-12-15T15:23:23-05:00</lastmod><xhtml:link
                 rel="alternate"
                 hreflang="es"
                 href="/dev-stage/es/keywords/breathing/"
@@ -392,13 +416,13 @@
                 href="/dev-stage/keywords/breathing/"
                 /></url><url>
     <loc>/dev-stage/data-stories/hia/</loc>
-    <lastmod>2024-02-13T15:16:52-05:00</lastmod></url><url>
+    <lastmod>2022-12-15T15:23:23-05:00</lastmod></url><url>
     <loc>/dev-stage/keywords/health-impact-assessment/</loc>
-    <lastmod>2024-02-21T15:38:12-05:00</lastmod></url><url>
+    <lastmod>2022-12-15T15:23:23-05:00</lastmod></url><url>
     <loc>/dev-stage/keywords/health-impacts-of-air-pollution/</loc>
-    <lastmod>2024-02-13T15:16:52-05:00</lastmod></url><url>
+    <lastmod>2022-12-15T15:23:23-05:00</lastmod></url><url>
     <loc>/dev-stage/keywords/lungs/</loc>
-    <lastmod>2024-03-08T10:26:15-05:00</lastmod><xhtml:link
+    <lastmod>2022-12-15T15:23:23-05:00</lastmod><xhtml:link
                 rel="alternate"
                 hreflang="es"
                 href="/dev-stage/es/keywords/lungs/"
@@ -412,11 +436,11 @@
                 href="/dev-stage/keywords/lungs/"
                 /></url><url>
     <loc>/dev-stage/keywords/policies/</loc>
-    <lastmod>2024-02-21T15:38:12-05:00</lastmod></url><url>
+    <lastmod>2022-12-15T15:23:23-05:00</lastmod></url><url>
     <loc>/dev-stage/keywords/policy/</loc>
-    <lastmod>2024-02-21T15:38:12-05:00</lastmod></url><url>
+    <lastmod>2022-12-15T15:23:23-05:00</lastmod></url><url>
     <loc>/dev-stage/keywords/poverty/</loc>
-    <lastmod>2024-03-08T10:26:15-05:00</lastmod><xhtml:link
+    <lastmod>2022-12-15T15:23:23-05:00</lastmod><xhtml:link
                 rel="alternate"
                 hreflang="es"
                 href="/dev-stage/es/keywords/poverty/"
@@ -430,7 +454,7 @@
                 href="/dev-stage/keywords/poverty/"
                 /></url><url>
     <loc>/dev-stage/keywords/traffic/</loc>
-    <lastmod>2024-03-08T10:26:15-05:00</lastmod><xhtml:link
+    <lastmod>2022-12-15T15:23:23-05:00</lastmod><xhtml:link
                 rel="alternate"
                 hreflang="es"
                 href="/dev-stage/es/keywords/traffic/"
@@ -444,65 +468,65 @@
                 href="/dev-stage/keywords/traffic/"
                 /></url><url>
     <loc>/dev-stage/keywords/cold/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2022-12-15T13:11:44-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/ice/</loc>
-    <lastmod>2023-12-06T16:03:15-05:00</lastmod></url><url>
+    <lastmod>2022-12-15T13:11:44-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/safety/</loc>
-    <lastmod>2024-03-11T16:32:28-04:00</lastmod></url><url>
+    <lastmod>2022-12-15T13:11:44-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/snow/</loc>
-    <lastmod>2023-12-06T16:03:15-05:00</lastmod></url><url>
+    <lastmod>2022-12-15T13:11:44-04:00</lastmod></url><url>
     <loc>/dev-stage/data-stories/cold/</loc>
-    <lastmod>2023-12-06T16:03:15-05:00</lastmod></url><url>
+    <lastmod>2022-12-15T13:11:44-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/weather/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2022-12-15T13:11:44-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/winter/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2022-12-15T13:11:44-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/computer-modelling/</loc>
-    <lastmod>2024-02-21T15:38:12-05:00</lastmod></url><url>
+    <lastmod>2022-12-03T08:33:22-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/data-science/</loc>
-    <lastmod>2024-02-21T15:38:12-05:00</lastmod></url><url>
+    <lastmod>2022-12-03T08:33:22-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/fine-particles/</loc>
-    <lastmod>2024-02-21T15:38:12-05:00</lastmod></url><url>
+    <lastmod>2022-12-03T08:33:22-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/fine-particulate-matter/</loc>
-    <lastmod>2024-02-21T15:38:12-05:00</lastmod></url><url>
+    <lastmod>2022-12-03T08:33:22-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/health-impacts/</loc>
-    <lastmod>2024-02-21T15:38:12-05:00</lastmod></url><url>
+    <lastmod>2022-12-03T08:33:22-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/model/</loc>
-    <lastmod>2024-02-21T15:38:12-05:00</lastmod></url><url>
+    <lastmod>2022-12-03T08:33:22-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/modelling/</loc>
-    <lastmod>2024-02-21T15:38:12-05:00</lastmod></url><url>
+    <lastmod>2022-12-03T08:33:22-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/pm2.5/</loc>
-    <lastmod>2024-02-21T15:38:12-05:00</lastmod></url><url>
+    <lastmod>2022-12-03T08:33:22-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/zappa/</loc>
-    <lastmod>2024-02-21T15:38:12-05:00</lastmod></url><url>
+    <lastmod>2022-12-03T08:33:22-04:00</lastmod></url><url>
     <loc>/dev-stage/data-stories/zappa/</loc>
-    <lastmod>2024-02-21T15:38:12-05:00</lastmod></url><url>
+    <lastmod>2022-12-03T08:33:22-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/emissions/</loc>
-    <lastmod>2024-02-21T08:30:17-05:00</lastmod></url><url>
+    <lastmod>2022-11-08T11:14:56-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/exhaust/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2022-11-08T11:14:56-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/monitoring/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2022-11-08T11:14:56-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/pollutants/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2022-11-08T11:14:56-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/report/</loc>
-    <lastmod>2024-03-28T13:33:58-04:00</lastmod></url><url>
-    <loc>/dev-stage/key-topics/airquality/nyccas/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2022-11-08T11:14:56-04:00</lastmod></url><url>
+    <loc>/dev-stage/data-features/nyccas/</loc>
+    <lastmod>2022-11-08T11:14:56-04:00</lastmod></url><url>
     <loc>/dev-stage/about/advanced-tools/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2022-11-07T08:49:22-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/api/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2022-11-07T08:49:22-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/civic-service-design/</loc>
-    <lastmod>2024-02-21T17:26:38-05:00</lastmod></url><url>
+    <lastmod>2022-11-07T08:49:22-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/data-visualization/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2022-11-07T08:49:22-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/github/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2022-11-07T08:49:22-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/how-we-work/</loc>
-    <lastmod>2024-02-21T17:26:38-05:00</lastmod></url><url>
+    <lastmod>2022-11-07T08:49:22-04:00</lastmod></url><url>
     <loc>/dev-stage/categories/internal/</loc>
-    <lastmod>2024-02-21T17:26:38-05:00</lastmod><xhtml:link
+    <lastmod>2022-11-07T08:49:22-04:00</lastmod><xhtml:link
                 rel="alternate"
                 hreflang="es"
                 href="/dev-stage/es/categories/internal/"
@@ -516,27 +540,27 @@
                 href="/dev-stage/categories/internal/"
                 /></url><url>
     <loc>/dev-stage/keywords/open-data/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2022-11-07T08:49:22-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/open-source/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2022-11-07T08:49:22-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/redesign/</loc>
-    <lastmod>2024-02-21T17:26:38-05:00</lastmod></url><url>
+    <lastmod>2022-11-07T08:49:22-04:00</lastmod></url><url>
     <loc>/dev-stage/about/redesign/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2022-11-07T08:49:22-04:00</lastmod></url><url>
     <loc>/dev-stage/data-stories/redesign/</loc>
-    <lastmod>2024-02-21T17:26:38-05:00</lastmod></url><url>
+    <lastmod>2022-11-07T08:49:22-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/usability/</loc>
-    <lastmod>2024-02-21T17:26:38-05:00</lastmod></url><url>
+    <lastmod>2022-11-07T08:49:22-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/user-research/</loc>
-    <lastmod>2024-02-21T17:26:38-05:00</lastmod></url><url>
+    <lastmod>2022-11-07T08:49:22-04:00</lastmod></url><url>
     <loc>/dev-stage/take-action/email-electeds/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2022-08-08T14:20:53-04:00</lastmod></url><url>
     <loc>/dev-stage/take-action/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
-    <loc>/dev-stage/data-stories/aqcovid2/</loc>
-    <lastmod>2024-03-08T10:26:15-05:00</lastmod></url><url>
+    <lastmod>2022-08-08T14:20:53-04:00</lastmod></url><url>
+    <loc>/dev-stage/data-stories/air-quality-and-covid-part-2/</loc>
+    <lastmod>2022-04-20T08:33:22-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/coronavirus/</loc>
-    <lastmod>2024-03-08T10:26:15-05:00</lastmod><xhtml:link
+    <lastmod>2022-04-20T08:33:22-04:00</lastmod><xhtml:link
                 rel="alternate"
                 hreflang="es"
                 href="/dev-stage/es/keywords/coronavirus/"
@@ -550,7 +574,7 @@
                 href="/dev-stage/keywords/coronavirus/"
                 /></url><url>
     <loc>/dev-stage/keywords/covid/</loc>
-    <lastmod>2024-03-08T10:26:15-05:00</lastmod><xhtml:link
+    <lastmod>2022-04-20T08:33:22-04:00</lastmod><xhtml:link
                 rel="alternate"
                 hreflang="es"
                 href="/dev-stage/es/keywords/covid/"
@@ -564,7 +588,7 @@
                 href="/dev-stage/keywords/covid/"
                 /></url><url>
     <loc>/dev-stage/keywords/covid-19/</loc>
-    <lastmod>2024-03-08T10:26:15-05:00</lastmod><xhtml:link
+    <lastmod>2022-04-20T08:33:22-04:00</lastmod><xhtml:link
                 rel="alternate"
                 hreflang="es"
                 href="/dev-stage/es/keywords/covid-19/"
@@ -578,23 +602,23 @@
                 href="/dev-stage/keywords/covid-19/"
                 /></url><url>
     <loc>/dev-stage/categories/foodanddrink/</loc>
-    <lastmod>2024-03-11T16:32:28-04:00</lastmod></url><url>
+    <lastmod>2022-04-20T08:33:22-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/restaurants/</loc>
-    <lastmod>2024-03-11T16:32:28-04:00</lastmod></url><url>
+    <lastmod>2022-04-20T08:33:22-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/buildings/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2022-03-22T19:30:55-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/cars/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2022-03-22T19:30:55-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/data/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2022-03-22T19:30:55-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/interactive/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
-    <loc>/dev-stage/key-topics/airquality/realtime/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2022-03-22T19:30:55-04:00</lastmod></url><url>
+    <loc>/dev-stage/data-features/realtime-air-quality/</loc>
+    <lastmod>2022-03-22T19:30:55-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/air-conditioning/</loc>
-    <lastmod>2023-12-06T16:03:15-05:00</lastmod></url><url>
+    <lastmod>2022-01-10T12:34:38-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/asthma/</loc>
-    <lastmod>2024-03-01T11:28:43-05:00</lastmod><xhtml:link
+    <lastmod>2022-01-10T12:34:38-04:00</lastmod><xhtml:link
                 rel="alternate"
                 hreflang="es"
                 href="/dev-stage/es/keywords/asthma/"
@@ -608,75 +632,73 @@
                 href="/dev-stage/keywords/asthma/"
                 /></url><url>
     <loc>/dev-stage/keywords/cooling/</loc>
-    <lastmod>2023-12-06T16:03:15-05:00</lastmod></url><url>
+    <lastmod>2022-01-10T12:34:38-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/death/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2022-01-10T12:34:38-04:00</lastmod></url><url>
     <loc>/dev-stage/data-stories/poweroutages/</loc>
-    <lastmod>2023-12-06T16:03:15-05:00</lastmod></url><url>
+    <lastmod>2022-01-10T12:34:38-04:00</lastmod></url><url>
     <loc>/dev-stage/about/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-11-24T13:30:21-05:00</lastmod></url><url>
     <loc>/dev-stage/about/jobs/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-11-24T13:30:21-05:00</lastmod></url><url>
     <loc>/dev-stage/keywords/drink/</loc>
-    <lastmod>2024-03-11T16:32:28-04:00</lastmod></url><url>
+    <lastmod>2021-11-17T12:01:22-05:00</lastmod></url><url>
     <loc>/dev-stage/keywords/food/</loc>
-    <lastmod>2024-03-11T16:32:28-04:00</lastmod></url><url>
+    <lastmod>2021-11-17T12:01:22-05:00</lastmod></url><url>
     <loc>/dev-stage/keywords/food-desert/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-11-17T12:01:22-05:00</lastmod></url><url>
     <loc>/dev-stage/keywords/food-environment/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-11-17T12:01:22-05:00</lastmod></url><url>
     <loc>/dev-stage/data-explorer/healthy-eating/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-11-17T12:01:22-05:00</lastmod></url><url>
     <loc>/dev-stage/keywords/nutrition/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-11-17T12:01:22-05:00</lastmod></url><url>
     <loc>/dev-stage/keywords/soda/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-11-17T12:01:22-05:00</lastmod></url><url>
     <loc>/dev-stage/keywords/sugary-drinks/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-11-17T12:01:22-05:00</lastmod></url><url>
     <loc>/dev-stage/data-explorer/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-10-07T09:34:04-04:00</lastmod></url><url>
     <loc>/dev-stage/key-topics/airquality/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-10-04T12:32:15-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/smog/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-10-04T12:32:15-04:00</lastmod></url><url>
     <loc>/dev-stage/key-topics/climatehealth/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-10-03T12:33:17-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/climate-change/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-10-03T12:33:17-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/emergencies/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-10-03T12:33:17-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/heat/</loc>
-    <lastmod>2024-03-28T13:33:58-04:00</lastmod></url><url>
+    <lastmod>2021-10-03T12:33:17-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/heat-related-illness/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-10-03T12:33:17-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/hurricanes/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-10-03T12:33:17-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/public-health/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
-    <loc>/dev-stage/keywords/storms/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-10-03T12:33:17-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/weather-related-illness/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-10-03T12:33:17-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/bed-bugs/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-10-02T07:56:00-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/carbon-monoxide/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-10-02T07:56:00-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/cockroaches/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-10-02T07:56:00-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/displacement/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
-    <loc>/dev-stage/key-topics/housing/displacement/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-10-02T07:56:00-04:00</lastmod></url><url>
+    <loc>/dev-stage/data-features/displacement-risk/</loc>
+    <lastmod>2021-10-02T07:56:00-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/equity/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-10-02T07:56:00-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/gentrification/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-10-02T07:56:00-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/homes/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-10-02T07:56:00-04:00</lastmod></url><url>
     <loc>/dev-stage/key-topics/housing/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-10-02T07:56:00-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/injustice/</loc>
-    <lastmod>2024-03-08T10:26:15-05:00</lastmod><xhtml:link
+    <lastmod>2021-10-02T07:56:00-04:00</lastmod><xhtml:link
                 rel="alternate"
                 hreflang="es"
                 href="/dev-stage/es/keywords/injustice/"
@@ -690,7 +712,7 @@
                 href="/dev-stage/keywords/injustice/"
                 /></url><url>
     <loc>/dev-stage/keywords/maintenance/</loc>
-    <lastmod>2024-02-21T17:26:38-05:00</lastmod><xhtml:link
+    <lastmod>2021-10-02T07:56:00-04:00</lastmod><xhtml:link
                 rel="alternate"
                 hreflang="es"
                 href="/dev-stage/es/keywords/maintenance/"
@@ -704,7 +726,7 @@
                 href="/dev-stage/keywords/maintenance/"
                 /></url><url>
     <loc>/dev-stage/keywords/maintenance-deficiencies/</loc>
-    <lastmod>2024-02-21T17:26:38-05:00</lastmod><xhtml:link
+    <lastmod>2021-10-02T07:56:00-04:00</lastmod><xhtml:link
                 rel="alternate"
                 hreflang="es"
                 href="/dev-stage/es/keywords/maintenance-deficiencies/"
@@ -718,15 +740,15 @@
                 href="/dev-stage/keywords/maintenance-deficiencies/"
                 /></url><url>
     <loc>/dev-stage/keywords/mice/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-10-02T07:56:00-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/inequality/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-10-01T07:59:16-04:00</lastmod></url><url>
     <loc>/dev-stage/key-topics/social/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-10-01T07:59:16-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/oppression/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-10-01T07:59:16-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/racism/</loc>
-    <lastmod>2024-03-08T10:26:15-05:00</lastmod><xhtml:link
+    <lastmod>2021-10-01T07:59:16-04:00</lastmod><xhtml:link
                 rel="alternate"
                 hreflang="es"
                 href="/dev-stage/es/keywords/racism/"
@@ -740,67 +762,69 @@
                 href="/dev-stage/keywords/racism/"
                 /></url><url>
     <loc>/dev-stage/keywords/social-determinants-of-health/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-10-01T07:59:16-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/social-justice/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-10-01T07:59:16-04:00</lastmod></url><url>
     <loc>/dev-stage/key-topics/transportation/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-09-30T07:58:01-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/biking/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-09-30T07:58:01-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/buses/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-09-30T07:58:01-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/cycling/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-09-30T07:58:01-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/infrastructure/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-09-30T07:58:01-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/subways/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-09-30T07:58:01-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/transit/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-09-30T07:58:01-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/walking/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-09-30T07:58:01-04:00</lastmod></url><url>
     <loc>/dev-stage/key-topics/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
-    <loc>/dev-stage/key-topics/climatehealth/2021-heat-report/</loc>
-    <lastmod>2024-03-28T13:33:58-04:00</lastmod></url><url>
-    <loc>/dev-stage/key-topics/climatehealth/2022-heat-report/</loc>
-    <lastmod>2024-03-28T13:33:58-04:00</lastmod></url><url>
-    <loc>/dev-stage/key-topics/climatehealth/heat-report/</loc>
-    <lastmod>2024-03-28T13:33:58-04:00</lastmod></url><url>
+    <lastmod>2021-09-10T13:58:59-04:00</lastmod></url><url>
+    <loc>/dev-stage/data-features/heat-report-archive/2021/</loc>
+    <lastmod>2021-09-08T11:14:56-04:00</lastmod></url><url>
+    <loc>/dev-stage/data-features/heat-report-archive/2022/</loc>
+    <lastmod>2021-09-08T11:14:56-04:00</lastmod></url><url>
+    <loc>/dev-stage/data-features/heat-report-archive/2023/</loc>
+    <lastmod>2021-09-08T11:14:56-04:00</lastmod></url><url>
+    <loc>/dev-stage/data-features/heat-report/</loc>
+    <lastmod>2021-09-08T11:14:56-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/bacteria/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-09-08T11:14:56-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/beach/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
-    <loc>/dev-stage/key-topics/transportation/beaches/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-09-08T11:14:56-04:00</lastmod></url><url>
+    <loc>/dev-stage/data-features/beaches/</loc>
+    <lastmod>2021-09-08T11:14:56-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/beaches/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-09-08T11:14:56-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/disparities/</loc>
-    <lastmod>2024-03-28T13:33:58-04:00</lastmod></url><url>
+    <lastmod>2021-09-08T11:14:56-04:00</lastmod></url><url>
     <loc>/dev-stage/categories/outcomes/</loc>
-    <lastmod>2024-03-28T13:33:58-04:00</lastmod></url><url>
+    <lastmod>2021-09-08T11:14:56-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/park/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-09-08T11:14:56-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/parks/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-09-08T11:14:56-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/quality/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
-    <loc>/dev-stage/key-topics/pests/rat-information-portal/</loc>
-    <lastmod>2024-02-21T17:26:38-05:00</lastmod></url><url>
+    <lastmod>2021-09-08T11:14:56-04:00</lastmod></url><url>
+    <loc>/dev-stage/data-features/rat-information-portal/</loc>
+    <lastmod>2021-09-08T11:14:56-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/sewage/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-09-08T11:14:56-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/summer/</loc>
-    <lastmod>2024-03-28T13:33:58-04:00</lastmod></url><url>
+    <lastmod>2021-09-08T11:14:56-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/swimming/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-09-08T11:14:56-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/temperature/</loc>
-    <lastmod>2024-03-28T13:33:58-04:00</lastmod></url><url>
+    <lastmod>2021-09-08T11:14:56-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/ed-visit/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-08-30T11:51:01-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/emergency-department/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-08-30T11:51:01-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/emergency-room/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod><xhtml:link
+    <lastmod>2021-08-30T11:51:01-04:00</lastmod><xhtml:link
                 rel="alternate"
                 hreflang="es"
                 href="/dev-stage/es/keywords/emergency-room/"
@@ -814,101 +838,101 @@
                 href="/dev-stage/keywords/emergency-room/"
                 /></url><url>
     <loc>/dev-stage/keywords/extreme-heat/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-08-30T11:51:01-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/heat-mortality/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-08-30T11:51:01-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/hot-weather/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
-    <loc>/dev-stage/key-topics/climatehealth/syndromic/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-08-30T11:51:01-04:00</lastmod></url><url>
+    <loc>/dev-stage/data-features/heat-syndrome/</loc>
+    <lastmod>2021-08-30T11:51:01-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/disparity/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-08-25T10:49:05-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/health-disparities/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-08-25T10:49:05-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/inequity/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
-    <loc>/dev-stage/key-topics/climatehealth/hvi/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-08-25T10:49:05-04:00</lastmod></url><url>
+    <loc>/dev-stage/data-features/hvi/</loc>
+    <lastmod>2021-08-25T10:49:05-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/vulnerability/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
-    <loc>/dev-stage/key-topics/airquality/aqe/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-08-25T10:49:05-04:00</lastmod></url><url>
+    <loc>/dev-stage/data-features/neighborhood-air-quality/</loc>
+    <lastmod>2021-08-24T12:04:44-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/building/</loc>
-    <lastmod>2023-12-06T16:03:15-05:00</lastmod></url><url>
+    <lastmod>2021-08-20T12:52:43-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/global-warming/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-08-20T12:52:43-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/green-space/</loc>
-    <lastmod>2023-12-06T16:03:15-05:00</lastmod></url><url>
+    <lastmod>2021-08-20T12:52:43-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/greenspace/</loc>
-    <lastmod>2023-12-06T16:03:15-05:00</lastmod></url><url>
+    <lastmod>2021-08-20T12:52:43-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/heat-island/</loc>
-    <lastmod>2023-12-06T16:03:15-05:00</lastmod></url><url>
-    <loc>/dev-stage/data-stories/localtemp/</loc>
-    <lastmod>2023-12-06T16:03:15-05:00</lastmod></url><url>
+    <lastmod>2021-08-20T12:52:43-04:00</lastmod></url><url>
+    <loc>/dev-stage/data-stories/urban-heat-island/</loc>
+    <lastmod>2021-08-20T12:52:43-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/urban-heat-island/</loc>
-    <lastmod>2023-12-06T16:03:15-05:00</lastmod></url><url>
+    <lastmod>2021-08-20T12:52:43-04:00</lastmod></url><url>
     <loc>/dev-stage/key-topics/healthoutcomes/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-08-04T12:32:15-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/health/</loc>
-    <lastmod>2024-03-27T18:19:29-04:00</lastmod></url><url>
+    <lastmod>2021-08-04T12:32:15-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/health-outcomes/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-08-04T12:32:15-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/active-design/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/data-explorer/active-design/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/data-explorer/air-quality/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/keywords/alcohol/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/data-explorer/alcohol-use/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/keywords/allergies/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/data-explorer/asthma/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/data-explorer/asthma-triggers/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/keywords/babies/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/data-explorer/bed-bugs/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/keywords/bikes/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/keywords/binge-drinking/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/keywords/birth/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/keywords/birth-defects/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/data-explorer/birth-defects/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/data-explorer/birth-outcomes/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/keywords/blood/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/keywords/bugs/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/keywords/built-environments/</loc>
-    <lastmod>2024-02-21T17:26:38-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/keywords/cancer/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/data-explorer/cancer/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/keywords/cancers/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/data-explorer/cancers-in-children/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/keywords/carbon/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/data-explorer/carbon-monoxide-incidents/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/keywords/child/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/keywords/childhood-asthma/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/keywords/children/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod><xhtml:link
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod><xhtml:link
                 rel="alternate"
                 hreflang="es"
                 href="/dev-stage/es/keywords/children/"
@@ -922,39 +946,37 @@
                 href="/dev-stage/keywords/children/"
                 /></url><url>
     <loc>/dev-stage/data-explorer/cigarette-smoke/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/keywords/cigarettes/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
-    <loc>/dev-stage/categories/climate/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/data-explorer/climate/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/data-explorer/cockroaches/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/keywords/cold-weather/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/keywords/crowding/</loc>
-    <lastmod>2024-02-21T17:26:38-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/data-explorer/data-index/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/keywords/depression/</loc>
-    <lastmod>2024-03-27T18:19:29-04:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/keywords/disease/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/keywords/doctors/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/keywords/drinking/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/data-explorer/drinking-water-quality/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/keywords/driving/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/keywords/dying/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/data-explorer/economic-conditions/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/keywords/emergency-department-visits/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod><xhtml:link
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod><xhtml:link
                 rel="alternate"
                 hreflang="es"
                 href="/dev-stage/es/keywords/emergency-department-visits/"
@@ -968,155 +990,155 @@
                 href="/dev-stage/keywords/emergency-department-visits/"
                 /></url><url>
     <loc>/dev-stage/keywords/environmental-health/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/keywords/evictions/</loc>
-    <lastmod>2024-02-21T17:26:38-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/keywords/falls/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/data-explorer/falls-among-older-adults/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/keywords/food-and-drink/</loc>
-    <lastmod>2024-03-11T16:32:28-04:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/keywords/health-care/</loc>
-    <lastmod>2024-03-27T18:19:29-04:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/data-explorer/health-care/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/keywords/health-care-access/</loc>
-    <lastmod>2024-03-27T18:19:29-04:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/data-explorer/health-impacts-of-air-pollution/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/keywords/healthy-housing/</loc>
-    <lastmod>2024-02-21T17:26:38-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/keywords/home/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/keywords/home-ownership/</loc>
-    <lastmod>2024-02-21T17:26:38-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/keywords/hospitalization/</loc>
-    <lastmod>2024-03-27T18:19:29-04:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/keywords/hospitalizations/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/data-explorer/housing-maintenance/</loc>
-    <lastmod>2024-02-21T17:26:38-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/data-explorer/housing-safety/</loc>
-    <lastmod>2024-02-21T17:26:38-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/data-explorer/housing-stability/</loc>
-    <lastmod>2024-02-21T17:26:38-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/keywords/illness/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/data-explorer/indicator-catalog/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/keywords/injury/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/keywords/inspection/</loc>
-    <lastmod>2024-03-11T16:32:28-04:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/data-explorer/lead/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/keywords/lyme/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/keywords/lyme-disease/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/keywords/mental-health/</loc>
-    <lastmod>2024-03-27T18:19:29-04:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/data-explorer/mental-health/</loc>
-    <lastmod>2024-03-27T18:19:29-04:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/keywords/mental-illness/</loc>
-    <lastmod>2024-03-27T18:19:29-04:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/data-explorer/mice-and-rats/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/keywords/monoxide/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/data-explorer/mortality/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/keywords/obesity/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/keywords/older-adults/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/keywords/overweight/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/data-explorer/overweight/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/keywords/pesticides/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/data-explorer/pesticides/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/keywords/physical-activity/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/data-explorer/physical-activity/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/keywords/poisoning/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/keywords/pregnancy/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/keywords/respiratory/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/data-explorer/restaurant-food-safety/</loc>
-    <lastmod>2024-03-11T16:32:28-04:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/keywords/roaches/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/keywords/roads/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/keywords/rodents/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/keywords/secondhand/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/keywords/self-harm/</loc>
-    <lastmod>2024-03-27T18:19:29-04:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/keywords/smoke/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/keywords/smoking/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/keywords/social/</loc>
-    <lastmod>2024-02-21T17:26:38-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/keywords/social-conditions/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/data-explorer/social-conditions/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/keywords/streets/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/keywords/testing/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/keywords/ticks/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/data-explorer/transportation-related-injuries/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/keywords/trigger/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/keywords/trucks/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/data-explorer/vector-borne-disease/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/data-explorer/violence/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/data-explorer/walking-driving-and-cycling/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/data-explorer/weather-related-illness/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/keywords/work/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/data-explorer/worker-health/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/dev-stage/keywords/child-health/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-05T07:59:26-04:00</lastmod></url><url>
     <loc>/dev-stage/key-topics/childhealth/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-05T07:59:26-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/extermination/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-05T07:59:02-04:00</lastmod></url><url>
     <loc>/dev-stage/key-topics/pests/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-05T07:59:02-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/dining/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-05T07:58:53-04:00</lastmod></url><url>
     <loc>/dev-stage/key-topics/foodanddrink/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-05T07:58:53-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/restaurant/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod></url><url>
+    <lastmod>2021-05-05T07:58:53-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/cooking/</loc>
-    <lastmod>2023-02-28T15:50:28-05:00</lastmod></url><url>
+    <lastmod>2021-04-12T12:02:09-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/density/</loc>
-    <lastmod>2023-02-28T15:50:28-05:00</lastmod></url><url>
-    <loc>/dev-stage/data-stories/aq-cooking/</loc>
-    <lastmod>2023-02-28T15:50:28-05:00</lastmod></url><url>
+    <lastmod>2021-04-12T12:02:09-04:00</lastmod></url><url>
+    <loc>/dev-stage/data-stories/restaurants-and-air-quality/</loc>
+    <lastmod>2021-04-12T12:02:09-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/assaults/</loc>
-    <lastmod>2024-03-08T10:26:15-05:00</lastmod><xhtml:link
+    <lastmod>2021-02-08T08:07:31-04:00</lastmod><xhtml:link
                 rel="alternate"
                 hreflang="es"
                 href="/dev-stage/es/keywords/assaults/"
@@ -1130,7 +1152,7 @@
                 href="/dev-stage/keywords/assaults/"
                 /></url><url>
     <loc>/dev-stage/data-stories/violence/</loc>
-    <lastmod>2024-03-08T10:26:15-05:00</lastmod><xhtml:link
+    <lastmod>2021-02-08T08:07:31-04:00</lastmod><xhtml:link
                 rel="alternate"
                 hreflang="es"
                 href="/dev-stage/es/data-stories/violence/"
@@ -1144,11 +1166,11 @@
                 href="/dev-stage/data-stories/violence/"
                 /></url><url>
     <loc>/dev-stage/data-stories/traffic-and-air-pollution/</loc>
-    <lastmod>2023-06-07T13:10:29-04:00</lastmod></url><url>
+    <lastmod>2021-02-05T08:49:22-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/traffic-air-pollution/</loc>
-    <lastmod>2023-06-07T13:10:29-04:00</lastmod></url><url>
+    <lastmod>2021-02-05T08:49:22-04:00</lastmod></url><url>
     <loc>/dev-stage/data-stories/redlining/</loc>
-    <lastmod>2024-03-01T11:28:43-05:00</lastmod><xhtml:link
+    <lastmod>2021-01-06T08:07:31-04:00</lastmod><xhtml:link
                 rel="alternate"
                 hreflang="es"
                 href="/dev-stage/es/data-stories/redlining/"
@@ -1162,7 +1184,7 @@
                 href="/dev-stage/data-stories/redlining/"
                 /></url><url>
     <loc>/dev-stage/data-stories/housing/</loc>
-    <lastmod>2023-12-06T16:03:15-05:00</lastmod><xhtml:link
+    <lastmod>2021-01-06T08:07:31-04:00</lastmod><xhtml:link
                 rel="alternate"
                 hreflang="es"
                 href="/dev-stage/es/data-stories/housing/"
@@ -1176,7 +1198,7 @@
                 href="/dev-stage/data-stories/housing/"
                 /></url><url>
     <loc>/dev-stage/keywords/renting/</loc>
-    <lastmod>2023-12-06T16:03:15-05:00</lastmod><xhtml:link
+    <lastmod>2021-01-06T08:07:31-04:00</lastmod><xhtml:link
                 rel="alternate"
                 hreflang="es"
                 href="/dev-stage/es/keywords/renting/"
@@ -1190,19 +1212,19 @@
                 href="/dev-stage/keywords/renting/"
                 /></url><url>
     <loc>/dev-stage/keywords/bike-lanes/</loc>
-    <lastmod>2023-05-31T14:05:37-04:00</lastmod></url><url>
+    <lastmod>2020-09-20T10:54:51-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/cycle-lanes/</loc>
-    <lastmod>2023-05-31T14:05:37-04:00</lastmod></url><url>
+    <lastmod>2020-09-20T10:54:51-04:00</lastmod></url><url>
     <loc>/dev-stage/data-stories/streets/</loc>
-    <lastmod>2023-05-31T14:05:37-04:00</lastmod></url><url>
+    <lastmod>2020-09-20T10:54:51-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/fatalities/</loc>
-    <lastmod>2023-05-31T14:05:37-04:00</lastmod></url><url>
+    <lastmod>2020-09-20T10:54:51-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/air-conditioner/</loc>
-    <lastmod>2023-12-06T16:03:15-05:00</lastmod></url><url>
+    <lastmod>2020-09-09T08:33:22-04:00</lastmod></url><url>
     <loc>/dev-stage/data-stories/heat/</loc>
-    <lastmod>2023-12-06T16:03:15-05:00</lastmod></url><url>
+    <lastmod>2020-09-09T08:33:22-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/geographic/</loc>
-    <lastmod>2023-12-06T16:03:15-05:00</lastmod><xhtml:link
+    <lastmod>2020-08-01T08:33:22-04:00</lastmod><xhtml:link
                 rel="alternate"
                 hreflang="es"
                 href="/dev-stage/es/keywords/geographic/"
@@ -1216,7 +1238,7 @@
                 href="/dev-stage/keywords/geographic/"
                 /></url><url>
     <loc>/dev-stage/keywords/geography/</loc>
-    <lastmod>2023-12-06T16:03:15-05:00</lastmod><xhtml:link
+    <lastmod>2020-08-01T08:33:22-04:00</lastmod><xhtml:link
                 rel="alternate"
                 hreflang="es"
                 href="/dev-stage/es/keywords/geography/"
@@ -1230,7 +1252,7 @@
                 href="/dev-stage/keywords/geography/"
                 /></url><url>
     <loc>/dev-stage/keywords/health-data/</loc>
-    <lastmod>2023-12-06T16:03:15-05:00</lastmod><xhtml:link
+    <lastmod>2020-08-01T08:33:22-04:00</lastmod><xhtml:link
                 rel="alternate"
                 hreflang="es"
                 href="/dev-stage/es/keywords/health-data/"
@@ -1244,7 +1266,7 @@
                 href="/dev-stage/keywords/health-data/"
                 /></url><url>
     <loc>/dev-stage/keywords/maps/</loc>
-    <lastmod>2023-12-06T16:03:15-05:00</lastmod><xhtml:link
+    <lastmod>2020-08-01T08:33:22-04:00</lastmod><xhtml:link
                 rel="alternate"
                 hreflang="es"
                 href="/dev-stage/es/keywords/maps/"
@@ -1258,7 +1280,7 @@
                 href="/dev-stage/keywords/maps/"
                 /></url><url>
     <loc>/dev-stage/keywords/methods/</loc>
-    <lastmod>2023-12-06T16:03:15-05:00</lastmod><xhtml:link
+    <lastmod>2020-08-01T08:33:22-04:00</lastmod><xhtml:link
                 rel="alternate"
                 hreflang="es"
                 href="/dev-stage/es/keywords/methods/"
@@ -1272,7 +1294,7 @@
                 href="/dev-stage/keywords/methods/"
                 /></url><url>
     <loc>/dev-stage/data-stories/geographies/</loc>
-    <lastmod>2023-12-06T16:03:15-05:00</lastmod><xhtml:link
+    <lastmod>2020-08-01T08:33:22-04:00</lastmod><xhtml:link
                 rel="alternate"
                 hreflang="es"
                 href="/dev-stage/es/data-stories/geographies/"
@@ -1286,31 +1308,31 @@
                 href="/dev-stage/data-stories/geographies/"
                 /></url><url>
     <loc>/dev-stage/data-stories/roadmap/</loc>
-    <lastmod>2023-05-24T14:12:56-04:00</lastmod></url><url>
-    <loc>/dev-stage/data-stories/aqcovid/</loc>
-    <lastmod>2023-02-08T10:57:29-05:00</lastmod><xhtml:link
+    <lastmod>2020-07-07T08:49:22-04:00</lastmod></url><url>
+    <loc>/dev-stage/data-stories/air-quality-and-covid/</loc>
+    <lastmod>2020-04-22T08:33:22-04:00</lastmod><xhtml:link
                 rel="alternate"
                 hreflang="es"
-                href="/dev-stage/es/data-stories/aqcovid/"
+                href="/dev-stage/es/data-stories/air-quality-and-covid/"
                 /><xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="/dev-stage/zh/data-stories/aqcovid/"
+                href="/dev-stage/zh/data-stories/air-quality-and-covid/"
                 /><xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/dev-stage/data-stories/aqcovid/"
+                href="/dev-stage/data-stories/air-quality-and-covid/"
                 /></url><url>
-    <loc>/dev-stage/data-stories/aqsnapshots/</loc>
-    <lastmod>2023-12-06T16:03:15-05:00</lastmod></url><url>
+    <loc>/dev-stage/data-stories/air-quality-snapshots/</loc>
+    <lastmod>2020-04-21T13:37:45-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/environmental-justice/</loc>
-    <lastmod>2023-12-06T16:03:15-05:00</lastmod></url><url>
+    <lastmod>2020-04-21T13:37:45-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/design/</loc>
-    <lastmod>2023-02-08T10:57:29-05:00</lastmod></url><url>
+    <lastmod>2020-02-13T08:29:34-04:00</lastmod></url><url>
     <loc>/dev-stage/data-stories/assaults/</loc>
-    <lastmod>2023-02-08T10:57:29-05:00</lastmod></url><url>
+    <lastmod>2020-02-13T08:29:34-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/ed-visits/</loc>
-    <lastmod>2023-02-08T10:57:29-05:00</lastmod><xhtml:link
+    <lastmod>2020-02-13T08:29:34-04:00</lastmod><xhtml:link
                 rel="alternate"
                 hreflang="es"
                 href="/dev-stage/es/keywords/ed-visits/"
@@ -1324,39 +1346,39 @@
                 href="/dev-stage/keywords/ed-visits/"
                 /></url><url>
     <loc>/dev-stage/keywords/research/</loc>
-    <lastmod>2023-02-08T10:57:29-05:00</lastmod></url><url>
+    <lastmod>2020-02-13T08:29:34-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/technology/</loc>
-    <lastmod>2023-02-08T10:57:29-05:00</lastmod></url><url>
+    <lastmod>2020-02-13T08:29:34-04:00</lastmod></url><url>
     <loc>/dev-stage/data-stories/codesign/</loc>
-    <lastmod>2023-02-08T10:57:29-05:00</lastmod></url><url>
-    <loc>/dev-stage/data-stories/aqts/</loc>
-    <lastmod>2023-10-25T14:33:17-04:00</lastmod></url><url>
+    <lastmod>2020-02-13T08:29:34-04:00</lastmod></url><url>
+    <loc>/dev-stage/data-stories/car-free-zones/</loc>
+    <lastmod>2019-11-25T13:24:52-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/car-free/</loc>
-    <lastmod>2023-10-25T14:33:17-04:00</lastmod></url><url>
+    <lastmod>2019-11-25T13:24:52-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/carfree/</loc>
-    <lastmod>2023-10-25T14:33:17-04:00</lastmod></url><url>
+    <lastmod>2019-11-25T13:24:52-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/pedestrians/</loc>
-    <lastmod>2023-10-25T14:33:17-04:00</lastmod></url><url>
-    <loc>/dev-stage/data-stories/aq2/</loc>
-    <lastmod>2023-02-08T10:57:29-05:00</lastmod></url><url>
+    <lastmod>2019-11-25T13:24:52-04:00</lastmod></url><url>
+    <loc>/dev-stage/data-stories/air-quality-by-neighborhood/</loc>
+    <lastmod>2019-11-25T13:24:52-04:00</lastmod></url><url>
     <loc>/dev-stage/data-stories/breatheeasy/</loc>
-    <lastmod>2024-02-21T08:30:17-05:00</lastmod></url><url>
+    <lastmod>2019-10-24T08:18:56-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/eating/</loc>
-    <lastmod>2023-02-08T10:57:29-05:00</lastmod></url><url>
+    <lastmod>2019-10-24T08:18:56-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/food-poisoning/</loc>
-    <lastmod>2023-02-08T10:57:29-05:00</lastmod></url><url>
+    <lastmod>2019-10-24T08:18:56-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/foodborne-illness/</loc>
-    <lastmod>2023-02-08T10:57:29-05:00</lastmod></url><url>
+    <lastmod>2019-10-24T08:18:56-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/grades/</loc>
-    <lastmod>2023-02-08T10:57:29-05:00</lastmod></url><url>
+    <lastmod>2019-10-24T08:18:56-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/heart-disease/</loc>
-    <lastmod>2024-02-21T08:30:17-05:00</lastmod></url><url>
+    <lastmod>2019-10-24T08:18:56-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/hot-weater/</loc>
-    <lastmod>2023-02-08T10:57:29-05:00</lastmod></url><url>
+    <lastmod>2019-10-24T08:18:56-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/inspections/</loc>
-    <lastmod>2023-02-08T10:57:29-05:00</lastmod></url><url>
+    <lastmod>2019-10-24T08:18:56-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/kids/</loc>
-    <lastmod>2023-02-08T10:57:29-05:00</lastmod><xhtml:link
+    <lastmod>2019-10-24T08:18:56-04:00</lastmod><xhtml:link
                 rel="alternate"
                 hreflang="es"
                 href="/dev-stage/es/keywords/kids/"
@@ -1370,529 +1392,277 @@
                 href="/dev-stage/keywords/kids/"
                 /></url><url>
     <loc>/dev-stage/keywords/lung-disease/</loc>
-    <lastmod>2024-02-21T08:30:17-05:00</lastmod></url><url>
+    <lastmod>2019-10-24T08:18:56-04:00</lastmod></url><url>
     <loc>/dev-stage/keywords/stroke/</loc>
-    <lastmod>2024-02-21T08:30:17-05:00</lastmod></url><url>
+    <lastmod>2019-10-24T08:18:56-04:00</lastmod></url><url>
     <loc>/dev-stage/data-stories/food/</loc>
-    <lastmod>2023-02-08T10:57:29-05:00</lastmod></url><url>
-    <loc>/dev-stage/data-stories/povasthma/</loc>
-    <lastmod>2023-02-08T10:57:29-05:00</lastmod><xhtml:link
+    <lastmod>2019-10-24T08:18:56-04:00</lastmod></url><url>
+    <loc>/dev-stage/data-stories/asthma-and-poverty/</loc>
+    <lastmod>2019-10-24T08:18:56-04:00</lastmod><xhtml:link
                 rel="alternate"
                 hreflang="es"
-                href="/dev-stage/es/data-stories/povasthma/"
+                href="/dev-stage/es/data-stories/asthma-and-poverty/"
                 /><xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="/dev-stage/zh/data-stories/povasthma/"
+                href="/dev-stage/zh/data-stories/asthma-and-poverty/"
                 /><xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/dev-stage/data-stories/povasthma/"
+                href="/dev-stage/data-stories/asthma-and-poverty/"
                 /></url><url>
-    <loc>/dev-stage/neighborhood-reports/active_design_physical_activity_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/bayside_little_neck/active_design_physical_activity_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/bedford_stuyvesant_crown_heights/active_design_physical_activity_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/bensonhurst_bay_ridge/active_design_physical_activity_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/borough_park/active_design_physical_activity_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/canarsie_flatlands/active_design_physical_activity_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/central_harlem_morningside_heights/active_design_physical_activity_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/chelsea_clinton/active_design_physical_activity_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/coney_island_sheepshead_bay/active_design_physical_activity_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/crotona_tremont/active_design_physical_activity_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/downtown_heights_slope/active_design_physical_activity_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/east_flatbush_flatbush/active_design_physical_activity_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/east_harlem/active_design_physical_activity_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/east_new_york/active_design_physical_activity_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/flushing_clearview/active_design_physical_activity_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/fordham_bronx_pk/active_design_physical_activity_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/fresh_meadows/active_design_physical_activity_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/gramercy_park_murray_hill/active_design_physical_activity_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/greenpoint/active_design_physical_activity_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/greenwich_village_soho/active_design_physical_activity_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/high_bridge_morrisania/active_design_physical_activity_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/hunts_point_mott_haven/active_design_physical_activity_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/jamaica/active_design_physical_activity_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/kingsbridge_riverdale/active_design_physical_activity_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/long_island_city_astoria/active_design_physical_activity_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/lower_manhattan/active_design_physical_activity_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/northeast_bronx/active_design_physical_activity_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/pelham_throgs_neck/active_design_physical_activity_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/port_richmond/active_design_physical_activity_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/ridgewood_forest_hills/active_design_physical_activity_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/rockaways/active_design_physical_activity_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/south_beach_tottenville/active_design_physical_activity_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/southeast_queens/active_design_physical_activity_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/southwest_queens/active_design_physical_activity_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/stapleton_st_george/active_design_physical_activity_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/sunset_park/active_design_physical_activity_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/union_square_lower_east_side/active_design_physical_activity_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/upper_east_side/active_design_physical_activity_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/upper_west_side/active_design_physical_activity_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/washington_heights/active_design_physical_activity_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/west_queens/active_design_physical_activity_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/williamsburg_bushwick/active_design_physical_activity_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/willowbrook/active_design_physical_activity_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/asthma_and_the_environment/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/bayside_little_neck/asthma_and_the_environment/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/bedford_stuyvesant_crown_heights/asthma_and_the_environment/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/bensonhurst_bay_ridge/asthma_and_the_environment/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/borough_park/asthma_and_the_environment/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/canarsie_flatlands/asthma_and_the_environment/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/central_harlem_morningside_heights/asthma_and_the_environment/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/chelsea_clinton/asthma_and_the_environment/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/coney_island_sheepshead_bay/asthma_and_the_environment/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/crotona_tremont/asthma_and_the_environment/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/downtown_heights_slope/asthma_and_the_environment/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/east_flatbush_flatbush/asthma_and_the_environment/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/east_harlem/asthma_and_the_environment/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/east_new_york/asthma_and_the_environment/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/flushing_clearview/asthma_and_the_environment/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/fordham_bronx_pk/asthma_and_the_environment/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/fresh_meadows/asthma_and_the_environment/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/gramercy_park_murray_hill/asthma_and_the_environment/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/greenpoint/asthma_and_the_environment/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/greenwich_village_soho/asthma_and_the_environment/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/high_bridge_morrisania/asthma_and_the_environment/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/hunts_point_mott_haven/asthma_and_the_environment/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/jamaica/asthma_and_the_environment/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/kingsbridge_riverdale/asthma_and_the_environment/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/long_island_city_astoria/asthma_and_the_environment/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/lower_manhattan/asthma_and_the_environment/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/northeast_bronx/asthma_and_the_environment/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/pelham_throgs_neck/asthma_and_the_environment/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/port_richmond/asthma_and_the_environment/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/ridgewood_forest_hills/asthma_and_the_environment/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/rockaways/asthma_and_the_environment/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/south_beach_tottenville/asthma_and_the_environment/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/southeast_queens/asthma_and_the_environment/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/southwest_queens/asthma_and_the_environment/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/stapleton_st_george/asthma_and_the_environment/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/sunset_park/asthma_and_the_environment/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/union_square_lower_east_side/asthma_and_the_environment/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/upper_east_side/asthma_and_the_environment/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/upper_west_side/asthma_and_the_environment/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/washington_heights/asthma_and_the_environment/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/west_queens/asthma_and_the_environment/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/williamsburg_bushwick/asthma_and_the_environment/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/willowbrook/asthma_and_the_environment/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/bayside_little_neck/</loc>
-    <lastmod>2023-10-17T15:52:08-04:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/bedford_stuyvesant_crown_heights/</loc>
-    <lastmod>2023-10-17T15:52:08-04:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/bensonhurst_bay_ridge/</loc>
-    <lastmod>2023-10-17T15:52:08-04:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/borough_park/</loc>
-    <lastmod>2023-10-17T15:52:08-04:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/canarsie_flatlands/</loc>
-    <lastmod>2023-10-17T15:52:08-04:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/central_harlem_morningside_heights/</loc>
-    <lastmod>2023-10-17T15:52:08-04:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/chelsea_clinton/</loc>
-    <lastmod>2023-10-17T15:52:08-04:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/bayside_little_neck/climate_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/bedford_stuyvesant_crown_heights/climate_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/bensonhurst_bay_ridge/climate_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/borough_park/climate_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/canarsie_flatlands/climate_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/central_harlem_morningside_heights/climate_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/chelsea_clinton/climate_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/climate_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/coney_island_sheepshead_bay/climate_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/crotona_tremont/climate_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/downtown_heights_slope/climate_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/east_flatbush_flatbush/climate_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/east_harlem/climate_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/east_new_york/climate_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/flushing_clearview/climate_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/fordham_bronx_pk/climate_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/fresh_meadows/climate_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/gramercy_park_murray_hill/climate_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/greenpoint/climate_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/greenwich_village_soho/climate_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/high_bridge_morrisania/climate_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/hunts_point_mott_haven/climate_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/jamaica/climate_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/kingsbridge_riverdale/climate_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/long_island_city_astoria/climate_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/lower_manhattan/climate_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/northeast_bronx/climate_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/pelham_throgs_neck/climate_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/port_richmond/climate_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/ridgewood_forest_hills/climate_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/rockaways/climate_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/south_beach_tottenville/climate_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/southeast_queens/climate_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/southwest_queens/climate_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/stapleton_st_george/climate_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/sunset_park/climate_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/union_square_lower_east_side/climate_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/upper_east_side/climate_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/upper_west_side/climate_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/washington_heights/climate_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/west_queens/climate_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/williamsburg_bushwick/climate_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/willowbrook/climate_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/coney_island_sheepshead_bay/</loc>
-    <lastmod>2023-10-17T15:52:08-04:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/crotona_tremont/</loc>
-    <lastmod>2023-10-17T15:52:08-04:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/downtown_heights_slope/</loc>
-    <lastmod>2023-10-17T15:52:08-04:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/east_flatbush_flatbush/</loc>
-    <lastmod>2023-10-17T15:52:08-04:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/east_harlem/</loc>
-    <lastmod>2024-02-21T17:26:38-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/east_new_york/</loc>
-    <lastmod>2023-10-17T15:52:08-04:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/flushing_clearview/</loc>
-    <lastmod>2023-10-17T15:52:08-04:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/fordham_bronx_pk/</loc>
-    <lastmod>2023-10-17T15:52:08-04:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/fresh_meadows/</loc>
-    <lastmod>2023-10-17T15:52:08-04:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/gramercy_park_murray_hill/</loc>
-    <lastmod>2023-10-17T15:52:08-04:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/greenpoint/</loc>
-    <lastmod>2023-10-17T15:52:08-04:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/greenwich_village_soho/</loc>
-    <lastmod>2023-10-17T15:52:08-04:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/high_bridge_morrisania/</loc>
-    <lastmod>2023-10-17T15:52:08-04:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/bayside_little_neck/housing_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/bedford_stuyvesant_crown_heights/housing_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/bensonhurst_bay_ridge/housing_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/borough_park/housing_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/canarsie_flatlands/housing_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/central_harlem_morningside_heights/housing_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/chelsea_clinton/housing_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/coney_island_sheepshead_bay/housing_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/crotona_tremont/housing_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/downtown_heights_slope/housing_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/east_flatbush_flatbush/housing_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/east_harlem/housing_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/east_new_york/housing_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/flushing_clearview/housing_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/fordham_bronx_pk/housing_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/fresh_meadows/housing_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/gramercy_park_murray_hill/housing_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/greenpoint/housing_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/greenwich_village_soho/housing_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/high_bridge_morrisania/housing_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/housing_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/hunts_point_mott_haven/housing_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/jamaica/housing_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/kingsbridge_riverdale/housing_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/long_island_city_astoria/housing_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/lower_manhattan/housing_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/northeast_bronx/housing_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/pelham_throgs_neck/housing_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/port_richmond/housing_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/ridgewood_forest_hills/housing_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/rockaways/housing_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/south_beach_tottenville/housing_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/southeast_queens/housing_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/southwest_queens/housing_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/stapleton_st_george/housing_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/sunset_park/housing_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/union_square_lower_east_side/housing_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/upper_east_side/housing_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/upper_west_side/housing_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/washington_heights/housing_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/west_queens/housing_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/williamsburg_bushwick/housing_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/willowbrook/housing_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/hunts_point_mott_haven/</loc>
-    <lastmod>2023-10-17T15:52:08-04:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/jamaica/</loc>
-    <lastmod>2023-10-17T15:52:08-04:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/kingsbridge_riverdale/</loc>
-    <lastmod>2023-10-17T15:52:08-04:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/long_island_city_astoria/</loc>
-    <lastmod>2023-10-17T15:52:08-04:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/lower_manhattan/</loc>
-    <lastmod>2023-10-17T15:52:08-04:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/</loc>
-    <lastmod>2023-10-26T15:10:52-04:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/northeast_bronx/</loc>
-    <lastmod>2023-10-17T15:52:08-04:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/bayside_little_neck/outdoor_air_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/bedford_stuyvesant_crown_heights/outdoor_air_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/bensonhurst_bay_ridge/outdoor_air_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/borough_park/outdoor_air_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/canarsie_flatlands/outdoor_air_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/central_harlem_morningside_heights/outdoor_air_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/chelsea_clinton/outdoor_air_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/coney_island_sheepshead_bay/outdoor_air_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/crotona_tremont/outdoor_air_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/downtown_heights_slope/outdoor_air_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/east_flatbush_flatbush/outdoor_air_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/east_harlem/outdoor_air_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/east_new_york/outdoor_air_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/flushing_clearview/outdoor_air_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/fordham_bronx_pk/outdoor_air_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/fresh_meadows/outdoor_air_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/gramercy_park_murray_hill/outdoor_air_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/greenpoint/outdoor_air_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/greenwich_village_soho/outdoor_air_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/high_bridge_morrisania/outdoor_air_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/hunts_point_mott_haven/outdoor_air_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/jamaica/outdoor_air_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/kingsbridge_riverdale/outdoor_air_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/long_island_city_astoria/outdoor_air_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/lower_manhattan/outdoor_air_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/northeast_bronx/outdoor_air_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/outdoor_air_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/pelham_throgs_neck/outdoor_air_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/port_richmond/outdoor_air_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/ridgewood_forest_hills/outdoor_air_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/rockaways/outdoor_air_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/south_beach_tottenville/outdoor_air_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/southeast_queens/outdoor_air_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/southwest_queens/outdoor_air_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/stapleton_st_george/outdoor_air_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/sunset_park/outdoor_air_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/union_square_lower_east_side/outdoor_air_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/upper_east_side/outdoor_air_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/upper_west_side/outdoor_air_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/washington_heights/outdoor_air_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/west_queens/outdoor_air_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/williamsburg_bushwick/outdoor_air_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/willowbrook/outdoor_air_and_health/</loc>
-    <lastmod>2024-02-29T13:38:10-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/pelham_throgs_neck/</loc>
-    <lastmod>2023-10-17T15:52:08-04:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/port_richmond/</loc>
-    <lastmod>2023-10-17T15:52:08-04:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/ridgewood_forest_hills/</loc>
-    <lastmod>2023-10-17T15:52:08-04:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/rockaways/</loc>
-    <lastmod>2023-10-17T15:52:08-04:00</lastmod></url><url>
-    <loc>/dev-stage/search-results/</loc>
-    <lastmod>2022-01-31T15:08:45-05:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/south_beach_tottenville/</loc>
-    <lastmod>2023-10-17T15:52:08-04:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/southeast_queens/</loc>
-    <lastmod>2023-10-17T15:52:08-04:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/southwest_queens/</loc>
-    <lastmod>2023-10-17T15:52:08-04:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/stapleton_st_george/</loc>
-    <lastmod>2023-10-17T15:52:08-04:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/sunset_park/</loc>
-    <lastmod>2023-10-17T15:52:08-04:00</lastmod></url><url>
+    <loc>/dev-stage/neighborhood-reports/active_design_physical_activity_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/bayside_little_neck/active_design_physical_activity_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/bedford_stuyvesant_crown_heights/active_design_physical_activity_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/bensonhurst_bay_ridge/active_design_physical_activity_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/borough_park/active_design_physical_activity_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/canarsie_flatlands/active_design_physical_activity_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/central_harlem_morningside_heights/active_design_physical_activity_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/chelsea_clinton/active_design_physical_activity_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/coney_island_sheepshead_bay/active_design_physical_activity_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/crotona_tremont/active_design_physical_activity_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/downtown_heights_slope/active_design_physical_activity_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/east_flatbush_flatbush/active_design_physical_activity_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/east_harlem/active_design_physical_activity_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/east_new_york/active_design_physical_activity_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/flushing_clearview/active_design_physical_activity_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/fordham_bronx_pk/active_design_physical_activity_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/fresh_meadows/active_design_physical_activity_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/gramercy_park_murray_hill/active_design_physical_activity_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/greenpoint/active_design_physical_activity_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/greenwich_village_soho/active_design_physical_activity_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/high_bridge_morrisania/active_design_physical_activity_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/hunts_point_mott_haven/active_design_physical_activity_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/jamaica/active_design_physical_activity_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/kingsbridge_riverdale/active_design_physical_activity_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/long_island_city_astoria/active_design_physical_activity_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/lower_manhattan/active_design_physical_activity_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/northeast_bronx/active_design_physical_activity_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/pelham_throgs_neck/active_design_physical_activity_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/port_richmond/active_design_physical_activity_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/ridgewood_forest_hills/active_design_physical_activity_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/rockaways/active_design_physical_activity_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/south_beach_tottenville/active_design_physical_activity_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/southeast_queens/active_design_physical_activity_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/southwest_queens/active_design_physical_activity_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/stapleton_st_george/active_design_physical_activity_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/sunset_park/active_design_physical_activity_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/union_square_lower_east_side/active_design_physical_activity_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/upper_east_side/active_design_physical_activity_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/upper_west_side/active_design_physical_activity_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/washington_heights/active_design_physical_activity_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/west_queens/active_design_physical_activity_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/williamsburg_bushwick/active_design_physical_activity_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/willowbrook/active_design_physical_activity_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/asthma_and_the_environment/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/bayside_little_neck/asthma_and_the_environment/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/bedford_stuyvesant_crown_heights/asthma_and_the_environment/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/bensonhurst_bay_ridge/asthma_and_the_environment/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/borough_park/asthma_and_the_environment/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/canarsie_flatlands/asthma_and_the_environment/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/central_harlem_morningside_heights/asthma_and_the_environment/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/chelsea_clinton/asthma_and_the_environment/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/coney_island_sheepshead_bay/asthma_and_the_environment/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/crotona_tremont/asthma_and_the_environment/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/downtown_heights_slope/asthma_and_the_environment/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/east_flatbush_flatbush/asthma_and_the_environment/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/east_harlem/asthma_and_the_environment/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/east_new_york/asthma_and_the_environment/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/flushing_clearview/asthma_and_the_environment/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/fordham_bronx_pk/asthma_and_the_environment/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/fresh_meadows/asthma_and_the_environment/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/gramercy_park_murray_hill/asthma_and_the_environment/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/greenpoint/asthma_and_the_environment/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/greenwich_village_soho/asthma_and_the_environment/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/high_bridge_morrisania/asthma_and_the_environment/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/hunts_point_mott_haven/asthma_and_the_environment/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/jamaica/asthma_and_the_environment/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/kingsbridge_riverdale/asthma_and_the_environment/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/long_island_city_astoria/asthma_and_the_environment/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/lower_manhattan/asthma_and_the_environment/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/northeast_bronx/asthma_and_the_environment/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/pelham_throgs_neck/asthma_and_the_environment/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/port_richmond/asthma_and_the_environment/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/ridgewood_forest_hills/asthma_and_the_environment/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/rockaways/asthma_and_the_environment/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/south_beach_tottenville/asthma_and_the_environment/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/southeast_queens/asthma_and_the_environment/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/southwest_queens/asthma_and_the_environment/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/stapleton_st_george/asthma_and_the_environment/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/sunset_park/asthma_and_the_environment/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/union_square_lower_east_side/asthma_and_the_environment/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/upper_east_side/asthma_and_the_environment/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/upper_west_side/asthma_and_the_environment/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/washington_heights/asthma_and_the_environment/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/west_queens/asthma_and_the_environment/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/williamsburg_bushwick/asthma_and_the_environment/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/willowbrook/asthma_and_the_environment/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/bayside_little_neck/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/bedford_stuyvesant_crown_heights/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/bensonhurst_bay_ridge/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/borough_park/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/canarsie_flatlands/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/central_harlem_morningside_heights/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/chelsea_clinton/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/bayside_little_neck/climate_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/bedford_stuyvesant_crown_heights/climate_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/bensonhurst_bay_ridge/climate_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/borough_park/climate_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/canarsie_flatlands/climate_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/central_harlem_morningside_heights/climate_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/chelsea_clinton/climate_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/climate_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/coney_island_sheepshead_bay/climate_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/crotona_tremont/climate_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/downtown_heights_slope/climate_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/east_flatbush_flatbush/climate_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/east_harlem/climate_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/east_new_york/climate_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/flushing_clearview/climate_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/fordham_bronx_pk/climate_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/fresh_meadows/climate_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/gramercy_park_murray_hill/climate_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/greenpoint/climate_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/greenwich_village_soho/climate_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/high_bridge_morrisania/climate_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/hunts_point_mott_haven/climate_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/jamaica/climate_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/kingsbridge_riverdale/climate_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/long_island_city_astoria/climate_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/lower_manhattan/climate_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/northeast_bronx/climate_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/pelham_throgs_neck/climate_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/port_richmond/climate_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/ridgewood_forest_hills/climate_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/rockaways/climate_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/south_beach_tottenville/climate_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/southeast_queens/climate_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/southwest_queens/climate_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/stapleton_st_george/climate_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/sunset_park/climate_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/union_square_lower_east_side/climate_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/upper_east_side/climate_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/upper_west_side/climate_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/washington_heights/climate_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/west_queens/climate_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/williamsburg_bushwick/climate_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/willowbrook/climate_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/coney_island_sheepshead_bay/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/crotona_tremont/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/downtown_heights_slope/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/east_flatbush_flatbush/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/east_harlem/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/east_new_york/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/flushing_clearview/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/fordham_bronx_pk/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/fresh_meadows/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/gramercy_park_murray_hill/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/greenpoint/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/greenwich_village_soho/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/high_bridge_morrisania/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/bayside_little_neck/housing_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/bedford_stuyvesant_crown_heights/housing_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/bensonhurst_bay_ridge/housing_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/borough_park/housing_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/canarsie_flatlands/housing_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/central_harlem_morningside_heights/housing_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/chelsea_clinton/housing_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/coney_island_sheepshead_bay/housing_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/crotona_tremont/housing_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/downtown_heights_slope/housing_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/east_flatbush_flatbush/housing_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/east_harlem/housing_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/east_new_york/housing_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/flushing_clearview/housing_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/fordham_bronx_pk/housing_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/fresh_meadows/housing_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/gramercy_park_murray_hill/housing_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/greenpoint/housing_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/greenwich_village_soho/housing_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/high_bridge_morrisania/housing_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/housing_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/hunts_point_mott_haven/housing_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/jamaica/housing_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/kingsbridge_riverdale/housing_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/long_island_city_astoria/housing_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/lower_manhattan/housing_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/northeast_bronx/housing_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/pelham_throgs_neck/housing_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/port_richmond/housing_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/ridgewood_forest_hills/housing_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/rockaways/housing_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/south_beach_tottenville/housing_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/southeast_queens/housing_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/southwest_queens/housing_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/stapleton_st_george/housing_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/sunset_park/housing_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/union_square_lower_east_side/housing_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/upper_east_side/housing_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/upper_west_side/housing_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/washington_heights/housing_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/west_queens/housing_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/williamsburg_bushwick/housing_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/willowbrook/housing_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/hunts_point_mott_haven/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/jamaica/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/kingsbridge_riverdale/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/long_island_city_astoria/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/lower_manhattan/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/northeast_bronx/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/bayside_little_neck/outdoor_air_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/bedford_stuyvesant_crown_heights/outdoor_air_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/bensonhurst_bay_ridge/outdoor_air_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/borough_park/outdoor_air_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/canarsie_flatlands/outdoor_air_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/central_harlem_morningside_heights/outdoor_air_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/chelsea_clinton/outdoor_air_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/coney_island_sheepshead_bay/outdoor_air_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/crotona_tremont/outdoor_air_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/downtown_heights_slope/outdoor_air_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/east_flatbush_flatbush/outdoor_air_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/east_harlem/outdoor_air_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/east_new_york/outdoor_air_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/flushing_clearview/outdoor_air_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/fordham_bronx_pk/outdoor_air_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/fresh_meadows/outdoor_air_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/gramercy_park_murray_hill/outdoor_air_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/greenpoint/outdoor_air_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/greenwich_village_soho/outdoor_air_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/high_bridge_morrisania/outdoor_air_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/hunts_point_mott_haven/outdoor_air_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/jamaica/outdoor_air_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/kingsbridge_riverdale/outdoor_air_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/long_island_city_astoria/outdoor_air_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/lower_manhattan/outdoor_air_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/northeast_bronx/outdoor_air_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/outdoor_air_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/pelham_throgs_neck/outdoor_air_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/port_richmond/outdoor_air_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/ridgewood_forest_hills/outdoor_air_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/rockaways/outdoor_air_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/south_beach_tottenville/outdoor_air_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/southeast_queens/outdoor_air_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/southwest_queens/outdoor_air_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/stapleton_st_george/outdoor_air_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/sunset_park/outdoor_air_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/union_square_lower_east_side/outdoor_air_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/upper_east_side/outdoor_air_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/upper_west_side/outdoor_air_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/washington_heights/outdoor_air_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/west_queens/outdoor_air_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/williamsburg_bushwick/outdoor_air_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/willowbrook/outdoor_air_and_health/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/pelham_throgs_neck/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/port_richmond/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/ridgewood_forest_hills/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/rockaways/</loc></url><url>
+    <loc>/dev-stage/search-results/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/south_beach_tottenville/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/southeast_queens/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/southwest_queens/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/stapleton_st_george/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/sunset_park/</loc></url><url>
     <loc>/dev-stage/tags/</loc><xhtml:link
                 rel="alternate"
                 hreflang="es"
@@ -1906,31 +1676,10 @@
                 hreflang="en"
                 href="/dev-stage/tags/"
                 /></url><url>
-    <loc>/dev-stage/</loc>
-    <lastmod>2024-02-14T10:33:02-05:00</lastmod><xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="/dev-stage/es/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="/dev-stage/zh/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/dev-stage/"
-                /></url><url>
-    <loc>/dev-stage/neighborhood-reports/union_square_lower_east_side/</loc>
-    <lastmod>2023-10-17T15:52:08-04:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/upper_east_side/</loc>
-    <lastmod>2023-10-17T15:52:08-04:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/upper_west_side/</loc>
-    <lastmod>2023-10-17T15:52:08-04:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/washington_heights/</loc>
-    <lastmod>2023-10-17T15:52:08-04:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/west_queens/</loc>
-    <lastmod>2023-10-17T15:52:08-04:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/williamsburg_bushwick/</loc>
-    <lastmod>2023-10-17T15:52:08-04:00</lastmod></url><url>
-    <loc>/dev-stage/neighborhood-reports/willowbrook/</loc>
-    <lastmod>2023-10-17T15:52:08-04:00</lastmod></url></urlset>
+    <loc>/dev-stage/neighborhood-reports/union_square_lower_east_side/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/upper_east_side/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/upper_west_side/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/washington_heights/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/west_queens/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/williamsburg_bushwick/</loc></url><url>
+    <loc>/dev-stage/neighborhood-reports/willowbrook/</loc></url></urlset>

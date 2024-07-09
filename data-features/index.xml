@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Data Features on Environment &amp; Health Data Portal</title>
+    <link>https://gcappbesp307.health.dohmh.nycnet/dev-stage/data-features/</link>
+    <description>Recent content in Data Features on Environment &amp; Health Data Portal</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 01 Jun 2023 11:14:56 -0400</lastBuildDate>
+    <atom:link href="https://gcappbesp307.health.dohmh.nycnet/dev-stage/data-features/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Rat Mitigation Zones</title>
+      <link>https://gcappbesp307.health.dohmh.nycnet/dev-stage/data-features/rat-mitigation-zones/</link>
+      <pubDate>Thu, 01 Jun 2023 11:14:56 -0400</pubDate>
+      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-stage/data-features/rat-mitigation-zones/</guid>
+      <description>Rats can contaminate food, spread disease and reduce our quality of life. Rat Mitigation Zones (RMZ) are areas with high levels of rat activity, where City agencies focus resources to address rats and the conditions that support them.&#xA;Choose an RMZ on the map below to view data on complaints and NYC Health Department rat control activity.</description>
+    </item>
+    <item>
+      <title>The New York City Community Air Survey</title>
+      <link>https://gcappbesp307.health.dohmh.nycnet/dev-stage/data-features/nyccas/</link>
+      <pubDate>Tue, 08 Nov 2022 11:14:56 -0400</pubDate>
+      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-stage/data-features/nyccas/</guid>
+      <description>NYCCAS Report: 2008-2022 In 2007, the New York City Department of Health and Mental Hygiene (Health Department) established the New York City Community Air Survey (NYCCAS), the largest ongoing urban air monitoring program of any U.S. city. NYCCAS, which began collecting data in December 2008, is a collaboration between the Health Department and Queens College of the City University of New York and provides data to:&#xA;Help inform PlaNYC, the City’s sustainability plan Track changes in air quality over time Estimate exposures for health research Inform the public about local topics, such as recent air quality improvements, car-free zones, changes in the sources of air pollution, unique air quality studies conducted in New York City, efforts to reduce health impacts and differences in air quality and related health impacts across NYC neighborhoods.</description>
+    </item>
+    <item>
+      <title>Real-Time Air Quality: PM2.5 in NYC</title>
+      <link>https://gcappbesp307.health.dohmh.nycnet/dev-stage/data-features/realtime-air-quality/</link>
+      <pubDate>Tue, 22 Mar 2022 19:30:55 -0400</pubDate>
+      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-stage/data-features/realtime-air-quality/</guid>
+      <description>Fine particles (PM2.5) are among the most harmful pollutants. Long-term exposure to PM2.5 contributes to an estimated 2,000 excess deaths from lung and heart disease each year in NYC (1 out of every 25 deaths in NYC), and short-term exposure contributes to asthma incidents severe enough to require a trip to the emergency department, and other health threats.&#xA;The air quality in NYC is generally good and has been improving over time.</description>
+    </item>
+    <item>
+      <title>Displacement Risk</title>
+      <link>https://gcappbesp307.health.dohmh.nycnet/dev-stage/data-features/displacement-risk/</link>
+      <pubDate>Sat, 02 Oct 2021 07:56:00 -0400</pubDate>
+      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-stage/data-features/displacement-risk/</guid>
+      <description>Housing stability creates health, but in NYC, many people have difficulty accessing healthy, stable housing.&#xA;In some neighborhoods, residents at are higher risk of being displaced - forced to leave their homes, and their neighborhoods, due combinations of market pressure, rent burden, housing conditions, poverty, and injustice in the housing market.&#xA;To show people&amp;rsquo;s risk of being forced out of their homes or neighborhoods, the Department of City Planning and the Department of Housing Preservation and Development created a Displacement Risk Index, part of the Equitable Development Data Explorer.</description>
+    </item>
+    <item>
+      <title>2021 NYC Heat-Related Mortality Report</title>
+      <link>https://gcappbesp307.health.dohmh.nycnet/dev-stage/data-features/heat-report-archive/2021/</link>
+      <pubDate>Wed, 08 Sep 2021 11:14:56 -0400</pubDate>
+      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-stage/data-features/heat-report-archive/2021/</guid>
+      <description>Summary: Heat Stress Deaths Each summer from 2010-2019, there were, on average,10 heat stress deaths (those caused directly by heat) in New York City (NYC). Lack of home air conditioning (AC) continues to be an important risk factor for heat stress death. Among those who died from heat stress, the place of death was most often an un-air-conditioned home. Black New Yorkers are more likely to die from heat stress, with death rates two times higher than among other New Yorkers.</description>
+    </item>
+    <item>
+      <title>2022 NYC Heat-Related Mortality Report</title>
+      <link>https://gcappbesp307.health.dohmh.nycnet/dev-stage/data-features/heat-report-archive/2022/</link>
+      <pubDate>Wed, 08 Sep 2021 11:14:56 -0400</pubDate>
+      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-stage/data-features/heat-report-archive/2022/</guid>
+      <description>Summary Each summer, an estimated 370 New Yorkers die prematurely because of hot weather in New York City (NYC). These heat-related deaths account for about 2% of all deaths over the warm season months of May - September. Of the 370 deaths:&#xA;From 2011-2020, there was an average of 10 heat-stress deaths (caused directly by heat). From 2011-2019, there was an average of about 360 heat-exacerbated deaths (caused indirectly by heat aggravating an underlying illness).</description>
+    </item>
+    <item>
+      <title>2023 NYC Heat-Related Mortality Report</title>
+      <link>https://gcappbesp307.health.dohmh.nycnet/dev-stage/data-features/heat-report-archive/2023/</link>
+      <pubDate>Wed, 08 Sep 2021 11:14:56 -0400</pubDate>
+      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-stage/data-features/heat-report-archive/2023/</guid>
+      <description>Summary Each summer, on average, an estimated 350 New Yorkers die prematurely because of hot weather in New York City (NYC). These heat-related deaths account for about 2% of all deaths over the warm season months of May through September. Of the 350 deaths: From 2012-2021, there were an average of 7 heat-stress deaths (caused directly by heat). From 2016-2020, there were an average of about 345 heat-exacerbated deaths (caused indirectly by heat aggravating an underlying illness).</description>
+    </item>
+    <item>
+      <title>2024 NYC Heat-Related Mortality Report</title>
+      <link>https://gcappbesp307.health.dohmh.nycnet/dev-stage/data-features/heat-report/</link>
+      <pubDate>Wed, 08 Sep 2021 11:14:56 -0400</pubDate>
+      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-stage/data-features/heat-report/</guid>
+      <description>Each summer, on average, an estimated 350 New Yorkers die prematurely because of hot weather in New York City (NYC). These heat-related deaths account for about 2% of all deaths over the warm season months of May through September.</description>
+    </item>
+    <item>
+      <title>Beach Water Quality</title>
+      <link>https://gcappbesp307.health.dohmh.nycnet/dev-stage/data-features/beaches/</link>
+      <pubDate>Wed, 08 Sep 2021 11:14:56 -0400</pubDate>
+      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-stage/data-features/beaches/</guid>
+      <description>One month before New York City&amp;rsquo;s beaches open to the public, the Health Departments starts sampling and monitoring beaches. Sampling provides data about current water quality conditions, and monitoring identifies sources of pollution that affect water quality.&#xA;Each beach is monitored and sampled every week, except for Rockaway and Breezy Point beaches, which are sampled twice each week. Samples are tested for bacteria, debris, animal waste, medical or infectious waste, toxic contaminants, petroleum products, and sewage and wastewater discharge following heavy rainfall.</description>
+    </item>
+    <item>
+      <title>Rat Information Portal</title>
+      <link>https://gcappbesp307.health.dohmh.nycnet/dev-stage/data-features/rat-information-portal/</link>
+      <pubDate>Wed, 08 Sep 2021 11:14:56 -0400</pubDate>
+      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-stage/data-features/rat-information-portal/</guid>
+      <description>New York City’s Rat Information Portal is a web map application that lets you view rat inspection and action data collected by the NYC Health Department.</description>
+    </item>
+    <item>
+      <title>Real-time heat-related illness</title>
+      <link>https://gcappbesp307.health.dohmh.nycnet/dev-stage/data-features/heat-syndrome/</link>
+      <pubDate>Mon, 30 Aug 2021 11:51:01 -0400</pubDate>
+      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-stage/data-features/heat-syndrome/</guid>
+      <description>The weather forecast is the best way to predict heat-related health outcomes.&#xA;We can also track heat-related illness with near real-time electronic data from emergency departments at hospitals throughout NYC. These data include illnesses directly attributed to heat (including heat exhaustion, muscle cramps, fainting and heat stroke), not the full burden of heat-related health impacts.</description>
+    </item>
+    <item>
+      <title>Interactive Heat Vulnerability Index</title>
+      <link>https://gcappbesp307.health.dohmh.nycnet/dev-stage/data-features/hvi/</link>
+      <pubDate>Wed, 25 Aug 2021 10:49:05 -0400</pubDate>
+      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-stage/data-features/hvi/</guid>
+      <description>Use this Heat Vulnerability Explorer to look up your the heat vulnerability of your neighborhood, and the neighborhood characteristics that affect it.</description>
+    </item>
+    <item>
+      <title>Your Neighborhood&#39;s Air Quality</title>
+      <link>https://gcappbesp307.health.dohmh.nycnet/dev-stage/data-features/neighborhood-air-quality/</link>
+      <pubDate>Tue, 24 Aug 2021 12:04:44 -0400</pubDate>
+      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-stage/data-features/neighborhood-air-quality/</guid>
+      <description>We combine data from our air quality monitoring network, NYCCAS, with other data to understand what makes air quality in one neighborhood different from air quality in another. We found that building emissions, building density, industrial areas, and traffic density are associated with differences in air quality.&#xA;If we don&amp;rsquo;t have an air quality monitor in one neighborhood, but we know its building density, its industrial area, and its traffic, then we can model (estimate or predict) its air quality - based on monitored air quality in similar neighborhoods.</description>
+    </item>
+  </channel>
+</rss>

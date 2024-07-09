@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+
+
+
+
+    
+
+    
+    <meta name="robots" content="noindex, nofollow">
+
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PB98MPZ31B"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-PB98MPZ31B');
+    </script>
+
+
+
+
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<title>Annual Report on heat mortality in NYC.</title>
+
+
+
+
+<meta name="description" content=" Data and findings on the impact of heat in NYC. ">
+<link rel="canonical" href="/dev-stage/data-features/heat-report-archive/2021/" />
+<meta name="geo.region" content="" />
+<meta name="geo.placename" content="Environment &amp; Health Data Portal" />
+
+
+<meta property="fb:profile_id" content="0" />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="en_us" />
+<meta property="og:url" content="/dev-stage/data-features/heat-report-archive/2021/" />
+<meta property="og:title" content="Annual Report on heat mortality in NYC.  &ndash; Environment &amp; Health Data Portal" />
+<meta property="og:description" content="Data and findings on the impact of heat in NYC. " />
+<meta property="og:site_name" content="Environment &amp; Health Data Portal" />
+<meta property="og:image" content="/dev-stage/images/report_bottom_background_hu55023dbc37de342337a21cf33dcc5889_222582_2400x1260_fill_q95_mitchellnetravali_smart1.jpg">
+<meta property="og:see_also" content="https://twitter.com/nycHealthy" />
+<meta name="twitter:title" content="Annual Report on heat mortality in NYC.  &ndash; Environment &amp; Health Data Portal">
+<meta name="twitter:description" content=" Data and findings on the impact of heat in NYC. ">
+<meta name="twitter:image" content=" /dev-stage/images/report_bottom_background.jpg">
+<meta name="twitter:site" content="@nycHealthy">
+<meta name="twitter:creator" content="@nycHealthy">
+
+
+
+<script src="/dev-stage/node_modules/jquery/dist/jquery.min.bf6089ed4698cb8270a8b0c8ad9508ff886a7a842278e98064d5c1790ca3a36d5d69d9f047ef196882554fc104da2c88eb5395f1ee8cf0f3f6ff8869408350fe.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR&#43;8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous"></script>
+
+
+
+
+<link rel="icon" href=/dev-stage/7618350_heatmap_business_analytics_statistics_icon-gpr.ico>
+
+<link rel="stylesheet" href="/dev-stage/node_modules/@fortawesome/fontawesome-free/css/all.min.css" />
+
+<script src="/dev-stage/node_modules/@fortawesome/fontawesome-free/js/all.min.bb77cf03b57ca909a104f353e6abaf69755ad669e72d25d47a9e4f4b5aa8e4d4731f01b5f5a1e63499e3d50f21a40fe705666d643e2be005fa60eb79ca72cdda.js" integrity="sha512-u3fPA7V8qQmhBPNT5quvaXVa1mnnLSXUep5PS1qo5NRzHwG19aHmNJnj1Q8hpA/nBWZtZD4r4AX6YOt5ynLN2g==" crossorigin="anonymous"></script>
+
+
+<link rel="stylesheet" href="/dev-stage/scss/theme.52ee3143724c31fe4c04d98f97f1624d464973378a2fb8c80515e3c253dbf9fa0f1932d238aa0b541c0e856fc25696044165e4b1f8ac87834696c04cda0462fe.css" integrity="sha512-Uu4xQ3JMMf5MBNmPl/FiTUZJczeKL7jIBRXjwlPb&#43;foPGTLSOKoLVBwOhW/CVpYEQWXksfish4NGlsBM2gRi/g==" />
+
+<script src="/dev-stage/node_modules/dompurify/dist/purify.min.8c1d1391305e402f594a406a0e17667d3bf5a9d7db5a9184ef6c89ff4d52aeaea1133648cf6c64cf57b9ee9f5a8bb21e1ccc041bb1e9cc6e8d769b428627f93e.js" integrity="sha512-jB0TkTBeQC9ZSkBqDhdmfTv1qdfbWpGE72yJ/01Srq6hEzZIz2xkz1e57p9ai7IeHMwEG7HpzG6NdptChif5Pg=="></script>
+
+
+
+
+
+<meta data-pagefind-filter="section[content]" content="Data Features"><script>
+
+    let baseURL = "/dev-stage/"
+    let data_repo = "https:\/\/raw.githubusercontent.com\/nychealth\/EHDP-data\/";
+    let data_branch = "staging";
+    let hugoEnv = "dev_stage"
+
+</script>
+
+
+<meta 
+        data-pagefind-meta="title:2021 NYC Heat-Related Mortality Report | Data Features"
+        class="d-none"
+    >
+
+  </head>
+
+
+
+<body>
+
+  
+<a class="sr-only sr-only-focusable skip-menu" href="#skip-header-target">Skip Header</a>
+
+<header id="global-header" role="banner">
+
+    <div class="bg-black text-white" id="nyc-top-header">
+
+        <div class="container-fluid wide">
+
+            <div class="row py-1 align-items-center justify-content-between">
+
+                <div class="col-auto">
+                    <p class="d-none d-md-flex fs-md">
+                        <a class="text-reset" href="https://www1.nyc.gov/">
+                            <strong>nyc.gov</strong>
+                        </a>
+                        <span class="mx-1" aria-hidden="true">></span>
+                        <a class="text-reset" href="https://www1.nyc.gov/">
+                            Health
+                        </a>
+                        <span class="mx-1" aria-hidden="true">></span>
+                        <a class="text-reset" href="/dev-stage/data-features/heat-report-archive/2021/">
+                        EH Data Portal
+                        </a>
+                    </p>
+                </div>
+                
+
+                <div class="col-auto">
+
+                    <ul class="extensible-list horizontal fs-md">
+                        <li class="d-print-none">
+                            <a class="text-reset" href="https://www1.nyc.gov/">
+                                <strong>
+                                    311
+                                </strong>
+                            </a>
+                        </li>
+                        <li class="d-print-none">
+                            <a class="text-reset" href="https://www1.nyc.gov/home/search/index.page">
+                                <strong>
+                                    Search all NYC.gov
+                                </strong>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www1.nyc.gov/" title="Go to nyc.gov">
+                                <img class="d-block" src=/dev-stage/images/nyc-bubble-logo.svg width="45" alt="NYC Logo">
+                            </a>
+                        </li>
+                    </ul>
+
+                </div>
+                
+
+            </div>
+            
+
+        </div>
+        
+
+    </div>
+    
+    <div class="site-header bg-primary" style='background-image: url(/dev-stage/images/header_background.jpg)'>
+        <div class="wrap-header">
+
+            <div class="container-fluid wide">
+
+                <div class="row align-items-center">
+
+                    <div class="col-lg py-3">
+                        <div class="d-flex justify-content-center justify-content-lg-start">
+                            <a href="https://gcappbesp307.health.dohmh.nycnet/dev-stage/"><img src="https://gcappbesp307.health.dohmh.nycnet/dev-stage/7618350_heatmap_business_analytics_statistics_icon-gpr.ico" style="height: 67px" class="pr-1"></a>
+
+                            <p class="text-white title-hover">
+                                <span class="site-subtitle"><a href="https://gcappbesp307.health.dohmh.nycnet/dev-stage/" class="link-no-dec">Environment & Health</span>
+                                <span class="site-title">Data Portal</a></span>
+                            </p>
+
+
+                        </div>
+                        
+                    </div>
+                    
+
+                    <div class="col-lg-auto border-top border-lg-0 d-print-none">
+
+                        <div class="d-lg-flex align-items-center">
+
+                            
+
+                            <ul class="extensible-list horizontal justify-content-between my-2 d-lg-none">
+                                <li>
+                                    <button class="navbar-toggler no-btn-style" type="button" title="Main Menu" data-toggle="collapse"
+                                        data-target="#nav-primary" aria-controls="nav-primary" aria-expanded="false"
+                                        aria-label="Toggle navigation">
+                                        <span class="sr-only">Main Menu</span>
+                                        <span class="fas fa-bars fa-lg text-white" ></span>
+                                    </button>
+                                </li>
+
+                                <li>
+                                    <a class="nav-link" href="#" type="button" data-toggle="modal" data-target="#searchModal" title="Search" data-toggle="collapse">
+                                        <span class="sr-only">Search</span>
+                                        <i class="fa fa-magnifying-glass text-white"></i>
+                                    </a>
+                                </li>
+                            </ul>
+
+                            <div class="collapse d-lg-block mx-n2 mx-lg-2" id="nav-primary">
+
+                                <nav class="nav" role="navigation">
+
+                                    <div class="nav-item bg-white text-primary border dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="nav-item-topic"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Topics
+                                        </a>
+
+                                        <div class="dropdown-menu wider-menu" aria-labelledby="nav-item-topic">
+                                            <ul class="extensible-list p-0">
+                                                
+                                                
+                                                    
+                                                    <a class="" href="/dev-stage/key-topics/airquality/"> <li class="">Air quality</li></a>
+                                                    <hr class="my-1">
+                                                    
+                                                
+                                                
+                                                
+                                                    
+                                                    <a class="" href="/dev-stage/key-topics/climatehealth/"> <li class="">Climate</li></a>
+                                                    <hr class="my-1">
+                                                    
+                                                
+                                                
+                                                
+                                                    
+                                                    <a class="" href="/dev-stage/key-topics/housing/"> <li class="">Housing</li></a>
+                                                    <hr class="my-1">
+                                                    
+                                                
+                                                
+                                                
+                                                    
+                                                    <a class="" href="/dev-stage/key-topics/social/"> <li class="">Inequality</li></a>
+                                                    <hr class="my-1">
+                                                    
+                                                
+                                                
+                                                
+                                                    
+                                                    <a class="" href="/dev-stage/key-topics/transportation/"> <li class="">Public space</li></a>
+                                                    <hr class="my-1">
+                                                    
+                                                
+                                                
+                                                
+                                                
+                                                
+                                                    
+                                                    <a class="" href="/dev-stage/key-topics/healthoutcomes/"> <li class="">Health outcomes</li></a>
+                                                    <hr class="my-1">
+                                                    
+                                                
+                                                
+                                                
+                                                    
+                                                    <a class="" href="/dev-stage/key-topics/childhealth/"> <li class="">Child health</li></a>
+                                                    <hr class="my-1">
+                                                    
+                                                
+                                                
+                                                
+                                                    
+                                                    <a class="" href="/dev-stage/key-topics/pests/"> <li class="">Pests and pesticides</li></a>
+                                                    <hr class="my-1">
+                                                    
+                                                
+                                                
+                                                
+                                                    
+                                                    <a class="" href="/dev-stage/key-topics/foodanddrink/"> <li class="">Food and drink</li></a>
+                                                    <hr class="my-1">
+                                                    
+                                                
+                                                
+                                                    <a href=/dev-stage/key-topics>All topics</a>
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    
+
+                                    <div class="nav-item bg-white text-primary border dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="nav-item-type"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Explore
+                                        </a>
+
+                                        <div class="dropdown-menu wider-menu" aria-labelledby="nav-item-type">
+                                            <ul class="extensible-list p-0">
+
+                                                <a href="/dev-stage/data-stories/"><li><span class="mr-1"><span class='text-primary data-stories'><i class='fas fa-passport' aria-hidden='true'></i></span></span>Data Stories</li></a>
+
+                                                        <hr class="my-1">
+
+                                                    <a href="/dev-stage/data-features/"><li><span class="mr-1"><span class='df-accent'><i class='fas fa-chart-bar' aria-hidden='true'></i></span></span>Data Features</li></a>
+
+                                                        <hr class="my-1">
+
+                                                    <a href="/dev-stage/neighborhood-reports/"><li><span class="mr-1"><span class='text-primary n-reports'><i class='fas fa-map-marked-alt' aria-hidden='true'></i></span></span>Neighborhood Reports</li></a>
+
+                                                        <hr class="my-1">
+
+                                                    <a href="/dev-stage/data-explorer/"><li><span class="mr-1"><span class='text-primary data-explorer'><i class='fas fa-chart-line' aria-hidden='true'></i></span></span>Data Explorer</li></a></ul>
+                                        </div>
+                                    </div>
+                                    
+
+                                    <div class="nav-item bg-white text-primary border">
+                                        <a class="nav-link " href="/dev-stage/about/">
+                                            About
+                                        </a></div>
+                                    
+
+                                    
+
+                                    <div class="nav-item bg-white text-primary border d-none d-lg-block">
+                                        <a class="nav-link" href="#" type="button" data-toggle="modal" data-target="#searchModal" title="Search" data-toggle="collapse">
+                                                    <span class="sr-only">Search</span>
+                                                    <i class="fa fa-magnifying-glass text-body"></i>
+                                                </a>
+                                    </div>
+                                    
+
+                                </nav>
+
+                            </div>
+
+                        </div>
+                        
+
+                    </div>
+                    
+
+                </div>
+                
+
+            </div>
+            
+
+        </div>
+        
+
+        <div class="container-fluid border-top collapse" id="global-language">
+            <div class="narrow py-2">
+                <div id="google_translate_element"></div>
+            </div>
+        </div>
+
+
+        </div>
+
+</header>
+<main id="skip-header-target" role="main" data-pagefind-body><article class="container-fluid" id="skip-header-target">
+
+    <div class="row">
+        <div class="col-md-11 mx-auto mt-4 pl-0">
+            <nav aria-label="breadcrumb" class="mb-4">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href=/dev-stage/>Home</a></li>
+                    <li class="breadcrumb-item"><a href=/dev-stage/data-features>Data Features</a></li>
+
+                    <li class="breadcrumb-item active" aria-current="page">2021 NYC Heat-Related Mortality Report</li>
+                </ul>
+            </nav>
+        </div>
+        <div class="col-md-2 mr-auto"></div>
+    </div>
+
+    <div class="row">
+
+    
+
+    
+
+        <div class="col-md-8 col-sm-12 mx-auto mb-6" data-pagefind-weight="">
+                <h1 class="h2" data-pagefind-weight="10.0">
+                    <i class="fas fa-star" aria-hidden="true" style="margin-right: 10px"></i>2021 NYC Heat-Related Mortality Report
+                </h1><h2>Summary: Heat Stress Deaths</h2>
+<ul>
+<li>Each summer from 2010-2019, there were, on average,10 heat stress deaths (those caused directly by heat) in New York City (NYC).</li>
+<li>Lack of home air conditioning (AC) continues to be an important risk factor for heat stress death. Among those who died from heat stress, the place of death was most often an un-air-conditioned home.</li>
+<li>Black New Yorkers are more likely to die from heat stress, with death rates two times higher than among other New Yorkers. This inequity is the result of past and current structural racism that creates economic, educational, health care, housing, and other systems that benefit white people, but put at a disadvantage Black, Indigenous and other people of color.</li>
+<li>Even though the number of heat stress deaths has decreased in recent years, the racial inequity persists.</li>
+</ul>
+<h2>Summary: Heat-Exacerbated Deaths and Neighborhood Impacts</h2>
+<ul>
+<li>From 2010-2018, there was an average of approximately 100 heat-exacerbated deaths (those caused indirectly by heat, such as by aggravating an underlying illness) each summer associated with extreme heat events, which are defined as at least 2 consecutive days with 95°F or higher daily maximum heat index (HI) or any day with a maximum HI of 100°F or higher, the threshold used for the City&rsquo;s heat advisory.</li>
+<li>An estimated 350 heat-exacerbated deaths were associated on average each year with hot days overall – daily maximum temperature above 82°F – or about 2% of all natural-cause deaths over summer.</li>
+<li>Heat-exacerbated mortality is higher in neighborhoods that are home to a greater proportion of Black New Yorkers, reflecting the impacts of structural racism at the neighborhood level. Heat-exacerbated mortality is also higher in communities with a greater proportion of people with household incomes below the federal poverty line.</li>
+<li>Summers are growing hotter. Although the number of days meeting the National Weather Service extreme heat threshold has stayed constant, the number of non-extreme hot days, (i.e., days with temperature below the heat advisory threshold) is increasing, contributing the most to heat-exacerbated deaths each summer and highlighting the need for heat-mitigation outside of emergency response measures.</li>
+<li>Emergency response to extreme heat must be coupled with equitable investments in structural interventions and heat mitigation measures to protect New Yorkers throughout the increasingly hot summer weather.</li>
+</ul>
+<h2>Introduction</h2>
+<p>Hot weather is dangerous to health, sometimes resulting in death.</p>
+<p>We track heat-related deaths in three ways:</p>
+<ul>
+<li>Heat stress deaths are caused directly by heat and happen when heat-related illnesses such as heat exhaustion and hyperthermia lead to death.</li>
+<li>Heat-exacerbated deaths happen when heat worsens existing chronic conditions such as heart disease and diabetes. These deaths are caused indirectly by heat.</li>
+<li>Neighborhood impacts can be tracked by looking at community-level differences in risk of heat-related death and are described using the Health Department’s Heat Vulnerability Index (HVI).</li>
+</ul>
+<p>All heat-related deaths are preventable.</p>
+<h2>Heat stress deaths</h2>
+<p>The Health Department examined heat stress deaths occurring during the months of May through September from 2010-2019. Researchers reviewed death certificates and medical examiner investigation reports in cases where heat was recognized as a cause of death. A more detailed description of methods and data sources can be found here.</p>
+<p>Among NYC residents, there were 102 heat stress deaths during the warm season from 2010 to 2019. There were an average of 10 deaths per year, with a minimum of 0 deaths in 2014, the coolest year, and a maximum of 33 in 2011, which had one of the hottest heat waves during the time period examined. Most deaths occurred in July (73%) and August (15%) as shown in Figure 1. In 2020, there were 4 heat stress deaths, though that number is provisional and subject to change because mortality records are not finalized.</p>
+<img src="../2021/2021-fig-1.jpeg" class="border-top border-bottom px-6" alt="Figure 1: percent of heat stress deaths by month among NYC residents, 2010 to 2019. Heat stress deaths are highest in July.">
+<table>
+<thead>
+<tr>
+<th>Year</th>
+<th style="text-align:center">n (deaths)</th>
+<th style="text-align:center">%</th>
+<th style="text-align:center">n, extreme heat days</th>
+<th style="text-align:center">Maximum heat index reached, degrees F</th>
+<th style="text-align:center">Length of longest extreme heat event, days </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2010</td>
+<td style="text-align:center">11</td>
+<td style="text-align:center">10</td>
+<td style="text-align:center">12</td>
+<td style="text-align:center">105</td>
+<td style="text-align:center">3</td>
+</tr>
+<tr>
+<td>2011</td>
+<td style="text-align:center">33</td>
+<td style="text-align:center">31</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">115</td>
+<td style="text-align:center">4</td>
+</tr>
+<tr>
+<td>2012</td>
+<td style="text-align:center">8</td>
+<td style="text-align:center">8</td>
+<td style="text-align:center">9</td>
+<td style="text-align:center">106</td>
+<td style="text-align:center">3</td>
+</tr>
+<tr>
+<td>2013</td>
+<td style="text-align:center">25</td>
+<td style="text-align:center">24</td>
+<td style="text-align:center">13</td>
+<td style="text-align:center">109</td>
+<td style="text-align:center">4</td>
+</tr>
+<tr>
+<td>2014</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">97</td>
+<td style="text-align:center">2</td>
+</tr>
+<tr>
+<td>2015</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">102</td>
+<td style="text-align:center">2</td>
+</tr>
+<tr>
+<td>2016</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">16</td>
+<td style="text-align:center">112</td>
+<td style="text-align:center">7</td>
+</tr>
+<tr>
+<td>2017</td>
+<td style="text-align:center">7</td>
+<td style="text-align:center">7</td>
+<td style="text-align:center">6</td>
+<td style="text-align:center">103</td>
+<td style="text-align:center">3</td>
+</tr>
+<tr>
+<td>2018</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">22</td>
+<td style="text-align:center">106</td>
+<td style="text-align:center">5</td>
+</tr>
+<tr>
+<td>2019*</td>
+<td style="text-align:center">8</td>
+<td style="text-align:center">8</td>
+<td style="text-align:center">9</td>
+<td style="text-align:center">114</td>
+<td style="text-align:center">4</td>
+</tr>
+</tbody>
+</table>
+<p class="fs-sm"><em>*Number of heat stress deaths for the year is provisional and subject to change because mortality records for the year are not finalized. Number will be updated in future reports.</em></P>
+<p>Demographics</p>
+<ul>
+<li>Black New Yorkers continue to experience disproportionately high rates of heat stress death. Black New Yorkers had an age-adjusted death rate that was more than twice as high as that of white New Yorkers (2.3 deaths per million versus 1.0 deaths per million) from 2010 - 2019. Structural racism and an inequitable distribution of resources needed for wellness (e.g., jobs that pay a living wage, access to quality health care, and access to housing with air conditioning) are causes of racial inequities in heat-related mortality.</li>
+<li>Death rates were higher in neighborhoods with high percentages of residents living below the federal poverty line compared with neighborhoods with low and medium percentages of residents living below the federal poverty line.</li>
+<li>Approximately two thirds of deaths occurred among men.</li>
+<li>Heat stress deaths occurred among all age groups, with the lowest rates among people aged 20-29 and the highest among people aged 80 and older. </li>
+</ul>
+<h3>Sex of heat stress decedents, 2010-2019</h3>
+<table>
+<thead>
+<tr>
+<th> </th>
+<th style="text-align:center">n</th>
+<th style="text-align:center">%</th>
+<th style="text-align:center">Avg. annualized age-adjusted rate per million</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Female</td>
+<td style="text-align:center">32</td>
+<td style="text-align:center">31</td>
+<td style="text-align:center">0.6</td>
+</tr>
+<tr>
+<td>Male</td>
+<td style="text-align:center">70</td>
+<td style="text-align:center">69</td>
+<td style="text-align:center">1.7</td>
+</tr>
+</tbody>
+</table>
+<h3>Race and ethnicity of heat stress decedents, 2010-2019</h3>
+<table>
+<thead>
+<tr>
+<th> </th>
+<th style="text-align:center">n</th>
+<th style="text-align:center">%</th>
+<th style="text-align:center">Avg. annualized age-adjusted rate per million</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Non-Hispanic White</td>
+<td style="text-align:center">33</td>
+<td style="text-align:center">32</td>
+<td style="text-align:center">1.0</td>
+</tr>
+<tr>
+<td>Non-Hispanic Black</td>
+<td style="text-align:center">44</td>
+<td style="text-align:center">43</td>
+<td style="text-align:center">2.3</td>
+</tr>
+<tr>
+<td>Hispanic</td>
+<td style="text-align:center">19</td>
+<td style="text-align:center">19</td>
+<td style="text-align:center">0.8</td>
+</tr>
+<tr>
+<td>Asian and Pacific Islander</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">0.4</td>
+</tr>
+<tr>
+<td>Other/Unknown</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0.7</td>
+</tr>
+</tbody>
+</table>
+<p class="fs-sm"><em>Data on people identified as two or more races or races/ethnicities not listed are included in other/unknown. The Hispanic/Latino category includes people of any race. Differences in health outcomes among racial and ethnic groups are due to long-term institutional and personal biases against people of color. Lasting racism and an inequitable distribution of resources needed for wellness cause these health inequities. These resources include jobs that pay a living wage, health care, housing with air conditioning, among others, which lead to worse health outcomes. </em></p>
+<h3>Neighborhood poverty level of heat stress decedents, 2010-2019</h3>
+<table>
+<thead>
+<tr>
+<th> </th>
+<th style="text-align:center">n</th>
+<th style="text-align:center">%</th>
+<th style="text-align:center">Avg. annualized age-adjusted rate per million</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Low &lt;10%</td>
+<td style="text-align:center">18</td>
+<td style="text-align:center">18</td>
+<td style="text-align:center">0.9</td>
+</tr>
+<tr>
+<td>Medium 10 to &lt;20%</td>
+<td style="text-align:center">33</td>
+<td style="text-align:center">34</td>
+<td style="text-align:center">0.9</td>
+</tr>
+<tr>
+<td>High 20 to &lt;30%</td>
+<td style="text-align:center">32</td>
+<td style="text-align:center">33</td>
+<td style="text-align:center">1.5</td>
+</tr>
+<tr>
+<td>Very High 30% and greater</td>
+<td style="text-align:center">15</td>
+<td style="text-align:center">15</td>
+<td style="text-align:center">1.2</td>
+</tr>
+<tr>
+<td>Missing/Residence unknown</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center"> </td>
+<td style="text-align:center"> </td>
+</tr>
+</tbody>
+</table>
+<p class="fs-sm"><em>Area-based poverty groups based on neighborhood tabulation area (NTA). </em></p>
+<h3>Place of residence of heat stress decedents, 2010-2019</h3>
+<table>
+<thead>
+<tr>
+<th> </th>
+<th style="text-align:center">n</th>
+<th style="text-align:center">%</th>
+<th style="text-align:center">Avg. annualized age-adjusted rate per million</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Manhattan</td>
+<td style="text-align:center">19</td>
+<td style="text-align:center">19</td>
+<td style="text-align:center">1.0</td>
+</tr>
+<tr>
+<td>Bronx</td>
+<td style="text-align:center">14</td>
+<td style="text-align:center">14</td>
+<td style="text-align:center">1.0</td>
+</tr>
+<tr>
+<td>Brooklyn</td>
+<td style="text-align:center">36</td>
+<td style="text-align:center">36</td>
+<td style="text-align:center">1.3</td>
+</tr>
+<tr>
+<td>Queens</td>
+<td style="text-align:center">24</td>
+<td style="text-align:center">24</td>
+<td style="text-align:center">1.0</td>
+</tr>
+<tr>
+<td>Staten Island</td>
+<td style="text-align:center">6</td>
+<td style="text-align:center">6</td>
+<td style="text-align:center">1.1</td>
+</tr>
+<tr>
+<td>Homeless*</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center"> </td>
+<td style="text-align:center"> </td>
+</tr>
+</tbody>
+</table>
+<p class="fs-sm"><em>*Based on residence unknown in death death certificate. </em></p>
+<h3>Age of heat stress decedents, 2010-2019</h3>
+<img src="../2021/2021-by-age.jpeg" class="border-top border-bottom px-6" alt="Age of heat stress decedents. Older people die at higher rates.">
+<h3>Health and other risk factors</h3>
+<p>Among the subset with detailed medical examiner review available more than 90% had one or more chronic conditions, with more than two-thirds showing evidence of cardiovascular disease. </p>
+<p>Additional common conditions included substance or alcohol use, schizophrenia or schizoaffective disorder, cognitive or psychiatric conditions, and having a history of diabetes.</p>
+<p>Of adults aged 18-64, nearly half were obese, defined as having a body mass index of 30 or above.</p>
+<table>
+<thead>
+<tr>
+<th> </th>
+<th style="text-align:center">n</th>
+<th style="text-align:center">%</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>One or more chronic conditions</td>
+<td style="text-align:center">81</td>
+<td style="text-align:center">92</td>
+</tr>
+<tr>
+<td>Evidence of cardiovascular disease</td>
+<td style="text-align:center">62</td>
+<td style="text-align:center">70</td>
+</tr>
+<tr>
+<td>Evidence of alcohol or substance use</td>
+<td style="text-align:center">24</td>
+<td style="text-align:center">27</td>
+</tr>
+<tr>
+<td>Evidence of schizophrenia/schizo-affective disorder, cognitive or psychiatric conditions*</td>
+<td style="text-align:center">22</td>
+<td style="text-align:center">25</td>
+</tr>
+<tr>
+<td>History of diabetes</td>
+<td style="text-align:center">18</td>
+<td style="text-align:center">20</td>
+</tr>
+<tr>
+<td>History of respiratory conditions</td>
+<td style="text-align:center">7</td>
+<td style="text-align:center">8</td>
+</tr>
+<tr>
+<td>Cerebral palsy</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">3</td>
+</tr>
+<tr>
+<td>Evidence of renal conditions</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">5</td>
+</tr>
+</tbody>
+</table>
+<p class="fs-sm"><em>Data source: Office of the Chief Medical Examiner data.</em></p>
+<h3>Heat exposure circumstances</h3>
+<p>People who died from heat stress were most often exposed to the heat in their homes (71%, n= 62 of 88 records with detailed information). Without AC, indoor temperatures can be much higher than outdoors, especially at night, and can continue for days after a heat wave.1  </p>
+<p>Among New Yorkers who died after becoming dangerously hot at home, and for whom there was information about the presence or absence of an AC, 81% had no AC and the rest had AC that was either not working or not in use.</p>
+<p>More than a quarter (n=16, 26%) of decedents had an electric fan present and on, indicating that only using an electric fan without an AC cannot always prevent death during extreme heat for people who are at highest heat risk.</p>
+<p>Previous Health Department studies have found that air conditioning access differs across race and class. New Yorkers who are Black and low-income New Yorkers are less likely to own or use an AC during hot weather, and cost is the main reason why.2 While more than 90% of NYC households have air conditioning, access is also lower in neighborhoods where more people are living with limited financial resources.</p>
+<img src="../2021/2021-fig-2.jpeg" class="border-top border-bottom px-6" alt="Air conditioning presence among people exposed to heat at home.">
+<h3>Heat-exacerbated deaths</h3>
+<p>Deaths from chronic conditions that are not recognized as heat-related on death certificates can be estimated using statistical models. There are more of these deaths than those from heat stress and they are called “excess deaths” or “heat-exacerbated deaths.” Unlike heat stress deaths, which can be identified and investigated, excess deaths can only be estimated as aggregate counts – not investigated individually. However, estimating heat-exacerbated deaths – or “mortality” – better captures how many people are dying of the heat.</p>
+<p>We estimated heat-exacerbated mortality risk and number of deaths for 2010 through 2018 using weather and natural cause death data for May-September in NYC. The average natural death count was about 18,000 deaths for May through September each year. We used statistical models to compare deaths on hot days with deaths on cooler days. We estimated heat-exacerbated deaths using:</p>
+<ul>
+<li>an indicator for extreme heat event days defined by the National Weather Service’s heat advisory threshold for NYC. Based on the Health Department’s previous analysis of heat-exacerbated mortality, heat advisories are for at least 2 consecutive days with 95°F or higher daily maximum heat index (HI) or any day with a maximum HI of 100°F or higher.</li>
+<li>the range of hot daily maximum temperatures that includes both extreme heat event days and other hot days. We assessed risk for days ranging from the median maximum daily temperature of 82°F through the highest temperature during the period.</li>
+</ul>
+<p>We included deaths occurring on the date of exposure to hot weather and over the following 3 days, because previous Health Department studies have shown that heat-related deaths can occur up to 3 days after the initial hot weather. Detailed methods used to estimate risks and attributable deaths can be found <a href="../2021/Heat_Mortality_Methods_2021.pdf">here</a>. </p>
+<p>From 2010 to 2018, the estimated number of heat-exacerbated deaths associated with extreme heat events was 98 (95% Confidence Interval [95CI]: 59, 133) on average each year.</p>
+<p>Heat-exacerbated mortality risks were observed across the full range of all hot days (maximum temperature at or above 82°F) during the summer months. Risk increased with temperature, with the largest increases occurring at the highest temperatures (Figure 3).</p>
+<p>The estimated number of heat-exacerbated deaths from May-September for all hot days was 347 (95%CI: 132, 536) on average each year. Heat-exacerbated deaths make up approximately 2% of all natural-cause deaths in the warm months.</p>
+<p>The number of extreme heat event days each year has stayed about the same (approximately 10 days/year) in the past decade. However, the number of non-extreme hot days is increasing (e.g., 45 days with daily maximum temperature of 83-94°F for 1971-1980 vs. 63 days for 2011-2020). The daily low temperature (usually nighttime temperature) is a good measure of (UHI) the urban heat island  effect, because it measures the heat retained after the sun has set. The daily low temperature is also increasing (Figure 4), highlighting the importance of in-home cooling. Cities like NYC experience a UHI effect, with hotter temperatures than surrounding suburbs and more rural areas, because they have large amounts of concrete and other building materials that trap heat.</p>
+<img src="../2021/2021-fig-3.jpg" class="border-top border-bottom px-6">
+<img src="../2021/2021-fig-4.jpg" class="border-top border-bottom px-6">
+<h3>Community-level impacts</h3>
+<p><a href="../hvi">The HVI shows differences in community-level heat impacts during and shortly after extreme heat events</a>. Unlike many social vulnerability indices, the HVI is validated against NYC mortality data – meaning that neighborhoods with elevated risk identified by the index are those areas with elevated heat-exacerbated deaths during extreme heat events. </p>
+<p>While there are high risk Neighborhood Tabulation Areas (NTA; defined as an HVI score of 4 or 5) in every borough of the city, the thread connecting them all is that they have more residents who are Black or low-income. Risk factors for heat tend to overlap in these neighborhoods due to persistent structural racism, which have positioned economic, educational, healthcare, housing, and other systems to benefit white people and put at a disadvantage Black, Indigenous and other people of color. The relative heat mortality risk of each NTA can be explored here. Read more about how structural racism affects housing and public health and the history of redlining and how it impacts public health in NYC.  </p>
+<iframe aria-label="Map" class="my-2 p-4 border-top border-bottom" frameborder="0" height="800" id="datawrapper-chart-0wHq0" scrolling="no" src="https://datawrapper.dwcdn.net/16xAz/4/" style="width: 0; min-width: 100% !important; border: none;" title="2018 Heat Vulnerability Index"></iframe>
+<p>The best indicator of neighborhood-level heat impacts is the HVI, which shows neighborhood differences in heat-exacerbated mortality risk. The number of heat stress deaths by NTA should be interpreted with caution. The NTAs are small and the number of deaths at this level is also small and unreliable, so it is difficult to conclude whether tell differences between areas are due to random fluctuation or represent a real difference in risk.</p>
+<iframe aria-label="Map" class="my-2 p-4 border-top border-bottom" frameborder="0" height="800" id="datawrapper-chart-0wHq0" scrolling="no" src="https://datawrapper.dwcdn.net/0wHq0/5/" style="width: 0; min-width: 100% !important; border: none;" title="Count of heat stress deaths"></iframe>
+<h2>Conclusions</h2>
+<p>Hot weather takes a large toll on the health of New Yorkers. An average of 10 New Yorkers die of heat stress and approximately 100 die due to chronic conditions that have been worsened by the heat on extreme heat event days. In addition, heat-exacerbated deaths occur on non-extreme hot summer days, which represent the vast majority of hot days in the summer. Over the entire warm season from May through April, approximately 350 New Yorkers die on average each year from natural causes exacerbated by the heat.</p>
+<p>As climate change continues to result in warmer summers, response to rising summer temperatures and extreme heat requires long-term investment in infrastructure and social justice initiatives in communities dealing with the greatest heat impacts. To reduce heat-related deaths in NYC:</p>
+<p>Continue to prioritize high HVI neighborhoods for heat mitigation and structural interventions, such as home cooling assistance, tree planting and greening, green infrastructure, and electric grid resilience to decrease risk. Couple these measures with housing and energy policies that help longtime neighborhood residents benefit from improvements. </p>
+<p>Support the work of community-based organizations working to reduce the health impacts of heat and climate change in their neighborhoods, for example by organizing networks of at-risk neighborhoods and residents and checking on them and disseminating information about heat and health risks, and include them in decision-making about climate-health investments in their communities.</p>
+<p>Continue to strengthen emergency response measures during periods of extreme heat, such as opening cooling centers and issuing heat-health warnings, prioritizing people and communities with the greatest need for these interventions.</p>
+<p>Extend equitable access to air conditioning to people most impacted by heat, including assistance with ongoing utility costs, which is critical to realizing the benefits of equitable cooling at home both daytime and nighttime.</p>
+<p>Learn more about what the City is doing to mitigate the effects of heat, and how the HVI guides that work, at <a href="https://www.nyc.gov/assets/orr/pdf/Cool_Neighborhoods_NYC_Report.pdf">Cool Neighborhoods NYC</a>. More data and information about heat, climate, and health is also available at <a href="../../key-topics/climatehealth/">Climate and Health</a>.</p>
+<style>
+thead, th, td {
+  padding: 2px 25px;
+  border-bottom: 1px solid lightgray;
+}
+
+h2, h3 {
+  margin-top: 40px;
+}
+</style></div>
+
+    </div>
+
+</article><ul id="results"></ul>
+  </main>
+  
+  <footer class="bg-black" id="global-footer" role="contentinfo">
+
+  <h2 class="sr-only">
+      Page Footer
+  </h2>
+
+  <div class="bg-opacity-black-25 text-white" id="nyc-footer">
+
+      <div class="container py-3 d-none" id="languages">
+
+          <div class="row fs-md d-print-none">
+
+              <div class="col-6 col-md-4 col-lg mb-2 mb-lg-0">
+                  <ul class="extensible-list">
+                      <li><a class="lang-select text-reset" href="#" data-lang="ar">عربى</a></li>
+                      <li><a class="lang-select text-reset" href="#" data-lang="bn">বাঙালি</a></li>
+                  </ul>
+              </div>
+              <div class="col-6 col-md-4 col-lg mb-2 mb-lg-0">
+                  <ul class="extensible-list">
+                      <li><a class="lang-select text-reset" href="#" data-lang="zh-CN">中文</a></li>
+                      <li><a class="lang-select text-reset" href="#" data-lang="fr">français</a></li>
+                  </ul>
+              </div>
+              <div class="col-6 col-md-4 col-lg mb-2 mb-lg-0">
+                  <ul class="extensible-list">
+                      <li><a class="lang-select text-reset" href="#" data-lang="ht">Kreyòl Ayisyen</a></li>
+                      <li><a class="lang-select text-reset" href="#" data-lang="ko">한국어</a></li>
+                  </ul>
+              </div>
+              <div class="col-6 col-md-4 col-lg mb-2 mb-lg-0">
+                  <ul class="extensible-list">
+                      <li><a class="lang-select text-reset" href="#" data-lang="pl">Polskie</a></li>
+                      <li><a class="lang-select text-reset" href="#" data-lang="ru">русский</a></li>
+                  </ul>
+              </div>
+              <div class="col-6 col-md-4 col-lg">
+                  <ul class="extensible-list">
+                      <li><a class="lang-select text-reset" href="#" data-lang="es">Español</a></li>
+                      <li><a class="lang-select text-reset" href="#" data-lang="ur">اردو</a></li>
+                  </ul>
+              </div>
+          </div>
+
+      </div>
+      
+
+      <div class="container py-3 d-print-none" id="languages">
+
+          <ul class="fs-md" role="list">
+              <li><a class="lang-select text-reset" href="#" data-lang="ar">عربى</a></li>
+              <li><a class="lang-select text-reset" href="#" data-lang="bn">বাঙালি</a></li>
+              <li><a class="lang-select text-reset" href="#" data-lang="zh-CN">中文</a></li>
+              <li><a class="lang-select text-reset" href="#" data-lang="fr">français</a></li>
+              <li><a class="lang-select text-reset" href="#" data-lang="ht">Kreyòl Ayisyen</a></li>
+              <li><a class="lang-select text-reset" href="#" data-lang="ko">한국어</a></li>
+              <li><a class="lang-select text-reset" href="#" data-lang="pl">Polskie</a></li>
+              <li><a class="lang-select text-reset" href="#" data-lang="ru">русский</a></li>
+              <li><a class="lang-select text-reset" href="#" data-lang="es">Español</a></li>
+              <li><a class="lang-select text-reset" href="#" data-lang="ur">اردو</a></li>
+          </ul>
+
+      </div>
+      
+
+      <hr class="opacity-10" aria-hidden="true">
+
+      <div class="container py-3">
+          <div class="row">
+              <div class="col-md-6 col-lg-8 mb-3 mb-lg-0">
+                  <nav class="row fs-md d-print-none" role="navigation">
+                      <div class="col-lg mb-3 mb-lg-0">
+                          <ul class="extensible-list">
+                              <li>
+                                  <a class="text-reset" href="https://www1.nyc.gov/nyc-resources/agencies.page">
+                                      <strong>Directory of City Agencies</strong>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a class="text-reset" href="https://a858-nycnotify.nyc.gov/notifynyc/">
+                                      <strong>Notify NYC</strong>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a class="text-reset"
+                                      href="https://www1.nyc.gov/connect/mobile-applications.page">
+                                      <strong>NYC Mobile Apps</strong>
+                                  </a>
+                              </li>
+                          </ul>
+                      </div>
+                      
+
+                      <div class="col-lg mb-3 mb-lg-0">
+
+                          <ul class="extensible-list">
+                              <li>
+                                  <a class="text-reset" href="https://www1.nyc.gov/home/contact-us.page">
+                                      <strong>Contact NYC Government</strong>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a class="text-reset" href="https://a856-citystore.nyc.gov/">
+                                      <strong>CityStore</strong>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a class="text-reset" href="https://www.nyc.gov/nyc-resources/nyc-maps.page">
+                                      <strong>Maps</strong>
+                                  </a>
+                              </li>
+                          </ul>
+
+                      </div>
+                      
+
+                      <div class="col-lg mb-3 mb-lg-0">
+
+                          <ul class="extensible-list">
+                              <li>
+                                  <a class="text-reset"
+                                      href="https://a127-ess.nyc.gov/psp/prdess/?cmd=login&languageCd=ENG&">
+                                      <strong>City Employees</strong>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a class="text-reset" href="https://www1.nyc.gov/connect/social-media.page">
+                                      <strong>Stay Connected</strong>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a class="text-reset"
+                                      href="https://www1.nyc.gov/nyc-resources/resident-toolkit.page">
+                                      <strong>Resident Toolkit</strong>
+                                  </a>
+                              </li>
+                          </ul>
+                      </div>
+                      
+
+                  </nav>
+              </div>
+              
+
+              <div class="col-md-6 col-lg-4">
+
+                  <a class="mb-2" href="https://www1.nyc.gov" title="Go to nyc.gov" target="_blank" rel="noopener noreferrer">
+                      
+                      <img class="mb-2" src="/dev-stage/images/nyc-bubble-logo.svg" width="90" alt="NYC Logo">
+                      <span class="sr-only">(opens in a new tab)</span>
+                  </a>
+                  <p class="fs-sm">© City of New York. 2022 All Rights Reserved,<br>NYC is a trademark and service mark of the City of New
+                    York.</p>
+
+                  <ul class="extensible-list horizontal fs-sm d-print-none">
+                      <li>
+                          <a class="text-reset" href="https://www1.nyc.gov/home/privacy-policy.page">Privacy
+                              Policy</a>
+                      </li>
+                      <li>
+                          <a class="text-reset" href="https://www1.nyc.gov/home/terms-of-use.page">Terms
+                              of Use</a>
+                      </li>
+                      <li>
+                          <a class="text-reset" href="https://www1.nyc.gov/site/mopd/index.page"
+                              title="Mayor's Office for People with Disabilities">
+                              <span class="sr-only">Learn more about Digital Accessibility
+                                from the Mayor's Office for People with Disabilities.</span>
+                              <span class="fab fa-lg fa-accessible-icon"></span>
+                          </a>
+                      </li>
+                  </ul>
+
+              </div>
+              
+
+          </div>
+          
+
+      </div>
+      
+
+  </div>
+  
+
+</footer>
+
+
+<div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="searchModalLabel" data-pagefind-ignore="all">Search</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <link href=/dev-stage/pagefind/pagefind-ui.css rel="stylesheet">
+            <script src=/dev-stage/pagefind/pagefind-ui.js type="text/javascript"></script>
+            <div id="search"></div>
+            <script>
+
+                window.addEventListener('DOMContentLoaded', (event) => {
+
+                    new PagefindUI({
+                        element: "#search",
+                        showSubResults: true,
+                        showImages: false,
+                        baseUrl: baseURL,
+                        showEmptyFilters: true,
+                        debounceTimeoutMs: 500,
+                        
+                        processTerm: function (term) {
+
+                            gtag('event', 'search', {
+                                search_term: term
+                            });
+
+                            return term;
+
+                        },
+                        processResult: function (result) {
+
+                            
+                            
+                            
+
+                            
+
+                            result.meta.title = result.meta.title
+                                .replace(/&#(\d+);/g, ((match, dec) => `${String.fromCharCode(dec)}`))
+                                .replaceAll("&amp;", "&");
+
+                            
+
+                            result.sub_results.forEach(sub => {
+
+                                
+
+                                sub.url = sub.url.replace("#IndicatorID-", "?id=");
+
+                                
+
+                                sub.title = sub.title
+                                    .replace(/&#(\d+);/g, ((match, dec) => `${String.fromCharCode(dec)}`))
+                                    .replaceAll("&amp;", "&");
+
+                            });
+
+                            
+                            
+                            
+
+                            
+                            var allResults = document.getElementsByClassName('pagefind-ui__result-link');
+
+                            
+                            for (h = 0; h < allResults.length; h += 1) {
+
+                                allResults[h].setAttribute('onclick',"gtag('event', 'search_click', { page_viewed: '" + allResults[h].href + "' });");
+
+                            }
+
+                            
+
+                            console.log("@ result:", result);
+                            
+
+                        }
+                    });
+
+                    
+
+                    
+
+                    const searchModal = document.getElementById('searchModal')
+                    const searchInput = document.getElementsByClassName('pagefind-ui__search-input')[0]
+
+                    $(searchModal).on('shown.bs.modal', () => {
+                        searchInput.focus();
+                        searchInput.select();
+                    })
+
+
+                });
+
+
+            </script>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+<script>
+
+
+</script>
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+
+
+<script>
+  function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+          pageLanguage: 'en'
+      }, 'google_translate_element');
+
+      
+      document.querySelectorAll("div[class^=VI] svg").forEach(e => e.outerHTML = "");
+  }
+</script>
+
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+<script type="text/javascript" src="/dev-stage/node_modules/lunr/lunr.min.e31525fdde83e931eb0275c0c066a35e4a1669e30dc0428ae2235fab90e8b446cb3c07e4e854b148fdf274dc6a0e00b0d5cff4675260e8bf21da3fbefbd0599a.js" integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j&#43;&#43;&#43;9BZmg=="></script>
+
+<script type="text/javascript" 
+    src="/dev-stage/js/main.552c9e0eb5b9f567a863809d88dfdb9dfc2e5062f1aa7ae313abbdf21a346fd773ae265f5ff618d8322e2b96b95be1b319c681eb0ea7b818a3c6485a84b6ad5a.js" 
+    integrity="sha512-VSyeDrW59WeoY4CdiN/bnfwuUGLxqnrjE6u98ho0b9dzriZfX/YY2DIuK5a5W&#43;GzGcaB6w6nuBijxkhahLatWg=="></script>
+
+<script type="text/javascript" 
+    src="/dev-stage/js/search.5332590626a6aa935d122347c2c99089e9a328a8e08882b46a430570150c8d2f238b3758b581c006ee488c927a70aac5a8f53761d32d922e08ad7172db6b3abf.js" 
+    integrity="sha512-UzJZBiamqpNdEiNHwsmQiemjKKjgiIK0akMFcBUMjS8jizdYtYHABu5IjJJ6cKrFqPU3YdMtki4IrXFy22s6vw=="></script>
+  
+  
+</body>
+</html>

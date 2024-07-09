@@ -70,12 +70,12 @@
 
 <link rel="stylesheet" href="/dev-stage/node_modules/@fortawesome/fontawesome-free/css/all.min.css" />
 
-<script src="/dev-stage/node_modules/@fortawesome/fontawesome-free/js/all.min.196cd5adc1a5a344f14d1bf3f6db62a32609f96c24f429341bcd43f9e3badc16aa1da2776195fdc2eaa3c207dc57f32b0763e16955fd0e461585b1694ad9eaa5.js" integrity="sha512-GWzVrcGlo0TxTRvz9ttioyYJ&#43;Wwk9Ck0G81D&#43;eO63BaqHaJ3YZX9wuqjwgfcV/MrB2PhaVX9DkYVhbFpStnqpQ==" crossorigin="anonymous"></script>
+<script src="/dev-stage/node_modules/@fortawesome/fontawesome-free/js/all.min.bb77cf03b57ca909a104f353e6abaf69755ad669e72d25d47a9e4f4b5aa8e4d4731f01b5f5a1e63499e3d50f21a40fe705666d643e2be005fa60eb79ca72cdda.js" integrity="sha512-u3fPA7V8qQmhBPNT5quvaXVa1mnnLSXUep5PS1qo5NRzHwG19aHmNJnj1Q8hpA/nBWZtZD4r4AX6YOt5ynLN2g==" crossorigin="anonymous"></script>
 
 
-<link rel="stylesheet" href="/dev-stage/scss/theme.93eedffd28d4702b89a3020c0eff852ea14226d650f38a6b59b5e5eb628de0d3b0941ab60ce45a6887fffc75078c7d1089830b1474e102938667d0ac6f54621f.css" integrity="sha512-k&#43;7f/SjUcCuJowIMDv&#43;FLqFCJtZQ84prWbXl62KN4NOwlBq2DORaaIf//HUHjH0QiYMLFHThApOGZ9Csb1RiHw==" />
+<link rel="stylesheet" href="/dev-stage/scss/theme.52ee3143724c31fe4c04d98f97f1624d464973378a2fb8c80515e3c253dbf9fa0f1932d238aa0b541c0e856fc25696044165e4b1f8ac87834696c04cda0462fe.css" integrity="sha512-Uu4xQ3JMMf5MBNmPl/FiTUZJczeKL7jIBRXjwlPb&#43;foPGTLSOKoLVBwOhW/CVpYEQWXksfish4NGlsBM2gRi/g==" />
 
-<script src="/dev-stage/node_modules/dompurify/dist/purify.min.71ed1f9ae1205aba6721758a42b4a027916c06caff8673acc5d5af93996ed464e17246ac2f073e4c014444b348c169d6a81a1657818f0c98b3d8f48f9ed8a754.js" integrity="sha512-ce0fmuEgWrpnIXWKQrSgJ5FsBsr/hnOsxdWvk5lu1GThckasLwc&#43;TAFERLNIwWnWqBoWV4GPDJiz2PSPntinVA=="></script>
+<script src="/dev-stage/node_modules/dompurify/dist/purify.min.8c1d1391305e402f594a406a0e17667d3bf5a9d7db5a9184ef6c89ff4d52aeaea1133648cf6c64cf57b9ee9f5a8bb21e1ccc041bb1e9cc6e8d769b428627f93e.js" integrity="sha512-jB0TkTBeQC9ZSkBqDhdmfTv1qdfbWpGE72yJ/01Srq6hEzZIz2xkz1e57p9ai7IeHMwEG7HpzG6NdptChif5Pg=="></script>
 
 
 
@@ -85,7 +85,7 @@
 
     let baseURL = "/dev-stage/"
     let data_repo = "https:\/\/raw.githubusercontent.com\/nychealth\/EHDP-data\/";
-    let data_branch = "feature-pagefind-search";
+    let data_branch = "staging";
     let hugoEnv = "dev_stage"
 
 </script>
@@ -123,7 +123,7 @@
                             Health
                         </a>
                         <span class="mx-1" aria-hidden="true">></span>
-                        <a class="text-reset" href=/dev-stage/>
+                        <a class="text-reset" href="/dev-stage/es/data-stories/">
                         EH Data Portal
                         </a>
                     </p>
@@ -133,14 +133,14 @@
                 <div class="col-auto">
 
                     <ul class="extensible-list horizontal fs-md">
-                        <li>
+                        <li class="d-print-none">
                             <a class="text-reset" href="https://www1.nyc.gov/">
                                 <strong>
                                     311
                                 </strong>
                             </a>
                         </li>
-                        <li>
+                        <li class="d-print-none">
                             <a class="text-reset" href="https://www1.nyc.gov/home/search/index.page">
                                 <strong>
                                     Search all NYC.gov
@@ -165,85 +165,163 @@
 
     </div>
     
+    <div class="site-header bg-primary" style='background-image: url(/dev-stage/images/header_background.jpg)'>
+        <div class="wrap-header">
 
-    <div class="container-fluid collapse d-lg-block px-0 border-lg-top d-print-none" id="nav-primary">
+            <div class="container-fluid wide">
 
-        <div class="wide">
+                <div class="row align-items-center">
 
-            <nav class="nav nav-pills border-bottom border-right justify-content-center" role="navigation"><span id="File.Path" style="display: none"></span>
-            <span id="FirstSection.RelPermalink" style="display: none">/dev-stage/es/data-stories/</span>
+                    <div class="col-lg py-3">
+                        <div class="d-flex justify-content-center justify-content-lg-start">
+                            <a href="https://gcappbesp307.health.dohmh.nycnet/dev-stage/"><img src="https://gcappbesp307.health.dohmh.nycnet/dev-stage/7618350_heatmap_business_analytics_statistics_icon-gpr.ico" style="height: 67px" class="pr-1"></a>
 
-            <div class="nav-item-search border-right">
-                <a class="nav-link" id="nav-item-01" href=/dev-stage/>
-                <span class='text-primary'><i class='fa fa-home' aria-hidden='true'></i><span class="sr-only">Home</span></span>
-                </a>
-            </div><div class="nav-item">
+                            <p class="text-white title-hover">
+                                <span class="site-subtitle"><a href="https://gcappbesp307.health.dohmh.nycnet/dev-stage/" class="link-no-dec">Environment & Health</span>
+                                <span class="site-title">Data Portal</a></span>
+                            </p>
 
-                    <a class="nav-link" href="/dev-stage/key-topics/" id="nav-item-05"><span class='text-primary'><i class='fas fa-star' aria-hidden='true'></i></span> Key Topics</a>
 
-                </div><div class="nav-item">
+                        </div>
+                        
+                    </div>
+                    
 
-                    <a class="nav-link" href="/dev-stage/data-stories/" id="nav-item-02"><span class='text-primary'><i class='fas fa-passport' aria-hidden='true'></i></span> Data Stories</a>
+                    <div class="col-lg-auto border-top border-lg-0 d-print-none">
 
-                </div><div class="nav-item">
+                        <div class="d-lg-flex align-items-center">
 
-                    <a class="nav-link" href="/dev-stage/neighborhood-reports/" id="nav-item-04"><span class='text-primary'><i class='fas fa-map-marked-alt' aria-hidden='true'></i></span> Neighborhood Reports</a>
+                            
 
-                </div><div class="nav-item">
+                            <ul class="extensible-list horizontal justify-content-between my-2 d-lg-none">
+                                <li>
+                                    <button class="navbar-toggler no-btn-style" type="button" title="Main Menu" data-toggle="collapse"
+                                        data-target="#nav-primary" aria-controls="nav-primary" aria-expanded="false"
+                                        aria-label="Toggle navigation">
+                                        <span class="sr-only">Main Menu</span>
+                                        <span class="fas fa-bars fa-lg text-white" ></span>
+                                    </button>
+                                </li>
 
-                    <a class="nav-link" href="/dev-stage/data-explorer/" id="nav-item-03"><span class='text-primary'><i class='fas fa-chart-line' aria-hidden='true'></i></span> Data Explorer</a>
+                                <li>
+                                    <a class="nav-link" href="#" type="button" data-toggle="modal" data-target="#searchModal" title="Search" data-toggle="collapse">
+                                        <span class="sr-only">Search</span>
+                                        <i class="fa fa-magnifying-glass text-white"></i>
+                                    </a>
+                                </li>
+                            </ul>
+
+                            <div class="collapse d-lg-block mx-n2 mx-lg-2" id="nav-primary">
+
+                                <nav class="nav" role="navigation">
+
+                                    <div class="nav-item bg-white text-primary border dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="nav-item-topic"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Topics
+                                        </a>
+
+                                        <div class="dropdown-menu wider-menu" aria-labelledby="nav-item-topic">
+                                            <ul class="extensible-list p-0">
+                                                
+                                                    <a href=/dev-stage/key-topics>All topics</a>
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    
+
+                                    <div class="nav-item bg-white text-primary border dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="nav-item-type"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Explore
+                                        </a>
+
+                                        <div class="dropdown-menu wider-menu" aria-labelledby="nav-item-type">
+                                            <ul class="extensible-list p-0">
+
+                                                <a href="/dev-stage/data-stories/"><li><span class="mr-1"><span class='text-primary data-stories'><i class='fas fa-passport' aria-hidden='true'></i></span></span>Data Stories</li></a>
+
+                                                        <hr class="my-1">
+
+                                                    <a href="/dev-stage/data-features/"><li><span class="mr-1"><span class='df-accent'><i class='fas fa-chart-bar' aria-hidden='true'></i></span></span>Data Features</li></a>
+
+                                                        <hr class="my-1">
+
+                                                    <a href="/dev-stage/neighborhood-reports/"><li><span class="mr-1"><span class='text-primary n-reports'><i class='fas fa-map-marked-alt' aria-hidden='true'></i></span></span>Neighborhood Reports</li></a>
+
+                                                        <hr class="my-1">
+
+                                                    <a href="/dev-stage/data-explorer/"><li><span class="mr-1"><span class='text-primary data-explorer'><i class='fas fa-chart-line' aria-hidden='true'></i></span></span>Data Explorer</li></a></ul>
+                                        </div>
+                                    </div>
+                                    
+
+                                    <div class="nav-item bg-white text-primary border">
+                                        </div>
+                                    
+
+                                    
+
+                                    <div class="nav-item bg-white text-primary border d-none d-lg-block">
+                                        <a class="nav-link" href="#" type="button" data-toggle="modal" data-target="#searchModal" title="Search" data-toggle="collapse">
+                                                    <span class="sr-only">Search</span>
+                                                    <i class="fa fa-magnifying-glass text-body"></i>
+                                                </a>
+                                    </div>
+                                    
+
+                                </nav>
+
+                            </div>
+
+                        </div>
+                        
+
+                    </div>
+                    
 
                 </div>
+                
 
-                    <button type="button" data-toggle="modal" data-target="#searchModal" class="btn nav-item-search d-none d-lg-block" title="Search">
+            </div>
+            
 
-                        <span class="sr-only">Search</span>
-                        <i class="fa fa-magnifying-glass fa-lg text-body mt-1"></i>
+        </div>
+        
 
-                    </button>
+        <div class="container-fluid border-top collapse" id="global-language">
+            <div class="narrow py-2">
+                <div id="google_translate_element"></div>
+            </div>
+        </div>
 
-                </nav>
 
         </div>
 
-    </div>
-
-    <div class="container-fluid-lg border-top collapse" id="global-search">
-
-        <form class="narrow py-2" aria-label="Search" role="search">
-
-            <div class="input-group">
-
-                <label class="sr-only" for="global-search-bar">Search</label>
-
-                <input class="form-control form-control-lg" id="global-search-bar" placeholder="Search">
-
-                <div class="input-group-btn">
-
-                    <button class="btn btn-primary btn-lg" type="button" title="Search">
-
-                        <span class="sr-only">Search</span>
-                        <span class="fas fa-arrow-right"></span>
-
-                    </button>
-
-                </div>
-
-            </div>
-
-        </form>
-
-
-        
-
-</div>
 </header>
-<main id="skip-header-target" role="main" data-pagefind-body><article class="container" id="skip-header-target">
+<main id="skip-header-target" role="main" data-pagefind-body><article class="container wide" id="skip-header-target">
 
-    <div class="col-md-10 mx-auto mt-4">
-        <h1 class="ds-accent"><i class="fas fa-passport" aria-hidden="true" style="margin-right: 10px"></i>Data Stories</h1>
-        <p>Explainers and perspectives on important health and environment topics.</p>
+    <div class="data-stories">
+        <div class="row">
+            <div class="col-md-10 col-sm-12 mt-4 mb-2">
+                <nav aria-label="breadcrumb" class="">
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href=/dev-stage/>Home</a></li>
+                        <li class="breadcrumb-item active"><a href=/dev-stage/data-stories>Data Stories</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 col-sm-12 my-4">
+                <h1><i class="fas fa-passport" aria-hidden="true" style="margin-right: 10px"></i>Data Stories</h1>
+                <p>Explainers and perspectives on important health and environment topics.</p>
+            </div>
+        </div>
     </div>
+
 
     <div class="row mt-4">
         <div class="col">
@@ -251,73 +329,67 @@
         </div>
     </div>
 
-    <div class="row mt-2"><div class="col-md-4 mb-2">
-            <div class="card content-card mb-4">
-                <div class="card-content">
-                    <a href="/dev-stage/es/data-stories/violence/">
+    <div class="row mt-2"><div class="card content-card mb-4 col-sm-6 col-md-4">
+            <div class="card-content data-stories">
+                <a href="/dev-stage/es/data-stories/violence/">
+                    
+                    
+                    <div style="width:100%; height:250px; background-image: URL(/dev-stage/es/data-stories/violence/ds-violence_hu6182672d2bc7dc090625beee39a7dab9_4320773_740x0_resize_q95_mitchellnetravali.jpg); background-size: cover"></div>
+                </a>
 
-                        
-                        
-                        <div style="width:100%; height:250px; background-image: URL(/dev-stage/es/data-stories/violence/ds-violence_hu6182672d2bc7dc090625beee39a7dab9_4320773_740x0_resize_q95_mitchellnetravali.jpg); background-size: cover"></div></a>
-
-                    <div class="card-body">
-                    <p class="fs-sm card-title fs-sm"><a href="/dev-stage/es/data-stories/violence/" class="text-primary">Por qué la violencia es un problema de salud pública </a></p>
-                    <p class="fs-sm">Uso de la salud pública para prevenir la violencia Sufrir violencia afecta a las personas de muchas …
-</p>
-                    <p class="fs-sm text-primary float-right mb-2"><a href="/dev-stage/es/data-stories/violence/">Read more <i
-                        class="fas fa-arrow-circle-right"></i></a></p>
-                  </div>
+                <div class="card-body">
+                    <h3 class="card-title"><a class="text-black" href="/dev-stage/es/data-stories/violence/" class="text-primary">Por qué la violencia es un problema de salud pública </a></h3>
+                    <div class="mb-2">Uso de la salud pública para prevenir la violencia Sufrir violencia afecta a las personas de muchas …
+</div>
+                    <div class="d-flex justify-content-end link">
+                        <a class="fs-sm font-weight-bold" href="/dev-stage/es/data-stories/violence/">Read more <i class="fa-solid fa-angle-right"></i></a>
+                    </div>
                 </div>
-              </div>
-        </div><div class="col-md-4 mb-2">
-            <div class="card content-card mb-4">
-                <div class="card-content">
-                    <a href="/dev-stage/es/data-stories/housing/">
+            </div>
+        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+            <div class="card-content data-stories">
+                <a href="/dev-stage/es/data-stories/housing/">
+                    
+                    
+                    <div style="width:100%; height:250px; background-image: URL(/dev-stage/es/data-stories/housing/ds-housing_hu6b252481458558718de479ea1428e8ac_261393_740x0_resize_q95_mitchellnetravali.jpeg); background-size: cover"></div>
+                </a>
 
-                        
-                        
-                        <div style="width:100%; height:250px; background-image: URL(/dev-stage/es/data-stories/housing/ds-housing_hu6b252481458558718de479ea1428e8ac_261393_740x0_resize_q95_mitchellnetravali.jpeg); background-size: cover"></div></a>
-
-                    <div class="card-body">
-                    <p class="fs-sm card-title fs-sm"><a href="/dev-stage/es/data-stories/housing/" class="text-primary">Salud, vivienda e historia</a></p>
-                    <p class="fs-sm">Para la salud, el lugar importa ¿Qué determina si usted está saludable o no? Puede pensar en lo que …
-</p>
-                    <p class="fs-sm text-primary float-right mb-2"><a href="/dev-stage/es/data-stories/housing/">Read more <i
-                        class="fas fa-arrow-circle-right"></i></a></p>
-                  </div>
+                <div class="card-body">
+                    <h3 class="card-title"><a class="text-black" href="/dev-stage/es/data-stories/housing/" class="text-primary">Salud, vivienda e historia</a></h3>
+                    <div class="mb-2">Para la salud, el lugar importa ¿Qué determina si usted está saludable o no? Puede pensar en lo que …
+</div>
+                    <div class="d-flex justify-content-end link">
+                        <a class="fs-sm font-weight-bold" href="/dev-stage/es/data-stories/housing/">Read more <i class="fa-solid fa-angle-right"></i></a>
+                    </div>
                 </div>
-              </div>
-        </div><div class="col-md-4 mb-2">
-            <div class="card content-card mb-4">
-                <div class="card-content">
-                    <a href="/dev-stage/es/data-stories/redlining/">
+            </div>
+        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+            <div class="card-content data-stories">
+                <a href="/dev-stage/es/data-stories/redlining/">
+                    
+                    
+                    <div style="width:100%; height:250px; background-image: URL(/dev-stage/es/data-stories/redlining/ds-redlining_hu6b252481458558718de479ea1428e8ac_261393_740x0_resize_q95_mitchellnetravali.jpeg); background-size: cover"></div>
+                </a>
 
-                        
-                        
-                        <div style="width:100%; height:250px; background-image: URL(/dev-stage/es/data-stories/redlining/ds-redlining_hu6b252481458558718de479ea1428e8ac_261393_740x0_resize_q95_mitchellnetravali.jpeg); background-size: cover"></div></a>
-
-                    <div class="card-body">
-                    <p class="fs-sm card-title fs-sm"><a href="/dev-stage/es/data-stories/redlining/" class="text-primary">Una breve historia del redlining </a></p>
-                    <p class="fs-sm">La política financiera de 90 años que daña nuestra salud. En la salud pública, solemos citar el …
-</p>
-                    <p class="fs-sm text-primary float-right mb-2"><a href="/dev-stage/es/data-stories/redlining/">Read more <i
-                        class="fas fa-arrow-circle-right"></i></a></p>
-                  </div>
+                <div class="card-body">
+                    <h3 class="card-title"><a class="text-black" href="/dev-stage/es/data-stories/redlining/" class="text-primary">Una breve historia del redlining </a></h3>
+                    <div class="mb-2">La política financiera de 90 años que daña nuestra salud. En la salud pública, solemos citar el …
+</div>
+                    <div class="d-flex justify-content-end link">
+                        <a class="fs-sm font-weight-bold" href="/dev-stage/es/data-stories/redlining/">Read more <i class="fa-solid fa-angle-right"></i></a>
+                    </div>
                 </div>
-              </div>
+            </div>
         </div></div>
 
-      <div class="row mt-4">
+    <div class="row mt-4">
         <div class="col">
             <h2>All data stories</h2>
         </div>
     </div>
 
     <div class="row mt-4">
-        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-            <li class="nav-item">
-              <a class="nav-link active" id="pills-all-tab" data-toggle="pill" href="#pills-all" role="tab" aria-controls="pills-all" aria-selected="true">All data stories</a>
-            </li>
+        <ul class="nav nav-pills mb-3 border-bottom" id="pills-tab" role="tablist">
             <li class="nav-item">
               <a class="nav-link" id="pills-aq-tab" data-toggle="pill" href="#pills-aq" role="tab" aria-controls="pills-aq" aria-selected="false">Air quality</a>
             </li>
@@ -339,6 +411,9 @@
               <li class="nav-item">
                 <a class="nav-link" id="pills-how-tab" data-toggle="pill" href="#pills-how" role="tab" aria-controls="pills-how" aria-selected="false">How we work</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link active" id="pills-all-tab" data-toggle="pill" href="#pills-all" role="tab" aria-controls="pills-all" aria-selected="true">All data stories</a>
+              </li>
           </ul>
     </div>
 
@@ -347,254 +422,322 @@
             <div class="tab-content" id="pills-tabContent">
                 <div class="tab-pane fade show active" id="pills-all" role="tabpanel" aria-labelledby="pills-all-tab">
 
-                    <div class="row pb-2"><div class="col-md-4 border">
-                            <div class="row my-2">
-                                <div class="col-4">
+                    <div class="row pb-2"><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/dev-stage/es/data-stories/violence/">
                                     
                                     
-                                    <a href="/dev-stage/es/data-stories/violence/">
-                                      <div style="width:100%; height:100%; background-image: URL(/dev-stage/es/data-stories/violence/ds-violence_hu6182672d2bc7dc090625beee39a7dab9_4320773_740x0_resize_q95_mitchellnetravali.jpg); background-size: cover; background-position: center center; "></div></a>
+                                    <div style="width:100%; height:250px; background-image: URL(/dev-stage/es/data-stories/violence/ds-violence_hu6182672d2bc7dc090625beee39a7dab9_4320773_740x0_resize_q95_mitchellnetravali.jpg); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/dev-stage/es/data-stories/violence/" class="text-primary">Por qué la violencia es un problema de salud pública </a></h3>
+                                    <div class="mb-2">Uso de la salud pública para prevenir la violencia Sufrir violencia afecta a las personas de muchas …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/dev-stage/es/data-stories/violence/">Read more <i class="fa-solid fa-angle-right"></i></a>
                                     </div>
-                                    
-                                    <div class="col-8 ml-auto h-100 pl-1 mb-2">
-                                      <p class="fs-sm"><a class="text-info font-weight-bold" href="/dev-stage/es/data-stories/violence/">Por qué la violencia es un problema de salud pública </a> Uso de la salud pública para prevenir la violencia Sufrir violencia afecta a las personas de muchas … </p>
-                                    </div>
+                                </div>
                             </div>
-                        </div><div class="col-md-4 border">
-                            <div class="row my-2">
-                                <div class="col-4">
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/dev-stage/es/data-stories/housing/">
                                     
                                     
-                                    <a href="/dev-stage/es/data-stories/housing/">
-                                      <div style="width:100%; height:100%; background-image: URL(/dev-stage/es/data-stories/housing/ds-housing_hu6b252481458558718de479ea1428e8ac_261393_740x0_resize_q95_mitchellnetravali.jpeg); background-size: cover; background-position: center center; "></div></a>
+                                    <div style="width:100%; height:250px; background-image: URL(/dev-stage/es/data-stories/housing/ds-housing_hu6b252481458558718de479ea1428e8ac_261393_740x0_resize_q95_mitchellnetravali.jpeg); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/dev-stage/es/data-stories/housing/" class="text-primary">Salud, vivienda e historia</a></h3>
+                                    <div class="mb-2">Para la salud, el lugar importa ¿Qué determina si usted está saludable o no? Puede pensar en lo que …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/dev-stage/es/data-stories/housing/">Read more <i class="fa-solid fa-angle-right"></i></a>
                                     </div>
-                                    
-                                    <div class="col-8 ml-auto h-100 pl-1 mb-2">
-                                      <p class="fs-sm"><a class="text-info font-weight-bold" href="/dev-stage/es/data-stories/housing/">Salud, vivienda e historia</a> Para la salud, el lugar importa ¿Qué determina si usted está saludable o no? Puede pensar en lo que … </p>
-                                    </div>
+                                </div>
                             </div>
-                        </div><div class="col-md-4 border">
-                            <div class="row my-2">
-                                <div class="col-4">
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/dev-stage/es/data-stories/redlining/">
                                     
                                     
-                                    <a href="/dev-stage/es/data-stories/redlining/">
-                                      <div style="width:100%; height:100%; background-image: URL(/dev-stage/es/data-stories/redlining/ds-redlining_hu6b252481458558718de479ea1428e8ac_261393_740x0_resize_q95_mitchellnetravali.jpeg); background-size: cover; background-position: center center; "></div></a>
+                                    <div style="width:100%; height:250px; background-image: URL(/dev-stage/es/data-stories/redlining/ds-redlining_hu6b252481458558718de479ea1428e8ac_261393_740x0_resize_q95_mitchellnetravali.jpeg); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/dev-stage/es/data-stories/redlining/" class="text-primary">Una breve historia del redlining </a></h3>
+                                    <div class="mb-2">La política financiera de 90 años que daña nuestra salud. En la salud pública, solemos citar el …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/dev-stage/es/data-stories/redlining/">Read more <i class="fa-solid fa-angle-right"></i></a>
                                     </div>
-                                    
-                                    <div class="col-8 ml-auto h-100 pl-1 mb-2">
-                                      <p class="fs-sm"><a class="text-info font-weight-bold" href="/dev-stage/es/data-stories/redlining/">Una breve historia del redlining </a> La política financiera de 90 años que daña nuestra salud. En la salud pública, solemos citar el … </p>
-                                    </div>
+                                </div>
                             </div>
-                        </div><div class="col-md-4 border">
-                            <div class="row my-2">
-                                <div class="col-4">
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/dev-stage/es/data-stories/geographies/">
                                     
                                     
-                                    <a href="/dev-stage/es/data-stories/geographies/">
-                                      <div style="width:100%; height:100%; background-image: URL(/dev-stage/es/data-stories/geographies/ds-geographies_hu340a3b6f063c63347307132c2586a018_1911570_740x0_resize_q95_mitchellnetravali.jpg); background-size: cover; background-position: center center; "></div></a>
+                                    <div style="width:100%; height:250px; background-image: URL(/dev-stage/es/data-stories/geographies/ds-geographies_hu340a3b6f063c63347307132c2586a018_1911570_740x0_resize_q95_mitchellnetravali.jpg); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/dev-stage/es/data-stories/geographies/" class="text-primary">Los límites del vecindario en los datos del Departamento de Salud</a></h3>
+                                    <div class="mb-2">La ciudad de Nueva York posee cientos de vecindarios y casi la misma cantidad de formas de diagramar …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/dev-stage/es/data-stories/geographies/">Read more <i class="fa-solid fa-angle-right"></i></a>
                                     </div>
-                                    
-                                    <div class="col-8 ml-auto h-100 pl-1 mb-2">
-                                      <p class="fs-sm"><a class="text-info font-weight-bold" href="/dev-stage/es/data-stories/geographies/">Los límites del vecindario en los datos del Departamento de Salud</a> La ciudad de Nueva York posee cientos de vecindarios y casi la misma cantidad de formas de diagramar … </p>
-                                    </div>
+                                </div>
                             </div>
-                        </div><div class="col-md-4 border">
-                            <div class="row my-2">
-                                <div class="col-4">
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/dev-stage/es/data-stories/air-quality-and-covid/">
                                     
                                     
-                                    <a href="/dev-stage/es/data-stories/aqcovid/">
-                                      <div style="width:100%; height:100%; background-image: URL(/dev-stage/es/data-stories/aqcovid/ds-aqcovid_hu6f00cbe9d883d4bf1385a12897341333_3698525_740x0_resize_q95_mitchellnetravali.jpeg); background-size: cover; background-position: center center; "></div></a>
+                                    <div style="width:100%; height:250px; background-image: URL(/dev-stage/es/data-stories/air-quality-and-covid/ds-aqcovid_hu6f00cbe9d883d4bf1385a12897341333_3698525_740x0_resize_q95_mitchellnetravali.jpeg); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/dev-stage/es/data-stories/air-quality-and-covid/" class="text-primary">La calidad el aire durante la COVID-19</a></h3>
+                                    <div class="mb-2">¿Qué sucede cuando la ciudad de Nueva York se queda en casa? La pandemia de la COVID-19 cambió por …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/dev-stage/es/data-stories/air-quality-and-covid/">Read more <i class="fa-solid fa-angle-right"></i></a>
                                     </div>
-                                    
-                                    <div class="col-8 ml-auto h-100 pl-1 mb-2">
-                                      <p class="fs-sm"><a class="text-info font-weight-bold" href="/dev-stage/es/data-stories/aqcovid/">La calidad el aire durante la COVID-19</a> ¿Qué sucede cuando la ciudad de Nueva York se queda en casa? La pandemia de la COVID-19 cambió por … </p>
-                                    </div>
+                                </div>
                             </div>
-                        </div><div class="col-md-4 border">
-                            <div class="row my-2">
-                                <div class="col-4">
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/dev-stage/es/data-stories/asthma-and-poverty/">
                                     
                                     
-                                    <a href="/dev-stage/es/data-stories/povasthma/">
-                                      <div style="width:100%; height:100%; background-image: URL(/dev-stage/es/data-stories/povasthma/ds-povasthma_hub337c1a52911da742d41cad844f9d8de_8178577_740x0_resize_q95_mitchellnetravali.jpg); background-size: cover; background-position: center center; "></div></a>
+                                    <div style="width:100%; height:250px; background-image: URL(/dev-stage/es/data-stories/asthma-and-poverty/ds-povasthma_hub337c1a52911da742d41cad844f9d8de_8178577_740x0_resize_q95_mitchellnetravali.jpg); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/dev-stage/es/data-stories/asthma-and-poverty/" class="text-primary">Por qué el asma es un problema de justicia social</a></h3>
+                                    <div class="mb-2">La pobreza afecta la salud de muchas formas. En la ciudad de Nueva York, la historia del asma …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/dev-stage/es/data-stories/asthma-and-poverty/">Read more <i class="fa-solid fa-angle-right"></i></a>
                                     </div>
-                                    
-                                    <div class="col-8 ml-auto h-100 pl-1 mb-2">
-                                      <p class="fs-sm"><a class="text-info font-weight-bold" href="/dev-stage/es/data-stories/povasthma/">Por qué el asma es un problema de justicia social</a> La pobreza afecta la salud de muchas formas. En la ciudad de Nueva York, la historia del asma … </p>
-                                    </div>
+                                </div>
                             </div>
                         </div></div>
                 </div>
 
                 <div class="tab-pane fade" id="pills-aq" role="tabpanel" aria-labelledby="pills-aq-tab">
-                    <div class="row"><div class="col-md-4 border">
-                            <div class="row my-2">
-                                <div class="col-4">
+                    <div class="row"><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/dev-stage/es/data-stories/air-quality-and-covid/">
                                     
                                     
-                                    <a href="/dev-stage/es/data-stories/aqcovid/">
-                                      <div style="width:100%; height:100%; background-image: URL(/dev-stage/es/data-stories/aqcovid/ds-aqcovid_hu6f00cbe9d883d4bf1385a12897341333_3698525_740x0_resize_q95_mitchellnetravali.jpeg); background-size: cover; background-position: center center; "></div></a>
+                                    <div style="width:100%; height:250px; background-image: URL(/dev-stage/es/data-stories/air-quality-and-covid/ds-aqcovid_hu6f00cbe9d883d4bf1385a12897341333_3698525_740x0_resize_q95_mitchellnetravali.jpeg); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/dev-stage/es/data-stories/air-quality-and-covid/" class="text-primary">La calidad el aire durante la COVID-19</a></h3>
+                                    <div class="mb-2">¿Qué sucede cuando la ciudad de Nueva York se queda en casa? La pandemia de la COVID-19 cambió por …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/dev-stage/es/data-stories/air-quality-and-covid/">Read more &gt;</a>
                                     </div>
-                                    
-                                    <div class="col-8 ml-auto h-100 pl-1 mb-2">
-                                      <p class="fs-sm"><a class="text-info font-weight-bold" href="/dev-stage/es/data-stories/aqcovid/">La calidad el aire durante la COVID-19</a> ¿Qué sucede cuando la ciudad de Nueva York se queda en casa? La pandemia de la COVID-19 cambió por … </p>
-                                    </div>
+                                </div>
                             </div>
                         </div></div>
                 </div>
 
                 <div class="tab-pane fade" id="pills-transportation" role="tabpanel" aria-labelledby="pills-transportation-tab">
-                    <div class="row"><div class="col-md-4 border">
-                            <div class="row my-2">
-                                <div class="col-4">
+                    <div class="row"><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/dev-stage/es/data-stories/air-quality-and-covid/">
                                     
                                     
-                                    <a href="/dev-stage/es/data-stories/aqcovid/">
-                                      <div style="width:100%; height:100%; background-image: URL(/dev-stage/es/data-stories/aqcovid/ds-aqcovid_hu6f00cbe9d883d4bf1385a12897341333_3698525_740x0_resize_q95_mitchellnetravali.jpeg); background-size: cover; background-position: center center; "></div></a>
+                                    <div style="width:100%; height:250px; background-image: URL(/dev-stage/es/data-stories/air-quality-and-covid/ds-aqcovid_hu6f00cbe9d883d4bf1385a12897341333_3698525_740x0_resize_q95_mitchellnetravali.jpeg); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/dev-stage/es/data-stories/air-quality-and-covid/" class="text-primary">La calidad el aire durante la COVID-19</a></h3>
+                                    <div class="mb-2">¿Qué sucede cuando la ciudad de Nueva York se queda en casa? La pandemia de la COVID-19 cambió por …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/dev-stage/es/data-stories/air-quality-and-covid/">Read more &gt;</a>
                                     </div>
-                                    
-                                    <div class="col-8 ml-auto h-100 pl-1 mb-2">
-                                      <p class="fs-sm"><a class="text-info font-weight-bold" href="/dev-stage/es/data-stories/aqcovid/">La calidad el aire durante la COVID-19</a> ¿Qué sucede cuando la ciudad de Nueva York se queda en casa? La pandemia de la COVID-19 cambió por … </p>
-                                    </div>
+                                </div>
                             </div>
                         </div></div>
                 </div>
-    
+
                 <div class="tab-pane fade" id="pills-justice" role="tabpanel" aria-labelledby="pills-justice-tab">
-                    <div class="row"><div class="col-md-4 border">
-                            <div class="row my-2">
-                                <div class="col-4">
+                    <div class="row"><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/dev-stage/es/data-stories/violence/">
                                     
                                     
-                                    <a href="/dev-stage/es/data-stories/violence/">
-                                      <div style="width:100%; height:100%; background-image: URL(/dev-stage/es/data-stories/violence/ds-violence_hu6182672d2bc7dc090625beee39a7dab9_4320773_740x0_resize_q95_mitchellnetravali.jpg); background-size: cover; background-position: center center; "></div></a>
+                                    <div style="width:100%; height:250px; background-image: URL(/dev-stage/es/data-stories/violence/ds-violence_hu6182672d2bc7dc090625beee39a7dab9_4320773_740x0_resize_q95_mitchellnetravali.jpg); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/dev-stage/es/data-stories/violence/" class="text-primary">Por qué la violencia es un problema de salud pública </a></h3>
+                                    <div class="mb-2">Uso de la salud pública para prevenir la violencia Sufrir violencia afecta a las personas de muchas …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/dev-stage/es/data-stories/violence/">Read more &gt;</a>
                                     </div>
-                                    
-                                    <div class="col-8 ml-auto h-100 pl-1 mb-2">
-                                      <p class="fs-sm"><a class="text-info font-weight-bold" href="/dev-stage/es/data-stories/violence/">Por qué la violencia es un problema de salud pública </a> Uso de la salud pública para prevenir la violencia Sufrir violencia afecta a las personas de muchas … </p>
-                                    </div>
+                                </div>
                             </div>
-                        </div><div class="col-md-4 border">
-                            <div class="row my-2">
-                                <div class="col-4">
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/dev-stage/es/data-stories/housing/">
                                     
                                     
-                                    <a href="/dev-stage/es/data-stories/housing/">
-                                      <div style="width:100%; height:100%; background-image: URL(/dev-stage/es/data-stories/housing/ds-housing_hu6b252481458558718de479ea1428e8ac_261393_740x0_resize_q95_mitchellnetravali.jpeg); background-size: cover; background-position: center center; "></div></a>
+                                    <div style="width:100%; height:250px; background-image: URL(/dev-stage/es/data-stories/housing/ds-housing_hu6b252481458558718de479ea1428e8ac_261393_740x0_resize_q95_mitchellnetravali.jpeg); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/dev-stage/es/data-stories/housing/" class="text-primary">Salud, vivienda e historia</a></h3>
+                                    <div class="mb-2">Para la salud, el lugar importa ¿Qué determina si usted está saludable o no? Puede pensar en lo que …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/dev-stage/es/data-stories/housing/">Read more &gt;</a>
                                     </div>
-                                    
-                                    <div class="col-8 ml-auto h-100 pl-1 mb-2">
-                                      <p class="fs-sm"><a class="text-info font-weight-bold" href="/dev-stage/es/data-stories/housing/">Salud, vivienda e historia</a> Para la salud, el lugar importa ¿Qué determina si usted está saludable o no? Puede pensar en lo que … </p>
-                                    </div>
+                                </div>
                             </div>
-                        </div><div class="col-md-4 border">
-                            <div class="row my-2">
-                                <div class="col-4">
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/dev-stage/es/data-stories/redlining/">
                                     
                                     
-                                    <a href="/dev-stage/es/data-stories/redlining/">
-                                      <div style="width:100%; height:100%; background-image: URL(/dev-stage/es/data-stories/redlining/ds-redlining_hu6b252481458558718de479ea1428e8ac_261393_740x0_resize_q95_mitchellnetravali.jpeg); background-size: cover; background-position: center center; "></div></a>
+                                    <div style="width:100%; height:250px; background-image: URL(/dev-stage/es/data-stories/redlining/ds-redlining_hu6b252481458558718de479ea1428e8ac_261393_740x0_resize_q95_mitchellnetravali.jpeg); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/dev-stage/es/data-stories/redlining/" class="text-primary">Una breve historia del redlining </a></h3>
+                                    <div class="mb-2">La política financiera de 90 años que daña nuestra salud. En la salud pública, solemos citar el …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/dev-stage/es/data-stories/redlining/">Read more &gt;</a>
                                     </div>
-                                    
-                                    <div class="col-8 ml-auto h-100 pl-1 mb-2">
-                                      <p class="fs-sm"><a class="text-info font-weight-bold" href="/dev-stage/es/data-stories/redlining/">Una breve historia del redlining </a> La política financiera de 90 años que daña nuestra salud. En la salud pública, solemos citar el … </p>
-                                    </div>
+                                </div>
                             </div>
-                        </div><div class="col-md-4 border">
-                            <div class="row my-2">
-                                <div class="col-4">
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/dev-stage/es/data-stories/asthma-and-poverty/">
                                     
                                     
-                                    <a href="/dev-stage/es/data-stories/povasthma/">
-                                      <div style="width:100%; height:100%; background-image: URL(/dev-stage/es/data-stories/povasthma/ds-povasthma_hub337c1a52911da742d41cad844f9d8de_8178577_740x0_resize_q95_mitchellnetravali.jpg); background-size: cover; background-position: center center; "></div></a>
+                                    <div style="width:100%; height:250px; background-image: URL(/dev-stage/es/data-stories/asthma-and-poverty/ds-povasthma_hub337c1a52911da742d41cad844f9d8de_8178577_740x0_resize_q95_mitchellnetravali.jpg); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/dev-stage/es/data-stories/asthma-and-poverty/" class="text-primary">Por qué el asma es un problema de justicia social</a></h3>
+                                    <div class="mb-2">La pobreza afecta la salud de muchas formas. En la ciudad de Nueva York, la historia del asma …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/dev-stage/es/data-stories/asthma-and-poverty/">Read more &gt;</a>
                                     </div>
-                                    
-                                    <div class="col-8 ml-auto h-100 pl-1 mb-2">
-                                      <p class="fs-sm"><a class="text-info font-weight-bold" href="/dev-stage/es/data-stories/povasthma/">Por qué el asma es un problema de justicia social</a> La pobreza afecta la salud de muchas formas. En la ciudad de Nueva York, la historia del asma … </p>
-                                    </div>
+                                </div>
                             </div>
                         </div></div>
                 </div>
-    
+
                 <div class="tab-pane fade" id="pills-climate" role="tabpanel" aria-labelledby="pills-climate-tab">
                     <div class="row"></div>
                 </div>
-    
+
                 <div class="tab-pane fade" id="pills-housing" role="tabpanel" aria-labelledby="pills-housing-tab">
-                    <div class="row"><div class="col-md-4 border">
-                            <div class="row my-2">
-                                <div class="col-4">
+                    <div class="row"><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/dev-stage/es/data-stories/violence/">
                                     
                                     
-                                    <a href="/dev-stage/es/data-stories/violence/">
-                                      <div style="width:100%; height:100%; background-image: URL(/dev-stage/es/data-stories/violence/ds-violence_hu6182672d2bc7dc090625beee39a7dab9_4320773_740x0_resize_q95_mitchellnetravali.jpg); background-size: cover; background-position: center center; "></div></a>
+                                    <div style="width:100%; height:250px; background-image: URL(/dev-stage/es/data-stories/violence/ds-violence_hu6182672d2bc7dc090625beee39a7dab9_4320773_740x0_resize_q95_mitchellnetravali.jpg); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/dev-stage/es/data-stories/violence/" class="text-primary">Por qué la violencia es un problema de salud pública </a></h3>
+                                    <div class="mb-2">Uso de la salud pública para prevenir la violencia Sufrir violencia afecta a las personas de muchas …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/dev-stage/es/data-stories/violence/">Read more &gt;</a>
                                     </div>
-                                    
-                                    <div class="col-8 ml-auto h-100 pl-1 mb-2">
-                                      <p class="fs-sm"><a class="text-info font-weight-bold" href="/dev-stage/es/data-stories/violence/">Por qué la violencia es un problema de salud pública </a> Uso de la salud pública para prevenir la violencia Sufrir violencia afecta a las personas de muchas … </p>
-                                    </div>
+                                </div>
                             </div>
-                        </div><div class="col-md-4 border">
-                            <div class="row my-2">
-                                <div class="col-4">
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/dev-stage/es/data-stories/housing/">
                                     
                                     
-                                    <a href="/dev-stage/es/data-stories/housing/">
-                                      <div style="width:100%; height:100%; background-image: URL(/dev-stage/es/data-stories/housing/ds-housing_hu6b252481458558718de479ea1428e8ac_261393_740x0_resize_q95_mitchellnetravali.jpeg); background-size: cover; background-position: center center; "></div></a>
+                                    <div style="width:100%; height:250px; background-image: URL(/dev-stage/es/data-stories/housing/ds-housing_hu6b252481458558718de479ea1428e8ac_261393_740x0_resize_q95_mitchellnetravali.jpeg); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/dev-stage/es/data-stories/housing/" class="text-primary">Salud, vivienda e historia</a></h3>
+                                    <div class="mb-2">Para la salud, el lugar importa ¿Qué determina si usted está saludable o no? Puede pensar en lo que …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/dev-stage/es/data-stories/housing/">Read more &gt;</a>
                                     </div>
-                                    
-                                    <div class="col-8 ml-auto h-100 pl-1 mb-2">
-                                      <p class="fs-sm"><a class="text-info font-weight-bold" href="/dev-stage/es/data-stories/housing/">Salud, vivienda e historia</a> Para la salud, el lugar importa ¿Qué determina si usted está saludable o no? Puede pensar en lo que … </p>
-                                    </div>
+                                </div>
                             </div>
-                        </div><div class="col-md-4 border">
-                            <div class="row my-2">
-                                <div class="col-4">
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/dev-stage/es/data-stories/redlining/">
                                     
                                     
-                                    <a href="/dev-stage/es/data-stories/redlining/">
-                                      <div style="width:100%; height:100%; background-image: URL(/dev-stage/es/data-stories/redlining/ds-redlining_hu6b252481458558718de479ea1428e8ac_261393_740x0_resize_q95_mitchellnetravali.jpeg); background-size: cover; background-position: center center; "></div></a>
+                                    <div style="width:100%; height:250px; background-image: URL(/dev-stage/es/data-stories/redlining/ds-redlining_hu6b252481458558718de479ea1428e8ac_261393_740x0_resize_q95_mitchellnetravali.jpeg); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/dev-stage/es/data-stories/redlining/" class="text-primary">Una breve historia del redlining </a></h3>
+                                    <div class="mb-2">La política financiera de 90 años que daña nuestra salud. En la salud pública, solemos citar el …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/dev-stage/es/data-stories/redlining/">Read more &gt;</a>
                                     </div>
-                                    
-                                    <div class="col-8 ml-auto h-100 pl-1 mb-2">
-                                      <p class="fs-sm"><a class="text-info font-weight-bold" href="/dev-stage/es/data-stories/redlining/">Una breve historia del redlining </a> La política financiera de 90 años que daña nuestra salud. En la salud pública, solemos citar el … </p>
-                                    </div>
+                                </div>
                             </div>
-                        </div><div class="col-md-4 border">
-                            <div class="row my-2">
-                                <div class="col-4">
+                        </div><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/dev-stage/es/data-stories/asthma-and-poverty/">
                                     
                                     
-                                    <a href="/dev-stage/es/data-stories/povasthma/">
-                                      <div style="width:100%; height:100%; background-image: URL(/dev-stage/es/data-stories/povasthma/ds-povasthma_hub337c1a52911da742d41cad844f9d8de_8178577_740x0_resize_q95_mitchellnetravali.jpg); background-size: cover; background-position: center center; "></div></a>
+                                    <div style="width:100%; height:250px; background-image: URL(/dev-stage/es/data-stories/asthma-and-poverty/ds-povasthma_hub337c1a52911da742d41cad844f9d8de_8178577_740x0_resize_q95_mitchellnetravali.jpg); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/dev-stage/es/data-stories/asthma-and-poverty/" class="text-primary">Por qué el asma es un problema de justicia social</a></h3>
+                                    <div class="mb-2">La pobreza afecta la salud de muchas formas. En la ciudad de Nueva York, la historia del asma …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/dev-stage/es/data-stories/asthma-and-poverty/">Read more &gt;</a>
                                     </div>
-                                    
-                                    <div class="col-8 ml-auto h-100 pl-1 mb-2">
-                                      <p class="fs-sm"><a class="text-info font-weight-bold" href="/dev-stage/es/data-stories/povasthma/">Por qué el asma es un problema de justicia social</a> La pobreza afecta la salud de muchas formas. En la ciudad de Nueva York, la historia del asma … </p>
-                                    </div>
+                                </div>
                             </div>
                         </div></div>
                 </div>
-    
+
                 <div class="tab-pane fade" id="pills-food" role="tabpanel" aria-labelledby="pills-food-tab">
                     <div class="row"></div>
                 </div>
-    
+
                 <div class="tab-pane fade" id="pills-how" role="tabpanel" aria-labelledby="pills-how-tab">
-                    <div class="row"><div class="col-md-4 border">
-                            <div class="row my-2">
-                                <div class="col-4">
+                    <div class="row"><div class="card content-card mb-4 col-sm-6 col-md-4">
+                            <div class="card-content data-stories">
+                                <a href="/dev-stage/es/data-stories/geographies/">
                                     
                                     
-                                    <a href="/dev-stage/es/data-stories/geographies/">
-                                      <div style="width:100%; height:100%; background-image: URL(/dev-stage/es/data-stories/geographies/ds-geographies_hu340a3b6f063c63347307132c2586a018_1911570_740x0_resize_q95_mitchellnetravali.jpg); background-size: cover; background-position: center center; "></div></a>
+                                    <div style="width:100%; height:250px; background-image: URL(/dev-stage/es/data-stories/geographies/ds-geographies_hu340a3b6f063c63347307132c2586a018_1911570_740x0_resize_q95_mitchellnetravali.jpg); background-size: cover"></div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h3 class="card-title"><a class="text-black" href="/dev-stage/es/data-stories/geographies/" class="text-primary">Los límites del vecindario en los datos del Departamento de Salud</a></h3>
+                                    <div class="mb-2">La ciudad de Nueva York posee cientos de vecindarios y casi la misma cantidad de formas de diagramar …
+</div>
+                                    <div class="d-flex justify-content-end link">
+                                        <a class="fs-sm font-weight-bold" href="/dev-stage/es/data-stories/geographies/">Read more &gt;</a>
                                     </div>
-                                    
-                                    <div class="col-8 ml-auto h-100 pl-1 mb-2">
-                                      <p class="fs-sm"><a class="text-info font-weight-bold" href="/dev-stage/es/data-stories/geographies/">Los límites del vecindario en los datos del Departamento de Salud</a> La ciudad de Nueva York posee cientos de vecindarios y casi la misma cantidad de formas de diagramar … </p>
-                                    </div>
+                                </div>
                             </div>
                         </div></div>
                 </div>
@@ -604,8 +747,6 @@
     </div>
 
         
-        
-        <hr class="my-4 portalhr">
 
 </article><ul id="results"></ul>
   </main>
@@ -843,7 +984,7 @@
                             result.meta.title = result.meta.title
                                 .replace(/&#(\d+);/g, ((match, dec) => `${String.fromCharCode(dec)}`))
                                 .replaceAll("&amp;", "&");
-                            
+
                             
 
                             result.sub_results.forEach(sub => {
@@ -901,7 +1042,7 @@
             </script>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
         </div>
       </div>
     </div>
