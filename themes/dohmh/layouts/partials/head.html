@@ -282,6 +282,10 @@
     <meta data-pagefind-filter="section[content]" content="Data Stories">
 {{- end }}
 
+{{- if (eq .Section "data-features") -}}
+    <meta data-pagefind-filter="section[content]" content="Data Features">
+{{- end -}}
+
 {{- if (eq .Section "neighborhood-reports") -}}
     <meta data-pagefind-filter="section[content]" content="Neighborhood Reports">
 {{- end }}
@@ -293,6 +297,8 @@
 {{- if (eq .Section "key-topics") -}}
     <meta data-pagefind-filter="section[content]" content="Key Topics">
 {{- end -}}
+
+
 
 {{- /*  set site params  */ -}}
 

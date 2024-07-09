@@ -20,7 +20,7 @@
                          aria-expanded="false"
                          aria-controls="panel-acc-button-01">
                          <span class="title" role="heading"
-                             aria-level="3">Air Quality</span>
+                             aria-level="3">Air quality and health</span>
                      </a></strong> 
              
                      <div class="collapse show" id="panel-acc-button-01"
@@ -41,6 +41,36 @@
              
                  </div>
                  <!-- .AQ card -->
+
+                 <div class="card border">
+             
+                    <strong><a class="btn btn-outline-light btn-block collapse collapsed"
+                        id="acc-button-07" data-toggle="collapse"
+                        href="#panel-acc-button-07" role="tab"
+                        aria-expanded="false"
+                        aria-controls="panel-acc-button-07">
+                        <span class="title" role="heading"
+                            aria-level="3">Child health</span>
+                    </a></strong>
+            
+                    <div class="collapse" id="panel-acc-button-07"
+                        role="tabpanel" aria-labelledby="acc-button-07"
+                        data-parent="#accordion-02">
+            
+                        <div class="card-body bg-white">
+                            <ul>
+                                {{ range (sort (where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "childhealth")) "Title" "asc") }}
+                                    <li><a href="{{ .RelPermalink}}">{{ .Title }}</a>
+                                    </li>
+                                {{end}}
+                                </ul>
+                        </div>
+            
+                    </div>
+                    <!-- .collapse -->
+            
+                </div>
+                <!-- .child health card -->
              
                  <div class="card border">
              
@@ -50,7 +80,7 @@
                          aria-expanded="false"
                          aria-controls="panel-acc-button-02">
                          <span class="title" role="heading"
-                             aria-level="3">Climate</span>
+                             aria-level="3">Climate and health</span>
                      </a></strong>
              
                      <div class="collapse" id="panel-acc-button-02"
@@ -71,6 +101,36 @@
              
                  </div>
                  <!-- .Climate card -->
+
+                 <div class="card border">
+             
+                    <strong><a class="btn btn-outline-light btn-block collapse collapsed"
+                        id="acc-button-09" data-toggle="collapse"
+                        href="#panel-acc-button-09" role="tab"
+                        aria-expanded="false"
+                        aria-controls="panel-acc-button-09">
+                        <span class="title" role="heading"
+                            aria-level="3">Food and drink</span>
+                    </a></strong>
+            
+                    <div class="collapse" id="panel-acc-button-09"
+                        role="tabpanel" aria-labelledby="acc-button-09"
+                        data-parent="#accordion-02">
+            
+                        <div class="card-body bg-white">
+                            <ul>
+                                {{ range (sort (where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "foodanddrink")) "Title" "asc") }}
+                                    <li><a href="{{ .RelPermalink}}">{{ .Title }}</a>
+                                    </li>
+                                {{end}}
+                                </ul>
+                        </div>
+            
+                    </div>
+                    <!-- .collapse -->
+            
+                </div>
+                <!-- .food card -->
              
                  <div class="card border">
              
@@ -80,7 +140,7 @@
                          aria-expanded="false"
                          aria-controls="panel-acc-button-03">
                          <span class="title" role="heading"
-                             aria-level="3">Housing</span>
+                             aria-level="3">Housing and health</span>
                      </a></strong>
              
                      <div class="collapse" id="panel-acc-button-03"
@@ -131,96 +191,40 @@
              
                  </div>
                  <!-- .HE card -->
-             
+
+
                  <div class="card border">
              
-                     <strong><a class="btn btn-outline-light btn-block collapse collapsed"
-                         id="acc-button-05" data-toggle="collapse"
-                         href="#panel-acc-button-05" role="tab"
-                         aria-expanded="false"
-                         aria-controls="panel-acc-button-05">
-                         <span class="title" role="heading"
-                             aria-level="3">Active design / Transportation</span>
-                     </a></strong>
+                    <strong><a class="btn btn-outline-light btn-block collapse collapsed"
+                        id="acc-button-06" data-toggle="collapse"
+                        href="#panel-acc-button-06" role="tab"
+                        aria-expanded="false"
+                        aria-controls="panel-acc-button-06">
+                        <span class="title" role="heading"
+                            aria-level="3">Health outcomes</span>
+                    </a></strong>
+            
+                    <div class="collapse" id="panel-acc-button-06"
+                        role="tabpanel" aria-labelledby="acc-button-06"
+                        data-parent="#accordion-02">
+            
+                        <div class="card-body bg-white">
+                            <ul>
+                                {{ range (sort (where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "healthoutcomes")) "Title" "asc") }}
+                                    <li><a href="{{ .RelPermalink}}">{{ .Title }}</a>
+                                    </li>
+                                {{end}}
+                                </ul>
+                        </div>
+            
+                    </div>
+                    <!-- .collapse -->
+            
+                </div>
+                <!-- .Outcomes card -->
              
-                     <div class="collapse" id="panel-acc-button-05"
-                         role="tabpanel" aria-labelledby="acc-button-05"
-                         data-parent="#accordion-02">
-             
-                         <div class="card-body bg-white">
-                             <ul>
-                                 {{ range (sort (where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "transportation")) "Title" "asc") }}
-                                     <li><a href="{{ .RelPermalink}}">{{ .Title }}</a>
-                                     </li>
-                                 {{end}}
-                                 </ul>
-                         </div>
-             
-                     </div>
-                     <!-- .collapse -->
-             
-                 </div>
-                 <!-- .AD card -->
-             
-                 <div class="card border">
-             
-                     <strong><a class="btn btn-outline-light btn-block collapse collapsed"
-                         id="acc-button-06" data-toggle="collapse"
-                         href="#panel-acc-button-06" role="tab"
-                         aria-expanded="false"
-                         aria-controls="panel-acc-button-06">
-                         <span class="title" role="heading"
-                             aria-level="3">Health outcomes</span>
-                     </a></strong>
-             
-                     <div class="collapse" id="panel-acc-button-06"
-                         role="tabpanel" aria-labelledby="acc-button-06"
-                         data-parent="#accordion-02">
-             
-                         <div class="card-body bg-white">
-                             <ul>
-                                 {{ range (sort (where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "healthoutcomes")) "Title" "asc") }}
-                                     <li><a href="{{ .RelPermalink}}">{{ .Title }}</a>
-                                     </li>
-                                 {{end}}
-                                 </ul>
-                         </div>
-             
-                     </div>
-                     <!-- .collapse -->
-             
-                 </div>
-                 <!-- .Outcomes card -->
-             
-                 <div class="card border">
-             
-                     <strong><a class="btn btn-outline-light btn-block collapse collapsed"
-                         id="acc-button-07" data-toggle="collapse"
-                         href="#panel-acc-button-07" role="tab"
-                         aria-expanded="false"
-                         aria-controls="panel-acc-button-07">
-                         <span class="title" role="heading"
-                             aria-level="3">Child health</span>
-                     </a></strong>
-             
-                     <div class="collapse" id="panel-acc-button-07"
-                         role="tabpanel" aria-labelledby="acc-button-07"
-                         data-parent="#accordion-02">
-             
-                         <div class="card-body bg-white">
-                             <ul>
-                                 {{ range (sort (where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "childhealth")) "Title" "asc") }}
-                                     <li><a href="{{ .RelPermalink}}">{{ .Title }}</a>
-                                     </li>
-                                 {{end}}
-                                 </ul>
-                         </div>
-             
-                     </div>
-                     <!-- .collapse -->
-             
-                 </div>
-                 <!-- .child health card -->
+
+        
              
                  <div class="card border">
              
@@ -251,36 +255,39 @@
              
                  </div>
                  <!-- .Pests card -->
-             
+
+
                  <div class="card border">
              
-                     <strong><a class="btn btn-outline-light btn-block collapse collapsed"
-                         id="acc-button-09" data-toggle="collapse"
-                         href="#panel-acc-button-09" role="tab"
-                         aria-expanded="false"
-                         aria-controls="panel-acc-button-09">
-                         <span class="title" role="heading"
-                             aria-level="3">Food and drink</span>
-                     </a></strong>
+                    <strong><a class="btn btn-outline-light btn-block collapse collapsed"
+                        id="acc-button-05" data-toggle="collapse"
+                        href="#panel-acc-button-05" role="tab"
+                        aria-expanded="false"
+                        aria-controls="panel-acc-button-05">
+                        <span class="title" role="heading"
+                            aria-level="3">Public space</span>
+                    </a></strong>
+            
+                    <div class="collapse" id="panel-acc-button-05"
+                        role="tabpanel" aria-labelledby="acc-button-05"
+                        data-parent="#accordion-02">
+            
+                        <div class="card-body bg-white">
+                            <ul>
+                                {{ range (sort (where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "transportation")) "Title" "asc") }}
+                                    <li><a href="{{ .RelPermalink}}">{{ .Title }}</a>
+                                    </li>
+                                {{end}}
+                                </ul>
+                        </div>
+            
+                    </div>
+                    <!-- .collapse -->
+            
+                </div>
+                <!-- .AD card -->
              
-                     <div class="collapse" id="panel-acc-button-09"
-                         role="tabpanel" aria-labelledby="acc-button-09"
-                         data-parent="#accordion-02">
-             
-                         <div class="card-body bg-white">
-                             <ul>
-                                 {{ range (sort (where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "foodanddrink")) "Title" "asc") }}
-                                     <li><a href="{{ .RelPermalink}}">{{ .Title }}</a>
-                                     </li>
-                                 {{end}}
-                                 </ul>
-                         </div>
-             
-                     </div>
-                     <!-- .collapse -->
-             
-                 </div>
-                 <!-- .food card -->
+
 
             </div>
         </div>
@@ -296,7 +303,7 @@
                         aria-expanded="false"
                         aria-controls="panel-acc-button-10-1">
                         <span class="title" role="heading"
-                            aria-level="3">All topics</span>
+                            aria-level="3">All data</span>
                     </a></strong>
             
                     <div class="collapse show" id="panel-acc-button-10-1"
@@ -367,157 +374,7 @@
         
             </div>
             <!-- .AQ card -->
-        
-            <div class="card border">
-        
-                <strong><a class="btn btn-outline-light btn-block collapse collapsed"
-                    id="acc-button-02" data-toggle="collapse"
-                    href="#panel-acc-button-02" role="tab"
-                    aria-expanded="false"
-                    aria-controls="panel-acc-button-02">
-                    <span class="title" role="heading"
-                        aria-level="3">Climate</span>
-                </a></strong>
-        
-                <div class="collapse" id="panel-acc-button-02"
-                    role="tabpanel" aria-labelledby="acc-button-02"
-                    data-parent="#accordion-01">
-        
-                    <div class="card-body bg-white">
-                        <ul>
-                            {{ range (sort (where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "climatehealth")) "Title" "asc") }}
-                                <li><a href="{{ .RelPermalink}}">{{ .Title }}</a>
-                                </li>
-                            {{ end }}
-                            </ul>
-                    </div>
-        
-                </div>
-                <!-- .collapse -->
-        
-            </div>
-            <!-- .Climate card -->
-        
-            <div class="card border">
-        
-               <strong> <a class="btn btn-outline-light btn-block collapse collapsed"
-                    id="acc-button-03" data-toggle="collapse"
-                    href="#panel-acc-button-03" role="tab"
-                    aria-expanded="false"
-                    aria-controls="panel-acc-button-03">
-                    <span class="title" role="heading"
-                        aria-level="3">Housing</span>
-                </a></strong>
-        
-                <div class="collapse" id="panel-acc-button-03"
-                    role="tabpanel" aria-labelledby="acc-button-03"
-                    data-parent="#accordion-01">
-        
-                    <div class="card-body bg-white">
-                        <ul>
-                            {{ range (sort (where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "housing")) "Title" "asc") }}
-                                <li><a href="{{ .RelPermalink}}">{{ .Title }}</a>
-                                </li>
-                            {{ end }}
-                            </ul>
-                    </div>
-        
-                </div>
-                <!-- .collapse -->
-        
-            </div>
-            <!-- .Housing card -->
-        
-            <div class="card border">
-        
-                <strong><a class="btn btn-outline-light btn-block collapse collapsed"
-                    id="acc-button-04" data-toggle="collapse"
-                    href="#panel-acc-button-04" role="tab"
-                    aria-expanded="false"
-                    aria-controls="panel-acc-button-04">
-                    <span class="title" role="heading"
-                        aria-level="3">Health equity</span>
-                </a></strong>
-        
-                <div class="collapse" id="panel-acc-button-04"
-                    role="tabpanel" aria-labelledby="acc-button-04"
-                    data-parent="#accordion-01">
-        
-                    <div class="card-body bg-white">
-                        <ul>
-                            {{ range (sort (where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "social")) "Title" "asc") }}
-                                <li><a href="{{ .RelPermalink}}">{{ .Title }}</a>
-                                </li>
-                            {{ end }}
-                            </ul>
-                    </div>
-        
-                </div>
-                <!-- .collapse -->
-        
-            </div>
-            <!-- .HE card -->
-        
-            <div class="card border">
-        
-                <strong><a class="btn btn-outline-light btn-block collapse collapsed"
-                    id="acc-button-05" data-toggle="collapse"
-                    href="#panel-acc-button-05" role="tab"
-                    aria-expanded="false"
-                    aria-controls="panel-acc-button-05">
-                    <span class="title" role="heading"
-                        aria-level="3">Active design / Transportation</span>
-                </a></strong>
-        
-                <div class="collapse" id="panel-acc-button-05"
-                    role="tabpanel" aria-labelledby="acc-button-05"
-                    data-parent="#accordion-01">
-        
-                    <div class="card-body bg-white">
-                        <ul>
-                            {{ range (sort (where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "transportation")) "Title" "asc") }}
-                                <li><a href="{{ .RelPermalink}}">{{ .Title }}</a>
-                                </li>
-                            {{ end }}
-                            </ul>
-                    </div>
-        
-                </div>
-                <!-- .collapse -->
-        
-            </div>
-            <!-- .AD card -->
-        
-            <div class="card border">
-        
-                <strong><a class="btn btn-outline-light btn-block collapse collapsed"
-                    id="acc-button-06" data-toggle="collapse"
-                    href="#panel-acc-button-06" role="tab"
-                    aria-expanded="false"
-                    aria-controls="panel-acc-button-06">
-                    <span class="title" role="heading"
-                        aria-level="3">Health outcomes</span>
-                </a></strong>
-        
-                <div class="collapse" id="panel-acc-button-06"
-                    role="tabpanel" aria-labelledby="acc-button-06"
-                    data-parent="#accordion-01">
-        
-                    <div class="card-body bg-white">
-                        <ul>
-                            {{ range (sort (where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "healthoutcomes")) "Title" "asc") }}
-                                <li><a href="{{ .RelPermalink}}">{{ .Title }}</a>
-                                </li>
-                            {{ end }}
-                            </ul>
-                    </div>
-        
-                </div>
-                <!-- .collapse -->
-        
-            </div>
-            <!-- .Outcomes card -->
-        
+
             <div class="card border">
         
                 <strong><a class="btn btn-outline-light btn-block collapse collapsed"
@@ -551,21 +408,21 @@
             <div class="card border">
         
                 <strong><a class="btn btn-outline-light btn-block collapse collapsed"
-                    id="acc-button-08" data-toggle="collapse"
-                    href="#panel-acc-button-08" role="tab"
+                    id="acc-button-02" data-toggle="collapse"
+                    href="#panel-acc-button-02" role="tab"
                     aria-expanded="false"
-                    aria-controls="panel-acc-button-08">
+                    aria-controls="panel-acc-button-02">
                     <span class="title" role="heading"
-                        aria-level="3">Pests and pesticides</span>
+                        aria-level="3">Climate</span>
                 </a></strong>
         
-                <div class="collapse" id="panel-acc-button-08"
-                    role="tabpanel" aria-labelledby="acc-button-08"
+                <div class="collapse" id="panel-acc-button-02"
+                    role="tabpanel" aria-labelledby="acc-button-02"
                     data-parent="#accordion-01">
         
                     <div class="card-body bg-white">
                         <ul>
-                            {{ range (sort (where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "pests")) "Title" "asc") }}
+                            {{ range (sort (where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "climatehealth")) "Title" "asc") }}
                                 <li><a href="{{ .RelPermalink}}">{{ .Title }}</a>
                                 </li>
                             {{ end }}
@@ -576,8 +433,8 @@
                 <!-- .collapse -->
         
             </div>
-            <!-- .Pests card -->
-        
+            <!-- .Climate card -->
+
             <div class="card border">
         
                 <strong><a class="btn btn-outline-light btn-block collapse collapsed"
@@ -607,6 +464,167 @@
         
             </div>
             <!-- .food card -->
+
+            <div class="card border">
+        
+                <strong><a class="btn btn-outline-light btn-block collapse collapsed"
+                    id="acc-button-04" data-toggle="collapse"
+                    href="#panel-acc-button-04" role="tab"
+                    aria-expanded="false"
+                    aria-controls="panel-acc-button-04">
+                    <span class="title" role="heading"
+                        aria-level="3">Health equity</span>
+                </a></strong>
+        
+                <div class="collapse" id="panel-acc-button-04"
+                    role="tabpanel" aria-labelledby="acc-button-04"
+                    data-parent="#accordion-01">
+        
+                    <div class="card-body bg-white">
+                        <ul>
+                            {{ range (sort (where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "social")) "Title" "asc") }}
+                                <li><a href="{{ .RelPermalink}}">{{ .Title }}</a>
+                                </li>
+                            {{ end }}
+                            </ul>
+                    </div>
+        
+                </div>
+                <!-- .collapse -->
+        
+            </div>
+            <!-- .HE card -->
+
+            <div class="card border">
+        
+                <strong><a class="btn btn-outline-light btn-block collapse collapsed"
+                    id="acc-button-06" data-toggle="collapse"
+                    href="#panel-acc-button-06" role="tab"
+                    aria-expanded="false"
+                    aria-controls="panel-acc-button-06">
+                    <span class="title" role="heading"
+                        aria-level="3">Health outcomes</span>
+                </a></strong>
+        
+                <div class="collapse" id="panel-acc-button-06"
+                    role="tabpanel" aria-labelledby="acc-button-06"
+                    data-parent="#accordion-01">
+        
+                    <div class="card-body bg-white">
+                        <ul>
+                            {{ range (sort (where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "healthoutcomes")) "Title" "asc") }}
+                                <li><a href="{{ .RelPermalink}}">{{ .Title }}</a>
+                                </li>
+                            {{ end }}
+                            </ul>
+                    </div>
+        
+                </div>
+                <!-- .collapse -->
+        
+            </div>
+            <!-- .Outcomes card -->
+        
+            <div class="card border">
+        
+               <strong> <a class="btn btn-outline-light btn-block collapse collapsed"
+                    id="acc-button-03" data-toggle="collapse"
+                    href="#panel-acc-button-03" role="tab"
+                    aria-expanded="false"
+                    aria-controls="panel-acc-button-03">
+                    <span class="title" role="heading"
+                        aria-level="3">Housing</span>
+                </a></strong>
+        
+                <div class="collapse" id="panel-acc-button-03"
+                    role="tabpanel" aria-labelledby="acc-button-03"
+                    data-parent="#accordion-01">
+        
+                    <div class="card-body bg-white">
+                        <ul>
+                            {{ range (sort (where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "housing")) "Title" "asc") }}
+                                <li><a href="{{ .RelPermalink}}">{{ .Title }}</a>
+                                </li>
+                            {{ end }}
+                            </ul>
+                    </div>
+        
+                </div>
+                <!-- .collapse -->
+        
+            </div>
+            <!-- .Housing card -->
+
+
+            <div class="card border">
+        
+                <strong><a class="btn btn-outline-light btn-block collapse collapsed"
+                    id="acc-button-08" data-toggle="collapse"
+                    href="#panel-acc-button-08" role="tab"
+                    aria-expanded="false"
+                    aria-controls="panel-acc-button-08">
+                    <span class="title" role="heading"
+                        aria-level="3">Pests and pesticides</span>
+                </a></strong>
+        
+                <div class="collapse" id="panel-acc-button-08"
+                    role="tabpanel" aria-labelledby="acc-button-08"
+                    data-parent="#accordion-01">
+        
+                    <div class="card-body bg-white">
+                        <ul>
+                            {{ range (sort (where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "pests")) "Title" "asc") }}
+                                <li><a href="{{ .RelPermalink}}">{{ .Title }}</a>
+                                </li>
+                            {{ end }}
+                            </ul>
+                    </div>
+        
+                </div>
+                <!-- .collapse -->
+        
+            </div>
+            <!-- .Pests card -->
+        
+
+        
+            <div class="card border">
+        
+                <strong><a class="btn btn-outline-light btn-block collapse collapsed"
+                    id="acc-button-05" data-toggle="collapse"
+                    href="#panel-acc-button-05" role="tab"
+                    aria-expanded="false"
+                    aria-controls="panel-acc-button-05">
+                    <span class="title" role="heading"
+                        aria-level="3">Active design / Transportation</span>
+                </a></strong>
+        
+                <div class="collapse" id="panel-acc-button-05"
+                    role="tabpanel" aria-labelledby="acc-button-05"
+                    data-parent="#accordion-01">
+        
+                    <div class="card-body bg-white">
+                        <ul>
+                            {{ range (sort (where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "transportation")) "Title" "asc") }}
+                                <li><a href="{{ .RelPermalink}}">{{ .Title }}</a>
+                                </li>
+                            {{ end }}
+                            </ul>
+                    </div>
+        
+                </div>
+                <!-- .collapse -->
+        
+            </div>
+            <!-- .AD card -->
+        
+
+        
+
+        
+
+        
+
         
             <hr class="my-1">
         

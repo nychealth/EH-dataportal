@@ -1,5 +1,6 @@
 ---
 title: "Active design, public space, and transportation"
+shortTitle: "Public space"
 date: 2021-09-30T07:58:01-04:00
 draft: false
 seo_title: "Transportation and Active Design in NYC"
