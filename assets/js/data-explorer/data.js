@@ -79,6 +79,10 @@ const createComparisonData = async (comps) => {
     
     // console.log("comps [createComparisonData]:", comps);
 
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // get comparisons-specific metadata
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
     // will be used by renderMeasures to create dropdown
     
     comparisonsMetadata = await comps.filter(
@@ -118,6 +122,10 @@ const createComparisonData = async (comps) => {
     let comparisonsIndicatorIDs = [... new Set(aqComparisonsMetadata.array("IndicatorID"))]
     let comparisonsMeasureIDs = [... new Set(aqComparisonsMetadata.array("MeasureID"))]
 
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // join comparisons metadata with indicators from metadata.json
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
     let comparisonsIndicatorsMetadata = indicators.filter(
         ind => comparisonsIndicatorIDs.includes(ind.IndicatorID)
     )
@@ -134,7 +142,8 @@ const createComparisonData = async (comps) => {
             MeasurementType: d => d.Measures.MeasurementType,
             Sources:         d => d.Measures.Sources,
             how_calculated:  d => d.Measures.how_calculated,
-            DisplayType:     d => d.Measures.DisplayType
+            DisplayType:     d => d.Measures.DisplayType,
+            TrendNoCompare:  d => d.Measures.TrendNoCompare
         })
         .derive({IndicatorMeasure: d => d.IndicatorLabel + ": " + d.MeasurementType})
         .select(aq.not("Measures"))
@@ -151,6 +160,10 @@ const createComparisonData = async (comps) => {
 
     // console.log("aqCombinedComparisonsMetadata [createComparisonData]");
     // aqCombinedComparisonsMetadata.print()
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // fetch data files for all comp indicators
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
     // Promise.all takes the array of promises returned by map, and then the `then` callback executes after they've all resolved
 
@@ -228,6 +241,9 @@ const loadIndicator = async (this_indicatorId, dont_add_to_history) => {
     // remove active class from every list element
     $(".indicator-dropdown-item").removeClass("active");
     $(".indicator-dropdown-item").attr('aria-selected', false);
+
+    $(".indicator-arrows").addClass("hide");
+    document.getElementById(`arrow-${indicatorId}`).classList.remove('hide')
 
     // get the list element for this indicator (in buttons and dropdowns)
     const thisIndicatorEl = document.querySelectorAll(`button[data-indicator-id='${indicatorId}']`)
@@ -989,7 +1005,7 @@ function draw311Buttons(indicator_id) {
 
             // Creates label if there are 311 links
             if (filteredCrosswalk.length > 0) {
-                document.getElementById('311label').innerHTML = 'Contact 311 about:'
+                document.getElementById('311label').innerHTML = '<i class="fas fa-external-link-alt mr-1"></i>Or, contact 311 to get resources about:'
                 dest.forEach(element => element.classList.remove('hide'))
             } else {
                 document.getElementById('311label').innerHTML = ''
@@ -1000,7 +1016,7 @@ function draw311Buttons(indicator_id) {
             for (let i = 0; i < filteredCrosswalk.length; i ++ ) {
                 var title = filteredCrosswalk[i].topic
                 var destination = filteredCrosswalk[i].kaLink
-                var btn = `<a href="https://portal.311.nyc.gov/article/?kanumber=${destination}" class="badge badge-pill badge-primary mr-1" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt mr-1"></i>${title}</a>`
+                var btn = `<a href="https://portal.311.nyc.gov/article/?kanumber=${destination}" class="mr-1" target="_blank" rel="noopener noreferrer">${title}</a>| `
                 dest.forEach(element => element.innerHTML += btn)
             }
     })
