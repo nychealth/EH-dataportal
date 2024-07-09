@@ -20,18 +20,22 @@
     {{- end -}}
     
     <div class="row">
-            <div class="col-12 my-2">
-                <nav aria-label="breadcrumb" class="">
-                    <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
-                        <li class="breadcrumb-item"><a href={{ relURL "data-stories" }}>Data Stories</a></li>
-                        <li class="breadcrumb-item active"><a href="{{ .Page.RelPermalink }}">{{ .Title }}</a></li>
 
-                    </ul>
-                </nav>
-            </div>
-
-            <div class="col-xl-8 mx-auto">
+            <div class="col-xl-7 mx-auto">
+                <div class="my-2 mb-3">
+                    <nav aria-label="breadcrumb">
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
+                            <li class="breadcrumb-item"><a href={{ relURL "data-stories" }}>Data Stories</a></li>
+                            <li class="breadcrumb-item active d-none d-sm-block"><a href="{{ .Page.RelPermalink }}">{{ with .Params.shortTitle }}
+                                {{ . }}
+                              {{ else }}
+                                {{ .Title }}
+                              {{ end }}</a></li>
+    
+                        </ul>
+                    </nav>
+                </div>
 
                 <h1 class="h2 data-stories mb-3"><i class="fas fa-passport" aria-hidden="true" style="margin-right: 10px"></i>{{ .Title }}</h1>
                 <div class="">

@@ -11,19 +11,6 @@
         <!--start main content section-->
         <div class="col-xl-8 overflow-hidden fs-rg" id="primary-content">
 
-            <div class="row mt-2">
-                <div class="col-12">
-                    <nav aria-label="breadcrumb" class="border-top">
-                        <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
-                            <li class="breadcrumb-item"><a href={{ relURL "data-stories" }}>Data Stories</a></li>
-                            <li class="breadcrumb-item active"><a href="{{ .Page.RelPermalink }}">{{ .Title }}</a></li>
-        
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-
 
 
         <!-- language selection -->
@@ -39,6 +26,23 @@
         {{- end -}}
 
         <div class="my-4">
+            <div class="row my-2 mb-3">
+                <div class="col-12">
+                    <nav aria-label="breadcrumb">
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
+                            <li class="breadcrumb-item"><a href={{ relURL "data-stories" }}>Data Stories</a></li>
+                            <li class="breadcrumb-item active d-none d-sm-block"><a href="{{ .Page.RelPermalink }}">{{ with .Params.shortTitle }}
+                                {{ . }}
+                              {{ else }}
+                                {{ .Title }}
+                              {{ end }}</a></li>
+    
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+
             <h1 class="">{{ .Title }}</h1>
                 {{- .Content -}}
         </div>
