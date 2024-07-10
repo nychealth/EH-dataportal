@@ -1270,7 +1270,7 @@ const renderMeasures = async () => {
             mapMeasures.push(measure)
             
             dropdownMapMeasures.innerHTML += `<button class="dropdown-item link-measure mapmeasuresbutton pl-2"
-                data-measure-id="${measureId}">
+                data-measure-id="${measureId}" title="${type}">
                 ${type}
                 </button>`;
             
@@ -1306,7 +1306,7 @@ const renderMeasures = async () => {
 
             if (trendData) {
                 dropdownTrendComparisons.innerHTML += `<button class="dropdown-item trendbutton pl-2"
-                data-measure-id="${measureId}">
+                data-measure-id="${measureId}" title="${type}">
                 ${type}
                 </button>`;
             }
@@ -1348,7 +1348,7 @@ const renderMeasures = async () => {
                         `<button class="dropdown-item linksbutton pl-2"
                             data-primary-measure-id="${measureId}"
                             data-measure-id="${measure.MeasureID}"
-                            data-secondary-measure-id="${link.MeasureID}">
+                            data-secondary-measure-id="${link.MeasureID}" title="${defaultSecondaryMeasureMetadata[0]?.MeasureName}">
                             ${defaultSecondaryMeasureMetadata[0]?.MeasureName}
                         </button>`;
 
@@ -1412,14 +1412,14 @@ const renderMeasures = async () => {
                     if (compGeoTypeName[0] == "Citywide") {
 
                     dropdownTrendComparisons.innerHTML += `<button class="dropdown-item comparisonsbutton pl-2"
-                        data-comparison-id="${comp}">
+                        data-comparison-id="${comp}"  title="${compY_axis_title}">
                         ${compY_axis_title}
                         </button>`;
 
                     } else {
                         // I am very unhappy with this kludge
                         dropdownTrendComparisons.innerHTML += `<button class="dropdown-item comparisonsbutton pl-2"
-                            data-comparison-id="${comp}">
+                            data-comparison-id="${comp}"  title="${compGeography[compGeography.length - 1]} ">
                             ${compGeography[compGeography.length - 1]} 
                             </button>`;
                     }
@@ -1430,7 +1430,7 @@ const renderMeasures = async () => {
                     // console.log(compMeasurementType);
 
                     dropdownTrendComparisons.innerHTML += `<button class="dropdown-item comparisonsbutton pl-2"
-                        data-comparison-id="${comp}">
+                        data-comparison-id="${comp}" title="${compMeasurementType}">
                         ${compMeasurementType}
                         </button>`;
                     
@@ -1441,7 +1441,7 @@ const renderMeasures = async () => {
                     // console.log("compName", compName);
 
                     dropdownTrendComparisons.innerHTML += `<button class="dropdown-item comparisonsbutton pl-2"
-                        data-comparison-id="${comp}">
+                        data-comparison-id="${comp}" title="${compName}">
                         ${compName}
                         </button>`;
                     

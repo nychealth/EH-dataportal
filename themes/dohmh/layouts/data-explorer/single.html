@@ -247,14 +247,22 @@
         .optionbox {
             max-height:150px;
             overflow-y:scroll;
-            overflow-x:hidden
+            overflow-x:scroll;
         }
     
         .optionbox-lg {
             max-height: 300px;
             overflow-y: scroll;
-            overflow-x:hidden;
+            overflow-x:scroll;
         }
+
+        .optionbox::-webkit-scrollbar {
+            display: none;
+          }
+
+          .optionbox-lg::-webkit-scrollbar {
+            display: none;
+          }
     
         .nav-pills .nav-item {
             text-align: left!important;
@@ -473,14 +481,14 @@
             
             
                 <!-- visualization elements -->
-                <div class="tab-content bg-white mb-2 border-top p-1" id="tabs-01-content">
+                <div class="tab-content bg-white mb-2 border-top" id="tabs-01-content">
             
 
                 <!-- TABLE TAB -->
 
                 <div class="tab-pane fade show active pt-2" id="tab-table" aria-labelledby="tab-btn-table" role="tabpanel">
                     <div class="row">
-                        <div class="col-md-2 pl-1">
+                        <div class="col-md-2 pl-2">
 
                                 <p class="fs-xs mb-0"><i data-toggle="modal" data-target="#geoModal" class="fas fa-question-circle float-right helper text-primary fs-sm"></i></button>Boundaries:</p>
                                 <div class="border py-1 mb-2 optionbox">
@@ -511,7 +519,7 @@
                         </div>
                     </div>
                     
-                    <!-- old table buttons -->
+                    <!-- old table buttons
                     <div class="dropdown hide">
                         <button class="btn btn-sm float-right btn-outline-secondary dropdown-toggle mb-1" type="button"
                                 id="dropdownTableTimes" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Time </button>
@@ -527,6 +535,7 @@
                             Menu items
                         </div>
                     </div>
+                     -->
                     
             
                 </div>
@@ -537,7 +546,7 @@
                 <div class="tab-pane fade pt-2" id="tab-map" aria-labelledby="tab-btn-map" role="tabpanel">
 
                     <div class="row">
-                        <div class="col-md-2 pl-1">
+                        <div class="col-md-2 pl-2">
                             <p class="fs-xs mb-0"><i data-toggle="modal" data-target="#measureModal" class="fas fa-question-circle float-right helper text-primary fs-sm"></i>Show as:</p>
                             <div class="border optionbox py-1 mb-2">
                                 <div class="" aria-labelledby="dropdownMapMeasures">
@@ -605,7 +614,7 @@
                 <div class="tab-pane fade pt-2" id="tab-trend" aria-labelledby="tab-btn-trend" role="tabpanel">
 
                     <div class="row">
-                        <div class="col-md-2 pl-1">
+                        <div class="col-md-2 pl-2">
                             <p class="fs-xs mb-0"><i data-toggle="modal" data-target="#trendModal" class="fas fa-question-circle float-right helper text-primary fs-sm"></i>Show by:</p>
                             <div class="border optionbox">
                                 <div class="" aria-labelledby="dropdownTrendComparisons">
@@ -646,7 +655,7 @@
                     <div class="tab-pane fade pt-2" id="tab-links" aria-labelledby="tab-btn-links" role="tabpanel">
 
                         <div class="row">
-                            <div class="col-md-2 pl-1 ">
+                            <div class="col-md-2 pl-2">
                                 <p class="fs-xs mb-0"><i data-toggle="modal" data-target="#linksModal" class="fas fa-question-circle float-right helper text-primary fs-sm"></i>Show as:</p>
                                 
                                 <!--
