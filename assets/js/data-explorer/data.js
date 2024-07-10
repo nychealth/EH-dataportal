@@ -229,6 +229,8 @@ const loadIndicator = async (this_indicatorId, dont_add_to_history) => {
 
     console.log("* loadIndicator");
 
+    document.getElementById('panel-acc-button-01').classList.remove('show')
+
     currentHash = window.location.hash;
 
     // if indicatorId isn't given, use the first indicator from the dropdown list
