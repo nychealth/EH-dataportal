@@ -315,8 +315,8 @@ config = {
                 "measureInfo": {
                     "indicatorID": 2023,
                     "measureID": 365,
-                    "geoType": "UHF42",
-                    "time": "Summer 2021",
+                    "geoType": "UHF34",
+                    "time": "Summer 2022",
                 },
                 "exclusive": true,
                 "args": {
