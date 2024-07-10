@@ -246,29 +246,35 @@
             float:right;
             height: 88vh;
             width: 35vw;
-            padding: 5px 10px; 
             font: 14px/16px Arial, Helvetica, sans-serif; 
             color: black;
-            background: white; 
-            background: rgba(255,255,255,0.8); 
-            box-shadow: 0 0 15px rgba(0,0,0,0.2); 
-            border-radius: 5px; 
+            /* background: rgba(255,255,255,0.8);  */
+            /* box-shadow: 0 0 15px rgba(0,0,0,0.2); */
             overflow-y: scroll;
+        }
+
+        .rightPanelOverlay {
+            background: rgba(255,255,255,0.8); 
+            /* box-shadow: 0 0 15px rgba(0,0,0,0.2); */
         }
 
         .legend {
             padding: 0px!important;
-            border-radius: 5px; 
+            background: transparent!important;
+            width: 30vmax; 
+            border-top-left-radius: 5px; 
+            border-top-right-radius: 5px; 
         }
 
         .info { 
-            width: 30vmax; 
+            width: 100%;
             display: inline-block;
             font: 14px/16px Arial, Helvetica, sans-serif; 
             color: black;
-            background: white; 
             background: rgba(255,255,255,0.8); 
             box-shadow: 0 0 15px rgba(0,0,0,0.2); 
+            border-bottom-left-radius: 5px; 
+            border-bottom-right-radius: 5px; 
         }
 
 
@@ -346,23 +352,50 @@
         
         </div>
 
-        <div class="p-1">
+        <div class="info p-1">
             <h2 class="fs-md font-weight-bold" id="indicatorTitle">Indicator Name</h2>
-            <p class="fs-sm indicator-description">Indicator description sentences go here. These are usually two sentences long, just a couple of lines.</p>   
-            <button class="btn btn-sm btn-outline-secondary">Show as:</button> <button class="btn btn-sm btn-outline-secondary">Boundaries:</button> <button  class="btn btn-sm btn-outline-secondary">Time period:</button>
-    
+            <p class="fs-sm indicator-description">Indicator description sentences go here. These are usually two sentences long, just a couple of lines.</p>       
         </div>
+
+        <div class="my-1">
+            <div class="dropdown">
+                <button class="btn btn-sm mr-1 float-left btn-white dropdown-toggle mb-1" type="button"
+                    id="dropdownMapMeasures" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Show as </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMapMeasures">
+                    <!-- INSERT MENU ITEMS HERE -->
+                </div>
+
+            </div>
+
+            <div class="dropdown">
+                <button class="btn btn-sm mx-1 float-left btn-white dropdown-toggle mb-1" type="button"
+                    id="dropdownMapTimes" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Time period </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMapTimes">
+                    <!-- INSERT MENU ITEMS HERE -->
+                </div>
+
+            </div>
+
+
+            <div class="dropdown">
+                <button class="btn btn-sm float-left btn-white dropdown-toggle mb-1" type="button"
+                        id="dropdownMapGeos" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Boundaries </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMapGeos">
+                    <!-- INSERT MENU ITEMS HERE -->
+                </div>
+            </div>
+
+        </div>
+
 
     </div>
 
     <!-- right-hand overlay -->
     <div id="rightOverlay" class="d-none">
                     <!-- Nav buttons -->
-                    <div class="nav nav-pills device-xs " role="tablist">
-        
-
-                
-                        <a class="nav-item nav-link border" id="tab-btn-map" href="#tab-map" data-toggle="pill"
+                    <div class="nav nav-pills device-xs" role="tablist">
+                        
+                        <a class="nav-item nav-link border rightPanelOverlay" id="tab-btn-map" href="#tab-map" data-toggle="pill"
                            aria-controls="tab-map" aria-selected="false" role="tab" style="text-decoration:none">
                             <i class="fas fa-map-marker-alt fa-fw"></i>
                             <div class="d-none d-lg-inline-block">
@@ -370,7 +403,7 @@
                             </div>
                         </a>
                 
-                        <a class="nav-item nav-link border" id="tab-btn-trend" href="#tab-trend" data-toggle="pill"
+                        <a class="nav-item nav-link border rightPanelOverlay" id="tab-btn-trend" href="#tab-trend" data-toggle="pill"
                            aria-controls="tab-trend" aria-selected="false" role="tab" style="text-decoration:none">
                             <i class="fas fa-chart-line fa-fw" aria-hidden="true"></i>
                             <div class="d-none d-lg-inline-block">
@@ -379,7 +412,7 @@
                         </a>
                 
                 
-                        <a class="nav-item nav-link border" id="tab-btn-links" href="#tab-links" data-toggle="pill"
+                        <a class="nav-item nav-link border rightPanelOverlay" id="tab-btn-links" href="#tab-links" data-toggle="pill"
                            aria-controls="tab-links" aria-selected="false" aria-disabled="true" role="tab" style="text-decoration:none">
                            <i class="fas fa-project-diagram" aria-hidden="true"></i>
                             <div class="d-none d-lg-inline-block">
@@ -387,7 +420,7 @@
                             </div>
                         </a>
 
-                        <a class="nav-item nav-link border ml-auto" id="tab-btn-table" href="#tab-table" data-toggle="pill"
+                        <a class="nav-item nav-link border rightPanelOverlay ml-auto" id="tab-btn-table" href="#tab-table" data-toggle="pill"
                         aria-controls="tab-table" aria-selected="false" role="tab" style="text-decoration:none">
                          <i class="fas fa-table mr-1" aria-hidden="true"></i>
                          <div class="d-none d-lg-inline-block">
@@ -398,13 +431,12 @@
                     </div>
                     
                     
-                        <!-- visualization elements -->
-                        <div class="tab-content mb-2 border-top p-1" id="tabs-01-content">
-                    
-        
+                    <!-- visualization elements -->
+                    <div class="tab-content border-top rightPanelOverlay" id="tabs-01-content">
+                
                         <!-- TABLE TAB -->
         
-                        <div class="tab-pane fade show active pt-2" id="tab-table" aria-labelledby="tab-btn-table" role="tabpanel">
+                        <div class="tab-pane fade show active pt-1" id="tab-table" aria-labelledby="tab-btn-table" role="tabpanel">
                             <div class="dropdown">
                                 <button class="btn btn-sm float-right btn-outline-secondary dropdown-toggle mb-1" type="button"
                                         id="dropdownTableTimes" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Time </button>
@@ -435,35 +467,35 @@
         
                         <!-- MAP TAB -->
         
-                        <div class="tab-pane fade pt-2" id="tab-map" aria-labelledby="tab-btn-map" role="tabpanel">
-        
-                            <div class="dropdown">
-                                <button class="btn btn-sm float-right btn-outline-secondary dropdown-toggle mb-1" type="button"
+                        <div class="tab-pane fade pt-1" id="tab-map" aria-labelledby="tab-btn-map" role="tabpanel">
+                        
+                            <div class="dropdown hide">
+                                <button class="btn btn-sm mr-1 float-left btn-outline-secondary dropdown-toggle mb-1" type="button"
+                                    id="dropdownMapMeasures" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Show as </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMapMeasures">
+                                    <!-- INSERT MENU ITEMS HERE -->
+                                </div>
+                
+                            </div>
+                
+                            <div class="dropdown hide">
+                                <button class="btn btn-sm mx-1 float-left btn-outline-secondary dropdown-toggle mb-1" type="button"
                                     id="dropdownMapTimes" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Time period </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMapTimes">
                                     <!-- INSERT MENU ITEMS HERE -->
                                 </div>
-        
+                
                             </div>
-        
-        
-                            <div class="dropdown">
-                                <button class="btn btn-sm mr-1 float-right btn-outline-secondary dropdown-toggle mb-1" type="button"
+                
+                
+                            <div class="dropdown hide">
+                                <button class="btn btn-sm float-left btn-outline-secondary dropdown-toggle mb-1" type="button"
                                         id="dropdownMapGeos" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Boundaries </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMapGeos">
                                     <!-- INSERT MENU ITEMS HERE -->
                                 </div>
                             </div>
-        
-                            <div class="dropdown">
-                                <button class="btn btn-sm mr-1 float-right btn-outline-secondary dropdown-toggle mb-1" type="button"
-                                    id="dropdownMapMeasures" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Show as </button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMapMeasures">
-                                    <!-- INSERT MENU ITEMS HERE -->
-                                </div>
-        
-                            </div>
-                        
+
                             <div id="map" class="vis-bucket"></div>
         
                             <div id="map-unreliability" class="pt-2 asidebox hide my-1">
@@ -475,7 +507,7 @@
         
                         <!-- TREND TAB -->
         
-                        <div class="tab-pane fade pt-2" id="tab-trend" aria-labelledby="tab-btn-trend" role="tabpanel">
+                        <div class="tab-pane fade pt-1" id="tab-trend" aria-labelledby="tab-btn-trend" role="tabpanel">
         
                             <div class="dropdown dropdownTrendComparisons">
         
@@ -501,7 +533,7 @@
         
                         <!-- LINKS TAB -->
         
-                        <div class="tab-pane fade pt-2" id="tab-links" aria-labelledby="tab-btn-links" role="tabpanel">
+                        <div class="tab-pane fade pt-1" id="tab-links" aria-labelledby="tab-btn-links" role="tabpanel">
                             <div class="dropdown">
         
         
@@ -538,7 +570,7 @@
                             </div>
         
                         </div>
-                        </div>
+                    </div>
     </div>
 
 
@@ -576,7 +608,7 @@ zoomBar.setPosition('bottomleft').addTo(map);
 const legend = L.control({position: 'topleft'});
 
 legend.onAdd = function (map) {
-    const div = L.DomUtil.create('div', 'info legend');
+    const div = L.DomUtil.create('div', 'legend');
     div.innerHTML = document.getElementById('legend').innerHTML
     return div;
 };
