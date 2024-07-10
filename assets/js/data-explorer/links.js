@@ -126,7 +126,7 @@ const renderLinksChart = (
     
     let bubbleSize = window.innerWidth < 576 ? 100 : 200;
     let columns = window.innerWidth < 576 ? 3 : 6;
-    let height = window.innerWidth < 576 ? 350 : 500;
+    let height = window.innerWidth < 576 ? 350 : 350;
 
 
     // ----------------------------------------------------------------------- //
@@ -154,6 +154,7 @@ const renderLinksChart = (
 
     let linkspec = {
         "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+        "background": null,
         "title": {
             "text": [`${yIndicatorName && `${yIndicatorName}`}`],
             "align": "left", 

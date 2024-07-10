@@ -42,7 +42,7 @@ const renderComparisonsChart = (
     // dimensions
 
     let columns = window.innerWidth < 576 ? 3 : 6;
-    let height = window.innerWidth < 576 ? 350 : 500;
+    let height = window.innerWidth < 576 ? 350 : 350;
 
     // ticks
 
@@ -325,6 +325,7 @@ const renderComparisonsChart = (
     
     let compspec = {
         "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+        "background": null,
         "config": {
             "background": "#FFFFFF",
             "axisX": {

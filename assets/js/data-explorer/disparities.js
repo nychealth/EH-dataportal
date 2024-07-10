@@ -183,7 +183,7 @@ const renderDisparitiesChart = async (
     // ----------------------------------------------------------------------- //
     
     let bubbleSize = window.innerWidth < 576 ? 100 : 200;
-    let height = window.innerWidth < 576 ? 350 : 500;
+    let height = window.innerWidth < 576 ? 350 : 350;
 
     // ----------------------------------------------------------------------- //
     // define spec
@@ -194,6 +194,7 @@ const renderDisparitiesChart = async (
     let disspec = {
         "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
         "description": `${primaryIndicatorName} ${primaryMeasurementType} and poverty scatterplot`,
+        "background": null,
         "title": {
             "text": [`${primaryIndicatorName && `${primaryIndicatorName}`}`],
             "align": "left", 

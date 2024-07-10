@@ -182,6 +182,7 @@ const renderMap = (
     
     let mapspec = {
         "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+        "background": null,
         "title": {
             "text": indicatorName,
             "subtitlePadding": 10,
@@ -218,7 +219,7 @@ const renderMap = (
             {
                 "layer": [
                     {
-                        "height": 500,
+                        "height": 1,
                         "width": "container",
                         "data": {
                             "url": `${data_repo}${data_branch}/geography/borough.topo.json`,
@@ -236,7 +237,7 @@ const renderMap = (
                     }, 
                     // Second neighborhood data layer - for count-dot map underlayer (ok to leave on for rates)
                     {
-                        "height": 500,
+                        "height": 1,
                         "width": "container",
                         "data": {
                             "url": `${data_repo}${data_branch}/geography/${topoFile}`,
@@ -253,7 +254,7 @@ const renderMap = (
                         }
                     },
                     {
-                        "height": 500,
+                        "height": 1,
                         "width": "container",
                         "mark": {"type": markType, "invalid": null},
                         "params": [
@@ -317,7 +318,7 @@ const renderMap = (
                 ]
             },
             {
-                "height": 150,
+                "height": 350,
                 "width": "container",
                 "config": {
                     "axisY": {
@@ -330,7 +331,7 @@ const renderMap = (
                     {"name": "highlight", "select": {"type": "point", "on": "mouseover", "clear": "mouseout"}}
                 ],
                 "encoding": {
-                    "y": {
+                    "x": {
                         "field": "Value", 
                         "type": "quantitative", 
                         "title": null,
@@ -354,7 +355,7 @@ const renderMap = (
                             "title": "Time period"
                         }
                     ],
-                    "x": {"field": "GeoID", "sort": "y", "axis": null},
+                    "y": {"field": "GeoID", "sort": "-x", "axis": null},
                     "color": {
                         "bin": false,
                         "field": "Value",

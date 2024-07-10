@@ -3,7 +3,7 @@
 
 <header id="global-header" role="banner">
 
-    <div class="site-header bg-primary" style='background-image: url({{ relURL "images/header_background.jpg" }})'>
+    <div class="site-header" style='background-image: url({{ relURL "images/header_background.jpg" }})'>
 
         <nav class="nav" role="navigation">
 
@@ -27,8 +27,9 @@
 
             <div class="nav-item">
 
-                <a href={{ .RelPermalink }} class="nav-link text-white font-weight-bold">
-                    {{ .Title }}
+                <a href="#" class="nav-link text-white font-weight-bold" type="button"
+                data-toggle="modal" data-target="#aboutModal">
+                   About {{ .Title }}
                 </a>
 
             </div>
