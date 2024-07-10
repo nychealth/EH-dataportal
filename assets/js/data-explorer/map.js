@@ -10,7 +10,8 @@ const renderMap = (
     console.log("** renderMap");
 
     // console.log("data [renderMap]", data);
-    // console.log("metadata [renderMap]", metadata);
+    console.log("metadata [renderMap]", metadata);
+    renderAboutSources(metadata[0].how_calculated,metadata[0].Sources)
 
     // ----------------------------------------------------------------------- //
     // get unique time in data
@@ -22,11 +23,27 @@ const renderMap = (
 
     // console.log("mapTimes [map.js]", mapTimes);
 
+    console.log(data[0])
+
     let mapGeoType            = data[0]?.GeoType;
     let geoTypeShortDesc      = data[0]?.GeoTypeShortDesc;
+    let GeoTypeDesc           = data[0]?.GeoTypeDesc;
     let mapMeasurementType    = metadata[0]?.MeasurementType;
-    let displayType           = metadata[0]?.DisplayType;
     let mapGeoTypeDescription = [...new Set(geoTable.filter(aq.escape(d => d.GeoType === mapGeoType)).array("GeoTypeShortDesc"))];
+    var displayType;
+    var subtitle;
+    var isPercent;
+
+    if (mapMeasurementType.includes('Percent') || mapMeasurementType.includes('percent') && !mapMeasurementType.includes('percentile')) {
+        isPercent = true
+        displayType         = '%'
+        subtitle = mapMeasurementType
+        
+    } else {
+        isPercent = false
+        displayType         = metadata[0]?.DisplayType;
+        subtitle = mapMeasurementType + `${displayType ? ` (${displayType})` : ''}`
+    }
 
     let mapTime = mapTimes[0];
     let topoFile = '';
@@ -114,10 +131,14 @@ const renderMap = (
     const map_unreliability = [...new Set(data.map(d => d.Note))].filter(d => !d == "");
 
     document.querySelector("#map-unreliability").innerHTML = ""; // blank to start
+    document.getElementById("map-unreliability").classList.add('hide')  // blank to start
+
 
     map_unreliability.forEach(element => {
 
         document.querySelector("#map-unreliability").innerHTML += "<div class='fs-sm text-muted'>" + element + "</div>" ;
+        document.getElementById('map-unreliability').classList.remove('hide')
+
         
     });
 
@@ -171,7 +192,7 @@ const renderMap = (
             "fontSize": 18, 
             "font": "sans-serif",
             "baseline": "top",
-            "subtitle": `${mapMeasurementType}${displayType && ` (${displayType})`}, by ${mapGeoTypeDescription} (${mapTime})`,
+            "subtitle": subtitle,
             "subtitleFontSize": 13
         },
         "data": {
@@ -189,6 +210,12 @@ const renderMap = (
             "legend": {"disable": true}
         },
         "projection": {"type": "mercator"},
+        "transform": [
+            {
+                "calculate": `datum.DisplayValue + ' ${displayType}'`,
+                "as": "valueLabel"
+            }
+        ],
         "vconcat": [
             {
                 "layer": [
@@ -255,7 +282,7 @@ const renderMap = (
                                     "bin": false,
                                     "field": "Value",
                                     "type": "quantitative",
-                                    "scale": {"scheme": {"name": color, "extent": [0.125, 1.125]}},
+                                    "scale": {"scheme": {"name": color, "extent": [0.125, 1.25]}},
                                     ...legend    
                                 },
                                 "value": "#808080"
@@ -276,12 +303,16 @@ const renderMap = (
                             "tooltip": [
                                 {
                                     "field": "Geography", 
-                                    "title": geoTypeShortDesc
+                                    "title": "Neighborhood"
                                 },
                                 {
-                                    "field": "DisplayValue",
-                                    "title": mapMeasurementType
+                                    "field": "valueLabel",
+                                    "title": `${mapMeasurementType}`
                                 },
+                                {
+                                    "field": "TimePeriod",
+                                    "title": "Time period"
+                                }
                             ],
                         },
                     }
@@ -314,19 +345,23 @@ const renderMap = (
                     "tooltip": [
                         {
                             "field": "Geography", 
-                            "title": geoTypeShortDesc
+                            "title": "Neighborhood"
                         },
                         {
-                            "field": "DisplayValue", 
-                            "title": mapMeasurementType
+                            "field": "valueLabel",
+                            "title": `${mapMeasurementType}`
                         },
+                        {
+                            "field": "TimePeriod",
+                            "title": "Time period"
+                        }
                     ],
                     "x": {"field": "GeoID", "sort": "y", "axis": null},
                     "color": {
                         "bin": false,
                         "field": "Value",
                         "type": "quantitative",
-                        "scale": {"scheme": {"name": color, "extent": [0.25, 1.25]}},
+                        "scale": {"scheme": {"name": color, "extent": [0.125, 1.25]}},
                         "legend": false
                     },
                     "stroke": {

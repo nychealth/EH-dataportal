@@ -9,15 +9,14 @@ tags:
 categories: ["housing", "pests"]
 keywords: ["mice", "rats", "rodents", "pests", "housing"]
 indicators:
-  - header: null
-    IndicatorID:
-      - 2434
-      - 2433
-      - 48
-      - 2394
-      - 2105
-      - 24
-      - 2416
+- header: null
+  IndicatorID:
+  - 2434
+  - 2433
+  - 24
+  - 2394
+  - 48
+  - 2416
 ---
 
 Rats and mice are common, but preventable. In NYC, rats tend to be seen on streets and sidewalks, and in yards and basements, while mice are almost always found inside homes.

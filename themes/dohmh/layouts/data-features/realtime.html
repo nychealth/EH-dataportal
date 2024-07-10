@@ -49,7 +49,7 @@
                 <div class="col-md-4">
                     <div class="fs-sm asidebox">
                         <h4>About the data</h4>
-                        <p>Data are hourly measurements of PM2.5, in micrograms per cubic meter of air (µg/m<sup>3</sup>). External factors can sometimes affect monitor functioning. Data are preliminary and subject to change.</p>
+                        <p>Data are hourly measurements of PM2.5, in micrograms per cubic meter of air (µg/m<sup>3</sup>). External factors can sometimes affect monitor functioning. Data are preliminary and subject to change. Times are in Eastern Standard Time.</p>
             
                         <strong>Street-level monitors</strong>
                         <p>Data come from the <a href="../nyccas">NYC Community Air Survey</a>'s street-level monitors, which measure ground-level exposures. We apply a calibration factor to make our data comparable to DEC data and historical EPA data.</p>
@@ -122,6 +122,11 @@
 
                         <p class="fs-xs hide" id="insufficient"><em>*Monitor reported less than 18 hours in the last day.</em></p>
                     <a href="#table24" class="fs-sm btn btn-sm btn-light btn-block mb-2" onclick="resetZoom()">Clear all</a>
+                    <div class="d-block d-md-none">
+                        <button type="button" class="btn btn-sm btn-block btn-outline-primary" data-toggle="modal" data-target="#mapModal">
+                            Show monitor locations
+                          </button>
+                    </div>
                     <hr class="mb-2">
                 </div>
                 <div class="col-md-8 border-left">
@@ -138,7 +143,7 @@
                         </form>
                     </div>
 
-                        <span class="fs-sm"><span class="font-weight-bold">Hourly PM2.5 measurements (in µg/m<sup>3</sup>)</span> and <span style="color:red">NAAQS&nbsp;24-hour&nbsp;PM2.5&nbsp;standard&nbsp;(35 µg/m<sup>3</sup>)</span></span>
+                        <span class="fs-sm"><span class="font-weight-bold">Hourly PM2.5 (in µg/m<sup>3</sup>)</span> | <span style="color:red">NAAQS&nbsp;24-hour&nbsp;PM2.5&nbsp;standard&nbsp;(35 µg/m<sup>3</sup>)</span></span>
                     </div>
                 
                     <div id="vis" style="width: 100%; height: 45vh;" class="mt-2">
@@ -366,6 +371,26 @@
         </div>
         <div class="modal-body">
           We can only show you realtime PM<sup>2.5</sup> data for the last 7 days. Please enter a number between 1 and 7. 
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- Modal -->
+<div class="modal fade" id="mapModal" tabindex="-1" role="dialog" aria-labelledby="mapModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="mapModalLabel">Monitor locations</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div style="min-height:684px" id="datawrapper-vis-26bBi"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/26bBi/embed.js" charset="utf-8" data-target="#datawrapper-vis-26bBi"></script><noscript><img src="https://datawrapper.dwcdn.net/26bBi/full.png" alt="" /></noscript></div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
