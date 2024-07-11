@@ -16,11 +16,9 @@
       </nav>
 
       <div class="row">
-        <div class="col-12 mb-2">
+        <div class="col-md-8 mx-auto">
           <h1>{{ .Title }}</h1>
-        </div>
 
-        <div class="col-md-6">
           <p>{{ .Content }}</p>
 
           <div class="asidebox p-1 my-3">
@@ -43,42 +41,10 @@
               class="btn btn-block btn-outline-secondary py-2 px-4 float-right"
               onclick="runQuestions()"
             >
-              <i class="fas fa-arrow-circle-down mr-1" aria-hidden="true"></i>Get
-              started
-            </button>
+              <i class="fas fa-arrow-circle-down mr-1" aria-hidden="true"></i>Click here to get started</button>
           </div>
         </div>
 
-
-
-        <div class="col-md-6">
-          <img src="img/hero_7.3.png" style="width: 100%" />
-
-          <!--
-          <div class="border p-1 mt-2">
-            Learn more about: 
-            <ul></ul>
-              <li> Heat, air quality, and how to
-                <a href="https://www.nyc.gov/site/doh/health/emergency-preparedness/emergencies-extreme-weather-heat.page#:~:text=Signs%20of%20Heat%20Illness&text=Heat%20stroke%20occurs%20when%20the,Confusion%2C%20hallucinations%20and%20disorientation">prevent weather-related illness.
-                </a>
-              </li>
-              <li>
-                <a href="../../climatehealth/hvi/">
-                  Heat and the built environment in your
-                  neighborhood.
-                </a>
-              </li>
-              <li>
-                <a href="../../airquality/realtime/">
-                  Real-time air quality.</a
-                >
-              </li>
-            </ul>
-          </div>
-        -->
-
-
-        </div>
       </div>
     </div>
   </div>
@@ -96,13 +62,12 @@
     <div class="col-md-4 ml-auto">
       <div class="sticky-top border p-2" style="z-index: 0">
         <p>
-          Today's weather is:
-          <span id="hot" class="font-weight-bold p-1">HOT</span>. <br />The
-          current temp is <span id="currentTemp">XX</span> and the forecast high
+          Today's weather:
+          <span id="hot" class="font-weight-bold p-1">HOT</span>. <br />
+          The forecast high
           is <span id="maxTemp">YY</span> today.
-          <a href="https://forecast7.com/en/40d71n74d01/new-york/?unit=us"
-            >Get a full weather forecast here</a
-          >.
+          It is currently <span id="currentTemp">XX</span>. 
+          <a href="https://forecast7.com/en/40d71n74d01/new-york/?unit=us">Get a full weather forecast here</a>.
         </p>
 
         <hr class="my-2" />
@@ -111,7 +76,7 @@
           The current air quality is:
           <span id="aqimeaning" class="font-weight-bold p-1"
             >AQI interpretation</span
-          >.
+          >. <a href="https://www.airnow.gov/">Get air quality where you live</a>.
         </p>
 
         <hr class="my-2" />
@@ -139,7 +104,7 @@
               <span id="usesEME" class="float-right"></span>
             </p>
             <p>
-              <i class="fas fa-hippo mr-1 fs-lg" aria-hidden="true"></i>
+              <i class="fas fa-dog mr-1 fs-lg" aria-hidden="true"></i>
               Has an animal: <span id="hasAnimal" class="float-right"></span>
             </p>
             <p>
@@ -151,7 +116,7 @@
             </p>
             <p>
               <i
-                class="fas fa-money-bill-wave mr-1 fs-lg"
+                class="fas fa-dollar-sign mr-1 fs-lg"
                 aria-hidden="true"
               ></i>
               Limits AC use: <span id="limitsAC" class="float-right"></span>
