@@ -22,8 +22,6 @@ image: ds-aqcovid.jpeg
 photocredit: "Ed Reed/Mayoral Photography Office"
 ---
 
-## Injury deaths among young and middle-aged adults in New York City: with a focus on homicide and suicide
-
 Young and middle-aged adults (ages 15 to 44) do not typically die from the natural causes that kill older adults. Injuries, both intentional — violence or suicide — and unintentional, dominate as causes of death. These premature deaths are tragic, unnecessary and preventable.
 
 Below we focus on homicide and suicide, reflecting areas of focus in the [NYC Health Department’s recently released HealthyNYC](https://www.nyc.gov/site/doh/about/about-doh/healthynyc.page), which identifies the major drivers of decreasing life expectancy and health equity in our city and identifies strategies to reduce each driver’s impact.

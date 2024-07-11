@@ -1,19 +1,30 @@
 ---
 title: "An update on air quality during COVID-19"
 aliases:
-    - /data-stories/aqcovid2/
+  - /data-stories/aqcovid2/
 date: 2022-04-20T08:33:22-04:00
 draft: false
 seo_title: "How COVID-19 affected air quality"
 seo_description: "How the COVID-19 shutdown affected air in NYC."
-tags: 
-categories: ["transportation","airquality","foodanddrink"]
-keywords: ["air quality","traffic","transportation","covid","covid-19","coronavirus","air pollution", "lungs","breathing","restaurants"]
+tags:
+categories: ["transportation", "airquality", "foodanddrink"]
+keywords:
+  [
+    "air quality",
+    "traffic",
+    "transportation",
+    "covid",
+    "covid-19",
+    "coronavirus",
+    "air pollution",
+    "lungs",
+    "breathing",
+    "restaurants",
+  ]
 image: ds-aqcovid.jpeg
 photocredit: "Ed Reed/Mayoral Photography Office"
 ---
 
-## Big improvements in outdoor air quality during COVID-19 reveal impacts of traffic and commercial cooking
 On March 20, 2020, New York State announced the COVID-19 shutdown, officially known as NY Pause. In NYC, it lasted until June 8, 2020.
 
 With stay-at-home orders in NY and other states, New York City's air quality changed significantly. Earlier, [we looked at data collected from real-time air pollution monitors to see how day-to-day pollution changed when people started to stay home]({{< ref "data-stories/air-quality-and-covid" >}}).
@@ -27,6 +38,7 @@ As a result, outdoor air quality improved: we recorded large decreases in concen
 But the improvements in pollution from winter to spring were much greater in 2020 than they had been in 2019. Reductions in activity during NY Pause resulted in a **29% decline in NO2** and a **25% decline in PM2.5**.
 
 {{< rawhtml >}}
+
 </div>
 <div class="medium my-4 py-2">
     <h3 class="fs-lg">Both NO2 and PM2.5 fell during NY Pause - more than in 2019. </h3>
@@ -55,9 +67,11 @@ But the improvements in pollution from winter to spring were much greater in 202
 {{< /rawhtml >}}
 
 ### The biggest air quality changes were in Manhattan's central business district.
+
 With many New Yorkers staying home, activity in the CBD fell drastically. Explore the changes in the maps below.
 
 {{< rawhtml >}}
+
 <div class="asidebox"><p class="fs-sm">Our land-use regression models incorporate data from nearly 100 air quality monitoring sites. <a href="https://nyccas.cityofnewyork.us/nyccas2021v9/report/2">For more information, visit NYCCAS</a>. </p></div>
 
 </div>
@@ -79,6 +93,7 @@ With many New Yorkers staying home, activity in the CBD fell drastically. Explor
 {{< /rawhtml >}}
 
 ### Comparing Midtown Manhattan to an “urban background” location
+
 Since PM2.5 levels normally vary by season, we used the difference in PM2.5 between a site in midtown Manhattan and an “urban background” site in Queens to see if there were any unusual changes during NY Pause. This Queens site usually has lower levels of air pollutants than Midtown, but during NY Pause, the difference fell to nearly nothing. Pollution in Midtown matched the Queens site.
 
 {{< datawrapper title="PM2.5 difference between Midtown and Queens" src="ZSG5m/1/" height="150" >}}
@@ -86,11 +101,13 @@ Since PM2.5 levels normally vary by season, we used the difference in PM2.5 betw
 Our land-use regression models suggest that there are three major sources of PM2.5 and NO2 in NYC — traffic, commercial cooking, and building boiler emissions.
 
 ### Traffic resumed after NY Pause...
+
 During NY Pause, the Lincoln Tunnel's morning rush travel time to NYC plummeted, indicating reduced traffic volume. It increased again during the summer:
 
 {{< datawrapper title="Traffic after NY Pause" src="3dH2R/1/" height="150" >}}
 
 ### ...but many small businesses, including restaurants, stayed closed.
+
 There were about 50% fewer small leisure and hospitality businesses operating during NY Pause than in January 2020—but many of the small businesses that closed had still not reopened by January 2021.
 
 {{< datawrapper title="Traffic after NY Pause" src="tRi2z/1/" height="150" >}}
@@ -98,6 +115,7 @@ There were about 50% fewer small leisure and hospitality businesses operating du
 The other major source of air pollution in NYC, [building boilers, showed little evidence of change during the shutdown](https://www.sciencedirect.com/science/article/pii/S2666765722000072?via%3Dihub).
 
 ### While traffic picked up again, businesses were slow to reopen and Midtown PM2.5 levels stayed low.
+
 Even after traffic picked up again, PM2.5 levels in Midtown remained similar to the site in Queens. This suggests that the changes in PM2.5 weren't driven entirely by traffic levels in the CBD.
 
 Instead, decreases in PM2.5 were probably because small businesses—in particular, restaurants—remained closed. That meant ongoing decreases in commercial cooking. Because of restrictions on gatherings and indoor dining, and fewer tourists and office workers, restaurant emissions stayed lower than normal even after the city started reopening.
@@ -105,14 +123,15 @@ Instead, decreases in PM2.5 were probably because small businesses—in particul
 These data show us how the early stage of the COVID-19 pandemic affected our air quality. Different factors drove the changes: the shutdown impacted both traffic emissions and restaurant emissions. When people stay home, air pollution decreases.
 
 ### Lessons learned for the future
+
 Understanding the air pollution impacts from NY Pause can help us anticipate impacts from policies such as congestion pricing.
 
 Congestion pricing is a proposed tolling system that would charge drivers for entering Manhattan below 60th street.
 
 Because congestion pricing specifically targets traffic going into the CBD, we can expect effects on air pollution to be more narrowly focused around that area. And congestion pricing will probably have more of an effect on NO2 (which mostly comes from traffic) than on PM2.5 (which comes from many sources including buildings and commercial cooking).
 
-
 {{< rawhtml >}}
+
 <!-- Modal -->
 <div class="modal fade" id="ModalCenter" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
@@ -160,4 +179,5 @@ Because congestion pricing specifically targets traffic going into the CBD, we c
         document.getElementById('btn1').classList.remove('btn-primary')
     }
 </script>
+
 {{< /rawhtml >}}

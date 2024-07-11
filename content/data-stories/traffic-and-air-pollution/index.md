@@ -17,8 +17,6 @@ seo_title: Traffic and PM2.5 air pollution
 seo_description: "The public health impacts of PM2.5 from traffic air pollution in New York City affect neighborhoods differently."
 ---
 
-## What is PM2.5 and why is it a health risk?
-
 PM2.5—or fine particulate matter—are tiny particles that pollute the air and result from everyday urban activities like driving. PM2.5 can be solid or liquid in form when it is airborne. PM2.5 is the most harmful air pollution for humans to breathe in because the particles are small enough to enter the bloodstream through the lungs. Each PM2.5 particle is less than 2.5 microns in diameter. That is small enough to fit inside a red blood cell.
 
  <img src = "PM2.5 particle_final.svg" alt="A PM2.5 particle is smaller than a red blood cell" class="px-6 m-4">
