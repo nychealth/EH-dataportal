@@ -1,12 +1,13 @@
 ---
 title: The racial wealth gap has big implications for public health and health equity
+shortTitle: The racial wealth gap affects public health and equity
 date: 2023-06-16T09:01:00-04:00
 draft: false
 seo_title: "How the racial wealth gap affects health"
 seo_description: "A data story about how the racial wealth gap affects health"
 tags:
 categories: ["social"]
-keywords: ["racial wealth gap","health equity","inequalities","inequities"]
+keywords: ["racial wealth gap", "health equity", "inequalities", "inequities"]
 image: CrownHeights_JulienneSchaer-065.JPG
 photocredit: "Julienne Schaer/Mayoral Photography Office"
 ---
@@ -113,9 +114,10 @@ Greater wealth allows people to live in neighborhoods with fewer environmental h
 <p>
   Debt type plays an important role in health and well-being in both positive and negative ways. For instance, higher levels of home and student loan debt are associated with greater socioemotional well-being for children, whereas higher levels of and increases in unsecured debt (for example, credit card debt) are associated with lower levels of and declines in child socioemotional well-being, respectively.
 
-  At the household level, high debts or low assets can increase anxiety, frustration, and hopelessness, and can also lead to health deterioration due to stress. When looking at young adults with student debt, those with high levels of debt stress reported feeling more tense and anxious, troubled by physical problems, and had greater difficulty getting to sleep than students with low levels of debt stress.
-                </p>
-            </div>
+At the household level, high debts or low assets can increase anxiety, frustration, and hopelessness, and can also lead to health deterioration due to stress. When looking at young adults with student debt, those with high levels of debt stress reported feeling more tense and anxious, troubled by physical problems, and had greater difficulty getting to sleep than students with low levels of debt stress.
+</p>
+</div>
+
 </div>
 <!-- .collapse -->
 </div>
@@ -134,8 +136,8 @@ Between 2019 and 2021, the U.S. experienced a widening of its life expectancy ga
 </script>
 </div>
 
-
 ### Reducing the racial wealth gap
+
 In 2021 and 2022, the Federal Reserve Bank of New York, in partnership with the NYC Health Department, convened experts from the nonprofit, research, policy, and government sectors in a series of roundtable discussions to share their thoughts on the solutions, policies, and tools that should be considered to meaningfully address racial wealth and health gaps in the U.S. These experts noted that bold public policy, better data collection, and increased community ownership are needed.
 
 From the convening, it was noted that policies like universal health care, medical debt cancellation, and increasing community ownership can help improve health and address health-related financial inequities—while policies like reparations can directly address the racial wealth gap.
@@ -154,12 +156,9 @@ Effective solutions to racial inequities in wealth and health must simultaneousl
 
 <hr class="my-2">
 
-
-
 </div>
 
 <div class="wide my-4">
-
 
 ### Resources
 
@@ -186,8 +185,6 @@ Effective solutions to racial inequities in wealth and health must simultaneousl
     </div>
   </div>
 </div>
-
-
 
 <!-- Modal -->
 <div class="modal fade" id="glossaryModal" tabindex="-1" role="dialog" aria-labelledby="glossaryModalLabel" aria-hidden="true">
@@ -249,4 +246,3 @@ Effective solutions to racial inequities in wealth and health must simultaneousl
     </div>
   </div>
 </div>
-

@@ -1,5 +1,6 @@
 ---
 title: The Public Health Impacts of PM2.5 from Traffic Air Pollution
+shortTitle: How traffic pollution affects PM2.5
 draft: false
 date: 2021-02-05T08:49:22-04:00
 image: ESB_sunrise_JulienneSchaer-066.JPG
