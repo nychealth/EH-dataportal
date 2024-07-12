@@ -385,7 +385,7 @@ function runFinal() {
   // Message 1 - AQI / wear a mask
   if (aqi > 3 || 
     (aqi > 2 && sensitiveGroup === 'Yes')) {
-    msg = '<p><strong>Because of the air quality today</strong> stay indoors if possible. If you need to open a window to stay cool, that is OK - staying cool is most important. Consider wearing a mask outside. <a href="https://www.nyc.gov/site/doh/health/health-topics/air-quality-fire-smoke-and-effect-on-air-quality.page> Learn more about masks </a></p>'
+    msg = '<p><strong>Because of the air quality today</strong> stay indoors if possible. If you need to open a window to stay cool, that is OK - staying cool is most important. Consider wearing a mask outside. <a href="https://www.nyc.gov/site/doh/health/health-topics/air-quality-fire-smoke-and-effect-on-air-quality.page"> Learn more about masks </a></p>'
     finalMessageText.innerHTML += msg + '<hr class="my-2">'
   }
 
@@ -418,7 +418,7 @@ function runFinal() {
     ( hasAC === 'Yes') &&
     ((sensitiveGroup === 'Yes' && aqi > 2) || (aqi > 3))
     ) {
-      msg = "<p><strong>Because of the bad air quality</strong>, you may want to take some precautions. Air purifiers with filters can help remove some air pollution from the air. </p><p> Closing the vent on your AC or setting it to re-circulate will help you stay cool while preventing your AC unit from blowing polluted air inside.</p><p> No matter what, always use your AC when it's hot. Staying cool is the priority. <a href='https://www.nyc.gov/site/doh/health/health-topics/indoor-air-quality.page'> Learn more about indoor air quality.</a></p>"
+      msg = "<p><strong>Because of the bad air quality</strong>, you may want to take some precautions. Air purifiers with filters can help remove some air pollution from the air. </p><p> Closing the vent on your AC or setting it to re-circulate will help you stay cool while preventing your AC unit from blowing polluted air inside. </p><p> No matter what, always use your AC when it's hot. Staying cool is the priority. <a href='https://www.nyc.gov/site/doh/health/health-topics/indoor-air-quality.page'> Learn more about indoor air quality.</a></p>"
       finalMessageText.innerHTML += msg + '<hr class="my-2">'
     }
 
