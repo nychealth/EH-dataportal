@@ -385,7 +385,7 @@ function runFinal() {
   // Message 1 - AQI / wear a mask
   if (aqi > 3 || 
     (aqi > 2 && sensitiveGroup === 'Yes')) {
-    msg = '<p><strong>Because of the air quality today</strong> stay indoors if possible. If you need to open a window to stay cool, that is OK - staying cool is most important. Consider wearing a mask outside. <a href="https://www.nyc.gov/site/doh/health/health-topics/air-quality-fire-smoke-and-effect-on-air-quality.page"> Learn more about masks </a></p>'
+    msg = '<p><strong>Because of the air quality today</strong> stay indoors if possible. If you need to open a window to stay cool, that is OK - staying cool is most important. Consider wearing a mask outside. <a href="https://www.nyc.gov/site/doh/health/health-topics/air-quality-fire-smoke-and-effect-on-air-quality.page"> Learn more about masks.</a></p>'
     finalMessageText.innerHTML += msg + '<hr class="my-2">'
   }
 
