@@ -134,6 +134,8 @@ function printToPage() {
 
 function runQuestions() {
 
+  document.getElementById('allContent').classList.remove('hide')
+
   content.forEach(question => {
 
     // Question block

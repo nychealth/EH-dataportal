@@ -1,5 +1,5 @@
 ---
-title: "Protect yourself during hot weather and bad air quality"
+title: "Stay safe from heat and air pollution"
 aliases:
   - /key-topics/climatehealth/cooling-info/
 date: 2023-08-01T11:51:01-04:00

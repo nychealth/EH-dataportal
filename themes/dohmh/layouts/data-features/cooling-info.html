@@ -2,24 +2,44 @@
 
 <article class="container-fluid" id="skip-header-target">
   <div class="row">
-    <div class="col-md-11 mx-auto mt-4">
-      <nav aria-label="breadcrumb" class="mb-4">
-        <ul class="breadcrumb">
-          <li class="breadcrumb-item"><a href="#">Home</a></li>
-          <li class="breadcrumb-item">
-            <a href="/data-features/">Data Features</a>
-          </li>
-          <li class="breadcrumb-item active" aria-current="page">
-            {{ .Title }}
-          </li>
-        </ul>
-      </nav>
+    <div class="col-md-11 mx-auto">
 
-      <div class="row">
+      <div class="row mb-4">
         <div class="col-md-8 mx-auto">
+          <nav aria-label="breadcrumb" class="mt-2 mb-4">
+            <ul class="breadcrumb">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item">
+                <a href="/data-features/">Data Features</a>
+              </li>
+              <li class="breadcrumb-item active" aria-current="page">
+                {{ .Title }}
+              </li>
+            </ul>
+          </nav>
           <h1>{{ .Title }}</h1>
 
+
           <p>{{ .Content }}</p>
+
+          <div class="row my-2">
+            <div class="col-3 px-4">
+              <img src="img/AC.svg">
+            </div>
+
+            <div class="col-3 px-4">
+              <img src="img/Vulnerable_groups1.svg">
+            </div>
+
+            <div class="col-3 px-4">
+              <img src="img/Fan.svg">
+            </div>
+
+            <div class="col-3 px-4">
+              <img src="img/Piggy_bank.svg">
+            </div>
+
+          </div>
 
           <div class="asidebox p-1 my-3">
             <strong
@@ -36,28 +56,23 @@
             >.
           </div>
 
-              <div class="mt-4">
+          <div class="my-4">
               <button
               class="btn btn-block btn-outline-secondary py-2 px-4 float-right"
               onclick="runQuestions()"
             >
               <i class="fas fa-arrow-circle-down mr-1" aria-hidden="true"></i>Click here to get started</button>
           </div>
+
         </div>
 
       </div>
     </div>
   </div>
 
-  <div class="row my-2">
-    <div class="col-6 mx-auto">
-      <hr>
-    </div>
-  </div>
 
 
-
-  <div class="row my-4">
+  <div class="row my-4 hide" id="allContent">
     <!--left-hand sticky column-->
     <div class="col-md-4 ml-auto">
       <div class="sticky-top border p-2" style="z-index: 0">
