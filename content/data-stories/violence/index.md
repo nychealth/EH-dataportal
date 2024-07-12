@@ -1,5 +1,6 @@
 ---
 title: "Why violence is a public health issue"
+shortTitle: "Violence and public health"
 date: 2021-02-08T08:07:31-04:00
 draft: false
 seo_title: "Why violence is a public health issue"

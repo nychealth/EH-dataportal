@@ -1,6 +1,6 @@
 ---
 title: "Efforts to reduce air pollution should focus on neighborhoods with the worst health impacts"
-shortTitle: Health effects from air pollution are unequal
+shortTitle: Health effects from air pollution
 date: 2022-12-15T15:23:23-05:00
 draft: false
 image: ds-geographies.jpg

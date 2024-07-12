@@ -1,6 +1,6 @@
 ---
 title: The racial wealth gap has big implications for public health and health equity
-shortTitle: The racial wealth gap affects public health and equity
+shortTitle: The racial wealth gap
 date: 2023-06-16T09:01:00-04:00
 draft: false
 seo_title: "How the racial wealth gap affects health"

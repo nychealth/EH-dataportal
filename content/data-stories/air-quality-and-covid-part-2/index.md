@@ -1,5 +1,6 @@
 ---
 title: "An update on air quality during COVID-19"
+shortTitle:  "Air quality during COVID"
 aliases:
   - /data-stories/aqcovid2/
 date: 2022-04-20T08:33:22-04:00
