@@ -237,7 +237,7 @@
         }
 
         #leafletMap {
-            height: 93vh;
+            height: 94.5vh;
             width: 100%;
             border: 1px solid gray;
         }
@@ -330,12 +330,22 @@
 
     <!-- Left legend -->
     <div id="legend" class="d-none">
+
+        <button class="btn btn-sm float-right btn-white mb-1" data-toggle="modal"
+        data-target="#topicModal">
+            Change topic
+        </button>
+
+        <button class="btn btn-sm btn-white mb-1" data-toggle="modal" data-target="#aboutModal">
+            About {{ .Title }}
+        </button>
+
         <div class="accordion-group " role="tablist" id="indicatorAccordion">
 
             <div class="card ">
         
                 <a class="card-header fs-sm collapse collapsed " id="acc-button-01" data-toggle="collapse" href="#panel-acc-button-01"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-01">
-                    <span class="title font-weight-bold fs-sm" role="heading" aria-level="3"> <i class="fas fa-list fa-fw mr-1" aria-hidden="true"></i>Datasets</span>
+                    <span class="title font-weight-bold fs-sm" role="heading" aria-level="3"> <i class="fas fa-list fa-fw mr-1" aria-hidden="true"></i>{{ .Title }} datasets</span>
                 </a>
         
                 <div class="collapse" id="panel-acc-button-01" role="tabpanel" aria-labelledby="acc-button-01" data-parent="#accordion-01">
