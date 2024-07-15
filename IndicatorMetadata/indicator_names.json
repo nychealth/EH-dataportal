@@ -874,11 +874,6 @@
     "description": "Falls are a leading cause of injury among older adults.",
     "name": "Home fall-related hospitalizations (age 65+)"
   },
-  "2410": {
-    "IndicatorID": 2410,
-    "description": "Heat stress hospitalizations weather are part of the public health burden due to hot weather. Data aggregated over five years provides enough stablility to display neighborhood impacts.",
-    "name": "Heat stress: hospitalizations"
-  },
   "2411": {
     "IndicatorID": 2411,
     "description": "The HVI shows the risk of community-level heat impacts, like deaths, due to extreme heat events. It is made up of data on surface temperature, green space, air conditioning access, median income, and Black population (the population most excluded from heat resources). Differences in community-level heat impacts stem from structural racism, which limits access to preventive resources. \u003ca href=\"../../key-topics/climatehealth/hvi\"\u003eSee our interactive Heat Vulnerability Index\u003c/a\u003e",

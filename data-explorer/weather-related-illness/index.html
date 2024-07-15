@@ -1781,21 +1781,6 @@
         
         
         <h1 
-            id="IndicatorID-2410" 
-            class="d-none"> 
-            Heat stress: hospitalizations
-        </h1>
-        <h2
-            class="d-none"> 
-            Heat stress hospitalizations weather are part of the public health burden due to hot weather. Data aggregated over five years provides enough stablility to display neighborhood impacts.
-        </h2>
-
-    
-    
-
-        
-        
-        <h1 
             id="IndicatorID-2084" 
             class="d-none"> 
             Heat events
@@ -2373,15 +2358,7 @@
 
                 
 
-                     defaultIndicatorId =  2410  
-
-                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2410 );
-                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
-                    indicatorDropdown.innerHTML += "<button class='indicator-dropdown-item dropdown-item' onclick='loadIndicator(2410)' data-indicator-id='2410'>" + this_indicatorName + `</button>`;
-
-                
-
-                    
+                     defaultIndicatorId =  2084  
 
                     indicator = indicators.find(indicator => indicator.IndicatorID ===  2084 );
                     this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
@@ -2460,11 +2437,7 @@
                 header = 'Heat Stress';
                 indicatorButtons.innerHTML += header.length ? '<div class="pl-1 pt-2 home-label border">' + header + '</div>': '';
 
-                defaultIndicatorId =  2410 
-
-                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2410 );
-                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
-                    indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' onclick='loadIndicator(2410)' data-indicator-id='2410'>" + this_indicatorName + `<i class="indicator-arrows fas fa-arrow-circle-right float-right font-weight-bold hide" id="arrow-2410" aria-hidden="true"></i></button>`;
+                defaultIndicatorId =  2084 
 
                     indicator = indicators.find(indicator => indicator.IndicatorID ===  2084 );
                     this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
