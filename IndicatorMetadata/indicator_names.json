@@ -1019,6 +1019,16 @@
     "description": "Non-fatal injuries from firearms that result in hospitalizations. Violence from firearms causes physical and emotional harm, and trauma to both individuals and communities. ",
     "name": "Firearm hospitalizations (all ages)"
   },
+  "2441": {
+    "IndicatorID": 2441,
+    "description": "Anaplasmosis",
+    "name": "Anaplasmosis"
+  },
+  "2442": {
+    "IndicatorID": 2442,
+    "description": "Lyme disease",
+    "name": "Lyme disease"
+  },
   "25": {
     "IndicatorID": 25,
     "description": "Adults reporting secondhand smoke at home. Secondhand smoke, especially indoors, is bad for health - particularly for the health of children.",
