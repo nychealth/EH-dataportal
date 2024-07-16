@@ -15,7 +15,7 @@ Health is determined by many factors, and people tend to be healthier when they 
 
 <div class="pullquote my-4">
 <figure class="">
-    <figcaption>“When someone has a decent house with security…they can lock their door at night, they can sleep at night, know their children are safe. That can create a better frame of mind of how you’re living your life.” <br><span class="float-right"></span></figcaption>
+    <figcaption>“When someone has a decent house with security…they can lock their door at night, they can sleep at night, know their children are safe. That can create a better frame of mind of how you’re living your life.”<span class="float-right"></span></figcaption>
     <audio controls src="frame-of-mind.mp3" style="width:100%;" class="mt-2">
             <a href="frame-of-mind.mp3">
                 Download audio
@@ -32,7 +32,7 @@ People living in higher-poverty neighborhoods are more likely to experience nega
 
 <div class="pullquote my-4">
 <figure class="">
-    <figcaption figcaption class="mb-2">“Many people have moved to the neighborhood with different and higher incomes that may skew the definition of affordable housing, thereby creating a gap of income and services.” <br> <span class="float-right"></span>   </figcaption>
+    <figcaption figcaption class="mb-2">“Many people have moved to the neighborhood with different and higher incomes that may skew the definition of affordable housing, thereby creating a gap of income and services.”<span class="float-right"></span>   </figcaption>
     <audio controls src="clip-gap-of-services.mp3" style="width:100%;" class="mt-2">
             <a href="clip-gap-of-services.mp3">
                 Download audio
@@ -43,7 +43,7 @@ People living in higher-poverty neighborhoods are more likely to experience nega
 
 Across New York, half of all households are rent-burdened, meaning that more than 30% of their household income goes to rent. Spending so much on rent can leave too little money for food and other essentials. <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/economic-stability/"> Learn more about the health implications of experiencing rent burden in "How economic stability creates health." </a>
 
-<div class="my-4 py-2 border-top border-bottom">
+<div class="chart-wrapper">
 
 <iframe class="" title="Percent of households that are rent-burdened by neighborhood (NTA)" aria-label="Map" id="datawrapper-chart-L4j3j" src="https://datawrapper.dwcdn.net/L4j3j/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="756" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
 
@@ -53,7 +53,7 @@ A person who has a high rent burden is often confronting other housing challenge
 
 <div class="pullquote my-4">
 <figure class="">
-    <figcaption figcaption class="mb-2"> "… like many people I choose between paying my internet or food…” <br><span class="float-right"></span>
+    <figcaption figcaption class="mb-2"> "… like many people I choose between paying my internet or food…”<span class="float-right"></span>
  </figcaption>
     <audio controls src="clip-internet-or-food.mp3" style="width:100%;" class="mt-2">
             <a href="clip-internet-or-food.mp3">
@@ -63,7 +63,7 @@ A person who has a high rent burden is often confronting other housing challenge
 </figure>
 </div>
 
-<div class="my-4 py-2 border-top border-bottom">
+<div class="chart-wrapper">
 <h4 class="mt-4 mb-2">Overcrowding tends to occur in areas with high poverty</h4>
 <div class="my-1 border-bottom">
 <button class="borobtn btn btn-sm btn-outline-secondary active" onclick="changeBoro(1)" id="btn1">Bronx</button>
@@ -115,7 +115,7 @@ function changeBoro(x) {
 
 <div class="pullquote my-4">
 <figure class="">
-    <figcaption figcaption class="mb-2"> “A lot of the young people I work with openly share that maybe they’re sharing a bed with several siblings.” <br><span class="float-right"></span> </figcaption>
+    <figcaption figcaption class="mb-2"> “A lot of the young people I work with openly share that maybe they’re sharing a bed with several siblings.” <span class="float-right"></span> </figcaption>
     <audio controls src="clip-sharing-space.mp3" style="width:100%;" class="mt-2">
             <a href="clip-sharing-space.mp3">
                 Download audio
@@ -130,7 +130,7 @@ When housing is unaffordable, options become limited, and people often end up in
 
 <div class="pullquote my-4">
 <figure class="">
-    <figcaption figcaption class="mb-2"> “We didn’t have any heat for last year up until the middle of December. And then we didn’t have any air conditioning through the middle of August.” <br><span class="float-right"></span> </figcaption>
+    <figcaption figcaption class="mb-2"> “We didn’t have any heat for last year up until the middle of December. And then we didn’t have any air conditioning through the middle of August.” <span class="float-right"></span> </figcaption>
     <audio controls src="clip-ac-and-heat.mp3" style="width:100%;" class="mt-2">
             <a href="clip-ac-and-heat.mp3">
                 Download audio
@@ -149,7 +149,7 @@ Homes that are not properly maintained can undermine health, including because t
 
 <a href="https://www.nyc.gov/assets/doh/downloads/pdf/survey/asthma-housing-2021.pdf">Home maintenance issues are more common in high-poverty neighborhoods </a> and in public housing than in wealthier neighborhoods or privately-owned apartments.
 
-<div class="my-4 py-2 border-top border-bottom">
+<div class="chart-wrapper">
 <h4 class="mt-4 mb-2">Maintenance issues are more common in high poverty-neighborhoods </h4>
 
 <div class="my-1 border-bottom">
@@ -205,13 +205,13 @@ Affordability and barriers to cooling can also result in consequences to health.
 
 A lack of affordable housing often leads to housing instability. Most evictions occur because the tenant can’t pay rent, and can result in frequent moves and homelessness, both of which threaten health in the short term and over time. New Yorkers living in high-poverty neighborhoods experience eviction at more than four times the rate of those living in low-poverty neighborhoods.
 
-<div class="my-4 py-2 border-top border-bottom">
+<div class="chart-wrapper">
 <iframe title="Evictions are more common in higher poverty neighborhoods" class="" aria-label="Scatter Plot" id="datawrapper-chart-DEEg2" src="https://datawrapper.dwcdn.net/DEEg2/3/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="550" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
 </div>
 
 <div class="pullquote my-4">
 <figure class="">
-    <figcaption figcaption class="mb-2"> “Children whose families are homeless, and they're being shuffled from place to place—they need to have stability. I think that needs to be addressed. Because it also affects their schooling, their mental health, their medical, you know, needs for both parents and the children. And I think the children are impacted most.” <br><span class="float-right"></span></figcaption>
+    <figcaption figcaption class="mb-2"> “Children whose families are homeless, and they're being shuffled from place to place—they need to have stability. I think that needs to be addressed. Because it also affects their schooling, their mental health, their medical, you know, needs for both parents and the children. And I think the children are impacted most.”<span class="float-right"></span></figcaption>
     <audio controls src="clip-place-to-place.mp3" style="width:100%;" class="mt-2">
             <a href="clip-place-to-place.mp3">
                 Download audio
@@ -226,7 +226,7 @@ A lack of affordable housing often leads to housing instability. Most evictions 
 
 When COVID-19 hit, New York City paused evictions, recognizing the twin threats of serious financial hardship and health risks created and made worse through experiencing homelessness. This was an effort to keep people housed — but also to keep people out of shelters, where the spread of COVID was hard to contain.
 
-<div class="my-4 py-2 border-top border-bottom">
+<div class="chart-wrapper">
 <iframe title="Evictions plummeted in 2020" class="" aria-label="Interactive line chart" id="datawrapper-chart-xy1ku" src="https://datawrapper.dwcdn.net/xy1ku/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="423" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
 </div>
 

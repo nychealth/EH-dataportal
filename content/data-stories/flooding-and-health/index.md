@@ -1,5 +1,6 @@
 ---
 title: What Hurricane Ida and Superstorm Sandy taught us about flooding and health
+shortTitle: Flooding and health
 date: 2024-06-11T09:01:00-04:00
 draft: false
 seo_title: "What Hurricane Ida and Superstorm Sandy taught us about flooding and health"

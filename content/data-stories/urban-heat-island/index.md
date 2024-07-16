@@ -1,5 +1,6 @@
 ---
 title: "The urban heat island effect in NYC"
+shortTitle: "Urban heat islands"
 aliases:
     - /data-stories/localtemp/
 date: 2021-08-20T12:52:43-04:00
