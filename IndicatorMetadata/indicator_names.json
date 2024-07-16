@@ -429,16 +429,6 @@
     "description": "Older adults are more vulnerable to extreme weather. Those living alone may have more difficulty getting resources they need in an emergency, and are at higher risk of weather-related illnesses like heat stroke and hypothermia.",
     "name": "Older adults living alone"
   },
-  "2147": {
-    "IndicatorID": 2147,
-    "description": "Asthma is a common disease characterized by breathing difficulty. Poor air quality and housing issues increase risk of developing and triggering asthma.",
-    "name": "Asthma in public school children (age 5 to 14)"
-  },
-  "2149": {
-    "IndicatorID": 2149,
-    "description": "Persistent asthma is when symptom occur more than twice per week.",
-    "name": "Persistent asthma in public school children (age 5 to 14)"
-  },
   "2151": {
     "IndicatorID": 2151,
     "description": "Having a regular doctor makes it easier to maintain good health.",
@@ -898,11 +888,6 @@
     "IndicatorID": 2409,
     "description": "Falls are a leading cause of injury among older adults.",
     "name": "Home fall-related hospitalizations (age 65+)"
-  },
-  "2410": {
-    "IndicatorID": 2410,
-    "description": "Heat stress hospitalizations weather are part of the public health burden due to hot weather. Data aggregated over five years provides enough stablility to display neighborhood impacts.",
-    "name": "Heat stress: hospitalizations"
   },
   "2411": {
     "IndicatorID": 2411,
