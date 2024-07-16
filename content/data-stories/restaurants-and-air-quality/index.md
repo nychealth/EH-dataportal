@@ -1,5 +1,6 @@
 ---
 title: "Tracking changes in New York City's sources of air pollution"
+shortTitle: "Restaurants and air quality"
 aliases:
     - /data-stories/aq-cooking/
 date: 2021-04-12T12:02:09-04:00
