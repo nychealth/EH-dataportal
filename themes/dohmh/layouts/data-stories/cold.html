@@ -17,16 +17,16 @@
         {{- if .IsTranslated -}}
             <nav class="navbar navbar-default my-2">
                     <ul class="nav navbar-nav fs-sm">
-                        <span class="mr-2">Read this data story in:</span> 
+                        <span class="mr-2">Read this data story in:</span>
                         {{- range .Translations -}}
-                        <li class="mb-1"><a href="{{ .RelPermalink }}">{{ .Language.LanguageName }}</a>&nbsp;|&nbsp;</li>  
+                        <li class="mb-1"><a href="{{ .RelPermalink }}">{{ .Language.LanguageName }}</a>&nbsp;|&nbsp;</li>
                         {{- end -}}
                     </ul>
             </nav>
         {{- end -}}
 
         <div class="my-4">
-            <div class="row my-2 mb-3">
+            <div class="row mt-2 mb-3">
                 <div class="col-12">
                     <nav aria-label="breadcrumb">
                         <ul class="breadcrumb">
@@ -37,7 +37,7 @@
                               {{ else }}
                                 {{ .Title }}
                               {{ end }}</a></li>
-    
+
                         </ul>
                     </nav>
                 </div>

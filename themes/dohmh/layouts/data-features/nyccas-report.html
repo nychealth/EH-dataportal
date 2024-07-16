@@ -16,7 +16,7 @@
         {{ $src := .Resources.GetMatch .Params.image }}
         {{ $image := $src.Resize "1920x"}}
         <div id="datastoryheader" style="background-image: URL({{ $image.RelPermalink }}); background-position: 50% 25%">
-    
+
             <div class="medium my-auto">
                 <h1 class="titleheader py-2 px-4" data-pagefind-weight="10.0">
                     {{ .Title }}
@@ -29,7 +29,7 @@
 <article class="container-fluid" id="skip-header-target">
 
     <div class="row">
-        <div class="col-md-11 mx-auto mt-4 pl-0">
+        <div class="col-md-11 mx-auto mt-2 pl-0">
             <nav aria-label="breadcrumb" class="mb-4">
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
@@ -44,7 +44,7 @@
     <!-- Introduction and Key Findings -->
     <div class="row" data-pagefind-weight="7.0">
         <div class="col-md-8 col-sm-12 mx-auto">
-            <div class="medium mb-2">        
+            <div class="medium mb-2">
                 {{- .Content  -}}
             </div>
     </div>
@@ -119,13 +119,13 @@
     </div>
 
     <!-- single column -->
-    
+
     <!-- Pollutant maps: text to FMV, maps to template -->
 
     <div class="row">
         <div class="col-md-8 col-sm-12 mx-auto">
             <h2>Pollutant Maps</h2>
-            <img src="images/NyccasInstall_red.jpg" alt="NYCCAS installation" align="right" style="width:50%;" class="my-2 pl-2"> 
+            <img src="images/NyccasInstall_red.jpg" alt="NYCCAS installation" align="right" style="width:50%;" class="my-2 pl-2">
 
             {{- with .Resources.GetMatch "pollutant-maps.md" -}}
                 {{ .Content }}
@@ -137,7 +137,7 @@
         </div>
     </div>
 
-    <!-- Pollutant trends --> 
+    <!-- Pollutant trends -->
     <div class="row mt-4">
         <div class="col-md-8 col-sm-12 mx-auto">
             <h2>Pollutant Trends</h2>
@@ -148,7 +148,7 @@
 
             {{ partial "nyccas_pollutant_trends" . }}
 
-            
+
         </div>
     </div>
 

@@ -15,16 +15,16 @@
         {{- if .IsTranslated -}}
             <nav class="navbar navbar-default my-2">
                     <ul class="nav navbar-nav fs-sm">
-                        <span class="mr-2">Read this data story in:</span> 
+                        <span class="mr-2">Read this data story in:</span>
                         {{- range .Translations -}}
-                        <li class="mb-1"><a href="{{ .RelPermalink }}">{{ .Language.LanguageName }}</a>&nbsp;|&nbsp;</li>  
+                        <li class="mb-1"><a href="{{ .RelPermalink }}">{{ .Language.LanguageName }}</a>&nbsp;|&nbsp;</li>
                         {{- end -}}
                     </ul>
             </nav>
         {{- end -}}
 
         <div class="narrow">
-            <div class="row my-2 mb-3">
+            <div class="row mt-2 mb-3">
                 <div class="col-12">
                     <nav aria-label="breadcrumb">
                         <ul class="breadcrumb">
@@ -35,7 +35,7 @@
                               {{ else }}
                                 {{ .Title }}
                               {{ end }}</a></li>
-    
+
                         </ul>
                     </nav>
                 </div>
@@ -49,14 +49,14 @@
                     <img class="block mb-3" src="{{ $image.RelPermalink }}" width="{{ $image.Width }}" height="{{ $image.Height }}" alt="">
                 {{ end }}
             </div>
-            
+
                 {{- .Content -}}
 
                 <p>Legend:<br>
                      <span class="pop ehbadge home-label">population</span>
-                     <span class="housing ehbadge home-label">housing</span> 
+                     <span class="housing ehbadge home-label">housing</span>
                      <span class="health ehbadge home-label">health department and local activism</span>
-                     <span class="transpo ehbadge home-label">Transportation</span> 
+                     <span class="transpo ehbadge home-label">Transportation</span>
                      <span class="dis ehbadge home-label">Disinvestment and zoning</span>  </p>
                      <hr class="my-2">
 
@@ -98,42 +98,42 @@
 .alt-vtl {
     /* (A1) RELATIVE POSITION REQUIRED TO PROPERLY POSITION THE TIMELINE */
     position: relative;
-   
+
     /* (A2) WIDTH RESTRICTION & CENTER ON PAGE */
     max-width: 600px;
     margin: 0 auto;
   }
-  
+
   /* (B) DRAW TIMELINE USING ::BEFORE */
   .alt-vtl::before {
     /* (B1) VERTICAL LINE */
     content: "";
     width: 5px;
     background-color: #1da1ff;
-   
+
     /* (B2) POSITION IN THE MIDDLE */
     position: absolute;
     top: 0; bottom: 0; left: 50%;
   }
-  
+
   /* (C) EVENTS */
   div.alt-event {
     /* (C1) COSMETICS */
     border-radius: 6px;
-   
+
     /* (C2) DIMENSIONS */
     padding: 15px 15px;
     width: 45%;
     margin-bottom: 10px;
-   
+
     /* (C3) POSITION - DEFAULT LEFT SIDE */
     position: relative;
     left: 0;
   }
-   
+
   /* (C4) CHANGE EVENT POSITION TO RIGHT SIDE */
   div.right { left: 55%; }
-  
+
   /* (D) COSMETICS FOR EVENT DATE & TEXT */
   p.date {
     font-size: 1em;
@@ -146,7 +146,7 @@
     color: #222;
     font-size: 0.8em;
   }
-  
+
   /* (E) EVENT "SPEECH BUBBLE CALLOUT" */
   /* (E1) SHARED */
   div.alt-event::before, div.alt-event.right::before {
@@ -154,27 +154,27 @@
     border: 10px solid transparent;
     position: absolute;
   }
-   
+
   /* (E2) FOR EVENTS ON THE LEFT */
   div.alt-event::before {
     /* (E2-1) "MAGIC TRIANGLE" */
     border-left-color: #66666650;
     border-right: 0;
-   
+
     /* (E2-2) POSITION TRIANGLE ON THE RIGHT */
     left: 100%; top: 20%;
   }
-   
+
   /* (E3) FOR EVENTS ON THE RIGHT */
   div.alt-event.right::before {
     /* (E3-1) "MAGIC TRIANGLE" */
     border-right-color: #66666650;
     border-left: 0;
-   
+
     /* (E3-2) POSITION TRIANGLE ON THE LEFT */
     left: auto; right: 100%; top: 20%;
   }
-   
+
   /* (F) EVENT CIRCLE ON TIMELINE */
   /* (F1) SHARED */
   div.alt-event::after, div.alt-event.right::after {
@@ -184,19 +184,19 @@
     border: 4px solid #1da1ff;
     width: 16px; height: 16px;
     border-radius: 50%;
-   
+
     /* (F1-2) POSITION */
     position: absolute;
   }
-   
+
   /* (F2) POSITION TO THE LEFT */
   div.alt-event::after { top: 20%; left: 109%; }
-   
+
   /* (F3) POSITION TO THE RIGHT */
   div.alt-event.right::after { top: 20%; left: auto; right: 107%; }
                 </style>
-                
-                
+
+
                 <div class="alt-vtl">
                     <div class="alt-event pop">
                       <p class="date">mid-1800s</p>

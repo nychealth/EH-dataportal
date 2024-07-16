@@ -3,7 +3,7 @@
 <article class="container" id="skip-header-target">
 
     <div class="row">
-        <div class="col-md-12 mx-auto mt-4">
+        <div class="col-md-12 mx-auto mt-2">
             <nav aria-label="breadcrumb" class="mb-4">
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
@@ -26,32 +26,32 @@
                 </ul>
             </div>
         </div>
-        
+
         <div class="col-md-8 mb-4" aria-hidden="true">
-            
+
             <h3 class="fs-rg mb-2">Choose a neighborhood to get a neighborhood report:</h3>
             <hr class="mb-2">
-            
+
             <div class="row">
                 <div class="col-12">
                     <div class="btn-group" role="group" style="width:100%!important;">
-                        
-                        <input 
+
+                        <input
                             id="flex_search"
                             type='search'
                             class='flexdatalist form-control'
                             name='indicator_name_suggestion'
                             style="width:100%;"
                         />
-                        
+
                         <button id="clear" class="btn btn-md btn-warning">Clear</button>
-                        
+
                     </div>
-                    
+
                     <div class="border-bottom nr-clickable-uhf" style="height:550px; width:100%;" aria-hidden="true">
                         {{- partial "nr-clickable-uhf" . -}}
                     </div>
-                    
+
                     <button class="btn btn-sm float-right btn-outline-primary mt-1" onclick="showNeighborhoods()">Show neighborhood list</button>
                     <div class="hide mt-2" id="showNeighbs">
                         <h3>All neighborhoods:</h3>
@@ -59,12 +59,12 @@
                     </div>
                 </div>
             </div>
-            
+
         </div>
-        
+
         <div class="col-md-4 text-right">
             <h3 class="fs-rg mb-2">Neighborhood Reports</h3>
-            
+
             <hr class="mb-2">
             {{ with .Site.GetPage "/neighborhood-reports/Active_Design_Physical_Activity_and_Health.md" }}
             <p><a class="nrbtn btn btn-sm btn-outline-primary btn-block" href="{{ .RelPermalink }}" id="Active">{{ .Title }}
@@ -87,18 +87,18 @@
             </a></p>
             {{- end -}}
         </div>
-        
-        
+
+
     </div>
 
 </article>
 
 <style>
-    
+
     /* ------------------------------------------------------------------------------------- */
     /* Flexdatalist custom style for properties text */
     /* ------------------------------------------------------------------------------------- */
-    
+
     .flexdatalist-results span:not(:first-child):not(.highlight) {
         padding-left: 10px;
         display: inline-block;
@@ -114,7 +114,7 @@
         color: #000000;
         background: #feff7f;
     }
-    
+
     .flex_search-flexdatalist input:placeholder-shown {
         background-color: white;
     }
@@ -123,8 +123,8 @@
         font-weight: normal;
         font-style: italic;
     }
-    
-    
+
+
 </style>
 
 
@@ -153,10 +153,10 @@
 
     {{- /*  this gets an id because we want sub results with links  */}}
 
-    <h1 class="d-none"> 
+    <h1 class="d-none">
         {{ $ind.indicator_name }}
     </h1>
-    <h2 class="d-none"> 
+    <h2 class="d-none">
         {{ $ind.indicator_description }}
     </h2>
 
@@ -176,12 +176,12 @@
 <script type="text/javascript" src="{{ $flexdatalist_js.RelPermalink }}"></script>
 
 
-<script type="text/javascript"> 
+<script type="text/javascript">
 
     var title = document.getElementById('nrtitle').innerHTML
     // console.log('page title: ' + title)
     var reportURL
-    
+
     if (title.includes("Asthma")) {
         reportURL = '/asthma_and_the_environment/'
         document.getElementById("Asthma").classList.add("active")
@@ -198,16 +198,16 @@
         reportURL = '/housing_and_health/'
         document.getElementById("Housing").classList.add("active")
     } else {}
-    
-    
+
+
     // ===== load flexdatalist ================================================== //
-    
+
     function loadList() {
-        
+
         console.log("neighborhoods [loadList]", neighborhoods)
-        
+
         // ----- init flexdatalist -------------------------------------------------- //
-        
+
         let $input = $('.flexdatalist').flexdatalist({
             minLength: 0,
             valueProperty: ["UHF_id", "UHF_name"],
@@ -223,56 +223,56 @@
             cache: false,
             data: neighborhoods
         });
-        
+
         // console.log("$input", $input);
-        
+
         // ----- add flexdatalist select handler -------------------------------------------------- //
-        
+
         $input.on('select:flexdatalist', (e, set) => {
-            
+
             console.log("set", set);
-            
+
             // SEND TO NEIGHBORHOOD...!
-            
+
             // console.log('chosen neighb:')
             // console.log(set.page_name);
-            
-            window.location.href = {{ relURL "neighborhood-reports/" }} + set.page_name + reportURL 
-            
+
+            window.location.href = {{ relURL "neighborhood-reports/" }} + set.page_name + reportURL
+
         })
-        
+
         // ----- add clear button handler -------------------------------------------------- //
-        
+
         $("#clear").on("click", (e) => {
-            
+
             // console.log("e [clear click]", e);
-            
+
             $($input).find("~input").val("").trigger( "focus" )
-            
+
         })
-        
+
     }
-    
+
     loadList()
-    
+
     // populate accessible neighborhood-selection
     var ul = document.getElementById("neighborhoodList");
     var ul2 = document.getElementById("neighborhoodList2");
-    
+
     neighborhoods.forEach(function (neighborhood) {
         var li = document.createElement("li");
         li.innerHTML = "<a href='" + {{ relURL "neighborhood-reports/" }} + neighborhood.page_name + reportURL + "'>" + neighborhood.UHF_name + "</a>: " + neighborhood.Zipcodes
         ul.appendChild(li);
         ul2.appendChild(li)
     });
-    
+
     function showNeighborhoods() {
-        
+
         document.getElementById('showNeighbs').classList.toggle('hide')
         document.getElementById('showNeighbs').classList.toggle('show')
-        
+
     }
-    
+
 </script>
 
 {{- end -}}
