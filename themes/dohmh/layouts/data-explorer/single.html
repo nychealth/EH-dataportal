@@ -490,6 +490,9 @@
                     <div class="row">
                         <div class="col-md-2 pl-2">
 
+                                <a href="#" class="badge badge-pill badge-light d-block d-sm-none mb-1" data-toggle="collapse" data-target="#tableSidebar" aria-expanded="false" aria-controls="tableSidebar"><i class="fas fa-cog mr-1" aria-hidden="true"></i>Display options</a>
+
+                                <div id="tableSidebar" class="collapse show">
                                 <p class="fs-xs mb-0"><i data-toggle="modal" data-target="#geoModal" class="fas fa-question-circle float-right helper text-primary fs-sm"></i></button>Boundaries:</p>
                                 <div class="border py-1 mb-2 optionbox">
 
@@ -505,6 +508,7 @@
                                     </div>
 
                                 </div>
+                                </div>
                             </div>
 
                         <div class="col-md-10">
@@ -518,26 +522,7 @@
                             </div>
                         </div>
                     </div>
-                    
-                    <!-- old table buttons
-                    <div class="dropdown hide">
-                        <button class="btn btn-sm float-right btn-outline-secondary dropdown-toggle mb-1" type="button"
-                                id="dropdownTableTimes" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Time </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownTableTimes">
-                            Menu items
-                        </div>
-                    </div>
-            
-                    <div class="dropdown hide">
-                        <button class="btn btn-sm mr-1 float-right btn-outline-secondary dropdown-toggle mb-1" type="button"
-                                id="dropdownTableGeos" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Geography </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownTableGeos">
-                            Menu items
-                        </div>
-                    </div>
-                     -->
-                    
-            
+                
                 </div>
             
 
@@ -547,24 +532,30 @@
 
                     <div class="row">
                         <div class="col-md-2 pl-2">
-                            <p class="fs-xs mb-0"><i data-toggle="modal" data-target="#measureModal" class="fas fa-question-circle float-right helper text-primary fs-sm"></i>Show as:</p>
-                            <div class="border optionbox py-1 mb-2">
-                                <div class="" aria-labelledby="dropdownMapMeasures">
-                                    <!-- INSERT MENU ITEMS HERE -->
-                                </div>
-                            </div>
 
-                            <p class="fs-xs mb-0"><i data-toggle="modal" data-target="#timeModal" class="fas fa-question-circle float-right helper text-primary fs-sm"></i>Available times:</p>
-                            <div class="border optionbox py-1 mb-2">
-                                <div class="" aria-labelledby="dropdownMapTimes">
-                                    <!-- INSERT MENU ITEMS HERE -->
-                                </div>
-                            </div>
+                            <a href="#" class="badge badge-pill badge-light d-block d-sm-none mb-1" data-toggle="collapse" data-target="#mapSidebar" aria-expanded="false" aria-controls="mapSidebar"><i class="fas fa-cog mr-1" aria-hidden="true"></i>Display options</a>
 
-                            <p class="fs-xs mb-0"><i data-toggle="modal" data-target="#geoModal" class="fas fa-question-circle float-right helper text-primary fs-sm"></i>Boundaries:</p>
-                            <div class="border py-1 mb-2 optionbox">
-                                <div class="" aria-labelledby="dropdownMapGeos">
-                                    <!-- INSERT MENU ITEMS HERE -->
+
+                            <div id="mapSidebar" class="collapse show">
+                                <p class="fs-xs mb-0"><i data-toggle="modal" data-target="#measureModal" class="fas fa-question-circle float-right helper text-primary fs-sm"></i>Show as:</p>
+                                <div class="border optionbox py-1 mb-2">
+                                    <div class="" aria-labelledby="dropdownMapMeasures">
+                                        <!-- INSERT MENU ITEMS HERE -->
+                                    </div>
+                                </div>
+
+                                <p class="fs-xs mb-0"><i data-toggle="modal" data-target="#timeModal" class="fas fa-question-circle float-right helper text-primary fs-sm"></i>Available times:</p>
+                                <div class="border optionbox py-1 mb-2">
+                                    <div class="" aria-labelledby="dropdownMapTimes">
+                                        <!-- INSERT MENU ITEMS HERE -->
+                                    </div>
+                                </div>
+
+                                <p class="fs-xs mb-0"><i data-toggle="modal" data-target="#geoModal" class="fas fa-question-circle float-right helper text-primary fs-sm"></i>Boundaries:</p>
+                                <div class="border py-1 mb-2 optionbox">
+                                    <div class="" aria-labelledby="dropdownMapGeos">
+                                        <!-- INSERT MENU ITEMS HERE -->
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -577,35 +568,6 @@
                             </div>
                         </div>
                     </div>
-
-                    <!-- old map buttons -->
-                    <div class="dropdown hide">
-                        <button class="btn btn-sm float-right btn-outline-secondary dropdown-toggle mb-1" type="button"
-                            id="dropdownMapTimes" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Time period </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMapTimes">
-                            INSERT MENU ITEMS HERE 
-                        </div>
-
-                    </div>
-
-
-                    <div class="dropdown hide">
-                        <button class="btn btn-sm mr-1 float-right btn-outline-secondary dropdown-toggle mb-1" type="button"
-                                id="dropdownMapGeos" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Boundaries </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMapGeos">
-                             INSERT MENU ITEMS HERE 
-                        </div>
-                    </div>
-
-                    <div class="dropdown hide">
-                        <button class="btn btn-sm mr-1 float-right btn-outline-secondary dropdown-toggle mb-1" type="button"
-                            id="dropdownMapMeasures" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Show as </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMapMeasures">
-                            INSERT MENU ITEMS HERE 
-                        </div>
-
-                    </div>
-
                 </div>
             
 
@@ -615,13 +577,17 @@
 
                     <div class="row">
                         <div class="col-md-2 pl-2">
-                            <p class="fs-xs mb-0"><i data-toggle="modal" data-target="#trendModal" class="fas fa-question-circle float-right helper text-primary fs-sm"></i>Show by:</p>
-                            <div class="border optionbox">
-                                <div class="" aria-labelledby="dropdownTrendComparisons">
-                                    <!-- INSERT MENU ITEMS HERE -->
+
+                            <a href="#" class="badge badge-pill badge-light d-block d-sm-none mb-1" data-toggle="collapse" data-target="#trendSidebar" aria-expanded="false" aria-controls="trendSidebar"><i class="fas fa-cog mr-1" aria-hidden="true"></i>Display options</a>
+
+                            <div id="trendSidebar" class="collapse show">
+                                <p class="fs-xs mb-0"><i data-toggle="modal" data-target="#trendModal" class="fas fa-question-circle float-right helper text-primary fs-sm"></i>Show by:</p>
+                                <div class="border optionbox">
+                                    <div class="" aria-labelledby="dropdownTrendComparisons">
+                                        <!-- INSERT MENU ITEMS HERE -->
+                                    </div>
                                 </div>
                             </div>
-
                         </div>
 
                         <div class="col-md-10">
@@ -634,18 +600,6 @@
 
                         </div>
                     </div>
-
-                    <!-- old Comparisons buttons -->
-                    <div class="dropdown dropdownTrendComparisons hide">
-
-                        <button class="btn btn-sm float-right btn-outline-secondary dropdown-toggle btn-comparisons mb-1" type="button"
-                                id="dropdownTrendComparisons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Compare by </button>
-                        
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownTrendComparisons">
-                            <!-- Inset menu items here -->
-                        </div>
-            
-                    </div>
                      
                 </div>
             
@@ -656,37 +610,37 @@
 
                         <div class="row">
                             <div class="col-md-2 pl-2">
-                                <p class="fs-xs mb-0"><i data-toggle="modal" data-target="#linksModal" class="fas fa-question-circle float-right helper text-primary fs-sm"></i>Show as:</p>
+
+                                <a href="#" class="badge badge-pill badge-light d-block d-sm-none mb-1" data-toggle="collapse" data-target="#linksSidebar" aria-expanded="false" aria-controls="linksSidebar"><i class="fas fa-cog mr-1" aria-hidden="true"></i>Display options</a>
+
+                                <div id="linksSidebar" class="collapse show">
+                                    <p class="fs-xs mb-0"><i data-toggle="modal" data-target="#linksModal" class="fas fa-question-circle float-right helper text-primary fs-sm"></i>Show as:</p>
+                            
                                 
-                                <!--
-                                <div class="border optionbox">
-                                    <button class="dropdown-item pl-2">Disparities</button>
-                                    <button class="dropdown-item pl-2">Correlates</button>
-                                </div>
-                                -->
-
-                                
-                                <div class="border optionbox mb-2 py-1">
-                                    <div class="btn-group btn-group-toggle btn-toggle-disparities" data-toggle="buttons">
-
-                                        <label class="btn btn-sm btn-block btn-outline-primary dropdown-item my-0" id="show-disparities">
-                                            <input type="radio" name="options" id="disparities-btn" autocomplete="off"> Disparities
-                                        </label>
-                                        <label class="btn btn-sm btn-block btn-outline-primary dropdown-item my-0 active" id="show-links">
-                                            <input type="radio" name="options" id="links-btn" autocomplete="off" checked> Correlates
-                                        </label>
-
+                                    <div class="border optionbox mb-2 py-1">
+                                        <div class="btn-group btn-group-toggle btn-toggle-disparities" data-toggle="buttons">
+    
+                                            <label class="btn btn-sm btn-block btn-outline-primary dropdown-item my-0" id="show-disparities">
+                                                <input type="radio" name="options" id="disparities-btn" autocomplete="off"> Disparities
+                                            </label>
+                                            <label class="btn btn-sm btn-block btn-outline-primary dropdown-item my-0 active" id="show-links">
+                                                <input type="radio" name="options" id="links-btn" autocomplete="off" checked> Correlates
+                                            </label>
+    
+                                        </div>
                                     </div>
-                                </div>
-
-                                <div id="correlateHolder">
-                                    <p class="fs-xs mb-0">Correlate with:</p>
-                                    <div class="border optionbox-lg">
-                                        <div class="" aria-labelledby="dropdownLinksMeasures">
-                                            <!-- INSERT MENU ITEMS HERE -->
+    
+                                    <div id="correlateHolder">
+                                        <p class="fs-xs mb-0">Correlate with:</p>
+                                        <div class="border optionbox-lg">
+                                            <div class="" aria-labelledby="dropdownLinksMeasures">
+                                                <!-- INSERT MENU ITEMS HERE -->
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+
+
 
                             </div>
 
@@ -700,36 +654,6 @@
                                 </div>
                             </div>
                         </div>
-
-
-                        <!-- old links buttons -->
-                        <div class="dropdown hide">
-
-                            <!-- disparities button - display style changed to show or hide (currently hidden full time due to glitch on percents-->
-
-                            <div class="btn-group btn-group-toggle btn-toggle-disparities" data-toggle="buttons" style="display:inline">
-
-                                <label class="btn btn-sm mr-1 float-right btn-outline-secondary" id="show-disparities">
-                                    <input type="radio" name="options" id="disparities-btn" autocomplete="off"> Disparities
-                                </label>
-
-
-                                <label class="btn btn-sm float-right btn-outline-secondary active" id="show-links">
-                                    <input type="radio" name="options" id="links-btn" autocomplete="off" checked> Correlates
-                                </label>
-
-
-                            </div>
-
-                            <button class="btn btn-sm float-right btn-outline-secondary dropdown-toggle mb-1" type="button"
-                            id="dropdownLinksMeasures" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <!-- choose dataset --> </button>
-
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownLinksMeasures">
-                                <!-- INSERT MENU ITEMS HERE -->
-                            </div>
-                            
-                        </div>
-
 
                     </div>
                 </div>
