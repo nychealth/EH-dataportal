@@ -1,9 +1,9 @@
 {{- define "main" -}}
 
 <article class="container-fluid" id="skip-header-target">
-    
+
     <div class="row">
-        <div class="col-md-11 mx-auto mt-4">
+        <div class="col-md-11 mx-auto mt-2">
             <nav aria-label="breadcrumb" class="mb-4">
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
@@ -14,13 +14,13 @@
             </div>
         </div>
     </div>
-    
+
     <div class="row">
         <div class="col-md-11 mx-auto" data-pagefind-weight="7.0">
             <h1 id="top" class="h2" data-pagefind-weight="10.0">{{ .Title }}</h1>
             <p>{{ .Content }}</p>
         </div>
-        
+
     </div>
 
     <div class="row mb-4">
@@ -54,10 +54,10 @@
                 </div>
 
 
-                <div class="row my-2">  
+                <div class="row my-2">
                     <div class="col-12 border-bottom">
                         <p><strong><span class="home-label">311 complaints for:</span></strong></p>
-                    </div> 
+                    </div>
                     <div class="col-6">
                        <p>
                             <span class="home-label">Rodent conditions:</span>
@@ -75,8 +75,8 @@
                     </div>
                 </div>
 
-                <div class="row border-top mb-2">    
-    
+                <div class="row border-top mb-2">
+
                     <div class="col-6">
                         <p><a href="#map" onclick="showInfo(0)"class="question-hover"><i class="fas fa-question-circle mr-1 mt-1 text-info"></i></a><span class="home-label">Initial inspections:</span><br>
                             <span id="totalInspections" class="fwm  fs-xl">&nbsp;</span></p>
@@ -95,7 +95,7 @@
 
 
                 </div>
-    
+
                 <div class="row border-top my-2">
                     <div class="col-6">
                         <p><a href="#map" onclick="showInfo(3)"><i class="fas fa-question-circle mr-1 mt-1 text-info"></i></a><span class="home-label">Compliance inspections:</span><br>
@@ -106,19 +106,19 @@
                         <p><span class="home-label">Failed:</span><br>
                             <span id="failed" class="fwm">&nbsp;</span></p>
                     </div>
-    
+
                     <div class="col-6 ml-auto mt-2">
                         <p><span class="home-label">Passed:</span><br>
                             <span id="passed" class="fwm">&nbsp;</span></p>
                     </div>
                 </div>
-    
+
                 <div class="row border-top my-2">
                     <div class="col-6">
                         <p><a href="#map" onclick="showInfo(5)"><i class="fas fa-question-circle mr-1 mt-1 text-info"></i></a><span class="home-label">Visits by NYC Health exterminator:</span><br>
                             <span id="exterminator" class="fwm  fs-xl">&nbsp;</span></p>
                     </div>
-    
+
                     <div class="col-6">
                         <p><span class="home-label">Visits with bait applied:</span><br>
                             <span id="bait" class="fwm">&nbsp;</span></p>
@@ -146,7 +146,7 @@
 
                     </div>
 
-                
+
                 </div>
 
                 <div class="col-md-6">
@@ -168,7 +168,7 @@
                     <h4>Inspection data:</h4>
                     <iframe title="2022 RMZ data" aria-label="Table" id="datawrapper-chart-5uPau" src="https://datawrapper.dwcdn.net/5uPau/4/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="271" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
                     </script>
-        
+
                     <h4 class="mt-4">Complaint data:</h4>
                     <iframe title="2022 rodent-related complaint data" aria-label="Table" id="datawrapper-chart-KQXDt" src="https://datawrapper.dwcdn.net/KQXDt/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="290" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
                     </script>
@@ -200,7 +200,7 @@
     padding-left: 5px;
     }
 </style>
-    
+
 </article>
 
 <!--bring in rmz JS -->
