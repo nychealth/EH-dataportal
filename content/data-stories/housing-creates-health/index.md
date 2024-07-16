@@ -43,7 +43,7 @@ People living in higher-poverty neighborhoods are more likely to experience nega
 
 Across New York, half of all households are rent-burdened, meaning that more than 30% of their household income goes to rent. Spending so much on rent can leave too little money for food and other essentials. <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/economic-stability/"> Learn more about the health implications of experiencing rent burden in "How economic stability creates health." </a>
 
-<div class="chart-wrapper">
+<div class="chart-wrapper-ds">
 
 <iframe class="" title="Percent of households that are rent-burdened by neighborhood (NTA)" aria-label="Map" id="datawrapper-chart-L4j3j" src="https://datawrapper.dwcdn.net/L4j3j/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="756" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
 
@@ -63,7 +63,7 @@ A person who has a high rent burden is often confronting other housing challenge
 </figure>
 </div>
 
-<div class="chart-wrapper">
+<div class="chart-wrapper-ds">
 <h4 class="mt-4 mb-2">Overcrowding tends to occur in areas with high poverty</h4>
 <div class="my-1 border-bottom">
 <button class="borobtn btn btn-sm btn-outline-secondary active" onclick="changeBoro(1)" id="btn1">Bronx</button>
@@ -149,7 +149,7 @@ Homes that are not properly maintained can undermine health, including because t
 
 <a href="https://www.nyc.gov/assets/doh/downloads/pdf/survey/asthma-housing-2021.pdf">Home maintenance issues are more common in high-poverty neighborhoods </a> and in public housing than in wealthier neighborhoods or privately-owned apartments.
 
-<div class="chart-wrapper">
+<div class="chart-wrapper-ds">
 <h4 class="mt-4 mb-2">Maintenance issues are more common in high poverty-neighborhoods </h4>
 
 <div class="my-1 border-bottom">
@@ -205,7 +205,7 @@ Affordability and barriers to cooling can also result in consequences to health.
 
 A lack of affordable housing often leads to housing instability. Most evictions occur because the tenant can’t pay rent, and can result in frequent moves and homelessness, both of which threaten health in the short term and over time. New Yorkers living in high-poverty neighborhoods experience eviction at more than four times the rate of those living in low-poverty neighborhoods.
 
-<div class="chart-wrapper">
+<div class="chart-wrapper-ds">
 <iframe title="Evictions are more common in higher poverty neighborhoods" class="" aria-label="Scatter Plot" id="datawrapper-chart-DEEg2" src="https://datawrapper.dwcdn.net/DEEg2/3/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="550" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
 </div>
 
@@ -226,7 +226,7 @@ A lack of affordable housing often leads to housing instability. Most evictions 
 
 When COVID-19 hit, New York City paused evictions, recognizing the twin threats of serious financial hardship and health risks created and made worse through experiencing homelessness. This was an effort to keep people housed — but also to keep people out of shelters, where the spread of COVID was hard to contain.
 
-<div class="chart-wrapper">
+<div class="chart-wrapper-ds">
 <iframe title="Evictions plummeted in 2020" class="" aria-label="Interactive line chart" id="datawrapper-chart-xy1ku" src="https://datawrapper.dwcdn.net/xy1ku/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="423" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
 </div>
 
