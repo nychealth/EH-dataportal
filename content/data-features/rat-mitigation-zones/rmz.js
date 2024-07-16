@@ -351,7 +351,7 @@ var specTwo = {
             "type": "nominal",
             "legend": null,
             "scale": {
-              "domain": ["Initial inspections", "All fail", "Active rat signs"],
+              "domain": ["Initial inspections", "Failed (any reason)", "Active rat signs"],
               "range": ["#00008B", "#c73866", "#D77393"]
             }
           },
@@ -390,7 +390,7 @@ var specTwo = {
           },
           "tooltip": [
             {"field": "Initial inspections", "type": "quantitative"},
-            {"field": "All fail", "type": "quantitative","title": "Failed"},
+            {"field": "Failed (any reason)", "type": "quantitative","title": "Failed"},
             {"field": "Active rat signs", "type": "quantitative", "title": "Active rat signs"},
             {"field": "Date", "type": "temporal", "title": "For 6 months ending"}
           ]
@@ -470,7 +470,7 @@ var specThree = {
           "type": "nominal",
           "legend": null,
           "scale": {
-            "domain": ["Compliance inspections", "Failed, summons issued", "Active rat signs"],
+            "domain": ["Compliance inspections", "Failed (any reason), summons issued", "Active rat signs"],
             "range": ["#00008B", "#c73866", "#D77393"]
           }
         },
@@ -509,7 +509,7 @@ var specThree = {
         },
         "tooltip": [
           {"field": "Compliance inspections", "type": "quantitative"},
-          {"field": "Failed, summons issued", "type": "quantitative"},
+          {"field": "Failed (any reason), summons issued", "type": "quantitative"},
           {"field": "Active rat signs", "type": "quantitative","title": "Active rat signs"},
           {"field": "Date", "type": "temporal", "title": "For 6 months ending"}
         ]
