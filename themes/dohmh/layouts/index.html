@@ -275,9 +275,9 @@
     <div class='modal-dialog modal-lg modal-dialog-centered' role='document'>
         <div class='modal-content'>
             <div class='modal-body'>
-              <p><span class="font-weight-bold">It's hot! The forecast high is <span id="forecasthigh" style="background-color:red;font-weight:bold;" class="p-1">XX</span></span>. Get resources on heat and health:
+              <p><span class="font-weight-bold">It's hot! The forecast high is <span id="forecasthigh" style="background-color:red;font-weight:bold;" class="p-1 text-white">XX</span></span>. Get resources on heat and health:
                 <ul>
-                  <li><a href={{ relURL "data-features/heat-syndrome" }}>Realtime heat illness</a></li>
+                  <li><a href={{ relURL "data-features/heat-syndrome" }}>Realtime heat illness data</a></li>
                   <li><a href={{ relURL "data-features/hvi" }}>The Heat Vulnerability Index</a></li>
                   <li><a href={{ relURL "key-topics/climatehealth" }}>All Climate and Health data and resources</a> </li>
                 </ul>
@@ -361,10 +361,6 @@
       aqi > 2 ? fireAQmodal(aqi) : {}
 
     });
-
-
-    // determine which modal to fire
-
 
   };
 
