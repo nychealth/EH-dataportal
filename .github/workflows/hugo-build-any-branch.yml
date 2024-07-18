@@ -135,13 +135,19 @@ jobs:
       
       - name: Hugo Build environment
         if: ${{ ! inputs.baseURL }}
-        run: hugo --environment ${{ inputs.environment }} --cleanDestinationDir --logLevel debug 
+        run: | 
+          export HUGO_GIT_LAST_HASH=${{ steps.last_commit.outputs.last_hash }}
+          export HUGO_GIT_LAST_MSG=${{ steps.last_commit.outputs.last_msg }} 
+          hugo --environment ${{ inputs.environment }} --cleanDestinationDir --logLevel debug 
 
       # if baseURL is also specified
       
       - name: Hugo Build environment + baseURL
         if: ${{ inputs.baseURL }}
-        run: hugo --environment ${{ inputs.environment }} --baseURL ${{ inputs.baseURL }} --cleanDestinationDir --logLevel debug 
+        run: | 
+          export HUGO_GIT_LAST_HASH=${{ steps.last_commit.outputs.last_hash }}
+          export HUGO_GIT_LAST_MSG=${{ steps.last_commit.outputs.last_msg }} 
+          hugo --environment ${{ inputs.environment }} --baseURL ${{ inputs.baseURL }} --cleanDestinationDir --logLevel debug 
 
 
       # run pagefind
