@@ -756,14 +756,6 @@
     <script type="text/javascript" src="{{ $DT_secureJS.RelPermalink }}" integrity="{{ $DT_secureJS.Data.Integrity }}"></script>
 
     
-    {{- /*  other libraries  */}}
-
-    {{- $jszip := resources.Get "node_modules/jszip/dist/jszip.min.js" }}
-    {{- $jszip_secureJS := $jszip | resources.Fingerprint "sha512" }}
-
-
-    <script type="text/javascript" src="{{ $jszip_secureJS.RelPermalink }}" integrity="{{ $jszip_secureJS.Data.Integrity }}"></script>
-
     {{- /*  VegaLite  */}}
 
     {{- $vega := resources.Get "node_modules/vega/build/vega.min.js" }}
