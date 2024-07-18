@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>cars on Environment &amp; Health Data Portal</title>
+    <link>https://gcappbesp307.health.dohmh.nycnet/dev-prod/keywords/cars/</link>
+    <description>Recent content in cars on Environment &amp; Health Data Portal</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 22 Mar 2022 19:30:55 -0400</lastBuildDate>
+    <atom:link href="https://gcappbesp307.health.dohmh.nycnet/dev-prod/keywords/cars/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Real-Time Air Quality: PM2.5 in NYC</title>
+      <link>https://gcappbesp307.health.dohmh.nycnet/dev-prod/data-features/realtime-air-quality/</link>
+      <pubDate>Tue, 22 Mar 2022 19:30:55 -0400</pubDate>
+      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-prod/data-features/realtime-air-quality/</guid>
+      <description>Fine particles (PM2.5) are among the most harmful pollutants. Long-term exposure to PM2.5 contributes to an estimated 2,000 excess deaths from lung and heart disease each year in NYC (1 out of every 25 deaths in NYC), and short-term exposure contributes to asthma incidents severe enough to require a trip to the emergency department, and other health threats.&#xA;The air quality in NYC is generally good and has been improving over time.</description>
+    </item>
+    <item>
+      <title>Your Neighborhood&#39;s Air Quality</title>
+      <link>https://gcappbesp307.health.dohmh.nycnet/dev-prod/data-features/neighborhood-air-quality/</link>
+      <pubDate>Tue, 24 Aug 2021 12:04:44 -0400</pubDate>
+      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-prod/data-features/neighborhood-air-quality/</guid>
+      <description>We combine data from our air quality monitoring network, NYCCAS, with other data to understand what makes air quality in one neighborhood different from air quality in another. We found that building emissions, building density, industrial areas, and traffic density are associated with differences in air quality.&#xA;If we don&amp;rsquo;t have an air quality monitor in one neighborhood, but we know its building density, its industrial area, and its traffic, then we can model (estimate or predict) its air quality - based on monitored air quality in similar neighborhoods.</description>
+    </item>
+    <item>
+      <title>Transportation-related injuries</title>
+      <link>https://gcappbesp307.health.dohmh.nycnet/dev-prod/data-explorer/transportation-related-injuries/</link>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
+      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-prod/data-explorer/transportation-related-injuries/</guid>
+      <description>Traffic injuries are no accident. Like other public health concerns, they are preventable through data driven solutions. In NYC, traffic injuries, which include injuries among pedestrians, bicyclists, motorcyclists, and motor vehicle occupants, are a leading cause of injury-related hospitalizations and emergency department visits.&#xA;In February 2014, NYC launched “Vision Zero”, an action plan to reduce injuries and deaths on city streets. Vision Zero is a multi-agency effort, incorporating road engineering, traffic enforcement, community outreach and education, and policy work to make NYC streets safer.</description>
+    </item>
+    <item>
+      <title>Air quality in car-free areas</title>
+      <link>https://gcappbesp307.health.dohmh.nycnet/dev-prod/data-stories/car-free-zones/</link>
+      <pubDate>Mon, 25 Nov 2019 13:24:52 -0400</pubDate>
+      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-prod/data-stories/car-free-zones/</guid>
+      <description>Does the air improve in car-free zones? People often ask us this, and it&amp;rsquo;s a great question. To answer, we turn to the NYC Community Air Survey, or NYCCAS. NYCCAS is our network of air quality monitors around the city.&#xA;NYCCAS monitors air with nearly 100 sensors across the city We use these monitors to measure levels of six different pollutants: fine particles (PM2.5), nitrogen dioxide (NO2), nitric oxide (NO), sulfur dioxide (SO2), ozone (O3), and black carbon (BC).</description>
+    </item>
+    <item>
+      <title>What our air quality monitors tell us about NYC&#39;s neighborhoods</title>
+      <link>https://gcappbesp307.health.dohmh.nycnet/dev-prod/data-stories/air-quality-by-neighborhood/</link>
+      <pubDate>Mon, 25 Nov 2019 13:24:52 -0400</pubDate>
+      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-prod/data-stories/air-quality-by-neighborhood/</guid>
+      <description>In Part 1, we looked at data from the New York City Community Air Survey (NYCCAS) - a network of about 100 air quality monitors - to see if air quality improves in areas that go car-free. And the answer is yes.&#xA;NYCCAS tells us that more traffic means more air pollution nearby. So, even if we don&amp;rsquo;t have a nearby monitor, we can predict that an area that goes car-free (like Park Drive in Prospect Park, for example) sees an improvement in air quality.</description>
+    </item>
+  </channel>
+</rss>

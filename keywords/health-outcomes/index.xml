@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>health outcomes on Environment &amp; Health Data Portal</title>
+    <link>https://gcappbesp307.health.dohmh.nycnet/dev-prod/keywords/health-outcomes/</link>
+    <description>Recent content in health outcomes on Environment &amp; Health Data Portal</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 04 Aug 2021 12:32:15 -0400</lastBuildDate>
+    <atom:link href="https://gcappbesp307.health.dohmh.nycnet/dev-prod/keywords/health-outcomes/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Environmental health outcomes</title>
+      <link>https://gcappbesp307.health.dohmh.nycnet/dev-prod/key-topics/healthoutcomes/</link>
+      <pubDate>Wed, 04 Aug 2021 12:32:15 -0400</pubDate>
+      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-prod/key-topics/healthoutcomes/</guid>
+      <description>Our environment - the world around us - affects our health. Here are datasets on health outcomes that people experience that may be linked to the environment.&#xA;Some of these have clear links to the environment, like lead poisoning. Others have some uncertain links, and are still being investigated and understood.&#xA;But while specific health outcomes may have stronger or weaker links to the environment, the environment&amp;rsquo;s overall effect on our health is clear - we know that one of the strongest predictors of health is where you&amp;rsquo;re born.</description>
+    </item>
+  </channel>
+</rss>

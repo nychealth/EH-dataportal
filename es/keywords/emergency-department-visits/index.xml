@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>emergency department visits on Environment &amp; Health Data Portal</title>
+    <link>https://gcappbesp307.health.dohmh.nycnet/dev-prod/es/keywords/emergency-department-visits/</link>
+    <description>Recent content in emergency department visits on Environment &amp; Health Data Portal</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>es</language>
+    <lastBuildDate>Thu, 24 Oct 2019 08:18:56 -0400</lastBuildDate>
+    <atom:link href="https://gcappbesp307.health.dohmh.nycnet/dev-prod/es/keywords/emergency-department-visits/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Por qué el asma es un problema de justicia social</title>
+      <link>https://gcappbesp307.health.dohmh.nycnet/dev-prod/es/data-stories/asthma-and-poverty/</link>
+      <pubDate>Thu, 24 Oct 2019 08:18:56 -0400</pubDate>
+      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-prod/es/data-stories/asthma-and-poverty/</guid>
+      <description>La pobreza afecta la salud de muchas formas. En la ciudad de Nueva York, la historia del asma ilustra con claridad esta conexión.&#xA;Para entender la conexión entre la pobreza y el asma, observe el siguiente mapa de los índices de pobreza en la ciudad de Nueva York. Mientras más oscuro sea el color, más son los residentes que viven en la pobreza.&#xA;Ahora, compare estas cifras con el siguiente mapa de visitas por asma a la sala de emergencias de niños de entre 5 y 17 años.</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>maps on Environment &amp; Health Data Portal</title>
+    <link>https://gcappbesp307.health.dohmh.nycnet/dev-prod/es/keywords/maps/</link>
+    <description>Recent content in maps on Environment &amp; Health Data Portal</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>es</language>
+    <lastBuildDate>Sat, 01 Aug 2020 08:33:22 -0400</lastBuildDate>
+    <atom:link href="https://gcappbesp307.health.dohmh.nycnet/dev-prod/es/keywords/maps/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Los límites del vecindario en los datos del Departamento de Salud</title>
+      <link>https://gcappbesp307.health.dohmh.nycnet/dev-prod/es/data-stories/geographies/</link>
+      <pubDate>Sat, 01 Aug 2020 08:33:22 -0400</pubDate>
+      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-prod/es/data-stories/geographies/</guid>
+      <description>La ciudad de Nueva York posee cientos de vecindarios y casi la misma cantidad de formas de diagramar los límites de los vecindarios. Cuando visita el Portal de Datos Ambientales y Sanitarios u otros recursos de datos del Departamento de Salud (Health Department), es posible que note que la información está disponible en diferentes esquemas de vecindarios.&#xA;Por ejemplo, si busca en las páginas de datos sobre asma, encontrará que los adultos con asma se presentan por vecindario de UHF34, los niños de escuelas públicas con asma se presentan por vecindarios de UHF42 y las visitas por asma a la sala de emergencias se ofrecen por NTA.</description>
+    </item>
+  </channel>
+</rss>

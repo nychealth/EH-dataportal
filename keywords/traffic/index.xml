@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>traffic on Environment &amp; Health Data Portal</title>
+    <link>https://gcappbesp307.health.dohmh.nycnet/dev-prod/keywords/traffic/</link>
+    <description>Recent content in traffic on Environment &amp; Health Data Portal</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 15 Dec 2022 15:23:23 -0500</lastBuildDate>
+    <atom:link href="https://gcappbesp307.health.dohmh.nycnet/dev-prod/keywords/traffic/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Efforts to reduce air pollution should focus on neighborhoods with the worst health impacts</title>
+      <link>https://gcappbesp307.health.dohmh.nycnet/dev-prod/data-stories/hia/</link>
+      <pubDate>Thu, 15 Dec 2022 15:23:23 -0500</pubDate>
+      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-prod/data-stories/hia/</guid>
+      <description>Every year in NYC between 2015 and 2017 (the most recent years for which this analysis is available), fine particulate matter pollution from motor vehicles and burning fossil fuels caused:&#xA;At least 2,000 deaths About 1,400 hospital admissions for lung and heart conditions 3,750 emergency department admissions for asthma Since air pollution causes significant illness and death in New York City, it&amp;rsquo;s important to reduce air pollution. So where do we start?</description>
+    </item>
+    <item>
+      <title>ZAPPA: A tool to understand air quality policies</title>
+      <link>https://gcappbesp307.health.dohmh.nycnet/dev-prod/data-stories/zappa/</link>
+      <pubDate>Sat, 03 Dec 2022 08:33:22 -0400</pubDate>
+      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-prod/data-stories/zappa/</guid>
+      <description>New York City’s air quality is generally good and has been improving over time. Still, air pollution threatens health: two pollutants, ozone and PM2.5 cause about 2,400 deaths per year in NYC, and thousands more emergency department visits and hospitalizations for asthma, heart, and lung problems.&#xA;It’s important to clean up the air to protect New Yorkers, and we know how to do it: reduce emissions from buildings, vehicles, restaurants, power plants, and other sources of pollutants.</description>
+    </item>
+    <item>
+      <title>An update on air quality during COVID-19</title>
+      <link>https://gcappbesp307.health.dohmh.nycnet/dev-prod/data-stories/air-quality-and-covid-part-2/</link>
+      <pubDate>Wed, 20 Apr 2022 08:33:22 -0400</pubDate>
+      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-prod/data-stories/air-quality-and-covid-part-2/</guid>
+      <description>On March 20, 2020, New York State announced the COVID-19 shutdown, officially known as NY Pause. In NYC, it lasted until June 8, 2020.&#xA;With stay-at-home orders in NY and other states, New York City&amp;rsquo;s air quality changed significantly. Earlier, we looked at data collected from real-time air pollution monitors to see how day-to-day pollution changed when people started to stay home.&#xA;More recently, we used data from our network of air quality monitors to examine air pollution changes over time and across neighborhoods.</description>
+    </item>
+    <item>
+      <title>Real-Time Air Quality: PM2.5 in NYC</title>
+      <link>https://gcappbesp307.health.dohmh.nycnet/dev-prod/data-features/realtime-air-quality/</link>
+      <pubDate>Tue, 22 Mar 2022 19:30:55 -0400</pubDate>
+      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-prod/data-features/realtime-air-quality/</guid>
+      <description>Fine particles (PM2.5) are among the most harmful pollutants. Long-term exposure to PM2.5 contributes to an estimated 2,000 excess deaths from lung and heart disease each year in NYC (1 out of every 25 deaths in NYC), and short-term exposure contributes to asthma incidents severe enough to require a trip to the emergency department, and other health threats.&#xA;The air quality in NYC is generally good and has been improving over time.</description>
+    </item>
+    <item>
+      <title>Your Neighborhood&#39;s Air Quality</title>
+      <link>https://gcappbesp307.health.dohmh.nycnet/dev-prod/data-features/neighborhood-air-quality/</link>
+      <pubDate>Tue, 24 Aug 2021 12:04:44 -0400</pubDate>
+      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-prod/data-features/neighborhood-air-quality/</guid>
+      <description>We combine data from our air quality monitoring network, NYCCAS, with other data to understand what makes air quality in one neighborhood different from air quality in another. We found that building emissions, building density, industrial areas, and traffic density are associated with differences in air quality.&#xA;If we don&amp;rsquo;t have an air quality monitor in one neighborhood, but we know its building density, its industrial area, and its traffic, then we can model (estimate or predict) its air quality - based on monitored air quality in similar neighborhoods.</description>
+    </item>
+    <item>
+      <title>Transportation-related injuries</title>
+      <link>https://gcappbesp307.health.dohmh.nycnet/dev-prod/data-explorer/transportation-related-injuries/</link>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
+      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-prod/data-explorer/transportation-related-injuries/</guid>
+      <description>Traffic injuries are no accident. Like other public health concerns, they are preventable through data driven solutions. In NYC, traffic injuries, which include injuries among pedestrians, bicyclists, motorcyclists, and motor vehicle occupants, are a leading cause of injury-related hospitalizations and emergency department visits.&#xA;In February 2014, NYC launched “Vision Zero”, an action plan to reduce injuries and deaths on city streets. Vision Zero is a multi-agency effort, incorporating road engineering, traffic enforcement, community outreach and education, and policy work to make NYC streets safer.</description>
+    </item>
+    <item>
+      <title>Air quality during COVID-19</title>
+      <link>https://gcappbesp307.health.dohmh.nycnet/dev-prod/data-stories/air-quality-and-covid/</link>
+      <pubDate>Wed, 22 Apr 2020 08:33:22 -0400</pubDate>
+      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-prod/data-stories/air-quality-and-covid/</guid>
+      <description>What happens when NYC stays home? The COVID-19 pandemic upended the lives of all New Yorkers. The outbreak has affected many aspects of our daily life, but there are also less apparent effects, such as impacts on our environment.&#xA;The NYC Community Air Survey uses air quality monitors to take hourly measurements of fine particulate (PM2.5) at a few sites around the city.&#xA;Generally, locations around the city see changes in PM2.</description>
+    </item>
+    <item>
+      <title>Air quality snapshots: special findings from 10 years of NYCCAS</title>
+      <link>https://gcappbesp307.health.dohmh.nycnet/dev-prod/data-stories/air-quality-snapshots/</link>
+      <pubDate>Tue, 21 Apr 2020 13:37:45 -0400</pubDate>
+      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-prod/data-stories/air-quality-snapshots/</guid>
+      <description>Skip Nav A traffic health threat: air toxics Noise levels that harm health The benefits of cleaner fuel Special monitoring for environmental justice For 10 years, the New York City Community Air Survey (NYCCAS) has measured air quality at 100 locations around NYC. We’ve combined these measurements with data on things related to air quality - like traffic, building emissions, green space, and much more - to model seasonal air quality in every New York City neighborhood.</description>
+    </item>
+    <item>
+      <title>Air quality in car-free areas</title>
+      <link>https://gcappbesp307.health.dohmh.nycnet/dev-prod/data-stories/car-free-zones/</link>
+      <pubDate>Mon, 25 Nov 2019 13:24:52 -0400</pubDate>
+      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-prod/data-stories/car-free-zones/</guid>
+      <description>Does the air improve in car-free zones? People often ask us this, and it&amp;rsquo;s a great question. To answer, we turn to the NYC Community Air Survey, or NYCCAS. NYCCAS is our network of air quality monitors around the city.&#xA;NYCCAS monitors air with nearly 100 sensors across the city We use these monitors to measure levels of six different pollutants: fine particles (PM2.5), nitrogen dioxide (NO2), nitric oxide (NO), sulfur dioxide (SO2), ozone (O3), and black carbon (BC).</description>
+    </item>
+    <item>
+      <title>What our air quality monitors tell us about NYC&#39;s neighborhoods</title>
+      <link>https://gcappbesp307.health.dohmh.nycnet/dev-prod/data-stories/air-quality-by-neighborhood/</link>
+      <pubDate>Mon, 25 Nov 2019 13:24:52 -0400</pubDate>
+      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-prod/data-stories/air-quality-by-neighborhood/</guid>
+      <description>In Part 1, we looked at data from the New York City Community Air Survey (NYCCAS) - a network of about 100 air quality monitors - to see if air quality improves in areas that go car-free. And the answer is yes.&#xA;NYCCAS tells us that more traffic means more air pollution nearby. So, even if we don&amp;rsquo;t have a nearby monitor, we can predict that an area that goes car-free (like Park Drive in Prospect Park, for example) sees an improvement in air quality.</description>
+    </item>
+    <item>
+      <title>Breathe easy: NYC&#39;s air quality is improving</title>
+      <link>https://gcappbesp307.health.dohmh.nycnet/dev-prod/data-stories/breatheeasy/</link>
+      <pubDate>Thu, 24 Oct 2019 08:18:56 -0400</pubDate>
+      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-prod/data-stories/breatheeasy/</guid>
+      <description>The air we breathe can have a major effect on our health — air pollution can make asthma worse and can cause heart disease, lung disease, strokes, and even cancer.&#xA;Fortunately, New York City has made great strides in recent years to improve air quality. Let’s take a look.&#xA;An air quality advisory day happens when air pollution builds up to dangerous levels. It means that people who are sensitive to air pollution (like people with respiratory or heart problems) should spend less time outside and avoid outdoor exercise.</description>
+    </item>
+  </channel>
+</rss>

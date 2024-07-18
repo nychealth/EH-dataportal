@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+
+
+
+
+    
+
+    
+    <meta name="robots" content="noindex, nofollow">
+
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PB98MPZ31B"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-PB98MPZ31B');
+    </script>
+
+
+
+
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<title>The road to street safety in NYC</title>
+
+
+
+
+<meta name="description" content=" A data story on safety for pedestrians and cyclists. ">
+<link rel="canonical" href="/dev-prod/data-stories/streets/" />
+<meta name="geo.region" content="" />
+<meta name="geo.placename" content="Environment &amp; Health Data Portal" />
+
+
+<meta property="fb:profile_id" content="0" />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="en_us" />
+<meta property="og:url" content="/dev-prod/data-stories/streets/" />
+<meta property="og:title" content="The road to street safety in NYC  &ndash; Environment &amp; Health Data Portal" />
+<meta property="og:description" content="A data story on safety for pedestrians and cyclists. " />
+<meta property="og:site_name" content="Environment &amp; Health Data Portal" />
+<meta property="og:image" content="/dev-prod/images/report_bottom_background_hu55023dbc37de342337a21cf33dcc5889_222582_2400x1260_fill_q95_mitchellnetravali_smart1.jpg">
+<meta property="og:see_also" content="https://twitter.com/nycHealthy" />
+<meta name="twitter:title" content="The road to street safety in NYC  &ndash; Environment &amp; Health Data Portal">
+<meta name="twitter:description" content=" A data story on safety for pedestrians and cyclists. ">
+<meta name="twitter:image" content=" /dev-prod/images/report_bottom_background.jpg">
+<meta name="twitter:site" content="@nycHealthy">
+<meta name="twitter:creator" content="@nycHealthy">
+
+
+
+<script src="/dev-prod/node_modules/jquery/dist/jquery.min.bf6089ed4698cb8270a8b0c8ad9508ff886a7a842278e98064d5c1790ca3a36d5d69d9f047ef196882554fc104da2c88eb5395f1ee8cf0f3f6ff8869408350fe.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR&#43;8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous"></script>
+
+
+
+
+<link rel="icon" href=/dev-prod/7618350_heatmap_business_analytics_statistics_icon-gpr.ico>
+
+<link rel="stylesheet" href="/dev-prod/node_modules/@fortawesome/fontawesome-free/css/all.min.css" />
+
+<script src="/dev-prod/node_modules/@fortawesome/fontawesome-free/js/all.min.eac49826a0eb7994591a42776fe61f7610773339ae3fd47b5f5419ea0e5a217851bd1d58fcdfcfe3b8e69e410d9bb60bde8aac988e802be57a003f7db960e723.js" integrity="sha512-6sSYJqDreZRZGkJ3b&#43;YfdhB3MzmuP9R7X1QZ6g5aIXhRvR1Y/N/P47jmnkENm7YL3oqsmI6AK&#43;V6AD99uWDnIw==" crossorigin="anonymous"></script>
+
+
+<link rel="stylesheet" href="/dev-prod/scss/theme.19c3259b5fe18f288d8a64659a3102ad5124211317867fdf2004ceeb06b00d33a3f2d70e439d38b0039a77e963b80695267a8a600ace7127b4d808661a4cd95c.css" integrity="sha512-GcMlm1/hjyiNimRlmjECrVEkIRMXhn/fIATO6wawDTOj8tcOQ504sAOad&#43;ljuAaVJnqKYArOcSe02AhmGkzZXA==" />
+
+<script src="/dev-prod/node_modules/dompurify/dist/purify.min.8c1d1391305e402f594a406a0e17667d3bf5a9d7db5a9184ef6c89ff4d52aeaea1133648cf6c64cf57b9ee9f5a8bb21e1ccc041bb1e9cc6e8d769b428627f93e.js" integrity="sha512-jB0TkTBeQC9ZSkBqDhdmfTv1qdfbWpGE72yJ/01Srq6hEzZIz2xkz1e57p9ai7IeHMwEG7HpzG6NdptChif5Pg=="></script>
+
+
+
+
+
+<meta data-pagefind-filter="section[content]" content="Data Stories"><script>
+
+    let baseURL = "/dev-prod/"
+    let data_repo = "https:\/\/raw.githubusercontent.com\/nychealth\/EHDP-data\/";
+    let data_branch = "production";
+    let hugoEnv = "dev_prod"
+
+</script>
+
+
+<meta 
+        data-pagefind-meta="title:Environments matter: the road to street safety in NYC | Data Stories"
+        class="d-none"
+    >
+
+  </head>
+
+
+
+<body>
+
+  
+<a class="sr-only sr-only-focusable skip-menu" href="#skip-header-target">Skip Header</a>
+
+<header id="global-header" role="banner">
+
+    <div class="bg-black text-white" id="nyc-top-header">
+
+        <div class="container-fluid wide">
+
+            <div class="row py-1 align-items-center justify-content-between">
+
+                <div class="col-auto">
+                    <p class="d-none d-md-flex fs-md">
+                        <a class="text-reset" href="https://www1.nyc.gov/">
+                            <strong>nyc.gov</strong>
+                        </a>
+                        <span class="mx-1" aria-hidden="true">></span>
+                        <a class="text-reset" href="https://www1.nyc.gov/">
+                            Health
+                        </a>
+                        <span class="mx-1" aria-hidden="true">></span>
+                        <a class="text-reset" href="/dev-prod/data-stories/streets/">
+                        EH Data Portal
+                        </a>
+                    </p>
+                </div>
+                
+
+                <div class="col-auto">
+
+                    <ul class="extensible-list horizontal fs-md">
+                        <li class="d-print-none">
+                            <a class="text-reset" href="https://www1.nyc.gov/">
+                                <strong>
+                                    311
+                                </strong>
+                            </a>
+                        </li>
+                        <li class="d-print-none">
+                            <a class="text-reset" href="https://www1.nyc.gov/home/search/index.page">
+                                <strong>
+                                    Search all NYC.gov
+                                </strong>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www1.nyc.gov/" title="Go to nyc.gov">
+                                <img class="d-block" src=/dev-prod/images/nyc-bubble-logo.svg width="45" alt="NYC Logo">
+                            </a>
+                        </li>
+                    </ul>
+
+                </div>
+                
+
+            </div>
+            
+
+        </div>
+        
+
+    </div>
+    
+    <div class="site-header bg-primary" style='background-image: url(/dev-prod/images/header_background.jpg)'>
+        <div class="wrap-header">
+
+            <div class="container-fluid wide">
+
+                <div class="row align-items-center">
+
+                    <div class="col-lg py-3">
+                        <div class="d-flex justify-content-center justify-content-lg-start">
+                            <a href="https://gcappbesp307.health.dohmh.nycnet/dev-prod/"><img src="https://gcappbesp307.health.dohmh.nycnet/dev-prod/7618350_heatmap_business_analytics_statistics_icon-gpr.ico" style="height: 67px" class="pr-1"></a>
+
+                            <p class="text-white title-hover">
+                                <span class="site-subtitle"><a href="https://gcappbesp307.health.dohmh.nycnet/dev-prod/" class="link-no-dec">Environment & Health</span>
+                                <span class="site-title">Data Portal</a></span>
+                            </p>
+
+
+                        </div>
+                        
+                    </div>
+                    
+
+                    <div class="col-lg-auto border-top border-lg-0 d-print-none">
+
+                        <div class="d-lg-flex align-items-center">
+
+                            
+
+                            <ul class="extensible-list horizontal justify-content-between my-2 d-lg-none">
+                                <li>
+                                    <button class="navbar-toggler no-btn-style" type="button" title="Main Menu" data-toggle="collapse"
+                                        data-target="#nav-primary" aria-controls="nav-primary" aria-expanded="false"
+                                        aria-label="Toggle navigation">
+                                        <span class="sr-only">Main Menu</span>
+                                        <span class="fas fa-bars fa-lg text-white" ></span>
+                                    </button>
+                                </li>
+
+                                <li>
+                                    <a class="nav-link" href="#" type="button" data-toggle="modal" data-target="#searchModal" title="Search" data-toggle="collapse">
+                                        <span class="sr-only">Search</span>
+                                        <i class="fa fa-magnifying-glass text-white"></i>
+                                    </a>
+                                </li>
+                            </ul>
+
+                            <div class="collapse d-lg-block mx-n2 mx-lg-2" id="nav-primary">
+
+                                <nav class="nav" role="navigation">
+
+                                    <div class="nav-item bg-white text-primary border dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="nav-item-topic"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Topics
+                                        </a>
+
+                                        <div class="dropdown-menu wider-menu" aria-labelledby="nav-item-topic">
+                                            <ul class="extensible-list p-0">
+                                                
+                                                
+                                                    
+                                                    <a class="" href="/dev-prod/key-topics/airquality/"> <li class="">Air quality</li></a>
+                                                    <hr class="my-1">
+                                                    
+                                                
+                                                
+                                                
+                                                    
+                                                    <a class="" href="/dev-prod/key-topics/climatehealth/"> <li class="">Climate</li></a>
+                                                    <hr class="my-1">
+                                                    
+                                                
+                                                
+                                                
+                                                    
+                                                    <a class="" href="/dev-prod/key-topics/housing/"> <li class="">Housing</li></a>
+                                                    <hr class="my-1">
+                                                    
+                                                
+                                                
+                                                
+                                                    
+                                                    <a class="" href="/dev-prod/key-topics/social/"> <li class="">Inequality</li></a>
+                                                    <hr class="my-1">
+                                                    
+                                                
+                                                
+                                                
+                                                    
+                                                    <a class="" href="/dev-prod/key-topics/transportation/"> <li class="">Public space</li></a>
+                                                    <hr class="my-1">
+                                                    
+                                                
+                                                
+                                                
+                                                
+                                                
+                                                    
+                                                    <a class="" href="/dev-prod/key-topics/healthoutcomes/"> <li class="">Health outcomes</li></a>
+                                                    <hr class="my-1">
+                                                    
+                                                
+                                                
+                                                
+                                                    
+                                                    <a class="" href="/dev-prod/key-topics/childhealth/"> <li class="">Child health</li></a>
+                                                    <hr class="my-1">
+                                                    
+                                                
+                                                
+                                                
+                                                    
+                                                    <a class="" href="/dev-prod/key-topics/pests/"> <li class="">Pests and pesticides</li></a>
+                                                    <hr class="my-1">
+                                                    
+                                                
+                                                
+                                                
+                                                    
+                                                    <a class="" href="/dev-prod/key-topics/foodanddrink/"> <li class="">Food and drink</li></a>
+                                                    <hr class="my-1">
+                                                    
+                                                
+                                                
+                                                    <a href=/dev-prod/key-topics>All topics</a>
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    
+
+                                    <div class="nav-item bg-white text-primary border dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="nav-item-type"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Explore
+                                        </a>
+
+                                        <div class="dropdown-menu wider-menu" aria-labelledby="nav-item-type">
+                                            <ul class="extensible-list p-0">
+
+                                                <a href="/dev-prod/data-stories/"><li><span class="mr-1"><span class='text-primary data-stories'><i class='fas fa-passport' aria-hidden='true'></i></span></span>Data Stories</li></a>
+
+                                                        <hr class="my-1">
+
+                                                    <a href="/dev-prod/data-features/"><li><span class="mr-1"><span class='df-accent'><i class='fas fa-chart-bar' aria-hidden='true'></i></span></span>Data Features</li></a>
+
+                                                        <hr class="my-1">
+
+                                                    <a href="/dev-prod/neighborhood-reports/"><li><span class="mr-1"><span class='text-primary n-reports'><i class='fas fa-map-marked-alt' aria-hidden='true'></i></span></span>Neighborhood Reports</li></a>
+
+                                                        <hr class="my-1">
+
+                                                    <a href="/dev-prod/data-explorer/"><li><span class="mr-1"><span class='text-primary data-explorer'><i class='fas fa-chart-line' aria-hidden='true'></i></span></span>Data Explorer</li></a></ul>
+                                        </div>
+                                    </div>
+                                    
+
+                                    <div class="nav-item bg-white text-primary border">
+                                        <a class="nav-link " href="/dev-prod/about/">
+                                            About
+                                        </a></div>
+                                    
+
+                                    
+
+                                    <div class="nav-item bg-white text-primary border d-none d-lg-block">
+                                        <a class="nav-link" href="#" type="button" data-toggle="modal" data-target="#searchModal" title="Search" data-toggle="collapse">
+                                                    <span class="sr-only">Search</span>
+                                                    <i class="fa fa-magnifying-glass text-body"></i>
+                                                </a>
+                                    </div>
+                                    
+
+                                </nav>
+
+                            </div>
+
+                        </div>
+                        
+
+                    </div>
+                    
+
+                </div>
+                
+
+            </div>
+            
+
+        </div>
+        
+
+        <div class="container-fluid border-top collapse" id="global-language">
+            <div class="narrow py-2">
+                <div id="google_translate_element"></div>
+            </div>
+        </div>
+
+
+        </div>
+
+</header>
+<main id="skip-header-target" role="main" data-pagefind-body><article class="container-fluid" id="skip-header-target">
+
+    <div class="row">
+        <div class="col-xl-2"></div>
+        
+
+        
+        <div class="col-xl-8 overflow-hidden fs-rg" id="primary-content">
+
+        <div class="narrow">
+            <div class="row my-2 mb-3">
+                <div class="col-12">
+                    <nav aria-label="breadcrumb">
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href=/dev-prod/>Home</a></li>
+                            <li class="breadcrumb-item"><a href=/dev-prod/data-stories>Data Stories</a></li>
+                            <li class="breadcrumb-item active d-none d-sm-block"><a href="/dev-prod/data-stories/streets/">
+                                Street safety
+                              </a></li>
+    
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+
+            <h1 class="h2 data-stories mb-3"><i class="fas fa-passport" aria-hidden="true" style="margin-right: 10px"></i>Environments matter: the road to street safety in NYC</h1>
+            <div class="container-fluid px-0">
+
+                
+                
+                
+                    <img class="block mb-3" src="/dev-prod/data-stories/streets/ds-streets_hu46977409501ce132d1c8258e941d2087_2749927_1200x0_resize_q95_mitchellnetravali.jpg" width="1200" height="799" alt="">
+                
+            </div><p>The COVID-19 public health emergency has changed New York City in many ways—including how we get around the city. As the city continues to adapt to COVID-19, New Yorkers will look for ways to get around that feel safe—redistributing transit among different modes to ease crowding and increase safety on public transportation.</p>
+<p>As more New Yorkers use bicycles, let&rsquo;s take a look at safety on our streets.</p>
+<h2>Cyclist safety in public health data</h2>
+<p>New York City’s streets offer opportunities for active transportation, like cycling and walking, but can also pose risks from collisions. We had a stark reminder of that in 2019, when <a href="https://www.nycvzv.info/">28 cyclists died on NYC streets, following an historic low of 10 in 2018</a>.</p>
+<p>We can look at data to understand how to maximize health promotion and minimize risk. Public health data include hospitalization and emergency department (ED) data, which track injuries to cyclists as well as pedestrians. Along with these injury statistics, we have data on traffic density (e.g., measured in vehicle miles traveled on specific roads), infrastructure (e.g., the presence of bike lanes), and cycling (e.g., how many people regularly bicycle to get around).</p>
+<p>When we look at these data together, a &ldquo;safety in numbers&rdquo; story emerges: the more extensive the infrastructure and the more people riding bicycles, the safer streets are as an environment for physical activity. Let’s take a closer look.</p>
+<h2>Disparities in NYC&rsquo;s traffic-related injuries</h2>
+<p>When we look at data on traffic-related injuries by borough in New York City, Brooklyn and Queens show higher rates of hospitalization and ED visits, with Manhattan showing notably lower rates.</p>
+</div>
+<div class="wide my-4 border-top border-bottom py-2">
+<iframe title="Manhattan has the lowest rate of traffic injuries to cyclists and pedestrians" aria-label="Table" id="datawrapper-chart-OFN66" src="https://datawrapper.dwcdn.net/OFN66/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="392" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+</script>
+</div>
+<div class="narrow">
+What’s behind the very different rates across the five boroughs? By looking at the differences between the borough with the lowest rate, Manhattan, to the one with the highest rate, Brooklyn, we can understand factors that have safety implications throughout the entire city.
+</div>
+<div class="narrow my-4 border-top border-bottom p-2">
+<iframe title="Brooklyn has a higher rate of cycling injuries" aria-label="map" id="datawrapper-chart-jDbZr" src="https://datawrapper.dwcdn.net/jDbZr/10/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="727"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}}))}();
+</script>
+<iframe title="" aria-label="Table" id="datawrapper-chart-voUs9" src="https://datawrapper.dwcdn.net/voUs9/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="297" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+</script>
+</div>
+<div class="narrow">
+<p>Brooklyn has a higher rate of cyclist injury ED visits and hospitalizations than both Manhattan and the citywide averages.</p>
+<p>One might expect cycling to carry higher injury risk in areas with more traffic and with more cyclists. The map below shows neighborhoods with high, medium, and low traffic density - measured in vehicle miles travelled.</p>
+<div class="my-4 p-2 border-top border-bottom">
+<iframe title="Manhattan has higher traffic density than Brooklyn"
+aria-label="USA new york city neighborhoods (ntas) choropleth map"
+id="datawrapper-chart-gAERt" src="//datawrapper.dwcdn.net/gAERt/3/"
+scrolling="no" frameborder="0"
+style="width: 0; min-width: 100% !important; border: none;"
+height="531"></iframe>
+<script type="text/javascript">!function () { "use strict"; window.addEventListener("message", function (a) { if (void 0 !== a.data["datawrapper-height"]) for (var e in a.data["datawrapper-height"]) { var t = document.getElementById("datawrapper-chart-" + e) || document.querySelector("iframe[src*='" + e + "']"); t && (t.style.height = a.data["datawrapper-height"][e] + "px") } }) }();
+</script>
+</div>
+<p>Overall, <em>despite</em> Manhattan having higher traffic density than Brooklyn, it has lower rates of cyclist ED visits and hospitalizations. This is intuitive, actually - denser traffic means slower speeds, resulting in safer streets for cyclists.</p>
+<p>Now let’s look at the number of cyclists on NYC streets. When we map cycling in New York City, we see a slightly larger percentage of Manhattan adults bicycle at least monthly (19.5%), compared to Brooklyn adults (17.3%).</p>
+<div class="my-4 p-2 border-top border-bottom">
+<iframe title="Cycling rates are higher in Manhattan" aria-label="map" id="datawrapper-chart-QCtIR" src="https://datawrapper.dwcdn.net/QCtIR/4/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="694"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}}))}();
+</script>
+<iframe title="" aria-label="Table" id="datawrapper-chart-CWXON" src="https://datawrapper.dwcdn.net/CWXON/3/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="300" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+</script>
+</div>
+<p>So neither more cars nor more cyclists necessarily means more injuries to cyclists.</p>
+<h2>The role of environmental factors</h2>
+<p>In public health, we don’t just look at the influence of health behaviors (e.g., riding a bicycle or driving) on health outcomes (e.g., injuries). We also examine environmental factors - any characteristics of the world around us that can affect our health and our behavior.</p>
+<p>Bicycle network coverage may be a factor influencing NYC injury rates.</p>
+<div class="my-4 p-2 border-top border-bottom">
+<iframe title="Manhattan's bicycle network is denser" aria-label="Map" id="datawrapper-chart-6Iwi2" src="https://datawrapper.dwcdn.net/6Iwi2/5/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="629" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+</script>
+<iframe title="Bicycle network coverage" aria-label="Table" id="datawrapper-chart-AEeT8" src="https://datawrapper.dwcdn.net/AEeT8/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="300" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+</script>
+</div>
+<p>In Manhattan, nearly 30 percent of streets have bike lanes—but in Brooklyn, only 13 percent of streets do. This is consistent with research that shows that bicycle networks offer protection to people on the streets.</p>
+<h2>Safety in numbers</h2>
+<p>The idea of “safety in numbers” comes from <a href="https://injuryprevention.bmj.com/content/9/3/205">a study that found that “a motorist is less likely to collide with a person walking and bicycling if more people walk or bicycle.”</a> This is probably because as the number of people walking and cycling increases, motorists become more attentive. So as the number of cyclists rises, we expect to see injury rates go down.</p>
+<p>Ongoing work to promote cycling will help lower injury rates. Expanding bike share networks, increasing bicycle network coverage, and continuing to build protective street environments—like separated bike lanes—can get more riders on the street and offer them greater protection.</p>
+<p>This effect is apparent when we look at differences between Manhattan and Brooklyn—and apply what we learn throughout the city. <a href="https://a816-health.nyc.gov/hdi/epiquery/visualizations?PageType=ts&amp;PopulationSource=CHS&amp;Topic=4&amp;Subtopic=35">Disparities in cycling by sex, race/ethnicity, age, and neighborhood poverty also need to be addressed through equitably focused safety improvements</a>, since safety in numbers works best if we increase safety for everyone—starting where it is most needed.</p>
+<p>As New York City continues to grapple with the COVID-19 pandemic, many New Yorkers may turn to biking as a good way to get around while still keeping a safe distance from others. Our data show us that there is a clear connection between road infrastructure and street safety. That means that one way to keep New Yorkers safe during this public health emergency—and beyond—is to continue building safer streets.</p>
+</div>
+
+            <footer class="narrow my-4" id="article-footer">
+
+                <div class="border-top border-dark">
+                    <ul class="extensible-list text-muted mt-3">
+                        <li>
+                            <p class="text-muted" >
+                                <span class="fa fa-envelope"></span> Questions about this data story? Ideas
+                                for another one? Email us at <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#101;&#104;&#100;&#112;&#64;&#104;&#101;&#97;&#108;&#116;&#104;&#46;&#110;&#121;&#99;&#46;&#103;&#111;&#118;">&#101;&#104;&#100;&#112;&#64;&#104;&#101;&#97;&#108;&#116;&#104;&#46;&#110;&#121;&#99;&#46;&#103;&#111;&#118;</a></p>
+                        </li>
+                    </ul>
+                </div>
+                
+
+            </footer>
+            
+
+        </div>
+        
+
+        
+        <div class="col-xl-2 border-xl-left">
+
+            <div class="py-3 mt-3 mt-xl-0 sticky-top" style="z-index: 0">
+<section class="social-share" data-pagefind-ignore="all">
+    <ul class="share-icons">
+
+      
+      <li>
+        <a href="mailto:?subject=Environment%20%26%20Health%20Data%20Portal - Environments%20matter%3a%20the%20road%20to%20street%20safety%20in%20NYC&amp;body=Environments%20matter%3a%20the%20road%20to%20street%20safety%20in%20NYC%2c%20by%20Environment%20%26%20Health%20Data%20Portal%0aA%20data%20story%20on%20safety%20for%20pedestrians%20and%20cyclists.%0a%0ahttps%3a%2f%2fgcappbesp307.health.dohmh.nycnet%2fdev-prod%2fdata-stories%2fstreets%2f%0a" target="_blank" rel="noopener noreferrer" class="share-btn email">
+          <i class="fas fa-envelope fs-xl"></i>
+          <p>Email</p>
+        </a>
+      </li> 
+
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?&amp;url=https%3a%2f%2fgcappbesp307.health.dohmh.nycnet%2fdev-prod%2fdata-stories%2fstreets%2f&amp;text=Environments%20matter%3a%20the%20road%20to%20street%20safety%20in%20NYC" target="_blank" rel="noopener noreferrer" aria-label="Share on Twitter" class="share-btn twitter">
+          <i class="fab fa-twitter-square fs-xl"></i>
+          <p>Twitter</p>
+          </a>
+      </li>
+
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fgcappbesp307.health.dohmh.nycnet%2fdev-prod%2fdata-stories%2fstreets%2f" target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook" class="share-btn facebook">
+          <i class="fab fa-facebook-square fs-xl"></i>
+          <p>Facebook</p>
+          </a>
+      </li>
+
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2fgcappbesp307.health.dohmh.nycnet%2fdev-prod%2fdata-stories%2fstreets%2f" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn" class="share-btn linkedin">
+          <i class="fab fa-linkedin fs-xl"></i>
+            <p>LinkedIn</p>
+          </a>
+      </li>
+
+
+    </ul>
+  </section>
+<hr class="my-2"><div class="keywords p-1" data-pagefind-ignore="all"><span class="font-weight-bold">Keywords:</span>&nbsp;<a href="/dev-prod/keywords/transportation/">transportation</a> |&#32;<a href="/dev-prod/keywords/built-environment/">built environment</a> |&#32;<a href="/dev-prod/keywords/streets/">streets</a> |&#32;<a href="/dev-prod/keywords/cycling/">cycling</a> |&#32;<a href="/dev-prod/keywords/biking/">biking</a> |&#32;<a href="/dev-prod/keywords/active-design/">active design</a> |&#32;<a href="/dev-prod/keywords/injuries/">injuries</a> |&#32;<a href="/dev-prod/keywords/fatalities/">fatalities</a> |&#32;<a href="/dev-prod/keywords/roads/">roads</a> |&#32;<a href="/dev-prod/keywords/safety/">safety</a> |&#32;<a href="/dev-prod/keywords/bike-lanes/">bike lanes</a> |&#32;<a href="/dev-prod/keywords/cycle-lanes/">cycle lanes</a> |&#32;<a href="/dev-prod/keywords/hospitalizations/">hospitalizations</a> |&#32;<a href="/dev-prod/keywords/emergency-department-visits/">emergency department visits</a> |&#32;</div>
+<hr class="my-2">
+
+                <div class="fs-sm"><i class="fas fa-images mr-1"></i><strong class="keywords">Banner image:</strong><br>Michael Appleton/Mayoral Photography Office<hr class="my-2">
+
+                    <strong class="keywords">Published on:</strong><br>September 20, 2020</div>
+
+
+
+
+
+            </div>
+            
+
+        </div>
+        
+
+    </div>
+    
+
+</article>
+
+
+<section class="related-reading" data-pagefind-ignore="all">
+  <div class="container">
+      <div class="row">
+          <div class="col-12">
+              <div class="card bg-white text-green mb-2 p-2 text-primary fs-lg">
+                 <strong class="border-bottom">Related content</strong>
+              </div>
+          </div>
+
+          <div class="col-lg">
+              <div class="card bg-white text-black mb-2">
+                <div class="card-header"><h4 class="fs-md text-muted"><i class="fas fa-passport text-muted mr-1" aria-hidden="true"></i>Data Stories</h4>
+                </div>
+                <div class="card-body fs-sm overflow-fade-about" style="height:400px; overflow-y:scroll;"><a href="/dev-prod/data-stories/flooding-and-health/">What Hurricane Ida and Superstorm Sandy taught us about flooding and health</a>
+            <hr class="my-1"><a href="/dev-prod/data-stories/housing-creates-health/">Housing creates health</a>
+            <hr class="my-1"><a href="/dev-prod/data-stories/economic-stability/">Economic stability creates health</a>
+            <hr class="my-1"><a href="/dev-prod/data-stories/injury-deaths/">Injury deaths in NYC</a>
+            <hr class="my-1"><a href="/dev-prod/data-stories/adult-lead/">Lead poisoning affects adults too</a>
+            <hr class="my-1"><a href="/dev-prod/data-stories/sanitation/">Why trash is a public health issue</a>
+            <hr class="my-1"><a href="/dev-prod/data-stories/block-by-block/">A walk through history</a>
+            <hr class="my-1"><a href="/dev-prod/data-stories/hia/">Efforts to reduce air pollution should focus on neighborhoods with the worst health impacts</a>
+            <hr class="my-1"><a href="/dev-prod/data-stories/zappa/">ZAPPA: A tool to understand air quality policies</a>
+            <hr class="my-1"><a href="/dev-prod/data-stories/air-quality-and-covid-part-2/">An update on air quality during COVID-19</a>
+            <hr class="my-1"><a href="/dev-prod/data-stories/poweroutages/">How power outages affect health</a>
+            <hr class="my-1"><a href="/dev-prod/data-stories/urban-heat-island/">The urban heat island effect in NYC</a>
+            <hr class="my-1"><a href="/dev-prod/data-stories/restaurants-and-air-quality/">Tracking changes in New York City&#39;s sources of air pollution</a>
+            <hr class="my-1"><a href="/dev-prod/data-stories/violence/">Why violence is a public health issue</a>
+            <hr class="my-1"><a href="/dev-prod/data-stories/traffic-and-air-pollution/">The Public Health Impacts of PM2.5 from Traffic Air Pollution</a>
+            <hr class="my-1"><a href="/dev-prod/data-stories/redlining/">A brief history of redlining</a>
+            <hr class="my-1"><a href="/dev-prod/data-stories/housing/">Health, housing, and history</a>
+            <hr class="my-1"><a href="/dev-prod/data-stories/heat/">Protecting New Yorkers from extreme heat</a>
+            <hr class="my-1"><a href="/dev-prod/data-stories/geographies/">Neighborhood boundaries on the EH Data Portal</a>
+            <hr class="my-1"><a href="/dev-prod/data-stories/air-quality-and-covid/">Air quality during COVID-19</a>
+            <hr class="my-1"><a href="/dev-prod/data-stories/air-quality-snapshots/">Air quality snapshots: special findings from 10 years of NYCCAS</a>
+            <hr class="my-1"><a href="/dev-prod/data-stories/assaults/">Disparities in violence</a>
+            <hr class="my-1"><a href="/dev-prod/data-stories/car-free-zones/">Air quality in car-free areas</a>
+            <hr class="my-1"><a href="/dev-prod/data-stories/air-quality-by-neighborhood/">What our air quality monitors tell us about NYC&#39;s neighborhoods</a>
+            <hr class="my-1"><a href="/dev-prod/data-stories/asthma-and-poverty/">Why asthma is a social justice issue</a>
+            <hr class="my-1"></div>
+              </div>
+            </div>
+            
+
+            <div class="col-lg">
+              <div class="card bg-white text-black mb-2">
+                  <div class="card-header"><h4 class="fs-md text-muted"><i class="fas fa-star text-muted mr-1" aria-hidden="true"></i>Key Topics</h4>
+
+                  </div>
+                  <div class="card-body fs-sm">
+                      <a href="/dev-prod/key-topics/transportation/">Active design, public space, and transportation</a>
+                      <hr class="my-1"><a href="/dev-prod/key-topics/healthoutcomes/">Environmental health outcomes</a>
+                      <hr class="my-1"></div>
+                </div>
+
+                <div class="card bg-white text-black mb-2">
+                  <div class="card-header"><h4 class="fs-md text-muted"><i class="fas fa-map-marked-alt text-muted mr-1" aria-hidden="true"></i>Neighborhood Reports</h4>
+                  </div>
+                  <div class="card-body fs-sm"><a href="/dev-prod/neighborhood-reports/active_design_physical_activity_and_health/">Active Design, Physical Activity and Health</a>
+            <hr class="my-1"><a href="/dev-prod/neighborhood-reports/asthma_and_the_environment/">Asthma and the Environment</a>
+            <hr class="my-1"><a href="/dev-prod/neighborhood-reports/climate_and_health/">Climate and Health</a>
+            <hr class="my-1"><a href="/dev-prod/neighborhood-reports/housing_and_health/">Housing and Health</a>
+            <hr class="my-1"><a href="/dev-prod/neighborhood-reports/outdoor_air_and_health/">Outdoor Air and Health</a>
+            <hr class="my-1"></div>
+                </div>
+            </div>
+            
+
+            <div class="col-lg">
+              <div class="card bg-white text-black">
+                <div class="card-header"><h4 class="fs-md text-muted"><i class="fas fa-chart-line text-muted mr-1" aria-hidden="true"></i>Data Explorer</h4>
+                </div>
+                <div class="card-body fs-sm overflow-fade-about" style="height:400px; overflow-y:scroll;"><a href="/dev-prod/data-explorer/healthy-eating/">Healthy eating</a>
+            <hr class="my-1"><a href="/dev-prod/data-explorer/active-design/">Active design</a>
+            <hr class="my-1"><a href="/dev-prod/data-explorer/air-quality/">Air quality</a>
+            <hr class="my-1"><a href="/dev-prod/data-explorer/asthma/">Asthma</a>
+            <hr class="my-1"><a href="/dev-prod/data-explorer/asthma-triggers/">Asthma triggers at home</a>
+            <hr class="my-1"><a href="/dev-prod/data-explorer/bed-bugs/">Bed bugs</a>
+            <hr class="my-1"><a href="/dev-prod/data-explorer/birth-defects/">Birth defects</a>
+            <hr class="my-1"><a href="/dev-prod/data-explorer/birth-outcomes/">Birth outcomes</a>
+            <hr class="my-1"><a href="/dev-prod/data-explorer/cancer/">Cancer</a>
+            <hr class="my-1"><a href="/dev-prod/data-explorer/cancers-in-children/">Cancers in children</a>
+            <hr class="my-1"><a href="/dev-prod/data-explorer/cockroaches/">Cockroaches</a>
+            <hr class="my-1"><a href="/dev-prod/data-explorer/falls-among-older-adults/">Falls among older adults</a>
+            <hr class="my-1"><a href="/dev-prod/data-explorer/health-impacts-of-air-pollution/">Health impacts of air pollution</a>
+            <hr class="my-1"><a href="/dev-prod/data-explorer/housing-maintenance/">Housing maintenance</a>
+            <hr class="my-1"><a href="/dev-prod/data-explorer/housing-safety/">Housing safety</a>
+            <hr class="my-1"><a href="/dev-prod/data-explorer/housing-stability/">Housing stability</a>
+            <hr class="my-1"><a href="/dev-prod/data-explorer/lead/">Lead poisoning</a>
+            <hr class="my-1"><a href="/dev-prod/data-explorer/mortality/">Mortality</a>
+            <hr class="my-1"><a href="/dev-prod/data-explorer/overweight/">Overweight</a>
+            <hr class="my-1"><a href="/dev-prod/data-explorer/physical-activity/">Physical activity</a>
+            <hr class="my-1"><a href="/dev-prod/data-explorer/transportation-related-injuries/">Transportation-related injuries</a>
+            <hr class="my-1"><a href="/dev-prod/data-explorer/vector-borne-disease/">Vector-borne disease</a>
+            <hr class="my-1"><a href="/dev-prod/data-explorer/violence/">Violence</a>
+            <hr class="my-1"><a href="/dev-prod/data-explorer/walking-driving-and-cycling/">Walking, driving, and cycling</a>
+            <hr class="my-1"><a href="/dev-prod/data-explorer/weather-related-illness/">Weather-related illness</a>
+            <hr class="my-1"><a href="/dev-prod/data-explorer/worker-health/">Worker health</a>
+            <hr class="my-1"></div>
+              </div>
+            </div>
+            
+      </div>
+  </div>
+</section><ul id="results"></ul>
+  </main>
+  
+  <footer class="bg-black" id="global-footer" role="contentinfo">
+
+  <h2 class="sr-only">
+      Page Footer
+  </h2>
+
+  <div class="bg-opacity-black-25 text-white" id="nyc-footer">
+
+      <div class="container py-3 d-none" id="languages">
+
+          <div class="row fs-md d-print-none">
+
+              <div class="col-6 col-md-4 col-lg mb-2 mb-lg-0">
+                  <ul class="extensible-list">
+                      <li><a class="lang-select text-reset" href="#" data-lang="ar">عربى</a></li>
+                      <li><a class="lang-select text-reset" href="#" data-lang="bn">বাঙালি</a></li>
+                  </ul>
+              </div>
+              <div class="col-6 col-md-4 col-lg mb-2 mb-lg-0">
+                  <ul class="extensible-list">
+                      <li><a class="lang-select text-reset" href="#" data-lang="zh-CN">中文</a></li>
+                      <li><a class="lang-select text-reset" href="#" data-lang="fr">français</a></li>
+                  </ul>
+              </div>
+              <div class="col-6 col-md-4 col-lg mb-2 mb-lg-0">
+                  <ul class="extensible-list">
+                      <li><a class="lang-select text-reset" href="#" data-lang="ht">Kreyòl Ayisyen</a></li>
+                      <li><a class="lang-select text-reset" href="#" data-lang="ko">한국어</a></li>
+                  </ul>
+              </div>
+              <div class="col-6 col-md-4 col-lg mb-2 mb-lg-0">
+                  <ul class="extensible-list">
+                      <li><a class="lang-select text-reset" href="#" data-lang="pl">Polskie</a></li>
+                      <li><a class="lang-select text-reset" href="#" data-lang="ru">русский</a></li>
+                  </ul>
+              </div>
+              <div class="col-6 col-md-4 col-lg">
+                  <ul class="extensible-list">
+                      <li><a class="lang-select text-reset" href="#" data-lang="es">Español</a></li>
+                      <li><a class="lang-select text-reset" href="#" data-lang="ur">اردو</a></li>
+                  </ul>
+              </div>
+          </div>
+
+      </div>
+      
+
+      <div class="container py-3 d-print-none" id="languages">
+
+          <ul class="fs-md" role="list">
+              <li><a class="lang-select text-reset" href="#" data-lang="ar">عربى</a></li>
+              <li><a class="lang-select text-reset" href="#" data-lang="bn">বাঙালি</a></li>
+              <li><a class="lang-select text-reset" href="#" data-lang="zh-CN">中文</a></li>
+              <li><a class="lang-select text-reset" href="#" data-lang="fr">français</a></li>
+              <li><a class="lang-select text-reset" href="#" data-lang="ht">Kreyòl Ayisyen</a></li>
+              <li><a class="lang-select text-reset" href="#" data-lang="ko">한국어</a></li>
+              <li><a class="lang-select text-reset" href="#" data-lang="pl">Polskie</a></li>
+              <li><a class="lang-select text-reset" href="#" data-lang="ru">русский</a></li>
+              <li><a class="lang-select text-reset" href="#" data-lang="es">Español</a></li>
+              <li><a class="lang-select text-reset" href="#" data-lang="ur">اردو</a></li>
+          </ul>
+
+      </div>
+      
+
+      <hr class="opacity-10" aria-hidden="true">
+
+      <div class="container py-3">
+          <div class="row">
+              <div class="col-md-6 col-lg-8 mb-3 mb-lg-0">
+                  <nav class="row fs-md d-print-none" role="navigation">
+                      <div class="col-lg mb-3 mb-lg-0">
+                          <ul class="extensible-list">
+                              <li>
+                                  <a class="text-reset" href="https://www1.nyc.gov/nyc-resources/agencies.page">
+                                      <strong>Directory of City Agencies</strong>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a class="text-reset" href="https://a858-nycnotify.nyc.gov/notifynyc/">
+                                      <strong>Notify NYC</strong>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a class="text-reset"
+                                      href="https://www1.nyc.gov/connect/mobile-applications.page">
+                                      <strong>NYC Mobile Apps</strong>
+                                  </a>
+                              </li>
+                          </ul>
+                      </div>
+                      
+
+                      <div class="col-lg mb-3 mb-lg-0">
+
+                          <ul class="extensible-list">
+                              <li>
+                                  <a class="text-reset" href="https://www1.nyc.gov/home/contact-us.page">
+                                      <strong>Contact NYC Government</strong>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a class="text-reset" href="https://a856-citystore.nyc.gov/">
+                                      <strong>CityStore</strong>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a class="text-reset" href="https://www.nyc.gov/nyc-resources/nyc-maps.page">
+                                      <strong>Maps</strong>
+                                  </a>
+                              </li>
+                          </ul>
+
+                      </div>
+                      
+
+                      <div class="col-lg mb-3 mb-lg-0">
+
+                          <ul class="extensible-list">
+                              <li>
+                                  <a class="text-reset"
+                                      href="https://a127-ess.nyc.gov/psp/prdess/?cmd=login&languageCd=ENG&">
+                                      <strong>City Employees</strong>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a class="text-reset" href="https://www1.nyc.gov/connect/social-media.page">
+                                      <strong>Stay Connected</strong>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a class="text-reset"
+                                      href="https://www1.nyc.gov/nyc-resources/resident-toolkit.page">
+                                      <strong>Resident Toolkit</strong>
+                                  </a>
+                              </li>
+                          </ul>
+                      </div>
+                      
+
+                  </nav>
+              </div>
+              
+
+              <div class="col-md-6 col-lg-4">
+
+                  <a class="mb-2" href="https://www1.nyc.gov" title="Go to nyc.gov" target="_blank" rel="noopener noreferrer">
+                      
+                      <img class="mb-2" src="/dev-prod/images/nyc-bubble-logo.svg" width="90" alt="NYC Logo">
+                      <span class="sr-only">(opens in a new tab)</span>
+                  </a>
+                  <p class="fs-sm">© City of New York. 2022 All Rights Reserved,<br>NYC is a trademark and service mark of the City of New
+                    York.</p>
+
+                  <ul class="extensible-list horizontal fs-sm d-print-none">
+                      <li>
+                          <a class="text-reset" href="https://www1.nyc.gov/home/privacy-policy.page">Privacy
+                              Policy</a>
+                      </li>
+                      <li>
+                          <a class="text-reset" href="https://www1.nyc.gov/home/terms-of-use.page">Terms
+                              of Use</a>
+                      </li>
+                      <li>
+                          <a class="text-reset" href="https://www1.nyc.gov/site/mopd/index.page"
+                              title="Mayor's Office for People with Disabilities">
+                              <span class="sr-only">Learn more about Digital Accessibility
+                                from the Mayor's Office for People with Disabilities.</span>
+                              <span class="fab fa-lg fa-accessible-icon"></span>
+                          </a>
+                      </li>
+                  </ul>
+
+              </div>
+              
+
+          </div>
+          
+
+      </div>
+      
+
+  </div>
+  
+
+</footer>
+
+
+<div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="searchModalLabel" data-pagefind-ignore="all">Search</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <link href=/dev-prod/pagefind/pagefind-ui.css rel="stylesheet">
+            <script src=/dev-prod/pagefind/pagefind-ui.js type="text/javascript"></script>
+            <div id="search"></div>
+            <script>
+
+                window.addEventListener('DOMContentLoaded', (event) => {
+
+                    new PagefindUI({
+                        element: "#search",
+                        showSubResults: true,
+                        showImages: false,
+                        baseUrl: baseURL,
+                        showEmptyFilters: true,
+                        debounceTimeoutMs: 500,
+                        
+                        processTerm: function (term) {
+
+                            gtag('event', 'search', {
+                                search_term: term
+                            });
+
+                            return term;
+
+                        },
+                        processResult: function (result) {
+
+                            
+                            
+                            
+
+                            
+
+                            result.meta.title = result.meta.title
+                                .replace(/&#(\d+);/g, ((match, dec) => `${String.fromCharCode(dec)}`))
+                                .replaceAll("&amp;", "&");
+
+                            
+
+                            result.sub_results.forEach(sub => {
+
+                                
+
+                                sub.url = sub.url.replace("#IndicatorID-", "?id=");
+
+                                
+
+                                sub.title = sub.title
+                                    .replace(/&#(\d+);/g, ((match, dec) => `${String.fromCharCode(dec)}`))
+                                    .replaceAll("&amp;", "&");
+
+                            });
+
+                            
+                            
+                            
+
+                            
+                            var allResults = document.getElementsByClassName('pagefind-ui__result-link');
+
+                            
+                            for (h = 0; h < allResults.length; h += 1) {
+
+                                allResults[h].setAttribute('onclick',"gtag('event', 'search_click', { page_viewed: '" + allResults[h].href + "' });");
+
+                            }
+
+                            
+
+                            console.log("@ result:", result);
+                            
+
+                        }
+                    });
+
+                    
+
+                    
+
+                    const searchModal = document.getElementById('searchModal')
+                    const searchInput = document.getElementsByClassName('pagefind-ui__search-input')[0]
+
+                    $(searchModal).on('shown.bs.modal', () => {
+                        searchInput.focus();
+                        searchInput.select();
+                    })
+
+
+                });
+
+
+            </script>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+<script>
+
+
+</script>
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+
+
+<script>
+  function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+          pageLanguage: 'en'
+      }, 'google_translate_element');
+
+      
+      document.querySelectorAll("div[class^=VI] svg").forEach(e => e.outerHTML = "");
+  }
+</script>
+
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+<script type="text/javascript" 
+    src="/dev-prod/js/main.552c9e0eb5b9f567a863809d88dfdb9dfc2e5062f1aa7ae313abbdf21a346fd773ae265f5ff618d8322e2b96b95be1b319c681eb0ea7b818a3c6485a84b6ad5a.js" 
+    integrity="sha512-VSyeDrW59WeoY4CdiN/bnfwuUGLxqnrjE6u98ho0b9dzriZfX/YY2DIuK5a5W&#43;GzGcaB6w6nuBijxkhahLatWg=="></script>
+
+  
+  
+</body>
+</html>

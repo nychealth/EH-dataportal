@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ED visit on Environment &amp; Health Data Portal</title>
+    <link>https://gcappbesp307.health.dohmh.nycnet/dev-prod/keywords/ed-visit/</link>
+    <description>Recent content in ED visit on Environment &amp; Health Data Portal</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 30 Aug 2021 11:51:01 -0400</lastBuildDate>
+    <atom:link href="https://gcappbesp307.health.dohmh.nycnet/dev-prod/keywords/ed-visit/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Real-time heat-related illness</title>
+      <link>https://gcappbesp307.health.dohmh.nycnet/dev-prod/data-features/heat-syndrome/</link>
+      <pubDate>Mon, 30 Aug 2021 11:51:01 -0400</pubDate>
+      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-prod/data-features/heat-syndrome/</guid>
+      <description>The weather forecast is the best way to predict heat-related health outcomes.&#xA;We can also track heat-related illness with near real-time electronic data from emergency departments at hospitals throughout NYC. These data include illnesses directly attributed to heat (including heat exhaustion, muscle cramps, fainting and heat stroke), not the full burden of heat-related health impacts.</description>
+    </item>
+  </channel>
+</rss>

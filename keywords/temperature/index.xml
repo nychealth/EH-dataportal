@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>temperature on Environment &amp; Health Data Portal</title>
+    <link>https://gcappbesp307.health.dohmh.nycnet/dev-prod/keywords/temperature/</link>
+    <description>Recent content in temperature on Environment &amp; Health Data Portal</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 08 Sep 2021 11:14:56 -0400</lastBuildDate>
+    <atom:link href="https://gcappbesp307.health.dohmh.nycnet/dev-prod/keywords/temperature/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2021 NYC Heat-Related Mortality Report</title>
+      <link>https://gcappbesp307.health.dohmh.nycnet/dev-prod/data-features/heat-report-archive/2021/</link>
+      <pubDate>Wed, 08 Sep 2021 11:14:56 -0400</pubDate>
+      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-prod/data-features/heat-report-archive/2021/</guid>
+      <description>Summary: Heat Stress Deaths Each summer from 2010-2019, there were, on average,10 heat stress deaths (those caused directly by heat) in New York City (NYC). Lack of home air conditioning (AC) continues to be an important risk factor for heat stress death. Among those who died from heat stress, the place of death was most often an un-air-conditioned home. Black New Yorkers are more likely to die from heat stress, with death rates two times higher than among other New Yorkers.</description>
+    </item>
+    <item>
+      <title>2022 NYC Heat-Related Mortality Report</title>
+      <link>https://gcappbesp307.health.dohmh.nycnet/dev-prod/data-features/heat-report-archive/2022/</link>
+      <pubDate>Wed, 08 Sep 2021 11:14:56 -0400</pubDate>
+      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-prod/data-features/heat-report-archive/2022/</guid>
+      <description>Summary Each summer, an estimated 370 New Yorkers die prematurely because of hot weather in New York City (NYC). These heat-related deaths account for about 2% of all deaths over the warm season months of May - September. Of the 370 deaths:&#xA;From 2011-2020, there was an average of 10 heat-stress deaths (caused directly by heat). From 2011-2019, there was an average of about 360 heat-exacerbated deaths (caused indirectly by heat aggravating an underlying illness).</description>
+    </item>
+    <item>
+      <title>2023 NYC Heat-Related Mortality Report</title>
+      <link>https://gcappbesp307.health.dohmh.nycnet/dev-prod/data-features/heat-report-archive/2023/</link>
+      <pubDate>Wed, 08 Sep 2021 11:14:56 -0400</pubDate>
+      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-prod/data-features/heat-report-archive/2023/</guid>
+      <description>Summary Each summer, on average, an estimated 350 New Yorkers die prematurely because of hot weather in New York City (NYC). These heat-related deaths account for about 2% of all deaths over the warm season months of May through September. Of the 350 deaths: From 2012-2021, there were an average of 7 heat-stress deaths (caused directly by heat). From 2016-2020, there were an average of about 345 heat-exacerbated deaths (caused indirectly by heat aggravating an underlying illness).</description>
+    </item>
+    <item>
+      <title>2024 NYC Heat-Related Mortality Report</title>
+      <link>https://gcappbesp307.health.dohmh.nycnet/dev-prod/data-features/heat-report/</link>
+      <pubDate>Wed, 08 Sep 2021 11:14:56 -0400</pubDate>
+      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-prod/data-features/heat-report/</guid>
+      <description>Each summer, on average, an estimated 350 New Yorkers die prematurely because of hot weather in New York City (NYC). These heat-related deaths account for about 2% of all deaths over the warm season months of May through September.</description>
+    </item>
+    <item>
+      <title>The urban heat island effect in NYC</title>
+      <link>https://gcappbesp307.health.dohmh.nycnet/dev-prod/data-stories/urban-heat-island/</link>
+      <pubDate>Fri, 20 Aug 2021 12:52:43 -0400</pubDate>
+      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-prod/data-stories/urban-heat-island/</guid>
+      <description>In New York City and across the country, more people die from extreme heat than from all other natural disasters combined. To understand how to keep New Yorkers safe from extreme heat, we studied neighborhood factors that affect temperature, and found that grass, shrubs, and trees can play a major role. Let’s take a look.&#xA;At 6.00 PM on June 30, 2018, the air temperature at the LaGuardia Airport Weather Station was 89° Fahrenheit (F).</description>
+    </item>
+  </channel>
+</rss>

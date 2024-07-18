@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>food on Environment &amp; Health Data Portal</title>
+    <link>https://gcappbesp307.health.dohmh.nycnet/dev-prod/keywords/food/</link>
+    <description>Recent content in food on Environment &amp; Health Data Portal</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 17 Nov 2021 12:01:22 -0500</lastBuildDate>
+    <atom:link href="https://gcappbesp307.health.dohmh.nycnet/dev-prod/keywords/food/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Healthy eating</title>
+      <link>https://gcappbesp307.health.dohmh.nycnet/dev-prod/data-explorer/healthy-eating/</link>
+      <pubDate>Wed, 17 Nov 2021 12:01:22 -0500</pubDate>
+      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-prod/data-explorer/healthy-eating/</guid>
+      <description>Healthy eating is associated with better health, including a reduced risk of cardiovascular disease. That means that having access to healthy, safe, and affordable food choices is crucial for a person to achieve healthy eating habits.&#xA;Food access is influenced by many environmental factors, including proximity to food retail outlets and neighborhood-level resources (like neighborhood poverty, and availability of public transportation).&#xA;Sugary drinks contribute to a higher-calorie diet, increased risk of heart disease and diabetes, and long-term weight gain.</description>
+    </item>
+    <item>
+      <title>Drinking water quality</title>
+      <link>https://gcappbesp307.health.dohmh.nycnet/dev-prod/data-explorer/drinking-water-quality/</link>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
+      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-prod/data-explorer/drinking-water-quality/</guid>
+      <description>All NYC residences receive drinking water from a public water system. Most water is gravity fed from a network of reservoirs and lakes in protected watersheds, up to 125 miles from the city.&#xA;The NYC water system consists of two surface water systems: Croton and Catskill/Delaware and one groundwater system, in Southwestern Queens. Since 1999, the Croton system has served as a supplemental water system. The Catskill/Delaware reservoir system supplies almost all NYC drinking water.</description>
+    </item>
+    <item>
+      <title>Restaurant food safety</title>
+      <link>https://gcappbesp307.health.dohmh.nycnet/dev-prod/data-explorer/restaurant-food-safety/</link>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
+      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-prod/data-explorer/restaurant-food-safety/</guid>
+      <description>New York City has approximately 28,000 restaurants that the Health Department inspects every year to monitor compliance with city and state food safety regulations. At the end of an inspection, the Health Department gives restaurants a score, which is eventually converted to a grade of A, B or C. This site describes the distribution of A grades across New York City restaurants.&#xA;Restaurant Food Safety and Health Safe food handling can protect diners from foodborne illness.</description>
+    </item>
+    <item>
+      <title>Food and drink</title>
+      <link>https://gcappbesp307.health.dohmh.nycnet/dev-prod/key-topics/foodanddrink/</link>
+      <pubDate>Wed, 05 May 2021 07:58:53 -0400</pubDate>
+      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-prod/key-topics/foodanddrink/</guid>
+      <description>We all make choices around food and drink, but sometimes, those choices are made for us by our food environments.&#xA;Our food environments include neighborhood-level alcohol access, unhealthy food access, and restaurant food safety. Additionally, drinking water quality data includes data on contaminants that are most frequently found at levels that may be of public health significant in the country&amp;rsquo;s drinking water.</description>
+    </item>
+    <item>
+      <title>What hot weather means for food safety</title>
+      <link>https://gcappbesp307.health.dohmh.nycnet/dev-prod/data-stories/food/</link>
+      <pubDate>Thu, 24 Oct 2019 08:18:56 -0400</pubDate>
+      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-prod/data-stories/food/</guid>
+      <description>New Yorkers eat out more than a billion times a year. To help keep diners safe, the Health Department educates restaurant operators about food safety practices and inspects all 27,000 city restaurants at least once a year. Over 90 percent of NYC restaurants have &amp;ldquo;A&amp;rdquo; grades in the window, showing excellent compliance with food safety requirements.&#xA;However, warmer weather creates special challenges keeping food safe. We dug into the data to find out how hot weather affects food safety.</description>
+    </item>
+  </channel>
+</rss>

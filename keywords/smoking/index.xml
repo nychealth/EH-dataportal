@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>smoking on Environment &amp; Health Data Portal</title>
+    <link>https://gcappbesp307.health.dohmh.nycnet/dev-prod/keywords/smoking/</link>
+    <description>Recent content in smoking on Environment &amp; Health Data Portal</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 28 May 2021 18:02:58 +0000</lastBuildDate>
+    <atom:link href="https://gcappbesp307.health.dohmh.nycnet/dev-prod/keywords/smoking/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Cigarette smoke</title>
+      <link>https://gcappbesp307.health.dohmh.nycnet/dev-prod/data-explorer/cigarette-smoke/</link>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
+      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-prod/data-explorer/cigarette-smoke/</guid>
+      <description>Smoking causes over a dozen cancers, heart disease, stroke, type 2 diabetes and many other diseases; it remains a leading cause of death in New York City (NYC). On average, people who do not smoke live about 10 years longer than people who do.&#xA;Additionally, there is no safe level of exposure to secondhand smoke. Secondhand smoke causes cancer, heart disease and other illnesses in adults. Children exposed to smoke are more likely to have bronchitis, asthma attacks, ear infections, pneumonia and sudden infant death syndrome (SIDS).</description>
+    </item>
+  </channel>
+</rss>

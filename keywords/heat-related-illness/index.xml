@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>heat-related illness on Environment &amp; Health Data Portal</title>
+    <link>https://gcappbesp307.health.dohmh.nycnet/dev-prod/keywords/heat-related-illness/</link>
+    <description>Recent content in heat-related illness on Environment &amp; Health Data Portal</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 03 Oct 2021 12:33:17 -0400</lastBuildDate>
+    <atom:link href="https://gcappbesp307.health.dohmh.nycnet/dev-prod/keywords/heat-related-illness/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Climate and health</title>
+      <link>https://gcappbesp307.health.dohmh.nycnet/dev-prod/key-topics/climatehealth/</link>
+      <pubDate>Sun, 03 Oct 2021 12:33:17 -0400</pubDate>
+      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-prod/key-topics/climatehealth/</guid>
+      <description>Climate, including extreme weather, has a direct impact on health. As NYC&amp;rsquo;s climate changes, along with the world&amp;rsquo;s climate, we expect more frequent and intense heat waves, increased rainfall and more severe storms. These will add to existing weather-related risks. Already, heat kills more people than all other natural disasters combined.&#xA;In New York City, those most vulnerable to the dangers of hot weather are older adults and people with health conditions like heart disease, diabetes, and cognitive impairment - especially those in low-income, Black, and Brown communities.</description>
+    </item>
+    <item>
+      <title>Real-time heat-related illness</title>
+      <link>https://gcappbesp307.health.dohmh.nycnet/dev-prod/data-features/heat-syndrome/</link>
+      <pubDate>Mon, 30 Aug 2021 11:51:01 -0400</pubDate>
+      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-prod/data-features/heat-syndrome/</guid>
+      <description>The weather forecast is the best way to predict heat-related health outcomes.&#xA;We can also track heat-related illness with near real-time electronic data from emergency departments at hospitals throughout NYC. These data include illnesses directly attributed to heat (including heat exhaustion, muscle cramps, fainting and heat stroke), not the full burden of heat-related health impacts.</description>
+    </item>
+    <item>
+      <title>Interactive Heat Vulnerability Index</title>
+      <link>https://gcappbesp307.health.dohmh.nycnet/dev-prod/data-features/hvi/</link>
+      <pubDate>Wed, 25 Aug 2021 10:49:05 -0400</pubDate>
+      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-prod/data-features/hvi/</guid>
+      <description>Use this Heat Vulnerability Explorer to look up your the heat vulnerability of your neighborhood, and the neighborhood characteristics that affect it.</description>
+    </item>
+  </channel>
+</rss>

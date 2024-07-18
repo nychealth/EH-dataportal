@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <sitemap>
+    <loc>https://gcappbesp307.health.dohmh.nycnet/dev-prod/en/sitemap.xml</loc>
+    
+      <lastmod>2024-06-11T09:01:00-04:00</lastmod>
+    
+  </sitemap>
+  
+  <sitemap>
+    <loc>https://gcappbesp307.health.dohmh.nycnet/dev-prod/es/sitemap.xml</loc>
+    
+      <lastmod>2021-02-08T08:07:31-04:00</lastmod>
+    
+  </sitemap>
+  
+  <sitemap>
+    <loc>https://gcappbesp307.health.dohmh.nycnet/dev-prod/zh/sitemap.xml</loc>
+    
+      <lastmod>2021-02-08T08:07:31-04:00</lastmod>
+    
+  </sitemap>
+  
+</sitemapindex>
