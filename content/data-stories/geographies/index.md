@@ -23,7 +23,7 @@ The most common neighborhood boundaries on the EH Data Portal are Community Dist
 {{< rawhtml >}}
  </div>
     <!--start wide-->
-    <div class="wide my-4 chart-wrapper">
+    <div class="wide my-4 chart-wrapper-ds">
         <h4 class="text-center mb-3">Nesting: how neighborhood schemes have different root units</h4>
         <div class="row" style="font-size: 14px;">
             <div class="col-lg-4 col-sm-8 mx-auto mb-2">
