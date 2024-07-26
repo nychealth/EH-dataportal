@@ -98,7 +98,7 @@ var content = [
             {
                 "optionID": 1,
                 "copy": "Yes",
-                "message": "Great! You have an air conditioner. If your air conditioner is not powerful enough to cool several rooms, use it in the one room to make sure part of your space stays cool. Setting your air conditioner to 78F or Low Cool can keep you safe, comfortable, and save money.",
+                "message": "Great! You have an air conditioner. If you don’t have AC in every room, use the AC in the room you spend the most time in.",
                 "setVariable": "ac('Yes')",
                 "goTo": 5
             },
@@ -153,7 +153,7 @@ var content = [
             {
                 "optionID": 1,
                 "copy": "Yes",
-                "message": "Great, you have a fan. Fans can help cool you down when the air outside is cooler than the air inside. When it's hot, a fan alone is not enough. You can visit a cool place when it is hot outside",
+                "message": "Great, you have a fan. Fans can help cool you down when the air outside is cooler than the air inside. When it's hot, a fan alone is not enough. You can visit a cool place when it is hot outside.",
                 "setVariable": "fan('Yes')",
                 "goTo": 99
             },
