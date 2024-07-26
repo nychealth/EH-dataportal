@@ -18,7 +18,7 @@ var content = [
             {
                 "optionID": 1,
                 "copy": "Yes",
-                "message": "These health conditions and life situations can make you more vulnerable to extreme heat and bad air quality.",
+                "message": "These health conditions and life situations can make you or someone you live with more vulnerable to extreme heat and bad air quality.",
                 "setVariable": "sensitive('Yes')",
                 "goTo": 2
             },
@@ -38,7 +38,7 @@ var content = [
 
     {
         "id": 2,
-        "text": "Do you rely on electronic medical equipment to keep you healthy?",
+        "text": "Do you or someone you live with rely on electronic medical equipment to keep you healthy?",
         "prompt": "", 
         "image": "Pacemaker.svg",
         "options": [
@@ -153,7 +153,7 @@ var content = [
             {
                 "optionID": 1,
                 "copy": "Yes",
-                "message": "Great, you have a fan. Fans can help cool you down when the air outside is cooler than the air inside. When it's hot, a fan alone is not enough.",
+                "message": "Great, you have a fan. Fans can help cool you down when the air outside is cooler than the air inside. When it's hot, a fan alone is not enough. You can visit a cool place when it is hot outside",
                 "setVariable": "fan('Yes')",
                 "goTo": 99
             },

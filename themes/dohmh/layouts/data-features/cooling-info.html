@@ -3,7 +3,6 @@
 <article class="container-fluid" id="skip-header-target">
   <div class="row">
     <div class="col-md-11 mx-auto">
-
       <div class="row mb-4">
         <div class="col-md-8 mx-auto">
           <nav aria-label="breadcrumb" class="mt-2 mb-4">
@@ -19,26 +18,24 @@
           </nav>
           <h1>{{ .Title }}</h1>
 
-
           <p>{{ .Content }}</p>
 
           <div class="row my-2">
             <div class="col-3 px-4">
-              <img src="img/AC.svg">
+              <img src="img/AC.svg" />
             </div>
 
             <div class="col-3 px-4">
-              <img src="img/Vulnerable_groups1.svg">
+              <img src="img/Vulnerable_groups1.svg" />
             </div>
 
             <div class="col-3 px-4">
-              <img src="img/Fan.svg">
+              <img src="img/Fan.svg" />
             </div>
 
             <div class="col-3 px-4">
-              <img src="img/Piggy_bank.svg">
+              <img src="img/Piggy_bank.svg" />
             </div>
-
           </div>
 
           <div class="asidebox p-1 my-3">
@@ -51,26 +48,25 @@
             ><br />
             if you are feeling very hot, with nausea or vomiting, fast pulse,
             weakness or dizziness, you may need medical help.
-            <a href="https://www.cdc.gov/disasters/extremeheat/warning.html"
+            <a
+              href="https://www.cdc.gov/extreme-heat/signs-symptoms/?CDC_AAref_Val=https://www.cdc.gov/disasters/extremeheat/warning.html"
               >See a full list of symptoms of heat-related illness</a
             >.
           </div>
 
           <div class="my-4">
-              <button
+            <button
               class="btn btn-block btn-primary py-2"
               onclick="runQuestions()"
             >
-              <i class="fas fa-arrow-circle-down mr-1" aria-hidden="true"></i>Click here to get started</button>
+              <i class="fas fa-arrow-circle-down mr-1" aria-hidden="true"></i
+              >Click here to get started
+            </button>
           </div>
-
         </div>
-
       </div>
     </div>
   </div>
-
-
 
   <div class="row my-4 hide" id="allContent">
     <!--left-hand sticky column-->
@@ -79,10 +75,11 @@
         <p>
           Today's weather:
           <span id="hot" class="font-weight-bold p-1">HOT</span>. <br />
-          The forecast high
-          is <span id="maxTemp">YY</span> today.
-          It is currently <span id="currentTemp">XX</span>. 
-          <a href="https://forecast7.com/en/40d71n74d01/new-york/?unit=us">Get a full weather forecast here</a>.
+          The forecast high is <span id="maxTemp">YY</span> today. It is
+          currently <span id="currentTemp">XX</span>.
+          <a href="https://forecast7.com/en/40d71n74d01/new-york/?unit=us"
+            >Get a full weather forecast here</a
+          >.
         </p>
 
         <hr class="my-2" />
@@ -91,7 +88,8 @@
           The current air quality is:
           <span id="aqimeaning" class="font-weight-bold p-1"
             >AQI interpretation</span
-          >. <a href="https://www.airnow.gov/">Get air quality where you live</a>.
+          >.
+          <a href="https://www.airnow.gov/">Get air quality where you live</a>.
         </p>
 
         <hr class="my-2" />
@@ -130,10 +128,7 @@
               Has AC: <span id="hasAC" class="float-right"></span>
             </p>
             <p>
-              <i
-                class="fas fa-dollar-sign mr-1 fs-lg"
-                aria-hidden="true"
-              ></i>
+              <i class="fas fa-dollar-sign mr-1 fs-lg" aria-hidden="true"></i>
               Limits AC use: <span id="limitsAC" class="float-right"></span>
             </p>
             <p>
@@ -152,9 +147,7 @@
     <!-- main content column -->
     <div class="col-md-7 overflow-hidden fs-rg mr-auto" id="primary-content">
       <div id="start">
-        <div class="col-md-6 mx-auto">
-
-        </div>
+        <div class="col-md-6 mx-auto"></div>
       </div>
 
       <div id="mainContent" class="my-4">
