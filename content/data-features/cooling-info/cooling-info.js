@@ -364,7 +364,7 @@ function runFinal() {
 
   // Message 0.5 - default low aqi / look at resources 
   if (aqi < 3 ) {
-    msg = "<p><strong> The air quality today is fine for you.</strong> Stay informed. Sign up for air quality alerts at <a href='airnow.gov'>AirNow.gov</a> and sign up for <a href='https://a858-nycnotify.nyc.gov/notifynyc/'>Notify NYC alerts</a></p>" 
+    msg = "<p><strong> The air quality today is fine for you.</strong> Stay informed. Sign up for air quality alerts at <a href='https://www.airnow.gov/'>AirNow.gov</a> and sign up for <a href='https://a858-nycnotify.nyc.gov/notifynyc/'>Notify NYC alerts</a></p>" 
       finalMessageText.innerHTML+= msg + '<hr class="my-2">'
   }
 
