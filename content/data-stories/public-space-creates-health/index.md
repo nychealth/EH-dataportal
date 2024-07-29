@@ -38,7 +38,7 @@ Health is determined by many factors, and people tend to be healthier when they 
 </figure>
 </div>
 
-or most New Yorkers, their own backyard isn’t typically a fenced-in lawn or a private patio—it’s the city. Our public spaces are our streets, sidewalks, parks, pools, waterfront, plazas, subways, beaches, and other places that are open to all. These spaces help us get from point A to point B and offer opportunities to enjoy the outdoors, be active, play, connect with others, and just be.
+For most New Yorkers, their own backyard isn’t typically a fenced-in lawn or a private patio—it’s the city. Our public spaces are our streets, sidewalks, parks, pools, waterfront, plazas, subways, beaches, and other places that are open to all. These spaces help us get from point A to point B and offer opportunities to enjoy the outdoors, be active, play, connect with others, and just be.
 
 At their best, NYC public spaces are clean, safe, pleasant, accessible to everyone, and promote health and well-being for all.
 
