@@ -24,7 +24,7 @@ image: ds-public-space_fort_greene_Alexander_Thompson.jpg
 photocredit: "Alexander Thompson/NYC & Company"
 ---
 
-Health is determined by many factors, and people tend to be healthier when they have economic stability, live in quality housing and have access to public space and safe, connected communities. In 2020, the NYC Health Department held a series of community conversations with residents and local stakeholders across 26 neighborhoods. New Yorkers shared personal stories that illuminate their priorities for building healthier neighborhoods, healthier childhoods and more. This is one part of a three-part series on how <strong> housing, <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/economic-stability/"> economic stability </a> and public space create health.</strong>
+Health is determined by many factors, and people tend to be healthier when they have economic stability, live in quality housing and have access to public space and safe, connected communities. In 2020, the NYC Health Department held a series of community conversations with residents and local stakeholders across 26 neighborhoods. New Yorkers shared personal stories that illuminate their priorities for building healthier neighborhoods, healthier childhoods and more. This is one part of a three-part series on how <strong><a href="../housing-creates-health">housing</a>, <a href="../economic-stability/">economic stability</a>, and public space create health.</strong>
 
 <div class="pullquote my-4">
 <figure class="">
@@ -59,7 +59,7 @@ Public spaces that are designed to reflect community priorities advance equity f
 
 Covering 8,000 miles, streets make up most of the public space in NYC. Cars and other motor vehicles dominate these many miles of public space. <a href="https://nationalequityatlas.org/indicators/Car_access?geo=07000000003651000&breakdown=by-race-ethnicity">Fifty-five of New York City households do not have a car </a> and only 41% of adults report having driven a car in the past 30 days. <a href="https://www.nyc.gov/assets/visionzero/downloads/pdf/vision-zero-year-7-report.pdf"> People in vehicles use most of the space on the roads but people outside of vehicles have the most roadway deaths.</a> In New York City each year, more pedestrians die in road crashes than drivers or passengers. In addition, <a href="../../data-explorer/transportation-related-injuries/?id=2094#display=summary">each year there are more than 8,000 emergency department visits for pedestrian injuries</a>. In places where New York City has redesigned streets there have been fewer injuries.
 
-<div class="bg-light px-2 py-2 my-4">
+<div class="asidebox my-4">
 <strong> Vision Zero </strong><br>
 <a href="https://www.nyc.gov/content/visionzero/pages/"> Redesigning streets for safety is a key part of Vision Zero, </a> New York City’s effort to eliminate roadway deaths and serious injuries. As part of Vision Zero, <a href="https://www.nyc.gov/html/dot/html/pedestrians/safeseniors.shtml"> Pedestrian safety initiatives like Safe Streets for Seniors, study crash data, conduct outreach, and develop ways to increase safety for all road users.</a>
 </div>
@@ -99,7 +99,7 @@ Neighborhoods closest to highways are impacted by increased noise and air pollut
 </figure>
 </div>
 
-<a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/sanitation/"> Clean, well-maintained, and attractive public spaces are essential to maximize the benefits to public health. </a> Broken equipment and seating, cracked and uneven sidewalks, trash, pests, and other unsanitary things on the streets or in parks may make these spaces feel unsafe, discourage play for neighborhood residents, spread disease, and impact mental health. <a href="https://www.nycgovparks.org/park-features/parks-inspection-program">Parks also need to be well-maintained, and have enough waste bins, public restrooms, and water fountains to support activities like fitness classes, sports, and community events. </a> NYC Parks has a program that inspects their properties for maintenance issues and the NYC Department of Transportation responds to maintenance issues of streets and sidewalks and coordinates with the Department of Sanitation for waste pick-up. Additional maintenance complaints can be filed via 311.
+<a href="../sanitation/"> Clean, well-maintained, and attractive public spaces are essential to maximize the benefits to public health. </a> Broken equipment and seating, cracked and uneven sidewalks, trash, pests, and other unsanitary things on the streets or in parks may make these spaces feel unsafe, discourage play for neighborhood residents, spread disease, and impact mental health. <a href="https://www.nycgovparks.org/park-features/parks-inspection-program">Parks also need to be well-maintained, and have enough waste bins, public restrooms, and water fountains to support activities like fitness classes, sports, and community events. </a> NYC Parks has a program that inspects their properties for maintenance issues and the NYC Department of Transportation responds to maintenance issues of streets and sidewalks and coordinates with the Department of Sanitation for waste pick-up. Additional maintenance complaints can be filed via 311.
 
 ### Public spaces should be designed with all New Yorkers in mind. 
 
