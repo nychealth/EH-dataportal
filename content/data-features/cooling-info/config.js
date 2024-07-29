@@ -18,7 +18,7 @@ var content = [
             {
                 "optionID": 1,
                 "copy": "Yes",
-                "message": "These health conditions and life situations can make you or someone you live with more vulnerable to extreme heat and bad air quality.",
+                "message": "In instances of hot weather or bad air quality, you'll want to monitor yourself or those in your household that might be more vulnerable to the impacts of heat and or air pollutants more closely.",
                 "setVariable": "sensitive('Yes')",
                 "goTo": 2
             },
