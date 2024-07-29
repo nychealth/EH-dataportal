@@ -370,7 +370,11 @@ function runFinal() {
 
 
   // AQI BUNDLE:
-   // Message 0.75 - default bad aqi / declares bad aqi
+
+   if (sensitiveGroup === 'Yes' && aqi === 2) {
+    msg = 'The air quality is moderate, but you may be more sensitive to pollution. Consider making outdoor activities shorter and less intense.'
+    finalMessageText.innerHTML+= msg + '<hr class="my-2">'
+   }
 
    if (sensitiveGroup === 'Yes' && aqi > 2) {
       msg = "<p><strong> The air quality is bad, and you're more sensitive to air pollution</strong>. Air pollution can harm health.  Limit strenuous and prolonged (over 1 hour) outdoor activities. <a href='https://www.nyc.gov/assets/doh/downloads/pdf/eode/aqi-guidelines-general.pdf'>More info on what to do when the air quality is bad</a>.</p>"
