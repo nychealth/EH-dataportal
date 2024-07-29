@@ -21,19 +21,17 @@ image: ds-sanitation-trucks.jpg
 photocredit: "Michael Appleton/Mayoral Photography Office"
 ---
 
-# Why trash service is crucial for public health
-
 New York City’s modern history of public health starts in the 1600s with the Bureau of Sanitary Inspections, and ever since, sanitation has been an essential part of public health — fighting disease by keeping our city clean.
 
 {{< figure src="nyc-sanitation-1600s.png" alt="Chronology of important events. New York City Department of Health and its Predecessor Agencies 1655-1966. 1657: Activities of the Bureau of Sanitary Inspections originated to some degree with an ordinance forbidding inhabitants of this city to throw garbage and other refuge in the streets." >}}
 
 _From [A Chronology of the NYC Department of Health](https://www1.nyc.gov/assets/doh/downloads/pdf/history/chronology-1966centennial.pdf)_
 
-## How does sanitation affect health
+## How sanitation affects health
 
 Proper sanitation is a crucial component of public health and of safe, health, and equitable neighborhood environments.
 
-<div class="mx-4 mt-2 mb-4 p-2" style="background-color:#fafafa;">
+<div class="asidebox mb-2">
 
 **Trash** can pollute our soil, water, and air, becoming an issue of health, quality of life and equity. New Yorkers live, work, and play in our public spaces: when they aren't clean, they're not welcoming, safe, healthy places for us.
 
@@ -61,7 +59,11 @@ Community health workers report that excess trash threatens the quality of life 
             <img class="img-responsive" src="tree-trash-photovoice.jpg" alt="Tree pit on the sidewalk. The pit is filled with water, covered in plastic bags, clothes hangers, paper bags, and other litter. Syringes are also visible in the pit." style="width:100%">
         </div>
         <div class="col-sm-6">
-            <div style="background-color:blanchedalmond; padding: 10px; border-radius: 5px"><p class="fs-sm"><strong>Garbage on our streets</strong><br>“Our daily lives have changed as a result of the COVID-19 pandemic, especially as some social problems have become more visible than ever before. This includes the accumulation of trash in our neighborhood; the garbage is taking over. Surrounding this tree are several plastic hangers, bottles, syringes and paper scraps. This is concerning because our environment influences our health, and the accumulation of all this trash may be harmful to children. It also looks nasty. The City should increase its sanitation and cleaning services, provide more public trash bins and better educate residents about how to deal with dangerous items.” <em>Colasa Noesis</em> </p></div>
+        <div class="card card-left-border shadow-sm">
+            <div class="card-body">
+                <p class="fs-sm"><strong>Garbage on our streets</strong><br>“Our daily lives have changed as a result of the COVID-19 pandemic, especially as some social problems have become more visible than ever before. This includes the accumulation of trash in our neighborhood; the garbage is taking over. Surrounding this tree are several plastic hangers, bottles, syringes and paper scraps. This is concerning because our environment influences our health, and the accumulation of all this trash may be harmful to children. It also looks nasty. The City should increase its sanitation and cleaning services, provide more public trash bins and better educate residents about how to deal with dangerous items.” <em>- Colasa Noesis</em> </p>
+            </div>
+        </div>
         </div>
     </div>
 </div>
@@ -81,7 +83,11 @@ These community health workers have documented concerns about trash on the stree
             <img class="img-responsive" src="trash-can-photovoice.jpg" alt="Two black plastic trash bins in front of a fence near a NYCHA building. One is closed and the other is are overflowing with garbage. There are several bags of garbage sitting in front of the trash bins and pieces of litter near the bags."style="width:100%">
         </div>
         <div class="col-sm-6">
-            <div style="background-color:blanchedalmond; padding: 10px; border-radius: 5px"><p class="fs-sm"><strong>Trash overflow</strong><br> “As a Community Health Worker, I face a lot of different situations while walking through the community, especially garbage overflow. In this photo, we see a lot of trash outside of the garbage bins near the entrance to NYCHA’s Johnson Houses. This creates barriers for people going in and out of their buildings, which I have experienced myself while making home visits. It also creates health concerns within the community and can make transportation difficult for people with disabilities. Finally, rats and mice are attracted to scenes like this and can often be seen running around looking for food, and that is scary!” <em>Colasa Noesis</em> </p></div>
+        <div class="card card-left-border shadow-sm">
+            <div class="card-body">
+                <p class="fs-sm"><strong>Trash overflow</strong><br> “As a Community Health Worker, I face a lot of different situations while walking through the community, especially garbage overflow. In this photo, we see a lot of trash outside of the garbage bins near the entrance to NYCHA’s Johnson Houses. This creates barriers for people going in and out of their buildings, which I have experienced myself while making home visits. It also creates health concerns within the community and can make transportation difficult for people with disabilities. Finally, rats and mice are attracted to scenes like this and can often be seen running around looking for food, and that is scary!” <em>- Colasa Noesis</em> </p>
+            </div>
+        </div>
         </div>
     </div>
 </div>
@@ -107,7 +113,11 @@ No one should have to walk on sidewalks in this condition.
                     <img class="img-responsive" src="feces-2-photovoice.jpg"style="width:100%">
         </div>
         <div class="col-12 mt-1">
-                    <div style="background-color:blanchedalmond; padding: 10px; border-radius: 5px"><p class="fs-sm"><strong>Watch Your Step</strong><br>“Everywhere I go, from the time I step out of the train station to my workplace, and until I get home, there is dog poop everywhere. It is a gross and unsightly mess that requires you to watch your every step. When it’s not dog poop, then it’s human poop. And if it’s not poop, then it’s syringes. This is overwhelmingly depressing, especially because if you go to lower Manhattan, you do not see these things. As a community, we need more spaces where the dogs can run about and do their business and where curbing can be enforced.” <em>Camille Clarke</em> </p></div>
+        <div class="card card-left-border shadow-sm">
+            <div class="card-body">
+                <p class="fs-sm"><strong>Watch Your Step</strong><br>“Everywhere I go, from the time I step out of the train station to my workplace, and until I get home, there is dog poop everywhere. It is a gross and unsightly mess that requires you to watch your every step. When it’s not dog poop, then it’s human poop. And if it’s not poop, then it’s syringes. This is overwhelmingly depressing, especially because if you go to lower Manhattan, you do not see these things. As a community, we need more spaces where the dogs can run about and do their business and where curbing can be enforced.” <em>- Camille Clarke</em> </p>
+            </div>
+        </div>
         </div>
     </div>
 </div>
@@ -138,10 +148,18 @@ In New York City, litter baskets are either wire and open at the top, or non-wir
             <img class="img-responsive" src="trash-can-enclosed.png" alt="Round, grey, enclosed trash baskets are lined up next to each other. These three baskets have a small circular opening at the top and take different types of trash (mixed paper, litter, and metal/glass/plastic/cartons) A fourth basket that has a handle to open the trash basket is next to the other baskets." style="width:100%">
         </div>
         <div class="col-sm-6 mt-1">
-            <div style="background-color:blanchedalmond; padding: 10px; border-radius: 5px"><p class="fs-sm"><strong>Wire baskets</strong> are more likely to be damaged, have trash blow or fall out of them, and attract pests like rats and mice.</p></div>
+        <div class="card card-left-border shadow-sm">
+            <div class="card-body">
+                <p class="fs-sm"><strong>Wire baskets</strong> are more likely to be damaged, have trash blow or fall out of them, and attract pests like rats and mice.</p>
+            </div>
+        </div>
         </div>
         <div class="col-sm-6 mt-1">
-            <div style="background-color:blanchedalmond; padding: 10px; border-radius: 5px"><p class="fs-sm"><strong>Enclosed baskets</strong> are better, protecting trash from the elements and from pests. Often, these better baskets are bought by local BIDs. Overall, <a href="https://www1.nyc.gov/site/sbs/neighborhoods/bids.page">BIDs spend over 25% of their funding on additional sanitation services in their areas</a>.</p></div>
+        <div class="card card-left-border shadow-sm">
+            <div class="card-body">
+                <p class="fs-sm"><strong>Enclosed baskets</strong> are better, protecting trash from the elements and from pests. Often, these better baskets are bought by local BIDs. Overall, <a href="https://www1.nyc.gov/site/sbs/neighborhoods/bids.page">BIDs spend over 25% of their funding on additional sanitation services in their areas</a>.</p>
+            </div>
+        </div>
         </div>
     </div>
 </div>
@@ -211,7 +229,7 @@ Check the Rat Information Portal [www.nyc.gov/rats](https://www.nyc.gov/site/doh
 
 <br>
 
-<div style="background-color:#fafafa; padding: 10px; border-radius: 5px; font-size: 12pt;">
+<div class="asidebox">
 <p><em>Photographs and quotes in this piece are courtesy of The Photovoice Project, a research project from the <a href="https://www1.nyc.gov/site/doh/health/neighborhood-health/harlem-health-advocacy-partners.page">Harlem Health Advocacy Partners</a>.</em></p>
 <p><em>Thanks to: Giselle Guerrero (<a href="https://elbarriobikes.wixsite.com/elbarriobikes">El Barrio Bikes</a>), Philippa Godoy (We Out and <a href="https://elbarriobikes.wixsite.com/elbarriobikes">El Barrio Bikes</a>), Tara Mardigan, (<a href="https://elbarriobikes.wixsite.com/elbarriobikes">El Barrio Bikes</a> and Harlem Community Walking), and Carey King (<a href="http://uptowngrandcentral.org/">Uptown Grand Central</a> and <a href="https://elbarriobikes.wixsite.com/elbarriobikes">El Barrio Bikes</a>) for reviewing and providing feedback on this data story.</em></p>
 <p><em>Special thanks to Doris Chiu for researching and writing this data story.</em></p>

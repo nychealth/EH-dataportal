@@ -7,14 +7,12 @@ seo_description: "La política financiera de 90 años que daña nuestra salud 
 tags:
 categories: ["housing","social","childhealth","neighborhoods"]
 keywords: ["poverty","asthma","injustice","housing","social determinants","redlining","disinvestment","racism"]
-image: ds-povasthma.jpg
-layout: advanced
 image: ds-redlining.jpeg
 ---
 ### La política financiera de 90 años que daña nuestra salud.
 En la salud pública, solemos citar el racismo estructural para ayudar a explicar los patrones sanitarios en nuestra sociedad. Pero, ¿qué significa esto específicamente? Una mirada más profunda a la historia del redlining muestra esta conexión. 
 
-Cuando analizamos datos sobre la salud de los neoyorquinos, solemos encontrar los mismos patrones geográficos, con índices más altos de afecciones médicas evitables en vecindarios con más pobreza. Por ejemplo, [escribimos sobre cómo el asma y la pobreza están estrechamente relacionadas]({{< ref "/data-stories/povasthma" >}}).
+Cuando analizamos datos sobre la salud de los neoyorquinos, solemos encontrar los mismos patrones geográficos, con índices más altos de afecciones médicas evitables en vecindarios con más pobreza. Por ejemplo, [escribimos sobre cómo el asma y la pobreza están estrechamente relacionadas]({{< ref "/data-stories/asthma-and-poverty" >}}).
 
 Estos vecindarios con altos índices de pobreza también albergan una mayor cantidad de personas negras que otras comunidades. 
 

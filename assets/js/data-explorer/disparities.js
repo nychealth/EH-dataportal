@@ -36,7 +36,20 @@ const renderDisparitiesChart = async (
     const primaryMeasureName     = primaryMetadata[0]?.MeasureName;
     const primaryAbout           = primaryMetadata[0]?.how_calculated;
     const primarySources         = primaryMetadata[0]?.Sources;
-    const primaryDisplay         = primaryMetadata[0]?.DisplayType;
+
+    // console.log(primaryMetadata[0])
+
+    var subtitle;
+
+    let primaryDisplay;
+    if (primaryMeasurementType.includes('Percent') || primaryMeasurementType.includes('percent') && !primaryMeasurementType.includes('percentile')) {
+        primaryDisplay = '%' // assigns a % displayType for anything that includes percent (but NOT percentile) in its measurementType
+        subtitle = primaryMeasurementType
+    } else {
+        primaryDisplay         = ' ' + primaryMetadata[0]?.DisplayType; // else, the pre-existing assignment
+        subtitle = primaryMeasurementType + `${primaryMetadata[0]?.DisplayType ? ` (${primaryDisplay})` : ''}`
+        console.log(primaryDisplay, primaryMeasurementType)
+    }
 
     // console.log("primaryMeasureId [renderDisparitiesChart]", primaryMeasureId);
 
@@ -137,10 +150,14 @@ const renderDisparitiesChart = async (
     // console.log("disp_unreliability", disp_unreliability);
 
     document.querySelector("#links-unreliability").innerHTML = ""; // blank to start
+    document.getElementById("links-unreliability").classList.add('hide') // blank to start
+
 
     disp_unreliability.forEach(element => {
 
         document.querySelector("#links-unreliability").innerHTML += "<div class='fs-sm text-muted'>" + element + "</div>";
+        document.getElementById('links-unreliability').classList.remove('hide')
+
 
     });
 
@@ -150,16 +167,12 @@ const renderDisparitiesChart = async (
     // ----------------------------------------------------------------------- //
 
     const combinedAbout =
-        `<h6>${primaryIndicatorName} - ${primaryMeasurementType}</h6>
-        <p>${primaryAbout}</p>
-        <h6>${disparityIndicatorName} - ${disparityMeasurementType}</h6>
-        <p>${disparitysAbout}</p>`;
+        `<p><strong>${primaryIndicatorName} - ${primaryMeasurementType}</strong>: ${primaryAbout}</p>
+        <p><strong>${disparityIndicatorName} - ${disparityMeasurementType}</strong>: ${disparitysAbout}</p>`;
 
     const combinedSources =
-        `<h6>${primaryIndicatorName} - ${primaryMeasurementType}</h6>
-        <p>${primarySources}</p>
-        <h6>${disparityIndicatorName} - ${disparityMeasurementType}</h6>
-        <p>${disparitySources}</p>`;
+        `<p><strong>${primaryIndicatorName} - ${primaryMeasurementType}</strong>: ${primarySources}</p>
+        <p><strong>${disparityIndicatorName} - ${disparityMeasurementType}</strong>: ${disparitySources}</p>`;
 
     // render combined info
 
@@ -176,6 +189,8 @@ const renderDisparitiesChart = async (
     // define spec
     // ----------------------------------------------------------------------- //
 
+    // console.log('display types: ', primaryDisplay)
+
     let disspec = {
         "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
         "description": `${primaryIndicatorName} ${primaryMeasurementType} and poverty scatterplot`,
@@ -189,7 +204,7 @@ const renderDisparitiesChart = async (
             "baseline": "top",
             "dy": -10,
             "limit": 1000,
-            "subtitle": `${primaryMeasurementType && `${primaryMeasurementType}`} ${primaryDisplay && `${primaryDisplay}`} (${primaryTime})`,
+            "subtitle": subtitle + ` (${primaryTime})`,
             "subtitleFontSize": 13
         },
         "width": "container",
@@ -223,6 +238,16 @@ const renderDisparitiesChart = async (
         "data": {
             "values": disparityData
         },
+        "transform": [
+            {
+              "calculate": `(datum.DisplayValue_1 + '${primaryDisplay}')`,
+              "as": "valueLabel"
+            },
+            {
+                "calculate": `(datum.DisplayValue_2 + '%')`,
+                "as": "povLabel"
+            }
+          ],
         "layer": [
         {
             "mark": {
@@ -248,47 +273,36 @@ const renderDisparitiesChart = async (
                     },
                 },
                 "x": {
-                    "title": [`${disparityIndicatorName && `${disparityIndicatorName}`}`, `(${disparityTime})`],
+                    "title": [`${disparityIndicatorName && `${disparityIndicatorName}`} (${disparityTime})`],
                     "field": "PovRank", // Changed
                     "type": "ordinal",
                     "axis": {
                         "labelExpr": "(datum.value == 4 ? 'Very high (over 30%)' : (datum.value == 3  ? 'High (20 - 29.9%)' : ( datum.value == 2  ? 'Medium (10 - 19.9%)' : 'Low (0 - 9.9%)')))",
                         "labelAlign": "center",
-                        "labelAngle": 0
+                        "labelAngle": 0,
+                        "titleAlign": "center"
                     }
                 },
                 "xOffset": {"field": "randomOffsetX", "type": "quantitative"}, // Jitter
                 "tooltip": [
-                {
-                    "title": "Borough", 
-                    "field": "Borough", 
-                    "type": "nominal"
-                },
                 {
                     "title": geoTypeShortDesc, 
                     "field": "Geography_1", 
                     "type": "nominal"
                 },
                 {
-                    "title": "Time Period", 
-                    "field": "TimePeriod_2", 
+                    "title": "Borough", 
+                    "field": "Borough", 
                     "type": "nominal"
                 },
                 {
                     "title": primaryMeasureName,
-                    "field": "Value_1",
-                    "type": "quantitative",
-                    "format": ",.1~f"
+                    "field": "valueLabel",
+                    "type": "nominal"
                 },
                 {
                     "title": disparityMeasureName,
-                    "field": "Value_2",
-                    "type": "quantitative",
-                    "format": ",.1~f"
-                },
-                {
-                    "title": disparityIndicatorName,
-                    "field": "PovCat",
+                    "field": "povLabel",
                     "type": "nominal"
                 }
                 ],

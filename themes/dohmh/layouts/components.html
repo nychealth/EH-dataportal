@@ -1,0 +1,164 @@
+<!--
+SECTION-SPECIFIC CARDS WITH SECTION-COLOR ON THE BOTTOM BORDER:
+    These have the following class options:
+        data-features, data-stories, n-reports, data-explorer
+    The example below includes the image and tab overlay.
+
+    Use this for a specific section's content cards on its home page; may consider using it to link to that section from another area (eg on a Key Topics page...)
+-->
+
+<div class="card content-card">
+    <div class="card-content data-explorer mb-4">
+      <a class="position-relative" href={{ relURL "data-explorer" }}>
+        <div class="tab-data-explorer h-100 w-100 position-absolute"></div>
+        <img class="card-img-top" src={{ relURL "images/image_tab_key_topics.jpg" }}>
+      </a>
+      <div class="card-body">
+        <h3 class="card-title">Data Explorer</h3>
+        <p>Maps, trends, tables, and more: datasets on hundreds of topics.</p>
+        <div class="d-flex justify-content-end">
+          <a class="fs-sm font-weight-bold" href={{ relURL "data-explorer" }}>Get data <i class="fas fa-arrow-circle-right ml-1" aria-hidden="true"></i></a>
+        </div>
+      </div>
+    </div>
+</div>
+
+<!-- An example of one that includes content-specific top-images but no overlays is below: -->
+
+<div class="card content-card mb-4 col-sm-6 col-md-4">
+    <div class="card-content data-features">
+        {{- if .Params.image -}}
+        <a href="{{ .RelPermalink}}">
+            {{ $src := .Resources.GetMatch .Params.image }}
+            {{ $image := $src.Resize "740x"}}
+            <div style="width:100%; height:250px; background-image: url({{ $image.RelPermalink }}); background-size:cover"></div>
+        </a>
+        {{- else -}}
+        <a class="" href="{{ .RelPermalink }}">
+        <div style="width:100%; height:250px; background-image: URL('{{ .Site.BaseURL }}/images/home-sample-image-DE-5.png'); background-size: cover"></div></a>
+
+        {{- end -}}
+
+        <div class="card-body">
+            <h3 class="h5"><a class="text-black" href="{{ .RelPermalink }}" class="text-primary">{{ .Title }}</a></h3>
+            <div class="mb-2">{{ .Content | truncate 150 }}</div>
+            <div class="d-flex justify-content-end link">
+                <a class="fs-sm font-weight-bold" href="{{ .RelPermalink }}">Get the data</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--
+    Home Page Card Overlays
+        On home page, use:
+            .overlay-trends
+            .overlay-map
+            .overlay-topics
+
+        ...to illustrate featured box links.
+
+        Use:
+            .tab-data-stories
+            .tab-neighborhood-reports, etc
+
+        ...to illustrate links to sections.
+-->
+
+
+
+<!--
+PRIMARY CARD.
+
+This is like the section-specific card, but uses the primary green. Use this for Key Topics, since they're not really a content type - they're a content-organizing principle.
+-->
+
+<div class="card content-card mb-4 col-sm-6 col-md-4">
+    <div class="card-content primary">
+        <a href="{{ .RelPermalink}}">
+            {{ $src := .Resources.GetMatch .Params.image }}
+            {{ $image := $src.Resize "740x"}}
+            <div style="width:100%; height:250px; background-image: url({{ $image.RelPermalink }}); background-size:cover"></div>
+        </a>
+
+        <div class="card-body">
+            <h3 class="card-title"><a class="text-black" href="{{ .RelPermalink }}" class="text-primary">{{ .Title }}</a></h3>
+            <div class="mb-2">{{ .Content | truncate 150 }}</div>
+            <div class="d-flex justify-content-end link">
+                <a class="fs-sm font-weight-bold" href="{{ .RelPermalink }}">Get data, info, and more <i class="fa-solid fa-angle-right"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--
+SECONDARY CARD.
+
+Features a primary color left border.
+
+Use these for secondary items on the Home Page, or as call-out boxes on other content. The green left border sets them aside from main content cards with bottom borders.
+-->
+
+<div class="card card-left-border shadow-sm">
+    <div class="card-body">
+        <p>Body here</p>
+    </div>
+  </div>
+
+<!--
+GRAY BOX.
+
+Used as a subtle call-out box (data stories, data features) - think of this as *aside* information, whereas the primary-left-border box, above, is more of an information feature/call-out.
+
+-->
+
+<div class="asidebox">
+    <em><i class="fas fa-hands-helping text-center mr-1"></i>New Yorkers seeking support with their mental health can connect to trained counselors, for free and in over 200 languages, through 988. For 24/7 support, call or text 988. If you or someone you know is at immediate risk of hurting themselves, or in immediate danger, call 911.</em>
+</div>
+
+<!--
+Left-Green-Border
+    Use this to organize blocks on a page (eg, Data Explorer, Data Features).
+    The example below is from NYCCAS, used in a situation where something else (eg primary left) should be used.
+
+-->
+
+<div class="l-green-border mb-4">
+    <strong>More information</strong><ul>
+    <li><a href="pdf/Appendix1.pdf">Appendix 1 (PDF)</a>: Sampling Methodology and Data Sources for Emissions Indicators.</li>
+    <li><a href="pdf/Appendix2.pdf">Appendix 2 (PDF)</a>: Seasonal Average Pollutant Maps.</li>
+    <li><a href="pdf/Appendix3.pdf">Appendix 3 (PDF)</a>: Community District Average Pollution Levels.</li>
+    <li><a href="../../data-stories/traffic-and-air-pollution">The Public Health Impacts of PM<sub>2.5</sub> from Traffic Air Pollution data story</a>.</li>
+    <li><a href="https://data.cityofnewyork.us/Environment/NYCCAS-Air-Pollution-Rasters/q68s-8qxv">NYC OpenData: NYCCAS Air Pollution Rasters</a>.</li>
+    <li><a href="https://www.nyc.gov/site/doh/data/data-sets/air-quality-nyc-community-air-survey.page">New York Community Air Survey: past reports</a></li>
+    </ul>
+</div>
+
+
+<!--
+Plain shadow cards.
+    Cards without a class of primary, data-stories, etc will render as plain shadow cards.
+    Use these to organize content visually, or as a rare tertiary card.
+-->
+
+<div class="card content-card mb-4">
+    <div class="card-content">
+
+        <div class="card-body">
+        <p class="fs-sm card-title fs-sm"><a href="/IndicatorPublic/about/jobs/" class="text-primary">We&#39;re Hiring!</a></p>
+        <p class="fs-sm">Join our team! See below for open positions in our bureau - or, search cityjobs.nyc.gov for …
+        </p>
+        <p class="fs-sm text-primary float-right mb-2"><a href="/IndicatorPublic/about/jobs/">Read more <i
+            class="fas fa-arrow-circle-right"></i></a></p>
+      </div>
+    </div>
+</div>
+
+<!--
+Regular border
+    Use this to organize content visually, subtly.
+-->
+
+<div class="border p-1">
+    Content goes here
+</div>
