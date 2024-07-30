@@ -5,10 +5,30 @@ draft: false
 seo_title: "The road to street safety in NYC"
 seo_description: "A data story on safety for pedestrians and cyclists."
 tags:
-categories: ["transportation","healthoutcomes","neighborhoods"]
-keywords: ["transportation","built environment","streets","cycling", "biking", "active design","injuries","fatalities","roads","safety","bike lanes","cycle lanes","hospitalizations","emergency department visits"]
+categories: ["transportation", "healthoutcomes", "neighborhoods"]
+keywords:
+  [
+    "transportation",
+    "built environment",
+    "streets",
+    "cycling",
+    "biking",
+    "active design",
+    "injuries",
+    "fatalities",
+    "roads",
+    "safety",
+    "bike lanes",
+    "cycle lanes",
+    "hospitalizations",
+    "emergency department visits",
+  ]
 image: ds-streets.jpg
 photocredit: "Michael Appleton/Mayoral Photography Office"
+related:
+  - "data-stories/traffic-and-air-pollution/"
+  - "data-explorer/transportation-related-injuries/?id=2092#display=summary"
+  - "data-explorer/walking-driving-and-cycling/?id=2415#display=summary"
 ---
 
 The COVID-19 public health emergency has changed New York City in many ways—including how we get around the city. As the city continues to adapt to COVID-19, New Yorkers will look for ways to get around that feel safe—redistributing transit among different modes to ease crowding and increase safety on public transportation.
@@ -24,6 +44,7 @@ We can look at data to understand how to maximize health promotion and minimize 
 When we look at these data together, a "safety in numbers" story emerges: the more extensive the infrastructure and the more people riding bicycles, the safer streets are as an environment for physical activity. Let’s take a closer look.
 
 ## Disparities in NYC's traffic-related injuries
+
 When we look at data on traffic-related injuries by borough in New York City, Brooklyn and Queens show higher rates of hospitalization and ED visits, with Manhattan showing notably lower rates.
 
 </div>
@@ -59,7 +80,7 @@ height="531"></iframe>
 </script>
 </div>
 
-Overall, *despite* Manhattan having higher traffic density than Brooklyn, it has lower rates of cyclist ED visits and hospitalizations. This is intuitive, actually - denser traffic means slower speeds, resulting in safer streets for cyclists.
+Overall, _despite_ Manhattan having higher traffic density than Brooklyn, it has lower rates of cyclist ED visits and hospitalizations. This is intuitive, actually - denser traffic means slower speeds, resulting in safer streets for cyclists.
 
 Now let’s look at the number of cyclists on NYC streets. When we map cycling in New York City, we see a slightly larger percentage of Manhattan adults bicycle at least monthly (19.5%), compared to Brooklyn adults (17.3%).
 
@@ -96,4 +117,3 @@ Ongoing work to promote cycling will help lower injury rates. Expanding bike sha
 This effect is apparent when we look at differences between Manhattan and Brooklyn—and apply what we learn throughout the city. [Disparities in cycling by sex, race/ethnicity, age, and neighborhood poverty also need to be addressed through equitably focused safety improvements](https://a816-health.nyc.gov/hdi/epiquery/visualizations?PageType=ts&PopulationSource=CHS&Topic=4&Subtopic=35), since safety in numbers works best if we increase safety for everyone—starting where it is most needed.
 
 As New York City continues to grapple with the COVID-19 pandemic, many New Yorkers may turn to biking as a good way to get around while still keeping a safe distance from others. Our data show us that there is a clear connection between road infrastructure and street safety. That means that one way to keep New Yorkers safe during this public health emergency—and beyond—is to continue building safer streets.
-
