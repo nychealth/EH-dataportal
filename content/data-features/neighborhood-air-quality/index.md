@@ -1,20 +1,36 @@
 ---
 title: "Your Neighborhood's Air Quality"
 aliases:
-    - /key-topics/airquality/aqe/
+  - /key-topics/airquality/aqe/
 date: 2021-08-24T12:04:44-04:00
 draft: false
 seo_title: "Your Neighborhood's Air Quality"
 seo_description: "Get data on your neighborhood's air quality."
 description: "Get data on your neighborhood's air quality."
-tags: 
+tags:
 categories: [airquality]
-keywords: ["interactive","air quality","neighborhoods","data","transportation","buildings","emissions","exhaust","cars","traffic"]
+keywords:
+  [
+    "interactive",
+    "air quality",
+    "neighborhoods",
+    "data",
+    "transportation",
+    "buildings",
+    "emissions",
+    "exhaust",
+    "cars",
+    "traffic",
+  ]
 layout: aqe
 customJS: aqe.js
 accessibleAutocomplete: /js/accessible-autocomplete.min.js
 vega: true
 image: aqe.png
+related:
+  - "data-features/realtime-air-quality/"
+  - "data-stories/hia/"
+  - "data-stories/car-free-zones/"
 ---
 
 We combine data from our air quality monitoring network, NYCCAS, with other data to understand what makes air quality in one neighborhood different from air quality in another. We found that building emissions, building density, industrial areas, and traffic density are associated with differences in air quality.

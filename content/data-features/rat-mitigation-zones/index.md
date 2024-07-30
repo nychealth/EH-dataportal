@@ -1,7 +1,7 @@
 ---
 title: "Rat Mitigation Zones"
 aliases:
-    - /key-topics/pests/rat-mitigation-zones/
+  - /key-topics/pests/rat-mitigation-zones/
 date: 2023-06-01T11:14:56-04:00
 draft: false
 seo_title: "Data on rat mitigation zones | Environment and Health Data Portal"
@@ -15,6 +15,10 @@ vega: true
 arquero: true
 leaflet: true
 image: rmz.png
+related:
+  - "data-stories/sanitation/"
+  - "data-stories/housing-creates-health/"
+  - "data-explorer/mice-and-rats/?id=24#display=summary"
 ---
 
 Rats can contaminate food, spread disease and reduce our quality of life. Rat Mitigation Zones (RMZ) are areas with high levels of rat activity, where City agencies focus resources to address rats and the conditions that support them.
