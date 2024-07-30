@@ -28,7 +28,7 @@ arquero: true
 leaflet: true
 image: images/realtime-screenshot.png
 related:
-  - ""data-stories/hia/" 
+  - "data-stories/hia/"
   - "data-stories/traffic-and-air-pollution/"
   - "data-stories/restaurants-and-air-quality/"
 ---

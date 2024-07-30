@@ -15,7 +15,7 @@ keywords:
 seo_title: An Open Path Forward
 seo_description: "Our roadmap to build a website that gives you what you need."
 related:
-  - ""data-stories/geographies/"
+  - "data-stories/geographies/"
 ---
 
 In 2020, we partnered with [Open Tech Strategies](https://opentechstrategies.com/) to review the Environment and Health Data Portal and plan for its future development.

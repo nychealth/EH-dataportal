@@ -1,20 +1,37 @@
 ---
 title: "What our air quality monitors tell us about NYC's neighborhoods"
 aliases:
-    - /data-stories/aq2/
+  - /data-stories/aq2/
 date: 2019-11-25T13:24:52-04:00
 draft: false
 seo_title: "About NYC's air quality, neighborhood by neighborhood."
 seo_description: "What our air quality monitors tell us about NYC's neighborhoods."
-tags: 
-categories: ["transportation","airquality","neighborhoods"]
-keywords: ["air quality","traffic","transportation","cars","traffic","car-free","carfree","pedestrians","cycling","bikes","biking","pollution","air pollution", "lungs","breathing"]
+tags:
+categories: ["transportation", "airquality", "neighborhoods"]
+keywords:
+  [
+    "air quality",
+    "traffic",
+    "transportation",
+    "cars",
+    "traffic",
+    "car-free",
+    "carfree",
+    "pedestrians",
+    "cycling",
+    "bikes",
+    "biking",
+    "pollution",
+    "air pollution",
+    "lungs",
+    "breathing",
+  ]
 image: ds-aq2.jpeg
 photocredit: "Michael Appleton/Mayoral Photography Office"
-related: 
-- ""data-stories/hia/"
-- "data-stories/air-quality-and-covid/"
-- "data-features/realtime-air-quality/"
+related:
+  - "data-stories/hia/"
+  - "data-stories/air-quality-and-covid/"
+  - "data-features/realtime-air-quality/"
 ---
 
 In [Part 1]({{< ref "/data-stories/car-free-zones" >}}), we looked at data from the New York City Community Air Survey (NYCCAS) - a network of about 100 air quality monitors - to see if air quality improves in areas that go car-free. And the answer is yes.

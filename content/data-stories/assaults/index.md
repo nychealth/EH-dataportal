@@ -4,15 +4,25 @@ date: 2020-02-13T08:29:34-04:00
 draft: false
 seo_title: "Data on violence in NYC"
 seo_description: "Violence is a public health problem, and here's how we can look at it to improve it."
-tags: 
-categories: ["social","healthoutcomes","neighborhoods"]
-keywords: ["violence","assaults","poverty","public health","injuries","hospitalizations","emergency department visits","ED visits"]
+tags:
+categories: ["social", "healthoutcomes", "neighborhoods"]
+keywords:
+  [
+    "violence",
+    "assaults",
+    "poverty",
+    "public health",
+    "injuries",
+    "hospitalizations",
+    "emergency department visits",
+    "ED visits",
+  ]
 image: ds-assaults.jpg
 photocredit: "Benjamin Kanter/Mayoral Photography Office"
-related" 
-- "data-stories/violence/"
-- "data-stories/injury-deaths/"
-- "data-explorer/violence/?id=2375#display=summary"
+related:
+  - "data-stories/violence/"
+  - "data-stories/injury-deaths/"
+  - "data-explorer/violence/?id=2375#display=summary"
 ---
 
 Violence has profound effects. An assault, a shooting, a homicide, or any use of force affects people in many deep ways.
