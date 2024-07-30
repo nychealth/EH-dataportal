@@ -14,6 +14,10 @@ keywords:
   - asthma
 seo_title: Traffic and PM2.5 air pollution
 seo_description: "The public health impacts of PM2.5 from traffic air pollution in New York City affect neighborhoods differently."
+related:
+  - "data-stories/streets/"
+  - "data-stories/car-free-zones/"
+  - "data-features/realtime-air-quality/"
 ---
 
 ## What is PM2.5 and why is it a health risk?

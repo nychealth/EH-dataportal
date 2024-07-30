@@ -9,6 +9,10 @@ categories: ["housing", "social", "childhealth", "neighborhoods"]
 keywords: ["housing", "income inequality", "eviction"]
 image: ds-housing-health_WillSteacy.jpg
 photocredit: "Will Steacy/NYC & Company"
+related:
+  - "data-stories/economic-stability/"
+  - "data-stories/block-by-block/"
+  - "data-stories/housing/"
 ---
 
 Health is determined by many factors, and people tend to be healthier when they have economic stability, live in quality housing and have access to public space and safe, connected communities. In 2020, the NYC Health Department held a series of community conversations with residents and local stakeholders across 26 neighborhoods. New Yorkers shared personal stories that illuminate their priorities for building healthier neighborhoods, healthier childhoods and more. This is one part of a three-part series on how <strong> housing, <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/economic-stability/"> economic stability </a> and public space create health.</strong>

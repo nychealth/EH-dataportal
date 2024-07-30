@@ -20,6 +20,10 @@ keywords:
   ]
 image: ds-aqcovid.jpeg
 photocredit: "Ed Reed/Mayoral Photography Office"
+related:
+  - "data-stories/violence/"
+  - "data-stories/assaults/"
+  - "data-explorer/violence/?id=2400#display=summary"
 ---
 
 ## Injury deaths among young and middle-aged adults in New York City: with a focus on homicide and suicide

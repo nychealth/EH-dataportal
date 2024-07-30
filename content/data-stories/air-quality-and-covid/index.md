@@ -1,16 +1,31 @@
 ---
 title: "Air quality during COVID-19"
 aliases:
-    - /data-stories/aqcovid/
+  - /data-stories/aqcovid/
 date: 2020-04-22T08:33:22-04:00
 draft: false
 seo_title: "Air quality during COVID-19"
 seo_description: "What our air quality monitors showed when NYC stays home."
-tags: 
-categories: ["transportation","airquality"]
-keywords: ["air quality","traffic","transportation","covid","covid-19","coronavirus","air pollution", "lungs","breathing"]
+tags:
+categories: ["transportation", "airquality"]
+keywords:
+  [
+    "air quality",
+    "traffic",
+    "transportation",
+    "covid",
+    "covid-19",
+    "coronavirus",
+    "air pollution",
+    "lungs",
+    "breathing",
+  ]
 image: ds-aqcovid.jpeg
 photocredit: "Ed Reed/Mayoral Photography Office"
+related:
+  - "data-stories/restaurants-and-air-quality/"
+  - "data-stories/traffic-and-air-pollution/"
+  - "data-stories/air-quality-and-covid/"
 ---
 
 What happens when NYC stays home? The COVID-19 pandemic upended the lives of all New Yorkers. The outbreak has affected many aspects of our daily life, but there are also less apparent effects, such as impacts on our environment.
@@ -30,4 +45,3 @@ In addition to these unusually low PM2.5 levels, there was a sizeable decrease i
 {{< datawrapper title="Decreasing emissions at a roadway site" src="s502E/3/" height="400" >}}
 
 We will continue to track this, so check back for updates to these charts throughout the COVID-19 outbreak and recovery in NYC.
-

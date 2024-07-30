@@ -10,8 +10,15 @@ keywords: ["poverty","asthma","injustice","housing","social determinants","redli
 image: ds-povasthma.jpg
 layout: advanced
 image: ds-redlining.jpeg
+related: 
+
+- "data-stories/housing-creates-health/"
+- "data-stories/block-by-block/"
+- "data-explorer/economic-conditions/?id=103#display=summary"
 ---
+
 ### Inside the 90-year-old financial policy that harms our health
+
 In public health, we often cite structural racism to help explain health patterns in our society. But what, specifically, does this mean? A close look at the history of redlining shows this connection.
 
 When we analyze data on the health of New Yorkers, we often find the same geographic patterns, with higher rates of preventable health conditions in high-poverty neighborhoods. For example, [we've written about how asthma and poverty are closely connected]({{< ref "/data-stories/asthma-and-poverty" >}}).
@@ -25,19 +32,21 @@ The chart below shows the relationship between each neighborhood's poverty rate 
 This dynamic extends beyond asthma. To understand why poverty, race, and health are related in New York City, we look back at **redlining**. This government policy from the 1930s illustrates the nature of poverty and racism in our society - and how racism affects health.
 
 ### A Brief History of Redlining
+
 In the 1930s, during the Great Depression, unemployment rates were high and many people couldn't make their mortgage payments. A wave of foreclosures swept the country. To help keep people in their homes, the federal government established the Home Owners Loan Corporation (HOLC). Its goal was to refinance mortgages with better terms, like lower interest rates and longer repayment periods, to help people make payments and avoid foreclosure.
 
 To determine what loans they would guarantee, HOLC sent people to appraise neighborhoods in cities across the US. They documented the types of housing in neighborhoods, along with information about the people who lived there. They also catalogued “detrimental influences,” with racist descriptions like “infiltration of Negroes” and “mixed races" as characteristics that lowered a neighborhood's value.
 
 {{< figure src="rl1.png" alt="A redlining document that details housing, construction type, average age, repair condition, occupancy, price range, and other information" >}}
-*A redlining document that details housing, construction type, average age, repair condition, occupancy, price range, and other information.*
+_A redlining document that details housing, construction type, average age, repair condition, occupancy, price range, and other information._
 
 {{< figure src="rl2.png" alt="A redining document that reads: Detrimental influences: Obsolescence and poor maintenance. Infiltration of Negroes. Elevated structures on Lexington Ave & Fulton & Grand Avenue. Mixed races." >}}
-*A redining document that reads: Detrimental influences: Obsolescence and poor maintenance. Infiltration of Negroes. Elevated structures on Lexington Ave & Fulton & Grand Avenue. Mixed races.*
+_A redining document that reads: Detrimental influences: Obsolescence and poor maintenance. Infiltration of Negroes. Elevated structures on Lexington Ave & Fulton & Grand Avenue. Mixed races._
 
 With this information, HOLC made “residential security maps” for almost 250 cities, including New York City. On these maps, HOLC gave each neighborhood a classification:
 
 {{< rawhtml >}}
+
 <ul style="list-style:none;">
     <li><strong><span style="color:#4FCF23"><i class="fas fa-square-full"></i></span>
             Best</strong></li>
@@ -57,6 +66,7 @@ This was **redlining** - drawing boundaries around neighborhoods based on reside
 The map below shows the extent of redlining in New York City.
 
 {{< rawhtml >}}
+
 <div class="py-0">
     <iframe src="{{< baseurl >}}maps/HOLC_map/HOLC_map.html" scrolling="no" frameborder="0"
         style="position: relative; height: 600px; width: 100%;"></iframe>
@@ -64,13 +74,14 @@ The map below shows the extent of redlining in New York City.
 {{< /rawhtml >}}
 
 ### Redlining drove residential segregation
+
 As a result of redlining, people of color were denied access to “desirable” neighborhoods by racist real estate practices - and denied loans to buy homes in neighborhoods labeled "declining" or "hazardous." Real estate agents also used exploitative tactics like {{< rawhtml >}}<a href="#bbcollapse" data-toggle="collapse"
         class="badge badge-pill badge-warning">blockbusting</a>, <a
         href="#contractcollapse" data-toggle="collapse"
         class="badge badge-pill badge-warning">contract selling</a>, and <a
         href="#rrccollapse" data-toggle="collapse"
         class="badge badge-pill badge-warning">racially restrictive covenants</a>, to
-    deepen and enforce neighborhood segregation.</p>
+deepen and enforce neighborhood segregation.</p>
 
 <div class="collapse fs-sm py-2 px-2 mb-2 mx-2" id="bbcollapse"
     style="margin-top: 0px!important; background-color: #f9f9f9;">
@@ -107,6 +118,7 @@ Owning a home is a powerful way to achieve financial stability. These policies c
 Enormous areas of New York City were redlined. Explore the extent of HOLC's redlining in NYC's five boroughs:
 
 {{< rawhtml >}}
+
 <ul class="nav nav-tabs fs-sm" id="myTab" role="tablist">
     <li class="nav-item">
         <a class="nav-link active" id="manhattan-tab" data-toggle="tab"
@@ -219,14 +231,15 @@ Enormous areas of New York City were redlined. Explore the extent of HOLC's redl
 </div>
 {{< /rawhtml >}}
 
-
 ### Redlining's effects continue today
+
 In New York City, many once-thriving neighborhoods experienced severe disinvestment as a result of redlining, which caused inequality that continued from one generation to the next. Neighborhoods that were redlined in the 1930s have higher rates of poverty even today – nearly 90 years after the maps were created. According to the [National Community Reinvestment Coalition](https://ncrc.org/holc/), 3 out of every 4 neighborhoods in the USA that were redlined in the 1930s are still low-to-moderate income today - and 2 out of every 3 are predominantly populated by people of color.
 
-Redlining is a prime example of {{< rawhtml >}}  <a href="#disinvestmentCollapseTwo" data-toggle="collapse"
+Redlining is a prime example of {{< rawhtml >}} <a href="#disinvestmentCollapseTwo" data-toggle="collapse"
 class="badge badge-pill badge-warning">neighborhood disinvestment</a>{{< /rawhtml >}}: denying or withholding public and private funding, city services, or other resources that neighborhoods - and their residents - need to thrive. When these resources are withheld, it creates ["environments that make [people] sick"](https://www.who.int/hdp/poverty/en/).
 
 {{< rawhtml >}}
+
 <div class="collapse py-2 px-2 mx-2 fs-sm" id="disinvestmentCollapseTwo"
     style="margin-top: 0px!important; background-color: #f9f9f9;">
     <p><strong>Disinvestment</strong> can be:
@@ -249,7 +262,7 @@ Though redlining was banned in 1968, other forms of housing discrimination persi
 
 Public health is about far more than changing people's behaviors at the individual level: it's about building a society that supports health and well-being, and moving into our future by confronting the past.
 
-*More resources about redlining:*
+_More resources about redlining:_
+
 - [Mapping Inequality: Redlining in New Deal America](https://dsl.richmond.edu/panorama/redlining/#loc=4/36.71/-96.93&opacity=0.8), where you can explore redlining maps and original documents for your neighborhood.
 - [The persistent structure of segregation and economic inequality](https://ncrc.org/holc/) from the National Community Reinvestment Coalition.
-

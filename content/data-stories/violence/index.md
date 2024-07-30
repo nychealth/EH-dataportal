@@ -11,8 +11,14 @@ image: ds-violence.jpg
 vega: true
 layout: advanced
 photocredit: "Benjamin Kanter/Mayoral Photography Office"
+related: 
+- "data-stories/injury-deaths/"
+- "data-stories/assaults/"
+- "data-explorer/violence/?id=2400#display=summary"
 ---
+
 ## Using public health to prevent violence
+
 Experiencing violence affects people in many ways. It not only causes physical injury or death, but being exposed to it can also cause emotional and psychological trauma. Violence doesn’t just affect the immediate victim, it affects their surrounding community, too.
 
 Violence can affect people throughout their lives: it is associated with worse birth outcomes, childhood developmental delays, physical and mental illness, and premature deaths.
@@ -29,7 +35,9 @@ or is somebody you know affected by violence? Help is available and you don't ha
 ## Background on violence in New York City
 
 ### NYC's homicide rate has declined...
+
 There is a lot less violence than there used to be in NYC. {{< rawhtml >}}<a href="#covidcollapse" data-toggle="collapse" class="badge badge-outline badge-pill badge-danger">Note on the COVID-19 pandemic</a></p>
+
 <div class="collapse mb-2 drawerbg px-2 py-2 mx-2" id="covidcollapse">
     <p>Data for 2020 is not included here, but since the start of the COVID-19 pandemic, NYC has seen an increase in assaults, shooting incidents, and non-fatal assault emergency room visits and hospitalizations.</p>
     <p>Similar patterns have been observed nationally as the country experiences unprecedented unemployment, housing and food insecurity, political unrest and uncertainty about the future. The social, economic and environmental factors that can influence violence rates have been amplified during this historic crisis.</p> </div>{{< /rawhtml >}}
@@ -39,51 +47,56 @@ To look at violence, people often look at homicide rates. In recent years, NYC�
 {{< datawrapper title="NYC'S homicide rates have declined" src="bqQeD/1/" height="484" >}}
 
 ### ...but a drop in the homicide rate doesn't tell the whole story.
- In this chart, we look at three types of violent outcomes and how violence levels differ across the city: non-fatal assault emergency department visits, non-fatal assault hospitalizations, and homicides. These data show a larger burden of violence.
+
+In this chart, we look at three types of violent outcomes and how violence levels differ across the city: non-fatal assault emergency department visits, non-fatal assault hospitalizations, and homicides. These data show a larger burden of violence.
 
 When broken down by geography, the data show that some neighborhoods experience violence at much higher rates than others. Neighborhoods experiencing the most violence have non-fatal assault hospitalization rates that are **10 times higher** than neighborhoods experiencing the lowest rates – and **4 times higher** than the citywide rate.
 
 This pattern is consistent across the three indicators. And, neighborhoods that experience higher rates of violence have larger populations of people of color - showing that these populations shoulder a disproportionate burden of violence.
-            
+
 {{< datawrapper title="Violence in NYC" src="PldhR/2" height="603" >}}
 
 <br>
 
 ## A public health approach to addressing violence
+
 Residents of some neighborhoods are at much greater risk of experiencing violence - and its many health effects.
 
 To prevent violence among those most affected by it, we need to explore what factors lead to it.
 
 ### Violence is rooted in historical disinvestment and racism
+
 Evidence shows that violence results from social structures that limit access to basic needs - structures that are fueled by racism, residential segregation, and neighborhood disinvestment. Where these structures persist, people are exposed to violence. For example, low-income neighborhoods of color are known to be hit the hardest.
 
 This map shows the parts of NYC that were {{< rawhtml >}}<a href="#redliningCollapse" data-toggle="collapse" class="badge badge-pill badge-warning">redlined</a> 90 years ago as part of racist housing policy that set off decades of disinvestment and intergenerational poverty.</p>
-    <div class="collapse mb-2 drawerbg px-2 py-2 mx-2" id="redliningCollapse">
-    <p><span style="font-weight: bold; color:#7e0000">Redlining</span> was a federal policy that
-    started in the 1930s. A government agency drew maps of hundreds of cities throughout the
-    USA, and graded neighborhoods within them from "Best" to "Hazardous." Their criteria
-    included the race of people who lived in those neighborhoods.</p>
-    <p>Both the federal government and private banks used these maps to determine whether or not
-    to back loans so that people could buy homes. Through this system, people of color were
-    denied the opportunity to buy homes, and white people had their home purchases federally
-    subsidized. </p>
-    <p>Redlining drove segregation and economic inequality - along racial lines. <a href="{{< baseurl >}}data-stories/housing/">Its effects persist today</a>. According to the <a
+<div class="collapse mb-2 drawerbg px-2 py-2 mx-2" id="redliningCollapse">
+<p><span style="font-weight: bold; color:#7e0000">Redlining</span> was a federal policy that
+started in the 1930s. A government agency drew maps of hundreds of cities throughout the
+USA, and graded neighborhoods within them from "Best" to "Hazardous." Their criteria
+included the race of people who lived in those neighborhoods.</p>
+<p>Both the federal government and private banks used these maps to determine whether or not
+to back loans so that people could buy homes. Through this system, people of color were
+denied the opportunity to buy homes, and white people had their home purchases federally
+subsidized. </p>
+<p>Redlining drove segregation and economic inequality - along racial lines. <a href="{{< baseurl >}}data-stories/housing/">Its effects persist today</a>. According to the <a
     href="https://ncrc.org/holc/">National Community Reinvestment Coalition</a>, 3 out
-    of every 4 neighborhoods in the USA that were redlined in the 1930s are still
-    low-to-moderate income today - and 2 out of every 3 are predominantly populated by
-    people of color.</p>
-    </div>
+of every 4 neighborhoods in the USA that were redlined in the 1930s are still
+low-to-moderate income today - and 2 out of every 3 are predominantly populated by
+people of color.</p>
+</div>
 {{< /rawhtml >}}
 
 A map of recent shootings lines up with the heavily <span style="font-weight: bold; color: #7e0000">redlined</span> areas of the Bronx, Harlem, and northern and eastern Brooklyn - showing clearly how today's violence is closely related to the ways that racist policies are embedded in our society.
 
 {{< rawhtml >}}
+
 <div class="my-3">
 <iframe src="../../maps/HOLC-shootings/map.html" scrolling="no" frameborder="0" style="position: relative; height: 600px; width: 100%;"></iframe>
 </div>
 {{< /rawhtml >}}
 
 Decades of government and societal {{< rawhtml >}}<a href="#disinvestmentCollapse" data-toggle="collapse" class="badge badge-pill badge-warning">disinvestment</a> from practices like redlining means limited opportunity and resources, and results in higher rates of poverty in some neighborhoods.</p>
+
 <div class="collapse mb-2 drawerbg px-2 py-2 mx-2" id="disinvestmentCollapse">
     <strong>Disinvestment</strong> is when either government agencies or private companies deliberately withhold or withdraw resources and opportunity from a neighborhood or community. </p>
     <p>The history of disinvestment is tied to racist practices and policies - like denyng people of color loans to buy homes. Disinvestment is also planned shrinkage, a steady decline of public funding for public housing, services, education - especially in cities, and especially in neighborhoods populated mostly by people of color.</p>
@@ -94,24 +107,26 @@ As a result of this disinvestment, we see a clear relationship between poverty a
 {{< datawrapper title="Poverty and assaults in NYC" src="DlEvR/2/" height="533" >}}
 
 ### Disinvestment creates environments that threaten health
+
 {{< rawhtml >}}
-    <p><a href="#disinvestmentCollapseTwo" data-toggle="collapse" class="badge badge-pill badge-warning">Disinvestment takes many forms</a>. It promotes segregation, limits people’s access to basic resources, and creates environments that threaten people’s health. </p>
-    <div class="collapse py-2 px-2 mx-2 mb-2 drawerbg" id="disinvestmentCollapseTwo">
-    <p>Disinvestment can be:
-        <ul>
-            <li>Denying people access to loans to buy homes - like <span style="font-weight: bold; color:#7e0000">redlining</span> and other well-documented racist real estate practices</li>
-            <li>Housing neglect by landlords, leading to unhealthy housing</li>
-            <li>Poorly-funded schools</li>
-            <li>Fewer job opportunities and lower-paying jobs</li>
-            <li>Emphasis on policing over pro-social resources</li>
-        </ul>
-    </p>
-    </div>
+<p><a href="#disinvestmentCollapseTwo" data-toggle="collapse" class="badge badge-pill badge-warning">Disinvestment takes many forms</a>. It promotes segregation, limits people’s access to basic resources, and creates environments that threaten people’s health. </p>
+<div class="collapse py-2 px-2 mx-2 mb-2 drawerbg" id="disinvestmentCollapseTwo">
+<p>Disinvestment can be:
+<ul>
+<li>Denying people access to loans to buy homes - like <span style="font-weight: bold; color:#7e0000">redlining</span> and other well-documented racist real estate practices</li>
+<li>Housing neglect by landlords, leading to unhealthy housing</li>
+<li>Poorly-funded schools</li>
+<li>Fewer job opportunities and lower-paying jobs</li>
+<li>Emphasis on policing over pro-social resources</li>
+</ul>
+</p>
+</div>
 {{< /rawhtml >}}
 
 In terms of public health, we say that disinvestment produces environmental factors that make certain health outcomes more likely.
 
 {{< rawhtml >}}
+
 <div class="d-sm-none d-md-block">
     <div class="row py-2">
         <div class="col-4 ml-auto"><button type="button" class="btn btn-light btn-med btn-block"
@@ -131,6 +146,7 @@ By “environmental,” we mean the entire physical, social, and economic contex
 Whether or not a neighborhood experiences more violence can be explained by looking at whether its environment has protective factors, which help prevent violence before it starts, or risk factors, which make violence a more likely outcome.
 
 {{< rawhtml >}}
+
 <div class="row d-sm-none d-md-block">
     <div class="col mx-auto">
         <div class="medium">
@@ -175,6 +191,7 @@ Whether or not a neighborhood experiences more violence can be explained by look
 {{< /rawhtml >}}
 
 ## What does this mean for NYC's neighborhoods?
+
 NYC's neighborhoods experience these protective and risk factors very differently. Some neighborhoods have a lot less of the protective factors – and a lot more of the risk factors.
 
 Let's explore how by comparing two neighborhoods: <span style="color: #b820bb; font-weight: bold;">Belmont/East Tremont</span>, in the Bronx, and <span style="color: #5c8ea5; font-weight: bold;">Tottenville/Great Kills</span>, in Staten Island.
@@ -203,6 +220,7 @@ Below, each vertical line represents the neighborhood rankings for the risk fact
 
 These risk factors describe a network of threatening {{< rawhtml >}}<a href="#envcollapse" data-toggle="collapse" class="badge badge-pill badge-warning">environmental factors</a>
 in communities that have experienced disinvestment, place residents in poverty and expose them to risks throughout their lives – culminating in higher rates of <a href="#violcollapse" data-toggle="collapse" class="badge badge-pill badge-warning">violence</a>.</p>
+
 <div class="collapse drawerbg my-2 pt-2 pb-2 mx-2" id="envcollapse">
 Environmental factors in the chart below:
     <ul>
@@ -237,6 +255,7 @@ data</button>
 A pattern emerges: <span style="font-weight: bold; color: #b820bb;">neighborhoods with the highest poverty rates</span> consistently rank high for risk factors experience more violence. <span style="font-weight:bold; color: #5c8ea5">Neighborhoods with the lowest poverty rates</span> consistently rank low for risk factors experience less violence.
 
 ### Why does this happen?
+
 These risk factors make up a network of environmental threats in communities that have experienced disinvestment. Due to the inequitable distribution of resources and opportunities, some neighborhoods face a disproportionate amount of risk. These threats place residents in poverty and expose them to risks throughout their lives – culminating in higher rates of violence.
 
 In environments where risk factors far outweigh protective factors, higher rates of neighborhood violence emerge - and threaten the health of residents of these neighborhoods.
@@ -246,8 +265,11 @@ In environments where risk factors far outweigh protective factors, higher rates
 <br>
 
 ## Breaking the cycle of violence
+
 ### Addressing factors that lead to violence...
+
 The Health Department takes a public health approach to violence. This means promoting conditions that prevent violence, and addressing outcomes triggered by violence. It means working across systems and communities to reinvest in neighborhoods most affected by violence. This work includes:
+
 - **Research on the most effective policies** to reduce violence, collecting and analyzing data that can be used to develop new interventions.
 - Through the [Crisis Management System](https://www1.nyc.gov/site/peacenyc/interventions/crisis-management.page), working with other city organizations to **support community-led efforts to de-escalate violence**, providing support to at-risk youth with employment, legal, therapeutic, and educational opportunities.
 - Strengthening the **Neighborhood Health Action Centers** in the South Bronx, Harlem and Central Brooklyn, neighborhoods that all experience higher levels of violence. The Action Centers serve as community hubs for programs and resources that can decrease risk and increase protective factors.
@@ -257,6 +279,7 @@ The Health Department takes a public health approach to violence. This means pro
 With this work, the Health Department is reinvesting in communities that have experienced disinvestment so that we can build environments where protective factors outweigh risk factors.
 
 ### ...to reduce rates of violence.
+
 Public health is about assuring the conditions in which people can be healthy.
 
 A public health approach to violence prevention relies on a response from all sectors of society to address the inequities that lead to violence. It relies on creating and supporting systems so that both institutions and neighborhoods support the health of their residents.
@@ -270,9 +293,8 @@ or is somebody you know affected by violence? Help is available and you don't ha
 through it alone. Call 1-888-NYC-WELL (1-888-692-9355) for a free, confidential help
 line for New York City residents, or <a href="https://www1.nyc.gov/site/ocdv/get-help/covid-19-update.page">get support here</a>.</em></span>
 
-
-
 {{< rawhtml >}}
+
 <!-- Data Modal -->
 <div class="modal fade" id="dataModal" tabindex="-1" role="dialog" aria-labelledby="dataModalTitle"
     aria-hidden="true">
