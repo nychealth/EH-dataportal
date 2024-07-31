@@ -12,29 +12,29 @@
     let sti;
     let thisInd;
     let NeighborhoodName = "{{ $.Params.neighborhood }}"; // setting for use in visualizations
-    
+
     // this gets a json of topics and nested indicators
     async function get_topic_indicators() {
         d3.json('{{ relURL "IndicatorMetadata/topic_indicators.json" }}').then(data => {
             topicIndicators = data
         });
     }
-    
+
     get_topic_indicators();
-    
+
     // this is called when an indicator is clicked. it produces the indicator's data-explorer URL and sends it to the modal in nr-indicator.html.
-    
+
     const getURL = async (indID, dataname) => {
-        
+
         // console.log("getURL:", indID);
-        
+
         let thisTopic = '';
         let topicArray = [];
         let ind = Number(indID)
         let URL;
 
         // console.log('getURL running for ' + ind)
-        
+
         for (let y in topicIndicators) {
 
             topicArray = topicIndicators[y].IndicatorID
@@ -55,11 +55,11 @@
             }
         }
     }
-    
+
     // ==== loading specs ==== //
-    
+
     // ---- summary ---- //
-    
+
     let summarySpec;
 
     d3.json({{ relURL "js/neighborhood-reports/spec/summarySpec.json" }} ).then(data => {
@@ -69,11 +69,11 @@
         // highlight current neighborhood
 
         summarySpec.encoding.color.condition.test = "datum.neighborhood=='" + NeighborhoodName + "'";
-        
+
     })
-    
+
     // ---- map ---- //
-    
+
     let mapSpec;
 
     d3.json({{ relURL "js/neighborhood-reports/spec/mapSpec.json" }} ).then(data => {
@@ -83,16 +83,16 @@
         // highlight current neighborhood
 
         mapSpec.layer[2].encoding.stroke.condition.test = "datum.neighborhood == '" + NeighborhoodName + "'";
-        
+
         // set data branch for geo files
 
         mapSpec.transform[0].from['data'].url = "{{ site.Params.data_repo }}{{ site.Params.data_branch }}/geography/UHF42.topo.json"
         mapSpec.layer[0].data.url = "{{ site.Params.data_repo }}{{ site.Params.data_branch }}/geography/borough.topo.json"
 
     });
-    
+
     // ---- trend ---- //
-    
+
     let trendSpec;
 
     d3.json({{ relURL "js/neighborhood-reports/spec/trendSpec.json" }} ).then(data => {
@@ -104,7 +104,7 @@
         trendSpec.layer[1].encoding.color.condition.test = "datum.neighborhood=='" + NeighborhoodName + "'";
 
     });
-    
+
 </script>
 
 
@@ -140,9 +140,9 @@
 
 <section class="container-fluid" id="skip-header-target" data-pagefind-ignore="all">
 
-    <div class="row mt-4">
+    <div class="row">
         <div class="col-lg-10 mx-auto col-12">
-            <nav aria-label="breadcrumb" class="mb-2">
+            <nav aria-label="breadcrumb" class="mt-2 mb-3">
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
                     <li class="breadcrumb-item"><a href={{ relURL "neighborhood-reports" }}>Neighborhood Reports</a></li>
@@ -151,7 +151,7 @@
                 </ul>
             </nav>
 
-            <h1 class="report-title border-bottom mt-4">{{ $.Params.title }} in 
+            <h1 class="report-title border-bottom mt-4">{{ $.Params.title }} in
                 <span class="sub-title">{{ $.Params.neighborhood }}</span>
             </h1>
 
@@ -160,25 +160,25 @@
 
             <div class="row">
                 <div class="col-md-9 h-100 col-print-12">
-    
+
                 <!-- REPORT CONTENT -->
                 <div class="row">
                     <div class="col-12">
                         <div>
-                            
+
                             {{- range $index, $rt := $report_topics -}}
-                            
+
                                 <div class="report-topic">
-                                    
+
                                     <div class="topic-header">
                                         <h2>
                                             {{- $rt.report_topic -}} {{- /*  from YAML  */}}
-                                        </h2> 
+                                        </h2>
                                         <p>
                                             {{- $rt.report_topic_description -}} {{- /*  from YAML  */}}
                                         </p>
                                     </div>
-                                    
+
                                     <div class="container-fluid px-0 mb-4">
 
                                         <!-- Hide on print -->
@@ -188,13 +188,13 @@
                                                 Topic
                                             </div>
                                             <div class="col-6 col-md-4">
-                                                
+
                                                 <div class="position-relative">
                                                     <span class="meta">Compared to other neighborhoods<a href="#" data-toggle="modal" data-target="#modal-rank"
                                                         class="info-modal meta"><i class="fas fa-question-circle fs-rg ml-1"></i> </span></a>
 
                                                 </div>
-                                                
+
                                             </div>
                                             <div class="d-none d-md-inline col-md-3">
                                                 <span class="meta">All neighborhoods</span>
@@ -223,7 +223,7 @@
                                         {{ $count := math.Counter }}
 
                                         {{ $clean_report_topic := replace $rt.report_topic ":" "" }}
-                                        
+
                                         {{ $data_path := print site.Params.data_repo site.Params.data_branch "/neighborhood-reports/data/report/" $.Params.content_yml " " $clean_report_topic ".json" }}
 
                                         {{ $topic_data := dict }}
@@ -245,46 +245,46 @@
                                         {{- $neighborhood_topic_data := where $topic_data "neighborhood" $.Params.neighborhood -}}
 
                                         {{- /*  range through indicators to build this topic  */}}
-                                        
+
                                         {{ range $index, $row := (sort $neighborhood_topic_data "data_value_rank" "desc") }}
 
                                             {{- /*  length = 1  */}}
 
                                             {{- $count := add $index 1 -}}
-                                            
+
                                             {{- partial "nr-indicator.html" (dict "neighborhood" $.Params.neighborhood "borough" $row.borough_name "data" $row "count" $count) -}}
-                                                    
+
                                         {{- end -}}
 
                                         {{ $zip_codes =  index $neighborhood_topic_data 0 "zip_code" -}}
-                                    
+
                                     </div>
                                     <!-- .container -->
-                                    
+
                                 </div>
                                 <!-- .report-topic -->
 
                             {{- end -}}
 
                         </div>
-                            
+
                     </div>
                 </div>
                 <!-- .narrow -->
 
                 </div>
-    
+
                 <!-- NAV RIGHT SIDEBAR -->
                 <div class="col-md-3 h-100 d-print-none">
                     <div class="border mb-2 nr-map-highlight" style="height: 100%">
                         <div class="p-1">
-                            <p><strong style="color:#00923E">{{ $.Params.neighborhood }}</strong> includes ZIP Codes: 
-                                <span class="home-label font-weight-bold" id="zips"> 
-                                    
+                            <p><strong style="color:#00923E">{{ $.Params.neighborhood }}</strong> includes ZIP Codes:
+                                <span class="home-label font-weight-bold" id="zips">
+
                                     {{- /*  insert zip code  */}}
 
                                     {{- print $zip_codes -}}
-                                    
+
                                 </span>.
                             </p>
                         </div>
@@ -311,7 +311,7 @@
             </div>
     <!-- .row -->
 
-            
+
         </div>
 
 
@@ -335,10 +335,10 @@
             downloadLoc,
             { autoMax: 10000,  parse: { time: String } }
         )
-        .then(data => { 
+        .then(data => {
 
-            arqTable = data 
-            
+            arqTable = data
+
             // console.log("arqTable", arqTable);
 
         })
@@ -388,7 +388,7 @@
 <section class="related-reading d-print-none" data-pagefind-ignore="all">
     <div class="container">
         <div class="row">
-            
+
             <div class="col-lg">
                 <div class="card bg-white text-black mb-2">
                     <div class="card-header">What is the City doing?</div>
@@ -403,7 +403,7 @@
                 </div>
             </div>
             <!-- .col for city -->
-            
+
             <div class="col-lg">
                 <div class="card bg-white text-black mb-2">
                     <div class="card-header">What can you do?</div>
@@ -418,7 +418,7 @@
                 </div>
             </div>
             <!-- .col for you -->
-            
+
             <div class="col-lg">
                 <div class="card bg-white text-black">
                     <div class="card-header">More NYC neighborhood data</div>
@@ -433,13 +433,13 @@
                 </div>
             </div>
             <!-- .col for data -->
-            
+
             <!-- .row -->
         </div>
     </div>
 </section>
 {{- end -}}
-    
+
 <!-- Modal-Rank -->
 <div class="modal fade report-modal" id="modal-rank" tabindex="-1" role="dialog" aria-labelledby="rankModalLabel"
 aria-hidden="true" data-pagefind-ignore="all">
@@ -468,7 +468,7 @@ aria-hidden="true" data-pagefind-ignore="all">
                 </ul>
                 <p>These are only based on the distribution of data values, not the range. The absolute values of
                     indicators in different categories may not be all that different.</p>
-                    
+
             </div>
             <!-- .modal-body -->
             <div class="modal-footer">
