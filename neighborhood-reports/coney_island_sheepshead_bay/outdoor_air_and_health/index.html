@@ -73,7 +73,7 @@
 <script src="/IndicatorPublic/node_modules/@fortawesome/fontawesome-free/js/all.min.eac49826a0eb7994591a42776fe61f7610773339ae3fd47b5f5419ea0e5a217851bd1d58fcdfcfe3b8e69e410d9bb60bde8aac988e802be57a003f7db960e723.js" integrity="sha512-6sSYJqDreZRZGkJ3b&#43;YfdhB3MzmuP9R7X1QZ6g5aIXhRvR1Y/N/P47jmnkENm7YL3oqsmI6AK&#43;V6AD99uWDnIw==" crossorigin="anonymous"></script>
 
 
-<link rel="stylesheet" href="/IndicatorPublic/scss/theme.19c3259b5fe18f288d8a64659a3102ad5124211317867fdf2004ceeb06b00d33a3f2d70e439d38b0039a77e963b80695267a8a600ace7127b4d808661a4cd95c.css" integrity="sha512-GcMlm1/hjyiNimRlmjECrVEkIRMXhn/fIATO6wawDTOj8tcOQ504sAOad&#43;ljuAaVJnqKYArOcSe02AhmGkzZXA==" />
+<link rel="stylesheet" href="/IndicatorPublic/scss/theme.c0cd4c56ae670c7d914a525cd261098f672511910b35856c0d0aaee8d1ee8350c1734ef8846cf4ea0c3fdb21d30b75c848a6930d1438ba387ae9288f8e42da86.css" integrity="sha512-wM1MVq5nDH2RSlJc0mEJj2clEZELNYVsDQqu6NHug1DBc074hGz06gw/2yHTC3XISKaTDRQ4ujh66SiPjkLahg==" />
 
 <script src="/IndicatorPublic/js/vegaBundle.588c6e51c17588874939e5c068c12ec7978388581a0f39ce7713db686085854ab4a6bda8b310bc55f9083cab796486958c9e358f30c461bc6decee214f919023.js" integrity="sha512-WIxuUcF1iIdJOeXAaMEux5eDiFgaDznOdxPbaGCFhUq0pr2osxC8VfkIPKt5ZIaVjJ41jzDEYbxt7O4hT5GQIw=="></script>
 
@@ -376,29 +376,29 @@
     let sti;
     let thisInd;
     let NeighborhoodName = "Coney Island - Sheepshead Bay"; 
-    
+
     
     async function get_topic_indicators() {
         d3.json('\/IndicatorPublic\/IndicatorMetadata\/topic_indicators.json').then(data => {
             topicIndicators = data
         });
     }
-    
+
     get_topic_indicators();
+
     
-    
-    
+
     const getURL = async (indID, dataname) => {
+
         
-        
-        
+
         let thisTopic = '';
         let topicArray = [];
         let ind = Number(indID)
         let URL;
 
         
-        
+
         for (let y in topicIndicators) {
 
             topicArray = topicIndicators[y].IndicatorID
@@ -419,11 +419,11 @@
             }
         }
     }
+
     
+
     
-    
-    
-    
+
     let summarySpec;
 
     d3.json("/IndicatorPublic/js/neighborhood-reports/spec/summarySpec.json" ).then(data => {
@@ -433,11 +433,11 @@
         
 
         summarySpec.encoding.color.condition.test = "datum.neighborhood=='" + NeighborhoodName + "'";
-        
+
     })
+
     
-    
-    
+
     let mapSpec;
 
     d3.json("/IndicatorPublic/js/neighborhood-reports/spec/mapSpec.json" ).then(data => {
@@ -447,16 +447,16 @@
         
 
         mapSpec.layer[2].encoding.stroke.condition.test = "datum.neighborhood == '" + NeighborhoodName + "'";
-        
+
         
 
         mapSpec.transform[0].from['data'].url = "https:\/\/raw.githubusercontent.com\/nychealth\/EHDP-data\/production/geography/UHF42.topo.json"
         mapSpec.layer[0].data.url = "https:\/\/raw.githubusercontent.com\/nychealth\/EHDP-data\/production/geography/borough.topo.json"
 
     });
+
     
-    
-    
+
     let trendSpec;
 
     d3.json("/IndicatorPublic/js/neighborhood-reports/spec/trendSpec.json" ).then(data => {
@@ -468,7 +468,7 @@
         trendSpec.layer[1].encoding.color.condition.test = "datum.neighborhood=='" + NeighborhoodName + "'";
 
     });
-    
+
 </script>
 
 <div class="d-flex flex-column report-header d-print-none">
@@ -489,9 +489,9 @@
 
 <section class="container-fluid" id="skip-header-target" data-pagefind-ignore="all">
 
-    <div class="row mt-4">
+    <div class="row">
         <div class="col-lg-10 mx-auto col-12">
-            <nav aria-label="breadcrumb" class="mb-2">
+            <nav aria-label="breadcrumb" class="mt-2 mb-3">
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item"><a href=/IndicatorPublic/>Home</a></li>
                     <li class="breadcrumb-item"><a href=/IndicatorPublic/neighborhood-reports>Neighborhood Reports</a></li>
@@ -500,7 +500,7 @@
                 </ul>
             </nav>
 
-            <h1 class="report-title border-bottom mt-4">Outdoor Air and Health in 
+            <h1 class="report-title border-bottom mt-4">Outdoor Air and Health in
                 <span class="sub-title">Coney Island - Sheepshead Bay</span>
             </h1>
 
@@ -509,19 +509,19 @@
 
             <div class="row">
                 <div class="col-md-9 h-100 col-print-12">
-    
+
                 
                 <div class="row">
                     <div class="col-12">
                         <div><div class="report-topic">
-                                    
+
                                     <div class="topic-header">
                                         <h2>Outdoor Air Pollutants
-                                        </h2> 
+                                        </h2>
                                         <p>Estimated annual average concentrations calculated from a model that used NYC Community Air Survey measurements.
                                         </p>
                                     </div>
-                                    
+
                                     <div class="container-fluid px-0 mb-4">
 
                                         
@@ -531,13 +531,13 @@
                                                 Topic
                                             </div>
                                             <div class="col-6 col-md-4">
-                                                
+
                                                 <div class="position-relative">
                                                     <span class="meta">Compared to other neighborhoods<a href="#" data-toggle="modal" data-target="#modal-rank"
                                                         class="info-modal meta"><i class="fas fa-question-circle fs-rg ml-1"></i> </span></a>
 
                                                 </div>
-                                                
+
                                             </div>
                                             <div class="d-none d-md-inline col-md-3">
                                                 <span class="meta">All neighborhoods</span>
@@ -562,7 +562,7 @@
                                         
 
                                         
-                                        
+
                                         
 
                                         
@@ -572,7 +572,7 @@
                                                 
                                             
                                         
-                                        
+
                                         
 
 <script>
@@ -1795,17 +1795,17 @@
     </script>
 </div>
                                     
-                                    
+
                                 </div>
                                 <div class="report-topic">
-                                    
+
                                     <div class="topic-header">
                                         <h2>Heating Fuel Emissions
-                                        </h2> 
+                                        </h2>
                                         <p>Estimated annual boiler emissions per km2 as of January 2015.  Calculated using heating fuel type on NYC boiler permits and estimates of boiler activity.
                                         </p>
                                     </div>
-                                    
+
                                     <div class="container-fluid px-0 mb-4">
 
                                         
@@ -1815,13 +1815,13 @@
                                                 Topic
                                             </div>
                                             <div class="col-6 col-md-4">
-                                                
+
                                                 <div class="position-relative">
                                                     <span class="meta">Compared to other neighborhoods<a href="#" data-toggle="modal" data-target="#modal-rank"
                                                         class="info-modal meta"><i class="fas fa-question-circle fs-rg ml-1"></i> </span></a>
 
                                                 </div>
-                                                
+
                                             </div>
                                             <div class="d-none d-md-inline col-md-3">
                                                 <span class="meta">All neighborhoods</span>
@@ -1846,7 +1846,7 @@
                                         
 
                                         
-                                        
+
                                         
 
                                         
@@ -1856,7 +1856,7 @@
                                                 
                                             
                                         
-                                        
+
                                         
 
 <script>
@@ -2774,17 +2774,17 @@
     </script>
 </div>
                                     
-                                    
+
                                 </div>
                                 <div class="report-topic">
-                                    
+
                                     <div class="topic-header">
                                         <h2>Outdoor Air Toxics
-                                        </h2> 
+                                        </h2>
                                         <p>Estimated annual average concentrations of known carcinogens that are part of a class of pollutants also known as hazardous air pollutants.
                                         </p>
                                     </div>
-                                    
+
                                     <div class="container-fluid px-0 mb-4">
 
                                         
@@ -2794,13 +2794,13 @@
                                                 Topic
                                             </div>
                                             <div class="col-6 col-md-4">
-                                                
+
                                                 <div class="position-relative">
                                                     <span class="meta">Compared to other neighborhoods<a href="#" data-toggle="modal" data-target="#modal-rank"
                                                         class="info-modal meta"><i class="fas fa-question-circle fs-rg ml-1"></i> </span></a>
 
                                                 </div>
-                                                
+
                                             </div>
                                             <div class="d-none d-md-inline col-md-3">
                                                 <span class="meta">All neighborhoods</span>
@@ -2825,7 +2825,7 @@
                                         
 
                                         
-                                        
+
                                         
 
                                         
@@ -2835,7 +2835,7 @@
                                                 
                                             
                                         
-                                        
+
                                         
 
 <script>
@@ -3448,17 +3448,17 @@
     </script>
 </div>
                                     
-                                    
+
                                 </div>
                                 <div class="report-topic">
-                                    
+
                                     <div class="topic-header">
                                         <h2>Traffic Density
-                                        </h2> 
+                                        </h2>
                                         <p>Estimated millions of annual vehicle miles traveled per km2. Vehicle miles traveled is an indicator of emissions from automobile exhaust, brake wear and tire wear.
                                         </p>
                                     </div>
-                                    
+
                                     <div class="container-fluid px-0 mb-4">
 
                                         
@@ -3468,13 +3468,13 @@
                                                 Topic
                                             </div>
                                             <div class="col-6 col-md-4">
-                                                
+
                                                 <div class="position-relative">
                                                     <span class="meta">Compared to other neighborhoods<a href="#" data-toggle="modal" data-target="#modal-rank"
                                                         class="info-modal meta"><i class="fas fa-question-circle fs-rg ml-1"></i> </span></a>
 
                                                 </div>
-                                                
+
                                             </div>
                                             <div class="d-none d-md-inline col-md-3">
                                                 <span class="meta">All neighborhoods</span>
@@ -3499,7 +3499,7 @@
                                         
 
                                         
-                                        
+
                                         
 
                                         
@@ -3509,7 +3509,7 @@
                                                 
                                             
                                         
-                                        
+
                                         
 
 <script>
@@ -4427,17 +4427,17 @@
     </script>
 </div>
                                     
-                                    
+
                                 </div>
                                 <div class="report-topic">
-                                    
+
                                     <div class="topic-header">
                                         <h2>Health Burden: Fine Particles (PM2.5)
-                                        </h2> 
+                                        </h2>
                                         <p>Estimated health events attributable to PM2.5 exposure over natural background levels in NYC (average annual rate per 100,000 residents).
                                         </p>
                                     </div>
-                                    
+
                                     <div class="container-fluid px-0 mb-4">
 
                                         
@@ -4447,13 +4447,13 @@
                                                 Topic
                                             </div>
                                             <div class="col-6 col-md-4">
-                                                
+
                                                 <div class="position-relative">
                                                     <span class="meta">Compared to other neighborhoods<a href="#" data-toggle="modal" data-target="#modal-rank"
                                                         class="info-modal meta"><i class="fas fa-question-circle fs-rg ml-1"></i> </span></a>
 
                                                 </div>
-                                                
+
                                             </div>
                                             <div class="d-none d-md-inline col-md-3">
                                                 <span class="meta">All neighborhoods</span>
@@ -4478,7 +4478,7 @@
                                         
 
                                         
-                                        
+
                                         
 
                                         
@@ -4488,7 +4488,7 @@
                                                 
                                             
                                         
-                                        
+
                                         
 
 <script>
@@ -6016,17 +6016,17 @@
     </script>
 </div>
                                     
-                                    
+
                                 </div>
                                 <div class="report-topic">
-                                    
+
                                     <div class="topic-header">
                                         <h2>Health Burden: Ozone (O3)
-                                        </h2> 
+                                        </h2>
                                         <p>Estimated health events attributable to ozone exposure over natural background levels in NYC (average annual rate per 100,000 residents).
                                         </p>
                                     </div>
-                                    
+
                                     <div class="container-fluid px-0 mb-4">
 
                                         
@@ -6036,13 +6036,13 @@
                                                 Topic
                                             </div>
                                             <div class="col-6 col-md-4">
-                                                
+
                                                 <div class="position-relative">
                                                     <span class="meta">Compared to other neighborhoods<a href="#" data-toggle="modal" data-target="#modal-rank"
                                                         class="info-modal meta"><i class="fas fa-question-circle fs-rg ml-1"></i> </span></a>
 
                                                 </div>
-                                                
+
                                             </div>
                                             <div class="d-none d-md-inline col-md-3">
                                                 <span class="meta">All neighborhoods</span>
@@ -6067,7 +6067,7 @@
                                         
 
                                         
-                                        
+
                                         
 
                                         
@@ -6077,7 +6077,7 @@
                                                 
                                             
                                         
-                                        
+
                                         
 
 <script>
@@ -7605,21 +7605,21 @@
     </script>
 </div>
                                     
-                                    
+
                                 </div>
                                 </div>
-                            
+
                     </div>
                 </div>
                 
 
                 </div>
-    
+
                 
                 <div class="col-md-3 h-100 d-print-none">
                     <div class="border mb-2 nr-map-highlight" style="height: 100%">
                         <div class="p-1">
-                            <p><strong style="color:#00923E">Coney Island - Sheepshead Bay</strong> includes ZIP Codes: 
+                            <p><strong style="color:#00923E">Coney Island - Sheepshead Bay</strong> includes ZIP Codes:
                                 <span class="home-label font-weight-bold" id="zips">11223,11224,11229,11235</span>.
                             </p>
                         </div><div id="vis1" class="chartdest" style="width: 100%; height: 300px;"></div>
@@ -7808,7 +7808,7 @@
             </div>
     
 
-            
+
         </div>
 
 
@@ -7830,10 +7830,10 @@
             downloadLoc,
             { autoMax: 10000,  parse: { time: String } }
         )
-        .then(data => { 
+        .then(data => {
 
-            arqTable = data 
-            
+            arqTable = data
+
             
 
         })
@@ -7873,7 +7873,7 @@
 </section><section class="related-reading d-print-none" data-pagefind-ignore="all">
     <div class="container">
         <div class="row">
-            
+
             <div class="col-lg">
                 <div class="card bg-white text-black mb-2">
                     <div class="card-header">What is the City doing?</div>
@@ -7885,7 +7885,7 @@
                 </div>
             </div>
             
-            
+
             <div class="col-lg">
                 <div class="card bg-white text-black mb-2">
                     <div class="card-header">What can you do?</div>
@@ -7897,7 +7897,7 @@
                 </div>
             </div>
             
-            
+
             <div class="col-lg">
                 <div class="card bg-white text-black">
                     <div class="card-header">More NYC neighborhood data</div>
@@ -7908,7 +7908,7 @@
                 </div>
             </div>
             
-            
+
             
         </div>
     </div>
@@ -7940,7 +7940,7 @@ aria-hidden="true" data-pagefind-ignore="all">
                 </ul>
                 <p>These are only based on the distribution of data values, not the range. The absolute values of
                     indicators in different categories may not be all that different.</p>
-                    
+
             </div>
             
             <div class="modal-footer">

@@ -8962,11 +8962,8 @@ In this file:
   list-style: none;
   background-color: transparent;
   font-size: 1rem;
-  line-height: 1.25px; }
-  @media (min-width: 720px) {
-    .breadcrumb {
-      font-size: 1.0625rem;
-      line-height: 1.3rem; } }
+  line-height: 1.25rem; }
+
 .breadcrumb-item + .breadcrumb-item::before {
   display: inline-block;
   padding-right: 0.5rem;

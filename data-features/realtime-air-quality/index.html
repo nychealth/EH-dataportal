@@ -73,7 +73,7 @@
 <script src="/IndicatorPublic/node_modules/@fortawesome/fontawesome-free/js/all.min.eac49826a0eb7994591a42776fe61f7610773339ae3fd47b5f5419ea0e5a217851bd1d58fcdfcfe3b8e69e410d9bb60bde8aac988e802be57a003f7db960e723.js" integrity="sha512-6sSYJqDreZRZGkJ3b&#43;YfdhB3MzmuP9R7X1QZ6g5aIXhRvR1Y/N/P47jmnkENm7YL3oqsmI6AK&#43;V6AD99uWDnIw==" crossorigin="anonymous"></script>
 
 
-<link rel="stylesheet" href="/IndicatorPublic/scss/theme.19c3259b5fe18f288d8a64659a3102ad5124211317867fdf2004ceeb06b00d33a3f2d70e439d38b0039a77e963b80695267a8a600ace7127b4d808661a4cd95c.css" integrity="sha512-GcMlm1/hjyiNimRlmjECrVEkIRMXhn/fIATO6wawDTOj8tcOQ504sAOad&#43;ljuAaVJnqKYArOcSe02AhmGkzZXA==" />
+<link rel="stylesheet" href="/IndicatorPublic/scss/theme.c0cd4c56ae670c7d914a525cd261098f672511910b35856c0d0aaee8d1ee8350c1734ef8846cf4ea0c3fdb21d30b75c848a6930d1438ba387ae9288f8e42da86.css" integrity="sha512-wM1MVq5nDH2RSlJc0mEJj2clEZELNYVsDQqu6NHug1DBc074hGz06gw/2yHTC3XISKaTDRQ4ujh66SiPjkLahg==" />
 
 <script src="/IndicatorPublic/js/vegaBundle.588c6e51c17588874939e5c068c12ec7978388581a0f39ce7713db686085854ab4a6bda8b310bc55f9083cab796486958c9e358f30c461bc6decee214f919023.js" integrity="sha512-WIxuUcF1iIdJOeXAaMEux5eDiFgaDznOdxPbaGCFhUq0pr2osxC8VfkIPKt5ZIaVjJ41jzDEYbxt7O4hT5GQIw=="></script>
 
@@ -398,7 +398,7 @@
         max-width: 100%;
         max-height: 100%;
     }
-    
+
     leaflet-tooltip-box {
         border: 1px solid
     }
@@ -407,21 +407,21 @@
 
 <article class="container-fluid" id="skip-header-target">
 
-    <div class="row">
-        <div class="col-md-10 mx-auto mt-4">
-            <nav aria-label="breadcrumb" class="mb-4">
-                <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href=/IndicatorPublic/>Home</a></li>
-                    <li class="breadcrumb-item"><a href=/IndicatorPublic/data-features>Data Features</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Real-Time Air Quality: PM2.5 in NYC</li>
-                </ul>
-            </nav>
-        </div>
-
-    </div>
 
     <div class="row">
-        <div class="col-10 mx-auto">
+        <div class="col-md-10 col-sm-12 mx-auto">
+            <div class="row">
+                <div class="col-12 mt-2 mb-3">
+                    <nav aria-label="breadcrumb">
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href=/IndicatorPublic/>Home</a></li>
+                            <li class="breadcrumb-item"><a href=/IndicatorPublic/data-features>Data Features</a></li>
+                            <li class="breadcrumb-item active d-none d-sm-block" aria-current="page">Real-Time Air Quality: PM2.5 in NYC</li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+
             <h1 class="h2" data-pagefind-weight="10.0">
                 <i class="fas fa-star" aria-hidden="true" style="margin-right: 10px"></i>Real-Time Air Quality: PM2.5 in NYC
             </h1>
@@ -443,15 +443,15 @@
                     <div class="fs-sm asidebox">
                         <h4>About the data</h4>
                         <p>Data are hourly measurements of PM2.5, in micrograms per cubic meter of air (µg/m<sup>3</sup>). External factors can sometimes affect monitor functioning. Data are preliminary and subject to change. Times are in Eastern Standard Time.</p>
-            
+
                         <strong>Street-level monitors</strong>
                         <p>Data come from the <a href="../nyccas">NYC Community Air Survey</a>'s street-level monitors, which measure ground-level exposures. We apply a calibration factor to make our data comparable to DEC data and historical EPA data.</p>
-                        
+
                         <strong>NYS DEC monitors</strong>
-                        <p>We show the average readings from 11 rooftop monitors from the <a href="https://www.dec.ny.gov/index.html">NY State Department of Environmental Conservation (DEC)</a>, which collects data for the Federal Clean Air Act.</p> 
+                        <p>We show the average readings from 11 rooftop monitors from the <a href="https://www.dec.ny.gov/index.html">NY State Department of Environmental Conservation (DEC)</a>, which collects data for the Federal Clean Air Act.</p>
                         <a href="#accordion-01" class="float-right fs-sm">Download archived data.</a>
-            
-                    
+
+
                     </div>
                 </div>
             </div>
@@ -472,12 +472,12 @@
             border-bottom: 1px solid lightgray;
         }
 
-        .table-tight td:nth-child(2) { 
-            text-align: end; 
+        .table-tight td:nth-child(2) {
+            text-align: end;
         }
 
-        .table-tight td:nth-child(3) { 
-            text-align: end; 
+        .table-tight td:nth-child(3) {
+            text-align: end;
         }
 
         .table-tight th {
@@ -536,7 +536,7 @@
 
                         <span class="fs-sm"><span class="font-weight-bold">Hourly PM2.5 (in µg/m<sup>3</sup>)</span> | <span style="color:red">NAAQS&nbsp;24-hour&nbsp;PM2.5&nbsp;standard&nbsp;(35 µg/m<sup>3</sup>)</span></span>
                     </div>
-                
+
                     <div id="vis" style="width: 100%; height: 45vh;" class="mt-2">
                     CHART
                     </div>
@@ -566,7 +566,7 @@
 
                 <p class="fs-md"><strong>Last 24 hours</strong> </p>
                 <p class="fs-md">No value from the <span id="locColor2"><i class="fas fa-square mr-1"></i></span><span id="locationSend2" class="font-weight-bold"></span> monitor. Sometimes monitors go down or have other problems. We only produce average values if there are more than 18 hourly readings over the last 24 hours.</p>
-                
+
             </div>
         </div>
     </div>
@@ -577,15 +577,15 @@
                 <div class="col-md-8 ml-auto">
                     <h3>The Air Quality Index</h3>
                     <p><a href="https://www.airnow.gov/aqi/aqi-basics/">The Air Quality Index is the US Environmental Protection Agency's way of reporting air quality</a>. It reports whether any of five major pollutants (ground-level ozone, fine particles, carbon monoxide, sulfur dioxide and nitrogen dioxide) are at levels that can harm health.             </p>
-        
+
                     <iframe title="AQI" aria-label="Table" id="datawrapper-chart-TyG0B" src="https://datawrapper.dwcdn.net/TyG0B/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="366" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
                     </script>
                 </div>
-        
+
                 <div class="col-md-3 mr-auto">
                     <iframe class="my-2 float-right" title="Example 1" height="340" width="230" src="https://widget.airnow.gov/aq-dial-widget-primary-pollutant/?city=New%20York%20City&state=NY&country=USA&transparent=true" style="border: none; border-radius: 25px;"></iframe>
                 </div>
-        
+
                 <div class="col-11 mx-auto">
                     <div class="row">
                         <div class="col-6">
@@ -608,7 +608,7 @@
                     <h3>Air quality varies because sources vary</h3>
                     <p>In NYC, about 30% of PM2.5 comes from far-away sources like coal-burning power plants
                         in the Midwest. But more than half comes from <b>local sources</b>. </p>
-            
+
                     <div class="card card-left-border shadow-sm mb-4">
                             <div class="card-body">
                                 <h4 class="card-title">
@@ -619,7 +619,7 @@
                                     water. This is one reason we often see more air pollution in the winter. Because of new heating oil regulations, PM2.5 has gone down dramatically, and SO2 levels
                                     are now indetectable. <a href="../nyccas">Read more at
                                         the NYCCAS annual report</a>. </p>
-                
+
                             </div>
                     </div>
 
@@ -631,7 +631,7 @@
                             <p> Industrial areas affect a neighborhood's air quality because of diesel exhaust from
                                 trucks idling and traveling through industrial areas, and from industrial combustion
                                 equipment.</p>
-            
+
 
                         </div>
                 </div>
@@ -639,13 +639,13 @@
                 <div class="card card-left-border shadow-sm mb-4">
                     <div class="card-body">
 
-        
+
                         <h4 class="card-title"> <i class="fas fa-car mr-1" aria-hidden="true"></i>Traffic</h4>
                         <p> Traffic density affects a neighborhood's air quality because engines produce PM2.5,
                             black carbon, and NOx. While electric vehicles help reduce emissions, all vehicles also
                             contribute to PM2.5 through tire wear and braking. Traffic volume is one reason we often
                             see daily spikes in PM2.5 concentration in the mornings and evenings.</p>
-        
+
 
                     </div>
             </div>
@@ -658,50 +658,50 @@
                 </div>
         </div>
                 </div>
-        
+
                 <div class="col-md-6 col-sm-12">
                     <h3>Common patterns in the data</h3>
                     <p>There are several patterns that commonly show up in the data from our air quality monitors. Look at recent data for patterns that indicate:</p>
-                    
+
                     <div class="card card-left-border shadow-sm mb-4">
                             <div class="card-body">
                                 <h4 class="card-title"><i class="fas fa-map-signs mr-1" aria-hidden="true"></i>Spatial differences</h4>
                                 <p>The monitors are in neighborhoods with different emissions sources, so have
                                     different PM2.5 levels. <span style="color:rgb(109, 109, 109)"><b>Midtown</b></span>, which has
                                     the highest traffic density, usually has the most PM2.5. </p>
-            
+
                             </div>
                     </div>
 
                     <div class="card card-left-border shadow-sm mb-4">
                         <div class="card-body">
 
-            
+
                             <h4 class="card-title"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Daily spikes
                             </h4>
                             <p>PM2.5 levels usually rise in the morning as traffic volume increases. These
                                 <em>temporal</em> differences (time spikes) are usually greater than
                                 <em>spatial</em> differences (the differences between neighborhoods). It's very rare for these spikes to exceed the <a href="https://www.epa.gov/criteria-air-pollutants/naaqs-table">National Ambient Air Quality Standard</a> of 35 μg/m<sup>3</sup> for 24 hours.</p>
-            
+
 
                         </div>
                 </div>
 
                 <div class="card card-left-border shadow-sm mb-4">
                     <div class="card-body">
-        
+
                         <h4 class="card-title"> <i class="fas fa-cloud-showers-heavy mr-1" aria-hidden="true"></i>Weather patterns</h4>
                         <p> Weather can trap emissions and cause PM2.5 to build up. Sometimes we see a
                             clear west-to-east pattern in rising PM2.5, as weather
                             patterns moving into NYC traps local emissions. Other times, weather can bring wildfire smoke from far-away fires.</p>
-        
+
 
                     </div>
             </div>
 
             <div class="card card-left-border shadow-sm mb-4">
                 <div class="card-body">
-    
+
                     <h4 class="card-title"><i class="fas fa-exclamation-triangle mr-1" aria-hidden="true"></i>Other spikes</h4>
                     <p>Sometimes there are dramatic, short-term spikes
                         at unexpected times, and without having a camera on each monitor, we don't
@@ -710,7 +710,7 @@
                 </div>
         </div>
                 </div>
-        
+
             </div>
 
             <div class="row my-4">
@@ -718,13 +718,13 @@
                     <div class="accordion-group my-3" role="tablist" id="accordion-01">
 
                         <div class="card">
-                    
+
                             <a class="card-header h4 collapse collapsed" id="acc-button-01" data-toggle="collapse" href="#panel-acc-button-01"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-01">
                                 <span class="title" role="heading" aria-level="3">Data archive</span>
                             </a>
-                    
+
                             <div class="collapse" id="panel-acc-button-01" role="tabpanel" aria-labelledby="acc-button-01" data-parent="#accordion-01">
-                    
+
                                 <div class="card-body bg-white border">
                                     <p>To download data, choose the month, year, and data format (JSON or CSV) below.</p>
 <div class="row">
@@ -933,13 +933,13 @@
 <li>6/10/2024: Updated correction factor applied to all current and historical data. Data downloaded before this date may differ slightly from data downloaded after this date.</li>
 </ul>
 </div>
-                    
+
                             </div>
                             
-                    
+
                         </div>
                         
-                    
+
                     </div>
                 </div>
             </div>
@@ -948,7 +948,7 @@
 
     </div>
 
-    
+
 
 
 <div class="modal fade" id="sevenModal" tabindex="-1" role="dialog" aria-labelledby="sevenModalLongTitle" aria-hidden="true">
@@ -961,7 +961,7 @@
           </button>
         </div>
         <div class="modal-body">
-          We can only show you realtime PM<sup>2.5</sup> data for the last 7 days. Please enter a number between 1 and 7. 
+          We can only show you realtime PM<sup>2.5</sup> data for the last 7 days. Please enter a number between 1 and 7.
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

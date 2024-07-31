@@ -73,7 +73,7 @@
 <script src="/IndicatorPublic/node_modules/@fortawesome/fontawesome-free/js/all.min.eac49826a0eb7994591a42776fe61f7610773339ae3fd47b5f5419ea0e5a217851bd1d58fcdfcfe3b8e69e410d9bb60bde8aac988e802be57a003f7db960e723.js" integrity="sha512-6sSYJqDreZRZGkJ3b&#43;YfdhB3MzmuP9R7X1QZ6g5aIXhRvR1Y/N/P47jmnkENm7YL3oqsmI6AK&#43;V6AD99uWDnIw==" crossorigin="anonymous"></script>
 
 
-<link rel="stylesheet" href="/IndicatorPublic/scss/theme.19c3259b5fe18f288d8a64659a3102ad5124211317867fdf2004ceeb06b00d33a3f2d70e439d38b0039a77e963b80695267a8a600ace7127b4d808661a4cd95c.css" integrity="sha512-GcMlm1/hjyiNimRlmjECrVEkIRMXhn/fIATO6wawDTOj8tcOQ504sAOad&#43;ljuAaVJnqKYArOcSe02AhmGkzZXA==" />
+<link rel="stylesheet" href="/IndicatorPublic/scss/theme.c0cd4c56ae670c7d914a525cd261098f672511910b35856c0d0aaee8d1ee8350c1734ef8846cf4ea0c3fdb21d30b75c848a6930d1438ba387ae9288f8e42da86.css" integrity="sha512-wM1MVq5nDH2RSlJc0mEJj2clEZELNYVsDQqu6NHug1DBc074hGz06gw/2yHTC3XISKaTDRQ4ujh66SiPjkLahg==" />
 
 <script src="/IndicatorPublic/node_modules/dompurify/dist/purify.min.8c1d1391305e402f594a406a0e17667d3bf5a9d7db5a9184ef6c89ff4d52aeaea1133648cf6c64cf57b9ee9f5a8bb21e1ccc041bb1e9cc6e8d769b428627f93e.js" integrity="sha512-jB0TkTBeQC9ZSkBqDhdmfTv1qdfbWpGE72yJ/01Srq6hEzZIz2xkz1e57p9ai7IeHMwEG7HpzG6NdptChif5Pg=="></script>
 
@@ -376,11 +376,11 @@
 
 </header>
 <main id="skip-header-target" role="main" data-pagefind-body><article class="container-fluid" id="skip-header-target">
-    <div class="col-md-11 col-sm-12 mx-auto my-4">
-        
+    <div class="col-md-11 col-sm-12 mx-auto mb-4">
+
         <div class="row no-gutters mb-2">
             <div class="col">
-                <nav aria-label="breadcrumb" class="my-3">
+                <nav aria-label="breadcrumb" class="mb-3 mt-2">
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a href=/IndicatorPublic/>Home</a></li>
                         <li class="breadcrumb-item"><a href=/IndicatorPublic/data-explorer>Data Explorer</a></li>
@@ -389,7 +389,7 @@
                 </nav>
             </div>
         </div>
-        
+
         <h1><i class="fas fa-chart-line" aria-hidden="true" style="margin-right: 10px"></i>Data index</h1><p>Search by term, see available years and geographies, and filter by data source.</p>
 
 
@@ -427,14 +427,14 @@
                             <th class="tablehead">Geographies</th>
                             <th class="tablehead">Most recent data</th>
                             <th class="tablehead">Data Source</th>
-                            
+
                         </tr>
                     </thead>
-                    
+
                     <tbody id="tablebody">
-                        
+
                     </tbody>
-                    
+
                 </table>
 
                 <button class="btn btn-sm btn-outline-primary my-2" onclick="tableToCSV()"><i class="fas fa-download mr-1" aria-hidden="true"></i>Download table</button>
@@ -449,18 +449,18 @@
                 </ul>
                 <a href="https://www1.nyc.gov/site/doh/data/data-home.page">Browse all Health Department data resources here</a>.
                 </p>
-                
+
             </div>
-            
+
         </article>
-        
+
         <script>
 
             let indicators;
             let indicatorIndex = []
             let time_periods;
-            
-            
+
+
             
 
             d3.json('https:\/\/raw.githubusercontent.com\/nychealth\/EHDP-data\/production/indicators/metadata/metadata.json')
@@ -479,36 +479,36 @@
                             
 
                             time_periods = tp;
-                                
+
                             loopThroughIndicators() 
-                            
+
                         })
                 });
-            
 
-            
+
+
             
             function loopThroughIndicators() {
 
 
 
                 
-                
+
                 for (let i = 0; i < indicators.length; i++) {  
-                    
+
                     
                     let topics = topicIndicatorsTable.filter(element => element.IndicatorID == indicators[i].IndicatorID);
 
                     
                     
+
                     
-                    
-                    
+
                     let row_i = document.createElement('tr'); 
                     let cell_1 = document.createElement('td') 
+
                     
-                    
-                    
+
                     if (topics.length > 0) {
 
                         cell_1.innerHTML = "<a href='" + "/IndicatorPublic/data-explorer" + "/" + topics[0].topic + "/" + "?id=" + indicators[i].IndicatorID + "'>" + indicators[i].IndicatorName + "</a>"
@@ -518,48 +518,48 @@
                         cell_1.innerHTML = indicators[i].IndicatorName 
 
                     }
-                    
+
                     row_i.appendChild(cell_1); 
-                    
+
                     let measurements = [];
                     let geographies = [];
                     let times = [];
                     let all_years;
                     let maxTime;
                     let sources = [];
+
                     
-                    
-                    
+
                     let cell_2 = document.createElement('td')
-                    
+
                     let st_li = document.createElement('ul');
                     st_li.classList.add('no-bullets')
                     cell_2.appendChild(st_li);
-                    
+
                     
                     for (st = 0; st < topics.length; st++) {
 
                         let li = document.createElement('li');
                         li.innerHTML = "<a href='" + "/IndicatorPublic/data-explorer" + "/" + topics[st].topic + "/'>" + topics[st].topic_name + "</a>"
                         
-        
+
                         st_li.appendChild(li)
                     }
-                    
-                    row_i.appendChild(cell_2);      
-                    
+
+                    row_i.appendChild(cell_2);
+
                     
                     let cell_3 = document.createElement('td')
                     let cell_4 = document.createElement('td')
                     let cell_5 = document.createElement('td')
                     let cell_6 = document.createElement('td')
-                    
+
                     
                     for (let n = 0; n < indicators[i].Measures.length; n++) {
-                        
+
                         
                         measurements.push(indicators[i].Measures[n].MeasurementType)
-                        
+
                         
                         
                         for (let y = 0; y < indicators[i].Measures[n].AvailableGeoTypes.length; y++) {
@@ -570,7 +570,7 @@
                             
 
                         }
-                        
+
                         
                         let AvailableTimePeriodIDs = indicators[i].Measures[n].AvailableTimePeriodIDs;
 
@@ -579,14 +579,14 @@
 
                         
                         times.push(...end_periods);
-                            
+
                         
                         sources.push(indicators[i].Measures[n].Sources)
-                        
+
                     }
+
                     
-                    
-                    
+
                     
                     let unique_measurements = [...new Set(measurements)];
                     let ums = document.createElement('ul')
@@ -597,54 +597,54 @@
                         li.innerHTML = unique_measurements[m]
                         ums.appendChild(li)
                     }
-                    
+
                     row_i.appendChild(cell_3);
-                    
+
                     
 
                     const geos_order = ["Citywide", "Borough", "NYCKIDS2017", "NYCKIDS2019", "NYCKIDS2021", "UHF33", "UHF34", "UHF42", "Subboro", "CD", "CDTA", "NTA2010", "NTA2020"];
                     let unique_geographies = [...new Set(geographies)];
-                    
+
                     
                     unique_geographies.sort(function(a, b){
                         return geos_order.indexOf(a) - geos_order.indexOf(b)
                     });
-                    
+
                     let geobullets = document.createElement('ul')
                     geobullets.classList.add('no-bullets')
                     cell_4.appendChild(geobullets)
-                    
+
                     
 
                     let pretty_unique_geographies = [...new Set(unique_geographies.map(geo => prettifyGeoType(geo)))]
 
                     for (l = 0; l < pretty_unique_geographies.length; l++) {
-                        
+
                         let li = document.createElement('li')
 
                         
                         li.innerHTML = pretty_unique_geographies[l];
                         li.setAttribute("geo", pretty_unique_geographies[l]);
                         li.classList.add("btn", "btn-sm", "geobullets", pretty_unique_geographies[l])
+
                         
-                        
-                        
+
                         li.addEventListener('click', e => {
                             
                             toggle_button(e);
                         });
-                        
+
                         geobullets.appendChild(li);
-                        
+
                     }
-                    
+
                     row_i.appendChild(cell_4)
-                    
+
                     
                     maxTime = new Date(Math.max(...times));
                     cell_5.innerHTML = maxTime.getFullYear();
                     row_i.appendChild(cell_5)
-                    
+
                     
 
 
@@ -659,19 +659,19 @@
                         li.innerHTML = unique_sources[src]
                         usrc.appendChild(li)
                     }
-                    
+
                     row_i.appendChild(cell_6);
+
                     
-                    
-                    document.getElementById('tablebody').appendChild(row_i) 
-                } 
-                
+                    document.getElementById('tablebody').appendChild(row_i)
+                }
+
                 
                 initializeDataTables()
-                
+
             }
-            
-            
+
+
             function initializeDataTables() {
                 let table = new DataTable('#indicators', {
                     
@@ -682,16 +682,16 @@
                     fixedColumns: true
                 });
             }
+
+
             
-            
-            
-            
+
             function geobullet_filter(active_geo) {
+
                 
-                
-                
+
                 $('#indicators').DataTable().column(":contains(Geographies)").search(active_geo.join('|'), true, false, false).draw()
-                
+
                 
 
                 if (active_geo.length > 0) {
@@ -706,56 +706,56 @@
                 }
 
             }
-            
+
             function toggle_button(e) {
-                
+
                 
                 var button = e.target;
-                
+
                 if (button.classList.contains("active") == false) {
                     
+
                     
-                    
-                    
+
                     let geo_buttons = document.querySelectorAll("[geo=" + button.attributes.geo.value + "]");
-                    
+
                     for (let i = 0; i < geo_buttons.length; i++) {
                         geo_buttons[i].classList.add("active");
                     }
-                    
+
                 }
                 else if (button.classList.contains("active") == true) {
                     
-                    
+
                     
                     let geo_buttons = document.querySelectorAll("[geo=" + button.attributes.geo.value + "]");
-                    
+
                     for (let i = 0; i < geo_buttons.length; i++) {
                         geo_buttons[i].classList.remove("active");
                     }
-                    
+
                 }
-                
+
                 let active = document.querySelectorAll("li.active");
                 let active_geos = [];
-                
+
                 for (let i = 0; i < active.length; i++) {
-                    
+
                     if (typeof active[i].attributes.geo != "undefined") {
-                        
+
                         active_geos.push(active[i].attributes.geo.value);
-                        
+
                     }
                 }
-                
+
                 let active_geographies = [...new Set(active_geos)];
-                
+
                 geobullet_filter(active_geographies);
-                
+
             }
+
             
-            
-            
+
             const prettifyGeoType = (GeoType) => {
 
                 switch (GeoType) {
@@ -786,34 +786,34 @@
 
             
             function tableToCSV() {
- 
+
                 
                 let csv_data = [];
-             
+
                 
                 let rows = document.getElementsByTagName('tr');
                 for (let i = 0; i < rows.length; i++) {
-             
+
                     
                     let cols = rows[i].querySelectorAll('td,th');
-             
+
                     
                     let csvrow = [];
                     for (let j = 0; j < cols.length; j++) {
-             
+
                         
                         
                         let string = `"` + removeTags(cols[j].innerHTML) + `"`
 
                         csvrow.push(string); 
                     }
-             
+
                     
                     csv_data.push(csvrow.join(","));
                 }
                 
                 csv_data = csv_data.join('\n');
-             
+
                  
                 
                 downloadCSVFile(csv_data);
@@ -821,30 +821,30 @@
 
             
             function downloadCSVFile(csv_data) {
- 
+
                 
                 
                 CSVFile = new Blob([csv_data], { type: "text/csv" });
-             
+
                 
                 
                 let temp_link = document.createElement('a');
-             
+
                 
                 temp_link.download = "EHDP-data-index.csv";
                 let url = window.URL.createObjectURL(CSVFile);
                 temp_link.href = url;
-             
+
                 
                 temp_link.style.display = "none";
                 document.body.appendChild(temp_link);
-             
+
                 
                 temp_link.click();
                 document.body.removeChild(temp_link);
             }
 
-               
+
             function removeTags(str) {
                 if ((str === null) || (str === ''))
                     return false;
@@ -870,7 +870,7 @@
                 for (let i = 0; i < indicators.length; i++) {
 
                     for (let j = 0; j < indicators[i].Measures.length; j ++) {
-                        
+
                         var measure = {};
                         measure.indicatorName    = indicators[i].IndicatorName
                         measure.indicatorID      = indicators[i].IndicatorID
@@ -879,12 +879,12 @@
                         measure.measureID        = indicators[i].Measures[j].MeasureID
                         measure.measurementType  = indicators[i].Measures[j].MeasurementType
                         measure.displayType      = indicators[i].Measures[j].DisplayType
-                        
+
                         object.push(measure)
                     }
 
                 }
-    
+
                 console.log(object)
             }
 
@@ -907,7 +907,7 @@
                             var indicator = {}
                             indicator.indicatorName    = indicators[i].IndicatorName
                             indicator.indicatorID      = indicators[i].IndicatorID
-    
+
                             noMapObject.push(indicator)
                         } else {}
 
@@ -922,14 +922,14 @@
                 
                 for (let i = 0; i < indicators.length; i++) {
                     var thisIndicator = [];
+
                     
-                    
-                    for (let j = 0; j < indicators[i].Measures.length; j ++) { 
+                    for (let j = 0; j < indicators[i].Measures.length; j ++) {
                         
                         var thisMeasure = {};
                         if (indicators[i].Measures[j].VisOptions[0].Map[0].GeoType != null) {thisMeasure.map = 1} else {thisMeasure.map = 0}
                         if (indicators[i].Measures[j].VisOptions[0].Trend[0].GeoType != null) {thisMeasure.trend = 1} else {thisMeasure.trend = 0}
-                            let links; 
+                            let links;
                             let disparities;
                             if (indicators[i].Measures[j].VisOptions[0].Links[0].Measures[0].MeasureID != null) {links = 1} else {links = 0}
                             if (indicators[i].Measures[j].VisOptions[0].Links[0].Disparities == 1) {disparities = 1} else {disparities = 0}
@@ -973,7 +973,7 @@
                 for (let i = 0; i < indicators.length; i++) {
 
                     for (let j = 0; j < indicators[i].Measures.length; j ++) {
-                        
+
                         var measure = {};
                         measure.indicatorName    = indicators[i].IndicatorName
                         measure.indicatorID      = indicators[i].IndicatorID
@@ -995,15 +995,15 @@
                         
 
 
-                        
+
                         mvs.push(measure)
                     }
 
                 }
-    
+
                 console.log(mvs)
             }
-            
+
         </script><ul id="results"></ul>
   </main>
   
