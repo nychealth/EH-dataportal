@@ -9,17 +9,17 @@ tags:
 categories: ["housing", "pests"]
 keywords: ["mice", "rats", "rodents", "pests", "housing"]
 indicators:
-- header: null
-  IndicatorID:
-  - 2434
-  - 2433
-  - 24
-  - 2394
-  - 48
-  - 2416
+  - header: null
+    IndicatorID:
+      - 2434
+      - 2433
+      - 24
+      - 2394
+      - 48
+      - 2416
 ---
 
-Rats and mice are common, but preventable. In NYC, rats tend to be seen on streets and sidewalks, and in yards and basements, while mice are almost always found inside homes.
+Rats and mice are common, but preventable. In NYC, rats tend to be seen on streets, alleys and sidewalks, and in yards and basements, while mice are almost always found inside homes.
 
 Rats and mice thrive where there are sources of food and shelter and where property owners fail to prevent and adequately respond to their presence.
 
@@ -33,12 +33,16 @@ Simple steps can be taken to prevent mice and rats both inside and outside:
 
 - Report evidence of, or conditions that attract rats and mice to property owners.
 
-- Keep food sealed tightly and remove garbage and clutter from your home.
+- Clean up. Garbage and clutter give rats and mice a place to eat and nest.
 
-- Keep yards and outdoor areas trimmed to avoid creating a harbor for mice and rats.
+- Store all your food and food waste in hard side containers with tight fitting lids whether it’s inside or outside of the building.
+
+- Seal up cracks and holes in your building or apartment to prevent the free movement of rats and mice.
+
+- Keep yards and outdoor areas trimmed and free of clutter to avoid creating a harbor for rats.
 
 Visit this resource to learn more about managing mice and rats: <a href="www.nyc.gov/rats">www.nyc.gov/rats.</a>
 
 ### Key Messages
 
-Beginning in 2008, the Department of Health began to systematically and pro-actively evaluate the presence of rats in Bronx neighborhoods in a program referred to as "rat indexing." By rapidly notifying property owners, providing detailed advice on how to improve conditions, and by engaging the public, the Department now encourages whole blocks and neighborhoods to simultaneously concentrate their resources to maximize the effect of extermination and cleanup efforts.
+The NYC Health Department uses an inspection technique called “rat indexing” to proactively evaluate the presence of rats in NYC neighborhoods. Rat indexing allows the Department to assess entire neighborhoods for their rat activity and rapidly notify property owners of conditions found on their properties. Both private properties and public properties receive detailed advice on what conditions were found and how to improve them. By engaging the public, the Department encourages whole blocks and neighborhoods to simultaneously concentrate their resources to maximize the effect of neighborhood level extermination and cleanup efforts. Free training is provided to property owners, managers, and city agency staff. Visit www.nyc.gov/rats to learn more.
