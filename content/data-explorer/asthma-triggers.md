@@ -2,6 +2,7 @@
 title: Asthma triggers at home
 date: 2021-05-28 18:02:58.817845
 draft: false
+azlink: "https://www.nyc.gov/site/doh/health/health-topics/asthma.page"
 seo_title: "Data on asthma triggers in NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
 description: "Datasets and visualizations of asthma trigger data in NYC."
@@ -22,14 +23,14 @@ keywords:
     "childhood asthma",
   ]
 indicators:
-- header: Asthma triggers
-  IndicatorID:
-  - 107
-  - 2101
-  - 2393
-  - 2394
-  - 48
-  - 2430
+  - header: Asthma triggers
+    IndicatorID:
+      - 107
+      - 2101
+      - 2393
+      - 2394
+      - 48
+      - 2430
 ---
 
 Housing conditions can trigger asthma. In New York City, childhood asthma is a significant health threat that affects thousands of children per year.

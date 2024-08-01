@@ -2,6 +2,7 @@
 title: Cigarette smoke
 date: 2021-05-28 18:02:58.768736
 draft: false
+azlink: "https://www.nyc.gov/site/doh/health/health-topics/smoking-smoke-free-housing.page"
 seo_title: "Cigarette smoking data for NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
 description: "Datasets and visualizations of cigarette smoking data in NYC."
@@ -19,21 +20,21 @@ keywords:
     "children",
   ]
 indicators:
-- header: null
-  IndicatorID:
-  - 2338
-  - 2020
-  - 2017
-  - 2421
-- header: Smoking
-  IndicatorID:
-  - 2019
-  - 2021
-- header: Asthma triggers
-  IndicatorID: 
-  - 2422
-  - 2404
-  - 25
+  - header: null
+    IndicatorID:
+      - 2338
+      - 2020
+      - 2017
+      - 2421
+  - header: Smoking
+    IndicatorID:
+      - 2019
+      - 2021
+  - header: Asthma triggers
+    IndicatorID:
+      - 2422
+      - 2404
+      - 25
 ---
 
 Smoking causes over a dozen cancers, heart disease, stroke, type 2 diabetes and many other diseases; it remains a leading cause of death in New York City (NYC). On average, people who do not smoke live about 10 years longer than people who do.
