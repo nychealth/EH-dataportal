@@ -2,7 +2,7 @@
 title: Transportation-related injuries
 date: 2021-05-28 18:02:58.745496
 draft: false
-azlink: "https://www.nyc.gov/site/doh/health/health-topics/active-design.page"
+azlink: "https://www.nyc.gov/site/doh/data/data-sets/traffic-injuries.page"
 seo_title: "Transportation-related injury data for NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
 description: "Datasets and visualizations of transportation-related injuries in NYC."
