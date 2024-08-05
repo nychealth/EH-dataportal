@@ -4,7 +4,7 @@
 
     <div class="col-lg-10 col-md-12 mx-auto">
         <div class="row">
-            <div class="col-md-10 col-sm-12 mt-2 mb-3">
+            <div class="col-md-10 col-sm-12 mt-4 my-2">
                 <nav aria-label="breadcrumb" class="">
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
@@ -36,7 +36,7 @@
                     <!-- Recently updated data -->
                     <p class="home-label"><i class="fas fa-table mr-1" aria-hidden="true"></i>Recently updated datasets:</p>
                     {{ range .Site.Data.recently_updated_data.featured}}
-                    <a href="{{ relURL .link }}" class="btn btn-outline-primary mr-1 mb-1 btn-sm">{{ .copy }}</a>
+                    <a href="{{ relURL .link }}" class="btn btn-outline-primary mr-1 mb-1 btn-sm">{{ .copy }}</a> 
                     {{ end }}
                 </div>
 
@@ -50,12 +50,12 @@
                 </div>
 
             </div>
-
+            
         </div>
 
         <div class="row mt-2">
             <div class="col-12">
-                <p class="text-info font-weight-bold">Browse:</p>
+                <p class="text-info font-weight-bold">Or, browse by category and topic:</p>
                 {{ partial "de-chooser-accordion.html" (dict "layout" "double" "context" .)  }}
 
             </div>
@@ -78,7 +78,7 @@
     </div>
 
     </div>
-
+    
 </article>
 
 {{ end }}
