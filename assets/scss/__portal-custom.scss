@@ -244,11 +244,7 @@
     background-color: $breadcrumb-bg;
     @include border-radius($border-radius);
     font-size: 1rem;
-    line-height: 1.25px;
-    @include media-breakpoint-up(md) {
-        font-size: 1.0625rem;
-        line-height: 1.3rem;
-    }
+    line-height: 1.25rem;
 }
 
 .breadcrumb-item {
