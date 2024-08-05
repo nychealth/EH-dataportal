@@ -4,7 +4,7 @@
 
     <div class="col-lg-10 col-md-12 mx-auto">
         <div class="row">
-            <div class="col-md-10 col-sm-12 mt-4 my-2">
+            <div class="col-md-10 col-sm-12 mt-2 mb-3">
                 <nav aria-label="breadcrumb" class="">
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
@@ -22,63 +22,48 @@
         </div>
 
         <div class="row mt-2">
-            <div class="col-md-7 col-sm-12">
+            <div class="col-md-8 col-sm-12 pr-md-6">
+
                 {{ .Content }}
+
+                {{ $src := .Resources.GetMatch .Params.image }}
+                {{ with $src }}
+                {{ $image := .Resize "1200x" }}
+                    <img class="block mt-2 mb-3" src="{{ $image.RelPermalink }}" width="{{ $image.Width }}" height="{{ $image.Height }}" alt="">
+                {{ end }}
 
                 {{- partial "de-topic-indicators.html" . -}}
 
-                <div class="my-3">
-                    <p class="text-info font-weight-bold">Search datasets:</p>
-                    {{- partial "de-text-search.html" . -}}
+                <p class="h4 mb-3 font-weight-bold">Find Datasets by Topic</p>
+                <div class="mb-3">
+                    {{ partial "de-chooser-accordion.html" (dict "layout" "double" "context" .)  }}
                 </div>
+            </div>
 
-                <div class="l-green-border p-1">
-                    <!-- Recently updated data -->
-                    <p class="home-label"><i class="fas fa-table mr-1" aria-hidden="true"></i>Recently updated datasets:</p>
-                    {{ range .Site.Data.recently_updated_data.featured}}
-                    <a href="{{ relURL .link }}" class="btn btn-outline-primary mr-1 mb-1 btn-sm">{{ .copy }}</a> 
-                    {{ end }}
+            <div class="col-md-4 col-sm-12 pl-md-3 mb-5">
+
+                <!-- Recently updated data -->
+                <h3 class="h4 mb-1 pb-1">Recently Updated Datasets</h3>
+                {{ range .Site.Data.recently_updated_data.featured}}
+                <div class=" mb-1 pt-1 border-top font-weight-bold">
+                    <a href="{{ relURL .link }}" class="px-2 d-inline-block">{{ .copy }}</a>
                 </div>
+                {{ end }}
 
+                <h3 class="h4 mb-1 pb-1 mt-5">Browse Datasets Directly</h3>
 
-            </div>
+                <p class="mb-1 pt-1 border-top px-2"><a class="font-weight-bold" href="#">Browse Dataset Index</a> - Search by term, see available years and geographies, and filter by data source.</p>
 
-            <div class="col-md-5 col-sm-12">
-
-                <div class="card-content mb-4">
-                    <img class="card-img-top cardshadow" src={{ relURL "images/home-sample-image-DE-5.png" }}>
-                </div>
-
-            </div>
-            
-        </div>
-
-        <div class="row mt-2">
-            <div class="col-12">
-                <p class="text-info font-weight-bold">Or, browse by category and topic:</p>
-                {{ partial "de-chooser-accordion.html" (dict "layout" "double" "context" .)  }}
+                <p class="mb-1 pt-1 border-top px-2"><a class="font-weight-bold" href="#">Browse a Catalog of Our Indicators</a> - Search by term, get metadata and download links.</p>
 
             </div>
 
-        </div>
-
-        <hr class="my-4">
-
-        <div class="row my-4 l-green-border">
-            <div class="col-12 mb-2">
-                <p class="fs-lg text-info font-weight-bold"><i class="fas fa-exclamation-circle mr-1"></i><em>Can't find what you're looking for?</em></p>
-            </div>
-
-            <div class="col-md-6">
-                <p><a class="font-weight-bold" href='{{ relURL "data-explorer/data-index/" }}'>Browse an index of our datasets</a>: Search by term, see available years and geographies, and filter by data source.</p>
-                <p><a class="font-weight-bold" href='{{ relURL "data-explorer/indicator-catalog/" }}'>Browse a catalog of our indicators</a>: Search by term, get metadata and download links.</p>
-            </div>
         </div>
 
     </div>
 
     </div>
-    
+
 </article>
 
 {{ end }}
