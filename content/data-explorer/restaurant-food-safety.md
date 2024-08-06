@@ -2,6 +2,7 @@
 title: Restaurant food safety
 date: 2021-05-28 18:02:58.806398
 draft: false
+azlink: "https://www.nyc.gov/site/doh/health/health-topics/food-and-restaurants.page"
 seo_title: "Restaurant food safety data for NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
 description: "Datasets and visualizations of restaurant food safety in NYC."

@@ -295,6 +295,10 @@
                     <div class="tab-pane fade" id="tab-02-b" aria-labelledby="tab-btn-02-b" role="tabpanel">
                         <div class="p-1 overflow-fade-about topic-text mb-1">
                             {{ .Content  }}
+                            <hr class="my-2">
+                            {{ with .Params.azlink }}
+                            <a href="{{ . }}"><i class="fas fa-external-link-alt mr-1" aria-hidden="true"></i>Get more resources about {{ lower $.Title }}</a>.
+                            {{ end }}
                         </div>
                     </div>
 
@@ -633,6 +637,10 @@
                 </div>
                 <div class="modal-body">
                     {{ .Content }}
+                    <hr class="my-2">
+                    {{ with .Params.azlink }}
+                    <a href="{{ . }}"><i class="fas fa-external-link-alt mr-1" aria-hidden="true"></i>Get more resources about {{ lower $.Title }}</a>.
+                    {{ end }}
                 </div>
                 <div class="modal-footer" data-pagefind-ignore="all">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
