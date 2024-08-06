@@ -7,8 +7,6 @@ seo_description: "A data story on how racist housing practices harm health."
 tags:
 categories: ["housing","social","childhealth","healthoutcomes","neighborhoods"]
 keywords: ["poverty","asthma","injustice","housing","social determinants","redlining","disinvestment","racism","renting","pests","maintenance","maintenance deficiencies"]
-image: ds-povasthma.jpg
-layout: advanced
 image: ds-housing.jpeg
 vega: true
 ---
@@ -20,8 +18,7 @@ What determines whether or not you’re healthy? You may think about what you ea
         class="badge badge-pill badge-success">how your home affects your health</a>
     - and you may not think about the factors that influence where you live.
 </p>
-<div class="collapse fs-sm py-2 px-2 mb-2" id="healthcollapse"
-    style="background-color: #f9f9f9;">
+<div class="asidebox collapse fs-sm m-2" id="healthcollapse">
     <P>For a home to be healthy, it should be free of:
     <ul>
         <li>Cracks</li>
@@ -58,8 +55,7 @@ Throughout history, many different practices have shaped racial and residential 
     color-coded maps to guide loans to potential home buyers in cities across the
     U.S.
 
-<div class="collapse fs-sm py-2 px-2 mb-2" id="holccollapse"
-    style="background-color: #f9f9f9;">
+<div class="asidebox collapse fs-sm m-2" id="holccollapse">
     <p>In the 1930s, the Great Depression caused a wave of foreclosures throughout
         the country. Unemployment rates were high and many people couldn't make
         mortgage payments. To help keep people in their homes, the federal
@@ -94,7 +90,11 @@ On these color-coded maps, neighborhoods were divided into 4 categories:
 This classification was clearly rooted in racism, since neighborhood descriptions included statements like:
 
 {{< rawhtml >}}
-<div class="dsquote my-2 py-2"><em>"Detrimental influences: Infiltration of Negroes. Mixed races."</em></div>
+<div class="card card-left-border shadow-sm m-2">
+    <div class="card-body">
+        <p><em>"Detrimental influences: Infiltration of Negroes. Mixed races."</em></p>
+    </div>
+  </div>
 {{< /rawhtml >}}
 
 The government denied loans to Black and Latino people trying to buy homes in redlined neighborhoods. Instead, these resources went to new White-only suburban communities.
@@ -105,7 +105,7 @@ The map below shows how New York City's neighborhoods were categorized.
 </div>
 <div class="wide my-4">
 <div class="py-0 mb-4">
-    <iframe src="/maps/HOLC_map/HOLC_map.html" scrolling="no" frameborder="0"
+    <iframe src="{{< baseurl >}}maps/HOLC_map/HOLC_map.html" scrolling="no" frameborder="0"
         style="position: relative; height: 600px; width: 100%;"></iframe>
 </div>
 </div>
@@ -163,14 +163,17 @@ Since homeownership is an important way to accrue wealth, redlining drove econom
 Today, housing advocates say that some landlords continue discriminatory practices, describing one landlord’s behavior this way:
 
 {{< rawhtml >}}
-<div class="dsquote my-2 py-2"><em>“This landlord has a pattern of buying old, worn
+<div class="card card-left-border shadow-sm m-2">
+    <div class="card-body">
+        <p><em>“This landlord has a pattern of buying old, worn
 out buildings in working class neighborhoods of color; letting the
 apartments of long-term tenants fall into disrepair; and making them wait
 months for low-quality repairs. Many tenants also say that this landlord
-gives preferential treatment to new tenants.” </em> </div>
-<div class="text-right mb-3">-from the <a
+gives preferential treatment to new tenants.” </em><br> -from the <a
 href="https://www.worstevictorsnyc.org/evictors-list/">Right to Counsel NYC
-Coalition: Worst Evictor's List</a></div>
+Coalition: Worst Evictor's List</a></p>
+    </div>
+  </div>
 {{< /rawhtml >}}
 
 These practices continue a legacy of housing racism, maintain residential segregation and, over time, result in **disinvestment**: when neighborhoods are deprived of resources that their residents need for health and opportunity.
@@ -480,44 +483,50 @@ But a poorly maintained, unhealthy home can’t provide a truly safe haven. Inst
 
 ***So how can we create a city in which race - and racism - doesn't determine whether you have an opportunity to stay healthy?***
 
-{{< rawhtml >}}
-<div class="greyblock">
-{{< /rawhtml >}}
+
 {{< figure src="h1.jpeg" alt="Workers work on a building.">}}
-Policymakers and community advocates can support racial justice initiatives:
-- Invest in neighborhoods harmed by a history of structural racism. [Promote economic and educational equity and support Where We Live initiatives](https://wherewelive.cityofnewyork.us/).
-- Support Department of Housing Preservation and Development initiatives aimed at rehabilitating older housing.
-{{< rawhtml >}}
-</div>
+<div class="card card-left-border shadow-sm mb-4">
+    <div class="card-body">
+        <p>Policymakers and community advocates can support racial justice initiatives:</p>
+<ul>
+<li>Invest in neighborhoods harmed by a history of structural racism. <a href="https://wherewelive.cityofnewyork.us/">Promote economic and educational equity and support Where We Live initiatives</a>.</li>
+<li>Support Department of Housing Preservation and Development initiatives aimed at rehabilitating older housing.
+</ul></p>
+    </div>
+  </div>
 
-<div class="greyblock">
-{{< /rawhtml >}}
+
+
 {{< figure src="h2.jpeg" alt="A New York City residential street.">}}
-
-Tenants and homeowners can tap into systems that are here to support you.
-- Report maintenance problems to your building's management. [If your building manager doesn't address issues, call 311 to file a landlord maintenance complaint](https://www1.nyc.gov/nyc-resources/service/1950/residential-maintenance-complaint).
-- Get help if you need it: If you have been diagnosed with asthma and live in a home with mice or cockroaches, [you may be eligible for a free home assessment by the Health Department’s Healthy Neighborhoods Program](https://www1.nyc.gov/site/doh/health/health-topics/healthy-neighborhoods-asthma-triggers.page).
-- [Take action for fair housing with Where We Live](https://wherewelive.cityofnewyork.us/).
-{{< rawhtml >}}
-</div>
-
-<div class="greyblock">
-{{< /rawhtml >}}
-
+<div class="card card-left-border shadow-sm mb-4">
+    <div class="card-body">
+        <p>Tenants and homeowners can tap into systems that are here to support you.</p>
+        <ul>
+        <li>Report maintenance problems to your building&rsquo;s management. <a href="https://www1.nyc.gov/nyc-resources/service/1950/residential-maintenance-complaint">If your building manager doesn&rsquo;t address issues, call 311 to file a landlord maintenance complaint</a>.</li>
+        <li>Get help if you need it: If you have been diagnosed with asthma and live in a home with mice or cockroaches, <a href="https://www1.nyc.gov/site/doh/health/health-topics/healthy-neighborhoods-asthma-triggers.page">you may be eligible for a free home assessment by the Health Department’s Healthy Neighborhoods Program</a>.</li>
+        <li><a href="https://wherewelive.cityofnewyork.us/">Take action for fair housing with Where We Live</a>.
+    </div>
+  </div>
 
 {{< figure src="h3.jpeg" alt="A New York City apartment building.">}}
-Building owners and landlords should keep apartments safe and sanitary – it’s the law.
-- Promptly fix problems that tenants report.
-- Get rid of pests and mold, seal cracks, fix leaks, and improve garbage management.
-- Hire a good pest management professional that uses integrated pest management (IPM). [For information on how to safely manage pests, see the Health Department’s IPM toolkit](https://www1.nyc.gov/assets/doh/downloads/pdf/pesticide/ipm-toolkit.pdf).
-{{< rawhtml >}}
-</div>
-{{< /rawhtml >}}
+<div class="card card-left-border shadow-sm mb-4">
+    <div class="card-body">
+        <p>Building owners and landlords should keep apartments safe and sanitary – it’s the law.</p>
+        <ul>
+        <li>Promptly fix problems that tenants report.</li>
+        <li>Get rid of pests and mold, seal cracks, fix leaks, and improve garbage management.</li>
+        <li>Hire a good pest management professional that uses integrated pest management (IPM). <a href="https://www1.nyc.gov/assets/doh/downloads/pdf/pesticide/ipm-toolkit.pdf">For information on how to safely manage pests, see the Health Department’s IPM toolkit</a>.
+    </div>
+  </div>
 
-#### Get the data
+<div class="asidebox">
+
+<strong>Get the data</strong>
 - Data on housing maintenance conditions come from the [2017 Housing and Vancancy Survey](https://www.census.gov/programs-surveys/nychvs.html).
 - [Data on childhood asthma emergency department visits]({{< baseurl >}}data-explorer/asthma/?id=2383) come from the New York State Statewide Planning and Research Cooperative System (SPARCS) Deidentified Hospital Discharge Data.
 - [Data on the race/ethnicity of people by neighborhood]({{< baseurl >}}data-explorer/social-conditions/?id=2325) come from the American Community Survey.
+
+</div>
 
 
 

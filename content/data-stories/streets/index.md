@@ -1,5 +1,6 @@
 ---
 title: "Environments matter: the road to street safety in NYC"
+shortTitle: "Street safety"
 date: 2020-09-20T10:54:51-04:00
 draft: false
 seo_title: "The road to street safety in NYC"

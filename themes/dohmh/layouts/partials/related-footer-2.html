@@ -1,70 +1,70 @@
-<section class="related-reading">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="card bg-white text-green mb-2 p-2 text-primary fs-lg">
-                   <strong class="border-bottom">Related content</strong>
+<section class="related-reading" data-pagefind-ignore="all">
+  <div class="container">
+      <div class="row">
+          <div class="col-12">
+              <div class="card bg-white text-green mb-2 p-2 text-primary fs-lg">
+                 <strong class="border-bottom">Related content</strong>
+              </div>
+          </div>
+
+          <div class="col-lg">
+              <div class="card bg-white text-black mb-2">
+                <div class="card-header"><h4 class="fs-md text-muted"><i class="fas fa-passport text-muted mr-1" aria-hidden="true"></i>Data Stories</h4>
                 </div>
+                <div class="card-body fs-sm overflow-fade-about" style="height:400px; overflow-y:scroll;">
+                  {{- partial "related" (dict "section" "data-stories" "layout" "singlelist" "content" . ) -}}
+                </div>
+              </div>
             </div>
+            <!-- .col for city -->
 
             <div class="col-lg">
+              <div class="card bg-white text-black mb-2">
+                  <div class="card-header"><h4 class="fs-md text-muted"><i class="fas fa-star text-muted mr-1" aria-hidden="true"></i>Key Topics</h4>
+
+                  </div>
+                  <div class="card-body fs-sm">
+                      <!--sets variables-->
+                      {{- $page_link := .RelPermalink -}}
+                      {{- $cats := .Params.categories -}}
+
+                      {{- range where (where .Site.Pages "Section" "key-topics") ".File.BaseFileName" "_index" -}}
+                      <!--$page equals values we find when ranging through-->
+                      {{- $page := . -}}
+
+                      <!--set variable equal to intersection of categories: page that we're on, and pages we ranged through-->
+                      {{- $has_common_cats := intersect $cats .Params.categories | len | lt 0 -}}
+
+                      <!--Show commonalities, except for page we're on -->
+                      {{- if and $has_common_cats (ne $page_link $page.RelPermalink) -}}
+                      <a href="{{ $page.RelPermalink }}">{{ $page.Title }}</a>
+                      <hr class="my-1">
+                      {{- end -}}
+                      {{- end -}}
+                  </div>
+                </div>
+
                 <div class="card bg-white text-black mb-2">
-                  <div class="card-header"><h4 class="fs-md text-muted"><i class="fas fa-passport text-muted mr-1" aria-hidden="true"></i>Data Stories</h4>
+                  <div class="card-header"><h4 class="fs-md text-muted"><i class="fas fa-map-marked-alt text-muted mr-1" aria-hidden="true"></i>Neighborhood Reports</h4>
                   </div>
-                  <div class="card-body fs-sm overflow-fade-about" style="height:400px; overflow-y:scroll;">
-                    {{- partial "related" (dict "section" "data-stories" "layout" "singlelist" "content" . ) -}}
+                  <div class="card-body fs-sm">
+                      {{- partial "related" (dict "section" "neighborhood-reports" "layout" "singlelist" "content" . ) -}}
+
                   </div>
                 </div>
-              </div>
-              <!-- .col for city -->
-        
-              <div class="col-lg">
-                <div class="card bg-white text-black mb-2">
-                    <div class="card-header"><h4 class="fs-md text-muted"><i class="fas fa-star text-muted mr-1" aria-hidden="true"></i>Key Topics</h4>
+            </div>
+            <!-- .col for you -->
 
-                    </div>
-                    <div class="card-body fs-sm">
-                        <!--sets variables-->
-                        {{- $page_link := .RelPermalink -}}
-                        {{- $cats := .Params.categories -}}
-
-                        {{- range where (where .Site.Pages "Section" "key-topics") ".File.BaseFileName" "_index" -}}
-                        <!--$page equals values we find when ranging through-->
-                        {{- $page := . -}}
-
-                        <!--set variable equal to intersection of categories: page that we're on, and pages we ranged through-->
-                        {{- $has_common_cats := intersect $cats .Params.categories | len | lt 0 -}}
-
-                        <!--Show commonalities, except for page we're on -->
-                        {{- if and $has_common_cats (ne $page_link $page.RelPermalink) -}}
-                        <a href="{{ $page.RelPermalink }}">{{ $page.Title }}</a>
-                        <hr class="my-1">
-                        {{- end -}} 
-                        {{- end -}}
-                    </div>
-                  </div>
-
-                  <div class="card bg-white text-black mb-2">
-                    <div class="card-header"><h4 class="fs-md text-muted"><i class="fas fa-map-marked-alt text-muted mr-1" aria-hidden="true"></i>Neighborhood Reports</h4>
-                    </div>
-                    <div class="card-body fs-sm">
-                        {{- partial "related" (dict "section" "neighborhood-reports" "layout" "singlelist" "content" . ) -}}
-
-                    </div>
-                  </div>
-              </div>
-              <!-- .col for you -->
-        
-              <div class="col-lg">
-                <div class="card bg-white text-black">
-                  <div class="card-header"><h4 class="fs-md text-muted"><i class="fas fa-chart-line text-muted mr-1" aria-hidden="true"></i>Data Explorer</h4>
-                  </div>
-                  <div class="card-body fs-sm overflow-fade-about" style="height:400px; overflow-y:scroll;">
-                    {{- partial "related" (dict "section" "data-explorer" "layout" "singlelist" "content" . ) -}}
+            <div class="col-lg">
+              <div class="card bg-white text-black">
+                <div class="card-header"><h4 class="fs-md text-muted"><i class="fas fa-chart-line text-muted mr-1" aria-hidden="true"></i>Data Explorer</h4>
                 </div>
-                </div>
+                <div class="card-body fs-sm overflow-fade-about" style="height:400px; overflow-y:scroll;">
+                  {{- partial "related" (dict "section" "data-explorer" "layout" "singlelist" "content" . ) -}}
               </div>
-              <!-- .col for data -->
-        </div>
-    </div>
+              </div>
+            </div>
+            <!-- .col for data -->
+      </div>
+  </div>
 </section>

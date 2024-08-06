@@ -2,16 +2,18 @@
 title: Vector-borne disease
 date: 2021-05-28 18:02:58.809035
 draft: false
+azlink: "https://www.nyc.gov/site/doh/health/health-topics/west-nile-virus.page"
 seo_title: "Vector-borne disease data for NYC"
-seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods.."
-tags: 
-categories: ["pests","climatehealth","healthoutcomes"]
-keywords: ["ticks","lyme disease","lyme","disease","climate change"]
+seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
+description: "Datasets and visualizations of vector-borne disease in NYC."
+tags:
+categories: ["pests", "climatehealth", "healthoutcomes"]
+keywords: ["ticks", "lyme disease", "lyme", "disease", "climate change"]
 indicators:
-- header: null
-  IndicatorID:
-  - 2218
-  - 2340
+  - header: null
+    IndicatorID:
+      - 2218
+      - 2340
 ---
 
 Vectorborne diseases are diseases that are transmitted from an arthropod (usually a tick or mosquito, etc.) to humans or other animals. Some vectorborne disease agents are maintained primarily through transmission between arthropods and humans (e.g., dengue virus and malaria), while others are maintained between arthropods and animal reservoirs (e.g., Lyme disease and West Nile virus) and humans may become infected incidentally.

@@ -1,0 +1,289 @@
+{{- define "main" -}}
+
+<article class="container-fluid" id="skip-header-target">
+
+    <div class="row">
+        <div class="col-md-11 mx-auto mt-2">
+            <nav aria-label="breadcrumb" class="mb-4">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="/key-topics/">Key Topics</a></li>
+                    <li class="breadcrumb-item"><a href="/key-topics/climatehealth/">Climate and Health</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
+                </ul>
+            </nav>
+        </div>
+        <div class="col-md-2 mr-auto"></div>
+    </div>
+
+    <div class="row">
+              <div class="col-md-11 col-sm-12 mx-auto">
+                <h1 class="h2" data-pagefind-weight="10.0">
+                  <i class="fas fa-star" aria-hidden="true" style="margin-right: 10px"></i>{{ .Title }}
+                </h1>
+        </div>
+
+
+    </div>
+
+    <div class="row mt-2">
+        <div class="col-11 mx-auto">
+          <div class="row" style="background-color:#f3f3f3; border-radius: 5px; padding: 5px;">
+            <div class="col-6">
+            <button class="btn btn-primary btn-sm" onclick="time(`dayofyear`)" id="dayBtn">Daily</button>
+            <button class="btn btn-outline-primary btn-sm" onclick="time(`month`)" id="monthBtn">Monthly</button> <br>
+            <button class="btn btn-outline-secondary btn-sm mt-1" id="smoothBtn" onclick="smooth(1)">7-day average</button>
+
+
+            </div>
+            <div class="col-6 ml-auto">
+            <button class="btn btn-outline-primary btn-sm float-right" onclick="toggle(1)" id="toggle">Hide previous years</button><br>
+            <div class="float-right mt-1" id="prevYears">
+            <button class="btn btn-sm" disabled>Highlight:</button>
+            <button class="btn btn-outline-secondary btn-sm yearbtn" id="2016btn" onclick="changeYear(2016)">2016</button>
+            <button class="btn btn-outline-secondary btn-sm yearbtn" id="2017btn" onclick="changeYear(2017)">2017</button>
+            <button class="btn btn-outline-secondary btn-sm yearbtn" id="2018btn" onclick="changeYear(2018)">2018</button>
+            <button class="btn btn-outline-secondary btn-sm yearbtn" id="2019btn" onclick="changeYear(2019)">2019</button>
+            <button class="btn btn-outline-secondary btn-sm yearbtn" id="2020btn" onclick="changeYear(2020)">2020</button>
+            <button class="btn btn-outline-secondary btn-sm yearbtn" id="2021btn" onclick="changeYear(2021)">2021</button>
+            <button class="btn btn-outline-secondary btn-sm yearbtn" id="2022btn" onclick="changeYear(2022)">2022</button>
+            <button class="btn btn-secondary btn-sm yearbtn" id="2023btn" onclick="changeYear(2023)">2023</button>
+            </div>
+            </div>
+
+          </div>
+
+            <div id="chartContainer py-1 my-1">
+            <em class="pl-2 fs-sm" style="clear:both">Emergency department visits for asthma in NYC</em>
+            <div id="vis1" class="chartdest" style="width:100%;"></div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-11 mx-auto">
+            <div class="row" data-pagefind-weight="7.0">
+                <div class="col-md-6">
+                    <div class="border p-2">
+                        <strong>About the data</strong>
+                        <p>Asthma syndrome is identified in emergency department visit data by looking for chief complaints (descriptions of why patients are at the ED) that mention mention of asthma, wheezing, airway, or chronic obstructive pulmonary disorder (COPD).</p>
+                        <p>A syndrome is a group of signs (something a health care provider can observe) and symptoms (something a patient feels) that are often associated with a particular disease or condition (it's not the same as a medical diagnosis).</p>
+                        <hr class="my-2">
+                        <strong>What we see in real-time emergency department data</strong>
+                        <p><strong>Seasonal patterns</strong>: Asthma emergency departments are highest in the spring, and in the fall - coinciding with periods of high pollen counts. </p>
+
+                        <p><strong>Annual changes</strong>: Asthma ED visits fell in 2020 as the city implemented NY PAUSE, and many people didn't seek care for various health issues like asthma. Since 2020, asthma ED visits have not increased to pre-pandemic levels. </p>
+
+                        <p><strong>Short-term spikes</strong>: External factors can cause spikes of asthma ED visits. For example, the wildfire smoke in June 2023 lead to an increase in asthma ED visits comparable to spikes during pollen peaks. </p>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="border p-2">
+                        <strong>About asthma</strong>
+                        {{ .Content }}
+
+                        <a class="btn btn-sm btn-outline-primary btn-block my-1" href="/data-explorer/asthma/?id=2380#display=summary"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>More asthma data</a>
+
+                        <a class="btn btn-sm btn-outline-primary btn-block my-1" href="https://a816-health.nyc.gov/hdi/epiquery/visualizations?PageType=ps&PopulationSource=Syndromic"><i class="fas fa-external-link-alt mr-1" aria-hidden="true"></i>Explore more syndromic data on EpiQuery</a>
+                    </div>
+                </div>
+
+
+              </div>
+
+
+        </div>
+    </div>
+
+    <script type="text/javascript">
+
+
+        const spec = {
+          "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+          "width": "container",
+          "height": 400,
+          "description": "Google's stock price over time.",
+          "config": {
+            "background": "#FFFFFF",
+            "axisX": {
+                "labelAngle": 0,
+                "labelOverlap": "parity",
+                "labelFontSize": 11,
+                "titleFontSize": 13,
+                "titleFont": "sans-serif",
+                "titlePadding": 10,
+                "grid": false
+            },
+
+            "axisY": {
+                "labelAngle": 0,
+                "labelFontSize": 11
+            },
+            "view": {"stroke": "transparent"},
+            "line": {"color": "#1696d2", "stroke": "#1696d2", "strokeWidth": 2.5},
+
+            "point": {"filled": true},
+            "text": {
+                "color": "#1696d2",
+                "fontSize": 11,
+                "fontWeight": 400,
+                "size": 11
+            }
+        },
+          "data": {
+            "url": "asthma-syndrome-counts.csv"
+            // "url": "https://gist.githubusercontent.com/mmontesanonyc/cc5c74d6c0c208daa867f3bcd3914a8c/raw/3e1ff605ad5aa7420ed8aedcbc198c5b394057a6/asthma-counts-working.csv"
+          },
+        "transform":[
+            {"calculate": "year(datum.Date)", "as": "year"},
+            {"window": [{"field": "Count", "op": "mean", "as": "rollingAverage"}], "frame": [0, 6]},
+            {"filter": "datum.Date > 1451624399000"}
+        ],
+          "mark": {"type": "line", "tooltip": true, "interpolate": "monotone"},
+          "encoding": {
+            "x": {
+              "timeUnit": "dayofyear",
+              "field": "Date",
+              "type":"temporal",
+              "title": null,
+              "axis": {"labelExpr": "[timeFormat(datum.value, '%-b %-d')]"}
+              },
+            "y": {"aggregate": "sum", "field": "Count","type":"quantitative","title": ""},
+            "color": {
+              "field": "year",
+              "type": "nominal",
+              "legend": null,
+              "scale": {
+                "range":["grey","grey","grey","grey","grey","grey","grey","#12135b"]
+              }
+            },
+            "opacity": {
+                "condition": {
+                      "test": "datum.year === 2023",
+                      "value": 1
+                    },
+                  "value": 0.25
+                }
+          }
+        }
+
+        var changeSpec = spec
+
+
+
+        vegaEmbed("#vis1", spec);
+
+        var smoothCount = 0
+        function smooth(x) {
+            changeSpec = spec
+            smoothCount = smoothCount + 1
+            if (smoothCount % 2 == 0) {
+                changeSpec.encoding.y.field = 'Count'
+                document.getElementById('smoothBtn').classList.remove('btn-secondary')
+                document.getElementById('smoothBtn').classList.add('btn-outline-secondary')
+
+            } else {
+                changeSpec.encoding.y.field = 'rollingAverage'
+                document.getElementById('smoothBtn').classList.add('btn-secondary')
+                document.getElementById('smoothBtn').classList.remove('btn-outline-secondary')
+            }
+            vegaEmbed("#vis1", changeSpec);
+        }
+
+        function smoothed(x) {
+          changeSpec = spec
+          changeSpec.encoding.y.field = x
+          vegaEmbed("#vis1", changeSpec);
+
+          if (x == 'Count') {
+            document.getElementById('countBtn').classList.add('active')
+            document.getElementById('raBtn').classList.remove('active')
+          } else {
+            document.getElementById('countBtn').classList.remove('active')
+            document.getElementById('raBtn').classList.add('active')
+          }
+        }
+
+        function time(y) {
+          changeSpec.encoding.x.timeUnit = y
+          vegaEmbed("#vis1", changeSpec);
+
+          if (y == 'dayofyear') {
+            document.getElementById('dayBtn').classList.add('btn-primary')
+            document.getElementById('dayBtn').classList.remove('btn-outline-primary')
+            document.getElementById('monthBtn').classList.remove('btn-primary')
+            document.getElementById('monthBtn').classList.add('btn-outline-primary')
+            document.getElementById('smoothBtn').classList.remove('hide')
+            document.getElementById('smoothBtn').classList.remove('btn-secondary')
+            document.getElementById('smoothBtn').classList.add('btn-outline-secondary')
+          } else {
+            changeSpec.encoding.y.field = 'Count'
+            document.getElementById('dayBtn').classList.remove('btn-primary')
+            document.getElementById('dayBtn').classList.add('btn-outline-primary')
+            document.getElementById('monthBtn').classList.add('btn-primary')
+            document.getElementById('monthBtn').classList.remove('btn-outline-primary')
+            document.getElementById('smoothBtn').classList.add('hide')
+
+          }
+        }
+
+// #00FFFFFF
+
+        var count = 0
+        function toggle(x) {
+          count = count + x
+          if (count % 2 == 0) {
+            // changeSpec.transform[2].filter = `datum.Date > 1451624400000`;
+            changeSpec.encoding.color.scale.range = ["grey","grey","grey","grey","grey","grey","grey","#12135b"]
+            document.getElementById('toggle').innerHTML = 'Hide previous years'
+
+          } else {
+            document.getElementById('toggle').innerHTML = 'Show previous years'
+            changeSpec.encoding.color.scale.range = ["#FFFFFF00","#FFFFFF00","#FFFFFF00","#FFFFFF00","#FFFFFF00","#FFFFFF00","#FFFFFF00","#12135b"]
+
+            // changeSpec.transform[2].filter = `datum.Date > 1672549200000`
+          };
+          console.log(changeSpec)
+          vegaEmbed("#vis1", changeSpec);
+        }
+
+      function changeYear(x) {
+        var chosenYear = x
+        var indexPos = x - 2016
+        var colors = ["grey","grey","grey","grey","grey","grey","grey","grey"]
+        colors[indexPos] = "#12135b"
+        changeSpec.encoding.color.scale.range = colors
+        changeSpec.encoding.opacity.condition.test = `datum.year === ${x}`
+        vegaEmbed("#vis1", changeSpec);
+
+        var yearButtons = document.getElementsByClassName('yearbtn')
+        for (var i = 0; i < yearButtons.length; i++) {
+          yearButtons[i].classList.remove('btn-secondary')
+          yearButtons[i].classList.add('btn-outline-secondary')
+        }
+
+        var buttonIndex = 0 - indexPos
+        yearButtons[indexPos].classList.remove('btn-outline-secondary')
+        yearButtons[indexPos].classList.add('btn-secondary')
+      }
+
+
+        </script>
+
+<!--
+var myFunction = function() {
+    var attribute = this.getAttribute("data-myattribute");
+    alert(attribute);
+};
+
+for (var i = 0; i < elements.length; i++) {
+    elements[i].addEventListener('click', myFunction, false);
+}
+-->
+
+
+</article>
+
+{{- end -}}

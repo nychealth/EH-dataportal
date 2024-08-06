@@ -20,6 +20,7 @@
     "git-removed-branches": "^2.0.1",
     "grunt": "^1.6.1",
     "grunt-cli": "^1.4.3",
+    "hugo": "0.0.3",
     "jquery-flexdatalist": "^2.3.0",
     "jszip": "^3.10.1",
     "leaflet": "^1.9.3",

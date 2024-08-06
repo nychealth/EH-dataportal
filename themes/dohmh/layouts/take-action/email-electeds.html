@@ -4,19 +4,19 @@
 
 <article class="container-fluid overflow-hidden" id="primary-content">
 
-  <div class="row my-4">
+  <div class="row mb-4">
     <div class="col-md-12 mx-auto">
       <!--start main column-->
 
-      <nav aria-label="breadcrumb" class="mb-2">
+      <nav aria-label="breadcrumb" class="my-2">
         <ul class="breadcrumb mr-auto">
             <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
             <li class="breadcrumb-item"><a href="..">
               {{- with .Parent -}} {{ .Title }} </a></li>{{- end -}}
             <li class="breadcrumb-item active">{{ .Title }}</li>
-        </ul>                
+        </ul>
     </nav>
-    
+
       <div class="row border-bottom py-2">
         <div class="col-12">
           <h1>{{- .Title -}}</h1>
@@ -182,7 +182,7 @@
         </div>
       </div>
 
-    
+
     <div class="row my-4 sr-only">
       <div class="col-md-4 mx-auto">
 
@@ -193,7 +193,7 @@
       </div>
     </div>
 
-    <div class="row my-4 hide" id="contactContainer">
+    <div class="row my-4 hide" id="contactContainer" data-pagefind-ignore="all">
       <div class="col-5 ml-auto">
         <h3 id="tips"><i class="fas fa-envelope-open-text mr-1"></i>Email tips</h3>
         <p>Here are some tips for writing an effective email, or script for a phone call.</p>
@@ -201,7 +201,7 @@
         <p><strong>State your concerns.</strong> For example: <em>"Our neighborhood's rates of childhood asthma are among the highest in the city."</em></p>
 
         <p><strong>Tell your story:</strong> Offer some brief detail on how you see this environmental health issue affecting you and the people you know. For example: <em>"Last year, my daughter was diagnosed with asthma, and this issue is a challenge for our whole family."</em></p>
-        
+
         <p><strong>Cite data:</strong> For example: <em>"According to data on housing conditions, 75% of renters' households in our neighborhood have maintenance problems that threaten health. (NYC Environment and Health Data Portal: https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/housing-maintenance/?id=2399#display=map)" </em></p>
 
         <p><strong>Make a request:</strong> You can ask them where they stand on the issue, what they're doing to improve it, or what services are available to help their constituents.</p>
@@ -226,18 +226,18 @@
       .glow {
         animation: glow 1s infinite alternate;
       }
-      
+
       @keyframes glow {
         from {
-          box-shadow: 0 0 5px -5px #00923E;
+          box-shadow: 0 0 5px -5px #008939;
         }
         to {
-          box-shadow: 0 0 5px 5px #00923E;
+          box-shadow: 0 0 5px 5px #008939;
         }
       }
     </style>
 
-    <div class="row my-4 hide" id="emailContainer">
+    <div class="row my-4 hide" id="emailContainer" data-pagefind-ignore="all">
       <div class="col-md-6">
         <h3 id="tips">Email tips</h3>
         <p>In the box to the right, you can write an email to your elected officials. Here are some tips for writing an effective email/script.</p>
@@ -246,7 +246,7 @@
         <p><strong>State your concerns.</strong> For example: <em>"Our neighborhood's rates of childhood asthma are among the highest in the city."</em></p>
 
         <p><strong>Tell your story:</strong> Offer some brief detail on how you see this environmental health issue affecting you and the people you know. For example: <em>"Last year, my daughter was diagnosed with asthma, and this issue is a challenge for our whole family."</em></p>
-        
+
         <p><strong>Cite data:</strong> For example: <em>"According to data on housing conditions, 75% of renters' households in our neighborhood have maintenance problems that threaten health. (NYC Environment and Health Data Portal: https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/housing-maintenance/?id=2399#display=map)" </em></p>
 
         <p><strong>Make a request:</strong> You can ask them where they stand on the issue, what they're doing to improve it, or what services are available to help their constituents.</p>
@@ -295,12 +295,12 @@
 <script src="https://maps.nyc.gov/nyc-lib/v1.2.79/js/nyc-ol-lib.js"></script>
 
 <script>
-// ********** INITIAL: ********** // 
+// ********** INITIAL: ********** //
 
 // Initialize variables
 var councilTable = [];
 var district;
-var yourDistrict; 
+var yourDistrict;
 var cbTable = [];
 var cbInfo = [];
 var yourCB;
@@ -381,7 +381,7 @@ d3.csv({{ relURL "take-action/communityBoardContacts.csv" }}).then(function(data
 document.getElementById('map-search').addEventListener("change", getData)
 
 
-// ********** INITIAL FUNCTION gets data when event listener (above) detects map change: ********** // 
+// ********** INITIAL FUNCTION gets data when event listener (above) detects map change: ********** //
 
 async function getData() {
 
@@ -410,7 +410,7 @@ async function getData() {
 
     // NEXT STEP: send map.location.name to Google Api
     getFromAPI(setLoc)
-    
+
     // get info from councilTable
     for (let i = 0; i < councilTable.length; i ++) {
       if (Number(councilTable[i].District) === Number(yourDistrict)) {
@@ -435,12 +435,12 @@ async function getData() {
     document.getElementById('cbName').innerHTML = cbInfo.Borough + " CB" + cbInfo.CB
     document.getElementById('cbWebsite').innerHTML =  `<a href="${cbInfo.Website}">Website</a>`
     document.getElementById('cbPhone').innerHTML = cbInfo.Phone
-    document.getElementById('cbEmail').innerHTML = `<a href="mailto:${cbInfo.Email}">${cbInfo.Email}</a>`     
+    document.getElementById('cbEmail').innerHTML = `<a href="mailto:${cbInfo.Email}">${cbInfo.Email}</a>`
 
     var recipient = {};
     recipient.name = districtInfo.CouncilMember
     recipient.area = 'District ' + districtInfo.District
-    recipient.email = `<a href="mailto:${districtInfo.Email}">${districtInfo.Email}</a>`            
+    recipient.email = `<a href="mailto:${districtInfo.Email}">${districtInfo.Email}</a>`
     peopleToEmail.push(recipient)
 
   });
@@ -449,7 +449,7 @@ async function getData() {
 
 
 
-// ********** SECOND FUNCTION passes location into API to get data: ********** // 
+// ********** SECOND FUNCTION passes location into API to get data: ********** //
 
 function getFromAPI(address) {
   // get Boro President
@@ -512,7 +512,7 @@ function printInfoFromApi(prefix, info) {
   document.getElementById(prefix+"Phone").innerHTML = info.phones[0]
 
   if (info.emails) {
-    document.getElementById(prefix+"Email").innerHTML = `<a href="mailto:${info.emails[0]}">${info.emails[0]}</a>`          
+    document.getElementById(prefix+"Email").innerHTML = `<a href="mailto:${info.emails[0]}">${info.emails[0]}</a>`
   } else {
     document.getElementById(prefix+"Email").innerHTML = `<em>No email address found</em>`
   }
@@ -532,13 +532,13 @@ function printEmails() {
     if (checkboxes[i].checked) {
       // get value
       var prefix = checkboxes[i].value[0]+checkboxes[i].value[1]
-      
+
       // use value to get NAME ane EMAIL ADDRESS
       var name = document.getElementById(prefix+'Name').innerHTML
       var emailAddress = document.getElementById(prefix+'Email').innerHTML
 
       var newButton = `<button class="btn btn-sm btn-outline-secondary mr-1 mb-1 emailButton" value="${emailAddress}">${name}</button>`
-      document.getElementById('allEmails').innerHTML += newButton    
+      document.getElementById('allEmails').innerHTML += newButton
     } else {}
   }
 
@@ -564,7 +564,7 @@ function printEmails() {
 
       })
     }
-        
+
 }
 
 function sendEmail(x) {

@@ -2,26 +2,41 @@
 title: Weather-related illness
 date: 2021-05-28 18:02:58.866835
 draft: false
+azlink: "https://www.nyc.gov/site/doh/health/emergency-preparedness/threats.page"
 seo_title: "Weather-related illness data for NYC"
-seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods.."
-tags: 
-categories: ["social","climatehealth","healthoutcomes"]
-keywords: ["weather-related illness","climate change","heat","hot weather","cold weather","cold","mortality","social","hospitalizations","emergency department visits","summer","winter"]
+seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
+description: "Datasets and visualizations of weather-related illness in NYC."
+tags:
+categories: ["social", "climatehealth", "healthoutcomes"]
+keywords:
+  [
+    "weather-related illness",
+    "climate change",
+    "heat",
+    "hot weather",
+    "cold weather",
+    "cold",
+    "mortality",
+    "social",
+    "hospitalizations",
+    "emergency department visits",
+    "summer",
+    "winter",
+  ]
 indicators:
-- header: Cold Stress
-  IndicatorID:
-  - 2376
-  - 2175
-  - 2174
-- header: Heat Stress
-  IndicatorID:
-  - 2410
-  - 2084
-  - 2074
-  - 2075
-  - 2076
-  - 2191
-  - 2411
+  - header: Cold Stress
+    IndicatorID:
+      - 2376
+      - 2175
+      - 2174
+  - header: Heat Stress
+    IndicatorID:
+      - 2084
+      - 2074
+      - 2075
+      - 2076
+      - 2191
+      - 2411
 ---
 
 A region's climate is characterized by its usual weather conditions, seasons, and patterns in extreme weather events such as heat waves, droughts, and hurricanes. New York City (NYC) faces public health risks from extreme weather events such as heat waves and coastal storms. With climate change, the severity of some of these risks will increase. A 2013 New York City Panel on Climate Change (NPCC) report predicts that by the 2020s, average summer temperatures in New York City will increase by 2.0°F to 3.0°F compared to a 1971-2000 baseline. Heat waves will become more frequent, intense, and longer in duration. Rainfall and precipitation are expected to increase, together with another 4-8 inches of sea level rise and increased probability of coastal storms with flooding (NPCC, Climate Risk Information, 2013).
@@ -39,22 +54,25 @@ The Tracking Portal provides data on counts and rates of death, hospital admissi
 The Tracking Portal also provides counts and rates of hospital admission and treatment in an emergency department for cold stress. As with heat stress data, is important to note that cold stress data reflect only a portion of the overall health impact, and does not account for potential increases in hospital visits for other conditions that can be exacerbated by cold exposure (such as cardiovascular and respiratory disease for example).
 
 ### Prevention
-*Air conditioning is the most important way to prevent heat stress and death on hot days.*
 
-* Those most vulnerable to heat stress include older adults and people with health conditions including cardiovascular disease, diabetes, mental illness, or cognitive impairments.
-* Set air conditioners to 78°F or low-cool to provide comfort while not wasting energy.
-* Check on family, friends, and neighbors at-risk and assist them in staying cool and well hydrated.
+_Air conditioning is the most important way to prevent heat stress and death on hot days._
 
-*Living without heat or being outdoors in cold weather for a prolonged time can be dangerous.* 
+- Those most vulnerable to heat stress include older adults and people with health conditions including cardiovascular disease, diabetes, mental illness, or cognitive impairments.
+- Set air conditioners to 78°F or low-cool to provide comfort while not wasting energy.
+- Check on family, friends, and neighbors at-risk and assist them in staying cool and well hydrated.
 
-* Stay indoors as much as possible. When outdoors, wear layers of warm clothing and cover exposed skin.
-* If your home lacks heat, get to a warm place if you can and wear warm clothes. Report loss of heat or hot water to property managers immediately, and call 311.
-* Seniors should take extra care outdoors to avoid slips and falls from icy conditions.
-* [Protect yourself and your family from carbon monoxide (CO) poisoning:](http://www1.nyc.gov/assets/doh/downloads/pdf/public/dohmhnews10-01.pdf)
-+ Make sure your home has a working smoke alarm and CO detector.
-+ If a CO detector goes off in your home, immediately open a nearby window, go outside for fresh air and call 911.
-+ NEVER run a vehicle inside a garage or against a snowbank. Clear snow from your car’s tailpipe before running the engine.
-* Check on neighbors, friends, and relatives.
+_Living without heat or being outdoors in cold weather for a prolonged time can be dangerous._
+
+- Stay indoors as much as possible. When outdoors, wear layers of warm clothing and cover exposed skin.
+- If your home lacks heat, get to a warm place if you can and wear warm clothes. Report loss of heat or hot water to property managers immediately, and call 311.
+- Seniors should take extra care outdoors to avoid slips and falls from icy conditions.
+- [Protect yourself and your family from carbon monoxide (CO) poisoning:](http://www1.nyc.gov/assets/doh/downloads/pdf/public/dohmhnews10-01.pdf)
+
+* Make sure your home has a working smoke alarm and CO detector.
+* If a CO detector goes off in your home, immediately open a nearby window, go outside for fresh air and call 911.
+* NEVER run a vehicle inside a garage or against a snowbank. Clear snow from your car’s tailpipe before running the engine.
+
+- Check on neighbors, friends, and relatives.
 
 For more information on preparing for weather hazards– including heat, cold, coastal storms and power outages – visit the [DOHMH extreme weather website](http://www1.nyc.gov/site/doh/health/emergency-preparedness/threats.page).
 

@@ -1,10 +1,11 @@
 ---
 title: "The Environment and Health Data Portal: Home page"
 draft: false
-seo_title: "Explore data on how environments shape health in New York City's neighborhoods."
-seo_description: "A project by the NYC Health Department."
-featured_title: "Real-Time Air Quality: PM2.5 in NYC"
-featured_text: "Get data on air quality in real time in NYC"
-featured_link: "key-topics/airquality/realtime/"
-featured_image: realtime-screenshot.png
+seo_title: "NYC Environment and Health Data Portal."
+seo_description: "Data on how environments shape health in NYC."
+description: "Data on how environments shape health in NYC."
+featured_title: "Real-time heat illness"
+featured_text: "Daily data on heat-related illnesses."
+featured_link: "data-features/heat-syndrome/"
+featured_image: syndromic.png
 ---

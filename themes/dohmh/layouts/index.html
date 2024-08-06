@@ -1,210 +1,317 @@
 {{ define "main" }}
 
-<article class="container-fluid overflow-hidden" id="primary-content">
-  
-  <div class="row mt-4">
-    <div class="col-lg-8 col-md-12 mb-3">
+<article class="container-fluid p-0 overflow-hidden" id="primary-content">
+  <div class="row no-gutters">
+    <div class="container wide">
+      <div class="py-4 mb-4 border-bottom">
+        <div class="row">
+          <div class="col-md-6 px-20">
+            <div class="row px-2">
+              <h2 class="">Explore your city - through data.</h2>
+              <p class="text-muted my-2">
+                <span class="font-weight-bold">The environment is everything around us</span> - our air and water, the climate, our city's buildings and streets, and the society that we live in:
+              </p>
+            </div>
 
-
-      <div class="card content-card mb-2">
-        <h1 class="fs-lg text-info"><i class="fas fa-star mr-1" aria-hidden="true"></i>Featured:</h1>
-        <a href="{{ relURL .Params.featured_link }}">
-        <div class="card-content">
-          <div style='height: 400px; width: 100%; background-image: url({{ relURL ( urls.JoinPath "images" .Params.featured_image ) }}); background-position: center; background-size: cover;'></div>
-
-        </a> 
-
-        <div class="card-body">
-          <h1 class="card-title text-primary"><a href="{{ relURL .Params.featured_link }}">{{ .Params.featured_title }}</h1>
-          <span class="card-text mt-2">{{ .Params.featured_text }}</span></a>
-          
-        </div>
-        </div>
-
-      </div>
-    </a>
-      
-      
-      <h2 class="fs-lg text-info mt-4 mb-2 border-bottom"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Recently updated data:</h2>
-      
-      {{- range .Site.Data.recently_updated_data.featured -}}
-      <a href="{{ relURL .link }}" class="btn btn-sm btn-outline-primary mr-1 mb-1"><i class="fas fa-table mr-1" aria-hidden="true"></i>{{ .copy }}</a>
-      {{- end -}}
-      
-      <a href={{ relURL "data-explorer" }} class="text-info font-weight-bold ml-1">All&nbsp;data&nbsp;></a>
-      
-    </div>
-    
-    <div class="col-lg-4 card content-card pt-0 h-100">
-      <h2 class="fs-lg text-info"><i class="fas fa-passport mr-1" aria-hidden="true"></i>New data stories:</h2>
-      <div class="card-content mb-4">
-        <div class="card-body">
-          {{- range first 4 ((where .Site.RegularPages "Section" "data-stories")) -}}
-          
-          <div class="row no-gutters mt-2">
-            <div class="col-4 border">
-              {{ $src := .Resources.GetMatch .Params.image }}
-              {{ $image := $src.Resize "740x"}}
-              <a href="{{ .RelPermalink }}">
-                <div style="width:100%; height:100%; background-image: URL({{ $image.RelPermalink }}); background-size: cover; background-position: center center; "></div></a>
+            <div class="row">
+              <div class="col-md-6 px-20">
+                <ul class="list-unstyled font-weight-bold">
+                  <li class="link-w-underline px-0"><a href={{ relURL "key-topics/airquality" }}>Air quality</a></li>
+                  <li class="link-w-underline px-0"><a href={{ relURL "key-topics/climatehealth" }}>Climate</a></li>
+                  <li class="link-w-underline px-0"><a href={{ relURL "key-topics/social" }}>Inequality</a></li>
+                  <li class="link-w-underline px-0"><a href={{ relURL "key-topics/pests" }}>Pests</a></li>
+                </ul>
               </div>
-              
-              <div class="col-8 ml-auto h-100 pl-1 mb-2">
-                <p class="fs-sm"><a class="text-info font-weight-bold" href="{{ .RelPermalink }}">{{ .Title }}</a> {{ .Content | plainify | truncate 100 | htmlUnescape }} </p>
+              <div class="col-md-6 px-20">
+                <ul class="list-unstyled font-weight-bold">
+                  <li class="link-w-underline px-0"><a href={{ relURL "key-topics/transportation" }}>Public space</a></li>
+                  <li class="link-w-underline px-0"><a href={{ relURL "key-topics/housing" }}>Housing</a></li>
+                  <li class="link-w-underline px-0"><a href={{ relURL "key-topics/childhealth" }}>Child health</a></li>
+                  <li class="link-w-underline px-0"><a href={{ relURL "key-topics/foodanddrink" }}>Food and drink</a></li>
+                </ul>
+              </div>
+              <div class="d-flex mt-3 w-100 mb-4 mb-md-0 pl-2">
+                <a class="btn btn-primary" href={{ relURL "key-topics" }}>See all topics<i class="fas fa-arrow-circle-right ml-1" aria-hidden="true"></i></a>
               </div>
             </div>
-            
-            {{- end -}}
-            <hr class="my-2">
-            <a href={{ relURL "data-stories" }} class="text-info font-weight-bold my-1 float-right">All data stories > </a>
-            
+          </div>
+          <div class="col-md-6 px-20">
+            <div class="card content-card">
+              <div class="card-content primary">
+                <div class="position-relative" style='height: 330px; width: 100%; background-image: url({{ relURL ( urls.JoinPath "images" .Params.featured_image ) }}); background-position: center; background-size: cover;'>
+                  <div class="overlay-trends">
+                    <!-- Can use overlay-trends, overlay-map or overlay-topics -->
+                  </div>
+                </div>
+                <div class="card-body">
+                  <h3><a href="{{ relURL .Params.featured_link }}">{{ .Params.featured_title }}</a></h3>
+                  <p>{{ .Params.featured_text }}</p>
+                  <div class="d-flex justify-content-end mb-4 mb-md-0">
+                    <!-- <a class="fs-sm font-weight-bold" href={{ relURL "data-stories" }}>All data stories<i class="fas fa-arrow-circle-right ml-1" aria-hidden="true"></i></a> -->
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-    
-  </div>
-  
-  <div class="row">
-    <div class="col-10 mx-auto">
 
-
-
-
-
-
-      <hr>
-    </div>
-  </div>
-  
-  <div class="row mt-4">
-    <div class="col-md-7 mx-auto">
-      <h2 class="text-info">Explore your city - through data</h2>
-      <p class="text-muted my-2">
-        <span class="text-primary font-weight-bold">The environment is everything around us:</span> our air and water, the climate, our city's buildings and streets, and the society that we live in:
-      </p>
-    </div>
-  </div>
-  
-  <div class="row justify-content-center mx-auto">
-    
-    <a href={{ relURL "key-topics/airquality" }} class="btn btn-outline-light border border-info text-primary mt-1 mx-1 py-2 px-1 col-xl-1 col-sm-4 col-xs-6">Air quality</a> 
-    <a href={{ relURL "key-topics/climatehealth" }} class="btn btn-outline-light border border-info text-primary mt-1 mx-1 py-2 px-1 col-xl-1 col-sm-4 col-xs-6">Climate</a>
-    <a href={{ relURL "key-topics/housing" }} class="btn btn-outline-light  border border-info text-primary mt-1 mx-1 py-2 px-1 col-xl-1 col-sm-4 col-xs-6">Housing</a>
-    <a href={{ relURL "key-topics/transportation" }} class="btn btn-outline-light  border border-info text-primary mt-1 mx-1 py-2 px-1 col-xl-1 col-sm-4 col-xs-6">Public space</a>
-    <a href={{ relURL "key-topics/healthoutcomes" }} class="btn btn-outline-light border border-info text-primary mt-1 mx-1 py-2 px-1 col-xl-1 col-sm-4 col-xs-6">Health</a>
-    <a href={{ relURL "key-topics/social" }} class="btn btn-outline-light border border-info text-primary mt-1 mx-1 py-2 px-1 col-xl-1 col-sm-4 col-xs-6">Inequality</a>
-    
-  </div>
-  
-  <div class="row">
-    <div class="col-md-7 mx-auto">
-      <p class="text-muted mt-3">We collect data from many different sources and put them together to show you how <span class="font-weight-bold text-primary">the environment shapes our health</span>. <a href={{ relURL "key-topics" }} class="text-info font-weight-bold">See all topics</a>.</p>
-      
-    </div>
-  </div>
-  
-  
-  <div class="row mt-4 mb-2 justify-content-center mx-auto">
-    <div class="col-lg-4 col-sm-10 card content-card">
-      <div class="card-content mb-4">
-        <a href={{ relURL "data-stories" }}>
-          <img class="card-img-top" src={{ relURL "images/home-sample-image-datastory.png" }}>
-        </a>
-        <div class="card-body">
-          <h3 class="text-info"><i class="fas fa-passport mr-1" aria-hidden="true"></i>Data stories</h3>
-          <p>Perspectives and explainers on important health issues. <a class="" href={{ relURL "data-stories" }}>All data stories</a>.</p>
-          
-          
-        </div>
-      </div>
-    </div>
-    
-    <div class="col-lg-4 col-sm-10 card content-card">
-      <div class="card-content mb-4">
-        <a href={{ relURL "neighborhood-reports" }}>
-          <img class="card-img-top" src={{ relURL "images/home-sample-image-NR.png" }}>
-        </a>
-        <div class="card-body">
-          <h3 class="text-info"><i class="fas fa-map-marked-alt mr-1" aria-hidden="true"></i>Neighborhood Reports</h3>
-          <p>Search for your neighborhood and get data. <a class="" href={{ relURL "neighborhood-reports" }}>Search here</a>.</p>
-          
-        </div>
-      </div>
-    </div>
-    
-    <div class="col-lg-4 col-sm-10 card content-card">
-      <div class="card-content mb-4">
-        <a href={{ relURL "data-explorer" }}>
-          <img class="card-img-top" src={{ relURL "images/home-sample-image-DE-5.png" }}>
-        </a>
-        <div class="card-body">
-          <h3 class="text-info"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Data Explorer</h3>
-          <p>Maps, trends, tables, and more: get datasets on hundreds of topics. <a class="" href={{ relURL "data-explorer" }}>Get data</a>.</p>
-          
-        </div>
-      </div>
-    </div>
-    
-  </div>
-  
-  
-  <div class="row my-1">
-    <div class="col" style="text-align: center;">
-      <h4 class="text-muted"><i class="fas fa-bullhorn mr-1" aria-hidden="true"></i>Get updates and announcements</h4>
-      <p class="fs-sm">
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfUg3JE5ODNc6aqBPJwM8mZ80TYtK6ISw-OM7PBwKuoN3M--g/viewform?embedded=true">Sign up here</a>
-        
-        <em>We won't share your email address with anybody. </em></p>
-        
-    </div>
-  </div>
-  
-  
-  <div class="row my-4">
-    <div class="col-md-10 mx-auto">
+    <div class="container wide">
       <div class="row">
-        
-        <div class="col-md-4 my-2">
-          <div class="card bg-lightgray mt-1">
-            <div class="card-body">
-              <h5 class="card-title text-muted fs-sm">About us</h5>
-              <p class="fs-sm">Learn more about the Environment & Health Data Portal, and the Health Department team behind it.</p>
-              {{- with .Site.GetPage "about/_index.md" -}}
-              <a href="{{ .RelPermalink }}" class="btn btn-outline-gray btn-block btn-sm mt-2">About
-                Us<i class="fas fa-chevron-circle-right ml-1" aria-hidden="true"></i></a>
+        <div class="col-lg-4 px-20">
+          <h2 class="fs-xl data-stories border-bottom pb-2"><i class="fas fa-passport mr-1" aria-hidden="true"></i>New data stories</h2>
+          <div class="card-content mb-4">
+            <div>
+              {{- range first 3 ((where .Site.RegularPages "Section" "data-stories")) -}}
+
+              <a href="{{ .RelPermalink }}" class="row no-gutters border-bottom py-3">
+                <div class="col-4">
+                  {{ $src := .Resources.GetMatch .Params.image }}
+                  {{ $image := $src.Resize "740x"}}
+                  <img src="{{ $image.RelPermalink }}">
+                </div>
+
+                <div class="col-8 ml-auto h-100 pl-2">
+                  <p class="text-black fs-md"><span class="font-weight-bold">{{ .Title }}</span> {{ .Content | plainify | truncate 100 | htmlUnescape }} </p>
+                </div>
+              </a>
+
                 {{- end -}}
+                <div class="d-flex justify-content-end mt-1 mb-4 mb-md-0">
+                  <a href={{ relURL "data-stories" }} class="font-weight-bold">All data stories <i class="fas fa-arrow-circle-right ml-1" aria-hidden="true"></i></a>
+                </div>
             </div>
           </div>
         </div>
-          
-        <div class="col-md-4 my-2">
-          <div class="card bg-lightgray mt-1">
-            <div class="card-body">
-              <h5 class="card-title text-muted fs-sm">Visit our Github repo</h5>
-              <p class="fs-sm">Found a bug? Know code? Visit our Github repo to get code, file an issue, or download data.</p>
-              <a href="https://www.github.com/nychealth/EH-dataportal" class="btn btn-outline-gray btn-block btn-sm mt-2">Github<i class="fas fa-chevron-circle-right ml-1" aria-hidden="true"></i></a>
-              
+        <div class="col-lg-4 px-20">
+
+          <h2 class="fs-xl data-explorer border-bottom pb-2"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Recently updated data</h2>
+
+          {{- range .Site.Data.recently_updated_data.featured -}}
+          <div class="link-w-underline">
+            <a href="{{ relURL .link }}">{{ .copy }}</a>
+          </div>
+          {{- end -}}
+
+          <div class="d-flex justify-content-end mt-1 mb-4">
+            <a class="font-weight-bold" href={{ relURL "data-explorer" }}>All data <i class="fas fa-arrow-circle-right ml-1" aria-hidden="true"></i></a>
+          </div>
+
+
+        </div>
+        <div class="col-lg-4 px-20">
+          <div class="shadow-sm mb-3 p-3 card-left-border">
+            <div class="row no-gutters">
+              <div class="col-11">
+                <h3 class="text-black fs-xl pr-2 mb-2">Get updates and announcements</h3>
+              </div>
+              <div class="col-1">
+                <i class="fas fa-bullhorn h2 text-primary" aria-hidden="true"></i>
+              </div>
+            </div>
+            <p class="text-black mb-4"><a class="font-weight-bold" href="https://forms.gle/qcQvmLUWvBwjkFMRA" target="_blank">Sign up here!</a> We won't share your email address.</p>
+          </div>
+
+          <div class="shadow-sm mb-3 p-3 card-left-border">
+            <div class="row no-gutters">
+              <div class="col-11">
+                <h3 class="text-black fs-xl pr-2 mb-2">Find what you need</h3>
+              </div>
+              <div class="col-1">
+                <i class="fas fa-search h2 text-primary" aria-hidden="true"></i>
+
+              </div>
+            </div>
+            <button type="button" class="btn btn-primary btn-block mt-1" data-toggle="modal" data-target="#searchModal" class="btn nav-item-search d-none d-lg-block" title="Search">
+              <i class="fas fa-search mr-1" aria-hidden="true"></i>Search the site
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container wide">
+      <div class="row">
+        <div class="col-12 mb-2">
+          <h3>Tools</h3>
+        </div>
+
+        <div class="col-lg-3 col-sm-6">
+          <div class="card content-card">
+            <div class="card-content data-stories mb-4">
+              <a class="position-relative" href={{ relURL "data-stories" }}>
+                <div class="tab-data-stories h-100 w-100 position-absolute"></div>
+                <img class="card-img-top" src={{ relURL "images/image_tab_data_stories.jpg" }}>
+              </a>
+              <div class="card-body">
+                <h3 class="card-title">Data stories</h3>
+                <p>Explainers on important health issues.</p>
+                <div class="d-flex justify-content-end">
+                  <a class="fs-sm font-weight-bold" href={{ relURL "data-stories" }}>All data stories<i class="fas fa-arrow-circle-right ml-1" aria-hidden="true"></i></a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-          
-        <div class="col-md-4 my-2">
-          <div class="card bg-lightgray mt-1">
-            <div class="card-body">
-              <h5 class="card-title text-muted fs-sm">Join our team</h5>
-              <p class="fs-sm">Passionate about health, environmental justice, and technology? Check out our open positions.</p>
-              {{- with .Site.GetPage "about/jobs.md" -}}
-              <a href="{{ .RelPermalink }}" class="btn btn-outline-gray btn-block btn-sm mt-2">Jobs<i class="fas fa-chevron-circle-right ml-1" aria-hidden="true"></i></a>
-              {{- end -}}
+
+        <div class="col-lg-3 col-sm-6">
+          <div class="card content-card">
+            <div class="card-content data-features mb-4">
+              <a class="position-relative" href={{ relURL "data-features" }}>
+                <div class="tab-data-features h-100 w-100 position-absolute"></div>
+                <img class="card-img-top" src={{ relURL "images/image_key_topics.jpg" }}>
+              </a>
+              <div class="card-body">
+                <h3 class="card-title">Data Features</h3>
+                <p>Custom interactives, dashboards and reports.</p>
+                <div class="d-flex justify-content-end">
+                  <a class="fs-sm font-weight-bold" href={{ relURL "data-features" }}>Get data <i class="fas fa-arrow-circle-right ml-1" aria-hidden="true"></i></a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-        
+
+        <div class="col-lg-3 col-sm-6">
+          <div class="card content-card">
+            <div class="card-content n-reports mb-4">
+              <a class="position-relative" href={{ relURL "neighborhood-reports" }}>
+                <div class="tab-neighborhood-reports h-100 w-100 position-absolute"></div>
+                <img class="card-img-top" src={{ relURL "images/image_tab_neighborhood_reports.jpg" }}>
+              </a>
+              <div class="card-body">
+                <h3 class="card-title">Neighborhood Reports</h3>
+                <p>Data on key neighborhood issues.</p>
+                <div class="d-flex justify-content-end">
+                  <a class="fs-sm font-weight-bold" href={{ relURL "neighborhood-reports" }}>Search here <i class="fas fa-arrow-circle-right ml-1" aria-hidden="true"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+        <div class="col-lg-3 col-sm-6">
+          <div class="card content-card">
+            <div class="card-content data-explorer mb-4">
+              <a class="position-relative" href={{ relURL "data-explorer" }}>
+                <div class="tab-data-explorer h-100 w-100 position-absolute"></div>
+                <img class="card-img-top" src={{ relURL "images/image_tab_key_topics.jpg" }}>
+              </a>
+              <div class="card-body">
+                <h3 class="card-title">Data Explorer</h3>
+                <p>Maps, trends, tables, and more: hundreds of datasets.</p>
+                <div class="d-flex justify-content-end">
+                  <a class="fs-sm font-weight-bold" href={{ relURL "data-explorer" }}>Get data <i class="fas fa-arrow-circle-right ml-1" aria-hidden="true"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="mt-4 py-4 w-100" style="background-color: #EEEDEA;">
+      <div class="container wide">
+        <div class="row">
+          <div class="col-md-11 mx-auto">
+            <div class="row">
+              <div class="col-md-4 my-2">
+                <div class="card card-left-border shadow-sm h-100">
+                  <div class="card-body">
+                    <h5 class="card-title fs-sm mb-1">About us</h5>
+                    <p class="fs-sm flex-grow-1">Learn more about the Environment & Health Data Portal, and the Health Department team behind it.</p>
+                    {{- with .Site.GetPage "about/_index.md" -}}
+                      <div class="d-flex justify-content-end">
+                        <a class="fs-sm font-weight-bold" href="{{ .RelPermalink }}">About Us<i class="fas fa-arrow-circle-right ml-1" aria-hidden="true"></i></a>
+                      </div>
+                      {{- end -}}
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4 my-2">
+                <div class="card card-left-border shadow-sm h-100">
+                  <div class="card-body">
+                    <h5 class="card-title fs-sm mb-1">Visit our Github repo</h5>
+                    <p class="fs-sm flex-grow-1">Found a bug? Know code? Visit our Github repo to get code, file an issue, or download data.</p>
+                    <div class="d-flex justify-content-end">
+                      <a class="fs-sm font-weight-bold" href="https://www.github.com/nychealth/EH-dataportal">Github<i class="fas fa-arrow-circle-right ml-1" aria-hidden="true"></i></a>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4 my-2">
+                <div class="card card-left-border shadow-sm h-100">
+                  <div class="card-body">
+                    <h5 class="card-title fs-sm mb-1">Join our team</h5>
+                    <p class="fs-sm flex-grow-1">Passionate about health, environmental justice, and technology? Check out our open positions.</p>
+                    {{- with .Site.GetPage "about/jobs.md" -}}
+                      <div class="d-flex justify-content-end">
+                        <a href="{{ .RelPermalink }}" class="fs-sm font-weight-bold">Jobs <i class="fas fa-arrow-circle-right ml-1" aria-hidden="true"></i></a>
+                      </div>
+                    {{- end -}}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-  
+
+
+
+  <!-- Invisible button to trigger modal -->
+  <button id="openModalBtn" type="button" class="btn btn-primary hide" data-toggle="modal" data-target="#wxModal">Open Modal</button>
+
+  <div class="modal" tabindex="-1" role="dialog" id="wxModal">
+    <div class='modal-dialog modal-lg modal-dialog-centered' role='document'>
+        <div class='modal-content'>
+            <div class='modal-body'>
+              <p><span class="font-weight-bold">It's hot! The forecast high is <span id="forecasthigh" style="background-color:red;font-weight:bold;" class="p-1 text-white">XX</span></span>. Get resources on heat and health:
+                <ul>
+                  <li><a href={{ relURL "data-features/heat-syndrome" }}>Realtime heat illness data</a></li>
+                  <li><a href={{ relURL "data-features/hvi" }}>The Heat Vulnerability Index</a></li>
+                  <li><a href={{ relURL "key-topics/climatehealth" }}>All Climate and Health data and resources</a> </li>
+                </ul>
+              </p>
+            </div>
+            <hr>
+            <button type="button" class="btn btn-outline-primary close-dialog" data-dismiss="modal">Close</button>
+        </div>
+    </div>
+</div>
+
+  <!-- Invisible button to trigger modal -->
+  <button id="openModalBtn2" type="button" class="btn btn-primary hide" data-toggle="modal" data-target="#aqiModal">Open Modal</button>
+
+<div class="modal" tabindex="-1" role="dialog" id="aqiModal">
+  <div class='modal-dialog modal-lg modal-dialog-centered' role='document'>
+      <div class='modal-content'>
+          <div class='modal-body'>
+              <p><span class="font-weight-bold">Today's air quality is <span id="aqimeaning" class="p-1">AQI interpretation</span></span>. Get data on air quality:
+                <ul>
+                  <li><a href={{ relURL "data-features/realtime-air-quality" }}>Realtime air quality</a></li>
+                  <li><a href={{ relURL "data-features/neighborhood-air-quality" }}>Your neighborhood's air quality</a></li>
+                  <li><a href={{ relURL "key-topics/airquality" }}>All Air Quality data and resources</a></li>
+                </ul>
+              </p>
+          </div>
+          <hr>
+          <button type="button" class="btn btn-outline-primary close-dialog" data-dismiss="modal">Close</button>
+      </div>
+  </div>
+</div>
+
+
+
 </article>
 
 {{- end -}}
@@ -219,5 +326,94 @@
 {{- $js := resources.Get "js/uhflist.js" -}}
 {{ $secureJS := $js | resources.Fingerprint "sha512" }}
 <script type="text/javascript" src="{{ $secureJS.RelPermalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
+
+<script>
+
+  function initialize() {
+    // Get weather API to retrieve forecast high
+    fetch('https://api.weatherapi.com/v1/forecast.json?key=0d4a042ad8ec468da7b135156231711&q=NYC&days=1&aqi=yes&alerts=no')
+      .then(response => {return response.json()})
+      .then(data => {
+      // console.log(data)
+      console.log('forecast high: ' + data.forecast.forecastday[0].day.maxtemp_f)
+
+      if (data.forecast.forecastday[0].day.maxtemp_f > 90) {
+          console.log('forecast max is: ' + data.forecast.forecastday[0].day.maxtemp_f)
+          fireHeatModal(data.forecast.forecastday[0].day.maxtemp_f)
+          document.getElementById('forecasthigh').innerHTML = data.forecast.forecastday[0].day.maxtemp_f + '°F'
+      } else {}
+
+    })
+
+    // get AQI API to retrieve forecast AQI
+    fetch('https://www.airnowapi.org/aq/observation/zipCode/current/?format=application/json&zipCode=10013&distance=25&API_KEY=B34C7BA1-26C7-4DD2-9B1C-AAFD7AF4F12F')
+    .then(response => {return response.json()})
+    .then(data => {
+      // console.log(data) 
+      var aqi1 = data[0].Category.Number
+      var aqi2 = data[1].Category.Number
+      var aqi
+
+      aqi1 >= aqi2 ? (aqi = aqi1) : (aqi = aqi2)
+
+      console.log('aqi: ' + aqi)
+
+      aqi > 2 ? fireAQmodal(aqi) : {}
+
+    });
+
+  };
+
+  function fireHeatModal(x) {
+      var button = document.getElementById('openModalBtn');
+      button.addEventListener('click', function() {
+          console.log('heat modal fired. forecast high: ' + x);
+      });
+  
+      button.click();
+
+  }
+
+  function fireAQmodal(aqi) {
+    var button = document.getElementById('openModalBtn2')
+    button.addEventListener('click', function() {
+      console.log('aq modal fired. aqi: ', aqi)
+    });
+
+    // style the AQI modal
+    var aqiMeaning = document.getElementById('aqimeaning')
+    var aqiInterpretation; 
+    if (aqi == '1') {
+      aqiInterpretation = 'Good'
+      aqiMeaning.style['background-color'] = '#00E400'
+    } else if (aqi == '2') {
+      aqiInterpretation = 'Moderate'
+      aqiMeaning.style['background-color'] = '#FFFF00'
+    } else if (aqi == '3') {
+      aqiInterpretation = 'Unhealthy for sensitive groups'
+      aqiMeaning.style['background-color'] = '#FF7E00'
+    } else if (aqi == '4') {
+      aqiInterpretation = 'Unhealthy'
+      aqiMeaning.style['background-color'] = '#FF0000'
+      aqiMeaning.style.color = 'white'
+    } else if (aqi == '5') {
+      aqiInterpretation = 'Very unhealthy'
+      aqiMeaning.style['background-color'] = '#993399'
+      aqiMeaning.style.color = 'white'
+    } else if (aqi == '6') {
+      aqiInterpretation = 'Hazardous'
+      aqiMeaning.style['background-color'] = '#7E0023'
+      aqiMeaning.style.color = 'white'
+    }
+    aqiMeaning.innerHTML = aqiInterpretation
+
+    button.click();
+  }
+
+  // send it
+  initialize();
+
+
+</script>
 
 {{- end -}}

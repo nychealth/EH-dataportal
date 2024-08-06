@@ -1,15 +1,14 @@
 ---
 title: "Why violence is a public health issue"
+shortTitle: "Violence and public health"
 date: 2021-02-08T08:07:31-04:00
 draft: false
 seo_title: "Why violence is a public health issue"
 seo_description: "A data story on violence, disparities, and real public health justice in NYC."
 categories: ["housing","social","childhealth","healthoutcomes","neighborhoods"]
 keywords: ["violence","assaults","injustice","poverty","social determinants","redlining","disinvestment","racism","neighborhoods"]
-image: ds-povasthma.jpg
 image: ds-violence.jpg
 vega: true
-layout: advanced
 photocredit: "Benjamin Kanter/Mayoral Photography Office"
 ---
 ## Using public health to prevent violence
@@ -79,7 +78,7 @@ A map of recent shootings lines up with the heavily <span style="font-weight: bo
 
 {{< rawhtml >}}
 <div class="my-3">
-<iframe src="HOLC-shootings/map.html" scrolling="no" frameborder="0" style="position: relative; height: 600px; width: 100%;"></iframe>
+<iframe src="../../maps/HOLC-shootings/map.html" scrolling="no" frameborder="0" style="position: relative; height: 600px; width: 100%;"></iframe>
 </div>
 {{< /rawhtml >}}
 
@@ -195,7 +194,11 @@ Another way to compare poverty and violence rates is to rank neighborhoods from 
 
 Below, we can see that <span style="color: #b820bb; font-weight: bold;">Belmont/East Tremont</span> ranks high in both poverty and assaults, while <span style="color: #5c8ea5; font-weight: bold;">Tottenville/Great Kills</span> ranks low for both.
 
-{{< datawrapper title="Poverty and assaults - ranks" src="639n0/1/" height="600" >}}
+<iframe title='Poverty and assaults - ranks' aria-label="Interactive chart" id="datawrapper-chart-O0SUA"
+    src='//datawrapper.dwcdn.net/639n0/1/' scrolling="no" frameborder="0"
+    style="width: 0; min-width: 100% !important; border: none;" height='600'></iframe>
+<script type="text/javascript">!function () { "use strict"; window.addEventListener("message", function (a) { if (void 0 !== a.data["datawrapper-height"]) for (var e in a.data["datawrapper-height"]) { var t = document.getElementById("datawrapper-chart-" + e) || document.querySelector("iframe[src*='" + e + "']"); t && (t.style.height = a.data["datawrapper-height"][e] + "px") } }) }();
+</script>
 
 #### When we add in other risk factors, an even more significant pattern emerges.
 
@@ -279,7 +282,7 @@ line for New York City residents, or <a href="https://www1.nyc.gov/site/ocdv/get
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="dataModalTitle">About the data</h5>
+                <h5 class="modal-title" id="dataModalTitle" data-pagefind-ignore="all">About the data</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

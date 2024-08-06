@@ -1,10 +1,11 @@
 ---
 title: "Neighborhood boundaries on the EH Data Portal"
+shortTitle: "Neighborhood boundaries"
 date: 2020-08-01T08:33:22-04:00
 draft: false
 seo_title: "Neighborhood boundaries in health data"
 seo_description: "A data story on different ways to map health data."
-tags: 
+tags:
 categories: ["internal","neighborhoods"]
 keywords: ["geography","maps","neighborhoods","health data","methods","geographic","how we work"]
 image: ds-geographies.jpg
@@ -22,7 +23,7 @@ The most common neighborhood boundaries on the EH Data Portal are Community Dist
 {{< rawhtml >}}
  </div>
     <!--start wide-->
-    <div class="wide my-4">
+    <div class="wide my-4 chart-wrapper-ds">
         <h4 class="text-center mb-3">Nesting: how neighborhood schemes have different root units</h4>
         <div class="row" style="font-size: 14px;">
             <div class="col-lg-4 col-sm-8 mx-auto mb-2">
@@ -91,18 +92,18 @@ Each PUMA breaks down into Neighborhood Tabulation Areas (NTAs), and each NTA br
     var repo_branch = "{{< param data_repo >}}{{< param data_branch >}}"
     var path = "data-stories/geographies" // hard-coded for now, but could Hugo paramaterize
     var trans = "mapspec-en"
-        
+
     let cd_spec   = repo_branch + "/" + path + "/" + trans + "/" + "mapcd.vl.json";
     let puma_spec = repo_branch + "/" + path + "/" + trans + "/" + "mappuma.vl.json";
     let nta_spec  = repo_branch + "/" + path + "/" + trans + "/" + "mapnta.vl.json";
 
     let cd_csv   = repo_branch + "/" + path + "/" + "CD_DATA.csv"
     let puma_csv = repo_branch + "/" + path + "/" + "PUMA_DATA.csv"
-    let nta_csv  = repo_branch + "/" + path + "/" + "NTA_DATA.csv"    
+    let nta_csv  = repo_branch + "/" + path + "/" + "NTA_DATA.csv"
 
     let cd_topo   = repo_branch + "/" + "geography" + "/" + "CD.topo.json"
     let puma_topo = repo_branch + "/" + "geography" + "/" + "PUMA_or_Subborough.topo.json"
-    let nta_topo  = repo_branch + "/" + "geography" + "/" + "NTA_2010.topo.json"    
+    let nta_topo  = repo_branch + "/" + "geography" + "/" + "NTA_2010.topo.json"
 
     // this code listens to the form with map chooser; must run after DOM loads
     window.onload = main_radio_listener;
@@ -110,7 +111,7 @@ Each PUMA breaks down into Neighborhood Tabulation Areas (NTAs), and each NTA br
     // listener for radio buttons
 
     function main_radio_listener() {
-        
+
         radios = document.querySelectorAll('input[type=radio][name="mainRadioGroup"]');
         radios.forEach(radio => radio.addEventListener('change', () => {
 
@@ -123,7 +124,7 @@ Each PUMA breaks down into Neighborhood Tabulation Areas (NTAs), and each NTA br
             else {
                 buildMap("#map1", puma_spec, puma_csv, puma_topo);
             };
-            
+
         }));
     };
 
@@ -135,9 +136,9 @@ Each PUMA breaks down into Neighborhood Tabulation Areas (NTAs), and each NTA br
 
             spec.layer[0].data.url = topo;
             spec.layer[1].data.url = topo;
-            
+
             d3.csv(csv, d3.autoType).then(csv => {
-                
+
                 vegaEmbed(div, spec).then((res) => {
 
                     resview = res.view.insert("csv", csv).run();
@@ -187,7 +188,7 @@ In the map below, notice how three UHF42 neighborhoods in the South Bronx are co
 
     let uhf42_topo = repo_branch + "/" + "geography" + "/" + "UHF42.topo.json"
     let uhf34_topo = repo_branch + "/" + "geography" + "/" + "UHF34.topo.json"
-    let zip_topo   = repo_branch + "/" + "geography" + "/" + "MODZCTA.topo.json"    
+    let zip_topo   = repo_branch + "/" + "geography" + "/" + "MODZCTA.topo.json"
 
     // listener for radio buttons
 
