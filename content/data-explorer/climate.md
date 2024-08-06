@@ -2,6 +2,7 @@
 title: Climate
 date: 2021-05-28 18:02:58.827642
 draft: false
+azlink: "https://www.nyc.gov/site/doh/health/health-topics/climate-change-and-public-health.page"
 seo_title: "Climate data for NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
 description: "Datasets and visualizations of climate data in NYC."

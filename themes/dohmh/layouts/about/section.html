@@ -2,10 +2,10 @@
 
 <article class="container-fluid overflow-hidden" id="primary-content">
 
-  <div class="row my-4">
+  <div class="row mb-4">
     <div class="col-md-8 col-sm-12 mx-auto">
 
-      <nav aria-label="breadcrumb" class="mb-2">
+      <nav aria-label="breadcrumb" class="mt-2 mb-3">
         <ul class="breadcrumb">
             <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
             <li class="breadcrumb-item active" aria-current="page">About</li>
@@ -23,7 +23,7 @@
         <div class="col-md-6 mb-2">
             <div class="card content-card mb-4">
                 <div class="card-content">
-    
+
                     <div class="card-body">
                     <p class="fs-sm card-title fs-sm"><a href="{{ .RelPermalink }}" class="text-primary">{{ .Title }}</a></p>
                     <p class="fs-sm">{{ .Content | truncate 100 | plainify }}</p>
