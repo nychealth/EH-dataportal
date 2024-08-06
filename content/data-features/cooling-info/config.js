@@ -91,7 +91,7 @@ var content = [
 
     {
         "id": 4,
-        "text": "Do you have air conditioning?",
+        "text": "Do you have air conditioning (AC)?",
         "prompt": "The best way to stay safe in hot weather is with air conditioning.", 
         "image": "AC.svg",
         "options": [

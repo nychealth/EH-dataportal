@@ -303,22 +303,27 @@ function runFinal() {
   var finalMessageText = document.getElementById('finalMessages')
   finalMessageText.innerHTML = ''
 
-  // Message 0 - default / look at resources.
-  if (currentTemp < 70) {
-  msg = "<p><strong> Today's temperature is not too warm. </strong> Before it gets too hot find out if your friends, family members, or neighbors have AC, and make sure you know of nearby public places to go to stay cool to recommend to others who don't have AC. It could save someone's life.</p>"
+  // Message 0 - default / look at resources. Has AC. 
+  if (currentTemp < 78) {
+  msg = "<p><strong> Today's temperature is not too warm. Before it gets too hot, ind out if your friends, family members, and neighbors have AC, and make sure you know of nearby public places to go to stay cool that you can recommend to anyone who doesn't have AC. It could save someone's life.</p>"
     finalMessageText.innerHTML+= msg + '<hr class="my-2">'
   }
+  // Message 0a - default / look at resources. No AC.
+  if (currentTemp < 78) {
+    msg = "<p><strong>Today's temperature is not too warm.</strong>. Before it gets too hot, make a plan for how you can get relief from the heat – whether with air conditioning at home or in other cool spaces. Find out if your friends, family members, and neighbors have AC, and make sure you know of nearby public places to go to stay cool that you can recommend to anyone who doesn't have AC. It could save someone's life. </p>"
+      finalMessageText.innerHTML+= msg + '<hr class="my-2">'
+    }
 
     // Message 4 - warm and no AC
     if (hasAC === 'No' && currentTemp > 78 && aqi < 3) {
-      msg = '<p><strong>It’s hot, and you don’t have an AC</strong>. If it’s hotter inside than outside, open your window to try to keep your home cool.</p>'
+      msg = '<p><strong>It’s hot, and you don’t have an AC</strong>. If it’s hotter inside than outside, open your window(s) to try to cool down your home.</p>'
       finalMessageText.innerHTML += msg + '<hr class="my-2">'
   
     }
 
     // Message 4a - warm and no AC, plus bad AQ
     if (hasAC === 'No' && currentTemp > 78 && aqi >= 3) {
-      msg = '<p><strong>It’s hot, and you don’t have an AC</strong>. Open your window to try to keep your home cool. Even though the air quality is poor, it is more important to stay cool right now.</p>'
+      msg = '<p><strong>It’s hot, and you don’t have an AC</strong>. Open your window(s) to try to cool down your home. Even though the air quality is poor, it is more important to stay cool right now.</p>'
       finalMessageText.innerHTML += msg + '<hr class="my-2">'
   
     }
@@ -338,26 +343,26 @@ function runFinal() {
 
   // Message 5 - hot and AC
   if ( currentTemp > 85 && hasAC === 'Yes') {
-    msg = '<p><strong>Air conditioning is the best way to stay safe when it’s this hot. </strong> Reach out to family, neighbors, and friends to make sure they have a safe and cool place. </p>'
+    msg = '<p><strong>Air conditioning is the best way to stay safe when it is this hot, so now is the time to turn it on. </strong> Reach out to family, neighbors, and friends to make sure they have a safe and cool place. </p>'
   finalMessageText.innerHTML += msg + '<hr class="my-2">'
 
   }
 
   // Message 6 - hot and no AC
   if ( currentTemp > 85 && hasAC === 'No') {
-    msg = "<p><strong>Air conditioning is the best way to stay safe when it’s this hot</strong>. Since you don't have AC, <a href='https://finder.nyc.gov/coolingcenters/'>visit a cool public place</a>, or friend or family member who has AC. Taking a cool shower can also help temporarily. If you do not have air conditioning and can’t leave your home, do not close your windows when the temperature is hotter indoors than outside. When you are at home, continue to be mindful of the heat and make sure to drink enough water. </p>"
+    msg = "<p><strong>Air conditioning is the best way to stay safe when it’s this hot</strong>. Since you don't have AC, <a href='https://finder.nyc.gov/coolingcenters/'>visit a cool public place</a>, or friend or family member who has AC. Taking a cool shower can also help temporarily. If you do not have air conditioning and can’t leave your home, do not close your windows when the temperature is hotter indoors than outside. When you are at home, continue to be mindful of the heat and make sure to drink lots of water and try to avoid alcohol and caffeine. </p>"
     finalMessageText.innerHTML += msg + '<hr class="my-2">'
   }
 
   // Limits AC, not warm
   if (limitsAC === 'Yes' && currentTemp <= 78) {
-    msg = "<p><strong>You have an AC, but sometimes limit use because of the cost</strong>. Before it gets hot, get help with your home cooling. Find out if you're eligible for <a href='https://portal.311.nyc.gov/article/?kanumber=KA-02529'>NYC's Home Energy Assistance Program (HEAP)</a> and <a href='https://www.coned.com/en/accounts-billing/payment-plans-assistance/help-paying-your-bill'> Con Ed's Energy Affordability Program, </a> which can help make air conditioning your home more affordable.</p>"
+    msg = "<p><strong>You sometimes limit the use of your AC because of the cost. </strong>. Before it gets hot, get help with your home cooling energy bills. Find out if you're eligible for <a href='https://www.coned.com/en/accounts-billing/payment-plans-assistance/help-paying-your-bill'> Con Ed's Energy Affordability Program, </a> which can help make air conditioning your home more affordable.</p>"
     finalMessageText.innerHTML += msg + '<hr class="my-2">'
   }
 
   // Limits AC and is warm
   if (limitsAC === 'Yes' && currentTemp > 78) {
-    msg = "<p><strong>You have an AC, but sometimes limit use because of the cost</strong>. Using AC for even a few hours a day on 'low cool' or 78 degrees can keep your home from getting dangerously hot. Find out if you're eligible for <a href='https://portal.311.nyc.gov/article/?kanumber=KA-02529'> NYC's Home Energy Assistance Program (HEAP) </a> and <a href='https://www.coned.com/en/accounts-billing/payment-plans-assistance/help-paying-your-bill'> Con Ed's Energy Affordability Program, </a> which can help make air conditioning your home more affordable. You can also find an air-conditioned space – this could be a friend or family’s place, a mall, museum, or library. </p>"
+    msg = "<p><strong>You sometimes limit the use of your AC because of the cost.</strong>. Using AC for even a few hours a day on 'low cool' or 78 degrees can keep your home from getting dangerously hot. Find out if you're eligible for <a href='https://www.coned.com/en/accounts-billing/payment-plans-assistance/help-paying-your-bill'> Con Ed's Energy Affordability Program, </a> which can help make air conditioning your home more affordable. You can also find an air-conditioned space – this could be a friend or family’s place, a mall, museum, or library. </p>"
     finalMessageText.innerHTML += msg + '<hr class="my-2">'
   }
 
