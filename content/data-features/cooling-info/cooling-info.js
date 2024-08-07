@@ -314,14 +314,14 @@ function runFinal() {
       finalMessageText.innerHTML+= msg + '<hr class="my-2">'
     }
 
-    // Message 4 - warm and no AC
+  // Message 4 - warm and no AC
     if (hasAC === 'No' && currentTemp > 78 && aqi < 3) {
       msg = '<p><strong>It’s hot, and you don’t have an AC</strong>. If it’s hotter inside than outside, open your window(s) to try to cool down your home.</p>'
       finalMessageText.innerHTML += msg + '<hr class="my-2">'
   
     }
 
-    // Message 4a - warm and no AC, plus bad AQ
+  // Message 4a - warm and no AC, plus bad AQ
     if (hasAC === 'No' && currentTemp > 78 && aqi >= 3) {
       msg = '<p><strong>It’s hot, and you don’t have an AC</strong>. Open your window(s) to try to cool down your home. Even though the air quality is poor, it is more important to stay cool right now.</p>'
       finalMessageText.innerHTML += msg + '<hr class="my-2">'
@@ -336,7 +336,7 @@ function runFinal() {
 
   // no AC
   if (hasAC === 'No') {
-    msg = `<p>About 9% of NYC households are like you, and don't have an AC - but it's the best way to stay safe when it's hot. Find out if you're eligible for <a href="https://portal.311.nyc.gov/article/?kanumber=KA-02529"> Home Energy Assistance Program </a> and <a href="https://www.coned.com/en/accounts-billing/payment-plans-assistance/help-paying-your-bill"> Con Ed's Energy Affordability Program, </a> which can help make air conditioning your home more affordable.</p>`
+    msg = `<p>About 9% of NYC households are like you and don't have an AC - but it's the best way to stay safe when it's hot. Find out if you're eligible for <a href="https://portal.311.nyc.gov/article/?kanumber=KA-02529"> Home Energy Assistance Program </a> and <a href="https://www.coned.com/en/accounts-billing/payment-plans-assistance/help-paying-your-bill"> Con Ed's Energy Affordability Program, </a> which can help make air conditioning your home more affordable.</p>`
     finalMessageText.innerHTML += msg + '<hr class="my-2">'
   }
 
