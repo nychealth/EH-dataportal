@@ -1,5 +1,6 @@
 ---
 title: "Protecting New Yorkers from extreme heat"
+shortTitle: "Extreme heat"
 date: 2020-09-09T08:33:22-04:00
 draft: false
 seo_title: "Protecting New Yorkers from extreme heat"

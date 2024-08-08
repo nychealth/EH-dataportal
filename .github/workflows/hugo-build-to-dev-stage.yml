@@ -3,9 +3,6 @@ name: Hugo Build to `builds/dev-stage` branch (deploy to 307)
 # run action on a merged PR on "build-to-dev-stage"
 
 on:
-  # push:
-  #   branches:
-  #     - build-to-dev-stage
   pull_request:
     branches:
       - build-to-dev-stage
@@ -69,7 +66,7 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v4
         with:
-          node-version: lts/*
+          node-version: 22.5.x
           cache: "npm"
 
       # set up cache for node modules

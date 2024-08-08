@@ -1,5 +1,6 @@
 ---
 title: "Air quality snapshots: special findings from 10 years of NYCCAS"
+shortTitle: "Air quality snapshots"
 aliases:
     - /data-stories/AQsnapshots/
 date: 2020-04-21T13:37:45-04:00

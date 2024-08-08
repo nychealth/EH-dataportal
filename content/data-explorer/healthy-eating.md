@@ -2,6 +2,7 @@
 title: "Healthy eating"
 date: 2021-11-17T12:01:22-05:00
 draft: false
+azlink: "https://www.nyc.gov/site/doh/health/health-topics/sugary-drinks.page"
 seo_title: "Healthy eating data for NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
 description: "Datasets and visualizations of healthy eating data in NYC."
