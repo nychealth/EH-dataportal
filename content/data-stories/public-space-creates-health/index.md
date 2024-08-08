@@ -127,7 +127,7 @@ Designing public space for people also means creating parks, pools, and other re
 </script>
 </div>
 
-As of 2023, 84.6% of New Yorkers live within walking distance to a park.<a href="https://www.nycgovparks.org/planning-and-building/planning/walk-to-a-park"> Resources are being directed to increasing the number of New Yorkers that live in walking distance to a park through the Walk to a Park Initiative.</a> Park access is hugely beneficial to everyone, but not everyone feels equally comfortable using this form of public space and many report harassment based on race or housing status.
+As of 2023, 84.6% of New Yorkers live within walking distance to a park.<a href="https://www.nycgovparks.org/planning-and-building/planning/walk-to-a-park"> Resources are being directed to increasing the number of New Yorkers that live in walking distance to a park through the Walk to a Park Initiative</a>. Park access is hugely beneficial to everyone, but not everyone feels equally comfortable using this form of public space and many report harassment based on race or housing status.
 
 #### Feeling safe in public space helps people enjoy and use it.
 
