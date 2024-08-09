@@ -443,8 +443,8 @@ function runFinal() {
     finalMessageText.innerHTML+= msg + '<hr class="my-2">'
   }
 
-  // High AQI, not sensitive
-  if (aqi > 3) {
+  // High AQI, not sensitive, has AC
+  if (aqi > 3 && hasAC === 'Yes') {
     msg = `<p>Because of today's air quality, take some precautions. Air purifiers with filters can help remove some air pollution from the air. Closing the vent on your AC or setting it to re-circulate will help you stay cool while preventing your AC unit from blowing polluted air inside. No matter what, always use your AC when it's hot. Staying cool is the priority. <a href='https://www.nyc.gov/site/doh/health/health-topics/indoor-air-quality.page'>Learn more about indoor air quality.</a></p>`
     finalMessageText.innerHTML+= msg + '<hr class="my-2">'
   }
