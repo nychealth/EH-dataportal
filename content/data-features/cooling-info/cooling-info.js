@@ -376,32 +376,32 @@ function runFinal() {
 
   // OVERALL AIR QUALITY MESSAGE BUNDLE
   if (aqi === 1 || (aqi < 4 && sensitiveGroup === 'No')) {
-    msg = `<p>The air quality today is fine for you. It's a good day to enjoy the outdoors. Stay informed - sign up for air quality alerts at <a href="https://www.airnow.gov/">AirNow</a> and sign up for <a href="a858-nycnotify.nyc.gov/notifynyc/">Notify NYC alerts</a>.</p>`
+    msg = `<p>The air quality today is fine for you. Stay informed - sign up for air quality alerts at <a href="https://www.airnow.gov/">AirNow</a> and sign up for <a href="a858-nycnotify.nyc.gov/notifynyc/">Notify NYC alerts</a>.</p>`
     finalMessageText.innerHTML+= msg + '<hr class="my-2">'
   }
 
   if (aqi === 2 && sensitiveGroup === 'Yes') {
-    msg = `<p>The air quality is moderate, but you may be more sensitive to pollution.  It's a good day to enjoy the outdoors but follow routine precautions to manage any existing conditions.</p>`
+    msg = `<p>The air quality is moderate, but you may be more sensitive to pollution.  If you spend time outdoors, follow routine precautions to manage any existing conditions.</p>`
     finalMessageText.innerHTML+= msg + '<hr class="my-2">'
   }
 
   if (aqi === 3 && sensitiveGroup === 'Yes') {
-    msg = `<p>The air quality is unhealthy for people more sensitive to air pollution. Air pollution can harm health. Limit strenuous and long (over 1 hour) outdoor activities. Consider wearing a mask outside if you are experiencing symptoms, like coughing or throat or eye irritation. <a href="https://www.nyc.gov/site/doh/health/health-topics/air-quality-fire-smoke-and-effect-on-air-quality.page"> Learn more about wearing masks</a>.</p>`
+    msg = `<p>The air quality is unhealthy for people more sensitive to air pollution. Air pollution can harm health. Limit strenuous and long (over 1 hour) outdoor activities. Consider wearing a mask outside if you are experiencing symptoms, like coughing or throat or eye irritation. <a href="https://www.nyc.gov/site/doh/health/health-topics/air-quality-fire-smoke-and-effect-on-air-quality.page">Learn more about wearing masks</a>.</p>`
     finalMessageText.innerHTML+= msg + '<hr class="my-2">'
   }
 
   if (aqi === 4 && sensitiveGroup === 'No') {
-    msg = `<p>The air quality today is unhealthy. Air pollution can harm health. Limit strenuous and long (over 1 hour) outdoor activities. Consider wearing a mask outside if you are experiencing symptoms, like coughing or throat or eye irritation. Learn more about wearing masks. Air purifiers with filters can help remove some air pollution from the air. Limit activities that can worsen indoor air, like frying or broiling food, smoking or vaping, vacuuming, burning candles or incense, or using a fireplace. </p>`
+    msg = `<p>The air quality today is unhealthy. Air pollution can harm health. Limit strenuous and long (over 1 hour) outdoor activities. Consider wearing a mask outside if you are experiencing symptoms, like coughing or throat or eye irritation. <a href="https://www.nyc.gov/site/doh/health/health-topics/air-quality-fire-smoke-and-effect-on-air-quality.page">Learn more about wearing masks</a></p>`
     finalMessageText.innerHTML+= msg + '<hr class="my-2">'
   }
 
   if ((aqi === 4 && sensitiveGroup === 'Yes') || aqi === 5) {
-    msg = `<p>The air quality today is unhealthy. Air pollution can harm health. Avoid any unnecessary outdoor activities. Consider wearing a mask outside if you are experiencing symptoms, like coughing or throat or eye irritation. <a href="https://www.nyc.gov/site/doh/health/health-topics/air-quality-fire-smoke-and-effect-on-air-quality.page">Learn more about wearing masks</a>. Air purifiers with filters can help remove some air pollution from the air. Limit activities that can worsen indoor air, like frying or broiling foods, smoking or vaping, vacuuming, burning candles or incense, or using a fireplace. </p>`
+    msg = `<p>The air quality today is unhealthy. Air pollution can harm health. Avoid any unnecessary outdoor activities. Consider wearing a mask outside if you are experiencing symptoms, like coughing or throat or eye irritation. <a href="https://www.nyc.gov/site/doh/health/health-topics/air-quality-fire-smoke-and-effect-on-air-quality.page">Learn more about wearing masks</a>.</p>`
     finalMessageText.innerHTML+= msg + '<hr class="my-2">'
   }
 
   if (aqi === 6) {
-    msg = `<p>The air quality today is very unhealthy. Air pollution can harm health. Avoid any unnecessary outdoor activities. Consider wearing a mask outside if you are experiencing symptoms, like coughing or throat or eye irritation. <a href="https://www.nyc.gov/site/doh/health/health-topics/air-quality-fire-smoke-and-effect-on-air-quality.page">Learn more about wearing masks</a>. Air purifiers with filters can help remove some air pollution from the air. Limit activities that can worsen indoor air, like frying or broiling food, smoking or vaping, vacuuming, burning candles or incense, or using a fireplace. </p>`
+    msg = `<p>The air quality today is very unhealthy. Air pollution can harm health. Avoid any unnecessary outdoor activities. Consider wearing a mask outside if you are experiencing symptoms, like coughing or throat or eye irritation. <a href="https://www.nyc.gov/site/doh/health/health-topics/air-quality-fire-smoke-and-effect-on-air-quality.page">Learn more about wearing masks</a>. </p>`
     finalMessageText.innerHTML+= msg + '<hr class="my-2">'
   }
 
@@ -445,7 +445,7 @@ function runFinal() {
 
   // High AQI, not sensitive
   if (aqi > 3) {
-    msg = `<p>Because of today's air quality, take some precautions. Air purifiers with filters can help remove some air pollution from the air. Closing the vent on your AC or setting it to re-circulate will help you stay cool while preventing your AC unit from blowing polluted air inside. No matter what, always use your AC when it's hot. Staying cool is the priority. <a href='https://www.nyc.gov/site/doh/health/health-topics/indoor-air-quality.page'> Learn more about indoor air quality.</a></p>`
+    msg = `<p>Because of today's air quality, take some precautions. Air purifiers with filters can help remove some air pollution from the air. Closing the vent on your AC or setting it to re-circulate will help you stay cool while preventing your AC unit from blowing polluted air inside. No matter what, always use your AC when it's hot. Staying cool is the priority. <a href='https://www.nyc.gov/site/doh/health/health-topics/indoor-air-quality.page'>Learn more about indoor air quality.</a></p>`
     finalMessageText.innerHTML+= msg + '<hr class="my-2">'
   }
 
