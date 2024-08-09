@@ -7,6 +7,8 @@ var hasAC           = "No"
 var limitsAC        = "No"
 var hasFan          = "No"
 var currentTemp     = "No"
+var forecastTemp;
+var maxTemp;
 var aqi             = "No"
 
 // other variables
@@ -90,12 +92,20 @@ function getAQI() {
 
 function printToPage() {
     // Print current temp, max temp, and AQI
-    currentTemp = apiData.current.temp_f
+    currentTemp = Number(apiData.current.temp_f)
+    forecastTemp = Number(apiData.forecast.forecastday[0].day.maxtemp_f)
+    
     document.getElementById('currentTemp').innerHTML = currentTemp + '° F'
+    document.getElementById('forecastTemp').innerHTML = forecastTemp  + '° F'
 
 
-    var maxTemp = Number(apiData.forecast.forecastday[0].day.maxtemp_f)
-    document.getElementById('maxTemp').innerHTML = maxTemp  + '° F'
+    if (currentTemp >= forecastTemp) {
+      maxTemp = currentTemp
+    } else {
+      maxTemp = forecastTemp
+    }
+
+
 
     // aqi = apiData.current.air_quality["us-epa-index"]
 
@@ -293,6 +303,7 @@ function fan(x) {
 }
 
 
+// RECOMMENDATION ENGINE
 function runFinal() {
   var msg
   console.log('We are reviewing your data')
@@ -303,151 +314,162 @@ function runFinal() {
   var finalMessageText = document.getElementById('finalMessages')
   finalMessageText.innerHTML = ''
 
-  // Message 0 - default / look at resources. Has AC. 
-  if (currentTemp < 78) {
-  msg = "<p><strong> Today's temperature is not too warm. Before it gets too hot, ind out if your friends, family members, and neighbors have AC, and make sure you know of nearby public places to go to stay cool that you can recommend to anyone who doesn't have AC. It could save someone's life.</p>"
+  // Message 0: Default, resources, with AC
+  if (maxTemp < 78 && hasAC === 'Yes') {
+    msg = `<p>Today's temperature is not too warm. Before it gets too hot, find out if your friends, family members, and neighbors have AC, and make sure you know of <a href="https://finder.nyc.gov/coolingcenters/">nearby public places to go to stay cool</a> that you can recommend when it's hot to anyone who doesn't have AC. It could save someone's life.</p>`
     finalMessageText.innerHTML+= msg + '<hr class="my-2">'
   }
-  // Message 0a - default / look at resources. No AC.
-  if (currentTemp < 78) {
-    msg = "<p><strong>Today's temperature is not too warm.</strong>. Before it gets too hot, make a plan for how you can get relief from the heat – whether with air conditioning at home or in other cool spaces. Find out if your friends, family members, and neighbors have AC, and make sure you know of nearby public places to go to stay cool that you can recommend to anyone who doesn't have AC. It could save someone's life. </p>"
-      finalMessageText.innerHTML+= msg + '<hr class="my-2">'
-    }
 
-  // Message 4 - warm and no AC
-    if (hasAC === 'No' && currentTemp > 78 && aqi < 3) {
-      msg = '<p><strong>It’s hot, and you don’t have an AC</strong>. If it’s hotter inside than outside, open your window(s) to try to cool down your home.</p>'
-      finalMessageText.innerHTML += msg + '<hr class="my-2">'
-  
-    }
-
-  // Message 4a - warm and no AC, plus bad AQ
-    if (hasAC === 'No' && currentTemp > 78 && aqi >= 3) {
-      msg = '<p><strong>It’s hot, and you don’t have an AC</strong>. Open your window(s) to try to cool down your home. Even though the air quality is poor, it is more important to stay cool right now.</p>'
-      finalMessageText.innerHTML += msg + '<hr class="my-2">'
-  
-    }
-
-  // Message 2 - warm and no AC? Use a fan. 
-  if (hasAC === 'No' && currentTemp > 78 && hasFan === 'Yes') {
-    msg = '<p>Your fan can help cool you down. But it won’t cool the air – if it’s too hot inside, it’s just moving hot air around, and can make you even warmer. <a href="https://finder.nyc.gov/coolingcenters/">Find a cool place to go</a>.</p><p>When the Air Quality Index is bad, <a href="https://www.epa.gov/air-research/research-diy-air-cleaners-reduce-wildfire-smoke-indoors"> you can also use your fan as a DIY air purifier.</a> </p>'
-    finalMessageText.innerHTML += msg + '<hr class="my-2">'
+  // Message 0b: Default, resources, noAC
+  if (maxTemp < 78 && hasAC === 'No') {
+    msg = `<p>Today's temperature is not too warm.  Before it gets too hot, make a plan for how you can get relief from the heat - whether with air conditioning at home or in other cool spaces. Find out if your friends, family members, and neighbors have AC, and make sure you know of <a href="https://finder.nyc.gov/coolingcenters/">nearby public places to go to stay cool</a> that you can recommend when it's hot to anyone who doesn't have AC. It could save someone's life.</p>`
+    finalMessageText.innerHTML+= msg + '<hr class="my-2">'
   }
 
-  // no AC
+  // Message. Warm and no AC.
+  if (maxTemp > 78 && hasAC === 'No' && aqi < 3) {
+    msg = `<p>It's hot, and you don't have an AC. If it's hotter inside than outside, open your window(s) to try to cool down your home.</p>`
+    finalMessageText.innerHTML+= msg + '<hr class="my-2">'
+  }
+
+  // Message: warm, no AC, bad AQ
+  if (maxTemp > 78 && hasAC === 'No' && aqi >= 3) {
+    msg = `<p>It's hot, and you don't have an AC. Open your window(s) to try to cool down your home. Even though the air quality is poor, it is more important to stay cool right now.</p>`
+    finalMessageText.innerHTML+= msg + '<hr class="my-2">'
+  }
+
+  // Message: warm, no AC, Fan
+  if (maxTemp > 78 && hasAC === 'No' && hasFan === 'Yes') {
+    msg = `<p>Your fan can help cool you down. But it won't cool the air - if it's too hot inside, it's just moving hot air around, and can make you even warmer. <a href="https://finder.nyc.gov/coolingcenters/">Find a cool place to go</a>. Also, you can <a href="https://www.epa.gov/air-research/research-diy-air-cleaners-reduce-wildfire-smoke-indoors">use your fan as a DIY air purifier for when the Air Quality Index is unhealthy</a>.</p>`
+    finalMessageText.innerHTML+= msg + '<hr class="my-2">'
+  }
+
+  // Message: no AC
   if (hasAC === 'No') {
-    msg = `<p>About 9% of NYC households are like you and don't have an AC - but it's the best way to stay safe when it's hot. Find out if you're eligible for <a href="https://portal.311.nyc.gov/article/?kanumber=KA-02529"> Home Energy Assistance Program </a> and <a href="https://www.coned.com/en/accounts-billing/payment-plans-assistance/help-paying-your-bill"> Con Ed's Energy Affordability Program, </a> which can help make air conditioning your home more affordable.</p>`
-    finalMessageText.innerHTML += msg + '<hr class="my-2">'
-  }
-
-
-  // Message 5 - hot and AC
-  if ( currentTemp > 85 && hasAC === 'Yes') {
-    msg = '<p><strong>Air conditioning is the best way to stay safe when it is this hot, so now is the time to turn it on. </strong> Reach out to family, neighbors, and friends to make sure they have a safe and cool place. </p>'
-  finalMessageText.innerHTML += msg + '<hr class="my-2">'
-
-  }
-
-  // Message 6 - hot and no AC
-  if ( currentTemp > 85 && hasAC === 'No') {
-    msg = "<p><strong>Air conditioning is the best way to stay safe when it’s this hot</strong>. Since you don't have AC, <a href='https://finder.nyc.gov/coolingcenters/'>visit a cool public place</a>, or friend or family member who has AC. Taking a cool shower can also help temporarily. If you do not have air conditioning and can’t leave your home, do not close your windows when the temperature is hotter indoors than outside. When you are at home, continue to be mindful of the heat and make sure to drink lots of water and try to avoid alcohol and caffeine. </p>"
-    finalMessageText.innerHTML += msg + '<hr class="my-2">'
-  }
-
-  // Limits AC, not warm
-  if (limitsAC === 'Yes' && currentTemp <= 78) {
-    msg = "<p><strong>You sometimes limit the use of your AC because of the cost. </strong>. Before it gets hot, get help with your home cooling energy bills. Find out if you're eligible for <a href='https://www.coned.com/en/accounts-billing/payment-plans-assistance/help-paying-your-bill'> Con Ed's Energy Affordability Program, </a> which can help make air conditioning your home more affordable.</p>"
-    finalMessageText.innerHTML += msg + '<hr class="my-2">'
-  }
-
-  // Limits AC and is warm
-  if (limitsAC === 'Yes' && currentTemp > 78) {
-    msg = "<p><strong>You sometimes limit the use of your AC because of the cost.</strong>. Using AC for even a few hours a day on 'low cool' or 78 degrees can keep your home from getting dangerously hot. Find out if you're eligible for <a href='https://www.coned.com/en/accounts-billing/payment-plans-assistance/help-paying-your-bill'> Con Ed's Energy Affordability Program, </a> which can help make air conditioning your home more affordable. You can also find an air-conditioned space – this could be a friend or family’s place, a mall, museum, or library. </p>"
-    finalMessageText.innerHTML += msg + '<hr class="my-2">'
-  }
-
-
-  // Message 0.5 - default low aqi / look at resources 
-  if (aqi < 3 ) {
-    msg = "<p><strong> The air quality today is fine for you.</strong> Stay informed. Sign up for air quality alerts at <a href='https://www.airnow.gov/'>AirNow.gov</a> and sign up for <a href='https://a858-nycnotify.nyc.gov/notifynyc/'>Notify NYC alerts</a></p>" 
-      finalMessageText.innerHTML+= msg + '<hr class="my-2">'
-  }
-
-
-  // AQI BUNDLE:
-
-   if (sensitiveGroup === 'Yes' && aqi === 2) {
-    msg = 'The air quality is moderate, but you may be more sensitive to pollution. Consider making outdoor activities shorter and less intense.'
+    msg = `<p>About 9% of NYC households are like you and don't have an AC - but it's the best way to stay safe when it's hot. Find out if you're eligible for <a href="https://:portal.311.nyc.gov/article/?kanumber=KA-02529"> Home Energy Assistance Program </a> and <a href="https://www.coned.com/en/accounts-billing/payment-plans-assistance/help-paying-your-bill">Con Ed's Energy Affordability Program</a>, which can help make air conditioning your home more affordable.</p>`
     finalMessageText.innerHTML+= msg + '<hr class="my-2">'
-   }
-
-   if (sensitiveGroup === 'Yes' && aqi > 2) {
-      msg = "<p><strong> The air quality is bad, and you're more sensitive to air pollution</strong>. Air pollution can harm health.  Limit strenuous and prolonged (over 1 hour) outdoor activities. <a href='https://www.nyc.gov/assets/doh/downloads/pdf/eode/aqi-guidelines-general.pdf'>More info on what to do when the air quality is bad</a>.</p>"
-      finalMessageText.innerHTML+= msg + '<hr class="my-2">'
-   }
-
-   if (aqi > 3 && sensitiveGroup != 'Yes' ) {
-    msg = "<p><strong> The air quality is bad.</strong> Your recommendations will reflect this. Limit strenuous and prolonged (over 1 hour) outdoor activities.  <a href='https://www.nyc.gov/assets/doh/downloads/pdf/eode/aqi-guidelines-general.pdf'>More info on what to do when the air quality is bad</a>. </p>"
-      finalMessageText.innerHTML+= msg + '<hr class="my-2">'
   }
 
-  // Message 1 - AQI / wear a mask
-  if (aqi > 3 || 
-    (aqi > 2 && sensitiveGroup === 'Yes')) {
-    msg = '<p><strong>Because of the air quality today</strong> stay indoors if possible. If you need to open a window to stay cool, that is OK - staying cool is most important. Consider wearing a mask outside. <a href="https://www.nyc.gov/site/doh/health/health-topics/air-quality-fire-smoke-and-effect-on-air-quality.page"> Learn more about masks.</a></p>'
-    finalMessageText.innerHTML += msg + '<hr class="my-2">'
+  // Message: Hot and AC
+  if (maxTemp > 85 && hasAC === 'Yes') {
+    msg = `<p>Air conditioning is the best way to stay safe when it's this hot, so now's the time to turn it on!  Reach out to family, neighbors, and friends to make sure they have or <a href="https://finder.nyc.gov/coolingcenters/">know where to find a safe and cool place</a>.</p>`
+    finalMessageText.innerHTML+= msg + '<hr class="my-2">'
   }
 
-      // Message 3b - high AQI and not warm - close your windows
-      if ( 
-        (currentTemp < 60 && aqi > 3) ||
-        (currentTemp < 60 && aqi > 2 && sensitiveGroup === 'Yes')
-        ) {
-          msg = '<p>Close your windows to prevent the air pollution from getting in. </p>'
-          finalMessageText.innerHTML += msg + '<hr class="my-2">'
-        }
-
-    // Message 3 - high AQI and warm - close your windows and use your AC
-    if ( 
-      (hasAC === 'Yes' && currentTemp > 70 && aqi > 3) || 
-      (hasAC === 'Yes' && currentTemp > 70 && aqi > 2 && sensitiveGroup === 'Yes')
-      ) {
-        msg = "<p>Close your windows to prevent the air pollution from getting in. Closed windows can make your space warmer, so use your AC to stay cool and comfortable. </p>"
-        finalMessageText.innerHTML += msg + '<hr class="my-2">'
-      }
-  
-  // Message 7 - hot or high AQI
-  if (currentTemp > 85 || aqi > 3) {
-    msg = '<p>Limit activities that can worsen indoor air, like frying or broiling foods, smoking or vaping tobacco or cannabis products, vacuuming, burning candles or incense, or using a fireplace.</p>'    
-    finalMessageText.innerHTML += msg + '<hr class="my-2">'
+  // Message: Hot and No AC
+  if (maxTemp > 85 && hasAC === 'No') {
+    msg = `<p>Air conditioning is the best way to stay safe when it's this hot. Since you don't have AC, <a href='https://:finder.nyc.gov/coolingcenters/'>visit a cool public place</a>, or a friend or family member who has AC. Taking a cool shower can also help temporarily. If you can't leave your home, do not close your windows when the temperature is hotter indoors than outside. When you are at home, continue to be mindful of the heat. Make sure to drink lots of water and try to avoid alcohol and caffeine. <a href="https://www.nyc.gov/site/doh/health/emergency-preparedness/emergencies-extreme-weather-heat.page">Get more information on hot weather and health</a>.</p>`
+    finalMessageText.innerHTML+= msg + '<hr class="my-2">'
   }
 
-  // High AQI -> Filter your air.
-  if (
-    ( hasAC === 'Yes') &&
-    ((sensitiveGroup === 'Yes' && aqi > 2) || (aqi > 3))
-    ) {
-      msg = "<p><strong>Because of the bad air quality</strong>, you may want to take some precautions. Air purifiers with filters can help remove some air pollution from the air. </p><p> Closing the vent on your AC or setting it to re-circulate will help you stay cool while preventing your AC unit from blowing polluted air inside. </p><p> No matter what, always use your AC when it's hot. Staying cool is the priority. <a href='https://www.nyc.gov/site/doh/health/health-topics/indoor-air-quality.page'> Learn more about indoor air quality.</a></p>"
-      finalMessageText.innerHTML += msg + '<hr class="my-2">'
+  // Message: Limits AC, not warm
+  if (maxTemp <= 78 && limitsAC === 'Yes') {
+    msg = `<p>You sometimes limit use of your AC because of the cost. Before it gets hot, get help with your home cooling energy bills. Find out if you're eligible for <a href='https://www.coned.com/en/accounts-billing/payment-plans-assistance/help-paying-your-bill'>Con Ed's Energy Affordability Program</a>, which can help make air conditioning your home more affordable.</p>`
+    finalMessageText.innerHTML+= msg + '<hr class="my-2">'
+  }
+
+  // Message: Limits AC, not warm
+  if (maxTemp > 78 && limitsAC === 'Yes') {
+    msg = `<p>You sometimes limit use of your AC because of the cost, but on hot days like today, it's time to turn it on. Using AC for just a few hours a day on 'low cool' or 78 degrees can keep your home from getting dangerously hot. Find out if you're eligible for <a href='www.coned.com/en/accounts-billing/payment-plans-assistance/help-paying-your-bill'>Con Ed's Energy Affordability Program</a>, which can help make air conditioning your home more affordable. You can also <a href="https://finder.nyc.gov/coolingcenters/">find an air-conditioned space to visit</a> - this could be a friend or family member's place, a mall, museum, or library.</p>`
+    finalMessageText.innerHTML+= msg + '<hr class="my-2">'
+  }
+
+  // OVERALL AIR QUALITY MESSAGE BUNDLE
+  if (aqi === 1 || (aqi < 4 && sensitiveGroup === 'No')) {
+    msg = `<p>The air quality today is fine for you. It's a good day to enjoy the outdoors. Stay informed - sign up for air quality alerts at <a href="https://www.airnow.gov/">AirNow</a> and sign up for <a href="a858-nycnotify.nyc.gov/notifynyc/">Notify NYC alerts</a>.</p>`
+    finalMessageText.innerHTML+= msg + '<hr class="my-2">'
+  }
+
+  if (aqi === 2 && sensitiveGroup === 'Yes') {
+    msg = `<p>The air quality is moderate, but you may be more sensitive to pollution.  It's a good day to enjoy the outdoors but follow routine precautions to manage any existing conditions.</p>`
+    finalMessageText.innerHTML+= msg + '<hr class="my-2">'
+  }
+
+  if (aqi === 3 && sensitiveGroup === 'Yes') {
+    msg = `<p>The air quality is unhealthy for people more sensitive to air pollution. Air pollution can harm health. Limit strenuous and long (over 1 hour) outdoor activities. Consider wearing a mask outside if you are experiencing symptoms, like coughing or throat or eye irritation. <a href="https://www.nyc.gov/site/doh/health/health-topics/air-quality-fire-smoke-and-effect-on-air-quality.page"> Learn more about wearing masks</a>.</p>`
+    finalMessageText.innerHTML+= msg + '<hr class="my-2">'
+  }
+
+  if (aqi === 4 && sensitiveGroup === 'No') {
+    msg = `<p>The air quality today is unhealthy. Air pollution can harm health. Limit strenuous and long (over 1 hour) outdoor activities. Consider wearing a mask outside if you are experiencing symptoms, like coughing or throat or eye irritation. Learn more about wearing masks. Air purifiers with filters can help remove some air pollution from the air. Limit activities that can worsen indoor air, like frying or broiling food, smoking or vaping, vacuuming, burning candles or incense, or using a fireplace. </p>`
+    finalMessageText.innerHTML+= msg + '<hr class="my-2">'
+  }
+
+  if ((aqi === 4 && sensitiveGroup === 'Yes') || aqi === 5) {
+    msg = `<p>The air quality today is unhealthy. Air pollution can harm health. Avoid any unnecessary outdoor activities. Consider wearing a mask outside if you are experiencing symptoms, like coughing or throat or eye irritation. <a href="https://www.nyc.gov/site/doh/health/health-topics/air-quality-fire-smoke-and-effect-on-air-quality.page">Learn more about wearing masks</a>. Air purifiers with filters can help remove some air pollution from the air. Limit activities that can worsen indoor air, like frying or broiling foods, smoking or vaping, vacuuming, burning candles or incense, or using a fireplace. </p>`
+    finalMessageText.innerHTML+= msg + '<hr class="my-2">'
+  }
+
+  if (aqi === 6) {
+    msg = `<p>The air quality today is very unhealthy. Air pollution can harm health. Avoid any unnecessary outdoor activities. Consider wearing a mask outside if you are experiencing symptoms, like coughing or throat or eye irritation. <a href="https://www.nyc.gov/site/doh/health/health-topics/air-quality-fire-smoke-and-effect-on-air-quality.page">Learn more about wearing masks</a>. Air purifiers with filters can help remove some air pollution from the air. Limit activities that can worsen indoor air, like frying or broiling food, smoking or vaping, vacuuming, burning candles or incense, or using a fireplace. </p>`
+    finalMessageText.innerHTML+= msg + '<hr class="my-2">'
+  }
+
+  // END MAJOR AQI BUNDLE
+
+  // High AQI and not warm - close your windows
+  if ((maxTemp < 70 && aqi > 3)
+        ||
+      (maxTemp < 70 && (aqi > 2 && sensitiveGroup ==='Yes'))) {
+    msg = `<p>Close your windows to prevent the air pollution from getting in.</p>`
+    finalMessageText.innerHTML+= msg + '<hr class="my-2">'
+  }
+
+  // high AQI and warm. close windows, use AC.
+  if ((maxTemp > 70 && aqi > 3 && hasAC === 'Yes')
+    ||
+      (maxTemp > 70 && hasAC === 'Yes' && aqi > 2 && sensitiveGroup ==='Yes')) {
+    msg = `<p>Close your windows to prevent the air pollution from getting in. Closed windows can make your space warmer, so use your AC to stay cool and comfortable if your home gets too warm. Your AC can also filter the air, especially if the vent is closed or if it has a "recirculate" mode".</p>`
+    finalMessageText.innerHTML+= msg + '<hr class="my-2">'
     }
 
+  // High AQI - indoor air
+  if (aqi > 3) {
+    msg = `<p>Limit activities that can worsen indoor air, like frying or broiling food, smoking or vaping, vacuuming, burning candles or incense, or using a fireplace.</p>`
+    finalMessageText.innerHTML+= msg + '<hr class="my-2">'
+  }
 
+  // Hot - indoor air
+  if (maxTemp > 85) {
+    msg = `<p>Limit activities that can heat up your indoor space, like using your oven or stove.</p>`
+    finalMessageText.innerHTML+= msg + '<hr class="my-2">'
+  }
+
+  // High AQI - filter your air, sensitive.
+  if (hasAC === 'Yes' && (
+    (sensitiveGroup === 'Yes' && (aqi === 2 || aqi === 3))
+  )) {
+    msg = `<p>Because the air quality today can be unhealthy for sensitive groups, you may want to take some precautions. Air purifiers with filters can help remove some air pollution from the air.  Closing the vent on your AC or setting it to re-circulate will help you stay cool while preventing your AC unit from blowing polluted air inside. No matter what, always use your AC when it's hot. Staying cool is the priority. <a href='https://www.nyc.gov/site/doh/health/health-topics/indoor-air-quality.page'>Learn more about indoor air quality </a>.</p>`
+    finalMessageText.innerHTML+= msg + '<hr class="my-2">'
+  }
+
+  // High AQI, not sensitive
+  if (aqi > 3) {
+    msg = `<p>Because of today's air quality, take some precautions. Air purifiers with filters can help remove some air pollution from the air. Closing the vent on your AC or setting it to re-circulate will help you stay cool while preventing your AC unit from blowing polluted air inside. No matter what, always use your AC when it's hot. Staying cool is the priority. <a href='https://www.nyc.gov/site/doh/health/health-topics/indoor-air-quality.page'> Learn more about indoor air quality.</a></p>`
+    finalMessageText.innerHTML+= msg + '<hr class="my-2">'
+  }
 
   // Pets, high temp or high AQI
-  if ( hasAnimal === 'Yes' && 
-      (currentTemp > 80 || aqi > 3)
-  ) {
-    msg = '<p><strong>Your animals can’t tell you when they are not feeling well.</strong></p> <p>Generally, animals need AC if it is more than 80 degrees outside. And if the air quality is unhealthy for the general public, animals may need to spend more time indoors than usual. </p><p><a href="https://www.heat.gov/"> Learn more about who is most at risk during extreme heat. </a></p>'
-    finalMessageText.innerHTML += msg + '<hr class="my-2">'
+  if (hasAnimal === 'Yes' && (maxTemp > 80 || aqi > 3)) {
+    msg = `<p>Your animals can't tell you when they are not feeling well. Generally, animals need AC if it is more than 80 degrees outside. And if the air quality is unhealthy for the general public, keep your animals indoors as much as possible and limit strenuous activity for both you and your animal.  <a href="https://:www.heat.gov/">Learn more about who is most at risk during extreme heat</a>.</p>`
+    finalMessageText.innerHTML+= msg + '<hr class="my-2">'
   }
 
-  // uses EME
+  // Uses EME
   if (usesEME === 'Yes') {
-    msg = '<p><strong>Like 7.6% of New York City households, you use electric medical equipment, (like a wheelchair, nebulizer, respirator, or dialysis machine). </strong> You can register these with your utility provider so they can contact you during an emergency, like a power outage during a heatwave. You will need a medical certificate. <p>ConEd customers call 1-877-582-6633 or use “MyAccount” online. PSEG customers can call Call 1-800-490-0025. </p>'
-    finalMessageText.innerHTML += msg + '<hr class="my-2">'
+    msg = `<p>Like 7.6% of New York City households, you use electric medical equipment (like a wheelchair, nebulizer, respirator, or dialysis machine).  You can register with your utility provider so they can contact you during an emergency, like a power outage during a heatwave. You will need a medical certificate. ConEd customers should call 1-877-582-6633 or use “MyAccount” online. PSEG customers should call 1-800-490-0025. </p>`
+    finalMessageText.innerHTML+= msg + '<hr class="my-2">'
   }
 
 }
+
+/*
+  if (CONDITIONS) {
+    msg = `<p></p>`
+    finalMessageText.innerHTML+= msg + '<hr class="my-2">'
+  }
+*/
+
 
 
 
@@ -583,7 +605,7 @@ if (inputCurrentTemp) {
   inputCurrentTemp.addEventListener('input', function(event) {
       var currentValue = parseFloat(this.value);
       console.log('Current temperature:', currentValue);
-      currentTemp = currentValue
+      maxTemp = currentValue
       document.getElementById('currentTemp').innerHTML = currentValue
 
       var hotText = document.getElementById('hot')
