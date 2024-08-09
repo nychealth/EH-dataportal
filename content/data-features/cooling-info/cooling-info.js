@@ -351,13 +351,13 @@ function runFinal() {
   }
 
   // Message: Hot and AC
-  if (maxTemp > 85 && hasAC === 'Yes') {
+  if (maxTemp >= 85 && hasAC === 'Yes') {
     msg = `<p>Air conditioning is the best way to stay safe when it's this hot, so now's the time to turn it on!  Reach out to family, neighbors, and friends to make sure they have or <a href="https://finder.nyc.gov/coolingcenters/">know where to find a safe and cool place</a>.</p>`
     finalMessageText.innerHTML+= msg + '<hr class="my-2">'
   }
 
   // Message: Hot and No AC
-  if (maxTemp > 85 && hasAC === 'No') {
+  if (maxTemp >= 85 && hasAC === 'No') {
     msg = `<p>Air conditioning is the best way to stay safe when it's this hot. Since you don't have AC, <a href='https://:finder.nyc.gov/coolingcenters/'>visit a cool public place</a>, or a friend or family member who has AC. Taking a cool shower can also help temporarily. If you can't leave your home, do not close your windows when the temperature is hotter indoors than outside. When you are at home, continue to be mindful of the heat. Make sure to drink lots of water and try to avoid alcohol and caffeine. <a href="https://www.nyc.gov/site/doh/health/emergency-preparedness/emergencies-extreme-weather-heat.page">Get more information on hot weather and health</a>.</p>`
     finalMessageText.innerHTML+= msg + '<hr class="my-2">'
   }
@@ -430,7 +430,7 @@ function runFinal() {
   }
 
   // Hot - indoor air
-  if (maxTemp > 85) {
+  if (maxTemp >= 85) {
     msg = `<p>Limit activities that can heat up your indoor space, like using your oven or stove.</p>`
     finalMessageText.innerHTML+= msg + '<hr class="my-2">'
   }
