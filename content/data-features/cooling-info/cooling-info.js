@@ -14,6 +14,7 @@ var aqi             = "No"
 // other variables
 var over78F;
 var aqiInterpretation;
+var tempLabel;
 
 var warmSeason;
 
@@ -117,22 +118,24 @@ function printToPage() {
       }
 
     if (maxTemp >= 78 & maxTemp < 85) {
-        hotText.innerHTML = 'warm'
+        tempLabel = 'warm'
         hotText.style['background-color'] = "orange";
     } else if (maxTemp >= 85 & maxTemp < 90) {
-        hotText.innerHTML = 'hot'
+        tempLabel = 'hot'
         hotText.style['background-color'] = "red";
         hotText.style.color = 'white'
     } else if (maxTemp >= 90 ) {
-        hotText.innerHTML = 'very hot'
+        tempLabel = 'very hot'
         hotText.style['background-color'] = "darkred"
         hotText.style.color = 'white'
     } else if (maxTemp < 80) {
-        hotText.innerHTML = 'mild'
+        tempLabel = 'mild'
         hotText.style['background-color'] = "blue"
         hotText.style.color = 'white';
         over80F = 'No'
     }
+
+      hotText.innerHTML = tempLabel
 
     document.getElementById('over80F').innerHTML = over80F
 
@@ -328,13 +331,13 @@ function runFinal() {
 
   // Message. Warm and no AC.
   if (maxTemp > 78 && hasAC === 'No' && aqi < 3) {
-    msg = `<p>It's hot, and you don't have an AC. If it's hotter inside than outside, open your window(s) to try to cool down your home.</p>`
+    msg = `<p>It's ` + tempLabel + `, and you don't have an AC. If it's hotter inside than outside, open your window(s) to try to cool down your home.</p>`
     finalMessageText.innerHTML+= msg + '<hr class="my-2">'
   }
 
   // Message: warm, no AC, bad AQ
   if (maxTemp > 78 && hasAC === 'No' && aqi >= 3) {
-    msg = `<p>It's hot, and you don't have an AC. Open your window(s) to try to cool down your home. Even though the air quality is poor, it is more important to stay cool right now.</p>`
+    msg = `<p>It's ` + tempLabel + `, and you don't have an AC. Open your window(s) to try to cool down your home. Even though the air quality is poor, it is more important to stay cool right now.</p>`
     finalMessageText.innerHTML+= msg + '<hr class="my-2">'
   }
 
@@ -370,7 +373,7 @@ function runFinal() {
 
   // Message: Limits AC, not warm
   if (maxTemp > 78 && limitsAC === 'Yes') {
-    msg = `<p>You sometimes limit use of your AC because of the cost, but on hot days like today, it's time to turn it on. Using AC for just a few hours a day on 'low cool' or 78 degrees can keep your home from getting dangerously hot. Find out if you're eligible for <a href='www.coned.com/en/accounts-billing/payment-plans-assistance/help-paying-your-bill'>Con Ed's Energy Affordability Program</a>, which can help make air conditioning your home more affordable. You can also <a href="https://finder.nyc.gov/coolingcenters/">find an air-conditioned space to visit</a> - this could be a friend or family member's place, a mall, museum, or library.</p>`
+    msg = `<p>You sometimes limit use of your AC because of the cost, but on ` + tempLabel + ` days like today, it's time to turn it on. Using AC for just a few hours a day on 'low cool' or 78 degrees can keep your home from getting dangerously hot. Find out if you're eligible for <a href='www.coned.com/en/accounts-billing/payment-plans-assistance/help-paying-your-bill'>Con Ed's Energy Affordability Program</a>, which can help make air conditioning your home more affordable. You can also <a href="https://finder.nyc.gov/coolingcenters/">find an air-conditioned space to visit</a> - this could be a friend or family member's place, a mall, museum, or library.</p>`
     finalMessageText.innerHTML+= msg + '<hr class="my-2">'
   }
 
@@ -610,22 +613,23 @@ if (inputCurrentTemp) {
 
       var hotText = document.getElementById('hot')
       if (currentValue > 78 & currentValue < 85) {
-        hotText.innerHTML = 'warm'
+        tempLabel = 'warm'
         hotText.style['background-color'] = "orange";
     } else if (currentValue >= 85 & currentValue < 90) {
-        hotText.innerHTML = 'hot'
+        tempLabel = 'hot'
         hotText.style['background-color'] = "red";
         hotText.style.color = 'white'
     } else if (currentValue >= 90 ) {
-        hotText.innerHTML = 'very hot'
+        tempLabel = 'very hot'
         hotText.style['background-color'] = "darkred"
         hotText.style.color = 'white'
     } else if (currentValue < 78) {
-        hotText.innerHTML = 'mild'
+        tempLabel = 'mild'
         hotText.style['background-color'] = "blue"
         hotText.style.color = 'white';
         over80F = 'No'
     }
+        hotText.innerHTML = tempLabel
 
       runFinal()
   })
