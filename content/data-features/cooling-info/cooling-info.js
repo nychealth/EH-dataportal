@@ -39,7 +39,7 @@ fetch('https://api.weatherapi.com/v1/forecast.json?key=0d4a042ad8ec468da7b135156
     getAQI()
   })
 
-// WeatherAPI.com returns different AQI than EPA/Airnow, so, using different call for consistent AQI data.
+// WeatherAPI.com returns different AQI than EPA/Airnow, so, we use a different call for consistent AQI data.
 // https://docs.airnowapi.org/forecastsbyzip/query
 // https://docs.airnowapi.org/ForecastsByZip/docs
 
@@ -89,8 +89,6 @@ function getAQI() {
   })
 }
 
-
-
 function printToPage() {
     // Print current temp, max temp, and AQI
     currentTemp = Number(apiData.current.temp_f)
@@ -105,10 +103,6 @@ function printToPage() {
     } else {
       maxTemp = forecastTemp
     }
-
-
-
-    // aqi = apiData.current.air_quality["us-epa-index"]
 
     // Style temp interpretation
       var hotText = document.getElementById('hot')
@@ -157,10 +151,6 @@ function runQuestions() {
     questionBlock.setAttribute('id','question-'+question.id)
     questionBlock.innerHTML = `<div class="row"><div class="col-9"><h3 class="h5 mt-2">${question.text}</h3><p>${question.prompt}</p></div><div class="col-3"><img src="img/${question.image}" style="width:100%"></div></div>`
 
-    // Question and prompt
-    // questionBlock.innerHTML += `<div class="float-right p-1" style="height: 200px;"><img src="img/${question.image}" style="height:100%"></div><p></p>` + '<h3 class="h5 mt-2">' + question.text + '</h3>'
-    // questionBlock.innerHTML += `<p>` + question.prompt + `</p>`
-
     // Draw answer buttons
     question.options.forEach(option => {
 
@@ -175,12 +165,6 @@ function runQuestions() {
 
     document.getElementById('mainContent').appendChild(questionBlock)
 
-    /*
-    // Create secondary message section?
-    var answerMessage = `<div id="am-${question.id}" class="border my-2">Post answer message goes here</div>`
-    questionBlock.innerHTML += answerMessage
-    */
-
   })
   // end question loop
 
@@ -189,11 +173,7 @@ document.getElementById('question-1').scrollIntoView({
       behavior: 'smooth'
     })
 
-
 }
-
-
-
 
 
 // -------------------------------------------------------------------------- //
@@ -216,8 +196,6 @@ function answer(question, answer, next) {
       thisAnswer = thisQuestion.options[i]
     } else {}
   }
-
-  // console.log(thisAnswer)
 
   // print message
   var message = document.getElementById('message-' + thisQuestion.id)
@@ -247,31 +225,11 @@ function answer(question, answer, next) {
   var clickedBtn = document.getElementById('btn-' + question + '-' + answer)
   clickedBtn.classList.add('active')
 
-
-/* Commenting out recommendations panel for questions - since it's not a question -> recommendation, but rather, multivariate
-// Based on config - does an answer change a variable?
-// Then, run a Recommendation() function - does a changed variable trigger a recommendation? 
-
-  var resp = question + "-" + answer
-
-  // if question-answer matches a recommendation, activate recommendation
-  var rec = document.getElementById('rec-'+resp)
-
-  if (rec) {
-    console.log('rec exists!')
-    rec.classList.add('active') // we can change this to trigger a recommendation, running through a rec script that reads the temp and aqi variables.
-  } else {
-    console.log('no rec for this answer')
-    // Need to figure out how to turn off Active if somebody changes their answer !!!!!!
-  }
-  */
-
 }
 
 // -------------------------------------------------------------------------- //
 // ---------- These functions set variables; they're set in config ---------- //
 // -------------------------------------------------------------------------- //
-
 
 function sensitive(x) {
   sensitiveGroup = x
@@ -306,7 +264,9 @@ function fan(x) {
 }
 
 
-// RECOMMENDATION ENGINE
+// -------------------------------------------------------------------------- //
+// ---------- Run recommendations -------------------------------- ---------- //
+// -------------------------------------------------------------------------- //
 function runFinal() {
   var msg
   console.log('We are reviewing your data')
@@ -349,7 +309,7 @@ function runFinal() {
 
   // Message: no AC
   if (hasAC === 'No') {
-    msg = `<p>About 9% of NYC households are like you and don't have an AC - but it's the best way to stay safe when it's hot. Find out if you're eligible for <a href="https://portal.311.nyc.gov/article/?kanumber=KA-02529"> Home Energy Assistance Program </a> and <a href="https://www.coned.com/en/accounts-billing/payment-plans-assistance/help-paying-your-bill">Con Ed's Energy Affordability Program</a>, which can help make air conditioning your home more affordable.</p>`
+    msg = `<p>About 9% of NYC households are like you and don't have an AC - but it's the best way to stay safe when it's hot. Find out if you're eligible for <a href="https://portal.311.nyc.gov/article/?kanumber=KA-02529">Home Energy Assistance Program</a> and <a href="https://www.coned.com/en/accounts-billing/payment-plans-assistance/help-paying-your-bill">Con Ed's Energy Affordability Program</a>, which can help make air conditioning your home more affordable.</p>`
     finalMessageText.innerHTML+= msg + '<hr class="my-2">'
   }
 
@@ -384,7 +344,7 @@ function runFinal() {
   }
 
   if (aqi === 2 && sensitiveGroup === 'Yes') {
-    msg = `<p>The air quality is moderate, but you may be more sensitive to pollution.  If you spend time outdoors, follow routine precautions to manage any existing conditions.</p>`
+    msg = `<p>The air quality is moderate, but you may be more sensitive to pollution. If you spend time outdoors, follow routine precautions to manage any existing conditions.</p>`
     finalMessageText.innerHTML+= msg + '<hr class="my-2">'
   }
 
@@ -442,7 +402,7 @@ function runFinal() {
   if (hasAC === 'Yes' && (
     (sensitiveGroup === 'Yes' && (aqi === 2 || aqi === 3))
   )) {
-    msg = `<p>Because the air quality today can be unhealthy for sensitive groups, you may want to take some precautions. Air purifiers with filters can help remove some air pollution from the air.  Closing the vent on your AC or setting it to re-circulate will help you stay cool while preventing your AC unit from blowing polluted air inside. No matter what, always use your AC when it's hot. Staying cool is the priority. <a href='https://www.nyc.gov/site/doh/health/health-topics/indoor-air-quality.page'>Learn more about indoor air quality</a>.</p>`
+    msg = `<p>Because the air quality today can be unhealthy for sensitive groups, you may want to take some precautions. Air purifiers with filters can help remove some air pollution from the air. Closing the vent on your AC or setting it to re-circulate will help you stay cool while preventing your AC unit from blowing polluted air inside. No matter what, always use your AC when it's hot. Staying cool is the priority. <a href='https://www.nyc.gov/site/doh/health/health-topics/indoor-air-quality.page'>Learn more about indoor air quality</a>.</p>`
     finalMessageText.innerHTML+= msg + '<hr class="my-2">'
   }
 
@@ -460,20 +420,11 @@ function runFinal() {
 
   // Uses EME
   if (usesEME === 'Yes') {
-    msg = `<p>Like 7.6% of New York City households, you use electric medical equipment (like a wheelchair, nebulizer, respirator, or dialysis machine).  You can register with your utility provider so they can contact you during an emergency, like a power outage during a heatwave. You will need a medical certificate. ConEd customers should call 1-877-582-6633 or use “MyAccount” online. PSEG customers should call 1-800-490-0025.</p>`
+    msg = `<p>Like 7.6% of New York City households, you use electric medical equipment (like a wheelchair, nebulizer, respirator, or dialysis machine). You can register with your utility provider so they can contact you during an emergency, like a power outage during a heatwave. You will need a medical certificate. ConEd customers should call 1-877-582-6633 or use “MyAccount” online. PSEG customers should call 1-800-490-0025.</p>`
     finalMessageText.innerHTML+= msg + '<hr class="my-2">'
   }
 
 }
-
-/*
-  if (CONDITIONS) {
-    msg = `<p></p>`
-    finalMessageText.innerHTML+= msg + '<hr class="my-2">'
-  }
-*/
-
-
 
 
 
