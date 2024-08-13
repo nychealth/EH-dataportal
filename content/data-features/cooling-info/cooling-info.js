@@ -331,8 +331,8 @@ function runFinal() {
     finalMessageText.innerHTML+= msg + '<hr class="my-2">'
   }
 
-  // Message: Limits AC, not warm
-  if (maxTemp > 78 && limitsAC === 'Yes') {
+  // Message: Limits AC,  warm
+  if (maxTemp >= 85 && limitsAC === 'Yes') {
     msg = `<p>You sometimes limit use of your AC because of the cost, but on ` + tempLabel + ` days like today, it's time to turn it on. Using AC for just a few hours a day on 'low cool' or 78 degrees can keep your home from getting dangerously hot. Find out if you're eligible for <a href='www.coned.com/en/accounts-billing/payment-plans-assistance/help-paying-your-bill'>Con Ed's Energy Affordability Program</a>, which can help make air conditioning your home more affordable. You can also <a href="https://finder.nyc.gov/coolingcenters/">find an air-conditioned space to visit</a> - this could be a friend or family member's place, a mall, museum, or library.</p>`
     finalMessageText.innerHTML+= msg + '<hr class="my-2">'
   }
