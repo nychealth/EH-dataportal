@@ -349,7 +349,7 @@ function runFinal() {
 
   // Message: no AC
   if (hasAC === 'No') {
-    msg = `<p>About 9% of NYC households are like you and don't have an AC - but it's the best way to stay safe when it's hot. Find out if you're eligible for <a href="https://:portal.311.nyc.gov/article/?kanumber=KA-02529"> Home Energy Assistance Program </a> and <a href="https://www.coned.com/en/accounts-billing/payment-plans-assistance/help-paying-your-bill">Con Ed's Energy Affordability Program</a>, which can help make air conditioning your home more affordable.</p>`
+    msg = `<p>About 9% of NYC households are like you and don't have an AC - but it's the best way to stay safe when it's hot. Find out if you're eligible for <a href="https://portal.311.nyc.gov/article/?kanumber=KA-02529"> Home Energy Assistance Program </a> and <a href="https://www.coned.com/en/accounts-billing/payment-plans-assistance/help-paying-your-bill">Con Ed's Energy Affordability Program</a>, which can help make air conditioning your home more affordable.</p>`
     finalMessageText.innerHTML+= msg + '<hr class="my-2">'
   }
 
@@ -422,7 +422,7 @@ function runFinal() {
   if ((maxTemp > 70 && aqi > 3 && hasAC === 'Yes')
     ||
       (maxTemp > 70 && hasAC === 'Yes' && aqi > 2 && sensitiveGroup ==='Yes')) {
-    msg = `<p>Close your windows to prevent the air pollution from getting in. Closed windows can make your space warmer, so use your AC to stay cool and comfortable if your home gets too warm. Your AC can also filter the air, especially if the vent is closed or if it has a "recirculate" mode".</p>`
+    msg = `<p>Close your windows to prevent the air pollution from getting in. Closed windows can make your space warmer, so use your AC to stay cool and comfortable if your home gets too warm. Your AC can also filter the air, especially if the vent is closed or if it has a "recirculate" mode."</p>`
     finalMessageText.innerHTML+= msg + '<hr class="my-2">'
     }
 
@@ -442,13 +442,13 @@ function runFinal() {
   if (hasAC === 'Yes' && (
     (sensitiveGroup === 'Yes' && (aqi === 2 || aqi === 3))
   )) {
-    msg = `<p>Because the air quality today can be unhealthy for sensitive groups, you may want to take some precautions. Air purifiers with filters can help remove some air pollution from the air.  Closing the vent on your AC or setting it to re-circulate will help you stay cool while preventing your AC unit from blowing polluted air inside. No matter what, always use your AC when it's hot. Staying cool is the priority. <a href='https://www.nyc.gov/site/doh/health/health-topics/indoor-air-quality.page'>Learn more about indoor air quality </a>.</p>`
+    msg = `<p>Because the air quality today can be unhealthy for sensitive groups, you may want to take some precautions. Air purifiers with filters can help remove some air pollution from the air.  Closing the vent on your AC or setting it to re-circulate will help you stay cool while preventing your AC unit from blowing polluted air inside. No matter what, always use your AC when it's hot. Staying cool is the priority. <a href='https://www.nyc.gov/site/doh/health/health-topics/indoor-air-quality.page'>Learn more about indoor air quality</a>.</p>`
     finalMessageText.innerHTML+= msg + '<hr class="my-2">'
   }
 
   // High AQI, not sensitive, has AC
   if (aqi > 3 && hasAC === 'Yes') {
-    msg = `<p>Because of today's air quality, take some precautions. Air purifiers with filters can help remove some air pollution from the air. Closing the vent on your AC or setting it to re-circulate will help you stay cool while preventing your AC unit from blowing polluted air inside. No matter what, always use your AC when it's hot. Staying cool is the priority. <a href='https://www.nyc.gov/site/doh/health/health-topics/indoor-air-quality.page'>Learn more about indoor air quality.</a></p>`
+    msg = `<p>Because of today's air quality, take some precautions. Air purifiers with filters can help remove some air pollution from the air. Closing the vent on your AC or setting it to re-circulate will help you stay cool while preventing your AC unit from blowing polluted air inside. No matter what, always use your AC when it's hot. Staying cool is the priority. <a href='https://www.nyc.gov/site/doh/health/health-topics/indoor-air-quality.page'>Learn more about indoor air quality</a>.</p>`
     finalMessageText.innerHTML+= msg + '<hr class="my-2">'
   }
 
@@ -460,7 +460,7 @@ function runFinal() {
 
   // Uses EME
   if (usesEME === 'Yes') {
-    msg = `<p>Like 7.6% of New York City households, you use electric medical equipment (like a wheelchair, nebulizer, respirator, or dialysis machine).  You can register with your utility provider so they can contact you during an emergency, like a power outage during a heatwave. You will need a medical certificate. ConEd customers should call 1-877-582-6633 or use “MyAccount” online. PSEG customers should call 1-800-490-0025. </p>`
+    msg = `<p>Like 7.6% of New York City households, you use electric medical equipment (like a wheelchair, nebulizer, respirator, or dialysis machine).  You can register with your utility provider so they can contact you during an emergency, like a power outage during a heatwave. You will need a medical certificate. ConEd customers should call 1-877-582-6633 or use “MyAccount” online. PSEG customers should call 1-800-490-0025.</p>`
     finalMessageText.innerHTML+= msg + '<hr class="my-2">'
   }
 
