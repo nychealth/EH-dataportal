@@ -246,7 +246,7 @@
                 <ul class="breadcrumb mr-auto">
                     <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
                     <li class="breadcrumb-item"><a href={{ relURL "data-explorer" }}>Data Explorer</a></li>
-                    <li class="breadcrumb-item">{{ .Title }}&nbsp;
+                    <li class="breadcrumb-item">{{ .Title }}
                         <button type="button" 
                             class="btn btn-outline-light text-primary badge" 
                             title="Change topic"
@@ -257,7 +257,7 @@
                         </button></li>
                 </ul>
             </nav>
-            <div class="float-right pr-4 d-sm-none d-md-block">
+            <div class="float-right pr-4 d-none d-md-block">
                 {{- partial "socialshare" . -}}
             </div>
             <h1 class="h2">{{ .Title }} </h1>
