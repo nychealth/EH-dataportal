@@ -12,13 +12,13 @@ var content = [
     {
         "id": 1,
         "text": "Do any of these describe you or someone you live with?",
-        "prompt": "Certain health conditions and life situations can make you more vulnerable to extreme heat and bad air quality. <ul> <li><strong>Health conditions</strong>: difficulty breathing, heart disease, asthma or other breathing condition, pregnant, diabetic, limited mobility, immunocompromised, mental health, cognitive, or developmental condition </li> <li><strong>Life situations</strong>:  work or exercise outside, limited access to indoor shelter, misuse drugs or alcohol, take medicine that makes it difficult for your body to stay cool, live alone </li> <li><strong>Age</strong>: Over 60 or under  16 </li></ul>",
+        "prompt": "Certain health conditions and life situations can make you more vulnerable to extreme heat and unhealthy air quality. <ul> <li><strong>Health conditions</strong>: difficulty breathing, heart disease, asthma or other breathing condition, pregnant, diabetic, limited mobility, immunocompromised, mental health, cognitive, or developmental condition </li> <li><strong>Life situations</strong>:  work or exercise outside, limited access to indoor shelter, misuse drugs or alcohol, take medicine that makes it difficult for your body to stay cool, live alone </li> <li><strong>Age</strong>: Over 60 or under  16 </li></ul>",
         "image": "Vulnerable_groups1.svg",
         "options": [
             {
                 "optionID": 1,
                 "copy": "Yes",
-                "message": "In instances of hot weather or bad air quality, you'll want to monitor yourself or those in your household that might be more vulnerable to the impacts of heat and or air pollutants more closely.",
+                "message": "In instances of hot weather or unhealthy air quality, you'll want to monitor yourself or those in your household that might be more vulnerable to the impacts of heat and or air pollutants more closely.",
                 "setVariable": "sensitive('Yes')",
                 "goTo": 2
             },
