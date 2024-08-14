@@ -41,7 +41,18 @@ const renderComparisonsChart = (
 
     // dimensions
 
-    let columns = window.innerWidth < 576 ? 3 : 6;
+    let columns ;
+        if (window.innerWidth < 340) {
+            columns = 1
+        } else if (window.innerWidth < 440) {
+            columns = 2
+        } else if (window.innerWidth > 440 && window.innerWidth < 576) {
+            columns = 3
+        } else {
+            columns = 6
+        }
+    
+    
     let height = window.innerWidth < 576 ? 350 : 500;
 
     // ticks

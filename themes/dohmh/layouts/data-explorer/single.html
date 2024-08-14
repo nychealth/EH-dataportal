@@ -181,36 +181,36 @@
 
     /* Track */
     ::-webkit-scrollbar-track {
-      background: rgb(246, 246, 246); 
+      background: rgb(246, 246, 246);
     }
-    
+
     /* Track on Hover */
     ::-webkit-scrollbar-track:hover {
-      background: rgb(240, 240, 240); 
+      background: rgb(240, 240, 240);
     }
-     
+
     /* Handle */
     ::-webkit-scrollbar-thumb {
-      background: rgb(195, 195, 195); 
+      background: rgb(195, 195, 195);
     }
-    
+
     /* Handle on hover */
     ::-webkit-scrollbar-thumb:hover {
-      background: rgb(145, 145, 145); 
+      background: rgb(145, 145, 145);
     }
 
     .overflow-fade-ind {
         max-height: 55vmin; overflow-y:scroll; overflow-x:hidden;
       }
-    
+
     .overflow-fade-about {
         max-height: 55vmin; overflow-y:scroll; overflow-x:hidden;
       }
 
       .vis-bucket {
         clear:both;
-        width:100%; 
-        max-height: 75vmin; 
+        width:100%;
+        max-height: 75vmin;
     }
 
         .buttons-csv {
@@ -241,8 +241,8 @@
 
 <article class="container-fluid" id="skip-header-target">
     <div class="row">
-        <div class="col-12 my-4">
-            <nav aria-label="breadcrumb" class="mb-2">
+        <div class="col-12 mt-2 mb-3">
+            <nav aria-label="breadcrumb">
                 <ul class="breadcrumb mr-auto">
                     <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
                     <li class="breadcrumb-item"><a href={{ relURL "data-explorer" }}>Data Explorer</a></li>
@@ -262,12 +262,12 @@
     </div>
 
     <div class="row no-gutters px-0">
-    
+
         <div class="col-lg-4 col-md-12 pr-1">
             <!-- About button only on mobile-->
             <button class="btn btn-sm btn-outline-light text-primary btn-block d-lg-none mt-0 mb-2" type="button"
                     data-toggle="modal" data-target="#aboutModal">About {{ .Title }}</button>
-    
+
             <div class="d-none d-lg-block">
 
                 <div class="nav nav-pills device-md border-bottom" role="tablist">
@@ -276,25 +276,29 @@
                         aria-controls="tab-02-a" aria-selected="true" role="tab">
                         <i class="fas fa-list fa-fw mr-1" aria-hidden="true"></i>Datasets
                     </a>
-                
+
                     <a class="nav-item nav-link fs-sm tab-border" id="tab-btn-02-b" href="#tab-02-b" data-toggle="tab"
                         aria-controls="tab-02-b" aria-selected="false" role="tab">
                         <i class="fas fa-info-circle mr-1" aria-hidden="true"></i>About {{ lower .Title }}
                     </a>
                 </div>
-                
+
                 <div class="tab-content l-green-border de-dash-borderbottom" id="tabs-02-content">
-                
+
                     <div class="tab-pane fade show active" id="tab-02-a" aria-labelledby="tab-btn-02-a"
                         role="tabpanel">
                         <div id="indicatorButtons" class="pb-0 overflow-fade-ind mb-0">
                             <!--Rendered via renderIndicatorButtons function -->
                     </div>
                     </div>
-                
+
                     <div class="tab-pane fade" id="tab-02-b" aria-labelledby="tab-btn-02-b" role="tabpanel">
                         <div class="p-1 overflow-fade-about topic-text mb-1">
                             {{ .Content  }}
+                            <hr class="my-2">
+                            {{ with .Params.azlink }}
+                            <a href="{{ . }}"><i class="fas fa-external-link-alt mr-1" aria-hidden="true"></i>Get more resources about {{ lower $.Title }}</a>.
+                            {{ end }}
                         </div>
                     </div>
 
@@ -315,12 +319,12 @@
             </div>
 
 
-            
+
 
         </div>
-        
+
         <div class="col-lg-7 mx-auto col-md-12">
-        
+
             <!-- Indicator selection (mobile) -->
             <div class="dropdown d-lg-none">
                 <span class='home-label'>Change dataset</span>
@@ -340,12 +344,12 @@
         <!-- Indicator title and description -->
         <span class="border-bottom font-weight-bold d-none d-lg-block"><span id="indicatorTitle">Loading data...</span></span>
         <p class="fs-sm indicator-description">Just a moment...</p>
-        
+
         <!-- view selection buttons -->
         <div class="mt-3">
             <!-- Nav buttons -->
             <div class="nav nav-pills bg-white device-xs " role="tablist">
-        
+
                 <a class="nav-item nav-link border" id="tab-btn-table" href="#tab-table" data-toggle="pill"
                    aria-controls="tab-table" aria-selected="false" role="tab" style="text-decoration:none">
                     <i class="fas fa-table mr-1" aria-hidden="true"></i>
@@ -353,7 +357,7 @@
                         <span class="home-label-nc font-weight-bold ">Table</span>
                     </div>
                 </a>
-        
+
                 <a class="nav-item nav-link border" id="tab-btn-map" href="#tab-map" data-toggle="pill"
                    aria-controls="tab-map" aria-selected="false" role="tab" style="text-decoration:none">
                     <i class="fas fa-map-marker-alt fa-fw"></i>
@@ -361,7 +365,7 @@
                         <span class="home-label-nc font-weight-bold ">Map</span>
                     </div>
                 </a>
-        
+
                 <a class="nav-item nav-link border" id="tab-btn-trend" href="#tab-trend" data-toggle="pill"
                    aria-controls="tab-trend" aria-selected="false" role="tab" style="text-decoration:none">
                     <i class="fas fa-chart-line fa-fw" aria-hidden="true"></i>
@@ -369,8 +373,8 @@
                         <span class="home-label-nc font-weight-bold ">Trend</span>
                     </div>
                 </a>
-        
-        
+
+
                 <a class="nav-item nav-link border" id="tab-btn-links" href="#tab-links" data-toggle="pill"
                    aria-controls="tab-links" aria-selected="false" aria-disabled="true" role="tab" style="text-decoration:none">
                    <i class="fas fa-project-diagram" aria-hidden="true"></i>
@@ -378,13 +382,13 @@
                         <span class="home-label-nc font-weight-bold ">Correlate</span>
                     </div>
                 </a>
-        
+
             </div>
-            
-            
+
+
                 <!-- visualization elements -->
                 <div class="tab-content bg-white mb-2 border-top p-1" id="tabs-01-content">
-            
+
 
                 <!-- TABLE TAB -->
 
@@ -396,7 +400,7 @@
                             <!-- INSERT MENU ITEMS HERE -->
                         </div>
                     </div>
-            
+
                     <div class="dropdown">
                         <button class="btn btn-sm mr-1 float-right btn-outline-secondary dropdown-toggle mb-1" type="button"
                                 id="dropdownTableGeos" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Geography </button>
@@ -404,7 +408,7 @@
                             <!-- INSERT MENU ITEMS HERE -->
                         </div>
                     </div>
-            
+
                     <span id="tableTitle" class="home-label border-bottom"></span>
                     <div id="summary-table" class="" style="height:650px!important">
                         <!-- INSERT SUMMARY TABLE HERE -->
@@ -415,7 +419,7 @@
                     </div>
 
                 </div>
-            
+
 
                 <!-- MAP TAB -->
 
@@ -447,7 +451,7 @@
                         </div>
 
                     </div>
-                
+
                     <div id="map" class="vis-bucket"></div>
 
                     <div id="map-unreliability" class="pt-2 asidebox hide my-1">
@@ -455,7 +459,7 @@
                     </div>
 
                 </div>
-            
+
 
                 <!-- TREND TAB -->
 
@@ -466,11 +470,11 @@
                         <!-- comparisons button -->
                         <button class="btn btn-sm float-right btn-outline-secondary dropdown-toggle btn-comparisons mb-1" type="button"
                                 id="dropdownTrendComparisons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Compare by </button>
-                        
+
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownTrendComparisons">
                             <!-- INSERT MENU ITEMS HERE -->
                         </div>
-            
+
                     </div>
 
                     <!-- INSERT TREND CHART HERE -->
@@ -481,7 +485,7 @@
                     </div>
 
                 </div>
-            
+
 
                 <!-- LINKS TAB -->
 
@@ -511,7 +515,7 @@
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownLinksMeasures">
                             <!-- INSERT MENU ITEMS HERE -->
                         </div>
-                        
+
                     </div>
                     <span id="linksTitle" class="home-label border-bottom"></span>
                     <!-- INSERT LINKS CHART HERE -->
@@ -525,25 +529,25 @@
                 </div>
             </div>
 
-                        
+
                         <!-- FOOTER BUSINESS -->
                         <div class="row">
                             <div class="col-md-6 col-sm-12">
                                 <div class="dropdown">
-                                    <button class="btn btn-sm btn-block btn-outline-light text-secondary dropdown-toggle mb-1" 
+                                    <button class="btn btn-sm btn-block btn-outline-light text-secondary dropdown-toggle mb-1"
                                     type="button"
-                                    id="downloadDD" 
-                                    data-toggle="dropdown" 
-                                    aria-haspopup="true" 
+                                    id="downloadDD"
+                                    data-toggle="dropdown"
+                                    aria-haspopup="true"
                                     aria-expanded="false"
                                     ><i class="fa fa-download mr-1"></i>Download Data
                                 </button>
-                                <div class="dropdown-menu dropdown-menu-right" 
+                                <div class="dropdown-menu dropdown-menu-right"
                                 aria-labelledby="downloadDD">
                                 <a class="dropdown-item buttons-csv btn-outline-info" id="chartView"><i class="fa fa-download mr-1"></i>Download this view</a>
                                 <a class="dropdown-item buttons-csv btn-outline-info" id="allData"><i class="fa fa-download mr-1"></i>Download full data table</a>
                                 <a class="dropdown-item btn-outline-info" href="https://github.com/nychealth/EHDP-data/tree/production/indicators" target="_blank"><i class="fas fa-external-link-alt mr-1"></i>Data Github repo</a>
-                                <!--<a class="dropdown-item buttons-csv btn-outline-info" id="thisView">Current table view</a>-->        
+                                <!--<a class="dropdown-item buttons-csv btn-outline-info" id="thisView">Current table view</a>-->
                                 <!--<a class="dropdown-item buttons-csv btn-outline-info" id="rawData">Raw data for this indicator</a>-->
                                 </div>
                                 </div>
@@ -556,11 +560,11 @@
                                 <input type="text" id="citeText" value=""
                                 style="display:inline-block; width:100%; height: 40px; font-size: 14px;"
                                 class="my-2 sr-only">
-                                
+
                             </div>
 
                         </div>
-                        
+
                         <div class="row mb-2">
                             <div class="col-md-6 col-sm-12 h-100">
                                 <div class="asidebox pb-0 mb-0">
@@ -568,25 +572,25 @@
                                 </div>
                                 <div class="asidebox visFooterBox mb-1">
                                     <p class="fs-xs indicator-measures"></p>
-                        
-                        
+
+
                                 </div>
-                        
+
                             </div>
-                        
+
                             <div class="col-md-6 col-sm-12 h-100">
                                 <div class="asidebox pb-0 mb-0">
                                     <span class="fs-sm font-weight-bold"><i class="fas fa-info-circle mr-1"></i>Data sources</span>
                                 </div>
                                 <div class="asidebox visFooterBox">
                                 <p class="fs-xs indicator-sources"></p>
-                        
+
                                 </div>
 
 
-                                
+
                             </div>
-            
+
                         </div>
 
 
@@ -633,6 +637,10 @@
                 </div>
                 <div class="modal-body">
                     {{ .Content }}
+                    <hr class="my-2">
+                    {{ with .Params.azlink }}
+                    <a href="{{ . }}"><i class="fas fa-external-link-alt mr-1" aria-hidden="true"></i>Get more resources about {{ lower $.Title }}</a>.
+                    {{ end }}
                 </div>
                 <div class="modal-footer" data-pagefind-ignore="all">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -685,7 +693,7 @@
     {{- range .Params.Indicators }}
 
         {{- $indicators = $indicators | append .IndicatorID -}}
-            
+
     {{ end }}
 
     {{ range $index, $id := $indicators }}
@@ -693,18 +701,18 @@
         {{ $indicator := (index $indicator_names (string $id)) }}
 
         {{- /*  this gets an id because we want sub results with links  */}}
-        
-        <h1 
-            id="IndicatorID-{{ $id }}" 
-            class="d-none"> 
+
+        <h1
+            id="IndicatorID-{{ $id }}"
+            class="d-none">
             {{ $indicator.name }}
         </h1>
         <h2
-            class="d-none"> 
+            class="d-none">
             {{ $indicator.description }}
         </h2>
 
-    
+
     {{ end }}
 
 {{- end -}}
@@ -749,21 +757,13 @@
     {{- $dataTablesButtonsHtml5 := resources.Get "node_modules/datatables.net-buttons/js/buttons.html5.min.js" }}
     {{- $dataTablesButtonsPrint := resources.Get "node_modules/datatables.net-buttons/js/buttons.print.min.js" }}
     {{- $dataTablesRowGroup := resources.Get "node_modules/datatables.net-rowgroup/js/dataTables.rowGroup.min.js" }}
-    
+
     {{- $dataTablesBundleJS := slice $dataTables $dataTablesButtons $dataTablesButtonsHtml5 $dataTablesButtonsPrint $dataTablesRowGroup | resources.Concat "js/dataTableBundle.js" }}
     {{- $DT_secureJS := $dataTablesBundleJS | resources.Fingerprint "sha512" }}
 
     <script type="text/javascript" src="{{ $DT_secureJS.RelPermalink }}" integrity="{{ $DT_secureJS.Data.Integrity }}"></script>
 
     
-    {{- /*  other libraries  */}}
-
-    {{- $jszip := resources.Get "node_modules/jszip/dist/jszip.min.js" }}
-    {{- $jszip_secureJS := $jszip | resources.Fingerprint "sha512" }}
-
-
-    <script type="text/javascript" src="{{ $jszip_secureJS.RelPermalink }}" integrity="{{ $jszip_secureJS.Data.Integrity }}"></script>
-
     {{- /*  VegaLite  */}}
 
     {{- $vega := resources.Get "node_modules/vega/build/vega.min.js" }}
@@ -832,7 +832,7 @@
             {{- end }}
 
         }
-        
+
 
         {{/*  buttons (on desktop)  */}}
 
@@ -841,7 +841,7 @@
             const indicatorButtons = document.getElementById("indicatorButtons");
             let this_indicatorName;
             let header;
-            
+
             {{- range .Params.Indicators }}
 
                 header = '{{ .header }}';
@@ -854,7 +854,7 @@
                     indicator = indicators.find(indicator => indicator.IndicatorID === {{ $id }});
                     this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
                     indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' onclick='loadIndicator({{ $id }})' data-indicator-id='{{ $id }}'>" + this_indicatorName + `<i class="indicator-arrows fas fa-arrow-circle-right float-right font-weight-bold hide" id="arrow-{{ $id }}" aria-hidden="true"></i></button>`;
-                    
+
                 {{- end }}
             {{- end }}
         }
@@ -895,7 +895,7 @@
             btn.innerHTML = `<i class="fas fa-copy mr-1"></i>Copied!`
             // console.log('citation copied!')
         }
-            
+
     </script>
 
 
@@ -910,7 +910,7 @@
     {{- $disparities := resources.Get "js/data-explorer/disparities.js" -}}
     {{- $comparisons := resources.Get "js/data-explorer/comparisons.js" -}}
     {{- $app := resources.Get "js/data-explorer/app.js" -}}
-    
+
     {{- $dataExplorerJS := slice $global $data $renderMeasures $table $map $links $disparities $comparisons $app | resources.Concat "js/dataExplorer.js" -}}
     {{- $DE_secureJS := $dataExplorerJS | resources.Fingerprint "sha512" -}}
 
