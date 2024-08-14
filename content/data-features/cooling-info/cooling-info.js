@@ -307,9 +307,14 @@ function runFinal() {
     finalMessageText.innerHTML+= msg + '<hr class="my-2">'
   }
 
+  // HEAP insertion - leave blank if HEAP has run out for the year, otherwise, insert HEAP message into 'No AC.'
+  var heap;
+  // heap = 'the <a href="https://portal.311.nyc.gov/article/?kanumber=KA-02529">Home Energy Assistance Program</a> and '
+  heap = ''
+
   // Message: no AC
   if (hasAC === 'No') {
-    msg = `<p>About 9% of NYC households are like you and don't have an AC - but it's the best way to stay safe when it's hot. Find out if you're eligible for <a href="https://portal.311.nyc.gov/article/?kanumber=KA-02529">Home Energy Assistance Program</a> and <a href="https://www.coned.com/en/accounts-billing/payment-plans-assistance/help-paying-your-bill">Con Ed's Energy Affordability Program</a>, which can help make air conditioning your home more affordable.</p>`
+    msg = `<p>About 9% of NYC households are like you and don't have an AC - but it's the best way to stay safe when it's hot. Find out if you're eligible for ` + heap + `<a href="https://www.coned.com/en/accounts-billing/payment-plans-assistance/help-paying-your-bill">Con Ed's Energy Affordability Program</a>, which can help make air conditioning your home more affordable.</p>`
     finalMessageText.innerHTML+= msg + '<hr class="my-2">'
   }
 
