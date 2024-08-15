@@ -356,7 +356,7 @@ function runFinal() {
   }
 
   if (aqi === 4 && sensitiveGroup === 'No') {
-    msg = `<p>The air quality today is unhealthy. Air pollution can harm health. Limit strenuous and prolonged (over an hour) outdoor activities. Consider wearing a mask outside if you are experiencing symptoms, like coughing or throat or eye irritation. <a href="https://www.nyc.gov/site/doh/health/health-topics/air-quality-fire-smoke-and-effect-on-air-quality.page">Learn more about wearing masks</a></p>`
+    msg = `<p>The air quality today is unhealthy. Air pollution can harm health. Limit strenuous and prolonged (over an hour) outdoor activities. Consider wearing a mask outside if you are experiencing symptoms, like coughing or throat or eye irritation. <a href="https://www.nyc.gov/site/doh/health/health-topics/air-quality-fire-smoke-and-effect-on-air-quality.page">Learn more about wearing masks</a>.</p>`
     finalMessageText.innerHTML+= msg + '<hr class="my-2">'
   }
 
