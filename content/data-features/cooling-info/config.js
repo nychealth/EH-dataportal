@@ -65,7 +65,7 @@ var content = [
 
     {
         "id": 3,
-        "text": "Do you have any pets or working animals?",
+        "text": "Do you have pets or live with animals?",
         "prompt": "Animals are also vulnerable to heat and air quality.",
         "image": "Parrot_pet.svg",
         "options": [
