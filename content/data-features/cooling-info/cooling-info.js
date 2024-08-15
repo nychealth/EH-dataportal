@@ -422,7 +422,7 @@ function runFinal() {
 
   // Pets, high temp or high AQI
   if (hasAnimal === 'Yes' && (maxTemp > 78 || aqi > 3)) {
-    msg = `<p>Heat and unhealthy air quality affects animals, too. Ask your vet how to recognize signs of heat stress and <a href="https://www.avma.org/resources/pet-owners/petcare/warm-weather-pet-safety">get tips on caring for animals in the heat</a>. When the air quality is unhealthy for the general public, keep your animals indoors as much as possible and limit strenuous activity for both of you.</p>`
+    msg = `<p>Heat and unhealthy air quality affects animals, too. Ask your vet how to recognize signs of heat stress and <a href="https://www.avma.org/resources/pet-owners/petcare/warm-weather-pet-safety">get tips on caring for animals in the heat</a>. When the air quality is unhealthy for people, keep your animals indoors as much as possible and limit strenuous outdoor activity for both of you.</p>`
     finalMessageText.innerHTML+= msg + '<hr class="my-2">'
   }
 
