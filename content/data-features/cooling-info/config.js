@@ -18,7 +18,7 @@ var content = [
             {
                 "optionID": 1,
                 "copy": "Yes",
-                "message": "In instances of hot weather or unhealthy air quality, you'll want to monitor yourself or those in your household that might be more vulnerable to the impacts of heat and or air pollutants more closely.",
+                "message": "When it's hot outside or the air quality is unhealthy, listen to your body and check in on any vulnerable household members.  Be ready to change plans if you need to move to a safer place.  ",
                 "setVariable": "sensitive('Yes')",
                 "goTo": 2
             },
@@ -38,14 +38,14 @@ var content = [
 
     {
         "id": 2,
-        "text": "Do you or someone you live with rely on electronic medical equipment to keep you healthy?",
-        "prompt": "", 
+        "text": "Do you rely on electronic medical equipment?",
+        "prompt": "For example, a wheelchair, nebulizer, respirator, or dialysis machine.", 
         "image": "Pacemaker.svg",
         "options": [
             {
                 "optionID": 1,
                 "copy": "Yes",
-                "message": "If the power goes out during a heat wave, your equipment may run out of battery, which can be dangerous. Make sure to have an emergency plan and back up batteries. You can also <a href='https://www.coned.com/en/accounts-billing/payment-plans-assistance/special-services'>register your equipment with your utility provider:<a> <ul><li> CON ED: 1-800-752-6633 <li>PSEG: 1-800-490-0025</ul>",
+                "message": "If the power goes out during a heat wave, you won't be able to charge the battery on this critical equipment. Make sure to have back-up batteries or another emergency plan. And, <a href='https://www.coned.com/en/accounts-billing/payment-plans-assistance/special-services'>register your equipment with your utility provider<a> so they can contact you during a power outage. <ul><li> CON ED: 1-800-752-6633 <li>PSEG: 1-800-490-0025</ul>",
                 "setVariable": "eme('Yes')",
                 "goTo": 3
             },
@@ -66,13 +66,13 @@ var content = [
     {
         "id": 3,
         "text": "Do you have any pets or working animals?",
-        "prompt": "Pets and working animals are also vulnerable to heat and air quality.",
+        "prompt": "Animals are also vulnerable to heat and air quality.",
         "image": "Parrot_pet.svg",
         "options": [
             {
                 "optionID": 1,
                 "copy": "Yes",
-                "message": "We'll make sure these recommendations include the safety of your animal(s).",
+                "message": "We'll make sure these recommendations include the safety of your animal.",
                 "setVariable": "animal('Yes')",
                 "goTo": 4
             },
@@ -120,13 +120,13 @@ var content = [
     {
         "id": 5,
         "text": "Do you limit your use of air conditioning because of the cost?",
-        "prompt": "If you limit your use of AC, the most important times to still use it are when the outdoor temperature is greater than 80 degrees and at night when apartments are still hot from earlier in the day.", 
+        "prompt": "If you limit your use of AC, the most important times to still use it are when it's over 80 degrees outside, and at night when apartments are still hot from earlier in the day.", 
         "image": "Piggy_bank.svg",
         "options": [
             {
                 "optionID": 1,
                 "copy": "Yes",
-                "message": "Setting your air conditioner to 78F or Low Cool can keep you safe, comfortable, and save money. You may be eligible for assistance to cool your home. Visit the <a href='https://www.nyc.gov/site/hra/help/energy-assistance.page'>Home Energy Assistance Program</a> and <a href='https://www.coned.com/en/accounts-billing/payment-plans-assistance/help-paying-your-bill'>CON ED's Energy Affordability Program</a> to learn more.",
+                "message": "Setting your air conditioner to 78F or Low Cool can keep you safe, comfortable, and save money. Visit the <a href='https://www.nyc.gov/site/hra/help/energy-assistance.page'>Home Energy Assistance Program</a> and <a href='https://www.coned.com/en/accounts-billing/payment-plans-assistance/help-paying-your-bill'>CON ED's Energy Affordability Program</a> to see if your'e eligible for help cooling your home.",
                 "setVariable": "limitAC('Yes')",
                 "goTo": 6
             },

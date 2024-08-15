@@ -74,12 +74,12 @@
       <div class="sticky-top border p-2" style="z-index: 0">
         <p>
           Today's weather:
-          <span id="hot" class="font-weight-bold p-1">HOT</span>. <br />
-          The forecast high is <span id="forecastTemp">YY</span> today. It is
+          <span id="hot" class="font-weight-bold p-1">HOT</span><br />
+          <span class="fs-sm">The forecast high is <span id="forecastTemp">YY</span> today. It is
           currently <span id="currentTemp">XX</span>.
           <a href="https://forecast7.com/en/40d71n74d01/new-york/?unit=us"
             >Get a full weather forecast here</a
-          >.
+          >.</span>
         </p>
 
         <hr class="my-2" />
@@ -88,8 +88,8 @@
           The current air quality is:
           <span id="aqimeaning" class="font-weight-bold p-1"
             >AQI interpretation</span
-          >.
-          <a href="https://www.airnow.gov/">Get air quality where you live</a>.
+          ><br>
+          <span class="fs-sm"><a href="https://www.airnow.gov/">Get air quality where you live</a>.</span>
         </p>
 
         <hr class="my-2" />
@@ -154,11 +154,11 @@
         <!-- JavaScript inserts question conetnt into this div -->
       </div>
 
-      <div class="p-2 border mt-4 hide" id="finalInfo">
+      <div id="finalInfo" class="hide">
+      <div class="p-2 border mt-4 ">
         <h4 id="messageResults">Let's take a look at your situation.</h4>
         <p>
-          Here are some recommendations, tailored for you and your household,
-          that can help keep you cool and safe in hot weather or unhealthy air
+          These recommendations can help keep you safe in hot weather or unhealthy air
           quality.
         </p>
 
@@ -166,9 +166,35 @@
           <!-- Final messages get printed here -->
         </div>
 
-        <button class="btn btn-sm btn-outline-primary" onclick="setUpTest()">
-          See other recommendations?
-        </button>
+      </div>
+
+          <!-- More resources -->
+          <div class="row mt-2">
+            <div class="col-12 mb-2">
+              <h4 class="h5">More hot weather resources</h3>
+
+            </div>
+            <div class="col-md-6">
+              <div class="card card-left-border shadow-sm">
+                <div class="card-body">
+                    <p><a href="https://www.nyc.gov/site/em/ready/extreme-heat.page">Beat the Heat!</a> Resources for indoor and outdoor safety during extreme heat.
+                    </p>
+                </div>
+              </div>
+            </div>
+        
+            <div class="col-md-6">
+              <div class="card card-left-border shadow-sm">
+                <div class="card-body">
+                    <p> <a href="https://www.nycgovparks.org/about/health-and-safety-guide/cool-it-nyc">Cool It! NYC</a>: A map of water features, drinking fountains, and tree shade in NYC Parks.
+                    </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="btn btn-sm btn-outline-primary my-2" onclick="setUpTest()">
+            See other recommendations?
+          </button>
       </div>
 
       <div id="testInfo" class="hide mt-4">
@@ -238,6 +264,7 @@
     <!-- .col (main) -->
   </div>
   <!-- .row -->
+
 </article>
 <!-- #primary-content -->
 

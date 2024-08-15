@@ -30,4 +30,4 @@ image: AC.png
 
 When it is hot and the air outside is unhealthy, how can you stay safe?
 
-Answer these questions to get tips on how to protect yourself during hot days. These are general tips, not personal medical advice.
+Answer these questions - for you, or for someone in your household - to get tips on how to stay safe on hot days. These are general tips, not personal medical advice.
