@@ -414,15 +414,15 @@ function runFinal() {
     finalMessageText.innerHTML+= msg + '<hr class="my-2">'
   }
 
-  // Pets, high temp or high AQI
-  if (hasAnimal === 'Yes' && (maxTemp > 78 || aqi > 3)) {
-    msg = `<p>Heat and unhealthy air quality affects animals, too. Ask your vet how to recognize signs of heat stress <a href="https://www.avma.org/resources/pet-owners/petcare/warm-weather-pet-safety">and get tips on caring for animals in the heat</a>. When the air quality is unhealthy for the general public, keep your animals indoors as much as possible and limit strenuous activity for both of you.</p>`
-    finalMessageText.innerHTML+= msg + '<hr class="my-2">'
-  }
-
   // Uses EME
   if (usesEME === 'Yes') {
     msg = `<p>Like 7.6% of New York City households, you use electric medical equipment. Register with your utility provider so they can contact you during an emergency, like a power outage during a heatwave. You will need a medical certificate. ConEd customers should call 1-877-582-6633 or use “MyAccount” online. PSEG customers should call 1-800-490-0025.</p>`
+    finalMessageText.innerHTML+= msg + '<hr class="my-2">'
+  }
+
+  // Pets, high temp or high AQI
+  if (hasAnimal === 'Yes' && (maxTemp > 78 || aqi > 3)) {
+    msg = `<p>Heat and unhealthy air quality affects animals, too. Ask your vet how to recognize signs of heat stress <a href="https://www.avma.org/resources/pet-owners/petcare/warm-weather-pet-safety">and get tips on caring for animals in the heat</a>. When the air quality is unhealthy for the general public, keep your animals indoors as much as possible and limit strenuous activity for both of you.</p>`
     finalMessageText.innerHTML+= msg + '<hr class="my-2">'
   }
 
