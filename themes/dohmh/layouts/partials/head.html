@@ -55,7 +55,7 @@
 {{ if .Page.IsHome -}}
 
 <!-- build info -->
-<meta name="build_datetime" content='{{ (print (time.Now | time.Format ":date_full") ", " (time.Now | time.Format ":time_long")) }}'>
+<meta name="build_datetime" content='{{ (print (time.Now.Local | time.Format ":date_full") ", " (time.Now.Local | time.Format ":time_long")) }}'>
 <meta name="build_environment" content='{{ hugo.Environment }}'>
 <meta name="git_branch" content='{{ getenv "HUGO_GIT_BRANCH" }}'>
 <meta name="git_last_hash" content='{{ getenv "HUGO_GIT_LAST_HASH" }}'>
