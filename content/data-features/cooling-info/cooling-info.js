@@ -416,7 +416,7 @@ function runFinal() {
 
   // Pets, high temp or high AQI
   if (hasAnimal === 'Yes' && (maxTemp > 78 || aqi > 3)) {
-    msg = `<p>Your animals can't tell you when they are not feeling well. Some animals may need AC when it gets hot. And if the air quality is unhealthy for the general public, keep your animals indoors as much as possible and limit strenuous activity for both you and your animal.</p>`
+    msg = `<p>Your animals can't tell you when they are not feeling well. Some animals may need AC when it's hot. And if the air quality is unhealthy for the general public, keep your animals indoors as much as possible and limit strenuous activity for both you and your animal.</p>`
     finalMessageText.innerHTML+= msg + '<hr class="my-2">'
   }
 
