@@ -204,7 +204,8 @@ const renderMap = (
             "concat": {"spacing": 20}, 
             "view": {"stroke": "transparent"},
             "axisY": {"domain": false,"ticks": false},
-            "legend": {"disable": true}
+            "legend": {"disable": true},
+            "scale": {"invalid": {color: {value: '#808080'}}}
         },
         "projection": {"type": "mercator"},
         "transform": [
@@ -274,15 +275,11 @@ const renderMap = (
                         "encoding": {
                             ...encode,
                             "color": {
-                                "condition": {
-                                    "test": "isValid(datum.Value)",
-                                    "bin": false,
-                                    "field": "Value",
-                                    "type": "quantitative",
-                                    "scale": {"scheme": {"name": color, "extent": [0.125, 1.25]}},
-                                    ...legend    
-                                },
-                                "value": "#808080"
+                                "bin": false,
+                                "field": "Value",
+                                "type": "quantitative",
+                                "scale": {"scheme": {"name": color, "extent": [0.125, 1.25]}},
+                                ...legend    
                             },
                             "stroke": {
                                 "condition": [{"param": "highlight", "empty": false, "value": "cyan"}],
