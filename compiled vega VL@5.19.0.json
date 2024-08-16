@@ -1,0 +1,524 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "background": "white",
+  "padding": 5,
+  "title": {
+    "text": "Heat stress: yearly hospitalizations",
+    "subtitlePadding": 10,
+    "fontWeight": "normal",
+    "anchor": "start",
+    "fontSize": 18,
+    "font": "sans-serif",
+    "baseline": "top",
+    "subtitle": "Age-adjusted rate (per 100,000)",
+    "subtitleFontSize": 13
+  },
+  "data": [
+    {
+      "name": "highlight_store",
+      "transform": [{"type": "collect", "sort": {"field": "_vgsid_"}}]
+    },
+    {
+      "name": "source_0",
+      "values": [
+        {
+          "MeasureID": 540,
+          "GeoID": 1,
+          "GeoType": "Borough",
+          "TimePeriodID": 296,
+          "Value": 2.6,
+          "CI": "",
+          "Note": "",
+          "DisplayValue": "2.6",
+          "GeoRank": 1,
+          "GeoTypeDesc": "Borough",
+          "GeoTypeShortDesc": "Borough",
+          "Geography": "Bronx",
+          "Lat": 40.8526,
+          "Long": -73.8665,
+          "TimePeriod": "2022",
+          "start_period": 1640995200000,
+          "end_period": 1672444800000
+        },
+        {
+          "MeasureID": 540,
+          "GeoID": 2,
+          "GeoType": "Borough",
+          "TimePeriodID": 296,
+          "Value": null,
+          "CI": "",
+          "Note": "*** Number is suppressed for confidentiality reasons.",
+          "DisplayValue": "***",
+          "GeoRank": 1,
+          "GeoTypeDesc": "Borough",
+          "GeoTypeShortDesc": "Borough",
+          "Geography": "Brooklyn",
+          "Lat": 40.6447,
+          "Long": -73.9479,
+          "TimePeriod": "2022",
+          "start_period": 1640995200000,
+          "end_period": 1672444800000
+        },
+        {
+          "MeasureID": 540,
+          "GeoID": 3,
+          "GeoType": "Borough",
+          "TimePeriodID": 296,
+          "Value": 1.9,
+          "CI": "",
+          "Note": "",
+          "DisplayValue": "1.9",
+          "GeoRank": 1,
+          "GeoTypeDesc": "Borough",
+          "GeoTypeShortDesc": "Borough",
+          "Geography": "Manhattan",
+          "Lat": 40.7772,
+          "Long": -73.9672,
+          "TimePeriod": "2022",
+          "start_period": 1640995200000,
+          "end_period": 1672444800000
+        },
+        {
+          "MeasureID": 540,
+          "GeoID": 4,
+          "GeoType": "Borough",
+          "TimePeriodID": 296,
+          "Value": 1.4,
+          "CI": "",
+          "Note": "",
+          "DisplayValue": "1.4",
+          "GeoRank": 1,
+          "GeoTypeDesc": "Borough",
+          "GeoTypeShortDesc": "Borough",
+          "Geography": "Queens",
+          "Lat": 40.7076,
+          "Long": -73.8185,
+          "TimePeriod": "2022",
+          "start_period": 1640995200000,
+          "end_period": 1672444800000
+        },
+        {
+          "MeasureID": 540,
+          "GeoID": 5,
+          "GeoType": "Borough",
+          "TimePeriodID": 296,
+          "Value": null,
+          "CI": "",
+          "Note": "** Numbers <11 are suppressed as required by the Statewide Planning and Research Cooperative System (SPARCS) to protect patient confidentiality.",
+          "DisplayValue": "**",
+          "GeoRank": 1,
+          "GeoTypeDesc": "Borough",
+          "GeoTypeShortDesc": "Borough",
+          "Geography": "Staten Island",
+          "Lat": 40.5808,
+          "Long": -74.1534,
+          "TimePeriod": "2022",
+          "start_period": 1640995200000,
+          "end_period": 1672444800000
+        }
+      ]
+    },
+    {
+      "name": "source_1",
+      "url": "https://raw.githubusercontent.com/nychealth/EHDP-data/staging/geography/borough.topo.json",
+      "format": {"type": "topojson", "feature": "collection"}
+    },
+    {
+      "name": "data_0",
+      "source": "source_0",
+      "transform": [
+        {
+          "type": "formula",
+          "expr": "toNumber(datum[\"Value\"])",
+          "as": "Value"
+        },
+        {"type": "identifier", "as": "_vgsid_"},
+        {
+          "type": "formula",
+          "expr": "datum.DisplayValue + ' per 100,000'",
+          "as": "valueLabel"
+        }
+      ]
+    },
+    {
+      "name": "data_1",
+      "source": "data_0",
+      "transform": [
+        {
+          "type": "lookup",
+          "from": "source_1",
+          "key": "properties.GEOCODE",
+          "fields": ["GeoID"],
+          "as": ["geo"]
+        },
+        {"type": "filter", "expr": "isValid(datum[\"geo\"])"},
+        {
+          "type": "geojson",
+          "geojson": "geo",
+          "signal": "concat_0_layer_2_geojson_0"
+        }
+      ]
+    },
+    {
+      "name": "data_2",
+      "source": "data_0",
+      "transform": [
+        {
+          "type": "stack",
+          "groupby": ["GeoID"],
+          "field": "Value",
+          "sort": {"field": ["Value"], "order": ["descending"]},
+          "as": ["Value_start", "Value_end"],
+          "offset": "zero"
+        },
+        {
+          "type": "filter",
+          "expr": "isValid(datum[\"Value\"]) && isFinite(+datum[\"Value\"])"
+        }
+      ]
+    }
+  ],
+  "projections": [
+    {
+      "name": "projection",
+      "size": {"signal": "[width, concat_0_height]"},
+      "fit": {"signal": "[data('source_1'), concat_0_layer_2_geojson_0]"}
+    }
+  ],
+  "signals": [
+    {
+      "name": "width",
+      "init": "isFinite(containerSize()[0]) ? containerSize()[0] : 200",
+      "on": [
+        {
+          "update": "isFinite(containerSize()[0]) ? containerSize()[0] : 200",
+          "events": "window:resize"
+        }
+      ]
+    },
+    {"name": "concat_0_height", "value": 500},
+    {"name": "concat_1_height", "value": 150},
+    {
+      "name": "unit",
+      "value": {},
+      "on": [
+        {"events": "pointermove", "update": "isTuple(group()) ? group() : unit"}
+      ]
+    },
+    {
+      "name": "highlight",
+      "update": "vlSelectionResolve(\"highlight_store\", \"union\", true, true)"
+    }
+  ],
+  "layout": {"padding": 20, "columns": 1, "bounds": "full", "align": "each"},
+  "marks": [
+    {
+      "type": "group",
+      "name": "concat_0_group",
+      "style": "view",
+      "encode": {
+        "update": {
+          "width": {"signal": "width"},
+          "height": {"signal": "concat_0_height"}
+        }
+      },
+      "signals": [
+        {
+          "name": "highlight_tuple",
+          "on": [
+            {
+              "events": [{"source": "scope", "type": "mouseover"}],
+              "update": "datum && item().mark.marktype !== 'group' && indexof(item().mark.role, 'legend') < 0 ? {unit: \"concat_0_layer_2\", _vgsid_: (item().isVoronoi ? datum.datum : datum)[\"_vgsid_\"]} : null",
+              "force": true
+            },
+            {
+              "events": [{"source": "view", "type": "mouseout"}],
+              "update": "null"
+            }
+          ]
+        },
+        {
+          "name": "highlight_toggle",
+          "value": false,
+          "on": [
+            {
+              "events": [{"source": "scope", "type": "mouseover"}],
+              "update": "event.shiftKey"
+            },
+            {
+              "events": [{"source": "view", "type": "mouseout"}],
+              "update": "false"
+            }
+          ]
+        },
+        {
+          "name": "highlight_modify",
+          "on": [
+            {
+              "events": {"signal": "highlight_tuple"},
+              "update": "modify(\"highlight_store\", highlight_toggle ? null : highlight_tuple, highlight_toggle ? null : true, highlight_toggle ? highlight_tuple : null)"
+            }
+          ]
+        }
+      ],
+      "marks": [
+        {
+          "name": "concat_0_layer_0_marks",
+          "type": "shape",
+          "style": ["geoshape"],
+          "interactive": true,
+          "from": {"data": "source_1"},
+          "encode": {
+            "update": {
+              "fill": {"value": "#C5C5C5"},
+              "stroke": {"value": "#fafafa"},
+              "strokeWidth": {"value": 0.5},
+              "ariaRoleDescription": {"value": "geoshape"}
+            }
+          },
+          "transform": [{"type": "geoshape", "projection": "projection"}]
+        },
+        {
+          "name": "concat_0_layer_1_marks",
+          "type": "shape",
+          "style": ["geoshape"],
+          "interactive": true,
+          "from": {"data": "source_1"},
+          "encode": {
+            "update": {
+              "fill": {"value": "#e7e7e7"},
+              "stroke": {"value": "#a2a2a2"},
+              "strokeWidth": {"value": 0.5},
+              "ariaRoleDescription": {"value": "geoshape"}
+            }
+          },
+          "transform": [{"type": "geoshape", "projection": "projection"}]
+        },
+        {
+          "name": "concat_0_layer_2_marks",
+          "type": "shape",
+          "style": ["geoshape"],
+          "interactive": true,
+          "from": {"data": "data_1"},
+          "encode": {
+            "update": {
+              "fill": [
+                {
+                  "test": "isValid(datum.Value)",
+                  "scale": "color",
+                  "field": "Value"
+                },
+                {
+                  "test": "!isValid(datum[\"Value\"]) || !isFinite(+datum[\"Value\"])",
+                  "signal": "scale('color', inrange(0, domain('color')) ? 0 : domain('color')[0])"
+                },
+                {"value": "#808080"}
+              ],
+              "stroke": [
+                {
+                  "test": "length(data(\"highlight_store\")) && vlSelectionIdTest(\"highlight_store\", datum)",
+                  "value": "cyan"
+                },
+                {"value": "#2d2d2d"}
+              ],
+              "strokeWidth": [
+                {
+                  "test": "length(data(\"highlight_store\")) && vlSelectionIdTest(\"highlight_store\", datum)",
+                  "value": 1.25
+                },
+                {"value": 0.5}
+              ],
+              "zindex": [
+                {
+                  "test": "length(data(\"highlight_store\")) && vlSelectionIdTest(\"highlight_store\", datum)",
+                  "value": 1
+                },
+                {"value": 0}
+              ],
+              "tooltip": {
+                "signal": "{\"Neighborhood\": isValid(datum[\"Geography\"]) ? datum[\"Geography\"] : \"\"+datum[\"Geography\"], \"Age-adjusted rate\": isValid(datum[\"valueLabel\"]) ? datum[\"valueLabel\"] : \"\"+datum[\"valueLabel\"], \"Time period\": isValid(datum[\"TimePeriod\"]) ? datum[\"TimePeriod\"] : \"\"+datum[\"TimePeriod\"]}"
+              },
+              "ariaRoleDescription": {"value": "geoshape"},
+              "description": {
+                "signal": "\"Value: \" + (format(datum[\"Value\"], \"\")) + \"; geo: \" + (isValid(datum[\"geo\"]) ? datum[\"geo\"] : \"\"+datum[\"geo\"]) + \"; Neighborhood: \" + (isValid(datum[\"Geography\"]) ? datum[\"Geography\"] : \"\"+datum[\"Geography\"]) + \"; Age-adjusted rate: \" + (isValid(datum[\"valueLabel\"]) ? datum[\"valueLabel\"] : \"\"+datum[\"valueLabel\"]) + \"; Time period: \" + (isValid(datum[\"TimePeriod\"]) ? datum[\"TimePeriod\"] : \"\"+datum[\"TimePeriod\"])"
+              }
+            }
+          },
+          "transform": [
+            {
+              "type": "geoshape",
+              "projection": "projection",
+              "field": "datum[\"geo\"]"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "name": "concat_1_group",
+      "style": "cell",
+      "encode": {
+        "update": {
+          "width": {"signal": "width"},
+          "height": {"signal": "concat_1_height"}
+        }
+      },
+      "signals": [
+        {
+          "name": "highlight_tuple",
+          "on": [
+            {
+              "events": [{"source": "scope", "type": "mouseover"}],
+              "update": "datum && item().mark.marktype !== 'group' && indexof(item().mark.role, 'legend') < 0 ? {unit: \"concat_1\", _vgsid_: (item().isVoronoi ? datum.datum : datum)[\"_vgsid_\"]} : null",
+              "force": true
+            },
+            {
+              "events": [{"source": "view", "type": "mouseout"}],
+              "update": "null"
+            }
+          ]
+        },
+        {
+          "name": "highlight_toggle",
+          "value": false,
+          "on": [
+            {
+              "events": [{"source": "scope", "type": "mouseover"}],
+              "update": "event.shiftKey"
+            },
+            {
+              "events": [{"source": "view", "type": "mouseout"}],
+              "update": "false"
+            }
+          ]
+        },
+        {
+          "name": "highlight_modify",
+          "on": [
+            {
+              "events": {"signal": "highlight_tuple"},
+              "update": "modify(\"highlight_store\", highlight_toggle ? null : highlight_tuple, highlight_toggle ? null : true, highlight_toggle ? highlight_tuple : null)"
+            }
+          ]
+        }
+      ],
+      "marks": [
+        {
+          "name": "concat_1_marks",
+          "type": "rect",
+          "style": ["bar"],
+          "interactive": true,
+          "from": {"data": "data_2"},
+          "encode": {
+            "update": {
+              "stroke": [
+                {
+                  "test": "length(data(\"highlight_store\")) && vlSelectionIdTest(\"highlight_store\", datum)",
+                  "value": "cyan"
+                },
+                {"value": "white"}
+              ],
+              "tooltip": {
+                "signal": "{\"Neighborhood\": isValid(datum[\"Geography\"]) ? datum[\"Geography\"] : \"\"+datum[\"Geography\"], \"Age-adjusted rate\": isValid(datum[\"valueLabel\"]) ? datum[\"valueLabel\"] : \"\"+datum[\"valueLabel\"], \"Time period\": isValid(datum[\"TimePeriod\"]) ? datum[\"TimePeriod\"] : \"\"+datum[\"TimePeriod\"]}"
+              },
+              "fill": {"scale": "color", "field": "Value"},
+              "strokeWidth": [
+                {
+                  "test": "length(data(\"highlight_store\")) && vlSelectionIdTest(\"highlight_store\", datum)",
+                  "value": 3
+                },
+                {"value": 0}
+              ],
+              "ariaRoleDescription": {"value": "bar"},
+              "description": {
+                "signal": "\"GeoID: \" + (isValid(datum[\"GeoID\"]) ? datum[\"GeoID\"] : \"\"+datum[\"GeoID\"]) + \"; Value: \" + (format(datum[\"Value\"], \"\")) + \"; Neighborhood: \" + (isValid(datum[\"Geography\"]) ? datum[\"Geography\"] : \"\"+datum[\"Geography\"]) + \"; Age-adjusted rate: \" + (isValid(datum[\"valueLabel\"]) ? datum[\"valueLabel\"] : \"\"+datum[\"valueLabel\"]) + \"; Time period: \" + (isValid(datum[\"TimePeriod\"]) ? datum[\"TimePeriod\"] : \"\"+datum[\"TimePeriod\"])"
+              },
+              "x": {"scale": "concat_1_x", "field": "GeoID"},
+              "width": {"signal": "max(0.25, bandwidth('concat_1_x'))"},
+              "y": {"scale": "concat_1_y", "field": "Value_end"},
+              "y2": {"scale": "concat_1_y", "field": "Value_start"}
+            }
+          }
+        }
+      ],
+      "axes": [
+        {
+          "scale": "concat_1_y",
+          "orient": "left",
+          "tickCount": 3,
+          "gridScale": "concat_1_x",
+          "grid": true,
+          "domain": false,
+          "labels": false,
+          "aria": false,
+          "maxExtent": 0,
+          "minExtent": 0,
+          "ticks": false,
+          "zindex": 0
+        },
+        {
+          "scale": "concat_1_y",
+          "orient": "left",
+          "grid": false,
+          "labelAngle": 0,
+          "labelFontSize": 11,
+          "tickCount": 3,
+          "labelAlign": "right",
+          "labelOverlap": true,
+          "zindex": 0
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "color",
+      "type": "linear",
+      "domain": {
+        "fields": [
+          {"data": "data_1", "field": "Value"},
+          {"data": "data_2", "field": "Value"}
+        ]
+      },
+      "range": {"scheme": "reds", "extent": [0.125, 1.25]},
+      "interpolate": "hcl",
+      "zero": false
+    },
+    {
+      "name": "concat_1_x",
+      "type": "band",
+      "domain": {
+        "data": "data_0",
+        "field": "GeoID",
+        "sort": {"op": "min", "field": "Value"}
+      },
+      "range": [0, {"signal": "width"}],
+      "paddingInner": 0.1,
+      "paddingOuter": 0.05
+    },
+    {
+      "name": "concat_1_y",
+      "type": "linear",
+      "domain": {"data": "data_2", "fields": ["Value_start", "Value_end"]},
+      "range": [{"signal": "concat_1_height"}, 0],
+      "nice": true,
+      "zero": true
+    }
+  ],
+  "legends": [
+    {
+      "direction": "horizontal",
+      "gradientLength": 200,
+      "offset": -25,
+      "orient": "top-left",
+      "tickCount": 3,
+      "fill": "color"
+    }
+  ],
+  "config": {
+    "axisY": {"domain": false, "ticks": false},
+    "legend": {"disable": true},
+    "style": {"cell": {"stroke": "transparent"}}
+  }
+}
