@@ -18,7 +18,7 @@ var content = [
             {
                 "optionID": 1,
                 "copy": "Yes",
-                "message": "When it's hot outside or the air quality is unhealthy, listen to your body and check in on any vulnerable household members.  Be ready to change plans if you need to move to a safer place.  ",
+                "message": "When it's hot outside or the air quality is unhealthy, listen to your body and check in on vulnerable friends, family, or neighbors.  Be ready to change plans if you need to move to a safer place.",
                 "setVariable": "sensitive('Yes')",
                 "goTo": 2
             },
@@ -98,7 +98,7 @@ var content = [
             {
                 "optionID": 1,
                 "copy": "Yes",
-                "message": "Great! You have an air conditioner. If you don’t have AC in every room, use the AC in the room you spend the most time in.",
+                "message": "Great! You have an air conditioner. If you don't have AC in every room, put your AC in the room you spend the most time in.",
                 "setVariable": "ac('Yes')",
                 "goTo": 5
             },
