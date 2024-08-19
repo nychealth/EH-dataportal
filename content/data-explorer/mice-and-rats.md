@@ -19,25 +19,25 @@ indicators:
       - 2416
 ---
 
-Rats and mice are common, but preventable. In NYC, rats tend to be seen on streets, alleys and sidewalks, and in yards and basements, while mice are almost always found inside homes.
+Rats and mice are common, but preventable. In NYC, rats tend to be seen on streets, alleys and sidewalks, and in yards and basements, while mice are almost always found inside buildings.
 
 Rats and mice thrive where there are sources of food and shelter and where property owners fail to prevent and adequately respond to their presence.
 
 ### Mice, Rats and Health
 
-The presence of rats in communities has been historically associated with a variety of infectious diseases. Today, rats are principally recognized for their contribution to neighborhood stress, poor quality of life, contamination of food, and for their contribution to the destruction of infrastructure. Mice can contaminate food, and their urine and dander are potent allergens, which can exacerbate the symptoms of asthma in sensitive people.
+Today, rats are recognized for their contribution to neighborhood stress, poor quality of life, contamination of food, potential threat to public health, and for their contribution to the destruction of infrastructure. Mice can contaminate food, and their urine and dander are potent allergens, which can exacerbate the symptoms of asthma in sensitive people.
 
 ### Prevention
 
 Simple steps can be taken to prevent mice and rats both inside and outside:
 
-- Report evidence of, or conditions that attract rats and mice to property owners.
+- Report evidence of, or conditions that attract rats and mice to 311. Property owners are responsible for keeping their properties free of pests.
 
 - Clean up. Garbage and clutter give rats and mice a place to eat and nest.
 
 - Store all your food and food waste in hard side containers with tight fitting lids whether it’s inside or outside of the building.
 
-- Seal up cracks and holes in your building or apartment to prevent the free movement of rats and mice.
+- Seal up cracks and holes inside and outside your building or apartment to prevent the free movement of rats and mice.
 
 - Keep yards and outdoor areas trimmed and free of clutter to avoid creating a harbor for rats.
 
