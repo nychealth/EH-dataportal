@@ -24,7 +24,7 @@ image: ds-public-space_fort_greene_Alexander_Thompson.jpg
 photocredit: "Alexander Thompson/NYC & Company"
 ---
 
-Health is determined by many factors. People tend to be healthier when they have economic stability, live in quality housing and have access to public space and safe, connected communities. In 2020, the NYC Health Department held a series of community conversations with residents and local stakeholders across 26 neighborhoods. New Yorkers shared personal stories that illuminate their priorities for building healthier neighborhoods, healthier childhoods and more. This is one part of a three-part series on how <strong><a href="../housing-creates-health">housing</a>, <a href="../economic-stability/">economic stability</a>, and public space create health.</strong>
+Health is determined by many factors. People tend to be healthier when they have economic stability, live in quality housing and have access to public space and safe, connected communities. In 2020, the NYC Health Department held a series of community conversations with residents and local stakeholders across 26 neighborhoods. New Yorkers shared personal stories about their priorities for building healthier neighborhoods, healthier childhoods and more. This is one part of a three-part series on how <strong><a href="../housing-creates-health">housing</a>, <a href="../economic-stability/">economic stability</a>, and public space create health.</strong>
 
 <div class="pullquote my-4">
 <figure class="">
