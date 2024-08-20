@@ -904,21 +904,36 @@
     </script>
 
 
-    {{- /*  JS must be in this order  */}}
+    {{- /*  non-bundled DE code - get resource, fingerprint, include  */}}
 
-    {{- $global := resources.Get "js/data-explorer/global.js" -}}
-    {{- $data := resources.Get "js/data-explorer/data.js" -}}
-    {{- $renderMeasures := resources.Get "js/data-explorer/measures.js" -}}
-    {{- $table := resources.Get "js/data-explorer/table.js" -}}
-    {{- $map := resources.Get "js/data-explorer/map.js" -}}
-    {{- $links := resources.Get "js/data-explorer/links.js" -}}
+    {{- $global      := resources.Get "js/data-explorer/global.js" -}}
+    {{- $data        := resources.Get "js/data-explorer/data.js" -}}
+    {{- $measures    := resources.Get "js/data-explorer/measures.js" -}}
+    {{- $table       := resources.Get "js/data-explorer/table.js" -}}
+    {{- $map         := resources.Get "js/data-explorer/map.js" -}}
+    {{- $links       := resources.Get "js/data-explorer/links.js" -}}
     {{- $disparities := resources.Get "js/data-explorer/disparities.js" -}}
     {{- $comparisons := resources.Get "js/data-explorer/comparisons.js" -}}
-    {{- $app := resources.Get "js/data-explorer/app.js" -}}
+    {{- $app         := resources.Get "js/data-explorer/app.js" -}}
 
-    {{- $dataExplorerJS := slice $global $data $renderMeasures $table $map $links $disparities $comparisons $app | resources.Concat "js/dataExplorer.js" -}}
-    {{- $DE_secureJS := $dataExplorerJS | resources.Fingerprint "sha512" -}}
+    {{- $global_secure      := $global | resources.Fingerprint "sha512" -}}
+    {{- $data_secure        := $data | resources.Fingerprint "sha512" -}}
+    {{- $measures_secure    := $measures | resources.Fingerprint "sha512" -}}
+    {{- $table_secure       := $table | resources.Fingerprint "sha512" -}}
+    {{- $map_secure         := $map | resources.Fingerprint "sha512" -}}
+    {{- $links_secure       := $links | resources.Fingerprint "sha512" -}}
+    {{- $disparities_secure := $disparities | resources.Fingerprint "sha512" -}}
+    {{- $comparisons_secure := $comparisons | resources.Fingerprint "sha512" -}}
+    {{- $app_secure         := $app | resources.Fingerprint "sha512" -}}
 
-    <script type="text/javascript" src="{{ $DE_secureJS.RelPermalink }}" integrity="{{ $DE_secureJS.Data.Integrity }}"></script>
+    <script type="text/javascript" src="{{ $global_secure.RelPermalink }}" integrity="{{ $global_secure.Data.Integrity }}"></script>
+    <script type="text/javascript" src="{{ $data_secure.RelPermalink }}" integrity="{{ $data_secure.Data.Integrity }}"></script>
+    <script type="text/javascript" src="{{ $measures_secure.RelPermalink }}" integrity="{{ $measures_secure.Data.Integrity }}"></script>
+    <script type="text/javascript" src="{{ $table_secure.RelPermalink }}" integrity="{{ $table_secure.Data.Integrity }}"></script>
+    <script type="text/javascript" src="{{ $map_secure.RelPermalink }}" integrity="{{ $map_secure.Data.Integrity }}"></script>
+    <script type="text/javascript" src="{{ $links_secure.RelPermalink }}" integrity="{{ $links_secure.Data.Integrity }}"></script>
+    <script type="text/javascript" src="{{ $disparities_secure.RelPermalink }}" integrity="{{ $disparities_secure.Data.Integrity }}"></script>
+    <script type="text/javascript" src="{{ $comparisons_secure.RelPermalink }}" integrity="{{ $comparisons_secure.Data.Integrity }}"></script>
+    <script type="text/javascript" src="{{ $app_secure.RelPermalink }}" integrity="{{ $app_secure.Data.Integrity }}"></script>
 
 {{- end -}}
