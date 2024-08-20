@@ -366,7 +366,7 @@ const renderComparisonsChart = (
                 // "columns": 3,
                 "labelFontSize": 14,
                 "symbolSize": 140,
-                "offset": height / 12.5
+                "offset": height / 9
             },
             "view": {"stroke": "transparent"},
             "line": {"color": "#1696d2", "stroke": "#1696d2", "strokeWidth": 2.5},
@@ -390,6 +390,7 @@ const renderComparisonsChart = (
             //     }
             // }
         },
+        "transform": [{"calculate": "split(datum.TimePeriod, ' ')", "as": "TimePeriod"}],
         "width": "container",
         "height": height,
         "title": { 
@@ -513,7 +514,7 @@ const renderComparisonsChart = (
                 "mark": {
                     "type": "text", 
                     "fontWeight": 100,
-                    "fontSize": 14,
+                    "fontSize": 10,
                 },
                 "encoding": {
                     "x": {
