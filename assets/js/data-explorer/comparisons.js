@@ -52,6 +52,13 @@ const renderComparisonsChart = (
         } else {
             columns = 6
         }
+
+    let xLabels;
+        if (window.innerWidth < 576) {
+            xLabels = 'TimePeriodYear'
+        } else {
+            xLabels = 'TimePeriodSplit'
+        }
     
     
     let height = window.innerWidth < 576 ? 350 : 500;
@@ -390,7 +397,10 @@ const renderComparisonsChart = (
             //     }
             // }
         },
-        "transform": [{"calculate": "split(datum.TimePeriod, ' ')", "as": "TimePeriodSplit"}],
+        "transform": [
+            {"calculate": "split(datum.TimePeriod, ' ')", "as": "TimePeriodSplit"},
+            {"calculate": "datum.TimePeriodSplit[datum.TimePeriodSplit.length - 1]", "as": "TimePeriodYear"}
+        ],
         "width": "container",
         "height": height,
         "title": { 
@@ -524,7 +534,7 @@ const renderComparisonsChart = (
                     },
                     "y": {"value": height + (height / 25)},
                     "text": {
-                        "field": "TimePeriodSplit", 
+                        "field": xLabels, 
                         "type": "nominal",
                     },
                     "color": {"value": "black"},
