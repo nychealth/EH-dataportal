@@ -367,7 +367,7 @@
             <p class="fs-sm indicator-description">Indicator description sentences go here. These are usually two sentences long, just a couple of lines.</p>       
         </div>
 
-        <div class="my-1">
+        <div class="my-1" id="tab-map-legend">
             <div class="dropdown">
                 <button class="btn btn-sm btn-block btn-white dropdown-toggle mb-1" type="button"
                     id="dropdownMapMeasures" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Estimated annual rate per 100,000 </button>
@@ -407,7 +407,7 @@
                         
                         <a class="nav-item nav-link border rightPanelOverlay" id="tab-btn-map" href="#tab-map" data-toggle="pill"
                            aria-controls="tab-map" aria-selected="false" role="tab" style="text-decoration:none">
-                            <i class="fas fa-map-marker-alt fa-fw"></i>
+                            <i class="fas fa-chart-bar fa-fw"></i>
                             <div class="d-none d-lg-inline-block">
                                 <span class="fs-sm font-weight-bold ">Bar</span>
                             </div>
@@ -436,7 +436,15 @@
                          <div class="d-none d-lg-inline-block">
                              <span class="fs-sm font-weight-bold ">Table</span>
                          </div>
-                     </a>
+                        </a>
+
+                        <a class="nav-item nav-link border rightPanelOverlay" id="tab-btn-info" href="#tab-info" data-toggle="pill"
+                        aria-controls="tab-info" aria-selected="false" role="tab" style="text-decoration:none">
+                         <i class="fas fa-info-circle" aria-hidden="true"></i>
+                         <div class="d-none d-lg-inline-block">
+                             <span class="fs-sm font-weight-bold sr-only">Info</span>
+                         </div>
+                        </a>
                 
                     </div>
                     
@@ -479,7 +487,7 @@
         
                         <div class="tab-pane fade pt-1" id="tab-map" aria-labelledby="tab-btn-map" role="tabpanel">
                         
-                            <div class="dropdown hide">
+                            <div class="dropdown">
                                 <button class="btn btn-sm mr-1 float-left btn-outline-secondary dropdown-toggle mb-1" type="button"
                                     id="dropdownMapMeasures" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Show as </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMapMeasures">
@@ -488,7 +496,7 @@
                 
                             </div>
                 
-                            <div class="dropdown hide">
+                            <div class="dropdown">
                                 <button class="btn btn-sm mx-1 float-left btn-outline-secondary dropdown-toggle mb-1" type="button"
                                     id="dropdownMapTimes" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Time period </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMapTimes">
@@ -498,7 +506,7 @@
                             </div>
                 
                 
-                            <div class="dropdown hide">
+                            <div class="dropdown ">
                                 <button class="btn btn-sm float-left btn-outline-secondary dropdown-toggle mb-1" type="button"
                                         id="dropdownMapGeos" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Boundaries </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMapGeos">
@@ -580,7 +588,18 @@
                             </div>
         
                         </div>
-                    </div>
+
+                        <!-- Info tab -->
+                        <div class="tab-pane fade p-1" id="tab-info" aria-labelledby="tab-btn-info" role="tabpanel">
+                            Info stuff here.
+                            <ul>
+                                <li>Download
+                                </li>
+                                <li>About the measures</li>
+                                <li>Data source</li>
+                                <li>Cite</li>
+                            </ul>
+                        </div>
                     </div>
                     
 
