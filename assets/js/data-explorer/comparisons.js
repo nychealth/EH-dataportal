@@ -390,7 +390,7 @@ const renderComparisonsChart = (
             //     }
             // }
         },
-        "transform": [{"calculate": "split(datum.TimePeriod, ' ')", "as": "TimePeriod"}],
+        "transform": [{"calculate": "split(datum.TimePeriod, ' ')", "as": "TimePeriodSplit"}],
         "width": "container",
         "height": height,
         "title": { 
@@ -524,7 +524,7 @@ const renderComparisonsChart = (
                     },
                     "y": {"value": height + (height / 25)},
                     "text": {
-                        "field": "TimePeriod", 
+                        "field": "TimePeriodSplit", 
                         "type": "nominal",
                     },
                     "color": {"value": "black"},
