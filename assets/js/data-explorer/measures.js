@@ -454,20 +454,17 @@ const updateMapData = (e) => {
 
     selectedMapMetadata = mapMeasures.filter(m => m.MeasureID == measureId);
     
-    const measurementType = selectedMapMetadata[0].MeasurementType;
-    const about           = selectedMapMetadata[0].how_calculated;
-    const sources         = selectedMapMetadata[0].Sources;
+    const measure = selectedMapMetadata[0].MeasurementType;
+    const about   = selectedMapMetadata[0].how_calculated;
+    const sources = selectedMapMetadata[0].Sources;
 
 
     // ----- set measure info boxes --------------------------------------------------- //
 
     // "indicatorName" is set in loadIndicator
 
-    selectedMapAbout   =
-        `<p><strong>${indicatorName} - ${measurementType}:</strong> ${about}</p>`;
-
-    selectedMapSources =
-        `<p><strong>${indicatorName} - ${measurementType}:</strong> ${sources}</p>`;
+    selectedMapAbout   = `<p><strong>${measure}:</strong> ${about}</p>`;
+    selectedMapSources = `<p><strong>${measure}:</strong> ${sources}</p>`;
 
     // render measure info boxes
 
@@ -541,11 +538,12 @@ const updateTrendData = (e) => {
     // ----- get metatadata for selected measure --------------------------------------------------- //
 
     // trendMeasures is created by renderMeasures, which evals before this would be called
+
     let selectedTrendMetadata = trendMeasures.filter(m => m.MeasureID == measureId);
-    const measurementType = selectedTrendMetadata[0].MeasurementType;
-    const about           = selectedTrendMetadata[0].how_calculated;
-    const sources         = selectedTrendMetadata[0].Sources;
-    // const times           = selectedTrendMetadata[0].VisOptions[0].Trend[0]?.TimePeriodID;
+
+    const measure = selectedTrendMetadata[0].MeasurementType;
+    const about   = selectedTrendMetadata[0].how_calculated;
+    const sources = selectedTrendMetadata[0].Sources;
 
     aqSelectedTrendMetadata = aq.from(selectedTrendMetadata)
         .derive({
@@ -558,11 +556,8 @@ const updateTrendData = (e) => {
 
     // ----- set measure info boxes --------------------------------------------------- //
 
-    selectedTrendAbout =
-        `<p><strong>${indicatorName} - ${measurementType}</strong>: ${about}</p>`;
-
-    selectedTrendSources =
-        `<p><strong>${indicatorName} - ${measurementType}</strong>: ${sources}</p>`;
+    selectedTrendAbout   = `<p><strong>${measure}</strong>: ${about}</p>`;
+    selectedTrendSources = `<p><strong>${measure}</strong>: ${sources}</p>`;
 
     // render measure info boxes
 
@@ -675,16 +670,14 @@ const updateTrendComparisonsData = (e) => {
     selectedComparisonAbout = [];
     selectedComparisonSources = [];
 
-    // this iterates over all the indicators and measures in the comparison
+    // this iterates over all the indicators and measures in the chosen comparison
 
-    aqComparisonsIndicatorsMetadata.objects().forEach(m => {
-
-        selectedComparisonAbout +=
-            `<p><strong>${m.IndicatorName} - ${m.MeasurementType}:</strong> ${m.how_calculated}</p>`;
-
-        selectedComparisonSources +=
-            `<p><strong>${m.IndicatorName} - ${m.MeasurementType}:</strong> ${m.Sources}</p>`;
-    })
+    aqCombinedComparisonsMetadata.objects()
+        .filter(m => m.ComparisonID == comparisonId)
+        .forEach(m => {
+            selectedComparisonAbout   += `<p><strong>${m.IndicatorName} - ${m.MeasurementType}:</strong> ${m.how_calculated}</p>`;
+            selectedComparisonSources += `<p><strong>${m.IndicatorName} - ${m.MeasurementType}:</strong> ${m.Sources}</p>`;
+        })
 
     // render the measure info boxes
 
@@ -1367,6 +1360,11 @@ const renderMeasures = async () => {
             disparitiesMeasures.push(measure)
 
         }
+
+        // ----- set all measure about & source here --------------------------------------------------- //
+
+        measureAbout   += `<p><strong>${measure.MeasurementType}:</strong> ${measure.how_calculated}</p>`;
+        measureSources += `<p><strong>${measure.MeasurementType}:</strong> ${measure.Sources}</p>`;
         
 
     });
@@ -1577,11 +1575,8 @@ const renderMeasures = async () => {
 
             // ----- set measure info boxes --------------------------------------------------- //
 
-            defaultMapAbout   =
-                `<p><strong>${indicatorName} - ${measure}:</strong> ${about}</p>`;
-
-            defaultMapSources =
-                `<p><strong>${indicatorName} - ${measure}:</strong> ${sources}</p>`;
+            defaultMapAbout   = `<p><strong>${measure}:</strong> ${about}</p>`;
+            defaultMapSources = `<p><strong>${measure}:</strong> ${sources}</p>`;
 
             // render measure info boxes
 
@@ -1824,11 +1819,8 @@ const renderMeasures = async () => {
 
             // ----- set measure info boxes --------------------------------------------------- //
 
-            defaultTrendAbout =
-                `<p><strong>${indicatorName} - ${measure}</strong>: ${about}</p>`;
-
-            defaultTrendSources =
-                `<p><strong>${indicatorName} - ${measure}</strong>: ${sources}</p>`;
+            defaultTrendAbout   = `<p><strong>${measure}</strong>: ${about}</p>`;
+            defaultTrendSources = `<p><strong>${measure}</strong>: ${sources}</p>`;
 
             renderTitleDescription(indicatorShortName, indicatorDesc);
             renderAboutSources(defaultTrendAbout, defaultTrendSources);
@@ -1965,11 +1957,6 @@ const renderMeasures = async () => {
 
 
             // ----- set measure info boxes --------------------------------------------------- //
-
-            // reset info boxes
-
-            selectedComparisonAbout = [];
-            selectedComparisonSources = [];
 
             // reset info boxes
 
@@ -2592,23 +2579,5 @@ const renderMeasures = async () => {
         handleTableGeoFilter(checkbox);
     })
 
-
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-    // Render default Measure About and Sources
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-
-    measureAbout = '';
-    measureSources = '';
-    indicatorMeasures.map(measure => {
-
-        measureAbout +=
-            `<p><strong>${measure.MeasurementType}:</strong> ${measure.how_calculated}</p>`;
-
-        measureSources +=
-            `<p><strong>${measure.MeasurementType}:</strong> ${measure.Sources}</p>`;
-
-    })
-
-    renderAboutSources(measureAbout, measureSources);
 
 }
