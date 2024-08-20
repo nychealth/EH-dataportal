@@ -24,7 +24,7 @@ image: ds-public-space_fort_greene_Alexander_Thompson.jpg
 photocredit: "Alexander Thompson/NYC & Company"
 ---
 
-Health is determined by many factors. People tend to be healthier when they have economic stability, live in quality housing and have access to public space and safe, connected communities. In 2020, the NYC Health Department held a series of community conversations with residents and local stakeholders across 26 neighborhoods. New Yorkers shared personal stories about their priorities for building healthier neighborhoods, healthier childhoods and more. This is one part of a three-part series on how <strong><a href="../housing-creates-health">housing</a>, <a href="../economic-stability/">economic stability</a>, and public space create health.</strong>
+Health is determined by many factors. People tend to be healthier when they have economic stability, live in quality housing and have access to public space and safe, connected communities. In 2020, the NYC Health Department held a series of community conversations with residents and local stakeholders across 26 neighborhoods. New Yorkers shared personal stories about their priorities for building healthier neighborhoods, healthier childhoods and more. This is one part of a three-part series on how <strong><a href="../housing-creates-health">housing</a>, <a href="../economic-stability/">economic stability</a> and public space create health.</strong>
 
 <div class="pullquote my-4">
 <figure class="">
@@ -40,7 +40,7 @@ Health is determined by many factors. People tend to be healthier when they have
 
 For most New Yorkers, their backyard isn’t typically a fenced-in lawn or a private patio—it’s the city. Our public space is our streets, sidewalks, parks, pools, waterfront, plazas, subways, beaches, and other places that are open to all. These spaces help us get from point A to point B and offer opportunities to enjoy the outdoors, be active, play, connect with others, and just be.
 
-At its best, NYC public space is clean, safe, pleasant, accessible to everyone, and promotes health and well-being for all.
+At its best, NYC public space is clean, safe, pleasant, accessible to everyone and promotes health and well-being for all.
 
 Public space that is designed to reflect community priorities advances equity for all residents, and supports health and well-being.
 
@@ -68,7 +68,7 @@ Covering 8,000 miles, streets make up most of the public space in NYC. Cars and 
 
 ### Designing streets for people walking and biking—not just driving—can improve safety.
 
-<a href="../streets/"> In areas with more bike safety infrastructure (including bike lanes and protected bike lanes), we see more people traveling by bike and lower rates of bike injuries</a>. This is the case in Manhattan, which has more than double the number of bike lanes as Brooklyn and a correspondingly lower rate of bicycle injury ED visits although both boroughs have similar percentages of bike commuters.
+<a href="../streets/"> In areas with more bike safety infrastructure (including bike lanes and protected bike lanes), we see more people traveling by bike and lower rates of bike injuries</a>. This is the case in Manhattan, which has more than double the number of bike lanes as Brooklyn and a correspondingly lower rate of bicycle injury ED visits. Boroughs have similar percentages of bike commuters.
 
 <div class="my-4 py-2 border-top border-bottom">
 
@@ -81,11 +81,11 @@ New Yorkers own fewer cars than people in many other U.S. cities. That means our
 This includes infrastructure like protected bike lanes and well-maintained sidewalks, which provide all New Yorkers, regardless of identity or ability, connections and access to the city's plazas, parks, and other open spaces.
 The guidelines align and build upon design guidelines and ongoing initiatives at NYC Department of Transportation (DOT) and NYC Parks. <a href="https://www.nyc.gov/html/dot/html/pedestrians/pedestrian-mobility.shtml">The NYC Pedestrian Mobility Plan incorporates pedestrian needs into different street types to create a more comfortable and convenient experience</a>. <a href="https://www.nyc.gov/html/dot/downloads/pdf/nyc-streets-plan-update-2023.pdf">The NYCStreetsPlan addresses street safety through inspections, and additional, better-protected bike lanes</a>.
 
-### Lowering levels of air, noise, and light pollution from roadway and commercial activity help us stay healthy in our shared environment.
+### Lowering levels of air, noise and light pollution from roadway and commercial activity help us stay healthy in our shared environment.
 
 Neighborhoods closest to highways are impacted by increased noise and air pollution and experience long-term consequences from the fracturing of communities that resulted from highway construction. <a href="https://www.nyc.gov/office-of-the-mayor/news/919-22/mayor-adams-kicks-off-landmark-study-reimagine-cross-bronx-expressway#/0">Community-informed impact studies on highways like the Brooklyn Queens Expressway (BQE) and the Cross Bronx Expressway (CBE) will work to mitigate the degree of these negative effects</a>. They aim to increase connectivity and resource access for those living close to a highway while reducing exposure to noise and pollution.
 
-<a href="../breatheeasy/">Though New York City’s air quality is overall improving, air quality can vary between neighborhoods due to a variety of factors</a>, such as traffic levels, heating oil use, tree canopy, and local green space. All neighborhoods can benefit from strategic car-free zones, which may look like greenways for bicycle and pedestrian access, and more trees along roadways, since trees clean the air. Policies that reduce vehicle traffic can reduce noise, light, and air pollution, and encourage active transit.
+<a href="../breatheeasy/">Though New York City’s air quality is overall improving, air quality can vary between neighborhoods due to a variety of factors</a>, such as traffic levels, heating oil use, tree canopy, and local green space. All neighborhoods can benefit from strategic car-free zones, which may look like greenways for bicycle and pedestrian access, and more trees along roadways, since trees clean the air. Policies that reduce vehicle traffic can reduce noise, light and air pollution, and encourage active transit.
 
 ### Maintaining public space is critical to ensuring that all New Yorkers can use it.
 
@@ -116,9 +116,9 @@ Neighborhoods closest to highways are impacted by increased noise and air pollut
 </figure>
 </div>
 
-<a href="https://data.census.gov/table/ACSST5Y2020.S1810?q=Disability&g=160XX00US3651000&tid=ACSST5Y2020.S1810">Seven percent of New Yorkers have a disability that affects their ability to walk.</a> Smooth and even sidewalks, paths, and streets, well-placed pedestrian ramps (including curb extensions from the sidewalk into the street), and elevators are necessary for all New Yorkers to use public space safely and efficiently. <a href="NYC’s Department of Transportation (DOT) is working on upgrading and installing pedestrian ramps to make pedestrian space safer and more accessible for all sidewalk users."> NYC’s Department of Transportation (DOT) is working on upgrading and installing pedestrian ramps to make pedestrian space safer and more accessible for all road users</a>.
+<a href="https://data.census.gov/table/ACSST5Y2020.S1810?q=Disability&g=160XX00US3651000&tid=ACSST5Y2020.S1810">Seven percent of New Yorkers have a disability that affects their ability to walk.</a> Smooth and even sidewalks, paths and streets, well-placed pedestrian ramps (including curb extensions from the sidewalk into the street), and elevators are necessary for all New Yorkers to use public space safely and efficiently. <a href="NYC’s Department of Transportation (DOT) is working on upgrading and installing pedestrian ramps to make pedestrian space safer and more accessible for all sidewalk users."> NYC’s Department of Transportation is working on upgrading and installing pedestrian ramps to make pedestrian space safer and more accessible for all road users</a>.
 
-Public space has countless benefits and should be inclusive for all. <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7967628/"> Outdoor physical activity and socialization have been shown to increase brain function, boost confidence and self-esteem, and lower stress in adolescents</a>. Where trees, grass, and shrubs are found, outdoor temperatures are cooler, helping fight the urban heat island effect and making streets and public space more comfortable. <a href="https://www.nyc.gov/assets/genderequity/downloads/pdf/cge-tip-card-public-spaces.pdf"> Public space designed with gender inclusion in mind helps create a welcoming and safe environment for everyone that visits</a>. Lighting, sight lines, signage, available facilities, and other amenities can be designed to meet the needs of visitors of all ages, interests, and abilities.
+Public space has countless benefits and should be inclusive for all. <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7967628/"> Outdoor physical activity and socialization have been shown to increase brain function, boost confidence and self-esteem, and lower stress in adolescents</a>. Where trees, grass, and shrubs are found, outdoor temperatures are cooler, helping fight the urban heat island effect and making streets and public space more comfortable. <a href="https://www.nyc.gov/assets/genderequity/downloads/pdf/cge-tip-card-public-spaces.pdf"> Public space designed with gender inclusion in mind helps create a welcoming and safe environment for everyone that visits</a>. Lighting, sight lines, signage, available facilities and other amenities can be designed to meet the needs of visitors of all ages, interests, and abilities.
 
 Designing public space for people also means creating parks, pools, and other recreation areas that everyone can access. In most NYC neighborhoods, residents live within walking distance (within a half a mile) to a park. But in some neighborhoods, residents still don’t have this level of access to public space.
 
@@ -131,7 +131,7 @@ As of 2023, 84.6% of New Yorkers live within walking distance to a park.<a href=
 
 #### Feeling safe in public space helps people enjoy and use it.
 
-<a href="https://www.nyc.gov/assets/doh/downloads/pdf/environmental/promoting-safety.pdf"> Whether people perceive their neighborhood as safe can affect how comfortable they feel spending time outside, using parks, and using active transit</a>. Perceptions of safety can also affect residents’ mental well-being. People who live in high-poverty neighborhoods are much less likely to perceive their neighborhoods as safe than people who live in low-poverty neighborhoods. Disinvestment can create unsafe conditions over time, which can connect to these perceptions.
+<a href="https://www.nyc.gov/assets/doh/downloads/pdf/environmental/promoting-safety.pdf"> Whether people perceive their neighborhood as safe can affect how comfortable they feel spending time outside, using parks and using active transit</a>. Perceptions of safety can also affect residents’ mental well-being. People who live in high-poverty neighborhoods are much less likely to perceive their neighborhoods as safe than people who live in low-poverty neighborhoods. Disinvestment can create unsafe conditions over time, which can connect to these perceptions.
 
 <div class="pullquote my-4">
 <figure class="">
@@ -151,7 +151,7 @@ As of 2023, 84.6% of New Yorkers live within walking distance to a park.<a href=
 
 ### NYC’s public spaces are the building blocks of our city and our lives.
 
-Prioritizing community engagement in the planning and development of public spaces is critical to their success. Such engagement builds trust and accountability and is an essential part of environmental justice work because it makes sure that spaces reflect meaningful priorities, lived experiences, and local culture.
+Prioritizing community engagement in the planning and development of public spaces is critical to their success. Such engagement builds trust and accountability and is an essential part of environmental justice work because it makes sure that spaces reflect meaningful priorities, lived experiences and local culture.
 
 **Additional resources:**
 
