@@ -6,8 +6,15 @@
     <description>Recent content in pests on Environment &amp; Health Data Portal</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 20 Mar 2023 13:11:44 -0400</lastBuildDate>
+    <lastBuildDate>Thu, 01 Jun 2023 11:14:56 -0400</lastBuildDate>
     <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/pests/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Rat Mitigation Zones</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/rat-mitigation-zones/</link>
+      <pubDate>Thu, 01 Jun 2023 11:14:56 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/rat-mitigation-zones/</guid>
+      <description>Rats can contaminate food, spread disease and reduce our quality of life. Rat Mitigation Zones (RMZ) are areas with high levels of rat activity, where City agencies focus resources to address rats and the conditions that support them.&#xA;Choose an RMZ on the map below to view data on complaints and NYC Health Department rat control activity.</description>
+    </item>
     <item>
       <title>Why trash is a public health issue</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/sanitation/</link>

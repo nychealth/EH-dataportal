@@ -245,18 +245,10 @@
     <lastmod>2023-06-16T09:01:00-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/data-features/</loc>
     <lastmod>2023-06-01T11:14:56-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/categories/pests/</loc>
+    <loc>/IndicatorPublic/keywords/inspections/</loc>
     <lastmod>2023-06-01T11:14:56-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/data-features/rat-mitigation-zones/</loc>
-    <lastmod>2023-06-01T11:14:56-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/keywords/garbage/</loc>
-    <lastmod>2023-03-20T13:11:44-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/keywords/inequitites/</loc>
-    <lastmod>2023-03-20T13:11:44-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/keywords/justice/</loc>
-    <lastmod>2023-03-20T13:11:44-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/pests/</loc>
-    <lastmod>2023-03-20T13:11:44-04:00</lastmod><xhtml:link
+    <lastmod>2023-06-01T11:14:56-04:00</lastmod><xhtml:link
                 rel="alternate"
                 hreflang="es"
                 href="/IndicatorPublic/es/keywords/pests/"
@@ -269,7 +261,21 @@
                 hreflang="en"
                 href="/IndicatorPublic/keywords/pests/"
                 /></url><url>
+    <loc>/IndicatorPublic/categories/pests/</loc>
+    <lastmod>2023-06-01T11:14:56-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/keywords/rat-mitigation-zones/</loc>
+    <lastmod>2023-06-01T11:14:56-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/data-features/rat-mitigation-zones/</loc>
+    <lastmod>2023-06-01T11:14:56-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/rats/</loc>
+    <lastmod>2023-06-01T11:14:56-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/keywords/rodents/</loc>
+    <lastmod>2023-06-01T11:14:56-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/keywords/garbage/</loc>
+    <lastmod>2023-03-20T13:11:44-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/keywords/inequitites/</loc>
+    <lastmod>2023-03-20T13:11:44-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/keywords/justice/</loc>
     <lastmod>2023-03-20T13:11:44-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/sanitation/</loc>
     <lastmod>2023-03-20T13:11:44-04:00</lastmod></url><url>
@@ -1067,8 +1073,6 @@
     <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/roads/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
-    <loc>/IndicatorPublic/keywords/rodents/</loc>
-    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/secondhand/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/smoke/</loc>
@@ -1362,8 +1366,6 @@
     <loc>/IndicatorPublic/keywords/heart-disease/</loc>
     <lastmod>2019-10-24T08:18:56-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/hot-weater/</loc>
-    <lastmod>2019-10-24T08:18:56-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/keywords/inspections/</loc>
     <lastmod>2019-10-24T08:18:56-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/kids/</loc>
     <lastmod>2019-10-24T08:18:56-04:00</lastmod><xhtml:link
