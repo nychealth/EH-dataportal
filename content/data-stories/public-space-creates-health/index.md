@@ -28,7 +28,7 @@ Health is determined by many factors. People tend to be healthier when they have
 
 <div class="pullquote my-4">
 <figure class="">
-    <figcaption>“To be able to go out where they can either bike, walk, hike a trail, fish. I think that all those things are important for self- care and for the family at home. Sometimes you want things in your own backyard.”
+    <figcaption>“To be able to go out where they can either bike, walk, hike a trail, fish. I think that all those things are important for self-care and for the family at home. Sometimes you want things in your own backyard.”
     <br><span class="float-right"></span></figcaption>
     <audio controls src="Own-backyard.mp3" style="width:100%;" class="mt-2">
             <a href="Own-backyard.mp3">
@@ -48,7 +48,7 @@ Public space that is designed to reflect community priorities advances equity fo
 
 <div class="pullquote my-4">
 <figure class="">
-    <figcaption figcaption class="mb-2">“...I use a scooter. I have so much damage to my back and my spine because of all the broken sidewalks.” <br> <span class="float-right"></span>   </figcaption>
+    <figcaption figcaption class="mb-2">“...I use an electric scooter. I have so much damage to my back and my spine because of all the broken sidewalks.” <br> <span class="float-right"></span>   </figcaption>
     <audio controls src="Electric-scooters.mp3" style="width:100%;" class="mt-2">
             <a href="Electric-scooters.mp3">
                 Download audio
@@ -85,7 +85,7 @@ The guidelines align and build upon design guidelines and ongoing initiatives at
 
 Neighborhoods closest to highways are impacted by increased noise and air pollution and experience long-term consequences from the fracturing of communities that resulted from highway construction. <a href="https://www.nyc.gov/office-of-the-mayor/news/919-22/mayor-adams-kicks-off-landmark-study-reimagine-cross-bronx-expressway#/0">Community-informed impact studies on highways like the Brooklyn Queens Expressway (BQE) and the Cross Bronx Expressway (CBE) will work to mitigate the degree of these negative effects</a>. They aim to increase connectivity and resource access for those living close to a highway while reducing exposure to noise and pollution.
 
-<a href="../breatheeasy/">Though New York City’s air quality is overall improving, air quality can vary between neighborhoods due to a variety of factors</a>, such as traffic levels, heating oil use, tree canopy, and local green space. All neighborhoods can benefit from strategic car-free zones, which may look like greenways for bicycle and pedestrian access, and more trees along roadways, since trees clean the air. Policies that reduce vehicle traffic can reduce noise, light and air pollution, and encourage active transit.
+<a href="../breatheeasy/">Though New York City’s air quality is overall improving, air quality can vary between neighborhoods due to a variety of factors</a>, such as traffic levels, heating oil use, tree canopy and local green space. All neighborhoods can benefit from strategic car-free zones, which may look like greenways for bicycle and pedestrian access, and more trees along roadways, since trees clean the air. Policies that reduce vehicle traffic can reduce noise, light and air pollution, and encourage active transit.
 
 ### Maintaining public space is critical to ensuring that all New Yorkers can use it.
 
@@ -101,7 +101,7 @@ Neighborhoods closest to highways are impacted by increased noise and air pollut
 </figure>
 </div>
 
-<a href="../sanitation/"> Clean, well-maintained, and attractive public space is essential to maximize the benefits to public health</a>. Broken equipment and seating, and cracked and uneven sidewalks can make public spaces feel unsafe; trash, pests, and unsanitary items on the streets and in parks can spread disease. This can discourage neighborhood residents from playing in these spaces, impacting their mental health. <a href="https://www.nycgovparks.org/park-features/parks-inspection-program">Parks also need to be well-maintained, and have enough waste bins, public restrooms, and water fountains to support activities like fitness classes, sports, and community events</a>. The NYC Parks, Transportation, and Sanitation Departments work together to find and resolve maintenance issues. Residents can call 311 to report unresolved maintenance issues.
+<a href="../sanitation/"> Clean, well-maintained, and attractive public space is essential to maximize the benefits to public health</a>. Broken equipment and seating, and cracked and uneven sidewalks can make public spaces feel unsafe; trash, pests, and unsanitary items on the streets and in parks can spread disease. This can discourage neighborhood residents from playing in these spaces, impacting their mental health. <a href="https://www.nycgovparks.org/park-features/parks-inspection-program">Parks also need to be well-maintained, and have enough waste bins, public restrooms, and water fountains to support activities like fitness classes, sports and community events</a>. The NYC Parks, Transportation, and Sanitation Departments work together to find and resolve maintenance issues. Residents can call 311 to report unresolved maintenance issues.
 
 ### Public space should be designed with all New Yorkers in mind. 
 
@@ -116,9 +116,9 @@ Neighborhoods closest to highways are impacted by increased noise and air pollut
 </figure>
 </div>
 
-<a href="https://data.census.gov/table/ACSST5Y2020.S1810?q=Disability&g=160XX00US3651000&tid=ACSST5Y2020.S1810">Seven percent of New Yorkers have a disability that affects their ability to walk.</a> Smooth and even sidewalks, paths and streets, well-placed pedestrian ramps (including curb extensions from the sidewalk into the street), and elevators are necessary for all New Yorkers to use public space safely and efficiently. <a href="NYC’s Department of Transportation (DOT) is working on upgrading and installing pedestrian ramps to make pedestrian space safer and more accessible for all sidewalk users."> NYC’s Department of Transportation is working on upgrading and installing pedestrian ramps to make pedestrian space safer and more accessible for all road users</a>.
+<a href="https://data.census.gov/table/ACSST5Y2020.S1810?q=Disability&g=160XX00US3651000&tid=ACSST5Y2020.S1810">Seven percent of New Yorkers have a disability that affects their ability to walk.</a> Smooth and even sidewalks, paths and streets, well-placed pedestrian ramps (including curb extensions from the sidewalk into the street), and elevators are necessary for all New Yorkers to use public space safely and efficiently. <a href="https://www.nyc.gov/html/dot/html/pedestrians/pedramps.shtml"> NYC’s Department of Transportation is working on upgrading and installing pedestrian ramps to make pedestrian space safer and more accessible for all sidewalk users</a>.
 
-Public space has countless benefits and should be inclusive for all. <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7967628/"> Outdoor physical activity and socialization have been shown to increase brain function, boost confidence and self-esteem, and lower stress in adolescents</a>. Where trees, grass, and shrubs are found, outdoor temperatures are cooler, helping fight the urban heat island effect and making streets and public space more comfortable. <a href="https://www.nyc.gov/assets/genderequity/downloads/pdf/cge-tip-card-public-spaces.pdf"> Public space designed with gender inclusion in mind helps create a welcoming and safe environment for everyone that visits</a>. Lighting, sight lines, signage, available facilities and other amenities can be designed to meet the needs of visitors of all ages, interests, and abilities.
+Public space has countless benefits and should be inclusive for all. <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7967628/"> Outdoor physical activity and socialization have been shown to increase brain function, boost confidence and self-esteem, and lower stress in adolescents</a>. Where trees, grass, and shrubs are found, outdoor temperatures are cooler, helping fight the urban heat island effect and making streets and public space more comfortable. <a href="https://www.nyc.gov/assets/genderequity/downloads/pdf/cge-tip-card-public-spaces.pdf"> Public space designed with gender inclusion in mind helps create a welcoming and safe environment for everyone that visits</a>. Lighting, sight lines, signage, available facilities and other amenities can be designed to meet the needs of visitors of all ages, interests and abilities.
 
 Designing public space for people also means creating parks, pools, and other recreation areas that everyone can access. In most NYC neighborhoods, residents live within walking distance (within a half a mile) to a park. But in some neighborhoods, residents still don’t have this level of access to public space.
 
