@@ -50,7 +50,7 @@ const renderDisparitiesChart = async (
         primaryDisplay = '%' // assigns a % displayType for anything that includes percent (but NOT percentile) in its measurementType
         subtitle = primaryMeasurementType
     } else {
-        primaryDisplay         = ' ' + primaryMetadata[0]?.DisplayType; // else, the pre-existing assignment
+        primaryDisplay         = primaryMetadata[0]?.DisplayType; // else, the pre-existing assignment
         subtitle = primaryMeasurementType + `${primaryMetadata[0]?.DisplayType ? ` (${primaryDisplay})` : ''}`
         console.log(primaryDisplay, primaryMeasurementType)
     }
@@ -244,7 +244,7 @@ const renderDisparitiesChart = async (
         },
         "transform": [
             {
-              "calculate": `(datum.DisplayValue_1 + '${primaryDisplay}')`,
+              "calculate": `(datum.DisplayValue_1 + ' ${primaryDisplay}')`,
               "as": "valueLabel"
             },
             {
