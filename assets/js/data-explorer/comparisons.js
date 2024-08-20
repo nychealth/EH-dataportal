@@ -319,6 +319,7 @@ const renderComparisonsChart = (
 
         let noCompareFootnote = `Because of a method change, data before ${compNoCompare} shouldn't be compared to later time periods.`
         document.querySelector("#trend-unreliability").innerHTML += "<div class='fs-sm text-muted'>" + noCompareFootnote + "</div>" ;
+        document.getElementById("trend-unreliability").classList.remove('hide')
 
 
     } else {
