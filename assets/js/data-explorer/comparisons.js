@@ -17,6 +17,7 @@ const renderComparisonsChart = (
 
     // console.log("data objects", data.objects());
 
+
     // ----------------------------------------------------------------------- //
     // get unique unreliability notes (dropping empty)
     // ----------------------------------------------------------------------- //
@@ -316,7 +317,7 @@ const renderComparisonsChart = (
             "mark": "rule",
             "encoding": {
                 "x": {
-                    "datum": compNoCompare
+                    "datum": noCompareEndPeriod
                 },
                 "xOffset": {"value": 0.5},
                 "color": {"value": "gray"},
@@ -364,7 +365,8 @@ const renderComparisonsChart = (
                 "columns": columns,
                 // "columns": 3,
                 "labelFontSize": 14,
-                "symbolSize": 140
+                "symbolSize": 140,
+                "offset": height / 12.5
             },
             "view": {"stroke": "transparent"},
             "line": {"color": "#1696d2", "stroke": "#1696d2", "strokeWidth": 2.5},
@@ -372,13 +374,21 @@ const renderComparisonsChart = (
             "point": {"filled": true},
             "text": {
                 "color": "#1696d2",
-                "fontSize": 11,
-                "fontWeight": 400,
-                "size": 11
+                // "fontSize": 13,
+                // "fontWeight": 100,
+                // "size": 13
+            },
+            "tick": {
+                "thickness": 0.5
             }
         },
         "data": {
             "values":  data.objects(),
+            // "format": {
+            //     "parse": {
+            //         "end_period": "number"
+            //     }
+            // }
         },
         "width": "container",
         "height": height,
@@ -396,10 +406,10 @@ const renderComparisonsChart = (
         },
         "encoding": {
             "x": {
-                "field": "TimePeriod",
-                "type": "nominal",
+                "field": "end_period",
+                "type": "quantitative",
                 "title": null,
-                // "labelExpre": "datum.TimePeriod[0]"
+                "axis": {"labels": false, "grid": false, "ticks": false}
             }
         },
         "layer": [
@@ -499,6 +509,38 @@ const renderComparisonsChart = (
                     }
                 ]
             },
+            {
+                "mark": {
+                    "type": "text", 
+                    "fontWeight": 100,
+                    "fontSize": 14,
+                },
+                "encoding": {
+                    "x": {
+                        "field": "end_period",
+                        "type": "quantitative",
+                        "axis": {"labels": false, "grid": false, "ticks": false}
+                    },
+                    "y": {"value": height + (height / 25)},
+                    "text": {
+                        "field": "TimePeriod", 
+                        "type": "nominal",
+                    },
+                    "color": {"value": "black"},
+                },
+            },
+            {
+                "mark": {"type": "tick"},
+                "encoding": {
+                    "x": {
+                        "field": "end_period",
+                        "type": "quantitative",
+                        "axis": {"labels": false, "grid": false, "ticks": true}
+                    },
+                    "y": {"value": height},
+                    "color": {"value": "black"},
+                }
+            },
             ...noCompare
         ]
     }
@@ -507,7 +549,13 @@ const renderComparisonsChart = (
     // render chart
     // ----------------------------------------------------------------------- //
     
-    vegaEmbed("#trend", compspec);
+    vegaEmbed("#trend", compspec)
+        .then(function(result) {
+            result.view.logLevel(4)
+            let state = result.view.getState()
+            console.log("state", state);
+            // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+        }).catch(console.error);
 
     // ----------------------------------------------------------------------- //
     // Send chart data to download
