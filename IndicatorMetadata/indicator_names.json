@@ -242,12 +242,12 @@
   "2075": {
     "IndicatorID": 2075,
     "description": "ED visits due to heat-related illnesses, such as heat stroke and heat exhaustion, represent part of the public health burden of extreme heat.",
-    "name": "Heat stress: emergency department visits"
+    "name": "Heat stress: yearly emergency department visits"
   },
   "2076": {
     "IndicatorID": 2076,
-    "description": "Heat stress hospitalizations due to heat-related illnesses, such as heat stroke and heat exhaustion, represent part of the public health burden of hot weather. Data aggregated over five years provides enough stability to display neighborhood impacts.\r\n",
-    "name": "Heat stress: hospitalizations"
+    "description": "Heat stress hospitalizations weather are part of the public health burden due to hot weather.",
+    "name": "Heat stress: yearly hospitalizations"
   },
   "2077": {
     "IndicatorID": 2077,
@@ -928,6 +928,16 @@
     "IndicatorID": 2432,
     "description": "Farmers markets are a great source of fresh produce and other healthy food options and can help mitigate the negative effects of food deserts.",
     "name": "Farmers markets"
+  },
+  "2433": {
+    "IndicatorID": 2433,
+    "description": "Rat indexing is a comprehensive approach for rat mitigation. In certain zones, every property is inspected every six months for signs of rats and the conditions that attract them.",
+    "name": "Rat indexing in Rat Mitigation Zones (RMZs)"
+  },
+  "2434": {
+    "IndicatorID": 2434,
+    "description": "Rat inspections are conducted for signs of rats and the conditions that attract them.",
+    "name": "Rat inspections"
   },
   "25": {
     "IndicatorID": 25,
