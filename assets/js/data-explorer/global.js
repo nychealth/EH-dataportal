@@ -170,6 +170,8 @@ const assignGeoRank = (GeoType) => {
             return 9;
         case 'NYHarbor':
             return 10;
+        case 'RMZ':
+            return 11;
     }
 }
 
@@ -185,7 +187,8 @@ const geoTypes = [
     "CD",
     "CDTA",
     "NTA",
-    "NYHarbor"
+    "NYHarbor",
+    "RMZ"
 ]
 
 // ----------------------------------------------------------------------- //
