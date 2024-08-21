@@ -441,5 +441,5 @@ Asthma,KA-02563,2429,Children with an asthma attack
 Mold Complaint,KA-02262,2430,Children in homes with visible mold or mildew (age 1-13)
 Asthma,KA-02563,2431,Children still with asthma
 Greenmarkets and Farmers Markets,KA-02028,2432,Farmers markets
-Mice and rats,KA-01107,2433,Rat indexing in Rat Mitigation Zones (RMZs)
-Mice and rats,KA-01107,2434,Rat inspections
+Rat or Mouse Complaint,KA-01107,2433,Rat indexing in Rat Mitigation Zones (RMZs)
+Rat or Mouse Complaint,KA-01107,2434,Rat inspections
