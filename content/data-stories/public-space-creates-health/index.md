@@ -159,6 +159,8 @@ Prioritizing community engagement in the planning and development of public spac
 
 - <a href="https://www.nyc.gov/assets/ddc/downloads/LL12_5-Year-Accessibility-Plan_DDC.pdf"> Learn more about the five-year design and construction accessibility plan</a>.
 
+- <a href="https://www.nycgovparks.org/about/vital-parks/"> Learn more about Vital Parks for All, a plan to protect and support our parks so that all New Yorkers can enjoy them</a>.
+
 To hear more from New Yorkers about how they view public space and health, listen to recordings from the community conversations:
 
 <video width="100%" height="auto" controls>
