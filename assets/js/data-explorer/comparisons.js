@@ -399,7 +399,9 @@ const renderComparisonsChart = (
         },
         "transform": [
             {"calculate": "split(datum.TimePeriod, ' ')", "as": "TimePeriodSplit"},
-            {"calculate": "datum.TimePeriodSplit[datum.TimePeriodSplit.length - 1]", "as": "TimePeriodYear"}
+            {"calculate": "datum.TimePeriodSplit[datum.TimePeriodSplit.length - 1]", "as": "TimePeriodYear"},
+            {"calculate": "year(datum.end_period)","as": "year_end_period"},
+            {"calculate": "datum.year_end_period % 2 === 0 ? datum.TimePeriodSplit : ''", "as": "fallbackYear"}
         ],
         "width": "container",
         "height": height,
