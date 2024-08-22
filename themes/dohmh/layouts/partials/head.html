@@ -270,6 +270,11 @@
 
     {{- $arquero := resources.Get "node_modules/arquero/dist/arquero.min.js" | resources.Fingerprint "sha512" }}
 
+    {{- /*  DOMPurify  */}}
+
+    {{- $dompurify := resources.Get "node_modules/dompurify/dist/purify.min.js" | resources.Fingerprint "sha512" }}
+
+
     <script src="{{ $arquero.RelPermalink }}" integrity="{{ $arquero.Data.Integrity }}"></script>
 
 {{- end -}}
