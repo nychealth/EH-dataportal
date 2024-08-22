@@ -1134,6 +1134,11 @@ const renderMeasures = async () => {
     linksMeasures = [];
     disparitiesMeasures = [];
 
+    // clear measure about used by table.js
+
+    measureAbout = "";
+    measureSources = "";
+
 
     // ----- create dropdowns for table ================================================== //
 
