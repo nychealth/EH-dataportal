@@ -13,8 +13,8 @@ let selectedTableGeography = [];
 let aboutMeasures;
 let dataSources;
 
-let measureAbout = `N/A`;
-let measureSources = `N/A`;
+let measureAbout = ``;
+let measureSources = ``;
 let geoTable;
 let timeTable;
 let unreliabilityNotes;
@@ -170,6 +170,8 @@ const assignGeoRank = (GeoType) => {
             return 9;
         case 'NYHarbor':
             return 10;
+        case 'RMZ':
+            return 11;
     }
 }
 
@@ -185,7 +187,8 @@ const geoTypes = [
     "CD",
     "CDTA",
     "NTA",
-    "NYHarbor"
+    "NYHarbor",
+    "RMZ"
 ]
 
 // ----------------------------------------------------------------------- //
@@ -241,6 +244,8 @@ const renderTitleDescription = (title, desc) => {
 // Renders copy for the About the measures and the Data sources sections
 
 const renderAboutSources = (about, sources) => {
+
+    console.log("**** renderAboutSources");
 
     aboutMeasures.innerHTML = about;
     dataSources.innerHTML = sources;

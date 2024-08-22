@@ -810,6 +810,8 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
 
     const sharedGeos = secondaryMeasureGeos.filter(g => primaryMeasureGeos.includes(g));
 
+    // console.log("sharedGeos [createJoinedLinksData]", sharedGeos);
+
 
     // ==== times ==== //
 
@@ -830,7 +832,7 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
         // get shared geos
         .filter(d => sharedGeos.includes(d.GeoType))
 
-    // console.log("filteredPrimaryMeasureData", filteredPrimaryMeasureData);
+    // console.log("filteredPrimaryMeasureData [createJoinedLinksData]", filteredPrimaryMeasureData);
 
 
     // get most recent time period for primary measure
@@ -838,19 +840,28 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
 
     const mostRecentPrimaryMeasureEndTime = Math.max(...filteredPrimaryMeasureData.map(d => d.end_period));
 
+    // console.log("mostRecentPrimaryMeasureEndTime [createJoinedLinksData]", mostRecentPrimaryMeasureEndTime);
+
     // keep only most recent time period
 
     const filteredPrimaryMeasureTimesData = filteredPrimaryMeasureData
-
         .filter(d => d.end_period === mostRecentPrimaryMeasureEndTime)
+
+    // console.log("filteredPrimaryMeasureTimesData [createJoinedLinksData]", filteredPrimaryMeasureTimesData);
+
+    // get the geotype(s) of the most recent data - might only occur in 1 of the4 shared geos!
+
+    let mostRecentPrimaryGeos = [...new Set(filteredPrimaryMeasureTimesData.map(d => d.GeoType))];
+
+    // console.log("mostRecentPrimaryGeos [createJoinedLinksData]", mostRecentPrimaryGeos);
 
     // convert to arquero table
 
     const aqFilteredPrimaryMeasureTimesData = aq.from(filteredPrimaryMeasureTimesData);
 
-    // console.log("aqFilteredPrimaryMeasureTimesData");
+    // console.log("aqFilteredPrimaryMeasureTimesData [createJoinedLinksData]");
     // aqFilteredPrimaryMeasureTimesData.groupby("MeasureID", "GeoType", "TimePeriod").count().print(50)
-    // aqFilteredPrimaryMeasureTimesData.print(10)
+    // aqFilteredPrimaryMeasureTimesData.print()
 
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
@@ -873,8 +884,8 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
                 .filter(`d => d.MeasureID === ${secondaryMeasureId}`)
                 .join(geoTable, [["GeoID", "GeoType"], ["GeoID", "GeoType"]])
 
-                // get same geotypes as primary data (no citywide or boro)
-                .filter(aq.escape(d => sharedGeos.includes(d.GeoType)))
+                // get same geotypes as most recent primary data
+                .filter(aq.escape(d => mostRecentPrimaryGeos.includes(d.GeoType)))
                 .derive({"GeoRank": aq.escape(d => assignGeoRank(d.GeoType))})
                 .rename({'Name': 'Geography'})
 
@@ -884,7 +895,7 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
                     "TimePeriodID"
                 )
             
-            // console.log("aqFilteredSecondaryMeasureData");
+            // console.log("aqFilteredSecondaryMeasureData [createJoinedLinksData]");
             // aqFilteredSecondaryMeasureData.print()
             
 
@@ -905,7 +916,7 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
 
             });
 
-            // console.log("closestSecondaryTime", closestSecondaryTime);
+            // console.log("closestSecondaryTime [createJoinedLinksData]", closestSecondaryTime);
 
 
             // use end time to get closest secondary data
@@ -921,22 +932,22 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
                 // in case there are two time periods left, get the one that starts the earliest,
                 //  which will be yearly over seasonal
                 .filter(d => d.start_period === op.min(d.start_period))
-                
+
 
             // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
             // join primary and secondary measure data
             // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
             // console.log("filteredPrimaryMeasureData", filteredPrimaryMeasureData);
-            
-            // console.log("aqFilteredPrimaryMeasureTimesData");
+
+            // console.log("aqFilteredPrimaryMeasureTimesData [createJoinedLinksData]");
             // aqFilteredPrimaryMeasureTimesData.groupby("MeasureID", "GeoType", "TimePeriod").count().print(50)
-            // aqFilteredPrimaryMeasureTimesData.print(10)
-            
-            // console.log("aqClosestSecondaryData");
+            // aqFilteredPrimaryMeasureTimesData.print()
+
+            // console.log("aqClosestSecondaryData [createJoinedLinksData]");
             // aqClosestSecondaryData.groupby("MeasureID", "GeoType", "TimePeriod").count().print(50)
-            // aqClosestSecondaryData.print(10)
-            
+            // aqClosestSecondaryData.print()
+
             const aqJoinedPrimarySecondaryData = aqFilteredPrimaryMeasureTimesData
                 .join(
                     aqClosestSecondaryData,

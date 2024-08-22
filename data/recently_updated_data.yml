@@ -1,6 +1,12 @@
 ---
 featured:
-- copy: 'Heat stress: emergency department visits'
+- copy: Rat inspections
+  link: data-explorer/mice-and-rats/?id=2434#display=summary
+- copy: Rat indexing in Rat Mitigation Zones (RMZs)
+  link: data-explorer/mice-and-rats/?id=2433#display=summary
+- copy: Air quality action days
+  link: data-explorer/air-quality/?id=92#display=summary
+- copy: 'Heat stress: yearly emergency department visits'
   link: data-explorer/weather-related-illness/?id=2075#display=summary
 - copy: Adults with air conditioners
   link: data-explorer/climate/?id=2104#display=summary
