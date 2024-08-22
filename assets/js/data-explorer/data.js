@@ -311,7 +311,7 @@ const loadIndicator = async (this_indicatorId, dont_add_to_history) => {
 
     const indicatorTitle = document.getElementById('dropdownIndicator')
 
-    indicatorTitle.innerHTML = indicatorName
+    indicatorTitle.innerHTML = DOMPurify.sanitize(indicatorName)
 
     // call function to fetch comparisons data
 

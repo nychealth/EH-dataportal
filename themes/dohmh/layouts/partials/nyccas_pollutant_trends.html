@@ -139,7 +139,7 @@
         var chartSpec = {};
         function drawChart() {
             document.getElementById('polPrint').innerHTML = trendPollutantName
-            document.getElementById('sourcePrint').innerHTML = source
+            document.getElementById('sourcePrint').innerHTML = DOMPurify.sanitize(source)
             document.getElementById('unitPrint').innerHTML = units
             let width = document.getElementById('vis').offsetWidth / 2.25
 

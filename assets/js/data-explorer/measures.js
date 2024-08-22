@@ -1265,10 +1265,10 @@ const renderMeasures = async () => {
             
             mapMeasures.push(measure)
             
-            dropdownMapMeasures.innerHTML += `<button class="dropdown-item link-measure mapmeasuresbutton pl-2"
+            dropdownMapMeasures.innerHTML += DOMPurify.sanitize(`<button class="dropdown-item link-measure mapmeasuresbutton pl-2"
                 data-measure-id="${measureId}">
                 ${type}
-                </button>`;
+                </button>`);
             
         }
 
@@ -1301,10 +1301,10 @@ const renderMeasures = async () => {
             dropdownTrendComparisons.innerHTML += header ? '<div class="dropdown-title pl-2"><strong>' + header + '</strong></div>' : '';
 
             if (trendData) {
-                dropdownTrendComparisons.innerHTML += `<button class="dropdown-item trendbutton pl-3"
+                dropdownTrendComparisons.innerHTML += DOMPurify.sanitize(`<button class="dropdown-item trendbutton pl-3"
                 data-measure-id="${measureId}">
                 ${type}
-                </button>`;
+                </button>`);
             }
         }
 
@@ -1322,7 +1322,7 @@ const renderMeasures = async () => {
             if (tableData) {
 
                 dropdownLinksMeasures.innerHTML +=
-                    `<div class="dropdown-title pl-2"><strong> ${type}</strong></div>`;
+                    DOMPurify.sanitize(`<div class="dropdown-title pl-2"><strong> ${type}</strong></div>`);
 
                 measure?.VisOptions[0].Links[0].Measures?.map(link => {
 
@@ -1341,12 +1341,12 @@ const renderMeasures = async () => {
                     // console.log("defaultSecondaryMeasureMetadata", defaultSecondaryMeasureMetadata);
 
                     dropdownLinksMeasures.innerHTML +=
-                        `<button class="dropdown-item linksbutton pl-3"
+                        DOMPurify.sanitize(`<button class="dropdown-item linksbutton pl-3"
                             data-primary-measure-id="${measureId}"
                             data-measure-id="${measure.MeasureID}"
                             data-secondary-measure-id="${link.MeasureID}">
                             ${defaultSecondaryMeasureMetadata[0]?.MeasureName}
-                        </button>`;
+                        </button>`);
 
                 });
             }
