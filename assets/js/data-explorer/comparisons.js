@@ -326,7 +326,7 @@ const renderComparisonsChart = (
                 "x": {
                     "datum": noCompareEndPeriod
                 },
-                "xOffset": {"value": 0.5},
+                "xOffset": {"value": -10},
                 "color": {"value": "gray"},
                 "size": {"value": 2},
                 "strokeDash": {"value": [2, 2]}
