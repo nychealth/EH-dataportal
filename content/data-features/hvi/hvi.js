@@ -40,7 +40,7 @@ const load_flexdatalist = async () => {
         .then(data => {
 
             let nta_zip_collapsed = data;
-            console.log("nta_zip_collapsed", nta_zip_collapsed);
+            // console.log("nta_zip_collapsed", nta_zip_collapsed);
             
             // ----- init flexdatalist -------------------------------------------------- //
             
