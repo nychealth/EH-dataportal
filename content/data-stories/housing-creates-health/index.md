@@ -6,12 +6,27 @@ seo_title: "Housing creates health"
 seo_description: "A data story about how quality and affordable housing enhances public health"
 tags:
 categories: ["housing", "social", "childhealth", "neighborhoods"]
-keywords: ["housing", "income inequality", "eviction"]
+keywords:
+  [
+    "housing",
+    "income inequality",
+    "eviction",
+    "inequality",
+    "injustice",
+    "renting",
+    "maintenance deficiencies",
+    "disrepair",
+    "mold",
+    "lead",
+    "lead paint",
+    "lead poisoning",
+    "poverty",
+  ]
 image: ds-housing-health_WillSteacy.jpg
 photocredit: "Will Steacy/NYC & Company"
 ---
 
-Health is determined by many factors, and people tend to be healthier when they have economic stability, live in quality housing and have access to public space and safe, connected communities. In 2020, the NYC Health Department held a series of community conversations with residents and local stakeholders across 26 neighborhoods. New Yorkers shared personal stories that illuminate their priorities for building healthier neighborhoods, healthier childhoods and more. This is one part of a three-part series on how <strong> housing, <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/economic-stability/"> economic stability </a> and public space create health.</strong>
+Health is determined by many factors. People tend to be healthier when they have economic stability, live in quality housing and have access to public space and safe, connected communities. In 2020, the NYC Health Department held a series of community conversations with residents and local stakeholders across 26 neighborhoods. New Yorkers shared personal stories about their priorities for building healthier neighborhoods, healthier childhoods and more. This is one part of a three-part series on how <strong> housing, <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/economic-stability/"> economic stability </a> and public space create health.</strong>
 
 <div class="pullquote my-4">
 <figure class="">
