@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml"><url>
-    <loc>/IndicatorPublic/keywords/affordable-housing/</loc>
-    <lastmod>2024-06-11T09:01:00-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/categories/active-design/</loc>
+    <lastmod>2024-08-19T01:18:56-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/keywords/bicycle-lanes/</loc>
+    <lastmod>2024-08-19T01:18:56-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/categories/</loc>
-    <lastmod>2024-06-11T09:01:00-04:00</lastmod><xhtml:link
+    <lastmod>2024-08-19T01:18:56-04:00</lastmod><xhtml:link
                 rel="alternate"
                 hreflang="es"
                 href="/IndicatorPublic/es/categories/"
@@ -17,10 +19,8 @@
                 hreflang="en"
                 href="/IndicatorPublic/categories/"
                 /></url><url>
-    <loc>/IndicatorPublic/categories/climate/</loc>
-    <lastmod>2024-06-11T09:01:00-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/data-stories/</loc>
-    <lastmod>2024-06-11T09:01:00-04:00</lastmod><xhtml:link
+    <lastmod>2024-08-19T01:18:56-04:00</lastmod><xhtml:link
                 rel="alternate"
                 hreflang="es"
                 href="/IndicatorPublic/es/data-stories/"
@@ -33,6 +33,126 @@
                 hreflang="en"
                 href="/IndicatorPublic/data-stories/"
                 /></url><url>
+    <loc>/IndicatorPublic/keywords/income-inequality/</loc>
+    <lastmod>2024-08-19T01:18:56-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/keywords/inequality/</loc>
+    <lastmod>2024-08-19T01:18:56-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/keywords/injustice/</loc>
+    <lastmod>2024-08-19T01:18:56-04:00</lastmod><xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="/IndicatorPublic/es/keywords/injustice/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/IndicatorPublic/zh/keywords/injustice/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/IndicatorPublic/keywords/injustice/"
+                /></url><url>
+    <loc>/IndicatorPublic/keywords/</loc>
+    <lastmod>2024-08-19T01:18:56-04:00</lastmod><xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="/IndicatorPublic/es/keywords/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/IndicatorPublic/zh/keywords/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/IndicatorPublic/keywords/"
+                /></url><url>
+    <loc>/IndicatorPublic/keywords/light-pollution/</loc>
+    <lastmod>2024-08-19T01:18:56-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/categories/neighborhoods/</loc>
+    <lastmod>2024-08-19T01:18:56-04:00</lastmod><xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="/IndicatorPublic/es/categories/neighborhoods/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/IndicatorPublic/zh/categories/neighborhoods/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/IndicatorPublic/categories/neighborhoods/"
+                /></url><url>
+    <loc>/IndicatorPublic/keywords/noise-pollution/</loc>
+    <lastmod>2024-08-19T01:18:56-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/keywords/parks/</loc>
+    <lastmod>2024-08-19T01:18:56-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/keywords/poverty/</loc>
+    <lastmod>2024-08-19T01:18:56-04:00</lastmod><xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="/IndicatorPublic/es/keywords/poverty/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/IndicatorPublic/zh/keywords/poverty/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/IndicatorPublic/keywords/poverty/"
+                /></url><url>
+    <loc>/IndicatorPublic/keywords/public-space/</loc>
+    <lastmod>2024-08-19T01:18:56-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/data-stories/public-space-creates-health/</loc>
+    <lastmod>2024-08-19T01:18:56-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/keywords/safe-streets/</loc>
+    <lastmod>2024-08-19T01:18:56-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/keywords/sidewalks/</loc>
+    <lastmod>2024-08-19T01:18:56-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/categories/social/</loc>
+    <lastmod>2024-08-19T01:18:56-04:00</lastmod><xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="/IndicatorPublic/es/categories/social/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/IndicatorPublic/zh/categories/social/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/IndicatorPublic/categories/social/"
+                /></url><url>
+    <loc>/IndicatorPublic/</loc>
+    <lastmod>2024-08-19T01:18:56-04:00</lastmod><xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="/IndicatorPublic/es/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/IndicatorPublic/zh/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/IndicatorPublic/"
+                /></url><url>
+    <loc>/IndicatorPublic/categories/transportation/</loc>
+    <lastmod>2024-08-19T01:18:56-04:00</lastmod><xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="/IndicatorPublic/es/categories/transportation/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/IndicatorPublic/zh/categories/transportation/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/IndicatorPublic/categories/transportation/"
+                /></url><url>
+    <loc>/IndicatorPublic/keywords/affordable-housing/</loc>
+    <lastmod>2024-06-11T09:01:00-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/categories/climate/</loc>
+    <lastmod>2024-06-11T09:01:00-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/flooding/</loc>
     <lastmod>2024-06-11T09:01:00-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/categories/housing/</loc>
@@ -51,48 +171,6 @@
                 /></url><url>
     <loc>/IndicatorPublic/keywords/inequities/</loc>
     <lastmod>2024-06-11T09:01:00-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/keywords/</loc>
-    <lastmod>2024-06-11T09:01:00-04:00</lastmod><xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="/IndicatorPublic/es/keywords/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="/IndicatorPublic/zh/keywords/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/IndicatorPublic/keywords/"
-                /></url><url>
-    <loc>/IndicatorPublic/categories/neighborhoods/</loc>
-    <lastmod>2024-06-11T09:01:00-04:00</lastmod><xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="/IndicatorPublic/es/categories/neighborhoods/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="/IndicatorPublic/zh/categories/neighborhoods/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/IndicatorPublic/categories/neighborhoods/"
-                /></url><url>
-    <loc>/IndicatorPublic/categories/social/</loc>
-    <lastmod>2024-06-11T09:01:00-04:00</lastmod><xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="/IndicatorPublic/es/categories/social/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="/IndicatorPublic/zh/categories/social/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/IndicatorPublic/categories/social/"
-                /></url><url>
     <loc>/IndicatorPublic/keywords/social-determinants/</loc>
     <lastmod>2024-06-11T09:01:00-04:00</lastmod><xhtml:link
                 rel="alternate"
@@ -109,20 +187,6 @@
                 /></url><url>
     <loc>/IndicatorPublic/keywords/storms/</loc>
     <lastmod>2024-06-11T09:01:00-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/</loc>
-    <lastmod>2024-06-11T09:01:00-04:00</lastmod><xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="/IndicatorPublic/es/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="/IndicatorPublic/zh/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/IndicatorPublic/"
-                /></url><url>
     <loc>/IndicatorPublic/data-stories/flooding-and-health/</loc>
     <lastmod>2024-06-11T09:01:00-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/categories/childhealth/</loc>
@@ -139,6 +203,8 @@
                 hreflang="en"
                 href="/IndicatorPublic/categories/childhealth/"
                 /></url><url>
+    <loc>/IndicatorPublic/keywords/disrepair/</loc>
+    <lastmod>2024-03-05T01:18:56-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/eviction/</loc>
     <lastmod>2024-03-05T01:18:56-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/housing/</loc>
@@ -157,14 +223,72 @@
                 /></url><url>
     <loc>/IndicatorPublic/data-stories/housing-creates-health/</loc>
     <lastmod>2024-03-05T01:18:56-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/keywords/income-inequality/</loc>
+    <loc>/IndicatorPublic/keywords/lead/</loc>
     <lastmod>2024-03-05T01:18:56-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/keywords/lead-paint/</loc>
+    <lastmod>2024-03-05T01:18:56-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/keywords/lead-poisoning/</loc>
+    <lastmod>2024-03-05T01:18:56-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/keywords/maintenance-deficiencies/</loc>
+    <lastmod>2024-03-05T01:18:56-04:00</lastmod><xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="/IndicatorPublic/es/keywords/maintenance-deficiencies/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/IndicatorPublic/zh/keywords/maintenance-deficiencies/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/IndicatorPublic/keywords/maintenance-deficiencies/"
+                /></url><url>
+    <loc>/IndicatorPublic/keywords/mold/</loc>
+    <lastmod>2024-03-05T01:18:56-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/keywords/renting/</loc>
+    <lastmod>2024-03-05T01:18:56-04:00</lastmod><xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="/IndicatorPublic/es/keywords/renting/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/IndicatorPublic/zh/keywords/renting/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/IndicatorPublic/keywords/renting/"
+                /></url><url>
     <loc>/IndicatorPublic/data-stories/economic-stability/</loc>
+    <lastmod>2024-02-08T09:01:00-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/keywords/food-insecurity/</loc>
+    <lastmod>2024-02-08T09:01:00-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/categories/foodanddrink/</loc>
+    <lastmod>2024-02-08T09:01:00-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/keywords/health-care/</loc>
     <lastmod>2024-02-08T09:01:00-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/health-equity/</loc>
     <lastmod>2024-02-08T09:01:00-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/keywords/healthy-food/</loc>
+    <lastmod>2024-02-08T09:01:00-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/inequalities/</loc>
     <lastmod>2024-02-08T09:01:00-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/keywords/medical-debt/</loc>
+    <lastmod>2024-02-08T09:01:00-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/keywords/racism/</loc>
+    <lastmod>2024-02-08T09:01:00-04:00</lastmod><xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="/IndicatorPublic/es/keywords/racism/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/IndicatorPublic/zh/keywords/racism/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/IndicatorPublic/keywords/racism/"
+                /></url><url>
     <loc>/IndicatorPublic/keywords/accidents/</loc>
     <lastmod>2023-10-18T13:11:44-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/deaths/</loc>
@@ -229,10 +353,6 @@
     <lastmod>2023-07-13T08:29:34-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/employment/</loc>
     <lastmod>2023-07-13T08:29:34-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/keywords/lead/</loc>
-    <lastmod>2023-07-13T08:29:34-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/keywords/lead-poisoning/</loc>
-    <lastmod>2023-07-13T08:29:34-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/data-stories/adult-lead/</loc>
     <lastmod>2023-07-13T08:29:34-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/worker-health/</loc>
@@ -279,20 +399,6 @@
     <lastmod>2023-03-20T13:11:44-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/sanitation/</loc>
     <lastmod>2023-03-20T13:11:44-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/categories/transportation/</loc>
-    <lastmod>2023-03-20T13:11:44-04:00</lastmod><xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="/IndicatorPublic/es/categories/transportation/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="/IndicatorPublic/zh/categories/transportation/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/IndicatorPublic/categories/transportation/"
-                /></url><url>
     <loc>/IndicatorPublic/keywords/trash/</loc>
     <lastmod>2023-03-20T13:11:44-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/data-stories/sanitation/</loc>
@@ -445,20 +551,6 @@
     <lastmod>2022-12-15T15:23:23-05:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/policy/</loc>
     <lastmod>2022-12-15T15:23:23-05:00</lastmod></url><url>
-    <loc>/IndicatorPublic/keywords/poverty/</loc>
-    <lastmod>2022-12-15T15:23:23-05:00</lastmod><xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="/IndicatorPublic/es/keywords/poverty/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="/IndicatorPublic/zh/keywords/poverty/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/IndicatorPublic/keywords/poverty/"
-                /></url><url>
     <loc>/IndicatorPublic/keywords/traffic/</loc>
     <lastmod>2022-12-15T15:23:23-05:00</lastmod><xhtml:link
                 rel="alternate"
@@ -607,8 +699,6 @@
                 hreflang="en"
                 href="/IndicatorPublic/keywords/covid-19/"
                 /></url><url>
-    <loc>/IndicatorPublic/categories/foodanddrink/</loc>
-    <lastmod>2022-04-20T08:33:22-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/restaurants/</loc>
     <lastmod>2022-04-20T08:33:22-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/buildings/</loc>
@@ -703,20 +793,6 @@
     <lastmod>2021-10-02T07:56:00-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/key-topics/housing/</loc>
     <lastmod>2021-10-02T07:56:00-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/keywords/injustice/</loc>
-    <lastmod>2021-10-02T07:56:00-04:00</lastmod><xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="/IndicatorPublic/es/keywords/injustice/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="/IndicatorPublic/zh/keywords/injustice/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/IndicatorPublic/keywords/injustice/"
-                /></url><url>
     <loc>/IndicatorPublic/keywords/maintenance/</loc>
     <lastmod>2021-10-02T07:56:00-04:00</lastmod><xhtml:link
                 rel="alternate"
@@ -731,42 +807,12 @@
                 hreflang="en"
                 href="/IndicatorPublic/keywords/maintenance/"
                 /></url><url>
-    <loc>/IndicatorPublic/keywords/maintenance-deficiencies/</loc>
-    <lastmod>2021-10-02T07:56:00-04:00</lastmod><xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="/IndicatorPublic/es/keywords/maintenance-deficiencies/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="/IndicatorPublic/zh/keywords/maintenance-deficiencies/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/IndicatorPublic/keywords/maintenance-deficiencies/"
-                /></url><url>
     <loc>/IndicatorPublic/keywords/mice/</loc>
     <lastmod>2021-10-02T07:56:00-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/keywords/inequality/</loc>
-    <lastmod>2021-10-01T07:59:16-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/key-topics/social/</loc>
     <lastmod>2021-10-01T07:59:16-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/oppression/</loc>
     <lastmod>2021-10-01T07:59:16-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/keywords/racism/</loc>
-    <lastmod>2021-10-01T07:59:16-04:00</lastmod><xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="/IndicatorPublic/es/keywords/racism/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="/IndicatorPublic/zh/keywords/racism/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/IndicatorPublic/keywords/racism/"
-                /></url><url>
     <loc>/IndicatorPublic/keywords/social-determinants-of-health/</loc>
     <lastmod>2021-10-01T07:59:16-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/social-justice/</loc>
@@ -810,8 +856,6 @@
     <loc>/IndicatorPublic/categories/outcomes/</loc>
     <lastmod>2021-09-08T11:14:56-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/park/</loc>
-    <lastmod>2021-09-08T11:14:56-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/keywords/parks/</loc>
     <lastmod>2021-09-08T11:14:56-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/quality/</loc>
     <lastmod>2021-09-08T11:14:56-04:00</lastmod></url><url>
@@ -1003,8 +1047,6 @@
     <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/food-and-drink/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
-    <loc>/IndicatorPublic/keywords/health-care/</loc>
-    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/IndicatorPublic/data-explorer/health-care/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/IndicatorPublic/data-explorer/health-impacts-of-air-pollution/</loc>
@@ -1188,20 +1230,6 @@
                 rel="alternate"
                 hreflang="en"
                 href="/IndicatorPublic/data-stories/housing/"
-                /></url><url>
-    <loc>/IndicatorPublic/keywords/renting/</loc>
-    <lastmod>2021-01-06T08:07:31-04:00</lastmod><xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="/IndicatorPublic/es/keywords/renting/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="/IndicatorPublic/zh/keywords/renting/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/IndicatorPublic/keywords/renting/"
                 /></url><url>
     <loc>/IndicatorPublic/keywords/bike-lanes/</loc>
     <lastmod>2020-09-20T10:54:51-04:00</lastmod></url><url>
