@@ -71,11 +71,4 @@
 
 {{- define "js_bot" -}}
 
-  {{- $js := resources.Get "js/search-results.js" -}}
-  {{- $secureJS := $js | resources.Fingerprint "sha512" -}}
-  
-  <script type="text/javascript" 
-    src="{{ $secureJS.RelPermalink }}" 
-    integrity="{{ $secureJS.Data.Integrity }}"></script>
-
 {{- end -}}

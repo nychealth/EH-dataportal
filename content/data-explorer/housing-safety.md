@@ -2,6 +2,7 @@
 title: Housing safety
 date: 2021-05-28 18:02:58.817845
 draft: false
+azlink: "https://www.nyc.gov/site/doh/health/health-topics/healthy-aging-preventing-falls-in-older-adults.page"
 seo_title: "Housing safety data for NYC | Environment and Health Data Portal"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
 description: "Datasets and visualizations of housing safety in NYC."
@@ -24,6 +25,7 @@ indicators:
   - header: null
     IndicatorID:
       - 2188
+      - 2104
       - 2185
       - 2377
 ---

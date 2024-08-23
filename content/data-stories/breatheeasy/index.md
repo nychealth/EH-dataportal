@@ -1,5 +1,6 @@
 ---
 title: "Breathe easy: NYC's air quality is improving"
+shortTitle: Air quality is improving
 date: 2019-10-24T08:18:56-04:00
 draft: false
 seo_title: "Breathe easy: NYC's air quality is improving"
