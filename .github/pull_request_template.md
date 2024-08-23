@@ -1,5 +1,6 @@
 PR checklist:
 - [ ] Changes previewed and QC'ed
+- [ ] In PR, mention team member for FYI, review, or approval
 
 New content (if applicable):
 - [ ] New content: date updated
