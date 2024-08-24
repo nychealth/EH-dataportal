@@ -864,6 +864,11 @@
     "description": "Falls are a leading cause of injury among older adults.",
     "name": "Home fall-related hospitalizations (age 65+)"
   },
+  "2410": {
+    "IndicatorID": 2410,
+    "description": "Heat stress hospitalizations weather are part of the public health burden due to hot weather. Data aggregated over 10 years provides enough stablility to display neighborhood impacts.",
+    "name": "Heat stress: 10-year hospitalizations"
+  },
   "2411": {
     "IndicatorID": 2411,
     "description": "The HVI shows the risk of community-level heat impacts, like deaths, due to extreme heat events. It is made up of data on surface temperature, green space, air conditioning access, median income, and Black population (the population most excluded from heat resources). Differences in community-level heat impacts stem from structural racism, which limits access to preventive resources. \u003ca href=\"../../key-topics/climatehealth/hvi\"\u003eSee our interactive Heat Vulnerability Index\u003c/a\u003e",
@@ -938,6 +943,11 @@
     "IndicatorID": 2434,
     "description": "Rat inspections are conducted for signs of rats and the conditions that attract them.",
     "name": "Rat inspections"
+  },
+  "2443": {
+    "IndicatorID": 2443,
+    "description": "ED visits due to heat-related illnesses, such as heat stroke and heat exhaustion, represent part of the public health burden of extreme heat.",
+    "name": "Heat stress: 5-year emergency department visits"
   },
   "25": {
     "IndicatorID": 25,
