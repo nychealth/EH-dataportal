@@ -240,6 +240,8 @@ const setDefaultLinksMeasure = async (visArray) => {
         const defaultPrimaryMeasureId = defaultArray[0].MeasureID;
         const defaultSecondaryMeasureId = defaultArray[0].VisOptions[0].Links[0].Measures[0]?.MeasureID;
 
+        // console.log("defaultSecondaryMeasureId", defaultSecondaryMeasureId);
+
         // assigning to global object
         defaultPrimaryLinksMeasureMetadata = defaultArray;
 
@@ -1133,6 +1135,11 @@ const renderMeasures = async () => {
     trendMeasures = [];
     linksMeasures = [];
     disparitiesMeasures = [];
+
+    // clear measure about used by table.js
+
+    measureAbout = "";
+    measureSources = "";
 
 
     // ----- create dropdowns for table ================================================== //
