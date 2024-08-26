@@ -1273,7 +1273,7 @@ const renderMeasures = async () => {
             mapMeasures.push(measure)
             
             dropdownMapMeasures.innerHTML += DOMPurify.sanitize(`<button class="dropdown-item link-measure mapmeasuresbutton pl-2"
-                data-measure-id="${measureId}">
+                data-measure-id="${measureId}" title="${type}">
                 ${type}
                 </button>`);
             
@@ -1305,11 +1305,11 @@ const renderMeasures = async () => {
             // console.log("header", header);
             // console.log("index", index);
 
-            dropdownTrendComparisons.innerHTML += header ? '<div class="dropdown-title pl-2"><strong>' + header + '</strong></div>' : '';
+            dropdownTrendComparisons.innerHTML += header ? '<div class="dropdown-title"><strong>' + header + '</strong></div>' : '';
 
             if (trendData) {
-                dropdownTrendComparisons.innerHTML += DOMPurify.sanitize(`<button class="dropdown-item trendbutton pl-3"
-                data-measure-id="${measureId}">
+                dropdownTrendComparisons.innerHTML += DOMPurify.sanitize(`<button class="dropdown-item trendbutton pl-2"
+                data-measure-id="${measureId}" title="${type}">
                 ${type}
                 </button>`);
             }
@@ -1329,7 +1329,7 @@ const renderMeasures = async () => {
             if (tableData) {
 
                 dropdownLinksMeasures.innerHTML +=
-                    DOMPurify.sanitize(`<div class="dropdown-title pl-2"><strong> ${type}</strong></div>`);
+                    DOMPurify.sanitize(`<div class="dropdown-title"><strong> ${type}</strong></div>`);
 
                 measure?.VisOptions[0].Links[0].Measures?.map(link => {
 
@@ -1348,10 +1348,10 @@ const renderMeasures = async () => {
                     // console.log("defaultSecondaryMeasureMetadata", defaultSecondaryMeasureMetadata);
 
                     dropdownLinksMeasures.innerHTML +=
-                        DOMPurify.sanitize(`<button class="dropdown-item linksbutton pl-3"
+                        DOMPurify.sanitize(`<button class="dropdown-item linksbutton pl-2"
                             data-primary-measure-id="${measureId}"
                             data-measure-id="${measure.MeasureID}"
-                            data-secondary-measure-id="${link.MeasureID}">
+                            data-secondary-measure-id="${link.MeasureID}" title="${defaultSecondaryMeasureMetadata[0]?.MeasureName}">
                             ${defaultSecondaryMeasureMetadata[0]?.MeasureName}
                         </button>`);
 
@@ -1391,7 +1391,7 @@ const renderMeasures = async () => {
 
             // add each unique legend title as a header, with the included comparisons underneath
 
-            dropdownTrendComparisons.innerHTML += title ? '<div class="dropdown-title pl-2"><strong>' + title + '</strong></div>' : '';
+            dropdownTrendComparisons.innerHTML += title ? '<div class="dropdown-title"><strong>' + title + '</strong></div>' : '';
 
             let comparisonIDs = [... new Set(titleGroup.array("ComparisonID"))]
 
@@ -1419,15 +1419,15 @@ const renderMeasures = async () => {
 
                     if (compGeoTypeName[0] == "Citywide") {
 
-                    dropdownTrendComparisons.innerHTML += `<button class="dropdown-item comparisonsbutton pl-3"
-                        data-comparison-id="${comp}">
+                    dropdownTrendComparisons.innerHTML += `<button class="dropdown-item comparisonsbutton pl-2"
+                        data-comparison-id="${comp}"  title="${compY_axis_title}">
                         ${compY_axis_title}
                         </button>`;
 
                     } else {
                         // I am very unhappy with this kludge
-                        dropdownTrendComparisons.innerHTML += `<button class="dropdown-item comparisonsbutton pl-3"
-                            data-comparison-id="${comp}">
+                        dropdownTrendComparisons.innerHTML += `<button class="dropdown-item comparisonsbutton pl-2"
+                            data-comparison-id="${comp}"  title="${compGeography[compGeography.length - 1]} ">
                             ${compGeography[compGeography.length - 1]} 
                             </button>`;
                     }
@@ -1437,8 +1437,8 @@ const renderMeasures = async () => {
                     // console.log("1 measure [MeasurementType]");
                     // console.log(compMeasurementType);
 
-                    dropdownTrendComparisons.innerHTML += `<button class="dropdown-item comparisonsbutton pl-3"
-                        data-comparison-id="${comp}">
+                    dropdownTrendComparisons.innerHTML += `<button class="dropdown-item comparisonsbutton pl-2"
+                        data-comparison-id="${comp}" title="${compMeasurementType}">
                         ${compMeasurementType}
                         </button>`;
                     
@@ -1448,8 +1448,8 @@ const renderMeasures = async () => {
                     // console.log("compIndicatorMeasure", compIndicatorMeasure);
                     // console.log("compName", compName);
 
-                    dropdownTrendComparisons.innerHTML += `<button class="dropdown-item comparisonsbutton pl-3"
-                        data-comparison-id="${comp}">
+                    dropdownTrendComparisons.innerHTML += `<button class="dropdown-item comparisonsbutton pl-2"
+                        data-comparison-id="${comp}" title="${compName}">
                         ${compName}
                         </button>`;
                     

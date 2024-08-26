@@ -6,6 +6,8 @@ const renderTable = () => {
 
     console.log("** renderTable");
 
+    document.getElementById('viewDescription').innerHTML = 'This table shows all data for this dataset.'
+
     // ----------------------------------------------------------------------- //
     // prep data
     // ----------------------------------------------------------------------- //
@@ -169,7 +171,7 @@ const renderTable = () => {
     const groupColumnGeo = 1;
 
     $('#tableID').DataTable({
-        scrollY: 525,
+        scrollY: 500,
         scrollX: true,
         scrollCollapse: true,
         searching: false,
