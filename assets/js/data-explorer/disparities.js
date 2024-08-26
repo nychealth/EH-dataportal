@@ -52,7 +52,7 @@ const renderDisparitiesChart = async (
     } else {
         primaryDisplay         = primaryMetadata[0]?.DisplayType; // else, the pre-existing assignment
         subtitle = primaryMeasurementType + `${primaryMetadata[0]?.DisplayType ? ` (${primaryDisplay})` : ''}`
-        console.log(primaryDisplay, primaryMeasurementType)
+        // console.log(primaryDisplay, primaryMeasurementType)
     }
 
     // console.log("primaryMeasureId [renderDisparitiesChart]", primaryMeasureId);
