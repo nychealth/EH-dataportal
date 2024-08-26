@@ -9,6 +9,8 @@ const renderComparisonsChart = (
 
     console.log("*** renderComparisonsChart");
 
+    document.getElementById('viewDescription').innerHTML = 'Trends are shown by boro for stable rates.'
+
     // console.log("metadata [renderComparisonsChart]");
     // metadata.print()
     
