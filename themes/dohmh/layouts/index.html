@@ -335,12 +335,12 @@
       .then(response => {return response.json()})
       .then(data => {
       // console.log(data)
-      console.log('forecast high: ' + data.forecast.forecastday[0].day.maxtemp_f)
+      // console.log('forecast high: ' + data.forecast.forecastday[0].day.maxtemp_f)
 
       if (data.forecast.forecastday[0].day.maxtemp_f > 90) {
-          console.log('forecast max is: ' + data.forecast.forecastday[0].day.maxtemp_f)
+          // console.log('forecast max is: ' + data.forecast.forecastday[0].day.maxtemp_f)
           fireHeatModal(data.forecast.forecastday[0].day.maxtemp_f)
-          document.getElementById('forecasthigh').innerHTML = data.forecast.forecastday[0].day.maxtemp_f + '°F'
+          document.getElementById('forecasthigh').textContent = data.forecast.forecastday[0].day.maxtemp_f + '°F'
       } else {}
 
     })
@@ -356,7 +356,7 @@
 
       aqi1 >= aqi2 ? (aqi = aqi1) : (aqi = aqi2)
 
-      console.log('aqi: ' + aqi)
+      // console.log('aqi: ' + aqi)
 
       aqi > 2 ? fireAQmodal(aqi) : {}
 
@@ -367,7 +367,7 @@
   function fireHeatModal(x) {
       var button = document.getElementById('openModalBtn');
       button.addEventListener('click', function() {
-          console.log('heat modal fired. forecast high: ' + x);
+          console.log('heat modal fired.');
       });
   
       button.click();
@@ -377,7 +377,7 @@
   function fireAQmodal(aqi) {
     var button = document.getElementById('openModalBtn2')
     button.addEventListener('click', function() {
-      console.log('aq modal fired. aqi: ', aqi)
+      console.log('aq modal fired.')
     });
 
     // style the AQI modal
@@ -405,7 +405,7 @@
       aqiMeaning.style['background-color'] = '#7E0023'
       aqiMeaning.style.color = 'white'
     }
-    aqiMeaning.innerHTML = aqiInterpretation
+    aqiMeaning.textContent = aqiInterpretation
 
     button.click();
   }
