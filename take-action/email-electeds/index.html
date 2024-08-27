@@ -874,14 +874,14 @@ function printInfoFromApi(prefix, info) {
   
   
 
-  document.getElementById(prefix+"Name").innerHTML = info.name
-  document.getElementById(prefix+"Website").innerHTML = `<a href="${info.urls[0]}">Website</a>`
-  document.getElementById(prefix+"Phone").innerHTML = info.phones[0]
+  document.getElementById(prefix+"Name").innerHTML = DOMPurify.sanitize(info.name)
+  document.getElementById(prefix+"Website").innerHTML = DOMPurify.sanitize(`<a href="${info.urls[0]}">Website</a>`)
+  document.getElementById(prefix+"Phone").innerHTML = DOMPurify.sanitize(info.phones[0])
 
   if (info.emails) {
-    document.getElementById(prefix+"Email").innerHTML = `<a href="mailto:${info.emails[0]}">${info.emails[0]}</a>`
+    document.getElementById(prefix+"Email").innerHTML = DOMPurify.sanitize(`<a href="mailto:${info.emails[0]}">${info.emails[0]}</a>`)
   } else {
-    document.getElementById(prefix+"Email").innerHTML = `<em>No email address found</em>`
+    document.getElementById(prefix+"Email").innerHTML = DOMPurify.sanitize(`<em>No email address found</em>`)
   }
 }
 
