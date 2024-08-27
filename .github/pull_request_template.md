@@ -3,8 +3,9 @@ PR checklist:
 - [ ] In PR, mention team member for FYI, review, or approval
 
 New content (if applicable):
-- [ ] New content: date updated
-- [ ] New content: feature box updated
+- [ ] Date updated
+- [ ] Tags and keywords updated
+- [ ] Feature box updated
 
 New data (if applicable)
 - [ ] Added to Recently Updated
