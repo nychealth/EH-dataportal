@@ -9,6 +9,7 @@ theme = "dohmh"
 publishDir = "docs"
 paginate = 9
 ignoreFiles = ['Simplified.Chinese', 'Spanish']
+timeZone = "America/New_York"
 # enableGitInfo = true
 
 [params]
