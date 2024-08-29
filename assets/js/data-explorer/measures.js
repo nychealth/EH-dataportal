@@ -2527,6 +2527,61 @@ const renderMeasures = async () => {
 
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // add event handler functions to options boxes for Google Analytics
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+    dropdownTableGeos.addEventListener("click", e => {
+        console.log("click dropdownTableGeos", e);
+        gtag('event', 'click_option', {
+            option: "table_geo"
+        });
+    })
+
+    dropdownTableTimes.addEventListener("click", e => {
+        console.log("click dropdownTableTimes", e);
+        gtag('event', 'click_option', {
+            option: "table_time"
+        });
+    })
+
+    dropdownTrendComparisons.addEventListener("click", e => {
+        console.log("click dropdownTrendComparisons", e);
+        gtag('event', 'click_option', {
+            option: "trend_comparison"
+        });
+    })
+
+    dropdownMapMeasures.addEventListener("click", e => {
+        console.log("click dropdownMapMeasures", e);
+        gtag('event', 'click_option', {
+            option: "map_measure"
+        });
+    })
+
+    dropdownMapTimes.addEventListener("click", e => {
+        console.log("click dropdownMapTimes", e);
+        gtag('event', 'click_option', {
+            option: "map_time"
+        });
+    })
+
+    dropdownMapGeos.addEventListener("click", e => {
+        console.log("click dropdownMapGeos", e);
+        gtag('event', 'click_option', {
+            option: "map_geo"
+        });
+    })
+
+    dropdownLinksMeasures.addEventListener("click", e => {
+        console.log("click dropdownLinksMeasures", e);
+        gtag('event', 'click_option', {
+            option: "links_measure"
+        });
+    })
+
+
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
     // add event handler functions to summary tab checkboxes
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
