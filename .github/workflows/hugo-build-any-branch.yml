@@ -114,9 +114,9 @@ jobs:
       # set up Hugo
 
       - name: Hugo setup
-        uses: peaceiris/actions-hugo@v2
+        uses: peaceiris/actions-hugo@v3
         with:
-          hugo-version: "0.121.0"
+          hugo-version: "0.133.1"
           extended: true
 
       # cache Hugo modules
@@ -167,7 +167,7 @@ jobs:
       # publish to "deploy" branch
 
       - name: Publish to "builds/${{ env.publish_branch }}"
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v4
         with:
           full_commit_message: Publish ${{ steps.last_commit.outputs.last_hash }} (${{ steps.last_commit.outputs.last_msg }}) to "builds/${{ env.publish_branch }}"
           github_token: ${{ secrets.GITHUB_TOKEN }}
