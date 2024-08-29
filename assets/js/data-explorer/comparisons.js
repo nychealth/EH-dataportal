@@ -78,10 +78,10 @@ const renderComparisonsChart = (
     let compDisplayTypes    = [... new Set(metadata.array("DisplayType"))].filter(dt => dt != "");
     let compNoCompare       = [... new Set(metadata.array("TrendNoCompare"))].filter(nc => nc != null)[0]
 
-    console.log('compMeasurementType', compMeasurementType)
-    console.log('compDisplayTypes', compDisplayTypes)
+    // console.log('compMeasurementType', compMeasurementType)
+    // console.log('compDisplayTypes', compDisplayTypes)
 
-    console.log(">>>> compNoCompare", compNoCompare);
+    // console.log(">>>> compNoCompare", compNoCompare);
 
     // console.log(">> compName", compName);
     // console.log(">> compIndicatorLabel", compIndicatorLabel);
@@ -115,7 +115,7 @@ const renderComparisonsChart = (
         
         plotTitle = indicatorName;
         plotSubtitle = compMeasurementType + (compDisplayTypes.length > 0 ? ` (${compDisplayTypes})` : "") + (hasBoros ? "" : "");
-        console.log('compDisplayTypes 0: ', compDisplayTypes)
+        // console.log('compDisplayTypes 0: ', compDisplayTypes)
         
         if (compMeasurementType[0].includes('Percent') | compMeasurementType[0].includes('percent') && !compMeasurementType[0].includes('Percentile')) {
             compDisplayTypes = '%'
@@ -194,12 +194,12 @@ const renderComparisonsChart = (
             // console.log(">>> SUPPRESS by", compId);
 
             plotSubtitle = compMeasurementType + (compDisplayTypes.length > 0 ? ` (${compDisplayTypes})` : "");
-            console.log('compDisplayTypes 1: ', compDisplayTypes)
+            // console.log('compDisplayTypes 1: ', compDisplayTypes)
 
         } else {
 
             plotSubtitle = compMeasurementType + (compDisplayTypes.length > 0 ? ` (${compDisplayTypes})` : "") + " by " + compLegendTitle;
-            console.log('compDisplayTypes 2: ', compDisplayTypes)
+            // console.log('compDisplayTypes 2: ', compDisplayTypes)
 
         }
 
