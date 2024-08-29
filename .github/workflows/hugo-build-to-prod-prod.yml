@@ -59,7 +59,7 @@ jobs:
         id: last_commit
         run: |
           echo "last_hash=$(git log -1 --format=%h --abbrev=10)" >> $GITHUB_OUTPUT
-          echo "last_msg=$(git log -1 --format=%s)" >> $GITHUB_OUTPUT
+          echo "last_msg=\"$(git log -1 --format=%s)\"" >> $GITHUB_OUTPUT
 
       # set up node and cache for npm
 
