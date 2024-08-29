@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Air Conditioning on Environment &amp; Health Data Portal</title>
+    <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/air-conditioning/</link>
+    <description>Recent content in Air Conditioning on Environment &amp; Health Data Portal</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 10 Jan 2022 12:34:38 -0400</lastBuildDate>
+    <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/air-conditioning/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How power outages affect health</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/poweroutages/</link>
+      <pubDate>Mon, 10 Jan 2022 12:34:38 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/poweroutages/</guid>
+      <description>Imagine your child has asthma. One summer night, a powerful storm rolls in and knocks the power out.&#xA;Your child starts to have trouble breathing. Usually, you’d use a home nebulizer, an electric machine that turns liquid medicine into a mist that your child breathes in through a face mask.&#xA;But the power is out. Without the nebulizer, your child’s breathing gets worse - and you wonder, is it time to go to the hospital again?</description>
+    </item>
+    <item>
+      <title>The urban heat island effect in NYC</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/urban-heat-island/</link>
+      <pubDate>Fri, 20 Aug 2021 12:52:43 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/urban-heat-island/</guid>
+      <description>In New York City and across the country, more people die from extreme heat than from all other natural disasters combined. To understand how to keep New Yorkers safe from extreme heat, we studied neighborhood factors that affect temperature, and found that grass, shrubs, and trees can play a major role. Let’s take a look.&#xA;At 6.00 PM on June 30, 2018, the air temperature at the LaGuardia Airport Weather Station was 89° Fahrenheit (F).</description>
+    </item>
+    <item>
+      <title>Protecting New Yorkers from extreme heat</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/heat/</link>
+      <pubDate>Wed, 09 Sep 2020 08:33:22 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/heat/</guid>
+      <description>Hot weather is dangerous. In New York City and across the country, more people on average die from extreme heat each year than from all other natural disasters.&#xA;Heat stress happens when your body’s temperature increases quickly. When the body can no longer control its temperature or cool itself down, it can lead to death.&#xA;At the NYC Health Department, we track heat stress deaths by reviewing causes of death recorded by the Bureau of Vital Statistics.</description>
+    </item>
+  </channel>
+</rss>

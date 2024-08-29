@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Mortality on Environment &amp; Health Data Portal</title>
+    <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/mortality/</link>
+    <description>Recent content in Mortality on Environment &amp; Health Data Portal</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 18 Oct 2023 13:11:44 -0400</lastBuildDate>
+    <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/mortality/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Injury deaths in NYC</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/injury-deaths/</link>
+      <pubDate>Wed, 18 Oct 2023 13:11:44 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/injury-deaths/</guid>
+      <description>Young and middle-aged adults (ages 15 to 44) do not typically die from the natural causes that kill older adults. Injuries, both intentional — violence or suicide — and unintentional, dominate as causes of death. These premature deaths are tragic, unnecessary and preventable.&#xA;Below we focus on homicide and suicide, reflecting areas of focus in the NYC Health Department’s recently released HealthyNYC, which identifies the major drivers of decreasing life expectancy and health equity in our city and identifies strategies to reduce each driver’s impact.</description>
+    </item>
+    <item>
+      <title>How power outages affect health</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/poweroutages/</link>
+      <pubDate>Mon, 10 Jan 2022 12:34:38 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/poweroutages/</guid>
+      <description>Imagine your child has asthma. One summer night, a powerful storm rolls in and knocks the power out.&#xA;Your child starts to have trouble breathing. Usually, you’d use a home nebulizer, an electric machine that turns liquid medicine into a mist that your child breathes in through a face mask.&#xA;But the power is out. Without the nebulizer, your child’s breathing gets worse - and you wonder, is it time to go to the hospital again?</description>
+    </item>
+    <item>
+      <title>2021 NYC Heat-Related Mortality Report</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-report-archive/2021/</link>
+      <pubDate>Wed, 08 Sep 2021 11:14:56 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-report-archive/2021/</guid>
+      <description>Summary: Heat Stress Deaths Each summer from 2010-2019, there were, on average,10 heat stress deaths (those caused directly by heat) in New York City (NYC). Lack of home air conditioning (AC) continues to be an important risk factor for heat stress death. Among those who died from heat stress, the place of death was most often an un-air-conditioned home. Black New Yorkers are more likely to die from heat stress, with death rates two times higher than among other New Yorkers.</description>
+    </item>
+    <item>
+      <title>2022 NYC Heat-Related Mortality Report</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-report-archive/2022/</link>
+      <pubDate>Wed, 08 Sep 2021 11:14:56 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-report-archive/2022/</guid>
+      <description>Summary Each summer, an estimated 370 New Yorkers die prematurely because of hot weather in New York City (NYC). These heat-related deaths account for about 2% of all deaths over the warm season months of May - September. Of the 370 deaths:&#xA;From 2011-2020, there was an average of 10 heat-stress deaths (caused directly by heat). From 2011-2019, there was an average of about 360 heat-exacerbated deaths (caused indirectly by heat aggravating an underlying illness).</description>
+    </item>
+    <item>
+      <title>2023 NYC Heat-Related Mortality Report</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-report-archive/2023/</link>
+      <pubDate>Wed, 08 Sep 2021 11:14:56 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-report-archive/2023/</guid>
+      <description>Summary Each summer, on average, an estimated 350 New Yorkers die prematurely because of hot weather in New York City (NYC). These heat-related deaths account for about 2% of all deaths over the warm season months of May through September. Of the 350 deaths: From 2012-2021, there were an average of 7 heat-stress deaths (caused directly by heat). From 2016-2020, there were an average of about 345 heat-exacerbated deaths (caused indirectly by heat aggravating an underlying illness).</description>
+    </item>
+    <item>
+      <title>2024 NYC Heat-Related Mortality Report</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-report/</link>
+      <pubDate>Wed, 08 Sep 2021 11:14:56 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-report/</guid>
+      <description>Each summer, on average, an estimated 350 New Yorkers die prematurely because of hot weather in New York City (NYC). These heat-related deaths account for about 2% of all deaths over the warm season months of May through September.</description>
+    </item>
+    <item>
+      <title>Health care</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/health-care/</link>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/health-care/</guid>
+      <description>Health care is a valuable tool to stay healthy.&#xA;Health insurance coverage is associated with many health benefits. People with health insurance are more likely to have a regular doctor, receive preventive care services, better manage chronic health conditions, have longer life expectancy, and more.&#xA;However, not all New Yorkers can access appropriate amounts of care. Many New Yorkers remain uninsured. People without access to appropriate health care don&amp;rsquo;t receive the care they need to stay healthy.</description>
+    </item>
+    <item>
+      <title>Mortality</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/mortality/</link>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/mortality/</guid>
+      <description>Death is, of course, a severe health outcome. Many deaths are preventable.&#xA;Premature mortality lets us look at deaths before age 65. It can be a useful way to indicate the overall health of the population.&#xA;Neonatal deaths, postneonatal deaths, and infant deaths let us look at deaths among the the youngest members of our communities. Infants, with new, developing bodies, can be very susceptible to environmental threats - like poisonings, accidents, and injuries.</description>
+    </item>
+    <item>
+      <title>Weather-related illness</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/weather-related-illness/</link>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/weather-related-illness/</guid>
+      <description>A region&amp;rsquo;s climate is characterized by its usual weather conditions, seasons, and patterns in extreme weather events such as heat waves, droughts, and hurricanes. New York City (NYC) faces public health risks from extreme weather events such as heat waves and coastal storms. With climate change, the severity of some of these risks will increase. A 2013 New York City Panel on Climate Change (NPCC) report predicts that by the 2020s, average summer temperatures in New York City will increase by 2.</description>
+    </item>
+    <item>
+      <title>Protecting New Yorkers from extreme heat</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/heat/</link>
+      <pubDate>Wed, 09 Sep 2020 08:33:22 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/heat/</guid>
+      <description>Hot weather is dangerous. In New York City and across the country, more people on average die from extreme heat each year than from all other natural disasters.&#xA;Heat stress happens when your body’s temperature increases quickly. When the body can no longer control its temperature or cool itself down, it can lead to death.&#xA;At the NYC Health Department, we track heat stress deaths by reviewing causes of death recorded by the Bureau of Vital Statistics.</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Policies on Environment &amp; Health Data Portal</title>
+    <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/policies/</link>
+    <description>Recent content in Policies on Environment &amp; Health Data Portal</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 15 Dec 2022 15:23:23 -0500</lastBuildDate>
+    <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/policies/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Efforts to reduce air pollution should focus on neighborhoods with the worst health impacts</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/hia/</link>
+      <pubDate>Thu, 15 Dec 2022 15:23:23 -0500</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/hia/</guid>
+      <description>Every year in NYC between 2015 and 2017 (the most recent years for which this analysis is available), fine particulate matter pollution from motor vehicles and burning fossil fuels caused:&#xA;At least 2,000 deaths About 1,400 hospital admissions for lung and heart conditions 3,750 emergency department admissions for asthma Since air pollution causes significant illness and death in New York City, it&amp;rsquo;s important to reduce air pollution. So where do we start?</description>
+    </item>
+    <item>
+      <title>ZAPPA: A tool to understand air quality policies</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/zappa/</link>
+      <pubDate>Sat, 03 Dec 2022 08:33:22 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/zappa/</guid>
+      <description>New York City’s air quality is generally good and has been improving over time. Still, air pollution threatens health: two pollutants, ozone and PM2.5 cause about 2,400 deaths per year in NYC, and thousands more emergency department visits and hospitalizations for asthma, heart, and lung problems.&#xA;It’s important to clean up the air to protect New Yorkers, and we know how to do it: reduce emissions from buildings, vehicles, restaurants, power plants, and other sources of pollutants.</description>
+    </item>
+  </channel>
+</rss>

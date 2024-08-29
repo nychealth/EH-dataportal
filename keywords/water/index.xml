@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Water on Environment &amp; Health Data Portal</title>
+    <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/water/</link>
+    <description>Recent content in Water on Environment &amp; Health Data Portal</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 15 Aug 2023 15:10:00 +0000</lastBuildDate>
+    <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/water/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Waterways</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/waterways/</link>
+      <pubDate>Tue, 15 Aug 2023 15:10:00 +0000</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/waterways/</guid>
+      <description>Healthy waterways are important for both aquatic life and humans who use the water for recreation.&#xA;We measure the quality of harbor water through two key indicators:&#xA;Dissolved oxygen is essential for most aquatic life. Coastal habitats and ecosystems thrive in environments with high concentrations of dissolved oxygen.&#xA;Concentrations of fecal coliform bacteria and Enterococci bacteria. Higher levels of these bacteria can mean there is sewage-related water pollution. Though most of these bacteria do not cause disease, higher concentrations can indicate the presence of pathogenic (disease-producing) bacteria.</description>
+    </item>
+    <item>
+      <title>Beach Water Quality</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/beaches/</link>
+      <pubDate>Wed, 08 Sep 2021 11:14:56 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/beaches/</guid>
+      <description>One month before New York City&amp;rsquo;s beaches open to the public, the Health Departments starts sampling and monitoring beaches. Sampling provides data about current water quality conditions, and monitoring identifies sources of pollution that affect water quality.&#xA;Each beach is monitored and sampled every week, except for Rockaway and Breezy Point beaches, which are sampled twice each week. Samples are tested for bacteria, debris, animal waste, medical or infectious waste, toxic contaminants, petroleum products, and sewage and wastewater discharge following heavy rainfall.</description>
+    </item>
+    <item>
+      <title>Drinking water quality</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/drinking-water-quality/</link>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/drinking-water-quality/</guid>
+      <description>All NYC residences receive drinking water from a public water system. Most water is gravity fed from a network of reservoirs and lakes in protected watersheds, up to 125 miles from the city.&#xA;The NYC water system consists of two surface water systems: Croton and Catskill/Delaware and one groundwater system, in Southwestern Queens. Since 1999, the Croton system has served as a supplemental water system. The Catskill/Delaware reservoir system supplies almost all NYC drinking water.</description>
+    </item>
+    <item>
+      <title>Food and drink</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/key-topics/foodanddrink/</link>
+      <pubDate>Wed, 05 May 2021 07:58:53 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/key-topics/foodanddrink/</guid>
+      <description>We all make choices around food and drink, but sometimes, those choices are made for us by our food environments.&#xA;Our food environments include neighborhood-level alcohol access, unhealthy food access, and restaurant food safety. Additionally, drinking water quality data includes data on contaminants that are most frequently found at levels that may be of public health significant in the country&amp;rsquo;s drinking water.</description>
+    </item>
+  </channel>
+</rss>

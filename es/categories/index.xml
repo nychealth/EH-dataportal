@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on Environment &amp; Health Data Portal</title>
+    <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/es/categories/</link>
+    <description>Recent content in Categories on Environment &amp; Health Data Portal</description>
+    <generator>Hugo</generator>
+    <language>es</language>
+    <lastBuildDate>Mon, 08 Feb 2021 08:07:31 -0400</lastBuildDate>
+    <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/es/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Childhealth</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/es/categories/childhealth/</link>
+      <pubDate>Mon, 08 Feb 2021 08:07:31 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/es/categories/childhealth/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Healthoutcomes</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/es/categories/healthoutcomes/</link>
+      <pubDate>Mon, 08 Feb 2021 08:07:31 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/es/categories/healthoutcomes/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Housing</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/es/categories/housing/</link>
+      <pubDate>Mon, 08 Feb 2021 08:07:31 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/es/categories/housing/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Neighborhoods</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/es/categories/neighborhoods/</link>
+      <pubDate>Mon, 08 Feb 2021 08:07:31 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/es/categories/neighborhoods/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Social</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/es/categories/social/</link>
+      <pubDate>Mon, 08 Feb 2021 08:07:31 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/es/categories/social/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Internal</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/es/categories/internal/</link>
+      <pubDate>Sat, 01 Aug 2020 08:33:22 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/es/categories/internal/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Airquality</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/es/categories/airquality/</link>
+      <pubDate>Wed, 22 Apr 2020 08:33:22 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/es/categories/airquality/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Transportation</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/es/categories/transportation/</link>
+      <pubDate>Wed, 22 Apr 2020 08:33:22 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/es/categories/transportation/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

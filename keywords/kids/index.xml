@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Kids on Environment &amp; Health Data Portal</title>
+    <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/kids/</link>
+    <description>Recent content in Kids on Environment &amp; Health Data Portal</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 24 Oct 2019 08:18:56 -0400</lastBuildDate>
+    <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/kids/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Why asthma is a social justice issue</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/asthma-and-poverty/</link>
+      <pubDate>Thu, 24 Oct 2019 08:18:56 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/asthma-and-poverty/</guid>
+      <description>Poverty affects health in many ways. In New York City, the story of asthma clearly illustrates this connection.&#xA;To understand the connection between poverty and asthma, take a look at this map of poverty rates in New York City, below. The darker the color, the more residents living in poverty.&#xA;Now, compare that to a map of emergency department visits for asthma in children age 5 to 17, below. The darker the color, the higher the rate of children visiting the emergency department with asthma.</description>
+    </item>
+  </channel>
+</rss>

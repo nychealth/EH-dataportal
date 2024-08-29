@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Injuries on Environment &amp; Health Data Portal</title>
+    <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/injuries/</link>
+    <description>Recent content in Injuries on Environment &amp; Health Data Portal</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 18 Oct 2023 13:11:44 -0400</lastBuildDate>
+    <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/injuries/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Injury deaths in NYC</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/injury-deaths/</link>
+      <pubDate>Wed, 18 Oct 2023 13:11:44 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/injury-deaths/</guid>
+      <description>Young and middle-aged adults (ages 15 to 44) do not typically die from the natural causes that kill older adults. Injuries, both intentional — violence or suicide — and unintentional, dominate as causes of death. These premature deaths are tragic, unnecessary and preventable.&#xA;Below we focus on homicide and suicide, reflecting areas of focus in the NYC Health Department’s recently released HealthyNYC, which identifies the major drivers of decreasing life expectancy and health equity in our city and identifies strategies to reduce each driver’s impact.</description>
+    </item>
+    <item>
+      <title>Staying safe in cold weather</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/cold/</link>
+      <pubDate>Thu, 15 Dec 2022 13:11:44 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/cold/</guid>
+      <description>Cold weather can be dangerous. Here are some tips for staying safe this winter.</description>
+    </item>
+    <item>
+      <title>Environments matter: the road to street safety in NYC</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/streets/</link>
+      <pubDate>Sun, 20 Sep 2020 10:54:51 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/streets/</guid>
+      <description>The COVID-19 public health emergency has changed New York City in many ways—including how we get around the city. As the city continues to adapt to COVID-19, New Yorkers will look for ways to get around that feel safe—redistributing transit among different modes to ease crowding and increase safety on public transportation.&#xA;As more New Yorkers use bicycles, let&amp;rsquo;s take a look at safety on our streets.&#xA;Cyclist safety in public health data New York City’s streets offer opportunities for active transportation, like cycling and walking, but can also pose risks from collisions.</description>
+    </item>
+    <item>
+      <title>Disparities in violence</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/assaults/</link>
+      <pubDate>Thu, 13 Feb 2020 08:29:34 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/assaults/</guid>
+      <description>Violence has profound effects. An assault, a shooting, a homicide, or any use of force affects people in many deep ways.&#xA;Violence causes physical and emotional harm. It can inflict fear, a constant sense of unease. It can cause short- and long-term trauma. Violence can affect people throughout their lives - including their health. It can lead to poor birth outcomes, compromised childhood development, negative health behaviors, physical and mental illness, and premature deaths.</description>
+    </item>
+  </channel>
+</rss>
