@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>covid-19 on Environment &amp; Health Data Portal</title>
+    <title>Covid-19 on Environment &amp; Health Data Portal</title>
     <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/es/keywords/covid-19/</link>
-    <description>Recent content in covid-19 on Environment &amp; Health Data Portal</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Covid-19 on Environment &amp; Health Data Portal</description>
+    <generator>Hugo</generator>
     <language>es</language>
     <lastBuildDate>Wed, 22 Apr 2020 08:33:22 -0400</lastBuildDate>
     <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/es/keywords/covid-19/index.xml" rel="self" type="application/rss+xml" />

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>open data on Environment &amp; Health Data Portal</title>
+    <title>Open Data on Environment &amp; Health Data Portal</title>
     <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/open-data/</link>
-    <description>Recent content in open data on Environment &amp; Health Data Portal</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Open Data on Environment &amp; Health Data Portal</description>
+    <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate>Mon, 07 Nov 2022 08:49:22 -0400</lastBuildDate>
     <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/open-data/index.xml" rel="self" type="application/rss+xml" />

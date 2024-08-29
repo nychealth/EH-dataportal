@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>transportation on Environment &amp; Health Data Portal</title>
+    <title>Transportation on Environment &amp; Health Data Portal</title>
     <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/transportation/</link>
-    <description>Recent content in transportation on Environment &amp; Health Data Portal</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Transportation on Environment &amp; Health Data Portal</description>
+    <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate>Sun, 19 Mar 2023 08:49:22 -0400</lastBuildDate>
     <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/transportation/index.xml" rel="self" type="application/rss+xml" />
@@ -67,21 +67,21 @@
     <item>
       <title>Active design</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/active-design/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
+      <pubDate>Fri, 28 May 2021 18:02:58 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/active-design/</guid>
       <description>Physical activity and healthy eating are among the leading ways to get and stay healthy.&#xA;Active design is an applied, evidence-informed approach to improve physical, mental and social health outcomes through the design of the built environment.&#xA;To improve health, we can:&#xA;Increase access to public parks and recreation Create pedestrian plazas, and maintain sidewalks Plant street trees Provide safer cycling infrastructure and secure bicycle storage Make stairways attractive and accessible Strategies like these can have a measurable effect on people’s ability to safely maintain their physical, mental, and social health.</description>
     </item>
     <item>
       <title>Physical activity</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/physical-activity/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
+      <pubDate>Fri, 28 May 2021 18:02:58 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/physical-activity/</guid>
       <description>Physical activity is an important part of a healthy lifestyle. Regular physical activity is associated with many health benefits, including improved fitness, prevention of weight gain, and lower risk of heart disease, stroke, high blood pressure, diabetes and some cancers. In addition, regular physical activity and healthy eating can promote well-being and relieve stress. For children, regular physical activity is also associated with improved academic performance.&#xA;Physical Activity and the Environment Neighborhood conditions and resources can encourage or discourage healthy behaviors.</description>
     </item>
     <item>
       <title>Transportation-related injuries</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/transportation-related-injuries/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
+      <pubDate>Fri, 28 May 2021 18:02:58 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/transportation-related-injuries/</guid>
       <description>Traffic injuries are no accident. Like other public health concerns, they are preventable through data driven solutions. In NYC, traffic injuries, which include injuries among pedestrians, bicyclists, motorcyclists, and motor vehicle occupants, are a leading cause of injury-related hospitalizations and emergency department visits.&#xA;In February 2014, NYC launched “Vision Zero”, an action plan to reduce injuries and deaths on city streets. Vision Zero is a multi-agency effort, incorporating road engineering, traffic enforcement, community outreach and education, and policy work to make NYC streets safer.</description>
     </item>

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>heat on Environment &amp; Health Data Portal</title>
+    <title>Heat on Environment &amp; Health Data Portal</title>
     <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/heat/</link>
-    <description>Recent content in heat on Environment &amp; Health Data Portal</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Heat on Environment &amp; Health Data Portal</description>
+    <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate>Sun, 03 Oct 2021 12:33:17 -0400</lastBuildDate>
     <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/heat/index.xml" rel="self" type="application/rss+xml" />
@@ -67,7 +67,7 @@
     <item>
       <title>Weather-related illness</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/weather-related-illness/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
+      <pubDate>Fri, 28 May 2021 18:02:58 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/weather-related-illness/</guid>
       <description>A region&amp;rsquo;s climate is characterized by its usual weather conditions, seasons, and patterns in extreme weather events such as heat waves, droughts, and hurricanes. New York City (NYC) faces public health risks from extreme weather events such as heat waves and coastal storms. With climate change, the severity of some of these risks will increase. A 2013 New York City Panel on Climate Change (NPCC) report predicts that by the 2020s, average summer temperatures in New York City will increase by 2.</description>
     </item>

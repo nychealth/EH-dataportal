@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>poverty on Environment &amp; Health Data Portal</title>
+    <title>Poverty on Environment &amp; Health Data Portal</title>
     <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/poverty/</link>
-    <description>Recent content in poverty on Environment &amp; Health Data Portal</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Poverty on Environment &amp; Health Data Portal</description>
+    <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate>Mon, 19 Aug 2024 01:18:56 -0400</lastBuildDate>
     <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/poverty/index.xml" rel="self" type="application/rss+xml" />
@@ -53,21 +53,21 @@
     <item>
       <title>Economic conditions</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/economic-conditions/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
+      <pubDate>Fri, 28 May 2021 18:02:58 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/economic-conditions/</guid>
       <description>Social and economic conditions affect people’s health. These conditions (also called “social determinants of health”) are conditions that people may be born into or fall into over the course of their lives.&#xA;People tend to be healthier when they have access to:&#xA;Economic and financial stability Higher education Adequate health care Healthy neighborhoods and safe, strong communities Access to these are shaped by local, national and global distribution of resources and power.</description>
     </item>
     <item>
       <title>Social conditions</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/social-conditions/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
+      <pubDate>Fri, 28 May 2021 18:02:58 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/social-conditions/</guid>
       <description>Social and economic conditions affect people’s health. These conditions (also called “social determinants of health”) are conditions that people may be born into or fall into over the course of their lives.&#xA;People tend to be healthier when they have access to:&#xA;Economic and financial stability Higher education Adequate health care Healthy neighborhoods and safe, strong communities But when people don’t have access to these conditions, they experience worse health outcomes.</description>
     </item>
     <item>
       <title>Violence</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/violence/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
+      <pubDate>Fri, 28 May 2021 18:02:58 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/violence/</guid>
       <description>Violence is the use of physical, verbal, and/or emotional force to injure, harm, abuse, damage, or destroy. Interpersonal violence includes child abuse and neglect, youth violence, intimate partner violence, sexual violence, and elder abuse. Violence can involve injury to self, including self-harm, suicide attempts, and death by suicide. Violence can also take the form of power against a group or community.&#xA;Violence is a public health issue because it is a cause of morbidity and mortality, leading to physical and emotional harm, an increase in negative health outcomes, premature death, psychological trauma and persistent fear to individuals and communities.</description>
     </item>

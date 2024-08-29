@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>harbor on Environment &amp; Health Data Portal</title>
+    <title>Harbor on Environment &amp; Health Data Portal</title>
     <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/harbor/</link>
-    <description>Recent content in harbor on Environment &amp; Health Data Portal</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Harbor on Environment &amp; Health Data Portal</description>
+    <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 15 Aug 2023 15:10:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 15 Aug 2023 15:10:00 -0400</lastBuildDate>
     <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/harbor/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Waterways</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/waterways/</link>
-      <pubDate>Tue, 15 Aug 2023 15:10:00 +0000</pubDate>
+      <pubDate>Tue, 15 Aug 2023 15:10:00 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/waterways/</guid>
       <description>Healthy waterways are important for both aquatic life and humans who use the water for recreation.&#xA;We measure the quality of harbor water through two key indicators:&#xA;Dissolved oxygen is essential for most aquatic life. Coastal habitats and ecosystems thrive in environments with high concentrations of dissolved oxygen.&#xA;Concentrations of fecal coliform bacteria and Enterococci bacteria. Higher levels of these bacteria can mean there is sewage-related water pollution. Though most of these bacteria do not cause disease, higher concentrations can indicate the presence of pathogenic (disease-producing) bacteria.</description>
     </item>

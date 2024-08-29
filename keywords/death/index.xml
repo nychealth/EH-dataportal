@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>death on Environment &amp; Health Data Portal</title>
+    <title>Death on Environment &amp; Health Data Portal</title>
     <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/death/</link>
-    <description>Recent content in death on Environment &amp; Health Data Portal</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Death on Environment &amp; Health Data Portal</description>
+    <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate>Mon, 10 Jan 2022 12:34:38 -0400</lastBuildDate>
     <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/death/index.xml" rel="self" type="application/rss+xml" />
@@ -18,7 +18,7 @@
     <item>
       <title>Mortality</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/mortality/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
+      <pubDate>Fri, 28 May 2021 18:02:58 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/mortality/</guid>
       <description>Death is, of course, a severe health outcome. Many deaths are preventable.&#xA;Premature mortality lets us look at deaths before age 65. It can be a useful way to indicate the overall health of the population.&#xA;Neonatal deaths, postneonatal deaths, and infant deaths let us look at deaths among the the youngest members of our communities. Infants, with new, developing bodies, can be very susceptible to environmental threats - like poisonings, accidents, and injuries.</description>
     </item>

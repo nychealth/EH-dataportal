@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>safety on Environment &amp; Health Data Portal</title>
+    <title>Safety on Environment &amp; Health Data Portal</title>
     <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/safety/</link>
-    <description>Recent content in safety on Environment &amp; Health Data Portal</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Safety on Environment &amp; Health Data Portal</description>
+    <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate>Thu, 15 Dec 2022 13:11:44 -0400</lastBuildDate>
     <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/safety/index.xml" rel="self" type="application/rss+xml" />
@@ -18,14 +18,14 @@
     <item>
       <title>Restaurant food safety</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/restaurant-food-safety/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
+      <pubDate>Fri, 28 May 2021 18:02:58 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/restaurant-food-safety/</guid>
       <description>New York City has approximately 28,000 restaurants that the Health Department inspects every year to monitor compliance with city and state food safety regulations. At the end of an inspection, the Health Department gives restaurants a score, which is eventually converted to a grade of A, B or C. This site describes the distribution of A grades across New York City restaurants.&#xA;Restaurant Food Safety and Health Safe food handling can protect diners from foodborne illness.</description>
     </item>
     <item>
       <title>Transportation-related injuries</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/transportation-related-injuries/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
+      <pubDate>Fri, 28 May 2021 18:02:58 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/transportation-related-injuries/</guid>
       <description>Traffic injuries are no accident. Like other public health concerns, they are preventable through data driven solutions. In NYC, traffic injuries, which include injuries among pedestrians, bicyclists, motorcyclists, and motor vehicle occupants, are a leading cause of injury-related hospitalizations and emergency department visits.&#xA;In February 2014, NYC launched “Vision Zero”, an action plan to reduce injuries and deaths on city streets. Vision Zero is a multi-agency effort, incorporating road engineering, traffic enforcement, community outreach and education, and policy work to make NYC streets safer.</description>
     </item>

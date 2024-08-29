@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>foodanddrink on Environment &amp; Health Data Portal</title>
+    <title>Foodanddrink on Environment &amp; Health Data Portal</title>
     <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/categories/foodanddrink/</link>
-    <description>Recent content in foodanddrink on Environment &amp; Health Data Portal</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Foodanddrink on Environment &amp; Health Data Portal</description>
+    <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate>Thu, 08 Feb 2024 09:01:00 -0400</lastBuildDate>
     <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/categories/foodanddrink/index.xml" rel="self" type="application/rss+xml" />
@@ -32,21 +32,21 @@
     <item>
       <title>Alcohol access and use</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/alcohol-use/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
+      <pubDate>Fri, 28 May 2021 18:02:58 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/alcohol-use/</guid>
       <description>Heavy regular drinking and binge drinking contribute to a wide range of chronic health problems, including heart disease, diabetes, cancer, stroke, cirrhosis, depression and dementia. Alcohol use is also associated with suicide, homicide, domestic violence, sexually transmitted diseases and injuries. It is one of the leading behavior-related causes of death in New York City (NYC).&#xA;This site provides data on heavy alcohol consumption and alcohol outlets in NYC.&#xA;Alcohol and the Environment Greater alcohol outlet density has been associated with a variety of health and social consequences, including:</description>
     </item>
     <item>
       <title>Drinking water quality</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/drinking-water-quality/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
+      <pubDate>Fri, 28 May 2021 18:02:58 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/drinking-water-quality/</guid>
       <description>All NYC residences receive drinking water from a public water system. Most water is gravity fed from a network of reservoirs and lakes in protected watersheds, up to 125 miles from the city.&#xA;The NYC water system consists of two surface water systems: Croton and Catskill/Delaware and one groundwater system, in Southwestern Queens. Since 1999, the Croton system has served as a supplemental water system. The Catskill/Delaware reservoir system supplies almost all NYC drinking water.</description>
     </item>
     <item>
       <title>Restaurant food safety</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/restaurant-food-safety/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
+      <pubDate>Fri, 28 May 2021 18:02:58 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/restaurant-food-safety/</guid>
       <description>New York City has approximately 28,000 restaurants that the Health Department inspects every year to monitor compliance with city and state food safety regulations. At the end of an inspection, the Health Department gives restaurants a score, which is eventually converted to a grade of A, B or C. This site describes the distribution of A grades across New York City restaurants.&#xA;Restaurant Food Safety and Health Safe food handling can protect diners from foodborne illness.</description>
     </item>

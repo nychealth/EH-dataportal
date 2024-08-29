@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>cockroaches on Environment &amp; Health Data Portal</title>
+    <title>Cockroaches on Environment &amp; Health Data Portal</title>
     <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/cockroaches/</link>
-    <description>Recent content in cockroaches on Environment &amp; Health Data Portal</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Cockroaches on Environment &amp; Health Data Portal</description>
+    <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate>Sat, 02 Oct 2021 07:56:00 -0400</lastBuildDate>
     <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/cockroaches/index.xml" rel="self" type="application/rss+xml" />
@@ -18,14 +18,14 @@
     <item>
       <title>Cockroaches</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/cockroaches/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
+      <pubDate>Fri, 28 May 2021 18:02:58 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/cockroaches/</guid>
       <description>Cockroaches are a common urban pest. Though there are more than a thousand species of roaches, just a few are found in NYC homes. The most common are American Cockroaches, typically found in moist basements and lower floors, and German Cockroaches, found anywhere inside homes.&#xA;Cockroaches like warm, dark places such as toasters, clocks, microwave ovens, walls, and cabinets. They need regular access to food and water to live and breed.</description>
     </item>
     <item>
       <title>Pesticides</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/pesticides/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
+      <pubDate>Fri, 28 May 2021 18:02:58 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/pesticides/</guid>
       <description>Pesticides are chemicals applied to kill or control insects, rats and mice, undesirable plants and weeds, or fungi (e.g., mold). Pesticides are often categorized by type of use (e.g., rodenticide, insecticide) or chemical class (e.g., organophosphate, pyrethroid).&#xA;Modern pesticides have been developed to have less persistence in the environment than earlier chlorine-based chemicals such as DDT. Pesticides may be applied by a commercial applicator or a non-professional who has purchased a product from a store.</description>
     </item>

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>mortality on Environment &amp; Health Data Portal</title>
+    <title>Mortality on Environment &amp; Health Data Portal</title>
     <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/mortality/</link>
-    <description>Recent content in mortality on Environment &amp; Health Data Portal</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Mortality on Environment &amp; Health Data Portal</description>
+    <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate>Wed, 18 Oct 2023 13:11:44 -0400</lastBuildDate>
     <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/mortality/index.xml" rel="self" type="application/rss+xml" />
@@ -53,21 +53,21 @@
     <item>
       <title>Health care</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/health-care/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
+      <pubDate>Fri, 28 May 2021 18:02:58 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/health-care/</guid>
       <description>Health care is a valuable tool to stay healthy.&#xA;Health insurance coverage is associated with many health benefits. People with health insurance are more likely to have a regular doctor, receive preventive care services, better manage chronic health conditions, have longer life expectancy, and more.&#xA;However, not all New Yorkers can access appropriate amounts of care. Many New Yorkers remain uninsured. People without access to appropriate health care don&amp;rsquo;t receive the care they need to stay healthy.</description>
     </item>
     <item>
       <title>Mortality</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/mortality/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
+      <pubDate>Fri, 28 May 2021 18:02:58 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/mortality/</guid>
       <description>Death is, of course, a severe health outcome. Many deaths are preventable.&#xA;Premature mortality lets us look at deaths before age 65. It can be a useful way to indicate the overall health of the population.&#xA;Neonatal deaths, postneonatal deaths, and infant deaths let us look at deaths among the the youngest members of our communities. Infants, with new, developing bodies, can be very susceptible to environmental threats - like poisonings, accidents, and injuries.</description>
     </item>
     <item>
       <title>Weather-related illness</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/weather-related-illness/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
+      <pubDate>Fri, 28 May 2021 18:02:58 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/weather-related-illness/</guid>
       <description>A region&amp;rsquo;s climate is characterized by its usual weather conditions, seasons, and patterns in extreme weather events such as heat waves, droughts, and hurricanes. New York City (NYC) faces public health risks from extreme weather events such as heat waves and coastal storms. With climate change, the severity of some of these risks will increase. A 2013 New York City Panel on Climate Change (NPCC) report predicts that by the 2020s, average summer temperatures in New York City will increase by 2.</description>
     </item>

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>bed bugs on Environment &amp; Health Data Portal</title>
+    <title>Bed Bugs on Environment &amp; Health Data Portal</title>
     <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/bed-bugs/</link>
-    <description>Recent content in bed bugs on Environment &amp; Health Data Portal</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Bed Bugs on Environment &amp; Health Data Portal</description>
+    <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate>Sat, 02 Oct 2021 07:56:00 -0400</lastBuildDate>
     <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/bed-bugs/index.xml" rel="self" type="application/rss+xml" />
@@ -18,14 +18,14 @@
     <item>
       <title>Bed bugs</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/bed-bugs/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
+      <pubDate>Fri, 28 May 2021 18:02:58 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/bed-bugs/</guid>
       <description>Bed bugs are small insects that feed mainly on human blood. They are often confused with other insects, and many people are not even aware of their presence until they have been bitten. However, not everyone has a reaction to bed bug bites. You may not discover that you have bed bugs until you see other signs of the pests such as, bed bugs themselves, their eggs or droppings, or the blood stains they leave behind in mattresses, box springs, chairs or other materials.</description>
     </item>
     <item>
       <title>Pesticides</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/pesticides/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
+      <pubDate>Fri, 28 May 2021 18:02:58 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/pesticides/</guid>
       <description>Pesticides are chemicals applied to kill or control insects, rats and mice, undesirable plants and weeds, or fungi (e.g., mold). Pesticides are often categorized by type of use (e.g., rodenticide, insecticide) or chemical class (e.g., organophosphate, pyrethroid).&#xA;Modern pesticides have been developed to have less persistence in the environment than earlier chlorine-based chemicals such as DDT. Pesticides may be applied by a commercial applicator or a non-professional who has purchased a product from a store.</description>
     </item>

@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>pollution on Environment &amp; Health Data Portal</title>
+    <title>Pollution on Environment &amp; Health Data Portal</title>
     <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/pollution/</link>
-    <description>Recent content in pollution on Environment &amp; Health Data Portal</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Pollution on Environment &amp; Health Data Portal</description>
+    <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 15 Aug 2023 15:10:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 15 Aug 2023 15:10:00 -0400</lastBuildDate>
     <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/pollution/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Waterways</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/waterways/</link>
-      <pubDate>Tue, 15 Aug 2023 15:10:00 +0000</pubDate>
+      <pubDate>Tue, 15 Aug 2023 15:10:00 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/waterways/</guid>
       <description>Healthy waterways are important for both aquatic life and humans who use the water for recreation.&#xA;We measure the quality of harbor water through two key indicators:&#xA;Dissolved oxygen is essential for most aquatic life. Coastal habitats and ecosystems thrive in environments with high concentrations of dissolved oxygen.&#xA;Concentrations of fecal coliform bacteria and Enterococci bacteria. Higher levels of these bacteria can mean there is sewage-related water pollution. Though most of these bacteria do not cause disease, higher concentrations can indicate the presence of pathogenic (disease-producing) bacteria.</description>
     </item>
@@ -32,14 +32,14 @@
     <item>
       <title>Air quality</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/air-quality/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
+      <pubDate>Fri, 28 May 2021 18:02:58 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/air-quality/</guid>
       <description>Air quality is a measure of the condition of the air around us. The less air pollution there is, the better the air quality.&#xA;Like many cities, New York City&amp;rsquo;s air contains particles, liquid droplets, gases, and other contaminants that could impact health. Two pollutants, particulate matter and ground-level ozone, are of particular health concern.&#xA;Although New York City&amp;rsquo;s air does not currently meet federal air quality standards, it has improved significantly over the past two decades.</description>
     </item>
     <item>
       <title>Health impacts of air pollution</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/health-impacts-of-air-pollution/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
+      <pubDate>Fri, 28 May 2021 18:02:58 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/health-impacts-of-air-pollution/</guid>
       <description>Air pollution is an important environmental threat to the health of New York City residents. Exposures to two common air pollutants, fine particulate matter (PM2.5) and ozone (O3), can worsen respiratory illness and heart conditions and contribute to premature deaths. Older adults, children and people with existing heart and lung disease are especially affected. This site provides estimates of the impact of air pollution on the health of NYC residents as measured by the numbers of emergency department visits, hospitalizations, and deaths attributable to PM2.</description>
     </item>
