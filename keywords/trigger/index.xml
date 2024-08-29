@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>trigger on Environment &amp; Health Data Portal</title>
+    <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/trigger/</link>
+    <description>Recent content in trigger on Environment &amp; Health Data Portal</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 28 May 2021 18:02:58 -0400</lastBuildDate>
+    <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/trigger/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Asthma triggers at home</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/asthma-triggers/</link>
+      <pubDate>Fri, 28 May 2021 18:02:58 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/asthma-triggers/</guid>
+      <description>Housing conditions can trigger asthma. In New York City, childhood asthma is a significant health threat that affects thousands of children per year.&#xA;No family should have to choose between affordable and healthy housing. All tenants are entitled to safe, decent and sanitary housing, which prevents disease and injury.</description>
+    </item>
+  </channel>
+</rss>

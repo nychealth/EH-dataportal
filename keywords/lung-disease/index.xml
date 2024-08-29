@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>lung disease on Environment &amp; Health Data Portal</title>
+    <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/lung-disease/</link>
+    <description>Recent content in lung disease on Environment &amp; Health Data Portal</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 24 Oct 2019 08:18:56 -0400</lastBuildDate>
+    <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/lung-disease/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Breathe easy: NYC&#39;s air quality is improving</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/breatheeasy/</link>
+      <pubDate>Thu, 24 Oct 2019 08:18:56 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/breatheeasy/</guid>
+      <description>The air we breathe can have a major effect on our health — air pollution can make asthma worse and can cause heart disease, lung disease, strokes, and even cancer.&#xA;Fortunately, New York City has made great strides in recent years to improve air quality. Let’s take a look.&#xA;An air quality advisory day happens when air pollution builds up to dangerous levels. It means that people who are sensitive to air pollution (like people with respiratory or heart problems) should spend less time outside and avoid outdoor exercise.</description>
+    </item>
+  </channel>
+</rss>
