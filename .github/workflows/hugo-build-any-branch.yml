@@ -31,6 +31,7 @@ on:
 env:
   publish_branch: ${{ inputs.publish-branch && inputs.publish-branch || inputs.branch }}
   HUGO_GIT_BRANCH: ${{ inputs.branch }}
+  TZ: America/New_York
   
 jobs:
 
