@@ -12,6 +12,7 @@ on:
 
 env:
   HUGO_GIT_BRANCH: build-to-dev-stage
+  TZ: America/New_York
 
 
 jobs:

@@ -12,6 +12,7 @@ on:
 
 env:
   HUGO_GIT_BRANCH: production
+  TZ: America/New_York
 
 
 jobs:

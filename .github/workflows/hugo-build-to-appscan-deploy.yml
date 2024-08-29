@@ -15,6 +15,7 @@ on:
 
 env:
   HUGO_GIT_BRANCH: build-to-appscan-deploy
+  TZ: America/New_York
 
 
 jobs:

@@ -10,6 +10,9 @@ on:
   #     - closed
   workflow_dispatch:
 
+env:
+  TZ: America/New_York
+
 jobs:
 
   # ------------------
