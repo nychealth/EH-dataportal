@@ -21,9 +21,12 @@ keywords:
 image: ds-heat.jpg
 photocredit: "Michael Appleton/Mayoral Photography Office"
 related:
-  - "data-stories/urban-heat-island/"
-  - "data-features/hvi/"
-  - "data-features/heat-syndrome/"
+  - title: "The urban heat island effect in NYC"
+    url: "data-stories/urban-heat-island/"
+  - title: "Interactive Heat Vulnerability Index"
+    url: "data-features/hvi/"
+  - title: "Real-time heat-related illness"
+    url: "data-features/heat-syndrome/"
 ---
 
 Hot weather is dangerous. In New York City and across the country, more people on average die from extreme heat each year than from all other natural disasters.
