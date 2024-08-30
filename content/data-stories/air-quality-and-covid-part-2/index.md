@@ -24,9 +24,13 @@ keywords:
 image: ds-aqcovid.jpeg
 photocredit: "Ed Reed/Mayoral Photography Office"
 related:
-  - "data-stories/restaurants-and-air-quality/"
-  - "data-stories/traffic-and-air-pollution/"
-  - "data-stories/air-quality-and-covid/"
+    - title: "Tracking changes in New York City's sources of air pollution"
+    url: "data-stories/restaurants-and-air-quality/"
+    - title: "The Public health impacts of PM2.5 from traffic air pollution"
+    url: "data-stories/traffic-and-air-pollution/"
+    - title: "Air quality during COVID-19"
+    url: "data-stories/air-quality-and-covid/"
+
 ---
 
 ## Big improvements in outdoor air quality during COVID-19 reveal impacts of traffic and commercial cooking

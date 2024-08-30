@@ -16,11 +16,14 @@ keywords:
     "elevated blood lead levels",
   ]
 image: OneWorldObservatory_TaggerYanceyIV_6565.jpg
-photocredit: Tagger Yancey IV
+photocredit: "Tagger Yancey IV"
 related:
-  - "data-stories/housing-creates-health/"
-  - "data-stories/housing/"
-  - "data-explorer/lead/?id=2189#display=summary"
+  - title: "Housing creates health"
+    url: "data-stories/housing-creates-health/"
+  - title: "Health, housing, and history"
+    url: "data-stories/housing/"
+  - title: "Lead testing (by age 3)"
+    url: "data-explorer/lead/?id=2189#display=summary"
 ---
 
 ### Lead poisoning affects adults too

@@ -23,9 +23,12 @@ keywords:
 image: ds-aqcovid.jpeg
 photocredit: "Ed Reed/Mayoral Photography Office"
 related:
-  - "data-stories/air-quality-and-covid-part-2/"
-  - "data-stories/traffic-and-air-pollution/"
-  - "data-stories/restaurants-and-air-quality/"
+  - title: "An update on air quality during COVID-19"
+    url: "data-stories/air-quality-and-covid-part-2/"
+  - title: "The Public Health Impacts of PM2.5 from Traffic Air Pollution"
+    url: "data-stories/traffic-and-air-pollution/"
+  - title: "Tracking changes in New York City's sources of air pollution"
+    url: "data-stories/restaurants-and-air-quality/"
 ---
 
 What happens when NYC stays home? The COVID-19 pandemic upended the lives of all New Yorkers. The outbreak has affected many aspects of our daily life, but there are also less apparent effects, such as impacts on our environment.
