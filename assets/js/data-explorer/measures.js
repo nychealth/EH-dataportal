@@ -881,10 +881,6 @@ const updateLinksData = async (e) => {
         $("#show-disparities").removeClass("disabled");
         $("#show-disparities").attr('aria-disabled', false);
 
-        // if disparities is enabled, show the button
-
-        btnToggleDisparities.style.display = "inline";
-
     } else {
 
         // - - - no disparities - - - - - - - - - - - - - - - - - - - - - - - - - - //
@@ -907,7 +903,7 @@ const updateLinksData = async (e) => {
         // remove click listeners to button that calls renderDisparitiesChart
 
         // console.log("btnToggleDisparities [updateLinksData]");
-        $(btnToggleDisparities).off()
+        $(btnToggleDisparities).off(".toggle")
 
     }
 
@@ -1058,24 +1054,52 @@ const handleMapGeoDropdown = (MeasureID, TimePeriod) => {
 
 const clickLinksToggle = (e) => {
 
-    // console.log("btnToggleDisparities [clickLinksToggle]");
-    $(btnToggleDisparities).off()
+    // turn off click listener
 
-    $(btnToggleDisparities).on("click", (e) => {
+    $(btnToggleDisparities).off(".toggle")
 
-        // console.log("btnToggleDisparities", e);
+    // set on click listener
 
-        if (e.target && e.target.matches("#show-disparities") && !e.target.classList.contains("active") && !e.target.classList.contains("disabled")) {
+    $(btnToggleDisparities).on("click.toggle", (e) => {
+
+        // remove active class from both options
+
+        $("#show-disparities").removeClass("active");
+        $("#show-links").removeClass("active");
+
+        // determine which function to call
+
+        if (
+            e.target && 
+            !e.target.classList.contains("active") && 
+            !e.target.classList.contains("disabled") &&
+            e.target.matches("#show-disparities")
+        ) {
 
             // MeasureID: 221 = neighborhood poverty percent
 
             // console.log("renderDisparitiesChart [clickLinksToggle]");
 
-            renderDisparitiesChart(defaultDisparitiesMetadata, 221)
+            renderDisparitiesChart(defaultDisparitiesMetadata, 221);
 
-        } else if (e.target && e.target.matches("#show-links") && !e.target.classList.contains("active") && !e.target.classList.contains("disabled")) {
+            // set this option to active
+
+            $(e.target).addClass("active")
+
+        } else if (
+            e.target && 
+            !e.target.classList.contains("active") && 
+            !e.target.classList.contains("disabled") &&
+            e.target.matches("#show-links")
+        ) {
+
+            // console.log("showLinks [clickLinksToggle]");
 
             showLinks();
+
+            // set this option to active
+
+            $(e.target).addClass("active")
 
         }
     })
@@ -1140,6 +1164,17 @@ const renderMeasures = async () => {
 
     measureAbout = "";
     measureSources = "";
+
+    // clear on click event handlers from view options
+
+    $(dropdownTableGeos).off(".gtag")
+    $(dropdownTableTimes).off(".gtag")
+    $(dropdownTrendComparisons).off(".gtag")
+    $(dropdownMapMeasures).off(".gtag")
+    $(dropdownMapTimes).off(".gtag")
+    $(dropdownMapGeos).off(".gtag")
+    $(dropdownLinksMeasures).off(".gtag")
+    $(btnToggleDisparities).off(".gtag")
 
 
     // ----- create dropdowns for table ================================================== //
@@ -2090,10 +2125,6 @@ const renderMeasures = async () => {
         tabTrend.setAttribute('aria-selected', false);
         tabLinks.setAttribute('aria-selected', true);
 
-        // make sure the "Link to" button is enabled
-        $("#dropdownLinksMeasures").removeClass("disabled");
-        $("#dropdownLinksMeasures").attr('aria-disabled', false);
-
 
         // conditionals based on if any measures have links or not
 
@@ -2137,11 +2168,11 @@ const renderMeasures = async () => {
                 // turn off click listener
                 
                 // console.log("btnToggleDisparities [showLinks (no links, has disp)]");
-                $(btnToggleDisparities).off()
+                $(btnToggleDisparities).off(".toggle")
 
                 // if disparities is enabled, show the button
 
-                btnToggleDisparities.style.display = "inline";
+                // btnToggleDisparities.style.display = "inline";
 
             } else {
 
@@ -2280,7 +2311,7 @@ const renderMeasures = async () => {
 
                     // if disparities is enabled, show the button
 
-                    btnToggleDisparities.style.display = "inline";
+                    // btnToggleDisparities.style.display = "inline";
 
                 } else {
 
@@ -2304,7 +2335,7 @@ const renderMeasures = async () => {
                     // remove click listeners to button that calls renderDisparitiesChart
                     
                     // console.log("btnToggleDisparities [showLinks (has links, no disp)]");
-                    $(btnToggleDisparities).off()
+                    $(btnToggleDisparities).off(".toggle")
 
                 }
 
@@ -2530,11 +2561,14 @@ const renderMeasures = async () => {
     // add event handler functions to options boxes for Google Analytics
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
-    dropdownTableGeos.addEventListener("click", e => {
+    $(dropdownTableGeos).on("click.gtag", e => {
 
-        if (e.target.classList.contains("dropdown-item") && !e.target.classList.contains("active")) {
+        // console.log("click [dropdownTableGeos]", e.target.classList);
 
-            // console.log("click dropdownTableGeos", e);
+        // if (e.target.classList.contains("dropdown-item") && !e.target.classList.contains("active")) {
+        if (e.target.classList.contains("dropdown-item")) {
+
+            // console.log("gtag [dropdownTableGeos]");
 
             gtag('event', 'click_option', {
                 option: "table_geo"
@@ -2544,11 +2578,14 @@ const renderMeasures = async () => {
 
     });
 
-    dropdownTableTimes.addEventListener("click", e => {
+    $(dropdownTableTimes).on("click.gtag", e => {
 
-        if (e.target.classList.contains("dropdown-item") && !e.target.classList.contains("active")) {
+        // console.log("click [dropdownTableTimes]", e.target.classList);
 
-            // console.log("click dropdownTableTimes", e);
+        // if (e.target.classList.contains("dropdown-item") && !e.target.classList.contains("active")) {
+        if (e.target.classList.contains("dropdown-item")) {
+
+            // console.log("gtag [dropdownTableTimes]");
 
             gtag('event', 'click_option', {
                 option: "table_time"
@@ -2558,25 +2595,14 @@ const renderMeasures = async () => {
         
     });
 
-    dropdownTrendComparisons.addEventListener("click", e => {
+    $(dropdownMapMeasures).on("click.gtag", e => {
 
-        if (e.target.classList.contains("dropdown-item") && !e.target.classList.contains("active")) {
+        // console.log("click [dropdownMapMeasures]", e.target.classList);
 
-            // console.log("click dropdownTrendComparisons", e);
+        // if (e.target.classList.contains("dropdown-item") && !e.target.classList.contains("active")) {
+        if (e.target.classList.contains("dropdown-item")) {
 
-            gtag('event', 'click_option', {
-                option: "trend_comparison"
-            });
-            
-        }
-        
-    });
-
-    dropdownMapMeasures.addEventListener("click", e => {
-
-        if (e.target.classList.contains("dropdown-item") && !e.target.classList.contains("active")) {
-
-            // console.log("click dropdownMapMeasures", e);
+            // console.log("gtag [dropdownMapMeasures]");
 
             gtag('event', 'click_option', {
                 option: "map_measure"
@@ -2586,11 +2612,14 @@ const renderMeasures = async () => {
         
     });
 
-    dropdownMapTimes.addEventListener("click", e => {
+    $(dropdownMapTimes).on("click.gtag", e => {
 
-        if (e.target.classList.contains("dropdown-item") && !e.target.classList.contains("active")) {
+        // console.log("click [dropdownMapTimes]", e.target.classList);
 
-            // console.log("click dropdownMapTimes", e);
+        // if (e.target.classList.contains("dropdown-item") && !e.target.classList.contains("active")) {
+        if (e.target.classList.contains("dropdown-item")) {
+
+            // console.log("gtag [dropdownMapTimes]");
 
             gtag('event', 'click_option', {
                 option: "map_time"
@@ -2600,11 +2629,14 @@ const renderMeasures = async () => {
         
     });
 
-    dropdownMapGeos.addEventListener("click", e => {
+    $(dropdownMapGeos).on("click.gtag", e => {
 
-        if (e.target.classList.contains("dropdown-item") && !e.target.classList.contains("active")) {
+        // console.log("click [dropdownMapGeos]", e.target.classList);
 
-            // console.log("click dropdownMapGeos", e);
+        // if (e.target.classList.contains("dropdown-item") && !e.target.classList.contains("active")) {
+        if (e.target.classList.contains("dropdown-item")) {
+
+            // console.log("gtag [dropdownMapGeos]");
 
             gtag('event', 'click_option', {
                 option: "map_geo"
@@ -2614,11 +2646,31 @@ const renderMeasures = async () => {
         
     });
 
-    dropdownLinksMeasures.addEventListener("click", e => {
+    $(dropdownTrendComparisons).on("click.gtag", e => {
 
-        if (e.target.classList.contains("dropdown-item") && !e.target.classList.contains("active")) {
+        // console.log("click [dropdownTrendComparisons]", e.target.classList);
 
-            // console.log("click dropdownLinksMeasures", e);
+        // if (e.target.classList.contains("dropdown-item") && !e.target.classList.contains("active")) {
+        if (e.target.classList.contains("dropdown-item")) {
+
+            // console.log("gtag [dropdownTrendComparisons]");
+
+            gtag('event', 'click_option', {
+                option: "trend_comparison"
+            });
+            
+        }
+        
+    });
+
+    $(dropdownLinksMeasures).on("click.gtag", e => {
+
+        // console.log("click [dropdownLinksMeasures]", e.target.classList);
+
+        // if (e.target.classList.contains("dropdown-item") && !e.target.classList.contains("active")) {
+        if (e.target.classList.contains("dropdown-item")) {
+
+            // console.log("gtag [dropdownLinksMeasures]");
 
             gtag('event', 'click_option', {
                 option: "links_measure"
@@ -2628,13 +2680,14 @@ const renderMeasures = async () => {
 
     });
 
-    btnToggleDisparities.addEventListener("click", e => {
+    $(btnToggleDisparities).on("click.gtag", e => {
 
-        // console.log("click", e.target.classList);
+        // console.log("click [dropdownLinksMeasures]", e.target.classList);
 
-        if (e.target.classList.contains("dropdown-item") && !e.target.classList.contains("active")) {
+        // if (e.target.classList.contains("dropdown-item") && !e.target.classList.contains("active")) {
+        if (e.target.classList.contains("dropdown-item")) {
 
-            // console.log("click btnToggleDisparities", e);
+            // console.log("gtag [btnToggleDisparities]");
 
             gtag('event', 'click_option', {
                 option: "links_disparities"
