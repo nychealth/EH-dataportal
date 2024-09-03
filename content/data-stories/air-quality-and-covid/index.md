@@ -25,7 +25,7 @@ photocredit: "Ed Reed/Mayoral Photography Office"
 related:
   - title: "An update on air quality during COVID-19"
     url: "data-stories/air-quality-and-covid-part-2/"
-  - title: "The Public Health Impacts of PM2.5 from Traffic Air Pollution"
+  - title: "The public health impacts of PM2.5 from traffic air pollution"
     url: "data-stories/traffic-and-air-pollution/"
   - title: "Tracking changes in New York City's sources of air pollution"
     url: "data-stories/restaurants-and-air-quality/"

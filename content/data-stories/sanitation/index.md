@@ -20,9 +20,12 @@ keywords:
 image: ds-sanitation-trucks.jpg
 photocredit: "Michael Appleton/Mayoral Photography Office"
 related:
-  - "data-stories/housing-creates-health/"
-  - "data-features/rat-mitigation-zones/"
-  - "data-explorer/mice-and-rats/?id=24#display=summary"
+  - title: "Housing creates health"
+    url: "data-stories/housing-creates-health/"
+  - title: "Rat Mitigation Zones"
+    url: "data-features/rat-mitigation-zones/"
+  - title: "Mice and rats"
+    url: "data-explorer/mice-and-rats/?id=24#display=summary"
 ---
 
 # Why trash service is crucial for public health

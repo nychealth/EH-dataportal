@@ -17,9 +17,12 @@ keywords:
 image: BrooklynBridgeParkFall_JulienneSchaer.jpg
 photocredit: JulienneSchaer
 related:
-  - "neighborhood-reports/#Climatereport"
-  - "data-stories/poweroutages/"
-  - "data-stories/urban-heat-island/"
+  - title: "Neighborhood reports: Climate"
+    url: "neighborhood-reports/#Climatereport"
+  - title: "How power outages affect health"
+    url: "data-stories/poweroutages/"
+  - title: "The urban heat island effect in NYC"
+    url: "data-stories/urban-heat-island/"
 ---
 
 <em>Superstorm Sandy (2012) and rainfall from Hurricane Ida (2021) broke records in NYC and resulted in injury and death. Both showed how the climate crisis is affecting the strength of storms and how profound the threat of flooding is to New Yorkers’ health.</em>

@@ -19,9 +19,12 @@ keywords:
 image: title7.jpg
 photocredit: "Benjamin Kanter/Mayoral Photography Office"
 related:
-  - "data-stories/heat/"
-  - "data-features/heat-syndrome/"
-  - "data-stories/flooding-and-health/"
+  - title: "Protecting New Yorkers from extreme heat"
+    url: "data-stories/heat/"
+  - title: "Real-time heat-related illness"
+    url: "data-features/heat-syndrome/"
+  - title: "What storms Ida and Sandy taught us about flooding and health"
+    url: "data-stories/flooding-and-health/"
 ---
 
 Imagine your child has asthma. One summer night, a powerful storm rolls in and knocks the power out.
@@ -65,6 +68,7 @@ That blackout was dangerous for NYC residents, and we can see the effects in hea
 The health impacts were not limited to just hospitalizations. In fact, the power outage was deadly.
 
 {{< rawhtml >}}
+
 <P>In the chart below, you can clearly see that <span style="font-weight: bold; color: red">observed deaths</span> generally bounce around the level of <span style="font-weight: bold; color: rgb(83, 83, 83)">predicted deaths</span>, staying within the <span style="background-color:lightgray; padding-left: 4px; padding-right: 4px;"> prediction range</span>. But on and after the power outage, observed deaths spiked: more people died during and immediately after the power outage.</P>
 {{< /rawhtml >}}
 

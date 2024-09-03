@@ -23,9 +23,12 @@ keywords:
   ]
 photocredit: "Mayoral Photography Office"
 related:
-  - "data-features/realtime-air-quality/"
-  - "data-features/nyccas/"
-  - "data-stories/hia/"
+  - title: "Real-Time Air Quality: PM2.5 in NYC"
+    url: "data-features/realtime-air-quality/"
+  - title: "The New York City Community Air Survey"
+    url: "data-features/nyccas/"
+  - title: "Reducing air pollution in neighborhoods with the worst health impacts"
+    url: "data-stories/hia/"
 ---
 
 {{< rawhtml >}}

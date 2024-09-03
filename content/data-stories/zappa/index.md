@@ -31,9 +31,12 @@ keywords:
 image: ds-road-traffic.jpg
 photocredit: "Ed Reed/Mayoral Photography Office"
 related:
-  - "data-features/nyccas/"
-  - "data-stories/traffic-and-air-pollution/"
-  - "data-stories/air-quality-snapshots/"
+  - title: The New York City Community Air Survey
+    url: "data-features/nyccas/"
+  - title: The public health impacts of PM2.5 from traffic air pollution
+    url: "data-stories/traffic-and-air-pollution/"
+  - title: "Special findings from 10 years of NYCCAS"
+    url: "data-stories/air-quality-snapshots/"
 ---
 
 ## How do we know what air quality policies will have the biggest effect?

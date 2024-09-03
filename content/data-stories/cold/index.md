@@ -23,9 +23,12 @@ keywords:
 image: winter-weather.png
 photocredit: "Michael Appleton/Mayoral Photography Office"
 related:
-  - "data-stories/housing-creates-health/"
-  - "data-explorer/housing-maintenance/?id=2396#display=summary"
-  - "data-explorer/weather-related-illness/?id=2376#display=summary"
+  - title: "Housing creates health"
+    url: "data-stories/housing-creates-health/"
+  - title: "Housing maintenance"
+    url: "data-explorer/housing-maintenance/?id=2396#display=summary"
+  - title: "Weather-related illness"
+    url: "data-explorer/weather-related-illness/?id=2376#display=summary"
 ---
 
 [Cold weather can be dangerous]({{< baseurl >}}data-explorer/weather-related-illness/?id=2175#display=summary). Here are some tips for staying safe this winter.

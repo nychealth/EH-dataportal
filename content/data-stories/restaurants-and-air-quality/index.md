@@ -26,9 +26,12 @@ keywords:
 image: ds-aq-cooking.jpeg
 photocredit: "Michael Appleton/Mayoral Photography Office"
 related:
-  - "data-stories/traffic-and-air-pollution/"
-  - "data-features/realtime-air-quality/"
-  - "data-stories/air-quality-and-covid/"
+  - title: "The public health impacts of PM2.5 from traffic air pollution"
+    url: "data-stories/traffic-and-air-pollution/"
+  - title: "Real-Time Air Quality: PM2.5 in NYC"
+    url: "data-features/realtime-air-quality/"
+  - title: "Air quality during COVID-19"
+    url: "data-stories/air-quality-and-covid/"
 ---
 
 As city life changes, so does its air quality, as sources of emissions that affect the city's outdoor air quality, like truck traffic, building boilers and restaurants, also change. For more than a decade, we have been tracking air quality through the {{< rawhtml >}} <a href="#NYCCAS" data-toggle="collapse" class="badge badge-pill badge-primary">NYC Community Air Survey (NYCCAS)</a>{{< /rawhtml >}} and exploring the factors that drive neighborhood differences. We have found some interesting changes in the sources of air pollution across NYC neighborhoods.

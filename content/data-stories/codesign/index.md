@@ -18,9 +18,12 @@ keywords:
 image: ds-codesign.jpg
 
 related:
-  - "data-stories/roadmap/"
-  - "data-stories/geographies/"
-  - “data-stories/redesign/"
+  - title: "Our roadmap: An open path forward"
+    url: "data-stories/roadmap/"
+  - title: "Neighborhood boundaries on the EH Data Portal"
+    url: "data-stories/geographies/"
+  - title: "The redesigned EH Data Portal"
+    url: “data-stories/redesign/"
 ---
 
 We're making changes, and we need your help.

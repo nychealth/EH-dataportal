@@ -12,9 +12,12 @@ vega: true
 layout: advanced
 photocredit: "Benjamin Kanter/Mayoral Photography Office"
 related: 
-- "data-stories/injury-deaths/"
-- "data-stories/assaults/"
-- "data-explorer/violence/?id=2400#display=summary"
+  - title: "Injury deaths in NYC"
+    url: "data-stories/injury-deaths/"
+  - title: "Disparities in violence"
+    url: "data-stories/assaults/"
+  - title: "Violence-related emergency department visits (all ages)"
+    url: "data-explorer/violence/?id=2400#display=summary"
 ---
 
 ## Using public health to prevent violence
@@ -69,6 +72,7 @@ To prevent violence among those most affected by it, we need to explore what fac
 Evidence shows that violence results from social structures that limit access to basic needs - structures that are fueled by racism, residential segregation, and neighborhood disinvestment. Where these structures persist, people are exposed to violence. For example, low-income neighborhoods of color are known to be hit the hardest.
 
 This map shows the parts of NYC that were {{< rawhtml >}}<a href="#redliningCollapse" data-toggle="collapse" class="badge badge-pill badge-warning">redlined</a> 90 years ago as part of racist housing policy that set off decades of disinvestment and intergenerational poverty.</p>
+
 <div class="collapse mb-2 drawerbg px-2 py-2 mx-2" id="redliningCollapse">
 <p><span style="font-weight: bold; color:#7e0000">Redlining</span> was a federal policy that
 started in the 1930s. A government agency drew maps of hundreds of cities throughout the
@@ -109,6 +113,7 @@ As a result of this disinvestment, we see a clear relationship between poverty a
 ### Disinvestment creates environments that threaten health
 
 {{< rawhtml >}}
+
 <p><a href="#disinvestmentCollapseTwo" data-toggle="collapse" class="badge badge-pill badge-warning">Disinvestment takes many forms</a>. It promotes segregation, limits people’s access to basic resources, and creates environments that threaten people’s health. </p>
 <div class="collapse py-2 px-2 mx-2 mb-2 drawerbg" id="disinvestmentCollapseTwo">
 <p>Disinvestment can be:

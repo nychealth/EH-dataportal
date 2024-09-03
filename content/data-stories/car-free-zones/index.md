@@ -29,9 +29,12 @@ keywords:
 image: ds-aqts.jpeg
 photocredit: "Ed Reed/Mayoral Photography Office"
 related:
-  - "data-stories/air-quality-and-covid/"
-  - "data-stories/air-quality-and-covid-part-2/"
-  - "data-stories/hia/"
+  - title: "Air quality during COVID-19"
+    url: "data-stories/air-quality-and-covid/"
+  - title: "An update on air quality during COVID-19"
+    url: "data-stories/air-quality-and-covid-part-2/"
+  - title: "Reducing air pollution in neighborhoods with the worst health impacts"
+    url: "data-stories/hia/"
 ---
 
 Does the air improve in car-free zones? People often ask us this, and it's a great question. To answer, we turn to the NYC Community Air Survey, or NYCCAS. NYCCAS is our network of air quality monitors around the city.

@@ -15,8 +15,10 @@ keywords:
 seo_title: Redesigned EH Data Portal | Data story | Environment & Health Data Portal
 seo_description: "We recently redesigned our site to make it easier for you to find important data and information on how the environment affects health."
 related:
-  - "data-stories/geographies/"
-  - "data-stories/codesign/"
+  - title: "Neighborhood boundaries on the EH Data Portal"
+    url: "data-stories/geographies/"
+  - title: "Why we're working with you to redesign the data portal"
+    url: "data-stories/codesign/"
 ---
 
 The Environment and Health Data Portal looks a little bit different\! We recently redesigned our site to make it easier for you to find important data and information on how the environment affects health.&nbsp;&nbsp;

@@ -22,9 +22,12 @@ keywords:
 image: ds-breatheeasy.jpg
 photocredit: "Ed Reed/Mayoral Photography Office"
 related:
-  - "data-stories/zappa/"
-  - "data-features/realtime-air-quality/"
-  - "data-stories/air-quality-and-covid-part-2/"
+  - title: "ZAPPA: A tool to understand air quality policies"
+    url: "data-stories/zappa/"
+  - title: "Real-Time Air Quality: PM2.5 in NYC"
+    url: "data-features/realtime-air-quality/"
+  - title: "An update on air quality during COVID-19"
+    url: "data-stories/air-quality-and-covid-part-2/"
 ---
 
 The air we breathe can have a major effect on our health — air pollution can make asthma worse and can cause heart disease, lung disease, strokes, and even cancer.

@@ -21,9 +21,12 @@ layout: single
 vega: true
 photocredit: "Edwin J. Torres/Mayoral Photography Office"
 related:
-  - "data-stories/roadmap/"
-  - "data-stories/codesign/"
-  - "neighborhood-reports/#Asthmareport"
+  - title: "Our roadmap: An open path forward"
+    url: "data-stories/roadmap/"
+  - title: "Why we're working with you to redesign the data portal"
+    url: "data-stories/codesign/"
+  - title: "Neighborhood Reports: Asthma"
+    url: "neighborhood-reports/#Asthmareport"
 ---
 
 New York City has hundreds of neighborhoods and nearly as many ways of drawing neighborhood boundaries. When you visit the Environment & Health Data Portal, you might notice that data is available in several different neighborhood schemes.

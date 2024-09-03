@@ -27,9 +27,12 @@ keywords:
 seo_title: Health impact assessments
 seo_description: "Air pollution causes significant illness and death in New York City. To improve health, where should we start?"
 related:
-  - "data-features/realtime-air-quality/"
-  - "data-features/nyccas/"
-  - "data-stories/zappa/"
+  - title: "Real-Time Air Quality: PM2.5 in NYC"
+    url: "data-features/realtime-air-quality/"
+  - title: "The New York City Community Air Survey"
+    url: "data-features/nyccas/"
+  - title: "ZAPPA: A tool to understand air quality policies"
+    url: "data-stories/zappa/"
 ---
 
 Every year in NYC between 2015 and 2017 (the most recent years for which this analysis is available), fine particulate matter pollution from motor vehicles and burning fossil fuels caused:

@@ -17,9 +17,12 @@ keywords:
 image: CrownHeights_JulienneSchaer-065.JPG
 photocredit: JulienneSchaer
 related:
-  - "data-stories/housing-creates-health/"
-  - "data-stories/racial-wealth-gap/"
-  - "data-stories/block-by-block/"
+  - title: "Housing creates health"
+    url: "data-stories/housing-creates-health/"
+  - title: "The racial wealth gap and public health equity"
+    url: "data-stories/racial-wealth-gap/"
+  - title: "A walk through history"
+    url: "data-stories/block-by-block/"
 ---
 
 Health is determined by many factors, and people tend to be healthier when they have economic stability, live in quality housing and have access to public space and safe, connected communities. In 2020, the NYC Health Department held a series of community conversations with residents and local stakeholders across 26 neighborhoods. New Yorkers shared personal stories that illuminate their priorities for building healthier neighborhoods, healthier childhoods and more. This is one part of a three-part series on how <strong> housing, economic stability, and public space create health. </strong>

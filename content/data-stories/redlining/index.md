@@ -12,9 +12,12 @@ layout: advanced
 image: ds-redlining.jpeg
 related: 
 
-- "data-stories/housing-creates-health/"
-- "data-stories/block-by-block/"
-- "data-explorer/economic-conditions/?id=103#display=summary"
+  - title: "Housing creates health"
+    url: "data-stories/housing-creates-health/"
+  - title: "A walk through history"
+    url:  "data-stories/block-by-block/"
+  - title: "Economic conditions"
+    url: "data-explorer/economic-conditions/?id=103#display=summary"
 ---
 
 ### Inside the 90-year-old financial policy that harms our health

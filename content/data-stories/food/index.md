@@ -22,9 +22,12 @@ keywords:
 image: ds-food.JPG
 photocredit: "Edwin J. Torres/Mayoral Photography Office"
 related:
-  - "data-stories/urban-heat-island/"
-  - "data-stories/poweroutages/"
-  - "data-explorer/restaurant-food-safety/?id=2065#display=summary"
+  - title: "The urban heat island effect in NYC"
+    url: "data-stories/urban-heat-island/"
+  - title: "How power outages affect health"
+    url: "data-stories/poweroutages/"
+  - title: "Restaurant food safety"
+    url: "data-explorer/restaurant-food-safety/?id=2065#display=summary"
 ---
 
 New Yorkers eat out more than a billion times a year. To help keep diners safe, the Health Department educates restaurant operators about food safety practices and inspects all 27,000 city restaurants at least once a year. Over 90 percent of NYC restaurants have "A" grades in the window, showing excellent compliance with food safety requirements.

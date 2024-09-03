@@ -13,9 +13,12 @@ image: ds-housing.jpeg
 vega: true
 related: 
 
-- "data-stories/housing-creates-health/"
-- "data-stories/redlining/"
-- "data-explorer/housing-maintenance/?id=2396#display=summary"
+  - title: "Housing creates health"
+    url: "data-stories/housing-creates-health/"
+  - title: "A brief history of redlining"
+    url: "data-stories/redlining/"
+  - title: "Housing maintenance"
+    url: "data-explorer/housing-maintenance/?id=2396#display=summary"
 ---
 
 ### For health, place matters

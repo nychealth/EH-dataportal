@@ -26,9 +26,12 @@ keywords:
 image: ds-streets.jpg
 photocredit: "Michael Appleton/Mayoral Photography Office"
 related:
-  - "data-stories/traffic-and-air-pollution/"
-  - "data-explorer/transportation-related-injuries/?id=2092#display=summary"
-  - "data-explorer/walking-driving-and-cycling/?id=2415#display=summary"
+  - title: "The public health impacts of PM2.5 from traffic air pollution"
+    url: "data-stories/traffic-and-air-pollution/"
+  - title: "Transportation-related injuries"
+    url: "data-explorer/transportation-related-injuries/?id=2092#display=summary"
+  - title: "Walking, driving, and cycling"
+    url: "data-explorer/walking-driving-and-cycling/?id=2415#display=summary"
 ---
 
 The COVID-19 public health emergency has changed New York City in many ways—including how we get around the city. As the city continues to adapt to COVID-19, New Yorkers will look for ways to get around that feel safe—redistributing transit among different modes to ease crowding and increase safety on public transportation.
