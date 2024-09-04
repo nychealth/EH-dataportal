@@ -39,6 +39,7 @@
         border: 1px solid #dee2e6;
     }
 
+
     /* This CSS controls read more/show less toggle. */
     [aria-expanded="false"]>.expanded,
     [aria-expanded="true"]>.collapsed {
@@ -183,7 +184,7 @@
 
     /* width */
     ::-webkit-scrollbar {
-        width: 5px;
+        width: 0.5rem;
     }
 
     /* Track */
@@ -207,11 +208,15 @@
     }
 
     .overflow-fade-ind {
-        max-height: 55vmin; overflow-y:scroll; overflow-x:hidden;
+        max-height: 55vmin; 
+        overflow-y: scroll; 
+        overflow-x: hidden;
     }
 
     .overflow-fade-about {
-        max-height: 55vmin; overflow-y:scroll; overflow-x:hidden;
+        max-height: 55vmin; 
+        overflow-y: scroll; 
+        overflow-x: hidden;
     }
 
     .vis-bucket {
@@ -239,96 +244,96 @@
         border-right: 1px solid #dee2e6 !important;
     }
 
-        .nav-pills .nav-item:hover:not(.active) {
-            /* background-color: #fafafa;
-            */
-        }
+    /* .nav-pills .nav-item:hover:not(.active) {
+        background-color: #fafafa;
+        
+    }*/
 
-        .optionbox {
-            max-height:150px;
-            overflow-y:scroll;
-            overflow-x:scroll;
-        }
-    
-        .optionbox-lg {
-            max-height: 300px;
-            overflow-y: scroll;
-            overflow-x:scroll;
-        }
+    .optionbox {
+        max-height:150px;
+        overflow-y:auto;
+        overflow-x:hidden;
+    }
 
-        .optionbox::-webkit-scrollbar {
-            display: none;
-          }
+    .optionbox-lg {
+        max-height: 300px;
+        overflow-y: auto;
+        overflow-x:hidden;
+    }
 
-          .optionbox-lg::-webkit-scrollbar {
-            display: none;
-          }
-    
-        .nav-pills .nav-item {
-            text-align: left!important;
-            /*background-color: #e9ecef!important; */
-        }
-    
-        .nav-pills .nav-link.active {
-            background-color: green!important;
-        }
-    
-        .dropdown-item {
-            font-size: 12px;
-            padding: 0px!important;
-            padding-left: 5px!important;
-            margin-bottom: 3px!important;
-        }
-    
-        .dropdown-item.active {
-            background-color: green!important;
-            color: white;
-            font-weight: bold;
-        }
-    
-        .debg {
-            background-color: #e9ecef!important;
-            width: 100%; 
-            height: 52px;
-        }
-    
-        .nav-tabs .nav-item.active {
-            background-color: #00923E50!important;
-            border-left: 1px solid !important;
-            border-right: 1px solid !important;
-            border-top: 1px solid !important;
-            border-bottom: 0px solid !important;
-        }
-    
-        .tab-pane {
-            /* border-left: 1px solid !important;
-            border-right: 1px solid !important;
-            border-bottom: 1px solid !important;
-            */
-        }
-    
-        .helper {
-            cursor: pointer;
-        }
-    
-        .helper:hover {
-            color: purple!important;
-        }
+    .optionbox::-webkit-scrollbar {
+        width: 0.25em;
+    }
 
-        /* Customize table css */
-        table.dataTable tbody th,table.dataTable tbody td {
-            padding: 5px!important;
-        }
+    .optionbox-lg::-webkit-scrollbar {
+        width: 0.25em;
+    }
 
-        table {
-            font-size: .875rem!important; 
-        }
+    .nav-pills .nav-item {
+        text-align: left!important;
+        /*background-color: #e9ecef!important; */
+    }
 
-        table .group td {
-            background-color: #F0F0F0;
-            color: green;
-            font-weight: bold;
-            }
+    .nav-pills .nav-link.active {
+        background-color: green!important;
+    }
+
+    .dropdown-item {
+        font-size: 12px;
+        padding: 0px!important;
+        padding-left: 5px!important;
+        margin-bottom: 3px!important;
+    }
+
+    .dropdown-item.active {
+        background-color: green!important;
+        color: white;
+        font-weight: bold;
+    }
+
+    .debg {
+        background-color: #e9ecef!important;
+        width: 100%; 
+        height: 52px;
+    }
+
+    .nav-tabs .nav-item.active {
+        background-color: #00923E50!important;
+        border-left: 1px solid !important;
+        border-right: 1px solid !important;
+        border-top: 1px solid !important;
+        border-bottom: 0px solid !important;
+    }
+
+    .tab-pane {
+        /* border-left: 1px solid !important;
+        border-right: 1px solid !important;
+        border-bottom: 1px solid !important;
+        */
+    }
+
+    .helper {
+        cursor: pointer;
+    }
+
+    .helper:hover {
+        color: purple!important;
+    }
+
+    /* Customize table css */
+    table.dataTable tbody th,table.dataTable tbody td {
+        padding: 5px!important;
+    }
+
+    table {
+        font-size: .875rem!important; 
+    }
+
+    table .group td {
+        background-color: #F0F0F0;
+        color: green;
+        font-weight: bold;
+        }
     .de-tab {
         font-size: 16px;
     }
@@ -627,16 +632,17 @@
                             
                                 
                                     <div class="border optionbox mb-2 py-1">
-                                        <div class="btn-group btn-group-toggle btn-toggle-disparities" data-toggle="buttons">
+                                        
+                                        <div class="btn-toggle-disparities">
     
-                                            <label class="btn btn-sm btn-block btn-outline-primary dropdown-item my-0" id="show-disparities">
-                                                <input type="radio" name="options" id="disparities-btn" autocomplete="off"> Disparities
-                                            </label>
-                                            <label class="btn btn-sm btn-block btn-outline-primary dropdown-item my-0 active" id="show-links">
-                                                <input type="radio" name="options" id="links-btn" autocomplete="off" checked> Correlates
-                                            </label>
+                                            <button class="btn btn-primary dropdown-item pl-2" id="show-disparities"> Disparities
+                                            </button>
+                                            <button class="btn btn-primary dropdown-item pl-2" id="show-links"> Correlates
+                                            </button>
     
                                         </div>
+
+
                                     </div>
     
                                     <div id="correlateHolder">

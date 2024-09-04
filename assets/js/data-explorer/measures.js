@@ -881,10 +881,6 @@ const updateLinksData = async (e) => {
         $("#show-disparities").removeClass("disabled");
         $("#show-disparities").attr('aria-disabled', false);
 
-        // if disparities is enabled, show the button
-
-        btnToggleDisparities.style.display = "inline";
-
     } else {
 
         // - - - no disparities - - - - - - - - - - - - - - - - - - - - - - - - - - //
@@ -907,7 +903,7 @@ const updateLinksData = async (e) => {
         // remove click listeners to button that calls renderDisparitiesChart
 
         // console.log("btnToggleDisparities [updateLinksData]");
-        $(btnToggleDisparities).off()
+        $(btnToggleDisparities).off(".toggle")
 
     }
 
@@ -1058,24 +1054,52 @@ const handleMapGeoDropdown = (MeasureID, TimePeriod) => {
 
 const clickLinksToggle = (e) => {
 
-    // console.log("btnToggleDisparities [clickLinksToggle]");
-    $(btnToggleDisparities).off()
+    // turn off click listener
 
-    $(btnToggleDisparities).on("click", (e) => {
+    $(btnToggleDisparities).off(".toggle")
 
-        // console.log("btnToggleDisparities", e);
+    // set on click listener
 
-        if (e.target && e.target.matches("#show-disparities") && !e.target.classList.contains("active") && !e.target.classList.contains("disabled")) {
+    $(btnToggleDisparities).on("click.toggle", (e) => {
+
+        // remove active class from both options
+
+        $("#show-disparities").removeClass("active");
+        $("#show-links").removeClass("active");
+
+        // determine which function to call
+
+        if (
+            e.target && 
+            !e.target.classList.contains("active") && 
+            !e.target.classList.contains("disabled") &&
+            e.target.matches("#show-disparities")
+        ) {
 
             // MeasureID: 221 = neighborhood poverty percent
 
             // console.log("renderDisparitiesChart [clickLinksToggle]");
 
-            renderDisparitiesChart(defaultDisparitiesMetadata, 221)
+            renderDisparitiesChart(defaultDisparitiesMetadata, 221);
 
-        } else if (e.target && e.target.matches("#show-links") && !e.target.classList.contains("active") && !e.target.classList.contains("disabled")) {
+            // set this option to active
+
+            $(e.target).addClass("active")
+
+        } else if (
+            e.target && 
+            !e.target.classList.contains("active") && 
+            !e.target.classList.contains("disabled") &&
+            e.target.matches("#show-links")
+        ) {
+
+            // console.log("showLinks [clickLinksToggle]");
 
             showLinks();
+
+            // set this option to active
+
+            $(e.target).addClass("active")
 
         }
     })
@@ -1141,13 +1165,24 @@ const renderMeasures = async () => {
     measureAbout = "";
     measureSources = "";
 
+    // clear on click event handlers from view options
+
+    $(dropdownTableGeos).off(".gtag")
+    $(dropdownTableTimes).off(".gtag")
+    $(dropdownTrendComparisons).off(".gtag")
+    $(dropdownMapMeasures).off(".gtag")
+    $(dropdownMapTimes).off(".gtag")
+    $(dropdownMapGeos).off(".gtag")
+    $(dropdownLinksMeasures).off(".gtag")
+    $(btnToggleDisparities).off(".gtag")
+
 
     // ----- create dropdowns for table ================================================== //
 
     // ----- select all --------------------------------------------------- //
 
     dropdownTableTimes.innerHTML +=
-        `<label class="dropdown-item checkbox-time-all"><input class="largerCheckbox" type="checkbox" name="time" value="all" /> Select all </label>`
+        `<label class="btn btn-primary dropdown-item checkbox-time-all"><input class="largerCheckbox" type="checkbox" name="time" value="all" /> Select all </label>`
 
     // ----- times --------------------------------------------------- //
 
@@ -1164,12 +1199,12 @@ const renderMeasures = async () => {
             selectedTableTimes = [time];
 
             dropdownTableTimes.innerHTML +=
-                `<label class="dropdown-item checkbox-time"><input class="largerCheckbox" type="checkbox" name="time" value="${time}" checked /> ${time}</label>`;
+                `<label class="btn btn-primary dropdown-item checkbox-time"><input class="largerCheckbox" type="checkbox" name="time" value="${time}" checked /> ${time}</label>`;
 
         } else {
 
             dropdownTableTimes.innerHTML +=
-                `<label class="dropdown-item checkbox-time"><input class="largerCheckbox" type="checkbox" name="time" value="${time}" /> ${time}</label>`;
+                `<label class="btn btn-primary dropdown-item checkbox-time"><input class="largerCheckbox" type="checkbox" name="time" value="${time}" /> ${time}</label>`;
         }
 
     });
@@ -1192,7 +1227,7 @@ const renderMeasures = async () => {
         
         // console.log("selectedTableGeography:", selectedTableGeography);
 
-        dropdownTableGeos.innerHTML += `<label class="dropdown-item checkbox-geo"><input class="largerCheckbox" type="checkbox" value="${geo}" checked /> ${geo}</label>`;
+        dropdownTableGeos.innerHTML += `<label class="btn btn-primary dropdown-item checkbox-geo"><input class="largerCheckbox" type="checkbox" value="${geo}" checked /> ${geo}</label>`;
 
     });
 
@@ -1216,7 +1251,7 @@ const renderMeasures = async () => {
         
         // console.log("selectedTableGeography:", selectedTableGeography);
 
-        dropdownMapGeos.innerHTML += `<button class="dropdown-item link-time mapgeosbutton pl-2"
+        dropdownMapGeos.innerHTML += `<button class="btn btn-primary dropdown-item link-time mapgeosbutton pl-2"
             data-geo="${geo}">
             ${geo}
             </button>`;
@@ -1232,7 +1267,7 @@ const renderMeasures = async () => {
 
     mapTimes.map(time => {
 
-        dropdownMapTimes.innerHTML += `<button class="dropdown-item link-time maptimesbutton pl-2"
+        dropdownMapTimes.innerHTML += `<button class="btn btn-primary dropdown-item link-time maptimesbutton pl-2"
             data-time="${time}">
             ${time}
             </button>`;
@@ -1272,7 +1307,7 @@ const renderMeasures = async () => {
             
             mapMeasures.push(measure)
             
-            dropdownMapMeasures.innerHTML += DOMPurify.sanitize(`<button class="dropdown-item link-measure mapmeasuresbutton pl-2"
+            dropdownMapMeasures.innerHTML += DOMPurify.sanitize(`<button class="btn btn-primary dropdown-item link-measure mapmeasuresbutton pl-2"
                 data-measure-id="${measureId}" title="${type}">
                 ${type}
                 </button>`);
@@ -1308,7 +1343,7 @@ const renderMeasures = async () => {
             dropdownTrendComparisons.innerHTML += header ? '<div class="dropdown-title"><strong>' + header + '</strong></div>' : '';
 
             if (trendData) {
-                dropdownTrendComparisons.innerHTML += DOMPurify.sanitize(`<button class="dropdown-item trendbutton pl-2"
+                dropdownTrendComparisons.innerHTML += DOMPurify.sanitize(`<button class="btn btn-primary dropdown-item trendbutton pl-2"
                 data-measure-id="${measureId}" title="${type}">
                 ${type}
                 </button>`);
@@ -1348,7 +1383,7 @@ const renderMeasures = async () => {
                     // console.log("defaultSecondaryMeasureMetadata", defaultSecondaryMeasureMetadata);
 
                     dropdownLinksMeasures.innerHTML +=
-                        DOMPurify.sanitize(`<button class="dropdown-item linksbutton pl-2"
+                        DOMPurify.sanitize(`<button class="btn btn-primary dropdown-item linksbutton pl-2"
                             data-primary-measure-id="${measureId}"
                             data-measure-id="${measure.MeasureID}"
                             data-secondary-measure-id="${link.MeasureID}" title="${defaultSecondaryMeasureMetadata[0]?.MeasureName}">
@@ -1419,14 +1454,14 @@ const renderMeasures = async () => {
 
                     if (compGeoTypeName[0] == "Citywide") {
 
-                    dropdownTrendComparisons.innerHTML += `<button class="dropdown-item comparisonsbutton pl-2"
+                    dropdownTrendComparisons.innerHTML += `<button class="btn btn-primary dropdown-item comparisonsbutton pl-2"
                         data-comparison-id="${comp}"  title="${compY_axis_title}">
                         ${compY_axis_title}
                         </button>`;
 
                     } else {
                         // I am very unhappy with this kludge
-                        dropdownTrendComparisons.innerHTML += `<button class="dropdown-item comparisonsbutton pl-2"
+                        dropdownTrendComparisons.innerHTML += `<button class="btn btn-primary dropdown-item comparisonsbutton pl-2"
                             data-comparison-id="${comp}"  title="${compGeography[compGeography.length - 1]} ">
                             ${compGeography[compGeography.length - 1]} 
                             </button>`;
@@ -1437,7 +1472,7 @@ const renderMeasures = async () => {
                     // console.log("1 measure [MeasurementType]");
                     // console.log(compMeasurementType);
 
-                    dropdownTrendComparisons.innerHTML += `<button class="dropdown-item comparisonsbutton pl-2"
+                    dropdownTrendComparisons.innerHTML += `<button class="btn btn-primary dropdown-item comparisonsbutton pl-2"
                         data-comparison-id="${comp}" title="${compMeasurementType}">
                         ${compMeasurementType}
                         </button>`;
@@ -1448,7 +1483,7 @@ const renderMeasures = async () => {
                     // console.log("compIndicatorMeasure", compIndicatorMeasure);
                     // console.log("compName", compName);
 
-                    dropdownTrendComparisons.innerHTML += `<button class="dropdown-item comparisonsbutton pl-2"
+                    dropdownTrendComparisons.innerHTML += `<button class="btn btn-primary dropdown-item comparisonsbutton pl-2"
                         data-comparison-id="${comp}" title="${compName}">
                         ${compName}
                         </button>`;
@@ -2090,10 +2125,6 @@ const renderMeasures = async () => {
         tabTrend.setAttribute('aria-selected', false);
         tabLinks.setAttribute('aria-selected', true);
 
-        // make sure the "Link to" button is enabled
-        $("#dropdownLinksMeasures").removeClass("disabled");
-        $("#dropdownLinksMeasures").attr('aria-disabled', false);
-
 
         // conditionals based on if any measures have links or not
 
@@ -2137,11 +2168,11 @@ const renderMeasures = async () => {
                 // turn off click listener
                 
                 // console.log("btnToggleDisparities [showLinks (no links, has disp)]");
-                $(btnToggleDisparities).off()
+                $(btnToggleDisparities).off(".toggle")
 
                 // if disparities is enabled, show the button
 
-                btnToggleDisparities.style.display = "inline";
+                // btnToggleDisparities.style.display = "inline";
 
             } else {
 
@@ -2280,7 +2311,7 @@ const renderMeasures = async () => {
 
                     // if disparities is enabled, show the button
 
-                    btnToggleDisparities.style.display = "inline";
+                    // btnToggleDisparities.style.display = "inline";
 
                 } else {
 
@@ -2304,7 +2335,7 @@ const renderMeasures = async () => {
                     // remove click listeners to button that calls renderDisparitiesChart
                     
                     // console.log("btnToggleDisparities [showLinks (has links, no disp)]");
-                    $(btnToggleDisparities).off()
+                    $(btnToggleDisparities).off(".toggle")
 
                 }
 
@@ -2524,6 +2555,147 @@ const renderMeasures = async () => {
     linksMeasuresLinks.forEach(link => {
         link.addEventListener('click', updateLinksData);
     })
+
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // add event handler functions to options boxes for Google Analytics
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+    $(dropdownTableGeos).on("click.gtag", e => {
+
+        console.log("click [dropdownTableGeos]", e);
+
+        // if (e.target.classList.contains("dropdown-item") && !e.target.classList.contains("active")) {
+        if (e.target.classList.contains("dropdown-item")) {
+
+            // console.log("gtag [dropdownTableGeos]");
+
+            gtag('event', 'click_option', {
+                option: "table_geo"
+            });
+            
+        }
+
+    });
+
+    $(dropdownTableTimes).on("click.gtag", e => {
+
+        console.log("click [dropdownTableTimes]", e);
+
+        // if (e.target.classList.contains("dropdown-item") && !e.target.classList.contains("active")) {
+        if (e.target.classList.contains("dropdown-item")) {
+
+            // console.log("gtag [dropdownTableTimes]");
+
+            gtag('event', 'click_option', {
+                option: "table_time"
+            });
+            
+        }
+        
+    });
+
+    $(dropdownMapMeasures).on("click.gtag", e => {
+
+        console.log("click [dropdownMapMeasures]", e);
+
+        // if (e.target.classList.contains("dropdown-item") && !e.target.classList.contains("active")) {
+        if (e.target.classList.contains("dropdown-item")) {
+
+            // console.log("gtag [dropdownMapMeasures]");
+
+            gtag('event', 'click_option', {
+                option: "map_measure"
+            });
+            
+        }
+        
+    });
+
+    $(dropdownMapTimes).on("click.gtag", e => {
+
+        console.log("click [dropdownMapTimes]", e);
+
+        // if (e.target.classList.contains("dropdown-item") && !e.target.classList.contains("active")) {
+        if (e.target.classList.contains("dropdown-item")) {
+
+            // console.log("gtag [dropdownMapTimes]");
+
+            gtag('event', 'click_option', {
+                option: "map_time"
+            });
+            
+        }
+        
+    });
+
+    $(dropdownMapGeos).on("click.gtag", e => {
+
+        console.log("click [dropdownMapGeos]", e);
+
+        // if (e.target.classList.contains("dropdown-item") && !e.target.classList.contains("active")) {
+        if (e.target.classList.contains("dropdown-item")) {
+
+            // console.log("gtag [dropdownMapGeos]");
+
+            gtag('event', 'click_option', {
+                option: "map_geo"
+            });
+            
+        }
+        
+    });
+
+    $(dropdownTrendComparisons).on("click.gtag", e => {
+
+        console.log("click [dropdownTrendComparisons]", e);
+
+        // if (e.target.classList.contains("dropdown-item") && !e.target.classList.contains("active")) {
+        if (e.target.classList.contains("dropdown-item")) {
+
+            // console.log("gtag [dropdownTrendComparisons]");
+
+            gtag('event', 'click_option', {
+                option: "trend_comparison"
+            });
+            
+        }
+        
+    });
+
+    $(dropdownLinksMeasures).on("click.gtag", e => {
+
+        console.log("click [dropdownLinksMeasures]", e);
+
+        // if (e.target.classList.contains("dropdown-item") && !e.target.classList.contains("active")) {
+        if (e.target.classList.contains("dropdown-item")) {
+
+            // console.log("gtag [dropdownLinksMeasures]");
+
+            gtag('event', 'click_option', {
+                option: "links_measure"
+            });
+            
+        }
+
+    });
+
+    $(btnToggleDisparities).on("click.gtag", e => {
+
+        console.log("click [dropdownLinksMeasures]", e);
+
+        // if (e.target.classList.contains("dropdown-item") && !e.target.classList.contains("active")) {
+        if (e.target.classList.contains("dropdown-item")) {
+
+            // console.log("gtag [btnToggleDisparities]");
+
+            gtag('event', 'click_option', {
+                option: "links_disparities"
+            });
+            
+        }
+        
+    });
 
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
