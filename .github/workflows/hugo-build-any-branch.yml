@@ -89,7 +89,7 @@ jobs:
       # install npm dependencies (if not cached)
 
       - name: Install dependencies
-        run: npm ci --include optional
+        run: npm install --include optional
 
       # list dependencies
       
