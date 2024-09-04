@@ -9,8 +9,9 @@ on:
 
       branch:
         description: Branch to build
-        required: true
+        required: false
         type: string
+        default: ${{ github.ref_name }}
 
       publish-branch:
         description: Branch name for build files
