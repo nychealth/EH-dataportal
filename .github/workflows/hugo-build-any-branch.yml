@@ -85,31 +85,10 @@ jobs:
           node-version: 22.5.x
           cache: "npm"
 
-      # set up cache for node modules
-
-      - name: Cache node_modules
-        id: cache-nodemodules
-        uses: actions/cache@v4
-        env:
-          cache-name: cache-node-modules
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
-        
-      # update npm dependencies (if cached)
-
-      # - name: Update dependencies
-      #   if: steps.cache-nodemodules.outputs.cache-hit == 'true'
-      #   run: npm update
 
       # install npm dependencies (if not cached)
 
       - name: Install dependencies
-        # if: steps.cache-nodemodules.outputs.cache-hit != 'true'
         run: npm ci --include optional
 
       # list dependencies
