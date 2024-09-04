@@ -85,14 +85,6 @@ jobs:
             ${{ runner.os }}-build-
             ${{ runner.os }}-
 
-      # list dependencies
-      
-      - name: List dependencies
-        run: npm ls
-
-      - name: List sub-dependencies
-        run: npm ls --all
-        
       # update npm dependencies (if cached)
 
       - name: Update dependencies
@@ -103,7 +95,17 @@ jobs:
 
       - name: Install dependencies
         if: steps.cache-nodemodules.outputs.cache-hit != 'true'
-        run: npm ci
+        run: |
+          npm install @pagefind/linux-x64
+          npm ci
+
+      # list dependencies
+      
+      - name: List dependencies
+        run: npm ls
+
+      - name: List sub-dependencies
+        run: npm ls --all
 
       # set up Hugo
 
