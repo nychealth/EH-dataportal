@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Fatalities on Environment &amp; Health Data Portal</title>
+    <title>fatalities on Environment &amp; Health Data Portal</title>
     <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/fatalities/</link>
-    <description>Recent content in Fatalities on Environment &amp; Health Data Portal</description>
-    <generator>Hugo</generator>
+    <description>Recent content in fatalities on Environment &amp; Health Data Portal</description>
+    <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Sun, 20 Sep 2020 10:54:51 -0400</lastBuildDate>
     <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/fatalities/index.xml" rel="self" type="application/rss+xml" />

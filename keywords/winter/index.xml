@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Winter on Environment &amp; Health Data Portal</title>
+    <title>winter on Environment &amp; Health Data Portal</title>
     <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/winter/</link>
-    <description>Recent content in Winter on Environment &amp; Health Data Portal</description>
-    <generator>Hugo</generator>
+    <description>Recent content in winter on Environment &amp; Health Data Portal</description>
+    <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Thu, 15 Dec 2022 13:11:44 -0400</lastBuildDate>
     <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/winter/index.xml" rel="self" type="application/rss+xml" />

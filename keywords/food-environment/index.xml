@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Food Environment on Environment &amp; Health Data Portal</title>
+    <title>food environment on Environment &amp; Health Data Portal</title>
     <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/food-environment/</link>
-    <description>Recent content in Food Environment on Environment &amp; Health Data Portal</description>
-    <generator>Hugo</generator>
+    <description>Recent content in food environment on Environment &amp; Health Data Portal</description>
+    <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Wed, 17 Nov 2021 12:01:22 -0500</lastBuildDate>
     <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/food-environment/index.xml" rel="self" type="application/rss+xml" />

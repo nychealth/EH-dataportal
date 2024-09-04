@@ -927,9 +927,9 @@
     <lastmod>2021-08-04T12:32:15-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/health-outcomes/</loc>
     <lastmod>2021-08-04T12:32:15-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/data-explorer/active-design/</loc>
-    <lastmod>2021-05-28T18:02:58-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/active-design/</loc>
+    <lastmod>2021-05-28T18:02:58-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/data-explorer/active-design/</loc>
     <lastmod>2021-05-28T18:02:58-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/data-explorer/air-quality/</loc>
     <lastmod>2021-05-28T18:02:58-04:00</lastmod></url><url>
@@ -953,9 +953,9 @@
     <lastmod>2021-05-28T18:02:58-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/birth/</loc>
     <lastmod>2021-05-28T18:02:58-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/data-explorer/birth-defects/</loc>
-    <lastmod>2021-05-28T18:02:58-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/birth-defects/</loc>
+    <lastmod>2021-05-28T18:02:58-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/data-explorer/birth-defects/</loc>
     <lastmod>2021-05-28T18:02:58-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/data-explorer/birth-outcomes/</loc>
     <lastmod>2021-05-28T18:02:58-04:00</lastmod></url><url>
@@ -1099,9 +1099,9 @@
     <lastmod>2021-05-28T18:02:58-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/data-explorer/pesticides/</loc>
     <lastmod>2021-05-28T18:02:58-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/data-explorer/physical-activity/</loc>
-    <lastmod>2021-05-28T18:02:58-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/physical-activity/</loc>
+    <lastmod>2021-05-28T18:02:58-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/data-explorer/physical-activity/</loc>
     <lastmod>2021-05-28T18:02:58-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/poisoning/</loc>
     <lastmod>2021-05-28T18:02:58-04:00</lastmod></url><url>
@@ -1123,9 +1123,9 @@
     <lastmod>2021-05-28T18:02:58-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/social/</loc>
     <lastmod>2021-05-28T18:02:58-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/data-explorer/social-conditions/</loc>
-    <lastmod>2021-05-28T18:02:58-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/social-conditions/</loc>
+    <lastmod>2021-05-28T18:02:58-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/data-explorer/social-conditions/</loc>
     <lastmod>2021-05-28T18:02:58-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/streets/</loc>
     <lastmod>2021-05-28T18:02:58-04:00</lastmod></url><url>
@@ -1151,9 +1151,9 @@
     <lastmod>2021-05-28T18:02:58-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/data-explorer/walking-driving-and-cycling/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
-    <loc>/IndicatorPublic/key-topics/childhealth/</loc>
-    <lastmod>2021-05-05T07:59:26-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/child-health/</loc>
+    <lastmod>2021-05-05T07:59:26-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/key-topics/childhealth/</loc>
     <lastmod>2021-05-05T07:59:26-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/extermination/</loc>
     <lastmod>2021-05-05T07:59:02-04:00</lastmod></url><url>
@@ -1429,7 +1429,6 @@
                 hreflang="en"
                 href="/IndicatorPublic/data-stories/asthma-and-poverty/"
                 /></url><url>
-    <loc>/IndicatorPublic/data-features/heat-report-archive/2023/fig_1_interactive/</loc></url><url>
     <loc>/IndicatorPublic/neighborhood-reports/active_design_physical_activity_and_health/</loc></url><url>
     <loc>/IndicatorPublic/neighborhood-reports/bayside_little_neck/active_design_physical_activity_and_health/</loc></url><url>
     <loc>/IndicatorPublic/neighborhood-reports/bedford_stuyvesant_crown_heights/active_design_physical_activity_and_health/</loc></url><url>

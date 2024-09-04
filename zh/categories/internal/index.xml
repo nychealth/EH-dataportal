@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Internal on Environment &amp; Health Data Portal</title>
+    <title>internal on Environment &amp; Health Data Portal</title>
     <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/zh/categories/internal/</link>
-    <description>Recent content in Internal on Environment &amp; Health Data Portal</description>
-    <generator>Hugo</generator>
+    <description>Recent content in internal on Environment &amp; Health Data Portal</description>
+    <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <lastBuildDate>Sat, 01 Aug 2020 08:33:22 -0400</lastBuildDate>
     <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/zh/categories/internal/index.xml" rel="self" type="application/rss+xml" />

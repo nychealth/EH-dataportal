@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Density on Environment &amp; Health Data Portal</title>
+    <title>density on Environment &amp; Health Data Portal</title>
     <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/density/</link>
-    <description>Recent content in Density on Environment &amp; Health Data Portal</description>
-    <generator>Hugo</generator>
+    <description>Recent content in density on Environment &amp; Health Data Portal</description>
+    <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Mon, 12 Apr 2021 12:02:09 -0400</lastBuildDate>
     <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/density/index.xml" rel="self" type="application/rss+xml" />
