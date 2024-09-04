@@ -100,7 +100,7 @@ jobs:
       - name: Hugo setup
         uses: peaceiris/actions-hugo@v3
         with:
-          hugo-version: "0.133.1"
+          hugo-version: "0.122.0"
           extended: true
 
       # cache Hugo modules
