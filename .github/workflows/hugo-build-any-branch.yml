@@ -11,7 +11,6 @@ on:
         description: Branch to build
         required: false
         type: string
-        default: ${{ github.ref_name }}
 
       publish-branch:
         description: Branch name for build files
@@ -30,8 +29,8 @@ on:
         type: string
 
 env:
-  publish_branch: ${{ inputs.publish-branch && inputs.publish-branch || inputs.branch }}
-  HUGO_GIT_BRANCH: ${{ inputs.branch }}
+  publish_branch: ${{ inputs.publish-branch && inputs.publish-branch || inputs.branch && inputs.branch || github.ref_name }}
+  HUGO_GIT_BRANCH: ${{ inputs.branch && inputs.branch || github.ref_name }}
   TZ: America/New_York
   
 jobs:
