@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>About the EH Data Portal on Environment &amp; Health Data Portal</title>
+    <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/about/</link>
+    <description>Recent content in About the EH Data Portal on Environment &amp; Health Data Portal</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 07 Nov 2022 08:49:22 -0400</lastBuildDate>
+    <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/about/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Advanced site tools</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/about/advanced-tools/</link>
+      <pubDate>Mon, 07 Nov 2022 08:49:22 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/about/advanced-tools/</guid>
+      <description>If you are a data scientist, programmer, open data enthusiast, open source evangelist, data visualiation specialist or somebody who aspires to be any of those, then there are some advanced features of the Environment and Health Data Portal that you can use to get and use our data.&#xA;Re-use data visualizations The visualizations on our site&amp;rsquo;s Data Explorer use a JavaScript library called Vega-Lite. Vega-lite provides a few options for you to use the visualizations in other contexts.</description>
+    </item>
+    <item>
+      <title>The redesigned EH Data Portal</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/about/redesign/</link>
+      <pubDate>Mon, 07 Nov 2022 08:49:22 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/about/redesign/</guid>
+      <description>The Environment and Health Data Portal looks a little bit different! We recently redesigned our site to make it easier for you to find important data and information on how the environment affects health. Here&amp;rsquo;s what the new site has to offer: An updated design:&#xA;The whole site got a fresh design to make exploring easier for you – whether you’re on a desktop computer, a phone, or a tablet. It&amp;rsquo;s been optimized for accessibility, translation, and clear, simple presentation of information, using the NYC Core Framework, an open-source framework based on Bootstrap.</description>
+    </item>
+    <item>
+      <title>We&#39;re Hiring!</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/about/jobs/</link>
+      <pubDate>Wed, 24 Nov 2021 13:30:21 -0500</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/about/jobs/</guid>
+      <description>Join our team! See below for open positions in our bureau - or, search cityjobs.nyc.gov for &amp;lsquo;BESP&amp;rsquo;.&#xA;Community Resilience Coordinator: We&amp;rsquo;re hiring a Community Resilience Coordinator to support the Bureau of Health Equity Capacity Building in engaging with community organizations such as houses of worship, medical clinics, and senior centers about climate resiliency through trainings, presentations, and communication plans. This role will also involve the development of tools for internal leadership, decisionmakers, and policymakers, and strategizing on incorporating evidence-based climate resiliency activities into existing public health programs.</description>
+    </item>
+  </channel>
+</rss>

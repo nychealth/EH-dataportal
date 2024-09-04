@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>user research on Environment &amp; Health Data Portal</title>
+    <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/user-research/</link>
+    <description>Recent content in user research on Environment &amp; Health Data Portal</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 07 Nov 2022 08:49:22 -0400</lastBuildDate>
+    <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/user-research/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Advanced site tools</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/about/advanced-tools/</link>
+      <pubDate>Mon, 07 Nov 2022 08:49:22 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/about/advanced-tools/</guid>
+      <description>If you are a data scientist, programmer, open data enthusiast, open source evangelist, data visualiation specialist or somebody who aspires to be any of those, then there are some advanced features of the Environment and Health Data Portal that you can use to get and use our data.&#xA;Re-use data visualizations The visualizations on our site&amp;rsquo;s Data Explorer use a JavaScript library called Vega-Lite. Vega-lite provides a few options for you to use the visualizations in other contexts.</description>
+    </item>
+    <item>
+      <title>The redesigned EH Data Portal</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/about/redesign/</link>
+      <pubDate>Mon, 07 Nov 2022 08:49:22 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/about/redesign/</guid>
+      <description>The Environment and Health Data Portal looks a little bit different! We recently redesigned our site to make it easier for you to find important data and information on how the environment affects health. Here&amp;rsquo;s what the new site has to offer: An updated design:&#xA;The whole site got a fresh design to make exploring easier for you – whether you’re on a desktop computer, a phone, or a tablet. It&amp;rsquo;s been optimized for accessibility, translation, and clear, simple presentation of information, using the NYC Core Framework, an open-source framework based on Bootstrap.</description>
+    </item>
+    <item>
+      <title>The redesigned EH Data Portal</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/redesign/</link>
+      <pubDate>Mon, 07 Nov 2022 08:49:22 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/redesign/</guid>
+      <description>The Environment and Health Data Portal looks a little bit different! We recently redesigned our site to make it easier for you to find important data and information on how the environment affects health. Here&amp;rsquo;s what the new site has to offer: An updated design:&#xA;The whole site got a fresh design to make exploring easier for you – whether you’re on a desktop computer, a phone, or a tablet. It&amp;rsquo;s been optimized for accessibility, translation, and clear, simple presentation of information, using the NYC Core Framework, an open-source framework based on Bootstrap.</description>
+    </item>
+    <item>
+      <title>Our Roadmap: An Open Path Forward</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/roadmap/</link>
+      <pubDate>Tue, 07 Jul 2020 08:49:22 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/roadmap/</guid>
+      <description>In 2020, we partnered with Open Tech Strategies to review the Environment and Health Data Portal and plan for its future development.&#xA;Open Tech Strategies prepared a report with recommendations for our strategy and technology that would help us re-develop the site to better serve our users (you). It covers:&#xA;Open source software Modular contracting Communication strategies User research Workflows and internal tools to support this work You can read the full report here.</description>
+    </item>
+    <item>
+      <title>Why we&#39;re working with you to redesign the data portal</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/codesign/</link>
+      <pubDate>Thu, 13 Feb 2020 08:29:34 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/codesign/</guid>
+      <description>We&amp;rsquo;re making changes, and we need your help.&#xA;A few months ago, when we redesigned the home page of the Environment &amp;amp; Health Data Portal, we wrote that we were working toward &amp;ldquo;building a system that works: that’s intuitive and makes our information clear and easy-to-find.&amp;rdquo;&#xA;As a government agency, we&amp;rsquo;re committed to making information available via the web. By doing this well, we hope that people can use this information to change their lives and their communities.</description>
+    </item>
+  </channel>
+</rss>

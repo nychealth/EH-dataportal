@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>internal on Environment &amp; Health Data Portal</title>
+    <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/zh/categories/internal/</link>
+    <description>Recent content in internal on Environment &amp; Health Data Portal</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Sat, 01 Aug 2020 08:33:22 -0400</lastBuildDate>
+    <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/zh/categories/internal/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>环境与健康数据门户上的社区边界</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/zh/data-stories/geographies/</link>
+      <pubDate>Sat, 01 Aug 2020 08:33:22 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/zh/data-stories/geographies/</guid>
+      <description>纽约市有数百个社区和几乎同样多的划分社区边界的方法。当您访问环境与健康数据门户网站或卫生局（Health Department）的其他数据资源时，您可能会注意到数据以多种不同的社区方案呈现。&#xA;例如，深入研究哮喘数据页面，您会发现基于UHF34社区方案划分的患有哮喘的成人数据、基于UHF42社区方案划分的患有哮喘的公立学校儿童数据以及基于NTA方案划分的哮喘急诊科就诊人数数据。门户网站上提供的其他数据由CD、邮编、PUMA划分，有时甚至依据警察辖区划分。这些社区方案是什么，为什么我们使用这一种而不是另一种，为什么整个系统不一致？&#xA;卫生局数据中最常见的社区边界是社区单元（Community Districts，CD）、公共使用微数据区（Public Use Microdata Areas，PUMA）和联合医院基金社区（United Hospital Fund neighborhoods，UHF）。这三种常见的社区方案具有不同的组成模块。让我们来探索这些吧。&#xA;嵌套：不同社区方案如何具有不同的基础单位 社区单元 和 PUMAs 的边界相似.&#xA;PUMA&#xA;PUMAs 由 NTA组成， 由人口普查区组成&#xA;NTA&#xA;人口普查区&#xA;UHFs 由邮编制表区域（ZCTA）组成。&#xA;邮编（或ZCTA)&#xA;社区单元 纽约市共有59个社区单元（CD），每个社区单元由一个社区委员会监管，该委员会就土地使用、分区、城市预算等提出建议。作为政治边界，CD是有益于分解城市运营的地理单位。了解有关社区委员会的更多信息。&#xA;公共使用微数据区 公共使用微数据区（Public Use Microdata Areas，PUMA）的边界由美国人口普查定义。他们由人口普查区组成。&#xA;纽约市有55个PUMA。PUMA与社区单元具有相似的边界，这意味着通常可以将其中一个用作另一个方案的替代。在下面的地图中，请注意位于Greenpoint/Williamsburg的Brooklyn CD 1与PUMA几乎相同。&#xA;四个PUMA区域是由两个CD区域合二为一。请注意South Bronx区的两个CD区域是如何合并成一个 PUMA区域。&#xA;每个PUMA都细分为社区制表区（NTA），每个NTA进一步细分为人口普查区。&#xA;社区单元 &amp;nbsp;&amp;nbsp; PUMA &amp;nbsp;&amp;nbsp; NTA 联合医院基金社区 联合医院基金社区（United Hospital Fund neighborhoods，UHF）的边界基于邮编。这个地理单位是由卫生局、联合医院基金社区和其他市政机构在20世纪80年代创建的。它们设计用于健康研究，类似于纽约市的社区单元。&#xA;健康数据（例如某人的住院记录或对一项调查的回复）通常包括一个人的邮编。它是行政管理数据中最容易获得的地理信息。这也是大多数人在回答调查时都知道并可以提供的社区指代&#xA;为了保护隐私，我们经常捆绑（或汇总）来自一个更大区域的数据，因此我们需要一组由邮编组成的社区方案：UHF。通过邮编收集数据，然后“汇总”到UHF社区，几十年来这种方案一直用于健康研究。我们的调查方法（如社区健康调查）旨在包括来自每个UHF社区的足够多的人口，以便所有纽约人都有一个“代表性样本”，这样我们就能够以统计可信度高的方式对比社区。通常，我们使用UHF42社区方案，将纽约市分为42个社区。不过，有时我们会使用UHF34社区方案——通过将一些社区组合在一起，我们可以提高调查的统计效力。&#xA;在下面的地图中，请注意位于South Bronx区的三个UHF42社区如何合并为一个UHF34社区，以及UHF社区如何将邮编（或更准确地说，邮编制表区域）作为其基础单位.&#xA;UHF42 &amp;nbsp;&amp;nbsp; UHF34 &amp;nbsp;&amp;nbsp; 邮编 当边界重叠时如何选择？ 这些不同的社区边界会使事情变得令人困惑。例如，假设您住在Ditmas Park，并且您想将一些健康数据带到您的社区委员会的一场会议上。Ditmas Park是位于Flatbush/Midwood的社区单元14的一部分。但CD14跨越两个不同的UHF社区。&#xA;我们有一个工具可以帮助您查看重叠和差异，以便您可以选择使用哪种社区方案进行报告，但它仍然提出了一个难题：您会带哪些社区的数据参加您的社区委员会会议？&#xA;在EH数据门户网站上，我们汇总了来自许多不同来源的数据。它们可能不完全按照我们希望的方式排列：当出于不同目的以不同方式收集数据时，可用的基础地理方案会有所不同。没有一个一致的基础单位确实使事情变得复杂。&#xA;但是，任何绘制边界或汇总数据的方式都可以消除组内的某些差异。尽管数据存在局限性，但我们仍然可以按地理位置查看健康模式，并了解有关社区差异及其原因的宝贵信息。社区健康数据可以告诉我们很多信息，即使它们的边界不能完美地代表纽约市的所有社区。&#xA;如果您正在映射健康数据，您可以在我们的Github资源库中下载和使用shapefile、geojson和topojson文件。</description>
+    </item>
+  </channel>
+</rss>

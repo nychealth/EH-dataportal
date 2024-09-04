@@ -1,0 +1,457 @@
+{
+  "active-design": {
+    "IndicatorID": [
+      2388,
+      2133,
+      2181,
+      2416,
+      2389,
+      2158,
+      2391,
+      2390,
+      2426,
+      2425,
+      2157,
+      2143
+    ],
+    "topic_name": "Active design"
+  },
+  "air-quality": {
+    "IndicatorID": [
+      2023,
+      2024,
+      2028,
+      2025,
+      2027,
+      2026,
+      92,
+      57,
+      55,
+      null
+    ],
+    "topic_name": "Air quality"
+  },
+  "alcohol-use": {
+    "IndicatorID": [
+      2049,
+      2057,
+      2050,
+      2051,
+      2056,
+      2055
+    ],
+    "topic_name": "Alcohol access and use"
+  },
+  "asthma": {
+    "IndicatorID": [
+      2414,
+      18,
+      2392,
+      2339,
+      2429,
+      2431,
+      2380,
+      2384,
+      2048,
+      2378,
+      2379,
+      2383,
+      2382,
+      2387,
+      84,
+      2385,
+      2381,
+      2386
+    ],
+    "topic_name": "Asthma"
+  },
+  "asthma-triggers": {
+    "IndicatorID": [
+      107,
+      2101,
+      2393,
+      2394,
+      48,
+      2430
+    ],
+    "topic_name": "Asthma triggers at home"
+  },
+  "bed-bugs": {
+    "IndicatorID": [
+      2030
+    ],
+    "topic_name": "Bed bugs"
+  },
+  "birth-defects": {
+    "IndicatorID": [
+      26,
+      30,
+      31,
+      36,
+      37,
+      33,
+      28,
+      32,
+      35,
+      27,
+      101,
+      29,
+      34
+    ],
+    "topic_name": "Birth defects"
+  },
+  "birth-outcomes": {
+    "IndicatorID": [
+      1,
+      2,
+      4,
+      3,
+      5,
+      6,
+      7,
+      8
+    ],
+    "topic_name": "Birth outcomes"
+  },
+  "cancer": {
+    "IndicatorID": [
+      74,
+      2096,
+      66,
+      60,
+      770,
+      2077,
+      2087,
+      2088,
+      73,
+      2089,
+      63,
+      2090,
+      2095,
+      71,
+      2091,
+      64,
+      690
+    ],
+    "topic_name": "Cancer"
+  },
+  "cancers-in-children": {
+    "IndicatorID": [
+      2039,
+      2037,
+      2035,
+      2033,
+      2031
+    ],
+    "topic_name": "Cancers in children"
+  },
+  "carbon-monoxide-incidents": {
+    "IndicatorID": [
+      38,
+      2168,
+      2405,
+      2406,
+      2398
+    ],
+    "topic_name": "Carbon monoxide"
+  },
+  "cigarette-smoke": {
+    "IndicatorID": [
+      2338,
+      2020,
+      2017,
+      2421,
+      2019,
+      2021,
+      2422,
+      2404,
+      25
+    ],
+    "topic_name": "Cigarette smoke"
+  },
+  "climate": {
+    "IndicatorID": [
+      2411,
+      2191,
+      2084,
+      2141,
+      2143,
+      2104,
+      2185,
+      2377
+    ],
+    "topic_name": "Climate"
+  },
+  "cockroaches": {
+    "IndicatorID": [
+      22,
+      2393,
+      107
+    ],
+    "topic_name": "Cockroaches"
+  },
+  "drinking-water-quality": {
+    "IndicatorID": [
+      2207,
+      2043,
+      2041,
+      2044
+    ],
+    "topic_name": "Drinking water quality"
+  },
+  "economic-conditions": {
+    "IndicatorID": [
+      103,
+      2176,
+      2337,
+      2132,
+      17,
+      2336,
+      15,
+      2365
+    ],
+    "topic_name": "Economic conditions"
+  },
+  "falls-among-older-adults": {
+    "IndicatorID": [
+      2135,
+      2408,
+      2136,
+      2409,
+      2188,
+      2403
+    ],
+    "topic_name": "Falls among older adults"
+  },
+  "health-care": {
+    "IndicatorID": [
+      2151,
+      2132,
+      2401,
+      2232
+    ],
+    "topic_name": "Health care"
+  },
+  "health-impacts-of-air-pollution": {
+    "IndicatorID": [
+      2122,
+      2117,
+      2124,
+      2120,
+      2119,
+      2121,
+      2108
+    ],
+    "topic_name": "Health impacts of air pollution"
+  },
+  "healthy-eating": {
+    "IndicatorID": [
+      2432,
+      2389,
+      2097,
+      2098
+    ],
+    "topic_name": "Healthy eating"
+  },
+  "housing-maintenance": {
+    "IndicatorID": [
+      2396,
+      2395,
+      46,
+      47,
+      45,
+      40,
+      42,
+      41,
+      2399,
+      2179
+    ],
+    "topic_name": "Housing maintenance"
+  },
+  "housing-safety": {
+    "IndicatorID": [
+      2188,
+      2104,
+      2185,
+      2377
+    ],
+    "topic_name": "Housing safety"
+  },
+  "housing-stability": {
+    "IndicatorID": [
+      2365,
+      15,
+      17,
+      2336
+    ],
+    "topic_name": "Housing stability"
+  },
+  "lead": {
+    "IndicatorID": [
+      2189,
+      2184,
+      2216,
+      2176,
+      2209,
+      41,
+      16
+    ],
+    "topic_name": "Lead poisoning"
+  },
+  "mice-and-rats": {
+    "IndicatorID": [
+      2434,
+      2433,
+      24,
+      2394,
+      48,
+      2416
+    ],
+    "topic_name": "Mice and rats"
+  },
+  "mortality": {
+    "IndicatorID": [
+      2322,
+      5,
+      6,
+      8
+    ],
+    "topic_name": "Mortality"
+  },
+  "overweight": {
+    "IndicatorID": [
+      2063,
+      2064,
+      2061,
+      2062
+    ],
+    "topic_name": "Overweight"
+  },
+  "pesticides": {
+    "IndicatorID": [
+      91,
+      2235,
+      100,
+      2312,
+      96,
+      94,
+      93,
+      99,
+      97,
+      98,
+      102,
+      2366,
+      2364,
+      2367,
+      2368,
+      2369,
+      2374,
+      2370
+    ],
+    "topic_name": "Pesticides"
+  },
+  "physical-activity": {
+    "IndicatorID": [
+      2060,
+      2059,
+      2058
+    ],
+    "topic_name": "Physical activity"
+  },
+  "restaurant-food-safety": {
+    "IndicatorID": [
+      2065
+    ],
+    "topic_name": "Restaurant food safety"
+  },
+  "social-conditions": {
+    "IndicatorID": [
+      2325,
+      2145,
+      14,
+      2334,
+      2317,
+      2335,
+      2146,
+      2323
+    ],
+    "topic_name": "Social conditions"
+  },
+  "transportation-related-injuries": {
+    "IndicatorID": [
+      2092,
+      2086,
+      2094,
+      2093
+    ],
+    "topic_name": "Transportation-related injuries"
+  },
+  "vector-borne-disease": {
+    "IndicatorID": [
+      2218,
+      2340
+    ],
+    "topic_name": "Vector-borne disease"
+  },
+  "violence": {
+    "IndicatorID": [
+      2400,
+      2375
+    ],
+    "topic_name": "Violence"
+  },
+  "walking-driving-and-cycling": {
+    "IndicatorID": [
+      2415,
+      2133,
+      2172,
+      2058,
+      2173,
+      2059,
+      2425,
+      2426,
+      2236,
+      2237,
+      2238,
+      2112,
+      2113,
+      2114
+    ],
+    "topic_name": "Walking, driving, and cycling"
+  },
+  "waterways": {
+    "IndicatorID": [
+      2427,
+      2428
+    ],
+    "topic_name": "Waterways"
+  },
+  "weather-related-illness": {
+    "IndicatorID": [
+      2376,
+      2175,
+      2174,
+      2084,
+      2074,
+      2075,
+      2443,
+      2076,
+      2410,
+      2191,
+      2411
+    ],
+    "topic_name": "Weather-related illness"
+  },
+  "worker-health": {
+    "IndicatorID": [
+      2209,
+      2211,
+      2208,
+      2210,
+      2214,
+      2239,
+      2215
+    ],
+    "topic_name": "Worker health"
+  }
+}

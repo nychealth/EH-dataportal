@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>safety on Environment &amp; Health Data Portal</title>
+    <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/safety/</link>
+    <description>Recent content in safety on Environment &amp; Health Data Portal</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 15 Dec 2022 13:11:44 -0400</lastBuildDate>
+    <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/safety/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Staying safe in cold weather</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/cold/</link>
+      <pubDate>Thu, 15 Dec 2022 13:11:44 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/cold/</guid>
+      <description>Cold weather can be dangerous. Here are some tips for staying safe this winter.</description>
+    </item>
+    <item>
+      <title>Restaurant food safety</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/restaurant-food-safety/</link>
+      <pubDate>Fri, 28 May 2021 18:02:58 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/restaurant-food-safety/</guid>
+      <description>New York City has approximately 28,000 restaurants that the Health Department inspects every year to monitor compliance with city and state food safety regulations. At the end of an inspection, the Health Department gives restaurants a score, which is eventually converted to a grade of A, B or C. This site describes the distribution of A grades across New York City restaurants.&#xA;Restaurant Food Safety and Health Safe food handling can protect diners from foodborne illness.</description>
+    </item>
+    <item>
+      <title>Transportation-related injuries</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/transportation-related-injuries/</link>
+      <pubDate>Fri, 28 May 2021 18:02:58 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/transportation-related-injuries/</guid>
+      <description>Traffic injuries are no accident. Like other public health concerns, they are preventable through data driven solutions. In NYC, traffic injuries, which include injuries among pedestrians, bicyclists, motorcyclists, and motor vehicle occupants, are a leading cause of injury-related hospitalizations and emergency department visits.&#xA;In February 2014, NYC launched “Vision Zero”, an action plan to reduce injuries and deaths on city streets. Vision Zero is a multi-agency effort, incorporating road engineering, traffic enforcement, community outreach and education, and policy work to make NYC streets safer.</description>
+    </item>
+    <item>
+      <title>Walking, driving, and cycling</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/walking-driving-and-cycling/</link>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/walking-driving-and-cycling/</guid>
+      <description>People get around New York City in many ways - public transit, walking, cycling, driving, and other modes too. When these individual behaviors are added up, they shape our city and our health.&#xA;Our built environment influences these behaviors. The design of our streets and presence of infrastructure like bicycle lanes, well maintained sidewalks, safe street crossings, dedicated bus lanes and convenient access to the subway have the potential to increase both the usage and safety of these forms of transportation.</description>
+    </item>
+    <item>
+      <title>Environments matter: the road to street safety in NYC</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/streets/</link>
+      <pubDate>Sun, 20 Sep 2020 10:54:51 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/streets/</guid>
+      <description>The COVID-19 public health emergency has changed New York City in many ways—including how we get around the city. As the city continues to adapt to COVID-19, New Yorkers will look for ways to get around that feel safe—redistributing transit among different modes to ease crowding and increase safety on public transportation.&#xA;As more New Yorkers use bicycles, let&amp;rsquo;s take a look at safety on our streets.&#xA;Cyclist safety in public health data New York City’s streets offer opportunities for active transportation, like cycling and walking, but can also pose risks from collisions.</description>
+    </item>
+  </channel>
+</rss>

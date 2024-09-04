@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>equity on Environment &amp; Health Data Portal</title>
+    <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/equity/</link>
+    <description>Recent content in equity on Environment &amp; Health Data Portal</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 02 Oct 2021 07:56:00 -0400</lastBuildDate>
+    <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/equity/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Displacement Risk</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/displacement-risk/</link>
+      <pubDate>Sat, 02 Oct 2021 07:56:00 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/displacement-risk/</guid>
+      <description>Housing stability creates health, but in NYC, many people have difficulty accessing healthy, stable housing.&#xA;In some neighborhoods, residents at are higher risk of being displaced - forced to leave their homes, and their neighborhoods, due combinations of market pressure, rent burden, housing conditions, poverty, and injustice in the housing market.&#xA;To show people&amp;rsquo;s risk of being forced out of their homes or neighborhoods, the Department of City Planning and the Department of Housing Preservation and Development created a Displacement Risk Index, part of the Equitable Development Data Explorer.</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>active design on Environment &amp; Health Data Portal</title>
+    <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/active-design/</link>
+    <description>Recent content in active design on Environment &amp; Health Data Portal</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 28 May 2021 18:02:58 -0400</lastBuildDate>
+    <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/active-design/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Active design</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/active-design/</link>
+      <pubDate>Fri, 28 May 2021 18:02:58 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/active-design/</guid>
+      <description>Physical activity and healthy eating are among the leading ways to get and stay healthy.&#xA;Active design is an applied, evidence-informed approach to improve physical, mental and social health outcomes through the design of the built environment.&#xA;To improve health, we can:&#xA;Increase access to public parks and recreation Create pedestrian plazas, and maintain sidewalks Plant street trees Provide safer cycling infrastructure and secure bicycle storage Make stairways attractive and accessible Strategies like these can have a measurable effect on people’s ability to safely maintain their physical, mental, and social health.</description>
+    </item>
+    <item>
+      <title>Physical activity</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/physical-activity/</link>
+      <pubDate>Fri, 28 May 2021 18:02:58 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/physical-activity/</guid>
+      <description>Physical activity is an important part of a healthy lifestyle. Regular physical activity is associated with many health benefits, including improved fitness, prevention of weight gain, and lower risk of heart disease, stroke, high blood pressure, diabetes and some cancers. In addition, regular physical activity and healthy eating can promote well-being and relieve stress. For children, regular physical activity is also associated with improved academic performance.&#xA;Physical Activity and the Environment Neighborhood conditions and resources can encourage or discourage healthy behaviors.</description>
+    </item>
+    <item>
+      <title>Environments matter: the road to street safety in NYC</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/streets/</link>
+      <pubDate>Sun, 20 Sep 2020 10:54:51 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/streets/</guid>
+      <description>The COVID-19 public health emergency has changed New York City in many ways—including how we get around the city. As the city continues to adapt to COVID-19, New Yorkers will look for ways to get around that feel safe—redistributing transit among different modes to ease crowding and increase safety on public transportation.&#xA;As more New Yorkers use bicycles, let&amp;rsquo;s take a look at safety on our streets.&#xA;Cyclist safety in public health data New York City’s streets offer opportunities for active transportation, like cycling and walking, but can also pose risks from collisions.</description>
+    </item>
+  </channel>
+</rss>
