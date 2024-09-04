@@ -9,7 +9,7 @@ on:
 
       branch:
         description: Branch to build
-        required: true
+        required: false
         type: string
 
       publish-branch:
@@ -29,8 +29,8 @@ on:
         type: string
 
 env:
-  publish_branch: ${{ inputs.publish-branch && inputs.publish-branch || inputs.branch }}
-  HUGO_GIT_BRANCH: ${{ inputs.branch }}
+  publish_branch: ${{ inputs.publish-branch && inputs.publish-branch || inputs.branch && inputs.branch || github.ref_name && github.ref_name }}
+  HUGO_GIT_BRANCH: ${{ inputs.branch && inputs.branch || github.ref_name && github.ref_name }}
   TZ: America/New_York
   
 jobs:
@@ -42,7 +42,7 @@ jobs:
   build:
     runs-on: ubuntu-20.04
     # can't use the "env" context at the job level, only in steps, so need to eval the conditional again
-    name: Build `${{ inputs.branch }} to builds/${{ inputs.publish-branch && inputs.publish-branch || inputs.branch }}`
+    name: Build `${{ inputs.branch && inputs.branch || github.ref_name && github.ref_name }} to builds/${{ inputs.publish-branch && inputs.publish-branch || inputs.branch && inputs.branch || github.ref_name && github.ref_name }}`
 
     # wait for other triggered jobs to finish before running this
 
@@ -85,6 +85,7 @@ jobs:
           node-version: 22.5.x
           cache: "npm"
 
+
       # set up cache for node modules
 
       - name: Cache node_modules
@@ -110,7 +111,17 @@ jobs:
 
       - name: Install dependencies
         if: steps.cache-nodemodules.outputs.cache-hit != 'true'
-        run: npm install
+        run: |
+          npm install @pagefind/linux-x64
+          npm ci
+
+      # list dependencies
+      
+      - name: List dependencies
+        run: npm ls
+
+      - name: List sub-dependencies
+        run: npm ls --all
 
       # set up Hugo
 

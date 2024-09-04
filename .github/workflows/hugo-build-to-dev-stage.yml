@@ -95,7 +95,17 @@ jobs:
 
       - name: Install dependencies
         if: steps.cache-nodemodules.outputs.cache-hit != 'true'
-        run: npm install
+        run: |
+          npm install @pagefind/linux-x64
+          npm ci
+
+      # list dependencies
+      
+      - name: List dependencies
+        run: npm ls
+
+      - name: List sub-dependencies
+        run: npm ls --all
 
       # set up Hugo
 
