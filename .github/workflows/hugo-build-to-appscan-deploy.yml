@@ -88,6 +88,14 @@ jobs:
             ${{ runner.os }}-build-
             ${{ runner.os }}-
 
+      # list dependencies
+      
+      - name: List dependencies
+        run: npm ls
+
+      - name: List sub-dependencies
+        run: npm ls --all
+        
       # update npm dependencies (if cached)
 
       - name: Update dependencies

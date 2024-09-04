@@ -85,10 +85,15 @@ jobs:
             ${{ runner.os }}-build-
             ${{ runner.os }}-
 
-      # update npm dependencies (if cached)
-
+      # list dependencies
+      
       - name: List dependencies
         run: npm ls
+
+      - name: List sub-dependencies
+        run: npm ls --all
+
+      # update npm dependencies (if cached)
 
       - name: Update dependencies
         if: steps.cache-nodemodules.outputs.cache-hit == 'true'
