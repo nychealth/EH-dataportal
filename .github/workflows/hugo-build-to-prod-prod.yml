@@ -87,6 +87,9 @@ jobs:
 
       # update npm dependencies (if cached)
 
+      - name: List dependencies
+        run: npm ls
+
       - name: Update dependencies
         if: steps.cache-nodemodules.outputs.cache-hit == 'true'
         run: npm update
@@ -95,7 +98,7 @@ jobs:
 
       - name: Install dependencies
         if: steps.cache-nodemodules.outputs.cache-hit != 'true'
-        run: npm install
+        run: npm ci
 
       # set up Hugo
 
