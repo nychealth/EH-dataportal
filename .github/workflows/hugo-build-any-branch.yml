@@ -29,8 +29,8 @@ on:
         type: string
 
 env:
-  publish_branch: ${{ inputs.publish-branch && inputs.publish-branch || inputs.branch && inputs.branch || github.ref_name }}
-  HUGO_GIT_BRANCH: ${{ inputs.branch && inputs.branch || github.ref_name }}
+  publish_branch: ${{ inputs.publish-branch && inputs.publish-branch || inputs.branch && inputs.branch || github.ref_name && github.ref_name }}
+  HUGO_GIT_BRANCH: ${{ inputs.branch && inputs.branch || github.ref_name && github.ref_name }}
   TZ: America/New_York
   
 jobs:
