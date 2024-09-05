@@ -1,0 +1,2518 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+
+
+
+
+    
+
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-64BWDRHRGB"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-64BWDRHRGB');
+    </script>
+
+    
+    <meta name="robots" content="all" />
+
+    
+
+
+
+
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<title>Waterway data for NYC</title>
+
+
+
+
+<meta name="description" content="Datasets and visualizations of waterway quality in NYC. ">
+<link rel="canonical" href="/IndicatorPublic/data-explorer/waterways/" />
+<meta name="geo.region" content="" />
+<meta name="geo.placename" content="Environment &amp; Health Data Portal" />
+
+
+<meta property="fb:profile_id" content="0" />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="en_us" />
+<meta property="og:url" content="/IndicatorPublic/data-explorer/waterways/" />
+<meta property="og:title" content="Waterway data for NYC  &ndash; Environment &amp; Health Data Portal" />
+<meta property="og:description" content="Explore data, visualizations, and more on ways that environments shape health in New York City&#39;s neighborhoods. " />
+<meta property="og:site_name" content="Environment &amp; Health Data Portal" />
+<meta property="og:image" content="/IndicatorPublic/images/report_bottom_background_hu55023dbc37de342337a21cf33dcc5889_222582_2400x1260_fill_q95_catmullrom_smart1.jpg">
+<meta property="og:see_also" content="https://twitter.com/nycHealthy" />
+<meta name="twitter:title" content="Waterway data for NYC  &ndash; Environment &amp; Health Data Portal">
+<meta name="twitter:description" content=" Explore data, visualizations, and more on ways that environments shape health in New York City&#39;s neighborhoods. ">
+<meta name="twitter:image" content=" /IndicatorPublic/images/report_bottom_background.jpg">
+<meta name="twitter:site" content="@nycHealthy">
+<meta name="twitter:creator" content="@nycHealthy">
+
+
+
+<script src="/IndicatorPublic/node_modules/jquery/dist/jquery.min.bf6089ed4698cb8270a8b0c8ad9508ff886a7a842278e98064d5c1790ca3a36d5d69d9f047ef196882554fc104da2c88eb5395f1ee8cf0f3f6ff8869408350fe.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR&#43;8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous"></script>
+
+
+
+
+<link rel="icon" href=/IndicatorPublic/7618350_heatmap_business_analytics_statistics_icon-gpr.ico type="image/x-icon">
+
+<link rel="stylesheet" href="/IndicatorPublic/node_modules/@fortawesome/fontawesome-free/css/all.min.css" />
+
+<script src="/IndicatorPublic/node_modules/@fortawesome/fontawesome-free/js/all.min.eac49826a0eb7994591a42776fe61f7610773339ae3fd47b5f5419ea0e5a217851bd1d58fcdfcfe3b8e69e410d9bb60bde8aac988e802be57a003f7db960e723.js" integrity="sha512-6sSYJqDreZRZGkJ3b&#43;YfdhB3MzmuP9R7X1QZ6g5aIXhRvR1Y/N/P47jmnkENm7YL3oqsmI6AK&#43;V6AD99uWDnIw==" crossorigin="anonymous"></script>
+
+
+<link rel="stylesheet" href="/IndicatorPublic/scss/theme.20f247c8f7f7683e8c698d51d9d3f64981b92004a11972d1a9d4e1ce999d8abda9954469cd9353c569b5d9bfb8805041d0e1a0921d9bec59b9f5a7a26eca4b29.css" integrity="sha512-IPJHyPf3aD6MaY1R2dP2SYG5IAShGXLRqdThzpmdir2plURpzZNTxWm12b&#43;4gFBB0OGgkh2b7Fm59aeibspLKQ==" />
+
+<script src="/IndicatorPublic/node_modules/dompurify/dist/purify.min.8c1d1391305e402f594a406a0e17667d3bf5a9d7db5a9184ef6c89ff4d52aeaea1133648cf6c64cf57b9ee9f5a8bb21e1ccc041bb1e9cc6e8d769b428627f93e.js" integrity="sha512-jB0TkTBeQC9ZSkBqDhdmfTv1qdfbWpGE72yJ/01Srq6hEzZIz2xkz1e57p9ai7IeHMwEG7HpzG6NdptChif5Pg=="></script>
+
+
+
+
+
+<meta data-pagefind-filter="section[content]" content="Data Explorer"><script>
+
+    let baseURL = "/IndicatorPublic/"
+    let data_repo = "https:\/\/raw.githubusercontent.com\/nychealth\/EHDP-data\/";
+    let data_branch = "production";
+    let hugoEnv = "production"
+
+</script>
+
+
+<meta 
+        data-pagefind-meta="title:Waterways | Data Explorer"
+        class="d-none"
+    >
+
+  </head>
+
+
+
+<body>
+
+  
+<a class="sr-only sr-only-focusable skip-menu" href="#skip-header-target">Skip Header</a>
+
+<header id="global-header" role="banner">
+
+    <div class="bg-black text-white" id="nyc-top-header">
+
+        <div class="container-fluid wide">
+
+            <div class="row py-1 align-items-center justify-content-between">
+
+                <div class="col-auto">
+                    <p class="d-none d-md-flex fs-md">
+                        <a class="text-reset" href="https://www1.nyc.gov/">
+                            <strong>nyc.gov</strong>
+                        </a>
+                        <span class="mx-1" aria-hidden="true">></span>
+                        <a class="text-reset" href="https://www1.nyc.gov/">
+                            Health
+                        </a>
+                        <span class="mx-1" aria-hidden="true">></span>
+                        <a class="text-reset" href="/IndicatorPublic/data-explorer/waterways/">
+                        EH Data Portal
+                        </a>
+                    </p>
+                </div>
+                
+
+                <div class="col-auto">
+
+                    <ul class="extensible-list horizontal fs-md">
+                        <li class="d-print-none">
+                            <a class="text-reset" href="https://www1.nyc.gov/">
+                                <strong>
+                                    311
+                                </strong>
+                            </a>
+                        </li>
+                        <li class="d-print-none">
+                            <a class="text-reset" href="https://www1.nyc.gov/home/search/index.page">
+                                <strong>
+                                    Search all NYC.gov
+                                </strong>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www1.nyc.gov/" title="Go to nyc.gov">
+                                <img class="d-block" src=/IndicatorPublic/images/nyc-bubble-logo.svg width="45" alt="NYC Logo">
+                            </a>
+                        </li>
+                    </ul>
+
+                </div>
+                
+
+            </div>
+            
+
+        </div>
+        
+
+    </div>
+    
+    <div class="site-header bg-primary" style='background-image: url(/IndicatorPublic/images/header_background.jpg)'>
+        <div class="wrap-header">
+
+            <div class="container-fluid wide">
+
+                <div class="row align-items-center">
+
+                    <div class="col-lg py-3">
+                        <div class="d-flex justify-content-center justify-content-lg-start">
+                            <a href=/IndicatorPublic/><img src=/IndicatorPublic/7618350_heatmap_business_analytics_statistics_icon-gpr.ico style="height: 67px" class="pr-1"></a>
+
+                            <p class="text-white title-hover">
+                                <span class="site-subtitle"><a href='/IndicatorPublic/' class="link-no-dec">Environment & Health</span>
+                                <span class="site-title">Data Portal</a></span>
+                            </p>
+
+
+                        </div>
+                        
+                    </div>
+                    
+
+                    <div class="col-lg-auto border-top border-lg-0 d-print-none">
+
+                        <div class="d-lg-flex align-items-center">
+
+                            
+
+                            <ul class="extensible-list horizontal justify-content-between my-2 d-lg-none">
+                                <li>
+                                    <button class="navbar-toggler no-btn-style" type="button" title="Main Menu" data-toggle="collapse"
+                                        data-target="#nav-primary" aria-controls="nav-primary" aria-expanded="false"
+                                        aria-label="Toggle navigation">
+                                        <span class="sr-only">Main Menu</span>
+                                        <span class="fas fa-bars fa-lg text-white" ></span>
+                                    </button>
+                                </li>
+
+                                <li>
+                                    <a class="nav-link" href="#" type="button" data-toggle="modal" data-target="#searchModal" title="Search" data-toggle="collapse">
+                                        <span class="sr-only">Search</span>
+                                        <i class="fa fa-magnifying-glass text-white"></i>
+                                    </a>
+                                </li>
+                            </ul>
+
+                            <div class="collapse d-lg-block mx-n2 mx-lg-2" id="nav-primary">
+
+                                <nav class="nav" role="navigation">
+
+                                    <div class="nav-item bg-white text-primary border dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="nav-item-topic"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Topics
+                                        </a>
+
+                                        <div class="dropdown-menu wider-menu" aria-labelledby="nav-item-topic">
+                                            <ul class="extensible-list p-0">
+                                                
+                                                
+                                                    
+                                                    <a class="" href="/IndicatorPublic/key-topics/airquality/"> <li class="">Air quality</li></a>
+                                                    <hr class="my-1">
+                                                    
+                                                
+                                                
+                                                
+                                                    
+                                                    <a class="" href="/IndicatorPublic/key-topics/climatehealth/"> <li class="">Climate</li></a>
+                                                    <hr class="my-1">
+                                                    
+                                                
+                                                
+                                                
+                                                    
+                                                    <a class="" href="/IndicatorPublic/key-topics/housing/"> <li class="">Housing</li></a>
+                                                    <hr class="my-1">
+                                                    
+                                                
+                                                
+                                                
+                                                    
+                                                    <a class="" href="/IndicatorPublic/key-topics/social/"> <li class="">Inequality</li></a>
+                                                    <hr class="my-1">
+                                                    
+                                                
+                                                
+                                                
+                                                    
+                                                    <a class="" href="/IndicatorPublic/key-topics/transportation/"> <li class="">Public space</li></a>
+                                                    <hr class="my-1">
+                                                    
+                                                
+                                                
+                                                
+                                                
+                                                
+                                                    
+                                                    <a class="" href="/IndicatorPublic/key-topics/healthoutcomes/"> <li class="">Health outcomes</li></a>
+                                                    <hr class="my-1">
+                                                    
+                                                
+                                                
+                                                
+                                                    
+                                                    <a class="" href="/IndicatorPublic/key-topics/childhealth/"> <li class="">Child health</li></a>
+                                                    <hr class="my-1">
+                                                    
+                                                
+                                                
+                                                
+                                                    
+                                                    <a class="" href="/IndicatorPublic/key-topics/pests/"> <li class="">Pests and pesticides</li></a>
+                                                    <hr class="my-1">
+                                                    
+                                                
+                                                
+                                                
+                                                    
+                                                    <a class="" href="/IndicatorPublic/key-topics/foodanddrink/"> <li class="">Food and drink</li></a>
+                                                    <hr class="my-1">
+                                                    
+                                                
+                                                
+                                                    <a href=/IndicatorPublic/key-topics>All topics</a>
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    
+
+                                    <div class="nav-item bg-white text-primary border dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="nav-item-type"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Explore
+                                        </a>
+
+                                        <div class="dropdown-menu wider-menu" aria-labelledby="nav-item-type">
+                                            <ul class="extensible-list p-0">
+
+                                                <a href="/IndicatorPublic/data-stories/"><li><span class="mr-1"><span class='text-primary data-stories'><i class='fas fa-passport' aria-hidden='true'></i></span></span>Data Stories</li></a>
+
+                                                        <hr class="my-1">
+
+                                                    <a href="/IndicatorPublic/data-features/"><li><span class="mr-1"><span class='df-accent'><i class='fas fa-chart-bar' aria-hidden='true'></i></span></span>Data Features</li></a>
+
+                                                        <hr class="my-1">
+
+                                                    <a href="/IndicatorPublic/neighborhood-reports/"><li><span class="mr-1"><span class='text-primary n-reports'><i class='fas fa-map-marked-alt' aria-hidden='true'></i></span></span>Neighborhood Reports</li></a>
+
+                                                        <hr class="my-1">
+
+                                                    <a href="/IndicatorPublic/data-explorer/"><li><span class="mr-1"><span class='text-primary data-explorer'><i class='fas fa-chart-line' aria-hidden='true'></i></span></span>Data Explorer</li></a></ul>
+                                        </div>
+                                    </div>
+                                    
+
+                                    <div class="nav-item bg-white text-primary border">
+                                        <a class="nav-link " href="/IndicatorPublic/about/">
+                                            About
+                                        </a></div>
+                                    
+
+                                    
+
+                                    <div class="nav-item bg-white text-primary border d-none d-lg-block">
+                                        <a class="nav-link" href="#" type="button" data-toggle="modal" data-target="#searchModal" title="Search" data-toggle="collapse">
+                                                    <span class="sr-only">Search</span>
+                                                    <i class="fa fa-magnifying-glass text-body"></i>
+                                                </a>
+                                    </div>
+                                    
+
+                                </nav>
+
+                            </div>
+
+                        </div>
+                        
+
+                    </div>
+                    
+
+                </div>
+                
+
+            </div>
+            
+
+        </div>
+        
+
+        <div class="container-fluid border-top collapse" id="global-language">
+            <div class="narrow py-2">
+                <div id="google_translate_element"></div>
+            </div>
+        </div>
+
+
+        </div>
+
+</header>
+<main id="skip-header-target" role="main" data-pagefind-body>
+
+<style>
+     
+
+     
+    #vg-tooltip-element table tr {
+        border-bottom: 1px solid #d9d9d9;}
+     
+    #vg-tooltip-element table tr:last-child {
+        border-bottom: 0px;
+    }
+
+     
+    #vg-tooltip-element table tr td.key {
+        font-size: 12px!important;
+        color: #505050;
+        border-right: 1px solid #d9d9d9;
+        text-align: right;
+        padding-right: 10px;
+        width: max-content;
+    }
+
+     
+    #vg-tooltip-element table tr td.value {
+        font-size: 12px!important;
+        color: black;
+        text-align: left;
+        padding-left: 10px;
+        width: max-content;
+    }
+
+     
+    #summary-table table thead tr th {
+        font-size: 12px!important;
+        color: #4b4b4b;;
+        border: 1px solid #dee2e6;
+    }
+
+
+     
+    [aria-expanded="false"]>.expanded,
+    [aria-expanded="true"]>.collapsed {
+        display: none;
+    }
+
+    #truncate {
+        display: block;
+    }
+
+    #full {
+        display: none;
+    }
+
+    #expand-collapse {
+        cursor: pointer;
+    }
+
+    .show {
+        display: block !important;
+    }
+
+    .hide {
+        display: none !important;
+    }
+
+     
+
+    .dropdown-title {
+        padding: 0.25rem ;
+        font-size: 13px;
+        white-space: nowrap;
+    }
+
+    .indicator-measures h6 {
+        margin-top: 0.5em;
+    }
+
+    .dropdown-menu {
+        z-index: 2000;
+    }
+
+     
+
+    .topic-text {
+        font-size: 14px!important;
+    }
+
+    .topic-text h3 {
+        font-size: 16px;
+        color: #656565;
+    }
+
+    .topic-text p li {
+        font-size: 12px;
+    }
+
+     
+
+    button.text-info, button.text-info {
+        color: #841972 !important;
+    }
+    button.text-info:hover, button.text-info:focus {
+        color: #ffffff !important;
+    }
+
+     
+
+    .dropdown-item {
+        text-decoration: none;
+    }
+
+    .btn-outline-primary ~ .dropdown-menu .dropdown-item.active,
+    .btn-outline-primary ~ .dropdown-menu .dropdown-item:active {
+        color: #ffffff;
+         
+        background-color: #841972;
+    }
+
+    .btn-outline-secondary ~ .dropdown-menu .dropdown-item.active,
+    .btn-outline-secondary ~ .dropdown-menu .dropdown-item:active {
+        color: #ffffff;
+         
+        background-color: #181A7B;
+    }
+
+     
+
+    .dropdown-menu .dropdown-item.unavailable {
+        text-decoration: line-through;
+        text-decoration-thickness: 0.15rem;
+    }
+
+    .dropdown-item.unavailable {
+        text-decoration: line-through;
+        text-decoration-thickness: 0.15rem;
+    }
+
+     
+
+    .modal-backdrop.show {
+        opacity: 0.70;
+        background-color: #424242
+    }
+
+    .de-modal-title {
+        margin-bottom: 0;
+        margin-top: 0;
+        line-height: 1;
+    }
+
+    .modal-header .close {
+        padding: 0.5rem 0.5rem;
+        margin: -1rem -1rem -1rem auto;
+    }
+
+     
+
+    .checkbox-geo.disabled > input {
+        accent-color: #656565;
+    }
+
+     
+
+    .largerCheckbox {
+        margin-right: 0.3rem;
+        vertical-align: middle;
+        width: 1.125rem;
+        height: 1.125rem;
+    }
+
+     
+
+    .btn-comparisons.disabled {
+        color: #656565;
+    }
+
+     
+
+     
+    ::-webkit-scrollbar {
+        width: 0.5rem;
+    }
+
+     
+    ::-webkit-scrollbar-track {
+        background: rgb(246, 246, 246);
+    }
+
+     
+    ::-webkit-scrollbar-track:hover {
+        background: rgb(240, 240, 240);
+    }
+
+     
+    ::-webkit-scrollbar-thumb {
+        background: rgb(195, 195, 195);
+    }
+
+     
+    ::-webkit-scrollbar-thumb:hover {
+        background: rgb(145, 145, 145);
+    }
+
+    .overflow-fade-ind {
+        max-height: 55vmin; 
+        overflow-y: scroll; 
+        overflow-x: hidden;
+    }
+
+    .overflow-fade-about {
+        max-height: 55vmin; 
+        overflow-y: scroll; 
+        overflow-x: hidden;
+    }
+
+    .vis-bucket {
+        clear:both;
+        width:100%;
+        max-height: 75vmin;
+    }
+
+    .buttons-csv {
+        cursor: pointer;
+    }
+
+    .visFooterBox {
+        max-height: 250px;
+        overflow-y: scroll;
+    }
+
+    .nav-pills .nav-link.active {
+        border: 0px!important;
+    }
+
+    .tab-border {
+        border-left: 1px solid #dee2e6 !important;
+        border-top: 1px solid #dee2e6 !important;
+        border-right: 1px solid #dee2e6 !important;
+    }
+
+     
+
+    .optionbox {
+        max-height:150px;
+        overflow-y:auto;
+        overflow-x:hidden;
+    }
+
+    .optionbox-lg {
+        max-height: 300px;
+        overflow-y: auto;
+        overflow-x:hidden;
+    }
+
+    .optionbox::-webkit-scrollbar {
+        width: 0.25em;
+    }
+
+    .optionbox-lg::-webkit-scrollbar {
+        width: 0.25em;
+    }
+
+    .nav-pills .nav-item {
+        text-align: left!important;
+         
+    }
+
+    .nav-pills .nav-link.active {
+        background-color: green!important;
+    }
+
+    .dropdown-item {
+        font-size: 12px;
+        padding: 0px!important;
+        padding-left: 5px!important;
+        margin-bottom: 3px!important;
+    }
+
+    .dropdown-item.active {
+        background-color: green!important;
+        color: white;
+        font-weight: bold;
+    }
+
+    .debg {
+        background-color: #e9ecef!important;
+        width: 100%; 
+        height: 52px;
+    }
+
+    .nav-tabs .nav-item.active {
+        background-color: #00923E50!important;
+        border-left: 1px solid !important;
+        border-right: 1px solid !important;
+        border-top: 1px solid !important;
+        border-bottom: 0px solid !important;
+    }
+
+    .tab-pane {
+         
+    }
+
+    .helper {
+        cursor: pointer;
+    }
+
+    .helper:hover {
+        color: purple!important;
+    }
+
+     
+    table.dataTable tbody th,table.dataTable tbody td {
+        padding: 5px!important;
+    }
+
+    table {
+        font-size: .875rem!important; 
+    }
+
+    table .group td {
+        background-color: #F0F0F0;
+        color: green;
+        font-weight: bold;
+        }
+    .de-tab {
+        font-size: 16px;
+    }
+
+    </style>
+
+
+<article class="container-fluid" id="skip-header-target">
+    <div class="row">
+        <div class="col-12 mt-2 mb-3">
+            <nav aria-label="breadcrumb">
+                <ul class="breadcrumb mr-auto">
+                    <li class="breadcrumb-item"><a href=/IndicatorPublic/>Home</a></li>
+                    <li class="breadcrumb-item"><a href=/IndicatorPublic/data-explorer>Data Explorer</a></li>
+                    <li class="breadcrumb-item">Waterways
+                        <button type="button" 
+                            class="btn btn-outline-light text-primary badge" 
+                            title="Change topic"
+                            data-toggle="modal" 
+                            data-target="#topicModal"
+                            aria-labelledby="topicModalLabel"
+                        ><i class="fa-solid fa-arrow-right-arrow-left font-weight-bold" aria-hidden="true"></i>
+                        </button></li>
+                </ul>
+            </nav>
+            <div class="float-right pr-1 d-sm-none d-md-block">
+<section class="social-share" data-pagefind-ignore="all">
+    <ul class="share-icons">
+
+      
+      <li>
+        <a href="mailto:?subject=Environment%20%26%20Health%20Data%20Portal - Waterways&amp;body=Waterways%2c%20by%20Environment%20%26%20Health%20Data%20Portal%0aExplore%20data%2c%20visualizations%2c%20and%20more%20on%20ways%20that%20environments%20shape%20health%20in%20New%20York%20City%27s%20neighborhoods.%0a%0ahttps%3a%2f%2fa816-dohbesp.nyc.gov%2fIndicatorPublic%2fdata-explorer%2fwaterways%2f%0a" target="_blank" rel="noopener noreferrer" class="share-btn email">
+          <i class="fas fa-envelope fs-xl"></i>
+          <p>Email</p>
+        </a>
+      </li> 
+
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?&amp;url=https%3a%2f%2fa816-dohbesp.nyc.gov%2fIndicatorPublic%2fdata-explorer%2fwaterways%2f&amp;text=Waterways" target="_blank" rel="noopener noreferrer" aria-label="Share on Twitter" class="share-btn twitter">
+          <i class="fab fa-twitter-square fs-xl"></i>
+          <p>Twitter</p>
+          </a>
+      </li>
+
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fa816-dohbesp.nyc.gov%2fIndicatorPublic%2fdata-explorer%2fwaterways%2f" target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook" class="share-btn facebook">
+          <i class="fab fa-facebook-square fs-xl"></i>
+          <p>Facebook</p>
+          </a>
+      </li>
+
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2fa816-dohbesp.nyc.gov%2fIndicatorPublic%2fdata-explorer%2fwaterways%2f" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn" class="share-btn linkedin">
+          <i class="fab fa-linkedin fs-xl"></i>
+            <p>LinkedIn</p>
+          </a>
+      </li>
+
+
+    </ul>
+  </section>
+</div>
+            <h1 class="h2">Waterways </h1>
+            <p>Get maps, charts, tables, and data about waterways. <span class="d-lg-none"><a href="#" data-toggle="modal" data-target="#aboutModal">About waterways</a>.</span></p>
+
+        </div>
+    </div>
+
+    <div class="row no-gutters px-0">
+    
+        <div class="col-lg-4 col-md-12 pr-2">
+    
+            <div class="d-none d-lg-block">
+
+                <div class="nav nav-pills device-md border-bottom" role="tablist">
+
+                    <a class="nav-item nav-link active fs-sm tab-border" id="tab-btn-02-a" href="#tab-02-a" data-toggle="tab"
+                        aria-controls="tab-02-a" aria-selected="true" role="tab">
+                        <i class="fas fa-list fa-fw mr-1" aria-hidden="true"></i>Datasets
+                    </a>
+
+                    <a class="nav-item nav-link fs-sm tab-border" id="tab-btn-02-b" href="#tab-02-b" data-toggle="tab"
+                        aria-controls="tab-02-b" aria-selected="false" role="tab">
+                        <i class="fas fa-info-circle mr-1" aria-hidden="true"></i>About waterways
+                    </a>
+                </div>
+                
+                <div class="tab-content  de-dash-borderbottom" id="tabs-02-content">
+                
+                    <div class="tab-pane fade show active" id="tab-02-a" aria-labelledby="tab-btn-02-a"
+                        role="tabpanel">
+                        <div id="indicatorButtons" class="pb-0 overflow-fade-ind mb-0">
+                            
+                    </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="tab-02-b" aria-labelledby="tab-btn-02-b" role="tabpanel">
+                        <div class="p-1 overflow-fade-about topic-text mb-1 border">
+                            <p>Healthy waterways are important for both aquatic life and humans who use the water for recreation.</p>
+<p>We measure the quality of harbor water through two key indicators:</p>
+<ul>
+<li>
+<p><strong>Dissolved oxygen</strong> is essential for most aquatic life. Coastal habitats and ecosystems thrive in environments with high concentrations of dissolved oxygen.</p>
+</li>
+<li>
+<p><strong>Concentrations of fecal coliform bacteria and Enterococci bacteria</strong>. Higher levels of these bacteria can mean there is sewage-related water pollution. Though most of these bacteria do not cause disease, higher concentrations can indicate the presence of pathogenic (disease-producing) bacteria.</p>
+</li>
+</ul>
+<h3>How we monitor harbor water quality</h3>
+<p>Water quality standards are set by New York State and monitored by the NYC Department of Environmental Protection (DEP) annually through the Harbor Survey. The Harbor Survey Program has grown to include 40 sites throughout New York waters. Department of Environmental Protection scientists sample these sites weekly during the summer season (May - October) and monthly during the winter season (November - April).</p>
+<h3>New York&rsquo;s harbor water quality today</h3>
+<p><em>Bacteria levels show that water meets minimum standards</em></p>
+<p>Since the 1990s, average harbor-wide surface water fecal coliform levels have been well below the state maximum standard for fishing and boating (2,000 cells per 100mL, from 5+ samples) and bathing and other recreation (200 cells per 100 mL from 5+ samples).</p>
+<p>Since the NYC DEP began monitoring enterococci in the early 2000s, levels have remained below the state maximum standards. Short-term spikes in bacteria may occur after heavy rain.</p>
+<p><em>Dissolved oxygen levels show that water exceeds minimum standards</em></p>
+<p>NYC DEP reports the open water summer average levels of dissolved oxygen harbor-wide, from surface and bottom water, every year. Levels above the state minimum standard (5.0 mg/L) indicate a harbor suitable to most aquatic life forms. Since the 1990s, the annual summer average for surface and bottom water dissolved oxygen levels of open water sites have been above New York State standards.</p>
+<p>For more information on harbor quality, <a href="https://www.nyc.gov/site/dep/water/harbor-water-quality.page">please visit the most recent report from the NYC DEP Harbor Survey Report</a>. For information on current beach water quality, <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/Beaches/">please visit DOHMH&rsquo;s beach water quality map</a>.</p>
+
+                            <hr class="my-2">
+                            
+                            <a href="https://www.nyc.gov/site/doh/health/health-topics/rec-water-illness.page"><i class="fas fa-external-link-alt mr-1" aria-hidden="true"></i>Get more resources about waterways</a>.
+                            
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+            
+            <div class="d-none d-lg-block mt-1 mb-2"><div class="keywords p-1" data-pagefind-ignore="all"><span class="font-weight-bold">Keywords:</span>&nbsp;<a href="/IndicatorPublic/keywords/water/">water</a> |&#32;<a href="/IndicatorPublic/keywords/harbor/">harbor</a> |&#32;<a href="/IndicatorPublic/keywords/pollution/">pollution</a> |&#32;<a href="/IndicatorPublic/keywords/climate/">climate</a> |&#32;<a href="/IndicatorPublic/keywords/climatehealth/">climatehealth</a> |&#32;</div>
+</div>
+
+            
+            <div class="d-none d-lg-block border-top p-1 mt-4 fs-sm"> 
+<div class="fs-md">
+<p><i class="fas fa-envelope-open-text mr-1"></i>Concerned about this? <a href="../../take-action/email-electeds" class="">Email your elected officials</a>.</p>
+<p><span id="311label" class=""></span> <span id="311" class="destination311"></span></p> 
+</div>
+
+</div>
+
+
+
+
+        </div>
+        
+        <div class="col-lg-8 mx-auto col-md-12">
+        
+            
+            <div class="dropdown d-lg-none">
+                <span class='home-label'>Change dataset</span>
+                <button class="btn btn-sm btn-outline-primary btn-lg btn-block text-wrap dropdown-toggle" type="button"
+                        id="dropdownIndicator" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More Waterways data
+                </button>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownIndicator" id="indicator-dropdown">
+                    
+                </div>
+            </div>
+        <span class="border-bottom font-weight-bold d-none d-lg-block"><span id="indicatorTitle">Loading data...</span></span>
+        <p class="fs-sm indicator-description">Just a moment...</p>
+
+        
+        <div class="mt-3">
+            
+            <div class="nav nav-pills bg-white device-xs " role="tablist">
+
+                <a class="nav-item nav-link border" id="tab-btn-table" href="#tab-table" data-toggle="pill"
+                   aria-controls="tab-table" aria-selected="false" role="tab" style="text-decoration:none">
+                    <i class="fas fa-table mr-1" aria-hidden="true"></i>
+                    <div class="d-none d-lg-inline-block">
+                        <span class="de-tab font-weight-bold ">Table</span>
+                    </div>
+                </a>
+
+                <a class="nav-item nav-link border" id="tab-btn-map" href="#tab-map" data-toggle="pill"
+                   aria-controls="tab-map" aria-selected="false" role="tab" style="text-decoration:none">
+                    <i class="fas fa-map-marker-alt fa-fw"></i>
+                    <div class="d-none d-lg-inline-block">
+                        <span class="de-tab font-weight-bold ">Map</span>
+                    </div>
+                </a>
+
+                <a class="nav-item nav-link border" id="tab-btn-trend" href="#tab-trend" data-toggle="pill"
+                   aria-controls="tab-trend" aria-selected="false" role="tab" style="text-decoration:none">
+                    <i class="fas fa-chart-line fa-fw" aria-hidden="true"></i>
+                    <div class="d-none d-lg-inline-block">
+                        <span class="de-tab font-weight-bold ">Trend</span>
+                    </div>
+                </a>
+
+
+                <a class="nav-item nav-link border" id="tab-btn-links" href="#tab-links" data-toggle="pill"
+                   aria-controls="tab-links" aria-selected="false" aria-disabled="true" role="tab" style="text-decoration:none">
+                   <i class="fas fa-project-diagram" aria-hidden="true"></i>
+                    <div class="d-none d-lg-inline-block">
+                        <span class="de-tab font-weight-bold ">Correlate</span>
+                    </div>
+                </a>
+
+                <a class="ml-auto mt-auto p-1 fs-sm float-right d-none d-xl-block" id="viewDescription">
+                    Click tabs for more data views.
+                </a>
+        
+            </div>
+
+
+                
+                <div class="tab-content bg-white mb-2 border-top" id="tabs-01-content">
+            
+
+                
+
+                <div class="tab-pane fade show active pt-2" id="tab-table" aria-labelledby="tab-btn-table" role="tabpanel">
+                    <div class="row">
+                        <div class="col-md-2 pl-2">
+
+                                <a href="#" class="badge badge-pill badge-light d-md-none mb-1" data-toggle="collapse" data-target="#tableSidebar" aria-expanded="false" aria-controls="tableSidebar"><i class="fas fa-cog mr-1" aria-hidden="true"></i>Display options</a>
+
+                                <div id="tableSidebar" class="collapse dont-collapse-sm">
+                                <p class="fs-xs mb-0"><i data-toggle="modal" data-target="#geoModal" class="fas fa-question-circle float-right helper text-primary fs-sm"></i></button>Boundaries:</p>
+                                <div class="border py-1 mb-2 optionbox">
+
+                                    <div class="" aria-labelledby="dropdownTableGeos">
+                                        
+                                    </div>
+                                </div>
+
+                                <p class="fs-xs mb-0"><i data-toggle="modal" data-target="#timeModal" class="fas fa-question-circle float-right helper text-primary fs-sm"></i>Available times:</p>
+                                <div class="border py-1 mb-2 optionbox">
+                                    <div class="" aria-labelledby="dropdownTableTimes">
+                                        
+                                    </div>
+
+                                </div>
+                                </div>
+                            </div>
+
+                        <div class="col-md-10">
+                            <span id="tableTitle" class="home-label border-bottom"></span>
+                            <div id="summary-table" class="" style="height:560px!important">
+                                
+                            </div>
+
+                            <div id="table-unreliability" class="pt-2 asidebox hide my-1">
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                </div>
+
+
+                
+
+                <div class="tab-pane fade pt-2" id="tab-map" aria-labelledby="tab-btn-map" role="tabpanel">
+
+                    <div class="row">
+                        <div class="col-md-2 pl-2">
+
+                            <a href="#" class="badge badge-pill badge-light d-md-none mb-1" data-toggle="collapse" data-target="#mapSidebar" aria-expanded="false" aria-controls="mapSidebar"><i class="fas fa-cog mr-1" aria-hidden="true"></i>Display options</a>
+
+
+                            <div id="mapSidebar" class="collapse dont-collapse-sm">
+                                <p class="fs-xs mb-0"><i data-toggle="modal" data-target="#measureModal" class="fas fa-question-circle float-right helper text-primary fs-sm"></i>Show as:</p>
+                                <div class="border optionbox py-1 mb-2">
+                                    <div class="" aria-labelledby="dropdownMapMeasures">
+                                        
+                                    </div>
+                                </div>
+
+                                <p class="fs-xs mb-0"><i data-toggle="modal" data-target="#timeModal" class="fas fa-question-circle float-right helper text-primary fs-sm"></i>Available times:</p>
+                                <div class="border optionbox py-1 mb-2">
+                                    <div class="" aria-labelledby="dropdownMapTimes">
+                                        
+                                    </div>
+                                </div>
+
+                                <p class="fs-xs mb-0"><i data-toggle="modal" data-target="#geoModal" class="fas fa-question-circle float-right helper text-primary fs-sm"></i>Boundaries:</p>
+                                <div class="border py-1 mb-2 optionbox">
+                                    <div class="" aria-labelledby="dropdownMapGeos">
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-10">
+                            <div id="map" class="vis-bucket"></div>
+
+                            <div id="map-unreliability" class="pt-2 asidebox hide my-1">
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                
+
+                <div class="tab-pane fade pt-2" id="tab-trend" aria-labelledby="tab-btn-trend" role="tabpanel">
+
+                    <div class="row">
+                        <div class="col-md-2 pl-2">
+
+                            <a href="#" class="badge badge-pill badge-light d-md-none mb-1" data-toggle="collapse" data-target="#trendSidebar" aria-expanded="false" aria-controls="trendSidebar"><i class="fas fa-cog mr-1" aria-hidden="true"></i>Display options</a>
+
+                            <div id="trendSidebar" class="collapse dont-collapse-sm">
+                                <p class="fs-xs mb-0"><i data-toggle="modal" data-target="#trendModal" class="fas fa-question-circle float-right helper text-primary fs-sm"></i>Show by:</p>
+                                <div class="border optionbox">
+                                    <div class="" aria-labelledby="dropdownTrendComparisons">
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-10">
+                                 
+                                <div id="trend" class="vis-bucket"></div>
+
+                                <div id="trend-unreliability" class="pt-2 asidebox hide my-1">
+                                    
+                                </div>
+
+                        </div>
+                    </div>
+                     
+                </div>
+
+
+                     
+
+                    <div class="tab-pane fade pt-2" id="tab-links" aria-labelledby="tab-btn-links" role="tabpanel">
+
+                        <div class="row">
+                            <div class="col-md-2 pl-2">
+
+                                <a href="#" class="badge badge-pill badge-light d-md-none mb-1" data-toggle="collapse" data-target="#linksSidebar" aria-expanded="false" aria-controls="linksSidebar"><i class="fas fa-cog mr-1" aria-hidden="true"></i>Display options</a>
+
+                                <div id="linksSidebar" class="collapse dont-collapse-sm">
+                                    <p class="fs-xs mb-0"><i data-toggle="modal" data-target="#linksModal" class="fas fa-question-circle float-right helper text-primary fs-sm"></i>Show as:</p>
+                            
+                                
+                                    <div class="border optionbox mb-2 py-1">
+                                        
+                                        <div class="btn-toggle-disparities">
+    
+                                            <button class="btn btn-primary dropdown-item pl-2" id="show-disparities"> Disparities
+                                            </button>
+                                            <button class="btn btn-primary dropdown-item pl-2" id="show-links"> Correlates
+                                            </button>
+    
+                                        </div>
+
+
+                                    </div>
+    
+                                    <div id="correlateHolder">
+                                        <p class="fs-xs mb-0">Correlate with:</p>
+                                        <div class="border optionbox-lg">
+                                            <div class="" aria-labelledby="dropdownLinksMeasures">
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+
+                            <div class="col-md-10">
+                                <span id="linksTitle" class="home-label border-bottom"></span>
+                                
+                                <div id="links" class="vis-bucket"></div>
+            
+                                <div id="links-unreliability" class="pt-2 asidebox hide my-1">
+                                    
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                
+            </div>
+
+
+                        
+                        <div class="row mb-4">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-5 col-sm-12">
+                                <div class="dropdown">
+                                    <button class="btn btn-sm btn-block btn-outline-light text-secondary dropdown-toggle" 
+                                    type="button"
+                                    id="downloadDD"
+                                    data-toggle="dropdown"
+                                    aria-haspopup="true"
+                                    aria-expanded="false"
+                                    ><i class="fa fa-download mr-1"></i>Download Data
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-right" 
+                                    aria-labelledby="downloadDD">
+                                    <a class="dropdown-item buttons-csv btn-outline-info" id="chartView"><i class="fa fa-download mr-1"></i>Download this view</a>
+                                    <a class="dropdown-item buttons-csv btn-outline-info" id="allData"><i class="fa fa-download mr-1"></i>Download full data table</a>
+                                    <a class="dropdown-item btn-outline-info" href="https://github.com/nychealth/EHDP-data/tree/production/indicators" target="_blank"><i class="fas fa-external-link-alt mr-1"></i>Data Github repo</a>
+                                            
+                                    
+                                    </div>
+                                </div>
+
+                                <div class="asidebox pb-0 mb-0">
+                                    <span class="fs-sm font-weight-bold"><i class="fas fa-info-circle mr-1"></i>How calculated</span>
+                                </div>
+                                <div class="asidebox visFooterBox mb-1">
+                                    <p class="fs-xs indicator-measures"></p>
+
+
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-5 col-sm-12">
+                                <button class="btn btn-sm btn-block btn-outline-light text-secondary"
+                                onclick="copyCitation()" id="citeButton"><i class="fas fa-copy mr-1"></i>Copy citation</button>
+                                    <input type="text" id="citeText" value=""
+                                    style="display:inline-block; width:100%; height: 40px; font-size: 14px;"
+                                    class="my-2 sr-only">
+
+                                <div class="asidebox pb-0 mb-0">
+                                    <span class="fs-sm font-weight-bold"><i class="fas fa-info-circle mr-1"></i>Data sources</span>
+                                </div>
+                                <div class="asidebox visFooterBox">
+                                    <p class="fs-xs indicator-sources"></p>
+                                </div>
+                                
+                            </div>
+
+                        </div>
+
+                        
+
+
+
+        </div>
+    </div>
+
+
+
+
+    
+
+    <div class="modal fade" id="topicModal" tabindex="-1" role="dialog" aria-labelledby="topicModalLabel"
+         aria-hidden="true" data-pagefind-ignore="all">
+        <div class="modal-dialog modal-md" role="document">
+            <div class="modal-content mb-2 border-light shadow">
+                <div class="modal-header">
+                    <h2 class="de-modal-title h5" id="topicModalLabel">Change topic</h2>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body p-0 ">
+                    <style>
+    .accordion-group .card {
+        background-color: #f2f2f2;
+        margin: 0px;
+    }
+</style><div class="row">
+        <div class="col-12">
+            
+            <div class="accordion-group" role="tablist" id="accordion-02">
+                <div class="card mb-1">
+
+                    <strong><a class="card-header collapse"
+                         id="acc-button-01" data-toggle="collapse"
+                         href="#panel-acc-button-01" role="tab"
+                         aria-expanded="false"
+                         aria-controls="panel-acc-button-01">
+                         <span class="title" role="heading"
+                             aria-level="3">Air quality and health</span>
+                     </a></strong>
+
+                     <div class="collapse show" id="panel-acc-button-01"
+                         role="tabpanel" aria-labelledby="acc-button-01"
+                         data-parent="#accordion-02">
+
+                         <div class="card-body bg-white">
+                             <ul>
+                                 
+                                     <li><a href="/IndicatorPublic/data-explorer/active-design/">Active design</a>
+                                     </li>
+                                 
+                                     <li><a href="/IndicatorPublic/data-explorer/air-quality/">Air quality</a>
+                                     </li>
+                                 
+                                     <li><a href="/IndicatorPublic/data-explorer/asthma/">Asthma</a>
+                                     </li>
+                                 
+                                     <li><a href="/IndicatorPublic/data-explorer/health-impacts-of-air-pollution/">Health impacts of air pollution</a>
+                                     </li>
+                                 
+                                     <li><a href="/IndicatorPublic/data-explorer/walking-driving-and-cycling/">Walking, driving, and cycling</a>
+                                     </li>
+                                 
+                                 </ul>
+                         </div>
+
+                     </div>
+                     
+
+                 </div>
+                 
+
+                 <div class="card mb-1">
+
+                    <strong><a class="card-header   collapse collapsed"
+                        id="acc-button-07" data-toggle="collapse"
+                        href="#panel-acc-button-07" role="tab"
+                        aria-expanded="false"
+                        aria-controls="panel-acc-button-07">
+                        <span class="title" role="heading"
+                            aria-level="3">Child health</span>
+                    </a></strong>
+
+                    <div class="collapse" id="panel-acc-button-07"
+                        role="tabpanel" aria-labelledby="acc-button-07"
+                        data-parent="#accordion-02">
+
+                        <div class="card-body bg-white">
+                            <ul>
+                                
+                                    <li><a href="/IndicatorPublic/data-explorer/air-quality/">Air quality</a>
+                                    </li>
+                                
+                                    <li><a href="/IndicatorPublic/data-explorer/asthma/">Asthma</a>
+                                    </li>
+                                
+                                    <li><a href="/IndicatorPublic/data-explorer/birth-defects/">Birth defects</a>
+                                    </li>
+                                
+                                    <li><a href="/IndicatorPublic/data-explorer/birth-outcomes/">Birth outcomes</a>
+                                    </li>
+                                
+                                    <li><a href="/IndicatorPublic/data-explorer/cancers-in-children/">Cancers in children</a>
+                                    </li>
+                                
+                                    <li><a href="/IndicatorPublic/data-explorer/carbon-monoxide-incidents/">Carbon monoxide</a>
+                                    </li>
+                                
+                                    <li><a href="/IndicatorPublic/data-explorer/cigarette-smoke/">Cigarette smoke</a>
+                                    </li>
+                                
+                                    <li><a href="/IndicatorPublic/data-explorer/lead/">Lead poisoning</a>
+                                    </li>
+                                
+                                </ul>
+                        </div>
+
+                    </div>
+                    
+
+                </div>
+                
+
+                 <div class="card mb-1">
+
+                     <strong><a class="card-header collapse collapsed"
+                         id="acc-button-02" data-toggle="collapse"
+                         href="#panel-acc-button-02" role="tab"
+                         aria-expanded="false"
+                         aria-controls="panel-acc-button-02">
+                         <span class="title" role="heading"
+                             aria-level="3">Climate and health</span>
+                     </a></strong>
+
+                     <div class="collapse" id="panel-acc-button-02"
+                         role="tabpanel" aria-labelledby="acc-button-02"
+                         data-parent="#accordion-02">
+
+                         <div class="card-body bg-white">
+                             <ul>
+                                 
+                                     <li><a href="/IndicatorPublic/data-explorer/asthma/">Asthma</a>
+                                     </li>
+                                 
+                                     <li><a href="/IndicatorPublic/data-explorer/climate/">Climate</a>
+                                     </li>
+                                 
+                                     <li><a href="/IndicatorPublic/data-explorer/housing-safety/">Housing safety</a>
+                                     </li>
+                                 
+                                     <li><a href="/IndicatorPublic/data-explorer/housing-stability/">Housing stability</a>
+                                     </li>
+                                 
+                                     <li><a href="/IndicatorPublic/data-explorer/vector-borne-disease/">Vector-borne disease</a>
+                                     </li>
+                                 
+                                     <li><a href="/IndicatorPublic/data-explorer/waterways/">Waterways</a>
+                                     </li>
+                                 
+                                     <li><a href="/IndicatorPublic/data-explorer/weather-related-illness/">Weather-related illness</a>
+                                     </li>
+                                 
+                                 </ul>
+                         </div>
+
+                     </div>
+                     
+
+                 </div>
+                 
+
+                 <div class="card mb-1">
+
+                    <strong><a class="card-header collapse collapsed"
+                        id="acc-button-09" data-toggle="collapse"
+                        href="#panel-acc-button-09" role="tab"
+                        aria-expanded="false"
+                        aria-controls="panel-acc-button-09">
+                        <span class="title" role="heading"
+                            aria-level="3">Food and drink</span>
+                    </a></strong>
+
+                    <div class="collapse" id="panel-acc-button-09"
+                        role="tabpanel" aria-labelledby="acc-button-09"
+                        data-parent="#accordion-02">
+
+                        <div class="card-body bg-white">
+                            <ul>
+                                
+                                    <li><a href="/IndicatorPublic/data-explorer/alcohol-use/">Alcohol access and use</a>
+                                    </li>
+                                
+                                    <li><a href="/IndicatorPublic/data-explorer/drinking-water-quality/">Drinking water quality</a>
+                                    </li>
+                                
+                                    <li><a href="/IndicatorPublic/data-explorer/healthy-eating/">Healthy eating</a>
+                                    </li>
+                                
+                                    <li><a href="/IndicatorPublic/data-explorer/restaurant-food-safety/">Restaurant food safety</a>
+                                    </li>
+                                
+                                </ul>
+                        </div>
+
+                    </div>
+                    
+
+                </div>
+                
+
+                 <div class="card mb-1">
+
+                    <strong> <a class="card-header collapse collapsed"
+                         id="acc-button-03" data-toggle="collapse"
+                         href="#panel-acc-button-03" role="tab"
+                         aria-expanded="false"
+                         aria-controls="panel-acc-button-03">
+                         <span class="title" role="heading"
+                             aria-level="3">Housing and health</span>
+                     </a></strong>
+
+                     <div class="collapse" id="panel-acc-button-03"
+                         role="tabpanel" aria-labelledby="acc-button-03"
+                         data-parent="#accordion-02">
+
+                         <div class="card-body bg-white">
+                             <ul>
+                                 
+                                     <li><a href="/IndicatorPublic/data-explorer/asthma/">Asthma</a>
+                                     </li>
+                                 
+                                     <li><a href="/IndicatorPublic/data-explorer/asthma-triggers/">Asthma triggers at home</a>
+                                     </li>
+                                 
+                                     <li><a href="/IndicatorPublic/data-explorer/bed-bugs/">Bed bugs</a>
+                                     </li>
+                                 
+                                     <li><a href="/IndicatorPublic/data-explorer/cancer/">Cancer</a>
+                                     </li>
+                                 
+                                     <li><a href="/IndicatorPublic/data-explorer/carbon-monoxide-incidents/">Carbon monoxide</a>
+                                     </li>
+                                 
+                                     <li><a href="/IndicatorPublic/data-explorer/cigarette-smoke/">Cigarette smoke</a>
+                                     </li>
+                                 
+                                     <li><a href="/IndicatorPublic/data-explorer/cockroaches/">Cockroaches</a>
+                                     </li>
+                                 
+                                     <li><a href="/IndicatorPublic/data-explorer/economic-conditions/">Economic conditions</a>
+                                     </li>
+                                 
+                                     <li><a href="/IndicatorPublic/data-explorer/falls-among-older-adults/">Falls among older adults</a>
+                                     </li>
+                                 
+                                     <li><a href="/IndicatorPublic/data-explorer/housing-maintenance/">Housing maintenance</a>
+                                     </li>
+                                 
+                                     <li><a href="/IndicatorPublic/data-explorer/housing-safety/">Housing safety</a>
+                                     </li>
+                                 
+                                     <li><a href="/IndicatorPublic/data-explorer/housing-stability/">Housing stability</a>
+                                     </li>
+                                 
+                                     <li><a href="/IndicatorPublic/data-explorer/lead/">Lead poisoning</a>
+                                     </li>
+                                 
+                                     <li><a href="/IndicatorPublic/data-explorer/mice-and-rats/">Mice and rats</a>
+                                     </li>
+                                 
+                                     <li><a href="/IndicatorPublic/data-explorer/social-conditions/">Social conditions</a>
+                                     </li>
+                                 
+                                 </ul>
+                         </div>
+
+                     </div>
+                     
+
+                 </div>
+                 
+
+                 <div class="card mb-1">
+
+                     <strong><a class="card-header  collapse collapsed"
+                         id="acc-button-04" data-toggle="collapse"
+                         href="#panel-acc-button-04" role="tab"
+                         aria-expanded="false"
+                         aria-controls="panel-acc-button-04">
+                         <span class="title" role="heading"
+                             aria-level="3">Health equity</span>
+                     </a></strong>
+
+                     <div class="collapse" id="panel-acc-button-04"
+                         role="tabpanel" aria-labelledby="acc-button-04"
+                         data-parent="#accordion-02">
+
+                         <div class="card-body bg-white">
+                             <ul>
+                                 
+                                     <li><a href="/IndicatorPublic/data-explorer/asthma/">Asthma</a>
+                                     </li>
+                                 
+                                     <li><a href="/IndicatorPublic/data-explorer/asthma-triggers/">Asthma triggers at home</a>
+                                     </li>
+                                 
+                                     <li><a href="/IndicatorPublic/data-explorer/economic-conditions/">Economic conditions</a>
+                                     </li>
+                                 
+                                     <li><a href="/IndicatorPublic/data-explorer/health-care/">Health care</a>
+                                     </li>
+                                 
+                                     <li><a href="/IndicatorPublic/data-explorer/health-impacts-of-air-pollution/">Health impacts of air pollution</a>
+                                     </li>
+                                 
+                                     <li><a href="/IndicatorPublic/data-explorer/housing-maintenance/">Housing maintenance</a>
+                                     </li>
+                                 
+                                     <li><a href="/IndicatorPublic/data-explorer/housing-safety/">Housing safety</a>
+                                     </li>
+                                 
+                                     <li><a href="/IndicatorPublic/data-explorer/housing-stability/">Housing stability</a>
+                                     </li>
+                                 
+                                     <li><a href="/IndicatorPublic/data-explorer/lead/">Lead poisoning</a>
+                                     </li>
+                                 
+                                     <li><a href="/IndicatorPublic/data-explorer/mortality/">Mortality</a>
+                                     </li>
+                                 
+                                     <li><a href="/IndicatorPublic/data-explorer/social-conditions/">Social conditions</a>
+                                     </li>
+                                 
+                                     <li><a href="/IndicatorPublic/data-explorer/violence/">Violence</a>
+                                     </li>
+                                 
+                                     <li><a href="/IndicatorPublic/data-explorer/waterways/">Waterways</a>
+                                     </li>
+                                 
+                                     <li><a href="/IndicatorPublic/data-explorer/weather-related-illness/">Weather-related illness</a>
+                                     </li>
+                                 
+                                     <li><a href="/IndicatorPublic/data-explorer/worker-health/">Worker health</a>
+                                     </li>
+                                 
+                                 </ul>
+                         </div>
+
+                     </div>
+                     
+
+                 </div>
+                 
+
+
+                 <div class="card mb-1">
+
+                    <strong><a class="card-header  collapse collapsed"
+                        id="acc-button-06" data-toggle="collapse"
+                        href="#panel-acc-button-06" role="tab"
+                        aria-expanded="false"
+                        aria-controls="panel-acc-button-06">
+                        <span class="title" role="heading"
+                            aria-level="3">Health outcomes</span>
+                    </a></strong>
+
+                    <div class="collapse" id="panel-acc-button-06"
+                        role="tabpanel" aria-labelledby="acc-button-06"
+                        data-parent="#accordion-02">
+
+                        <div class="card-body bg-white">
+                            <ul>
+                                
+                                    <li><a href="/IndicatorPublic/data-explorer/asthma/">Asthma</a>
+                                    </li>
+                                
+                                    <li><a href="/IndicatorPublic/data-explorer/birth-defects/">Birth defects</a>
+                                    </li>
+                                
+                                    <li><a href="/IndicatorPublic/data-explorer/birth-outcomes/">Birth outcomes</a>
+                                    </li>
+                                
+                                    <li><a href="/IndicatorPublic/data-explorer/cancer/">Cancer</a>
+                                    </li>
+                                
+                                    <li><a href="/IndicatorPublic/data-explorer/cancers-in-children/">Cancers in children</a>
+                                    </li>
+                                
+                                    <li><a href="/IndicatorPublic/data-explorer/falls-among-older-adults/">Falls among older adults</a>
+                                    </li>
+                                
+                                    <li><a href="/IndicatorPublic/data-explorer/health-impacts-of-air-pollution/">Health impacts of air pollution</a>
+                                    </li>
+                                
+                                    <li><a href="/IndicatorPublic/data-explorer/mortality/">Mortality</a>
+                                    </li>
+                                
+                                    <li><a href="/IndicatorPublic/data-explorer/overweight/">Overweight</a>
+                                    </li>
+                                
+                                    <li><a href="/IndicatorPublic/data-explorer/transportation-related-injuries/">Transportation-related injuries</a>
+                                    </li>
+                                
+                                    <li><a href="/IndicatorPublic/data-explorer/vector-borne-disease/">Vector-borne disease</a>
+                                    </li>
+                                
+                                    <li><a href="/IndicatorPublic/data-explorer/violence/">Violence</a>
+                                    </li>
+                                
+                                    <li><a href="/IndicatorPublic/data-explorer/weather-related-illness/">Weather-related illness</a>
+                                    </li>
+                                
+                                    <li><a href="/IndicatorPublic/data-explorer/worker-health/">Worker health</a>
+                                    </li>
+                                
+                                </ul>
+                        </div>
+
+                    </div>
+                    
+
+                </div>
+                
+
+
+
+
+                 <div class="card mb-1">
+
+                     <strong><a class="card-header  collapse collapsed"
+                         id="acc-button-08" data-toggle="collapse"
+                         href="#panel-acc-button-08" role="tab"
+                         aria-expanded="false"
+                         aria-controls="panel-acc-button-08">
+                         <span class="title" role="heading"
+                             aria-level="3">Pests and pesticides</span>
+                     </a></strong>
+
+                     <div class="collapse" id="panel-acc-button-08"
+                         role="tabpanel" aria-labelledby="acc-button-08"
+                         data-parent="#accordion-02">
+
+                         <div class="card-body bg-white">
+                             <ul>
+                                 
+                                     <li><a href="/IndicatorPublic/data-explorer/asthma/">Asthma</a>
+                                     </li>
+                                 
+                                     <li><a href="/IndicatorPublic/data-explorer/bed-bugs/">Bed bugs</a>
+                                     </li>
+                                 
+                                     <li><a href="/IndicatorPublic/data-explorer/cockroaches/">Cockroaches</a>
+                                     </li>
+                                 
+                                     <li><a href="/IndicatorPublic/data-explorer/mice-and-rats/">Mice and rats</a>
+                                     </li>
+                                 
+                                     <li><a href="/IndicatorPublic/data-explorer/pesticides/">Pesticides</a>
+                                     </li>
+                                 
+                                     <li><a href="/IndicatorPublic/data-explorer/vector-borne-disease/">Vector-borne disease</a>
+                                     </li>
+                                 
+                                 </ul>
+                         </div>
+
+                     </div>
+                     
+
+                 </div>
+                 
+
+
+                 <div class="card mb-1">
+
+                    <strong><a class="card-header  collapse collapsed"
+                        id="acc-button-05" data-toggle="collapse"
+                        href="#panel-acc-button-05" role="tab"
+                        aria-expanded="false"
+                        aria-controls="panel-acc-button-05">
+                        <span class="title" role="heading"
+                            aria-level="3">Public space</span>
+                    </a></strong>
+
+                    <div class="collapse" id="panel-acc-button-05"
+                        role="tabpanel" aria-labelledby="acc-button-05"
+                        data-parent="#accordion-02">
+
+                        <div class="card-body bg-white">
+                            <ul>
+                                
+                                    <li><a href="/IndicatorPublic/data-explorer/active-design/">Active design</a>
+                                    </li>
+                                
+                                    <li><a href="/IndicatorPublic/data-explorer/air-quality/">Air quality</a>
+                                    </li>
+                                
+                                    <li><a href="/IndicatorPublic/data-explorer/asthma/">Asthma</a>
+                                    </li>
+                                
+                                    <li><a href="/IndicatorPublic/data-explorer/health-impacts-of-air-pollution/">Health impacts of air pollution</a>
+                                    </li>
+                                
+                                    <li><a href="/IndicatorPublic/data-explorer/physical-activity/">Physical activity</a>
+                                    </li>
+                                
+                                    <li><a href="/IndicatorPublic/data-explorer/transportation-related-injuries/">Transportation-related injuries</a>
+                                    </li>
+                                
+                                    <li><a href="/IndicatorPublic/data-explorer/walking-driving-and-cycling/">Walking, driving, and cycling</a>
+                                    </li>
+                                
+                                </ul>
+                        </div>
+
+                    </div>
+                    
+
+                </div>
+                
+
+            </div>
+
+
+            
+            <div class="accordion-group" role="tablist" id="accordion-03">
+                <div class="card mb-1">
+
+                    <strong><a class="card-header collapse collapsed"
+                        id="acc-button-10-1" data-toggle="collapse"
+                        href="#panel-acc-button-10-1" role="tab"
+                        aria-expanded="false"
+                        aria-controls="panel-acc-button-10-1">
+                        <span class="title" role="heading"
+                            aria-level="3">All Topics</span>
+                    </a></strong>
+
+                    <div class="collapse" id="panel-acc-button-10-1"
+                        role="tabpanel" aria-labelledby="acc-button-10-1"
+                        data-parent="#accordion-03">
+
+                        <div class="card-body bg-white">
+                            <ul>
+
+                                <li><a href="/IndicatorPublic/data-explorer/active-design/">Active design</a></li>
+
+                                    <li><a href="/IndicatorPublic/data-explorer/air-quality/">Air quality</a></li>
+
+                                    <li><a href="/IndicatorPublic/data-explorer/alcohol-use/">Alcohol access and use</a></li>
+
+                                    <li><a href="/IndicatorPublic/data-explorer/asthma/">Asthma</a></li>
+
+                                    <li><a href="/IndicatorPublic/data-explorer/asthma-triggers/">Asthma triggers at home</a></li>
+
+                                    <li><a href="/IndicatorPublic/data-explorer/bed-bugs/">Bed bugs</a></li>
+
+                                    <li><a href="/IndicatorPublic/data-explorer/birth-defects/">Birth defects</a></li>
+
+                                    <li><a href="/IndicatorPublic/data-explorer/birth-outcomes/">Birth outcomes</a></li>
+
+                                    <li><a href="/IndicatorPublic/data-explorer/cancer/">Cancer</a></li>
+
+                                    <li><a href="/IndicatorPublic/data-explorer/cancers-in-children/">Cancers in children</a></li>
+
+                                    <li><a href="/IndicatorPublic/data-explorer/carbon-monoxide-incidents/">Carbon monoxide</a></li>
+
+                                    <li><a href="/IndicatorPublic/data-explorer/cigarette-smoke/">Cigarette smoke</a></li>
+
+                                    <li><a href="/IndicatorPublic/data-explorer/climate/">Climate</a></li>
+
+                                    <li><a href="/IndicatorPublic/data-explorer/cockroaches/">Cockroaches</a></li>
+
+                                    <li><a href="/IndicatorPublic/data-explorer/drinking-water-quality/">Drinking water quality</a></li>
+
+                                    <li><a href="/IndicatorPublic/data-explorer/economic-conditions/">Economic conditions</a></li>
+
+                                    <li><a href="/IndicatorPublic/data-explorer/falls-among-older-adults/">Falls among older adults</a></li>
+
+                                    <li><a href="/IndicatorPublic/data-explorer/health-care/">Health care</a></li>
+
+                                    <li><a href="/IndicatorPublic/data-explorer/health-impacts-of-air-pollution/">Health impacts of air pollution</a></li>
+
+                                    <li><a href="/IndicatorPublic/data-explorer/healthy-eating/">Healthy eating</a></li>
+
+                                    <li><a href="/IndicatorPublic/data-explorer/housing-maintenance/">Housing maintenance</a></li>
+
+                                    <li><a href="/IndicatorPublic/data-explorer/housing-safety/">Housing safety</a></li>
+
+                                    <li><a href="/IndicatorPublic/data-explorer/housing-stability/">Housing stability</a></li>
+
+                                    <li><a href="/IndicatorPublic/data-explorer/lead/">Lead poisoning</a></li>
+
+                                    <li><a href="/IndicatorPublic/data-explorer/mice-and-rats/">Mice and rats</a></li>
+
+                                    <li><a href="/IndicatorPublic/data-explorer/mortality/">Mortality</a></li>
+
+                                    <li><a href="/IndicatorPublic/data-explorer/overweight/">Overweight</a></li>
+
+                                    <li><a href="/IndicatorPublic/data-explorer/pesticides/">Pesticides</a></li>
+
+                                    <li><a href="/IndicatorPublic/data-explorer/physical-activity/">Physical activity</a></li>
+
+                                    <li><a href="/IndicatorPublic/data-explorer/restaurant-food-safety/">Restaurant food safety</a></li>
+
+                                    <li><a href="/IndicatorPublic/data-explorer/social-conditions/">Social conditions</a></li>
+
+                                    <li><a href="/IndicatorPublic/data-explorer/transportation-related-injuries/">Transportation-related injuries</a></li>
+
+                                    <li><a href="/IndicatorPublic/data-explorer/vector-borne-disease/">Vector-borne disease</a></li>
+
+                                    <li><a href="/IndicatorPublic/data-explorer/violence/">Violence</a></li>
+
+                                    <li><a href="/IndicatorPublic/data-explorer/walking-driving-and-cycling/">Walking, driving, and cycling</a></li>
+
+                                    <li><a href="/IndicatorPublic/data-explorer/waterways/">Waterways</a></li>
+
+                                    <li><a href="/IndicatorPublic/data-explorer/weather-related-illness/">Weather-related illness</a></li>
+
+                                    <li><a href="/IndicatorPublic/data-explorer/worker-health/">Worker health</a></li>
+
+                                    </ul>
+                        </div>
+
+                    </div>
+                    
+
+                </div>
+                
+            </div>
+        </div>
+    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    
+    <div class="modal fade" id="aboutModal" tabindex="-1" role="dialog" aria-labelledby="aboutModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title h5" id="aboutModalLabel" data-pagefind-ignore="all">About Waterways</h2>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Healthy waterways are important for both aquatic life and humans who use the water for recreation.</p>
+<p>We measure the quality of harbor water through two key indicators:</p>
+<ul>
+<li>
+<p><strong>Dissolved oxygen</strong> is essential for most aquatic life. Coastal habitats and ecosystems thrive in environments with high concentrations of dissolved oxygen.</p>
+</li>
+<li>
+<p><strong>Concentrations of fecal coliform bacteria and Enterococci bacteria</strong>. Higher levels of these bacteria can mean there is sewage-related water pollution. Though most of these bacteria do not cause disease, higher concentrations can indicate the presence of pathogenic (disease-producing) bacteria.</p>
+</li>
+</ul>
+<h3>How we monitor harbor water quality</h3>
+<p>Water quality standards are set by New York State and monitored by the NYC Department of Environmental Protection (DEP) annually through the Harbor Survey. The Harbor Survey Program has grown to include 40 sites throughout New York waters. Department of Environmental Protection scientists sample these sites weekly during the summer season (May - October) and monthly during the winter season (November - April).</p>
+<h3>New York&rsquo;s harbor water quality today</h3>
+<p><em>Bacteria levels show that water meets minimum standards</em></p>
+<p>Since the 1990s, average harbor-wide surface water fecal coliform levels have been well below the state maximum standard for fishing and boating (2,000 cells per 100mL, from 5+ samples) and bathing and other recreation (200 cells per 100 mL from 5+ samples).</p>
+<p>Since the NYC DEP began monitoring enterococci in the early 2000s, levels have remained below the state maximum standards. Short-term spikes in bacteria may occur after heavy rain.</p>
+<p><em>Dissolved oxygen levels show that water exceeds minimum standards</em></p>
+<p>NYC DEP reports the open water summer average levels of dissolved oxygen harbor-wide, from surface and bottom water, every year. Levels above the state minimum standard (5.0 mg/L) indicate a harbor suitable to most aquatic life forms. Since the 1990s, the annual summer average for surface and bottom water dissolved oxygen levels of open water sites have been above New York State standards.</p>
+<p>For more information on harbor quality, <a href="https://www.nyc.gov/site/dep/water/harbor-water-quality.page">please visit the most recent report from the NYC DEP Harbor Survey Report</a>. For information on current beach water quality, <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/Beaches/">please visit DOHMH&rsquo;s beach water quality map</a>.</p>
+
+                    <hr class="my-2">
+                    
+                    <a href="https://www.nyc.gov/site/doh/health/health-topics/rec-water-illness.page"><i class="fas fa-external-link-alt mr-1" aria-hidden="true"></i>Get more resources about waterways</a>.
+                    
+                </div>
+                <div class="modal-footer" data-pagefind-ignore="all">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        
+        <div class="modal fade" id="geoModal" tabindex="-1" role="dialog" aria-labelledby="geoModalLabel"
+        aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="geoModalLabel"><i  class="fas fa-question-circle mr-1" aria-hidden="true"></i>About neighborhood boundaries</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>There are many schemes of neighborhood boundaries (or geographies) available for different datasets. These include:
+                            <ul>
+                                <li>Citywide</li>
+                                <li>Borough</li>
+                                <li>United Hospital Fund 42 (UHF42) and United Hospital Fund 34 (UHF34) neighborhoods</li>
+                                <li>Community Districts (CD), and, related, Community District Tabulation Areas (CDTA)</li>
+                                <li>Neighborhood Tabulation Areas (NTA)</li>
+                            </ul>
+                        </p> 
+                        <p>We try to make data available at as fine a geographic resolution as we can. <a href="../../data-stories/geographies/">Read more about different geographies at this data story</a>.</p>
+                        <p>It would be convenient if each dataset could be made available at the same geography, but this is not always possible. The neighborhood boundaries available depend on the specifics of the underlying dataset.</p>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+     
+    <div class="modal fade" id="trendModal" tabindex="-1" role="dialog" aria-labelledby="trendModalLabel"
+    aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="trendModalLabel"><i  class="fas fa-question-circle mr-1" aria-hidden="true"></i>About trend charts</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>When we have multiple years of data, we show the data as trend charts.</p>
+                    <p>Trends for individual neighborhoods tend to be very unstable (or "bouncy"), due to small counts for outcomes in individual neighborhoods. To show clearer trends, we usually aggregate up and show trend data by Borough.</p>
+                    <p>Options on some indicators let you compare this indicator to other similar indicators.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+         
+         <div class="modal fade" id="timeModal" tabindex="-1" role="dialog" aria-labelledby="timeModalLabel"
+         aria-hidden="true">
+             <div class="modal-dialog modal-lg" role="document">
+                 <div class="modal-content">
+                     <div class="modal-header">
+                         <h5 class="modal-title" id="timeModalLabel"><i  class="fas fa-question-circle mr-1" aria-hidden="true"></i>Available time periods</h5>
+                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                             <span aria-hidden="true">&times;</span>
+                         </button>
+                     </div>
+                     <div class="modal-body">
+                         <p>We try to make data available as soon as we can.</p>
+                         <p>Many datasets take a long time to reach us — a "lag" of several years, during which data are gathered from different entities to try to create a complete dataset; data are processed (cleaned, deduplicated, etc), and analyzed. It can take several years to prepare a dataset — so a dataset that is several years old is sometimes the most up-to-date information available. Still, this data continues to show us valuable trends and insights. </p>
+                         <p>We also try to display datasets that have been available for many years. Some datasets (like those that are asked on surveys) are not asked every year of the survey, which means that we cannot provide annual data.</p>
+                         <p>For some datasets, we have to aggregate time periods in order to break down data by borough or neighborhood.</p>
+                     </div>
+                     <div class="modal-footer">
+                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                     </div>
+                 </div>
+             </div>
+         </div>
+
+    
+    <div class="modal fade" id="measureModal" tabindex="-1" role="dialog" aria-labelledby="measureModalLabel"
+    aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="measureModalLabel"><i  class="fas fa-question-circle mr-1" aria-hidden="true"></i>About measures</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Measures are the numeric ways that a dataset (or indicator) are expressed. Examples of different measures might be: number, percent or rate. </p>
+                    <p>A number tells us how much of an outcome is in a certain area. But a rate (usually expressed as, for example, 40 per 100,000) tells us how much of an outcome there is, <em>relative to the population of the area in question</em>. This lets us compare neighborhoods of different sizes.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+        
+        <div class="modal fade" id="linksModal" tabindex="-1" role="dialog" aria-labelledby="linksModalLabel"
+        aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="linksModalLabel"><i  class="fas fa-question-circle mr-1" aria-hidden="true"></i>About correlation</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>On this site, we try to show how environmental factors might be connected to health outcomes. One way we do this is with <strong>Correlates</strong>. We choose potentially-related datasets and display them on a scatterplot so you can see how these two datasets are correlated.</p>
+                        <p>The <strong>Disparities view</strong> displays neighborhoods by poverty category to show underlying disparities in the data.</p>
+                        <p><a href="../../data-stories/povasthma">Read more about correlation here</a>.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+</article>
+
+
+
+
+    
+
+    
+
+        
+
+        <h1
+            id="IndicatorID-2427"
+            class="d-none">
+            Bacteria
+        </h1>
+        <h2
+            class="d-none">
+            &lt;p&gt;Concentration of bacteria - fecal coliform and enterococci are human-health-related indicators of water quality. Fecal coliform bacteria are found in human and animal intestines and are associated with wastewater. Enterococci may be a more sensitive indicator of wastewater pollution in a saltwater environment.&lt;/p&gt;
+        </h2>
+
+
+    
+
+        
+
+        <h1
+            id="IndicatorID-2428"
+            class="d-none">
+            Dissolved oxygen (DO)
+        </h1>
+        <h2
+            class="d-none">
+            Dissolved oxygen is essential for most aquatic life. It is an important indicator of overall water quality.
+        </h2>
+
+
+    <section class="related-reading" data-pagefind-ignore="all">
+  <div class="container">
+      <div class="row">
+          <div class="col-12">
+              <div class="card bg-white text-green mb-2 p-2 text-primary fs-lg">
+                 <strong class="border-bottom">Related content</strong>
+              </div>
+          </div>
+
+          <div class="col-lg">
+              <div class="card bg-white text-black mb-2">
+                <div class="card-header"><h4 class="fs-md text-muted"><i class="fas fa-passport text-muted mr-1" aria-hidden="true"></i>Data Stories</h4>
+                </div>
+                <div class="card-body fs-sm overflow-fade-about" style="height:400px; overflow-y:scroll;"><a href="/IndicatorPublic/data-stories/public-space-creates-health/">Public space creates health</a>
+            <hr class="my-1"><a href="/IndicatorPublic/data-stories/flooding-and-health/">What Hurricane Ida and Superstorm Sandy taught us about flooding and health</a>
+            <hr class="my-1"><a href="/IndicatorPublic/data-stories/housing-creates-health/">Housing creates health</a>
+            <hr class="my-1"><a href="/IndicatorPublic/data-stories/economic-stability/">Economic stability creates health</a>
+            <hr class="my-1"><a href="/IndicatorPublic/data-stories/injury-deaths/">Injury deaths in NYC</a>
+            <hr class="my-1"><a href="/IndicatorPublic/data-stories/adult-lead/">Lead poisoning affects adults too</a>
+            <hr class="my-1"><a href="/IndicatorPublic/data-stories/racial-wealth-gap/">The racial wealth gap has big implications for public health and health equity</a>
+            <hr class="my-1"><a href="/IndicatorPublic/data-stories/sanitation/">Why trash is a public health issue</a>
+            <hr class="my-1"><a href="/IndicatorPublic/data-stories/block-by-block/">A walk through history</a>
+            <hr class="my-1"><a href="/IndicatorPublic/data-stories/hia/">Efforts to reduce air pollution should focus on neighborhoods with the worst health impacts</a>
+            <hr class="my-1"><a href="/IndicatorPublic/data-stories/cold/">Staying safe in cold weather</a>
+            <hr class="my-1"><a href="/IndicatorPublic/data-stories/poweroutages/">How power outages affect health</a>
+            <hr class="my-1"><a href="/IndicatorPublic/data-stories/urban-heat-island/">The urban heat island effect in NYC</a>
+            <hr class="my-1"><a href="/IndicatorPublic/data-stories/violence/">Why violence is a public health issue</a>
+            <hr class="my-1"><a href="/IndicatorPublic/data-stories/redlining/">A brief history of redlining</a>
+            <hr class="my-1"><a href="/IndicatorPublic/data-stories/housing/">Health, housing, and history</a>
+            <hr class="my-1"><a href="/IndicatorPublic/data-stories/heat/">Protecting New Yorkers from extreme heat</a>
+            <hr class="my-1"><a href="/IndicatorPublic/data-stories/assaults/">Disparities in violence</a>
+            <hr class="my-1"><a href="/IndicatorPublic/data-stories/food/">What hot weather means for food safety</a>
+            <hr class="my-1"><a href="/IndicatorPublic/data-stories/asthma-and-poverty/">Why asthma is a social justice issue</a>
+            <hr class="my-1"></div>
+              </div>
+            </div>
+            
+
+            <div class="col-lg">
+              <div class="card bg-white text-black mb-2">
+                  <div class="card-header"><h4 class="fs-md text-muted"><i class="fas fa-star text-muted mr-1" aria-hidden="true"></i>Key Topics</h4>
+
+                  </div>
+                  <div class="card-body fs-sm">
+                      <a href="/IndicatorPublic/key-topics/climatehealth/">Climate and health</a>
+                      <hr class="my-1"><a href="/IndicatorPublic/key-topics/social/">Inequality and health inequities</a>
+                      <hr class="my-1"></div>
+                </div>
+
+                <div class="card bg-white text-black mb-2">
+                  <div class="card-header"><h4 class="fs-md text-muted"><i class="fas fa-map-marked-alt text-muted mr-1" aria-hidden="true"></i>Neighborhood Reports</h4>
+                  </div>
+                  <div class="card-body fs-sm"><a href="/IndicatorPublic/neighborhood-reports/asthma_and_the_environment/">Asthma and the Environment</a>
+            <hr class="my-1"><a href="/IndicatorPublic/neighborhood-reports/climate_and_health/">Climate and Health</a>
+            <hr class="my-1"><a href="/IndicatorPublic/neighborhood-reports/housing_and_health/">Housing and Health</a>
+            <hr class="my-1"></div>
+                </div>
+            </div>
+            
+
+            <div class="col-lg">
+              <div class="card bg-white text-black">
+                <div class="card-header"><h4 class="fs-md text-muted"><i class="fas fa-chart-line text-muted mr-1" aria-hidden="true"></i>Data Explorer</h4>
+                </div>
+                <div class="card-body fs-sm overflow-fade-about" style="height:400px; overflow-y:scroll;"><a href="/IndicatorPublic/data-explorer/asthma/">Asthma</a>
+            <hr class="my-1"><a href="/IndicatorPublic/data-explorer/asthma-triggers/">Asthma triggers at home</a>
+            <hr class="my-1"><a href="/IndicatorPublic/data-explorer/climate/">Climate</a>
+            <hr class="my-1"><a href="/IndicatorPublic/data-explorer/economic-conditions/">Economic conditions</a>
+            <hr class="my-1"><a href="/IndicatorPublic/data-explorer/health-care/">Health care</a>
+            <hr class="my-1"><a href="/IndicatorPublic/data-explorer/health-impacts-of-air-pollution/">Health impacts of air pollution</a>
+            <hr class="my-1"><a href="/IndicatorPublic/data-explorer/housing-maintenance/">Housing maintenance</a>
+            <hr class="my-1"><a href="/IndicatorPublic/data-explorer/housing-safety/">Housing safety</a>
+            <hr class="my-1"><a href="/IndicatorPublic/data-explorer/housing-stability/">Housing stability</a>
+            <hr class="my-1"><a href="/IndicatorPublic/data-explorer/lead/">Lead poisoning</a>
+            <hr class="my-1"><a href="/IndicatorPublic/data-explorer/mortality/">Mortality</a>
+            <hr class="my-1"><a href="/IndicatorPublic/data-explorer/social-conditions/">Social conditions</a>
+            <hr class="my-1"><a href="/IndicatorPublic/data-explorer/vector-borne-disease/">Vector-borne disease</a>
+            <hr class="my-1"><a href="/IndicatorPublic/data-explorer/violence/">Violence</a>
+            <hr class="my-1"><a href="/IndicatorPublic/data-explorer/weather-related-illness/">Weather-related illness</a>
+            <hr class="my-1"><a href="/IndicatorPublic/data-explorer/worker-health/">Worker health</a>
+            <hr class="my-1"></div>
+              </div>
+            </div>
+            
+      </div>
+  </div>
+</section><ul id="results"></ul>
+  </main>
+  
+  <footer class="bg-black" id="global-footer" role="contentinfo">
+
+  <h2 class="sr-only">
+      Page Footer
+  </h2>
+
+  <div class="bg-opacity-black-25 text-white" id="nyc-footer">
+
+      <div class="container py-3 d-none" id="languages">
+
+          <div class="row fs-md d-print-none">
+
+              <div class="col-6 col-md-4 col-lg mb-2 mb-lg-0">
+                  <ul class="extensible-list">
+                      <li><a class="lang-select text-reset" href="#" data-lang="ar">عربى</a></li>
+                      <li><a class="lang-select text-reset" href="#" data-lang="bn">বাঙালি</a></li>
+                  </ul>
+              </div>
+              <div class="col-6 col-md-4 col-lg mb-2 mb-lg-0">
+                  <ul class="extensible-list">
+                      <li><a class="lang-select text-reset" href="#" data-lang="zh-CN">中文</a></li>
+                      <li><a class="lang-select text-reset" href="#" data-lang="fr">français</a></li>
+                  </ul>
+              </div>
+              <div class="col-6 col-md-4 col-lg mb-2 mb-lg-0">
+                  <ul class="extensible-list">
+                      <li><a class="lang-select text-reset" href="#" data-lang="ht">Kreyòl Ayisyen</a></li>
+                      <li><a class="lang-select text-reset" href="#" data-lang="ko">한국어</a></li>
+                  </ul>
+              </div>
+              <div class="col-6 col-md-4 col-lg mb-2 mb-lg-0">
+                  <ul class="extensible-list">
+                      <li><a class="lang-select text-reset" href="#" data-lang="pl">Polskie</a></li>
+                      <li><a class="lang-select text-reset" href="#" data-lang="ru">русский</a></li>
+                  </ul>
+              </div>
+              <div class="col-6 col-md-4 col-lg">
+                  <ul class="extensible-list">
+                      <li><a class="lang-select text-reset" href="#" data-lang="es">Español</a></li>
+                      <li><a class="lang-select text-reset" href="#" data-lang="ur">اردو</a></li>
+                  </ul>
+              </div>
+          </div>
+
+      </div>
+      
+
+      <div class="container py-3 d-print-none" id="languages">
+
+          <ul class="fs-md" role="list">
+              <li><a class="lang-select text-reset" href="#" data-lang="ar">عربى</a></li>
+              <li><a class="lang-select text-reset" href="#" data-lang="bn">বাঙালি</a></li>
+              <li><a class="lang-select text-reset" href="#" data-lang="zh-CN">中文</a></li>
+              <li><a class="lang-select text-reset" href="#" data-lang="fr">français</a></li>
+              <li><a class="lang-select text-reset" href="#" data-lang="ht">Kreyòl Ayisyen</a></li>
+              <li><a class="lang-select text-reset" href="#" data-lang="ko">한국어</a></li>
+              <li><a class="lang-select text-reset" href="#" data-lang="pl">Polskie</a></li>
+              <li><a class="lang-select text-reset" href="#" data-lang="ru">русский</a></li>
+              <li><a class="lang-select text-reset" href="#" data-lang="es">Español</a></li>
+              <li><a class="lang-select text-reset" href="#" data-lang="ur">اردو</a></li>
+          </ul>
+
+      </div>
+      
+
+      <hr class="opacity-10" aria-hidden="true">
+
+      <div class="container py-3">
+          <div class="row">
+              <div class="col-md-6 col-lg-8 mb-3 mb-lg-0">
+                  <nav class="row fs-md d-print-none" role="navigation">
+                      <div class="col-lg mb-3 mb-lg-0">
+                          <ul class="extensible-list">
+                              <li>
+                                  <a class="text-reset" href="https://www1.nyc.gov/nyc-resources/agencies.page">
+                                      <strong>Directory of City Agencies</strong>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a class="text-reset" href="https://a858-nycnotify.nyc.gov/notifynyc/">
+                                      <strong>Notify NYC</strong>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a class="text-reset"
+                                      href="https://www1.nyc.gov/connect/mobile-applications.page">
+                                      <strong>NYC Mobile Apps</strong>
+                                  </a>
+                              </li>
+                          </ul>
+                      </div>
+                      
+
+                      <div class="col-lg mb-3 mb-lg-0">
+
+                          <ul class="extensible-list">
+                              <li>
+                                  <a class="text-reset" href="https://www1.nyc.gov/home/contact-us.page">
+                                      <strong>Contact NYC Government</strong>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a class="text-reset" href="https://a856-citystore.nyc.gov/">
+                                      <strong>CityStore</strong>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a class="text-reset" href="https://www.nyc.gov/nyc-resources/nyc-maps.page">
+                                      <strong>Maps</strong>
+                                  </a>
+                              </li>
+                          </ul>
+
+                      </div>
+                      
+
+                      <div class="col-lg mb-3 mb-lg-0">
+
+                          <ul class="extensible-list">
+                              <li>
+                                  <a class="text-reset"
+                                      href="https://a127-ess.nyc.gov/psp/prdess/?cmd=login&languageCd=ENG&">
+                                      <strong>City Employees</strong>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a class="text-reset" href="https://www1.nyc.gov/connect/social-media.page">
+                                      <strong>Stay Connected</strong>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a class="text-reset"
+                                      href="https://www1.nyc.gov/nyc-resources/resident-toolkit.page">
+                                      <strong>Resident Toolkit</strong>
+                                  </a>
+                              </li>
+                          </ul>
+                      </div>
+                      
+
+                  </nav>
+              </div>
+              
+
+              <div class="col-md-6 col-lg-4">
+
+                  <a class="mb-2" href="https://www1.nyc.gov" title="Go to nyc.gov" target="_blank" rel="noopener noreferrer">
+                      
+                      <img class="mb-2" src="/IndicatorPublic/images/nyc-bubble-logo.svg" width="90" alt="NYC Logo">
+                      <span class="sr-only">(opens in a new tab)</span>
+                  </a>
+                  <p class="fs-sm">© City of New York. 2022 All Rights Reserved,<br>NYC is a trademark and service mark of the City of New
+                    York.</p>
+
+                  <ul class="extensible-list horizontal fs-sm d-print-none">
+                      <li>
+                          <a class="text-reset" href="https://www1.nyc.gov/home/privacy-policy.page">Privacy
+                              Policy</a>
+                      </li>
+                      <li>
+                          <a class="text-reset" href="https://www1.nyc.gov/home/terms-of-use.page">Terms
+                              of Use</a>
+                      </li>
+                      <li>
+                          <a class="text-reset" href="https://www1.nyc.gov/site/mopd/index.page"
+                              title="Mayor's Office for People with Disabilities">
+                              <span class="sr-only">Learn more about Digital Accessibility
+                                from the Mayor's Office for People with Disabilities.</span>
+                              <span class="fab fa-lg fa-accessible-icon"></span>
+                          </a>
+                      </li>
+                  </ul>
+
+              </div>
+              
+
+          </div>
+          
+
+      </div>
+      
+
+  </div>
+  
+
+</footer>
+
+
+<div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="searchModalLabel" data-pagefind-ignore="all">Search</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <link href=/IndicatorPublic/pagefind/pagefind-ui.css rel="stylesheet">
+            <script src=/IndicatorPublic/pagefind/pagefind-ui.js type="text/javascript"></script>
+            <div id="search"></div>
+            <script>
+
+                window.addEventListener('DOMContentLoaded', (event) => {
+
+                    new PagefindUI({
+                        element: "#search",
+                        showSubResults: true,
+                        showImages: false,
+                        baseUrl: baseURL,
+                        showEmptyFilters: true,
+                        debounceTimeoutMs: 500,
+                        
+                        processTerm: function (term) {
+
+                            gtag('event', 'search', {
+                                search_term: term
+                            });
+
+                            return term;
+
+                        },
+                        processResult: function (result) {
+
+                            
+                            
+                            
+
+                            
+
+                            result.meta.title = result.meta.title
+                                .replace(/&#(\d+);/g, ((match, dec) => `${String.fromCharCode(dec)}`))
+                                .replaceAll("&amp;", "&");
+
+                            
+
+                            result.sub_results.forEach(sub => {
+
+                                
+
+                                sub.url = sub.url.replace("#IndicatorID-", "?id=");
+
+                                
+
+                                sub.title = sub.title
+                                    .replace(/&#(\d+);/g, ((match, dec) => `${String.fromCharCode(dec)}`))
+                                    .replaceAll("&amp;", "&");
+
+                            });
+
+                            
+                            
+                            
+
+                            
+                            var allResults = document.getElementsByClassName('pagefind-ui__result-link');
+
+                            
+                            for (h = 0; h < allResults.length; h += 1) {
+
+                                allResults[h].setAttribute('onclick',"gtag('event', 'search_click', { page_viewed: '" + allResults[h].href + "' });");
+
+                            }
+
+                            
+
+                            console.log("@ result:", result);
+                            
+
+                        }
+                    });
+
+                    
+
+                    
+
+                    const searchModal = document.getElementById('searchModal')
+                    const searchInput = document.getElementsByClassName('pagefind-ui__search-input')[0]
+
+                    $(searchModal).on('shown.bs.modal', () => {
+                        searchInput.focus();
+                        searchInput.select();
+                    })
+
+
+                });
+
+
+            </script>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+<script>
+
+
+</script>
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+
+
+<script>
+  function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+          pageLanguage: 'en'
+      }, 'google_translate_element');
+
+      
+      document.querySelectorAll("div[class^=VI] svg").forEach(e => e.outerHTML = "");
+  }
+</script>
+
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+<script type="text/javascript" 
+    src="/IndicatorPublic/js/main.552c9e0eb5b9f567a863809d88dfdb9dfc2e5062f1aa7ae313abbdf21a346fd773ae265f5ff618d8322e2b96b95be1b319c681eb0ea7b818a3c6485a84b6ad5a.js" 
+    integrity="sha512-VSyeDrW59WeoY4CdiN/bnfwuUGLxqnrjE6u98ho0b9dzriZfX/YY2DIuK5a5W&#43;GzGcaB6w6nuBijxkhahLatWg=="></script>
+
+  <script type="text/javascript" src="/IndicatorPublic/js/accessible-autocomplete.min.a28dbcfe4538f42cec64a42e75429f873bd86641fea0b326b3a4800b59917b99b877d3715b07405ff36917ed9e3cc0873f7b58a65905ff508cd42e8c427a5f9a.js" integrity="sha512-oo28/kU49CzsZKQudUKfhzvYZkH&#43;oLMms6SAC1mRe5m4d9NxWwdAX/NpF&#43;2ePMCHP3tYplkF/1CM1C6MQnpfmg=="></script>
+
+    <script type="text/javascript" src="/IndicatorPublic/node_modules/arquero/dist/arquero.min.82ce1679c7371988052f187754be1a0932292c392abe67f907bbb27fad4f07f288c9a5d902ec4ccc053679a1c97bab13abe66c8d141851051c43bbeae303f144.js" integrity="sha512-gs4Wecc3GYgFLxh3VL4aCTIpLDkqvmf5B7uyf61PB/KIyaXZAuxMzAU2eaHJe6sTq&#43;ZsjRQYUQUcQ7vq4wPxRA=="></script>
+
+    <link rel="stylesheet" href="/IndicatorPublic/css/dtCSS.css">
+
+    <script type="text/javascript" src="/IndicatorPublic/js/dataTableBundle.01e1330c6719cbde6e96507c9063003b2396d7b863673b3055c40554f31ad822d158f68a64605e31ed1d803f1ab4a244aa2c6056d21ba68ac7cfda0f0f8704ed.js" integrity="sha512-AeEzDGcZy95ullB8kGMAOyOW17hjZzswVcQFVPMa2CLRWPaKZGBeMe0dgD8atKJEqixgVtIbporHz9oPD4cE7Q=="></script>
+
+    <script type="text/javascript" src="/IndicatorPublic/js/vegaBundle.1b26defcd8c27ad6683cbca45635983e5c46ded5a02db1baaa62341a41c55d851bda2a1115752dea7e30cf34f3949dea4705148ea7a34f29d8368b9ceaa52d7f.js" integrity="sha512-Gybe/NjCetZoPLykVjWYPlxG3tWgLbG6qmI0GkHFXYUb2ioRFXUt6n4wzzTzlJ3qRwUUjqejTynYNouc6qUtfw=="></script>
+
+    <script type="text/javascript" src="/IndicatorPublic/node_modules/d3/dist/d3.min.bdce7caafbc176b0d1e1eb5bc4c7654ede06050935aa3bf23914769ebb0fb053f2aecfbfbb9737fb50adeaea4e81d668225edeaba9376b550f0d2340422ff7d8.js" integrity="sha512-vc58qvvBdrDR4etbxMdlTt4GBQk1qjvyORR2nrsPsFPyrs&#43;/u5c3&#43;1Ct6upOgdZoIl7eq6k3a1UPDSNAQi/32A=="></script>
+
+    <script type="text/javascript" src="/IndicatorPublic/js/naturalSort.85086e9893ddb580f0cae2285cb55e026579549ec537057fb04b6498af4384e8c06eeb6cc26c017da40de6aceea2f99c9ac00e7738cba5d4dcbb6ba01a9b5f17.js" integrity="sha512-hQhumJPdtYDwyuIoXLVeAmV5VJ7FNwV/sEtkmK9DhOjAbutswmwBfaQN5qzuovmcmsAOdzjLpdTcu2ugGptfFw=="></script>
+
+    <script type="text/javascript" src="/IndicatorPublic/node_modules/seedrandom/seedrandom.min.f91bb9d01cc4a598e51735678d29897d814f15f636852d0a8e5bbf22fa9a268bb1ee6685e6526b455509589d8b7af3e5b3badddb8d862db584b7ecc0a3839555.js" integrity="sha512-&#43;Ru50BzEpZjlFzVnjSmJfYFPFfY2hS0Kjlu/IvqaJoux7maF5lJrRVUJWJ2LevPls7rd242GLbWEt&#43;zAo4OVVQ=="></script>
+
+    <script>
+
+        const renderIndicatorDropdown = () => {
+
+            const indicatorDropdown = document.getElementById("indicator-dropdown");
+            let this_indicatorName;
+            let header;
+
+                header = '';
+                indicatorDropdown.innerHTML += header.length ? '<div class="dropdown-title"><strong>' + header + '</strong></div>' : '';
+
+                
+
+                     defaultIndicatorId =  2427  
+
+                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2427 );
+                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
+                    indicatorDropdown.innerHTML += "<button class='indicator-dropdown-item dropdown-item' onclick='loadIndicator(2427)' data-indicator-id='2427'>" + this_indicatorName + `</button>`;
+
+                
+
+                    
+
+                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2428 );
+                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
+                    indicatorDropdown.innerHTML += "<button class='indicator-dropdown-item dropdown-item' onclick='loadIndicator(2428)' data-indicator-id='2428'>" + this_indicatorName + `</button>`;
+
+                
+
+        }
+
+
+        
+
+        const renderIndicatorButtons = () => {
+
+            const indicatorButtons = document.getElementById("indicatorButtons");
+            let this_indicatorName;
+            let header;
+
+                header = '';
+                indicatorButtons.innerHTML += header.length ? '<div class="pl-1 pt-2 home-label border">' + header + '</div>': '';
+
+                defaultIndicatorId =  2427 
+
+                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2427 );
+                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
+                    indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' onclick='loadIndicator(2427)' data-indicator-id='2427'>" + this_indicatorName + `<i class="indicator-arrows fas fa-arrow-circle-right float-right font-weight-bold hide" id="arrow-2427" aria-hidden="true"></i></button>`;
+
+                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2428 );
+                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
+                    indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' onclick='loadIndicator(2428)' data-indicator-id='2428'>" + this_indicatorName + `<i class="indicator-arrows fas fa-arrow-circle-right float-right font-weight-bold hide" id="arrow-2428" aria-hidden="true"></i></button>`;
+        }
+
+        function createCitation() {
+            
+            let today = new Date();
+            let dd = String(today.getDate()).padStart(2, '0');
+            let mm = String(today.getMonth() + 1).padStart(2, '0'); 
+            let yyyy = today.getFullYear();
+            today = mm + '/' + dd + '/' + yyyy;
+            let url = window.location.href.replace(/#.*/, "")
+
+            
+            let citation = "New York City Department of Health, Environment & Health Data Portal. "  + "Waterways" + " data. " + indicatorName + '. Accessed at ' + url + ' on ' + today + "."
+
+            
+            document.getElementById('citeText').setAttribute('value', citation);
+
+            
+
+            let btn = document.getElementById('citeButton')
+            btn.innerHTML = `<i class="fas fa-copy mr-1"></i>Copy citation`
+
+        }
+
+        function copyCitation() {
+            let citeText = document.getElementById('citeText')
+            citeText.select()
+            citeText.setSelectionRange(0,99999);
+            navigator.clipboard.writeText(citeText.value)
+            let btn = document.getElementById('citeButton')
+            btn.innerHTML = `<i class="fas fa-copy mr-1"></i>Copied!`
+            
+        }
+
+    </script><script type="text/javascript" src="/IndicatorPublic/js/data-explorer/global.22dcf3bd7810bbaa958105492a89aa0957abc5430e45c02749cd7cd085a4c64d6fd4dd0cd33d74e4cefe587608f1195847b013c0a3c2a2da3639e71fdafb762e.js" integrity="sha512-ItzzvXgQu6qVgQVJKomqCVerxUMORcAnSc180IWkxk1v1N0M0z105M7&#43;WHYI8RlYR7ATwKPCoto2Oecf2vt2Lg=="></script>
+    <script type="text/javascript" src="/IndicatorPublic/js/data-explorer/data.b69132321e1967026bc4161ebe03db1a98d45ae65573f32ff54afc42ea6ef0ec9d2069f2badf9cb1a0f0c77f72d2ae44d1d904a7d866396f67f1904e15810659.js" integrity="sha512-tpEyMh4ZZwJrxBYevgPbGpjUWuZVc/Mv9Ur8Qupu8OydIGnyut&#43;csaDwx39y0q5E0dkEp9hmOW9n8ZBOFYEGWQ=="></script>
+    <script type="text/javascript" src="/IndicatorPublic/js/data-explorer/measures.694a93172a11ef86730e91c5a8a72cbc59dd2d01bf1de83ae5a87156588bb6aac7517ae25c4b2108353bdc50bbc636161f7a1df7c07f3b29d742c97dd1c68625.js" integrity="sha512-aUqTFyoR74ZzDpHFqKcsvFndLQG/Heg65ahxVliLtqrHUXriXEshCDU73FC7xjYWH3od98B/OynXQsl90caGJQ=="></script>
+    <script type="text/javascript" src="/IndicatorPublic/js/data-explorer/table.deea4a830f0fae3a84a6c90290fbab4961cab05d683ba3acb83fc62c50480d9443b68185fa3c97cba3264769e7f2f9fc037410c64c647373ea20860649842948.js" integrity="sha512-3upKgw8PrjqEpskCkPurSWHKsF1oO6OsuD/GLFBIDZRDtoGF&#43;jyXy6MmR2nn8vn8A3QQxkxkc3PqIIYGSYQpSA=="></script>
+    <script type="text/javascript" src="/IndicatorPublic/js/data-explorer/map.e4988d2e9ea1fb8f48916550dee909663c44f2275aab4fdda0039793dc98a8f23b4c335e6815dea277466c7c175087b8b3543179875b27598d4fa5ab2213e8eb.js" integrity="sha512-5JiNLp6h&#43;49IkWVQ3ukJZjxE8idaq0/doAOXk9yYqPI7TDNeaBXeondGbHwXUIe4s1QxeYdbJ1mNT6WrIhPo6w=="></script>
+    <script type="text/javascript" src="/IndicatorPublic/js/data-explorer/links.ec356c0fedb024900c577d2610114ce5fb0165630631e0aad14b40a0f61be00d925fbcad84e813b6a4496eff68848cc46a86fdaa04091192b257d11e9b229ea4.js" integrity="sha512-7DVsD&#43;2wJJAMV30mEBFM5fsBZWMGMeCq0UtAoPYb4A2SX7ythOgTtqRJbv9ohIzEaob9qgQJEZKyV9EemyKepA=="></script>
+    <script type="text/javascript" src="/IndicatorPublic/js/data-explorer/disparities.3f7d6fd2fb05e1bcf9c5bad4210f1840aa83a3bbbb42aa9600209827e8c14925760226dc77d1cdc40c284b91777333144e0d9512f2270f63988107eed3816641.js" integrity="sha512-P31v0vsF4bz5xbrUIQ8YQKqDo7u7QqqWACCYJ&#43;jBSSV2Aibcd9HNxAwoS5F3czMUTg2VEvInD2OYgQfu04FmQQ=="></script>
+    <script type="text/javascript" src="/IndicatorPublic/js/data-explorer/comparisons.1a430d70594f13a3916d5a9c396b47add86b1cd9816664b29c47872f880d3920773a951e0792c67c97b0909f3ce3d5ef3d0f3f2dc82dc3fa35db9de162b90bc3.js" integrity="sha512-GkMNcFlPE6ORbVqcOWtHrdhrHNmBZmSynEeHL4gNOSB3OpUeB5LGfJewkJ8849XvPQ8/Lcgtw/o1253hYrkLww=="></script>
+    <script type="text/javascript" src="/IndicatorPublic/js/data-explorer/app.4144432c759beb31d941b8308709c9ec275e876b96c88cac0446e475184f9625b723537f358e8cd82d4ba64e968113f7492399d9f66e4443e9a356c7c0aba8a2.js" integrity="sha512-QURDLHWb6zHZQbgwhwnJ7Cdeh2uWyIysBEbkdRhPliW3I1N/NY6M2C1Lpk6WgRP3SSOZ2fZuREPpo1bHwKuoog=="></script>
+  
+</body>
+</html>

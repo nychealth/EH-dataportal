@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>emergency room on Environment &amp; Health Data Portal</title>
+    <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/emergency-room/</link>
+    <description>Recent content in emergency room on Environment &amp; Health Data Portal</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 30 Aug 2021 11:51:01 -0400</lastBuildDate>
+    <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/emergency-room/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Real-time heat-related illness</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-syndrome/</link>
+      <pubDate>Mon, 30 Aug 2021 11:51:01 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-syndrome/</guid>
+      <description>The weather forecast is the best way to predict heat-related health outcomes.&#xA;We can also track heat-related illness with near real-time electronic data from emergency departments at hospitals throughout NYC. These data include illnesses directly attributed to heat (including heat exhaustion, muscle cramps, fainting and heat stroke), not the full burden of heat-related health impacts.</description>
+    </item>
+    <item>
+      <title>Why asthma is a social justice issue</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/asthma-and-poverty/</link>
+      <pubDate>Thu, 24 Oct 2019 08:18:56 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/asthma-and-poverty/</guid>
+      <description>Poverty affects health in many ways. In New York City, the story of asthma clearly illustrates this connection.&#xA;To understand the connection between poverty and asthma, take a look at this map of poverty rates in New York City, below. The darker the color, the more residents living in poverty.&#xA;Now, compare that to a map of emergency department visits for asthma in children age 5 to 17, below. The darker the color, the higher the rate of children visiting the emergency department with asthma.</description>
+    </item>
+  </channel>
+</rss>

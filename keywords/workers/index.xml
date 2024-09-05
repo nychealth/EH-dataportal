@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>workers on Environment &amp; Health Data Portal</title>
+    <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/workers/</link>
+    <description>Recent content in workers on Environment &amp; Health Data Portal</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 13 Jul 2023 08:29:34 -0400</lastBuildDate>
+    <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/workers/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Lead poisoning affects adults too</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/adult-lead/</link>
+      <pubDate>Thu, 13 Jul 2023 08:29:34 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/adult-lead/</guid>
+      <description>Lead is a harmful metal that can cause serious health issues. When lead poisoning makes headlines, the focus is usually on children’s health: Kids are at higher risk for lead exposure, which can cause developmental, learning and behavior issues.&#xA;But lead can also harm adults. In adults, lead can cause increased blood pressure, kidney and brain problems, infertility and impotence. During pregnancy, lead exposure can cause miscarriage or babies to be born too soon or too small.</description>
+    </item>
+    <item>
+      <title>Worker health</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/worker-health/</link>
+      <pubDate>Fri, 28 May 2021 18:02:58 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/worker-health/</guid>
+      <description>Every year in New York City, workers are injured on the job or become ill as a result of exposure to health hazards at work. However, most work-related illnesses and injuries are preventable – safer work environments can be achieved when workplace hazards are understood and appropriate prevention measures are put in place.&#xA;Data on work-related injuries and illness are used to show how often these preventable events occur and to identify factors that place workers at risk.</description>
+    </item>
+  </channel>
+</rss>

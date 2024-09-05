@@ -1,0 +1,1187 @@
+{
+  "1": {
+    "IndicatorID": 1,
+    "description": "Birth at fewer than 37 weeks gestational age.",
+    "name": "Preterm birth"
+  },
+  "100": {
+    "IndicatorID": 100,
+    "description": "Pesticides targeting insects, but have low toxicity or low potential for human exposure, applied by professionally licensed exterminators and maintenance staff.",
+    "name": "Commercial use of \"Best Practice\" products"
+  },
+  "101": {
+    "IndicatorID": 101,
+    "description": "Tetralogy of Fallot is a congenital heart defect that affects how blood flows through the heart.",
+    "name": "Tetralogy of Fallot"
+  },
+  "102": {
+    "IndicatorID": 102,
+    "description": "Pesticides targeting rats and mice, applied by professional exterminators or licensed maintenance staff. These products are frequently added to tamper proof containers or applied directly to rodent burrows",
+    "name": "Commercial use of rodenticides"
+  },
+  "103": {
+    "IndicatorID": 103,
+    "description": "The percent of households with incomes below the federal poverty level. Households without sufficient resources are often deprived of access to items such as health care and good quality housing that are needed to maintain good health.",
+    "name": "Neighborhood poverty"
+  },
+  "107": {
+    "IndicatorID": 107,
+    "description": "The presence of cockroaches in the home is often associated with poor housing maintenance. Cockroaches in the home can contaminate food and worsen asthma.",
+    "name": "Homes with cockroaches"
+  },
+  "14": {
+    "IndicatorID": 14,
+    "description": "People born outside the USA or its territories (including Puerto Rico).",
+    "name": "Foreign-born"
+  },
+  "15": {
+    "IndicatorID": 15,
+    "description": "Households with more than one person per room are considered crowded.",
+    "name": "Household crowding"
+  },
+  "16": {
+    "IndicatorID": 16,
+    "description": "Homes built before 1950. Older housing can put residents at risk of lead poisoning.",
+    "name": "Very old homes"
+  },
+  "17": {
+    "IndicatorID": 17,
+    "description": "Housing units occupied by their owner.",
+    "name": "Owner-occupied homes"
+  },
+  "18": {
+    "IndicatorID": 18,
+    "description": "Asthma is a common disease characterized by breathing difficulty. Poor air quality and housing issues increase risk of developing and triggering asthma.",
+    "name": "Adults with asthma (past 12 months)"
+  },
+  "2": {
+    "IndicatorID": 2,
+    "description": "Birth at fewer than 32 weeks gestational age.",
+    "name": "Very preterm birth"
+  },
+  "2017": {
+    "IndicatorID": 2017,
+    "description": "Adults without a smoke-free home policy. A smoke-free home policy can limit people's exposure to secondhand smoke, which is especially dangerous to children.",
+    "name": "No smoke-free home policy"
+  },
+  "2019": {
+    "IndicatorID": 2019,
+    "description": "Adults who are current smokers. Cigarette smoking is the leading cause of preventable deaths in the USA. It causes many diseases and greatly harms health.",
+    "name": "Cigarette smoking (adults)"
+  },
+  "2020": {
+    "IndicatorID": 2020,
+    "description": "Adults reporting secondhand smoke at work. Secondhand smoke, especially indoors, is bad for health.",
+    "name": "Secondhand smoke at work"
+  },
+  "2021": {
+    "IndicatorID": 2021,
+    "description": "High school students who smoked in the past 30 days (from when they were surveyed). Cigarette smoking is the leading cause of preventable deaths in the USA. It causes many diseases and greatly harms health.",
+    "name": "Cigarette smoking (youth)"
+  },
+  "2023": {
+    "IndicatorID": 2023,
+    "description": "Fine particles are emitted by vehicles, building boilers, and other combustion - and are a major form of air pollution that harms health.",
+    "name": "Fine particles (PM 2.5)"
+  },
+  "2024": {
+    "IndicatorID": 2024,
+    "description": "Black carbon is a major component of fine particles in the air. Fine particles are easily inhaled and contribute to both short-term acute health effects, as well as long-term chronic illness.",
+    "name": "Black carbon"
+  },
+  "2025": {
+    "IndicatorID": 2025,
+    "description": "Nitrogen dioxide is a pollutant formed by combusion that damage lung tissue, cause breathing problems, and contribute to smog and acid rain.",
+    "name": "Nitrogen dioxide (NO2)"
+  },
+  "2026": {
+    "IndicatorID": 2026,
+    "description": "Sulfur dioxide comes from burning some kinds of fuel oil. As an air pollutant, it can can worsen lung diseases.",
+    "name": "Sulfur dioxide (SO2)"
+  },
+  "2027": {
+    "IndicatorID": 2027,
+    "description": "Ozone is a common air pollutant that can harm breathing and worsen asthma and other respiratory conditions.",
+    "name": "Ozone (O3)"
+  },
+  "2028": {
+    "IndicatorID": 2028,
+    "description": "Nitric oxide (NO) is formed by combustion, especially in vehicles, that damages lung tissue, causes breathing problems, and contributes to smog and acid rain.",
+    "name": "Nitric oxide (NO)"
+  },
+  "2030": {
+    "IndicatorID": 2030,
+    "description": "Adults reporting a problem with bed bugs that required an exterminator, in the past 12 months.",
+    "name": "Bed bugs"
+  },
+  "2031": {
+    "IndicatorID": 2031,
+    "description": "Leukemia is a general term for cancer of blood cells.",
+    "name": "Leukemia (children)"
+  },
+  "2033": {
+    "IndicatorID": 2033,
+    "description": "Brain and other nervous system cancers are tumors that start in the brain or spinal cord.",
+    "name": "Brain and other nervous system cancer (children)"
+  },
+  "2035": {
+    "IndicatorID": 2035,
+    "description": "A cancer of the blood and bone marrow.",
+    "name": "Acute myeloid leukemia (children)"
+  },
+  "2037": {
+    "IndicatorID": 2037,
+    "description": "A cancer of the blood and bone marrow.",
+    "name": "Acute lymphocytic leukemia (children)"
+  },
+  "2039": {
+    "IndicatorID": 2039,
+    "description": "A group of diseases where cells grow abnormally.",
+    "name": "All cancer (children)"
+  },
+  "2041": {
+    "IndicatorID": 2041,
+    "description": "Nitrates are found in water near where nitrogen-based fertilizers are used. Infants who are fed formula made with water containing nitrates over 10 mg/L sometimes became seriously ill.",
+    "name": "Nitrate"
+  },
+  "2043": {
+    "IndicatorID": 2043,
+    "description": "Disinfection by-products are chemicals that can form when a disinfectant such as chlorine reacts with naturally occurring organic matter and other substances in the source water. Current research is investigating whether there are health effects from chronic exposure to the by-products of water disinfection.",
+    "name": "Disinfection by-products (HAA5)"
+  },
+  "2044": {
+    "IndicatorID": 2044,
+    "description": "Arsenic is naturally-occurring in some groundwater systems. It may also enter drinking water systems from some pesticides and wood preservatives. Chronic exposure may increase risk of certain cancers.",
+    "name": "Arsenic"
+  },
+  "2048": {
+    "IndicatorID": 2048,
+    "description": "Severe asthma attacks can result in a visit to the ED. Things like smoke, air pollution, dust mites, cockroaches, mold, pollen and pet dander can trigger asthma.",
+    "name": "Asthma emergency department visits (age 4 and under)"
+  },
+  "2049": {
+    "IndicatorID": 2049,
+    "description": "Greater alcohol outlet density has been associated with a variety of health effects.",
+    "name": "Alcohol access"
+  },
+  "2050": {
+    "IndicatorID": 2050,
+    "description": "Heavy drinking is having more than 2 drinks per day (men) or more than 1 drink per day ( women).",
+    "name": "Heavy drinking (adults)"
+  },
+  "2051": {
+    "IndicatorID": 2051,
+    "description": "Binge drinking is having 5 or more drinks on one occasion, and as of 2011, 4 or more drinks for women.",
+    "name": "Binge drinking (adults)"
+  },
+  "2055": {
+    "IndicatorID": 2055,
+    "description": "Public high school students who reported having 5 or more drinks in a row in the past 30 days (from when they were surveyed).",
+    "name": "Binge drinking (youth)"
+  },
+  "2056": {
+    "IndicatorID": 2056,
+    "description": "Public high school students who report having at least 1 drink in the past 30 days (from when they were surveyed).",
+    "name": "Underage drinking"
+  },
+  "2057": {
+    "IndicatorID": 2057,
+    "description": "Greater alcohol outlet density has been associated with a variety of health effects.",
+    "name": "Alcohol access (youth)"
+  },
+  "2058": {
+    "IndicatorID": 2058,
+    "description": "Adults reporting walking or biking for transportation in the last 30 days (from when they were surveyed). Regularly walking or biking for transportation is good for you.",
+    "name": "Walking or biking for transportation"
+  },
+  "2059": {
+    "IndicatorID": 2059,
+    "description": "Adults reporting having ridden a bicycle at least once a month in the past year.",
+    "name": "Monthly bicycle use"
+  },
+  "2060": {
+    "IndicatorID": 2060,
+    "description": "Adults reporting exercise in the past 30 days (from when they were surveyed). Regular exercise is a key way to stay healthy.",
+    "name": "Recent exercise"
+  },
+  "2061": {
+    "IndicatorID": 2061,
+    "description": "People who are overweight or obese are at increased risk for heart disease and diabetes.",
+    "name": "Overweight or obesity (adults)"
+  },
+  "2062": {
+    "IndicatorID": 2062,
+    "description": "People who are overweight or obese are at increased risk for heart disease and diabetes.",
+    "name": "Overweight or obesity (youth)"
+  },
+  "2063": {
+    "IndicatorID": 2063,
+    "description": "People who are obese are at increased risk for heart disease and diabetes. Neighborhood factors such as walkability and the types of food retail outlets available can impact residents' risk of being overweight or obese.",
+    "name": "Obesity (adults)"
+  },
+  "2064": {
+    "IndicatorID": 2064,
+    "description": "People who are obese are at increased risk for heart disease and diabetes. Neighborhood factors such as walkability and the types of food retail outlets available can impact residents' risk of being overweight or obese.",
+    "name": "Obesity (youth)"
+  },
+  "2065": {
+    "IndicatorID": 2065,
+    "description": "An A grade is the highest a restaurant can score in a health inspection. It indicates a well maintained restaurant with clean and safe food handling and storage practices, minimizing the risk of food poisoning.",
+    "name": "Restaurants with A grades"
+  },
+  "2073": {
+    "IndicatorID": 2073,
+    "description": "Adults reporting their neighborhood is safe from crime. Whether people perceive their neighborhood as safe can affect whether they will spend time outside, use parks, and use active and sustainable forms of transportation. It can also affect mental well-being.",
+    "name": "Perception of neighborhood safety"
+  },
+  "2074": {
+    "IndicatorID": 2074,
+    "description": "Hot weather kills more people than all other extreme weather combined. This measure includes only deaths directly attributed to heat on death certificates, which represent a small proportion of all heat-related deaths.",
+    "name": "Heat stress: deaths"
+  },
+  "2075": {
+    "IndicatorID": 2075,
+    "description": "ED visits due to heat-related illnesses, such as heat stroke and heat exhaustion, represent part of the public health burden of extreme heat.",
+    "name": "Heat stress: yearly emergency department visits"
+  },
+  "2076": {
+    "IndicatorID": 2076,
+    "description": "Heat stress hospitalizations weather are part of the public health burden due to hot weather.",
+    "name": "Heat stress: yearly hospitalizations"
+  },
+  "2077": {
+    "IndicatorID": 2077,
+    "description": "Esophageal cancer forms in the tissues of the esophagus, in the throat.",
+    "name": "Esophageal cancer"
+  },
+  "2084": {
+    "IndicatorID": 2084,
+    "description": "Heat events threaten health. More people die due to extreme heat than all other extreme weather events combined. As the climate continues to warm, we can expect more severe and more frequent heat events.",
+    "name": "Heat events"
+  },
+  "2086": {
+    "IndicatorID": 2086,
+    "description": "Bicycle injury hospitalizations can indicate the overall safety of cycling in the city - for transporation or other purposes.",
+    "name": "Bicycle injury hospitalizations"
+  },
+  "2087": {
+    "IndicatorID": 2087,
+    "description": "Kidney and renal pelvis cancers start in the kidney.",
+    "name": "Kidney and renal pelvis cancer"
+  },
+  "2088": {
+    "IndicatorID": 2088,
+    "description": "Larynx cancer starts in the tissues of the larynx.",
+    "name": "Larynx cancer"
+  },
+  "2089": {
+    "IndicatorID": 2089,
+    "description": "Cancers of the liver and intrahepatic bile duct.",
+    "name": "Liver and intrahepatic bile duct cancer"
+  },
+  "2090": {
+    "IndicatorID": 2090,
+    "description": "A dangerous form of skin cancer.",
+    "name": "Melanoma of the skin"
+  },
+  "2091": {
+    "IndicatorID": 2091,
+    "description": "Cancers of the mouth and throat.",
+    "name": "Oral cavity and pharynx cancer"
+  },
+  "2092": {
+    "IndicatorID": 2092,
+    "description": "Bicycle injury ED visits can indicate the overall safety of cycling in the city - for transporation or other purposes.",
+    "name": "Bicycle injury emergency department visits"
+  },
+  "2093": {
+    "IndicatorID": 2093,
+    "description": "Pedestrian injury hospitalizations can indicate the safety of walking for transporation.",
+    "name": "Pedestrian injury hospitalizations"
+  },
+  "2094": {
+    "IndicatorID": 2094,
+    "description": "Pedestrian injury ED visits can indicate the safety of walking for transporation.",
+    "name": "Pedestrian injury emergency department visits"
+  },
+  "2095": {
+    "IndicatorID": 2095,
+    "description": "A cancer caused by exposure to asbestos.",
+    "name": "Mesothelioma"
+  },
+  "2096": {
+    "IndicatorID": 2096,
+    "description": "Bladder cancer is a common type of cancer. It typically affects older adults.",
+    "name": "Bladder cancer"
+  },
+  "2097": {
+    "IndicatorID": 2097,
+    "description": "Adults reporting that they drink 1 or more sugary drinks per day. Sugary drinks contribute to an unhealthy, high-calorie diet.",
+    "name": "Sugary drink consumption (adults)"
+  },
+  "2098": {
+    "IndicatorID": 2098,
+    "description": "Youths reporting that they drink 1 or more sugary drinks per day. Sugary drinks contribute to an unhealthy, high-calorie diet.",
+    "name": "Sugary drink consumption (youth)"
+  },
+  "2101": {
+    "IndicatorID": 2101,
+    "description": "Adults reporting mold in the home. Mold can worsen respiratory conditions like asthma, and indicate maintenance deficiencies in a building.",
+    "name": "Mold in homes"
+  },
+  "2104": {
+    "IndicatorID": 2104,
+    "description": "Adults reporting having an air conditioner. Air conditioning reduces the risk of heat stroke and other heat-related illness.",
+    "name": "Adults with air conditioners"
+  },
+  "2105": {
+    "IndicatorID": 2105,
+    "description": "Mice and rats are a source of household allergens connected to developing or worsening asthma.",
+    "name": "Adults reporting mice or rats inside"
+  },
+  "2108": {
+    "IndicatorID": 2108,
+    "description": "Estimating deaths that can be linked to PM2.5 is a way to understand how air pollution increases mortality.",
+    "name": "Deaths due to PM2.5"
+  },
+  "2112": {
+    "IndicatorID": 2112,
+    "description": "Traffic density is a measure of the average number of vehicles that occupy specified area. Traffic density can influence health as a source of air pollution and traffic-related injuries.",
+    "name": "Annual vehicle miles traveled"
+  },
+  "2113": {
+    "IndicatorID": 2113,
+    "description": "Traffic density is a measure of the average number of vehicles that occupy specified area. Traffic density can influence health as a source of air pollution and traffic-related injuries.",
+    "name": "Annual vehicle miles traveled (cars)"
+  },
+  "2114": {
+    "IndicatorID": 2114,
+    "description": "Traffic density is a measure of the average number of vehicles that occupy specified area. Traffic density can influence health as a source of air pollution and traffic-related injuries.",
+    "name": "Annual vehicle miles traveled (trucks)"
+  },
+  "2117": {
+    "IndicatorID": 2117,
+    "description": "PM2.5 can cause asthma ED visits, which represent part of the health burden of fine particle air pollution.",
+    "name": "Asthma emergency department visits due to PM2.5"
+  },
+  "2119": {
+    "IndicatorID": 2119,
+    "description": "Estimating hospitalizations that can be linked to PM2.5 is a way to understand how air pollution impacts public health.",
+    "name": "Respiratory hospitalizations due to PM2.5 (age 20+)"
+  },
+  "2120": {
+    "IndicatorID": 2120,
+    "description": "PM2.5 can cause cardiovascular hospitalizations, which represent part of the health burden of fine particle air pollution.",
+    "name": "Cardiovascular hospitalizations due to PM2.5 (age 40+)"
+  },
+  "2121": {
+    "IndicatorID": 2121,
+    "description": "Estimating heart and respiratory deaths that can be linked to ozone is a way to understand how air pollution increases mortality.",
+    "name": "Cardiac and respiratory deaths due to Ozone"
+  },
+  "2122": {
+    "IndicatorID": 2122,
+    "description": "Ozone can cause asthma ED visits, which are part of the health burden of air pollution.",
+    "name": "Asthma emergency departments visits due to Ozone"
+  },
+  "2124": {
+    "IndicatorID": 2124,
+    "description": "Ozone can cause hospitalizations for asthma, which are part of the health burden of air pollution.",
+    "name": "Asthma hospitalizations due to Ozone"
+  },
+  "2132": {
+    "IndicatorID": 2132,
+    "description": "Health insurance coverage is associated with numerous beneficial health effects. Those with health insurance are more likely to have a regular doctor, receive preventive care services, better manage chronic health conditions, have longer life expectancy, and more.",
+    "name": "Health insurance (adults)"
+  },
+  "2133": {
+    "IndicatorID": 2133,
+    "description": "This score summarizes features that promote walking, including density of residences, intersections, subway stops, and retail area. Higher scores indicate greater walkability. Neighborhoods range from -4.0 to 9.4, with zero as an approximate NYC average. This indicator excludes some factors that may impact access and walkability, like maintenance, ADA access, neighborhood safety, and street trees.",
+    "name": "Walkability index"
+  },
+  "2135": {
+    "IndicatorID": 2135,
+    "description": "Falls are a leading cause of injury among older adults.",
+    "name": "Fall-related emergency department visits (age 65+)"
+  },
+  "2136": {
+    "IndicatorID": 2136,
+    "description": "Falls are a leading cause of injury among older adults.",
+    "name": "Fall-related hospitalizations (age 65+)"
+  },
+  "2141": {
+    "IndicatorID": 2141,
+    "description": "Surface temperatures vary based on vegetative cover (which promotes cooling), as well as by materials that retain heat (like paved roads, sidewalks, and buildings). Hotter neighborhoods tend to have more heat-exacerbated deaths associated with extreme heat events.",
+    "name": "Daytime summer surface temperature"
+  },
+  "2143": {
+    "IndicatorID": 2143,
+    "description": "Vegetative cover is the land covered by trees, grass, or other plants instead of a hard surface like roads, sidewalks, or buildings. Vegetative cover tends to reduce temperatures in the immediate area and may increase air quality.",
+    "name": "Vegetative cover"
+  },
+  "2145": {
+    "IndicatorID": 2145,
+    "description": "People with disabilities or access or functional needs may need additional support during extreme weather. For example, they may need extra planning for safe travel out of evacuation zones during a hurricane, or back-up electricity to support medical equipment during power outages. Information provided here about adults with independent living difficulties can help emergency management professionals better prepare our residents for emergencies.",
+    "name": "Independent living difficulty (adults)"
+  },
+  "2146": {
+    "IndicatorID": 2146,
+    "description": "Older adults are more vulnerable to extreme weather. Those living alone may have more difficulty getting resources they need in an emergency, and are at higher risk of weather-related illnesses like heat stroke and hypothermia.",
+    "name": "Older adults living alone"
+  },
+  "2151": {
+    "IndicatorID": 2151,
+    "description": "Having a regular doctor makes it easier to maintain good health.",
+    "name": "Adults with a personal doctor"
+  },
+  "2155": {
+    "IndicatorID": 2155,
+    "description": "Older adults (over 65) are more vulnerable to hot weather and heat stress. Air conditioning reduces the risk of heat stroke and other heat-related illness.",
+    "name": "Older adults with air conditioners (age 65+)"
+  },
+  "2157": {
+    "IndicatorID": 2157,
+    "description": "Tree canopy coverage is the percent of a neighborhood that is shaded by trees. Tree shade can lower a neighborhood's temperatures, can make it more comfortable and attractive to walk and stay active.",
+    "name": "Tree canopy cover"
+  },
+  "2158": {
+    "IndicatorID": 2158,
+    "description": "Neighborhoods with greater subway access encourage active transportation, which may increase physical activity and overall health of residents. They also tend to have more foot traffic, which attracts businesses and can foster community.",
+    "name": "Subway station density"
+  },
+  "2168": {
+    "IndicatorID": 2168,
+    "description": "Carbon monoxide detectors are required in NYC homes by law. Failure to provide or maintain a detector can put people at risk for carbon monoxide poisoning and death.",
+    "name": "Carbon monoxide incidents (without a detector)"
+  },
+  "2169": {
+    "IndicatorID": 2169,
+    "description": "Diabetes is a metabolic disorder that affects how well your body can get energy from food and drink. Adults can be born with diabetes or develop it later in life. Health problems from diabetes can include heart disease, stroke, vision problems, and amputations.",
+    "name": "Diabetes (adults)"
+  },
+  "2172": {
+    "IndicatorID": 2172,
+    "description": "Adults reporting walking for transportation in the last 7 days (from when they were surveyed)",
+    "name": "Recent walking"
+  },
+  "2173": {
+    "IndicatorID": 2173,
+    "description": "Adults reporting biking for transportation in the last 7 days (from when they were surveyed).",
+    "name": "Recent biking"
+  },
+  "2174": {
+    "IndicatorID": 2174,
+    "description": "Hospitalizations for cold-related illnesses, such as hypothermia and frostbite, represent part of the public health burden of cold weather. Cold weather can also make chronic conditions worse.",
+    "name": "Cold stress: hospitalizations"
+  },
+  "2175": {
+    "IndicatorID": 2175,
+    "description": "ED visits for cold-related illnesses, such as hypothermia and frostbite, represent part of the public health burden of cold weather. Cold weather can also make chronic conditions worse.",
+    "name": "Cold stress: emergency department visits"
+  },
+  "2176": {
+    "IndicatorID": 2176,
+    "description": "Poverty is a major determinant of health, since poverty deprives people of access to health and safety resources.",
+    "name": "Child poverty (under age 5)"
+  },
+  "2179": {
+    "IndicatorID": 2179,
+    "description": "Healthy homes are free of housing problems.",
+    "name": "Renter-occupied homes with no housing problems"
+  },
+  "2181": {
+    "IndicatorID": 2181,
+    "description": "Sidewalks are important for commuting, businesses, and physical activity. Greater sidewalk area can contribute to a safer pedestrian environment, support vibrant business districts and can foster social interaction among residents.",
+    "name": "Sidewalk area"
+  },
+  "2184": {
+    "IndicatorID": 2184,
+    "description": "Elevated blood lead levels are 5+ mcg/dL. There is no safe level of lead in the blood. Lead poisoning can cause learning and behavior problems, and delay growth and mental development.",
+    "name": "Elevated blood levels (under age 6)"
+  },
+  "2185": {
+    "IndicatorID": 2185,
+    "description": "Air conditioning is an important way to avoid heat stress, especially for persons with limited mobility.",
+    "name": "Household air conditioning"
+  },
+  "2188": {
+    "IndicatorID": 2188,
+    "description": "Grab bars in bathrooms can help prevent falls among older adults.",
+    "name": "Homes with grab bars in bathroom (among older adult households)"
+  },
+  "2189": {
+    "IndicatorID": 2189,
+    "description": "In New York State, all children must be tested for lead before age 3. There is no safe level of lead in the blood.",
+    "name": "Lead testing (by age 3)"
+  },
+  "2191": {
+    "IndicatorID": 2191,
+    "description": "The HVI shows the risk of community-level heat impacts, like deaths, due to extreme heat events. It is made up of data on surface temperature, green space, air conditioning access, median income, and Black population (the population most excluded from heat resources). Differences in community-level heat impacts stem from structural racism, which limits access to preventive resources. \u003ca href=\"../../key-topics/climatehealth/hvi\"\u003eSee our interactive Heat Vulnerability Index\u003c/a\u003e",
+    "name": "Heat vulnerability index"
+  },
+  "22": {
+    "IndicatorID": 22,
+    "description": "The saliva, feces, and shedding body parts of cockroaches are an allergen and can trigger asthma.",
+    "name": "Adults reporting cockroaches"
+  },
+  "2207": {
+    "IndicatorID": 2207,
+    "description": "Disinfection by-products are chemicals that can form when a disinfectant such as chlorine reacts with naturally occurring organic matter and other substances in the source water. Current research is investigating whether there are health effects from chronic exposure to the by-products of water disinfection.",
+    "name": "Disinfection by-products (TTHM)"
+  },
+  "2208": {
+    "IndicatorID": 2208,
+    "description": "Asbestos is a naturally-occurring mineral which was commonly used as an insulation material until the 1970s. Inhaling high concentrations of asbestos fibers over a long time can produce lung inflammation and scarring resulting in the chronic lung disease called asbestosis, a type of pneumoconiosis. New York City construction, insulation, and shipyard workers who installed, disturbed, or removed asbestos without respiratory protection are at risk. Additionally, smokers who are exposed to asbestos have a greater risk of developing asbestos-related diseases than non-smokers. Typically it takes more than ten years from the time of exposure before symptoms develop. The use of proper protective masks is key to preventing the disease, since there is no treatment.",
+    "name": "Asbestosis hospitalizations"
+  },
+  "2209": {
+    "IndicatorID": 2209,
+    "description": "In New York City, the most common cause of lead poisoning in non-pregnant adults is from working in the construction. Workers are exposed by breathing or ingesting lead dust or fumes during work that disturbs old lead based paint. Workers in other industries, as well as hobbyists, may be at risk if they work with lead-containing metal, paint, pigments, ceramic glazes or bullets. Adults can also be exposed to lead through lead-contaminated products, like some imported health remedies, spices, foods, pottery and cosmetics.",
+    "name": "Elevated blood lead levels (age 16+)"
+  },
+  "2210": {
+    "IndicatorID": 2210,
+    "description": "Pneumoconiosis is a general term given to any lung disease caused by breathing in certain particles or fibers over a prolonged period. Pneumoconiosis usually results from a workplace exposure. The most common causes of pneumoconiosis include asbestos fibers, silica dust, and coal dust. There is no cure, but it can be prevented with appropriate respiratory protection.",
+    "name": "Pneumoconiosis hospitalizations"
+  },
+  "2211": {
+    "IndicatorID": 2211,
+    "description": "Workers' compensation is a type of insurance that provides medical care for workers who are injured or become ill as a direct result of their job. Hospitalizations billed to workers' comp represent only a portion of work-related injuries that require hospital care. It is important to realize that workers' compensation policies vary from state-to-state with respect to the types of workers covered and the types of injuries and illnesses eligible for compensation",
+    "name": "Hospitalizations billed to workers' compensation"
+  },
+  "2214": {
+    "IndicatorID": 2214,
+    "description": "Fatal work-related injuries include deaths resulting from unintentional injuries such as falls, acute poisonings, and motor vehicle crashes that occur during travel for work, and intentional injuries (i.e., homicides and suicides) that occur at work. Fatal injuries that occur during a commute are not included.",
+    "name": "Work-related deaths (all industries)"
+  },
+  "2215": {
+    "IndicatorID": 2215,
+    "description": "Construction is the most dangerous industry in NYC, with nearly a third of work-related injury deaths each year. Falls from scaffolds, ladders and roofs are the most common cause of fatal injuries among construction workers.",
+    "name": "Work-related deaths (construction industry), Citywide"
+  },
+  "2216": {
+    "IndicatorID": 2216,
+    "description": "Elevated blood lead levels are 5+ mcg/dL. There is no safe level of lead in the blood. Lead poisoning can cause learning and behavior problems, and delay growth and mental development.",
+    "name": "Elevated blood levels (under age 6), by NTA"
+  },
+  "2218": {
+    "IndicatorID": 2218,
+    "description": "Babesiosis is a rare, sometimes severe or fatal tick-borne disease caused by a parasite that infects red blood cells. Babesiosis is transmitted by the bite of an infected blacklegged tick (the same tick that transmits Lyme disease and anaplasmosis). Most patients acquire this disease while traveling outside NYC. However, there has been an increase in the number of cases with no history of travel to endemic areas, primarily in Staten Island, as well as isolated cases in the Bronx and Queens. Babesiosis can also be transmitted through transfused blood products.",
+    "name": "Babesiosis"
+  },
+  "2232": {
+    "IndicatorID": 2232,
+    "description": "Adults reporting that their health is excellent, very good, or good.",
+    "name": "Self-reported health"
+  },
+  "2235": {
+    "IndicatorID": 2235,
+    "description": "Pesticide use in the home. This does not include pesticide applications by professional exterminators.",
+    "name": "Adults reporting personal use of pesticides"
+  },
+  "2236": {
+    "IndicatorID": 2236,
+    "description": "Adults reporting driving in the last 30 days (from when they were surveyed).",
+    "name": "Recent driving"
+  },
+  "2237": {
+    "IndicatorID": 2237,
+    "description": "Adults reporting messaging while driving in the past 30 days (from when they were surveyed).",
+    "name": "Recent messaging while driving"
+  },
+  "2238": {
+    "IndicatorID": 2238,
+    "description": "Adults reporting speeding while driving in the past 30 days (from when they were surveyed).",
+    "name": "Recent speeding"
+  },
+  "2239": {
+    "IndicatorID": 2239,
+    "description": "Construction is the most dangerous industry in NYC, with nearly a third of work-related injury deaths each year.",
+    "name": "Work-related deaths (construction industry), by borough"
+  },
+  "2312": {
+    "IndicatorID": 2312,
+    "description": "Pest control services provided by a professional exterminator in the individual's home.",
+    "name": "Commercial insecticide use"
+  },
+  "2317": {
+    "IndicatorID": 2317,
+    "description": "Each component of the criminal justice continuum - from arrest to re-entry - carries various health consequences, and a growing body of literature has documented severe adverse health outcomes associated with incarceration on the individual, their families, and neighborhoods.",
+    "name": "Jail incarceration"
+  },
+  "2322": {
+    "IndicatorID": 2322,
+    "description": "The rate of people who die before age 65 can indicate the overall health of a population.",
+    "name": "Premature mortality"
+  },
+  "2323": {
+    "IndicatorID": 2323,
+    "description": "Students missing 20 or more school days per year.",
+    "name": "School absenteeism"
+  },
+  "2325": {
+    "IndicatorID": 2325,
+    "description": "Structural racism, which includes neighborhood disinvestment, racist housing policies, fewer job opportunities and lower pay, and less access to high-quality education and health care, means that our society often deprives people of color of the resources they need to stay healthy.",
+    "name": "Race and ethnicity"
+  },
+  "2334": {
+    "IndicatorID": 2334,
+    "description": "People age 25 years and over who have completed high school or high school equivalency.",
+    "name": "Graduated high school"
+  },
+  "2335": {
+    "IndicatorID": 2335,
+    "description": null,
+    "name": "Limited English"
+  },
+  "2336": {
+    "IndicatorID": 2336,
+    "description": "Rent burden is spending 30% or more of your income on rent and utilities.",
+    "name": "Rent-burdened households"
+  },
+  "2337": {
+    "IndicatorID": 2337,
+    "description": "Adults age 16+ who are unemployed.",
+    "name": "Unemployment"
+  },
+  "2338": {
+    "IndicatorID": 2338,
+    "description": "Adults reporting secondhand smoke at home, from outside sources. Secondhand smoke, especially indoors, is bad for health - especially for the health of children.",
+    "name": "Secondhand smoke at home (from outside sources)"
+  },
+  "2339": {
+    "IndicatorID": 2339,
+    "description": "Public high school students who reported having an asthma attack in the past 12 months.",
+    "name": "Youth asthma (past 12 months)"
+  },
+  "2340": {
+    "IndicatorID": 2340,
+    "description": "West Nile virus is transmitted through the bite of infected mosquitoes. While most people who are infected will not go on to develop symptoms, about 20% experience mild or moderate illness and more rarely, neuroinvasive disease which can present as encephalitis or meningitis. Most of the West Nile disease cases detected by the New York City Department of Health and Mental Hygiene represent neuroinvasive disease as these patients are more likely to seek care.",
+    "name": "West Nile virus"
+  },
+  "2364": {
+    "IndicatorID": 2364,
+    "description": "Pesticides targeting fungus such as mold or plant blight, applied by NYC agency-contracted exterminators or NYC agency pest control staff. These are often applied to protect landscaping and golf course grasses.",
+    "name": "NYC agency use of fungicides"
+  },
+  "2365": {
+    "IndicatorID": 2365,
+    "description": "Eviction often leads to residential instability, moving into poor quality housing, overcrowding, and homelessness, all of which is associated with negative health among adults and children.People who are threatened with eviction, even before they lose their home, are more likely to report poor health, high blood pressure, depression (from \"The Hidden Health Crisis of Eviction\" by Allison Bovell-Ammo and Megan Sandel).",
+    "name": "Evictions (court-ordered)"
+  },
+  "2366": {
+    "IndicatorID": 2366,
+    "description": "Pesticides targeting insects that are effective, but have low toxicity or low potential for human exposure to humans, applied by NYC agency-contracted exterminators or NYC agency pest control staff.",
+    "name": "NYC agency use of \"Best Practice\" products"
+  },
+  "2367": {
+    "IndicatorID": 2367,
+    "description": "Herbicide containing the chemical glyphosate, targeting unwanted weeds, grasses, vines and trees, applied by NYC agency-contracted exterminators or NYC agency pest control staff. This chemical is often sold commercially as \"Roundup\".",
+    "name": "NYC agency use of glyphosate"
+  },
+  "2368": {
+    "IndicatorID": 2368,
+    "description": "Pesticides targeting unwanted weeds, grasses, vines and trees, applied by NYC agency-contracted exterminators or NYC agency pest control staff.",
+    "name": "NYC agency use of herbicides"
+  },
+  "2369": {
+    "IndicatorID": 2369,
+    "description": "Pesticides targeting insects, applied by NYC agency-contracted exterminators or NYC agency pest control staff.",
+    "name": "NYC agency use of insecticides"
+  },
+  "2370": {
+    "IndicatorID": 2370,
+    "description": "Pesticides targeting rats and mice, applied by NYC agency-contracted exterminators or NYC agency pest control staff.",
+    "name": "NYC agency use of rodenticides"
+  },
+  "2374": {
+    "IndicatorID": 2374,
+    "description": "Pesticides targeting mosquitoes, applied by NYC agency-contracted exterminators or NYC agency pest control staff. These application include treatment of standing water with larvicides and the spraying of adult mosquito infestations.",
+    "name": "NYC agency use of mosquito control"
+  },
+  "2375": {
+    "IndicatorID": 2375,
+    "description": "Non-fatal, violence-related injuries that result in hospitalizations. These are more common than homicides and help paint the larger picture of the burden of violence on communities.",
+    "name": "Violence-related hospitalizations (all ages)"
+  },
+  "2376": {
+    "IndicatorID": 2376,
+    "description": "Deaths due to cold weather represent part of the public health burden of cold weather. Cold weather can also worsen chronic conditions, sometimes leading to death. This data only includes deaths directly attributed to cold on death certificates.\r\n",
+    "name": "Cold stress: deaths"
+  },
+  "2377": {
+    "IndicatorID": 2377,
+    "description": "People who use electric medical equipment are more vulnerable during power outages or evacuations.",
+    "name": "Households using electric medical equipment"
+  },
+  "2378": {
+    "IndicatorID": 2378,
+    "description": "Severe asthma attacks can result in a visit to the ED. Things like smoke, air pollution, dust mites, cockroaches, mold, pollen and pet dander can trigger asthma.",
+    "name": "Asthma emergency department visits (age 4 and under), by NTA"
+  },
+  "2379": {
+    "IndicatorID": 2379,
+    "description": "Severe asthma attacks can result in a visit to the ED. Things like smoke, air pollution, dust mites, cockroaches, mold, pollen and pet dander can trigger asthma.",
+    "name": "Asthma emergency department visits (age 5 to 17)"
+  },
+  "2380": {
+    "IndicatorID": 2380,
+    "description": "Severe asthma attacks can result in a visit to the ED. Things like smoke, air pollution, dust mites, cockroaches, mold, pollen and pet dander can trigger asthma.",
+    "name": "Asthma emergency department visits (adults)"
+  },
+  "2381": {
+    "IndicatorID": 2381,
+    "description": "Asthma hospitalizations are more severe asthma outcomes. They're often clustered in high-poverty neighborhoods, where disinvestment and poor housing conditions expose residents to triggers.",
+    "name": "Asthma hospitalizations (age 5 to 17)"
+  },
+  "2382": {
+    "IndicatorID": 2382,
+    "description": "Asthma hospitalizations are more severe asthma outcomes. They're often clustered in high-poverty neighborhoods, where disinvestment and poor housing conditions expose residents to triggers.",
+    "name": "Asthma hospitalizations (adults)"
+  },
+  "2383": {
+    "IndicatorID": 2383,
+    "description": "Severe asthma attacks can result in a visit to the ED. Things like smoke, air pollution, dust mites, cockroaches, mold, pollen and pet dander can trigger asthma.",
+    "name": "Asthma emergency department visits (age 5 to 17), by NTA"
+  },
+  "2384": {
+    "IndicatorID": 2384,
+    "description": "Severe asthma attacks can result in a visit to the ED. Things like smoke, air pollution, dust mites, cockroaches, mold, pollen and pet dander can trigger asthma.",
+    "name": "Asthma emergency department visits (adults), by NTA"
+  },
+  "2385": {
+    "IndicatorID": 2385,
+    "description": "Asthma hospitalizations are more severe asthma outcomes. They're often clustered in high-poverty neighborhoods, where disinvestment and poor housing conditions expose residents to triggers.",
+    "name": "Asthma hospitalizations (age 4 and under), by NTA"
+  },
+  "2386": {
+    "IndicatorID": 2386,
+    "description": "Asthma hospitalizations are more severe asthma outcomes. They're often clustered in high-poverty neighborhoods, where disinvestment and poor housing conditions expose residents to triggers.",
+    "name": "Asthma hospitalizations (age 5 to 17), by NTA"
+  },
+  "2387": {
+    "IndicatorID": 2387,
+    "description": "Asthma hospitalizations are more severe asthma outcomes. They're often clustered in high-poverty neighborhoods, where disinvestment and poor housing conditions expose residents to triggers.",
+    "name": "Asthma hospitalizations (adults), by NTA"
+  },
+  "2388": {
+    "IndicatorID": 2388,
+    "description": "The percentage of the population who live within walking distance to a park: a quarter-mile or less to entrances of smaller sites, such as sitting areas and playgrounds, and half-mile or less to entrances of larger parks. Increased access to green space and open space can contribute to increased levels of physical activity.",
+    "name": "Walking distance to a park"
+  },
+  "2389": {
+    "IndicatorID": 2389,
+    "description": "A neighborhood's ratio of bodegas to supermarkets can indicate whether the environment makes accessing unhealthy food easier for residents, as bodegas are less likely to have healthy food options than supermarkets.",
+    "name": "Unhealthy food access"
+  },
+  "2390": {
+    "IndicatorID": 2390,
+    "description": "Bike lanes can improve bicyclist and pedestrian safety, physical activity, and sustainable transportation use. An increase in percentage of streets with bike lanes can indicate a safer cycling environment in a neighborhood which may increase overall cycling.",
+    "name": "Bicycle network coverage"
+  },
+  "2391": {
+    "IndicatorID": 2391,
+    "description": "The percentage of population within a quarter-mile of a subway station entrance. When more people have convenient access to the transit system, they're more likely to use it. Subway access encourages active transportation, which improves the health of residents.",
+    "name": "Walking distance to a subway station"
+  },
+  "2392": {
+    "IndicatorID": 2392,
+    "description": "Children ages 1 to 13 that have ever received an asthma diagnosis.",
+    "name": "Children ever diagnosed with asthma"
+  },
+  "2393": {
+    "IndicatorID": 2393,
+    "description": "The saliva, feces, and shedding body parts of cockroaches are an allergen and can trigger asthma.",
+    "name": "Children in homes with cockroaches (age 1-13)"
+  },
+  "2394": {
+    "IndicatorID": 2394,
+    "description": "The presence of mice or rats in the home is often associated with poor housing maintenance. These pests can contaminate food and worsen asthma.",
+    "name": "Children in homes with mice (age 1-13)"
+  },
+  "2395": {
+    "IndicatorID": 2395,
+    "description": "Cracks or holes are a maintenance deficiency linked to the presence of mice, rats, and cockroaches. Pests in the home can contaminate food and worsen asthma.",
+    "name": "Children in homes with cracks or holes (age 1-13)"
+  },
+  "2396": {
+    "IndicatorID": 2396,
+    "description": "The need for supplemental heat may mean a building's main heat source doesn't work - and can indicate the presence of other health-threatening maintenance deficiencies, which can harm children's health.",
+    "name": "Children in homes with supplemental heat (age 13 and under)"
+  },
+  "2398": {
+    "IndicatorID": 2398,
+    "description": "A death due to carbon monoxide may be fire-related or non-fire-related.",
+    "name": "Carbon monoxide deaths"
+  },
+  "2399": {
+    "IndicatorID": 2399,
+    "description": "Homes with housing problems can threaten the health of the people who live there.",
+    "name": "Renter-occupied homes with any health-related housing problems"
+  },
+  "24": {
+    "IndicatorID": 24,
+    "description": "Mice and rats are a source of household allergens connected to developing or worsening asthma.",
+    "name": "Adults reporting mice or rats outside"
+  },
+  "2400": {
+    "IndicatorID": 2400,
+    "description": "Non-fatal, violence-related injuries that result in emergency department visits. These are more common than homicides and help paint the larger picture of the burden of violence on communities. ",
+    "name": "Violence-related emergency department visits (all ages)"
+  },
+  "2401": {
+    "IndicatorID": 2401,
+    "description": "Households that postponed health care in the last 12 months",
+    "name": "Postponing health care"
+  },
+  "2403": {
+    "IndicatorID": 2403,
+    "description": "Falls are a leading cause of injury among older adults.",
+    "name": "Homes with reported falls (age 65+)"
+  },
+  "2404": {
+    "IndicatorID": 2404,
+    "description": "The number of children aged 1-13 years exposed to tobacco smoke at home all of the time, most of the time, or occasionally. Secondhand smoke is harmful to children and can cause or worsen respiratory and asthma issues and ear infections.",
+    "name": "Secondhand smoke exposure at home (children)"
+  },
+  "2405": {
+    "IndicatorID": 2405,
+    "description": "Carbon monoxide (CO) exposure can be life-threatening or fatal. ED visits and hospitalizations allows us to understand the burden of CO-related health impacts.",
+    "name": "Carbon monoxide emergency department visits"
+  },
+  "2406": {
+    "IndicatorID": 2406,
+    "description": "Carbon monoxide (CO) exposure can be life-threatening or fatal. ED visits and hospitalizations allows us to understand the burden of CO-related health impacts.",
+    "name": "Carbon monoxide hospitalizations"
+  },
+  "2408": {
+    "IndicatorID": 2408,
+    "description": "Falls are a leading cause of injury among older adults.",
+    "name": "Home fall-related emergency department visits (age 65+)"
+  },
+  "2409": {
+    "IndicatorID": 2409,
+    "description": "Falls are a leading cause of injury among older adults.",
+    "name": "Home fall-related hospitalizations (age 65+)"
+  },
+  "2410": {
+    "IndicatorID": 2410,
+    "description": "Heat stress hospitalizations weather are part of the public health burden due to hot weather. Data aggregated over 10 years provides enough stablility to display neighborhood impacts.",
+    "name": "Heat stress: 10-year hospitalizations"
+  },
+  "2411": {
+    "IndicatorID": 2411,
+    "description": "The HVI shows the risk of community-level heat impacts, like deaths, due to extreme heat events. It is made up of data on surface temperature, green space, air conditioning access, median income, and Black population (the population most excluded from heat resources). Differences in community-level heat impacts stem from structural racism, which limits access to preventive resources. \u003ca href=\"../../key-topics/climatehealth/hvi\"\u003eSee our interactive Heat Vulnerability Index\u003c/a\u003e",
+    "name": "Heat vulnerability index (NTA)"
+  },
+  "2414": {
+    "IndicatorID": 2414,
+    "description": "Adults age 18 and older who have ever been diagnosed with asthma.",
+    "name": "Adults with asthma"
+  },
+  "2415": {
+    "IndicatorID": 2415,
+    "description": "How adults commute to work, by mode: public transit, biking, walking, or private vehicles. People's means of transportation to work can shed light on transportation availability, choices, traffic levels, and safety.",
+    "name": "Commuting modes"
+  },
+  "2416": {
+    "IndicatorID": 2416,
+    "description": "Sanitation supports public health by providing clean, healthy public spaces for people to live, work, and get around. Litter baskets, or trash cans, are associated with a decrease in littering. Enclosed, non-wire baskets are generally better than wire baskets.",
+    "name": "Litter basket coverage"
+  },
+  "2421": {
+    "IndicatorID": 2421,
+    "description": "Retail locations that sell tobacco products. Neighborhoods with higher densities of tobacco retailers increase access to tobacco and may increase smoking rates.",
+    "name": "Tobacco retailers"
+  },
+  "2425": {
+    "IndicatorID": 2425,
+    "description": "The average number of Citi Bikes available to rent per each area between 7am-7pm. Biking bridges gaps in existing public transportation systems and is a great way to exercise. Neighborhoods with lower Citi Bike availability have limited access to this beneficial public resource.",
+    "name": "Average Citi Bike availability"
+  },
+  "2426": {
+    "IndicatorID": 2426,
+    "description": "Biking bridges gaps in existing public transportation systems and is a great way to exercise. Neighborhoods with fewer Citi Bike stations have limited access to this beneficial public resource. Neighborhoods with relatively few docks per station may also have limited access to bikes even if they have many stations. The National Association of City Transportation Officials (NACTO) suggests that there should be 28 stations per square mile and one station every 1000 feet.",
+    "name": "Citi Bike stations"
+  },
+  "2427": {
+    "IndicatorID": 2427,
+    "description": "\u003cp\u003eConcentration of bacteria - fecal coliform and enterococci are human-health-related indicators of water quality. Fecal coliform bacteria are found in human and animal intestines and are associated with wastewater. Enterococci may be a more sensitive indicator of wastewater pollution in a saltwater environment.\u003c/p\u003e",
+    "name": "Bacteria"
+  },
+  "2428": {
+    "IndicatorID": 2428,
+    "description": "Dissolved oxygen is essential for most aquatic life. It is an important indicator of overall water quality.",
+    "name": "Dissolved oxygen (DO)"
+  },
+  "2429": {
+    "IndicatorID": 2429,
+    "description": "Children ages 1 to 13 who have had an asthma attack in the past year. Asthma attacks are a measureable adverse health outcome of asthma.",
+    "name": "Children with an asthma attack (past 12 months)"
+  },
+  "2430": {
+    "IndicatorID": 2430,
+    "description": "Children who live in homes with visible mold/mildew. Mold and mildew can trigger asthma attacks in children.",
+    "name": "Children in homes with visible mold or mildew (age 1-13)"
+  },
+  "2431": {
+    "IndicatorID": 2431,
+    "description": "Children ages 1 to 13 that currently have asthma. Not every asthma diagnosis is correct. The number of children who still have asthma is usually smaller than the number of children who have ever been diagnosed with asthma.",
+    "name": "Children still with asthma"
+  },
+  "2432": {
+    "IndicatorID": 2432,
+    "description": "Farmers markets are a great source of fresh produce and other healthy food options and can help mitigate the negative effects of food deserts.",
+    "name": "Farmers markets"
+  },
+  "2433": {
+    "IndicatorID": 2433,
+    "description": "Rat indexing is a comprehensive approach for rat mitigation. In certain zones, every property is inspected every six months for signs of rats and the conditions that attract them.",
+    "name": "Rat indexing in Rat Mitigation Zones (RMZs)"
+  },
+  "2434": {
+    "IndicatorID": 2434,
+    "description": "Rat inspections are conducted for signs of rats and the conditions that attract them.",
+    "name": "Rat inspections"
+  },
+  "2443": {
+    "IndicatorID": 2443,
+    "description": "ED visits due to heat-related illnesses, such as heat stroke and heat exhaustion, represent part of the public health burden of extreme heat.",
+    "name": "Heat stress: 5-year emergency department visits"
+  },
+  "25": {
+    "IndicatorID": 25,
+    "description": "Adults reporting secondhand smoke at home. Secondhand smoke, especially indoors, is bad for health - particularly for the health of children.",
+    "name": "Secondhand smoke at home"
+  },
+  "26": {
+    "IndicatorID": 26,
+    "description": "Anencephaly is a serious birth defect in which a baby is born without parts of the brain and skull.",
+    "name": "Anencephaly"
+  },
+  "27": {
+    "IndicatorID": 27,
+    "description": "Spina bifida is a neural tube defect that can cause cause physical and intellectual disabilities.",
+    "name": "Spina bifida (without anencephaly)"
+  },
+  "28": {
+    "IndicatorID": 28,
+    "description": "A rare birth defect where part of the heart is underdeveloped.",
+    "name": "Hypoplastic left heart syndrome"
+  },
+  "29": {
+    "IndicatorID": 29,
+    "description": "Transposition of the great arteries or vessels is a congenital heart defect that involves abnormal arrangement of parts of the heart.",
+    "name": "Transposition of the great arteries (vessels)"
+  },
+  "3": {
+    "IndicatorID": 3,
+    "description": "Very low birth weight is when a baby weighs less than 3 lbs, 5 oz.",
+    "name": "Very low birthweight"
+  },
+  "30": {
+    "IndicatorID": 30,
+    "description": "Cleft lip is a birth defect that occurs when a baby's lip does not form properly during pregnancy.",
+    "name": "Cleft lip (with or without cleft palate)"
+  },
+  "31": {
+    "IndicatorID": 31,
+    "description": "Cleft palate is a birth defect that occurs when a baby's mouth does not form properly during pregnancy.",
+    "name": "Cleft palate (without cleft lip)"
+  },
+  "32": {
+    "IndicatorID": 32,
+    "description": "A birth defect in male babies where the urethra opening is not at the tip of the penis.",
+    "name": "Hypospadias"
+  },
+  "33": {
+    "IndicatorID": 33,
+    "description": "A birth defect where there is a hole beside the belly button and the baby's intestines or other organs are outside the baby's body.",
+    "name": "Gastroschisis"
+  },
+  "34": {
+    "IndicatorID": 34,
+    "description": "Upper limb deficiencies include undergrowth, overgrowth, failure of formation, and other variations or deficiencies in the upper limbs.",
+    "name": "Upper limb deficiencies"
+  },
+  "35": {
+    "IndicatorID": 35,
+    "description": "Lower limb deficiencies include undergrowth, overgrowth, failure of formation, and other variations or deficiencies in the lower limbs.",
+    "name": "Lower limb Deficiencies"
+  },
+  "36": {
+    "IndicatorID": 36,
+    "description": "Down syndrome is a condition in which a person has an extra chromosome. It causes delays in physical growth, and intellectual disabilities.",
+    "name": "Down Syndrome (Mother under age 35)"
+  },
+  "37": {
+    "IndicatorID": 37,
+    "description": "Down syndrome is a condition in which a person has an extra chromosome. It causes delays in physical growth, and intellectual disabilities.",
+    "name": "Down Syndrome (Mother age 35 and up)"
+  },
+  "38": {
+    "IndicatorID": 38,
+    "description": "A carbon monoxide incident is a leak where the Fire Department measures at least 1 ppm at the scene.",
+    "name": "Carbon monoxide incidents"
+  },
+  "4": {
+    "IndicatorID": 4,
+    "description": "Low birth weight is when a baby weighs less than 5 lbs, 8 oz at full term.",
+    "name": "Low birthweight at full term"
+  },
+  "40": {
+    "IndicatorID": 40,
+    "description": "Cracks or holes are a maintenance deficiency linked to the presence of mice, rats, and cockroaches - which can harm residents' health.",
+    "name": "Homes with cracks or holes"
+  },
+  "41": {
+    "IndicatorID": 41,
+    "description": "Older housing (built before 1960) that has peeling paint can put residents at risk of lead poisoning, due to lead paint. Lead paint was banned from household paints in New York City in 1960 and in the USA in 1978.",
+    "name": "Old homes with peeling paint"
+  },
+  "42": {
+    "IndicatorID": 42,
+    "description": "Leaks are a maintenance deficiency that can harm health by introducing mold, which can worsen respiratory conditions like asthma.",
+    "name": "Homes with leaks"
+  },
+  "45": {
+    "IndicatorID": 45,
+    "description": "Homes with housing problems can threaten the health of the people who live there.",
+    "name": "Homes with 3+ housing problems"
+  },
+  "46": {
+    "IndicatorID": 46,
+    "description": "Building quality predicts the number of housing maintenance deficiencies in a residence that place residents at increased risk of acute or chronic health problems.",
+    "name": "Homes near structures rated good or excellent"
+  },
+  "47": {
+    "IndicatorID": 47,
+    "description": "The need for supplemental heat may mean a building's main heat source doesn't work - and can indicate the presence of other health-threatening maintenance deficiencies.",
+    "name": "Homes using supplemental heat"
+  },
+  "48": {
+    "IndicatorID": 48,
+    "description": "The presence of mice or rats in the home is often associated with poor housing maintenance. These pests can contaminate food and worsen asthma.",
+    "name": "Homes with mice or rats in the building"
+  },
+  "5": {
+    "IndicatorID": 5,
+    "description": "Death among children under 1 year old.",
+    "name": "Death (infants)"
+  },
+  "55": {
+    "IndicatorID": 55,
+    "description": "Ozone is a common air pollutant that can harm breathing and worsen asthma and other respiratory conditions.",
+    "name": "Ozone action days"
+  },
+  "57": {
+    "IndicatorID": 57,
+    "description": "Fine particles are emitted by vehicles, building boilers, and other combustion - and are a major form of air pollution that harms health.",
+    "name": "Fine particles (PM 2.5) action days"
+  },
+  "6": {
+    "IndicatorID": 6,
+    "description": "Deaths among children less than 28 days old.",
+    "name": "Death (neonatal)"
+  },
+  "60": {
+    "IndicatorID": 60,
+    "description": "Breast cancer is a common cancer. It is more common among females.",
+    "name": "Breast cancer (in females)"
+  },
+  "63": {
+    "IndicatorID": 63,
+    "description": "Cancers in the lung or bronchus.",
+    "name": "Lung and bronchus cancer"
+  },
+  "64": {
+    "IndicatorID": 64,
+    "description": "Cancer of the pancreas.",
+    "name": "Pancreatic cancer"
+  },
+  "66": {
+    "IndicatorID": 66,
+    "description": "Brain and other nervous system cancers are tumors that start in the brain or spinal cord.",
+    "name": "Brain and other nervous system cancer"
+  },
+  "690": {
+    "IndicatorID": 690,
+    "description": "Cancer of the thyroid, a gland in the neck.",
+    "name": "Thyroid cancer"
+  },
+  "7": {
+    "IndicatorID": 7,
+    "description": "Deaths from 28 weeks of pregnancy to 6 days old.",
+    "name": "Death (perinatal)"
+  },
+  "71": {
+    "IndicatorID": 71,
+    "description": "A cancer that starts in the lymphatic system, part of the body's immune system.",
+    "name": "Non-Hodgkin's lymphomas"
+  },
+  "73": {
+    "IndicatorID": 73,
+    "description": "Leukemia is a general term for cancer of blood cells.",
+    "name": "Leukemia"
+  },
+  "74": {
+    "IndicatorID": 74,
+    "description": "Acute myeloid leukemia is a cancer of the blood and bone marrow.",
+    "name": "Acute myeloid leukemia"
+  },
+  "770": {
+    "IndicatorID": 770,
+    "description": "Chronic lymphocytic leukemia (CLL) is a cancer that starts from white blood cells in bone marrow.",
+    "name": "Chronic lymphocytic leukemia"
+  },
+  "8": {
+    "IndicatorID": 8,
+    "description": "Deaths from 28 days old to 1 year old.",
+    "name": "Death (postneonatal)"
+  },
+  "84": {
+    "IndicatorID": 84,
+    "description": "Asthma hospitalizations are more severe asthma outcomes. They're often clustered in high-poverty neighborhoods, where disinvestment and poor housing conditions expose residents to triggers.",
+    "name": "Asthma hospitalizations (age 4 and under)"
+  },
+  "91": {
+    "IndicatorID": 91,
+    "description": "Households that report using a regular exterminator service.",
+    "name": "Regular exterminator service"
+  },
+  "92": {
+    "IndicatorID": 92,
+    "description": "Action days for sensitive groups are counted when either ozone or PM2.5 levels are above 100, and for the general population when levels are above 150.",
+    "name": "Air quality action days"
+  },
+  "93": {
+    "IndicatorID": 93,
+    "description": "Pesticides targeting insects, applied by professional exterminators or licensed maintenance staff.",
+    "name": "Commercial use of insecticides"
+  },
+  "94": {
+    "IndicatorID": 94,
+    "description": "Pesticides targeting unwanted weeds, grasses, vines and trees applied by professional exterminators or licensed maintenance staff.",
+    "name": "Commercial use of herbicides"
+  },
+  "96": {
+    "IndicatorID": 96,
+    "description": "Pesticides targeting type of fungus such as mold or plant blight applied by professional exterminators or licensed maintenance staff. These are often applied to protect landscaping and golf course grasses.",
+    "name": "Commercial use of fungicides"
+  },
+  "97": {
+    "IndicatorID": 97,
+    "description": "Pesticides of this chemical class used to target insects, applied by professional exterminators or licensed maintenance staff. Organophosphates are acutely toxic and present a significant health risk from human exposure.",
+    "name": "Commercial use of insecticides (Organophosphate)"
+  },
+  "98": {
+    "IndicatorID": 98,
+    "description": "Pyrethroids and Pyrethrins are less acutely toxic than some other insecticide classes. But based on how they are broadly applied, they can present a significant risk of human exposure. These chemicals can also cause a respiratory allergic reaction and short term irritation to the skin and face.",
+    "name": "Commercial use of insecticides (Pyrethroid/Pyrethrin)"
+  },
+  "99": {
+    "IndicatorID": 99,
+    "description": "Carbamates are acutely toxic and present a significant health risk from human exposure.",
+    "name": "Insecticides (carbamate)"
+  }
+}
