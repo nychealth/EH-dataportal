@@ -40,7 +40,7 @@ jobs:
   # ------------------
 
   build:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     # can't use the "env" context at the job level, only in steps, so need to eval the conditional again
     name: Build `${{ inputs.branch && inputs.branch || github.ref_name && github.ref_name }} to builds/${{ inputs.publish-branch && inputs.publish-branch || inputs.branch && inputs.branch || github.ref_name && github.ref_name }}`
 
