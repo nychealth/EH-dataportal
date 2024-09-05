@@ -398,9 +398,16 @@
         </div>
 
         <div class="row mt-2">
-            <div class="col-md-7 col-sm-12">
+            <div class="col-md-8 col-sm-12 pr-md-6">
+
                 <p>Our site&rsquo;s data explorer contains hundreds of environmental health datasets. Get tables, maps, trends, and more to view neighborhood-level data on ways that environments affect health in NYC.</p>
 
+
+                
+                
+                
+                    <img class="block mt-2 mb-3" src="/IndicatorPublic/data-explorer/image_charts-city@2x_hu395454efbc95cc38ecac15835c590d49_173382_1200x0_resize_q95_mitchellnetravali.jpg" width="1200" height="700" alt="">
+                
 
 <p class="sr-only">This produces a list of topics and IndicatorIDs, stored in the variable <code>$topic_indicators</code>, 
     and printed to the console as a JavaScript variable, and then as an Arquero table.</p>
@@ -427,168 +434,32 @@
         (which on build will be put into <code>/docs/IndicatorMetadata/</code>)</strong><script>
             
             
-        </script><div class="my-3">
-                    <p class="text-info font-weight-bold">Search datasets:</p><div class="row no-gutters">
-    <div class="col-12">
-        <div class="btn-group" role="group" style="width:100%!important;">
-
-            <input 
-                id="flex_search"
-                type='search'
-                class='flexdatalist form-control'
-                name='indicator_name_suggestion'
-            />
-
-            <button id="clear" class="btn btn-sm btn-warning">Clear</button>
-
-        </div>
-    </div>
-
-</div>
-
-
-<link rel="stylesheet" href="/IndicatorPublic/node_modules/jquery-flexdatalist/jquery.flexdatalist.min.css"/><script type="text/javascript" src="/IndicatorPublic/node_modules/jquery-flexdatalist/jquery.flexdatalist.min.js"></script>
-
-
-<script>
-
-
-
-const load_flexdatalist = async () => {
-
-    
-    
-    await fetch(`${data_repo}${data_branch}/indicators/metadata/metadata.json`)
-        .then(response => response.json())
-        .then(data => {
-
-            let indicatorJSON = data;
-            
-            
-            
-            
-
-            let $input = $('.flexdatalist').flexdatalist({
-                minLength: 0,
-                valueProperty: ["IndicatorID", "IndicatorName"],
-                textProperty: "{IndicatorName}",
-                selectionRequired: false,
-                focusFirstResult: true,
-                visibleProperties: ["IndicatorName", "IndicatorLabel", "IndicatorDescription"],
-                searchIn: ["IndicatorName", "IndicatorLabel", "IndicatorDescription", "IndicatorID"],
-                searchContain: true,
-                searchByWord: true,
-                redoSearchOnFocus: true,
-                toggleSelected: true,
-                cache: false,
-                data: indicatorJSON
-            });
-
-            
-            
-            $input.on('select:flexdatalist', (e, set) => {
-                
-                
-                if (typeof printToPage === "function") {
-                    printToPage(set) 
-                } else {
-                    sendToIndicator(set) 
-                }
-                
-            })
-
-
-            
-            $("#clear").on("click", (e) => {
-
-                
-
-                $($input).find("~input").val("").trigger( "focus" )
-                
-            })
-
-        })
-
-}
-
-
-
-load_flexdatalist()
-
-
-
-function sendToIndicator(x) {
-
-    var id = x.IndicatorID
-
-    const topics = topicIndicatorsTable.filter((ind) => ind.IndicatorID === x.IndicatorID);
-    window.location.href = "/IndicatorPublic/data-explorer/" + topics[0].topic + '/?id=' + x.IndicatorID 
-}
-
-</script></div>
-
-                <div class="l-green-border p-1">
-                    
-                    <p class="home-label"><i class="fas fa-table mr-1" aria-hidden="true"></i>Recently updated datasets:</p>
-                    
-                    <a href="/IndicatorPublic/data-explorer/mice-and-rats/?id=2434#display=summary" class="btn btn-outline-primary mr-1 mb-1 btn-sm">Rat inspections</a>
-                    
-                    <a href="/IndicatorPublic/data-explorer/mice-and-rats/?id=2433#display=summary" class="btn btn-outline-primary mr-1 mb-1 btn-sm">Rat indexing in Rat Mitigation Zones (RMZs)</a>
-                    
-                    <a href="/IndicatorPublic/data-explorer/air-quality/?id=92#display=summary" class="btn btn-outline-primary mr-1 mb-1 btn-sm">Air quality action days</a>
-                    
-                    <a href="/IndicatorPublic/data-explorer/weather-related-illness/?id=2075#display=summary" class="btn btn-outline-primary mr-1 mb-1 btn-sm">Heat stress: yearly emergency department visits</a>
-                    
-                    <a href="/IndicatorPublic/data-explorer/climate/?id=2104#display=summary" class="btn btn-outline-primary mr-1 mb-1 btn-sm">Adults with air conditioners</a>
-                    
-                    <a href="/IndicatorPublic/data-explorer/health-impacts-of-air-pollution/?id=2108#display=summary" class="btn btn-outline-primary mr-1 mb-1 btn-sm">Deaths due to PM2.5</a>
-                    
-                    <a href="/IndicatorPublic/data-explorer/alcohol-use/?id=2050#display=summary" class="btn btn-outline-primary mr-1 mb-1 btn-sm">Binge drinking (adults)</a>
-                    
-                    <a href="/IndicatorPublic/data-explorer/walking-driving-and-cycling/?id=2059#display=summary" class="btn btn-outline-primary mr-1 mb-1 btn-sm">Monthly bicycle use</a>
-                    
-                </div>
-
-
-            </div>
-
-            <div class="col-md-5 col-sm-12">
-
-                <div class="card-content mb-4">
-                    <img class="card-img-top cardshadow" src=/IndicatorPublic/images/home-sample-image-DE-5.png>
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class="row mt-2">
-            <div class="col-12">
-                <p class="text-info font-weight-bold">Browse:</p>
-                <style>
+        </script><p class="h4 mb-3 font-weight-bold">Find Datasets by Topic</p>
+                <div class="mb-3">
+                    <style>
     .accordion-group .card {
         background-color: #f2f2f2;
         margin: 0px;
     }
 </style><div class="row">
-        <div class="col-md-6">
+        <div class="col-12">
             
-            <div class="accordion-group fs-sm" role="tablist" id="accordion-02">
-                <div class="card border">
-        
-                    <strong><a class="btn btn-outline-light btn-block collapse"
+            <div class="accordion-group" role="tablist" id="accordion-02">
+                <div class="card mb-1">
+
+                    <strong><a class="card-header collapse"
                          id="acc-button-01" data-toggle="collapse"
                          href="#panel-acc-button-01" role="tab"
                          aria-expanded="false"
                          aria-controls="panel-acc-button-01">
                          <span class="title" role="heading"
                              aria-level="3">Air quality and health</span>
-                     </a></strong> 
-             
+                     </a></strong>
+
                      <div class="collapse show" id="panel-acc-button-01"
                          role="tabpanel" aria-labelledby="acc-button-01"
                          data-parent="#accordion-02">
-             
+
                          <div class="card-body bg-white">
                              <ul>
                                  
@@ -609,16 +480,16 @@ function sendToIndicator(x) {
                                  
                                  </ul>
                          </div>
-             
+
                      </div>
                      
-             
+
                  </div>
                  
 
-                 <div class="card border">
-             
-                    <strong><a class="btn btn-outline-light btn-block collapse collapsed"
+                 <div class="card mb-1">
+
+                    <strong><a class="card-header   collapse collapsed"
                         id="acc-button-07" data-toggle="collapse"
                         href="#panel-acc-button-07" role="tab"
                         aria-expanded="false"
@@ -626,11 +497,11 @@ function sendToIndicator(x) {
                         <span class="title" role="heading"
                             aria-level="3">Child health</span>
                     </a></strong>
-            
+
                     <div class="collapse" id="panel-acc-button-07"
                         role="tabpanel" aria-labelledby="acc-button-07"
                         data-parent="#accordion-02">
-            
+
                         <div class="card-body bg-white">
                             <ul>
                                 
@@ -660,16 +531,16 @@ function sendToIndicator(x) {
                                 
                                 </ul>
                         </div>
-            
+
                     </div>
                     
-            
+
                 </div>
                 
-             
-                 <div class="card border">
-             
-                     <strong><a class="btn btn-outline-light btn-block collapse collapsed"
+
+                 <div class="card mb-1">
+
+                     <strong><a class="card-header collapse collapsed"
                          id="acc-button-02" data-toggle="collapse"
                          href="#panel-acc-button-02" role="tab"
                          aria-expanded="false"
@@ -677,11 +548,11 @@ function sendToIndicator(x) {
                          <span class="title" role="heading"
                              aria-level="3">Climate and health</span>
                      </a></strong>
-             
+
                      <div class="collapse" id="panel-acc-button-02"
                          role="tabpanel" aria-labelledby="acc-button-02"
                          data-parent="#accordion-02">
-             
+
                          <div class="card-body bg-white">
                              <ul>
                                  
@@ -708,16 +579,16 @@ function sendToIndicator(x) {
                                  
                                  </ul>
                          </div>
-             
+
                      </div>
                      
-             
+
                  </div>
                  
 
-                 <div class="card border">
-             
-                    <strong><a class="btn btn-outline-light btn-block collapse collapsed"
+                 <div class="card mb-1">
+
+                    <strong><a class="card-header collapse collapsed"
                         id="acc-button-09" data-toggle="collapse"
                         href="#panel-acc-button-09" role="tab"
                         aria-expanded="false"
@@ -725,11 +596,11 @@ function sendToIndicator(x) {
                         <span class="title" role="heading"
                             aria-level="3">Food and drink</span>
                     </a></strong>
-            
+
                     <div class="collapse" id="panel-acc-button-09"
                         role="tabpanel" aria-labelledby="acc-button-09"
                         data-parent="#accordion-02">
-            
+
                         <div class="card-body bg-white">
                             <ul>
                                 
@@ -747,16 +618,16 @@ function sendToIndicator(x) {
                                 
                                 </ul>
                         </div>
-            
+
                     </div>
                     
-            
+
                 </div>
                 
-             
-                 <div class="card border">
-             
-                    <strong> <a class="btn btn-outline-light btn-block collapse collapsed"
+
+                 <div class="card mb-1">
+
+                    <strong> <a class="card-header collapse collapsed"
                          id="acc-button-03" data-toggle="collapse"
                          href="#panel-acc-button-03" role="tab"
                          aria-expanded="false"
@@ -764,11 +635,11 @@ function sendToIndicator(x) {
                          <span class="title" role="heading"
                              aria-level="3">Housing and health</span>
                      </a></strong>
-             
+
                      <div class="collapse" id="panel-acc-button-03"
                          role="tabpanel" aria-labelledby="acc-button-03"
                          data-parent="#accordion-02">
-             
+
                          <div class="card-body bg-white">
                              <ul>
                                  
@@ -819,16 +690,16 @@ function sendToIndicator(x) {
                                  
                                  </ul>
                          </div>
-             
+
                      </div>
                      
-             
+
                  </div>
                  
-             
-                 <div class="card border">
-             
-                     <strong><a class="btn btn-outline-light btn-block collapse collapsed"
+
+                 <div class="card mb-1">
+
+                     <strong><a class="card-header  collapse collapsed"
                          id="acc-button-04" data-toggle="collapse"
                          href="#panel-acc-button-04" role="tab"
                          aria-expanded="false"
@@ -836,11 +707,11 @@ function sendToIndicator(x) {
                          <span class="title" role="heading"
                              aria-level="3">Health equity</span>
                      </a></strong>
-             
+
                      <div class="collapse" id="panel-acc-button-04"
                          role="tabpanel" aria-labelledby="acc-button-04"
                          data-parent="#accordion-02">
-             
+
                          <div class="card-body bg-white">
                              <ul>
                                  
@@ -891,17 +762,17 @@ function sendToIndicator(x) {
                                  
                                  </ul>
                          </div>
-             
+
                      </div>
                      
-             
+
                  </div>
                  
 
 
-                 <div class="card border">
-             
-                    <strong><a class="btn btn-outline-light btn-block collapse collapsed"
+                 <div class="card mb-1">
+
+                    <strong><a class="card-header  collapse collapsed"
                         id="acc-button-06" data-toggle="collapse"
                         href="#panel-acc-button-06" role="tab"
                         aria-expanded="false"
@@ -909,11 +780,11 @@ function sendToIndicator(x) {
                         <span class="title" role="heading"
                             aria-level="3">Health outcomes</span>
                     </a></strong>
-            
+
                     <div class="collapse" id="panel-acc-button-06"
                         role="tabpanel" aria-labelledby="acc-button-06"
                         data-parent="#accordion-02">
-            
+
                         <div class="card-body bg-white">
                             <ul>
                                 
@@ -961,19 +832,19 @@ function sendToIndicator(x) {
                                 
                                 </ul>
                         </div>
-            
+
                     </div>
                     
-            
+
                 </div>
                 
-             
 
-        
-             
-                 <div class="card border">
-             
-                     <strong><a class="btn btn-outline-light btn-block collapse collapsed"
+
+
+
+                 <div class="card mb-1">
+
+                     <strong><a class="card-header  collapse collapsed"
                          id="acc-button-08" data-toggle="collapse"
                          href="#panel-acc-button-08" role="tab"
                          aria-expanded="false"
@@ -981,11 +852,11 @@ function sendToIndicator(x) {
                          <span class="title" role="heading"
                              aria-level="3">Pests and pesticides</span>
                      </a></strong>
-             
+
                      <div class="collapse" id="panel-acc-button-08"
                          role="tabpanel" aria-labelledby="acc-button-08"
                          data-parent="#accordion-02">
-             
+
                          <div class="card-body bg-white">
                              <ul>
                                  
@@ -1009,17 +880,17 @@ function sendToIndicator(x) {
                                  
                                  </ul>
                          </div>
-             
+
                      </div>
                      
-             
+
                  </div>
                  
 
 
-                 <div class="card border">
-             
-                    <strong><a class="btn btn-outline-light btn-block collapse collapsed"
+                 <div class="card mb-1">
+
+                    <strong><a class="card-header  collapse collapsed"
                         id="acc-button-05" data-toggle="collapse"
                         href="#panel-acc-button-05" role="tab"
                         aria-expanded="false"
@@ -1027,11 +898,11 @@ function sendToIndicator(x) {
                         <span class="title" role="heading"
                             aria-level="3">Public space</span>
                     </a></strong>
-            
+
                     <div class="collapse" id="panel-acc-button-05"
                         role="tabpanel" aria-labelledby="acc-button-05"
                         data-parent="#accordion-02">
-            
+
                         <div class="card-body bg-white">
                             <ul>
                                 
@@ -1058,39 +929,36 @@ function sendToIndicator(x) {
                                 
                                 </ul>
                         </div>
-            
+
                     </div>
                     
-            
+
                 </div>
                 
-             
-
 
             </div>
-        </div>
 
-        <div class="col-md-6">
+
             
-            <div class="accordion-group fs-sm" role="tablist" id="accordion-03">
-                <div class="card border">
-        
-                    <strong><a class="btn btn-outline-light btn-block collapse collapsed"
-                        id="acc-button-10" data-toggle="collapse"
+            <div class="accordion-group" role="tablist" id="accordion-03">
+                <div class="card mb-1">
+
+                    <strong><a class="card-header collapse collapsed"
+                        id="acc-button-10-1" data-toggle="collapse"
                         href="#panel-acc-button-10-1" role="tab"
                         aria-expanded="false"
                         aria-controls="panel-acc-button-10-1">
                         <span class="title" role="heading"
-                            aria-level="3">All data</span>
+                            aria-level="3">All Topics</span>
                     </a></strong>
-            
-                    <div class="collapse show" id="panel-acc-button-10-1"
-                        role="tabpanel" aria-labelledby="acc-button-10"
+
+                    <div class="collapse" id="panel-acc-button-10-1"
+                        role="tabpanel" aria-labelledby="acc-button-10-1"
                         data-parent="#accordion-03">
-            
+
                         <div class="card-body bg-white">
                             <ul>
-                                
+
                                 <li><a href="/IndicatorPublic/data-explorer/active-design/">Active design</a></li>
 
                                     <li><a href="/IndicatorPublic/data-explorer/air-quality/">Air quality</a></li>
@@ -1169,31 +1037,64 @@ function sendToIndicator(x) {
 
                                     </ul>
                         </div>
-            
+
                     </div>
                     
-            
+
                 </div>
                 
             </div>
         </div>
     </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-12 pl-md-3 mb-5">
+
+                
+                <h3 class="h4 mb-1 pb-1">Recently updated datasets</h3>
+                
+                <div class=" mb-1 pt-1 border-top font-weight-bold">
+                    <a href="/IndicatorPublic/data-explorer/mice-and-rats/?id=2434#display=summary" class="px-2 d-inline-block">Rat inspections</a>
+                </div>
+                
+                <div class=" mb-1 pt-1 border-top font-weight-bold">
+                    <a href="/IndicatorPublic/data-explorer/mice-and-rats/?id=2433#display=summary" class="px-2 d-inline-block">Rat indexing in Rat Mitigation Zones (RMZs)</a>
+                </div>
+                
+                <div class=" mb-1 pt-1 border-top font-weight-bold">
+                    <a href="/IndicatorPublic/data-explorer/air-quality/?id=92#display=summary" class="px-2 d-inline-block">Air quality action days</a>
+                </div>
+                
+                <div class=" mb-1 pt-1 border-top font-weight-bold">
+                    <a href="/IndicatorPublic/data-explorer/weather-related-illness/?id=2075#display=summary" class="px-2 d-inline-block">Heat stress: yearly emergency department visits</a>
+                </div>
+                
+                <div class=" mb-1 pt-1 border-top font-weight-bold">
+                    <a href="/IndicatorPublic/data-explorer/climate/?id=2104#display=summary" class="px-2 d-inline-block">Adults with air conditioners</a>
+                </div>
+                
+                <div class=" mb-1 pt-1 border-top font-weight-bold">
+                    <a href="/IndicatorPublic/data-explorer/health-impacts-of-air-pollution/?id=2108#display=summary" class="px-2 d-inline-block">Deaths due to PM2.5</a>
+                </div>
+                
+                <div class=" mb-1 pt-1 border-top font-weight-bold">
+                    <a href="/IndicatorPublic/data-explorer/alcohol-use/?id=2050#display=summary" class="px-2 d-inline-block">Binge drinking (adults)</a>
+                </div>
+                
+                <div class=" mb-1 pt-1 border-top font-weight-bold">
+                    <a href="/IndicatorPublic/data-explorer/walking-driving-and-cycling/?id=2059#display=summary" class="px-2 d-inline-block">Monthly bicycle use</a>
+                </div>
+                
+
+                <h3 class="h4 mb-1 pb-1 mt-5">Browse datasets</h3>
+
+                <p class="mb-1 pt-1 border-top px-2"><a class="font-weight-bold" href="#">Dataset index</a> - Search by term, see available years and geographies, and filter by data source.</p>
+
+                <p class="mb-1 pt-1 border-top px-2"><a class="font-weight-bold" href="#">Catalog of indicators</a> - Search by term, get metadata and download links.</p>
 
             </div>
 
-        </div>
-
-        <hr class="my-4">
-
-        <div class="row my-4 l-green-border">
-            <div class="col-12 mb-2">
-                <p class="fs-lg text-info font-weight-bold"><i class="fas fa-exclamation-circle mr-1"></i><em>Can't find what you're looking for?</em></p>
-            </div>
-
-            <div class="col-md-6">
-                <p><a class="font-weight-bold" href='/IndicatorPublic/data-explorer/data-index/'>Browse an index of our datasets</a>: Search by term, see available years and geographies, and filter by data source.</p>
-                <p><a class="font-weight-bold" href='/IndicatorPublic/data-explorer/indicator-catalog/'>Browse a catalog of our indicators</a>: Search by term, get metadata and download links.</p>
-            </div>
         </div>
 
     </div>

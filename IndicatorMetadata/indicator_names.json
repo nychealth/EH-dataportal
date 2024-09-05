@@ -486,8 +486,8 @@
   },
   "2179": {
     "IndicatorID": 2179,
-    "description": "Healthy homes are free of maintenance deficiencies.",
-    "name": "Renter-occupied homes with no maintenance deficiencies"
+    "description": "Healthy homes are free of housing problems.",
+    "name": "Renter-occupied homes with no housing problems"
   },
   "2181": {
     "IndicatorID": 2181,
@@ -816,8 +816,8 @@
   },
   "2399": {
     "IndicatorID": 2399,
-    "description": "Homes with maintenance deficiencies can threaten the health of the people who live there.",
-    "name": "Renter-occupied homes with any health-related maintenance problems"
+    "description": "Homes with housing problems can threaten the health of the people who live there.",
+    "name": "Renter-occupied homes with any health-related housing problems"
   },
   "24": {
     "IndicatorID": 24,
@@ -1046,8 +1046,8 @@
   },
   "45": {
     "IndicatorID": 45,
-    "description": "Homes with maintenance deficiencies can threaten the health of the people who live there.",
-    "name": "Homes with 3+ maintenance deficiencies"
+    "description": "Homes with housing problems can threaten the health of the people who live there.",
+    "name": "Homes with 3+ housing problems"
   },
   "46": {
     "IndicatorID": 46,
