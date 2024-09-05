@@ -118,16 +118,6 @@ jobs:
           hugo-version: "0.122.0"
           extended: true
 
-      # cache Hugo modules
-
-      - name: Hugo cache
-        uses: actions/cache@v4
-        with:
-          path: /tmp/hugo_cache
-          key: ${{ runner.os }}-hugomod-${{ hashFiles('**/go.sum') }}
-          restore-keys: |
-            ${{ runner.os }}-hugomod-
-
       # build site with Hugo
 
       - name: Hugo Build
