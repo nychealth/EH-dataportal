@@ -101,7 +101,7 @@ jobs:
             ${{ runner.os }}-build-
             ${{ runner.os }}-
 
-      # update npm dependencies (if cached)
+      # prune node_modules
 
       - name: Prune dependencies
         run: npm prune
