@@ -26,7 +26,7 @@ jobs:
   
   build:
     name: Build `build-to-appscan-deploy` to `builds/appscan-deploy`
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
 
     # only run the action if it's a push, or the PR was merged, or it was manually triggered
 

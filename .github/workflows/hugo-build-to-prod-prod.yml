@@ -23,7 +23,7 @@ jobs:
 
   build:
     name: Build `production` to `builds/prod-prod`
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
 
     # only run the action if the PR was merged, or it was manually triggered
 
