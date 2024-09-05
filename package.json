@@ -19,7 +19,7 @@
     "jquery-flexdatalist": "^2.3.0",
     "leaflet": "^1.9.4",
     "leaflet-easybutton": "^2.4.0",
-    "pagefind": "^1.1.0",
+    "pagefind": "^1.1.1",
     "seedrandom": "^3.0.5",
     "vega": "^5.30.0",
     "vega-embed": "^6.26.0",
