@@ -104,7 +104,9 @@ jobs:
       # update npm dependencies (if cached)
 
       - name: Prune dependencies
-        run: npm prune
+        run: | 
+          npm uninstall @pagefind/linux-x64
+          npm prune
 
       # update npm dependencies (if cached)
 
