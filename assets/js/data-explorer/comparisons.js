@@ -9,6 +9,8 @@ const renderComparisonsChart = (
 
     console.log("*** renderComparisonsChart");
 
+    document.getElementById('viewDescription').innerHTML = 'Trends are shown by boro for stable rates.'
+
     // console.log("metadata [renderComparisonsChart]");
     // metadata.print()
     
@@ -41,7 +43,18 @@ const renderComparisonsChart = (
 
     // dimensions
 
-    let columns = window.innerWidth < 576 ? 3 : 6;
+    let columns ;
+        if (window.innerWidth < 340) {
+            columns = 1
+        } else if (window.innerWidth < 440) {
+            columns = 2
+        } else if (window.innerWidth > 440 && window.innerWidth < 576) {
+            columns = 3
+        } else {
+            columns = 6
+        }
+    
+    
     let height = window.innerWidth < 576 ? 350 : 500;
 
     // ticks
@@ -65,10 +78,10 @@ const renderComparisonsChart = (
     let compDisplayTypes    = [... new Set(metadata.array("DisplayType"))].filter(dt => dt != "");
     let compNoCompare       = [... new Set(metadata.array("TrendNoCompare"))].filter(nc => nc != null)[0]
 
-    console.log('compMeasurementType', compMeasurementType)
-    console.log('compDisplayTypes', compDisplayTypes)
+    // console.log('compMeasurementType', compMeasurementType)
+    // console.log('compDisplayTypes', compDisplayTypes)
 
-    console.log(">>>> compNoCompare", compNoCompare);
+    // console.log(">>>> compNoCompare", compNoCompare);
 
     // console.log(">> compName", compName);
     // console.log(">> compIndicatorLabel", compIndicatorLabel);
@@ -102,7 +115,7 @@ const renderComparisonsChart = (
         
         plotTitle = indicatorName;
         plotSubtitle = compMeasurementType + (compDisplayTypes.length > 0 ? ` (${compDisplayTypes})` : "") + (hasBoros ? "" : "");
-        console.log('compDisplayTypes 0: ', compDisplayTypes)
+        // console.log('compDisplayTypes 0: ', compDisplayTypes)
         
         if (compMeasurementType[0].includes('Percent') | compMeasurementType[0].includes('percent') && !compMeasurementType[0].includes('Percentile')) {
             compDisplayTypes = '%'
@@ -181,12 +194,12 @@ const renderComparisonsChart = (
             // console.log(">>> SUPPRESS by", compId);
 
             plotSubtitle = compMeasurementType + (compDisplayTypes.length > 0 ? ` (${compDisplayTypes})` : "");
-            console.log('compDisplayTypes 1: ', compDisplayTypes)
+            // console.log('compDisplayTypes 1: ', compDisplayTypes)
 
         } else {
 
             plotSubtitle = compMeasurementType + (compDisplayTypes.length > 0 ? ` (${compDisplayTypes})` : "") + " by " + compLegendTitle;
-            console.log('compDisplayTypes 2: ', compDisplayTypes)
+            // console.log('compDisplayTypes 2: ', compDisplayTypes)
 
         }
 
@@ -308,6 +321,7 @@ const renderComparisonsChart = (
 
         let noCompareFootnote = `Because of a method change, data before ${compNoCompare} shouldn't be compared to later time periods.`
         document.querySelector("#trend-unreliability").innerHTML += "<div class='fs-sm text-muted'>" + noCompareFootnote + "</div>" ;
+        document.getElementById("trend-unreliability").classList.remove('hide')
 
 
     } else {

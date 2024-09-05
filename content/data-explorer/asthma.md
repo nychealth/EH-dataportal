@@ -2,6 +2,7 @@
 title: Asthma
 date: 2021-05-28 18:02:58.749912
 draft: false
+azlink: "https://www.nyc.gov/site/doh/health/health-topics/asthma.page"
 seo_title: "Asthma data for NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
 description: "Datasets and visualizations of asthma data in NYC."
@@ -28,32 +29,32 @@ keywords:
     "physical activity",
   ]
 indicators:
-- header: "Prevalence: Adults"
-  IndicatorID:
-  - 2414
-  - 18
-- header: "Prevalence: Children"
-  IndicatorID:
-  - 2392
-  - 2339
-  - 2429
-  - 2431
-- header: Asthma Emergency Department Visits
-  IndicatorID:
-  - 2380
-  - 2384
-  - 2048
-  - 2378
-  - 2379
-  - 2383
-- header: Asthma Hospitalizations
-  IndicatorID:
-  - 2382
-  - 2387
-  - 84
-  - 2385
-  - 2381
-  - 2386
+  - header: "Prevalence: Adults"
+    IndicatorID:
+      - 2414
+      - 18
+  - header: "Prevalence: Children"
+    IndicatorID:
+      - 2392
+      - 2339
+      - 2429
+      - 2431
+  - header: Asthma Emergency Department Visits
+    IndicatorID:
+      - 2380
+      - 2384
+      - 2048
+      - 2378
+      - 2379
+      - 2383
+  - header: Asthma Hospitalizations
+    IndicatorID:
+      - 2382
+      - 2387
+      - 84
+      - 2385
+      - 2381
+      - 2386
 ---
 
 Asthma is a **common disease in which the lungs become swollen, making breathing difficult**. Symptoms include wheezing, coughing, shortness of breath and tightness in the chest. The exact causes of asthma are not known. **Asthma cannot be cured, but it can be controlled**.

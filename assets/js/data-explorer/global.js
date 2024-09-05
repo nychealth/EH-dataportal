@@ -13,8 +13,8 @@ let selectedTableGeography = [];
 let aboutMeasures;
 let dataSources;
 
-let measureAbout = `N/A`;
-let measureSources = `N/A`;
+let measureAbout = ``;
+let measureSources = ``;
 let geoTable;
 let timeTable;
 let unreliabilityNotes;
@@ -122,13 +122,9 @@ var downloadedIndicatorMeasurement;
 let currentHash;
 let state;
 
+const btnToggleDisparities = document.querySelector('.btn-toggle-disparities');
+
 // modifying the measure dropdown innerHTML removes the event listeners from the dropdown list. So, i added it to the HTML, and we can remove it when we call renderTrendChart, if necessary
-
-// get disparities button dom element, so it can be removed and appended as needed
-let btnToggleDisparities = document.querySelector('.btn-toggle-disparities');
-
-// get comparisons button dom element, so it can be removed and appended as needed
-let btnShowComparisons = document.querySelector('.btn-comparisons');
 
 const url = new URL(window.location);
 
@@ -170,6 +166,8 @@ const assignGeoRank = (GeoType) => {
             return 9;
         case 'NYHarbor':
             return 10;
+        case 'RMZ':
+            return 11;
     }
 }
 
@@ -185,7 +183,8 @@ const geoTypes = [
     "CD",
     "CDTA",
     "NTA",
-    "NYHarbor"
+    "NYHarbor",
+    "RMZ"
 ]
 
 // ----------------------------------------------------------------------- //
@@ -241,6 +240,8 @@ const renderTitleDescription = (title, desc) => {
 // Renders copy for the About the measures and the Data sources sections
 
 const renderAboutSources = (about, sources) => {
+
+    console.log("**** renderAboutSources");
 
     aboutMeasures.innerHTML = about;
     dataSources.innerHTML = sources;

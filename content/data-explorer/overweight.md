@@ -2,19 +2,20 @@
 title: Overweight
 date: 2021-05-28 18:02:58.764067
 draft: false
+azlink: "https://www.nyc.gov/site/doh/health/health-topics/eating-well.page"
 seo_title: "Overweight data for NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
 description: "Datasets and visualizations of obesity and overweight in NYC."
-tags: 
+tags:
 categories: ["healthoutcomes"]
-keywords: ["overweight","obesity"]
+keywords: ["overweight", "obesity"]
 indicators:
-- header: null
-  IndicatorID:
-  - 2063
-  - 2064
-  - 2061
-  - 2062
+  - header: null
+    IndicatorID:
+      - 2063
+      - 2064
+      - 2061
+      - 2062
 ---
 
 People who are overweight or obese are at increased risk for heart disease and diabetes. Physical activity and healthy eating can promote well-being and relieve stress.
@@ -31,11 +32,11 @@ Weight indicators presented on this site are derived from the biennial NYC Youth
 
 Maintain good nutrition habits, including:
 
-* Eat plenty of fruits and vegetables.
-* Watch your portions
-* Eat whole grains
-* Drink very low calorie beverages, like water and unsweetened tea. Avoid sugary drinks.
-* Keep to recommended calorie levels for your age, gender, weight and physical activity level.
+- Eat plenty of fruits and vegetables.
+- Watch your portions
+- Eat whole grains
+- Drink very low calorie beverages, like water and unsweetened tea. Avoid sugary drinks.
+- Keep to recommended calorie levels for your age, gender, weight and physical activity level.
 
 ### Key Messages
 
