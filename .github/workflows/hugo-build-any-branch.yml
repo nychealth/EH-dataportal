@@ -103,6 +103,11 @@ jobs:
 
       # update npm dependencies (if cached)
 
+      - name: Prune dependencies
+        run: npm prune
+
+      # update npm dependencies (if cached)
+
       - name: Update dependencies
         if: steps.cache-nodemodules.outputs.cache-hit == 'true'
         run: npm update
@@ -112,7 +117,7 @@ jobs:
       - name: Install dependencies
         if: steps.cache-nodemodules.outputs.cache-hit != 'true'
         run: |
-          npm install @pagefind/linux-x64
+          # npm install @pagefind/linux-x64
           npm ci
 
       # list dependencies
