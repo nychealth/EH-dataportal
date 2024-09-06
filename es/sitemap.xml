@@ -71,20 +71,6 @@
                 hreflang="es"
                 href="/IndicatorPublic/es/keywords/disinvestment/"
                 /></url><url>
-    <loc>/IndicatorPublic/es/</loc>
-    <lastmod>2021-02-08T08:07:31-04:00</lastmod><xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/IndicatorPublic/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="/IndicatorPublic/zh/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="/IndicatorPublic/es/"
-                /></url><url>
     <loc>/IndicatorPublic/es/categories/healthoutcomes/</loc>
     <lastmod>2021-02-08T08:07:31-04:00</lastmod><xhtml:link
                 rel="alternate"
@@ -252,6 +238,20 @@
                 rel="alternate"
                 hreflang="es"
                 href="/IndicatorPublic/es/keywords/social-determinants/"
+                /></url><url>
+    <loc>/IndicatorPublic/es/</loc>
+    <lastmod>2021-02-08T08:07:31-04:00</lastmod><xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/IndicatorPublic/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/IndicatorPublic/zh/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="/IndicatorPublic/es/"
                 /></url><url>
     <loc>/IndicatorPublic/es/keywords/violence/</loc>
     <lastmod>2021-02-08T08:07:31-04:00</lastmod><xhtml:link
