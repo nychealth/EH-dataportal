@@ -62,7 +62,7 @@ jobs:
       
       # set up node and cache for npm
 
-      - name: Setup node
+      - name: Set up node
         uses: actions/setup-node@v4
         with:
           node-version: 22.5.x
@@ -110,7 +110,7 @@ jobs:
 
       # set up Hugo
 
-      - name: Hugo setup
+      - name: Set up Hugo
         uses: peaceiris/actions-hugo@v3
         with:
           hugo-version: "0.122.0"
@@ -118,7 +118,7 @@ jobs:
 
       # build site with Hugo
 
-      - name: Hugo Build
+      - name: Build site with Hugo
         run: hugo --environment dev_prod --cleanDestinationDir --logLevel debug
 
       # run pagefind
@@ -130,7 +130,7 @@ jobs:
 
       # commit built index
 
-      - name: Commit changes to PagesIndex.json, package.json, & package-lock.json
+      - name: Commit changes to package.json & package-lock.json
         uses: elstudio/actions-js-build/commit@v4
         with:
           commitMessage: Update index & NPM package list
