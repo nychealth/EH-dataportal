@@ -10,6 +10,9 @@ on:
   #     - closed
   workflow_dispatch:
 
+env:
+  TZ: America/New_York
+
 jobs:
 
   # ------------------
@@ -18,7 +21,7 @@ jobs:
 
   build:
     name: Build `development` to `builds/dev-prod`
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
 
     # only run the action if it's a push, or the PR was merged, or it was manually triggered
 
@@ -55,11 +58,11 @@ jobs:
         id: last_commit
         run: |
           echo "last_hash=$(git log -1 --format=%h --abbrev=10)" >> $GITHUB_OUTPUT
-          echo "last_msg=$(git log -1 --format=%s)" >> $GITHUB_OUTPUT
+          echo "last_msg=\"$(git log -1 --format=%s)\"" >> $GITHUB_OUTPUT
       
       # set up node and cache for npm
 
-      - name: Setup node
+      - name: Set up node
         uses: actions/setup-node@v4
         with:
           node-version: 22.5.x
@@ -80,6 +83,11 @@ jobs:
             ${{ runner.os }}-build-
             ${{ runner.os }}-
 
+      # prune node_modules
+
+      - name: Prune dependencies
+        run: npm prune
+
       # update npm dependencies (if cached)
 
       - name: Update dependencies
@@ -90,29 +98,27 @@ jobs:
 
       - name: Install dependencies
         if: steps.cache-nodemodules.outputs.cache-hit != 'true'
-        run: npm install
+        run: npm ci
+
+      # list dependencies
+      
+      - name: List dependencies
+        run: npm ls
+
+      - name: List sub-dependencies
+        run: npm ls --all
 
       # set up Hugo
 
-      - name: Hugo setup
-        uses: peaceiris/actions-hugo@v2
+      - name: Set up Hugo
+        uses: peaceiris/actions-hugo@v3
         with:
-          hugo-version: "0.121.0"
+          hugo-version: "0.122.0"
           extended: true
-
-      # cache Hugo modules
-
-      - name: Hugo cache
-        uses: actions/cache@v4
-        with:
-          path: /tmp/hugo_cache
-          key: ${{ runner.os }}-hugomod-${{ hashFiles('**/go.sum') }}
-          restore-keys: |
-            ${{ runner.os }}-hugomod-
 
       # build site with Hugo
 
-      - name: Hugo Build
+      - name: Build site with Hugo
         run: hugo --environment dev_prod --cleanDestinationDir --logLevel debug
 
       # run pagefind
@@ -124,7 +130,7 @@ jobs:
 
       # commit built index
 
-      - name: Commit changes to PagesIndex.json, package.json, & package-lock.json
+      - name: Commit changes to package.json & package-lock.json
         uses: elstudio/actions-js-build/commit@v4
         with:
           commitMessage: Update index & NPM package list
@@ -132,7 +138,7 @@ jobs:
       # publish to "builds/dev-prod" branch
 
       - name: Publish to "builds/dev-prod"
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v4
         with:
           full_commit_message: "Build ${{ steps.last_commit.outputs.last_hash }} (${{ steps.last_commit.outputs.last_msg }})"
           github_token: ${{ secrets.GITHUB_TOKEN }}

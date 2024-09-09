@@ -311,7 +311,7 @@ const loadIndicator = async (this_indicatorId, dont_add_to_history) => {
 
     const indicatorTitle = document.getElementById('dropdownIndicator')
 
-    indicatorTitle.innerHTML = indicatorName
+    indicatorTitle.innerHTML = DOMPurify.sanitize(indicatorName)
 
     // call function to fetch comparisons data
 
@@ -1006,8 +1006,8 @@ function draw311Buttons(indicator_id) {
         })
         .then((crosswalk) => {
 
-            console.log('crosswalk')
-            console.log(crosswalk)
+            // console.log('crosswalk')
+            // console.log(crosswalk)
 
             document.getElementById('311').innerHTML = ''
 
@@ -1017,7 +1017,7 @@ function draw311Buttons(indicator_id) {
 
             filteredCrosswalk = crosswalk.filter(indicator => indicator.IndicatorID == indicator_id )
 
-            console.log(filteredCrosswalk)
+            // console.log(filteredCrosswalk)
 
             // Creates label if there are 311 links
             if (filteredCrosswalk.length > 0) {

@@ -9,6 +9,7 @@ theme = "dohmh"
 publishDir = "docs"
 paginate = 9
 ignoreFiles = ['Simplified.Chinese', 'Spanish']
+timeZone = "America/New_York"
 # enableGitInfo = true
 timeZone = 'America/New_York'
 
@@ -25,7 +26,7 @@ timeZone = 'America/New_York'
   bgColor = '#ffffff'
   hint = 'photo'
   quality = 95
-  resampleFilter = 'MitchellNetravali'
+  resampleFilter = 'CatmullRom'
 
 [markup.goldmark.parser]
   autoHeadingID = false # remove md headings from pagefind results

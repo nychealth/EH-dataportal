@@ -91,7 +91,7 @@
 <!-- favicon -->
 <!-- https://www.iconfinder.com/icons/7618350/heatmap_business_analytics_statistics_icon -->
 <!-- https://lucianojung.de/ -->
-<link rel="icon" href={{ relURL "7618350_heatmap_business_analytics_statistics_icon-gpr.ico" }}>
+<link rel="icon" href={{ relURL "7618350_heatmap_business_analytics_statistics_icon-gpr.ico" }} type="image/x-icon">
 
 {{- /*  Font Awesome  */}}
 
@@ -271,6 +271,11 @@
     {{- /*  Arquero  */}}
 
     {{- $arquero := resources.Get "node_modules/arquero/dist/arquero.min.js" | resources.Fingerprint "sha512" }}
+
+    {{- /*  DOMPurify  */}}
+
+    {{- $dompurify := resources.Get "node_modules/dompurify/dist/purify.min.js" | resources.Fingerprint "sha512" }}
+
 
     <script src="{{ $arquero.RelPermalink }}" integrity="{{ $arquero.Data.Integrity }}"></script>
 
