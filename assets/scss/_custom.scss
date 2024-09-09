@@ -149,8 +149,10 @@ $color-data-explorer: #0A408A;
 
 .btn-light-green-bg {
   background-color: #EFFAF4;
+  color: #008939;
   &:hover {
     background-color: #008939;
+    color:white;
   }
 }
 
