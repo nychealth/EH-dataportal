@@ -11,7 +11,6 @@ paginate = 9
 ignoreFiles = ['Simplified.Chinese', 'Spanish']
 timeZone = "America/New_York"
 # enableGitInfo = true
-timeZone = 'America/New_York'
 
 [params]
   data_repo = "https://raw.githubusercontent.com/nychealth/EHDP-data/"
