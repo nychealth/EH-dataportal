@@ -317,11 +317,12 @@ const renderDisparitiesChart = async (
                     "legend": null,
                     "scale": {
                         "range": [
-                            "#1696d2", 
-                            "#ffa500", 
-                            "#ec008b", 
-                            "#55b748"
-                        ]
+                            "#374c80",
+                            "#bc5090",
+                            "#ef5675",
+                            "#ff764a",
+                            "#ffa600"
+                            ]
                     },
                 },
                 "stroke": {

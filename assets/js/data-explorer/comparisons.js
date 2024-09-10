@@ -66,7 +66,14 @@ const renderComparisonsChart = (
     // colors (black, blue, orange, magenta, green, purple)
     // alpha: hex 96 = 150(/255) = ~58/100
 
-    let colors = ["#000000ff", "#1696d296", "#f2921496", "#ec008b96", "#55b74896", "#80008096"];
+    let colors = [
+        "#000000ff",
+        "#374c80",
+        "#bc5090",
+        "#ef5675",
+        "#ff764a",
+        "#ffa600"
+          ];
 
     // ----------------------------------------------------------------------- //
     // extract measure metadata for chart text
