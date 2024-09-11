@@ -27,8 +27,8 @@ keywords:
     "lungs",
     "breathing",
   ]
-image: ds-aq2.jpeg
-photocredit: "Michael Appleton/Mayoral Photography Office"
+image: 170801_NNO_Bklyn096DSC_1146.jpg
+photocredit: "Ed Reed/Mayoral Photography Office, City of New York"
 ---
 
 In [Part 1]({{< ref "/data-stories/car-free-zones" >}}), we looked at data from the New York City Community Air Survey (NYCCAS) - a network of about 100 air quality monitors - to see if air quality improves in areas that go car-free. And the answer is yes.
