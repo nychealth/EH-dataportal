@@ -8,7 +8,7 @@ tags:
 categories: ["transportation","airquality"]
 keywords: ["air quality","traffic","transportation","covid","covid-19","coronavirus","air pollution", "lungs","breathing"]
 image: ds-aqcovid.jpeg
-photocredit: "Ed Reed/Mayoral Photography Office"
+photocredit: "Ed Reed/Mayoral Photography Office, City of New York"
 ---
 
 ¿Qué sucede cuando la ciudad de Nueva York se queda en casa? La pandemia de la COVID-19 cambió por completo la vida de todos los neoyorquinos. El brote afectó muchos aspectos de nuestra vida diaria, pero también hay efectos menos evidentes, como los impactos en el medio ambiente.

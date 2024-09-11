@@ -8,7 +8,7 @@ categories: ["housing","social","childhealth","healthoutcomes","neighborhoods"]
 keywords: ["violence","assaults","injustice","poverty","social determinants","redlining","disinvestment","racism","neighborhoods"]
 image: ds-violence.jpg
 vega: true
-photocredit: "Benjamin Kanter/Mayoral Photography Office"
+photocredit: "Benjamin Kanter/Mayoral Photography Office, City of New York"
 ---
 ## 利用公共卫生预防暴力 
 经历暴力会以多种方式影响人们。它不仅会导致身体伤害或死亡，而且接触它还会导致情感和心理创伤。暴力不仅会影响直接受害者，还会影响他们周围的群众。 

@@ -19,7 +19,7 @@ keywords:
     "violence",
   ]
 image: ds-aqcovid.jpeg
-photocredit: "Ed Reed/Mayoral Photography Office"
+photocredit: "Ed Reed/Mayoral Photography Office, City of New York"
 ---
 
 Young and middle-aged adults (ages 15 to 44) do not typically die from the natural causes that kill older adults. Injuries, both intentional — violence or suicide — and unintentional, dominate as causes of death. These premature deaths are tragic, unnecessary and preventable.
