@@ -503,12 +503,172 @@ const renderComparisonsChart = (
             ...noCompare
         ]
     }
+
+    let compspec2 = {
+        "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+        "config": {
+          "range": {
+            "category": [
+              "#000000ff",
+              "#374c80",
+              "#ff764a",
+              "#bc5090",
+              "#ffa600",
+              "#ef5675"
+            ]
+          },
+          "background": "#FFFFFF",
+          "axisX": {
+            "labelAngle": 0,
+            "labelOverlap": "parity",
+            "labelFontSize": 11,
+            "titleFontSize": 13,
+            "titleFont": "sans-serif",
+            "titlePadding": 10
+          },
+          "axisY": {"labelAngle": 0, "labelFontSize": 11, "tickMinStep": tickMinStep},
+          "legend": {
+            "columns": 6,
+            "labelFontSize": 14,
+            "symbolSize": 140,
+            "offset": 55.55555555555556
+          },
+          "view": {"stroke": "transparent"},
+          "line": {"color": "#1696d2", "stroke": "#1696d2", "strokeWidth": 2.5},
+          "point": {"filled": true},
+          "text": {"color": "#1696d2", "fontSize": 11, "fontWeight": 400, "size": 11}
+        },
+        "data": {
+            "values": data.objects()
+        },
+        "width": "container",
+        "height": height,
+        "title": { 
+            "text": plotTitle,
+            "subtitlePadding": 10,
+            "fontWeight": "normal",
+            "anchor": "start", 
+            "fontSize": 18, 
+            "font": "sans-serif",
+            "baseline": "top",
+            "subtitle": plotSubtitle,
+            "dy": -10,
+            "subtitleFontSize": 13
+        },
+        "transform": [
+          {"calculate": "split(datum.TimePeriod, ' ')", "as": "TimePeriodSplit"},
+          {
+            "calculate": "datum.TimePeriodSplit[datum.TimePeriodSplit.length - 1]",
+            "as": "TimePeriodYear"
+          },
+          {"calculate": "year(datum.end_period)", "as": "year_end_period"},
+          {
+            "calculate": "datum.year_end_period % 2 === 0 ? datum.TimePeriodSplit : ''",
+            "as": "fallbackYear"
+          }
+        ],
+        "encoding": {
+          "x": {
+            "field": "end_period",
+            "type": "quantitative",
+            "title": null,
+            "axis": {"labels": false, "grid": false, "ticks": false}
+          },
+          "y": {
+            "field": "Value",
+            "type": "quantitative",
+            "title": null,
+            "axis": {"tickCount": 4},
+            "scale": {"domainMin": 0, "nice": true}
+          },
+          "color": {
+            "condition": {
+              "param": "hover",
+              "field": comp_group_col,
+              "type": "nominal",
+              "sort": true,
+              "legend": null
+            },
+            "value": "gray"
+          },
+          "opacity": {"condition": {"param": "hover", "value": 1}, "value": 0.35},
+          "tooltip": [
+            {"title": "Time", "field": "TimePeriod"},
+            {"title": "Geography", "field": comp_group_col},
+            {"title": "Value", "field": "Value"}
+          ]
+        },
+        "layer": [
+          {
+            "description": "Transparent layer to easier trigger hover",
+            "params": [
+              {
+                "name": "hover",
+                "select": {
+                  "type": "point",
+                  "fields": [comp_group_col],
+                  "on": "pointerover"
+                }
+              }
+            ],
+            "mark": {"type": "line", "strokeWidth": 10, "stroke": "transparent"}
+          },
+          {"mark": {"type": "line", "strokeWidth": 4, "point": {"size": 70}}},
+          {
+            "transform": [
+              {
+                "aggregate": [
+                  {"op": "argmin", "field": "end_period", "as": "Value"},
+                  {"op": "min", "field": "end_period", "as": "end_period"}
+                ],
+                "groupby": [comp_group_col]
+              }
+            ],
+            "encoding": {
+              "x": {"field": "end_period"},
+              "y": {"field": "Value['Value']"},
+              "text": {
+                "condition": {"param": "hover", "field": comp_group_col, "empty": false},
+                "value": {
+                    "expr": "datum.Geography === 'New York City' ? 'New York City' : ''"
+                  }
+              }
+            },
+            "mark": {"type": "text", "align": "right", "dx": -8}
+          },
+          {
+            "mark": {"type": "text", "fontWeight": 100, "fontSize": 10},
+            "encoding": {
+              "x": {
+                "field": "end_period",
+                "type": "quantitative",
+                "axis": {"labels": false, "grid": false, "ticks": false}
+              },
+              "y": {"value": 525},
+              "text": {"field": "TimePeriodSplit", "type": "nominal"},
+              "color": {"value": "black"}
+            }
+          },
+          {
+            "mark": {"type": "tick"},
+            "encoding": {
+              "x": {
+                "field": "end_period",
+                "type": "quantitative",
+                "axis": {"labels": false, "grid": false, "ticks": true}
+              },
+              "y": {"value": 500},
+              "color": {"value": "black"}
+            }
+          }
+        ]
+      }
     
     // ----------------------------------------------------------------------- //
     // render chart
     // ----------------------------------------------------------------------- //
     
-    vegaEmbed("#trend", compspec);
+    vegaEmbed("#trend", compspec2);
 
     // ----------------------------------------------------------------------- //
     // Send chart data to download
