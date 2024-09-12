@@ -291,7 +291,7 @@ const renderMap = (
                                 "bin": false,
                                 "field": "Value",
                                 "type": "quantitative",
-                                "scale": {"scheme": {"name": color, "extent": [0.125, 1.25]}},
+                                "scale": {"scheme": {"name": "viridis", "extent": [1, 0]}},
                                 ...legend    
                             },
                             "stroke": {
@@ -367,7 +367,7 @@ const renderMap = (
                         "bin": false,
                         "field": "Value",
                         "type": "quantitative",
-                        "scale": {"scheme": {"name": color, "extent": [0.125, 1.25]}},
+                        "scale": {"scheme": {"name": "viridis", "extent": [1, 0]}},
                         "legend": false
                     },
                     "stroke": {
