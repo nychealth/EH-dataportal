@@ -525,9 +525,10 @@ const renderComparisonsChart = (
             "labelFontSize": 11,
             "titleFontSize": 13,
             "titleFont": "sans-serif",
-            "titlePadding": 10
+            "titlePadding": 10,
+            "padding": 50
           },
-          "axisY": {"labelAngle": 0, "labelFontSize": 11, "tickMinStep": tickMinStep},
+          "axisY": {"labelAngle": 0, "labelFontSize": 11, "tickMinStep": tickMinStep, "offset": 40},
           "legend": {
             "columns": 6,
             "labelFontSize": 14,
@@ -598,7 +599,7 @@ const renderComparisonsChart = (
           "opacity": {"condition": {"param": "hover", "value": 1}, "value": 0.35},
           "tooltip": [
             {"title": "Time", "field": "TimePeriod"},
-            {"title": "Geography", "field": comp_group_col},
+            {"title": "For", "field": comp_group_col},
             {"title": compMeasurementType, "field": "valueWithDisplay"}
           ]
         },
