@@ -602,7 +602,7 @@ const renderComparisonsChart = (
           },
           "opacity": {"condition": {"param": "hover", "value": 1}, "value": 0.35},
           "strokeWidth": {
-            "condition": { "test": "datum.Geography === 'New York City'", "value": 5},
+            "condition": { "test": "datum.Geography === 'New York City'", "value": 4},
             "value": 2.5
           },
           "tooltip": [
