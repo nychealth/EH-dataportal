@@ -27,7 +27,7 @@ keywords:
     "lungs",
     "breathing",
   ]
-image: 170801_NNO_Bklyn096DSC_1146.jpg
+image: 170801_NNO_Bklyn096DSC_114.jpg
 photocredit: "Ed Reed/Mayoral Photography Office, City of New York"
 ---
 
