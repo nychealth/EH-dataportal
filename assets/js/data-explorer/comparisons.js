@@ -44,14 +44,18 @@ const renderComparisonsChart = (
     // dimensions
 
     let columns ;
+    let xAxisLabelField;
         if (window.innerWidth < 340) {
             columns = 1
         } else if (window.innerWidth < 440) {
             columns = 2
+            xAxisLabelField = 'fallbackYear'
         } else if (window.innerWidth > 440 && window.innerWidth < 576) {
             columns = 3
+            xAxisLabelField = 'fallbackYear'
         } else {
             columns = 6
+            xAxisLabelField = 'TimePeriodSplit'
         }
     
     
@@ -544,7 +548,7 @@ const renderComparisonsChart = (
             "values": data.objects()
         },
         "width": "container",
-        "height": height,
+        "height": 400,
         "title": { 
             "text": plotTitle,
             "subtitlePadding": 10,
@@ -603,7 +607,7 @@ const renderComparisonsChart = (
           },
           "tooltip": [
             {"title": "Time", "field": "TimePeriod"},
-            {"title": "For", "field": comp_group_col},
+            {"title": "Group", "field": comp_group_col},
             {"title": compMeasurementType, "field": "valueWithDisplay"}
           ]
         },
@@ -653,8 +657,8 @@ const renderComparisonsChart = (
                 "type": "quantitative",
                 "axis": {"labels": false, "grid": false, "ticks": false}
               },
-              "y": {"value": 525},
-              "text": {"field": "TimePeriodSplit", "type": "nominal"},
+              "y": {"value": 425},
+              "text": {"field": xAxisLabelField, "type": "nominal"},
               "color": {"value": "black"}
             }
           },
@@ -666,7 +670,7 @@ const renderComparisonsChart = (
                 "type": "quantitative",
                 "axis": {"labels": false, "grid": false, "ticks": true}
               },
-              "y": {"value": 500},
+              "y": {"value": 400},
               "color": {"value": "black"}
             }
           }
