@@ -370,7 +370,7 @@ const renderComparisonsChart = (
                 "symbolSize": 140
             },
             "view": {"stroke": "transparent"},
-            "line": {"color": "#1696d2", "stroke": "#1696d2", "strokeWidth": 2.5},
+            // "line": {"color": "#1696d2", "stroke": "#1696d2", "strokeWidth": 2.5},
             
             "point": {"filled": true},
             "text": {
@@ -536,7 +536,7 @@ const renderComparisonsChart = (
             "offset": 55.55555555555556
           },
           "view": {"stroke": "transparent"},
-          "line": {"color": "#1696d2", "stroke": "#1696d2", "strokeWidth": 2.5},
+          "line": {"color": "#1696d2", "stroke": "#1696d2"},
           "point": {"filled": true},
           "text": {"color": "#1696d2", "fontSize": 11, "fontWeight": 400, "size": 11}
         },
@@ -597,6 +597,10 @@ const renderComparisonsChart = (
             "value": "gray"
           },
           "opacity": {"condition": {"param": "hover", "value": 1}, "value": 0.35},
+          "strokeWidth": {
+            "condition": { "test": "datum.Geography === 'New York City'", "value": 10},
+            "value": 2
+          },
           "tooltip": [
             {"title": "Time", "field": "TimePeriod"},
             {"title": "For", "field": comp_group_col},
@@ -616,9 +620,9 @@ const renderComparisonsChart = (
                 }
               }
             ],
-            "mark": {"type": "line", "strokeWidth": 10, "stroke": "transparent"}
+            "mark": {"type": "line", "stroke": "transparent"}
           },
-          {"mark": {"type": "line", "strokeWidth": 4, "point": {"size": 70}}},
+          {"mark": {"type": "line", "point": {"size": 70}}},
           {
             "transform": [
               {
