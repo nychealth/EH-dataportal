@@ -274,6 +274,7 @@ const renderComparisonsChart = (
     // ----------------------------------------------------------------------- //
 
     let compReplaceInvalid = compGroupLabel.map(x => {return {"calculate": `isValid(datum[\"${x}\"]) ? (datum[\"${x}\"] + ' ${compDisplayTypes}') : ""`, "as": `${x}`}})
+    console.log(compReplaceInvalid)
 
     // ----------------------------------------------------------------------- //
     // create tooltips JSON
@@ -284,7 +285,7 @@ const renderComparisonsChart = (
     // let compTooltips = compGroupLabel.map(x => {return {"field": x, "type": "nominal", "format": ",.1~f"}})
     let compTooltips = compGroupLabel.map(x => {return {"field": x, "type": "nominal"}})
 
-    // console.log("compTooltips", compTooltips);
+     console.log("compTooltips", compTooltips);
 
 
     // ----------------------------------------------------------------------- //
@@ -556,6 +557,9 @@ const renderComparisonsChart = (
             "subtitleFontSize": 13
         },
         "transform": [
+          {
+            "calculate": `datum.Value + ' ${compDisplayTypes}'`, "as": "valueWithDisplay"
+          },
           {"calculate": "split(datum.TimePeriod, ' ')", "as": "TimePeriodSplit"},
           {
             "calculate": "datum.TimePeriodSplit[datum.TimePeriodSplit.length - 1]",
@@ -595,7 +599,7 @@ const renderComparisonsChart = (
           "tooltip": [
             {"title": "Time", "field": "TimePeriod"},
             {"title": "Geography", "field": comp_group_col},
-            {"title": "Value", "field": "Value"}
+            {"title": compMeasurementType, "field": "valueWithDisplay"}
           ]
         },
         "layer": [
@@ -630,7 +634,7 @@ const renderComparisonsChart = (
               "text": {
                 "condition": {"param": "hover", "field": comp_group_col, "empty": false},
                 "value": {
-                    "expr": "datum.Geography === 'New York City' ? 'New York City' : ''"
+                    "expr": "datum.Geography === 'New York City' ? 'NYC' : ''"
                   }
               }
             },
