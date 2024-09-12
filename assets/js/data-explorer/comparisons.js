@@ -598,8 +598,8 @@ const renderComparisonsChart = (
           },
           "opacity": {"condition": {"param": "hover", "value": 1}, "value": 0.35},
           "strokeWidth": {
-            "condition": { "test": "datum.Geography === 'New York City'", "value": 10},
-            "value": 2
+            "condition": { "test": "datum.Geography === 'New York City'", "value": 5},
+            "value": 2.5
           },
           "tooltip": [
             {"title": "Time", "field": "TimePeriod"},
@@ -620,7 +620,7 @@ const renderComparisonsChart = (
                 }
               }
             ],
-            "mark": {"type": "line", "stroke": "transparent"}
+            "mark": {"type": "line", "stroke": "transparent","strokeWidth": 10}
           },
           {"mark": {"type": "line", "point": {"size": 70}}},
           {
