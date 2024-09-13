@@ -682,6 +682,8 @@ const renderComparisonsChart = (
     // ----------------------------------------------------------------------- //
     
     vegaEmbed("#trend", compspec2);
+    printSpec = compspec2;
+
 
     // ----------------------------------------------------------------------- //
     // Send chart data to download

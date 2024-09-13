@@ -571,6 +571,12 @@
                                         <!-- INSERT MENU ITEMS HERE -->
                                     </div>
                                 </div>
+
+
+                                <button type="button" class="btn btn-sm btn-outline-secondary fs-xs btn-block" onclick="printModal()">
+                                    <i class="fas fa-print mr-1" aria-hidden="true"></i>Print viz
+                                </button>
+
                             </div>
                         </div>
 
@@ -596,11 +602,15 @@
 
                             <div id="trendSidebar" class="collapse dont-collapse-sm">
                                 <p class="fs-xs mb-0"><i data-toggle="modal" data-target="#trendModal" class="fas fa-question-circle float-right helper text-primary fs-sm"></i>Show by:</p>
-                                <div class="border optionbox">
+                                <div class="border optionbox mb-2">
                                     <div class="" aria-labelledby="dropdownTrendComparisons">
                                         <!-- INSERT MENU ITEMS HERE -->
                                     </div>
                                 </div>
+
+                                <button type="button" class="btn btn-sm btn-outline-secondary fs-xs btn-block" onclick="printModal()">
+                                    <i class="fas fa-print mr-1" aria-hidden="true"></i>Print viz
+                                </button>
                             </div>
                         </div>
 
@@ -909,6 +919,31 @@
             </div>
         </div>
 
+        <!-- Print Modal -->
+        <div class="modal fade" id="printModal" tabindex="-1" role="dialog" aria-labelledby="printModalTitle" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="printModalTitle">Print this viz</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                Click the three dots in the upper-right-hand corner of the viz below, and choose "save as PNG" to print or re-use this visualization. 
+                
+                <div id="printVis" style="height: 400px;" class="border m-1"></div>
+            
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+            </div>
+        </div>
+
+
+
 </article>
 
 
@@ -1170,6 +1205,8 @@
     {{- $disparities := resources.Get "js/data-explorer/disparities.js" -}}
     {{- $comparisons := resources.Get "js/data-explorer/comparisons.js" -}}
     {{- $app         := resources.Get "js/data-explorer/app.js" -}}
+    {{- $print         := resources.Get "js/data-explorer/print.js" -}}
+
 
     {{- $global_secure      := $global | resources.Fingerprint "sha512" -}}
     {{- $data_secure        := $data | resources.Fingerprint "sha512" -}}
@@ -1180,6 +1217,8 @@
     {{- $disparities_secure := $disparities | resources.Fingerprint "sha512" -}}
     {{- $comparisons_secure := $comparisons | resources.Fingerprint "sha512" -}}
     {{- $app_secure         := $app | resources.Fingerprint "sha512" -}}
+    {{- $print_secure         := $print | resources.Fingerprint "sha512" -}}
+
 
     <script type="text/javascript" src="{{ $global_secure.RelPermalink }}" integrity="{{ $global_secure.Data.Integrity }}"></script>
     <script type="text/javascript" src="{{ $data_secure.RelPermalink }}" integrity="{{ $data_secure.Data.Integrity }}"></script>
@@ -1190,5 +1229,7 @@
     <script type="text/javascript" src="{{ $disparities_secure.RelPermalink }}" integrity="{{ $disparities_secure.Data.Integrity }}"></script>
     <script type="text/javascript" src="{{ $comparisons_secure.RelPermalink }}" integrity="{{ $comparisons_secure.Data.Integrity }}"></script>
     <script type="text/javascript" src="{{ $app_secure.RelPermalink }}" integrity="{{ $app_secure.Data.Integrity }}"></script>
+    <script type="text/javascript" src="{{ $print_secure.RelPermalink }}" integrity="{{ $print_secure.Data.Integrity }}"></script>
+
 
 {{- end -}}

@@ -389,6 +389,8 @@ const renderMap = (
 
     vegaEmbed("#map", mapspec);
 
+    printSpec = mapspec;
+
     // console.log(mapspec)
 
     // ----------------------------------------------------------------------- //
