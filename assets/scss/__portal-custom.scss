@@ -1120,6 +1120,20 @@ input[type=range]:focus::-ms-fill-upper {
     border-color: #ae9141;
 }
 
+// Subboro
+
+.PUMA {
+    color: black;
+    background-color: #ae914164;
+    border-color: #ae9141;
+}
+
+.PUMA:hover, .PUMA.active  {
+    color: white;
+    background-color: #ae9141;
+    border-color: #ae9141;
+}
+
 
 // NYCKIDS
 

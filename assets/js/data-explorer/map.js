@@ -168,8 +168,10 @@ const renderMap = (
         topoFile = 'CD.topo.json';
     } else if (mapGeoType === "CDTA2020") {
         topoFile = 'CDTA_2020.topo.json';
-    } else if (mapGeoType === "PUMA") {
-        topoFile = 'PUMA_or_Subborough.topo.json';
+    } else if (mapGeoType === "PUMA2010") {
+        topoFile = 'PUMA2010.topo.json';
+    } else if (mapGeoType === "PUMA2020") {
+        topoFile = 'PUMA2020.topo.json';
     } else if (mapGeoType === "Subboro") {
         topoFile = 'PUMA_or_Subborough.topo.json';
     } else if (mapGeoType === "UHF42") {
