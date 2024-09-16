@@ -201,30 +201,36 @@ const geoTypes = [
 //  versioned geotypes in the data into generic geotypes.
 
 const prettifyGeoType = (GeoType) => {
-    
+
     switch (GeoType) {
-        
+
         case 'NYCKIDS2017':
-        return 'NYCKIDS';
-        
+            return 'NYCKIDS';
+
         case 'NYCKIDS2019':
-        return 'NYCKIDS';
-        
+            return 'NYCKIDS';
+
         case 'NYCKIDS2021':
-        return 'NYCKIDS';
-        
+            return 'NYCKIDS';
+
         case 'CDTA2020':
-        return 'CDTA';
-        
+            return 'CDTA';
+
         case 'NTA2010':
-        return 'NTA';
-        
+            return 'NTA';
+
         case 'NTA2020':
-        return 'NTA';
-        
+            return 'NTA';
+
+        case 'PUMA2010':
+            return 'PUMA';
+
+        case 'PUMA2020':
+            return 'PUMA';
+
         default:
-        return GeoType;
-        
+            return GeoType;
+
     }
 }
 
