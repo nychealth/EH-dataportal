@@ -2562,18 +2562,22 @@ const renderMeasures = async () => {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
     $(dropdownTableGeos).on("click.gtag", e => {
-
+        
         console.log("click [dropdownTableGeos]", e);
 
-        // if (e.target.classList.contains("dropdown-item") && !e.target.classList.contains("active")) {
-        if (e.target.classList.contains("dropdown-item")) {
+        // only register event on the checkbox
+        //  if you click on the containing div, it fires 2 events: one with the div as target and one 
+        //  with the checkbox as target. If you click on the checkbox, it fires on the checkbox. In either
+        //  case, there's an event with the checkbox as target. So, use that.
 
-            // console.log("gtag [dropdownTableGeos]");
+        if (e.target.classList.contains("largerCheckbox")) {
+
+            console.log("gtag [dropdownTableGeos]");
 
             gtag('event', 'click_option', {
                 option: "table_geo"
             });
-            
+
         }
 
     });
@@ -2581,11 +2585,15 @@ const renderMeasures = async () => {
     $(dropdownTableTimes).on("click.gtag", e => {
 
         console.log("click [dropdownTableTimes]", e);
+        
+        // only register event on the checkbox
+        //  if you click on the containing div, it fires 2 events: one with the div as target and one 
+        //  with the checkbox as target. If you click on the checkbox, it fires on the checkbox. In either
+        //  case, there's an event with the checkbox as target. So, use that.
+        
+        if (e.target.classList.contains("largerCheckbox")) {
 
-        // if (e.target.classList.contains("dropdown-item") && !e.target.classList.contains("active")) {
-        if (e.target.classList.contains("dropdown-item")) {
-
-            // console.log("gtag [dropdownTableTimes]");
+            console.log("gtag [dropdownTableTimes]");
 
             gtag('event', 'click_option', {
                 option: "table_time"
@@ -2593,6 +2601,7 @@ const renderMeasures = async () => {
             
         }
         
+
     });
 
     $(dropdownMapMeasures).on("click.gtag", e => {

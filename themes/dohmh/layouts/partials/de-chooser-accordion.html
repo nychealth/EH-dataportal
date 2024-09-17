@@ -9,24 +9,24 @@
 
 {{- if eq $layout "double" -}}
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-12">
             <!-- Topics by category -->
-            <div class="accordion-group fs-sm" role="tablist" id="accordion-02">
-                <div class="card border">
-        
-                    <strong><a class="btn btn-outline-light btn-block collapse"
+            <div class="accordion-group" role="tablist" id="accordion-02">
+                <div class="card mb-1">
+
+                    <strong><a class="card-header collapse"
                          id="acc-button-01" data-toggle="collapse"
                          href="#panel-acc-button-01" role="tab"
                          aria-expanded="false"
                          aria-controls="panel-acc-button-01">
                          <span class="title" role="heading"
                              aria-level="3">Air quality and health</span>
-                     </a></strong> 
-             
+                     </a></strong>
+
                      <div class="collapse show" id="panel-acc-button-01"
                          role="tabpanel" aria-labelledby="acc-button-01"
                          data-parent="#accordion-02">
-             
+
                          <div class="card-body bg-white">
                              <ul>
                                  {{ range (sort (where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "airquality")) "Title" "asc") }}
@@ -35,16 +35,16 @@
                                  {{end}}
                                  </ul>
                          </div>
-             
+
                      </div>
                      <!-- .collapse -->
-             
+
                  </div>
                  <!-- .AQ card -->
 
-                 <div class="card border">
-             
-                    <strong><a class="btn btn-outline-light btn-block collapse collapsed"
+                 <div class="card mb-1">
+
+                    <strong><a class="card-header   collapse collapsed"
                         id="acc-button-07" data-toggle="collapse"
                         href="#panel-acc-button-07" role="tab"
                         aria-expanded="false"
@@ -52,11 +52,11 @@
                         <span class="title" role="heading"
                             aria-level="3">Child health</span>
                     </a></strong>
-            
+
                     <div class="collapse" id="panel-acc-button-07"
                         role="tabpanel" aria-labelledby="acc-button-07"
                         data-parent="#accordion-02">
-            
+
                         <div class="card-body bg-white">
                             <ul>
                                 {{ range (sort (where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "childhealth")) "Title" "asc") }}
@@ -65,16 +65,16 @@
                                 {{end}}
                                 </ul>
                         </div>
-            
+
                     </div>
                     <!-- .collapse -->
-            
+
                 </div>
                 <!-- .child health card -->
-             
-                 <div class="card border">
-             
-                     <strong><a class="btn btn-outline-light btn-block collapse collapsed"
+
+                 <div class="card mb-1">
+
+                     <strong><a class="card-header collapse collapsed"
                          id="acc-button-02" data-toggle="collapse"
                          href="#panel-acc-button-02" role="tab"
                          aria-expanded="false"
@@ -82,11 +82,11 @@
                          <span class="title" role="heading"
                              aria-level="3">Climate and health</span>
                      </a></strong>
-             
+
                      <div class="collapse" id="panel-acc-button-02"
                          role="tabpanel" aria-labelledby="acc-button-02"
                          data-parent="#accordion-02">
-             
+
                          <div class="card-body bg-white">
                              <ul>
                                  {{ range (sort (where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "climatehealth")) "Title" "asc") }}
@@ -95,16 +95,16 @@
                                  {{end}}
                                  </ul>
                          </div>
-             
+
                      </div>
                      <!-- .collapse -->
-             
+
                  </div>
                  <!-- .Climate card -->
 
-                 <div class="card border">
-             
-                    <strong><a class="btn btn-outline-light btn-block collapse collapsed"
+                 <div class="card mb-1">
+
+                    <strong><a class="card-header collapse collapsed"
                         id="acc-button-09" data-toggle="collapse"
                         href="#panel-acc-button-09" role="tab"
                         aria-expanded="false"
@@ -112,11 +112,11 @@
                         <span class="title" role="heading"
                             aria-level="3">Food and drink</span>
                     </a></strong>
-            
+
                     <div class="collapse" id="panel-acc-button-09"
                         role="tabpanel" aria-labelledby="acc-button-09"
                         data-parent="#accordion-02">
-            
+
                         <div class="card-body bg-white">
                             <ul>
                                 {{ range (sort (where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "foodanddrink")) "Title" "asc") }}
@@ -125,16 +125,16 @@
                                 {{end}}
                                 </ul>
                         </div>
-            
+
                     </div>
                     <!-- .collapse -->
-            
+
                 </div>
                 <!-- .food card -->
-             
-                 <div class="card border">
-             
-                    <strong> <a class="btn btn-outline-light btn-block collapse collapsed"
+
+                 <div class="card mb-1">
+
+                    <strong> <a class="card-header collapse collapsed"
                          id="acc-button-03" data-toggle="collapse"
                          href="#panel-acc-button-03" role="tab"
                          aria-expanded="false"
@@ -142,11 +142,11 @@
                          <span class="title" role="heading"
                              aria-level="3">Housing and health</span>
                      </a></strong>
-             
+
                      <div class="collapse" id="panel-acc-button-03"
                          role="tabpanel" aria-labelledby="acc-button-03"
                          data-parent="#accordion-02">
-             
+
                          <div class="card-body bg-white">
                              <ul>
                                  {{ range (sort (where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "housing")) "Title" "asc") }}
@@ -155,16 +155,16 @@
                                  {{end}}
                                  </ul>
                          </div>
-             
+
                      </div>
                      <!-- .collapse -->
-             
+
                  </div>
                  <!-- .Housing card -->
-             
-                 <div class="card border">
-             
-                     <strong><a class="btn btn-outline-light btn-block collapse collapsed"
+
+                 <div class="card mb-1">
+
+                     <strong><a class="card-header  collapse collapsed"
                          id="acc-button-04" data-toggle="collapse"
                          href="#panel-acc-button-04" role="tab"
                          aria-expanded="false"
@@ -172,11 +172,11 @@
                          <span class="title" role="heading"
                              aria-level="3">Health equity</span>
                      </a></strong>
-             
+
                      <div class="collapse" id="panel-acc-button-04"
                          role="tabpanel" aria-labelledby="acc-button-04"
                          data-parent="#accordion-02">
-             
+
                          <div class="card-body bg-white">
                              <ul>
                                  {{ range (sort (where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "social")) "Title" "asc") }}
@@ -185,17 +185,17 @@
                                  {{end}}
                                  </ul>
                          </div>
-             
+
                      </div>
                      <!-- .collapse -->
-             
+
                  </div>
                  <!-- .HE card -->
 
 
-                 <div class="card border">
-             
-                    <strong><a class="btn btn-outline-light btn-block collapse collapsed"
+                 <div class="card mb-1">
+
+                    <strong><a class="card-header  collapse collapsed"
                         id="acc-button-06" data-toggle="collapse"
                         href="#panel-acc-button-06" role="tab"
                         aria-expanded="false"
@@ -203,11 +203,11 @@
                         <span class="title" role="heading"
                             aria-level="3">Health outcomes</span>
                     </a></strong>
-            
+
                     <div class="collapse" id="panel-acc-button-06"
                         role="tabpanel" aria-labelledby="acc-button-06"
                         data-parent="#accordion-02">
-            
+
                         <div class="card-body bg-white">
                             <ul>
                                 {{ range (sort (where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "healthoutcomes")) "Title" "asc") }}
@@ -216,19 +216,19 @@
                                 {{end}}
                                 </ul>
                         </div>
-            
+
                     </div>
                     <!-- .collapse -->
-            
+
                 </div>
                 <!-- .Outcomes card -->
-             
 
-        
-             
-                 <div class="card border">
-             
-                     <strong><a class="btn btn-outline-light btn-block collapse collapsed"
+
+
+
+                 <div class="card mb-1">
+
+                     <strong><a class="card-header  collapse collapsed"
                          id="acc-button-08" data-toggle="collapse"
                          href="#panel-acc-button-08" role="tab"
                          aria-expanded="false"
@@ -236,11 +236,11 @@
                          <span class="title" role="heading"
                              aria-level="3">Pests and pesticides</span>
                      </a></strong>
-             
+
                      <div class="collapse" id="panel-acc-button-08"
                          role="tabpanel" aria-labelledby="acc-button-08"
                          data-parent="#accordion-02">
-             
+
                          <div class="card-body bg-white">
                              <ul>
                                  {{ range (sort (where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "pests")) "Title" "asc") }}
@@ -249,17 +249,17 @@
                                  {{end}}
                                  </ul>
                          </div>
-             
+
                      </div>
                      <!-- .collapse -->
-             
+
                  </div>
                  <!-- .Pests card -->
 
 
-                 <div class="card border">
-             
-                    <strong><a class="btn btn-outline-light btn-block collapse collapsed"
+                 <div class="card mb-1">
+
+                    <strong><a class="card-header  collapse collapsed"
                         id="acc-button-05" data-toggle="collapse"
                         href="#panel-acc-button-05" role="tab"
                         aria-expanded="false"
@@ -267,11 +267,11 @@
                         <span class="title" role="heading"
                             aria-level="3">Public space</span>
                     </a></strong>
-            
+
                     <div class="collapse" id="panel-acc-button-05"
                         role="tabpanel" aria-labelledby="acc-button-05"
                         data-parent="#accordion-02">
-            
+
                         <div class="card-body bg-white">
                             <ul>
                                 {{ range (sort (where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "transportation")) "Title" "asc") }}
@@ -280,39 +280,36 @@
                                 {{end}}
                                 </ul>
                         </div>
-            
+
                     </div>
                     <!-- .collapse -->
-            
+
                 </div>
                 <!-- .AD card -->
-             
-
 
             </div>
-        </div>
 
-        <div class="col-md-6">
+
             <!-- All topics -->
-            <div class="accordion-group fs-sm" role="tablist" id="accordion-03">
-                <div class="card border">
-        
-                    <strong><a class="btn btn-outline-light btn-block collapse collapsed"
-                        id="acc-button-10" data-toggle="collapse"
+            <div class="accordion-group" role="tablist" id="accordion-03">
+                <div class="card mb-1">
+
+                    <strong><a class="card-header collapse collapsed"
+                        id="acc-button-10-1" data-toggle="collapse"
                         href="#panel-acc-button-10-1" role="tab"
                         aria-expanded="false"
                         aria-controls="panel-acc-button-10-1">
                         <span class="title" role="heading"
-                            aria-level="3">All data</span>
+                            aria-level="3">All Topics</span>
                     </a></strong>
-            
-                    <div class="collapse show" id="panel-acc-button-10-1"
-                        role="tabpanel" aria-labelledby="acc-button-10"
+
+                    <div class="collapse" id="panel-acc-button-10-1"
+                        role="tabpanel" aria-labelledby="acc-button-10-1"
                         data-parent="#accordion-03">
-            
+
                         <div class="card-body bg-white">
                             <ul>
-                                
+
                                 {{/*  range through data explorer pages to add links to topic choosers  */ -}}
 
                                 {{- range ( where $.context.Site.RegularPages.ByTitle "Section" "data-explorer") -}}
@@ -320,7 +317,7 @@
                                     {{- /*  don't add links to the data index or data reference pages  */ -}}
 
                                     {{- if not ( or ( strings.Contains .RelPermalink "data-index" ) ( strings.Contains .RelPermalink "indicator-catalog" ) ) -}}
-                                    
+
                                         <li><a href="{{ .RelPermalink}}">{{ .Title }}</a></li>
 
                                     {{ end -}}
@@ -329,10 +326,10 @@
 
                                 </ul>
                         </div>
-            
+
                     </div>
                     <!-- .collapse -->
-            
+
                 </div>
                 <!-- .all card -->
             </div>
@@ -343,23 +340,23 @@
 <div class="row no-gutters">
     <div class="col-12">
 
-        <div class="accordion-group fs-sm" role="tablist" id="accordion-01">
+        <div class="accordion-group" role="tablist" id="accordion-01">
 
-            <div class="card border">
-        
-               <strong><a class="btn btn-outline-light btn-block collapse"
+            <div class="card">
+
+               <strong><a class=" collapse"
                     id="acc-button-01" data-toggle="collapse"
                     href="#panel-acc-button-01" role="tab"
                     aria-expanded="false"
                     aria-controls="panel-acc-button-01">
                     <span class="title" role="heading"
                         aria-level="3">Air Quality</span>
-                </a></strong> 
-        
+                </a></strong>
+
                 <div class="collapse show" id="panel-acc-button-01"
                     role="tabpanel" aria-labelledby="acc-button-01"
                     data-parent="#accordion-01">
-        
+
                     <div class="card-body bg-white">
                         <ul>
                             {{ range (sort (where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "airquality")) "Title" "asc") }}
@@ -368,16 +365,16 @@
                             {{ end }}
                             </ul>
                     </div>
-        
+
                 </div>
                 <!-- .collapse -->
-        
+
             </div>
             <!-- .AQ card -->
 
             <div class="card border">
-        
-                <strong><a class="btn btn-outline-light btn-block collapse collapsed"
+
+                <strong><a class=" collapse collapsed"
                     id="acc-button-07" data-toggle="collapse"
                     href="#panel-acc-button-07" role="tab"
                     aria-expanded="false"
@@ -385,11 +382,11 @@
                     <span class="title" role="heading"
                         aria-level="3">Child health</span>
                 </a></strong>
-        
+
                 <div class="collapse" id="panel-acc-button-07"
                     role="tabpanel" aria-labelledby="acc-button-07"
                     data-parent="#accordion-01">
-        
+
                     <div class="card-body bg-white">
                         <ul>
                             {{ range (sort (where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "childhealth")) "Title" "asc") }}
@@ -398,16 +395,16 @@
                             {{ end }}
                             </ul>
                     </div>
-        
+
                 </div>
                 <!-- .collapse -->
-        
+
             </div>
             <!-- .child health card -->
-        
+
             <div class="card border">
-        
-                <strong><a class="btn btn-outline-light btn-block collapse collapsed"
+
+                <strong><a class=" collapse collapsed"
                     id="acc-button-02" data-toggle="collapse"
                     href="#panel-acc-button-02" role="tab"
                     aria-expanded="false"
@@ -415,11 +412,11 @@
                     <span class="title" role="heading"
                         aria-level="3">Climate</span>
                 </a></strong>
-        
+
                 <div class="collapse" id="panel-acc-button-02"
                     role="tabpanel" aria-labelledby="acc-button-02"
                     data-parent="#accordion-01">
-        
+
                     <div class="card-body bg-white">
                         <ul>
                             {{ range (sort (where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "climatehealth")) "Title" "asc") }}
@@ -428,16 +425,16 @@
                             {{ end }}
                             </ul>
                     </div>
-        
+
                 </div>
                 <!-- .collapse -->
-        
+
             </div>
             <!-- .Climate card -->
 
             <div class="card border">
-        
-                <strong><a class="btn btn-outline-light btn-block collapse collapsed"
+
+                <strong><a class=" collapse collapsed"
                     id="acc-button-09" data-toggle="collapse"
                     href="#panel-acc-button-09" role="tab"
                     aria-expanded="false"
@@ -445,11 +442,11 @@
                     <span class="title" role="heading"
                         aria-level="3">Food and drink</span>
                 </a></strong>
-        
+
                 <div class="collapse" id="panel-acc-button-09"
                     role="tabpanel" aria-labelledby="acc-button-09"
                     data-parent="#accordion-01">
-        
+
                     <div class="card-body bg-white">
                         <ul>
                             {{ range (sort (where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "foodanddrink")) "Title" "asc") }}
@@ -458,16 +455,16 @@
                             {{ end }}
                             </ul>
                     </div>
-        
+
                 </div>
                 <!-- .collapse -->
-        
+
             </div>
             <!-- .food card -->
 
             <div class="card border">
-        
-                <strong><a class="btn btn-outline-light btn-block collapse collapsed"
+
+                <strong><a class=" collapse collapsed"
                     id="acc-button-04" data-toggle="collapse"
                     href="#panel-acc-button-04" role="tab"
                     aria-expanded="false"
@@ -475,11 +472,11 @@
                     <span class="title" role="heading"
                         aria-level="3">Health equity</span>
                 </a></strong>
-        
+
                 <div class="collapse" id="panel-acc-button-04"
                     role="tabpanel" aria-labelledby="acc-button-04"
                     data-parent="#accordion-01">
-        
+
                     <div class="card-body bg-white">
                         <ul>
                             {{ range (sort (where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "social")) "Title" "asc") }}
@@ -488,16 +485,16 @@
                             {{ end }}
                             </ul>
                     </div>
-        
+
                 </div>
                 <!-- .collapse -->
-        
+
             </div>
             <!-- .HE card -->
 
             <div class="card border">
-        
-                <strong><a class="btn btn-outline-light btn-block collapse collapsed"
+
+                <strong><a class=" collapse collapsed"
                     id="acc-button-06" data-toggle="collapse"
                     href="#panel-acc-button-06" role="tab"
                     aria-expanded="false"
@@ -505,11 +502,11 @@
                     <span class="title" role="heading"
                         aria-level="3">Health outcomes</span>
                 </a></strong>
-        
+
                 <div class="collapse" id="panel-acc-button-06"
                     role="tabpanel" aria-labelledby="acc-button-06"
                     data-parent="#accordion-01">
-        
+
                     <div class="card-body bg-white">
                         <ul>
                             {{ range (sort (where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "healthoutcomes")) "Title" "asc") }}
@@ -518,16 +515,16 @@
                             {{ end }}
                             </ul>
                     </div>
-        
+
                 </div>
                 <!-- .collapse -->
-        
+
             </div>
             <!-- .Outcomes card -->
-        
+
             <div class="card border">
-        
-               <strong> <a class="btn btn-outline-light btn-block collapse collapsed"
+
+               <strong> <a class=" collapse collapsed"
                     id="acc-button-03" data-toggle="collapse"
                     href="#panel-acc-button-03" role="tab"
                     aria-expanded="false"
@@ -535,11 +532,11 @@
                     <span class="title" role="heading"
                         aria-level="3">Housing</span>
                 </a></strong>
-        
+
                 <div class="collapse" id="panel-acc-button-03"
                     role="tabpanel" aria-labelledby="acc-button-03"
                     data-parent="#accordion-01">
-        
+
                     <div class="card-body bg-white">
                         <ul>
                             {{ range (sort (where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "housing")) "Title" "asc") }}
@@ -548,17 +545,17 @@
                             {{ end }}
                             </ul>
                     </div>
-        
+
                 </div>
                 <!-- .collapse -->
-        
+
             </div>
             <!-- .Housing card -->
 
 
             <div class="card border">
-        
-                <strong><a class="btn btn-outline-light btn-block collapse collapsed"
+
+                <strong><a class=" collapse collapsed"
                     id="acc-button-08" data-toggle="collapse"
                     href="#panel-acc-button-08" role="tab"
                     aria-expanded="false"
@@ -566,11 +563,11 @@
                     <span class="title" role="heading"
                         aria-level="3">Pests and pesticides</span>
                 </a></strong>
-        
+
                 <div class="collapse" id="panel-acc-button-08"
                     role="tabpanel" aria-labelledby="acc-button-08"
                     data-parent="#accordion-01">
-        
+
                     <div class="card-body bg-white">
                         <ul>
                             {{ range (sort (where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "pests")) "Title" "asc") }}
@@ -579,18 +576,18 @@
                             {{ end }}
                             </ul>
                     </div>
-        
+
                 </div>
                 <!-- .collapse -->
-        
+
             </div>
             <!-- .Pests card -->
-        
 
-        
+
+
             <div class="card border">
-        
-                <strong><a class="btn btn-outline-light btn-block collapse collapsed"
+
+                <strong><a class=" collapse collapsed"
                     id="acc-button-05" data-toggle="collapse"
                     href="#panel-acc-button-05" role="tab"
                     aria-expanded="false"
@@ -598,11 +595,11 @@
                     <span class="title" role="heading"
                         aria-level="3">Active design / Transportation</span>
                 </a></strong>
-        
+
                 <div class="collapse" id="panel-acc-button-05"
                     role="tabpanel" aria-labelledby="acc-button-05"
                     data-parent="#accordion-01">
-        
+
                     <div class="card-body bg-white">
                         <ul>
                             {{ range (sort (where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "transportation")) "Title" "asc") }}
@@ -611,26 +608,26 @@
                             {{ end }}
                             </ul>
                     </div>
-        
+
                 </div>
                 <!-- .collapse -->
-        
+
             </div>
             <!-- .AD card -->
-        
 
-        
 
-        
 
-        
 
-        
+
+
+
+
+
             <hr class="my-1">
-        
+
             <div class="card border">
-        
-                <strong><a class="btn btn-outline-light btn-block collapse collapsed"
+
+                <strong><a class=" collapse collapsed"
                     id="acc-button-10" data-toggle="collapse"
                     href="#panel-acc-button-10-2" role="tab"
                     aria-expanded="false"
@@ -638,14 +635,14 @@
                     <span class="title" role="heading"
                         aria-level="3">All topics</span>
                 </a></strong>
-        
+
                 <div class="collapse" id="panel-acc-button-10-2"
                     role="tabpanel" aria-labelledby="acc-button-10"
                     data-parent="#accordion-01">
-        
+
                     <div class="card-body bg-white">
                         <ul>
-                            
+
                             {{/*  range through data explorer pages to add links to topic choosers  */ -}}
 
                             {{- range ( where $.context.Site.RegularPages.ByTitle "Section" "data-explorer") -}}
@@ -653,7 +650,7 @@
                                 {{- /*  don't add links to the data index or data reference pages  */ -}}
 
                                 {{- if not ( or ( strings.Contains .RelPermalink "data-index" ) ( strings.Contains .RelPermalink "indicator-catalog" ) ) -}}
-                                
+
                                     <li><a href="{{ .RelPermalink}}">{{ .Title }}</a></li>
 
                                 {{ end -}}
@@ -662,13 +659,13 @@
 
                         </ul>
                 </div>
-    
+
             </div>
                 <!-- .collapse -->
-        
+
             </div>
             <!-- .all card -->
-        
+
         </div>
         <!-- .accordion-group -->
 
