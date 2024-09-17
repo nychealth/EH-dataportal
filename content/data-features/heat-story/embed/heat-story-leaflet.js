@@ -1613,6 +1613,9 @@ const legendFuncForColorMap = (name, args) => {
  */
 const legendFuncForLayer = (id, name, args, layer) => {
 
+    console.log("args [legendFuncForLayer]", args);
+    console.log("layer [legendFuncForLayer]", layer);
+
     return () => {
         // console.log("** legendFunc [createMeasuresLayer]");
         if (args?.colorMap) {
@@ -1644,12 +1647,19 @@ const legendFuncForLayer = (id, name, args, layer) => {
             + ' "></span>'
 
         if (args.colorFeatureProperty) {
+
             const values = layer.getLayers()
                 .map(x => x.feature.properties.Value)
                 .filter(x => x != null && !isNaN(x));
+
+            const units = layer.options.displayProperties.displayPropertyArgs[0].units;
+
+            console.log("units [legendFuncForLayer]", units);
+
             legend += '<div style="display: block; width: 100%;">'
-                + `<div style="float: left;">${Math.min(...values).toFixed(2)}</div>`
-                + `<div style="float: right;">${Math.max(...values).toFixed(2)}</div></div>`;
+                + `<div style="float: left;">${Math.min(...values).toFixed(2)} ${units}</div>`
+                + `<div style="float: right;">${Math.max(...values).toFixed(2)} ${units}</div></div>`;
+
         }
 
         if (args.legendDescription) {
@@ -1714,11 +1724,11 @@ async function loadIndicator(indicatorID, measureID, geoType, time) {
     
     const data = await loadData(indicatorID);
 
-    // console.log("data [loadIndicator]", data);
+    console.log("data [loadIndicator]", data);
 
     const filteredData = data.filter(d => d.MeasureID == measure.MeasureID && d.GeoType == geoType && d.TimePeriod == time);
 
-    // console.log("filteredData [loadIndicator]", filteredData);
+    console.log("filteredData [loadIndicator]", filteredData);
 
     if (filteredData == null) {
         console.log(`ERROR: No data found with indicator ${indicatorID}, measureID ${indicatorID}, GeoType ${geoType}, time ${time}`);
@@ -1729,24 +1739,24 @@ async function loadIndicator(indicatorID, measureID, geoType, time) {
 
     const filteredDataMap = filteredData.reduce((x, y) => {x[y.GeoID] = y; return x}, {})
 
-    const renderedMap = renderMap(filteredData, measure);
-    // console.log("renderedMap [loadIndicator]", renderedMap);
+    const topoUrl = getTopoUrl(filteredData, measure);
+    console.log("topoUrl [loadIndicator]", topoUrl);
 
-    const responseTopo = await fetch(renderedMap.url);
-    // console.log("responseTopo [loadIndicator]", responseTopo);
+    const responseTopo = await fetch(topoUrl.url);
+    console.log("responseTopo [loadIndicator]", responseTopo);
 
     const topoData = await responseTopo.json();
-    // console.log("topoData [loadIndicator]", topoData);
+    console.log("topoData [loadIndicator]", topoData);
 
     const geoJsonData = topojson.feature(topoData, topoData.objects.collection)
-    // console.log("geoJsonData 1 [loadIndicator]", geoJsonData);
+    console.log("geoJsonData 1 [loadIndicator]", geoJsonData);
     
     geoJsonData.features = geoJsonData.features.map(feature => {
         const properties = {...feature.properties, ...(filteredDataMap[feature.properties.GEOCODE] ?? {})};
         return {...feature, properties};
     });
     
-    // console.log("geoJsonData 2 [loadIndicator]", geoJsonData);
+    console.log("geoJsonData 2 [loadIndicator]", geoJsonData);
 
     return geoJsonData;
 
@@ -1824,13 +1834,13 @@ const loadTime = async () => {
 // fetch geo info
 // ----------------------------------------------------------------------- //
 
-const renderMap = ( data, metadata ) => {
+const getTopoUrl = ( data, metadata ) => {
 
-    console.log("* renderMap");
+    console.log("* getTopoUrl");
     
     let mapGeoType = data[0].GeoType
 
-    // console.log("mapGeoType [renderMap]", mapGeoType);
+    // console.log("mapGeoType [getTopoUrl]", mapGeoType);
 
     let topoFile = '';
 
