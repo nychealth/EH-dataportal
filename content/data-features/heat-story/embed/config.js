@@ -753,6 +753,22 @@ config = {
             }
         },
         {
+            "id": "fainting",
+            "title": "I can’t take the heat. I am worried about fainting.",
+            "content": "Normally our windows and doors are open for the cool breeze to enter our home. When it becomes too hot, we will close the windows and doors and put the AC on. We are careful not to run the AC for too long given the energy bill, but we run the risk of getting sick. It is difficult to concentrate and study when it is too hot. It is also difficult to sleep. My family gets cranky. We try to avoid being outside and reduce our outdoor activities. We go outside with an umbrella. We pack cold water to bring us and paper towels so we can soak them with the water and refresh ourselves with it. We don’t have a cooling centers within a 10 minute walk from my home.<br>-Queens resident",
+            "marker": {
+                "lat": 40.70698,  
+                "lng": -73.79797,},
+            "mapState": {
+                "lat": 40.668111,
+                "lng": -73.827444,
+                "zoom": 14,
+                "layers": [
+                    "Heat_stress_hospitalizations"
+                ]
+            }
+        },
+        {
             "id": "brutal-heat",
             "title": "Brutal even for the young and healthy",
             "content": "I endured two hot summers in Washington Heights before installing an air conditioner. I was young and healthy, but it was still brutal. Cooking made the heat worse, and I worked at a bakery where no amount of air conditioning could keep up with the oven.",
@@ -782,6 +798,22 @@ config = {
                 "zoom": 13,
                 "layers": [
                     "Heat_vulnerability_index"
+                ]
+            }
+        },
+        {
+            "id": "grocery-store-ac",
+            "title": "We went to grocery stores and the library to stay cool",
+            "content": "We didn’t have AC until I was 7. Going to the grocery stores and local library. We took a little longer in the grocery store than we needed to. We took cold showers. We put the water in the fridge to be cool. We had a fan in every bedroom. Sometimes we took a rag and soaked in cold water before putting it on my skin. I upped my salt intake with electrolyte water.<br>-Kitty",
+            "marker": {
+                "lat": 40.676652,
+                "lng": -73.823220,},
+            "mapState": {
+                "lat": 40.676652,
+                "lng": -73.823220,
+                "zoom": 13,
+                "layers": [
+                    "Household_air_conditioning"
                 ]
             }
         },

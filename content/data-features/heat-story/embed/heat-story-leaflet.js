@@ -331,7 +331,7 @@ function drawStoryCardDropdown() {
 
 // map_pin = fa-map-pin
 
-let size = 50;
+let size = 40;
 let half = size/2;
 
 var map_pin = L.icon({
