@@ -9,7 +9,7 @@ on:
 
       branch:
         description: Branch to build
-        required: true
+        required: false
         type: string
 
       publish-branch:
@@ -29,8 +29,9 @@ on:
         type: string
 
 env:
-  publish_branch: ${{ inputs.publish-branch && inputs.publish-branch || inputs.branch }}
-  HUGO_GIT_BRANCH: ${{ inputs.branch }}
+  publish_branch: ${{ inputs.publish-branch && inputs.publish-branch || inputs.branch && inputs.branch || github.ref_name && github.ref_name }}
+  HUGO_GIT_BRANCH: ${{ inputs.branch && inputs.branch || github.ref_name && github.ref_name }}
+  TZ: America/New_York
   
 jobs:
 
@@ -39,9 +40,9 @@ jobs:
   # ------------------
 
   build:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     # can't use the "env" context at the job level, only in steps, so need to eval the conditional again
-    name: Build `${{ inputs.branch }} to builds/${{ inputs.publish-branch && inputs.publish-branch || inputs.branch }}`
+    name: Build `${{ inputs.branch && inputs.branch || github.ref_name && github.ref_name }} to builds/${{ inputs.publish-branch && inputs.publish-branch || inputs.branch && inputs.branch || github.ref_name && github.ref_name }}`
 
     # wait for other triggered jobs to finish before running this
 
@@ -74,15 +75,16 @@ jobs:
         id: last_commit
         run: |
           echo "last_hash=$(git log -1 --format=%h --abbrev=10)" >> $GITHUB_OUTPUT
-          echo "last_msg=$(git log -1 --format=%s)" >> $GITHUB_OUTPUT
+          echo "last_msg=\"$(git log -1 --format=%s)\"" >> $GITHUB_OUTPUT
 
       # set up node and cache for npm
 
-      - name: Setup node
+      - name: Set up node
         uses: actions/setup-node@v4
         with:
-          node-version: lts/*
+          node-version: 22.5.x
           cache: "npm"
+
 
       # set up cache for node modules
 
@@ -99,6 +101,11 @@ jobs:
             ${{ runner.os }}-build-
             ${{ runner.os }}-
 
+      # prune node_modules
+
+      - name: Prune dependencies
+        run: npm prune
+
       # update npm dependencies (if cached)
 
       - name: Update dependencies
@@ -109,25 +116,23 @@ jobs:
 
       - name: Install dependencies
         if: steps.cache-nodemodules.outputs.cache-hit != 'true'
-        run: npm install
+        run: npm ci
+
+      # list dependencies
+      
+      - name: List dependencies
+        run: npm ls
+
+      - name: List sub-dependencies
+        run: npm ls --all
 
       # set up Hugo
 
-      - name: Hugo setup
-        uses: peaceiris/actions-hugo@v2
+      - name: Set up Hugo
+        uses: peaceiris/actions-hugo@v3
         with:
-          hugo-version: "0.121.0"
+          hugo-version: "0.122.0"
           extended: true
-
-      # cache Hugo modules
-
-      - name: Hugo cache
-        uses: actions/cache@v4
-        with:
-          path: /tmp/hugo_cache
-          key: ${{ runner.os }}-hugomod-${{ hashFiles('**/go.sum') }}
-          restore-keys: |
-            ${{ runner.os }}-hugomod-
 
       # build site with Hugo
 
@@ -135,13 +140,19 @@ jobs:
       
       - name: Hugo Build environment
         if: ${{ ! inputs.baseURL }}
-        run: hugo --environment ${{ inputs.environment }} --cleanDestinationDir --logLevel debug 
+        run: | 
+          export HUGO_GIT_LAST_HASH=${{ steps.last_commit.outputs.last_hash }}
+          export HUGO_GIT_LAST_MSG=${{ steps.last_commit.outputs.last_msg }} 
+          hugo --environment ${{ inputs.environment }} --cleanDestinationDir --logLevel debug 
 
       # if baseURL is also specified
       
       - name: Hugo Build environment + baseURL
         if: ${{ inputs.baseURL }}
-        run: hugo --environment ${{ inputs.environment }} --baseURL ${{ inputs.baseURL }} --cleanDestinationDir --logLevel debug 
+        run: | 
+          export HUGO_GIT_LAST_HASH=${{ steps.last_commit.outputs.last_hash }}
+          export HUGO_GIT_LAST_MSG=${{ steps.last_commit.outputs.last_msg }} 
+          hugo --environment ${{ inputs.environment }} --baseURL ${{ inputs.baseURL }} --cleanDestinationDir --logLevel debug 
 
 
       # run pagefind
@@ -153,7 +164,7 @@ jobs:
 
       # commit built index
 
-      - name: Commit changes to PagesIndex.json, package.json, & package-lock.json
+      - name: Commit changes to package.json & package-lock.json
         uses: elstudio/actions-js-build/commit@v4
         with:
           commitMessage: Update index & NPM package list
@@ -161,7 +172,7 @@ jobs:
       # publish to "deploy" branch
 
       - name: Publish to "builds/${{ env.publish_branch }}"
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v4
         with:
           full_commit_message: Publish ${{ steps.last_commit.outputs.last_hash }} (${{ steps.last_commit.outputs.last_msg }}) to "builds/${{ env.publish_branch }}"
           github_token: ${{ secrets.GITHUB_TOKEN }}

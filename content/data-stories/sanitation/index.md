@@ -21,15 +21,13 @@ image: ds-sanitation-trucks.jpg
 photocredit: "Michael Appleton/Mayoral Photography Office"
 ---
 
-# Why trash service is crucial for public health
-
 New York City’s modern history of public health starts in the 1600s with the Bureau of Sanitary Inspections, and ever since, sanitation has been an essential part of public health — fighting disease by keeping our city clean.
 
 {{< figure src="nyc-sanitation-1600s.png" alt="Chronology of important events. New York City Department of Health and its Predecessor Agencies 1655-1966. 1657: Activities of the Bureau of Sanitary Inspections originated to some degree with an ordinance forbidding inhabitants of this city to throw garbage and other refuge in the streets." >}}
 
 _From [A Chronology of the NYC Department of Health](https://www1.nyc.gov/assets/doh/downloads/pdf/history/chronology-1966centennial.pdf)_
 
-## How does sanitation affect health
+## How sanitation affects health
 
 Proper sanitation is a crucial component of public health and of safe, health, and equitable neighborhood environments.
 

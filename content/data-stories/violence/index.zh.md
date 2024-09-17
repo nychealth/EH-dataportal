@@ -6,10 +6,8 @@ seo_title: "为什么暴力是一个公共卫生问题 "
 seo_description: "利用公共卫生预防暴力 "
 categories: ["housing","social","childhealth","healthoutcomes","neighborhoods"]
 keywords: ["violence","assaults","injustice","poverty","social determinants","redlining","disinvestment","racism","neighborhoods"]
-image: ds-povasthma.jpg
 image: ds-violence.jpg
 vega: true
-layout: advanced
 photocredit: "Benjamin Kanter/Mayoral Photography Office"
 ---
 ## 利用公共卫生预防暴力 
@@ -80,7 +78,11 @@ photocredit: "Benjamin Kanter/Mayoral Photography Office"
 
 由于这种投资缩减，我们看到贫困和暴力之间存在着明显的关系。随着社区贫困程度的增加，袭击事件也在增加。 
 
-{{< datawrapper title="Poverty and assaults in NYC" src="DlEvR/2/" height="533" >}}
+<iframe title='Poverty and assaults - ranks' aria-label="Interactive chart" id="datawrapper-chart-O0SUA"
+    src='//datawrapper.dwcdn.net/639n0/1/' scrolling="no" frameborder="0"
+    style="width: 0; min-width: 100% !important; border: none;" height='600'></iframe>
+<script type="text/javascript">!function () { "use strict"; window.addEventListener("message", function (a) { if (void 0 !== a.data["datawrapper-height"]) for (var e in a.data["datawrapper-height"]) { var t = document.getElementById("datawrapper-chart-" + e) || document.querySelector("iframe[src*='" + e + "']"); t && (t.style.height = a.data["datawrapper-height"][e] + "px") } }) }();
+</script>
 
 ### 投资缩减创造了威胁健康的环境。 
 {{< rawhtml >}}

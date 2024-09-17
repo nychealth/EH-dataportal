@@ -6,6 +6,8 @@ const renderTable = () => {
 
     console.log("** renderTable");
 
+    document.getElementById('viewDescription').innerHTML = 'This table shows all data for this dataset.'
+
     // ----------------------------------------------------------------------- //
     // prep data
     // ----------------------------------------------------------------------- //
@@ -98,10 +100,13 @@ const renderTable = () => {
     const table_unreliability = [...new Set(filteredTableData.map(d => d.Note))].filter(d => !d == "");
 
     document.querySelector("#table-unreliability").innerHTML = "" // blank to start
+    document.getElementById("table-unreliability").classList.add('hide') // blank to start
+
 
     table_unreliability.forEach(element => {
         
         document.querySelector("#table-unreliability").innerHTML += "<div class='fs-sm text-muted'>" + element + "</div>" ;
+        document.getElementById('table-unreliability').classList.remove('hide')
         
     });
     
@@ -166,7 +171,7 @@ const renderTable = () => {
     const groupColumnGeo = 1;
 
     $('#tableID').DataTable({
-        scrollY: 475,
+        scrollY: 500,
         scrollX: true,
         scrollCollapse: true,
         searching: false,

@@ -3,8 +3,8 @@
 <article class="container-fluid" id="skip-header-target">
 
     <div class="row">
-        <div class="col-md-11 mx-auto mt-4">
-            <nav aria-label="breadcrumb" class="mb-4">
+        <div class="col-md-11 mx-auto mt-2 mb-3">
+            <nav aria-label="breadcrumb">
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
                     <li class="breadcrumb-item"><a href={{ relURL "data-features" }}>Data Features</a></li>
@@ -28,13 +28,13 @@
 
         <div class="col-md-5 mr-auto">
           <div class="mt-4" style="border-radius: 5px;">
-                
+
             <a class="weatherwidget-io" href="https://forecast7.com/en/40d71n74d01/new-york/?unit=us" data-label_1="NEW YORK CITY" data-label_2="WEATHER" data-theme="original" >NEW YORK CITY WEATHER</a>
             <script>
             !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
             </script>
 
-            
+
             <div class="mt-2 asidebox p-2 fs-md">
               <p>Extreme heat is dangerous. It can cause illness, make chronic conditions worse, and even kill. Heat-related illnesses - including  heat exhaustion, muscle cramps, fainting, and heat stroke (the most serious form) - happen when the body cannot cool down enough. Heat can also worsen chronic conditions, such as cardiovascular diseases or kidney conditions.</p>
 
@@ -56,16 +56,10 @@
         <div class="row" style="background-color:#f1f1f1; padding: 10px; border-radius: 5px;">
           <h3>Daily data: <span id="yearHeader">2023</span></h3>
 
-          <div class="float-right ml-auto">
-            <button class="btn btn-sm btn-secondary yearButtons" id="2023button" onclick="changeYear(2023)">2023</button>
-            <button class="btn btn-sm btn-outline-secondary yearButtons" id="2022button" onclick="changeYear(2022)">2022</button>
-            <button class="btn btn-sm btn-outline-secondary yearButtons" id="2021button" onclick="changeYear(2021)">2021</button>
-            <button class="btn btn-sm btn-outline-secondary yearButtons" id="2020button" onclick="changeYear(2020)">2020</button>
-            <button class="btn btn-sm btn-outline-secondary yearButtons" id="2019button" onclick="changeYear(2019)">2019</button>
-            <button class="btn btn-sm btn-outline-secondary yearButtons" id="2018button" onclick="changeYear(2018)">2018</button>
-            <button class="btn btn-sm btn-outline-secondary yearButtons" id="2017button" onclick="changeYear(2017)">2017</button>
+          <div id="yearButtonHolder" class="float-right ml-auto">
 
           </div>
+
         </div>
 
         <div class="row my-2" id="vis1">
@@ -79,11 +73,11 @@
             <button class="btn btn-sm btn-outline-secondary mr-1 yearButtons" id="scattertoggle" onclick="toggleScatter(1)">Show time</button>
           </div>
       </div>
-      
+
       <div class="row my-2" id="vis2">
         <!-- scatterplot vis -->
       </div>
-      
+
       <div class="row my-4 fs-md">
         <div class="col-12 asidebox">
           <p><strong>Daily temperature</strong>: The maximum daily temperature is the heat index or temperature, whichever is higher, as recorded by the National Weather Service weather station at La Guardia Airport.</p>

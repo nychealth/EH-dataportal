@@ -1,5 +1,6 @@
 ---
 title: "Why we're working with you to redesign the data portal"
+shortTitle: "Redesigning the data portal"
 date: 2020-02-13T08:29:34-04:00
 draft: false
 seo_title: "Working together to redesign this website"

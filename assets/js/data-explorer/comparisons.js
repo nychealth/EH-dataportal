@@ -9,6 +9,8 @@ const renderComparisonsChart = (
 
     console.log("*** renderComparisonsChart");
 
+    document.getElementById('viewDescription').innerHTML = 'Trends are shown by boro for stable rates.'
+
     // console.log("metadata [renderComparisonsChart]");
     // metadata.print()
     
@@ -24,10 +26,14 @@ const renderComparisonsChart = (
     const comp_unreliability = [...new Set(data.objects().map(d => d.Note))].filter(d => !d == "");
 
     document.querySelector("#trend-unreliability").innerHTML = ""; // blank to start
+    document.getElementById("trend-unreliability").classList.add('hide') // blank to start
+
 
     comp_unreliability.forEach(element => {
 
         document.querySelector("#trend-unreliability").innerHTML += "<div class='fs-sm text-muted'>" + element + "</div>" ;
+        document.getElementById('trend-unreliability').classList.remove('hide')
+
         
     });
 
@@ -37,7 +43,18 @@ const renderComparisonsChart = (
 
     // dimensions
 
-    let columns = window.innerWidth < 576 ? 3 : 6;
+    let columns ;
+        if (window.innerWidth < 340) {
+            columns = 1
+        } else if (window.innerWidth < 440) {
+            columns = 2
+        } else if (window.innerWidth > 440 && window.innerWidth < 576) {
+            columns = 3
+        } else {
+            columns = 6
+        }
+    
+    
     let height = window.innerWidth < 576 ? 350 : 500;
 
     // ticks
@@ -59,9 +76,12 @@ const renderComparisonsChart = (
     let compIndicatorLabel  = [... new Set(metadata.array("IndicatorLabel"))];
     let compMeasurementType = [... new Set(metadata.array("MeasurementType"))];
     let compDisplayTypes    = [... new Set(metadata.array("DisplayType"))].filter(dt => dt != "");
-    let compGeoIDs          = metadata.objects()[0].GeoID ? [... new Set(metadata.array("GeoID"))] : null;
+    let compNoCompare       = [... new Set(metadata.array("TrendNoCompare"))].filter(nc => nc != null)[0]
 
-    // console.log(">>>> compGeoIDs", compGeoIDs);
+    // console.log('compMeasurementType', compMeasurementType)
+    // console.log('compDisplayTypes', compDisplayTypes)
+
+    // console.log(">>>> compNoCompare", compNoCompare);
 
     // console.log(">> compName", compName);
     // console.log(">> compIndicatorLabel", compIndicatorLabel);
@@ -94,7 +114,13 @@ const renderComparisonsChart = (
         let hasBoros = compGroupLabel.length > 1 ? true : false; 
         
         plotTitle = indicatorName;
-        plotSubtitle = compMeasurementType + (compDisplayTypes.length > 0 ? ` (${compDisplayTypes})` : "") + (hasBoros ? " by Borough" : "");
+        plotSubtitle = compMeasurementType + (compDisplayTypes.length > 0 ? ` (${compDisplayTypes})` : "") + (hasBoros ? "" : "");
+        // console.log('compDisplayTypes 0: ', compDisplayTypes)
+        
+        if (compMeasurementType[0].includes('Percent') | compMeasurementType[0].includes('percent') && !compMeasurementType[0].includes('Percentile')) {
+            compDisplayTypes = '%'
+        } else {}
+
         comp_group_col = "Geography"
 
         // console.log(">> compGroupLabel", compGroupLabel);
@@ -168,10 +194,12 @@ const renderComparisonsChart = (
             // console.log(">>> SUPPRESS by", compId);
 
             plotSubtitle = compMeasurementType + (compDisplayTypes.length > 0 ? ` (${compDisplayTypes})` : "");
+            // console.log('compDisplayTypes 1: ', compDisplayTypes)
 
         } else {
 
             plotSubtitle = compMeasurementType + (compDisplayTypes.length > 0 ? ` (${compDisplayTypes})` : "") + " by " + compLegendTitle;
+            // console.log('compDisplayTypes 2: ', compDisplayTypes)
 
         }
 
@@ -238,7 +266,7 @@ const renderComparisonsChart = (
     // create transform after pivot that replaces "undefined" with ""
     // ----------------------------------------------------------------------- //
 
-    let compReplaceInvalid = compGroupLabel.map(x => {return {"calculate": `isValid(datum[\"${x}\"]) ? datum[\"${x}\"] : ""`, "as": `${x}`}})
+    let compReplaceInvalid = compGroupLabel.map(x => {return {"calculate": `isValid(datum[\"${x}\"]) ? (datum[\"${x}\"] + ' ${compDisplayTypes}') : ""`, "as": `${x}`}})
 
     // ----------------------------------------------------------------------- //
     // create tooltips JSON
@@ -250,6 +278,59 @@ const renderComparisonsChart = (
     let compTooltips = compGroupLabel.map(x => {return {"field": x, "type": "nominal"}})
 
     // console.log("compTooltips", compTooltips);
+
+
+    // ----------------------------------------------------------------------- //
+    // create "don't compare" line JSON
+    // ----------------------------------------------------------------------- //
+
+    // getting latest end period in the data
+
+    let maxDataEndPeriod = Math.max(...new Set(data.array("end_period")))
+    
+    // getting "no compare" end period from time period metadata
+
+    let noCompareEndPeriod = timeTable
+        .filter(`d => d.TimePeriod == ${compNoCompare}`)
+        .array("end_period")[0]
+
+    // testing to see if the data has later time periods than the "no compare" time
+
+    let hasGreaterEndPeriod = maxDataEndPeriod >= noCompareEndPeriod;
+
+    // if there's a "no compare" time, and there's data later than that, show the line
+
+    let noCompare;
+
+    if (compNoCompare && hasGreaterEndPeriod) {
+
+        // if a time period exists, return vertical rule JSON
+
+        noCompare = [{
+            "mark": "rule",
+            "encoding": {
+                "x": {
+                    "datum": compNoCompare
+                },
+                "xOffset": {"value": 0.5},
+                "color": {"value": "gray"},
+                "size": {"value": 2},
+                "strokeDash": {"value": [2, 2]}
+            }
+        }]
+
+        let noCompareFootnote = `Because of a method change, data before ${compNoCompare} shouldn't be compared to later time periods.`
+        document.querySelector("#trend-unreliability").innerHTML += "<div class='fs-sm text-muted'>" + noCompareFootnote + "</div>" ;
+        document.getElementById("trend-unreliability").classList.remove('hide')
+
+
+    } else {
+
+        // if no time period, return an empty array
+
+        noCompare = []
+
+    }
 
 
     // ----------------------------------------------------------------------- //
@@ -411,7 +492,8 @@ const renderComparisonsChart = (
                         }
                     }
                 ]
-            }
+            },
+            ...noCompare
         ]
     }
     
