@@ -740,6 +740,9 @@ config = {
             "id": "high-ac-bills",
             "title": "Heat makes it hard to sleep—but AC costs too much",
             "content": "Heat has caused much discomfort such as not being able to sleep because it’s too hot in my home.      There are days where we open all the windows and fans just to avoid having to turn the central air conditioning on and running up the bill. <br>-Anonymous",
+            "marker": {
+                "lat": 40.668111,
+                "lng": -73.827444,},
             "mapState": {
                 "lat": 40.668111,
                 "lng": -73.827444,
@@ -753,6 +756,9 @@ config = {
             "id": "brutal-heat",
             "title": "Brutal even for the young and healthy",
             "content": "I endured two hot summers in Washington Heights before installing an air conditioner. I was young and healthy, but it was still brutal. Cooking made the heat worse, and I worked at a bakery where no amount of air conditioning could keep up with the oven.",
+            "marker": {
+                "lat": 40.844771,
+                "lng": -73.937088,},
             "mapState": {
                 "lat": 40.844771,
                 "lng": -73.937088,
