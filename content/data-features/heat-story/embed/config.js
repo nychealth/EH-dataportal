@@ -760,8 +760,8 @@ config = {
                 "lat": 40.70698,  
                 "lng": -73.79797,},
             "mapState": {
-                "lat": 40.668111,
-                "lng": -73.827444,
+                "lat": 40.70698,
+                "lng": -73.79797,
                 "zoom": 14,
                 "layers": [
                     "Heat_stress_hospitalizations"
