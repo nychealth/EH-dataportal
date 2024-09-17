@@ -1326,7 +1326,7 @@ function formatPopup(features) {
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 /*
  * This function looks at the visible layers in the layer group,
- * grabs the data for each layer, foramts the data, then displays it.
+ * grabs the data for each layer, formats the data, then displays it.
  *
  * The point-in-polygon algorithm is used to find overlapping layers.
  * This functionality is not native to leaflet, so we used a third party library.
