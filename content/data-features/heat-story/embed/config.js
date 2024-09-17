@@ -735,6 +735,20 @@ config = {
                 ]
             }
         },
+
+          {
+            "id": "high-ac-bills",
+            "title": "Heat makes it hard to sleep—but AC costs too much",
+            "content": "Heat has caused much discomfort such as not being able to sleep because it’s too hot in my home.      There are days where we open all the windows and fans just to avoid having to turn the central air conditioning on and running up the bill. <br>-Anonymous",
+            "mapState": {
+                "lat": 40.668111,
+                "lng": -73.827444,
+                "zoom": 13,
+                "layers": [
+                    "Household_air_conditioning"
+                ]
+            }
+        },
         {
             "id": "brutal-heat",
             "title": "Brutal even for the young and healthy",
