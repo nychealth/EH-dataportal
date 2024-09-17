@@ -63,7 +63,7 @@ config = {
         {
             "property": {
                 "id": "nycHiMorning",
-                "name": "Morning Heat Index",
+                "name": "Morning heat index",
                 "type": "raster",
                 "url": window.BaseURL + "tiff/nyc-hi-morning.tiff",
                 "buttonSection": "studyArea",
@@ -73,7 +73,7 @@ config = {
         {
             "property": {
                 "id": "nycAfternoon",
-                "name": "Afternoon Heat Index",
+                "name": "Afternoon heat index",
                 "type": "raster",
                 "url": window.BaseURL + "tiff/nyc-hi-afternoon.tiff",
                 "buttonSection": "studyArea",
@@ -83,7 +83,7 @@ config = {
         {
             "property": {
                 "id": "nycHiEvening",
-                "name": "Evening Heat Index",
+                "name": "Evening heat index",
                 "type": "raster",
                 "url": window.BaseURL + "tiff/nyc-hi-evening.tiff",
                 "buttonSection": "studyArea",
@@ -309,7 +309,7 @@ config = {
        {
             "property": {
                 "id": "air_quality",
-                "name": "Air Quality - PM2.5",
+                "name": "Air quality - PM2.5",
                 "type": "measureData",
                 "buttonSection": "base",
                 "measureInfo": {
@@ -726,6 +726,9 @@ config = {
             "id": "heat-traffic-pollution",
             "title": "Heat, traffic, pollution and odors make the summer heat exhausting",
             "content": "I live on Bruckner Boulevard, between Alexander and Willis Avenues, directly adjacent to the Willis Avenue Bridge. Heat during the summer months is completely exhausting because it not only brings the smell of hot trash from the waste transfer station, exacerbates the smog of the heavy highway traffic that usually starts about 5 am and reminds me of the ensuing high electric bill from the use of fans and air conditioners, there is very little tree coverage or shade to block the sun's rays or cool even the outside temperatures. From the moment Lilah and I leave the building, heat hits us and follows us throughout the entire neighborhood. <br>-Dr. Melissa Barber <div><img src=\"https://raw.githubusercontent.com/OpenStoryMap/geodata/main/nyc-heat-watch-2021/stories/melissa-barber/road3.jpeg\"></div>",
+            "marker": {
+                "lat": 40.805985,
+                "lng": -73.925476,},
             "mapState": {
                 "lat": 40.805985,
                 "lng": -73.925476,
