@@ -563,7 +563,7 @@ const renderComparisonsChart = (
         },
         "transform": [
           {
-            "calculate": `datum.Value + ' ${compDisplayTypes}'`, "as": "valueWithDisplay"
+            "calculate": `format(datum.Value, ',') + ' ${compDisplayTypes}'`, "as": "valueWithDisplay"
           },
           {"calculate": "split(datum.TimePeriod, ' ')", "as": "TimePeriodSplit"},
           {
