@@ -9,7 +9,7 @@ tags:
 categories: ["social", "healthoutcomes", "climatehealth"]
 keywords: ["asthma", "weather", "mortality", "death", "cooling", "air conditioning", "built environment"]
 image: title7.jpg
-photocredit: "Benjamin Kanter/Mayoral Photography Office"
+photocredit: "Benjamin Kanter/Mayoral Photography Office, City of New York"
 ---
 
 Imagine your child has asthma. One summer night, a powerful storm rolls in and knocks the power out.

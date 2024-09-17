@@ -16,7 +16,7 @@ keywords:
     "elevated blood lead levels",
   ]
 image: OneWorldObservatory_TaggerYanceyIV_6565.jpg
-photocredit: Tagger Yancey IV
+photocredit: Tagger Yancey IV/NYC & Company
 ---
 
 Lead is a harmful metal that can cause serious health issues. When lead poisoning makes headlines, the focus is usually on children’s health: Kids are at higher risk for lead exposure, which can cause developmental, learning and behavior issues.

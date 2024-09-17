@@ -9,7 +9,7 @@ tags:
 categories: ["social"]
 keywords: ["racial wealth gap", "health equity", "inequalities", "inequities"]
 image: CrownHeights_JulienneSchaer-065.JPG
-photocredit: "Julienne Schaer/Mayoral Photography Office"
+photocredit: "Julienne Schaer/NYC & Company"
 ---
 
 Throughout history, the distribution of wealth in the U.S. has, and continues to be, largely unequal between racial groups. This concept is referred to as the <strong>racial wealth gap</strong> and it has its roots in settler colonialism and enslavement. There is an especially big wealth disparity between White families and Black families, which was established and upheld by racist historical policies and practices. The racial wealth gap has major implications for public health. This is because a large and growing body of research reveals that having good health is connected to having wealth. Effective solutions to racial inequities in wealth and health must address challenges at the individual, household, community, and systems levels.
