@@ -337,24 +337,24 @@
 
 <!-- chroma-js -->
 
-{{- $chroma := resources.Get "node_modules/chroma-js/chroma.min.js" | resources.Fingerprint "sha512" }}
+{{- $chroma := resources.Get "node_modules/chroma-js/chroma.min.js" }}
 
 
 <!-- GeoTIFF plugins -->
 
 {{- /*  leaflet-pip  */}}
 
-{{- $leaflet_pip := resources.Get "node_modules/leaflet-pip/leaflet-pip.min.js" | resources.Fingerprint "sha512" }}
+{{- $leaflet_pip := resources.Get "node_modules/leaflet-pip/leaflet-pip.min.js" }}
 
 
 {{- /*  georaster  */}}
 
-{{- $georaster := resources.Get "node_modules/georaster/dist/georaster.browser.bundle.min.js" | resources.Fingerprint "sha512" }}
+{{- $georaster := resources.Get "node_modules/georaster/dist/georaster.browser.bundle.min.js" }}
 
 
 {{- /*  georaster-layer-for-leaflet  */}}
 
-{{- $georaster_leaflet := resources.Get "node_modules/georaster-layer-for-leaflet/dist/georaster-layer-for-leaflet.min.js" | resources.Fingerprint "sha512" }}
+{{- $georaster_leaflet := resources.Get "node_modules/georaster-layer-for-leaflet/dist/georaster-layer-for-leaflet.min.js" }}
 
 
 {{- /*  geoblaze  */}}
@@ -364,7 +364,7 @@
 
 <!-- topojson -->
 
-{{- $topojson := resources.Get "node_modules/topojson-client/dist/topojson-client.min.js" | resources.Fingerprint "sha512" }}
+{{- $topojson := resources.Get "node_modules/topojson-client/dist/topojson-client.min.js" }}
 
 
 {{- /*  bundling heat story dependencies  */}}
