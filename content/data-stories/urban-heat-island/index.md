@@ -10,8 +10,8 @@ seo_description: "A data story on block-by-block heat differences."
 tags:
 categories: ["climatehealth","neighborhoods"]
 keywords: ["heat","hot weather","weather","climate","temperature","summer","greenspace","parks","green space","heat island","urban heat island","cooling","air conditioning","building","housing","global warming"]
-image: ds-localtemp.jpeg
-photocredit: "Michael Appleton/Mayoral Photography Office"
+image: Harlem (1).jpg
+photocredit: "Tagger Yancey IV/NYC & Company"
 ---
 
 In New York City and across the country, more people die from extreme heat than from all other natural disasters combined. To understand how to keep New Yorkers safe from extreme heat, we studied neighborhood factors that affect temperature, and found that grass, shrubs, and trees can play a major role. Let’s take a look.

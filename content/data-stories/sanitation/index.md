@@ -18,7 +18,7 @@ keywords:
     "inequitites",
   ]
 image: ds-sanitation-trucks.jpg
-photocredit: "Michael Appleton/Mayoral Photography Office"
+photocredit: "Michael Appleton/Mayoral Photography Office, City of New York"
 ---
 
 New York City’s modern history of public health starts in the 1600s with the Bureau of Sanitary Inspections, and ever since, sanitation has been an essential part of public health — fighting disease by keeping our city clean.

@@ -10,7 +10,7 @@ tags:
 categories: ["housing","social","childhealth","healthoutcomes","neighborhoods"]
 keywords: ["poverty","asthma","injustice","housing","children","emergency department visits","ed visits","emergency room","social determinants","kids"]
 image: ds-povasthma.jpg
-photocredit: "Benjamin Kanter/Mayoral Photography Office"
+photocredit: "Benjamin Kanter/Mayoral Photography Office, City of New York"
 ---
 
 Poverty affects health in many ways. In New York City, the story of asthma clearly illustrates this connection.

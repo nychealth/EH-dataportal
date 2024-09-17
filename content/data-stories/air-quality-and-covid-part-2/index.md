@@ -23,7 +23,7 @@ keywords:
     "restaurants",
   ]
 image: ds-aqcovid.jpeg
-photocredit: "Ed Reed/Mayoral Photography Office"
+photocredit: "Ed Reed/Mayoral Photography Office, City of New York"
 ---
 
 On March 20, 2020, New York State announced the COVID-19 shutdown, officially known as NY Pause. In NYC, it lasted until June 8, 2020.

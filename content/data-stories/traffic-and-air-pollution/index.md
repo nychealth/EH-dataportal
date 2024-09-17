@@ -4,7 +4,7 @@ shortTitle: Traffic and PM2.5
 draft: false
 date: 2021-02-05T08:49:22-04:00
 image: ESB_sunrise_JulienneSchaer-066.JPG
-photocredit: Julienne Schaer/Mayoral Photography Office
+photocredit: Julienne Schaer/Mayoral Photography Office, City of New York
 categories:
   - airquality
   - transportation

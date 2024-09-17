@@ -12,7 +12,7 @@ image: ds-AQsnapshots.jpg
 tags: 
 categories: ["transportation","airquality"]
 keywords: ["air quality","traffic","transportation","air pollution", "lungs","breathing","environmental justice","justice"]
-photocredit: "Mayoral Photography Office"
+photocredit: "Tagger Yancey IV/NYC & Company"
 ---
 
 {{< rawhtml >}}

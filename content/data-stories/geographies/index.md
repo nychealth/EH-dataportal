@@ -11,7 +11,7 @@ keywords: ["geography","maps","neighborhoods","health data","methods","geographi
 image: ds-geographies.jpg
 layout: single
 vega: true
-photocredit: "Edwin J. Torres/Mayoral Photography Office"
+photocredit: "Edwin J. Torres/Mayoral Photography Office, City of New York"
 ---
 
 New York City has hundreds of neighborhoods and nearly as many ways of drawing neighborhood boundaries. When you visit the Environment & Health Data Portal, you might notice that data is available in several different neighborhood schemes.

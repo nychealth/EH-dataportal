@@ -9,7 +9,7 @@ tags:
 categories: ["foodanddrink","climatehealth"]
 keywords: ["foodborne illness","food poisoning","restaurant","restaurants","inspections","heat","hot weater","grades","eating","food"]
 image: ds-food.JPG
-photocredit: "Edwin J. Torres/Mayoral Photography Office"
+photocredit: "Edwin J. Torres/Mayoral Photography Office, City of New York"
 ---
 
 New Yorkers eat out more than a billion times a year. To help keep diners safe, the Health Department educates restaurant operators about food safety practices and inspects all 27,000 city restaurants at least once a year. Over 90 percent of NYC restaurants have "A" grades in the window, showing excellent compliance with food safety requirements.

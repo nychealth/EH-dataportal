@@ -16,7 +16,7 @@ keywords:
     "social determinants",
   ]
 image: BrooklynBridgeParkFall_JulienneSchaer.jpg
-photocredit: JulienneSchaer
+photocredit: Julienne Schaer/NYC & Company
 ---
 
 <em>Superstorm Sandy (2012) and rainfall from Hurricane Ida (2021) broke records in NYC and resulted in injury and death. Both showed how the climate crisis is affecting the strength of storms and how profound the threat of flooding is to New Yorkers’ health.</em>

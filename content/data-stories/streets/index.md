@@ -9,7 +9,7 @@ tags:
 categories: ["transportation","healthoutcomes","neighborhoods"]
 keywords: ["transportation","built environment","streets","cycling", "biking", "active design","injuries","fatalities","roads","safety","bike lanes","cycle lanes","hospitalizations","emergency department visits"]
 image: ds-streets.jpg
-photocredit: "Michael Appleton/Mayoral Photography Office"
+photocredit: "Michael Appleton/Mayoral Photography Office, City of New York"
 ---
 
 The COVID-19 public health emergency has changed New York City in many ways—including how we get around the city. As the city continues to adapt to COVID-19, New Yorkers will look for ways to get around that feel safe—redistributing transit among different modes to ease crowding and increase safety on public transportation.
