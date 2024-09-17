@@ -770,6 +770,22 @@ config = {
             }
         },
         {
+            "id": "hotter-inside",
+            "title": "It's hotter in our home than outside",
+            "content": "Our home tends to be very hot indoors with it being cooler outside than inside. We tend to slow down our movement during the heat because we feel a bit unwell. I usually sleep later and wake up earlier because I am unable to sleep, turning and twisting all night even with a fan. <br>I worry about the cost of my energy bill, power outages, the overheating of my cat, my health being impacted, and my friends’ health being impacted.<br>-Anonymous",
+            "marker": {
+                "lat": 40.667484,
+                "lng": -73.788095,},
+            "mapState": {
+                "lat": 40.667484,
+                "lng": -73.788095,
+                "zoom": 13,
+                "layers": [
+                    "Heat_vulnerability_index"
+                ]
+            }
+        },
+        {
             "id": "heat-and-harlem",
             "title": "Heat Deaths in Harlem, 1880-1940",
             "content": "Kemuning A. Adiputri's <a href=\"https://storymaps.arcgis.com/stories/4bda4f7fd7954640853f7ab76ef95403\" target=\"_blank\">story map</a> on heat prostration shows historic heat victims across the study area between 1880-1940, using point addresses gained through historical newspapers in a randomized arrangement. This map aims to understand a pattern of reported heat victims (not to incorporate all victim data throughout history) to give a better understanding of the possible underlying factors.",
@@ -817,6 +833,7 @@ config = {
                 ]
             }
         },
+        /* NJ story - comment out
         {
             "id": "walking-to-corner-store",
             "title": "Walking to the corner store in the heat",
@@ -831,7 +848,8 @@ config = {
                 "zoom": 13,
                 "layers": [ "nycAfternoon" ],
             }
-        },
+        },*/
+
         {
             "id": "open-hydrants",
             "title": "Open hydrants have repercussions",
