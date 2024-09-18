@@ -1652,7 +1652,9 @@ const legendFuncForLayer = (id, name, args, layer) => {
                 .map(x => x.feature.properties.Value)
                 .filter(x => x != null && !isNaN(x));
 
-            const units = layer.options.displayProperties.displayPropertyArgs[0].units;
+            const units = layer.options.displayProperties.displayPropertyArgs[0].units 
+                ? layer.options.displayProperties.displayPropertyArgs[0].units 
+                : '';
 
             console.log("units [legendFuncForLayer]", units);
 
