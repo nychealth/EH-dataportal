@@ -9,7 +9,7 @@ tags:
 categories: ["airquality"]
 keywords: ["air quality","pollution","PM2.5","traffic","breathing","asthma","heart disease","lung disease","stroke","emissions"]
 image: ds-breatheeasy.jpg
-photocredit: "Ed Reed/Mayoral Photography Office"
+photocredit: "Ed Reed/Mayoral Photography Office, City of New York"
 ---
 
 The air we breathe can have a major effect on our health — air pollution can make asthma worse and can cause heart disease, lung disease, strokes, and even cancer.
