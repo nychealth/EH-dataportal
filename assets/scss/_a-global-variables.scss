@@ -43,7 +43,7 @@ $gray-900: #212529 !default;
 $black: #000 !default;
 // Redefine to match 20% black (used on card borders)
 
-$gray-400: #cccccc; 
+$gray-400: #cccccc;
 
 // Bootstrap Colors
 
@@ -58,12 +58,12 @@ $green: #28a745 !default;
 $teal: #20c997 !default;
 $cyan: #17a2b8 !default;
 
-// If $accessible-colors is true, use accessible palette instead 
+// If $accessible-colors is true, use accessible palette instead
 
 $accessible-colors: true;
 
 @if $accessible-colors {
-    
+
     $gray-600: #777677;
 
     $blue: #0029F7;
@@ -83,10 +83,10 @@ $accessible-colors: true;
 
 // Set your theme's color palette here
 
-$primary: #00923E;
+$primary: #008939;
 $secondary: #181A7B;
 $light: #D8D8D8;
-$hover: #00923E;
+$hover: #008939;
 $info: #841972;
 $dark: #0A1438;
 $light-green: #F8FCF7;
@@ -137,7 +137,7 @@ $pagination-border-color: $border-color;
 // D. Breakpoints
 ////////////////////////////////////////
 
-// Instead of using arbitrary breakpoints (i.e. 576px), 
+// Instead of using arbitrary breakpoints (i.e. 576px),
 // we separate each breakpoint with 240px gap
 
 $grid-bp-xs: 0;
@@ -148,11 +148,11 @@ $grid-bp-xl: 1200px;
 $grid-bp-xxl: 1440px;
 
 $grid-breakpoints: (
-    xs: $grid-bp-xs, 
-    sm: $grid-bp-sm, 
-    md: $grid-bp-md, 
-    lg: $grid-bp-lg, 
-    xl: $grid-bp-xl, 
+    xs: $grid-bp-xs,
+    sm: $grid-bp-sm,
+    md: $grid-bp-md,
+    lg: $grid-bp-lg,
+    xl: $grid-bp-xl,
     xxl: $grid-bp-xxl
 );
 
@@ -173,12 +173,12 @@ $spacer-5: $spacer * 4; // 64px
 $spacer-6: $spacer * 6; // 96px
 
 $spacers: (
-    0: 0, 
-    1: $spacer-1, 
-    2: $spacer-2, 
-    3: $spacer-3, 
-    4: $spacer-4, 
-    5: $spacer-5, 
+    0: 0,
+    1: $spacer-1,
+    2: $spacer-2,
+    3: $spacer-3,
+    4: $spacer-4,
+    5: $spacer-5,
     6: $spacer-6
 );
 
@@ -190,7 +190,7 @@ $spacers: (
 
 $grid-gutter-width: ($spacer-2 * 2);
 
-// Convert Grid $grid-gutter-width from REM to PX 
+// Convert Grid $grid-gutter-width from REM to PX
 
 @function parseInt($n) {
     @return $n / ($n * 0 + 1);
@@ -211,9 +211,9 @@ $container-max-width-lg: $grid-bp-lg - $container-gutter;
 $container-max-width-xl: $grid-bp-xl - $container-gutter;
 
 $container-max-widths: (
-    sm: $container-max-width-sm, 
-    md: $container-max-width-md, 
-    lg: $container-max-width-lg, 
+    sm: $container-max-width-sm,
+    md: $container-max-width-md,
+    lg: $container-max-width-lg,
     xl: $container-max-width-xl
 );
 
@@ -221,7 +221,7 @@ $container-max-widths: (
 // G. Additional widths
 ////////////////////////////////////////
 
-// Set website width as well as '.narrow', '.medium', and '.wide' 
+// Set website width as well as '.narrow', '.medium', and '.wide'
 // Classes using these variables are found in _e-supplementary-classes.scss
 
 $site-width: 3000px;
@@ -266,7 +266,7 @@ sans-serif,
 "Noto Color Emoji" !default;
 
 // Font sizes
-// Instead of manipulation Bootstrap Default variables, 
+// Instead of manipulation Bootstrap Default variables,
 // we create our own opt-in font size variables
 
 $fs-xs: 0.7rem; // EHDP added this
@@ -362,11 +362,11 @@ $enable-caret: true;
 $card-spacer-x: $spacer-2;
 $card-spacer-y: $spacer-2;
 
-// Lighten '$card-cap-bg' and 
+// Lighten '$card-cap-bg' and
 
 $card-cap-bg: rgba($black, 0.05);
 
-// Make '$card-border-color' feel more consistent with global '$border-color' 
+// Make '$card-border-color' feel more consistent with global '$border-color'
 
 $card-border-color: rgba($black, 0.2);
 

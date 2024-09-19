@@ -7,8 +7,6 @@ seo_description: "Para la salud, el lugar importa."
 tags:
 categories: ["housing","social","childhealth","healthoutcomes","neighborhoods"]
 keywords: ["poverty","asthma","injustice","housing","social determinants","redlining","disinvestment","racism","renting","pests","maintenance","maintenance deficiencies"]
-image: ds-povasthma.jpg
-layout: advanced
 image: ds-housing.jpeg
 vega: true
 ---
@@ -93,7 +91,7 @@ El mapa a continuación muestra cómo se categorizaban los vecindarios de la ciu
 </div>
 <div class="wide my-4">
 <div class="py-0 mb-4">
-    <iframe src="/maps/HOLC_map/HOLC_map.html" scrolling="no" frameborder="0"
+    <iframe src="{{< baseurl >}}maps/HOLC_map/HOLC_map.html" scrolling="no" frameborder="0"
         style="position: relative; height: 600px; width: 100%;"></iframe>
 </div>
 </div>

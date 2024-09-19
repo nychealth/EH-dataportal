@@ -1,5 +1,5 @@
 <!-- Standard SEO -->
-<meta name="description" content="{{ if .Description }}{{ .Description }}{{ else }}{{ .Site.Data.globals.seo_defaults.seo_description }}{{- end -}}">
+<meta name="description" content="{{ if .Description -}} {{ .Description }} {{ else if .Params.seo_description }} {{ .Params.seo_description }} {{ else if .Params.seo_title }} {{ .Params.seo_title }} {{ else }} {{ .Site.Data.globals.seo_defaults.seo_description }} {{- end }}">
 <link rel="canonical" href="{{ .RelPermalink }}" />
 <meta name="geo.region" content="" />
 <meta name="geo.placename" content="{{ .Site.Title }}" />
@@ -9,16 +9,16 @@
 <meta property="og:type" content="website" />
 <meta property="og:locale" content="en_us" />
 <meta property="og:url" content="{{ .RelPermalink }}" />
-<meta property="og:title" content="{{ if .Params.seo_title }}{{ .Params.seo_title }}{{ else }}{{ .Title }}{{- end }} &ndash; {{ .Site.Title }}" />
-<meta property="og:description" content="{{ if .Params.seo_description }}{{ .Params.seo_description }}{{ else }}{{ .Site.Data.globals.seo_defaults.seo_description }}{{- end -}}" />
+<meta property="og:title" content="{{ if .Params.seo_title -}} {{ .Params.seo_title }} {{ else }} {{ .Title }} {{- end }} &ndash; {{ .Site.Title }}" />
+<meta property="og:description" content="{{ if .Params.seo_description -}} {{ .Params.seo_description }} {{ else }} {{ .Site.Data.globals.seo_defaults.seo_description }} {{- end }}" />
 <meta property="og:site_name" content="{{ .Site.Title }}" />
 {{ if .Params.seo_image }}{{ $src := resources.Get .Params.seo_image }}{{ $image := $src.Fill "2400x1260"}}<meta property="og:image" content="{{ $image.RelPermalink }}">{{ else }}{{ $src := resources.Get .Site.Data.globals.seo_defaults.seo_image }}{{ $image := $src.Fill "2400x1260"}}<meta property="og:image" content="{{ $image.RelPermalink }}">{{- end -}}
-{{- range .Site.Data.globals.social.social_destinations -}}
+{{- range .Site.Data.globals.social.social_destinations }}
 <meta property="og:see_also" content="{{ .url }}" />{{- end -}}
 
 <!-- Twitter OpenGraph -->
-<meta name="twitter:title" content="{{ if .Params.seo_title }}{{ .Params.seo_title }}{{ else }}{{ .Title }}{{- end }} &ndash; {{ .Site.Title }}">
-<meta name="twitter:description" content="{{ if .Params.seo_description }}{{ .Params.seo_description }}{{ else }}{{ .Site.Data.globals.seo_defaults.seo_description }}{{- end -}}">
-<meta name="twitter:image" content="{{ if .Params.seo_image }}{{ relURL .Params.seo_image }}{{ else }}{{ relURL .Site.Data.globals.seo_defaults.seo_image }}{{- end -}}">
+<meta name="twitter:title" content="{{ if .Params.seo_title -}} {{ .Params.seo_title }} {{ else }} {{ .Title }} {{- end }} &ndash; {{ .Site.Title }}">
+<meta name="twitter:description" content="{{ if .Params.seo_description }} {{ .Params.seo_description }} {{ else }} {{ .Site.Data.globals.seo_defaults.seo_description }} {{- end }}">
+<meta name="twitter:image" content="{{ if .Params.seo_image -}} {{ relURL .Params.seo_image }} {{ else }} {{ relURL .Site.Data.globals.seo_defaults.seo_image }} {{- end }}">
 <meta name="twitter:site" content="@nycHealthy">
 <meta name="twitter:creator" content="@nycHealthy">

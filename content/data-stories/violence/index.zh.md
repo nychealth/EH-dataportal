@@ -6,11 +6,9 @@ seo_title: "为什么暴力是一个公共卫生问题 "
 seo_description: "利用公共卫生预防暴力 "
 categories: ["housing","social","childhealth","healthoutcomes","neighborhoods"]
 keywords: ["violence","assaults","injustice","poverty","social determinants","redlining","disinvestment","racism","neighborhoods"]
-image: ds-povasthma.jpg
 image: ds-violence.jpg
 vega: true
-layout: advanced
-photocredit: "Benjamin Kanter/Mayoral Photography Office"
+photocredit: "Benjamin Kanter/Mayoral Photography Office, City of New York"
 ---
 ## 利用公共卫生预防暴力 
 经历暴力会以多种方式影响人们。它不仅会导致身体伤害或死亡，而且接触它还会导致情感和心理创伤。暴力不仅会影响直接受害者，还会影响他们周围的群众。 
@@ -68,7 +66,7 @@ photocredit: "Benjamin Kanter/Mayoral Photography Office"
 
 {{< rawhtml >}}
 <div class="my-3">
-<iframe src="HOLC-shootings/map.html" scrolling="no" frameborder="0" style="position: relative; height: 600px; width: 100%;"></iframe>
+<iframe src="../../../maps/HOLC-shootings/map.html" scrolling="no" frameborder="0" style="position: relative; height: 600px; width: 100%;"></iframe>
 </div>
 {{< /rawhtml >}}
 
@@ -80,7 +78,11 @@ photocredit: "Benjamin Kanter/Mayoral Photography Office"
 
 由于这种投资缩减，我们看到贫困和暴力之间存在着明显的关系。随着社区贫困程度的增加，袭击事件也在增加。 
 
-{{< datawrapper title="Poverty and assaults in NYC" src="DlEvR/2/" height="533" >}}
+<iframe title='Poverty and assaults - ranks' aria-label="Interactive chart" id="datawrapper-chart-O0SUA"
+    src='//datawrapper.dwcdn.net/639n0/1/' scrolling="no" frameborder="0"
+    style="width: 0; min-width: 100% !important; border: none;" height='600'></iframe>
+<script type="text/javascript">!function () { "use strict"; window.addEventListener("message", function (a) { if (void 0 !== a.data["datawrapper-height"]) for (var e in a.data["datawrapper-height"]) { var t = document.getElementById("datawrapper-chart-" + e) || document.querySelector("iframe[src*='" + e + "']"); t && (t.style.height = a.data["datawrapper-height"][e] + "px") } }) }();
+</script>
 
 ### 投资缩减创造了威胁健康的环境。 
 {{< rawhtml >}}
@@ -257,7 +259,7 @@ data-target="#dataModal"><i class="fas fa-question-circle"></i>&nbsp;关于数�
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="dataModalTitle">关于数据 </h5>
+                <h5 class="modal-title" id="dataModalTitle" data-pagefind-ignore="all">关于数据 </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

@@ -19,6 +19,10 @@ collections_config:
         order: desc
     singular_name: Data Stories
     singular_key: data-stories
+    _editables:
+    _inputs:
+    _select_data:
+    _structures:
     disable_add: false
     disable_add_folder: false
     disable_file_actions: false
@@ -83,6 +87,36 @@ collections_config:
     schemas:
       default:
         path: .cloudcannon/schemas/key-topics.md
+        reorder_inputs: true
+        hide_extra_inputs: true
+        remove_empty_inputs: true
+        remove_extra_inputs: false
+        icon: notes
+  data-features:
+    path: content/data-features
+    output: true
+    name: Data Features
+    description: Data Features collection.
+    icon: article
+    sort_options:
+      - key: date
+        order: desc
+      - key: date
+      - key: title
+      - key: title
+        order: desc
+    singular_name: Data Features
+    singular_key: data-features
+    _editables:
+    _inputs:
+    _select_data:
+    _structures:
+    disable_add: false
+    disable_add_folder: false
+    disable_file_actions: false
+    schemas:
+      default:
+        path: .cloudcannon/schemas/data-features.md
         reorder_inputs: true
         hide_extra_inputs: true
         remove_empty_inputs: true
@@ -188,9 +222,10 @@ _select_data:
     - pests
   indicators:
     comment: Select an indicator
-_structures: {}
 _editables:
   content:
+    allow_custom_markup: false
+    remove_custom_markup: false
     blockquote: false
     bold: true
     bulletedlist: true
@@ -215,6 +250,7 @@ _editables:
     table: false
     underline: false
     undo: false
+base_url: /
 data_config: {}
 editor:
   default_path:

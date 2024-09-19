@@ -2,23 +2,26 @@
 title: Violence
 date: 2021-05-28 18:02:58.737039
 draft: false
+azlink: "https://www.nyc.gov/site/doh/health/neighborhood-health/anti-violence.page"
 seo_title: "Violence data for NYC"
-seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods.."
-tags: 
-categories: ["social","healthoutcomes"]
-keywords: ["violence","injury","neighborhoods","social","justice","poverty"]
+seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
+description: "Datasets and visualizations of violence in NYC."
+tags:
+categories: ["social", "healthoutcomes"]
+keywords:
+  ["violence", "injury", "neighborhoods", "social", "justice", "poverty"]
 indicators:
-- header: null
-  IndicatorID:
-  - 2400
-  - 2375
+  - header: null
+    IndicatorID:
+      - 2400
+      - 2375
 ---
 
 Violence is the use of physical, verbal, and/or emotional force to injure, harm, abuse, damage, or destroy. Interpersonal violence includes child abuse and neglect, youth violence, intimate partner violence, sexual violence, and elder abuse. Violence can involve injury to self, including self-harm, suicide attempts, and death by suicide. Violence can also take the form of power against a group or community.
 
 Violence is a public health issue because it is a cause of morbidity and mortality, leading to physical and emotional harm, an increase in negative health outcomes, premature death, psychological trauma and persistent fear to individuals and communities.
 
-Violence is also an equity issue because it disproportionately affects groups that have been oppressed due to their socioeconomic status, race/ethnicity, sexual orientation, gender identity, geographic location, or some combination of these factors. Data from multiple sources illustrate tremendous disparities in the distribution and burden of violence throughout NYC. For instance, rates of firearm-related violence are at least two times higher in high poverty neighborhoods when compared to lower poverty neighborhoods. And, violence persists as a leading cause of premature death among NYC’s men of color. 
+Violence is also an equity issue because it disproportionately affects groups that have been oppressed due to their socioeconomic status, race/ethnicity, sexual orientation, gender identity, geographic location, or some combination of these factors. Data from multiple sources illustrate tremendous disparities in the distribution and burden of violence throughout NYC. For instance, rates of firearm-related violence are at least two times higher in high poverty neighborhoods when compared to lower poverty neighborhoods. And, violence persists as a leading cause of premature death among NYC’s men of color.
 
 ### Factors that Contribute to Violence
 
@@ -26,14 +29,14 @@ Restricting the explanation of disparities in violence to differences in individ
 
 For example, [racialized systems have created and upheld stereotypes that link Black men and criminality](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5004736/), while ignoring the imbalanced distribution of power and resources experienced by Black men and Black communities. A myriad of  social, political, economic, historical, and environmental factors contribute to violence. These factors convey messages about which populations and communities are deprived of society’s resources and which are privileged by them. Some of these factors include:
 
-* Poverty and neighborhood disinvestment
-* Housing and historic redlining practices
-* Education and employment opportunities
-* Policing and incarceration practices
-* Chronic stress and intergenerational trauma Community and social norms
-* Access to health and health care
-* Built environment
-* Racism and other forms of oppression
+- Poverty and neighborhood disinvestment
+- Housing and historic redlining practices
+- Education and employment opportunities
+- Policing and incarceration practices
+- Chronic stress and intergenerational trauma Community and social norms
+- Access to health and health care
+- Built environment
+- Racism and other forms of oppression
 
 Examining factors like these that disproportionately marginalize certain populations illuminate opportunities for prevention.
 

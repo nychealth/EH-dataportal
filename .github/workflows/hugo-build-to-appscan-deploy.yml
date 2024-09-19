@@ -13,6 +13,11 @@ on:
       - closed
   workflow_dispatch:
 
+env:
+  HUGO_GIT_BRANCH: build-to-appscan-deploy
+  TZ: America/New_York
+
+
 jobs:
 
   # ------------------
@@ -21,7 +26,7 @@ jobs:
   
   build:
     name: Build `build-to-appscan-deploy` to `builds/appscan-deploy`
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
 
     # only run the action if it's a push, or the PR was merged, or it was manually triggered
 
@@ -58,21 +63,21 @@ jobs:
         id: last_commit
         run: |
           echo "last_hash=$(git log -1 --format=%h --abbrev=10)" >> $GITHUB_OUTPUT
-          echo "last_msg=$(git log -1 --format=%s)" >> $GITHUB_OUTPUT
+          echo "last_msg=\"$(git log -1 --format=%s)\"" >> $GITHUB_OUTPUT
       
       # set up node and cache for npm
 
-      - name: Setup node
+      - name: Set up node
         uses: actions/setup-node@v4
         with:
-          node-version: lts/*
+          node-version: 22.5.x
           cache: "npm"
 
       # set up cache for node modules
 
       - name: Cache node_modules
         id: cache-nodemodules
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         env:
           cache-name: cache-node-modules
         with:
@@ -82,6 +87,11 @@ jobs:
             ${{ runner.os }}-build-${{ env.cache-name }}-
             ${{ runner.os }}-build-
             ${{ runner.os }}-
+
+      # prune node_modules
+
+      - name: Prune dependencies
+        run: npm prune
 
       # update npm dependencies (if cached)
 
@@ -93,41 +103,39 @@ jobs:
 
       - name: Install dependencies
         if: steps.cache-nodemodules.outputs.cache-hit != 'true'
-        run: npm install
+        run: npm ci
+
+      # list dependencies
+      
+      - name: List dependencies
+        run: npm ls
+
+      - name: List sub-dependencies
+        run: npm ls --all
 
       # set up Hugo
 
-      - name: Hugo setup
-        uses: peaceiris/actions-hugo@v2
+      - name: Set up Hugo
+        uses: peaceiris/actions-hugo@v3
         with:
-          hugo-version: "0.121.0"
+          hugo-version: "0.122.0"
           extended: true
-
-      # cache Hugo modules
-
-      - name: Hugo cache
-        uses: actions/cache@v3
-        with:
-          path: /tmp/hugo_cache
-          key: ${{ runner.os }}-hugomod-${{ hashFiles('**/go.sum') }}
-          restore-keys: |
-            ${{ runner.os }}-hugomod-
 
       # build site with Hugo
 
-      - name: Hugo Build
+      - name: Build site with Hugo
         run: hugo --environment appscan_deploy --cleanDestinationDir --logLevel debug
 
-      # run gruntfile action
+      # run pagefind
 
-      - name: Build index with Grunt
+      - name: Build search with pagefind
         run: |
           cd '${{ github.workspace }}'
-          grunt lunr-index --stack
+          npx -y pagefind --site docs
 
       # commit built index
 
-      - name: Commit changes to PagesIndex.json, package.json, & package-lock.json
+      - name: Commit changes to package.json & package-lock.json
         uses: elstudio/actions-js-build/commit@v4
         with:
           commitMessage: Update index & NPM package list
@@ -135,7 +143,7 @@ jobs:
       # publish to "deploy" branch
 
       - name: Publish to "builds/appscan-deploy"
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v4
         with:
           full_commit_message: "Build ${{ steps.last_commit.outputs.last_hash }} (${{ steps.last_commit.outputs.last_msg }})"
           github_token: ${{ secrets.GITHUB_TOKEN }}

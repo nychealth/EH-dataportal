@@ -1,9 +1,11 @@
 ---
 title: "Inequality and health inequities"
+shortTitle: "Inequality"
 date: 2021-10-01T07:59:16-04:00
 draft: false
 seo_title: "Data on health equity and social and economic conditions in NYC"
 seo_description: "Data, data stories, interactives, and more about social and economic determinants of health."
+description: "Data, data stories, interactives, and more about social and economic determinants of health."
 tags: 
 categories: [social]
 keyTopic: social

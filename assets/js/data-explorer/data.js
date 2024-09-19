@@ -79,6 +79,10 @@ const createComparisonData = async (comps) => {
     
     // console.log("comps [createComparisonData]:", comps);
 
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // get comparisons-specific metadata
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
     // will be used by renderMeasures to create dropdown
     
     comparisonsMetadata = await comps.filter(
@@ -118,6 +122,10 @@ const createComparisonData = async (comps) => {
     let comparisonsIndicatorIDs = [... new Set(aqComparisonsMetadata.array("IndicatorID"))]
     let comparisonsMeasureIDs = [... new Set(aqComparisonsMetadata.array("MeasureID"))]
 
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // join comparisons metadata with indicators from metadata.json
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
     let comparisonsIndicatorsMetadata = indicators.filter(
         ind => comparisonsIndicatorIDs.includes(ind.IndicatorID)
     )
@@ -134,7 +142,8 @@ const createComparisonData = async (comps) => {
             MeasurementType: d => d.Measures.MeasurementType,
             Sources:         d => d.Measures.Sources,
             how_calculated:  d => d.Measures.how_calculated,
-            DisplayType:     d => d.Measures.DisplayType
+            DisplayType:     d => d.Measures.DisplayType,
+            TrendNoCompare:  d => d.Measures.TrendNoCompare
         })
         .derive({IndicatorMeasure: d => d.IndicatorLabel + ": " + d.MeasurementType})
         .select(aq.not("Measures"))
@@ -151,6 +160,10 @@ const createComparisonData = async (comps) => {
 
     // console.log("aqCombinedComparisonsMetadata [createComparisonData]");
     // aqCombinedComparisonsMetadata.print()
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // fetch data files for all comp indicators
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
     // Promise.all takes the array of promises returned by map, and then the `then` callback executes after they've all resolved
 
@@ -229,6 +242,9 @@ const loadIndicator = async (this_indicatorId, dont_add_to_history) => {
     $(".indicator-dropdown-item").removeClass("active");
     $(".indicator-dropdown-item").attr('aria-selected', false);
 
+    $(".indicator-arrows").addClass("hide");
+    document.getElementById(`arrow-${indicatorId}`).classList.remove('hide')
+
     // get the list element for this indicator (in buttons and dropdowns)
     const thisIndicatorEl = document.querySelectorAll(`button[data-indicator-id='${indicatorId}']`)
 
@@ -295,7 +311,7 @@ const loadIndicator = async (this_indicatorId, dont_add_to_history) => {
 
     const indicatorTitle = document.getElementById('dropdownIndicator')
 
-    indicatorTitle.innerHTML = indicatorName
+    indicatorTitle.innerHTML = DOMPurify.sanitize(indicatorName)
 
     // call function to fetch comparisons data
 
@@ -367,10 +383,10 @@ const loadGeo = async () => {
     await aq.loadJSON(geoUrl, {autoType: false})
         .then(async (data) => {
 
-            geoTable = await data.select(aq.not('Lat', 'Long'));
+            geoTable = await data;
 
-            // console.log("geoTable [loadGeo]");
-            // geoTable.print()
+            //  console.log("geoTable [loadGeo]");
+            //  geoTable.print()
 
     });
 }
@@ -794,6 +810,8 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
 
     const sharedGeos = secondaryMeasureGeos.filter(g => primaryMeasureGeos.includes(g));
 
+    // console.log("sharedGeos [createJoinedLinksData]", sharedGeos);
+
 
     // ==== times ==== //
 
@@ -814,7 +832,7 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
         // get shared geos
         .filter(d => sharedGeos.includes(d.GeoType))
 
-    // console.log("filteredPrimaryMeasureData", filteredPrimaryMeasureData);
+    // console.log("filteredPrimaryMeasureData [createJoinedLinksData]", filteredPrimaryMeasureData);
 
 
     // get most recent time period for primary measure
@@ -822,19 +840,28 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
 
     const mostRecentPrimaryMeasureEndTime = Math.max(...filteredPrimaryMeasureData.map(d => d.end_period));
 
+    // console.log("mostRecentPrimaryMeasureEndTime [createJoinedLinksData]", mostRecentPrimaryMeasureEndTime);
+
     // keep only most recent time period
 
     const filteredPrimaryMeasureTimesData = filteredPrimaryMeasureData
-
         .filter(d => d.end_period === mostRecentPrimaryMeasureEndTime)
+
+    // console.log("filteredPrimaryMeasureTimesData [createJoinedLinksData]", filteredPrimaryMeasureTimesData);
+
+    // get the geotype(s) of the most recent data - might only occur in 1 of the4 shared geos!
+
+    let mostRecentPrimaryGeos = [...new Set(filteredPrimaryMeasureTimesData.map(d => d.GeoType))];
+
+    // console.log("mostRecentPrimaryGeos [createJoinedLinksData]", mostRecentPrimaryGeos);
 
     // convert to arquero table
 
     const aqFilteredPrimaryMeasureTimesData = aq.from(filteredPrimaryMeasureTimesData);
 
-    // console.log("aqFilteredPrimaryMeasureTimesData");
+    // console.log("aqFilteredPrimaryMeasureTimesData [createJoinedLinksData]");
     // aqFilteredPrimaryMeasureTimesData.groupby("MeasureID", "GeoType", "TimePeriod").count().print(50)
-    // aqFilteredPrimaryMeasureTimesData.print(10)
+    // aqFilteredPrimaryMeasureTimesData.print()
 
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
@@ -857,8 +884,8 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
                 .filter(`d => d.MeasureID === ${secondaryMeasureId}`)
                 .join(geoTable, [["GeoID", "GeoType"], ["GeoID", "GeoType"]])
 
-                // get same geotypes as primary data (no citywide or boro)
-                .filter(aq.escape(d => sharedGeos.includes(d.GeoType)))
+                // get same geotypes as most recent primary data
+                .filter(aq.escape(d => mostRecentPrimaryGeos.includes(d.GeoType)))
                 .derive({"GeoRank": aq.escape(d => assignGeoRank(d.GeoType))})
                 .rename({'Name': 'Geography'})
 
@@ -868,7 +895,7 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
                     "TimePeriodID"
                 )
             
-            // console.log("aqFilteredSecondaryMeasureData");
+            // console.log("aqFilteredSecondaryMeasureData [createJoinedLinksData]");
             // aqFilteredSecondaryMeasureData.print()
             
 
@@ -889,7 +916,7 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
 
             });
 
-            // console.log("closestSecondaryTime", closestSecondaryTime);
+            // console.log("closestSecondaryTime [createJoinedLinksData]", closestSecondaryTime);
 
 
             // use end time to get closest secondary data
@@ -905,22 +932,22 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
                 // in case there are two time periods left, get the one that starts the earliest,
                 //  which will be yearly over seasonal
                 .filter(d => d.start_period === op.min(d.start_period))
-                
+
 
             // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
             // join primary and secondary measure data
             // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
             // console.log("filteredPrimaryMeasureData", filteredPrimaryMeasureData);
-            
-            // console.log("aqFilteredPrimaryMeasureTimesData");
+
+            // console.log("aqFilteredPrimaryMeasureTimesData [createJoinedLinksData]");
             // aqFilteredPrimaryMeasureTimesData.groupby("MeasureID", "GeoType", "TimePeriod").count().print(50)
-            // aqFilteredPrimaryMeasureTimesData.print(10)
-            
-            // console.log("aqClosestSecondaryData");
+            // aqFilteredPrimaryMeasureTimesData.print()
+
+            // console.log("aqClosestSecondaryData [createJoinedLinksData]");
             // aqClosestSecondaryData.groupby("MeasureID", "GeoType", "TimePeriod").count().print(50)
-            // aqClosestSecondaryData.print(10)
-            
+            // aqClosestSecondaryData.print()
+
             const aqJoinedPrimarySecondaryData = aqFilteredPrimaryMeasureTimesData
                 .join(
                     aqClosestSecondaryData,
@@ -979,6 +1006,9 @@ function draw311Buttons(indicator_id) {
         })
         .then((crosswalk) => {
 
+            // console.log('crosswalk')
+            // console.log(crosswalk)
+
             document.getElementById('311').innerHTML = ''
 
             // since we bring the takeaction partial in 2x on the DE page, we need to do this based on a class instead of an ID.
@@ -987,9 +1017,11 @@ function draw311Buttons(indicator_id) {
 
             filteredCrosswalk = crosswalk.filter(indicator => indicator.IndicatorID == indicator_id )
 
+            // console.log(filteredCrosswalk)
+
             // Creates label if there are 311 links
             if (filteredCrosswalk.length > 0) {
-                document.getElementById('311label').innerHTML = 'Contact 311 about:'
+                document.getElementById('311label').innerHTML = '<i class="fas fa-external-link-alt mr-1"></i>Or, contact 311 about:'
                 dest.forEach(element => element.classList.remove('hide'))
             } else {
                 document.getElementById('311label').innerHTML = ''
@@ -1000,7 +1032,7 @@ function draw311Buttons(indicator_id) {
             for (let i = 0; i < filteredCrosswalk.length; i ++ ) {
                 var title = filteredCrosswalk[i].topic
                 var destination = filteredCrosswalk[i].kaLink
-                var btn = `<a href="https://portal.311.nyc.gov/article/?kanumber=${destination}" class="badge badge-pill badge-primary mr-1" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt mr-1"></i>${title}</a>`
+                var btn = `<a href="https://portal.311.nyc.gov/article/?kanumber=${destination}" class="mr-1" target="_blank" rel="noopener noreferrer">${title}</a>| `
                 dest.forEach(element => element.innerHTML += btn)
             }
     })

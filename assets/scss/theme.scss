@@ -71,11 +71,12 @@ h1 {
 
 .site-title {
     display: block;
-    font-size: 2rem;
+    font-size: 2.25rem;
     line-height: 2.375rem;
     font-weight: 700;
     @include media-breakpoint-up(md){
         font-size: 2.625rem;
+        line-height: 2.75rem;
     }
 }
 
@@ -89,10 +90,11 @@ h1 {
 .site-subtitle {
     display: block;
     font-weight: 700;
-    font-size: 1rem;
-    line-height: 1.375rem;
+    font-size: 20px;
+    line-height: 22px;
     @include media-breakpoint-up(md){
         font-size: 1.25rem;
+        line-height: 1.5rem;
     }
 }
 
@@ -109,9 +111,24 @@ h1 {
 }
 
 .nav-item {
-    &:hover, &.active {
-        background-color: #EFFAF4;
+    &:hover {
         text-decoration: none;
+    }
+    &:hover #nav-item-05,
+    &.active #nav-item-05 {
+        background-color: rgba(128,0,128,.09);
+    }
+    &:hover #nav-item-02,
+    &.active #nav-item-02 {
+        background-color: rgba(215,80,71,.09);
+    }
+    &:hover #nav-item-04,
+    &.active #nav-item-04 {
+        background-color: rgba(25,123,189,.09);
+    }
+    &:hover #nav-item-03,
+    &.active #nav-item-03 {
+        background-color: rgba(10,64,138,.09);
     }
     @include media-breakpoint-down(lg) {
         font-size: 1rem;
@@ -132,7 +149,7 @@ h1 {
     border-color: #D1F0C8 !important;
 }
 .nav {
-    border-bottom: 1px solid !important;
+
 }
 
 .nav-link:hover {
@@ -313,10 +330,30 @@ h1 {
 // Content Card
 
 .content-card {
+    button.card-content {
+        background-color: white;
+        appearance: none;
+        outline: none;
+        border-right: none;
+        border-left: none;
+    }
+    a.resource-card,
+    button.resource-card {
+        color: #000000;
+        &:hover {
+            color: $primary;
+            text-decoration: underline;
+        }
+        svg {
+            color: $primary;
+        }
+    }
     .card-content {
         height: 100%;
+        display: flex;
+        flex-direction: column;
+
         box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.18), 0 3px 10px 0 rgba(0, 0, 0, 0.17);
-        border-bottom: 8px solid $primary ;
         .card-title {
             font-size: 1.5rem;
             line-height: 1.75rem;
@@ -330,6 +367,29 @@ h1 {
                 font-weight: 700;
             }
         }
+        .link {
+            flex: 1;
+            display: flex;
+            align-items: flex-end;
+        }
+    }
+    .card-content.n-reports {
+        border-bottom: 8px solid $color-n-reports;
+    }
+    .card-content.data-stories {
+        border-bottom: 8px solid $color-data-stories;
+    }
+    .card-content.data-explorer {
+        border-bottom: 8px solid $color-data-explorer;
+    }
+    .card-content.key-topics {
+        border-bottom: 8px solid $primary;
+    }
+    .card-content.data-features {
+        border-bottom: 8px solid $color-data-features;
+    }
+    .card-content.primary {
+        border-bottom: 8px solid $primary;
     }
 }
 
@@ -651,8 +711,8 @@ h2.report-info {
         }
     }
     .modal-body, .modal-footer {
-        padding-top: 40px;
-        padding-bottom: 40px;
+        padding-top: 20px;
+        padding-bottom: 20px;
         padding-left: 1rem;
         padding-right: 1rem;
         @include media-breakpoint-up(md){
@@ -714,17 +774,31 @@ span.th-sub {
 // Section styles
 
 .ds-accent {
-    color:#197BBD!important;
+    svg path {
+        fill: $color-data-stories;
+    }
 }
 
 .kt-accent {
-    color:#800080!important
+    svg path {
+        fill: $primary;
+    }
+}
+
+.df-accent {
+    svg path {
+        fill: $color-data-features;
+    }
 }
 
 .nr-accent {
-    color:#D75047!important;
+    svg path {
+        fill: $color-n-reports;
+    }
 }
 
 .de-accent {
-    color:#00923E!important
+    svg path {
+        fill: $color-data-explorer;
+    }
 }

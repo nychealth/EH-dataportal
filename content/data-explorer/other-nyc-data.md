@@ -3,7 +3,7 @@ title: Other NYC data
 date: 2021-05-28 18:02:58.861226
 draft: true
 seo_title: "Other NYC Data"
-seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods.."
+seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
 tags: 
 categories: []
 keywords: 
