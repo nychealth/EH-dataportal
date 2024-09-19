@@ -404,7 +404,8 @@ config = {
                         {
                             "id": "Grass and tree cover, Percent",
                             "displayName": "Grass and tree cover, Percent",
-                            "format": "float"
+                            "format": "float",
+                            "units" : "%"
                         }
                     ]
                 }
@@ -471,7 +472,8 @@ config = {
                         {
                             "id": "Neighborhood poverty, percent",
                             "displayName": "Neighborhood poverty, percent",
-                            "format": "float"
+                            "format": "float",
+                            "units": "%"
                         }
                     ]
                 }
@@ -504,7 +506,8 @@ config = {
                         {
                             "id": "Households with AC, Percent",
                             "displayName": "Households with AC, Percent",
-                            "format": "float"
+                            "format": "float",
+                            "units" : "%"
                         }
                     ]
                 }
