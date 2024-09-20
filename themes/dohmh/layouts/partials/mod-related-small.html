@@ -4,7 +4,7 @@
 {{- $layout := .layout -}}
 
 {{- $extraClass := .extraClass -}}
-{{- range first 2 (where $.content.Site.RegularPages "Section" .section) -}}
+{{- range first 4 (where $.content.Site.RegularPages "Section" .section) -}}
     {{- $page := . }}
     {{- $has_common_cats := intersect $cats .Params.categories | len | lt 0 -}}
         {{- if and $has_common_cats (ne $page_link $page.RelPermalink) -}}
