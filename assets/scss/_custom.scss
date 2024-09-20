@@ -245,3 +245,7 @@ $color-data-explorer: #0A408A;
 #primary-content h3 {
   padding-top: 20px;
 }
+
+#toggleButton[aria-expanded="true"] {
+  display: none;
+}
