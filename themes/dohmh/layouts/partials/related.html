@@ -26,7 +26,7 @@
             </div>
 
             {{- else if eq $layout "singlelist" -}}
-            <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+            <a class="font-weight-bold" href="{{ .RelPermalink }}">{{ .Title }}</a>
             <hr class="my-1">
 
             {{- end -}}
