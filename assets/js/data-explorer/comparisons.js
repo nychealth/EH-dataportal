@@ -45,12 +45,13 @@ const renderComparisonsChart = (
 
     let columns ;
     let xAxisLabelField;
+    let chartView = document.getElementById('trend')
         if (window.innerWidth < 340) {
             columns = 1
         } else if (window.innerWidth < 440) {
             columns = 2
             xAxisLabelField = 'fallbackYear'
-        } else if (window.innerWidth > 440 && window.innerWidth < 576) {
+        } else if (window.innerWidth < 1200) {
             columns = 3
             xAxisLabelField = 'fallbackYear'
         } else {
@@ -626,7 +627,15 @@ const renderComparisonsChart = (
             ],
             "mark": {"type": "line", "stroke": "transparent","strokeWidth": 10}
           },
-          {"mark": {"type": "line", "point": {"size": 70}}},
+          {"mark": {
+            "type": "line", 
+            "point": {
+                "size": 40, 
+                "filled": false, 
+                "fill": "white"
+              }
+            }
+          },
           {
             "transform": [
               {
