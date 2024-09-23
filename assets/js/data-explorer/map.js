@@ -37,6 +37,8 @@ const renderMap = (
     let isPercent;
     let topoFile = '';
 
+    console.log(metadata)
+
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
     // use some conditionals
@@ -47,10 +49,13 @@ const renderMap = (
         displayType         = '%'
         subtitle = mapMeasurementType
         
+    } else if (mapMeasurementType.includes('Score')) {
+        displayType = ''
     } else {
         isPercent = false
         displayType         = metadata[0]?.DisplayType;
         subtitle = mapMeasurementType + `${displayType ? ` (${displayType})` : ''}`
+        console.log('display type:', displayType)
     }
 
 
