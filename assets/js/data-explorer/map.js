@@ -49,14 +49,18 @@ const renderMap = (
         displayType         = '%'
         subtitle = mapMeasurementType
         
-    } else if (mapMeasurementType.includes('Score')) {
-        displayType = ''
     } else {
         isPercent = false
         displayType         = metadata[0]?.DisplayType;
         subtitle = mapMeasurementType + `${displayType ? ` (${displayType})` : ''}`
         console.log('display type:', displayType)
     }
+    
+
+    if (indicatorName.includes('Heat vulnerability index')) {
+        displayType = ' out of 5'
+    }
+
 
 
     // ----------------------------------------------------------------------- //
