@@ -58,6 +58,16 @@ const renderComparisonsChart = (
             columns = 6
             xAxisLabelField = 'TimePeriodSplit'
         }
+
+    let mobileLegend;
+    if (window.innerWidth < 720) {
+      mobileLegend =  {
+        "orient": "bottom",
+        "columns": 3
+      }
+    } else {
+      mobileLegend = null
+    }
     
     
     let height = window.innerWidth < 576 ? 350 : 500;
@@ -533,7 +543,13 @@ const renderComparisonsChart = (
             "titlePadding": 10,
             "padding": 50
           },
-          "axisY": {"labelAngle": 0, "labelFontSize": 11, "tickMinStep": tickMinStep, "offset": 40},
+          "axisY": {
+            "labelAngle": 0, 
+            "labelFontSize": 11, 
+            "tickMinStep": tickMinStep, 
+            "orient": "right",
+            "offset": 40
+          },
           "legend": {
             "columns": 6,
             "labelFontSize": 14,
@@ -597,7 +613,7 @@ const renderComparisonsChart = (
               "field": comp_group_col,
               "type": "nominal",
               "sort": true,
-              "legend": null
+              "legend": mobileLegend
             },
             "value": "gray"
           },
@@ -640,8 +656,8 @@ const renderComparisonsChart = (
             "transform": [
               {
                 "aggregate": [
-                  {"op": "argmin", "field": "end_period", "as": "Value"},
-                  {"op": "min", "field": "end_period", "as": "end_period"}
+                  {"op": "argmax", "field": "end_period", "as": "Value"},
+                  {"op": "max", "field": "end_period", "as": "end_period"}
                 ],
                 "groupby": [comp_group_col]
               }
@@ -656,7 +672,7 @@ const renderComparisonsChart = (
                   }
               }
             },
-            "mark": {"type": "text", "align": "right", "dx": -8}
+            "mark": {"type": "text", "align": "left", "dx": 8}
           },
           {
             "mark": {"type": "text", "fontWeight": 100, "fontSize": 10},
