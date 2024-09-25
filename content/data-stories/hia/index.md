@@ -29,7 +29,7 @@ seo_title: Health impact assessments
 seo_description: "Air pollution causes significant illness and death in New York City. To improve health, where should we start?"
 ---
 
-_This story was recently updated with new data_
+_This story was recently updated with new data._
 
 Every year in NYC between 2017 and 2019 (The most recent data available. <a href="http://localhost:1313/dev-prod/data-explorer/health-impacts-of-air-pollution/?id=2108#display=summary">See all recorded years of health impacts data here)</a>, fine particulate matter pollution from motor vehicles and burning fossil fuels caused:
 
