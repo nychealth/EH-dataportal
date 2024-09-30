@@ -19,7 +19,7 @@ keywords:
     "violence",
   ]
 image: ds-aqcovid.jpeg
-photocredit: "Ed Reed/Mayoral Photography Office"
+photocredit: "Ed Reed/Mayoral Photography Office, City of New York"
 related:
   - title: "Why violence is a public health issue"
     url: "data-stories/violence/"
@@ -28,8 +28,6 @@ related:
   - title: "Violence"
     url: "data-explorer/violence/?id=2400#display=summary"
 ---
-
-## Injury deaths among young and middle-aged adults in New York City: with a focus on homicide and suicide
 
 Young and middle-aged adults (ages 15 to 44) do not typically die from the natural causes that kill older adults. Injuries, both intentional — violence or suicide — and unintentional, dominate as causes of death. These premature deaths are tragic, unnecessary and preventable.
 

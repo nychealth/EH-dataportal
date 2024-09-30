@@ -18,7 +18,7 @@ keywords:
     "ED visits",
   ]
 image: ds-assaults.jpg
-photocredit: "Benjamin Kanter/Mayoral Photography Office"
+photocredit: "Benjamin Kanter/Mayoral Photography Office, City of New York"
 related:
   - title: "Why violence is a public health issue"
     url: "data-stories/violence/"

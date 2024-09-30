@@ -1,5 +1,6 @@
 ---
 title: "The urban heat island effect in NYC"
+shortTitle: "Urban heat islands"
 aliases:
   - /data-stories/localtemp/
 date: 2021-08-20T12:52:43-04:00
@@ -27,8 +28,8 @@ keywords:
     "housing",
     "global warming",
   ]
-image: ds-localtemp.jpeg
-photocredit: "Michael Appleton/Mayoral Photography Office"
+image: Harlem (1).jpg
+photocredit: "Tagger Yancey IV/NYC & Company"
 related:
   - title: "Interactive Heat Vulnerability Index"
     url: "data-features/hvi/"

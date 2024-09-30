@@ -23,7 +23,7 @@ keywords:
     "kids",
   ]
 image: ds-povasthma.jpg
-photocredit: "Benjamin Kanter/Mayoral Photography Office"
+photocredit: "Benjamin Kanter/Mayoral Photography Office, City of New York"
 related:
   - title: "Economic stability creates health"
     url: "data-stories/economic-stability/"

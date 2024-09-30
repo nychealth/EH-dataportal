@@ -1,9 +1,10 @@
 ---
-title: "Efforts to reduce air pollution should focus on neighborhoods with the worst health impacts."
+title: "Efforts to reduce air pollution should focus on neighborhoods with the worst health impacts"
+shortTitle: Health effects from air pollution
 date: 2022-12-15T15:23:23-05:00
 draft: false
-image: ds-geographies.jpg
-photocredit: "Edwin J. Torres/Mayoral Photography Office"
+image: 171109_dailylife0059.jpg
+photocredit: "Edwin J. Torres/Mayoral Photography Office, City of New York"
 categories:
   - airquality
   - social
@@ -35,11 +36,13 @@ related:
     url: "data-stories/zappa/"
 ---
 
-Every year in NYC between 2015 and 2017 (the most recent years for which this analysis is available), fine particulate matter pollution from motor vehicles and burning fossil fuels caused:
+_This story was recently updated with new data._
 
-- At least [2,000 deaths]({{< baseurl >}}data-explorer/health-impacts-of-air-pollution/?id=2108#display=summary)
-- About 1,400 hospital admissions for [lung]({{< baseurl >}}data-explorer/health-impacts-of-air-pollution/?id=2119#display=summary) and [heart conditions]({{< baseurl >}}data-explorer/health-impacts-of-air-pollution/?id=2120#display=summary)
-- [3,750 emergency department admissions for asthma]({{< baseurl >}}data-explorer/health-impacts-of-air-pollution/?id=2117#display=summary)
+Every year in NYC between 2017 and 2019 (The most recent data available. <a href="http://localhost:1313/dev-prod/data-explorer/health-impacts-of-air-pollution/?id=2108#display=summary">See all recorded years of health impacts data here)</a>, fine particulate matter pollution from motor vehicles and burning fossil fuels caused:
+
+- At least [1,800 deaths]({{< baseurl >}}data-explorer/health-impacts-of-air-pollution/?id=2108#display=summary)
+- About 900 hospital admissions for [lung]({{< baseurl >}}data-explorer/health-impacts-of-air-pollution/?id=2119#display=summary) and [heart conditions]({{< baseurl >}}data-explorer/health-impacts-of-air-pollution/?id=2120#display=summary)
+- [3,100 emergency department admissions for asthma]({{< baseurl >}}data-explorer/health-impacts-of-air-pollution/?id=2117#display=summary)
 
 Since air pollution causes significant illness and death in New York City, it's important to reduce air pollution. So where do we start?
 

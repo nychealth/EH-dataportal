@@ -330,10 +330,29 @@ h1 {
 // Content Card
 
 .content-card {
+    button.card-content {
+        background-color: white;
+        appearance: none;
+        outline: none;
+        border-right: none;
+        border-left: none;
+    }
+    a.resource-card,
+    button.resource-card {
+        color: #000000;
+        &:hover {
+            color: $primary;
+            text-decoration: underline;
+        }
+        svg {
+            color: $primary;
+        }
+    }
     .card-content {
         height: 100%;
         display: flex;
         flex-direction: column;
+
         box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.18), 0 3px 10px 0 rgba(0, 0, 0, 0.17);
         .card-title {
             font-size: 1.5rem;

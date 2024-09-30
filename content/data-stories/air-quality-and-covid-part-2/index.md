@@ -1,6 +1,8 @@
 ---
 title: "An update on air quality during COVID-19"
+shortTitle:  "Air quality during COVID"
 aliases:
+  - /data-stories/aqcovid2/
   - /data-stories/aqcovid2/
 date: 2022-04-20T08:33:22-04:00
 draft: false
@@ -21,8 +23,23 @@ keywords:
     "breathing",
     "restaurants",
   ]
+tags:
+categories: ["transportation", "airquality", "foodanddrink"]
+keywords:
+  [
+    "air quality",
+    "traffic",
+    "transportation",
+    "covid",
+    "covid-19",
+    "coronavirus",
+    "air pollution",
+    "lungs",
+    "breathing",
+    "restaurants",
+  ]
 image: ds-aqcovid.jpeg
-photocredit: "Ed Reed/Mayoral Photography Office"
+photocredit: "Ed Reed/Mayoral Photography Office, City of New York"
 related:
   - title: "Tracking changes in New York City's sources of air pollution"
     url: "data-stories/restaurants-and-air-quality/"
@@ -31,8 +48,6 @@ related:
   - title: "Air quality during COVID-19"
     url: "data-stories/air-quality-and-covid/"
 ---
-
-## Big improvements in outdoor air quality during COVID-19 reveal impacts of traffic and commercial cooking
 
 On March 20, 2020, New York State announced the COVID-19 shutdown, officially known as NY Pause. In NYC, it lasted until June 8, 2020.
 

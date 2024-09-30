@@ -9,6 +9,8 @@ const renderMap = (
 
     console.log("** renderMap");
 
+    document.getElementById('viewDescription').innerHTML = 'This map shows data by different boundaries.'
+
     // console.log("data [renderMap]", data);
     // console.log("metadata [renderMap]", metadata);
 
@@ -18,68 +20,94 @@ const renderMap = (
     
     const mapTimes =  [...new Set(data.map(item => item.TimePeriod))];
 
-    // debugger;
-
     // console.log("mapTimes [map.js]", mapTimes);
 
-    let mapGeoType            = data[0]?.GeoType;
-    let geoTypeShortDesc      = data[0]?.GeoTypeShortDesc;
-    let mapMeasurementType    = metadata[0]?.MeasurementType;
-    let displayType           = metadata[0]?.DisplayType;
-    let mapGeoTypeDescription = [...new Set(geoTable.filter(aq.escape(d => d.GeoType === mapGeoType)).array("GeoTypeShortDesc"))];
+    // ----------------------------------------------------------------------- //
+    // set metadata
+    // ----------------------------------------------------------------------- //
 
+    let mapGeoType            = data[0]?.GeoType;
+    // let geoTypeShortDesc      = data[0]?.GeoTypeShortDesc;
+    // let GeoTypeDesc           = data[0]?.GeoTypeDesc;
+    let mapMeasurementType    = metadata[0]?.MeasurementType;
+    let mapGeoTypeDescription = [...new Set(geoTable.filter(aq.escape(d => d.GeoType === mapGeoType)).array("GeoTypeShortDesc"))];
     let mapTime = mapTimes[0];
+    let displayType;
+    let subtitle;
+    let isPercent;
     let topoFile = '';
+
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // use some conditionals
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+    if (mapMeasurementType.includes('Percent') || mapMeasurementType.includes('percent') && !mapMeasurementType.includes('percentile')) {
+        isPercent = true
+        displayType         = '%'
+        subtitle = mapMeasurementType
+        
+    } else {
+        isPercent = false
+        displayType         = metadata[0]?.DisplayType;
+        subtitle = mapMeasurementType + `${displayType ? ` (${displayType})` : ''}`
+    }
+
 
     // ----------------------------------------------------------------------- //
     // bubble map for non-rates (counts/numbers)
     // ----------------------------------------------------------------------- //
-    let markType              = 'geoshape'  
-    let encode                = {"shape": {"field": "geo", "type": "geojson"}}
+
+    let markType = 'geoshape'  
+    let encode = {"shape": {"field": "geo", "type": "geojson"}}
     let strokeWidth = 1.25
+    let legend;
 
     if (mapMeasurementType.includes('Number') ||
         mapMeasurementType.includes('number') || 
-        mapMeasurementType.includes('Total population')) {
-            markType = 'circle'
-            encode = {        
-                "latitude": {"field": "Lat", "type": "quantitative"},
-                "longitude": {"field": "Long", "type": "quantitative"},
-                "size": {"bin": false, "field": "Value","type": "quantitative","scale": {"range": [0,750]},"legend": {
-                    "direction": "horizontal",
-                    "title": "",
-                    "offset": -25,
-                    "orient": "top-left",
-                    "tickCount": 4,
-                    "fill": "color",
-                    "gradientLength": {"signal": "clamp(childHeight, 64, 200)"},
-                    "encode": {"gradient": {"update": {"opacity": {"value": 0.7}}}},
-                    "symbolType": "circle",
-                    "size": "size"
-      }
-                }
-                    }
-            strokeWidth = 2
-            var legend = {}
-    } else {        
-            markType = 'geoshape'
-            encode  = {
-                "shape": {"field": "geo", "type": "geojson"}
-                    }
-            strokeWidth = 1.25
-            var legend = {"legend": {
+        mapMeasurementType.includes('Total population')
+    ) {
+        markType = 'circle';
+        encode = {
+            "latitude": {"field": "Lat", "type": "quantitative"},
+            "longitude": {"field": "Long", "type": "quantitative"},
+            "size": {"bin": false, "field": "Value","type": "quantitative","scale": {"range": [0,750]},"legend": {
                 "direction": "horizontal",
-                "orient": "top-left",
-                "title": null,
-                "tickCount": 3,
+                "title": "",
                 "offset": -25,
-                "gradientLength": 200
+                "orient": "top-left",
+                "tickCount": 4,
+                "fill": "color",
+                "gradientLength": {"signal": "clamp(childHeight, 64, 200)"},
+                "encode": {"gradient": {"update": {"opacity": {"value": 0.7}}}},
+                "symbolType": "circle",
+                "size": "size"
             }}
+        };
+        strokeWidth = 2;
+        legend = {};
+    } else {
+        markType = 'geoshape';
+        encode = {"shape": {"field": "geo", "type": "geojson"}};
+        strokeWidth = 1.25
+        legend = {"legend": {
+            "direction": "horizontal",
+            "orient": "top-left",
+            "title": null,
+            "tickCount": 3,
+            "offset": -25,
+            "gradientLength": 200
+        }}
     }
 
 
-    var color = 'purplered'
-    var rankReverse = defaultMapMetadata[0].VisOptions[0].Map[0]?.RankReverse
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // change color scale based on rankReverse
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+    let color = 'purplered';
+    let rankReverse = defaultMapMetadata[0].VisOptions[0].Map[0]?.RankReverse;
+
     if (rankReverse === 0) {
         color = 'reds'
     } else if (rankReverse === 1) {
@@ -114,11 +142,14 @@ const renderMap = (
     const map_unreliability = [...new Set(data.map(d => d.Note))].filter(d => !d == "");
 
     document.querySelector("#map-unreliability").innerHTML = ""; // blank to start
+    document.getElementById("map-unreliability").classList.add('hide')  // blank to start
+
 
     map_unreliability.forEach(element => {
 
         document.querySelector("#map-unreliability").innerHTML += "<div class='fs-sm text-muted'>" + element + "</div>" ;
-        
+        document.getElementById('map-unreliability').classList.remove('hide')
+
     });
 
     // ----------------------------------------------------------------------- //
@@ -153,6 +184,8 @@ const renderMap = (
         topoFile = 'NYCKids_2021.topo.json';
     } else if (mapGeoType === "Borough") {
         topoFile = 'borough.topo.json';
+    } else if (mapGeoType === "RMZ") {
+        topoFile = 'RMZ.topo.json';
     }
 
     // ----------------------------------------------------------------------- //
@@ -169,7 +202,7 @@ const renderMap = (
             "fontSize": 18, 
             "font": "sans-serif",
             "baseline": "top",
-            "subtitle": `${mapMeasurementType}${displayType && ` (${displayType})`}, by ${mapGeoTypeDescription} (${mapTime})`,
+            "subtitle": subtitle,
             "subtitleFontSize": 13
         },
         "data": {
@@ -184,9 +217,16 @@ const renderMap = (
             "concat": {"spacing": 20}, 
             "view": {"stroke": "transparent"},
             "axisY": {"domain": false,"ticks": false},
-            "legend": {"disable": true}
+            "legend": {"disable": true},
+            "scale": {"invalid": {color: {value: '#808080'}}}
         },
         "projection": {"type": "mercator"},
+        "transform": [
+            {
+                "calculate": `datum.DisplayValue + ' ${displayType}'`,
+                "as": "valueLabel"
+            }
+        ],
         "vconcat": [
             {
                 "layer": [
@@ -248,19 +288,14 @@ const renderMap = (
                         "encoding": {
                             ...encode,
                             "color": {
-                                "condition": {
-                                    "test": "isValid(datum.Value)",
-                                    "bin": false,
-                                    "field": "Value",
-                                    "type": "quantitative",
-                                    "scale": {"scheme": {"name": color, "extent": [0.125, 1.125]}},
-                                    ...legend    
-                                },
-                                "value": "#808080"
+                                "bin": false,
+                                "field": "Value",
+                                "type": "quantitative",
+                                "scale": {"scheme": {"name": color, "extent": [0.125, 1.25]}},
+                                ...legend    
                             },
                             "stroke": {
                                 "condition": [{"param": "highlight", "empty": false, "value": "cyan"}],
-                                // "value": "#161616"
                                 "value": "#2d2d2d"
                             },
                             "strokeWidth": {
@@ -274,12 +309,16 @@ const renderMap = (
                             "tooltip": [
                                 {
                                     "field": "Geography", 
-                                    "title": geoTypeShortDesc
+                                    "title": "Neighborhood"
                                 },
                                 {
-                                    "field": "DisplayValue",
-                                    "title": mapMeasurementType
+                                    "field": "valueLabel",
+                                    "title": `${mapMeasurementType}`
                                 },
+                                {
+                                    "field": "TimePeriod",
+                                    "title": "Time period"
+                                }
                             ],
                         },
                     }
@@ -312,19 +351,23 @@ const renderMap = (
                     "tooltip": [
                         {
                             "field": "Geography", 
-                            "title": geoTypeShortDesc
+                            "title": "Neighborhood"
                         },
                         {
-                            "field": "DisplayValue", 
-                            "title": mapMeasurementType
+                            "field": "valueLabel",
+                            "title": `${mapMeasurementType}`
                         },
+                        {
+                            "field": "TimePeriod",
+                            "title": "Time period"
+                        }
                     ],
                     "x": {"field": "GeoID", "sort": "y", "axis": null},
                     "color": {
                         "bin": false,
                         "field": "Value",
                         "type": "quantitative",
-                        "scale": {"scheme": {"name": color, "extent": [0.25, 1.25]}},
+                        "scale": {"scheme": {"name": color, "extent": [0.125, 1.25]}},
                         "legend": false
                     },
                     "stroke": {

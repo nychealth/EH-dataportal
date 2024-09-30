@@ -1,5 +1,6 @@
 ---
 title: "How power outages affect health"
+shortTitle: "Power outages"
 date: 2022-01-10T12:34:38-04:00
 draft: false
 seo_title: "How Power Outages Affect Health"
@@ -17,7 +18,7 @@ keywords:
     "built environment",
   ]
 image: title7.jpg
-photocredit: "Benjamin Kanter/Mayoral Photography Office"
+photocredit: "Benjamin Kanter/Mayoral Photography Office, City of New York"
 related:
   - title: "Protecting New Yorkers from extreme heat"
     url: "data-stories/heat/"

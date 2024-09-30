@@ -5,7 +5,7 @@ draft: false
 seo_title: "How economic stability creates health "
 seo_description: "A data story about how economic stability creates health"
 tags:
-categories: ["housing", "social", "childhealth", "neighborhoods"]
+categories: ["housing", "social", "childhealth", "foodanddrink"]
 keywords:
   [
     "health equity",
@@ -13,9 +13,16 @@ keywords:
     "inequities",
     "affordable housing",
     "social determinants",
+    "poverty",
+    "food insecurity",
+    "healthy food",
+    "health care",
+    "medical debt",
+    "racism",
+    "inequality",
   ]
 image: CrownHeights_JulienneSchaer-065.JPG
-photocredit: JulienneSchaer
+photocredit: Julienne Schaer/NYC & Company
 related:
   - title: "Housing creates health"
     url: "data-stories/housing-creates-health/"
@@ -25,7 +32,7 @@ related:
     url: "data-stories/block-by-block/"
 ---
 
-Health is determined by many factors, and people tend to be healthier when they have economic stability, live in quality housing and have access to public space and safe, connected communities. In 2020, the NYC Health Department held a series of community conversations with residents and local stakeholders across 26 neighborhoods. New Yorkers shared personal stories that illuminate their priorities for building healthier neighborhoods, healthier childhoods and more. This is one part of a three-part series on how <strong> housing, economic stability, and public space create health. </strong>
+Health is determined by many factors. People tend to be healthier when they have economic stability, live in quality housing and have access to public space and safe, connected communities. In 2020, the NYC Health Department held a series of community conversations with residents and local stakeholders across 26 neighborhoods. New Yorkers shared personal stories about their priorities for building healthier neighborhoods, healthier childhoods and more. This is one part of a three-part series on how <strong> housing, economic stability, and public space create health. </strong>
 
 <div class="pullquote my-4">
 <figure class="my-2">

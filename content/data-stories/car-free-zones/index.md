@@ -27,7 +27,7 @@ keywords:
     "breathing",
   ]
 image: ds-aqts.jpeg
-photocredit: "Ed Reed/Mayoral Photography Office"
+photocredit: "Ed Reed/Mayoral Photography Office, City of New York"
 related:
   - title: "Air quality during COVID-19"
     url: "data-stories/air-quality-and-covid/"

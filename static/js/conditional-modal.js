@@ -5,7 +5,7 @@ $(window).on('load', function() {
 
 function openModal() {
     
-    var SESSION_KEY = 'EHDP-modal-timestamp';
+    var SESSION_VALUE = 'EHDP-modal-timestamp';
     var TEST_TIME_DIFF = 1000 * 60 * 60 * 24; // ms * sec * min * hrs
     // var TEST_TIME_DIFF = 1000 * 10; // ms * sec
     
@@ -13,7 +13,7 @@ function openModal() {
         
         // if session storage exists, see if there's a timestamp saved
         
-        var session = localStorage.getItem(SESSION_KEY);
+        var session = localStorage.getItem(SESSION_VALUE);
         
         if (session) {
             
@@ -37,7 +37,7 @@ function openModal() {
 
         } else {
             
-            // if there's no SESSION_KEY timestamp value, show the modal
+            // if there's no SESSION_VALUE timestamp value, show the modal
             
             $('#prototypeModal').modal('show');
             
@@ -51,14 +51,14 @@ function openModal() {
         
     }
     
-    // update SESSION_KEY timestamp value on close/hide
+    // update SESSION_VALUE timestamp value on close/hide
     
     $('#prototypeModal').on('hide.bs.modal', function (e) {
         
         var date_now = Date.now();
         
         if (localStorage) {
-            localStorage.setItem(SESSION_KEY, date_now);
+            localStorage.setItem(SESSION_VALUE, date_now);
         }
         
     });

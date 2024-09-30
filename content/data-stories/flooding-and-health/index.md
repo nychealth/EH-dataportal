@@ -1,5 +1,6 @@
 ---
 title: What Hurricane Ida and Superstorm Sandy taught us about flooding and health
+shortTitle: Flooding and health
 date: 2024-06-11T09:01:00-04:00
 draft: false
 seo_title: "What Hurricane Ida and Superstorm Sandy taught us about flooding and health"
@@ -15,7 +16,7 @@ keywords:
     "social determinants",
   ]
 image: BrooklynBridgeParkFall_JulienneSchaer.jpg
-photocredit: JulienneSchaer
+photocredit: Julienne Schaer/NYC & Company
 related:
   - title: "Neighborhood reports: Climate"
     url: "neighborhood-reports/#Climatereport"
@@ -106,7 +107,7 @@ Rainfall <em> intensity,</em> which is measured by an amount of rainfall that fa
 
 <!-- rainfall intensity chart / caption -->
 
-#### Housing and socioeconomic status, were important factors for who was most at risk during Ida
+#### Housing and socioeconomic status were important factors for who was most at risk during Ida
 
 Most of the people in NYC who died during Ida died in unregulated basement apartments. <a href="https://www.cambridge.org/core/journals/disaster-medicine-and-public-health-preparedness/article/immediate-injury-deaths-related-to-the-remnants-from-hurricane-ida-in-new-york-city-september-12-2021/69BD8C527FD016A2CAC703C7023B2251">They were mostly Asian (71%) and born outside the U.S (71%).</a> New Yorkers who live in these basement apartments may have limited housing options due to high housing costs. These deaths from Ida reflect how a housing crisis makes people more vulnerable to the health burden of the climate crisis. This disproportionately affects immigrants and New Yorkers living in poverty.
 

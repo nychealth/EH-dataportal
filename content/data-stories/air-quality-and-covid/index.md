@@ -1,5 +1,6 @@
 ---
 title: "Air quality during COVID-19"
+shortTitle:  "Air quality during COVID"
 aliases:
   - /data-stories/aqcovid/
 date: 2020-04-22T08:33:22-04:00
@@ -21,7 +22,7 @@ keywords:
     "breathing",
   ]
 image: ds-aqcovid.jpeg
-photocredit: "Ed Reed/Mayoral Photography Office"
+photocredit: "Ed Reed/Mayoral Photography Office, City of New York"
 related:
   - title: "An update on air quality during COVID-19"
     url: "data-stories/air-quality-and-covid-part-2/"

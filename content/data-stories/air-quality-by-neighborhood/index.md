@@ -1,6 +1,8 @@
 ---
 title: "What our air quality monitors tell us about NYC's neighborhoods"
+shortTitle: Neighborhood air quality
 aliases:
+  - /data-stories/aq2/
   - /data-stories/aq2/
 date: 2019-11-25T13:24:52-04:00
 draft: false

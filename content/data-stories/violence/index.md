@@ -1,16 +1,15 @@
 ---
 title: "Why violence is a public health issue"
+shortTitle: "Violence and public health"
 date: 2021-02-08T08:07:31-04:00
 draft: false
 seo_title: "Why violence is a public health issue"
 seo_description: "A data story on violence, disparities, and real public health justice in NYC."
 categories: ["housing","social","childhealth","healthoutcomes","neighborhoods"]
 keywords: ["violence","assaults","injustice","poverty","social determinants","redlining","disinvestment","racism","neighborhoods"]
-image: ds-povasthma.jpg
 image: ds-violence.jpg
 vega: true
-layout: advanced
-photocredit: "Benjamin Kanter/Mayoral Photography Office"
+photocredit: "Benjamin Kanter/Mayoral Photography Office, City of New York"
 related: 
   - title: "Injury deaths in NYC"
     url: "data-stories/injury-deaths/"
@@ -217,7 +216,11 @@ Another way to compare poverty and violence rates is to rank neighborhoods from 
 
 Below, we can see that <span style="color: #b820bb; font-weight: bold;">Belmont/East Tremont</span> ranks high in both poverty and assaults, while <span style="color: #5c8ea5; font-weight: bold;">Tottenville/Great Kills</span> ranks low for both.
 
-{{< datawrapper title="Poverty and assaults - ranks" src="639n0/1/" height="600" >}}
+<iframe title='Poverty and assaults - ranks' aria-label="Interactive chart" id="datawrapper-chart-O0SUA"
+    src='//datawrapper.dwcdn.net/639n0/1/' scrolling="no" frameborder="0"
+    style="width: 0; min-width: 100% !important; border: none;" height='600'></iframe>
+<script type="text/javascript">!function () { "use strict"; window.addEventListener("message", function (a) { if (void 0 !== a.data["datawrapper-height"]) for (var e in a.data["datawrapper-height"]) { var t = document.getElementById("datawrapper-chart-" + e) || document.querySelector("iframe[src*='" + e + "']"); t && (t.style.height = a.data["datawrapper-height"][e] + "px") } }) }();
+</script>
 
 #### When we add in other risk factors, an even more significant pattern emerges.
 

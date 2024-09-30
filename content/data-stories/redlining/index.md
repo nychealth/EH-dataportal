@@ -7,8 +7,6 @@ seo_description: "A data story on how redlining affected NYC's neighborhoods and
 tags:
 categories: ["housing","social","childhealth","neighborhoods"]
 keywords: ["poverty","asthma","injustice","housing","social determinants","redlining","disinvestment","racism"]
-image: ds-povasthma.jpg
-layout: advanced
 image: ds-redlining.jpeg
 related: 
 

@@ -1,14 +1,17 @@
 ---
 title: The racial wealth gap has big implications for public health and health equity
+shortTitle: The racial wealth gap
 date: 2023-06-16T09:01:00-04:00
 draft: false
 seo_title: "How the racial wealth gap affects health"
 seo_description: "A data story about how the racial wealth gap affects health"
 tags:
+tags:
 categories: ["social"]
 keywords: ["racial wealth gap", "health equity", "inequalities", "inequities"]
+keywords: ["racial wealth gap", "health equity", "inequalities", "inequities"]
 image: CrownHeights_JulienneSchaer-065.JPG
-photocredit: "Julienne Schaer/Mayoral Photography Office"
+photocredit: "Julienne Schaer/NYC & Company"
 related:
   - title: "Why we're working with you to redesign the data portal"
     url: "data-stories/redlining/"
@@ -23,10 +26,11 @@ Throughout history, the distribution of wealth in the U.S. has, and continues to
 ### White families hold nearly eight times the wealth of the average Black family
 
 Income and wealth are two different concepts. Income is measured by earnings, while wealth is the difference between the value of assets owned and the amount owed in debts. Since wealth incorporates the value of assets accumulated over time, and can be passed down over generations, it provides a more comprehensive representation of one’s economic resources.
+Income and wealth are two different concepts. Income is measured by earnings, while wealth is the difference between the value of assets owned and the amount owed in debts. Since wealth incorporates the value of assets accumulated over time, and can be passed down over generations, it provides a more comprehensive representation of one’s economic resources.
 
 The Federal Reserve Board’s 2019 Survey of Consumer Finances (SCF) shows that, nationally, the average White family holds nearly eight times the wealth of the average Black family and over five times the wealth of the average Hispanic family.
 
-<div class="mb-4">
+<div class="chart-wrapper-ds">
 <iframe title="Mean and median net worth for  White, Black, and  Hispanic people in the US" aria-label="Grouped Column Chart" id="datawrapper-chart-nqi4y" src="https://datawrapper.dwcdn.net/nqi4y/7/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="481" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
 </div>
 
@@ -46,7 +50,7 @@ White households are more likely than Black and Hispanic households to hold all 
 
 </div>
 
-<div class="accordion-group my-3" role="tablist" id="accordion-01">
+<div class="accordion-group narrow my-3" role="tablist" id="accordion-01">
   <div class="card">
     <a class="card-header collapse collapsed font-weight-bold" id="acc-button-01" data-toggle="collapse" href="#panel-acc-button-01"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-01">
       <span class="title" role="heading" aria-level="3">Wealth allows families to access better medical care…</span>
@@ -55,7 +59,7 @@ White households are more likely than Black and Hispanic households to hold all 
   <div class="collapse" id="panel-acc-button-01" role="tabpanel" aria-labelledby="acc-button-01" data-parent="#accordion-01">
     <div class="card-body card-white fs-md">
     <p>
-    Wealth is strongly correlated with individual and population health in more ways than one. Wealth allows families to afford better medical care, higher quality insurance, and goods and services that promote physical and mental wellbeing. Liquid assets, like savings and stocks, allow households to more readily pay for basic needs, preventative and routine medical care, and weather financial shocks. 
+    Wealth is strongly correlated with individual and population health in more ways than one. Wealth allows families to afford better medical care, higher quality insurance, and goods and services that promote physical and mental wellbeing. Liquid assets, like savings and stocks, allow households to more readily pay for basic needs, preventative and routine medical care, and weather financial shocks.
     </p>
     </div>
   </div>
@@ -88,7 +92,7 @@ Greater wealth allows people to live in neighborhoods with fewer environmental h
 <div class="collapse" id="panel-acc-button-03" role="tabpanel" aria-labelledby="acc-button-03" data-parent="#accordion-01">
     <div class="card-body fs-md">
 <p>
-   Wealth can protect families from the negative consequences of financial hardship, including job loss, homelessness or housing insecurity, food insecurity, and the negative psychological effects associated with financial hardship. Intergenerational wealth passed down through inheritance can provide educational and social opportunities that can benefit health in the long run. 
+   Wealth can protect families from the negative consequences of financial hardship, including job loss, homelessness or housing insecurity, food insecurity, and the negative psychological effects associated with financial hardship. Intergenerational wealth passed down through inheritance can provide educational and social opportunities that can benefit health in the long run.
                 </p>
             </div>
 </div>
@@ -103,7 +107,7 @@ Greater wealth allows people to live in neighborhoods with fewer environmental h
 <div class="collapse" id="panel-acc-button-04" role="tabpanel" aria-labelledby="acc-button-04" data-parent="#accordion-01">
     <div class="card-body  fs-md">
 <p>
- Conversely, research shows that when household budgets are constrained, families tend to reduce spending on medical care, groceries, and other health-related goods. Households with limited liquid assets may be less able to afford health-promoting opportunities (for example, quality medical care, physical activity, etc.) and more likely to forgo preventative or emergency medical treatments. Financial hardship is consistently correlated with poorer self-rated health, more chronic diseases, and depressive symptoms in children and adults. 
+ Conversely, research shows that when household budgets are constrained, families tend to reduce spending on medical care, groceries, and other health-related goods. Households with limited liquid assets may be less able to afford health-promoting opportunities (for example, quality medical care, physical activity, etc.) and more likely to forgo preventative or emergency medical treatments. Financial hardship is consistently correlated with poorer self-rated health, more chronic diseases, and depressive symptoms in children and adults.
                 </p>
             </div>
 </div>
@@ -118,11 +122,12 @@ Greater wealth allows people to live in neighborhoods with fewer environmental h
 <div class="collapse" id="panel-acc-button-05" role="tabpanel" aria-labelledby="acc-button-05" data-parent="#accordion-01">
     <div class="card-body  fs-md">
 <p>
-  Debt type plays an important role in health and well-being in both positive and negative ways. For instance, higher levels of home and student loan debt are associated with greater socioemotional well-being for children, whereas higher levels of and increases in unsecured debt (for example, credit card debt) are associated with lower levels of and declines in child socioemotional well-being, respectively.  
-  
-  At the household level, high debts or low assets can increase anxiety, frustration, and hopelessness, and can also lead to health deterioration due to stress. When looking at young adults with student debt, those with high levels of debt stress reported feeling more tense and anxious, troubled by physical problems, and had greater difficulty getting to sleep than students with low levels of debt stress. 
-                </p>
-            </div>
+  Debt type plays an important role in health and well-being in both positive and negative ways. For instance, higher levels of home and student loan debt are associated with greater socioemotional well-being for children, whereas higher levels of and increases in unsecured debt (for example, credit card debt) are associated with lower levels of and declines in child socioemotional well-being, respectively.
+
+At the household level, high debts or low assets can increase anxiety, frustration, and hopelessness, and can also lead to health deterioration due to stress. When looking at young adults with student debt, those with high levels of debt stress reported feeling more tense and anxious, troubled by physical problems, and had greater difficulty getting to sleep than students with low levels of debt stress.
+</p>
+</div>
+
 </div>
 <!-- .collapse -->
 </div>
@@ -136,8 +141,8 @@ Data shows that Black-White racial health inequities have not narrowed over time
 
 Between 2019 and 2021, the U.S. experienced a widening of its life expectancy gap during the COVID-19 pandemic with Hispanic and non-Hispanic Black populations experiencing larger declines in life expectancy over the two-year period than non-Hispanic White populations.
 
-<div class="mb-4">
-<iframe title="Health inequities have not improved over time" class="my-2 py-2 border-top border-bottom" aria-label="Interactive line chart" id="datawrapper-chart-AbBga" src="https://datawrapper.dwcdn.net/AbBga/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="400" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+<div class="chart-wrapper-ds">
+<iframe title="Health inequities have not improved over time" aria-label="Interactive line chart" id="datawrapper-chart-AbBga" src="https://datawrapper.dwcdn.net/AbBga/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="400" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
 </script>
 </div>
 
@@ -168,16 +173,23 @@ Effective solutions to racial inequities in wealth and health must simultaneousl
 ### Resources
 
 <div class="row">
-  <div class="col-md-7 col-xs-12">
-  <a class="btn btn-block btn-outline-primary mt-1" href="racial-wealth-gap-health-equity.pdf" target="_blank">
-  <i class="fas fa-file-pdf mr-1"></i>
-  Analyzing the Racial Wealth Gap and Implications for Health Equity (full report).</a> 
-  <a class="btn btn-block btn-outline-primary mt-1"  href="https://www.youtube.com/watch?v=yDgGR-r2xdc" target="_blank"> <i class="fas fa-play-circle mr-1"></i> Reimagining Public Health: A Discussion on the Racial Wealth Gap and Health Equity</a> 
-  <button type="button" class="btn btn-block btn-outline-primary mt-1" data-toggle="modal" data-target="#glossaryModal"><i class="fas fa-book-open mr-1"></i>Glossary</button>
-
+  <div class="col-md-4 card content-card mb-3">
+    <a class="p-2 card-content primary font-weight-bold resource-card" href="racial-wealth-gap-health-equity.pdf" target="_blank">
+      <i class="fas fa-2xl fa-file-pdf mr-1 mb-1"></i>
+      <div>Analyzing the Racial Wealth Gap and Implications for Health Equity (full report).</div>
+    </a>
   </div>
-    <div class="col-md-5 col-xs-12">
-    <div class="p-2 border shadow-sm">
+  <div class="col-md-4 card content-card mb-3">
+    <a class="p-2 card-content primary font-weight-bold resource-card"  href="https://www.youtube.com/watch?v=yDgGR-r2xdc" target="_blank">
+      <i class="fas fa-2xl fa-play-circle mr-1 mb-1"></i>
+      <div>Reimagining Public Health: A Discussion on the Racial Wealth Gap and Health Equity</div>
+    </a>
+  </div>
+  <div class="col-md-4 card content-card mb-3">
+    <button type="button" class="p-2 card-content primary resource-card font-weight-bold" data-toggle="modal" data-target="#glossaryModal"><i class="fas fa-book-open mr-1 fa-2xl mb-1"></i>Glossary</button>
+  </div>
+  <div class="col-md-4 card content-card mb-3">
+    <div class="card-content primary p-2">
       <img src="rwg_visual_abstract.png">
       <em class="fs-sm"><a href="rwg_visual_abstract.png" target="_blank">Full-size visual abstract for this report</a>.</em>
     </div>

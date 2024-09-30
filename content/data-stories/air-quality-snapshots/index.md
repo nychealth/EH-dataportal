@@ -1,5 +1,6 @@
 ---
 title: "Air quality snapshots: special findings from 10 years of NYCCAS"
+shortTitle: "Air quality snapshots"
 aliases:
   - /data-stories/AQsnapshots/
 date: 2020-04-21T13:37:45-04:00
@@ -21,7 +22,7 @@ keywords:
     "environmental justice",
     "justice",
   ]
-photocredit: "Mayoral Photography Office"
+photocredit: "Tagger Yancey IV/NYC & Company"
 related:
   - title: "Real-Time Air Quality: PM2.5 in NYC"
     url: "data-features/realtime-air-quality/"

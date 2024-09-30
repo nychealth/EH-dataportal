@@ -15,8 +15,19 @@ keywords:
     "worker health",
     "elevated blood lead levels",
   ]
+tags:
+categories: ["healthoutcomes", "social"]
+keywords:
+  [
+    "lead",
+    "lead poisoning",
+    "employment",
+    "workers",
+    "worker health",
+    "elevated blood lead levels",
+  ]
 image: OneWorldObservatory_TaggerYanceyIV_6565.jpg
-photocredit: "Tagger Yancey IV"
+photocredit: "Tagger Yancey IV/NYC & Company"
 related:
   - title: "Housing creates health"
     url: "data-stories/housing-creates-health/"
@@ -25,8 +36,6 @@ related:
   - title: "Lead testing (by age 3)"
     url: "data-explorer/lead/?id=2189#display=summary"
 ---
-
-### Lead poisoning affects adults too
 
 Lead is a harmful metal that can cause serious health issues. When lead poisoning makes headlines, the focus is usually on children’s health: Kids are at higher risk for lead exposure, which can cause developmental, learning and behavior issues.
 

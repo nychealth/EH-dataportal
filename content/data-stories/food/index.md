@@ -1,5 +1,6 @@
 ---
 title: "What hot weather means for food safety"
+shortTitle: "Food safety"
 date: 2019-10-24T08:18:56-04:00
 draft: false
 seo_title: "Hot weather and food safety"
@@ -20,7 +21,7 @@ keywords:
     "food",
   ]
 image: ds-food.JPG
-photocredit: "Edwin J. Torres/Mayoral Photography Office"
+photocredit: "Edwin J. Torres/Mayoral Photography Office, City of New York"
 related:
   - title: "The urban heat island effect in NYC"
     url: "data-stories/urban-heat-island/"

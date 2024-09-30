@@ -21,7 +21,7 @@ keywords:
     "ice",
   ]
 image: winter-weather.png
-photocredit: "Michael Appleton/Mayoral Photography Office"
+photocredit: "Michael Appleton/Mayoral Photography Office, City of New York"
 related:
   - title: "Housing creates health"
     url: "data-stories/housing-creates-health/"

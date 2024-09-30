@@ -8,6 +8,7 @@
         max-height: 100%;
     }
 
+
     leaflet-tooltip-box {
         border: 1px solid
     }
@@ -18,21 +19,21 @@
 
 <article class="container-fluid" id="skip-header-target">
 
-    <div class="row">
-        <div class="col-md-10 mx-auto mt-4">
-            <nav aria-label="breadcrumb" class="mb-4">
-                <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
-                    <li class="breadcrumb-item"><a href={{ relURL "data-features" }}>Data Features</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
-                </ul>
-            </nav>
-        </div>
-
-    </div>
 
     <div class="row">
-        <div class="col-10 mx-auto">
+        <div class="col-md-10 col-sm-12 mx-auto">
+            <div class="row">
+                <div class="col-12 mt-2 mb-3">
+                    <nav aria-label="breadcrumb">
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
+                            <li class="breadcrumb-item"><a href={{ relURL "data-features" }}>Data Features</a></li>
+                            <li class="breadcrumb-item active d-none d-sm-block" aria-current="page">{{ .Title }}</li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+
             <h1 class="h2" data-pagefind-weight="10.0">
                 <i class="fas fa-star" aria-hidden="true" style="margin-right: 10px"></i>{{ .Title }}
             </h1>
@@ -122,6 +123,11 @@
 
                         <p class="fs-xs hide" id="insufficient"><em>*Monitor reported less than 18 hours in the last day.</em></p>
                     <a href="#table24" class="fs-sm btn btn-sm btn-light btn-block mb-2" onclick="resetZoom()">Clear all</a>
+                    <div class="d-block d-md-none">
+                        <button type="button" class="btn btn-sm btn-block btn-outline-primary" data-toggle="modal" data-target="#mapModal">
+                            Show monitor locations
+                          </button>
+                    </div>
                     <hr class="mb-2">
                 </div>
                 <div class="col-md-8 border-left">
@@ -366,6 +372,26 @@
         </div>
         <div class="modal-body">
           We can only show you realtime PM<sup>2.5</sup> data for the last 7 days. Please enter a number between 1 and 7.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- Modal -->
+<div class="modal fade" id="mapModal" tabindex="-1" role="dialog" aria-labelledby="mapModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="mapModalLabel">Monitor locations</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div style="min-height:684px" id="datawrapper-vis-26bBi"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/26bBi/embed.js" charset="utf-8" data-target="#datawrapper-vis-26bBi"></script><noscript><img src="https://datawrapper.dwcdn.net/26bBi/full.png" alt="" /></noscript></div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

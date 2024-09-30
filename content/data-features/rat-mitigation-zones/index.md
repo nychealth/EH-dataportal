@@ -1,20 +1,20 @@
 ---
 title: "Rat Mitigation Zones"
-aliases:
+aliases: 
   - /key-topics/pests/rat-mitigation-zones/
 date: 2023-06-01T11:14:56-04:00
 draft: false
-seo_title: "Data on rat mitigation zones | Environment and Health Data Portal"
-seo_description: "Data on rat mitigation zones."
+seo_title: "NYC's rat mitigation zones | Environment and Health Data Portal"
+seo_description: "NYC's rat mitigation zones."
 description: "Data on NYC's rat mitigation zones."
 tags:
 categories: [pests]
-keywords:
+keywords: ['rats','rat mitigation zones','pests','inspections','rodents']
 layout: rmz
 vega: true
 arquero: true
 leaflet: true
-image: rmz.png
+image: rmz-ss.png
 related:
   - "data-stories/sanitation/"
   - "data-stories/housing-creates-health/"

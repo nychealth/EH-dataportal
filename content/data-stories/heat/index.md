@@ -1,5 +1,6 @@
 ---
 title: "Protecting New Yorkers from extreme heat"
+shortTitle: "Extreme heat"
 date: 2020-09-09T08:33:22-04:00
 draft: false
 seo_title: "Protecting New Yorkers from extreme heat"
@@ -19,7 +20,7 @@ keywords:
     "global warming",
   ]
 image: ds-heat.jpg
-photocredit: "Michael Appleton/Mayoral Photography Office"
+photocredit: "Michael Appleton/Mayoral Photography Office, City of New York"
 related:
   - title: "The urban heat island effect in NYC"
     url: "data-stories/urban-heat-island/"

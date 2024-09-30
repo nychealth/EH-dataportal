@@ -1,5 +1,6 @@
 ---
 title: "Breathe easy: NYC's air quality is improving"
+shortTitle: Air quality is improving
 date: 2019-10-24T08:18:56-04:00
 draft: false
 seo_title: "Breathe easy: NYC's air quality is improving"
@@ -20,7 +21,7 @@ keywords:
     "emissions",
   ]
 image: ds-breatheeasy.jpg
-photocredit: "Ed Reed/Mayoral Photography Office"
+photocredit: "Ed Reed/Mayoral Photography Office, City of New York"
 related:
   - title: "ZAPPA: A tool to understand air quality policies"
     url: "data-stories/zappa/"

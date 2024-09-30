@@ -3,28 +3,28 @@
 <article class="container-fluid" id="skip-header-target">
 
     <div class="row">
-        <div class="col-md-11 mx-auto mt-4 pl-0">
-            <nav aria-label="breadcrumb" class="mb-4">
-                <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="/">Home</a></li>
-                    <li class="breadcrumb-item"><a href="..">
-                        {{- with .Parent -}} {{ .Title }} </a></li>{{- end -}}
-                    <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
-                </ul>
-            </nav>
-        </div>
-        <div class="col-md-2 mr-auto"></div>
-    </div>
-
-    <div class="row">
         <div class="col-md-7 col-sm-12 mx-auto mb-4">
+            <div class="row">
+                <div class="col-12 mt-2 mb-3">
+                    <nav aria-label="breadcrumb" class="mb-4">
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/">Home</a></li>
+                            <li class="breadcrumb-item"><a href="..">
+                                {{- with .Parent -}} {{ .Title }} </a></li>{{- end -}}
+                            <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col-md-2 mr-auto"></div>
+            </div>
+
+
                 <h1>{{ .Title }}</h1>
-                    {{- .Content  -}}
 
                     {{- with .Resources.GetMatch "0-summary-intro.md" -}}
                         {{ .Content }}
                     {{- end -}}
-    
+
         </div>
     </div>
 

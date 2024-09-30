@@ -257,3 +257,16 @@ $color-data-explorer: #0A408A;
   .container-to-large {
     max-width: 928px; }
 }
+
+
+.accordion-group a[data-toggle="collapse"][aria-expanded="false"]:after {
+  content: "\002B";
+}
+
+.accordion-group a[data-toggle="collapse"][aria-expanded="true"]:after {
+  content: "\2014";
+}
+
+#primary-content h3 {
+  padding-top: 20px;
+}
