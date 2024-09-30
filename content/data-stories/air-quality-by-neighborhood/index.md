@@ -3,7 +3,6 @@ title: "What our air quality monitors tell us about NYC's neighborhoods"
 shortTitle: Neighborhood air quality
 aliases:
   - /data-stories/aq2/
-  - /data-stories/aq2/
 date: 2019-11-25T13:24:52-04:00
 draft: false
 seo_title: "About NYC's air quality, neighborhood by neighborhood."
@@ -28,7 +27,7 @@ keywords:
     "lungs",
     "breathing",
   ]
-image: ds-aq2.jpeg
+image: 170801_NNO_Bklyn096DSC_114.jpg
 photocredit: "Michael Appleton/Mayoral Photography Office"
 related:
   - title: "Reducing air pollution in neighborhoods with the worst health impacts"
