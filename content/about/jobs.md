@@ -7,7 +7,11 @@ seo_description: "Join our team at the NYC Department of Health."
 description: "Join our team at the NYC Department of Health. Explore job postings here."
 ---
 
-Join our team! See below for open positions in our bureau - or, [search cityjobs.nyc.gov for 'BESP'](https://cityjobs.nyc.gov/jobs?q=BESP&options=&page=1).
+There are no roles currently available in our bureau. Check back soon or [search cityjobs.nyc.gov for 'BESP'](https://cityjobs.nyc.gov/jobs?q=BESP&options=&page=1).
+
+<!--
+
+Join our team! See below for open positions in our bureau - or, [search cityjobs.nyc.gov for 'BESP'](https://cityjobs.nyc.gov/jobs?q=BESP&options=&page=1). -->
 
 ---
 
