@@ -408,7 +408,7 @@ function drawStoryCard(id) {
                     <div class="card-body story-card-content">
                         <span class="fs-md font-weight-bold">${story.title}</span>
                         <blockquote class="blockquote mb-0 fs-md">
-                            <p class="card-text"><em>${story.content}</em></p>
+                            <p class="card-text">${story.content}</p>
                         </blockquote>
                     </div>
                 </div>
