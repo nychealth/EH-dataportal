@@ -357,7 +357,7 @@ const renderComparisonsChart = (
 
 
     // ----------------------------------------------------------------------- //
-    // define spec
+    // define spec [older spec, with vert rule tooltip]
     // ----------------------------------------------------------------------- //
     
     let compspec = {
@@ -520,6 +520,10 @@ const renderComparisonsChart = (
         ]
     }
 
+    // ----------------------------------------------------------------------- //
+    // define alternate spec [currently using this one]
+    // ----------------------------------------------------------------------- //
+
     let compspec2 = {
         "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
         "config": {
@@ -547,8 +551,7 @@ const renderComparisonsChart = (
             "labelAngle": 0, 
             "labelFontSize": 11, 
             "tickMinStep": tickMinStep, 
-            "orient": "right",
-            "offset": 40
+            "orient": "left"
           },
           "legend": {
             "columns": 6,
@@ -656,8 +659,8 @@ const renderComparisonsChart = (
             "transform": [
               {
                 "aggregate": [
-                  {"op": "argmax", "field": "end_period", "as": "Value"},
-                  {"op": "max", "field": "end_period", "as": "end_period"}
+                  {"op": "argmin", "field": "end_period", "as": "Value"},
+                  {"op": "min", "field": "end_period", "as": "end_period"}
                 ],
                 "groupby": [comp_group_col]
               }
@@ -672,7 +675,13 @@ const renderComparisonsChart = (
                   }
               }
             },
-            "mark": {"type": "text", "align": "left", "dx": 8}
+            "mark": {
+                "type": "text", 
+                "align": {"expr": "datum.Geography === 'New York City' ? 'center' : 'left'"},
+                "dx": -6, 
+                "dy": -14,
+                "fontSize": 14, 
+                "fontWeight": "bold"}
           },
           {
             "mark": {"type": "text", "fontWeight": 100, "fontSize": 10},
@@ -705,8 +714,13 @@ const renderComparisonsChart = (
     // ----------------------------------------------------------------------- //
     // render chart
     // ----------------------------------------------------------------------- //
+
+    let vegaSpec = vegaLite.compile(compspec2).spec // compile to Vega
+    // console.log(vegaSpec)
+    vegaSpec.marks[4].interactive = false;          // set axis layers to non-interactive
+    vegaSpec.marks[5].interactive = false;
     
-    vegaEmbed("#trend", compspec2);
+    vegaEmbed("#trend", vegaSpec);
 
     // ----------------------------------------------------------------------- //
     // Send chart data to download
