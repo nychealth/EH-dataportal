@@ -9,10 +9,12 @@ const renderComparisonsChart = (
 
     console.log("*** renderComparisonsChart");
 
+
     document.getElementById('viewDescription').innerHTML = 'Trends are shown by boro for stable rates.'
 
     // console.log("metadata [renderComparisonsChart]");
     // metadata.print()
+
     
     // console.log("data [renderComparisonsChart]");
     // data.print(Infinity)
@@ -300,7 +302,7 @@ const renderComparisonsChart = (
     // let compTooltips = compGroupLabel.map(x => {return {"field": x, "type": "nominal", "format": ",.1~f"}})
     let compTooltips = compGroupLabel.map(x => {return {"field": x, "type": "nominal"}})
 
-     // console.log("compTooltips", compTooltips);
+    // console.log("compTooltips", compTooltips);
 
 
     // ----------------------------------------------------------------------- //
@@ -354,6 +356,8 @@ const renderComparisonsChart = (
         noCompare = []
 
     }
+
+
 
 
     // ----------------------------------------------------------------------- //
@@ -521,6 +525,22 @@ const renderComparisonsChart = (
     }
 
     // ----------------------------------------------------------------------- //
+    // Set tooltip differences for AQ Action Days Indicators/measures
+    // ----------------------------------------------------------------------- //
+
+    let metadataObject = metadata.objects()
+    let comparisonToolTipLabel;
+    if (metadataObject[0].ComparisonID === 566 || metadataObject[0].ComparisonID === 565 || metadataObject[0].ComparisonID === 564) {
+      console.log('AQ action days comparison')
+      actionDays = true
+      comparisonToolTipLabel = 'Action days'
+    }  else {
+      console.log('false')
+      actionDays = false
+      comparisonToolTipLabel = compMeasurementType
+    }
+
+    // ----------------------------------------------------------------------- //
     // define alternate spec [currently using this one]
     // ----------------------------------------------------------------------- //
 
@@ -628,7 +648,7 @@ const renderComparisonsChart = (
           "tooltip": [
             {"title": "Time", "field": "TimePeriod"},
             {"title": "Group", "field": comp_group_col},
-            {"title": compMeasurementType, "field": "valueWithDisplay"}
+            {"title": comparisonToolTipLabel, "field": "valueWithDisplay"}
           ]
         },
         "layer": [
