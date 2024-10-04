@@ -717,6 +717,7 @@ const renderComparisonsChart = (
 
     let vegaSpec = vegaLite.compile(compspec2).spec // compile to Vega
     // console.log(vegaSpec)
+    vegaSpec.marks[3].interactive = false;          // set text layers to non-interactive
     vegaSpec.marks[4].interactive = false;          // set axis layers to non-interactive
     vegaSpec.marks[5].interactive = false;
     
