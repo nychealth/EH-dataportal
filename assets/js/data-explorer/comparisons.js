@@ -677,7 +677,7 @@ const renderComparisonsChart = (
             },
             "mark": {
                 "type": "text", 
-                "align": {"expr": "datum.Geography === 'New York City' ? 'center' : 'left'"},
+                "align": "left",
                 "dx": -6, 
                 "dy": -14,
                 "fontSize": 14, 
