@@ -289,7 +289,7 @@ const renderComparisonsChart = (
     // ----------------------------------------------------------------------- //
 
     let compReplaceInvalid = compGroupLabel.map(x => {return {"calculate": `isValid(datum[\"${x}\"]) ? (datum[\"${x}\"] + ' ${compDisplayTypes}') : ""`, "as": `${x}`}})
-    console.log(compReplaceInvalid)
+    // console.log(compReplaceInvalid)
 
     // ----------------------------------------------------------------------- //
     // create tooltips JSON
@@ -300,7 +300,7 @@ const renderComparisonsChart = (
     // let compTooltips = compGroupLabel.map(x => {return {"field": x, "type": "nominal", "format": ",.1~f"}})
     let compTooltips = compGroupLabel.map(x => {return {"field": x, "type": "nominal"}})
 
-     console.log("compTooltips", compTooltips);
+     // console.log("compTooltips", compTooltips);
 
 
     // ----------------------------------------------------------------------- //
@@ -670,9 +670,7 @@ const renderComparisonsChart = (
               "y": {"field": "Value['Value']"},
               "text": {
                 "condition": {"param": "hover", "field": comp_group_col, "empty": false},
-                "value": {
-                    "expr": "datum.Geography === 'New York City' ? 'NYC' : ''"
-                  }
+                "value": ""
               }
             },
             "mark": {
