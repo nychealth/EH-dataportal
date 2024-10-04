@@ -196,7 +196,7 @@ config = {
        },
        */
 
-
+/* Commenting out greenspace
        {
           "property": {
              "id": "greenspace",
@@ -233,7 +233,7 @@ config = {
              }
           }
        },
-
+*/
        /*
        {
           "property": {
