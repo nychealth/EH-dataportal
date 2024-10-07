@@ -6,18 +6,77 @@ function printModal() {
     setTimeout(printViz,500)
 }
 
-// prints the visualization to the modal's window
+
 function printViz() {
+    let chartType = currentHash.slice(8)
+    chartType === 'trend' ? changeTrendSpec() : {}
+    chartType === 'map' ? changeMapSpec(vizYear) : {}
+
+
+    console.log(printSpec)
     vegaEmbed("#printVis", printSpec)
 }
 
-// We can also pass in arguments to use from the function calls. 
+function changeTrendSpec() {
+    printSpec.encoding.color.condition.legend = {
+        "orient": "bottom",
+        "title": null
+      }
 
-/* If Map...
-- Add year to subtitle
-- Add neighborhood to subtitle
+    var sourceLayer = {
+        "mark": {
+          "type": "text",
+          "fontSize": 12,
+          "fontWeight": "normal",
+          "align": "left",
+          "baseline": "bottom",
+          "dx": 5,
+          "dy": 100
+        },
+        "encoding": {
+          "text": {"value": `Source: ${vizSource}`},
+          "x": {"value": 0},
+          "y": {"value": 400},
+          "color": {"value": "gray"}
+        }
+      }
+
+    printSpec.layer.push(sourceLayer)
+}
+
+function changeMapSpec(x) {
+    printSpec.title.subtitle += ` - ${x}`
+
+    var sourceLayer =  {
+        "mark": {
+          "type": "text",
+          "fontSize": 12,
+          "fontWeight": "normal",
+          "align": "left",
+          "baseline": "bottom",
+          "dx": 5,
+          "dy": 0
+        },
+        "encoding": {
+          "text": {"value": `Source: ${vizSource}`},
+          "x": {"value": 0},
+          "y": {"value": 0},
+          "color": {"value": "gray"}
+        }
+      }
+
+      printSpec.vconcat.push(sourceLayer)
+
+}
+
+
+
+/* Other arguments to pass in:
+- Map: year, neighborhood
+- Trend: turn legend on [can use currentHash]
+- Footnote (and add textfield) - with source
+
+- Fix dimensions of modal's chart template - or chart height
+
 */
 
-/* If trend...
-- Turn legend on.
-*/

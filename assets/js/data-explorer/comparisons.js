@@ -525,18 +525,19 @@ const renderComparisonsChart = (
     }
 
     // ----------------------------------------------------------------------- //
-    // Set tooltip differences for AQ Action Days Indicators/measures
+    // Set tooltip differences for Air Quality AQ Action Days Indicators/measures
     // ----------------------------------------------------------------------- //
 
     let metadataObject = metadata.objects()
+    // console.log(metadataObject)
     let comparisonToolTipLabel;
     if (metadataObject[0].ComparisonID === 566 || metadataObject[0].ComparisonID === 565 || metadataObject[0].ComparisonID === 564) {
-      console.log('AQ action days comparison')
-      actionDays = true
+      // console.log('AQ action days comparison')
+      // actionDays = true
       comparisonToolTipLabel = 'Action days'
     }  else {
-      console.log('false')
-      actionDays = false
+      // console.log('false')
+      // actionDays = false
       comparisonToolTipLabel = compMeasurementType
     }
 
@@ -571,7 +572,10 @@ const renderComparisonsChart = (
             "labelAngle": 0, 
             "labelFontSize": 11, 
             "tickMinStep": tickMinStep, 
-            "orient": "left"
+            "orient": "left",
+            "labelBaseline": "bottom",
+            "domain": false, 
+            "ticks": false
           },
           "legend": {
             "columns": 6,
@@ -740,6 +744,9 @@ const renderComparisonsChart = (
     vegaSpec.marks[5].interactive = false;
     
     vegaEmbed("#trend", vegaSpec);
+
+    // send info for printing
+    vizSource = metadataObject[0].Sources
     printSpec = compspec2;
 
 

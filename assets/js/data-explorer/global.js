@@ -118,6 +118,11 @@ var CSVforDownload;
 var downloadedIndicator;
 var downloadedIndicatorMeasurement;
 
+// variables for print specs
+var printSpec = {};
+var vizYear;
+var vizSource;
+
 // store hash, so display knows where it just was
 let currentHash;
 let state;

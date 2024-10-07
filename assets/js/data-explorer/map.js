@@ -216,7 +216,7 @@ const renderMap = (
         "config": {
             "concat": {"spacing": 20}, 
             "view": {"stroke": "transparent"},
-            "axisY": {"domain": false,"ticks": false},
+            "axisY": {"domain": false,"ticks": false,"labelBaseline": "bottom",},
             "legend": {"disable": true},
             "scale": {"invalid": {color: {value: '#808080'}}}
         },
@@ -389,6 +389,9 @@ const renderMap = (
 
     vegaEmbed("#map", mapspec);
 
+    // send info for printing
+    vizYear = mapTime;
+    vizSource = metadata[0].Sources
     printSpec = mapspec;
 
     // console.log(mapspec)
