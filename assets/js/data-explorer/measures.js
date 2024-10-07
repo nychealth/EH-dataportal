@@ -465,8 +465,8 @@ const updateMapData = (e) => {
 
     // "indicatorName" is set in loadIndicator
 
-    selectedMapAbout   = `<p><strong>${measure}:</strong> ${about}</p>`;
-    selectedMapSources = `<p><strong>${measure}:</strong> ${sources}</p>`;
+    selectedMapAbout   = `<strong>${measure}:</strong> ${about}</p>`;
+    selectedMapSources = `<strong>${measure}:</strong> ${sources}`;
 
     // render measure info boxes
 
@@ -678,7 +678,7 @@ const updateTrendComparisonsData = (e) => {
         .filter(m => m.ComparisonID == comparisonId)
         .forEach(m => {
             selectedComparisonAbout   += `<p><strong>${m.IndicatorName} - ${m.MeasurementType}:</strong> ${m.how_calculated}</p>`;
-            selectedComparisonSources += `<p><strong>${m.IndicatorName} - ${m.MeasurementType}:</strong> ${m.Sources}</p>`;
+            selectedComparisonSources.push(m.Sources)
         })
 
     // render the measure info boxes
@@ -834,9 +834,8 @@ const updateLinksData = async (e) => {
         `<p><strong>${primaryIndicatorName} - ${primaryMeasurementType}</strong>: ${primaryAbout}</p>
         <p><strong>${secondaryIndicatorName} - ${secondaryMeasurementType}</strong>: ${secondaryAbout}</p>`;
 
-    selectedLinksSources =
-        `<p><strong>${primaryIndicatorName} - ${primaryMeasurementType}</strong>: ${primarySources}</p>
-        <p><strong>${secondaryIndicatorName} - ${secondaryMeasurementType}</strong>: ${secondarySources}</p>`;
+    selectedLinksSources.push(primarySources)
+    selectedLinksSources.push(secondarySources)
 
     // render the measure info boxes
 
@@ -1163,7 +1162,7 @@ const renderMeasures = async () => {
     // clear measure about used by table.js
 
     measureAbout = "";
-    measureSources = "";
+    measureSources = [];
 
     // clear on click event handlers from view options
 
@@ -1406,7 +1405,7 @@ const renderMeasures = async () => {
         // ----- set all measure about & source here --------------------------------------------------- //
 
         measureAbout   += `<p><strong>${measure.MeasurementType}:</strong> ${measure.how_calculated}</p>`;
-        measureSources += `<p><strong>${measure.MeasurementType}:</strong> ${measure.Sources}</p>`;
+        measureSources.push(measure.Sources);
         
 
     });
@@ -1618,7 +1617,7 @@ const renderMeasures = async () => {
             // ----- set measure info boxes --------------------------------------------------- //
 
             defaultMapAbout   = `<p><strong>${measure}:</strong> ${about}</p>`;
-            defaultMapSources = `<p><strong>${measure}:</strong> ${sources}</p>`;
+            defaultMapSources = `${sources}`;
 
             // render measure info boxes
 
@@ -1862,7 +1861,7 @@ const renderMeasures = async () => {
             // ----- set measure info boxes --------------------------------------------------- //
 
             defaultTrendAbout   = `<p><strong>${measure}</strong>: ${about}</p>`;
-            defaultTrendSources = `<p><strong>${measure}</strong>: ${sources}</p>`;
+            defaultTrendSources.push(sources)
 
             renderTitleDescription(indicatorShortName, indicatorDesc);
             renderAboutSources(defaultTrendAbout, defaultTrendSources);
@@ -2241,10 +2240,8 @@ const renderMeasures = async () => {
                     `<p><strong>${primaryIndicatorName} - ${primaryMeasure}</strong>: ${primaryAbout}</p>
                     <p><strong>${secondaryIndicatorName} - ${secondaryMeasure}</strong>: ${secondaryAbout}</p>`;
 
-                defaultLinksSources =
-                    `<p><strong>${primaryIndicatorName} - ${primaryMeasure}</strong>: ${primarySources}</p>
-                    <p><strong>${secondaryIndicatorName} - ${secondaryMeasure}</strong>: ${secondarySources}</p>`;
-
+                defaultLinksSources.push(primarySources)
+                defaultLinksSources.push(secondarySources)                
 
                 // ----- create dataset - - - - - - - - - - - - - - - - - - - - - - - - - - //
 

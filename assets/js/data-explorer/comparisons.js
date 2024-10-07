@@ -751,7 +751,7 @@ const renderComparisonsChart = (
     
     vegaEmbed("#trend", vegaSpec,{
       actions: {
-        export: { png: true, svg: true },
+        export: { png: false, svg: false },
         source: false,  
         compiled: false, 
         editor: true 
