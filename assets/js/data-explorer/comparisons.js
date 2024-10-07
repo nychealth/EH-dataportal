@@ -27,15 +27,14 @@ const renderComparisonsChart = (
 
     const comp_unreliability = [...new Set(data.objects().map(d => d.Note))].filter(d => !d == "");
 
-    document.querySelector("#trend-unreliability").innerHTML = "<span class='fs-xs'><strong>Notes:</strong></span>"; // blank to start
+    document.querySelector("#trend-unreliability").innerHTML = "<span class='fs-xs'><strong>Notes:</strong></span> "; // blank to start
     document.getElementById("trend-unreliability").classList.add('hide') // blank to start
 
 
     comp_unreliability.forEach(element => {
 
-        document.querySelector("#trend-unreliability").innerHTML += "<div class='fs-xs text-muted'>" + element + "</div>" ;
+        document.querySelector("#trend-unreliability").innerHTML += element;
         document.getElementById('trend-unreliability').classList.remove('hide')
-
         
     });
 

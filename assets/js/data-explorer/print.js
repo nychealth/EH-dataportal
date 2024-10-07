@@ -80,6 +80,10 @@ function changeTrendSpec() {
         }
       }
 
+    
+    document.getElementById('modalFootnotes').innerHTML = document.getElementById('trend-unreliability').innerHTML
+
+
     printSpec.layer.push(sourceLayer)
 }
 
@@ -110,6 +114,9 @@ function changeMapSpec(x) {
           "color": {"value": "gray"}
         }
       }
+
+      document.getElementById('modalFootnotes').innerHTML = document.getElementById('map-unreliability').innerHTML
+
 
       printSpec.vconcat.push(sourceLayer)
 
@@ -144,6 +151,9 @@ function changeLinksSpec() {
         }
       }
 
+      document.getElementById('modalFootnotes').innerHTML = document.getElementById('links-unreliability').innerHTML
+
+
     printSpec.layer.push(sourceLayer)
 }
 
@@ -176,6 +186,8 @@ function changeDisparitiesSpec() {
           "color": {"value": "gray"}
         }
       }
+
+    document.getElementById('modalFootnotes').innerHTML = document.getElementById('links-unreliability')
 
     printSpec.layer.push(sourceLayer)
 }

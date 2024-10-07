@@ -148,8 +148,7 @@ const renderLinksChart = (
 
         document.querySelector("#links-unreliability").innerHTML += "<div class='fs-sm text-muted'>" + element + "</div>" ;
         document.getElementById('links-unreliability').classList.remove('hide')
-
-        
+ 
     });
 
     // ----------------------------------------------------------------------- //
