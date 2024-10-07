@@ -32,19 +32,22 @@ function printViz() {
     chartType === 'disparities' ? changeDisparitiesSpec() : {};
 
 
-    vegaEmbed("#printVis", printSpec,{
+    vegaEmbed("#printVis", printSpec, {
         actions: {
           export: { png: true, svg: true },
           source: false,  
           compiled: false, 
           editor: true 
         }
-      })
+      });
+    
+    updateChartPlotSize();
 }
 
 // ----------------------------------------------------------------------- //
 // Modify trend spec
 // ----------------------------------------------------------------------- //
+
 function changeTrendSpec() {
 
     let columns;
@@ -83,6 +86,7 @@ function changeTrendSpec() {
 // ----------------------------------------------------------------------- //
 // Modify map spec
 // ----------------------------------------------------------------------- //
+
 function changeMapSpec(x) {
     printSpec.title.text += ` - ${x}`
 
