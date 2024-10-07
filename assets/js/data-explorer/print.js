@@ -8,6 +8,8 @@
 // Fire print modal and drawy chart on delay
 // ----------------------------------------------------------------------- //
 
+var visWidth;
+
 function printModal() {
     $('#printModal').modal('show');
     setTimeout(printViz,500)
@@ -17,11 +19,18 @@ function printModal() {
 // ----------------------------------------------------------------------- //
 // Draw chart
 // ----------------------------------------------------------------------- //
+
+var wrapLegend = false;
+
 function printViz() {
+
+    window.innerWidth < 960 ? wrapLegend = true : wrapLegend = false
+
     chartType === 'trend' ? changeTrendSpec() : {}
     chartType === 'map' ? changeMapSpec(vizYear) : {}
     chartType === 'links' ? changeLinksSpec() : {}
     chartType === 'disparities' ? changeDisparitiesSpec() : {};
+
 
     vegaEmbed("#printVis", printSpec,{
         actions: {
@@ -37,9 +46,14 @@ function printViz() {
 // Modify trend spec
 // ----------------------------------------------------------------------- //
 function changeTrendSpec() {
+
+    let columns;
+    wrapLegend === true ? columns = 3 : columns = 6;
+
     printSpec.encoding.color.condition.legend = {
         "orient": "bottom",
-        "title": null
+        "title": null,
+        "columns": columns
       }
 
     var sourceLayer = {

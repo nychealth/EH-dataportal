@@ -726,7 +726,7 @@
                                     </div>
                                     <div class="col-md-3 col-sm-6">
                                         <button type="button" class="btn btn-sm btn-outline-light fs-xs text-secondary btn-block mb-1" onclick="printModal()">
-                                            <i class="fas fa-print mr-1" aria-hidden="true"></i>Print chart
+                                            <i class="fas fa-save mr-1" aria-hidden="true"></i>Save chart
                                         </button>
                                     </div>
 
@@ -949,16 +949,18 @@
 
         <!-- Print Modal -->
         <div class="modal fade" id="printModal" tabindex="-1" role="dialog" aria-labelledby="printModalTitle" aria-hidden="true">
-            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                <h5 class="modal-title" id="printModalTitle">Print this visualization</h5>
+                <h5 class="modal-title" id="printModalTitle">Save this visualization</h5>
                 </div>
                 <div class="modal-body">
-                Click the three dots in the upper-right-hand corner of the viz below, and choose "save as PNG" to print or re-use this visualization. 
+                Click the three dots in the upper-right-hand corner of the viz below, and choose "save as PNG" to save or print this visualization. This function works best on a desktop computer.
                     <hr class="my-1">
 
-                <div id="printVis" style="height: 400px;"></div>
+                <div id="printVis" style="height: 400px; width:100%;" class="vis-print-modal">
+                    Vis container
+                </div>
             
                 </div>
                 <div class="modal-footer">
