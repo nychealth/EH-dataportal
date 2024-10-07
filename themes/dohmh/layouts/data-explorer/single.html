@@ -574,7 +574,7 @@
 
 
                                 <button type="button" class="btn btn-sm btn-outline-secondary fs-xs btn-block" onclick="printModal()">
-                                    <i class="fas fa-print mr-1" aria-hidden="true"></i>Print viz
+                                    <i class="fas fa-print mr-1" aria-hidden="true"></i>Print map
                                 </button>
 
                             </div>
@@ -609,7 +609,7 @@
                                 </div>
 
                                 <button type="button" class="btn btn-sm btn-outline-secondary fs-xs btn-block" onclick="printModal()">
-                                    <i class="fas fa-print mr-1" aria-hidden="true"></i>Print viz
+                                    <i class="fas fa-print mr-1" aria-hidden="true"></i>Print chart
                                 </button>
                             </div>
                         </div>
@@ -663,6 +663,10 @@
                                             </div>
                                         </div>
                                     </div>
+
+                                    <button type="button" class="btn btn-sm btn-outline-secondary fs-xs btn-block mt-2" onclick="printModal()">
+                                        <i class="fas fa-print mr-1" aria-hidden="true"></i>Print chart
+                                    </button>
                                 </div>
 
 
@@ -924,15 +928,13 @@
             <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                <h5 class="modal-title" id="printModalTitle">Print this viz</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                <h5 class="modal-title" id="printModalTitle">Print this visualization</h5>
                 </div>
                 <div class="modal-body">
                 Click the three dots in the upper-right-hand corner of the viz below, and choose "save as PNG" to print or re-use this visualization. 
-                
-                <div id="printVis" style="height: 400px;" class="border m-1"></div>
+                    <hr class="my-1">
+
+                <div id="printVis" style="height: 400px;"></div>
             
                 </div>
                 <div class="modal-footer">

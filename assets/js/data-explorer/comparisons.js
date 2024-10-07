@@ -707,9 +707,15 @@ const renderComparisonsChart = (
           },
           {
             "mark": {"type": "text", "fontWeight": 100, "fontSize": 10},
+            "transform": [
+              {
+                "aggregate": [{"op": "min", "field": "end_period", "as": "min_end_period"}],
+                "groupby": [`${xAxisLabelField}`]
+              }
+            ],
             "encoding": {
               "x": {
-                "field": "end_period",
+                "field": "min_end_period",
                 "type": "quantitative",
                 "axis": {"labels": false, "grid": false, "ticks": false}
               },
@@ -737,13 +743,20 @@ const renderComparisonsChart = (
     // render chart
     // ----------------------------------------------------------------------- //
 
-    let vegaSpec = vegaLite.compile(compspec2).spec // compile to Vega
+    let vegaSpec = vegaLite.compile(compspec2).spec // compile to Vega to set axis layers as non-interactive
     // console.log(vegaSpec)
     vegaSpec.marks[3].interactive = false;          // set text layers to non-interactive
     vegaSpec.marks[4].interactive = false;          // set axis layers to non-interactive
     vegaSpec.marks[5].interactive = false;
     
-    vegaEmbed("#trend", vegaSpec);
+    vegaEmbed("#trend", vegaSpec,{
+      actions: {
+        export: { png: true, svg: true },
+        source: false,  
+        compiled: false, 
+        editor: true 
+      }
+    });
 
     // send info for printing
     vizSource = metadataObject[0].Sources

@@ -345,7 +345,16 @@ const renderDisparitiesChart = async (
     // render chart
     // ----------------------------------------------------------------------- //
 
-    vegaEmbed("#links", disspec);
+    vegaEmbed("#links", disspec,{
+        actions: {
+          export: { png: true, svg: true },
+          source: false,  
+          compiled: false, 
+          editor: true 
+        }
+      });
+
+    printSpec = disspec;
 
     // ----------------------------------------------------------------------- //
     // Send chart data to download

@@ -387,7 +387,14 @@ const renderMap = (
     // render chart
     // ----------------------------------------------------------------------- //
 
-    vegaEmbed("#map", mapspec);
+    vegaEmbed("#map", mapspec,{
+        actions: {
+          export: { png: true, svg: true },
+          source: false,  
+          compiled: false, 
+          editor: true 
+        }
+      });
 
     // send info for printing
     vizYear = mapTime;

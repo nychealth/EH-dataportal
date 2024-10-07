@@ -12,9 +12,14 @@ function printViz() {
     chartType === 'trend' ? changeTrendSpec() : {}
     chartType === 'map' ? changeMapSpec(vizYear) : {}
 
-
-    console.log(printSpec)
-    vegaEmbed("#printVis", printSpec)
+    vegaEmbed("#printVis", printSpec,{
+        actions: {
+          export: { png: true, svg: true },
+          source: false,  
+          compiled: false, 
+          editor: true 
+        }
+      })
 }
 
 function changeTrendSpec() {
@@ -26,17 +31,20 @@ function changeTrendSpec() {
     var sourceLayer = {
         "mark": {
           "type": "text",
-          "fontSize": 12,
+          "fontSize": 11,
           "fontWeight": "normal",
           "align": "left",
           "baseline": "bottom",
           "dx": 5,
           "dy": 100
         },
+        "data": {
+            "values": [{}]  // Use an empty object as a dummy value
+          },
         "encoding": {
-          "text": {"value": `Source: ${vizSource}`},
-          "x": {"value": 0},
-          "y": {"value": 400},
+            "text": {"value": [`Source: ${vizSource}`,"Chart: NYC Health Department - Environment and Health Data Portal"]},
+            "x": {"value": 0},
+            "y": {"value": 400},
           "color": {"value": "gray"}
         }
       }
@@ -45,20 +53,23 @@ function changeTrendSpec() {
 }
 
 function changeMapSpec(x) {
-    printSpec.title.subtitle += ` - ${x}`
+    printSpec.title.text += ` - ${x}`
 
     var sourceLayer =  {
         "mark": {
           "type": "text",
-          "fontSize": 12,
+          "fontSize": 11,
           "fontWeight": "normal",
           "align": "left",
           "baseline": "bottom",
           "dx": 5,
           "dy": 0
         },
+        "data": {
+            "values": [{}]  // Use an empty object as a dummy value
+          },
         "encoding": {
-          "text": {"value": `Source: ${vizSource}`},
+          "text": {"value": [`Source: ${vizSource}`,"Chart: NYC Health Department - Environment and Health Data Portal"]},
           "x": {"value": 0},
           "y": {"value": 0},
           "color": {"value": "gray"}

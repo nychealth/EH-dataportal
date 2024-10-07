@@ -338,7 +338,16 @@ const renderLinksChart = (
     // render chart
     // ----------------------------------------------------------------------- //
 
-    vegaEmbed("#links", linkspec);
+    vegaEmbed("#links", linkspec,{
+        actions: {
+          export: { png: true, svg: true },
+          source: false,  
+          compiled: false, 
+          editor: true 
+        }
+      });
+
+    printSpec = linkspec;
 
     // ----------------------------------------------------------------------- //
     // Send chart data to download
