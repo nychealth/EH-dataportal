@@ -153,13 +153,13 @@ const renderDisparitiesChart = async (
 
     // console.log("disp_unreliability", disp_unreliability);
 
-    document.querySelector("#links-unreliability").innerHTML = ""; // blank to start
+    document.querySelector("#links-unreliability").innerHTML = "<span class='fs-xs'><strong>Notes:</strong></span>"; // blank to start
     document.getElementById("links-unreliability").classList.add('hide') // blank to start
 
 
     disp_unreliability.forEach(element => {
 
-        document.querySelector("#links-unreliability").innerHTML += "<div class='fs-sm text-muted'>" + element + "</div>";
+        document.querySelector("#links-unreliability").innerHTML += "<div class='fs-xs text-muted'>" + element + "</div>";
         document.getElementById('links-unreliability').classList.remove('hide')
 
 

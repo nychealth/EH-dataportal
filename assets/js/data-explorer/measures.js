@@ -834,11 +834,11 @@ const updateLinksData = async (e) => {
         `<p><strong>${primaryIndicatorName} - ${primaryMeasurementType}</strong>: ${primaryAbout}</p>
         <p><strong>${secondaryIndicatorName} - ${secondaryMeasurementType}</strong>: ${secondaryAbout}</p>`;
 
+    selectedLinksSources = [];
     selectedLinksSources.push(primarySources)
     selectedLinksSources.push(secondarySources)
 
     // render the measure info boxes
-
     renderAboutSources(selectedLinksAbout, selectedLinksSources);
 
 
@@ -1861,6 +1861,7 @@ const renderMeasures = async () => {
             // ----- set measure info boxes --------------------------------------------------- //
 
             defaultTrendAbout   = `<p><strong>${measure}</strong>: ${about}</p>`;
+            defaultTrendSources = [];
             defaultTrendSources.push(sources)
 
             renderTitleDescription(indicatorShortName, indicatorDesc);
@@ -2240,6 +2241,7 @@ const renderMeasures = async () => {
                     `<p><strong>${primaryIndicatorName} - ${primaryMeasure}</strong>: ${primaryAbout}</p>
                     <p><strong>${secondaryIndicatorName} - ${secondaryMeasure}</strong>: ${secondaryAbout}</p>`;
 
+                defaultLinksSources = [];
                 defaultLinksSources.push(primarySources)
                 defaultLinksSources.push(secondarySources)                
 
