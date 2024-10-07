@@ -466,7 +466,7 @@ const updateMapData = (e) => {
     // "indicatorName" is set in loadIndicator
 
     selectedMapAbout   = `<strong>${measure}:</strong> ${about}</p>`;
-    selectedMapSources = `<strong>${measure}:</strong> ${sources}`;
+    selectedMapSources = `${sources}`;
 
     // render measure info boxes
 
@@ -559,7 +559,7 @@ const updateTrendData = (e) => {
     // ----- set measure info boxes --------------------------------------------------- //
 
     selectedTrendAbout   = `<p><strong>${measure}</strong>: ${about}</p>`;
-    selectedTrendSources = `<p><strong>${measure}</strong>: ${sources}</p>`;
+    selectedTrendSources = `<p>${sources}</p>`;
 
     // render measure info boxes
 
@@ -2011,7 +2011,7 @@ const renderMeasures = async () => {
                     `<p><strong>${m.IndicatorName} - ${m.MeasurementType}:</strong> ${m.how_calculated}</p>`;
 
                 selectedComparisonSources +=
-                    `<p><strong>${m.IndicatorName} - ${m.MeasurementType}:</strong> ${m.Sources}</p>`;
+                    `<p>${m.Sources}</p>`;
             })
 
             // render the measure info boxes

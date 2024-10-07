@@ -257,9 +257,9 @@ const renderAboutSources = (about, sources) => {
     if (type === 'object') {
         var singleSource;
         singleSource = sources.every( (val, i, arr) => val === arr[0] )  
-        singleSource === true ? dataSources.innerHTML = sources[0] + '.' : dataSources.innerHTML = sources + '.'
+        singleSource === true ? dataSources.innerHTML = sources[0] : dataSources.innerHTML = sources
     } else {
-        dataSources.innerHTML = sources + '.'
+        dataSources.innerHTML = sources
     }
 
     aboutMeasures.innerHTML = about;
