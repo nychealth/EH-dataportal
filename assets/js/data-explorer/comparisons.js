@@ -9,10 +9,12 @@ const renderComparisonsChart = (
 
     console.log("*** renderComparisonsChart");
 
+
     document.getElementById('viewDescription').innerHTML = 'Trends are shown by boro for stable rates.'
 
     // console.log("metadata [renderComparisonsChart]");
     // metadata.print()
+
     
     // console.log("data [renderComparisonsChart]");
     // data.print(Infinity)
@@ -45,18 +47,29 @@ const renderComparisonsChart = (
 
     let columns ;
     let xAxisLabelField;
+    let chartView = document.getElementById('trend')
         if (window.innerWidth < 340) {
             columns = 1
         } else if (window.innerWidth < 440) {
             columns = 2
             xAxisLabelField = 'fallbackYear'
-        } else if (window.innerWidth > 440 && window.innerWidth < 576) {
+        } else if (window.innerWidth < 1200) {
             columns = 3
             xAxisLabelField = 'fallbackYear'
         } else {
             columns = 6
             xAxisLabelField = 'TimePeriodSplit'
         }
+
+    let mobileLegend;
+    if (window.innerWidth < 720) {
+      mobileLegend =  {
+        "orient": "bottom",
+        "columns": 3
+      }
+    } else {
+      mobileLegend = null
+    }
     
     
     let height = window.innerWidth < 576 ? 350 : 500;
@@ -278,7 +291,7 @@ const renderComparisonsChart = (
     // ----------------------------------------------------------------------- //
 
     let compReplaceInvalid = compGroupLabel.map(x => {return {"calculate": `isValid(datum[\"${x}\"]) ? (datum[\"${x}\"] + ' ${compDisplayTypes}') : ""`, "as": `${x}`}})
-    console.log(compReplaceInvalid)
+    // console.log(compReplaceInvalid)
 
     // ----------------------------------------------------------------------- //
     // create tooltips JSON
@@ -289,7 +302,7 @@ const renderComparisonsChart = (
     // let compTooltips = compGroupLabel.map(x => {return {"field": x, "type": "nominal", "format": ",.1~f"}})
     let compTooltips = compGroupLabel.map(x => {return {"field": x, "type": "nominal"}})
 
-     console.log("compTooltips", compTooltips);
+    // console.log("compTooltips", compTooltips);
 
 
     // ----------------------------------------------------------------------- //
@@ -345,8 +358,10 @@ const renderComparisonsChart = (
     }
 
 
+
+
     // ----------------------------------------------------------------------- //
-    // define spec
+    // define spec [older spec, with vert rule tooltip]
     // ----------------------------------------------------------------------- //
     
     let compspec = {
@@ -509,6 +524,26 @@ const renderComparisonsChart = (
         ]
     }
 
+    // ----------------------------------------------------------------------- //
+    // Set tooltip differences for AQ Action Days Indicators/measures
+    // ----------------------------------------------------------------------- //
+
+    let metadataObject = metadata.objects()
+    let comparisonToolTipLabel;
+    if (metadataObject[0].ComparisonID === 566 || metadataObject[0].ComparisonID === 565 || metadataObject[0].ComparisonID === 564) {
+      console.log('AQ action days comparison')
+      actionDays = true
+      comparisonToolTipLabel = 'Action days'
+    }  else {
+      console.log('false')
+      actionDays = false
+      comparisonToolTipLabel = compMeasurementType
+    }
+
+    // ----------------------------------------------------------------------- //
+    // define alternate spec [currently using this one]
+    // ----------------------------------------------------------------------- //
+
     let compspec2 = {
         "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
         "config": {
@@ -532,7 +567,12 @@ const renderComparisonsChart = (
             "titlePadding": 10,
             "padding": 50
           },
-          "axisY": {"labelAngle": 0, "labelFontSize": 11, "tickMinStep": tickMinStep, "offset": 40},
+          "axisY": {
+            "labelAngle": 0, 
+            "labelFontSize": 11, 
+            "tickMinStep": tickMinStep, 
+            "orient": "left"
+          },
           "legend": {
             "columns": 6,
             "labelFontSize": 14,
@@ -563,7 +603,7 @@ const renderComparisonsChart = (
         },
         "transform": [
           {
-            "calculate": `datum.Value + ' ${compDisplayTypes}'`, "as": "valueWithDisplay"
+            "calculate": `format(datum.Value, ',') + ' ${compDisplayTypes}'`, "as": "valueWithDisplay"
           },
           {"calculate": "split(datum.TimePeriod, ' ')", "as": "TimePeriodSplit"},
           {
@@ -596,7 +636,7 @@ const renderComparisonsChart = (
               "field": comp_group_col,
               "type": "nominal",
               "sort": true,
-              "legend": null
+              "legend": mobileLegend
             },
             "value": "gray"
           },
@@ -608,7 +648,7 @@ const renderComparisonsChart = (
           "tooltip": [
             {"title": "Time", "field": "TimePeriod"},
             {"title": "Group", "field": comp_group_col},
-            {"title": compMeasurementType, "field": "valueWithDisplay"}
+            {"title": comparisonToolTipLabel, "field": "valueWithDisplay"}
           ]
         },
         "layer": [
@@ -626,7 +666,15 @@ const renderComparisonsChart = (
             ],
             "mark": {"type": "line", "stroke": "transparent","strokeWidth": 10}
           },
-          {"mark": {"type": "line", "point": {"size": 70}}},
+          {"mark": {
+            "type": "line", 
+            "point": {
+                "size": 40, 
+                "filled": false, 
+                "fill": "white"
+              }
+            }
+          },
           {
             "transform": [
               {
@@ -642,12 +690,16 @@ const renderComparisonsChart = (
               "y": {"field": "Value['Value']"},
               "text": {
                 "condition": {"param": "hover", "field": comp_group_col, "empty": false},
-                "value": {
-                    "expr": "datum.Geography === 'New York City' ? 'NYC' : ''"
-                  }
+                "value": ""
               }
             },
-            "mark": {"type": "text", "align": "right", "dx": -8}
+            "mark": {
+                "type": "text", 
+                "align": "left",
+                "dx": -6, 
+                "dy": -14,
+                "fontSize": 14, 
+                "fontWeight": "bold"}
           },
           {
             "mark": {"type": "text", "fontWeight": 100, "fontSize": 10},
@@ -680,8 +732,14 @@ const renderComparisonsChart = (
     // ----------------------------------------------------------------------- //
     // render chart
     // ----------------------------------------------------------------------- //
+
+    let vegaSpec = vegaLite.compile(compspec2).spec // compile to Vega
+    // console.log(vegaSpec)
+    vegaSpec.marks[3].interactive = false;          // set text layers to non-interactive
+    vegaSpec.marks[4].interactive = false;          // set axis layers to non-interactive
+    vegaSpec.marks[5].interactive = false;
     
-    vegaEmbed("#trend", compspec2);
+    vegaEmbed("#trend", vegaSpec);
     printSpec = compspec2;
 
 
