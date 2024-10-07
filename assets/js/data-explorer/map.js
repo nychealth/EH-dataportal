@@ -400,6 +400,7 @@ const renderMap = (
     vizYear = mapTime;
     vizSource = metadata[0].Sources
     printSpec = mapspec;
+    chartType = 'map'
 
     // console.log(mapspec)
 

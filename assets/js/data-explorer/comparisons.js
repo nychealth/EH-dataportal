@@ -761,6 +761,7 @@ const renderComparisonsChart = (
     // send info for printing
     vizSource = metadataObject[0].Sources
     printSpec = compspec2;
+    chartType = 'trend'
 
 
     // ----------------------------------------------------------------------- //

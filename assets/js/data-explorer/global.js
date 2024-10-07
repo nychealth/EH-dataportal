@@ -122,6 +122,8 @@ var downloadedIndicatorMeasurement;
 var printSpec = {};
 var vizYear;
 var vizSource;
+var vizSourceSecond;
+var chartType;
 
 // store hash, so display knows where it just was
 let currentHash;

@@ -531,7 +531,7 @@
                                 <!-- INSERT SUMMARY TABLE HERE -->
                             </div>
 
-                            <div id="table-unreliability" class="pt-2 asidebox hide my-1">
+                            <div id="table-unreliability" class="pt-2 hide my-1">
                                 <!-- INSERT UNRELIABILITY FLAGS HERE -->
                             </div>
                         </div>
@@ -583,7 +583,7 @@
                         <div class="col-md-10">
                             <div id="map" class="vis-bucket"></div>
 
-                            <div id="map-unreliability" class="pt-2 asidebox hide my-1">
+                            <div id="map-unreliability" class="pt-2 hide my-1">
                                 <!-- INSERT UNRELIABILITY FLAGS HERE -->
                             </div>
                         </div>
@@ -608,9 +608,7 @@
                                     </div>
                                 </div>
 
-                                <button type="button" class="btn btn-sm btn-outline-secondary fs-xs btn-block" onclick="printModal()">
-                                    <i class="fas fa-print mr-1" aria-hidden="true"></i>Print chart
-                                </button>
+
                             </div>
                         </div>
 
@@ -618,7 +616,7 @@
                                  <!-- INSERT TREND CHART HERE -->
                                 <div id="trend" class="vis-bucket"></div>
 
-                                <div id="trend-unreliability" class="pt-2 asidebox hide my-1">
+                                <div id="trend-unreliability" class="pt-2 hide my-1">
                                     <!-- INSERT UNRELIABILITY FLAGS HERE -->
                                 </div>
 
@@ -664,9 +662,6 @@
                                         </div>
                                     </div>
 
-                                    <button type="button" class="btn btn-sm btn-outline-secondary fs-xs btn-block mt-2" onclick="printModal()">
-                                        <i class="fas fa-print mr-1" aria-hidden="true"></i>Print chart
-                                    </button>
                                 </div>
 
 
@@ -678,7 +673,7 @@
                                 <!-- INSERT LINKS CHART HERE -->
                                 <div id="links" class="vis-bucket"></div>
             
-                                <div id="links-unreliability" class="pt-2 asidebox hide my-1">
+                                <div id="links-unreliability" class="pt-2 hide my-1">
                                     <!-- INSERT UNRELIABILITY FLAGS HERE -->
                                 </div>
                             </div>
@@ -692,10 +687,33 @@
 
 
                         <!-- FOOTER BUSINESS -->
-                        <div class="row mb-4">
+                        <div class="row mb-2">
                             <div class="col-md-2"></div>
-                            <div class="col-md-5 col-sm-12">
-                                <div class="dropdown">
+
+                            <div class="col-md-10 col-sm-12">
+                                    <div class=" asidebox visFooterBox">
+                                        <span class="fs-sm font-weight-bold"><i class="fas fa-info-circle mr-1"></i>Data sources</span>:
+                                        <p class="fs-xs indicator-sources"></p>
+                                    </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-2"></div>
+
+                            <div class="col-md-6">
+                                <div class="asidebox visFooterBox mb-2">
+                                    <span class="fs-sm font-weight-bold"><i class="fas fa-info-circle mr-1"></i>How calculated</span>:
+                                    <p class="fs-xs indicator-measures"></p>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <button type="button" class="btn btn-sm btn-outline-light text-secondary btn-block mb-1" onclick="printModal()">
+                                    <i class="fas fa-print mr-1" aria-hidden="true"></i>Print chart
+                                </button>
+
+                                <div class="dropdown mb-1">
                                     <button class="btn btn-sm btn-block btn-outline-light text-secondary dropdown-toggle" 
                                     type="button"
                                     id="downloadDD"
@@ -714,31 +732,12 @@
                                     </div>
                                 </div>
 
-                                <div class="asidebox pb-0 mb-0">
-                                    <span class="fs-sm font-weight-bold"><i class="fas fa-info-circle mr-1"></i>How calculated</span>
-                                </div>
-                                <div class="asidebox visFooterBox mb-1">
-                                    <p class="fs-xs indicator-measures"></p>
-
-
-                                </div>
-
-                            </div>
-
-                            <div class="col-md-5 col-sm-12">
                                 <button class="btn btn-sm btn-block btn-outline-light text-secondary"
                                 onclick="copyCitation()" id="citeButton"><i class="fas fa-copy mr-1"></i>Copy citation</button>
                                     <input type="text" id="citeText" value=""
                                     style="display:inline-block; width:100%; height: 40px; font-size: 14px;"
                                     class="my-2 sr-only">
 
-                                <div class="asidebox pb-0 mb-0">
-                                    <span class="fs-sm font-weight-bold"><i class="fas fa-info-circle mr-1"></i>Data sources</span>
-                                </div>
-                                <div class="asidebox visFooterBox">
-                                    <p class="fs-xs indicator-sources"></p>
-                                </div>
-                                
                             </div>
 
                         </div>

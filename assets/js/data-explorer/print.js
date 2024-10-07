@@ -1,16 +1,27 @@
-console.log('print vis js running')
+// ======================================================================= //
+// print.js
+// ======================================================================= //
 
-// Runs on button click to fire the 'print' modal, and, on delay, draw the chart
+// console.log('print vis js running')
+
+// ----------------------------------------------------------------------- //
+// Fire print modal and drawy chart on delay
+// ----------------------------------------------------------------------- //
+
 function printModal() {
     $('#printModal').modal('show');
     setTimeout(printViz,500)
 }
 
 
+// ----------------------------------------------------------------------- //
+// Draw chart
+// ----------------------------------------------------------------------- //
 function printViz() {
-    let chartType = currentHash.slice(8)
     chartType === 'trend' ? changeTrendSpec() : {}
     chartType === 'map' ? changeMapSpec(vizYear) : {}
+    chartType === 'links' ? changeLinksSpec() : {}
+    chartType === 'disparities' ? changeDisparitiesSpec() : {};
 
     vegaEmbed("#printVis", printSpec,{
         actions: {
@@ -22,6 +33,9 @@ function printViz() {
       })
 }
 
+// ----------------------------------------------------------------------- //
+// Modify trend spec
+// ----------------------------------------------------------------------- //
 function changeTrendSpec() {
     printSpec.encoding.color.condition.legend = {
         "orient": "bottom",
@@ -52,6 +66,9 @@ function changeTrendSpec() {
     printSpec.layer.push(sourceLayer)
 }
 
+// ----------------------------------------------------------------------- //
+// Modify map spec
+// ----------------------------------------------------------------------- //
 function changeMapSpec(x) {
     printSpec.title.text += ` - ${x}`
 
@@ -80,14 +97,67 @@ function changeMapSpec(x) {
 
 }
 
+// ----------------------------------------------------------------------- //
+// Modify links spec
+// ----------------------------------------------------------------------- //
+
+function changeLinksSpec() {
+    var sourceLayer = {
+        "mark": {
+          "type": "text",
+          "fontSize": 11,
+          "fontWeight": "normal",
+          "align": "left",
+          "baseline": "bottom",
+          "dx": 5,
+          "dy": 100
+        },
+        "data": {
+            "values": [{}]  // Use an empty object as a dummy value
+          },
+        "encoding": {
+            "text": {"value": [
+                `Sources: ${vizSource},`,
+                `${vizSourceSecond}.`,
+                "Chart: NYC Health Department - Environment and Health Data Portal"]},
+            "x": {"value": 0},
+            "y": {"value": 525},
+          "color": {"value": "gray"}
+        }
+      }
+
+    printSpec.layer.push(sourceLayer)
+}
 
 
-/* Other arguments to pass in:
-- Map: year, neighborhood
-- Trend: turn legend on [can use currentHash]
-- Footnote (and add textfield) - with source
+// ----------------------------------------------------------------------- //
+// Modify disparities spec
+// ----------------------------------------------------------------------- //
 
-- Fix dimensions of modal's chart template - or chart height
+function changeDisparitiesSpec() {
+    var sourceLayer = {
+        "mark": {
+          "type": "text",
+          "fontSize": 11,
+          "fontWeight": "normal",
+          "align": "left",
+          "baseline": "bottom",
+          "dx": 5,
+          "dy": 100
+        },
+        "data": {
+            "values": [{}]  // Use an empty object as a dummy value
+          },
+        "encoding": {
+            "text": {"value": [
+                `Sources: ${vizSource},`,
+                `${vizSourceSecond}.`,
+                "Chart: NYC Health Department - Environment and Health Data Portal"]},
+            "x": {"value": 0},
+            "y": {"value": 475},
+          "color": {"value": "gray"}
+        }
+      }
 
-*/
-
+    printSpec.layer.push(sourceLayer)
+}

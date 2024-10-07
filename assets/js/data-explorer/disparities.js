@@ -354,7 +354,11 @@ const renderDisparitiesChart = async (
         }
       });
 
+    // set for printing
     printSpec = disspec;
+    vizSource = primaryMetadata[0]?.Sources;
+    vizSourceSecond = disparityMetadata[0].Sources
+    chartType = 'disparities'
 
     // ----------------------------------------------------------------------- //
     // Send chart data to download
