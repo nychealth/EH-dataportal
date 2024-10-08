@@ -100,6 +100,169 @@ const renderMap = (
         }}
     }
 
+    // ----------------------------------------------------------------------- //
+    // modify spec for means
+    // ----------------------------------------------------------------------- //
+
+    var barChart
+
+    if (mapMeasurementType.includes('Mean') || mapMeasurementType.includes('mean')) {
+        barChart =     {
+            "layer": [
+              {
+                "height": 150,
+                "width": "container",
+                "config": {"axisY": {"labelAngle": 0, "labelFontSize": 13}},
+                "mark": {"type": "bar", "tooltip": true, "stroke": "#161616"},
+                "encoding": {
+                  "y": {
+                    "field": "Value",
+                    "type": "quantitative",
+                    "title": null,
+                    "axis": {"labelAngle": 0, "labelFontSize": 11, "tickCount": 3}
+                  },
+                  "tooltip": [
+                    {
+                        "field": "Geography", 
+                        "title": "Neighborhood"
+                    },
+                    {
+                        "field": "valueLabel",
+                        "title": `${mapMeasurementType}`
+                    },
+                    {
+                        "field": "TimePeriod",
+                        "title": "Time period"
+                    }
+                ],
+                  "x": {"field": "GeoID", "sort": "y", "axis": null},
+                  "color": {"value": "#f9f9f9"},
+                  "stroke": {"value": "white"},
+                  "strokeWidth": {"value": 3}
+                }
+              },
+              {
+                "height": 150,
+                "width": "container",
+                "config": {"axisY": {"labelAngle": 0, "labelFontSize": 13}},
+                "mark": {
+                  "type": "circle",
+                  "size": 80,
+                  "tooltip": true,
+                  "stroke": "#161616"
+                },
+                "params": [
+                  {
+                    "name": "highlight",
+                    "select": {
+                      "type": "point",
+                      "on": "mouseover",
+                      "clear": "mouseout"
+                    }
+                  }
+                ],
+                "encoding": {
+                  "y": {
+                    "field": "Value",
+                    "type": "quantitative",
+                    "title": null,
+                    "axis": {"labelAngle": 0, "labelFontSize": 11, "tickCount": 3}
+                  },
+                  "tooltip": [
+                    {
+                        "field": "Geography", 
+                        "title": "Neighborhood"
+                    },
+                    {
+                        "field": "valueLabel",
+                        "title": `${mapMeasurementType}`
+                    },
+                    {
+                        "field": "TimePeriod",
+                        "title": "Time period"
+                    }
+                ],
+                  "x": {"field": "GeoID", "sort": "y", "axis": null},
+                  "color": {
+                    "bin": false,
+                    "field": "Value",
+                    "type": "quantitative",
+                    "scale": {"scheme": {"name": "viridis", "extent": [1, 0]}},
+                    "legend": false
+                  },
+                  "stroke": {
+                    "condition": [
+                      {"param": "highlight", "empty": false, "value": "cyan"}
+                    ],
+                    "value": "white"
+                  },
+                  "strokeWidth": {
+                    "condition": [{"param": "highlight", "empty": false, "value": 3}],
+                    "value": 0
+                  }
+                }
+              }
+            ]
+          }
+    } else {
+        barChart = {
+            "height": 150,
+            "width": "container",
+            "config": {
+                "axisY": {
+                    "labelAngle": 0,
+                    "labelFontSize": 13,
+                }
+            },
+            "mark": {"type": "bar", "tooltip": true, "stroke": "#161616"},
+            "params": [
+                {"name": "highlight", "select": {"type": "point", "on": "mouseover", "clear": "mouseout"}}
+            ],
+            "encoding": {
+                "y": {
+                    "field": "Value", 
+                    "type": "quantitative", 
+                    "title": null,
+                    "axis": {
+                        "labelAngle": 0,
+                        "labelFontSize": 11,
+                        "tickCount": 3
+                    }
+                },
+                "tooltip": [
+                    {
+                        "field": "Geography", 
+                        "title": "Neighborhood"
+                    },
+                    {
+                        "field": "valueLabel",
+                        "title": `${mapMeasurementType}`
+                    },
+                    {
+                        "field": "TimePeriod",
+                        "title": "Time period"
+                    }
+                ],
+                "x": {"field": "GeoID", "sort": "y", "axis": null},
+                "color": {
+                    "bin": false,
+                    "field": "Value",
+                    "type": "quantitative",
+                    "scale": {"scheme": {"name": "viridis", "extent": [1, 0]}},
+                    "legend": false
+                },
+                "stroke": {
+                    "condition": [{"param": "highlight", "empty": false, "value": "cyan"}],
+                    "value": "white"
+                },
+                "strokeWidth": {
+                    "condition": [{"param": "highlight", "empty": false, "value": 3}],
+                    "value": 0
+                }
+            }
+        }
+    }
+
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
     // change color scale based on rankReverse
@@ -324,64 +487,10 @@ const renderMap = (
                     }
                 ]
             },
-            {
-                "height": 150,
-                "width": "container",
-                "config": {
-                    "axisY": {
-                        "labelAngle": 0,
-                        "labelFontSize": 13,
-                    }
-                },
-                "mark": {"type": "bar", "tooltip": true, "stroke": "#161616"},
-                "params": [
-                    {"name": "highlight", "select": {"type": "point", "on": "mouseover", "clear": "mouseout"}}
-                ],
-                "encoding": {
-                    "y": {
-                        "field": "Value", 
-                        "type": "quantitative", 
-                        "title": null,
-                        "axis": {
-                            "labelAngle": 0,
-                            "labelFontSize": 11,
-                            "tickCount": 3
-                        }
-                    },
-                    "tooltip": [
-                        {
-                            "field": "Geography", 
-                            "title": "Neighborhood"
-                        },
-                        {
-                            "field": "valueLabel",
-                            "title": `${mapMeasurementType}`
-                        },
-                        {
-                            "field": "TimePeriod",
-                            "title": "Time period"
-                        }
-                    ],
-                    "x": {"field": "GeoID", "sort": "y", "axis": null},
-                    "color": {
-                        "bin": false,
-                        "field": "Value",
-                        "type": "quantitative",
-                        "scale": {"scheme": {"name": "viridis", "extent": [1, 0]}},
-                        "legend": false
-                    },
-                    "stroke": {
-                        "condition": [{"param": "highlight", "empty": false, "value": "cyan"}],
-                        "value": "white"
-                    },
-                    "strokeWidth": {
-                        "condition": [{"param": "highlight", "empty": false, "value": 3}],
-                        "value": 0
-                    }
-                }
-            }
+            barChart
         ]
     }
+
     
     // ----------------------------------------------------------------------- //
     // render chart
