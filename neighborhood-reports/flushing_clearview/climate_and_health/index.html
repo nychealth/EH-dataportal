@@ -73,7 +73,7 @@
 <script src="/IndicatorPublic/node_modules/@fortawesome/fontawesome-free/js/all.min.eac49826a0eb7994591a42776fe61f7610773339ae3fd47b5f5419ea0e5a217851bd1d58fcdfcfe3b8e69e410d9bb60bde8aac988e802be57a003f7db960e723.js" integrity="sha512-6sSYJqDreZRZGkJ3b&#43;YfdhB3MzmuP9R7X1QZ6g5aIXhRvR1Y/N/P47jmnkENm7YL3oqsmI6AK&#43;V6AD99uWDnIw==" crossorigin="anonymous"></script>
 
 
-<link rel="stylesheet" href="/IndicatorPublic/scss/theme.20f247c8f7f7683e8c698d51d9d3f64981b92004a11972d1a9d4e1ce999d8abda9954469cd9353c569b5d9bfb8805041d0e1a0921d9bec59b9f5a7a26eca4b29.css" integrity="sha512-IPJHyPf3aD6MaY1R2dP2SYG5IAShGXLRqdThzpmdir2plURpzZNTxWm12b&#43;4gFBB0OGgkh2b7Fm59aeibspLKQ==" />
+<link rel="stylesheet" href="/IndicatorPublic/scss/theme.836667550bf632dd400f8c30e900adaf37ad9a15fba924c46faf4adb00017d93b8dd1b19c66f45bed691d196dcb56a477070e488a22bb34a4fcb25d3f525b656.css" integrity="sha512-g2ZnVQv2Mt1AD4ww6QCtrzetmhX7qSTEb69K2wABfZO43RsZxm9FvtaR0ZbctWpHcHDkiKIrs0pPyyXT9SW2Vg==" />
 
 <script src="/IndicatorPublic/js/vegaBundle.1b26defcd8c27ad6683cbca45635983e5c46ded5a02db1baaa62341a41c55d851bda2a1115752dea7e30cf34f3949dea4705148ea7a34f29d8368b9ceaa52d7f.js" integrity="sha512-Gybe/NjCetZoPLykVjWYPlxG3tWgLbG6qmI0GkHFXYUb2ioRFXUt6n4wzzTzlJ3qRwUUjqejTynYNouc6qUtfw=="></script>
 
@@ -618,312 +618,7 @@
 
 
 
-<button data-toggle="modal" data-target="#modal-Area687-1" onclick='getURL( 2140 , "Area687")' class="indicator-anchor">
-    <div class="row align-items-center d-print-none">
-        <div class="col-6 col-md-5">
-            <span class="indicator-short-name">Coastal flood risk</span>
-            <div class="print-only">Land percentage in hurricane evacuation zone, 2013</div>
-        </div>
-        <div class="col-6 col-md-4 topic-list">
-            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/Area687_403.svg" alt="Visualization showing neighborhood rank of 24 out of 42 for Coastal flood risk in Flushing - Clearview." width="100%" class="viz d-md-none mb-1"><span class="middle">Middle</span></div>
-        <div class="d-none d-md-inline col-md-3">
-            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/Area687_403.svg" alt="Visualization showing neighborhood rank of 24 out of 42 for Coastal flood risk in Flushing - Clearview." class="viz">
-        </div>
-    </div>
-
-    
-    <div class="print-only row">
-        <div class="col-4 small border-right">
-            <span class="indicator-short-name">Coastal flood risk</span>
-            <div style="font-size: 12px;">Land percentage in hurricane evacuation zone, 2013</div>
-        </div>
-        <div class="col-3 topic-list">
-            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/Area687_403.svg" alt="Visualization showing neighborhood rank of 24 out of 42 for Coastal flood risk in Flushing - Clearview." width="100%" class="viz d-md-none mb-1"><span class="middle">Middle</span></div>
-        <div class="col-5 border-left">
-            <div class="comparison">
-                <div class="row">
-                    <div class="col">
-                        Flushing - Clearview: <span class="float-right">38.5</span><br>
-                        Queens: <span class="float-right">43.2</span><br>
-                        New York City: <span class="float-right">46.9</span>
-                     </div>
-
-                </div>
-            </div>
-            <p style="font-size: 12px;"><em>Percent </em></p>
-        </div>
-    </div>
-
-</button>
-
-
-<div class="modal fade report-modal" id="modal-Area687-1" tabindex="-1" role="dialog" aria-labelledby="indicatorModalLabel" aria-hidden="true">
-   <script>
-    
-     function getYear(x,y) {
-        var endDate = new Date(x) ;
-        console.log('end date:', endDate) ;
-        var year = endDate.getYear() + 1900
-        console.log(year)
-        document.getElementById(y).innerHTML = year
-    }
-   </script>
-   
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header text-left">
-                <h2 class="modal-title fs-xl" id="indicatorModalLabel" data-pagefind-ignore="all">Coastal flood risk</h2>
-                <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
-                    <span class="fas fa-times-circle"></span>
-                </button>
-            </div>
-
-            <div class="modal-body">
-                <h2 class="fs-xl" data-pagefind-ignore="all">Land percentage in hurricane evacuation zone <span class="font-weight-normal">(<span id="year-coastal-flood-risk">YEAR</span>)</span></h2>
-                <p>Hurricane Evacuation Zones are determined by New York City Emergency Management and indicate varying threat levels of coastal flooding from storm surge. Evacuation orders may be given during hurricanes or coastal flooding events. There are six zones, ranked by storm surge risk. Zone 1 is the highest risk for flooding. Residents in these zones may receive evacuation orders during hurricanes or tropical storms.</p>
-            </div>
-
-            <script>
-                
-                getYear(`2013-12-31`,`year-coastal-flood-risk`)
-            </script>
-
-            <div class="modal-body">
-                <table class="table">
-                    <thead>
-                      <tr>
-                        <th scope="col"  style="border-top:none!important"><span class="sr-only">Location:</span></th>
-                        <th scope="col"style="width:35%;"><span class="">Percent </span></th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th scope="row"><span class="text-primary fs-xl float-right">Flushing - Clearview <span class="ml-2 float-right">38.5</span></span></th>
-
-                        <td>
-                            <div id="n-coastal-flood-risk" style="width:90%;" class="compBar neighb">
-                                &nbsp;
-                                <span class="sr-only">38.5</span>
-                            </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <th scope="row"><span class="fs-xl float-right">Queens <span class="ml-2 float-right">43.2</span></span></th>
-                        <td>
-                            <div id="b-coastal-flood-risk" style="width:90%;" class="compBar nonNeighb">
-                                &nbsp;
-                                <span class="sr-only">43.2</span>
-                            </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <th scope="row"><span class="fs-xl float-right">New York City <span class="ml-2 float-right">46.9</span></span></th>
-                        <td>
-                            <div id="c-coastal-flood-risk" style="width:90%;" class="compBar nonNeighb">
-                                &nbsp;
-                                <span class="sr-only">46.9</span>
-                            </div>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table><div class="data-note float-right"></div><script>
-                    renderComparisonChart( 38.5 ,  43.2 ,  46.9 ,'n-coastal-flood-risk','b-coastal-flood-risk','c-coastal-flood-risk')
-                    
-                </script>
-
-            </div>
-            <hr>
-            <div class="modal-body">
-                <span class="home-label font-weight-bold">Comparison</span>
-                <p class="fs-lg">For land percentage in hurricane evacuation zone, <strong class="text-primary">Flushing - Clearview</strong> is in the <span class="middle">middle</span> of NYC neighborhoods.</p>
-                <p class="fs-sm">  <em>Percent </em></p>
-                <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Area687-1"></div>
-
-            </div>
-            <hr>
-            <div class="modal-body" id="t-coastal-flood-risk">
-                <span class="home-label font-weight-bold">Trends over time</span>
-                <p class="fs-sm"><em>Percent </em></p>
-                <div style="width:100%; height:50vmin; z-index:10000;display:block;" id="trend-Area687-1"></div><div class="data-note mt-3">Some years of data may have unstable rates or estimates suppressed due to low numbers.</div></div>
-            
-            <div class="modal-body hide" id="ta-coastal-flood-risk">
-                <span class="home-label font-weight-bold">Trends over time (not available)</span>
-                <p class="fs-sm"><em>There's only a single year of data available for this indicator, so we can't show a trend.</em></p>
-            </div>
-            <script>
-                checkTrend('0','coastal-flood-risk')
-            </script>
-            <hr>
-            <div class="modal-body">
-                <span class="home-label font-weight-bold">By neighborhood</span>
-                <p class="fs-sm"><em>Percent </em></p>
-                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Area687-1"></div><div class="data-note mt-3">Some neighborhoods may have estimates suppressed due to low numbers.</div></div>
-
-            <div class="modal-body">
-                <span class="home-label font-weight-bold">Source: </span><br> 
-                <span class="fs-sm">New York City Office of Emergency Management</span>
-            </div>
-
-            
-            <div class="flex-column p-2"><a id="Area687" style="display:none">
-                <button type="button" class="btn btn-inline btn-outline-secondary px-4 float-left">Get the data</button></a>
-                <button type="button" class="btn btn-primary px-4 float-right" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<style>
-    .compBar {
-        margin-top: 5px;
-        padding-left: 5px;
-        border-left: 3px solid darkgray;
-        max-height: 36px;
-
-    }
-
-    .nonNeighb {
-        background-color: #D8D8D8;
-    }
-
-    .neighb {
-        background-color: #00923E;
-    }
-</style>
-
-
-
-<script type="text/javascript">
-
-    $( "#modal-Area687-1" ).on('shown.bs.modal', function() {
-
-        
-
-        gtag('event', 'click_modal', {
-                'modal_name': 'Coastal flood risk'
-            });
-
-        var opt = {"renderer": "svg"};
-
-            
-
-            
-
-            var summaryData =
-                arqTable
-                .filter(d => d.indicator_data_name == "Area687")
-                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
-                .dedupe()
-                .groupby("neighborhood")
-                .orderby("neighborhood", aq.desc("end_date"))
-                .slice(0,1) 
-                .ungroup()
-                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
-                .orderby("unmodified_data_value_geo_entity") 
-                .select(aq.not("end_date"))
-                .objects()
-
-
-            vegaEmbed(
-                "#summary-Area687-1",
-                summarySpec,
-                opt
-            ).then((res) => {
-
-                res.view.insert("summaryData", summaryData).run()
-
-            }).catch(console.error);;
-
-
-            
-
-            
-
-            var mapData = summaryData;
-
-
-            vegaEmbed(
-                "#map-Area687-1",
-                mapSpec,
-                opt
-            ).then((res) => {
-
-                res.view.insert("mapData", mapData).run()
-
-            }).catch(console.error);
-
-
-            
-
-            
-
-            var trendData =
-                arqTable
-                .filter(d => d.indicator_data_name == "Area687")
-                .select("start_date", "time", "geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note")
-                .dedupe()
-                .objects()
-
-
-            vegaEmbed(
-                "#trend-Area687-1",
-                trendSpec,
-                opt
-            ).then((res) => {
-
-                res.view.insert("trendData", trendData).run()
-
-            }).catch(console.error);;
-
-    });
-
-    </script>
-
-
-<script>
-    function renderComparisonChart(n,b,c,nid,bid,cid) {
-        
-        var values = []
-
-        values.push(Number(n))
-        values.push(Number(b))
-        values.push(Number(c))
-
-        
-
-        console.log('values:')
-        console.log(values)
-
-        
-        var max = Math.max(...values)
-
-        
-        var denom = max * 1.2
-        var nWidth = n / denom
-        var bWidth = b / denom
-        var cWidth = c / denom
-
-        
-        document.getElementById(nid).style.width = 100 * nWidth + '%' 
-        document.getElementById(bid).style.width = 100 * bWidth + '%'
-        document.getElementById(cid).style.width = 100 * cWidth + '%'
-
-    }
-
-    function checkTrend(x,y) {
-        if (x == 0 ) {
-            document.getElementById('t-'+y).classList.add('hide');
-            document.getElementById('ta-'+y).classList.remove('hide');
-            console.log(y)
-        } else {}
-    }
-
-</script>
-
-
-
-
-<button data-toggle="modal" data-target="#modal-Dayt688-2" onclick='getURL( 2141 , "Dayt688")' class="indicator-anchor">
+<button data-toggle="modal" data-target="#modal-Dayt688-1" onclick='getURL( 2141 , "Dayt688")' class="indicator-anchor">
     <div class="row align-items-center d-print-none">
         <div class="col-6 col-md-5">
             <span class="indicator-short-name">Surface temperature</span>
@@ -962,7 +657,7 @@
 </button>
 
 
-<div class="modal fade report-modal" id="modal-Dayt688-2" tabindex="-1" role="dialog" aria-labelledby="indicatorModalLabel" aria-hidden="true">
+<div class="modal fade report-modal" id="modal-Dayt688-1" tabindex="-1" role="dialog" aria-labelledby="indicatorModalLabel" aria-hidden="true">
    <script>
     
      function getYear(x,y) {
@@ -1042,14 +737,14 @@
                 <span class="home-label font-weight-bold">Comparison</span>
                 <p class="fs-lg">For daytime summer surface temperature, <strong class="text-primary">Flushing - Clearview</strong> is <span class="worse">worse</span> than most neighborhoods.</p>
                 <p class="fs-sm">  <em>Degrees Fahrenheit </em></p>
-                <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Dayt688-2"></div>
+                <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Dayt688-1"></div>
 
             </div>
             <hr>
             <div class="modal-body" id="t-surface-temperature">
                 <span class="home-label font-weight-bold">Trends over time</span>
                 <p class="fs-sm"><em>Degrees Fahrenheit </em></p>
-                <div style="width:100%; height:50vmin; z-index:10000;display:block;" id="trend-Dayt688-2"></div><div class="data-note mt-3">Some years of data may have unstable rates or estimates suppressed due to low numbers.</div></div>
+                <div style="width:100%; height:50vmin; z-index:10000;display:block;" id="trend-Dayt688-1"></div><div class="data-note mt-3">Some years of data may have unstable rates or estimates suppressed due to low numbers.</div></div>
             
             <div class="modal-body hide" id="ta-surface-temperature">
                 <span class="home-label font-weight-bold">Trends over time (not available)</span>
@@ -1062,7 +757,7 @@
             <div class="modal-body">
                 <span class="home-label font-weight-bold">By neighborhood</span>
                 <p class="fs-sm"><em>Degrees Fahrenheit </em></p>
-                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Dayt688-2"></div><div class="data-note mt-3">Some neighborhoods may have estimates suppressed due to low numbers.</div></div>
+                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Dayt688-1"></div><div class="data-note mt-3">Some neighborhoods may have estimates suppressed due to low numbers.</div></div>
 
             <div class="modal-body">
                 <span class="home-label font-weight-bold">Source: </span><br> 
@@ -1100,7 +795,7 @@
 
 <script type="text/javascript">
 
-    $( "#modal-Dayt688-2" ).on('shown.bs.modal', function() {
+    $( "#modal-Dayt688-1" ).on('shown.bs.modal', function() {
 
         
 
@@ -1130,7 +825,7 @@
 
 
             vegaEmbed(
-                "#summary-Dayt688-2",
+                "#summary-Dayt688-1",
                 summarySpec,
                 opt
             ).then((res) => {
@@ -1148,7 +843,7 @@
 
 
             vegaEmbed(
-                "#map-Dayt688-2",
+                "#map-Dayt688-1",
                 mapSpec,
                 opt
             ).then((res) => {
@@ -1171,7 +866,7 @@
 
 
             vegaEmbed(
-                "#trend-Dayt688-2",
+                "#trend-Dayt688-1",
                 trendSpec,
                 opt
             ).then((res) => {
@@ -1296,12 +991,12 @@
     <div class="row align-items-center d-print-none">
         <div class="col-6 col-md-5">
             <span class="indicator-short-name">Asthma ED visits (age 5 to 17)</span>
-            <div class="print-only">Asthma emergency department visits (age 5 to 17), 2020</div>
+            <div class="print-only">Asthma emergency department visits (age 5 to 17), 2022</div>
         </div>
         <div class="col-6 col-md-4 topic-list">
-            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/Asth1196_403.svg" alt="Visualization showing neighborhood rank of 34 out of 42 for Asthma ED visits (age 5 to 17) in Flushing - Clearview." width="100%" class="viz d-md-none mb-1"><span class="better">Better</span></div>
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/Asth1196_403.svg" alt="Visualization showing neighborhood rank of 32 out of 42 for Asthma ED visits (age 5 to 17) in Flushing - Clearview." width="100%" class="viz d-md-none mb-1"><span class="better">Better</span></div>
         <div class="d-none d-md-inline col-md-3">
-            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/Asth1196_403.svg" alt="Visualization showing neighborhood rank of 34 out of 42 for Asthma ED visits (age 5 to 17) in Flushing - Clearview." class="viz">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/Asth1196_403.svg" alt="Visualization showing neighborhood rank of 32 out of 42 for Asthma ED visits (age 5 to 17) in Flushing - Clearview." class="viz">
         </div>
     </div>
 
@@ -1309,17 +1004,17 @@
     <div class="print-only row">
         <div class="col-4 small border-right">
             <span class="indicator-short-name">Asthma ED visits (age 5 to 17)</span>
-            <div style="font-size: 12px;">Asthma emergency department visits (age 5 to 17), 2020</div>
+            <div style="font-size: 12px;">Asthma emergency department visits (age 5 to 17), 2022</div>
         </div>
         <div class="col-3 topic-list">
-            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/Asth1196_403.svg" alt="Visualization showing neighborhood rank of 34 out of 42 for Asthma ED visits (age 5 to 17) in Flushing - Clearview." width="100%" class="viz d-md-none mb-1"><span class="better">Better</span></div>
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/Asth1196_403.svg" alt="Visualization showing neighborhood rank of 32 out of 42 for Asthma ED visits (age 5 to 17) in Flushing - Clearview." width="100%" class="viz d-md-none mb-1"><span class="better">Better</span></div>
         <div class="col-5 border-left">
             <div class="comparison">
                 <div class="row">
                     <div class="col">
-                        Flushing - Clearview: <span class="float-right">18.4</span><br>
-                        Queens: <span class="float-right">32.8</span><br>
-                        New York City: <span class="float-right">57.1</span>
+                        Flushing - Clearview: <span class="float-right">60.7</span><br>
+                        Queens: <span class="float-right">86</span><br>
+                        New York City: <span class="float-right">127</span>
                      </div>
 
                 </div>
@@ -1359,7 +1054,7 @@
 
             <script>
                 
-                getYear(`2020-12-31`,`year-asthma-ed-visits-age-5-to-17`)
+                getYear(`2022-12-31`,`year-asthma-ed-visits-age-5-to-17`)
             </script>
 
             <div class="modal-body">
@@ -1372,36 +1067,36 @@
                     </thead>
                     <tbody>
                       <tr>
-                        <th scope="row"><span class="text-primary fs-xl float-right">Flushing - Clearview <span class="ml-2 float-right">18.4</span></span></th>
+                        <th scope="row"><span class="text-primary fs-xl float-right">Flushing - Clearview <span class="ml-2 float-right">60.7</span></span></th>
 
                         <td>
                             <div id="n-asthma-ed-visits-age-5-to-17" style="width:90%;" class="compBar neighb">
                                 &nbsp;
-                                <span class="sr-only">18.4</span>
+                                <span class="sr-only">60.7</span>
                             </div>
                         </td>
                       </tr>
                       <tr>
-                        <th scope="row"><span class="fs-xl float-right">Queens <span class="ml-2 float-right">32.8</span></span></th>
+                        <th scope="row"><span class="fs-xl float-right">Queens <span class="ml-2 float-right">86</span></span></th>
                         <td>
                             <div id="b-asthma-ed-visits-age-5-to-17" style="width:90%;" class="compBar nonNeighb">
                                 &nbsp;
-                                <span class="sr-only">32.8</span>
+                                <span class="sr-only">86</span>
                             </div>
                         </td>
                       </tr>
                       <tr>
-                        <th scope="row"><span class="fs-xl float-right">New York City <span class="ml-2 float-right">57.1</span></span></th>
+                        <th scope="row"><span class="fs-xl float-right">New York City <span class="ml-2 float-right">127</span></span></th>
                         <td>
                             <div id="c-asthma-ed-visits-age-5-to-17" style="width:90%;" class="compBar nonNeighb">
                                 &nbsp;
-                                <span class="sr-only">57.1</span>
+                                <span class="sr-only">127</span>
                             </div>
                         </td>
                       </tr>
                     </tbody>
-                  </table><div class="data-note float-right"> The start of COVID-19 in Spring 2020 reduced the overall volume of ED visits, including those for asthma, which may have contributed to decreases in asthma ED visit and hospitalization counts and rates in 2020.</div><script>
-                    renderComparisonChart( 18.4 ,  32.8 ,  57.1 ,'n-asthma-ed-visits-age-5-to-17','b-asthma-ed-visits-age-5-to-17','c-asthma-ed-visits-age-5-to-17')
+                  </table><div class="data-note float-right"></div><script>
+                    renderComparisonChart( 60.7 ,  86 ,  127 ,'n-asthma-ed-visits-age-5-to-17','b-asthma-ed-visits-age-5-to-17','c-asthma-ed-visits-age-5-to-17')
                     
                 </script>
 

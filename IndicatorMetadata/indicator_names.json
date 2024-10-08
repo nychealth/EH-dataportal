@@ -497,7 +497,7 @@
   "2184": {
     "IndicatorID": 2184,
     "description": "Elevated blood lead levels are 5+ mcg/dL. There is no safe level of lead in the blood. Lead poisoning can cause learning and behavior problems, and delay growth and mental development.",
-    "name": "Elevated blood levels (under age 6)"
+    "name": "Elevated blood lead levels (under age 6)"
   },
   "2185": {
     "IndicatorID": 2185,
@@ -562,7 +562,7 @@
   "2216": {
     "IndicatorID": 2216,
     "description": "Elevated blood lead levels are 5+ mcg/dL. There is no safe level of lead in the blood. Lead poisoning can cause learning and behavior problems, and delay growth and mental development.",
-    "name": "Elevated blood levels (under age 6), by NTA"
+    "name": "Elevated blood lead levels (under age 6), by NTA"
   },
   "2218": {
     "IndicatorID": 2218,
