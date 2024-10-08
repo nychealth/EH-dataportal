@@ -191,3 +191,11 @@ function changeDisparitiesSpec() {
 
     printSpec.layer.push(sourceLayer)
 }
+
+// ----------------------------------------------------------------------- //
+// Deactive Save Button for table
+// ----------------------------------------------------------------------- //
+window.addEventListener('hashchange', function() {
+  var chartbtn = document.getElementById('chartSaver')
+  currentHash === 'display=summary' ? chartbtn.classList.add('disabled') : chartbtn.classList.remove('disabled')
+});
