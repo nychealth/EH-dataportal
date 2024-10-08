@@ -149,8 +149,10 @@ $color-data-explorer: #0A408A;
 
 .btn-light-green-bg {
   background-color: #EFFAF4;
+  color: #008939;
   &:hover {
     background-color: #008939;
+    color:white;
   }
 }
 
@@ -242,4 +244,8 @@ $color-data-explorer: #0A408A;
 
 #primary-content h3 {
   padding-top: 20px;
+}
+
+#toggleButton[aria-expanded="true"] {
+  display: none;
 }

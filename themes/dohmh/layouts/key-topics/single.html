@@ -1,7 +1,7 @@
 {{- define "main" -}}
 
 {{ $src := .Resources.GetMatch .Params.image }}
-{{ $image := $src.Resize "x350"}}
+{{ $image := $src.Resize "x800"}}
 
 <style>
     .kt-bg-image {
@@ -14,7 +14,7 @@
 <article id="skip-header-target">
     <div class="container wide">
         <div class="row">
-            <div class="col-lg-10 col-md-12 mx-auto mt-2 mb-3">
+            <div class="col-sm-12 mt-2 mb-2">
                 <nav aria-label="breadcrumb" class="">
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
@@ -25,119 +25,140 @@
             </div>
         </div>
 
-        <div class="row key-topics mt-4">
-            <div class="col-lg-10 col-md-12 mx-auto">
-                <h1 class="h2" data-pagefind-weight="10.0">
-                    <i class="fas fa-star mr-1" aria-hidden="true"></i>{{ .Title }}
-                </h1>
+        <div class="row mt-1 py-4 mb-4 border-bottom">
+            <div class="col-12 mb-3">
+                <div class="key-topics">
+                    <h1 class="h2" data-pagefind-weight="10.0">
+                        <i class="fas fa-star mr-1" aria-hidden="true"></i>{{ .Title }}
+                    </h1>
+                </div>
             </div>
-        </div>
 
-        <div class="row mt-1">
-            <div class="col-md-12 col-lg-6 ml-auto">
-
+            <div class="col-md-12 col-lg-8 pr-xl-4">
+                <img src="{{ $image.RelPermalink }}" class="mb-3" alt="">
                 {{- .Content -}}
             </div>
 
-            <div class="col-md-12 col-lg-4 mr-auto">
-                <div class="kt-bg-image pl-1 mb-2 cardshadow"></div>
-            </div>
-
-        </div>
-
-        {{- if where ( where .Site.RegularPages "Section" "data-features") ".Params.categories" "intersect" ( slice .Params.keyTopic ) -}}
-        <div class="row mt-4">
-            <div class="col-lg-10 col-md-12 mx-auto">
-                <div class="row">
-                    <div class="col">
-                        <div class="df-accent">
-                            <span class="h3 fs-lg"><i class="fas fa-chart-bar mr-1 key-topics" aria-hidden="true"></i>Data Features:</span> <span class="home-label">Interactive infographics and reports</span>
-                        </div>
-                    </div>
+            <div class="col-md-12 col-lg-4 mr-auto pl-xl-4">
+                <div class="df-accent mt-4 mt-md-0">
+                    <div class="h3 fs-lg"><i class="fas fa-chart-bar mr-1 key-topics" aria-hidden="true"></i>Data Features:</div>
+                    <div class="home-label">Interactive infographics and reports</div>
                 </div>
 
-                <div class="row my-2">
+                <div class="my-2">
                     {{- range where ( where .Site.RegularPages "Section" "data-features") ".Params.categories" "intersect" ( slice .Params.keyTopic ) -}}
                     {{- if not .Params.hide -}}
-                        <div class="card content-card mb-4 col-sm-6 col-md-4">
+                        <div class="card card-left-border shadow-sm mb-4">
                             <div class="card-content card-body">
                                 <h4 class="fs-md"><a class="link-track" href="{{ .RelPermalink }}" class="text-primary">{{ .Title }}</a></h4>
                                 <p class="fs-sm">{{ .Content | plainify | truncate 175 | htmlUnescape }}
                                 </p>
-                                <p class="fs-sm text-primary float-right mb-2"><a class="link-track" href="{{ .RelPermalink }}">Get the data... <i
-                                    class="fas fa-arrow-circle-right"></i></a></p>
+                                <div class="d-flex justify-content-end">
+                                    <a class="fs-sm font-weight-bold" href="{{ .RelPermalink }}">Get the data<i class="fas fa-arrow-circle-right ml-1" aria-hidden="true"></i></a>
+                                </div>
                             </div>
                         </div>
                         {{- end -}}
                     {{- end -}}
 
                 </div>
-
             </div>
-        </div>
 
-        {{- end -}}
+        </div>
 
 
         <div class="row mt-4">
-            <div class="col-lg-10 col-md-12 mx-auto">
+            <div class="col-12">
                 <div class="row">
-                    <div class="col-md-6 col-sm-12">
+                    <div class="col-md-4 col-sm-12">
                         <div class="de-accent">
-                            <span class="h3 fs-lg"><i class="fas fa-chart-line pr-1" aria-hidden="true"></i>Data Sets:</span>
-                            <span class="home-label">Get tables, maps, and trends </span>
+                            <div class="h3 fs-lg"><i class="fas fa-chart-line pr-1" aria-hidden="true"></i>Data Sets:</div>
+                            <div class="home-label">Get tables, maps, and trends </div>
                         </div>
-                        <div class="card content-card mt-2 mb-4">
-                            <div class="card-content">
-                                <div class="card-body">
-                                    {{- partial "related" (dict "section" "data-explorer" "layout" "singlelist" "content" . ) -}}
-
-                              </div>
-                            </div>
-                          </div>
-
-                      {{- if where ( where .Site.RegularPages "Section" "neighborhood-reports") ".Params.categories" "intersect" ( slice .Params.keyTopic ) -}}
-                      <div class="nr-accent">
-                        <span class="h3 fs-lg"><i class="fas fa-map-marked-alt mr-1" aria-hidden="true"></i>Neighborhood Reports:</span>
-                        <span class="home-label ">Get data for your neighborhood on</span>
-                      </div>
-                          <div class="mt-2">
-                            {{- partial "related" (dict "section" "neighborhood-reports" "layout" "button" "extraClass" "link-track" "content" . ) -}}
-                          </div>
-                  {{- end -}}
-
-
-
+                        <div class="mt-2 mb-4">
+                            {{- partial "related" (dict "section" "data-explorer" "layout" "singlelist" "content" . ) -}}
+                        </div>
                     </div>
 
-                    <div class="col-md-6 col-sm-12">
+                    <div class="col-md-4 col-sm-12">
                         {{- if where ( where .Site.RegularPages "Section" "data-stories") ".Params.categories" "intersect" ( slice .Params.keyTopic ) -}}
                         <div class="ds-accent">
-                            <span class="h3 fs-lg"><i class="fas fa-passport mr-1" aria-hidden="true"></i>Data Stories:</span>
-                            <span class="home-label ">Narratives and explainers</span>
-
+                            <div class="h3 fs-lg"><i class="fas fa-passport mr-1" aria-hidden="true"></i>Data Stories:</div>
+                            <div class="home-label ">Narratives and explainers</div>
                         </div>
 
 
-                            {{- range where ( where .Site.RegularPages "Section" "data-stories") ".Params.categories" "intersect" ( slice .Params.keyTopic ) -}}
+                        {{- range first 5 ( where ( where .Site.RegularPages "Section" "data-stories") ".Params.categories" "intersect" ( slice .Params.keyTopic ) ) -}}
                             <div class="row no-gutters mt-2">
-                                <div class="col-9 ml-auto h-100 pr-1">
-                                  <p class="fs-sm text-align-right h-100 pl-1 mb-1"><a class="link-track text-primary font-weight-bold" href="{{ .RelPermalink }}">{{ .Title }}</a> {{ .Content | plainify | truncate 125 | htmlUnescape }} </p>
-                                </div>
-
-                                <div class="col-3 border mh-100">
+                                <div class="col-5">
                                     {{ $src := .Resources.GetMatch .Params.image }}
-                                        {{ $image := $src.Resize "740x"}}
-                                        <a class="link-track" href="{{ .RelPermalink }}">
-                                        <div style="width:100%; height:100%; background-image: URL({{ $image.RelPermalink }}); background-size: cover"></div></a>
-                                  </div>
+                                    {{ $image := $src.Resize "280x 200x"}}
+                                    <a class="link-track" href="{{ .RelPermalink }}">
+                                        <img src="{{ $image.RelPermalink }}" class="mb-3" alt="">
+                                    </a>
+                                </div>
+                                <div class="col-7 ml-auto h-100 pr-1 pl-2">
+                                    {{ $title := .Title | plainify | htmlUnescape }}
+                                    {{ $content := .Content | plainify | htmlUnescape }}
+
+                                    {{ .Scratch.Set "intro" $title }}
+                                    {{ .Scratch.Add "intro" " | " }}
+                                    {{ .Scratch.Add "intro" $content }}
+                                  <p class="fs-md text-align-right h-100 pl-1 mb-2"><a class="link-track text-primary font-weight-bold" href="{{ .RelPermalink }}">{{ .Scratch.Get "intro" | truncate 125 }}</a></p>
+                                </div>
                               </div>
 
-                              <hr class="my-2 mx-6">
+                              <hr class="mb-1 pb-1">
 
                             {{- end -}}
+                        {{- end -}}
 
 
+                        <!-- Button to toggle the collapse -->
+                        <a class="btn btn-primary mb-3" data-toggle="collapse" href="#collapseStories" role="button" aria-expanded="false" aria-controls="collapseStories" id="toggleButton">
+                            Show More
+                        </a>
+
+                        <!-- Collapsible content (after the first 5 stories) -->
+                        <div class="collapse" id="collapseStories">
+                            {{- range after 5 ( where ( where .Site.RegularPages "Section" "data-stories") ".Params.categories" "intersect" ( slice .Params.keyTopic ) ) -}}
+                            <div class="row no-gutters mt-2">
+                            <div class="col-5">
+                                {{ $src := .Resources.GetMatch .Params.image }}
+                                {{ $image := $src.Resize "280x 200x"}}
+                                <a class="link-track" href="{{ .RelPermalink }}">
+                                <img src="{{ $image.RelPermalink }}" class="mb-3" alt="">
+                                </a>
+                            </div>
+                            <div class="col-7 ml-auto h-100 pr-1 pl-2">
+                                {{ $title := .Title | plainify | htmlUnescape }}
+                                {{ $content := .Content | plainify | htmlUnescape }}
+
+                                {{ .Scratch.Set "intro" $title }}
+                                {{ .Scratch.Add "intro" " | " }}
+                                {{ .Scratch.Add "intro" $content }}
+                                <p class="fs-md text-align-right h-100 pl-1 mb-2">
+                                <a class="link-track text-primary font-weight-bold" href="{{ .RelPermalink }}">
+                                    {{ .Scratch.Get "intro" | truncate 125 }}
+                                </a>
+                                </p>
+                            </div>
+                            </div>
+
+                            <hr class="mb-1 pb-1">
+                            {{- end -}}
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-12 mt-3 mt-md-0">
+                        {{- if where ( where .Site.RegularPages "Section" "neighborhood-reports") ".Params.categories" "intersect" ( slice .Params.keyTopic ) -}}
+                        <div class="nr-accent">
+                          <div class="h3 fs-lg"><i class="fas fa-map-marked-alt mr-1" aria-hidden="true"></i>Neighborhood Reports:</div>
+                          <div class="home-label ">Get data for your neighborhood on</div>
+                        </div>
+                            <div class="mt-2">
+                              {{- partial "related" (dict "section" "neighborhood-reports" "layout" "button" "extraClass" "link-track text-left" "content" . ) -}}
+                            </div>
                         {{- end -}}
                     </div>
 
