@@ -80,9 +80,11 @@ function changeTrendSpec() {
         }
       }
 
-    
-    document.getElementById('modalFootnotes').innerHTML = document.getElementById('trend-unreliability').innerHTML
+    var modalFootnotes = document.getElementById('modalFootnotes')
 
+    modalFootnotes.innerHTML = document.getElementById('trend-unreliability').innerHTML
+
+    modalFootnotes.textContent.length < 8 ? modalFootnotes.classList.add('hide') : {};
 
     printSpec.layer.push(sourceLayer)
 }
@@ -115,8 +117,11 @@ function changeMapSpec(x) {
         }
       }
 
-      document.getElementById('modalFootnotes').innerHTML = document.getElementById('map-unreliability').innerHTML
+      var modalFootnotes = document.getElementById('modalFootnotes')
 
+      modalFootnotes.innerHTML = document.getElementById('map-unreliability').innerHTML
+  
+      modalFootnotes.textContent.length < 8 ? modalFootnotes.classList.add('hide') : {};
 
       printSpec.vconcat.push(sourceLayer)
 
@@ -151,8 +156,11 @@ function changeLinksSpec() {
         }
       }
 
-      document.getElementById('modalFootnotes').innerHTML = document.getElementById('links-unreliability').innerHTML
+      var modalFootnotes = document.getElementById('modalFootnotes')
 
+      modalFootnotes.innerHTML = document.getElementById('links-unreliability').innerHTML
+  
+      modalFootnotes.textContent.length < 8 ? modalFootnotes.classList.add('hide') : {};
 
     printSpec.layer.push(sourceLayer)
 }
@@ -187,8 +195,11 @@ function changeDisparitiesSpec() {
         }
       }
 
-    document.getElementById('modalFootnotes').innerHTML = document.getElementById('links-unreliability')
+      var modalFootnotes = document.getElementById('modalFootnotes')
 
+      modalFootnotes.innerHTML = document.getElementById('links-unreliability').innerHTML
+  
+      modalFootnotes.textContent.length < 8 ? modalFootnotes.classList.add('hide') : {};
     printSpec.layer.push(sourceLayer)
 }
 
