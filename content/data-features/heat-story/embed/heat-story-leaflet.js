@@ -518,6 +518,7 @@ async function createRedlinedLayer({ id, name, urls, args, displayProperties }) 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
     // create legend
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
     layer.options.legendFunc = legendFuncForLayer(id, name, args, layer);
 
     // console.log("layer [createRedlinedLayer]", layer);
@@ -609,6 +610,7 @@ async function createMeasuresLayer({ id, name, measureInfo, args, displayPropert
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
     // create legend
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
     layer.options.legendFunc = legendFuncForLayer(id, name, args, layer);
 
     // console.log("layer [createMeasuresLayer]", layer);
@@ -734,6 +736,7 @@ async function createGeoJsonLayer({ id, name, url, args, displayProperties }) {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
     // create legend
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
     layer.options.legendFunc = legendFuncForLayer(id, name, args, layer);
 
     // console.log("layer [createGeoJsonLayer]", layer);
@@ -788,12 +791,14 @@ async function createGeotiffLayer({ id, url, args, name }) {
     
     const legendFunc = () => {
 
+        console.log("** legendFunc");
+
         // console.log("mins [legendFunc (createGeotiffLayer)]", data.mins[0]);
         // console.log("maxs [legendFunc (createGeotiffLayer)]", data.maxs[0]);
 
         const colorStart = args?.colorStart || '#0f0';
         const colorStop = args?.colorStop || '#f00';
-        const legend = name + '<span style="'
+        let legend = name + '<span style="'
             + ` background-image: linear-gradient(to right, ${colorStart}, ${colorStop});`
             + ' height: 20px;     width: 100%;'
             + ' display: block; background-repeat: no-repeat;'
@@ -802,6 +807,16 @@ async function createGeotiffLayer({ id, url, args, name }) {
             + ((data.mins && data.mins[0]) ? `<div style="float: left">${data.mins[0].toFixed(1)}</div>` : '')
             + ((data.maxs && data.maxs[0]) ? `<div style="float: right">${data.maxs[0].toFixed(1)}</div>` : '')
             + '</div>';
+
+        if (args?.legendDescription) {
+
+            const collapseId = `${id}LegendCollapse`;
+
+            legend += `<br /><div style="display: block; width: 100%; max-width: 275px; font-size: 90%"><a data-toggle="collapse" href="#${collapseId}" role="button" aria-expanded="false" aria-controls="${collapseId}">More info about ${name}</a>`
+                + `<div class="collapse" id="${collapseId}">${args.legendDescription}</div></div>`;
+        }
+
+        console.log("legend", legend);
 
         return legend;
 
@@ -1560,9 +1575,9 @@ function createLegend(fun) {
 /*
  * Create the legend for a layer that uses a color map
  */
-const legendFuncForColorMap = (name, args) => {
+const legendFuncForColorMap = (id, name, args) => {
 
-    // console.log("** legendFunc [createRedlinedLayer]");
+    console.log("** legendFuncForColorMap");
 
     if (!args?.colorMap) {
         return '';
@@ -1600,6 +1615,14 @@ const legendFuncForColorMap = (name, args) => {
         + labels.join('')
         + '</div>';
 
+    if (args.legendDescription) {
+
+        const collapseId = `${id}LegendCollapse`;
+
+        legend += `<div style="display: block; width: 100%; max-width: 275px; font-size: 90%"><a data-toggle="collapse" href="#${collapseId}" role="button" aria-expanded="false" aria-controls="${collapseId}">More info about ${name}</a>`
+            + `<div class="collapse" id="${collapseId}">${args.legendDescription}</div></div>`;
+    }
+
     return legend;
 }
 
@@ -1613,13 +1636,15 @@ const legendFuncForColorMap = (name, args) => {
  */
 const legendFuncForLayer = (id, name, args, layer) => {
 
-    console.log("args [legendFuncForLayer]", args);
-    console.log("layer [legendFuncForLayer]", layer);
+    console.log("* legendFuncForLayer");
+
+    // console.log("args [legendFuncForLayer]", args);
+    // console.log("layer [legendFuncForLayer]", layer);
 
     return () => {
         // console.log("** legendFunc [createMeasuresLayer]");
         if (args?.colorMap) {
-            return legendFuncForColorMap(name, args);
+            return legendFuncForColorMap(id, name, args);
         }
 
         if (!args?.fillColor && !args?.color && !args?.minColor && !args?.maxColor) {
@@ -1664,8 +1689,11 @@ const legendFuncForLayer = (id, name, args, layer) => {
 
         }
 
+        
         if (args.legendDescription) {
+
             const collapseId = `${id}LegendCollapse`;
+
             legend += `<br /><div style="display: block; width: 100%; max-width: 275px; font-size: 90%"><a data-toggle="collapse" href="#${collapseId}" role="button" aria-expanded="false" aria-controls="${collapseId}">More info about ${name}</a>`
                 + `<div class="collapse" id="${collapseId}">${args.legendDescription}</div></div>`;
         }

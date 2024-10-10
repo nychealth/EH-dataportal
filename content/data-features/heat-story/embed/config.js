@@ -67,7 +67,10 @@ config = {
                 "type": "raster",
                 "url": window.BaseURL + "tiff/nyc-hi-morning.tiff",
                 "buttonSection": "studyArea",
-                "exclusive": true
+                "exclusive": true,
+                "args": {
+                    "legendDescription": "Morning heat index"
+                },
             }
         },
         {
@@ -77,7 +80,10 @@ config = {
                 "type": "raster",
                 "url": window.BaseURL + "tiff/nyc-hi-afternoon.tiff",
                 "buttonSection": "studyArea",
-                "exclusive": true
+                "exclusive": true,
+                "args": {
+                    "legendDescription": "Afternoon heat index"
+                },
             }
         },
         {
@@ -87,7 +93,10 @@ config = {
                 "type": "raster",
                 "url": window.BaseURL + "tiff/nyc-hi-evening.tiff",
                 "buttonSection": "studyArea",
-                "exclusive": true
+                "exclusive": true,
+                "args": {
+                    "legendDescription": "Evening heat index"
+                },
             }
         },
 
