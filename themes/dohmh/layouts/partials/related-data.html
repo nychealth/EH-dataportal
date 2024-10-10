@@ -1,0 +1,14 @@
+<section data-pagefind-ignore="all">
+    <div class="related-border-sm my-2 pt-2">
+        {{- if .Params.relatedData -}}
+        <h5 class="fs-md"><i class="fas fa-chart-line mr-1 data-explorer" aria-hidden="true"></i>Related data on:</h5>
+          {{ range .Params.relatedData}}
+
+          <a href="../{{ .url }}" class="text-black fs-sm">{{ .title }}</a> 
+          <hr class="my-1">
+
+          {{ end }}
+        {{- end -}}
+
+    </div>
+</section>
