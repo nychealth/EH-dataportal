@@ -69,7 +69,7 @@ config = {
                 "buttonSection": "studyArea",
                 "exclusive": true,
                 "args": {
-                    "legendDescription": "Morning heat index"
+                    "legendDescription": "This hyperlocal temperature data was collected from 6-7am by residents living in Northern Manhattan and the Bronx. On Saturday July 24, 2021, these community scientists traversed along 10 different one-hour long routes with heat sensors on their cars or bicycles to capture block-by-block differences."
                 },
             }
         },
@@ -82,7 +82,7 @@ config = {
                 "buttonSection": "studyArea",
                 "exclusive": true,
                 "args": {
-                    "legendDescription": "Afternoon heat index"
+                    "legendDescription": "This hyperlocal temperature data was collected from 3-4pm by residents living in Northern Manhattan and the Bronx. On Saturday July 24, 2021, these community scientists traversed along 10 different one-hour long routes with heat sensors on their cars or bicycles to capture block-by-block differences."
                 },
             }
         },
@@ -95,7 +95,7 @@ config = {
                 "buttonSection": "studyArea",
                 "exclusive": true,
                 "args": {
-                    "legendDescription": "Evening heat index"
+                    "legendDescription": "This hyperlocal temperature data was collected from 7-8pm by residents living in Northern Manhattan and the Bronx. On Saturday July 24, 2021, these community scientists traversed along 10 different one-hour long routes with heat sensors on their cars or bicycles to capture block-by-block differences."
                 },
             }
         },
