@@ -156,7 +156,7 @@ config = {
         {
             "property": {
                 "id": "redline",
-                "name": "Redlined Areas",
+                "name": "Redlined areas",
                 "type": "redlined",
                 "urls": {
                     "Class A": window.BaseURL + "maps/HOLC_map/data/HOLCClassA_3.json",
@@ -176,7 +176,7 @@ config = {
                         "D": "red"
                     },
                     "opacity": 0.6,
-                    "legendDescription": "This 1930s-era HOLC redlining map shows the four grades that were assigned to neighborhoods based on race, and helps us understand the nature of racism, poverty, and health in our society. Read more about redlining here."
+                    "legendDescription": "This 1930s-era Home Owners' Loan Corporation (HOLC) redlining map shows the four grades that were assigned to neighborhoods based on race, and helps us understand the nature of racism, poverty, and health in our society. On these maps, HOLC gave each neighborhood a classification where A=Best, B=Still desirable, C=Definitely declining, and D=Hazardous. <a href='https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/redlining/'>Read more about redlining here.</a>"
                 },
                 "displayProperties": {
                     "displayPropertyArgs": [
