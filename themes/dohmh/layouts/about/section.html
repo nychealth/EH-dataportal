@@ -20,19 +20,18 @@
       <p class="home-label mt-4">Recent posts:</p>
       <div class="row">
         {{- range (where .Site.RegularPages.ByDate "Section" "about").Reverse -}}
-        <div class="col-md-6 mb-2">
-            <div class="card content-card mb-4">
-                <div class="card-content">
-
-                    <div class="card-body">
-                    <p class="fs-sm card-title fs-sm"><a href="{{ .RelPermalink }}" class="text-primary">{{ .Title }}</a></p>
-                    <p class="fs-sm">{{ .Content | truncate 100 | plainify }}</p>
-                    <p class="fs-sm text-primary float-right mb-2"><a href="{{ .RelPermalink }}">Read more <i
-                        class="fas fa-arrow-circle-right"></i></a></p>
-                  </div>
-                </div>
+        <div class="card content-card mb-4 col-sm-6">
+        <div class="card-content primary">
+          <div class="card-body">
+              <h3 class="card-title"><a class="text-black" href="{{ .RelPermalink }}" class="text-primary">{{ .Title }}</a></h3>
+              <div class="mb-2">{{ .Content | truncate 100 | plainify }}</div>
+              <div class="d-flex justify-content-end link">
+                  <a class="fs-sm font-weight-bold" href="{{ .RelPermalink }}">Read more <i class="fa-solid fa-angle-right"></i></a>
               </div>
-        </div>
+          </div>
+      </div>
+    </div>
+
         {{- end -}}
       </div>
 
