@@ -29,9 +29,9 @@ Here are some of the changes we've made, and why we've made them.
 
 ## Exposing options menus
 
-Each of the Data Explorer's views includes options for how to display the data. Previously, these options were collapsed inside buttons above each chart. But when we tested the website with our users - people like you - we noticed that a lot of people didn't click on the buttons at all. They didn't have labels that were meaningful to our testers, so people weren't intrigued to find out more. This was a missed opportunity for people to engage with our data. We thought that by exposing what was in these menus, it would show the available options and let you know other ways you can control what data are displayed.
+Each of the Data Explorer's views includes options for how to display the data. Previously, these options were collapsed inside buttons above each chart. But when we tested the website with our users - people like you - we noticed that a lot of people didn't click on the buttons at all. They didn't have labels that were meaningful to our testers - so the testers didn't click the buttons to see what would happen. This was a missed opportunity for people to engage with our data. We thought that by exposing what was in these menus, it would show the available options and let you know other ways you can control what data are displayed.
 
-These options depend on the underlying datasets, so different datasets will have different options.
+These options depend on the underlying datasets, so different datasets have different options.
 
 ![](de-new-options.png)
 <br>
@@ -40,9 +40,9 @@ These options depend on the underlying datasets, so different datasets will have
 
 When we tested the website, we also found that a lot of people were confused by what was or wasn't available, and the language we used to describe datasets. So, we added info pop-ups throughout the data explorer to better explain.
 
-Here's an example: **Geographies**. Most of us know a "geography" as a set of boundaries - like states, or counties. For NYC, a "geography" is a way of dividing up the city into neighborhoods. There are different ways to cut the city into neighborhoods - and different datasets can be cut up in different ways. For some datasets, you can explore the data by different neighborhood schemes ("geographies").
+Here's an example: **Geographies**. To us, a "geography" as a set of boundaries - like states, or counties. For NYC, a "geography" is a way of dividing up the city into neighborhoods. There are different ways to cut the city into neighborhoods - and different datasets can be cut up in different ways. For our datasets, you can explore the data by different neighborhood schemes ("geographies").
 
-But a lot of people weren't sure what this label, "Geographies", meant - and they didn't know what the abbreviations, like CD, UHF42, and NTA, meant either. So, we changed the label to "Boundaries," and added an info pop-up that explains those abbreviations.
+But a lot of people weren't sure what this label, "Geographies", meant - and they didn't know what the neighborhood abbreviations, like CD, UHF42, and NTA, meant either. So, we changed the label to "Boundaries," and added an info pop-up that explains those abbreviations and links to more information about them.
 
 ![](de-new-geographies.png)
 <br>
