@@ -29,7 +29,7 @@
                         {{ $icon = "<i class='fas fa-map-marked-alt' aria-hidden='true'></i>" }}
                       {{ end }}
 
-                        <a class="text-black" href="{{ .url }}">
+                        <a class="text-black" href="../../{{ .url }}">
                           <span class='text-primary data-stories mr-2'>{{ safe.HTML $icon }}</span>{{ .title }}
                         </a>
                         <hr class="my-2">
