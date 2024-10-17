@@ -362,7 +362,7 @@
             <div class="float-right pr-1 d-sm-none d-md-block">
                 {{- partial "socialshare" . -}}
             </div>
-            <h1 class="h2">{{ .Title }} </h1>
+            <h1 class="h2 mt-2">{{ .Title }} </h1>
             <p>Get maps, charts, tables, and data about {{ lower .Title }}. <span class="d-lg-none"><a href="#" data-toggle="modal" data-target="#aboutModal">About {{ lower .Title }}</a>.</span></p>
 
         </div>
@@ -411,14 +411,19 @@
 
             </div>
 
+            <!-- Related data partial -->
+            <div class="d-none d-lg-block mt-a mb-2">
+                {{- partial "related-data" . -}}
+            </div>
+
 
             <!-- Keywords partial -->
-            <div class="d-none d-lg-block mt-1 mb-2">
+            <div class="d-none d-lg-block mt-2 mb-2">
                 {{- partial "keywords" . -}}
             </div>
 
             <!-- Take Action partial -->
-            <div class="d-none d-lg-block border-top p-1 mt-4 fs-sm">
+            <div class="d-none d-lg-block pt-1 mt-2 fs-sm">
                 {{- partial "takeaction" . -}}
             </div>
 

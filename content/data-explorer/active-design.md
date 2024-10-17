@@ -36,6 +36,20 @@ indicators:
     IndicatorID:
       - 2157
       - 2143
+related:
+  - title: "Public space creates health"
+    url: "public-space-creates-health/"
+  - title: "What our air quality monitors tell us about NYC's neighborhoods"
+    url: "data-stories/air-quality-by-neighborhood/"
+  - title: "Protecting New Yorkers from extreme heat"
+    url: "data-stories/heat/"
+relatedData:
+  - title: "Walking, driving, and cycling"
+    url: "walking-driving-and-cycling"
+  - title: "Transportation"
+    url: "transportation"
+  - title: "Transportation related-injuries"
+    url: "transportation-related-injuries"
 ---
 
 Physical activity and healthy eating are among the leading ways to get and stay healthy.

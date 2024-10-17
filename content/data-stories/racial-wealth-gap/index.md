@@ -6,16 +6,26 @@ draft: false
 seo_title: "How the racial wealth gap affects health"
 seo_description: "A data story about how the racial wealth gap affects health"
 tags:
+tags:
 categories: ["social"]
+keywords: ["racial wealth gap", "health equity", "inequalities", "inequities"]
 keywords: ["racial wealth gap", "health equity", "inequalities", "inequities"]
 image: CrownHeights_JulienneSchaer-065.JPG
 photocredit: "Julienne Schaer/NYC & Company"
+related:
+  - title: "A brief history of redlining"
+    url: "data-stories/redlining/"
+  - title: "Health, housing, and history"
+    url: "data-stories/housing/"
+  - title: "Social conditions"
+    url: "data-explorer/social-conditions/?id=2325#display=summary"
 ---
 
 Throughout history, the distribution of wealth in the U.S. has, and continues to be, largely unequal between racial groups. This concept is referred to as the <strong>racial wealth gap</strong> and it has its roots in settler colonialism and enslavement. There is an especially big wealth disparity between White families and Black families, which was established and upheld by racist historical policies and practices. The racial wealth gap has major implications for public health. This is because a large and growing body of research reveals that having good health is connected to having wealth. Effective solutions to racial inequities in wealth and health must address challenges at the individual, household, community, and systems levels.
 
 ### White families hold nearly eight times the wealth of the average Black family
 
+Income and wealth are two different concepts. Income is measured by earnings, while wealth is the difference between the value of assets owned and the amount owed in debts. Since wealth incorporates the value of assets accumulated over time, and can be passed down over generations, it provides a more comprehensive representation of one’s economic resources.
 Income and wealth are two different concepts. Income is measured by earnings, while wealth is the difference between the value of assets owned and the amount owed in debts. Since wealth incorporates the value of assets accumulated over time, and can be passed down over generations, it provides a more comprehensive representation of one’s economic resources.
 
 The Federal Reserve Board’s 2019 Survey of Consumer Finances (SCF) shows that, nationally, the average White family holds nearly eight times the wealth of the average Black family and over five times the wealth of the average Hispanic family.
@@ -115,6 +125,7 @@ Greater wealth allows people to live in neighborhoods with fewer environmental h
   Debt type plays an important role in health and well-being in both positive and negative ways. For instance, higher levels of home and student loan debt are associated with greater socioemotional well-being for children, whereas higher levels of and increases in unsecured debt (for example, credit card debt) are associated with lower levels of and declines in child socioemotional well-being, respectively.
 
 At the household level, high debts or low assets can increase anxiety, frustration, and hopelessness, and can also lead to health deterioration due to stress. When looking at young adults with student debt, those with high levels of debt stress reported feeling more tense and anxious, troubled by physical problems, and had greater difficulty getting to sleep than students with low levels of debt stress.
+
 </p>
 </div>
 
@@ -246,3 +257,15 @@ Effective solutions to racial inequities in wealth and health must simultaneousl
     </div>
   </div>
 </div>
+
+<style>
+.card-body {
+  background-color: #fafafa!important;
+  border: 1px solid lightgray;
+}
+
+.card-header {
+  background-color: #e1e1e1!important;
+  border: 1px solid lightgray;
+}
+</style>

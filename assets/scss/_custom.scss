@@ -234,6 +234,37 @@ $color-data-explorer: #0A408A;
   background-position: 0 20px;
 }
 
+.related-border {
+  border-top: 8px solid #008939;
+}
+
+.related-border-sm {
+  border-top: 4px solid #008939;
+}
+
+.container-to-large {
+    width: 100%;
+    padding-right: 1rem;
+    padding-left: 1rem;
+    margin-right: auto;
+    margin-left: auto;
+}
+@media (min-width: 480px) {
+  .container-to-large {
+    max-width: 448px; }
+}
+
+@media (min-width: 720px) {
+  .container-to-large {
+    max-width: 688px; }
+}
+
+@media (min-width: 960px) {
+  .container-to-large {
+    max-width: 928px; }
+}
+
+
 .accordion-group a[data-toggle="collapse"][aria-expanded="false"]:after {
   content: "\002B";
 }

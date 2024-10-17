@@ -19,6 +19,13 @@ keywords:
   ]
 image: ds-sanitation-trucks.jpg
 photocredit: "Michael Appleton/Mayoral Photography Office, City of New York"
+related:
+  - title: "Housing creates health"
+    url: "data-stories/housing-creates-health/"
+  - title: "Rat Mitigation Zones"
+    url: "data-features/rat-mitigation-zones/"
+  - title: "Mice and rats"
+    url: "data-explorer/mice-and-rats/?id=24#display=summary"
 ---
 
 New York City’s modern history of public health starts in the 1600s with the Bureau of Sanitary Inspections, and ever since, sanitation has been an essential part of public health — fighting disease by keeping our city clean.

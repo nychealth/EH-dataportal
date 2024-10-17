@@ -1,5 +1,5 @@
 ---
-title: The Public Health Impacts of PM2.5 from Traffic Air Pollution
+title: The public health impacts of PM2.5 from traffic air pollution
 shortTitle: Traffic and PM2.5
 draft: false
 date: 2021-02-05T08:49:22-04:00
@@ -15,6 +15,13 @@ keywords:
   - asthma
 seo_title: Traffic and PM2.5 air pollution
 seo_description: "The public health impacts of PM2.5 from traffic air pollution in New York City affect neighborhoods differently."
+related:
+  - title: "Environments matter: the road to street safety in NYC"
+    url: "data-stories/streets/"
+  - title: "Air quality in car-free areas"
+    url: "data-stories/car-free-zones/"
+  - title: "Real-Time Air Quality: PM2.5 in NYC"
+    url: "data-features/realtime-air-quality/"
 ---
 
 PM2.5—or fine particulate matter—are tiny particles that pollute the air and result from everyday urban activities like driving. PM2.5 can be solid or liquid in form when it is airborne. PM2.5 is the most harmful air pollution for humans to breathe in because the particles are small enough to enter the bloodstream through the lungs. Each PM2.5 particle is less than 2.5 microns in diameter. That is small enough to fit inside a red blood cell.

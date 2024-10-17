@@ -23,6 +23,13 @@ keywords:
   - transportation
 seo_title:
 seo_description: "A timeline of the policies that shaped East Harlem."
+related:
+  - title: "Housing creates health"
+    url: "data-stories/housing-creates-health/"
+  - title: "Economic stability creates health"
+    url: "data-stories/economic-stability/"
+  - title: "A brief history of redlining"
+    url: "data-stories/redlining/"
 ---
 
 A neighborhood is not only shaped by its residents, but also by governmental practices and policies. Some of these have discriminated against residents because of the color of their skin and have segregated neighborhoods across the nation - including in New York City. This timeline is a selection of key processes and policies that shaped the physical environment and population of East Harlem, and some of the efforts to respond to local issues.
