@@ -28,9 +28,14 @@ accessibleAutocomplete: /js/accessible-autocomplete.min.js
 vega: true
 image: aqe.png
 related:
-  - "data-features/realtime-air-quality/"
-  - "data-stories/hia/"
-  - "data-stories/car-free-zones/"
+  - title: "Real-Time Air Quality: PM2.5 in NYC"
+    url: "data-features/realtime-air-quality/"
+  - title: "Reducing air pollution should focus on neighborhoods with the worst health impacts"
+    url: "data-stories/hia/"
+  - title: "Air quality in car-free areas"
+    url: "data-stories/car-free-zones/"
+---
+
 ---
 
 We combine data from our air quality monitoring network, NYCCAS, with other data to understand what makes air quality in one neighborhood different from air quality in another. We found that building emissions, building density, industrial areas, and traffic density are associated with differences in air quality.

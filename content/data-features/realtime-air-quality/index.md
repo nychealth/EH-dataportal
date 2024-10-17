@@ -28,10 +28,10 @@ arquero: true
 leaflet: true
 image: images/realtime-screenshot.png
 related:
-  - title: "Housing creates health"
-    url: "data-stories/housing-creates-health/"
-  - title: "Health, housing, and history"
-    url: "data-stories/housing/"
+  - title: "Reducing air pollution should focus on neighborhoods with the worst health impacts"
+    url: "data-stories/hia/"
+  - title: "The public health impacts of PM2.5 from traffic air pollution"
+    url: "data-stories/traffic-and-air-pollution/"
   - title: "Fine particles (PM 2.5)"
     url: "data-explorer/air-quality/?id=2023#display=summary"
 ---

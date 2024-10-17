@@ -28,9 +28,12 @@ customJS: hvi.js
 vega: true
 image: hvi.png
 related:
-  - "data-stories/urban-heat-island/"
-  - "data-stories/heat/"
-  - "data-features/heat-syndrome/"
+  - title: "The urban heat island effect in NYC"
+    url: "data-stories/urban-heat-island/"
+  - title: "Protecting New Yorkers from extreme heat"
+    url: "data-stories/heat/"
+  - title: "Real-time heat-related illness"
+    url: "data-features/heat-syndrome/"
 ---
 
 Use this Heat Vulnerability Explorer to look up your the heat vulnerability of your neighborhood, and the neighborhood characteristics that affect it.
