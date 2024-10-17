@@ -13,7 +13,7 @@ keywords: ["racial wealth gap", "health equity", "inequalities", "inequities"]
 image: CrownHeights_JulienneSchaer-065.JPG
 photocredit: "Julienne Schaer/NYC & Company"
 related:
-  - title: "Why we're working with you to redesign the data portal"
+  - title: "A brief history of redlining"
     url: "data-stories/redlining/"
   - title: "Health, housing, and history"
     url: "data-stories/housing/"
@@ -125,6 +125,7 @@ Greater wealth allows people to live in neighborhoods with fewer environmental h
   Debt type plays an important role in health and well-being in both positive and negative ways. For instance, higher levels of home and student loan debt are associated with greater socioemotional well-being for children, whereas higher levels of and increases in unsecured debt (for example, credit card debt) are associated with lower levels of and declines in child socioemotional well-being, respectively.
 
 At the household level, high debts or low assets can increase anxiety, frustration, and hopelessness, and can also lead to health deterioration due to stress. When looking at young adults with student debt, those with high levels of debt stress reported feeling more tense and anxious, troubled by physical problems, and had greater difficulty getting to sleep than students with low levels of debt stress.
+
 </p>
 </div>
 
