@@ -6,12 +6,19 @@
     <description>Recent content in how we work on Environment &amp; Health Data Portal</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 07 Nov 2022 08:49:22 -0400</lastBuildDate>
+    <lastBuildDate>Mon, 07 Oct 2024 08:49:22 -0400</lastBuildDate>
     <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/how-we-work/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>New Data Explorer features</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/about/new-data-explorer-features/</link>
+      <pubDate>Mon, 07 Oct 2024 08:49:22 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/about/new-data-explorer-features/</guid>
+      <description>If you browse data on our Data Explorer, you might notice some new changes. In recent months, we&amp;rsquo;ve been rolling out a series of modifications and redesigns that, we hope, make it easier for you to browse the data and find what you&amp;rsquo;re looking for.&#xA;Here&amp;rsquo;s what the Data Explorer looks like now:&#xA;Here are some of the changes we&amp;rsquo;ve made, and why we&amp;rsquo;ve made them.&#xA;Exposing options menus Each of the Data Explorer&amp;rsquo;s views includes options for how to display the data.</description>
+    </item>
     <item>
       <title>Advanced site tools</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/about/advanced-tools/</link>
-      <pubDate>Mon, 07 Nov 2022 08:49:22 -0400</pubDate>
+      <pubDate>Tue, 07 Nov 2023 08:49:22 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/about/advanced-tools/</guid>
       <description>If you are a data scientist, programmer, open data enthusiast, open source evangelist, data visualiation specialist or somebody who aspires to be any of those, then there are some advanced features of the Environment and Health Data Portal that you can use to get and use our data.&#xA;Re-use data visualizations The visualizations on our site&amp;rsquo;s Data Explorer use a JavaScript library called Vega-Lite. Vega-lite provides a few options for you to use the visualizations in other contexts.</description>
     </item>

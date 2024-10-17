@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml"><url>
-    <loc>/IndicatorPublic/categories/active-design/</loc>
-    <lastmod>2024-08-19T01:18:56-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/keywords/bicycle-lanes/</loc>
-    <lastmod>2024-08-19T01:18:56-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/keywords/api/</loc>
+    <lastmod>2024-10-07T08:49:22-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/categories/</loc>
-    <lastmod>2024-08-19T01:18:56-04:00</lastmod><xhtml:link
+    <lastmod>2024-10-07T08:49:22-04:00</lastmod><xhtml:link
                 rel="alternate"
                 hreflang="es"
                 href="/IndicatorPublic/es/categories/"
@@ -19,6 +17,68 @@
                 hreflang="en"
                 href="/IndicatorPublic/categories/"
                 /></url><url>
+    <loc>/IndicatorPublic/keywords/data-visualization/</loc>
+    <lastmod>2024-10-07T08:49:22-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/keywords/github/</loc>
+    <lastmod>2024-10-07T08:49:22-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/keywords/how-we-work/</loc>
+    <lastmod>2024-10-07T08:49:22-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/categories/internal/</loc>
+    <lastmod>2024-10-07T08:49:22-04:00</lastmod><xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="/IndicatorPublic/es/categories/internal/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/IndicatorPublic/zh/categories/internal/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/IndicatorPublic/categories/internal/"
+                /></url><url>
+    <loc>/IndicatorPublic/keywords/</loc>
+    <lastmod>2024-10-07T08:49:22-04:00</lastmod><xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="/IndicatorPublic/es/keywords/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/IndicatorPublic/zh/keywords/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/IndicatorPublic/keywords/"
+                /></url><url>
+    <loc>/IndicatorPublic/about/new-data-explorer-features/</loc>
+    <lastmod>2024-10-07T08:49:22-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/keywords/open-data/</loc>
+    <lastmod>2024-10-07T08:49:22-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/keywords/open-source/</loc>
+    <lastmod>2024-10-07T08:49:22-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/keywords/redesign/</loc>
+    <lastmod>2024-10-07T08:49:22-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/</loc>
+    <lastmod>2024-10-07T08:49:22-04:00</lastmod><xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="/IndicatorPublic/es/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/IndicatorPublic/zh/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/IndicatorPublic/"
+                /></url><url>
+    <loc>/IndicatorPublic/keywords/user-research/</loc>
+    <lastmod>2024-10-07T08:49:22-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/categories/active-design/</loc>
+    <lastmod>2024-08-19T01:18:56-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/keywords/bicycle-lanes/</loc>
+    <lastmod>2024-08-19T01:18:56-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/data-stories/</loc>
     <lastmod>2024-08-19T01:18:56-04:00</lastmod><xhtml:link
                 rel="alternate"
@@ -50,20 +110,6 @@
                 rel="alternate"
                 hreflang="en"
                 href="/IndicatorPublic/keywords/injustice/"
-                /></url><url>
-    <loc>/IndicatorPublic/keywords/</loc>
-    <lastmod>2024-08-19T01:18:56-04:00</lastmod><xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="/IndicatorPublic/es/keywords/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="/IndicatorPublic/zh/keywords/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/IndicatorPublic/keywords/"
                 /></url><url>
     <loc>/IndicatorPublic/keywords/light-pollution/</loc>
     <lastmod>2024-08-19T01:18:56-04:00</lastmod></url><url>
@@ -120,20 +166,6 @@
                 rel="alternate"
                 hreflang="en"
                 href="/IndicatorPublic/categories/social/"
-                /></url><url>
-    <loc>/IndicatorPublic/</loc>
-    <lastmod>2024-08-19T01:18:56-04:00</lastmod><xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="/IndicatorPublic/es/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="/IndicatorPublic/zh/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/IndicatorPublic/"
                 /></url><url>
     <loc>/IndicatorPublic/categories/transportation/</loc>
     <lastmod>2024-08-19T01:18:56-04:00</lastmod><xhtml:link
@@ -289,6 +321,8 @@
                 hreflang="en"
                 href="/IndicatorPublic/keywords/racism/"
                 /></url><url>
+    <loc>/IndicatorPublic/about/advanced-tools/</loc>
+    <lastmod>2023-11-07T08:49:22-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/accidents/</loc>
     <lastmod>2023-10-18T13:11:44-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/deaths/</loc>
@@ -611,45 +645,13 @@
     <lastmod>2022-11-08T11:14:56-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/data-features/nyccas/</loc>
     <lastmod>2022-11-08T11:14:56-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/about/advanced-tools/</loc>
-    <lastmod>2022-11-07T08:49:22-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/keywords/api/</loc>
-    <lastmod>2022-11-07T08:49:22-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/civic-service-design/</loc>
-    <lastmod>2022-11-07T08:49:22-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/keywords/data-visualization/</loc>
-    <lastmod>2022-11-07T08:49:22-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/keywords/github/</loc>
-    <lastmod>2022-11-07T08:49:22-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/keywords/how-we-work/</loc>
-    <lastmod>2022-11-07T08:49:22-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/categories/internal/</loc>
-    <lastmod>2022-11-07T08:49:22-04:00</lastmod><xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="/IndicatorPublic/es/categories/internal/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="/IndicatorPublic/zh/categories/internal/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/IndicatorPublic/categories/internal/"
-                /></url><url>
-    <loc>/IndicatorPublic/keywords/open-data/</loc>
-    <lastmod>2022-11-07T08:49:22-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/keywords/open-source/</loc>
-    <lastmod>2022-11-07T08:49:22-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/keywords/redesign/</loc>
     <lastmod>2022-11-07T08:49:22-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/about/redesign/</loc>
     <lastmod>2022-11-07T08:49:22-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/data-stories/redesign/</loc>
     <lastmod>2022-11-07T08:49:22-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/usability/</loc>
-    <lastmod>2022-11-07T08:49:22-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/keywords/user-research/</loc>
     <lastmod>2022-11-07T08:49:22-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/take-action/email-electeds/</loc>
     <lastmod>2022-08-08T14:20:53-04:00</lastmod></url><url>

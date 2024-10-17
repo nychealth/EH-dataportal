@@ -6,8 +6,64 @@
     <description>Recent content in Keywords on Environment &amp; Health Data Portal</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 19 Aug 2024 01:18:56 -0400</lastBuildDate>
+    <lastBuildDate>Mon, 07 Oct 2024 08:49:22 -0400</lastBuildDate>
     <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>API</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/api/</link>
+      <pubDate>Mon, 07 Oct 2024 08:49:22 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/api/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>data visualization</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/data-visualization/</link>
+      <pubDate>Mon, 07 Oct 2024 08:49:22 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/data-visualization/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Github</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/github/</link>
+      <pubDate>Mon, 07 Oct 2024 08:49:22 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/github/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>how we work</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/how-we-work/</link>
+      <pubDate>Mon, 07 Oct 2024 08:49:22 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/how-we-work/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>open data</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/open-data/</link>
+      <pubDate>Mon, 07 Oct 2024 08:49:22 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/open-data/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>open source</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/open-source/</link>
+      <pubDate>Mon, 07 Oct 2024 08:49:22 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/open-source/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>redesign</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/redesign/</link>
+      <pubDate>Mon, 07 Oct 2024 08:49:22 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/redesign/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>user research</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/user-research/</link>
+      <pubDate>Mon, 07 Oct 2024 08:49:22 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/user-research/</guid>
+      <description></description>
+    </item>
     <item>
       <title>bicycle lanes</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/bicycle-lanes/</link>
@@ -702,13 +758,6 @@
       <description></description>
     </item>
     <item>
-      <title>API</title>
-      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/api/</link>
-      <pubDate>Mon, 07 Nov 2022 08:49:22 -0400</pubDate>
-      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/api/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>civic service design</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/civic-service-design/</link>
       <pubDate>Mon, 07 Nov 2022 08:49:22 -0400</pubDate>
@@ -716,59 +765,10 @@
       <description></description>
     </item>
     <item>
-      <title>data visualization</title>
-      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/data-visualization/</link>
-      <pubDate>Mon, 07 Nov 2022 08:49:22 -0400</pubDate>
-      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/data-visualization/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Github</title>
-      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/github/</link>
-      <pubDate>Mon, 07 Nov 2022 08:49:22 -0400</pubDate>
-      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/github/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>how we work</title>
-      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/how-we-work/</link>
-      <pubDate>Mon, 07 Nov 2022 08:49:22 -0400</pubDate>
-      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/how-we-work/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>open data</title>
-      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/open-data/</link>
-      <pubDate>Mon, 07 Nov 2022 08:49:22 -0400</pubDate>
-      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/open-data/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>open source</title>
-      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/open-source/</link>
-      <pubDate>Mon, 07 Nov 2022 08:49:22 -0400</pubDate>
-      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/open-source/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>redesign</title>
-      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/redesign/</link>
-      <pubDate>Mon, 07 Nov 2022 08:49:22 -0400</pubDate>
-      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/redesign/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>usability</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/usability/</link>
       <pubDate>Mon, 07 Nov 2022 08:49:22 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/usability/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>user research</title>
-      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/user-research/</link>
-      <pubDate>Mon, 07 Nov 2022 08:49:22 -0400</pubDate>
-      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/user-research/</guid>
       <description></description>
     </item>
     <item>

@@ -73,7 +73,7 @@
 <script src="/IndicatorPublic/node_modules/@fortawesome/fontawesome-free/js/all.min.eac49826a0eb7994591a42776fe61f7610773339ae3fd47b5f5419ea0e5a217851bd1d58fcdfcfe3b8e69e410d9bb60bde8aac988e802be57a003f7db960e723.js" integrity="sha512-6sSYJqDreZRZGkJ3b&#43;YfdhB3MzmuP9R7X1QZ6g5aIXhRvR1Y/N/P47jmnkENm7YL3oqsmI6AK&#43;V6AD99uWDnIw==" crossorigin="anonymous"></script>
 
 
-<link rel="stylesheet" href="/IndicatorPublic/scss/theme.836667550bf632dd400f8c30e900adaf37ad9a15fba924c46faf4adb00017d93b8dd1b19c66f45bed691d196dcb56a477070e488a22bb34a4fcb25d3f525b656.css" integrity="sha512-g2ZnVQv2Mt1AD4ww6QCtrzetmhX7qSTEb69K2wABfZO43RsZxm9FvtaR0ZbctWpHcHDkiKIrs0pPyyXT9SW2Vg==" />
+<link rel="stylesheet" href="/IndicatorPublic/scss/theme.8d905e8103ffedb803254e7dffbe07c68b19a400e21bb4cfc480c08cbec4016783a7938e77149ec3886cc68c1de5927c218da09306c54e69e5b6d8ee41fe2767.css" integrity="sha512-jZBegQP/7bgDJU59/74HxosZpADiG7TPxIDAjL7EAWeDp5OOdxSew4hsxowd5ZJ8IY2gkwbFTmnlttjuQf4nZw==" />
 
 <script src="/IndicatorPublic/node_modules/dompurify/dist/purify.min.05d44db88f3f96ccb190a415c4ad6556d7d9b218207d73c0c043fe24038910ac7a63c48b7dc05245d696c97426331a3ec06d7cd2e16a5d81a31912f49a1e3f27.js" integrity="sha512-BdRNuI8/lsyxkKQVxK1lVtfZshggfXPAwEP&#43;JAOJEKx6Y8SLfcBSRdaWyXQmMxo&#43;wG180uFqXYGjGRL0mh4/Jw=="></script>
 
@@ -911,7 +911,7 @@
 
 
                 
-                <div class="tab-content bg-white mb-2 border-top" id="tabs-01-content">
+                <div class="tab-content bg-white border-top" id="tabs-01-content">
             
 
                 
@@ -947,7 +947,7 @@
                                 
                             </div>
 
-                            <div id="table-unreliability" class="pt-2 asidebox hide my-1">
+                            <div id="table-unreliability" class="pt-2 hide my-1 fs-xs">
                                 
                             </div>
                         </div>
@@ -987,13 +987,14 @@
                                         
                                     </div>
                                 </div>
+
                             </div>
                         </div>
 
                         <div class="col-md-10">
                             <div id="map" class="vis-bucket"></div>
 
-                            <div id="map-unreliability" class="pt-2 asidebox hide my-1">
+                            <div id="map-unreliability" class="pt-2 hide my-1 fs-xs">
                                 
                             </div>
                         </div>
@@ -1012,11 +1013,13 @@
 
                             <div id="trendSidebar" class="collapse dont-collapse-sm">
                                 <p class="fs-xs mb-0"><i data-toggle="modal" data-target="#trendModal" class="fas fa-question-circle float-right helper text-primary fs-sm"></i>Show by:</p>
-                                <div class="border optionbox">
+                                <div class="border optionbox mb-2">
                                     <div class="" aria-labelledby="dropdownTrendComparisons">
                                         
                                     </div>
                                 </div>
+
+
                             </div>
                         </div>
 
@@ -1024,7 +1027,7 @@
                                  
                                 <div id="trend" class="vis-bucket"></div>
 
-                                <div id="trend-unreliability" class="pt-2 asidebox hide my-1">
+                                <div id="trend-unreliability" class="pt-2 hide my-1 fs-xs">
                                     
                                 </div>
 
@@ -1069,6 +1072,7 @@
                                             </div>
                                         </div>
                                     </div>
+
                                 </div>
 
 
@@ -1080,7 +1084,7 @@
                                 
                                 <div id="links" class="vis-bucket"></div>
             
-                                <div id="links-unreliability" class="pt-2 asidebox hide my-1">
+                                <div id="links-unreliability" class="pt-2 hide my-1 fs-xs">
                                     
                                 </div>
                             </div>
@@ -1094,56 +1098,69 @@
 
 
                         
-                        <div class="row mb-4">
+
+                        <div class="row mb-2">
                             <div class="col-md-2"></div>
-                            <div class="col-md-5 col-sm-12">
-                                <div class="dropdown">
-                                    <button class="btn btn-sm btn-block btn-outline-light text-secondary dropdown-toggle" 
-                                    type="button"
-                                    id="downloadDD"
-                                    data-toggle="dropdown"
-                                    aria-haspopup="true"
-                                    aria-expanded="false"
-                                    ><i class="fa fa-download mr-1"></i>Download Data
-                                    </button>
-                                    <div class="dropdown-menu dropdown-menu-right" 
-                                    aria-labelledby="downloadDD">
-                                    <a class="dropdown-item buttons-csv btn-outline-info" id="chartView"><i class="fa fa-download mr-1"></i>Download this view</a>
-                                    <a class="dropdown-item buttons-csv btn-outline-info" id="allData"><i class="fa fa-download mr-1"></i>Download full data table</a>
-                                    <a class="dropdown-item btn-outline-info" href="https://github.com/nychealth/EHDP-data/tree/production/indicators" target="_blank"><i class="fas fa-external-link-alt mr-1"></i>Data Github repo</a>
-                                            
-                                    
+
+                            
+                            <div class="col-md-10 col-sm-12">
+                                    <div class="visFooterBox">
+                                        <span class="fs-xs font-weight-bold">Source:</span> <p class="fs-xs indicator-sources"></p>
                                     </div>
-                                </div>
-
-                                <div class="asidebox pb-0 mb-0">
-                                    <span class="fs-sm font-weight-bold"><i class="fas fa-info-circle mr-1"></i>How calculated</span>
-                                </div>
-                                <div class="asidebox visFooterBox mb-1">
-                                    <p class="fs-xs indicator-measures"></p>
-
-
-                                </div>
-
                             </div>
-
-                            <div class="col-md-5 col-sm-12">
-                                <button class="btn btn-sm btn-block btn-outline-light text-secondary"
-                                onclick="copyCitation()" id="citeButton"><i class="fas fa-copy mr-1"></i>Copy citation</button>
-                                    <input type="text" id="citeText" value=""
-                                    style="display:inline-block; width:100%; height: 40px; font-size: 14px;"
-                                    class="my-2 sr-only">
-
-                                <div class="asidebox pb-0 mb-0">
-                                    <span class="fs-sm font-weight-bold"><i class="fas fa-info-circle mr-1"></i>Data sources</span>
-                                </div>
-                                <div class="asidebox visFooterBox">
-                                    <p class="fs-xs indicator-sources"></p>
-                                </div>
-                                
-                            </div>
-
                         </div>
+
+                        <div class="row mt-3 mb-4">
+                            <div class="col-md-2"></div>
+
+                            <div class="col-md-10 col-sm-12">
+                                <div class="row no-gutters">
+                                    <div class="col-md-3 col-sm-6">
+                                        <button type="button" class="btn btn-sm btn-outline-light fs-xs text-secondary btn-block mb-1" data-toggle="modal" data-target="#howCalcModal" >
+                                            <i class="fas fa-info-circle mr-1" aria-hidden="true"></i>How calculated
+                                        </button>
+                                    </div>
+                                    <div class="col-md-3 col-sm-6">
+                                        <div class="dropdown">
+                                            <button class="btn btn-sm btn-block btn-outline-light fs-xs text-secondary dropdown-toggle" 
+                                            type="button"
+                                            id="downloadDD"
+                                            data-toggle="dropdown"
+                                            aria-haspopup="true"
+                                            aria-expanded="false"
+                                            ><i class="fa fa-download mr-1"></i>Download Data
+                                            </button>
+                                            <div class="dropdown-menu dropdown-menu-right" 
+                                            aria-labelledby="downloadDD">
+                                            <a class="dropdown-item buttons-csv btn-outline-info" id="chartView"><i class="fa fa-download mr-1"></i>Download this view</a>
+                                            <a class="dropdown-item buttons-csv btn-outline-info" id="allData"><i class="fa fa-download mr-1"></i>Download full data table</a>
+                                            <a class="dropdown-item btn-outline-info" href="https://github.com/nychealth/EHDP-data/tree/production/indicators" target="_blank"><i class="fas fa-external-link-alt mr-1"></i>Data Github repo</a>
+                                                    
+                                            
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-6">
+                                        <button class="btn btn-sm btn-block btn-outline-light fs-xs text-secondary"
+                                        onclick="copyCitation()" id="citeButton"><i class="fas fa-copy mr-1"></i>Copy citation</button>
+                                            <input type="text" id="citeText" value=""
+                                            style="display:inline-block; width:100%; height: 40px; font-size: 14px;"
+                                            class="my-2 sr-only">
+                                    </div>
+                                    <div class="col-md-3 col-sm-6">
+                                        <a type="button" class="btn btn-sm btn-outline-light fs-xs text-secondary btn-block mb-1" onclick="printModal()" id="chartSaver">
+                                            <i class="fas fa-save mr-1" aria-hidden="true"></i>Save chart
+                                        </a>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
 
                         
 
@@ -1959,6 +1976,53 @@
             </div>
         </div>
 
+                
+                <div class="modal fade" id="howCalcModal" tabindex="-1" role="dialog" aria-labelledby="howCalcModalLabel"
+                aria-hidden="true">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="howCalcModalLabel"><i  class="fas fa-question-circle mr-1" aria-hidden="true"></i>How calculated</h5>
+                            </div>
+                            <div class="modal-body">
+                                <p class="indicator-measures"></p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+        
+        <div class="modal fade" id="printModal" tabindex="-1" role="dialog" aria-labelledby="printModalTitle" aria-hidden="true">
+            <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="printModalTitle">Save this visualization</h5>
+                </div>
+                <div class="modal-body">
+                Use this view to screenshot or print this visualization. Youc an also click the three dots in the upper-right-hand corner of the chart and choose "save as PNG" or "save as SVG" to download the chart. This function works best on a desktop computer.
+                    <hr class="my-1">
+
+                <div id="printVis" style="height: 400px; width:100%;" class="vis-print-modal">
+                    Vis container
+                </div>
+
+                <div id="modalFootnotes" class="fs-xs p-1 pl-3">
+
+                </div>
+            
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+            </div>
+        </div>
+
+
+
 </article>
 
 
@@ -2667,15 +2731,16 @@
             
         }
 
-    </script><script type="text/javascript" src="/IndicatorPublic/js/data-explorer/global.22dcf3bd7810bbaa958105492a89aa0957abc5430e45c02749cd7cd085a4c64d6fd4dd0cd33d74e4cefe587608f1195847b013c0a3c2a2da3639e71fdafb762e.js" integrity="sha512-ItzzvXgQu6qVgQVJKomqCVerxUMORcAnSc180IWkxk1v1N0M0z105M7&#43;WHYI8RlYR7ATwKPCoto2Oecf2vt2Lg=="></script>
+    </script><script type="text/javascript" src="/IndicatorPublic/js/data-explorer/global.a0a1e412b66553c32282dec8b27db0aee2350539f111215848a489ecced4354f3bb363e572bf8dacae742f71667180cd2d2d40506cd11d687a433a5caea4bad8.js" integrity="sha512-oKHkErZlU8Migt7Isn2wruI1BTnxESFYSKSJ7M7UNU87s2Plcr&#43;NrK50L3FmcYDNLS1AUGzRHWh6QzpcrqS62A=="></script>
     <script type="text/javascript" src="/IndicatorPublic/js/data-explorer/data.b69132321e1967026bc4161ebe03db1a98d45ae65573f32ff54afc42ea6ef0ec9d2069f2badf9cb1a0f0c77f72d2ae44d1d904a7d866396f67f1904e15810659.js" integrity="sha512-tpEyMh4ZZwJrxBYevgPbGpjUWuZVc/Mv9Ur8Qupu8OydIGnyut&#43;csaDwx39y0q5E0dkEp9hmOW9n8ZBOFYEGWQ=="></script>
-    <script type="text/javascript" src="/IndicatorPublic/js/data-explorer/measures.143213d26ac2941bab15241026930c47639534b1d5e155e2e2877f15520c748be85f466148d7dc8799fe1a2b0ec98072d235b8bd754a67c480afd3d4872b55a8.js" integrity="sha512-FDIT0mrClBurFSQQJpMMR2OVNLHV4VXi4od/FVIMdIvoX0ZhSNfch5n&#43;GisOyYBy0jW4vXVKZ8SAr9PUhytVqA=="></script>
-    <script type="text/javascript" src="/IndicatorPublic/js/data-explorer/table.deea4a830f0fae3a84a6c90290fbab4961cab05d683ba3acb83fc62c50480d9443b68185fa3c97cba3264769e7f2f9fc037410c64c647373ea20860649842948.js" integrity="sha512-3upKgw8PrjqEpskCkPurSWHKsF1oO6OsuD/GLFBIDZRDtoGF&#43;jyXy6MmR2nn8vn8A3QQxkxkc3PqIIYGSYQpSA=="></script>
-    <script type="text/javascript" src="/IndicatorPublic/js/data-explorer/map.e4988d2e9ea1fb8f48916550dee909663c44f2275aab4fdda0039793dc98a8f23b4c335e6815dea277466c7c175087b8b3543179875b27598d4fa5ab2213e8eb.js" integrity="sha512-5JiNLp6h&#43;49IkWVQ3ukJZjxE8idaq0/doAOXk9yYqPI7TDNeaBXeondGbHwXUIe4s1QxeYdbJ1mNT6WrIhPo6w=="></script>
-    <script type="text/javascript" src="/IndicatorPublic/js/data-explorer/links.ec356c0fedb024900c577d2610114ce5fb0165630631e0aad14b40a0f61be00d925fbcad84e813b6a4496eff68848cc46a86fdaa04091192b257d11e9b229ea4.js" integrity="sha512-7DVsD&#43;2wJJAMV30mEBFM5fsBZWMGMeCq0UtAoPYb4A2SX7ythOgTtqRJbv9ohIzEaob9qgQJEZKyV9EemyKepA=="></script>
-    <script type="text/javascript" src="/IndicatorPublic/js/data-explorer/disparities.3f7d6fd2fb05e1bcf9c5bad4210f1840aa83a3bbbb42aa9600209827e8c14925760226dc77d1cdc40c284b91777333144e0d9512f2270f63988107eed3816641.js" integrity="sha512-P31v0vsF4bz5xbrUIQ8YQKqDo7u7QqqWACCYJ&#43;jBSSV2Aibcd9HNxAwoS5F3czMUTg2VEvInD2OYgQfu04FmQQ=="></script>
-    <script type="text/javascript" src="/IndicatorPublic/js/data-explorer/comparisons.1a430d70594f13a3916d5a9c396b47add86b1cd9816664b29c47872f880d3920773a951e0792c67c97b0909f3ce3d5ef3d0f3f2dc82dc3fa35db9de162b90bc3.js" integrity="sha512-GkMNcFlPE6ORbVqcOWtHrdhrHNmBZmSynEeHL4gNOSB3OpUeB5LGfJewkJ8849XvPQ8/Lcgtw/o1253hYrkLww=="></script>
+    <script type="text/javascript" src="/IndicatorPublic/js/data-explorer/measures.c56fae33672647587ca290ead1e51546f8e4fb06ec23c8720ee038f15938d694b6856f725e92a68e8a8b08f155e712948a5c324c2f3e1c80006574f4f9e42d11.js" integrity="sha512-xW&#43;uM2cmR1h8opDq0eUVRvjk&#43;wbsI8hyDuA48Vk41pS2hW9yXpKmjoqLCPFV5xKUilwyTC8&#43;HIAAZXT0&#43;eQtEQ=="></script>
+    <script type="text/javascript" src="/IndicatorPublic/js/data-explorer/table.c8425f5d82c52241d1f27c04e1b61eac7f32a1e44b24692873015cb032520b5231f4c2e6a6a5bc49e8bccd83deac2cbba591c05a1f4cdb7e462b95a76d6be186.js" integrity="sha512-yEJfXYLFIkHR8nwE4bYerH8yoeRLJGkocwFcsDJSC1Ix9MLmpqW8Sei8zYPerCy7pZHAWh9M235GK5WnbWvhhg=="></script>
+    <script type="text/javascript" src="/IndicatorPublic/js/data-explorer/map.533d77d2553671d2689a8a9feb0f70fb5bcda5dc76e3e4931a0b6ce18cf9cfd669d6c7e161f3086d3b6bc0904a4728bc722997b02a79695a07f860b2ecab6e09.js" integrity="sha512-Uz130lU2cdJomoqf6w9w&#43;1vNpdx24&#43;STGgts4Yz5z9Zp1sfhYfMIbTtrwJBKRyi8cimXsCp5aVoH&#43;GCy7KtuCQ=="></script>
+    <script type="text/javascript" src="/IndicatorPublic/js/data-explorer/links.9559e6970a2fee446ac34e0d80575af01929072cecc4556b9fbaaae0200a783bfee3ab790f0f4aad3d57823962c518ea5d07befa5c55b5ead681cefedbb7a63d.js" integrity="sha512-lVnmlwov7kRqw04NgFda8BkpByzsxFVrn7qq4CAKeDv&#43;46t5Dw9KrT1XgjlixRjqXQe&#43;&#43;lxVterWgc7&#43;27emPQ=="></script>
+    <script type="text/javascript" src="/IndicatorPublic/js/data-explorer/disparities.df9b07af9846148b263b6698406f98a80eb706af773aa56bb6b9fcdadbdc940a37477b18e767f1a597690cd34af461186b951e230f31ff00acb1cc974ebb015f.js" integrity="sha512-35sHr5hGFIsmO2aYQG&#43;YqA63Bq93OqVrtrn82tvclAo3R3sY52fxpZdpDNNK9GEYa5UeIw8x/wCsscyXTrsBXw=="></script>
+    <script type="text/javascript" src="/IndicatorPublic/js/data-explorer/comparisons.4a1556b39d439bc9d600ce516671145ca62fbf0af92c8bb18478e8c1921ca662524dc316115c526b472571fe311c25e71add175b4a2e3e4807abed557f184272.js" integrity="sha512-ShVWs51Dm8nWAM5RZnEUXKYvvwr5LIuxhHjowZIcpmJSTcMWEVxSa0clcf4xHCXnGt0XW0ouPkgHq&#43;1VfxhCcg=="></script>
     <script type="text/javascript" src="/IndicatorPublic/js/data-explorer/app.4144432c759beb31d941b8308709c9ec275e876b96c88cac0446e475184f9625b723537f358e8cd82d4ba64e968113f7492399d9f66e4443e9a356c7c0aba8a2.js" integrity="sha512-QURDLHWb6zHZQbgwhwnJ7Cdeh2uWyIysBEbkdRhPliW3I1N/NY6M2C1Lpk6WgRP3SSOZ2fZuREPpo1bHwKuoog=="></script>
+    <script type="text/javascript" src="/IndicatorPublic/js/data-explorer/print.a46fd2dddcec8e9d45c892c73ff7c97e6a69665abf7724d1df0d87e031f89734e682eccf46e1fc2d1632856aa47894f7498268d52ff3a873709b526baa674763.js" integrity="sha512-pG/S3dzsjp1FyJLHP/fJfmppZlq/dyTR3w2H4DH4lzTmguzPRuH8LRYyhWqkeJT3SYJo1S/zqHNwm1JrqmdHYw=="></script>
   
 </body>
 </html>
