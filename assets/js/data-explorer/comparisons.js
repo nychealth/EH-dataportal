@@ -9,10 +9,12 @@ const renderComparisonsChart = (
 
     console.log("*** renderComparisonsChart");
 
+
     document.getElementById('viewDescription').innerHTML = 'Trends are shown by boro for stable rates.'
 
     // console.log("metadata [renderComparisonsChart]");
     // metadata.print()
+
     
     // console.log("data [renderComparisonsChart]");
     // data.print(Infinity)
@@ -25,15 +27,14 @@ const renderComparisonsChart = (
 
     const comp_unreliability = [...new Set(data.objects().map(d => d.Note))].filter(d => !d == "");
 
-    document.querySelector("#trend-unreliability").innerHTML = ""; // blank to start
+    document.querySelector("#trend-unreliability").innerHTML = "<span class='fs-xs'><strong>Notes:</strong></span> "; // blank to start
     document.getElementById("trend-unreliability").classList.add('hide') // blank to start
 
 
     comp_unreliability.forEach(element => {
 
-        document.querySelector("#trend-unreliability").innerHTML += "<div class='fs-sm text-muted'>" + element + "</div>" ;
+        document.querySelector("#trend-unreliability").innerHTML += element;
         document.getElementById('trend-unreliability').classList.remove('hide')
-
         
     });
 
@@ -44,15 +45,31 @@ const renderComparisonsChart = (
     // dimensions
 
     let columns ;
+    let xAxisLabelField;
+    let chartView = document.getElementById('trend')
         if (window.innerWidth < 340) {
             columns = 1
         } else if (window.innerWidth < 440) {
             columns = 2
-        } else if (window.innerWidth > 440 && window.innerWidth < 576) {
+            xAxisLabelField = 'fallbackYear'
+        } else if (window.innerWidth < 1200) {
             columns = 3
+            xAxisLabelField = 'fallbackYear'
         } else {
             columns = 6
+            xAxisLabelField = 'TimePeriodSplit'
         }
+
+    let mobileLegend;
+    if (window.innerWidth < 720) {
+      mobileLegend =  {
+        "orient": "bottom",
+        "columns": 3,
+        "title": ''
+      }
+    } else {
+      mobileLegend = null
+    }
     
     
     let height = window.innerWidth < 576 ? 350 : 500;
@@ -66,7 +83,14 @@ const renderComparisonsChart = (
     // colors (black, blue, orange, magenta, green, purple)
     // alpha: hex 96 = 150(/255) = ~58/100
 
-    let colors = ["#000000ff", "#1696d296", "#f2921496", "#ec008b96", "#55b74896", "#80008096"];
+    let colors = [
+        "#000000ff",
+        "#374c80",
+        "#bc5090",
+        "#ef5675",
+        "#ff764a",
+        "#ffa600"
+          ];
 
     // ----------------------------------------------------------------------- //
     // extract measure metadata for chart text
@@ -267,6 +291,7 @@ const renderComparisonsChart = (
     // ----------------------------------------------------------------------- //
 
     let compReplaceInvalid = compGroupLabel.map(x => {return {"calculate": `isValid(datum[\"${x}\"]) ? (datum[\"${x}\"] + ' ${compDisplayTypes}') : ""`, "as": `${x}`}})
+    // console.log(compReplaceInvalid)
 
     // ----------------------------------------------------------------------- //
     // create tooltips JSON
@@ -333,8 +358,10 @@ const renderComparisonsChart = (
     }
 
 
+
+
     // ----------------------------------------------------------------------- //
-    // define spec
+    // define spec [older spec, with vert rule tooltip]
     // ----------------------------------------------------------------------- //
     
     let compspec = {
@@ -362,7 +389,7 @@ const renderComparisonsChart = (
                 "symbolSize": 140
             },
             "view": {"stroke": "transparent"},
-            "line": {"color": "#1696d2", "stroke": "#1696d2", "strokeWidth": 2.5},
+            // "line": {"color": "#1696d2", "stroke": "#1696d2", "strokeWidth": 2.5},
             
             "point": {"filled": true},
             "text": {
@@ -496,12 +523,246 @@ const renderComparisonsChart = (
             ...noCompare
         ]
     }
+
+    // ----------------------------------------------------------------------- //
+    // Set tooltip differences for Air Quality AQ Action Days Indicators/measures
+    // ----------------------------------------------------------------------- //
+
+    let metadataObject = metadata.objects()
+    // console.log(metadataObject)
+    let comparisonToolTipLabel;
+    if (metadataObject[0].ComparisonID === 566 || metadataObject[0].ComparisonID === 565 || metadataObject[0].ComparisonID === 564) {
+      // console.log('AQ action days comparison')
+      // actionDays = true
+      comparisonToolTipLabel = 'Action days'
+    }  else {
+      // console.log('false')
+      // actionDays = false
+      comparisonToolTipLabel = compMeasurementType
+    }
+
+    // ----------------------------------------------------------------------- //
+    // define alternate spec [currently using this one]
+    // ----------------------------------------------------------------------- //
+
+    let compspec2 = {
+        "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+        "config": {
+          "range": {
+            "category": [
+              "#000000ff",
+              "#374c80",
+              "#ff764a",
+              "#bc5090",
+              "#ffa600",
+              "#ef5675"
+            ]
+          },
+          "background": "#FFFFFF",
+          "axisX": {
+            "labelAngle": 0,
+            "labelOverlap": "parity",
+            "labelFontSize": 11,
+            "titleFontSize": 13,
+            "titleFont": "sans-serif",
+            "titlePadding": 10,
+            "padding": 50
+          },
+          "axisY": {
+            "labelAngle": 0, 
+            "labelFontSize": 11, 
+            "tickMinStep": tickMinStep, 
+            "orient": "left",
+            "labelBaseline": "bottom",
+            "domain": false, 
+            "ticks": false
+          },
+          "legend": {
+            "columns": 6,
+            "labelFontSize": 14,
+            "symbolSize": 140,
+            "offset": 55.55555555555556
+          },
+          "view": {"stroke": "transparent"},
+          "line": {"color": "#1696d2", "stroke": "#1696d2"},
+          "point": {"filled": true},
+          "text": {"color": "#1696d2", "fontSize": 11, "fontWeight": 400, "size": 11}
+        },
+        "data": {
+            "values": data.objects()
+        },
+        "width": "container",
+        "height": 400,
+        "title": { 
+            "text": plotTitle,
+            "subtitlePadding": 10,
+            "fontWeight": "normal",
+            "anchor": "start", 
+            "fontSize": 18, 
+            "font": "sans-serif",
+            "baseline": "top",
+            "subtitle": plotSubtitle,
+            "dy": -10,
+            "subtitleFontSize": 13
+        },
+        "transform": [
+          {
+            "calculate": `format(datum.Value, ',') + ' ${compDisplayTypes}'`, "as": "valueWithDisplay"
+          },
+          {"calculate": "split(datum.TimePeriod, ' ')", "as": "TimePeriodSplit"},
+          {
+            "calculate": "datum.TimePeriodSplit[datum.TimePeriodSplit.length - 1]",
+            "as": "TimePeriodYear"
+          },
+          {"calculate": "year(datum.end_period)", "as": "year_end_period"},
+          {
+            "calculate": "datum.year_end_period % 2 === 0 ? datum.TimePeriodSplit : ''",
+            "as": "fallbackYear"
+          }
+        ],
+        "encoding": {
+          "x": {
+            "field": "end_period",
+            "type": "quantitative",
+            "title": null,
+            "axis": {"labels": false, "grid": false, "ticks": false}
+          },
+          "y": {
+            "field": "Value",
+            "type": "quantitative",
+            "title": null,
+            "axis": {"tickCount": 4},
+            "scale": {"domainMin": 0, "nice": true}
+          },
+          "color": {
+            "condition": {
+              "param": "hover",
+              "field": comp_group_col,
+              "type": "nominal",
+              "sort": true,
+              "legend": mobileLegend
+            },
+            "value": "gray"
+          },
+          "opacity": {"condition": {"param": "hover", "value": 1}, "value": 0.35},
+          "strokeWidth": {
+            "condition": { "test": "datum.Geography === 'New York City'", "value": 4},
+            "value": 2.5
+          },
+          "tooltip": [
+            {"title": "Time", "field": "TimePeriod"},
+            {"title": "Group", "field": comp_group_col},
+            {"title": comparisonToolTipLabel, "field": "valueWithDisplay"}
+          ]
+        },
+        "layer": [
+          {
+            "description": "Transparent layer to easier trigger hover",
+            "params": [
+              {
+                "name": "hover",
+                "select": {
+                  "type": "point",
+                  "fields": [comp_group_col],
+                  "on": "pointerover"
+                }
+              }
+            ],
+            "mark": {"type": "line", "stroke": "transparent","strokeWidth": 10}
+          },
+          {"mark": {
+            "type": "line", 
+            "point": {
+                "size": 40, 
+                "filled": false, 
+                "fill": "white"
+              }
+            }
+          },
+          {
+            "transform": [
+              {
+                "aggregate": [
+                  {"op": "argmin", "field": "end_period", "as": "Value"},
+                  {"op": "min", "field": "end_period", "as": "end_period"}
+                ],
+                "groupby": [comp_group_col]
+              }
+            ],
+            "encoding": {
+              "x": {"field": "end_period"},
+              "y": {"field": "Value['Value']"},
+              "text": {
+                "condition": {"param": "hover", "field": comp_group_col, "empty": false},
+                "value": ""
+              }
+            },
+            "mark": {
+                "type": "text", 
+                "align": "left",
+                "dx": -6, 
+                "dy": -14,
+                "fontSize": 14, 
+                "fontWeight": "bold"}
+          },
+          {
+            "mark": {"type": "text", "fontWeight": 100, "fontSize": 10},
+            "transform": [
+              {
+                "aggregate": [{"op": "min", "field": "end_period", "as": "min_end_period"}],
+                "groupby": [`${xAxisLabelField}`]
+              }
+            ],
+            "encoding": {
+              "x": {
+                "field": "min_end_period",
+                "type": "quantitative",
+                "axis": {"labels": false, "grid": false, "ticks": false}
+              },
+              "y": {"value": 425},
+              "text": {"field": xAxisLabelField, "type": "nominal"},
+              "color": {"value": "black"}
+            }
+          },
+          {
+            "mark": {"type": "tick"},
+            "encoding": {
+              "x": {
+                "field": "end_period",
+                "type": "quantitative",
+                "axis": {"labels": false, "grid": false, "ticks": true}
+              },
+              "y": {"value": 400},
+              "color": {"value": "black"}
+            }
+          }
+        ]
+      }
     
     // ----------------------------------------------------------------------- //
     // render chart
     // ----------------------------------------------------------------------- //
+
+    let vegaSpec = vegaLite.compile(compspec2).spec // compile to Vega to set axis layers as non-interactive
+    // console.log(vegaSpec)
+    vegaSpec.marks[3].interactive = false;          // set text layers to non-interactive
+    vegaSpec.marks[4].interactive = false;          // set axis layers to non-interactive
+    vegaSpec.marks[5].interactive = false;
     
-    vegaEmbed("#trend", compspec);
+    vegaEmbed("#trend", vegaSpec,{
+      actions: {
+        export: { png: false, svg: false },
+        source: false,  
+        compiled: false, 
+        editor: true 
+      }
+    });
+
+    // send info for printing
+    vizSource = metadataObject[0].Sources
+    printSpec = compspec2;
+    chartType = 'trend'
+
 
     // ----------------------------------------------------------------------- //
     // Send chart data to download
