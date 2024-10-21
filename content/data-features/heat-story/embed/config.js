@@ -832,6 +832,7 @@ config = {
                 ]
             }
         },
+        /*
         {
             "id": "heat-and-harlem",
             "title": "Heat Deaths in Harlem, 1880-1940",
@@ -846,6 +847,7 @@ config = {
                 ]
             }
         },
+        */
         /* NJ story -- comment out
         {
             "id": "life-without-shade-trees",
