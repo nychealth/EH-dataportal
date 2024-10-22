@@ -330,6 +330,16 @@ const renderComparisonsChart = (
     if (compNoCompare && hasGreaterEndPeriod) {
 
         // if a time period exists, return vertical rule JSON
+        console.log('running noCompare')
+
+        // print text
+        let noCompareFootnote = `Because of a method change, data before ${compNoCompare} shouldn't be compared to later time periods.`
+        document.querySelector("#trend-unreliability").innerHTML += "<div class='fs-xs text-muted'>" + noCompareFootnote + "</div>" ;
+        document.getElementById("trend-unreliability").classList.remove('hide')
+
+        // convert to milliseconds format - this is necessary for compspec2
+        const year = new Date(`${compNoCompare}-01-01T00:00:00Z`);
+        compNoCompare = year.getTime() + 15768000000 // add half a year, for placement
 
         noCompare = [{
             "mark": "rule",
@@ -337,17 +347,13 @@ const renderComparisonsChart = (
                 "x": {
                     "datum": compNoCompare
                 },
-                "xOffset": {"value": 0.5},
+                // "xOffset": {"value": 0.5},
                 "color": {"value": "gray"},
-                "size": {"value": 2},
-                "strokeDash": {"value": [2, 2]}
+                "size": {"value": 0.6},
+                // "opacity": {"value": 0.5}
+                // "strokeDash": {"value": [2, 2]}
             }
         }]
-
-        let noCompareFootnote = `Because of a method change, data before ${compNoCompare} shouldn't be compared to later time periods.`
-        document.querySelector("#trend-unreliability").innerHTML += "<div class='fs-sm text-muted'>" + noCompareFootnote + "</div>" ;
-        document.getElementById("trend-unreliability").classList.remove('hide')
-
 
     } else {
 
@@ -735,7 +741,8 @@ const renderComparisonsChart = (
               "y": {"value": 400},
               "color": {"value": "black"}
             }
-          }
+          },
+          ...noCompare
         ]
       }
     
@@ -744,10 +751,12 @@ const renderComparisonsChart = (
     // ----------------------------------------------------------------------- //
 
     let vegaSpec = vegaLite.compile(compspec2).spec // compile to Vega to set axis layers as non-interactive
+    // console.log(compspec2)
     // console.log(vegaSpec)
     vegaSpec.marks[3].interactive = false;          // set text layers to non-interactive
     vegaSpec.marks[4].interactive = false;          // set axis layers to non-interactive
     vegaSpec.marks[5].interactive = false;
+    vegaSpec.marks[6].interactive = false;
     
     vegaEmbed("#trend", vegaSpec,{
       actions: {
