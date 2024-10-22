@@ -347,11 +347,12 @@ const renderComparisonsChart = (
                 "x": {
                     "datum": compNoCompare
                 },
+                "y": {}, // necessary to avoid multi-layering
                 // "xOffset": {"value": 0.5},
                 "color": {"value": "gray"},
-                "size": {"value": 0.6},
+                "size": {"value": 1},
                 // "opacity": {"value": 0.5}
-                // "strokeDash": {"value": [2, 2]}
+                "strokeDash": {"value": [2, 2]}
             }
         }]
 
