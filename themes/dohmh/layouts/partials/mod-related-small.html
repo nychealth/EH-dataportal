@@ -4,10 +4,11 @@
 {{- $layout := .layout -}}
 
 {{- $extraClass := .extraClass -}}
+<!-- range through the section passed into this partial (key-topics) -->
 {{- range first 4 (where $.content.Site.RegularPages "Section" .section) -}}
     {{- $page := . }}
     {{- $has_common_cats := intersect $cats .Params.categories | len | lt 0 -}}
-        {{- if and $has_common_cats (ne $page_link $page.RelPermalink) -}}
+        {{- if  $has_common_cats -}}
 
           {{- if eq $layout "singlelist" -}}
           <a class="text-black" href="{{ .RelPermalink }}">
