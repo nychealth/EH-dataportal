@@ -8,7 +8,7 @@ seo_title: "NYC's rat mitigation zones | Environment and Health Data Portal"
 seo_description: "NYC's rat mitigation zones."
 description: "Data on NYC's rat mitigation zones."
 tags:
-categories: [housing, pests]
+categories: [pests, housing]
 keywords: ["rats", "rat mitigation zones", "pests", "inspections", "rodents"]
 layout: rmz
 vega: true
