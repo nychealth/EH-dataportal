@@ -757,7 +757,8 @@ const renderComparisonsChart = (
     vegaSpec.marks[3].interactive = false;          // set text layers to non-interactive
     vegaSpec.marks[4].interactive = false;          // set axis layers to non-interactive
     vegaSpec.marks[5].interactive = false;
-    vegaSpec.marks[6].interactive = false;
+
+    vegaSpec.marks[6] ? vegaSpec.marks[6] = false : {}; // if noCompare, set that layer to interactive: false
     
     vegaEmbed("#trend", vegaSpec,{
       actions: {
