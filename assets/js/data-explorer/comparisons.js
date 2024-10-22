@@ -752,13 +752,21 @@ const renderComparisonsChart = (
     // ----------------------------------------------------------------------- //
 
     let vegaSpec = vegaLite.compile(compspec2).spec // compile to Vega to set axis layers as non-interactive
-    // console.log(compspec2)
-    // console.log(vegaSpec)
+    console.log(compspec2)
+    console.log(vegaSpec)
     vegaSpec.marks[3].interactive = false;          // set text layers to non-interactive
     vegaSpec.marks[4].interactive = false;          // set axis layers to non-interactive
     vegaSpec.marks[5].interactive = false;
 
-    vegaSpec.marks[6] ? vegaSpec.marks[6] = false : {}; // if noCompare, set that layer to interactive: false
+    vegaSpec.marks[6] ? vegaSpec.marks[6].interactive = false : {}; // if noCompare, set that layer to interactive: false
+
+    if (vegaSpec.marks[6]) {
+      console.log('no compare layer exists')
+    } else {
+      console.log('no no compare layer')
+    }
+
+    console.log(vegaSpec)
     
     vegaEmbed("#trend", vegaSpec,{
       actions: {
