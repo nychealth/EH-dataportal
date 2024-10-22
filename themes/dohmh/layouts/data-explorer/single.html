@@ -500,7 +500,7 @@
 
 
                 <!-- visualization elements -->
-                <div class="tab-content bg-white mb-2 border-top" id="tabs-01-content">
+                <div class="tab-content bg-white border-top" id="tabs-01-content">
             
 
                 <!-- TABLE TAB -->
@@ -536,7 +536,7 @@
                                 <!-- INSERT SUMMARY TABLE HERE -->
                             </div>
 
-                            <div id="table-unreliability" class="pt-2 asidebox hide my-1">
+                            <div id="table-unreliability" class="pt-2 hide my-1 fs-xs">
                                 <!-- INSERT UNRELIABILITY FLAGS HERE -->
                             </div>
                         </div>
@@ -576,13 +576,14 @@
                                         <!-- INSERT MENU ITEMS HERE -->
                                     </div>
                                 </div>
+
                             </div>
                         </div>
 
                         <div class="col-md-10">
                             <div id="map" class="vis-bucket"></div>
 
-                            <div id="map-unreliability" class="pt-2 asidebox hide my-1">
+                            <div id="map-unreliability" class="pt-2 hide my-1 fs-xs">
                                 <!-- INSERT UNRELIABILITY FLAGS HERE -->
                             </div>
                         </div>
@@ -601,11 +602,13 @@
 
                             <div id="trendSidebar" class="collapse dont-collapse-sm">
                                 <p class="fs-xs mb-0"><i data-toggle="modal" data-target="#trendModal" class="fas fa-question-circle float-right helper text-primary fs-sm"></i>Show by:</p>
-                                <div class="border optionbox">
+                                <div class="border optionbox mb-2">
                                     <div class="" aria-labelledby="dropdownTrendComparisons">
                                         <!-- INSERT MENU ITEMS HERE -->
                                     </div>
                                 </div>
+
+
                             </div>
                         </div>
 
@@ -613,7 +616,7 @@
                                  <!-- INSERT TREND CHART HERE -->
                                 <div id="trend" class="vis-bucket"></div>
 
-                                <div id="trend-unreliability" class="pt-2 asidebox hide my-1">
+                                <div id="trend-unreliability" class="pt-2 hide my-1 fs-xs">
                                     <!-- INSERT UNRELIABILITY FLAGS HERE -->
                                 </div>
 
@@ -658,6 +661,7 @@
                                             </div>
                                         </div>
                                     </div>
+
                                 </div>
 
 
@@ -669,7 +673,7 @@
                                 <!-- INSERT LINKS CHART HERE -->
                                 <div id="links" class="vis-bucket"></div>
             
-                                <div id="links-unreliability" class="pt-2 asidebox hide my-1">
+                                <div id="links-unreliability" class="pt-2 hide my-1 fs-xs">
                                     <!-- INSERT UNRELIABILITY FLAGS HERE -->
                                 </div>
                             </div>
@@ -683,56 +687,69 @@
 
 
                         <!-- FOOTER BUSINESS -->
-                        <div class="row mb-4">
+
+                        <div class="row mb-2">
                             <div class="col-md-2"></div>
-                            <div class="col-md-5 col-sm-12">
-                                <div class="dropdown">
-                                    <button class="btn btn-sm btn-block btn-outline-light text-secondary dropdown-toggle" 
-                                    type="button"
-                                    id="downloadDD"
-                                    data-toggle="dropdown"
-                                    aria-haspopup="true"
-                                    aria-expanded="false"
-                                    ><i class="fa fa-download mr-1"></i>Download Data
-                                    </button>
-                                    <div class="dropdown-menu dropdown-menu-right" 
-                                    aria-labelledby="downloadDD">
-                                    <a class="dropdown-item buttons-csv btn-outline-info" id="chartView"><i class="fa fa-download mr-1"></i>Download this view</a>
-                                    <a class="dropdown-item buttons-csv btn-outline-info" id="allData"><i class="fa fa-download mr-1"></i>Download full data table</a>
-                                    <a class="dropdown-item btn-outline-info" href="https://github.com/nychealth/EHDP-data/tree/production/indicators" target="_blank"><i class="fas fa-external-link-alt mr-1"></i>Data Github repo</a>
-                                    <!--<a class="dropdown-item buttons-csv btn-outline-info" id="thisView">Current table view</a>-->        
-                                    <!--<a class="dropdown-item buttons-csv btn-outline-info" id="rawData">Raw data for this indicator</a>-->
+
+                            <!-- Data sources -->
+                            <div class="col-md-10 col-sm-12">
+                                    <div class="visFooterBox">
+                                        <span class="fs-xs font-weight-bold">Source:</span> <p class="fs-xs indicator-sources"></p>
                                     </div>
-                                </div>
-
-                                <div class="asidebox pb-0 mb-0">
-                                    <span class="fs-sm font-weight-bold"><i class="fas fa-info-circle mr-1"></i>How calculated</span>
-                                </div>
-                                <div class="asidebox visFooterBox mb-1">
-                                    <p class="fs-xs indicator-measures"></p>
-
-
-                                </div>
-
                             </div>
-
-                            <div class="col-md-5 col-sm-12">
-                                <button class="btn btn-sm btn-block btn-outline-light text-secondary"
-                                onclick="copyCitation()" id="citeButton"><i class="fas fa-copy mr-1"></i>Copy citation</button>
-                                    <input type="text" id="citeText" value=""
-                                    style="display:inline-block; width:100%; height: 40px; font-size: 14px;"
-                                    class="my-2 sr-only">
-
-                                <div class="asidebox pb-0 mb-0">
-                                    <span class="fs-sm font-weight-bold"><i class="fas fa-info-circle mr-1"></i>Data sources</span>
-                                </div>
-                                <div class="asidebox visFooterBox">
-                                    <p class="fs-xs indicator-sources"></p>
-                                </div>
-                                
-                            </div>
-
                         </div>
+
+                        <div class="row mt-3 mb-4">
+                            <div class="col-md-2"></div>
+
+                            <div class="col-md-10 col-sm-12">
+                                <div class="row no-gutters">
+                                    <div class="col-md-3 col-sm-6">
+                                        <button type="button" class="btn btn-sm btn-outline-light fs-xs text-secondary btn-block mb-1" data-toggle="modal" data-target="#howCalcModal" >
+                                            <i class="fas fa-info-circle mr-1" aria-hidden="true"></i>How calculated
+                                        </button>
+                                    </div>
+                                    <div class="col-md-3 col-sm-6">
+                                        <div class="dropdown">
+                                            <button class="btn btn-sm btn-block btn-outline-light fs-xs text-secondary dropdown-toggle" 
+                                            type="button"
+                                            id="downloadDD"
+                                            data-toggle="dropdown"
+                                            aria-haspopup="true"
+                                            aria-expanded="false"
+                                            ><i class="fa fa-download mr-1"></i>Download Data
+                                            </button>
+                                            <div class="dropdown-menu dropdown-menu-right" 
+                                            aria-labelledby="downloadDD">
+                                            <a class="dropdown-item buttons-csv btn-outline-info" id="chartView"><i class="fa fa-download mr-1"></i>Download this view</a>
+                                            <a class="dropdown-item buttons-csv btn-outline-info" id="allData"><i class="fa fa-download mr-1"></i>Download full data table</a>
+                                            <a class="dropdown-item btn-outline-info" href="https://github.com/nychealth/EHDP-data/tree/production/indicators" target="_blank"><i class="fas fa-external-link-alt mr-1"></i>Data Github repo</a>
+                                            <!--<a class="dropdown-item buttons-csv btn-outline-info" id="thisView">Current table view</a>-->        
+                                            <!--<a class="dropdown-item buttons-csv btn-outline-info" id="rawData">Raw data for this indicator</a>-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-6">
+                                        <button class="btn btn-sm btn-block btn-outline-light fs-xs text-secondary"
+                                        onclick="copyCitation()" id="citeButton"><i class="fas fa-copy mr-1"></i>Copy citation</button>
+                                            <input type="text" id="citeText" value=""
+                                            style="display:inline-block; width:100%; height: 40px; font-size: 14px;"
+                                            class="my-2 sr-only">
+                                    </div>
+                                    <div class="col-md-3 col-sm-6">
+                                        <a type="button" class="btn btn-sm btn-outline-light fs-xs text-secondary btn-block mb-1" onclick="printModal()" id="chartSaver">
+                                            <i class="fas fa-save mr-1" aria-hidden="true"></i>Save chart
+                                        </a>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
 
                         <!--.footer -->
 
@@ -914,6 +931,53 @@
                 </div>
             </div>
         </div>
+
+                <!-- Data Modal - How calculated -->
+                <div class="modal fade" id="howCalcModal" tabindex="-1" role="dialog" aria-labelledby="howCalcModalLabel"
+                aria-hidden="true">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="howCalcModalLabel"><i  class="fas fa-question-circle mr-1" aria-hidden="true"></i>How calculated</h5>
+                            </div>
+                            <div class="modal-body">
+                                <p class="indicator-measures"></p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+        <!-- Print Modal -->
+        <div class="modal fade" id="printModal" tabindex="-1" role="dialog" aria-labelledby="printModalTitle" aria-hidden="true">
+            <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="printModalTitle">Save this visualization</h5>
+                </div>
+                <div class="modal-body">
+                Use this view to screenshot or print this visualization. You can also click the three dots in the upper-right-hand corner of the chart and choose "save as PNG" or "save as SVG" to download the chart. This function works best on a desktop computer.
+                    <hr class="my-1">
+
+                <div id="printVis" style="height: 400px; width:100%;" class="vis-print-modal">
+                    Vis container
+                </div>
+
+                <div id="modalFootnotes" class="fs-xs p-1 pl-3">
+
+                </div>
+            
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+            </div>
+        </div>
+
+
 
 </article>
 
@@ -1176,6 +1240,8 @@
     {{- $disparities := resources.Get "js/data-explorer/disparities.js" -}}
     {{- $comparisons := resources.Get "js/data-explorer/comparisons.js" -}}
     {{- $app         := resources.Get "js/data-explorer/app.js" -}}
+    {{- $print         := resources.Get "js/data-explorer/print.js" -}}
+
 
     {{- $global_secure      := $global | resources.Fingerprint "sha512" -}}
     {{- $data_secure        := $data | resources.Fingerprint "sha512" -}}
@@ -1186,6 +1252,8 @@
     {{- $disparities_secure := $disparities | resources.Fingerprint "sha512" -}}
     {{- $comparisons_secure := $comparisons | resources.Fingerprint "sha512" -}}
     {{- $app_secure         := $app | resources.Fingerprint "sha512" -}}
+    {{- $print_secure         := $print | resources.Fingerprint "sha512" -}}
+
 
     <script type="text/javascript" src="{{ $global_secure.RelPermalink }}" integrity="{{ $global_secure.Data.Integrity }}"></script>
     <script type="text/javascript" src="{{ $data_secure.RelPermalink }}" integrity="{{ $data_secure.Data.Integrity }}"></script>
@@ -1196,5 +1264,7 @@
     <script type="text/javascript" src="{{ $disparities_secure.RelPermalink }}" integrity="{{ $disparities_secure.Data.Integrity }}"></script>
     <script type="text/javascript" src="{{ $comparisons_secure.RelPermalink }}" integrity="{{ $comparisons_secure.Data.Integrity }}"></script>
     <script type="text/javascript" src="{{ $app_secure.RelPermalink }}" integrity="{{ $app_secure.Data.Integrity }}"></script>
+    <script type="text/javascript" src="{{ $print_secure.RelPermalink }}" integrity="{{ $print_secure.Data.Integrity }}"></script>
+
 
 {{- end -}}
