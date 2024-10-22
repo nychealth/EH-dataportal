@@ -38,7 +38,7 @@ indicators:
       - 2143
 related:
   - title: "Public space creates health"
-    url: "public-space-creates-health/"
+    url: "data-stories/public-space-creates-health/"
   - title: "What our air quality monitors tell us about NYC's neighborhoods"
     url: "data-stories/air-quality-by-neighborhood/"
   - title: "Protecting New Yorkers from extreme heat"
