@@ -36,6 +36,19 @@ indicators:
       - 55
   - header: null
     IndicatorID:
+related:
+  - title: "Air quality in car-free areas"
+    url: "data-stories/car-free-zones/"
+  - title: "What our air quality monitors tell us about NYC's neighborhoods"
+    url: "data-stories/air-quality-by-neighborhood/"
+  - title: "Real-Time Air Quality: PM2.5 in NYC"
+    url: "data-features/realtime-air-quality/"
+relatedData:
+  - title: "Health impacts of air pollution"
+    url: "health-impacts-of-air-pollution"
+  - title: "Air quality"
+    url: "Asthma"
+    url: "Asthma"
 ---
 
 Air quality is a **measure of the condition of the air around us**. The less air pollution there is, the better the air quality.
