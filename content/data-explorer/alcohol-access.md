@@ -6,14 +6,28 @@ azlink: "https://www.nyc.gov/site/doh/health/health-topics/alcohol-and-drug-use.
 seo_title: "Alcohol access data for NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
 description: "Datasets and visualizations of alcohol data in NYC."
-tags: 
-categories: ["foodanddrink","neighborhoods"]
-keywords: ["drink","alcohol","neighborhoods"]
+tags:
+categories: ["foodanddrink", "neighborhoods"]
+keywords: ["drink", "alcohol", "neighborhoods"]
 indicators:
-- header: null
-  IndicatorID:
-  - 2049
-  - 2057
+  - header: null
+    IndicatorID:
+      - 2049
+      - 2057
+related:
+  - title: "Air quality in car-free areas"
+    url: "data-stories/car-free-zones/"
+  - title: "What our air quality monitors tell us about NYC's neighborhoods"
+    url: "data-stories/air-quality-by-neighborhood/"
+  - title: "Real-Time Air Quality: PM2.5 in NYC"
+    url: "data-features/realtime-air-quality/"
+relatedData:
+  - title: "Alcohol access and use"
+    url: "data-explorer/alcohol-use/"
+  - title: "Air quality"
+    url: "data-explorer/air-quality/"
+  - title: "Asthma"
+    url: "data-explorer/asthma/"
 ---
 
 Heavy regular drinking and binge drinking contribute to a wide range of chronic health problems, including heart disease, diabetes, cancer, stroke, cirrhosis, depression and dementia. Alcohol use is also associated with suicide, homicide, domestic violence, sexually transmitted diseases and injuries. It is one of the leading behavior-related causes of death in New York City (NYC).
