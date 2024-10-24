@@ -16,6 +16,20 @@ indicators:
       - 2132
       - 2401
       - 2232
+related:
+  - title: "Injury deaths in NYC"
+    url: "data-stories/injury-deaths/"
+  - title: "The racial wealth gap has big implications for public health and health equity"
+    url: "data-stories/racial-wealth-gap/"
+  - title: "Why asthma is a social justice issue"
+    url: "data-stories/asthma-and-poverty/"
+relatedData:
+  - title: "Economic conditions"
+    url: "data-explorer/economic-conditions/"
+  - title: "Social conditions"
+    url: "data-explorer/social-conditions"
+  - title: "Mortality"
+    url: "data-explorer/mortality/"
 ---
 
 Health care is a valuable tool to stay healthy.

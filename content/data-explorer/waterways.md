@@ -14,6 +14,20 @@ indicators:
     IndicatorID:
       - 2427
       - 2428
+related:
+  - title: "Lead poisoning affects adults too"
+    url: "data-features/adult-lead/"
+  - title: "Housing creates health"
+    url: "data-stories/housing-creates-health/"
+  - title: "What Hurricane Ida and Superstorm Sandy taught us about flooding and health"
+    url: "data-stories/flooding-and-health/"
+relatedData:
+  - title: "Drinking water quality"
+    url: "data-explorer/drinking-water-quality/"
+  - title: "Lead"
+    url: "data-explorer/lead/"
+  - title: "data-explorer/housing-safety/"
+    url: "data-explorer/mortality/"
 ---
 
 Healthy waterways are important for both aquatic life and humans who use the water for recreation.

@@ -36,7 +36,7 @@ related:
   - title: "Economic stability creates health"
     url: "data-stories/economic-stability/"
   - title: "The racial wealth gap has big implications for public health and health equity"
-    url: "racial-wealth-gap/"
+    url: "data-stories/racial-wealth-gap/"
   - title: "A brief history of redlining"
     url: "data-stories/redlining/"
 relatedData:

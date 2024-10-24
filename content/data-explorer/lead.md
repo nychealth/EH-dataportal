@@ -24,6 +24,20 @@ indicators:
     IndicatorID:
       - 41
       - 16
+related:
+  - title: "Lead poisoning affects adults too"
+    url: "data-features/adult-lead/"
+  - title: "Housing creates health"
+    url: "data-stories/housing-creates-health/"
+  - title: "A brief history of redlining"
+    url: "data-stories/redlining/"
+relatedData:
+  - title: "Lead"
+    url: "data-explorer/lead/"
+  - title: "Housing maintenance"
+    url: "data-explorer/housing-maintenance/"
+  - title: "data-explorer/housing-safety/"
+    url: "data-explorer/mortality/"
 ---
 
 Lead is a metal that is toxic to people. There is no safe level of lead in your body. It can cause learning and behavior problems, and delay physical growth and mental development.

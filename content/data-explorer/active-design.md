@@ -45,11 +45,11 @@ related:
     url: "data-stories/heat/"
 relatedData:
   - title: "Walking, driving, and cycling"
-    url: "walking-driving-and-cycling"
-  - title: "Transportation"
-    url: "transportation"
+    url: "data-explorer/walking-driving-and-cycling/"
+  - title: "Air quality"
+    url: "data-explorer/air-quality/"
   - title: "Transportation related-injuries"
-    url: "transportation-related-injuries"
+    url: "data-explorer/transportation-related-injuries/"
 ---
 
 Physical activity and healthy eating are among the leading ways to get and stay healthy.
