@@ -13,6 +13,20 @@ indicators:
   - header: null
     IndicatorID:
       - 2030
+related:
+  - title: "Housing creates health"
+    url: "data-stories/housing-creates-health/"
+  - title: "Why asthma is a social justice issue"
+    url: "data-stories/asthma-and-poverty/"
+  - title: "Rat Mitigation Zones"
+    url: "data-features/rat-mitigation-zones/"
+relatedData:
+  - title: "Asthma"
+    url: "data-explorer/asthma/"
+  - title: "Air quality"
+    url: "data-explorer/cockroaches/"
+  - title: "Mice and rats"
+    url: "data-explorer/mice-and-rats/"
 ---
 
 Bed bugs are small insects that feed mainly on human blood. They are often confused with other insects, and many people are not even aware of their presence until they have been bitten. However, not everyone has a reaction to bed bug bites. You may not discover that you have bed bugs until you see other signs of the pests such as, bed bugs themselves, their eggs or droppings, or the blood stains they leave behind in mattresses, box springs, chairs or other materials.

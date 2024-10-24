@@ -6,17 +6,31 @@ azlink: "https://www.nyc.gov/site/doh/health/health-topics/cancer-prevention.pag
 seo_title: "Childhood cancer data for NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
 description: "Datasets and visualizations of childhood cancer data in NYC."
-tags: 
-categories: ["childhealth","healthoutcomes"]
-keywords: ["cancer","cancers","children","environmental health"]
+tags:
+categories: ["childhealth", "healthoutcomes"]
+keywords: ["cancer", "cancers", "children", "environmental health"]
 indicators:
-- header: null
-  IndicatorID:
-  - 2039
-  - 2037
-  - 2035
-  - 2033
-  - 2031
+  - header: null
+    IndicatorID:
+      - 2039
+      - 2037
+      - 2035
+      - 2033
+      - 2031
+related:
+  - title: "Neighborhood boundaries on the EH Data Portal"
+    url: "data-stories/geographies/"
+  - title: "The racial wealth gap has big implications for public health and health equity"
+    url: "data-stories/racial-wealth-gap/"
+  - title: "Efforts to reduce air pollution should focus on neighborhoods with the worst health impacts"
+    url: "data-stories/hia/"
+relatedData:
+  - title: "Cancer"
+    url: "data-explorer/cancer/"
+  - title: "Health care"
+    url: "data-explorer/health-care"
+  - title: "Mortality"
+    url: "data-explorer/mortality/"
 ---
 
 Cancer begins when cells in a part of the body start to grow out of control. There are many kinds of cancer, but they all start because of out-of-control growth of abnormal cells. Leukemia (cancer of the blood-forming cells) is the most common form of childhood cancer. There are different kinds of childhood leukemia. The most common kinds are acute lymphocytic leukemia and acute myeloid leukemia . Brain and other nervous system cancers are the second most common types of childhood cancers. Of all childhood cancer, leukemias and brain and other nervous system cancers account for about 50% of cases among children less than 15 years old.

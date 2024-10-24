@@ -25,6 +25,18 @@ indicators:
       - 6
       - 7
       - 8
+related:
+  - title: "Economic stability creates health"
+    url: "data-stories/economic-stability/"
+  - title: "Housing creates health"
+    url: "data-stories/housing-creates-health/"
+relatedData:
+  - title: "Birth defects"
+    url: "data-explorer/birth-defects/"
+  - title: "Alcohol access and use"
+    url: "data-explorer/alcohol-use/"
+  - title: "Asthma"
+    url: "data-explorer/asthma/"
 ---
 
 Close to 125,000 live births occur in New York City (NYC) each year. Most babies are born healthy, but those born prematurely or with low birth weight are at greater risk of disability or death. This site tracks indicators of fetal growth and development, infant and perinatal mortality, fertility and sex ratio at birth.

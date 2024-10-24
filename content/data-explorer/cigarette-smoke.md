@@ -35,6 +35,20 @@ indicators:
       - 2422
       - 2404
       - 25
+related:
+  - title: "Why asthma is a social justice issue"
+    url: "data-stories/asthma-and-poverty/"
+  - title: "What our air quality monitors tell us about NYC's neighborhoods"
+    url: "data-stories/air-quality-by-neighborhood/"
+  - title: "Efforts to reduce air pollution should focus on neighborhoods with the worst health impacts"
+    url: "data-stories/hia/"
+relatedData:
+  - title: "Cancer"
+    url: "data-explorer/cancer/"
+  - title: "Asthma"
+    url: "data-explorer/asthma/"
+  - title: "Housing maintenance"
+    url: "data-explorer/housing-maintenance/"
 ---
 
 Smoking causes over a dozen cancers, heart disease, stroke, type 2 diabetes and many other diseases; it remains a leading cause of death in New York City (NYC). On average, people who do not smoke live about 10 years longer than people who do.
