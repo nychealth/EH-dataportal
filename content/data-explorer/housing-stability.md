@@ -28,6 +28,20 @@ indicators:
       - 15
       - 17
       - 2336
+related:
+  - title: "Housing creates health"
+    url: "data-stories/housing-creates-health/"
+  - title: "Health, housing, and history"
+    url: "data-stories/housing/"
+  - title: "A brief history of redlining"
+    url: "data-stories/redlining/"
+relatedData:
+  - title: "Housing maintenance"
+    url: "data-explorer/housing-maintenance/"
+  - title: "economic conditions"
+    url: "data-explorer/economic-conditions/"
+  - title: "Housing safety"
+    url: "data-explorer/housing-safety/"
 ---
 
 Most people spend most of their time in their home. That makes the home a crucial environment that can affect one's health.

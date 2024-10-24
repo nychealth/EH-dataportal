@@ -6,14 +6,26 @@ azlink: "https://www.nyc.gov/site/doh/health/health-topics/alcohol-and-drug-use.
 seo_title: "Alcohol access data for NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
 description: "Datasets and visualizations of alcohol data in NYC."
-tags: 
-categories: ["foodanddrink","neighborhoods"]
-keywords: ["drink","alcohol","neighborhoods"]
+tags:
+categories: ["foodanddrink", "neighborhoods"]
+keywords: ["drink", "alcohol", "neighborhoods"]
 indicators:
-- header: null
-  IndicatorID:
-  - 2049
-  - 2057
+  - header: null
+    IndicatorID:
+      - 2049
+      - 2057
+related:
+  - title: "Why violence is a public health issue"
+    url: "data-stories/violence/"
+  - title: "What hot weather means for food safety"
+    url: "data-stories/food/"
+relatedData:
+  - title: "Birth outcomes"
+    url: "data-explorer/birth-outcomes"
+  - title: "Air quality"
+    url: "data-explorer/housing-stability/"
+  - title: "Asthma"
+    url: "data-explorer/mortality/"
 ---
 
 Heavy regular drinking and binge drinking contribute to a wide range of chronic health problems, including heart disease, diabetes, cancer, stroke, cirrhosis, depression and dementia. Alcohol use is also associated with suicide, homicide, domestic violence, sexually transmitted diseases and injuries. It is one of the leading behavior-related causes of death in New York City (NYC).

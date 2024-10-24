@@ -26,6 +26,20 @@ indicators:
       - 2389
       - 2097
       - 2098
+related:
+  - title: "Economic stability creates health"
+    url: "data-stories/economic-stability/"
+  - title: "What hot weather means for food safety"
+    url: "data-stories/food/"
+  - title: "A brief history of redlining"
+    url: "data-stories/redlining/"
+relatedData:
+  - title: "Economic conditions"
+    url: "data-explorer/economic-conditions/"
+  - title: "Social conditions"
+    url: "data-explorer/social-conditions/"
+  - title: "Active design"
+    url: "data-explorer/active-design/"
 ---
 
 Healthy eating is associated with better health, including a reduced risk of cardiovascular disease. That means that having access to healthy, safe, and affordable food choices is crucial for a person to achieve healthy eating habits.

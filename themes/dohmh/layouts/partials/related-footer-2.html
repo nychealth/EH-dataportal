@@ -1,70 +1,60 @@
-<section class="related-reading" data-pagefind-ignore="all">
-  <div class="container">
-      <div class="row">
-          <div class="col-12">
-              <div class="card bg-white text-green mb-2 p-2 text-primary fs-lg">
-                 <strong class="border-bottom">Related content</strong>
-              </div>
-          </div>
+<!--
+  The related footer looks for .Params.related (a 'related' element of content's frontmatter).
+  If that exists, then it prints the related things, as well as the categories/key topics in a second column.
+  If no related frontmatter exists, then it will just match on categories, using mod-related-main and mod-related-small.
+-->
 
-          <div class="col-lg">
-              <div class="card bg-white text-black mb-2">
-                <div class="card-header"><h4 class="fs-md text-muted"><i class="fas fa-passport text-muted mr-1" aria-hidden="true"></i>Data Stories</h4>
-                </div>
-                <div class="card-body fs-sm overflow-fade-about" style="height:400px; overflow-y:scroll;">
-                  {{- partial "related" (dict "section" "data-stories" "layout" "singlelist" "content" . ) -}}
-                </div>
-              </div>
-            </div>
-            <!-- .col for city -->
+<section data-pagefind-ignore="all" class="mt-lg-5">
+    <div class="container mb-5">
+        <div class="row">
 
-            <div class="col-lg">
-              <div class="card bg-white text-black mb-2">
-                  <div class="card-header"><h4 class="fs-md text-muted"><i class="fas fa-star text-muted mr-1" aria-hidden="true"></i>Key Topics</h4>
-
+              <div class="col-lg-8 pr-lg-3">
+                <div class="related-border mb-2">
+                  <div class="mt-2">
+                    <h4 class="h3">See more related to "{{ .Title }}"</h4>
+                    <hr class="my-2">
                   </div>
-                  <div class="card-body fs-sm">
-                      <!--sets variables-->
-                      {{- $page_link := .RelPermalink -}}
-                      {{- $cats := .Params.categories -}}
+                  <div class="fs-lg">
+                    {{ if .Params.related }}
+                      {{ range .Params.related }}
 
-                      {{- range where (where .Site.Pages "Section" "key-topics") ".File.BaseFileName" "_index" -}}
-                      <!--$page equals values we find when ranging through-->
-                      {{- $page := . -}}
+                      {{ $icon := "" }}
+                      {{ if in .url "data-stories" }}
+                          {{ $icon ="<i class='fas fa-passport' aria-hidden='true'></i>" }}
+                      {{ else if in .url "data-explorer" }}
+                          {{ $icon = "<i class='fas fa-chart-line' aria-hidden='true'></i>" }}
+                      {{ else if in .url "data-features" }}
+                          {{ $icon = "<i class='fas fa-chart-bar' aria-hidden='true'></i>" }}
+                      {{ else if in .url "neighborhood-reports" }}
+                        {{ $icon = "<i class='fas fa-map-marked-alt' aria-hidden='true'></i>" }}
+                      {{ end }}
 
-                      <!--set variable equal to intersection of categories: page that we're on, and pages we ranged through-->
-                      {{- $has_common_cats := intersect $cats .Params.categories | len | lt 0 -}}
+                        <a class="text-black" href="../../{{ .url }}">
+                          <span class='text-primary data-stories mr-2'>{{ safe.HTML $icon }}</span>{{ .title }}
+                        </a>
+                        <hr class="my-2">
+                      {{ end }}
 
-                      <!--Show commonalities, except for page we're on -->
-                      {{- if and $has_common_cats (ne $page_link $page.RelPermalink) -}}
-                      <a href="{{ $page.RelPermalink }}">{{ $page.Title }}</a>
-                      <hr class="my-1">
-                      {{- end -}}
-                      {{- end -}}
+                    {{ else }}
+                    {{- partial "mod-related-main" (dict "section" "data-stories" "layout" "singlelisticon" "content" . ) -}}
+                    {{ end }}
                   </div>
                 </div>
-
-                <div class="card bg-white text-black mb-2">
-                  <div class="card-header"><h4 class="fs-md text-muted"><i class="fas fa-map-marked-alt text-muted mr-1" aria-hidden="true"></i>Neighborhood Reports</h4>
-                  </div>
-                  <div class="card-body fs-sm">
-                      {{- partial "related" (dict "section" "neighborhood-reports" "layout" "singlelist" "content" . ) -}}
-
-                  </div>
-                </div>
-            </div>
-            <!-- .col for you -->
-
-            <div class="col-lg">
-              <div class="card bg-white text-black">
-                <div class="card-header"><h4 class="fs-md text-muted"><i class="fas fa-chart-line text-muted mr-1" aria-hidden="true"></i>Data Explorer</h4>
-                </div>
-                <div class="card-body fs-sm overflow-fade-about" style="height:400px; overflow-y:scroll;">
-                  {{- partial "related" (dict "section" "data-explorer" "layout" "singlelist" "content" . ) -}}
               </div>
+              <!-- .col for city -->
+              {{ if .Params.categories }}
+              <div class="col-lg-4 pl-lg-3">
+                <div class="related-border">
+                  <h4 class="h3 mt-2">You might also be intersted in</h4>
+                  <hr class="my-2">
+                </div>
+                  <div>
+                    {{- partial "mod-related-small" (dict  "content" . ) -}}
+                </div>
+                </div>
               </div>
-            </div>
-            <!-- .col for data -->
-      </div>
-  </div>
+              {{ end }}
+              <!-- .col for data -->
+        </div>
+    </div>
 </section>

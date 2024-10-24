@@ -16,6 +16,20 @@ indicators:
       - 2043
       - 2041
       - 2044
+related:
+  - title: "Lead poisoning affects adults too"
+    url: "data-features/adult-lead/"
+  - title: "Housing creates health"
+    url: "data-stories/housing-creates-health/"
+  - title: "What Hurricane Ida and Superstorm Sandy taught us about flooding and health"
+    url: "data-stories/flooding-and-health/"
+relatedData:
+  - title: "Waterways"
+    url: "data-explorer/waterways/"
+  - title: "Lead"
+    url: "data-explorer/lead/"
+  - title: "data-explorer/housing-safety/"
+    url: "data-explorer/mortality/"
 ---
 
 All NYC residences **receive drinking water from a public water system.** Most water is gravity fed from a network of reservoirs and lakes in protected watersheds, up to 125 miles from the city.

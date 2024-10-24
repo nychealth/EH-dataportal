@@ -2,16 +2,41 @@
 title: "The urban heat island effect in NYC"
 shortTitle: "Urban heat islands"
 aliases:
-    - /data-stories/localtemp/
+  - /data-stories/localtemp/
 date: 2021-08-20T12:52:43-04:00
 draft: false
 seo_title: "The Urban Heat Island Effect in New York City"
 seo_description: "A data story on block-by-block heat differences."
 tags:
-categories: ["climatehealth","neighborhoods"]
-keywords: ["heat","hot weather","weather","climate","temperature","summer","greenspace","parks","green space","heat island","urban heat island","cooling","air conditioning","building","housing","global warming"]
+categories: ["climatehealth", "neighborhoods"]
+keywords:
+  [
+    "heat",
+    "hot weather",
+    "weather",
+    "climate",
+    "temperature",
+    "summer",
+    "greenspace",
+    "parks",
+    "green space",
+    "heat island",
+    "urban heat island",
+    "cooling",
+    "air conditioning",
+    "building",
+    "housing",
+    "global warming",
+  ]
 image: Harlem (1).jpg
 photocredit: "Tagger Yancey IV/NYC & Company"
+related:
+  - title: "Interactive Heat Vulnerability Index"
+    url: "data-features/hvi/"
+  - title: "Real-time heat-related illness"
+    url: "data-features/heat-syndrome/"
+  - title: "Protecting New Yorkers from extreme heat"
+    url: "data-stories/heat/"
 ---
 
 In New York City and across the country, more people die from extreme heat than from all other natural disasters combined. To understand how to keep New Yorkers safe from extreme heat, we studied neighborhood factors that affect temperature, and found that grass, shrubs, and trees can play a major role. Let’s take a look.
@@ -19,6 +44,7 @@ In New York City and across the country, more people die from extreme heat than 
 At 6.00 PM on June 30, 2018, the air temperature at the LaGuardia Airport Weather Station was 89° Fahrenheit (F). At the same time, the air temperature on a block in East Harlem (below left) was nearly 5° hotter than at the Weather Station, and the temperature on a block in Bed-Stuy (below right) was 3.5° hotter.
 
 {{< rawhtml >}}
+
 </div>
 
 <div class="wide my-4">
@@ -52,6 +78,7 @@ At 6.00 PM on June 30, 2018, the air temperature at the LaGuardia Airport Weathe
 This is an example of the Urban Heat Island Effect: when some areas in a city are {{< rawhtml >}}<a href="#collapseOne" data-toggle="collapse" class="badge badge-pill badge-warning">hotter than others</a>{{< /rawhtml >}}. Temperatures can even vary from block to block.
 
 {{< rawhtml >}}
+
 <div class="collapse asidebox m-2 fs-sm" id="collapseOne"
 style="margin-top: 0px!important;">
 <p>LaGuardia Airport is an open space without many structures surrounding it. It doesn't trap heat the way other places in the city do, so we often use it as a reference temperature. It is almost always cooler than other parts of NYC, where building boilers and vehicle engines generate heat, manufactured surfaces like roofs and roads absorb heat, and there’s less vegetation to cool things down. 
@@ -71,6 +98,7 @@ We reviewed land-use data and satellite imagery to build a profile of each block
 We found that the average temperature at the Edenwald spot was more than 2° cooler than the Brownsville spot.
 
 {{< rawhtml >}}
+
 </div>
 <div class="wide my-2 fs-sm">
 <div class="row">
@@ -172,6 +200,7 @@ We found that the average temperature at the Edenwald spot was more than 2° coo
 These are the factors we explored that affect hyperlocal temperature:
 
 {{< rawhtml >}}
+
 </div>
 <div class="wide my-4 fs-sm">
     <div class="accordion-group my-3" role="tablist" id="accordion-01">
@@ -314,6 +343,7 @@ Our model looked at how much each factor affected temperature, and it showed tha
 See for yourself - drag the green slider back and forth to see what the temperature would be on a hypothetical block if there were more vegetation or more impervious surfaces like roadways, which absorb sunlight and retain heat.
 
 {{< rawhtml >}}
+
 </div>
 
 <!--FIRST SLIDER-->
@@ -441,9 +471,10 @@ A block covered in trees, grass, and shrubs might have an average summertime eve
 
 Cooling a block by 2° may not sound like much, but small differences in temperature - especially at peak summer temperatures - really matter. For example, the average temperature at Central Park increased 3.4° from 1900 to 2013. Cooling blocks by just a few degrees can help offset the effects of climate change at the local level.
 
-As the climate changes, NYC faces rising average temperatures and heat waves that place New Yorkers at risk. The increase in cooling provided from neighborhoods with trees and other vegetation helps increase equitable resilience between neighborhoods in New York, offsets the effects of the urban heat island, and makes daily life safer and more comfortable on hot days and during extreme heat. The modest cooling provided by increased greenery can also reduce the load of air conditioners  and lower energy bills, as air conditioning is a vital public health intervention for reducing heat-related illness and death.
+As the climate changes, NYC faces rising average temperatures and heat waves that place New Yorkers at risk. The increase in cooling provided from neighborhoods with trees and other vegetation helps increase equitable resilience between neighborhoods in New York, offsets the effects of the urban heat island, and makes daily life safer and more comfortable on hot days and during extreme heat. The modest cooling provided by increased greenery can also reduce the load of air conditioners and lower energy bills, as air conditioning is a vital public health intervention for reducing heat-related illness and death.
 
 {{< rawhtml >}}
+
 </div>
 <div class="wide">
     <div class="mb-4 asidebox">
@@ -502,6 +533,5 @@ As the climate changes, NYC faces rising average temperatures and heat waves tha
         });
     } //this function creates the map
 </script>
+
 {{< /rawhtml >}}
-
-

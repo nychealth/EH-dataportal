@@ -1,0 +1,18 @@
+
+<!-- via dict, cats is the host page's frontmatter categories -->
+{{- $cats := $.content.Params.categories -}}
+
+<!-- range through the section passed into this partial (key-topics) -->
+{{- range  (where $.content.Site.RegularPages "Section" "key-topics") -}}
+
+    {{- $has_common_cats := intersect $cats .Params.categories | len | lt 0 -}}
+        {{- if  $has_common_cats -}}
+
+          <a class="text-black" href="{{ .RelPermalink }}">
+            {{ .Title }}
+          </a>
+          <hr class="my-2">
+
+        {{- end -}}
+
+{{- end -}}

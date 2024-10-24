@@ -55,6 +55,20 @@ indicators:
       - 2385
       - 2381
       - 2386
+related:
+  - title: "Why asthma is a social justice issue"
+    url: "data-stories/asthma-and-poverty/"
+  - title: "Efforts to reduce air pollution should focus on neighborhoods with the worst health impacts"
+    url: "data-stories/hia"
+  - title: "Real-Time Air Quality: PM2.5 in NYC"
+    url: "data-features/realtime-air-quality/"
+relatedData:
+  - title: "Health impacts of air pollution"
+    url: "health-impacts-of-air-pollution"
+  - title: "Air quality"
+    url: "data-explorer/air-quality/"
+  - title: "Air quality"
+    url: "data-explorer/air-quality/"
 ---
 
 Asthma is a **common disease in which the lungs become swollen, making breathing difficult**. Symptoms include wheezing, coughing, shortness of breath and tightness in the chest. The exact causes of asthma are not known. **Asthma cannot be cured, but it can be controlled**.

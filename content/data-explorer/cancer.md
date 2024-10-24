@@ -29,6 +29,20 @@ indicators:
       - 2091
       - 64
       - 690
+related:
+  - title: "Lead poisoning affects adults too"
+    url: "data-stories/adult-lead/"
+  - title: "The racial wealth gap has big implications for public health and health equity"
+    url: "data-stories/racial-wealth-gap/"
+  - title: "Efforts to reduce air pollution should focus on neighborhoods with the worst health impacts"
+    url: "data-stories/hia/"
+relatedData:
+  - title: "Cancers in children"
+    url: "data-explorer/cancers-in-children/"
+  - title: "Health care"
+    url: "data-explorer/health-care"
+  - title: "Mortality"
+    url: "data-explorer/mortality/"
 ---
 
 Cancer is the general name for a group of more than 100 diseases in which cells in a part of the body begin to grow out of control.

@@ -15,6 +15,20 @@ indicators:
       - 22
       - 2393
       - 107
+related:
+  - title: "Housing creates health"
+    url: "data-stories/housing-creates-health/"
+  - title: "Why asthma is a social justice issue"
+    url: "data-stories/asthma-and-poverty/"
+  - title: "Rat Mitigation Zones"
+    url: "data-features/rat-mitigation-zones/"
+relatedData:
+  - title: "Asthma"
+    url: "data-explorer/asthma/"
+  - title: "Bed bugs"
+    url: "data-explorer/bed-bugs/"
+  - title: "Mice and rats"
+    url: "data-explorer/mice-and-rats/"
 ---
 
 Cockroaches are a common urban pest. Though there are more than a thousand species of roaches, just a few are found in NYC homes.  The most common are American Cockroaches, typically found in moist basements and lower floors, and German Cockroaches, found anywhere inside homes.

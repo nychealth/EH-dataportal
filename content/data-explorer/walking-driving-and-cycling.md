@@ -45,7 +45,21 @@ seo_title: Walking, driving, and cycling data for NYC
 seo_description: >-
   Explore data, visualizations, and more on ways that environments shape health
   in New York City's neighborhoods.
-description: "Datasets and visualizations of walking, driving, and cyclinfg in NYC."
+description: "Datasets and visualizations of walking, driving, and cycling in NYC."
+related:
+  - title: "Public space creates health"
+    url: "data-stories/public-space-creates-health/"
+  - title: "Air quality in car-free areas"
+    url: "data-stories/car-free-zones/"
+  - title: "Protecting New Yorkers from extreme heat"
+    url: "data-stories/heat/"
+relatedData:
+  - title: "Active design"
+    url: "data-explorer/active-design/"
+  - title: "Air quality"
+    url: "data-explorer/air-quality/"
+  - title: "Transportation related-injuries"
+    url: "data-explorer/transportation-related-injuries/"
 ---
 
 People get around New York City in many ways - public transit, walking, cycling, driving, and other modes too. When these individual behaviors are added up, they shape our city and our health.

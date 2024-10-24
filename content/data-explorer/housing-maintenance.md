@@ -31,6 +31,20 @@ indicators:
       - 41
       - 2399
       - 2179
+related:
+  - title: "Housing creates health"
+    url: "data-stories/housing-creates-health/"
+  - title: "Health, housing, and history"
+    url: "data-stories/housing/"
+  - title: "A brief history of redlining"
+    url: "data-stories/redlining/"
+relatedData:
+  - title: "Housing stability"
+    url: "data-explorer/housing-stability/"
+  - title: "Social conditions"
+    url: "data-explorer/social-conditions/"
+  - title: "Housing maintenance"
+    url: "data-explorer/housing-maintenance/"
 ---
 
 Buildings with maintenance issues and disrepair can harm health. Across NYC, low-income neighborhoods have a higher percentage of buildings in disrepair due to past and present disinvestment and housing discrimination. This housing disrepair harms residents' health.

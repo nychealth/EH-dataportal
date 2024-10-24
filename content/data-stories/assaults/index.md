@@ -4,11 +4,28 @@ date: 2020-02-13T08:29:34-04:00
 draft: false
 seo_title: "Data on violence in NYC"
 seo_description: "Violence is a public health problem, and here's how we can look at it to improve it."
-tags: 
-categories: ["social","healthoutcomes","neighborhoods"]
-keywords: ["violence","assaults","poverty","public health","injuries","hospitalizations","emergency department visits","ED visits"]
+tags:
+categories: ["social", "healthoutcomes", "neighborhoods"]
+keywords:
+  [
+    "violence",
+    "assaults",
+    "poverty",
+    "public health",
+    "injuries",
+    "hospitalizations",
+    "emergency department visits",
+    "ED visits",
+  ]
 image: ds-assaults.jpg
 photocredit: "Benjamin Kanter/Mayoral Photography Office, City of New York"
+related:
+  - title: "Why violence is a public health issue"
+    url: "data-stories/violence/"
+  - title: "Injury deaths in NYC"
+    url: "data-stories/injury-deaths/"
+  - title: "Violence-related hospitalizations (all ages)"
+    url: "data-explorer/violence/?id=2375#display=summary"
 ---
 
 Violence has profound effects. An assault, a shooting, a homicide, or any use of force affects people in many deep ways.
@@ -18,19 +35,18 @@ Violence causes physical and emotional harm. It can inflict fear, a constant sen
 And violence doesn't just affect the immediate people harmed. It ripples throughout a community, affecting family members, loved ones, friends, and neighbors.
 
 ### Violence is a pressing public health threat
+
 Violence is a real and pressing public health threat, and it doesn't affect New Yorkers equally.
 
 We can look at violence by looking at data on non-fatal assault hospitalizations - violence that results in somebody going to the hospital, but not dying. While the hospitalization data capture where the person injured in the assault lives – and not where the assault occurred – they can be interpreted as indicators of violence in the neighborhood.
 
 {{< datawrapper title="Violence rates are highest in the Bronx and Brooklyn" src="dVe0S/4/" height="559" >}}
 
-
 In this map, we can see that the highest rates of non-fatal assault hospitalizations - the darkest shades of purple on the map - are concentrated in the Bronx, parts of Harlem, northeastern Brooklyn, and northern Staten Island.
 
 Hospitalization rates for these neighborhoods are nearly 4 times the City’s average:
 
 {{< datawrapper title="A huge disparity in NYC's neighborhood violence rates" src="062qz/2/" height="357" >}}
-
 
 These higher rates of violence means that the health consequences ripple throughout the residents of these neighborhoods - often with devastating consequences.
 
