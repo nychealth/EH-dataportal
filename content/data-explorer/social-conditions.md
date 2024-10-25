@@ -31,6 +31,20 @@ indicators:
       - 2335
       - 2146
       - 2323
+related:
+  - title: "Economic stability creates health"
+    url: "data-stories/economic-stability/"
+  - title: "The racial wealth gap has big implications for public health and health equity"
+    url: "data-stories/racial-wealth-gap/"
+  - title: "Housing creates health"
+    url: "data-stories/housing-creates-health/"
+relatedData:
+  - title: "Housing stability"
+    url: "data-explorer/housing-stability/"
+  - title: "Economic conditions"
+    url: "data-explorer/economic-conditions/"
+  - title: "Housing maintenance"
+    url: "data-explorer/housing-maintenance/"
 ---
 
 Social and economic conditions affect people’s health. These conditions (also called “social determinants of health”) are conditions that people may be born into or fall into over the course of their lives.

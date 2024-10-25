@@ -15,6 +15,20 @@ indicators:
       - 2060
       - 2059
       - 2058
+related:
+  - title: "Public space creates health"
+    url: "data-stories/public-space-creates-health/"
+  - title: "Breathe easy: NYC's air quality is improving"
+    url: "data-stories/breatheeasy/"
+  - title: "Protecting New Yorkers from extreme heat"
+    url: "data-stories/heat/"
+relatedData:
+  - title: "Walking, driving, and cycling"
+    url: "data-explorer/walking-driving-and-cycling/"
+  - title: "Air quality"
+    url: "data-explorer/air-quality/"
+  - title: "Transportation related-injuries"
+    url: "data-explorer/transportation-related-injuries/"
 ---
 
 Physical activity is an important part of a healthy lifestyle. Regular physical activity is associated with many health benefits, including improved fitness, prevention of weight gain, and lower risk of heart disease, stroke, high blood pressure, diabetes and some cancers. In addition, regular physical activity and healthy eating can promote well-being and relieve stress. For children, regular physical activity is also associated with improved academic performance.

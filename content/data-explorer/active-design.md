@@ -46,8 +46,8 @@ related:
 relatedData:
   - title: "Walking, driving, and cycling"
     url: "data-explorer/walking-driving-and-cycling/"
-  - title: "Air quality"
-    url: "data-explorer/air-quality/"
+  - title: "Physical activity"
+    url: "data-explorer/physical-activity/"
   - title: "Transportation related-injuries"
     url: "data-explorer/transportation-related-injuries/"
 ---

@@ -23,7 +23,7 @@ related:
 relatedData:
   - title: "Asthma"
     url: "data-explorer/asthma/"
-  - title: "Air quality"
+  - title: "Cockroaches"
     url: "data-explorer/cockroaches/"
   - title: "Mice and rats"
     url: "data-explorer/mice-and-rats/"

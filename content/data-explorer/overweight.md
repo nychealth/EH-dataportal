@@ -16,6 +16,20 @@ indicators:
       - 2064
       - 2061
       - 2062
+related:
+  - title: "Economic stability creates health"
+    url: "data-stories/economic-stability/"
+  - title: "What hot weather means for food safety"
+    url: "data-stories/food/"
+  - title: "Health, housing, and history"
+    url: "data-stories/housing/"
+relatedData:
+  - title: "Economic conditions"
+    url: "data-explorer/economic-conditions/"
+  - title: "Sugary drink consumption"
+    url: "data-explorer/sugary-drink-consumption/"
+  - title: "Active design"
+    url: "data-explorer/active-design/"
 ---
 
 People who are overweight or obese are at increased risk for heart disease and diabetes. Physical activity and healthy eating can promote well-being and relieve stress.

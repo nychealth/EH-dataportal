@@ -14,6 +14,20 @@ indicators:
     IndicatorID:
       - 2218
       - 2340
+related:
+  - title: "Housing creates health"
+    url: "data-stories/housing-creates-health/"
+  - title: "Protecting New Yorkers from extreme heat"
+    url: "data-stories/heat/"
+  - title: "Rat Mitigation Zones"
+    url: "data-features/rat-mitigation-zones/"
+relatedData:
+  - title: "Cockroaches"
+    url: "data-explorer/cockroaches/"
+  - title: "Mice and rats"
+    url: "data-explorer/mice-and-rats/"
+  - title: "Asthma"
+    url: "data-explorer/asthma/"
 ---
 
 Vectorborne diseases are diseases that are transmitted from an arthropod (usually a tick or mosquito, etc.) to humans or other animals. Some vectorborne disease agents are maintained primarily through transmission between arthropods and humans (e.g., dengue virus and malaria), while others are maintained between arthropods and animal reservoirs (e.g., Lyme disease and West Nile virus) and humans may become infected incidentally.
