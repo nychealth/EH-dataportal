@@ -44,8 +44,8 @@ related:
     url: "data-stories/flooding-and-health/"
   - title: "Interactive Heat Vulnerability Index"
     url: "data-features/hvi/"
-  - title: "Protecting New Yorkers from extreme heat"
-    url: "data-stories/heat/"
+  - title: "Real-time heat-related illness"
+    url: "data-features/heat-syndrome/"
 relatedData:
   - title: "Climate"
     url: "data-explorer/climate/"

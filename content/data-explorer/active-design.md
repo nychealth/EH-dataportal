@@ -45,7 +45,7 @@ related:
     url: "data-stories/heat/"
 relatedData:
   - title: "Walking, driving, and cycling"
-    url: "data-explorer/walking-driving-and-cycling/"
+    url: "walking-driving-and-cycling"
   - title: "Physical activity"
     url: "data-explorer/physical-activity/"
   - title: "Transportation related-injuries"
