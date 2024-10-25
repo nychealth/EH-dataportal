@@ -47,9 +47,9 @@ relatedData:
   - title: "Health impacts of air pollution"
     url: "health-impacts-of-air-pollution"
   - title: "Air quality"
-    url: "data-explorer/air-quality/"
+    url: "dair-quality/"
   - title: "Asthma"
-    url: "data-explorer/asthma/"
+    url: "asthma/"
 ---
 
 Air quality is a **measure of the condition of the air around us**. The less air pollution there is, the better the air quality.

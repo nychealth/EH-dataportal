@@ -22,11 +22,11 @@ related:
     url: "data-features/rat-mitigation-zones/"
 relatedData:
   - title: "Asthma"
-    url: "data-explorer/asthma/"
+    url: "asthma/"
   - title: "Cockroaches"
-    url: "data-explorer/cockroaches/"
+    url: "cockroaches/"
   - title: "Mice and rats"
-    url: "data-explorer/mice-and-rats/"
+    url: "mice-and-rats/"
 ---
 
 Bed bugs are small insects that feed mainly on human blood. They are often confused with other insects, and many people are not even aware of their presence until they have been bitten. However, not everyone has a reaction to bed bug bites. You may not discover that you have bed bugs until you see other signs of the pests such as, bed bugs themselves, their eggs or droppings, or the blood stains they leave behind in mattresses, box springs, chairs or other materials.

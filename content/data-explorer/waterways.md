@@ -23,11 +23,11 @@ related:
     url: "data-stories/flooding-and-health/"
 relatedData:
   - title: "Drinking water quality"
-    url: "data-explorer/drinking-water-quality/"
+    url: "drinking-water-quality/"
   - title: "Lead"
-    url: "data-explorer/lead/"
+    url: "lead/"
   - title: "data-explorer/housing-safety/"
-    url: "data-explorer/mortality/"
+    url: "mortality/"
 ---
 
 Healthy waterways are important for both aquatic life and humans who use the water for recreation.

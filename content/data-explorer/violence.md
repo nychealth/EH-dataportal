@@ -24,11 +24,11 @@ related:
     url: "data-stories/heat/"
 relatedData:
   - title: "Violence"
-    url: "data-explorer/violence"
+    url: "violence"
   - title: "Economic conditions"
-    url: "data-explorer/economic-conditions/"
+    url: "economic-conditions/"
   - title: "Transportation related-injuries"
-    url: "data-explorer/transportation-related-injuries/"
+    url: "transportation-related-injuries/"
 ---
 
 Violence is the use of physical, verbal, and/or emotional force to injure, harm, abuse, damage, or destroy. Interpersonal violence includes child abuse and neglect, youth violence, intimate partner violence, sexual violence, and elder abuse. Violence can involve injury to self, including self-harm, suicide attempts, and death by suicide. Violence can also take the form of power against a group or community.

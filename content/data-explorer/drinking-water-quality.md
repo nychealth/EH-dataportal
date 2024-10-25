@@ -25,11 +25,11 @@ related:
     url: "data-stories/flooding-and-health/"
 relatedData:
   - title: "Waterways"
-    url: "data-explorer/waterways/"
+    url: "waterways/"
   - title: "Lead"
-    url: "data-explorer/lead/"
+    url: "lead/"
   - title: "data-explorer/housing-safety/"
-    url: "data-explorer/mortality/"
+    url: "mortality/"
 ---
 
 All NYC residences **receive drinking water from a public water system.** Most water is gravity fed from a network of reservoirs and lakes in protected watersheds, up to 125 miles from the city.

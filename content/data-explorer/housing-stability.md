@@ -37,11 +37,11 @@ related:
     url: "data-stories/redlining/"
 relatedData:
   - title: "Housing maintenance"
-    url: "data-explorer/housing-maintenance/"
+    url: "housing-maintenance/"
   - title: "economic conditions"
-    url: "data-explorer/economic-conditions/"
+    url: "economic-conditions/"
   - title: "Housing safety"
-    url: "data-explorer/housing-safety/"
+    url: "housing-safety/"
 ---
 
 Most people spend most of their time in their home. That makes the home a crucial environment that can affect one's health.

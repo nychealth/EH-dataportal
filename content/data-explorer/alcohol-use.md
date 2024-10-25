@@ -27,11 +27,11 @@ related:
     url: "data-features/realtime-air-quality/"
 relatedData:
   - title: "Alcohol access and use"
-    url: "data-explorer/alcohol-use/"
+    url: "alcohol-use/"
   - title: "Air quality"
-    url: "data-explorer/air-quality/"
+    url: "air-quality/"
   - title: "Asthma"
-    url: "data-explorer/asthma/"
+    url: "asthma/"
 ---
 
 Heavy regular drinking and binge drinking contribute to a wide range of chronic health problems, including heart disease, diabetes, cancer, stroke, cirrhosis, depression and dementia. Alcohol use is also associated with suicide, homicide, domestic violence, sexually transmitted diseases and injuries. It is one of the leading behavior-related causes of death in New York City (NYC).

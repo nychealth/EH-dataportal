@@ -27,11 +27,11 @@ related:
     url: "data-stories/heat/"
 relatedData:
   - title: "Weather-related illness"
-    url: "data-explorer/weather-related-illness/"
+    url: "weather-related-illness/"
   - title: "Social conditions"
-    url: "data-explorer/social-conditions/"
+    url: "social-conditions/"
   - title: "Housing safety"
-    url: "data-explorer/housing-safety/"
+    url: "housing-safety/"
 ---
 
 Every year in New York City, workers are injured on the job or become ill as a result of exposure to health hazards at work. However, **most work-related illnesses and injuries are preventable** –  safer work environments can be achieved when workplace hazards are understood and appropriate prevention measures are put in place.

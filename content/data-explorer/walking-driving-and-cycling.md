@@ -55,11 +55,11 @@ related:
     url: "data-stories/heat/"
 relatedData:
   - title: "Active design"
-    url: "data-explorer/active-design/"
+    url: "active-design/"
   - title: "Air quality"
-    url: "data-explorer/air-quality/"
+    url: "air-quality/"
   - title: "Transportation related-injuries"
-    url: "data-explorer/transportation-related-injuries/"
+    url: "transportation-related-injuries/"
 ---
 
 People get around New York City in many ways - public transit, walking, cycling, driving, and other modes too. When these individual behaviors are added up, they shape our city and our health.

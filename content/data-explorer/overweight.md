@@ -25,11 +25,11 @@ related:
     url: "data-stories/housing/"
 relatedData:
   - title: "Economic conditions"
-    url: "data-explorer/economic-conditions/"
+    url: "economic-conditions/"
   - title: "Sugary drink consumption"
-    url: "data-explorer/sugary-drink-consumption/"
+    url: "sugary-drink-consumption/"
   - title: "Active design"
-    url: "data-explorer/active-design/"
+    url: "active-design/"
 ---
 
 People who are overweight or obese are at increased risk for heart disease and diabetes. Physical activity and healthy eating can promote well-being and relieve stress.

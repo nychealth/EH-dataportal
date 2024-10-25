@@ -40,11 +40,11 @@ related:
     url: "data-features/realtime-air-quality/"
 relatedData:
   - title: "Alcohol access and use"
-    url: "data-explorer/alcohol-use/"
+    url: "alcohol-use/"
   - title: "Air quality"
-    url: "data-explorer/air-quality/"
+    url: "air-quality/"
   - title: "Asthma"
-    url: "data-explorer/asthma/"
+    url: "asthma/"
 ---
 
 Housing conditions can trigger asthma. In New York City, childhood asthma is a significant health threat that affects thousands of children per year.

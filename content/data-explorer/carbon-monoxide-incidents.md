@@ -37,11 +37,11 @@ related:
     url: "data-stories/poweroutages/"
 relatedData:
   - title: "Housing maintenance"
-    url: "data-explorer/housing-maintenance/"
+    url: "housing-maintenance/"
   - title: "Health care"
-    url: "data-explorer/housing-safety"
+    url: "housing-safety"
   - title: "data-explorer/housing-safety/"
-    url: "data-explorer/mortality/"
+    url: "mortality/"
 ---
 
 Carbon monoxide (CO) is a poisonous gas that forms when fuel or other materials are burned.  It is invisible and has no odor.

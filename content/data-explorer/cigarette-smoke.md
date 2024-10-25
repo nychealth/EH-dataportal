@@ -44,11 +44,11 @@ related:
     url: "data-stories/hia/"
 relatedData:
   - title: "Cancer"
-    url: "data-explorer/cancer/"
+    url: "cancer/"
   - title: "Asthma"
-    url: "data-explorer/asthma/"
+    url: "asthma/"
   - title: "Housing maintenance"
-    url: "data-explorer/housing-maintenance/"
+    url: "housing-maintenance/"
 ---
 
 Smoking causes over a dozen cancers, heart disease, stroke, type 2 diabetes and many other diseases; it remains a leading cause of death in New York City (NYC). On average, people who do not smoke live about 10 years longer than people who do.

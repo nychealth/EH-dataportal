@@ -25,11 +25,11 @@ related:
     url: "data-stories/asthma-and-poverty/"
 relatedData:
   - title: "Economic conditions"
-    url: "data-explorer/economic-conditions/"
+    url: "economic-conditions/"
   - title: "Social conditions"
-    url: "data-explorer/social-conditions"
+    url: "social-conditions"
   - title: "Mortality"
-    url: "data-explorer/mortality/"
+    url: "mortality/"
 ---
 
 Health care is a valuable tool to stay healthy.

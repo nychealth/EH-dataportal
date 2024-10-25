@@ -47,9 +47,9 @@ relatedData:
   - title: "Walking, driving, and cycling"
     url: "walking-driving-and-cycling"
   - title: "Physical activity"
-    url: "data-explorer/physical-activity/"
+    url: "physical-activity/"
   - title: "Transportation related-injuries"
-    url: "data-explorer/transportation-related-injuries/"
+    url: "transportation-related-injuries/"
 ---
 
 Physical activity and healthy eating are among the leading ways to get and stay healthy.

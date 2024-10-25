@@ -33,11 +33,11 @@ related:
     url: "data-stories/housing-creates-health/"
 relatedData:
   - title: "Birth outcomes"
-    url: "data-explorer/birth-outcomes/"
+    url: "birth-outcomes/"
   - title: "Cancers in children"
-    url: "data-explorer/cancers-in-children/"
+    url: "cancers-in-children/"
   - title: "Asthma"
-    url: "data-explorer/asthma/"
+    url: "asthma/"
 ---
 
 Birth defects (also called congenital malformations) are conditions that happen when a baby does not develop normally during pregnancy. Structural defects may include missing limbs, malformed hearts, spina bifida and genetic conditions like Down Syndrome. Most birth defects happen during the first three months of pregnancy and are detected within the first year of life. Some birth defects (such as cleft lip or clubfoot) are easy to see, but others (such as heart defects or hearing loss) are found using special tests (such as x-rays, CT scans, or hearing tests). Birth defects can vary from mild to severe.

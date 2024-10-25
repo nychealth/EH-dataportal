@@ -27,11 +27,11 @@ related:
     url: "data-features/rat-mitigation-zones/"
 relatedData:
   - title: "Asthma"
-    url: "data-explorer/asthma/"
+    url: "asthma/"
   - title: "Bed bugs"
-    url: "data-explorer/bed-bugs/"
+    url: "bed-bugs/"
   - title: "Mice and rats"
-    url: "data-explorer/mice-and-rats/"
+    url: "mice-and-rats/"
 ---
 
 Rats and mice are common, but preventable. In NYC, rats tend to be seen on streets, alleys and sidewalks, and in yards and basements, while mice are almost always found inside buildings.

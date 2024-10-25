@@ -48,11 +48,11 @@ related:
     url: "data-features/realtime-air-quality/"
 relatedData:
   - title: "Air quality"
-    url: "data-explorer/air-quality/"
+    url: "air-quality/"
   - title: "Health impacts of air pollution"
     url: "health-impacts-of-air-pollution"
   - title: "Asthma triggers at home"
-    url: "data-explorer/asthma-triggers/"
+    url: "asthma-triggers/"
 ---
 
 Air pollution is an important environmental threat to the health of New York City residents. Exposures to two common air pollutants, **fine particulate matter (PM2.5)** and **ozone (O3)**, can worsen respiratory illness and heart conditions and contribute to premature deaths. Older adults, children and people with existing heart and lung disease are especially affected. This site provides estimates of the impact of air pollution on the health of NYC residents as measured by the numbers of emergency department visits, hospitalizations, and deaths attributable to PM2.5 and ozone.

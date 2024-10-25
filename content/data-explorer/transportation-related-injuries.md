@@ -42,11 +42,11 @@ related:
     url: "data-stories/car-free-zones/"
 relatedData:
   - title: "Active design"
-    url: "data-explorer/active-design/"
+    url: "active-design/"
   - title: "Walking, driving, and cycling"
-    url: "data-explorer/walking-driving-and-cycling/"
+    url: "walking-driving-and-cycling/"
   - title: "Transportation related-injuries"
-    url: "data-explorer/transportation-related-injuries/"
+    url: "transportation-related-injuries/"
 ---
 
 Traffic injuries are no accident. Like other public health concerns, they are preventable through data driven solutions. In NYC, traffic injuries, which include injuries among pedestrians, bicyclists, motorcyclists, and motor vehicle occupants, are a leading cause of injury-related hospitalizations and emergency department visits.

@@ -41,11 +41,11 @@ related:
     url: "data-stories/heat/"
 relatedData:
   - title: "Weather-related illness"
-    url: "data-explorer/weather-related-illness/"
+    url: "weather-related-illness/"
   - title: "Asthma"
-    url: "data-explorer/asthma/"
+    url: "asthma/"
   - title: "data-explorer/housing-safety/"
-    url: "data-explorer/mortality/"
+    url: "mortality/"
 ---
 
 A region's climate is characterized by its usual weather conditions, seasons, and patterns in extreme weather events like heat waves, droughts, and hurricanes.

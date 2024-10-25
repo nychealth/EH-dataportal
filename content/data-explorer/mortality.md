@@ -25,11 +25,11 @@ related:
     url: "data-stories/hia/"
 relatedData:
   - title: "Cancer"
-    url: "data-explorer/cancer/"
+    url: "cancer/"
   - title: "Health care"
-    url: "data-explorer/health-care"
+    url: "health-care"
   - title: "Mortality"
-    url: "data-explorer/mortality/"
+    url: "mortality/"
 ---
 
 Death is, of course, a severe health outcome. Many deaths are preventable.

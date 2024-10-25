@@ -23,11 +23,11 @@ related:
     url: "data-stories/housing/"
 relatedData:
   - title: "Healthy eating"
-    url: "data-explorer/healthy-eating/"
+    url: "healthy-eating/"
   - title: "Drinking water quality"
-    url: "data-explorer/drinking-water-quality/"
+    url: "drinking-water-quality/"
   - title: "Economic conditions"
-    url: "data-explorer/economic-conditions/"
+    url: "economic-conditions/"
 ---
 
 New York City has approximately 28,000 restaurants that the Health Department inspects every year to monitor compliance with city and state food safety regulations. At the end of an inspection, the Health Department gives restaurants a score, which is eventually converted to a grade of A, B or C. This site describes the distribution of A grades across New York City restaurants.

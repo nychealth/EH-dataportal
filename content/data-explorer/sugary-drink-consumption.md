@@ -21,11 +21,11 @@ related:
     url: "data-stories/housing/"
 relatedData:
   - title: "Healthy eating"
-    url: "data-explorer/healthy-eating/"
+    url: "healthy-eating/"
   - title: "Drinking water quality"
-    url: "data-explorer/drinking-water-quality/"
+    url: "drinking-water-quality/"
   - title: "Economic conditions"
-    url: "data-explorer/economic-conditions/"
+    url: "economic-conditions/"
 ---
 
 Sugary drinks contribute to a higher-calorie diet, long-term weight gain, and increased risk of heart disease and diabetes. Sugary drinks provide little or no nutritional value, and because they don’t fill you up the way food does, you end up consuming more calories. Also, food and beverage portion sizes have exploded over the past several decades, and studies have shown that when given larger portions, people consume more without recognizing it.

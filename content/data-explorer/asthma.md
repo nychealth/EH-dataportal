@@ -65,10 +65,10 @@ related:
 relatedData:
   - title: "Health impacts of air pollution"
     url: "health-impacts-of-air-pollution"
+  - title: "Asthma"
+    url: "asthma/"
   - title: "Air quality"
-    url: "data-explorer/air-quality/"
-  - title: "Air quality"
-    url: "data-explorer/air-quality/"
+    url: "air-quality/"
 ---
 
 Asthma is a **common disease in which the lungs become swollen, making breathing difficult**. Symptoms include wheezing, coughing, shortness of breath and tightness in the chest. The exact causes of asthma are not known. **Asthma cannot be cured, but it can be controlled**.

@@ -40,11 +40,11 @@ related:
     url: "data-stories/housing-creates-health/"
 relatedData:
   - title: "Housing stability"
-    url: "data-explorer/housing-stability/"
+    url: "housing-stability/"
   - title: "Economic conditions"
-    url: "data-explorer/economic-conditions/"
+    url: "economic-conditions/"
   - title: "Housing maintenance"
-    url: "data-explorer/housing-maintenance/"
+    url: "housing-maintenance/"
 ---
 
 Social and economic conditions affect people’s health. These conditions (also called “social determinants of health”) are conditions that people may be born into or fall into over the course of their lives.

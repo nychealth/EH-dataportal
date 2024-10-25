@@ -24,11 +24,11 @@ related:
     url: "data-stories/heat/"
 relatedData:
   - title: "Walking, driving, and cycling"
-    url: "data-explorer/walking-driving-and-cycling/"
+    url: "walking-driving-and-cycling/"
   - title: "Air quality"
-    url: "data-explorer/air-quality/"
+    url: "air-quality/"
   - title: "Transportation related-injuries"
-    url: "data-explorer/transportation-related-injuries/"
+    url: "transportation-related-injuries/"
 ---
 
 Physical activity is an important part of a healthy lifestyle. Regular physical activity is associated with many health benefits, including improved fitness, prevention of weight gain, and lower risk of heart disease, stroke, high blood pressure, diabetes and some cancers. In addition, regular physical activity and healthy eating can promote well-being and relieve stress. For children, regular physical activity is also associated with improved academic performance.

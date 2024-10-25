@@ -38,11 +38,11 @@ related:
     url: "data-stories/hia/"
 relatedData:
   - title: "Cancers in children"
-    url: "data-explorer/cancers-in-children/"
+    url: "cancers-in-children/"
   - title: "Health care"
-    url: "data-explorer/health-care"
+    url: "health-care"
   - title: "Mortality"
-    url: "data-explorer/mortality/"
+    url: "mortality/"
 ---
 
 Cancer is the general name for a group of more than 100 diseases in which cells in a part of the body begin to grow out of control.
