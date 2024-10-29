@@ -20,11 +20,7 @@ related:
     url: "data-stories/violence/"
   - title: "Disparities in violence"
     url: "data-stories/assaults/"
-  - title: "Protecting New Yorkers from extreme heat"
-    url: "data-stories/heat/"
 relatedData:
-  - title: "Violence"
-    url: "violence"
   - title: "Economic conditions"
     url: "economic-conditions/"
   - title: "Transportation related-injuries"

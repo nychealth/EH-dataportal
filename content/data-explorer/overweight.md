@@ -21,15 +21,13 @@ related:
     url: "data-stories/economic-stability/"
   - title: "What hot weather means for food safety"
     url: "data-stories/food/"
-  - title: "Health, housing, and history"
-    url: "data-stories/housing/"
 relatedData:
-  - title: "Economic conditions"
-    url: "economic-conditions/"
-  - title: "Sugary drink consumption"
-    url: "sugary-drink-consumption/"
   - title: "Active design"
     url: "active-design/"
+  - title: "Physical activity"
+    url: "physical-activity/"
+  - title: "Sugary drink consumption"
+    url: "sugary-drink-consumption/"
 ---
 
 People who are overweight or obese are at increased risk for heart disease and diabetes. Physical activity and healthy eating can promote well-being and relieve stress.

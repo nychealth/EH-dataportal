@@ -18,12 +18,8 @@ indicators:
       - 2033
       - 2031
 related:
-  - title: "Neighborhood boundaries on the EH Data Portal"
-    url: "data-stories/geographies/"
   - title: "The racial wealth gap has big implications for public health and health equity"
     url: "data-stories/racial-wealth-gap/"
-  - title: "Efforts to reduce air pollution should focus on neighborhoods with the worst health impacts"
-    url: "data-stories/hia/"
 relatedData:
   - title: "Cancer"
     url: "cancer/"

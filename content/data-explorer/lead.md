@@ -32,12 +32,12 @@ related:
   - title: "A brief history of redlining"
     url: "data-stories/redlining/"
 relatedData:
-  - title: "Lead"
-    url: "lead/"
+  - title: "Economic conditions"
+    url: "economic-conditions/"
   - title: "Housing maintenance"
     url: "housing-maintenance/"
-  - title: "data-explorer/housing-safety/"
-    url: "mortality/"
+  - title: "Housing Safety/"
+    url: "housing-safety/"
 ---
 
 Lead is a metal that is toxic to people. There is no safe level of lead in your body. It can cause learning and behavior problems, and delay physical growth and mental development.

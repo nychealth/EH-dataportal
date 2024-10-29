@@ -13,12 +13,10 @@ indicators:
       - 2097
       - 2098
 related:
-  - title: "Economic stability creates health"
-    url: "data-features/economic-stability/"
   - title: "What hot weather means for food safety"
     url: "data-stories/food/"
-  - title: "Health, housing, and history"
-    url: "data-stories/housing/"
+  - title: "Economic stability creates health"
+    url: "data-features/economic-stability/"
 relatedData:
   - title: "Healthy eating"
     url: "healthy-eating/"

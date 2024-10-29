@@ -38,10 +38,10 @@ related:
 relatedData:
   - title: "Housing maintenance"
     url: "housing-maintenance/"
-  - title: "economic conditions"
-    url: "economic-conditions/"
   - title: "Housing safety"
     url: "housing-safety/"
+  - title: "Economic conditions"
+    url: "economic-conditions/"
 ---
 
 Most people spend most of their time in their home. That makes the home a crucial environment that can affect one's health.

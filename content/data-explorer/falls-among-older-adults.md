@@ -33,8 +33,6 @@ indicators:
     url: "data-features/hvi/"
   - title: "Housing creates health"
     url: "housing-creates-health/"
-  - title: "A brief history of redlining"
-    url: "data-stories/redlining/"
 relatedData:
   - title: "Social conditions"
     url: "social-conditions/"

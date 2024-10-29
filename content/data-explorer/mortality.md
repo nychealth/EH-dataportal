@@ -17,8 +17,6 @@ indicators:
       - 6
       - 8
 related:
-  - title: "Neighborhood boundaries on the EH Data Portal"
-    url: "data-stories/geographies/"
   - title: "The racial wealth gap has big implications for public health and health equity"
     url: "data-stories/racial-wealth-gap/"
   - title: "Efforts to reduce air pollution should focus on neighborhoods with the worst health impacts"
@@ -28,8 +26,8 @@ relatedData:
     url: "cancer/"
   - title: "Health care"
     url: "health-care"
-  - title: "Mortality"
-    url: "mortality/"
+  - title: "Economic conditions"
+    url: "economic-conditions/"
 ---
 
 Death is, of course, a severe health outcome. Many deaths are preventable.

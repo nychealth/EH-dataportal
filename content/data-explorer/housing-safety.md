@@ -38,10 +38,10 @@ related:
 relatedData:
   - title: "Housing stability"
     url: "housing-stability/"
-  - title: Economic conditions
-    url: "economic-conditions/"
   - title: "Housing maintenance"
     url: "housing-maintenance/"
+  - title: Economic conditions
+    url: "economic-conditions/"
 ---
 
 Most people spend most of their time in their home. That makes the home a crucial environment that can affect one's health - both in terms of safety characteristics within the home, and in terms of factors that affect housing stability.

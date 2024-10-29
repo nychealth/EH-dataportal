@@ -36,12 +36,8 @@ indicators:
       - 2404
       - 25
 related:
-  - title: "Why asthma is a social justice issue"
-    url: "data-stories/asthma-and-poverty/"
-  - title: "What our air quality monitors tell us about NYC's neighborhoods"
-    url: "data-stories/air-quality-by-neighborhood/"
-  - title: "Efforts to reduce air pollution should focus on neighborhoods with the worst health impacts"
-    url: "data-stories/hia/"
+  - title: "Housing creates health"
+    url: "data-stories/housing-creates-health/"
 relatedData:
   - title: "Cancer"
     url: "cancer/"

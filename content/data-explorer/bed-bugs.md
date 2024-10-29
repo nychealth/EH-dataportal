@@ -18,8 +18,6 @@ related:
     url: "data-stories/housing-creates-health/"
   - title: "Why asthma is a social justice issue"
     url: "data-stories/asthma-and-poverty/"
-  - title: "Rat Mitigation Zones"
-    url: "data-features/rat-mitigation-zones/"
 relatedData:
   - title: "Asthma"
     url: "asthma/"

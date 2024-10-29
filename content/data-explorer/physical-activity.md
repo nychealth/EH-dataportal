@@ -18,15 +18,13 @@ indicators:
 related:
   - title: "Public space creates health"
     url: "data-stories/public-space-creates-health/"
-  - title: "Breathe easy: NYC's air quality is improving"
-    url: "data-stories/breatheeasy/"
-  - title: "Protecting New Yorkers from extreme heat"
-    url: "data-stories/heat/"
+  - title: "Street safety in NYC"
+    url: "data-stories/streets/"
 relatedData:
+  - title: "Active design"
+    url: "active-design/"
   - title: "Walking, driving, and cycling"
     url: "walking-driving-and-cycling/"
-  - title: "Air quality"
-    url: "air-quality/"
   - title: "Transportation related-injuries"
     url: "transportation-related-injuries/"
 ---

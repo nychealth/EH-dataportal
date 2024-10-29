@@ -39,10 +39,10 @@ indicators:
 related:
   - title: "Public space creates health"
     url: "data-stories/public-space-creates-health/"
-  - title: "What our air quality monitors tell us about NYC's neighborhoods"
-    url: "data-stories/air-quality-by-neighborhood/"
-  - title: "Protecting New Yorkers from extreme heat"
-    url: "data-stories/heat/"
+  - title: "Street safety in NYC"
+    url: "data-stories/streets/"
+  - title: "Real-time air quality"
+    url: "data-features/realtime-air-quality"
 relatedData:
   - title: "Walking, driving, and cycling"
     url: "walking-driving-and-cycling"

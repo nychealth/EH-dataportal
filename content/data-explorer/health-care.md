@@ -24,12 +24,12 @@ related:
   - title: "Why asthma is a social justice issue"
     url: "data-stories/asthma-and-poverty/"
 relatedData:
+  - title: "Mortality"
+    url: "mortality/"
   - title: "Economic conditions"
     url: "economic-conditions/"
   - title: "Social conditions"
     url: "social-conditions"
-  - title: "Mortality"
-    url: "mortality/"
 ---
 
 Health care is a valuable tool to stay healthy.

@@ -37,17 +37,17 @@ indicators:
   - header: null
     IndicatorID:
 related:
+  - title: "Real-time air quality"
+    url: "data-features/realtime-air-quality/"
+  - title: "Your neighborhood air quality"
+    url: "data-features/neighborhood-air-quality/"
   - title: "Air quality in car-free areas"
     url: "data-stories/car-free-zones/"
-  - title: "What our air quality monitors tell us about NYC's neighborhoods"
-    url: "data-stories/air-quality-by-neighborhood/"
-  - title: "Real-Time Air Quality: PM2.5 in NYC"
-    url: "data-features/realtime-air-quality/"
 relatedData:
   - title: "Health impacts of air pollution"
     url: "health-impacts-of-air-pollution"
   - title: "Air quality"
-    url: "dair-quality/"
+    url: "air-quality/"
   - title: "Asthma"
     url: "asthma/"
 ---

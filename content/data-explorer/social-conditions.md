@@ -39,10 +39,10 @@ related:
   - title: "Housing creates health"
     url: "data-stories/housing-creates-health/"
 relatedData:
-  - title: "Housing stability"
-    url: "housing-stability/"
   - title: "Economic conditions"
     url: "economic-conditions/"
+  - title: "Housing stability"
+    url: "housing-stability/"
   - title: "Housing maintenance"
     url: "housing-maintenance/"
 ---

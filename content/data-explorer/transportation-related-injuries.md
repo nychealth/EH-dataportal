@@ -34,7 +34,7 @@ indicators:
       - 2094
       - 2093
 related:
-  - title: "Environments matter: the road to street safety in NYC"
+  - title: "Street safety in NYC"
     url: "data-stories/streets/"
   - title: "Public space creates health"
     url: "data-stories/public-space-creates-health/"

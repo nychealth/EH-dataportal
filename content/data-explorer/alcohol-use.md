@@ -19,19 +19,17 @@ indicators:
       - 2056
       - 2055
 related:
-  - title: "Air quality in car-free areas"
-    url: "data-stories/car-free-zones/"
-  - title: "What our air quality monitors tell us about NYC's neighborhoods"
-    url: "data-stories/air-quality-by-neighborhood/"
-  - title: "Real-Time Air Quality: PM2.5 in NYC"
-    url: "data-features/realtime-air-quality/"
+  - title: "Why violence is a public health issue"
+    url: "data-stories/violence/"
+  - title: "Disparities in violence"
+    url: "data-stories/assaults/"
+  - title: "What hot weather means for food safety"
+    url: "data-stories/food/"
 relatedData:
-  - title: "Alcohol access and use"
-    url: "alcohol-use/"
-  - title: "Air quality"
-    url: "air-quality/"
-  - title: "Asthma"
-    url: "asthma/"
+  - title: "Birth outcomes"
+    url: "birth-outcomes"
+  - title: "Violence"
+    url: "violence/"
 ---
 
 Heavy regular drinking and binge drinking contribute to a wide range of chronic health problems, including heart disease, diabetes, cancer, stroke, cirrhosis, depression and dementia. Alcohol use is also associated with suicide, homicide, domestic violence, sexually transmitted diseases and injuries. It is one of the leading behavior-related causes of death in New York City (NYC).

@@ -51,8 +51,8 @@ related:
     url: "data-stories/public-space-creates-health/"
   - title: "Air quality in car-free areas"
     url: "data-stories/car-free-zones/"
-  - title: "Protecting New Yorkers from extreme heat"
-    url: "data-stories/heat/"
+  - title: "Street safety in NYC"
+    url: "data-stories/streets/"
 relatedData:
   - title: "Active design"
     url: "active-design/"

@@ -38,8 +38,6 @@ indicators:
 related:
   - title: "Housing creates health"
     url: "data-stories/housing-creates-health/"
-  - title: "Health, housing, and history"
-    url: "data-stories/asthma-and-poverty/"
   - title: "Rat Mitigation Zones"
     url: "data-features/rat-mitigation-zones/"
 relatedData:

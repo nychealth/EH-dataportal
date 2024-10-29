@@ -40,10 +40,10 @@ related:
   - title: "A brief history of redlining"
     url: "data-stories/redlining/"
 relatedData:
-  - title: "Housing stability"
-    url: "housing-stability/"
   - title: "Social conditions"
     url: "social-conditions/"
+  - title: "Housing stability"
+    url: "housing-stability/"
   - title: "Housing maintenance"
     url: "housing-maintenance/"
 ---

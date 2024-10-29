@@ -40,17 +40,15 @@ indicators:
       - 2121
       - 2108
 related:
+  - title: "The public health impacts of PM2.5 from traffic air pollution"
+    url: "data-stories/traffic-and-air-pollution/"  
   - title: "Air quality in car-free areas"
     url: "data-stories/car-free-zones/"
-  - title: "The public health impacts of PM2.5 from traffic air pollution"
-    url: "data-stories/traffic-and-air-pollution/"
   - title: "Real-Time Air Quality: PM2.5 in NYC"
     url: "data-features/realtime-air-quality/"
 relatedData:
   - title: "Air quality"
     url: "air-quality/"
-  - title: "Health impacts of air pollution"
-    url: "health-impacts-of-air-pollution"
   - title: "Asthma triggers at home"
     url: "asthma-triggers/"
 ---

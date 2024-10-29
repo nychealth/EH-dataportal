@@ -30,12 +30,8 @@ indicators:
       - 64
       - 690
 related:
-  - title: "Lead poisoning affects adults too"
-    url: "data-stories/adult-lead/"
   - title: "The racial wealth gap has big implications for public health and health equity"
     url: "data-stories/racial-wealth-gap/"
-  - title: "Efforts to reduce air pollution should focus on neighborhoods with the worst health impacts"
-    url: "data-stories/hia/"
 relatedData:
   - title: "Cancers in children"
     url: "cancers-in-children/"

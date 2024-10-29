@@ -15,12 +15,8 @@ indicators:
     IndicatorID:
       - 2065
 related:
-  - title: "Economic stability creates health"
-    url: "data-features/economic-stability/"
   - title: "What hot weather means for food safety"
     url: "data-stories/food/"
-  - title: "Health, housing, and history"
-    url: "data-stories/housing/"
 relatedData:
   - title: "Healthy eating"
     url: "healthy-eating/"

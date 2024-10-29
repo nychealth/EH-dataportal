@@ -18,10 +18,8 @@ indicators:
 related:
   - title: "Housing creates health"
     url: "data-stories/housing-creates-health/"
-  - title: "Why asthma is a social justice issue"
-    url: "data-stories/asthma-and-poverty/"
-  - title: "Rat Mitigation Zones"
-    url: "data-features/rat-mitigation-zones/"
+  - title: "Why trash is a public health issue"
+    url: "data-stories/sanitation/"
 relatedData:
   - title: "Asthma"
     url: "asthma/"

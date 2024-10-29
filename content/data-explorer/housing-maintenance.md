@@ -41,10 +41,10 @@ related:
 relatedData:
   - title: "Housing stability"
     url: "housing-stability/"
+  - title: "Housing safety"
+    url: "housing-safety/"
   - title: "Social conditions"
     url: "social-conditions/"
-  - title: "Housing maintenance"
-    url: "housing-maintenance/"
 ---
 
 Buildings with maintenance issues and disrepair can harm health. Across NYC, low-income neighborhoods have a higher percentage of buildings in disrepair due to past and present disinvestment and housing discrimination. This housing disrepair harms residents' health.

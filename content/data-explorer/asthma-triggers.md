@@ -32,19 +32,18 @@ indicators:
       - 48
       - 2430
 related:
-  - title: "Air quality in car-free areas"
-    url: "data-stories/car-free-zones/"
-  - title: "What our air quality monitors tell us about NYC's neighborhoods"
-    url: "data-stories/air-quality-by-neighborhood/"
-  - title: "Real-Time Air Quality: PM2.5 in NYC"
-    url: "data-features/realtime-air-quality/"
+  - title: "Health, housing, and history"
+    url: "data-stories/housing/"
+  - title: "Housing creates health"
+    url: "data-stories/housing-creates-health/"
 relatedData:
-  - title: "Alcohol access and use"
-    url: "alcohol-use/"
-  - title: "Air quality"
-    url: "air-quality/"
   - title: "Asthma"
     url: "asthma/"
+  - title: "Housing maintenance"
+    url: "housing-maintenance/"
+  - title: "Mice and rats"
+    url: "mice-and-rats/"
+
 ---
 
 Housing conditions can trigger asthma. In New York City, childhood asthma is a significant health threat that affects thousands of children per year.

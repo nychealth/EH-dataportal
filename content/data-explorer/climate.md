@@ -33,19 +33,19 @@ indicators:
       - 2185
       - 2377
 related:
-  - title: "What Hurricane Ida and Superstorm Sandy taught us about flooding and health"
-    url: "data-stories/flooding-and-health/"
   - title: "Interactive Heat Vulnerability Index"
     url: "data-features/hvi/"
-  - title: "Protecting New Yorkers from extreme heat"
-    url: "data-stories/heat/"
+  - title: "Realtime heat illness"
+    url: "data-stories/heat-syndrome/"
+  - title: "What Hurricane Ida and Superstorm Sandy taught us about flooding and health"
+    url: "data-stories/flooding-and-health/"
 relatedData:
   - title: "Weather-related illness"
     url: "weather-related-illness/"
-  - title: "Asthma"
-    url: "asthma/"
-  - title: "data-explorer/housing-safety/"
-    url: "mortality/"
+  - title: "Vector-borne disease"
+    url: "vector-borne-disease/"
+  - title: "Housing safety/"
+    url: "Housing safety/"
 ---
 
 A region's climate is characterized by its usual weather conditions, seasons, and patterns in extreme weather events like heat waves, droughts, and hurricanes.
