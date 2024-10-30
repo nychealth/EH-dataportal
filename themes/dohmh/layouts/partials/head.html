@@ -55,7 +55,7 @@
 {{ if .Page.IsHome -}}
 
 <!-- build info -->
-<meta name="build_datetime" content='{{ time.Now.Local.Format "2006-01-02 15:04:05" }}'>
+<meta name="build_datetime" content='{{ (print (time.Now | time.Format ":date_full") ", " (time.Now | time.Format ":time_long")) }}'>
 <meta name="build_environment" content='{{ hugo.Environment }}'>
 <meta name="git_branch" content='{{ getenv "HUGO_GIT_BRANCH" }}'>
 <meta name="git_last_hash" content='{{ getenv "HUGO_GIT_LAST_HASH" }}'>
@@ -89,7 +89,7 @@
 <!-- favicon -->
 <!-- https://www.iconfinder.com/icons/7618350/heatmap_business_analytics_statistics_icon -->
 <!-- https://lucianojung.de/ -->
-<link rel="icon" href={{ relURL "7618350_heatmap_business_analytics_statistics_icon-gpr.ico" }}>
+<link rel="icon" href={{ relURL "7618350_heatmap_business_analytics_statistics_icon-gpr.ico" }} type="image/x-icon">
 
 {{- /*  Font Awesome  */}}
 
@@ -269,6 +269,11 @@
     {{- /*  Arquero  */}}
 
     {{- $arquero := resources.Get "node_modules/arquero/dist/arquero.min.js" | resources.Fingerprint "sha512" }}
+
+    {{- /*  DOMPurify  */}}
+
+    {{- $dompurify := resources.Get "node_modules/dompurify/dist/purify.min.js" | resources.Fingerprint "sha512" }}
+
 
     <script src="{{ $arquero.RelPermalink }}" integrity="{{ $arquero.Data.Integrity }}"></script>
 

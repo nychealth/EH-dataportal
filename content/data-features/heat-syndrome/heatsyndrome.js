@@ -1,3 +1,74 @@
+// ---------- INITIALIZE: draw buttons and set up data source variables ---------- // 
+    // Initialize by getting date and drawing buttons
+    const today = new Date()
+    const month   = today.getUTCMonth() + 1; // months from 1-12
+    const day     = today.getUTCDate();
+    const year    = today.getUTCFullYear();
+    const date    = today.getDate();
+    var allYears  = [];    
+    var fileExists;
+    var yearURL   = 'https://raw.githubusercontent.com/nychealth/EHDP-data/production/key-topics/heat-syndrome/edheat' + year + '_live.csv'
+
+function init() {
+
+    // check if this year's URL exists, and if it does, draw this year's button
+    UrlExists(yearURL)
+
+    if (fileExists == true) {
+      for (let i = year; i > 2016; i--) {
+        allYears.push(i)
+        console.log(i)
+        // changeYear(year)
+      }
+    } else {
+      for (let i = year-1; i > 2016; i--) {
+        allYears.push(i)
+        var lastYear = year-1
+        // changeYear(lastYear)
+      }
+    }
+
+    console.log(allYears)
+
+    for (let i = 0; i < allYears.length; i++) {
+      var oneYear = allYears[i]
+      var btnID = oneYear + 'button'
+      var yearButton = `<button class='btn btn-sm btn-outline-secondary yearButtons ml-1' id='${btnID}' onclick='changeYear(${oneYear})'>${oneYear}</button>`
+      document.getElementById('yearButtonHolder').innerHTML += yearButton
+
+      if (i == 0) {
+        document.getElementById(btnID).classList.add('btn-secondary')
+        document.getElementById(btnID).classList.remove('btn-outline-secondary')
+
+      } else {}
+
+    }
+
+    // run for most recent year
+    changeYear(allYears[0])
+
+    // check if it's after September
+    if (month > 8) {
+      console.log('Updates have ended for the year.')
+    }
+}
+
+function UrlExists(url) {
+    console.log('checking ' + url)
+    var http = new XMLHttpRequest();
+    http.open('HEAD', url, false);
+    http.send();
+    if (http.status == 404 ) {
+      fileExists = false
+    } else {
+      fileExists = true
+    }
+    console.log(fileExists)
+    return http.status!=404;
+
+}
+
+
 // Line chart spec
 
 var spec = {
@@ -212,16 +283,17 @@ vegaEmbed('#vis2', scatterplot)
 // Year change function powered by year buttons
 function changeYear(x) {
   spec.transform[1].filter = `datum.Year == ${x}`;
-  if (x == 2023) {
-    spec.data.url = 'https://raw.githubusercontent.com/nychealth/EHDP-data/production/key-topics/heat-syndrome/edheat2023_live.csv'
-  } else {
+
+  if ( x == allYears[0]) {
+    spec.data.url = yearURL
+  }
+  else {
     spec.data.url = 'https://raw.githubusercontent.com/nychealth/EHDP-data/production/key-topics/heat-syndrome/previous_years.csv'
   }
   document.getElementById('yearHeader').innerHTML = x;
   vegaEmbed('#vis1',spec);
 
   var buttons = document.querySelectorAll('.yearButtons')
-  console.log(buttons)
   for (let i = 0; i < buttons.length; i ++ ) {
     buttons[i].classList.remove('btn-secondary')
     buttons[i].classList.add('btn-outline-secondary')
@@ -357,3 +429,6 @@ var scatterplotTwo = {
     ]
   }
 }
+
+
+init()

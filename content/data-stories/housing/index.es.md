@@ -7,8 +7,6 @@ seo_description: "Para la salud, el lugar importa."
 tags:
 categories: ["housing","social","childhealth","healthoutcomes","neighborhoods"]
 keywords: ["poverty","asthma","injustice","housing","social determinants","redlining","disinvestment","racism","renting","pests","maintenance","maintenance deficiencies"]
-image: ds-povasthma.jpg
-layout: advanced
 image: ds-housing.jpeg
 vega: true
 ---

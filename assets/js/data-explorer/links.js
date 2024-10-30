@@ -12,6 +12,10 @@ const renderLinksChart = (
 
     console.log("** renderLinksChart");
 
+    document.getElementById('viewDescription').innerHTML = 'View scatterplots, correlations, and disparities.'
+    document.getElementById('correlateHolder').classList.remove('hide')
+
+
     // console.log("data [renderLinksChart]", data);
 
     // ----------------------------------------------------------------------- //
@@ -28,14 +32,36 @@ const renderLinksChart = (
 
     const primaryMeasurementType = primaryMetadata[0]?.MeasurementType;
     const primaryMeasureName     = primaryMetadata[0]?.MeasureName;
-    const primaryDisplay         = primaryMetadata[0]?.DisplayType;
+
+    let primaryDisplay
+    let primaryMeasurementDisplay
+
+    if (primaryMeasurementType.includes('Percent') || primaryMeasurementType.includes('percent') && !primaryMeasurementType.includes('percentile')) {
+        primaryDisplay = '%' // assigns a % displayType for anything that includes percent (but NOT percentile) in its measurementType
+        primaryMeasurementDisplay = primaryMeasurementType 
+    } else {
+        primaryDisplay         = "" + primaryMetadata[0]?.DisplayType; // else, the pre-existing assignment
+        primaryMeasurementDisplay = primaryMeasurementType + ` (${primaryDisplay})`
+
+    }
+
     const primaryTimePeriod      = data[0]?.TimePeriod_1;
     const geoTypeShortDesc       = data[0]?.GeoTypeShortDesc_1;
 
     const secondaryMeasurementType = secondaryMetadata[0]?.MeasurementType
     const secondaryMeasureName     = secondaryMetadata[0]?.MeasureName
     const secondaryMeasureId       = secondaryMetadata[0]?.MeasureID
-    const secondaryDisplay         = secondaryMetadata[0]?.DisplayType;
+
+    let secondaryDisplay;
+    let secondaryMeasurementDisplay;
+    if (secondaryMeasurementType.includes('Percent') || secondaryMeasurementType.includes('percent') && !secondaryMeasurementType.includes('percentile')) {
+        secondaryDisplay = '%' // assigns a % displayType for anything that includes percent (but NOT percentile) in its measurementType
+        secondaryMeasurementDisplay = secondaryMeasurementType
+    } else {
+        secondaryDisplay         = "" + secondaryMetadata[0]?.DisplayType; // else, the pre-existing assignment
+        secondaryMeasurementDisplay = secondaryMeasurementType + ` (${secondaryDisplay})`
+    }
+
     const secondaryTimePeriod      = data[0]?.TimePeriod_2;
 
     const SecondaryAxis = 
@@ -58,6 +84,8 @@ const renderLinksChart = (
     let xIndicatorName;
     let yIndicatorName;
     let xMin;
+    let xAxisLabel;
+    let yAxisLabel;
 
     switch (SecondaryAxis) {
         case 'x':
@@ -74,6 +102,8 @@ const renderLinksChart = (
             yTimePeriod    = primaryTimePeriod;
             xIndicatorName = secondaryIndicatorName;
             yIndicatorName = primaryIndicatorName;
+            xAxisLabel     = [secondaryIndicatorName, `${secondaryMeasurementType} (${secondaryTimePeriod})`]
+            yAxisLabel     = primaryMeasurementDisplay + ` (${yTimePeriod})` 
             break;
         case 'y':
             xMeasure       = primaryMeasurementType;
@@ -89,6 +119,8 @@ const renderLinksChart = (
             yTimePeriod    = secondaryTimePeriod;
             xIndicatorName = primaryIndicatorName;
             yIndicatorName = secondaryIndicatorName;
+            xAxisLabel     = [primaryIndicatorName, `${primaryMeasurementType} (${primaryTimePeriod})`]
+            yAxisLabel     = secondaryMeasurementDisplay + ` (${yTimePeriod})`  
             break;
     }
 
@@ -115,7 +147,8 @@ const renderLinksChart = (
     links_unreliability.forEach(element => {
 
         document.querySelector("#links-unreliability").innerHTML += "<div class='fs-sm text-muted'>" + element + "</div>" ;
-        
+        document.getElementById('links-unreliability').classList.remove('hide')
+ 
     });
 
     // ----------------------------------------------------------------------- //
@@ -133,7 +166,7 @@ const renderLinksChart = (
             "font": "sans-serif",
             "baseline": "top",
             "dy": -10,
-            "subtitle": `${yMeasure && `${yMeasure}`} ${yDisplay && `${yDisplay}`} (${yTimePeriod})`,
+            "subtitle": yAxisLabel,
             "subtitleFontSize": 13,
             "limit": 1000
         },
@@ -154,7 +187,10 @@ const renderLinksChart = (
                 "labelAngle": 0,
                 "titlePadding": 10,
                 "titleFont": "sans-serif",
-                "tickMinStep": 1
+                "tickMinStep": 1,
+                "domain": false,
+                "ticks": false,
+                "labelBaseline": "bottom"
             },
             "legend": {
                 "columns": columns,
@@ -166,24 +202,27 @@ const renderLinksChart = (
             "view": { "stroke": "transparent" },
             "range": {
                 "category": [
-                    "#1696d296", 
-                    "#f2921496", 
-                    "#ec008b96", 
-                    "#55b74896", 
-                    "#80008096"
-                ]
-            },
-            "text": {
-                "color": "#1696d2",
-                "fontSize": 11,
-                "align": "center",
-                "fontWeight": 400,
-                "size": 11
+                    "#40826D",
+                    "#000F89",
+                    "#a05195",
+                    "#d45087",
+                    "#ffa600" 
+                    ]
             }
         },
         "data": {
             "values": data
         },
+        "transform": [
+            {
+                "calculate": `format(datum.${xValue}, '.1f') + ' ${xDisplay}'`,
+                "as": "xLabel"
+            },
+            {
+                "calculate": `format(datum.${yValue},  '.1f') + ' ${yDisplay}'`,
+                "as": "yLabel"
+            }
+        ],
         "layer":[
             {
                 "mark": { 
@@ -214,38 +253,35 @@ const renderLinksChart = (
                         },
                     },
                     "x": {
-                        "title": [`${xIndicatorName && `${xIndicatorName}`}`, `${xMeasure} ${xDisplay && `(${xDisplay})`} (${xTimePeriod})`],
+                        "title": xAxisLabel,
                         "field": xValue,
                         "type": "quantitative",
-                        "scale": {"domainMin": xMin, "nice": true}
+                        "scale": {"domainMin": xMin, "nice": true},
+                        "axis": {
+                            "titleAlign": "center",
+                            "tickCount": 4
+                          }
                     },
                     "tooltip": [
-                        {
-                            "title": "Borough",
-                            "field": "Borough",
-                            "type": "nominal"
-                        },
                         {
                             "title": geoTypeShortDesc,
                             "field": "Geography_1",
                             "type": "nominal"
                         },
                         {
-                            "title": "Time Period",
-                            "field": "TimePeriod_2",
+                            "title": "Borough",
+                            "field": "Borough",
                             "type": "nominal"
                         },
                         {
                             "title": yMeasureName,
-                            "field": yValue,
-                            "type": "quantitative",
-                            "format": ",.1~f"
+                            "field": "yLabel",
+                            "type": "nominal"
                         },
                         {
                             "title": xMeasureName,
-                            "field": xValue,
-                            "type": "quantitative",
-                            "format": ",.1~f"
+                            "field": "xLabel",
+                            "type": "nominal"
                         }
                     ],
                     "color": {
@@ -271,7 +307,8 @@ const renderLinksChart = (
                     }
                 }
             },
-            {"mark": {
+            {
+                "mark": {
                 "type": "line",
                 "color": "darkgray"
                 },
@@ -300,7 +337,20 @@ const renderLinksChart = (
     // render chart
     // ----------------------------------------------------------------------- //
 
-    vegaEmbed("#links", linkspec);
+    vegaEmbed("#links", linkspec,{
+        actions: {
+          export: { png: false, svg: false },
+          source: false,  
+          compiled: false, 
+          editor: true 
+        }
+      });
+
+    // set for printing
+    printSpec = linkspec;
+    chartType = 'links'
+    vizSource = primaryMetadata[0].Sources
+    vizSourceSecond = secondaryMetadata[0].Sources
 
     // ----------------------------------------------------------------------- //
     // Send chart data to download

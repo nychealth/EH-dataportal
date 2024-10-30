@@ -102,28 +102,40 @@ function reveal() {
 
 $('#tab-btn-table').on('click', e => {
     $(e.currentTarget).tab('show');
-    window.location.hash = 'display=summary'
+    window.location.hash = 'display=summary';
+    gtag('event', 'click_tab', {
+        tab: "table"
+    });
 });
 
 // ===== map ===== /
 
 $('#tab-btn-map').on('click', e => {
     $(e.currentTarget).tab('show');
-    window.location.hash = 'display=map'
+    window.location.hash = 'display=map';
+    gtag('event', 'click_tab', {
+        tab: "map"
+    });
 });
 
 // ===== trend ===== /
 
 $('#tab-btn-trend').on('click', e => {
     $(e.currentTarget).tab('show');
-    window.location.hash = 'display=trend'
+    window.location.hash = 'display=trend';
+    gtag('event', 'click_tab', {
+        tab: "trend"
+    });
 });
 
 // ===== links ===== /
 
 $('#tab-btn-links').on('click', e => {
     $(e.currentTarget).tab('show');
-    window.location.hash = 'display=links'
+    window.location.hash = 'display=links';
+    gtag('event', 'click_tab', {
+        tab: "links"
+    });
 });
 
 

@@ -1,5 +1,6 @@
 ---
 title: "Our Roadmap: An Open Path Forward"
+shortTitle: "Our roadmap"
 draft: false
 date: 2020-07-07T08:49:22-04:00
 image: ds-codesign-team.jpg

@@ -1,5 +1,6 @@
 ---
 title: "How power outages affect health"
+shortTitle: "Power outages"
 date: 2022-01-10T12:34:38-04:00
 draft: false
 seo_title: "How Power Outages Affect Health"
@@ -8,7 +9,7 @@ tags:
 categories: ["social", "healthoutcomes", "climatehealth"]
 keywords: ["asthma", "weather", "mortality", "death", "cooling", "air conditioning", "built environment"]
 image: title7.jpg
-photocredit: "Benjamin Kanter/Mayoral Photography Office"
+photocredit: "Benjamin Kanter/Mayoral Photography Office, City of New York"
 ---
 
 Imagine your child has asthma. One summer night, a powerful storm rolls in and knocks the power out.

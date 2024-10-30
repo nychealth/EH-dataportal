@@ -8,7 +8,7 @@ tags:
 categories: ["social","healthoutcomes","neighborhoods"]
 keywords: ["violence","assaults","poverty","public health","injuries","hospitalizations","emergency department visits","ED visits"]
 image: ds-assaults.jpg
-photocredit: "Benjamin Kanter/Mayoral Photography Office"
+photocredit: "Benjamin Kanter/Mayoral Photography Office, City of New York"
 ---
 
 Violence has profound effects. An assault, a shooting, a homicide, or any use of force affects people in many deep ways.

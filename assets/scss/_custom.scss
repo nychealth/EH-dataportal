@@ -149,8 +149,10 @@ $color-data-explorer: #0A408A;
 
 .btn-light-green-bg {
   background-color: #EFFAF4;
+  color: #008939;
   &:hover {
     background-color: #008939;
+    color:white;
   }
 }
 
@@ -230,4 +232,20 @@ $color-data-explorer: #0A408A;
   background-size: 33%;
   background-repeat: no-repeat;
   background-position: 0 20px;
+}
+
+.accordion-group a[data-toggle="collapse"][aria-expanded="false"]:after {
+  content: "\002B";
+}
+
+.accordion-group a[data-toggle="collapse"][aria-expanded="true"]:after {
+  content: "\2014";
+}
+
+#primary-content h3 {
+  padding-top: 20px;
+}
+
+#toggleButton[aria-expanded="true"] {
+  display: none;
 }

@@ -8,7 +8,7 @@ tags:
 categories: ["transportation","climatehealth","airquality"]
 keywords: ["transportation","built environment","streets","congestion pricing","traffic","street safety","transit","public transportation","mass transit","safety","climate change","climate","global warming"]
 image: ds-streets.jpg
-photocredit: "Michael Appleton/Mayoral Photography Office"
+photocredit: "Michael Appleton/Mayoral Photography Office, City of New York"
 ---
 
 **NB: Links to internal topics not yet inserted below.**

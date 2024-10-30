@@ -9,7 +9,7 @@ tags:
 categories: ["climatehealth","housing"]
 keywords: ["climate","winter","cold","weather","safety","housing","transportation","injuries","snow","ice"]
 image: winter-weather.png
-photocredit: "Michael Appleton/Mayoral Photography Office"
+photocredit: "Michael Appleton/Mayoral Photography Office, City of New York"
 ---
 
 [Cold weather can be dangerous]({{< baseurl >}}data-explorer/weather-related-illness/?id=2175#display=summary). Here are some tips for staying safe this winter. 

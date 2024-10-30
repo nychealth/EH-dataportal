@@ -4,17 +4,17 @@
 
 <article class="container-fluid overflow-hidden" id="primary-content">
 
-  <div class="row my-4">
+  <div class="row mb-4">
     <div class="col-md-11 col-sm-12 mx-auto">
       <!--start main column-->
 
-      <nav aria-label="breadcrumb" class="mb-2">
+      <nav aria-label="breadcrumb" class="my-2">
         <ul class="breadcrumb mr-auto">
             <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
             <li class="breadcrumb-item"><a href="..">
               {{- with .Parent -}} {{ .Title }} </a></li>{{- end -}}
             <li class="breadcrumb-item active">{{ .Title }}</li>
-        </ul>                
+        </ul>
     </nav>
 
       <h1>{{- .Title -}}</h1>
@@ -24,7 +24,7 @@
         <div class="col-12">
           <p class="fs-xl font-weight-bold">First, enter your address.</p>
           <p>Enter your address below. We'll use your address to tell you who your elected City Council Member is.</p>
-          
+
         </div>
       </div>
 
@@ -40,12 +40,12 @@
           <div id='mapLocator'></div>
 
 
-       
+
         </div>
 
         <div class="col-md-6 col-sm-12" id="cmInfo">
         <!-- entry button -->
-        <button class="btn btn-primary btn-block" id="outputButton" onclick="dataChange()">Get Council Member for this address:</button> 
+        <button class="btn btn-primary btn-block" id="outputButton" onclick="dataChange()">Get Council Member for this address:</button>
         <div class="row mt-2">
           <div class="col-sm-5">
             <span class="home-label">Your City Council Member:</span>
@@ -53,7 +53,7 @@
           <div class="col-sm-7">
             <span id="CCM" class="font-weight-bold"></span>
           </div>
-        </div> 
+        </div>
 
         <div class="row border-top">
           <div class="col-sm-5">
@@ -62,7 +62,7 @@
           <div class="col-sm-7">
             <span id="CCD" class="font-weight-bold"></span>
           </div>
-        </div> 
+        </div>
 
         <div class="row border-top mb-2">
           <div class="col-sm-5">
@@ -71,7 +71,7 @@
           <div class="col-sm-7">
             <span id="neighb" class="font-weight-bold fs-sm"></span>
           </div>
-        </div> 
+        </div>
 
           <button type="button" id="sendEmailBtn" class="btn btn-block btn-primary hide" onclick="email1()"><i class="fas fa-envelope-square mr-1"></i>Send my Council Member an email</button>
 
@@ -169,30 +169,30 @@
             <div id="textDestination">
               <p>Dear Council Member <span id="councilMemberLastName"></span>,</p>
               <p>I am one of your constituents, a resident of district <span id="districtNum">XX</span>. I was reading about neighborhood issues on one of the Health Department's websites, the Environment and Health Data Portal (on.nyc.gov/dataportal). I am concerned about the following issues: <span id="concerns"></span>
-  
+
               <p>I'm concerned because <span id="reasons"></span>
-                
+
               <p>I'm writing to ask you <span id="needs"></span>
-  
+
               <p>I look forward to your reply. Thank you.</p>
-  
+
             </div>
           </div>
           <div class="col-md-6">
             <p class="fs-xl font-weight-bold">Your email is below.</p>
-    
+
             <span class="home-label" id="emailLabel">You can edit the text in the box before you send it.</span>
             <form>
               <textarea id="textEntry" name="textEntry" style="width:100%;height:300px">
                 Dear [Council Member],
                 I am one of your constituents, a resident of [MY NEIGHBORHOOD]. I was reading about neighborhood issues on one of the Health Department's websites, the Environment and Health Data Portal (on.nyc.gov/dataportal). I am concerned about [ISSUES YOU ARE CONCERNED ABOUT].
-  
+
                 These concern me because [WHY YOU ARE CONCERNED].
-  
+
                 I'm writing to know [WHAT YOU WANT YOUR COUNCIL MEMBER TO DO].
-  
+
                 Thank you for your attention, and I look forward to your reply.
-  
+
                 Sincerely,
                 [YOUR NAME]
               </textarea>
@@ -201,9 +201,9 @@
                 Send email!
               </a>
               <em class="fs-sm">This will open the email in your email client for you to send from your address.</em>
-            </form>      
+            </form>
           </div>
-  
+
         </div>
       </div>
 
@@ -250,10 +250,10 @@ d3.csv(sitepath+'/take-action/council.csv').then(function(data) {
 })
 
 // gets your initial info:
-var yourDistrict; 
+var yourDistrict;
 var districtInfo;
 var lastname;
-// runs on button click 
+// runs on button click
 function dataChange() {
   document.getElementById('outputButton').classList.remove('btn-primary')
   document.getElementById('outputButton').classList.add('btn-outline-primary')
@@ -293,7 +293,7 @@ var concerns = [];
 var concernsText = [];
 
 // get concern buttons
-var concernContainer = document.getElementById('concernContainer') 
+var concernContainer = document.getElementById('concernContainer')
 var concernBtns = concernContainer.getElementsByClassName("btn");
 
 // toggle active state on click
@@ -329,7 +329,7 @@ for (var i = 0 ; i < reasonBtns.length; i++) {
   });
 }
 
-// Lastly, create NEEDS. 
+// Lastly, create NEEDS.
 var needs;
 var needsText;
 
@@ -354,7 +354,7 @@ var neighborhoodName;
 // now, create EMAIL
 function writeEmail() {
    document.getElementById('emailText').style.display = "block" // reveal text
-   document.getElementById('districtNum').innerHTML = map.location.data.cityCouncilDistrict 
+   document.getElementById('districtNum').innerHTML = map.location.data.cityCouncilDistrict
    document.getElementById('councilMemberLastName').innerHTML = lastname;
 
    // send Concerns to text
@@ -379,7 +379,7 @@ function writeEmail() {
         str2 += reasonsText[i].toLowerCase() + ', ' // use commas in between
       }
     }
-  
+
       document.getElementById("reasons").innerHTML = str2;
 
     // send Needs to text
@@ -393,7 +393,7 @@ function writeEmail() {
         str3 += needsText[i].toLowerCase() + ', ' // use commas in between
       }
     }
-  
+
       document.getElementById("needs").innerHTML = str3;
 
     // send text to form

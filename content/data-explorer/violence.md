@@ -2,12 +2,14 @@
 title: Violence
 date: 2021-05-28 18:02:58.737039
 draft: false
+azlink: "https://www.nyc.gov/site/doh/health/neighborhood-health/anti-violence.page"
 seo_title: "Violence data for NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
 description: "Datasets and visualizations of violence in NYC."
-tags: 
-categories: ["social","healthoutcomes"]
-keywords: ["violence","injury","neighborhoods","social","justice","poverty"]
+tags:
+categories: ["social", "healthoutcomes"]
+keywords:
+  ["violence", "injury", "neighborhoods", "social", "justice", "poverty"]
 indicators:
 - header: 'Assaults'
   IndicatorID:
