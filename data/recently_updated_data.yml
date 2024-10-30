@@ -1,5 +1,9 @@
 ---
 featured:
+- copy: Firearm ED visits
+  link: data-explorer/violence/?id=2437#display=summary
+- copy: Assault ED visits
+  link: data-explorer/violence/
 - copy: Rat inspections
   link: data-explorer/mice-and-rats/?id=2434#display=summary
 - copy: Rat indexing in Rat Mitigation Zones (RMZs)
@@ -12,7 +16,4 @@ featured:
   link: data-explorer/climate/?id=2104#display=summary
 - copy: Deaths due to PM2.5
   link: data-explorer/health-impacts-of-air-pollution/?id=2108#display=summary
-- copy: Binge drinking (adults)
-  link: data-explorer/alcohol-use/?id=2050#display=summary
-- copy: Monthly bicycle use
-  link: data-explorer/walking-driving-and-cycling/?id=2059#display=summary
+
