@@ -78,5 +78,12 @@
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/key-topics/pests/</guid>
       <description>Pests and pesticides can both have health effects. Household pests like mice, rats, and cockroaches can trigger asthma, while bed bugs are a well-known nuisance. Meanwhile, warmer winters may mean more vector-borne diseases like babesiosis and west nile virus.&#xA;Pesticides are chemicals used to control or kill insects, rats, mice, plants and weeds, or fungi (mold). Exposure to pesticides can occur from consuming foods or beverages that contain pesticide residues, from direct contact with the skin or eyes, or from breathing air in areas where pesticides are applied.</description>
     </item>
+    <item>
+      <title>Housing and Health</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/neighborhood-reports/housing_and_health/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/neighborhood-reports/housing_and_health/</guid>
+      <description>This report provides a neighborhood summary of housing conditions and related health outcomes. It also describes population characteristics that can increase vulnerability to housing hazards.</description>
+    </item>
   </channel>
 </rss>

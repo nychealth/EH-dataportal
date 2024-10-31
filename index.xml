@@ -184,11 +184,46 @@
       <description>Healthy eating is associated with better health, including a reduced risk of cardiovascular disease. That means that having access to healthy, safe, and affordable food choices is crucial for a person to achieve healthy eating habits.&#xA;Food access is influenced by many environmental factors, including proximity to food retail outlets and neighborhood-level resources (like neighborhood poverty, and availability of public transportation).&#xA;Sugary drinks contribute to a higher-calorie diet, increased risk of heart disease and diabetes, and long-term weight gain.</description>
     </item>
     <item>
+      <title>Air quality</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/key-topics/airquality/</link>
+      <pubDate>Mon, 04 Oct 2021 12:32:15 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/key-topics/airquality/</guid>
+      <description>New York City&amp;rsquo;s air contains particles, drops of liquid, gasses, and other pollution that can affect health. Bad air quality can be particularly dangerous for older adults, children, and people with heart or lung conditions.&#xA;Air quality varies from neighborhood to neighborhood, based on local levels of emissions and many other factors. We monitor air quality using the New York City Community Air Survey (NYCCAS), NYC&amp;rsquo;s comprehensive air quality monitoring and modeling network.</description>
+    </item>
+    <item>
+      <title>Climate and health</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/key-topics/climatehealth/</link>
+      <pubDate>Sun, 03 Oct 2021 12:33:17 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/key-topics/climatehealth/</guid>
+      <description>Climate, including extreme weather, has a direct impact on health. As NYC&amp;rsquo;s climate changes, along with the world&amp;rsquo;s climate, we expect more frequent and intense heat waves, increased rainfall and more severe storms. These will add to existing weather-related risks. Already, heat kills more people than all other natural disasters combined.&#xA;In New York City, those most vulnerable to the dangers of hot weather are older adults and people with health conditions like heart disease, diabetes, and cognitive impairment - especially those in low-income, Black, and Brown communities.</description>
+    </item>
+    <item>
       <title>Displacement Risk</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/displacement-risk/</link>
       <pubDate>Sat, 02 Oct 2021 07:56:00 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/displacement-risk/</guid>
       <description>Housing stability creates health, but in NYC, many people have difficulty accessing healthy, stable housing.&#xA;In some neighborhoods, residents at are higher risk of being displaced - forced to leave their homes, and their neighborhoods, due combinations of market pressure, rent burden, housing conditions, poverty, and injustice in the housing market.&#xA;To show people&amp;rsquo;s risk of being forced out of their homes or neighborhoods, the Department of City Planning and the Department of Housing Preservation and Development created a Displacement Risk Index, part of the Equitable Development Data Explorer.</description>
+    </item>
+    <item>
+      <title>Housing</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/key-topics/housing/</link>
+      <pubDate>Sat, 02 Oct 2021 07:56:00 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/key-topics/housing/</guid>
+      <description>Most people spend most of their time at home - so the household environment can significantly affect health. Disrepair that stems from long-term maintenance neglect can lead to serious health problems, including: lead poisoning from lead paint; asthma and other respiratory issues triggered by pests; and carbon monoxide poisoning.&#xA;In NYC, substandard housing is disproportionately located in low-income neighborhoods, as historical disinvestment lead to severe, systemic maintenance deficiencies that threatens people&amp;rsquo;s health.</description>
+    </item>
+    <item>
+      <title>Inequality and health inequities</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/key-topics/social/</link>
+      <pubDate>Fri, 01 Oct 2021 07:59:16 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/key-topics/social/</guid>
+      <description>Inequality is a significant driver of bad health: a society that deprives people of resources to stay healthy is a society where many people become sick, injured, or die because of factors outside of their control.&#xA;People tend to be healthier when they have access to economic and financial stability, higher education, adequate health care, healthy neighborhoods, and safe, strong communities.&#xA;Health inequities are systematic differences in health outcomes that result from differences in access to the conditions that keep people healthy.</description>
+    </item>
+    <item>
+      <title>Active design, public space, and transportation</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/key-topics/transportation/</link>
+      <pubDate>Thu, 30 Sep 2021 07:58:01 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/key-topics/transportation/</guid>
+      <description>Physical activity and healthy eating rank among the leading ways to get and stay healthy.&#xA;Active design is an applied, evidence-informed approach to improve physical, mental and social health outcomes through the design of the built environment. Active design leverages the expertise of architects, planners, developers, community members, designers, and other stakeholders.&#xA;Designing to increase access to high quality parks, pedestrian plazas, sidewalks, quiet spaces, trees and other greenery, secure bicycle storage, gathering spaces, and stairways can have a measurable effect on people’s ability to safely maintain their physical, mental, and social health.</description>
     </item>
     <item>
       <title>2021 NYC Heat-Related Mortality Report</title>
@@ -259,6 +294,13 @@
       <pubDate>Fri, 20 Aug 2021 12:52:43 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/urban-heat-island/</guid>
       <description>In New York City and across the country, more people die from extreme heat than from all other natural disasters combined. To understand how to keep New Yorkers safe from extreme heat, we studied neighborhood factors that affect temperature, and found that grass, shrubs, and trees can play a major role. Let’s take a look.&#xA;At 6.00 PM on June 30, 2018, the air temperature at the LaGuardia Airport Weather Station was 89° Fahrenheit (F).</description>
+    </item>
+    <item>
+      <title>Environmental health outcomes</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/key-topics/healthoutcomes/</link>
+      <pubDate>Wed, 04 Aug 2021 12:32:15 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/key-topics/healthoutcomes/</guid>
+      <description>Our environment - the world around us - affects our health. Here are datasets on health outcomes that people experience that may be linked to the environment.&#xA;Some of these have clear links to the environment, like lead poisoning. Others have some uncertain links, and are still being investigated and understood.&#xA;But while specific health outcomes may have stronger or weaker links to the environment, the environment&amp;rsquo;s overall effect on our health is clear - we know that one of the strongest predictors of health is where you&amp;rsquo;re born.</description>
     </item>
     <item>
       <title>Active design</title>
@@ -527,6 +569,27 @@
       <description>People get around New York City in many ways - public transit, walking, cycling, driving, and other modes too. When these individual behaviors are added up, they shape our city and our health.&#xA;Our built environment influences these behaviors. The design of our streets and presence of infrastructure like bicycle lanes, well maintained sidewalks, safe street crossings, dedicated bus lanes and convenient access to the subway have the potential to increase both the usage and safety of these forms of transportation.</description>
     </item>
     <item>
+      <title>Child health</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/key-topics/childhealth/</link>
+      <pubDate>Wed, 05 May 2021 07:59:26 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/key-topics/childhealth/</guid>
+      <description>Lifelong health can be determined by your health when you are a child. Plus, children can be fragile, and can be more harmed by environmental threats. So, ways that the environment can affect health often are particularly important for child health.&#xA;In New York City, several environmental factors play a key role in determining childhood health.</description>
+    </item>
+    <item>
+      <title>Pests and pesticides</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/key-topics/pests/</link>
+      <pubDate>Wed, 05 May 2021 07:59:02 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/key-topics/pests/</guid>
+      <description>Pests and pesticides can both have health effects. Household pests like mice, rats, and cockroaches can trigger asthma, while bed bugs are a well-known nuisance. Meanwhile, warmer winters may mean more vector-borne diseases like babesiosis and west nile virus.&#xA;Pesticides are chemicals used to control or kill insects, rats, mice, plants and weeds, or fungi (mold). Exposure to pesticides can occur from consuming foods or beverages that contain pesticide residues, from direct contact with the skin or eyes, or from breathing air in areas where pesticides are applied.</description>
+    </item>
+    <item>
+      <title>Food and drink</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/key-topics/foodanddrink/</link>
+      <pubDate>Wed, 05 May 2021 07:58:53 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/key-topics/foodanddrink/</guid>
+      <description>We all make choices around food and drink, but sometimes, those choices are made for us by our food environments.&#xA;Our food environments include neighborhood-level alcohol access, unhealthy food access, and restaurant food safety. Additionally, drinking water quality data includes data on contaminants that are most frequently found at levels that may be of public health significant in the country&amp;rsquo;s drinking water.</description>
+    </item>
+    <item>
       <title>Tracking changes in New York City&#39;s sources of air pollution</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/restaurants-and-air-quality/</link>
       <pubDate>Mon, 12 Apr 2021 12:02:09 -0400</pubDate>
@@ -541,7 +604,7 @@
       <description>Using public health to prevent violence Experiencing violence affects people in many ways. It not only causes physical injury or death, but being exposed to it can also cause emotional and psychological trauma. Violence doesn’t just affect the immediate victim, it affects their surrounding community, too.&#xA;Violence can affect people throughout their lives: it is associated with worse birth outcomes, childhood developmental delays, physical and mental illness, and premature deaths.</description>
     </item>
     <item>
-      <title>The Public Health Impacts of PM2.5 from Traffic Air Pollution</title>
+      <title>The public health impacts of PM2.5 from traffic air pollution</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/traffic-and-air-pollution/</link>
       <pubDate>Fri, 05 Feb 2021 08:49:22 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/traffic-and-air-pollution/</guid>
