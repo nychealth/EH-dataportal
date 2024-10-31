@@ -1,5 +1,5 @@
 ---
-title: The Public Health Impacts of PM2.5 from Traffic Air Pollution
+title: The public health impacts of PM2.5 from traffic air pollution
 shortTitle: Traffic and PM2.5
 draft: false
 date: 2021-02-05T08:49:22-04:00
