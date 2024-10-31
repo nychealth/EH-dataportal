@@ -18,6 +18,20 @@ indicators:
       - 2394
       - 48
       - 2416
+related:
+  - title: "Rat Mitigation Zones"
+    url: "data-features/rat-mitigation-zones/"
+  - title: "Housing creates health"
+    url: "data-stories/housing-creates-health/"
+  - title: "Why asthma is a social justice issue"
+    url: "data-stories/asthma-and-poverty/"
+relatedData:
+  - title: "Asthma"
+    url: "asthma/"
+  - title: "Bed bugs"
+    url: "bed-bugs/"
+  - title: "Economic conditions"
+    url: "economic-conditions/"
 ---
 
 Rats and mice are common, but preventable. In NYC, rats tend to be seen on streets, alleys and sidewalks, and in yards and basements, while mice are almost always found inside buildings.

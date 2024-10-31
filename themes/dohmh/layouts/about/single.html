@@ -17,6 +17,10 @@
       <h1>{{- .Title -}}</h1>
         {{- .Content -}}
 
+        <hr class="my-4">
+        <strong class="keywords">Published on:</strong><br>
+        {{- .Date.Format "January 2, 2006" -}}
+
     </div>
     <!--end main column-->
   </div>

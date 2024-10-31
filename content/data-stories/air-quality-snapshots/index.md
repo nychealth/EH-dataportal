@@ -2,20 +2,38 @@
 title: "Air quality snapshots: special findings from 10 years of NYCCAS"
 shortTitle: "Air quality snapshots"
 aliases:
-    - /data-stories/AQsnapshots/
+  - /data-stories/AQsnapshots/
 date: 2020-04-21T13:37:45-04:00
 draft: false
 seo_title: "Air quality snapshots"
 seo_description: "Special findings from 10+ years of New York City's citywide air quality monitoring work."
 layout: flexible
 image: ds-AQsnapshots.jpg
-tags: 
-categories: ["transportation","airquality"]
-keywords: ["air quality","traffic","transportation","air pollution", "lungs","breathing","environmental justice","justice"]
+tags:
+categories: ["transportation", "airquality"]
+keywords:
+  [
+    "air quality",
+    "traffic",
+    "transportation",
+    "air pollution",
+    "lungs",
+    "breathing",
+    "environmental justice",
+    "justice",
+  ]
 photocredit: "Tagger Yancey IV/NYC & Company"
+related:
+  - title: "Real-Time Air Quality: PM2.5 in NYC"
+    url: "data-features/realtime-air-quality/"
+  - title: "The New York City Community Air Survey"
+    url: "data-features/nyccas/"
+  - title: "Reducing air pollution in neighborhoods with the worst health impacts"
+    url: "data-stories/hia/"
 ---
 
 {{< rawhtml >}}
+
 <div class="col-xl-3 border-right">
     <div class="sticky-top narrow collapse d-xl-block" id="sidebar-nav">
         <nav class="mx-xl-n2 pt-4 py-xl-0" role="navigation" id="myScrollspy">
@@ -237,7 +255,5 @@ photocredit: "Tagger Yancey IV/NYC & Company"
         <!-- #article-footer -->
 </div>
 <!-- .col -->
-
-
 
 {{< /rawhtml >}}

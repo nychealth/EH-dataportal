@@ -4,8 +4,8 @@ draft: false
 seo_title: "NYC Environment and Health Data Portal."
 seo_description: "Data on how environments shape health in NYC."
 description: "Data on how environments shape health in NYC."
-featured_title: "The health impacts from flooding"
-featured_text: "Data story on what Storms Sandy and Ida taught us about flooding and health."
-featured_link: "data-stories/flooding-and-health/"
-featured_image: "BrooklynBridgeParkFall_JulienneSchaer.jpg"
+featured_title: "Public space creates health"
+featured_text: "Data story on how public shape shapes public health in NYC"
+featured_link: "data-stories/public-space-creates-health/"
+featured_image: "ds-public-space_fort_greene_Alexander_Thompson.jpg"
 ---

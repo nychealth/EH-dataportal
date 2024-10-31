@@ -28,7 +28,14 @@ keywords:
     "breathing",
   ]
 image: 170801_NNO_Bklyn096DSC_114.jpg
-photocredit: "Ed Reed/Mayoral Photography Office, City of New York"
+photocredit: "Michael Appleton/Mayoral Photography Office"
+related:
+  - title: "Reducing air pollution in neighborhoods with the worst health impacts"
+    url: "data-stories/hia/"
+  - title: "Air quality during COVID-19"
+    url: "data-stories/air-quality-and-covid/"
+  - title: "Real-Time Air Quality: PM2.5 in NYC"
+    url: "data-features/realtime-air-quality/"
 ---
 
 In [Part 1]({{< ref "/data-stories/car-free-zones" >}}), we looked at data from the New York City Community Air Survey (NYCCAS) - a network of about 100 air quality monitors - to see if air quality improves in areas that go car-free. And the answer is yes.

@@ -14,6 +14,14 @@ indicators:
     IndicatorID:
       - 2427
       - 2428
+related:
+  - title: "What Hurricane Ida and Superstorm Sandy taught us about flooding and health"
+    url: "data-stories/flooding-and-health/"
+relatedData:
+  - title: "Drinking water quality"
+    url: "drinking-water-quality/"
+  - title: "Lead"
+    url: "lead/"
 ---
 
 Healthy waterways are important for both aquatic life and humans who use the water for recreation.

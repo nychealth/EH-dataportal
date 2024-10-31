@@ -21,6 +21,13 @@ vega: true
 image: images/nyccas-banner-2.jpeg
 layout: nyccas-report
 report: true
+related:
+  - title: "What our air quality monitors tell us about NYC's neighborhoods"
+    url: "data-stories/air-quality-by-neighborhood/"
+  - title: "Real-Time Air Quality: PM2.5 in NYC"
+    url: "data-features/realtime-air-quality/"
+  - title: "Air quality snapshots: special findings from 10 years of NYCCAS"
+    url: "data-stories/air-quality-snapshots/"
 ---
 
 ## NYCCAS Report: 2008-2022

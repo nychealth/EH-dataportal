@@ -148,8 +148,7 @@ const renderLinksChart = (
 
         document.querySelector("#links-unreliability").innerHTML += "<div class='fs-sm text-muted'>" + element + "</div>" ;
         document.getElementById('links-unreliability').classList.remove('hide')
-
-        
+ 
     });
 
     // ----------------------------------------------------------------------- //
@@ -188,7 +187,10 @@ const renderLinksChart = (
                 "labelAngle": 0,
                 "titlePadding": 10,
                 "titleFont": "sans-serif",
-                "tickMinStep": 1
+                "tickMinStep": 1,
+                "domain": false,
+                "ticks": false,
+                "labelBaseline": "bottom"
             },
             "legend": {
                 "columns": columns,
@@ -200,12 +202,12 @@ const renderLinksChart = (
             "view": { "stroke": "transparent" },
             "range": {
                 "category": [
-                    "#1696d296", 
-                    "#f2921496", 
-                    "#ec008b96", 
-                    "#55b74896", 
-                    "#80008096"
-                ]
+                    "#40826D",
+                    "#000F89",
+                    "#a05195",
+                    "#d45087",
+                    "#ffa600" 
+                    ]
             }
         },
         "data": {
@@ -335,7 +337,20 @@ const renderLinksChart = (
     // render chart
     // ----------------------------------------------------------------------- //
 
-    vegaEmbed("#links", linkspec);
+    vegaEmbed("#links", linkspec,{
+        actions: {
+          export: { png: false, svg: false },
+          source: false,  
+          compiled: false, 
+          editor: true 
+        }
+      });
+
+    // set for printing
+    printSpec = linkspec;
+    chartType = 'links'
+    vizSource = primaryMetadata[0].Sources
+    vizSourceSecond = secondaryMetadata[0].Sources
 
     // ----------------------------------------------------------------------- //
     // Send chart data to download

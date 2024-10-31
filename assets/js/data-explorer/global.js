@@ -49,7 +49,7 @@ let aqComparisonsIndicatorData;
 let defaultTrendMetadata;
 let aqDefaultTrendMetadata;
 let defaultTrendAbout;
-let defaultTrendSources;
+let defaultTrendSources = [];
 let defaultMapMetadata;
 let defaultMapAbout;
 let defaultMapSources;
@@ -57,7 +57,7 @@ let defaultPrimaryLinksMeasureMetadata;
 let defaultSecondaryMeasureMetadata;
 let defaultDisparitiesMetadata;
 let defaultLinksAbout;
-let defaultLinksSources;
+let defaultLinksSources = [];
 
 let selectedMapMeasure;
 let selectedMapTime;
@@ -77,11 +77,11 @@ let selectedTrendSources;
 let aqSelectedTrendMetadata;
 
 let selectedComparisonAbout = "";
-let selectedComparisonSources = "";
+let selectedComparisonSources = [];
 let selectedComparisonMetadata;
 
 let selectedLinksAbout;
-let selectedLinksSources;
+let selectedLinksSources = [];
 let selectedPrimaryMeasureMetadata;
 let selectedSecondaryMeasureMetadata;
 
@@ -117,6 +117,13 @@ let showLinks;
 var CSVforDownload; 
 var downloadedIndicator;
 var downloadedIndicatorMeasurement;
+
+// variables for print specs
+var printSpec = {};
+var vizYear;
+var vizSource;
+var vizSourceSecond;
+var chartType;
 
 // store hash, so display knows where it just was
 let currentHash;
@@ -242,9 +249,21 @@ const renderTitleDescription = (title, desc) => {
 const renderAboutSources = (about, sources) => {
 
     console.log("**** renderAboutSources");
+    dataSources.innerHTML = ''
+
+    // de-dupe data sources
+    let type = typeof sources
+
+    if (type === 'object') {
+        var singleSource;
+        singleSource = sources.every( (val, i, arr) => val === arr[0] )  
+        singleSource === true ? dataSources.innerHTML = sources[0] : dataSources.innerHTML = sources
+    } else {
+        dataSources.innerHTML = sources
+    }
 
     aboutMeasures.innerHTML = about;
-    dataSources.innerHTML = sources;
+    
 }
 
 // ----------------------------------------------------------------------- //
