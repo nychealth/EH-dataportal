@@ -28,6 +28,18 @@ indicators:
       - 2405
       - 2406
       - 2398
+related:
+  - title: "Housing creates health"
+    url: "data-stories/housing-creates-health/"
+  - title: "Health, housing, and history"
+    url: "data-stories/housing/"
+  - title: "How power outages affect health"
+    url: "data-stories/poweroutages/"
+relatedData:
+  - title: "Housing maintenance"
+    url: "housing-maintenance/"
+  - title: "Housing safety"
+    url: "housing-safety"
 ---
 
 Carbon monoxide (CO) is a poisonous gas that forms when fuel or other materials are burned.  It is invisible and has no odor.
