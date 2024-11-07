@@ -1,11 +1,13 @@
 <!-- Popper.js and Bootstrap JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-    crossorigin="anonymous"></script>
 
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-    crossorigin="anonymous"></script>
+<!-- need to include popper first; umd is non-module version -->
+
+{{- $popper := resources.Get "node_modules/popper.js/dist/umd/popper.min.js" | resources.Fingerprint "sha512" }}
+<script src="{{ $popper.RelPermalink }}" integrity="{{ $popper.Data.Integrity }}" crossorigin="anonymous"></script>
+
+{{- $bootstrap := resources.Get "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js" | resources.Fingerprint "sha512" }}
+<script src="{{ $bootstrap.RelPermalink }}" integrity="{{ $bootstrap.Data.Integrity }}" crossorigin="anonymous"></script>
+
 
 <!-- Google Translate -->
 <script>
@@ -22,21 +24,9 @@
 <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
 
-{{- $lunr := resources.Get "node_modules/lunr/lunr.min.js" }}
-{{- $lunr_secureJS := $lunr | resources.Fingerprint "sha512" }}
-
-<script type="text/javascript" src="{{ $lunr_secureJS.RelPermalink }}" integrity="{{ $lunr_secureJS.Data.Integrity }}"></script>
-
 {{- /*  NYC template JS (RTL, search and language toggle, back to top)  */}}
 
 {{- $js := resources.Get "js/main.js" }}
-{{- $secureJS := $js | resources.Fingerprint "sha512" }}
-
-<script type="text/javascript" 
-    src="{{ $secureJS.RelPermalink }}" 
-    integrity="{{ $secureJS.Data.Integrity }}"></script>
-
-{{- $js := resources.Get "js/search.js" }}
 {{- $secureJS := $js | resources.Fingerprint "sha512" }}
 
 <script type="text/javascript" 

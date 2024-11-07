@@ -22,7 +22,7 @@
                   <li class="link-w-underline px-0"><a href={{ relURL "key-topics/pests" }}>Pests</a></li>
                 </ul>
               </div>
-              <div class="col-md-6 px-2 px-20">
+              <div class="col-md-6 px-20">
                 <ul class="list-unstyled font-weight-bold">
                   <li class="link-w-underline px-0"><a href={{ relURL "key-topics/transportation" }}>Public space</a></li>
                   <li class="link-w-underline px-0"><a href={{ relURL "key-topics/housing" }}>Housing</a></li>
@@ -38,8 +38,12 @@
           <div class="col-md-6 px-20">
             <div class="card content-card">
               <div class="card-content primary">
-                <div class="position-relative" style='height: 330px; width: 100%; background-image: url({{ relURL ( urls.JoinPath "images" .Params.featured_image ) }}); background-position: center; background-size: cover;'>
-                  <div class="">
+
+                {{ $src := resources.GetMatch ( path.Join "**" .Params.featured_image )}}
+                {{ $image := $src.Resize "x1600 jpg q75"}}
+                <div class="position-relative" style='height: 330px; width: 100%; background-image: url({{ relURL $image.RelPermalink }}); background-position: center; background-size: cover;'>
+
+                  <div class="overlay-trends">
                     <!-- Can use overlay-trends, overlay-map or overlay-topics -->
                   </div>
                 </div>
@@ -110,7 +114,7 @@
                 <i class="fas fa-bullhorn h2 text-primary" aria-hidden="true"></i>
               </div>
             </div>
-            <p class="text-black mb-4"><a class="font-weight-bold" href="#">Sign up here!</a> We won't share your email address.</p>
+            <p class="text-black mb-4"><a class="font-weight-bold" href="https://forms.gle/qcQvmLUWvBwjkFMRA" target="_blank">Sign up here!</a> We won't share your email address.</p>
           </div>
 
           <div class="shadow-sm mb-3 p-3 card-left-border">
@@ -142,7 +146,9 @@
             <div class="card-content data-stories mb-4">
               <a class="position-relative" href={{ relURL "data-stories" }}>
                 <div class="tab-data-stories h-100 w-100 position-absolute"></div>
-                <img class="card-img-top" src={{ relURL "images/image_tab_data_stories.jpg" }}>
+                {{ $src := resources.GetMatch ( path.Join "**/image_tab_data_stories.jpg" )}}
+                {{ $image := $src.Resize "x1200 jpg q75"}}
+                <img class="card-img-top" src="{{ relURL $image.RelPermalink }}">
               </a>
               <div class="card-body">
                 <h3 class="card-title">Data stories</h3>
@@ -160,7 +166,9 @@
             <div class="card-content data-features mb-4">
               <a class="position-relative" href={{ relURL "data-features" }}>
                 <div class="tab-data-features h-100 w-100 position-absolute"></div>
-                <img class="card-img-top" src={{ relURL "images/image_key_topics.jpg" }}>
+                {{ $src := resources.GetMatch ( path.Join "**/image_tab_data_features.jpg" )}}
+                {{ $image := $src.Resize "x1200 jpg q75"}}
+                <img class="card-img-top" src="{{ relURL $image.RelPermalink }}">
               </a>
               <div class="card-body">
                 <h3 class="card-title">Data Features</h3>
@@ -178,7 +186,9 @@
             <div class="card-content n-reports mb-4">
               <a class="position-relative" href={{ relURL "neighborhood-reports" }}>
                 <div class="tab-neighborhood-reports h-100 w-100 position-absolute"></div>
-                <img class="card-img-top" src={{ relURL "images/image_tab_neighborhood_reports.jpg" }}>
+                {{ $src := resources.GetMatch ( path.Join "**/image_tab_neighborhood_reports.jpg" )}}
+                {{ $image := $src.Resize "x1200 jpg q75"}}
+                <img class="card-img-top" src="{{ relURL $image.RelPermalink }}">
               </a>
               <div class="card-body">
                 <h3 class="card-title">Neighborhood Reports</h3>
@@ -198,7 +208,9 @@
             <div class="card-content data-explorer mb-4">
               <a class="position-relative" href={{ relURL "data-explorer" }}>
                 <div class="tab-data-explorer h-100 w-100 position-absolute"></div>
-                <img class="card-img-top" src={{ relURL "images/image_tab_key_topics.jpg" }}>
+                {{ $src := resources.GetMatch ( path.Join "**/image_tab_data_explorer.jpg" )}}
+                {{ $image := $src.Resize "x1200 jpg q75"}}
+                <img class="card-img-top" src="{{ relURL $image.RelPermalink }}">
               </a>
               <div class="card-body">
                 <h3 class="card-title">Data Explorer</h3>
@@ -265,6 +277,53 @@
       </div>
     </div>
   </div>
+
+
+
+  <!-- Invisible button to trigger modal -->
+  <button id="openModalBtn" type="button" class="btn btn-primary hide" data-toggle="modal" data-target="#wxModal">Open Modal</button>
+
+  <div class="modal" tabindex="-1" role="dialog" id="wxModal">
+    <div class='modal-dialog modal-lg modal-dialog-centered' role='document'>
+        <div class='modal-content'>
+            <div class='modal-body'>
+              <p><span class="font-weight-bold">It's hot! The forecast high is <span id="forecasthigh" style="background-color:red;font-weight:bold;" class="p-1 text-white">XX</span></span>. Get resources on heat and health:
+                <ul>
+                  <li><a href={{ relURL "data-features/heat-syndrome" }}>Realtime heat illness data</a></li>
+                  <li><a href={{ relURL "data-features/hvi" }}>The Heat Vulnerability Index</a></li>
+                  <li><a href={{ relURL "key-topics/climatehealth" }}>All Climate and Health data and resources</a> </li>
+                </ul>
+              </p>
+            </div>
+            <hr>
+            <button type="button" class="btn btn-outline-primary close-dialog" data-dismiss="modal">Close</button>
+        </div>
+    </div>
+</div>
+
+  <!-- Invisible button to trigger modal -->
+  <button id="openModalBtn2" type="button" class="btn btn-primary hide" data-toggle="modal" data-target="#aqiModal">Open Modal</button>
+
+<div class="modal" tabindex="-1" role="dialog" id="aqiModal">
+  <div class='modal-dialog modal-lg modal-dialog-centered' role='document'>
+      <div class='modal-content'>
+          <div class='modal-body'>
+              <p><span class="font-weight-bold">Today's air quality is <span id="aqimeaning" class="p-1">AQI interpretation</span></span>. Get data on air quality:
+                <ul>
+                  <li><a href={{ relURL "data-features/realtime-air-quality" }}>Realtime air quality</a></li>
+                  <li><a href={{ relURL "data-features/neighborhood-air-quality" }}>Your neighborhood's air quality</a></li>
+                  <li><a href={{ relURL "key-topics/airquality" }}>All Air Quality data and resources</a></li>
+                </ul>
+              </p>
+          </div>
+          <hr>
+          <button type="button" class="btn btn-outline-primary close-dialog" data-dismiss="modal">Close</button>
+      </div>
+  </div>
+</div>
+
+
+
 </article>
 
 {{- end -}}
@@ -279,5 +338,94 @@
 {{- $js := resources.Get "js/uhflist.js" -}}
 {{ $secureJS := $js | resources.Fingerprint "sha512" }}
 <script type="text/javascript" src="{{ $secureJS.RelPermalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
+
+<script>
+
+  function initialize() {
+    // Get weather API to retrieve forecast high
+    fetch('https://api.weatherapi.com/v1/forecast.json?key=0d4a042ad8ec468da7b135156231711&q=NYC&days=1&aqi=yes&alerts=no')
+      .then(response => {return response.json()})
+      .then(data => {
+      // console.log(data)
+      // console.log('forecast high: ' + data.forecast.forecastday[0].day.maxtemp_f)
+
+      if (data.forecast.forecastday[0].day.maxtemp_f > 90) {
+          // console.log('forecast max is: ' + data.forecast.forecastday[0].day.maxtemp_f)
+          fireHeatModal(data.forecast.forecastday[0].day.maxtemp_f)
+          document.getElementById('forecasthigh').textContent = data.forecast.forecastday[0].day.maxtemp_f + '°F'
+      } else {}
+
+    })
+
+    // get AQI API to retrieve forecast AQI
+    fetch('https://www.airnowapi.org/aq/observation/zipCode/current/?format=application/json&zipCode=10013&distance=25&API_KEY=B34C7BA1-26C7-4DD2-9B1C-AAFD7AF4F12F')
+    .then(response => {return response.json()})
+    .then(data => {
+      // console.log(data) 
+      var aqi1 = data[0].Category.Number
+      var aqi2 = data[1].Category.Number
+      var aqi
+
+      aqi1 >= aqi2 ? (aqi = aqi1) : (aqi = aqi2)
+
+      // console.log('aqi: ' + aqi)
+
+      aqi > 2 ? fireAQmodal(aqi) : {}
+
+    });
+
+  };
+
+  function fireHeatModal(x) {
+      var button = document.getElementById('openModalBtn');
+      button.addEventListener('click', function() {
+          console.log('heat modal fired.');
+      });
+  
+      button.click();
+
+  }
+
+  function fireAQmodal(aqi) {
+    var button = document.getElementById('openModalBtn2')
+    button.addEventListener('click', function() {
+      console.log('aq modal fired.')
+    });
+
+    // style the AQI modal
+    var aqiMeaning = document.getElementById('aqimeaning')
+    var aqiInterpretation; 
+    if (aqi == '1') {
+      aqiInterpretation = 'Good'
+      aqiMeaning.style['background-color'] = '#00E400'
+    } else if (aqi == '2') {
+      aqiInterpretation = 'Moderate'
+      aqiMeaning.style['background-color'] = '#FFFF00'
+    } else if (aqi == '3') {
+      aqiInterpretation = 'Unhealthy for sensitive groups'
+      aqiMeaning.style['background-color'] = '#FF7E00'
+    } else if (aqi == '4') {
+      aqiInterpretation = 'Unhealthy'
+      aqiMeaning.style['background-color'] = '#FF0000'
+      aqiMeaning.style.color = 'white'
+    } else if (aqi == '5') {
+      aqiInterpretation = 'Very unhealthy'
+      aqiMeaning.style['background-color'] = '#993399'
+      aqiMeaning.style.color = 'white'
+    } else if (aqi == '6') {
+      aqiInterpretation = 'Hazardous'
+      aqiMeaning.style['background-color'] = '#7E0023'
+      aqiMeaning.style.color = 'white'
+    }
+    aqiMeaning.textContent = aqiInterpretation
+
+    button.click();
+  }
+
+  // send it
+  initialize();
+
+
+</script>
 
 {{- end -}}

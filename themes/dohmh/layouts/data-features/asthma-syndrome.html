@@ -3,7 +3,7 @@
 <article class="container-fluid" id="skip-header-target">
 
     <div class="row">
-        <div class="col-md-11 mx-auto mt-4">
+        <div class="col-md-11 mx-auto mt-2">
             <nav aria-label="breadcrumb" class="mb-4">
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item"><a href="#">Home</a></li>
@@ -30,24 +30,24 @@
         <div class="col-11 mx-auto">
           <div class="row" style="background-color:#f3f3f3; border-radius: 5px; padding: 5px;">
             <div class="col-6">
-            <button class="btn btn-primary btn-sm" onclick="time(`dayofyear`)" id="dayBtn">Daily</button> 
+            <button class="btn btn-primary btn-sm" onclick="time(`dayofyear`)" id="dayBtn">Daily</button>
             <button class="btn btn-outline-primary btn-sm" onclick="time(`month`)" id="monthBtn">Monthly</button> <br>
-            <button class="btn btn-outline-secondary btn-sm mt-1" id="smoothBtn" onclick="smooth(1)">7-day average</button> 
+            <button class="btn btn-outline-secondary btn-sm mt-1" id="smoothBtn" onclick="smooth(1)">7-day average</button>
 
 
             </div>
             <div class="col-6 ml-auto">
             <button class="btn btn-outline-primary btn-sm float-right" onclick="toggle(1)" id="toggle">Hide previous years</button><br>
             <div class="float-right mt-1" id="prevYears">
-            <button class="btn btn-sm" disabled>Highlight:</button> 
-            <button class="btn btn-outline-secondary btn-sm yearbtn" id="2016btn" onclick="changeYear(2016)">2016</button> 
-            <button class="btn btn-outline-secondary btn-sm yearbtn" id="2017btn" onclick="changeYear(2017)">2017</button> 
-            <button class="btn btn-outline-secondary btn-sm yearbtn" id="2018btn" onclick="changeYear(2018)">2018</button> 
-            <button class="btn btn-outline-secondary btn-sm yearbtn" id="2019btn" onclick="changeYear(2019)">2019</button> 
-            <button class="btn btn-outline-secondary btn-sm yearbtn" id="2020btn" onclick="changeYear(2020)">2020</button> 
-            <button class="btn btn-outline-secondary btn-sm yearbtn" id="2021btn" onclick="changeYear(2021)">2021</button> 
-            <button class="btn btn-outline-secondary btn-sm yearbtn" id="2022btn" onclick="changeYear(2022)">2022</button> 
-            <button class="btn btn-secondary btn-sm yearbtn" id="2023btn" onclick="changeYear(2023)">2023</button> 
+            <button class="btn btn-sm" disabled>Highlight:</button>
+            <button class="btn btn-outline-secondary btn-sm yearbtn" id="2016btn" onclick="changeYear(2016)">2016</button>
+            <button class="btn btn-outline-secondary btn-sm yearbtn" id="2017btn" onclick="changeYear(2017)">2017</button>
+            <button class="btn btn-outline-secondary btn-sm yearbtn" id="2018btn" onclick="changeYear(2018)">2018</button>
+            <button class="btn btn-outline-secondary btn-sm yearbtn" id="2019btn" onclick="changeYear(2019)">2019</button>
+            <button class="btn btn-outline-secondary btn-sm yearbtn" id="2020btn" onclick="changeYear(2020)">2020</button>
+            <button class="btn btn-outline-secondary btn-sm yearbtn" id="2021btn" onclick="changeYear(2021)">2021</button>
+            <button class="btn btn-outline-secondary btn-sm yearbtn" id="2022btn" onclick="changeYear(2022)">2022</button>
+            <button class="btn btn-secondary btn-sm yearbtn" id="2023btn" onclick="changeYear(2023)">2023</button>
             </div>
             </div>
 
@@ -72,9 +72,9 @@
                         <hr class="my-2">
                         <strong>What we see in real-time emergency department data</strong>
                         <p><strong>Seasonal patterns</strong>: Asthma emergency departments are highest in the spring, and in the fall - coinciding with periods of high pollen counts. </p>
-    
+
                         <p><strong>Annual changes</strong>: Asthma ED visits fell in 2020 as the city implemented NY PAUSE, and many people didn't seek care for various health issues like asthma. Since 2020, asthma ED visits have not increased to pre-pandemic levels. </p>
-    
+
                         <p><strong>Short-term spikes</strong>: External factors can cause spikes of asthma ED visits. For example, the wildfire smoke in June 2023 lead to an increase in asthma ED visits comparable to spikes during pollen peaks. </p>
                     </div>
                 </div>
@@ -116,14 +116,14 @@
                 "titlePadding": 10,
                 "grid": false
             },
-            
+
             "axisY": {
                 "labelAngle": 0,
                 "labelFontSize": 11
             },
             "view": {"stroke": "transparent"},
             "line": {"color": "#1696d2", "stroke": "#1696d2", "strokeWidth": 2.5},
-            
+
             "point": {"filled": true},
             "text": {
                 "color": "#1696d2",
@@ -168,11 +168,11 @@
                 }
           }
         }
-        
+
         var changeSpec = spec
-        
-        
-        
+
+
+
         vegaEmbed("#vis1", spec);
 
         var smoothCount = 0
@@ -191,12 +191,12 @@
             }
             vegaEmbed("#vis1", changeSpec);
         }
-        
+
         function smoothed(x) {
           changeSpec = spec
           changeSpec.encoding.y.field = x
           vegaEmbed("#vis1", changeSpec);
-        
+
           if (x == 'Count') {
             document.getElementById('countBtn').classList.add('active')
             document.getElementById('raBtn').classList.remove('active')
@@ -205,11 +205,11 @@
             document.getElementById('raBtn').classList.add('active')
           }
         }
-        
+
         function time(y) {
           changeSpec.encoding.x.timeUnit = y
           vegaEmbed("#vis1", changeSpec);
-        
+
           if (y == 'dayofyear') {
             document.getElementById('dayBtn').classList.add('btn-primary')
             document.getElementById('dayBtn').classList.remove('btn-outline-primary')
@@ -228,17 +228,17 @@
 
           }
         }
-        
+
 // #00FFFFFF
 
-        var count = 0        
+        var count = 0
         function toggle(x) {
           count = count + x
           if (count % 2 == 0) {
             // changeSpec.transform[2].filter = `datum.Date > 1451624400000`;
             changeSpec.encoding.color.scale.range = ["grey","grey","grey","grey","grey","grey","grey","#12135b"]
             document.getElementById('toggle').innerHTML = 'Hide previous years'
-        
+
           } else {
             document.getElementById('toggle').innerHTML = 'Show previous years'
             changeSpec.encoding.color.scale.range = ["#FFFFFF00","#FFFFFF00","#FFFFFF00","#FFFFFF00","#FFFFFF00","#FFFFFF00","#FFFFFF00","#12135b"]
@@ -268,8 +268,8 @@
         yearButtons[indexPos].classList.remove('btn-outline-secondary')
         yearButtons[indexPos].classList.add('btn-secondary')
       }
-        
-        
+
+
         </script>
 
 <!--

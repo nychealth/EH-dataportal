@@ -23,7 +23,7 @@ keywords:
     "global warming",
   ]
 image: ds-streets.jpg
-photocredit: "Michael Appleton/Mayoral Photography Office"
+photocredit: "Michael Appleton/Mayoral Photography Office, City of New York"
 ---
 
 In Fall 2021, the Metropolitan Transportation Authority started work on [a Central Business District Tolling Program](https://new.mta.info/project/CBDTP), also known as congestion pricing. Through this plan, cars and trucks that enter Manhattan below 60th street&mdash;the central business district&mdash;would be charged a toll. By law, the toll money would fund important improvements to New York City’s transit system of subways, buses, and railroads. ([Read the law here](https://www.nysenate.gov/legislation/laws/VAT/T8A44-C).)

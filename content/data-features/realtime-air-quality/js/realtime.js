@@ -655,7 +655,11 @@ const renderSpec = (
                   "tooltip": true
                 },
                 "transform": [
-                  {"filter": `datum.SiteName === '${checkedSites[i].siteName}'`}
+                  {"filter": `datum.SiteName === '${checkedSites[i].siteName}'`},
+                  {
+                    "calculate": "datum.Value + ' µg/m3'", 
+                    "as": "ValueWithText"
+                  }
                   ],
                 "encoding": {
                   "x": {
@@ -680,11 +684,11 @@ const renderSpec = (
                   "strokeWidth": {"value": 1.5},
                   "tooltip": [
                     {"field": "SiteName", "title": "Location"},
-                    {"field": "Value", "title": "PM2.5 (µg/m3)"},
+                    {"field": "ValueWithText", "title": "PM2.5"},
                     {
                       "field": "starttime",
                       "type": "temporal",
-                      "title": "Time",
+                      "title": "Time (EST)",
                       "timeUnit": "hoursminutes",
                       "format": "%I:%M %p"
                     },
