@@ -24,6 +24,8 @@ keywords:
 image: ds-streets.jpg
 photocredit: "Michael Appleton/Mayoral Photography Office, City of New York"
 related:
+  - title: "Data on walking, driving, and cycling"
+    url: "data-explorer/walking-driving-and-cycling/?id=2415#display=summary"
   - title: "The public health impacts of PM2.5 from traffic air pollution"
     url: "data-stories/traffic-and-air-pollution/"
   - title: "Street safety in NYC"
@@ -34,12 +36,13 @@ New York City’s transit system has gotten New Yorkers where they need to go an
 
 Traffic is a huge part of our environment in New York City. [In Manhattan’s central business district, the average car speed is under 7 miles per hour](https://www.nysenate.gov/sites/default/files/admin/structure/media/manage/filefile/a/2024-09/speed-kills-report-9-20-24_final.pdf) and has been getting slower over time. This traffic imposes a cost on every New Yorker. According to the MTA, traffic makes each New Yorker lose an average of 117 hours and nearly $2,000 in lost productivity and other costs each year. It also affects our quality of life by worsening air quality, increasing noise, and making it less safe to walk, cycle, and get around without a car.
 
+But public transit changes our environment for the better - improving the air we breath and our overall health.
+
 {{< figure src="gridlock-midtown.jpg" alt="Gridlocked traffic in midtown, Manhattan." class="mb-0" >}}
-<div class="d-inline-block">
+<div class="d-inline-block mb-2">
 <span class="fs-sm mt-0"><em>Firstname Lastname, Affiliation</em></span>
 </div>
 
-But public transit changes our environment for the better - improving the air we breath and our overall health.
 
 ## Public transit is public health
 
@@ -51,8 +54,8 @@ But transit’s benefits are more than economic:
 
 **Public transit improves air quality**: in NYC, a neighborhood’s air quality is related to its traffic density, building emissions, and density of restaurants and industrial areas. Air quality improves when traffic is reduced, as we’ve seen from [a car-free Times Square](../car-free-zones) and [during COVID-19](../air-quality-and-covid-part-2/). We’ve also seen that [the most significant health impacts of poor air quality are felt in NYC’s poorest neighborhoods](../hia).
 
-{{< figure src="JMZTrain.jpg" alt="A subway car above ground in NYC." >}}
-<div class="d-inline-block">
+{{< figure src="JMZTrain.jpg" alt="A subway car above ground in NYC." class="mb-0">}}
+<div class="d-inline-block mb-2">
 <span class="fs-sm mt-0"><em>Firstname Lastname, Affiliation</em></span>
 </div>
 
@@ -64,8 +67,8 @@ But transit’s benefits are more than economic:
 
 Typically, [about twice as many New Yorkers walk or bike for transportation, compared to those who drive cars](../../data-explorer/walking-driving-and-cycling/?id=2236#display=summary). That time walking or cycling is associated with [decreases in mortality](https://link.springer.com/article/10.1007/s11524-020-00510-1). This is good news for health!
 
-{{< figure src="Cycling.jpg" alt="Cyclists cross a bridge in NYC." >}}
-<div class="d-inline-block">
+{{< figure src="Cycling.jpg" alt="Cyclists cross a bridge in NYC." class="mb-0">}}
+<div class="d-inline-block mb-2">
 <span class="fs-sm mt-0"><em>Firstname Lastname, Affiliation</em></span>
 </div>
 
