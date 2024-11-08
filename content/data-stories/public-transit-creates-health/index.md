@@ -41,7 +41,7 @@ But public transit changes our environment for the better - improving the air we
 {{< figure src="gridlock-midtown.jpg" alt="Gridlocked traffic in midtown, Manhattan." class="mb-0" >}}
 
 <div class="d-inline-block mb-2">
-<span class="fs-sm mt-0"><em>Firstname Lastname, Affiliation</em></span>
+<span class="fs-sm mt-0"><em><a href="https://www.nyc.gov/html/dot/html/motorist/gridlockalert.shtml">Photo from Department of Transportation</a></em></span>
 </div>
 
 ## Public transit is public health
@@ -57,7 +57,7 @@ But transit’s benefits are more than economic:
 {{< figure src="JMZTrain.jpg" alt="A subway car above ground in NYC." class="mb-0">}}
 
 <div class="d-inline-block mb-2">
-<span class="fs-sm mt-0"><em>Wes Tarca/ NYC & Company</em></span>
+<span class="fs-sm mt-0"><em>Wes Tarca / NYC & Company</em></span>
 </div>
 
 **Public transit is good for the climate**: taking the subway or a bus is one of the greenest ways to get around. Greenhouse gas emissions (which we reduce when we use public transit instead of cars) drive climate change, which threatens our city today and in the future. Right now, [more New Yorkers die from extreme heat than all other natural disasters combined](../heat). And Superstorm Sandy and Hurricane Ida showed us how [more frequent, intense storms put New Yorkers at risk](../flooding-and-health/)
@@ -71,7 +71,7 @@ Typically, [about twice as many New Yorkers walk or bike for transportation, com
 {{< figure src="Cycling.jpg" alt="Cyclists cross a bridge in NYC." class="mb-0">}}
 
 <div class="d-inline-block mb-2">
-<span class="fs-sm mt-0"><em>Joe Buglewicz, Mayoral Photography Office, City of New York</em></span>
+<span class="fs-sm mt-0"><em>Joe Buglewicz / Mayoral Photography Office, City of New York</em></span>
 </div>
 
 Because so many New Yorkers are walkers and cyclists, [many are concerned about traffic-related injuries](../../data-explorer/transportation-related-injuries/?id=2094#display=summary)—a preventable harm that affects too many New Yorkers each year. [The way the streets are designed and used can encourage or inhibit behaviors that keep us healthy](../streets/)
