@@ -36,7 +36,7 @@ New York City’s public transit system has gotten New Yorkers where they need t
 
 Traffic is a huge part of our environment in New York City. [In Manhattan’s central business district, the average car speed is under 7 miles per hour](https://www.nysenate.gov/sites/default/files/admin/structure/media/manage/filefile/a/2024-09/speed-kills-report-9-20-24_final.pdf) and has been getting slower over time. This traffic imposes a cost on every New Yorker. According to the MTA, traffic makes each New Yorker lose an average of 117 hours and nearly $2,000 in lost productivity and other costs each year. It also affects our quality of life by worsening air quality, increasing noise, and making it less safe to walk, cycle, and get around without a car.
 
-But public transit changes our environment for the better - improving the air we breathe and our overall health.
+But public transit changes our environment for the better &mdash; improving the air we breathe and our overall health.
 
 {{< figure src="gridlock-midtown.jpg" alt="Gridlocked traffic in midtown, Manhattan." class="mb-0" >}}
 
@@ -46,7 +46,7 @@ But public transit changes our environment for the better - improving the air we
 
 ## Public transit is public health
 
-[Only 1 out of 4 NYC residents uses a car to commute](../../data-explorer/walking-driving-and-cycling/?id=2415#display=summary). Most New Yorkers rely on our public transit system – one of the oldest, largest, and most-used public transit systems in the world. It moves millions of people per day - far more than private vehicles. The public transit system is one of New York City’s crown jewels: its ability to move people around the city powers the economy and makes for a more equitable city.
+[Only 1 out of 4 NYC residents uses a car to commute](../../data-explorer/walking-driving-and-cycling/?id=2415#display=summary). Most New Yorkers rely on our public transit system &mdash; one of the oldest, largest, and most-used public transit systems in the world. It moves millions of people per day &mdash; far more than private vehicles. The public transit system is one of New York City’s crown jewels: its ability to move people around the city powers the economy and makes for a more equitable city.
 
 But transit’s benefits are more than economic:
 
@@ -76,7 +76,7 @@ Typically, [about twice as many New Yorkers walk or bike for transportation, com
 
 Because so many New Yorkers are walkers and cyclists, [many are concerned about traffic-related injuries](../../data-explorer/transportation-related-injuries/?id=2094#display=summary)—a preventable harm that affects too many New Yorkers each year. [The way the streets are designed and used can encourage or inhibit behaviors that keep us healthy](../streets/)
 
-Because the streetscape is such a huge part of the fabric of our city, it’s important to build a transportation system for people – one that accommodates healthy movement, keeps people safe, and helps make our city more resilient in the face of a changing climate. Investing in public transit is a vital piece of a strong city and of the work to improve the health of all New Yorkers.
+Because the streetscape is such a huge part of the fabric of our city, it’s important to build a transportation system for people &mdash; one that accommodates healthy movement, keeps people safe, and helps make our city more resilient in the face of a changing climate. Investing in public transit is a vital piece of a strong city and of the work to improve the health of all New Yorkers.
 
 <div  class="asidebox p-2 fs-sm my-2 hide">
 </div>
