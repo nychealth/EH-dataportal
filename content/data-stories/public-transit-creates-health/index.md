@@ -32,11 +32,11 @@ related:
     url: "data-stories/streets/"
 ---
 
-New York City’s transit system has gotten New Yorkers where they need to go and home again for over a century. Investing in the capacity, reliability, and accessibility (to every New Yorker, wherever they live) of public transit will not only continue to move millions of people, but also keep us healthy.
+New York City’s public transit system has gotten New Yorkers where they need to go and home again for over a century. Investing in the capacity, reliability, and accessibility to every New Yorker, wherever they live of public transit not only will continue to move millions of people, but also will keep us healthy.
 
 Traffic is a huge part of our environment in New York City. [In Manhattan’s central business district, the average car speed is under 7 miles per hour](https://www.nysenate.gov/sites/default/files/admin/structure/media/manage/filefile/a/2024-09/speed-kills-report-9-20-24_final.pdf) and has been getting slower over time. This traffic imposes a cost on every New Yorker. According to the MTA, traffic makes each New Yorker lose an average of 117 hours and nearly $2,000 in lost productivity and other costs each year. It also affects our quality of life by worsening air quality, increasing noise, and making it less safe to walk, cycle, and get around without a car.
 
-But public transit changes our environment for the better - improving the air we breath and our overall health.
+But public transit changes our environment for the better - improving the air we breathe and our overall health.
 
 {{< figure src="gridlock-midtown.jpg" alt="Gridlocked traffic in midtown, Manhattan." class="mb-0" >}}
 
@@ -46,13 +46,13 @@ But public transit changes our environment for the better - improving the air we
 
 ## Public transit is public health
 
-[Only 1 out of 4 NYC residents uses a car to commute](../../data-explorer/walking-driving-and-cycling/?id=2415#display=summary). Most New Yorkers rely on our transit system – one of the oldest, largest, and most-used transit systems in the world. It moves millions of people per day - far more than private vehicles. The transit system is one of New York City’s crown jewels: its ability to move people around the city powers the economy and makes for a more equitable city.
+[Only 1 out of 4 NYC residents uses a car to commute](../../data-explorer/walking-driving-and-cycling/?id=2415#display=summary). Most New Yorkers rely on our public transit system – one of the oldest, largest, and most-used public transit systems in the world. It moves millions of people per day - far more than private vehicles. The public transit system is one of New York City’s crown jewels: its ability to move people around the city powers the economy and makes for a more equitable city.
 
 But transit’s benefits are more than economic:
 
-**Public transit is good for your health**: access to transit increases opportunities for healthy regular physical activity, which translates directly to a healthier lifestyle. [The City’s Active Design guidelines offer tools and strategies for ways to build opportunities for physical activity and health into our city](https://www1.nyc.gov/site/doh/health/health-topics/active-design.page).
+**Public transit is good for your health**: Access to transit increases opportunities for healthy regular physical activity, which translates directly to a healthier lifestyle. The City’s [Active Design guidelines](https://www1.nyc.gov/site/doh/health/health-topics/active-design.page) offer tools and strategies for ways to build opportunities for physical activity and health into our city.
 
-**Public transit improves air quality**: in NYC, a neighborhood’s air quality is related to its traffic density, building emissions, and density of restaurants and industrial areas. Air quality improves when traffic is reduced, as we’ve seen from [a car-free Times Square](../car-free-zones) and [during COVID-19](../air-quality-and-covid-part-2/). We’ve also seen that [the most significant health impacts of poor air quality are felt in NYC’s poorest neighborhoods](../hia).
+**Public transit improves air quality**: In NYC, a neighborhood’s air quality is related to its traffic density, building emissions, and density of restaurants and industrial areas. Air quality improves when traffic is reduced, as we’ve seen from [a car-free Times Square](../car-free-zones) and [during COVID-19](../air-quality-and-covid-part-2/). We’ve also seen that [the most significant health impacts of poor air quality are felt in NYC’s poorest neighborhoods](../hia).
 
 {{< figure src="JMZTrain.jpg" alt="A subway car above ground in NYC." class="mb-0">}}
 
@@ -60,7 +60,7 @@ But transit’s benefits are more than economic:
 <span class="fs-sm mt-0"><em>Wes Tarca / NYC & Company</em></span>
 </div>
 
-**Public transit is good for the climate**: taking the subway or a bus is one of the greenest ways to get around. Greenhouse gas emissions (which we reduce when we use public transit instead of cars) drive climate change, which threatens our city today and in the future. Right now, [more New Yorkers die from extreme heat than all other natural disasters combined](../heat). And Superstorm Sandy and Hurricane Ida showed us how [more frequent, intense storms put New Yorkers at risk](../flooding-and-health/)
+**Public transit is good for the climate**: Taking the subway or a bus is one of the greenest ways to get around. Greenhouse gas emissions (which we reduce when we use public transit instead of cars) drive climate change, which threatens our city today and in the future. Right now, [more New Yorkers die from extreme heat than all other natural disasters combined](../heat). And Superstorm Sandy and Hurricane Ida showed us how [more frequent, intense storms put New Yorkers at risk](../flooding-and-health/)
 
 **Transit is vital for an equitable city**: a strong public transit system supports working New Yorkers, especially those with lower incomes. [Over 60% of low-income residents in the Bronx, Brooklyn, Queens and Staten Island rely on public transit to get to work](https://www.cssny.org/news/entry/congestion-pricing-outer-borough-new-yorkers-poverty-data-analysis). At a neighborhood level, access to public transit means access to economic opportunity and translates to lower unemployment. Expanding NYC’s transit network can help address long-term disinvestment in some NYC neighborhoods. And an equitable transit system must be accessible to all, since 1 out of every 8 New York City residents has a mobility impairment.
 
