@@ -32,7 +32,7 @@ related:
     url: "data-stories/streets/"
 ---
 
-New York City’s public transit system has gotten New Yorkers where they need to go and home again for over a century. Investing in the capacity, reliability, and accessibility to every New Yorker, wherever they live of public transit not only will continue to move millions of people, but also will keep us healthy.
+New York City’s public transit system has gotten New Yorkers where they need to go and home again for over a century. For our public transit system to continue to move millions of people and to keep us healthy, it's important to invest in its capacity, reliability, and accessibility to every New Yorker.
 
 Traffic is a huge part of our environment in New York City. [In Manhattan’s central business district, the average car speed is under 7 miles per hour](https://www.nysenate.gov/sites/default/files/admin/structure/media/manage/filefile/a/2024-09/speed-kills-report-9-20-24_final.pdf) and has been getting slower over time. This traffic imposes a cost on every New Yorker. According to the MTA, traffic makes each New Yorker lose an average of 117 hours and nearly $2,000 in lost productivity and other costs each year. It also affects our quality of life by worsening air quality, increasing noise, and making it less safe to walk, cycle, and get around without a car.
 
