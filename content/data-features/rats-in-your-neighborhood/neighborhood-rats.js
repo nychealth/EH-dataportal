@@ -78,6 +78,9 @@ console.log(polygon.contains(m4.getLatLng()));
 //----------------------- CODE TO DEVELOP -----------------------//
 /*
   - Put a basic geocoder on the map (insert address, drop a pin)
+
+  - Store GeoJSONS offsite, ingest them
+
   - Run code that loops through RMZ and CD geojson, and extracts each polygon
 
       rmz.features[0].geometry.coordinates[0]
