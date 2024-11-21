@@ -79,6 +79,17 @@ console.log(polygon.contains(m4.getLatLng()));
 /*
   - Put a basic geocoder on the map (insert address, drop a pin)
   - Run code that loops through RMZ and CD geojson, and extracts each polygon
+
+      rmz.features[0].geometry.coordinates[0]
+      loop through rmz.features[x],
+        and loop through rmz.features[x].geometry.coordinates[y]
+        var name = rmz.features[x].properties.Label
+        if polygon.contains(point.getLatLng()), then var in = true, and print name to page.
+      after loops, if in /= true, then, loop through CDs.
+
+      Alternatively, you can loop through CDs first.
+      If it's in one of the CDs that overlaps an RMZ, then you can run an RMZ loop. 
+
   - Build a function that runs a point through all of those polygons
   - Stop if it's in one thing, and return aspects of that polygon... (info about it?)
 */
