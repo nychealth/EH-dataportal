@@ -66,8 +66,10 @@ The areas of the city found to be the most infested need intensive inter-agency 
 
 This report summarizes data for the first three 6-month rounds (January 2023 - June 2024) of inspections and interventions in the four RMZs since implementation of Local Law 110.
 
+<!-- TABLE 1 -->
+
 <div class="border-top border-bottom my-4 py-2">
-<div style="min-height:310px"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/PHdnO/embed.js?v=2" charset="utf-8"></script><noscript><img src="https://datawrapper.dwcdn.net/PHdnO/full.png" alt="" /></noscript></div>
+<div style="min-height:316px" id="datawrapper-vis-r7WzZ"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/r7WzZ/embed.js" charset="utf-8" data-target="#datawrapper-vis-r7WzZ"></script><noscript><img src="https://datawrapper.dwcdn.net/r7WzZ/full.png" alt="" /></noscript></div>
 </div>
 
 1. **The metrics the Department is using to measure the efficacy of rat mitigation in such
@@ -94,10 +96,9 @@ This increase is seen in Bronx Grand Concourse (from 26% in January to June 2023
 
 <!-- Using these seven criteria to measure progress, the Department has intensified the city’s inter- agency anti-rat work, collaborating with NYC Parks, NYCHA, and NYC Public Schools, with additional resources provided by the Mayor’s Office. This effort, called the Neighborhood Rat Reduction (NRR) Initiative, brings together multiple city agencies to provide a concentrated IPM effort to reduce rat activity on private and public property in the four RMZ.-->
 
-<!-- regular embed followed by js embed-->
-<iframe title="Table 2.1 Initial Inspections and COTA by RMZ, January to June 2023" aria-label="Table" id="datawrapper-chart-EOtDU" src="https://datawrapper.dwcdn.net/EOtDU/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="293" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
+<!-- TABLE 2-->
 
-<div class="border-top border-bottom my-4 py-2"><div style="min-height:334px"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/EOtDU/embed.js" charset="utf-8" data-target="#datawrapper-vis-EOtDU"></script><noscript><img src="https://datawrapper.dwcdn.net/EOtDU/full.png" alt="" /></noscript></div>
+<div class="border-top border-bottom my-4 py-2"><div style="min-height:274px" id="datawrapper-vis-CKO04"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/CKO04/embed.js" charset="utf-8" data-target="#datawrapper-vis-CKO04"></script><noscript><img src="https://datawrapper.dwcdn.net/CKO04/full.png" alt="" /></noscript></div>
 </div>
 
 <u><strong>Summonses</strong></u>
@@ -106,8 +107,10 @@ Within about four weeks of the COTA being mailed to the owner of a private prope
 
 Table 3 shows the total number of compliance inspections for each RMZ in a 6-month period and the number of failed inspections where a summons or summonses were issued (this includes repeat compliance inspections on properties that failed multiple times). In the first six months of 2024 in the four RMZ, the total inspections with a summons(es) issued was 7,221 (67% of 10,698 compliance inspections). Although the total compliance inspections increased from January to June 2023 (8,386) to January to June 2024 (10,698), percent of inspections with summons(es) remained approximately the same (66% 2023 compared to 67% in 2024). In all RMZs other than Harlem, the percent inspections with summons(es) increased compared to January to December 2023, with the largest increase in East VIllage/Chinatown (Bronx from 61% to 66%; Brooklyn from 67% to 70%; East Village/Chinatown from 49% to 62%). In Harlem the percent of inspections with summons(es) decreased from 77% in January to June 2023 to 66% in January to June 2024.
 
+<!-- TABLE 3 -->
+
 <div class="border-top border-bottom my-4 py-2">
-<div style="min-height:312px" id="datawrapper-vis-8qaW8"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/8qaW8/embed.js" charset="utf-8" data-target="#datawrapper-vis-8qaW8"></script><noscript><img src="https://datawrapper.dwcdn.net/8qaW8/full.png" alt="" /></noscript></div>
+<div style="min-height:247px" id="datawrapper-vis-3ilvl"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/3ilvl/embed.js" charset="utf-8" data-target="#datawrapper-vis-3ilvl"></script><noscript><img src="https://datawrapper.dwcdn.net/3ilvl/full.png" alt="" /></noscript></div>
 </div>
 
 <u><strong>Visits by the Department's Extermination and Stoppage Teams</strong></u>
@@ -122,8 +125,9 @@ Property owners are required to maintain their property free of rats and the con
 
 Table 4 provides a count of visits by the Department's extermination team and the stoppage team. The total number of extermination visits in the four RMZs was 10,870, similar to the number of extermination visits in January to June 2023. By RMZ, the number of extermination visits is approximately the same in Bronx Grand Concourse (around 2,100 visits for both January to June 2023 and 2024) and East Village/Chinatown (around 1,100 visits for both 6 month periods). but increased in Brooklyn Bedford Stuyvesant/Bushwick (3,003 visits in January to June 2023 to 4,625 in January to June 2024) and decreased in Harlem (4,176 visits in January to June 2023 to 3,059 in January to June 2024). The number of stoppage visits increased in Harlem, Bronx Grand Concourse, and the East Village/Chinatown and remained about the same in Brooklyn Bedford Stuyvesant/Bushwick.
 
+<!-- TABLE 4 -->
 <div class="border-top border-bottom my-4 py-2">
-<div style="min-height:296px" id="datawrapper-vis-sp8Rp"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/sp8Rp/embed.js" charset="utf-8" data-target="#datawrapper-vis-sp8Rp"></script><noscript><img src="https://datawrapper.dwcdn.net/sp8Rp/full.png" alt="" /></noscript></div>
+<div style="min-height:247px" id="datawrapper-vis-9PTUy"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/9PTUy/embed.js" charset="utf-8" data-target="#datawrapper-vis-9PTUy"></script><noscript><img src="https://datawrapper.dwcdn.net/9PTUy/full.png" alt="" /></noscript></div>
 </div>
 
 <u><strong> City agency referral letters </strong></u>
@@ -132,8 +136,9 @@ A city agency referral is sent to a city agency when an initial inspection ident
 
 In the first six months of 2024 in the four RMZs, 2,358 city agency referrals (6% of 41,703 initial inspections) were sent to city agencies (Table 5). The percent of inspections that resulted in a city agency referral remained the same from January to June 2024 and January to June 2024. The percent of inspections resulting in a city agency referral remained the same in Brooklyn Bedford Stuyvesant/Bushwick (2% in both 6-month periods), Harlem (8% in both 6-mont periods), and East Village/Chinatown (10% in both 6-month periods). In Bronx Grand Concourse, the percent of inspections resulting in a city agency referral decreased (from 8% in January to June 2023 to 6% in January to June 2024).
 
+<!-- TABLE 5 -->
 <div class="border-top border-bottom my-4 py-2">
-<div style="min-height:293px" id="datawrapper-vis-Pkg7W"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/Pkg7W/embed.js" charset="utf-8" data-target="#datawrapper-vis-Pkg7W"></script><noscript><img src="https://datawrapper.dwcdn.net/Pkg7W/full.png" alt="" /></noscript></div>
+<div style="min-height:274px" id="datawrapper-vis-RQ3Ix"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/RQ3Ix/embed.js" charset="utf-8" data-target="#datawrapper-vis-RQ3Ix"></script><noscript><img src="https://datawrapper.dwcdn.net/RQ3Ix/full.png" alt="" /></noscript></div>
 </div>
 
 &ensp;&ensp; a. <u>Susceptibility to rat infestation</u>
@@ -141,7 +146,11 @@ Properties that are managed by the New York City Department of Parks and Recreat
 
 In the first six months of 2024 in the four RMZs, 169 NYC DPR properties failed intial inspection (89% of 190 properties) (Table 5a). The percent of properties that failed initial inspection increased from 69% in January to June 2023 to 89% in January to June 2024. This pattern was seen consistent across the four RMZs (Bronx from 67% to 88%; Brooklyn from 57% to 90%; Harlem from 78% to 89%; East Village/Chinatown from 66% to 89%).
 
-#### INSERT 5a: Park and Playground Inspections by RMZ
+<!-- TABLE 5A -->
+
+<div class="border-top border-bottom my-4 py-2">
+<div style="min-height:247px" id="datawrapper-vis-qCRCW"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/qCRCW/embed.js" charset="utf-8" data-target="#datawrapper-vis-qCRCW"></script><noscript><img src="https://datawrapper.dwcdn.net/qCRCW/full.png" alt="" /></noscript></div>
+</div>
 
 <u><strong> Reports to 311 </strong></u>
 
@@ -158,17 +167,18 @@ conditions attracting rats remained relatively similar between the 2 years. In H
 rodent complaints is driven by signs of rodents (from 469 complaints in January to June 2023 to 1,205
 complaints in January to June 2024), with decreased complaints in rat sightings (921 complaints in Jan-Jun 2023 to 849 complaints in January to June 2024) and conditions attracting rats (249 complaints in Jan-Jun 2023 to 181 complaints in January to June 2024). Overall, the number of complaints for rat sightings decreased from 2,236 in January to June 2023 to 2,124 in January to June 2024 and has decreased in all RMZs except Bronx Grand Concourse.
 
-### Insert Table 6: Rodent Complaints (311) by RMZ
+<!-- TABLE 6 -->
 
 <div class="border-top border-bottom my-4 py-2">
-<div style="min-height:334px" id="datawrapper-vis-Vyi9P"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/Vyi9P/embed.js" charset="utf-8" data-target="#datawrapper-vis-Vyi9P"></script><noscript><img src="https://datawrapper.dwcdn.net/Vyi9P/full.png" alt="" /></noscript></div>
+<div style="min-height:274px" id="datawrapper-vis-BkS60"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/BkS60/embed.js" charset="utf-8" data-target="#datawrapper-vis-BkS60"></script><noscript><img src="https://datawrapper.dwcdn.net/BkS60/full.png" alt="" /></noscript></div>
 </div>
 
-<!-- may already be accounted for-->
+<!-- TABLE 6A -->
+<div class="border-top border-bottom my-4 py-2">
+<div style="min-height:247px" id="datawrapper-vis-4VA5K"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/4VA5K/embed.js" charset="utf-8" data-target="#datawrapper-vis-4VA5K"></script><noscript><img src="https://datawrapper.dwcdn.net/4VA5K/full.png" alt="" /></noscript></div>
+</div>
 
-#### Table 6a: Total RMZ Rodent Complaints (311)
-
-2. An overview of current and planned rat mitigation measures, including goals and specific benchmarks and timelines, in each such zone. <!-- feeling confused about this 2 so far into the text -- i think it could be organized better!-->
+2. An overview of current and planned rat mitigation measures, including goals and specific benchmarks and timelines, in each such zone.
 
 <u>Initial Inspections and Neighborhood Indexing</u>
 
