@@ -1,0 +1,73 @@
+{{- define "main" -}}
+
+<article class="container-fluid" id="skip-header-target">
+
+    <div class="row">
+        <div class="col-md-11 mx-auto mt-2 mb-3">
+            <nav aria-label="breadcrumb" class="">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
+                    <li class="breadcrumb-item"><a href={{ relURL "data-features" }}>Data Features</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-11 mx-auto" data-pagefind-weight="7.0">
+            <h1 id="top" class="h2" data-pagefind-weight="10.0">{{ .Title }}</h1>
+            <div class="row">
+                <div class="col-md-8 mr-auto">
+                    <p>{{ .Content }}</p>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div id="map" class="border d-sm-none d-md-block">
+                    </div>        
+                </div>
+
+                <div class="col-md-6">
+                    <strong>You ARE/ARE NOT in a Rat Mitigation Zone.</strong>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+<style>
+    #map {
+        height: 600px;
+        max-width: 100%;
+        max-height: 100%;
+    }
+
+    .fwm {
+        font-weight: 600
+    }
+
+    .misc-holder {
+    border-left: 5px solid lightgray;
+    padding-left: 5px;
+    }
+</style>
+
+</article>
+
+<!-- Related footer -->
+{{- partial "related-footer-2" . -}}
+
+<!-- point in polygon -->
+<script src="https://cdn.rawgit.com/hayeswise/Leaflet.PointInPolygon/v1.0.0/wise-leaflet-pip.js"></script>
+
+
+<!--bring in rmz JS -->
+<script type="text/javascript" src="rmzgeojson.js"></script>
+<script type="text/javascript" src="neighborhood-rats.js"></script>
+
+{{- end -}}
