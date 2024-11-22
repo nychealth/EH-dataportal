@@ -16,6 +16,20 @@ L.control.scale({
     position: 'bottomleft'
 }).addTo(map)
 
+// L.Control.geocoder().addTo(map);
+
+// Add the geocoder control
+var geocoder = L.Control.geocoder().addTo(map);
+
+// Listen for the geocode event and log lat and long. 
+geocoder.on('markgeocode', function(e) {
+    var latlng = e.geocode.center; // Get the LatLng object
+    console.log(e) // log whole event
+    console.log('Latitude:', latlng.lat, 'Longitude:', latlng.lng); // Log to the console
+});
+
+
+
 L.easyButton({
     position: "bottomleft",
     states: [{
