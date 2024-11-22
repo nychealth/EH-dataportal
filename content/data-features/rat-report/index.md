@@ -79,14 +79,15 @@ This report summarizes data for the first three 6-month rounds (January 2023 - J
 The Department is using the metrics set out in the Local Law to measure the efficacy of rat
 mitigation efforts. Those are:
 
-1. <u>Commissioner orders to abate (COTA).</u> The number and percentage of inspections for properties within a given area that resulted in a COTA issued by the Department pursuant to section 151.02 of the Health Code in each 6-month period from January 2023 to June 2024.
-2. <u>Summonses.</u> The number and percentage of compliance or follow up inspections for rat activity for private properties within an RMZ that have resulted in the issuance of a summons pursuant to section 151.02 of the Health Code in each 6-month period from January 2023 to June 2024.
-3. <u>Rat exterminations and Stoppage visits.</u> The number of visits by the Department's extermination team at properties within an RMZ in each 6-month period from January 2023 to June 2024, executed by the Department pursuant to section 17-147 of the Administrative Code following a failure to comply with an order issued pursuant to section 151.02 of the Health Code.
-4. <u>City agency referral letters.</u> The number and percentage of inspections for properties within a given area that resulted in the issuance of a city agency referral letter by the Department in each 6-month period from January 2023 to June 2024.<br>
+<ol type="I">
+<li>&ensp;<u>Commissioner orders to abate (COTA).</u> The number and percentage of inspections for properties within a given area that resulted in a COTA issued by the Department pursuant to section 151.02 of the Health Code in each 6-month period from January 2023 to June 2024.</li>
+<li>&ensp;<u>Summonses.</u> The number and percentage of compliance or follow up inspections for rat activity for private properties within an RMZ that have resulted in the issuance of a summons pursuant to section 151.02 of the Health Code in each 6-month period from January 2023 to June 2024.</li>
+<li>&ensp;<u>Rat exterminations and Stoppage visits.</u> The number of visits by the Department's extermination team at properties within an RMZ in each 6-month period from January 2023 to June 2024, executed by the Department pursuant to section 17-147 of the Administrative Code following a failure to comply with an order issued pursuant to section 151.02 of the Health Code.</li>
+<li>&ensp;<u>City agency referral letters.</u> The number and percentage of inspections for properties within a given area that resulted in the issuance of a city agency referral letter by the Department in each 6-month period from January 2023 to June 2024.<br></li>
    &ensp;&ensp;a. <u>Susceptibility to rat infestation.</u> The number of properties that are managed by the New York City Department of Parks and Recreation (NYC DPR) that have failed inspection for rat infestation in a 6-month period from January 2023 to June 2024 with an RMZ.
-5. <u>Reports to 311.</u> The number and nature of 311 requests for service or complaints related to rat activity within each 6-month period from January 2023 to June 2024.
-
-<u><strong>Commissioner orders to abate (COTA)</strong></u>
+<li>&ensp;<u>Reports to 311.</u> The number and nature of 311 requests for service or complaints related to rat activity within each 6-month period from January 2023 to June 2024.</li>
+</ol>
+<strong>I.<u>Commissioner orders to abate (COTA)</u></strong>
 
 A COTA is sent to a private property owner when an initial inspection identifies any Health Code violation at the time of inspection including garbage conditions, harborage conditions, or any active rat signs. The COTA includes an inspection report and the follow-up actions expected of the property owner.
 
@@ -101,7 +102,7 @@ This increase is seen in Bronx Grand Concourse (from 26% in January to June 2023
 <div class="border-top border-bottom my-4 py-2"><div style="min-height:274px" id="datawrapper-vis-CKO04"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/CKO04/embed.js" charset="utf-8" data-target="#datawrapper-vis-CKO04"></script><noscript><img src="https://datawrapper.dwcdn.net/CKO04/full.png" alt="" /></noscript></div>
 </div>
 
-<u><strong>Summonses</strong></u>
+<strong>II.<u>Summonses</u></strong>
 
 Within about four weeks of the COTA being mailed to the owner of a private property, an inspector will conduct a follow-up (compliance) inspection. If the inspection identifies any Health Code violation, the property fails the compliance inspection and the Department issues one or more summons subject to fines to the owner of the property.
 
@@ -119,7 +120,7 @@ Property owners are required to maintain their property free of rats and the con
 
 Table 4 provides a count of visits by the Department's extermination team and stoppage team. The total number of extermination visits in the four RMZs was 10,870, similar to the number of extermination visits in January to June 2023. By RMZ, the number of extermination visits is approximately the same in Bronx Grand Concourse (around 2,100 visits for both January to June 2023 and 2024) and East Village/Chinatown (around 1,100 visits for both January to June 2023 and 2024) and East Village/Chinatown (around 1,100 visits for both 6 month periods), but increased in Brooklyn Bedford Stuyvesant/Bushwick (3,993 visits in January to June 2023 to 4,625 in January to June 2024) and decreased in Harlem (4,176 visits in January to June 2023 to 3,058 in January to June 2024). The number of stoppage visits increased in Harlem, Bronx Grand Concourse, and the East Village/Chinatown and remained about the same in Brooklyn Bedford Stuyvesant/Bushwick.
 
-<u><strong> Visits by the Department's Extermination and Stoppage Teams </u></strong>
+<strong>III.<u>Visits by the Department's Extermination and Stoppage Teams</u></strong>
 
 Property owners are required to maintain their property free of rats and the conditions that are conducive to rats. In cases where owners fail to maintain their property, the Department may act by treating the private property and billing the owner for the work. The Department's stoppage team works on public spaces like street trees, green streets, or parks and gardens. Stoppage actions include collapsing earthen rat burrows or sealing structural holes that allow the free movement of rats.
 
@@ -130,7 +131,7 @@ Table 4 provides a count of visits by the Department's extermination team and th
 <div style="min-height:247px" id="datawrapper-vis-9PTUy"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/9PTUy/embed.js" charset="utf-8" data-target="#datawrapper-vis-9PTUy"></script><noscript><img src="https://datawrapper.dwcdn.net/9PTUy/full.png" alt="" /></noscript></div>
 </div>
 
-<u><strong> City agency referral letters </strong></u>
+<strong>IV.<u>City agency referral letters</u></strong>
 
 A city agency referral is sent to a city agency when an initial inspection identifies any Health Code violation at the time of inspection on a property they own or manage.
 
@@ -152,7 +153,7 @@ In the first six months of 2024 in the four RMZs, 169 NYC DPR properties failed 
 <div style="min-height:247px" id="datawrapper-vis-qCRCW"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/qCRCW/embed.js" charset="utf-8" data-target="#datawrapper-vis-qCRCW"></script><noscript><img src="https://datawrapper.dwcdn.net/qCRCW/full.png" alt="" /></noscript></div>
 </div>
 
-<u><strong> Reports to 311 </strong></u>
+<strong>V.<u>Reports to 311</u></strong>
 
 Table 6 and 6a show the number of 311 complaints received in each of the four RMZs for overall rodent-
 related complaints and for the descriptors of rat sighting, signs of rodent, and conditions attracting
