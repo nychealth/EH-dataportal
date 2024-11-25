@@ -29,12 +29,17 @@
 
             <div class="row">
                 <div class="col-md-6">
-                    <div id="map" class="border d-sm-none d-md-block">
+                    <form id="geocode-form">
+                        <input type="text" id="address" placeholder="Enter an address" style="width:80%;" required />
+                        <button type="submit" class="btn btn-outline-primary" style="width: 18%;">Search</button>
+                      </form>
+
+                    <div id="map" class="border d-sm-none d-md-block mt-1">
                     </div>        
                 </div>
 
                 <div class="col-md-6">
-                    <strong>You ARE/ARE NOT in a Rat Mitigation Zone.</strong>
+                    <p><span id="message1"></span></p>
                 </div>
             </div>
         </div>
@@ -44,9 +49,10 @@
 
 <style>
     #map {
-        height: 600px;
+        height: 55vh;
         max-width: 100%;
         max-height: 100%;
+        margin-right: 6px;
     }
 
     .fwm {
@@ -73,7 +79,6 @@
 
 
 <!--bring in rmz JS -->
-<script type="text/javascript" src="rmzgeojson.js"></script>
 <script type="text/javascript" src="neighborhood-rats.js"></script>
 
 {{- end -}}
