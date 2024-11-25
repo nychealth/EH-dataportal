@@ -93,6 +93,7 @@ Overall, in the first six months of 2024 in the four RMZ, 9,993 COTAs (24% of 41
 This increase is seen in Bronx Grand Concourse (from 26% in January to June 2023 to 30% in January to June 2024) and Brooklyn Bedford Stuyvesant/Bushwick RMZs (21% in January to June 2023 to 27% in January to June 2023 and 21% in January to June 2024) and East Village/Chinatown RMZs (from 15% in January to June 2023 to 12% in January to June 2024).
 
 <!-- TABLE 2-->
+
 <button class="btn btn-sm btn-outline-primary mr-1 active table2Buttons" id="2-1" onclick="changeTable(2,1)">BX: Grand Concourse</button>
 <button class="btn btn-sm btn-outline-primary mr-1 table2Buttons" id="2-2" onclick="changeTable(2,2)">MN: Harlem</button>
 <button class="btn btn-sm btn-outline-primary mr-1 table2Buttons" id="2-3" onclick="changeTable(2,3)">MN: EV / Chinatown</button>
@@ -102,12 +103,15 @@ This increase is seen in Bronx Grand Concourse (from 26% in January to June 2023
    <div id="table-2-1" class="table2tables">
       <div style="min-height:274px" id="datawrapper-vis-CKO04"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/CKO04/embed.js" charset="utf-8" data-target="#datawrapper-vis-CKO04"></script><noscript><img src="https://datawrapper.dwcdn.net/CKO04/full.png" alt="" /></noscript></div>
    </div>
-   <div id="table-2-2" class="table2tables hide">Harlem table</div>
-   <div id="table-2-3" class="table2tables hide">EV/Chinatown table</div>
-   <div id="table-2-4" class="table2tables hide">Bed-Stuy/Bushwick table</div>
+   <div id="table-2-2" class="table2tables hide">
+   		<div style="min-height:270px" id="datawrapper-vis-LUSo7"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/LUSo7/embed.js" charset="utf-8" data-target="#datawrapper-vis-LUSo7"></script><noscript><img src="https://datawrapper.dwcdn.net/LUSo7/full.png" alt="" /></noscript></div>
+	</div>
+   <div id="table-2-3" class="table2tables hide">
+   		<div style="min-height:270px" id="datawrapper-vis-IwkOp"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/IwkOp/embed.js" charset="utf-8" data-target="#datawrapper-vis-IwkOp"></script><noscript><img src="https://datawrapper.dwcdn.net/IwkOp/full.png" alt="" /></noscript></div></div>
+   	<div id="table-2-4" class="table2tables hide">
+		<div style="min-height:275px" id="datawrapper-vis-oY4ON"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/oY4ON/embed.js" charset="utf-8" data-target="#datawrapper-vis-oY4ON"></script><noscript><img src="https://datawrapper.dwcdn.net/oY4ON/full.png" alt="" /></noscript></div>
+   </div>
 </div>
-
-
 
 <strong>II.&ensp;<u>Summonses</u></strong>
 
@@ -116,26 +120,26 @@ Within about four weeks of the COTA being mailed to the owner of a private prope
 Table 3 shows the total number of compliance inspections for each RMZ in a 6-month period and the number of failed inspections where a summons or summonses were issued (this includes repeat compliance inspections on properties that failed multiple times). In the first six months of 2024 in the four RMZ, the total inspections with a summons(es) issued was 7,221 (67% of 10,698 compliance inspections). Although the total compliance inspections increased from January to June 2023 (8,386) to January to June 2024 (10,698), percent of inspections with summons(es) remained approximately the same (66% 2023 compared to 67% in 2024). In all RMZs other than Harlem, the percent inspections with summons(es) increased compared to January to December 2023, with the largest increase in East VIllage/Chinatown (Bronx from 61% to 66%; Brooklyn from 67% to 70%; East Village/Chinatown from 49% to 62%). In Harlem the percent of inspections with summons(es) decreased from 77% in January to June 2023 to 66% in January to June 2024.
 
 <!-- TABLE 3-->
-**Table 3 tester buttons**
 
 <button class="btn btn-sm btn-outline-primary mr-1 active table3Buttons" id="3-1" onclick="changeTable(3,1)">BX: Grand Concourse</button>
 <button class="btn btn-sm btn-outline-primary mr-1 table3Buttons" id="3-2" onclick="changeTable(3,2)">MN: Harlem</button>
 <button class="btn btn-sm btn-outline-primary mr-1 table3Buttons" id="3-3" onclick="changeTable(3,3)">MN: EV / Chinatown</button>
 <button class="btn btn-sm btn-outline-primary mr-1 table3Buttons" id="3-4" onclick="changeTable(3,4)">BK: Bed-Stuy/Bushwick</button>
 
-<div class="border-top border-bottom mb-4 py-2">
-   <div id="table-3-1" class="table3tables">
-      Bronx Table 3
-   </div>
-   <div id="table-3-2" class="table3tables hide">Harlem table 3</div>
-   <div id="table-3-3" class="table3tables hide">EV/Chinatown table 3</div>
-   <div id="table-3-4" class="table3tables hide">Bed-Stuy/Bushwick table 3</div>
-</div>
-
 <!-- TABLE 3 -->
 
-<div class="border-top border-bottom my-4 py-2">
-<div style="min-height:247px" id="datawrapper-vis-3ilvl"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/3ilvl/embed.js" charset="utf-8" data-target="#datawrapper-vis-3ilvl"></script><noscript><img src="https://datawrapper.dwcdn.net/3ilvl/full.png" alt="" /></noscript></div>
+<div class="border-top border-bottom mb-4 py-2">
+   <div id="table-3-1" class="table3tables">
+      <div style="min-height:268px" id="datawrapper-vis-3ilvl"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/3ilvl/embed.js" charset="utf-8" data-target="#datawrapper-vis-3ilvl"></script><noscript><img src="https://datawrapper.dwcdn.net/3ilvl/full.png" alt="" /></noscript></div>
+   </div>
+   <div id="table-3-2" class="table3tables hide">
+   	<div style="min-height:268px" id="datawrapper-vis-gwes0"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/gwes0/embed.js" charset="utf-8" data-target="#datawrapper-vis-gwes0"></script><noscript><img src="https://datawrapper.dwcdn.net/gwes0/full.png" alt="" /></noscript></div>
+   </div>
+   <div id="table-3-3" class="table3tables hide">
+   	<div style="min-height:268px" id="datawrapper-vis-jPBqV"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/jPBqV/embed.js" charset="utf-8" data-target="#datawrapper-vis-jPBqV"></script><noscript><img src="https://datawrapper.dwcdn.net/jPBqV/full.png" alt="" /></noscript></div>
+   </div>
+   <div id="table-3-4" class="table3tables hide">
+   	<div style="min-height:268px" id="datawrapper-vis-emPVr"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/emPVr/embed.js" charset="utf-8" data-target="#datawrapper-vis-emPVr"></script><noscript><img src="https://datawrapper.dwcdn.net/emPVr/full.png" alt="" /></noscript></div></div>
 </div>
 
 <strong>III.&ensp;<u>Visits by the Department's Extermination and Stoppage Teams</u></strong>
@@ -145,8 +149,28 @@ Property owners are required to maintain their property free of rats and the con
 Table 4 provides a count of visits by the Department's extermination team and the stoppage team. The total number of extermination visits in the four RMZs was 10,870, similar to the number of extermination visits in January to June 2023. By RMZ, the number of extermination visits is approximately the same in Bronx Grand Concourse (around 2,100 visits for both January to June 2023 and 2024) and East Village/Chinatown (around 1,100 visits for both 6 month periods). but increased in Brooklyn Bedford Stuyvesant/Bushwick (3,003 visits in January to June 2023 to 4,625 in January to June 2024) and decreased in Harlem (4,176 visits in January to June 2023 to 3,059 in January to June 2024). The number of stoppage visits increased in Harlem, Bronx Grand Concourse, and the East Village/Chinatown and remained about the same in Brooklyn Bedford Stuyvesant/Bushwick.
 
 <!-- TABLE 4 -->
-<div class="border-top border-bottom my-4 py-2">
-<div style="min-height:247px" id="datawrapper-vis-9PTUy"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/9PTUy/embed.js" charset="utf-8" data-target="#datawrapper-vis-9PTUy"></script><noscript><img src="https://datawrapper.dwcdn.net/9PTUy/full.png" alt="" /></noscript></div>
+
+<button class="btn btn-sm btn-outline-primary mr-1 active table4Buttons" id="4-1" onclick="changeTable(4,1)">BX: Grand Concourse</button>
+<button class="btn btn-sm btn-outline-primary mr-1 table4Buttons" id="4-2" onclick="changeTable(4,2)">MN: Harlem</button>
+<button class="btn btn-sm btn-outline-primary mr-1 table4Buttons" id="4-3" onclick="changeTable(4,3)">MN: EV / Chinatown</button>
+<button class="btn btn-sm btn-outline-primary mr-1 table4Buttons" id="4-4" onclick="changeTable(4,4)">BK: Bed-Stuy/Bushwick</button>
+
+<div class="border-top border-bottom mb-4 py-2">
+<div id="table-4-1" class="table4tables">
+	<div style="min-height:257px" id="datawrapper-vis-9PTUy"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/9PTUy/embed.js" charset="utf-8" data-target="#datawrapper-vis-9PTUy"></script><noscript><img src="https://datawrapper.dwcdn.net/9PTUy/full.png" alt="" /></noscript></div>
+	</div>
+
+<div id="table-4-2" class="table4tables hide">
+	<div style="min-height:250px" id="datawrapper-vis-wlmWL"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/wlmWL/embed.js" charset="utf-8" data-target="#datawrapper-vis-wlmWL"></script><noscript><img src="https://datawrapper.dwcdn.net/wlmWL/full.png" alt="" /></noscript></div>
+	</div>
+
+<div id="table-4-3" class="table4tables hide">
+	<div style="min-height:250px" id="datawrapper-vis-eYNEV"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/eYNEV/embed.js" charset="utf-8" data-target="#datawrapper-vis-eYNEV"></script><noscript><img src="https://datawrapper.dwcdn.net/eYNEV/full.png" alt="" /></noscript></div>
+	</div>
+
+<div id="table-4-4" class="table4tables hide">
+	<div style="min-height:250px" id="datawrapper-vis-65T5P"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/65T5P/embed.js" charset="utf-8" data-target="#datawrapper-vis-65T5P"></script><noscript><img src="https://datawrapper.dwcdn.net/65T5P/full.png" alt="" /></noscript></div>
+	</div>
 </div>
 
 <strong>IV.&ensp;<u>City agency referral letters</u></strong>
@@ -156,8 +180,28 @@ A city agency referral is sent to a city agency when an initial inspection ident
 In the first six months of 2024 in the four RMZs, 2,358 city agency referrals (6% of 41,703 initial inspections) were sent to city agencies (Table 5). The percent of inspections that resulted in a city agency referral remained the same from January to June 2024 and January to June 2024. The percent of inspections resulting in a city agency referral remained the same in Brooklyn Bedford Stuyvesant/Bushwick (2% in both 6-month periods), Harlem (8% in both 6-mont periods), and East Village/Chinatown (10% in both 6-month periods). In Bronx Grand Concourse, the percent of inspections resulting in a city agency referral decreased (from 8% in January to June 2023 to 6% in January to June 2024).
 
 <!-- TABLE 5 -->
-<div class="border-top border-bottom my-4 py-2">
-<div style="min-height:274px" id="datawrapper-vis-RQ3Ix"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/RQ3Ix/embed.js" charset="utf-8" data-target="#datawrapper-vis-RQ3Ix"></script><noscript><img src="https://datawrapper.dwcdn.net/RQ3Ix/full.png" alt="" /></noscript></div>
+
+<button class="btn btn-sm btn-outline-primary mr-1 active table5Buttons" id="5-1" onclick="changeTable(5,1)">BX: Grand Concourse</button>
+<button class="btn btn-sm btn-outline-primary mr-1 table5Buttons" id="5-2" onclick="changeTable(5,2)">MN: Harlem</button>
+<button class="btn btn-sm btn-outline-primary mr-1 table5Buttons" id="5-3" onclick="changeTable(5,3)">MN: EV / Chinatown</button>
+<button class="btn btn-sm btn-outline-primary mr-1 table5Buttons" id="5-4" onclick="changeTable(5,4)">BK: Bed-Stuy/Bushwick</button>
+
+<div class="border-top border-bottom mb-4 py-2">
+<div id="table-5-1" class="table5tables">
+	<div style="min-height:268px" id="datawrapper-vis-RQ3Ix"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/RQ3Ix/embed.js" charset="utf-8" data-target="#datawrapper-vis-RQ3Ix"></script><noscript><img src="https://datawrapper.dwcdn.net/RQ3Ix/full.png" alt="" /></noscript></div>
+	</div>
+
+<div id="table-5-2" class="table5tables hide">
+	<div style="min-height:268px" id="datawrapper-vis-wt8vp"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/wt8vp/embed.js" charset="utf-8" data-target="#datawrapper-vis-wt8vp"></script><noscript><img src="https://datawrapper.dwcdn.net/wt8vp/full.png" alt="" /></noscript></div>
+	</div>
+
+<div id="table-5-3" class="table5tables hide">
+	<div style="min-height:268px" id="datawrapper-vis-95lYI"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/95lYI/embed.js" charset="utf-8" data-target="#datawrapper-vis-95lYI"></script><noscript><img src="https://datawrapper.dwcdn.net/95lYI/full.png" alt="" /></noscript></div>
+	</div>
+
+<div id="table-5-4" class="table5tables hide">
+	<div style="min-height:268px" id="datawrapper-vis-brz1b"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/brz1b/embed.js" charset="utf-8" data-target="#datawrapper-vis-brz1b"></script><noscript><img src="https://datawrapper.dwcdn.net/brz1b/full.png" alt="" /></noscript></div>
+	</div>
 </div>
 
 &ensp;&ensp; a. <u>Susceptibility to rat infestation</u>
@@ -165,10 +209,29 @@ Properties that are managed by the New York City Department of Parks and Recreat
 
 In the first six months of 2024 in the four RMZs, 169 NYC DPR properties failed initial inspection (89% of 190 properties) (Table 5a). The percent of properties that failed initial inspection increased from 69% in January to June 2023 to 89% in January to June 2024. This pattern was seen consistent across the four RMZs (Bronx from 67% to 88%; Brooklyn from 57% to 90%; Harlem from 78% to 89%; East Village/Chinatown from 66% to 89%).
 
-<!-- TABLE 5A -->
+<!-- TABLE 5A needs work -->
 
-<div class="border-top border-bottom my-4 py-2">
-<div style="min-height:247px" id="datawrapper-vis-qCRCW"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/qCRCW/embed.js" charset="utf-8" data-target="#datawrapper-vis-qCRCW"></script><noscript><img src="https://datawrapper.dwcdn.net/qCRCW/full.png" alt="" /></noscript></div>
+<button class="btn btn-sm btn-outline-primary mr-1 active table5aButtons" id="5a-1" onclick="changeTable('5a',1)">BX: Grand Concourse</button>
+<button class="btn btn-sm btn-outline-primary mr-1 table5aButtons" id="5a-2" onclick="changeTable('5a',2)">MN: Harlem</button>
+<button class="btn btn-sm btn-outline-primary mr-1 table5aButtons" id="5a-3" onclick="changeTable('5a',3)">MN: EV / Chinatown</button>
+<button class="btn btn-sm btn-outline-primary mr-1 table5aButtons" id="5a-4" onclick="changeTable('5a',4)">BK: Bed-Stuy/Bushwick</button>
+
+<div class="border-top border-bottom mb-4 py-2">
+<div id="table-5a-1" class="table5tables">
+	<div style="min-height:257px" id="datawrapper-vis-qCRCW"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/qCRCW/embed.js" charset="utf-8" data-target="#datawrapper-vis-qCRCW"></script><noscript><img src="https://datawrapper.dwcdn.net/qCRCW/full.png" alt="" /></noscript></div>
+	</div>
+
+<div id="table-5a-2" class="table5tables hide">
+	<div style="min-height:250px" id="datawrapper-vis-bEy24"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/bEy24/embed.js" charset="utf-8" data-target="#datawrapper-vis-bEy24"></script><noscript><img src="https://datawrapper.dwcdn.net/bEy24/full.png" alt="" /></noscript></div>
+	</div>
+
+<div id="table-5a-3" class="table5tables hide">
+	<div style="min-height:250px" id="datawrapper-vis-XVaYh"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/XVaYh/embed.js" charset="utf-8" data-target="#datawrapper-vis-XVaYh"></script><noscript><img src="https://datawrapper.dwcdn.net/XVaYh/full.png" alt="" /></noscript></div>
+	</div>
+
+<div id="table-5a-4" class="table5tables hide">
+	<div style="min-height:250px" id="datawrapper-vis-qOfYm"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/qOfYm/embed.js" charset="utf-8" data-target="#datawrapper-vis-qOfYm"></script><noscript><img src="https://datawrapper.dwcdn.net/qOfYm/full.png" alt="" /></noscript></div>
+	</div>
 </div>
 
 <strong>V.&ensp;<u>Reports to 311</u></strong>
@@ -188,13 +251,32 @@ complaints in January to June 2024), with decreased complaints in rat sightings 
 
 <!-- TABLE 6 -->
 
-<div class="border-top border-bottom my-4 py-2">
-<div style="min-height:274px" id="datawrapper-vis-BkS60"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/BkS60/embed.js" charset="utf-8" data-target="#datawrapper-vis-BkS60"></script><noscript><img src="https://datawrapper.dwcdn.net/BkS60/full.png" alt="" /></noscript></div>
+<button class="btn btn-sm btn-outline-primary mr-1 active table6Buttons" id="6-1" onclick="changeTable(6,1)">BX: Grand Concourse</button>
+<button class="btn btn-sm btn-outline-primary mr-1 table6Buttons" id="6-2" onclick="changeTable(6,2)">MN: Harlem</button>
+<button class="btn btn-sm btn-outline-primary mr-1 table6Buttons" id="6-3" onclick="changeTable(6,3)">MN: EV / Chinatown</button>
+<button class="btn btn-sm btn-outline-primary mr-1 table6Buttons" id="6-4" onclick="changeTable(6,4)">BK: Bed-Stuy/Bushwick</button>
+
+<div class="border-top border-bottom mb-4 py-2">
+<div id="table-6-1" class="table6tables">
+	<div style="min-height:286px" id="datawrapper-vis-BkS60"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/BkS60/embed.js" charset="utf-8" data-target="#datawrapper-vis-BkS60"></script><noscript><img src="https://datawrapper.dwcdn.net/BkS60/full.png" alt="" /></noscript></div>
+	</div>
+
+<div id="table-6-2" class="table6table hide">
+	<div style="min-height:286px" id="datawrapper-vis-IccJB"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/IccJB/embed.js" charset="utf-8" data-target="#datawrapper-vis-IccJB"></script><noscript><img src="https://datawrapper.dwcdn.net/IccJB/full.png" alt="" /></noscript></div>
+	</div>
+
+<div id="table-6-3" class="table6tables hide">
+	<div style="min-height:286px" id="datawrapper-vis-UHBeL"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/UHBeL/embed.js" charset="utf-8" data-target="#datawrapper-vis-UHBeL"></script><noscript><img src="https://datawrapper.dwcdn.net/UHBeL/full.png" alt="" /></noscript></div>
+	</div>
+
+<div id="table-6-4" class="table6tables hide">
+	<div style="min-height:286px" id="datawrapper-vis-BTGen"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/BTGen/embed.js" charset="utf-8" data-target="#datawrapper-vis-BTGen"></script><noscript><img src="https://datawrapper.dwcdn.net/BTGen/full.png" alt="" /></noscript></div>
+	</div>
 </div>
 
 <!-- TABLE 6A -->
-<div class="border-top border-bottom my-4 py-2">
-<div style="min-height:247px" id="datawrapper-vis-4VA5K"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/4VA5K/embed.js" charset="utf-8" data-target="#datawrapper-vis-4VA5K"></script><noscript><img src="https://datawrapper.dwcdn.net/4VA5K/full.png" alt="" /></noscript></div>
+<div class="border-top border-bottom mb-4 py-2">
+<div style="min-height:258px" id="datawrapper-vis-4VA5K"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/4VA5K/embed.js" charset="utf-8" data-target="#datawrapper-vis-4VA5K"></script><noscript><img src="https://datawrapper.dwcdn.net/4VA5K/full.png" alt="" /></noscript></div>
 </div>
 
 #### 2. An overview of current and planned rat mitigation measures, including goals and specific benchmarks and timelines, in each such zone.
