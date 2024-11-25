@@ -119,7 +119,7 @@ Table 4 provides a count of visits by the Department's extermination team and th
 <div style="min-height:247px" id="datawrapper-vis-9PTUy"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/9PTUy/embed.js" charset="utf-8" data-target="#datawrapper-vis-9PTUy"></script><noscript><img src="https://datawrapper.dwcdn.net/9PTUy/full.png" alt="" /></noscript></div>
 </div>
 
-<strong>IV.<u>City agency referral letters</u></strong>
+<strong>IV.&ensp;<u>City agency referral letters</u></strong>
 
 A city agency referral is sent to a city agency when an initial inspection identifies any Health Code violation at the time of inspection on a property they own or manage.
 
@@ -169,18 +169,17 @@ complaints in January to June 2024), with decreased complaints in rat sightings 
 
 #### 2. An overview of current and planned rat mitigation measures, including goals and specific benchmarks and timelines, in each such zone.
 
-<u>Initial Inspections and Neighborhood Indexing</u>
-
+<u>Initial Inspections and Neighborhood Indexing</u><br>
 Initial inspections are both proactive (each property in the RMZ is inspected 2 times a year) and reactive (inspections in response to 311 complaints about a property). Each property in the four RMZs are categorized into 1 of 6 cohorts, where each cohort of properties is designed to be similar in character to the overall RMZ in terms of percent of city-owned properties, percent of parks, etc. The cohort design provides three valuable sources of information: identification of individual properties with active rat signs or signs conducive to rats, a monthly snapshot of the RMZ rat activity, and rat activity of the entire RMZ every 6 months (referred to as a full round). This has been used by the Department as a monitoring tool. Increases in percent of inspections with active rat signs over several months can trigger an increase in enforcement, outreach, or treatment in an area.
 
 Systematic rat indexing inspections of individual properties of the entire RMZ are essential as it allows for identification of properties with active rat signs or signs conducive to rats, especially in areas where the public under-utilizes the 311-complaint system. Failing inspections trigger the mailing of a COTA or city agency referral letters. COTAs and city agency referral letters include a detailed inspection report which lists the follow-up actions expected from the property owner. We do see an overall increase in percent of private property inspections that resulted in a COTA (Table 2), but the increases were seen only in Bronx Grand Concourse and Brooklyn Bedford Stuyvesant/Bushwick. The percent of inspections that resulted in a city agency referral letter remained the same over the four RMZs and Brooklyn from 2023 to 2024 but decreased for the Bronx (Table 5).
 
 The Department uses a variety of strategies to respond to high rat activity in a neighborhood, including elevating fines for repeat offenders, performing coordinated inspections with other agencies on problematic properties, increasing extermination and stoppage visits, and increasing the number of community outreach activities. The goal is to decrease the percent of failed initial inspections. The Department also works closely with partner agencies on reducing the number of city agencies that fail inspections and reducing the severity of rat infestation on city-owned property, which is discussed in the section “Collaboration with NYC DPR, NYCHA, and NYCPS.”
 
-<u>Complaint-based inspections</u>
+<u>Complaint-based inspections</u><br>
 Initial inspections can be reactive (inspections in response to 311 complaints about a property). When a 311 rodent complaint is made for a property in the RMZ, a new inspection will be initiated if an inspection has not been performed on that property in the last three months or if the property is not currently undergoing the enforcement process that resulted from a proactive inspection. If enforcement has been initiated and the property continues to receive complaints, the Department may also elevate the enforcement work to increase fines on the property. In the RMZs , the number of all rodent complaints increased from 2023 to 2024 (Table 6), with the most notable increases in the Bronx Grand Concourse and Harlem. The increase in rodent complaints in the Bronx mirror the increase in percent of initial inspections resulting in COTAs. This is not the case for Harlem, where the percent of inspections resulting in COTAs decreased. Harlem was a newly established RMZ in 2023 and the inhabitants of the zone were likely not very familiar with the tools the City and the Department use to mitigate rodent issues. The goal is to continue to respond to every complaint in a timely manner (within 14 days).
 
-<u>Compliance Inspections and enforcement on private properties</u>
+<u>Compliance Inspections and enforcement on private properties</u><br>
 A follow-up (compliance) inspection is conducted on private properties that failed the initial inspection about four weeks after the COTA is mailed. If active rat signs or conditions conducive to rats are identified in the compliance inspection, the Department will issue one or more summonses with
 associated fines to the owner of the private property. The percent of compliance inspections with
 summons was approximately the same in 2023 and 2024 (Table 3), with increases noted in all zones
@@ -191,7 +190,7 @@ manager can repeat the compliance (elevate the compliance) on the same property,
 subsequent failed inspection elevates the associated fines. The goal is to decrease the percent of
 compliance inspections with summons.
 
-<u>Extermination Visits and Stoppage Visits by the Department</u>
+<u>Extermination Visits and Stoppage Visits by the Department</u><br>
 When private property owners fail to maintain their property free of rats and conditions conducive to
 rats during a compliance inspection, the Department may act by treating the property and billing the
 owner for the work. Department exterminators and the Department’s stoppage team may also take
@@ -205,7 +204,7 @@ and products in the next year. With the goal of shifting focus from exterminatio
 preventative methods, the Department is working to increase the use of structural and behavioral
 controls for rats.
 
-<u>Collaboration with Parks, Public Housing and Schools</u>
+<u>Collaboration with Parks, Public Housing and Schools</u><br>
 Under the Neighborhood Rat Reduction Initiative, the Department has collaborated with NYC
 Department of Parks and Recreation (DPR), the NYC Housing Authority and NYC Public Schools to assess
 rat activity and conditions conducive to rats in their respective properties in the four RMZs by
