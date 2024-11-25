@@ -50,10 +50,9 @@ New York City that builds on our decades of experience. We know that rats thrive
   - Information at health fairs and community events and community walkthroughs.
   - Sharing data on the Rat Information Portal and Environment and Health Data Portal.
     - [Rat Inspection Mapping Tool](https://a816-dohbesp.nyc.gov/IndicatorPublic/Rats)
-    - [Environment and Health Portal](../rat-mitigation-zones).
-  - [Inspection data at the borough and community district level](../data-explorer/mice-and-rats/?id=2434#display=summary)
+    - [Environment and Health Portal](../rat-mitigation-zones)
+    - [Inspection data at the borough and community district level](../../data-explorer/mice-and-rats/?id=2434#display=summary)
 - Collaboration with other city agencies and City Hall to coordinate IPM efforts across neighborhoods and in the public realm by:
-
   - Surveying public schools, parks, and NYCHA developments for rat activity
   - Offering training and technical assistance to agencies
   - Meeting monthly to review challenges and coordinate solutions at the neighborhood level
@@ -64,7 +63,7 @@ The Department’s inspection data shows that rat activity in NYC neighborhoods 
 
 The areas of the city found to be the most infested need intensive inter-agency support to address the underlying (both structural, and behavioral) conditions that support high rat populations. The Department refers to these areas as Rat Mitigation Zones (RMZs). In 2023, Local Law 110 required the Department to codify RMZ designations using certain criteria. The Department promulgated an agency regulation on July 7, 2023, and designated four RMZs: the Grand Concourse neighborhoods in the Bronx; Bushwick, Bedford Stuyvesant, and Prospect Heights in Brooklyn; West, Central, and East Harlem; and the East Village, Lower East Side, and Chinatown in lower Manhattan. Table 1 describes the four RMZs. These zones consist of 37,545 properties (tax lots), including city-owned properties that are routinely surveyed (209 parks, 79 NYCHA developments, and 184 schools).
 
-This report summarizes data for the first three 6-month rounds (January 2023 - June 2024) of inspections and interventions in the four RMZs since implementation of Local Law 110.
+The report summarizes data for the first three 6-month rounds (January 2023 - June 2024) of inspections and interventions in the four RMZs since implementation of Local Law 110.
 
 <!-- TABLE 1 -->
 
@@ -72,12 +71,9 @@ This report summarizes data for the first three 6-month rounds (January 2023 - J
 <div style="min-height:316px" id="datawrapper-vis-r7WzZ"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/r7WzZ/embed.js" charset="utf-8" data-target="#datawrapper-vis-r7WzZ"></script><noscript><img src="https://datawrapper.dwcdn.net/r7WzZ/full.png" alt="" /></noscript></div>
 </div>
 
-1. **The metrics the Department is using to measure the efficacy of rat mitigation in such
-   zones, including a description of whether the department has seen improvement, as
-   measured by such metrics, and, if so, how such improvement has been achieved.**
+#### 1. The metrics the Department is using to measure the efficacy of rat mitigation in such zones, including a description of whether the department has seen improvement, as measured by such metrics, and, if so, how such improvement has been achieved.
 
-The Department is using the metrics set out in the Local Law to measure the efficacy of rat
-mitigation efforts. Those are:
+The Department is using the metrics set out in the Local Law to measure the efficacy of rat mitigation efforts. Those are:
 
 <ol type="I">
 <li>&ensp;<u>Commissioner orders to abate (COTA).</u> The number and percentage of inspections for properties within a given area that resulted in a COTA issued by the Department pursuant to section 151.02 of the Health Code in each 6-month period from January 2023 to June 2024.</li>
@@ -87,7 +83,7 @@ mitigation efforts. Those are:
    &ensp;&ensp;a. <u>Susceptibility to rat infestation.</u> The number of properties that are managed by the New York City Department of Parks and Recreation (NYC DPR) that have failed inspection for rat infestation in a 6-month period from January 2023 to June 2024 with an RMZ.
 <li>&ensp;<u>Reports to 311.</u> The number and nature of 311 requests for service or complaints related to rat activity within each 6-month period from January 2023 to June 2024.</li>
 </ol>
-<strong>I.<u>Commissioner orders to abate (COTA)</u></strong>
+<strong>I.&ensp;<u>Commissioner orders to abate (COTA)</u></strong>
 
 A COTA is sent to a private property owner when an initial inspection identifies any Health Code violation at the time of inspection including garbage conditions, harborage conditions, or any active rat signs. The COTA includes an inspection report and the follow-up actions expected of the property owner.
 
@@ -95,14 +91,12 @@ Overall, in the first six months of 2024 in the four RMZ, 9,993 COTAs (24% of 41
 
 This increase is seen in Bronx Grand Concourse (from 26% in January to June 2023 to 30% in January to June 2024) and Brooklyn Bedford Stuyvesant/Bushwick RMZs (21% in January to June 2023 to 27% in January to June 2023 and 21% in January to June 2024) and East Village/Chinatown RMZs (from 15% in January to June 2023 to 12% in January to June 2024).
 
-<!-- Using these seven criteria to measure progress, the Department has intensified the city’s inter- agency anti-rat work, collaborating with NYC Parks, NYCHA, and NYC Public Schools, with additional resources provided by the Mayor’s Office. This effort, called the Neighborhood Rat Reduction (NRR) Initiative, brings together multiple city agencies to provide a concentrated IPM effort to reduce rat activity on private and public property in the four RMZ.-->
-
 <!-- TABLE 2-->
 
 <div class="border-top border-bottom my-4 py-2"><div style="min-height:274px" id="datawrapper-vis-CKO04"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/CKO04/embed.js" charset="utf-8" data-target="#datawrapper-vis-CKO04"></script><noscript><img src="https://datawrapper.dwcdn.net/CKO04/full.png" alt="" /></noscript></div>
 </div>
 
-<strong>II.<u>Summonses</u></strong>
+<strong>II.&ensp;<u>Summonses</u></strong>
 
 Within about four weeks of the COTA being mailed to the owner of a private property, an inspector will conduct a follow-up (compliance) inspection. If the inspection identifies any Health Code violation, the property fails the compliance inspection and the Department issues one or more summons subject to fines to the owner of the property.
 
@@ -114,13 +108,7 @@ Table 3 shows the total number of compliance inspections for each RMZ in a 6-mon
 <div style="min-height:247px" id="datawrapper-vis-3ilvl"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/3ilvl/embed.js" charset="utf-8" data-target="#datawrapper-vis-3ilvl"></script><noscript><img src="https://datawrapper.dwcdn.net/3ilvl/full.png" alt="" /></noscript></div>
 </div>
 
-<u><strong>Visits by the Department's Extermination and Stoppage Teams</strong></u>
-
-Property owners are required to maintain their property free of rats and the conditions that are conducive to rats. In case where owners fail to maintain their property, the Department may act by treating the private property and billing the owner for the work. The Department's stoppage team works on public spaces like street trees, green streets, or parks and gardens. Stoppage actions include collapsing earthen rat burrows or sealing structural holes that allow the free movement of rats.
-
-Table 4 provides a count of visits by the Department's extermination team and stoppage team. The total number of extermination visits in the four RMZs was 10,870, similar to the number of extermination visits in January to June 2023. By RMZ, the number of extermination visits is approximately the same in Bronx Grand Concourse (around 2,100 visits for both January to June 2023 and 2024) and East Village/Chinatown (around 1,100 visits for both January to June 2023 and 2024) and East Village/Chinatown (around 1,100 visits for both 6 month periods), but increased in Brooklyn Bedford Stuyvesant/Bushwick (3,993 visits in January to June 2023 to 4,625 in January to June 2024) and decreased in Harlem (4,176 visits in January to June 2023 to 3,058 in January to June 2024). The number of stoppage visits increased in Harlem, Bronx Grand Concourse, and the East Village/Chinatown and remained about the same in Brooklyn Bedford Stuyvesant/Bushwick.
-
-<strong>III.<u>Visits by the Department's Extermination and Stoppage Teams</u></strong>
+<strong>III.&ensp;<u>Visits by the Department's Extermination and Stoppage Teams</u></strong>
 
 Property owners are required to maintain their property free of rats and the conditions that are conducive to rats. In cases where owners fail to maintain their property, the Department may act by treating the private property and billing the owner for the work. The Department's stoppage team works on public spaces like street trees, green streets, or parks and gardens. Stoppage actions include collapsing earthen rat burrows or sealing structural holes that allow the free movement of rats.
 
@@ -145,7 +133,7 @@ In the first six months of 2024 in the four RMZs, 2,358 city agency referrals (6
 &ensp;&ensp; a. <u>Susceptibility to rat infestation</u>
 Properties that are managed by the New York City Department of Parks and Recreation (NYC DPR) are heavily used by New York City residents for multiple recreational purposes, many of which can result in creating food sources for rats. Combined with the ample earthen spaces that rats love to burrow in, parks are very attractive to rats and uniquely susceptible to them. These properties are routinely inspected by the NYC Health Department.
 
-In the first six months of 2024 in the four RMZs, 169 NYC DPR properties failed intial inspection (89% of 190 properties) (Table 5a). The percent of properties that failed initial inspection increased from 69% in January to June 2023 to 89% in January to June 2024. This pattern was seen consistent across the four RMZs (Bronx from 67% to 88%; Brooklyn from 57% to 90%; Harlem from 78% to 89%; East Village/Chinatown from 66% to 89%).
+In the first six months of 2024 in the four RMZs, 169 NYC DPR properties failed initial inspection (89% of 190 properties) (Table 5a). The percent of properties that failed initial inspection increased from 69% in January to June 2023 to 89% in January to June 2024. This pattern was seen consistent across the four RMZs (Bronx from 67% to 88%; Brooklyn from 57% to 90%; Harlem from 78% to 89%; East Village/Chinatown from 66% to 89%).
 
 <!-- TABLE 5A -->
 
@@ -153,7 +141,7 @@ In the first six months of 2024 in the four RMZs, 169 NYC DPR properties failed 
 <div style="min-height:247px" id="datawrapper-vis-qCRCW"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/qCRCW/embed.js" charset="utf-8" data-target="#datawrapper-vis-qCRCW"></script><noscript><img src="https://datawrapper.dwcdn.net/qCRCW/full.png" alt="" /></noscript></div>
 </div>
 
-<strong>V.<u>Reports to 311</u></strong>
+<strong>V.&ensp;<u>Reports to 311</u></strong>
 
 Table 6 and 6a show the number of 311 complaints received in each of the four RMZs for overall rodent-
 related complaints and for the descriptors of rat sighting, signs of rodent, and conditions attracting
@@ -179,15 +167,15 @@ complaints in January to June 2024), with decreased complaints in rat sightings 
 <div style="min-height:247px" id="datawrapper-vis-4VA5K"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/4VA5K/embed.js" charset="utf-8" data-target="#datawrapper-vis-4VA5K"></script><noscript><img src="https://datawrapper.dwcdn.net/4VA5K/full.png" alt="" /></noscript></div>
 </div>
 
-2. An overview of current and planned rat mitigation measures, including goals and specific benchmarks and timelines, in each such zone.
+#### 2. An overview of current and planned rat mitigation measures, including goals and specific benchmarks and timelines, in each such zone.
 
 <u>Initial Inspections and Neighborhood Indexing</u>
 
 Initial inspections are both proactive (each property in the RMZ is inspected 2 times a year) and reactive (inspections in response to 311 complaints about a property). Each property in the four RMZs are categorized into 1 of 6 cohorts, where each cohort of properties is designed to be similar in character to the overall RMZ in terms of percent of city-owned properties, percent of parks, etc. The cohort design provides three valuable sources of information: identification of individual properties with active rat signs or signs conducive to rats, a monthly snapshot of the RMZ rat activity, and rat activity of the entire RMZ every 6 months (referred to as a full round). This has been used by the Department as a monitoring tool. Increases in percent of inspections with active rat signs over several months can trigger an increase in enforcement, outreach, or treatment in an area.
 
-Systematic rat indexing inspections of individual properties of the entire RMZ are essential as it allows for identification of properties with active rat signs or signs conducive to rats, especially in areas where the public underutilizes the 311-complaint system. Failing inspections trigger the mailing of a COTA or city agency referral letters. COTAs and city agency referral letters include a detailed inspection report which lists the follow-up actions expected from the property owner. We do see an overall increase in percent of private property inspections that resulted in a COTA (Table 2), but the increases were seen only in Bronx Grand Concourse and Brooklyn Bedford Stuyvesant/Bushwick. The percent of inspections that resulted in a city agency referral letter remained the same over the four RMZs and Brooklyn from 2023 to 2024 but decreased for the Bronx (Table 5).
+Systematic rat indexing inspections of individual properties of the entire RMZ are essential as it allows for identification of properties with active rat signs or signs conducive to rats, especially in areas where the public under-utilizes the 311-complaint system. Failing inspections trigger the mailing of a COTA or city agency referral letters. COTAs and city agency referral letters include a detailed inspection report which lists the follow-up actions expected from the property owner. We do see an overall increase in percent of private property inspections that resulted in a COTA (Table 2), but the increases were seen only in Bronx Grand Concourse and Brooklyn Bedford Stuyvesant/Bushwick. The percent of inspections that resulted in a city agency referral letter remained the same over the four RMZs and Brooklyn from 2023 to 2024 but decreased for the Bronx (Table 5).
 
-The Department uses a variety of strategies to respond to high rat activity in a neighborhood, including elevating fines for repeat offenders, performing coordinated inspections with other agencies on problematic properties, increasing extermination and stoppage visits, and increasing the number of community outreach activities. The goal is to decrease the percent of failed initial inspections. The Department also works closely with partner agencies on reducing the number of city agencies that fail inspections and reducing the severity of rat infestation on city-owned property, which is discussed in the section “Collaboration with NYC DPR, NYCHA, and NYCPS”.
+The Department uses a variety of strategies to respond to high rat activity in a neighborhood, including elevating fines for repeat offenders, performing coordinated inspections with other agencies on problematic properties, increasing extermination and stoppage visits, and increasing the number of community outreach activities. The goal is to decrease the percent of failed initial inspections. The Department also works closely with partner agencies on reducing the number of city agencies that fail inspections and reducing the severity of rat infestation on city-owned property, which is discussed in the section “Collaboration with NYC DPR, NYCHA, and NYCPS.”
 
 <u>Complaint-based inspections</u>
 Initial inspections can be reactive (inspections in response to 311 complaints about a property). When a 311 rodent complaint is made for a property in the RMZ, a new inspection will be initiated if an inspection has not been performed on that property in the last three months or if the property is not currently undergoing the enforcement process that resulted from a proactive inspection. If enforcement has been initiated and the property continues to receive complaints, the Department may also elevate the enforcement work to increase fines on the property. In the RMZs , the number of all rodent complaints increased from 2023 to 2024 (Table 6), with the most notable increases in the Bronx Grand Concourse and Harlem. The increase in rodent complaints in the Bronx mirror the increase in percent of initial inspections resulting in COTAs. This is not the case for Harlem, where the percent of inspections resulting in COTAs decreased. Harlem was a newly established RMZ in 2023 and the inhabitants of the zone were likely not very familiar with the tools the City and the Department use to mitigate rodent issues. The goal is to continue to respond to every complaint in a timely manner (within 14 days).
@@ -228,7 +216,7 @@ holes, other signs of rat activity, presence of garbage and/or harborage and ind
 remediation efforts. This inter-agency work is being carefully tracked in monthly Rat Task Force
 meetings at City Hall. The goal for all agencies is to decrease the primary metric of interest (earthen burrow count for NYCHA and DPR and percent failed on survey for NYCPS) by 30%.
 
-3. A description of the public outreach measures undertaken by the department in relation to rat mitigation in each such zone.
+#### 3. A description of the public outreach measures undertaken by the department in relation to rat mitigation in each such zone.
 
 The Department has an active community outreach program. The outreach and education program
 consists of free training that can be tailored to a wide range of audiences; educational materials in
@@ -261,40 +249,31 @@ Manhattan (9), Bronx (2), and Queens (6). Case managers assigned to the four rat
 routinely engage with the community and offer personalized on-site support to owners and businesses
 that need assistance.
 
-4. Explanations of the creation or elimination of rat mitigation zones, or any change of boundaries of such zone, since the previous report, if applicable.
+#### 4. Explanations of the creation or elimination of rat mitigation zones, or any change of boundaries of such zone, since the previous report, if applicable.
 
 The creation of the RMZs by rule promulgated on July 7, 2023, is described above. In an effort to expand our presence in neighborhoods outside of the four RMZ, and assess new potential areas of concern, the Department is indexing 29 additional annual indexing zones in 2024-2025. Annual indexing zones are areas throughout the five boroughs that historically have had higher rat activity or are newly identified areas of concern. The primary goal of having additional annual indexing zones is to have a mechanism to monitor rat activity citywide and to respond to existing or emerging infestation. This data will be used in the future to evaluate the need for new RMZs.
 
-5. Explanations of any changes to the rat mitigation measured used in each such zone since the previous report, if applicable.
+#### 5. Explanations of any changes to the rat mitigation measured used in each such zone since the previous report, if applicable.
 
 There are no changes in rat mitigation measures since the 2023 report. Please refer to the appendix for reporting differences in metrics in the published 2023 report and the current report.
 
 <strong>Appendix</strong>
 
-Date range<br>
+<div class="fs-sm"><strong>Date range</strong><br>
 Counts presented in the annual report for first half of 2023 included inspections, compliances,
-exterminations, and stoppage visits ranging from January 1 to June 29, 2023. For this update, the first round was considered January 1 to June 30, 2023 and the second round is considered July 1 to
-December 2023.
+exterminations, and stoppage visits ranging from January 1 to June 29, 2023. For this update, the first round was considered January 1 to June 30, 2023 and the second round is considered July 1 to December 2023.<br>
 
-Initial inspections<br>
+<br><strong>Initial inspections</strong><br>
 Counts presented for initial inspections for the first half of 2023 in the annual report are count of letters mailed secondary to the inspection finding. During the QA process, it was noted that some inspections may generate multiple letters. Either a letter was returned and another mailed in an attempt to contact the owner, or owner information was updated, which then updated the letter type. Both scenarios can result in multiple letters associated with an inspection. To remove duplicates, the last letter mailed out was the one counted for this update.
 
-Compliance inspections<br>
+<strong>Compliance inspections</strong><br>
 Counts for compliances previously did not include Food Safety and Community Sanitation (FSCS)
 compliance inspections. FSCS compliance inspections are reported in the Mayor’s Monthly Report. To
 keep reporting consistent, updated counts include FSCS compliance inspections.
 
-Extermination & Stoppage<br>
+<strong>Extermination & Stoppage</strong><br>
 For extermination visits, initial counts presented for extermination visits for the first half of 2023 in the annual report are count of products applied. The majority of visits had one product applied, but some visits may have multiple products applied. To remove duplicates for extermination and stoppage, the same work order was considered one visit.
 
+</div>
+
 <!-- end draft -->
-
-<!-- CHART SCRIPTS / change out url and replace in placeholders-->
-
-3. **A description of the public outreach measures undertaken by the department in
-   relation to rat mitigation in each such zone.**
-
-4. **Explanations of any changes to the rat mitigation measures used in each such zone since
-   the previous report, if applicable.**
-
-This is the first annual report, and there are accordingly no changes to report.
