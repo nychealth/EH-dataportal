@@ -93,10 +93,10 @@ Overall, in the first six months of 2024 in the four RMZ, 9,993 COTAs (24% of 41
 This increase is seen in Bronx Grand Concourse (from 26% in January to June 2023 to 30% in January to June 2024) and Brooklyn Bedford Stuyvesant/Bushwick RMZs (21% in January to June 2023 to 27% in January to June 2023 and 21% in January to June 2024) and East Village/Chinatown RMZs (from 15% in January to June 2023 to 12% in January to June 2024).
 
 <!-- TABLE 2-->
-<button class="btn btn-sm btn-outline-primary mr-1 active table2Buttons" id="2-1" onclick="changeTable2(1)">BX: Grand Concourse</button>
-<button class="btn btn-sm btn-outline-primary mr-1 table2Buttons" id="2-2" onclick="changeTable2(2)">MN: Harlem</button>
-<button class="btn btn-sm btn-outline-primary mr-1 table2Buttons" id="2-3" onclick="changeTable2(3)">MN: EV / Chinatown</button>
-<button class="btn btn-sm btn-outline-primary mr-1 table2Buttons" id="2-4" onclick="changeTable2(4)">BK: Bed-Stuy/Bushwick</button>
+<button class="btn btn-sm btn-outline-primary mr-1 active table2Buttons" id="2-1" onclick="changeTable(2,1)">BX: Grand Concourse</button>
+<button class="btn btn-sm btn-outline-primary mr-1 table2Buttons" id="2-2" onclick="changeTable(2,2)">MN: Harlem</button>
+<button class="btn btn-sm btn-outline-primary mr-1 table2Buttons" id="2-3" onclick="changeTable(2,3)">MN: EV / Chinatown</button>
+<button class="btn btn-sm btn-outline-primary mr-1 table2Buttons" id="2-4" onclick="changeTable(2,4)">BK: Bed-Stuy/Bushwick</button>
 
 <div class="border-top border-bottom mb-4 py-2">
    <div id="table-2-1" class="table2tables">
@@ -114,6 +114,23 @@ This increase is seen in Bronx Grand Concourse (from 26% in January to June 2023
 Within about four weeks of the COTA being mailed to the owner of a private property, an inspector will conduct a follow-up (compliance) inspection. If the inspection identifies any Health Code violation, the property fails the compliance inspection and the Department issues one or more summons subject to fines to the owner of the property.
 
 Table 3 shows the total number of compliance inspections for each RMZ in a 6-month period and the number of failed inspections where a summons or summonses were issued (this includes repeat compliance inspections on properties that failed multiple times). In the first six months of 2024 in the four RMZ, the total inspections with a summons(es) issued was 7,221 (67% of 10,698 compliance inspections). Although the total compliance inspections increased from January to June 2023 (8,386) to January to June 2024 (10,698), percent of inspections with summons(es) remained approximately the same (66% 2023 compared to 67% in 2024). In all RMZs other than Harlem, the percent inspections with summons(es) increased compared to January to December 2023, with the largest increase in East VIllage/Chinatown (Bronx from 61% to 66%; Brooklyn from 67% to 70%; East Village/Chinatown from 49% to 62%). In Harlem the percent of inspections with summons(es) decreased from 77% in January to June 2023 to 66% in January to June 2024.
+
+<!-- TABLE 3-->
+**Table 3 tester buttons**
+
+<button class="btn btn-sm btn-outline-primary mr-1 active table3Buttons" id="3-1" onclick="changeTable(3,1)">BX: Grand Concourse</button>
+<button class="btn btn-sm btn-outline-primary mr-1 table3Buttons" id="3-2" onclick="changeTable(3,2)">MN: Harlem</button>
+<button class="btn btn-sm btn-outline-primary mr-1 table3Buttons" id="3-3" onclick="changeTable(3,3)">MN: EV / Chinatown</button>
+<button class="btn btn-sm btn-outline-primary mr-1 table3Buttons" id="3-4" onclick="changeTable(3,4)">BK: Bed-Stuy/Bushwick</button>
+
+<div class="border-top border-bottom mb-4 py-2">
+   <div id="table-3-1" class="table3tables">
+      Bronx Table 3
+   </div>
+   <div id="table-3-2" class="table3tables hide">Harlem table 3</div>
+   <div id="table-3-3" class="table3tables hide">EV/Chinatown table 3</div>
+   <div id="table-3-4" class="table3tables hide">Bed-Stuy/Bushwick table 3</div>
+</div>
 
 <!-- TABLE 3 -->
 
