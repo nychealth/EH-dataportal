@@ -93,10 +93,10 @@ Overall, in the first six months of 2024 in the four RMZ, 9,993 COTAs (24% of 41
 This increase is seen in Bronx Grand Concourse (from 26% in January to June 2023 to 30% in January to June 2024) and Brooklyn Bedford Stuyvesant/Bushwick RMZs (21% in January to June 2023 to 27% in January to June 2023 and 21% in January to June 2024) and East Village/Chinatown RMZs (from 15% in January to June 2023 to 12% in January to June 2024).
 
 <!-- TABLE 2-->
-<button class="btn btn-sm btn-outline-primary mr-1 active">BX: Grand Concourse</button>
-<button class="btn btn-sm btn-outline-primary mr-1">MN: Harlem</button>
-<button class="btn btn-sm btn-outline-primary mr-1">MN: E. Vil / Chinatown</button>
-<button class="btn btn-sm btn-outline-primary mr-1">BK: Bed-Stuy/Bushwick</button>
+<button class="btn btn-sm btn-outline-primary mr-1 active" id="2-1" onclick="changeTable2(1)">BX: Grand Concourse</button>
+<button class="btn btn-sm btn-outline-primary mr-1" id="2-2" onclick="changeTable2(2)">MN: Harlem</button>
+<button class="btn btn-sm btn-outline-primary mr-1" id="2-3" onclick="changeTable2(3)">MN: E. Vil / Chinatown</button>
+<button class="btn btn-sm btn-outline-primary mr-1" id="2-4" onclick="changeTable2(4)">BK: Bed-Stuy/Bushwick</button>
 
 
 <div class="border-top border-bottom my-4 py-2"><div style="min-height:274px" id="datawrapper-vis-CKO04"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/CKO04/embed.js" charset="utf-8" data-target="#datawrapper-vis-CKO04"></script><noscript><img src="https://datawrapper.dwcdn.net/CKO04/full.png" alt="" /></noscript></div>
