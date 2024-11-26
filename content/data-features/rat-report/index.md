@@ -41,7 +41,7 @@ New York City that builds on our decades of experience. We know that rats thrive
   - Complaint-based (reports to 311) inspections to address New Yorkers' concerns of rat activity and conditions supporting rats.
 - Implementing prevention and control activities by:
   - Ordering property owners to remove conditions on their property that support rats and to hire a licensed pest management professional to conduct extermination.
-  - Conducting extermination by licensed pest management professionals on private properties when the owner fails to follow the ORder and billing for the service.
+  - Conducting extermination by licensed pest management professionals on private properties when the owner fails to follow the Order and billing for the service.
   - sealing and collapsing rat burrows in public property (street areas, street trees, gardens, public spaces) by a stoppage team to remove conditions conducive to rats.
     Providing technical assistance, monitoring, and agency referrals regarding city-owned properties like parks, schools, shelters, and public housing.
 - Engaging the public by offering:
@@ -89,7 +89,7 @@ The Department is using the metrics set out in the Local Law to measure the effi
 
 A COTA is sent to a private property owner when an initial inspection identifies any Health Code violation at the time of inspection including garbage conditions, harborage conditions, or any active rat signs. The COTA includes an inspection report and the follow-up actions expected of the property owner.
 
-Overall, in the first six months of 2024 in the four RMZ, 9,993 COTAs (24% of 41,703 initial inspections) were mailed to private property owners (Table 2). The total number of initial inspections was approximate;y the same from January to June 2023 (42,240) to the first half of 2024 (41,703) but the percent of total inspections that resulted in a COTA increased (22% in 2023 compared to 24% in 2024).
+Overall, in the first six months of 2024 in the four RMZ, 9,993 COTAs (24% of 41,703 initial inspections) were mailed to private property owners (Table 2). The total number of initial inspections was approximately the same from January to June 2023 (42,240) to the first half of 2024 (41,703) but the percent of total inspections that resulted in a COTA increased (22% in 2023 compared to 24% in 2024).
 
 This increase is seen in Bronx Grand Concourse (from 26% in January to June 2023 to 30% in January to June 2024) and Brooklyn Bedford Stuyvesant/Bushwick RMZs (21% in January to June 2023 to 27% in January to June 2023 and 21% in January to June 2024) and East Village/Chinatown RMZs (from 15% in January to June 2023 to 12% in January to June 2024).
 
@@ -193,7 +193,7 @@ Table 4 provides a count of visits by the Department's extermination team and th
 
 A city agency referral is sent to a city agency when an initial inspection identifies any Health Code violation at the time of inspection on a property they own or manage.
 
-In the first six months of 2024 in the four RMZs, 2,358 city agency referrals (6% of 41,703 initial inspections) were sent to city agencies (Table 5). The percent of inspections that resulted in a city agency referral remained the same from January to June 2024 and January to June 2024. The percent of inspections resulting in a city agency referral remained the same in Brooklyn Bedford Stuyvesant/Bushwick (2% in both 6-month periods), Harlem (8% in both 6-mont periods), and East Village/Chinatown (10% in both 6-month periods). In Bronx Grand Concourse, the percent of inspections resulting in a city agency referral decreased (from 8% in January to June 2023 to 6% in January to June 2024).
+In the first six months of 2024 in the four RMZs, 2,358 city agency referrals (6% of 41,703 initial inspections) were sent to city agencies (Table 5). The percent of inspections that resulted in a city agency referral remained the same from January to June 2024 and January to June 2024. The percent of inspections resulting in a city agency referral remained the same in Brooklyn Bedford Stuyvesant/Bushwick (2% in both 6-month periods), Harlem (8% in both 6-month periods), and East Village/Chinatown (10% in both 6-month periods). In Bronx Grand Concourse, the percent of inspections resulting in a city agency referral decreased (from 8% in January to June 2023 to 6% in January to June 2024).
 
 <!-- TABLE 5 -->
 
@@ -226,8 +226,9 @@ In the first six months of 2024 in the four RMZs, 2,358 city agency referrals (6
 	</div>
 </div>
 
-&ensp;&ensp; a. <em>Susceptibility to rat infestation</em>
-Properties that are managed by the New York City Department of Parks and Recreation (NYC DPR) are heavily used by New York City residents for multiple recreational purposes, many of which can result in creating food sources for rats. Combined with the ample earthen spaces that rats love to burrow in, parks are very attractive to rats and uniquely susceptible to them. These properties are routinely inspected by the NYC Health Department.
+&ensp;&ensp; a. <em>Susceptibility to rat infestation.</em>
+
+Properties that are managed by the New York City Department of Parks and Recreation (NYC DPR) are heavily used by New York City residents for multiple recreational purposes, many of which can result in creating food sources for rats. Combined with the ample earthen spaces that rats love to burrow in, parks are very attractive to rats and uniquely susceptible to them. These properties are routinely inspected by the NYC Health Department.</div>
 
 In the first six months of 2024 in the four RMZs, 169 NYC DPR properties failed initial inspection (89% of 190 properties) (Table 5a). The percent of properties that failed initial inspection increased from 69% in January to June 2023 to 89% in January to June 2024. This pattern was seen consistent across the four RMZs (Bronx from 67% to 88%; Brooklyn from 57% to 90%; Harlem from 78% to 89%; East Village/Chinatown from 66% to 89%).
 
