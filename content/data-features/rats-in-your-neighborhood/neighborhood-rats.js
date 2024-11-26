@@ -86,7 +86,6 @@ document.getElementById('geocode-form').addEventListener('submit', function(e) {
 
 // Report if address is or is not in NYC
 function isInNYC(x) {
-    console.log('Checking to see if this address is in NYC...')
     if (x === 'New York') {
         console.log('Yes, it is a NYC address')
         document.getElementById('message1').innerHTML = 'This is a NYC address.'
@@ -140,7 +139,7 @@ async function checkCDs(x) {
 
                 // Loop through the geometry's nested polygons
                 for (let k = 0; k < geojsonData.features[i].geometry.coordinates[j].length; k++) {
-\
+
                     // grab each geometry, and test point (inputLatLong) against it
                     thisArea = geojsonData.features[i].geometry.coordinates[j][k];
                     let area     = L.polygon(thisArea).addTo(map)
@@ -499,7 +498,7 @@ function isMarkerInsidePolygon(marker, poly) {
             if (intersect) inside = !inside;
         }
     }
-
+    console.log('inside:', inside)
     return inside;
 };
 
