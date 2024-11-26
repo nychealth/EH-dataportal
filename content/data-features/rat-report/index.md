@@ -204,7 +204,7 @@ In the first six months of 2024 in the four RMZs, 2,358 city agency referrals (6
 <button class="btn btn-sm btn-outline-primary table5Buttons" id="5-2" onclick="changeTable(5,2)">MN: Harlem</button>
 <button class="btn btn-sm btn-outline-primary table5Buttons" id="5-3" onclick="changeTable(5,3)">MN: EV / Chinatown</button>
 <button class="btn btn-sm btn-outline-primary table5Buttons" id="5-4" onclick="changeTable(5,4)">BK: Bed-Stuy/Bushwick</button>
-<button class="btn btn-sm btn-outline-primary table2Buttons" id="5-5" onclick="changeTable(5,5)">Totals</button>
+<button class="btn btn-sm btn-outline-primary table5Buttons" id="5-5" onclick="changeTable(5,5)">Totals</button>
 
 <div id="table-5-1" class="table5tables">
 	<div style="min-height:268px" id="datawrapper-vis-RQ3Ix"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/RQ3Ix/embed.js" charset="utf-8" data-target="#datawrapper-vis-RQ3Ix"></script><noscript><img src="https://datawrapper.dwcdn.net/RQ3Ix/full.png" alt="" /></noscript></div>
