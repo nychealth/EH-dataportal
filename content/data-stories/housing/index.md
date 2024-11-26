@@ -9,11 +9,22 @@ categories: ["housing","social","childhealth","healthoutcomes","neighborhoods"]
 keywords: ["poverty","asthma","injustice","housing","social determinants","redlining","disinvestment","racism","renting","pests","maintenance","maintenance deficiencies"]
 image: ds-housing.jpeg
 vega: true
+related: 
+
+  - title: "Housing creates health"
+    url: "data-stories/housing-creates-health/"
+  - title: "A brief history of redlining"
+    url: "data-stories/redlining/"
+  - title: "Housing maintenance"
+    url: "data-explorer/housing-maintenance/?id=2396#display=summary"
 ---
+
 ### For health, place matters
+
 What determines whether or not you’re healthy? You may think about what you eat, whether you exercise, whether you smoke and your family medical history.
 
 {{< rawhtml >}}
+
 <p>But you may not think about <a href="#healthcollapse" data-toggle="collapse"
         class="badge badge-pill badge-success">how your home affects your health</a>
     - and you may not think about the factors that influence where you live.
@@ -33,6 +44,7 @@ What determines whether or not you’re healthy? You may think about what you ea
 {{< /rawhtml >}}
 
 ### But some buildings aren't healthy places to live.
+
 Buildings with maintenance issues and disrepair can harm health. Across NYC, low-income neighborhoods have a higher percentage of buildings in disrepair – and Black and Latino people have less access to healthy housing.
 
 Today’s inequality can be traced to a history of racism and neglect: a practice known as redlining resulted in segregation which, in turn, drove housing disrepair and led to these health disparities.
@@ -40,6 +52,7 @@ Today’s inequality can be traced to a history of racism and neglect: a practic
 Let's explore how.
 
 ### Racism has determined where people live since colonial times.
+
 Racism has always played a role in residential patterns in New York City. When New York City was a Dutch colony, it was just the southern tip of Manhattan. Wall Street got its name from the city’s protective wall.
 
 In 1661, when Black people petitioned the colony for land in the area, they were given land north of the wall, outside of the city proper.
@@ -49,7 +62,9 @@ In 1661, when Black people petitioned the colony for land in the area, they were
 Throughout history, many different practices have shaped racial and residential patterns in New York City. In the 20th century, a practice called redlining made racism a federal policy – with long-lasting repercussions for our housing and our health.
 
 ### Federal policy drove residential segregation
+
 {{< rawhtml >}}
+
 <p>In the 1930s, <a href="#holccollapse" data-toggle="collapse"
         class="badge badge-pill badge-success">the federal government</a> developed
     color-coded maps to guide loans to potential home buyers in cities across the
@@ -73,6 +88,7 @@ Throughout history, many different practices have shaped racial and residential 
 On these color-coded maps, neighborhoods were divided into 4 categories:
 
 {{< rawhtml >}}
+
 <ul style="list-style:none;">
     <li><strong><span style="color:#4FCF23"><i
                     class="fas fa-square-full"></i></span> Best</strong></li>
@@ -90,6 +106,7 @@ On these color-coded maps, neighborhoods were divided into 4 categories:
 This classification was clearly rooted in racism, since neighborhood descriptions included statements like:
 
 {{< rawhtml >}}
+
 <div class="card card-left-border shadow-sm m-2">
     <div class="card-body">
         <p><em>"Detrimental influences: Infiltration of Negroes. Mixed races."</em></p>
@@ -102,6 +119,7 @@ The government denied loans to Black and Latino people trying to buy homes in re
 The map below shows how New York City's neighborhoods were categorized.
 
 {{< rawhtml >}}
+
 </div>
 <div class="wide my-4">
 <div class="py-0 mb-4">
@@ -113,6 +131,7 @@ The map below shows how New York City's neighborhoods were categorized.
 {{< /rawhtml >}}
 
 ### This was redlining
+
 This process became known as "redlining:" systematically denying public and private resources based on where people live, targeting people of color.
 
 Redlining helped drive urban segregation in the 20th century, as new neighborhoods were built for white people while people of color were forced into neighborhoods declared to be "declining."
@@ -120,7 +139,9 @@ Redlining helped drive urban segregation in the 20th century, as new neighborhoo
 Since homeownership is an important way to accrue wealth, redlining drove economic inequality, too - by denying people of color the same opportunities for home ownership that white people had.
 
 ### Other discriminatory practices maintain segregation.
+
 {{< rawhtml >}}
+
 <p>Other real estate practices, like
     <a href="#bbcollapse" data-toggle="collapse"
         class="badge badge-pill badge-success">Blockbusting</a>&nbsp;<a
@@ -163,6 +184,7 @@ Since homeownership is an important way to accrue wealth, redlining drove econom
 Today, housing advocates say that some landlords continue discriminatory practices, describing one landlord’s behavior this way:
 
 {{< rawhtml >}}
+
 <div class="card card-left-border shadow-sm m-2">
     <div class="card-body">
         <p><em>“This landlord has a pattern of buying old, worn
@@ -179,6 +201,7 @@ Coalition: Worst Evictor's List</a></p>
 These practices continue a legacy of housing racism, maintain residential segregation and, over time, result in **disinvestment**: when neighborhoods are deprived of resources that their residents need for health and opportunity.
 
 ### Disinvestment led to housing disrepair
+
 Throughout the 20th century, redlined neighborhoods deteriorated as they were deprived of private investment and government resources.
 
 Landlords in these neighborhoods are less likely to adequately maintain homes. As a result, many homes have severe and chronic maintenance problems.
@@ -187,6 +210,7 @@ Explore NYC's common housing problems in the map below.
 
 **Percent of households with healthy housing problems**
 {{< rawhtml >}}
+
 <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
 
   <div class="btn-group" role="group">
@@ -292,15 +316,14 @@ Explore NYC's common housing problems in the map below.
 
 </script>
 
-
 {{< /rawhtml >}}
 
-
 ### Who shoulders the burden of housing disrepair?
+
 These problems go far beyond inconvenience or mess. {{< rawhtml >}}
 <a href="#disrepaircollapse"
         data-toggle="collapse" class="badge badge-pill badge-success">Disrepair can
-        harm health.</a></p>
+harm health.</a></p>
 
 <div class="collapse fs-sm py-2 px-2 mb-2" id="disrepaircollapse"
     style="background-color: #f9f9f9;">
@@ -335,13 +358,14 @@ As a result of the segregation and disinvestment caused by redlining, Black and 
 
 {{< datawrapper title="Black and Latino people have less access to healthy housing." src="PTyc4/2/" height="300px" >}}
 
-
 ### These disparities persist across income levels
+
 Black and Latino people have less access to healthy housing, but this isn’t due to higher poverty rates in these populations.
 
 Black and Latino people with higher incomes are also more likely to live in buildings with serious maintenance issues - further suggesting that racism is behind these disparities.
 
 {{< rawhtml >}}
+
 </div>
 <div class="wide my-4">
 <div class="text-center mb-3">
@@ -355,7 +379,6 @@ Black and Latino people with higher incomes are also more likely to live in buil
     <input type="radio" name="income" onclick="mod()" id="mod" /><label
         for="mod">&nbsp;Moderate or higher</label> &nbsp;
 </div>
-
 
 <div id="ifElow" style="display:block">
     <iframe title="" aria-label="Split Bars" id="datawrapper-chart-gOFSx"
@@ -395,7 +418,6 @@ Black and Latino people with higher incomes are also more likely to live in buil
 </div>
 <div class="wide my-2 px-5">
 
-
 <script>
     function elow() {
         document.getElementById('ifElow').style.display = "block";
@@ -433,11 +455,13 @@ These healthy housing problems can’t be fixed by a little bit of tidying up �
 And the disparities in access to healthy housing are related to real estate practices that maintain segregation.
 
 ### Racism and disinvestment show up in health data.
+
 Disinvestment in neighborhoods of color leads to housing disrepair which, in turn, creates unhealthy homes. Disrepair, mold, and pests trigger asthma attacks, sending children with asthma to hospitals - an often frightening experience for both children and their caregivers.
 
 As a result, the highest rates of asthma emergency department visits for children age 5 to 14 are in neighborhoods that are home largely to people of color.
 
 {{< rawhtml >}}
+
 </div>
 <div class="wide my-4">
 <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -477,14 +501,15 @@ As a result, the highest rates of asthma emergency department visits for childre
 {{< /rawhtml >}}
 
 ### A healthy home should be a right.
+
 A home in good repair is vital. It’s protection from the weather. It’s a place for you to be safe. It’s a place where your family can grow and thrive.
 
 But a poorly maintained, unhealthy home can’t provide a truly safe haven. Instead, it presents a dangerous environment.
 
-***So how can we create a city in which race - and racism - doesn't determine whether you have an opportunity to stay healthy?***
-
+**_So how can we create a city in which race - and racism - doesn't determine whether you have an opportunity to stay healthy?_**
 
 {{< figure src="h1.jpeg" alt="Workers work on a building.">}}
+
 <div class="card card-left-border shadow-sm mb-4">
     <div class="card-body">
         <p>Policymakers and community advocates can support racial justice initiatives:</p>
@@ -495,9 +520,8 @@ But a poorly maintained, unhealthy home can’t provide a truly safe haven. Inst
     </div>
   </div>
 
-
-
 {{< figure src="h2.jpeg" alt="A New York City residential street.">}}
+
 <div class="card card-left-border shadow-sm mb-4">
     <div class="card-body">
         <p>Tenants and homeowners can tap into systems that are here to support you.</p>
@@ -509,6 +533,7 @@ But a poorly maintained, unhealthy home can’t provide a truly safe haven. Inst
   </div>
 
 {{< figure src="h3.jpeg" alt="A New York City apartment building.">}}
+
 <div class="card card-left-border shadow-sm mb-4">
     <div class="card-body">
         <p>Building owners and landlords should keep apartments safe and sanitary – it’s the law.</p>
@@ -522,12 +547,9 @@ But a poorly maintained, unhealthy home can’t provide a truly safe haven. Inst
 <div class="asidebox">
 
 <strong>Get the data</strong>
+
 - Data on housing maintenance conditions come from the [2017 Housing and Vancancy Survey](https://www.census.gov/programs-surveys/nychvs.html).
 - [Data on childhood asthma emergency department visits]({{< baseurl >}}data-explorer/asthma/?id=2383) come from the New York State Statewide Planning and Research Cooperative System (SPARCS) Deidentified Hospital Discharge Data.
 - [Data on the race/ethnicity of people by neighborhood]({{< baseurl >}}data-explorer/social-conditions/?id=2325) come from the American Community Survey.
 
 </div>
-
-
-
-

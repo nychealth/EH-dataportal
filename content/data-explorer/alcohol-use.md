@@ -18,6 +18,18 @@ indicators:
       - 2051
       - 2056
       - 2055
+related:
+  - title: "Why violence is a public health issue"
+    url: "data-stories/violence/"
+  - title: "Disparities in violence"
+    url: "data-stories/assaults/"
+  - title: "What hot weather means for food safety"
+    url: "data-stories/food/"
+relatedData:
+  - title: "Birth outcomes"
+    url: "birth-outcomes"
+  - title: "Violence"
+    url: "violence/"
 ---
 
 Heavy regular drinking and binge drinking contribute to a wide range of chronic health problems, including heart disease, diabetes, cancer, stroke, cirrhosis, depression and dementia. Alcohol use is also associated with suicide, homicide, domestic violence, sexually transmitted diseases and injuries. It is one of the leading behavior-related causes of death in New York City (NYC).
