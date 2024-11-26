@@ -97,11 +97,12 @@ This increase is seen in Bronx Grand Concourse (from 26% in January to June 2023
 
 <div class="border-top border-bottom mb-4 py-2">
 <strong>Table 2: Initial instructions and Commissioner's Order to Abate (COTA)</strong><br>
-	<button class="btn btn-sm btn-outline-primary active table2Buttons" id="2-1" onclick="changeTable(2,1)">BX: Grand Concourse</button>
-	<button class="btn btn-sm btn-outline-primary table2Buttons" id="2-2" onclick="changeTable(2,2)">MN: Harlem</button>
-	<button class="btn btn-sm btn-outline-primary table2Buttons" id="2-3" onclick="changeTable(2,3)">MN: EV / Chinatown</button>
-	<button class="btn btn-sm btn-outline-primary table2Buttons" id="2-4" onclick="changeTable(2,4)">BK: Bed-Stuy/Bushwick</button>
-	<button class="btn btn-sm btn-outline-primary table2Buttons" id="2-5" onclick="changeTable(2,5)">Totals</button>
+
+<button class="btn btn-sm btn-outline-primary active table2Buttons" id="2-1" onclick="changeTable(2,1)">BX: Grand Concourse</button>
+<button class="btn btn-sm btn-outline-primary table2Buttons" id="2-2" onclick="changeTable(2,2)">MN: Harlem</button>
+<button class="btn btn-sm btn-outline-primary table2Buttons" id="2-3" onclick="changeTable(2,3)">MN: EV / Chinatown</button>
+<button class="btn btn-sm btn-outline-primary table2Buttons" id="2-4" onclick="changeTable(2,4)">BK: Bed-Stuy/Bushwick</button>
+<button class="btn btn-sm btn-outline-primary table2Buttons" id="2-5" onclick="changeTable(2,5)">Totals</button>
 
    <div id="table-2-1" class="table2tables">
       <div style="min-height:274px" id="datawrapper-vis-CKO04"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/CKO04/embed.js" charset="utf-8" data-target="#datawrapper-vis-CKO04"></script><noscript><img src="https://datawrapper.dwcdn.net/CKO04/full.png" alt="" /></noscript></div>
