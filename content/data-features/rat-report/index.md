@@ -279,7 +279,7 @@ complaints in January to June 2024), with decreased complaints in rat sightings 
 <!-- TABLE 6 -->
 
 <div class="border-top border-bottom mb-4 py-2">
-<strong>Tables 6 and 6a: Rodent Complaints (311) by RMZ</strong><br>
+<strong>Tables 6: Rodent Complaints (311) by RMZ</strong><br>
 
 <button class="btn btn-sm btn-outline-primary active table6Buttons" id="6-1" onclick="changeTable(6,1)">BX: Grand Concourse</button>
 <button class="btn btn-sm btn-outline-primary table6Buttons" id="6-2" onclick="changeTable(6,2)">MN: Harlem</button>
