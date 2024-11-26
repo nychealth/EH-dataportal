@@ -396,6 +396,8 @@ The creation of the RMZs by rule promulgated on July 7, 2023, is described above
 
 There are no changes in rat mitigation measures since the 2023 report. Please refer to the appendix for reporting differences in metrics in the published 2023 report and the current report.
 
+<hr class=my-2>
+
 <strong>Appendix</strong>
 
 <div class="fs-sm"><strong>Date range</strong><br>
