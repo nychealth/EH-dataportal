@@ -98,6 +98,7 @@ This increase is seen in Bronx Grand Concourse (from 26% in January to June 2023
 <button class="btn btn-sm btn-outline-primary mr-1 table2Buttons" id="2-2" onclick="changeTable(2,2)">MN: Harlem</button>
 <button class="btn btn-sm btn-outline-primary mr-1 table2Buttons" id="2-3" onclick="changeTable(2,3)">MN: EV / Chinatown</button>
 <button class="btn btn-sm btn-outline-primary mr-1 table2Buttons" id="2-4" onclick="changeTable(2,4)">BK: Bed-Stuy/Bushwick</button>
+<button class="btn btn-sm btn-outline-primary mr-1 table2Buttons" id="2-5" onclick="changeTable(2,5)">Totals</button>
 
 <div class="border-top border-bottom mb-4 py-2">
    <div id="table-2-1" class="table2tables">
@@ -110,6 +111,9 @@ This increase is seen in Bronx Grand Concourse (from 26% in January to June 2023
    		<div style="min-height:270px" id="datawrapper-vis-IwkOp"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/IwkOp/embed.js" charset="utf-8" data-target="#datawrapper-vis-IwkOp"></script><noscript><img src="https://datawrapper.dwcdn.net/IwkOp/full.png" alt="" /></noscript></div></div>
    	<div id="table-2-4" class="table2tables hide">
 		<div style="min-height:275px" id="datawrapper-vis-oY4ON"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/oY4ON/embed.js" charset="utf-8" data-target="#datawrapper-vis-oY4ON"></script><noscript><img src="https://datawrapper.dwcdn.net/oY4ON/full.png" alt="" /></noscript></div>
+   </div>
+    <div id="table-2-5" class="table2tables hide">
+		<div style="min-height:245px" id="datawrapper-vis-c4G1a"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/c4G1a/embed.js" charset="utf-8" data-target="#datawrapper-vis-c4G1a"></script><noscript><img src="https://datawrapper.dwcdn.net/c4G1a/full.png" alt="" /></noscript></div>
    </div>
 </div>
 
@@ -125,6 +129,7 @@ Table 3 shows the total number of compliance inspections for each RMZ in a 6-mon
 <button class="btn btn-sm btn-outline-primary mr-1 table3Buttons" id="3-2" onclick="changeTable(3,2)">MN: Harlem</button>
 <button class="btn btn-sm btn-outline-primary mr-1 table3Buttons" id="3-3" onclick="changeTable(3,3)">MN: EV / Chinatown</button>
 <button class="btn btn-sm btn-outline-primary mr-1 table3Buttons" id="3-4" onclick="changeTable(3,4)">BK: Bed-Stuy/Bushwick</button>
+<button class="btn btn-sm btn-outline-primary mr-1 table2Buttons" id="3-5" onclick="changeTable(3,5)">Totals</button>
 
 <!-- TABLE 3 -->
 
@@ -132,14 +137,16 @@ Table 3 shows the total number of compliance inspections for each RMZ in a 6-mon
    <div id="table-3-1" class="table3tables">
       <div style="min-height:268px" id="datawrapper-vis-3ilvl"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/3ilvl/embed.js" charset="utf-8" data-target="#datawrapper-vis-3ilvl"></script><noscript><img src="https://datawrapper.dwcdn.net/3ilvl/full.png" alt="" /></noscript></div>
    </div>
-   <div id="table-3-2" class="table3tables hide">
+<div id="table-3-2" class="table3tables hide">
    	<div style="min-height:268px" id="datawrapper-vis-gwes0"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/gwes0/embed.js" charset="utf-8" data-target="#datawrapper-vis-gwes0"></script><noscript><img src="https://datawrapper.dwcdn.net/gwes0/full.png" alt="" /></noscript></div>
    </div>
-   <div id="table-3-3" class="table3tables hide">
+<div id="table-3-3" class="table3tables hide">
    	<div style="min-height:268px" id="datawrapper-vis-jPBqV"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/jPBqV/embed.js" charset="utf-8" data-target="#datawrapper-vis-jPBqV"></script><noscript><img src="https://datawrapper.dwcdn.net/jPBqV/full.png" alt="" /></noscript></div>
    </div>
-   <div id="table-3-4" class="table3tables hide">
+<div id="table-3-4" class="table3tables hide">
    	<div style="min-height:268px" id="datawrapper-vis-emPVr"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/emPVr/embed.js" charset="utf-8" data-target="#datawrapper-vis-emPVr"></script><noscript><img src="https://datawrapper.dwcdn.net/emPVr/full.png" alt="" /></noscript></div></div>
+<div id="table-3-5" class="table3tables hide">
+   	<div style="min-height:268px" id="datawrapper-vis-4kfmv"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/4kfmv/embed.js" charset="utf-8" data-target="#datawrapper-vis-4kfmv"></script><noscript><img src="https://datawrapper.dwcdn.net/4kfmv/full.png" alt="" /></noscript></div>
 </div>
 
 <strong>III.&ensp;<u>Visits by the Department's Extermination and Stoppage Teams</u></strong>
@@ -154,6 +161,7 @@ Table 4 provides a count of visits by the Department's extermination team and th
 <button class="btn btn-sm btn-outline-primary mr-1 table4Buttons" id="4-2" onclick="changeTable(4,2)">MN: Harlem</button>
 <button class="btn btn-sm btn-outline-primary mr-1 table4Buttons" id="4-3" onclick="changeTable(4,3)">MN: EV / Chinatown</button>
 <button class="btn btn-sm btn-outline-primary mr-1 table4Buttons" id="4-4" onclick="changeTable(4,4)">BK: Bed-Stuy/Bushwick</button>
+<button class="btn btn-sm btn-outline-primary mr-1 table2Buttons" id="4-5" onclick="changeTable(4,5)">Totals</button>
 
 <div class="border-top border-bottom mb-4 py-2">
 <div id="table-4-1" class="table4tables">
@@ -171,6 +179,9 @@ Table 4 provides a count of visits by the Department's extermination team and th
 <div id="table-4-4" class="table4tables hide">
 	<div style="min-height:250px" id="datawrapper-vis-65T5P"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/65T5P/embed.js" charset="utf-8" data-target="#datawrapper-vis-65T5P"></script><noscript><img src="https://datawrapper.dwcdn.net/65T5P/full.png" alt="" /></noscript></div>
 	</div>
+<div id="table-4-5" class="table4tables hide">
+	<div style="min-height:250px" id="datawrapper-vis-NeIGz"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/NeIGz/embed.js" charset="utf-8" data-target="#datawrapper-vis-NeIGz"></script><noscript><img src="https://datawrapper.dwcdn.net/NeIGz/full.png" alt="" /></noscript></div>
+	</div>
 </div>
 
 <strong>IV.&ensp;<u>City agency referral letters</u></strong>
@@ -185,6 +196,7 @@ In the first six months of 2024 in the four RMZs, 2,358 city agency referrals (6
 <button class="btn btn-sm btn-outline-primary mr-1 table5Buttons" id="5-2" onclick="changeTable(5,2)">MN: Harlem</button>
 <button class="btn btn-sm btn-outline-primary mr-1 table5Buttons" id="5-3" onclick="changeTable(5,3)">MN: EV / Chinatown</button>
 <button class="btn btn-sm btn-outline-primary mr-1 table5Buttons" id="5-4" onclick="changeTable(5,4)">BK: Bed-Stuy/Bushwick</button>
+<button class="btn btn-sm btn-outline-primary mr-1 table2Buttons" id="5-5" onclick="changeTable(5,5)">Totals</button>
 
 <div class="border-top border-bottom mb-4 py-2">
 <div id="table-5-1" class="table5tables">
@@ -202,6 +214,9 @@ In the first six months of 2024 in the four RMZs, 2,358 city agency referrals (6
 <div id="table-5-4" class="table5tables hide">
 	<div style="min-height:268px" id="datawrapper-vis-brz1b"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/brz1b/embed.js" charset="utf-8" data-target="#datawrapper-vis-brz1b"></script><noscript><img src="https://datawrapper.dwcdn.net/brz1b/full.png" alt="" /></noscript></div>
 	</div>
+<div id="table-5-5" class="table5tables hide">
+	<div style="min-height:268px" id="datawrapper-vis-oBMKf"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/oBMKf/embed.js" charset="utf-8" data-target="#datawrapper-vis-oBMKf"></script><noscript><img src="https://datawrapper.dwcdn.net/oBMKf/full.png" alt="" /></noscript></div>
+	</div>
 </div>
 
 &ensp;&ensp; a. <u>Susceptibility to rat infestation</u>
@@ -215,6 +230,7 @@ In the first six months of 2024 in the four RMZs, 169 NYC DPR properties failed 
 <button class="btn btn-sm btn-outline-primary mr-1 table5aButtons" id="5a-2" onclick="changeTable('5a',2)">MN: Harlem</button>
 <button class="btn btn-sm btn-outline-primary mr-1 table5aButtons" id="5a-3" onclick="changeTable('5a',3)">MN: EV / Chinatown</button>
 <button class="btn btn-sm btn-outline-primary mr-1 table5aButtons" id="5a-4" onclick="changeTable('5a',4)">BK: Bed-Stuy/Bushwick</button>
+<button class="btn btn-sm btn-outline-primary mr-1 table5aButtons" id="5a-5" onclick="changeTable('5a',5)">Totals</button>
 
 <div class="border-top border-bottom mb-4 py-2">
 <div id="table-5a-1" class="table5atables">
@@ -231,6 +247,9 @@ In the first six months of 2024 in the four RMZs, 169 NYC DPR properties failed 
 
 <div id="table-5a-4" class="table5atables hide">
 	<div style="min-height:250px" id="datawrapper-vis-qOfYm"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/qOfYm/embed.js" charset="utf-8" data-target="#datawrapper-vis-qOfYm"></script><noscript><img src="https://datawrapper.dwcdn.net/qOfYm/full.png" alt="" /></noscript></div>
+	</div>
+<div id="table-5a-5" class="table5atables hide">
+	<div style="min-height:250px" id="datawrapper-vis-NmetY"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/NmetY/embed.js" charset="utf-8" data-target="#datawrapper-vis-NmetY"></script><noscript><img src="https://datawrapper.dwcdn.net/NmetY/full.png" alt="" /></noscript></div>
 	</div>
 </div>
 
