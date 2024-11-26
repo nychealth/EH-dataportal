@@ -89,15 +89,12 @@ The Department is using the metrics set out in the Local Law to measure the effi
 
 A COTA is sent to a private property owner when an initial inspection identifies any Health Code violation at the time of inspection including garbage conditions, harborage conditions, or any active rat signs. The COTA includes an inspection report and the follow-up actions expected of the property owner.
 
-Overall, in the first six months of 2024 in the four RMZ, 9,993 COTAs (24% of 41,703 initial inspections) were mailed to private property owners (Table 2). The total number of initial inspections was approximately the same from January to June 2023 (42,240) to the first half of 2024 (41,703) but the percent of total inspections that resulted in a COTA increased (22% in 2023 compared to 24% in 2024).
-
-This increase is seen in Bronx Grand Concourse (from 26% in January to June 2023 to 30% in January to June 2024) and Brooklyn Bedford Stuyvesant/Bushwick RMZs (21% in January to June 2023 to 27% in January to June 2024).
+Overall, in the first six months of 2024 in the four RMZ, 9,993 COTAs (24% of 41,703 initial inspections) were mailed to private property owners (Table 2). The total number of initial inspections was approximately the same from January to June 2023 (42,240) to the first half of 2024 (41,703) but the percent of total inspections that resulted in a COTA increased (22% in 2023 compared to 24% in 2024).<br>This increase is seen in Bronx Grand Concourse (from 26% in January to June 2023 to 30% in January to June 2024) and Brooklyn Bedford Stuyvesant/Bushwick RMZs (21% in January to June 2023 to 27% in January to June 2024).
 
 <!-- TABLE 2-->
 
 <div class="border-top border-bottom mb-4 py-2">
 <strong>Table 2: Initial instructions and Commissioner's Order to Abate (COTA)</strong><br>
-
 <button class="btn btn-sm btn-outline-primary active table2Buttons" id="2-1" onclick="changeTable(2,1)">BX: Grand Concourse</button>
 <button class="btn btn-sm btn-outline-primary table2Buttons" id="2-2" onclick="changeTable(2,2)">MN: Harlem</button>
 <button class="btn btn-sm btn-outline-primary table2Buttons" id="2-3" onclick="changeTable(2,3)">MN: EV / Chinatown</button>
@@ -228,8 +225,7 @@ In the first six months of 2024 in the four RMZs, 2,358 city agency referrals (6
 
 &ensp;&ensp; a. <em>Susceptibility to rat infestation.</em>
 
-Properties that are managed by the New York City Department of Parks and Recreation (NYC DPR) are heavily used by New York City residents for multiple recreational purposes, many of which can result in creating food sources for rats. Combined with the ample earthen spaces that rats love to burrow in, parks are very attractive to rats and uniquely susceptible to them. These properties are routinely inspected by the NYC Health Department.</div>
-
+Properties that are managed by the New York City Department of Parks and Recreation (NYC DPR) are heavily used by New York City residents for multiple recreational purposes, many of which can result in creating food sources for rats. Combined with the ample earthen spaces that rats love to burrow in, parks are very attractive to rats and uniquely susceptible to them. These properties are routinely inspected by the NYC Health Department.<br>
 In the first six months of 2024 in the four RMZs, 169 NYC DPR properties failed initial inspection (89% of 190 properties) (Table 5a). The percent of properties that failed initial inspection increased from 69% in January to June 2023 to 89% in January to June 2024. This pattern was seen consistent across the four RMZs (Bronx from 67% to 88%; Brooklyn from 57% to 90%; Harlem from 78% to 89%; East Village/Chinatown from 66% to 89%).
 
 <!-- TABLE 5A -->
@@ -398,6 +394,7 @@ The creation of the RMZs by rule promulgated on July 7, 2023, is described above
 There are no changes in rat mitigation measures since the 2023 report. Please refer to the appendix for reporting differences in metrics in the published 2023 report and the current report.
 
 <hr class=my-2>
+<br>
 
 <strong>Appendix</strong>
 
