@@ -91,7 +91,7 @@ A COTA is sent to a private property owner when an initial inspection identifies
 
 Overall, in the first six months of 2024 in the four RMZ, 9,993 COTAs (24% of 41,703 initial inspections) were mailed to private property owners (Table 2). The total number of initial inspections was approximately the same from January to June 2023 (42,240) to the first half of 2024 (41,703) but the percent of total inspections that resulted in a COTA increased (22% in 2023 compared to 24% in 2024).
 
-This increase is seen in Bronx Grand Concourse (from 26% in January to June 2023 to 30% in January to June 2024) and Brooklyn Bedford Stuyvesant/Bushwick RMZs (21% in January to June 2023 to 27% in January to June 2023 and 21% in January to June 2024) and East Village/Chinatown RMZs (from 15% in January to June 2023 to 12% in January to June 2024).
+This increase is seen in Bronx Grand Concourse (from 26% in January to June 2023 to 30% in January to June 2024) and Brooklyn Bedford Stuyvesant/Bushwick RMZs (21% in January to June 2023 to 27% in January to June 2024).
 
 <!-- TABLE 2-->
 
