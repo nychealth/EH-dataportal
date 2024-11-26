@@ -133,7 +133,7 @@ Table 3 shows the total number of compliance inspections for each RMZ in a 6-mon
 <button class="btn btn-sm btn-outline-primary table3Buttons" id="3-2" onclick="changeTable(3,2)">MN: Harlem</button>
 <button class="btn btn-sm btn-outline-primary table3Buttons" id="3-3" onclick="changeTable(3,3)">MN: EV / Chinatown</button>
 <button class="btn btn-sm btn-outline-primary table3Buttons" id="3-4" onclick="changeTable(3,4)">BK: Bed-Stuy/Bushwick</button>
-<button class="btn btn-sm btn-outline-primary table2Buttons" id="3-5" onclick="changeTable(3,5)">Totals</button>
+<button class="btn btn-sm btn-outline-primary table3Buttons" id="3-5" onclick="changeTable(3,5)">Totals</button>
 
 <!-- TABLE 3 -->
    <div id="table-3-1" class="table3tables">
@@ -167,7 +167,7 @@ Table 4 provides a count of visits by the Department's extermination team and th
 <button class="btn btn-sm btn-outline-primary table4Buttons" id="4-2" onclick="changeTable(4,2)">MN: Harlem</button>
 <button class="btn btn-sm btn-outline-primary table4Buttons" id="4-3" onclick="changeTable(4,3)">MN: EV / Chinatown</button>
 <button class="btn btn-sm btn-outline-primary table4Buttons" id="4-4" onclick="changeTable(4,4)">BK: Bed-Stuy/Bushwick</button>
-<button class="btn btn-sm btn-outline-primary table2Buttons" id="4-5" onclick="changeTable(4,5)">Totals</button>
+<button class="btn btn-sm btn-outline-primary table4Buttons" id="4-5" onclick="changeTable(4,5)">Totals</button>
 
 <div id="table-4-1" class="table4tables">
 	<div style="min-height:257px" id="datawrapper-vis-9PTUy"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/9PTUy/embed.js" charset="utf-8" data-target="#datawrapper-vis-9PTUy"></script><noscript><img src="https://datawrapper.dwcdn.net/9PTUy/full.png" alt="" /></noscript></div>
