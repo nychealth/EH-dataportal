@@ -136,23 +136,28 @@ async function checkCDs(x) {
 
             // ...go into that geometry (CD)
 
-            for (let j = 0; j < geojsonData.features[i].geometry.coordinates; j++) {
-                // Loop through the geometry's nested polygons
-                for (let k = 0; k < geojsonData.features[i].geometry.coordinates[j]; k++) {
+            for (let j = 0; j < geojsonData.features[i].geometry.coordinates.length; j++) {
 
-                    // grab each geometry
+                // Loop through the geometry's nested polygons
+                for (let k = 0; k < geojsonData.features[i].geometry.coordinates[j].length; k++) {
+\
+                    // grab each geometry, and test point (inputLatLong) against it
                     thisArea = geojsonData.features[i].geometry.coordinates[j][k];
                     let area     = L.polygon(thisArea).addTo(map)
-                    // and test the point (inputLatLong) against it
                     let location    = L.marker(inputLatLong)
+
+                    isMarkerInsidePolygon(location,area)
+                    
+                    // another approach
                     if (area.contains(location.getLatLng())) {
-                        console.log('Contains!!!')
-                        success = true
-                        break; // stop the loop
-                    }
+                         console.log('Contains!!!')
+                         success = true
+                         break; // stop the loop
+                     }
 
                 }
             }
+
         } 
     }
 
@@ -479,6 +484,24 @@ function pointInPolygon() {
 }
 
 
+function isMarkerInsidePolygon(marker, poly) {
+    console.log('**isMarkerInsidePolygon**')
+    var inside = false;
+    var x = marker.getLatLng().lat, y = marker.getLatLng().lng;
+    for (var ii=0;ii<poly.getLatLngs().length;ii++){
+        var polyPoints = poly.getLatLngs()[ii];
+        for (var i = 0, j = polyPoints.length - 1; i < polyPoints.length; j = i++) {
+            var xi = polyPoints[i].lat, yi = polyPoints[i].lng;
+            var xj = polyPoints[j].lat, yj = polyPoints[j].lng;
+
+            var intersect = ((yi > y) != (yj > y))
+                && (x < (xj - xi) * (y - yi) / (yj - yi) + xi);
+            if (intersect) inside = !inside;
+        }
+    }
+
+    return inside;
+};
 
 
 function originalPointInPolygon() {
