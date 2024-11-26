@@ -217,19 +217,19 @@ In the first six months of 2024 in the four RMZs, 169 NYC DPR properties failed 
 <button class="btn btn-sm btn-outline-primary mr-1 table5aButtons" id="5a-4" onclick="changeTable('5a',4)">BK: Bed-Stuy/Bushwick</button>
 
 <div class="border-top border-bottom mb-4 py-2">
-<div id="table-5a-1" class="table5tables">
+<div id="table-5a-1" class="table5atables">
 	<div style="min-height:257px" id="datawrapper-vis-qCRCW"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/qCRCW/embed.js" charset="utf-8" data-target="#datawrapper-vis-qCRCW"></script><noscript><img src="https://datawrapper.dwcdn.net/qCRCW/full.png" alt="" /></noscript></div>
 	</div>
 
-<div id="table-5a-2" class="table5tables hide">
+<div id="table-5a-2" class="table5atables hide">
 	<div style="min-height:250px" id="datawrapper-vis-bEy24"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/bEy24/embed.js" charset="utf-8" data-target="#datawrapper-vis-bEy24"></script><noscript><img src="https://datawrapper.dwcdn.net/bEy24/full.png" alt="" /></noscript></div>
 	</div>
 
-<div id="table-5a-3" class="table5tables hide">
+<div id="table-5a-3" class="table5atables hide">
 	<div style="min-height:250px" id="datawrapper-vis-XVaYh"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/XVaYh/embed.js" charset="utf-8" data-target="#datawrapper-vis-XVaYh"></script><noscript><img src="https://datawrapper.dwcdn.net/XVaYh/full.png" alt="" /></noscript></div>
 	</div>
 
-<div id="table-5a-4" class="table5tables hide">
+<div id="table-5a-4" class="table5atables hide">
 	<div style="min-height:250px" id="datawrapper-vis-qOfYm"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/qOfYm/embed.js" charset="utf-8" data-target="#datawrapper-vis-qOfYm"></script><noscript><img src="https://datawrapper.dwcdn.net/qOfYm/full.png" alt="" /></noscript></div>
 	</div>
 </div>
@@ -251,17 +251,19 @@ complaints in January to June 2024), with decreased complaints in rat sightings 
 
 <!-- TABLE 6 -->
 
+<div>
 <button class="btn btn-sm btn-outline-primary mr-1 active table6Buttons" id="6-1" onclick="changeTable(6,1)">BX: Grand Concourse</button>
 <button class="btn btn-sm btn-outline-primary mr-1 table6Buttons" id="6-2" onclick="changeTable(6,2)">MN: Harlem</button>
 <button class="btn btn-sm btn-outline-primary mr-1 table6Buttons" id="6-3" onclick="changeTable(6,3)">MN: EV / Chinatown</button>
 <button class="btn btn-sm btn-outline-primary mr-1 table6Buttons" id="6-4" onclick="changeTable(6,4)">BK: Bed-Stuy/Bushwick</button>
+</div>
 
 <div class="border-top border-bottom mb-4 py-2">
 <div id="table-6-1" class="table6tables">
 	<div style="min-height:286px" id="datawrapper-vis-BkS60"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/BkS60/embed.js" charset="utf-8" data-target="#datawrapper-vis-BkS60"></script><noscript><img src="https://datawrapper.dwcdn.net/BkS60/full.png" alt="" /></noscript></div>
 	</div>
 
-<div id="table-6-2" class="table6table hide">
+<div id="table-6-2" class="table6tables hide">
 	<div style="min-height:286px" id="datawrapper-vis-IccJB"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/IccJB/embed.js" charset="utf-8" data-target="#datawrapper-vis-IccJB"></script><noscript><img src="https://datawrapper.dwcdn.net/IccJB/full.png" alt="" /></noscript></div>
 	</div>
 
