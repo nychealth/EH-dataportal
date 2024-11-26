@@ -275,6 +275,7 @@ complaints in January to June 2024), with decreased complaints in rat sightings 
 <button class="btn btn-sm btn-outline-primary mr-1 table6Buttons" id="6-2" onclick="changeTable(6,2)">MN: Harlem</button>
 <button class="btn btn-sm btn-outline-primary mr-1 table6Buttons" id="6-3" onclick="changeTable(6,3)">MN: EV / Chinatown</button>
 <button class="btn btn-sm btn-outline-primary mr-1 table6Buttons" id="6-4" onclick="changeTable(6,4)">BK: Bed-Stuy/Bushwick</button>
+<button class="btn btn-sm btn-outline-primary mr-1 table6Buttons" id="6-5" onclick="changeTable(6,5)">Totals</button>
 </div>
 
 <div class="border-top border-bottom mb-4 py-2">
@@ -293,11 +294,9 @@ complaints in January to June 2024), with decreased complaints in rat sightings 
 <div id="table-6-4" class="table6tables hide">
 	<div style="min-height:286px" id="datawrapper-vis-BTGen"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/BTGen/embed.js" charset="utf-8" data-target="#datawrapper-vis-BTGen"></script><noscript><img src="https://datawrapper.dwcdn.net/BTGen/full.png" alt="" /></noscript></div>
 	</div>
+<div id="table-6-5" class="table6tables hide">
+	<div style="min-height:258px" id="datawrapper-vis-4VA5K"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/4VA5K/embed.js" charset="utf-8" data-target="#datawrapper-vis-4VA5K"></script><noscript><img src="https://datawrapper.dwcdn.net/4VA5K/full.png" alt="" /></noscript></div>
 </div>
-
-<!-- TABLE 6A -->
-<div class="border-top border-bottom mb-4 py-2">
-<div style="min-height:258px" id="datawrapper-vis-4VA5K"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/4VA5K/embed.js" charset="utf-8" data-target="#datawrapper-vis-4VA5K"></script><noscript><img src="https://datawrapper.dwcdn.net/4VA5K/full.png" alt="" /></noscript></div>
 </div>
 
 #### 2. An overview of current and planned rat mitigation measures, including goals and specific benchmarks and timelines, in each such zone.
