@@ -115,6 +115,10 @@
 
 {{- end }}
 
+<!-- nyc-lib css -->
+<link href="https://maps.nyc.gov/nyc-lib/v1.2.79/css/nyc-basic-lib.css" rel="stylesheet">
+
+
 <!-- main CSS -->
 {{- $sass := resources.Get "scss/theme.scss" }}
 {{- $style := $sass | resources.ToCSS | resources.Fingerprint "sha512" }}
