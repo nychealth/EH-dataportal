@@ -35,7 +35,8 @@
                     </div>
                     <div id='nycMap' class="mb-2"></div>
                     <span class="home-label">Your CD:</span> <span class="font-weight-bold" id="yourCD"></span><br>
-                    <span class="home-label">Your block</span> <span class="font-weight-bold" id="block"></span>
+                    <span class="home-label">Your block</span> <span class="font-weight-bold" id="block"></span><br>
+                    <span class="home-label">In or near an RMZ?</span> <span class="font-weight-bold" id="rmz"></span>
 
                 </div>
             </div>
@@ -121,6 +122,8 @@
         console.log('Looking for location...')
         document.getElementById('yourCD').innerHTML = '...'
         document.getElementById('block').innerHTML = '...'
+        document.getElementById('rmz').innerHTML = '...'
+
         setTimeout(getData,2500)
     }
 
@@ -144,8 +147,11 @@
 
         if (overlap.includes(yourCD)) {
             console.log('You are in or near an RMZ')
+            document.getElementById('rmz').innerHTML = 'Yes'
         } else {
             console.log('You are NOT in or near an RMZ')
+            document.getElementById('rmz').innerHTML = 'No'
+
         }
     }
 
