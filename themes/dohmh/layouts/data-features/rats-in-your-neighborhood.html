@@ -29,19 +29,42 @@
 
             <div class="row mb-4">
                 <div class="col-md-6">
-                    NYC Map geocoder...
+                    <h3>Enter your address</h3>
                     <div class="mb-2">
                         <input class="form-control form-control-lg" id="map-search1" placeholder="Search Address">
                     </div>
-                    <div id='nycMap' class="mb-2"></div>
+                    <div id='nycMap' class="mb-2" style="height:350px;"></div>
+
+                </div>
+
+                <div class="col-md-6 pt-3">
+                    <h3>Rat activity in your neighborhood</h3>
                     <span class="home-label">Your CD:</span> <span class="font-weight-bold" id="yourCD"></span><br>
                     <span class="home-label">Your block</span> <span class="font-weight-bold" id="block"></span><br>
                     <span class="home-label">In or near an RMZ?</span> <span class="font-weight-bold" id="rmz"></span>
-
+                    <hr class="my-1">
+                    <p><strong>XX %</strong> of properties were inspected for rat activity.</p>
+                    <p><strong>YY %</strong> of properties inspected failed - for active rat signs, or garbage and conditions that can harbor rats.</p>
+                    <hr class="my-1">
+                    <span class="fs-sm">For the most recent time period: 20XX</span>
                 </div>
             </div>
 
             <div class="row">
+
+
+                <div class="col-md-6">
+                    <h3>Your property is in a Rat Mitigation Zone</h3>
+                    <p>Rat Mitigation Zones are areas with high rat activity. Properties in these zones get inspected more frequently, as the City tries to fight rats at a neighborhood level, instead of building-by-building. <a href="">Get more information about Rat Mitigation Zones</a>.</p>
+                </div>
+
+                <div class="col-md-6">
+                    <h3>Get inspection history for your address</h3>
+                    <p><a href="">Visit the Rat Information Portal</a> to get your home's inspection history: when it was last inspected, and what the inspectors found.</p>
+                </div>
+            </div>
+
+            <div class="row border-top mt-4 pt-2">
                 <div class="col-md-6">
                     <form id="geocode-form">
                         <input type="text" id="address" placeholder="Enter an address" style="width:80%;" required />
@@ -167,6 +190,10 @@
             console.log('Minor error: this address is not a valid tax block')
         }
     }
+
+    // grab RMZ indicator json and filter for correct measures
+
+
 
     /*
         One approach would be to get a list of block numbers in RMZs, and just ping that list. 
