@@ -113,17 +113,26 @@
                 awaitGeoCoding();  // Call  getData()  when the button is clicked
             };
         }
+
+        // add event listener to form
+        document.querySelector('#map-search1').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                console.log('***Form submitted')
+                awaitGeoCoding()
+            }
+        });
     });
+
+
 
     var locationDetails;
     var yourCD
 
     function awaitGeoCoding() {
-        console.log('Looking for location...')
+        console.log('***Looking for location')
         document.getElementById('yourCD').innerHTML = '...'
         document.getElementById('block').innerHTML = '...'
         document.getElementById('rmz').innerHTML = '...'
-
         setTimeout(getData,2500)
     }
 
@@ -131,10 +140,10 @@
     function getData() {
         // if nycMap.location exists, then, run retrieveGeo(), else, wait.
         if (nycMap.location.type === 'geocoded') {
-            console.log('Location found! Details:')
+            console.log('***Location found! Details:')
             retrieveGeo()
         } else {
-            console.log('Location not found :( ')
+            console.log('***Location not found :( ')
         }
     }
 
@@ -146,17 +155,23 @@
         document.getElementById('block').innerHTML = locationDetails.data.bblTaxBlock
 
         if (overlap.includes(yourCD)) {
-            console.log('You are in or near an RMZ')
+            console.log('***You are in or near an RMZ')
             document.getElementById('rmz').innerHTML = 'Yes'
         } else {
-            console.log('You are NOT in or near an RMZ')
+            console.log('***You are NOT in or near an RMZ')
             document.getElementById('rmz').innerHTML = 'No'
 
+        }
+
+        if (!locationDetails.data.bblTaxBlock) {
+            console.log('Minor error: this address is not a valid tax block')
         }
     }
 
     /*
         One approach would be to get a list of block numbers in RMZs, and just ping that list. 
+        But Tax Block only exists for properties; there are addresses that don't have this (1062 Interavle);
+        Can use Census Tract or Block? Figure out the smallest, most universal unit to use.
     */
 
 
