@@ -1,3 +1,16 @@
+//----------------------- CODE TO DEVELOP -----------------------//
+/*
+Here's how this works:
+- Form submission -> Marker, point, lat/long
+- Details -> Check to see if it's in NYC (isInNYC), and if so, checks county (checkCounty)
+
+- Does it make sense to write a generalizeable function to test a point against an area? Or would that be harder to make sequential?
+
+- Consider making more robust error messages
+
+*/
+
+
 // initialize variables
 var inputAddress;
 var inputLat;
@@ -11,6 +24,7 @@ var city;
 var county;
 var cdRMZOverlaps = [102,103,107,109,110,111,112,201,203,204,205,207,303,304,308]
 var success;
+var thisArea = []
 
 // Initialize the map
 const map = L.map('map').setView([40.7722226,-73.9638235],11);
@@ -102,24 +116,16 @@ function isInNYC(x) {
 // If address is in NYC, check to see what county it is in:
 function checkCounty(y) {
     console.log('County checking for location: ', y)
-    if (y.includes('New York County')) {
-        countyID = 1
-    } else if (y.includes('Bronx County')) {
-        countyID = 2
-    } else if (y.includes('Kings County')) {
-        countyID = 3
-    } else if (y.includes('Queens County')) {
-        countyID = 4
-    } else if (y.includes('Richmond County')) {
-        countyID = 5
-    } 
-
+    if (y.includes('New York County')) {countyID = 1} 
+    else if (y.includes('Bronx County')) {countyID = 2} 
+    else if (y.includes('Kings County')) {countyID = 3} 
+    else if (y.includes('Queens County')) {countyID = 4} 
+    else if (y.includes('Richmond County')) {countyID = 5} 
+    // if we identify the county, run checkCDs to see what CD the point is in
     countyID ? checkCDs(countyID) : console.log('Could not ID county; stopping geocoding')
-
 }
 
 // With county information check to see what Community District it's in:
-var thisArea = []
 async function checkCDs(x) {
     console.log('County ID:', x)
     console.log('We will now check to see what CD this is in.')
@@ -148,14 +154,16 @@ async function checkCDs(x) {
                     let area     = L.polygon(thisArea)
                     let location    = L.marker(inputLatLong)
 
-                    // one approach
-                    isMarkerInsidePolygon(location,area)
+                    // one approach (currently redundant, but works)
+                    // isMarkerInsidePolygon(location,area)
                     
                     // another approach
                     if (area.contains(location.getLatLng())) {
                          console.log('This address is in CD ', cdCode)
+                         document.getElementById('message2').innerHTML = 'This address is in CD ' + cdCode
                          success = true
                          area.addTo(map)
+                         checkOverlap(cdCode)
                          break; // stop the loop
                      }
 
@@ -169,14 +177,33 @@ async function checkCDs(x) {
 
 }
 
+var overlap
+function checkOverlap(x) {
+    var cd = Number(x)
+    if (cdRMZOverlaps.includes(cd)) {
+        document.getElementById('message3').innerHTML = 'This might be in an RMZ'
+        overlap = true
+        checkRMZs(x)
+    } else {
+        document.getElementById('message3').innerHTML = 'Not an RMZ'
+        overlap = false
+    }
+}
 
-function checkRMZs() {
+
+async function checkRMZs(x) {
+    console.log('You are in CD ' + x)
     console.log('We will now check to see if you are in an RMZ...')
+    await getGeoJSON(RMZgeojson)
 
-    getGeoJSON(RMZgeojson)
+    for (let i = 0; i < geojsonData.features.length; i++) {
+        console.log(i)
+        // Loop through all the nested polygons
 
-    console.log(geojsonData)
+        // and eventually test a polygon
 
+        // and, if you ARE in an RMZ, then, show the RMZ (...and remove the CD?)
+    }
 }
 
 /*
@@ -210,7 +237,26 @@ function getGeoJSON(x) {
 }
 
 
-// THIS IS THE POINT-IN-POLYGON CODE
+function swapFirstAndSecond(arrays) {
+    // Iterate over each sub-array
+    return arrays.map(subArray => {
+      // Swap the first and second elements
+      return [subArray[1], subArray[0]];
+    });
+  }
+  
+  // Example usage:
+  const inputArray = [
+    [40.73132318800003, -73.98247017299997],
+    [40.73135843700004, -73.98255770399999],
+    [40.731419548000076, -73.98238769799997],
+    [40.73150619300003, -73.98232423699994]
+  ];
+  
+  const outputArray = swapFirstAndSecond(inputArray);
+  // console.log(outputArray);
+
+  // THIS IS THE POINT-IN-POLYGON CODE
 /*
     Point-in-polygon requires polygons formatted as:
         [
@@ -387,50 +433,3 @@ function originalPointInPolygon() {
 }
 
 
-//----------------------- CODE TO DEVELOP -----------------------//
-/*
-Here's how this works:
-- 
-
-
-
-  - Put a basic geocoder on the map (insert address, drop a pin)
-
-  - Store GeoJSONS offsite, ingest them
-
-  - Run code that loops through RMZ and CD geojson, and extracts each polygon
-
-      rmz.features[0].geometry.coordinates[0]
-      loop through rmz.features[x],
-        and loop through rmz.features[x].geometry.coordinates[y]
-        var name = rmz.features[x].properties.Label
-        if polygon.contains(point.getLatLng()), then var in = true, and print name to page.
-      after loops, if in /= true, then, loop through CDs.
-
-      Alternatively, you can loop through CDs first.
-      If it's in one of the CDs that overlaps an RMZ, then you can run an RMZ loop. 
-
-  - Build a function that runs a point through all of those polygons
-  - Stop if it's in one thing, and return aspects of that polygon... (info about it?)
-*/
-
-
-
-function swapFirstAndSecond(arrays) {
-    // Iterate over each sub-array
-    return arrays.map(subArray => {
-      // Swap the first and second elements
-      return [subArray[1], subArray[0]];
-    });
-  }
-  
-  // Example usage:
-  const inputArray = [
-    [40.73132318800003, -73.98247017299997],
-    [40.73135843700004, -73.98255770399999],
-    [40.731419548000076, -73.98238769799997],
-    [40.73150619300003, -73.98232423699994]
-  ];
-  
-  const outputArray = swapFirstAndSecond(inputArray);
-  // console.log(outputArray);
