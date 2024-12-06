@@ -1,13 +1,6 @@
 //----------------------- CODE TO DEVELOP -----------------------//
 /*
-Here's how this works:
-- Form submission -> Marker, point, lat/long
-- Details -> Check to see if it's in NYC (isInNYC), and if so, checks county (checkCounty)
-
-- Does it make sense to write a generalizeable function to test a point against an area? Or would that be harder to make sequential?
-
 - Consider making more robust error messages
-
 */
 
 
@@ -62,7 +55,10 @@ function resetZoom() {
 // Initialize the geocoder
 const geocoder = L.Control.Geocoder.nominatim();
 
-// Form submission handler
+
+//---------- 
+// Form submission handler - geocoding initialized here
+//---------- 
 document.getElementById('geocode-form').addEventListener('submit', function(e) {
     e.preventDefault(); // Prevent form from reloading the page
 
@@ -104,7 +100,9 @@ document.getElementById('geocode-form').addEventListener('submit', function(e) {
     });
 });
 
-// Report if address is or is not in NYC
+//---------- 
+// First checks to ensure point is in NYC.
+//---------- 
 function isInNYC(x) {
     if (x === 'New York') {
         console.log('Yes, it is a NYC address')
@@ -119,7 +117,9 @@ function isInNYC(x) {
    }
 }
 
-// If address is in NYC, check to see what county it is in:
+//---------- 
+// from isInNYC, checks the point's county:
+//---------- 
 function checkCounty(y) {
     console.log('County checking for location: ', y)
     if (y.includes('New York County')) {countyID = 1} 
@@ -131,7 +131,10 @@ function checkCounty(y) {
     countyID ? checkCDs(countyID) : console.log('Could not ID county; stopping geocoding')
 }
 
-// With county information check to see what Community District it's in:
+
+//---------- 
+// With county information check to see what Community District the point is in:
+//---------- 
 async function checkCDs(x) {
     // First, remove any existing layers
     mapLayers.forEach(layer => map.removeLayer(layer)) // remove CD layer
@@ -178,10 +181,8 @@ async function checkCDs(x) {
                          checkOverlap(cdCode)
                          break; // stop the loop
                      }
-
                 }
             }
-
         } 
     }
 
@@ -189,6 +190,9 @@ async function checkCDs(x) {
 
 }
 
+//---------- 
+// From CD geocoder, checks overlap array to see if point is in an RMZ-adjacent/overlapping CD
+//---------- 
 var overlap
 function checkOverlap(x) {
     var cd = Number(x)
@@ -202,7 +206,9 @@ function checkOverlap(x) {
     }
 }
 
-
+//---------- 
+// From CD geocoder, checks RMZ geojson for parent polygons. Note: separate loops for type: Polygon and type: MultiPolygon
+//---------- 
 async function checkRMZs(x) {
     console.log('You are in CD ' + x)
     console.log('We will now check to see if you are in an RMZ...')
@@ -250,13 +256,9 @@ async function checkRMZs(x) {
     }
 }
 
-/*
-    cdRMZOverlaps:
-    - Manhattan: CDs 2, 3, 7, 9, 10, 11, 12
-    - Bronx: CDs 1 3 4 5 7
-    - Brooklyn: CDs 3, 4, 8
-*/
-
+//---------- 
+// retrieves geoJSON files
+//---------- 
 
 function getGeoJSON(x) {
     return new Promise((resolve, reject) => {
@@ -280,6 +282,10 @@ function getGeoJSON(x) {
     });
 }
 
+//---------- 
+// Point re-formatter
+//---------- 
+
 function swapFirstAndSecond(arrays) {
     // Iterate over each sub-array
     return arrays.map(subArray => {
@@ -288,148 +294,12 @@ function swapFirstAndSecond(arrays) {
     });
   }
   
-  // Example usage:
-  const inputArray = [
-    [40.73132318800003, -73.98247017299997],
-    [40.73135843700004, -73.98255770399999],
-    [40.731419548000076, -73.98238769799997],
-    [40.73150619300003, -73.98232423699994]
-  ];
-  
-  const outputArray = swapFirstAndSecond(inputArray);
-  // console.log(outputArray);
 
-  // THIS IS THE POINT-IN-POLYGON CODE
-/*
-    Point-in-polygon requires polygons formatted as:
-        [
-            [long, lat],
-            [long, lat],
-            etc
-        ]
-    ...but runs with points formatted (lat, long)
 
-*/
-function pointInPolygon() {
-    var polygon = L.polygon( // this is part of RMZ EV/Chinatown
-        [
-            [40.73132318800003, -73.98247017299997],
-            [40.73135843700004, -73.98255770399999],
-            [40.731419548000076, -73.98238769799997],
-            [40.73150619300003, -73.98232423699994],
-            [40.73199086400007, -73.98196923199998],
-            [40.73203861700006, -73.98207584299996],
-            [40.73270701000007, -73.98364739199997],
-            [40.73304155900007, -73.98444206799996],
-            [40.73338068000004, -73.98524341599995],
-            [40.73398650000007, -73.98668122199996],
-            [40.73466730700005, -73.98828741599993],
-            [40.73535764600007, -73.98991831399996],
-            [40.73528377000008, -73.98993480399997],
-            [40.73520940900005, -73.98994694499999],
-            [40.73513471100006, -73.98995471099994],
-            [40.73505982200004, -73.98995808899997],
-            [40.734984893000046, -73.98995707199998],
-            [40.73491007400003, -73.98995166099996],
-            [40.73444309400003, -73.98990437399993],
-            [40.73353541800003, -73.98986993499994],
-            [40.732764588000066, -73.99002828999994],
-            [40.732004638000035, -73.99021332299998],
-            [40.73129682700005, -73.99039151399995],
-            [40.73174646200005, -73.99146112499994],
-            [40.73117460100008, -73.99192211099995],
-            [40.73059951500005, -73.99240904999994],
-            [40.730040925000026, -73.99108111099997],
-            [40.72988699000007, -73.99072671699997],
-            [40.72974913400003, -73.99075869799998],
-            [40.729150599000036, -73.99093194899996],
-            [40.72857626900003, -73.99112397999994],
-            [40.72779077300004, -73.99136010499996],
-            [40.727568087000066, -73.99136529899994],
-            [40.72756804100004, -73.99136531899995],
-            [40.72709777500006, -73.99154974699997],
-            [40.72709772800005, -73.99154976399996],
-            [40.726399763000074, -73.99179521399998],
-            [40.72639971600006, -73.99179522999998],
-            [40.72565074700003, -73.99206308799995],
-            [40.72565070100006, -73.99206310499994],
-            [40.72523959400007, -73.99221113099998],
-            [40.72523954800005, -73.99221114699998],
-            [40.72491653600008, -73.99232784199995],
-            [40.724916489000066, -73.99232785799995],
-            [40.72420985800005, -73.99258129499998],
-            [40.724209812000026, -73.99258131099998],
-            [40.724144753000076, -73.99260464299994],
-            [40.72414470700005, -73.99260465999998],
-            [40.72406516800004, -73.99263396399994],
-            [40.723600841000064, -73.99280504199999],
-            [40.72282739900004, -73.99309000699998],
-            [40.72236161200004, -73.99326056799998],
-            [40.72163999400004, -73.99352439499995],
-            [40.720944744000064, -73.99379668799997],
-            [40.72033131200004, -73.99403640699995],
-            [40.71952739000005, -73.99437887299996],
-            [40.71939960000003, -73.99442259199998],
-            [40.71846572700008, -73.99480920399998],
-            [40.717287543000054, -73.99543017299999],
-            [40.71760446400003, -73.99632861599997],
-            [40.71787791700007, -73.99710964999997],
-            [40.71816699200008, -73.99793191399993],
-            [40.71845266200006, -73.99875392399997],
-            [40.718688575000044, -73.99942471999998],
-            [40.71802539500004, -73.99995762499998],
-            [40.71762770200007, -74.00027585199996],
-            [40.71693800800006, -74.00081984199994],
-            [40.71639989500005, -74.00121228699999],
-            [40.715752423000026, -74.00168447799996],
-            [40.715751354000076, -74.00168526599998],
-            [40.715167215000065, -74.00211597299995],
-            [40.714795743000025, -74.00131510099999],
-            [40.71476910600006, -74.00126057799997],
-            [40.71451865300003, -74.00074793899995],
-            [40.714373366000075, -74.00045608399995],
-            [40.71437330400005, -74.00045607199996],
-            [40.71327155400007, -74.00093316499994],
-            [40.71327151000003, -74.00093319099994],
-            [40.713023356000065, -74.00089255999995],
-            [40.71170522400007, -74.00087421099994],
-            [40.71170522700004, -74.00087417799995],
-            [40.711576458000025, -74.00086923099997],
-            [40.71144695500004, -74.00084103999995],
-            [40.71132040700007, -74.00078942899995],
-            [40.711200432000055, -74.00071551199994],
-            [40.71109028300003, -74.00062166599997],
-            [40.71099256800005, -74.00051127599994],
-            [40.71079610100003, -74.00066508499998],
-            [40.710682130000066, -74.00075430899994],
-            [40.71048613000005, -74.00090775199999],
-            [40.71036232900008, -74.00100466899994],
-            [40.71018426300003, -74.00113788299996],
-            [40.70985017000004, -74.00065548599997],
-            [40.70946789800007, -74.00012459799996],
-            [40.70877410200006, -73.99928276799994],
-            [40.70886951800003, -73.99865262699996],
-            [40.70892947300007, -73.99802073899997],
-            [40.709212867000076, -73.99606275599996],
-            [40.709290330000044, -73.99608388799999],
-            [40.70952122500006, -73.99614688599996],
-            [40.70958049400008, -73.99616305899997],
-            [40.709782104000055, -73.99621806799996],
-            [40.70986533400003, -73.99623890699996],
-            [40.70991720300003, -73.99625189399995],
-            [40.71022726700005, -73.99632952999997],
-            [40.71024295800004, -73.99621244399998],
-            [40.71029530200008, -73.99616536999998],
-            [40.71048099100003, -73.99606267899995],
-            [40.71066630200007, -73.99597313499995]
-          ]
-    ).addTo(map);
-      var m1 = L.marker([40.7193178,-73.9915172]); // 53 Delancey- should return true for the RMZ above.
-      m1.addTo(map)
-      console.log(m1.getLatLng())
-      console.log(polygon.contains(m1.getLatLng()));
-}
-
+//----------  
+// Ray casting algorithm: this works, but we're not using it.
+// https://stackoverflow.com/questions/31790344/determine-if-a-point-reside-inside-a-leaflet-polygon
+//----------  
 
 function isMarkerInsidePolygon(marker, poly) {
     console.log('**isMarkerInsidePolygon**')
@@ -453,6 +323,9 @@ function isMarkerInsidePolygon(marker, poly) {
     }
 };
 
+//---------- 
+// Point In Polygon: https://github.com/hayeswise/Leaflet.PointInPolygon
+//---------- 
 
 function originalPointInPolygon() {
     var polygon = L.polygon([
@@ -475,4 +348,8 @@ function originalPointInPolygon() {
       // ==> true
 }
 
-
+/*
+Note that geojson formats the points [lat, long], but pointInPolygon (and leaflet polygons) run on [long, lat].
+Points/markers are also formatted [lat, long].
+We run the polygons through `swapFirstAndSecond()` to reverse the order, so that we can use it to define polygons we can add to Leaflet. 
+*/
