@@ -25,6 +25,8 @@ var county;
 var cdRMZOverlaps = [102,103,107,109,110,111,112,201,203,204,205,207,303,304,308]
 var success;
 var thisArea = []
+var mapLayers = []
+var mapMarkers = []
 
 // Initialize the map
 const map = L.map('map').setView([40.7722226,-73.9638235],11);
@@ -72,6 +74,9 @@ document.getElementById('geocode-form').addEventListener('submit', function(e) {
         const { center, name, html } = results[0];
         map.setView(center, 13); // Update map to the result location
 
+        // Remove prior markers
+        mapMarkers.forEach(marker => map.removeLayer(marker))
+
         // Add a marker
         L.marker(center).addTo(map)
         .bindPopup(html)
@@ -89,6 +94,7 @@ document.getElementById('geocode-form').addEventListener('submit', function(e) {
         city = results[0].properties.address.city
         if (isInNYC(city) === true) {
             console.log('City is true, now check county')
+            document.getElementById('formDisable').disabled = true
             checkCounty(results[0].properties.display_name)
         } 
 
@@ -127,6 +133,10 @@ function checkCounty(y) {
 
 // With county information check to see what Community District it's in:
 async function checkCDs(x) {
+    // First, remove any existing layers
+    mapLayers.forEach(layer => map.removeLayer(layer)) // remove CD layer
+    mapMarkers.forEach(marker => map.removeLayer(marker))
+
     console.log('County ID:', x)
     console.log('We will now check to see what CD this is in.')
     await getGeoJSON(CDgeojson); // load geoJSON
@@ -153,6 +163,8 @@ async function checkCDs(x) {
 
                     let area     = L.polygon(thisArea)
                     let location    = L.marker(inputLatLong)
+                    mapMarkers.push(location)   // add point to array
+                    mapLayers.push(area)        // add area to map layers array
 
                     // one approach (currently redundant, but works)
                     // isMarkerInsidePolygon(location,area)
@@ -160,7 +172,7 @@ async function checkCDs(x) {
                     // another approach
                     if (area.contains(location.getLatLng())) {
                          console.log('This address is in CD ', cdCode)
-                         document.getElementById('message2').innerHTML = 'This address is in CD ' + cdCode
+                         document.getElementById('message2').innerHTML = 'This address is in CD ' + cdCode + "."
                          success = true
                          area.addTo(map)
                          checkOverlap(cdCode)
@@ -181,11 +193,11 @@ var overlap
 function checkOverlap(x) {
     var cd = Number(x)
     if (cdRMZOverlaps.includes(cd)) {
-        document.getElementById('message3').innerHTML = 'This might be in an RMZ'
+        document.getElementById('message3').innerHTML = 'This might be in an RMZ...'
         overlap = true
         checkRMZs(x)
     } else {
-        document.getElementById('message3').innerHTML = 'Not an RMZ'
+        document.getElementById('message3').innerHTML = 'This is not an RMZ.'
         overlap = false
     }
 }
@@ -197,12 +209,44 @@ async function checkRMZs(x) {
     await getGeoJSON(RMZgeojson)
 
     for (let i = 0; i < geojsonData.features.length; i++) {
-        console.log(i)
-        // Loop through all the nested polygons
+        // console.log(i)
 
-        // and eventually test a polygon
-
-        // and, if you ARE in an RMZ, then, show the RMZ (...and remove the CD?)
+        // Loop through all the nested multipolygons
+        if (geojsonData.features[i].geometry.type === "MultiPolygon") {
+            for (let j = 0; j < geojsonData.features[i].geometry.coordinates.length; j++) {
+                for (let k = 0; k < geojsonData.features[i].geometry.coordinates[j].length; k++) {
+                    thisArea = geojsonData.features[i].geometry.coordinates[j][k];
+                    thisArea     = swapFirstAndSecond(thisArea)
+                    let area     = L.polygon(thisArea)
+                    let location = L.marker(inputLatLong)
+                    if (area.contains(location.getLatLng())) {
+                        console.log('This address is RMZ ', geojsonData.features[i].properties.Label)
+                        document.getElementById('message4').innerHTML = 'This IS in an RMZ: ' + geojsonData.features[i].properties.Label + " RMZ."
+                        success = true
+                        mapLayers.forEach(layer => map.removeLayer(layer)) // remove CD layer
+                        area.addTo(map) // add RMZ layer
+                        break; // stop the loop
+                    }
+                }
+            }
+        } 
+        // and nested polygons
+        else if (geojsonData.features[i].geometry.type === "Polygon") {
+            console.log(geojsonData.features[i], geojsonData.features[i].geometry.type)
+            for (let j = 0; j < geojsonData.features[i].geometry.coordinates.length; j++) {
+                thisArea = geojsonData.features[i].geometry.coordinates[j];
+                thisArea     = swapFirstAndSecond(thisArea)
+                let area     = L.polygon(thisArea)
+                let location = L.marker(inputLatLong)
+                if (area.contains(location.getLatLng())) {
+                    console.log('This address is RMZ ', geojsonData.features[i].properties.Label)
+                    document.getElementById('message4').innerHTML = 'This IS in an RMZ: ' + geojsonData.features[i].properties.Label + " RMZ"
+                    success = true
+                    area.addTo(map)
+                    break; // stop the loop
+                }       
+            }
+        }
     }
 }
 
@@ -235,7 +279,6 @@ function getGeoJSON(x) {
         });
     });
 }
-
 
 function swapFirstAndSecond(arrays) {
     // Iterate over each sub-array
