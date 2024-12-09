@@ -217,7 +217,7 @@ var specOne = {
         "type": "temporal",
         "title": "",
         "axis": {
-          "values": [1656561600000,1672462800000,1688097600000,1703998800000], // Add time intervals to specify ticks
+          "values": [1656561600000,1672462800000,1688097600000,1703998800000,1719705600000], // Add time intervals to specify ticks
           "format": "%b %Y"},
         "scale": {"domainMin": 1650841000000} // use this to pad trend start from the left border
       }
@@ -338,7 +338,7 @@ var specTwo = {
         "type": "temporal",
         "title": "",
         "axis": {
-          "values": [1656561600000,1672462800000,1688097600000,1703998800000],
+          "values": [1656561600000,1672462800000,1688097600000,1703998800000,1719705600000],
           "format": "%b %Y"},
         "scale": {"domainMin": 1650841000000}
       }
@@ -457,7 +457,7 @@ var specThree = {
       "type": "temporal",
       "title": "",
       "axis": {
-        "values": [1656561600000,1672462800000,1688097600000,1703998800000],
+        "values": [1656561600000,1672462800000,1688097600000,1703998800000,1719705600000],
         "format": "%b %Y"},
       "scale": {"domainMin": 1650841000000}
     }
@@ -574,7 +574,7 @@ specFour = {
       "type": "temporal",
       "title": "",
       "axis": {
-        "values": [1656561600000,1672462800000,1688097600000,1703998800000],
+        "values": [1656561600000,1672462800000,1688097600000,1703998800000,1719705600000],
         "format": "%b %Y"},
       "scale": {"domainMin": 1650841000000}
     }
