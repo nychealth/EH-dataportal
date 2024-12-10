@@ -18,10 +18,10 @@ image: rmz-ss.png
 related:
   - title: "Why trash is a public health issue"
     url: "data-stories/sanitation/"
-  - title: "Housing creates health"
-    url: "data-stories/housing-creates-health/"
-  - title: "Heat Vulnerability Index"
-    url: "data-explorer/mice-and-rats/?id=24#display=summary"
+  - title: "Rat Information Portal"
+    url: "data-features/rat-information-portal/"
+  - title: "Data: Mice and rats"
+    url: "data-explorer/mice-and-rats/?id=2434#display=summary"
 ---
 
 Rats can contaminate food, spread disease and reduce our quality of life. Rat Mitigation Zones (RMZ) are areas with high levels of rat activity, where City agencies focus resources to address rats and the conditions that support them.
