@@ -64,6 +64,13 @@ But transit’s benefits are more than economic:
 
 **Transit is vital for an equitable city**: a strong public transit system supports working New Yorkers, especially those with lower incomes. [Over 60% of low-income residents in the Bronx, Brooklyn, Queens and Staten Island rely on public transit to get to work](https://www.cssny.org/news/entry/congestion-pricing-outer-borough-new-yorkers-poverty-data-analysis). At a neighborhood level, access to public transit means access to economic opportunity and translates to lower unemployment. Expanding NYC’s transit network can help address long-term disinvestment in some NYC neighborhoods. And an equitable transit system must be accessible to all, since 1 out of every 8 New York City residents has a mobility impairment.
 
+<div class="card card-left-border shadow-sm">
+    <div class="card-body">
+        <p>To help with affordability, <a href="https://www.nyc.gov/site/fairfares/index.page">low-income New Yorkers can apply for a half-price MetroCard through the Fair Fares program</a>.</p>
+    </div>
+  </div>
+<br>
+
 ## Public transit can save your life
 
 Typically, [about twice as many New Yorkers walk or bike for transportation, compared to those who drive cars](../../data-explorer/walking-driving-and-cycling/?id=2236#display=summary). That time walking or cycling is associated with [decreases in mortality](https://link.springer.com/article/10.1007/s11524-020-00510-1). This is good news for health!
