@@ -20,6 +20,8 @@ var success;
 var thisArea = []
 var mapLayers = []
 var mapMarkers = []
+var cdData;
+var rmzData;
 
 // Initialize the map
 const map = L.map('map').setView([40.7722226,-73.9638235],11);
@@ -211,6 +213,9 @@ function checkOverlap(x) {
 //---------- 
 async function checkRMZs(x) {
     console.log('You are in CD ' + x)
+
+        // Here's where we can get CD Inspection Data.
+
     console.log('We will now check to see if you are in an RMZ...')
     await getGeoJSON(RMZgeojson)
 
@@ -228,6 +233,9 @@ async function checkRMZs(x) {
                     if (area.contains(location.getLatLng())) {
                         console.log('This address is RMZ ', geojsonData.features[i].properties.Label)
                         document.getElementById('message4').innerHTML = 'This IS in an RMZ: ' + geojsonData.features[i].properties.Label + " RMZ."
+
+                            // Here's where we can get RMZ Inspection Data.
+
                         success = true
                         mapLayers.forEach(layer => map.removeLayer(layer)) // remove CD layer
                         area.addTo(map) // add RMZ layer
@@ -294,6 +302,95 @@ function swapFirstAndSecond(arrays) {
     });
   }
   
+//---------- 
+// Retrieve indicators
+//---------- 
+
+function getIndicatorData(x) {
+    const URL = 'https://raw.githubusercontent.com/nychealth/EHDP-data/refs/heads/production/indicators/data/' + x + '.json';
+    
+    // Takes IndicatorID: Rat Inspections (CD) - 2434; in RMZs, 2433
+    return new Promise((resolve, reject) => {
+        fetch(URL)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json(); // Parse data
+            })
+            .then(data => {
+                // REFORMAT DATA
+                const keys = Object.keys(data);
+                const numRows = data[keys[0]].length; // Assuming all arrays are the same length
+                
+                const reformattedData = Array.from({ length: numRows }, (_, i) => {
+                    return keys.reduce((obj, key) => {
+                        obj[key] = data[key][i];
+                        return obj;
+                    }, {});
+                });
+
+                // console.log('Reformatted Data:', reformattedData);
+                resolve(reformattedData); // Resolve the promise with reformatted data
+            })
+            .catch(error => {
+                console.error('Error fetching the Indicator data:', error);
+                reject(error); // Reject the promise if there’s an error
+            });
+    });
+}
+
+
+getIndicatorData(2434)
+    .then(cdData => {
+        console.log('cdData:', cdData);
+        // Filter the cdData here
+        cdData = cdData.filter(entry => entry.GeoType === "CD");
+        console.log('Filtered Data:', cdData);
+
+        // Get most recent data
+        const maxTimePeriodID = Math.max(...cdData.map(item => item.TimePeriodID));
+        cdData = cdData.filter(item => item.TimePeriodID === maxTimePeriodID);
+        console.log('Most recent data,', cdData)
+
+        /* Metadata
+        "MeasureID": 1381,
+        "MeasureName": "Rat inspections, Percent of properties inspected",
+        ---
+        "MeasureID": 1382,
+        "MeasureName": "Rat inspections, Failed (any reason)",
+        ---
+        "MeasureID": 1383,
+        "MeasureName": "Rat inspections, Failed (active rat signs)",
+        */
+
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+
+
+getIndicatorData(2433)
+    .then(rmzData => {
+        console.log('rmzData:', rmzData);
+        // Filter the rmzData here
+        const maxTimePeriodID = Math.max(...rmzData.map(item => item.TimePeriodID));
+        rmzData = rmzData.filter(item => item.TimePeriodID === maxTimePeriodID)
+
+        /*  Metadata
+        "MeasureID": 1378,
+        "MeasureName": "Rat indexing in Rat Mitigation Zones (RMZs), Number of properties inspected",
+        ---
+        "MeasureID": 1379,
+        "MeasureName": "Rat indexing in Rat Mitigation Zones (RMZs), Failed (any reason)",
+        ---
+        "MeasureID": 1380,
+        "MeasureName": "Rat indexing in Rat Mitigation Zones (RMZs), Failed (active rat signs)",
+        */
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
 
 
 //----------  
