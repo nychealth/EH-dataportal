@@ -20,8 +20,8 @@ var success;
 var thisArea = []
 var mapLayers = []
 var mapMarkers = []
-var cdData;
-var rmzData;
+var cdData = {};
+var rmzData = {};
 
 // Initialize the map
 const map = L.map('map').setView([40.7722226,-73.9638235],11);
@@ -343,15 +343,15 @@ function getIndicatorData(x) {
 
 getIndicatorData(2434)
     .then(cdData => {
-        console.log('cdData:', cdData);
+        // console.log('cdData:', cdData);
         // Filter the cdData here
         cdData = cdData.filter(entry => entry.GeoType === "CD");
-        console.log('Filtered Data:', cdData);
+        // console.log('Filtered CD Data:', cdData);
 
         // Get most recent data
         const maxTimePeriodID = Math.max(...cdData.map(item => item.TimePeriodID));
         cdData = cdData.filter(item => item.TimePeriodID === maxTimePeriodID);
-        console.log('Most recent data,', cdData)
+        console.log('Most recent CD data,', cdData)
 
         /* Metadata
         "MeasureID": 1381,
@@ -375,7 +375,8 @@ getIndicatorData(2433)
         console.log('rmzData:', rmzData);
         // Filter the rmzData here
         const maxTimePeriodID = Math.max(...rmzData.map(item => item.TimePeriodID));
-        rmzData = rmzData.filter(item => item.TimePeriodID === maxTimePeriodID)
+        rmzData = rmzData.filter(item => item.TimePeriodID === maxTimePeriodID);
+        console.log('most recent rmz data', rmzData)
 
         /*  Metadata
         "MeasureID": 1378,
