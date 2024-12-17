@@ -437,7 +437,9 @@ function retrieveIndicatorData(x,y) {
 
                 const propertiesInspected = dataForThis.find(item => item.MeasureID === 1378)
                 if (propertiesInspected) {
-                    document.getElementById('rmzpi').innerHTML = Number(propertiesInspected.Value).toFixed(0).toLocaleString()
+                    var num = Number(propertiesInspected.Value)
+                    num = num.toLocaleString()
+                    document.getElementById('rmzpi').innerHTML = num
                 }
 
                 const failedAny = dataForThis.find(item => item.MeasureID === 1379)
