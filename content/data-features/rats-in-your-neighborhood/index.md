@@ -26,7 +26,3 @@ Where are the rats in your neighborhood, and how do you find out what work is be
 
 To start, enter your address.
 
-Point In Polygon: https://github.com/hayeswise/Leaflet.PointInPolygon
-Nominatim: https://nominatim.org/ 
-Leaflet Control Geocoder: https://github.com/perliedman/leaflet-control-geocoder
-

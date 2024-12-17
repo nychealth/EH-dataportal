@@ -16,12 +16,14 @@ let countyID;
 var city;
 var county;
 var cdRMZOverlaps = [102,103,107,109,110,111,112,201,203,204,205,207,303,304,308]
-var success;
+var success = false;
+var isRMZ = false;
 var thisArea = []
 var mapLayers = []
 var mapMarkers = []
 var cdData = {};
 var rmzData = {};
+
 
 // Initialize the map
 const map = L.map('map').setView([40.7722226,-73.9638235],11);
@@ -90,9 +92,16 @@ document.getElementById('geocode-form').addEventListener('submit', function(e) {
 
         // check if it's an NYC address, and if it is, check to see what county it is.
         city = results[0].properties.address.city
+
+        document.getElementById('initialReadout').classList.remove('hide')
+
         if (isInNYC(city) === true) {
+            
             console.log('City is true, now check county')
-            document.getElementById('formDisable').disabled = true
+            document.getElementById('address').disabled = true
+            document.getElementById('submitButton').classList.add('hide')
+            document.getElementById('resetButton').classList.remove('hide')
+
             checkCounty(results[0].properties.display_name)
         } 
 
@@ -105,15 +114,15 @@ document.getElementById('geocode-form').addEventListener('submit', function(e) {
 //---------- 
 // First checks to ensure point is in NYC.
 //---------- 
-function isInNYC(x) {
+function isInNYC(x) {    
     if (x === 'New York') {
         console.log('Yes, it is a NYC address')
-        document.getElementById('message1').innerHTML = 'This is a NYC address.'
+        document.getElementById('message1').innerHTML = '<i class="fas fa-check-circle mr-1" aria-hidden="true"></i>This is a NYC address.'
         // checkCDs(countyID) // checks to see what CD this address is in
         return true;
    } else {
         console.log('No, it is not an NYC address')
-        document.getElementById('message1').innerHTML = 'This address is not in NYC. Please try again.'
+        document.getElementById('message1').innerHTML = '<i class="fas fa-exclamation-circle mr-1" aria-hidden="true"></i>This address is not in NYC. Please try again.'
         alert('This address is not an NYC address - please try again.')
         return false;
    }
@@ -177,7 +186,7 @@ async function checkCDs(x) {
                     // another approach
                     if (area.contains(location.getLatLng())) {
                          console.log('This address is in CD ', cdCode)
-                         document.getElementById('message2').innerHTML = 'This address is in CD ' + cdCode + "."
+                         document.getElementById('message2').innerHTML = '<i class="fas fa-map-marker-alt mr-1" aria-hidden="true"></i>This address is in CD ' + cdCode + "."
                          success = true
                          area.addTo(map)
                          checkOverlap(cdCode)
@@ -203,8 +212,11 @@ function checkOverlap(x) {
         overlap = true
         checkRMZs(x)
     } else {
-        document.getElementById('message3').innerHTML = 'This is not an RMZ.'
+        document.getElementById('message4').innerHTML = 'This is not a Rat Mitigation Zone.'
         overlap = false
+        document.getElementById('notAnRMZ').classList.remove('hide')
+        retrieveIndicatorData('cd',cd)
+        showRIPLink()
     }
 }
 
@@ -213,9 +225,6 @@ function checkOverlap(x) {
 //---------- 
 async function checkRMZs(x) {
     console.log('You are in CD ' + x)
-
-        // Here's where we can get CD Inspection Data.
-
     console.log('We will now check to see if you are in an RMZ...')
     await getGeoJSON(RMZgeojson)
 
@@ -232,11 +241,11 @@ async function checkRMZs(x) {
                     let location = L.marker(inputLatLong)
                     if (area.contains(location.getLatLng())) {
                         console.log('This address is RMZ ', geojsonData.features[i].properties.Label)
-                        document.getElementById('message4').innerHTML = 'This IS in an RMZ: ' + geojsonData.features[i].properties.Label + " RMZ."
-
-                            // Here's where we can get RMZ Inspection Data.
-
-                        success = true
+                        document.getElementById('message4').innerHTML = '<i class="fas fa-city mr-1" aria-hidden="true"></i>This address is in the <strong>' + geojsonData.features[i].properties.Label + " Rat Mitigation Zone</strong>."
+                        document.getElementById('inAnRMZ').classList.remove('hide')
+                        retrieveIndicatorData('rmz',geojsonData.features[i].id)
+                        isRMZ = true
+                        showRIPLink()
                         mapLayers.forEach(layer => map.removeLayer(layer)) // remove CD layer
                         area.addTo(map) // add RMZ layer
                         break; // stop the loop
@@ -246,21 +255,29 @@ async function checkRMZs(x) {
         } 
         // and nested polygons
         else if (geojsonData.features[i].geometry.type === "Polygon") {
-            console.log(geojsonData.features[i], geojsonData.features[i].geometry.type)
             for (let j = 0; j < geojsonData.features[i].geometry.coordinates.length; j++) {
                 thisArea = geojsonData.features[i].geometry.coordinates[j];
                 thisArea     = swapFirstAndSecond(thisArea)
                 let area     = L.polygon(thisArea)
                 let location = L.marker(inputLatLong)
                 if (area.contains(location.getLatLng())) {
-                    console.log('This address is RMZ ', geojsonData.features[i].properties.Label)
-                    document.getElementById('message4').innerHTML = 'This IS in an RMZ: ' + geojsonData.features[i].properties.Label + " RMZ"
-                    success = true
+                    console.log('This address is RMZ ', geojsonData.features[i].properties)
+                    document.getElementById('message4').innerHTML = '<i class="fas fa-city mr-1" aria-hidden="true"></i>This address is in the <strong>' + geojsonData.features[i].properties.Label + " Rat Mitigation Zone</strong>."
+                    document.getElementById('inAnRMZ').classList.remove('hide')
+                    retrieveIndicatorData('rmz',geojsonData.features[i].id)
+                    isRMZ = true
+                    showRIPLink()
                     area.addTo(map)
                     break; // stop the loop
-                }       
+                }     
             }
         }
+    }
+
+    if (isRMZ === false) {
+        console.log('This address is near but not an RMZ')
+        document.getElementById('message4').innerHTML = '<i class="fas fa-city mr-1" aria-hidden="true"></i>You are near a Rat Mitigation Zone.'
+        retrieveIndicatorData('cd',x)
     }
 }
 
@@ -280,7 +297,7 @@ function getGeoJSON(x) {
         })
         .then(data => {
             geojsonData = data; // Store the GeoJSON data in a global variable
-            console.log('GeoJSON data loaded:', geojsonData);
+            console.log('GeoJSON data loaded.');
             resolve(); // Resolve the promise when the data is ready
         })
         .catch(error => {
@@ -338,61 +355,117 @@ function getIndicatorData(x) {
                 reject(error); // Reject the promise if there’s an error
             });
     });
+
+}
+
+function showRIPLink() {
+    document.getElementById('RIP').classList.remove('hide')
 }
 
 
-getIndicatorData(2434)
-    .then(cdData => {
-        // console.log('cdData:', cdData);
-        // Filter the cdData here
-        cdData = cdData.filter(entry => entry.GeoType === "CD");
-        // console.log('Filtered CD Data:', cdData);
 
-        // Get most recent data
-        const maxTimePeriodID = Math.max(...cdData.map(item => item.TimePeriodID));
-        cdData = cdData.filter(item => item.TimePeriodID === maxTimePeriodID);
-        console.log('Most recent CD data,', cdData)
-
-        /* Metadata
-        "MeasureID": 1381,
-        "MeasureName": "Rat inspections, Percent of properties inspected",
-        ---
-        "MeasureID": 1382,
-        "MeasureName": "Rat inspections, Failed (any reason)",
-        ---
-        "MeasureID": 1383,
-        "MeasureName": "Rat inspections, Failed (active rat signs)",
-        */
-
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
+// INGEST AND FILTER RMZ DATA
 
 
-getIndicatorData(2433)
-    .then(rmzData => {
-        console.log('rmzData:', rmzData);
-        // Filter the rmzData here
-        const maxTimePeriodID = Math.max(...rmzData.map(item => item.TimePeriodID));
-        rmzData = rmzData.filter(item => item.TimePeriodID === maxTimePeriodID);
-        console.log('most recent rmz data', rmzData)
+//----------  
+// Retrieve indicator data for geocoded area.
+// x is geotype, and y is geoID
+//----------  
+function retrieveIndicatorData(x,y) {
+    console.log('Retrieve Indicator Data:', x, y)
+    if (x === 'cd') {
+        // For community districts
+        cdData = getIndicatorData(2434)
+            .then(data => {
+                // console.log('cdData:', cdData);
+                // Filter the cdData here
+                cdData = data.filter(entry => entry.GeoType === "CD");
+                // console.log('Filtered CD Data:', cdData);
 
-        /*  Metadata
-        "MeasureID": 1378,
-        "MeasureName": "Rat indexing in Rat Mitigation Zones (RMZs), Number of properties inspected",
-        ---
-        "MeasureID": 1379,
-        "MeasureName": "Rat indexing in Rat Mitigation Zones (RMZs), Failed (any reason)",
-        ---
-        "MeasureID": 1380,
-        "MeasureName": "Rat indexing in Rat Mitigation Zones (RMZs), Failed (active rat signs)",
-        */
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
+                // Get most recent data
+                const maxTimePeriodID = Math.max(...cdData.map(item => item.TimePeriodID));
+                cdData = cdData.filter(item => item.TimePeriodID === maxTimePeriodID);
 
+                // filter for this CD:
+                const dataForThis = cdData.filter(item => item.GeoID === y)
+                console.log('Most recent data for this CD:', dataForThis)
+
+                // document.getElementById('cdpi').innerHTML
+                const propertiesInspected = dataForThis.find(item => item.MeasureID === 1381)
+                if (propertiesInspected) {
+                    document.getElementById('cdpi').innerHTML = Number(propertiesInspected.Value).toFixed(2)
+                }
+
+                const percentFailed = dataForThis.find(item => item.MeasureID === 1382)
+                if (percentFailed) {
+                    document.getElementById('cdpf').innerHTML = Number(percentFailed.Value).toFixed(2)
+                }
+
+                const ars = dataForThis.find(item => item.MeasureID === 1383)
+                if (ars) {
+                    document.getElementById('cdars').innerHTML = Number(ars.Value).toFixed(2)
+                }
+
+                /* Metadata
+                "MeasureID": 1381,
+                "MeasureName": "Rat inspections, Percent of properties inspected",
+                ---
+                "MeasureID": 1382,
+                "MeasureName": "Rat inspections, Failed (any reason)",
+                ---
+                "MeasureID": 1383,
+                "MeasureName": "Rat inspections, Failed (active rat signs)",
+                */
+
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+
+    } else if (x === 'rmz') {
+        // for RMZs
+        rmzData = getIndicatorData(2433)
+            .then(rmzData => {
+                // console.log('rmzData:', rmzData);
+                // Filter the rmzData here
+                const maxTimePeriodID = Math.max(...rmzData.map(item => item.TimePeriodID));
+                rmzData = rmzData.filter(item => item.TimePeriodID === maxTimePeriodID);
+                console.log('most recent rmz data', rmzData)
+
+                // filter for this RMZ
+                const dataForThis = rmzData.filter(item => item.GeoID === y)
+
+                const propertiesInspected = dataForThis.find(item => item.MeasureID === 1378)
+                if (propertiesInspected) {
+                    document.getElementById('rmzpi').innerHTML = Number(propertiesInspected.Value).toFixed(0).toLocaleString()
+                }
+
+                const failedAny = dataForThis.find(item => item.MeasureID === 1379)
+                if (failedAny) {
+                    document.getElementById('rmzf').innerHTML = Number(failedAny.Value).toFixed(2)
+                }
+                
+                const failedARS = dataForThis.find(item => item.MeasureID === 1380)
+                if (failedARS) {
+                    document.getElementById('rmzars').innerHTML = Number(failedARS.Value).toFixed(2)
+                }
+
+                /*  Metadata
+                "MeasureID": 1378,
+                "MeasureName": "Rat indexing in Rat Mitigation Zones (RMZs), Number of properties inspected",
+                ---
+                "MeasureID": 1379,
+                "MeasureName": "Rat indexing in Rat Mitigation Zones (RMZs), Failed (any reason)",
+                ---
+                "MeasureID": 1380,
+                "MeasureName": "Rat indexing in Rat Mitigation Zones (RMZs), Failed (active rat signs)",
+                */
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+            }
+}
 
 //----------  
 // Ray casting algorithm: this works, but we're not using it.

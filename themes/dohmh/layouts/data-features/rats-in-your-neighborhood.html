@@ -1,6 +1,10 @@
 {{- define "main" -}}
 
-
+<style>
+    .monospace {
+    font-family: Monospace
+}
+</style>
 
 <article class="container-fluid" id="skip-header-target">
 
@@ -27,31 +31,34 @@
                 </div>
             </div>
 
-            <div class="row border-top mt-4 pt-2">
+            <div class="row mt-2 pt-2">
                 <div class="col-md-6">
                     <form id="geocode-form">
                         <fieldset id="formDisable" class="m-0 p-0" style="border:none;">
                         <input type="text" id="address" placeholder="Enter an address" style="width:80%;" required />
-                        <button type="submit" class="btn btn-outline-primary" style="width: 18%;">Search</button>
+                        <button type="submit" id="submitButton" class="btn btn-outline-primary" style="width: 18%;">Search</button>
+                        <button class="btn btn-outline-primary hide" style="width: 18%;" id="resetButton" onclick="resetZoom()">Reset</button>      
                         </fieldset>
                       </form>
 
                     <div id="map" class="border d-sm-none d-md-block mt-1">
                     </div>  
-                    <button class="btn btn-sm btn-outline-primary float-right mr-1" onclick="resetZoom()">Reset</button>      
+
                 </div>
 
                 <div class="col-md-6">
-                    <p><span id="message1"></span></p>
-                    <p><span id="message2"></span>&nbsp;<span id="message3"></span></p>
-                    <p><span id="message4"></span></p>
-                    <hr>
+                    <div id="initialReadout" class="p-1 mb-4 fs-sm monospace l-green-border hide">
+                            <p><span id="message1"></span></p>
+                            <p><span id="message2"></span>&nbsp;<span id="message3"></span></p>
+                            <p><span id="message4"></span></p>
+                    </div>
 
-                    <div id="notAnRMZ" class="hide">
-                        <p>This address is in <strong>CDXX</strong>. 
+                    <div id="notAnRMZ" class="l-green-border p-1 mb-4 hide">
+                        <p>In this Community District: 
                             <ul>
-                                <li>XXX% of properties inspected</li>
-                                <li>XXX% of properties inspected failed for active rat signs</li>
+                                <li><span id="cdpi" class="font-weight-bold">XX</span>% of properties were inspected for rats</li>
+                                <li><span id="cdpf" class="font-weight-bold">XX</span>% of those inspected failed</li>
+                                <li><span id="cdars" class="font-weight-bold">XX</span>% of those inspected failed for active rat signs</li>
                             </ul>
                         </p>
 
@@ -59,17 +66,19 @@
 
                     </div>
 
-                    <div id="inAnRMZ" class="hide">
+                    <div id="inAnRMZ" class="hide l-green-border mb-4 p-1">
                         <p>This address is <strong>in a Rat Mitigation Zone</strong>. These areas get inspected twice a year and get more work to fight rats. In this neighborhood:
                             <ul>
-                                <li>XXX% of properties inspected</li>
-                                <li>XXX% of properties inspected failed for active rat signs</li>
+                                <li><span id="rmzpi" class="font-weight-bold">XX</span> properties were inspected for rats</li>
+                                <li><span id="rmzf" class="font-weight-bold">XX</span>% of those inspected failed</li>
+                                <li><span id="rmzars" class="font-weight-bold">XX</span>% of those inspected failed for active rat signs</li>
                             </ul>
+                        <span class="fs-sm"><a href="">Get more data on Rat Mitigation Zones</a>.</span>
                     </p>
 
                     </div>
 
-                    <div id="RIP" class="hide">
+                    <div id="RIP" class="hide l-green-border p-1 mb-4">
                         <p>You can get your address's detailed inspection history at the <a href="">Rat Information Portal</a>.</p>
                     </div>
                 </div>
@@ -104,6 +113,13 @@
 
 <!--bring in rmz JS -->
 <script type="text/javascript" src="neighborhood-rats.js"></script>
+
+<!--
+ Resources:
+ - Point In Polygon:         https://github.com/hayeswise/Leaflet.PointInPolygon
+ - Nominatim:                https://nominatim.org/ 
+ - Leaflet Control Geocoder: https://github.com/perliedman/leaflet-control-geocoder
+-->
 
 
 {{- end -}}
