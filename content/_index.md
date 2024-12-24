@@ -7,5 +7,5 @@ description: "Data on how environments shape health in NYC."
 featured_title: "Public transit creates health"
 featured_text: "How investing in public transit makes all of us healthier."
 featured_link: "data-stories/public-transit-creates-health/"
-featured_image: "Bus_Brooklyn_.jpg"
+featured_image: "rmz.png"
 ---
