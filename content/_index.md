@@ -4,8 +4,8 @@ draft: false
 seo_title: "NYC Environment and Health Data Portal."
 seo_description: "Data on how environments shape health in NYC."
 description: "Data on how environments shape health in NYC."
-featured_title: "Public transit creates health"
-featured_text: "How investing in public transit makes all of us healthier."
-featured_link: "data-stories/public-transit-creates-health/"
+featured_title: "Rat Mitigation Zones"
+featured_text: "Map of RMZ complaints and rat control activity in NYC."
+featured_link: "data-stories/data-features/rat-mitigation-zones/"
 featured_image: "rmz.png"
 ---
