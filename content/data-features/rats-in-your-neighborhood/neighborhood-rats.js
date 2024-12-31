@@ -77,8 +77,15 @@ document.getElementById('geocode-form').addEventListener('submit', function(e) {
         // Remove prior markers
         mapMarkers.forEach(marker => map.removeLayer(marker))
 
+        let this_icon = L.colorIcon({
+            iconSize : [30, 30],
+            popupAnchor : [0, -15],
+            iconUrl: "images/map-marker.svg",
+            color: 'darkgray'
+        });
+
         // Add a marker
-        L.marker(center).addTo(map)
+        L.marker(center, {icon: this_icon, riseOnHover: true, riseOffset: 2000}).addTo(map)
         .bindPopup(html)
         .openPopup();
 
