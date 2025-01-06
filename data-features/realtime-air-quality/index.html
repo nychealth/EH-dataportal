@@ -828,7 +828,7 @@
     
     const date = new Date();
     let thisMonth = date.getMonth() + 1;
-    let availMonth = date.getMonth()
+    let availMonth = date.getMonth();
     let thisYear = date.getFullYear();
     
     
@@ -837,8 +837,8 @@
         var chosenYear
         var chosenMonth
         if (availMonth == 0) {
-            chosenYear = thisYear - 1
-            chosenMonth = 12
+            chosenYear = thisYear
+            chosenMonth = 1
             console.log('jan: ',chosenYear,chosenMonth)
         } else {
             chosenYear = thisYear
@@ -880,8 +880,8 @@
         } else {}
     
         
-        if (chosenYear == thisYear && chosenMonth > availMonth) {
-            alert('You cannot download data for present or future months. Please select a month in the past.')
+        if (chosenYear == thisYear && chosenMonth > thisMonth) {
+            alert('You cannot download data for future months.')
         } else {}
     
     }
