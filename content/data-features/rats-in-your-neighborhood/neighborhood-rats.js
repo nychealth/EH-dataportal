@@ -1,6 +1,9 @@
 //----------------------- CODE TO DEVELOP -----------------------//
 /*
+- Revise copy and actions
 - Consider making more robust error messages
+- Check edge cases - eg, 2-46 Adrian Avenue (Marble HIll). 
+- Consider failure modes based on county - loop through everything if there are failures? 
 */
 
 
