@@ -2,8 +2,7 @@
 /*
 - Revise copy and actions
 - Consider making more robust error messages
-- Check edge cases - eg, 2-46 Adrian Avenue (Marble HIll). 
-- Consider failure modes based on county - loop through everything if there are failures? 
+- Check edge cases - Marble Hill is solved (write "did you know?" content?); Consider failure modes based on county - loop through everything if there are failures? 
 */
 
 
@@ -26,6 +25,7 @@ var mapLayers = []
 var mapMarkers = []
 var cdData = {};
 var rmzData = {};
+var marbleHill;
 
 
 // Initialize the map
@@ -111,6 +111,14 @@ document.getElementById('geocode-form').addEventListener('submit', function(e) {
             document.getElementById('address').disabled = true
             document.getElementById('submitButton').classList.add('hide')
             document.getElementById('resetButton').classList.remove('hide')
+            
+            // console.log(results[0])
+
+            // CHECK FOR MARBLE HILL: IS IN MAMHATTAN, BUT IN A BRONX CD
+            if (results[0].name.includes('Marble Hill')) {
+                console.log('This is in Marble Hill!')
+                marbleHill = true
+            }
 
             checkCounty(results[0].properties.display_name)
         } 
@@ -148,6 +156,10 @@ function checkCounty(y) {
     else if (y.includes('Kings County')) {countyID = 3} 
     else if (y.includes('Queens County')) {countyID = 4} 
     else if (y.includes('Richmond County')) {countyID = 5} 
+
+    // CHECK FOR MARBLE HILL EDGE CASE - IN MANHATTAN, BUT IN A BRONX CD
+    if (marbleHill == true) {countyID = 2} else {}
+
     // if we identify the county, run checkCDs to see what CD the point is in
     countyID ? checkCDs(countyID) : console.log('Could not ID county; stopping geocoding')
 }
