@@ -23,6 +23,16 @@ indicators:
   - 2436  
   - 2440
   - 2439
+related:
+  - title: "Why violence is a public health issue"
+    url: "data-stories/violence/"
+  - title: "Disparities in violence"
+    url: "data-stories/assaults/"
+relatedData:
+  - title: "Economic conditions"
+    url: "economic-conditions/"
+  - title: "Transportation related-injuries"
+    url: "transportation-related-injuries/"
 ---
 
 Violence is the use of physical, verbal, and/or emotional force to injure, harm, abuse, damage, or destroy. Its persistent and inequitable contributions to morbidity and premature mortality in NYC make it a public health priority. Violence disproportionately affects groups oppressed as a result of their socioeconomic status, race/ethnicity, sexual orientation, gender identity, geographic location, or some combination of these factors. 
