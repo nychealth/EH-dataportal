@@ -28,6 +28,20 @@ indicators:
       - 2104
       - 2185
       - 2377
+related:
+  - title: "Housing creates health"
+    url: "data-stories/housing-creates-health/"
+  - title: "Protecting New Yorkers from extreme heat"
+    url: "data-stories/heat/"
+  - title: "Staying safe in cold weather"
+    url: "data-stories/cold/"
+relatedData:
+  - title: "Housing stability"
+    url: "housing-stability/"
+  - title: "Housing maintenance"
+    url: "housing-maintenance/"
+  - title: Economic conditions
+    url: "economic-conditions/"
 ---
 
 Most people spend most of their time in their home. That makes the home a crucial environment that can affect one's health - both in terms of safety characteristics within the home, and in terms of factors that affect housing stability.

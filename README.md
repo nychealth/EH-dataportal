@@ -17,9 +17,8 @@ You will need the following things properly installed on your computer.
 - [Git](https://git-scm.com/)
 - [npm](https://www.npmjs.com/)
 - [Hugo](https://gohugo.io/) 
-- [Grunt](https://gruntjs.com/)
 
-To browse a local version of the site, in your local development environment, start the server by typing `hugo serve --environment development --disableFastRender` into the terminal.
+With this repository cloned onto your machine, you can browse a local version of the site. In your local development environment, start the server by typing `hugo serve --environment development --disableFastRender` into the terminal.
 - `hugo serve` starts the server - you can then browse the site at http://localhost:1313/EH-dataportal
 - `--environment development` specifies that it will serve the site for the development environment, using content from `/config/development/config.toml`
 - `--disableFastRender` turns off fast render mode, so more small changes are rapidly served.
@@ -29,10 +28,10 @@ You can browse the site at [http://localhost:1313/EH-dataportal](http://localhos
 To build the source code, simply enter the command `hugo`. This assembles the site’s files, building to `/docs` (this build-to destination can be specified in `config.toml`). 
 
 ### Start developing
-To begin work:
-- Branch off of production
-- Give the branch a unique name. We name branches: hotfix-[FIXNAME], content-[CONTENTNAME], or feature-[PROJECTNAME].
-- Keep branch work focused on discrete, unique tasks
+Our internal workflows are to begin work by:
+- Branching off of production
+- Giving the branch a unique name. We name branches: hotfix-[FIXNAME], content-[CONTENTNAME], or feature-[PROJECTNAME].
+- Keeping branch work focused on discrete, unique tasks
 
 After committing, working branches can be merged into `development` for testing then merged into `production` for deployment.
 
@@ -76,12 +75,14 @@ Generally, Hugo works by combining content (in markdown, located in `/content`) 
 - And, a file with another name, `name.md`, will receive `single.html` layout 
 - A file with `layout: custom` in the frontmatter will get a layout called `custom.html` (all in the corresponding layouts folder).
 
-Templates can include Hugo code (which you can identify by {{ curly brackets }}. When Hugo serves or builds the site, it runs code, inserts content into the HTML, and produces static HTML pages. Any template is actually an assembly of other templates.
+Generally, a page constructed with `index.md` will be the final item in that directory structure that Hugo builds; `_index.md` is required for a content item to have child pages.
+
+Templates can include Hugo code (which you can identify by {{ curly brackets }}. When Hugo serves or builds the site, it runs code, inserts content into the HTML, and produces static HTML pages. Any template is actually an assembly of other templates, including partials, which are re-usable template blocks.
 
 ### Creating a new data story
 - First create the markdown file with the terminal command `hugo new data-stories/TITLE/index.md`. 
 - Add a banner image to the same folder.
-- Copy, paste, and edit the frontmatter from pre-existing data stories. You will need these fields:
+- Copy, paste, and edit the frontmatter from pre-existing data stories. You will need these fields (as well as others):
     - `title`, `date`, and `draft` 
     - `seo_title` and `seo_description`
     - `categories`: this determines what Key Topics this data story is associated with
@@ -92,10 +93,8 @@ Templates can include Hugo code (which you can identify by {{ curly brackets }}.
 - To publish, set `draft: false`. The data story will be a part of the site when you serve or build it, and it will appear on the related pages if it's been tagged properly via `categories`.
 
 ### Key Topics
-Key Topics associate different content types by theme, and they also host their own child pages (such as the Air Quality Explorer, or the interactive Heat Vulnerability Index). Each Key Topic page is an `_index.md` file in a titled folder. 
-
 To create a new Key Topic:
-- Create a markdown file with `hugo new key-topics/TITLE/_index.md`
+- Create a markdown file with `hugo new key-topics/TITLE/index.md`
 - Copy, paste, and edit the frontmatter from pre-existing Key Topic files. In particular, you will need the following frontmatter fields: 
     -  `keyTopic` (for example, `keyTopic: airquality`). This associates this Key Topic with any other content that has `airquality` as one of its `categories`.
     - `layout: single` to give it the correct template
@@ -114,6 +113,9 @@ To publish a new neighborhood report, you'd need:
 
 ---
 ## Special functions
+
+### Related content
+Related content and related data are managed through frontmatter fields; partials that ingest related content or related data are set to default to things that match on Key Topic / `categories`, if those frontmatter fieldsdo not exist. 
 
 ### Templates and partials
 Templates are stored in `themes/dohmh/layouts`, in the folder for their corresponding content area. A template includes:

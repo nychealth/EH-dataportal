@@ -5,11 +5,27 @@ date: 2022-01-10T12:34:38-04:00
 draft: false
 seo_title: "How Power Outages Affect Health"
 seo_description: "As we experience a changing climate, a reliable supply of electricity is crucial to keep people safe from extreme weather."
-tags: 
+tags:
 categories: ["social", "healthoutcomes", "climatehealth"]
-keywords: ["asthma", "weather", "mortality", "death", "cooling", "air conditioning", "built environment"]
+keywords:
+  [
+    "asthma",
+    "weather",
+    "mortality",
+    "death",
+    "cooling",
+    "air conditioning",
+    "built environment",
+  ]
 image: title7.jpg
 photocredit: "Benjamin Kanter/Mayoral Photography Office, City of New York"
+related:
+  - title: "Protecting New Yorkers from extreme heat"
+    url: "data-stories/heat/"
+  - title: "Real-time heat-related illness"
+    url: "data-features/heat-syndrome/"
+  - title: "What storms Ida and Sandy taught us about flooding and health"
+    url: "data-stories/flooding-and-health/"
 ---
 
 Imagine your child has asthma. One summer night, a powerful storm rolls in and knocks the power out.
@@ -23,6 +39,7 @@ But the power is out. Without the nebulizer, your child’s breathing gets worse
 Asthma and many other medical conditions are treated at-home with electrical medical equipment. [Citywide, 7.6% of households include someone who uses electric medical equipment, with some neighborhoods at nearly 17%]({{< baseurl >}}data-explorer/housing-safety/?id=2377).
 
 <!-- CHART 1 -->
+
 {{< datawrapper title="Electric med equipment and poverty" src="2NGjU/2/" height="576">}}
 
 As the chart above shows, neighborhoods with more households that rely on electrical medical equipment also have higher rates of poverty.
@@ -46,15 +63,18 @@ In New York City, the power outage started around 4:10pm on the 14th, a day when
 That blackout was dangerous for NYC residents, and we can see the effects in health data. Hospitalizations for respiratory problems spiked above predicted levels.
 
 <!-- CHART 2 -->
+
 {{< datawrapper title="The 2003 Blackout caused a spike in respiratory hospitalizations..." src="6ivif/1/" height="400">}}
 
 The health impacts were not limited to just hospitalizations. In fact, the power outage was deadly.
 
 {{< rawhtml >}}
-    <P>In the chart below, you can clearly see that <span style="font-weight: bold; color: red">observed deaths</span> generally bounce around the level of <span style="font-weight: bold; color: rgb(83, 83, 83)">predicted deaths</span>, staying within the <span style="background-color:lightgray; padding-left: 4px; padding-right: 4px;"> prediction range</span>. But on and after the power outage, observed deaths spiked: more people died during and immediately after the power outage.</P>
+
+<P>In the chart below, you can clearly see that <span style="font-weight: bold; color: red">observed deaths</span> generally bounce around the level of <span style="font-weight: bold; color: rgb(83, 83, 83)">predicted deaths</span>, staying within the <span style="background-color:lightgray; padding-left: 4px; padding-right: 4px;"> prediction range</span>. But on and after the power outage, observed deaths spiked: more people died during and immediately after the power outage.</P>
 {{< /rawhtml >}}
 
 <!-- CHART 3 -->
+
 {{< datawrapper title="...and a spike in deaths in NYC." src="Y2D7s/1/" height="400">}}
 
 The deaths could have been caused by many dangers of power outages: people not being able to charge medical equipment, not being able to use air conditioning on hot days, or experiencing increased physical and mental stress and isolation of living without elevators or subways.
@@ -67,7 +87,8 @@ Weather-related power outages are increasing, as climate change brings more freq
 
 The chart below from [www.climatecentral.org](https://www.climatecentral.org) shows the increasing frequency of weather-related power outages over the last 20 years. While there are year-to-year differences, the overall increasing trend is clear.
 
-<!-- CHART 4 --> 
+<!-- CHART 4 -->
+
 {{< datawrapper title="Increasing weather-related power outages in the Northeast U.S." src="sbTUE/1/" height="407">}}
 
 #### ...but not all NYC residents are prepared.
@@ -84,20 +105,20 @@ But we can also expect some power outages, so it’s important for residents to 
 
 **Tell your utility provider if you use electric-powered medical equipment.** They can let you know if power problems are expected in your area. If utilities are included in your rent, you can still register for this service from your building’s utility provider:
 
-*   [Con Ed](https://www.conEd.com/SpecialServices)
-*   [For PSEG Long Island, click here and search "Critical Care Program"](https://www.psegliny.com).
+- [Con Ed](https://www.conEd.com/SpecialServices)
+- [For PSEG Long Island, click here and search "Critical Care Program"](https://www.psegliny.com).
 
 **Be ready for any emergency.** Make sure you have backup batteries and/or oxygen tanks, and create an emergency contact list and a written emergency plan. For more information, call 311 or [visit on.nyc.gov/power](https://on.nyc.gov/power).
 
 Even if you don’t have electrical medical equipment, it’s good to stay prepared. Here’s how:
 
-*   Create an emergency plan and contact list.
-*   Keep copies of important documents and cash in a waterproof bag.
-*   Prepare a first aid kit.
-*   Have a written record of your medications and a seven-day supply.
-*   Stock up on flashlights, extra batteries, bottled water and non-perishable food.
-*   Charge all communications devices and have a battery-operated radio.
-*   Sign up at nyc.gov/notifynyc to receive information about emergency events.
+- Create an emergency plan and contact list.
+- Keep copies of important documents and cash in a waterproof bag.
+- Prepare a first aid kit.
+- Have a written record of your medications and a seven-day supply.
+- Stock up on flashlights, extra batteries, bottled water and non-perishable food.
+- Charge all communications devices and have a battery-operated radio.
+- Sign up at nyc.gov/notifynyc to receive information about emergency events.
 
 [More information on emergency preparedness](https://www1.nyc.gov/site/doh/health/emergency-preparedness/threats.page), and [how to plan for utility disruptions (power outages)](https://www1.nyc.gov/site/em/ready/utility-disruptions.page).
 

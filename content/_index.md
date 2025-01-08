@@ -4,8 +4,9 @@ draft: false
 seo_title: "NYC Environment and Health Data Portal."
 seo_description: "Data on how environments shape health in NYC."
 description: "Data on how environments shape health in NYC."
-featured_title: "Public space creates health"
-featured_text: "Data story on how public shape shapes public health in NYC"
-featured_link: "data-stories/public-space-creates-health/"
-featured_image: "ds-public-space_fort_greene_Alexander_Thompson.jpg"
+featured_title: "Rat Mitigation Zones"
+featured_text: "See how the NYC Health Department monitors and controls rats."
+featured_link: "data-features/rat-mitigation-zones/"
+featured_image: "rmz.png"
+ImageNote: featured_image must be added to assets
 ---
