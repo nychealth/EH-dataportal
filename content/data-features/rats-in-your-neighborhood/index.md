@@ -26,3 +26,12 @@ Where are the rats in your neighborhood, and how do you find out what work is be
 
 To start, enter your address.
 
+Approaches:
+- Shows RMZ on the map
+- As is, but separate "Data for your neighborhood" and "Data for your address"
+- Shows data for CD and RMZ, if there are two
+
+Strategies
+- Separate DATA and WHAT YOU CAN DO
+- Clarify LOW / MODERATE / HIGH areas of rat activity
+- Clarify something like, this is your neighborhood; but if YOU have a problem...
