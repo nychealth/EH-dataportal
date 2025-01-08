@@ -40,7 +40,7 @@ Violence is the use of physical, verbal, and/or emotional force to injure, harm,
 Violence is frequently described through homicide statistics. While homicide is a leading cause of death and captures the most severe form of violence, non-fatal violence-related injuries are much more common and help paint the larger picture on the burden of violence and its impact on the health and future of individuals, families, and communities.  
 
 Data that capture non-fatal violence-related injuries are best understood when integrating details on the context for the violence and the systems that gives rise to. Interpreting data this way illuminates ways to mitigate the social, political, economic, historical, and environmental factors that contribute to violence. Some of these factors include:
-- Firearms as the source of interpersonal violence  
+- Firearms as a source of interpersonal violence  
 - Poverty and neighborhood disinvestment  
 - Housing and historic redlining practices  
 - Education and employment opportunities  
