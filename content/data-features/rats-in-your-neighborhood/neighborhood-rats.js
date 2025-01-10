@@ -1,5 +1,12 @@
 //----------------------- CODE TO DEVELOP -----------------------//
 /*
+REVISE FLOW:
+- Use nyc-lib geocoder as the initial: search bar only (with extra code)
+- Once it gets coordinates, send those to Leaflet map.
+- This should let us continue largely as before, but with BBL to pass through for property results.
+
+
+
 - Revise copy and actions
 - Consider making more robust error messages
 - Check edge cases - Marble Hill is solved (write "did you know?" content?); Consider failure modes based on county - loop through everything if there are failures? 
