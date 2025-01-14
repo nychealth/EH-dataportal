@@ -34,40 +34,173 @@ var cdData = {};
 var rmzData = {};
 var marbleHill;
 
+var nycMap;
+var locationDetails;
 
-// Initialize the map
-const map = L.map('map').setView([40.7722226,-73.9638235],11);
+// INITIALIZE THE NYC-LIB MAP
+function initializeNYCLIB() {
+    nycMap = new nyc.ol.FrameworkMap({
+        mapTarget: '#nycMap',
+        searchTarget: '#map-search1',
+        geoclientUrl: 'https://maps.nyc.gov/geoclient/v1/search.json?app_key=74DF5DB1D7320A9A2&app_id=nyc-lib-example'
+    });
 
-// Add  tiles
-L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-    subdomains: 'abcd',
-    maxZoom: 15,
-    minZoom: 11
-}).addTo(map);
-
-// add reset button
-L.easyButton({
-    position: "bottomleft",
-    states: [{
-        title: "Zoom to fit",
-        icon: "fas fa-undo",
-        
-        onClick: function() {
-            
-            resetZoom();
+    document.addEventListener("DOMContentLoaded", function() {
+        var searchButton = document.querySelector('.btn.btn-srch');
+    
+        // Check if the button exists to avoid errors
+        if (searchButton) {
+            searchButton.onclick = function() {
+                setTimeout(getData,2500)
+            };
         }
-    }]
-}).addTo(map);     
 
-function resetZoom() {
-    // console.log('reset zoom 3')
-    window.location.hash = '#top'
-    location.reload()
+        // add event listener to form
+        document.querySelector('#map-search1').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                console.log('***Form submitted')
+                setTimeout(getData,2500)
+            }
+        });
+    });
 }
 
-// Initialize the geocoder
-const geocoder = L.Control.Geocoder.nominatim();
+initializeNYCLIB();
+
+// nyc-lib geocoding
+function getData() {
+    console.log('***Getting data from nyc geocoder')
+    // if nycMap.location exists, then, run retrieveGeo(), else, wait.
+    if (nycMap.location.type === 'geocoded') {
+        console.log('***Location found! Details:') // get data...
+        locationDetails = nycMap.location
+        console.log(locationDetails)
+
+        /*
+            What we want to use:
+                nycMap.location.name            sentence name
+                nycMap.location.data.latitude   to put into Leaflet
+                nycMap.location.data.longitude  to put into Leaflet
+                nycMap.location.data.bblTacBlock    BBL for passing into open data api?
+        */
+
+        addMarker(nycMap.location.data.latitude,nycMap.location.data.longitude,nycMap.location.name)
+
+    } else {
+        console.log('***Location not found :( ')
+    }
+}
+
+
+// INITIALIZE LEAFLET MAP
+const leafletMap = L.map('leafletMap').setView([40.7722226,-73.9638235],11);
+
+        // Add  tiles
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+            subdomains: 'abcd',
+            maxZoom: 15,
+            minZoom: 11
+        }).addTo(leafletMap);
+
+        // add reset button
+        L.easyButton({
+            position: "bottomleft",
+            states: [{
+                title: "Zoom to fit",
+                icon: "fas fa-undo",
+                
+                onClick: function() {
+                    
+                    resetZoom();
+                }
+            }]
+        }).addTo(leafletMap);     
+
+        function resetZoom() {
+            // console.log('reset zoom 3')
+            window.location.hash = '#top'
+            location.reload()
+        }
+
+// TAKE INPUTS FROM NYC-MAP AND ADD TO LEAFLET
+function addMarker(lat,long,locationName) {
+    // Remove prior markers
+    mapMarkers.forEach(marker => map.removeLayer(marker))
+
+    console.log('**adding marker...')
+
+    // set icon
+    let this_icon = L.colorIcon({
+        iconSize : [30, 30],
+        popupAnchor : [0, -15],
+        iconUrl: "images/map-marker.svg",
+        color: 'darkgray'
+    });
+
+    // add marker
+    var marker = L.marker([lat,long],{icon: this_icon}).addTo(leafletMap);
+    marker.bindPopup(locationName)
+    .openPopup();
+    mapMarkers.push(marker)
+
+    leafletMap.setView([lat, long], 11);
+
+    // PASS THIS POINT INTO POINT-IN-POLYGON FOR RMZs
+
+    // IF NO RMZ, THEN, SHOW COMMUNITY DISTRICT
+
+    // SEND BBL OUT TO OPEN DATA FOR PROPERTY INFO
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// INITIALIZE LEAFLET MAP
+const map = L.map('map').setView([40.7722226,-73.9638235],11);
+
+    // Add  tiles
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+        subdomains: 'abcd',
+        maxZoom: 15,
+        minZoom: 11
+    }).addTo(map);
+
+    // add reset button
+    L.easyButton({
+        position: "bottomleft",
+        states: [{
+            title: "Zoom to fit",
+            icon: "fas fa-undo",
+            
+            onClick: function() {
+                
+                resetZoom();
+            }
+        }]
+    }).addTo(map);     
+
+    function resetZoom() {
+        // console.log('reset zoom 3')
+        window.location.hash = '#top'
+        location.reload()
+    }
+
+    // Initialize the geocoder
+    const geocoder = L.Control.Geocoder.nominatim();
 
 
 //---------- 
