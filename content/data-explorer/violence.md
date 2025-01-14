@@ -7,7 +7,7 @@ seo_title: "Violence data for NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
 description: "Datasets and visualizations of violence in NYC."
 tags:
-categories: ["social", "healthoutcomes","injuryandviolence"]
+categories: ["social", "injuryandviolence","healthoutcomes"]
 keywords:
   ["violence", "injury", "neighborhoods", "social", "justice", "poverty"]
 indicators:
