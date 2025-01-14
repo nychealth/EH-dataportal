@@ -78,10 +78,11 @@ function getData() {
 
         /*
             What we want to use:
-                nycMap.location.name            sentence name
-                nycMap.location.data.latitude   to put into Leaflet
-                nycMap.location.data.longitude  to put into Leaflet
-                nycMap.location.data.bblTacBlock    BBL for passing into open data api?
+                nycMap.location.name                sentence name
+                nycMap.location.data.latitude       to put into Leaflet
+                nycMap.location.data.longitude      to put into Leaflet
+                nycMap.location.data.bbl            BBL for passing into open data api?
+                ....                                Community District
         */
 
         addMarker(nycMap.location.data.latitude,nycMap.location.data.longitude,nycMap.location.name)
@@ -146,11 +147,38 @@ function addMarker(lat,long,locationName) {
 
     leafletMap.setView([lat, long], 11);
 
-    // PASS THIS POINT INTO POINT-IN-POLYGON FOR RMZs
+    // PASS THIS POINT INTO NEW CHECKRMZS TO RUN POINT-IN-POLYGON
 
-    // IF NO RMZ, THEN, SHOW COMMUNITY DISTRICT
+    // IF NO RMZ, THEN, SHOW COMMUNITY DISTRICT (take from initial geocode)
 
     // SEND BBL OUT TO OPEN DATA FOR PROPERTY INFO
+
+}
+
+async function checkPointInRMZ(lat,long) {
+    // load RMZ geojson
+
+    // run against point-in-polygon
+
+    // if false, get CD geojson
+}
+
+async function getCDgeojson() {
+    // get CD geojson
+
+    // filter for geocoded CD
+
+    // add to map
+}
+
+async function getPropertyData(x) {
+    // pass in BBL code to Open Data
+
+    /*
+        https://data.cityofnewyork.us/resource/a2h9-9z38.json?bbl= + x
+
+        sample retrieval code here: https://github.com/nychealth/ehs-besp-portal-maps/blob/main/rats/js/webAppDevEx.js
+    */
 
 }
 
