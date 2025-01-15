@@ -33,14 +33,68 @@
 
             <div class="row my-2">
                 <div class="col-md-6 mr-auto">
-                    <h3>Enter your address</h3>
-                    <div class="mb-2">
+                    <h3 class="h5">Enter your address</h3>
+                </div>
+            </div>
+
+            <div class="row my-2">
+                <div class="col-md-6">
+                    <div class="mb-1">
                         <input class="form-control form-control-lg" id="map-search1" placeholder="Search Address">
                     </div>
                     <div id='nycMap' class="sr-only" style="height:350px;"></div>
                     <div id="leafletMap" class="d-sm-none d-md-block">
                     </div>  
                 </div>
+
+                <div class="col-md-6">
+                    <div class="l-green-border pl-1">
+                        <div class="border-top mb-2">
+                            <span class="home-label font-weight-bold">Your neighborhood:</span>
+                        </div>
+
+                        <div id="cdOutput">
+                            <p>This address is in <i class="far fa-square mr-1" style="color:#3388FF"></i><span id="cdID" class="print-highlight string-print">CD XXX</span>. This neighborhood has <span id="activityValue" class="print-highlight moderate-activity">moderate</span> rat activity.</p>
+                            <ul>
+                                <li><span class="font-weight-bold print-highlight string-print">XX%</span> of properties were inspected for rats
+                                </li>
+                                <li><span class="font-weight-bold print-highlight string-print">YY%</span> of properties had signs of rat activity</li>
+                            </ul>
+    
+    
+                            <p class="fs-sm"><a href=""><i class="fas fa-chart-bar mr-1" aria-hidden="true"></i>Get data on rat inspections by neighborhood</a>.</p>
+                        </div>
+                    </div>
+
+
+
+                    <div class="l-green-border pl-1">
+                        <div class="border-top mt-4 mb-2">
+                            <span class="home-label font-weight-bold">This address:</span>
+                        </div>
+    
+                        <div class="" id="propertyOutput">
+                            <p>This address <span class="print-highlight high-activity">failed</span> its last inspection, on <span class="print-highlight string-print">DATE</span>. In the last 5 years, it has been inspected <span class="print-highlight string-print">3 times</span>. <a href=""><i class="fas fa-external-link-alt mr-1" aria-hidden="true"></i>Get inspections data for any property</a></p>
+
+                            <p class="fs-sm"><a href=""><i class="fas fa-external-link-alt mr-1" aria-hidden="true"></i>Make a 311 complaint for rat activity or conditions that harbor rats, like trash.</a> The Health Department will send an inspector, and the property owner may be required to fix the problems. <a href="">Read more about how we inspect properties for rats</a>.</p>
+                        </div>
+                    </div>
+
+
+                    <div class="hide" id="rmzOutput">
+                        <p>This address is in a <i class="far fa-square mr-1" style="color:#3388FF"></i><span id="mzName" class="print-highlight string-print">Rat Mitigation Zone</span>.</p>
+                    </div>
+
+
+
+                </div>
+
+
+
+
+
+
+
             </div>
 
         </div>
@@ -71,6 +125,33 @@
     border-left: 5px solid lightgray;
     padding-left: 5px;
     }
+
+    .print-highlight {
+        padding: 3px 10px;
+        font-weight: bold;
+    }
+
+    .string-print {
+        background-color: lightgray;
+        border-top: 1px solid white;
+        border-bottom: 1px solid white;
+    }
+
+    .high-activity {
+        background-color: purple;
+        color: white;
+    }
+
+    .moderate-activity {
+        background-color: green;
+        color: white;
+    }
+
+    .low-activity {
+        background-color: lightblue;
+    }
+
+
 </style>
 
 </article>
