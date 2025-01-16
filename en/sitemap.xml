@@ -433,6 +433,20 @@
     <lastmod>2023-10-18T13:11:44-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/data-stories/injury-deaths/</loc>
     <lastmod>2023-10-18T13:11:44-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/categories/injuryandviolence/</loc>
+    <lastmod>2023-10-18T13:11:44-04:00</lastmod><xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="/IndicatorPublic/es/categories/injuryandviolence/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/IndicatorPublic/zh/categories/injuryandviolence/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/IndicatorPublic/categories/injuryandviolence/"
+                /></url><url>
     <loc>/IndicatorPublic/keywords/means-reduction/</loc>
     <lastmod>2023-10-18T13:11:44-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/mortality/</loc>
@@ -827,7 +841,13 @@
                 /></url><url>
     <loc>/IndicatorPublic/keywords/mice/</loc>
     <lastmod>2021-10-02T07:56:00-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/keywords/assault/</loc>
+    <lastmod>2021-10-01T07:59:16-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/key-topics/social/</loc>
+    <lastmod>2021-10-01T07:59:16-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/keywords/injury/</loc>
+    <lastmod>2021-10-01T07:59:16-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/key-topics/injury-and-violence/</loc>
     <lastmod>2021-10-01T07:59:16-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/oppression/</loc>
     <lastmod>2021-10-01T07:59:16-04:00</lastmod></url><url>
@@ -1084,8 +1104,6 @@
     <loc>/IndicatorPublic/keywords/illness/</loc>
     <lastmod>2021-05-28T18:02:58-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/data-explorer/indicator-catalog/</loc>
-    <lastmod>2021-05-28T18:02:58-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/keywords/injury/</loc>
     <lastmod>2021-05-28T18:02:58-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/inspection/</loc>
     <lastmod>2021-05-28T18:02:58-04:00</lastmod></url><url>

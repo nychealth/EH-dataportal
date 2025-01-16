@@ -944,6 +944,36 @@
     "description": "Rat inspections are conducted for signs of rats and the conditions that attract them.",
     "name": "Rat inspections"
   },
+  "2435": {
+    "IndicatorID": 2435,
+    "description": "Non-fatal, violence-related injuries that result in emergency department visits. These are more common than homicides and help paint the larger picture of the burden of violence on communities.",
+    "name": "Violence-related emergency department visits (ages 15-34)"
+  },
+  "2436": {
+    "IndicatorID": 2436,
+    "description": "Non-fatal injuries from firearms that result in emergency department visits. Violence from firearms causes physical and emotional harm, and trauma to both individuals and communities.  ",
+    "name": "Firearm emergency department visits (ages 15-34)"
+  },
+  "2437": {
+    "IndicatorID": 2437,
+    "description": "Non-fatal injuries from firearms that result in emergency department visits. Violence from firearms causes physical and emotional harm, and trauma to both individuals and communities.  ",
+    "name": "Firearm emergency department visits (all ages)"
+  },
+  "2438": {
+    "IndicatorID": 2438,
+    "description": "Non-fatal, violence-related injuries that result in hospitalizations. These are more common than homicides and help paint the larger picture of the burden of violence on communities.",
+    "name": "Violence-related hospitalizations (ages 15-34)"
+  },
+  "2439": {
+    "IndicatorID": 2439,
+    "description": "Non-fatal injuries from firearms that result in hospitalizations. Violence from firearms causes physical and emotional harm, and trauma to both individuals and communities. ",
+    "name": "Firearm hospitalizations (ages 15-34)"
+  },
+  "2440": {
+    "IndicatorID": 2440,
+    "description": "Non-fatal injuries from firearms that result in hospitalizations. Violence from firearms causes physical and emotional harm, and trauma to both individuals and communities. ",
+    "name": "Firearm hospitalizations (all ages)"
+  },
   "2443": {
     "IndicatorID": 2443,
     "description": "ED visits due to heat-related illnesses, such as heat stroke and heat exhaustion, represent part of the public health burden of extreme heat.",
