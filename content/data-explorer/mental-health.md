@@ -6,7 +6,7 @@ seo_title: "Mental health data in NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
 description: "Datasets and visualizations of mental health in NYC."
 tags: 
-categories: ["social","transportation","healthoutcomes","housing","climatehealth"]
+categories: ["social","transportation","healthoutcomes","housing","climatehealth","injuryandviolence"]
 keywords: ["mental health","mental illness","health care","health care access","health","depression","hospitalization","suicide","self-harm","violence"]
 indicators: 
 ---
