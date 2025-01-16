@@ -1,6 +1,6 @@
 ---
 title: Mental health
-date: 2021-05-28 18:02:58.738512
+date: 2024-05-28 18:02:58.738512
 draft: false
 seo_title: "Mental health data in NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
@@ -15,6 +15,20 @@ indicators:
   - 2418
   - 2419
   - 2420
+related:
+  - title: "Climate and health"
+    url: "neighborhood-reports/climate_and_health/"
+  - title: "Housing and health"
+    url: "neighborhood-reports/housing_and_health/"
+relatedData:
+  - title: "Active design"
+    url: "active-design/"
+  - title: "Economic conditions"
+    url: "economic-conditions/"
+  - title: "Housing maintenance"
+    url: "housing-maintenance/"
+azlink: "https://www.nyc.gov/site/doh/health/health-topics/mental-health.page"
+
 ---
 
 Mental health is a person’s emotional, psychological, and social wellbeing. It is an important part of overall health.
