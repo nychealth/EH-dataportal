@@ -41,7 +41,7 @@ In 2007, the New York City Department of Health and Mental Hygiene (Health Depar
 This report:
 
 * Provides a summary of key findings, the air monitoring program, monitoring site selection, and descriptions of the pollutants measured
-* Describes the trends in air pollutant levels from more than a decade of data from winter 2008-2009 through fall 2022 for fine particulate matter, nitrogen dioxide, nitric oxide, black carbon, wintertime sulfur dioxide and summertime ozone
+* Describes the trends in air pollutant levels from more than a decade of data from winter 2008-2009 through fall 2023 for fine particulate matter, nitrogen dioxide, nitric oxide, black carbon, wintertime sulfur dioxide and summertime ozone
 * Presents maps of neighborhood air pollution levels by year
 * Identifies the local sources that contribute to high levels of these pollutants in New York City neighborhoods
 
@@ -51,12 +51,12 @@ This report:
 
 **Citywide, annual average levels of four key pollutants have gone down between the first year of monitoring, 2009, and the most recent year of data, 2023.**
 
-* Fine particles (PM<sub>2\.5</sub>)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;-46%
-* Nitrogen Dioxide (NO<sub>2</sub>)&nbsp; &nbsp; -41%
-* Nitric Oxide (NO)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; -58%
-* Sulfur Dioxide (SO<sub>2</sub>)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; -97%
+* Fine particles (PM<sub>2\.5</sub>)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;-29%
+* Nitrogen Dioxide (NO<sub>2</sub>)&nbsp; &nbsp; -38%
+* Nitric Oxide (NO)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; -60%
+* Sulfur Dioxide (SO<sub>2</sub>)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; -98%
 
-**Air quality improved significantly after local regulations required building owners to convert to cleaner heating oils by 2015.** These heating oils were a major source of SO<sub>2</sub> in New York City. In 2022, only eight of our 90 sites detected any SO<sub>2</sub>, and the levels at those sites were similar to SO<sub>2</sub> levels measured on Whiteface Mountain in the Adirondack Mountains, demonstrating the success of the clean heating oil requirements.
+**Air quality improved significantly after local regulations required building owners to convert to cleaner heating oils by 2015.** These heating oils were a major source of SO<sub>2</sub> in New York City. In 2023, only one of our 90 sites detected any SO<sub>2</sub>, and the levels at those sites were similar to SO<sub>2</sub> levels measured on Whiteface Mountain in the Adirondack Mountains, demonstrating the success of the clean heating oil requirements.
 
 **Ozone (O<sub>3</sub>) levels were higher in 2023 than any previous year of NYCCAS monitoring.** Ozone is produced when there are oxides of nitrogen (NO<sub>x</sub>) and volatile organic carbon emissions in the presence of sunlight and heat, which is why we see higher levels in the summer. Summer 2023 was one of the hottest and driest in recorded history, likely causing higher O<sub>3</sub>&nbsp;levels.
 
