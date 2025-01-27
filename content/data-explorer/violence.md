@@ -9,7 +9,7 @@ description: "Datasets and visualizations of violence in NYC."
 tags:
 categories: ["social", "injuryandviolence", "healthoutcomes"]
 keywords:
-  ["violence", "injury", "neighborhoods", "social", "justice", "poverty"]
+  ["violence", "injury", "firearms","guns","neighborhoods", "social justice", "safety", "poverty", "inequality"]
 indicators:
   - header: "Assaults"
     IndicatorID:
