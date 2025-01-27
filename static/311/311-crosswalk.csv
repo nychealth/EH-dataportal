@@ -363,7 +363,8 @@ Pest Control Guidance,KA-01110,2370,NYC agency use of rodenticides
 Mosquitoes,KA-02263,2371,NYC Agency Use of Mosquito Adulticides
 Mosquitoes,KA-02263,2372,NYC Agency Use of Mosquito Larvicides
 Mosquitoes,KA-02263,2374,NYC agency use of mosquito control
-Assaults,KA-03328,2375,Violence-related hospitalizations (all ages)
+Cure Violence Program,KA-03328,2375,Violence-related hospitalizations (all ages)
+Domestic Violence,KA-01217,2375,Violence-related hospitalizations (all ages)
 Winter Weather Safety,KA-03098,2376,Cold stress: deaths
 Severe Weather,KA-03457,2376,Cold stress: deaths
 Hurricane Preparedness,KA-02810,2377,Households using electric medical equipment
@@ -393,7 +394,8 @@ Heat Complaint in a Residential Building,KA-01036,2396,Children in homes with su
 Carbon Monoxide,KA-02608,2398,Carbon monoxide deaths
 NYCHA Public Housing Maintenance Complaint,KA-01076,2399,Renter-occupied homes with any health-related maintenance problems
 Apartment Maintenance Complaint,KA-01074,2399,Renter-occupied homes with any health-related maintenance problems
-Assaults,KA-03328,2400,Violence-related emergency department visits (all ages)
+Cure Violence Program,KA-03328,2400,Violence-related emergency department visits (all ages)
+Domestic Violence,KA-01217,2400,Violence-related emergency department visits (all ages)
 NYC Care,KA-03317,2401,Postponing health care
 Community Health Profile,KA-02655,2401,Postponing health care
 Asthma,KA-02563,2402,Public School Children (K-8) with Active Asthma
@@ -440,5 +442,15 @@ Asthma,KA-02563,2431,Children still with asthma
 Greenmarkets and Farmers Markets,KA-02028,2432,Farmers markets
 Rat or Mouse Complaint,KA-01107,2433,Rat indexing in Rat Mitigation Zones (RMZs)
 Rat or Mouse Complaint,KA-01107,2434,Rat inspections
-Assaults,KA-01217,2435,Violence-related emergency department visits (ages 15-34)
-Assaults,KA-03328,2438,Violence-related hospitalizations (ages 15-34)
+Cure Violence Program,KA-03328,2435,Violence-related emergency department visits (ages 15-34)
+Domestic Violence,KA-01217,2435,Violence-related emergency department visits (ages 15-34)
+Cure Violence Program,KA-03328,2436,Firearm emergency department visits (ages 15-34)
+Domestic Violence,KA-01217,2436,Firearm emergency department visits (ages 15-34)
+Cure Violence Program,KA-03328,2437,Firearm emergency department visits (all ages)
+Domestic Violence,KA-01217,2437,Firearm emergency department visits (all ages)
+Cure Violence Program,KA-03328,2438,Violence-related hospitalizations (ages 15-34)
+Domestic Violence,KA-01217,2438,Violence-related hospitalizations (ages 15-34)
+Cure Violence Program,KA-03328,2439,Firearm hospitalizations (ages 15-34)
+Domestic Violence,KA-01217,2439,Firearm hospitalizations (ages 15-34)
+Cure Violence Program,KA-03328,2440,Firearm hospitalizations (all ages)
+Domestic Violence,KA-01217,2440,Firearm hospitalizations (all ages)
