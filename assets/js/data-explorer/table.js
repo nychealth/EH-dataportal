@@ -105,7 +105,7 @@ const renderTable = () => {
 
     table_unreliability.forEach(element => {
         
-        document.querySelector("#table-unreliability").innerHTML += element;
+        document.querySelector("#table-unreliability").innerHTML += "<div class='fs-xs'>" + element + "</div>" ;
         document.getElementById('table-unreliability').classList.remove('hide')
         
     });
