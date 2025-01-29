@@ -835,7 +835,7 @@ const updateLinksData = async (e) => {
         <p><strong>${secondaryIndicatorName} - ${secondaryMeasurementType}</strong>: ${secondaryAbout}</p>`;
 
     selectedLinksSources = [];
-    selectedLinksSources.push(primarySources)
+    selectedLinksSources.push(primarySources.concat(" "))
     selectedLinksSources.push(secondarySources)
 
     // render the measure info boxes
