@@ -62,7 +62,6 @@
                             </ul>
     
     
-                            <p class="fs-sm"><a href=""><i class="fas fa-chart-bar mr-1" aria-hidden="true"></i>Get data on rat inspections by neighborhood</a>.</p>
                         </div>
                     </div>
 
@@ -74,15 +73,22 @@
                         </div>
     
                         <div class="" id="propertyOutput">
-                            <p>This address <span class="print-highlight high-activity">failed</span> its last inspection, on <span class="print-highlight string-print">DATE</span>. In the last 5 years, it has been inspected <span class="print-highlight string-print">3 times</span>. <a href=""><i class="fas fa-external-link-alt mr-1" aria-hidden="true"></i>Get inspections data for any property</a></p>
+                            <p>This address <span class="print-highlight high-activity">failed</span> its last inspection, on <span class="print-highlight string-print">DATE</span>. In the last 5 years, it has been inspected <span class="print-highlight string-print">3 times</span>. </p>
 
-                            <p class="fs-sm"><a href=""><i class="fas fa-external-link-alt mr-1" aria-hidden="true"></i>Make a 311 complaint for rat activity or conditions that harbor rats, like trash.</a> The Health Department will send an inspector, and the property owner may be required to fix the problems. <a href="">Read more about how we inspect properties for rats</a>.</p>
                         </div>
                     </div>
 
 
-                    <div class="hide" id="rmzOutput">
-                        <p>This address is in a <i class="far fa-square mr-1" style="color:#3388FF"></i><span id="mzName" class="print-highlight string-print">Rat Mitigation Zone</span>.</p>
+                    <div class="l-green-border pl-1" id="rmzOutput">
+                        <div class="border-top mt-4 mb-2">
+                            <p>This address is in a <i class="far fa-square mr-1" style="color:#3388FF"></i><span id="mzName" class="print-highlight string-print">Rat Mitigation Zone</span>, an area with <span id="activityValue" class="print-highlight high-activity">high</span> rat activity.
+                                <ul>
+                                    <li><span class="font-weight-bold print-highlight string-print">X,XXX</span> properties were inspected for rats
+                                    </li>
+                                    <li><span class="font-weight-bold print-highlight string-print">YY%</span> of properties had signs of rat activity</li>
+                                </ul>
+                            </p>
+                        </div>
                     </div>
 
 
@@ -97,9 +103,31 @@
 
             </div>
 
+            <div class="row">
+                <div class="col-12">
+                    <hr class="my-2">
+                </div>
+                <div class="col-md-4">
+                    <p class="fs-sm"><a href=""><i class="fas fa-external-link-alt mr-1" aria-hidden="true"></i>Make a 311 complaint for rat activity or conditions that harbor rats, like trash.</a> The Health Department will send an inspector, and the property owner may be required to fix the problems. <a href="">Read more about how we inspect properties for rats</a>.</p>
+
+                </div>
+        
+                <div class="col-md-4">
+                    <p class="fs-sm"><a href=""><i class="fas fa-chart-bar mr-1" aria-hidden="true"></i>Get data on rat inspections by neighborhood</a>.</p>
+                    <p class="fs-sm"><a href=""><i class="fas fa-chart-bar mr-1" aria-hidden="true"></i>Get data for Rat Mitigation Zones</a>.</p>
+
+                </div>
+        
+                <div class="col-md-4">
+                    <p class="fs-sm"><a href=""><i class="fas fa-external-link-alt mr-1" aria-hidden="true"></i>Get inspection results for any property</a>.</p>
+                </div>
+            </div>
+
         </div>
 
     </div>
+
+
 
 
 <style>
@@ -111,7 +139,7 @@
     }
 
     #leafletMap {
-        height:350px;
+        height:55vh;
         max-width: 100%;
         max-height: 100%;
         margin-right: 6px;
