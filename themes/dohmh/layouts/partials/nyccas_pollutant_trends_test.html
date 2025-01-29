@@ -1,8 +1,8 @@
 <div id="pollutantTrendsEmbed">
 
   <div class="row">
-        <div class="col-12 mb-2">
-          <div class="float-left">
+        <div class="col-12 mb-1">
+          <div class="btn-group">
               <button type="button" class="btn btn2 btn-outline-dark active" value="BC">BC</button>
               <button type="button" class="btn btn2 btn-outline-dark" value="NO">NO</button>
               <button type="button" class="btn btn2 btn-outline-dark" value="NO2">NO<sub>2</sub></button>
@@ -11,44 +11,33 @@
               <button type="button" class="btn btn2 btn-outline-dark" value="SO2">SO<sub>2</sub></button>
           </div>
 
+        </div>
+
+        <div class="col-12 mb-2">
+          <button type="button" class="by-btns btn btn-sm btn-outline-secondary active my-0 d-inline-block" value="season" id="bySeasonButton" onclick="setSeason()">By season</button>
+
           <div class="float-right">
-            <button type="button" class="btn btn-sm btn-outline-secondary active">By season</button>
-            <button type="button" class="btn btn-sm btn-outline-secondary">By source</button>
-          </div>
-    </div>
+            <button type="button" class="by-btns btn btn-sm my-0 d-inline-block" value="source" id="bySourceButton" disabled="true">By source:</button>
+
+            <div id="sourceContainer" class="fs-sm d-inline-block">
+              <!-- sources container -->
+            </div>
+         </div>
+
+
+        </div>
+
 
     <div class="col-12">
       <div id="newVis" style="width:100%"></div>
 
+      <div id="dataNote" class="fs-sm">
+        <strong>Note:</strong> data are for neighborhoods with <strong>high, medium, or low</strong> amounts of emissions from the selected source.
+      </div>
+
     </div>
   </div>
 
-
-  <div class="row">
-      <div class="col-12">
-              <div class="">
-                  <button type="button" class="btn trpolbtn btn-outline-dark active" value="BC">BC</button>
-                  <button type="button" class="btn trpolbtn btn-outline-dark" value="NO">NO</button>
-                  <button type="button" class="btn trpolbtn btn-outline-dark" value="NO2">NO<sub>2</sub></button>
-                  <button type="button" class="btn trpolbtn  btn-outline-dark" value="O3">O<sub>3</sub></button>
-                  <button type="button" class="btn trpolbtn btn-outline-dark" value="PM2.5">PM<sub>2.5</sub></button>
-                  <button type="button" class="btn trpolbtn btn-outline-dark" value="SO3">SO<sub>2</sub></button>
-              </div>
-      </div>
-
-      <div class="col-12">
-          <div id="subCont" class="mt-1 mb-2"></div>
-      </div>
-  </div>
-
-  <div class="row mt-1">
-      <div class="col-12">
-          <p><span class="fs-lg" style="font-weight: bold;"><span id='polPrint' class="">Pollutant</span> by <span id='sourcePrint'>Source</span></span><br>
-          <em><span id="unitPrint" class="fs-sm"></span></em>
-          </p>
-          <div id="vis" style="width: 100%;"></div>
-      </div>
-  </div>
   <hr>
 
   <style>
@@ -58,11 +47,15 @@
           background-color:#6c7287;
           color: white;
       }
+
+      .sourceContainer {
+      display: inline-block;
+    }
   </style>
 
   <script>
 
-    // POLLUTANT JSON
+    // INITIALIZE VARIABLES
     var allPollutants = [
       {
         "pollutant": "BC",
@@ -79,7 +72,7 @@
       {
         "pollutant": "NO2",
         "name": "Nitrogen Dioxide",
-        "units": "parts per villion",
+        "units": "parts per illion",
         "Sources": ['Traffic Density', 'Building Density']
       },
       {
@@ -103,19 +96,52 @@
     ]
 
     var chosenPollutant = allPollutants[0]
-    console.log('chosenPollutant', chosenPollutant)
+    var chosenSource = 'ALL'
+    var sourceOrSeason = 'Season' // should be 'Season' or 'Source'
 
 
-    function runChart(x) {
+    // ESTABLISH INITIAL RUN CHART. TAKES CHOSENPOLLUTANT JSON, AND SOURCEORSEASON VARIABLE
+    function runChart(cp,sos) {
 
-      let filterFor = x.pollutant
+      let filterFor = cp.pollutant
+      let chartTitle = cp.name + ' (' + cp.units + ')'
+      let units = cp.units
+      let name = cp.name
+
+      console.log(`***Drawing chart for ${filterFor}, by ${sos}.`)
+      console.log('chosenSource', chosenSource)
+
+      var basicFilter;
+      var colorField;
+      var tooltip;
+
+      if (sos === 'Season') {
+        basicFilter = {"filter": `datum.Pollutant === '${filterFor}' && datum.Source === 'ALL'`};
+        colorField = "Season";
+        tooltip = [
+          {"title": `${name}`, "field": "ValueWithUnits"},
+          {"title": "Time", "field": "Seasonyear"}
+                  ]
+      } else if (sos === 'Source') {
+        basicFilter = {"filter": `datum.Pollutant === '${filterFor}' && datum.Season === 'ALL' && datum.Source === '${chosenSource}'`}
+        colorField = "Tertile";
+        tooltip = [
+          {"title": `${name}`, "field": "ValueWithUnits"},
+          {"title": "Time", "field": "Seasonyear"},
+          {"title": "Source", "field": "Source"},
+          {"title": "Tertile", "field": "Tertile"}
+        ]
+      }
+
+      console.log('filter', basicFilter)
+
       var newVis = {
         "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
         "description": "Pollutant trends over time, by season or source",
-        "height": 300,
+        "height": 350,
         "width": "container",
         "title": {
-          "text": x.name + ' (' + x.units + ')',
+          "text": chartTitle,
           "subtitlePadding": 10,
           "fontWeight": "normal",
           "anchor": "start",
@@ -145,9 +171,9 @@
           "url": "https://gist.githubusercontent.com/mmontesanonyc/9db5c63c2783a24dacce701ca850da13/raw/d312b0abd5f1f556ad8939648f47dcd241abdc14/ptt.csv"
         },
         "transform": [
-          {"filter": `datum.Pollutant === '${filterFor}' && datum.Source === 'ALL'`},
+          basicFilter,
           {
-            "calculate": `format(datum.Value, '.2f') + ' ${x.units}'`,
+            "calculate": `format(datum.Value, '.2f') + ' ${units}'`,
             "as": "ValueWithUnits"
           },
           {
@@ -171,7 +197,7 @@
           "color": {
             "condition": {
               "param": "hover",
-              "field": "Season",
+              "field": colorField,
               "type": "nominal",
               "legend": null
             },
@@ -187,7 +213,7 @@
                 "name": "hover",
                 "select": {
                   "type": "point",
-                  "fields": ["Season"],
+                  "fields": [`${colorField}`],
                   "on": "pointerover"
                 }
               }
@@ -198,7 +224,7 @@
             "mark": {"type": "line", "point": {"size": 70}},
             "encoding": {
               "tooltip": [
-                {"title": `${x.name}`, "field": "ValueWithUnits"},
+                {"title": `${name}`, "field": "ValueWithUnits"},
                 {"title": "Time", "field": "Seasonyear"}
               ]
             }
@@ -211,7 +237,7 @@
             "layer": [
               {
                 "mark": {"type": "text", "align": "left", "dx": -25,"fontSize": 12, "fontWeight": "bold"},
-                "encoding": {"text": {"field": "Season", "type": "nominal"}}
+                "encoding": {"text": {"field": `${colorField}`, "type": "nominal"}}
               }
             ]
           }
@@ -221,207 +247,77 @@
       vegaEmbed('#newVis', newVis);
     }
 
-    runChart(chosenPollutant);
+    // INITIALIZE CHART AND SOURCES
+    runChart(chosenPollutant,sourceOrSeason);
+    writeSources(chosenPollutant);
 
+    // LISTENER ON BUTTONS TO CHANGE POLLUTANTS AND RE-RUN CHART
     const selectButtons = document.querySelectorAll(".btn2")
+
     for (var i = 0; i < selectButtons.length; i++) {
       selectButtons[i].addEventListener("click", function() {
         for (let button of document.querySelectorAll('.btn2')) button.classList.remove('active');
         this.className += " active";
         chosenPollutant = allPollutants.filter(p => p.pollutant === this.value)
-        console.log('chosen P', chosenPollutant)
-        runChart(chosenPollutant[0])
+        chosenPollutant = chosenPollutant[0]
+        writeSources(chosenPollutant)
+        sourceOrSeason = 'Season'
+        document.getElementById('bySeasonButton').classList.add('active')
+        runChart(chosenPollutant,sourceOrSeason)
       })
+    }
+
+
+    function writeSources(x) {
+      let sources = x.Sources;
+      var cont = document.getElementById('sourceContainer');
+      cont.innerHTML = ''; // Clear container
+    
+      for (let j = 0; j < sources.length; j++) {
+        let thisSource = sources[j];
+        let thisButton = document.createElement('button');
+        thisButton.type = 'button';
+        thisButton.classList.add('fs-sm', 'btn', 'btn-sm', 'srcbtn', 'btn-outline-light', 'text-dark', 'my-0');
+        thisButton.textContent = thisSource;
+      
+        thisButton.addEventListener('click', function() {
+          document.getElementById('bySeasonButton').classList.remove('active')
+          for (let button of document.querySelectorAll('.srcbtn')) button.classList.remove('active');
+          this.className += ' active'
+          setSource(thisSource);
+        });
+      
+        cont.appendChild(thisButton);
+      }
+    
+    
+      var sourceNote = '<div class="fs-xs mt-1">Data by sources shows data by neighborhoods with <strong>high</strong> concentration of these sources, <strong>medium</strong> concentrations, or <strong>low</strong> concentrations.</div>';
+      // cont.innerHTML += sourceNote;
+    }
+
+    function setSource(x) {
+      console.log('source set for ' + x)
+      chosenSource = x
+      sourceOrSeason = 'Source'
+      runChart(chosenPollutant,sourceOrSeason)
+
+      document.getElementById('dataNote').classList.remove('hide')
+
+      
+    }
+
+    function setSeason() {
+      document.getElementById('bySeasonButton').classList.add('active');
+      for (let button of document.querySelectorAll('.srcbtn')) button.classList.remove('active');
+      sourceOrSeason = 'Season'
+      runChart(chosenPollutant,sourceOrSeason)
+      document.getElementById('dataNote').classList.add('hide')
+
     }
 
 
 
 
 
-
-
-
-
-        var trendPollutant
-        var source
-        var view; // ssn (season) or ttl (tertile)
-        var sources = [];
-        var units
-        var trendPollutantName
-        
-        // arrays of pollutant-specific sources
-        var bcSources = ['Commercial Cooking', 'Industrial Areas', 'Traffic Density'];
-        var noSources = ['Boiler Density','Traffic NOx Emissions'];
-        var no2Sources = ['Traffic Density', 'Building Density'];
-        var o3Sources = ['Traffic Density'];
-        var pmSources = ['Commercial Cooking','Traffic Density','Boiler PM2.5 Emissions'];
-        var so2Sources = ['Boilers Using Residual Oil','Night-Time Population Density'];
-
-
-
-        // SET DEFAULTS
-        trendPollutant = 'BC'
-        trendPollutantName = 'Black Carbon'
-        units = 'micrograms per cubic meter'
-        sources = bcSources 
-        source = sources[0]
-        createSourceButtons()
-
-
-        // GET POLLUTANT AND OTHER VARIABLES ON INITIAL BUTTON CLICK
-        const trbtns = document.querySelectorAll(".trpolbtn")
-        for (var i = 0; i < trbtns.length; i++) {
-            trbtns[i].addEventListener("click", function() {
-              for (let button of document.querySelectorAll('.trpolbtn')) button.classList.remove('active');
-              this.className += " active";
-              trendPollutant = this.value
-
-              // declare sources and units for selected pollutant
-                if (trendPollutant === 'BC') {
-                    sources = bcSources
-                    units = 'micrograms per cubic meter'
-                    trendPollutantName = 'Black Carbon'
-                } else if (trendPollutant === 'NO') {
-                    sources = noSources
-                    units = 'parts per billion'
-                    trendPollutantName = 'Nitric Oxide'
-                } else if (trendPollutant === 'NO2') {
-                    sources = no2Sources
-                    units = 'parts per billion'
-                    trendPollutantName = 'Nitrogen Dioxide'
-                } else if (trendPollutant === 'O3') {
-                    sources = o3Sources
-                    units = 'parts per billion'
-                    trendPollutantName = 'Ozone'
-                } else if (trendPollutant === 'PM2.5') {
-                    sources = pmSources
-                    units = 'micrograms per cubic meter'
-                    trendPollutantName = 'Fine Particles'
-                } else if (trendPollutant = 'SO2') {
-                    sources = so2Sources
-                    units = 'parts per billion'
-                    trendPollutantName = 'Sulfur Dioxide'
-                }
-                source = sources[0]
-                // logMetadata();
-
-                // create buttons for the pollutant's sources
-                createSourceButtons()
-                drawChart();
-
-            });
-          }
-
-        function createSourceButtons() {
-            // loop through Sources and create buttons
-            document.getElementById('subCont').innerHTML = '';
-            for (let i = 0; i < sources.length; i++) {
-                var thisSource = sources[i]
-                var newButton = `<span class="badge srcbtn badge-light mr-1">${thisSource}</span>`
-                document.getElementById('subCont').innerHTML += newButton
-            };
-
-            // loop through newly-added buttons, get first, apply Active state
-            var srcBtns = document.querySelectorAll('.srcbtn')
-            srcBtns[0].classList.add('border')
-
-            // put listener on source buttons
-            for (let x = 0; x < srcBtns.length; x++) {
-                srcBtns[x].addEventListener("click", function() {
-                // remove "active" from classnames
-                var activeSource = document.querySelectorAll('.srcbtn.border')
-                activeSource[0].classList.remove('border')
-                // apply Active to selected source button
-                this.className += " border";
-                source = this.innerHTML;
-                drawChart();
-                })
-            }
-        }
-
-        // re-draw chart on window re-sizing
-        window.onresize = function(event) {
-            drawChart();
-        };
-
-        var chartSpec = {};
-        function drawChart() {
-            document.getElementById('polPrint').innerHTML = trendPollutantName
-            document.getElementById('sourcePrint').innerHTML = DOMPurify.sanitize(source)
-            document.getElementById('unitPrint').innerHTML = units
-            let width = document.getElementById('vis').offsetWidth / 2.25
-
-            chartSpec = {
-                "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-                "title": null,
-                "width": width,
-                "description": "NYCCAS data by season, source, and pollutant",
-                "data": {
-                  "url": "embed/pollutant-trends-data_test.csv"
-                },
-                "config": {
-                    "title": {"anchor": "start", "fontSize": 14},
-                    "axisY": {"title": null},
-                    "axisX": {"title": "Year","grid": false},
-                    "style": {
-                      "cell": {"stroke": "transparent"},
-                      "line": {"stroke": "#1696d2", "strokeWidth": 3},
-                      "text": {"fontSize": 11, "fontWeight": "bold", "size": 11,"align": "left"},
-                      "group-title": {"fontWeight": "normal"}
-                    },
-                    "range": {
-                        "category": [
-                          "#810f7c",
-                          "#b3cde3",
-                          "#8c96c6"
-
-                        ]
-                      },
-                      "legend": {"orient": "bottom"}
-                  },
-                "columns": 4,
-                "transform": [
-                  {
-                    "filter": `datum.Pollutant === '${trendPollutant}' && datum.Source === '${source}'`
-                  }
-                ],
-                "mark": {"type": "line", "point": true},
-                "encoding": {
-                  "facet": {
-                    "field": "Season",
-                    "type": "nominal",
-                    "columns": 2,
-                    "title": null,
-                    "sort": ["Winter", "Spring", "Summer", "Fall"],
-                    "header": {"labelFontSize": 15,"labelAlign":"left","labelAnchor": "start"}
-                  },
-                  "x": {"timeUnit": "utcyear", "field": "Time"},
-                  "y": {"field": "Value", "type": "quantitative"},
-                  "tooltip": [
-                    {"field": "Value", "title": "Value", "format": ",.1~f"},
-                    {"field": "Tertile", "title": "Tertile"}
-                  ],
-                  "color": {
-                    "field": "Tertile", 
-                    "type": "nominal"
-                  }
-                }
-              };
-
-        vegaEmbed('#vis', chartSpec);
-        }
-
-
-
-        function logMetadata() {
-            console.log('*****METADATA*****')
-            console.log('pollutant: ' + trendPollutant)
-            console.log('sources: ' + sources)
-            // console.log('source: ' + source)
-            console.log('units: ' + units)
-        }
-
-
-        drawChart();
     </script>
 </div>
