@@ -1,14 +1,14 @@
 <div id="pollutantTrendsEmbed">
 
   <div class="row">
-        <div class="col-12">
+        <div class="col-12 mb-2">
           <div class="float-left">
               <button type="button" class="btn btn2 btn-outline-dark active" value="BC">BC</button>
               <button type="button" class="btn btn2 btn-outline-dark" value="NO">NO</button>
               <button type="button" class="btn btn2 btn-outline-dark" value="NO2">NO<sub>2</sub></button>
               <button type="button" class="btn btn2  btn-outline-dark" value="O3">O<sub>3</sub></button>
               <button type="button" class="btn btn2 btn-outline-dark" value="PM2.5">PM<sub>2.5</sub></button>
-              <button type="button" class="btn btn2 btn-outline-dark" value="SO3">SO<sub>2</sub></button>
+              <button type="button" class="btn btn2 btn-outline-dark" value="SO2">SO<sub>2</sub></button>
           </div>
 
           <div class="float-right">
@@ -62,135 +62,165 @@
 
   <script>
 
-            // POLLUTANT JSON
-            var allPollutants = [
-              {
-                "trendPollutant": "BC",
-                "tpName": "Black Carbon",
-                "unites": "micrograms per cubic meter",
-                "Sources": ['Commercial Cooking', 'Industrial Areas', 'Traffic Density']
-              },
-              {
-                "trendPollutant": "NO",
-                "tpName": "Nitric Oxide",
-                "unites": "parts per billion",
-                "Sources": ['Boiler Density','Traffic NOx Emissions']
-              },
-              {
-                "trendPollutant": "NO2",
-                "tpName": "Nitrogen Dioxide",
-                "unites": "parts per villion",
-                "Sources": ['Traffic Density', 'Building Density']
-              },
-              {
-                "trendPollutant": "O3",
-                "tpName": "Ozone",
-                "unites": "parts per billion",
-                "Sources": ['Traffic Density']
-              },
-              {
-                "trendPollutant": "PM2.5",
-                "tpName": "Fine Particles",
-                "unites": "micrograms per cubic meter",
-                "Sources": ['Commercial Cooking','Traffic Density','Boiler PM2.5 Emissions']
-              },
-              {
-                "trendPollutant": "SO2",
-                "tpName": "Sulfur Dioxide",
-                "unites": "parts per billion",
-                "Sources": ['Boilers Using Residual Oil','Night-Time Population Density']
-              }
-            ]
+    // POLLUTANT JSON
+    var allPollutants = [
+      {
+        "pollutant": "BC",
+        "name": "Black Carbon",
+        "units": "micrograms per cubic meter",
+        "Sources": ['Commercial Cooking', 'Industrial Areas', 'Traffic Density']
+      },
+      {
+        "pollutant": "NO",
+        "name": "Nitric Oxide",
+        "units": "parts per billion",
+        "Sources": ['Boiler Density','Traffic NOx Emissions']
+      },
+      {
+        "pollutant": "NO2",
+        "name": "Nitrogen Dioxide",
+        "units": "parts per villion",
+        "Sources": ['Traffic Density', 'Building Density']
+      },
+      {
+        "pollutant": "O3",
+        "name": "Ozone",
+        "units": "parts per billion",
+        "Sources": ['Traffic Density']
+      },
+      {
+        "pollutant": "PM2.5",
+        "name": "Fine Particles",
+        "units": "micrograms per cubic meter",
+        "Sources": ['Commercial Cooking','Traffic Density','Boiler PM2.5 Emissions']
+      },
+      {
+        "pollutant": "SO2",
+        "name": "Sulfur Dioxide",
+        "units": "parts per billion",
+        "Sources": ['Boilers Using Residual Oil','Night-Time Population Density']
+      }
+    ]
+
+    var chosenPollutant = allPollutants[0]
+    console.log('chosenPollutant', chosenPollutant)
 
 
-    var newVis = {
-      "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-      "description": "",
-      "height": 300,
-      "width": "container",
-      "title": {
-        "text": "UNITS",
-        "subtitlePadding": 10,
-        "fontWeight": "normal",
-        "anchor": "start",
-        "fontSize": 12,
-        "font": "sans-serif",
-        "baseline": "top",
-        "dy": -10,
-        "subtitleFontSize": 13
-      },
-      "config": {
-        "view": {"stroke": null},
-        "axisX": {
-          "labelAngle": 0,
-          "grid": false
+    function runChart(x) {
+
+      let filterFor = x.pollutant
+      var newVis = {
+        "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+        "description": "Pollutant trends over time, by season or source",
+        "height": 300,
+        "width": "container",
+        "title": {
+          "text": x.name + ' (' + x.units + ')',
+          "subtitlePadding": 10,
+          "fontWeight": "normal",
+          "anchor": "start",
+          "fontSize": 12,
+          "font": "sans-serif",
+          "baseline": "top",
+          "dy": -10,
+          "subtitleFontSize": 13
         },
-        "axisY": {
-          "domain": false,
-          "ticks": false,
-          "tickCount": 3,
-          "orient": "left",
-          "zindex": 0,
-          "gridDash": [2]
-        },
-        "legend": {"columns": 6, "labelFontSize": 10, "symbolSize": 80}
-      },
-      "data": {
-        "url": "https://gist.githubusercontent.com/mmontesanonyc/9db5c63c2783a24dacce701ca850da13/raw/d312b0abd5f1f556ad8939648f47dcd241abdc14/ptt.csv"
-      },
-      "transform": [
-        {"filter": "datum.Pollutant === 'BC' && datum.Source === 'ALL'"}
-      ],
-      "encoding": {
-        "x": {
-          "timeUnit": "utcyear",
-          "field": "Time",
-          "title": "",
-          "axis": {"zindex": 1},
-          "scale": {"padding": 30}
-        },
-        "y": {"field": "Value", "type": "quantitative", "title": ""},
-        "color": {
-          "condition": {
-            "param": "hover",
-            "field": "Season",
-            "type": "nominal",
-            "legend": null
+        "config": {
+          "view": {"stroke": null},
+          "axisX": {
+            "labelAngle": 0,
+            "grid": false
           },
-          "value": "gray"
+          "axisY": {
+            "domain": false,
+            "ticks": false,
+            "tickCount": 3,
+            "orient": "left",
+            "zindex": 0,
+            "gridDash": [2]
+          },
+          "legend": {"columns": 6, "labelFontSize": 10, "symbolSize": 80}
         },
-        "opacity": {"condition": {"param": "hover", "value": 1}, "value": 0.35}
-      },
-      "layer": [
-        {
-          "description": "Transparent layer to trigger hover more easily",
-          "params": [
-            {
-              "name": "hover",
-              "select": {
-                "type": "point",
-                "fields": ["Season"],
-                "on": "pointerover"
-              }
-            }
-          ],
-          "mark": {"type": "line", "stroke": "transparent", "strokeWidth": 15}
+        "data": {
+          "url": "https://gist.githubusercontent.com/mmontesanonyc/9db5c63c2783a24dacce701ca850da13/raw/d312b0abd5f1f556ad8939648f47dcd241abdc14/ptt.csv"
         },
-        {
-          "mark": {"type": "line", "point": {"size": 70}},
-          "encoding": {
-            "tooltip": [
-              {"title": "Year", "field": "Time", "timeUnit": "utcyear"},
-              {"title": "Season", "field": "Season"},
-              {"title": "UNITS", "field": "Value"}
-            ]
+        "transform": [
+          {"filter": `datum.Pollutant === '${filterFor}' && datum.Source === 'ALL'`},
+          {
+            "calculate": `format(datum.Value, '.2f') + ' ${x.units}'`,
+            "as": "ValueWithUnits"
+          },
+          {
+            "calculate": "timeFormat(datum.Time, '%Y')",
+            "as": "YearString"
+          },
+          {
+            "calculate": "datum.Season + ', ' + datum.YearString",
+            "as": "Seasonyear"
           }
-        }
-      ]
+        ],
+        "encoding": {
+          "x": {
+            "timeUnit": "year",
+            "field": "Time",
+            "title": "",
+            "axis": {"zindex": 1},
+            "scale": {"padding": 30}
+          },
+          "y": {"field": "Value", "type": "quantitative", "title": ""},
+          "color": {
+            "condition": {
+              "param": "hover",
+              "field": "Season",
+              "type": "nominal",
+              "legend": null
+            },
+            "value": "gray"
+          },
+          "opacity": {"condition": {"param": "hover", "value": 1}, "value": 0.35}
+        },
+        "layer": [
+          {
+            "description": "Transparent layer to trigger hover more easily",
+            "params": [
+              {
+                "name": "hover",
+                "select": {
+                  "type": "point",
+                  "fields": ["Season"],
+                  "on": "pointerover"
+                }
+              }
+            ],
+            "mark": {"type": "line", "stroke": "transparent", "strokeWidth": 15}
+          },
+          {
+            "mark": {"type": "line", "point": {"size": 70}},
+            "encoding": {
+              "tooltip": [
+                {"title": `${x.name}`, "field": "ValueWithUnits"},
+                {"title": "Time", "field": "Seasonyear"}
+              ]
+            }
+          }
+        ]
+      }
+  
+      vegaEmbed('#newVis', newVis);
     }
 
-    vegaEmbed('#newVis', newVis);
-    
+    runChart(chosenPollutant);
+
+    const selectButtons = document.querySelectorAll(".btn2")
+    for (var i = 0; i < selectButtons.length; i++) {
+      selectButtons[i].addEventListener("click", function() {
+        for (let button of document.querySelectorAll('.btn2')) button.classList.remove('active');
+        this.className += " active";
+        chosenPollutant = allPollutants.filter(p => p.pollutant === this.value)
+        console.log('chosen P', chosenPollutant)
+        runChart(chosenPollutant[0])
+      })
+    }
 
 
 
