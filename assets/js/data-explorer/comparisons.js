@@ -33,7 +33,7 @@ const renderComparisonsChart = (
 
     comp_unreliability.forEach(element => {
 
-        document.querySelector("#trend-unreliability").innerHTML += element;
+        document.querySelector("#trend-unreliability").innerHTML += "<div class='fs-sm'>" + element + "</div>" ;
         document.getElementById('trend-unreliability').classList.remove('hide')
         
     });
@@ -334,7 +334,7 @@ const renderComparisonsChart = (
 
         // print text
         let noCompareFootnote = `Because of a method change, data before ${compNoCompare} shouldn't be compared to later time periods.`
-        document.querySelector("#trend-unreliability").innerHTML += "<div class='fs-xs text-muted'>" + noCompareFootnote + "</div>" ;
+        document.querySelector("#trend-unreliability").innerHTML += "<div class='fs-xs'>" + noCompareFootnote + "</div>" ;
         document.getElementById("trend-unreliability").classList.remove('hide')
 
         // convert to milliseconds format - this is necessary for compspec2
