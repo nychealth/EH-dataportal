@@ -177,7 +177,7 @@
             "as": "ValueWithUnits"
           },
           {
-            "calculate": "timeFormat(datum.Time, '%Y')",
+            "calculate": "utcFormat(datum.Time, '%Y')",
             "as": "YearString"
           },
           {
@@ -187,7 +187,7 @@
         ],
         "encoding": {
           "x": {
-            "timeUnit": "year",
+            "timeUnit": "utcyear",
             "field": "Time",
             "title": "",
             "axis": {"zindex": 1},
@@ -236,7 +236,7 @@
             },
             "layer": [
               {
-                "mark": {"type": "text", "align": "left", "dx": -25,"fontSize": 12, "fontWeight": "bold"},
+                "mark": {"type": "text", "align": "left", "dx": 10,"fontSize": 12, "fontWeight": "bold"},
                 "encoding": {"text": {"field": `${colorField}`, "type": "nominal"}}
               }
             ]
