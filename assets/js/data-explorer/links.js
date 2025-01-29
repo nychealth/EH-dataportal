@@ -147,7 +147,7 @@ const renderLinksChart = (
 
     links_unreliability.forEach(element => {
 
-        document.querySelector("#links-unreliability").innerHTML += "<div class='fs-xs text-muted'>" + element + "</div>" ;
+        document.querySelector("#links-unreliability").innerHTML += "<div class='fs-xs'>" + element + "</div>" ;
         document.getElementById('links-unreliability').classList.remove('hide')
  
     });
