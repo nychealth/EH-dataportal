@@ -135,11 +135,13 @@
       if (filterFor === 'SO2' && sos === 'Source') {
         // change to season = winter.
         basicFilter = {"filter": `datum.Pollutant === '${filterFor}' && datum.Season === 'Winter' && datum.Source === '${chosenSource}'`}
+        tooltip = [
+          {"title": "Neighborhoods with", "field": "TooltipText"},
+          {"title": `${name}`, "field": "ValueWithUnits"},
+          {"title": "Time", "field": "Seasonyear"}
+                  ]
       }
 
-      if (filterFor === 'O3') {
-        // Ozone only in the summer - change tooltip and info.
-      }
 
       console.log('filter', basicFilter)
 
