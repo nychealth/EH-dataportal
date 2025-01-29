@@ -126,11 +126,19 @@
         basicFilter = {"filter": `datum.Pollutant === '${filterFor}' && datum.Season === 'ALL' && datum.Source === '${chosenSource}'`}
         colorField = "Tertile";
         tooltip = [
+          {"title": "Neighborhoods with", "field": "TooltipText"},
           {"title": `${name}`, "field": "ValueWithUnits"},
-          {"title": "Time", "field": "Seasonyear"},
-          {"title": "Source", "field": "Source"},
-          {"title": "Tertile", "field": "Tertile"}
+          {"title": "Year", "field": "YearString"}
         ]
+      }
+
+      if (filterFor === 'SO2' && sos === 'Source') {
+        // change to season = winter.
+        basicFilter = {"filter": `datum.Pollutant === '${filterFor}' && datum.Season === 'Winter' && datum.Source === '${chosenSource}'`}
+      }
+
+      if (filterFor === 'O3') {
+        // Ozone only in the summer - change tooltip and info.
       }
 
       console.log('filter', basicFilter)
@@ -183,6 +191,10 @@
           {
             "calculate": "datum.Season + ', ' + datum.YearString",
             "as": "Seasonyear"
+          },
+          {
+            "calculate": "datum.Tertile + ' levels of ' + datum.Source",
+            "as": "TooltipText"
           }
         ],
         "encoding": {
@@ -223,10 +235,7 @@
           {
             "mark": {"type": "line", "point": {"size": 70}},
             "encoding": {
-              "tooltip": [
-                {"title": `${name}`, "field": "ValueWithUnits"},
-                {"title": "Time", "field": "Seasonyear"}
-              ]
+              "tooltip": tooltip
             }
           },
           {
