@@ -57,6 +57,7 @@
         "pollutant": "BC",
         "name": "Black Carbon",
         "units": "micrograms per cubic meter",
+        "shortUnits": "μg/m3",
         "Sources": ['Commercial Cooking', 'Industrial Areas', 'Traffic Density'],
         "note": "BC spiked in summer 2023 due to wildfire smoke."
       },
@@ -64,6 +65,7 @@
         "pollutant": "NO",
         "name": "Nitric Oxide",
         "units": "parts per billion",
+        "shortUnits": "ppb",
         "Sources": ['Boiler Density','Traffic NOx Emissions'],
         "note": ""
       },
@@ -71,6 +73,7 @@
         "pollutant": "NO2",
         "name": "Nitrogen Dioxide",
         "units": "parts per billion",
+        "shortUnits": "ppb",
         "Sources": ['Traffic Density', 'Building Density'],
         "note": ""
       },
@@ -78,6 +81,7 @@
         "pollutant": "O3",
         "name": "Ozone",
         "units": "parts per billion",
+        "shortUnits": "ppb",
         "Sources": ['Traffic Density'],
         "note": ""
       },
@@ -85,6 +89,7 @@
         "pollutant": "PM2.5",
         "name": "Fine Particles",
         "units": "micrograms per cubic meter",
+        "shortUnits": "μg/m3",
         "Sources": ['Commercial Cooking','Traffic Density','Boiler PM2.5 Emissions'],
         "note": "PM2.5 spiked in spring/summer 2023 due to wildfire smoke."
       },
@@ -92,6 +97,7 @@
         "pollutant": "SO2",
         "name": "Sulfur Dioxide",
         "units": "parts per billion",
+        "shortUnits": "ppb",
         "Sources": ['Boilers Using Residual Oil','Night-Time Population Density'],
         "note": ""
       }
@@ -108,23 +114,24 @@
       let filterFor = cp.pollutant
       let chartTitle = cp.name + ' (' + cp.units + ')'
       let units = cp.units
+      let shortUnits = cp.shortUnits
       let name = cp.name
 
       console.log(`***Drawing chart for ${filterFor}, by ${sos}.`)
-      console.log('chosenSource', chosenSource)
+      console.log('Chosen source:', chosenSource)
 
       var basicFilter;
       var colorField;
       var tooltip;
       var note = cp.note
+      var annualLineTransform
 
       if (sos === 'Season') {
         basicFilter = {"filter": `datum.Pollutant === '${filterFor}' && datum.Source === 'ALL'`};
         colorField = "Season";
-        tooltip = [
-          {"title": `${name}`, "field": "ValueWithUnits"},
-          {"title": "Time", "field": "Seasonyear"}
-                  ]
+        tooltip = [ {"title": `${name}`, "field": "ValueWithUnits"},
+                    {"title": "Time", "field": "Seasonyear"}]
+        annualLineTransform = [{"filter": "datum.Season === 'ALL'"}]
       } else if (sos === 'Source') {
         basicFilter = {"filter": `datum.Pollutant === '${filterFor}' && datum.Season === 'ALL' && datum.Source === '${chosenSource}'`}
         colorField = "Tertile";
@@ -132,7 +139,8 @@
           {"title": "Neighborhoods with", "field": "TooltipText"},
           {"title": `${name}`, "field": "ValueWithUnits"},
           {"title": "Year", "field": "YearString"}
-        ]
+        ];
+        annualLineTransform = [{"filter": "datum.Season != 'ALL'"}]
       }
 
       if (filterFor === 'SO2' && sos === 'Source') {
@@ -183,7 +191,7 @@
         "transform": [
           basicFilter,
           {
-            "calculate": `format(datum.Value, '.2f') + ' ${units}'`,
+            "calculate": `format(datum.Value, '.2f') + ' ${shortUnits}'`,
             "as": "ValueWithUnits"
           },
           {
@@ -248,6 +256,19 @@
             "mark": {"type": "line", "stroke": "transparent", "strokeWidth": 15}
           },
           {
+            "transform": annualLineTransform,
+            "mark": {"type": "line", "strokeDash": [4, 4], "point": {"size": 35}},
+            "encoding": {
+              "x": {"timeUnit": "utcyear", "field": "Time"},
+              "y": {"field": "Value", "type": "quantitative"},
+              "color": {"value": "lightgray"},
+              "tooltip": [
+                {"title": `${name}`, "field": "ValueWithUnits"},
+                {"title": "Annual average", "field": "YearString"}
+              ]
+            }
+          },
+          {
             "mark": {"type": "line", "point": {"size": 70}},
             "encoding": {
               "tooltip": tooltip
@@ -267,8 +288,8 @@
                 "mark": {
                   "type": "text",             
                   "align": "left",
-                  "dx": 0,
-                  "dy": -15,
+                  "dx": 10,
+                  "dy": -5,
                   "fontSize": 12, 
                   "fontWeight": "bold"
                 },
