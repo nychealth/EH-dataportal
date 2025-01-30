@@ -27,7 +27,6 @@ indicators:
       - 2417
       - 2418
       - 2419
-      - 2420
 related:
   - title: "Climate and health"
     url: "neighborhood-reports/climate_and_health/"
