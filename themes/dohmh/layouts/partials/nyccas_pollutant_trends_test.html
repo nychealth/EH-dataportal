@@ -78,7 +78,7 @@
         "units": "parts per billion",
         "shortUnits": "ppb",
         "Sources": ['Traffic Density'],
-        "note": ""
+        "note": "Ozone is only measured in the summer."
       },
       {
         "pollutant": "PM2.5",
@@ -94,7 +94,7 @@
         "units": "parts per billion",
         "shortUnits": "ppb",
         "Sources": ['Boilers Using Residual Oil','Night-Time Population Density'],
-        "note": ""
+        "note": "SO2 is only measured in the winter. Since 2019, levels of S02 have been so low that we cannot analyze by source."
       }
     ]
 
@@ -121,13 +121,22 @@
       var note = cp.note
       var annualLineTransform
 
+      // SET UP BASICS FOR SEASONAL DATA
       if (sos === 'Season') {
         basicFilter = {"filter": `datum.Pollutant === '${filterFor}' && datum.Source === 'ALL'`};
         colorField = "Season";
         tooltip = [ {"title": `${name}`, "field": "ValueWithUnits"},
                     {"title": "Time", "field": "Seasonyear"}]
-        annualLineTransform = [{"filter": "datum.Source != 'ALL'"}]
+        annualLineTransform = [{"filter": "datum.Source != 'ALL'"}];
+
+        // Remove duplicate annual lines from seasonal-only pollutants
+        if (filterFor === 'O3' || filterFor === 'SO2') {
+          basicFilter = {"filter": `datum.Pollutant === '${filterFor}' && datum.Source === 'ALL' && datum.Season != 'ALL'`};
+        }
+
+
       } else if (sos === 'Source') {
+        // SET UP BASICS FOR DATA BY SOURCE
         basicFilter = {"filter": `datum.Pollutant === '${filterFor}' && datum.Season === 'Winter' && (datum.Source === '${chosenSource}' || datum.Source === 'ALL')`}
         colorField = "Tertile";
         tooltip = [
@@ -138,14 +147,21 @@
         annualLineTransform = [{"filter": "datum.Source === 'ALL'"}]
       }
 
+      // SPECIFICS FOR SO2
       if (filterFor === 'SO2' && sos === 'Source') {
-        // change to season = winter.
-        basicFilter = {"filter": `datum.Pollutant === '${filterFor}' && datum.Season === 'Winter' && datum.Source === '${chosenSource}'`}
+        basicFilter = {"filter": `datum.Pollutant === '${filterFor}' && datum.Season === 'Winter' && (datum.Source === '${chosenSource}' || datum.Source === 'ALL')`}
         tooltip = [
           {"title": "Neighborhoods with", "field": "TooltipText"},
           {"title": `${name}`, "field": "ValueWithUnits"},
           {"title": "Time", "field": "Seasonyear"}
-                  ]
+                  ],
+          annualLineTransform = [{"filter": "datum.Source === 'ALL'"}]
+      }
+
+      // SPECIFICS FOR O3
+      if (filterFor === "O3" && sos === 'Source') {
+        basicFilter = {"filter": `datum.Pollutant === '${filterFor}' && datum.Season === 'Summer' && (datum.Source === '${chosenSource}' || datum.Source === 'ALL')`}
+        annualLineTransform = [{"filter": "datum.Source === 'ALL'"}]
       }
 
       var newVis = {
@@ -317,7 +333,7 @@
         ]
       }
   
-      vegaEmbed('#newVis', newVis, {actions: false});
+      vegaEmbed('#newVis', newVis, {actions: true});
     }
 
     // INITIALIZE CHART AND SOURCES
