@@ -1,35 +1,30 @@
 <div id="pollutantTrendsEmbed">
 
   <div class="row">
-        <div class="col-12 mb-1">
-          <div class="btn-group">
-              <button type="button" class="btn btn2 btn-outline-dark active" value="BC">BC</button>
-              <button type="button" class="btn btn2 btn-outline-dark" value="NO">NO</button>
-              <button type="button" class="btn btn2 btn-outline-dark" value="NO2">NO<sub>2</sub></button>
-              <button type="button" class="btn btn2  btn-outline-dark" value="O3">O<sub>3</sub></button>
-              <button type="button" class="btn btn2 btn-outline-dark" value="PM2.5">PM<sub>2.5</sub></button>
-              <button type="button" class="btn btn2 btn-outline-dark" value="SO2">SO<sub>2</sub></button>
-          </div>
-
-        </div>
-
-        <div class="col-12 mb-2">
-          <button type="button" class="by-btns btn btn-sm btn-outline-secondary active my-0 d-inline-block" value="season" id="bySeasonButton" onclick="setSeason()">By season</button>
-
-          <div class="float-right">
-            <button type="button" class="by-btns btn btn-sm my-0 d-inline-block" value="source" id="bySourceButton" disabled="true">By level of:</button>
-
-            <div id="sourceContainer" class="fs-sm d-inline-block">
-              <!-- sources container -->
-            </div>
-         </div>
-
-
-        </div>
+    <div class="col-2">
+      <div class="">
+        <button type="button" class="btn btn-block btn2 btn-outline-dark active" value="BC">BC</button>
+        <button type="button" class="btn btn-block btn2 btn-outline-dark" value="NO">NO</button>
+        <button type="button" class="btn btn-block btn2 btn-outline-dark" value="NO2">NO<sub>2</sub></button>
+        <button type="button" class="btn btn-block btn2  btn-outline-dark" value="O3">O<sub>3</sub></button>
+        <button type="button" class="btn btn-block btn2 btn-outline-dark" value="PM2.5">PM<sub>2.5</sub></button>
+        <button type="button" class="btn btn-block btn2 btn-outline-dark" value="SO2">SO<sub>2</sub></button>
+    </div>
+    </div>
 
     <!-- Visualization container -->
-    <div class="col-12">
-      <div id="newVis" style="width:100%"></div>
+    <div class="col-10">
+      <button type="button" class="by-btns btn btn-sm btn-outline-secondary active my-0 d-inline-block" value="season" id="bySeasonButton" onclick="setSeason()">By season</button>
+
+      <div class="float-right">
+        <button type="button" class="by-btns btn btn-sm my-0 d-inline-block" value="source" id="bySourceButton" disabled="true">By level of:</button>
+
+        <div id="sourceContainer" class="fs-sm d-inline-block">
+          <!-- sources container -->
+        </div>
+     </div>
+
+      <div id="newVis" style="width:100%" class="mt-1"></div>
     </div>
 
   </div>
@@ -131,16 +126,16 @@
         colorField = "Season";
         tooltip = [ {"title": `${name}`, "field": "ValueWithUnits"},
                     {"title": "Time", "field": "Seasonyear"}]
-        annualLineTransform = [{"filter": "datum.Season === 'ALL'"}]
+        annualLineTransform = [{"filter": "datum.Source != 'ALL'"}]
       } else if (sos === 'Source') {
-        basicFilter = {"filter": `datum.Pollutant === '${filterFor}' && datum.Season === 'ALL' && datum.Source === '${chosenSource}'`}
+        basicFilter = {"filter": `datum.Pollutant === '${filterFor}' && datum.Season === 'Winter' && (datum.Source === '${chosenSource}' || datum.Source === 'ALL')`}
         colorField = "Tertile";
         tooltip = [
           {"title": "Neighborhoods with", "field": "TooltipText"},
           {"title": `${name}`, "field": "ValueWithUnits"},
           {"title": "Year", "field": "YearString"}
         ];
-        annualLineTransform = [{"filter": "datum.Season != 'ALL'"}]
+        annualLineTransform = [{"filter": "datum.Source === 'ALL'"}]
       }
 
       if (filterFor === 'SO2' && sos === 'Source') {
@@ -322,7 +317,7 @@
         ]
       }
   
-      vegaEmbed('#newVis', newVis);
+      vegaEmbed('#newVis', newVis, {actions: false});
     }
 
     // INITIALIZE CHART AND SOURCES
