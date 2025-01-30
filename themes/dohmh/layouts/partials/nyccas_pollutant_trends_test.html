@@ -17,7 +17,7 @@
           <button type="button" class="by-btns btn btn-sm btn-outline-secondary active my-0 d-inline-block" value="season" id="bySeasonButton" onclick="setSeason()">By season</button>
 
           <div class="float-right">
-            <button type="button" class="by-btns btn btn-sm my-0 d-inline-block" value="source" id="bySourceButton" disabled="true">By neighborhood level of:</button>
+            <button type="button" class="by-btns btn btn-sm my-0 d-inline-block" value="source" id="bySourceButton" disabled="true">By level of:</button>
 
             <div id="sourceContainer" class="fs-sm d-inline-block">
               <!-- sources container -->
@@ -27,15 +27,11 @@
 
         </div>
 
-
+    <!-- Visualization container -->
     <div class="col-12">
       <div id="newVis" style="width:100%"></div>
-
-      <div id="dataNote" class="fs-sm">
-        <strong>Note:</strong> data are for neighborhoods with <strong>high, medium, or low</strong> amounts of emissions from the selected source.
-      </div>
-
     </div>
+
   </div>
 
   <hr>
@@ -61,37 +57,43 @@
         "pollutant": "BC",
         "name": "Black Carbon",
         "units": "micrograms per cubic meter",
-        "Sources": ['Commercial Cooking', 'Industrial Areas', 'Traffic Density']
+        "Sources": ['Commercial Cooking', 'Industrial Areas', 'Traffic Density'],
+        "note": "BC spiked in summer 2023 due to wildfire smoke."
       },
       {
         "pollutant": "NO",
         "name": "Nitric Oxide",
         "units": "parts per billion",
-        "Sources": ['Boiler Density','Traffic NOx Emissions']
+        "Sources": ['Boiler Density','Traffic NOx Emissions'],
+        "note": ""
       },
       {
         "pollutant": "NO2",
         "name": "Nitrogen Dioxide",
         "units": "parts per billion",
-        "Sources": ['Traffic Density', 'Building Density']
+        "Sources": ['Traffic Density', 'Building Density'],
+        "note": ""
       },
       {
         "pollutant": "O3",
         "name": "Ozone",
         "units": "parts per billion",
-        "Sources": ['Traffic Density']
+        "Sources": ['Traffic Density'],
+        "note": ""
       },
       {
         "pollutant": "PM2.5",
         "name": "Fine Particles",
         "units": "micrograms per cubic meter",
-        "Sources": ['Commercial Cooking','Traffic Density','Boiler PM2.5 Emissions']
+        "Sources": ['Commercial Cooking','Traffic Density','Boiler PM2.5 Emissions'],
+        "note": "PM2.5 spiked in spring/summer 2023 due to wildfire smoke."
       },
       {
         "pollutant": "SO2",
         "name": "Sulfur Dioxide",
         "units": "parts per billion",
-        "Sources": ['Boilers Using Residual Oil','Night-Time Population Density']
+        "Sources": ['Boilers Using Residual Oil','Night-Time Population Density'],
+        "note": ""
       }
     ]
 
@@ -114,6 +116,7 @@
       var basicFilter;
       var colorField;
       var tooltip;
+      var note = cp.note
 
       if (sos === 'Season') {
         basicFilter = {"filter": `datum.Pollutant === '${filterFor}' && datum.Source === 'ALL'`};
@@ -141,9 +144,6 @@
           {"title": "Time", "field": "Seasonyear"}
                   ]
       }
-
-
-      console.log('filter', basicFilter)
 
       var newVis = {
         "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
@@ -178,7 +178,7 @@
           "legend": {"columns": 6, "labelFontSize": 10, "symbolSize": 80}
         },
         "data": {
-          "url": "https://gist.githubusercontent.com/mmontesanonyc/9db5c63c2783a24dacce701ca850da13/raw/d312b0abd5f1f556ad8939648f47dcd241abdc14/ptt.csv"
+          "url": "embed/pollutant-trends-data_test.csv"
         },
         "transform": [
           basicFilter,
@@ -205,7 +205,7 @@
             "field": "Time",
             "title": "",
             "axis": {"zindex": 1},
-            "scale": {"padding": 30}
+            "scale": {"padding": 60}
           },
           "y": {"field": "Value", "type": "quantitative", "title": ""},
           "color": {
@@ -213,7 +213,20 @@
               "param": "hover",
               "field": colorField,
               "type": "nominal",
-              "legend": null
+              "legend": null,
+              "scale": {
+                "domain": ["All","Winter", "Spring", "Summer","Fall","High","Medium","Low"],
+                "range": [
+                  "black",
+                  "#003F5C",
+                  "#FFA600",
+                  "#FF8440",
+                  "#7A4694",
+                  "#810f7c",
+                  "#8c96c6",
+                  "#b3cde3"
+                ]
+              }
             },
             "value": "gray"
           },
@@ -243,14 +256,47 @@
           {
             "encoding": {
               "x": {"aggregate": "max", "field": "Time"},
-              "y": {"aggregate": {"argmax": "Time"}, "field": "Value"}
+              "y": {"aggregate": {"argmax": "Time"}, "field": "Value"},
+              "text": {
+                "condition": {"param": "hover", "field": `${colorField}`, "empty": false},
+                "value": ""
+              }
             },
             "layer": [
               {
-                "mark": {"type": "text", "align": "left", "dx": 10,"fontSize": 12, "fontWeight": "bold"},
+                "mark": {
+                  "type": "text",             
+                  "align": "left",
+                  "dx": 0,
+                  "dy": -15,
+                  "fontSize": 12, 
+                  "fontWeight": "bold"
+                },
                 "encoding": {"text": {"field": `${colorField}`, "type": "nominal"}}
               }
             ]
+          },
+          {
+            "mark": {
+              "type": "text",
+              "fontSize": 11,
+              "fontWeight": "normal",
+              "align": "left",
+              "baseline": "bottom",
+              "dx": 5,
+              "dy": 100
+            },
+            "data": {"values": [{}]},
+            "encoding": {
+              "text": {
+                "value": [
+                  note
+                ]
+              },
+              "x": {"value": 0},
+              "y": {"value": 300},
+              "color": {"value": "black"}
+            }
           }
         ]
       }
@@ -310,11 +356,7 @@
       console.log('source set for ' + x)
       chosenSource = x
       sourceOrSeason = 'Source'
-      runChart(chosenPollutant,sourceOrSeason)
-
-      document.getElementById('dataNote').classList.remove('hide')
-
-      
+      runChart(chosenPollutant,sourceOrSeason)      
     }
 
     function setSeason() {
@@ -322,8 +364,6 @@
       for (let button of document.querySelectorAll('.srcbtn')) button.classList.remove('active');
       sourceOrSeason = 'Season'
       runChart(chosenPollutant,sourceOrSeason)
-      document.getElementById('dataNote').classList.add('hide')
-
     }
 
 
