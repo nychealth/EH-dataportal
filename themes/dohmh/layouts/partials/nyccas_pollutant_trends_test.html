@@ -92,7 +92,7 @@
         "units": "parts per billion",
         "shortUnits": "ppb",
         "Sources": ['Boilers Using Residual Oil','Night-Time Population Density'],
-        "note": "SO2 is only measured in the winter. Since 2019, levels of S02 have been so low that we cannot analyze by source."
+        "note": "SO2 is only measured in the winter. Since 2019, levels of S02 have been too low to meaningfully measure."
       }
     ]
 
@@ -162,6 +162,8 @@
         annualLineTransform = [{"filter": "datum.Source === 'ALL'"}]
       }
 
+      // get date for x-axis
+
       var newVis = {
         "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
         "description": "Pollutant trends over time, by season or source",
@@ -195,7 +197,7 @@
           "legend": {"columns": 6, "labelFontSize": 10, "symbolSize": 80}
         },
         "data": {
-          "url": "embed/pollutant-trends-data_test.csv"
+          "url": "embed/pollutant-trends-data_test_rev.csv"
         },
         "transform": [
           basicFilter,
@@ -222,7 +224,9 @@
             "field": "Time",
             "title": "",
             "axis": {"zindex": 1},
-            "scale": {"padding": 60}
+            "scale": {
+              "padding": 60
+            }
           },
           "y": {"field": "Value", "type": "quantitative", "title": ""},
           "color": {
