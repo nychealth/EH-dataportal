@@ -7,4 +7,8 @@ Since monitoring began in winter 2008-2009 in New York City, we have seen a decr
 
 Air pollution changes not only by neighborhood, but also by season. Some pollutants are highest in certain seasons of the year because of either weather patterns or emissions sources. For example, O<sub>3</sub> is produced when NO and NO<sub>2</sub> and other airborne pollutants react in the presence of heat and sunlight. Therefore, we only monitor O<sub>3</sub> in the summer when direct sunlight is highest and days are longer.
 
-The figure below illustrates how the levels of each air pollutant change by season from winter 2008-2009 to fall 2023. We compare trends among locations with high, medium and low densities of the most common sources of each pollutant.
+The figure below illustrates how the levels of each air pollutant has changed by season from winter 2008-2009 to fall 2023. During the late spring and summer of 2023, wildfires in Canada impacted air quality over several weeks in New York City. Wildfire smoke is a major source of PM<sub>2\.5</sub> and BC and likely the reason for higher concentrations in those seasons compared to other recent seasons.
+
+&nbsp;
+
+We compare trends among locations with high, medium and low densities of the most common sources of each pollutant.
