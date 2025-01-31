@@ -38,8 +38,8 @@ related:
 relatedData:
   - title: "Housing maintenance"
     url: "housing-maintenance/"
-  - title: "Housing safety"
-    url: "housing-safety/"
+  - title: "Violence"
+    url: "Violence/"
   - title: "Economic conditions"
     url: "economic-conditions/"
 ---
