@@ -96,7 +96,7 @@ function geocode() {
     console.log('***Geocoding')
     document.getElementById('status').innerHTML = 'Getting data...'
     if (nycMap.location.type === 'geocoded') {
-        console.log('- Location found! Details:') // get data...
+        console.log('- location found. Details:') // get data...
         locationDetails = nycMap.location
         console.log(locationDetails)
 
@@ -175,7 +175,7 @@ async function checkPointInRMZ(lat,long) {
                     let area     = L.polygon(thisArea)
                     let location = L.marker(inputLatLong)
                     if (area.contains(location.getLatLng())) {
-                        console.log('- This address is RMZ ', geojsonData.features[i].properties.Label)
+                        console.log('- this address is RMZ ', geojsonData.features[i].properties.Label)
                         getRMZIndicatorData(geojsonData.features[i].id)
                         isRMZ = true
                         mapLayers.forEach(layer => map.removeLayer(layer)) // remove previous layers
@@ -193,7 +193,7 @@ async function checkPointInRMZ(lat,long) {
                 let area     = L.polygon(thisArea)
                 let location = L.marker(inputLatLong)
                 if (area.contains(location.getLatLng())) {
-                    console.log('- This address is RMZ ', geojsonData.features[i].properties)
+                    console.log('- this address is RMZ ', geojsonData.features[i].properties)
                     getRMZIndicatorData(geojsonData.features[i].id)
                     isRMZ = true
                     area.addTo(leafletMap)
@@ -204,7 +204,7 @@ async function checkPointInRMZ(lat,long) {
     }
 
     if (isRMZ === false) {
-        console.log('Not in an RMZ.')
+        console.log('- not in an RMZ.')
         showParentCD(lat,long)
     }
 
@@ -281,7 +281,7 @@ function getRMZIndicatorData(x) {
 
 var CDIndicatorData;
 function getCDIndicatorData(x) {
-    console.log('***getting CD Indicator data for ', x)
+    console.log('***Getting CD Indicator data for ', x)
 
     const URL = 'https://raw.githubusercontent.com/nychealth/EHDP-data/refs/heads/production/indicators/data/2434.json';
         // passes geoID into function
@@ -455,7 +455,7 @@ function printCDData(data) {
 //----------
 // Print property data to page
 function printPropertyData(data) {
-    console.log("- Printing property data?")
+    console.log("- printing property data")
     document.getElementById('propertyOutput').classList.remove('hide')
     document.getElementById('noOutput').classList.add('hide')
 
