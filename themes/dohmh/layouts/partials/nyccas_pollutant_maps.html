@@ -1,7 +1,7 @@
 <div id="pollutantMaps">
 
   <div class="row">
-    <div class="col-md-7 col-sm-12">
+    <div class="col-12">
       <div class="mb-1">
         <button type="button" class="btn btn-outline yearbtn" id="btn1" disabled>2023</button>
         <button type="button" class="btn polbtn btn-outline-dark active" value="bc">BC</button>
@@ -165,7 +165,7 @@
           //Turns off highlights on everything based on class
           for (let button of document.querySelectorAll('.polbtn')) button.classList.remove('active');
           this.classList.add('active')
-          embed = 'raster/' + this.value + '_2022.html'
+          embed = 'raster/' + this.value + '_2023.html'
           document.getElementById('iframeEmbed').src = embed;
 
           const mapTexts = document.querySelectorAll('.polText')
