@@ -16,12 +16,12 @@ image: rmz-ss.png
 related:
   - title: "Why trash is a public health issue"
     url: "data-stories/sanitation/"
+  - title: "Rat Mitigation Zones"
+    url: "data-features/rat-mitigation-zones"
   - title: "Housing creates health"
     url: "data-stories/housing-creates-health/"
-  - title: "Heat Vulnerability Index"
-    url: "data-explorer/mice-and-rats/?id=24#display=summary"
 ---
 
-Where are the rats in your neighborhood, and how do you find out what work is being done to fight them? And how can you help?
+What's going on with rats in your neighborhood, what's being done to fight them, and how can you help? 
 
-To start, enter your address.
+Find out here. Enter an address to see data on neighbhood-level rat inspections, and individual inspection results for your property. 

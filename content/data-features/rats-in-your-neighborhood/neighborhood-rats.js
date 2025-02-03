@@ -94,6 +94,7 @@ function resetZoom() {
 //---------------------------------------- 
 function geocode() {
     console.log('***Geocoding')
+    document.getElementById('status').innerHTML = 'Getting data...'
     if (nycMap.location.type === 'geocoded') {
         console.log('- Location found! Details:') // get data...
         locationDetails = nycMap.location
@@ -263,7 +264,7 @@ function getRMZIndicatorData(x) {
                 // FILTER FOR THIS RMZ
                 RMZIndicatorData = reformattedData.filter(item => item.GeoID === x) // 
                 console.log('- RMZIndicatorData:', RMZIndicatorData);
-                printRMZData();
+                printRMZData(RMZIndicatorData);
                 resolve(reformattedData); // Resolve promise 
             })
             .catch(error => {
@@ -313,7 +314,7 @@ function getCDIndicatorData(x) {
                     CDIndicatorData = CDIndicatorData.filter(item => item.GeoID == x)
 
                     console.log('- CDIndicatorData:',CDIndicatorData);
-                    printCDData();
+                    printCDData(CDIndicatorData);
                     resolve(); // Resolve promise 
                 })
                 .catch(error => {
@@ -345,7 +346,7 @@ async function getPropertyData(x) {
             propertyData = data; // Store  data in a global variable
             console.log('***Getting property data')
             console.log(propertyData)
-            printPropertyData()
+            printPropertyData(propertyData)
             resolve(); // Resolve the promise when the data is ready
         })
         .catch(error => {
@@ -365,8 +366,26 @@ async function getPropertyData(x) {
 //----------
 // Print RMZ data
 
-function printRMZData() {
+function printRMZData(data) {
     console.log('- Printing RMZ data to page.')
+
+    document.getElementById('cdOutput').classList.add('hide')
+    document.getElementById('rmzOutput').classList.remove('hide')
+
+    // Find the max TimePeriodID, and filter for it
+    const maxTimePeriodID = Math.max(...data.map(item => item.TimePeriodID));
+    const mostRecentData = data.filter(item => item.TimePeriodID === maxTimePeriodID);
+
+    console.log(mostRecentData);
+
+    document.getElementById('rmzProp').innerHTML = mostRecentData
+        .filter(item => item.MeasureID === 1378)
+        .map(item => item.DisplayValue);
+    const ars = mostRecentData
+        .filter(item => item.MeasureID === 1380)
+        .map(item => item.DisplayValue);
+    document.getElementById('rmzARS').innerHTML = ars + '%'
+
     /*  Metadata
     "MeasureID": 1378,
     "MeasureName": "Rat indexing in Rat Mitigation Zones (RMZs), Number of properties inspected",
@@ -382,8 +401,44 @@ function printRMZData() {
 //----------
 // Print CD data
 
-function printCDData() {
+function printCDData(data) {
     console.log('- Printing CD data to page.')
+
+    document.getElementById('cdOutput').classList.remove('hide')
+    document.getElementById('rmzOutput').classList.add('hide')
+
+    document.getElementById('cdID').innerHTML = 'Community District ' + thisCD;
+
+    // Find the max TimePeriodID, and filter for it
+    const maxTimePeriodID = Math.max(...data.map(item => item.TimePeriodID));
+    const mostRecentData = data.filter(item => item.TimePeriodID === maxTimePeriodID);
+
+
+    const inspected = mostRecentData
+        .filter(item => item.MeasureID === 1381)
+        .map(item => item.DisplayValue);
+
+    document.getElementById('cdProp').innerHTML = inspected + '%'
+
+    const failed = mostRecentData
+        .filter(item => item.MeasureID === 1383)
+        .map(item => item.DisplayValue);
+
+    document.getElementById('cdFail').innerHTML = failed + '%'
+
+    var ratActivity;
+    if (failed > 20) {
+        ratActivity = 'high'
+    } else if (failed < 5) {
+        ratActivity = 'low'
+    } else {
+        ratActivity = 'moderate'
+    }
+
+    document.getElementById('activityValue').innerHTML = ratActivity
+
+    const ratClass = ratActivity + '-activity'
+    document.getElementById('activityValue').classList.add(ratClass)
 
     /* Metadata
     "MeasureID": 1381,
@@ -399,8 +454,40 @@ function printCDData() {
 
 //----------
 // Print property data to page
-function printPropertyData() {
+function printPropertyData(data) {
     console.log("- Printing property data?")
+    document.getElementById('propertyOutput').classList.remove('hide')
+    document.getElementById('noOutput').classList.add('hide')
+
+    // convert date
+    data.forEach(property => {
+        property.approved_date = new Date(property.approved_date);
+    });
+
+    // filter for last 5 years
+    const fiveYearsAgo = new Date();
+    fiveYearsAgo.setFullYear(fiveYearsAgo.getFullYear() - 5);
+    const recentInspections = propertyData.filter(property => property.approved_date >= fiveYearsAgo);
+    console.log(recentInspections);
+
+    document.getElementById('numOfInspections').innerHTML = recentInspections.length + ' time' + (recentInspections.length > 1 ? 's' : '')
+
+    // Get most recent inspection
+    const mostRecentInspection = propertyData.reduce((latest, property) => {
+        return property.approved_date > latest.approved_date ? property : latest;
+    }, propertyData[0]); // Start with the first item as the initial "latest"
+    
+    // Format date
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    const mostRecentDate = mostRecentInspection.approved_date.toLocaleDateString('en-US', options)
+    document.getElementById('mostRecentInspection').innerHTML = mostRecentDate
+
+    // Print result
+    const resultClass = (mostRecentInspection.result === 'Passed' ? 'passed-fill' : 'failed-fill')
+    document.getElementById('result').classList.add(resultClass)
+    document.getElementById('result').innerHTML = (mostRecentInspection.result === 'Passed' ? 'passed' : 'failed')
+    
+    
 }
 
 
