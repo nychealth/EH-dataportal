@@ -30,7 +30,7 @@ PM: >-
     - In 2023, seasonal average PM<sub>2.5</sub> concentrations across NYCCAS
     monitoring sites ranged from 4.6 to 30 micrograms per cubic meter.
 O3: >-
-    - Since the first summer (2009) when relatively cool temperatures contributed to lower levels of ozone, citywide summertime average levels varied slightly year to year (ranging from 27.8 ppb to 33.5 ppb between 2010 and 2023), without a consistent trend.
+    - Since the first summer (2009) when relatively cool temperatures contributed to lower levels of ozone, citywide summertime average levels varied slightly year to year (ranging from 27.8 ppb to 33.7 ppb between 2010 and 2023), without a consistent trend.
     
     - Higher levels were consistently measured at sites with lower traffic density and lower NO<sub>2</sub> concentrations such as areas of outer Queens, Brooklyn, and Staten Island, reflecting less removal of ozone from the atmosphere by fresh combustion NO<sub>x</sub> emissions.
     
