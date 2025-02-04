@@ -5,7 +5,7 @@
     <div class="row">
 
         <!--start main content section-->
-        <div class="col-md-8 mx-auto overflow-hidden fs-rg" id="primary-content">
+        <div class="col-md-8 col-sm-12 mx-auto overflow-hidden fs-rg" id="primary-content">
 
             <div class="row mt-2 mb-3">
                 <div class="col-12">
@@ -75,7 +75,7 @@
             </div>
         </div>
 
-        <div class="col-md-8 mx-auto">
+        <div class="col-md-8 col-sm-12 mx-auto">
             <hr class="my-4">
         </div>
 
@@ -94,7 +94,7 @@
             <iframe src="embed/nyccas-sites-leaflet.html" frameborder="no" style="width: 100%; height: 550px"></iframe>
         </div>
 
-        <div class="col-md-8 mx-auto">
+        <div class="col-md-8 col-sm-12 mx-auto">
             <hr class="my-4">
         </div>
 
@@ -114,7 +114,7 @@
             {{ partial "nyccas_pollutant_maps.html" . }}
         </div>
 
-        <div class="col-md-8 mx-auto mb-2">
+        <div class="col-md-8 col-sm-12 mx-auto mb-2">
             <hr class="my-4">
             <h2>Pollutant Trends</h2>
             {{- with .Resources.GetMatch "pollutant-trends.md" -}}
@@ -126,7 +126,7 @@
             {{ partial "nyccas_pollutant_trends_new" . }}
         </div>
 
-        <div class="col-md-8 mx-auto">
+        <div class="col-md-8 col-sm-12 mx-auto">
             <hr class="my-4">
 
             <h2>Pollutant Predictors</h2>
@@ -134,8 +134,13 @@
                 {{ .Content }}
             {{- end -}}
 
-            {{ partial "nyccas_pollutant_table" . }}
+        </div>
 
+        <div class="col-md-10 col-sm-12 mx-auto">
+            {{ partial "nyccas_pollutant_table" . }}
+        </div>
+
+        <div class="col-md-8 col-sm-12 mx-auto">
 
             <h2>Conclusion</h2>
             {{- with .Resources.GetMatch "conclusion.md" -}}
