@@ -49,16 +49,14 @@ This report:
 
 ### Key Findings
 
-**Citywide, annual average levels of four key pollutants have gone down between the first year of monitoring, 2009, and the most recent year of data, 2023.**
+**Citywide, annual average levels of four key pollutants have gone down between the first year of monitoring, 2009, and the most recent year of data, 2023.** Black Carbon (BC) and Fine Particles (PM<sub>2\.5</sub>) are known to be produced during fires and measurements of those pollutants at NYCCAS sites were higher during late spring and summer 2023 because of wildfire smoke. This caused the yearly average to be higher too.
 
-* Fine particles (PM<sub>2\.5</sub>)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;-29%
+* Fine particles&nbsp;              &nbsp; &nbsp; &nbsp; &nbsp;-29%
 * Nitrogen Dioxide (NO<sub>2</sub>)&nbsp; &nbsp; -38%
 * Nitric Oxide (NO)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; -60%
 * Sulfur Dioxide (SO<sub>2</sub>)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; -98%
 
 **Air quality improved significantly after local regulations required building owners to convert to cleaner heating oils by 2015.** These heating oils were a major source of SO<sub>2</sub> in New York City. In 2023, only one of our 90 sites detected any SO<sub>2</sub>, and the levels at those sites were similar to SO<sub>2</sub> levels measured on Whiteface Mountain in the Adirondack Mountains, demonstrating the success of the clean heating oil requirements.
-
-**Wildfire smoke impacted air quality throughout the city in late spring and summer of 2023.** Black carbon (BC) and PM<sub>2\.5</sub> are major emissions from wildfire smoke and citywide annual and some seasonal averages increased when these events occurred.
 
 **Ozone (O<sub>3</sub>) levels were higher in 2023 than any previous year of NYCCAS monitoring.** Ozone is produced when there are oxides of nitrogen (NO<sub>x</sub>) and volatile organic carbon emissions in the presence of sunlight and heat, which is why we see higher levels in the summer. Summer 2023 was one of the hottest in recorded history, likely causing higher O<sub>3</sub>&nbsp;levels.
 
