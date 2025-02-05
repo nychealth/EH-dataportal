@@ -122,7 +122,7 @@
 
       // SET UP BASICS FOR SEASONAL DATA
       if (sos === 'Season') {
-        basicFilter = {"filter": `datum.Pollutant === '${filterFor}' && datum.Source === 'ALL'`};
+        basicFilter = {"filter": `datum.Pollutant === '${filterFor}' && datum.Source === 'ALL' && datum.Season != 'ALL'`};
         colorField = "Season";
         tooltip = [ {"title": `${name}`, "field": "ValueWithUnits"},
                     {"title": "Time", "field": "Seasonyear"}]
@@ -136,7 +136,7 @@
 
       } else if (sos === 'Source') {
         // SET UP BASICS FOR DATA BY SOURCE
-        basicFilter = {"filter": `datum.Pollutant === '${filterFor}' && datum.Season === 'Winter' && (datum.Source === '${chosenSource}' || datum.Source === 'ALL')`}
+        basicFilter = {"filter": `datum.Pollutant === '${filterFor}' && datum.Season === 'ALL' && (datum.Source === '${chosenSource}' || datum.Source === 'ALL')`}
         colorField = "Tertile";
         tooltip = [
           {"title": "Neighborhoods with", "field": "TooltipText"},
