@@ -7,7 +7,7 @@ BC: >-
 
     - Across the 15-year period, higher levels were consistently seen near warehouses within industrial areas (reflecting increased truck traffic density) and in areas with higher nearby commercial cooking grills and charbroilers. 
 
-    - In 2023, seasonal average BC concentrations across NYCCAS monitoring sites ranged from 0.01 to 7.9 micrograms per cubic meter.
+    - In 2023, seasonal average BC concentrations across NYCCAS monitoring sites ranged from 0.01 to 7.9 micrograms per cubic meter. The BC higheest concentrations were likely caused by wildfire smoke.
 'NO': >-
     - Citywide, annual average levels of Nitric Oxide declined by 60% between 2009 and 2023, an average of 1.5 parts per billion per year. 
 
@@ -28,7 +28,7 @@ PM: >-
     - Recently, higher levels of PM<sub>2.5</sub> have been seen at sites with nearby commercial cooking grills and charbroilers and traffic emissions. This is largely due to buildings using cleaner fuels for heating and therefore emitting less PM<sub>2.5</sub> than when NYCCAS began monitoring.
 
     - In 2023, seasonal average PM<sub>2.5</sub> concentrations across NYCCAS
-    monitoring sites ranged from 4.6 to 30 micrograms per cubic meter.
+    monitoring sites ranged from 4.6 to 30 micrograms per cubic meter. The PM<sub>2.5</sub> higheest concentrations were likely caused by wildfire smoke.
 O3: >-
     - Since the first summer (2009) when relatively cool temperatures contributed to lower levels of ozone, citywide summertime average levels varied slightly year to year (ranging from 27.8 ppb to 33.7 ppb between 2010 and 2023), without a consistent trend.
     
