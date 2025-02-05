@@ -51,7 +51,7 @@ This report:
 
 **Citywide, annual average levels of four key pollutants have gone down between the first year of monitoring, 2009, and the most recent year of data, 2023.** Black Carbon (BC) and Fine Particles (PM<sub>2\.5</sub>) are known to be produced during fires and measurements of those pollutants at NYCCAS sites were higher during late spring and summer 2023 because of wildfire smoke. This caused the yearly average to be higher too.
 
-* Fine particles&nbsp;                                  &nbsp; &nbsp; &nbsp; &nbsp;-29%
+* Fine particles&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;-29%
 * Nitrogen Dioxide (NO<sub>2</sub>)&nbsp; &nbsp; -38%
 * Nitric Oxide (NO)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; -60%
 * Sulfur Dioxide (SO<sub>2</sub>)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; -98%
