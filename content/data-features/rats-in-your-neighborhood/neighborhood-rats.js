@@ -470,7 +470,7 @@ function printPropertyData(data) {
     const recentInspections = propertyData.filter(property => property.approved_date >= fiveYearsAgo);
     console.log(recentInspections);
 
-    document.getElementById('numOfInspections').innerHTML = recentInspections.length + ' time' + (recentInspections.length > 1 ? 's' : '')
+    document.getElementById('numOfInspections').innerHTML = recentInspections.length + ' time' + (recentInspections.length != 1 ? 's' : '')
 
     // Get most recent inspection
     const mostRecentInspection = propertyData.reduce((latest, property) => {
