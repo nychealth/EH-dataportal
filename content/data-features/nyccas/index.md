@@ -18,7 +18,7 @@ seo_description: Data, findings, and more from NYC's citywide air quality monito
 aliases:
   - /key-topics/airquality/nyccas/
 vega: true
-image: images/nyccas-banner-2.jpeg
+image: images/banner-2023.jpg
 layout: nyccas-report
 report: true
 related:
