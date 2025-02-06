@@ -91,7 +91,7 @@
         </div>
 
         <div class="col-md-5 mr-auto col-sm-12">
-            <iframe src="embed/nyccas-sites-leaflet.html" frameborder="no" style="width: 100%; height: 550px"></iframe>
+            <iframe src="{{ .Params.fullurl }}embed/nyccas-sites-leaflet.html" frameborder="no" style="width: 100%; height: 550px"></iframe>
         </div>
 
         <div class="col-md-8 col-sm-12 mx-auto">
@@ -101,7 +101,7 @@
         <!-- Pollutant Maps -->
         <div class="col-md-8 col-sm-12 mx-auto">
             <h2>Pollutant Maps</h2>
-            <img src="images/NyccasInstall_red.jpg" alt="NYCCAS installation" align="right" style="width:50%;" class="my-2 pl-2">
+            <img src="{{ .Params.fullurl }}images/NyccasInstall_red.jpg" alt="NYCCAS installation" align="right" style="width:50%;" class="my-2 pl-2">
 
             {{- with .Resources.GetMatch "pollutant-maps.md" -}}
                 {{ .Content }}
