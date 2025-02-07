@@ -3,11 +3,11 @@ _schema: default
 draft: false
 hide: true
 BC: >-
-    - Citywide, annual average levels of Black Carbon declined by 35% between 2009 and 2023, an average of 0.05 micrograms per cubic meter per year. 
+    - Citywide, annual average levels of Black Carbon declined by 49% between 2009 and 2023, an average of 0.05 micrograms per cubic meter per year. 
 
     - Across the 15-year period, higher levels were consistently seen near warehouses within industrial areas (reflecting increased truck traffic density) and in areas with higher nearby commercial cooking grills and charbroilers. 
 
-    - In 2023, seasonal average BC concentrations across NYCCAS monitoring sites ranged from 0.01 to 7.9 micrograms per cubic meter. The highest BC concentrations were likely caused by wildfire smoke.
+    - In 2023, seasonal average BC concentrations across NYCCAS monitoring sites ranged from 0.01 to 2.3 micrograms per cubic meter. The highest BC concentrations were likely caused by wildfire smoke.
 'NO': >-
     - Citywide, annual average levels of Nitric Oxide declined by 60% between 2009 and 2023, an average of 1.5 parts per billion per year. 
 
