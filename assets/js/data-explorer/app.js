@@ -147,7 +147,8 @@ $('#tab-btn-links').on('click', e => {
 // how calculated
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
-$('#howCalcModal').on('click', e => {
+$('#howCalcButton').on('click', e => {
+    // console.log("click_how_caclulated");
     gtag('event', 'click_how_caclulated');
 });
 
@@ -156,6 +157,7 @@ $('#howCalcModal').on('click', e => {
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
 $('#citeButton').on('click', e => {
+    // console.log("click_citation");
     gtag('event', 'click_citation');
 });
 
