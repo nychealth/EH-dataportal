@@ -161,6 +161,15 @@ $('#citeButton').on('click', e => {
     gtag('event', 'click_citation');
 });
 
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// measure about
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+$('#tab-btn-02-b').on('click', e => {
+    // console.log("click_about");
+    gtag('event', 'click_about');
+});
+
 
 // ----------------------------------------------------------------------- //
 // export functions
