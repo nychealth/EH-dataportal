@@ -27,10 +27,7 @@ const renderMap = (
     // ----------------------------------------------------------------------- //
 
     let mapGeoType            = data[0]?.GeoType;
-    // let geoTypeShortDesc      = data[0]?.GeoTypeShortDesc;
-    // let GeoTypeDesc           = data[0]?.GeoTypeDesc;
     let mapMeasurementType    = metadata[0]?.MeasurementType;
-    let mapGeoTypeDescription = [...new Set(geoTable.filter(aq.escape(d => d.GeoType === mapGeoType)).array("GeoTypeShortDesc"))];
     let mapTime = mapTimes[0];
     let displayType;
     let subtitle;
