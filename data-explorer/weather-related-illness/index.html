@@ -2123,6 +2123,36 @@
         
 
         <h1
+            id="IndicatorID-2444"
+            class="d-none">
+            
+        </h1>
+        <h2
+            class="d-none">
+            
+        </h2>
+
+
+    
+
+        
+
+        <h1
+            id="IndicatorID-2445"
+            class="d-none">
+            
+        </h1>
+        <h2
+            class="d-none">
+            
+        </h2>
+
+
+    
+
+        
+
+        <h1
             id="IndicatorID-2084"
             class="d-none">
             Heat events
@@ -2697,6 +2727,22 @@
 
                 
 
+                    
+
+                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2444 );
+                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
+                    indicatorDropdown.innerHTML += "<button class='indicator-dropdown-item dropdown-item' onclick='loadIndicator(2444)' data-indicator-id='2444'>" + this_indicatorName + `</button>`;
+
+                
+
+                    
+
+                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2445 );
+                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
+                    indicatorDropdown.innerHTML += "<button class='indicator-dropdown-item dropdown-item' onclick='loadIndicator(2445)' data-indicator-id='2445'>" + this_indicatorName + `</button>`;
+
+                
+
                 header = 'Heat Stress';
                 indicatorDropdown.innerHTML += header.length ? '<div class="dropdown-title"><strong>' + header + '</strong></div>' : '';
 
@@ -2793,6 +2839,14 @@
                     indicator = indicators.find(indicator => indicator.IndicatorID ===  2174 );
                     this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
                     indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' onclick='loadIndicator(2174)' data-indicator-id='2174'>" + this_indicatorName + `<i class="indicator-arrows fas fa-arrow-circle-right float-right font-weight-bold hide" id="arrow-2174" aria-hidden="true"></i></button>`;
+
+                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2444 );
+                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
+                    indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' onclick='loadIndicator(2444)' data-indicator-id='2444'>" + this_indicatorName + `<i class="indicator-arrows fas fa-arrow-circle-right float-right font-weight-bold hide" id="arrow-2444" aria-hidden="true"></i></button>`;
+
+                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2445 );
+                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
+                    indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' onclick='loadIndicator(2445)' data-indicator-id='2445'>" + this_indicatorName + `<i class="indicator-arrows fas fa-arrow-circle-right float-right font-weight-bold hide" id="arrow-2445" aria-hidden="true"></i></button>`;
 
                 header = 'Heat Stress';
                 indicatorButtons.innerHTML += header.length ? '<div class="pl-1 pt-2 home-label border">' + header + '</div>': '';
