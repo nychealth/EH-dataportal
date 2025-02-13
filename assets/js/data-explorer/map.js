@@ -265,24 +265,6 @@ const renderMap = (
 
 
     // ----------------------------------------------------------------------- //
-    // format geography dropdown items
-    // ----------------------------------------------------------------------- //
-
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-    // get (pretty) geoTypes available for this year
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-
-    // mapData has all the geos for every year
-    // data has the one geo x year we're mapping
-
-    const dataGeos = [...new Set(mapData.filter(d => d.TimePeriod == mapTime).map(d => prettifyGeoType(d.GeoType)))];
-
-    // console.log("dataGeos [renderMap]", dataGeos);
-
-    // if you're on a geo that's not availble for a year you just clicked on, show the gray base map
-
-
-    // ----------------------------------------------------------------------- //
     // get unique unreliability notes (dropping empty)
     // ----------------------------------------------------------------------- //
 
