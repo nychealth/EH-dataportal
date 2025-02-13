@@ -979,6 +979,16 @@
     "description": "ED visits due to heat-related illnesses, such as heat stroke and heat exhaustion, represent part of the public health burden of extreme heat.",
     "name": "Heat stress: 5-year emergency department visits"
   },
+  "2444": {
+    "IndicatorID": 2444,
+    "description": "ED visits for cold-related illnesses, such as hypothermia and frostbite, represent part of the public health burden of cold weather. Cold weather can also make chronic conditions worse.",
+    "name": "Cold stress: 5-year emergency department visits"
+  },
+  "2445": {
+    "IndicatorID": 2445,
+    "description": "Hospitalizations for cold-related illnesses, such as hypothermia and frostbite, represent part of the public health burden of cold weather. Cold weather can also make chronic conditions worse.",
+    "name": "Cold stress: 5-year hospitalizations"
+  },
   "25": {
     "IndicatorID": 25,
     "description": "Adults reporting secondhand smoke at home. Secondhand smoke, especially indoors, is bad for health - particularly for the health of children.",
