@@ -264,22 +264,6 @@ const renderMap = (
     }
 
 
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-    // change color scale based on rankReverse
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-
-    let color = 'purplered';
-    let rankReverse = defaultMapMetadata[0].VisOptions[0].Map[0]?.RankReverse;
-
-    if (rankReverse === 0) {
-        color = 'reds'
-    } else if (rankReverse === 1) {
-        color = 'blues'
-    }
-
-    // console.log('rank reverse?', rankReverse)
-    // console.log('color', color)
-
     // ----------------------------------------------------------------------- //
     // format geography dropdown items
     // ----------------------------------------------------------------------- //
