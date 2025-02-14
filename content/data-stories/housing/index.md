@@ -244,6 +244,15 @@ function changeMap(x) {
 
     xLabel = x.toLowerCase()
 
+    var extent = [1,0]
+
+    var domain = [0,53]
+
+    if (x === 'No healthy housing problems') {
+        domain = [0,90]
+    } else {}
+
+
     var defaultSpec = {
         "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
         "title": {
@@ -257,7 +266,7 @@ function changeMap(x) {
             "subtitleFontSize": 13
         },
         "data": {
-            "url": "https://gist.githubusercontent.com/mmontesanonyc/a9fa4cc39a8b9488621ea0f77f67ce08/raw/d28f0e2b0bf68df99595b1ee55cc50bf114a5dc4/healthy-housing.csv",
+            "url": "healthy-housing.csv",
                 "format": {"parse": {"VALUE": "number"}}
         },
         "transform": [
@@ -302,7 +311,7 @@ function changeMap(x) {
                     "bin": false,
                     "field": "VALUE",
                     "type": "quantitative",
-                    "scale": {"scheme": {"name": "viridis", "extent": [1, 0]}},
+                    "scale": {"scheme": {"name": "viridis", "extent": extent},"domain": domain},
                     "legend": {
                         "direction": "horizontal",
                         "orient": "top-left",
@@ -363,7 +372,7 @@ function changeMap(x) {
                 "bin": false,
                 "field": "VALUE",
                 "type": "quantitative",
-                "scale": {"scheme": {"name": "viridis", "extent": [1, 0]}},
+                "scale": {"scheme": {"name": "viridis", "extent": extent},"domain": domain},
                 "legend": false
                 },
                 "stroke": {
