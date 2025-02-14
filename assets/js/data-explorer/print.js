@@ -42,6 +42,11 @@ function printViz() {
       });
     
     updateChartPlotSize();
+
+    gtag('event', 'print_viz', {
+        chart_type: chartType
+    });
+
 }
 
 // ----------------------------------------------------------------------- //

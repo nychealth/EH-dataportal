@@ -27,10 +27,7 @@ const renderMap = (
     // ----------------------------------------------------------------------- //
 
     let mapGeoType            = data[0]?.GeoType;
-    // let geoTypeShortDesc      = data[0]?.GeoTypeShortDesc;
-    // let GeoTypeDesc           = data[0]?.GeoTypeDesc;
     let mapMeasurementType    = metadata[0]?.MeasurementType;
-    let mapGeoTypeDescription = [...new Set(geoTable.filter(aq.escape(d => d.GeoType === mapGeoType)).array("GeoTypeShortDesc"))];
     let mapTime = mapTimes[0];
     let displayType;
     let subtitle;
@@ -262,40 +259,6 @@ const renderMap = (
             }
         }
     }
-
-
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-    // change color scale based on rankReverse
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-
-    let color = 'purplered';
-    let rankReverse = defaultMapMetadata[0].VisOptions[0].Map[0]?.RankReverse;
-
-    if (rankReverse === 0) {
-        color = 'reds'
-    } else if (rankReverse === 1) {
-        color = 'blues'
-    }
-
-    // console.log('rank reverse?', rankReverse)
-    // console.log('color', color)
-
-    // ----------------------------------------------------------------------- //
-    // format geography dropdown items
-    // ----------------------------------------------------------------------- //
-
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-    // get (pretty) geoTypes available for this year
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-
-    // mapData has all the geos for every year
-    // data has the one geo x year we're mapping
-
-    const dataGeos = [...new Set(mapData.filter(d => d.TimePeriod == mapTime).map(d => prettifyGeoType(d.GeoType)))];
-
-    // console.log("dataGeos [renderMap]", dataGeos);
-
-    // if you're on a geo that's not availble for a year you just clicked on, show the gray base map
 
 
     // ----------------------------------------------------------------------- //

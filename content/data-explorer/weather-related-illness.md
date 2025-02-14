@@ -29,6 +29,8 @@ indicators:
       - 2376
       - 2175
       - 2174
+      - 2444
+      - 2445
   - header: Heat Stress
     IndicatorID:
       - 2084
