@@ -222,8 +222,6 @@ Know Your Zone,KA-03485,2140,Area in hurricane evacuation zone
 Summer Heat Health Tips,KA-03034,2141,Daytime summer surface temperature
 Census,KA-03388,2142,Neighborhood Poverty (ACS)
 Greenstreets Program,KA-01554,2143,Vegetative cover
-NYC Well and Mental Health Support,KA-01682,2144,Serious psychological distress
-Depression Health Bulletin,KA-02686,2144,Serious psychological distress
 Mental Health Services for Older Adults,KA-01326,2145,Independent living difficulty (adults)
 Home Care,KA-02782,2145,Independent living difficulty (adults)
 Older Adult Centers,KA-02353,2145,Independent living difficulty (adults)
@@ -421,9 +419,6 @@ Buses and Subways,KA-01014,2415,Commuting modes
 Sponsor a Litter Basket,KA-01759,2416,Litter basket coverage
 Litter Basket Request,KA-02357,2416,Litter basket coverage
 Litter Basket Complaint,KA-02143,2416,Litter basket coverage
-Depression Health Bulletin,KA-02686,2417,Depression (adults)
-NYC Well and Mental Health Support,KA-01682,2418,Psychiatric hospitalizations (adults)
-NYC Well and Mental Health Support,KA-01682,2419,Serious psychological distress (adults)
 Suicide,KA-01635,2420,Suicide deaths
 Electronic Cigarette Retail Dealer License,KA-01834,2421,Tobacco retailers
 Cigarette Wholesaler License,KA-01146,2421,Tobacco retailers
@@ -456,3 +451,6 @@ Cure Violence Program,KA-03328,2440,Firearm hospitalizations (all ages)
 Domestic Violence,KA-01217,2440,Firearm hospitalizations (all ages)
 Winter Weather Safety,KA-03098,2444,Cold stress: 5-year emergency department visits
 Winter Weather Safety,KA-03098,2445,Cold stress: 5-year hospitalizations
+Depression Health Bulletin,KA-02686,2417,Depression (adults)
+NYC Well and Mental Health Support,KA-01682,2418,Psychiatric hospitalizations (adults)
+NYC Well and Mental Health Support,KA-01682,2419,Serious psychological distress (adults)

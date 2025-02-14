@@ -889,6 +889,21 @@
     "description": "Sanitation supports public health by providing clean, healthy public spaces for people to live, work, and get around. Litter baskets, or trash cans, are associated with a decrease in littering. Enclosed, non-wire baskets are generally better than wire baskets.",
     "name": "Litter basket coverage"
   },
+  "2417": {
+    "IndicatorID": 2417,
+    "description": "Depression is a common mental health condition that is characterized by feelings of sadness, difficulty concentrating, tiredness or reduced energy, and loss of interest in activities that used to bring enjoyment.",
+    "name": "Depression (adults)"
+  },
+  "2418": {
+    "IndicatorID": 2418,
+    "description": "A psychiatric hospitalization is defined as an overnight stay or longer in a psychiatric inpatient unit (excluding emergency room visits without an inpatient admission) for individuals with behaviors or symptoms that are likely to result in harm to themselves or others.",
+    "name": "Psychiatric hospitalizations (adults)"
+  },
+  "2419": {
+    "IndicatorID": 2419,
+    "description": "Serious psychological distress (SPD) is a term used to describe the feelings of people who have recently been having problems functioning due to negative emotional or mental experiences.",
+    "name": "Serious psychological distress (adults)"
+  },
   "2421": {
     "IndicatorID": 2421,
     "description": "Retail locations that sell tobacco products. Neighborhoods with higher densities of tobacco retailers increase access to tobacco and may increase smoking rates.",

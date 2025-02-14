@@ -300,6 +300,14 @@
     ],
     "topic_name": "Lead poisoning"
   },
+  "mental-health": {
+    "IndicatorID": [
+      2417,
+      2418,
+      2419
+    ],
+    "topic_name": "Mental health"
+  },
   "mice-and-rats": {
     "IndicatorID": [
       2434,
