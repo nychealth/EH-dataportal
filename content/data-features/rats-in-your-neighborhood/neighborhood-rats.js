@@ -23,6 +23,14 @@ var locationDetails;
 var thisCD;
 var thisBBL;
 
+/*
+REVISIONS, SCOPE:
+1: Add RMZs to map; add legend
+2: in the checkPointInRMZ function, replace what happens if it's a yes
+3: Create If RMZ = Yes output: an additional card? 
+
+*/
+
 //----------------------------------------
 // INITIALIZE NYC-MAP LIBRARY 
 //---------------------------------------- 
