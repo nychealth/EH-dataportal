@@ -3,8 +3,8 @@ var inputAddress;
 var inputLat;
 var inputLong;
 var inputLatLong = []
-var CDgeojson = 'https://gist.githubusercontent.com/mmontesanonyc/37c3ddb2bb368d3cd78dbd1e0cb4c22e/raw/0b5a7e8a6afbcb8e4a7c242ca320a135e920221f/cd.geojson'
-var RMZgeojson = 'https://gist.githubusercontent.com/mmontesanonyc/7782a491c71c4cf52f2798f81428aa7a/raw/daec209b03f245a1ea25ca3994a4c5d48a63ce28/rmz.geojson'
+var CDgeojson = 'geojson/cd.geojson'
+var RMZgeojson = 'geojson/rmz.geojson'
 let geojsonData;
 let countyID;
 var city;
@@ -89,7 +89,29 @@ L.easyButton({
             resetZoom();
         }
     }]
-}).addTo(leafletMap);     
+}).addTo(leafletMap);    
+
+// add and style RMZs
+fetch(RMZgeojson)
+  .then(response => response.json())
+  .then(data => {
+    L.geoJSON(data, {
+      style: {
+        color: "darkgray",  // Gray border
+        weight: 1,         // Thin outline
+        fillColor: "lightgray",
+        fillOpacity: 0.5   // Semi-opaque fill
+      },
+      onEachFeature: function (feature, layer) {
+        if (feature.properties && feature.properties.Label) {
+          layer.bindPopup(feature.properties.Label + '<br>Rat Mitigation Zone');
+        }
+      }
+    }).addTo(leafletMap);
+  })
+  .catch(error => console.error("Error loading GeoJSON:", error));
+
+
 
 function resetZoom() {
     // console.log('reset zoom 3')
@@ -184,10 +206,12 @@ async function checkPointInRMZ(lat,long) {
                     let location = L.marker(inputLatLong)
                     if (area.contains(location.getLatLng())) {
                         console.log('- this address is RMZ ', geojsonData.features[i].properties.Label)
-                        getRMZIndicatorData(geojsonData.features[i].id)
+                        
+                        // getRMZIndicatorData(geojsonData.features[i].id)
                         isRMZ = true
-                        mapLayers.forEach(layer => map.removeLayer(layer)) // remove previous layers
-                        area.addTo(leafletMap) // add RMZ layer
+                        showRMZCard(isRMZ)
+                        // mapLayers.forEach(layer => map.removeLayer(layer)) // remove previous layers
+                        // area.addTo(leafletMap) // add RMZ layer
                         break; // stop the loop
                     }
                 }
@@ -202,10 +226,11 @@ async function checkPointInRMZ(lat,long) {
                 let location = L.marker(inputLatLong)
                 if (area.contains(location.getLatLng())) {
                     console.log('- this address is RMZ ', geojsonData.features[i].properties)
-                    getRMZIndicatorData(geojsonData.features[i].id)
+                    // getRMZIndicatorData(geojsonData.features[i].id)
                     isRMZ = true
-                    area.addTo(leafletMap)
-                    break; // stop the loop
+                    showRMZCard(isRMZ)
+                    // area.addTo(leafletMap)
+                    // break; // stop the loop
                 }     
             }
         }
@@ -213,8 +238,9 @@ async function checkPointInRMZ(lat,long) {
 
     if (isRMZ === false) {
         console.log('- not in an RMZ.')
-        showParentCD(lat,long)
     }
+
+    showParentCD(lat,long)
 
 }
 
@@ -239,49 +265,13 @@ async function showParentCD(lat,long) {
 }
 
 //----------------------------------------
-// GET RMZ INDICATOR DATA 
+// SHOW RMZ = Yes 
 //---------------------------------------- 
 
-var RMZIndicatorData;
-function getRMZIndicatorData(x) {
-    console.log('***Getting indicator data for RMZ ', x)
-    const URL = 'https://raw.githubusercontent.com/nychealth/EHDP-data/refs/heads/production/indicators/data/2433.json';
-    
-    // passes geoID into function
-
-    return new Promise((resolve, reject) => {
-        fetch(URL)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json(); // Parse data
-            })
-            .then(data => {
-                // REFORMAT DATA
-                const keys = Object.keys(data);
-                const numRows = data[keys[0]].length; // Assuming all arrays are the same length
-                
-                const reformattedData = Array.from({ length: numRows }, (_, i) => {
-                    return keys.reduce((obj, key) => {
-                        obj[key] = data[key][i];
-                        return obj;
-                    }, {});
-                });
-
-                // FILTER FOR THIS RMZ
-                RMZIndicatorData = reformattedData.filter(item => item.GeoID === x) // 
-                console.log('- RMZIndicatorData:', RMZIndicatorData);
-                printRMZData(RMZIndicatorData);
-                resolve(reformattedData); // Resolve promise 
-            })
-            .catch(error => {
-                console.error('Error fetching the Indicator data:', error);
-                reject(error); // Reject the promise if there’s an error
-            });
-    });
-    
+function showRMZCard(x) {
+    document.getElementById('rmzYes').classList.remove('hide')
 }
+
 
 //----------------------------------------
 // GET CD INDICATOR DATA 
@@ -371,40 +361,6 @@ async function getPropertyData(x) {
 // PRINT DATA FUNCTIONS 
 //---------------------------------------- 
 
-//----------
-// Print RMZ data
-
-function printRMZData(data) {
-    console.log('- Printing RMZ data to page.')
-
-    document.getElementById('cdOutput').classList.add('hide')
-    document.getElementById('rmzOutput').classList.remove('hide')
-
-    // Find the max TimePeriodID, and filter for it
-    const maxTimePeriodID = Math.max(...data.map(item => item.TimePeriodID));
-    const mostRecentData = data.filter(item => item.TimePeriodID === maxTimePeriodID);
-
-    console.log(mostRecentData);
-
-    document.getElementById('rmzProp').innerHTML = mostRecentData
-        .filter(item => item.MeasureID === 1378)
-        .map(item => item.DisplayValue);
-    const ars = mostRecentData
-        .filter(item => item.MeasureID === 1380)
-        .map(item => item.DisplayValue);
-    document.getElementById('rmzARS').innerHTML = ars + '%'
-
-    /*  Metadata
-    "MeasureID": 1378,
-    "MeasureName": "Rat indexing in Rat Mitigation Zones (RMZs), Number of properties inspected",
-    ---
-    "MeasureID": 1379,
-    "MeasureName": "Rat indexing in Rat Mitigation Zones (RMZs), Failed (any reason)",
-    ---
-    "MeasureID": 1380,
-    "MeasureName": "Rat indexing in Rat Mitigation Zones (RMZs), Failed (active rat signs)",
-    */
-}
 
 //----------
 // Print CD data
@@ -413,7 +369,6 @@ function printCDData(data) {
     console.log('- Printing CD data to page.')
 
     document.getElementById('cdOutput').classList.remove('hide')
-    document.getElementById('rmzOutput').classList.add('hide')
 
     document.getElementById('cdID').innerHTML = 'Community District ' + thisCD;
 

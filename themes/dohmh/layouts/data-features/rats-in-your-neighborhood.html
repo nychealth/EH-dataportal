@@ -72,43 +72,22 @@
                                     <i class="fas fa-map mr-1" aria-hidden="true"></i>Your neighborhood:
                                 </span>
                                 <div class="mb-2">
-                                    <p>This address is in <span id="cdID" class="cd-color">CD XXX</span>. This neighborhood has <span id="activityValue" class="font-weight-bold">moderate</span> rat activity.</p>
+                                    <p>This address is in <span id="cdID" class="cd-color">CD XXX</span>. This neighborhood has <span id="activityValue" class="font-weight-bold">moderate</span> rat activity. For the most recent year of data:</p>
                                     <ul>
                                         <li><i class="fas fa-caret-right mr-1" aria-hidden="true"></i><span class="font-weight-bold" id="cdProp">XX%</span> of properties were inspected for rats
                                         </li>
                                         <li><i class="fas fa-caret-right mr-1" aria-hidden="true"></i><span class="font-weight-bold" id="cdFail">YY%</span> of properties had signs of rat activity</li>
                                     </ul>
                                 </div>
-                                <div class="d-flex justify-content-end link fs-sm border-top pt-1">
+                                <div class="d-flex justify-content-end border-top link fs-sm pt-1">
                                     <p class="fs-sm"><a href="../../data-explorer/mice-and-rats/?id=2434#display=map"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Get data on rat inspections by neighborhood</a>.</p>
 
                                 </div>
+
                             </div>
                         </div>
                     </div>
 
-                    <!-- RMZ output card -->
-                    <div class="card content-card mb-4 hide" id="rmzOutput">
-                        <div class="card-content primary">
-                            <div class="card-body">
-                                <span class="home-label font-weight-bold h4">
-                                    <i class="fas fa-map mr-1" aria-hidden="true"></i>Your neighborhood:
-                                </span>
-                                <div class="mb-2">
-                                    <p>This address is in a <span id="mzName" class="cd-color">Rat Mitigation Zone</span>, an area with <span class="font-weight-bold high-activity">high</span> rat activity.
-                                        <ul>
-                                            <li><i class="fas fa-caret-right mr-1" aria-hidden="true"></i><span class="font-weight-bold" id="rmzProp">X,XXX</span> properties were inspected for rats
-                                            </li>
-                                            <li><i class="fas fa-caret-right mr-1" aria-hidden="true"></i><span class="font-weight-bold" id="rmzARS">YY%</span> of properties had signs of rat activity</li>
-                                        </ul>
-                                    </p>
-                                </div>
-                                <div class="d-flex justify-content-end link fs-sm border-top pt-1">
-                                    <p class="fs-sm"><a href="../rat-mitigation-zones"><i class="fas fa-chart-bar mr-1" aria-hidden="true"></i>Explore Rat Mitigation Zones</a>.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
                     <!-- Property output card -->
                     <div class="card content-card mb-4 hide" id="propertyOutput">
@@ -126,8 +105,11 @@
                                         </li>
                                     </ul>
                                 </div>
-                                <div class="d-flex justify-content-end link fs-sm border-top pt-1">
+                                <div class="d-flex justify-content-end link fs-sm border-top py-1">
                                     <p class="fs-sm"><a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/Rats/?applicationName=DOH_RIP"><i class="fas fa-external-link-alt mr-1" aria-hidden="true"></i>Get detailed inspection results for any property</a>.</p>
+                                </div>
+                                <div id="rmzYes" class="hide fs-sm border-top py-1">
+                                        <p>This address is in a <span class="rmz-color">Rat Mitigation Zone</span>. Properties in these areas are inspected more regularly, to help fight rats on a neighborhood-wide scale. <a href="../rat-mitigation-zones"><i class="fas fa-chart-bar mr-1" aria-hidden="true"></i>Explore Rat Mitigation Zones</a>.</p>
                                 </div>
                             </div>
                         </div>
@@ -217,8 +199,15 @@
     }
 
     .cd-color {
+        color: #3388FF;
         font-weight: bold;
-        text-decoration: underline solid #3388FF 2px;
+        text-decoration: underline solid #3388FF;
+    }
+
+    .rmz-color {
+        color: rgb(91, 91, 91); 
+        font-weight: bold;
+        text-decoration: underline solid rgb(91, 91, 91); 
     }
 
     ul {
