@@ -51,7 +51,8 @@ pollutantsMeasured:
       a result, NYCCAS has measured lower O<sub>3</sub> levels near roadways, in
       city centers and in other areas of high NO<sub>X</sub> emissions density.
       Higher levels of O<sub>3</sub> are seen in areas away from dense traffic
-      and building emissions.
+      and building emissions. O<sub>3</sub> exposure can cause coughing, shortness
+      of breath, and aggravate lung diseases. 
     number: 4
   - name: Sulfur Dioxide
     copy: >
