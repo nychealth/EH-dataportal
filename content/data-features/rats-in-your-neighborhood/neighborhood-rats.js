@@ -104,7 +104,11 @@ fetch(RMZgeojson)
       },
       onEachFeature: function (feature, layer) {
         if (feature.properties && feature.properties.Label) {
-          layer.bindPopup(feature.properties.Label + '<br>Rat Mitigation Zone');
+          layer.bindPopup(
+            '<strong>Rat Mitigation Zone:</strong><br>' + 
+            feature.properties.Label + 
+            '<hr><a href="../rat-mitigation-zones/" style="font-size: 12px">Get data on RMZs</a>.</p>'
+        );
         }
       }
     }).addTo(leafletMap);
