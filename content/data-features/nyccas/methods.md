@@ -6,10 +6,10 @@ pollutantsMeasured:
   - name: Fine Particles
     copy: >
       Fine particles (PM<sub>2.5</sub>) are tiny airborne solid and liquid
-      particles less than 2.5 microns in diameter. It is small enough to
+      particles less than 2.5 microns in diameter. They are small enough to
       penetrate deep into the lungs and enter the bloodstream, which can worsen
       lung and heart disease and lead to hospital admissions and premature
-      deaths. PM<sub>2.5</sub> can either be directly emitted or formed in the
+      deaths. PM<sub>2.5</sub> can be either directly emitted or formed in the
       atmosphere from other pollutants. Fuel combustion in vehicles, boilers in
       buildings, power plants, construction equipment, marine vessels and
       commercial cooking are all common sources of PM<sub>2.5</sub>. Between 20%
@@ -42,11 +42,11 @@ pollutantsMeasured:
   - name: Ozone
     copy: >
       Ozone (O<sub>3</sub>) occurs both in the Earth's upper atmosphere and at
-      ground level. It forms at ground level when NO<sub>X</sub> emissions
-      combine with sunlight and other airborne pollutants. Measured
-      O<sub>3</sub> concentrations are often highest in the summer and downwind
-      from areas with high NO<sub>X</sub> emissions, such as places with high
-      traffic density. In areas with heavy traffic, NO<sub>X</sub> reacts with
+      ground level, which is measured by NYCCAS. It forms at ground level when 
+      NO<sub>X</sub> emissions combine with sunlight and other airborne pollutants. 
+      Measured O<sub>3</sub> concentrations are often highest in the summer and 
+      downwind from areas with high NO<sub>X</sub> emissions, such as places with 
+      high traffic density. In areas with heavy traffic, NO<sub>X</sub> reacts with
       any ground-level O<sub>3</sub> to reduce O<sub>3</sub> concentrations. As
       a result, NYCCAS has measured lower O<sub>3</sub> levels near roadways, in
       city centers and in other areas of high NO<sub>X</sub> emissions density.
