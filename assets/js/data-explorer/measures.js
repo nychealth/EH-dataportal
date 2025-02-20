@@ -513,9 +513,9 @@ const updateMapData = (e) => {
 
 // ===== normal trend ================================================== //
 
-const updateTrendData = (e) => {
+const updateBoroughTrendData = (e) => {
 
-    console.log("* updateTrendData");
+    console.log("* updateBoroughTrendData");
 
     // ----- handle selection --------------------------------------------------- //
 
@@ -529,9 +529,9 @@ const updateTrendData = (e) => {
     $('.trendbutton').removeClass("active");
     $('.trendbutton').attr('aria-selected', false);
 
-    // also comparisons, which is in this combinded dropdown
-    $('.comparisonsbutton').removeClass("active");
-    $('.comparisonsbutton').attr('aria-selected', false);
+    // also comparison, which is in this combinded dropdown
+    $('.comparisonbutton').removeClass("active");
+    $('.comparisonbutton').attr('aria-selected', false);
 
     // set this element as active & selected
     $(e.target).addClass("active");
@@ -573,7 +573,7 @@ const updateTrendData = (e) => {
     filteredTrendData = trendData
         .filter(m => m.MeasureID === measureId)
 
-    // console.log("filteredTrendData [updateTrendData]", filteredTrendData);
+    // console.log("filteredTrendData [updateBoroughTrendData]", filteredTrendData);
 
 
     // ----- render the chart --------------------------------------------------- //
@@ -597,7 +597,7 @@ const updateTrendData = (e) => {
 
         let aqFilteredTrendDataAnnualAvg = aq.from(filteredTrendDataAnnualAvg);
 
-        renderComparisonsChart(aqFilteredTrendDataAnnualAvg, aqSelectedTrendMetadata);
+        renderTrendChart(aqFilteredTrendDataAnnualAvg, aqSelectedTrendMetadata);
 
         updateChartPlotSize();
 
@@ -607,7 +607,7 @@ const updateTrendData = (e) => {
 
         let aqFilteredTrendDataSummer = aq.from(filteredTrendDataSummer);
 
-        renderComparisonsChart(aqFilteredTrendDataSummer, aqSelectedTrendMetadata);
+        renderTrendChart(aqFilteredTrendDataSummer, aqSelectedTrendMetadata);
 
         updateChartPlotSize();
 
@@ -615,7 +615,7 @@ const updateTrendData = (e) => {
 
         let aqFilteredTrendData = aq.from(filteredTrendData);
 
-        renderComparisonsChart(aqFilteredTrendData, aqSelectedTrendMetadata);
+        renderTrendChart(aqFilteredTrendData, aqSelectedTrendMetadata);
 
         updateChartPlotSize();
 
@@ -625,17 +625,17 @@ const updateTrendData = (e) => {
 
     selectedTrendMeasure = true;
     selectedComparison = false;
-    showingNormalTrend = true;
-    showingComparisonsTrend = false;
+    showingBoroughTrend = true;
+    showingComparisonTrend = false;
 
 }
 
 
-// ===== trend comparisons ================================================== //
+// ===== comparison trend ================================================== //
 
-const updateTrendComparisonsData = (e) => {
+const updateComparisonTrendData = (e) => {
 
-    console.log("* updateTrendComparisonsData");
+    console.log("* updateComparisonTrendData");
 
     // ----- handle selection --------------------------------------------------- //
 
@@ -648,8 +648,8 @@ const updateTrendComparisonsData = (e) => {
     // persistent selection
 
     // remove active class from every list element
-    $('.comparisonsbutton').removeClass("active");
-    $('.comparisonsbutton').attr('aria-selected', false);
+    $('.comparisonbutton').removeClass("active");
+    $('.comparisonbutton').attr('aria-selected', false);
 
     // also trend, which is in this combinded dropdown
     $('.trendbutton').removeClass("active");
@@ -674,7 +674,7 @@ const updateTrendComparisonsData = (e) => {
 
     // this iterates over all the indicators and measures in the chosen comparison
 
-    aqCombinedComparisonsMetadata.objects()
+    aqCombinedComparisonMetadata.objects()
         .filter(m => m.ComparisonID == comparisonId)
         .forEach(m => {
             selectedComparisonAbout   += `<p><strong>${m.IndicatorName} - ${m.MeasurementType}:</strong> ${m.how_calculated}</p>`;
@@ -690,20 +690,20 @@ const updateTrendComparisonsData = (e) => {
 
     // keep just the clicked comparison
 
-    aqFilteredComparisonsMetadata = aqComparisonsMetadata
+    aqFilteredComparisonMetadata = aqComparisonMetadata
         .filter(aq.escape(d => d.ComparisonID == comparisonId))
-        .join(aqComparisonsIndicatorsMetadata, [["IndicatorID", "MeasureID"], ["IndicatorID", "MeasureID"]])
+        .join(aqComparisonIndicatorsMetadata, [["IndicatorID", "MeasureID"], ["IndicatorID", "MeasureID"]])
 
-    // console.log("aqFilteredComparisonsMetadata:");
-    // aqFilteredComparisonsMetadata.print()
+    // console.log("aqFilteredComparisonMetadata:");
+    // aqFilteredComparisonMetadata.print()
     
     // use filtered metadata to filter data
 
-    // console.log("&&&& print x 4 [updateTrendComparisonsData]");
+    // console.log("&&&& print x 4 [updateComparisonTrendData]");
 
-    aqFilteredComparisonsData = aqFilteredComparisonsMetadata
+    aqFilteredComparisonData = aqFilteredComparisonMetadata
         .select("ComparisonID", "IndicatorID", "MeasureID", "IndicatorLabel", "MeasurementType", "IndicatorMeasure", "GeoTypeName", "GeoID")
-        .join(aqComparisonsIndicatorData, [["IndicatorID", "MeasureID", "GeoTypeName", "GeoID"], ["IndicatorID", "MeasureID", "GeoType", "GeoID"]])
+        .join(aqComparisonIndicatorData, [["IndicatorID", "MeasureID", "GeoTypeName", "GeoID"], ["IndicatorID", "MeasureID", "GeoType", "GeoID"]])
         .join(timeTable, [["TimePeriodID"], ["TimePeriodID"]])
 
         // put host indicator first, so it gets the black line
@@ -713,11 +713,11 @@ const updateTrendComparisonsData = (e) => {
 
     let hasQuarters = [858, 859, 860, 861, 862, 863];
 
-    if (aqFilteredComparisonsMetadata.array("MeasureID").some(m => hasQuarters.includes(m))) {
+    if (aqFilteredComparisonMetadata.array("MeasureID").some(m => hasQuarters.includes(m))) {
 
-        // console.log(">>>> aqFilteredComparisonsData [quarters]:");
+        // console.log(">>>> aqFilteredComparisonData [quarters]:");
 
-        aqFilteredComparisonsData = aqFilteredComparisonsData
+        aqFilteredComparisonData = aqFilteredComparisonData
             .derive({"year": d => op.year(d.end_period)})
             .filter(d => d.year > op.max(d.year) - 3)
             .select(aq.not("TimePeriodID", "year"))
@@ -726,25 +726,25 @@ const updateTrendComparisonsData = (e) => {
 
     }
 
-    // console.log(">>>> aqFilteredComparisonsData [updateTrendComparisonsData]");
-    // aqFilteredComparisonsData.print()
+    // console.log(">>>> aqFilteredComparisonData [updateComparisonTrendData]");
+    // aqFilteredComparisonData.print()
 
 
     // ----- render the chart --------------------------------------------------- //
 
-    renderComparisonsChart(
-        aqFilteredComparisonsData,
-        aqFilteredComparisonsMetadata
+    renderTrendChart(
+        aqFilteredComparisonData,
+        aqFilteredComparisonMetadata
     );
 
     updateChartPlotSize();
 
-    // allow comparisons chart to persist when changing tabs
+    // allow comparison chart to persist when changing tabs
 
     selectedComparison = true;
     selectedTrendMeasure = false;
-    showingNormalTrend = false;
-    showingComparisonsTrend = true;
+    showingBoroughTrend = false;
+    showingComparisonTrend = true;
 
 }
 
@@ -1128,7 +1128,7 @@ const renderMeasures = async () => {
     const dropdownTableGeos = contentTable.querySelector('div[aria-labelledby="dropdownTableGeos"]');
     const dropdownTableTimes = contentTable.querySelector('div[aria-labelledby="dropdownTableTimes"]');
 
-    const dropdownTrendComparisons = contentTrend.querySelector('div[aria-labelledby="dropdownTrendComparisons"]');
+    const dropdownTrendSelection = contentTrend.querySelector('div[aria-labelledby="dropdownTrendSelection"]');
 
     const dropdownMapMeasures = contentMap.querySelector('div[aria-labelledby="dropdownMapMeasures"]');
     const dropdownMapTimes = contentMap.querySelector('div[aria-labelledby="dropdownMapTimes"]');
@@ -1136,7 +1136,7 @@ const renderMeasures = async () => {
 
     const dropdownLinksMeasures = contentLinks.querySelector('div[aria-labelledby="dropdownLinksMeasures"]');
 
-    // console.log("dropdownTrendComparisons", dropdownTrendComparisons);
+    // console.log("dropdownTrendSelection", dropdownTrendSelection);
 
 
     // clear Measure Dropdowns
@@ -1144,7 +1144,7 @@ const renderMeasures = async () => {
     dropdownTableGeos.innerHTML = ``;
     dropdownTableTimes.innerHTML = ``;
 
-    dropdownTrendComparisons.innerHTML = ``;
+    dropdownTrendSelection.innerHTML = ``;
 
     dropdownMapMeasures.innerHTML = ``;
     dropdownMapTimes.innerHTML = ``;
@@ -1168,7 +1168,7 @@ const renderMeasures = async () => {
 
     $(dropdownTableGeos).off(".gtag")
     $(dropdownTableTimes).off(".gtag")
-    $(dropdownTrendComparisons).off(".gtag")
+    $(dropdownTrendSelection).off(".gtag")
     $(dropdownMapMeasures).off(".gtag")
     $(dropdownMapTimes).off(".gtag")
     $(dropdownMapGeos).off(".gtag")
@@ -1290,7 +1290,7 @@ const renderMeasures = async () => {
         const trend       = aqTrendTimesGeos && aqTrendTimesGeos.filter(`d => d.MeasureID === ${measure.MeasureID}`).numRows() > 0;
         const links       = measure.VisOptions[0].Links && measure.VisOptions[0].Links[0].Measures[0].MeasureID;
         const disparities = measure.VisOptions[0].Links[0].Disparities == 1
-        const comparisons = indicatorComparisonId;
+        // const comparisons = indicatorComparisonId;
         
         const type  = measure.MeasurementType;
         const measureId = measure.MeasureID;
@@ -1339,10 +1339,10 @@ const renderMeasures = async () => {
             // console.log("header", header);
             // console.log("index", index);
 
-            dropdownTrendComparisons.innerHTML += header ? '<div class="dropdown-title"><strong>' + header + '</strong></div>' : '';
+            dropdownTrendSelection.innerHTML += header ? '<div class="dropdown-title"><strong>' + header + '</strong></div>' : '';
 
             if (trendData) {
-                dropdownTrendComparisons.innerHTML += DOMPurify.sanitize(`<button class="btn btn-primary dropdown-item trendbutton pl-2"
+                dropdownTrendSelection.innerHTML += DOMPurify.sanitize(`<button class="btn btn-primary dropdown-item trendbutton pl-2"
                 data-measure-id="${measureId}" title="${type}">
                 ${type}
                 </button>`);
@@ -1413,19 +1413,19 @@ const renderMeasures = async () => {
     // console.log("disparitiesMeasures [renderMeasures]", disparitiesMeasures);
 
 
-    // ===== handle comparisons viz ================================================== //
+    // ===== handle comparison viz ================================================== //
 
     if (indicatorComparisonId) {
 
-        let compLegendTitles = [... new Set(aqCombinedComparisonsMetadata.array("LegendTitle"))]
+        let compLegendTitles = [... new Set(aqCombinedComparisonMetadata.array("LegendTitle"))]
 
         compLegendTitles.map(title => {
 
-            let titleGroup = aqCombinedComparisonsMetadata.filter(aq.escape(d => d.LegendTitle == title))
+            let titleGroup = aqCombinedComparisonMetadata.filter(aq.escape(d => d.LegendTitle == title))
 
-            // add each unique legend title as a header, with the included comparisons underneath
+            // add each unique legend title as a header, with the included comparison underneath
 
-            dropdownTrendComparisons.innerHTML += title ? '<div class="dropdown-title"><strong>' + title + '</strong></div>' : '';
+            dropdownTrendSelection.innerHTML += title ? '<div class="dropdown-title"><strong>' + title + '</strong></div>' : '';
 
             let comparisonIDs = [... new Set(titleGroup.array("ComparisonID"))]
 
@@ -1453,14 +1453,14 @@ const renderMeasures = async () => {
 
                     if (compGeoTypeName[0] == "Citywide") {
 
-                    dropdownTrendComparisons.innerHTML += `<button class="btn btn-primary dropdown-item comparisonsbutton pl-2"
+                    dropdownTrendSelection.innerHTML += `<button class="btn btn-primary dropdown-item comparisonbutton pl-2"
                         data-comparison-id="${comp}"  title="${compY_axis_title}">
                         ${compY_axis_title}
                         </button>`;
 
                     } else {
                         // I am very unhappy with this kludge
-                        dropdownTrendComparisons.innerHTML += `<button class="btn btn-primary dropdown-item comparisonsbutton pl-2"
+                        dropdownTrendSelection.innerHTML += `<button class="btn btn-primary dropdown-item comparisonbutton pl-2"
                             data-comparison-id="${comp}"  title="${compGeography[compGeography.length - 1]} ">
                             ${compGeography[compGeography.length - 1]} 
                             </button>`;
@@ -1471,7 +1471,7 @@ const renderMeasures = async () => {
                     // console.log("1 measure [MeasurementType]");
                     // console.log(compMeasurementType);
 
-                    dropdownTrendComparisons.innerHTML += `<button class="btn btn-primary dropdown-item comparisonsbutton pl-2"
+                    dropdownTrendSelection.innerHTML += `<button class="btn btn-primary dropdown-item comparisonbutton pl-2"
                         data-comparison-id="${comp}" title="${compMeasurementType}">
                         ${compMeasurementType}
                         </button>`;
@@ -1482,7 +1482,7 @@ const renderMeasures = async () => {
                     // console.log("compIndicatorMeasure", compIndicatorMeasure);
                     // console.log("compName", compName);
 
-                    dropdownTrendComparisons.innerHTML += `<button class="btn btn-primary dropdown-item comparisonsbutton pl-2"
+                    dropdownTrendSelection.innerHTML += `<button class="btn btn-primary dropdown-item comparisonbutton pl-2"
                         data-comparison-id="${comp}" title="${compName}">
                         ${compName}
                         </button>`;
@@ -1779,33 +1779,33 @@ const renderMeasures = async () => {
 
         // handle different trend chart types
 
-        // console.log("comparisonsMetadata.length === 0:", comparisonsMetadata.length === 0, "showingNormalTrend:", showingNormalTrend);
+        // console.log("comparisonMetadata.length === 0:", comparisonMetadata.length === 0, "showingBoroughTrend:", showingBoroughTrend);
 
         // debugger;
 
-        if (trendMeasures.length + comparisonsMetadata.length === 1) {
+        if (trendMeasures.length + comparisonMetadata.length === 1) {
 
-            dropdownTrendComparisons.setAttribute('aria-disabled', true);
-            $('#dropdownTrendComparisons').addClass("disabled");
+            dropdownTrendSelection.setAttribute('aria-disabled', true);
+            $('#dropdownTrendSelection').addClass("disabled");
 
         } else {
 
-            dropdownTrendComparisons.setAttribute('aria-disabled', false);
-            $('#dropdownTrendComparisons').removeClass("disabled");
+            dropdownTrendSelection.setAttribute('aria-disabled', false);
+            $('#dropdownTrendSelection').removeClass("disabled");
 
         }
 
-        if (trendMeasures.length === 0 || showingComparisonsTrend) {
+        if (trendMeasures.length === 0 || showingComparisonTrend) {
 
-            // if there's not a normal trend availbale, or we we're looking at a comparisons chart, show comparisons
+            // if there's not a normal trend availbale, or we we're looking at a comparison chart, show comparison
 
-            showTrendComparisons()
+            showComparisonTrend()
 
         } else {
             
             // otherwise, show the normal trend
 
-            showNormalTrend()
+            showBoroughTrend()
 
         }
 
@@ -1813,9 +1813,9 @@ const renderMeasures = async () => {
 
     // ----- show the normal trend chart --------------------------------------------------- //
 
-    showNormalTrend = (e) => {
+    showBoroughTrend = (e) => {
 
-        console.log("** showNormalTrend");
+        console.log("** showBoroughTrend");
 
         // chart only the annual average for the following measureIds:
         // 365 - PM2.5 (Fine particles), Mean
@@ -1875,7 +1875,7 @@ const renderMeasures = async () => {
             filteredTrendData = trendData
                 .filter(m => m.MeasureID === defaultTrendMeasureId)
 
-            // console.log("filteredTrendData [showNormalTrend]", filteredTrendData);
+            // console.log("filteredTrendData [showBoroughTrend]", filteredTrendData);
 
             // ----- render the chart --------------------------------------------------- //
 
@@ -1889,7 +1889,7 @@ const renderMeasures = async () => {
                 const filteredTrendDataAnnualAvg = filteredTrendData.filter(d => d.TimePeriod.startsWith('Annual Average'));
                 aqFilteredTrendData = aq.from(filteredTrendDataAnnualAvg);
                 
-                renderComparisonsChart(aqFilteredTrendData, aqDefaultTrendMetadata);
+                renderTrendChart(aqFilteredTrendData, aqDefaultTrendMetadata);
 
                 updateChartPlotSize();
                 
@@ -1900,7 +1900,7 @@ const renderMeasures = async () => {
                 const filteredTrendDataSummer = filteredTrendData.filter(d => d.TimePeriod.startsWith('Summer'));
                 aqFilteredTrendData = aq.from(filteredTrendDataSummer);
                 
-                renderComparisonsChart(aqFilteredTrendData, aqDefaultTrendMetadata);
+                renderTrendChart(aqFilteredTrendData, aqDefaultTrendMetadata);
 
                 updateChartPlotSize();
                 
@@ -1910,7 +1910,7 @@ const renderMeasures = async () => {
 
                 aqFilteredTrendData = aq.from(filteredTrendData);
                 
-                renderComparisonsChart(aqFilteredTrendData, aqDefaultTrendMetadata);
+                renderTrendChart(aqFilteredTrendData, aqDefaultTrendMetadata);
                 
                 updateChartPlotSize();
                 
@@ -1923,9 +1923,9 @@ const renderMeasures = async () => {
             $('.trendbutton').removeClass("active");
             $('.trendbutton').attr('aria-selected', false);
 
-            // also comparisons, which is in this combinded dropdown
-            $('.comparisonsbutton').removeClass("active");
-            $('.comparisonsbutton').attr('aria-selected', false);
+            // also comparison, which is in this combinded dropdown
+            $('.comparisonbutton').removeClass("active");
+            $('.comparisonbutton').attr('aria-selected', false);
 
             // set this element as active & selected
 
@@ -1947,44 +1947,44 @@ const renderMeasures = async () => {
             
             aqFilteredTrendData = aq.from(filteredTrendData);
 
-            renderComparisonsChart(aqFilteredTrendData, aqSelectedTrendMetadata);
+            renderTrendChart(aqFilteredTrendData, aqSelectedTrendMetadata);
 
             updateChartPlotSize();
 
         }
 
-        showingNormalTrend = true;
-        showingComparisonsTrend = false;
+        showingBoroughTrend = true;
+        showingComparisonTrend = false;
 
     };
     
 
-    // ----- show the trend comparisons chart --------------------------------------------------- //
+    // ----- show the trend comparison chart --------------------------------------------------- //
 
-    showTrendComparisons = (e) => {
+    showComparisonTrend = (e) => {
 
-        console.log("** showTrendComparisons");
+        console.log("** showComparisonTrend");
         // console.log("selectedComparison", selectedComparison);
 
         // ----- allow chart to persist when changing tabs --------------------------------------------------- //
 
         if (!selectedComparison) {
 
-            // console.log("comparisonsMetadata [showTrendComparisons]", comparisonsMetadata);
+            // console.log("comparisonMetadata [showComparisonTrend]", comparisonMetadata);
 
             // ----- handle selection --------------------------------------------------- //
 
             // get first comparisonId
 
-            const comparisonId = parseInt(comparisonsMetadata[0].ComparisonID);
+            const comparisonId = parseInt(comparisonMetadata[0].ComparisonID);
 
             // console.log("comparisonId", comparisonId);
 
             // persistent selection
 
             // remove active class from every list element
-            $('.comparisonsbutton').removeClass("active");
-            $('.comparisonsbutton').attr('aria-selected', false);
+            $('.comparisonbutton').removeClass("active");
+            $('.comparisonbutton').attr('aria-selected', false);
 
             // also trend, which is in this combinded dropdown
             $('.trendbutton').removeClass("active");
@@ -1992,7 +1992,7 @@ const renderMeasures = async () => {
 
             // set this element as active & selected
 
-            let trendMeasureEl = document.querySelector(`.comparisonsbutton[data-comparison-id='${comparisonId}']`)
+            let trendMeasureEl = document.querySelector(`.comparisonbutton[data-comparison-id='${comparisonId}']`)
 
             $(trendMeasureEl).addClass("active");
             $(trendMeasureEl).attr('aria-selected', true);
@@ -2005,7 +2005,7 @@ const renderMeasures = async () => {
             selectedComparisonAbout = [];
             selectedComparisonSources = [];
 
-            aqComparisonsIndicatorsMetadata.objects().forEach(m => {
+            aqComparisonIndicatorsMetadata.objects().forEach(m => {
 
                 selectedComparisonAbout +=
                     `<p><strong>${m.IndicatorName} - ${m.MeasurementType}:</strong> ${m.how_calculated}</p>`;
@@ -2024,56 +2024,56 @@ const renderMeasures = async () => {
 
             // metadata
 
-            aqFilteredComparisonsMetadata = aqComparisonsMetadata
+            aqFilteredComparisonMetadata = aqComparisonMetadata
                 .filter(aq.escape(d => d.ComparisonID == comparisonId))
-                .join(aqComparisonsIndicatorsMetadata, [["IndicatorID", "MeasureID"], ["IndicatorID", "MeasureID"]])
+                .join(aqComparisonIndicatorsMetadata, [["IndicatorID", "MeasureID"], ["IndicatorID", "MeasureID"]])
 
-            // console.log("aqFilteredComparisonsMetadata:");
-            // aqFilteredComparisonsMetadata.print({limit: Infinity})
+            // console.log("aqFilteredComparisonMetadata:");
+            // aqFilteredComparisonMetadata.print({limit: Infinity})
             
             // data
 
-            // console.log("&&&& print x 4 [showTrendComparisons]");
+            // console.log("&&&& print x 4 [showComparisonTrend]");
 
-            aqFilteredComparisonsData = aqFilteredComparisonsMetadata
+            aqFilteredComparisonData = aqFilteredComparisonMetadata
                 .select("ComparisonID", "IndicatorID", "MeasureID", "IndicatorLabel", "MeasurementType", "IndicatorMeasure", "GeoTypeName", "GeoID")
-                .join(aqComparisonsIndicatorData, [["IndicatorID", "MeasureID", "GeoTypeName", "GeoID"], ["IndicatorID", "MeasureID", "GeoType", "GeoID"]])
+                .join(aqComparisonIndicatorData, [["IndicatorID", "MeasureID", "GeoTypeName", "GeoID"], ["IndicatorID", "MeasureID", "GeoType", "GeoID"]])
                 .join(timeTable, [["TimePeriodID"], ["TimePeriodID"]])
 
                 // put host indicator first (then measure), so it gets the black line
                 .orderby(aq.desc(aq.escape(d => d.IndicatorID == indicatorId)), d => d.MeasureID)
 
 
-            // console.log(">>>> aqFilteredComparisonsData [showTrendComparisons 1]");
-            // aqFilteredComparisonsData.print()
+            // console.log(">>>> aqFilteredComparisonData [showComparisonTrend 1]");
+            // aqFilteredComparisonData.print()
 
             // show only last 3 years of DWQ measures with quarterly data
 
             let hasQuarters = [858, 859, 860, 861, 862, 863];
 
-            if (aqFilteredComparisonsMetadata.array("MeasureID").some(m => hasQuarters.includes(m))) {
+            if (aqFilteredComparisonMetadata.array("MeasureID").some(m => hasQuarters.includes(m))) {
 
 
-                aqFilteredComparisonsData = aqFilteredComparisonsData
+                aqFilteredComparisonData = aqFilteredComparisonData
                     .derive({"year": d => op.year(d.end_period)})
                     .filter(d => d.year > op.max(d.year) - 3)
                     .select(aq.not("TimePeriodID", "year"))
                     .reify()
                 
-                // console.log(">>>> aqFilteredComparisonsData [quarters]:");
-                // aqFilteredComparisonsData.print()
+                // console.log(">>>> aqFilteredComparisonData [quarters]:");
+                // aqFilteredComparisonData.print()
 
             }
 
-            // console.log(">>>> aqFilteredComparisonsData [showTrendComparisons 2]");
-            // aqFilteredComparisonsData.print()
+            // console.log(">>>> aqFilteredComparisonData [showComparisonTrend 2]");
+            // aqFilteredComparisonData.print()
 
 
             // ----- render the chart --------------------------------------------------- //
 
-            renderComparisonsChart(
-                aqFilteredComparisonsData,
-                aqFilteredComparisonsMetadata
+            renderTrendChart(
+                aqFilteredComparisonData,
+                aqFilteredComparisonMetadata
             );
 
             updateChartPlotSize();
@@ -2088,17 +2088,17 @@ const renderMeasures = async () => {
 
             // ----- render the chart --------------------------------------------------- //
 
-            renderComparisonsChart(
-                aqFilteredComparisonsData,
-                aqFilteredComparisonsMetadata
+            renderTrendChart(
+                aqFilteredComparisonData,
+                aqFilteredComparisonMetadata
             );
 
             updateChartPlotSize();
             
         }
         
-        showingNormalTrend = false;
-        showingComparisonsTrend = true;
+        showingBoroughTrend = false;
+        showingComparisonTrend = true;
         
     }
 
@@ -2418,9 +2418,9 @@ const renderMeasures = async () => {
 
     // debugger;
 
-    // disable trend tab if there are no trend measures (or only 1 time period) and there are no comparisons
+    // disable trend tab if there are no trend measures (or only 1 time period) and there are no comparison
 
-    if ((trendMeasures.length === 0 || onlyOneTime) && (typeof comparisonsMetadata === 'undefined' || comparisonsMetadata.length === 0)) {
+    if ((trendMeasures.length === 0 || onlyOneTime) && (typeof comparisonMetadata === 'undefined' || comparisonMetadata.length === 0)) {
 
         // console.log("turn off trend");
 
@@ -2525,7 +2525,7 @@ const renderMeasures = async () => {
     let mapTimesLinks = document.querySelectorAll('.maptimesbutton');
     let mapGeosLinks = document.querySelectorAll('.mapgeosbutton');
     let trendMeasuresLinks = document.querySelectorAll('.trendbutton');
-    let trendComparisonsLinks = document.querySelectorAll('.comparisonsbutton');
+    let trendComparisonLinks = document.querySelectorAll('.comparisonbutton');
     let linksMeasuresLinks = document.querySelectorAll('.linksbutton');
 
     // adding click listeners using update functions
@@ -2544,11 +2544,11 @@ const renderMeasures = async () => {
     })
 
     trendMeasuresLinks.forEach(link => {
-        link.addEventListener('click', updateTrendData);
+        link.addEventListener('click', updateBoroughTrendData);
     })
 
-    trendComparisonsLinks.forEach(link => {
-        link.addEventListener('click', updateTrendComparisonsData);
+    trendComparisonLinks.forEach(link => {
+        link.addEventListener('click', updateComparisonTrendData);
     })
 
     linksMeasuresLinks.forEach(link => {
@@ -2654,14 +2654,14 @@ const renderMeasures = async () => {
         
     });
 
-    $(dropdownTrendComparisons).on("click.gtag", e => {
+    $(dropdownTrendSelection).on("click.gtag", e => {
 
-        // console.log("click [dropdownTrendComparisons]", e);
+        // console.log("click [dropdownTrendSelection]", e);
 
         // if (e.target.classList.contains("dropdown-item") && !e.target.classList.contains("active")) {
         if (e.target.classList.contains("dropdown-item")) {
 
-            // console.log("gtag [dropdownTrendComparisons]");
+            // console.log("gtag [dropdownTrendSelection]");
 
             gtag('event', 'click_option', {
                 option: "trend_comparison"
