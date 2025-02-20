@@ -835,7 +835,7 @@ const updateLinksData = async (e) => {
         <p><strong>${secondaryIndicatorName} - ${secondaryMeasurementType}</strong>: ${secondaryAbout}</p>`;
 
     selectedLinksSources = [];
-    selectedLinksSources.push(primarySources)
+    selectedLinksSources.push(primarySources.concat(" "))
     selectedLinksSources.push(secondarySources)
 
     // render the measure info boxes
@@ -2562,7 +2562,7 @@ const renderMeasures = async () => {
 
     $(dropdownTableGeos).on("click.gtag", e => {
         
-        console.log("click [dropdownTableGeos]", e);
+        // console.log("click [dropdownTableGeos]", e);
 
         // only register event on the checkbox
         //  if you click on the containing div, it fires 2 events: one with the div as target and one 
@@ -2571,7 +2571,7 @@ const renderMeasures = async () => {
 
         if (e.target.classList.contains("largerCheckbox")) {
 
-            console.log("gtag [dropdownTableGeos]");
+            // console.log("gtag [dropdownTableGeos]");
 
             gtag('event', 'click_option', {
                 option: "table_geo"
@@ -2583,7 +2583,7 @@ const renderMeasures = async () => {
 
     $(dropdownTableTimes).on("click.gtag", e => {
 
-        console.log("click [dropdownTableTimes]", e);
+        // console.log("click [dropdownTableTimes]", e);
         
         // only register event on the checkbox
         //  if you click on the containing div, it fires 2 events: one with the div as target and one 
@@ -2592,7 +2592,7 @@ const renderMeasures = async () => {
         
         if (e.target.classList.contains("largerCheckbox")) {
 
-            console.log("gtag [dropdownTableTimes]");
+            // console.log("gtag [dropdownTableTimes]");
 
             gtag('event', 'click_option', {
                 option: "table_time"
@@ -2605,7 +2605,7 @@ const renderMeasures = async () => {
 
     $(dropdownMapMeasures).on("click.gtag", e => {
 
-        console.log("click [dropdownMapMeasures]", e);
+        // console.log("click [dropdownMapMeasures]", e);
 
         // if (e.target.classList.contains("dropdown-item") && !e.target.classList.contains("active")) {
         if (e.target.classList.contains("dropdown-item")) {
@@ -2622,7 +2622,7 @@ const renderMeasures = async () => {
 
     $(dropdownMapTimes).on("click.gtag", e => {
 
-        console.log("click [dropdownMapTimes]", e);
+        // console.log("click [dropdownMapTimes]", e);
 
         // if (e.target.classList.contains("dropdown-item") && !e.target.classList.contains("active")) {
         if (e.target.classList.contains("dropdown-item")) {
@@ -2639,7 +2639,7 @@ const renderMeasures = async () => {
 
     $(dropdownMapGeos).on("click.gtag", e => {
 
-        console.log("click [dropdownMapGeos]", e);
+        // console.log("click [dropdownMapGeos]", e);
 
         // if (e.target.classList.contains("dropdown-item") && !e.target.classList.contains("active")) {
         if (e.target.classList.contains("dropdown-item")) {
@@ -2656,7 +2656,7 @@ const renderMeasures = async () => {
 
     $(dropdownTrendComparisons).on("click.gtag", e => {
 
-        console.log("click [dropdownTrendComparisons]", e);
+        // console.log("click [dropdownTrendComparisons]", e);
 
         // if (e.target.classList.contains("dropdown-item") && !e.target.classList.contains("active")) {
         if (e.target.classList.contains("dropdown-item")) {
@@ -2673,7 +2673,7 @@ const renderMeasures = async () => {
 
     $(dropdownLinksMeasures).on("click.gtag", e => {
 
-        console.log("click [dropdownLinksMeasures]", e);
+        // console.log("click [dropdownLinksMeasures]", e);
 
         // if (e.target.classList.contains("dropdown-item") && !e.target.classList.contains("active")) {
         if (e.target.classList.contains("dropdown-item")) {
@@ -2690,7 +2690,7 @@ const renderMeasures = async () => {
 
     $(btnToggleDisparities).on("click.gtag", e => {
 
-        console.log("click [dropdownLinksMeasures]", e);
+        // console.log("click [dropdownLinksMeasures]", e);
 
         // if (e.target.classList.contains("dropdown-item") && !e.target.classList.contains("active")) {
         if (e.target.classList.contains("dropdown-item")) {
