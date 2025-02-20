@@ -83,6 +83,7 @@ related:
                 <iframe title="Benzene levels are related to traffic and building emissions" aria-label="USA new york city neighborhoods (ntas) Symbol map" id="datawrapper-chart-EPzEn" src="//datawrapper.dwcdn.net/EPzEn/3/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="514"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
                 </script>
                 </div>
+                <div class="sr-only"><div style="min-height:888px" id="datawrapper-vis-qAS0v"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/qAS0v/embed.js" charset="utf-8" data-target="#datawrapper-vis-qAS0v"></script><noscript><img src="https://datawrapper.dwcdn.net/qAS0v/full.png" alt="" /></noscript></div></div>
             </div>
         </div>
         <div class="my-2 mx-2 border" style="background:#EEF4E3">
@@ -101,6 +102,7 @@ related:
                 <iframe title="Noise levels at all sites exceeded health guidelines." aria-label="USA new york city neighborhoods (ntas) Symbol map" id="datawrapper-chart-OkXon" src="//datawrapper.dwcdn.net/OkXon/3/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="514"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
                 </script>
                 </div>
+                <div class="sr-only"><div style="min-height:922px" id="datawrapper-vis-vSUtR"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/vSUtR/embed.js" charset="utf-8" data-target="#datawrapper-vis-vSUtR"></script><noscript><img src="https://datawrapper.dwcdn.net/vSUtR/full.png" alt="" /></noscript></div></div>
             </div>
             </div>
             <div class="my-2 border" style="background:#FAF3FB">
@@ -118,6 +120,7 @@ related:
                 <iframe title="Areas with high PM2.5 will see the biggest improvements from cleaner heating fuel rules" aria-label="USA new york city neighborhoods (ntas) choropleth map" id="datawrapper-chart-iGatY" src="//datawrapper.dwcdn.net/iGatY/3/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="570"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
                 </script>
                 </div>
+            <div class="sr-only"><div style="min-height:968px" id="datawrapper-vis-5yPxF"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/5yPxF/embed.js" charset="utf-8" data-target="#datawrapper-vis-5yPxF"></script><noscript><img src="https://datawrapper.dwcdn.net/5yPxF/full.png" alt="" /></noscript></div></div>
             <p>Then, we estimated the health benefits of reduced exposure to air pollution. We gathered neighborhood-level population and health outcome data, and we estimated the health events (like asthma, deaths, and more) that New Yorkers avoided due to this cleaner air. Here's what we found:</p>
             <p><strong>Mortality reductions in areas with the worst air quality:</strong> Cleaner fuels will save the most lives in areas with the greatest reduction in PM2.5, and areas with the highest rates of baseline premature mortality.  These are the neighborhoods that already have poor air quality and high rates of death - including the Upper East and West Sides and Northern Manhattan. </p>
             <p><strong>Fewer adverse health events throughout the city:</strong> Cleaner fuels will result in reductions in other health events throughout the city, notably in the Bronx and Brooklyn. Even in neighborhoods with better air quality, hospitalizations and emergency department visits for cardiovascular disease, asthma emergency department visits, and respiratory diseases will go down as PM2.5 levels drop. </p>
@@ -167,6 +170,7 @@ related:
                             </script>
                         </div>
                     </div>
+                    <div class="sr-only"><div style="min-height:1301px" id="datawrapper-vis-Z1D4u"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/Z1D4u/embed.js" charset="utf-8" data-target="#datawrapper-vis-Z1D4u"></script><noscript><img src="https://datawrapper.dwcdn.net/Z1D4u/full.png" alt="" /></noscript></div></div>
                 </div>
             </div>
         </div>
@@ -209,6 +213,14 @@ related:
                         </script>
                     </div>
                 </div>
+                <br>
+                <div class="sr-only">
+                <div style="min-height:938px" id="datawrapper-vis-rMo3f"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/rMo3f/embed.js" charset="utf-8" data-target="#datawrapper-vis-rMo3f"></script><noscript><img src="https://datawrapper.dwcdn.net/rMo3f/full.png" alt="" /></noscript></div>
+                <br>
+                <div style="min-height:888px" id="datawrapper-vis-6M0f7"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/6M0f7/embed.js" charset="utf-8" data-target="#datawrapper-vis-6M0f7"></script><noscript><img src="https://datawrapper.dwcdn.net/6M0f7/full.png" alt="" /></noscript></div>
+                <br>
+                <div style="min-height:1689px" id="datawrapper-vis-5joqB"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/5joqB/embed.js" charset="utf-8" data-target="#datawrapper-vis-5joqB"></script><noscript><img src="https://datawrapper.dwcdn.net/5joqB/full.png" alt="" /></noscript></div>
+                </div>
             </div>
         <P>Previously, our network of air quality monitors at 60 core sites gathered data that we used to model air quality across the entire city. With these 15 EJ sites, we can assess how well the model predicts air pollution levels in these communities with greater risk of air quality-related health impacts. </P>
         <P>To do this, we compared the modeled estimates to the actual measured levels at these locations. Here’s what we found:</P>
@@ -218,8 +230,10 @@ related:
                 <div class="row">
                     <div class="col-6"><iframe title="" aria-label="Grouped Bars" id="datawrapper-chart-sAqVm" src="//datawrapper.dwcdn.net/sAqVm/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="400"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
                     </script></div>
+                    <div class="sr-only"><div style="min-height:383px" id="datawrapper-vis-dX7RW"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/dX7RW/embed.js" charset="utf-8" data-target="#datawrapper-vis-dX7RW"></script><noscript><img src="https://datawrapper.dwcdn.net/dX7RW/full.png" alt="" /></noscript></div></div>
                     <div class="col-6"><iframe title="" aria-label="Grouped Bars" id="datawrapper-chart-c9A7X" src="//datawrapper.dwcdn.net/c9A7X/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="400"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
                     </script></div>
+                    <div class="sr-only"><div style="min-height:383px" id="datawrapper-vis-Gebhh"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/Gebhh/embed.js" charset="utf-8" data-target="#datawrapper-vis-Gebhh"></script><noscript><img src="https://datawrapper.dwcdn.net/Gebhh/full.png" alt="" /></noscript></div></div>
                 </div>
             </div>
         <p><strong>Lower average concentrations of pollutants at 15 EJ sites</strong>. The 15 environmental justice sites measured, on average, 4% less PM2.5 than the citywide average of the 60 core sites, and 6% lower average NO2.</p>
@@ -229,8 +243,10 @@ related:
                 <div class="row">
                     <div class="col-6"><iframe title="" aria-label="Column Chart" id="datawrapper-chart-H1gyT" src="//datawrapper.dwcdn.net/H1gyT/6/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="400"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
                     </script></div>
+                    <div class="sr-only"><div style="min-height:187px" id="datawrapper-vis-K8QIw"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/K8QIw/embed.js" charset="utf-8" data-target="#datawrapper-vis-K8QIw"></script><noscript><img src="https://datawrapper.dwcdn.net/K8QIw/full.png" alt="" /></noscript></div></div>
                     <div class="col-6"><iframe title="" aria-label="Column Chart" id="datawrapper-chart-YLti3" src="//datawrapper.dwcdn.net/YLti3/5/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="400"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
                     </script></div>
+                    <div class="sr-only"> <div style="min-height:187px" id="datawrapper-vis-nmAUj"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/nmAUj/embed.js" charset="utf-8" data-target="#datawrapper-vis-nmAUj"></script><noscript><img src="https://datawrapper.dwcdn.net/nmAUj/full.png" alt="" /></noscript></div></div>
                 </div>
             </div>
         <p><strong>Additional confidence in our model.</strong> These findings show that the original model, based on the 60 core monitoring sites, is useful for predicting PM2.5 and NO2 levels - even in high-poverty neighborhoods that previously had fewer monitors. They offer additional confidence in our air quality monitor network and model, and tell us that NYCCAS does a good job of describing pollution levels in all NYC neighborhoods, even locations without monitors.</p>
