@@ -106,7 +106,7 @@
     <div class="row mt-4 mb-2">
         <div class="col-12">
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-4 mb-4">
                     <table class="table table-tight" id="table24">
                         <thead>
                             <tr>
@@ -118,18 +118,30 @@
                         <tbody id="tableBody">
                         </tbody>
                     </table>
+                    <hr class="my-2">
                         <p class="fs-sm hide" id="exceeds" style="color:red;"><i class="fas fa-exclamation-circle mr-1"></i>Exceeds NAAQS 24-hour standard</p>
                         <p class="fs-sm" id="allUnder" style="color:green;"><i class="fas fa-check-circle mr-1"></i>All levels are below the NAAQS 24-hour standard (35 µg/m<sup>3</sup>)</p>
 
                         <p class="fs-xs hide" id="insufficient"><em>*Monitor reported less than 18 hours in the last day.</em></p>
-                    <a href="#table24" class="fs-sm btn btn-sm btn-light btn-block mb-2" onclick="resetZoom()">Clear all</a>
-                    <div class="d-block d-md-none">
-                        <button type="button" class="btn btn-sm btn-block btn-outline-primary" data-toggle="modal" data-target="#mapModal">
-                            Show monitor locations
+
+                    <div class="btn-group mb-2">
+                        <button href="#table24" class="fs-sm btn btn-sm btn-light mr-1" onclick="resetZoom()"><i class="fas fa-redo mr-1" aria-hidden="true"></i>Clear</button>
+
+                        <button type="button" class="btn btn-sm d-block d-md-none btn-outline-primary mr-1" data-toggle="modal" data-target="#mapModal">
+                            Monitors
+                          </button>
+    
+                        <button type="button" class="btn btn-sm btn-outline-primary float-right" data-toggle="modal" data-target="#archiveModal">
+                            <i class="fas fa-download mr-1" aria-hidden="true"></i>Download
                           </button>
                     </div>
-                    <hr class="mb-2">
+
+
+                    
+
+
                 </div>
+
                 <div class="col-md-8 border-left">
 
 
@@ -181,37 +193,20 @@
         </div>
     </div>
 
-                <!-- data archive section --> 
-                <div class="row mt-0 mb-2">
-                    <div class="col-12">
-                        <div class="accordion-group my-3" role="tablist" id="accordion-01">
-    
-                            <div class="card">
-    
-                                <a class="card-header h4 collapse collapsed" id="acc-button-01" data-toggle="collapse" href="#panel-acc-button-01"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-01">
-                                    <span class="title" role="heading" aria-level="3">Data archive</span>
-                                </a>
-    
-                                <div class="collapse" id="panel-acc-button-01" role="tabpanel" aria-labelledby="acc-button-01" data-parent="#accordion-01">
-    
-                                    <div class="card-body bg-white border">
-                                        <!-- Download interface -->
-                                        {{- partial "realtime-download" . -}}
-    
-                                        {{- with .Resources.GetMatch "data-archive-text.md" -}}
-                                            {{ .Content }}
-                                        {{- end -}}
-                                    </div>
-    
-                                </div>
-                                <!-- .collapse -->
-    
-                            </div>
-                            <!-- .card (end of first accordion, repeat as needed) -->
-    
-                        </div>
-                    </div>
-                </div>
+    <div class="row border-top my-2 pt-2">
+        <div class="col-md-4 col-sm-12">
+            Congestion pricing
+        </div>
+
+        <div class="col-md-4 col-sm-12">
+            Sources
+        </div>
+
+        <div class="col-md-4 col-sm-12">
+            Common patterns
+        </div>
+
+    </div>
 
     <div class="row my-2">
         <div class="col-md-10 mx-auto col-sm-12">
@@ -401,7 +396,7 @@
 <!-- Modal -->
 <div class="modal fade" id="mapModal" tabindex="-1" role="dialog" aria-labelledby="mapModal" aria-hidden="true">
     <div class="modal-dialog" role="document">
-      <div class="modal-content">
+      <div class="modal-content modal-lg">
         <div class="modal-header">
           <h5 class="modal-title" id="mapModalLabel">Monitor locations</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -410,6 +405,33 @@
         </div>
         <div class="modal-body">
             <div style="min-height:684px" id="datawrapper-vis-26bBi"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/26bBi/embed.js" charset="utf-8" data-target="#datawrapper-vis-26bBi"></script><noscript><img src="https://datawrapper.dwcdn.net/26bBi/full.png" alt="" /></noscript></div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- Download/archive modal -->
+<div class="modal fade" id="archiveModal" tabindex="-1" role="dialog" aria-labelledby="archiveModal" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="archiveModalLabel">Download archived data</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+            <!-- Download interface -->
+            {{- partial "realtime-download" . -}}
+
+            {{- with .Resources.GetMatch "data-archive-text.md" -}}
+                {{ .Content }}
+            {{- end -}}
+
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
