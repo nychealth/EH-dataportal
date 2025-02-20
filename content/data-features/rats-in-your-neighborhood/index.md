@@ -14,12 +14,12 @@ arquero: true
 leaflet: true
 image: rmz-ss.png
 related:
-  - title: "Why trash is a public health issue"
-    url: "data-stories/sanitation/"
   - title: "Rat Mitigation Zones"
     url: "data-features/rat-mitigation-zones"
-  - title: "Housing creates health"
-    url: "data-stories/housing-creates-health/"
+  - title: "Data: mice and rats"
+    url: "data-explorer/mice-and-rats/"
+  - title: "Rat Information Portal"
+    url: "data-features/rat-portal/"
 ---
 
 What's going on with rats in your neighborhood, what's being done to fight them, and how can you help? 
