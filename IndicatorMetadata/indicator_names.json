@@ -909,6 +909,11 @@
     "description": "Retail locations that sell tobacco products. Neighborhoods with higher densities of tobacco retailers increase access to tobacco and may increase smoking rates.",
     "name": "Tobacco retailers"
   },
+  "2422": {
+    "IndicatorID": 2422,
+    "description": "E-cigarette smoke: The number of children aged 1-13 years exposed to e-cigarette smoke at home all of the time, most of the time, or occasionally. Chemicals in the vapor from e-cigarettes can be harmful to kids.",
+    "name": "E-cigarette vapor exposure at home (children)"
+  },
   "2425": {
     "IndicatorID": 2425,
     "description": "The average number of Citi Bikes available to rent per each area between 7am-7pm. Biking bridges gaps in existing public transportation systems and is a great way to exercise. Neighborhoods with lower Citi Bike availability have limited access to this beneficial public resource.",
