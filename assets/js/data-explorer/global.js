@@ -41,10 +41,10 @@ let secondaryIndicatorName;
 
 let indicatorComparisonId;
 let comparisons;
-let comparisonsMetadata;
-let aqComparisonsMetadata;
-let aqComparisonsIndicatorsMetadata;
-let aqComparisonsIndicatorData;
+let comparisonMetadata;
+let aqComparisonMetadata;
+let aqComparisonIndicatorsMetadata;
+let aqComparisonIndicatorData;
 
 let defaultTrendMetadata;
 let aqDefaultTrendMetadata;
@@ -65,8 +65,8 @@ let selectedMapGeo;
 let selectedTrendMeasure;
 let selectedLinksMeasure;
 let selectedComparison;
-let showingNormalTrend;
-let showingComparisonsTrend;
+let showingBoroughTrend;
+let showingComparisonTrend;
 
 let selectedMapAbout;
 let selectedMapSources;
@@ -88,9 +88,9 @@ let selectedSecondaryMeasureMetadata;
 let filteredMapData;
 let filteredTrendData;
 let aqFilteredTrendData;
-let aqFilteredComparisonsData;
-let aqFilteredComparisonsMetadata;
-let aqCombinedComparisonsMetadata;
+let aqFilteredComparisonData;
+let aqFilteredComparisonMetadata;
+let aqCombinedComparisonMetadata;
 
 let aqMeasureDisplay;
 let aqTableTimesGeos;
@@ -110,8 +110,8 @@ let tabLinks;
 let showTable;
 let showMap;
 let showTrend;
-let showNormalTrend;
-let showTrendComparisons;
+let showBoroughTrend;
+let showComparisonTrend;
 let showLinks;
 
 var CSVforDownload; 

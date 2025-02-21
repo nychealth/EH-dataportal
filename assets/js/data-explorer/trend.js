@@ -1,22 +1,22 @@
 // ======================================================================= //
-// comparisons.js
+// trend.js
 // ======================================================================= //
 
-const renderComparisonsChart = (
+const renderTrendChart = (
     data,
     metadata
 ) => {
 
-    console.log("*** renderComparisonsChart");
+    console.log("*** renderTrendChart");
 
 
     document.getElementById('viewDescription').innerHTML = 'Trends are shown by boro for stable rates.'
 
-    // console.log("metadata [renderComparisonsChart]");
+    // console.log("metadata [renderTrendChart]");
     // metadata.print()
 
     
-    // console.log("data [renderComparisonsChart]");
+    // console.log("data [renderTrendChart]");
     // data.print(Infinity)
 
     // console.log("data objects", data.objects());
@@ -793,7 +793,7 @@ const renderComparisonsChart = (
         .derive({Indicator: `'${indicatorName}: ${plotTitle} ${plotSubtitle}'`}) // add indicator name and type column
         .select(aq.not("GeoType", "GeoTypeDesc", "GeoTypeShortDesc", "GeoRank", "MeasureID", "ban_summary_flag", "DisplayValue", "start_period", "end_period"))
 
-        // console.log("downloadTable [renderComparisonsChart]");
+        // console.log("downloadTable [renderTrendChart]");
         // downloadTable.print()
 
     CSVforDownload = downloadTable.toCSV()
