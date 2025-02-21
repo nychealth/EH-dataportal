@@ -142,7 +142,7 @@ const renderTable = () => {
                 // these 4 columns always exist, and we always want to hide them, so let's put them first, respecting the original relative order
                 "TimePeriod", "GeoTypeDesc", "GeoID", "GeoRank", "Geography", 
 
-                // set order for table columns (this is half a priori, half ad hoc): standard is Number, Crude Rate, Age-adjusted rate; left to ride in order of calculated complexity; or general to specific. 
+                // set order for table columns (this is half a priori, half ad hoc): standard is Number, Crude Rate, Age-adjusted rate; left to right in order of calculated complexity; or general to specific. 
                 aq.matches(/everyday/i),
                 aq.matches(/sometimes/i),
                 aq.matches(/never/i),
@@ -177,7 +177,7 @@ const renderTable = () => {
             ], 
             { before: 0 }
         )
-        .print(10)
+        // .print(10)
     
     // console.log("filteredTableAqData [renderTable]");
     // filteredTableAqData.print({limit: 10})
