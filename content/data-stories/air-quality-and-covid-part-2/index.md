@@ -68,8 +68,10 @@ But the improvements in pollution from winter to spring were much greater in 202
     <h3 class="fs-lg">Both NO2 and PM2.5 fell during NY Pause - more than in 2019. </h3>
     <div class="row">
         <div class="col-6">
+            <div aria-hidden="true">
             <iframe title="NO2 fell during NY Pause in 2020..." aria-label="Interactive line chart" id="datawrapper-chart-9jeJb" src="https://datawrapper.dwcdn.net/9jeJb/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="398"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();
             </script>
+            </div>
             <div class="card card-left-border shadow-sm">
                 <div class="card-body">
                     <p class="fs-sm">Nitrogen dioxide (NO2) is part of a group of pollutants called “oxides of nitrogen” (NOX). Exposures to NOX are linked to increased emergency department visits and hospitalizations for respiratory conditions, particularly asthma.</p>
@@ -80,8 +82,9 @@ But the improvements in pollution from winter to spring were much greater in 202
         <div style="min-height:213px" id="datawrapper-vis-sQ5bC"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/sQ5bC/embed.js" charset="utf-8" data-target="#datawrapper-vis-sQ5bC"></script><noscript><img src="https://datawrapper.dwcdn.net/sQ5bC/full.png" alt="" /></noscript></div>
         </div>
         <div class="col-6">
+            <div aria-hidden="true">
             <iframe title="So did PM2.5 - more than in 2019." aria-label="Interactive line chart" id="datawrapper-chart-WHK8J" src="https://datawrapper.dwcdn.net/WHK8J/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="398"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();
-            </script>
+            </script></div>
             <div class="card card-left-border shadow-sm">
                 <div class="card-body">
                 <p class="fs-sm">Fine particles (PM2.5) are tiny airborne solid and liquid particles less than 2.5 microns in diameter. PM2.5 is the most harmful urban air pollutant. It is small enough to penetrate the lungs and enter the bloodstream, which can worsen lung and heart disease.</p>
@@ -127,7 +130,11 @@ With many New Yorkers staying home, activity in the CBD fell drastically. Explor
 
 Since PM2.5 levels normally vary by season, we used the difference in PM2.5 between a site in midtown Manhattan and an “urban background” site in Queens to see if there were any unusual changes during NY Pause. This Queens site usually has lower levels of air pollutants than Midtown, but during NY Pause, the difference fell to nearly nothing. Pollution in Midtown matched the Queens site.
 
+<div aria-hidden="true">
+
 {{< datawrapper title="PM2.5 difference between Midtown and Queens" src="ZSG5m/1/" height="150" >}}
+
+</div>
 
 <div class="sr-only">
 <div style="min-height:866px" id="datawrapper-vis-10P9Z"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/10P9Z/embed.js" charset="utf-8" data-target="#datawrapper-vis-10P9Z"></script><noscript><img src="https://datawrapper.dwcdn.net/10P9Z/full.png" alt="" /></noscript></div>
@@ -139,7 +146,11 @@ Our land-use regression models suggest that there are three major sources of PM2
 
 During NY Pause, the Lincoln Tunnel's morning rush travel time to NYC plummeted, indicating reduced traffic volume. It increased again during the summer:
 
+<div aria-hidden="true">
+
 {{< datawrapper title="Traffic after NY Pause" src="3dH2R/1/" height="150" >}}
+
+</div>
 
 <div class="sr-only">
 <div style="min-height:873px" id="datawrapper-vis-iwPzz"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/iwPzz/embed.js" charset="utf-8" data-target="#datawrapper-vis-iwPzz"></script><noscript><img src="https://datawrapper.dwcdn.net/iwPzz/full.png" alt="" /></noscript></div>
@@ -149,7 +160,11 @@ During NY Pause, the Lincoln Tunnel's morning rush travel time to NYC plummeted,
 
 There were about 50% fewer small leisure and hospitality businesses operating during NY Pause than in January 2020—but many of the small businesses that closed had still not reopened by January 2021.
 
+<div aria-hidden="true">
+
 {{< datawrapper title="Traffic after NY Pause" src="tRi2z/1/" height="150" >}}
+
+</div>
 
 <div class="sr-only">
 <div style="min-height:898px" id="datawrapper-vis-zNG5O"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/zNG5O/embed.js" charset="utf-8" data-target="#datawrapper-vis-zNG5O"></script><noscript><img src="https://datawrapper.dwcdn.net/zNG5O/full.png" alt="" /></noscript></div>
