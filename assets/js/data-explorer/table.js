@@ -135,9 +135,6 @@ const renderTable = () => {
     const filteredTableAqData = aq.from(filteredTableData)
         .groupby("TimePeriod", "GeoTypeDesc", "GeoID", "GeoRank", "Geography")
         .pivot("MeasurementDisplay", "DisplayCI", {sort: false})
-
-        .print(10)
-    
         .relocate([
                 // these 4 columns always exist, and we always want to hide them, so let's put them first, respecting the original relative order
                 "TimePeriod", "GeoTypeDesc", "GeoID", "GeoRank", "Geography", 
@@ -177,7 +174,6 @@ const renderTable = () => {
             ], 
             { before: 0 }
         )
-        // .print(10)
     
     // console.log("filteredTableAqData [renderTable]");
     // filteredTableAqData.print({limit: 10})
