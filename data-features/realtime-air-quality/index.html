@@ -925,9 +925,13 @@
     
     
     const date = new Date();
-    let thisMonth = date.getMonth() + 1;
-    let availMonth = date.getMonth();
-    let thisYear = date.getFullYear();
+
+    
+    console.log("Today's date:", date);
+
+    let thisMonth = date.getMonth() + 1;    
+    let availMonth = date.getMonth();       
+    let thisYear = date.getFullYear();      
     
     
 
@@ -935,13 +939,17 @@
         var chosenYear
         var chosenMonth
         if (availMonth == 0) {
-            chosenYear = thisYear
-            chosenMonth = 1
-            console.log('jan: ',chosenYear,chosenMonth)
+            chosenYear = thisYear - 1
+            chosenMonth = 12
+            console.log('Most recent month of data available: ',chosenYear,chosenMonth)
         } else {
+            
             chosenYear = thisYear
             chosenMonth = availMonth
+            console.log('Most recent month of data available: ',chosenYear,chosenMonth)
         }
+
+
 
     document.getElementById('months').value = chosenMonth
     var chosenFormat = 'csv'
