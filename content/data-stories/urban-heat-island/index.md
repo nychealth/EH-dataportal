@@ -53,7 +53,7 @@ At 6.00 PM on June 30, 2018, the air temperature at the LaGuardia Airport Weathe
             <iframe
             src="https://www.google.com/maps/embed?pb=!4v1615653383424!6m8!1m7!1sm7WWRgDOZJz10tQupUzeHw!2m2!1d40.78797664606837!2d-73.94797464842142!3f299.71127124368036!4f8.067917696436893!5f0.7820865974627469"
             width="100%" height="400" style="border:0;" allowfullscreen=""
-            loading="lazy"></iframe>
+            loading="lazy" alt="Two streetviews from Google maps portray how a difference in vegetative cover can relate to higher or lower temperatures between neighborhoods. In East Harlem, we see comparatively little tree cover to a selected block in Bed-Stuy."></iframe>
             <div class="fs-sm pt-2">
                 100th St, between Lexington and 3rd Ave<br>
                 Manhattan: <strong class="hlt">93.9° F</strong>
@@ -104,7 +104,7 @@ We found that the average temperature at the Edenwald spot was more than 2° coo
 <div class="row">
 <div class="col-md-6">
     <span class="">Brownsville, Brooklyn</span>
-    <img src="Bk-BR_12_lidar_bigger.png" class="img-fluid">
+    <img src="Bk-BR_12_lidar_bigger.png" class="img-fluid" alt="Two maps created with satellite and land-use data, showing the differences in vegetative cover between a block in Brownsville, Brooklyn and a block in Edenwald, The Bronx. The Brownsville image shows less green shapes (representing trees, grass, and shrubs) covering the site than in the Edenwald image. The Edenwald site was measured to be 2 degrees cooler.">
     <table class="table">
         <thead>
             <tr>
@@ -389,6 +389,9 @@ See for yourself - drag the green slider back and forth to see what the temperat
     </div>
 </div>
 
+<div class="sr-only">
+<p> An image of an apartment building in NYC overlaid with a transparent green layer that represents how much vegetative cover there is. As the user adds a higher percentage of green cover using a slider, the percentage of impervious surfaces is reduced (from 0% to 100% in both categories), which also reduces the temperature on the block (from 76.97 to 79.09 F).</p>
+</div>
 <script>
     var tempVar = 75;
     var vegVar;
@@ -462,6 +465,7 @@ See for yourself - drag the green slider back and forth to see what the temperat
 
     slider.addEventListener('change', handleUpdate);
     slider.addEventListener('mousemove', handleUpdate);
+
 </script>
 
 <div class="narrow my-2">
@@ -475,6 +479,9 @@ As the climate changes, NYC faces rising average temperatures and heat waves tha
 
 {{< rawhtml >}}
 
+<div class="sr-only">
+<p>A map showing how surface temperatures taken from monitors mounted on trees varied between 6pm and 9pm throughout NYC. In upper Manhattan, sites in both the north and south Bronx, and in parts of northwest Queens, temperatures were measured to higher than in northwest Brooklyn and northeast Queens. These disparities were similar between 2018 and 2019.</p>
+</div>
 </div>
 <div class="wide">
     <div class="mb-4 asidebox">
