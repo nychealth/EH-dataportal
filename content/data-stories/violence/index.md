@@ -5,12 +5,24 @@ date: 2021-02-08T08:07:31-04:00
 draft: false
 seo_title: "Why violence is a public health issue"
 seo_description: "A data story on violence, disparities, and real public health justice in NYC."
-categories: ["housing","social","childhealth","healthoutcomes","neighborhoods"]
-keywords: ["violence","assaults","injustice","poverty","social determinants","redlining","disinvestment","racism","neighborhoods"]
+categories:
+  ["housing", "social", "childhealth", "healthoutcomes", "neighborhoods"]
+keywords:
+  [
+    "violence",
+    "assaults",
+    "injustice",
+    "poverty",
+    "social determinants",
+    "redlining",
+    "disinvestment",
+    "racism",
+    "neighborhoods",
+  ]
 image: ds-violence.jpg
 vega: true
 photocredit: "Benjamin Kanter/Mayoral Photography Office, City of New York"
-related: 
+related:
   - title: "Injury deaths in NYC"
     url: "data-stories/injury-deaths/"
   - title: "Disparities in violence"
@@ -46,7 +58,18 @@ There is a lot less violence than there used to be in NYC. {{< rawhtml >}}<a hre
 
 To look at violence, people often look at homicide rates. In recent years, NYC’s rate of homicides - the most extreme episodes of violence - has been under 5 per 100,000 people, down from a high of over 25 per 100,000 people from 1986-1990.
 
-{{< datawrapper title="NYC'S homicide rates have declined" src="bqQeD/1/" height="484" >}}
+</div>
+<div class="wide my-4" aria-hidden="true">
+<iframe title="" aria-label="Interactive line chart" id="datawrapper-chart-bqQeD" src="https://datawrapper.dwcdn.net/bqQeD/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="501" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+</script>
+</div>
+
+<div class="sr-only">
+<iframe title="Rates of homicide have fallen overall in NYC since the 1980s" aria-label="Table" id="datawrapper-chart-QFBsi" src="https://datawrapper.dwcdn.net/QFBsi/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="577" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+</script>
+</div>
+
+<div class="narrow">
 
 ### ...but a drop in the homicide rate doesn't tell the whole story.
 
@@ -56,9 +79,20 @@ When broken down by geography, the data show that some neighborhoods experience 
 
 This pattern is consistent across the three indicators. And, neighborhoods that experience higher rates of violence have larger populations of people of color - showing that these populations shoulder a disproportionate burden of violence.
 
-{{< datawrapper title="Violence in NYC" src="PldhR/2" height="603" >}}
+</div>
 
+<div class="wide my-4" aria-hidden="true">
+<iframe title="Violence in NYC" aria-label="Column Chart" id="datawrapper-chart-PldhR" src="https://datawrapper.dwcdn.net/PldhR/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="603" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+</script>
+</div>
+
+<div class="sr-only">
+<iframe title="Rates of violence across three indicators are much higher in some NYC neighborhoods" aria-label="Table" id="datawrapper-chart-gxP5i" src="https://datawrapper.dwcdn.net/gxP5i/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="1214" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+</script>
+</div>
 <br>
+
+<div class="narrow">
 
 ## A public health approach to addressing violence
 
@@ -102,12 +136,26 @@ Decades of government and societal {{< rawhtml >}}<a href="#disinvestmentCollaps
 
 <div class="collapse mb-2 drawerbg px-2 py-2 mx-2" id="disinvestmentCollapse">
     <strong>Disinvestment</strong> is when either government agencies or private companies deliberately withhold or withdraw resources and opportunity from a neighborhood or community. </p>
-    <p>The history of disinvestment is tied to racist practices and policies - like denyng people of color loans to buy homes. Disinvestment is also planned shrinkage, a steady decline of public funding for public housing, services, education - especially in cities, and especially in neighborhoods populated mostly by people of color.</p>
+    <p>The history of disinvestment is tied to racist practices and policies - like denying people of color loans to buy homes. Disinvestment is also planned shrinkage, a steady decline of public funding for public housing, services, education - especially in cities, and especially in neighborhoods populated mostly by people of color.</p>
     </div>{{< /rawhtml >}}
 
 As a result of this disinvestment, we see a clear relationship between poverty and violence. As a neighborhood's poverty level increases, so do assaults.
 
-{{< datawrapper title="Poverty and assaults in NYC" src="DlEvR/2/" height="533" >}}
+</div>
+
+<div class="wide my-4" aria-hidden="true">
+
+<iframe title="" aria-label="Scatter Plot" id="datawrapper-chart-DlEvR" src="//datawrapper.dwcdn.net/DlEvR/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="533" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+</script>
+
+</div>
+
+<div class="sr-only">
+<iframe title="Disinvestment underlies a clear relationship between poverty and assaults in NYC" aria-label="Table" id="datawrapper-chart-UnJ1o" src="https://datawrapper.dwcdn.net/UnJ1o/4/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="959" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+</script>
+</div>
+
+<div class="narrow">
 
 ### Disinvestment creates environments that threaten health
 
@@ -200,7 +248,19 @@ NYC's neighborhoods experience these protective and risk factors very differentl
 
 Let's explore how by comparing two neighborhoods: <span style="color: #b820bb; font-weight: bold;">Belmont/East Tremont</span>, in the Bronx, and <span style="color: #5c8ea5; font-weight: bold;">Tottenville/Great Kills</span>, in Staten Island.
 
-{{< datawrapper title="Poverty in NYC neighborhoods" src="GXRIu/1/" height="1468" >}}
+</div>
+
+<div class="wide my-4" aria-hidden="true">
+<iframe title="Poverty" aria-label="Bar Chart" id="datawrapper-chart-GXRIu" src="https://datawrapper.dwcdn.net/GXRIu/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="1469" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+</script>
+</div>
+
+<div class="sr-only">
+<iframe title="Belmont/East Tremont has one of the highest poverty rates in NYC and Tottenville/Great Kills has one of the lowest" aria-label="Table" id="datawrapper-chart-4zdNl" src="https://datawrapper.dwcdn.net/4zdNl/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="2385" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+</script>
+</div>
+
+<div class="narrow">
 
 Poverty ranges from 6.2% to 41.5% among NYC neighborhoods. <span style="color: #b820bb; font-weight: bold;">Belmont/East Tremont</span> has one of the highest poverty rates in the city, while <span style="color: #5c8ea5; font-weight: bold;">Tottenville/Great Kills</span> has one of the lowest.
 
@@ -208,7 +268,19 @@ Neighborhood poverty is one of the environmental factors that can predict violen
 
 <span style="color: #b820bb; font-weight: bold;">Belmont/East Tremont</span> also has a high rate of non-fatal assault hospitalizations - one of the highest in the city (107 per 100,000 people).</p>
 
-{{< datawrapper title="Non-fatal assault hospitalizations" src="PqnEK/1" height="1468" >}}
+</div>
+
+<div class="wide my-4" aria-hidden="true">
+<iframe title="Assaults" aria-label="Bar Chart" id="datawrapper-chart-PqnEK" src="https://datawrapper.dwcdn.net/PqnEK/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="1488" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+</script>
+</div>
+
+<div class="sr-only">
+<iframe title="Belmont/East Tremont has a high rate of non-fatal assault hospitalizations, while Tottenville/Great Kills has one of the lowest" aria-label="Table" id="datawrapper-chart-kqsJS" src="https://datawrapper.dwcdn.net/kqsJS/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="2334" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+</script>
+</div>
+
+<div class="narrow">
 
 <span style="color: #5c8ea5; font-weight: bold;">Tottenville/Great Kills</span> follows the same pattern, with one of the lowest rates of non-fatal assault hospitalizations - only 15 per 100,000 people.
 
@@ -216,11 +288,18 @@ Another way to compare poverty and violence rates is to rank neighborhoods from 
 
 Below, we can see that <span style="color: #b820bb; font-weight: bold;">Belmont/East Tremont</span> ranks high in both poverty and assaults, while <span style="color: #5c8ea5; font-weight: bold;">Tottenville/Great Kills</span> ranks low for both.
 
+<div aria-hidden="true">
 <iframe title='Poverty and assaults - ranks' aria-label="Interactive chart" id="datawrapper-chart-O0SUA"
     src='//datawrapper.dwcdn.net/639n0/1/' scrolling="no" frameborder="0"
     style="width: 0; min-width: 100% !important; border: none;" height='600'></iframe>
 <script type="text/javascript">!function () { "use strict"; window.addEventListener("message", function (a) { if (void 0 !== a.data["datawrapper-height"]) for (var e in a.data["datawrapper-height"]) { var t = document.getElementById("datawrapper-chart-" + e) || document.querySelector("iframe[src*='" + e + "']"); t && (t.style.height = a.data["datawrapper-height"][e] + "px") } }) }();
 </script>
+</div>
+
+<div class="sr-only">
+<iframe title="Poverty and Assaults" aria-label="Table" id="datawrapper-chart-t0Uzm" src="https://datawrapper.dwcdn.net/t0Uzm/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="1010" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+</script>
+</div>
 
 #### When we add in other risk factors, an even more significant pattern emerges.
 
@@ -257,7 +336,13 @@ data</button>
 
 <span style="color: #b820bb; font-weight: bold;">Belmont/East Tremont</span> ranks highly for these risk factors that make violence more likely. By comparison, <span style="color: #5c8ea5; font-weight: bold;">Tottenville/Great Kills</span> ranks low for these factors.
 
+<div aria-hidden="true">
 {{< datawrapper title="Environmental factors and violence outcomes" src="7Dx2d/4/" height="714" >}}
+</div>
+<div class="sr-only">
+<iframe title="Belmont and Tottenville" aria-label="Table" id="datawrapper-chart-W3X69" src="https://datawrapper.dwcdn.net/W3X69/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="3846" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+</script>
+</div>
 <button type="button" class="btn btn-sm btn-block btn-light" data-toggle="modal" data-target="#dataModal"><i class="fas fa-question-circle"></i>&nbsp;About the data</button>
 
 A pattern emerges: <span style="font-weight: bold; color: #b820bb;">neighborhoods with the highest poverty rates</span> consistently rank high for risk factors experience more violence. <span style="font-weight:bold; color: #5c8ea5">Neighborhoods with the lowest poverty rates</span> consistently rank low for risk factors experience less violence.
