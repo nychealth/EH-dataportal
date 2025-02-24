@@ -994,6 +994,16 @@
     "description": "Non-fatal injuries from firearms that result in hospitalizations. Violence from firearms causes physical and emotional harm, and trauma to both individuals and communities. ",
     "name": "Firearm hospitalizations (all ages)"
   },
+  "2441": {
+    "IndicatorID": 2441,
+    "description": "Anaplasmosis is a tick-borne disease transmitted through the bite of an infected blacklegged tick. Symptoms include fever, chills, headache, muscle aches, and fatigue. The majority of cases report a history of travel and outdoor exposures outside of NYC.",
+    "name": "Anaplasmosis"
+  },
+  "2442": {
+    "IndicatorID": 2442,
+    "description": "Lyme disease is transmitted through the bite of an infected blacklegged tick and is the most common tick-borne disease among New Yorkers. Symptoms can include rashes that look like a bull’s-eye, fever, fatigue and headache. If left untreated, infection can spread to joints, the heart, and the nervous system. Most people acquire this disease while traveling outside NYC. However, local cases are often reported in Staten Island. In 2022, an expected increase in cases was observed due to changes in the case definition.",
+    "name": "Lyme disease"
+  },
   "2443": {
     "IndicatorID": 2443,
     "description": "ED visits due to heat-related illnesses, such as heat stroke and heat exhaustion, represent part of the public health burden of extreme heat.",

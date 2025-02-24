@@ -399,7 +399,9 @@
   "vector-borne-disease": {
     "IndicatorID": [
       2218,
-      2340
+      2340,
+      2441,
+      2442
     ],
     "topic_name": "Vector-borne disease"
   },

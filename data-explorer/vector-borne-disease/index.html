@@ -800,10 +800,10 @@
 
                     <div class="tab-pane fade" id="tab-02-b" aria-labelledby="tab-btn-02-b" role="tabpanel">
                         <div class="p-1 overflow-fade-about topic-text mb-1 border">
-                            <p>Vectorborne diseases are diseases that are transmitted from an arthropod (usually a tick or mosquito, etc.) to humans or other animals. Some vectorborne disease agents are maintained primarily through transmission between arthropods and humans (e.g., dengue virus and malaria), while others are maintained between arthropods and animal reservoirs (e.g., Lyme disease and West Nile virus) and humans may become infected incidentally.</p>
-<h3>Vectorborne Disease and the Environment</h3>
-<p>Climate is one of many important interacting variables that affect people’s risk for vectorborne diseases in New York City. Warmer winters make it easier for ticks to survive in NYC year-round, while a longer warm season increases the length of time that ticks are active each year. Warming temperatures can lengthen the season in which mosquitoes are out and biting, and accelerate the mosquito life cycle. This can mean more frequent contact between mosquitoes and their hosts, which can facilitate the spread of diseases.</p>
-<p>Changing precipitation patterns, with longer periods between rains but heavier rain events, may affect the amount of standing water that mosquitoes have to breed in. Climate change may also alter bird migration patterns or result in changes in deer and small mammal populations that serve as hosts for vectorborne diseases.</p>
+                            <p>Vector-borne diseases are diseases that are transmitted from an arthropod (usually a tick or mosquito, etc.) to humans or other animals. Some vector-borne disease agents are maintained primarily through transmission between arthropods and humans (e.g., dengue virus and malaria), while others are maintained between arthropods and animal reservoirs (e.g., Lyme disease and West Nile virus) and humans may become infected incidentally.</p>
+<h3>Vector-borne Disease and the Environment</h3>
+<p>Climate is one of many important interacting variables that affect people’s risk for vector-borne diseases in New York City. Warmer winters make it easier for ticks to survive in NYC year-round, while a longer warm season increases the length of time that ticks are active each year. Warming temperatures can lengthen the season in which mosquitoes are out and biting, and accelerate the mosquito life cycle. This can mean more frequent contact between mosquitoes and their hosts, which can facilitate the spread of diseases.</p>
+<p>Changing precipitation patterns, with longer periods between rains but heavier rain events, may affect the amount of standing water that mosquitoes have to breed in. Climate change may also alter bird migration patterns or result in changes in deer and small mammal populations that serve as hosts for vector-borne diseases.</p>
 
                             <hr class="my-2">
                             
@@ -1834,10 +1834,10 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p>Vectorborne diseases are diseases that are transmitted from an arthropod (usually a tick or mosquito, etc.) to humans or other animals. Some vectorborne disease agents are maintained primarily through transmission between arthropods and humans (e.g., dengue virus and malaria), while others are maintained between arthropods and animal reservoirs (e.g., Lyme disease and West Nile virus) and humans may become infected incidentally.</p>
-<h3>Vectorborne Disease and the Environment</h3>
-<p>Climate is one of many important interacting variables that affect people’s risk for vectorborne diseases in New York City. Warmer winters make it easier for ticks to survive in NYC year-round, while a longer warm season increases the length of time that ticks are active each year. Warming temperatures can lengthen the season in which mosquitoes are out and biting, and accelerate the mosquito life cycle. This can mean more frequent contact between mosquitoes and their hosts, which can facilitate the spread of diseases.</p>
-<p>Changing precipitation patterns, with longer periods between rains but heavier rain events, may affect the amount of standing water that mosquitoes have to breed in. Climate change may also alter bird migration patterns or result in changes in deer and small mammal populations that serve as hosts for vectorborne diseases.</p>
+                    <p>Vector-borne diseases are diseases that are transmitted from an arthropod (usually a tick or mosquito, etc.) to humans or other animals. Some vector-borne disease agents are maintained primarily through transmission between arthropods and humans (e.g., dengue virus and malaria), while others are maintained between arthropods and animal reservoirs (e.g., Lyme disease and West Nile virus) and humans may become infected incidentally.</p>
+<h3>Vector-borne Disease and the Environment</h3>
+<p>Climate is one of many important interacting variables that affect people’s risk for vector-borne diseases in New York City. Warmer winters make it easier for ticks to survive in NYC year-round, while a longer warm season increases the length of time that ticks are active each year. Warming temperatures can lengthen the season in which mosquitoes are out and biting, and accelerate the mosquito life cycle. This can mean more frequent contact between mosquitoes and their hosts, which can facilitate the spread of diseases.</p>
+<p>Changing precipitation patterns, with longer periods between rains but heavier rain events, may affect the amount of standing water that mosquitoes have to breed in. Climate change may also alter bird migration patterns or result in changes in deer and small mammal populations that serve as hosts for vector-borne diseases.</p>
 
                     <hr class="my-2">
                     
@@ -2058,6 +2058,36 @@
         <h2
             class="d-none">
             West Nile virus is transmitted through the bite of infected mosquitoes. While most people who are infected will not go on to develop symptoms, about 20% experience mild or moderate illness and more rarely, neuroinvasive disease which can present as encephalitis or meningitis. Most of the West Nile disease cases detected by the New York City Department of Health and Mental Hygiene represent neuroinvasive disease as these patients are more likely to seek care.
+        </h2>
+
+
+    
+
+        
+
+        <h1
+            id="IndicatorID-2441"
+            class="d-none">
+            Anaplasmosis
+        </h1>
+        <h2
+            class="d-none">
+            Anaplasmosis is a tick-borne disease transmitted through the bite of an infected blacklegged tick. Symptoms include fever, chills, headache, muscle aches, and fatigue. The majority of cases report a history of travel and outdoor exposures outside of NYC.
+        </h2>
+
+
+    
+
+        
+
+        <h1
+            id="IndicatorID-2442"
+            class="d-none">
+            Lyme disease
+        </h1>
+        <h2
+            class="d-none">
+            Lyme disease is transmitted through the bite of an infected blacklegged tick and is the most common tick-borne disease among New Yorkers. Symptoms can include rashes that look like a bull’s-eye, fever, fatigue and headache. If left untreated, infection can spread to joints, the heart, and the nervous system. Most people acquire this disease while traveling outside NYC. However, local cases are often reported in Staten Island. In 2022, an expected increase in cases was observed due to changes in the case definition.
         </h2>
 
 
@@ -2490,6 +2520,22 @@
 
                 
 
+                    
+
+                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2441 );
+                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
+                    indicatorDropdown.innerHTML += "<button class='indicator-dropdown-item dropdown-item' onclick='loadIndicator(2441)' data-indicator-id='2441'>" + this_indicatorName + `</button>`;
+
+                
+
+                    
+
+                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2442 );
+                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
+                    indicatorDropdown.innerHTML += "<button class='indicator-dropdown-item dropdown-item' onclick='loadIndicator(2442)' data-indicator-id='2442'>" + this_indicatorName + `</button>`;
+
+                
+
         }
 
 
@@ -2513,6 +2559,14 @@
                     indicator = indicators.find(indicator => indicator.IndicatorID ===  2340 );
                     this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
                     indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' onclick='loadIndicator(2340)' data-indicator-id='2340'>" + this_indicatorName + `<i class="indicator-arrows fas fa-arrow-circle-right float-right font-weight-bold hide" id="arrow-2340" aria-hidden="true"></i></button>`;
+
+                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2441 );
+                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
+                    indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' onclick='loadIndicator(2441)' data-indicator-id='2441'>" + this_indicatorName + `<i class="indicator-arrows fas fa-arrow-circle-right float-right font-weight-bold hide" id="arrow-2441" aria-hidden="true"></i></button>`;
+
+                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2442 );
+                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
+                    indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' onclick='loadIndicator(2442)' data-indicator-id='2442'>" + this_indicatorName + `<i class="indicator-arrows fas fa-arrow-circle-right float-right font-weight-bold hide" id="arrow-2442" aria-hidden="true"></i></button>`;
         }
 
         function createCitation() {
