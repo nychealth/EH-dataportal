@@ -2,6 +2,7 @@
 title: Housing maintenance
 date: 2021-05-28 18:02:58.817845
 draft: false
+azlink: "https://www.nyc.gov/site/doh/health/health-topics/healthy-home.page"
 seo_title: "Housing maintenance data for NYC | Environment and Health Data Portal"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
 description: "Datasets and visualizations of housing maintenance in NYC."
@@ -30,6 +31,20 @@ indicators:
       - 41
       - 2399
       - 2179
+related:
+  - title: "Housing creates health"
+    url: "data-stories/housing-creates-health/"
+  - title: "Health, housing, and history"
+    url: "data-stories/housing/"
+  - title: "A brief history of redlining"
+    url: "data-stories/redlining/"
+relatedData:
+  - title: "Housing stability"
+    url: "housing-stability/"
+  - title: "Housing safety"
+    url: "housing-safety/"
+  - title: "Social conditions"
+    url: "social-conditions/"
 ---
 
 Buildings with maintenance issues and disrepair can harm health. Across NYC, low-income neighborhoods have a higher percentage of buildings in disrepair due to past and present disinvestment and housing discrimination. This housing disrepair harms residents' health.

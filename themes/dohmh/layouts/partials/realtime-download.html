@@ -98,23 +98,31 @@
     
     // get today's date values
     const date = new Date();
-    let thisMonth = date.getMonth() + 1;
-    let availMonth = date.getMonth()
-    let thisYear = date.getFullYear();
+
+    // const date = new Date(2025, 0, 2); // Month is zero-based (0 = January)
+    console.log("Today's date:", date);
+
+    let thisMonth = date.getMonth() + 1;    // thisMonth: months by standard numbers (date.getMonth() starts at 0)
+    let availMonth = date.getMonth();       // availMonth: most recently available month is last month
+    let thisYear = date.getFullYear();      // thisYear is just this Year. 
     
     // set up defaults
 
-        // if it's January, change year and month to last year, Dec
+        // if it's January, most recent availab month is Dec of Last Year
         var chosenYear
         var chosenMonth
         if (availMonth == 0) {
             chosenYear = thisYear - 1
             chosenMonth = 12
-            console.log('jan: ',chosenYear,chosenMonth)
+            console.log('Most recent month of data available: ',chosenYear,chosenMonth)
         } else {
+            // else, it's last month of this year
             chosenYear = thisYear
             chosenMonth = availMonth
+            console.log('Most recent month of data available: ',chosenYear,chosenMonth)
         }
+
+
 
     document.getElementById('months').value = chosenMonth
     var chosenFormat = 'csv'
@@ -151,8 +159,8 @@
         } else {}
     
         // if 2023, inactivate anything after last month
-        if (chosenYear == thisYear && chosenMonth > availMonth) {
-            alert('You cannot download data for present or future months. Please select a month in the past.')
+        if (chosenYear == thisYear && chosenMonth > thisMonth) {
+            alert('You cannot download data for future months.')
         } else {}
     
     }

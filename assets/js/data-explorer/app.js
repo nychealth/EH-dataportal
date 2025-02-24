@@ -102,28 +102,72 @@ function reveal() {
 
 $('#tab-btn-table').on('click', e => {
     $(e.currentTarget).tab('show');
-    window.location.hash = 'display=summary'
+    window.location.hash = 'display=summary';
+    gtag('event', 'click_tab', {
+        tab: "table"
+    });
 });
 
 // ===== map ===== /
 
 $('#tab-btn-map').on('click', e => {
     $(e.currentTarget).tab('show');
-    window.location.hash = 'display=map'
+    window.location.hash = 'display=map';
+    gtag('event', 'click_tab', {
+        tab: "map"
+    });
 });
 
 // ===== trend ===== /
 
 $('#tab-btn-trend').on('click', e => {
     $(e.currentTarget).tab('show');
-    window.location.hash = 'display=trend'
+    window.location.hash = 'display=trend';
+    gtag('event', 'click_tab', {
+        tab: "trend"
+    });
 });
 
 // ===== links ===== /
 
 $('#tab-btn-links').on('click', e => {
     $(e.currentTarget).tab('show');
-    window.location.hash = 'display=links'
+    window.location.hash = 'display=links';
+    gtag('event', 'click_tab', {
+        tab: "links"
+    });
+});
+
+
+// ----------------------------------------------------------------------- //
+// add listeners to metadata buttons
+// ----------------------------------------------------------------------- //
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// how calculated
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+$('#howCalcButton').on('click', e => {
+    // console.log("click_how_caclulated");
+    gtag('event', 'click_how_caclulated');
+});
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// how calculated
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+$('#citeButton').on('click', e => {
+    // console.log("click_citation");
+    gtag('event', 'click_citation');
+});
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// measure about
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+$('#tab-btn-02-b').on('click', e => {
+    // console.log("click_about");
+    gtag('event', 'click_about');
 });
 
 

@@ -16,6 +16,10 @@ const renderDisparitiesChart = async (
 
     console.log("** renderDisparitiesChart");
 
+    document.getElementById('viewDescription').innerHTML = 'View scatterplots, correlations, and disparities.'
+    document.getElementById('correlateHolder').classList.add('hide')
+
+
     // console.log("primaryMetadata [renderDisparitiesChart]", primaryMetadata);
 
     // ----------------------------------------------------------------------- //
@@ -46,9 +50,9 @@ const renderDisparitiesChart = async (
         primaryDisplay = '%' // assigns a % displayType for anything that includes percent (but NOT percentile) in its measurementType
         subtitle = primaryMeasurementType
     } else {
-        primaryDisplay         = ' ' + primaryMetadata[0]?.DisplayType; // else, the pre-existing assignment
+        primaryDisplay         = primaryMetadata[0]?.DisplayType; // else, the pre-existing assignment
         subtitle = primaryMeasurementType + `${primaryMetadata[0]?.DisplayType ? ` (${primaryDisplay})` : ''}`
-        console.log(primaryDisplay, primaryMeasurementType)
+        // console.log(primaryDisplay, primaryMeasurementType)
     }
 
     // console.log("primaryMeasureId [renderDisparitiesChart]", primaryMeasureId);
@@ -149,15 +153,14 @@ const renderDisparitiesChart = async (
 
     // console.log("disp_unreliability", disp_unreliability);
 
-    document.querySelector("#links-unreliability").innerHTML = ""; // blank to start
+    document.querySelector("#links-unreliability").innerHTML = "<span class='fs-xs'><strong>Notes:</strong></span> "; // blank to start
     document.getElementById("links-unreliability").classList.add('hide') // blank to start
 
 
     disp_unreliability.forEach(element => {
 
-        document.querySelector("#links-unreliability").innerHTML += "<div class='fs-sm text-muted'>" + element + "</div>";
+        document.querySelector("#links-unreliability").innerHTML += "<div class='fs-xs'>" + element + "</div>" ;
         document.getElementById('links-unreliability').classList.remove('hide')
-
 
     });
 
@@ -224,7 +227,10 @@ const renderDisparitiesChart = async (
                 "labelAngle": 0,
                 "titlePadding": 10,
                 "titleFont": "sans-serif",
-                "tickMinStep": 1
+                "tickMinStep": 1,
+                "domain": false,
+                "ticks": false,
+                "labelBaseline": "bottom"
             },
             "view": { "stroke": "transparent" },
             "text": {
@@ -240,7 +246,7 @@ const renderDisparitiesChart = async (
         },
         "transform": [
             {
-              "calculate": `(datum.DisplayValue_1 + '${primaryDisplay}')`,
+              "calculate": `(datum.DisplayValue_1 + ' ${primaryDisplay}')`,
               "as": "valueLabel"
             },
             {
@@ -313,11 +319,12 @@ const renderDisparitiesChart = async (
                     "legend": null,
                     "scale": {
                         "range": [
-                            "#1696d2", 
-                            "#ffa500", 
-                            "#ec008b", 
-                            "#55b748"
-                        ]
+                            "#374c80",
+                            "#bc5090",
+                            "#ef5675",
+                            "#ff764a",
+                            "#ffa600"
+                            ]
                     },
                 },
                 "stroke": {
@@ -337,7 +344,20 @@ const renderDisparitiesChart = async (
     // render chart
     // ----------------------------------------------------------------------- //
 
-    vegaEmbed("#links", disspec);
+    vegaEmbed("#links", disspec,{
+        actions: {
+          export: { png: false, svg: false },
+          source: false,  
+          compiled: false, 
+          editor: true 
+        }
+      });
+
+    // set for printing
+    printSpec = disspec;
+    vizSource = primaryMetadata[0]?.Sources;
+    vizSourceSecond = disparityMetadata[0].Sources
+    chartType = 'disparities'
 
     // ----------------------------------------------------------------------- //
     // Send chart data to download

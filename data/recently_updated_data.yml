@@ -1,12 +1,20 @@
 ---
 featured:
-- copy: 'Heat stress: emergency department visits'
-  link: data-explorer/weather-related-illness/?id=2075#display=summary
-- copy: Adults with air conditioners
-  link: data-explorer/climate/?id=2104#display=summary
-- copy: Deaths due to PM2.5
-  link: data-explorer/health-impacts-of-air-pollution/?id=2108#display=summary
-- copy: Binge drinking (adults)
-  link: data-explorer/alcohol-use/?id=2050#display=summary
-- copy: Monthly bicycle use
-  link: data-explorer/walking-driving-and-cycling/?id=2059#display=summary
+- copy: Depression (adults)
+  link: data-explorer/mental-health/?id=2417
+- copy: Psychiatric hospitalizations (adults)
+  link: data-explorer/mental-health/?id=2418
+- copy: Serious psychological distress (adults)
+  link: data-explorer/mental-health/?id=2419
+- copy: 'Cold stress: 5-year emergency department visits'
+  link: data-explorer/weather-related-illness/?id=2444
+- copy: 'Cold stress: 5-year hospitalizations'
+  link: data-explorer/weather-related-illness/?id=2445
+- copy: Firearm ED visits
+  link: data-explorer/violence/?id=2437
+- copy: Assault ED visits
+  link: data-explorer/violence/?id=2400
+- copy: Rat inspections
+  link: data-explorer/mice-and-rats/?id=2434
+- copy: Rat indexing in Rat Mitigation Zones (RMZs)
+  link: data-explorer/mice-and-rats/?id=2433

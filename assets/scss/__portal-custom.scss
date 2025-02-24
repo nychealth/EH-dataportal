@@ -244,11 +244,7 @@
     background-color: $breadcrumb-bg;
     @include border-radius($border-radius);
     font-size: 1rem;
-    line-height: 1.25px;
-    @include media-breakpoint-up(md) {
-        font-size: 1.0625rem;
-        line-height: 1.3rem;
-    }
+    line-height: 1.25rem;
 }
 
 .breadcrumb-item {
@@ -1096,6 +1092,20 @@ input[type=range]:focus::-ms-fill-upper {
 }
 
 
+// RMZ
+
+.RMZ {
+    color: black;
+    background-color: #69696964;
+    border-color: dimgray;
+}
+
+.RMZ:hover, .RMZ.active  {
+    color: white;
+    background-color: dimgray;
+    border-color: dimgray;
+}
+
 // Subboro
 
 .Subboro {
@@ -1108,6 +1118,21 @@ input[type=range]:focus::-ms-fill-upper {
     color: white;
     background-color: #ae9141;
     border-color: #ae9141;
+}
+
+
+// NYCKIDS
+
+.NYCKIDS {
+    color: black;
+    background-color: #1ebbd764;
+    border-color: #1ebbd7;
+}
+
+.NYCKIDS:hover, .NYCKIDS.active  {
+    color: white;
+    background-color: #1EBBD7;
+    border-color: #1ebbd7;
 }
 
 
@@ -1246,7 +1271,7 @@ th.tablehead {
     // background-color: #e5f4eb50;
 }
 
-.chart-wrapper {
+.chart-wrapper-ds {
     padding: 40px 40px 30px 40px;
     margin: 25px 0px;
     border-top: 3px solid #D8D8D8;
@@ -1257,3 +1282,11 @@ th.tablehead {
 .wider-menu {
     min-width: 14rem!important;
 }
+
+@media (min-width: 720px) {
+    .collapse.dont-collapse-sm {
+      display: block;
+      height: auto !important;
+      visibility: visible;
+    }
+  }

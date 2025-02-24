@@ -1,7 +1,7 @@
 {{- define "main" -}}
 
 <article class="container-fluid overflow-hidden" id="primary-content" data-pagefind-ignore="all">
-  
+
   <style>
     .selectedOption {
       font-weight: bold;
@@ -9,8 +9,8 @@
   </style>
 
   <div class="row">
-    <div class="col-md-10 mx-auto my-4">
-      <nav aria-label="breadcrumb" class="mb-2">
+    <div class="col-md-10 mx-auto mb-4">
+      <nav aria-label="breadcrumb" class="mt-2 mb-3">
         <ul class="breadcrumb">
             <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
             <li class="breadcrumb-item active"><a href={{ relURL "neighborhood-reports" }}>{{ .Title }}</a></li>
