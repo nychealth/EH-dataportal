@@ -35,7 +35,17 @@ The air we breathe can have a major effect on our health — air pollution c
 
 Fortunately, New York City has made great strides in recent years to improve air quality. Let’s take a look.
 
-{{< datawrapper title="Chart: Better air quality means fewer dangerous days" src="sXhjH/3/" height="428" >}}
+</div>
+<div class="wide my-4" aria-hidden="true">
+<iframe title="Better air quality means fewer dangerous days" aria-label="Interactive line chart" id="datawrapper-chart-sXhjH" src="//datawrapper.dwcdn.net/sXhjH/3/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="428" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+</script>
+</div>
+
+<div class="sr-only">
+<div style="min-height:713px" id="datawrapper-vis-840ts"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/840ts/embed.js" charset="utf-8" data-target="#datawrapper-vis-840ts"></script><noscript><img src="https://datawrapper.dwcdn.net/840ts/full.png" alt="" /></noscript></div>
+</div>
+
+<div class="narrow">
 
 An air quality advisory day happens when air pollution builds up to dangerous levels. It means that people who are sensitive to air pollution (like people with respiratory or heart problems) should spend less time outside and avoid outdoor exercise. If the air quality is bad enough, then most people will be affected by it.
 
@@ -46,7 +56,8 @@ Over the years, though, the number of advisory days has gone down. That’s good
 Since the winter of 2008/2009, the Health Department has been measuring air quality through the NYC Community Air Survey (NYCCAS). It’s the largest urban air monitoring program in the USA, and measures six different kinds of air pollution at about 100 locations around the city.
 
 <div class="wide my-4" aria-hidden="true">
-<div style="min-height:656px" class="my-4"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/d7DDS/embed.js?v=1" charset="utf-8"></script><noscript><img src="https://datawrapper.dwcdn.net/d7DDS/full.png" alt="" /></noscript></div>
+<iframe title="NYCCAS monitor locations" aria-label="Map" id="datawrapper-chart-d7DDS" src="https://datawrapper.dwcdn.net/d7DDS/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="656" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+</script>
 </div>
 
 <div class="sr-only">
@@ -66,7 +77,18 @@ In New York City, the current PM2.5 levels contribute to an estimated 2,300 deat
 
 So it’s good news that since monitoring neighborhood-level air pollution began in 2009, the levels of PM2.5 have steadily gone down — which you can see in the chart below.
 
-{{< datawrapper title="Chart: PM2.5 levels have decreased by 28%" src="DLHxS/3/" height="400" >}}
+</div>
+<div class="wide my-4" aria-hidden="true">
+<iframe title="PM2.5 levels have decreased by 28%" aria-label="Interactive line chart" id="datawrapper-chart-DLHxS" src="https://datawrapper.dwcdn.net/DLHxS/4/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="436" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+</script>
+</div>
+
+<div class="sr-only">
+<iframe title="PM2.5 levels have decreased by 28%" aria-label="Table" id="datawrapper-chart-gIQSz" src="https://datawrapper.dwcdn.net/gIQSz/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="517" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+</script>
+</div>
+
+<div class="narrow">
 
 By burning heating oil, New York City's buildings are responsible for about 22 percent of the city’s PM2.5 emissions—and traffic is responsible for another 17 percent (see a data story on the <a href="../traffic-and-air-pollution/">Public Health Impacts of PM2.5 from Traffic Air Pollution).</a> That means that reducing traffic and working to make sure that buildings burn cleaner fuel are great ways to clean up the air and help keep our air cleaner - and both are important parts of OneNYC, the city’s sustainability plan.
 
