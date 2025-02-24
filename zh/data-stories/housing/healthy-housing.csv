@@ -1,0 +1,606 @@
+﻿GEOCODE,VARIABLE,VALUE,NAME,BORO
+3701,Heating breakdown,18,Riverdale/Kingsbridge,Bronx
+3702,Heating breakdown,15,Williamsbridge/Baychester,Bronx
+3703,Heating breakdown,6,Throgs Neck/Co-op City,Bronx
+3704,Heating breakdown,12,Pelham Parkway,Bronx
+3705,Heating breakdown,15,Morrisania/East Tremont,Bronx
+3706,Heating breakdown,18,Kings.Heights/Mosholu,Bronx
+3707,Heating breakdown,26,Univ.Heights/Fordham,Bronx
+3708,Heating breakdown,19,Highbridge/S.Concourse,Bronx
+3709,Heating breakdown,12,Soundview/Parkchester,Bronx
+3710,Heating breakdown,20,Mott Haven/Hunts Point,Bronx
+3801,Heating breakdown,13,Washington Heights/Inwood,Manhattan
+3802,Heating breakdown,19,Morning.Heights/Hamilton Heights,Manhattan
+3803,Heating breakdown,20,Central Harlem,Manhattan
+3804,Heating breakdown,18,East Harlem,Manhattan
+3805,Heating breakdown,7,Upper East Side,Manhattan
+3806,Heating breakdown,9,Upper West Side,Manhattan
+3807,Heating breakdown,7,Chealsea/Clinton/Midtown,Manhattan
+3808,Heating breakdown,5,Stuy.Town/Turtle Bay,Manhattan
+3809,Heating breakdown,17,L.East Side/Chinatown,Manhattan
+3810,Heating breakdown,7,Green.Village/Fin.District,Manhattan
+3901,Heating breakdown,5,South Shore,Staten Island
+3902,Heating breakdown,0,Mid Island,Staten Island
+3903,Heating breakdown,5,North Shore,Staten Island
+4001,Heating breakdown,10,Williamsburg/Greenpoint,Brooklyn
+4002,Heating breakdown,12,Bushwick,Brooklyn
+4003,Heating breakdown,17,Bedford Stuyvesant,Brooklyn
+4004,Heating breakdown,16,Brooklyn Heights/Fort Greene,Brooklyn
+4005,Heating breakdown,11,Park Slope/Carroll Gardens,Brooklyn
+4006,Heating breakdown,19,N.Crown Heights/Pros.Heights,Brooklyn
+4007,Heating breakdown,19,Brownsville/Ocean Hill,Brooklyn
+4008,Heating breakdown,14,East New York/Starret City,Brooklyn
+4009,Heating breakdown,9,Flatlands/Canarsie,Brooklyn
+4010,Heating breakdown,11,East Flatbush,Brooklyn
+4011,Heating breakdown,13,South Crown Heights,Brooklyn
+4012,Heating breakdown,10,Sunset Park,Brooklyn
+4013,Heating breakdown,4,Bay Ridge,Brooklyn
+4014,Heating breakdown,8,Borough Park,Brooklyn
+4015,Heating breakdown,9,Flatbush,Brooklyn
+4016,Heating breakdown,7,Sheepshead Bay/Gravesend,Brooklyn
+4017,Heating breakdown,5,Bensonhurst,Brooklyn
+4018,Heating breakdown,7,Coney Island,Brooklyn
+4101,Heating breakdown,15,Astoria,Queens
+4102,Heating breakdown,6,Jackson Heights,Queens
+4103,Heating breakdown,6,Flushing/Whitestone,Queens
+4104,Heating breakdown,3,Bayside/Little Neck,Queens
+4105,Heating breakdown,9,Bellerose/Rosedale,Queens
+4106,Heating breakdown,4,Hillcrest/Fresh Meadows,Queens
+4107,Heating breakdown,6,Elmhurst/Corona,Queens
+4108,Heating breakdown,5,Forest Hills/Rego Park,Queens
+4109,Heating breakdown,11,Sunnyside/Woodside,Queens
+4110,Heating breakdown,3,Middle Village/Ridgewood,Queens
+4111,Heating breakdown,3,Kew Gardens/Woodhaven,Queens
+4112,Heating breakdown,9,Jamaica,Queens
+4113,Heating breakdown,3,Howard Beach/S.Ozone Park,Queens
+4114,Heating breakdown,10,Rockaways,Queens
+3701,Supplemental heat,14,Riverdale/Kingsbridge,Bronx
+3702,Supplemental heat,23,Williamsbridge/Baychester,Bronx
+3703,Supplemental heat,6,Throgs Neck/Co-op City,Bronx
+3704,Supplemental heat,19,Pelham Parkway,Bronx
+3705,Supplemental heat,21,Morrisania/East Tremont,Bronx
+3706,Supplemental heat,22,Kings.Heights/Mosholu,Bronx
+3707,Supplemental heat,27,Univ.Heights/Fordham,Bronx
+3708,Supplemental heat,23,Highbridge/S.Concourse,Bronx
+3709,Supplemental heat,19,Soundview/Parkchester,Bronx
+3710,Supplemental heat,22,Mott Haven/Hunts Point,Bronx
+3801,Supplemental heat,15,Washington Heights/Inwood,Manhattan
+3802,Supplemental heat,23,Morning.Heights/Hamilton Heights,Manhattan
+3803,Supplemental heat,20,Central Harlem,Manhattan
+3804,Supplemental heat,20,East Harlem,Manhattan
+3805,Supplemental heat,8,Upper East Side,Manhattan
+3806,Supplemental heat,13,Upper West Side,Manhattan
+3807,Supplemental heat,5,Chealsea/Clinton/Midtown,Manhattan
+3808,Supplemental heat,6,Stuy.Town/Turtle Bay,Manhattan
+3809,Supplemental heat,21,L.East Side/Chinatown,Manhattan
+3810,Supplemental heat,10,Green.Village/Fin.District,Manhattan
+3901,Supplemental heat,6,South Shore,Staten Island
+3902,Supplemental heat,5,Mid Island,Staten Island
+3903,Supplemental heat,12,North Shore,Staten Island
+4001,Supplemental heat,15,Williamsburg/Greenpoint,Brooklyn
+4002,Supplemental heat,17,Bushwick,Brooklyn
+4003,Supplemental heat,22,Bedford Stuyvesant,Brooklyn
+4004,Supplemental heat,11,Brooklyn Heights/Fort Greene,Brooklyn
+4005,Supplemental heat,9,Park Slope/Carroll Gardens,Brooklyn
+4006,Supplemental heat,22,N.Crown Heights/Pros.Heights,Brooklyn
+4007,Supplemental heat,27,Brownsville/Ocean Hill,Brooklyn
+4008,Supplemental heat,16,East New York/Starret City,Brooklyn
+4009,Supplemental heat,11,Flatlands/Canarsie,Brooklyn
+4010,Supplemental heat,13,East Flatbush,Brooklyn
+4011,Supplemental heat,16,South Crown Heights,Brooklyn
+4012,Supplemental heat,10,Sunset Park,Brooklyn
+4013,Supplemental heat,8,Bay Ridge,Brooklyn
+4014,Supplemental heat,9,Borough Park,Brooklyn
+4015,Supplemental heat,15,Flatbush,Brooklyn
+4016,Supplemental heat,6,Sheepshead Bay/Gravesend,Brooklyn
+4017,Supplemental heat,12,Bensonhurst,Brooklyn
+4018,Supplemental heat,13,Coney Island,Brooklyn
+4101,Supplemental heat,15,Astoria,Queens
+4102,Supplemental heat,14,Jackson Heights,Queens
+4103,Supplemental heat,9,Flushing/Whitestone,Queens
+4104,Supplemental heat,6,Bayside/Little Neck,Queens
+4105,Supplemental heat,13,Bellerose/Rosedale,Queens
+4106,Supplemental heat,6,Hillcrest/Fresh Meadows,Queens
+4107,Supplemental heat,14,Elmhurst/Corona,Queens
+4108,Supplemental heat,8,Forest Hills/Rego Park,Queens
+4109,Supplemental heat,9,Sunnyside/Woodside,Queens
+4110,Supplemental heat,8,Middle Village/Ridgewood,Queens
+4111,Supplemental heat,6,Kew Gardens/Woodhaven,Queens
+4112,Supplemental heat,11,Jamaica,Queens
+4113,Supplemental heat,8,Howard Beach/S.Ozone Park,Queens
+4114,Supplemental heat,17,Rockaways,Queens
+3701,Mice or rats,23,Riverdale/Kingsbridge,Bronx
+3702,Mice or rats,38,Williamsbridge/Baychester,Bronx
+3703,Mice or rats,10,Throgs Neck/Co-op City,Bronx
+3704,Mice or rats,21,Pelham Parkway,Bronx
+3705,Mice or rats,40,Morrisania/East Tremont,Bronx
+3706,Mice or rats,33,Kings.Heights/Mosholu,Bronx
+3707,Mice or rats,46,Univ.Heights/Fordham,Bronx
+3708,Mice or rats,43,Highbridge/S.Concourse,Bronx
+3709,Mice or rats,27,Soundview/Parkchester,Bronx
+3710,Mice or rats,39,Mott Haven/Hunts Point,Bronx
+3801,Mice or rats,30,Washington Heights/Inwood,Manhattan
+3802,Mice or rats,29,Morning.Heights/Hamilton Heights,Manhattan
+3803,Mice or rats,18,Central Harlem,Manhattan
+3804,Mice or rats,18,East Harlem,Manhattan
+3805,Mice or rats,7,Upper East Side,Manhattan
+3806,Mice or rats,14,Upper West Side,Manhattan
+3807,Mice or rats,11,Chealsea/Clinton/Midtown,Manhattan
+3808,Mice or rats,7,Stuy.Town/Turtle Bay,Manhattan
+3809,Mice or rats,26,L.East Side/Chinatown,Manhattan
+3810,Mice or rats,10,Green.Village/Fin.District,Manhattan
+3901,Mice or rats,3,South Shore,Staten Island
+3902,Mice or rats,2,Mid Island,Staten Island
+3903,Mice or rats,14,North Shore,Staten Island
+4001,Mice or rats,15,Williamsburg/Greenpoint,Brooklyn
+4002,Mice or rats,31,Bushwick,Brooklyn
+4003,Mice or rats,38,Bedford Stuyvesant,Brooklyn
+4004,Mice or rats,13,Brooklyn Heights/Fort Greene,Brooklyn
+4005,Mice or rats,17,Park Slope/Carroll Gardens,Brooklyn
+4006,Mice or rats,29,N.Crown Heights/Pros.Heights,Brooklyn
+4007,Mice or rats,41,Brownsville/Ocean Hill,Brooklyn
+4008,Mice or rats,22,East New York/Starret City,Brooklyn
+4009,Mice or rats,23,Flatlands/Canarsie,Brooklyn
+4010,Mice or rats,34,East Flatbush,Brooklyn
+4011,Mice or rats,36,South Crown Heights,Brooklyn
+4012,Mice or rats,14,Sunset Park,Brooklyn
+4013,Mice or rats,10,Bay Ridge,Brooklyn
+4014,Mice or rats,16,Borough Park,Brooklyn
+4015,Mice or rats,17,Flatbush,Brooklyn
+4016,Mice or rats,7,Sheepshead Bay/Gravesend,Brooklyn
+4017,Mice or rats,7,Bensonhurst,Brooklyn
+4018,Mice or rats,10,Coney Island,Brooklyn
+4101,Mice or rats,9,Astoria,Queens
+4102,Mice or rats,25,Jackson Heights,Queens
+4103,Mice or rats,9,Flushing/Whitestone,Queens
+4104,Mice or rats,4,Bayside/Little Neck,Queens
+4105,Mice or rats,14,Bellerose/Rosedale,Queens
+4106,Mice or rats,12,Hillcrest/Fresh Meadows,Queens
+4107,Mice or rats,30,Elmhurst/Corona,Queens
+4108,Mice or rats,8,Forest Hills/Rego Park,Queens
+4109,Mice or rats,19,Sunnyside/Woodside,Queens
+4110,Mice or rats,11,Middle Village/Ridgewood,Queens
+4111,Mice or rats,14,Kew Gardens/Woodhaven,Queens
+4112,Mice or rats,24,Jamaica,Queens
+4113,Mice or rats,10,Howard Beach/S.Ozone Park,Queens
+4114,Mice or rats,17,Rockaways,Queens
+3701,Cracks or holes,17,Riverdale/Kingsbridge,Bronx
+3702,Cracks or holes,17,Williamsbridge/Baychester,Bronx
+3703,Cracks or holes,6,Throgs Neck/Co-op City,Bronx
+3704,Cracks or holes,18,Pelham Parkway,Bronx
+3705,Cracks or holes,19,Morrisania/East Tremont,Bronx
+3706,Cracks or holes,28,Kings.Heights/Mosholu,Bronx
+3707,Cracks or holes,37,Univ.Heights/Fordham,Bronx
+3708,Cracks or holes,20,Highbridge/S.Concourse,Bronx
+3709,Cracks or holes,16,Soundview/Parkchester,Bronx
+3710,Cracks or holes,23,Mott Haven/Hunts Point,Bronx
+3801,Cracks or holes,16,Washington Heights/Inwood,Manhattan
+3802,Cracks or holes,21,Morning.Heights/Hamilton Heights,Manhattan
+3803,Cracks or holes,18,Central Harlem,Manhattan
+3804,Cracks or holes,20,East Harlem,Manhattan
+3805,Cracks or holes,6,Upper East Side,Manhattan
+3806,Cracks or holes,13,Upper West Side,Manhattan
+3807,Cracks or holes,5,Chealsea/Clinton/Midtown,Manhattan
+3808,Cracks or holes,3,Stuy.Town/Turtle Bay,Manhattan
+3809,Cracks or holes,22,L.East Side/Chinatown,Manhattan
+3810,Cracks or holes,10,Green.Village/Fin.District,Manhattan
+3901,Cracks or holes,2,South Shore,Staten Island
+3902,Cracks or holes,2,Mid Island,Staten Island
+3903,Cracks or holes,6,North Shore,Staten Island
+4001,Cracks or holes,13,Williamsburg/Greenpoint,Brooklyn
+4002,Cracks or holes,16,Bushwick,Brooklyn
+4003,Cracks or holes,23,Bedford Stuyvesant,Brooklyn
+4004,Cracks or holes,10,Brooklyn Heights/Fort Greene,Brooklyn
+4005,Cracks or holes,13,Park Slope/Carroll Gardens,Brooklyn
+4006,Cracks or holes,31,N.Crown Heights/Pros.Heights,Brooklyn
+4007,Cracks or holes,28,Brownsville/Ocean Hill,Brooklyn
+4008,Cracks or holes,21,East New York/Starret City,Brooklyn
+4009,Cracks or holes,8,Flatlands/Canarsie,Brooklyn
+4010,Cracks or holes,16,East Flatbush,Brooklyn
+4011,Cracks or holes,21,South Crown Heights,Brooklyn
+4012,Cracks or holes,11,Sunset Park,Brooklyn
+4013,Cracks or holes,5,Bay Ridge,Brooklyn
+4014,Cracks or holes,9,Borough Park,Brooklyn
+4015,Cracks or holes,14,Flatbush,Brooklyn
+4016,Cracks or holes,4,Sheepshead Bay/Gravesend,Brooklyn
+4017,Cracks or holes,9,Bensonhurst,Brooklyn
+4018,Cracks or holes,7,Coney Island,Brooklyn
+4101,Cracks or holes,13,Astoria,Queens
+4102,Cracks or holes,9,Jackson Heights,Queens
+4103,Cracks or holes,6,Flushing/Whitestone,Queens
+4104,Cracks or holes,4,Bayside/Little Neck,Queens
+4105,Cracks or holes,9,Bellerose/Rosedale,Queens
+4106,Cracks or holes,5,Hillcrest/Fresh Meadows,Queens
+4107,Cracks or holes,10,Elmhurst/Corona,Queens
+4108,Cracks or holes,7,Forest Hills/Rego Park,Queens
+4109,Cracks or holes,9,Sunnyside/Woodside,Queens
+4110,Cracks or holes,2,Middle Village/Ridgewood,Queens
+4111,Cracks or holes,3,Kew Gardens/Woodhaven,Queens
+4112,Cracks or holes,14,Jamaica,Queens
+4113,Cracks or holes,5,Howard Beach/S.Ozone Park,Queens
+4114,Cracks or holes,10,Rockaways,Queens
+3701,"Broken plaster, peeling paint",11,Riverdale/Kingsbridge,Bronx
+3702,"Broken plaster, peeling paint",10,Williamsbridge/Baychester,Bronx
+3703,"Broken plaster, peeling paint",6,Throgs Neck/Co-op City,Bronx
+3704,"Broken plaster, peeling paint",20,Pelham Parkway,Bronx
+3705,"Broken plaster, peeling paint",23,Morrisania/East Tremont,Bronx
+3706,"Broken plaster, peeling paint",23,Kings.Heights/Mosholu,Bronx
+3707,"Broken plaster, peeling paint",27,Univ.Heights/Fordham,Bronx
+3708,"Broken plaster, peeling paint",22,Highbridge/S.Concourse,Bronx
+3709,"Broken plaster, peeling paint",19,Soundview/Parkchester,Bronx
+3710,"Broken plaster, peeling paint",26,Mott Haven/Hunts Point,Bronx
+3801,"Broken plaster, peeling paint",17,Washington Heights/Inwood,Manhattan
+3802,"Broken plaster, peeling paint",24,Morning.Heights/Hamilton Heights,Manhattan
+3803,"Broken plaster, peeling paint",19,Central Harlem,Manhattan
+3804,"Broken plaster, peeling paint",20,East Harlem,Manhattan
+3805,"Broken plaster, peeling paint",11,Upper East Side,Manhattan
+3806,"Broken plaster, peeling paint",14,Upper West Side,Manhattan
+3807,"Broken plaster, peeling paint",9,Chealsea/Clinton/Midtown,Manhattan
+3808,"Broken plaster, peeling paint",9,Stuy.Town/Turtle Bay,Manhattan
+3809,"Broken plaster, peeling paint",19,L.East Side/Chinatown,Manhattan
+3810,"Broken plaster, peeling paint",11,Green.Village/Fin.District,Manhattan
+3901,"Broken plaster, peeling paint",2,South Shore,Staten Island
+3902,"Broken plaster, peeling paint",1,Mid Island,Staten Island
+3903,"Broken plaster, peeling paint",9,North Shore,Staten Island
+4001,"Broken plaster, peeling paint",9,Williamsburg/Greenpoint,Brooklyn
+4002,"Broken plaster, peeling paint",18,Bushwick,Brooklyn
+4003,"Broken plaster, peeling paint",18,Bedford Stuyvesant,Brooklyn
+4004,"Broken plaster, peeling paint",7,Brooklyn Heights/Fort Greene,Brooklyn
+4005,"Broken plaster, peeling paint",7,Park Slope/Carroll Gardens,Brooklyn
+4006,"Broken plaster, peeling paint",24,N.Crown Heights/Pros.Heights,Brooklyn
+4007,"Broken plaster, peeling paint",25,Brownsville/Ocean Hill,Brooklyn
+4008,"Broken plaster, peeling paint",14,East New York/Starret City,Brooklyn
+4009,"Broken plaster, peeling paint",10,Flatlands/Canarsie,Brooklyn
+4010,"Broken plaster, peeling paint",16,East Flatbush,Brooklyn
+4011,"Broken plaster, peeling paint",22,South Crown Heights,Brooklyn
+4012,"Broken plaster, peeling paint",6,Sunset Park,Brooklyn
+4013,"Broken plaster, peeling paint",8,Bay Ridge,Brooklyn
+4014,"Broken plaster, peeling paint",7,Borough Park,Brooklyn
+4015,"Broken plaster, peeling paint",15,Flatbush,Brooklyn
+4016,"Broken plaster, peeling paint",8,Sheepshead Bay/Gravesend,Brooklyn
+4017,"Broken plaster, peeling paint",4,Bensonhurst,Brooklyn
+4018,"Broken plaster, peeling paint",10,Coney Island,Brooklyn
+4101,"Broken plaster, peeling paint",14,Astoria,Queens
+4102,"Broken plaster, peeling paint",8,Jackson Heights,Queens
+4103,"Broken plaster, peeling paint",6,Flushing/Whitestone,Queens
+4104,"Broken plaster, peeling paint",5,Bayside/Little Neck,Queens
+4105,"Broken plaster, peeling paint",6,Bellerose/Rosedale,Queens
+4106,"Broken plaster, peeling paint",10,Hillcrest/Fresh Meadows,Queens
+4107,"Broken plaster, peeling paint",9,Elmhurst/Corona,Queens
+4108,"Broken plaster, peeling paint",6,Forest Hills/Rego Park,Queens
+4109,"Broken plaster, peeling paint",9,Sunnyside/Woodside,Queens
+4110,"Broken plaster, peeling paint",3,Middle Village/Ridgewood,Queens
+4111,"Broken plaster, peeling paint",5,Kew Gardens/Woodhaven,Queens
+4112,"Broken plaster, peeling paint",12,Jamaica,Queens
+4113,"Broken plaster, peeling paint",2,Howard Beach/S.Ozone Park,Queens
+4114,"Broken plaster, peeling paint",13,Rockaways,Queens
+3701,Toilet breakdowns,16,Riverdale/Kingsbridge,Bronx
+3702,Toilet breakdowns,13,Williamsbridge/Baychester,Bronx
+3703,Toilet breakdowns,4,Throgs Neck/Co-op City,Bronx
+3704,Toilet breakdowns,13,Pelham Parkway,Bronx
+3705,Toilet breakdowns,10,Morrisania/East Tremont,Bronx
+3706,Toilet breakdowns,8,Kings.Heights/Mosholu,Bronx
+3707,Toilet breakdowns,18,Univ.Heights/Fordham,Bronx
+3708,Toilet breakdowns,12,Highbridge/S.Concourse,Bronx
+3709,Toilet breakdowns,11,Soundview/Parkchester,Bronx
+3710,Toilet breakdowns,12,Mott Haven/Hunts Point,Bronx
+3801,Toilet breakdowns,10,Washington Heights/Inwood,Manhattan
+3802,Toilet breakdowns,16,Morning.Heights/Hamilton Heights,Manhattan
+3803,Toilet breakdowns,12,Central Harlem,Manhattan
+3804,Toilet breakdowns,12,East Harlem,Manhattan
+3805,Toilet breakdowns,13,Upper East Side,Manhattan
+3806,Toilet breakdowns,9,Upper West Side,Manhattan
+3807,Toilet breakdowns,4,Chealsea/Clinton/Midtown,Manhattan
+3808,Toilet breakdowns,10,Stuy.Town/Turtle Bay,Manhattan
+3809,Toilet breakdowns,12,L.East Side/Chinatown,Manhattan
+3810,Toilet breakdowns,10,Green.Village/Fin.District,Manhattan
+3901,Toilet breakdowns,2,South Shore,Staten Island
+3902,Toilet breakdowns,2,Mid Island,Staten Island
+3903,Toilet breakdowns,5,North Shore,Staten Island
+4001,Toilet breakdowns,8,Williamsburg/Greenpoint,Brooklyn
+4002,Toilet breakdowns,9,Bushwick,Brooklyn
+4003,Toilet breakdowns,20,Bedford Stuyvesant,Brooklyn
+4004,Toilet breakdowns,13,Brooklyn Heights/Fort Greene,Brooklyn
+4005,Toilet breakdowns,12,Park Slope/Carroll Gardens,Brooklyn
+4006,Toilet breakdowns,21,N.Crown Heights/Pros.Heights,Brooklyn
+4007,Toilet breakdowns,10,Brownsville/Ocean Hill,Brooklyn
+4008,Toilet breakdowns,14,East New York/Starret City,Brooklyn
+4009,Toilet breakdowns,8,Flatlands/Canarsie,Brooklyn
+4010,Toilet breakdowns,10,East Flatbush,Brooklyn
+4011,Toilet breakdowns,7,South Crown Heights,Brooklyn
+4012,Toilet breakdowns,5,Sunset Park,Brooklyn
+4013,Toilet breakdowns,6,Bay Ridge,Brooklyn
+4014,Toilet breakdowns,2,Borough Park,Brooklyn
+4015,Toilet breakdowns,11,Flatbush,Brooklyn
+4016,Toilet breakdowns,7,Sheepshead Bay/Gravesend,Brooklyn
+4017,Toilet breakdowns,7,Bensonhurst,Brooklyn
+4018,Toilet breakdowns,7,Coney Island,Brooklyn
+4101,Toilet breakdowns,9,Astoria,Queens
+4102,Toilet breakdowns,16,Jackson Heights,Queens
+4103,Toilet breakdowns,9,Flushing/Whitestone,Queens
+4104,Toilet breakdowns,6,Bayside/Little Neck,Queens
+4105,Toilet breakdowns,7,Bellerose/Rosedale,Queens
+4106,Toilet breakdowns,7,Hillcrest/Fresh Meadows,Queens
+4107,Toilet breakdowns,20,Elmhurst/Corona,Queens
+4108,Toilet breakdowns,6,Forest Hills/Rego Park,Queens
+4109,Toilet breakdowns,17,Sunnyside/Woodside,Queens
+4110,Toilet breakdowns,3,Middle Village/Ridgewood,Queens
+4111,Toilet breakdowns,10,Kew Gardens/Woodhaven,Queens
+4112,Toilet breakdowns,9,Jamaica,Queens
+4113,Toilet breakdowns,1,Howard Beach/S.Ozone Park,Queens
+4114,Toilet breakdowns,12,Rockaways,Queens
+3701,Water leaks,18,Riverdale/Kingsbridge,Bronx
+3702,Water leaks,14,Williamsbridge/Baychester,Bronx
+3703,Water leaks,8,Throgs Neck/Co-op City,Bronx
+3704,Water leaks,20,Pelham Parkway,Bronx
+3705,Water leaks,26,Morrisania/East Tremont,Bronx
+3706,Water leaks,26,Kings.Heights/Mosholu,Bronx
+3707,Water leaks,32,Univ.Heights/Fordham,Bronx
+3708,Water leaks,21,Highbridge/S.Concourse,Bronx
+3709,Water leaks,17,Soundview/Parkchester,Bronx
+3710,Water leaks,24,Mott Haven/Hunts Point,Bronx
+3801,Water leaks,23,Washington Heights/Inwood,Manhattan
+3802,Water leaks,26,Morning.Heights/Hamilton Heights,Manhattan
+3803,Water leaks,20,Central Harlem,Manhattan
+3804,Water leaks,18,East Harlem,Manhattan
+3805,Water leaks,8,Upper East Side,Manhattan
+3806,Water leaks,14,Upper West Side,Manhattan
+3807,Water leaks,8,Chealsea/Clinton/Midtown,Manhattan
+3808,Water leaks,7,Stuy.Town/Turtle Bay,Manhattan
+3809,Water leaks,21,L.East Side/Chinatown,Manhattan
+3810,Water leaks,12,Green.Village/Fin.District,Manhattan
+3901,Water leaks,4,South Shore,Staten Island
+3902,Water leaks,3,Mid Island,Staten Island
+3903,Water leaks,7,North Shore,Staten Island
+4001,Water leaks,14,Williamsburg/Greenpoint,Brooklyn
+4002,Water leaks,14,Bushwick,Brooklyn
+4003,Water leaks,21,Bedford Stuyvesant,Brooklyn
+4004,Water leaks,17,Brooklyn Heights/Fort Greene,Brooklyn
+4005,Water leaks,14,Park Slope/Carroll Gardens,Brooklyn
+4006,Water leaks,26,N.Crown Heights/Pros.Heights,Brooklyn
+4007,Water leaks,25,Brownsville/Ocean Hill,Brooklyn
+4008,Water leaks,17,East New York/Starret City,Brooklyn
+4009,Water leaks,8,Flatlands/Canarsie,Brooklyn
+4010,Water leaks,16,East Flatbush,Brooklyn
+4011,Water leaks,20,South Crown Heights,Brooklyn
+4012,Water leaks,10,Sunset Park,Brooklyn
+4013,Water leaks,10,Bay Ridge,Brooklyn
+4014,Water leaks,9,Borough Park,Brooklyn
+4015,Water leaks,15,Flatbush,Brooklyn
+4016,Water leaks,9,Sheepshead Bay/Gravesend,Brooklyn
+4017,Water leaks,6,Bensonhurst,Brooklyn
+4018,Water leaks,7,Coney Island,Brooklyn
+4101,Water leaks,14,Astoria,Queens
+4102,Water leaks,10,Jackson Heights,Queens
+4103,Water leaks,7,Flushing/Whitestone,Queens
+4104,Water leaks,7,Bayside/Little Neck,Queens
+4105,Water leaks,9,Bellerose/Rosedale,Queens
+4106,Water leaks,9,Hillcrest/Fresh Meadows,Queens
+4107,Water leaks,11,Elmhurst/Corona,Queens
+4108,Water leaks,8,Forest Hills/Rego Park,Queens
+4109,Water leaks,11,Sunnyside/Woodside,Queens
+4110,Water leaks,2,Middle Village/Ridgewood,Queens
+4111,Water leaks,8,Kew Gardens/Woodhaven,Queens
+4112,Water leaks,10,Jamaica,Queens
+4113,Water leaks,7,Howard Beach/S.Ozone Park,Queens
+4114,Water leaks,16,Rockaways,Queens
+3701,No AC,11,Riverdale/Kingsbridge,Bronx
+3702,No AC,17,Williamsbridge/Baychester,Bronx
+3703,No AC,4,Throgs Neck/Co-op City,Bronx
+3704,No AC,12,Pelham Parkway,Bronx
+3705,No AC,24,Morrisania/East Tremont,Bronx
+3706,No AC,13,Kings.Heights/Mosholu,Bronx
+3707,No AC,20,Univ.Heights/Fordham,Bronx
+3708,No AC,15,Highbridge/S.Concourse,Bronx
+3709,No AC,11,Soundview/Parkchester,Bronx
+3710,No AC,16,Mott Haven/Hunts Point,Bronx
+3801,No AC,8,Washington Heights/Inwood,Manhattan
+3802,No AC,12,Morning.Heights/Hamilton Heights,Manhattan
+3803,No AC,18,Central Harlem,Manhattan
+3804,No AC,15,East Harlem,Manhattan
+3805,No AC,4,Upper East Side,Manhattan
+3806,No AC,6,Upper West Side,Manhattan
+3807,No AC,2,Chealsea/Clinton/Midtown,Manhattan
+3808,No AC,6,Stuy.Town/Turtle Bay,Manhattan
+3809,No AC,9,L.East Side/Chinatown,Manhattan
+3810,No AC,2,Green.Village/Fin.District,Manhattan
+3901,No AC,3,South Shore,Staten Island
+3902,No AC,2,Mid Island,Staten Island
+3903,No AC,9,North Shore,Staten Island
+4001,No AC,7,Williamsburg/Greenpoint,Brooklyn
+4002,No AC,12,Bushwick,Brooklyn
+4003,No AC,11,Bedford Stuyvesant,Brooklyn
+4004,No AC,10,Brooklyn Heights/Fort Greene,Brooklyn
+4005,No AC,8,Park Slope/Carroll Gardens,Brooklyn
+4006,No AC,14,N.Crown Heights/Pros.Heights,Brooklyn
+4007,No AC,18,Brownsville/Ocean Hill,Brooklyn
+4008,No AC,11,East New York/Starret City,Brooklyn
+4009,No AC,8,Flatlands/Canarsie,Brooklyn
+4010,No AC,10,East Flatbush,Brooklyn
+4011,No AC,12,South Crown Heights,Brooklyn
+4012,No AC,7,Sunset Park,Brooklyn
+4013,No AC,6,Bay Ridge,Brooklyn
+4014,No AC,9,Borough Park,Brooklyn
+4015,No AC,9,Flatbush,Brooklyn
+4016,No AC,5,Sheepshead Bay/Gravesend,Brooklyn
+4017,No AC,8,Bensonhurst,Brooklyn
+4018,No AC,13,Coney Island,Brooklyn
+4101,No AC,7,Astoria,Queens
+4102,No AC,6,Jackson Heights,Queens
+4103,No AC,6,Flushing/Whitestone,Queens
+4104,No AC,6,Bayside/Little Neck,Queens
+4105,No AC,7,Bellerose/Rosedale,Queens
+4106,No AC,5,Hillcrest/Fresh Meadows,Queens
+4107,No AC,4,Elmhurst/Corona,Queens
+4108,No AC,8,Forest Hills/Rego Park,Queens
+4109,No AC,8,Sunnyside/Woodside,Queens
+4110,No AC,4,Middle Village/Ridgewood,Queens
+4111,No AC,8,Kew Gardens/Woodhaven,Queens
+4112,No AC,16,Jamaica,Queens
+4113,No AC,6,Howard Beach/S.Ozone Park,Queens
+4114,No AC,17,Rockaways,Queens
+3701,Cockroaches,33,Riverdale/Kingsbridge,Bronx
+3702,Cockroaches,34,Williamsbridge/Baychester,Bronx
+3703,Cockroaches,15,Throgs Neck/Co-op City,Bronx
+3704,Cockroaches,31,Pelham Parkway,Bronx
+3705,Cockroaches,39,Morrisania/East Tremont,Bronx
+3706,Cockroaches,49,Kings.Heights/Mosholu,Bronx
+3707,Cockroaches,53,Univ.Heights/Fordham,Bronx
+3708,Cockroaches,44,Highbridge/S.Concourse,Bronx
+3709,Cockroaches,47,Soundview/Parkchester,Bronx
+3710,Cockroaches,46,Mott Haven/Hunts Point,Bronx
+3801,Cockroaches,35,Washington Heights/Inwood,Manhattan
+3802,Cockroaches,34,Morning.Heights/Hamilton Heights,Manhattan
+3803,Cockroaches,27,Central Harlem,Manhattan
+3804,Cockroaches,30,East Harlem,Manhattan
+3805,Cockroaches,10,Upper East Side,Manhattan
+3806,Cockroaches,16,Upper West Side,Manhattan
+3807,Cockroaches,12,Chealsea/Clinton/Midtown,Manhattan
+3808,Cockroaches,10,Stuy.Town/Turtle Bay,Manhattan
+3809,Cockroaches,36,L.East Side/Chinatown,Manhattan
+3810,Cockroaches,10,Green.Village/Fin.District,Manhattan
+3901,Cockroaches,0,South Shore,Staten Island
+3902,Cockroaches,3,Mid Island,Staten Island
+3903,Cockroaches,11,North Shore,Staten Island
+4001,Cockroaches,20,Williamsburg/Greenpoint,Brooklyn
+4002,Cockroaches,34,Bushwick,Brooklyn
+4003,Cockroaches,31,Bedford Stuyvesant,Brooklyn
+4004,Cockroaches,18,Brooklyn Heights/Fort Greene,Brooklyn
+4005,Cockroaches,21,Park Slope/Carroll Gardens,Brooklyn
+4006,Cockroaches,34,N.Crown Heights/Pros.Heights,Brooklyn
+4007,Cockroaches,49,Brownsville/Ocean Hill,Brooklyn
+4008,Cockroaches,30,East New York/Starret City,Brooklyn
+4009,Cockroaches,25,Flatlands/Canarsie,Brooklyn
+4010,Cockroaches,38,East Flatbush,Brooklyn
+4011,Cockroaches,38,South Crown Heights,Brooklyn
+4012,Cockroaches,33,Sunset Park,Brooklyn
+4013,Cockroaches,22,Bay Ridge,Brooklyn
+4014,Cockroaches,26,Borough Park,Brooklyn
+4015,Cockroaches,24,Flatbush,Brooklyn
+4016,Cockroaches,19,Sheepshead Bay/Gravesend,Brooklyn
+4017,Cockroaches,17,Bensonhurst,Brooklyn
+4018,Cockroaches,18,Coney Island,Brooklyn
+4101,Cockroaches,13,Astoria,Queens
+4102,Cockroaches,37,Jackson Heights,Queens
+4103,Cockroaches,21,Flushing/Whitestone,Queens
+4104,Cockroaches,8,Bayside/Little Neck,Queens
+4105,Cockroaches,8,Bellerose/Rosedale,Queens
+4106,Cockroaches,23,Hillcrest/Fresh Meadows,Queens
+4107,Cockroaches,48,Elmhurst/Corona,Queens
+4108,Cockroaches,13,Forest Hills/Rego Park,Queens
+4109,Cockroaches,28,Sunnyside/Woodside,Queens
+4110,Cockroaches,9,Middle Village/Ridgewood,Queens
+4111,Cockroaches,15,Kew Gardens/Woodhaven,Queens
+4112,Cockroaches,20,Jamaica,Queens
+4113,Cockroaches,10,Howard Beach/S.Ozone Park,Queens
+4114,Cockroaches,25,Rockaways,Queens
+3701,No healthy housing problems,41,Riverdale/Kingsbridge,Bronx
+3702,No healthy housing problems,31,Williamsbridge/Baychester,Bronx
+3703,No healthy housing problems,68,Throgs Neck/Co-op City,Bronx
+3704,No healthy housing problems,37,Pelham Parkway,Bronx
+3705,No healthy housing problems,24,Morrisania/East Tremont,Bronx
+3706,No healthy housing problems,23,Kings.Heights/Mosholu,Bronx
+3707,No healthy housing problems,16,Univ.Heights/Fordham,Bronx
+3708,No healthy housing problems,24,Highbridge/S.Concourse,Bronx
+3709,No healthy housing problems,32,Soundview/Parkchester,Bronx
+3710,No healthy housing problems,25,Mott Haven/Hunts Point,Bronx
+3801,No healthy housing problems,31,Washington Heights/Inwood,Manhattan
+3802,No healthy housing problems,28,Morning.Heights/Hamilton Heights,Manhattan
+3803,No healthy housing problems,34,Central Harlem,Manhattan
+3804,No healthy housing problems,33,East Harlem,Manhattan
+3805,No healthy housing problems,59,Upper East Side,Manhattan
+3806,No healthy housing problems,50,Upper West Side,Manhattan
+3807,No healthy housing problems,68,Chealsea/Clinton/Midtown,Manhattan
+3808,No healthy housing problems,65,Stuy.Town/Turtle Bay,Manhattan
+3809,No healthy housing problems,26,L.East Side/Chinatown,Manhattan
+3810,No healthy housing problems,58,Green.Village/Fin.District,Manhattan
+3901,No healthy housing problems,82,South Shore,Staten Island
+3902,No healthy housing problems,84,Mid Island,Staten Island
+3903,No healthy housing problems,63,North Shore,Staten Island
+4001,No healthy housing problems,43,Williamsburg/Greenpoint,Brooklyn
+4002,No healthy housing problems,33,Bushwick,Brooklyn
+4003,No healthy housing problems,26,Bedford Stuyvesant,Brooklyn
+4004,No healthy housing problems,41,Brooklyn Heights/Fort Greene,Brooklyn
+4005,No healthy housing problems,44,Park Slope/Carroll Gardens,Brooklyn
+4006,No healthy housing problems,25,N.Crown Heights/Pros.Heights,Brooklyn
+4007,No healthy housing problems,27,Brownsville/Ocean Hill,Brooklyn
+4008,No healthy housing problems,36,East New York/Starret City,Brooklyn
+4009,No healthy housing problems,47,Flatlands/Canarsie,Brooklyn
+4010,No healthy housing problems,33,East Flatbush,Brooklyn
+4011,No healthy housing problems,28,South Crown Heights,Brooklyn
+4012,No healthy housing problems,44,Sunset Park,Brooklyn
+4013,No healthy housing problems,59,Bay Ridge,Brooklyn
+4014,No healthy housing problems,51,Borough Park,Brooklyn
+4015,No healthy housing problems,45,Flatbush,Brooklyn
+4016,No healthy housing problems,60,Sheepshead Bay/Gravesend,Brooklyn
+4017,No healthy housing problems,57,Bensonhurst,Brooklyn
+4018,No healthy housing problems,53,Coney Island,Brooklyn
+4101,No healthy housing problems,47,Astoria,Queens
+4102,No healthy housing problems,36,Jackson Heights,Queens
+4103,No healthy housing problems,57,Flushing/Whitestone,Queens
+4104,No healthy housing problems,67,Bayside/Little Neck,Queens
+4105,No healthy housing problems,53,Bellerose/Rosedale,Queens
+4106,No healthy housing problems,53,Hillcrest/Fresh Meadows,Queens
+4107,No healthy housing problems,37,Elmhurst/Corona,Queens
+4108,No healthy housing problems,58,Forest Hills/Rego Park,Queens
+4109,No healthy housing problems,45,Sunnyside/Woodside,Queens
+4110,No healthy housing problems,72,Middle Village/Ridgewood,Queens
+4111,No healthy housing problems,60,Kew Gardens/Woodhaven,Queens
+4112,No healthy housing problems,42,Jamaica,Queens
+4113,No healthy housing problems,65,Howard Beach/S.Ozone Park,Queens
+4114,No healthy housing problems,35,Rockaways,Queens
+3701,3+ healthy housing problems,21,Riverdale/Kingsbridge,Bronx
+3702,3+ healthy housing problems,19,Williamsbridge/Baychester,Bronx
+3703,3+ healthy housing problems,7,Throgs Neck/Co-op City,Bronx
+3704,3+ healthy housing problems,19,Pelham Parkway,Bronx
+3705,3+ healthy housing problems,21,Morrisania/East Tremont,Bronx
+3706,3+ healthy housing problems,29,Kings.Heights/Mosholu,Bronx
+3707,3+ healthy housing problems,34,Univ.Heights/Fordham,Bronx
+3708,3+ healthy housing problems,26,Highbridge/S.Concourse,Bronx
+3709,3+ healthy housing problems,15,Soundview/Parkchester,Bronx
+3710,3+ healthy housing problems,24,Mott Haven/Hunts Point,Bronx
+3801,3+ healthy housing problems,15,Washington Heights/Inwood,Manhattan
+3802,3+ healthy housing problems,23,Morning.Heights/Hamilton Heights,Manhattan
+3803,3+ healthy housing problems,16,Central Harlem,Manhattan
+3804,3+ healthy housing problems,18,East Harlem,Manhattan
+3805,3+ healthy housing problems,6,Upper East Side,Manhattan
+3806,3+ healthy housing problems,9,Upper West Side,Manhattan
+3807,3+ healthy housing problems,5,Chealsea/Clinton/Midtown,Manhattan
+3808,3+ healthy housing problems,3,Stuy.Town/Turtle Bay,Manhattan
+3809,3+ healthy housing problems,18,L.East Side/Chinatown,Manhattan
+3810,3+ healthy housing problems,8,Green.Village/Fin.District,Manhattan
+3901,3+ healthy housing problems,2,South Shore,Staten Island
+3902,3+ healthy housing problems,1,Mid Island,Staten Island
+3903,3+ healthy housing problems,7,North Shore,Staten Island
+4001,3+ healthy housing problems,9,Williamsburg/Greenpoint,Brooklyn
+4002,3+ healthy housing problems,15,Bushwick,Brooklyn
+4003,3+ healthy housing problems,23,Bedford Stuyvesant,Brooklyn
+4004,3+ healthy housing problems,8,Brooklyn Heights/Fort Greene,Brooklyn
+4005,3+ healthy housing problems,6,Park Slope/Carroll Gardens,Brooklyn
+4006,3+ healthy housing problems,27,N.Crown Heights/Pros.Heights,Brooklyn
+4007,3+ healthy housing problems,30,Brownsville/Ocean Hill,Brooklyn
+4008,3+ healthy housing problems,18,East New York/Starret City,Brooklyn
+4009,3+ healthy housing problems,10,Flatlands/Canarsie,Brooklyn
+4010,3+ healthy housing problems,16,East Flatbush,Brooklyn
+4011,3+ healthy housing problems,20,South Crown Heights,Brooklyn
+4012,3+ healthy housing problems,6,Sunset Park,Brooklyn
+4013,3+ healthy housing problems,5,Bay Ridge,Brooklyn
+4014,3+ healthy housing problems,7,Borough Park,Brooklyn
+4015,3+ healthy housing problems,10,Flatbush,Brooklyn
+4016,3+ healthy housing problems,4,Sheepshead Bay/Gravesend,Brooklyn
+4017,3+ healthy housing problems,5,Bensonhurst,Brooklyn
+4018,3+ healthy housing problems,6,Coney Island,Brooklyn
+4101,3+ healthy housing problems,10,Astoria,Queens
+4102,3+ healthy housing problems,7,Jackson Heights,Queens
+4103,3+ healthy housing problems,4,Flushing/Whitestone,Queens
+4104,3+ healthy housing problems,2,Bayside/Little Neck,Queens
+4105,3+ healthy housing problems,4,Bellerose/Rosedale,Queens
+4106,3+ healthy housing problems,3,Hillcrest/Fresh Meadows,Queens
+4107,3+ healthy housing problems,11,Elmhurst/Corona,Queens
+4108,3+ healthy housing problems,4,Forest Hills/Rego Park,Queens
+4109,3+ healthy housing problems,9,Sunnyside/Woodside,Queens
+4110,3+ healthy housing problems,2,Middle Village/Ridgewood,Queens
+4111,3+ healthy housing problems,3,Kew Gardens/Woodhaven,Queens
+4112,3+ healthy housing problems,10,Jamaica,Queens
+4113,3+ healthy housing problems,1,Howard Beach/S.Ozone Park,Queens
+4114,3+ healthy housing problems,10,Rockaways,Queens
