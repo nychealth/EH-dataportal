@@ -92,19 +92,19 @@
                         {{- range first 5 ( where ( where .Site.RegularPages "Section" "data-stories") ".Params.categories" "intersect" ( slice .Params.keyTopic ) ) -}}
                             <div class="row no-gutters mt-2">
                                 <div class="col-5">
-                                    {{ $src := .Resources.GetMatch .Params.image }}
-                                    {{ $image := $src.Resize "280x 200x"}}
+                                    {{- $src := .Resources.GetMatch .Params.image }}
+                                    {{ $image := $src.Resize "280x 200x" }}
                                     <a class="link-track" href="{{ .RelPermalink }}">
                                         <img src="{{ $image.RelPermalink }}" class="mb-3" alt="">
                                     </a>
                                 </div>
                                 <div class="col-7 ml-auto h-100 pr-1 pl-2">
                                     {{ $title := .Title | plainify | htmlUnescape }}
-                                    {{ $content := .Content | plainify | htmlUnescape }}
+                                    {{- $content := .Content | plainify | htmlUnescape }}
 
-                                    {{ .Scratch.Set "intro" $title }}
-                                    {{ .Scratch.Add "intro" " | " }}
-                                    {{ .Scratch.Add "intro" $content }}
+                                    {{- .Scratch.Set "intro" $title }}
+                                    {{- .Scratch.Add "intro" " | " }}
+                                    {{- .Scratch.Add "intro" $content }}
                                   <p class="fs-md text-align-right h-100 pl-1 mb-2"><a class="link-track text-primary font-weight-bold" href="{{ .RelPermalink }}">{{ .Scratch.Get "intro" | truncate 125 }}</a></p>
                                 </div>
                               </div>
@@ -114,30 +114,39 @@
                             {{- end -}}
                         {{- end -}}
 
+                        {{- /*  get list of data stories for this topic  */ -}}
 
-                        <!-- Button to toggle the collapse -->
-                        <a class="btn btn-primary mb-3" data-toggle="collapse" href="#collapseStories" role="button" aria-expanded="false" aria-controls="collapseStories" id="toggleButton">
-                            Show More
-                        </a>
+                        {{- $dataStories := where ( where .Site.RegularPages "Section" "data-stories") ".Params.categories" "intersect" ( slice .Params.keyTopic ) -}}
+
+                        {{/*  if more than 5, include the "Show More" button  */}}
+
+                        {{- if gt $dataStories 5 }}
+
+                            <!-- Button to toggle the collapse -->
+                            <a class="btn btn-primary mb-3" data-toggle="collapse" href="#collapseStories" role="button" aria-expanded="false" aria-controls="collapseStories" id="toggleButton">
+                                Show More
+                            </a>
+
+                        {{- end }}
 
                         <!-- Collapsible content (after the first 5 stories) -->
                         <div class="collapse" id="collapseStories">
-                            {{- range after 5 ( where ( where .Site.RegularPages "Section" "data-stories") ".Params.categories" "intersect" ( slice .Params.keyTopic ) ) -}}
+                            {{- range after 5 $dataStories -}}
                             <div class="row no-gutters mt-2">
                             <div class="col-5">
-                                {{ $src := .Resources.GetMatch .Params.image }}
-                                {{ $image := $src.Resize "280x 200x"}}
+                                {{ $src := .Resources.GetMatch .Params.image -}}
+                                {{- $image := $src.Resize "280x 200x" }}
                                 <a class="link-track" href="{{ .RelPermalink }}">
                                 <img src="{{ $image.RelPermalink }}" class="mb-3" alt="">
                                 </a>
                             </div>
                             <div class="col-7 ml-auto h-100 pr-1 pl-2">
-                                {{ $title := .Title | plainify | htmlUnescape }}
-                                {{ $content := .Content | plainify | htmlUnescape }}
+                                {{ $title := .Title | plainify | htmlUnescape -}}
+                                {{- $content := .Content | plainify | htmlUnescape -}}
 
-                                {{ .Scratch.Set "intro" $title }}
-                                {{ .Scratch.Add "intro" " | " }}
-                                {{ .Scratch.Add "intro" $content }}
+                                {{- .Scratch.Set "intro" $title -}}
+                                {{- .Scratch.Add "intro" " | " -}}
+                                {{- .Scratch.Add "intro" $content }}
                                 <p class="fs-md text-align-right h-100 pl-1 mb-2">
                                 <a class="link-track text-primary font-weight-bold" href="{{ .RelPermalink }}">
                                     {{ .Scratch.Get "intro" | truncate 125 }}
@@ -147,7 +156,7 @@
                             </div>
 
                             <hr class="mb-1 pb-1">
-                            {{- end -}}
+                            {{ end -}}
                         </div>
                     </div>
 
@@ -158,7 +167,7 @@
                           <div class="home-label ">Get data for your neighborhood on</div>
                         </div>
                             <div class="mt-2">
-                              {{- partial "related" (dict "section" "neighborhood-reports" "layout" "button" "extraClass" "link-track text-left" "content" . ) -}}
+                              {{ partial "related" (dict "section" "neighborhood-reports" "layout" "button" "extraClass" "link-track text-left" "content" . ) -}}
                             </div>
                         {{- end -}}
                     </div>
