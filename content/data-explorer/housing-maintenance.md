@@ -31,6 +31,7 @@ indicators:
       - 41
       - 2399
       - 2179
+      - 2446
 related:
   - title: "Housing creates health"
     url: "data-stories/housing-creates-health/"
