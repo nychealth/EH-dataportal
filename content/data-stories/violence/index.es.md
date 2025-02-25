@@ -4,11 +4,11 @@ date: 2021-02-08T08:07:31-04:00
 draft: false
 seo_title: "Por qué la violencia es un problema de salud pública"
 seo_description: "Uso de la salud pública para prevenir la violencia."
-categories: ["housing","social","childhealth","healthoutcomes","neighborhoods"]
+categories: ["housing","social","childhealth","healthoutcomes","neighborhoods","injuryandviolence"]
 keywords: ["violence","assaults","injustice","poverty","social determinants","redlining","disinvestment","racism","neighborhoods"]
 image: ds-violence.jpg
 vega: true
-photocredit: "Benjamin Kanter/Mayoral Photography Office"
+photocredit: "Benjamin Kanter/Mayoral Photography Office, City of New York"
 ---
 ## Uso de la salud pública para prevenir la violencia 
 Sufrir violencia afecta a las personas de muchas maneras. No solo provoca lesiones físicas o la muerte, sino que también puede causar traumas emocionales y psicológicos. La violencia no solo afectar a la víctima inmediata; también afecta a la comunidad que la rodea. 

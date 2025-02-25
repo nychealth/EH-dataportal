@@ -29,6 +29,16 @@ indicators:
       - 2091
       - 64
       - 690
+related:
+  - title: "The racial wealth gap has big implications for public health and health equity"
+    url: "data-stories/racial-wealth-gap/"
+relatedData:
+  - title: "Cancers in children"
+    url: "cancers-in-children/"
+  - title: "Health care"
+    url: "health-care"
+  - title: "Mortality"
+    url: "mortality/"
 ---
 
 Cancer is the general name for a group of more than 100 diseases in which cells in a part of the body begin to grow out of control.

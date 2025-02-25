@@ -6,6 +6,7 @@ New content (if applicable):
 - [ ] Date updated
 - [ ] Tags and keywords updated
 - [ ] Feature box updated
+- [ ] Adding the new content to `related` or `relatedData` for things it's related to
 
 New data (if applicable)
 - [ ] Added to Recently Updated

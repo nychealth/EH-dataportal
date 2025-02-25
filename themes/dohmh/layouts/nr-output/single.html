@@ -283,7 +283,9 @@
 
                                     {{- /*  insert zip code  */}}
 
-                                    {{- print $zip_codes -}}
+                                    {{- $zipCodesString := replace $zip_codes "," ", " -}}
+
+                                    {{- print $zipCodesString -}}
 
                                 </span>.
                             </p>

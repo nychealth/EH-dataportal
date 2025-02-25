@@ -10,7 +10,7 @@ keywords: ["geography","maps","neighborhoods","health data","methods","geographi
 image: ds-geographies.jpg
 layout: single
 vega: true
-photocredit: "Edwin J. Torres/Mayoral Photography Office"
+photocredit: "Edwin J. Torres/Mayoral Photography Office, City of New York"
 ---
 
 纽约市有数百个社区和几乎同样多的划分社区边界的方法。当您访问环境与健康数据门户网站或卫生局（Health Department）的其他数据资源时，您可能会注意到数据以多种不同的社区方案呈现。

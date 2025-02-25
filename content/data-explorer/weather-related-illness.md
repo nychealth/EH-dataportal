@@ -29,6 +29,8 @@ indicators:
       - 2376
       - 2175
       - 2174
+      - 2444
+      - 2445
   - header: Heat Stress
     IndicatorID:
       - 2084
@@ -39,6 +41,20 @@ indicators:
       - 2410
       - 2191
       - 2411
+related:
+  - title: "What Hurricane Ida and Superstorm Sandy taught us about flooding and health"
+    url: "data-stories/flooding-and-health/"
+  - title: "Interactive Heat Vulnerability Index"
+    url: "data-features/hvi/"
+  - title: "Real-time heat-related illness"
+    url: "data-features/heat-syndrome/"
+relatedData:
+  - title: "Climate"
+    url: "climate/"
+  - title: "Asthma"
+    url: "asthma/"
+  - title: "Housing safety/"
+    url: "housing-safety/"
 ---
 
 A region's climate is characterized by its usual weather conditions, seasons, and patterns in extreme weather events such as heat waves, droughts, and hurricanes. New York City (NYC) faces public health risks from extreme weather events such as heat waves and coastal storms. With climate change, the severity of some of these risks will increase. A 2013 New York City Panel on Climate Change (NPCC) report predicts that by the 2020s, average summer temperatures in New York City will increase by 2.0°F to 3.0°F compared to a 1971-2000 baseline. Heat waves will become more frequent, intense, and longer in duration. Rainfall and precipitation are expected to increase, together with another 4-8 inches of sea level rise and increased probability of coastal storms with flooding (NPCC, Climate Risk Information, 2013).

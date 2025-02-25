@@ -35,6 +35,16 @@ indicators:
       - 2422
       - 2404
       - 25
+related:
+  - title: "Housing creates health"
+    url: "data-stories/housing-creates-health/"
+relatedData:
+  - title: "Cancer"
+    url: "cancer/"
+  - title: "Asthma"
+    url: "asthma/"
+  - title: "Housing maintenance"
+    url: "housing-maintenance/"
 ---
 
 Smoking causes over a dozen cancers, heart disease, stroke, type 2 diabetes and many other diseases; it remains a leading cause of death in New York City (NYC). On average, people who do not smoke live about 10 years longer than people who do.

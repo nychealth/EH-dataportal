@@ -8,7 +8,7 @@ tags:
 categories: ["transportation","airquality"]
 keywords: ["air quality","traffic","transportation","covid","covid-19","coronavirus","air pollution", "lungs","breathing"]
 image: ds-aqcovid.jpeg
-photocredit: "Ed Reed/Mayoral Photography Office"
+photocredit: "Ed Reed/Mayoral Photography Office, City of New York"
 ---
 
 纽约市民待在家里会发生什么？ COVID-19大流行颠覆了所有纽约人的生活。疫情影响了我们日常生活的许多方面，但也有一些不太明显的影响，例如对我们的环境的影响。

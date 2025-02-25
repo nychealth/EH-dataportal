@@ -7,7 +7,7 @@ seo_title: "Falls among older adults: data for NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
 description: "Datasets and visualizations of falls data in NYC."
 tags:
-categories: ["housing", "healthoutcomes"]
+categories: ["housing", "healthoutcomes","injuryandviolence"]
 keywords:
   [
     "older adults",
@@ -29,6 +29,17 @@ indicators:
     IndicatorID:
       - 2188
       - 2403
+  - title: "Interactive Heat Vulnerability Index"
+    url: "data-features/hvi/"
+  - title: "Housing creates health"
+    url: "housing-creates-health/"
+relatedData:
+  - title: "Social conditions"
+    url: "social-conditions/"
+  - title: "Housing maintenance"
+    url: "housing-maintenance/"
+  - title: "Housing safety"
+    url: "housing-safety/"
 ---
 
 Each year, one in three older adults (65 years and older) falls. Among New York City's older adults, there are approximately 30,500 emergency department (ED) visits, 16,600 hospitalizations, and 300 deaths each year. Falls are not a normal part of aging, and research shows that many falls can be prevented.
