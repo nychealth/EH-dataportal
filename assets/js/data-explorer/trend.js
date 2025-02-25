@@ -84,13 +84,13 @@ const renderTrendChart = (
     // alpha: hex 96 = 150(/255) = ~58/100
 
     let colors = [
-        "#000000ff",
-        "#374c80",
-        "#bc5090",
-        "#ef5675",
-        "#ff764a",
-        "#ffa600"
-          ];
+      "#000000ff",
+      "#374c80",
+      "#bc5090",
+      "#ef5675",
+      "#ff764a",
+      "#ffa600"
+    ];
 
     // ----------------------------------------------------------------------- //
     // extract measure metadata for chart text
@@ -487,7 +487,7 @@ const renderTrendChart = (
                 "transform": [
                     {
                         "pivot": comp_group_col,
-                        "value": "DisplayValue",
+                        "value": "Value",
                         "groupby": ["TimePeriod"],
                         "op": "max"
                     },
@@ -614,7 +614,7 @@ const renderTrendChart = (
         },
         "transform": [
           {
-            "calculate": `format(datum.Value, ',') + ' ${compDisplayTypes}'`, "as": "valueWithDisplay"
+            "calculate": `datum.DisplayValue + ' ${compDisplayTypes}'`, "as": "valueWithDisplay"
           },
           {"calculate": "split(datum.TimePeriod, ' ')", "as": "TimePeriodSplit"},
           {
