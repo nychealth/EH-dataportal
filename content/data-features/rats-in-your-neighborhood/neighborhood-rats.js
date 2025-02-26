@@ -376,36 +376,58 @@ function printCDData(data) {
 
     document.getElementById('cdID').innerHTML = 'Community District ' + thisCD;
 
-    // Find the max TimePeriodID, and filter for it
-    const maxTimePeriodID = Math.max(...data.map(item => item.TimePeriodID));
-    const mostRecentData = data.filter(item => item.TimePeriodID === maxTimePeriodID);
+    // get Time Periods to match to TimePeriod ID
+    fetch('https://raw.githubusercontent.com/nychealth/EHDP-data/refs/heads/production/indicators/metadata/TimePeriods.json')
+    .then(response => response.json())
+    .then(timePeriods => {
+        // Create a lookup map
+        const timePeriodMap = new Map(timePeriods.map(tp => [tp.TimePeriodID, tp.TimePeriod]));
 
+        // Add TimePeriod to each object in data
+        data = data.map(item => ({
+            ...item,
+            TimePeriod: timePeriodMap.get(item.TimePeriodID) || "Unknown" // Add TimePeriod without removing TimePeriodID
+        }));
 
-    const inspected = mostRecentData
-        .filter(item => item.MeasureID === 1381)
-        .map(item => item.DisplayValue);
+        // Find the max TimePeriodID, and filter for it (this works for this indicator)
+        const maxTimePeriodID = Math.max(...data.map(item => item.TimePeriodID));
+        const mostRecentData = data.filter(item => item.TimePeriodID === maxTimePeriodID);
 
-    document.getElementById('cdProp').innerHTML = inspected + '%'
+        // Print year to page
+        document.getElementById('yearPrint').innerHTML = mostRecentData
+            .filter(item => item.MeasureID === 1381)
+            .map(item => item.TimePeriod);
 
-    const failed = mostRecentData
-        .filter(item => item.MeasureID === 1383)
-        .map(item => item.DisplayValue);
+        // Print inspected percent to page
+        const inspected = mostRecentData
+            .filter(item => item.MeasureID === 1381)
+            .map(item => item.DisplayValue);
 
-    document.getElementById('cdFail').innerHTML = failed + '%'
+            document.getElementById('cdProp').innerHTML = inspected + '%'
+    
+        // Print failed to page
+        const failed = mostRecentData
+            .filter(item => item.MeasureID === 1383)
+            .map(item => item.DisplayValue);
+    
+            document.getElementById('cdFail').innerHTML = failed + '%'
+    
+        // Label rat activity high, low, or moderate, and print to page
+        var ratActivity;
+        if (failed > 20) {
+            ratActivity = 'high'
+        } else if (failed < 5) {
+            ratActivity = 'low'
+        } else {
+            ratActivity = 'moderate'
+        }
+    
+        document.getElementById('activityValue').innerHTML = ratActivity
+        const ratClass = ratActivity + '-activity'
+        document.getElementById('activityValue').classList.add(ratClass)
 
-    var ratActivity;
-    if (failed > 20) {
-        ratActivity = 'high'
-    } else if (failed < 5) {
-        ratActivity = 'low'
-    } else {
-        ratActivity = 'moderate'
-    }
-
-    document.getElementById('activityValue').innerHTML = ratActivity
-
-    const ratClass = ratActivity + '-activity'
-    document.getElementById('activityValue').classList.add(ratClass)
+    })
+    .catch(error => console.error("Error fetching time periods:", error));
 
     /* Metadata
     "MeasureID": 1381,
