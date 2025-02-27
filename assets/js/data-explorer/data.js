@@ -227,7 +227,7 @@ const createComparisonData = async (comps) => {
 
 const loadIndicator = async (this_indicatorId, dont_add_to_history) => {
 
-    console.log("* loadIndicator");
+    console.log("* loadIndicator:", parseFloat(this_indicatorId));
 
     currentHash = window.location.hash;
 
