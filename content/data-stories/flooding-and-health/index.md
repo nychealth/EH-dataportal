@@ -97,8 +97,13 @@ The National Weather Service issued its first-ever flash flood emergency warning
 </div>
 
 <div class="narrow my-4 py-2 border-top border-bottom">
+<div aria-hidden="true">
   <iframe title="NYC's annual precipitation has increased about 20% since 1960" aria-label="Scatter Plot" id="datawrapper-chart-r4fxY" src="https://datawrapper.dwcdn.net/r4fxY/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="606" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
-
+</div>
+</div>
+<div class="sr-only">
+<iframe title="NYC's annual precipitation has increased about 20% since 1960" aria-label="Table" id="datawrapper-chart-aKa9y" src="https://datawrapper.dwcdn.net/aKa9y/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="6891" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+</script>
 </div>
 
 #### But it's not just volume of rainfall that's increasing, it's intensity
