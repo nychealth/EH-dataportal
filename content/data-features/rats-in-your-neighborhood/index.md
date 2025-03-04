@@ -22,6 +22,6 @@ related:
     url: "data-features/rat-portal/"
 ---
 
-What's going on with rats in your neighborhood, what's being done to fight them, and how can you help? 
+What's going on with rats in your neighborhood, what's being done to fight them, and how can you help?
 
-Find out here. Enter an address to see data on neighbhood-level rat inspections, and individual inspection results for your property. 
+Find out here. Enter an address to see data on neighborhood-level rat inspections, and individual inspection results for your property.
