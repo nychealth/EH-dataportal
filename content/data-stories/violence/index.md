@@ -133,6 +133,9 @@ A map of recent shootings lines up with the heavily <span style="font-weight: bo
 </div>
 </div>
 {{< /rawhtml >}}
+<div class="sr-only">
+A map shows 2,887 dots representing shootings in NYC from 2017 - 2019. These shootings align closely with redlined areas in the Bronx, Harlem, and northern and eastern Brooklyn that were marked "Class D: Hazardous."
+</div>
 
 Decades of government and societal {{< rawhtml >}}<a href="#disinvestmentCollapse" data-toggle="collapse" class="badge badge-pill badge-warning">disinvestment</a> from practices like redlining means limited opportunity and resources, and results in higher rates of poverty in some neighborhoods.</p>
 
