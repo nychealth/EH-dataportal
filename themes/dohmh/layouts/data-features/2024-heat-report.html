@@ -23,6 +23,11 @@
 
       <h1>{{ .Title }}</h1>
 
+      <div class="asidebox mb-2">
+        <p class="fs-sm">This report was corrected on Feb. X, 2025, after we identified an error. The number of heat-exacerbated deaths was corrected from 340 to 570 and corresponding figures 3-6 in the report were updated. We apologize for this error. <a href="#" data-toggle="modal" data-target="#noteModal">More details on the correction</a>.</p>
+      </div>
+
+
       {{- with .Resources.GetMatch "0-summary-intro.md" -}} {{ .Content }} {{-
       end -}}
     </div>
@@ -189,6 +194,28 @@
     </div>
   </div>
 </article>
+
+<!-- Modal -->
+<div class="modal fade" id="noteModal" tabindex="-1" role="dialog" aria-labelledby="noteModalTitle" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="noteModalTitle" data-pagefind-ignore="all">Correction</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- TEXT -->
+        {{- with .Resources.GetMatch "0-correction-memo.md" -}} {{ .Content }}
+        {{- end -}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- Related footer -->
 {{- partial "related-footer-2" . -}}
