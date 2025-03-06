@@ -151,9 +151,14 @@ Certain populations are more vulnerable to the health risks of flooding and may 
       <p><em>The FVI is part of the <a href="https://climate.cityofnewyork.us/initiatives/vulnerability-impacts-and-adaptation-analysis/"> Vulnerability, Impacts, and Adaptation report (VIA) and can be fully accessed as part of the EJNYC Mapping Tool</a></em></p>
       </div>
 </div>
-
+<div aria-hidden="true">
 <div class="my-4 border-top border-bottom py-2">
 <iframe title="Flood Vulnerability Index" aria-label="Map" id="datawrapper-chart-HAWCl" src="https://datawrapper.dwcdn.net/HAWCl/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="691" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
+</div>
+</div>
+<div class="sr-only">
+<iframe title="This FVI identifies coastal areas at risk of storm surges — with especially vulnerable areas in southern Brooklyn and Queens." aria-label="Table" id="datawrapper-chart-yuQ6Y" src="https://datawrapper.dwcdn.net/yuQ6Y/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="1029" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+</script>
 </div>
 
 #### Be prepared for the next flood: sign-up for emergency alerts, make a plan, and know your risk
