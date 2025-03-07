@@ -93,19 +93,28 @@
                                     {{- range $DEpages.ByTitle -}}
                                         {{- $deTitle := .Title }}
                                         {{- $deLink := .RelPermalink }}
+
+                                        {{ $print := false}}
                                     
-                                        <!-- Range through $mainDEPages -->
-                                        {{- range $mainDEPages -}}
-                                            {{- $mainDEPageTitle := .title }} <!-- Get title from mainDEPages -->
-                                    
-                                            {{- if eq $deTitle $mainDEPageTitle }} 
-                                                <!-- do nothing if the titles match -->
-                                            {{- else if ne $deTitle $mainDEPageTitle }} 
-                                                <!-- Render the title if they do not match -->
-                                                <a class="font-weight-bold" href="{{ $deLink }}">{{ $deTitle }}</a>
-                                                <hr class="my-1">
+                                            <!-- Range through $mainDEPages -->
+                                            {{- range $mainDEPages -}}
+                                                {{- $mainDEPageTitle := .title }} <!-- Get title from mainDEPages -->
+                                        
+                                                    {{- if eq $deTitle $mainDEPageTitle }} 
+                                                        <!-- do nothing if the titles match -->
+                                                    {{- else if ne $deTitle $mainDEPageTitle }} 
+                                                        {{ $print = true }}
+
+                                                    {{- end }}
+
                                             {{- end }}
-                                        {{- end }}
+
+                                            {{ if eq $print true }}
+                                                        <!-- Render the title if they do not match -->
+                                                        <a class="font-weight-bold" href="{{ $deLink }}">{{ $deTitle }}</a>
+                                                        <hr class="my-1">
+                                            {{ end }}
+
                                     {{- end }}
 
                             {{ else }}
