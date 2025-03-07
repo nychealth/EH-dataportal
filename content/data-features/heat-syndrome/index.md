@@ -7,7 +7,7 @@ draft: false
 seo_title: "Real-time heat-related illness in NYC."
 seo_description: "Explore this summer's high temps and health effects."
 description: "Explore this summer's high temps and health effects."
-categories: [climatehealth, social, housing]
+categories: [climatehealth, social, housing,healthoutcomes]
 keywords:
   [
     "interactive",
@@ -33,6 +33,7 @@ related:
     url: "data-stories/heat/"
   - title: "Heat Vulnerability Index"
     url: "data-features/hvi/"
+weight: 2
 ---
 
 The weather forecast is the best way to predict heat-related health outcomes.

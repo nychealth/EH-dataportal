@@ -34,6 +34,7 @@ related:
     url: "data-stories/heat/"
   - title: "Real-time heat-related illness"
     url: "data-features/heat-syndrome/"
+weight: 1
 ---
 
 Use this Heat Vulnerability Explorer to look up your the heat vulnerability of your neighborhood, and the neighborhood characteristics that affect it.

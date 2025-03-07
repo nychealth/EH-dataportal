@@ -34,6 +34,7 @@ related:
     url: "data-stories/hia/"
   - title: "Air quality in car-free areas"
     url: "data-stories/car-free-zones/"
+weight: 2
 ---
 
 ---

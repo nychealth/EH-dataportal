@@ -12,6 +12,7 @@ layout: report
 image: ratportal-screenshot.png
 report: true
 js: rat-report.js
+weight: 10
 ---
 
 The NYC Health Department (Department) submits this report pursuant to NYC Administrative Code

@@ -7,7 +7,7 @@ draft: false
 seo_title: "Explore data on displacement risk in NYC"
 seo_description: "Data on housing, gentrification, and displacement."
 tags: 
-categories: [housing, social]
+categories: [housing, social,injuryandviolence]
 keywords: ["housing","gentrification","displacement","justice","equity"]
 layout: displacement
 externalPortal: true
