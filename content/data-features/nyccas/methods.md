@@ -38,7 +38,7 @@ pollutantsMeasured:
       asthma. NO<sub>X</sub> also reacts with other compounds in the atmosphere
       to form PM<sub>2.5</sub> and ozone. A variety of combustion sources
       produce NO<sub>X</sub> in New York City, including motor vehicles,
-      buildings, marine vessels and construction equipment.
+      buildings, marine vessels, and construction equipment.
     number: 3
   - name: Ozone
     copy: >
