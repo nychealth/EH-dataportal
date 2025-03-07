@@ -9,8 +9,8 @@ pollutantsMeasured:
       particles less than 2.5 microns in diameter. They are small enough to
       penetrate deep into the lungs and enter the bloodstream, which can worsen
       lung and heart disease and lead to hospital admissions and premature
-      deaths. 
-      PM<sub>2.5</sub> can be either directly emitted or formed in the
+      deaths. </p>
+      <p>PM<sub>2.5</sub> can be either directly emitted or formed in the
       atmosphere from other pollutants. Fuel combustion in vehicles, boilers in
       buildings, power plants, construction equipment, marine vessels and
       commercial cooking are all common sources of PM<sub>2.5</sub>. Between 20%
