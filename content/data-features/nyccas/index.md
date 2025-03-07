@@ -41,7 +41,7 @@ In 2007, the New York City Department of Health and Mental Hygiene (Health Depar
 This report:
 
 * Provides a summary of key findings, the air monitoring program, monitoring site selection, and descriptions of the pollutants measured
-* Describes the trends in air pollutant levels from more than a decade of data from winter 2008-2009 through fall 2023 for fine particulate matter, nitrogen dioxide, nitric oxide, black carbon, wintertime sulfur dioxide and summertime ozone
+* Describes the trends in air pollutant levels from more than a decade of data from winter 2008-2009 through fall 2023 for fine particulate matter, nitrogen dioxide, nitric oxide, black carbon, wintertime sulfur dioxide, and summertime ozone
 * Presents maps of neighborhood air pollution levels by year
 * Identifies the local sources that contribute the most to differences in these pollutants across New York City neighborhoods
 
@@ -49,7 +49,7 @@ This report:
 
 ### Key Findings
 
-**Citywide, annual average levels of four key pollutants have gone down between the first year of monitoring, 2009, and the most recent year of data, 2023.** Black Carbon (BC) and Fine Particles (PM<sub>2\.5</sub>) are produce by fires, so NYCCAS measurements of those pollutants at NYCCAS sites were higher than in recent years, during late spring and summer 2023 because of wildfire smoke from Canada. Although this caused an increase in the yearly average, there was still a decrease from level when monitoring began.
+**Citywide, annual average levels of four key pollutants have gone down between the first year of monitoring, 2009, and the most recent year of data, 2023.** During late spring and summer 2023, wildfire smoke from Canada caused an increase in measurements of fine particles (PM<sub>2\.5</sub>), including Black Carbon (BC). However, the 2023 levels of these pollutants still represent a decrease from levels when monitoring began in 2009.
 
 * Fine particles&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-29%
 * Nitrogen Dioxide (NO<sub>2</sub>)&nbsp; &nbsp; -38%
