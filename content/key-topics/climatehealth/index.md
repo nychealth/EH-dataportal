@@ -12,6 +12,9 @@ keyTopic: climatehealth
 keywords: ["climate","climate change","public health","emergencies","heat","heat-related illness","storms","hurricanes","weather-related illness","weather"]
 layout: single
 image: nyc-climate.jpg
+mainDEPages:
+  - title: "Climate"
+    url: "data-explorer/climate/"
 ---
 
 Climate, including extreme weather, has a direct impact on health. As NYC's climate changes, along with the world's climate, we expect more frequent and intense heat waves, increased rainfall and more severe storms. These will add to existing weather-related risks. Already, heat kills more people than all other natural disasters combined.

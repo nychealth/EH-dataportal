@@ -12,6 +12,11 @@ keyTopic: social
 keywords: ["social justice","poverty","racism","oppression","social determinants","public health","social determinants of health","inequality","health equity","justice","injustice"]
 layout: single
 image: nyc-neighborhood.jpg
+mainDEPages:
+  - title: "Social conditions"
+    url: "data-explorer/social-conditions/"
+  - title: "Economic conditions"
+    url: "data-explorer/economic-conditions/"
 ---
 
 Inequality is a significant driver of bad health: a society that deprives people of resources to stay healthy is a society where many people become sick, injured, or die because of factors outside of their control.

@@ -12,6 +12,9 @@ keyTopic: transportation
 keywords: ["transportation","built environment","cycling","walking","transit","subways","buses","cycling","biking","infrastructure"]
 layout: single
 image: nyc-active-design.jpg
+mainDEPages:
+  - title: "Active design"
+    url: "data-explorer/active-design/"
 ---
 
 Physical activity and healthy eating rank among the leading ways to get and stay healthy. 
