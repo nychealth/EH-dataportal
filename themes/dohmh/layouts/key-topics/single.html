@@ -103,16 +103,16 @@
                                                     {{- if eq $deTitle $mainDEPageTitle }} 
                                                         <!-- do nothing if the titles match -->
                                                     {{- else if ne $deTitle $mainDEPageTitle }} 
+                                                        <!-- if titles don't match, set print to true, so we only print once -->
                                                         {{ $print = true }}
-
                                                     {{- end }}
 
                                             {{- end }}
 
+                                            <!-- if print is true, then print the page -->
                                             {{ if eq $print true }}
-                                                        <!-- Render the title if they do not match -->
-                                                        <a class="font-weight-bold" href="{{ $deLink }}">{{ $deTitle }}</a>
-                                                        <hr class="my-1">
+                                                <a class="font-weight-bold" href="{{ $deLink }}">{{ $deTitle }}</a>
+                                                <hr class="my-1">
                                             {{ end }}
 
                                     {{- end }}
