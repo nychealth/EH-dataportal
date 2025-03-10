@@ -10,7 +10,7 @@ Each summer, on average, **an estimated 580 New Yorkers die prematurely because 
 
 **Heat-exacerbated deaths increased in the past decade**, mainly due to hotter summers overall with more “non-extreme hot days” of 82°F up to but below the extreme heat threshold (95°F). Death counts have remained steady in the most recent years.
 
-**Black New Yorkers are more likely to die from heat stress**, with death rates two times higher than White New Yorkers. Black New Yorkers also have a higher likelihood of heat-exacerbated death compared to other New Yorkers. This inequity is due to past and current structural racism that creates economic, health care, housing, energy, and other systems that benefit white people and disadvantage people of color.
+**Black New Yorkers are more likely to die from heat stress**, with death rates two times higher than White New Yorkers. Black New Yorkers also have a higher likelihood of heat-exacerbated death compared to other New Yorkers. This inequity is due to past and current structural racism that creates economic, health care, housing, energy, and other systems that benefit White people and disadvantage people of color.
 
 **Lack of access to home air conditioning (AC) is the most important risk factor for heat-stress death**. Among those who died from heat stress, the place of death was most often an un-air-conditioned home. Heat-exacerbated deaths were also more likely to occur at home, underscoring the importance of access to cooling at home.
 
