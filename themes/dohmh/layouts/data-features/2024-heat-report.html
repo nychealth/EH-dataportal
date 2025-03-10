@@ -24,9 +24,16 @@
       <h1>{{ .Title }}</h1>
 
       <div class="asidebox mb-2">
-        <p class="fs-sm">This report was corrected on Feb. X, 2025, after we identified an error. The number of heat-exacerbated deaths was corrected from 340 to 570 and corresponding figures 3-6 in the report were updated. We apologize for this error. <a href="#" data-toggle="modal" data-target="#noteModal">More details on the correction</a>.</p>
+        <p class="fs-sm">
+          This report was corrected on Mar. 13, 2025, after we identified an
+          error. The number of heat-exacerbated deaths was corrected from 340 to
+          570 and corresponding figures 3-6 in the report were updated. We
+          apologize for this error.
+          <a href="#" data-toggle="modal" data-target="#noteModal"
+            >More details on the correction</a
+          >.
+        </p>
       </div>
-
 
       {{- with .Resources.GetMatch "0-summary-intro.md" -}} {{ .Content }} {{-
       end -}}
@@ -198,8 +205,5 @@
 <!-- Modal -->
 {{ partial "correction-modal" . }}
 
-
 <!-- Related footer -->
-{{- partial "related-footer-2" . -}}
-
-{{- end -}}
+{{- partial "related-footer-2" . -}} {{- end -}}
