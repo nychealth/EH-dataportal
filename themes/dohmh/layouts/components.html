@@ -172,3 +172,21 @@ Photo attribution caption
     <span class="fs-sm mt-0"><em><a href="https://www.nyc.gov/html/dot/html/motorist/gridlockalert.shtml">Firstname, Lastname, Affiliation</a></em></span>
 </div>
 
+
+
+<!-- Linking  -->
+
+<!--
+    From templates, prepend link with {{ relURL }}, eg:
+
+        <a href="{{ relURL "data-features/heat-report" }}">Heat Report</a>
+
+    This will also work locally and on our servers, but doesn't properly work on Cloudcannon:
+        
+        <a href="{{ .Site.BaseURL | relURL }}data-features/heat-report">Heat report</a>
+
+    From markdown files, use the baseURL shortcode: 
+
+        [Check out open positions in our bureau]({{< baseurl >}}about/jobs/).
+
+-->
