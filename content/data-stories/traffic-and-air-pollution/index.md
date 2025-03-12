@@ -85,33 +85,37 @@ Some neighborhoods in New York City experience higher concentrations of PM2.5 fr
 </div>
 <div class="wide my-4">
     <div class="row my-2">
-        <div class="col-md-6">
+        <div class="col-md-6" aria-hidden="true">
             <h3>PM2.5 from trucks and buses</h3>
-            <img src = "map-04_trucks and buses_nyc.png" alt="Raster map showing how the concentrations of PM2.5 from trucks and buses in NYC are not distributed equally across the city. PM2.5 concentrations on the map are split into four ranges: 0.09-0.32; 1.10-1.37; 0.33-0.56; 1.38-1.74 micrograms per cubic meter. The upper range of these values is represented more in the north and northeast Bronx, upper Manhattan, and southeast Brooklyn."/>
+            <img src = "map-04_trucks and buses_nyc.png" alt="Raster map showing the concentrations of PM2.5 from trucks and buses in NYC."/>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6" aria-hidden="true">
             <h3>PM2.5 from cars</h3>
-            <img src = "map-05_cars in nyc.png" alt="Raster map showing the concentrations of PM2.5 from cars in NYC are not distributed equally across the city. PM2.5 concentrations on the map are split into three ranges: 0.57-0.83; 0.84-1.09; 1.75-2.60 micrograms per cubic meter. The mid range of these values is represented more in the northeast Bronx and the upper east side of Manhattan."/>
+            <img src = "map-05_cars in nyc.png" alt="Raster map showing the concentrations of PM2.5 from cars in NYC."/>
         </div>
-        <div class="col-3">
+        <div class="sr-only">Two raster maps, with one map showing the concentrations of PM2.5 from trucks and buses, and one showing the concentrations of PM2.5 from cars in NYC. PM2.5 from trucks and buses are highest in north and northeast Bronx, upper Manhattan, and southeast Brooklyn. Generally, these concentrations are higher than PM2.5 from cars, which is highest in the northeast Bronx and the upper east side of Manhattan."
+        </div></div>
+        <div class="row fs-sm">
+        <div class="col-2">
             <span style="color:#fcf1df"><i class="fas fa-square-full mr-1"></i></span>0.09-0.32<br>
             <span style="color:#d1826f"><i class="fas fa-square-full mr-1"></i></span>1.10-1.37
         </div>
-        <div class="col-3">
+        <div class="col-2">
             <span style="color:#f2d6c0"><i class="fas fa-square-full mr-1"></i></span>0.33-0.56<br>
             <span style="color:#c76357"><i class="fas fa-square-full mr-1"></i></span>1.38-1.74 µg/m<sup>3</sup>
         </div>
-        <div class="col-3">
+        <div class="col-2">
             <span style="color:#e8bda5"><i class="fas fa-square-full mr-1"></i></span>0.57-0.83 <br>
             <span style="color:#c04543"><i class="fas fa-square-full mr-1"></i></span>1.75-2.60  µg/m<sup>3</sup>
         </div>
-        <div class="col-3">
+        <div class="col-2">
             <span style="color:#db9f87"><i class="fas fa-square-full mr-1"></i></span>0.84-1.09<br>
         </div>
-        <div class="col-12">
-        </div>
+        <div class="row">
+        <em class="fs-sm">Traffic-related PM2.5 is estimated from air quality models.</em>
+        </div></div>
     </div>
-    <em class="fs-sm">Traffic-related PM2.5 is estimated from air quality models.</em>
+    </div>
 </div>
 <div class="narrow mt-4">
 
