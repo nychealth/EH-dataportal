@@ -93,28 +93,30 @@ Some neighborhoods in New York City experience higher concentrations of PM2.5 fr
             <h3>PM2.5 from cars</h3>
             <img src = "map-05_cars in nyc.png"/>
         </div>
-        <div class="sr-only">Maps of PM2.5 concentrations from trucks and buses, and from cars in NYC. PM2.5 from trucks and buses are highest in north and northeast Bronx, upper Manhattan, and southeast Brooklyn. Generally, these concentrations are higher than PM2.5 from cars, which is highest in the northeast Bronx and the upper east side of Manhattan."
-        </div></div>
-        <div class="row fs-sm">
-        <div class="col-2">
+            <div class="col-12 sr-only">Maps of PM2.5 concentrations from trucks and buses, and from cars in NYC. PM2.5 from trucks and buses are highest in north and northeast Bronx, upper Manhattan, and southeast Brooklyn. Generally, these concentrations are higher than PM2.5 from cars, which is highest in the northeast Bronx and the upper east side of Manhattan."
+            </div>
+    </div>
+    <div class="row fs-sm">
+        <div class="col-12">
+                <em class="fs-sm">Traffic-related PM2.5, estimated from air quality models (µg/m<sup>3)</em>
+        </div>
+        <div class="col-3">
             <span style="color:#fcf1df"><i class="fas fa-square-full mr-1"></i></span>0.09-0.32<br>
             <span style="color:#d1826f"><i class="fas fa-square-full mr-1"></i></span>1.10-1.37
         </div>
-        <div class="col-2">
+        <div class="col-3">
             <span style="color:#f2d6c0"><i class="fas fa-square-full mr-1"></i></span>0.33-0.56<br>
-            <span style="color:#c76357"><i class="fas fa-square-full mr-1"></i></span>1.38-1.74 µg/m<sup>3</sup>
+            <span style="color:#c76357"><i class="fas fa-square-full mr-1"></i></span>1.38-1.74</sup>
         </div>
-        <div class="col-2">
+        <div class="col-3">
             <span style="color:#e8bda5"><i class="fas fa-square-full mr-1"></i></span>0.57-0.83 <br>
-            <span style="color:#c04543"><i class="fas fa-square-full mr-1"></i></span>1.75-2.60  µg/m<sup>3</sup>
+            <span style="color:#c04543"><i class="fas fa-square-full mr-1"></i></span>1.75-2.60 </sup>
         </div>
-        <div class="col-2">
+        <div class="col-3">
             <span style="color:#db9f87"><i class="fas fa-square-full mr-1"></i></span>0.84-1.09<br>
         </div>
-        <div class="row">
-        <em class="fs-sm">Traffic-related PM2.5 is estimated from air quality models.</em>
-        </div></div>
     </div>
+</div>
 <div class="narrow mt-4">
 
 ## PM2.5 pollution from traffic contributes to adverse health effects
