@@ -87,13 +87,13 @@ Some neighborhoods in New York City experience higher concentrations of PM2.5 fr
     <div class="row my-2">
         <div class="col-md-6" aria-hidden="true">
             <h3>PM2.5 from trucks and buses</h3>
-            <img src = "map-04_trucks and buses_nyc.png" alt="Raster map showing the concentrations of PM2.5 from trucks and buses in NYC."/>
+            <img src = "map-04_trucks and buses_nyc.png"/>
         </div>
         <div class="col-md-6" aria-hidden="true">
             <h3>PM2.5 from cars</h3>
-            <img src = "map-05_cars in nyc.png" alt="Raster map showing the concentrations of PM2.5 from cars in NYC."/>
+            <img src = "map-05_cars in nyc.png"/>
         </div>
-        <div class="sr-only">Two raster maps, with one map showing the concentrations of PM2.5 from trucks and buses, and one showing the concentrations of PM2.5 from cars in NYC. PM2.5 from trucks and buses are highest in north and northeast Bronx, upper Manhattan, and southeast Brooklyn. Generally, these concentrations are higher than PM2.5 from cars, which is highest in the northeast Bronx and the upper east side of Manhattan."
+        <div class="sr-only">Maps of PM2.5 concentrations from trucks and buses, and from cars in NYC. PM2.5 from trucks and buses are highest in north and northeast Bronx, upper Manhattan, and southeast Brooklyn. Generally, these concentrations are higher than PM2.5 from cars, which is highest in the northeast Bronx and the upper east side of Manhattan."
         </div></div>
         <div class="row fs-sm">
         <div class="col-2">
