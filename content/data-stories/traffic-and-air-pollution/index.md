@@ -115,8 +115,6 @@ Some neighborhoods in New York City experience higher concentrations of PM2.5 fr
         <em class="fs-sm">Traffic-related PM2.5 is estimated from air quality models.</em>
         </div></div>
     </div>
-    </div>
-</div>
 <div class="narrow mt-4">
 
 ## PM2.5 pollution from traffic contributes to adverse health effects
