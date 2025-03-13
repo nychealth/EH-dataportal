@@ -17,6 +17,8 @@ image: nyc-active-design.jpg
 mainDEPages:
   - title: "Active design"
     url: "data-explorer/active-design/"
+  - title: "Walking, driving, and cycling"
+    url: "data-explorer/walking-driving-and-cycling/"
 ---
 
 Physical activity and healthy eating rank among the leading ways to get and stay healthy. 
