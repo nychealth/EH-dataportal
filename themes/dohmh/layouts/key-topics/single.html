@@ -81,7 +81,7 @@
                             <!-- First, get the main DE pages linked from KT page frontmatter -->
                             {{ if .Params.mainDEPages }}
                                 {{ range .Params.mainDEPages }}
-                                    <a class="font-weight-bold" href="{{ .Site.BaseURL | relURL }}{{ .url }}">{{ .title }}</a>
+                                    <a class="font-weight-bold" href="{{ .Site.BaseURL | relURL }}{{ .url }}"><i class="fas fa-star mr-1" aria-hidden="true"></i>{{ .title }}</a>
                                     <hr class="my-1">
                                 {{ end }}
 
@@ -90,32 +90,29 @@
                                     {{- $DEpages := where (where .Site.RegularPages "Section" "data-explorer") ".Params.categories" "intersect" (slice .Params.keyTopic) }}                     
                                     {{- $mainDEPages := .Params.mainDEpages }} <!-- Get mainDEPages array -->
                                     
+
                                     {{- range $DEpages.ByTitle -}}
                                         {{- $deTitle := .Title }}
                                         {{- $deLink := .RelPermalink }}
-
-                                        {{ $print := false}}
                                     
-                                            <!-- Range through $mainDEPages -->
-                                            {{- range $mainDEPages -}}
-                                                {{- $mainDEPageTitle := .title }} <!-- Get title from mainDEPages -->
-                                        
-                                                    {{- if eq $deTitle $mainDEPageTitle }} 
-                                                        <!-- do nothing if the titles match -->
-                                                    {{- else if ne $deTitle $mainDEPageTitle }} 
-                                                        <!-- if titles don't match, set print to true, so we only print once -->
-                                                        {{ $print = true }}
-                                                    {{- end }}
-
+                                        {{ $print := true }} <!-- Default to printing -->
+                                    
+                                        <!-- Check if this page exists in mainDEPages -->
+                                        {{- range $mainDEPages -}}
+                                            {{- if eq $deTitle .title }} 
+                                                {{ $print = false }}
+                                                {{ break }} <!-- Exit loop early if a match is found -->
                                             {{- end }}
-
-                                            <!-- if print is true, then print the page -->
-                                            {{ if eq $print true }}
-                                                <a class="font-weight-bold" href="{{ $deLink }}">{{ $deTitle }}</a>
-                                                <hr class="my-1">
-                                            {{ end }}
-
+                                        {{- end }}
+                                    
+                                        <!-- Only print if no match was found -->
+                                        {{- if $print }}
+                                            <a class="font-weight-bold" href="{{ $deLink }}">{{ $deTitle }}</a>
+                                            <hr class="my-1">
+                                        {{- end }}
+                                    
                                     {{- end }}
+                                
 
                             {{ else }}
 
