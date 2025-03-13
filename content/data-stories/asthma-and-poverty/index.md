@@ -8,7 +8,7 @@ seo_title: "Why asthma is a social justice issue"
 seo_description: "A data story on asthma and justice in NYC."
 tags:
 categories:
-  ["housing", "social", "childhealth", "healthoutcomes", "neighborhoods"]
+  ["housing", "inequality", "childhealth", "healthoutcomes", "neighborhoods"]
 keywords:
   [
     "poverty",

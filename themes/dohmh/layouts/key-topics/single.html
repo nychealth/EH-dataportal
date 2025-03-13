@@ -47,18 +47,35 @@
                             <div class="h3 fs-lg"><i class="fas fa-chart-bar mr-1 key-topics" aria-hidden="true"></i>Data Features:</div>
                         </div>
                         {{- range $filteredPages.ByWeight -}}
-                            {{- if not .Params.hide -}}
-                                <div class="card card-left-border shadow-sm mb-4">
-                                    <div class="card-content card-body">
-                                        <h4 class="fs-md"><a class="link-track" href="{{ .RelPermalink }}" class="text-primary">{{ .Title }}</a></h4>
-                                        <p class="fs-sm">{{ .Content | plainify | truncate 175 | htmlUnescape }}
-                                        </p>
-                                        <div class="d-flex justify-content-end">
-                                            <a class="fs-sm font-weight-bold" href="{{ .RelPermalink }}">Get the data<i class="fas fa-arrow-circle-right ml-1" aria-hidden="true"></i></a>
-                                        </div>
+
+                        <!-- Show data features, not reports, and nothing with the 'hide' frontmatter -->
+                        {{- if and (not .Params.hide) (not .Params.report) -}}
+                            <div class="card card-left-border shadow-sm mb-4">
+                                <div class="card-content card-body">
+                                    <h4 class="fs-md"><a class="link-track" href="{{ .RelPermalink }}" class="text-primary">{{ .Title }}</a></h4>
+                                    <p class="fs-sm">{{ .Content | plainify | truncate 175 | htmlUnescape }}
+                                    </p>
+                                    <div class="d-flex justify-content-end">
+                                        <a class="fs-sm font-weight-bold" href="{{ .RelPermalink }}">Explore<i class="fas fa-arrow-circle-right ml-1" aria-hidden="true"></i></a>
                                     </div>
                                 </div>
+                            </div>
                             {{- end -}}
+
+                        <!-- Show reports, except those with 'hide' frontmatter -->
+                        {{- if and (.Params.report) (not .Params.hide) -}}
+                        <div class="card card-left-border shadow-sm mb-4">
+                            <div class="card-content card-body">
+                                <h4 class="fs-md"><a class="link-track" href="{{ .RelPermalink }}" class="text-primary">{{ .Title }}</a></h4>
+                                <p class="fs-sm">{{ .Content | plainify | truncate 75 | htmlUnescape }}
+                                </p>
+                                <div class="d-flex justify-content-end">
+                                    <a class="fs-sm font-weight-bold" href="{{ .RelPermalink }}">Read report<i class="fas fa-arrow-circle-right ml-1" aria-hidden="true"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        {{- end -}}
+
                         {{- end -}}
                     {{- end -}}
 
@@ -72,7 +89,12 @@
                 <div class="row">
                     <div class="col-md-4 col-sm-12">
                         <div class="de-accent">
-                            <div class="h3 fs-lg"><i class="fas fa-chart-line pr-1" aria-hidden="true"></i>{{ .Title }} data:</div>
+                            <div class="h3 fs-lg"><i class="fas fa-chart-line pr-1" aria-hidden="true"></i>
+                                {{ if .Params.shortTitle }}
+                                    {{ .Params.shortTitle }} data:</div>
+                                {{ else }}
+                                {{ .Title }} data
+                                {{ end }}
                         </div>
 
 

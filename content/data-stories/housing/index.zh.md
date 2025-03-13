@@ -5,7 +5,7 @@ draft: false
 seo_title: "健康、住房和历史。"
 seo_description: "为了健康，地点很重要。"
 tags:
-categories: ["housing","social","childhealth","healthoutcomes","neighborhoods","injuryandviolence"]
+categories: ["housing","inequality","childhealth","healthoutcomes","neighborhoods","injuryandviolence"]
 keywords: ["poverty","asthma","injustice","housing","social determinants","redlining","disinvestment","racism","renting","pests","maintenance","maintenance deficiencies"]
 image: ds-housing.jpeg
 vega: true

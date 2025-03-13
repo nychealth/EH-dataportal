@@ -7,7 +7,7 @@ draft: false
 seo_title: "Real-time heat-related illness in NYC."
 seo_description: "Explore this summer's high temps and health effects."
 description: "Explore this summer's high temps and health effects."
-categories: [climatehealth, social, housing,healthoutcomes]
+categories: [climatehealth, inequality, housing,healthoutcomes]
 keywords:
   [
     "interactive",

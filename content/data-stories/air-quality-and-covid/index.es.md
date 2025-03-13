@@ -5,7 +5,7 @@ draft: false
 seo_title: "La calidad el aire durante la COVID-19"
 seo_description: "¿Qué sucede cuando la ciudad de Nueva York se queda en casa?"
 tags: 
-categories: ["transportation","airquality"]
+categories: ["publicspace","airquality"]
 keywords: ["air quality","traffic","transportation","covid","covid-19","coronavirus","air pollution", "lungs","breathing"]
 image: ds-aqcovid.jpeg
 photocredit: "Ed Reed/Mayoral Photography Office, City of New York"

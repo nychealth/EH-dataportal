@@ -7,7 +7,7 @@ draft: false
 seo_title: "Data on beach water quality"
 seo_description: "Data, findings, and more."
 tags:
-categories: [transportation]
+categories: [publicspace]
 keywords:
   [
     "beaches",
