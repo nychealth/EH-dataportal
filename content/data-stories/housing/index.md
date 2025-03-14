@@ -5,12 +5,33 @@ draft: false
 seo_title: "Health, housing, and history"
 seo_description: "A data story on how racist housing practices harm health."
 tags:
-categories: ["housing","social","childhealth","healthoutcomes","neighborhoods","injuryandviolence"]
-keywords: ["poverty","asthma","injustice","housing","social determinants","redlining","disinvestment","racism","renting","pests","maintenance","maintenance deficiencies"]
+categories:
+  [
+    "housing",
+    "social",
+    "childhealth",
+    "healthoutcomes",
+    "neighborhoods",
+    "injuryandviolence",
+  ]
+keywords:
+  [
+    "poverty",
+    "asthma",
+    "injustice",
+    "housing",
+    "social determinants",
+    "redlining",
+    "disinvestment",
+    "racism",
+    "renting",
+    "pests",
+    "maintenance",
+    "maintenance deficiencies",
+  ]
 image: ds-housing.jpeg
 vega: true
-related: 
-
+related:
   - title: "Housing creates health"
     url: "data-stories/housing-creates-health/"
   - title: "A brief history of redlining"
@@ -118,17 +139,8 @@ The government denied loans to Black and Latino people trying to buy homes in re
 
 The map below shows how New York City's neighborhoods were categorized.
 
-{{< rawhtml >}}
-
-</div>
-<div class="wide my-4">
-<div class="py-0 mb-4">
-    <iframe src="{{< baseurl >}}maps/HOLC_map/HOLC_map.html" scrolling="no" frameborder="0"
-        style="position: relative; height: 600px; width: 100%;"></iframe>
-</div>
-</div>
-<div class="wide my-2 px-5">
-{{< /rawhtml >}}
+<iframe title="Redlining in NYC" aria-label="Locator map" id="datawrapper-chart-dpI3S" src="https://datawrapper.dwcdn.net/dpI3S/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="691" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r,i=0;r=e[i];i++)if(r.contentWindow===a.source){var d=a.data["datawrapper-height"][t]+"px";r.style.height=d}}}))}();
+</script>
 
 ### This was redlining
 
@@ -136,7 +148,7 @@ This process became known as "redlining:" systematically denying public and priv
 
 Redlining helped drive urban segregation in the 20th century, as new neighborhoods were built for white people while people of color were forced into neighborhoods declared to be "declining."
 
-Since homeownership is an important way to accrue wealth, redlining drove economic inequality, too - by denying people of color the same opportunities for home ownership that white people had.
+Since home ownership is an important way to accrue wealth, redlining drove economic inequality, too - by denying people of color the same opportunities for home ownership that white people had.
 
 ### Other discriminatory practices maintain segregation.
 
@@ -211,7 +223,7 @@ Explore NYC's common housing problems in the map below.
 **Percent of households with healthy housing problems**
 {{< rawhtml >}}
 
-<div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+<div class="btn-group" role="group" aria-label="Button group with nested dropdown" aria-hidden="true">
 
   <div class="btn-group" role="group">
     <button id="btnGroupDrop1" type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle mr-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -400,6 +412,11 @@ changeMap('3+ healthy housing problems')
 
 {{< /rawhtml >}}
 
+<div class="sr-only">
+<iframe title="Percent of households with healthy housing problems" aria-label="Table" id="datawrapper-chart-IlMbE" src="https://datawrapper.dwcdn.net/IlMbE/5/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="992" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r,i=0;r=e[i];i++)if(r.contentWindow===a.source){var d=a.data["datawrapper-height"][t]+"px";r.style.height=d}}}))}();
+</script>
+</div>
+
 ### Who shoulders the burden of housing disrepair?
 
 These problems go far beyond inconvenience or mess. {{< rawhtml >}}
@@ -438,7 +455,18 @@ harm health.</a></p>
 
 As a result of the segregation and disinvestment caused by redlining, Black and Latino people have less access to healthy housing. They are more likely to live in buildings that have health-threatening maintenance issues.
 
-{{< datawrapper title="Black and Latino people have less access to healthy housing." src="PTyc4/2/" height="300px" >}}
+</div>
+<div class="wide my-4" aria-hidden="true">
+
+<iframe title="" aria-label="Split Bars" id="datawrapper-chart-PTyc4" src="https://datawrapper.dwcdn.net/PTyc4/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="231" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r,i=0;r=e[i];i++)if(r.contentWindow===a.source){var d=a.data["datawrapper-height"][t]+"px";r.style.height=d}}}))}();
+</script>
+
+</div>
+<div class="sr-only">
+<iframe title="Disrepair can harm health" aria-label="Table" id="datawrapper-chart-L4GDU" src="https://datawrapper.dwcdn.net/L4GDU/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="313" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r,i=0;r=e[i];i++)if(r.contentWindow===a.source){var d=a.data["datawrapper-height"][t]+"px";r.style.height=d}}}))}();
+</script>
+</div>
+<div class="narrow">
 
 ### These disparities persist across income levels
 
@@ -449,7 +477,7 @@ Black and Latino people with higher incomes are also more likely to live in buil
 {{< rawhtml >}}
 
 </div>
-<div class="wide my-4">
+<div class="wide my-4" aria-hidden="true">
 <div class="text-center mb-3">
     View data by income level:<br>
     <input type="radio" name="income" onclick="elow()" id="elow"
@@ -531,6 +559,19 @@ Black and Latino people with higher incomes are also more likely to live in buil
 </script>
 <hr>
 {{< /rawhtml >}}
+<div class="sr-only">
+<iframe title="Black and Latino people have less access to healthy housing -- even across income levels (extremely low income table)" aria-label="Table" id="datawrapper-chart-IKPCG" src="https://datawrapper.dwcdn.net/IKPCG/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="386" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r,i=0;r=e[i];i++)if(r.contentWindow===a.source){var d=a.data["datawrapper-height"][t]+"px";r.style.height=d}}}))}();
+</script>
+
+<iframe title="Black and Latino people have less access to healthy housing -- even across income levels (very low income table)" aria-label="Table" id="datawrapper-chart-ajUBs" src="https://datawrapper.dwcdn.net/ajUBs/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="382" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r,i=0;r=e[i];i++)if(r.contentWindow===a.source){var d=a.data["datawrapper-height"][t]+"px";r.style.height=d}}}))}();
+</script>
+
+<iframe title="Black and Latino people have less access to healthy housing -- even across income levels (low income table)" aria-label="Table" id="datawrapper-chart-mhj0X" src="https://datawrapper.dwcdn.net/mhj0X/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="382" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r,i=0;r=e[i];i++)if(r.contentWindow===a.source){var d=a.data["datawrapper-height"][t]+"px";r.style.height=d}}}))}();
+</script>
+
+<iframe title="Black and Latino people have less access to healthy housing -- even across income levels (moderate or higher income table)" aria-label="Table" id="datawrapper-chart-pLXtX" src="https://datawrapper.dwcdn.net/pLXtX/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="424" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r,i=0;r=e[i];i++)if(r.contentWindow===a.source){var d=a.data["datawrapper-height"][t]+"px";r.style.height=d}}}))}();
+</script>
+</div>
 
 These healthy housing problems can’t be fixed by a little bit of tidying up – they stem from chronic neglect of maintenance by building management and landlords, and old housing stock in disrepair after decades of disinvestment.
 
