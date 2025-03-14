@@ -5,7 +5,7 @@ draft: false
 seo_title: "Health, housing, and history"
 seo_description: "A data story on how racist housing practices harm health."
 tags:
-categories: ["housing","social","childhealth","healthoutcomes","neighborhoods"]
+categories: ["housing","social","childhealth","healthoutcomes","neighborhoods","injuryandviolence"]
 keywords: ["poverty","asthma","injustice","housing","social determinants","redlining","disinvestment","racism","renting","pests","maintenance","maintenance deficiencies"]
 image: ds-housing.jpeg
 vega: true
@@ -217,19 +217,19 @@ Explore NYC's common housing problems in the map below.
     <button id="btnGroupDrop1" type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle mr-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       Healthy housing problems:
     </button>
-      <button type="button" class="btn btn-sm btn-outline-secondary mapselectbutton" onclick="changeMap(0)">No healthy housing problems</button>
+      <button type="button" class="btn btn-sm btn-outline-secondary mapselectbutton" onclick="changeMap('No healthy housing problems')">No healthy housing problems</button>
     <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-        <a class="dropdown-item mapselectbutton" onclick="changeMap(3)">3+ healthy housing problems</a>
+        <a class="dropdown-item mapselectbutton" onclick="changeMap('3+ healthy housing problems')">3+ healthy housing problems</a>
         <hr>
-        <a class="dropdown-item mapselectbutton" onclick="changeMap(4)">Cockroaches</a>
-        <a class="dropdown-item mapselectbutton" onclick="changeMap(5)">Mice and rats</a>
-        <a class="dropdown-item mapselectbutton" onclick="changeMap(6)">Cracks and holes in walls</a>
-        <a class="dropdown-item mapselectbutton" onclick="changeMap(7)">Water leaks</a>
-        <a class="dropdown-item mapselectbutton" onclick="changeMap(8)">Broken plaster, peeling paint</a>
-        <a class="dropdown-item mapselectbutton" onclick="changeMap(9)">Heat breakdown</a>
-        <a class="dropdown-item mapselectbutton" onclick="changeMap(10)">Supplemental heat</a>
-        <a class="dropdown-item mapselectbutton" onclick="changeMap(11)">No air conditioning</a>
-        <a class="dropdown-item mapselectbutton" onclick="changeMap(12)">Toilet breakdowns</a>
+        <a class="dropdown-item mapselectbutton" onclick="changeMap('Cockroaches')">Cockroaches</a>
+        <a class="dropdown-item mapselectbutton" onclick="changeMap('Mice or rats')">Mice and rats</a>
+        <a class="dropdown-item mapselectbutton" onclick="changeMap('Cracks or holes')">Cracks and holes in walls</a>
+        <a class="dropdown-item mapselectbutton" onclick="changeMap('Water leaks')">Water leaks</a>
+        <a class="dropdown-item mapselectbutton" onclick="changeMap('Broken plaster, peeling paint')">Broken plaster, peeling paint</a>
+        <a class="dropdown-item mapselectbutton" onclick="changeMap('Heating breakdown')">Heat breakdown</a>
+        <a class="dropdown-item mapselectbutton" onclick="changeMap('Supplemental heat')">Supplemental heat</a>
+        <a class="dropdown-item mapselectbutton" onclick="changeMap('No AC')">No air conditioning</a>
+        <a class="dropdown-item mapselectbutton" onclick="changeMap('Toilet breakdowns')">Toilet breakdowns</a>
     </div>
   </div>
 </div>
@@ -238,81 +238,163 @@ Explore NYC's common housing problems in the map below.
 
 <script>
 
-    // basic path
-    const repo_branch = "{{< param data_repo >}}{{< param data_branch >}}"
-    const path = "data-stories/housing" // hard-coded for now, but could Hugo paramaterize
-    const trans = "mapspec-en"
 
-    // specific path
-    const csv_path = repo_branch + "/" + path + "/" + "housing-data-story-data.csv"
-    const topo_path = repo_branch + "/geography/PUMA_or_Subborough.topo.json"
 
-    function changeMap(x) {
+function changeMap(x) {
 
-        var spec;
+    xLabel = x.toLowerCase()
 
-        if (x == 0) {
-            spec = "none.vl.json"
+    var extent = [1,0]
 
-        } else if (x == 3) {
-            spec = "three.vl.json"
+    var domain = [0,53]
 
-        } else if (x == 4) {
-            spec = "cockroaches.vl.json"
+    if (x === 'No healthy housing problems') {
+        domain = [0,90]
+    } else {}
 
-        } else if (x == 5) {
-            spec = "micerats.vl.json"
 
-        } else if (x == 6) {
-            spec = "cracks.vl.json"
+    var defaultSpec = {
+        "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+        "title": {
+            "text": `Homes with ${xLabel}`,
+            "subtitlePadding": 10,
+            "fontWeight": "normal",
+            "anchor": "start",
+            "fontSize": 12,
+            "font": "sans-serif",
+            "baseline": "top",
+            "subtitleFontSize": 13
+        },
+        "data": {
+            "url": "healthy-housing.csv",
+                "format": {"parse": {"VALUE": "number"}}
+        },
+        "transform": [
+            {"filter": `datum.VARIABLE === '${x}'`},
+            {
+            "calculate": "datum.VALUE + '%'",
+            "as": "valueLabel"
+        },
+            {
+            "lookup": "GEOCODE",
+            "from": {
+                "data": {
+                "url": "https://raw.githubusercontent.com/nychealth/EHDP-data/production/geography/PUMA_or_Subborough.topo.json",
+                "format": {"type": "topojson", "feature": "collection"}
+                },
+                "key": "properties.PUMA"
+            },
+            "as": "geo"
+            }
+        ],
+        "projection": {"type": "mercator"},
+        "vconcat": [
+            {
+            "layer": [
+                {
+                "height": 500,
+                "width": "container",
+                "mark": {"type": "geoshape", "invalid": null},
+                "params": [
+                    {
+                    "name": "highlight",
+                    "select": {
+                        "type": "point",
+                        "on": "mouseover",
+                        "clear": "mouseout"
+                    }
+                    }
+                ],
+                "encoding": {
+                    "shape": {"field": "geo", "type": "geojson"},
+                    "color": {
+                    "bin": false,
+                    "field": "VALUE",
+                    "type": "quantitative",
+                    "scale": {"scheme": {"name": "viridis", "extent": extent},"domain": domain},
+                    "legend": {
+                        "direction": "horizontal",
+                        "orient": "top-left",
+                        "title": null,
+                        "tickCount": 3,
+                        "offset": -25,
+                        "gradientLength": 200
+                    }
+                    },
+                    "stroke": {
+                    "condition": [
+                        {"param": "highlight", "empty": false, "value": "cyan"}
+                    ],
+                    "value": "#2d2d2d"
+                    },
+                    "strokeWidth": {
+                    "condition": [
+                        {"param": "highlight", "empty": false, "value": 1.25}
+                    ],
+                    "value": 0.5
+                    },
+                    "order": {
+                    "condition": [{"param": "highlight", "empty": false, "value": 1}],
+                    "value": 0
+                    },
+                    "tooltip": [
+                    {"field": "NAME", "title": "Neighborhood"},
+                    {"field": "valueLabel", "title": `Homes with ${xLabel}`}
+                    ]
+                }
+                }
+            ]
+            },
+                {
+            "height": 150,
+            "width": "container",
+            "config": {"axisY": {"labelAngle": 0, "labelFontSize": 13}},
+            "mark": {"type": "bar", "tooltip": true, "stroke": "#161616"},
+            "params": [
+                {
+                "name": "highlight",
+                "select": {"type": "point", "on": "mouseover", "clear": "mouseout"}
+                }
+            ],
+            "encoding": {
+                "y": {
+                "field": "VALUE",
+                "type": "quantitative",
+                "title": null,
+                "axis": {"labelAngle": 0, "labelFontSize": 11, "tickCount": 3,"labelExpr": "datum.value + '%'"}
+                },
+                "tooltip": [
+                {"field": "NAME", "title": "Neighborhood"},
+                {"field": "valueLabel", "title": `Homes with ${xLabel}`}
+                ],
+                "x": {"field": "GEOCODE", "sort": "y", "axis": null},
+                "color": {
+                "bin": false,
+                "field": "VALUE",
+                "type": "quantitative",
+                "scale": {"scheme": {"name": "viridis", "extent": extent},"domain": domain},
+                "legend": false
+                },
+                "stroke": {
+                "condition": [
+                    {"param": "highlight", "empty": false, "value": "cyan"}
+                ],
+                "value": "white"
+                },
+                "strokeWidth": {
+                "condition": [{"param": "highlight", "empty": false, "value": 3}],
+                "value": 0
+                }
+            }
+            }
+        ]
+        }
 
-        } else if (x == 7) {
-            spec = "water.vl.json"
+        vegaEmbed('#housingmap',defaultSpec)
 
-        } else if (x == 8) {
-            spec = "broken.vl.json"
+}
 
-        } else if (x == 9) {
-            spec = "breakdown.vl.json"
-
-        } else if (x == 10) {
-            spec = "supplemental.vl.json"
-
-        } else if (x == 11) {
-            spec = "noac.vl.json"
-
-        } else if (x == 12) {
-            spec = "toilet.vl.json"
-
-        } else { };
-
-        var spec_path = repo_branch + "/" + path + "/" + trans + "/" + spec;
-
-        buildMap("#housingmap", spec_path, csv_path, topo_path);
-
-    }
-            
-    function buildMap(div, spec, csv, topo) {
-
-        d3.json(spec).then(spec => {
-
-            spec.layer[0].data.url = topo;
-            spec.layer[1].data.url = topo;
-            
-            d3.csv(csv, d3.autoType).then(csv => {
-                
-                vegaEmbed(div, spec).then((res) => {
-
-                    resview = res.view.insert("csv", csv).run();
-                });
-            });
-        });
-    };
-
-    // initialize the map 
-
-    buildMap("#housingmap", repo_branch + "/" + path + "/" + trans + "/" + "three.vl.json", csv_path, topo_path);
-
+changeMap('3+ healthy housing problems')
 
 </script>
 

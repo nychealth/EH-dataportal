@@ -92,6 +92,8 @@ const renderTable = () => {
         
         return;
     }
+
+    // console.log("filteredTableData", filteredTableData);
         
     // ----------------------------------------------------------------------- //
     // get unique unreliability notes (dropping empty)
@@ -105,7 +107,7 @@ const renderTable = () => {
 
     table_unreliability.forEach(element => {
         
-        document.querySelector("#table-unreliability").innerHTML += element;
+        document.querySelector("#table-unreliability").innerHTML += "<div class='fs-xs'>" + element + "</div>" ;
         document.getElementById('table-unreliability').classList.remove('hide')
         
     });
@@ -132,16 +134,49 @@ const renderTable = () => {
 
     const filteredTableAqData = aq.from(filteredTableData)
         .groupby("TimePeriod", "GeoTypeDesc", "GeoID", "GeoRank", "Geography")
-        .pivot("MeasurementDisplay", "DisplayCI")
-    
-        // need to put this down here because the data might be missing one of the measures, which will be undefined after the pivot
-        // .impute(measureImputeObj) 
-        
-        // these 4 columns always exist, and we always want to hide them, so let's put them first, respecting the original relative order
-        .relocate(["TimePeriod", "GeoTypeDesc", "GeoID", "GeoRank"], { before: 0 }) 
+        .pivot("MeasurementDisplay", "DisplayCI", {sort: false})
+        .relocate([
+                // these 4 columns always exist, and we always want to hide them, so let's put them first, respecting the original relative order
+                "TimePeriod", "GeoTypeDesc", "GeoID", "GeoRank", "Geography", 
+
+                // set order for table columns (this is half a priori, half ad hoc): standard is Number, Crude Rate, Age-adjusted rate; left to right in order of calculated complexity; or general to specific. 
+                aq.matches(/everyday/i),
+                aq.matches(/sometimes/i),
+                aq.matches(/never/i),
+                aq.matches(/^Average annual number$/),
+                aq.matches(/^Average annual number \(Males\)$/),
+                aq.matches("Average annual number"),
+                aq.matches("Number tested"),
+                aq.matches(/^Number$/),
+                aq.matches("Number (total)"),
+                aq.matches(/number/i),
+                aq.matches("Density"),
+                aq.matches(/total/i),
+                aq.matches(/count/i),
+                aq.matches(/mean/i),
+                aq.matches(/^Rate$/),
+                aq.matches("Estimated annual rate"),
+                aq.matches("Rate per 100,000"),
+                aq.matches(/^Age-adjusted rate per 100,000$/),
+                aq.matches("Age-adjusted rate (Males)"),
+                aq.matches("Age-adjusted rate"),
+                aq.matches("Average annual rate"),
+                aq.matches(/rate/i),
+                aq.matches(/^Percent$/),
+                aq.matches("Age-adjusted percent"),
+                aq.matches("General"),
+                aq.matches("Sensitive"),
+                aq.matches(/percent/i),
+                aq.matches(/density/i),
+                aq.matches(/average/i),
+                aq.matches("Solid"),
+                aq.matches("Liquid")
+            ], 
+            { before: 0 }
+        )
     
     // console.log("filteredTableAqData [renderTable]");
-    // filteredTableAqData.print({limit: 40})
+    // filteredTableAqData.print({limit: 10})
     
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
     // export Arquero table to HTML

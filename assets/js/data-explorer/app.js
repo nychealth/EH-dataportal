@@ -140,6 +140,59 @@ $('#tab-btn-links').on('click', e => {
 
 
 // ----------------------------------------------------------------------- //
+// add listeners to metadata buttons
+// ----------------------------------------------------------------------- //
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// how calculated
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+$('#howCalcButton').on('click', e => {
+    // console.log("click_how_caclulated");
+    gtag('event', 'click_how_caclulated');
+});
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// how calculated
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+$('#citeButton').on('click', e => {
+    // console.log("click_citation");
+    gtag('event', 'click_citation');
+});
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// measure about
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+$('#tab-btn-02-b').on('click', e => {
+    // console.log("click_about");
+    gtag('event', 'click_about');
+});
+
+
+// ----------------------------------------------------------------------- //
+// add event listener to indicator links
+// ----------------------------------------------------------------------- //
+
+$('#indicatorButtons').on('click', e => {
+
+    let IndicatorID = e.target.dataset.indicatorId;
+
+    // run the indicator loading function
+
+    loadIndicator(IndicatorID);
+
+    // record google analytics event
+
+    gtag('event', 'click_indicator', {
+        IndicatorID: IndicatorID
+    });
+
+});
+
+
+// ----------------------------------------------------------------------- //
 // export functions
 // ----------------------------------------------------------------------- //
 

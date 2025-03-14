@@ -174,9 +174,9 @@
         height: 1.125rem;
     }
 
-    /* disabled comparisons button */
+    /* disabled comparison button */
 
-    .btn-comparisons.disabled {
+    .btn-comparison.disabled {
         color: #656565;
     }
 
@@ -603,7 +603,7 @@
                             <div id="trendSidebar" class="collapse dont-collapse-sm">
                                 <p class="fs-xs mb-0"><i data-toggle="modal" data-target="#trendModal" class="fas fa-question-circle float-right helper text-primary fs-sm"></i>Show by:</p>
                                 <div class="border optionbox mb-2">
-                                    <div class="" aria-labelledby="dropdownTrendComparisons">
+                                    <div class="" aria-labelledby="dropdownTrendSelection">
                                         <!-- INSERT MENU ITEMS HERE -->
                                     </div>
                                 </div>
@@ -705,7 +705,7 @@
                             <div class="col-md-10 col-sm-12">
                                 <div class="row no-gutters">
                                     <div class="col-md-3 col-sm-6">
-                                        <button type="button" class="btn btn-sm btn-outline-light fs-xs text-secondary btn-block mb-1" data-toggle="modal" data-target="#howCalcModal" >
+                                        <button type="button" id="howCalcButton" class="btn btn-sm btn-outline-light fs-xs text-secondary btn-block mb-1" data-toggle="modal" data-target="#howCalcModal" >
                                             <i class="fas fa-info-circle mr-1" aria-hidden="true"></i>How calculated
                                         </button>
                                     </div>
@@ -1178,7 +1178,7 @@
 
                     indicator = indicators.find(indicator => indicator.IndicatorID === {{ $id }});
                     this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
-                    indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' onclick='loadIndicator({{ $id }})' data-indicator-id='{{ $id }}'>" + this_indicatorName + `<i class="indicator-arrows fas fa-arrow-circle-right float-right font-weight-bold hide" id="arrow-{{ $id }}" aria-hidden="true"></i></button>`;
+                    indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' data-indicator-id='{{ $id }}'>" + this_indicatorName + `<i class="indicator-arrows fas fa-arrow-circle-right float-right font-weight-bold hide" id="arrow-{{ $id }}" aria-hidden="true"></i></button>`;
 
                 {{- end }}
             {{- end }}
@@ -1233,7 +1233,7 @@
     {{- $map         := resources.Get "js/data-explorer/map.js" -}}
     {{- $links       := resources.Get "js/data-explorer/links.js" -}}
     {{- $disparities := resources.Get "js/data-explorer/disparities.js" -}}
-    {{- $comparisons := resources.Get "js/data-explorer/comparisons.js" -}}
+    {{- $trend := resources.Get "js/data-explorer/trend.js" -}}
     {{- $app         := resources.Get "js/data-explorer/app.js" -}}
     {{- $print         := resources.Get "js/data-explorer/print.js" -}}
 
@@ -1245,7 +1245,7 @@
     {{- $map_secure         := $map | resources.Fingerprint "sha512" -}}
     {{- $links_secure       := $links | resources.Fingerprint "sha512" -}}
     {{- $disparities_secure := $disparities | resources.Fingerprint "sha512" -}}
-    {{- $comparisons_secure := $comparisons | resources.Fingerprint "sha512" -}}
+    {{- $trend_secure := $trend | resources.Fingerprint "sha512" -}}
     {{- $app_secure         := $app | resources.Fingerprint "sha512" -}}
     {{- $print_secure         := $print | resources.Fingerprint "sha512" -}}
 
@@ -1257,7 +1257,7 @@
     <script type="text/javascript" src="{{ $map_secure.RelPermalink }}" integrity="{{ $map_secure.Data.Integrity }}"></script>
     <script type="text/javascript" src="{{ $links_secure.RelPermalink }}" integrity="{{ $links_secure.Data.Integrity }}"></script>
     <script type="text/javascript" src="{{ $disparities_secure.RelPermalink }}" integrity="{{ $disparities_secure.Data.Integrity }}"></script>
-    <script type="text/javascript" src="{{ $comparisons_secure.RelPermalink }}" integrity="{{ $comparisons_secure.Data.Integrity }}"></script>
+    <script type="text/javascript" src="{{ $trend_secure.RelPermalink }}" integrity="{{ $trend_secure.Data.Integrity }}"></script>
     <script type="text/javascript" src="{{ $app_secure.RelPermalink }}" integrity="{{ $app_secure.Data.Integrity }}"></script>
     <script type="text/javascript" src="{{ $print_secure.RelPermalink }}" integrity="{{ $print_secure.Data.Integrity }}"></script>
 

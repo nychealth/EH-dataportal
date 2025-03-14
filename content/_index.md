@@ -4,8 +4,9 @@ draft: false
 seo_title: "NYC Environment and Health Data Portal."
 seo_description: "Data on how environments shape health in NYC."
 description: "Data on how environments shape health in NYC."
-featured_title: "Public transit creates health"
-featured_text: "How investing in public transit makes all of us healthier."
-featured_link: "data-stories/public-transit-creates-health/"
-featured_image: "Bus_Brooklyn_.jpg"
+featured_title: "Real-time air quality"
+featured_text: "Learn about hourly variations in PM2.5 across NYC."
+featured_link: "data-features/realtime-air-quality/"
+featured_image: "realtime-screenshot.png"
+ImageNote: featured_image must be added to assets
 ---

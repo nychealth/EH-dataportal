@@ -1,22 +1,22 @@
 // ======================================================================= //
-// comparisons.js
+// trend.js
 // ======================================================================= //
 
-const renderComparisonsChart = (
+const renderTrendChart = (
     data,
     metadata
 ) => {
 
-    console.log("*** renderComparisonsChart");
+    console.log("*** renderTrendChart");
 
 
     document.getElementById('viewDescription').innerHTML = 'Trends are shown by boro for stable rates.'
 
-    // console.log("metadata [renderComparisonsChart]");
+    // console.log("metadata [renderTrendChart]");
     // metadata.print()
 
     
-    // console.log("data [renderComparisonsChart]");
+    // console.log("data [renderTrendChart]");
     // data.print(Infinity)
 
     // console.log("data objects", data.objects());
@@ -33,7 +33,7 @@ const renderComparisonsChart = (
 
     comp_unreliability.forEach(element => {
 
-        document.querySelector("#trend-unreliability").innerHTML += element;
+        document.querySelector("#trend-unreliability").innerHTML += "<div class='fs-sm'>" + element + "</div>" ;
         document.getElementById('trend-unreliability').classList.remove('hide')
         
     });
@@ -84,13 +84,13 @@ const renderComparisonsChart = (
     // alpha: hex 96 = 150(/255) = ~58/100
 
     let colors = [
-        "#000000ff",
-        "#374c80",
-        "#bc5090",
-        "#ef5675",
-        "#ff764a",
-        "#ffa600"
-          ];
+      "#000000ff",
+      "#374c80",
+      "#bc5090",
+      "#ef5675",
+      "#ff764a",
+      "#ffa600"
+    ];
 
     // ----------------------------------------------------------------------- //
     // extract measure metadata for chart text
@@ -330,11 +330,11 @@ const renderComparisonsChart = (
     if (compNoCompare && hasGreaterEndPeriod) {
 
         // if a time period exists, return vertical rule JSON
-        console.log('running noCompare')
+        // console.log('running noCompare')
 
         // print text
         let noCompareFootnote = `Because of a method change, data before ${compNoCompare} shouldn't be compared to later time periods.`
-        document.querySelector("#trend-unreliability").innerHTML += "<div class='fs-xs text-muted'>" + noCompareFootnote + "</div>" ;
+        document.querySelector("#trend-unreliability").innerHTML += "<div class='fs-xs'>" + noCompareFootnote + "</div>" ;
         document.getElementById("trend-unreliability").classList.remove('hide')
 
         // convert to milliseconds format - this is necessary for compspec2
@@ -487,7 +487,7 @@ const renderComparisonsChart = (
                 "transform": [
                     {
                         "pivot": comp_group_col,
-                        "value": "DisplayValue",
+                        "value": "Value",
                         "groupby": ["TimePeriod"],
                         "op": "max"
                     },
@@ -614,7 +614,7 @@ const renderComparisonsChart = (
         },
         "transform": [
           {
-            "calculate": `format(datum.Value, ',') + ' ${compDisplayTypes}'`, "as": "valueWithDisplay"
+            "calculate": `datum.DisplayValue + ' ${compDisplayTypes}'`, "as": "valueWithDisplay"
           },
           {"calculate": "split(datum.TimePeriod, ' ')", "as": "TimePeriodSplit"},
           {
@@ -752,8 +752,8 @@ const renderComparisonsChart = (
     // ----------------------------------------------------------------------- //
 
     let vegaSpec = vegaLite.compile(compspec2).spec // compile to Vega to set axis layers as non-interactive
-    console.log(compspec2)
-    console.log(vegaSpec)
+    // console.log(compspec2)
+    // console.log(vegaSpec)
     vegaSpec.marks[3].interactive = false;          // set text layers to non-interactive
     vegaSpec.marks[4].interactive = false;          // set axis layers to non-interactive
     vegaSpec.marks[5].interactive = false;
@@ -761,12 +761,12 @@ const renderComparisonsChart = (
     vegaSpec.marks[6] ? vegaSpec.marks[6].interactive = false : {}; // if noCompare, set that layer to interactive: false
 
     if (vegaSpec.marks[6]) {
-      console.log('no compare layer exists')
+      // console.log('no compare layer exists')
     } else {
-      console.log('no no compare layer')
+      // console.log('no no compare layer')
     }
 
-    console.log(vegaSpec)
+    // console.log(vegaSpec)
     
     vegaEmbed("#trend", vegaSpec,{
       actions: {
@@ -793,7 +793,7 @@ const renderComparisonsChart = (
         .derive({Indicator: `'${indicatorName}: ${plotTitle} ${plotSubtitle}'`}) // add indicator name and type column
         .select(aq.not("GeoType", "GeoTypeDesc", "GeoTypeShortDesc", "GeoRank", "MeasureID", "ban_summary_flag", "DisplayValue", "start_period", "end_period"))
 
-        // console.log("downloadTable [renderComparisonsChart]");
+        // console.log("downloadTable [renderTrendChart]");
         // downloadTable.print()
 
     CSVforDownload = downloadTable.toCSV()

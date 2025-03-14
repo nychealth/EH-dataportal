@@ -119,16 +119,16 @@
 
                                         <div class="dropdown-menu wider-menu" aria-labelledby="nav-item-topic">
                                             <ul class="extensible-list p-0">
-                                                {{ range where .Site.Pages "Section" "key-topics" }}
-                                                {{ if not .Params.hide }}
-                                                    {{ if .Params.shortTitle }}
+                                                {{ range where .Site.Pages "Section" "key-topics" -}}
+                                                {{- if not .Params.hide -}}
+                                                    {{- if .Params.shortTitle }}
                                                     <a class="" href="{{ .RelPermalink }}"> <li class="">{{ .Params.shortTitle }}</li></a>
                                                     <hr class="my-1">
-                                                    {{ else }}
+                                                    {{- else }}
                                                     <a class="" href="{{ .RelPermalink }}"> <li class="">{{ .Params.title }}</li></a>
                                                     <hr class="my-1">
-                                                    {{ end }}
-                                                {{ end }}
+                                                    {{- end -}}
+                                                {{- end -}}
                                                 {{ end }}
                                                     <a href={{ relURL "key-topics" }}>All topics</a>
 
