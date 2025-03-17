@@ -36,8 +36,6 @@ For example, dig around in the asthma data pages and you'll find [Adults with As
 
 The most common neighborhood boundaries on the EH Data Portal are Community Districts, Public Use Microdata Areas, and United Hospital Fund neighborhoods. These three common neighborhood schemes have different building blocks. Let's explore these.
 
-{{< rawhtml >}}
-
  </div>
     <!--start wide-->
     <div class="wide my-4 chart-wrapper-ds" aria-hidden="true">
@@ -81,8 +79,6 @@ The most common neighborhood boundaries on the EH Data Portal are Community Dist
     <!--end wide-->
 <div class="narrow">
 
-{{< /rawhtml >}}
-
 #### Community districts
 
 There are 59 Community Districts (CDs) in NYC, each overseen by a Community Board that advises on land use, zoning, city budgets, and more. As a political boundary, CDs are useful geographic units for breaking down city operations. [Learn more about Community Boards](https://www1.nyc.gov/site/cau/community-boards/about-commmunity-boards.page).
@@ -98,8 +94,6 @@ There are four PUMAs that are made up of two CDs combined into one. Notice how t
 Each PUMA breaks down into Neighborhood Tabulation Areas (NTAs), and each NTA breaks down even further into census tracts.
 
 <div aria-hidden="true">
-{{< rawhtml >}}
-
 <input type="radio" name="mainRadioGroup" value="cd" id="ucd" checked> <label for="ucd">Community Districts</label> &nbsp;&nbsp;
 <input type="radio" name="mainRadioGroup" value="puma" id="upuma"/> <label for="upuma">PUMAs</label> &nbsp;&nbsp;
 <input type="radio" name="mainRadioGroup" value="nta" id="unta"><label for="unta">NTAs</label>
@@ -175,11 +169,9 @@ Each PUMA breaks down into Neighborhood Tabulation Areas (NTAs), and each NTA br
 
 </script>
 
-{{< /rawhtml >}}
-
 </div>
 <div class="sr-only">
-<p>While these geographies have similar boundaries between neighborhood areas, they are not identical. For example, at one of the smaller geographies, NTAs, Mott Haven/Port Morris, Melrose South/Mott Haven-North, Longwood, and Hunts Point are all separate NTAs. When we use Community Districts, a slightly bigger geography, Mott Haven and Melrose are one CD and Hunts Point/Longwood are another. If we switch to PUMAs, which are a little bigger, Mott Haven and Hunts point are both within one PUMA. These divisions don't nest neatly within one another, but discussing how familiar neighborhoods can be broken up or aggregated into smaller and larger geographies helps illustrate how these different schemes work.</p>
+<p>While these geographies have similar boundaries between neighborhood areas, they are not identical. For example, areas in Mott Haven/Port Morris, Melrose South/Mott Haven-North, Longwood, and Hunts Point are all in separate Neighborhood Tabulation Areas. But in Community Districts, Mott Haven/Melrose is one Community District, and Hunts Point/Longwood is another. And in PUMAs, Mott Haven and Hunts point are both in one PUMA. These divisions don't nest neatly within one another - familiar neighborhoods can be broken up or aggregated into smaller and larger geographic schemes.</p>
 </div>
 
 #### United Hospital Fund neighborhoods
@@ -193,8 +185,6 @@ To protect privacy, we often bundle (or aggregate) data from a larger area, so w
 In the map below, notice how three UHF42 neighborhoods in the South Bronx are combined into one UHF34 neighborhood - and how the UHF neighborhoods have ZIP codes (or, more precisely, ZIP code tabulation areas) as their root unit.
 
 <div aria-hidden="true">
-{{< rawhtml >}}
-
 <input type="radio" name="uhfRadioGroup" value="42" id="42" checked> <label for="42">UHF42</label> &nbsp;&nbsp;
 <input type="radio" name="uhfRadioGroup" value="34" id="34"/> <label for="34">UHF34</label> &nbsp;&nbsp;
 <input type="radio" name="uhfRadioGroup" value="zip" id="zip"><label for="zip">ZIP codes</label>
@@ -243,7 +233,6 @@ In the map below, notice how three UHF42 neighborhoods in the South Bronx are co
 
 </script>
 </div>
-{{< /rawhtml >}}
 
 <div class="sr-only">
 <p>Continuing from the previous example, United Hospital Fund neighborhoods have similar boundaries, but they are not identical. Most UH42s break UH34s into smaller geographies; note how the South Bronx UH34 combines three UH42 neighborhoods (Highbridge - Morrisania, Crotona - Tremont and Hunts Point - Mott Haven).</p>
@@ -261,4 +250,4 @@ But any way of drawing boundaries or aggregating data will smooth over some vari
 
 ---
 
-If you're mapping health data, you can [download and use shapefiles, geojson, and topojson files at our Github repository](https://github.com/nycehs/NYC_geography).
+If you're mapping health data, you can [download and use shapefiles, geojson, and topojson files in our Github repository](https://github.com/nychealth/EHDP-data/tree/production/geography).
