@@ -6,8 +6,17 @@ draft: false
 seo_title: "Neighborhood boundaries in health data"
 seo_description: "A data story on different ways to map health data."
 tags:
-categories: ["internal","neighborhoods"]
-keywords: ["geography","maps","neighborhoods","health data","methods","geographic","how we work"]
+categories: ["internal", "neighborhoods"]
+keywords:
+  [
+    "geography",
+    "maps",
+    "neighborhoods",
+    "health data",
+    "methods",
+    "geographic",
+    "how we work",
+  ]
 image: ds-geographies.jpg
 layout: single
 vega: true
@@ -31,7 +40,7 @@ The most common neighborhood boundaries on the EH Data Portal are Community Dist
 
  </div>
     <!--start wide-->
-    <div class="wide my-4 chart-wrapper-ds">
+    <div class="wide my-4 chart-wrapper-ds" aria-hidden="true">
         <h4 class="text-center mb-3">Nesting: how neighborhood schemes have different root units</h4>
         <div class="row" style="font-size: 14px;">
             <div class="col-lg-4 col-sm-8 mx-auto mb-2">
@@ -88,6 +97,7 @@ There are four PUMAs that are made up of two CDs combined into one. Notice how t
 
 Each PUMA breaks down into Neighborhood Tabulation Areas (NTAs), and each NTA breaks down even further into census tracts.
 
+<div aria-hidden="true">
 {{< rawhtml >}}
 
 <input type="radio" name="mainRadioGroup" value="cd" id="ucd" checked> <label for="ucd">Community Districts</label> &nbsp;&nbsp;
@@ -167,6 +177,11 @@ Each PUMA breaks down into Neighborhood Tabulation Areas (NTAs), and each NTA br
 
 {{< /rawhtml >}}
 
+</div>
+<div class="sr-only">
+<p>While these geographies have similar boundaries between neighborhood areas, they are not identical. For example, at one of the smaller geographies, NTAs, Mott Haven/Port Morris, Melrose South/Mott Haven-North, Longwood, and Hunts Point are all separate NTAs. When we use Community Districts, a slightly bigger geography, Mott Haven and Melrose are one CD and Hunts Point/Longwood are another. If we switch to PUMAs, which are a little bigger, Mott Haven and Hunts point are both within one PUMA. These divisions don't nest neatly within one another, but discussing how familiar neighborhoods can be broken up or aggregated into smaller and larger geographies helps illustrate how these different schemes work.</p>
+</div>
+
 #### United Hospital Fund neighborhoods
 
 United Hospital Fund neighborhoods (UHFs) have boundaries based on ZIP codes. This geography was created by the Health Department, the United Hospital Fund, and other city agencies in the 1980s. They were designed for health research, and to be similar to NYC’s Community Districts.
@@ -175,8 +190,9 @@ Health data - like somebody’s hospitalization record, for example, or a respon
 
 To protect privacy, we often bundle (or aggregate) data from a larger area, so we need a scheme of neighborhoods that are made up of a collection of ZIP codes: UHFs. Collecting data by ZIP code and then "rolling up" into UHF neighborhoods has been used in health research for decades. The methods for our surveys (like the Community Health Survey) are designed to include enough people from each UHF neighborhood so that there’s a “representative sample” of all New Yorkers, and so that we can compare neighborhoods with high statistical confidence. Usually, we use UHF42 neighborhoods, which breaks the city down into 42 neighborhoods. Sometimes, though, we use UHF34 neighborhoods - by grouping together some of the neighborhoods, we can increase the statistical power of a survey.
 
-In the map below, notice how three UHF42 neighborhoods in the South Bronx are combined into one UHF34 neigborhood - and how the UHF neighborhoods have ZIP codes (or, more precisely, ZIP code tabulation areas) as their root unit.
+In the map below, notice how three UHF42 neighborhoods in the South Bronx are combined into one UHF34 neighborhood - and how the UHF neighborhoods have ZIP codes (or, more precisely, ZIP code tabulation areas) as their root unit.
 
+<div aria-hidden="true">
 {{< rawhtml >}}
 
 <input type="radio" name="uhfRadioGroup" value="42" id="42" checked> <label for="42">UHF42</label> &nbsp;&nbsp;
@@ -226,8 +242,12 @@ In the map below, notice how three UHF42 neighborhoods in the South Bronx are co
     buildMap("#map2", uhf42_spec, uhf42_csv, uhf42_topo);
 
 </script>
-
+</div>
 {{< /rawhtml >}}
+
+<div class="sr-only">
+<p>Continuing from the previous example, United Hospital Fund neighborhoods have similar boundaries, but they are not identical. Most UH42s break UH34s into smaller geographies; note how the South Bronx UH34 combines three UH42 neighborhoods (Highbridge - Morrisania, Crotona - Tremont and Hunts Point - Mott Haven).</p>
+</div>
 
 ### How do you choose when boundaries overlap?
 
