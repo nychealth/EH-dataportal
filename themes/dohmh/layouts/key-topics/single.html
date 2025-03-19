@@ -47,35 +47,38 @@
                             <div class="h3 fs-lg"><i class="fas fa-chart-bar mr-1 key-topics" aria-hidden="true"></i>Data Features:</div>
                         </div>
                         {{- range $filteredPages.ByWeight -}}
+                            <!-- Show data features, not reports, and nothing with the 'hide' frontmatter -->
+                            {{- if and (not .Params.hide) (not .Params.report) -}}
+                                <div class="card card-left-border shadow-sm mb-3">
+                                    <div class="card-content card-body">
+                                        <h4 class="fs-md"><a class="link-track" href="{{ .RelPermalink }}" class="text-primary">{{ .Title }}</a></h4>
+                                        <p class="fs-sm">{{ .Content | plainify | truncate 175 | htmlUnescape }}
+                                        </p>
+                                        <div class="d-flex justify-content-end">
+                                            <a class="fs-sm font-weight-bold" href="{{ .RelPermalink }}">Explore<i class="fas fa-arrow-circle-right ml-1" aria-hidden="true"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            {{- end -}}
+                        {{- end -}}
 
-                        <!-- Show data features, not reports, and nothing with the 'hide' frontmatter -->
-                        {{- if and (not .Params.hide) (not .Params.report) -}}
+
+                        <hr class="my-3">
+
+                        {{- range $filteredPages.ByWeight -}}
+                            <!-- Show reports, except those with 'hide' frontmatter -->
+                            {{- if and (.Params.report) (not .Params.hide) -}}
                             <div class="card card-left-border shadow-sm mb-4">
                                 <div class="card-content card-body">
                                     <h4 class="fs-md"><a class="link-track" href="{{ .RelPermalink }}" class="text-primary">{{ .Title }}</a></h4>
-                                    <p class="fs-sm">{{ .Content | plainify | truncate 175 | htmlUnescape }}
+                                    <p class="fs-sm">{{ .Content | plainify | truncate 75 | htmlUnescape }}
                                     </p>
                                     <div class="d-flex justify-content-end">
-                                        <a class="fs-sm font-weight-bold" href="{{ .RelPermalink }}">Explore<i class="fas fa-arrow-circle-right ml-1" aria-hidden="true"></i></a>
+                                        <a class="fs-sm font-weight-bold" href="{{ .RelPermalink }}">Read report<i class="fas fa-arrow-circle-right ml-1" aria-hidden="true"></i></a>
                                     </div>
                                 </div>
                             </div>
                             {{- end -}}
-
-                        <!-- Show reports, except those with 'hide' frontmatter -->
-                        {{- if and (.Params.report) (not .Params.hide) -}}
-                        <div class="card card-left-border shadow-sm mb-4">
-                            <div class="card-content card-body">
-                                <h4 class="fs-md"><a class="link-track" href="{{ .RelPermalink }}" class="text-primary">{{ .Title }}</a></h4>
-                                <p class="fs-sm">{{ .Content | plainify | truncate 75 | htmlUnescape }}
-                                </p>
-                                <div class="d-flex justify-content-end">
-                                    <a class="fs-sm font-weight-bold" href="{{ .RelPermalink }}">Read report<i class="fas fa-arrow-circle-right ml-1" aria-hidden="true"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        {{- end -}}
-
                         {{- end -}}
                     {{- end -}}
 
@@ -103,9 +106,15 @@
 
                             <!-- First, get the main DE pages linked from KT page frontmatter -->
                             {{ if .Params.mainDEPages }}
-                                {{ range .Params.mainDEPages }}
-                                    <a class="font-weight-bold" href="{{ .Site.BaseURL | relURL }}{{ .url }}"><i class="fas fa-star mr-1" aria-hidden="true"></i>{{ .title }}</a>
-                                    <hr class="my-1">
+                                {{ range $index, $element := .Params.mainDEPages }}
+                                <a class="font-weight-bold" href="{{ .Site.BaseURL | relURL }}{{ .url }}">
+                                    {{ .title }}
+                                </a>
+                                    {{ if eq (add $index 1) (len $.Params.mainDEPages) }}
+                                        <hr class="strong-hr my-1">
+                                    {{ else }}
+                                        <hr class="my-1">
+                                    {{ end }}
                                 {{ end }}
 
                                      <!-- Then, range through all matching DE pages, excluding what's referenced in the frontmatter --> 
