@@ -27,9 +27,14 @@
       <div class="row">
         <div class="col-sm-12 mx-auto">
           <div class="asidebox my-2 mb-4">
-           <p><strong>This page is changing</strong>: it was powered by the <a href="https://groups.google.com/g/google-civicinfo-api/c/9fwFn-dhktA?pli=1">Google Representatives API</a>, which is shutting down. Please be patient while we look for a replacement.</p> 
-          </div>
+            <p><strong>This page is changing</strong>: it was powered by the <a href="https://groups.google.com/g/google-civicinfo-api/c/9fwFn-dhktA?pli=1">Google Representatives API</a>, which is shutting down. Please be patient while we look for a replacement.</p> 
+           </div>
+        </div>
+      </div>
 
+      <!-- STATIC VERSION WITH EMBED -->
+      <div class="row hide">
+        <div class="col-sm-12 mx-auto">
           <h2 class="h4 mt-4"><i class="fas fa-search-location mr-1" aria-hidden="true"></i>First, look up your elected officials</h2>
           <p> <a href="https://www.mygovnyc.org/" target="_blank">Who Represents Me? NYC</a> is a great website where you can easily look up your elected officials. Search for an address here:</p>
 
@@ -65,26 +70,43 @@
 
             </div>
           </div>
+        </div>
+      </div>
 
+      <!-- INTERACTIVE VERSION -->
+      <div class="row my-2 border-top pt-2">
+        <div class="col-12">
+          <h2 class="h4">First, enter your address</h2>
+          <p>We'll look up your elected officials and get their contact information.</p>
 
-          <div class="hide">
-            <p>First, enter your address to get your elected officials and their contact information. <em>This page works for NYC addresses only.</em></p>
-
-            <!-- Search/input -->
-            <div class="srch input-group" role="search" autocomplete="off" id="searchHolder">
-              <input class="rad-all form-control form-control-lg" placeholder="Search Address" id="map-search">
-            </div>
-  
-            <!-- Map gets drawn here -->
-            <div id='mapLocator' style="height:0px;"></div>
-            <em>We won't store any information you enter on this page.</em>
-  
-            <div id="startOverHolder" class="mt-2"></div>
+          <!-- Search/input -->
+          <div class="srch input-group" role="search" autocomplete="off" id="searchHolder">
+            <input class="rad-all form-control form-control-lg" placeholder="Search Address" id="map-search">
           </div>
 
+          <!-- Map gets drawn here -->
+          <div id='mapLocator' style="height:350px;"></div>
+          <em>This page works for NYC addresses only. We won't store any information you enter on this page.</em>
 
+          <div id="startOverHolder" class="mt-2"></div>
+        </div>
+      </div>
 
-
+      <div class="row my-2">
+        <div class="col-12">
+          <table id="newTable" class="table table-striped mb-4">
+            <thead class="thead-light">
+              <tr>
+                <th>Office</th>
+                <th>Name & website</th>
+                <th>Office phone</th>
+                <th>Email address</th>
+              </tr>
+            </thead>
+            <tbody id="newTableBody">
+  
+            </tbody>
+          </table>
         </div>
       </div>
 
@@ -360,11 +382,76 @@ loadLocalData()
 
 
 // Add event listener on entry form
-document.getElementById('map-search').addEventListener("change", getData)
+document.getElementById('map-search').addEventListener("change", getDataNew)
 
 // ----------------------------------------------------------------------  //
 // ********** Gets data when event listener detects map change: ********** //
 // ----------------------------------------------------------------------  //
+
+async function getDataNew() {
+  console.log('*** Getting data:')
+  waitForGlobal("map.location.name", function() {
+    console.log("map.location [post]", map.location);
+    getDataFor(map.location)
+  })
+}
+
+function getDataFor(x) {
+  console.log(map.location.name)
+
+  let loc   = map.location
+  let data  = map.location.data
+
+  // Passing in the name (must match LWV API), the district, and the LWV Api url string. And, order.
+  retrieveAPIData('Mayor',null,null);
+  retrieveAPIData('NYC Public Advocate',null,null);
+  retrieveAPIData('NYC Comptroller',null,null)
+  
+  retrieveAPIData('City Council',removeLeadingZero(data.cityCouncilDistrict),'lwvnyc_council')
+  retrieveAPIData('Community Board',removeLeadingZero(data.communityDistrict),'nyccommboard')
+  retrieveAPIData('Borough President',removeLeadingZero(data.bblBoroughCode),'lwvnyc_borough')
+  retrieveAPIData('State Assembly Member',removeLeadingZero(data.assemblyDistrict),'lwvnyc_nyassembly')
+  retrieveAPIData('State Senator', removeLeadingZero(data.stateSenatorialDistrict),'lwvnyc_nysenate')
+  retrieveAPIData('US Representative', removeLeadingZero(data.congressionalDistrict),'lwvnyc_congress')
+  retrieveAPIData('US Senator',null,null)
+}
+
+async function retrieveAPIData(x,y,z) {
+  let xEncode = encodeURIComponent(x)
+  let url;
+
+  if (y === null) {
+    url = `https://www.mygovnyc.org/api/v1/query/lwvnyc_other?columns=*&filter=districttitle%3D'${xEncode}'`;
+  } else {
+    url = `https://www.mygovnyc.org/api/v1/query/${z}?columns=*&filter=district%3D'${y}'`;
+  }
+  
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        
+        const data = await response.json();
+
+        console.log('Data for ' + x)
+        console.log(data); // Log the data to the console
+
+    } catch (error) {
+        console.error("Error fetching data:", error);
+    }
+
+}
+
+function removeLeadingZero(str) {
+  if (str.startsWith('0')) {
+      return str.slice(1);
+  }
+  return str;
+}
+
+
+
 
 async function getData() {
 
