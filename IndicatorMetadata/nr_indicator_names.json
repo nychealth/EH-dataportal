@@ -145,6 +145,16 @@
     "title": "Active_Design_Physical_Activity_and_Health"
   },
   {
+    "indicator_description": "People who are obese are at increased risk for heart disease and diabetes. Neighborhood factors such as walkability and the types of food retail outlets available can impact residents' risk of being overweight or obese.",
+    "indicator_name": "Obesity (adults)",
+    "title": "Climate_and_Health"
+  },
+  {
+    "indicator_description": "Heat stress hospitalizations weather are part of the public health burden due to hot weather.",
+    "indicator_name": "Heat stress: yearly hospitalizations",
+    "title": "Climate_and_Health"
+  },
+  {
     "indicator_description": "Heat stress hospitalizations weather are part of the public health burden due to hot weather.",
     "indicator_name": "Heat stress: yearly hospitalizations",
     "title": "Housing_and_Health"
