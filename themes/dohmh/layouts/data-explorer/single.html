@@ -348,7 +348,7 @@
                 <ul class="breadcrumb mr-auto">
                     <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
                     <li class="breadcrumb-item"><a href={{ relURL "data-explorer" }}>Data Explorer</a></li>
-                    <li class="breadcrumb-item">{{ .Title }}
+                    <li class="breadcrumb-item d-none d-md-block">{{ .Title }}
                         <button type="button" 
                             class="btn btn-outline-light text-primary badge" 
                             title="Change topic"
@@ -359,11 +359,22 @@
                         </button></li>
                 </ul>
             </nav>
-            <div class="float-right pr-1 d-sm-none d-md-block">
+            <div class="float-right pr-1 d-none d-md-block">
                 {{- partial "socialshare" . -}}
             </div>
-            <h1 class="h2 mt-2">{{ .Title }} </h1>
-            <p>Get maps, charts, tables, and data about {{ lower .Title }}. <span class="d-lg-none"><a href="#" data-toggle="modal" data-target="#aboutModal">About {{ lower .Title }}</a>.</span></p>
+
+            <h1 class="h2 mt-2">
+                <button type="button"
+                    class="btn btn-outline-light text-primary badge d-lg-none float-left mr-1"
+                    title="Change topic"
+                    data-toggle="modal" 
+                    data-target="#topicModal"
+                    aria-labelledby="topicModalLabel"
+                >
+                <i class="fas fa-list"></i>
+                </button>
+                {{ .Title }} </h1>
+            <p>Get maps, charts, tables, and more. <i data-toggle="modal" data-target="#aboutModal" class="d-lg-none fas fa-question-circle helper text-primary"></i></span></p>
 
         </div>
     </div>
@@ -435,14 +446,17 @@
         <div class="col-lg-8 mx-auto col-md-12">
         
             <!-- Indicator selection (mobile) -->
-            <div class="dropdown d-lg-none">
-                <span class='home-label'>Change dataset</span>
-                <button class="btn btn-sm btn-outline-primary btn-lg btn-block text-wrap dropdown-toggle" type="button"
+            <div class="dropdown d-lg-none d-block">
+                <button class="btn btn-sm btn-outline-primary btn-sm float-left text-wrap mr-1" type="button"
                         id="dropdownIndicator" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    More {{ .Title }} data
+                        <i class="fas fa-exchange-alt"></i>
                 </button>
+
+                <div id="indicatorNameMobile" class="ml-1 font-weight-bold">Indicator name Mobile</div>
+
+
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownIndicator" id="indicator-dropdown">
-                    <!-- Dropdown itmes are rendered using renderIndicatorDropdown -->
+                    <!-- Dropdown items are rendered using renderIndicatorDropdown -->
                 </div>
             </div>
 
@@ -452,7 +466,9 @@
 
         <!-- Indicator title and description -->
         <span class="border-bottom font-weight-bold d-none d-lg-block"><span id="indicatorTitle">Loading data...</span></span>
-        <p class="fs-sm indicator-description">Just a moment...</p>
+        <div class="d-block mt-1">
+            <p class="fs-sm indicator-description ">Just a moment...</p>
+        </div>
 
         <!-- view selection buttons -->
         <div class="mt-3">
