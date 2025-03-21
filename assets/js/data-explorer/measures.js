@@ -2010,8 +2010,7 @@ const renderMeasures = async () => {
                 selectedComparisonAbout +=
                     `<p><strong>${m.IndicatorName} - ${m.MeasurementType}:</strong> ${m.how_calculated}</p>`;
 
-                selectedComparisonSources +=
-                    `<p>${m.Sources}</p>`;
+                selectedComparisonSources.push(m.Sources);
             })
 
             // render the measure info boxes
