@@ -680,10 +680,14 @@ const updateComparisonTrendData = (e) => {
             selectedComparisonAbout   += `<p><strong>${m.IndicatorName} - ${m.MeasurementType}:</strong> ${m.how_calculated}</p>`;
             selectedComparisonSources.push(m.Sources)
         })
+    
+    // get unique sources
+
+    let uniqueSelectedComparisonSources = [...new Set(selectedComparisonSources)];
 
     // render the measure info boxes
 
-    renderAboutSources(selectedComparisonAbout, selectedComparisonSources);
+    renderAboutSources(selectedComparisonAbout, uniqueSelectedComparisonSources);
 
 
     // ----- create dataset --------------------------------------------------- //
@@ -2011,12 +2015,17 @@ const renderMeasures = async () => {
                     `<p><strong>${m.IndicatorName} - ${m.MeasurementType}:</strong> ${m.how_calculated}</p>`;
 
                 selectedComparisonSources.push(m.Sources);
+
             })
+
+            // get unique sources
+
+            let uniqueSelectedComparisonSources = [...new Set(selectedComparisonSources)];
 
             // render the measure info boxes
 
             renderTitleDescription(indicatorShortName, indicatorDesc);
-            renderAboutSources(selectedComparisonAbout, selectedComparisonSources);
+            renderAboutSources(selectedComparisonAbout, uniqueSelectedComparisonSources);
 
 
             // ----- create dataset --------------------------------------------------- //
