@@ -191,6 +191,10 @@ async function getDataNew() {
   })
 }
 
+// ----------------------------------------------------------------------  //
+// ********** Get data function - retrieving from API: ******************* //
+// ----------------------------------------------------------------------  //
+
 function getDataFor(x) {
   console.log(map.location.name)
 
@@ -250,6 +254,10 @@ function removeLeadingZero(str) {
   }
   return str;
 }
+
+// ----------------------------------------------------------------------  //
+// ********** Print data to page from API: ******************************* //
+// ----------------------------------------------------------------------  //
 
 function printData(data, office) {
   console.log('*** printing data');
@@ -337,7 +345,9 @@ function printData(data, office) {
   }
 }
 
-// MISC SUPPORTIVE FUNCTIONS
+// ----------------------------------------------------------------------  //
+// ********** Misc supportive functions: ********************************* //
+// ----------------------------------------------------------------------  //
 
 // window.checkNested = function(obj, args) {
 const checkNested = function(obj, args) {
@@ -350,10 +360,8 @@ const checkNested = function(obj, args) {
   return true;
 }
   
-// window.waitForGlobal = function(keyPath, callback) {
 const waitForGlobal = function(keyPath, callback) {
   var args = keyPath.split('.');
-  // if (window.checkNested(window, args)) {
   if (checkNested(window, args)) {
     callback();
   } else {
