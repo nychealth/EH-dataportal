@@ -24,54 +24,6 @@
         </div>
       </div>
 
-      <div class="row">
-        <div class="col-sm-12 mx-auto">
-          <div class="asidebox my-2 mb-4">
-            <p><strong>This page is changing</strong>: it was powered by the <a href="https://groups.google.com/g/google-civicinfo-api/c/9fwFn-dhktA?pli=1">Google Representatives API</a>, which is shutting down. Please be patient while we look for a replacement.</p> 
-           </div>
-        </div>
-      </div>
-
-      <!-- STATIC VERSION WITH EMBED -->
-      <div class="row hide">
-        <div class="col-sm-12 mx-auto">
-          <h2 class="h4 mt-4"><i class="fas fa-search-location mr-1" aria-hidden="true"></i>First, look up your elected officials</h2>
-          <p> <a href="https://www.mygovnyc.org/" target="_blank">Who Represents Me? NYC</a> is a great website where you can easily look up your elected officials. Search for an address here:</p>
-
-          <iframe width="100%" height="650" frameborder="0" scrolling="vertical" marginheight="0" marginwidth="0" src="https://www.mygovnyc.org/"></iframe>
-
-          <hr class="my-4">
-
-          <h2 class="h4 mt-4"><i class="fas fa-envelope-open-text mr-1"></i>Next, write them an email</h2>
-          <p>Elected officials serve the people - and want to know how their constituents feel. Here are some tips for writing an effective email, or script for a phone call.</p>
-            <p><strong>Identify yourself as a constituent:</strong> tell them where you live and that they are your elected representative. For example: <em>"I live on Hunts Point Ave in the Bronx, in your district."</em></p>
-            <p><strong>State your concerns.</strong> For example: <em>"Our neighborhood's rates of childhood asthma are among the highest in the city."</em></p>
-    
-            <p><strong>Tell your story:</strong> Offer some brief detail on how you see this environmental health issue affecting you and the people you know. For example: <em>"Last year, my daughter was diagnosed with asthma, and this issue is a challenge for our whole family."</em></p>
-    
-            <p><strong>Cite data:</strong> For example: <em>"According to data on housing conditions, 75% of renters' households in our neighborhood have maintenance problems that threaten health. (NYC Environment and Health Data Portal: https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/housing-maintenance/?id=2399#display=map)" </em></p>
-    
-            <p><strong>Make a request:</strong> You can ask them where they stand on the issue, what they're doing to improve it, or what services are available to help their constituents.</p>
-    
-
-          <div class="row">
-            <div class="col-md-6">
-              <div class="p-3 my-2 grey-callout">
-                <p><i class="fas fa-vote-yea mr-1"></i>You can contact elected officials whether or not you are registered to vote. If you're not, 
-                  <a class="" href="https://voterreg.dmv.ny.gov/motorvoter/" target="_blank" rel="noreferrer noopener"><i class="fas fa-external-link-alt mr-1"></i>register to vote here</a>.</p>
-              </div>
-    
-            </div>
-
-            <div class="col-md-6">
-              <div class="p-3 my-2 grey-callout">
-                <p><i class="fas fa-phone-square mr-1"></i><em>If you can't find email addresses for some elected officials, you can always call their offices to share your concerns, and use your email as a script.</em></p>
-                </div>
-
-            </div>
-          </div>
-        </div>
-      </div>
 
       <!-- INTERACTIVE VERSION -->
       <div class="row my-2 border-top pt-2">
@@ -88,173 +40,38 @@
           <div id='mapLocator' style="height:350px;"></div>
           <em>This page works for NYC addresses only. We won't store any information you enter on this page.</em>
 
-          <div id="startOverHolder" class="mt-2"></div>
         </div>
       </div>
 
-      <div class="row my-2">
+      <div class="row hide my-4" id="outputRow">
         <div class="col-12">
-          <table id="newTable" class="table table-striped mb-4">
+          <h2 class="h4">Next, get your elected officials' contact info</h2>
+          <table id="newTable" class="table table-striped mb-2">
             <thead class="thead-light">
               <tr>
                 <th>Office</th>
-                <th>Name & website</th>
-                <th>Office phone</th>
-                <th>Email address</th>
+                <th><i class="fas fa-globe mr-1" aria-hidden="true"></i>Name & website</th>
+                <th><i class="fas fa-phone-square mr-1" aria-hidden="true"></i>Office phone</th>
+                <th><i class="fas fa-envelope mr-1" aria-hidden="true"></i>Email address</th>
               </tr>
             </thead>
             <tbody id="newTableBody">
   
             </tbody>
           </table>
-        </div>
-      </div>
 
-      <div class="row my-2 hide" id="repRow">
-        <div class="col-md-12">
-          <h2 class="fs-md" id="officials">Local officials</h2>
-          <table id="localTable" class="table table-striped mb-4">
-            <thead class="thead-light">
-              <tr>
-                <th>Office</th>
-                <th>Name</th>
-                <th>Website</th>
-                <th>Office phone number</th>
-                <th>Email address</th>
-                <th class="hide">Email them?</th>
-              </tr>
-            </thead>
-            <tbody id="localTableBody">
-              <tr id="cmRow">
-                <td>Council Member</td>
-                <td><span id="cmName"></span></td>
-                <td><span id="cmWebsite"></span></td>
-                <td><span id="cmPhone"></span></td>
-                <td><span id="cmEmail"></span></td>
-                <td class="hide"><span id="cmEmailBox" class="text-align-right"><input type="checkbox" id="CMemail" name="emailCheckbox" value="cm" class="text-align-center" checked>
-                  <label for="CMemail"></label></span></td>
-              </tr>
-              <tr id="bcRow">
-                <td>Community Board</td>
-                <td><span id="cbName"></span></td>
-                <td><span id="cbWebsite"></span></td>
-                <td><span id="cbPhone"></span></td>
-                <td><span id="cbEmail"></span></td>
-                <td class="hide"><span id="cbEmailBox" class="text-align-right"><input type="checkbox" id="CBemail" name="emailCheckbox" value="cb" class="text-align-center" checked>
-                  <label for="CBemail"></label></span></td>
-              </tr>
-              <tr id="paRow">
-                <td>Public Advocate</td>
-                <td><span id="paName"></span></td>
-                <td><span id="paWebsite"></span></td>
-                <td><span id="paPhone"></span></td>
-                <td><span id="paEmail"></span></td>
-                <td class="hide"><span id="paEmailBox"><input type="checkbox" id="PAemail" name="emailCheckbox" value="pa" class="text-align-center" checked>
-                  <label for="PAemail"></label></span></td>
-              </tr>
-              <tr id="bpRow">
-                <td>Borough President</td>
-                <td><span id="bpName"></span></td>
-                <td><span id="bpWebsite"></span></td>
-                <td><span id="bpPhone"></span></td>
-                <td><span id="bpEmail"></span></td>
-                <td class="hide"><span id="bpEmailBox"><input type="checkbox" id="BPemail" name="emailCheckbox" value="bp" class="text-align-center" checked>
-                  <label for="BPemail"></label></span></td>
-              </tr>
-            </tbody>
-          </table>
-
-          <div class="hide">
-            <h2 class="fs-md">State officials</h2>
-            <table id="stateTable" class="table table-striped mb-4">
-              <thead class="thead-light">
-                <tr>
-                  <th>Office</th>
-                  <th>Name</th>
-                  <th>Website</th>
-                  <th>Office phone number</th>
-                  <th>Email address</th>
-                  <th class="hide">Email them?</th>
-                </tr>
-              </thead>
-              <tbody id="stateTableBody">
-                <tr id="ssRow">
-                  <td>State Senator</td>
-                  <td><span id="ssName"></span></td>
-                  <td><span id="ssWebsite"></span></td>
-                  <td><span id="ssPhone"></span></td>
-                  <td><span id="ssEmail"></span></td>
-                  <td class="hide"><span id="ssEmailBox"><input type="checkbox" id="SSemail" name="emailCheckbox" value="ss" class="text-align-center" checked>
-                    <label for="SSemail"></label></span></td>
-  
-                </tr>
-                <tr id="saRow">
-                  <td>Assembly Member</td>
-                  <td><span id="saName"></span></td>
-                  <td><span id="saWebsite"></span></td>
-                  <td><span id="saPhone"></span></td>
-                  <td><span id="saEmail"></span></td>
-                  <td class="hide"><span id="saEmailBox"><input type="checkbox" id="SAemail" name="emailCheckbox" value="sa" class="text-align-center" checked>
-                    <label for="SAemail"></label></span></td>
-                </tr>
-              </tbody>
-            </table>
-  
-            <h2 class="fs-md">Congress</h2>
-            <table id="congressTable" class="table table-striped mb-4">
-              <thead class="thead-light">
-                <tr>
-                  <th>Office</th>
-                  <th>Name</th>
-                  <th>Website</th>
-                  <th>Office phone number</th>
-                  <th>Email address</th>
-                  <th class="hide">Email them?</th>
-                </tr>
-              </thead>
-              <tbody id="congressTableBody">
-                <tr id="sen1Row">
-                  <td>Senator</td>
-                  <td><span id="sen1Name"></span></td>
-                  <td><span id="sen1Website"></span></td>
-                  <td><span id="sen1Phone"></span></td>
-                  <td><span id="sen1Email"></span></td>
-                  <td class="hide"><span id="sen1EmailBox"><input type="checkbox" id="sen1email" name="emailCheckbox" class="text-align-center" disabled>
-                    <label for="sen1email"></label></span></td>
-  
-                </tr>
-                <tr id="sen2Row">
-                  <td>Senator</td>
-                  <td><span id="sen2Name"></span></td>
-                  <td><span id="sen2Website"></span></td>
-                  <td><span id="sen2Phone"></span></td>
-                  <td><span id="sen2Email"></span></td>
-                  <td class="hide"><span id="sen2EmailBox"><input type="checkbox" id="sen2email" name="emailCheckbox" class="text-align-center" disabled>
-                    <label for="sen2email"></label></span></td>
-                </tr>
-  
-                <tr id="sen2Row">
-                  <td>Representative</td>
-                  <td><span id="repName"></span></td>
-                  <td><span id="repWebsite"></span></td>
-                  <td><span id="repPhone"></span></td>
-                  <td><span id="repEmail"></span></td>
-                  <td class="hide"><span id="repEmailBox"><input type="checkbox" id="repemail" name="emailCheckbox" class="text-align-center" disabled>
-                    <label for="repmail"></label></span></td>
-                </tr>
-              </tbody>
-            </table>
+          <div class="mt-2 asidebox">
+          <a href="https://www.mygovnyc.org/">Get a full list of all your elected officials from Who Reps Me? NYC</a>.
           </div>
-
-
-
         </div>
       </div>
 
-    <div class="row my-4 hide" id="contactContainer" data-pagefind-ignore="all">
-      <div class="col-5 ml-auto">
-        <h3 id="tips"><i class="fas fa-envelope-open-text mr-1"></i>Email tips</h3>
-        <p>Here are some tips for writing an effective email, or script for a phone call.</p>
+
+    <div class="row my-2 hide" id="contactContainer" data-pagefind-ignore="all">
+      <div class="col-12">
+        <h2 class="h4">Then, write them an email</h2>
+        <h3 class="h5" id="tips"><i class="fas fa-envelope-open-text mr-1"></i>Email tips</h3>
+        <p>Elected officials serve the people - and want to know how their constituents feel. Here are some tips for writing an effective email, or script for a phone call.</p>
         <p><strong>Identify yourself as a constituent:</strong> tell them where you live and that they are your elected representative. For example: <em>"I live on Hunts Point Ave in the Bronx, in your district."</em></p>
         <p><strong>State your concerns.</strong> For example: <em>"Our neighborhood's rates of childhood asthma are among the highest in the city."</em></p>
 
@@ -264,20 +81,22 @@
 
         <p><strong>Make a request:</strong> You can ask them where they stand on the issue, what they're doing to improve it, or what services are available to help their constituents.</p>
 
-
       </div>
 
-      <div class="col-md-5 mr-auto pt-3">
-        <div class="p-3 my-2 grey-callout">
-          <p><i class="fas fa-vote-yea mr-1"></i>You can contact elected officials whether or not you are registered to vote. If you're not: <br>
-            <a class="btn btn-sm btn-block btn-outline-primary" href="https://voterreg.dmv.ny.gov/motorvoter/" target="_blank" rel="noreferrer noopener"><i class="fas fa-external-link-alt mr-1"></i>Register to vote</a></p>
+        <div class="col-md-6">
+          <div class="p-3 my-2 asidebox">
+            <p><i class="fas fa-vote-yea mr-1"></i>You can contact elected officials whether or not you are registered to vote. If you're not, 
+              <a class="" href="https://voterreg.dmv.ny.gov/motorvoter/" target="_blank" rel="noreferrer noopener"><i class="fas fa-external-link-alt mr-1"></i>register to vote here</a>.</p>
+          </div>
+
         </div>
 
-        <div class="p-3 my-2 grey-callout">
-        <p><i class="fas fa-phone-square mr-1"></i><em>We can't find email addresses for some elected officials, but you can always call their offices to share your concerns, and use your email as a script when you speak to a staffer.</em></p>
-        </div>
+        <div class="col-md-6">
+          <div class="p-3 my-2 asidebox">
+            <p><i class="fas fa-phone-square mr-1"></i><em>Some officials don't have email addresses, but you can always call their offices and use your email as a script.</em></p>
+            </div>
 
-      </div>
+        </div>
     </div>
 
     <style>
@@ -316,29 +135,6 @@
 <script src="https://maps.nyc.gov/nyc-lib/v1.2.79/js/nyc-ol-lib.js"></script>
 
 <script>
-// ********** INITIAL: ********** //
-
-// Initialize variables
-var councilTable = [];
-var district;
-var yourDistrict;
-var cbTable = [];
-var cbInfo = [];
-var yourCB;
-var districtInfo;
-var lastname;
-var setLoc;
-var peopleToEmail = [];
-var rowCM;
-var apiData = {};
-var rootRequest = 'https://content-civicinfo.googleapis.com/civicinfo/v2/representatives?key=AIzaSyBEi5U-9-QQevrhUxhmGDEg4CvvbtpLehU&address='
-var boroPres = {};
-var publicAdvocate = {};
-var stateReps = {}
-var congressReps = {}
-
-
-
 
 // ------------------------------------------------------- // 
 // ********** Load map and ingest initial data: ********** //
@@ -363,22 +159,7 @@ function drawMap() {
 
 }
 
-
-
-function loadLocalData() {
-    // Loads  City Council list
-    d3.csv({{ relURL "take-action/council.csv" }}).then(function(data) {
-      councilTable = data;
-    });
-
-    // Loads Community Board list
-    d3.csv({{ relURL "take-action/communityBoardContacts.csv" }}).then(function(data) {
-      cbTable = data
-    })
-}
-
 drawMap()
-loadLocalData()
 
 
 // Add event listener on entry form
@@ -392,7 +173,21 @@ async function getDataNew() {
   console.log('*** Getting data:')
   waitForGlobal("map.location.name", function() {
     console.log("map.location [post]", map.location);
+
+    // Get data
     getDataFor(map.location)
+
+    // Next, set up reset
+    document.getElementById('map-search').disabled = true
+    let button = document.querySelector('#searchHolder button');
+
+    // Turn search button into Start Over button
+    if (button) {
+        button.innerHTML = 'Start over'
+        button.onclick = function() {
+          location.reload(); // Reload the page
+        };
+      }
   })
 }
 
@@ -401,6 +196,11 @@ function getDataFor(x) {
 
   let loc   = map.location
   let data  = map.location.data
+
+  // First, un-hide elements
+  document.getElementById('outputRow').classList.remove('hide')
+  document.getElementById('contactContainer').classList.remove('hide')
+
 
   // Passing in the name (must match LWV API), the district, and the LWV Api url string. And, order.
   retrieveAPIData('Mayor',null,null);
@@ -436,7 +236,7 @@ async function retrieveAPIData(x,y,z) {
 
         console.log('Data for ' + x)
         console.log(data); // Log the data to the console
-        printData(data)    // Send to print function 
+        printData(data,x)    // Send to print function 
 
     } catch (error) {
         console.error("Error fetching data:", error);
@@ -451,189 +251,131 @@ function removeLeadingZero(str) {
   return str;
 }
 
-function printData(x) {
-  console.log('*** printing data')
+function printData(data, office) {
+  console.log('*** printing data');
 
-  // create table row
+  let sort;
+  if (office.includes('US ')) {
+    sort = 10;
+  } else if (office.includes('State')) {
+    sort = 9;
+  } else if (office.includes('Borough')) {
+    sort = 6;
+  } else if (office.includes('NYC')) {
+    sort = 3
+  } else if (office.includes('Mayor')) {
+    sort = 1
+  }
+  
+  {
+    sort = 1;
+  }
 
-  // get elements from x, data passed in, and populate row
-
-  // add row to table
-
-}
-
-
-
-
-async function getData() {
-
-  console.log("*** getData for:");
-
-  document.getElementById('startOverHolder').innerHTML = `<button class="btn btn-block btn-sm btn-outline-info" onclick="startOver()">Start over</button>`
-  document.getElementById('repRow').classList.remove('hide')
-  document.getElementById('officials').scrollIntoView({behavior: "smooth", block: "start"})
-
-  // on a timeout, gets council data and then passes location in to the Civic Info API
-  // wait for map.location.name to exist
-
-  // console.log("map.location.name [pre]", map.location.name);
-
-  waitForGlobal("map.location.name", function() {
-
-    setLoc = map.location.name
-
-    console.log("map.location [post]", map.location);
-    console.log("map.location.name [post]", setLoc);
-
-    yourDistrict = map.location.data.cityCouncilDistrict
-    yourCB = map.location.data.communityDistrict
-
-
-    // ***** GET DATA FROM API 
-    // getFromAPI(setLoc) // Google Civic API shutting down - need to replace this.
-
-
-    // ***** GET AND PRINT DATA FROM LOCAL DATA SOURCES (city council, community boards)
-    for (let i = 0; i < councilTable.length; i ++) {
-      if (Number(councilTable[i].District) === Number(yourDistrict)) {
-        districtInfo = councilTable[i]
-      } else {}
-    }
-
-    console.log("*** Printing data to page for Council Members");
-
-    // send CM info to page (static table)
-    document.getElementById('cmName').innerHTML = districtInfo.CouncilMember
-    document.getElementById('cmWebsite').innerHTML = `<a href="https://council.nyc.gov/district-${districtInfo.District}">Website</a>`
-    document.getElementById('cmPhone').innerHTML = 'n/a'
-    document.getElementById('cmEmail').innerHTML = `<a href="mailto:${districtInfo.Email}">${districtInfo.Email}</a>`
-
-    // get info from cbTable
-    for (let i = 0; i < cbTable.length; i ++) {
-      if (Number(cbTable[i].bbc) === Number(yourCB)) {
-        cbInfo = cbTable[i]
-      } else {}
-    }
-
-    console.log("*** Printing data to page for Community Boards");
-
-    // send CB info to page
-    document.getElementById('cbName').innerHTML = cbInfo.Borough + " CB" + cbInfo.CB
-    document.getElementById('cbWebsite').innerHTML =  `<a href="${cbInfo.Website}">Website</a>`
-    document.getElementById('cbPhone').innerHTML = cbInfo.Phone
-    document.getElementById('cbEmail').innerHTML = `<a href="mailto:${cbInfo.Email}">${cbInfo.Email}</a>`
-
-    var recipient = {};
-    recipient.name = districtInfo.CouncilMember
-    recipient.area = 'District ' + districtInfo.District
-    recipient.email = `<a href="mailto:${districtInfo.Email}">${districtInfo.Email}</a>`
-    peopleToEmail.push(recipient)
-
-  });
-}
-
-
-
-
-// ********** SECOND FUNCTION passes location into API to get data: ********** //
-
-function getFromAPI(address) {
-  // get Boro President
-  fetch(rootRequest+address+'&levels=administrativeArea2&roles=headofGovernment')
-    .then (res => res.json())
-    .then(data => {
-      boroPres = data
-      // console.log("boroPres", boroPres);
-      printInfoFromApi('bp', boroPres.officials[0])
-    })
-
-  // get Public Advocate
-  fetch(rootRequest+address+'&levels=locality&roles=governmentOfficer')
-  .then (res => res.json())
-  .then(data => {
-    publicAdvocate = data
-    // console.log("publicAdvocate", publicAdvocate);
-    printInfoFromApi('pa', publicAdvocate.officials[1])
-
-  })
-
-  // get state assemblymember and state senator.
-  fetch(rootRequest+address+'&levels=administrativeArea1&roles=legislatorUpperBody&roles=legislatorLowerBody')
-  .then (res => res.json())
-  .then(data => {
-    stateReps = data;
-    // console.log("stateReps", stateReps);
-    printInfoFromApi('ss', stateReps.officials[0]);
-    printInfoFromApi('sa', stateReps.officials[1]);
-  })
-
-  // get congresspeople
-  fetch(rootRequest+address+'&levels=country&roles=legislatorUpperBody&roles=legislatorLowerBody')
-  .then (res => res.json())
-  .then(data => {
-    congressReps = data;
-    // console.log("congressReps", congressReps);
-    printInfoFromApi('sen1',congressReps.officials[0])
-    printInfoFromApi('sen2',congressReps.officials[1])
-    printInfoFromApi('rep',congressReps.officials[2])
-  })
-
-
-  // reveal Email Content
-  document.getElementById('contactContainer').classList.remove('hide')
-  document.getElementById('register').classList.remove('hide')
-
-
-}
-
-
-// print info from API calls into table
-function printInfoFromApi(prefix, info) {
-
-  // console.log("prefix", prefix);
-  // console.log("info", info);
-
-  document.getElementById(prefix+"Name").innerHTML = DOMPurify.sanitize(info.name)
-  document.getElementById(prefix+"Website").innerHTML = DOMPurify.sanitize(`<a href="${info.urls[0]}">Website</a>`)
-  document.getElementById(prefix+"Phone").innerHTML = DOMPurify.sanitize(info.phones[0])
-
-  if (info.emails) {
-    document.getElementById(prefix+"Email").innerHTML = DOMPurify.sanitize(`<a href="mailto:${info.emails[0]}">${info.emails[0]}</a>`)
+  if (office === 'Borough President') {
+    var newName = true
   } else {
-    document.getElementById(prefix+"Email").innerHTML = DOMPurify.sanitize(`<em>No email address found</em>`)
+    newName = false
+  }
+
+  let tableBody = document.getElementById('newTableBody');
+
+  for (let i = 0; i < data.length; i++) {
+    // Create table row
+    let row = document.createElement('tr');
+
+    let cell_office = document.createElement('td');
+
+      if (office.includes('Council')) {
+        cell_office.innerHTML = office + ' District ' + data[i].district
+      } else if (office.includes('Community')) {
+        cell_office.innerHTML = office + ' ' + data[i].district
+      } else if (office.includes('Borough')) {
+        cell_office.innerHTML = data[i].districttitle
+      } else {
+        cell_office.innerHTML = office
+      }
+
+
+    let cell_name = document.createElement('td');
+    let url = data[i].website ? data[i].website : '';
+    let name = data[i].firstname ? data[i].firstname + ' ' + data[i].lastname : 'Chairperson ' + data[i].chairperso;
+    cell_name.innerHTML = `<a href="${url}">${name}</a>`;
+
+    let cell_phone = document.createElement('td');
+    let phone = data[i].phone_capital ? data[i].phone_capital + '<br>' + data[i].phone_dist1 : data[i].phone;
+    cell_phone.innerHTML = office === 'Mayor' ? 'Not available' : phone; 
+
+    let cell_email = document.createElement('td');
+    let email = data[i].email;
+    let emailAddress = isValidEmail(email) ? email : '<i class="fas fa-external-link-alt mr-1" aria-hidden="true"></i>Contact page';
+    cell_email.innerHTML = `<strong><a href="mailto:${email}">${emailAddress}</a></strong>`;
+
+    // Append cells to row
+    row.appendChild(cell_office);
+    row.appendChild(cell_name);
+    row.appendChild(cell_phone);
+    row.appendChild(cell_email);
+
+    // Insert row at the correct sorted position
+    let inserted = false;
+    let rows = tableBody.getElementsByTagName("tr");
+    
+    for (let j = 0; j < rows.length; j++) {
+      let existingSort = rows[j].getAttribute("data-sort"); // Get existing sort value
+      if (existingSort && parseInt(existingSort) > sort) {
+        tableBody.insertBefore(row, rows[j]); // Insert before the first row with a higher sort value
+        inserted = true;
+        break;
+      }
+    }
+
+    if (!inserted) {
+      tableBody.appendChild(row); // Append if no row had a higher sort value
+    }
+
+    row.setAttribute("data-sort", sort); // Store the sort value for future comparisons
   }
 }
 
 // MISC SUPPORTIVE FUNCTIONS
 
 // window.checkNested = function(obj, args) {
-  const checkNested = function(obj, args) {
-    for (var i = 0; i < args.length; i++) {
-      if (!obj || !obj.hasOwnProperty(args[i])) {
-        return false;
-      }
-      obj = obj[args[i]];
+const checkNested = function(obj, args) {
+  for (var i = 0; i < args.length; i++) {
+    if (!obj || !obj.hasOwnProperty(args[i])) {
+      return false;
     }
-    return true;
+    obj = obj[args[i]];
   }
+  return true;
+}
   
-  // window.waitForGlobal = function(keyPath, callback) {
-  const waitForGlobal = function(keyPath, callback) {
-    var args = keyPath.split('.');
-    // if (window.checkNested(window, args)) {
-    if (checkNested(window, args)) {
-      callback();
-    } else {
-      setTimeout(function() {
-        // window.waitForGlobal(keyPath, callback);
-        waitForGlobal(keyPath, callback);
-      }, 100);
-    }
+// window.waitForGlobal = function(keyPath, callback) {
+const waitForGlobal = function(keyPath, callback) {
+  var args = keyPath.split('.');
+  // if (window.checkNested(window, args)) {
+  if (checkNested(window, args)) {
+    callback();
+  } else {
+    setTimeout(function() {
+      // window.waitForGlobal(keyPath, callback);
+      waitForGlobal(keyPath, callback);
+    }, 100);
   }
+}
   
-  function startOver() {
-    location.reload()
-  }
+function startOver() {
+  location.reload()
+}
+
+function isValidEmail(email) {
+  return (email.match(/@/g) || []).length === 1;
+}
+
+function isValidPhoneNumber(phone) {
+  const phoneRegex = /^\d{3}[- ]\d{3}[- ]\d{4}$/;
+  return phoneRegex.test(phone);
+}
 
 </script>
 
