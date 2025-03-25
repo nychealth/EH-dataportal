@@ -307,7 +307,7 @@ function printData(data, office) {
     let cell_name = document.createElement('td');
     let url = data[i].website ? data[i].website : '';
     let name = data[i].firstname ? data[i].firstname + ' ' + data[i].lastname : 'Chairperson ' + data[i].chairperso;
-    cell_name.innerHTML = `<a href="${url}">${name}</a>`;
+    cell_name.innerHTML = `<a href="${url}" target="_blank">${name}</a>`;
 
     let cell_phone = document.createElement('td');
     let phone = data[i].phone_capital ? data[i].phone_capital + '<br>' + data[i].phone_dist1 : data[i].phone;
@@ -318,7 +318,7 @@ function printData(data, office) {
       if (isValidEmail(email) === true) {
         cell_email.innerHTML =  `<strong><a href="mailto:${email}">${email}</a></strong>`
       } else {
-        cell_email.innerHTML =  `<strong><a href="${email}"><i class="fas fa-external-link-alt mr-1" aria-hidden="true"></i>Contact page</a></strong>`
+        cell_email.innerHTML =  `<strong><a href="${email}" target="_blank"><i class="fas fa-external-link-alt mr-1" aria-hidden="true"></i>Contact page</a></strong>`
       }
 
     // Append cells to row
