@@ -12,7 +12,7 @@ Ths site is an ongoing work in progress. We are always interested in people will
 Additional documentation files for internal use are:
 - [Development](readme-development.md)
 - [Components](readme-components.md)
-- Content management (tk)
+- [Content management](readme-content.md)
 
 ---
 
