@@ -161,9 +161,19 @@ function drawMap() {
 
 drawMap()
 
-
 // Add event listener on entry form
 document.getElementById('map-search').addEventListener("change", getDataNew)
+
+// Check hash for an existing address
+var hash = window.location.hash
+if (hash.length > 5) {
+  console.log('we have a hash, folks:')
+  hash = hash.replace(/%20/g, " ");
+  hash = hash.substring(1);
+  console.log(hash)
+  document.getElementById('map-search').value = hash
+  setTimeout(getDataNew, 1000)
+} else {}
 
 // ----------------------------------------------------------------------  //
 // ********** Gets data when event listener detects map change: ********** //
@@ -199,10 +209,12 @@ function getDataFor(x) {
   console.log('**** Getting data for:')
   console.log(map.location.name)
 
+  // add hash
+  window.location.hash = map.location.name
+
   // add location to link to mygovnyc
   var linkURL = `https://www.mygovnyc.org/?addr=${map.location.name}`
   document.getElementById('link').setAttribute("href",linkURL)
-
 
   let loc   = map.location
   let data  = map.location.data
