@@ -162,9 +162,15 @@ function drawMap() {
 drawMap()
 
 // Add event listener on entry form
-document.getElementById('map-search').addEventListener("change", getDataNew)
+document.getElementById('map-search').addEventListener("change", getData)
 
 // Check hash for an existing address
+
+
+// ----------------------------------------------------------------------  //
+// ********** Runs data fetching if there's a url hash: ****************** //
+// ----------------------------------------------------------------------  //
+/*
 var hash = window.location.hash
 if (hash.length > 5) {
   console.log('we have a hash, folks:')
@@ -172,14 +178,24 @@ if (hash.length > 5) {
   hash = hash.substring(1);
   console.log(hash)
   document.getElementById('map-search').value = hash
-  setTimeout(getDataNew, 1000)
+  setTimeout(getDataFromHash, 1000)
 } else {}
+
+function getDataFromHash() {
+  console.log('enter click')
+  document.getElementById('map-search').dispatchEvent(enterEvent)
+  let button = document.querySelector('#searchHolder button');
+
+  button.dispatchEvent(enterEvent)
+  // getData()
+}
+*/
 
 // ----------------------------------------------------------------------  //
 // ********** Gets data when event listener detects map change: ********** //
 // ----------------------------------------------------------------------  //
 
-async function getDataNew() {
+async function getData() {
   console.log('*** Getting data:')
   waitForGlobal("map.location.name", function() {
     console.log("map.location [post]", map.location);
@@ -222,7 +238,6 @@ function getDataFor(x) {
   // First, un-hide elements
   document.getElementById('outputRow').classList.remove('hide')
   document.getElementById('contactContainer').classList.remove('hide')
-
 
   // Passing in the name (must match LWV API), the district, and the LWV Api url string. And, order.
   retrieveAPIData('Mayor',null,null);
@@ -399,6 +414,15 @@ function isValidPhoneNumber(phone) {
   const phoneRegex = /^\d{3}[- ]\d{3}[- ]\d{4}$/;
   return phoneRegex.test(phone);
 }
+
+// Create a new keyboard event
+const enterEvent = new KeyboardEvent('keydown', {
+  key: 'Enter',
+  keyCode: 13, // Deprecated but still sometimes needed
+  which: 13,   // Deprecated but still sometimes needed
+  code: 'Enter',
+  bubbles: true
+});
 
 </script>
 
