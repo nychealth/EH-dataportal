@@ -61,7 +61,7 @@
           </table>
 
           <div class="mt-2 asidebox">
-          <a href="https://www.mygovnyc.org/">Get a full list of all your elected officials from Who Reps Me? NYC</a>.
+          <a href="https://www.mygovnyc.org/" id="link">Get a full list of all your elected officials from Who Reps Me? NYC</a>.
           </div>
         </div>
       </div>
@@ -196,7 +196,13 @@ async function getDataNew() {
 // ----------------------------------------------------------------------  //
 
 function getDataFor(x) {
+  console.log('**** Getting data for:')
   console.log(map.location.name)
+
+  // add location to link to mygovnyc
+  var linkURL = `https://www.mygovnyc.org/?addr=${map.location.name}`
+  document.getElementById('link').setAttribute("href",linkURL)
+
 
   let loc   = map.location
   let data  = map.location.data
@@ -238,8 +244,8 @@ async function retrieveAPIData(x,y,z) {
         
         const data = await response.json();
 
-        console.log('Data for ' + x)
-        console.log(data); // Log the data to the console
+        // console.log('Data for ' + x)
+        // console.log(data); // Log the data to the console
         printData(data,x)    // Send to print function 
 
     } catch (error) {
