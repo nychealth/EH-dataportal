@@ -101,6 +101,8 @@ const renderTrendChart = (
     let compMeasurementType = [... new Set(metadata.array("MeasurementType"))];
     let compDisplayTypes    = [... new Set(metadata.array("DisplayType"))].filter(dt => dt != "");
     let compNoCompare       = [... new Set(metadata.array("TrendNoCompare"))].filter(nc => nc != null)[0]
+    let compThresholds      = [... new Set(metadata.array("TrendThreshold"))]
+
 
     // console.log('compMeasurementType', compMeasurementType)
     // console.log('compDisplayTypes', compDisplayTypes)
@@ -303,6 +305,24 @@ const renderTrendChart = (
     let compTooltips = compGroupLabel.map(x => {return {"field": x, "type": "nominal"}})
 
     // console.log("compTooltips", compTooltips);
+
+
+    // ----------------------------------------------------------------------- //
+    // create Threshold line
+    // ----------------------------------------------------------------------- //
+    
+    // console.log(compThresholds)
+
+    let dedupedThresholds = compThresholds.flat().filter(item => item !== null);
+
+    // Step 2: Deduplicate the array of objects
+    let uniqueThresholds = [
+      ...new Map(dedupedThresholds.map(item => [JSON.stringify(item), item])).values()
+    ];
+
+    console.log(uniqueThresholds);
+
+    // loop through uniqueThresholds and create line json
 
 
     // ----------------------------------------------------------------------- //
@@ -750,6 +770,9 @@ const renderTrendChart = (
     // ----------------------------------------------------------------------- //
     // render chart
     // ----------------------------------------------------------------------- //
+
+    console.log('Vega-Lite chart spec:')
+    console.log(compspec2)
 
     let vegaSpec = vegaLite.compile(compspec2).spec // compile to Vega to set axis layers as non-interactive
     // console.log(compspec2)
