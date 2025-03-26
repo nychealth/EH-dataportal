@@ -143,7 +143,8 @@ const createComparisonData = async (comps) => {
             Sources:         d => d.Measures.Sources,
             how_calculated:  d => d.Measures.how_calculated,
             DisplayType:     d => d.Measures.DisplayType,
-            TrendNoCompare:  d => d.Measures.TrendNoCompare
+            TrendNoCompare:  d => d.Measures.TrendNoCompare,
+            TrendThreshold:  d => d.Measures.TrendThreshold
         })
         .derive({IndicatorMeasure: d => d.IndicatorLabel + ": " + d.MeasurementType})
         .select(aq.not("Measures"))

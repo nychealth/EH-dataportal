@@ -12,8 +12,8 @@ const renderTrendChart = (
 
     document.getElementById('viewDescription').innerHTML = 'Trends are shown by boro for stable rates.'
 
-    // console.log("metadata [renderTrendChart]");
-    // metadata.print()
+    console.log("metadata [renderTrendChart]");
+    metadata.print()
 
     
     // console.log("data [renderTrendChart]");
