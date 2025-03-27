@@ -327,7 +327,7 @@ const renderTrendChart = (
 
     // loop through unique Thresholds
     for (let i = 0; i < uniqueThresholds.length; i ++ ) {
-      let threshold = [{
+      let thresholdLine = {
               "description": "line layer 1",
               "mark": "line",
               "encoding": {
@@ -337,7 +337,9 @@ const renderTrendChart = (
                 "size": {"value": 2},
                 "strokeDash": {"value": [2, 2]}
               }
-            },
+            }
+
+        let thresholdLabel =
             {
               "description": "label layer 1",
               "mark": {
@@ -353,9 +355,10 @@ const renderTrendChart = (
                 "y": {"datum": uniqueThresholds[i].yValue, "type": "quantitative"},
                 "text": {"value": uniqueThresholds[i].title}
               }
-           }]
+           }
 
-           thresholdSpec.push(threshold)
+        thresholdSpec.push(thresholdLine)
+        thresholdSpec.push(thresholdLabel)
         }
 
       console.log(thresholdSpec)
