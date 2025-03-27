@@ -320,7 +320,52 @@ const renderTrendChart = (
       ...new Map(dedupedThresholds.map(item => [JSON.stringify(item), item])).values()
     ];
 
+    console.log('unique thresholds')
     console.log(uniqueThresholds);
+
+    var thresholdSpec = []
+
+    // loop through unique Thresholds
+    for (let i = 0; i < uniqueThresholds.length; i ++ ) {
+      let threshold = [{
+              "description": "line layer 1",
+              "mark": "line",
+              "encoding": {
+                "x": {"field": "TimePeriod", "type": "nominal"},
+                "y": {"datum": uniqueThresholds[i].yValue},
+                "color": {"value": "#545454"},
+                "size": {"value": 2},
+                "strokeDash": {"value": [2, 2]}
+              }
+            },
+            {
+              "description": "label layer 1",
+              "mark": {
+                "type": "text",
+                "align": "center",
+                "baseline": "middle",
+                "color": "#545454",
+                "dy": -10,
+                "dx": -45
+              },
+              "encoding": {
+                "x": {"aggregate": "max", "field": "TimePeriod", "type": "nominal"},
+                "y": {"datum": uniqueThresholds[i].yValue, "type": "quantitative"},
+                "text": {"value": uniqueThresholds[i].title}
+              }
+           }]
+
+           thresholdSpec.push(threshold)
+        }
+
+      console.log(thresholdSpec)
+
+    // 
+
+
+
+
+  
 
     // loop through uniqueThresholds and create line json
 
@@ -558,7 +603,7 @@ const renderTrendChart = (
               },
               "mark": {
                 "type": "text",
-                "align": "right",
+                "align": "left",
                 "dx": -6,
                 "dy": -14,
                 "fontSize": 14,
@@ -567,34 +612,7 @@ const renderTrendChart = (
             }
           ]
         },
-        {
-          "description": "line layer 1",
-          "mark": "line",
-          "encoding": {
-            "x": {"field": "TimePeriod", "type": "nominal"},
-            "y": {"datum": 50},
-            "color": {"value": "#545454"},
-            "size": {"value": 2},
-            "strokeDash": {"value": [2, 2]}
-          }
-        },
         ...noCompare,
-        {
-          "description": "label layer 1",
-          "mark": {
-            "type": "text",
-            "align": "center",
-            "baseline": "middle",
-            "color": "#545454",
-            "dy": -10,
-            "dx": -45
-          },
-          "encoding": {
-            "x": {"aggregate": "max", "field": "TimePeriod", "type": "nominal"},
-            "y": {"datum": 50, "type": "quantitative"},
-            "text": {"value": "Bathing standard"}
-          }
-        },
         {
           "description": "Manual axis ticks",
           "mark": {"type": "tick"},
