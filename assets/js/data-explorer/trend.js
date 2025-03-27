@@ -523,7 +523,10 @@ const renderTrendChart = (
           "type": "temporal",
           "timeUnit": "utcyear",
           "title": null,
-          "axis": {"ticks": false,"labels": false}
+          "axis": {"ticks": true,"labels": false},
+          "scale": {
+            "padding": 20 
+          }
         }
       },
       "layer": [
@@ -620,42 +623,19 @@ const renderTrendChart = (
         ...noCompare,
         ...thresholdSpec,
         {
-          "description": "Manual axis ticks",
-          "mark": {"type": "tick"},
+          "description": "Manual axis labels",
+          "mark": {"type": "text", "fontWeight": 100, "fontSize": 10},
           "encoding": {
             "x": {
               "field": "end_period",
-              "type": "temporal",
-              "timeUnit": "utcyear",
-              "axis": {"labels": false, "grid": false, "ticks": true}
-            },
-            "y": {"value": 500},
-            "color": {"value": "black"}
-          }
-        },
-        {
-          "description": "Manual axis labels",
-          "mark": {"type": "text", "fontWeight": 100, "fontSize": 10},
-          "transform": [
-            {
-              "aggregate": [
-                {"op": "min", "field": "end_period", "as": "min_end_period"}
-              ],
-              "groupby": ["TimePeriodSplit"]
-            }
-          ],
-          "encoding": {
-            "x": {
-              "field": "min_end_period",
               "type": "temporal",
               "timeUnit": "utcyear",
               "axis": {"labels": false, "grid": false, "ticks": false}
             },
             "y": {"value": 515},
             "text": {
-              "field": "min_end_period",
-              "type": "temporal",
-              "timeUnit": "utcyear"
+              "field": "TimePeriod",
+              "type": "nominal"
             },
             "color": {"value": "black"}
           }
@@ -864,25 +844,8 @@ const renderTrendChart = (
 
     console.log('Vega-Lite chart spec:')
     console.log(compspec2)
-
-    let vegaSpec = vegaLite.compile(compspec2).spec // compile to Vega to set axis layers as non-interactive
-    // console.log(compspec2)
-    // console.log(vegaSpec)
-    vegaSpec.marks[3].interactive = false;          // set text layers to non-interactive
-    vegaSpec.marks[4].interactive = false;          // set axis layers to non-interactive
-    vegaSpec.marks[5].interactive = false;
-
-    vegaSpec.marks[6] ? vegaSpec.marks[6].interactive = false : {}; // if noCompare, set that layer to interactive: false
-
-    if (vegaSpec.marks[6]) {
-      // console.log('no compare layer exists')
-    } else {
-      // console.log('no no compare layer')
-    }
-
-    // console.log(vegaSpec)
     
-    vegaEmbed("#trend", vegaSpec,{
+    vegaEmbed("#trend", compspec2,{
       actions: {
         export: { png: false, svg: false },
         source: false,  

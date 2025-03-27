@@ -58,7 +58,7 @@ function changeTrendSpec() {
     let columns;
     wrapLegend === true ? columns = 3 : columns = 6;
 
-    printSpec.encoding.color.condition.legend = {
+    printSpec.layer[1].encoding.color.legend = {
         "orient": "bottom",
         "title": null,
         "columns": columns
