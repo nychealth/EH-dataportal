@@ -346,14 +346,14 @@ const renderTrendChart = (
               "description": `label layer ${value}`,
               "mark": {
                 "type": "text",
-                "align": "center",
+                "align": "right",
                 "baseline": "middle",
                 "color": "#545454",
                 "dy": -10,
                 "dx": -45
               },
               "encoding": {
-                "x": {"aggregate": "max", "field": "TimePeriod", "type": "nominal"},
+                "x": {"aggregate": "max", "field": "end_period", "type": "nominal"},
                 "y": {"datum": uniqueThresholds[i].yValue, "type": "quantitative"},
                 "text": {"value": uniqueThresholds[i].title}
               }
@@ -486,7 +486,12 @@ const renderTrendChart = (
         "text": {"color": "#1696d2", "fontSize": 11, "fontWeight": 400, "size": 11}
       },
       "data": {
-        "values": data.objects()
+        "values": data.objects(),
+        "format": {
+          "parse": {
+            "TimePeriod": "string"
+          }
+        }
     },
       "width": "container",
       "height": 500,
