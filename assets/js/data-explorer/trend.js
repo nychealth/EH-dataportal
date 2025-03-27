@@ -327,8 +327,10 @@ const renderTrendChart = (
 
     // loop through unique Thresholds
     for (let i = 0; i < uniqueThresholds.length; i ++ ) {
+      var value = i + 1
+
       let thresholdLine = {
-              "description": "line layer 1",
+              "description": `line layer ${value}`,
               "mark": "line",
               "encoding": {
                 "x": {"field": "TimePeriod", "type": "nominal"},
@@ -341,7 +343,7 @@ const renderTrendChart = (
 
         let thresholdLabel =
             {
-              "description": "label layer 1",
+              "description": `label layer ${value}`,
               "mark": {
                 "type": "text",
                 "align": "center",
@@ -616,6 +618,7 @@ const renderTrendChart = (
           ]
         },
         ...noCompare,
+        ...thresholdSpec,
         {
           "description": "Manual axis ticks",
           "mark": {"type": "tick"},
