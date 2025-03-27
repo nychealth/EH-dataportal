@@ -526,7 +526,6 @@ const renderTrendChart = (
         "x": {
           "field": "end_period",
           "type": "temporal",
-          "timeUnit": "utcyear",
           "title": null,
           "axis": {"ticks": true,"labels": false},
           "scale": {
@@ -603,7 +602,6 @@ const renderTrendChart = (
                 }
               ],
               "encoding": {
-                "x": {"field": "end_period"},
                 "y": {"field": "Value['Value']"},
                 "text": {
                   "condition": {
@@ -634,12 +632,11 @@ const renderTrendChart = (
             "x": {
               "field": "end_period",
               "type": "temporal",
-              "timeUnit": "utcyear",
               "axis": {"labels": false, "grid": false, "ticks": false}
             },
             "y": {"value": 515},
             "text": {
-              "field": "TimePeriod",
+              "field": xAxisLabelField,
               "type": "nominal"
             },
             "color": {"value": "black"}
