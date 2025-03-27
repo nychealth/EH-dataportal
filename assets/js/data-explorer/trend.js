@@ -407,6 +407,239 @@ const renderTrendChart = (
     // ----------------------------------------------------------------------- //
 
     let compspec2 = {
+      "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+      "config": {
+        "range": {
+          "category": [
+            "#000000ff",
+            "#374c80",
+            "#ff764a",
+            "#bc5090",
+            "#ffa600",
+            "#ef5675"
+          ]
+        },
+        "background": "#FFFFFF",
+        "axisX": {
+          "labelAngle": 0,
+          "labelOverlap": "parity",
+          "labelFontSize": 11,
+          "titleFontSize": 13,
+          "titleFont": "sans-serif",
+          "titlePadding": 10
+        },
+        "axisY": {"labelAngle": 0, "labelFontSize": 11, "tickMinStep": tickMinStep},
+        "legend": {"columns": 3},
+        "view": {"stroke": "transparent"},
+        "line": {"color": "#1696d2", "stroke": "#1696d2", "strokeWidth": 2.5},
+        "point": {"filled": true},
+        "text": {"color": "#1696d2", "fontSize": 11, "fontWeight": 400, "size": 11}
+      },
+      "data": {
+        "values": data.objects()
+    },
+      "width": "container",
+      "height": 500,
+      "title": {
+        "text": plotTitle,
+        "subtitlePadding": 10,
+        "fontWeight": "normal",
+        "anchor": "start",
+        "fontSize": 18,
+        "font": "sans-serif",
+        "baseline": "top",
+        "subtitle": plotSubtitle,
+        "dy": -10,
+        "subtitleFontSize": 13
+      },
+      "transform": [
+        {
+          "calculate": `datum.DisplayValue + ' ${compDisplayTypes}'`, "as": "valueWithDisplay"
+        },
+        {"calculate": "split(datum.TimePeriod, ' ')", "as": "TimePeriodSplit"},
+        {
+          "calculate": "datum.TimePeriodSplit[datum.TimePeriodSplit.length - 1]",
+          "as": "TimePeriodYear"
+        },
+        {"calculate": "year(datum.end_period)", "as": "year_end_period"},
+        {
+          "calculate": "datum.year_end_period % 2 === 0 ? datum.TimePeriodSplit : ''",
+          "as": "fallbackYear"
+        }
+      ],
+      "encoding": {
+        "x": {
+          "field": "end_period",
+          "type": "temporal",
+          "timeUnit": "utcyear",
+          "title": null,
+          "axis": {"ticks": false,"labels": false}
+        }
+      },
+      "layer": [
+        {
+          "description": "Transparent layer to trigger hover",
+          "params": [
+            {
+              "name": "hover",
+              "select": {
+                "type": "point",
+                "fields": [comp_group_col],
+                "on": "pointerover"
+              }
+            }
+          ],
+          "mark": {"type": "line", "stroke": "transparent", "strokeWidth": 15}
+        },
+        {
+          "description": "Encoding layer",
+          "encoding": {
+            "color": {
+              "field": comp_group_col,
+              "type": "nominal",
+              "sort": true,
+              "legend": mobileLegend
+            },
+            "opacity": {"condition": {"param": "hover", "value": 1}, "value": 0.2},
+            "y": {
+              "field": "Value",
+              "type": "quantitative",
+              "title": null,
+              "axis": {"tickCount": 4},
+              "scale": {"domainMin": 0, "nice": true}
+            },
+            "tooltip": [
+              {
+                "title": "Time",
+                "field": "TimePeriod",
+                "type": "nominal"
+              },
+              {"title": "Group", "field": comp_group_col},
+              {"title": comparisonToolTipLabel, "field": "valueWithDisplay"}
+            ]
+          },
+          "layer": [
+            {
+              "description": "Establish line",
+              "mark": {
+                "type": "line",
+                "interpolate": "linear",
+                "point": {
+                  "filled": false,
+                  "fill": "white",
+                  "size": 40,
+                  "strokeWidth": 2.5,
+                  "tooltip": true
+                }
+              }
+            },
+            {
+              "description": "Hover text",
+              "transform": [
+                {
+                  "aggregate": [
+                    {"op": "argmin", "field": "end_period", "as": "Value"},
+                    {"op": "min", "field": "end_period", "as": "end_period"}
+                  ],
+                  "groupby": [comp_group_col]
+                }
+              ],
+              "encoding": {
+                "x": {"field": "end_period"},
+                "y": {"field": "Value['Value']"},
+                "text": {
+                  "condition": {
+                    "param": "hover",
+                    "field": comp_group_col,
+                    "empty": false
+                  },
+                  "value": ""
+                }
+              },
+              "mark": {
+                "type": "text",
+                "align": "right",
+                "dx": -6,
+                "dy": -14,
+                "fontSize": 14,
+                "fontWeight": "bold"
+              }
+            }
+          ]
+        },
+        {
+          "description": "line layer 1",
+          "mark": "line",
+          "encoding": {
+            "x": {"field": "TimePeriod", "type": "nominal"},
+            "y": {"datum": 50},
+            "color": {"value": "#545454"},
+            "size": {"value": 2},
+            "strokeDash": {"value": [2, 2]}
+          }
+        },
+        ...noCompare,
+        {
+          "description": "label layer 1",
+          "mark": {
+            "type": "text",
+            "align": "center",
+            "baseline": "middle",
+            "color": "#545454",
+            "dy": -10,
+            "dx": -45
+          },
+          "encoding": {
+            "x": {"aggregate": "max", "field": "TimePeriod", "type": "nominal"},
+            "y": {"datum": 50, "type": "quantitative"},
+            "text": {"value": "Bathing standard"}
+          }
+        },
+        {
+          "description": "Manual axis ticks",
+          "mark": {"type": "tick"},
+          "encoding": {
+            "x": {
+              "field": "end_period",
+              "type": "temporal",
+              "timeUnit": "utcyear",
+              "axis": {"labels": false, "grid": false, "ticks": true}
+            },
+            "y": {"value": 500},
+            "color": {"value": "black"}
+          }
+        },
+        {
+          "description": "Manual axis labels",
+          "mark": {"type": "text", "fontWeight": 100, "fontSize": 10},
+          "transform": [
+            {
+              "aggregate": [
+                {"op": "min", "field": "end_period", "as": "min_end_period"}
+              ],
+              "groupby": ["TimePeriodSplit"]
+            }
+          ],
+          "encoding": {
+            "x": {
+              "field": "min_end_period",
+              "type": "temporal",
+              "timeUnit": "utcyear",
+              "axis": {"labels": false, "grid": false, "ticks": false}
+            },
+            "y": {"value": 515},
+            "text": {
+              "field": "min_end_period",
+              "type": "temporal",
+              "timeUnit": "utcyear"
+            },
+            "color": {"value": "black"}
+          }
+        }
+      ]
+    };
+
+    let compspec1 = {
         "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
         "config": {
           "range": {
@@ -432,7 +665,7 @@ const renderTrendChart = (
           "axisY": {
             "labelAngle": 0, 
             "labelFontSize": 11, 
-            "tickMinStep": tickMinStep, 
+            "tickMinStep": `${tickMinStep}`, 
             "orient": "left",
             "labelBaseline": "bottom",
             "domain": false, 
@@ -644,7 +877,7 @@ const renderTrendChart = (
     // Send chart data to download
     // ----------------------------------------------------------------------- //
 
-    let dataForDownload = [...compspec.data.values] // create a copy
+    let dataForDownload = [...compspec2.data.values] // create a copy
 
     let downloadTable = aq.from(dataForDownload)
         .derive({Indicator: `'${indicatorName}: ${plotTitle} ${plotSubtitle}'`}) // add indicator name and type column
