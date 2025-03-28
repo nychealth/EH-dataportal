@@ -5,7 +5,7 @@
 // console.log('print vis js running')
 
 // ----------------------------------------------------------------------- //
-// Fire print modal and drawy chart on delay
+// Fire print modal and draw chart on delay
 // ----------------------------------------------------------------------- //
 
 var visWidth;
@@ -55,6 +55,16 @@ function printViz() {
 
 function changeTrendSpec() {
 
+    checkSourceLength()
+
+    var sourceArray = ["Chart: NYC Health Department - Environment and Health Data Portal"]
+
+        if (Array.isArray(vizSource)) {
+          sourceArray.push(...vizSource); // Spread to add each item separately
+      } else if (typeof vizSource === "string") {
+          sourceArray.push(vizSource); // Add string directly
+      }
+
     let columns;
     wrapLegend === true ? columns = 3 : columns = 6;
 
@@ -65,6 +75,7 @@ function changeTrendSpec() {
       }
 
     var sourceLayer = {
+        "description": "layer with source info",
         "mark": {
           "type": "text",
           "fontSize": 11,
@@ -72,13 +83,13 @@ function changeTrendSpec() {
           "align": "left",
           "baseline": "bottom",
           "dx": 5,
-          "dy": 100
+          "dy": 175
         },
         "data": {
             "values": [{}]  // Use an empty object as a dummy value
           },
         "encoding": {
-            "text": {"value": [`Source: ${vizSource}`,"Chart: NYC Health Department - Environment and Health Data Portal"]},
+            "text": {"value": sourceArray},
             "x": {"value": 0},
             "y": {"value": 400},
           "color": {"value": "gray"}
@@ -99,6 +110,16 @@ function changeTrendSpec() {
 // ----------------------------------------------------------------------- //
 
 function changeMapSpec(x) {
+    checkSourceLength()
+
+    var sourceArray = ["Chart: NYC Health Department - Environment and Health Data Portal"]
+
+        if (Array.isArray(vizSource)) {
+          sourceArray.push(...vizSource); // Spread to add each item separately
+      } else if (typeof vizSource === "string") {
+          sourceArray.push(vizSource); // Add string directly
+      }
+
     printSpec.title.text += ` - ${x}`
 
     var sourceLayer =  {
@@ -115,7 +136,7 @@ function changeMapSpec(x) {
             "values": [{}]  // Use an empty object as a dummy value
           },
         "encoding": {
-          "text": {"value": [`Source: ${vizSource}`,"Chart: NYC Health Department - Environment and Health Data Portal"]},
+          "text": {"value": sourceArray},
           "x": {"value": 0},
           "y": {"value": 0},
           "color": {"value": "gray"}
@@ -137,6 +158,18 @@ function changeMapSpec(x) {
 // ----------------------------------------------------------------------- //
 
 function changeLinksSpec() {
+  checkSourceLength()
+
+  var sourceArray = ["Chart: NYC Health Department - Environment and Health Data Portal"]
+
+      if (Array.isArray(vizSource)) {
+        sourceArray.push(...vizSource); // Spread to add each item separately
+    } else if (typeof vizSource === "string") {
+        sourceArray.push(vizSource); // Add string directly
+    }
+
+    sourceArray.push(vizSourceSecond)
+
     var sourceLayer = {
         "mark": {
           "type": "text",
@@ -151,10 +184,7 @@ function changeLinksSpec() {
             "values": [{}]  // Use an empty object as a dummy value
           },
         "encoding": {
-            "text": {"value": [
-                `Sources: ${vizSource},`,
-                `${vizSourceSecond}.`,
-                "Chart: NYC Health Department - Environment and Health Data Portal"]},
+            "text": {"value": sourceArray},
             "x": {"value": 0},
             "y": {"value": 525},
           "color": {"value": "gray"}
@@ -176,6 +206,8 @@ function changeLinksSpec() {
 // ----------------------------------------------------------------------- //
 
 function changeDisparitiesSpec() {
+    checkSourceLength()
+
     var sourceLayer = {
         "mark": {
           "type": "text",
@@ -215,3 +247,42 @@ window.addEventListener('hashchange', function() {
   var chartbtn = document.getElementById('chartSaver')
   currentHash === 'display=summary' ? chartbtn.classList.add('disabled') : chartbtn.classList.remove('disabled')
 });
+
+
+// ----------------------------------------------------------------------- //
+// Text splitter for long source text
+// ----------------------------------------------------------------------- //
+
+
+function checkSourceLength() {
+  console.log('vizSource')
+  console.log(vizSource.length)
+  console.log(vizSource)
+
+  if (vizSource.length > 200) {
+    vizSource = splitTextIntoLines(vizSource,200)
+    console.log('new vizSource array')
+    console.log(vizSource)
+  } else {}
+}
+
+function splitTextIntoLines(text, maxLength) {
+  let words = text.split(" ");
+  let lines = [];
+  let currentLine = "";
+
+  words.forEach(word => {
+      if ((currentLine + word).length > maxLength) {
+          lines.push(currentLine.trim()); // Push the current line
+          currentLine = word + " "; // Start a new line
+      } else {
+          currentLine += word + " ";
+      }
+  });
+
+  if (currentLine.trim()) {
+      lines.push(currentLine.trim()); // Push the last line
+  }
+
+  return lines; // Return an array of split lines
+}
