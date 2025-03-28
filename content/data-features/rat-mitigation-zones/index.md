@@ -23,6 +23,7 @@ related:
   - title: "Data: Mice and rats"
     url: "data-explorer/mice-and-rats/?id=2434#display=summary"
 weight: 2
+blurb:
 ---
 
 Rats can contaminate food, spread disease and reduce our quality of life. Rat Mitigation Zones (RMZ) are areas with high levels of rat activity, where City agencies focus resources to address rats and the conditions that support them.

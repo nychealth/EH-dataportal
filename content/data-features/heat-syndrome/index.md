@@ -34,6 +34,7 @@ related:
   - title: "Heat Vulnerability Index"
     url: "data-features/hvi/"
 weight: 2
+blurb: 
 ---
 
 The weather forecast is the best way to predict heat-related health outcomes.
