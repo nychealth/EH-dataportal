@@ -34,7 +34,7 @@ related:
   - title: "Heat Vulnerability Index"
     url: "data-features/hvi/"
 weight: 2
-blurb: 
+blurb: Data tracking heat-related emergency department visits during hot weather.  
 ---
 
 The weather forecast is the best way to predict heat-related health outcomes.
