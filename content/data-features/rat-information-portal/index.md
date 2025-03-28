@@ -13,7 +13,7 @@ layout: rat-info-portal
 image: ratportal-screenshot.png
 externalPortal: true
 weight: 5
-blurb:
+blurb: Rat inspection results and action at the property level across NYC.
 ---
 
 New York City’s Rat Information Portal is a web map application that lets you view rat inspection and action data collected by the NYC Health Department.
