@@ -66,12 +66,12 @@
             <h3 class="fs-rg mb-2">Neighborhood Reports</h3>
 
             <hr class="mb-2">
-            {{ with .Site.GetPage "/neighborhood-reports/Active_Design_Physical_Activity_and_Health.md" }}
-            <p><a class="nrbtn btn btn-sm btn-outline-primary btn-block" href="{{ .RelPermalink }}" id="Active">{{ .Title }}
-            </a></p>
-            {{- end -}}
             {{ with .Site.GetPage "/neighborhood-reports/Asthma_and_the_Environment.md" }}
             <p><a  class="nrbtn btn btn-sm btn-outline-primary btn-block" href="{{ .RelPermalink }}" id="Asthma">{{ .Title }}
+            </a></p>
+            {{- end -}}
+            {{ with .Site.GetPage "/neighborhood-reports/Active_Design_Physical_Activity_and_Health.md" }}
+            <p><a class="nrbtn btn btn-sm btn-outline-primary btn-block" href="{{ .RelPermalink }}" id="Active">{{ .Title }}
             </a></p>
             {{- end -}}
             {{ with .Site.GetPage "/neighborhood-reports/Climate_and_Health.md" }}
