@@ -333,7 +333,7 @@ const renderTrendChart = (
               "description": `line layer ${value}`,
               "mark": "line",
               "encoding": {
-                "x": {"field": "TimePeriod", "type": "nominal"},
+                "x": {"field": "end_period", "type": "temporal"},
                 "y": {"datum": uniqueThresholds[i].yValue},
                 "color": {"value": "#545454"},
                 "size": {"value": 2},
@@ -353,7 +353,7 @@ const renderTrendChart = (
                 "dx": -45
               },
               "encoding": {
-                "x": {"aggregate": "max", "field": "end_period", "type": "nominal"},
+                "x": {"aggregate": "max", "field": "end_period", "type": "temporal"},
                 "y": {"datum": uniqueThresholds[i].yValue, "type": "quantitative"},
                 "text": {"value": uniqueThresholds[i].title}
               }
@@ -626,22 +626,24 @@ const renderTrendChart = (
         ...noCompare,
         ...thresholdSpec,
         {
-          "description": "Manual axis labels",
           "mark": {"type": "text", "fontWeight": 100, "fontSize": 10},
+          "transform": [
+            {
+              "aggregate": [{"op": "min", "field": "end_period", "as": "min_end_period"}],
+              "groupby": [`${xAxisLabelField}`]
+            }
+          ],
           "encoding": {
             "x": {
-              "field": "end_period",
+              "field": "min_end_period",
               "type": "temporal",
               "axis": {"labels": false, "grid": false, "ticks": false}
             },
             "y": {"value": 515},
-            "text": {
-              "field": xAxisLabelField,
-              "type": "nominal"
-            },
+            "text": {"field": xAxisLabelField, "type": "nominal"},
             "color": {"value": "black"}
           }
-        }
+        },
       ]
     };
 
