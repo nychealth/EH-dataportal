@@ -52,7 +52,12 @@
                                 <div class="card card-left-border shadow-sm mb-3">
                                     <div class="card-content card-body">
                                         <h4 class="fs-md"><a class="link-track" href="{{ .RelPermalink }}" class="text-primary">{{ .Title }}</a></h4>
-                                        <p class="fs-sm">{{ .Content | plainify | truncate 175 | htmlUnescape }}
+                                        <p class="fs-sm">
+                                            {{ if .Params.blurb }}
+                                                {{ .Params.blurb | truncate 200 }}
+                                            {{ else }}
+                                                {{ .Content | plainify | truncate 175 | htmlUnescape }}
+                                            {{ end }}                                            
                                         </p>
                                         <div class="d-flex justify-content-end">
                                             <a class="fs-sm font-weight-bold" href="{{ .RelPermalink }}">Explore<i class="fas fa-arrow-circle-right ml-1" aria-hidden="true"></i></a>
