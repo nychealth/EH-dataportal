@@ -519,7 +519,7 @@ const renderTrendChart = (
           "field": "end_period",
           "type": "temporal",
           "title": null,
-          "axis": {"ticks": true,"labels": false},
+          "axis": {"ticks": false,"labels": false},
           "scale": {
             "padding": 20 
           }
@@ -617,6 +617,19 @@ const renderTrendChart = (
         },
         ...noCompare,
         ...thresholdSpec,
+        {
+          "mark": {"type": "tick"},
+          "encoding": {
+            "x": {
+              "field": "end_period",
+              "type": "temporal",
+              "axis": {"labels": false, "grid": false, "ticks": true},
+              "scale": {"padding": 20}
+            },
+            "y": {"value": 500},
+            "color": {"value": "black"}
+          }
+        },
         {
           "mark": {"type": "text", "fontWeight": 100, "fontSize": 10},
           "transform": [
