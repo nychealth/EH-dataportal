@@ -43,12 +43,12 @@ As New York City and surrounding communities implemented measures to slow the sp
 </div>
 
 <div class="wide my-4" aria-hidden="true">
-
-<div style="min-height:646px" id="datawrapper-vis-O0SUA"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/O0SUA/embed.js" charset="utf-8" data-target="#datawrapper-vis-O0SUA"></script><noscript><img src="https://datawrapper.dwcdn.net/O0SUA/full.png" alt="" /></noscript></div>
+<div style="min-height:646px" id="datawrapper-vis-O0SUA"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/O0SUA/embed.js" charset="utf-8" data-target="#datawrapper-vis-O0SUA"></script><noscript><img src="https://datawrapper.dwcdn.net/O0SUA/full.png" alt="" /></noscript>
 </div>
-
+</div>
 <div class="sr-only">
-<div style="min-height:955px" id="datawrapper-vis-6NGID"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/6NGID/embed.js" charset="utf-8" data-target="#datawrapper-vis-6NGID"></script><noscript><img src="https://datawrapper.dwcdn.net/6NGID/full.png" alt="Air monitors show that PM2.5 values fell as New Yorkers stayed home during the pandemic. On March 1, 2020, NYC had its first confirmed case of Covid-19, followed by bans on large gatherings (on March 12) and the closings of schools and restaurants (March 15). Measurements of PM2.5 in Midtown were 14.6 micrograms per cubic meter at the beginning of March 2020, and 9.42 at Queens College. By mid-April, 2020, readings had fallen in Midtown to 8.4 and at Queens College to 7 micrograms per cubic meter. " /></noscript></div>
+<div style="min-height:955px" id="datawrapper-vis-6NGID"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/6NGID/embed.js" charset="utf-8" data-target="#datawrapper-vis-6NGID"></script><noscript><img src="https://datawrapper.dwcdn.net/6NGID/full.png" alt="Air monitors show that PM2.5 values fell as New Yorkers stayed home during the pandemic. On March 1, 2020, NYC had its first confirmed case of Covid-19, followed by bans on large gatherings (on March 12) and the closings of schools and restaurants (March 15). Measurements of PM2.5 in Midtown were 14.6 micrograms per cubic meter at the beginning of March 2020, and 9.42 at Queens College. By mid-April, 2020, readings had fallen in Midtown to 8.4 and at Queens College to 7 micrograms per cubic meter. " /></noscript>
+</div>
 </div>
 
 <div class="narrow">
@@ -72,5 +72,3 @@ In addition to these unusually low PM2.5 levels, there was a sizeable decrease i
 <div class="narrow">
 
 We will continue to track this, so check back for updates to these charts throughout the COVID-19 outbreak and recovery in NYC.
-
-</div>
