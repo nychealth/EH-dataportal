@@ -68,6 +68,7 @@ On the scatter plot below, each dot represents one neighborhood. Its horizontal 
 <div class="sr-only">
 <div style="min-height:8325px" id="datawrapper-vis-pxkwE"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/pxkwE/embed.js" charset="utf-8" data-target="#datawrapper-vis-pxkwE"></script><noscript><img src="https://datawrapper.dwcdn.net/pxkwE/full.png" alt="Higher poverty areas overlap with higher child ED visits for asthma. In Mott Haven-Port Morris, where there is a 45.1% poverty rate, there are	683 ED visits by children per 10,000 residents. In Park Slope-Gowanus, there is a 7.3% poverty rate, and fewer child ED visits at 68 per 10,000 residents. " /></noscript></div>
 </div>
+
 ### Why does this connection exist?
 
 The connection between poverty and asthma is due to a variety of factors, including:
