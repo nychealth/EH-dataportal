@@ -9,11 +9,10 @@ const renderTrendChart = (
 
     console.log("*** renderTrendChart");
 
-
     document.getElementById('viewDescription').innerHTML = 'Trends are shown by boro for stable rates.'
 
-    console.log("metadata [renderTrendChart]");
-    metadata.print()
+    // console.log("metadata [renderTrendChart]");
+    // metadata.print()
 
     
     // console.log("data [renderTrendChart]");
@@ -320,8 +319,8 @@ const renderTrendChart = (
       ...new Map(dedupedThresholds.map(item => [JSON.stringify(item), item])).values()
     ];
 
-    console.log('unique thresholds')
-    console.log(uniqueThresholds);
+    // console.log('unique thresholds')
+    // console.log(uniqueThresholds);
 
     var thresholdSpec = []
 
@@ -363,14 +362,7 @@ const renderTrendChart = (
         thresholdSpec.push(thresholdLabel)
         }
 
-      console.log(thresholdSpec)
-
-    // 
-
-
-
-
-  
+      // console.log(thresholdSpec)
 
     // loop through uniqueThresholds and create line json
 
@@ -845,9 +837,6 @@ const renderTrendChart = (
     // ----------------------------------------------------------------------- //
     // render chart
     // ----------------------------------------------------------------------- //
-
-    console.log('Vega-Lite chart spec:')
-    console.log(compspec2)
     
     vegaEmbed("#trend", compspec2,{
       actions: {

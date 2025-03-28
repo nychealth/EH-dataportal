@@ -255,14 +255,14 @@ window.addEventListener('hashchange', function() {
 
 
 function checkSourceLength() {
-  console.log('vizSource')
-  console.log(vizSource.length)
-  console.log(vizSource)
+  // console.log('vizSource')
+  // console.log(vizSource.length)
+  // console.log(vizSource)
 
   if (vizSource.length > 200) {
     vizSource = splitTextIntoLines(vizSource,200)
-    console.log('new vizSource array')
-    console.log(vizSource)
+   // console.log('new vizSource array')
+   // console.log(vizSource)
   } else {}
 }
 
