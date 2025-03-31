@@ -17,7 +17,7 @@ function init() {
     if (fileExists == true) {
       for (let i = year; i > 2016; i--) {
         allYears.push(i)
-        console.log(i)
+        // console.log(i)
         // changeYear(year)
       }
     } else {
@@ -28,7 +28,7 @@ function init() {
       }
     }
 
-    console.log(allYears)
+    // console.log(allYears)
 
     for (let i = 0; i < allYears.length; i++) {
       var oneYear = allYears[i]
@@ -54,7 +54,7 @@ function init() {
 }
 
 function UrlExists(url) {
-    console.log('checking ' + url)
+    // console.log('checking ' + url)
     var http = new XMLHttpRequest();
     http.open('HEAD', url, false);
     http.send();
@@ -63,7 +63,7 @@ function UrlExists(url) {
     } else {
       fileExists = true
     }
-    console.log(fileExists)
+    // console.log(fileExists)
     return http.status!=404;
 
 }
@@ -309,13 +309,13 @@ function changeYear(x) {
 var scatterCount = 0
 function toggleScatter(x) {
   scatterCount = Number(scatterCount + 1)
-  console.log(scatterCount)
+  // console.log(scatterCount)
   if ( scatterCount % 2 == 0) {
-    console.log('even')
+    // console.log('even')
     document.getElementById('scattertoggle').innerHTML = 'Show time'
     vegaEmbed('#vis2', scatterplot)
   } else {
-    console.log('odd')
+    // console.log('odd')
     document.getElementById('scattertoggle').innerHTML = 'Show scatter'
     vegaEmbed('#vis2', scatterplotTwo)
 

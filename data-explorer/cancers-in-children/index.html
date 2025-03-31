@@ -661,7 +661,7 @@
                 <ul class="breadcrumb mr-auto">
                     <li class="breadcrumb-item"><a href=/IndicatorPublic/>Home</a></li>
                     <li class="breadcrumb-item"><a href=/IndicatorPublic/data-explorer>Data Explorer</a></li>
-                    <li class="breadcrumb-item">Cancers in children
+                    <li class="breadcrumb-item d-none d-md-block">Cancers in children
                         <button type="button" 
                             class="btn btn-outline-light text-primary badge" 
                             title="Change topic"
@@ -672,7 +672,7 @@
                         </button></li>
                 </ul>
             </nav>
-            <div class="float-right pr-1 d-sm-none d-md-block">
+            <div class="float-right pr-1 d-none d-md-block">
 <section class="social-share" data-pagefind-ignore="all">
     <ul class="share-icons">
 
@@ -712,8 +712,19 @@
     </ul>
   </section>
 </div>
-            <h1 class="h2 mt-2">Cancers in children </h1>
-            <p>Get maps, charts, tables, and data about cancers in children. <span class="d-lg-none"><a href="#" data-toggle="modal" data-target="#aboutModal">About cancers in children</a>.</span></p>
+
+            <h1 class="h2 mt-2">
+                <button type="button"
+                    class="btn btn-outline-light text-primary badge d-lg-none float-left mr-1"
+                    title="Change topic"
+                    data-toggle="modal" 
+                    data-target="#topicModal"
+                    aria-labelledby="topicModalLabel"
+                >
+                <i class="fas fa-list"></i>
+                </button>
+                Cancers in children </h1>
+            <p>Get maps, charts, tables, and more. <i data-toggle="modal" data-target="#aboutModal" class="d-lg-none fas fa-question-circle helper text-primary"></i></span></p>
 
         </div>
     </div>
@@ -825,18 +836,23 @@
         <div class="col-lg-8 mx-auto col-md-12">
         
             
-            <div class="dropdown d-lg-none">
-                <span class='home-label'>Change dataset</span>
-                <button class="btn btn-sm btn-outline-primary btn-lg btn-block text-wrap dropdown-toggle" type="button"
+            <div class="dropdown d-lg-none d-block">
+                <button class="btn btn-sm btn-outline-primary btn-sm float-left text-wrap mr-1" type="button"
                         id="dropdownIndicator" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    More Cancers in children data
+                        <i class="fas fa-exchange-alt"></i>
                 </button>
+
+                <div id="indicatorNameMobile" class="ml-1 font-weight-bold">Indicator name Mobile</div>
+
+
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownIndicator" id="indicator-dropdown">
                     
                 </div>
             </div>
         <span class="border-bottom font-weight-bold d-none d-lg-block"><span id="indicatorTitle">Loading data...</span></span>
-        <p class="fs-sm indicator-description">Just a moment...</p>
+        <div class="d-block mt-1">
+            <p class="fs-sm indicator-description ">Just a moment...</p>
+        </div>
 
         
         <div class="mt-3">
@@ -1088,12 +1104,12 @@
 
                             <div class="col-md-10 col-sm-12">
                                 <div class="row no-gutters">
-                                    <div class="col-md-3 col-sm-6">
+                                    <div class="col-md-3 col-6">
                                         <button type="button" id="howCalcButton" class="btn btn-sm btn-outline-light fs-xs text-secondary btn-block mb-1" data-toggle="modal" data-target="#howCalcModal" >
                                             <i class="fas fa-info-circle mr-1" aria-hidden="true"></i>How calculated
                                         </button>
                                     </div>
-                                    <div class="col-md-3 col-sm-6">
+                                    <div class="col-md-3 col-6">
                                         <div class="dropdown">
                                             <button class="btn btn-sm btn-block btn-outline-light fs-xs text-secondary dropdown-toggle" 
                                             type="button"
@@ -1113,14 +1129,14 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-3 col-sm-6">
+                                    <div class="col-md-3 col-6">
                                         <button class="btn btn-sm btn-block btn-outline-light fs-xs text-secondary"
                                         onclick="copyCitation()" id="citeButton"><i class="fas fa-copy mr-1"></i>Copy citation</button>
                                             <input type="text" id="citeText" value=""
                                             style="display:inline-block; width:100%; height: 40px; font-size: 14px;"
                                             class="my-2 sr-only">
                                     </div>
-                                    <div class="col-md-3 col-sm-6">
+                                    <div class="col-md-3 col-6">
                                         <a type="button" class="btn btn-sm btn-outline-light fs-xs text-secondary btn-block mb-1" onclick="printModal()" id="chartSaver">
                                             <i class="fas fa-save mr-1" aria-hidden="true"></i>Save chart
                                         </a>
@@ -2104,11 +2120,15 @@
 
                       
                       
-                          
+
+                      
+                        
+                        
+
                       
 
                         <a class="text-black" href="../../data-stories/racial-wealth-gap/">
-                          <span class='text-primary data-stories mr-2'><i class='fas fa-passport' aria-hidden='true'></i></span>The racial wealth gap has big implications for public health and health equity
+                          <span class='text-primary ds-accent mr-2'><i class='fas fa-passport' aria-hidden='true'></i></span>The racial wealth gap has big implications for public health and health equity
                         </a>
                         <hr class="my-2">
                       
@@ -2407,7 +2427,7 @@
 
                             
 
-                            console.log("@ result:", result);
+                            
                             
 
                         }
@@ -2606,7 +2626,7 @@
         }
 
     </script><script type="text/javascript" src="/IndicatorPublic/js/data-explorer/global.a4652bd3f7d7508ed85cfb2554f22759d7323af18b2e921038f8fba4f38707728f5f3199aa47cd3cf4d99b023c108df4511579eca2addd29fd93e80177cd3493.js" integrity="sha512-pGUr0/fXUI7YXPslVPInWdcyOvGLLpIQOPj7pPOHB3KPXzGZqkfNPPTZmwI8EI30URV57KKt3Sn9k&#43;gBd800kw=="></script>
-    <script type="text/javascript" src="/IndicatorPublic/js/data-explorer/data.5d45895c5335462769b759be0d1adfb17af6b7ec7e4a5acfe4b2c669f2928bd08f9a7ed454266570227273528d67b210ea3b068597cea352fec825e236d41a29.js" integrity="sha512-XUWJXFM1Ridpt1m&#43;DRrfsXr2t&#43;x&#43;SlrP5LLGafKSi9CPmn7UVCZlcCJyc1KNZ7IQ6jsGhZfOo1L&#43;yCXiNtQaKQ=="></script>
+    <script type="text/javascript" src="/IndicatorPublic/js/data-explorer/data.49c46205faa8de71f4e68a1a51f5dbc7f8fd6fd797d738666dc7a68defbc6a8e2a214515c4f72ea309cc99c6adccf8bf18c4609c7398598b226b49e7720d7347.js" integrity="sha512-ScRiBfqo3nH05ooaUfXbx/j9b9eX1zhmbcemje&#43;8ao4qIUUVxPcuownMmcatzPi/GMRgnHOYWYsia0nncg1zRw=="></script>
     <script type="text/javascript" src="/IndicatorPublic/js/data-explorer/measures.2c729307a53b6ade54494a0cabeac55225ada59b5e7d861e878448140d36d3547ac774b9e79cbda905da76121cf52223f0c06edd975491dbe1b5dea2e1b6266d.js" integrity="sha512-LHKTB6U7at5USUoMq&#43;rFUiWtpZtefYYeh4RIFA0201R6x3S555y9qQXadhIc9SIj8MBu3ZdUkdvhtd6i4bYmbQ=="></script>
     <script type="text/javascript" src="/IndicatorPublic/js/data-explorer/table.d53f90c37c0f0d4eb769f02d1bd4a688c919d811670eb5c3a711723890ce53f04be777468f187b944ef5969ea0154ee114857d822998507668cd237f94a9baac.js" integrity="sha512-1T&#43;Qw3wPDU63afAtG9SmiMkZ2BFnDrXDpxFyOJDOU/BL53dGjxh7lE71lp6gFU7hFIV9gimYUHZozSN/lKm6rA=="></script>
     <script type="text/javascript" src="/IndicatorPublic/js/data-explorer/map.53d80fa28c85cb1255bde076efb5e62bd2ba9669f22bfa6ef72d32b83bef51c38137e86079998a1a2ed925a5f33cc14bc30e422ec4eaa98398be2c8a9705200b.js" integrity="sha512-U9gPooyFyxJVveB277XmK9K6lmnyK/pu9y0yuDvvUcOBN&#43;hgeZmKGi7ZJaXzPMFLww5CLsTqqYOYviyKlwUgCw=="></script>

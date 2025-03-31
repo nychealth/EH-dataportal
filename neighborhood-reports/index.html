@@ -366,10 +366,10 @@
           <h3 class="mb-2">1. Choose report:</h3>
           <div class="row">
             <div class="col-lg mb-2 mb-lg-0">
-              <button class="btn btn-lg btn-block btn-outline-primary active text-decoration-none btn-light-green-bg py-2" onclick="buttonChange('Asthma')" id="Asthma">Asthma</button>
+              <button class="btn btn-lg btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2" onclick="buttonChange('Active')" id="Active">Active design</button>
             </div>
             <div class="col-lg mb-2 mb-lg-0">
-              <button class="btn btn-lg btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2" onclick="buttonChange('Active')" id="Active">Active design</button>
+              <button class="btn btn-lg btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2" onclick="buttonChange('Asthma')" id="Asthma">Asthma</button>
             </div>
             <div class="col-lg mb-2 mb-lg-0">
               <button class="btn btn-lg  btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2" onclick="buttonChange('Climate')" id="Climate">Climate</button>
@@ -856,7 +856,7 @@
 
                             
 
-                            console.log("@ result:", result);
+                            
                             
 
                         }
@@ -930,7 +930,17 @@ var reportURL = ''
 
 
 function buttonChange(x) {
-  report = x
+
+  
+
+  x = x == "" ? "Active" : x;
+
+  
+  x = x.replace("report", "").replace("#", "")
+
+  report = x;
+
+  
   window.location.hash = report + "report"; 
 
   var copyHolder = x + 'Descr'
@@ -939,15 +949,15 @@ function buttonChange(x) {
   document.getElementById('descr').innerHTML = copy
 
   
-  if (report=="Asthma") {
+  if (report == "Asthma") {
     reportURL = '/asthma_and_the_environment/'
-  } else if (report=="Climate") {
+  } else if (report == "Climate") {
     reportURL = '/climate_and_health/'
-  } else if (report=="Housing") {
+  } else if (report == "Housing") {
     reportURL = '/housing_and_health/'
-  } else if (report=="Outdoor") {
+  } else if (report == "Outdoor") {
     reportURL = '/outdoor_air_and_health/'
-  } else if (report=="Active") {
+  } else if (report == "Active") {
     reportURL = '/active_design_physical_activity_and_health/'
   };
 
@@ -956,12 +966,13 @@ function buttonChange(x) {
   for (let i = 0; i < buttons.length; i ++) {
     buttons[i].classList.remove("active")
   }
+
   document.getElementById(report).classList.add("active")
 
 }
 
 
-buttonChange('Asthma')
+buttonChange(window.location.hash)
 
 
 var ul = document.getElementById("neighborhoodList");
