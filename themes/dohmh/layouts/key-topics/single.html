@@ -52,7 +52,7 @@
                                 <div class="card card-left-border shadow-sm mb-4">
                                     <div class="card-content card-body">
                                         <h4 class="fs-md"><a class="link-track" href="{{ .RelPermalink }}" class="text-primary">{{ .Title }}</a></h4>
-                                        <p class="fs-sm">{{ .Content | plainify | truncate 175 | htmlUnescape }}
+                                        <p class="fs-sm">{{ .Content | plainify | htmlUnescape | truncate 175 }}
                                         </p>
                                         <div class="d-flex justify-content-end">
                                             <a class="fs-sm font-weight-bold" href="{{ .RelPermalink }}">Get the data<i class="fas fa-arrow-circle-right ml-1" aria-hidden="true"></i></a>

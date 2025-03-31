@@ -19,18 +19,28 @@
                       {{ range .Params.related }}
 
                       {{ $icon := "" }}
+                      {{ $accent := "" }}
+
                       {{ if in .url "data-stories" }}
-                          {{ $icon ="<i class='fas fa-passport' aria-hidden='true'></i>" }}
+                        {{ $icon ="<i class='fas fa-passport' aria-hidden='true'></i>" }}
+                        {{ $accent = "ds-accent" }}
+
                       {{ else if in .url "data-explorer" }}
-                          {{ $icon = "<i class='fas fa-chart-line' aria-hidden='true'></i>" }}
+                        {{ $icon = "<i class='fas fa-chart-line' aria-hidden='true'></i>" }}
+                        {{ $accent = "de-accent" }}
+
                       {{ else if in .url "data-features" }}
-                          {{ $icon = "<i class='fas fa-chart-bar' aria-hidden='true'></i>" }}
+                        {{ $icon = "<i class='fas fa-chart-bar' aria-hidden='true'></i>" }}
+                        {{ $accent = "df-accent" }}
+
                       {{ else if in .url "neighborhood-reports" }}
                         {{ $icon = "<i class='fas fa-map-marked-alt' aria-hidden='true'></i>" }}
+                        {{ $accent = "nr-accent" }}
+
                       {{ end }}
 
                         <a class="text-black" href="../../{{ .url }}">
-                          <span class='text-primary data-stories mr-2'>{{ safe.HTML $icon }}</span>{{ .title }}
+                          <span class='text-primary {{ $accent }} mr-2'>{{ safe.HTML $icon }}</span>{{ .title }}
                         </a>
                         <hr class="my-2">
                       {{ end }}

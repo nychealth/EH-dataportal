@@ -37,7 +37,7 @@ More data and information about heat, climate, and health is available on the NY
 ---
 <br>
 
-## Previous reports
+## Previous reports {#previous-reports}
 
 * [2023 Heat Mortality Report](../heat-report-archive/2023/)
 * [2022 Heat Mortality Report](../heat-report-archive/2022/)
