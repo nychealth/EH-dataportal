@@ -7,7 +7,7 @@ seo_title: "Waterway data for NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
 description: "Datasets and visualizations of waterway quality in NYC."
 tags:
-categories: ["social", "climatehealth"]
+categories: ["inequality", "climatehealth"]
 keywords: ["water", "harbor", "pollution", "climate", "climatehealth"]
 indicators:
   - header: null

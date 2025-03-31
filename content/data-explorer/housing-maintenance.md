@@ -7,7 +7,7 @@ seo_title: "Housing maintenance data for NYC | Environment and Health Data Porta
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
 description: "Datasets and visualizations of housing maintenance in NYC."
 tags:
-categories: ["housing", "social", "neighborhoods"]
+categories: ["housing", "inequality", "neighborhoods"]
 keywords:
   [
     "built environments",
