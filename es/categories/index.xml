@@ -30,6 +30,13 @@
       <description></description>
     </item>
     <item>
+      <title>inequality</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/es/categories/inequality/</link>
+      <pubDate>Mon, 08 Feb 2021 08:07:31 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/es/categories/inequality/</guid>
+      <description></description>
+    </item>
+    <item>
       <title>injuryandviolence</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/es/categories/injuryandviolence/</link>
       <pubDate>Mon, 08 Feb 2021 08:07:31 -0400</pubDate>
@@ -41,13 +48,6 @@
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/es/categories/neighborhoods/</link>
       <pubDate>Mon, 08 Feb 2021 08:07:31 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/es/categories/neighborhoods/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>social</title>
-      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/es/categories/social/</link>
-      <pubDate>Mon, 08 Feb 2021 08:07:31 -0400</pubDate>
-      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/es/categories/social/</guid>
       <description></description>
     </item>
     <item>
@@ -65,10 +65,10 @@
       <description></description>
     </item>
     <item>
-      <title>transportation</title>
-      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/es/categories/transportation/</link>
+      <title>publicspace</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/es/categories/publicspace/</link>
       <pubDate>Wed, 22 Apr 2020 08:33:22 -0400</pubDate>
-      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/es/categories/transportation/</guid>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/es/categories/publicspace/</guid>
       <description></description>
     </item>
   </channel>

@@ -23,10 +23,10 @@
       <description></description>
     </item>
     <item>
-      <title>transportation</title>
-      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/categories/transportation/</link>
+      <title>publicspace</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/categories/publicspace/</link>
       <pubDate>Fri, 08 Nov 2024 13:11:44 -0400</pubDate>
-      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/categories/transportation/</guid>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/categories/publicspace/</guid>
       <description></description>
     </item>
     <item>
@@ -51,17 +51,17 @@
       <description></description>
     </item>
     <item>
+      <title>inequality</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/categories/inequality/</link>
+      <pubDate>Mon, 19 Aug 2024 01:18:56 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/categories/inequality/</guid>
+      <description></description>
+    </item>
+    <item>
       <title>neighborhoods</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/categories/neighborhoods/</link>
       <pubDate>Mon, 19 Aug 2024 01:18:56 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/categories/neighborhoods/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>social</title>
-      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/categories/social/</link>
-      <pubDate>Mon, 19 Aug 2024 01:18:56 -0400</pubDate>
-      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/categories/social/</guid>
       <description></description>
     </item>
     <item>
@@ -111,6 +111,13 @@
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/categories/outcomes/</link>
       <pubDate>Wed, 08 Sep 2021 11:14:56 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/categories/outcomes/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>social</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/categories/social/</link>
+      <pubDate>Wed, 08 Sep 2021 11:14:56 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/categories/social/</guid>
       <description></description>
     </item>
   </channel>

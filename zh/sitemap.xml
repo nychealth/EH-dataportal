@@ -99,6 +99,20 @@
                 hreflang="zh"
                 href="/IndicatorPublic/zh/categories/housing/"
                 /></url><url>
+    <loc>/IndicatorPublic/zh/categories/inequality/</loc>
+    <lastmod>2021-02-08T08:07:31-04:00</lastmod><xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/IndicatorPublic/categories/inequality/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="/IndicatorPublic/es/categories/inequality/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/IndicatorPublic/zh/categories/inequality/"
+                /></url><url>
     <loc>/IndicatorPublic/zh/categories/injuryandviolence/</loc>
     <lastmod>2021-02-08T08:07:31-04:00</lastmod><xhtml:link
                 rel="alternate"
@@ -210,20 +224,6 @@
                 rel="alternate"
                 hreflang="zh"
                 href="/IndicatorPublic/zh/keywords/redlining/"
-                /></url><url>
-    <loc>/IndicatorPublic/zh/categories/social/</loc>
-    <lastmod>2021-02-08T08:07:31-04:00</lastmod><xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/IndicatorPublic/categories/social/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="/IndicatorPublic/es/categories/social/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="/IndicatorPublic/zh/categories/social/"
                 /></url><url>
     <loc>/IndicatorPublic/zh/keywords/social-determinants/</loc>
     <lastmod>2021-02-08T08:07:31-04:00</lastmod><xhtml:link
@@ -617,6 +617,20 @@
                 hreflang="zh"
                 href="/IndicatorPublic/zh/keywords/lungs/"
                 /></url><url>
+    <loc>/IndicatorPublic/zh/categories/publicspace/</loc>
+    <lastmod>2020-04-22T08:33:22-04:00</lastmod><xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/IndicatorPublic/categories/publicspace/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="/IndicatorPublic/es/categories/publicspace/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/IndicatorPublic/zh/categories/publicspace/"
+                /></url><url>
     <loc>/IndicatorPublic/zh/keywords/traffic/</loc>
     <lastmod>2020-04-22T08:33:22-04:00</lastmod><xhtml:link
                 rel="alternate"
@@ -644,20 +658,6 @@
                 rel="alternate"
                 hreflang="zh"
                 href="/IndicatorPublic/zh/keywords/transportation/"
-                /></url><url>
-    <loc>/IndicatorPublic/zh/categories/transportation/</loc>
-    <lastmod>2020-04-22T08:33:22-04:00</lastmod><xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/IndicatorPublic/categories/transportation/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="/IndicatorPublic/es/categories/transportation/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="/IndicatorPublic/zh/categories/transportation/"
                 /></url><url>
     <loc>/IndicatorPublic/zh/keywords/children/</loc>
     <lastmod>2019-10-24T08:18:56-04:00</lastmod><xhtml:link

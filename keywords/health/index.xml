@@ -9,6 +9,13 @@
     <lastBuildDate>Tue, 28 May 2024 18:02:58 -0400</lastBuildDate>
     <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/health/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Climate</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/climate/</link>
+      <pubDate>Fri, 28 May 2021 18:02:58 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/climate/</guid>
+      <description>A region&amp;rsquo;s climate is characterized by its usual weather conditions, seasons, and patterns in extreme weather events like heat waves, droughts, and hurricanes.&#xA;The world’s climate is shifting, becoming warmer with more precipitation and weather extremes. Over the past century in New York City, average temperatures have increased by 0.25°F per decade, precipitation by 0.72 inches per decade, and sea levels by 1.2 inches per decade. By the 2020s, a projected 25-30 days above 90°F are expected in a typical summer, resulting in more frequent and intense heat waves.</description>
+    </item>
+    <item>
       <title>Mental health</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/mental-health/</link>
       <pubDate>Tue, 28 May 2024 18:02:58 -0400</pubDate>
@@ -28,13 +35,6 @@
       <pubDate>Fri, 28 May 2021 18:02:58 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/active-design/</guid>
       <description>Physical activity and healthy eating are among the leading ways to get and stay healthy.&#xA;Active design is an applied, evidence-informed approach to improve physical, mental and social health outcomes through the design of the built environment.&#xA;To improve health, we can:&#xA;Increase access to public parks and recreation Create pedestrian plazas, and maintain sidewalks Plant street trees Provide safer cycling infrastructure and secure bicycle storage Make stairways attractive and accessible Strategies like these can have a measurable effect on people’s ability to safely maintain their physical, mental, and social health.</description>
-    </item>
-    <item>
-      <title>Climate</title>
-      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/climate/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 -0400</pubDate>
-      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/climate/</guid>
-      <description>A region&amp;rsquo;s climate is characterized by its usual weather conditions, seasons, and patterns in extreme weather events like heat waves, droughts, and hurricanes.&#xA;The world’s climate is shifting, becoming warmer with more precipitation and weather extremes. Over the past century in New York City, average temperatures have increased by 0.25°F per decade, precipitation by 0.72 inches per decade, and sea levels by 1.2 inches per decade. By the 2020s, a projected 25-30 days above 90°F are expected in a typical summer, resulting in more frequent and intense heat waves.</description>
     </item>
     <item>
       <title>Economic conditions</title>

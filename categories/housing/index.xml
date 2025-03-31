@@ -9,6 +9,34 @@
     <lastBuildDate>Tue, 11 Jun 2024 09:01:00 -0400</lastBuildDate>
     <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/categories/housing/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Interactive Heat Vulnerability Index</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/hvi/</link>
+      <pubDate>Wed, 25 Aug 2021 10:49:05 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/hvi/</guid>
+      <description>Use this Heat Vulnerability Explorer to look up your the heat vulnerability of your neighborhood, and the neighborhood characteristics that affect it.</description>
+    </item>
+    <item>
+      <title>Rat Mitigation Zones</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/rat-mitigation-zones/</link>
+      <pubDate>Thu, 01 Jun 2023 11:14:56 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/rat-mitigation-zones/</guid>
+      <description>Rats can contaminate food, spread disease and reduce our quality of life. Rat Mitigation Zones (RMZ) are areas with high levels of rat activity, where City agencies focus resources to address rats and the conditions that support them.&#xA;Choose an RMZ on the map below to view data on complaints and NYC Health Department rat control activity.</description>
+    </item>
+    <item>
+      <title>Real-time heat-related illness</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-syndrome/</link>
+      <pubDate>Mon, 30 Aug 2021 11:51:01 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-syndrome/</guid>
+      <description>The weather forecast is the best way to predict heat-related health outcomes.&#xA;We can also track heat-related illness with near real-time electronic data from emergency departments at hospitals throughout NYC. These data include illnesses directly attributed to heat (including heat exhaustion, muscle cramps, fainting and heat stroke), not the full burden of heat-related health impacts.</description>
+    </item>
+    <item>
+      <title>Displacement Risk</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/displacement-risk/</link>
+      <pubDate>Sat, 02 Oct 2021 07:56:00 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/displacement-risk/</guid>
+      <description>Housing stability creates health, but in NYC, many people have difficulty accessing healthy, stable housing.&#xA;In some neighborhoods, residents at are higher risk of being displaced - forced to leave their homes, and their neighborhoods, due combinations of market pressure, rent burden, housing conditions, poverty, and injustice in the housing market.&#xA;To show people&amp;rsquo;s risk of being forced out of their homes or neighborhoods, the Department of City Planning and the Department of Housing Preservation and Development created a Displacement Risk Index, part of the Equitable Development Data Explorer.</description>
+    </item>
+    <item>
       <title>What Hurricane Ida and Superstorm Sandy taught us about flooding and health</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/flooding-and-health/</link>
       <pubDate>Tue, 11 Jun 2024 09:01:00 -0400</pubDate>
@@ -37,13 +65,6 @@
       <description>Health is determined by many factors. People tend to be healthier when they have economic stability, live in quality housing and have access to public space and safe, connected communities. In 2020, the NYC Health Department held a series of community conversations with residents and local stakeholders across 26 neighborhoods. New Yorkers shared personal stories about their priorities for building healthier neighborhoods, healthier childhoods and more. This is one part of a three-part series on how housing, economic stability, and public space create health.</description>
     </item>
     <item>
-      <title>Rat Mitigation Zones</title>
-      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/rat-mitigation-zones/</link>
-      <pubDate>Thu, 01 Jun 2023 11:14:56 -0400</pubDate>
-      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/rat-mitigation-zones/</guid>
-      <description>Rats can contaminate food, spread disease and reduce our quality of life. Rat Mitigation Zones (RMZ) are areas with high levels of rat activity, where City agencies focus resources to address rats and the conditions that support them.&#xA;Choose an RMZ on the map below to view data on complaints and NYC Health Department rat control activity.</description>
-    </item>
-    <item>
       <title>A walk through history</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/block-by-block/</link>
       <pubDate>Sun, 19 Mar 2023 08:49:22 -0400</pubDate>
@@ -58,32 +79,11 @@
       <description>Cold weather can be dangerous. Here are some tips for staying safe this winter.</description>
     </item>
     <item>
-      <title>Displacement Risk</title>
-      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/displacement-risk/</link>
-      <pubDate>Sat, 02 Oct 2021 07:56:00 -0400</pubDate>
-      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/displacement-risk/</guid>
-      <description>Housing stability creates health, but in NYC, many people have difficulty accessing healthy, stable housing.&#xA;In some neighborhoods, residents at are higher risk of being displaced - forced to leave their homes, and their neighborhoods, due combinations of market pressure, rent burden, housing conditions, poverty, and injustice in the housing market.&#xA;To show people&amp;rsquo;s risk of being forced out of their homes or neighborhoods, the Department of City Planning and the Department of Housing Preservation and Development created a Displacement Risk Index, part of the Equitable Development Data Explorer.</description>
-    </item>
-    <item>
       <title>Housing</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/key-topics/housing/</link>
       <pubDate>Sat, 02 Oct 2021 07:56:00 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/key-topics/housing/</guid>
       <description>Most people spend most of their time at home - so the household environment can significantly affect health. Disrepair that stems from long-term maintenance neglect can lead to serious health problems, including: lead poisoning from lead paint; asthma and other respiratory issues triggered by pests; and carbon monoxide poisoning.&#xA;In NYC, substandard housing is disproportionately located in low-income neighborhoods, as historical disinvestment lead to severe, systemic maintenance deficiencies that threatens people&amp;rsquo;s health.</description>
-    </item>
-    <item>
-      <title>Real-time heat-related illness</title>
-      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-syndrome/</link>
-      <pubDate>Mon, 30 Aug 2021 11:51:01 -0400</pubDate>
-      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-syndrome/</guid>
-      <description>The weather forecast is the best way to predict heat-related health outcomes.&#xA;We can also track heat-related illness with near real-time electronic data from emergency departments at hospitals throughout NYC. These data include illnesses directly attributed to heat (including heat exhaustion, muscle cramps, fainting and heat stroke), not the full burden of heat-related health impacts.</description>
-    </item>
-    <item>
-      <title>Interactive Heat Vulnerability Index</title>
-      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/hvi/</link>
-      <pubDate>Wed, 25 Aug 2021 10:49:05 -0400</pubDate>
-      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/hvi/</guid>
-      <description>Use this Heat Vulnerability Explorer to look up your the heat vulnerability of your neighborhood, and the neighborhood characteristics that affect it.</description>
     </item>
     <item>
       <title>Asthma</title>
