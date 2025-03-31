@@ -29,8 +29,8 @@ related:
     url: "data-stories/economic-stability/"
   - title: "What our air quality monitors tell us about NYC's neighborhoods"
     url: "data-stories/air-quality-by-neighborhood/"
-    url: "Reducing air pollution in neighborhoods with the worst health impacts"
-  - title: "data-stories/hia/"
+  - title: "Reducing air pollution in neighborhoods with the worst health impacts"
+    url: "data-stories/hia/"
 ---
 
 Poverty affects health in many ways. In New York City, the story of asthma clearly illustrates this connection.

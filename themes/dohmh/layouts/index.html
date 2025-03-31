@@ -79,7 +79,7 @@
                 </div>
 
                 <div class="col-8 ml-auto h-100 pl-2">
-                  <p class="text-black fs-md"><span class="font-weight-bold">{{ .Title }}</span> {{ .Content | plainify | truncate 100 | htmlUnescape }} </p>
+                  <p class="text-black fs-md"><span class="font-weight-bold">{{ .Title }}</span> {{ .Content | plainify | htmlUnescape | truncate 100 }} </p>
                 </div>
               </a>
 
@@ -313,7 +313,6 @@
               <p><span class="font-weight-bold">Today's air quality is <span id="aqimeaning" class="p-1">AQI interpretation</span></span>. Get data on air quality:
                 <ul>
                   <li><a href={{ relURL "data-features/realtime-air-quality" }}>Realtime air quality</a></li>
-                  <li><a href={{ relURL "data-features/neighborhood-air-quality" }}>Your neighborhood's air quality</a></li>
                   <li><a href={{ relURL "key-topics/airquality" }}>All Air Quality data and resources</a></li>
                 </ul>
               </p>
