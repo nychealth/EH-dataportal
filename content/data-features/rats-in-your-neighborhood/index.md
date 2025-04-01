@@ -1,16 +1,14 @@
 ---
 title: "Rats in your neighborhood"
-date: 2023-06-01T11:14:56-04:00
+date: 2025-03-31T11:14:56-04:00
 draft: false
-seo_title: "NYC's rat mitigation zones | Environment and Health Data Portal"
-seo_description: "NYC's rat mitigation zones."
-description: "Data on NYC's rat mitigation zones."
+seo_title: "Rats in your neighborhood | Environment and Health Data Portal"
+seo_description: "Look up rat inspection data for your address."
+description: "Look up rat inspection data for your address."
 tags:
 categories: [pests, housing]
 keywords: ["rats", "rat mitigation zones", "pests", "inspections", "rodents"]
 layout: rats-in-your-neighborhood
-vega: true
-arquero: true
 leaflet: true
 image: rmz-ss.png
 related:
