@@ -11,25 +11,25 @@
 
             {{- if eq $layout "button" -}}
 
-            <a class="{{ $extraClass }} btn btn-light-green-bg btn-md has-icon disperse mb-1" href="{{ .RelPermalink }}">
-            <span class="fas fa-angle-right" aria-hidden="true"></span>
-            <span class="title">{{ .Title }}</span>
-            </a>
+                <a class="{{ $extraClass }} btn btn-light-green-bg btn-md has-icon disperse mb-1" href="{{ .RelPermalink }}">
+                <span class="fas fa-angle-right" aria-hidden="true"></span>
+                <span class="title">{{ .Title }}</span>
+                </a>
 
             {{- else if eq $layout "card" -}}
-            <a href="{{ .URL }}">{{ .Title }}</a>
-            <hr class="my-1">
+                <a href="{{ .URL }}">{{ .Title }}</a>
+                <hr class="my-1">
 
             {{- else if eq $layout "list" -}}
-            <div class="col-md-6 pl-0">
-                <p><a href="{{ .URL }}">{{ .Title }}</a></p>
-            </div>
+                <div class="col-md-6 pl-0">
+                    <p><a href="{{ .URL }}">{{ .Title }}</a></p>
+                </div>
 
             {{- else if eq $layout "singlelist" -}}
-            <a class="font-weight-bold" href="{{ .RelPermalink }}">{{ .Title }}</a>
-            <hr class="my-1">
+                <a class="font-weight-bold" href="{{ .RelPermalink }}">{{ .Title }}</a>
+                <hr class="my-1">
 
-            {{- end -}}
+            {{ end -}}
 
         {{- end -}}
 

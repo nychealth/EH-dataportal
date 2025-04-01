@@ -24,7 +24,7 @@
 
     <div>
         <div class="row">
-            {{- range .Pages -}}
+            {{- range .Pages.ByTitle -}}
             <div class="card content-card mb-4 col-sm-6 col-md-4">
                 <div class="card-content primary">
                     <a href="{{ .RelPermalink}}">

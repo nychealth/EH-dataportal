@@ -11,6 +11,11 @@ keyTopic: childhealth
 keywords: ["children","child health","housing","asthma","lead","housing"]
 layout: single
 image: nyc-children-playing.jpg
+mainDEPages:
+  - title: "Asthma"
+    url: "data-explorer/asthma/"
+  - title: "Lead poisoning"
+    url: "data-explorer/lead-poisoning/"
 ---
 
 Lifelong health can be determined by your health when you are a child. Plus, children can be fragile, and can be more harmed by environmental threats. So, ways that the environment can affect health often are particularly important for child health.

@@ -60,13 +60,13 @@ const load_flexdatalist = async () => {
                 data: nta_zip_collapsed
             });
 
-            console.log("$input", $input);
+            // console.log("$input", $input);
             
             // ----- add flexdatalist select handler -------------------------------------------------- //
 
             $input.on('select:flexdatalist', (e, set) => {
                 
-                console.log("set", set);
+                // console.log("set", set);
 
                 // set neighborhood name on page
                 
@@ -82,7 +82,7 @@ const load_flexdatalist = async () => {
 
             $("#clear").on("click", (e) => {
 
-                console.log("e [clear click]", e);
+                // console.log("e [clear click]", e);
 
                 $($input).find("~input").val("").trigger( "focus" )
                 
@@ -135,7 +135,7 @@ function dataChange(GEOCODE) {
         
     });
     
-    console.log("neighborhoodData", neighborhoodData);
+    // console.log("neighborhoodData", neighborhoodData);
     
     // get values from CSV
     

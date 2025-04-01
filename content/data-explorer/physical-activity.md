@@ -7,7 +7,7 @@ seo_title: "Physical activity data for NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
 description: "Datasets and visualizations of physical activity in NYC."
 tags:
-categories: ["transportation"]
+categories: ["publicspace"]
 keywords: ["physical activity", "transportation", "active design", "health"]
 indicators:
   - header: null

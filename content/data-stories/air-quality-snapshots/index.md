@@ -10,7 +10,7 @@ seo_description: "Special findings from 10+ years of New York City's citywide ai
 layout: flexible
 image: ds-AQsnapshots.jpg
 tags:
-categories: ["transportation", "airquality"]
+categories: ["publicspace", "airquality"]
 keywords:
   [
     "air quality",

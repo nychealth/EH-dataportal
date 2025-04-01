@@ -1,22 +1,22 @@
 // ======================================================================= //
-// comparisons.js
+// trend.js
 // ======================================================================= //
 
-const renderComparisonsChart = (
+const renderTrendChart = (
     data,
     metadata
 ) => {
 
-    console.log("*** renderComparisonsChart");
+    console.log("*** renderTrendChart");
 
 
     document.getElementById('viewDescription').innerHTML = 'Trends are shown by boro for stable rates.'
 
-    // console.log("metadata [renderComparisonsChart]");
+    // console.log("metadata [renderTrendChart]");
     // metadata.print()
 
     
-    // console.log("data [renderComparisonsChart]");
+    // console.log("data [renderTrendChart]");
     // data.print(Infinity)
 
     // console.log("data objects", data.objects());
@@ -84,13 +84,13 @@ const renderComparisonsChart = (
     // alpha: hex 96 = 150(/255) = ~58/100
 
     let colors = [
-        "#000000ff",
-        "#374c80",
-        "#bc5090",
-        "#ef5675",
-        "#ff764a",
-        "#ffa600"
-          ];
+      "#000000ff",
+      "#374c80",
+      "#bc5090",
+      "#ef5675",
+      "#ff764a",
+      "#ffa600"
+    ];
 
     // ----------------------------------------------------------------------- //
     // extract measure metadata for chart text
@@ -487,7 +487,7 @@ const renderComparisonsChart = (
                 "transform": [
                     {
                         "pivot": comp_group_col,
-                        "value": "DisplayValue",
+                        "value": "Value",
                         "groupby": ["TimePeriod"],
                         "op": "max"
                     },
@@ -614,7 +614,7 @@ const renderComparisonsChart = (
         },
         "transform": [
           {
-            "calculate": `format(datum.Value, ',') + ' ${compDisplayTypes}'`, "as": "valueWithDisplay"
+            "calculate": `datum.DisplayValue + ' ${compDisplayTypes}'`, "as": "valueWithDisplay"
           },
           {"calculate": "split(datum.TimePeriod, ' ')", "as": "TimePeriodSplit"},
           {
@@ -793,7 +793,7 @@ const renderComparisonsChart = (
         .derive({Indicator: `'${indicatorName}: ${plotTitle} ${plotSubtitle}'`}) // add indicator name and type column
         .select(aq.not("GeoType", "GeoTypeDesc", "GeoTypeShortDesc", "GeoRank", "MeasureID", "ban_summary_flag", "DisplayValue", "start_period", "end_period"))
 
-        // console.log("downloadTable [renderComparisonsChart]");
+        // console.log("downloadTable [renderTrendChart]");
         // downloadTable.print()
 
     CSVforDownload = downloadTable.toCSV()

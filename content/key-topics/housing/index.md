@@ -11,6 +11,13 @@ keyTopic: housing
 keywords: ["housing","maintenance","maintenance deficiencies","homes","lead","carbon monoxide","mice","rats","pests","cockroaches","asthma","bed bugs","poverty","injustice"]
 layout: single
 image: nyc-housing.jpg
+mainDEPages:
+  - title: "Housing maintenance"
+    url: "data-explorer/housing-maintenance/"
+  - title: "Housing safety"
+    url: "data-explorer/housing-safety/"
+  - title: "Housing stability"
+    url: "data-explorer/housing-stability/"
 ---
 Most people spend most of their time at home - so the household environment can significantly affect health. Disrepair that stems from long-term maintenance neglect can lead to serious health problems, including: lead poisoning from lead paint; asthma and other respiratory issues triggered by pests; and carbon monoxide poisoning.
 
