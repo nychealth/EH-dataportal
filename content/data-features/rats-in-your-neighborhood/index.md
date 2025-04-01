@@ -20,6 +20,8 @@ related:
     url: "data-explorer/mice-and-rats/"
   - title: "Rat Information Portal"
     url: "data-features/rat-portal/"
+weight: 1
+blurb: "Rat inspections for each property, and neighborhood-level rat data."  
 ---
 
 What's going on with rats in your neighborhood, what's being done to fight them, and how can you help?
