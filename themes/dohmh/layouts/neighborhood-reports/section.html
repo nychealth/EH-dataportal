@@ -40,10 +40,10 @@
           <h3 class="mb-2">1. Choose report:</h3>
           <div class="row">
             <div class="col-lg mb-2 mb-lg-0">
-              <button class="btn btn-lg btn-block btn-outline-primary active text-decoration-none btn-light-green-bg py-2" onclick="buttonChange('Asthma')" id="Asthma">Asthma</button>
+              <button class="btn btn-lg btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2" onclick="buttonChange('Active')" id="Active">Active design</button>
             </div>
             <div class="col-lg mb-2 mb-lg-0">
-              <button class="btn btn-lg btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2" onclick="buttonChange('Active')" id="Active">Active design</button>
+              <button class="btn btn-lg btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2" onclick="buttonChange('Asthma')" id="Asthma">Asthma</button>
             </div>
             <div class="col-lg mb-2 mb-lg-0">
               <button class="btn btn-lg  btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2" onclick="buttonChange('Climate')" id="Climate">Climate</button>
@@ -191,7 +191,17 @@ var reportURL = '' // this is used in nr-clickable-uhf
 
 // button Change function. Pass first word into function from buttons
 function buttonChange(x) {
-  report = x
+
+  // if x is blank, default to "Asthma"
+
+  x = x == "" ? "Active" : x;
+
+  // if x contains "report" or "#" rmeove it
+  x = x.replace("report", "").replace("#", "")
+
+  report = x;
+
+  // append "report" to report name
   window.location.hash = report + "report"; // changing hash - we'll use this later.
 
   var copyHolder = x + 'Descr'
@@ -200,15 +210,15 @@ function buttonChange(x) {
   document.getElementById('descr').innerHTML = copy
 
   // this checks
-  if (report=="Asthma") {
+  if (report == "Asthma") {
     reportURL = '/asthma_and_the_environment/'
-  } else if (report=="Climate") {
+  } else if (report == "Climate") {
     reportURL = '/climate_and_health/'
-  } else if (report=="Housing") {
+  } else if (report == "Housing") {
     reportURL = '/housing_and_health/'
-  } else if (report=="Outdoor") {
+  } else if (report == "Outdoor") {
     reportURL = '/outdoor_air_and_health/'
-  } else if (report=="Active") {
+  } else if (report == "Active") {
     reportURL = '/active_design_physical_activity_and_health/'
   };
 
@@ -217,12 +227,13 @@ function buttonChange(x) {
   for (let i = 0; i < buttons.length; i ++) {
     buttons[i].classList.remove("active")
   }
+
   document.getElementById(report).classList.add("active")
 
 }
 
-// run initial
-buttonChange('Asthma')
+// run initial with hash, with logic to default to asthma
+buttonChange(window.location.hash)
 
 // populate accessible neighborhood-selection
 var ul = document.getElementById("neighborhoodList");

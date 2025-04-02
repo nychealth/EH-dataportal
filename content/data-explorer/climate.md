@@ -46,6 +46,7 @@ relatedData:
     url: "vector-borne-disease/"
   - title: "Housing safety/"
     url: "Housing safety/"
+weight: 1
 ---
 
 A region's climate is characterized by its usual weather conditions, seasons, and patterns in extreme weather events like heat waves, droughts, and hurricanes.

@@ -34,6 +34,8 @@ related:
     url: "data-stories/hia/"
   - title: "Air quality in car-free areas"
     url: "data-stories/car-free-zones/"
+weight: 2
+blurb: Two major air pollutant measurements and some factors that influence them across NYC neighborhoods.
 ---
 
 ---

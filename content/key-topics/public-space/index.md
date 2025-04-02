@@ -1,5 +1,7 @@
 ---
-title: "Active design, public space, and transportation"
+title: "Public space, active design, and transportation"
+aliases:
+  - /key-topics/transportation/
 shortTitle: "Public space"
 date: 2021-09-30T07:58:01-04:00
 draft: false
@@ -7,11 +9,16 @@ seo_title: "Transportation and Active Design in NYC"
 seo_description: "Data, data stories, interactives, and more on active design, public space, and transportation."
 description: "Data, data stories, interactives, and more on active design, public space, and transportation."
 tags: 
-categories: [transportation]
-keyTopic: transportation
+categories: [publicspace]
+keyTopic: publicspace
 keywords: ["transportation","built environment","cycling","walking","transit","subways","buses","cycling","biking","infrastructure"]
 layout: single
 image: nyc-active-design.jpg
+mainDEPages:
+  - title: "Active design"
+    url: "data-explorer/active-design/"
+  - title: "Walking, driving, and cycling"
+    url: "data-explorer/walking-driving-and-cycling/"
 ---
 
 Physical activity and healthy eating rank among the leading ways to get and stay healthy. 
