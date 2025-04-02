@@ -1,13 +1,5 @@
 "use strict";
 
-/* STILL NEEDS:
-- Passing the geography into the renderChart and renderMap functions properly to highlight the selected neighborhood
-- A tolerable Initial State that draws attention to "Choose a neighborhood"
-
-*/
-
-// flexdatalist initial:
-
 // ===== load flexdatalist ================================================== //
 
 const load_flexdatalist = async () => {
@@ -97,17 +89,20 @@ d3.csv('aqe-nta.csv', d3.autoType).then(data => {
 
 var thisGeocode
 function setNeighborhood(x, y, z) {
-  document.getElementById('showNeighb').classList.remove('hide')
+  // document.getElementById('showNeighb').classList.remove('hide')
+  // document.getElementById('showData').classList.remove('hide')
+
 
   // console.log('geocode',x)
   thisGeocode = x
   // console.log(y)
-  document.getElementById('NTA2').innerHTML = y
-  document.getElementById('NTA2').classList.add('yourN')
-  document.getElementById('NTA3').classList.add('yourN')
+
   document.getElementById('NTA3').innerHTML = y
+  document.getElementById('NTA3').classList.add('text-primary')
+
   document.getElementById('NTA4').innerHTML = y
-  document.getElementById('NTA4').classList.add('yourN')
+  document.getElementById('NTA4').classList.add('text-primary')
+
   document.getElementById('zips').innerHTML = z
 
   // ingest data file and filter by GEOCODE
@@ -219,7 +214,7 @@ const renderChart = (
           "color": {
             "condition": {
               "test": `datum['NTACODE'] === '${neighborhood}'`,
-              "value": "cyan"
+              "value": "#008939"
               },
             "value": "darkgray"
             },
@@ -231,7 +226,7 @@ const renderChart = (
             "value": 0
           },
           "stroke": {
-            "condition": {"test": `datum.NTACODE === '${neighborhood}'`, "value": "cyan"},
+            "condition": {"test": `datum.NTACODE === '${neighborhood}'`, "value": "#008939"},
             "value": "darkgray"
             }
         }
@@ -375,7 +370,7 @@ const renderMap = (
               "value": 0.5
               },
             "stroke": {
-              "condition": {"test": `datum.NTACODE === '${neighborhood}'`, "value": "cyan"},
+              "condition": {"test": `datum.NTACODE === '${neighborhood}'`, "value": "#008939"},
               "value": "darkgray"
               },
             "order": {
