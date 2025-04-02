@@ -9,7 +9,12 @@ const renderTrendChart = (
 
     console.log("*** renderTrendChart");
 
-    document.getElementById('viewDescription').innerHTML = 'Trends are shown by boro for stable rates.'
+    console.log(metadata.objects())
+
+    let mdo = metadata.objects()
+    mdo[0].ComparisonName === 'Boroughs' ? document.getElementById('viewDescription').innerHTML = 'Trends are shown by borough for stable rates.' : document.getElementById('viewDescription').innerHTML = ''
+
+    
 
     // console.log("metadata [renderTrendChart]");
     // metadata.print()
