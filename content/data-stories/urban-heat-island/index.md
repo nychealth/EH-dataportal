@@ -50,7 +50,7 @@ At 6.00 PM on June 30, 2018, the air temperature at the LaGuardia Airport Weathe
 <div class="wide my-4">
     <div class="row">
         <div class="col-md-6">
-            <iframe
+            <iframe aria-hidden="true"
             src="https://www.google.com/maps/embed?pb=!4v1615653383424!6m8!1m7!1sm7WWRgDOZJz10tQupUzeHw!2m2!1d40.78797664606837!2d-73.94797464842142!3f299.71127124368036!4f8.067917696436893!5f0.7820865974627469"
             width="100%" height="400" style="border:0;" allowfullscreen=""
             loading="lazy" alt="Two streetviews from Google maps portray how a difference in vegetative cover can relate to higher or lower temperatures between neighborhoods. In East Harlem, we see comparatively little tree cover to a selected block in Bed-Stuy."></iframe>
@@ -60,7 +60,7 @@ At 6.00 PM on June 30, 2018, the air temperature at the LaGuardia Airport Weathe
             </div>
         </div>
         <div class="col-md-6">
-            <iframe
+            <iframe aria-hidden="true"
             src="https://www.google.com/maps/embed?pb=!4v1615653441200!6m8!1m7!1srUpwKj_CGrwUIfTTr-1Fkw!2m2!1d40.68542566442477!2d-73.93257482281815!3f355.1643149714268!4f13.920819302599512!5f0.7820865974627469"
             width="100%" height="400" style="border:0;" allowfullscreen=""
             loading="lazy"></iframe>
@@ -104,7 +104,7 @@ We found that the average temperature at the Edenwald spot was more than 2° coo
 <div class="row">
 <div class="col-md-6">
     <span class="">Brownsville, Brooklyn</span>
-    <img src="Bk-BR_12_lidar_bigger.png" class="img-fluid" alt="Two maps created with satellite and land-use data, showing the differences in vegetative cover between a block in Brownsville, Brooklyn and a block in Edenwald, The Bronx. The Brownsville image shows less green shapes (representing trees, grass, and shrubs) covering the site than in the Edenwald image. The Edenwald site was measured to be 2 degrees cooler.">
+    <img src="Bk-BR_12_lidar_bigger.png" class="img-fluid" alt="An image created with satellite and land-use data data showing the differences in vegetative cover between a block in Brownsville, Brooklyn and a block in Edenwald, The Bronx. This image of Brownsville shows less green shapes (representing trees, grass, and shrubs) covering the site then in Edenwald image. This site is 2 degrees warmer than the Edenwald site.">
     <table class="table">
         <thead>
             <tr>
@@ -150,7 +150,7 @@ We found that the average temperature at the Edenwald spot was more than 2° coo
 
 <div class="col-md-6">
     <span class="">Edenwald, the Bronx</span>
-    <img src="Bx-EC_07_lidar_bigger.png" class="img-fluid" alt="Lidar imagery of an area in The Bronx.">
+    <img src="Bx-EC_07_lidar_bigger.png" class="img-fluid" alt="An image created with satellite and land-use data data showing the differences in vegetative cover between a block in Brownsville, Brooklyn and a block in Edenwald, The Bronx. This image of Edenwald shows more green shapes (representing trees, grass, and shrubs) covering the site then in Brownsville, the previous image. This site is 2 degrees cooler than the Brownsville site.">
     <table class="table" style="color: black!important;">
         <thead>
             <tr>
@@ -480,7 +480,7 @@ As the climate changes, NYC faces rising average temperatures and heat waves tha
 {{< rawhtml >}}
 
 <div class="sr-only">
-<p>A map showing how surface temperatures taken from monitors mounted on trees varied between 6pm and 9pm throughout NYC. In upper Manhattan, sites in both the north and south Bronx, and in parts of northwest Queens, temperatures were measured to higher than in northwest Brooklyn and northeast Queens. These disparities were similar between 2018 and 2019.</p>
+<p>Surface temperature data taken from monitors mounted on trees varied between 6pm and 9pm throughout NYC shows that in upper Manhattan, sites in both the north and south Bronx, and in parts of northwest Queens, temperatures were measured to higher than in northwest Brooklyn and northeast Queens. These disparities were similar between 2018 and 2019.</p>
 </div>
 </div>
 <div class="wide">
