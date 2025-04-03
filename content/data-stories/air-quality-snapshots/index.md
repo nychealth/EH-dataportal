@@ -217,11 +217,9 @@ related:
                 </div>
                 <br>
                 <div class="sr-only">
-                <div style="min-height:938px" id="datawrapper-vis-rMo3f"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/rMo3f/embed.js" charset="utf-8" data-target="#datawrapper-vis-rMo3f"></script><noscript><img src="https://datawrapper.dwcdn.net/rMo3f/full.png" alt="" /></noscript></div>
-                <br>
-                <div style="min-height:888px" id="datawrapper-vis-6M0f7"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/6M0f7/embed.js" charset="utf-8" data-target="#datawrapper-vis-6M0f7"></script><noscript><img src="https://datawrapper.dwcdn.net/6M0f7/full.png" alt="" /></noscript></div>
-                <br>
-                <div style="min-height:1689px" id="datawrapper-vis-5joqB"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/5joqB/embed.js" charset="utf-8" data-target="#datawrapper-vis-5joqB"></script><noscript><img src="https://datawrapper.dwcdn.net/5joqB/full.png" alt="" /></noscript></div>
+    <iframe title="Special monitoring for environmental justice
+    " aria-label="Table" id="datawrapper-chart-wwfaQ" src="https://datawrapper.dwcdn.net/wwfaQ/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="1019" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r,i=0;r=e[i];i++)if(r.contentWindow===a.source){var d=a.data["datawrapper-height"][t]+"px";r.style.height=d}}}))}();
+</script>
                 </div>
             </div>
         <P>Previously, our network of air quality monitors at 60 core sites gathered data that we used to model air quality across the entire city. With these 15 EJ sites, we can assess how well the model predicts air pollution levels in these communities with greater risk of air quality-related health impacts. </P>
@@ -253,6 +251,7 @@ related:
             </div>
         <p><strong>Additional confidence in our model.</strong> These findings show that the original model, based on the 60 core monitoring sites, is useful for predicting PM2.5 and NO2 levels - even in high-poverty neighborhoods that previously had fewer monitors. They offer additional confidence in our air quality monitor network and model, and tell us that NYCCAS does a good job of describing pollution levels in all NYC neighborhoods, even locations without monitors.</p>
     </div>
+
 </div>
 <!--end color panel-->
     <div class="narrow">
