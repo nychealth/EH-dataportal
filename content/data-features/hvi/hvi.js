@@ -70,7 +70,8 @@ const load_flexdatalist = async () => {
 
                 // set neighborhood name on page
                 
-                document.querySelector("#NTA").innerHTML = '<h4>' + DOMPurify.sanitize(set.GEONAME) + '</h4>';
+                document.querySelector("#NTA").innerHTML = DOMPurify.sanitize(set.GEONAME);
+                document.getElementById('zipPrint').innerHTML = set.zipcode;
                 
                 // call dataChange
 
@@ -155,7 +156,14 @@ function dataChange(GEOCODE) {
     
     // fill html elements
     
-    document.querySelector("#hviVal").innerHTML = '<h4>' + nHVI_RANK + ' out of 5</h4>';
+    document.querySelector("#hviVal").innerHTML = nHVI_RANK + ' out of 5';
+
+    var cssClass = 'class-' + nHVI_RANK;
+    document.getElementById('hviVal').classList.remove(cssClass)    // remove old classes, if re-select
+    document.getElementById('NTA').classList.remove(cssClass)
+
+    document.getElementById('hviVal').classList.add(cssClass)       // add classes
+    document.getElementById('NTA').classList.add(cssClass)
     
     document.querySelector("#tempVal").innerHTML = nSURFACE_TEMP + '° F';
     document.querySelector("#greenVal").innerHTML = nGREENSPACE + '%';
@@ -197,37 +205,37 @@ function tertileTranslate(tertileVal, category) {
     } else if (category == "acTert") {
         
         if (tertileVal == 3) {
-            return '<span class="badge badge-success">More than most NYC neighborhoods</span>';
+            return '<span class="badge badge-success">more than most NYC neighborhoods</span>';
             
         } else if (tertileVal == 2) {
-            return '<span class="badge badge-light">In the middle of NYC neighborhoods</span>';
+            return '<span class="badge badge-light">in the middle of NYC neighborhoods</span>';
             
         } else {
-            return '<span class="badge badge-warning">Less than most NYC neighborhoods</span>';
+            return '<span class="badge badge-warning">less than most NYC neighborhoods</span>';
         }
         
     } else if (category == "greenTert") {
         
         if (tertileVal == 3) {
-            return '<span class="badge badge-success">More than most NYC neighborhoods</span>';
+            return '<span class="badge badge-success">more than most NYC neighborhoods</span>';
             
         } else if (tertileVal == 2) {
-            return '<span class="badge badge-light">In the middle of NYC neighborhoods</span>';
+            return '<span class="badge badge-light">in the middle of NYC neighborhoods</span>';
             
         } else {
-            return '<span class="badge badge-warning">Less than most NYC neighborhoods</span>';
+            return '<span class="badge badge-warning">less than most NYC neighborhoods</span>';
         }
         
     } else if (category == "incTert") {
         
         if (tertileVal == 3) {
-            return '<span class="badge badge-success">Higher than most NYC neighborhoods</span>';
+            return '<span class="badge badge-success">higher than most NYC neighborhoods</span>';
             
         } else if (tertileVal == 2) {
-            return '<span class="badge badge-light">In the middle of NYC neighborhoods</span>';
+            return '<span class="badge badge-light">in the middle of NYC neighborhoods</span>';
             
         } else {
-            return '<span class="badge badge-warning">Lower than most NYC neighborhoods</span>';
+            return '<span class="badge badge-warning">lower than most NYC neighborhoods</span>';
         }
         
     }
@@ -254,7 +262,7 @@ function buildMap(div, spec, csv, topo, nbr) {
         
         topo_url.url = topo;
         
-        vegaEmbed(div, spec, {actions: true}).then(async res => {
+        vegaEmbed(div, spec, {actions: false}).then(async res => {
                 
             let res_view = await res.view
                 .signal("selectedNTA", nbr)
