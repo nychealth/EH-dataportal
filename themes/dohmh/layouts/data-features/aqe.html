@@ -28,11 +28,15 @@
                     <p>If we don't have an air quality monitor in one neighborhood, but we know its building density, its
                         industrial area, and its traffic, then we can model (estimate or predict) its air quality - based on
                         monitored air quality in similar neighborhoods.</p>
+
+                    <div class="sr-only">
+                        <div style="min-height:1028px" id="datawrapper-vis-5axZx"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/5axZx/embed.js" charset="utf-8" data-target="#datawrapper-vis-5axZx"></script><noscript><img src="https://datawrapper.dwcdn.net/5axZx/full.png" alt="" /></noscript></div>
+                    </div>
                     </div>
     
                 
     
-                <div class="my-2">
+                <div class="my-2" aria-hidden="true">
     
                     <div class="fs-sm pb-1"><span class="home-label font-weight-bold">Enter a neighborhood to get data:</span></div>
         
@@ -173,17 +177,13 @@
             </div>
 
             <div class="row my-4">
-                <div class="col-md-7 mx-auto border p-1">
-                    <h4>About the data</h4>
-                    <p>                
-                        <ul>
-                        <li><a href="aqe-nta.csv"><i class="fas fa-download mr-1" aria-hidden="true"></i>Download these data<i class="fas fa-file-csv ml-1" aria-hidden="true"></i></a></li>
-                        <li>PM2.5 and NO2 data are from 2022</li>
-                        <li>Industrial area data are from 2022</li>
-                        <li>Commercial cooking, traffic, and building data are from 2019</li>
-                        <li>For details on data sources and measurements, see <a href="../nyccas">NYCCAS Annual Report</a></li>
-                    </ul>
-                    </p>
+                <div class="col-md-7 mx-auto">
+                    <div class="asidebox">
+                        <h4>About the data</h4>
+                        <p>Data for PM2.5, NO2, and industrial areas are from 2022. Data on commercial cooking, traffic, and buildings are from 2019.  For details on data sources and measurements, see <a href="../nyccas">NYCCAS Annual Report</a>.               
+                        </p>
+                        <p><a href="aqe-nta.csv"><i class="fas fa-download mr-1" aria-hidden="true"></i>Download data<i class="fas fa-file-csv ml-1" aria-hidden="true"></i></a>.</p>
+                    </div>
                 </div>
             </div>
         </div>
