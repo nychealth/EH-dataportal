@@ -114,10 +114,10 @@ No one should have to walk on sidewalks in this condition.
 <div class="medium my-4 py-2">
     <div class="row">
         <div class="col-sm-6">
-            <img class="img-responsive" src="feces-1-photovoice.jpg" style="width:100%">
+            <img class="img-responsive" src="feces-1-photovoice.jpg" alt="image of sidewalk with pet waste." style="width:100%">
         </div>
         <div class="col-sm-6">
-                    <img class="img-responsive" src="feces-2-photovoice.jpg"style="width:100%">
+                    <img class="img-responsive" src="feces-2-photovoice.jpg" alt="image of sidewalk with pet waste." style="width:100%">
         </div>
         <div class="col-12 mt-1">
         <div class="card card-left-border shadow-sm">
