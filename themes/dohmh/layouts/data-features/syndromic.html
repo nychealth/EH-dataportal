@@ -24,6 +24,11 @@
 
         <p>Below are data on the number of <a href="#heatmodal" data-toggle="modal" class="badge badge-pill badge-warning">heat syndrome</a> visits to emergency departments, and the daily maximum temperature. <a href="#whatmodal" data-toggle="modal" class="badge badge-pill badge-warning">What do we use these data for?</a></p></p>
 
+        <!-- Accessible table of previous_years.csv -->
+        <div class="sr-only">
+          <div style="min-height:569px" id="datawrapper-vis-azZ94"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/azZ94/embed.js" charset="utf-8" data-target="#datawrapper-vis-azZ94"></script><noscript><img src="https://datawrapper.dwcdn.net/azZ94/full.png" alt="" /></noscript></div>
+        </div>
+
       </div>
 
         <div class="col-md-5 mr-auto">
@@ -49,7 +54,7 @@
 
     </div>
 
-    <div class="row mt-2">
+    <div class="row mt-2" aria-hidden="true">
       <div class="col-11 mx-auto">
         <div class="row" style="background-color:#f1f1f1; padding: 10px; border-radius: 5px;">
           <h3>Daily data: <span id="yearHeader">2023</span></h3>
@@ -76,18 +81,17 @@
         <!-- scatterplot vis -->
       </div>
 
-      <div class="row my-4 fs-md">
-        <div class="col-12 asidebox">
+      </div>
+    </div>
+
+    <div class="row my-4 fs-md">
+      <div class="col-11 mx-auto">
+        <div class="asidebox">
           <p><strong>About the data</strong></p>
           <p><strong>Daily temperature</strong>: The maximum daily temperature is the heat index or temperature, whichever is higher, as recorded by the National Weather Service weather station at La Guardia Airport.</p>
-
           <p>In NYC, an <strong>extreme heat event</strong> is two or more days with a heat index reaching 95 °F, or one or more days reaching 100 °F.</p>
-
-          <p><a href="https://github.com/nychealth/EHDP-data/tree/production/key-topics/heat-syndrome">Download these data</a>.</p>
-
-
+          <p><a href="https://github.com/nychealth/EHDP-data/tree/production/key-topics/heat-syndrome">Download these data</a>.</p>  
         </div>
-      </div>
 
 
       </div>
