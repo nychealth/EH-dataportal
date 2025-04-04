@@ -9,15 +9,12 @@ categories:
 keywords:
   - how we work
   - redesign
-  - user research
+  - accessibility
   - open source
-  - Github
-  - open data
-  - API
   - data visualization
 seo_title: Advanced tools
-seo_description: "Tools for advanced users of the EH Data Portal."
-description: "Tools for advanced users of the EH Data Portal."
+seo_description: "Accessibility updates on the EH Data Portal"
+description: "Accessibility updates on the EH Data Portal."
 ---
 
 ## Notes on making data visualizations more accessible for the EHDP
@@ -56,19 +53,40 @@ By bringing these to the fore, our accessible tables are more likely to match th
 
 In some cases, creating a table that communicates the meaning behind a trend chart is straightforward.
 
-[PICTURE / VIZ + accessible table] + fix rel url below
+<div aria-hidden="true">
+<iframe title="Lead poisoning in NYC adults" aria-label="Interactive line chart" id="datawrapper-chart-i7Bgo" src="https://datawrapper.dwcdn.net/i7Bgo/4/" scrolling="no" frameborder="0" style="border: none;" width="726" height="515" data-external="1"></iframe>
+</div>
 
-In the case of this [trend chart comparing falling lead poisoning rates in NYC adults across the five boroughs](https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/adult-lead/), creating a corresponding table just required duplicating the underlying data and formatting it as a table. Here, the year, blood lead levels, and borough headers guide users through the information.
+<div class="sr-only">
+<iframe title="Lead poisoning rates in adult New Yorkers have fallen since 2001" aria-label="Table" id="datawrapper-chart-c7jtG" src="https://datawrapper.dwcdn.net/c7jtG/5/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="739" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r,i=0;r=e[i];i++)if(r.contentWindow===a.source){var d=a.data["datawrapper-height"][t]+"px";r.style.height=d}}}))}();
+</script>
+</div>
 
-[PICTURE / VIZ and accessible table]
+- fix rel url below
+
+In the case of this [trend chart comparing falling lead poisoning rates in NYC adults across the five boroughs](../data-stories/adult-lead/), creating a corresponding table just required duplicating the underlying data and formatting it as a table. Here, the year, blood lead levels, and borough headers guide users through the information.
+
+<iframe title="Lead poisoning rates in adult New Yorkers have fallen since 2001" aria-label="Table" id="datawrapper-chart-c7jtG" src="https://datawrapper.dwcdn.net/c7jtG/5/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="739" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r,i=0;r=e[i];i++)if(r.contentWindow===a.source){var d=a.data["datawrapper-height"][t]+"px";r.style.height=d}}}))}();
+</script>
 
 ## Point maps: revising information in back-up tables
 
-[PICTURE VIZ ETC and fix rel url]
+<div aria-hidden="true">
+<iframe title="NYCCAS monitor locations" aria-label="Map" id="datawrapper-chart-d7DDS" src="https://datawrapper.dwcdn.net/d7DDS/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="656" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r,i=0;r=e[i];i++)if(r.contentWindow===a.source){var d=a.data["datawrapper-height"][t]+"px";r.style.height=d}}}))}();
+</script>
+</div>
+
+<div class="sr-only">
+<iframe title="NYCCAS monitor locations" aria-label="Table" id="datawrapper-chart-dB6XN" src="https://datawrapper.dwcdn.net/dB6XN/3/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="892" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r,i=0;r=e[i];i++)if(r.contentWindow===a.source){var d=a.data["datawrapper-height"][t]+"px";r.style.height=d}}}))}();
+</script>
+</div>
 
 Here the symbol map using point data from our data story [Breathe easy: NYC’s air quality is improving](https://limber-ostrich.cloudvent.net/data-stories/breatheeasy/), works well in a visual context, where sighted users can gather information about which air quality monitoring sites are located throughout NYC.
 
-[PICTURE VIZ ETC]
+<iframe title="NYCCAS monitor locations" aria-label="Table" id="datawrapper-chart-dB6XN" src="https://datawrapper.dwcdn.net/dB6XN/3/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="892" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r,i=0;r=e[i];i++)if(r.contentWindow===a.source){var d=a.data["datawrapper-height"][t]+"px";r.style.height=d}}}))}();
+</script>
+
+<div style="fs-xs">Screen-reader accessible table with zip codes instead of coordinates </div>
 
 he air quality sites are overlaid onto this point map using latitude and longitude coordinates, and corresponding site IDs. But when we tried to make a table with that same data, we realized we were delivering information that is less meaningful in a non-visual context to our screen-reader users.
 
@@ -86,6 +104,8 @@ But do these data provide meaningful information in a non-visual context? Takeaw
 
 Similar to translating the locations of air quality monitoring sites, we have lots of information, just not quite the right kind. So, we chose to more thoroughly describe some of our observations looking at these raster maps, the things we think people might find to be major takeaways about how air pollution changed during the COVID-19 pandemic.
 
-[PICTURE ETC]
+<div aria-hidden="true">
+![](raster_maps.png)
+</div>
 
 There are many interpretations of accessibility, and these examples are just a few strategies we used when thinking through how to improve access to the information we share, to in turn make it easier for more of you to understand and use.
