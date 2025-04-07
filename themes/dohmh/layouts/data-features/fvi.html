@@ -1,0 +1,84 @@
+{{- define "main" -}}
+
+<article class="container-fluid" id="skip-header-target">
+
+    <div class="row">
+        <div class="col-md-11 mx-auto">
+            <nav aria-label="breadcrumb" class="mt-2 mb-4">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
+                    <li class="breadcrumb-item"><a href={{ relURL "data-features" }}>Data Features</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
+                </ul>
+            </nav>
+
+            <h1>{{ .Title }}</h1>
+            {{- .Content  -}}
+
+            <div class="row mt-4">
+              <div class="col-md-3">
+                <div class="dropdown ">
+                  <button class="btn btn-outline-primary btn-block dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+                    Choose FVI metric
+                  </button>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                  </div>
+                </div>
+
+                <div class="mb-2 border p-1 fs-sm">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque aliquam lectus eu ullamcorper pulvinar. Curabitur sed sollicitudin arcu, a iaculis ante. Quisque faucibus sed risus vitae feugiat. Nulla sit amet velit tempor enim convallis pharetra non vulputate metus. Ut facilisis ullamcorper vestibulum. Sed varius porta leo a gravida. Nunc vel lacus lacus. Donec sapien dolor, consectetur sed augue vitae, porttitor dapibus risus. Sed sit amet elementum massa.
+                </div>
+              </div>
+
+              <div class="col-md-9">
+                <div id="map" class="" style="width:100%; height: 90vh"></div>
+
+              </div>
+            </div>
+
+            <div class="row my-4">
+              <div class="col-md-6">
+                <div class="asidebox">
+                  <h2 class="h5">About the data</h2>
+                  <p class="fs-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque aliquam lectus eu ullamcorper pulvinar. Curabitur sed sollicitudin arcu, a iaculis ante. Quisque faucibus sed risus vitae feugiat. Nulla sit amet velit tempor enim convallis pharetra non vulputate metus. Ut facilisis ullamcorper vestibulum. Sed varius porta leo a gravida. Nunc vel lacus lacus. Donec sapien dolor, consectetur sed augue vitae, porttitor dapibus risus. Sed sit amet elementum massa.
+                  </p>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="asidebox">
+                  <h2 class="h5">About the data</h2>
+                  <p class="fs-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque aliquam lectus eu ullamcorper pulvinar. Curabitur sed sollicitudin arcu, a iaculis ante. Quisque faucibus sed risus vitae feugiat. Nulla sit amet velit tempor enim convallis pharetra non vulputate metus. Ut facilisis ullamcorper vestibulum. Sed varius porta leo a gravida. Nunc vel lacus lacus. Donec sapien dolor, consectetur sed augue vitae, porttitor dapibus risus. Sed sit amet elementum massa.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+
+        </div>
+    </div>
+
+    <div class="row" data-pagefind-weight="7.0">
+
+      <div class="col-12">
+      </div>
+
+
+    </div>
+
+
+</article>
+
+<!-- Related footer -->
+{{- partial "related-footer-2" . -}}
+
+<!--bring in JS -->
+<script type="text/javascript" src="fvigeojson.js"></script>
+
+<script type="text/javascript" src="fvi.js"></script>
+
+
+{{- end -}}
