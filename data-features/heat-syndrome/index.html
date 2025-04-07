@@ -81,7 +81,7 @@
 
 <script src="/IndicatorPublic/js/vegaBundle.2e45abeb2e9b2868165fdd3d48a33a0e2eea7589f3f930b7b23a6880a93472b6b12e193904457d97250d2c7b22e37fb336429527d8455720f1deb1c23201b984.js" integrity="sha512-LkWr6y6bKGgWX909SKM6Di7qdYnz&#43;TC3sjpogKk0craxLhk5BEV9lyUNLHsi43&#43;zNkKVJ9hFVyDx3rHCMgG5hA=="></script>
 
-    <script src="/IndicatorPublic/node_modules/d3/dist/d3.min.bdce7caafbc176b0d1e1eb5bc4c7654ede06050935aa3bf23914769ebb0fb053f2aecfbfbb9737fb50adeaea4e81d668225edeaba9376b550f0d2340422ff7d8.js" integrity="sha512-vc58qvvBdrDR4etbxMdlTt4GBQk1qjvyORR2nrsPsFPyrs&#43;/u5c3&#43;1Ct6upOgdZoIl7eq6k3a1UPDSNAQi/32A=="></script><script src="/IndicatorPublic/node_modules/dompurify/dist/purify.min.635a7f4932d6fc1fa5f8c3c9e4ae4e7482ccc096b680c1575e60bfaacc83b861fdb9cd4c64c528ebff1841483d52de27b3c2860ab0adb7ee7c53098d145895bc.js" integrity="sha512-Y1p/STLW/B&#43;l&#43;MPJ5K5OdILMwJa2gMFXXmC/qsyDuGH9uc1MZMUo6/8YQUg9Ut4ns8KGCrCtt&#43;58UwmNFFiVvA=="></script>
+    <script src="/IndicatorPublic/node_modules/d3/dist/d3.min.bdce7caafbc176b0d1e1eb5bc4c7654ede06050935aa3bf23914769ebb0fb053f2aecfbfbb9737fb50adeaea4e81d668225edeaba9376b550f0d2340422ff7d8.js" integrity="sha512-vc58qvvBdrDR4etbxMdlTt4GBQk1qjvyORR2nrsPsFPyrs&#43;/u5c3&#43;1Ct6upOgdZoIl7eq6k3a1UPDSNAQi/32A=="></script><script src="/IndicatorPublic/node_modules/dompurify/dist/purify.min.fc252d03ce2c596a961017a336baed59aed873872d8773a67b6ca6bc228ea3d61c678b21f7cb67754cb82eeb44db119c0200f87f2cf5eb2fa04b225d182079c3.js" integrity="sha512-/CUtA84sWWqWEBejNrrtWa7Yc4cth3Ome2ymvCKOo9YcZ4sh98tndUy4LutE2xGcAgD4fyz16y&#43;gSyJdGCB5ww=="></script>
 
 
 
@@ -366,11 +366,16 @@
 
     <div class="row" data-pagefind-weight="7.0">
       <div class="col-md-6 col-sm-12 ml-auto">
-        <h1><i class="fas fa-star" aria-hidden="true" style="margin-right: 10px"></i>Real-time heat-related illness</h1><p>The weather forecast is the best way to predict heat-related health outcomes.</p>
+        <h1>Real-time heat-related illness</h1><p>The weather forecast is the best way to predict heat-related health outcomes.</p>
 <p>We can also track heat-related illness with near real-time electronic data from emergency departments at hospitals throughout NYC. These data include illnesses directly attributed to heat (including heat exhaustion, muscle cramps, fainting and heat stroke), not the full burden of heat-related health impacts.</p>
 <p>We track these outcomes citywide by using a system called <a href="#syndromicmodal" data-toggle="modal" class="badge badge-pill badge-warning">syndromic surveillance</a> which lets us know how many people who visit the emergency room (ED) are being affected by certain health conditions. About 10,000 patients visit the ED per day in NYC, and reasons for their visits are captured in hospital records. These reasons are de-identified and sent to the Health Department. The Health Department then searches the records for diagnostic codes (when available) and words describing why patients are at the ED to track specific health conditions in near real-time and understand citywide trends. <p></p>
 
         <p>Below are data on the number of <a href="#heatmodal" data-toggle="modal" class="badge badge-pill badge-warning">heat syndrome</a> visits to emergency departments, and the daily maximum temperature. <a href="#whatmodal" data-toggle="modal" class="badge badge-pill badge-warning">What do we use these data for?</a></p></p>
+
+        
+        <div class="sr-only">
+          <div style="min-height:569px" id="datawrapper-vis-azZ94"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/azZ94/embed.js" charset="utf-8" data-target="#datawrapper-vis-azZ94"></script><noscript><img src="https://datawrapper.dwcdn.net/azZ94/full.png" alt="" /></noscript></div>
+        </div>
 
       </div>
 
@@ -386,8 +391,6 @@
             <div class="mt-2 asidebox p-2 fs-md">
               <p>Extreme heat is dangerous. It can cause illness, make chronic conditions worse, and even kill. Heat-related illnesses - including  heat exhaustion, muscle cramps, fainting, and heat stroke (the most serious form) - happen when the body cannot cool down enough. Heat can also worsen chronic conditions, such as cardiovascular diseases or kidney conditions.</p>
 
-              <p>In NYC, an <strong>extreme heat event</strong> is two or more days with a heat index reaching 95 °F, or one or more days reaching 100 °F.</p>
-
               <p>To learn more about heat and health, visit <a href="https://www1.nyc.gov/site/doh/health/emergency-preparedness/emergencies-extreme-weather-heat.page">Extreme Heat and Health</a>. To stay safe in the heat, visit <a href="https://www1.nyc.gov/assets/em/html/beat-the-heat/beattheheat.html">Beat the Heat</a>.</p>
             </div>
 
@@ -399,7 +402,7 @@
 
     </div>
 
-    <div class="row mt-2">
+    <div class="row mt-2" aria-hidden="true">
       <div class="col-11 mx-auto">
         <div class="row" style="background-color:#f1f1f1; padding: 10px; border-radius: 5px;">
           <h3>Daily data: <span id="yearHeader">2023</span></h3>
@@ -426,12 +429,17 @@
         
       </div>
 
-      <div class="row my-4 fs-md">
-        <div class="col-12 asidebox">
-          <p><strong>Daily temperature</strong>: The maximum daily temperature is the heat index or temperature, whichever is higher, as recorded by the National Weather Service weather station at La Guardia Airport.</p>
-
-        </div>
       </div>
+    </div>
+
+    <div class="row my-4 fs-md">
+      <div class="col-11 mx-auto">
+        <div class="asidebox">
+          <p><strong>About the data</strong></p>
+          <p><strong>Daily temperature</strong>: The maximum daily temperature is the heat index or temperature, whichever is higher, as recorded by the National Weather Service weather station at La Guardia Airport.</p>
+          <p>In NYC, an <strong>extreme heat event</strong> is two or more days with a heat index reaching 95 °F, or one or more days reaching 100 °F.</p>
+          <p><a href="https://github.com/nychealth/EHDP-data/tree/production/key-topics/heat-syndrome">Download these data</a>.</p>  
+        </div>
 
 
       </div>

@@ -81,7 +81,7 @@
 
 <script src="/IndicatorPublic/js/vegaBundle.2e45abeb2e9b2868165fdd3d48a33a0e2eea7589f3f930b7b23a6880a93472b6b12e193904457d97250d2c7b22e37fb336429527d8455720f1deb1c23201b984.js" integrity="sha512-LkWr6y6bKGgWX909SKM6Di7qdYnz&#43;TC3sjpogKk0craxLhk5BEV9lyUNLHsi43&#43;zNkKVJ9hFVyDx3rHCMgG5hA=="></script>
 
-    <script src="/IndicatorPublic/node_modules/d3/dist/d3.min.bdce7caafbc176b0d1e1eb5bc4c7654ede06050935aa3bf23914769ebb0fb053f2aecfbfbb9737fb50adeaea4e81d668225edeaba9376b550f0d2340422ff7d8.js" integrity="sha512-vc58qvvBdrDR4etbxMdlTt4GBQk1qjvyORR2nrsPsFPyrs&#43;/u5c3&#43;1Ct6upOgdZoIl7eq6k3a1UPDSNAQi/32A=="></script><script src="/IndicatorPublic/node_modules/dompurify/dist/purify.min.635a7f4932d6fc1fa5f8c3c9e4ae4e7482ccc096b680c1575e60bfaacc83b861fdb9cd4c64c528ebff1841483d52de27b3c2860ab0adb7ee7c53098d145895bc.js" integrity="sha512-Y1p/STLW/B&#43;l&#43;MPJ5K5OdILMwJa2gMFXXmC/qsyDuGH9uc1MZMUo6/8YQUg9Ut4ns8KGCrCtt&#43;58UwmNFFiVvA=="></script>
+    <script src="/IndicatorPublic/node_modules/d3/dist/d3.min.bdce7caafbc176b0d1e1eb5bc4c7654ede06050935aa3bf23914769ebb0fb053f2aecfbfbb9737fb50adeaea4e81d668225edeaba9376b550f0d2340422ff7d8.js" integrity="sha512-vc58qvvBdrDR4etbxMdlTt4GBQk1qjvyORR2nrsPsFPyrs&#43;/u5c3&#43;1Ct6upOgdZoIl7eq6k3a1UPDSNAQi/32A=="></script><script src="/IndicatorPublic/node_modules/dompurify/dist/purify.min.fc252d03ce2c596a961017a336baed59aed873872d8773a67b6ca6bc228ea3d61c678b21f7cb67754cb82eeb44db119c0200f87f2cf5eb2fa04b225d182079c3.js" integrity="sha512-/CUtA84sWWqWEBejNrrtWa7Yc4cth3Ome2ymvCKOo9YcZ4sh98tndUy4LutE2xGcAgD4fyz16y&#43;gSyJdGCB5ww=="></script>
 
 
 
@@ -354,152 +354,169 @@
 <article class="container-fluid" id="skip-header-target">
 
     <div class="row">
-        <div class="col-md-11 mx-auto mt-2 mb-3 pl-0">
-            <nav aria-label="breadcrumb">
+        <div class="col-md-7 col-sm-12 mx-auto  mb-2">
+            <nav aria-label="breadcrumb" class="mt-2 mb-3">
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item"><a href=/IndicatorPublic/>Home</a></li>
                     <li class="breadcrumb-item"><a href=/IndicatorPublic/data-features>Data Features</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Your Neighborhood&#39;s Air Quality</li>
+                    <li class="breadcrumb-item active d-none d-md-block" aria-current="page">Your Neighborhood&#39;s Air Quality</li>
                 </ul>
             </nav>
-        </div>
-        <div class="col-md-2 mr-auto"></div>
-    </div>
 
-    <div class="row">
-        <div class="col-11 mx-auto pl-0 mb-2">
+
             <h1 class="h2" data-pagefind-weight="10.0">
-                <i class="fas fa-star" aria-hidden="true" style="margin-right: 10px"></i>Your Neighborhood&#39;s Air Quality
+                Your Neighborhood&#39;s Air Quality
             </h1>
 
-            <div class="row" data-pagefind-weight="7.0">
-                <div class="col-md-6">
-                    <p>We combine data from our air quality monitoring network, NYCCAS, with other data to understand what
-                        makes one neighborhood's air quality different from another's. We found that building emissions,
-                        building density, industrial areas, and traffic density are associated with differences in air
-                        quality.</p>
-                </div>
-                <div class="col-md-6">
-                    <p>If we don't have an air quality monitor in one neighborhood, but we know its building density, its
-                        industrial area, and its traffic, then we can model (estimate or predict) its air quality - based on
+            <div data-pagefind-weight="7.0">
+                <p>We combine data from our air quality monitoring network, NYCCAS, with other data to understand what
+                    makes one neighborhood's air quality different from another's. We found that building emissions,
+                    commercial cooking, industrial areas, and traffic density are associated with differences in air
+                    quality.</p>
+    
+                    <p>If we don't have an air quality monitor in one neighborhood, but we know this other information about it, then we can model its air quality - estimating or predicting it, based on
                         monitored air quality in similar neighborhoods.</p>
+
+                    <div class="sr-only">
+                        <div style="min-height:1028px" id="datawrapper-vis-5axZx"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/5axZx/embed.js" charset="utf-8" data-target="#datawrapper-vis-5axZx"></script><noscript><img src="https://datawrapper.dwcdn.net/5axZx/full.png" alt="" /></noscript></div>
+                    </div>
+                    </div>
+    
+                
+    
+                <div class="my-2" aria-hidden="true">
+    
+                    <div class="fs-sm pb-1"><span class="home-label font-weight-bold">Enter a neighborhood to get data:</span></div>
+        
+                    <div class="btn-group" role="group" style="width:100%;">
+        
+                        <input
+                            id="flex_search"
+                            type='search'
+                            class='flexdatalist form-control'
+                            name='indicator_name_suggestion'
+                        />
+        
+                        <button id="clear" class="btn btn-md btn-warning">Clear</button>
+                    </div>
+        
+        
+                    <p class="float-right"><em class="fs-sm"><a
+                        href=/IndicatorPublic/data-stories/geographies>About Neighborhood Tabulation Areas.</a></em> </p>
+    
                 </div>
-            </div>
-
-            <hr class="my-2">
-
         </div>
     </div>
-
-    <div class="row my-4">
-        <div class="col-md-6 mx-auto l-green-border">
-
-            <div class="fs-sm pb-1"><span class="home-label font-weight-bold">Enter a neighborhood to get data:</span></div>
-
-            <div class="btn-group" role="group" style="width:100%;">
-
-                <input
-                    id="flex_search"
-                    type='search'
-                    class='flexdatalist form-control'
-                    name='indicator_name_suggestion'
-                />
-
-                <button id="clear" class="btn btn-md btn-warning">Clear</button>
-            </div>
-
-
-            <p class="float-right"><em class="fs-sm"><a
-                href=/IndicatorPublic/data-stories/geographies>Read about Neighborhood Tabulation Areas.</a></em> </p>
-
-
-
-            <div class="mt-4" id="showNeighb">
-                <div class="row">
-                    <div class="col-4">
-                        <p><span class="home-label font-weight-bold">Your neighborhood:</span></p>
-                    </div>
-                    <div class="col-8">
-                        <p><span class="h5" id="NTA2">[SELECT A NEIGHBORHOOD ABOVE]</span></p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-4">
-                        <p><span class="home-label font-weight-bold">ZIP Codes:</span></p>
-                    </div>
-                    <div class="col-8">
-                        <p><span id="zips" class="h6">[SELECT A NEIGHBORHOOD ABOVE]</span></p>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-    </div>
-
 
 
     
-    <div class="row my-4">
+    <div class="row my-4" id="showData">
         <div class="col-md-10 mx-auto">
             <h3><i class="fas fa-smog mr-1"></i>Air quality in <span id="NTA3" class="">your neighborhood</span> </h3>
+            <div class="fs-sm">ZIP Codes: <span id="zips"></span></div>
 
-            <div class="row mt-2 l-green-border">
+            <div class="row mt-2">
                 <div class="col-12 my-2">
-                    <h4>PM2.5 (fine particles)</h4>
-                    <p class="fs-md"><b>PM2.5</b> worsens lung and heart diseases and are linked to cancer and
+                    <h4>PM2.5</h4>
+                    <p class="fs-md"><b>PM2.5</b>, also called fine particles, worsens lung and heart diseases and are linked to cancer and
                         premature death. NYC meets the EPA's annual average standard (measured in micrograms per cubic
                         meter, or μg/m<sup>3</sup>), but short-term concentrations sometimes exceed this threshold.</p>
 
-                </div>
-                <div class="col-sm-6 col-xs-12">
-                    <div class="" style="width:100%;height:150px;" id="PMDestination">Chart</div>
-                </div>
-                <div class="col-3 ml-auto">
-                    <p class="mt-3"><span class="home-label font-weight-bold yourN" id="youLabel1">Your neighborhood:</span></p>
-                    <p><span class="home-label">NYC average:</span></p>
-                    <p><span class="home-label">EPA standard:</span></p>
-                </div>
-                <div class="col-2 mr-auto">
-                    <p class="mt-3"><span class="h5"><span id="thisPM">XXX</span>  μg/m<sup>3</sup></span></p>
-                    <p><span class="h5">5.8 μg/m<sup>3</sup></span></p>
-                    <p><span class="h5">9 μg/m<sup>3</sup></span></p>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-11">
+                            <div class="" style="width:100%;height:150px;" id="PMDestination">Chart</div>
+                        </div>
+
+                        <div class="col-md-6 col-sm-12">
+                            <table class="table mt-2">
+                                <thead class="d-none">
+                                    <tr>
+                                        <th>Area</th>
+                                        <th>PM2.5</th>
+                                    </tr>
+
+                                </thead>
+                              <tbody>
+                                <tr>
+                                    <th><span class="text-primary">Your neighborhood</span></th>
+                                    <th><span class="text-primary"><span id="thisPM">XXX</span>  μg/m<sup>3</sup></span></th>
+                                  </tr>
+                                <tr>
+                                  <td>NYC Average</td>
+                                  <td>5.8 μg/m3</td>
+                                </tr>
+                                <tr>
+                                  <td>EPA Standard</td>
+                                  <td>9 μg/m3</td>
+                                </tr>
+                              </tbody>
+                              </table>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <div class="row mt-4 l-green-border">
+            <div class="row my-4">
+                <div class="col-8 mx-auto">
+                    <hr>
+                </div>
+            </div>
+
+            <div class="row">
                 <div class="col-12 my-2">
                     <h4>Nitrogen dioxide</h4>
                     <p class="fs-md"><b>Nitrogen dioxide</b> is linked to asthma hospitalizations and other respiratory conditions.
                         NYC meets the EPA's annual standard (measured in parts per billion, or ppb), but short-term
                         concentrations sometimes exceed this threshold.</p>
-                </div>
 
-                <div class="col-sm-6 col-xs-12">
-                    <div class="" style="width:100%;height:150px;" id="NODestination">Chart</div>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-11">
+                            <div class="" style="width:100%;height:150px;" id="NODestination">Chart</div>
+
+                        </div>
+
+                        <div class="col-md-6">
+                            <table class="table mt-2">
+                                <thead class="d-none">
+                                    <tr>
+                                        <th>Area</th>
+                                        <th>PM2.5</th>
+                                    </tr>
+
+                                </thead>
+                              <tbody>
+                                <tr>
+                                    <th><span class="text-primary">Your neighborhood</span></th>
+                                    <th><span class="text-primary"><span id="thisNO2">XXX</span> ppb</sup></span></th>
+                                  </tr>
+                                <tr>
+                                  <td>NYC Average</td>
+                                  <td>14.7 ppb</td>
+                                </tr>
+                                <tr>
+                                  <td>EPA Standard</td>
+                                  <td>53 ppb</td>
+                                </tr>
+                              </tbody>
+                              </table>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-3 ml-auto">
-                    <p class="mt-2"><span class="home-label font-weight-bold yourN" id="youLabel2">Your neighborhood:</span></p>
-                    <p><span class="home-label">NYC average:</span></p>
-                    <p><span class="home-label">EPA standard:</span></p>
-                </div>
-                <div class="col-2 mr-auto">
-                    <p class="mt-2"><span class="h5"><span id="thisNO2">XXX</span> ppb</span></p>
-                    <p><span class="h5">14.7 ppb</span></p>
-                    <p><span class="h5">53 ppb</span></p>
-                </div>
-                <p class="fs-sm ml-1"><em>PM2.5 and NO2 data are from 2022.</em></p>
             </div>
 
-            <hr class="my-4">
+            <div class="row my-4">
+                <div class="col-8 mx-auto">
+                    <hr>
+                </div>
+            </div>
 
-            <div class="row mt-2 l-green-border">
+            <div class="row border p-1">
                 <div class="col-12 mb-2">
                     <h3><i class="fa fa-question-circle mr-1"></i>What affects air quality in <span id="NTA4" class="">your neighborhood</span>?</h3>
 
                 </div>
 
-                <div class="col-sm-7 col-xs-12">
+                <div class="col-md-7 col-sm-12">
 
                     <div style="background-color:#f1f1f1; width:100%" class="p-1">
                         <span id="mapTitle" class="h5">Building emissions</span>
@@ -517,7 +534,7 @@
 
                 </div>
 
-                <div class="col-sm-5 col-xs-12" data-pagefind-weight="7.0">
+                <div class="col-md-5 col-sm-12" data-pagefind-weight="7.0">
                     <div class="sourceBox sourceBox-active" id="sourceBox1" onclick="changeSource(1)">
                         <h3 class="fs-rg">Buliding emissions: <span class="badge" id="BE">XXX</span></h3>
                         <p class="fs-md">Like vehicles, buildings burn fuel: their boilers run on oil or gas to produce heat and hot water. These boilers emit pollutants that affect your neighborhood's air quality.
@@ -540,62 +557,23 @@
                         <h3 class="fs-rg">Traffic density: <span class="badge" id="TD">XXX</span></h3>
                         <p class="fs-md">Traffic produces "tailpipe emissions" like PM2.5, NOx and carbon monoxide (CO), and tire wear and braking release additional particulate matter into the air.
                         </p>
-
                     </div>
-
                 </div>
-                <p class="fs-sm ml-1"><em>Industrial area data is from 2022; commercial cooking, traffic, and building data are from 2019.</em></p>
-
             </div>
 
-            <div class="row">
-                <div class="col-sm-3 ml-auto"><a href="aqe-nta.csv" class="btn btn-block btn-outline-primary"><i class="fas fa-download mr-1" aria-hidden="true"></i>Download these data</a></div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-
-    <hr class="my-4">
-
-    <div class="row mb-2">
-        <div class="col-md-8 mx-auto">
-            <h4>More Air Quality resources</h4>
-        </div>
-    </div>
-
-    <div class="row mb-4">
-        <div class="col-md-4 ml-auto">
-            <div class="card content-card">
-                <div class="card-content p-2">
-                    <h5>NYCCAS Annual Report</h5>
-                    <p class="fs-md">Key findings from NYC's comprehensive air quality monitoring program, including pollutant trends and local sources.</p>
-
-                    <p class="fs-md"><a href=/IndicatorPublic/data-features/nyccas>Read more ></a> </p>
-                </div>
-
-            </div>
-
-
-        </div>
-
-        <div class="col-md-4 mr-auto">
-            <div class="card content-card">
-                <div class="card-content p-2">
-                    <h5>Real-Time Air Quality</h5>
-                    <p class="fs-md">Get hourly PM2.5 readings from real-time air quality monitors in strategic spots around the city.</p>
-                    <p class="fs-md"><a href="../realtime-air-quality">Get the data ></a></p>
+            <div class="row my-4">
+                <div class="col-md-7 mx-auto">
+                    <div class="asidebox">
+                        <h4>About the data</h4>
+                        <p>Data for PM2.5, NO2, and industrial areas are from 2022. Data on commercial cooking, traffic, and buildings are from 2019.  For details on data sources and measurements, see <a href="../nyccas">NYCCAS Annual Report</a>.               
+                        </p>
+                        <p><a href="aqe-nta.csv"><i class="fas fa-download mr-1" aria-hidden="true"></i>Download data<i class="fas fa-file-csv ml-1" aria-hidden="true"></i></a>.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <script>
-
-    </script>
 
     <style>
         .sourceBox {
@@ -629,7 +607,7 @@
         }
 
         .yourN {
-            border-bottom: 3px solid cyan;
+             
         }
     </style>
 
@@ -660,8 +638,23 @@
 
                       
 
-                        <a class="text-black" href="../../data-features/realtime-air-quality/">
-                          <span class='text-primary df-accent mr-2'><i class='fas fa-chart-bar' aria-hidden='true'></i></span>Real-Time Air Quality: PM2.5 in NYC
+                        <a class="text-black" href="../../data-explorer/air-quality/">
+                          <span class='text-primary de-accent mr-2'><i class='fas fa-chart-line' aria-hidden='true'></i></span>Air quality
+                        </a>
+                        <hr class="my-2">
+                      
+
+                      
+                      
+
+                      
+                        
+                        
+
+                      
+
+                        <a class="text-black" href="../../data-features/nyccas/">
+                          <span class='text-primary df-accent mr-2'><i class='fas fa-chart-bar' aria-hidden='true'></i></span>NYC Community Air Survey Annual Report
                         </a>
                         <hr class="my-2">
                       
@@ -677,21 +670,6 @@
 
                         <a class="text-black" href="../../data-stories/hia/">
                           <span class='text-primary ds-accent mr-2'><i class='fas fa-passport' aria-hidden='true'></i></span>Reducing air pollution should focus on neighborhoods with the worst health impacts
-                        </a>
-                        <hr class="my-2">
-                      
-
-                      
-                      
-
-                      
-                        
-                        
-
-                      
-
-                        <a class="text-black" href="../../data-stories/car-free-zones/">
-                          <span class='text-primary ds-accent mr-2'><i class='fas fa-passport' aria-hidden='true'></i></span>Air quality in car-free areas
                         </a>
                         <hr class="my-2">
                       

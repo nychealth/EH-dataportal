@@ -1,9 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "autosize": {"type": "fit", "contains": "padding"},
-  "background": "#FBFBFB",
-  "padding": 5,
-  "style": "cell",
   "data": [
     {"name": "highlight_store"},
     {"name": "hviData"},
@@ -153,7 +150,7 @@
             },
             {
               "test": "datum.properties.GEOCODE==selectedNTA",
-              "value": "#00ffff"
+              "value": "#008939"
             },
             {"value": "#c8c8c8"}
           ],
