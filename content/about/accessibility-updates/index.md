@@ -1,7 +1,7 @@
 ---
 title: Accessibility updates
 draft: true
-date: 2023-11-07T08:49:22-04:00
+date: 2025-01-07T08:49:22-04:00
 image: Repo.png
 photocredit: EH Data Portal team
 categories:
