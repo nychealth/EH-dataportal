@@ -7,6 +7,6 @@ description: "Data on how environments shape health in NYC."
 featured_title: "Rats in your neighborhood"
 featured_text: "Learn about rats in your area and what's being done to fight them."
 featured_link: "data-features/rats-in-your-neighborhood/"
-featured_image: "rats_by_loc.png"
+featured_image: "rats_by_loc.jpg"
 ImageNote: featured_image must be added to assets
 ---
