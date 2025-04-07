@@ -20,8 +20,8 @@ keywords:
 image: ds-sanitation-trucks.jpg
 photocredit: "Michael Appleton/Mayoral Photography Office, City of New York"
 related:
-  - title: "Housing creates health"
-    url: "data-stories/housing-creates-health/"
+  - title: "Rats in your neighborhood"
+    url: "data-features/rats-in-your-neighborhood/"
   - title: "Rat Mitigation Zones"
     url: "data-features/rat-mitigation-zones/"
   - title: "Mice and rats"
