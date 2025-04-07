@@ -1,5 +1,20 @@
 {{- define "main" -}}
 
+<style>
+  .info {
+    padding: 6px 8px;
+    font: 14px/16px Arial, Helvetica, sans-serif;
+    background: white;
+    background: rgba(255,255,255,0.8);
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    border-radius: 5px;
+}
+.info h4 {
+    margin: 0 0 5px;
+    color: #777;
+}
+</style>
+
 <article class="container-fluid" id="skip-header-target">
 
     <div class="row">
@@ -17,65 +32,29 @@
 
             <div class="row mt-4">
               <div class="col-md-3">
-                <div class="dropdown ">
-                  <button class="btn btn-outline-primary btn-block dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
-                    Choose FVI metric
-                  </button>
-                  <div class="dropdown-menu">
-                    <h6 class="dropdown-header">Storm surge</h6>
-                    <a class="dropdown-item" onclick="updateChoropleth('FVI_storm_surge_present')" href="#map">Present day</a>
-                    <a class="dropdown-item" onclick="updateChoropleth('FVI_storm_surge_2050s')" href="#map">2050s</a>
-                    <a class="dropdown-item" onclick="updateChoropleth('FVI_storm_surge_2080s')" href="#map">2080s</a>
-                    <h6 class="dropdown-header border-top">Tidal flooding</h6>
-                    <a class="dropdown-item" onclick="updateChoropleth('FVI_tidal_2020s')" href="#map">Present day</a>
-                    <a class="dropdown-item" onclick="updateChoropleth('FVI_tidal_2050s')" href="#map">2050s</a>
-                    <a class="dropdown-item" onclick="updateChoropleth('FVI_tidal_2080s')" href="#map">2080s</a>
-                    
-                    <!--
-                    <h6 class="dropdown-header">Other</h6>
-                    <a class="dropdown-item" onclick="updateChoropleth('FSHRI')" href="#map">FSHRI</a>
-                    -->
-
-
-                  </div>
-                </div>
-
-                <div class="mb-2 border p-1 fs-sm indicatorCopyBox" id="FSHRI">
-                  <strong>Flood Susceptibility to Harm and Recovery Index</strong>
-                  <p>The Flood Susceptibility to Harm and Recovery Index is an aggregation of selected socioeconomic indicators that show the extent to which a neighborhood might be harmed by the experience of flooding, or may have difficulty recovering from flooding. When we combine the FSHRI with data about the likelihood of flooding in different areas, we get FVIs for different scenarios.
+                <h6 class="">Storm surge</h6>
+                <div class="border p-1 fs-sm" id="">
+                  <p>Neighborhood-level vulnerability to storm surges, under sea level conditions and floodplains estimated for the selected time period.
                   </p>
                 </div>
 
-                <div class="mb-2 border p-1 fs-sm indicatorCopyBox" id="FVI_storm_surge_present">
-                  <strong>Storm surge (present-day)</strong>
-                  <p>Vulnerability to a storm surge event under current conditions, based on FEMA’s preliminary Special Flood Hazard Area.</p>
+                <button class="btn btn-sm btn-block btn-outline-active text-body text-left my-0 fvi-selector text-align-left font-weight-normal" id="btn-FVI_storm_surge_present" onclick="updateChoropleth('FVI_storm_surge_present')">2020s</button>
+
+                <button class="btn btn-sm btn-block btn-outline-active text-body text-left my-0 fvi-selector text-align-left font-weight-normal" id="btn-FVI_storm_surge_2050s" onclick="updateChoropleth('FVI_storm_surge_2050s')">2050s</button>
+
+                <button class="btn btn-sm btn-block btn-outline-active text-body text-left my-0 fvi-selector text-align-left font-weight-normal" id="btn-FVI_storm_surge_2080s" onclick="updateChoropleth('FVI_storm_surge_2080s')">2080s</button>
+
+                <h6 class="mt-4">Tidal flooding</h6>
+                <div class="border p-1 fs-sm" id="">
+                  <p>Neighborhood-level vulnerability to tidal flooding, under sea level conditions estimated for the selected time period.
+                  </p>
                 </div>
 
-                <div class="mb-2 border p-1 fs-sm indicatorCopyBox" id="FVI_storm_surge_2050s">
-                  <strong>Storm surge (2050s)</strong>
-                  <p>Vulnerability to a storm surge event under sea level conditions estimated for the 2050s, based on the future floodplains developed by the New York Panel on Climate Change.</p>
-                </div>
+                <button class="btn btn-sm btn-block btn-outline-active text-body text-left my-0 fvi-selector text-align-left font-weight-normal" id="btn-FVI_tidal_2020s" onclick="updateChoropleth('FVI_tidal_2020s')" >2020s</button>
 
-                <div class="mb-2 border p-1 fs-sm indicatorCopyBox" id="FVI_storm_surge_2080s">
-                  <strong>Storm surge (2080s)</strong>
-                  <p>Vulnerability to a storm surge event under sea level conditions estimated for the 2080s, based on the future floodplains developed by the New York Panel on Climate Change.</p>
-                </div>
+                <button class="btn btn-sm btn-block btn-outline-active text-body text-left my-0 fvi-selector text-align-left font-weight-normal" id="btn-FVI_tidal_2050s" onclick="updateChoropleth('FVI_tidal_2050s')">2050s</button>
 
-                <div class="mb-2 border p-1 fs-sm indicatorCopyBox" id="FVI_tidal_2020s">
-                  <strong>Tidal (2020s)</strong>
-                  <p>Vulnerable to a tidal flooding event under sea level conditions estimated for the 2020s, based on the daily tidal floodplains developed by the New York Panel on Climate Change.</p>
-                </div>
-
-                <div class="mb-2 border p-1 fs-sm indicatorCopyBox" id="FVI_tidal_2050s">
-                  <strong>Tidal (2050s)</strong>
-                  <p>Vulnerable to a tidal flooding event under sea level conditions estimated for the 2020s, based on the daily tidal floodplains developed by the New York Panel on Climate Change.</p>
-                </div>
-
-                <div class="mb-2 border p-1 fs-sm indicatorCopyBox" id="FVI_tidal_2080s">
-                  <strong>Tidal (2080s)</strong>
-                  <p>Vulnerable to a tidal flooding event under sea level conditions estimated for the 2080s, based on the daily tidal floodplains developed by the New York Panel on Climate Change.</p>
-
-                </div>
+                <button class="btn btn-sm btn-block btn-outline-active text-body text-left my-0 fvi-selector text-align-left font-weight-normal" id="btn-FVI_tidal_2080s" onclick="updateChoropleth('FVI_tidal_2080s')">2080s</button>
 
               </div>
 
