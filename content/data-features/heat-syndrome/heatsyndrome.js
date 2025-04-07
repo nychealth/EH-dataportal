@@ -14,6 +14,8 @@ function init() {
     // check if this year's URL exists, and if it does, draw this year's button
     UrlExists(yearURL)
 
+    console.log(UrlExists(yearURL))
+
     if (fileExists == true) {
       for (let i = year; i > 2016; i--) {
         allYears.push(i)
@@ -282,10 +284,11 @@ vegaEmbed('#vis2', scatterplot)
 
 // Year change function powered by year buttons
 function changeYear(x) {
+  console.log('showing chart for year: ', x)
   spec.transform[1].filter = `datum.Year == ${x}`;
 
   if ( x == allYears[0]) {
-    spec.data.url = yearURL
+    spec.data.url = `https://raw.githubusercontent.com/nychealth/EHDP-data/production/key-topics/heat-syndrome/edheat${x}_live.csv`
   }
   else {
     spec.data.url = 'https://raw.githubusercontent.com/nychealth/EHDP-data/production/key-topics/heat-syndrome/previous_years.csv'
