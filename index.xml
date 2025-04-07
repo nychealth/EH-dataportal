@@ -6,8 +6,15 @@
     <description>Recent content in The Environment and Health Data Portal: Home page on Environment &amp; Health Data Portal</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 08 Nov 2024 13:11:44 -0400</lastBuildDate>
+    <lastBuildDate>Mon, 31 Mar 2025 11:14:56 -0400</lastBuildDate>
     <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Rats in your neighborhood</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/rats-in-your-neighborhood/</link>
+      <pubDate>Mon, 31 Mar 2025 11:14:56 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/rats-in-your-neighborhood/</guid>
+      <description>What&amp;rsquo;s going on with rats in your neighborhood, what&amp;rsquo;s being done to fight them, and how can you help?&#xA;Find out here. Enter an address to see data on neighborhood-level rat inspections, and individual inspection results for your property.</description>
+    </item>
     <item>
       <title>Real-Time Air Quality: PM2.5 in NYC</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/realtime-air-quality/</link>

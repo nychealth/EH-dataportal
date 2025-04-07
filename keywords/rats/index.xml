@@ -6,8 +6,15 @@
     <description>Recent content in rats on Environment &amp; Health Data Portal</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 01 Jun 2023 11:14:56 -0400</lastBuildDate>
+    <lastBuildDate>Mon, 31 Mar 2025 11:14:56 -0400</lastBuildDate>
     <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/rats/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Rats in your neighborhood</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/rats-in-your-neighborhood/</link>
+      <pubDate>Mon, 31 Mar 2025 11:14:56 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/rats-in-your-neighborhood/</guid>
+      <description>What&amp;rsquo;s going on with rats in your neighborhood, what&amp;rsquo;s being done to fight them, and how can you help?&#xA;Find out here. Enter an address to see data on neighborhood-level rat inspections, and individual inspection results for your property.</description>
+    </item>
     <item>
       <title>Rat Mitigation Zones</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/rat-mitigation-zones/</link>

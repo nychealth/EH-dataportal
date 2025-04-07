@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml"><url>
+    <loc>/IndicatorPublic/data-features/rats-in-your-neighborhood/</loc>
+    <lastmod>2025-03-31T11:14:56-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/data-features/realtime-air-quality/</loc>
     <lastmod>2022-03-22T19:30:55-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/data-features/hvi/</loc>
@@ -21,6 +23,88 @@
     <lastmod>2021-10-02T07:56:00-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/data-features/heat-report/</loc>
     <lastmod>2021-09-08T11:14:56-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/categories/</loc>
+    <lastmod>2025-03-31T11:14:56-04:00</lastmod><xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="/IndicatorPublic/es/categories/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/IndicatorPublic/zh/categories/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/IndicatorPublic/categories/"
+                /></url><url>
+    <loc>/IndicatorPublic/data-features/</loc>
+    <lastmod>2025-03-31T11:14:56-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/categories/housing/</loc>
+    <lastmod>2025-03-31T11:14:56-04:00</lastmod><xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="/IndicatorPublic/es/categories/housing/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/IndicatorPublic/zh/categories/housing/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/IndicatorPublic/categories/housing/"
+                /></url><url>
+    <loc>/IndicatorPublic/keywords/inspections/</loc>
+    <lastmod>2025-03-31T11:14:56-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/keywords/</loc>
+    <lastmod>2025-03-31T11:14:56-04:00</lastmod><xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="/IndicatorPublic/es/keywords/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/IndicatorPublic/zh/keywords/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/IndicatorPublic/keywords/"
+                /></url><url>
+    <loc>/IndicatorPublic/keywords/pests/</loc>
+    <lastmod>2025-03-31T11:14:56-04:00</lastmod><xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="/IndicatorPublic/es/keywords/pests/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/IndicatorPublic/zh/keywords/pests/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/IndicatorPublic/keywords/pests/"
+                /></url><url>
+    <loc>/IndicatorPublic/categories/pests/</loc>
+    <lastmod>2025-03-31T11:14:56-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/keywords/rat-mitigation-zones/</loc>
+    <lastmod>2025-03-31T11:14:56-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/keywords/rats/</loc>
+    <lastmod>2025-03-31T11:14:56-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/keywords/rodents/</loc>
+    <lastmod>2025-03-31T11:14:56-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/</loc>
+    <lastmod>2025-03-31T11:14:56-04:00</lastmod><xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="/IndicatorPublic/es/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/IndicatorPublic/zh/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/IndicatorPublic/"
+                /></url><url>
     <loc>/IndicatorPublic/categories/airquality/</loc>
     <lastmod>2024-11-08T13:11:44-04:00</lastmod><xhtml:link
                 rel="alternate"
@@ -37,20 +121,6 @@
                 /></url><url>
     <loc>/IndicatorPublic/keywords/built-environment/</loc>
     <lastmod>2024-11-08T13:11:44-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/categories/</loc>
-    <lastmod>2024-11-08T13:11:44-04:00</lastmod><xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="/IndicatorPublic/es/categories/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="/IndicatorPublic/zh/categories/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/IndicatorPublic/categories/"
-                /></url><url>
     <loc>/IndicatorPublic/keywords/climate/</loc>
     <lastmod>2024-11-08T13:11:44-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/climate-change/</loc>
@@ -73,20 +143,6 @@
                 /></url><url>
     <loc>/IndicatorPublic/keywords/global-warming/</loc>
     <lastmod>2024-11-08T13:11:44-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/keywords/</loc>
-    <lastmod>2024-11-08T13:11:44-04:00</lastmod><xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="/IndicatorPublic/es/keywords/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="/IndicatorPublic/zh/keywords/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/IndicatorPublic/keywords/"
-                /></url><url>
     <loc>/IndicatorPublic/keywords/mass-transit/</loc>
     <lastmod>2024-11-08T13:11:44-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/data-stories/public-transit-creates-health/</loc>
@@ -113,20 +169,6 @@
     <lastmod>2024-11-08T13:11:44-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/streets/</loc>
     <lastmod>2024-11-08T13:11:44-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/</loc>
-    <lastmod>2024-11-08T13:11:44-04:00</lastmod><xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="/IndicatorPublic/es/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="/IndicatorPublic/zh/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/IndicatorPublic/"
-                /></url><url>
     <loc>/IndicatorPublic/keywords/traffic/</loc>
     <lastmod>2024-11-08T13:11:44-04:00</lastmod><xhtml:link
                 rel="alternate"
@@ -189,24 +231,6 @@
     <lastmod>2024-10-07T08:49:22-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/user-research/</loc>
     <lastmod>2024-10-07T08:49:22-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/data-features/</loc>
-    <lastmod>2024-09-08T11:14:56-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/keywords/pests/</loc>
-    <lastmod>2024-09-08T11:14:56-04:00</lastmod><xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="/IndicatorPublic/es/keywords/pests/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="/IndicatorPublic/zh/keywords/pests/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/IndicatorPublic/keywords/pests/"
-                /></url><url>
-    <loc>/IndicatorPublic/categories/pests/</loc>
-    <lastmod>2024-09-08T11:14:56-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/categories/active-design/</loc>
     <lastmod>2024-08-19T01:18:56-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/bicycle-lanes/</loc>
@@ -291,20 +315,6 @@
     <lastmod>2024-06-11T09:01:00-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/flooding/</loc>
     <lastmod>2024-06-11T09:01:00-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/categories/housing/</loc>
-    <lastmod>2024-06-11T09:01:00-04:00</lastmod><xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="/IndicatorPublic/es/categories/housing/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="/IndicatorPublic/zh/categories/housing/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/IndicatorPublic/categories/housing/"
-                /></url><url>
     <loc>/IndicatorPublic/keywords/inequities/</loc>
     <lastmod>2024-06-11T09:01:00-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/social-determinants/</loc>
@@ -527,14 +537,6 @@
     <lastmod>2023-06-16T09:01:00-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/data-stories/racial-wealth-gap/</loc>
     <lastmod>2023-06-16T09:01:00-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/keywords/inspections/</loc>
-    <lastmod>2023-06-01T11:14:56-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/keywords/rat-mitigation-zones/</loc>
-    <lastmod>2023-06-01T11:14:56-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/keywords/rats/</loc>
-    <lastmod>2023-06-01T11:14:56-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/keywords/rodents/</loc>
-    <lastmod>2023-06-01T11:14:56-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/garbage/</loc>
     <lastmod>2023-03-20T13:11:44-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/inequitites/</loc>
