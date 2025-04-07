@@ -12,7 +12,7 @@
                 </ul>
             </nav>
 
-            <h1>{{ .Title }}</h1>
+            <h1 id="title">{{ .Title }}</h1>
             {{- .Content  -}}
 
             <div class="row mt-4">
@@ -22,15 +22,61 @@
                     Choose FVI metric
                   </button>
                   <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
+                    <h6 class="dropdown-header">Storm surge</h6>
+                    <a class="dropdown-item" onclick="updateChoropleth('FVI_storm_surge_present')" href="#map">Present day</a>
+                    <a class="dropdown-item" onclick="updateChoropleth('FVI_storm_surge_2050s')" href="#map">2050s</a>
+                    <a class="dropdown-item" onclick="updateChoropleth('FVI_storm_surge_2080s')" href="#map">2080s</a>
+                    <h6 class="dropdown-header border-top">Tidal flooding</h6>
+                    <a class="dropdown-item" onclick="updateChoropleth('FVI_tidal_2020s')" href="#map">Present day</a>
+                    <a class="dropdown-item" onclick="updateChoropleth('FVI_tidal_2050s')" href="#map">2050s</a>
+                    <a class="dropdown-item" onclick="updateChoropleth('FVI_tidal_2080s')" href="#map">2080s</a>
+                    
+                    <!--
+                    <h6 class="dropdown-header">Other</h6>
+                    <a class="dropdown-item" onclick="updateChoropleth('FSHRI')" href="#map">FSHRI</a>
+                    -->
+
+
                   </div>
                 </div>
 
-                <div class="mb-2 border p-1 fs-sm">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque aliquam lectus eu ullamcorper pulvinar. Curabitur sed sollicitudin arcu, a iaculis ante. Quisque faucibus sed risus vitae feugiat. Nulla sit amet velit tempor enim convallis pharetra non vulputate metus. Ut facilisis ullamcorper vestibulum. Sed varius porta leo a gravida. Nunc vel lacus lacus. Donec sapien dolor, consectetur sed augue vitae, porttitor dapibus risus. Sed sit amet elementum massa.
+                <div class="mb-2 border p-1 fs-sm indicatorCopyBox" id="FSHRI">
+                  <strong>Flood Susceptibility to Harm and Recovery Index</strong>
+                  <p>The Flood Susceptibility to Harm and Recovery Index is an aggregation of selected socioeconomic indicators that show the extent to which a neighborhood might be harmed by the experience of flooding, or may have difficulty recovering from flooding. When we combine the FSHRI with data about the likelihood of flooding in different areas, we get FVIs for different scenarios.
+                  </p>
                 </div>
+
+                <div class="mb-2 border p-1 fs-sm indicatorCopyBox" id="FVI_storm_surge_present">
+                  <strong>Storm surge (present-day)</strong>
+                  <p>Vulnerability to a storm surge event under current conditions, based on FEMA’s preliminary Special Flood Hazard Area.</p>
+                </div>
+
+                <div class="mb-2 border p-1 fs-sm indicatorCopyBox" id="FVI_storm_surge_2050s">
+                  <strong>Storm surge (2050s)</strong>
+                  <p>Vulnerability to a storm surge event under sea level conditions estimated for the 2050s, based on the future floodplains developed by the New York Panel on Climate Change.</p>
+                </div>
+
+                <div class="mb-2 border p-1 fs-sm indicatorCopyBox" id="FVI_storm_surge_2080s">
+                  <strong>Storm surge (2080s)</strong>
+                  <p>Vulnerability to a storm surge event under sea level conditions estimated for the 2080s, based on the future floodplains developed by the New York Panel on Climate Change.</p>
+                </div>
+
+                <div class="mb-2 border p-1 fs-sm indicatorCopyBox" id="FVI_tidal_2020s">
+                  <strong>Tidal (2020s)</strong>
+                  <p>Vulnerable to a tidal flooding event under sea level conditions estimated for the 2020s, based on the daily tidal floodplains developed by the New York Panel on Climate Change.</p>
+                </div>
+
+                <div class="mb-2 border p-1 fs-sm indicatorCopyBox" id="FVI_tidal_2050s">
+                  <strong>Tidal (2050s)</strong>
+                  <p>Vulnerable to a tidal flooding event under sea level conditions estimated for the 2020s, based on the daily tidal floodplains developed by the New York Panel on Climate Change.</p>
+                </div>
+
+                <div class="mb-2 border p-1 fs-sm indicatorCopyBox" id="FVI_tidal_2080s">
+                  <strong>Tidal (2080s)</strong>
+                  <p>Vulnerable to a tidal flooding event under sea level conditions estimated for the 2080s, based on the daily tidal floodplains developed by the New York Panel on Climate Change.</p>
+
+                </div>
+
               </div>
 
               <div class="col-md-9">
@@ -43,15 +89,21 @@
               <div class="col-md-6">
                 <div class="asidebox">
                   <h2 class="h5">About the data</h2>
-                  <p class="fs-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque aliquam lectus eu ullamcorper pulvinar. Curabitur sed sollicitudin arcu, a iaculis ante. Quisque faucibus sed risus vitae feugiat. Nulla sit amet velit tempor enim convallis pharetra non vulputate metus. Ut facilisis ullamcorper vestibulum. Sed varius porta leo a gravida. Nunc vel lacus lacus. Donec sapien dolor, consectetur sed augue vitae, porttitor dapibus risus. Sed sit amet elementum massa.
+                  <p class="fs-sm">The FVI is part of the <a href="https://climate.cityofnewyork.us/initiatives/vulnerability-impacts-and-adaptation-analysis/">Climate Vulnerability, Impact, and Adaptation Analysis (VIA)</a> report from the Mayor's Office of Climate and Environmental Justice.
                   </p>
                 </div>
               </div>
 
               <div class="col-md-6">
                 <div class="asidebox">
-                  <h2 class="h5">About the data</h2>
-                  <p class="fs-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque aliquam lectus eu ullamcorper pulvinar. Curabitur sed sollicitudin arcu, a iaculis ante. Quisque faucibus sed risus vitae feugiat. Nulla sit amet velit tempor enim convallis pharetra non vulputate metus. Ut facilisis ullamcorper vestibulum. Sed varius porta leo a gravida. Nunc vel lacus lacus. Donec sapien dolor, consectetur sed augue vitae, porttitor dapibus risus. Sed sit amet elementum massa.
+                  <h2 class="h5">About susceptibility to harm</h2>
+                  <p class="fs-sm">
+                    The FVI combines the risk of physical exposure to different flooding types with socioeconomic factors that increase the risk of harm and affect how difficult it may be to recover. These include factors like the proportion of people in a neighborhood who:
+                    <ul>
+                      <li>Are older or younger, have chronic illnesses, or have disabilities or mobility impairments - which may make it more difficult to evacuate in a flood</li>
+                      <li>Have less access to resources to prepare or evacuate - including people who may not get warnings due to isolation or language barriers, people who are socially or economically marginalized, or people with unstable living situations (including people living in institutional settings or incarcerated)</li>
+                      <li>Own their home, which can increase cost and time it takes to recover</li>
+                    </ul>
                   </p>
                 </div>
               </div>
