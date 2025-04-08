@@ -13,6 +13,56 @@
     margin: 0 0 5px;
     color: #777;
 }
+
+.fill-1 {
+  font-weight: bold;
+  background-color: #FED976;
+}
+
+.color-1 {
+  color: #FED976;
+}
+
+.fill-2 {
+  font-weight: bold;
+  background-color: #FEB24C;
+}
+
+.color-2 {
+  color: #FEB24C;
+}
+
+.fill-3 {
+  font-weight: bold;
+  background-color: #FD8D3C;
+}
+
+.color-3 {
+  color: #FD8D3C;
+}
+
+.fill-4 {
+  font-weight: bold;
+  background-color: #FC4E2A;
+}
+
+.color-4 {
+  color: #FC4E2A;
+}
+
+.fill-5 {
+  font-weight: bold;
+  background-color: #E31A1C;
+  color: white;
+}
+
+.color-5 {
+  color: #E31A1C;
+}
+
+.active {
+font-weight: bold!important;
+}
 </style>
 
 <article class="container-fluid" id="skip-header-target">
@@ -56,6 +106,17 @@
 
                 <button class="btn btn-sm btn-block btn-outline-active text-body text-left my-0 fvi-selector text-align-left font-weight-normal" id="btn-FVI_tidal_2080s" onclick="updateChoropleth('FVI_tidal_2080s')">2080s</button>
 
+                <div class="border p-2 fs-sm mt-4">
+                  <h6>Flood Vulnerability</h6>
+                  <i class="fas fa-square mr-1 color-1" aria-hidden="true"></i>1: Lowest risk   <br>
+                  <i class="fas fa-square mr-1 color-2" aria-hidden="true"></i>2                <br>
+                  <i class="fas fa-square mr-1 color-3" aria-hidden="true"></i>3                <br>
+                  <i class="fas fa-square mr-1 color-4" aria-hidden="true"></i>4                <br>
+                  <i class="fas fa-square mr-1 color-5" aria-hidden="true"></i>5: Most risk     <br>
+
+
+                </div>
+
               </div>
 
               <div class="col-md-9">
@@ -67,15 +128,7 @@
             <div class="row my-4">
               <div class="col-md-6">
                 <div class="asidebox">
-                  <h2 class="h5">About the data</h2>
-                  <p class="fs-sm">The FVI is part of the <a href="https://climate.cityofnewyork.us/initiatives/vulnerability-impacts-and-adaptation-analysis/">Climate Vulnerability, Impact, and Adaptation Analysis (VIA)</a> report from the Mayor's Office of Climate and Environmental Justice.
-                  </p>
-                </div>
-              </div>
-
-              <div class="col-md-6">
-                <div class="asidebox">
-                  <h2 class="h5">About susceptibility to harm</h2>
+                  <h2 class="h5">Susceptibility to harm</h2>
                   <p class="fs-sm">
                     The FVI combines the risk of physical exposure to different flooding types with socioeconomic factors that increase the risk of harm and affect how difficult it may be to recover. These include factors like the proportion of people in a neighborhood who:
                     <ul>
@@ -85,6 +138,16 @@
                     </ul>
                   </p>
                 </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="asidebox">
+                  <h2 class="h5">About the data</h2>
+                  <p class="fs-sm">The Flood Vulnerability Index (FVI) is part of the <a href="https://climate.cityofnewyork.us/initiatives/vulnerability-impacts-and-adaptation-analysis/">Climate Vulnerability, Impact, and Adaptation Analysis (VIA)</a> report from the Mayor's Office of Climate and Environmental Justice.
+                  </p>
+                  <p class="fs-sm"><a href="fvi.geojson"><i class="fas fa-download mr-1" aria-hidden="true"></i>Download the data (geoJSON)</a>.</p>
+                </div>
+
               </div>
             </div>
 
