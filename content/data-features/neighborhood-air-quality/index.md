@@ -28,12 +28,12 @@ accessibleAutocomplete: /js/accessible-autocomplete.min.js
 vega: true
 image: aqe.png
 related:
-  - title: "Real-Time Air Quality: PM2.5 in NYC"
-    url: "data-features/realtime-air-quality/"
+  - title: "Air quality"
+    url: "data-explorer/air-quality/"
+  - title: "NYC Community Air Survey Annual Report"
+    url: "data-features/nyccas/"
   - title: "Reducing air pollution should focus on neighborhoods with the worst health impacts"
     url: "data-stories/hia/"
-  - title: "Air quality in car-free areas"
-    url: "data-stories/car-free-zones/"
 weight: 2
 blurb: Two major air pollutant measurements and some factors that influence them across NYC neighborhoods.
 ---

@@ -1,0 +1,252 @@
+{{- define "main" -}}
+
+<style>
+    .monospace {
+    font-family: Monospace
+}
+</style>
+
+<article class="container-fluid" id="skip-header-target">
+
+    <div class="row">
+        <div class="col-md-11 mx-auto mt-2 mb-3">
+            <nav aria-label="breadcrumb" class="">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
+                    <li class="breadcrumb-item"><a href={{ relURL "data-features" }}>Data Features</a></li>
+                        <li class="breadcrumb-item active d-none d-md-block" aria-current="page">{{ .Title }}</li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-11 mx-auto" data-pagefind-weight="7.0">
+            <h1 id="top" class="h2" data-pagefind-weight="10.0">{{ .Title }}</h1>
+            <div class="row">
+                <div class="col-md-8 mr-auto">
+                    <p>{{ .Content }}</p>
+
+                </div>
+            </div>
+
+            <div class="row my-2">
+                <div class="col-md-6 mr-auto">
+                    <h3 class="h5">Enter your address</h3>
+                </div>
+            </div>
+
+            <div class="row my-2">
+                <div class="col-md-6 mb-2">
+                    <div class="mb-1">
+                        <input class="form-control form-control-lg" id="map-search1" placeholder="Search Address">
+                    </div>
+                    <div id='nycMap' class="sr-only" style="height:350px;"></div>
+                    <div id="leafletMap" class="d-sm-none d-md-block">
+                    </div>  
+                </div>
+
+                <div class="col-md-6 mb-2">
+                    <!-- No output card -->
+                    <div class="card content-card mb-4" id="noOutput">
+                        <div class="card-content primary">
+                            <div class="card-body">
+                                <span class="home-label font-weight-bold h4">
+                                    <i class="fas fa-map mr-1" aria-hidden="true"></i>Rats in your neighborhood:
+                                </span>
+                                <div class="mb-2">
+                                    <em><span id="status">Waiting for an address...</span></em>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- CD output card -->
+                    <div class="card content-card mb-4 hide" id="cdOutput">
+                        <div class="card-content primary">
+                            <div class="card-body">
+                                <span class="home-label font-weight-bold h4">
+                                    <i class="fas fa-map mr-1" aria-hidden="true"></i>Your neighborhood:
+                                </span>
+                                <div class="py-2">
+                                    <p>This address is in <span id="cdID" class="cd-color">CD XXX</span>. This neighborhood has <span id="activityValue" class="font-weight-bold">moderate</span> rat activity. In <span id="yearPrint"></span>:</p>
+                                    <ul>
+                                        <li><i class="fas fa-caret-right mr-1" aria-hidden="true"></i><span class="font-weight-bold" id="cdProp">XX%</span> of properties were inspected for rats
+                                        </li>
+                                        <li><i class="fas fa-caret-right mr-1" aria-hidden="true"></i><span class="font-weight-bold" id="cdFail">YY%</span> of properties had signs of rat activity</li>
+                                    </ul>
+                                </div>
+                                <div class="d-flex justify-content-end border-top link fs-sm pt-1">
+                                    <p class="fs-sm"><a href="../../data-explorer/mice-and-rats/?id=2434#display=map"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Get data on rat inspections by neighborhood</a>.</p>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Property output card -->
+                    <div class="card content-card mb-4 hide" id="propertyOutput">
+                        <div class="card-content primary">
+                            <div class="card-body">
+                                <span class="home-label font-weight-bold h4">
+                                    <i class="fas fa-map-marker mr-1" aria-hidden="true"></i>This address:
+                                </span>
+                                <div class="py-2">
+                                    <ul>
+                                        <li><i class="fas fa-caret-right mr-1" aria-hidden="true"></i>This address <span class="font-weight-bold" id="result">XXXXX</span> its last inspection, on <span class="font-weight-bold" id="mostRecentInspection">DATE</span>.
+                                        </li>
+        
+                                        <li><i class="fas fa-caret-right mr-1" aria-hidden="true"></i>In the last 5 years, it has been inspected <span class="font-weight-bold" id="numOfInspections">X times</span>. 
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="d-flex justify-content-end link fs-sm border-top py-1">
+                                    <p class="fs-sm"><a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/Rats/?applicationName=DOH_RIP"><i class="fas fa-external-link-alt mr-1" aria-hidden="true"></i>Get detailed inspection results for any property</a>.</p>
+                                </div>
+                                <div id="rmzYes" class="hide fs-sm border-top py-1">
+                                        <p>This address is in a <span class="rmz-color">Rat Mitigation Zone</span>. Properties in these areas are inspected more regularly, to help fight rats on a neighborhood-wide scale. <a href="../rat-mitigation-zones"><i class="fas fa-chart-bar mr-1" aria-hidden="true"></i>Explore Rat Mitigation Zones</a>.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+
+
+
+
+            </div>
+
+            <div class="row mt-2 mb-4">
+                <div class="col-12">
+                    <hr class="my-2">
+                </div>
+                <div class="col-md-8 col-sm-12">
+                    <h4>See a problem with rats or trash?</h4>
+                    <p class="fs-rg"><a href="https://portal.311.nyc.gov/article/?kanumber=KA-01107"><i class="fas fa-external-link-alt mr-1" aria-hidden="true"></i>If there aren't recent inspections, you can use 311 to make a complaint, </a>and the NYC Health Department will send an inspector. The property owner may then be required to fix the problems. 
+                        <!-- Await 311 data story
+                        <a href="">Read more about how we inspect properties for rats</a>.
+                        -->
+                    </p>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+<style>
+    #map {
+        height: 55vh;
+        max-width: 100%;
+        max-height: 100%;
+        margin-right: 6px;
+    }
+
+    #leafletMap {
+        height:55vh;
+        max-width: 100%;
+        max-height: 100%;
+        margin-right: 6px;
+    }
+
+    .fwm {
+        font-weight: 600
+    }
+
+    .misc-holder {
+    border-left: 5px solid lightgray;
+    padding-left: 5px;
+    }
+
+
+    .string-print {
+        padding: 3px 10px;
+    }
+
+    .failed-fill {
+        background-color: purple;
+        color: white;
+        padding: 3px 10px;
+    }
+
+    .passed-fill {
+        background-color: green;
+        color: white;
+        padding: 3px 10px;
+    }
+
+
+    .high-activity {
+        background-color: purple;
+        color: white;
+        padding: 3px 10px;
+    }
+
+    .moderate-activity {
+        background-color: orange;
+        color: black;
+        padding: 3px 10px;
+    }
+
+    .low-activity {
+        background-color: green;
+        color: white;
+        padding: 3px 10px;
+    }
+
+    .cd-color {
+        color: #3388FF;
+        font-weight: bold;
+        text-decoration: underline solid #3388FF;
+    }
+
+    .rmz-color {
+        color: rgb(91, 91, 91); 
+        font-weight: bold;
+        text-decoration: underline solid rgb(91, 91, 91); 
+    }
+
+    ul {
+        list-style: none;
+        margin-left: 0;
+        padding-left: 0;
+      }
+
+
+
+
+</style>
+
+</article>
+
+<!-- Related footer -->
+{{- partial "related-footer-2" . -}}
+
+<!-- nyc-lib map -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.4.4/proj4.js"></script>
+<script src="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/build/ol.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.4.0/papaparse.min.js"></script>
+<script src="https://maps.nyc.gov/nyc-lib/v1.2.79/js/babel-polyfill.js"></script>
+<script src="https://maps.nyc.gov/nyc-lib/v1.2.79/js/nyc-ol-lib.js"></script>
+
+<!--bring in rmz JS -->
+<script type="text/javascript" src="neighborhood-rats.js"></script>
+
+<!--
+ Resources:
+ - Point In Polygon:         https://github.com/hayeswise/Leaflet.PointInPolygon
+ - Nominatim:                https://nominatim.org/ 
+ - Leaflet Control Geocoder: https://github.com/perliedman/leaflet-control-geocoder
+-->
+
+
+{{- end -}}
