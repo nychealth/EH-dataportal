@@ -138,7 +138,7 @@ const renderTable = () => {
         .derive({
             Area: aq.escape(d => {  // create Area field: Borough + Neighborhood
                 if (d.Borough && d.GeoTypeDesc != 'Borough') {
-                    return `${d.Borough}: ${d.Geography}`;
+                    return `${d.Geography} xx ${d.Borough} yy`;
                 } else {
                     return d.Geography; 
                 }
@@ -233,7 +233,17 @@ const renderTable = () => {
         orderFixed: [[ 0, 'desc' ], [ 3, 'asc' ], [ 4, 'asc' ]], // TimePeriod, GeoRank, BoroID
         columnDefs: [
             { type: 'natural', targets: '_all' },
-            { targets: [0, 1, 2, 3, 4, 5, 6], visible: false}
+            { targets: [0, 1, 2, 3, 4, 5, 6], visible: false},
+            {
+                targets: 7, // Adjust to the column index where you need formatting
+                render: function (data, type, row) {
+                    if (type === 'display') {
+                        return data.replace(/xx/g, '<br><span style="font-size:10px; color: #434343;">')
+                                   .replace(/yy/g, '</span>');
+                    }
+                    return data;
+                }
+            }
         ],
         language: {
             search: "Find a neighborhood:"  // Change the search box prompt text
