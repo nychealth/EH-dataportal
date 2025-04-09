@@ -238,7 +238,7 @@ const renderTable = () => {
                 targets: 7, // Adjust to the column index where you need formatting
                 render: function (data, type, row) {
                     if (type === 'display') {
-                        return data.replace(/xx/g, '<br><span style="font-size:10px; color: #434343;">')
+                        return data.replace(/xx/g, '<br><span style="font-size:.65rem; color: #434343;">')
                                    .replace(/yy/g, '</span>');
                     }
                     return data;
