@@ -669,7 +669,7 @@ const joinData = () => {
         .rename({'Name': 'Geography'})
         // join the additional time period info
         .join(timeTable, "TimePeriodID")
-        .select(aq.not("BoroID", "Borough", "TimeType"))
+        .select(aq.not("TimeType"))
         .orderby(aq.desc('end_period'), aq.desc('GeoRank'))
         .reify()
     
