@@ -133,11 +133,11 @@ const renderTable = () => {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
     const filteredTableAqData = aq.from(filteredTableData)
-        .groupby("TimePeriod", "GeoTypeDesc", "GeoID", "GeoRank", "Geography")
+        .groupby("TimePeriod", "GeoTypeDesc", "GeoID", "GeoRank", "BoroID", "Borough", "Geography")
         .pivot("MeasurementDisplay", "DisplayCI", {sort: false})
         .relocate([
                 // these 4 columns always exist, and we always want to hide them, so let's put them first, respecting the original relative order
-                "TimePeriod", "GeoTypeDesc", "GeoID", "GeoRank", "Geography", 
+                "TimePeriod", "GeoTypeDesc", "GeoID", "GeoRank", "BoroID", "Borough", "Geography", 
 
                 // set order for table columns (this is half a priori, half ad hoc): standard is Number, Crude Rate, Age-adjusted rate; left to right in order of calculated complexity; or general to specific. 
                 aq.matches(/everyday/i),
@@ -221,20 +221,20 @@ const renderTable = () => {
         ],
         bInfo: false,
         fixedHeader: true,
-        orderFixed: [[ 0, 'desc' ], [ 3, 'asc' ]], // GeoRank
+        orderFixed: [[ 0, 'desc' ], [ 3, 'asc' ], [ 4, 'asc' ]], // TimePeriod, GeoRank, BoroID
         columnDefs: [
             { type: 'natural', targets: '_all' },
-            { targets: [0, 1, 2, 3], visible: false}
+            { targets: [0, 1, 2, 3, 4, 5], visible: false}
         ],
-        "createdRow": function ( row, data, index ) {
-            const time    = data[0];
+        createdRow: function ( row, data, index ) {
+            const time        = data[0];
             const GeoTypeDesc = data[1];
             if (time && GeoTypeDesc) {
                 row.setAttribute(`data-group`, `${time}-${GeoTypeDesc}`)
                 row.setAttribute(`data-time`, `${time}`);
             }
         },
-        "drawCallback": function ( settings ) {
+        drawCallback: function ( settings ) {
             const api = this.api();
             const data = api.rows( {page:'current'} ).data()
             const rows = api.rows( {page:'current'} ).nodes();
@@ -261,12 +261,15 @@ const renderTable = () => {
 
                     if ( last !== group || lastTime !== time ) {
                         
-                        $(rows).eq( i ).before(
-                            `<tr class="group"><td colspan="${visibleColumnsCount}" data-time="${time}" data-group="${group}" data-group-level="${lvl}"> ${group}</td></tr>`
+                        $(rows)
+                            .eq( i )
+                            .before(
+                                `<tr class="group"><td colspan="${visibleColumnsCount}" data-time="${time}" data-group="${group}" data-group-level="${lvl}"> ${group}</td></tr>`
                             );
-                            last = group;
-                            lastTime = time
-                            
+
+                        last = group;
+                        lastTime = time
+                        
                     }
                 });
             }
