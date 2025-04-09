@@ -135,9 +135,18 @@ const renderTable = () => {
     const filteredTableAqData = aq.from(filteredTableData)
         .groupby("TimePeriod", "GeoTypeDesc", "GeoID", "GeoRank", "BoroID", "Borough", "Geography")
         .pivot("MeasurementDisplay", "DisplayCI", {sort: false})
+        .derive({
+            Area: aq.escape(d => {  // create Area field: Borough + Neighborhood
+                if (d.Borough && d.GeoTypeDesc != 'Borough') {
+                    return `${d.Borough}: ${d.Geography}`;
+                } else {
+                    return d.Geography; 
+                }
+            })
+        })
         .relocate([
                 // these 4 columns always exist, and we always want to hide them, so let's put them first, respecting the original relative order
-                "TimePeriod", "GeoTypeDesc", "GeoID", "GeoRank", "BoroID", "Borough", "Geography", 
+                "TimePeriod", "GeoTypeDesc", "GeoID", "GeoRank", "BoroID", "Borough", "Geography", "Area",
 
                 // set order for table columns (this is half a priori, half ad hoc): standard is Number, Crude Rate, Age-adjusted rate; left to right in order of calculated complexity; or general to specific. 
                 aq.matches(/everyday/i),
@@ -209,7 +218,7 @@ const renderTable = () => {
         scrollY: 500,
         scrollX: true,
         scrollCollapse: true,
-        searching: false,
+        searching: true,
         paging: false,
         select: true,
         buttons: [
@@ -224,8 +233,12 @@ const renderTable = () => {
         orderFixed: [[ 0, 'desc' ], [ 3, 'asc' ], [ 4, 'asc' ]], // TimePeriod, GeoRank, BoroID
         columnDefs: [
             { type: 'natural', targets: '_all' },
-            { targets: [0, 1, 2, 3, 4, 5], visible: false}
+            { targets: [0, 1, 2, 3, 4, 5, 6], visible: false}
         ],
+        language: {
+            search: "Find a neighborhood:"  // Change the search box prompt text
+        },
+        dom: 'rt<"bottom"flp>',
         createdRow: function ( row, data, index ) {
             const time        = data[0];
             const GeoTypeDesc = data[1];
