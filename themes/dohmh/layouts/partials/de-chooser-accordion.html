@@ -179,7 +179,7 @@
 
                          <div class="card-body bg-white">
                              <ul>
-                                 {{ range (sort (where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "social")) "Title" "asc") }}
+                                 {{ range (sort (where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "inequality")) "Title" "asc") }}
                                      <li><a href="{{ .RelPermalink}}">{{ .Title }}</a>
                                      </li>
                                  {{end}}
@@ -274,7 +274,7 @@
 
                         <div class="card-body bg-white">
                             <ul>
-                                {{ range (sort (where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "transportation")) "Title" "asc") }}
+                                {{ range (sort (where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "publicspace")) "Title" "asc") }}
                                     <li><a href="{{ .RelPermalink}}">{{ .Title }}</a>
                                     </li>
                                 {{end}}
@@ -479,7 +479,7 @@
 
                     <div class="card-body bg-white">
                         <ul>
-                            {{ range (sort (where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "social")) "Title" "asc") }}
+                            {{ range (sort (where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "inequality")) "Title" "asc") }}
                                 <li><a href="{{ .RelPermalink}}">{{ .Title }}</a>
                                 </li>
                             {{ end }}
@@ -602,7 +602,7 @@
 
                     <div class="card-body bg-white">
                         <ul>
-                            {{ range (sort (where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "transportation")) "Title" "asc") }}
+                            {{ range (sort (where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "publicspace")) "Title" "asc") }}
                                 <li><a href="{{ .RelPermalink}}">{{ .Title }}</a>
                                 </li>
                             {{ end }}
