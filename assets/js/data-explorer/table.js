@@ -145,7 +145,7 @@ const renderTable = () => {
             })
         })
         .relocate([
-                // these 4 columns always exist, and we always want to hide them, so let's put them first, respecting the original relative order
+                // these columns always exist, and we always want to hide all except the last one, so let's put them first, respecting the original relative order
                 "TimePeriod", "GeoTypeDesc", "GeoID", "GeoRank", "BoroID", "Borough", "Geography", "Area",
 
                 // set order for table columns (this is half a priori, half ad hoc): standard is Number, Crude Rate, Age-adjusted rate; left to right in order of calculated complexity; or general to specific. 
@@ -210,9 +210,29 @@ const renderTable = () => {
     // ----------------------------------------------------------------------- //
     // specify DataTable
     // ----------------------------------------------------------------------- //
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // set some properties
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+    // get the number of columns
+
+    const dataColumnsCount = filteredTableAqData.numCols();
+
+    // console.log("dataColumnsCount:", dataColumnsCount);
+
+    // create array with indexes of all columns except the search col, to set as "searchable = false"
+
+    const notSearchCols = Array.from({length: dataColumnsCount}, (_, i) => i).filter(x => x != 7);
+
+    // define which column indexes define which groups
     
     const groupColumnTime = 0
     const groupColumnGeo = 1;
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // initialize the table
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
     $('#tableID').DataTable({
         scrollY: 500,
@@ -233,7 +253,8 @@ const renderTable = () => {
         orderFixed: [[ 0, 'desc' ], [ 3, 'asc' ], [ 4, 'asc' ]], // TimePeriod, GeoRank, BoroID
         columnDefs: [
             { type: 'natural', targets: '_all' },
-            { targets: [0, 1, 2, 3, 4, 5, 6], visible: false},
+            { visible: false, targets: [0, 1, 2, 3, 4, 5, 6] },
+            { searchable: false, targets: [...notSearchCols] },
             {
                 targets: 7, // Adjust to the column index where you need formatting
                 render: function (data, type, row) {
@@ -261,9 +282,8 @@ const renderTable = () => {
             const api = this.api();
             const data = api.rows( {page:'current'} ).data()
             const rows = api.rows( {page:'current'} ).nodes();
-            const totaleColumnsCount = api.columns().count()
-            const visibleColumnsCount =  totaleColumnsCount - 4;
-            
+            const visibleColumnsCount =  dataColumnsCount - 7;
+
             let last = null;
             let lastTime = null;
             
