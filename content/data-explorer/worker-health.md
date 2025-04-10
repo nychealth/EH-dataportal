@@ -6,7 +6,7 @@ seo_title: "Worker health data for NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
 description: "Datasets and visualizations of worker health in NYC."
 tags:
-categories: ["social", "healthoutcomes"]
+categories: ["inequality", "healthoutcomes"]
 keywords: ["workers"]
 indicators:
   - header: null

@@ -141,7 +141,7 @@
 
                 <div class="tab-pane fade" id="pills-transportation" role="tabpanel" aria-labelledby="pills-transportation-tab">
                     <div class="row">
-                        {{- range where .RegularPages "Params.categories" "intersect" (slice "transportation") -}}
+                        {{- range where .RegularPages "Params.categories" "intersect" (slice "publicspace") -}}
                         <div class="card content-card mb-4 col-sm-6 col-md-4">
                             <div class="card-content data-stories">
                                 <a href="{{ .RelPermalink}}">
@@ -165,7 +165,7 @@
 
                 <div class="tab-pane fade" id="pills-justice" role="tabpanel" aria-labelledby="pills-justice-tab">
                     <div class="row">
-                        {{- range where .RegularPages "Params.categories" "intersect" (slice "social") -}}
+                        {{- range where .RegularPages "Params.categories" "intersect" (slice "inequality") -}}
                         <div class="card content-card mb-4 col-sm-6 col-md-4">
                             <div class="card-content data-stories">
                                 <a href="{{ .RelPermalink}}">

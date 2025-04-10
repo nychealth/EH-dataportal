@@ -45,20 +45,49 @@
                     {{- if gt (len $filteredPages) 0 -}}
                         <div class="df-accent mt-4 mb-2 mt-md-0">
                             <div class="h3 fs-lg"><i class="fas fa-chart-bar mr-1 key-topics" aria-hidden="true"></i>Data Features:</div>
-                            <div class="home-label">Interactive infographics and reports</div>
                         </div>
-                        {{- range $filteredPages -}}
-                            {{- if not .Params.hide -}}
-                                <div class="card card-left-border shadow-sm mb-4">
+                        {{- range $filteredPages.ByWeight -}}
+                            <!-- Show data features, not reports, and nothing with the 'hide' frontmatter -->
+                            {{- if and (not .Params.hide) (not .Params.report) -}}
+                                <div class="card card-left-border shadow-sm mb-3">
                                     <div class="card-content card-body">
                                         <h4 class="fs-md"><a class="link-track" href="{{ .RelPermalink }}" class="text-primary">{{ .Title }}</a></h4>
-                                        <p class="fs-sm">{{ .Content | plainify | htmlUnescape | truncate 175 }}
+                                        <p class="fs-sm">
+                                            {{ if .Params.blurb }}
+                                                {{ .Params.blurb | plainify | htmlUnescape | truncate 200 }}
+                                            {{ else }}
+                                                {{ .Content | plainify | htmlUnescape | truncate 175 }}
+                                            {{ end }}                                            
                                         </p>
                                         <div class="d-flex justify-content-end">
-                                            <a class="fs-sm font-weight-bold" href="{{ .RelPermalink }}">Get the data<i class="fas fa-arrow-circle-right ml-1" aria-hidden="true"></i></a>
+                                            <a class="fs-sm font-weight-bold" href="{{ .RelPermalink }}">Explore<i class="fas fa-arrow-circle-right ml-1" aria-hidden="true"></i></a>
                                         </div>
                                     </div>
                                 </div>
+                            {{- end -}}
+                        {{- end -}}
+
+
+                        <hr class="my-3">
+
+                        {{- range $filteredPages.ByWeight -}}
+                            <!-- Show reports, except those with 'hide' frontmatter -->
+                            {{- if and (.Params.report) (not .Params.hide) -}}
+                            <div class="card card-left-border shadow-sm mb-4">
+                                <div class="card-content card-body">
+                                    <h4 class="fs-md"><a class="link-track" href="{{ .RelPermalink }}" class="text-primary">{{ .Title }}</a></h4>
+                                    <p class="fs-sm">
+                                    {{ if .Params.blurb }}
+                                        {{ .Params.blurb | plainify | htmlUnescape | truncate 200 }}
+                                    {{ else }}
+                                        {{ .Content | plainify | htmlUnescape | truncate 175 }}
+                                    {{ end }}      
+                                    </p>
+                                    <div class="d-flex justify-content-end">
+                                        <a class="fs-sm font-weight-bold" href="{{ .RelPermalink }}">Read report<i class="fas fa-arrow-circle-right ml-1" aria-hidden="true"></i></a>
+                                    </div>
+                                </div>
+                            </div>
                             {{- end -}}
                         {{- end -}}
                     {{- end -}}
@@ -73,11 +102,76 @@
                 <div class="row">
                     <div class="col-md-4 col-sm-12">
                         <div class="de-accent">
-                            <div class="h3 fs-lg"><i class="fas fa-chart-line pr-1" aria-hidden="true"></i>Data Sets:</div>
-                            <div class="home-label">Get tables, maps, and trends </div>
+                            <div class="h3 fs-lg"><i class="fas fa-chart-line pr-1" aria-hidden="true"></i>
+                                {{ if .Params.shortTitle }}
+                                {{ .Params.shortTitle }} data
+                                {{ else }}
+                                {{ .Title }} data:
+                                {{ end }}
+                            </div>
                         </div>
+
+
                         <div class="mt-2 mb-4">
-                            {{- partial "related" (dict "section" "data-explorer" "layout" "singlelist" "content" . ) -}}
+
+                            <!-- First, get the main DE pages linked from KT page frontmatter -->
+                            {{ if .Params.mainDEPages }}
+                                {{ range $index, $element := .Params.mainDEPages }}
+                                <a class="font-weight-bold" href="{{ .Site.BaseURL | relURL }}{{ .url }}">
+                                    {{ .title }}
+                                </a>
+                                    {{ if eq (add $index 1) (len $.Params.mainDEPages) }}
+                                        <hr class="strong-hr my-1">
+                                    {{ else }}
+                                        <hr class="my-1">
+                                    {{ end }}
+                                {{ end }}
+
+                                     <!-- Then, range through all matching DE pages, excluding what's referenced in the frontmatter --> 
+
+                                    {{- $DEpages := where (where .Site.RegularPages "Section" "data-explorer") ".Params.categories" "intersect" (slice .Params.keyTopic) }}                     
+                                    {{- $mainDEPages := .Params.mainDEpages }} <!-- Get mainDEPages array -->
+                                    
+
+                                    {{- range $DEpages.ByTitle -}}
+                                        {{- $deTitle := .Title }}
+                                        {{- $deLink := .RelPermalink }}
+                                    
+                                        {{ $print := true }} <!-- Default to printing -->
+                                    
+                                        <!-- Check if this page exists in mainDEPages -->
+                                        {{- range $mainDEPages -}}
+                                            {{- if eq $deTitle .title }} 
+                                                {{ $print = false }}
+                                                {{ break }} <!-- Exit loop early if a match is found -->
+                                            {{- end }}
+                                        {{- end }}
+                                    
+                                        <!-- Only print if no match was found -->
+                                        {{- if $print }}
+                                            <a class="font-weight-bold" href="{{ $deLink }}">{{ $deTitle }}</a>
+                                            <hr class="my-1">
+                                        {{- end }}
+                                    
+                                    {{- end }}
+                                
+
+                            {{ else }}
+
+                                <!-- if there are no mainDEPages set, then just do alphabetical --> 
+                                {{- $DEpages := where (where .Site.RegularPages "Section" "data-explorer") ".Params.categories" "intersect" (slice .Params.keyTopic) }}
+                                {{- range $DEpages.ByTitle -}}
+                                    <a class="font-weight-bold" href="{{ .RelPermalink }}">{{ .Title }}</a>
+                                    <hr class="my-1">
+                                {{- end -}}
+
+                            {{ end }}
+
+
+
+                            
+
+
                         </div>
                     </div>
 
@@ -85,12 +179,16 @@
                         {{- if where ( where .Site.RegularPages "Section" "data-stories") ".Params.categories" "intersect" ( slice .Params.keyTopic ) -}}
                         <div class="ds-accent">
                             <div class="h3 fs-lg"><i class="fas fa-passport mr-1" aria-hidden="true"></i>Data Stories:</div>
-                            <div class="home-label ">Narratives and explainers</div>
                         </div>
 
 
                         {{- range first 5 ( where ( where .Site.RegularPages "Section" "data-stories") ".Params.categories" "intersect" ( slice .Params.keyTopic ) ) -}}
                             <div class="row no-gutters mt-2">
+                                <div class="col-12">
+                                    <p class="fs-md text-align-right h-100"><a class="link-track text-primary" href="{{ .RelPermalink }}"><span class="font-weight-bold">{{ .Title | plainify | htmlUnescape }}</span></a></p>
+                                </div>
+                            </div>
+                            <div class="row no-gutters mt-1">
                                 <div class="col-5">
                                     {{- $src := .Resources.GetMatch .Params.image }}
                                     {{ $image := $src.Resize "280x 200x" }}
@@ -105,7 +203,7 @@
                                     {{- .Scratch.Set "intro" $title }}
                                     {{- .Scratch.Add "intro" " | " }}
                                     {{- .Scratch.Add "intro" $content }}
-                                  <p class="fs-md text-align-right h-100 pl-1 mb-2"><a class="link-track text-primary font-weight-bold" href="{{ .RelPermalink }}">{{ .Scratch.Get "intro" | truncate 125 }}</a></p>
+                                  <p class="fs-sm text-align-right h-100 pl-1 mb-2"><a class="link-track text-primary font-weight-bold" href="{{ .RelPermalink }}">{{ $content | truncate 125 }}</a></p>
                                 </div>
                               </div>
 
@@ -133,27 +231,28 @@
                         <div class="collapse" id="collapseStories">
                             {{- range after 5 $dataStories -}}
                             <div class="row no-gutters mt-2">
-                            <div class="col-5">
-                                {{ $src := .Resources.GetMatch .Params.image -}}
-                                {{- $image := $src.Resize "280x 200x" }}
-                                <a class="link-track" href="{{ .RelPermalink }}">
-                                <img src="{{ $image.RelPermalink }}" class="mb-3" alt="">
-                                </a>
+                                <div class="col-12">
+                                    <p class="fs-md text-align-right h-100"><a class="link-track text-primary" href="{{ .RelPermalink }}"><span class="font-weight-bold">{{ .Title | plainify | htmlUnescape }}</span></a></p>
+                                </div>
                             </div>
-                            <div class="col-7 ml-auto h-100 pr-1 pl-2">
-                                {{ $title := .Title | plainify | htmlUnescape -}}
-                                {{- $content := .Content | plainify | htmlUnescape -}}
+                            <div class="row no-gutters mt-1">
+                                <div class="col-5">
+                                    {{- $src := .Resources.GetMatch .Params.image }}
+                                    {{ $image := $src.Resize "280x 200x" }}
+                                    <a class="link-track" href="{{ .RelPermalink }}">
+                                        <img src="{{ $image.RelPermalink }}" class="mb-3" alt="">
+                                    </a>
+                                </div>
+                                <div class="col-7 ml-auto h-100 pr-1 pl-2">
+                                    {{ $title := .Title | plainify | htmlUnescape }}
+                                    {{- $content := .Content | plainify | htmlUnescape }}
 
-                                {{- .Scratch.Set "intro" $title -}}
-                                {{- .Scratch.Add "intro" " | " -}}
-                                {{- .Scratch.Add "intro" $content }}
-                                <p class="fs-md text-align-right h-100 pl-1 mb-2">
-                                <a class="link-track text-primary font-weight-bold" href="{{ .RelPermalink }}">
-                                    {{ .Scratch.Get "intro" | truncate 125 }}
-                                </a>
-                                </p>
-                            </div>
-                            </div>
+                                    {{- .Scratch.Set "intro" $title }}
+                                    {{- .Scratch.Add "intro" " | " }}
+                                    {{- .Scratch.Add "intro" $content }}
+                                  <p class="fs-sm text-align-right h-100 pl-1 mb-2"><a class="link-track text-primary font-weight-bold" href="{{ .RelPermalink }}">{{ $content | truncate 125 }}</a></p>
+                                </div>
+                              </div>
 
                             <hr class="mb-1 pb-1">
                             {{ end -}}
@@ -164,7 +263,6 @@
                         {{- if where ( where .Site.RegularPages "Section" "neighborhood-reports") ".Params.categories" "intersect" ( slice .Params.keyTopic ) -}}
                         <div class="nr-accent">
                           <div class="h3 fs-lg"><i class="fas fa-map-marked-alt mr-1" aria-hidden="true"></i>Neighborhood Reports:</div>
-                          <div class="home-label ">Get data for your neighborhood on</div>
                         </div>
                             <div class="mt-2">
                               {{ partial "related" (dict "section" "neighborhood-reports" "layout" "button" "extraClass" "link-track text-left" "content" . ) -}}

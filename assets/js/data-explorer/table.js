@@ -133,11 +133,20 @@ const renderTable = () => {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
     const filteredTableAqData = aq.from(filteredTableData)
-        .groupby("TimePeriod", "GeoTypeDesc", "GeoID", "GeoRank", "Geography")
+        .groupby("TimePeriod", "GeoTypeDesc", "GeoID", "GeoRank", "BoroID", "Borough", "Geography")
         .pivot("MeasurementDisplay", "DisplayCI", {sort: false})
+        .derive({
+            Area: aq.escape(d => {  // create Area field: Borough + Neighborhood
+                if (d.Borough && d.GeoTypeDesc != 'Borough') {
+                    return `${d.Geography} xx ${d.Borough} yy`;
+                } else {
+                    return d.Geography; 
+                }
+            })
+        })
         .relocate([
-                // these 4 columns always exist, and we always want to hide them, so let's put them first, respecting the original relative order
-                "TimePeriod", "GeoTypeDesc", "GeoID", "GeoRank", "Geography", 
+                // these columns always exist, and we always want to hide all except the last one, so let's put them first, respecting the original relative order
+                "TimePeriod", "GeoTypeDesc", "GeoID", "GeoRank", "BoroID", "Borough", "Geography", "Area",
 
                 // set order for table columns (this is half a priori, half ad hoc): standard is Number, Crude Rate, Age-adjusted rate; left to right in order of calculated complexity; or general to specific. 
                 aq.matches(/everyday/i),
@@ -201,15 +210,35 @@ const renderTable = () => {
     // ----------------------------------------------------------------------- //
     // specify DataTable
     // ----------------------------------------------------------------------- //
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // set some properties
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+    // get the number of columns
+
+    const dataColumnsCount = filteredTableAqData.numCols();
+
+    // console.log("dataColumnsCount:", dataColumnsCount);
+
+    // create array with indexes of all columns except the search col, to set as "searchable = false"
+
+    const notSearchCols = Array.from({length: dataColumnsCount}, (_, i) => i).filter(x => x != 7);
+
+    // define which column indexes define which groups
     
     const groupColumnTime = 0
     const groupColumnGeo = 1;
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // initialize the table
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
     $('#tableID').DataTable({
         scrollY: 500,
         scrollX: true,
         scrollCollapse: true,
-        searching: false,
+        searching: true,
         paging: false,
         select: true,
         buttons: [
@@ -221,26 +250,40 @@ const renderTable = () => {
         ],
         bInfo: false,
         fixedHeader: true,
-        orderFixed: [[ 0, 'desc' ], [ 3, 'asc' ]], // GeoRank
+        orderFixed: [[ 0, 'desc' ], [ 3, 'asc' ], [ 4, 'asc' ]], // TimePeriod, GeoRank, BoroID
         columnDefs: [
             { type: 'natural', targets: '_all' },
-            { targets: [0, 1, 2, 3], visible: false}
+            { visible: false, targets: [0, 1, 2, 3, 4, 5, 6] },
+            { searchable: false, targets: [...notSearchCols] },
+            {
+                targets: 7, // Adjust to the column index where you need formatting
+                render: function (data, type, row) {
+                    if (type === 'display') {
+                        return data.replace(/xx/g, '<br><span style="font-size:.65rem; color: #434343;">')
+                                   .replace(/yy/g, '</span>');
+                    }
+                    return data;
+                }
+            }
         ],
-        "createdRow": function ( row, data, index ) {
-            const time    = data[0];
+        language: {
+            search: "Find a neighborhood:"  // Change the search box prompt text
+        },
+        dom: 'rt<"bottom"flp>',
+        createdRow: function ( row, data, index ) {
+            const time        = data[0];
             const GeoTypeDesc = data[1];
             if (time && GeoTypeDesc) {
                 row.setAttribute(`data-group`, `${time}-${GeoTypeDesc}`)
                 row.setAttribute(`data-time`, `${time}`);
             }
         },
-        "drawCallback": function ( settings ) {
+        drawCallback: function ( settings ) {
             const api = this.api();
             const data = api.rows( {page:'current'} ).data()
             const rows = api.rows( {page:'current'} ).nodes();
-            const totaleColumnsCount = api.columns().count()
-            const visibleColumnsCount =  totaleColumnsCount - 4;
-            
+            const visibleColumnsCount =  dataColumnsCount - 7;
+
             let last = null;
             let lastTime = null;
             
@@ -261,12 +304,15 @@ const renderTable = () => {
 
                     if ( last !== group || lastTime !== time ) {
                         
-                        $(rows).eq( i ).before(
-                            `<tr class="group"><td colspan="${visibleColumnsCount}" data-time="${time}" data-group="${group}" data-group-level="${lvl}"> ${group}</td></tr>`
+                        $(rows)
+                            .eq( i )
+                            .before(
+                                `<tr class="group"><td colspan="${visibleColumnsCount}" data-time="${time}" data-group="${group}" data-group-level="${lvl}"> ${group}</td></tr>`
                             );
-                            last = group;
-                            lastTime = time
-                            
+
+                        last = group;
+                        lastTime = time
+                        
                     }
                 });
             }

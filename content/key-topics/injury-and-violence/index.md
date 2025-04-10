@@ -10,6 +10,9 @@ keyTopic: injuryandviolence
 keywords: ["injury","violence","assault","suicide","homicide"]
 layout: single
 image: ds-violence.jpg
+mainDEPages:
+  - title: "Violence"
+    url: "data-explorer/violence/"
 ---
 
 Violence is a public health issue. Injuries, whether intentional (like violence or suicide) or unintentional, are the main causes of death for New Yorkers aged 15 to 44. These deaths are tragic, unnecessary, and can be prevented. 

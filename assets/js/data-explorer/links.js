@@ -222,7 +222,7 @@ const renderLinksChart = (
             {
                 "calculate": `format(datum.${yValue},  '.1f') + ' ${yDisplay}'`,
                 "as": "yLabel"
-            }
+            },
         ],
         "layer":[
             {
