@@ -25,7 +25,7 @@
             </div>
 
                 <h1 class="h2" data-pagefind-weight="10.0">
-                    <i class="fas fa-star" aria-hidden="true" style="margin-right: 10px"></i>{{ .Title }}
+                    {{ .Title }}
                 </h1>
 
                 {{- .Content  -}}
@@ -33,6 +33,11 @@
         </div>
 
     </div>
+
+<!-- Modal for correction on 2023 Heat Mort Report --> 
+{{ if .Params.modal }}
+    {{ partial "heat-report-correction" . }}
+{{ end }}
 
 </article>
 

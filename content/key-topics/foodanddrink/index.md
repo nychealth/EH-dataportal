@@ -11,6 +11,9 @@ keyTopic: foodanddrink
 keywords: ["food","drink","restaurant","inspection","environmental health","dining","alcohol","sugary drinks","soda","water"]
 layout: single
 image: nyc-food-and-drink.jpg
+mainDEPages:
+  - title: "Restaurant food safety"
+    url: "data-explorer/restaurant-food-safety/"
 ---
 
 We all make choices around food and drink, but sometimes, those choices are made for us by our food environments.

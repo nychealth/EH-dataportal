@@ -12,10 +12,10 @@ categories:
     "airquality",
     "childhealth",
     "housing",
-    "transportation",
+    "publicspace",
     "climatehealth",
     "healthoutcomes",
-    "social",
+    "inequality",
     "pests",
   ]
 keywords:

@@ -6,8 +6,8 @@ image: redlining-in-harlem.png
 photocredit: Mapping Inequality
 layout: bbb
 categories:
-  - transportation
-  - social
+  - publicspace
+  - inequality
   - housing
 keywords:
   - justice

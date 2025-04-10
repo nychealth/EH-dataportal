@@ -143,7 +143,8 @@ const createComparisonData = async (comps) => {
             Sources:         d => d.Measures.Sources,
             how_calculated:  d => d.Measures.how_calculated,
             DisplayType:     d => d.Measures.DisplayType,
-            TrendNoCompare:  d => d.Measures.TrendNoCompare
+            TrendNoCompare:  d => d.Measures.TrendNoCompare,
+            TrendThreshold:  d => d.Measures.TrendThreshold
         })
         .derive({IndicatorMeasure: d => d.IndicatorLabel + ": " + d.MeasurementType})
         .select(aq.not("Measures"))
@@ -309,7 +310,7 @@ const loadIndicator = async (this_indicatorId, dont_add_to_history) => {
 
     // call data loading function
 
-    const indicatorTitle = document.getElementById('dropdownIndicator')
+    const indicatorTitle = document.getElementById('indicatorNameMobile')
 
     indicatorTitle.innerHTML = DOMPurify.sanitize(indicatorName)
 
@@ -668,7 +669,7 @@ const joinData = () => {
         .rename({'Name': 'Geography'})
         // join the additional time period info
         .join(timeTable, "TimePeriodID")
-        .select(aq.not("BoroID", "Borough", "TimeType"))
+        .select(aq.not("TimeType"))
         .orderby(aq.desc('end_period'), aq.desc('GeoRank'))
         .reify()
     
