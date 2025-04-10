@@ -30,9 +30,11 @@ Recently, we worked to improve the accessibility of data visualizations in key a
 
 Many data visualizations are inaccessible: screen readers can't navigate and read them in a way that explains the data to the user. But, a screen reader can read a properly-formatted table. So, complementing inaccessible data visualizations with properly formatted tables (with descriptive labels for headers and rows) can offer users of screen readers access to the data.
 
-## Tailoring tables to match data visualizations
+### Tailoring tables to match data visualizations
 
-There are many different types of data visualizations, like line charts, chloropleth maps, bar charts, locator maps, and more. Creating tables to complement these visualizations requires a strategic approach, to meaningfully communicate the data. The first things we ask ourselves when creating an accessible table is:
+There are many different types of data visualizations, like line charts, chloropleth maps, bar charts, locator maps, and more. Creating tables to complement these visualizations requires a strategic approach, to meaningfully communicate the data.
+
+**The first things we ask ourselves when creating an accessible table are:**
 
 1. What are we trying to communicate with this chart?
 2. Why did we choose this kind of chart?
