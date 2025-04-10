@@ -7,7 +7,7 @@ draft: false
 seo_title: "Interactive heat vulnerability index."
 seo_description: "Data on neighborhood-level vulnerability to heat's health effects in NYC."
 description: "Data on neighborhood-level vulnerability to heat's health effects in NYC."
-categories: ["climatehealth", "social", "housing"]
+categories: ["climatehealth", "inequality", "housing"]
 keywords:
   [
     "interactive",
@@ -34,6 +34,12 @@ related:
     url: "data-stories/heat/"
   - title: "Real-time heat-related illness"
     url: "data-features/heat-syndrome/"
+weight: 1
+blurb: Map of neighborhood heat vulnerability, and the neighborhood characteristics that affect it.
 ---
+Hot weather is dangerous. In New York City – and across the country – more people die from heat than from all other natural disasters combined. As our climate continues to warm, we expect more heat events that can put people’s lives at risk.
 
-Use this Heat Vulnerability Explorer to look up your the heat vulnerability of your neighborhood, and the neighborhood characteristics that affect it.
+In New York City, the risk of death from heat is unfairly distributed across neighborhoods. We identified neighborhood environmental and social factors associated with increased risk to create a heat vulnerability index. This can identify neighborhoods at highest risk and help inform neighborhood-level policies and programs that can protect people - sending resources to where they're needed the most.</p>
+
+Use this Heat Vulnerability Explorer to look up your neighborhood's heat vulnerability and the neighborhood characteristics that affect it.
+

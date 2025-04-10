@@ -1,5 +1,7 @@
 ---
 title: "Inequality and health inequities"
+aliases:
+  - /key-topics/social/
 shortTitle: "Inequality"
 date: 2021-10-01T07:59:16-04:00
 draft: false
@@ -7,11 +9,16 @@ seo_title: "Data on health equity and social and economic conditions in NYC"
 seo_description: "Data, data stories, interactives, and more about social and economic determinants of health."
 description: "Data, data stories, interactives, and more about social and economic determinants of health."
 tags: 
-categories: [social]
-keyTopic: social
+categories: [inequality]
+keyTopic: inequality
 keywords: ["social justice","poverty","racism","oppression","social determinants","public health","social determinants of health","inequality","health equity","justice","injustice"]
 layout: single
 image: nyc-neighborhood.jpg
+mainDEPages:
+  - title: "Social conditions"
+    url: "data-explorer/social-conditions/"
+  - title: "Economic conditions"
+    url: "data-explorer/economic-conditions/"
 ---
 
 Inequality is a significant driver of bad health: a society that deprives people of resources to stay healthy is a society where many people become sick, injured, or die because of factors outside of their control.

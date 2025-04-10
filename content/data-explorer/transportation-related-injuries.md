@@ -7,7 +7,7 @@ seo_title: "Transportation-related injury data for NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
 description: "Datasets and visualizations of transportation-related injuries in NYC."
 tags:
-categories: ["transportation", "healthoutcomes","injuryandviolence"]
+categories: ["publicspace", "healthoutcomes","injuryandviolence"]
 keywords:
   [
     "transportation",

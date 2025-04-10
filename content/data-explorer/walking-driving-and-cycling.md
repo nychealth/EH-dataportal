@@ -5,7 +5,7 @@ draft: false
 azlink: "https://www.nyc.gov/site/doh/health/health-topics/active-design.page"
 date: 2021-05-28T18:02:58Z
 categories:
-  - transportation
+  - publicspace
   - airquality
 keywords:
   - transportation

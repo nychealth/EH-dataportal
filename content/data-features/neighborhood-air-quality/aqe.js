@@ -1,13 +1,5 @@
 "use strict";
 
-/* STILL NEEDS:
-- Passing the geography into the renderChart and renderMap functions properly to highlight the selected neighborhood
-- A tolerable Initial State that draws attention to "Choose a neighborhood"
-
-*/
-
-// flexdatalist initial:
-
 // ===== load flexdatalist ================================================== //
 
 const load_flexdatalist = async () => {
@@ -39,13 +31,13 @@ const load_flexdatalist = async () => {
               data: nta_zip_collapsed
           });
 
-          console.log("$input", $input);
+          // console.log("$input", $input);
           
           // ----- add flexdatalist select handler -------------------------------------------------- //
 
           $input.on('select:flexdatalist', (e, set) => {
               
-              console.log("set", set);
+              // console.log("set", set);
 
               // set neighborhood name on page
               
@@ -64,7 +56,7 @@ const load_flexdatalist = async () => {
 
           $("#clear").on("click", (e) => {
 
-              console.log("e [clear click]", e);
+              // console.log("e [clear click]", e);
 
               $($input).find("~input").val("").trigger( "focus" )
               
@@ -97,17 +89,20 @@ d3.csv('aqe-nta.csv', d3.autoType).then(data => {
 
 var thisGeocode
 function setNeighborhood(x, y, z) {
-  document.getElementById('showNeighb').classList.remove('hide')
+  // document.getElementById('showNeighb').classList.remove('hide')
+  // document.getElementById('showData').classList.remove('hide')
 
-  console.log('geocode',x)
+
+  // console.log('geocode',x)
   thisGeocode = x
-  console.log(y)
-  document.getElementById('NTA2').innerHTML = y
-  document.getElementById('NTA2').classList.add('yourN')
-  document.getElementById('NTA3').classList.add('yourN')
+  // console.log(y)
+
   document.getElementById('NTA3').innerHTML = y
+  document.getElementById('NTA3').classList.add('text-primary')
+
   document.getElementById('NTA4').innerHTML = y
-  document.getElementById('NTA4').classList.add('yourN')
+  document.getElementById('NTA4').classList.add('text-primary')
+
   document.getElementById('zips').innerHTML = z
 
   // ingest data file and filter by GEOCODE
@@ -219,7 +214,7 @@ const renderChart = (
           "color": {
             "condition": {
               "test": `datum['NTACODE'] === '${neighborhood}'`,
-              "value": "cyan"
+              "value": "#008939"
               },
             "value": "darkgray"
             },
@@ -231,7 +226,7 @@ const renderChart = (
             "value": 0
           },
           "stroke": {
-            "condition": {"test": `datum.NTACODE === '${neighborhood}'`, "value": "cyan"},
+            "condition": {"test": `datum.NTACODE === '${neighborhood}'`, "value": "#008939"},
             "value": "darkgray"
             }
         }
@@ -239,7 +234,7 @@ const renderChart = (
     ]
   }
 
-  console.log(barSpec)
+  // console.log(barSpec)
 
   vegaEmbed(destination, barSpec, {actions:false})
 }
@@ -247,7 +242,7 @@ const renderChart = (
 
 
 function changeSource(x) {
-  console.log(x)
+  // console.log(x)
 
   // get all class sourceBox and remove active
   var sourceBoxes = document.querySelectorAll(".sourceBox")
@@ -375,7 +370,7 @@ const renderMap = (
               "value": 0.5
               },
             "stroke": {
-              "condition": {"test": `datum.NTACODE === '${neighborhood}'`, "value": "cyan"},
+              "condition": {"test": `datum.NTACODE === '${neighborhood}'`, "value": "#008939"},
               "value": "darkgray"
               },
             "order": {
