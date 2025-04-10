@@ -390,7 +390,7 @@
 
                 <!-- Mobile about text -->
                 <div class="d-lg-none fs-sm">
-                    <p>{{ .Content | plainify | truncate 125 }} <a href="#" data-toggle="modal" data-target="#aboutModal">More about {{ .Title }}</a> | <a href="#" data-toggle="modal" data-target="#topicModal"
+                    <p>{{ .Content | plainify | truncate 125 }} <a href="#" data-toggle="modal" data-target="#aboutModal">More about {{ lower .Title }}</a> | <a href="#" data-toggle="modal" data-target="#topicModal"
                         aria-labelledby="topicModalLabel">Change topic</a></p>                       
                 </div>
 
@@ -471,7 +471,7 @@
         <!-- Indicator selection (mobile) -->
         <div class="dropdown d-lg-none">
 
-            <div id="indicatorNameMobile" class="font-weight-bold">Indicator name Mobile</div>
+            <div id="indicatorNameMobile" class="font-weight-bold">Loading dataset - </div>
 
             <p class="fs-sm">
                 <span class="indicator-description">Just a moment...</span>
