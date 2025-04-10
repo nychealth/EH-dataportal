@@ -2,10 +2,10 @@ report_topics:
   - report_topic: Outdoor Air Pollutants
     report_topic_description: Estimated annual average concentrations calculated from a model that used NYC Community Air Survey measurements.
     MeasureID:
-      - 365
-      - 375
-      - 370
-      - 386
+      - 1425
+      - 1431
+      - 1428
+      - 1435
   - report_topic: Heating Fuel Emissions
     report_topic_description: Estimated annual boiler emissions per square kilometer as of January 2019. Calculated using heating fuel type on NYC boiler permits and estimates of boiler activity.
     MeasureID:
