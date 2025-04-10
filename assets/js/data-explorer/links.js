@@ -222,7 +222,11 @@ const renderLinksChart = (
             {
                 "calculate": `format(datum.${yValue},  '.1f') + ' ${yDisplay}'`,
                 "as": "yLabel"
-            }
+            },
+            {
+                "calculate": "datum.Borough_1 === datum.Borough_2 ? datum.Borough_1 : null",
+                "as": "Borough"
+              }
         ],
         "layer":[
             {
