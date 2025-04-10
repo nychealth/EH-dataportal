@@ -697,6 +697,7 @@ const joinData = () => {
     // data for map ----------
 
     mapData = joinedAqData
+        .select(aq.not("BoroID", "Borough"))
         // filter to keep only times and geos we want in the table
         .semijoin(aqMapTimesGeos, [["MeasureID", "TimePeriodID", "GeoType"], ["MeasureID", "TimePeriodID", "GeoType"]])
         .orderby(aq.desc('end_period'), "MeasureID")
@@ -709,6 +710,7 @@ const joinData = () => {
     // data for trend chart ----------
 
     trendData = joinedAqData
+        .select(aq.not("BoroID", "Borough"))
         // filter to keep only times and geos we want in the table
         .semijoin(aqTrendTimesGeos, [["MeasureID", "TimePeriodID", "GeoType"], ["MeasureID", "TimePeriodID", "GeoType"]])
         .orderby("GeoRank", "GeoID")
@@ -722,6 +724,7 @@ const joinData = () => {
     // console.log(">>> linksData [joinData]");
 
     linksData = joinedAqData
+        .select(aq.not("BoroID", "Borough"))
         .filter(d => !op.match(d.GeoType, /Citywide|Borough/)) // remove Citywide and Boro
         .objects()
 
