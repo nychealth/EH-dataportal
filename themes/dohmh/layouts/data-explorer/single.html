@@ -363,33 +363,31 @@
                 <ul class="breadcrumb mr-auto">
                     <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
                     <li class="breadcrumb-item"><a href={{ relURL "data-explorer" }}>Data Explorer</a></li>
-                    <li class="breadcrumb-item d-none d-md-block">{{ .Title }}
+                    <li class="breadcrumb-item d-none d-lg-block">{{ .Title }}
                         <button type="button" 
                             class="btn btn-outline-light text-primary badge" 
                             title="Change topic"
                             data-toggle="modal" 
                             data-target="#topicModal"
                             aria-labelledby="topicModalLabel"
-                        ><i class="fa-solid fa-arrow-right-arrow-left font-weight-bold" aria-hidden="true"></i>
+                        ><i class="fa-solid fa-list font-weight-bold" aria-hidden="true"></i>
                         </button></li>
                 </ul>
             </nav>
-            <div class="float-right pr-1 d-none d-md-block">
-                {{- partial "socialshare" . -}}
-            </div>
 
             <h1 class="h2 mt-2">
-                <button type="button"
-                    class="btn btn-outline-light text-primary badge d-lg-none float-left mr-1"
-                    title="Change topic"
-                    data-toggle="modal" 
-                    data-target="#topicModal"
-                    aria-labelledby="topicModalLabel"
-                >
-                <i class="fas fa-list"></i>
-                </button>
                 {{ .Title }} </h1>
-            <p>Get maps, charts, tables, and more. <i data-toggle="modal" data-target="#aboutModal" class="d-lg-none fas fa-question-circle helper text-primary"></i></span></p>
+
+                <!-- Desktop teaser -->
+                <div class="d-none d-lg-block">
+                    <p>Get maps, charts, tables, and more.</p>
+                </div>
+
+                <!-- Mobile about text -->
+                <div class="d-lg-none fs-sm">
+                    <p>{{ .Content | plainify | truncate 125 }} <a href="#" data-toggle="modal" data-target="#aboutModal">More about {{ .Title }}</a> | <a href="#" data-toggle="modal" data-target="#topicModal"
+                        aria-labelledby="topicModalLabel">Change topic</a></p>                       
+                </div>
 
         </div>
     </div>
@@ -453,6 +451,11 @@
                 {{- partial "takeaction" . -}}
             </div>
 
+            <!-- Social share -->
+            <div class="d-none d-lg-block mt-4">
+                {{- partial "socialshare" . -}}
+            </div>
+
 
 
 
@@ -460,29 +463,37 @@
         
         <div class="col-lg-8 mx-auto col-md-12">
         
-            <!-- Indicator selection (mobile) -->
-            <div class="dropdown d-lg-none d-block">
-                <button class="btn btn-sm btn-outline-primary btn-sm float-left text-wrap mr-1" type="button"
-                        id="dropdownIndicator" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fas fa-exchange-alt"></i>
-                </button>
+        <!-- Indicator selection (mobile) -->
+        <div class="dropdown d-lg-none">
 
-                <div id="indicatorNameMobile" class="ml-1 font-weight-bold">Indicator name Mobile</div>
+            <div id="indicatorNameMobile" class="font-weight-bold">Indicator name Mobile</div>
+
+            <p class="fs-sm">
+                <span class="indicator-description">Just a moment...</span>
+
+                <a href="#" data-toggle="modal" data-target="#indicatorModal" >
+                Change dataset</a>
+            </p>
 
 
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownIndicator" id="indicator-dropdown">
-                    <!-- Dropdown items are rendered using renderIndicatorDropdown -->
-                </div>
+
+            <div class="dropdown-menu dropdown-menu-right px-1" aria-labelledby="dropdownIndicator" >
+                <!-- Dropdown items are rendered using renderIndicatorDropdown -->
             </div>
+        </div>
 
         {{- if .Params.archive -}}
             <div class="border p-1"><p><strong>Note:&nbsp;</strong>{{- .Params.archive | safeHTML -}}</p></div>
         {{- end -}}
 
-        <!-- Indicator title and description -->
-        <span class="border-bottom font-weight-bold d-none d-lg-block"><span id="indicatorTitle">Loading data...</span></span>
-        <div class="d-block mt-1">
-            <p class="fs-sm indicator-description ">Just a moment...</p>
+        <!-- DESKTOP: Indicator title and description -->
+        <div class="d-none d-lg-block">
+            <span class="border-bottom font-weight-bold">
+                <span id="indicatorTitle">Loading indicator...</span>
+            </span>
+            <div class="d-block mt-1">
+                <p class="fs-sm indicator-description ">Just a moment...</p>
+            </div>
         </div>
 
         <!-- view selection buttons -->
@@ -830,6 +841,27 @@
             </div>
         </div>
     </div>
+
+        <!-- Indicator Modal - Mobile -->
+        <div class="modal fade" id="indicatorModal" tabindex="-1" role="dialog" aria-labelledby="indicatorModalLabel" aria-hidden="true" data-pagefind-ignore="all">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="indicatorModalLabel"><i  class="fas fa-question-circle mr-1" aria-hidden="true"></i>Change dataset</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body fs-rg" id="indicator-dropdown">
+                        <!-- indicators printed to contents -->
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 
     <!-- Data Modal - Geography -->
     <div class="modal fade" id="geoModal" tabindex="-1" role="dialog" aria-labelledby="geoModalLabel" aria-hidden="true" data-pagefind-ignore="all">
