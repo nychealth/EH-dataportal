@@ -7,7 +7,7 @@ draft: false
 seo_title: "Data on beach water quality"
 seo_description: "Data, findings, and more."
 tags:
-categories: [transportation]
+categories: [publicspace]
 keywords:
   [
     "beaches",
@@ -25,6 +25,7 @@ layout: resourceportal
 image: beachportal-screenshot.png
 destination: "https://a816-dohbesp.nyc.gov/IndicatorPublic/beaches/"
 externalPortal: true
+blurb: Data about current water quality conditions and sources of pollution that affect water quality.
 ---
 
 One month before New York City's beaches open to the public, the Health Departments starts sampling and monitoring beaches. Sampling provides data about current water quality conditions, and monitoring identifies sources of pollution that affect water quality.

@@ -26,14 +26,14 @@
             <a href="#chooser" id="kt3" onclick="changeKT(3)"  class="kt list-group-item list-group-item-action">Housing<span class="badge badge-primary badge-pill float-right">{{ $.Scratch.Get "counter"}}</span><span class="float-right sm-label mr-1">Topics:</span></a>
 
             {{ $.Scratch.Set "counter" 0 }}
-            {{ range where ( where .Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "social") }}
+            {{ range where ( where .Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "inequality") }}
                 {{ $.Scratch.Set "counter" (add ($.Scratch.Get "counter") 1) }}
             {{ end }}
             <a href="#chooser" id="kt4" onclick="changeKT(4)"  class="kt list-group-item list-group-item-action">Inequality and health inequities <span class="badge badge-primary badge-pill float-right">{{ $.Scratch.Get "counter"}}</span><span class="float-right sm-label mr-1">Topics:</span></a>
           
           
             {{ $.Scratch.Set "counter" 0 }}
-            {{ range where ( where .Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "transportation") }}
+            {{ range where ( where .Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "publicspace") }}
                 {{ $.Scratch.Set "counter" (add ($.Scratch.Get "counter") 1) }}
             {{ end }}
             <a href="#chooser" id="kt5" onclick="changeKT(5)"  class="kt list-group-item list-group-item-action" aria-current="true">Active design and transportation<span class="badge badge-primary badge-pill float-right">{{ $.Scratch.Get "counter"}}</span><span class="float-right sm-label mr-1">Topics:</span></a>
@@ -120,7 +120,7 @@
 
         <div id="output4" class="dumps hide">
             <ul>
-                {{ range where ( where .Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "social") }}
+                {{ range where ( where .Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "inequality") }}
                     <li><a href="{{ .RelPermalink}}">{{ .Title }}</a>
                     </li>
                 {{end}}
@@ -129,7 +129,7 @@
 
         <div id="output5" class="dumps hide">
             <ul>
-                {{ range where ( where .Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "transportation") }}
+                {{ range where ( where .Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "publicspace") }}
                     <li><a href="{{ .RelPermalink}}">{{ .Title }}</a>
                     </li>
                 {{end}}

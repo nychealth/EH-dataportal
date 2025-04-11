@@ -64,7 +64,7 @@ function getGeoJSON(x) {
       })
       .then(data => {
         rmzgeojson = data; // Store the GeoJSON data in a global variable
-          console.log('GeoJSON data loaded:', rmzgeojson);
+          // console.log('GeoJSON data loaded:', rmzgeojson);
           resolve(); // Resolve the promise when the data is ready
           geog = L.geoJson(rmzgeojson,{
               style,
@@ -97,15 +97,15 @@ function resetHighlight(e) {
 }
 
 function zoomToFeature(e) {
-  console.log('zoom to feature:'),
-  console.log(e)
-  console.log(rmzgeojson)
+  // console.log('zoom to feature:'),
+  // console.log(e)
+  // console.log(rmzgeojson)
     geog.resetStyle()
     map.fitBounds(e.target.getBounds());
     id = e.target.feature.properties.OBJECTID
-    console.log('Filtering data for: ')
-    console.log('Name: ' + e.target.feature.properties.Label) 
-    console.log('ID: ', id)
+    // console.log('Filtering data for: ')
+    // console.log('Name: ' + e.target.feature.properties.Label) 
+    // console.log('ID: ', id)
     redrawChart(id)
     name = e.target.feature.properties.Label
     printToPage(id);
@@ -153,7 +153,7 @@ function printToPage(x) {
 
 // update map and page from dropdown
 function update(x) {
-  console.log('updated for: ', x)
+  // console.log('updated for: ', x)
   let zone = x - 1
   let layerzone = rmzgeojson.features[zone]
 

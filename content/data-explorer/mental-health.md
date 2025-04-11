@@ -7,7 +7,7 @@ seo_description: "Explore data, visualizations, and more on ways that environmen
 description: "Datasets and visualizations of mental health in NYC."
 tags:
 categories:
-  ["social", "transportation", "healthoutcomes", "housing", "climatehealth"]
+  ["inequality", "publicspace", "healthoutcomes", "housing", "climatehealth"]
 keywords:
   [
     "mental health",

@@ -17,8 +17,8 @@
 
         // drop '*' from string!
 
-        console.log('values:')
-        console.log(values)
+        // console.log('values:')
+        // console.log(values)
 
         // get maximum value
         var max = Math.max(...values)
@@ -40,7 +40,7 @@
         if (x == 0 ) {
             document.getElementById('t-'+y).classList.add('hide');
             document.getElementById('ta-'+y).classList.remove('hide');
-            console.log(y)
+            // console.log(y)
         } else {}
     }
 
@@ -114,9 +114,9 @@
     // Returns each indicator's year formatted to print to page
      function getYear(x,y) {
         var endDate = new Date(x) ;
-        console.log('end date:', endDate) ;
+        // console.log('end date:', endDate) ;
         var year = endDate.getYear() + 1900
-        console.log(year)
+        // console.log(year)
         document.getElementById(y).innerHTML = year
     }
    </script>

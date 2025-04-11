@@ -5,7 +5,7 @@ draft: false
 seo_title: "Public space creates health"
 seo_description: "A data story about how quality and accessible public space enhances public health"
 tags:
-categories: ["active design", "social", "transportation", "neighborhoods"]
+categories: ["active design", "inequality", "publicspace", "neighborhoods"]
 keywords:
   [
     "public space",

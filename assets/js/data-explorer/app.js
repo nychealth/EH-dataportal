@@ -172,6 +172,27 @@ $('#tab-btn-02-b').on('click', e => {
 
 
 // ----------------------------------------------------------------------- //
+// add event listener to indicator links
+// ----------------------------------------------------------------------- //
+
+$('#indicatorButtons').on('click', e => {
+
+    let IndicatorID = e.target.dataset.indicatorId;
+
+    // run the indicator loading function
+
+    loadIndicator(IndicatorID);
+
+    // record google analytics event
+
+    gtag('event', 'click_indicator', {
+        IndicatorID: IndicatorID
+    });
+
+});
+
+
+// ----------------------------------------------------------------------- //
 // export functions
 // ----------------------------------------------------------------------- //
 

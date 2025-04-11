@@ -6,7 +6,7 @@ seo_title: "Por qué el asma es un problema de justicia social"
 seo_description: "Una historia sobre el asma y justicia en NYC."
 tags:
 categories:
-  ["housing", "social", "childhealth", "healthoutcomes", "neighborhoods"]
+  ["housing", "inequality", "childhealth", "healthoutcomes", "neighborhoods"]
 keywords:
   [
     "poverty",

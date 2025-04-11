@@ -5,7 +5,7 @@ draft: false
 seo_title: "How economic stability creates health "
 seo_description: "A data story about how economic stability creates health"
 tags:
-categories: ["housing", "social", "childhealth", "foodanddrink"]
+categories: ["housing", "inequality", "childhealth", "foodanddrink"]
 keywords:
   [
     "health equity",
