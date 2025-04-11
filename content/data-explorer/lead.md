@@ -7,7 +7,7 @@ seo_title: "Lead exposure and poisoning in NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
 description: "Datasets and visualizations of lead poisoning in NYC."
 tags:
-categories: ["housing", "childhealth", "social", "neighborhoods"]
+categories: ["housing", "childhealth", "inequality", "neighborhoods"]
 keywords:
   ["lead", "poisoning", "housing", "children", "child", "testing", "blood"]
 indicators:

@@ -5,7 +5,7 @@ draft: false
 seo_title: "Public transit, transit, climate change, and public health"
 seo_description: "A data story on what we stand to gain from public transit."
 tags:
-categories: ["transportation", "climatehealth", "airquality"]
+categories: ["publicspace", "climatehealth", "airquality"]
 keywords:
   [
     "transportation",
