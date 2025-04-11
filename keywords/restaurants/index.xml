@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>restaurants on Environment &amp; Health Data Portal</title>
+    <title>Restaurants on Environment &amp; Health Data Portal</title>
     <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/restaurants/</link>
-    <description>Recent content in restaurants on Environment &amp; Health Data Portal</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Restaurants on Environment &amp; Health Data Portal</description>
+    <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate>Wed, 20 Apr 2022 08:33:22 -0400</lastBuildDate>
     <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/restaurants/index.xml" rel="self" type="application/rss+xml" />
@@ -13,28 +13,28 @@
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/air-quality-and-covid-part-2/</link>
       <pubDate>Wed, 20 Apr 2022 08:33:22 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/air-quality-and-covid-part-2/</guid>
-      <description>On March 20, 2020, New York State announced the COVID-19 shutdown, officially known as NY Pause. In NYC, it lasted until June 8, 2020.&#xA;With stay-at-home orders in NY and other states, New York City&amp;rsquo;s air quality changed significantly. Earlier, we looked at data collected from real-time air pollution monitors to see how day-to-day pollution changed when people started to stay home.&#xA;More recently, we used data from our network of air quality monitors to examine air pollution changes over time and across neighborhoods.</description>
+      <description>&lt;p&gt;On March 20, 2020, New York State announced the COVID-19 shutdown, officially known as NY Pause. In NYC, it lasted until June 8, 2020.&lt;/p&gt;&#xA;&lt;p&gt;With stay-at-home orders in NY and other states, New York City&amp;rsquo;s air quality changed significantly. Earlier, &lt;a href=&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/air-quality-and-covid/&#34;&gt;we looked at data collected from real-time air pollution monitors to see how day-to-day pollution changed when people started to stay home&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;p&gt;More recently, we used data from our network of air quality monitors to examine air pollution changes over time and across neighborhoods.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Restaurant food safety</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/restaurant-food-safety/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 -0400</pubDate>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/restaurant-food-safety/</guid>
-      <description>New York City has approximately 28,000 restaurants that the Health Department inspects every year to monitor compliance with city and state food safety regulations. At the end of an inspection, the Health Department gives restaurants a score, which is eventually converted to a grade of A, B or C. This site describes the distribution of A grades across New York City restaurants.&#xA;Restaurant Food Safety and Health Safe food handling can protect diners from foodborne illness.</description>
+      <description>&lt;p&gt;New York City has approximately 28,000 restaurants that the Health Department inspects every year to monitor compliance with city and state food safety regulations. At the end of an inspection, the Health Department gives restaurants a score, which is eventually converted to a grade of A, B or C. This site describes the distribution of A grades across New York City restaurants.&lt;/p&gt;&#xA;&lt;h3&gt;Restaurant Food Safety and Health&lt;/h3&gt;&#xA;&lt;p&gt;Safe food handling can protect diners from foodborne illness. During inspections, health inspectors look to ensure that restaurants and their employees are maintaining proper food safety practices. They measure food temperature; look for evidence of food contamination; check for roaches and other vermin; and examine a restaurant&amp;rsquo;s cooking, refrigeration, and cleaning equipment. If the inspector finds violations, she marks points on her inspection checklist. More points mean a lower grade. If conditions are so bad that they pose a public health hazard, the Health Department may close the restaurant until they are fixed.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Tracking changes in New York City&#39;s sources of air pollution</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/restaurants-and-air-quality/</link>
       <pubDate>Mon, 12 Apr 2021 12:02:09 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/restaurants-and-air-quality/</guid>
-      <description>As city life changes, so does its air quality, as sources of emissions that affect the city&amp;rsquo;s outdoor air quality, like truck traffic, building boilers and restaurants, also change. For more than a decade, we have been tracking air quality through the NYC Community Air Survey (NYCCAS) and exploring the factors that drive neighborhood differences. We have found some interesting changes in the sources of air pollution across NYC neighborhoods.</description>
+      <description>&lt;p&gt;As city life changes, so does its air quality, as sources of emissions that affect the city&amp;rsquo;s outdoor air quality, like truck traffic, building boilers and restaurants, also change. For more than a decade, we have been tracking air quality through the  &lt;a href=&#34;#NYCCAS&#34; data-toggle=&#34;collapse&#34; class=&#34;badge badge-pill badge-primary&#34;&gt;NYC Community Air Survey (NYCCAS)&lt;/a&gt; and exploring the factors that drive neighborhood differences. We have found some interesting changes in the sources of air pollution across NYC neighborhoods.&lt;/p&gt;</description>
     </item>
     <item>
       <title>What hot weather means for food safety</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/food/</link>
       <pubDate>Thu, 24 Oct 2019 08:18:56 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/food/</guid>
-      <description>New Yorkers eat out more than a billion times a year. To help keep diners safe, the Health Department educates restaurant operators about food safety practices and inspects all 27,000 city restaurants at least once a year. Over 90 percent of NYC restaurants have &amp;ldquo;A&amp;rdquo; grades in the window, showing excellent compliance with food safety requirements.&#xA;However, warmer weather creates special challenges keeping food safe. We dug into the data to find out how hot weather affects food safety.</description>
+      <description>&lt;p&gt;New Yorkers eat out more than a billion times a year. To help keep diners safe, the Health Department educates restaurant operators about food safety practices and inspects all 27,000 city restaurants at least once a year. Over 90 percent of NYC restaurants have &amp;ldquo;A&amp;rdquo; grades in the window, showing excellent compliance with food safety requirements.&lt;/p&gt;&#xA;&lt;p&gt;However, warmer weather creates special challenges keeping food safe. We dug into the data to find out how hot weather affects food safety.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

@@ -155,20 +155,6 @@
                 hreflang="zh"
                 href="/IndicatorPublic/zh/keywords/"
                 /></url><url>
-    <loc>/IndicatorPublic/zh/keywords/neighborhoods/</loc>
-    <lastmod>2021-02-08T08:07:31-04:00</lastmod><xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/IndicatorPublic/keywords/neighborhoods/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="/IndicatorPublic/es/keywords/neighborhoods/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="/IndicatorPublic/zh/keywords/neighborhoods/"
-                /></url><url>
     <loc>/IndicatorPublic/zh/categories/neighborhoods/</loc>
     <lastmod>2021-02-08T08:07:31-04:00</lastmod><xhtml:link
                 rel="alternate"
@@ -182,6 +168,20 @@
                 rel="alternate"
                 hreflang="zh"
                 href="/IndicatorPublic/zh/categories/neighborhoods/"
+                /></url><url>
+    <loc>/IndicatorPublic/zh/keywords/neighborhoods/</loc>
+    <lastmod>2021-02-08T08:07:31-04:00</lastmod><xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/IndicatorPublic/keywords/neighborhoods/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="/IndicatorPublic/es/keywords/neighborhoods/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/IndicatorPublic/zh/keywords/neighborhoods/"
                 /></url><url>
     <loc>/IndicatorPublic/zh/keywords/poverty/</loc>
     <lastmod>2021-02-08T08:07:31-04:00</lastmod><xhtml:link

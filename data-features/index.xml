@@ -4,7 +4,7 @@
     <title>Data Features on Environment &amp; Health Data Portal</title>
     <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/</link>
     <description>Recent content in Data Features on Environment &amp; Health Data Portal</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate>Mon, 31 Mar 2025 11:14:56 -0400</lastBuildDate>
     <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/index.xml" rel="self" type="application/rss+xml" />
@@ -13,105 +13,84 @@
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/rats-in-your-neighborhood/</link>
       <pubDate>Mon, 31 Mar 2025 11:14:56 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/rats-in-your-neighborhood/</guid>
-      <description>What&amp;rsquo;s going on with rats in your neighborhood, what&amp;rsquo;s being done to fight them, and how can you help?&#xA;Find out here. Enter an address to see data on neighborhood-level rat inspections, and individual inspection results for your property.</description>
+      <description>&lt;p&gt;What&amp;rsquo;s going on with rats in your neighborhood, what&amp;rsquo;s being done to fight them, and how can you help?&lt;/p&gt;&#xA;&lt;p&gt;Find out here. Enter an address to see data on neighborhood-level rat inspections, and individual inspection results for your property.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Real-Time Air Quality: PM2.5 in NYC</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/realtime-air-quality/</link>
       <pubDate>Tue, 22 Mar 2022 19:30:55 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/realtime-air-quality/</guid>
-      <description>Fine particles (PM2.5) are among the most harmful pollutants. Long-term exposure to PM2.5 contributes to an estimated 2,000 excess deaths from lung and heart disease each year in NYC (1 out of every 25 deaths in NYC), and short-term exposure contributes to asthma incidents severe enough to require a trip to the emergency department, and other health threats.&#xA;The air quality in NYC is generally good and has been improving over time.</description>
+      <description>&lt;p&gt;Fine particles (PM2.5) are among the most harmful pollutants. Long-term exposure to PM2.5 contributes to an estimated 2,000 excess deaths from lung and heart disease each year in NYC (1 out of every 25 deaths in NYC), and short-term exposure contributes to asthma incidents severe enough to require a trip to the emergency department, and other health threats.&lt;/p&gt;&#xA;&lt;p&gt;The air quality in NYC is generally good and has been improving over time. For PM2.5, NYC meets the National Ambient Air Quality Standard of an annual average under 12 μg/m&lt;sup&gt;3&lt;/sup&gt;, and a 24-hour average under 35 μg/m&lt;sup&gt;3&lt;/sup&gt;.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Interactive Heat Vulnerability Index</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/hvi/</link>
       <pubDate>Wed, 25 Aug 2021 10:49:05 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/hvi/</guid>
-      <description>Hot weather is dangerous. In New York City – and across the country – more people die from heat than from all other natural disasters combined. As our climate continues to warm, we expect more heat events that can put people’s lives at risk.&#xA;In New York City, the risk of death from heat is unfairly distributed across neighborhoods. We identified neighborhood environmental and social factors associated with increased risk to create a heat vulnerability index.</description>
+      <description>&lt;p&gt;Hot weather is dangerous. In New York City – and across the country – more people die from heat than from all other natural disasters combined. As our climate continues to warm, we expect more heat events that can put people’s lives at risk.&lt;/p&gt;&#xA;&lt;p&gt;In New York City, the risk of death from heat is unfairly distributed across neighborhoods. We identified neighborhood environmental and social factors associated with increased risk to create a heat vulnerability index. This can identify neighborhoods at highest risk and help inform neighborhood-level policies and programs that can protect people - sending resources to where they&amp;rsquo;re needed the most.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Rat Mitigation Zones</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/rat-mitigation-zones/</link>
       <pubDate>Thu, 01 Jun 2023 11:14:56 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/rat-mitigation-zones/</guid>
-      <description>Rats can contaminate food, spread disease and reduce our quality of life. Rat Mitigation Zones (RMZ) are areas with high levels of rat activity, where City agencies focus resources to address rats and the conditions that support them.&#xA;Choose an RMZ on the map below to view data on complaints and NYC Health Department rat control activity.</description>
+      <description>&lt;p&gt;Rats can contaminate food, spread disease and reduce our quality of life. Rat Mitigation Zones (RMZ) are areas with high levels of rat activity, where City agencies focus resources to address rats and the conditions that support them.&lt;/p&gt;&#xA;&lt;p&gt;Choose an RMZ on the map below to view data on complaints and NYC Health Department rat control activity.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Real-time heat-related illness</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-syndrome/</link>
       <pubDate>Mon, 30 Aug 2021 11:51:01 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-syndrome/</guid>
-      <description>The weather forecast is the best way to predict heat-related health outcomes.&#xA;We can also track heat-related illness with near real-time electronic data from emergency departments at hospitals throughout NYC. These data include illnesses directly attributed to heat (including heat exhaustion, muscle cramps, fainting and heat stroke), not the full burden of heat-related health impacts.</description>
+      <description>&lt;p&gt;The weather forecast is the best way to predict heat-related health outcomes.&lt;/p&gt;&#xA;&lt;p&gt;We can also track heat-related illness with near real-time electronic data from emergency departments at hospitals throughout NYC. These data include illnesses directly attributed to heat (including heat exhaustion, muscle cramps, fainting and heat stroke), not the full burden of heat-related health impacts.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Your Neighborhood&#39;s Air Quality</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/neighborhood-air-quality/</link>
       <pubDate>Tue, 24 Aug 2021 12:04:44 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/neighborhood-air-quality/</guid>
-      <description>We combine data from our air quality monitoring network, NYCCAS, with other data to understand what makes air quality in one neighborhood different from air quality in another. We found that building emissions, building density, industrial areas, and traffic density are associated with differences in air quality.&#xA;If we don&amp;rsquo;t have an air quality monitor in one neighborhood, but we know its building density, its industrial area, and its traffic, then we can model (estimate or predict) its air quality - based on monitored air quality in similar neighborhoods.</description>
+      <description>&lt;hr&gt;&#xA;&lt;p&gt;We combine data from our air quality monitoring network, NYCCAS, with other data to understand what makes air quality in one neighborhood different from air quality in another. We found that building emissions, building density, industrial areas, and traffic density are associated with differences in air quality.&lt;/p&gt;&#xA;&lt;p&gt;If we don&amp;rsquo;t have an air quality monitor in one neighborhood, but we know its building density, its industrial area, and its traffic, then we can model (estimate or predict) its air quality - based on monitored air quality in similar neighborhoods.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Rat Information Portal</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/rat-information-portal/</link>
       <pubDate>Wed, 08 Sep 2021 11:14:56 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/rat-information-portal/</guid>
-      <description>New York City’s Rat Information Portal is a web map application that lets you view rat inspection and action data collected by the NYC Health Department.</description>
+      <description>&lt;p&gt;New York City’s Rat Information Portal is a web map application that lets you view rat inspection and action data collected by the NYC Health Department.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Rat Mitigation Zone Report: January 2024 to June 2024</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/rat-report/</link>
       <pubDate>Sun, 08 Sep 2024 11:14:56 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/rat-report/</guid>
-      <description>The NYC Health Department (Department) submits this report pursuant to NYC Administrative Code 17.133.3 to detail rat mitigation efforts in the Rat Mitigation Zones (RMZ). As required, this report includes:&#xA;The metrics the Department is using to measure the efficacy of rat mitigation in such zones, including a description of whether the Department has seen improvement, as measured by such metrics, and, if so, how such improvement has been achieved; An overview of the current and planned rat mitigation measures, including goals and specific benchmarks and timelines, in each such zone; A description of the public outreach measures undertaken by the Department in relation to rat mitigation in each such zone; Explanations of the creation or elimination of rat mitigation zones, or any change of boundaries of such zone, since the previous report, if applicable; and Explanations of any changes to the rat mitigation measures used in each such zone since the previous report, if applicable.</description>
+      <description>&lt;p&gt;The NYC Health Department (Department) submits this report pursuant to NYC Administrative Code&#xA;17.133.3 to detail rat mitigation efforts in the Rat Mitigation Zones (RMZ). As required, this report&#xA;includes:&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;The metrics the Department is using to measure the efficacy of rat mitigation in such&#xA;zones, including a description of whether the Department has seen improvement, as&#xA;measured by such metrics, and, if so, how such improvement has been achieved;&lt;/li&gt;&#xA;&lt;li&gt;An overview of the current and planned rat mitigation measures, including goals and specific&#xA;benchmarks and timelines, in each such zone;&lt;/li&gt;&#xA;&lt;li&gt;A description of the public outreach measures undertaken by the Department in relation to&#xA;rat mitigation in each such zone;&lt;/li&gt;&#xA;&lt;li&gt;Explanations of the creation or elimination of rat mitigation zones, or any change of&#xA;boundaries of such zone, since the previous report, if applicable; and&lt;/li&gt;&#xA;&lt;li&gt;Explanations of any changes to the rat mitigation measures used in each such zone since&#xA;the previous report, if applicable.&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h3&gt;Introduction&lt;/h3&gt;&#xA;&lt;p&gt;The Department’s rat control program takes a multi-pronged, evidence-based approach across&#xA;New York City that builds on our decades of experience. We know that rats thrive when they have ready access to food, water, a place to live, and effective transportation routes. Reducing the rat population, therefore, requires managing garbage, eliminating nesting areas and sealing cracks and holes in sidewalks and buildings. Our approach, called Integrated Pest Management (IPM) includes:&lt;/p&gt;</description>
     </item>
     <item>
       <title>Displacement Risk</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/displacement-risk/</link>
       <pubDate>Sat, 02 Oct 2021 07:56:00 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/displacement-risk/</guid>
-      <description>Housing stability creates health, but in NYC, many people have difficulty accessing healthy, stable housing.&#xA;In some neighborhoods, residents at are higher risk of being displaced - forced to leave their homes, and their neighborhoods, due combinations of market pressure, rent burden, housing conditions, poverty, and injustice in the housing market.&#xA;To show people&amp;rsquo;s risk of being forced out of their homes or neighborhoods, the Department of City Planning and the Department of Housing Preservation and Development created a Displacement Risk Index, part of the Equitable Development Data Explorer.</description>
+      <description>&lt;p&gt;Housing stability creates health, but in NYC, many people have difficulty accessing healthy, stable housing.&lt;/p&gt;&#xA;&lt;p&gt;In some neighborhoods, residents at are higher risk of being displaced - forced to leave their homes, and their neighborhoods, due combinations of market pressure, rent burden, housing conditions, poverty, and injustice in the housing market.&lt;/p&gt;&#xA;&lt;p&gt;To show people&amp;rsquo;s risk of being forced out of their homes or neighborhoods, the Department of City Planning and the Department of Housing Preservation and Development created a Displacement Risk Index, part of the Equitable Development Data Explorer.&lt;/p&gt;</description>
     </item>
     <item>
       <title>2024 NYC Heat-Related Mortality Report</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-report/</link>
       <pubDate>Wed, 08 Sep 2021 11:14:56 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-report/</guid>
-      <description>Each summer, on average, an estimated 350 New Yorkers die prematurely because of hot weather in New York City (NYC). These heat-related deaths account for about 2% of all deaths over the warm season months of May through September.</description>
+      <description>&lt;p&gt;Each summer, on average, an estimated 350 New Yorkers die prematurely because of hot weather in New York City (NYC). These heat-related deaths account for about 2% of all deaths over the warm season months of May through September.&lt;/p&gt;</description>
     </item>
     <item>
       <title>The New York City Community Air Survey</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/nyccas/</link>
       <pubDate>Tue, 08 Nov 2022 11:14:56 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/nyccas/</guid>
-      <description>NYCCAS Report: 2008-2022 In 2007, the New York City Department of Health and Mental Hygiene (Health Department) established the New York City Community Air Survey (NYCCAS), the largest ongoing urban air monitoring program of any U.S. city. NYCCAS, which began collecting data in December 2008, is a collaboration between the Health Department and Queens College of the City University of New York and provides data to:&#xA;Help inform PlaNYC, the City’s sustainability plan Track changes in air quality over time Estimate exposures for health research Inform the public about local topics, such as recent air quality improvements, car-free zones, changes in the sources of air pollution, unique air quality studies conducted in New York City, efforts to reduce health impacts and differences in air quality and related health impacts across NYC neighborhoods.</description>
-    </item>
-    <item>
-      <title>2021 NYC Heat-Related Mortality Report</title>
-      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-report-archive/2021/</link>
-      <pubDate>Wed, 08 Sep 2021 11:14:56 -0400</pubDate>
-      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-report-archive/2021/</guid>
-      <description>Summary: Heat Stress Deaths Each summer from 2010-2019, there were, on average,10 heat stress deaths (those caused directly by heat) in New York City (NYC). Lack of home air conditioning (AC) continues to be an important risk factor for heat stress death. Among those who died from heat stress, the place of death was most often an un-air-conditioned home. Black New Yorkers are more likely to die from heat stress, with death rates two times higher than among other New Yorkers.</description>
-    </item>
-    <item>
-      <title>2022 NYC Heat-Related Mortality Report</title>
-      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-report-archive/2022/</link>
-      <pubDate>Wed, 08 Sep 2021 11:14:56 -0400</pubDate>
-      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-report-archive/2022/</guid>
-      <description>Summary Each summer, an estimated 370 New Yorkers die prematurely because of hot weather in New York City (NYC). These heat-related deaths account for about 2% of all deaths over the warm season months of May - September. Of the 370 deaths:&#xA;From 2011-2020, there was an average of 10 heat-stress deaths (caused directly by heat). From 2011-2019, there was an average of about 360 heat-exacerbated deaths (caused indirectly by heat aggravating an underlying illness).</description>
-    </item>
-    <item>
-      <title>2023 NYC Heat-Related Mortality Report</title>
-      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-report-archive/2023/</link>
-      <pubDate>Wed, 08 Sep 2021 11:14:56 -0400</pubDate>
-      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-report-archive/2023/</guid>
-      <description>Summary This report was corrected on Apr. 2, 2025, after we identified an error. The number of heat-exacerbated deaths was corrected from 345 to 555 and corresponding Figures 3 and 4 in the report were updated. We apologize for this error. More details on the correction.&#xA;Each summer, on average, an estimated 560 New Yorkers die prematurely because of hot weather in New York City (NYC). These heat-related deaths account for about 3% of all deaths over the warm season months of May through September.</description>
+      <description>&lt;h2&gt;NYCCAS Report: 2008-2022&lt;/h2&gt;&#xA;&lt;p&gt;In 2007, the New York City Department of Health and Mental Hygiene (Health Department) established the New York City Community Air Survey (NYCCAS), the largest ongoing urban air monitoring program of any U.S. city. NYCCAS, which began collecting data in December 2008, is a collaboration between the Health Department and Queens College of the City University of New York and provides data to:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Help inform PlaNYC, the City’s sustainability plan&lt;/li&gt;&#xA;&lt;li&gt;Track changes in air quality over time&lt;/li&gt;&#xA;&lt;li&gt;Estimate exposures for health research&lt;/li&gt;&#xA;&lt;li&gt;Inform the public about local topics, such as &lt;a href=&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/breatheeasy/&#34;&gt;recent air quality improvements&lt;/a&gt;, &lt;a href=&#34;../../data-stories/aqts/&#34;&gt;car-free zones&lt;/a&gt;, &lt;a href=&#34;../../data-stories/aq-cooking/&#34;&gt;changes in the sources of air pollution&lt;/a&gt;, &lt;a href=&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/air-quality-snapshots/&#34;&gt;unique air quality studies conducted in New York City&lt;/a&gt;, &lt;a href=&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/hia/&#34;&gt;efforts to reduce health impacts&lt;/a&gt; and &lt;a href=&#34;../../data-stories/aq2/&#34;&gt;differences in air quality and related health impacts across NYC neighborhoods&lt;/a&gt;. NYCCAS also developed &lt;a href=&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/zappa/&#34;&gt;a tool (ZAPPA) that can help people understand how policy changes can change local emissions&lt;/a&gt;.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;This report:&lt;/p&gt;</description>
     </item>
     <item>
       <title>Beach Water Quality</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/beaches/</link>
       <pubDate>Wed, 08 Sep 2021 11:14:56 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/beaches/</guid>
-      <description>One month before New York City&amp;rsquo;s beaches open to the public, the Health Departments starts sampling and monitoring beaches. Sampling provides data about current water quality conditions, and monitoring identifies sources of pollution that affect water quality.&#xA;Each beach is monitored and sampled every week, except for Rockaway and Breezy Point beaches, which are sampled twice each week. Samples are tested for bacteria, debris, animal waste, medical or infectious waste, toxic contaminants, petroleum products, and sewage and wastewater discharge following heavy rainfall.</description>
+      <description>&lt;p&gt;One month before New York City&amp;rsquo;s beaches open to the public, the Health Departments starts sampling and monitoring beaches. Sampling provides data about current water quality conditions, and monitoring identifies sources of pollution that affect water quality.&lt;/p&gt;&#xA;&lt;p&gt;Each beach is monitored and sampled every week, except for Rockaway and Breezy Point beaches, which are sampled twice each week. Samples are tested for bacteria, debris, animal waste, medical or infectious waste, toxic contaminants, petroleum products, and sewage and wastewater discharge following heavy rainfall.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

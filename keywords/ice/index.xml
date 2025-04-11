@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>ice on Environment &amp; Health Data Portal</title>
+    <title>Ice on Environment &amp; Health Data Portal</title>
     <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/ice/</link>
-    <description>Recent content in ice on Environment &amp; Health Data Portal</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Ice on Environment &amp; Health Data Portal</description>
+    <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate>Thu, 15 Dec 2022 13:11:44 -0400</lastBuildDate>
     <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/ice/index.xml" rel="self" type="application/rss+xml" />
@@ -13,7 +13,7 @@
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/cold/</link>
       <pubDate>Thu, 15 Dec 2022 13:11:44 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/cold/</guid>
-      <description>Cold weather can be dangerous. Here are some tips for staying safe this winter.</description>
+      <description>&lt;p&gt;&lt;a href=&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/weather-related-illness/?id=2175#display=summary&#34;&gt;Cold weather can be dangerous&lt;/a&gt;. Here are some tips for staying safe this winter.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

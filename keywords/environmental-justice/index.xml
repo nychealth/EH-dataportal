@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>environmental justice on Environment &amp; Health Data Portal</title>
+    <title>Environmental Justice on Environment &amp; Health Data Portal</title>
     <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/environmental-justice/</link>
-    <description>Recent content in environmental justice on Environment &amp; Health Data Portal</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Environmental Justice on Environment &amp; Health Data Portal</description>
+    <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate>Tue, 21 Apr 2020 13:37:45 -0400</lastBuildDate>
     <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/environmental-justice/index.xml" rel="self" type="application/rss+xml" />
@@ -13,7 +13,7 @@
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/air-quality-snapshots/</link>
       <pubDate>Tue, 21 Apr 2020 13:37:45 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/air-quality-snapshots/</guid>
-      <description>Skip Nav A traffic health threat: air toxics Noise levels that harm health The benefits of cleaner fuel Special monitoring for environmental justice For 10 years, the New York City Community Air Survey (NYCCAS) has measured air quality at 100 locations around NYC. We’ve combined these measurements with data on things related to air quality - like traffic, building emissions, green space, and much more - to model seasonal air quality in every New York City neighborhood.</description>
+      <description>&lt;div class=&#34;col-xl-3 border-right&#34;&gt;&#xA;    &lt;div class=&#34;sticky-top narrow collapse d-xl-block&#34; id=&#34;sidebar-nav&#34;&gt;&#xA;        &lt;nav class=&#34;mx-xl-n2 pt-4 py-xl-0&#34; role=&#34;navigation&#34; id=&#34;myScrollspy&#34;&gt;&#xA;            &lt;a class=&#34;sr-only sr-only-focusable skip-menu&#34; href=&#34;#primary-content&#34;&gt;Skip Nav&lt;/a&gt;&#xA;            &lt;div class=&#34;list-group list-group-flush border-bottom fs-rg&#34; role=&#34;list&#34;&gt;&#xA;                &lt;a href=&#34;#section1&#34; class=&#34;list-group-item&#34;&gt;&#xA;                    A traffic health threat: air toxics&#xA;                &lt;/a&gt;&#xA;                &lt;a href=&#34;#section2&#34; class=&#34;list-group-item&#34;&gt;&#xA;                    Noise levels that harm health&#xA;                &lt;/a&gt;&#xA;                &lt;a href=&#34;#section4&#34; class=&#34;list-group-item&#34;&gt;&#xA;                        The benefits of cleaner fuel&#xA;                    &lt;/a&gt;&#xA;                &lt;a href=&#34;#section5&#34; class=&#34;list-group-item&#34;&gt;&#xA;                    Special monitoring for environmental justice&#xA;                &lt;/a&gt;&#xA;            &lt;/div&gt;&#xA;        &lt;/nav&gt;&#xA;    &lt;/div&gt;&#xA;    &lt;!-- .sticky-top --&gt;&#xA;&lt;/div&gt;&#xA;&lt;!-- .col --&gt;&#xA;&lt;!--start main content section--&gt;&#xA;&lt;div class=&#34;col-xl-8 overflow-hidden fs-rg mr-auto&#34; id=&#34;primary-content&#34;&gt;&#xA;    &lt;div class=&#34;my-2&#34;&gt;&#xA;        &lt;div class=&#34;narrow&#34;&gt;&#xA;            &lt;p&gt;For 10 years, the New York City Community Air Survey (NYCCAS) has measured air quality at 100 locations around NYC. We’ve combined these measurements with data on things related to air quality - like traffic, building emissions, green space, and much more - to model seasonal air quality in every New York City neighborhood. &#xA;                &lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

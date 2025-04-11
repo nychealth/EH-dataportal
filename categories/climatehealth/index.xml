@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>climatehealth on Environment &amp; Health Data Portal</title>
+    <title>Climatehealth on Environment &amp; Health Data Portal</title>
     <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/categories/climatehealth/</link>
-    <description>Recent content in climatehealth on Environment &amp; Health Data Portal</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Climatehealth on Environment &amp; Health Data Portal</description>
+    <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate>Fri, 08 Nov 2024 13:11:44 -0400</lastBuildDate>
     <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/categories/climatehealth/index.xml" rel="self" type="application/rss+xml" />
@@ -13,154 +13,154 @@
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/hvi/</link>
       <pubDate>Wed, 25 Aug 2021 10:49:05 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/hvi/</guid>
-      <description>Hot weather is dangerous. In New York City – and across the country – more people die from heat than from all other natural disasters combined. As our climate continues to warm, we expect more heat events that can put people’s lives at risk.&#xA;In New York City, the risk of death from heat is unfairly distributed across neighborhoods. We identified neighborhood environmental and social factors associated with increased risk to create a heat vulnerability index.</description>
+      <description>&lt;p&gt;Hot weather is dangerous. In New York City – and across the country – more people die from heat than from all other natural disasters combined. As our climate continues to warm, we expect more heat events that can put people’s lives at risk.&lt;/p&gt;&#xA;&lt;p&gt;In New York City, the risk of death from heat is unfairly distributed across neighborhoods. We identified neighborhood environmental and social factors associated with increased risk to create a heat vulnerability index. This can identify neighborhoods at highest risk and help inform neighborhood-level policies and programs that can protect people - sending resources to where they&amp;rsquo;re needed the most.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Climate</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/climate/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 -0400</pubDate>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/climate/</guid>
-      <description>A region&amp;rsquo;s climate is characterized by its usual weather conditions, seasons, and patterns in extreme weather events like heat waves, droughts, and hurricanes.&#xA;The world’s climate is shifting, becoming warmer with more precipitation and weather extremes. Over the past century in New York City, average temperatures have increased by 0.25°F per decade, precipitation by 0.72 inches per decade, and sea levels by 1.2 inches per decade. By the 2020s, a projected 25-30 days above 90°F are expected in a typical summer, resulting in more frequent and intense heat waves.</description>
+      <description>&lt;p&gt;A region&amp;rsquo;s climate is characterized by its usual weather conditions, seasons, and patterns in extreme weather events like heat waves, droughts, and hurricanes.&lt;/p&gt;&#xA;&lt;p&gt;The world’s climate is shifting, becoming warmer with more precipitation and weather extremes. Over the past century in New York City, average temperatures have increased by 0.25°F per decade, precipitation by 0.72 inches per decade, and sea levels by 1.2 inches per decade. By the 2020s, a projected 25-30 days above 90°F are expected in a typical summer, resulting in more frequent and intense heat waves. Rainfall and precipitation are expected to increase by up to 5%, together with another 10 inches of sea level rise and increased probability of coastal storms with flooding (NYC Panel on Climate Change, Climate Risk Information, 2009).&lt;/p&gt;</description>
     </item>
     <item>
       <title>Real-time heat-related illness</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-syndrome/</link>
       <pubDate>Mon, 30 Aug 2021 11:51:01 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-syndrome/</guid>
-      <description>The weather forecast is the best way to predict heat-related health outcomes.&#xA;We can also track heat-related illness with near real-time electronic data from emergency departments at hospitals throughout NYC. These data include illnesses directly attributed to heat (including heat exhaustion, muscle cramps, fainting and heat stroke), not the full burden of heat-related health impacts.</description>
+      <description>&lt;p&gt;The weather forecast is the best way to predict heat-related health outcomes.&lt;/p&gt;&#xA;&lt;p&gt;We can also track heat-related illness with near real-time electronic data from emergency departments at hospitals throughout NYC. These data include illnesses directly attributed to heat (including heat exhaustion, muscle cramps, fainting and heat stroke), not the full burden of heat-related health impacts.&lt;/p&gt;</description>
     </item>
     <item>
       <title>2024 NYC Heat-Related Mortality Report</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-report/</link>
       <pubDate>Wed, 08 Sep 2021 11:14:56 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-report/</guid>
-      <description>Each summer, on average, an estimated 350 New Yorkers die prematurely because of hot weather in New York City (NYC). These heat-related deaths account for about 2% of all deaths over the warm season months of May through September.</description>
+      <description>&lt;p&gt;Each summer, on average, an estimated 350 New Yorkers die prematurely because of hot weather in New York City (NYC). These heat-related deaths account for about 2% of all deaths over the warm season months of May through September.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Public transit creates health</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/public-transit-creates-health/</link>
       <pubDate>Fri, 08 Nov 2024 13:11:44 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/public-transit-creates-health/</guid>
-      <description>New York City’s public transit system has gotten New Yorkers where they need to go and home again for over a century. For our public transit system to continue to move millions of people and to keep us healthy, it&amp;rsquo;s important to invest in its capacity, reliability, and accessibility to every New Yorker.&#xA;Traffic is a huge part of our environment in New York City. In Manhattan’s central business district, the average car speed is under 7 miles per hour and has been getting slower over time.</description>
+      <description>&lt;p&gt;New York City’s public transit system has gotten New Yorkers where they need to go and home again for over a century. For our public transit system to continue to move millions of people and to keep us healthy, it&amp;rsquo;s important to invest in its capacity, reliability, and accessibility to every New Yorker.&lt;/p&gt;&#xA;&lt;p&gt;Traffic is a huge part of our environment in New York City. &lt;a href=&#34;https://www.nysenate.gov/sites/default/files/admin/structure/media/manage/filefile/a/2024-09/speed-kills-report-9-20-24_final.pdf&#34;&gt;In Manhattan’s central business district, the average car speed is under 7 miles per hour&lt;/a&gt; and has been getting slower over time. This traffic imposes a cost on every New Yorker. According to the MTA, traffic makes each New Yorker lose an average of 117 hours and nearly $2,000 in lost productivity and other costs each year. It also affects our quality of life by worsening air quality, increasing noise, and making it less safe to walk, cycle, and get around without a car.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Mental health</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/mental-health/</link>
-      <pubDate>Tue, 28 May 2024 18:02:58 -0400</pubDate>
+      <pubDate>Tue, 28 May 2024 18:02:58 +0000</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/mental-health/</guid>
-      <description>Mental health is a person’s emotional, psychological, and social wellbeing. It is an important part of overall health.&#xA;Many factors can contribute to poor mental health. These include chronic disease, poverty, and poor environmental conditions. Many adults with mental illness do not receive the treatment they need.&#xA;Mental health and the environment A person’s environment affects their mental health.&#xA;Neighborhood factors like green space, noise, and infrastructure can affect mental health.</description>
+      <description>&lt;p&gt;Mental health is a person’s emotional, psychological, and social wellbeing. It is an important part of overall health.&lt;/p&gt;&#xA;&lt;p&gt;Many factors can contribute to poor mental health. These include chronic disease, poverty, and poor environmental conditions. Many adults with mental illness do not receive the treatment they need.&lt;/p&gt;&#xA;&lt;h3&gt;Mental health and the environment&lt;/h3&gt;&#xA;&lt;p&gt;A person’s environment affects their mental health.&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;Neighborhood factors&lt;/strong&gt; like green space, noise, and infrastructure can affect mental health. People who say their neighborhood gives them more opportunities to be physically active are less likely to report poor mental health.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Waterways</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/waterways/</link>
-      <pubDate>Tue, 15 Aug 2023 15:10:00 -0400</pubDate>
+      <pubDate>Tue, 15 Aug 2023 15:10:00 +0000</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/waterways/</guid>
-      <description>Healthy waterways are important for both aquatic life and humans who use the water for recreation.&#xA;We measure the quality of harbor water through two key indicators:&#xA;Dissolved oxygen is essential for most aquatic life. Coastal habitats and ecosystems thrive in environments with high concentrations of dissolved oxygen.&#xA;Concentrations of fecal coliform bacteria and Enterococci bacteria. Higher levels of these bacteria can mean there is sewage-related water pollution. Though most of these bacteria do not cause disease, higher concentrations can indicate the presence of pathogenic (disease-producing) bacteria.</description>
+      <description>&lt;p&gt;Healthy waterways are important for both aquatic life and humans who use the water for recreation.&lt;/p&gt;&#xA;&lt;p&gt;We measure the quality of harbor water through two key indicators:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;strong&gt;Dissolved oxygen&lt;/strong&gt; is essential for most aquatic life. Coastal habitats and ecosystems thrive in environments with high concentrations of dissolved oxygen.&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;strong&gt;Concentrations of fecal coliform bacteria and Enterococci bacteria&lt;/strong&gt;. Higher levels of these bacteria can mean there is sewage-related water pollution. Though most of these bacteria do not cause disease, higher concentrations can indicate the presence of pathogenic (disease-producing) bacteria.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Staying safe in cold weather</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/cold/</link>
       <pubDate>Thu, 15 Dec 2022 13:11:44 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/cold/</guid>
-      <description>Cold weather can be dangerous. Here are some tips for staying safe this winter.</description>
+      <description>&lt;p&gt;&lt;a href=&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/weather-related-illness/?id=2175#display=summary&#34;&gt;Cold weather can be dangerous&lt;/a&gt;. Here are some tips for staying safe this winter.&lt;/p&gt;</description>
     </item>
     <item>
       <title>How power outages affect health</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/poweroutages/</link>
       <pubDate>Mon, 10 Jan 2022 12:34:38 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/poweroutages/</guid>
-      <description>Imagine your child has asthma. One summer night, a powerful storm rolls in and knocks the power out.&#xA;Your child starts to have trouble breathing. Usually, you’d use a home nebulizer, an electric machine that turns liquid medicine into a mist that your child breathes in through a face mask.&#xA;But the power is out. Without the nebulizer, your child’s breathing gets worse - and you wonder, is it time to go to the hospital again?</description>
+      <description>&lt;p&gt;Imagine your child has asthma. One summer night, a powerful storm rolls in and knocks the power out.&lt;/p&gt;&#xA;&lt;p&gt;Your child starts to have trouble breathing. Usually, you’d use a home nebulizer, an electric machine that turns liquid medicine into a mist that your child breathes in through a face mask.&lt;/p&gt;&#xA;&lt;p&gt;But the power is out. Without the nebulizer, your child’s breathing gets worse - and you wonder, is it time to go to the hospital again?&lt;/p&gt;</description>
     </item>
     <item>
       <title>Climate and health</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/key-topics/climatehealth/</link>
       <pubDate>Sun, 03 Oct 2021 12:33:17 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/key-topics/climatehealth/</guid>
-      <description>Climate, including extreme weather, has a direct impact on health. As NYC&amp;rsquo;s climate changes, along with the world&amp;rsquo;s climate, we expect more frequent and intense heat waves, increased rainfall and more severe storms. These will add to existing weather-related risks. Already, heat kills more people than all other natural disasters combined.&#xA;In New York City, those most vulnerable to the dangers of hot weather are older adults and people with health conditions like heart disease, diabetes, and cognitive impairment - especially those in low-income, Black, and Brown communities.</description>
+      <description>&lt;p&gt;Climate, including extreme weather, has a direct impact on health. As NYC&amp;rsquo;s climate changes, along with the world&amp;rsquo;s climate, we expect more frequent and intense heat waves, increased rainfall and more severe storms. These will add to existing weather-related risks. Already, heat kills more people than all other natural disasters combined.&lt;/p&gt;&#xA;&lt;p&gt;In New York City, those most vulnerable to the dangers of hot weather are older adults and people with health conditions like heart disease, diabetes, and cognitive impairment - especially those in low-income, Black, and Brown communities. Air conditioning is the best defense against the heat. Equitable access and responsible use of air conditioning is crucial to protect the lives of all New Yorkers while reducing impacts on the environment.&lt;/p&gt;</description>
     </item>
     <item>
       <title>2021 NYC Heat-Related Mortality Report</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-report-archive/2021/</link>
       <pubDate>Wed, 08 Sep 2021 11:14:56 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-report-archive/2021/</guid>
-      <description>Summary: Heat Stress Deaths Each summer from 2010-2019, there were, on average,10 heat stress deaths (those caused directly by heat) in New York City (NYC). Lack of home air conditioning (AC) continues to be an important risk factor for heat stress death. Among those who died from heat stress, the place of death was most often an un-air-conditioned home. Black New Yorkers are more likely to die from heat stress, with death rates two times higher than among other New Yorkers.</description>
+      <description>&lt;h2&gt;Summary: Heat Stress Deaths&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Each summer from 2010-2019, there were, on average,10 heat stress deaths (those caused directly by heat) in New York City (NYC).&lt;/li&gt;&#xA;&lt;li&gt;Lack of home air conditioning (AC) continues to be an important risk factor for heat stress death. Among those who died from heat stress, the place of death was most often an un-air-conditioned home.&lt;/li&gt;&#xA;&lt;li&gt;Black New Yorkers are more likely to die from heat stress, with death rates two times higher than among other New Yorkers. This inequity is the result of past and current structural racism that creates economic, educational, health care, housing, and other systems that benefit white people, but put at a disadvantage Black, Indigenous and other people of color.&lt;/li&gt;&#xA;&lt;li&gt;Even though the number of heat stress deaths has decreased in recent years, the racial inequity persists.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2&gt;Summary: Heat-Exacerbated Deaths and Neighborhood Impacts&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;From 2010-2018, there was an average of approximately 100 heat-exacerbated deaths (those caused indirectly by heat, such as by aggravating an underlying illness) each summer associated with extreme heat events, which are defined as at least 2 consecutive days with 95°F or higher daily maximum heat index (HI) or any day with a maximum HI of 100°F or higher, the threshold used for the City&amp;rsquo;s heat advisory.&lt;/li&gt;&#xA;&lt;li&gt;An estimated 350 heat-exacerbated deaths were associated on average each year with hot days overall – daily maximum temperature above 82°F – or about 2% of all natural-cause deaths over summer.&lt;/li&gt;&#xA;&lt;li&gt;Heat-exacerbated mortality is higher in neighborhoods that are home to a greater proportion of Black New Yorkers, reflecting the impacts of structural racism at the neighborhood level. Heat-exacerbated mortality is also higher in communities with a greater proportion of people with household incomes below the federal poverty line.&lt;/li&gt;&#xA;&lt;li&gt;Summers are growing hotter. Although the number of days meeting the National Weather Service extreme heat threshold has stayed constant, the number of non-extreme hot days, (i.e., days with temperature below the heat advisory threshold) is increasing, contributing the most to heat-exacerbated deaths each summer and highlighting the need for heat-mitigation outside of emergency response measures.&lt;/li&gt;&#xA;&lt;li&gt;Emergency response to extreme heat must be coupled with equitable investments in structural interventions and heat mitigation measures to protect New Yorkers throughout the increasingly hot summer weather.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2&gt;Introduction&lt;/h2&gt;&#xA;&lt;p&gt;Hot weather is dangerous to health, sometimes resulting in death.&lt;/p&gt;</description>
     </item>
     <item>
       <title>2022 NYC Heat-Related Mortality Report</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-report-archive/2022/</link>
       <pubDate>Wed, 08 Sep 2021 11:14:56 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-report-archive/2022/</guid>
-      <description>Summary Each summer, an estimated 370 New Yorkers die prematurely because of hot weather in New York City (NYC). These heat-related deaths account for about 2% of all deaths over the warm season months of May - September. Of the 370 deaths:&#xA;From 2011-2020, there was an average of 10 heat-stress deaths (caused directly by heat). From 2011-2019, there was an average of about 360 heat-exacerbated deaths (caused indirectly by heat aggravating an underlying illness).</description>
+      <description>&lt;h2&gt;Summary&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Each summer, an estimated 370 New Yorkers die prematurely because of hot weather in New York City (NYC). These heat-related deaths account for about 2% of all deaths over the warm season months of May - September. Of the 370 deaths:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;From 2011-2020, there was an average of 10 heat-stress deaths (caused directly by heat).&lt;/li&gt;&#xA;&lt;li&gt;From 2011-2019, there was an average of about 360 heat-exacerbated deaths (caused indirectly by heat aggravating an underlying illness).&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Black New Yorkers are more likely to die from heat stress, with death rates two times higher than among White New Yorkers. This inequity is due to past and current structural racism that creates economic, health care, housing, energy, and other systems that benefit white people and disadvantage people of color.&lt;/p&gt;</description>
     </item>
     <item>
       <title>2023 NYC Heat-Related Mortality Report</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-report-archive/2023/</link>
       <pubDate>Wed, 08 Sep 2021 11:14:56 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-report-archive/2023/</guid>
-      <description>Summary This report was corrected on Apr. 2, 2025, after we identified an error. The number of heat-exacerbated deaths was corrected from 345 to 555 and corresponding Figures 3 and 4 in the report were updated. We apologize for this error. More details on the correction.&#xA;Each summer, on average, an estimated 560 New Yorkers die prematurely because of hot weather in New York City (NYC). These heat-related deaths account for about 3% of all deaths over the warm season months of May through September.</description>
+      <description>&lt;h2&gt;Summary&lt;/h2&gt;&#xA;&lt;div class=&#34;asidebox mb-2&#34;&gt;&#xA;        &lt;p class=&#34;fs-sm&#34;&gt;This report was corrected on Apr. 2, 2025, after we identified an error. The number of heat-exacerbated deaths was corrected from 345 to 555 and corresponding Figures 3 and 4 in the report were updated. We apologize for this error. &lt;a href=&#34;#&#34; data-toggle=&#34;modal&#34; data-target=&#34;#noteModal&#34;&gt; More details on the correction&lt;/a&gt;.&lt;/p&gt;&#xA;      &lt;/div&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Each summer, on average, &lt;strong&gt;an estimated 560 New Yorkers die prematurely because of hot weather&lt;/strong&gt; in New York City (NYC). These heat-related deaths account for about 3% of all deaths over the warm season months of May through September. Of the 560 deaths:&#xA;&lt;ul&gt;&#xA;&lt;li&gt;From 2012-2021, there were an average of &lt;strong&gt;7 heat-stress deaths&lt;/strong&gt; (caused directly by heat).&lt;/li&gt;&#xA;&lt;li&gt;From 2016-2020, there were an average of about &lt;strong&gt;555 heat-exacerbated deaths&lt;/strong&gt; (caused indirectly by heat aggravating an underlying illness).&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Heat-exacerbated deaths have been increasing in the past decade&lt;/strong&gt;, mainly due to hotter summers overall with more “non-extreme hot days” of 82°F or up to but below the extreme heat threshold.  &lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Black New Yorkers are more likely to die from heat stress&lt;/strong&gt;, with death rates two times higher than White New Yorkers. This inequity is due to past and current structural racism that creates economic, health care, housing, energy, and other systems that benefit White people and disadvantage people of color.  &lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Lack of access to home air conditioning (AC) is an important risk factor for heat-stress death.&lt;/strong&gt; Among those who died from heat stress, the place of death was most often an un-air-conditioned home.&lt;/li&gt;&#xA;&lt;li&gt;NYC summers are getting hotter because of climate change. &lt;strong&gt;Emergency response to extreme heat must be coupled with equitable investments in structural interventions and heat mitigation measures that reduce risk throughout the season.&lt;/strong&gt; For example, New Yorkers will need energy efficient home cooling that they can afford to run, while tree planting and greening can help reduce local temperatures while providing shade.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;hr class=&#34;my-4&#34; /&gt;&#xA;&lt;h2&gt;Introduction&lt;/h2&gt;&#xA;&lt;p&gt;Hot weather is dangerous to health, sometimes resulting in death. Heat-related deaths are preventable. In this third annual report on heat-related mortality, the NYC Health Department examined data from 2012-2021.&lt;/p&gt;</description>
     </item>
     <item>
       <title>The urban heat island effect in NYC</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/urban-heat-island/</link>
       <pubDate>Fri, 20 Aug 2021 12:52:43 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/urban-heat-island/</guid>
-      <description>In New York City and across the country, more people die from extreme heat than from all other natural disasters combined. To understand how to keep New Yorkers safe from extreme heat, we studied neighborhood factors that affect temperature, and found that grass, shrubs, and trees can play a major role. Let’s take a look.&#xA;At 6.00 PM on June 30, 2018, the air temperature at the LaGuardia Airport Weather Station was 89° Fahrenheit (F).</description>
+      <description>&lt;p&gt;In New York City and across the country, more people die from extreme heat than from all other natural disasters combined. To understand how to keep New Yorkers safe from extreme heat, we studied neighborhood factors that affect temperature, and found that grass, shrubs, and trees can play a major role. Let’s take a look.&lt;/p&gt;&#xA;&lt;p&gt;At 6.00 PM on June 30, 2018, the air temperature at the LaGuardia Airport Weather Station was 89° Fahrenheit (F). At the same time, the air temperature on a block in East Harlem (below left) was nearly 5° hotter than at the Weather Station, and the temperature on a block in Bed-Stuy (below right) was 3.5° hotter.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Asthma</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/asthma/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 -0400</pubDate>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/asthma/</guid>
-      <description>Asthma is a common disease in which the lungs become swollen, making breathing difficult. Symptoms include wheezing, coughing, shortness of breath and tightness in the chest. The exact causes of asthma are not known. Asthma cannot be cured, but it can be controlled.&#xA;Asthma is a leading cause of emergency room visits, hospitalizations and missed school days in New York City&amp;rsquo;s poorest neighborhoods. In NYC, asthma is more common among low-income Black and Latino children.</description>
+      <description>&lt;p&gt;Asthma is a &lt;strong&gt;common disease in which the lungs become swollen, making breathing difficult&lt;/strong&gt;. Symptoms include wheezing, coughing, shortness of breath and tightness in the chest. The exact causes of asthma are not known. &lt;strong&gt;Asthma cannot be cured, but it can be controlled&lt;/strong&gt;.&lt;/p&gt;&#xA;&lt;p&gt;Asthma is a leading cause of emergency room visits, hospitalizations and missed school days in New York City&amp;rsquo;s poorest neighborhoods. In NYC, asthma is more common among &lt;strong&gt;low-income Black and Latino children&lt;/strong&gt;.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Housing safety</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/housing-safety/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 -0400</pubDate>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/housing-safety/</guid>
-      <description>Most people spend most of their time in their home. That makes the home a crucial environment that can affect one&amp;rsquo;s health - both in terms of safety characteristics within the home, and in terms of factors that affect housing stability.&#xA;Safety characteristics A home&amp;rsquo;s safety characteristics might include:&#xA;Air conditioning, which is a vital tool to protect people who are at risk of heat-related illness and death Electric medical equipment.</description>
+      <description>&lt;p&gt;Most people spend most of their time in their home. That makes the home a crucial environment that can affect one&amp;rsquo;s health - both in terms of safety characteristics within the home, and in terms of factors that affect housing stability.&lt;/p&gt;&#xA;&lt;h3&gt;Safety characteristics&lt;/h3&gt;&#xA;&lt;p&gt;A home&amp;rsquo;s safety characteristics might include:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Air conditioning, which is a vital tool to protect people who are at risk of heat-related illness and death&lt;/li&gt;&#xA;&lt;li&gt;Electric medical equipment. People who rely on electric medical equipment are at risk during power outages.&lt;/li&gt;&#xA;&lt;li&gt;Grab bars in bathrooms, which can help older people and people with mobility impairments stay safe.&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
     </item>
     <item>
       <title>Housing stability</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/housing-stability/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 -0400</pubDate>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/housing-stability/</guid>
-      <description>Most people spend most of their time in their home. That makes the home a crucial environment that can affect one&amp;rsquo;s health.&#xA;Housing stability In NYC, about one out of every three homes is owned by the person living there - about half the national average. Owning a home is a powerful way to build intergenerational wealth, but historical and contemporary disinvestment and housing discrimination has made it hard for many New Yorkers to own homes.</description>
+      <description>&lt;p&gt;Most people spend most of their time in their home. That makes the home a crucial environment that can affect one&amp;rsquo;s health.&lt;/p&gt;&#xA;&lt;h3&gt;Housing stability&lt;/h3&gt;&#xA;&lt;p&gt;In NYC, about one out of every three homes is owned by the person living there - about half the national average. Owning a home is a powerful way to build intergenerational wealth, but historical and contemporary disinvestment and housing discrimination has made it hard for many New Yorkers to own homes.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Vector-borne disease</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/vector-borne-disease/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 -0400</pubDate>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/vector-borne-disease/</guid>
-      <description>Vector-borne diseases are diseases that are transmitted from an arthropod (usually a tick or mosquito, etc.) to humans or other animals. Some vector-borne disease agents are maintained primarily through transmission between arthropods and humans (e.g., dengue virus and malaria), while others are maintained between arthropods and animal reservoirs (e.g., Lyme disease and West Nile virus) and humans may become infected incidentally.&#xA;Vector-borne Disease and the Environment Climate is one of many important interacting variables that affect people’s risk for vector-borne diseases in New York City.</description>
+      <description>&lt;p&gt;Vector-borne diseases are diseases that are transmitted from an arthropod (usually a tick or mosquito, etc.) to humans or other animals. Some vector-borne disease agents are maintained primarily through transmission between arthropods and humans (e.g., dengue virus and malaria), while others are maintained between arthropods and animal reservoirs (e.g., Lyme disease and West Nile virus) and humans may become infected incidentally.&lt;/p&gt;&#xA;&lt;h3&gt;Vector-borne Disease and the Environment&lt;/h3&gt;&#xA;&lt;p&gt;Climate is one of many important interacting variables that affect people’s risk for vector-borne diseases in New York City. Warmer winters make it easier for ticks to survive in NYC year-round, while a longer warm season increases the length of time that ticks are active each year. Warming temperatures can lengthen the season in which mosquitoes are out and biting, and accelerate the mosquito life cycle. This can mean more frequent contact between mosquitoes and their hosts, which can facilitate the spread of diseases.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Weather-related illness</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/weather-related-illness/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 -0400</pubDate>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/weather-related-illness/</guid>
-      <description>A region&amp;rsquo;s climate is characterized by its usual weather conditions, seasons, and patterns in extreme weather events such as heat waves, droughts, and hurricanes. New York City (NYC) faces public health risks from extreme weather events such as heat waves and coastal storms. With climate change, the severity of some of these risks will increase. A 2013 New York City Panel on Climate Change (NPCC) report predicts that by the 2020s, average summer temperatures in New York City will increase by 2.</description>
+      <description>&lt;p&gt;A region&amp;rsquo;s climate is characterized by its usual weather conditions, seasons, and patterns in extreme weather events such as heat waves, droughts, and hurricanes. New York City (NYC) faces public health risks from extreme weather events such as heat waves and coastal storms. With climate change, the severity of some of these risks will increase. A 2013 New York City Panel on Climate Change (NPCC) report predicts that by the 2020s, average summer temperatures in New York City will increase by 2.0°F to 3.0°F compared to a 1971-2000 baseline. Heat waves will become more frequent, intense, and longer in duration. Rainfall and precipitation are expected to increase, together with another 4-8 inches of sea level rise and increased probability of coastal storms with flooding (NPCC, Climate Risk Information, 2013).&lt;/p&gt;</description>
     </item>
     <item>
       <title>Protecting New Yorkers from extreme heat</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/heat/</link>
       <pubDate>Wed, 09 Sep 2020 08:33:22 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/heat/</guid>
-      <description>Hot weather is dangerous. In New York City and across the country, more people on average die from extreme heat each year than from all other natural disasters.&#xA;Heat stress happens when your body’s temperature increases quickly. When the body can no longer control its temperature or cool itself down, it can lead to death.&#xA;At the NYC Health Department, we track heat stress deaths by reviewing causes of death recorded by the Bureau of Vital Statistics.</description>
+      <description>&lt;p&gt;Hot weather is dangerous. In New York City and across the country, more people on average die from extreme heat each year than from all other natural disasters.&lt;/p&gt;&#xA;&lt;p&gt;Heat stress happens when your body’s temperature increases quickly. When the body can no longer control its temperature or cool itself down, it can lead to death.&lt;/p&gt;&#xA;&lt;p&gt;At the NYC Health Department, we track heat stress deaths by reviewing causes of death recorded by the Bureau of Vital Statistics. More people usually die of heat stress during hotter summers. From 1999 to 2016, NYC had 4 spikes due to severe heat, in 1999, 2006, 2011, and 2013.&lt;/p&gt;</description>
     </item>
     <item>
       <title>What hot weather means for food safety</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/food/</link>
       <pubDate>Thu, 24 Oct 2019 08:18:56 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/food/</guid>
-      <description>New Yorkers eat out more than a billion times a year. To help keep diners safe, the Health Department educates restaurant operators about food safety practices and inspects all 27,000 city restaurants at least once a year. Over 90 percent of NYC restaurants have &amp;ldquo;A&amp;rdquo; grades in the window, showing excellent compliance with food safety requirements.&#xA;However, warmer weather creates special challenges keeping food safe. We dug into the data to find out how hot weather affects food safety.</description>
+      <description>&lt;p&gt;New Yorkers eat out more than a billion times a year. To help keep diners safe, the Health Department educates restaurant operators about food safety practices and inspects all 27,000 city restaurants at least once a year. Over 90 percent of NYC restaurants have &amp;ldquo;A&amp;rdquo; grades in the window, showing excellent compliance with food safety requirements.&lt;/p&gt;&#xA;&lt;p&gt;However, warmer weather creates special challenges keeping food safe. We dug into the data to find out how hot weather affects food safety.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Climate and Health</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/neighborhood-reports/climate_and_health/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/neighborhood-reports/climate_and_health/</guid>
-      <description>Extreme heat, coastal storms, and flooding are climate-related hazards that are increasing because of climate change. They have important public health impacts in New York City. Extreme weather can cause power outages, which also threaten public health. This report provides neighborhood indicators of climate-related hazards, populations that may be most affected, built environment factors that can increase risk, and health impacts.</description>
+      <description>&lt;p&gt;Extreme heat, coastal storms, and flooding are climate-related hazards that are increasing because of climate change. They have important public health impacts in New York City. Extreme weather can cause power outages, which also threaten public health. This report provides neighborhood indicators of climate-related hazards, populations that may be most affected, built environment factors that can increase risk, and health impacts.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

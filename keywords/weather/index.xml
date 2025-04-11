@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>weather on Environment &amp; Health Data Portal</title>
+    <title>Weather on Environment &amp; Health Data Portal</title>
     <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/weather/</link>
-    <description>Recent content in weather on Environment &amp; Health Data Portal</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Weather on Environment &amp; Health Data Portal</description>
+    <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate>Thu, 15 Dec 2022 13:11:44 -0400</lastBuildDate>
     <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/weather/index.xml" rel="self" type="application/rss+xml" />
@@ -13,49 +13,49 @@
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/hvi/</link>
       <pubDate>Wed, 25 Aug 2021 10:49:05 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/hvi/</guid>
-      <description>Hot weather is dangerous. In New York City – and across the country – more people die from heat than from all other natural disasters combined. As our climate continues to warm, we expect more heat events that can put people’s lives at risk.&#xA;In New York City, the risk of death from heat is unfairly distributed across neighborhoods. We identified neighborhood environmental and social factors associated with increased risk to create a heat vulnerability index.</description>
+      <description>&lt;p&gt;Hot weather is dangerous. In New York City – and across the country – more people die from heat than from all other natural disasters combined. As our climate continues to warm, we expect more heat events that can put people’s lives at risk.&lt;/p&gt;&#xA;&lt;p&gt;In New York City, the risk of death from heat is unfairly distributed across neighborhoods. We identified neighborhood environmental and social factors associated with increased risk to create a heat vulnerability index. This can identify neighborhoods at highest risk and help inform neighborhood-level policies and programs that can protect people - sending resources to where they&amp;rsquo;re needed the most.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Real-time heat-related illness</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-syndrome/</link>
       <pubDate>Mon, 30 Aug 2021 11:51:01 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-syndrome/</guid>
-      <description>The weather forecast is the best way to predict heat-related health outcomes.&#xA;We can also track heat-related illness with near real-time electronic data from emergency departments at hospitals throughout NYC. These data include illnesses directly attributed to heat (including heat exhaustion, muscle cramps, fainting and heat stroke), not the full burden of heat-related health impacts.</description>
+      <description>&lt;p&gt;The weather forecast is the best way to predict heat-related health outcomes.&lt;/p&gt;&#xA;&lt;p&gt;We can also track heat-related illness with near real-time electronic data from emergency departments at hospitals throughout NYC. These data include illnesses directly attributed to heat (including heat exhaustion, muscle cramps, fainting and heat stroke), not the full burden of heat-related health impacts.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Staying safe in cold weather</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/cold/</link>
       <pubDate>Thu, 15 Dec 2022 13:11:44 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/cold/</guid>
-      <description>Cold weather can be dangerous. Here are some tips for staying safe this winter.</description>
+      <description>&lt;p&gt;&lt;a href=&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/weather-related-illness/?id=2175#display=summary&#34;&gt;Cold weather can be dangerous&lt;/a&gt;. Here are some tips for staying safe this winter.&lt;/p&gt;</description>
     </item>
     <item>
       <title>How power outages affect health</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/poweroutages/</link>
       <pubDate>Mon, 10 Jan 2022 12:34:38 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/poweroutages/</guid>
-      <description>Imagine your child has asthma. One summer night, a powerful storm rolls in and knocks the power out.&#xA;Your child starts to have trouble breathing. Usually, you’d use a home nebulizer, an electric machine that turns liquid medicine into a mist that your child breathes in through a face mask.&#xA;But the power is out. Without the nebulizer, your child’s breathing gets worse - and you wonder, is it time to go to the hospital again?</description>
+      <description>&lt;p&gt;Imagine your child has asthma. One summer night, a powerful storm rolls in and knocks the power out.&lt;/p&gt;&#xA;&lt;p&gt;Your child starts to have trouble breathing. Usually, you’d use a home nebulizer, an electric machine that turns liquid medicine into a mist that your child breathes in through a face mask.&lt;/p&gt;&#xA;&lt;p&gt;But the power is out. Without the nebulizer, your child’s breathing gets worse - and you wonder, is it time to go to the hospital again?&lt;/p&gt;</description>
     </item>
     <item>
       <title>Climate and health</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/key-topics/climatehealth/</link>
       <pubDate>Sun, 03 Oct 2021 12:33:17 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/key-topics/climatehealth/</guid>
-      <description>Climate, including extreme weather, has a direct impact on health. As NYC&amp;rsquo;s climate changes, along with the world&amp;rsquo;s climate, we expect more frequent and intense heat waves, increased rainfall and more severe storms. These will add to existing weather-related risks. Already, heat kills more people than all other natural disasters combined.&#xA;In New York City, those most vulnerable to the dangers of hot weather are older adults and people with health conditions like heart disease, diabetes, and cognitive impairment - especially those in low-income, Black, and Brown communities.</description>
+      <description>&lt;p&gt;Climate, including extreme weather, has a direct impact on health. As NYC&amp;rsquo;s climate changes, along with the world&amp;rsquo;s climate, we expect more frequent and intense heat waves, increased rainfall and more severe storms. These will add to existing weather-related risks. Already, heat kills more people than all other natural disasters combined.&lt;/p&gt;&#xA;&lt;p&gt;In New York City, those most vulnerable to the dangers of hot weather are older adults and people with health conditions like heart disease, diabetes, and cognitive impairment - especially those in low-income, Black, and Brown communities. Air conditioning is the best defense against the heat. Equitable access and responsible use of air conditioning is crucial to protect the lives of all New Yorkers while reducing impacts on the environment.&lt;/p&gt;</description>
     </item>
     <item>
       <title>The urban heat island effect in NYC</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/urban-heat-island/</link>
       <pubDate>Fri, 20 Aug 2021 12:52:43 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/urban-heat-island/</guid>
-      <description>In New York City and across the country, more people die from extreme heat than from all other natural disasters combined. To understand how to keep New Yorkers safe from extreme heat, we studied neighborhood factors that affect temperature, and found that grass, shrubs, and trees can play a major role. Let’s take a look.&#xA;At 6.00 PM on June 30, 2018, the air temperature at the LaGuardia Airport Weather Station was 89° Fahrenheit (F).</description>
+      <description>&lt;p&gt;In New York City and across the country, more people die from extreme heat than from all other natural disasters combined. To understand how to keep New Yorkers safe from extreme heat, we studied neighborhood factors that affect temperature, and found that grass, shrubs, and trees can play a major role. Let’s take a look.&lt;/p&gt;&#xA;&lt;p&gt;At 6.00 PM on June 30, 2018, the air temperature at the LaGuardia Airport Weather Station was 89° Fahrenheit (F). At the same time, the air temperature on a block in East Harlem (below left) was nearly 5° hotter than at the Weather Station, and the temperature on a block in Bed-Stuy (below right) was 3.5° hotter.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Protecting New Yorkers from extreme heat</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/heat/</link>
       <pubDate>Wed, 09 Sep 2020 08:33:22 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/heat/</guid>
-      <description>Hot weather is dangerous. In New York City and across the country, more people on average die from extreme heat each year than from all other natural disasters.&#xA;Heat stress happens when your body’s temperature increases quickly. When the body can no longer control its temperature or cool itself down, it can lead to death.&#xA;At the NYC Health Department, we track heat stress deaths by reviewing causes of death recorded by the Bureau of Vital Statistics.</description>
+      <description>&lt;p&gt;Hot weather is dangerous. In New York City and across the country, more people on average die from extreme heat each year than from all other natural disasters.&lt;/p&gt;&#xA;&lt;p&gt;Heat stress happens when your body’s temperature increases quickly. When the body can no longer control its temperature or cool itself down, it can lead to death.&lt;/p&gt;&#xA;&lt;p&gt;At the NYC Health Department, we track heat stress deaths by reviewing causes of death recorded by the Bureau of Vital Statistics. More people usually die of heat stress during hotter summers. From 1999 to 2016, NYC had 4 spikes due to severe heat, in 1999, 2006, 2011, and 2013.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>firearms on Environment &amp; Health Data Portal</title>
+    <title>Firearms on Environment &amp; Health Data Portal</title>
     <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/firearms/</link>
-    <description>Recent content in firearms on Environment &amp; Health Data Portal</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Firearms on Environment &amp; Health Data Portal</description>
+    <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 28 May 2021 18:02:58 -0400</lastBuildDate>
+    <lastBuildDate>Fri, 28 May 2021 18:02:58 +0000</lastBuildDate>
     <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/firearms/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Violence</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/violence/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 -0400</pubDate>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/violence/</guid>
-      <description>Violence is the use of physical, verbal and/or emotional force to injure, harm, abuse, damage or destroy. While violence can be self-inflicted, community violence occurs outside the home between people who or may not know each other.&#xA;Violence is frequently described through homicide statistics. While homicide is a leading cause of death, especially among 15–34-year-olds, and captures the most severe form of violence, non-fatal violence-related injuries are much more common and help paint the larger picture on the burden of violence and its impact on the health and future of individuals, families, and communities.</description>
+      <description>&lt;p&gt;Violence is the use of physical, verbal and/or emotional force to injure, harm, abuse, damage or destroy. While violence can be self-inflicted, community violence occurs outside the home between people who or may not know each other.&lt;/p&gt;&#xA;&lt;p&gt;Violence is frequently described through homicide statistics. While homicide is a leading cause of death, especially among 15–34-year-olds, and captures the most severe form of violence, non-fatal violence-related injuries are much more common and help paint the larger picture on the burden of violence and its impact on the health and future of individuals, families, and communities.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

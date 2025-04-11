@@ -4,7 +4,7 @@
     <title>About the EH Data Portal on Environment &amp; Health Data Portal</title>
     <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/about/</link>
     <description>Recent content in About the EH Data Portal on Environment &amp; Health Data Portal</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate>Mon, 07 Oct 2024 08:49:22 -0400</lastBuildDate>
     <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/about/index.xml" rel="self" type="application/rss+xml" />
@@ -13,35 +13,35 @@
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/about/new-data-explorer-features/</link>
       <pubDate>Mon, 07 Oct 2024 08:49:22 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/about/new-data-explorer-features/</guid>
-      <description>If you browse data on our Data Explorer, you might notice some new changes. In recent months, we&amp;rsquo;ve been rolling out a series of modifications and redesigns that, we hope, make it easier for you to browse the data and find what you&amp;rsquo;re looking for.&#xA;Here&amp;rsquo;s what the Data Explorer looks like now:&#xA;Here are some of the changes we&amp;rsquo;ve made, and why we&amp;rsquo;ve made them.&#xA;Exposing options menus Each of the Data Explorer&amp;rsquo;s views includes options for how to display the data.</description>
+      <description>&lt;p&gt;If you browse data on our Data Explorer, you might notice some new changes. In recent months, we&amp;rsquo;ve been rolling out a series of modifications and redesigns that, we hope, make it easier for you to browse the data and find what you&amp;rsquo;re looking for.&lt;/p&gt;&#xA;&lt;p&gt;Here&amp;rsquo;s what the Data Explorer looks like now:&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/about/new-data-explorer-features/de-new.png&#34; alt=&#34;&#34;&gt;&#xA;&lt;br&gt;&lt;/p&gt;&#xA;&lt;p&gt;Here are some of the changes we&amp;rsquo;ve made, and why we&amp;rsquo;ve made them.&lt;/p&gt;&#xA;&lt;h2&gt;Exposing options menus&lt;/h2&gt;&#xA;&lt;p&gt;Each of the Data Explorer&amp;rsquo;s views includes options for how to display the data. Previously, these options were collapsed inside buttons above each chart. But when we tested the website with our users - people like you - we noticed that a lot of people didn&amp;rsquo;t click on the buttons at all. They didn&amp;rsquo;t have labels that were meaningful to our testers - so the testers didn&amp;rsquo;t click the buttons to see what would happen. This was a missed opportunity for people to engage with our data. We thought that by exposing what was in these menus, it would show the available options and let you know other ways you can control what data are displayed.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Advanced site tools</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/about/advanced-tools/</link>
       <pubDate>Tue, 07 Nov 2023 08:49:22 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/about/advanced-tools/</guid>
-      <description>If you are a data scientist, programmer, open data enthusiast, open source evangelist, data visualiation specialist or somebody who aspires to be any of those, then there are some advanced features of the Environment and Health Data Portal that you can use to get and use our data.&#xA;Re-use data visualizations The visualizations on our site&amp;rsquo;s Data Explorer use a JavaScript library called Vega-Lite. Vega-lite provides a few options for you to use the visualizations in other contexts.</description>
+      <description>&lt;p&gt;If you are a data scientist, programmer, open data enthusiast, open source evangelist, data visualiation specialist or somebody who aspires to be any of those, then there are some advanced features of the Environment and Health Data Portal that you can use to get and use our data.&lt;/p&gt;&#xA;&lt;h2&gt;Re-use data visualizations&lt;/h2&gt;&#xA;&lt;p&gt;The visualizations on our site&amp;rsquo;s &lt;a href=&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/&#34;&gt;Data Explorer&lt;/a&gt; use a JavaScript library called &lt;a href=&#34;https://vega.github.io/vega-lite/&#34;&gt;Vega-Lite&lt;/a&gt;. Vega-lite provides a few options for you to use the visualizations in other contexts.&lt;/p&gt;</description>
     </item>
     <item>
       <title>The redesigned EH Data Portal</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/about/redesign/</link>
       <pubDate>Mon, 07 Nov 2022 08:49:22 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/about/redesign/</guid>
-      <description>The Environment and Health Data Portal looks a little bit different! We recently redesigned our site to make it easier for you to find important data and information on how the environment affects health. Here&amp;rsquo;s what the new site has to offer: An updated design:&#xA;The whole site got a fresh design to make exploring easier for you – whether you’re on a desktop computer, a phone, or a tablet. It&amp;rsquo;s been optimized for accessibility, translation, and clear, simple presentation of information, using the NYC Core Framework, an open-source framework based on Bootstrap.</description>
+      <description>&lt;p&gt;The Environment and Health Data Portal looks a little bit different! We recently redesigned our site to make it easier for you to find important data and information on how the environment affects health.  &lt;/p&gt;&#xA;&lt;p&gt;Here&amp;rsquo;s what the new site has to offer: &lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;An updated design:&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;The whole site got a fresh design to make exploring easier for you – whether you’re on a desktop computer, a phone, or a tablet. It&amp;rsquo;s been optimized for accessibility, translation, and clear, simple presentation of information, using the &lt;a href=&#34;https://www1.nyc.gov/assets/oti/html/nyc-core-framework/index.html&#34;&gt;NYC Core Framework&lt;/a&gt;, an open-source framework based on Bootstrap.  &lt;/p&gt;</description>
     </item>
     <item>
       <title>We&#39;re Hiring!</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/about/jobs/</link>
       <pubDate>Wed, 24 Nov 2021 13:30:21 -0500</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/about/jobs/</guid>
-      <description>There are no roles currently available in our bureau. Check back soon and search cityjobs.nyc.gov for &amp;lsquo;BESP&amp;rsquo;.</description>
+      <description>&lt;p&gt;There are no roles currently available in our bureau. Check back soon and &lt;a href=&#34;https://cityjobs.nyc.gov/jobs?q=BESP&amp;amp;options=&amp;amp;page=1&#34;&gt;search cityjobs.nyc.gov for &amp;lsquo;BESP&amp;rsquo;&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;!--&#xA;&#xA;Join our team! See below for open positions in our bureau - or, [search cityjobs.nyc.gov for &#39;BESP&#39;](https://cityjobs.nyc.gov/jobs?q=BESP&amp;options=&amp;page=1). --&gt;&#xA;&lt;hr&gt;&#xA;&lt;!-- leaving for reference - all currently expired&#xA;&lt;br&gt;&#xA;&#xA;[**Community Resilience Coordinator**](https://cityjobs.nyc.gov/job/community-resiliency-coordinator-bureau-of-health-equity-capacity-building-in-queens-jid-19551): We&#39;re hiring a Community Resilience Coordinator to support the Bureau of Health Equity Capacity Building in engaging with community organizations such as houses of worship, medical clinics, and senior centers about climate resiliency through trainings, presentations, and communication plans. This role will also involve the development of tools for internal leadership, decisionmakers, and policymakers, and strategizing on incorporating evidence-based climate resiliency activities into existing public health programs.&#xA;&#xA;--&gt;</description>
     </item>
     <item>
       <title>Our Roadmap: An Open Path Forward</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/about/roadmap/</link>
       <pubDate>Tue, 07 Jul 2020 08:49:22 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/about/roadmap/</guid>
-      <description>In 2020, we partnered with Open Tech Strategies to review the Environment and Health Data Portal and plan for its future development.&#xA;Open Tech Strategies prepared a report with recommendations for our strategy and technology that would help us re-develop the site to better serve our users (you). It covers:&#xA;Open source software Modular contracting Communication strategies User research Workflows and internal tools to support this work You can read the full report here.</description>
+      <description>&lt;p&gt;In 2020, we partnered with &lt;a href=&#34;https://opentechstrategies.com/&#34;&gt;Open Tech Strategies&lt;/a&gt; to review the Environment and Health Data Portal and plan for its future development.&lt;/p&gt;&#xA;&lt;p&gt;Open Tech Strategies prepared a report with recommendations for our strategy and technology that would help us re-develop the site to better serve our users (you). It covers:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Open source software&lt;/li&gt;&#xA;&lt;li&gt;Modular contracting&lt;/li&gt;&#xA;&lt;li&gt;Communication strategies&lt;/li&gt;&#xA;&lt;li&gt;User research&lt;/li&gt;&#xA;&lt;li&gt;Workflows and internal tools to support this work&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/about/roadmap/ehdp-open-path-development-2020.pdf&#34;&gt;You can read the full report here&lt;/a&gt;.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

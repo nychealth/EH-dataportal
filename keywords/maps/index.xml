@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>maps on Environment &amp; Health Data Portal</title>
+    <title>Maps on Environment &amp; Health Data Portal</title>
     <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/maps/</link>
-    <description>Recent content in maps on Environment &amp; Health Data Portal</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Maps on Environment &amp; Health Data Portal</description>
+    <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate>Sat, 01 Aug 2020 08:33:22 -0400</lastBuildDate>
     <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/maps/index.xml" rel="self" type="application/rss+xml" />
@@ -13,7 +13,7 @@
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/geographies/</link>
       <pubDate>Sat, 01 Aug 2020 08:33:22 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/geographies/</guid>
-      <description>New York City has hundreds of neighborhoods and nearly as many ways of drawing neighborhood boundaries. When you visit the Environment &amp;amp; Health Data Portal, you might notice that data is available in several different neighborhood schemes.&#xA;For example, dig around in the asthma data pages and you&amp;rsquo;ll find Adults with Asthma presented by UHF34 neighborhoods, Public School Children with Asthma presented by UHF42 neighborhoods, and Asthma emergency department visits are offered by NTAs.</description>
+      <description>&lt;p&gt;New York City has hundreds of neighborhoods and nearly as many ways of drawing neighborhood boundaries. When you visit the Environment &amp;amp; Health Data Portal, you might notice that data is available in several different neighborhood schemes.&lt;/p&gt;&#xA;&lt;p&gt;For example, dig around in the asthma data pages and you&amp;rsquo;ll find &lt;a href=&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/asthma/?id=18&#34;&gt;Adults with Asthma&lt;/a&gt; presented by UHF34 neighborhoods, &lt;a href=&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/asthma/?id=2147&#34;&gt;Public School Children with Asthma&lt;/a&gt; presented by UHF42 neighborhoods, and &lt;a href=&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/asthma/?id=2384&#34;&gt;Asthma emergency department visits&lt;/a&gt; are offered by NTAs. Other data on the portal are offered by CD, ZIP code, PUMA, and occasionally even police precinct. &lt;strong&gt;What are all these neighborhood schemes, why do we use one and not the other, and why isn’t the whole system consistent?&lt;/strong&gt;&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

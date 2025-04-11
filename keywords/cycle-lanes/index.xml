@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>cycle lanes on Environment &amp; Health Data Portal</title>
+    <title>Cycle Lanes on Environment &amp; Health Data Portal</title>
     <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/cycle-lanes/</link>
-    <description>Recent content in cycle lanes on Environment &amp; Health Data Portal</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Cycle Lanes on Environment &amp; Health Data Portal</description>
+    <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate>Sun, 20 Sep 2020 10:54:51 -0400</lastBuildDate>
     <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/cycle-lanes/index.xml" rel="self" type="application/rss+xml" />
@@ -13,7 +13,7 @@
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/streets/</link>
       <pubDate>Sun, 20 Sep 2020 10:54:51 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/streets/</guid>
-      <description>The COVID-19 public health emergency has changed New York City in many ways—including how we get around the city. As the city continues to adapt to COVID-19, New Yorkers will look for ways to get around that feel safe—redistributing transit among different modes to ease crowding and increase safety on public transportation.&#xA;As more New Yorkers use bicycles, let&amp;rsquo;s take a look at safety on our streets.&#xA;Cyclist safety in public health data New York City’s streets offer opportunities for active transportation, like cycling and walking, but can also pose risks from collisions.</description>
+      <description>&lt;p&gt;The COVID-19 public health emergency has changed New York City in many ways—including how we get around the city. As the city continues to adapt to COVID-19, New Yorkers will look for ways to get around that feel safe—redistributing transit among different modes to ease crowding and increase safety on public transportation.&lt;/p&gt;&#xA;&lt;p&gt;As more New Yorkers use bicycles, let&amp;rsquo;s take a look at safety on our streets.&lt;/p&gt;&#xA;&lt;h2&gt;Cyclist safety in public health data&lt;/h2&gt;&#xA;&lt;p&gt;New York City’s streets offer opportunities for active transportation, like cycling and walking, but can also pose risks from collisions. We had a stark reminder of that in 2019, when &lt;a href=&#34;https://www.nycvzv.info/&#34;&gt;28 cyclists died on NYC streets, following an historic low of 10 in 2018&lt;/a&gt;.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

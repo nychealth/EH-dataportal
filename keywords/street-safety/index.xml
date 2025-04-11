@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>street safety on Environment &amp; Health Data Portal</title>
+    <title>Street Safety on Environment &amp; Health Data Portal</title>
     <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/street-safety/</link>
-    <description>Recent content in street safety on Environment &amp; Health Data Portal</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Street Safety on Environment &amp; Health Data Portal</description>
+    <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate>Fri, 08 Nov 2024 13:11:44 -0400</lastBuildDate>
     <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/street-safety/index.xml" rel="self" type="application/rss+xml" />
@@ -13,7 +13,7 @@
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/public-transit-creates-health/</link>
       <pubDate>Fri, 08 Nov 2024 13:11:44 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/public-transit-creates-health/</guid>
-      <description>New York City’s public transit system has gotten New Yorkers where they need to go and home again for over a century. For our public transit system to continue to move millions of people and to keep us healthy, it&amp;rsquo;s important to invest in its capacity, reliability, and accessibility to every New Yorker.&#xA;Traffic is a huge part of our environment in New York City. In Manhattan’s central business district, the average car speed is under 7 miles per hour and has been getting slower over time.</description>
+      <description>&lt;p&gt;New York City’s public transit system has gotten New Yorkers where they need to go and home again for over a century. For our public transit system to continue to move millions of people and to keep us healthy, it&amp;rsquo;s important to invest in its capacity, reliability, and accessibility to every New Yorker.&lt;/p&gt;&#xA;&lt;p&gt;Traffic is a huge part of our environment in New York City. &lt;a href=&#34;https://www.nysenate.gov/sites/default/files/admin/structure/media/manage/filefile/a/2024-09/speed-kills-report-9-20-24_final.pdf&#34;&gt;In Manhattan’s central business district, the average car speed is under 7 miles per hour&lt;/a&gt; and has been getting slower over time. This traffic imposes a cost on every New Yorker. According to the MTA, traffic makes each New Yorker lose an average of 117 hours and nearly $2,000 in lost productivity and other costs each year. It also affects our quality of life by worsening air quality, increasing noise, and making it less safe to walk, cycle, and get around without a car.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

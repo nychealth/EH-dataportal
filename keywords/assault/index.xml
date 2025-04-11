@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>assault on Environment &amp; Health Data Portal</title>
+    <title>Assault on Environment &amp; Health Data Portal</title>
     <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/assault/</link>
-    <description>Recent content in assault on Environment &amp; Health Data Portal</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Assault on Environment &amp; Health Data Portal</description>
+    <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate>Fri, 01 Oct 2021 07:59:16 -0400</lastBuildDate>
     <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/assault/index.xml" rel="self" type="application/rss+xml" />
@@ -13,7 +13,7 @@
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/key-topics/injury-and-violence/</link>
       <pubDate>Fri, 01 Oct 2021 07:59:16 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/key-topics/injury-and-violence/</guid>
-      <description>Violence is a public health issue. Injuries, whether intentional (like violence or suicide) or unintentional, are the main causes of death for New Yorkers aged 15 to 44. These deaths are tragic, unnecessary, and can be prevented.&#xA;Violence is a special kind of injury because it affects not just the victim but also the community around them. Experiencing and witnessing violence can lead to poor birth outcomes, developmental delays in children, physical and mental illness, and early death.</description>
+      <description>&lt;p&gt;Violence is a public health issue. Injuries, whether intentional (like violence or suicide) or unintentional, are the main causes of death for New Yorkers aged 15 to 44. These deaths are tragic, unnecessary, and can be prevented.&lt;/p&gt;&#xA;&lt;p&gt;Violence is a special kind of injury because it affects not just the victim but also the community around them. Experiencing and witnessing violence can lead to poor birth outcomes, developmental delays in children, physical and mental illness, and early death. If we understand violence as a public health issue that affects everyone, we can focus on changing the environments and systems that contribute to violence. This gives us new ways to protect people’s health.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

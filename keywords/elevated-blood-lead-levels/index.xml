@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>elevated blood lead levels on Environment &amp; Health Data Portal</title>
+    <title>Elevated Blood Lead Levels on Environment &amp; Health Data Portal</title>
     <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/elevated-blood-lead-levels/</link>
-    <description>Recent content in elevated blood lead levels on Environment &amp; Health Data Portal</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Elevated Blood Lead Levels on Environment &amp; Health Data Portal</description>
+    <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate>Thu, 13 Jul 2023 08:29:34 -0400</lastBuildDate>
     <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/elevated-blood-lead-levels/index.xml" rel="self" type="application/rss+xml" />
@@ -13,7 +13,7 @@
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/adult-lead/</link>
       <pubDate>Thu, 13 Jul 2023 08:29:34 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/adult-lead/</guid>
-      <description>Lead is a harmful metal that can cause serious health issues. When lead poisoning makes headlines, the focus is usually on children’s health: Kids are at higher risk for lead exposure, which can cause developmental, learning and behavior issues.&#xA;But lead can also harm adults. In adults, lead can cause increased blood pressure, kidney and brain problems, infertility and impotence. During pregnancy, lead exposure can cause miscarriage or babies to be born too soon or too small.</description>
+      <description>&lt;p&gt;Lead is a harmful metal that can cause serious health issues. When lead poisoning makes headlines, the focus is usually on children’s health: Kids are at higher risk for lead exposure, which can cause developmental, learning and behavior issues.&lt;/p&gt;&#xA;&lt;p&gt;But lead can also harm adults. In adults, lead can cause increased blood pressure, kidney and brain problems, infertility and impotence. During pregnancy, lead exposure can cause miscarriage or babies to be born too soon or too small.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

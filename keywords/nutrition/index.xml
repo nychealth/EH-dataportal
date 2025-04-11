@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>nutrition on Environment &amp; Health Data Portal</title>
+    <title>Nutrition on Environment &amp; Health Data Portal</title>
     <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/nutrition/</link>
-    <description>Recent content in nutrition on Environment &amp; Health Data Portal</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Nutrition on Environment &amp; Health Data Portal</description>
+    <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate>Wed, 17 Nov 2021 12:01:22 -0500</lastBuildDate>
     <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/nutrition/index.xml" rel="self" type="application/rss+xml" />
@@ -13,7 +13,7 @@
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/healthy-eating/</link>
       <pubDate>Wed, 17 Nov 2021 12:01:22 -0500</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/healthy-eating/</guid>
-      <description>Healthy eating is associated with better health, including a reduced risk of cardiovascular disease. That means that having access to healthy, safe, and affordable food choices is crucial for a person to achieve healthy eating habits.&#xA;Food access is influenced by many environmental factors, including proximity to food retail outlets and neighborhood-level resources (like neighborhood poverty, and availability of public transportation).&#xA;Sugary drinks contribute to a higher-calorie diet, increased risk of heart disease and diabetes, and long-term weight gain.</description>
+      <description>&lt;p&gt;Healthy eating is associated with better health, including a reduced risk of cardiovascular disease. That means that having access to healthy, safe, and affordable food choices is crucial for a person to achieve healthy eating habits.&lt;/p&gt;&#xA;&lt;p&gt;Food access is influenced by many environmental factors, including proximity to food retail outlets and neighborhood-level resources (like neighborhood poverty, and availability of public transportation).&lt;/p&gt;&#xA;&lt;p&gt;Sugary drinks contribute to a higher-calorie diet, increased risk of heart disease and diabetes, and long-term weight gain. More than half of New York City adults (58%) are overweight or obese; nearly 40% of New York City’s public school students (K-8) are obese or overweight; and the percentage of adults with diagnosed diabetes is increasing, with nearly 10% of New Yorkers now diagnosed with diabetes.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

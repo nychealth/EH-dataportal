@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>policy on Environment &amp; Health Data Portal</title>
+    <title>Policy on Environment &amp; Health Data Portal</title>
     <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/policy/</link>
-    <description>Recent content in policy on Environment &amp; Health Data Portal</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Policy on Environment &amp; Health Data Portal</description>
+    <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate>Thu, 15 Dec 2022 15:23:23 -0500</lastBuildDate>
     <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/policy/index.xml" rel="self" type="application/rss+xml" />
@@ -13,14 +13,14 @@
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/hia/</link>
       <pubDate>Thu, 15 Dec 2022 15:23:23 -0500</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/hia/</guid>
-      <description>This story was recently updated with new data.&#xA;Every year in NYC between 2017 and 2019 (The most recent data available. See all recorded years of health impacts data here), fine particulate matter pollution from motor vehicles and burning fossil fuels caused:&#xA;At least 1,800 deaths About 900 hospital admissions for lung and heart conditions 3,100 emergency department admissions for asthma Since air pollution causes significant illness and death in New York City, it&amp;rsquo;s important to reduce air pollution.</description>
+      <description>&lt;p&gt;&lt;em&gt;This story was recently updated with new data.&lt;/em&gt;&lt;/p&gt;&#xA;&lt;p&gt;Every year in NYC between 2017 and 2019 (The most recent data available. &lt;a href=&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/health-impacts-of-air-pollution/?id=2108#display=summary&#34;&gt;See all recorded years of health impacts data here&lt;/a&gt;), fine particulate matter pollution from motor vehicles and burning fossil fuels caused:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;At least &lt;a href=&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/health-impacts-of-air-pollution/?id=2108#display=summary&#34;&gt;1,800 deaths&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;About 900 hospital admissions for &lt;a href=&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/health-impacts-of-air-pollution/?id=2119#display=summary&#34;&gt;lung&lt;/a&gt; and &lt;a href=&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/health-impacts-of-air-pollution/?id=2120#display=summary&#34;&gt;heart conditions&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/health-impacts-of-air-pollution/?id=2117#display=summary&#34;&gt;3,100 emergency department admissions for asthma&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Since air pollution causes significant illness and death in New York City, it&amp;rsquo;s important to reduce air pollution. So where do we start?&lt;/p&gt;</description>
     </item>
     <item>
       <title>ZAPPA: A tool to understand air quality policies</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/zappa/</link>
       <pubDate>Sat, 03 Dec 2022 08:33:22 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/zappa/</guid>
-      <description>New York City’s air quality is generally good and has been improving over time. Still, air pollution threatens health: two pollutants, ozone and PM2.5 cause about 2,400 deaths per year in NYC, and thousands more emergency department visits and hospitalizations for asthma, heart, and lung problems.&#xA;It’s important to clean up the air to protect New Yorkers, and we know how to do it: reduce emissions from buildings, vehicles, restaurants, power plants, and other sources of pollutants.</description>
+      <description>&lt;p&gt;New York City’s air quality is generally good and has been improving over time. Still, air pollution threatens health: two pollutants, &lt;a href=&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/health-impacts-of-air-pollution/?id=2122#display=summary&#34;&gt;ozone and PM2.5 cause about 2,400 deaths per year in NYC, and thousands more emergency department visits and hospitalizations for asthma, heart, and lung problems&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;p&gt;It’s important to clean up the air to protect New Yorkers, and we know how to do it: reduce emissions from buildings, vehicles, restaurants, power plants, and other sources of pollutants.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

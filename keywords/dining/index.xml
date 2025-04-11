@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>dining on Environment &amp; Health Data Portal</title>
+    <title>Dining on Environment &amp; Health Data Portal</title>
     <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/dining/</link>
-    <description>Recent content in dining on Environment &amp; Health Data Portal</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Dining on Environment &amp; Health Data Portal</description>
+    <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate>Wed, 05 May 2021 07:58:53 -0400</lastBuildDate>
     <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/dining/index.xml" rel="self" type="application/rss+xml" />
@@ -13,7 +13,7 @@
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/key-topics/foodanddrink/</link>
       <pubDate>Wed, 05 May 2021 07:58:53 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/key-topics/foodanddrink/</guid>
-      <description>We all make choices around food and drink, but sometimes, those choices are made for us by our food environments.&#xA;Our food environments include neighborhood-level alcohol access, unhealthy food access, and restaurant food safety. Additionally, drinking water quality data includes data on contaminants that are most frequently found at levels that may be of public health significant in the country&amp;rsquo;s drinking water.</description>
+      <description>&lt;p&gt;We all make choices around food and drink, but sometimes, those choices are made for us by our food environments.&lt;/p&gt;&#xA;&lt;p&gt;Our food environments include neighborhood-level alcohol access, unhealthy food access, and restaurant food safety. Additionally, drinking water quality data includes data on contaminants that are most frequently found at levels that may be of public health significant in the country&amp;rsquo;s drinking water.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

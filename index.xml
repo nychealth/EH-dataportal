@@ -4,7 +4,7 @@
     <title>The Environment and Health Data Portal: Home page on Environment &amp; Health Data Portal</title>
     <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/</link>
     <description>Recent content in The Environment and Health Data Portal: Home page on Environment &amp; Health Data Portal</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate>Mon, 31 Mar 2025 11:14:56 -0400</lastBuildDate>
     <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/index.xml" rel="self" type="application/rss+xml" />
@@ -13,749 +13,749 @@
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/rats-in-your-neighborhood/</link>
       <pubDate>Mon, 31 Mar 2025 11:14:56 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/rats-in-your-neighborhood/</guid>
-      <description>What&amp;rsquo;s going on with rats in your neighborhood, what&amp;rsquo;s being done to fight them, and how can you help?&#xA;Find out here. Enter an address to see data on neighborhood-level rat inspections, and individual inspection results for your property.</description>
+      <description>&lt;p&gt;What&amp;rsquo;s going on with rats in your neighborhood, what&amp;rsquo;s being done to fight them, and how can you help?&lt;/p&gt;&#xA;&lt;p&gt;Find out here. Enter an address to see data on neighborhood-level rat inspections, and individual inspection results for your property.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Real-Time Air Quality: PM2.5 in NYC</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/realtime-air-quality/</link>
       <pubDate>Tue, 22 Mar 2022 19:30:55 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/realtime-air-quality/</guid>
-      <description>Fine particles (PM2.5) are among the most harmful pollutants. Long-term exposure to PM2.5 contributes to an estimated 2,000 excess deaths from lung and heart disease each year in NYC (1 out of every 25 deaths in NYC), and short-term exposure contributes to asthma incidents severe enough to require a trip to the emergency department, and other health threats.&#xA;The air quality in NYC is generally good and has been improving over time.</description>
+      <description>&lt;p&gt;Fine particles (PM2.5) are among the most harmful pollutants. Long-term exposure to PM2.5 contributes to an estimated 2,000 excess deaths from lung and heart disease each year in NYC (1 out of every 25 deaths in NYC), and short-term exposure contributes to asthma incidents severe enough to require a trip to the emergency department, and other health threats.&lt;/p&gt;&#xA;&lt;p&gt;The air quality in NYC is generally good and has been improving over time. For PM2.5, NYC meets the National Ambient Air Quality Standard of an annual average under 12 μg/m&lt;sup&gt;3&lt;/sup&gt;, and a 24-hour average under 35 μg/m&lt;sup&gt;3&lt;/sup&gt;.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Interactive Heat Vulnerability Index</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/hvi/</link>
       <pubDate>Wed, 25 Aug 2021 10:49:05 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/hvi/</guid>
-      <description>Hot weather is dangerous. In New York City – and across the country – more people die from heat than from all other natural disasters combined. As our climate continues to warm, we expect more heat events that can put people’s lives at risk.&#xA;In New York City, the risk of death from heat is unfairly distributed across neighborhoods. We identified neighborhood environmental and social factors associated with increased risk to create a heat vulnerability index.</description>
+      <description>&lt;p&gt;Hot weather is dangerous. In New York City – and across the country – more people die from heat than from all other natural disasters combined. As our climate continues to warm, we expect more heat events that can put people’s lives at risk.&lt;/p&gt;&#xA;&lt;p&gt;In New York City, the risk of death from heat is unfairly distributed across neighborhoods. We identified neighborhood environmental and social factors associated with increased risk to create a heat vulnerability index. This can identify neighborhoods at highest risk and help inform neighborhood-level policies and programs that can protect people - sending resources to where they&amp;rsquo;re needed the most.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Climate</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/climate/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 -0400</pubDate>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/climate/</guid>
-      <description>A region&amp;rsquo;s climate is characterized by its usual weather conditions, seasons, and patterns in extreme weather events like heat waves, droughts, and hurricanes.&#xA;The world’s climate is shifting, becoming warmer with more precipitation and weather extremes. Over the past century in New York City, average temperatures have increased by 0.25°F per decade, precipitation by 0.72 inches per decade, and sea levels by 1.2 inches per decade. By the 2020s, a projected 25-30 days above 90°F are expected in a typical summer, resulting in more frequent and intense heat waves.</description>
+      <description>&lt;p&gt;A region&amp;rsquo;s climate is characterized by its usual weather conditions, seasons, and patterns in extreme weather events like heat waves, droughts, and hurricanes.&lt;/p&gt;&#xA;&lt;p&gt;The world’s climate is shifting, becoming warmer with more precipitation and weather extremes. Over the past century in New York City, average temperatures have increased by 0.25°F per decade, precipitation by 0.72 inches per decade, and sea levels by 1.2 inches per decade. By the 2020s, a projected 25-30 days above 90°F are expected in a typical summer, resulting in more frequent and intense heat waves. Rainfall and precipitation are expected to increase by up to 5%, together with another 10 inches of sea level rise and increased probability of coastal storms with flooding (NYC Panel on Climate Change, Climate Risk Information, 2009).&lt;/p&gt;</description>
     </item>
     <item>
       <title>Rat Mitigation Zones</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/rat-mitigation-zones/</link>
       <pubDate>Thu, 01 Jun 2023 11:14:56 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/rat-mitigation-zones/</guid>
-      <description>Rats can contaminate food, spread disease and reduce our quality of life. Rat Mitigation Zones (RMZ) are areas with high levels of rat activity, where City agencies focus resources to address rats and the conditions that support them.&#xA;Choose an RMZ on the map below to view data on complaints and NYC Health Department rat control activity.</description>
+      <description>&lt;p&gt;Rats can contaminate food, spread disease and reduce our quality of life. Rat Mitigation Zones (RMZ) are areas with high levels of rat activity, where City agencies focus resources to address rats and the conditions that support them.&lt;/p&gt;&#xA;&lt;p&gt;Choose an RMZ on the map below to view data on complaints and NYC Health Department rat control activity.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Real-time heat-related illness</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-syndrome/</link>
       <pubDate>Mon, 30 Aug 2021 11:51:01 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-syndrome/</guid>
-      <description>The weather forecast is the best way to predict heat-related health outcomes.&#xA;We can also track heat-related illness with near real-time electronic data from emergency departments at hospitals throughout NYC. These data include illnesses directly attributed to heat (including heat exhaustion, muscle cramps, fainting and heat stroke), not the full burden of heat-related health impacts.</description>
+      <description>&lt;p&gt;The weather forecast is the best way to predict heat-related health outcomes.&lt;/p&gt;&#xA;&lt;p&gt;We can also track heat-related illness with near real-time electronic data from emergency departments at hospitals throughout NYC. These data include illnesses directly attributed to heat (including heat exhaustion, muscle cramps, fainting and heat stroke), not the full burden of heat-related health impacts.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Your Neighborhood&#39;s Air Quality</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/neighborhood-air-quality/</link>
       <pubDate>Tue, 24 Aug 2021 12:04:44 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/neighborhood-air-quality/</guid>
-      <description>We combine data from our air quality monitoring network, NYCCAS, with other data to understand what makes air quality in one neighborhood different from air quality in another. We found that building emissions, building density, industrial areas, and traffic density are associated with differences in air quality.&#xA;If we don&amp;rsquo;t have an air quality monitor in one neighborhood, but we know its building density, its industrial area, and its traffic, then we can model (estimate or predict) its air quality - based on monitored air quality in similar neighborhoods.</description>
+      <description>&lt;hr&gt;&#xA;&lt;p&gt;We combine data from our air quality monitoring network, NYCCAS, with other data to understand what makes air quality in one neighborhood different from air quality in another. We found that building emissions, building density, industrial areas, and traffic density are associated with differences in air quality.&lt;/p&gt;&#xA;&lt;p&gt;If we don&amp;rsquo;t have an air quality monitor in one neighborhood, but we know its building density, its industrial area, and its traffic, then we can model (estimate or predict) its air quality - based on monitored air quality in similar neighborhoods.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Rat Information Portal</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/rat-information-portal/</link>
       <pubDate>Wed, 08 Sep 2021 11:14:56 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/rat-information-portal/</guid>
-      <description>New York City’s Rat Information Portal is a web map application that lets you view rat inspection and action data collected by the NYC Health Department.</description>
+      <description>&lt;p&gt;New York City’s Rat Information Portal is a web map application that lets you view rat inspection and action data collected by the NYC Health Department.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Rat Mitigation Zone Report: January 2024 to June 2024</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/rat-report/</link>
       <pubDate>Sun, 08 Sep 2024 11:14:56 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/rat-report/</guid>
-      <description>The NYC Health Department (Department) submits this report pursuant to NYC Administrative Code 17.133.3 to detail rat mitigation efforts in the Rat Mitigation Zones (RMZ). As required, this report includes:&#xA;The metrics the Department is using to measure the efficacy of rat mitigation in such zones, including a description of whether the Department has seen improvement, as measured by such metrics, and, if so, how such improvement has been achieved; An overview of the current and planned rat mitigation measures, including goals and specific benchmarks and timelines, in each such zone; A description of the public outreach measures undertaken by the Department in relation to rat mitigation in each such zone; Explanations of the creation or elimination of rat mitigation zones, or any change of boundaries of such zone, since the previous report, if applicable; and Explanations of any changes to the rat mitigation measures used in each such zone since the previous report, if applicable.</description>
+      <description>&lt;p&gt;The NYC Health Department (Department) submits this report pursuant to NYC Administrative Code&#xA;17.133.3 to detail rat mitigation efforts in the Rat Mitigation Zones (RMZ). As required, this report&#xA;includes:&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;The metrics the Department is using to measure the efficacy of rat mitigation in such&#xA;zones, including a description of whether the Department has seen improvement, as&#xA;measured by such metrics, and, if so, how such improvement has been achieved;&lt;/li&gt;&#xA;&lt;li&gt;An overview of the current and planned rat mitigation measures, including goals and specific&#xA;benchmarks and timelines, in each such zone;&lt;/li&gt;&#xA;&lt;li&gt;A description of the public outreach measures undertaken by the Department in relation to&#xA;rat mitigation in each such zone;&lt;/li&gt;&#xA;&lt;li&gt;Explanations of the creation or elimination of rat mitigation zones, or any change of&#xA;boundaries of such zone, since the previous report, if applicable; and&lt;/li&gt;&#xA;&lt;li&gt;Explanations of any changes to the rat mitigation measures used in each such zone since&#xA;the previous report, if applicable.&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h3&gt;Introduction&lt;/h3&gt;&#xA;&lt;p&gt;The Department’s rat control program takes a multi-pronged, evidence-based approach across&#xA;New York City that builds on our decades of experience. We know that rats thrive when they have ready access to food, water, a place to live, and effective transportation routes. Reducing the rat population, therefore, requires managing garbage, eliminating nesting areas and sealing cracks and holes in sidewalks and buildings. Our approach, called Integrated Pest Management (IPM) includes:&lt;/p&gt;</description>
     </item>
     <item>
       <title>Displacement Risk</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/displacement-risk/</link>
       <pubDate>Sat, 02 Oct 2021 07:56:00 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/displacement-risk/</guid>
-      <description>Housing stability creates health, but in NYC, many people have difficulty accessing healthy, stable housing.&#xA;In some neighborhoods, residents at are higher risk of being displaced - forced to leave their homes, and their neighborhoods, due combinations of market pressure, rent burden, housing conditions, poverty, and injustice in the housing market.&#xA;To show people&amp;rsquo;s risk of being forced out of their homes or neighborhoods, the Department of City Planning and the Department of Housing Preservation and Development created a Displacement Risk Index, part of the Equitable Development Data Explorer.</description>
+      <description>&lt;p&gt;Housing stability creates health, but in NYC, many people have difficulty accessing healthy, stable housing.&lt;/p&gt;&#xA;&lt;p&gt;In some neighborhoods, residents at are higher risk of being displaced - forced to leave their homes, and their neighborhoods, due combinations of market pressure, rent burden, housing conditions, poverty, and injustice in the housing market.&lt;/p&gt;&#xA;&lt;p&gt;To show people&amp;rsquo;s risk of being forced out of their homes or neighborhoods, the Department of City Planning and the Department of Housing Preservation and Development created a Displacement Risk Index, part of the Equitable Development Data Explorer.&lt;/p&gt;</description>
     </item>
     <item>
       <title>2024 NYC Heat-Related Mortality Report</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-report/</link>
       <pubDate>Wed, 08 Sep 2021 11:14:56 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-report/</guid>
-      <description>Each summer, on average, an estimated 350 New Yorkers die prematurely because of hot weather in New York City (NYC). These heat-related deaths account for about 2% of all deaths over the warm season months of May through September.</description>
+      <description>&lt;p&gt;Each summer, on average, an estimated 350 New Yorkers die prematurely because of hot weather in New York City (NYC). These heat-related deaths account for about 2% of all deaths over the warm season months of May through September.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Public transit creates health</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/public-transit-creates-health/</link>
       <pubDate>Fri, 08 Nov 2024 13:11:44 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/public-transit-creates-health/</guid>
-      <description>New York City’s public transit system has gotten New Yorkers where they need to go and home again for over a century. For our public transit system to continue to move millions of people and to keep us healthy, it&amp;rsquo;s important to invest in its capacity, reliability, and accessibility to every New Yorker.&#xA;Traffic is a huge part of our environment in New York City. In Manhattan’s central business district, the average car speed is under 7 miles per hour and has been getting slower over time.</description>
+      <description>&lt;p&gt;New York City’s public transit system has gotten New Yorkers where they need to go and home again for over a century. For our public transit system to continue to move millions of people and to keep us healthy, it&amp;rsquo;s important to invest in its capacity, reliability, and accessibility to every New Yorker.&lt;/p&gt;&#xA;&lt;p&gt;Traffic is a huge part of our environment in New York City. &lt;a href=&#34;https://www.nysenate.gov/sites/default/files/admin/structure/media/manage/filefile/a/2024-09/speed-kills-report-9-20-24_final.pdf&#34;&gt;In Manhattan’s central business district, the average car speed is under 7 miles per hour&lt;/a&gt; and has been getting slower over time. This traffic imposes a cost on every New Yorker. According to the MTA, traffic makes each New Yorker lose an average of 117 hours and nearly $2,000 in lost productivity and other costs each year. It also affects our quality of life by worsening air quality, increasing noise, and making it less safe to walk, cycle, and get around without a car.&lt;/p&gt;</description>
     </item>
     <item>
       <title>New Data Explorer features</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/about/new-data-explorer-features/</link>
       <pubDate>Mon, 07 Oct 2024 08:49:22 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/about/new-data-explorer-features/</guid>
-      <description>If you browse data on our Data Explorer, you might notice some new changes. In recent months, we&amp;rsquo;ve been rolling out a series of modifications and redesigns that, we hope, make it easier for you to browse the data and find what you&amp;rsquo;re looking for.&#xA;Here&amp;rsquo;s what the Data Explorer looks like now:&#xA;Here are some of the changes we&amp;rsquo;ve made, and why we&amp;rsquo;ve made them.&#xA;Exposing options menus Each of the Data Explorer&amp;rsquo;s views includes options for how to display the data.</description>
+      <description>&lt;p&gt;If you browse data on our Data Explorer, you might notice some new changes. In recent months, we&amp;rsquo;ve been rolling out a series of modifications and redesigns that, we hope, make it easier for you to browse the data and find what you&amp;rsquo;re looking for.&lt;/p&gt;&#xA;&lt;p&gt;Here&amp;rsquo;s what the Data Explorer looks like now:&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/about/new-data-explorer-features/de-new.png&#34; alt=&#34;&#34;&gt;&#xA;&lt;br&gt;&lt;/p&gt;&#xA;&lt;p&gt;Here are some of the changes we&amp;rsquo;ve made, and why we&amp;rsquo;ve made them.&lt;/p&gt;&#xA;&lt;h2&gt;Exposing options menus&lt;/h2&gt;&#xA;&lt;p&gt;Each of the Data Explorer&amp;rsquo;s views includes options for how to display the data. Previously, these options were collapsed inside buttons above each chart. But when we tested the website with our users - people like you - we noticed that a lot of people didn&amp;rsquo;t click on the buttons at all. They didn&amp;rsquo;t have labels that were meaningful to our testers - so the testers didn&amp;rsquo;t click the buttons to see what would happen. This was a missed opportunity for people to engage with our data. We thought that by exposing what was in these menus, it would show the available options and let you know other ways you can control what data are displayed.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Public space creates health</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/public-space-creates-health/</link>
       <pubDate>Mon, 19 Aug 2024 01:18:56 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/public-space-creates-health/</guid>
-      <description>Health is determined by many factors. People tend to be healthier when they have economic stability, live in quality housing and have access to public space and safe, connected communities. In 2020, the NYC Health Department held a series of community conversations with residents and local stakeholders across 26 neighborhoods. New Yorkers shared personal stories about their priorities for building healthier neighborhoods, healthier childhoods and more. This is one part of a three-part series on how housing, economic stability and public space create health.</description>
+      <description>&lt;p&gt;Health is determined by many factors. People tend to be healthier when they have economic stability, live in quality housing and have access to public space and safe, connected communities. In 2020, the NYC Health Department held a series of community conversations with residents and local stakeholders across 26 neighborhoods. New Yorkers shared personal stories about their priorities for building healthier neighborhoods, healthier childhoods and more. This is one part of a three-part series on how &lt;strong&gt;&lt;a href=&#34;../housing-creates-health&#34;&gt;housing&lt;/a&gt;, &lt;a href=&#34;../economic-stability/&#34;&gt;economic stability&lt;/a&gt; and public space create health.&lt;/strong&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>What Hurricane Ida and Superstorm Sandy taught us about flooding and health</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/flooding-and-health/</link>
       <pubDate>Tue, 11 Jun 2024 09:01:00 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/flooding-and-health/</guid>
-      <description>Superstorm Sandy (2012) and rainfall from Hurricane Ida (2021) broke records in NYC and resulted in injury and death. Both showed how the climate crisis is affecting the strength of storms and how profound the threat of flooding is to New Yorkers’ health.&#xA;Superstorm Sandy’s coastal flooding damaged hundreds of thousands of homes When Superstorm Sandy hit New York City in October 2012, 52 people died as a result of injuries and there were increases in deaths from other causes, such as chronic health conditions.</description>
+      <description>&lt;p&gt;&lt;em&gt;Superstorm Sandy (2012) and rainfall from Hurricane Ida (2021) broke records in NYC and resulted in injury and death. Both showed how the climate crisis is affecting the strength of storms and how profound the threat of flooding is to New Yorkers’ health.&lt;/em&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;/p&gt;&#xA;&lt;h3&gt;Superstorm Sandy’s coastal flooding damaged hundreds of thousands of homes&lt;/h3&gt;&#xA;&lt;p&gt;When Superstorm Sandy hit New York City in October 2012, 52 people died as a result of injuries and &lt;a href=&#34;https://www.science.org/doi/10.1126/sciadv.adg6633&#34;&gt;there were increases in deaths from other causes,&lt;/a&gt; such as chronic health conditions. Thousands of people were evacuated from hospitals, nursing homes and other facilities. Two million homes and facilities lost power. Altogether, the storm caused billions of dollars of damage to people’s homes and businesses.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Mental health</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/mental-health/</link>
-      <pubDate>Tue, 28 May 2024 18:02:58 -0400</pubDate>
+      <pubDate>Tue, 28 May 2024 18:02:58 +0000</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/mental-health/</guid>
-      <description>Mental health is a person’s emotional, psychological, and social wellbeing. It is an important part of overall health.&#xA;Many factors can contribute to poor mental health. These include chronic disease, poverty, and poor environmental conditions. Many adults with mental illness do not receive the treatment they need.&#xA;Mental health and the environment A person’s environment affects their mental health.&#xA;Neighborhood factors like green space, noise, and infrastructure can affect mental health.</description>
+      <description>&lt;p&gt;Mental health is a person’s emotional, psychological, and social wellbeing. It is an important part of overall health.&lt;/p&gt;&#xA;&lt;p&gt;Many factors can contribute to poor mental health. These include chronic disease, poverty, and poor environmental conditions. Many adults with mental illness do not receive the treatment they need.&lt;/p&gt;&#xA;&lt;h3&gt;Mental health and the environment&lt;/h3&gt;&#xA;&lt;p&gt;A person’s environment affects their mental health.&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;Neighborhood factors&lt;/strong&gt; like green space, noise, and infrastructure can affect mental health. People who say their neighborhood gives them more opportunities to be physically active are less likely to report poor mental health.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Housing creates health</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/housing-creates-health/</link>
       <pubDate>Tue, 05 Mar 2024 01:18:56 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/housing-creates-health/</guid>
-      <description>Health is determined by many factors. People tend to be healthier when they have economic stability, live in quality housing and have access to public space and safe, connected communities. In 2020, the NYC Health Department held a series of community conversations with residents and local stakeholders across 26 neighborhoods. New Yorkers shared personal stories about their priorities for building healthier neighborhoods, healthier childhoods and more. This is one part of a three-part series on how housing, economic stability and public space create health.</description>
+      <description>&lt;p&gt;Health is determined by many factors. People tend to be healthier when they have economic stability, live in quality housing and have access to public space and safe, connected communities. In 2020, the NYC Health Department held a series of community conversations with residents and local stakeholders across 26 neighborhoods. New Yorkers shared personal stories about their priorities for building healthier neighborhoods, healthier childhoods and more. This is one part of a three-part series on how &lt;strong&gt; housing, &lt;a href=&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/economic-stability/&#34;&gt; economic stability &lt;/a&gt; and public space create health.&lt;/strong&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>Economic stability creates health</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/economic-stability/</link>
       <pubDate>Thu, 08 Feb 2024 09:01:00 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/economic-stability/</guid>
-      <description>Health is determined by many factors. People tend to be healthier when they have economic stability, live in quality housing and have access to public space and safe, connected communities. In 2020, the NYC Health Department held a series of community conversations with residents and local stakeholders across 26 neighborhoods. New Yorkers shared personal stories about their priorities for building healthier neighborhoods, healthier childhoods and more. This is one part of a three-part series on how housing, economic stability, and public space create health.</description>
+      <description>&lt;p&gt;Health is determined by many factors. People tend to be healthier when they have economic stability, live in quality housing and have access to public space and safe, connected communities. In 2020, the NYC Health Department held a series of community conversations with residents and local stakeholders across 26 neighborhoods. New Yorkers shared personal stories about their priorities for building healthier neighborhoods, healthier childhoods and more. This is one part of a three-part series on how &lt;strong&gt; housing, economic stability, and public space create health. &lt;/strong&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>Advanced site tools</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/about/advanced-tools/</link>
       <pubDate>Tue, 07 Nov 2023 08:49:22 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/about/advanced-tools/</guid>
-      <description>If you are a data scientist, programmer, open data enthusiast, open source evangelist, data visualiation specialist or somebody who aspires to be any of those, then there are some advanced features of the Environment and Health Data Portal that you can use to get and use our data.&#xA;Re-use data visualizations The visualizations on our site&amp;rsquo;s Data Explorer use a JavaScript library called Vega-Lite. Vega-lite provides a few options for you to use the visualizations in other contexts.</description>
+      <description>&lt;p&gt;If you are a data scientist, programmer, open data enthusiast, open source evangelist, data visualiation specialist or somebody who aspires to be any of those, then there are some advanced features of the Environment and Health Data Portal that you can use to get and use our data.&lt;/p&gt;&#xA;&lt;h2&gt;Re-use data visualizations&lt;/h2&gt;&#xA;&lt;p&gt;The visualizations on our site&amp;rsquo;s &lt;a href=&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/&#34;&gt;Data Explorer&lt;/a&gt; use a JavaScript library called &lt;a href=&#34;https://vega.github.io/vega-lite/&#34;&gt;Vega-Lite&lt;/a&gt;. Vega-lite provides a few options for you to use the visualizations in other contexts.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Injury deaths in NYC</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/injury-deaths/</link>
       <pubDate>Wed, 18 Oct 2023 13:11:44 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/injury-deaths/</guid>
-      <description>Young and middle-aged adults (ages 15 to 44) do not typically die from the natural causes that kill older adults. Injuries, both intentional — violence or suicide — and unintentional, dominate as causes of death. These premature deaths are tragic, unnecessary and preventable.&#xA;Below we focus on homicide and suicide, reflecting areas of focus in the NYC Health Department’s recently released HealthyNYC, which identifies the major drivers of decreasing life expectancy and health equity in our city and identifies strategies to reduce each driver’s impact.</description>
+      <description>&lt;p&gt;Young and middle-aged adults (ages 15 to 44) do not typically die from the natural causes that kill older adults. Injuries, both intentional — violence or suicide — and unintentional, dominate as causes of death. These premature deaths are tragic, unnecessary and preventable.&lt;/p&gt;&#xA;&lt;p&gt;Below we focus on homicide and suicide, reflecting areas of focus in the &lt;a href=&#34;https://www.nyc.gov/site/doh/about/about-doh/healthynyc.page&#34;&gt;NYC Health Department’s recently released HealthyNYC&lt;/a&gt;, which identifies the major drivers of decreasing life expectancy and health equity in our city and identifies strategies to reduce each driver’s impact.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Waterways</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/waterways/</link>
-      <pubDate>Tue, 15 Aug 2023 15:10:00 -0400</pubDate>
+      <pubDate>Tue, 15 Aug 2023 15:10:00 +0000</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/waterways/</guid>
-      <description>Healthy waterways are important for both aquatic life and humans who use the water for recreation.&#xA;We measure the quality of harbor water through two key indicators:&#xA;Dissolved oxygen is essential for most aquatic life. Coastal habitats and ecosystems thrive in environments with high concentrations of dissolved oxygen.&#xA;Concentrations of fecal coliform bacteria and Enterococci bacteria. Higher levels of these bacteria can mean there is sewage-related water pollution. Though most of these bacteria do not cause disease, higher concentrations can indicate the presence of pathogenic (disease-producing) bacteria.</description>
+      <description>&lt;p&gt;Healthy waterways are important for both aquatic life and humans who use the water for recreation.&lt;/p&gt;&#xA;&lt;p&gt;We measure the quality of harbor water through two key indicators:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;strong&gt;Dissolved oxygen&lt;/strong&gt; is essential for most aquatic life. Coastal habitats and ecosystems thrive in environments with high concentrations of dissolved oxygen.&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;strong&gt;Concentrations of fecal coliform bacteria and Enterococci bacteria&lt;/strong&gt;. Higher levels of these bacteria can mean there is sewage-related water pollution. Though most of these bacteria do not cause disease, higher concentrations can indicate the presence of pathogenic (disease-producing) bacteria.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Lead poisoning affects adults too</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/adult-lead/</link>
       <pubDate>Thu, 13 Jul 2023 08:29:34 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/adult-lead/</guid>
-      <description>Lead is a harmful metal that can cause serious health issues. When lead poisoning makes headlines, the focus is usually on children’s health: Kids are at higher risk for lead exposure, which can cause developmental, learning and behavior issues.&#xA;But lead can also harm adults. In adults, lead can cause increased blood pressure, kidney and brain problems, infertility and impotence. During pregnancy, lead exposure can cause miscarriage or babies to be born too soon or too small.</description>
+      <description>&lt;p&gt;Lead is a harmful metal that can cause serious health issues. When lead poisoning makes headlines, the focus is usually on children’s health: Kids are at higher risk for lead exposure, which can cause developmental, learning and behavior issues.&lt;/p&gt;&#xA;&lt;p&gt;But lead can also harm adults. In adults, lead can cause increased blood pressure, kidney and brain problems, infertility and impotence. During pregnancy, lead exposure can cause miscarriage or babies to be born too soon or too small.&lt;/p&gt;</description>
     </item>
     <item>
       <title>The racial wealth gap has big implications for public health and health equity</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/racial-wealth-gap/</link>
       <pubDate>Fri, 16 Jun 2023 09:01:00 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/racial-wealth-gap/</guid>
-      <description>Throughout history, the distribution of wealth in the U.S. has, and continues to be, largely unequal between racial groups. This concept is referred to as the racial wealth gap and it has its roots in settler colonialism and enslavement. There is an especially big wealth disparity between White families and Black families, which was established and upheld by racist historical policies and practices. The racial wealth gap has major implications for public health.</description>
+      <description>&lt;p&gt;Throughout history, the distribution of wealth in the U.S. has, and continues to be, largely unequal between racial groups. This concept is referred to as the &lt;strong&gt;racial wealth gap&lt;/strong&gt; and it has its roots in settler colonialism and enslavement. There is an especially big wealth disparity between White families and Black families, which was established and upheld by racist historical policies and practices. The racial wealth gap has major implications for public health. This is because a large and growing body of research reveals that having good health is connected to having wealth. Effective solutions to racial inequities in wealth and health must address challenges at the individual, household, community, and systems levels.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Why trash is a public health issue</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/sanitation/</link>
       <pubDate>Mon, 20 Mar 2023 13:11:44 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/sanitation/</guid>
-      <description>New York City’s modern history of public health starts in the 1600s with the Bureau of Sanitary Inspections, and ever since, sanitation has been an essential part of public health — fighting disease by keeping our city clean.&#xA;From A Chronology of the NYC Department of Health&#xA;How sanitation affects health Proper sanitation is a crucial component of public health and of safe, health, and equitable neighborhood environments.&#xA;Trash can pollute our soil, water, and air, becoming an issue of health, quality of life and equity.</description>
+      <description>&lt;p&gt;New York City’s modern history of public health starts in the 1600s with the Bureau of Sanitary Inspections, and ever since, sanitation has been an essential part of public health — fighting disease by keeping our city clean.&lt;/p&gt;&#xA;&lt;figure&gt;&lt;img src=&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/sanitation/nyc-sanitation-1600s.png&#34;&#xA;    alt=&#34;Chronology of important events. New York City Department of Health and its Predecessor Agencies 1655-1966. 1657: Activities of the Bureau of Sanitary Inspections originated to some degree with an ordinance forbidding inhabitants of this city to throw garbage and other refuge in the streets.&#34;&gt;&#xA;&lt;/figure&gt;&#xA;&#xA;&lt;p&gt;&lt;em&gt;From &lt;a href=&#34;https://www1.nyc.gov/assets/doh/downloads/pdf/history/chronology-1966centennial.pdf&#34;&gt;A Chronology of the NYC Department of Health&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>A walk through history</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/block-by-block/</link>
       <pubDate>Sun, 19 Mar 2023 08:49:22 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/block-by-block/</guid>
-      <description>A neighborhood is not only shaped by its residents, but also by governmental practices and policies. Some of these have discriminated against residents because of the color of their skin and have segregated neighborhoods across the nation - including in New York City. This timeline is a selection of key processes and policies that shaped the physical environment and population of East Harlem, and some of the efforts to respond to local issues.</description>
+      <description>&lt;p&gt;A neighborhood is not only shaped by its residents, but also by governmental practices and policies. Some of these have discriminated against residents because of the color of their skin and have segregated neighborhoods across the nation - including in New York City. This timeline is a selection of key processes and policies that shaped the physical environment and population of East Harlem, and some of the efforts to respond to local issues.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Efforts to reduce air pollution should focus on neighborhoods with the worst health impacts</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/hia/</link>
       <pubDate>Thu, 15 Dec 2022 15:23:23 -0500</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/hia/</guid>
-      <description>This story was recently updated with new data.&#xA;Every year in NYC between 2017 and 2019 (The most recent data available. See all recorded years of health impacts data here), fine particulate matter pollution from motor vehicles and burning fossil fuels caused:&#xA;At least 1,800 deaths About 900 hospital admissions for lung and heart conditions 3,100 emergency department admissions for asthma Since air pollution causes significant illness and death in New York City, it&amp;rsquo;s important to reduce air pollution.</description>
+      <description>&lt;p&gt;&lt;em&gt;This story was recently updated with new data.&lt;/em&gt;&lt;/p&gt;&#xA;&lt;p&gt;Every year in NYC between 2017 and 2019 (The most recent data available. &lt;a href=&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/health-impacts-of-air-pollution/?id=2108#display=summary&#34;&gt;See all recorded years of health impacts data here&lt;/a&gt;), fine particulate matter pollution from motor vehicles and burning fossil fuels caused:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;At least &lt;a href=&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/health-impacts-of-air-pollution/?id=2108#display=summary&#34;&gt;1,800 deaths&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;About 900 hospital admissions for &lt;a href=&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/health-impacts-of-air-pollution/?id=2119#display=summary&#34;&gt;lung&lt;/a&gt; and &lt;a href=&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/health-impacts-of-air-pollution/?id=2120#display=summary&#34;&gt;heart conditions&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/health-impacts-of-air-pollution/?id=2117#display=summary&#34;&gt;3,100 emergency department admissions for asthma&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Since air pollution causes significant illness and death in New York City, it&amp;rsquo;s important to reduce air pollution. So where do we start?&lt;/p&gt;</description>
     </item>
     <item>
       <title>Staying safe in cold weather</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/cold/</link>
       <pubDate>Thu, 15 Dec 2022 13:11:44 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/cold/</guid>
-      <description>Cold weather can be dangerous. Here are some tips for staying safe this winter.</description>
+      <description>&lt;p&gt;&lt;a href=&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/weather-related-illness/?id=2175#display=summary&#34;&gt;Cold weather can be dangerous&lt;/a&gt;. Here are some tips for staying safe this winter.&lt;/p&gt;</description>
     </item>
     <item>
       <title>ZAPPA: A tool to understand air quality policies</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/zappa/</link>
       <pubDate>Sat, 03 Dec 2022 08:33:22 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/zappa/</guid>
-      <description>New York City’s air quality is generally good and has been improving over time. Still, air pollution threatens health: two pollutants, ozone and PM2.5 cause about 2,400 deaths per year in NYC, and thousands more emergency department visits and hospitalizations for asthma, heart, and lung problems.&#xA;It’s important to clean up the air to protect New Yorkers, and we know how to do it: reduce emissions from buildings, vehicles, restaurants, power plants, and other sources of pollutants.</description>
+      <description>&lt;p&gt;New York City’s air quality is generally good and has been improving over time. Still, air pollution threatens health: two pollutants, &lt;a href=&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/health-impacts-of-air-pollution/?id=2122#display=summary&#34;&gt;ozone and PM2.5 cause about 2,400 deaths per year in NYC, and thousands more emergency department visits and hospitalizations for asthma, heart, and lung problems&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;p&gt;It’s important to clean up the air to protect New Yorkers, and we know how to do it: reduce emissions from buildings, vehicles, restaurants, power plants, and other sources of pollutants.&lt;/p&gt;</description>
     </item>
     <item>
       <title>The New York City Community Air Survey</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/nyccas/</link>
       <pubDate>Tue, 08 Nov 2022 11:14:56 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/nyccas/</guid>
-      <description>NYCCAS Report: 2008-2022 In 2007, the New York City Department of Health and Mental Hygiene (Health Department) established the New York City Community Air Survey (NYCCAS), the largest ongoing urban air monitoring program of any U.S. city. NYCCAS, which began collecting data in December 2008, is a collaboration between the Health Department and Queens College of the City University of New York and provides data to:&#xA;Help inform PlaNYC, the City’s sustainability plan Track changes in air quality over time Estimate exposures for health research Inform the public about local topics, such as recent air quality improvements, car-free zones, changes in the sources of air pollution, unique air quality studies conducted in New York City, efforts to reduce health impacts and differences in air quality and related health impacts across NYC neighborhoods.</description>
+      <description>&lt;h2&gt;NYCCAS Report: 2008-2022&lt;/h2&gt;&#xA;&lt;p&gt;In 2007, the New York City Department of Health and Mental Hygiene (Health Department) established the New York City Community Air Survey (NYCCAS), the largest ongoing urban air monitoring program of any U.S. city. NYCCAS, which began collecting data in December 2008, is a collaboration between the Health Department and Queens College of the City University of New York and provides data to:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Help inform PlaNYC, the City’s sustainability plan&lt;/li&gt;&#xA;&lt;li&gt;Track changes in air quality over time&lt;/li&gt;&#xA;&lt;li&gt;Estimate exposures for health research&lt;/li&gt;&#xA;&lt;li&gt;Inform the public about local topics, such as &lt;a href=&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/breatheeasy/&#34;&gt;recent air quality improvements&lt;/a&gt;, &lt;a href=&#34;../../data-stories/aqts/&#34;&gt;car-free zones&lt;/a&gt;, &lt;a href=&#34;../../data-stories/aq-cooking/&#34;&gt;changes in the sources of air pollution&lt;/a&gt;, &lt;a href=&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/air-quality-snapshots/&#34;&gt;unique air quality studies conducted in New York City&lt;/a&gt;, &lt;a href=&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/hia/&#34;&gt;efforts to reduce health impacts&lt;/a&gt; and &lt;a href=&#34;../../data-stories/aq2/&#34;&gt;differences in air quality and related health impacts across NYC neighborhoods&lt;/a&gt;. NYCCAS also developed &lt;a href=&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/zappa/&#34;&gt;a tool (ZAPPA) that can help people understand how policy changes can change local emissions&lt;/a&gt;.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;This report:&lt;/p&gt;</description>
     </item>
     <item>
       <title>The redesigned EH Data Portal</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/about/redesign/</link>
       <pubDate>Mon, 07 Nov 2022 08:49:22 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/about/redesign/</guid>
-      <description>The Environment and Health Data Portal looks a little bit different! We recently redesigned our site to make it easier for you to find important data and information on how the environment affects health. Here&amp;rsquo;s what the new site has to offer: An updated design:&#xA;The whole site got a fresh design to make exploring easier for you – whether you’re on a desktop computer, a phone, or a tablet. It&amp;rsquo;s been optimized for accessibility, translation, and clear, simple presentation of information, using the NYC Core Framework, an open-source framework based on Bootstrap.</description>
+      <description>&lt;p&gt;The Environment and Health Data Portal looks a little bit different! We recently redesigned our site to make it easier for you to find important data and information on how the environment affects health.  &lt;/p&gt;&#xA;&lt;p&gt;Here&amp;rsquo;s what the new site has to offer: &lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;An updated design:&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;The whole site got a fresh design to make exploring easier for you – whether you’re on a desktop computer, a phone, or a tablet. It&amp;rsquo;s been optimized for accessibility, translation, and clear, simple presentation of information, using the &lt;a href=&#34;https://www1.nyc.gov/assets/oti/html/nyc-core-framework/index.html&#34;&gt;NYC Core Framework&lt;/a&gt;, an open-source framework based on Bootstrap.  &lt;/p&gt;</description>
     </item>
     <item>
       <title>The redesigned EH Data Portal</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/redesign/</link>
       <pubDate>Mon, 07 Nov 2022 08:49:22 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/redesign/</guid>
-      <description>The Environment and Health Data Portal looks a little bit different! We recently redesigned our site to make it easier for you to find important data and information on how the environment affects health. Here&amp;rsquo;s what the new site has to offer: An updated design:&#xA;The whole site got a fresh design to make exploring easier for you – whether you’re on a desktop computer, a phone, or a tablet. It&amp;rsquo;s been optimized for accessibility, translation, and clear, simple presentation of information, using the NYC Core Framework, an open-source framework based on Bootstrap.</description>
+      <description>&lt;p&gt;The Environment and Health Data Portal looks a little bit different! We recently redesigned our site to make it easier for you to find important data and information on how the environment affects health.  &lt;/p&gt;&#xA;&lt;p&gt;Here&amp;rsquo;s what the new site has to offer: &lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;An updated design:&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;The whole site got a fresh design to make exploring easier for you – whether you’re on a desktop computer, a phone, or a tablet. It&amp;rsquo;s been optimized for accessibility, translation, and clear, simple presentation of information, using the &lt;a href=&#34;https://www1.nyc.gov/assets/oti/html/nyc-core-framework/index.html&#34;&gt;NYC Core Framework&lt;/a&gt;, an open-source framework based on Bootstrap.  &lt;/p&gt;</description>
     </item>
     <item>
       <title>Contact your elected officials</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/take-action/email-electeds/</link>
       <pubDate>Mon, 08 Aug 2022 14:20:53 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/take-action/email-electeds/</guid>
-      <description>Are you concerned about environmental health issues in your neighborhood, or in our city? Email your elected officials and let them know your concerns. This page will help you find your elected officials and their contact information, and help you write an email or give them a phone call.</description>
+      <description>&lt;p&gt;Are you concerned about environmental health issues in your neighborhood, or in our city? Email your elected officials and let them know your concerns. This page will help you find your elected officials and their contact information, and help you write an email or give them a phone call.&lt;/p&gt;</description>
     </item>
     <item>
       <title>An update on air quality during COVID-19</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/air-quality-and-covid-part-2/</link>
       <pubDate>Wed, 20 Apr 2022 08:33:22 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/air-quality-and-covid-part-2/</guid>
-      <description>On March 20, 2020, New York State announced the COVID-19 shutdown, officially known as NY Pause. In NYC, it lasted until June 8, 2020.&#xA;With stay-at-home orders in NY and other states, New York City&amp;rsquo;s air quality changed significantly. Earlier, we looked at data collected from real-time air pollution monitors to see how day-to-day pollution changed when people started to stay home.&#xA;More recently, we used data from our network of air quality monitors to examine air pollution changes over time and across neighborhoods.</description>
+      <description>&lt;p&gt;On March 20, 2020, New York State announced the COVID-19 shutdown, officially known as NY Pause. In NYC, it lasted until June 8, 2020.&lt;/p&gt;&#xA;&lt;p&gt;With stay-at-home orders in NY and other states, New York City&amp;rsquo;s air quality changed significantly. Earlier, &lt;a href=&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/air-quality-and-covid/&#34;&gt;we looked at data collected from real-time air pollution monitors to see how day-to-day pollution changed when people started to stay home&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;p&gt;More recently, we used data from our network of air quality monitors to examine air pollution changes over time and across neighborhoods.&lt;/p&gt;</description>
     </item>
     <item>
       <title>How power outages affect health</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/poweroutages/</link>
       <pubDate>Mon, 10 Jan 2022 12:34:38 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/poweroutages/</guid>
-      <description>Imagine your child has asthma. One summer night, a powerful storm rolls in and knocks the power out.&#xA;Your child starts to have trouble breathing. Usually, you’d use a home nebulizer, an electric machine that turns liquid medicine into a mist that your child breathes in through a face mask.&#xA;But the power is out. Without the nebulizer, your child’s breathing gets worse - and you wonder, is it time to go to the hospital again?</description>
+      <description>&lt;p&gt;Imagine your child has asthma. One summer night, a powerful storm rolls in and knocks the power out.&lt;/p&gt;&#xA;&lt;p&gt;Your child starts to have trouble breathing. Usually, you’d use a home nebulizer, an electric machine that turns liquid medicine into a mist that your child breathes in through a face mask.&lt;/p&gt;&#xA;&lt;p&gt;But the power is out. Without the nebulizer, your child’s breathing gets worse - and you wonder, is it time to go to the hospital again?&lt;/p&gt;</description>
     </item>
     <item>
       <title>We&#39;re Hiring!</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/about/jobs/</link>
       <pubDate>Wed, 24 Nov 2021 13:30:21 -0500</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/about/jobs/</guid>
-      <description>There are no roles currently available in our bureau. Check back soon and search cityjobs.nyc.gov for &amp;lsquo;BESP&amp;rsquo;.</description>
+      <description>&lt;p&gt;There are no roles currently available in our bureau. Check back soon and &lt;a href=&#34;https://cityjobs.nyc.gov/jobs?q=BESP&amp;amp;options=&amp;amp;page=1&#34;&gt;search cityjobs.nyc.gov for &amp;lsquo;BESP&amp;rsquo;&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;!--&#xA;&#xA;Join our team! See below for open positions in our bureau - or, [search cityjobs.nyc.gov for &#39;BESP&#39;](https://cityjobs.nyc.gov/jobs?q=BESP&amp;options=&amp;page=1). --&gt;&#xA;&lt;hr&gt;&#xA;&lt;!-- leaving for reference - all currently expired&#xA;&lt;br&gt;&#xA;&#xA;[**Community Resilience Coordinator**](https://cityjobs.nyc.gov/job/community-resiliency-coordinator-bureau-of-health-equity-capacity-building-in-queens-jid-19551): We&#39;re hiring a Community Resilience Coordinator to support the Bureau of Health Equity Capacity Building in engaging with community organizations such as houses of worship, medical clinics, and senior centers about climate resiliency through trainings, presentations, and communication plans. This role will also involve the development of tools for internal leadership, decisionmakers, and policymakers, and strategizing on incorporating evidence-based climate resiliency activities into existing public health programs.&#xA;&#xA;--&gt;</description>
     </item>
     <item>
       <title>Healthy eating</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/healthy-eating/</link>
       <pubDate>Wed, 17 Nov 2021 12:01:22 -0500</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/healthy-eating/</guid>
-      <description>Healthy eating is associated with better health, including a reduced risk of cardiovascular disease. That means that having access to healthy, safe, and affordable food choices is crucial for a person to achieve healthy eating habits.&#xA;Food access is influenced by many environmental factors, including proximity to food retail outlets and neighborhood-level resources (like neighborhood poverty, and availability of public transportation).&#xA;Sugary drinks contribute to a higher-calorie diet, increased risk of heart disease and diabetes, and long-term weight gain.</description>
+      <description>&lt;p&gt;Healthy eating is associated with better health, including a reduced risk of cardiovascular disease. That means that having access to healthy, safe, and affordable food choices is crucial for a person to achieve healthy eating habits.&lt;/p&gt;&#xA;&lt;p&gt;Food access is influenced by many environmental factors, including proximity to food retail outlets and neighborhood-level resources (like neighborhood poverty, and availability of public transportation).&lt;/p&gt;&#xA;&lt;p&gt;Sugary drinks contribute to a higher-calorie diet, increased risk of heart disease and diabetes, and long-term weight gain. More than half of New York City adults (58%) are overweight or obese; nearly 40% of New York City’s public school students (K-8) are obese or overweight; and the percentage of adults with diagnosed diabetes is increasing, with nearly 10% of New Yorkers now diagnosed with diabetes.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Air quality</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/key-topics/airquality/</link>
       <pubDate>Mon, 04 Oct 2021 12:32:15 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/key-topics/airquality/</guid>
-      <description>New York City&amp;rsquo;s air contains particles, drops of liquid, gasses, and other pollution that can affect health. Bad air quality can be particularly dangerous for older adults, children, and people with heart or lung conditions.&#xA;Air quality varies from neighborhood to neighborhood, based on local levels of emissions and many other factors. We monitor air quality using the New York City Community Air Survey (NYCCAS), NYC&amp;rsquo;s comprehensive air quality monitoring and modeling network.</description>
+      <description>&lt;p&gt;New York City&amp;rsquo;s air contains particles, drops of liquid, gasses, and other pollution that can affect health. Bad air quality can be particularly dangerous for older adults, children, and people with heart or lung conditions.&lt;/p&gt;&#xA;&lt;p&gt;Air quality varies from neighborhood to neighborhood, based on local levels of emissions and many other factors. We monitor air quality using the New York City Community Air Survey (NYCCAS), NYC&amp;rsquo;s comprehensive air quality monitoring and modeling network. NYCCAS allows us to understand neighborhood differences in air quality - and what contributes to those differences.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Climate and health</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/key-topics/climatehealth/</link>
       <pubDate>Sun, 03 Oct 2021 12:33:17 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/key-topics/climatehealth/</guid>
-      <description>Climate, including extreme weather, has a direct impact on health. As NYC&amp;rsquo;s climate changes, along with the world&amp;rsquo;s climate, we expect more frequent and intense heat waves, increased rainfall and more severe storms. These will add to existing weather-related risks. Already, heat kills more people than all other natural disasters combined.&#xA;In New York City, those most vulnerable to the dangers of hot weather are older adults and people with health conditions like heart disease, diabetes, and cognitive impairment - especially those in low-income, Black, and Brown communities.</description>
+      <description>&lt;p&gt;Climate, including extreme weather, has a direct impact on health. As NYC&amp;rsquo;s climate changes, along with the world&amp;rsquo;s climate, we expect more frequent and intense heat waves, increased rainfall and more severe storms. These will add to existing weather-related risks. Already, heat kills more people than all other natural disasters combined.&lt;/p&gt;&#xA;&lt;p&gt;In New York City, those most vulnerable to the dangers of hot weather are older adults and people with health conditions like heart disease, diabetes, and cognitive impairment - especially those in low-income, Black, and Brown communities. Air conditioning is the best defense against the heat. Equitable access and responsible use of air conditioning is crucial to protect the lives of all New Yorkers while reducing impacts on the environment.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Housing</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/key-topics/housing/</link>
       <pubDate>Sat, 02 Oct 2021 07:56:00 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/key-topics/housing/</guid>
-      <description>Most people spend most of their time at home - so the household environment can significantly affect health. Disrepair that stems from long-term maintenance neglect can lead to serious health problems, including: lead poisoning from lead paint; asthma and other respiratory issues triggered by pests; and carbon monoxide poisoning.&#xA;In NYC, substandard housing is disproportionately located in low-income neighborhoods, as historical disinvestment lead to severe, systemic maintenance deficiencies that threatens people&amp;rsquo;s health.</description>
+      <description>&lt;p&gt;Most people spend most of their time at home - so the household environment can significantly affect health. Disrepair that stems from long-term maintenance neglect can lead to serious health problems, including: lead poisoning from lead paint; asthma and other respiratory issues triggered by pests; and carbon monoxide poisoning.&lt;/p&gt;&#xA;&lt;p&gt;In NYC, substandard housing is disproportionately located in low-income neighborhoods, as historical disinvestment lead to severe, systemic maintenance deficiencies that threatens people&amp;rsquo;s health. No family should have to choose between affordable and healthy housing - all tenants are entitled to safe, decent, healthy housing that prevents disease and injury.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Inequality and health inequities</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/key-topics/health-equity/</link>
       <pubDate>Fri, 01 Oct 2021 07:59:16 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/key-topics/health-equity/</guid>
-      <description>Inequality is a significant driver of bad health: a society that deprives people of resources to stay healthy is a society where many people become sick, injured, or die because of factors outside of their control.&#xA;People tend to be healthier when they have access to economic and financial stability, higher education, adequate health care, healthy neighborhoods, and safe, strong communities.&#xA;Health inequities are systematic differences in health outcomes that result from differences in access to the conditions that keep people healthy.</description>
+      <description>&lt;p&gt;Inequality is a significant driver of bad health: a society that deprives people of resources to stay healthy is a society where many people become sick, injured, or die because of factors outside of their control.&lt;/p&gt;&#xA;&lt;p&gt;People tend to be healthier when they have access to economic and financial stability, higher education, adequate health care, healthy neighborhoods, and safe, strong communities.&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;Health inequities&lt;/strong&gt; are systematic differences in health outcomes that result from differences in access to the conditions that keep people healthy. These are called &amp;ldquo;social determinants of health&amp;rdquo; - conditions that people are born into or experience during their lives.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Injury and violence</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/key-topics/injury-and-violence/</link>
       <pubDate>Fri, 01 Oct 2021 07:59:16 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/key-topics/injury-and-violence/</guid>
-      <description>Violence is a public health issue. Injuries, whether intentional (like violence or suicide) or unintentional, are the main causes of death for New Yorkers aged 15 to 44. These deaths are tragic, unnecessary, and can be prevented.&#xA;Violence is a special kind of injury because it affects not just the victim but also the community around them. Experiencing and witnessing violence can lead to poor birth outcomes, developmental delays in children, physical and mental illness, and early death.</description>
+      <description>&lt;p&gt;Violence is a public health issue. Injuries, whether intentional (like violence or suicide) or unintentional, are the main causes of death for New Yorkers aged 15 to 44. These deaths are tragic, unnecessary, and can be prevented.&lt;/p&gt;&#xA;&lt;p&gt;Violence is a special kind of injury because it affects not just the victim but also the community around them. Experiencing and witnessing violence can lead to poor birth outcomes, developmental delays in children, physical and mental illness, and early death. If we understand violence as a public health issue that affects everyone, we can focus on changing the environments and systems that contribute to violence. This gives us new ways to protect people’s health.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Public space, active design, and transportation</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/key-topics/public-space/</link>
       <pubDate>Thu, 30 Sep 2021 07:58:01 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/key-topics/public-space/</guid>
-      <description>Physical activity and healthy eating rank among the leading ways to get and stay healthy.&#xA;Active design is an applied, evidence-informed approach to improve physical, mental and social health outcomes through the design of the built environment. Active design leverages the expertise of architects, planners, developers, community members, designers, and other stakeholders.&#xA;Designing to increase access to high quality parks, pedestrian plazas, sidewalks, quiet spaces, trees and other greenery, secure bicycle storage, gathering spaces, and stairways can have a measurable effect on people’s ability to safely maintain their physical, mental, and social health.</description>
+      <description>&lt;p&gt;Physical activity and healthy eating rank among the leading ways to get and stay healthy.&lt;/p&gt;&#xA;&lt;p&gt;Active design is an applied, evidence-informed approach to improve physical, mental and social health outcomes through the design of the built environment. Active design leverages the expertise of architects, planners, developers, community members, designers, and other stakeholders.&lt;/p&gt;&#xA;&lt;p&gt;Designing to increase access to high quality parks, pedestrian plazas, sidewalks, quiet spaces, trees and other greenery, secure bicycle storage, gathering spaces, and stairways can have a measurable effect on people’s ability to safely maintain their physical, mental, and social health.&lt;/p&gt;</description>
     </item>
     <item>
       <title>2021 NYC Heat-Related Mortality Report</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-report-archive/2021/</link>
       <pubDate>Wed, 08 Sep 2021 11:14:56 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-report-archive/2021/</guid>
-      <description>Summary: Heat Stress Deaths Each summer from 2010-2019, there were, on average,10 heat stress deaths (those caused directly by heat) in New York City (NYC). Lack of home air conditioning (AC) continues to be an important risk factor for heat stress death. Among those who died from heat stress, the place of death was most often an un-air-conditioned home. Black New Yorkers are more likely to die from heat stress, with death rates two times higher than among other New Yorkers.</description>
+      <description>&lt;h2&gt;Summary: Heat Stress Deaths&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Each summer from 2010-2019, there were, on average,10 heat stress deaths (those caused directly by heat) in New York City (NYC).&lt;/li&gt;&#xA;&lt;li&gt;Lack of home air conditioning (AC) continues to be an important risk factor for heat stress death. Among those who died from heat stress, the place of death was most often an un-air-conditioned home.&lt;/li&gt;&#xA;&lt;li&gt;Black New Yorkers are more likely to die from heat stress, with death rates two times higher than among other New Yorkers. This inequity is the result of past and current structural racism that creates economic, educational, health care, housing, and other systems that benefit white people, but put at a disadvantage Black, Indigenous and other people of color.&lt;/li&gt;&#xA;&lt;li&gt;Even though the number of heat stress deaths has decreased in recent years, the racial inequity persists.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2&gt;Summary: Heat-Exacerbated Deaths and Neighborhood Impacts&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;From 2010-2018, there was an average of approximately 100 heat-exacerbated deaths (those caused indirectly by heat, such as by aggravating an underlying illness) each summer associated with extreme heat events, which are defined as at least 2 consecutive days with 95°F or higher daily maximum heat index (HI) or any day with a maximum HI of 100°F or higher, the threshold used for the City&amp;rsquo;s heat advisory.&lt;/li&gt;&#xA;&lt;li&gt;An estimated 350 heat-exacerbated deaths were associated on average each year with hot days overall – daily maximum temperature above 82°F – or about 2% of all natural-cause deaths over summer.&lt;/li&gt;&#xA;&lt;li&gt;Heat-exacerbated mortality is higher in neighborhoods that are home to a greater proportion of Black New Yorkers, reflecting the impacts of structural racism at the neighborhood level. Heat-exacerbated mortality is also higher in communities with a greater proportion of people with household incomes below the federal poverty line.&lt;/li&gt;&#xA;&lt;li&gt;Summers are growing hotter. Although the number of days meeting the National Weather Service extreme heat threshold has stayed constant, the number of non-extreme hot days, (i.e., days with temperature below the heat advisory threshold) is increasing, contributing the most to heat-exacerbated deaths each summer and highlighting the need for heat-mitigation outside of emergency response measures.&lt;/li&gt;&#xA;&lt;li&gt;Emergency response to extreme heat must be coupled with equitable investments in structural interventions and heat mitigation measures to protect New Yorkers throughout the increasingly hot summer weather.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2&gt;Introduction&lt;/h2&gt;&#xA;&lt;p&gt;Hot weather is dangerous to health, sometimes resulting in death.&lt;/p&gt;</description>
     </item>
     <item>
       <title>2022 NYC Heat-Related Mortality Report</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-report-archive/2022/</link>
       <pubDate>Wed, 08 Sep 2021 11:14:56 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-report-archive/2022/</guid>
-      <description>Summary Each summer, an estimated 370 New Yorkers die prematurely because of hot weather in New York City (NYC). These heat-related deaths account for about 2% of all deaths over the warm season months of May - September. Of the 370 deaths:&#xA;From 2011-2020, there was an average of 10 heat-stress deaths (caused directly by heat). From 2011-2019, there was an average of about 360 heat-exacerbated deaths (caused indirectly by heat aggravating an underlying illness).</description>
+      <description>&lt;h2&gt;Summary&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Each summer, an estimated 370 New Yorkers die prematurely because of hot weather in New York City (NYC). These heat-related deaths account for about 2% of all deaths over the warm season months of May - September. Of the 370 deaths:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;From 2011-2020, there was an average of 10 heat-stress deaths (caused directly by heat).&lt;/li&gt;&#xA;&lt;li&gt;From 2011-2019, there was an average of about 360 heat-exacerbated deaths (caused indirectly by heat aggravating an underlying illness).&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Black New Yorkers are more likely to die from heat stress, with death rates two times higher than among White New Yorkers. This inequity is due to past and current structural racism that creates economic, health care, housing, energy, and other systems that benefit white people and disadvantage people of color.&lt;/p&gt;</description>
     </item>
     <item>
       <title>2023 NYC Heat-Related Mortality Report</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-report-archive/2023/</link>
       <pubDate>Wed, 08 Sep 2021 11:14:56 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-report-archive/2023/</guid>
-      <description>Summary This report was corrected on Apr. 2, 2025, after we identified an error. The number of heat-exacerbated deaths was corrected from 345 to 555 and corresponding Figures 3 and 4 in the report were updated. We apologize for this error. More details on the correction.&#xA;Each summer, on average, an estimated 560 New Yorkers die prematurely because of hot weather in New York City (NYC). These heat-related deaths account for about 3% of all deaths over the warm season months of May through September.</description>
+      <description>&lt;h2&gt;Summary&lt;/h2&gt;&#xA;&lt;div class=&#34;asidebox mb-2&#34;&gt;&#xA;        &lt;p class=&#34;fs-sm&#34;&gt;This report was corrected on Apr. 2, 2025, after we identified an error. The number of heat-exacerbated deaths was corrected from 345 to 555 and corresponding Figures 3 and 4 in the report were updated. We apologize for this error. &lt;a href=&#34;#&#34; data-toggle=&#34;modal&#34; data-target=&#34;#noteModal&#34;&gt; More details on the correction&lt;/a&gt;.&lt;/p&gt;&#xA;      &lt;/div&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Each summer, on average, &lt;strong&gt;an estimated 560 New Yorkers die prematurely because of hot weather&lt;/strong&gt; in New York City (NYC). These heat-related deaths account for about 3% of all deaths over the warm season months of May through September. Of the 560 deaths:&#xA;&lt;ul&gt;&#xA;&lt;li&gt;From 2012-2021, there were an average of &lt;strong&gt;7 heat-stress deaths&lt;/strong&gt; (caused directly by heat).&lt;/li&gt;&#xA;&lt;li&gt;From 2016-2020, there were an average of about &lt;strong&gt;555 heat-exacerbated deaths&lt;/strong&gt; (caused indirectly by heat aggravating an underlying illness).&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Heat-exacerbated deaths have been increasing in the past decade&lt;/strong&gt;, mainly due to hotter summers overall with more “non-extreme hot days” of 82°F or up to but below the extreme heat threshold.  &lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Black New Yorkers are more likely to die from heat stress&lt;/strong&gt;, with death rates two times higher than White New Yorkers. This inequity is due to past and current structural racism that creates economic, health care, housing, energy, and other systems that benefit White people and disadvantage people of color.  &lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Lack of access to home air conditioning (AC) is an important risk factor for heat-stress death.&lt;/strong&gt; Among those who died from heat stress, the place of death was most often an un-air-conditioned home.&lt;/li&gt;&#xA;&lt;li&gt;NYC summers are getting hotter because of climate change. &lt;strong&gt;Emergency response to extreme heat must be coupled with equitable investments in structural interventions and heat mitigation measures that reduce risk throughout the season.&lt;/strong&gt; For example, New Yorkers will need energy efficient home cooling that they can afford to run, while tree planting and greening can help reduce local temperatures while providing shade.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;hr class=&#34;my-4&#34; /&gt;&#xA;&lt;h2&gt;Introduction&lt;/h2&gt;&#xA;&lt;p&gt;Hot weather is dangerous to health, sometimes resulting in death. Heat-related deaths are preventable. In this third annual report on heat-related mortality, the NYC Health Department examined data from 2012-2021.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Beach Water Quality</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/beaches/</link>
       <pubDate>Wed, 08 Sep 2021 11:14:56 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/beaches/</guid>
-      <description>One month before New York City&amp;rsquo;s beaches open to the public, the Health Departments starts sampling and monitoring beaches. Sampling provides data about current water quality conditions, and monitoring identifies sources of pollution that affect water quality.&#xA;Each beach is monitored and sampled every week, except for Rockaway and Breezy Point beaches, which are sampled twice each week. Samples are tested for bacteria, debris, animal waste, medical or infectious waste, toxic contaminants, petroleum products, and sewage and wastewater discharge following heavy rainfall.</description>
+      <description>&lt;p&gt;One month before New York City&amp;rsquo;s beaches open to the public, the Health Departments starts sampling and monitoring beaches. Sampling provides data about current water quality conditions, and monitoring identifies sources of pollution that affect water quality.&lt;/p&gt;&#xA;&lt;p&gt;Each beach is monitored and sampled every week, except for Rockaway and Breezy Point beaches, which are sampled twice each week. Samples are tested for bacteria, debris, animal waste, medical or infectious waste, toxic contaminants, petroleum products, and sewage and wastewater discharge following heavy rainfall.&lt;/p&gt;</description>
     </item>
     <item>
       <title>The urban heat island effect in NYC</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/urban-heat-island/</link>
       <pubDate>Fri, 20 Aug 2021 12:52:43 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/urban-heat-island/</guid>
-      <description>In New York City and across the country, more people die from extreme heat than from all other natural disasters combined. To understand how to keep New Yorkers safe from extreme heat, we studied neighborhood factors that affect temperature, and found that grass, shrubs, and trees can play a major role. Let’s take a look.&#xA;At 6.00 PM on June 30, 2018, the air temperature at the LaGuardia Airport Weather Station was 89° Fahrenheit (F).</description>
+      <description>&lt;p&gt;In New York City and across the country, more people die from extreme heat than from all other natural disasters combined. To understand how to keep New Yorkers safe from extreme heat, we studied neighborhood factors that affect temperature, and found that grass, shrubs, and trees can play a major role. Let’s take a look.&lt;/p&gt;&#xA;&lt;p&gt;At 6.00 PM on June 30, 2018, the air temperature at the LaGuardia Airport Weather Station was 89° Fahrenheit (F). At the same time, the air temperature on a block in East Harlem (below left) was nearly 5° hotter than at the Weather Station, and the temperature on a block in Bed-Stuy (below right) was 3.5° hotter.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Environmental health outcomes</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/key-topics/healthoutcomes/</link>
       <pubDate>Wed, 04 Aug 2021 12:32:15 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/key-topics/healthoutcomes/</guid>
-      <description>Our environment - the world around us - affects our health. Here are datasets on health outcomes that people experience that may be linked to the environment.&#xA;Some of these have clear links to the environment, like lead poisoning. Others have some uncertain links, and are still being investigated and understood.&#xA;But while specific health outcomes may have stronger or weaker links to the environment, the environment&amp;rsquo;s overall effect on our health is clear - we know that one of the strongest predictors of health is where you&amp;rsquo;re born.</description>
+      <description>&lt;p&gt;Our environment - the world around us - affects our health. Here are datasets on health outcomes that people experience that may be linked to the environment.&lt;/p&gt;&#xA;&lt;p&gt;Some of these have clear links to the environment, like lead poisoning. Others have some uncertain links, and are still being investigated and understood.&lt;/p&gt;&#xA;&lt;p&gt;But while specific health outcomes may have stronger or weaker links to the environment, the environment&amp;rsquo;s overall effect on our health is clear - we know that one of the strongest predictors of health is where you&amp;rsquo;re born. For example, significant disparities in premature mortality closely align with neighborhoods that were redlined nearly 100 years ago - showing the effect that disinvesment, racism, and inequality have on public health.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Active design</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/active-design/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 -0400</pubDate>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/active-design/</guid>
-      <description>Physical activity and healthy eating are among the leading ways to get and stay healthy.&#xA;Active design is an applied, evidence-informed approach to improve physical, mental and social health outcomes through the design of the built environment.&#xA;To improve health, we can:&#xA;Increase access to public parks and recreation Create pedestrian plazas, and maintain sidewalks Plant street trees Provide safer cycling infrastructure and secure bicycle storage Make stairways attractive and accessible Strategies like these can have a measurable effect on people’s ability to safely maintain their physical, mental, and social health.</description>
+      <description>&lt;p&gt;Physical activity and healthy eating are among the leading ways to get and stay healthy.&lt;/p&gt;&#xA;&lt;p&gt;Active design is an applied, evidence-informed approach to improve physical, mental and social health outcomes through the design of the built environment.&lt;/p&gt;&#xA;&lt;p&gt;To improve health, we can:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Increase access to public parks and recreation&lt;/li&gt;&#xA;&lt;li&gt;Create pedestrian plazas, and maintain sidewalks&lt;/li&gt;&#xA;&lt;li&gt;Plant street trees&lt;/li&gt;&#xA;&lt;li&gt;Provide safer cycling infrastructure and secure bicycle storage&lt;/li&gt;&#xA;&lt;li&gt;Make stairways attractive and accessible&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Strategies like these can have a measurable effect on people’s ability to safely maintain their physical, mental, and social health.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Air quality</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/air-quality/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 -0400</pubDate>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/air-quality/</guid>
-      <description>Air quality is a measure of the condition of the air around us. The less air pollution there is, the better the air quality.&#xA;Like many cities, New York City&amp;rsquo;s air contains particles, liquid droplets, gases, and other contaminants that could impact health. Two pollutants, particulate matter and ground-level ozone, are of particular health concern.&#xA;Although New York City&amp;rsquo;s air does not currently meet federal air quality standards, it has improved significantly over the past two decades.</description>
+      <description>&lt;p&gt;Air quality is a &lt;strong&gt;measure of the condition of the air around us&lt;/strong&gt;. The less air pollution there is, the better the air quality.&lt;/p&gt;&#xA;&lt;p&gt;Like many cities, New York City&amp;rsquo;s air contains particles, liquid droplets, gases, and other contaminants that could impact health. Two pollutants, particulate matter and ground-level ozone, are of particular health concern.&lt;/p&gt;&#xA;&lt;p&gt;Although New York City&amp;rsquo;s air does not currently meet federal air quality standards, &lt;strong&gt;it has improved significantly over the past two decades&lt;/strong&gt;.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Alcohol access and use</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/alcohol-use/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 -0400</pubDate>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/alcohol-use/</guid>
-      <description>Heavy regular drinking and binge drinking contribute to a wide range of chronic health problems, including heart disease, diabetes, cancer, stroke, cirrhosis, depression and dementia. Alcohol use is also associated with suicide, homicide, domestic violence, sexually transmitted diseases and injuries. It is one of the leading behavior-related causes of death in New York City (NYC).&#xA;This site provides data on heavy alcohol consumption and alcohol outlets in NYC.&#xA;Alcohol and the Environment Greater alcohol outlet density has been associated with a variety of health and social consequences, including:</description>
+      <description>&lt;p&gt;Heavy regular drinking and binge drinking contribute to a wide range of chronic health problems, including heart disease, diabetes, cancer, stroke, cirrhosis, depression and dementia. Alcohol use is also associated with suicide, homicide, domestic violence, sexually transmitted diseases and injuries. It is one of the leading behavior-related causes of death in New York City (NYC).&lt;/p&gt;&#xA;&lt;p&gt;This site provides data on heavy alcohol consumption and alcohol outlets in NYC.&lt;/p&gt;&#xA;&lt;h3&gt;Alcohol and the Environment&lt;/h3&gt;&#xA;&lt;p&gt;Greater alcohol outlet density has been associated with a variety of health and social consequences, including:&lt;/p&gt;</description>
     </item>
     <item>
       <title>Asthma</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/asthma/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 -0400</pubDate>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/asthma/</guid>
-      <description>Asthma is a common disease in which the lungs become swollen, making breathing difficult. Symptoms include wheezing, coughing, shortness of breath and tightness in the chest. The exact causes of asthma are not known. Asthma cannot be cured, but it can be controlled.&#xA;Asthma is a leading cause of emergency room visits, hospitalizations and missed school days in New York City&amp;rsquo;s poorest neighborhoods. In NYC, asthma is more common among low-income Black and Latino children.</description>
+      <description>&lt;p&gt;Asthma is a &lt;strong&gt;common disease in which the lungs become swollen, making breathing difficult&lt;/strong&gt;. Symptoms include wheezing, coughing, shortness of breath and tightness in the chest. The exact causes of asthma are not known. &lt;strong&gt;Asthma cannot be cured, but it can be controlled&lt;/strong&gt;.&lt;/p&gt;&#xA;&lt;p&gt;Asthma is a leading cause of emergency room visits, hospitalizations and missed school days in New York City&amp;rsquo;s poorest neighborhoods. In NYC, asthma is more common among &lt;strong&gt;low-income Black and Latino children&lt;/strong&gt;.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Asthma triggers at home</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/asthma-triggers/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 -0400</pubDate>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/asthma-triggers/</guid>
-      <description>Housing conditions can trigger asthma. In New York City, childhood asthma is a significant health threat that affects thousands of children per year.&#xA;No family should have to choose between affordable and healthy housing. All tenants are entitled to safe, decent and sanitary housing, which prevents disease and injury.</description>
+      <description>&lt;p&gt;Housing conditions can trigger asthma. In New York City, childhood asthma is a significant health threat that affects thousands of children per year.&lt;/p&gt;&#xA;&lt;p&gt;No family should have to choose between affordable and healthy housing. All tenants are entitled to safe, decent and sanitary housing, which prevents disease and injury.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Bed bugs</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/bed-bugs/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 -0400</pubDate>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/bed-bugs/</guid>
-      <description>Bed bugs are small insects that feed mainly on human blood. They are often confused with other insects, and many people are not even aware of their presence until they have been bitten. However, not everyone has a reaction to bed bug bites. You may not discover that you have bed bugs until you see other signs of the pests such as, bed bugs themselves, their eggs or droppings, or the blood stains they leave behind in mattresses, box springs, chairs or other materials.</description>
+      <description>&lt;p&gt;Bed bugs are small insects that feed mainly on human blood. They are often confused with other insects, and many people are not even aware of their presence until they have been bitten. However, not everyone has a reaction to bed bug bites. You may not discover that you have bed bugs until you see other signs of the pests such as, bed bugs themselves, their eggs or droppings, or the blood stains they leave behind in mattresses, box springs, chairs or other materials.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Birth defects</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/birth-defects/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 -0400</pubDate>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/birth-defects/</guid>
-      <description>Birth defects (also called congenital malformations) are conditions that happen when a baby does not develop normally during pregnancy. Structural defects may include missing limbs, malformed hearts, spina bifida and genetic conditions like Down Syndrome. Most birth defects happen during the first three months of pregnancy and are detected within the first year of life. Some birth defects (such as cleft lip or clubfoot) are easy to see, but others (such as heart defects or hearing loss) are found using special tests (such as x-rays, CT scans, or hearing tests).</description>
+      <description>&lt;p&gt;Birth defects (also called congenital malformations) are conditions that happen when a baby does not develop normally during pregnancy. Structural defects may include missing limbs, malformed hearts, spina bifida and genetic conditions like Down Syndrome. Most birth defects happen during the first three months of pregnancy and are detected within the first year of life. Some birth defects (such as cleft lip or clubfoot) are easy to see, but others (such as heart defects or hearing loss) are found using special tests (such as x-rays, CT scans, or hearing tests). Birth defects can vary from mild to severe.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Birth outcomes</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/birth-outcomes/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 -0400</pubDate>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/birth-outcomes/</guid>
-      <description>Close to 125,000 live births occur in New York City (NYC) each year. Most babies are born healthy, but those born prematurely or with low birth weight are at greater risk of disability or death. This site tracks indicators of fetal growth and development, infant and perinatal mortality, fertility and sex ratio at birth.&#xA;Birth Outcomes and the Environment Because many genetic and lifestyle factors influence growth and development of fetuses and babies, it can be difficult for researchers to study the effects of environmental exposures on birth outcomes.</description>
+      <description>&lt;p&gt;Close to 125,000 live births occur in New York City (NYC) each year. Most babies are born healthy, but those born prematurely or with low birth weight are at greater risk of disability or death. This site tracks indicators of fetal growth and development, infant and perinatal mortality, fertility and sex ratio at birth.&lt;/p&gt;&#xA;&lt;h3&gt;Birth Outcomes and the Environment&lt;/h3&gt;&#xA;&lt;p&gt;Because many genetic and lifestyle factors influence growth and development of fetuses and babies, it can be difficult for researchers to study the effects of environmental exposures on birth outcomes. Smoking cigarettes during pregnancy, however, is known to result in exposure to many chemicals that can slow the growth of the fetus. Exposure to second-hand smoke can also be harmful. There is some evidence that  prenatal exposure to air pollution (particulate matter and other pollutants), lead, pesticides and solvents increases the likelihood that a pregnancy results in an adverse outcome.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Cancer</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/cancer/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 -0400</pubDate>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/cancer/</guid>
-      <description>Cancer is the general name for a group of more than 100 diseases in which cells in a part of the body begin to grow out of control.&#xA;In New York City cancer kills nearly 13,000 residents every year, with smoking as the leading cause. One of every two men, and one of every three women, will be diagnosed with cancer at some time in their life. In women, breast is the most common type of cancer diagnosed.</description>
+      <description>&lt;p&gt;Cancer is the general name for a group of more than 100 diseases in which cells in a part of the body begin to grow out of control.&lt;/p&gt;&#xA;&lt;p&gt;In New York City cancer kills nearly 13,000 residents every year, with smoking as the leading cause. One of every two men, and one of every three women, will be diagnosed with cancer at some time in their life. In women, breast is the most common type of cancer diagnosed. In men, prostate is the most common type of cancer diagnosed. For both men and women, lung cancers are the leading causes of death from cancer.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Cancers in children</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/cancers-in-children/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 -0400</pubDate>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/cancers-in-children/</guid>
-      <description>Cancer begins when cells in a part of the body start to grow out of control. There are many kinds of cancer, but they all start because of out-of-control growth of abnormal cells. Leukemia (cancer of the blood-forming cells) is the most common form of childhood cancer. There are different kinds of childhood leukemia. The most common kinds are acute lymphocytic leukemia and acute myeloid leukemia . Brain and other nervous system cancers are the second most common types of childhood cancers.</description>
+      <description>&lt;p&gt;Cancer begins when cells in a part of the body start to grow out of control. There are many kinds of cancer, but they all start because of out-of-control growth of abnormal cells. Leukemia (cancer of the blood-forming cells) is the most common form of childhood cancer. There are different kinds of childhood leukemia. The most common kinds are acute lymphocytic leukemia and acute myeloid leukemia . Brain and other nervous system cancers are the second most common types of childhood cancers. Of all childhood cancer, leukemias and brain and other nervous system cancers account for about 50% of cases among children less than 15 years old.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Carbon monoxide</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/carbon-monoxide-incidents/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 -0400</pubDate>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/carbon-monoxide-incidents/</guid>
-      <description>Carbon monoxide (CO) is a poisonous gas that forms when fuel or other materials are burned. It is invisible and has no odor.&#xA;Even short-term exposure to high levels of carbon monoxide can be fatal. Carbon monoxide blocks oxygen transport in the body. Symptoms of mild carbon monoxide poisoning include headache, nausea, fatigue, dizziness and disorientation. Breathing high concentrations of carbon monoxide can cause somebody to lose consciousness and have permanent neurological injury - or even death.</description>
+      <description>&lt;p&gt;Carbon monoxide (CO) is a poisonous gas that forms when fuel or other materials are burned.  It is invisible and has no odor.&lt;/p&gt;&#xA;&lt;p&gt;Even short-term exposure to high levels of carbon monoxide can be fatal. Carbon monoxide blocks oxygen transport in the body.  Symptoms of mild carbon monoxide poisoning include headache, nausea, fatigue, dizziness and disorientation. Breathing high concentrations of carbon monoxide can cause somebody to lose consciousness and have permanent neurological injury - or even death.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Cigarette smoke</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/cigarette-smoke/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 -0400</pubDate>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/cigarette-smoke/</guid>
-      <description>Smoking causes over a dozen cancers, heart disease, stroke, type 2 diabetes and many other diseases; it remains a leading cause of death in New York City (NYC). On average, people who do not smoke live about 10 years longer than people who do.&#xA;Additionally, there is no safe level of exposure to secondhand smoke. Secondhand smoke causes cancer, heart disease and other illnesses in adults. Children exposed to smoke are more likely to have bronchitis, asthma attacks, ear infections, pneumonia and sudden infant death syndrome (SIDS).</description>
+      <description>&lt;p&gt;Smoking causes over a dozen cancers, heart disease, stroke, type 2 diabetes and many other diseases; it remains a leading cause of death in New York City (NYC). On average, people who do not smoke live about 10 years longer than people who do.&lt;/p&gt;&#xA;&lt;p&gt;Additionally, there is no safe level of exposure to secondhand smoke. Secondhand smoke causes cancer, heart disease and other illnesses in adults. Children exposed to smoke are more likely to have bronchitis, asthma attacks, ear infections, pneumonia and sudden infant death syndrome (SIDS).&lt;/p&gt;</description>
     </item>
     <item>
       <title>Cockroaches</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/cockroaches/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 -0400</pubDate>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/cockroaches/</guid>
-      <description>Cockroaches are a common urban pest. Though there are more than a thousand species of roaches, just a few are found in NYC homes. The most common are American Cockroaches, typically found in moist basements and lower floors, and German Cockroaches, found anywhere inside homes.&#xA;Cockroaches like warm, dark places such as toasters, clocks, microwave ovens, walls, and cabinets. They need regular access to food and water to live and breed.</description>
+      <description>&lt;p&gt;Cockroaches are a common urban pest. Though there are more than a thousand species of roaches, just a few are found in NYC homes.  The most common are American Cockroaches, typically found in moist basements and lower floors, and German Cockroaches, found anywhere inside homes.&lt;/p&gt;&#xA;&lt;p&gt;Cockroaches like warm, dark places such as toasters, clocks, microwave ovens, walls, and cabinets.  They need regular access to food and water to live and breed.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Data index</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/data-index/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 -0400</pubDate>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/data-index/</guid>
-      <description>Search by term, see available years and geographies, and filter by data source.</description>
+      <description>&lt;p&gt;Search by term, see available years and geographies, and filter by data source.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Drinking water quality</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/drinking-water-quality/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 -0400</pubDate>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/drinking-water-quality/</guid>
-      <description>All NYC residences receive drinking water from a public water system. Most water is gravity fed from a network of reservoirs and lakes in protected watersheds, up to 125 miles from the city.&#xA;The NYC water system consists of two surface water systems: Croton and Catskill/Delaware and one groundwater system, in Southwestern Queens. Since 1999, the Croton system has served as a supplemental water system. The Catskill/Delaware reservoir system supplies almost all NYC drinking water.</description>
+      <description>&lt;p&gt;All NYC residences &lt;strong&gt;receive drinking water from a public water system.&lt;/strong&gt; Most water is gravity fed from a network of reservoirs and lakes in protected watersheds, up to 125 miles from the city.&lt;/p&gt;&#xA;&lt;p&gt;The NYC water system consists of two surface water systems: Croton and Catskill/Delaware and one groundwater system, in Southwestern Queens. Since 1999, the Croton system has served as a supplemental water system. The Catskill/Delaware reservoir system supplies almost all NYC drinking water. For more on how NYC gets and tests its water, read the &lt;a href=&#34;https://www.nyc.gov/site/dep/about/drinking-water-supply-quality-report.page&#34;&gt;2022 Drinking Water Supply &amp;amp; Quality report.&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>Economic conditions</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/economic-conditions/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 -0400</pubDate>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/economic-conditions/</guid>
-      <description>Social and economic conditions affect people’s health. These conditions (also called “social determinants of health”) are conditions that people may be born into or fall into over the course of their lives.&#xA;People tend to be healthier when they have access to:&#xA;Economic and financial stability Higher education Adequate health care Healthy neighborhoods and safe, strong communities Access to these are shaped by local, national and global distribution of resources and power.</description>
+      <description>&lt;p&gt;Social and economic conditions affect people’s health. These conditions (also called “social determinants of health”) are conditions that people may be born into or fall into over the course of their lives.&lt;/p&gt;&#xA;&lt;p&gt;People tend to be healthier when they have access to:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Economic and financial stability&lt;/li&gt;&#xA;&lt;li&gt;Higher education&lt;/li&gt;&#xA;&lt;li&gt;Adequate health care&lt;/li&gt;&#xA;&lt;li&gt;Healthy neighborhoods and safe, strong communities&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Access to these are shaped by local, national and global distribution of resources and power. When people are deprived of the resources they need to maintain health, they experience worse health outcomes. Discrimination based on race, or limited access to resources because of their cost, often results in &lt;strong&gt;health inequity&lt;/strong&gt; – &lt;strong&gt;avoidable and unfair health outcomes.&lt;/strong&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>Falls among older adults</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/falls-among-older-adults/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 -0400</pubDate>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/falls-among-older-adults/</guid>
-      <description>Each year, one in three older adults (65 years and older) falls. Among New York City&amp;rsquo;s older adults, there are approximately 30,500 emergency department (ED) visits, 16,600 hospitalizations, and 300 deaths each year. Falls are not a normal part of aging, and research shows that many falls can be prevented.&#xA;Falls and the environment Although falls can occur anywhere, falls among older adults frequently happen at home. More than one-half of fall-related hospitalizations among older adults were due to falls in the home.</description>
+      <description>&lt;p&gt;Each year, one in three older adults (65 years and older) falls. Among New York City&amp;rsquo;s older adults, there are approximately 30,500 emergency department (ED) visits, 16,600 hospitalizations, and 300 deaths each year. Falls are not a normal part of aging, and research shows that many falls can be prevented.&lt;/p&gt;&#xA;&lt;h3&gt;Falls and the environment&lt;/h3&gt;&#xA;&lt;p&gt;Although falls can occur anywhere, falls among older adults frequently happen at home. More than one-half of fall-related hospitalizations among older adults were due to falls in the home. There are many risk factors for falls among older adults including previous falls, gait or balance problems, and use of multiple medications that interact with one another or cause side effects. Physical features of the environment can also put seniors at risk. Common fall risks hazards in homes include slippery surfaces, inadequate lighting, and tripping hazards, such as clutter, loose rugs, or uneven flooring.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Health care</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/health-care/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 -0400</pubDate>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/health-care/</guid>
-      <description>Health care is a valuable tool to stay healthy.&#xA;Health insurance coverage is associated with many health benefits. People with health insurance are more likely to have a regular doctor, receive preventive care services, better manage chronic health conditions, have longer life expectancy, and more.&#xA;However, not all New Yorkers can access appropriate amounts of care. Many New Yorkers remain uninsured. People without access to appropriate health care don&amp;rsquo;t receive the care they need to stay healthy.</description>
+      <description>&lt;p&gt;Health care is a valuable tool to stay healthy.&lt;/p&gt;&#xA;&lt;p&gt;Health insurance coverage is associated with many health benefits. People with health insurance are more likely to have a regular doctor, receive preventive care services, better manage chronic health conditions, have longer life expectancy, and more.&lt;/p&gt;&#xA;&lt;p&gt;However, not all New Yorkers can access appropriate amounts of care. Many New Yorkers remain uninsured. People without access to appropriate health care don&amp;rsquo;t receive the care they need to stay healthy. They may postpone care, be unable to afford medication or treatment, and become sicker and die earlier than people with good health insurance and good health care.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Health impacts of air pollution</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/health-impacts-of-air-pollution/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 -0400</pubDate>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/health-impacts-of-air-pollution/</guid>
-      <description>Air pollution is an important environmental threat to the health of New York City residents. Exposures to two common air pollutants, fine particulate matter (PM2.5) and ozone (O3), can worsen respiratory illness and heart conditions and contribute to premature deaths. Older adults, children and people with existing heart and lung disease are especially affected. This site provides estimates of the impact of air pollution on the health of NYC residents as measured by the numbers of emergency department visits, hospitalizations, and deaths attributable to PM2.</description>
+      <description>&lt;p&gt;Air pollution is an important environmental threat to the health of New York City residents. Exposures to two common air pollutants, &lt;strong&gt;fine particulate matter (PM2.5)&lt;/strong&gt; and &lt;strong&gt;ozone (O3)&lt;/strong&gt;, can worsen respiratory illness and heart conditions and contribute to premature deaths. Older adults, children and people with existing heart and lung disease are especially affected. This site provides estimates of the impact of air pollution on the health of NYC residents as measured by the numbers of emergency department visits, hospitalizations, and deaths attributable to PM2.5 and ozone.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Housing maintenance</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/housing-maintenance/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 -0400</pubDate>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/housing-maintenance/</guid>
-      <description>Buildings with maintenance issues and disrepair can harm health. Across NYC, low-income neighborhoods have a higher percentage of buildings in disrepair due to past and present disinvestment and housing discrimination. This housing disrepair harms residents&amp;rsquo; health.&#xA;No family should have to choose between affordable and healthy housing. All tenants are entitled to safe, decent and sanitary housing, which prevents disease and injury. All building owners are required by law to provide essential services such as heat and hot water, make timely repairs, and maintain a pest-free building.</description>
+      <description>&lt;p&gt;Buildings with maintenance issues and disrepair can harm health. Across NYC, low-income neighborhoods have a higher percentage of buildings in disrepair due to past and present disinvestment and housing discrimination. This housing disrepair harms residents&amp;rsquo; health.&lt;/p&gt;&#xA;&lt;p&gt;No family should have to choose between affordable and healthy housing. All tenants are entitled to safe, decent and sanitary housing, which prevents disease and injury. All building owners are required by law to provide essential services such as heat and hot water, make timely repairs, and maintain a pest-free building.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Housing safety</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/housing-safety/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 -0400</pubDate>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/housing-safety/</guid>
-      <description>Most people spend most of their time in their home. That makes the home a crucial environment that can affect one&amp;rsquo;s health - both in terms of safety characteristics within the home, and in terms of factors that affect housing stability.&#xA;Safety characteristics A home&amp;rsquo;s safety characteristics might include:&#xA;Air conditioning, which is a vital tool to protect people who are at risk of heat-related illness and death Electric medical equipment.</description>
+      <description>&lt;p&gt;Most people spend most of their time in their home. That makes the home a crucial environment that can affect one&amp;rsquo;s health - both in terms of safety characteristics within the home, and in terms of factors that affect housing stability.&lt;/p&gt;&#xA;&lt;h3&gt;Safety characteristics&lt;/h3&gt;&#xA;&lt;p&gt;A home&amp;rsquo;s safety characteristics might include:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Air conditioning, which is a vital tool to protect people who are at risk of heat-related illness and death&lt;/li&gt;&#xA;&lt;li&gt;Electric medical equipment. People who rely on electric medical equipment are at risk during power outages.&lt;/li&gt;&#xA;&lt;li&gt;Grab bars in bathrooms, which can help older people and people with mobility impairments stay safe.&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
     </item>
     <item>
       <title>Housing stability</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/housing-stability/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 -0400</pubDate>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/housing-stability/</guid>
-      <description>Most people spend most of their time in their home. That makes the home a crucial environment that can affect one&amp;rsquo;s health.&#xA;Housing stability In NYC, about one out of every three homes is owned by the person living there - about half the national average. Owning a home is a powerful way to build intergenerational wealth, but historical and contemporary disinvestment and housing discrimination has made it hard for many New Yorkers to own homes.</description>
+      <description>&lt;p&gt;Most people spend most of their time in their home. That makes the home a crucial environment that can affect one&amp;rsquo;s health.&lt;/p&gt;&#xA;&lt;h3&gt;Housing stability&lt;/h3&gt;&#xA;&lt;p&gt;In NYC, about one out of every three homes is owned by the person living there - about half the national average. Owning a home is a powerful way to build intergenerational wealth, but historical and contemporary disinvestment and housing discrimination has made it hard for many New Yorkers to own homes.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Indicator catalog</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/indicator-catalog/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 -0400</pubDate>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/indicator-catalog/</guid>
-      <description>Search by term, get metadata and download links.</description>
+      <description>&lt;p&gt;Search by term, get metadata and download links.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Lead poisoning</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/lead/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 -0400</pubDate>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/lead/</guid>
-      <description>Lead is a metal that is toxic to people. There is no safe level of lead in your body. It can cause learning and behavior problems, and delay physical growth and mental development.&#xA;In the past, it was used in gasoline, paint, ceramics, caulking, pipes and solder. In 1960, NYC banned the use of lead-based paint in homes. A national ban came into effect in 1978. Leaded gasoline was phased out beginning in the 1970&amp;rsquo;s.</description>
+      <description>&lt;p&gt;Lead is a metal that is toxic to people. There is no safe level of lead in your body. It can cause learning and behavior problems, and delay physical growth and mental development.&lt;/p&gt;&#xA;&lt;p&gt;In the past, it was used in gasoline, paint, ceramics, caulking, pipes and solder. In 1960, NYC banned the use of lead-based paint in homes. A national ban came into effect in 1978. Leaded gasoline was phased out beginning in the 1970&amp;rsquo;s. However, lead can still be found in some products and in our environment. Layers of lead paint may still be present in older buildings and can become dangerous when the paint chips or peels or is abraded, or when renovations or repairs are conducted without properly controlling dust. Families living in older, poorly maintained housing are at higher risk for lead poisoning.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Mice and rats</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/mice-and-rats/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 -0400</pubDate>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/mice-and-rats/</guid>
-      <description>Rats and mice are common, but preventable. In NYC, rats tend to be seen on streets, alleys and sidewalks, and in yards and basements, while mice are almost always found inside buildings.&#xA;Rats and mice thrive where there are sources of food and shelter and where property owners fail to prevent and adequately respond to their presence.&#xA;Mice, Rats and Health Today, rats are recognized for their contribution to neighborhood stress, poor quality of life, contamination of food, potential threat to public health, and for their contribution to the destruction of infrastructure.</description>
+      <description>&lt;p&gt;Rats and mice are common, but preventable. In NYC, rats tend to be seen on streets, alleys and sidewalks, and in yards and basements, while mice are almost always found inside buildings.&lt;/p&gt;&#xA;&lt;p&gt;Rats and mice thrive where there are sources of food and shelter and where property owners fail to prevent and adequately respond to their presence.&lt;/p&gt;&#xA;&lt;h3&gt;Mice, Rats and Health&lt;/h3&gt;&#xA;&lt;p&gt;Today, rats are recognized for their contribution to neighborhood stress, poor quality of life, contamination of food, potential threat to public health, and for their contribution to the destruction of infrastructure. Mice can contaminate food, and their urine and dander are potent allergens, which can exacerbate the symptoms of asthma in sensitive people.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Mortality</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/mortality/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 -0400</pubDate>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/mortality/</guid>
-      <description>Death is, of course, a severe health outcome. Many deaths are preventable.&#xA;Premature mortality lets us look at deaths before age 65. It can be a useful way to indicate the overall health of the population.&#xA;Neonatal deaths, postneonatal deaths, and infant deaths let us look at deaths among the the youngest members of our communities. Infants, with new, developing bodies, can be very susceptible to environmental threats - like poisonings, accidents, and injuries.</description>
+      <description>&lt;p&gt;Death is, of course, a severe health outcome. Many deaths are preventable.&lt;/p&gt;&#xA;&lt;p&gt;Premature mortality lets us look at deaths before age 65. It can be a useful way to indicate the overall health of the population.&lt;/p&gt;&#xA;&lt;p&gt;Neonatal deaths, postneonatal deaths, and infant deaths let us look at deaths among the the youngest members of our communities. Infants, with new, developing bodies, can be very susceptible to environmental threats - like poisonings, accidents, and injuries.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Overweight</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/overweight/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 -0400</pubDate>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/overweight/</guid>
-      <description>People who are overweight or obese are at increased risk for heart disease and diabetes. Physical activity and healthy eating can promote well-being and relieve stress.&#xA;Weight and the Environment Neighborhood conditions and resources can encourage or discourage healthy behaviors. The density and types of food retail outlets available in neighborhoods may affect food shopping habits and nutrition choices of residents. Healthy food choices combined with physically active lifestyle support maintenance of an optimal bodyweight and overall good health.</description>
+      <description>&lt;p&gt;People who are overweight or obese are at increased risk for heart disease and diabetes. Physical activity and healthy eating can promote well-being and relieve stress.&lt;/p&gt;&#xA;&lt;h3&gt;Weight and the Environment&lt;/h3&gt;&#xA;&lt;p&gt;Neighborhood conditions and resources can encourage or discourage healthy behaviors. The density and types of food retail outlets available in neighborhoods may affect food shopping habits and nutrition choices of residents. Healthy food choices combined with physically active lifestyle support maintenance of an optimal bodyweight and overall good health.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Pesticides</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/pesticides/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 -0400</pubDate>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/pesticides/</guid>
-      <description>Pesticides are chemicals applied to kill or control insects, rats and mice, undesirable plants and weeds, or fungi (e.g., mold). Pesticides are often categorized by type of use (e.g., rodenticide, insecticide) or chemical class (e.g., organophosphate, pyrethroid).&#xA;Modern pesticides have been developed to have less persistence in the environment than earlier chlorine-based chemicals such as DDT. Pesticides may be applied by a commercial applicator or a non-professional who has purchased a product from a store.</description>
+      <description>&lt;p&gt;Pesticides are chemicals applied to kill or control insects, rats and mice, undesirable plants and weeds, or fungi (e.g., mold). Pesticides are often categorized by type of use (e.g., rodenticide, insecticide) or chemical class (e.g., organophosphate, pyrethroid).&lt;/p&gt;&#xA;&lt;p&gt;Modern pesticides have been developed to have less persistence in the environment than earlier chlorine-based chemicals such as DDT. Pesticides may be applied by a commercial applicator or a non-professional who has purchased a product from a store.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Physical activity</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/physical-activity/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 -0400</pubDate>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/physical-activity/</guid>
-      <description>Physical activity is an important part of a healthy lifestyle. Regular physical activity is associated with many health benefits, including improved fitness, prevention of weight gain, and lower risk of heart disease, stroke, high blood pressure, diabetes and some cancers. In addition, regular physical activity and healthy eating can promote well-being and relieve stress. For children, regular physical activity is also associated with improved academic performance.&#xA;Physical Activity and the Environment Neighborhood conditions and resources can encourage or discourage healthy behaviors.</description>
+      <description>&lt;p&gt;Physical activity is an important part of a healthy lifestyle. Regular physical activity is associated with many health benefits, including improved fitness, prevention of weight gain, and lower risk of heart disease, stroke, high blood pressure, diabetes and some cancers. In addition, regular physical activity and healthy eating can promote well-being and relieve stress. For children, regular physical activity is also associated with improved academic performance.&lt;/p&gt;&#xA;&lt;h3&gt;Physical Activity and the Environment&lt;/h3&gt;&#xA;&lt;p&gt;Neighborhood conditions and resources can encourage or discourage healthy behaviors. Aspects of the physical environment - such as the presence of well-maintained green spaces, bicycle paths, walking paths, stairs, exercise facilities and perceived safety - encourage physical activity. Healthy food choices combined with physically active lifestyle support maintenance of an optimal bodyweight and overall good health.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Restaurant food safety</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/restaurant-food-safety/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 -0400</pubDate>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/restaurant-food-safety/</guid>
-      <description>New York City has approximately 28,000 restaurants that the Health Department inspects every year to monitor compliance with city and state food safety regulations. At the end of an inspection, the Health Department gives restaurants a score, which is eventually converted to a grade of A, B or C. This site describes the distribution of A grades across New York City restaurants.&#xA;Restaurant Food Safety and Health Safe food handling can protect diners from foodborne illness.</description>
+      <description>&lt;p&gt;New York City has approximately 28,000 restaurants that the Health Department inspects every year to monitor compliance with city and state food safety regulations. At the end of an inspection, the Health Department gives restaurants a score, which is eventually converted to a grade of A, B or C. This site describes the distribution of A grades across New York City restaurants.&lt;/p&gt;&#xA;&lt;h3&gt;Restaurant Food Safety and Health&lt;/h3&gt;&#xA;&lt;p&gt;Safe food handling can protect diners from foodborne illness. During inspections, health inspectors look to ensure that restaurants and their employees are maintaining proper food safety practices. They measure food temperature; look for evidence of food contamination; check for roaches and other vermin; and examine a restaurant&amp;rsquo;s cooking, refrigeration, and cleaning equipment. If the inspector finds violations, she marks points on her inspection checklist. More points mean a lower grade. If conditions are so bad that they pose a public health hazard, the Health Department may close the restaurant until they are fixed.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Social conditions</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/social-conditions/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 -0400</pubDate>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/social-conditions/</guid>
-      <description>Social and economic conditions affect people’s health. These conditions (also called “social determinants of health”) are conditions that people may be born into or fall into over the course of their lives.&#xA;People tend to be healthier when they have access to:&#xA;Economic and financial stability Higher education Adequate health care Healthy neighborhoods and safe, strong communities But when people don’t have access to these conditions, they experience worse health outcomes.</description>
+      <description>&lt;p&gt;Social and economic conditions affect people’s health. These conditions (also called “social determinants of health”) are conditions that people may be born into or fall into over the course of their lives.&lt;/p&gt;&#xA;&lt;p&gt;People tend to be healthier when they have access to:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Economic and financial stability&lt;/li&gt;&#xA;&lt;li&gt;Higher education&lt;/li&gt;&#xA;&lt;li&gt;Adequate health care&lt;/li&gt;&#xA;&lt;li&gt;Healthy neighborhoods and safe, strong communities&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;But when people don’t have access to these conditions, they experience worse health outcomes. Discrimination based on race (and other personal or social characteristics) results in disparities in access to resources that protect and maintain health – and thus, results in unfair disparities in health outcomes. This is &lt;strong&gt;health inequity&lt;/strong&gt; – &lt;strong&gt;avoidable and unfair health outcomes.&lt;/strong&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>Transportation-related injuries</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/transportation-related-injuries/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 -0400</pubDate>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/transportation-related-injuries/</guid>
-      <description>Traffic injuries are no accident. Like other public health concerns, they are preventable through data driven solutions. In NYC, traffic injuries, which include injuries among pedestrians, bicyclists, motorcyclists, and motor vehicle occupants, are a leading cause of injury-related hospitalizations and emergency department visits.&#xA;In February 2014, NYC launched “Vision Zero”, an action plan to reduce injuries and deaths on city streets. Vision Zero is a multi-agency effort, incorporating road engineering, traffic enforcement, community outreach and education, and policy work to make NYC streets safer.</description>
+      <description>&lt;p&gt;Traffic injuries are no accident. Like other public health concerns, they are preventable through data driven solutions. In NYC, traffic injuries, which include injuries among pedestrians, bicyclists, motorcyclists, and motor vehicle occupants, are a leading cause of injury-related hospitalizations and emergency department visits.&lt;/p&gt;&#xA;&lt;p&gt;In February 2014, NYC launched &lt;a href=&#34;http://www.nyc.gov/html/visionzero/pages/home/home.html&#34;&gt;“Vision Zero”&lt;/a&gt;, an action plan to reduce injuries and deaths on city streets. Vision Zero is a multi-agency effort, incorporating road engineering, traffic enforcement, community outreach and education, and policy work to make NYC streets safer.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Vector-borne disease</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/vector-borne-disease/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 -0400</pubDate>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/vector-borne-disease/</guid>
-      <description>Vector-borne diseases are diseases that are transmitted from an arthropod (usually a tick or mosquito, etc.) to humans or other animals. Some vector-borne disease agents are maintained primarily through transmission between arthropods and humans (e.g., dengue virus and malaria), while others are maintained between arthropods and animal reservoirs (e.g., Lyme disease and West Nile virus) and humans may become infected incidentally.&#xA;Vector-borne Disease and the Environment Climate is one of many important interacting variables that affect people’s risk for vector-borne diseases in New York City.</description>
+      <description>&lt;p&gt;Vector-borne diseases are diseases that are transmitted from an arthropod (usually a tick or mosquito, etc.) to humans or other animals. Some vector-borne disease agents are maintained primarily through transmission between arthropods and humans (e.g., dengue virus and malaria), while others are maintained between arthropods and animal reservoirs (e.g., Lyme disease and West Nile virus) and humans may become infected incidentally.&lt;/p&gt;&#xA;&lt;h3&gt;Vector-borne Disease and the Environment&lt;/h3&gt;&#xA;&lt;p&gt;Climate is one of many important interacting variables that affect people’s risk for vector-borne diseases in New York City. Warmer winters make it easier for ticks to survive in NYC year-round, while a longer warm season increases the length of time that ticks are active each year. Warming temperatures can lengthen the season in which mosquitoes are out and biting, and accelerate the mosquito life cycle. This can mean more frequent contact between mosquitoes and their hosts, which can facilitate the spread of diseases.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Violence</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/violence/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 -0400</pubDate>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/violence/</guid>
-      <description>Violence is the use of physical, verbal and/or emotional force to injure, harm, abuse, damage or destroy. While violence can be self-inflicted, community violence occurs outside the home between people who or may not know each other.&#xA;Violence is frequently described through homicide statistics. While homicide is a leading cause of death, especially among 15–34-year-olds, and captures the most severe form of violence, non-fatal violence-related injuries are much more common and help paint the larger picture on the burden of violence and its impact on the health and future of individuals, families, and communities.</description>
-    </item>
-    <item>
-      <title>Weather-related illness</title>
-      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/weather-related-illness/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 -0400</pubDate>
-      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/weather-related-illness/</guid>
-      <description>A region&amp;rsquo;s climate is characterized by its usual weather conditions, seasons, and patterns in extreme weather events such as heat waves, droughts, and hurricanes. New York City (NYC) faces public health risks from extreme weather events such as heat waves and coastal storms. With climate change, the severity of some of these risks will increase. A 2013 New York City Panel on Climate Change (NPCC) report predicts that by the 2020s, average summer temperatures in New York City will increase by 2.</description>
-    </item>
-    <item>
-      <title>Worker health</title>
-      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/worker-health/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 -0400</pubDate>
-      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/worker-health/</guid>
-      <description>Every year in New York City, workers are injured on the job or become ill as a result of exposure to health hazards at work. However, most work-related illnesses and injuries are preventable – safer work environments can be achieved when workplace hazards are understood and appropriate prevention measures are put in place.&#xA;Data on work-related injuries and illness are used to show how often these preventable events occur and to identify factors that place workers at risk.</description>
+      <description>&lt;p&gt;Violence is the use of physical, verbal and/or emotional force to injure, harm, abuse, damage or destroy. While violence can be self-inflicted, community violence occurs outside the home between people who or may not know each other.&lt;/p&gt;&#xA;&lt;p&gt;Violence is frequently described through homicide statistics. While homicide is a leading cause of death, especially among 15–34-year-olds, and captures the most severe form of violence, non-fatal violence-related injuries are much more common and help paint the larger picture on the burden of violence and its impact on the health and future of individuals, families, and communities.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Walking, driving, and cycling</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/walking-driving-and-cycling/</link>
       <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/walking-driving-and-cycling/</guid>
-      <description>People get around New York City in many ways - public transit, walking, cycling, driving, and other modes too. When these individual behaviors are added up, they shape our city and our health.&#xA;Our built environment influences these behaviors. The design of our streets and presence of infrastructure like bicycle lanes, well maintained sidewalks, safe street crossings, dedicated bus lanes and convenient access to the subway have the potential to increase both the usage and safety of these forms of transportation.</description>
+      <description>&lt;p&gt;People get around New York City in many ways - public transit, walking, cycling, driving, and other modes too. When these individual behaviors are added up, they shape our city and our health.&lt;/p&gt;&#xA;&lt;p&gt;Our built environment influences these behaviors. The design of our streets and presence of infrastructure like bicycle lanes, well maintained sidewalks, safe street crossings, dedicated bus lanes and convenient access to the subway have the potential to increase both the usage and safety of these forms of transportation. Increased access and feeling of safety also impact many aspects of health, including physical activity and mental health. Meanwhile, car and truck traffic takes a toll on our public health, contributing to air pollution, transportation-related injuries, and climate change.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Weather-related illness</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/weather-related-illness/</link>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/weather-related-illness/</guid>
+      <description>&lt;p&gt;A region&amp;rsquo;s climate is characterized by its usual weather conditions, seasons, and patterns in extreme weather events such as heat waves, droughts, and hurricanes. New York City (NYC) faces public health risks from extreme weather events such as heat waves and coastal storms. With climate change, the severity of some of these risks will increase. A 2013 New York City Panel on Climate Change (NPCC) report predicts that by the 2020s, average summer temperatures in New York City will increase by 2.0°F to 3.0°F compared to a 1971-2000 baseline. Heat waves will become more frequent, intense, and longer in duration. Rainfall and precipitation are expected to increase, together with another 4-8 inches of sea level rise and increased probability of coastal storms with flooding (NPCC, Climate Risk Information, 2013).&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Worker health</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/worker-health/</link>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/worker-health/</guid>
+      <description>&lt;p&gt;Every year in New York City, workers are injured on the job or become ill as a result of exposure to health hazards at work. However, &lt;strong&gt;most work-related illnesses and injuries are preventable&lt;/strong&gt; –  safer work environments can be achieved when workplace hazards are understood and appropriate prevention measures are put in place.&lt;/p&gt;&#xA;&lt;p&gt;Data on work-related injuries and illness are used to show how often these preventable events occur and to identify  factors that place workers at risk. These data are also used to design, target and evaluate prevention strategies and regulations that aim to keep workers safe and healthy.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Child health</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/key-topics/childhealth/</link>
       <pubDate>Wed, 05 May 2021 07:59:26 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/key-topics/childhealth/</guid>
-      <description>Lifelong health can be determined by your health when you are a child. Plus, children can be fragile, and can be more harmed by environmental threats. So, ways that the environment can affect health often are particularly important for child health.&#xA;In New York City, several environmental factors play a key role in determining childhood health.</description>
+      <description>&lt;p&gt;Lifelong health can be determined by your health when you are a child. Plus, children can be fragile, and can be more harmed by environmental threats. So, ways that the environment can affect health often are particularly important for child health.&lt;/p&gt;&#xA;&lt;p&gt;In New York City, several environmental factors play a key role in determining childhood health.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Pests and pesticides</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/key-topics/pests/</link>
       <pubDate>Wed, 05 May 2021 07:59:02 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/key-topics/pests/</guid>
-      <description>Pests and pesticides can both have health effects. Household pests like mice, rats, and cockroaches can trigger asthma, while bed bugs are a well-known nuisance. Meanwhile, warmer winters may mean more vector-borne diseases like babesiosis and west nile virus.&#xA;Pesticides are chemicals used to control or kill insects, rats, mice, plants and weeds, or fungi (mold). Exposure to pesticides can occur from consuming foods or beverages that contain pesticide residues, from direct contact with the skin or eyes, or from breathing air in areas where pesticides are applied.</description>
+      <description>&lt;p&gt;Pests and pesticides can both have health effects. Household pests like mice, rats, and cockroaches can trigger asthma, while bed bugs are a well-known nuisance. Meanwhile, warmer winters may mean more vector-borne diseases like babesiosis and west nile virus.&lt;/p&gt;&#xA;&lt;p&gt;Pesticides are chemicals used to control or kill insects, rats, mice, plants and weeds, or fungi (mold). Exposure to pesticides can occur from consuming foods or beverages that contain pesticide residues, from direct contact with the skin or eyes, or from breathing air in areas where pesticides are applied. Health effects from exposure to pesticides vary by chemical class. In general, short-term effects on humans from high levels of exposure include damage to the skin and eyes, difficulty breathing, neurological tremors or seizure and, in extreme cases, loss of consciousness and death. Current research is investigating whether chronic exposure to certain pesticides increases risk of some cancers, reproductive and developmental problems and neurodegenerative diseases such as Parkinson&amp;rsquo;s disease.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Food and drink</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/key-topics/foodanddrink/</link>
       <pubDate>Wed, 05 May 2021 07:58:53 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/key-topics/foodanddrink/</guid>
-      <description>We all make choices around food and drink, but sometimes, those choices are made for us by our food environments.&#xA;Our food environments include neighborhood-level alcohol access, unhealthy food access, and restaurant food safety. Additionally, drinking water quality data includes data on contaminants that are most frequently found at levels that may be of public health significant in the country&amp;rsquo;s drinking water.</description>
+      <description>&lt;p&gt;We all make choices around food and drink, but sometimes, those choices are made for us by our food environments.&lt;/p&gt;&#xA;&lt;p&gt;Our food environments include neighborhood-level alcohol access, unhealthy food access, and restaurant food safety. Additionally, drinking water quality data includes data on contaminants that are most frequently found at levels that may be of public health significant in the country&amp;rsquo;s drinking water.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Tracking changes in New York City&#39;s sources of air pollution</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/restaurants-and-air-quality/</link>
       <pubDate>Mon, 12 Apr 2021 12:02:09 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/restaurants-and-air-quality/</guid>
-      <description>As city life changes, so does its air quality, as sources of emissions that affect the city&amp;rsquo;s outdoor air quality, like truck traffic, building boilers and restaurants, also change. For more than a decade, we have been tracking air quality through the NYC Community Air Survey (NYCCAS) and exploring the factors that drive neighborhood differences. We have found some interesting changes in the sources of air pollution across NYC neighborhoods.</description>
+      <description>&lt;p&gt;As city life changes, so does its air quality, as sources of emissions that affect the city&amp;rsquo;s outdoor air quality, like truck traffic, building boilers and restaurants, also change. For more than a decade, we have been tracking air quality through the  &lt;a href=&#34;#NYCCAS&#34; data-toggle=&#34;collapse&#34; class=&#34;badge badge-pill badge-primary&#34;&gt;NYC Community Air Survey (NYCCAS)&lt;/a&gt; and exploring the factors that drive neighborhood differences. We have found some interesting changes in the sources of air pollution across NYC neighborhoods.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Why violence is a public health issue</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/violence/</link>
       <pubDate>Mon, 08 Feb 2021 08:07:31 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/violence/</guid>
-      <description>Using public health to prevent violence Experiencing violence affects people in many ways. It not only causes physical injury or death, but being exposed to it can also cause emotional and psychological trauma. Violence doesn’t just affect the immediate victim, it affects their surrounding community, too.&#xA;Violence can affect people throughout their lives: it is associated with worse birth outcomes, childhood developmental delays, physical and mental illness, and premature deaths.</description>
+      <description>&lt;h2&gt;Using public health to prevent violence&lt;/h2&gt;&#xA;&lt;p&gt;Experiencing violence affects people in many ways. It not only causes physical injury or death, but being exposed to it can also cause emotional and psychological trauma. Violence doesn’t just affect the immediate victim, it affects their surrounding community, too.&lt;/p&gt;&#xA;&lt;p&gt;Violence can affect people throughout their lives: it is associated with worse birth outcomes, childhood developmental delays, physical and mental illness, and premature deaths.&lt;/p&gt;</description>
     </item>
     <item>
       <title>The public health impacts of PM2.5 from traffic air pollution</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/traffic-and-air-pollution/</link>
       <pubDate>Fri, 05 Feb 2021 08:49:22 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/traffic-and-air-pollution/</guid>
-      <description>PM2.5—or fine particulate matter—are tiny particles that pollute the air and result from everyday urban activities like driving. PM2.5 can be solid or liquid in form when it is airborne. PM2.5 is the most harmful air pollution for humans to breathe in because the particles are small enough to enter the bloodstream through the lungs. Each PM2.5 particle is less than 2.5 microns in diameter. That is small enough to fit inside a red blood cell.</description>
+      <description>&lt;p&gt;PM2.5—or fine particulate matter—are tiny particles that pollute the air and result from everyday urban activities like driving. PM2.5 can be solid or liquid in form when it is airborne. PM2.5 is the most harmful air pollution for humans to breathe in because the particles are small enough to enter the bloodstream through the lungs. Each PM2.5 particle is less than 2.5 microns in diameter. That is small enough to fit inside a red blood cell.&lt;/p&gt;</description>
     </item>
     <item>
       <title>A brief history of redlining</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/redlining/</link>
       <pubDate>Wed, 06 Jan 2021 08:07:31 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/redlining/</guid>
-      <description>Inside the 90-year-old financial policy that harms our health In public health, we often cite structural racism to help explain health patterns in our society. But what, specifically, does this mean? A close look at the history of redlining shows this connection.&#xA;When we analyze data on the health of New Yorkers, we often find the same geographic patterns, with higher rates of preventable health conditions in high-poverty neighborhoods. For example, we&amp;rsquo;ve written about how asthma and poverty are closely connected.</description>
+      <description>&lt;h3&gt;Inside the 90-year-old financial policy that harms our health&lt;/h3&gt;&#xA;&lt;p&gt;In public health, we often cite structural racism to help explain health patterns in our society. But what, specifically, does this mean? A close look at the history of redlining shows this connection.&lt;/p&gt;&#xA;&lt;p&gt;When we analyze data on the health of New Yorkers, we often find the same geographic patterns, with higher rates of preventable health conditions in high-poverty neighborhoods. For example, &lt;a href=&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/asthma-and-poverty/&#34;&gt;we&amp;rsquo;ve written about how asthma and poverty are closely connected&lt;/a&gt;.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Health, housing, and history</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/housing/</link>
       <pubDate>Wed, 06 Jan 2021 08:07:31 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/housing/</guid>
-      <description>For health, place matters What determines whether or not you’re healthy? You may think about what you eat, whether you exercise, whether you smoke and your family medical history.&#xA;But you may not think about how your home affects your health - and you may not think about the factors that influence where you live. For a home to be healthy, it should be free of: Cracks Holes Leaks Smoke Pests Old, peeling paint In other words, a healthy home is a well-maintained home.</description>
+      <description>&lt;h3&gt;For health, place matters&lt;/h3&gt;&#xA;&lt;p&gt;What determines whether or not you’re healthy? You may think about what you eat, whether you exercise, whether you smoke and your family medical history.&lt;/p&gt;&#xA;&#xA;&#xA;&lt;p&gt;But you may not think about &lt;a href=&#34;#healthcollapse&#34; data-toggle=&#34;collapse&#34;&#xA;        class=&#34;badge badge-pill badge-success&#34;&gt;how your home affects your health&lt;/a&gt;&#xA;    - and you may not think about the factors that influence where you live.&#xA;&lt;/p&gt;&#xA;&lt;div class=&#34;asidebox collapse fs-sm m-2&#34; id=&#34;healthcollapse&#34;&gt;&#xA;    &lt;P&gt;For a home to be healthy, it should be free of:&#xA;    &lt;ul&gt;&#xA;        &lt;li&gt;Cracks&lt;/li&gt;&#xA;        &lt;li&gt;Holes&lt;/li&gt;&#xA;        &lt;li&gt;Leaks&lt;/li&gt;&#xA;        &lt;li&gt;Smoke&lt;/li&gt;&#xA;        &lt;li&gt;Pests&lt;/li&gt;&#xA;        &lt;li&gt;Old, peeling paint&lt;/li&gt;&#xA;    &lt;/ul&gt;&#xA;    &lt;p&gt;In other words, a healthy home is a well-maintained home.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Environments matter: the road to street safety in NYC</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/streets/</link>
       <pubDate>Sun, 20 Sep 2020 10:54:51 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/streets/</guid>
-      <description>The COVID-19 public health emergency has changed New York City in many ways—including how we get around the city. As the city continues to adapt to COVID-19, New Yorkers will look for ways to get around that feel safe—redistributing transit among different modes to ease crowding and increase safety on public transportation.&#xA;As more New Yorkers use bicycles, let&amp;rsquo;s take a look at safety on our streets.&#xA;Cyclist safety in public health data New York City’s streets offer opportunities for active transportation, like cycling and walking, but can also pose risks from collisions.</description>
+      <description>&lt;p&gt;The COVID-19 public health emergency has changed New York City in many ways—including how we get around the city. As the city continues to adapt to COVID-19, New Yorkers will look for ways to get around that feel safe—redistributing transit among different modes to ease crowding and increase safety on public transportation.&lt;/p&gt;&#xA;&lt;p&gt;As more New Yorkers use bicycles, let&amp;rsquo;s take a look at safety on our streets.&lt;/p&gt;&#xA;&lt;h2&gt;Cyclist safety in public health data&lt;/h2&gt;&#xA;&lt;p&gt;New York City’s streets offer opportunities for active transportation, like cycling and walking, but can also pose risks from collisions. We had a stark reminder of that in 2019, when &lt;a href=&#34;https://www.nycvzv.info/&#34;&gt;28 cyclists died on NYC streets, following an historic low of 10 in 2018&lt;/a&gt;.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Protecting New Yorkers from extreme heat</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/heat/</link>
       <pubDate>Wed, 09 Sep 2020 08:33:22 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/heat/</guid>
-      <description>Hot weather is dangerous. In New York City and across the country, more people on average die from extreme heat each year than from all other natural disasters.&#xA;Heat stress happens when your body’s temperature increases quickly. When the body can no longer control its temperature or cool itself down, it can lead to death.&#xA;At the NYC Health Department, we track heat stress deaths by reviewing causes of death recorded by the Bureau of Vital Statistics.</description>
+      <description>&lt;p&gt;Hot weather is dangerous. In New York City and across the country, more people on average die from extreme heat each year than from all other natural disasters.&lt;/p&gt;&#xA;&lt;p&gt;Heat stress happens when your body’s temperature increases quickly. When the body can no longer control its temperature or cool itself down, it can lead to death.&lt;/p&gt;&#xA;&lt;p&gt;At the NYC Health Department, we track heat stress deaths by reviewing causes of death recorded by the Bureau of Vital Statistics. More people usually die of heat stress during hotter summers. From 1999 to 2016, NYC had 4 spikes due to severe heat, in 1999, 2006, 2011, and 2013.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Neighborhood boundaries on the EH Data Portal</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/geographies/</link>
       <pubDate>Sat, 01 Aug 2020 08:33:22 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/geographies/</guid>
-      <description>New York City has hundreds of neighborhoods and nearly as many ways of drawing neighborhood boundaries. When you visit the Environment &amp;amp; Health Data Portal, you might notice that data is available in several different neighborhood schemes.&#xA;For example, dig around in the asthma data pages and you&amp;rsquo;ll find Adults with Asthma presented by UHF34 neighborhoods, Public School Children with Asthma presented by UHF42 neighborhoods, and Asthma emergency department visits are offered by NTAs.</description>
+      <description>&lt;p&gt;New York City has hundreds of neighborhoods and nearly as many ways of drawing neighborhood boundaries. When you visit the Environment &amp;amp; Health Data Portal, you might notice that data is available in several different neighborhood schemes.&lt;/p&gt;&#xA;&lt;p&gt;For example, dig around in the asthma data pages and you&amp;rsquo;ll find &lt;a href=&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/asthma/?id=18&#34;&gt;Adults with Asthma&lt;/a&gt; presented by UHF34 neighborhoods, &lt;a href=&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/asthma/?id=2147&#34;&gt;Public School Children with Asthma&lt;/a&gt; presented by UHF42 neighborhoods, and &lt;a href=&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/asthma/?id=2384&#34;&gt;Asthma emergency department visits&lt;/a&gt; are offered by NTAs. Other data on the portal are offered by CD, ZIP code, PUMA, and occasionally even police precinct. &lt;strong&gt;What are all these neighborhood schemes, why do we use one and not the other, and why isn’t the whole system consistent?&lt;/strong&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>Our Roadmap: An Open Path Forward</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/about/roadmap/</link>
       <pubDate>Tue, 07 Jul 2020 08:49:22 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/about/roadmap/</guid>
-      <description>In 2020, we partnered with Open Tech Strategies to review the Environment and Health Data Portal and plan for its future development.&#xA;Open Tech Strategies prepared a report with recommendations for our strategy and technology that would help us re-develop the site to better serve our users (you). It covers:&#xA;Open source software Modular contracting Communication strategies User research Workflows and internal tools to support this work You can read the full report here.</description>
+      <description>&lt;p&gt;In 2020, we partnered with &lt;a href=&#34;https://opentechstrategies.com/&#34;&gt;Open Tech Strategies&lt;/a&gt; to review the Environment and Health Data Portal and plan for its future development.&lt;/p&gt;&#xA;&lt;p&gt;Open Tech Strategies prepared a report with recommendations for our strategy and technology that would help us re-develop the site to better serve our users (you). It covers:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Open source software&lt;/li&gt;&#xA;&lt;li&gt;Modular contracting&lt;/li&gt;&#xA;&lt;li&gt;Communication strategies&lt;/li&gt;&#xA;&lt;li&gt;User research&lt;/li&gt;&#xA;&lt;li&gt;Workflows and internal tools to support this work&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/about/roadmap/ehdp-open-path-development-2020.pdf&#34;&gt;You can read the full report here&lt;/a&gt;.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Air quality during COVID-19</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/air-quality-and-covid/</link>
       <pubDate>Wed, 22 Apr 2020 08:33:22 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/air-quality-and-covid/</guid>
-      <description>What happens when NYC stays home? The COVID-19 pandemic upended the lives of all New Yorkers. The outbreak has affected many aspects of our daily life, but there are also less apparent effects, such as impacts on our environment.&#xA;The NYC Community Air Survey uses air quality monitors to take hourly measurements of fine particulate (PM2.5) at a few sites around the city.&#xA;Generally, locations around the city see changes in PM2.</description>
+      <description>&lt;p&gt;What happens when NYC stays home? The COVID-19 pandemic upended the lives of all New Yorkers. The outbreak has affected many aspects of our daily life, but there are also less apparent effects, such as impacts on our environment.&lt;/p&gt;&#xA;&lt;p&gt;The NYC Community Air Survey uses air quality monitors to take hourly measurements of fine particulate (PM2.5) at a few sites around the city.&lt;/p&gt;&#xA;&lt;p&gt;Generally, locations around the city see changes in PM2.5 levels driven by time of day (air quality gets worse during rush hour and business hours) and weather conditions, which can trap pollution in the city or blow it in from other states.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Air quality snapshots: special findings from 10 years of NYCCAS</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/air-quality-snapshots/</link>
       <pubDate>Tue, 21 Apr 2020 13:37:45 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/air-quality-snapshots/</guid>
-      <description>Skip Nav A traffic health threat: air toxics Noise levels that harm health The benefits of cleaner fuel Special monitoring for environmental justice For 10 years, the New York City Community Air Survey (NYCCAS) has measured air quality at 100 locations around NYC. We’ve combined these measurements with data on things related to air quality - like traffic, building emissions, green space, and much more - to model seasonal air quality in every New York City neighborhood.</description>
+      <description>&lt;div class=&#34;col-xl-3 border-right&#34;&gt;&#xA;    &lt;div class=&#34;sticky-top narrow collapse d-xl-block&#34; id=&#34;sidebar-nav&#34;&gt;&#xA;        &lt;nav class=&#34;mx-xl-n2 pt-4 py-xl-0&#34; role=&#34;navigation&#34; id=&#34;myScrollspy&#34;&gt;&#xA;            &lt;a class=&#34;sr-only sr-only-focusable skip-menu&#34; href=&#34;#primary-content&#34;&gt;Skip Nav&lt;/a&gt;&#xA;            &lt;div class=&#34;list-group list-group-flush border-bottom fs-rg&#34; role=&#34;list&#34;&gt;&#xA;                &lt;a href=&#34;#section1&#34; class=&#34;list-group-item&#34;&gt;&#xA;                    A traffic health threat: air toxics&#xA;                &lt;/a&gt;&#xA;                &lt;a href=&#34;#section2&#34; class=&#34;list-group-item&#34;&gt;&#xA;                    Noise levels that harm health&#xA;                &lt;/a&gt;&#xA;                &lt;a href=&#34;#section4&#34; class=&#34;list-group-item&#34;&gt;&#xA;                        The benefits of cleaner fuel&#xA;                    &lt;/a&gt;&#xA;                &lt;a href=&#34;#section5&#34; class=&#34;list-group-item&#34;&gt;&#xA;                    Special monitoring for environmental justice&#xA;                &lt;/a&gt;&#xA;            &lt;/div&gt;&#xA;        &lt;/nav&gt;&#xA;    &lt;/div&gt;&#xA;    &lt;!-- .sticky-top --&gt;&#xA;&lt;/div&gt;&#xA;&lt;!-- .col --&gt;&#xA;&lt;!--start main content section--&gt;&#xA;&lt;div class=&#34;col-xl-8 overflow-hidden fs-rg mr-auto&#34; id=&#34;primary-content&#34;&gt;&#xA;    &lt;div class=&#34;my-2&#34;&gt;&#xA;        &lt;div class=&#34;narrow&#34;&gt;&#xA;            &lt;p&gt;For 10 years, the New York City Community Air Survey (NYCCAS) has measured air quality at 100 locations around NYC. We’ve combined these measurements with data on things related to air quality - like traffic, building emissions, green space, and much more - to model seasonal air quality in every New York City neighborhood. &#xA;                &lt;/p&gt;</description>
     </item>
     <item>
       <title>Disparities in violence</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/assaults/</link>
       <pubDate>Thu, 13 Feb 2020 08:29:34 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/assaults/</guid>
-      <description>Violence has profound effects. An assault, a shooting, a homicide, or any use of force affects people in many deep ways.&#xA;Violence causes physical and emotional harm. It can inflict fear, a constant sense of unease. It can cause short- and long-term trauma. Violence can affect people throughout their lives - including their health. It can lead to poor birth outcomes, compromised childhood development, negative health behaviors, physical and mental illness, and premature deaths.</description>
+      <description>&lt;p&gt;Violence has profound effects. An assault, a shooting, a homicide, or any use of force affects people in many deep ways.&lt;/p&gt;&#xA;&lt;p&gt;Violence causes physical and emotional harm. It can inflict fear, a constant sense of unease. It can cause short- and long-term trauma. Violence can affect people throughout their lives - including their health. It can lead to poor birth outcomes, compromised childhood development, negative health behaviors, physical and mental illness, and premature deaths.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Why we&#39;re working with you to redesign the data portal</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/codesign/</link>
       <pubDate>Thu, 13 Feb 2020 08:29:34 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/codesign/</guid>
-      <description>We&amp;rsquo;re making changes, and we need your help.&#xA;A few months ago, when we redesigned the home page of the Environment &amp;amp; Health Data Portal, we wrote that we were working toward &amp;ldquo;building a system that works: that’s intuitive and makes our information clear and easy-to-find.&amp;rdquo;&#xA;As a government agency, we&amp;rsquo;re committed to making information available via the web. By doing this well, we hope that people can use this information to change their lives and their communities.</description>
+      <description>&lt;p&gt;We&amp;rsquo;re making changes, and we need your help.&lt;/p&gt;&#xA;&lt;p&gt;A few months ago, when we redesigned the home page of the Environment &amp;amp; Health Data Portal, we wrote that we were working toward &amp;ldquo;building a system that works: that’s intuitive and makes our information clear and easy-to-find.&amp;rdquo;&lt;/p&gt;&#xA;&lt;p&gt;As a government agency, we&amp;rsquo;re committed to making information available via the web. By doing this well, we hope that people can use this information to change their lives and their communities.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Air quality in car-free areas</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/car-free-zones/</link>
       <pubDate>Mon, 25 Nov 2019 13:24:52 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/car-free-zones/</guid>
-      <description>Does the air improve in car-free zones? People often ask us this, and it&amp;rsquo;s a great question. To answer, we turn to the NYC Community Air Survey, or NYCCAS. NYCCAS is our network of air quality monitors around the city.&#xA;NYCCAS monitors air with nearly 100 sensors across the city We use these monitors to measure levels of six different pollutants: fine particles (PM2.5), nitrogen dioxide (NO2), nitric oxide (NO), sulfur dioxide (SO2), ozone (O3), and black carbon (BC).</description>
+      <description>&lt;p&gt;Does the air improve in car-free zones? People often ask us this, and it&amp;rsquo;s a great question. To answer, we turn to the NYC Community Air Survey, or NYCCAS. NYCCAS is our network of air quality monitors around the city.&lt;/p&gt;&#xA;&lt;h3&gt;NYCCAS monitors air with nearly 100 sensors across the city&lt;/h3&gt;&#xA;&lt;p&gt;We use these monitors to measure levels of six different pollutants: fine particles (PM2.5), nitrogen dioxide (NO2), nitric oxide (NO), sulfur dioxide (SO2), ozone (O3), and black carbon (BC). Then, we combine these data with information about sources of emissions, traffic volume, wind patterns, and more to model the air quality all across the city – including in places where there are no air quality monitors. This tells us how air pollution differs between neighborhoods - and why. For example, it can tell us whether air quality is better or worse in neighborhoods that have parks compared to neighborhoods without parks.&lt;/p&gt;</description>
     </item>
     <item>
       <title>What our air quality monitors tell us about NYC&#39;s neighborhoods</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/air-quality-by-neighborhood/</link>
       <pubDate>Mon, 25 Nov 2019 13:24:52 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/air-quality-by-neighborhood/</guid>
-      <description>In Part 1, we looked at data from the New York City Community Air Survey (NYCCAS) - a network of about 100 air quality monitors - to see if air quality improves in areas that go car-free. And the answer is yes.&#xA;NYCCAS tells us that more traffic means more air pollution nearby. So, even if we don&amp;rsquo;t have a nearby monitor, we can predict that an area that goes car-free (like Park Drive in Prospect Park, for example) sees an improvement in air quality.</description>
+      <description>&lt;p&gt;In &lt;a href=&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/car-free-zones/&#34;&gt;Part 1&lt;/a&gt;, we looked at data from the New York City Community Air Survey (NYCCAS) - a network of about 100 air quality monitors - to see if air quality improves in areas that go car-free. And the answer is yes.&lt;/p&gt;&#xA;&lt;p&gt;NYCCAS tells us that more traffic means more air pollution nearby. So, even if we don&amp;rsquo;t have a nearby monitor, we can predict that an area that goes car-free (like Park Drive in Prospect Park, for example) sees an improvement in air quality.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Breathe easy: NYC&#39;s air quality is improving</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/breatheeasy/</link>
       <pubDate>Thu, 24 Oct 2019 08:18:56 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/breatheeasy/</guid>
-      <description>The air we breathe can have a major effect on our health — air pollution can make asthma worse and can cause heart disease, lung disease, strokes, and even cancer.&#xA;Fortunately, New York City has made great strides in recent years to improve air quality. Let’s take a look.&#xA;An air quality advisory day happens when air pollution builds up to dangerous levels. It means that people who are sensitive to air pollution (like people with respiratory or heart problems) should spend less time outside and avoid outdoor exercise.</description>
+      <description>&lt;p&gt;The air we breathe can have a major effect on our health — air pollution can make asthma worse and can cause heart disease, lung disease, strokes, and even cancer.&lt;/p&gt;&#xA;&lt;p&gt;Fortunately, New York City has made great strides in recent years to improve air quality. Let’s take a look.&lt;/p&gt;&#xA;&lt;/div&gt;&#xA;&lt;div class=&#34;wide my-4&#34;&gt;&#xA;    &lt;iframe title=&#39;Chart: Better air quality means fewer dangerous days&#39; aria-label=&#34;Interactive chart&#34; id=&#34;datawrapper-chart-O0SUA&#34;&#xA;        src=&#39;//datawrapper.dwcdn.net/sXhjH/3/&#39; scrolling=&#34;no&#34; frameborder=&#34;0&#34;&#xA;        style=&#34;width: 0; min-width: 100% !important; border: none;&#34; height=&#39;428&#39;&gt;&lt;/iframe&gt;&#xA;    &lt;script type=&#34;text/javascript&#34;&gt;!function () { &#34;use strict&#34;; window.addEventListener(&#34;message&#34;, function (a) { if (void 0 !== a.data[&#34;datawrapper-height&#34;]) for (var e in a.data[&#34;datawrapper-height&#34;]) { var t = document.getElementById(&#34;datawrapper-chart-&#34; + e) || document.querySelector(&#34;iframe[src*=&#39;&#34; + e + &#34;&#39;]&#34;); t &amp;&amp; (t.style.height = a.data[&#34;datawrapper-height&#34;][e] + &#34;px&#34;) } }) }();&#xA;    &lt;/script&gt;&#xA;&lt;/div&gt;&#xA;&lt;div class=&#34;narrow&#34;&gt;&#xA;&lt;p&gt;An air quality advisory day happens when air pollution builds up to dangerous levels. It means that people who are sensitive to air pollution (like people with respiratory or heart problems) should spend less time outside and avoid outdoor exercise. If the air quality is bad enough, then most people will be affected by it.&lt;/p&gt;</description>
     </item>
     <item>
       <title>What hot weather means for food safety</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/food/</link>
       <pubDate>Thu, 24 Oct 2019 08:18:56 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/food/</guid>
-      <description>New Yorkers eat out more than a billion times a year. To help keep diners safe, the Health Department educates restaurant operators about food safety practices and inspects all 27,000 city restaurants at least once a year. Over 90 percent of NYC restaurants have &amp;ldquo;A&amp;rdquo; grades in the window, showing excellent compliance with food safety requirements.&#xA;However, warmer weather creates special challenges keeping food safe. We dug into the data to find out how hot weather affects food safety.</description>
+      <description>&lt;p&gt;New Yorkers eat out more than a billion times a year. To help keep diners safe, the Health Department educates restaurant operators about food safety practices and inspects all 27,000 city restaurants at least once a year. Over 90 percent of NYC restaurants have &amp;ldquo;A&amp;rdquo; grades in the window, showing excellent compliance with food safety requirements.&lt;/p&gt;&#xA;&lt;p&gt;However, warmer weather creates special challenges keeping food safe. We dug into the data to find out how hot weather affects food safety.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Why asthma is a social justice issue</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/asthma-and-poverty/</link>
       <pubDate>Thu, 24 Oct 2019 08:18:56 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/asthma-and-poverty/</guid>
-      <description>Poverty affects health in many ways. In New York City, the story of asthma clearly illustrates this connection.&#xA;To understand the connection between poverty and asthma, take a look at this map of poverty rates in New York City, below. The darker the color, the more residents living in poverty.&#xA;Now, compare that to a map of emergency department visits for asthma in children age 5 to 17, below. The darker the color, the higher the rate of children visiting the emergency department with asthma.</description>
+      <description>&lt;p&gt;Poverty affects health in many ways. In New York City, the story of asthma clearly illustrates this connection.&lt;/p&gt;&#xA;&lt;p&gt;To understand the connection between poverty and asthma, take a look at this map of poverty rates in New York City, below. The darker the color, the more residents living in poverty.&lt;/p&gt;&#xA;&lt;/div&gt;&#xA;&lt;div class=&#34;wide my-4&#34;&gt;&#xA;    &lt;iframe title=&#39;Poverty in New York City&#39; aria-label=&#34;Interactive chart&#34; id=&#34;datawrapper-chart-O0SUA&#34;&#xA;        src=&#39;//datawrapper.dwcdn.net/s32oq/3/&#39; scrolling=&#34;no&#34; frameborder=&#34;0&#34;&#xA;        style=&#34;width: 0; min-width: 100% !important; border: none;&#34; height=&#39;600&#39;&gt;&lt;/iframe&gt;&#xA;    &lt;script type=&#34;text/javascript&#34;&gt;!function () { &#34;use strict&#34;; window.addEventListener(&#34;message&#34;, function (a) { if (void 0 !== a.data[&#34;datawrapper-height&#34;]) for (var e in a.data[&#34;datawrapper-height&#34;]) { var t = document.getElementById(&#34;datawrapper-chart-&#34; + e) || document.querySelector(&#34;iframe[src*=&#39;&#34; + e + &#34;&#39;]&#34;); t &amp;&amp; (t.style.height = a.data[&#34;datawrapper-height&#34;][e] + &#34;px&#34;) } }) }();&#xA;    &lt;/script&gt;&#xA;&lt;/div&gt;&#xA;&lt;div class=&#34;narrow&#34;&gt;&#xA;&lt;p&gt;Now, compare that to a map of emergency department visits for asthma in children age 5 to 17, below. The darker the color, the higher the rate of children visiting the emergency department with asthma.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Active Design, Physical Activity and Health</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/neighborhood-reports/active_design_physical_activity_and_health/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/neighborhood-reports/active_design_physical_activity_and_health/</guid>
-      <description>The design and conditions of buildings, streets, public transportation and parks influence physical activity, use of active transportation and other healthy behavior. A neighborhood&amp;rsquo;s features can also impact the safety of its residents.</description>
+      <description>&lt;p&gt;The design and conditions of buildings, streets, public transportation and parks influence physical activity, use of active transportation and other healthy behavior. A neighborhood&amp;rsquo;s features can also impact the safety of its residents.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Active Design, Physical Activity and Health</title>
@@ -1056,7 +1056,7 @@
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/neighborhood-reports/asthma_and_the_environment/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/neighborhood-reports/asthma_and_the_environment/</guid>
-      <description>Asthma is a common lung disease and a leading cause of hospitalizations for children under 15 years old. This report provides a summary of asthma indicators by neighborhood. It also describes housing and neighborhood characteristics that can make asthma worse.</description>
+      <description>&lt;p&gt;Asthma is a common lung disease and a leading cause of hospitalizations for children under 15 years old. This report provides a summary of asthma indicators by neighborhood. It also describes housing and neighborhood characteristics that can make asthma worse.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Asthma and the Environment</title>
@@ -1406,7 +1406,7 @@
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/neighborhood-reports/climate_and_health/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/neighborhood-reports/climate_and_health/</guid>
-      <description>Extreme heat, coastal storms, and flooding are climate-related hazards that are increasing because of climate change. They have important public health impacts in New York City. Extreme weather can cause power outages, which also threaten public health. This report provides neighborhood indicators of climate-related hazards, populations that may be most affected, built environment factors that can increase risk, and health impacts.</description>
+      <description>&lt;p&gt;Extreme heat, coastal storms, and flooding are climate-related hazards that are increasing because of climate change. They have important public health impacts in New York City. Extreme weather can cause power outages, which also threaten public health. This report provides neighborhood indicators of climate-related hazards, populations that may be most affected, built environment factors that can increase risk, and health impacts.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Climate and Health</title>
@@ -1798,7 +1798,7 @@
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/neighborhood-reports/housing_and_health/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/neighborhood-reports/housing_and_health/</guid>
-      <description>This report provides a neighborhood summary of housing conditions and related health outcomes. It also describes population characteristics that can increase vulnerability to housing hazards.</description>
+      <description>&lt;p&gt;This report provides a neighborhood summary of housing conditions and related health outcomes. It also describes population characteristics that can increase vulnerability to housing hazards.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Housing and Health</title>
@@ -2141,7 +2141,7 @@
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/neighborhood-reports/outdoor_air_and_health/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/neighborhood-reports/outdoor_air_and_health/</guid>
-      <description>Air pollution is one of the most important environmental threats to urban populations and while all people are exposed, pollutant emissions, levels of exposure, and population vulnerability vary across neighborhoods. Exposures to common air pollutants have been linked to respiratory and cardiovascular diseases, cancers, and premature deaths.</description>
+      <description>&lt;p&gt;Air pollution is one of the most important environmental threats to urban populations and while all people are exposed, pollutant emissions, levels of exposure, and population vulnerability vary across neighborhoods. Exposures to common air pollutants have been linked to respiratory and cardiovascular diseases, cancers, and premature deaths.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Outdoor Air and Health</title>
