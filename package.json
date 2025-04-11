@@ -22,11 +22,13 @@
         "datatables.net-dt": "^1.13.11",
         "datatables.net-rowgroup": "^1.5.0",
         "dompurify": "^3.1.6",
+        "jquery": "^3.7.1",
         "jquery-flexdatalist": "^2.3.0",
         "leaflet": "^1.9.4",
         "leaflet-control-geocoder": "^2.4.0",
         "leaflet-easybutton": "^2.4.0",
         "pagefind": "^1.1.1",
+        "popper.js": "^1.16.1",
         "seedrandom": "^3.0.5",
         "vega": "^5.30.0",
         "vega-embed": "^6.26.0",
@@ -34,8 +36,5 @@
     },
     "optionalDependencies": {
         "hugo-extended": "0.145.0"
-    },
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
     }
 }
