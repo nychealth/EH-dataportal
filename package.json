@@ -1,43 +1,44 @@
 {
-  "name": "EH-dataportal",
-  "version": "1.0.0",
-  "description": "This repository contains a prototype of the Environment and Health Data Portal. You can view a staged development version [here](https://nychealth.github.io/EH-dataportal/). We are in the process of fully developing this. If you're interested in helping, you can [email us](mailto:ehdp@health.nyc.gov) - we are always looking for people interested in user testing and co-design work.",
-  "main": "Gruntfile.js",
-  "directories": {
-    "doc": "docs"
-  },
-  "dependencies": {
-    "@fortawesome/fontawesome-free": "^6.6.0",
-    "arquero": "^6.0.1",
-    "bootstrap": "^4.3.1",
-    "d3": "^7.9.0",
-    "datatables.net": "^1.13.1",
-    "datatables.net-buttons": "^2.3.3",
-    "datatables.net-buttons-dt": "^2.4.3",
-    "datatables.net-dt": "^1.13.11",
-    "datatables.net-rowgroup": "^1.5.0",
-    "dompurify": "^3.1.6",
-    "jquery-flexdatalist": "^2.3.0",
-    "leaflet": "^1.9.4",
-    "leaflet-control-geocoder": "^2.4.0",
-    "leaflet-easybutton": "^2.4.0",
-    "pagefind": "^1.1.1",
-    "seedrandom": "^3.0.5",
-    "vega": "^5.30.0",
-    "vega-embed": "^6.26.0",
-    "vega-lite": "^5.21.0"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/nychealth/EH-dataportal.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/nnychealth/EH-dataportal/issues"
-  },
-  "homepage": "https://github.com/nychealth/EH-dataportal#readme"
+    "name": "eh-dataportal",
+    "description": "This repository contains source code for the Environment and Health Data Portal. You can view the live production version of the website [here](https://a816-dohbesp.nyc.gov/IndicatorPublic/). If you're interested in helping, you can [email us](mailto:ehdp@health.nyc.gov) - we are always looking for people interested in user testing and co-design work.",
+    "homepage": "https://a816-dohbesp.nyc.gov/IndicatorPublic/",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/nychealth/EH-dataportal.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/nychealth/EH-dataportal/issues"
+    },
+    "directories": {
+        "doc": "docs"
+    },
+    "dependencies": {
+        "@fortawesome/fontawesome-free": "^6.6.0",
+        "arquero": "^6.0.1",
+        "bootstrap": "^4.3.1",
+        "d3": "^7.9.0",
+        "datatables.net": "^1.13.1",
+        "datatables.net-buttons": "^2.3.3",
+        "datatables.net-buttons-dt": "^2.4.3",
+        "datatables.net-dt": "^1.13.11",
+        "datatables.net-rowgroup": "^1.5.0",
+        "dompurify": "^3.1.6",
+        "jquery-flexdatalist": "^2.3.0",
+        "leaflet": "^1.9.4",
+        "leaflet-control-geocoder": "^2.4.0",
+        "leaflet-easybutton": "^2.4.0",
+        "pagefind": "^1.1.1",
+        "seedrandom": "^3.0.5",
+        "vega": "^5.30.0",
+        "vega-embed": "^6.26.0",
+        "vega-lite": "^5.21.0"
+    },
+    "optionalDependencies": {
+        "hugo-extended": "0.145.0"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    }
 }
