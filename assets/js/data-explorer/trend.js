@@ -50,7 +50,7 @@ const renderTrendChart = (
             columns = 1
         } else if (window.innerWidth < 440) {
             columns = 2
-            xAxisLabelField = 'fallbackYear'
+            xAxisLabelField = 'fallbackYear' // use fallbackYear for narrow screens, to label every other x-axis interval
         } else if (window.innerWidth < 1200) {
             columns = 3
             xAxisLabelField = 'fallbackYear'
@@ -502,17 +502,40 @@ const renderTrendChart = (
         "subtitleFontSize": 13
       },
       "transform": [
+        // adds display to value
         {
           "calculate": `datum.DisplayValue + ' ${compDisplayTypes}'`, "as": "valueWithDisplay"
         },
-        {"calculate": "split(datum.TimePeriod, ' ')", "as": "TimePeriodSplit"},
+        // gets index position of row
+        {
+          "window": [
+            {
+              "op": "row_number",
+              "as": "index"
+            }
+          ]
+        },
+        // splits quarters, if it's quarterly data
+        {
+          "calculate": "datum.TimeType === 'quarter' ? replace(datum.TimePeriod, /-Q/, ' Q') : datum.TimePeriod",
+          "as": "TimeSplit1"
+    
+        }, 
+        // splits other data if it's long strings
+        {
+          "calculate": "split(datum.TimeSplit1, ' ')",
+          "as": "TimePeriodSplit"
+    
+        },
+
         {
           "calculate": "datum.TimePeriodSplit[datum.TimePeriodSplit.length - 1]",
           "as": "TimePeriodYear"
         },
         {"calculate": "year(datum.end_period)", "as": "year_end_period"},
+        // calculates every other year for x-axis label, as long as it's not quarterly data
         {
-          "calculate": "datum.year_end_period % 2 === 0 ? datum.TimePeriodSplit : ''",
+          "calculate": "(datum.TimeType !== 'quarter' && datum.year_end_period % 2 === 0) ? datum.TimePeriodSplit : (datum.TimeType === 'quarter' ? datum.TimePeriodSplit : '')",
           "as": "fallbackYear"
         }
       ],
