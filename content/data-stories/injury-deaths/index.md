@@ -5,7 +5,7 @@ draft: false
 seo_title: "Injury deaths in NYC adults: how homicide and suicide contribute"
 seo_description: "A data story on deaths due to injury - and ways we can prevent them."
 tags:
-categories: ["healthoutcomes", "social", "injuryandviolence"]
+categories: ["healthoutcomes", "inequality","injuryandviolence"]
 keywords:
   [
     "injuries",
@@ -58,6 +58,7 @@ From 2017 to 2019, Black New Yorkers between the ages of 15 to 24 died by homici
 Racial disparities signal historical and structural origins that have and continue to deny resources to people of color. These include things like social structures that limit access to basic needs (such as health care) which are perpetuated by racism, residential segregation — like <a href="../redlining/"> redlining </a> — and systematic disinvestment in neighborhoods. Disinvestment can be things like denying people access to loans to buy homes, housing neglect, underfunded schools, fewer job opportunities and lower-paying jobs, emphasis on policing over pro-social resources, and others. <a href="../../data-explorer/violence/?id=2375#display=summary"> Over time, disinvestment puts residents in high-poverty neighborhoods at a greater risk of experiencing violence.</a>
 
 <div aria-hidden="true">
+<div aria-hidden="true">
 <iframe title="Homicide death rate, by race/ethnicity" class="my-4" aria-label="Split Bars" id="datawrapper-chart-XMN9V" src="https://datawrapper.dwcdn.net/XMN9V/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="191" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
 </script>
 </div>
@@ -87,6 +88,7 @@ From 2017 to 2019, there were over 110 suicides each year among these young adul
 <a href="https://www.nyc.gov/assets/doh/downloads/pdf/epi/databrief127.pdf"> While Staten Island has a lower rate of suicide among young people ages 15 to 24, its suicide rate for people ages 25 to 34 is higher than any other borough. </a>
 
 <div aria-hidden="true">
+<div aria-hidden="true">
 <iframe title="Suicide rates age 25-34 (Copy)" class="my-4" aria-label="Split Bars" id="datawrapper-chart-dj1Ut" src="https://datawrapper.dwcdn.net/dj1Ut/3/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="222" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
 </script>
 </div>
@@ -95,6 +97,7 @@ Within this age group of 25-to-34-year-olds, the suicide rate is highest among B
 
 Among 25- to 34-year-olds, homicides are the fourth-leading cause of death. Racial/ethnic, geographic, and sex disparities in homicide rates for adults ages 25 to 34 mirror those for ages 15 to 24, with the highest rates among Black males.
 
+<div aria-hidden="true">
 <div aria-hidden="true">
 <iframe title="Suicide rates age 25-34" class="my-4" aria-label="Split Bars" id="datawrapper-chart-7rrVq" src="https://datawrapper.dwcdn.net/7rrVq/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="191" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
 </script>
@@ -109,6 +112,7 @@ Among 25- to 34-year-olds, homicides are the fourth-leading cause of death. Raci
 
 White New Yorkers had a suicide death rate roughly twice that of other race/ethnicity groups in this age group.
 
+<div aria-hidden="true">
 <div aria-hidden="true">
 <iframe title="Details: Injury death rates, age 35 to 44   (Copy)" class="my-4" aria-label="Split Bars" id="datawrapper-chart-M7spx" src="https://datawrapper.dwcdn.net/M7spx/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="387" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
 </script>
@@ -146,6 +150,7 @@ Each of these deaths is a tragedy — but solutions exist. Limiting access to me
 Explore more data here:
 
 </div>
+<div aria-hidden="true">
 <div class="wide my-4">
 <iframe title="Preventable injuries like Homicide and Suicide are top causes of death in NYC - especially age 15 to 44" aria-label="Scatter Plot" id="datawrapper-chart-blYxp" src="https://datawrapper.dwcdn.net/blYxp/3/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="720" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
 </script>
@@ -156,7 +161,6 @@ like Homicide and Suicide are top causes of death in NYC—especially among ages
 </script>
 </div>
 <div class="narrow">
-
 <hr class="my-2">
 
 <div class="asidebox">

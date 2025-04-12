@@ -8,7 +8,7 @@ tags:
 categories:
   [
     "housing",
-    "social",
+    "inequality",
     "childhealth",
     "healthoutcomes",
     "neighborhoods",

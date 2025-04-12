@@ -20,8 +20,10 @@ related:
     url: "data-stories/sanitation/"
   - title: "Rat Information Portal"
     url: "data-features/rat-information-portal/"
-  - title: "Data: Mice and rats"
-    url: "data-explorer/mice-and-rats/?id=2434#display=summary"
+  - title: "Rats in your neighborhood"
+    url: "data-features/rats-in-your-neighborhood/"
+weight: 2
+blurb: Data on rat and mouse complaints and NYC Health Department rat control in high activity areas.
 ---
 
 Rats can contaminate food, spread disease and reduce our quality of life. Rat Mitigation Zones (RMZ) are areas with high levels of rat activity, where City agencies focus resources to address rats and the conditions that support them.

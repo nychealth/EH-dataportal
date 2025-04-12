@@ -7,7 +7,7 @@ draft: false
 seo_title: "Air quality in car-free areas"
 seo_description: "Measuring what happens to our air when we change how we use our streets."
 tags:
-categories: ["transportation", "airquality"]
+categories: ["publicspace", "airquality"]
 keywords:
   [
     "air quality",

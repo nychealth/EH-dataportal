@@ -8,7 +8,7 @@ draft: false
 seo_title: "Air quality during COVID-19"
 seo_description: "What our air quality monitors showed when NYC stays home."
 tags:
-categories: ["transportation", "airquality"]
+categories: ["publicspace", "airquality"]
 keywords:
   [
     "air quality",

@@ -8,7 +8,7 @@ draft: false
 seo_title: "About NYC's air quality, neighborhood by neighborhood."
 seo_description: "What our air quality monitors tell us about NYC's neighborhoods."
 tags:
-categories: ["transportation", "airquality", "neighborhoods"]
+categories: ["publicspace", "airquality", "neighborhoods"]
 keywords:
   [
     "air quality",

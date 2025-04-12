@@ -6,7 +6,7 @@ draft: false
 seo_title: "Protecting New Yorkers from extreme heat"
 seo_description: "A data story on the dangers of hot weather - and how we can keep people safe."
 tags:
-categories: ["climatehealth", "social", "healthoutcomes", "neighborhoods"]
+categories: ["climatehealth", "inequality", "healthoutcomes", "neighborhoods"]
 keywords:
   [
     "climate",

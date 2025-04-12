@@ -7,8 +7,8 @@ image: 171109_dailylife0059.jpg
 photocredit: "Edwin J. Torres/Mayoral Photography Office, City of New York"
 categories:
   - airquality
-  - social
-  - transportation
+  - inequality
+  - publicspace
 keywords:
   [
     "air quality",

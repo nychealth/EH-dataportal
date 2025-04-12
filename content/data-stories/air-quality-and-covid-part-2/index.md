@@ -3,13 +3,12 @@ title: "An update on air quality during COVID-19"
 shortTitle:  "Air quality during COVID"
 aliases:
   - /data-stories/aqcovid2/
-  - /data-stories/aqcovid2/
 date: 2022-04-20T08:33:22-04:00
 draft: false
 seo_title: "How COVID-19 affected air quality"
 seo_description: "How the COVID-19 shutdown affected air in NYC."
 tags:
-categories: ["transportation", "airquality", "foodanddrink"]
+categories: ["publicspace", "airquality", "foodanddrink"]
 keywords:
   [
     "air quality",
@@ -24,7 +23,6 @@ keywords:
     "restaurants",
   ]
 tags:
-categories: ["transportation", "airquality", "foodanddrink"]
 keywords:
   [
     "air quality",

@@ -7,7 +7,7 @@ image: ESB_sunrise_JulienneSchaer-066.JPG
 photocredit: Julienne Schaer/Mayoral Photography Office, City of New York
 categories:
   - airquality
-  - transportation
+  - publicspace
 keywords:
   - air pollution
   - PM2.5

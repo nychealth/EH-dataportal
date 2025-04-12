@@ -5,7 +5,7 @@ draft: false
 seo_title: "Lead poisoning affects adults, too."
 seo_description: "The products that put people at risk of elevated blood lead levels."
 tags:
-categories: ["healthoutcomes", "social"]
+categories: ["healthoutcomes", "inequality"]
 keywords:
   [
     "lead",
@@ -16,7 +16,6 @@ keywords:
     "elevated blood lead levels",
   ]
 tags:
-categories: ["healthoutcomes", "social"]
 keywords:
   [
     "lead",

@@ -60,7 +60,7 @@ jobs:
 
         run: |
           echo "commit_count=$(git rev-list --count ${{ steps.d_hash.outputs.deployed_hash }}..${{ steps.b_hash.outputs.built_hash }})" >> $GITHUB_OUTPUT
-          git log ${{ steps.d_hash.outputs.deployed_hash }}..${{ steps.b_hash.outputs.built_hash }} --pretty='format:%C(auto)%h (%s, %cs)%n<br/>' > log.txt
+          echo -e "$(git log ${{ steps.d_hash.outputs.deployed_hash }}..${{ steps.b_hash.outputs.built_hash }} --pretty='format:%C(auto)%h (%s, %cs)%n<br/><hr/>')\n<br/><br/>" > log.txt
 
       - name: log output
         id: log_output
