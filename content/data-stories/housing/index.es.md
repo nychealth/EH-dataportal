@@ -5,7 +5,7 @@ draft: false
 seo_title: "Salud, vivienda e historia"
 seo_description: "Para la salud, el lugar importa."
 tags:
-categories: ["housing","social","childhealth","healthoutcomes","neighborhoods"]
+categories: ["housing","inequality","childhealth","healthoutcomes","neighborhoods","injuryandviolence"]
 keywords: ["poverty","asthma","injustice","housing","social determinants","redlining","disinvestment","racism","renting","pests","maintenance","maintenance deficiencies"]
 image: ds-housing.jpeg
 vega: true

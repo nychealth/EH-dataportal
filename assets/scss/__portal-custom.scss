@@ -1283,10 +1283,14 @@ th.tablehead {
     min-width: 14rem!important;
 }
 
-@media (min-width: 576px) {
+@media (min-width: 720px) {
     .collapse.dont-collapse-sm {
       display: block;
       height: auto !important;
       visibility: visible;
     }
   }
+
+.strong-hr {
+        border-top: 5px solid #E6ECF7;
+}

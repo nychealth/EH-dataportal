@@ -12,6 +12,13 @@ image: ds-geographies.jpg
 layout: single
 vega: true
 photocredit: "Edwin J. Torres/Mayoral Photography Office, City of New York"
+related:
+  - title: "Our roadmap: An open path forward"
+    url: "data-stories/roadmap/"
+  - title: "Why we're working with you to redesign the data portal"
+    url: "data-stories/codesign/"
+  - title: "Neighborhood Reports: Asthma"
+    url: "neighborhood-reports/#Asthmareport"
 ---
 
 New York City has hundreds of neighborhoods and nearly as many ways of drawing neighborhood boundaries. When you visit the Environment & Health Data Portal, you might notice that data is available in several different neighborhood schemes.
@@ -21,6 +28,7 @@ For example, dig around in the asthma data pages and you'll find [Adults with As
 The most common neighborhood boundaries on the EH Data Portal are Community Districts, Public Use Microdata Areas, and United Hospital Fund neighborhoods. These three common neighborhood schemes have different building blocks. Let's explore these.
 
 {{< rawhtml >}}
+
  </div>
     <!--start wide-->
     <div class="wide my-4 chart-wrapper-ds">
@@ -67,9 +75,11 @@ The most common neighborhood boundaries on the EH Data Portal are Community Dist
 {{< /rawhtml >}}
 
 #### Community districts
+
 There are 59 Community Districts (CDs) in NYC, each overseen by a Community Board that advises on land use, zoning, city budgets, and more. As a political boundary, CDs are useful geographic units for breaking down city operations. [Learn more about Community Boards](https://www1.nyc.gov/site/cau/community-boards/about-commmunity-boards.page).
 
 #### Public Use Microdata Areas
+
 Public Use Microdata Areas (PUMAs) have boundaries defined by the US Census. They are made up of groups of census tracts.
 
 There are 55 PUMAs in NYC. PUMAs have similar boundaries to Community Districts, which means that often, one can be used as a proxy for the other. In the map below, notice how Brooklyn CD 1, in Greenpoint/Williamsburg, is almost identical to the PUMA.
@@ -157,8 +167,8 @@ Each PUMA breaks down into Neighborhood Tabulation Areas (NTAs), and each NTA br
 
 {{< /rawhtml >}}
 
-
 #### United Hospital Fund neighborhoods
+
 United Hospital Fund neighborhoods (UHFs) have boundaries based on ZIP codes. This geography was created by the Health Department, the United Hospital Fund, and other city agencies in the 1980s. They were designed for health research, and to be similar to NYC’s Community Districts.
 
 Health data - like somebody’s hospitalization record, for example, or a response to a survey - often includes a person’s ZIP code. It’s the most readily available piece of geographic information in administrative data. It’s also the neighborhood designation that most people know and can provide when responding to a survey.
@@ -219,8 +229,8 @@ In the map below, notice how three UHF42 neighborhoods in the South Bronx are co
 
 {{< /rawhtml >}}
 
-
 ### How do you choose when boundaries overlap?
+
 These different neighborhood boundaries can make things confusing. For example, say you live in Ditmas Park and you want to take some health data to a meeting of your Community Board. Ditmas Park is part of Community District 14, Flatbush/Midwood. But CD14 straddles two different UHF neighborhoods. This raises a difficult question: what neighborhood's data would you bring to your Community Board meeting?
 
 {{< figure src="overlap.png" alt="An example of a Community District that overlaps two UHF42 neighborhoods.">}}
@@ -230,4 +240,5 @@ On the EH Data Portal, we aggregate data from lots of different sources. They mi
 But any way of drawing boundaries or aggregating data will smooth over some variation within groups. Despite limitations in the data, we can still see health patterns by geography, and learn valuable information about how neighborhoods differ and why. Neighborhood health data have a lot to tell us, even when their boundaries are imperfect representations of New York City's communities.
 
 ---
+
 If you're mapping health data, you can [download and use shapefiles, geojson, and topojson files at our Github repository](https://github.com/nycehs/NYC_geography).

@@ -7,7 +7,7 @@ seo_title: "Air quality data for NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
 description: "Datasets and visualizations of air quality data in NYC."
 tags:
-categories: ["airquality", "childhealth", "transportation", "neighborhoods"]
+categories: ["airquality", "childhealth", "publicspace", "neighborhoods"]
 keywords:
   [
     "air quality",
@@ -36,6 +36,20 @@ indicators:
       - 55
   - header: null
     IndicatorID:
+related:
+  - title: "Real-time air quality"
+    url: "data-features/realtime-air-quality/"
+  - title: "Your neighborhood air quality"
+    url: "data-features/neighborhood-air-quality/"
+  - title: "Air quality in car-free areas"
+    url: "data-stories/car-free-zones/"
+relatedData:
+  - title: "Health impacts of air pollution"
+    url: "health-impacts-of-air-pollution"
+  - title: "Air quality"
+    url: "air-quality/"
+  - title: "Asthma"
+    url: "asthma/"
 ---
 
 Air quality is a **measure of the condition of the air around us**. The less air pollution there is, the better the air quality.

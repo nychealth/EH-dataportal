@@ -7,7 +7,7 @@ seo_title: "Health care data for NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
 description: "Datasets and visualizations of health care data in NYC."
 tags:
-categories: ["social"]
+categories: ["inequality"]
 keywords: ["health care", "doctors", "mortality"]
 indicators:
   - header: null
@@ -16,6 +16,20 @@ indicators:
       - 2132
       - 2401
       - 2232
+related:
+  - title: "Injury deaths in NYC"
+    url: "data-stories/injury-deaths/"
+  - title: "The racial wealth gap has big implications for public health and health equity"
+    url: "data-stories/racial-wealth-gap/"
+  - title: "Why asthma is a social justice issue"
+    url: "data-stories/asthma-and-poverty/"
+relatedData:
+  - title: "Mortality"
+    url: "mortality/"
+  - title: "Economic conditions"
+    url: "economic-conditions/"
+  - title: "Social conditions"
+    url: "social-conditions"
 ---
 
 Health care is a valuable tool to stay healthy.

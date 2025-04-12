@@ -7,13 +7,21 @@ seo_title: "Waterway data for NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
 description: "Datasets and visualizations of waterway quality in NYC."
 tags:
-categories: ["social", "climatehealth"]
+categories: ["inequality", "climatehealth"]
 keywords: ["water", "harbor", "pollution", "climate", "climatehealth"]
 indicators:
   - header: null
     IndicatorID:
       - 2427
       - 2428
+related:
+  - title: "What Hurricane Ida and Superstorm Sandy taught us about flooding and health"
+    url: "data-stories/flooding-and-health/"
+relatedData:
+  - title: "Drinking water quality"
+    url: "drinking-water-quality/"
+  - title: "Lead"
+    url: "lead/"
 ---
 
 Healthy waterways are important for both aquatic life and humans who use the water for recreation.

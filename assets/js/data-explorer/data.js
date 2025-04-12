@@ -70,7 +70,7 @@ const fetch_comparisons = async () => {
 
 
 // ----------------------------------------------------------------------- //
-// function to create data and metadata for comparisons chart
+// function to create data and metadata for comparison chart
 // ----------------------------------------------------------------------- //
 
 const createComparisonData = async (comps) => {
@@ -80,20 +80,20 @@ const createComparisonData = async (comps) => {
     // console.log("comps [createComparisonData]:", comps);
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-    // get comparisons-specific metadata
+    // get comparison-specific metadata
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
     // will be used by renderMeasures to create dropdown
     
-    comparisonsMetadata = await comps.filter(
+    comparisonMetadata = await comps.filter(
         d => indicatorComparisonId.includes(d.ComparisonID)
     )
         
-    // console.log("comparisonsMetadata [createComparisonData]:", comparisonsMetadata);
+    // console.log("comparisonMetadata [createComparisonData]:", comparisonMetadata);
 
     // merged metadata
 
-    aqComparisonsMetadata = aq.from(comparisonsMetadata)
+    aqComparisonMetadata = aq.from(comparisonMetadata)
         .unroll("Indicators")
         .derive({
             IndicatorID: d => d.Indicators.IndicatorID,
@@ -104,13 +104,13 @@ const createComparisonData = async (comps) => {
         })
         .select(aq.not("Indicators"))
 
-    // console.log("aqComparisonsMetadata [createComparisonData]");
-    // aqComparisonsMetadata.print()
+    // console.log("aqComparisonMetadata [createComparisonData]");
+    // aqComparisonMetadata.print()
 
 
     // get unique combinations of indicators and measures
 
-    let aqUniqueIndicatorMeasure = aqComparisonsMetadata
+    let aqUniqueIndicatorMeasure = aqComparisonMetadata
         .select("IndicatorID", "MeasureID")
         .dedupe()
         // .print({limit: Infinity})
@@ -119,21 +119,21 @@ const createComparisonData = async (comps) => {
         .groupby("IndicatorID")
         .objects({grouped: "entries"})
 
-    let comparisonsIndicatorIDs = [... new Set(aqComparisonsMetadata.array("IndicatorID"))]
-    let comparisonsMeasureIDs = [... new Set(aqComparisonsMetadata.array("MeasureID"))]
+    let comparisonIndicatorIDs = [... new Set(aqComparisonMetadata.array("IndicatorID"))]
+    let comparisonMeasureIDs = [... new Set(aqComparisonMetadata.array("MeasureID"))]
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-    // join comparisons metadata with indicators from metadata.json
+    // join comparison metadata with indicators from metadata.json
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
-    let comparisonsIndicatorsMetadata = indicators.filter(
-        ind => comparisonsIndicatorIDs.includes(ind.IndicatorID)
+    let comparisonIndicatorsMetadata = indicators.filter(
+        ind => comparisonIndicatorIDs.includes(ind.IndicatorID)
     )
 
-    // console.log("comparisonsIndicatorsMetadata:", comparisonsIndicatorsMetadata);
+    // console.log("comparisonIndicatorsMetadata:", comparisonIndicatorsMetadata);
 
 
-    aqComparisonsIndicatorsMetadata = aq.from(comparisonsIndicatorsMetadata)
+    aqComparisonIndicatorsMetadata = aq.from(comparisonIndicatorsMetadata)
         .select("IndicatorID", "IndicatorName", "IndicatorLabel", "Measures")
         .unroll("Measures")
         .derive({
@@ -143,23 +143,24 @@ const createComparisonData = async (comps) => {
             Sources:         d => d.Measures.Sources,
             how_calculated:  d => d.Measures.how_calculated,
             DisplayType:     d => d.Measures.DisplayType,
-            TrendNoCompare:  d => d.Measures.TrendNoCompare
+            TrendNoCompare:  d => d.Measures.TrendNoCompare,
+            TrendThreshold:  d => d.Measures.TrendThreshold
         })
         .derive({IndicatorMeasure: d => d.IndicatorLabel + ": " + d.MeasurementType})
         .select(aq.not("Measures"))
-        .filter(aq.escape(d => comparisonsMeasureIDs.includes(d.MeasureID)))
+        .filter(aq.escape(d => comparisonMeasureIDs.includes(d.MeasureID)))
     
-    // console.log("aqComparisonsIndicatorsMetadata [createComparisonData]");
-    // aqComparisonsIndicatorsMetadata.print()
+    // console.log("aqComparisonIndicatorsMetadata [createComparisonData]");
+    // aqComparisonIndicatorsMetadata.print()
 
 
-    // join comparisons metadata tables
+    // join comparison metadata tables
 
-    aqCombinedComparisonsMetadata = aqComparisonsMetadata
-        .join(aqComparisonsIndicatorsMetadata, [["MeasureID", "IndicatorID"], ["MeasureID", "IndicatorID"]])
+    aqCombinedComparisonMetadata = aqComparisonMetadata
+        .join(aqComparisonIndicatorsMetadata, [["MeasureID", "IndicatorID"], ["MeasureID", "IndicatorID"]])
 
-    // console.log("aqCombinedComparisonsMetadata [createComparisonData]");
-    // aqCombinedComparisonsMetadata.print()
+    // console.log("aqCombinedComparisonMetadata [createComparisonData]");
+    // aqCombinedComparisonMetadata.print()
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
     // fetch data files for all comp indicators
@@ -187,7 +188,7 @@ const createComparisonData = async (comps) => {
                     let comp_data = data
                         .derive({IndicatorID: aq.escape(ind[0])})
                         .semijoin(
-                            aqCombinedComparisonsMetadata, 
+                            aqCombinedComparisonMetadata, 
                             (a, b) => (op.equal(a.MeasureID, b.MeasureID) && op.equal(a.GeoType, b.GeoTypeName) && op.equal(a.GeoID, b.GeoID))
                         )
                         .reify()
@@ -205,10 +206,10 @@ const createComparisonData = async (comps) => {
 
         // take array of arquero tables and combine them into 1 arquero table - like bind_rows in dplyr
 
-        aqComparisonsIndicatorData = await dataArray.flatMap(d => d).reduce((a, b) => a.concat(b))
+        aqComparisonIndicatorData = await dataArray.flatMap(d => d).reduce((a, b) => a.concat(b))
 
-        // console.log("aqComparisonsIndicatorData [createComparisonData]");
-        // aqComparisonsIndicatorData.print()
+        // console.log("aqComparisonIndicatorData [createComparisonData]");
+        // aqComparisonIndicatorData.print()
 
     })
 }
@@ -227,7 +228,7 @@ const createComparisonData = async (comps) => {
 
 const loadIndicator = async (this_indicatorId, dont_add_to_history) => {
 
-    console.log("* loadIndicator");
+    console.log("* loadIndicator:", parseFloat(this_indicatorId));
 
     currentHash = window.location.hash;
 
@@ -276,8 +277,8 @@ const loadIndicator = async (this_indicatorId, dont_add_to_history) => {
     selectedLinksMeasure = false;
     selectedDisparity = false;
     selectedComparison = false;
-    showingNormalTrend = false;
-    showingComparisonsTrend = false;
+    showingBoroughTrend = false;
+    showingComparisonTrend = false;
 
     // if dont_add_to_history is true, then don't push the state
     // if dont_add_to_history is false, or not set, push the state
@@ -309,7 +310,7 @@ const loadIndicator = async (this_indicatorId, dont_add_to_history) => {
 
     // call data loading function
 
-    const indicatorTitle = document.getElementById('dropdownIndicator')
+    const indicatorTitle = document.getElementById('indicatorNameMobile')
 
     indicatorTitle.innerHTML = DOMPurify.sanitize(indicatorName)
 
@@ -318,7 +319,7 @@ const loadIndicator = async (this_indicatorId, dont_add_to_history) => {
     // console.log(">>>> indicatorComparisonId", indicatorComparisonId);
     
     // make sure metadata is empty, so that we can use its length for conditionals
-    comparisonsMetadata = [];
+    comparisonMetadata = [];
     
     // why are we waiting for this?
 
@@ -668,7 +669,7 @@ const joinData = () => {
         .rename({'Name': 'Geography'})
         // join the additional time period info
         .join(timeTable, "TimePeriodID")
-        .select(aq.not("BoroID", "Borough", "TimeType"))
+        .select(aq.not("TimeType"))
         .orderby(aq.desc('end_period'), aq.desc('GeoRank'))
         .reify()
     
@@ -696,6 +697,7 @@ const joinData = () => {
     // data for map ----------
 
     mapData = joinedAqData
+        .select(aq.not("BoroID", "Borough"))
         // filter to keep only times and geos we want in the table
         .semijoin(aqMapTimesGeos, [["MeasureID", "TimePeriodID", "GeoType"], ["MeasureID", "TimePeriodID", "GeoType"]])
         .orderby(aq.desc('end_period'), "MeasureID")
@@ -708,6 +710,7 @@ const joinData = () => {
     // data for trend chart ----------
 
     trendData = joinedAqData
+        .select(aq.not("BoroID", "Borough"))
         // filter to keep only times and geos we want in the table
         .semijoin(aqTrendTimesGeos, [["MeasureID", "TimePeriodID", "GeoType"], ["MeasureID", "TimePeriodID", "GeoType"]])
         .orderby("GeoRank", "GeoID")
@@ -721,6 +724,7 @@ const joinData = () => {
     // console.log(">>> linksData [joinData]");
 
     linksData = joinedAqData
+        .select(aq.not("BoroID", "Borough"))
         .filter(d => !op.match(d.GeoType, /Citywide|Borough/)) // remove Citywide and Boro
         .objects()
 

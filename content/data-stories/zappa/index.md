@@ -6,7 +6,7 @@ draft: false
 seo_title: "ZAPPA: a tool to understand air quality policies."
 seo_description: "A data story on ZAPPA, a tool to understand air quality policies."
 tags:
-categories: ["transportation", "airquality"]
+categories: ["publicspace", "airquality"]
 keywords:
   [
     "air quality",
@@ -31,6 +31,13 @@ keywords:
   ]
 image: ds-road-traffic.jpg
 photocredit: "Ed Reed/Mayoral Photography Office, City of New York"
+related:
+  - title: The New York City Community Air Survey
+    url: "data-features/nyccas/"
+  - title: The public health impacts of PM2.5 from traffic air pollution
+    url: "data-stories/traffic-and-air-pollution/"
+  - title: "Special findings from 10 years of NYCCAS"
+    url: "data-stories/air-quality-snapshots/"
 ---
 
 New York City’s air quality is generally good and has been improving over time. Still, air pollution threatens health: two pollutants, [ozone and PM2.5 cause about 2,400 deaths per year in NYC, and thousands more emergency department visits and hospitalizations for asthma, heart, and lung problems]({{< baseurl >}}data-explorer/health-impacts-of-air-pollution/?id=2122#display=summary).

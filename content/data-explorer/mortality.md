@@ -7,7 +7,7 @@ seo_title: "Mortality data for NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
 description: "Datasets and visualizations of mortality data in NYC."
 tags:
-categories: ["healthoutcomes", "social"]
+categories: ["healthoutcomes", "inequality", "injuryandviolence"]
 keywords: ["mortality", "death", "dying", "health"]
 indicators:
   - header: null
@@ -16,6 +16,18 @@ indicators:
       - 5
       - 6
       - 8
+related:
+  - title: "The racial wealth gap has big implications for public health and health equity"
+    url: "data-stories/racial-wealth-gap/"
+  - title: "Efforts to reduce air pollution should focus on neighborhoods with the worst health impacts"
+    url: "data-stories/hia/"
+relatedData:
+  - title: "Cancer"
+    url: "cancer/"
+  - title: "Health care"
+    url: "health-care"
+  - title: "Economic conditions"
+    url: "economic-conditions/"
 ---
 
 Death is, of course, a severe health outcome. Many deaths are preventable.

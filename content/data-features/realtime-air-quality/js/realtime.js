@@ -9,7 +9,12 @@ NULL HANDLING: in getStationsFromData, we get unique times and join that to the 
 
 USING DEC_AVG: This app excludes DEC_Avg from conventional functionality. monitors_group_noDEC sets the map bounds without the DEC Average monitor, which is given an abitrary off-coast lat/long. if (x != 'DEC_Avg') changes what happens to the map zoom on button click - just zooming to the initial extent if somebody selects the DEC_Avg option.
 
+
+/*
+  IF HAMILTON BRIDGE ISN'T IN THE ACTIVE LOCATIONS,
+  THEN, ADD A UNIQUE PIN
 */
+
 
 // initialize variables (other variables are initialized closer to their prime use)
 var current_spec;
@@ -344,6 +349,7 @@ var monitor_locations;
 
 // draw map fires when data and monitor_locations load:
 function drawMap() {
+
     monitor_locations = activeMonitors
     
     // adding each monitor to the feature group
@@ -359,7 +365,7 @@ function drawMap() {
         
         var this_monitor = 
             L.marker([monitor.Latitude, monitor.Longitude], {icon: this_icon, riseOnHover: true, riseOffset: 2000})
-            // .bindTooltip(monitor.Location, {permanent: true, opacity: 0.85, interactive: true})
+            .bindPopup(monitor.Location, {permanent: true, opacity: 0.85, interactive: true})
             .addTo(monitors_group)
         
         // create group without the DEC Monitor, which we'll use to set the center and bounds
@@ -405,6 +411,9 @@ function drawMap() {
         subdomains: 'abcd',
         maxZoom: 20
     }).addTo(map);
+
+    // if Hamilton Bridge isn't reporting, add the marker anyway
+    if (!stations.includes('Hamilton Bridge')) {drawHamiltonBridge()} 
     
     // adding the monitor markers to the map
     
@@ -492,6 +501,24 @@ function updateData(x) {
     // scroll chart into view (for mobile)
     document.getElementById('vis').scrollIntoView();
 
+}
+
+// -- DRAW HAMILTON BRIDGE ---- //
+function drawHamiltonBridge() {
+  console.log('Hamilton Bridge not reporting. Drawing point anyway')
+  const hamiltonBridgeLocation = allMonitorLocations.filter(item => item.Location === 'Hamilton Bridge');
+
+    let this_icon = L.colorIcon({
+      iconSize : [30, 30],
+      popupAnchor : [0, -15],
+      iconUrl: "images/map-marker.svg",
+      color: color_convert.to_hex(hamiltonBridgeLocation[0].Color)
+    });
+
+    var this_monitor = 
+        L.marker([hamiltonBridgeLocation[0].Latitude, hamiltonBridgeLocation[0].Longitude], {icon: this_icon, riseOnHover: true, riseOffset: 2000})
+        .bindPopup(`Hamilton Bridge`) // Add a popup with the location name
+        .addTo(map)
 }
 
 

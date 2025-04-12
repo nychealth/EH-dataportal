@@ -5,7 +5,7 @@ draft: false
 seo_title: "COVID-19期间的空气质量"
 seo_description: "纽约市民待在家里会发生什么？"
 tags: 
-categories: ["transportation","airquality"]
+categories: ["publicspace","airquality"]
 keywords: ["air quality","traffic","transportation","covid","covid-19","coronavirus","air pollution", "lungs","breathing"]
 image: ds-aqcovid.jpeg
 photocredit: "Ed Reed/Mayoral Photography Office, City of New York"
