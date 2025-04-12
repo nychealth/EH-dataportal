@@ -7,8 +7,8 @@ seo_title: "Active design data in NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
 description: "Datasets and visualizations of active design data in NYC."
 tags:
-categories: ["transportation", "neighborhoods", "airquality", "climate"]
-keyTopic: transportation
+categories: ["publicspace", "neighborhoods", "airquality", "climate"]
+keyTopic: publicspace
 keywords:
   [
     "active design",
@@ -36,6 +36,20 @@ indicators:
     IndicatorID:
       - 2157
       - 2143
+related:
+  - title: "Public space creates health"
+    url: "data-stories/public-space-creates-health/"
+  - title: "Street safety in NYC"
+    url: "data-stories/streets/"
+  - title: "Real-time air quality"
+    url: "data-features/realtime-air-quality"
+relatedData:
+  - title: "Walking, driving, and cycling"
+    url: "walking-driving-and-cycling"
+  - title: "Physical activity"
+    url: "physical-activity/"
+  - title: "Transportation related-injuries"
+    url: "transportation-related-injuries/"
 ---
 
 Physical activity and healthy eating are among the leading ways to get and stay healthy.

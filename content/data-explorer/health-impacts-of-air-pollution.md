@@ -7,7 +7,7 @@ seo_title: "Health impacts of air pollution: data for NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
 description: "Datasets and visualizations on the health impacts of air pollution in NYC."
 tags:
-categories: ["airquality", "transportation", "healthoutcomes", "social"]
+categories: ["airquality", "publicspace", "healthoutcomes", "inequality"]
 keywords:
   [
     "air quality",
@@ -39,6 +39,18 @@ indicators:
     IndicatorID:
       - 2121
       - 2108
+related:
+  - title: "The public health impacts of PM2.5 from traffic air pollution"
+    url: "data-stories/traffic-and-air-pollution/"  
+  - title: "Air quality in car-free areas"
+    url: "data-stories/car-free-zones/"
+  - title: "Real-Time Air Quality: PM2.5 in NYC"
+    url: "data-features/realtime-air-quality/"
+relatedData:
+  - title: "Air quality"
+    url: "air-quality/"
+  - title: "Asthma triggers at home"
+    url: "asthma-triggers/"
 ---
 
 Air pollution is an important environmental threat to the health of New York City residents. Exposures to two common air pollutants, **fine particulate matter (PM2.5)** and **ozone (O3)**, can worsen respiratory illness and heart conditions and contribute to premature deaths. Older adults, children and people with existing heart and lung disease are especially affected. This site provides estimates of the impact of air pollution on the health of NYC residents as measured by the numbers of emergency department visits, hospitalizations, and deaths attributable to PM2.5 and ozone.

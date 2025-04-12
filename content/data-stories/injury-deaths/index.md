@@ -5,7 +5,7 @@ draft: false
 seo_title: "Injury deaths in NYC adults: how homicide and suicide contribute"
 seo_description: "A data story on deaths due to injury - and ways we can prevent them."
 tags:
-categories: ["healthoutcomes", "social"]
+categories: ["healthoutcomes", "inequality","injuryandviolence"]
 keywords:
   [
     "injuries",
@@ -20,6 +20,13 @@ keywords:
   ]
 image: ds-aqcovid.jpeg
 photocredit: "Ed Reed/Mayoral Photography Office, City of New York"
+related:
+  - title: "Why violence is a public health issue"
+    url: "data-stories/violence/"
+  - title: "Disparities in violence"
+    url: "data-stories/assaults/"
+  - title: "Violence"
+    url: "data-explorer/violence/?id=2400#display=summary"
 ---
 
 Young and middle-aged adults (ages 15 to 44) do not typically die from the natural causes that kill older adults. Injuries, both intentional — violence or suicide — and unintentional, dominate as causes of death. These premature deaths are tragic, unnecessary and preventable.
@@ -32,8 +39,14 @@ Suicide and homicide do not just affect the immediate victims. The impacts radia
 <em><i class="fas fa-hands-helping text-center mr-1"></i>New Yorkers seeking support with their mental health can connect to trained counselors, for free and in over 200 languages, through 988. For 24/7 support, call or text 988. If you or someone you know is at immediate risk of hurting themselves, or in immediate danger, call 911. If you or someone you know is at immediate risk of hurting themselves, or in immediate danger, call 911.</em></div>
 
 </div>
+<div aria-hidden="true">
 <div class="wide my-4">
 <iframe title=" Homicide and Suicideare among top causes of death from  ages 15 to 44" aria-label="Scatter Plot" id="datawrapper-chart-jtm6b" src="https://datawrapper.dwcdn.net/jtm6b/6/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="720" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
+</div>
+</div>
+<div class="sr-only">
+<iframe title=" Homicide and Suicide are among top causes of death from  ages 15 to 44 (2017 - 2019)" aria-label="Table" id="datawrapper-chart-nyBxm" src="https://datawrapper.dwcdn.net/nyBxm/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="1271" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+</script>
 </div>
 <div class="narrow">
 
@@ -45,14 +58,19 @@ From 2017 to 2019, Black New Yorkers between the ages of 15 to 24 died by homici
 
 Racial disparities signal historical and structural origins that have and continue to deny resources to people of color. These include things like social structures that limit access to basic needs (such as health care) which are perpetuated by racism, residential segregation — like <a href="../redlining/"> redlining </a> — and systematic disinvestment in neighborhoods. Disinvestment can be things like denying people access to loans to buy homes, housing neglect, underfunded schools, fewer job opportunities and lower-paying jobs, emphasis on policing over pro-social resources, and others. <a href="../../data-explorer/violence/?id=2375#display=summary"> Over time, disinvestment puts residents in high-poverty neighborhoods at a greater risk of experiencing violence.</a>
 
+<div aria-hidden="true">
 <iframe title="Homicide death rate, by race/ethnicity" class="my-4" aria-label="Split Bars" id="datawrapper-chart-XMN9V" src="https://datawrapper.dwcdn.net/XMN9V/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="191" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
 </script>
-
+</div>
+<div class="sr-only">
+<iframe title="Details: Injury death rates, ages 15 to 24 " aria-label="Table" id="datawrapper-chart-uzpwR" src="https://datawrapper.dwcdn.net/uzpwR/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="529" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+</script>
+</div>
 Among 15- to 24-year-olds from 2017 to 2019, we also see disparities in homicide rates across boroughs. The Bronx has the highest homicide rate of any borough, followed by Brooklyn. The Bronx’s homicide rate for people ages 15 to 24 is more than double that of Manhattan, Queens or Staten Island.
-
+<div aria-hidden="true">
 <iframe title="Homicide rates by borough" class="my-4" aria-label="Split Bars" id="datawrapper-chart-c0bab" src="https://datawrapper.dwcdn.net/c0bab/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="222" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
 </script>
-
+</div>
 Although somewhat broad, we hypothesize that borough differences in homicides may signal unique histories of the neighborhoods that make up each borough. We know there is a history of disinvestment and investment that varies by NYC neighborhood, creating different resources and opportunities. Distribution of homicide by place offers a glimpse into the broader physical, social and economic context — namely, housing and park quality and availability, access to schools, jobs, opportunities and health care. <a href="../../data-explorer/violence/?id=2375#display=summary">To learn more about differences in injuries from violence, refer to the 2016 community-district level data.</a>
 
 Among New Yorkers ages 15 to 24, suicide rates are similar across race/ethnicity and across boroughs. However, within this age group of young adults, Staten Island has a lower suicide rate (less than half) than the other boroughs.
@@ -65,22 +83,36 @@ From 2017 to 2019, there were over 110 suicides each year among these young adul
 
 <a href="https://www.nyc.gov/assets/doh/downloads/pdf/epi/databrief127.pdf"> While Staten Island has a lower rate of suicide among young people ages 15 to 24, its suicide rate for people ages 25 to 34 is higher than any other borough. </a>
 
+<div aria-hidden="true">
 <iframe title="Suicide rates age 25-34 (Copy)" class="my-4" aria-label="Split Bars" id="datawrapper-chart-dj1Ut" src="https://datawrapper.dwcdn.net/dj1Ut/3/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="222" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
 </script>
+</div>
+<div class="sr-only">
+<iframe title="Details: Injury death rates, ages 25 to 34" aria-label="Table" id="datawrapper-chart-gecpf" src="https://datawrapper.dwcdn.net/gecpf/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="575" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+</script>
+</div>
 
 Within this age group of 25-to-34-year-olds, the suicide rate is highest among Black non-Hispanic New Yorkers and lowest among Latinos.
 
 Among 25- to 34-year-olds, homicides are the fourth-leading cause of death. Racial/ethnic, geographic, and sex disparities in homicide rates for adults ages 25 to 34 mirror those for ages 15 to 24, with the highest rates among Black males.
 
+<div aria-hidden="true">
 <iframe title="Suicide rates age 25-34" class="my-4" aria-label="Split Bars" id="datawrapper-chart-7rrVq" src="https://datawrapper.dwcdn.net/7rrVq/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="191" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
 </script>
+</div>
 
 #### Ages 35 to 44: Suicide ranks as the fifth-leading cause of death.
 
 White New Yorkers had a suicide death rate roughly twice that of other race/ethnicity groups in this age group.
 
+<div aria-hidden="true">
 <iframe title="Details: Injury death rates, age 35 to 44   (Copy)" class="my-4" aria-label="Split Bars" id="datawrapper-chart-M7spx" src="https://datawrapper.dwcdn.net/M7spx/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="387" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
 </script>
+</div>
+<div class="sr-only">
+<iframe title="Details: Injury death rates, ages 35 to 44" aria-label="Table" id="datawrapper-chart-iiqCJ" src="https://datawrapper.dwcdn.net/iiqCJ/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="575" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+</script>
+</div>
 
 Among New Yorkers ages 35 to 44, the suicide rate among men is more than double the rate among women. In addition, in this age group, Staten Island ranks highest of all boroughs for suicide deaths, followed by Queens.
 
@@ -109,12 +141,18 @@ Each of these deaths is a tragedy — but solutions exist. Limiting access to me
 Explore more data here:
 
 </div>
+<div aria-hidden="true">
 <div class="wide my-4">
 <iframe title="Preventable injuries like Homicide and Suicide are top causes of death in NYC - especially age 15 to 44" aria-label="Scatter Plot" id="datawrapper-chart-blYxp" src="https://datawrapper.dwcdn.net/blYxp/3/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="720" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
 </script>
 </div>
+</div>
+<div class="sr-only">
+<iframe title="Preventable injuries
+like Homicide and Suicide are top causes of death in NYC—especially among ages 15 to 44" aria-label="Table" id="datawrapper-chart-67kB9" src="https://datawrapper.dwcdn.net/67kB9/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="1349" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+</script>
+</div>
 <div class="narrow">
-
 <hr class="my-2">
 
 <div class="asidebox">

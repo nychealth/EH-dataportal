@@ -35,6 +35,18 @@ indicators:
       - 2369
       - 2374
       - 2370
+related:
+  - title: "Housing creates health"
+    url: "data-stories/housing-creates-health/"
+  - title: "Rat Mitigation Zones"
+    url: "data-features/rat-mitigation-zones/"
+relatedData:
+  - title: "Cockroaches"
+    url: "cockroaches/"
+  - title: "Bed bugs"
+    url: "bed-bugs/"
+  - title: "Mice and rats"
+    url: "mice-and-rats/"
 ---
 
 Pesticides are chemicals applied to kill or control insects, rats and mice, undesirable plants and weeds, or fungi (e.g., mold). Pesticides are often categorized by type of use (e.g., rodenticide, insecticide) or chemical class (e.g., organophosphate, pyrethroid).

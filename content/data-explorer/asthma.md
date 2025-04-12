@@ -12,10 +12,10 @@ categories:
     "airquality",
     "childhealth",
     "housing",
-    "transportation",
+    "publicspace",
     "climatehealth",
     "healthoutcomes",
-    "social",
+    "inequality",
     "pests",
   ]
 keywords:
@@ -55,6 +55,20 @@ indicators:
       - 2385
       - 2381
       - 2386
+related:
+  - title: "Why asthma is a social justice issue"
+    url: "data-stories/asthma-and-poverty/"
+  - title: "Health, housing, and history"
+    url: "data-stories/housing"
+  - title: "Real-time air quality"
+    url: "data-features/realtime-air-quality/"
+relatedData:
+  - title: "Health impacts of air pollution"
+    url: "health-impacts-of-air-pollution"
+  - title: "Housing maintenance"
+    url: "housing-maintenance/"
+  - title: "Asthma triggers"
+    url: "asthma-triggers/"
 ---
 
 Asthma is a **common disease in which the lungs become swollen, making breathing difficult**. Symptoms include wheezing, coughing, shortness of breath and tightness in the chest. The exact causes of asthma are not known. **Asthma cannot be cured, but it can be controlled**.

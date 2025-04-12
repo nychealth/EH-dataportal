@@ -7,7 +7,7 @@ seo_title: "Data on asthma triggers in NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
 description: "Datasets and visualizations of asthma trigger data in NYC."
 tags:
-categories: ["housing", "social", "neighborhoods"]
+categories: ["housing", "inequality", "neighborhoods"]
 keywords:
   [
     "built environments",
@@ -31,6 +31,19 @@ indicators:
       - 2394
       - 48
       - 2430
+related:
+  - title: "Health, housing, and history"
+    url: "data-stories/housing/"
+  - title: "Housing creates health"
+    url: "data-stories/housing-creates-health/"
+relatedData:
+  - title: "Asthma"
+    url: "asthma/"
+  - title: "Housing maintenance"
+    url: "housing-maintenance/"
+  - title: "Mice and rats"
+    url: "mice-and-rats/"
+
 ---
 
 Housing conditions can trigger asthma. In New York City, childhood asthma is a significant health threat that affects thousands of children per year.
