@@ -4,9 +4,9 @@ draft: false
 seo_title: "NYC Environment and Health Data Portal."
 seo_description: "Data on how environments shape health in NYC."
 description: "Data on how environments shape health in NYC."
-featured_title: "Rat Mitigation Zones"
-featured_text: "See how the NYC Health Department monitors and controls rats."
-featured_link: "data-features/rat-mitigation-zones/"
-featured_image: "rmz.png"
+featured_title: "Rats in your neighborhood"
+featured_text: "Learn about rats in your area and what's being done to fight them."
+featured_link: "data-features/rats-in-your-neighborhood/"
+featured_image: "rats_by_loc.jpg"
 ImageNote: featured_image must be added to assets
 ---

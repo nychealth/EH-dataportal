@@ -7,7 +7,7 @@ seo_title: "Weather-related illness data for NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
 description: "Datasets and visualizations of weather-related illness in NYC."
 tags:
-categories: ["social", "climatehealth", "healthoutcomes"]
+categories: ["inequality", "climatehealth", "healthoutcomes"]
 keywords:
   [
     "weather-related illness",
@@ -29,6 +29,8 @@ indicators:
       - 2376
       - 2175
       - 2174
+      - 2444
+      - 2445
   - header: Heat Stress
     IndicatorID:
       - 2084

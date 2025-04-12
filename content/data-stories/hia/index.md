@@ -7,8 +7,8 @@ image: 171109_dailylife0059.jpg
 photocredit: "Edwin J. Torres/Mayoral Photography Office, City of New York"
 categories:
   - airquality
-  - social
-  - transportation
+  - inequality
+  - publicspace
 keywords:
   [
     "air quality",
@@ -38,7 +38,7 @@ related:
 
 _This story was recently updated with new data._
 
-Every year in NYC between 2017 and 2019 (The most recent data available. <a href="http://localhost:1313/dev-prod/data-explorer/health-impacts-of-air-pollution/?id=2108#display=summary">See all recorded years of health impacts data here)</a>, fine particulate matter pollution from motor vehicles and burning fossil fuels caused:
+Every year in NYC between 2017 and 2019 (The most recent data available. [See all recorded years of health impacts data here](../../data-explorer/health-impacts-of-air-pollution/?id=2108#display=summary)), fine particulate matter pollution from motor vehicles and burning fossil fuels caused:
 
 - At least [1,800 deaths]({{< baseurl >}}data-explorer/health-impacts-of-air-pollution/?id=2108#display=summary)
 - About 900 hospital admissions for [lung]({{< baseurl >}}data-explorer/health-impacts-of-air-pollution/?id=2119#display=summary) and [heart conditions]({{< baseurl >}}data-explorer/health-impacts-of-air-pollution/?id=2120#display=summary)

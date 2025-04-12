@@ -22,12 +22,13 @@ image: images/banner-2023.jpg
 layout: nyccas-report
 report: true
 related:
-  - title: What our air quality monitors tell us about NYC's neighborhoods
-    url: data-stories/air-quality-by-neighborhood/
-  - title: 'Real-Time Air Quality: PM2.5 in NYC'
-    url: data-features/realtime-air-quality/
-  - title: 'Air quality snapshots: special findings from 10 years of NYCCAS'
-    url: data-stories/air-quality-snapshots/
+  - title: "What our air quality monitors tell us about NYC's neighborhoods"
+    url: "data-stories/air-quality-by-neighborhood/"
+  - title: "Real-Time Air Quality: PM2.5 in NYC"
+    url: "data-features/realtime-air-quality/"
+  - title: "Air quality snapshots: special findings from 10 years of NYCCAS"
+    url: "data-stories/air-quality-snapshots/"
+blurb: Key findings from NYC's comprehensive air quality monitoring program, including pollutant trends and local sources.
 ---
 ## NYCCAS Report: 2008-2023
 

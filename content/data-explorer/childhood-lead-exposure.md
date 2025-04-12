@@ -6,7 +6,7 @@ seo_title: "Childhood lead exposure data for NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
 description: "Datasets and visualizations of childhood lead exposure data in NYC."
 tags: 
-categories: ["housing","childhealth","social"]
+categories: ["housing","childhealth","inequality"]
 keywords: ["lead","poisoning","housing","children","child","testing","blood"]
 indicators:
 - header: null

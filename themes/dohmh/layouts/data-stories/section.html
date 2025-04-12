@@ -41,7 +41,7 @@
 
                 <div class="card-body">
                     <h3 class="card-title"><a class="text-black" href="{{ .RelPermalink }}" class="text-primary">{{ .Title }}</a></h3>
-                    <div class="mb-2">{{ .Content | truncate 100 | plainify }}</div>
+                    <div class="mb-2">{{ .Content | plainify | htmlUnescape | truncate 100 }}</div>
                     <div class="d-flex justify-content-end link">
                         <a class="fs-sm font-weight-bold" href="{{ .RelPermalink }}">Read more <i class="fa-solid fa-angle-right"></i></a>
                     </div>
@@ -104,7 +104,7 @@
 
                                 <div class="card-body">
                                     <h3 class="card-title"><a class="text-black" href="{{ .RelPermalink }}" class="text-primary">{{ .Title }}</a></h3>
-                                    <div class="mb-2">{{ .Content | truncate 100 | plainify }}</div>
+                                    <div class="mb-2">{{ .Content | plainify | htmlUnescape | truncate 100 }}</div>
                                     <div class="d-flex justify-content-end link">
                                         <a class="fs-sm font-weight-bold" href="{{ .RelPermalink }}">Read more <i class="fa-solid fa-angle-right"></i></a>
                                     </div>
@@ -128,7 +128,7 @@
 
                                 <div class="card-body">
                                     <h3 class="card-title"><a class="text-black" href="{{ .RelPermalink }}" class="text-primary">{{ .Title }}</a></h3>
-                                    <div class="mb-2">{{ .Content | truncate 100 | plainify }}</div>
+                                    <div class="mb-2">{{ .Content | plainify | htmlUnescape | truncate 100 }}</div>
                                     <div class="d-flex justify-content-end link">
                                         <a class="fs-sm font-weight-bold" href="{{ .RelPermalink }}">Read more &gt;</a>
                                     </div>
@@ -141,7 +141,7 @@
 
                 <div class="tab-pane fade" id="pills-transportation" role="tabpanel" aria-labelledby="pills-transportation-tab">
                     <div class="row">
-                        {{- range where .RegularPages "Params.categories" "intersect" (slice "transportation") -}}
+                        {{- range where .RegularPages "Params.categories" "intersect" (slice "publicspace") -}}
                         <div class="card content-card mb-4 col-sm-6 col-md-4">
                             <div class="card-content data-stories">
                                 <a href="{{ .RelPermalink}}">
@@ -152,7 +152,7 @@
 
                                 <div class="card-body">
                                     <h3 class="card-title"><a class="text-black" href="{{ .RelPermalink }}" class="text-primary">{{ .Title }}</a></h3>
-                                    <div class="mb-2">{{ .Content | truncate 100 | plainify }}</div>
+                                    <div class="mb-2">{{ .Content | plainify | htmlUnescape | truncate 100 }}</div>
                                     <div class="d-flex justify-content-end link">
                                         <a class="fs-sm font-weight-bold" href="{{ .RelPermalink }}">Read more &gt;</a>
                                     </div>
@@ -165,7 +165,7 @@
 
                 <div class="tab-pane fade" id="pills-justice" role="tabpanel" aria-labelledby="pills-justice-tab">
                     <div class="row">
-                        {{- range where .RegularPages "Params.categories" "intersect" (slice "social") -}}
+                        {{- range where .RegularPages "Params.categories" "intersect" (slice "inequality") -}}
                         <div class="card content-card mb-4 col-sm-6 col-md-4">
                             <div class="card-content data-stories">
                                 <a href="{{ .RelPermalink}}">
@@ -176,7 +176,7 @@
 
                                 <div class="card-body">
                                     <h3 class="card-title"><a class="text-black" href="{{ .RelPermalink }}" class="text-primary">{{ .Title }}</a></h3>
-                                    <div class="mb-2">{{ .Content | truncate 100 | plainify }}</div>
+                                    <div class="mb-2">{{ .Content | plainify | htmlUnescape | truncate 100 }}</div>
                                     <div class="d-flex justify-content-end link">
                                         <a class="fs-sm font-weight-bold" href="{{ .RelPermalink }}">Read more &gt;</a>
                                     </div>
@@ -200,7 +200,7 @@
 
                                 <div class="card-body">
                                     <h3 class="card-title"><a class="text-black" href="{{ .RelPermalink }}" class="text-primary">{{ .Title }}</a></h3>
-                                    <div class="mb-2">{{ .Content | truncate 100 | plainify }}</div>
+                                    <div class="mb-2">{{ .Content | plainify | htmlUnescape | truncate 100 }}</div>
                                     <div class="d-flex justify-content-end link">
                                         <a class="fs-sm font-weight-bold" href="{{ .RelPermalink }}">Read more &gt;</a>
                                     </div>
@@ -224,7 +224,7 @@
 
                                 <div class="card-body">
                                     <h3 class="card-title"><a class="text-black" href="{{ .RelPermalink }}" class="text-primary">{{ .Title }}</a></h3>
-                                    <div class="mb-2">{{ .Content | truncate 100 | plainify }}</div>
+                                    <div class="mb-2">{{ .Content | plainify | htmlUnescape | truncate 100 }}</div>
                                     <div class="d-flex justify-content-end link">
                                         <a class="fs-sm font-weight-bold" href="{{ .RelPermalink }}">Read more &gt;</a>
                                     </div>
@@ -248,7 +248,7 @@
 
                                 <div class="card-body">
                                     <h3 class="card-title"><a class="text-black" href="{{ .RelPermalink }}" class="text-primary">{{ .Title }}</a></h3>
-                                    <div class="mb-2">{{ .Content | truncate 100 | plainify }}</div>
+                                    <div class="mb-2">{{ .Content | plainify | htmlUnescape | truncate 100 }}</div>
                                     <div class="d-flex justify-content-end link">
                                         <a class="fs-sm font-weight-bold" href="{{ .RelPermalink }}">Read more &gt;</a>
                                     </div>
@@ -272,7 +272,7 @@
 
                                 <div class="card-body">
                                     <h3 class="card-title"><a class="text-black" href="{{ .RelPermalink }}" class="text-primary">{{ .Title }}</a></h3>
-                                    <div class="mb-2">{{ .Content | truncate 100 | plainify }}</div>
+                                    <div class="mb-2">{{ .Content | plainify | htmlUnescape | truncate 100 }}</div>
                                     <div class="d-flex justify-content-end link">
                                         <a class="fs-sm font-weight-bold" href="{{ .RelPermalink }}">Read more &gt;</a>
                                     </div>

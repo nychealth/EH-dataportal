@@ -7,7 +7,7 @@ seo_title: "Health impacts of air pollution: data for NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
 description: "Datasets and visualizations on the health impacts of air pollution in NYC."
 tags:
-categories: ["airquality", "transportation", "healthoutcomes", "social"]
+categories: ["airquality", "publicspace", "healthoutcomes", "inequality"]
 keywords:
   [
     "air quality",

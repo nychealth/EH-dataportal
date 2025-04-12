@@ -128,15 +128,15 @@
     {
         "UHF_id": 301,
         "UHF_name": "Washington Heights",
-        "Zipcodes": "10031, 10032, 10033, 10034, 10039, 10040",
-        "namezip": "Washington Heights (10031,10032,10033,10034,10039,10040)",
+        "Zipcodes": "10031, 10032, 10033, 10034, 10040",
+        "namezip": "Washington Heights (10031,10032,10033,10034,10040)",
         "page_name": "washington_heights"
     },
     {
         "UHF_id": 302,
         "UHF_name": "Central Harlem - Morningside Heights",
-        "Zipcodes": "10026, 10027, 10030, 10037, 10115",
-        "namezip": "Central Harlem - Morningside Heights (10026,10027,10030,10037,10115)",
+        "Zipcodes": "10026, 10027, 10030, 10037, 10039, 10115",
+        "namezip": "Central Harlem - Morningside Heights (10026,10027,10030,10037,10039,10115)",
         "page_name": "central_harlem_morningside_heights"
     },
     {

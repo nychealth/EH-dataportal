@@ -6,24 +6,8 @@ draft: false
 seo_title: "The road to street safety in NYC"
 seo_description: "A data story on safety for pedestrians and cyclists."
 tags:
-categories: ["transportation", "healthoutcomes", "neighborhoods"]
-keywords:
-  [
-    "transportation",
-    "built environment",
-    "streets",
-    "cycling",
-    "biking",
-    "active design",
-    "injuries",
-    "fatalities",
-    "roads",
-    "safety",
-    "bike lanes",
-    "cycle lanes",
-    "hospitalizations",
-    "emergency department visits",
-  ]
+categories: ["publicspace","healthoutcomes","neighborhoods","injuryandviolence"]
+keywords: ["transportation","built environment","streets","cycling", "biking", "active design","injuries","fatalities","roads","safety","bike lanes","cycle lanes","hospitalizations","emergency department visits"]
 image: ds-streets.jpg
 photocredit: "Michael Appleton/Mayoral Photography Office, City of New York"
 related:
