@@ -1,0 +1,190 @@
+{{- define "main" -}}
+
+
+
+<article class="container-fluid" id="skip-header-target">
+
+    <div class="row">
+        <div class="col-md-11 mx-auto mt-2 mb-3">
+            <nav aria-label="breadcrumb" class="">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
+                    <li class="breadcrumb-item"><a href={{ relURL "data-features" }}>Data Features</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-11 mx-auto" data-pagefind-weight="7.0">
+            <h1 id="top" class="h2" data-pagefind-weight="10.0">{{ .Title }}</h1>
+            <div class="row">
+                <div class="col-md-8 mr-auto">
+                    <p>{{ .Content }}</p>
+
+                </div>
+            </div>
+
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <h3>Enter your address</h3>
+                    <div class="mb-2">
+                        <input class="form-control form-control-lg" id="map-search1" placeholder="Search Address">
+                    </div>
+                    <div id='nycMap' class="mb-2" style="height:350px;"></div>
+
+                </div>
+
+                <div class="col-md-6 pt-3">
+                    <h3>Rat activity in your neighborhood</h3>
+                    <span class="home-label">Your CD:</span> <span class="font-weight-bold" id="yourCD"></span><br>
+                    <span class="home-label">Your block</span> <span class="font-weight-bold" id="block"></span><br>
+                    <span class="home-label">In or near an RMZ?</span> <span class="font-weight-bold" id="rmz"></span>
+                    <hr class="my-1">
+                    <p><strong>XX %</strong> of properties were inspected for rat activity.</p>
+                    <p><strong>YY %</strong> of properties inspected failed - for active rat signs, or garbage and conditions that can harbor rats.</p>
+                    <hr class="my-1">
+                    <span class="fs-sm">For the most recent time period: 20XX</span>
+                </div>
+            </div>
+
+            <div class="row">
+
+
+                <div class="col-md-6">
+                    <h3>Your property is in a Rat Mitigation Zone</h3>
+                    <p>Rat Mitigation Zones are areas with high rat activity. Properties in these zones get inspected more frequently, as the City tries to fight rats at a neighborhood level, instead of building-by-building. <a href="">Get more information about Rat Mitigation Zones</a>.</p>
+                </div>
+
+                <div class="col-md-6">
+                    <h3>Get inspection history for your address</h3>
+                    <p><a href="">Visit the Rat Information Portal</a> to get your home's inspection history: when it was last inspected, and what the inspectors found.</p>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+<style>
+    #map {
+        height: 55vh;
+        max-width: 100%;
+        max-height: 100%;
+        margin-right: 6px;
+    }
+
+    .fwm {
+        font-weight: 600
+    }
+
+    .misc-holder {
+    border-left: 5px solid lightgray;
+    padding-left: 5px;
+    }
+</style>
+
+</article>
+
+<!-- Related footer -->
+{{- partial "related-footer-2" . -}}
+
+
+<!-- nyc-lib map -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.4.4/proj4.js"></script>
+<script src="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/build/ol.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.4.0/papaparse.min.js"></script>
+<script src="https://maps.nyc.gov/nyc-lib/v1.2.79/js/babel-polyfill.js"></script>
+<script src="https://maps.nyc.gov/nyc-lib/v1.2.79/js/nyc-ol-lib.js"></script>
+
+<script>
+
+    var overlap = [102,103,107,109,110,111,112,201,203,204,205,207,303,304,308]
+
+    var nycMap = new nyc.ol.FrameworkMap({
+        mapTarget: '#nycMap',
+        searchTarget: '#map-search1',
+        geoclientUrl: 'https://maps.nyc.gov/geoclient/v1/search.json?app_key=74DF5DB1D7320A9A2&app_id=nyc-lib-example'
+    });
+
+    document.addEventListener("DOMContentLoaded", function() {
+        var searchButton = document.querySelector('.btn.btn-srch');
+    
+        // Check if the button exists to avoid errors
+        if (searchButton) {
+            searchButton.onclick = function() {
+                awaitGeoCoding();  // Call  getData()  when the button is clicked
+            };
+        }
+
+        // add event listener to form
+        document.querySelector('#map-search1').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                console.log('***Form submitted')
+                awaitGeoCoding()
+            }
+        });
+    });
+
+    var locationDetails;
+    var yourCD
+
+    function awaitGeoCoding() {
+        console.log('***Looking for location')
+        document.getElementById('yourCD').innerHTML = '...'
+        document.getElementById('block').innerHTML = '...'
+        document.getElementById('rmz').innerHTML = '...'
+        setTimeout(getData,2500)
+    }
+
+
+    function getData() {
+        // if nycMap.location exists, then, run retrieveGeo(), else, wait.
+        if (nycMap.location.type === 'geocoded') {
+            console.log('***Location found! Details:')
+            retrieveGeo()
+        } else {
+            console.log('***Location not found :( ')
+        }
+    }
+
+    function retrieveGeo() {
+        locationDetails = nycMap.location
+        console.log(locationDetails)
+        yourCD = Number(locationDetails.data.communityDistrict)
+        document.getElementById('yourCD').innerHTML = yourCD
+        document.getElementById('block').innerHTML = locationDetails.data.bblTaxBlock
+
+        if (overlap.includes(yourCD)) {
+            console.log('***You are in or near an RMZ')
+            document.getElementById('rmz').innerHTML = 'Yes'
+        } else {
+            console.log('***You are NOT in or near an RMZ')
+            document.getElementById('rmz').innerHTML = 'No'
+
+        }
+
+        if (!locationDetails.data.bblTaxBlock) {
+            console.log('Minor error: this address is not a valid tax block')
+        }
+    }
+
+    // grab RMZ indicator json and filter for correct measures
+
+
+
+    /*
+        One approach would be to get a list of block numbers in RMZs, and just ping that list. 
+        But Tax Block only exists for properties; there are addresses that don't have this (1062 Interavle);
+        Can use Census Tract or Block? Figure out the smallest, most universal unit to use.
+    */
+
+
+
+</script>
+
+{{- end -}}

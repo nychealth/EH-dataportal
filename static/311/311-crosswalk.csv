@@ -222,8 +222,6 @@ Know Your Zone,KA-03485,2140,Area in hurricane evacuation zone
 Summer Heat Health Tips,KA-03034,2141,Daytime summer surface temperature
 Census,KA-03388,2142,Neighborhood Poverty (ACS)
 Greenstreets Program,KA-01554,2143,Vegetative cover
-NYC Well and Mental Health Support,KA-01682,2144,Serious psychological distress
-Depression Health Bulletin,KA-02686,2144,Serious psychological distress
 Mental Health Services for Older Adults,KA-01326,2145,Independent living difficulty (adults)
 Home Care,KA-02782,2145,Independent living difficulty (adults)
 Older Adult Centers,KA-02353,2145,Independent living difficulty (adults)
@@ -363,8 +361,8 @@ Pest Control Guidance,KA-01110,2370,NYC agency use of rodenticides
 Mosquitoes,KA-02263,2371,NYC Agency Use of Mosquito Adulticides
 Mosquitoes,KA-02263,2372,NYC Agency Use of Mosquito Larvicides
 Mosquitoes,KA-02263,2374,NYC agency use of mosquito control
-2375,Assault hospitalizations (non-fatal)
-2375,Assault hospitalizations (non-fatal)
+Cure Violence Program,KA-03328,2375,Violence-related hospitalizations (all ages)
+Domestic Violence,KA-01217,2375,Violence-related hospitalizations (all ages)
 Winter Weather Safety,KA-03098,2376,Cold stress: deaths
 Severe Weather,KA-03457,2376,Cold stress: deaths
 Hurricane Preparedness,KA-02810,2377,Households using electric medical equipment
@@ -394,9 +392,8 @@ Heat Complaint in a Residential Building,KA-01036,2396,Children in homes with su
 Carbon Monoxide,KA-02608,2398,Carbon monoxide deaths
 NYCHA Public Housing Maintenance Complaint,KA-01076,2399,Renter-occupied homes with any health-related maintenance problems
 Apartment Maintenance Complaint,KA-01074,2399,Renter-occupied homes with any health-related maintenance problems
-2400,Assault emergency department visits (non-fatal)
-2400,Assault emergency department visits (non-fatal)
-2400,Assault emergency department visits (non-fatal)
+Cure Violence Program,KA-03328,2400,Violence-related emergency department visits (all ages)
+Domestic Violence,KA-01217,2400,Violence-related emergency department visits (all ages)
 NYC Care,KA-03317,2401,Postponing health care
 Community Health Profile,KA-02655,2401,Postponing health care
 Asthma,KA-02563,2402,Public School Children (K-8) with Active Asthma
@@ -422,9 +419,6 @@ Buses and Subways,KA-01014,2415,Commuting modes
 Sponsor a Litter Basket,KA-01759,2416,Litter basket coverage
 Litter Basket Request,KA-02357,2416,Litter basket coverage
 Litter Basket Complaint,KA-02143,2416,Litter basket coverage
-Depression Health Bulletin,KA-02686,2417,Depression (adults)
-NYC Well and Mental Health Support,KA-01682,2418,Psychiatric hospitalizations (adults)
-NYC Well and Mental Health Support,KA-01682,2419,Serious psychological distress (adults)
 Suicide,KA-01635,2420,Suicide deaths
 Electronic Cigarette Retail Dealer License,KA-01834,2421,Tobacco retailers
 Cigarette Wholesaler License,KA-01146,2421,Tobacco retailers
@@ -441,3 +435,22 @@ Asthma,KA-02563,2429,Children with an asthma attack
 Mold Complaint,KA-02262,2430,Children in homes with visible mold or mildew (age 1-13)
 Asthma,KA-02563,2431,Children still with asthma
 Greenmarkets and Farmers Markets,KA-02028,2432,Farmers markets
+Rat or Mouse Complaint,KA-01107,2433,Rat indexing in Rat Mitigation Zones (RMZs)
+Rat or Mouse Complaint,KA-01107,2434,Rat inspections
+Cure Violence Program,KA-03328,2435,Violence-related emergency department visits (ages 15-34)
+Domestic Violence,KA-01217,2435,Violence-related emergency department visits (ages 15-34)
+Cure Violence Program,KA-03328,2436,Firearm emergency department visits (ages 15-34)
+Domestic Violence,KA-01217,2436,Firearm emergency department visits (ages 15-34)
+Cure Violence Program,KA-03328,2437,Firearm emergency department visits (all ages)
+Domestic Violence,KA-01217,2437,Firearm emergency department visits (all ages)
+Cure Violence Program,KA-03328,2438,Violence-related hospitalizations (ages 15-34)
+Domestic Violence,KA-01217,2438,Violence-related hospitalizations (ages 15-34)
+Cure Violence Program,KA-03328,2439,Firearm hospitalizations (ages 15-34)
+Domestic Violence,KA-01217,2439,Firearm hospitalizations (ages 15-34)
+Cure Violence Program,KA-03328,2440,Firearm hospitalizations (all ages)
+Domestic Violence,KA-01217,2440,Firearm hospitalizations (all ages)
+Winter Weather Safety,KA-03098,2444,Cold stress: 5-year emergency department visits
+Winter Weather Safety,KA-03098,2445,Cold stress: 5-year hospitalizations
+Depression Health Bulletin,KA-02686,2417,Depression (adults)
+NYC Well and Mental Health Support,KA-01682,2418,Psychiatric hospitalizations (adults)
+NYC Well and Mental Health Support,KA-01682,2419,Serious psychological distress (adults)

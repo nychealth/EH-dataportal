@@ -9,6 +9,8 @@ const renderMap = (
 
     console.log("** renderMap");
 
+    document.getElementById('viewDescription').innerHTML = 'This map shows data by different boundaries.'
+
     // console.log("data [renderMap]", data);
     // console.log("metadata [renderMap]", metadata);
 
@@ -18,93 +20,245 @@ const renderMap = (
     
     const mapTimes =  [...new Set(data.map(item => item.TimePeriod))];
 
-    // debugger;
-
     // console.log("mapTimes [map.js]", mapTimes);
 
-    let mapGeoType            = data[0]?.GeoType;
-    let geoTypeShortDesc      = data[0]?.GeoTypeShortDesc;
-    let mapMeasurementType    = metadata[0]?.MeasurementType;
-    let displayType           = metadata[0]?.DisplayType;
-    let mapGeoTypeDescription = [...new Set(geoTable.filter(aq.escape(d => d.GeoType === mapGeoType)).array("GeoTypeShortDesc"))];
+    // ----------------------------------------------------------------------- //
+    // set metadata
+    // ----------------------------------------------------------------------- //
 
+    let mapGeoType            = data[0]?.GeoType;
+    let mapMeasurementType    = metadata[0]?.MeasurementType;
     let mapTime = mapTimes[0];
+    let displayType;
+    let subtitle;
+    let isPercent;
     let topoFile = '';
+
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // use some conditionals
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+    if (mapMeasurementType.includes('Percent') || mapMeasurementType.includes('percent') && !mapMeasurementType.includes('percentile')) {
+        isPercent = true
+        displayType         = '%'
+        subtitle = mapMeasurementType
+        
+    } else {
+        isPercent = false
+        displayType         = metadata[0]?.DisplayType;
+        subtitle = mapMeasurementType + `${displayType ? ` (${displayType})` : ''}`
+    }
+
 
     // ----------------------------------------------------------------------- //
     // bubble map for non-rates (counts/numbers)
     // ----------------------------------------------------------------------- //
-    let markType              = 'geoshape'  
-    let encode                = {"shape": {"field": "geo", "type": "geojson"}}
+
+    let markType = 'geoshape'  
+    let encode = {"shape": {"field": "geo", "type": "geojson"}}
     let strokeWidth = 1.25
+    let legend;
 
     if (mapMeasurementType.includes('Number') ||
         mapMeasurementType.includes('number') || 
-        mapMeasurementType.includes('Total population')) {
-            markType = 'circle'
-            encode = {        
-                "latitude": {"field": "Lat", "type": "quantitative"},
-                "longitude": {"field": "Long", "type": "quantitative"},
-                "size": {"bin": false, "field": "Value","type": "quantitative","scale": {"range": [0,750]},"legend": {
-                    "direction": "horizontal",
-                    "title": "",
-                    "offset": -25,
-                    "orient": "top-left",
-                    "tickCount": 4,
-                    "fill": "color",
-                    "gradientLength": {"signal": "clamp(childHeight, 64, 200)"},
-                    "encode": {"gradient": {"update": {"opacity": {"value": 0.7}}}},
-                    "symbolType": "circle",
-                    "size": "size"
-      }
-                }
-                    }
-            strokeWidth = 2
-            var legend = {}
-    } else {        
-            markType = 'geoshape'
-            encode  = {
-                "shape": {"field": "geo", "type": "geojson"}
-                    }
-            strokeWidth = 1.25
-            var legend = {"legend": {
+        mapMeasurementType.includes('Total population')
+    ) {
+        markType = 'circle';
+        encode = {
+            "latitude": {"field": "Lat", "type": "quantitative"},
+            "longitude": {"field": "Long", "type": "quantitative"},
+            "size": {"bin": false, "field": "Value","type": "quantitative","scale": {"range": [0,750]},"legend": {
                 "direction": "horizontal",
-                "orient": "top-left",
-                "title": null,
-                "tickCount": 3,
+                "title": "",
                 "offset": -25,
-                "gradientLength": 200
+                "orient": "top-left",
+                "tickCount": 4,
+                "fill": "color",
+                "gradientLength": {"signal": "clamp(childHeight, 64, 200)"},
+                "encode": {"gradient": {"update": {"opacity": {"value": 0.7}}}},
+                "symbolType": "circle",
+                "size": "size"
             }}
+        };
+        strokeWidth = 2;
+        legend = {};
+    } else {
+        markType = 'geoshape';
+        encode = {"shape": {"field": "geo", "type": "geojson"}};
+        strokeWidth = 1.25
+        legend = {"legend": {
+            "direction": "horizontal",
+            "orient": "top-left",
+            "title": null,
+            "tickCount": 3,
+            "offset": -25,
+            "gradientLength": 200
+        }}
     }
 
+    // ----------------------------------------------------------------------- //
+    // modify spec for means
+    // ----------------------------------------------------------------------- //
 
-    var color = 'purplered'
-    var rankReverse = defaultMapMetadata[0].VisOptions[0].Map[0]?.RankReverse
-    if (rankReverse === 0) {
-        color = 'reds'
-    } else if (rankReverse === 1) {
-        color = 'blues'
+    var barChart
+
+    if (mapMeasurementType.includes('Mean') || mapMeasurementType.includes('mean')) {
+        barChart =     {
+            "layer": [
+              {
+                "height": 150,
+                "width": "container",
+                "config": {"axisY": {"labelAngle": 0, "labelFontSize": 13}},
+                "mark": {"type": "bar", "tooltip": true, "stroke": "#161616"},
+                "encoding": {
+                  "y": {
+                    "field": "Value",
+                    "type": "quantitative",
+                    "title": null,
+                    "axis": {"labelAngle": 0, "labelFontSize": 11, "tickCount": 3}
+                  },
+                  "tooltip": [
+                    {
+                        "field": "Geography", 
+                        "title": "Neighborhood"
+                    },
+                    {
+                        "field": "valueLabel",
+                        "title": `${mapMeasurementType}`
+                    },
+                    {
+                        "field": "TimePeriod",
+                        "title": "Time period"
+                    }
+                ],
+                  "x": {"field": "GeoID", "sort": "y", "axis": null},
+                  "color": {"value": "#f9f9f9"},
+                  "stroke": {"value": "white"},
+                  "strokeWidth": {"value": 3}
+                }
+              },
+              {
+                "height": 150,
+                "width": "container",
+                "config": {"axisY": {"labelAngle": 0, "labelFontSize": 13}},
+                "mark": {
+                  "type": "circle",
+                  "size": 80,
+                  "tooltip": true,
+                  "stroke": "#161616"
+                },
+                "params": [
+                  {
+                    "name": "highlight",
+                    "select": {
+                      "type": "point",
+                      "on": "mouseover",
+                      "clear": "mouseout"
+                    }
+                  }
+                ],
+                "encoding": {
+                  "y": {
+                    "field": "Value",
+                    "type": "quantitative",
+                    "title": null,
+                    "axis": {"labelAngle": 0, "labelFontSize": 11, "tickCount": 3}
+                  },
+                  "tooltip": [
+                    {
+                        "field": "Geography", 
+                        "title": "Neighborhood"
+                    },
+                    {
+                        "field": "valueLabel",
+                        "title": `${mapMeasurementType}`
+                    },
+                    {
+                        "field": "TimePeriod",
+                        "title": "Time period"
+                    }
+                ],
+                  "x": {"field": "GeoID", "sort": "y", "axis": null},
+                  "color": {
+                    "bin": false,
+                    "field": "Value",
+                    "type": "quantitative",
+                    "scale": {"scheme": {"name": "viridis", "extent": [1, 0]}},
+                    "legend": false
+                  },
+                  "stroke": {
+                    "condition": [
+                      {"param": "highlight", "empty": false, "value": "cyan"}
+                    ],
+                    "value": "white"
+                  },
+                  "strokeWidth": {
+                    "condition": [{"param": "highlight", "empty": false, "value": 3}],
+                    "value": 0
+                  }
+                }
+              }
+            ]
+          }
+    } else {
+        barChart = {
+            "height": 150,
+            "width": "container",
+            "config": {
+                "axisY": {
+                    "labelAngle": 0,
+                    "labelFontSize": 13,
+                }
+            },
+            "mark": {"type": "bar", "tooltip": true, "stroke": "#161616"},
+            "params": [
+                {"name": "highlight", "select": {"type": "point", "on": "mouseover", "clear": "mouseout"}}
+            ],
+            "encoding": {
+                "y": {
+                    "field": "Value", 
+                    "type": "quantitative", 
+                    "title": null,
+                    "axis": {
+                        "labelAngle": 0,
+                        "labelFontSize": 11,
+                        "tickCount": 3
+                    }
+                },
+                "tooltip": [
+                    {
+                        "field": "Geography", 
+                        "title": "Neighborhood"
+                    },
+                    {
+                        "field": "valueLabel",
+                        "title": `${mapMeasurementType}`
+                    },
+                    {
+                        "field": "TimePeriod",
+                        "title": "Time period"
+                    }
+                ],
+                "x": {"field": "GeoID", "sort": "y", "axis": null},
+                "color": {
+                    "bin": false,
+                    "field": "Value",
+                    "type": "quantitative",
+                    "scale": {"scheme": {"name": "viridis", "extent": [1, 0]}},
+                    "legend": false
+                },
+                "stroke": {
+                    "condition": [{"param": "highlight", "empty": false, "value": "cyan"}],
+                    "value": "white"
+                },
+                "strokeWidth": {
+                    "condition": [{"param": "highlight", "empty": false, "value": 3}],
+                    "value": 0
+                }
+            }
+        }
     }
-
-    // console.log('rank reverse?', rankReverse)
-    // console.log('color', color)
-
-    // ----------------------------------------------------------------------- //
-    // format geography dropdown items
-    // ----------------------------------------------------------------------- //
-
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-    // get (pretty) geoTypes available for this year
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-
-    // mapData has all the geos for every year
-    // data has the one geo x year we're mapping
-
-    const dataGeos = [...new Set(mapData.filter(d => d.TimePeriod == mapTime).map(d => prettifyGeoType(d.GeoType)))];
-
-    // console.log("dataGeos [renderMap]", dataGeos);
-
-    // if you're on a geo that's not availble for a year you just clicked on, show the gray base map
 
 
     // ----------------------------------------------------------------------- //
@@ -113,12 +267,15 @@ const renderMap = (
 
     const map_unreliability = [...new Set(data.map(d => d.Note))].filter(d => !d == "");
 
-    document.querySelector("#map-unreliability").innerHTML = ""; // blank to start
+    document.querySelector("#map-unreliability").innerHTML = "<span class='fs-xs'><strong>Notes:</strong></span> "; // blank to start
+    document.getElementById("map-unreliability").classList.add('hide')  // blank to start
+
 
     map_unreliability.forEach(element => {
 
-        document.querySelector("#map-unreliability").innerHTML += "<div class='fs-sm text-muted'>" + element + "</div>" ;
-        
+        document.querySelector("#map-unreliability").innerHTML += "<div class='fs-xs'>" + element + "</div>" ;
+        document.getElementById('map-unreliability').classList.remove('hide')
+
     });
 
     // ----------------------------------------------------------------------- //
@@ -153,6 +310,8 @@ const renderMap = (
         topoFile = 'NYCKids_2021.topo.json';
     } else if (mapGeoType === "Borough") {
         topoFile = 'borough.topo.json';
+    } else if (mapGeoType === "RMZ") {
+        topoFile = 'RMZ.topo.json';
     }
 
     // ----------------------------------------------------------------------- //
@@ -169,7 +328,7 @@ const renderMap = (
             "fontSize": 18, 
             "font": "sans-serif",
             "baseline": "top",
-            "subtitle": `${mapMeasurementType}${displayType && ` (${displayType})`}, by ${mapGeoTypeDescription} (${mapTime})`,
+            "subtitle": subtitle,
             "subtitleFontSize": 13
         },
         "data": {
@@ -183,10 +342,17 @@ const renderMap = (
         "config": {
             "concat": {"spacing": 20}, 
             "view": {"stroke": "transparent"},
-            "axisY": {"domain": false,"ticks": false},
-            "legend": {"disable": true}
+            "axisY": {"domain": false,"ticks": false,"labelBaseline": "bottom",},
+            "legend": {"disable": true},
+            "scale": {"invalid": {color: {value: '#808080'}}}
         },
         "projection": {"type": "mercator"},
+        "transform": [
+            {
+                "calculate": `datum.DisplayValue + ' ${displayType}'`,
+                "as": "valueLabel"
+            }
+        ],
         "vconcat": [
             {
                 "layer": [
@@ -248,19 +414,14 @@ const renderMap = (
                         "encoding": {
                             ...encode,
                             "color": {
-                                "condition": {
-                                    "test": "isValid(datum.Value)",
-                                    "bin": false,
-                                    "field": "Value",
-                                    "type": "quantitative",
-                                    "scale": {"scheme": {"name": color, "extent": [0.125, 1.125]}},
-                                    ...legend    
-                                },
-                                "value": "#808080"
+                                "bin": false,
+                                "field": "Value",
+                                "type": "quantitative",
+                                "scale": {"scheme": {"name": "viridis", "extent": [1, 0]}},
+                                ...legend    
                             },
                             "stroke": {
                                 "condition": [{"param": "highlight", "empty": false, "value": "cyan"}],
-                                // "value": "#161616"
                                 "value": "#2d2d2d"
                             },
                             "strokeWidth": {
@@ -274,77 +435,44 @@ const renderMap = (
                             "tooltip": [
                                 {
                                     "field": "Geography", 
-                                    "title": geoTypeShortDesc
+                                    "title": "Neighborhood"
                                 },
                                 {
-                                    "field": "DisplayValue",
-                                    "title": mapMeasurementType
+                                    "field": "valueLabel",
+                                    "title": `${mapMeasurementType}`
                                 },
+                                {
+                                    "field": "TimePeriod",
+                                    "title": "Time period"
+                                }
                             ],
                         },
                     }
                 ]
             },
-            {
-                "height": 150,
-                "width": "container",
-                "config": {
-                    "axisY": {
-                        "labelAngle": 0,
-                        "labelFontSize": 13,
-                    }
-                },
-                "mark": {"type": "bar", "tooltip": true, "stroke": "#161616"},
-                "params": [
-                    {"name": "highlight", "select": {"type": "point", "on": "mouseover", "clear": "mouseout"}}
-                ],
-                "encoding": {
-                    "y": {
-                        "field": "Value", 
-                        "type": "quantitative", 
-                        "title": null,
-                        "axis": {
-                            "labelAngle": 0,
-                            "labelFontSize": 11,
-                            "tickCount": 3
-                        }
-                    },
-                    "tooltip": [
-                        {
-                            "field": "Geography", 
-                            "title": geoTypeShortDesc
-                        },
-                        {
-                            "field": "DisplayValue", 
-                            "title": mapMeasurementType
-                        },
-                    ],
-                    "x": {"field": "GeoID", "sort": "y", "axis": null},
-                    "color": {
-                        "bin": false,
-                        "field": "Value",
-                        "type": "quantitative",
-                        "scale": {"scheme": {"name": color, "extent": [0.25, 1.25]}},
-                        "legend": false
-                    },
-                    "stroke": {
-                        "condition": [{"param": "highlight", "empty": false, "value": "cyan"}],
-                        "value": "white"
-                    },
-                    "strokeWidth": {
-                        "condition": [{"param": "highlight", "empty": false, "value": 3}],
-                        "value": 0
-                    }
-                }
-            }
+            barChart
         ]
     }
+
     
     // ----------------------------------------------------------------------- //
     // render chart
     // ----------------------------------------------------------------------- //
 
-    vegaEmbed("#map", mapspec);
+    vegaEmbed("#map", mapspec,{
+        actions: {
+          export: { png: false, svg: false },
+          source: false,  
+          compiled: false, 
+          editor: true 
+        }
+      });
+
+    // send info for printing
+    vizYear = mapTime;
+    vizSource = metadata[0].Sources
+    printSpec = mapspec;
+    chartType = 'map'
 
     // console.log(mapspec)
 

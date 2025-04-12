@@ -4,8 +4,9 @@ draft: false
 seo_title: "NYC Environment and Health Data Portal."
 seo_description: "Data on how environments shape health in NYC."
 description: "Data on how environments shape health in NYC."
-featured_title: "Updated: Annual heat mortality report"
-featured_text: "Details and data on deaths due to heat in NYC."
-featured_link: "data-features/heat-report/"
-featured_image: ds-heat.jpg
+featured_title: "Rats in your neighborhood"
+featured_text: "Learn about rats in your area and what's being done to fight them."
+featured_link: "data-features/rats-in-your-neighborhood/"
+featured_image: "rats_by_loc.jpg"
+ImageNote: featured_image must be added to assets
 ---

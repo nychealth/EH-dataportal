@@ -8,7 +8,7 @@ tags:
 categories: ["internal"]
 keywords: ["how we work","civic service design","design","technology"]
 image: ds-newlook.jpg
-photocredit: "Michael Appleton/Mayoral Photography Office"
+photocredit: "Michael Appleton/Mayoral Photography Office, City of New York"
 ---
 
 We've made a few changes.
