@@ -1,0 +1,289 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Winter Weather Safety</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="apple-touch-icon" href="icon.png">
+  <!-- Place favicon.ico in the root directory -->
+
+  <link rel="stylesheet" href="assets/css/normalize.css">
+  <link rel="stylesheet" href="assets/css/bootstrap.css">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/snow.css">
+
+      <!--Fontawesome Icons-->
+      <link rel="stylesheet" href="https://nycehs.github.io/Portal-Core-Repo/fontawesome/css/all.min.css">
+      <!--NYC Core Framework Theme-->
+      <link rel="stylesheet" href="https://nycehs.github.io/Portal-Core-Repo/css/theme.css">
+      <!--Custom additions for Portal items-->
+      <link rel="stylesheet" href="https://nycehs.github.io/Portal-Core-Repo/css/custom.css">
+  
+
+</head>
+
+<body>
+
+        <h1 class="sr-only">Staying safe in cold weather</h1>
+  <div class="main">
+    <canvas id="canvas"></canvas>
+    <div class="indoor">
+        <h2>Winter Indoor Safety</h2>
+		<span class="keyboard-reader" ><a data-toggle="modal" aria-label="Accessibility Help Link" data-target="#accessibilityModal" tabindex="0" >Accessibility Help</a></span>
+        <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">  Launch demo modal</button> -->
+
+
+        <img tabindex="0" class="indoor-bg desktop" alt="An older man is sitting on a red sofa chair in the middle of a room with a cat on his lap. On his left-hand side there is a crib with a baby in it. On his right-hand side there is a small table with a lamp and a cell phone on it. There is a window in the middle of the room, next to a painting of a house. It is snowing outside. There is a radiator under the window, with a space heater next to it. The space heater is plugged into an outlet and turned on. There is a dinner table on the right side of the room. There is a smoke alarm on the ceiling. There are five snowflake icons that can be clicked on for information. They are located next to the cell phone, the baby’s crib, the radiator, the space heater and the smoke alarm." src="assets/img/interior-nosnow.png" />
+        <img tabindex="0" class="indoor-bg mobile" alt="An older man is sitting on a red sofa chair in the middle of a room with a cat on his lap. On his left-hand side there is a crib with a baby in it. On his right-hand side there is a small table with a lamp and a cell phone on it. There is a window in the middle of the room, next to a painting of a house. It is snowing outside. There is a radiator under the window, with a space heater next to it. The space heater is plugged into an outlet and turned on. There is a dinner table on the right side of the room. There is a smoke alarm on the ceiling. There are five snowflake icons that can be clicked on for information. They are located next to the cell phone, the baby’s crib, the radiator, the space heater and the smoke alarm."  src="assets/img/interior-mobile-nosnow.png" />
+        <div class="clickables desktop">
+            <a id="pone" aria-label="Smoke Alarm. Have a working smoke alarm and a carbon monoxide detector. Change batteries in these detectors twice a year – at the start and end of daylight savings time." style="position:absolute;top: 6.2%;left: 52.8%;" aria-describedby="popover-content-pone" tabindex="0" class="flake desktop" data-toggle="modal" data-trigger="focus" ><img class="flash"  alt="Smoke alarm" src="assets/img/flake.png" /></a>
+            <a id="ptwo"  aria-label="Radiator. No heat or hot water? Tell your manager/landlord. Call 311 if the problem is not fixed right away. For help paying heating bills or repairing heating equipment, call the Home Energy Assistance Program at 1-800-692-0557." style="position:absolute;top: 40.2%;left: 49.1%;" aria-describedby="popover-content-ptwo" tabindex="0" class="flake desktop" data-toggle="popover" data-trigger="focus" ><img class="flash"  alt="Radiator" src="assets/img/flake.png" /></a>
+            <a id="pthree"  aria-label="Crib. Keep your baby safe. Put your baby to sleep alone in a crib or bassinet wearing warm layers. Do not cover your baby with a blanket above chest level,  keeping it away from their face." style="position:absolute;top: 46.2%;left: 41.1%;" aria-describedby="popover-content-pthree" tabindex="0" class="flake desktop" data-toggle="popover" data-trigger="focus" ><img class="flash"  alt="Crib" src="assets/img/flake.png" /></a>
+            <a id="pfour"  aria-label="Space Heater. Never use a stove or oven to heat your home. Kerosene or propane space heaters are not allowed in NYC. If you use an electric space-heater: Plug it directly into a wall outlet. Place it away from flammable items. Don’t hang clothes over over it." style="position:absolute;top: 55.8%;left: 73.1%;" aria-describedby="popover-content-pfour" data-placement="left" tabindex="0" class="flake desktop" data-toggle="popover" data-trigger="focus" ><img class="flash"  alt="Space heater" src="assets/img/flake.png" /></a>
+            <a id="pfive"  aria-label="Phone. Be a Buddy. Check that family, friends and neighbors have heat. In an emergency, people who live nearby can respond faster than anyone else. Call 311 to report a homeless person in need of shelter." style="position:absolute;top: 59.1%;left: 22.7%;" aria-describedby="popover-content-pfive" data-placement="right" tabindex="0" class="flake desktop" data-toggle="popover" data-trigger="focus" ><img class="flash"  alt="Phone" src="assets/img/flake.png" /></a>
+        </div>
+
+        <div class="clickables mobile">
+                <a id="pone"  style="position:absolute;top: 21.2%;left: 55.8%;" aria-describedby="popover-content-pone" tabindex="0" class="flake mobile" data-toggle="modal" data-target="#popover-content-pone" data-trigger="focus" ><img class="flash" alt="Smoke alarm" src="assets/img/flake.png" /></a>
+                <a id="ptwo" style="position:absolute;top: 43.2%;left: 53.1%;" aria-describedby="popover-content-ptwo" tabindex="0" class="flake mobile" data-toggle="modal" data-target="#popover-content-ptwo" data-trigger="focus" ><img class="flash"  alt="Radiator" src="assets/img/flake.png" /></a>
+                <a id="pthree" style="position:absolute;    top: 47.7%;left: 37.1%;" aria-describedby="popover-content-pthree" tabindex="0" class="flake mobile" data-toggle="modal" data-target="#popover-content-pthree" data-trigger="focus" ><img class="flash"  alt="Crib" src="assets/img/flake.png" /></a>
+                <a id="pfour" style="position:absolute;top: 55.8%;left: 82.1%;" aria-describedby="popover-content-pfour" data-placement="left" tabindex="0" class="flake mobile" data-target="#popover-content-pfour" data-toggle="modal" data-trigger="focus" ><img class="flash"  alt="Space heater" src="assets/img/flake.png" /></a>
+                <a id="pfive" style="position:absolute;    top: 62.8%;left: 7.7%;" aria-describedby="popover-content-pfive" data-placement="right" tabindex="0" class="flake mobile" data-target="#popover-content-pfive" data-toggle="modal" data-trigger="focus" ><img class="flash"  alt="Phone" src="assets/img/flake.png" /></a>
+            </div>
+        <div class="actions">
+            <a href="" tabindex="0" aria-label="Learn about outdoor safety." class="go"><span>Outdoor Safety</span></a>
+        </div>
+    </div>
+    <div class="outdoor">
+        <h2>Winter Outdoor Safety</h2>
+		<span class="keyboard-reader"><a data-toggle="modal" aria-label="Accessibility Help Link" data-target="#accessibilityModal" tabindex="0" >Accessibility Help</a></span>
+		
+        <img tabindex="0"  class="outdoor-bg" alt="A man is walking out of his building wearing warm winter clothing, including a hat, scarf, gloves and big coat. He is standing on the stairs in front of his building door, between two trees and next to a red mailbox, holding the stair railing with one hand. On the stairs, there is a shovel and at the bottom of the stairs there is a dog sitting. It is snowing and there are small piles of snow on the stairs, sidewalk and street. There is a yellow car parked in front of the house, covered in snow. There are five snowflake icons that can be clicked on for information. They are located next to the man, the shovel, the stairs, the dog and the car." src="assets/img/exterior-nosnow.jpg" />
+        <img tabindex="0" class="outdoor-bg mobile" alt="A man is walking out of his building wearing warm winter clothing, including a hat, scarf, gloves and big coat. He is standing on the stairs in front of his building door, between two trees and next to a red mailbox, holding the stair railing with one hand. On the stairs, there is a shovel and at the bottom of the stairs there is a dog sitting. It is snowing and there are small piles of snow on the stairs, sidewalk and street. There is a yellow car parked in front of the house, covered in snow. There are five snowflake icons that can be clicked on for information. They are located next to the man, the shovel, the stairs, the dog and the car." src="assets/img/exterior-mobile-nosnow.jpg" />
+        <div class="clickables desktop">
+                <a id="psix"  aria-label="Clothing. Prevent hypothermia. Dress in dry, loose-fitting layers. Cover exposed skin, such as the face and hands. Watch for signs of hypothermia, such as intense shivering, dizziness and confusion. <b>Call 911</b> if you or someone else has these symptoms." style="position:absolute;top: 38%;left: 55.1%;" aria-describedby="popover-content-psix" tabindex="0" class="flake desktop" data-toggle="popover" data-trigger="focus" ><img class="flash" alt="Clothing" src="assets/img/flake.png" /></a>
+                <a id="pseven"  aria-label="Shovel. Be careful when shoveling snow.Shovel slowly and take frequent breaks. If you are an older adult or have a disability, <b>call 311</b> and ask if volunteer snow removal services are available in your area." style="position:absolute;top: 53.9%;left: 39.4%;" aria-describedby="popover-content-pseven" tabindex="0" class="flake desktop" data-toggle="popover" data-trigger="focus" ><img class="flash" alt="Shovel" src="assets/img/flake.png" /></a>
+                <a id="peight"  aria-label="Stairs. Avoid slips and falls. Wear sturdy shoes or boots. Take short steps and walk slowly. Use handrails on stairs." style="position:absolute;top: 63.8%;left: 51.1%;" aria-describedby="popover-content-peight" tabindex="0" class="flake desktop" data-toggle="popover" data-trigger="focus" ><img class="flash" alt="Stairs" src="assets/img/flake.png" /></a>
+                <a id="pnine"  aria-label="Dog. Keep your pets safe. Keep your pets inside as much as possible. Wipe your dog’s paws after walks. Clean up antifreeze spills." style="position:absolute;top: 74.5%;left: 45.1%;" aria-describedby="popover-content-pnine" data-placement="left" tabindex="0" class="flake desktop" data-toggle="popover" data-trigger="focus" ><img class="flash" alt="Dog" src="assets/img/flake.png" /></a>
+                <a id="pten"  aria-label="Car. Be car-smart. Never run your car inside a garage. Clear snow and ice from your car’s tailpipe. Avoid driving in dangerous weather. Keep a shovel, ice scraper, flashlight, jumper cables, blankets and a first-aid kit in your car." style="position:absolute;top: 76.1%;left: 83.7%;" aria-describedby="popover-content-pten" data-placement="left" tabindex="0" class="flake desktop" data-toggle="popover" data-trigger="focus" ><img class="flash" alt="Car" src="assets/img/flake.png" /></a>
+            </div>
+            <div class="clickables mobile">
+                    <a id="psix" style="position:absolute;top: 29%;left: 48.1%;" aria-describedby="popover-content-psix" data-target="#popover-content-psix" tabindex="0" class="flake mobile" data-toggle="modal" data-trigger="focus" ><img class="flash" alt="Clothing" src="assets/img/flake.png" /></a>
+                    <a id="pseven" style="position:absolute;top: 40.9%;left: 18.4%;" aria-describedby="popover-content-pseven" data-target="#popover-content-pseven" tabindex="0" class="flake mobile" data-toggle="modal" data-trigger="focus" ><img class="flash" alt="Shovel" src="assets/img/flake.png" /></a>
+                    <a id="peight" style="position:absolute;    top: 45.9%;left: 43.1%;" aria-describedby="popover-content-peight" data-target="#popover-content-peight" tabindex="0" class="flake mobile" data-toggle="modal" data-trigger="focus" ><img class="flash" alt="Stairs" src="assets/img/flake.png" /></a>
+                    <a id="pnine" style="position:absolute;    top: 54.5%;left: 30.1%;" aria-describedby="popover-content-pnine" data-target="#popover-content-pnine" data-placement="left" tabindex="0" class="flake mobile" data-toggle="modal" data-trigger="focus" ><img class="flash" alt="Dog" src="assets/img/flake.png" /></a>
+                    <a id="pten" style="position:absolute;top: 57.1%;left: 81.7%;" aria-describedby="popover-content-pten" data-target="#popover-content-pten" data-placement="left" tabindex="0" class="flake mobile" data-toggle="modal" data-trigger="focus" ><img class="flash"  alt="Car" src="assets/img/flake.png" /></a>
+                </div>
+
+
+            
+        <div class="actions">
+                <a href="" tabindex="0" aria-label="Learn about indoor safety." class="go"><span>Indoor Safety</span></a>
+            </div>
+
+
+
+            
+    </div>
+  </div>
+  <div class="popover-contents">
+      <div  class="modal" role="dialog" tabindex="-1"  id="popover-content-pone">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                    <div class="modal-body">
+            <h3>Have a working smoke alarm and a carbon monoxide detector.</h3>
+            <p>Change batteries in these detectors twice a year – at the start and end of daylight savings time.</p>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">CLOSE</span>
+            </button>
+            </div>
+            </div></div>
+            
+      </div>
+      <div class="modal" role="dialog" tabindex="-1" id="popover-content-ptwo">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                            <div class="modal-body">
+        <h3>No heat or hot water?</h3>
+        <ul>
+            <li>Tell your manager/landlord. <b>Call 311</b> if the problem is not fixed right away.</li>
+            <li>For help paying heating bills or repairing heating equipment, call the Home Energy Assistance Program at <br> 1-800-692-0557.</li>
+        </ul>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">CLOSE</span>
+        </button>
+        </div></div></div>
+      </div>
+      <div class="modal" role="dialog" tabindex="-1" id="popover-content-pthree">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                            <div class="modal-body">
+          <h3>Keep your baby safe.</h3>
+          <ul>
+            <li>Put your baby to sleep alone in a crib or bassinet wearing warm layers.</li>
+            <li>Do not cover your baby with a blanket above chest level,  keeping it away from their face. </li>
+        </ul>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">CLOSE</span>
+        </button>
+        </div></div></div>
+      </div>
+      <div class="modal" role="dialog" tabindex="-1" id="popover-content-pfour">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                            <div class="modal-body">
+            <h3>Never use a stove or oven to heat your home. Kerosene or propane space heaters are not allowed in NYC.</h3>
+            <p>If you use an electric space-heater:
+                    <ul>
+                        <li>Plug it directly into a wall outlet.</li>
+                        <li>Place it away from flammable items.</li>
+                        <li>Don’t hang clothes over it.</li>
+                    </ul>
+                </li>
+            </p>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">CLOSE</span>
+            </button>
+            </div></div></div>
+      </div>
+      <div class="modal" role="dialog" tabindex="-1" id="popover-content-pfive">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                            <div class="modal-body">
+        <h3>Be a Buddy. Check that family, friends and neighbors have heat.</h3>
+        <ul>
+            <li>In an emergency, people who live nearby can respond faster than anyone else.</li>
+            <li><b>Call 311</b> to report a homeless person in need of shelter.</li>
+        </ul>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">CLOSE</span>
+        </button>
+        </div></div></div>
+      </div>
+      <div class="modal" role="dialog" tabindex="-1" id="popover-content-psix">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                            <div class="modal-body">
+        <h3>Prevent hypothermia.</h3>
+        <ul>
+            <li>Dress in dry, loose-fitting layers.</li>
+            <li>Cover exposed skin, such as the face and hands.</li>
+            <li>Watch for signs of hypothermia, such as intense shivering, dizziness and confusion. <b>Call 911</b> if you or someone else has these symptoms.</li>
+        </ul>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">CLOSE</span>
+        </button>
+        </div>
+        </div>
+        </div>
+      </div>
+      <div class="modal" role="dialog" tabindex="-1"  id="popover-content-pseven">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                            <div class="modal-body">
+          <h3>Be careful when shoveling snow.</h3>
+          <ul>
+              <li>Shovel slowly and take frequent breaks.</li>
+              <li>If you are an older adult or have a disability, <b>call 311</b> and ask if volunteer snow removal services are available in your area.</li>
+          </ul>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">CLOSE</span>
+        </button>
+          </div>
+          </div>
+          </div>
+     </div>
+     <div class="modal" role="dialog" tabindex="-1" id="popover-content-peight">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                            <div class="modal-body">
+            <h3>Avoid slips and falls.</h3>
+            <ul>
+                <li>Wear sturdy shoes or boots.</li>
+                <li>Take short steps and walk slowly.</li>
+                <li>Use handrails on stairs.</li>
+            </ul>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">CLOSE</span>
+            </button>
+            </div>
+            </div>
+            </div>
+       </div>
+       <div class="modal" role="dialog" tabindex="-1" id="popover-content-pnine">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                            <div class="modal-body">
+            <h3>Keep your pets safe.</h3>
+            <ul>
+                <li>Keep your pets inside as much as possible.</li>
+                <li>Wipe your dog’s paws after walks. </li>
+                <li>Clean up antifreeze spills.</li>
+            </ul>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">CLOSE</span>
+            </button>
+            </div>
+            </div>
+            </div>
+       </div>
+       <div class="modal" role="dialog" tabindex="-1" id="popover-content-pten">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                            <div class="modal-body">
+            <h3>Be car-smart.</h3>
+            <ul>
+                <li>Never run your car inside a garage.</li>
+                <li>Clear snow and ice from your car’s tailpipe.</li>
+                <li>Avoid driving in dangerous weather.</li>
+                <li>Keep a shovel, ice scraper, flashlight, jumper cables, blankets and a first-aid kit in your car.</li>
+            </ul>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">CLOSE</span>
+            </button>
+            </div></div></div>
+       </div>
+  </div>
+
+	<!-- Modal -->
+	<div class="modal fade" id="accessibilityModal" tabindex="-1" role="dialog" aria-labelledby="accessibilityModalLabel" aria-hidden="true" style="z-index: 999999999999">
+	  <div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<h5 class="modal-title" id="accessibilityModalLabel" data-pagefind-ignore="all">Accessibility Help</h5>
+			
+		  </div>
+		  <div class="modal-body">
+			<ul>
+                <li>For Keyboard and Screen reader access on desktop, use the tab key to navigate between icons. You will hear the description that goes along with that icon. There is no need to press the close button. Press tab to navigate to the next icon and hear its description.</li>
+                <li>When using mobile, view in portrait orientation for best results. When using Voiceover on iOS, double tap an icon and its description will appear. Swipe right to listen to the descriptions then double tap on the close button. Voiceover focus will return to the icon. Swipe right to move to the next icon.</li>
+                <li>Note: some links do not have keyboard access when using Safari on Mac.</li>
+            </ul>
+		  </div>
+		  <div class="modal-footer">
+			<button type="button" class="btn btn-secondary btn-block" data-dismiss="modal">Close</button>
+			
+		  </div>
+		</div>
+	  </div>
+  </div>
+
+
+  <!-- Add your site or application content here -->
+  <script src="assets/js/vendor/modernizr-3.6.0.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.3.1.min.js"><\/script>')</script>
+  <script src="assets/js/plugins.js"></script>
+  <script src="assets/js/popper.js"></script>
+  <script src="assets/js/bootstrap.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/snow.js"></script>
+
+</body>
+
+</html>

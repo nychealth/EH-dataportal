@@ -5,10 +5,8 @@ draft: false
 seo_title: "红线圈定的简史 "
 seo_description: "危害我们健康90年的金融政策"
 tags:
-categories: ["housing","social","childhealth","neighborhoods"]
+categories: ["housing","inequality","childhealth","neighborhoods","injuryandviolence"]
 keywords: ["poverty","asthma","injustice","housing","social determinants","redlining","disinvestment","racism"]
-image: ds-povasthma.jpg
-layout: advanced
 image: ds-redlining.jpeg
 ---
 ### 危害我们健康90年的金融政策 

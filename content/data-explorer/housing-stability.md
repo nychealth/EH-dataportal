@@ -2,11 +2,12 @@
 title: Housing stability
 date: 2021-05-28 18:02:58.817845
 draft: false
+azlink: "https://www.nyc.gov/site/doh/health/neighborhood-health/community-support-network.page"
 seo_title: "Housing stability data for NYC | Environment and Health Data Portal"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
 description: "Datasets and visualizations of housing stability in NYC."
 tags:
-categories: ["housing", "social", "neighborhoods", "climatehealth"]
+categories: ["housing", "inequality", "neighborhoods", "climatehealth"]
 keywords:
   [
     "built environments",
@@ -27,6 +28,20 @@ indicators:
       - 15
       - 17
       - 2336
+related:
+  - title: "Housing creates health"
+    url: "data-stories/housing-creates-health/"
+  - title: "Health, housing, and history"
+    url: "data-stories/housing/"
+  - title: "A brief history of redlining"
+    url: "data-stories/redlining/"
+relatedData:
+  - title: "Housing maintenance"
+    url: "housing-maintenance/"
+  - title: "Housing safety"
+    url: "housing-safety/"
+  - title: "Economic conditions"
+    url: "economic-conditions/"
 ---
 
 Most people spend most of their time in their home. That makes the home a crucial environment that can affect one's health.

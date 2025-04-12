@@ -10,7 +10,7 @@ keywords: ["geography","maps","neighborhoods","health data","methods","geographi
 image: ds-geographies.jpg
 layout: single
 vega: true
-photocredit: "Edwin J. Torres/Mayoral Photography Office"
+photocredit: "Edwin J. Torres/Mayoral Photography Office, City of New York"
 ---
 
 La ciudad de Nueva York posee cientos de vecindarios y casi la misma cantidad de formas de diagramar los límites de los vecindarios. Cuando visita el Portal de Datos Ambientales y Sanitarios u otros recursos de datos del Departamento de Salud (Health Department), es posible que note que la información está disponible en diferentes esquemas de vecindarios.
