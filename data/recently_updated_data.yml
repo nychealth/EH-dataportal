@@ -1,12 +1,20 @@
 ---
 featured:
-- copy: Harbor water quality
-  link: data-explorer/waterways/
-- copy: Commuting modes
-  link: data-explorer/walking-driving-and-cycling/?id=2415#display=summary
-- copy: Neighborhood poverty
-  link: data-explorer/economic-conditions/?id=103#display=summary
-- copy: Unemployment
-  link: data-explorer/economic-conditions/?id=2337#display=summary
-- copy: Heat vulnerability index
-  link: data-explorer/weather-related-illness/?id=2191#display=summary
+- copy: Depression (adults)
+  link: data-explorer/mental-health/?id=2417
+- copy: Psychiatric hospitalizations (adults)
+  link: data-explorer/mental-health/?id=2418
+- copy: Serious psychological distress (adults)
+  link: data-explorer/mental-health/?id=2419
+- copy: 'Cold stress: 5-year emergency department visits'
+  link: data-explorer/weather-related-illness/?id=2444
+- copy: 'Cold stress: 5-year hospitalizations'
+  link: data-explorer/weather-related-illness/?id=2445
+- copy: Firearm ED visits
+  link: data-explorer/violence/?id=2437
+- copy: Assault ED visits
+  link: data-explorer/violence/?id=2400
+- copy: Rat inspections
+  link: data-explorer/mice-and-rats/?id=2434
+- copy: Rat indexing in Rat Mitigation Zones (RMZs)
+  link: data-explorer/mice-and-rats/?id=2433

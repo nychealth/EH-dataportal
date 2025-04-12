@@ -6,7 +6,7 @@ seo_title: "Por qué el asma es un problema de justicia social"
 seo_description: "Una historia sobre el asma y justicia en NYC."
 tags:
 categories:
-  ["housing", "social", "childhealth", "healthoutcomes", "neighborhoods"]
+  ["housing", "inequality", "childhealth", "healthoutcomes", "neighborhoods"]
 keywords:
   [
     "poverty",
@@ -21,7 +21,7 @@ keywords:
     "kids",
   ]
 image: ds-povasthma.jpg
-photocredit: "Benjamin Kanter/Mayoral Photography Office"
+photocredit: "Benjamin Kanter/Mayoral Photography Office, City of New York"
 ---
 
 La pobreza afecta la salud de muchas formas. En la ciudad de Nueva York, la historia del asma ilustra con claridad esta conexión.

@@ -70,10 +70,10 @@
 
                     <div class="col-lg py-3">
                         <div class="d-flex justify-content-center justify-content-lg-start">
-                            <a href="{{ site.BaseURL }}"><img src="{{ site.BaseURL }}7618350_heatmap_business_analytics_statistics_icon-gpr.ico" style="height: 67px" class="pr-1"></a>
+                            <a href={{ relURL "" }}><img src={{ relURL "7618350_heatmap_business_analytics_statistics_icon-gpr.ico" }} style="height: 67px" class="pr-1"></a>
 
                             <p class="text-white title-hover">
-                                <span class="site-subtitle"><a href="{{ site.BaseURL }}" class="link-no-dec">Environment & Health</span>
+                                <span class="site-subtitle"><a href='{{ relURL "" }}' class="link-no-dec">Environment & Health</span>
                                 <span class="site-title">Data Portal</a></span>
                             </p>
 
@@ -119,16 +119,16 @@
 
                                         <div class="dropdown-menu wider-menu" aria-labelledby="nav-item-topic">
                                             <ul class="extensible-list p-0">
-                                                {{ range where .Site.Pages "Section" "key-topics" }}
-                                                {{ if not .Params.hide }}
-                                                    {{ if .Params.shortTitle }}
+                                                {{ range sort (where .Site.Pages "Section" "key-topics") "Params.Title" }}
+                                                {{- if not .Params.hide -}}
+                                                    {{- if .Params.shortTitle }}
                                                     <a class="" href="{{ .RelPermalink }}"> <li class="">{{ .Params.shortTitle }}</li></a>
                                                     <hr class="my-1">
-                                                    {{ else }}
+                                                    {{- else }}
                                                     <a class="" href="{{ .RelPermalink }}"> <li class="">{{ .Params.title }}</li></a>
                                                     <hr class="my-1">
-                                                    {{ end }}
-                                                {{ end }}
+                                                    {{- end -}}
+                                                {{- end -}}
                                                 {{ end }}
                                                     <a href={{ relURL "key-topics" }}>All topics</a>
 
@@ -197,8 +197,9 @@
                                         </a>
                                         {{- end -}}
                                     </div>
-                                    <!-- .nav-item -->
 
+
+                                    <!-- .nav-item -->
                                     
 
                                     <div class="nav-item bg-white text-primary border d-none d-lg-block">
@@ -208,6 +209,14 @@
                                                 </a>
                                     </div>
                                     <!-- .nav-item -->
+
+                                    <!-- .nav-item -->
+                                    <div class="nav-item bg-none text-white border border-white ml-1">
+
+                                        <a href="#" class="nav-link text-white " data-toggle="modal" data-target="#subscribeModal">
+                                            Subscribe
+                                        </a>
+                                    </div>
 
                                 </nav>
 
@@ -235,6 +244,18 @@
         </div>
 
 
+        </div>
+
+        <div class="modal" tabindex="-1" role="dialog" id="subscribeModal">
+            <div class='modal-dialog modal-lg modal-dialog-centered' role='document'>
+                <div class='modal-content'>
+                    <div class='modal-body' style="height:75vh;">
+                        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfUg3JE5ODNc6aqBPJwM8mZ80TYtK6ISw-OM7PBwKuoN3M--g/viewform" width="100%" frameborder="no" height="100%"></iframe>
+                    </div>
+                    <hr>
+                    <button type="button" class="btn btn-outline-primary close-dialog" data-dismiss="modal">Close</button>
+                </div>
+            </div>
         </div>
 
 </header>

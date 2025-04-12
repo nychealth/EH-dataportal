@@ -1,6 +1,6 @@
 ---
 title: 'Housing and Health'
-categories: ["housing","childhealth","social","neighborhoods"]
+categories: ["housing","childhealth","inequality","pests"]
 layout: topiclanding
 seo_title: 'Housing and Health in NYC'
 urlExtension: '/housing_and_health/'

@@ -5,10 +5,8 @@ draft: false
 seo_title: "Una breve historia del redlining"
 seo_description: "La política financiera de 90 años que daña nuestra salud ."
 tags:
-categories: ["housing","social","childhealth","neighborhoods"]
+categories: ["housing","inequality","childhealth","neighborhoods","injuryandviolence"]
 keywords: ["poverty","asthma","injustice","housing","social determinants","redlining","disinvestment","racism"]
-image: ds-povasthma.jpg
-layout: advanced
 image: ds-redlining.jpeg
 ---
 ### La política financiera de 90 años que daña nuestra salud.

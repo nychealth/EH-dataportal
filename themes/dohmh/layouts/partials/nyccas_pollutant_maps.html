@@ -18,7 +18,7 @@
           <iframe id="iframeEmbed" src="raster/bc_2022.html" style="width:100%;height:100%;" frameborder="off"></iframe>
       </div>
 
-      <div class="col-sm-5" id="mapText">
+      <div class="col-sm-5" id="mapText" style="height: 100%;overflow-y:scroll;">
           <div id="bcText" class="polText">
             {{- with .Resources.GetMatch "map-text.md" -}}
                 {{ .Params.BC | markdownify }}

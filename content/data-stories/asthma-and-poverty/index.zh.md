@@ -5,10 +5,10 @@ draft: false
 seo_title: "为什么哮喘是一个社会正义问题"
 seo_description: "贫穷会影响一个人的呼吸方式"
 tags:
-categories: ["housing","social","childhealth","healthoutcomes","neighborhoods"]
+categories: ["housing","inequality","childhealth","healthoutcomes","neighborhoods"]
 keywords: ["poverty","asthma","injustice","housing","children","emergency department visits","ed visits","emergency room","social determinants","kids"]
 image: ds-povasthma.jpg
-photocredit: "Benjamin Kanter/Mayoral Photography Office"
+photocredit: "Benjamin Kanter/Mayoral Photography Office, City of New York"
 ---
 
 贫困以多种方式影响健康。在纽约市，哮喘病例清楚地说明了这种联系。
