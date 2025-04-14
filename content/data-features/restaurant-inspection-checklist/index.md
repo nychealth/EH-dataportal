@@ -1,7 +1,7 @@
 ---
 title: "Restaurant inspection checklist"
 date: 2023-07-08T11:14:56-04:00
-draft: false
+draft: true
 seo_title: "Restaurant inspection checklist"
 seo_description: "See what health inspectors look for when they inspect restaurants."
 tags: 
