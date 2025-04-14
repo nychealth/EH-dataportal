@@ -2,47 +2,62 @@
 title: Violence
 date: 2021-05-28 18:02:58.737039
 draft: false
+azlink: "https://www.nyc.gov/site/doh/health/neighborhood-health/anti-violence.page"
 seo_title: "Violence data for NYC"
-seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods.."
-tags: 
-categories: ["social","healthoutcomes"]
-keywords: ["violence","injury","neighborhoods","social","justice","poverty"]
+seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
+description: "Datasets and visualizations of violence in NYC."
+tags:
+categories: ["inequality", "injuryandviolence", "healthoutcomes"]
+keywords:
+  [
+    "violence",
+    "injury",
+    "firearms",
+    "guns",
+    "neighborhoods",
+    "social justice",
+    "safety",
+    "poverty",
+    "inequality",
+  ]
 indicators:
-- header: null
-  IndicatorID:
-  - 2400
-  - 2375
+  - header: "Assaults"
+    IndicatorID:
+      - 2400
+      - 2435
+      - 2375
+      - 2438
+  - header: "Firearms-related"
+    IndicatorID:
+      - 2437
+      - 2436
+      - 2440
+      - 2439
+related:
+  - title: "Why violence is a public health issue"
+    url: "data-stories/violence/"
+  - title: "Disparities in violence"
+    url: "data-stories/assaults/"
+relatedData:
+  - title: "Economic conditions"
+    url: "economic-conditions/"
+  - title: "Social conditions"
+    url: "social-conditions/"
+  - title: "Housing stability"
+    url: "housing-stability/"
 ---
 
-Violence is the use of physical, verbal, and/or emotional force to injure, harm, abuse, damage, or destroy. Interpersonal violence includes child abuse and neglect, youth violence, intimate partner violence, sexual violence, and elder abuse. Violence can involve injury to self, including self-harm, suicide attempts, and death by suicide. Violence can also take the form of power against a group or community.
+Violence is the use of physical, verbal and/or emotional force to injure, harm, abuse, damage or destroy. While violence can be self-inflicted, community violence occurs outside the home between people who or may not know each other.
 
-Violence is a public health issue because it is a cause of morbidity and mortality, leading to physical and emotional harm, an increase in negative health outcomes, premature death, psychological trauma and persistent fear to individuals and communities.
+Violence is frequently described through homicide statistics. While homicide is a leading cause of death, especially among 15–34-year-olds, and captures the most severe form of violence, non-fatal violence-related injuries are much more common and help paint the larger picture on the burden of violence and its impact on the health and future of individuals, families, and communities.
 
-Violence is also an equity issue because it disproportionately affects groups that have been oppressed due to their socioeconomic status, race/ethnicity, sexual orientation, gender identity, geographic location, or some combination of these factors. Data from multiple sources illustrate tremendous disparities in the distribution and burden of violence throughout NYC. For instance, rates of firearm-related violence are at least two times higher in high poverty neighborhoods when compared to lower poverty neighborhoods. And, violence persists as a leading cause of premature death among NYC’s men of color. 
+Violence disproportionately affects groups oppressed because of their socioeconomic status, race/ethnicity, sexual orientation, gender identity, geographic location, or some combination of these factors. Its persistent and inequitable contributions to morbidity and premature mortality in NYC make it a public health priority, and firearms as a source of interpersonal violence have a direct impact on premature death. The implications of community violence on impacted communities include long-term psychological trauma, reduced economic opportunities, deteriorated social cohesion, and increased healthcare costs.
 
-### Factors that Contribute to Violence
+To understand what drives violence, it is important to look at the context and systems within which it occurs and consider the negative impact that historic practices (e.g., redlining) and ongoing social structures (e.g., institutional racism) have on affected groups and communities. Social Determinants of health are conditions people may be born into or fall into over the course of their lives. SDH contribute to violence and convey messages about which groups and communities are deprived of resources and which are privileged by them. Some examples of SDH that contribute to violence include:
 
-Restricting the explanation of disparities in violence to differences in individuals and group characteristics most affected by the violence only initiates bias and constrains problem-solving*.* To understand what drives violence, it is important to look at the context and systems within which it occurs and consider the negative impact that historic practices (e.g., redlining) and ongoing social structures (e.g., institutional racism) have on particular groups and communities.
+- Poverty and presence of employment opportunities
+- Access to affordable housing
+- Access to quality education, and educational attainment
+- Quality of the built environment
 
-For example, [racialized systems have created and upheld stereotypes that link Black men and criminality](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5004736/), while ignoring the imbalanced distribution of power and resources experienced by Black men and Black communities. A myriad of  social, political, economic, historical, and environmental factors contribute to violence. These factors convey messages about which populations and communities are deprived of society’s resources and which are privileged by them. Some of these factors include:
-
-* Poverty and neighborhood disinvestment
-* Housing and historic redlining practices
-* Education and employment opportunities
-* Policing and incarceration practices
-* Chronic stress and intergenerational trauma Community and social norms
-* Access to health and health care
-* Built environment
-* Racism and other forms of oppression
-
-Examining factors like these that disproportionately marginalize certain populations illuminate opportunities for prevention.
-
-### About the Data and Indicators
-
-Violence is frequently described through homicide statistics. While it is a leading cause of death and captures the most severe form of violence, non-fatal violence-related injuries are much more common and help paint the larger picture on the burden of violence and its impact on the health and future of individuals, families, and communities.
-
-### Interpreting the Data and Informing Solutions
-
-Violence-related data must be interpreted in ways where we move beyond demonizing those causing the harm and instead look at the context and systems that gives rise to violence. Interpreting data this way illuminates ways to mitigate the social, political, economic, historical, and environmental factors that contribute to violence.
-
-With any public health epidemic, be it influenza, obesity, opioid addiction or gun violence, prevention is key.  Prevention is achievable in ways that are similar to multi-pronged approaches that have been used to address the risk and resilient factors for health outcomes like asthma, motor vehicle crashes, and opioid overdoses. Indeed, multi-faceted approaches to health promotion that empower individuals, families, communities, and systems equitably are where sustainable solutions for violence reduction and prevention reside.
+The New York City Department of Health and Mental Hygiene’s has invested in the Violence Prevention Initiative (VPI) to address the challenges of community violence by seeking to strengthen neighborhoods disproportionally burdened by it. VPI is rooted in principles of health equity in which everyone should have the opportunity to realize their full health potential. VPI values a multi-strategy, community-centered, and trauma-informed approach to reduce risk factors that contribute to violence. VPI highlights the SDHs that contribute to the violence in disinvested communities, prioritizes solutions that help address behavioral and structural barriers, and works across systems and communities to reinvest in neighborhoods most affected by violence.

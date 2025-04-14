@@ -19,7 +19,7 @@
                             Health
                         </a>
                         <span class="mx-1" aria-hidden="true">></span>
-                        <a class="text-reset" href="{{ site.BaseURL }}">
+                        <a class="text-reset" href={{ relURL "" }}>
                         EH Data Portal
                         </a>
                     </p>
@@ -45,7 +45,7 @@
                         </li>
                         <li>
                             <a href="https://www1.nyc.gov/" title="Go to nyc.gov">
-                                <img class="d-block" src="{{ site.BaseURL }}images/nyc-bubble-logo.svg" width="45" alt="NYC Logo">
+                                <img class="d-block" src={{ relURL "images/nyc-bubble-logo.svg" }} width="45" alt="NYC Logo">
                             </a>
                         </li>
                     </ul>
@@ -62,19 +62,19 @@
     </div>
     <!-- #nyc-top-header -->
 
-    <div class="container-fluid collapse d-lg-block px-0 border-lg-top d-print-none" id="nav-primary">
+    <div class="container-fluid collapse d-lg-block px-0 border-lg-top border-lg-bottom d-print-none" id="nav-primary">
 
         <div class="wide">
 
-            <nav class="nav nav-pills border-bottom border-right justify-content-center" role="navigation">
+            <nav class="nav nav-pills border-right justify-content-center" role="navigation">
 
                 {{- $currentPage := . -}}
 
-            <span id="File.Path" style="display: none">{{ $currentPage.File.Path }}</span>
+            <span id="File.Path" style="display: none">{{ with $currentPage.File }}{{- .Path -}}{{ end }}</span>
             <span id="FirstSection.RelPermalink" style="display: none">{{ $currentPage.FirstSection.RelPermalink }}</span>
 
             <div class="nav-item-search border-right">
-                <a class="nav-link" id="nav-item-01" href="{{ site.BaseURL }}">
+                <a class="nav-link" id="nav-item-01" href={{ relURL "" }}>
                 <span class='text-primary'><i class='fa fa-home' aria-hidden='true'></i><span class="sr-only">Home</span></span>
                 </a>
             </div>
@@ -91,14 +91,18 @@
 
                 {{- else -}}
 
-                <button class="btn nav-item-search d-none d-lg-block" type="button" title="Search"
+                {{/*  <button class="btn nav-item-search d-none d-lg-block" type="button" title="Search"
                         data-toggle="collapse" data-target="#global-search"
-                        aria-controls="global-search" aria-expanded="false">
+                        aria-controls="global-search" aria-expanded="false">  */}}
 
-                    <span class="sr-only">Search</span>
-                    <i class="fa fa-magnifying-glass fa-lg"></i>
+                    <button type="button" data-toggle="modal" data-target="#searchModal" class="btn nav-item-search d-none d-lg-block" title="Search">
 
-                </button>
+                        <span class="sr-only">Search</span>
+                        <i class="fa fa-magnifying-glass fa-lg text-body mt-1"></i>
+
+                    </button>
+
+                {{/*  </button>  */}}
 
                 {{- end -}}
 

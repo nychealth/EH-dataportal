@@ -1,0 +1,220 @@
+{{- define "main" -}}
+
+<article class="container-fluid" id="skip-header-target">
+
+    <div class="row">
+        <div class="col-md-7 mx-auto mb-2">
+            <nav aria-label="breadcrumb" class="mt-2 mb-3">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
+                    <li class="breadcrumb-item"><a href={{ relURL "data-features" }}>Data Features</a></li>
+                    <li class="breadcrumb-item active d-none d-md-block" aria-current="page">{{ .Title }}</li>
+                </ul>
+            </nav>
+
+            <h1 class="h2" data-pagefind-weight="10.0">
+                {{ .Title }}
+            </h1>
+
+            {{ .Content }}
+
+        </div>
+    </div>
+
+    <div class="row my-4">
+        <div class="col-12">
+            <h3 data-pagefind-weight="10.0">The Heat Vulnerability Index</h3>
+        </div>
+
+        <div class="col-md-6 col-sm-12">
+
+            <div class="vis2" id="mapvis"></div>
+
+
+
+        </div>
+
+        <div class="col-md-6 col-sm-12">
+            <!-- Neighborhood selection form --> 
+            <div data-pagefind-weight="7.0">
+                <div style="font-size: 1rem;" class="pb-1">Enter a neighborhood to get data:</div>
+
+                <div class="btn-group" role="group">
+
+                    <input
+                        id="flex_search"
+                        type='search'
+                        class='flexdatalist form-control'
+                        name='indicator_name_suggestion'
+                    />
+
+                    <button id="clear" class="btn btn-md btn-warning">Clear</button>
+
+                </div>
+
+                <div class="float-right">
+                    <p class="fs-sm "><em> <a href={{ relURL "data-stories/geographies" }}>About Neighborhood Tabulation Areas</a>.</em></p>
+                </div>
+
+
+
+                </div>
+
+            <div class="my-3">
+                <p>
+                    <i class="far fa-square text-primary"></i>
+                    <span id="NTA" class="badge font-inherit">---</span><br>
+                    <span class="fs-sm">ZIPs <span id="zipPrint">---</span></span></p>
+
+                <p>Heat vulnerability: <span id="hviVal" class="badge font-inherit">---</span></p>
+
+            </div>
+
+            <hr class="my-2">
+
+            <p data-pagefind-weight="9.0">The Heat Vulnerability Index (HVI) shows neighborhoods whose residents are more at risk for dying during and immediately following extreme heat.</p>
+
+            <p>It uses a statistical model to summarize the most important factors of neighborhood heat risk: surface temperature, green space, home air conditioning, and income.</p>
+
+            <p>Neighborhoods are scored from <span class="badge" style="font-weight: bold; color:#e9c213; background: dimgray; border-radius: 5px;"><i class="fas fa-square"></i>&nbsp;1 (lowest risk)</span> to <span class="badge" style="font-weight: bold; color: #793834; background: lightgray; border-radius: 5px;"><i class="fas fa-square"></i>&nbsp;5 (highest risk)</span>. </p>
+
+            <p>Remember, a neighborhood with low vulnerability does not mean no risk. All neighborhoods have residents at risk for heat illness and death. 
+            </p>
+        </div>
+    </div>
+
+    <div class="row my-4">
+        <div class="col-12">
+            <h3>What factors affect heat vulnerability in <span class="text-primary">your neighborhood?</span></h3>
+
+            <!-- table goes here -->
+            <table class="table" style="width:100%;">
+                <colgroup>
+                    <col style="width: 50%;">
+                    <col style="width: 50%;">
+                </colgroup>
+                <thead class="sr-only">
+                <tr>
+                  <th>Factor<br></th>
+                  <th style="width:45%">Value<br></th>
+                </tr></thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <h4 class="h5">Temperature</h4>
+                    <div class="fs-sm"><a href={{ relURL "data-explorer/climate/?id=2141" }}>Daytime summer surface temperature</a> is different from air temperature, and varies more by neighborhood: some neighborhoods are hotter than others. A higher surface temperature is associated with a higher risk of death from heat waves.                         <span class="badge">Median neighborhood: 87.0° F</span>
+                    </div>
+
+                  </td>
+                  <td>
+                    <div class="p-3">
+                        The daytime summer surface temperature in your neighborhood is <span id="tempVal" class="text-primary font-weight-bold">--° F</span>. 
+                        <br>This is <span id="tempTert"><span class="badge badge-light">--- than most neighborhoods</span></span>.
+                    </div>
+                    </td>
+                </tr>
+                <tr>
+                  <td>
+                    <h4 class="h5">Air conditioning</h4>
+                    <div class="fs-sm">
+                        Air conditioning is as necessary during extreme heat as heating is in winter. A neighborhood with a high percentage of <a href={{ relURL "data-explorer/climate/?id=2104" }}>households with air conditioners</a> means that more of its residents can be protected from extreme heat. 
+                        <span class="badge">Citywide: 91.0%</span>
+
+                    </div>
+                </td>
+                  <td>
+                    <div class="p-3">
+                        <span id="acVal" class="text-primary font-weight-bold">--%</span> of households in your neighborhood have AC. 
+                        <br>This is <span id="acTert"><span class="badge badge-light">--- than most neighborhoods</span></span>.
+
+                    </div>
+                </td>
+                </tr>
+                <tr>
+                  <td>
+                    <h4 class="h5">Green space</h4>
+                    <div class="fs-sm">
+                        Green space is <a href={{ relURL "data-explorer/active-design/?id=2157" }}>tree</a>, <a href={{ relURL "data-explorer/active-design/?id=2143" }}>grass, or shrub cover</a>. Green space helps cool a neighborhood, address the <a href={{ relURL "data-stories/urban-heat-island" }} target="_blank">UHI</a>, and create a resilient city. It also has a small association with heat mortality, weaker than other components in the index.
+                        <span class="badge">Median neighborhood: 25.0%</span>
+
+                    </div>
+                  </td>
+                  <td>
+                    <div class="p-3">
+                        <span id="greenVal" class="text-primary font-weight-bold">--%</span> of your neighborhood is green space. 
+                        <br>This is <span id="greenTert"><span class="badge badge-light">--- than most neighborhoods</span></span>.
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <h4 class="h5">Median income</h4>
+                    <div class="fs-sm">
+                        Low income is a social factor that places people at risk of death during heat waves for many reasons. One reason is that people with limited financial resources may be less likely to afford owning or using an air conditioner during heat waves.
+                        <span class="badge">Citywide: $67,046</span>
+
+                    </div>
+                  </td>
+                  <td>
+                    <div class="p-3">
+                        The median income in your neighborhood is <span id="incVal" class="text-primary font-weight-bold">$--</span>. 
+                        <br>This is <span id="incTert"><span class="badge badge-light">--- than most neighborhoods</span></span>.
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+              </table>
+
+        </div>
+    </div>
+
+
+
+        <div class="row mt-4">
+            <div class="col-md-7 mx-auto col-sm-12">
+                <h4>Racial inequities in heat impacts</h4>
+                <p>In NYC, Black people die of heat-related illness at a disproportionately high rate. Because of this, neighborhoods with more Black residents are more greatly impacted by extreme heat.
+                </p>
+                <div class="my-2 py-2 border-top border-bottom">
+                    <div style="min-height:321px" id="datawrapper-vis-HTMjf"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/HTMjf/embed.js" charset="utf-8" data-target="#datawrapper-vis-HTMjf"></script><noscript><img src="https://datawrapper.dwcdn.net/HTMjf/full.png" alt="" /></noscript></div>
+                </div>
+
+
+                <p>Black New Yorkers suffer these disproportionate health impacts from heat due to social and economic disparities. These disparities stem from structural racism, which includes neighborhood disinvestment, racist housing policies, fewer job opportunities and lower pay, and less access to high-quality education and health care.  </p>
+                <p>Overall, these systems limit access to resources that protect health. While many factors affect a neighborhood's heat risk, Black New Yorkers are subjected to higher rates of poverty and lower access to air conditioning, green space, and neighborhood cooling resources.
+                </p>
+
+                <div class="asidebox p-2 my-2">
+                    <p>In NYC, an <strong>extreme heat event</strong> is 2 or more days with a heat index reaching 95 °F, or 1 or more days reaching 100 °F. To learn more about heat and health, visit <a href="https://www1.nyc.gov/site/doh/health/emergency-preparedness/emergencies-extreme-weather-heat.page">Extreme Heat and Health</a>. To stay safe in the heat, visit <a href="https://www1.nyc.gov/assets/em/html/beat-the-heat/beattheheat.html">Beat the Heat</a>.</p>
+
+                    <p>You can also learn more about what the City is doing to address extreme heat and how the HVI is guiding that work in the <a href="https://climate.cityofnewyork.us/initiatives/planyc-getting-sustainability-done/">2023 PlaNYC: Getting Sustainability Done</a> report and at <a href="https://www1.nyc.gov/assets/orr/pdf/Cool_Neighborhoods_NYC_Report.pdf">Cool Neighborhoods NYC</a>. Communities can also use the index to advocate for services and resources.</p>
+
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/25782056/">Read more at <em>A Case-Only Study of Vulnerability to Heat Wave-Related Mortality in New York City (2000-2011)</em></a>.</p>
+                </div>
+
+
+
+            </div>
+        </div>
+        <!--End row-->
+
+    </article>
+
+<!-- Related footer -->
+{{- partial "related-footer-2" . -}}
+
+<!-- flexdatalist -->
+
+{{- $flexdatalist_css := resources.Get "node_modules/jquery-flexdatalist/jquery.flexdatalist.min.css" -}}
+<link rel="stylesheet" href="{{ $flexdatalist_css.RelPermalink }}"/>
+
+{{- $flexdatalist_js := resources.Get "node_modules/jquery-flexdatalist/jquery.flexdatalist.min.js" -}}
+<script type="text/javascript" src="{{ $flexdatalist_js.RelPermalink }}"></script>
+
+<link rel="stylesheet" href="custom.css"/>
+
+<!-- HVI script -->
+
+<script type="text/javascript" src="{{ .Params.customJS }}"></script>
+
+{{- end -}}

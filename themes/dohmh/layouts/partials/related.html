@@ -2,33 +2,34 @@
 {{- $page_link := $.content.RelPermalink -}}
 {{- $cats := $.content.Params.categories -}}
 {{- $layout := .layout -}}
+{{- $extraClass := .extraClass -}}
 
-{{- range (where $.content.Site.RegularPages "Section" .section) -}}
+{{- range (where $.content.Site.RegularPages.ByTitle "Section" .section) -}}
     {{- $page := . }}
     {{- $has_common_cats := intersect $cats .Params.categories | len | lt 0 -}}
         {{- if and $has_common_cats (ne $page_link $page.RelPermalink) -}}
 
             {{- if eq $layout "button" -}}
 
-            <a class="btn btn-outline-primary btn-md has-icon disperse mb-1" href="{{ .RelPermalink }}">
-            <span class="fas fa-angle-right" aria-hidden="true"></span>
-            <span class="title">{{ .Title }}</span>
-            </a>
+                <a class="{{ $extraClass }} btn btn-light-green-bg btn-md has-icon disperse mb-1" href="{{ .RelPermalink }}">
+                <span class="fas fa-angle-right" aria-hidden="true"></span>
+                <span class="title">{{ .Title }}</span>
+                </a>
 
             {{- else if eq $layout "card" -}}
-            <a href="{{ .URL }}">{{ .Title }}</a>
-            <hr class="my-1">
+                <a href="{{ .URL }}">{{ .Title }}</a>
+                <hr class="my-1">
 
             {{- else if eq $layout "list" -}}
-            <div class="col-md-6 pl-0">
-                <p><a href="{{ .URL }}">{{ .Title }}</a></p>
-            </div>
+                <div class="col-md-6 pl-0">
+                    <p><a href="{{ .URL }}">{{ .Title }}</a></p>
+                </div>
 
             {{- else if eq $layout "singlelist" -}}
-            <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-            <hr class="my-1">
+                <a class="font-weight-bold" href="{{ .RelPermalink }}">{{ .Title }}</a>
+                <hr class="my-1">
 
-            {{- end -}}
+            {{ end -}}
 
         {{- end -}}
 

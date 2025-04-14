@@ -1,0 +1,18 @@
+﻿ID,Pollutant,Indicator,Description,Sources
+1,pm,Commercial cooking,"Number of permitted commercial cooking grills and charbroilers within 1,000 m",Emissions from commercial cooking
+2,pm,Loading docks,Number of warehouse loading docks within 700 m,Emissions from trucks idling and traveling to and from warehouses
+3,pm,Traffic emissions,"Traffic density, weighted by relative PM<sub>2.5</sub> emissions rates by vehicle type (car, truck, bus) within 250 m","PM<sub>2.5</sub> emissions from all on-road motor vehicles based on vehicle miles and the relative emissions rates of different vehicle types"
+4,no2,Building density,"Area of interior building space within 1,000 m",Combustion of heating oil and natural gas
+5,no2,Traffic emissions,Road area within 100 m,Emissions of motor vehicles on paved roadways
+6,no2,Loading docks,Number of warehouse loading docks within 500 m,Emissions from trucks idling and traveling to and from warehouses
+7,no2,Heavy duty vehicle emissions,Estimated NO<sub>x</sub> emissions from truck traffic within 500 m,"NO<sub>x</sub> emissions from on-road truck activity based on vehicle miles and average truck speeds and emission rates"
+8,no,Loading docks,Number of warehouse loading docks within 500 m,Emissions from trucks idling and traveling to and from warehouses
+9,no,Traffic emissions,"Traffic density, weighted by relative NOx emissions rates and vehicle type (car, truck, bus) within 300 m","NO<sub>x</sub> emissions from all on-road motor vehicles based on vehicle miles and the relative emission rates of different vehicle types"
+10,no,Heavy duty vehicle emissions,Location on a bus route (compared to non-bus route locations),Emissions from buses and other vehicles on busy roadways - indicator of traffic congestion
+11,no,Building emissions,"NO<sub>x</sub> emissions from heat and hot water boilers in buildings within 150 m",Combustion of heating oil and natural gas
+12,bc,Traffic emissions,Area of impervious road surface within 100 m,Emissions of motor vehicles on paved roadways
+13,bc,Commercial cooking,Number of permitted commercial cooking grills and charbroilers within 100 m,Emissions from commercial cooking
+14,bc,Building emissions,"PM<sub>2.5</sub> emissions from heat and hot water oil-burning boilers in buildings within 1000 m",Combustion of heating oil
+15,bc,Loading docks,Number of warehouse loading docks within 700 m,Emissions from trucks idling and traveling to and from warehouses
+16,o3,NO<sub>2</sub>,Level of NO<sub>2</sub> measured at the same location,"Nitric oxides (NO<sub>x</sub>) at elevated concentrations react with ground-level ozone (O<sub>3</sub>), to create NO<sub>2</sub> and O<sub>3</sub>, also called ""quenching"" ozone"
+17,o3,Tree cover,Tree cover within 50 m,Reduced levels through reactions of ozone with leaf surfaces

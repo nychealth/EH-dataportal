@@ -1,0 +1,29 @@
+Location,loc_col,Latitude,Longitude,Color
+Queensboro Bridge,Queensboro_Bridge,40.761234,-73.963886,green
+Hunt's Point,Hunts_Point,40.819009,-73.886198,#beaed4
+Queens College,Queens_College,40.737107,-73.821556,orange
+Williamsburg Bridge,Williamsburg_Bridge,40.71807,-73.9861,#386cb0
+Broadway/35th St,Broadway_35th_St,40.75069,-73.9878,#f0027f
+Manhattan Bridge,Manhattan_Bridge,40.71651,-73.997004,#3084b0
+Cross Bronx Expwy,Cross_Bronx_Expy,40.845167,-73.906143,#d14b05
+Glendale,Glendale,40.70711,-73.8734,red
+Midtown-West,Midtown_DOT,40.755082,-73.990415,#6a3d9a
+FDR,FDR,40.722288,-73.974651,#6a3518
+Mott Haven,Mott_Haven,40.806486,-73.922487,darkblue
+Van Wyck,Van_Wyck,40.690155,-73.80908, #db8514
+Morrisania,Morrisania,40.8367,-73.9214,darkgray
+Bronx - IS52,Bronx_IS52,40.816101,-73.902199,darkgray
+Bklyn - PS 314,Bklyn_PS314,40.641819,-74.018707,darkgray
+Manhattan - IS143,Manhattan_IS143,40.8492,-73.9319,darkgray
+CCNY,CCNY,40.8197,-73.9481,darkgray
+Maspeth,Maspeth,40.7269,-73.8933,darkgray
+Queens,Queens_DEC,40.7375,-73.8244,darkgray
+Queens Near-road,Queens_near_road,40.739264,-73.817694,darkgray
+Bronx - IS74,Bronx_IS74,40.814701,-73.886703,darkgray
+Bklyn - PS274,Bklyn_PS274,40.694401,-73.928596,darkgray
+Fresh Kills,Fresh_Kills,40.5802,-74.1994,darkgray
+DEC Monitor Average,DEC_Avg,40.144575,-71.709361,darkgray
+Hamilton Bridge,Hamilton_Bridge,40.846544,-73.933023,#8c510a
+BQE,BQE,40.702798,-73.960824,#35978f
+SI Expwy,SI_Expwy,40.609209,-74.151182,#9970ab
+Port Richmond,Port_Richmond,40.627925,-74.145883,#B8860B

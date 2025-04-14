@@ -1,0 +1,66 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": "container",
+    "height": "container",
+    "autosize": {"type": "fit", "contains": "content", "resize": true},
+    "data": {"name": "trendData"},
+    "config": {
+      "axisY": {
+        "tickCount": 4
+      },
+      "view": {"stroke": "transparent"}
+    },
+    "layer": [{
+      "mark": {"type": "line", "point": false, "tooltip": false},
+      "encoding": {
+        "x": {
+          "field": "time",
+          "title": "Time Period",
+          "type": "ordinal",
+          "axis": {"title": null, "labelAngle": -25}
+        },
+        "y": {
+          "field": "unmodified_data_value_geo_entity",
+          "title": "Value",
+          "type": "quantitative",
+          "axis": {"title": null}
+        },
+        "detail": {
+          "field": "neighborhood",
+          "title": "Neighborhood",
+          "type":"nominal"
+        },
+        "color": {
+          "value": "lightgrey"
+        }
+      }
+    },{
+      "mark": {"type": "line", "point": true, "tooltip": true, "strokeWidth": 7},
+      "encoding": {
+        "x": {
+          "field": "time",
+          "title": "Time Period",
+          "type": "ordinal",
+          "axis": {"title": null, "labelAngle": 45}
+        },
+        "y": {
+          "field": "unmodified_data_value_geo_entity",
+          "title": "Value",
+          "type": "quantitative",
+          "axis": {"title": null}
+        },
+        "detail": {
+          "field": "neighborhood",
+          "title": "Neighborhood",
+          "type": "nominal"
+        },
+        "color": {
+          "condition": {
+            "test": "datum.neighborhood=='Canarsie - Flatlands'",
+            "value": "#1CA970"
+          },
+          "value": null
+        }
+      }
+    }]
+  }

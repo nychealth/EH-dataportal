@@ -2,6 +2,8 @@
 
 <article class="container-fluid" id="skip-header-target">
 
+
+
     <div class="row">
         <div class="col-xl-2"></div>
         <!-- .col -->
@@ -9,28 +11,47 @@
         <!--start main content section-->
         <div class="col-xl-8 overflow-hidden fs-rg" id="primary-content">
 
+
+
         <!-- language selection -->
         {{- if .IsTranslated -}}
             <nav class="navbar navbar-default my-2">
                     <ul class="nav navbar-nav fs-sm">
-                        <span class="mr-2">Read this data story in:</span> 
+                        <span class="mr-2">Read this data story in:</span>
                         {{- range .Translations -}}
-                        <li class="mb-1"><a href="{{ .RelPermalink }}">{{ .Language.LanguageName }}</a>&nbsp;|&nbsp;</li>  
+                        <li class="mb-1"><a href="{{ .RelPermalink }}">{{ .Language.LanguageName }}</a>&nbsp;|&nbsp;</li>
                         {{- end -}}
                     </ul>
             </nav>
         {{- end -}}
 
-        <div class="narrow my-2">
-            <h1 class="pt-4">{{ .Title }}</h1>
+        <div class="my-4">
+            <div class="row mt-2 mb-3">
+                <div class="col-12">
+                    <nav aria-label="breadcrumb">
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
+                            <li class="breadcrumb-item"><a href={{ relURL "data-stories" }}>Data Stories</a></li>
+                            <li class="breadcrumb-item active d-none d-sm-block"><a href="{{ .Page.RelPermalink }}">{{ with .Params.shortTitle }}
+                                {{ . }}
+                              {{ else }}
+                                {{ .Title }}
+                              {{ end }}</a></li>
+
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+
+            <h1 class="">{{ .Title }}</h1>
                 {{- .Content -}}
         </div>
 
         <div class="wide">
-            <iframe src="source/index.html" frameborder="off" style="width:100%;height: 700px;"></iframe>
+            <iframe src="source/index.html" frameborder="off" style="width:100%;height: 750px;"></iframe>
         </div>
 
-        <div class="narrow my-2">
+        <div class="my-2">
             <a href="https://www1.nyc.gov/site/doh/health/emergency-preparedness/emergencies-extreme-weather-cold-weather.page" aria-label="Learn more about cold weather health risks." tabindex="0" class="more-info">Learn more about cold weather health risks</a>, and get resources to help you stay safe this winter.
         </div>
 

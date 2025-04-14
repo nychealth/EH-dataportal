@@ -1,0 +1,14 @@
+baseURL = "https://localhost/local-stage/"
+[params]
+    data_repo = "http://localhost/EHDP-data/"
+    data_branch = "staging"
+
+[caches]
+    [caches.getresource]
+        dir = ':cacheDir/:project'
+        maxAge = -1
+
+# [server.headers]
+#     for = '/**'
+#     [server.headers.values]
+#         Access-Control-Allow-Origin = "*"

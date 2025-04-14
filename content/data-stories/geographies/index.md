@@ -1,28 +1,37 @@
 ---
 title: "Neighborhood boundaries on the EH Data Portal"
+shortTitle: "Neighborhood boundaries"
 date: 2020-08-01T08:33:22-04:00
 draft: false
 seo_title: "Neighborhood boundaries in health data"
 seo_description: "A data story on different ways to map health data."
-tags: 
+tags:
 categories: ["internal","neighborhoods"]
 keywords: ["geography","maps","neighborhoods","health data","methods","geographic","how we work"]
 image: ds-geographies.jpg
 layout: single
 vega: true
-photocredit: "Edwin J. Torres/Mayoral Photography Office"
+photocredit: "Edwin J. Torres/Mayoral Photography Office, City of New York"
+related:
+  - title: "Our roadmap: An open path forward"
+    url: "data-stories/roadmap/"
+  - title: "Why we're working with you to redesign the data portal"
+    url: "data-stories/codesign/"
+  - title: "Neighborhood Reports: Asthma"
+    url: "neighborhood-reports/#Asthmareport"
 ---
 
 New York City has hundreds of neighborhoods and nearly as many ways of drawing neighborhood boundaries. When you visit the Environment & Health Data Portal, you might notice that data is available in several different neighborhood schemes.
 
-For example, dig around in the asthma data pages and you'll find [Adults with Asthma](/data-explorer/asthma/?id=18) presented by UHF34 neighborhoods, [Public School Children with Asthma](/data-explorer/asthma/?id=2147) presented by UHF42 neighborhoods, and [Asthma emergency department visits](/data-explorer/asthma/?id=2384) are offered by NTAs. Other data on the portal are offered by CD, ZIP code, PUMA, and occasionally even police precinct. **What are all these neighborhood schemes, why do we use one and not the other, and why isn’t the whole system consistent?**
+For example, dig around in the asthma data pages and you'll find [Adults with Asthma]({{< baseurl >}}data-explorer/asthma/?id=18) presented by UHF34 neighborhoods, [Public School Children with Asthma]({{< baseurl >}}data-explorer/asthma/?id=2147) presented by UHF42 neighborhoods, and [Asthma emergency department visits]({{< baseurl >}}data-explorer/asthma/?id=2384) are offered by NTAs. Other data on the portal are offered by CD, ZIP code, PUMA, and occasionally even police precinct. **What are all these neighborhood schemes, why do we use one and not the other, and why isn’t the whole system consistent?**
 
 The most common neighborhood boundaries on the EH Data Portal are Community Districts, Public Use Microdata Areas, and United Hospital Fund neighborhoods. These three common neighborhood schemes have different building blocks. Let's explore these.
 
 {{< rawhtml >}}
+
  </div>
     <!--start wide-->
-    <div class="wide my-4">
+    <div class="wide my-4 chart-wrapper-ds">
         <h4 class="text-center mb-3">Nesting: how neighborhood schemes have different root units</h4>
         <div class="row" style="font-size: 14px;">
             <div class="col-lg-4 col-sm-8 mx-auto mb-2">
@@ -66,9 +75,11 @@ The most common neighborhood boundaries on the EH Data Portal are Community Dist
 {{< /rawhtml >}}
 
 #### Community districts
+
 There are 59 Community Districts (CDs) in NYC, each overseen by a Community Board that advises on land use, zoning, city budgets, and more. As a political boundary, CDs are useful geographic units for breaking down city operations. [Learn more about Community Boards](https://www1.nyc.gov/site/cau/community-boards/about-commmunity-boards.page).
 
 #### Public Use Microdata Areas
+
 Public Use Microdata Areas (PUMAs) have boundaries defined by the US Census. They are made up of groups of census tracts.
 
 There are 55 PUMAs in NYC. PUMAs have similar boundaries to Community Districts, which means that often, one can be used as a proxy for the other. In the map below, notice how Brooklyn CD 1, in Greenpoint/Williamsburg, is almost identical to the PUMA.
@@ -91,18 +102,18 @@ Each PUMA breaks down into Neighborhood Tabulation Areas (NTAs), and each NTA br
     var repo_branch = "{{< param data_repo >}}{{< param data_branch >}}"
     var path = "data-stories/geographies" // hard-coded for now, but could Hugo paramaterize
     var trans = "mapspec-en"
-        
+
     let cd_spec   = repo_branch + "/" + path + "/" + trans + "/" + "mapcd.vl.json";
     let puma_spec = repo_branch + "/" + path + "/" + trans + "/" + "mappuma.vl.json";
     let nta_spec  = repo_branch + "/" + path + "/" + trans + "/" + "mapnta.vl.json";
 
     let cd_csv   = repo_branch + "/" + path + "/" + "CD_DATA.csv"
     let puma_csv = repo_branch + "/" + path + "/" + "PUMA_DATA.csv"
-    let nta_csv  = repo_branch + "/" + path + "/" + "NTA_DATA.csv"    
+    let nta_csv  = repo_branch + "/" + path + "/" + "NTA_DATA.csv"
 
     let cd_topo   = repo_branch + "/" + "geography" + "/" + "CD.topo.json"
     let puma_topo = repo_branch + "/" + "geography" + "/" + "PUMA_or_Subborough.topo.json"
-    let nta_topo  = repo_branch + "/" + "geography" + "/" + "NTA_2010.topo.json"    
+    let nta_topo  = repo_branch + "/" + "geography" + "/" + "NTA_2010.topo.json"
 
     // this code listens to the form with map chooser; must run after DOM loads
     window.onload = main_radio_listener;
@@ -110,7 +121,7 @@ Each PUMA breaks down into Neighborhood Tabulation Areas (NTAs), and each NTA br
     // listener for radio buttons
 
     function main_radio_listener() {
-        
+
         radios = document.querySelectorAll('input[type=radio][name="mainRadioGroup"]');
         radios.forEach(radio => radio.addEventListener('change', () => {
 
@@ -123,7 +134,7 @@ Each PUMA breaks down into Neighborhood Tabulation Areas (NTAs), and each NTA br
             else {
                 buildMap("#map1", puma_spec, puma_csv, puma_topo);
             };
-            
+
         }));
     };
 
@@ -135,9 +146,9 @@ Each PUMA breaks down into Neighborhood Tabulation Areas (NTAs), and each NTA br
 
             spec.layer[0].data.url = topo;
             spec.layer[1].data.url = topo;
-            
+
             d3.csv(csv, d3.autoType).then(csv => {
-                
+
                 vegaEmbed(div, spec).then((res) => {
 
                     resview = res.view.insert("csv", csv).run();
@@ -156,8 +167,8 @@ Each PUMA breaks down into Neighborhood Tabulation Areas (NTAs), and each NTA br
 
 {{< /rawhtml >}}
 
-
 #### United Hospital Fund neighborhoods
+
 United Hospital Fund neighborhoods (UHFs) have boundaries based on ZIP codes. This geography was created by the Health Department, the United Hospital Fund, and other city agencies in the 1980s. They were designed for health research, and to be similar to NYC’s Community Districts.
 
 Health data - like somebody’s hospitalization record, for example, or a response to a survey - often includes a person’s ZIP code. It’s the most readily available piece of geographic information in administrative data. It’s also the neighborhood designation that most people know and can provide when responding to a survey.
@@ -187,7 +198,7 @@ In the map below, notice how three UHF42 neighborhoods in the South Bronx are co
 
     let uhf42_topo = repo_branch + "/" + "geography" + "/" + "UHF42.topo.json"
     let uhf34_topo = repo_branch + "/" + "geography" + "/" + "UHF34.topo.json"
-    let zip_topo   = repo_branch + "/" + "geography" + "/" + "MODZCTA.topo.json"    
+    let zip_topo   = repo_branch + "/" + "geography" + "/" + "MODZCTA.topo.json"
 
     // listener for radio buttons
 
@@ -218,11 +229,9 @@ In the map below, notice how three UHF42 neighborhoods in the South Bronx are co
 
 {{< /rawhtml >}}
 
-
 ### How do you choose when boundaries overlap?
-These different neighborhood boundaries can make things confusing. For example, say you live in Ditmas Park and you want to take some health data to a meeting of your Community Board. Ditmas Park is part of Community District 14, Flatbush/Midwood. But CD14 straddles two different UHF neighborhoods.
 
-[We have a tool that helps you view the overlap and the differences](https://a816-dohbesp.nyc.gov/IndicatorPublic/CommunityDistrict.aspx) so that you can choose what Neighborhood Report to use, but it still raises a difficult question: what neighborhood's data would you bring to your Community Board meeting?
+These different neighborhood boundaries can make things confusing. For example, say you live in Ditmas Park and you want to take some health data to a meeting of your Community Board. Ditmas Park is part of Community District 14, Flatbush/Midwood. But CD14 straddles two different UHF neighborhoods. This raises a difficult question: what neighborhood's data would you bring to your Community Board meeting?
 
 {{< figure src="overlap.png" alt="An example of a Community District that overlaps two UHF42 neighborhoods.">}}
 
@@ -231,4 +240,5 @@ On the EH Data Portal, we aggregate data from lots of different sources. They mi
 But any way of drawing boundaries or aggregating data will smooth over some variation within groups. Despite limitations in the data, we can still see health patterns by geography, and learn valuable information about how neighborhoods differ and why. Neighborhood health data have a lot to tell us, even when their boundaries are imperfect representations of New York City's communities.
 
 ---
+
 If you're mapping health data, you can [download and use shapefiles, geojson, and topojson files at our Github repository](https://github.com/nycehs/NYC_geography).

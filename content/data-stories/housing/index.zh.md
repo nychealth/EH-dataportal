@@ -5,10 +5,8 @@ draft: false
 seo_title: "健康、住房和历史。"
 seo_description: "为了健康，地点很重要。"
 tags:
-categories: ["housing","social","childhealth","healthoutcomes","neighborhoods"]
+categories: ["housing","inequality","childhealth","healthoutcomes","neighborhoods","injuryandviolence"]
 keywords: ["poverty","asthma","injustice","housing","social determinants","redlining","disinvestment","racism","renting","pests","maintenance","maintenance deficiencies"]
-image: ds-povasthma.jpg
-layout: advanced
 image: ds-housing.jpeg
 vega: true
 ---
@@ -94,7 +92,7 @@ vega: true
 </div>
 <div class="wide my-4">
 <div class="py-0 mb-4">
-    <iframe src="/maps/HOLC_map/HOLC_map.html" scrolling="no" frameborder="0"
+    <iframe src="{{< baseurl >}}maps/HOLC_map/HOLC_map.html" scrolling="no" frameborder="0"
         style="position: relative; height: 600px; width: 100%;"></iframe>
 </div>
 </div>
@@ -451,5 +449,5 @@ href="https://www.worstevictorsnyc.org/evictors-list/">纽约市律师权利联�
 
 #### 获取数据 
 - 有关住房维护状况的数据来自 [年住房和空置调查（Housing and Vancancy Survey）](https://www.census.gov/programs-surveys/nychvs.html)。
-- [有关儿童哮喘急诊科就诊的数据](/data-explorer/asthma/?id=2383) 来自纽约全州计划和研究合作系统（New York State Statewide Planning and Research Cooperative System，SPARCS）去身份化的出院数据。
-- [有关依社区划分的人口种族/族裔数据](/data-explorer/social-conditions/?id=2325) 来自美国社区调查（American Community Survey）。
+- [有关儿童哮喘急诊科就诊的数据]({{< baseurl >}}data-explorer/asthma/?id=2383) 来自纽约全州计划和研究合作系统（New York State Statewide Planning and Research Cooperative System，SPARCS）去身份化的出院数据。
+- [有关依社区划分的人口种族/族裔数据]({{< baseurl >}}data-explorer/social-conditions/?id=2325) 来自美国社区调查（American Community Survey）。

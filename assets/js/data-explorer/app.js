@@ -102,49 +102,146 @@ function reveal() {
 
 $('#tab-btn-table').on('click', e => {
     $(e.currentTarget).tab('show');
-    window.location.hash = 'display=summary'
-})
+    window.location.hash = 'display=summary';
+    gtag('event', 'click_tab', {
+        tab: "table"
+    });
+});
 
 // ===== map ===== /
 
 $('#tab-btn-map').on('click', e => {
     $(e.currentTarget).tab('show');
-    window.location.hash = 'display=map'
-})   
+    window.location.hash = 'display=map';
+    gtag('event', 'click_tab', {
+        tab: "map"
+    });
+});
 
 // ===== trend ===== /
 
 $('#tab-btn-trend').on('click', e => {
     $(e.currentTarget).tab('show');
-    window.location.hash = 'display=trend'
-})  
+    window.location.hash = 'display=trend';
+    gtag('event', 'click_tab', {
+        tab: "trend"
+    });
+});
 
 // ===== links ===== /
 
 $('#tab-btn-links').on('click', e => {
     $(e.currentTarget).tab('show');
-    window.location.hash = 'display=links'
-})
+    window.location.hash = 'display=links';
+    gtag('event', 'click_tab', {
+        tab: "links"
+    });
+});
+
+
+// ----------------------------------------------------------------------- //
+// add listeners to metadata buttons
+// ----------------------------------------------------------------------- //
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// how calculated
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+$('#howCalcButton').on('click', e => {
+    // console.log("click_how_caclulated");
+    gtag('event', 'click_how_caclulated');
+});
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// how calculated
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+$('#citeButton').on('click', e => {
+    // console.log("click_citation");
+    gtag('event', 'click_citation');
+});
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// measure about
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+$('#tab-btn-02-b').on('click', e => {
+    // console.log("click_about");
+    gtag('event', 'click_about');
+});
+
+
+// ----------------------------------------------------------------------- //
+// add event listener to indicator links
+// ----------------------------------------------------------------------- //
+
+$('#indicatorButtons').on('click', e => {
+
+    let IndicatorID = e.target.dataset.indicatorId;
+
+    // run the indicator loading function
+
+    loadIndicator(IndicatorID);
+
+    // record google analytics event
+
+    gtag('event', 'click_indicator', {
+        IndicatorID: IndicatorID
+    });
+
+});
 
 
 // ----------------------------------------------------------------------- //
 // export functions
 // ----------------------------------------------------------------------- //
 
-// export current table view
+// export current table or chart view
+$("#chartView").on("click", (e) => {
 
-$("#thisView").on("click", (e) => {
+    // if it's summary table... (uses DataTables.net methods)
+    if (window.location.hash == '#display=summary') {
+        
+        let summaryTable = $('#tableID').DataTable();
+        summaryTable.button("thisView:name").trigger();
+    
+        gtag('event', 'file_download', {
+            'file_name': 'NYC EH Data Portal - ' + indicatorName + " (filtered table)" + '.csv',
+            'file_extension': '.csv',
+            'link_text': 'Current table view'
+        });
+    
+        e.stopPropagation();
+    
+    } else {
+        // else, for chart view downloads: 
+        let csvData = 'data:application/csv;charset=utf-8,' + encodeURIComponent(CSVforDownload);
+        let hiddenElement = document.createElement('a');
 
-    let summaryTable = $('#tableID').DataTable();
-    summaryTable.button("thisView:name").trigger();
+        // set view to send to file name
+        var view;
+        if (window.location.hash == '#display=trend') {
+            view = 'trend'
+        } else if (window.location.hash == '#display=map') {
+            view = 'map'
+        } else {
+            view = 'links'
+        }
 
-    gtag('event', 'file_download', {
-        'file_name': 'NYC EH Data Portal - ' + indicatorName + " (filtered)" + '.csv',
-        'file_extension': '.csv',
-        'link_text': 'Current table view'
-    });
+        hiddenElement.href = csvData;
+        hiddenElement.target = '_blank';
+        hiddenElement.download = 'NYC EH Data Portal - '  + indicatorName + ` (${view} view)` + '.csv',
+        hiddenElement.click();
 
-    e.stopPropagation();
+        // trigger GA event
+        gtag('event', 'file_download', {
+            'file_name': hiddenElement.download,
+            'file_extension': '.csv',
+            'link_text': 'Download chart data'
+        });
+
+        e.stopPropagation();
+    }
 
 });
 
@@ -155,9 +252,9 @@ $("#allData").on("click", (e) => {
     // pivot the full dataset
 
     let allData = aq.from(tableData)
-        .groupby("Time", "GeoType", "GeoID", "GeoRank", "Geography")
+        .groupby("TimePeriod", "GeoType", "GeoID", "GeoRank", "Geography")
         .pivot("MeasurementDisplay", "DisplayCI")
-        .relocate(["Time", "GeoType", "GeoID", "GeoRank"], { before: 0 })
+        .relocate(["TimePeriod", "GeoType", "GeoID", "GeoRank"], { before: 0 })
 
     let downloadTableCSV = allData.toCSV();
 
@@ -167,7 +264,7 @@ $("#allData").on("click", (e) => {
 
     hiddenElement.href = csvData;
     hiddenElement.target = '_blank';
-    hiddenElement.download = 'NYC EH Data Portal - ' + indicatorName + " (full)" + '.csv';
+    hiddenElement.download = 'NYC EH Data Portal - ' + indicatorName + " (full table)" + '.csv';
     hiddenElement.click();
 
     gtag('event', 'file_download', {
@@ -184,7 +281,7 @@ $("#allData").on("click", (e) => {
 
 $("#rawData").on("click", (e) => {
 
-    let dataURL = data_repo + data_branch + '/indicators/data/' + indicatorId + '.json'
+    let dataURL = `${data_repo}${data_branch}/indicators/data/${indicatorId}.json`
 
     // console.log('Data are at: ' + dataURL)
 
@@ -211,4 +308,5 @@ $("#rawData").on("click", (e) => {
         e.stopPropagation();
 
     })
+
 });

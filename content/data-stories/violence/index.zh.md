@@ -4,13 +4,11 @@ date: 2021-02-08T08:07:31-04:00
 draft: false
 seo_title: "为什么暴力是一个公共卫生问题 "
 seo_description: "利用公共卫生预防暴力 "
-categories: ["housing","social","childhealth","healthoutcomes","neighborhoods"]
+categories: ["housing","inequality","childhealth","healthoutcomes","neighborhoods","injuryandviolence"]
 keywords: ["violence","assaults","injustice","poverty","social determinants","redlining","disinvestment","racism","neighborhoods"]
-image: ds-povasthma.jpg
 image: ds-violence.jpg
 vega: true
-layout: advanced
-photocredit: "Benjamin Kanter/Mayoral Photography Office"
+photocredit: "Benjamin Kanter/Mayoral Photography Office, City of New York"
 ---
 ## 利用公共卫生预防暴力 
 经历暴力会以多种方式影响人们。它不仅会导致身体伤害或死亡，而且接触它还会导致情感和心理创伤。暴力不仅会影响直接受害者，还会影响他们周围的群众。 
@@ -68,7 +66,7 @@ photocredit: "Benjamin Kanter/Mayoral Photography Office"
 
 {{< rawhtml >}}
 <div class="my-3">
-<iframe src="HOLC-shootings/map.html" scrolling="no" frameborder="0" style="position: relative; height: 600px; width: 100%;"></iframe>
+<iframe src="../../../maps/HOLC-shootings/map.html" scrolling="no" frameborder="0" style="position: relative; height: 600px; width: 100%;"></iframe>
 </div>
 {{< /rawhtml >}}
 
@@ -80,7 +78,11 @@ photocredit: "Benjamin Kanter/Mayoral Photography Office"
 
 由于这种投资缩减，我们看到贫困和暴力之间存在着明显的关系。随着社区贫困程度的增加，袭击事件也在增加。 
 
-{{< datawrapper title="Poverty and assaults in NYC" src="DlEvR/2/" height="533" >}}
+<iframe title='Poverty and assaults - ranks' aria-label="Interactive chart" id="datawrapper-chart-O0SUA"
+    src='//datawrapper.dwcdn.net/639n0/1/' scrolling="no" frameborder="0"
+    style="width: 0; min-width: 100% !important; border: none;" height='600'></iframe>
+<script type="text/javascript">!function () { "use strict"; window.addEventListener("message", function (a) { if (void 0 !== a.data["datawrapper-height"]) for (var e in a.data["datawrapper-height"]) { var t = document.getElementById("datawrapper-chart-" + e) || document.querySelector("iframe[src*='" + e + "']"); t && (t.style.height = a.data["datawrapper-height"][e] + "px") } }) }();
+</script>
 
 ### 投资缩减创造了威胁健康的环境。 
 {{< rawhtml >}}
@@ -257,30 +259,30 @@ data-target="#dataModal"><i class="fas fa-question-circle"></i>&nbsp;关于数�
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="dataModalTitle">关于数据 </h5>
+                <h5 class="modal-title" id="dataModalTitle" data-pagefind-ignore="all">关于数据 </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
                 <p><strong>贫困：:</strong> 年收入低于联邦贫困水平线100%的人口百分比，2013-2017年美国社区调查。 <a
-                        href=/data-explorer/economic-conditions/?id=103#display=summary">探索数据</a>.</p>
+                        href="{{< baseurl >}}data-explorer/economic-conditions/?id=103#display=summary">探索数据</a>.</p>
                 <p><strong>贫困儿童：</strong> 5岁以下生活贫困的儿童，2013-2017年美国社区调查。<a
-                        href=/data-explorer/economic-conditions/?id=2176#display=summary">探索数据</a>.</p>
+                        href="{{< baseurl >}}data-explorer/economic-conditions/?id=2176#display=summary">探索数据</a>.</p>
                 <p><strong>无家可归儿童：</strong> 1000人中0至17岁的无家可归儿童，2015年无家可归救助局（Department of Homeless Services）。 <a
                         href="https://www.data2go.nyc/map/?id=107*36047015900*homeless_children_rate_cd!undefined!ns*!other_pop_cd_506~ahdi_puma_1~sch_enrol_cd_112~age_pyramid_male_85_plus_cd_20~median_household_income_puma_397~median_personal_earnings_puma_400~dis_y_perc_puma_102~poverty_ceo_cd_417~unemployment_cd_408~pre_k_cd_107!*air_qual_cd~ahdi_puma*family_homeless_cd_245#10/40.8273/-73.9586">探索数据</a>.</p>
                 <p><strong>高中辍学：</strong> 25岁以上高中辍学的人口百分比预估数据，2013-2017年美国社区调查 <a
-                        href=/data-explorer/social-conditions/?id=2334#display=summary">探索数据</a>.</p>
+                        href="{{< baseurl >}}data-explorer/social-conditions/?id=2334#display=summary">探索数据</a>.</p>
                 <p><strong>失联青年：</strong> 16至24岁高中辍学且失业的人口百分比，2015-2017年美国社区调查。 <a
                         href="https://www.data2go.nyc/map/?id=107*36047015900*dis_y_perc_puma!undefined!ns*!other_pop_cd_506~ahdi_puma_1~sch_enrol_cd_112~age_pyramid_male_85_plus_cd_20~median_household_income_puma_397~median_personal_earnings_puma_400~dis_y_perc_puma_102~poverty_ceo_cd_417~unemployment_cd_408~pre_k_cd_107!*air_qual_cd~ahdi_puma*family_homeless_cd_245#10/40.8273/-73.9586">探索数据</a>.</p>
                 <p><strong>失业：</strong> 16岁以上失业的平民劳动力人口百分比预估数据，2013-2017年美国社区调查。 <a
-                        href=/data-explorer/economic-conditions/?id=2337#display=summary">探索数据</a>.</p>
+                        href="{{< baseurl >}}data-explorer/economic-conditions/?id=2337#display=summary">探索数据</a>.</p>
                 <p><strong>驱逐：</strong> 2017年，法院下令的驱逐案件。<a
-                        href=/data-explorer/economic-conditions/?id=2365#display=summary">探索数据</a>.</p>
+                        href="{{< baseurl >}}data-explorer/economic-conditions/?id=2365#display=summary">探索数据</a>.</p>
                 <p><strong>止赎法拍：</strong> 2018年，每1000个1至4口家庭的房产止赎比率。 <a
                         href="https://www.data2go.nyc/map/?id=107*36047015900*foreclosure_cd!undefined!ns*!other_pop_cd_506~ahdi_puma_1~sch_enrol_cd_112~age_pyramid_male_85_plus_cd_20~median_household_income_puma_397~median_personal_earnings_puma_400~dis_y_perc_puma_102~poverty_ceo_cd_417~unemployment_cd_408~pre_k_cd_107!*air_qual_cd~ahdi_puma*family_homeless_cd_245#10/40.8273/-73.9586">探索数据</a>. </p>
                 <p><strong>袭击住院：</strong> 2016年，每100,000人中非致命性袭击住院案件的年龄标化率。 <a
-                        href=/data-explorer/violence/?id=2375#display=summary">探索数据</a>. </p>
+                        href="{{< baseurl >}}data-explorer/violence/?id=2375#display=summary">探索数据</a>. </p>
                 <p><strong>枪击案：</strong> 2008-2018年的枪击案数量。<a
                         href="https://data.cityofnewyork.us/Public-Safety/NYPD-Shooting-Incident-Data-Historic-/833y-fsy8">探索数据</a>.</p>
                 <p><strong>凶杀案：</strong> 2013-2016年，每100,000人中凶杀案的比率。 <a

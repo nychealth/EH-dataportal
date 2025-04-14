@@ -6,16 +6,19 @@
 // top scope variables
 // ----------------------------------------------------------------------- //
 
-let selectedTableYears = [];
+let globalID;
+
+let selectedTableTimes = [];
 let selectedTableGeography = [];
 let aboutMeasures;
 let dataSources;
 
-let measureAbout = `N/A`;
-let measureSources = `N/A`;
+let measureAbout = ``;
+let measureSources = ``;
 let geoTable;
+let timeTable;
 let unreliabilityNotes;
-let aqData;
+let aqIndicatorData;
 let joinedAqData;
 let aqMeasureIdTimes;
 
@@ -38,22 +41,23 @@ let secondaryIndicatorName;
 
 let indicatorComparisonId;
 let comparisons;
-let comparisonsMetadata;
-let aqComparisonsMetadata;
-let aqComparisonsIndicatorsMetadata;
-let aqComparisonsIndicatorData;
+let comparisonMetadata;
+let aqComparisonMetadata;
+let aqComparisonIndicatorsMetadata;
+let aqComparisonIndicatorData;
 
-let defaultTrendMetadata = [];
+let defaultTrendMetadata;
 let aqDefaultTrendMetadata;
 let defaultTrendAbout;
-let defaultTrendSources;
-let defaultMapMetadata = [];
+let defaultTrendSources = [];
+let defaultMapMetadata;
 let defaultMapAbout;
 let defaultMapSources;
-let defaultLinksMetadata = [];
-let defaultLinkMeasureTimes = [];
+let defaultPrimaryLinksMeasureMetadata;
+let defaultSecondaryMeasureMetadata;
+let defaultDisparitiesMetadata;
 let defaultLinksAbout;
-let defaultLinksSources;
+let defaultLinksSources = [];
 
 let selectedMapMeasure;
 let selectedMapTime;
@@ -61,7 +65,8 @@ let selectedMapGeo;
 let selectedTrendMeasure;
 let selectedLinksMeasure;
 let selectedComparison;
-let showingNormalTrend;
+let showingBoroughTrend;
+let showingComparisonTrend;
 
 let selectedMapAbout;
 let selectedMapSources;
@@ -72,27 +77,30 @@ let selectedTrendSources;
 let aqSelectedTrendMetadata;
 
 let selectedComparisonAbout = "";
-let selectedComparisonSources = "";
+let selectedComparisonSources = [];
 let selectedComparisonMetadata;
 
 let selectedLinksAbout;
-let selectedLinksSources;
-let selectedLinksMetadata;
-let selectedlinksSecondaryMeasureTime;
-
-let primaryMeasureMetadata;
-let secondaryMeasureMetadata;
+let selectedLinksSources = [];
+let selectedPrimaryMeasureMetadata;
+let selectedSecondaryMeasureMetadata;
 
 let filteredMapData;
 let filteredTrendData;
 let aqFilteredTrendData;
-let aqFilteredComparisonsData;
-let aqFilteredComparisonsMetadata;
-let aqCombinedComparisonsMetadata;
+let aqFilteredComparisonData;
+let aqFilteredComparisonMetadata;
+let aqCombinedComparisonMetadata;
+
+let aqMeasureDisplay;
+let aqTableTimesGeos;
+let aqMapTimesGeos;
+let aqTrendTimesGeos;
 
 let mapMeasures = [];
 let trendMeasures = [];
 let linksMeasures = [];
+let disparitiesMeasures = [];
 
 let tabTable;
 let tabMap;
@@ -102,21 +110,28 @@ let tabLinks;
 let showTable;
 let showMap;
 let showTrend;
-let showNormalTrend;
-let showTrendComparisons;
+let showBoroughTrend;
+let showComparisonTrend;
 let showLinks;
+
+var CSVforDownload; 
+var downloadedIndicator;
+var downloadedIndicatorMeasurement;
+
+// variables for print specs
+var printSpec = {};
+var vizYear;
+var vizSource;
+var vizSourceSecond;
+var chartType;
 
 // store hash, so display knows where it just was
 let currentHash;
 let state;
 
+const btnToggleDisparities = document.querySelector('.btn-toggle-disparities');
+
 // modifying the measure dropdown innerHTML removes the event listeners from the dropdown list. So, i added it to the HTML, and we can remove it when we call renderTrendChart, if necessary
-
-// get disparities button dom element, so it can be removed and appended as needed
-let btnToggleDisparities = document.querySelector('.btn-toggle-disparities');
-
-// get comparisons button dom element, so it can be removed and appended as needed
-let btnShowComparisons = document.querySelector('.btn-comparisons');
 
 const url = new URL(window.location);
 
@@ -140,6 +155,8 @@ const assignGeoRank = (GeoType) => {
             return 2;
         case 'NYCKIDS2019':
             return 2;
+        case 'NYCKIDS2021':
+            return 2;
         case 'UHF34':
             return 3;
         case 'UHF42':
@@ -154,6 +171,10 @@ const assignGeoRank = (GeoType) => {
             return 8;
         case 'NTA2020':
             return 9;
+        case 'NYHarbor':
+            return 10;
+        case 'RMZ':
+            return 11;
     }
 }
 
@@ -168,7 +189,9 @@ const geoTypes = [
     "Subboro",
     "CD",
     "CDTA",
-    "NTA"
+    "NTA",
+    "NYHarbor",
+    "RMZ"
 ]
 
 // ----------------------------------------------------------------------- //
@@ -187,6 +210,9 @@ const prettifyGeoType = (GeoType) => {
         return 'NYCKIDS';
         
         case 'NYCKIDS2019':
+        return 'NYCKIDS';
+        
+        case 'NYCKIDS2021':
         return 'NYCKIDS';
         
         case 'CDTA2020':
@@ -212,8 +238,6 @@ const prettifyGeoType = (GeoType) => {
 
 const renderTitleDescription = (title, desc) => {
 
-    // console.log("** renderTitleDescription");
-    
     const indicatorTitle = document.getElementById('indicatorTitle');
     const indicatorDescription = document.querySelector('.indicator-description');
     indicatorTitle.innerHTML = title;
@@ -224,8 +248,22 @@ const renderTitleDescription = (title, desc) => {
 
 const renderAboutSources = (about, sources) => {
 
+    console.log("**** renderAboutSources");
+    dataSources.innerHTML = ''
+
+    // de-dupe data sources
+    let type = typeof sources
+
+    if (type === 'object') {
+        var singleSource;
+        singleSource = sources.every( (val, i, arr) => val === arr[0] )  
+        singleSource === true ? dataSources.innerHTML = sources[0] : dataSources.innerHTML = sources
+    } else {
+        dataSources.innerHTML = sources
+    }
+
     aboutMeasures.innerHTML = about;
-    dataSources.innerHTML = sources;
+    
 }
 
 // ----------------------------------------------------------------------- //

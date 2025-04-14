@@ -1,0 +1,102 @@
+<!--
+    This partial creates an array of topics with nested indicators. You can use this to build links from individual indicators to their parent topic pages. 
+ -->
+
+<!-- Generate JSON object with topic pages and keys, and internal_ids in arrays -->
+
+{{- $topic_indicators_dict := newScratch -}}
+{{- $topic_indicators_map := newScratch -}}
+
+{{- /*  create a slice for an array of all internal_ids  */}}
+
+{{- $all_indicator_ids := slice -}}
+
+{{- /*  iterate over all pages on the site  */}}
+
+{{- range .Site.Pages -}}
+    
+    {{- /*  create a new "slice" (i.e., an array)  */}}
+    
+    {{- $indicators := slice -}}
+    {{- $topic_name := slice -}}
+    
+    {{- /*  only process if it's a data explorer page */}}
+    
+    {{- if ( and ( eq .Kind "page" ) ( strings.Contains .RelPermalink "/data-explorer" ) ( not ( or ( strings.Contains .RelPermalink "data-index" ) ( strings.Contains .RelPermalink "indicator-catalog" ) ) ) ) -}}
+        
+        {{- /*  turn params into strings  */}}
+        
+        {{- $topic := .RelPermalink | path.Base | string -}}
+
+        {{- /*  topic names  */}}
+        
+        {{- $topic_title := .Title -}}
+
+        {{- /*  get internal_ids  */}}
+        
+        {{- range .Params.indicators -}}
+            
+            {{- /*  create an array of internal_ids  */}}
+            
+            {{- $indicators = $indicators | append .IndicatorID -}}
+
+        {{- end -}}
+        
+        {{- /*  create a map with topic as key and array of internal_ids as value */}}
+        
+        {{- $topic_indicators_dict := dict "topic_name" $topic_title "IndicatorID" $indicators -}}
+        {{- $topic_indicators_map.SetInMap "topic_indicators" $topic ($topic_indicators_dict) -}}
+
+    {{- end -}}
+
+    {{- $all_indicator_ids = $all_indicator_ids | append $indicators -}}
+    
+{{- end -}}
+
+{{-  $all_unique_indicator_ids := $all_indicator_ids | uniq | sort  -}}
+
+{{- /*  {{-  warnf "all_unique_indicator_ids >>>> " $all_unique_indicator_ids  -}}  */}}
+
+{{- $all_unique_indicator_ids_json := $all_unique_indicator_ids | jsonify | resources.FromString "/IndicatorMetadata/all_unique_indicator_ids.json" -}}
+
+{{- /*  publish resource  */}}
+
+{{-  $all_unique_indicator_ids_json.Publish  -}}
+
+<p class="sr-only">This produces a list of topics and IndicatorIDs, stored in the variable <code>$topic_indicators</code>, 
+    and printed to the console as a JavaScript variable, and then as an Arquero table.</p>
+
+    {{- /*  {{ warnf ( print "~~~~~ topic_indicators_map"  $topic_indicators_map ) }}  */}}
+    
+    <script>
+
+        var topic_indicators = {{ $topic_indicators_map.Get "topic_indicators" }};
+
+        var arqTable = aq.from(topic_indicators)
+        .rename({key: "topic"})
+        .derive({
+            IndicatorID: d => d.value.IndicatorID,
+            topic_name: d => d.value.topic_name
+        })
+        .select(aq.not("value"))
+        .unroll("IndicatorID");
+        
+        var topicIndicatorsTable = arqTable.objects();
+        
+        
+    </script>
+    
+    <p class="sr-only">Also outputting a JSON version of the list to <code><a href={{ relURL "IndicatorMetadata/topic_indicators.json" }}>IndicatorMetadata/topic_indicators.json</code></a> 
+        (which on build will be put into <code>/docs/IndicatorMetadata/</code>)</strong>
+        
+        {{- $si_json_output_path := "/IndicatorMetadata/topic_indicators.json" -}}
+        {{- $si_resource := $topic_indicators_map.Get "topic_indicators" | jsonify (dict "indent" "  ") | resources.FromString $si_json_output_path -}}
+
+        {{- /*  publish resource  */}}
+
+        {{- $si_resource.Publish -}}
+
+        <script>
+            // console.log("$si_json_output_path", {{$si_json_output_path }})
+            // console.log("$si_resource.RelPermalink", {{$si_resource.RelPermalink }})
+        </script>
