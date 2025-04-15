@@ -1259,9 +1259,9 @@
     {{- $map         := resources.Get "js/data-explorer/map.js" -}}
     {{- $links       := resources.Get "js/data-explorer/links.js" -}}
     {{- $disparities := resources.Get "js/data-explorer/disparities.js" -}}
-    {{- $trend := resources.Get "js/data-explorer/trend.js" -}}
+    {{- $trend       := resources.Get "js/data-explorer/trend.js" -}}
     {{- $app         := resources.Get "js/data-explorer/app.js" -}}
-    {{- $print         := resources.Get "js/data-explorer/print.js" -}}
+    {{- $print       := resources.Get "js/data-explorer/print.js" -}}
 
 
     {{- $global_secure      := $global | resources.Fingerprint "sha512" -}}
@@ -1271,9 +1271,9 @@
     {{- $map_secure         := $map | resources.Fingerprint "sha512" -}}
     {{- $links_secure       := $links | resources.Fingerprint "sha512" -}}
     {{- $disparities_secure := $disparities | resources.Fingerprint "sha512" -}}
-    {{- $trend_secure := $trend | resources.Fingerprint "sha512" -}}
+    {{- $trend_secure       := $trend | resources.Fingerprint "sha512" -}}
     {{- $app_secure         := $app | resources.Fingerprint "sha512" -}}
-    {{- $print_secure         := $print | resources.Fingerprint "sha512" -}}
+    {{- $print_secure       := $print | resources.Fingerprint "sha512" -}}
 
 
     <script type="text/javascript" src="{{ $global_secure.RelPermalink }}" integrity="{{ $global_secure.Data.Integrity }}"></script>
