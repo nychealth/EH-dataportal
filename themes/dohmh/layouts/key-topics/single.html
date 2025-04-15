@@ -78,9 +78,9 @@
                                     <h4 class="fs-md"><a class="link-track" href="{{ .RelPermalink }}" class="text-primary">{{ .Title }}</a></h4>
                                     <p class="fs-sm">
                                     {{ if .Params.blurb }}
-                                        {{ .Params.blurb | truncate 200 }}
+                                        {{ .Params.blurb | plainify | htmlUnescape | truncate 200 }}
                                     {{ else }}
-                                        {{ .Content | plainify | truncate 175 | htmlUnescape }}
+                                        {{ .Content | plainify | htmlUnescape | truncate 175 }}
                                     {{ end }}      
                                     </p>
                                     <div class="d-flex justify-content-end">
