@@ -87,10 +87,10 @@
 
 <script>
 
-    let baseURL = "/IndicatorPublic/"
+    let baseURL = "/IndicatorPublic/";
     let data_repo = "https:\/\/raw.githubusercontent.com\/nychealth\/EHDP-data\/";
     let data_branch = "production";
-    let hugoEnv = "prod_prod"
+    let hugoEnv = "prod_prod";
 
 </script>
 
@@ -301,7 +301,7 @@
                                     
                                     <div class="nav-item bg-none text-white border border-white ml-1">
 
-                                        <a href="#" class="nav-link text-white " data-toggle="modal" data-target="#subscribeModal">
+                                        <a href="#" class="nav-link text-white" data-subscribe-click="header" data-toggle="modal" data-target="#subscribeModal">
                                             Subscribe
                                         </a>
                                     </div>
@@ -363,7 +363,7 @@
       <h1>About the EH Data Portal</h1><p>The NYC Environment &amp; Health Data Portal shows how environments affect health, by publishing data and information that explain the connection. Public health professionals, community-based organizations, community boards, city agencies, elected officials, health workers, advocates, and everyday New Yorkers use this website to get important information that they need to do their jobs and make important, informed decisions about health.</p>
 <p>The Environment &amp; Health Data Portal is a project by the NYC Department of Health and Mental Hygiene&rsquo;s Bureau of Environmental Surveillance and Policy. Our bureau works to analyze data on environmental health and translate it to Health Department and Citywide policies that protect New Yorkers, improve our environment, and maintain our health. We are grateful for the support and collaboration of our principal design partners, <a href="https://mod-lab.com/">Minds On Design Lab</a>, to develop and enhance the Environment and Health Data Portal.</p>
 <p><i class="fas fa-info-circle mr-1"></i><a href="/IndicatorPublic/about/jobs/">Check out open positions in our bureau</a>.</p>
-<p><i class="fas fa-envelope mr-1"></i>Email us with thoughts, questions, or concerns at <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#101;&#104;&#100;&#112;&#64;&#104;&#101;&#97;&#108;&#116;&#104;&#46;&#110;&#121;&#99;&#46;&#103;&#111;&#118;">ehdp@health.nyc.gov</a></p>
+<p><i class="fas fa-envelope mr-1"></i>Email us with thoughts, questions, or concerns at <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#101;&#104;&#100;&#112;&#64;&#104;&#101;&#97;&#108;&#116;&#104;&#46;&#110;&#121;&#99;&#46;&#103;&#111;&#118;">ehdp@health.nyc.gov</a>, or <a href="#" data-subscribe-click="about" data-toggle="modal" data-target="#subscribeModal">sign up for our email list</a>. We won&rsquo;t share your email address.</p></p>
 <p><i class="fas fa-question-circle mr-1"></i><a href="https://www.github.com/nychealth/EH-dataportal">Questions about the data? Visit our Github repo for info or to file an issue</a>.</p>
 
       <p class="home-label mt-4">Recent posts:</p>
@@ -760,9 +760,33 @@
 
 <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
+<script>
+
+    document.querySelectorAll("[data-target='#subscribeModal']").forEach(el => {
+
+        el.addEventListener("click", e => {
+        
+
+            console.log("click", e);
+            console.log("e > subscribeClick", e.target.dataset.subscribeClick);
+            console.log("element", el);
+            console.log("el > subscribeClick", el.dataset.subscribeClick);
+            console.log("location", window.location.pathname);
+
+            gtag('event', 'click_subscribe', {
+                page: window.location.pathname,
+                place: e.target.dataset.subscribeClick
+            });
+
+        });
+    });
+
+</script>
+
 <script type="text/javascript" 
     src="/IndicatorPublic/js/main.552c9e0eb5b9f567a863809d88dfdb9dfc2e5062f1aa7ae313abbdf21a346fd773ae265f5ff618d8322e2b96b95be1b319c681eb0ea7b818a3c6485a84b6ad5a.js" 
-    integrity="sha512-VSyeDrW59WeoY4CdiN/bnfwuUGLxqnrjE6u98ho0b9dzriZfX/YY2DIuK5a5W&#43;GzGcaB6w6nuBijxkhahLatWg=="></script>
+    integrity="sha512-VSyeDrW59WeoY4CdiN/bnfwuUGLxqnrjE6u98ho0b9dzriZfX/YY2DIuK5a5W&#43;GzGcaB6w6nuBijxkhahLatWg==">
+</script>
 
   
   

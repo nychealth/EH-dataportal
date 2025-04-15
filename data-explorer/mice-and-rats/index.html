@@ -87,10 +87,10 @@
 
 <meta data-pagefind-filter="section[content]" content="Data Explorer"><script>
 
-    let baseURL = "/IndicatorPublic/"
+    let baseURL = "/IndicatorPublic/";
     let data_repo = "https:\/\/raw.githubusercontent.com\/nychealth\/EHDP-data\/";
     let data_branch = "production";
-    let hugoEnv = "prod_prod"
+    let hugoEnv = "prod_prod";
 
 </script>
 
@@ -301,7 +301,7 @@
                                     
                                     <div class="nav-item bg-none text-white border border-white ml-1">
 
-                                        <a href="#" class="nav-link text-white " data-toggle="modal" data-target="#subscribeModal">
+                                        <a href="#" class="nav-link text-white" data-subscribe-click="header" data-toggle="modal" data-target="#subscribeModal">
                                             Subscribe
                                         </a>
                                     </div>
@@ -2575,9 +2575,33 @@
 
 <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
+<script>
+
+    document.querySelectorAll("[data-target='#subscribeModal']").forEach(el => {
+
+        el.addEventListener("click", e => {
+        
+
+            console.log("click", e);
+            console.log("e > subscribeClick", e.target.dataset.subscribeClick);
+            console.log("element", el);
+            console.log("el > subscribeClick", el.dataset.subscribeClick);
+            console.log("location", window.location.pathname);
+
+            gtag('event', 'click_subscribe', {
+                page: window.location.pathname,
+                place: e.target.dataset.subscribeClick
+            });
+
+        });
+    });
+
+</script>
+
 <script type="text/javascript" 
     src="/IndicatorPublic/js/main.552c9e0eb5b9f567a863809d88dfdb9dfc2e5062f1aa7ae313abbdf21a346fd773ae265f5ff618d8322e2b96b95be1b319c681eb0ea7b818a3c6485a84b6ad5a.js" 
-    integrity="sha512-VSyeDrW59WeoY4CdiN/bnfwuUGLxqnrjE6u98ho0b9dzriZfX/YY2DIuK5a5W&#43;GzGcaB6w6nuBijxkhahLatWg=="></script>
+    integrity="sha512-VSyeDrW59WeoY4CdiN/bnfwuUGLxqnrjE6u98ho0b9dzriZfX/YY2DIuK5a5W&#43;GzGcaB6w6nuBijxkhahLatWg==">
+</script>
 
   <script type="text/javascript" src="/IndicatorPublic/js/accessible-autocomplete.min.a28dbcfe4538f42cec64a42e75429f873bd86641fea0b326b3a4800b59917b99b877d3715b07405ff36917ed9e3cc0873f7b58a65905ff508cd42e8c427a5f9a.js" integrity="sha512-oo28/kU49CzsZKQudUKfhzvYZkH&#43;oLMms6SAC1mRe5m4d9NxWwdAX/NpF&#43;2ePMCHP3tYplkF/1CM1C6MQnpfmg=="></script>
 
