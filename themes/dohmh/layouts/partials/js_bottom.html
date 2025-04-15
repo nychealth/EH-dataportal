@@ -24,6 +24,32 @@
 <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
 
+{{- /*  subscribe button event listener  */}}
+
+<script>
+
+    document.querySelectorAll("[data-target='#subscribeModal']").forEach(el => {
+
+        el.addEventListener("click", e => {
+        // $("[data-target='#subscribeModal']").on('click', e => {
+
+            console.log("click", e);
+            console.log("e > subscribeClick", e.target.dataset.subscribeClick);
+            console.log("element", el);
+            console.log("el > subscribeClick", el.dataset.subscribeClick);
+            console.log("location", window.location.pathname);
+
+            gtag('event', 'click_subscribe', {
+                page: window.location.pathname,
+                place: e.target.dataset.subscribeClick
+            });
+
+        });
+    });
+
+</script>
+
+
 {{- /*  NYC template JS (RTL, search and language toggle, back to top)  */}}
 
 {{- $js := resources.Get "js/main.js" }}
@@ -31,4 +57,5 @@
 
 <script type="text/javascript" 
     src="{{ $secureJS.RelPermalink }}" 
-    integrity="{{ $secureJS.Data.Integrity }}"></script>
+    integrity="{{ $secureJS.Data.Integrity }}">
+</script>
