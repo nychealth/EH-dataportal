@@ -37,11 +37,11 @@
 <title>NYC Environment and Health Data Portal.</title>
 
 
-<meta name="build_datetime" content='2025年4月15日星期二, EDT 下午2:56:09'>
+<meta name="build_datetime" content='2025年4月15日星期二, EDT 下午2:59:35'>
 <meta name="build_environment" content='prod_prod'>
 <meta name="git_branch" content='production'>
-<meta name="git_last_hash" content='bf709349cc'>
-<meta name="git_last_msg" content='Merge pull request #1233 from nychealth:hotfix-subscribe-button-GA-event'>
+<meta name="git_last_hash" content='8003ca7bf9'>
+<meta name="git_last_msg" content='Merge pull request #1232 from nychealth/hotfix-DE-mobile'>
 
 
         <link rel="alternate" hreflang="en" href="/IndicatorPublic/" title="English">
@@ -177,6 +177,8 @@
         </div>
         
 
+
+
     </div>
     
     <div class="site-header bg-primary" style='background-image: url(/IndicatorPublic/images/header_background.jpg)'>
@@ -205,37 +207,17 @@
 
                         <div class="d-lg-flex align-items-center">
 
-                            
-
-                            <ul class="extensible-list horizontal justify-content-between my-2 d-lg-none">
-                                <li>
-                                    <button class="navbar-toggler no-btn-style" type="button" title="Main Menu" data-toggle="collapse"
-                                        data-target="#nav-primary" aria-controls="nav-primary" aria-expanded="false"
-                                        aria-label="Toggle navigation">
-                                        <span class="sr-only">Main Menu</span>
-                                        <span class="fas fa-bars fa-lg text-white" ></span>
-                                    </button>
-                                </li>
-
-                                <li>
-                                    <a class="nav-link" href="#" type="button" data-toggle="modal" data-target="#searchModal" title="Search" data-toggle="collapse">
-                                        <span class="sr-only">Search</span>
-                                        <i class="fa fa-magnifying-glass text-white"></i>
-                                    </a>
-                                </li>
-                            </ul>
-
-                            <div class="collapse d-lg-block mx-n2 mx-lg-2" id="nav-primary">
+                            <div class="d-none d-lg-block mx-n2 mx-lg-2" id="nav-primary-top">
 
                                 <nav class="nav" role="navigation">
 
                                     <div class="nav-item bg-white text-primary border dropdown">
-                                        <a class="nav-link dropdown-toggle" href="#" id="nav-item-topic"
+                                        <a class="nav-link dropdown-toggle" href="#" id="nav-item-topic-top"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             Topics
                                         </a>
 
-                                        <div class="dropdown-menu wider-menu" aria-labelledby="nav-item-topic">
+                                        <div class="dropdown-menu wider-menu" aria-labelledby="nav-item-topic-top">
                                             <ul class="extensible-list p-0">
                                                 
                                                     <a href=/IndicatorPublic/key-topics>All topics</a>
@@ -246,12 +228,12 @@
                                     
 
                                     <div class="nav-item bg-white text-primary border dropdown">
-                                        <a class="nav-link dropdown-toggle" href="#" id="nav-item-type"
+                                        <a class="nav-link dropdown-toggle" href="#" id="nav-item-type-top"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             Explore
                                         </a>
 
-                                        <div class="dropdown-menu wider-menu" aria-labelledby="nav-item-type">
+                                        <div class="dropdown-menu wider-menu" aria-labelledby="nav-item-type-top">
                                             <ul class="extensible-list p-0">
 
                                                 <a href="/IndicatorPublic/data-stories/"><li><span class="mr-1"><span class='text-primary data-stories'><i class='fas fa-passport' aria-hidden='true'></i></span></span>Data Stories</li></a>
@@ -298,6 +280,7 @@
 
                             </div>
 
+
                         </div>
                         
 
@@ -320,7 +303,102 @@
         </div>
 
 
-        </div>
+    </div>
+
+    <div class="border-bottom px-2">
+                                    
+
+                                    <ul class="extensible-list horizontal justify-content-between my-1 d-lg-none">
+                                        <li>
+                                            <button class="navbar-toggler no-btn-style" type="button" title="Main Menu" data-toggle="collapse"
+                                                data-target="#nav-primary" aria-controls="nav-primary" aria-expanded="false"
+                                                aria-label="Toggle navigation">
+                                                <span class="sr-only">Main Menu</span>
+                                                <span class="fas fa-bars fa-lg text-primary" ></span>
+                                            </button>
+                                        </li>
+        
+                                        <li>
+                                            <a class="nav-link" href="#" type="button" data-toggle="modal" data-target="#searchModal" title="Search" data-toggle="collapse">
+                                                <span class="sr-only">Search</span>
+                                                <i class="fa fa-magnifying-glass text-primary"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+        
+                                    <div class="collapse d-lg-none mx-n2 mx-lg-2" id="nav-primary">
+        
+                                        <nav class="nav" role="navigation">
+        
+                                            <div class="nav-item bg-white text-primary border dropdown">
+                                                <a class="nav-link dropdown-toggle" href="#" id="nav-item-topic"
+                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    Topics
+                                                </a>
+        
+                                                <div class="dropdown-menu wider-menu" aria-labelledby="nav-item-topic">
+                                                    <ul class="extensible-list p-0">
+                                                        
+                                                            <a href=/IndicatorPublic/key-topics>All topics</a>
+        
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            
+        
+                                            <div class="nav-item bg-white text-primary border dropdown">
+                                                <a class="nav-link dropdown-toggle" href="#" id="nav-item-type"
+                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    Explore
+                                                </a>
+        
+                                                <div class="dropdown-menu wider-menu" aria-labelledby="nav-item-type">
+                                                    <ul class="extensible-list p-0">
+        
+                                                        <a href="/IndicatorPublic/data-stories/"><li><span class="mr-1"><span class='text-primary data-stories'><i class='fas fa-passport' aria-hidden='true'></i></span></span>Data Stories</li></a>
+        
+                                                                <hr class="my-1">
+        
+                                                            <a href="/IndicatorPublic/data-features/"><li><span class="mr-1"><span class='df-accent'><i class='fas fa-chart-bar' aria-hidden='true'></i></span></span>Data Features</li></a>
+        
+                                                                <hr class="my-1">
+        
+                                                            <a href="/IndicatorPublic/neighborhood-reports/"><li><span class="mr-1"><span class='text-primary n-reports'><i class='fas fa-map-marked-alt' aria-hidden='true'></i></span></span>Neighborhood Reports</li></a>
+        
+                                                                <hr class="my-1">
+        
+                                                            <a href="/IndicatorPublic/data-explorer/"><li><span class="mr-1"><span class='text-primary data-explorer'><i class='fas fa-chart-line' aria-hidden='true'></i></span></span>Data Explorer</li></a></ul>
+                                                </div>
+                                            </div>
+                                            
+        
+                                            <div class="nav-item bg-white text-primary border">
+                                                </div>
+        
+        
+                                            
+                                            
+        
+                                            <div class="nav-item bg-white text-primary border d-none d-lg-block">
+                                                <a class="nav-link" href="#" type="button" data-toggle="modal" data-target="#searchModal" title="Search" data-toggle="collapse">
+                                                            <span class="sr-only">Search</span>
+                                                            <i class="fa fa-magnifying-glass text-body"></i>
+                                                        </a>
+                                            </div>
+                                            
+        
+                                            
+                                            <div class="nav-item bg-none text-primary border">
+        
+                                                <a href="#" class="nav-link text-primary " data-toggle="modal" data-target="#subscribeModal">
+                                                    Subscribe
+                                                </a>
+                                            </div>
+        
+                                        </nav>
+        
+                                    </div>
+    </div>
 
         <div class="modal" tabindex="-1" role="dialog" id="subscribeModal">
             <div class='modal-dialog modal-lg modal-dialog-centered' role='document'>
