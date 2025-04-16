@@ -323,9 +323,9 @@ config = {
                 "buttonSection": "base",
                 "measureInfo": {
                     "indicatorID": 2023,
-                    "measureID": 365,
-                    "geoType": "UHF34",
-                    "time": "Summer 2022",
+                    "measureID": 1426,
+                    "geoType": "CD",
+                    "time": "2023",
                 },
                 "exclusive": true,
                 "args": {
