@@ -105,6 +105,34 @@
                 hreflang="en"
                 href="/IndicatorPublic/"
                 /></url><url>
+    <loc>/IndicatorPublic/keywords/accessibility/</loc>
+    <lastmod>2025-01-07T08:49:22-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/keywords/data-visualization/</loc>
+    <lastmod>2025-01-07T08:49:22-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/keywords/how-we-work/</loc>
+    <lastmod>2025-01-07T08:49:22-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/categories/internal/</loc>
+    <lastmod>2025-01-07T08:49:22-04:00</lastmod><xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="/IndicatorPublic/es/categories/internal/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/IndicatorPublic/zh/categories/internal/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/IndicatorPublic/categories/internal/"
+                /></url><url>
+    <loc>/IndicatorPublic/about/accessibility-updates/</loc>
+    <lastmod>2025-01-07T08:49:22-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/keywords/open-source/</loc>
+    <lastmod>2025-01-07T08:49:22-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/keywords/redesign/</loc>
+    <lastmod>2025-01-07T08:49:22-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/keywords/screen-readers/</loc>
+    <lastmod>2025-01-07T08:49:22-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/categories/airquality/</loc>
     <lastmod>2024-11-08T13:11:44-04:00</lastmod><xhtml:link
                 rel="alternate"
@@ -201,33 +229,11 @@
                 /></url><url>
     <loc>/IndicatorPublic/keywords/api/</loc>
     <lastmod>2024-10-07T08:49:22-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/keywords/data-visualization/</loc>
-    <lastmod>2024-10-07T08:49:22-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/github/</loc>
     <lastmod>2024-10-07T08:49:22-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/keywords/how-we-work/</loc>
-    <lastmod>2024-10-07T08:49:22-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/categories/internal/</loc>
-    <lastmod>2024-10-07T08:49:22-04:00</lastmod><xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="/IndicatorPublic/es/categories/internal/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="/IndicatorPublic/zh/categories/internal/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/IndicatorPublic/categories/internal/"
-                /></url><url>
     <loc>/IndicatorPublic/about/new-data-explorer-features/</loc>
     <lastmod>2024-10-07T08:49:22-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/open-data/</loc>
-    <lastmod>2024-10-07T08:49:22-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/keywords/open-source/</loc>
-    <lastmod>2024-10-07T08:49:22-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/keywords/redesign/</loc>
     <lastmod>2024-10-07T08:49:22-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/user-research/</loc>
     <lastmod>2024-10-07T08:49:22-04:00</lastmod></url><url>

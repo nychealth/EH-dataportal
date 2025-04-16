@@ -458,10 +458,8 @@
         
         <div class="col-xl-8 overflow-hidden fs-rg" id="primary-content">
 
-        <nav class="navbar navbar-default my-2">
-                    <ul class="nav navbar-nav fs-sm">
-                        <span class="mr-2">Read this data story in:</span><li class="mb-1"><a href="/IndicatorPublic/es/data-stories/redlining/">Español</a>&nbsp;|&nbsp;</li><li class="mb-1"><a href="/IndicatorPublic/zh/data-stories/redlining/">中文</a>&nbsp;|&nbsp;</li></ul>
-            </nav><div class="narrow">
+        <div class="narrow">
+
             <div class="row mt-2 mb-3">
                 <div class="col-12">
                     <nav aria-label="breadcrumb">
@@ -477,7 +475,14 @@
                 </div>
             </div>
 
-            <h1 class="h2 data-stories mb-3"><i class="fas fa-passport" aria-hidden="true" style="margin-right: 10px"></i>A brief history of redlining</h1>
+                <div class="row">
+                    <div class="col-12">
+                    <nav class="navbar navbar-default my-2">
+                            <ul class="nav navbar-nav fs-sm">
+                                <span class="mr-2">Read this data story in:</span><li class="mb-1"><a href="/IndicatorPublic/es/data-stories/redlining/">Español</a>&nbsp;|&nbsp;</li><li class="mb-1"><a href="/IndicatorPublic/zh/data-stories/redlining/">中文</a>&nbsp;|&nbsp;</li></ul>
+                    </nav>
+                </div>
+                </div><h1 class="h2 data-stories mb-3"><i class="fas fa-passport" aria-hidden="true" style="margin-right: 10px"></i>A brief history of redlining</h1>
             <div class="container-fluid px-0">
 
                 
@@ -492,11 +497,12 @@
 <p>The chart below shows the relationship between each neighborhood&rsquo;s poverty rate and percent population of color, with the rate of childhood asthma ED visits represented by the size of each bubble.</p>
 </div>
 <div class="wide my-4">
-    <iframe title='Race, Poverty, and Health in NYC' aria-label="Interactive chart" id="datawrapper-chart-O0SUA"
-        src='//datawrapper.dwcdn.net/KOI8H/4/' scrolling="no" frameborder="0"
-        style="width: 0; min-width: 100% !important; border: none;" height='400px'></iframe>
-    <script type="text/javascript">!function () { "use strict"; window.addEventListener("message", function (a) { if (void 0 !== a.data["datawrapper-height"]) for (var e in a.data["datawrapper-height"]) { var t = document.getElementById("datawrapper-chart-" + e) || document.querySelector("iframe[src*='" + e + "']"); t && (t.style.height = a.data["datawrapper-height"][e] + "px") } }) }();
-    </script>
+<iframe title="Race, poverty, and health are connected in NYC" aria-label="Scatter Plot" id="datawrapper-chart-KOI8H" src="//datawrapper.dwcdn.net/KOI8H/4/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="516" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+</script>
+</div>
+<div class="sr-only">
+<iframe title="Race, poverty, and health are connected in NYC" aria-label="Table" id="datawrapper-chart-iQTOe" src="https://datawrapper.dwcdn.net/iQTOe/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="1066" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+</script>
 </div>
 <div class="narrow">
 <p>This dynamic extends beyond asthma. To understand why poverty, race, and health are related in New York City, we look back at <strong>redlining</strong>. This government policy from the 1930s illustrates the nature of poverty and racism in our society - and how racism affects health.</p>
@@ -533,8 +539,8 @@
 
 
 <div class="py-0">
-    <iframe src="/IndicatorPublic/maps/HOLC_map/HOLC_map.html" scrolling="no" frameborder="0"
-        style="position: relative; height: 600px; width: 100%;"></iframe>
+<iframe title="Redlining in NYC" aria-label="Locator map" id="datawrapper-chart-dpI3S" src="https://datawrapper.dwcdn.net/dpI3S/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="691" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+</script>
 </div>
 
 <h3>Redlining drove residential segregation</h3>
@@ -579,6 +585,7 @@ deepen and enforce neighborhood segregation.</p>
 <p>Enormous areas of New York City were redlined. Explore the extent of HOLC&rsquo;s redlining in NYC&rsquo;s five boroughs:</p>
 
 
+<div aria-hidden="true">
 <ul class="nav nav-tabs fs-sm" id="myTab" role="tablist">
     <li class="nav-item">
         <a class="nav-link active" id="manhattan-tab" data-toggle="tab"
@@ -652,7 +659,7 @@ deepen and enforce neighborhood segregation.</p>
         <br><br>
         <p>Brooklyn also saw extensive redlining that lead to deep disinvestment and
             generations of poverty.</p>
-    </div>
+    </div> 
     <div class="tab-pane fade" id="queens" role="tabpanel" aria-labelledby="queens-tab">
         <br>
         <iframe title="Redlining in Queens" aria-label="Stacked Bars"
@@ -689,7 +696,19 @@ deepen and enforce neighborhood segregation.</p>
             type="text/javascript">!function () { "use strict"; window.addEventListener("message", function (a) { if (void 0 !== a.data["datawrapper-height"]) for (var e in a.data["datawrapper-height"]) { var t = document.getElementById("datawrapper-chart-" + e) || document.querySelector("iframe[src*='" + e + "']"); t && (t.style.height = a.data["datawrapper-height"][e] + "px") } }) }();</script>
     </div>
 </div>
+</div>
 
+<div class="sr-only">
+<iframe title="Percent of each neighborhood in NYC that was redlined" aria-label="Table" id="datawrapper-chart-JB9Yc" src="https://datawrapper.dwcdn.net/JB9Yc/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="1389" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+</script>
+<p>Large parts of Manhattan were redlined. However, reinvestment in recent decades has lead to rising property values and the displacement of some former residents. Neighborhoods that were once redlined now have some of the city's most expensive real estate.</p>
+<p>As with Manhattan, huge swaths of residential neighborhoods in the Bronx were declared "declining" or "hazardous" in HOLC's redlining map. Unlike Manhattan, though, the Bronx has not seen the same level of reinvestment and redevelopment,and poverty rates remain high.</p>
+<p>Brooklyn also saw extensive redlining that lead to deep disinvestment and generations of poverty.</p>
+<p>Queens saw significantly less redlining than other boroughs.</p>
+<p>Like Queens, Staten Island saw much less redlining than other boroughs.</p>
+<iframe title="Redlining and poverty" aria-label="Table" id="datawrapper-chart-sGkqI" src="https://datawrapper.dwcdn.net/sGkqI/6/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="1161" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+</script>
+</div>
 <h3>Redlining&rsquo;s effects continue today</h3>
 <p>In New York City, many once-thriving neighborhoods experienced severe disinvestment as a result of redlining, which caused inequality that continued from one generation to the next. Neighborhoods that were redlined in the 1930s have higher rates of poverty even today – nearly 90 years after the maps were created. According to the <a href="https://ncrc.org/holc/">National Community Reinvestment Coalition</a>, 3 out of every 4 neighborhoods in the USA that were redlined in the 1930s are still low-to-moderate income today - and 2 out of every 3 are predominantly populated by people of color.</p>
 <p>Redlining is a prime example of  <a href="#disinvestmentCollapseTwo" data-toggle="collapse"

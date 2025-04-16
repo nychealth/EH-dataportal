@@ -460,10 +460,8 @@
         
         <div class="col-xl-8 overflow-hidden fs-rg" id="primary-content">
 
-        <nav class="navbar navbar-default my-2">
-                    <ul class="nav navbar-nav fs-sm">
-                        <span class="mr-2">Read this data story in:</span><li class="mb-1"><a href="/IndicatorPublic/es/data-stories/geographies/">Español</a>&nbsp;|&nbsp;</li><li class="mb-1"><a href="/IndicatorPublic/zh/data-stories/geographies/">中文</a>&nbsp;|&nbsp;</li></ul>
-            </nav><div class="narrow">
+        <div class="narrow">
+
             <div class="row mt-2 mb-3">
                 <div class="col-12">
                     <nav aria-label="breadcrumb">
@@ -479,7 +477,14 @@
                 </div>
             </div>
 
-            <h1 class="h2 data-stories mb-3"><i class="fas fa-passport" aria-hidden="true" style="margin-right: 10px"></i>Neighborhood boundaries on the EH Data Portal</h1>
+                <div class="row">
+                    <div class="col-12">
+                    <nav class="navbar navbar-default my-2">
+                            <ul class="nav navbar-nav fs-sm">
+                                <span class="mr-2">Read this data story in:</span><li class="mb-1"><a href="/IndicatorPublic/es/data-stories/geographies/">Español</a>&nbsp;|&nbsp;</li><li class="mb-1"><a href="/IndicatorPublic/zh/data-stories/geographies/">中文</a>&nbsp;|&nbsp;</li></ul>
+                    </nav>
+                </div>
+                </div><h1 class="h2 data-stories mb-3"><i class="fas fa-passport" aria-hidden="true" style="margin-right: 10px"></i>Neighborhood boundaries on the EH Data Portal</h1>
             <div class="container-fluid px-0">
 
                 
@@ -490,11 +495,9 @@
             </div><p>New York City has hundreds of neighborhoods and nearly as many ways of drawing neighborhood boundaries. When you visit the Environment &amp; Health Data Portal, you might notice that data is available in several different neighborhood schemes.</p>
 <p>For example, dig around in the asthma data pages and you&rsquo;ll find <a href="/IndicatorPublic/data-explorer/asthma/?id=18">Adults with Asthma</a> presented by UHF34 neighborhoods, <a href="/IndicatorPublic/data-explorer/asthma/?id=2147">Public School Children with Asthma</a> presented by UHF42 neighborhoods, and <a href="/IndicatorPublic/data-explorer/asthma/?id=2384">Asthma emergency department visits</a> are offered by NTAs. Other data on the portal are offered by CD, ZIP code, PUMA, and occasionally even police precinct. <strong>What are all these neighborhood schemes, why do we use one and not the other, and why isn’t the whole system consistent?</strong></p>
 <p>The most common neighborhood boundaries on the EH Data Portal are Community Districts, Public Use Microdata Areas, and United Hospital Fund neighborhoods. These three common neighborhood schemes have different building blocks. Let&rsquo;s explore these.</p>
-
-
  </div>
     <!--start wide-->
-    <div class="wide my-4 chart-wrapper-ds">
+    <div class="wide my-4 chart-wrapper-ds" aria-hidden="true">
         <h4 class="text-center mb-3">Nesting: how neighborhood schemes have different root units</h4>
         <div class="row" style="font-size: 14px;">
             <div class="col-lg-4 col-sm-8 mx-auto mb-2">
@@ -534,8 +537,6 @@
     </div>
     <!--end wide-->
 <div class="narrow">
-
-
 <h4>Community districts</h4>
 <p>There are 59 Community Districts (CDs) in NYC, each overseen by a Community Board that advises on land use, zoning, city budgets, and more. As a political boundary, CDs are useful geographic units for breaking down city operations. <a href="https://www1.nyc.gov/site/cau/community-boards/about-commmunity-boards.page">Learn more about Community Boards</a>.</p>
 <h4>Public Use Microdata Areas</h4>
@@ -543,15 +544,12 @@
 <p>There are 55 PUMAs in NYC. PUMAs have similar boundaries to Community Districts, which means that often, one can be used as a proxy for the other. In the map below, notice how Brooklyn CD 1, in Greenpoint/Williamsburg, is almost identical to the PUMA.</p>
 <p>There are four PUMAs that are made up of two CDs combined into one. Notice how two CDs in the South Bronx combine to form one PUMA.</p>
 <p>Each PUMA breaks down into Neighborhood Tabulation Areas (NTAs), and each NTA breaks down even further into census tracts.</p>
-
-
+<div aria-hidden="true">
 <input type="radio" name="mainRadioGroup" value="cd" id="ucd" checked> <label for="ucd">Community Districts</label> &nbsp;&nbsp;
 <input type="radio" name="mainRadioGroup" value="puma" id="upuma"/> <label for="upuma">PUMAs</label> &nbsp;&nbsp;
 <input type="radio" name="mainRadioGroup" value="nta" id="unta"><label for="unta">NTAs</label>
-
 <!-- create map div -->
 <div id = 'map1' style = "width:100%; height: 550px"></div>
-
 <script>
 
     var repo_branch = "https://raw.githubusercontent.com/nychealth/EHDP-data/production"
@@ -619,22 +617,21 @@
 
 
 </script>
-
-
+</div>
+<div class="sr-only">
+<p>While these geographies have similar boundaries between neighborhood areas, they are not identical. For example, areas in Mott Haven/Port Morris, Melrose South/Mott Haven-North, Longwood, and Hunts Point are all in separate Neighborhood Tabulation Areas. But in Community Districts, Mott Haven/Melrose is one Community District, and Hunts Point/Longwood is another. And in PUMAs, Mott Haven and Hunts point are both in one PUMA. These divisions don't nest neatly within one another - familiar neighborhoods can be broken up or aggregated into smaller and larger geographic schemes.</p>
+</div>
 <h4>United Hospital Fund neighborhoods</h4>
 <p>United Hospital Fund neighborhoods (UHFs) have boundaries based on ZIP codes. This geography was created by the Health Department, the United Hospital Fund, and other city agencies in the 1980s. They were designed for health research, and to be similar to NYC’s Community Districts.</p>
 <p>Health data - like somebody’s hospitalization record, for example, or a response to a survey - often includes a person’s ZIP code. It’s the most readily available piece of geographic information in administrative data. It’s also the neighborhood designation that most people know and can provide when responding to a survey.</p>
 <p>To protect privacy, we often bundle (or aggregate) data from a larger area, so we need a scheme of neighborhoods that are made up of a collection of ZIP codes: UHFs. Collecting data by ZIP code and then &ldquo;rolling up&rdquo; into UHF neighborhoods has been used in health research for decades. The methods for our surveys (like the Community Health Survey) are designed to include enough people from each UHF neighborhood so that there’s a “representative sample” of all New Yorkers, and so that we can compare neighborhoods with high statistical confidence. Usually, we use UHF42 neighborhoods, which breaks the city down into 42 neighborhoods. Sometimes, though, we use UHF34 neighborhoods - by grouping together some of the neighborhoods, we can increase the statistical power of a survey.</p>
-<p>In the map below, notice how three UHF42 neighborhoods in the South Bronx are combined into one UHF34 neigborhood - and how the UHF neighborhoods have ZIP codes (or, more precisely, ZIP code tabulation areas) as their root unit.</p>
-
-
+<p>In the map below, notice how three UHF42 neighborhoods in the South Bronx are combined into one UHF34 neighborhood - and how the UHF neighborhoods have ZIP codes (or, more precisely, ZIP code tabulation areas) as their root unit.</p>
+<div aria-hidden="true">
 <input type="radio" name="uhfRadioGroup" value="42" id="42" checked> <label for="42">UHF42</label> &nbsp;&nbsp;
 <input type="radio" name="uhfRadioGroup" value="34" id="34"/> <label for="34">UHF34</label> &nbsp;&nbsp;
 <input type="radio" name="uhfRadioGroup" value="zip" id="zip"><label for="zip">ZIP codes</label>
-
 <!-- create map div -->
 <div id = 'map2' style = "width:100%; height: 550px"></div>
-
 <script>
 
     let uhf42_spec = repo_branch + "/" + path + "/" + trans + "/" + "map42.vl.json";
@@ -675,8 +672,10 @@
     buildMap("#map2", uhf42_spec, uhf42_csv, uhf42_topo);
 
 </script>
-
-
+</div>
+<div class="sr-only">
+<p>Continuing from the previous example, United Hospital Fund neighborhoods have similar boundaries, but they are not identical. Most UH42s break UH34s into smaller geographies; note how the South Bronx UH34 combines three UH42 neighborhoods (Highbridge - Morrisania, Crotona - Tremont and Hunts Point - Mott Haven).</p>
+</div>
 <h3>How do you choose when boundaries overlap?</h3>
 <p>These different neighborhood boundaries can make things confusing. For example, say you live in Ditmas Park and you want to take some health data to a meeting of your Community Board. Ditmas Park is part of Community District 14, Flatbush/Midwood. But CD14 straddles two different UHF neighborhoods. This raises a difficult question: what neighborhood&rsquo;s data would you bring to your Community Board meeting?</p>
 <figure><img src="/IndicatorPublic/data-stories/geographies/overlap.png"
@@ -686,7 +685,7 @@
 <p>On the EH Data Portal, we aggregate data from lots of different sources. They might not line up exactly the way we want them to: when data are collected in different ways for different purposes, there will be differences in the underlying geography available. The fact that there’s no one consistent root unit does complicate things.</p>
 <p>But any way of drawing boundaries or aggregating data will smooth over some variation within groups. Despite limitations in the data, we can still see health patterns by geography, and learn valuable information about how neighborhoods differ and why. Neighborhood health data have a lot to tell us, even when their boundaries are imperfect representations of New York City&rsquo;s communities.</p>
 <hr>
-<p>If you&rsquo;re mapping health data, you can <a href="https://github.com/nycehs/NYC_geography">download and use shapefiles, geojson, and topojson files at our Github repository</a>.</p>
+<p>If you&rsquo;re mapping health data, you can <a href="https://github.com/nychealth/EHDP-data/tree/production/geography">download and use shapefiles, geojson, and topojson files in our Github repository</a>.</p>
 </div>
 
             <footer class="narrow my-4" id="article-footer">
