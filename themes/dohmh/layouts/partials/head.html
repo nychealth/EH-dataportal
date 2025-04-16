@@ -82,7 +82,7 @@
 {{- end }}
 
 <!-- jQuery (full, compressed version) -->
-{{- $jquery := resources.Get "node_modules/jquery/dist/jquery.min.js" | resources.Fingerprint "sha512" }}
+{{- $jquery := resources.Get "node_modules/jquery/dist/jquery.min.js" | fingerprint "sha512" }}
 
 <script src="{{ $jquery.RelPermalink }}" integrity="{{ $jquery.Data.Integrity }}" crossorigin="anonymous"></script>
 
@@ -101,7 +101,7 @@
 
 {{- /*  JS  */}}
 
-{{- $fontawesome := resources.Get "node_modules/@fortawesome/fontawesome-free/js/all.min.js" | resources.Fingerprint "sha512" }}
+{{- $fontawesome := resources.Get "node_modules/@fortawesome/fontawesome-free/js/all.min.js" | fingerprint "sha512" }}
 
 <script src="{{ $fontawesome.RelPermalink }}" integrity="{{ $fontawesome.Data.Integrity }}" crossorigin="anonymous"></script>
 
@@ -121,7 +121,7 @@
 
 <!-- main CSS -->
 {{- $sass := resources.Get "scss/theme.scss" }}
-{{- $style := $sass | toCSS | resources.Fingerprint "sha512" }}
+{{- $style := $sass | toCSS | fingerprint "sha512" }}
 <link rel="stylesheet" href="{{ $style.RelPermalink }}" integrity="{{ $style.Data.Integrity }}" />
 
 <!-- Vega. To call, have vega: true in a page's frontmatter -->
@@ -133,13 +133,13 @@
     {{- $vegaLite := resources.Get "node_modules/vega-lite/build/vega-lite.min.js" }}
     {{- $vegaEmbed := resources.Get "node_modules/vega-embed/build/vega-embed.min.js" }}
 
-    {{- $vegaBundleJS := slice $vega $vegaLite $vegaEmbed | resources.Concat "js/vegaBundle.js" | resources.Fingerprint "sha512" -}}
+    {{- $vegaBundleJS := slice $vega $vegaLite $vegaEmbed | resources.Concat "js/vegaBundle.js" | fingerprint "sha512" -}}
 
     <script src="{{ $vegaBundleJS.RelPermalink }}" integrity="{{ $vegaBundleJS.Data.Integrity }}"></script>
 
     {{- /*  D3  */}}
 
-    {{- $d3 := resources.Get "node_modules/d3/dist/d3.min.js" | resources.Fingerprint "sha512" }}
+    {{- $d3 := resources.Get "node_modules/d3/dist/d3.min.js" | fingerprint "sha512" }}
 
     <script src="{{ $d3.RelPermalink }}" integrity="{{ $d3.Data.Integrity }}"></script>
 
@@ -158,7 +158,7 @@
 
     {{- /*  D3  */ -}}
 
-    {{- $d3 := resources.Get "node_modules/d3/dist/d3.min.js" | resources.Fingerprint "sha512" }}
+    {{- $d3 := resources.Get "node_modules/d3/dist/d3.min.js" | fingerprint "sha512" }}
 
     <script src="{{ $d3.RelPermalink }}" integrity="{{ $d3.Data.Integrity }}"></script>
 
@@ -180,7 +180,7 @@
     {{- $dataTablesButtonsPrint := resources.Get "node_modules/datatables.net-buttons/js/buttons.print.min.js" }}
     {{- $dataTablesRowGroup := resources.Get "node_modules/datatables.net-rowgroup/js/dataTables.rowGroup.min.js" }}
     
-    {{- $dataTablesBundleJS := slice $dataTables $dataTablesButtons $dataTablesButtonsHtml5 $dataTablesButtonsPrint $dataTablesRowGroup | resources.Concat "js/dataTableBundle.js" | resources.Fingerprint "sha512" }}
+    {{- $dataTablesBundleJS := slice $dataTables $dataTablesButtons $dataTablesButtonsHtml5 $dataTablesButtonsPrint $dataTablesRowGroup | resources.Concat "js/dataTableBundle.js" | fingerprint "sha512" }}
 
     <script src="{{ $dataTablesBundleJS.RelPermalink }}" integrity="{{ $dataTablesBundleJS.Data.Integrity }}"></script>
 
@@ -192,7 +192,7 @@
 
     {{- /*  Arquero  */}}
 
-    {{- $arquero := resources.Get "node_modules/arquero/dist/arquero.min.js" | resources.Fingerprint "sha512" -}}
+    {{- $arquero := resources.Get "node_modules/arquero/dist/arquero.min.js" | fingerprint "sha512" -}}
 
     <script src="{{ $arquero.RelPermalink }}" integrity="{{ $arquero.Data.Integrity }}"></script>
 
@@ -210,7 +210,7 @@
 
     <!-- leaflet source -->
 
-    {{- $leaflet := resources.Get "node_modules/leaflet/dist/leaflet.js" | resources.Fingerprint "sha512" }}
+    {{- $leaflet := resources.Get "node_modules/leaflet/dist/leaflet.js" | fingerprint "sha512" }}
 
     <script src="{{ $leaflet.RelPermalink }}" integrity="{{ $leaflet.Data.Integrity }}"></script>
 
@@ -223,19 +223,19 @@
 
     <!-- leaflet easybutton source -->
 
-    {{- $easybutton := resources.Get "node_modules/leaflet-easybutton/src/easy-button.js" | resources.Fingerprint "sha512" }}
+    {{- $easybutton := resources.Get "node_modules/leaflet-easybutton/src/easy-button.js" | fingerprint "sha512" }}
 
     <script src="{{ $easybutton.RelPermalink }}" integrity="{{ $easybutton.Data.Integrity }}"></script>
 
     <!-- Leaflet.colorIcon -->
     <!-- https://github.com/shevekk/Leaflet.ColorIcon -->
 
-    {{- $colorIcon := resources.Get "js/L.colorIcon.js" | resources.Fingerprint "sha512" }} <!-- need to use Hugo Pipes to get file from assets dir -->
+    {{- $colorIcon := resources.Get "js/L.colorIcon.js" | fingerprint "sha512" }} <!-- need to use Hugo Pipes to get file from assets dir -->
 
     <script src="{{ $colorIcon.RelPermalink }}" integrity="{{ $colorIcon.Data.Integrity }}"></script>
 
     <!--Geocoder -->
-    {{- $geocoder := resources.Get "node_modules/leaflet-control-geocoder/dist/Control.Geocoder.js" | resources.Fingerprint "sha512" }}
+    {{- $geocoder := resources.Get "node_modules/leaflet-control-geocoder/dist/Control.Geocoder.js" | fingerprint "sha512" }}
     <script src="{{ $geocoder.RelPermalink}}" integrity="{{ $geocoder.Data.Integrity }}"></script>
 
     <!-- point in polygon -->
@@ -251,7 +251,7 @@
 
     {{- /*  D3  */ -}}
 
-    {{- $d3 := resources.Get "node_modules/d3/dist/d3.min.js" | resources.Fingerprint "sha512" }}
+    {{- $d3 := resources.Get "node_modules/d3/dist/d3.min.js" | fingerprint "sha512" }}
 
     <script src="{{ $d3.RelPermalink }}" integrity="{{ $d3.Data.Integrity }}"></script>
 
@@ -275,7 +275,7 @@
     
     {{- $dataTablesButtonsDt := resources.Get "node_modules/datatables.net-buttons-dt/js/buttons.dataTables.min.js" }}
 
-    {{- $dataTablesBundleJS := slice $dataTables $dataTablesButtons $dataTablesButtonsHtml5 $dataTablesButtonsPrint $dataTablesRowGroup $dataTablesButtonsDt | resources.Concat "js/dataTableBundle.js" | resources.Fingerprint "sha512" }}
+    {{- $dataTablesBundleJS := slice $dataTables $dataTablesButtons $dataTablesButtonsHtml5 $dataTablesButtonsPrint $dataTablesRowGroup $dataTablesButtonsDt | resources.Concat "js/dataTableBundle.js" | fingerprint "sha512" }}
 
     <script src="{{ $dataTablesBundleJS.RelPermalink }}" integrity="{{ $dataTablesBundleJS.Data.Integrity }}"></script>
 
