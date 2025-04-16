@@ -37,11 +37,11 @@
 <title>NYC Environment and Health Data Portal.</title>
 
 
-<meta name="build_datetime" content='2025年4月16日星期三, EDT 下午12:37:10'>
+<meta name="build_datetime" content='2025年4月16日星期三, EDT 下午1:52:52'>
 <meta name="build_environment" content='prod_prod'>
 <meta name="git_branch" content='production'>
-<meta name="git_last_hash" content='469dc87aee'>
-<meta name="git_last_msg" content='Merge pull request #1234 from nychealth/content-accessibility-update'>
+<meta name="git_last_hash" content='a9a903c786'>
+<meta name="git_last_msg" content='Merge pull request #1235 from nychealth:hotfix-rm-subscribe-click-logs'>
 
 
         <link rel="alternate" hreflang="en" href="/IndicatorPublic/" title="English">
@@ -1085,13 +1085,6 @@
     document.querySelectorAll("[data-target='#subscribeModal']").forEach(el => {
 
         el.addEventListener("click", e => {
-        
-
-            console.log("click", e);
-            console.log("e > subscribeClick", e.target.dataset.subscribeClick);
-            console.log("element", el);
-            console.log("el > subscribeClick", el.dataset.subscribeClick);
-            console.log("location", window.location.pathname);
 
             gtag('event', 'click_subscribe', {
                 page: window.location.pathname,

@@ -1159,13 +1159,6 @@ These community health workers have documented concerns about trash on the stree
     document.querySelectorAll("[data-target='#subscribeModal']").forEach(el => {
 
         el.addEventListener("click", e => {
-        
-
-            console.log("click", e);
-            console.log("e > subscribeClick", e.target.dataset.subscribeClick);
-            console.log("element", el);
-            console.log("el > subscribeClick", el.dataset.subscribeClick);
-            console.log("location", window.location.pathname);
 
             gtag('event', 'click_subscribe', {
                 page: window.location.pathname,
