@@ -332,10 +332,10 @@
 {{ define "js_bot" }}
 
 
-{{- $aa_js := partial "get-and-short-fingerprint.html" "js/accessible-autocomplete.min.js" -}}
+{{- $aa_js := resources.Get "js/accessible-autocomplete.min.js" | partial "short-fingerprint.html" -}}
 <script type="text/javascript" src="{{ $aa_js.RelPermalink }}" integrity="{{ $aa_js.Data.Integrity }}"></script>
 
-{{- $uhflist_js := partial "get-and-short-fingerprint.html" "js/uhflist.js" -}}
+{{- $uhflist_js := resources.Get "js/uhflist.js" | partial "short-fingerprint.html" -}}
 <script type="text/javascript" src="{{ $uhflist_js.RelPermalink }}" integrity="{{ $uhflist_js.Data.Integrity }}"></script>
 
 <script>
