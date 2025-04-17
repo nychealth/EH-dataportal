@@ -36,7 +36,19 @@ Heat stress happens when your body’s temperature increases quickly. When the b
 
 At the NYC Health Department, we track heat stress deaths by reviewing causes of death recorded by the Bureau of Vital Statistics. More people usually die of heat stress during hotter summers. From 1999 to 2016, NYC had 4 spikes due to severe heat, in 1999, 2006, 2011, and 2013.
 
-{{< datawrapper title="Heat can be deadly" src="F8xiB/4/" height="400" >}}
+</div>
+
+<div aria-hidden="true">
+<div class="wide my-4">
+<iframe title="Heat can be deadly" aria-label="Column Chart" id="datawrapper-chart-F8xiB" src="https://datawrapper.dwcdn.net/F8xiB/4/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="446" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+</script>
+</div>
+</div>
+<div class="sr-only">
+<iframe title="Heat can be deadly" aria-label="Table" id="datawrapper-chart-3cap9" src="https://datawrapper.dwcdn.net/3cap9/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="866" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+</script>
+</div>
+<div class="narrow">
 
 But deaths due to heat stress only tell part of the story. Summer heat can also kill people by worsening chronic illnesses, such as heart disease. Since the effects of heat can be hard to recognize, these are often not recorded as heat-related deaths on death certificates.
 
@@ -56,7 +68,18 @@ What prevents heat-related illness at home? Air conditioning. Of the records wit
 
 90% of households in NYC report having an air conditioner – but in some of NYC’s low-income neighborhoods, this drops to as low as 76%.
 
-{{< datawrapper title="Air conditioning access is a matter of health equity." src="z0BAM/1/" height="1203" >}}
+</div>
+<div aria-hidden="true">
+<div class="wide my-4">
+<iframe title="Air conditioning access varies by neighborhood." aria-label="Dot Plot" id="datawrapper-chart-z0BAM" src="https://datawrapper.dwcdn.net/z0BAM/4/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="1214" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+</script>
+</div>
+</div>
+<div class="sr-only">
+<iframe title="Air conditioning access varies by neighborhood." aria-label="Table" id="datawrapper-chart-NSUaQ" src="https://datawrapper.dwcdn.net/NSUaQ/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="2372" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+</script>
+</div>
+<div class="narrow">
 
 Having an air conditioner is one thing – but using it is another. [When we surveyed New Yorkers](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6069135/), we found that 15% of New Yorkers have AC but don't use it during hot weather. Of those, 1 out of 4 said they don't use AC because of the cost of electricity. ([Low-income New Yorkers can apply to receive money from the State to buy an air conditioner](https://www1.nyc.gov/site/hra/help/energy-assistance.page).)
 
@@ -76,14 +99,16 @@ A healthy indoor temperature should not be a privilege limited to those who can 
 
 ---
 
+<br>
+
 _New Yorkers can apply for a free air conditioner and installation through the Home Energy Assistance Program (HEAP). Low-income families and households in public or subsidized housing with heat included in their shelter costs may be eligible as part of extended HEAP benefits. Visit nyc.gov/hra and search for HEAP Cooling Application, or call 212-331-3126 between 9 am and 5 pm to apply._
 
-Resources
+<strong>Resources</strong>
 
 - [Extreme Heat and Your Health](https://www1.nyc.gov/site/doh/health/emergency-preparedness/emergencies-extreme-weather-heat.page)
 - [Beat the Heat](https://www1.nyc.gov/assets/em/html/beat-the-heat/beattheheat.html)
 
-Research
+<strong>Research</strong>
 
 - [A City Health Department’s Perspective on Preventing Heat-related Deaths](https://journals.lww.com/epidem/fulltext/2018/11000/Equitable_Access_to_Air_Conditioning___A_City.1.aspx)
 - [A Case-Only Study of Vulnerability to Heat Wave-Related Mortality in New York City (2000-2011)](https://www.ncbi.nlm.nih.gov/pubmed/25782056)

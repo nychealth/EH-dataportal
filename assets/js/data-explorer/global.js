@@ -239,9 +239,13 @@ const prettifyGeoType = (GeoType) => {
 const renderTitleDescription = (title, desc) => {
 
     const indicatorTitle = document.getElementById('indicatorTitle');
-    const indicatorDescription = document.querySelector('.indicator-description');
+    const indicatorDescription = document.querySelectorAll('.indicator-description');
     indicatorTitle.innerHTML = title;
-    indicatorDescription.innerHTML = `${desc}`;
+
+    indicatorDescription.forEach((element) => {
+        element.innerHTML = `${desc}`;
+    });    
+    // indicatorDescription.innerHTML = `${desc}`;
 }
 
 // Renders copy for the About the measures and the Data sources sections

@@ -46,13 +46,9 @@ As the chart above shows, neighborhoods with more households that rely on electr
 
 <!-- <p> Poverty is created by current and historical racist practices, like [redlining]({{< baseurl >}}data-stories/redlining/), that deprive people and communities of resources and harm people’s health. [The Health Department has declared racism a public health crisis](https://www1.nyc.gov/site/doh/about/press/pr2021/board-of-health-declares-racism-public-health-crisis.page). -->
 
-{{< rawhtml >}}
-
-<div class="bg-light text-secondary px-2 py-2 my-4 fs-sm">
+<div class="asidebox px-2 py-2 my-4 fs-sm">
     <p><em>Poverty is created by current and historical racist practices, like <a href="{{< baseurl >}}data-stories/redlining/"><u>redlining</u></a>, that deprive people and communities of resources and harm people’s health. <a href="https://www1.nyc.gov/site/doh/about/press/pr2021/board-of-health-declares-racism-public-health-crisis.page"><u>The Health Department has declared racism a public health crisis</u></a>.</p></em>
 </div>
-
-{{< /rawhtml >}}
 
 #### Power outages threaten health.
 
@@ -62,20 +58,33 @@ In New York City, the power outage started around 4:10pm on the 14th, a day when
 
 That blackout was dangerous for NYC residents, and we can see the effects in health data. Hospitalizations for respiratory problems spiked above predicted levels.
 
+</div>
 <!-- CHART 2 -->
-
-{{< datawrapper title="The 2003 Blackout caused a spike in respiratory hospitalizations..." src="6ivif/1/" height="400">}}
+<div class="wide my-4" aria-hidden="true">
+  <iframe title="The 2003 Blackout caused a spike in respiratory hospitalizations..." aria-label="Interactive line chart" id="datawrapper-chart-6ivif" src="https://datawrapper.dwcdn.net/6ivif/3/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="438" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+  </script>
+</div>
+<div class="sr-only">
+  <iframe title="The 2003 Blackout caused a spike in respiratory hospitalizations, exceeding the upper range of predictions..." aria-label="Table" id="datawrapper-chart-jGcgz" src="https://datawrapper.dwcdn.net/jGcgz/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="1292" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+  </script>
+</div>
+<div class="narrow">
 
 The health impacts were not limited to just hospitalizations. In fact, the power outage was deadly.
 
-{{< rawhtml >}}
+<p>In the chart below, you can clearly see that <span style="font-weight: bold; color: red">observed deaths</span> generally bounce around the level of <span style="font-weight: bold; color: rgb(83, 83, 83)">predicted deaths</span>, staying within the <span style="background-color:lightgray; padding-left: 4px; padding-right: 4px;"> prediction range</span>. But on and after the power outage, observed deaths spiked: more people died during and immediately after the power outage.</P>
 
-<P>In the chart below, you can clearly see that <span style="font-weight: bold; color: red">observed deaths</span> generally bounce around the level of <span style="font-weight: bold; color: rgb(83, 83, 83)">predicted deaths</span>, staying within the <span style="background-color:lightgray; padding-left: 4px; padding-right: 4px;"> prediction range</span>. But on and after the power outage, observed deaths spiked: more people died during and immediately after the power outage.</P>
-{{< /rawhtml >}}
-
+</div>
 <!-- CHART 3 -->
-
-{{< datawrapper title="...and a spike in deaths in NYC." src="Y2D7s/1/" height="400">}}
+<div class="wide my-4" aria-hidden="true">
+  <iframe title="...and a spike in deaths in NYC." aria-label="Interactive line chart" id="datawrapper-chart-Y2D7s" src="https://datawrapper.dwcdn.net/Y2D7s/3/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="463" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+  </script>
+</div>
+<div class="sr-only">
+  <iframe title="...and a spike in deaths in NYC. " aria-label="Table" id="datawrapper-chart-415MD" src="https://datawrapper.dwcdn.net/415MD/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="1249" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+  </script>
+</div>
+<div class="narrow">
 
 The deaths could have been caused by many dangers of power outages: people not being able to charge medical equipment, not being able to use air conditioning on hot days, or experiencing increased physical and mental stress and isolation of living without elevators or subways.
 
@@ -87,9 +96,17 @@ Weather-related power outages are increasing, as climate change brings more freq
 
 The chart below from [www.climatecentral.org](https://www.climatecentral.org) shows the increasing frequency of weather-related power outages over the last 20 years. While there are year-to-year differences, the overall increasing trend is clear.
 
+</div>
 <!-- CHART 4 -->
-
-{{< datawrapper title="Increasing weather-related power outages in the Northeast U.S." src="sbTUE/1/" height="407">}}
+<div class="wide my-4" aria-hidden="true">
+  <iframe title="Increasing weather-related power outages in the Northeast U.S." aria-label="Column Chart" id="datawrapper-chart-sbTUE" src="https://datawrapper.dwcdn.net/sbTUE/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="407" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+  </script>
+</div>
+<div class="sr-only">
+  <iframe title="Increasing weather-related power outages in the Northeast U.S." aria-label="Table" id="datawrapper-chart-AwXYk" src="https://datawrapper.dwcdn.net/AwXYk/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="449" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+  </script>
+</div>
+<div class="narrow">
 
 #### ...but not all NYC residents are prepared.
 
