@@ -27,7 +27,7 @@
 {{- /*  NYC template JS (RTL, search and language toggle, back to top)  */}}
 
 {{- $js := resources.Get "js/main.js" }}
-{{- $secureJS := $js | resources.Fingerprint "sha512" }}
+{{- $secureJS := $js | fingerprint "sha512" }}
 
 <script type="text/javascript" 
     src="{{ $js.RelPermalink }}" 

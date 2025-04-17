@@ -148,7 +148,7 @@
 
 {{- /*  sanitizing html strings with dompurify  */}}
 
-{{- $dompurify := resources.Get "node_modules/dompurify/dist/purify.min.js" | resources.Fingerprint "sha512" -}}
+{{- $dompurify := resources.Get "node_modules/dompurify/dist/purify.min.js" | fingerprint "sha512" -}}
 
 <script src="{{ $dompurify.RelPermalink }}" integrity="{{ $dompurify.Data.Integrity }}"></script>
 
@@ -281,11 +281,11 @@
 
     {{- /*  Arquero  */}}
 
-    {{- $arquero := resources.Get "node_modules/arquero/dist/arquero.min.js" | resources.Fingerprint "sha512" }}
+    {{- $arquero := resources.Get "node_modules/arquero/dist/arquero.min.js" | fingerprint "sha512" }}
 
     {{- /*  DOMPurify  */}}
 
-    {{- $dompurify := resources.Get "node_modules/dompurify/dist/purify.min.js" | resources.Fingerprint "sha512" }}
+    {{- $dompurify := resources.Get "node_modules/dompurify/dist/purify.min.js" | fingerprint "sha512" }}
 
 
     <script src="{{ $arquero.RelPermalink }}" integrity="{{ $arquero.Data.Integrity }}"></script>
