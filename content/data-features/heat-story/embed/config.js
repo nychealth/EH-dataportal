@@ -330,11 +330,11 @@ config = {
                 "exclusive": true,
                 "args": {
                     "colorFeatureProperty": "PM2.5",
-                    "minColor": "#054fb9",
-                    "maxColor": "#c44601",
+                    "minColor": "#fff2cc",
+                    "maxColor": "#6a329f",
                     "color": "black",
-                    "opacity": 0.6,
-                    "legendDescription": "<strong> PM2.5 </strong> are fine particles that are emitted by vehicles, building boilers, and other combustion - and are a major form of air pollution that harms health. <a href='../../data-explorer/air-quality/?id=2023#display=summary'>Get full data</a>."
+                    "opacity": 0.75,
+                    "legendDescription": "<strong> PM2.5 </strong> are fine particles emitted by vehicles, building boilers, and other combustion - and are a major form of air pollution that harms health. <a href='../../data-explorer/air-quality/?id=2023#display=summary'>Get full data</a>."
                 },
                 "displayProperties": {
                     "missingDisplay": "N/A",
@@ -435,10 +435,10 @@ config = {
                 "exclusive": true,
                 "args": {
                     "colorFeatureProperty": "Heat hospitalizations, Average annual age-adjusted rate",
-                    "minColor": "#054fb9",
-                    "maxColor": "#c44601",
+                    "minColor": "#fff2cc",
+                    "maxColor": "#6a329f",
                     "color": "black",
-                    "opacity": 0.6,
+                    "opacity": 0.75,
                     "legendDescription": "Heat stress hospitalizations due to heat-related illnesses, such as heat stroke and heat exhaustion, represent part of the public health burden of hot weather. <a href='../../data-explorer/weather-related-illness/?id=2076#display=summary'>Get full data</a>."
                 },
                 "displayProperties": {

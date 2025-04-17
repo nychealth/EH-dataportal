@@ -22,7 +22,7 @@ layout: heatstory
 leaflet: true
 arquero: true
 image: heatstory.png
-blurb: Read about New Yorker's experiences with heat in the context of climate and health data.
+blurb: Read about New Yorkers' experiences with heat in the context of climate and health data.
 ---
 
 As climate change worsens, extreme heat becomes more frequent and more intense. <a href="{{<baseurl>}}data-stories/localtemp/"> Cities get even hotter because of the urban heat island effect.</a> But even within New York City, some areas are hotter than others.
