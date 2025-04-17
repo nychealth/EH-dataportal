@@ -1,14 +1,12 @@
 {{- /*  
-    a more-or-less drop-in replacement for the pattern:
-        $rsrc_secure := resources.Get "path/to/resource" | fingerprint "sha512" 
     
     returns a resource object with a shorter hash path, but with all the rest the same
 
 */ -}}
 
-{{/*  get resource from supplied path  */}}
+{{/*  get resource from supplied object  */}}
 
-{{ $rsrc := resources.Get . }}
+{{ $rsrc := . }}
 
 {{/*  {{ warnf ">>>>>  name  >> " $rsrc.Name }}  */}}
 
@@ -24,6 +22,8 @@
 
 {{ $rsrc_hash := $rsrc.Content | xxhash }}
 
+{{/*  {{ warnf ">>>>>  rsrc_hash  >> " $rsrc_hash  }}  */}}
+
 {{/*  path of file with short hash in the name  */}}
 
 {{ $relperm := $rsrc.Name }}
@@ -31,7 +31,7 @@
 {{ $short_relperm := replaceRE `(\.js$|\.css$)` ( print "." $rsrc_hash "$1" ) $relperm }}
 {{ $short_perm := replaceRE `(\.js$|\.css$)` ( print "." $rsrc_hash "$1" ) $relperm  }}
 
-{{/*  {{ warnf ">>>>>  short_relperm  >> " $short_relperm }}  */}}
+{{ warnf ">>>>>  short_relperm  >> " $short_relperm }}
 {{/*  {{ warnf ">>>>>  short_perm  >> " $short_perm }}  */}}
 
 {{/*  copy & publish resource to the short_path location  */}}
