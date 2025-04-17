@@ -622,7 +622,7 @@
 </div>
                 </div>
                 <div class="col-sm-6 col-cx-12">
-                    <iframe src="embed/nyccas-sites-leaflet.html" frameborder="no" style="width: 100%; height: 550px"></iframe>
+                    <iframe src="https://a816-dohbesp.nyc.gov/IndicatorPublic/nyccas/embeds/nyccas-sites-leaflet.html" frameborder="no" style="width: 100%; height: 550px"></iframe>
                 </div>
 
             </div>
@@ -661,7 +661,7 @@
 
   <div class="row" style="height: 550px;">
       <div class="col-sm-7" style="min-height: 350px;max-height: 550px;">
-          <iframe id="iframeEmbed" src="raster/bc_2022.html" style="width:100%;height:100%;" frameborder="off"></iframe>
+          <iframe id="iframeEmbed" src="https://a816-dohbesp.nyc.gov/IndicatorPublic/nyccas/raster/bc_2022.html" style="width:100%;height:100%;" frameborder="off"></iframe>
       </div>
 
       <div class="col-sm-5" id="mapText" style="height: 100%;overflow-y:scroll;">
@@ -829,7 +829,7 @@
           
           for (let button of document.querySelectorAll('.polbtn')) button.classList.remove('active');
           this.classList.add('active')
-          embed = 'raster/' + this.value + '_2022.html'
+          embed = 'https:\/\/a816-dohbesp.nyc.gov\/IndicatorPublic\/nyccas/raster/' + this.value + '_2022.html'
           document.getElementById('iframeEmbed').src = embed;
 
           const mapTexts = document.querySelectorAll('.polText')
