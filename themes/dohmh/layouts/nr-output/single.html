@@ -477,9 +477,8 @@ aria-hidden="true" data-pagefind-ignore="all">
 </div>
 
 
-{{- $js := resources.Get "js/uhflist.js" -}}
-{{ $secureJS := $js | partial "short-fingerprint.html" }}
-<script type="text/javascript" src="{{ $secureJS.RelPermalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
+{{- $uhflist_js := resources.Get "js/uhflist.js" | partial "short-fingerprint.html" -}}
+<script type="text/javascript" src="{{ $uhflist_js.RelPermalink }}" integrity="{{ $uhflist_js.Data.Integrity }}"></script>
 
 <script type="text/javascript">
     // get report path relative to section starting with "neighborhood-reports"

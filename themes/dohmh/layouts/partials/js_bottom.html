@@ -2,10 +2,10 @@
 
 <!-- need to include popper first; umd is non-module version -->
 
-{{- $popper_secure := partial "get-and-short-fingerprint.html" "node_modules/popper.js/dist/umd/popper.min.js" }}
+{{- $popper_secure := resources.Get "node_modules/popper.js/dist/umd/popper.min.js" | partial "short-fingerprint.html" }}
 <script src="{{ $popper_secure.RelPermalink }}" integrity="{{ $popper_secure.Data.Integrity }}" crossorigin="anonymous"></script>
 
-{{- $bootstrap_secure := partial "get-and-short-fingerprint.html" "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js" }}
+{{- $bootstrap_secure := resources.Get "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js" | partial "short-fingerprint.html" }}
 <script src="{{ $bootstrap_secure.RelPermalink }}" integrity="{{ $bootstrap_secure.Data.Integrity }}" crossorigin="anonymous"></script>
 
 
@@ -26,9 +26,5 @@
 
 {{- /*  NYC template JS (RTL, search and language toggle, back to top)  */}}
 
-{{- $js := resources.Get "js/main.js" }}
-{{- $secureJS := $js | partial "short-fingerprint.html" }}
-
-<script type="text/javascript" 
-    src="{{ $js.RelPermalink }}" 
-    integrity="{{ $secureJS.Data.Integrity }}"></script>
+{{- $main := resources.Get "js/main.js" | partial "short-fingerprint.html" }}
+<script type="text/javascript" src="{{ $main.RelPermalink }}" integrity="{{ $main.Data.Integrity }}"></script>

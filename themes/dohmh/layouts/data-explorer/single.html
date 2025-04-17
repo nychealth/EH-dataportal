@@ -1080,15 +1080,13 @@
 
     {{- /*  Accessible Autocomplete  */}}
 
-    {{- $aa_js := partial "get-and-short-fingerprint.html" "js/accessible-autocomplete.min.js" -}}
-
+    {{- $aa_js := resources.Get "js/accessible-autocomplete.min.js" | partial "short-fingerprint.html" -}}
     <script type="text/javascript" src="{{ $aa_js.RelPermalink }}" integrity="{{ $aa_js.Data.Integrity }}"></script>
 
     {{- /*  Arquero  */}}
 
-    {{- $arquero := partial "get-and-short-fingerprint.html" "node_modules/arquero/dist/arquero.min.js"  }}
-
-    <script type="text/javascript" src="{{ $arquero.RelPermalink }}" integrity="{{ $arquero.Data.Integrity }}"></script>
+    {{- $arquero := resources.Get "node_modules/arquero/dist/arquero.min.js" | partial "short-fingerprint.html" -}}
+    <script src="{{ $arquero.RelPermalink }}" integrity="{{ $arquero.Data.Integrity }}"></script>
 
      {{- /*  DataTables  */}}
 
@@ -1258,9 +1256,9 @@
     {{- $map         := resources.Get "js/data-explorer/map.js" -}}
     {{- $links       := resources.Get "js/data-explorer/links.js" -}}
     {{- $disparities := resources.Get "js/data-explorer/disparities.js" -}}
-    {{- $trend := resources.Get "js/data-explorer/trend.js" -}}
+    {{- $trend       := resources.Get "js/data-explorer/trend.js" -}}
     {{- $app         := resources.Get "js/data-explorer/app.js" -}}
-    {{- $print         := resources.Get "js/data-explorer/print.js" -}}
+    {{- $print       := resources.Get "js/data-explorer/print.js" -}}
 
 
     {{- $global_secure      := $global | partial "short-fingerprint.html" -}}
@@ -1270,9 +1268,9 @@
     {{- $map_secure         := $map | partial "short-fingerprint.html" -}}
     {{- $links_secure       := $links | partial "short-fingerprint.html" -}}
     {{- $disparities_secure := $disparities | partial "short-fingerprint.html" -}}
-    {{- $trend_secure := $trend | partial "short-fingerprint.html" -}}
+    {{- $trend_secure       := $trend | partial "short-fingerprint.html" -}}
     {{- $app_secure         := $app | partial "short-fingerprint.html" -}}
-    {{- $print_secure         := $print | partial "short-fingerprint.html" -}}
+    {{- $print_secure       := $print | partial "short-fingerprint.html" -}}
 
 
     <script type="text/javascript" src="{{ $global_secure.RelPermalink }}" integrity="{{ $global_secure.Data.Integrity }}"></script>

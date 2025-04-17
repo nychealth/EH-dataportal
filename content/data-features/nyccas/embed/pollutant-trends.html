@@ -5,7 +5,7 @@
     
     <!-- main CSS -->
     {{- $sass := resources.Get "scss/theme.scss" -}}
-    {{- $style := $sass | toCSS | fingerprint "sha512" -}}
+    {{- $style := $sass | toCSS | fingerprint "sha512" -}} {{/*  keeping this fingerprint b/c of SCSS/CSS conversion  */}}
     <link rel="stylesheet" href="{{ $style.RelPermalink }}" integrity="{{ $style.Data.Integrity }}" />
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.6.11/core.js"></script>
