@@ -478,7 +478,7 @@ aria-hidden="true" data-pagefind-ignore="all">
 
 
 {{- $js := resources.Get "js/uhflist.js" -}}
-{{ $secureJS := $js | fingerprint "sha512" }}
+{{ $secureJS := $js | partial "short-fingerprint.html" }}
 <script type="text/javascript" src="{{ $secureJS.RelPermalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
 
 <script type="text/javascript">
