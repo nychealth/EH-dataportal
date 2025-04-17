@@ -77,7 +77,7 @@ The air quality sites are overlaid onto this point map using latitude and longit
 <div class="fs-sm py-1"><em>Screen-reader accessible table with zip codes instead of coordinates</em></div>
 </div>
 
-The point map shows sighted people where the monitors are, using latitude and longitude. But most people can't parse latitude and longitude and understand where a monitor is - so, a table that just shows each monitor's coordinates doesn't work as well as the map does. So, to provide a sense of where these monitors are located, we added the parent ZIP Code of each monitor th the table. These are more common in daily life, and can more easily give somebody a sense of where the monitor is.
+The point map shows sighted people where the monitors are, using latitude and longitude. But most people can't parse latitude and longitude and understand where a monitor is - so, a table that just shows each monitor's coordinates doesn't work as well as the map does. So, to provide a sense of where these monitors are located, we added the parent ZIP Code of each monitor to the table. These are more common in daily life, and can more easily give somebody a sense of where the monitor is.
 
 ### When there's too much data for a table
 
