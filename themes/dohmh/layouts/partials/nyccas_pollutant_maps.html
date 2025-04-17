@@ -15,7 +15,7 @@
 
   <div class="row" style="height: 550px;">
       <div class="col-sm-7" style="min-height: 350px;max-height: 550px;">
-          <iframe id="iframeEmbed" src="../../nyccas/raster/bc_2022.html" style="width:100%;height:100%;" frameborder="off"></iframe>
+          <iframe id="iframeEmbed" src="{{ .Site.BaseURL }}nyccas/raster/bc_2022.html" style="width:100%;height:100%;" frameborder="off"></iframe>
       </div>
 
       <div class="col-sm-5" id="mapText" style="height: 100%;overflow-y:scroll;">
@@ -161,7 +161,7 @@
           //Turns off highlights on everything based on class
           for (let button of document.querySelectorAll('.polbtn')) button.classList.remove('active');
           this.classList.add('active')
-          embed = '../../nyccas/raster/' + this.value + '_2022.html'
+          embed = '{{ .Site.BaseURL }}nyccas/raster/' + this.value + '_2022.html'
           document.getElementById('iframeEmbed').src = embed;
 
           const mapTexts = document.querySelectorAll('.polText')
