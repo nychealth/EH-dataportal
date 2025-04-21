@@ -84,21 +84,28 @@
             <div class="l-green-border px-1 mb-2">
                 <h3>NYCCAS Sites</h3>
 
-                {{- with .Resources.GetMatch "nyccas-sites.md" -}}
-                    {{ .Content }}
-                {{- end -}}
+                        {{- with .Resources.GetMatch "nyccas-sites.md" -}}
+                            {{ .Content }}
+                        {{- end -}}
+
+                    </div>
+                </div>
+                <div class="col-sm-6 col-cx-12">
+                    <iframe src="{{ .Site.BaseURL }}nyccas/embeds/nyccas-sites-leaflet.html" frameborder="no" style="width: 100%; height: 550px"></iframe>
+                </div>
+
             </div>
-        </div>
 
-        <div class="col-md-5 mr-auto col-sm-12">
-            <iframe src="{{ .Site.BaseURL }}nyccas/embeds/nyccas-sites-leaflet.html" frameborder="no" style="width: 100%; height: 550px"></iframe>
-        </div>
+            <hr class="my-2">
 
-        <div class="col-md-8 col-sm-12 mx-auto">
-            <hr class="my-4">
         </div>
+    </div>
 
-        <!-- Pollutant Maps -->
+    <!-- single column -->
+
+    <!-- Pollutant maps: text to FMV, maps to template -->
+
+    <div class="row">
         <div class="col-md-8 col-sm-12 mx-auto">
             <h2>Pollutant Maps</h2>
             <img src="{{ .Params.fullurl }}images/NyccasInstall_red.jpg" alt="NYCCAS installation" align="right" style="width:50%;" class="my-2 pl-2">

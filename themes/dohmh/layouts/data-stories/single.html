@@ -9,19 +9,8 @@
         <!--start main content section-->
         <div class="col-xl-8 overflow-hidden fs-rg" id="primary-content">
 
-        <!-- language selection -->
-        {{- if .IsTranslated -}}
-            <nav class="navbar navbar-default my-2">
-                    <ul class="nav navbar-nav fs-sm">
-                        <span class="mr-2">Read this data story in:</span>
-                        {{- range .Translations -}}
-                        <li class="mb-1"><a href="{{ .RelPermalink }}">{{ .Language.LanguageName }}</a>&nbsp;|&nbsp;</li>
-                        {{- end -}}
-                    </ul>
-            </nav>
-        {{- end -}}
-
         <div class="narrow">
+
             <div class="row mt-2 mb-3">
                 <div class="col-12">
                     <nav aria-label="breadcrumb">
@@ -38,6 +27,22 @@
                     </nav>
                 </div>
             </div>
+
+                <!-- language selection -->
+                {{- if .IsTranslated -}}
+                <div class="row">
+                    <div class="col-12">
+                    <nav class="navbar navbar-default my-2">
+                            <ul class="nav navbar-nav fs-sm">
+                                <span class="mr-2">Read this data story in:</span>
+                                {{- range .Translations -}}
+                                <li class="mb-1"><a href="{{ .RelPermalink }}">{{ .Language.LanguageName }}</a>&nbsp;|&nbsp;</li>
+                                {{- end -}}
+                            </ul>
+                    </nav>
+                </div>
+                </div>
+                {{- end -}}
 
             <h1 class="h2 data-stories mb-3"><i class="fas fa-passport" aria-hidden="true" style="margin-right: 10px"></i>{{ .Title }}</h1>
             <div class="container-fluid px-0">
@@ -57,7 +62,7 @@
                     <ul class="extensible-list text-muted mt-3">
                         <li>
                             <p class="text-muted" >
-                                <span class="fa fa-envelope"></span> Like this story? <a href="#" data-toggle="modal" data-target="#subscribeModal"> Sign up to find out when we post something new.</a></p> 
+                                <span class="fa fa-envelope"></span> Like this story? <a href="#" data-subscribe-click="data-story" data-toggle="modal" data-target="#subscribeModal"> Sign up to find out when we post something new.</a></p> 
                         </li>
                     </ul>
                 </div>
