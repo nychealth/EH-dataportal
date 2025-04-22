@@ -917,10 +917,11 @@ config = {
                 ]
             }
         },
+        /*QDA stories*/
         {
             "id": "heat-sensitivity",
             "title": "Heat sensitivity",
-            "content": "My landlord is not often responsive to complaints about heat, even when it's 60 degrees outside and there's no need for it. I have heat sensitivity that is a struggle to find the source of with my doctor. I become nauseous, dizzy and cannot sleep or eat when affected. I do not sweat much, so heat stroke or heat exhaustion is always a fear of mine. I do not really have help, I just buy fans, limit activity or take cool showers when affected.<br><br><strong>Ren(he/him)</strong>",
+            "content": "My landlord is not often responsive to complaints about heat, even when it's 60 degrees outside and there's no need for it. I have heat sensitivity that is a struggle to find the source of with my doctor. I become nauseous, dizzy and cannot sleep or eat when affected. I do not sweat much, so heat stroke or heat exhaustion is always a fear of mine. I do not really have help, I just buy fans, limit activity or take cool showers when affected.<br><br><strong>-Ren(he/him)</strong>",
             "marker": {
                 "lat": 40.60744008899693,
                 "lng": -74.00263401036987,
