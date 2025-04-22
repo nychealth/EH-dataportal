@@ -916,6 +916,60 @@ config = {
                     "heat_stress" 
                 ]
             }
+        },
+        {
+            "id": "heat-sensitivity",
+            "title": "Heat sensitivity",
+            "content": "My landlord is not often responsive to complaints about heat, even when it's 60 degrees outside and there's no need for it. I have heat sensitivity that is a struggle to find the source of with my doctor. I become nauseous, dizzy and cannot sleep or eat when affected. I do not sweat much, so heat stroke or heat exhaustion is always a fear of mine. I do not really have help, I just buy fans, limit activity or take cool showers when affected.<br><br><strong>Ren(he/him)</strong>",
+            "marker": {
+                "lat": 40.60744008899693,
+                "lng": -74.00263401036987,
+            },
+            "mapState": {
+                "lat": 40.60744008899693,
+                "lng": -74.00263401036987,
+                "zoom": 14,
+                "layers": [ 
+                    "nycAfternoon", 
+                    "heat_stress" 
+                ]
+            }
+        },
+        {
+            "id": "debilitating-heat",
+            "title": "Debilitating heat",
+            "content": "I am very physically disabled and movement takes a lot of effort, which in such debilitating heat, means I am an exhausted, sweaty mess even from trying to walk across the street. I can't afford to use AC often, so I'm still hot and miserable at home. I live in a third floor walk up, which is already a struggle, with no hallway AC. Subway stations near me are inaccessible and I have to go up many flights of stairs—nearly impossible in heat. This impedes my ability to leave my stuffy apartment to find accessible AC. I miss a lot of doctor's appointments, which takes a further toll on my health. Sleep is also very difficult, leaving me even more drained than normal from my physical disabilities. <br><strong>-Anonymous(they/them)</strong>",
+            "marker": {
+                "lat": 40.76202190298572,
+                "lng": -73.92537488952408,
+            },
+            "mapState": {
+                "lat": 40.76202190298572,
+                "lng": -73.92537488952408,
+                "zoom": 14,
+                "layers": [ 
+                    "Household_air_conditioning", 
+                    "heat_stress" 
+                ]
+            }
+        },
+        {
+            "id": "Unbearable-heat",
+            "title": "Unbearable without AC",
+            "content": "My building runs colder than other buildings I've lived in and visited in Washington Heights, but during the summer, it is STILL unbearable without AC. After my unit broke last August and with no budget to repair it, I had to avoid my kitchen and living room due to intense heat and humidity. I suffer from PCOS and other chronic medical conditions. The medications I take for these effect my hormones, and make me very heat-sensitive. My summer activities are often impaired by nausea, fatigue, muscle cramps and intense headaches. My apartment building, management and neighborhood, to my knowledge, have no resources to change the situation.<br><strong>-Washington Heights resident</strong>",
+            "marker": {
+                "lat": 40.83448753023138,
+                "lng": -73.94179291976536,
+            },
+            "mapState": {
+                "lat": 40.83448753023138,
+                "lng": -73.94179291976536,
+                "zoom": 14,
+                "layers": [ 
+                    "nycAfternoon", 
+                    "heat_stress" 
+                ]
+            }
         }
     ]
 }
