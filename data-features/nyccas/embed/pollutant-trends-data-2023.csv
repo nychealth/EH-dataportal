@@ -1,4 +1,4 @@
-﻿Pollutant,Time,Season,Tertile,Source,Value
+Pollutant,Time,Season,Tertile,Source,Value
 BC,2009,ALL,Low,Industrial Areas,1.242149054
 BC,2009,ALL,Medium,Industrial Areas,1.224791935
 BC,2009,ALL,High,Industrial Areas,1.615931926
@@ -87,9 +87,9 @@ NO,2009,Winter,ALL,ALL,42.38087771
 NO2,2009,ALL,Low,Building Density,24.19314306
 NO2,2009,ALL,Medium,Building Density,27.17774182
 NO2,2009,ALL,High,Building Density,37.52689645
-NO2,2009,ALL,Low,Traffic NOx Emissions,25.11159417
-NO2,2009,ALL,Medium,Traffic NOx Emissions,26.41653902
-NO2,2009,ALL,High,Traffic NOx Emissions,36.78694318
+NO2,2009,ALL,Low,Traffic Density,25.11159417
+NO2,2009,ALL,Medium,Traffic Density,26.41653902
+NO2,2009,ALL,High,Traffic Density,36.78694318
 NO2,2009,ALL,ALL,ALL,27.32899329
 NO2,2009,Fall,Low,Building Density,22.95399726
 NO2,2009,Fall,Medium,Building Density,24.77187328
@@ -273,9 +273,9 @@ NO,2010,Winter,ALL,ALL,34.62814818
 NO2,2010,ALL,Low,Building Density,22.1761409
 NO2,2010,ALL,Medium,Building Density,24.97331994
 NO2,2010,ALL,High,Building Density,33.64317195
-NO2,2010,ALL,Low,Traffic NOx Emissions,22.8942836
-NO2,2010,ALL,Medium,Traffic NOx Emissions,24.51824819
-NO2,2010,ALL,High,Traffic NOx Emissions,32.86541017
+NO2,2010,ALL,Low,Traffic Density,22.8942836
+NO2,2010,ALL,Medium,Traffic Density,24.51824819
+NO2,2010,ALL,High,Traffic Density,32.86541017
 NO2,2010,ALL,ALL,ALL,25.26050589
 NO2,2010,Fall,Low,Building Density,20.71463873
 NO2,2010,Fall,Medium,Building Density,23.18316831
@@ -459,9 +459,9 @@ NO,2011,Winter,ALL,ALL,48.39824884
 NO2,2011,ALL,Low,Building Density,22.53271294
 NO2,2011,ALL,Medium,Building Density,25.59816053
 NO2,2011,ALL,High,Building Density,33.66622507
-NO2,2011,ALL,Low,Traffic NOx Emissions,23.388422
-NO2,2011,ALL,Medium,Traffic NOx Emissions,24.70409092
-NO2,2011,ALL,High,Traffic NOx Emissions,33.23539894
+NO2,2011,ALL,Low,Traffic Density,23.388422
+NO2,2011,ALL,Medium,Traffic Density,24.70409092
+NO2,2011,ALL,High,Traffic Density,33.23539894
 NO2,2011,ALL,ALL,ALL,26.0653787
 NO2,2011,Fall,Low,Building Density,23.80470034
 NO2,2011,Fall,Medium,Building Density,26.22069889
@@ -645,9 +645,9 @@ NO,2012,Winter,ALL,ALL,34.72601519
 NO2,2012,ALL,Low,Building Density,19.976658
 NO2,2012,ALL,Medium,Building Density,22.91589155
 NO2,2012,ALL,High,Building Density,30.85381644
-NO2,2012,ALL,Low,Traffic NOx Emissions,20.97001644
-NO2,2012,ALL,Medium,Traffic NOx Emissions,22.00676365
-NO2,2012,ALL,High,Traffic NOx Emissions,30.3208523
+NO2,2012,ALL,Low,Traffic Density,20.97001644
+NO2,2012,ALL,Medium,Traffic Density,22.00676365
+NO2,2012,ALL,High,Traffic Density,30.3208523
 NO2,2012,ALL,ALL,ALL,23.43975797
 NO2,2012,Fall,Low,Building Density,20.25520162
 NO2,2012,Fall,Medium,Building Density,23.29258898
@@ -831,9 +831,9 @@ NO,2013,Winter,ALL,ALL,35.11346122
 NO2,2013,ALL,Low,Building Density,19.34398564
 NO2,2013,ALL,Medium,Building Density,22.35378269
 NO2,2013,ALL,High,Building Density,29.72676168
-NO2,2013,ALL,Low,Traffic NOx Emissions,20.30579719
-NO2,2013,ALL,Medium,Traffic NOx Emissions,21.5041045
-NO2,2013,ALL,High,Traffic NOx Emissions,29.17921972
+NO2,2013,ALL,Low,Traffic Density,20.30579719
+NO2,2013,ALL,Medium,Traffic Density,21.5041045
+NO2,2013,ALL,High,Traffic Density,29.17921972
 NO2,2013,ALL,ALL,ALL,23.09419916
 NO2,2013,Fall,Low,Building Density,18.60673612
 NO2,2013,Fall,Medium,Building Density,21.86651782
@@ -1017,9 +1017,9 @@ NO,2014,Winter,ALL,ALL,39.82935213
 NO2,2014,ALL,Low,Building Density,19.07467564
 NO2,2014,ALL,Medium,Building Density,22.24396566
 NO2,2014,ALL,High,Building Density,28.90000224
-NO2,2014,ALL,Low,Traffic NOx Emissions,20.3233045
-NO2,2014,ALL,Medium,Traffic NOx Emissions,21.1797548
-NO2,2014,ALL,High,Traffic NOx Emissions,28.31048398
+NO2,2014,ALL,Low,Traffic Density,20.3233045
+NO2,2014,ALL,Medium,Traffic Density,21.1797548
+NO2,2014,ALL,High,Traffic Density,28.31048398
 NO2,2014,ALL,ALL,ALL,22.65255405
 NO2,2014,Fall,Low,Building Density,18.01703678
 NO2,2014,Fall,Medium,Building Density,20.55341025
@@ -1203,9 +1203,9 @@ NO,2015,Winter,ALL,ALL,33.06749076
 NO2,2015,ALL,Low,Building Density,18.79200019
 NO2,2015,ALL,Medium,Building Density,21.47067122
 NO2,2015,ALL,High,Building Density,27.77856904
-NO2,2015,ALL,Low,Traffic NOx Emissions,19.77237025
-NO2,2015,ALL,Medium,Traffic NOx Emissions,20.56859685
-NO2,2015,ALL,High,Traffic NOx Emissions,27.34506713
+NO2,2015,ALL,Low,Traffic Density,19.77237025
+NO2,2015,ALL,Medium,Traffic Density,20.56859685
+NO2,2015,ALL,High,Traffic Density,27.34506713
 NO2,2015,ALL,ALL,ALL,22.29262069
 NO2,2015,Fall,Low,Building Density,17.61016917
 NO2,2015,Fall,Medium,Building Density,19.60457057
@@ -1389,9 +1389,9 @@ NO,2016,Winter,ALL,ALL,32.54758968
 NO2,2016,ALL,Low,Building Density,17.65470984
 NO2,2016,ALL,Medium,Building Density,20.5129043
 NO2,2016,ALL,High,Building Density,26.5430081
-NO2,2016,ALL,Low,Traffic NOx Emissions,19.00259512
-NO2,2016,ALL,Medium,Traffic NOx Emissions,19.21014054
-NO2,2016,ALL,High,Traffic NOx Emissions,26.18600412
+NO2,2016,ALL,Low,Traffic Density,19.00259512
+NO2,2016,ALL,Medium,Traffic Density,19.21014054
+NO2,2016,ALL,High,Traffic Density,26.18600412
 NO2,2016,ALL,ALL,ALL,21.22975267
 NO2,2016,Fall,Low,Building Density,18.32820984
 NO2,2016,Fall,Medium,Building Density,20.25632069
@@ -1575,9 +1575,9 @@ NO,2017,Winter,ALL,ALL,28.88511109
 NO2,2017,ALL,Low,Building Density,18.18719143
 NO2,2017,ALL,Medium,Building Density,21.14013764
 NO2,2017,ALL,High,Building Density,26.73611712
-NO2,2017,ALL,Low,Traffic NOx Emissions,19.47070703
-NO2,2017,ALL,Medium,Traffic NOx Emissions,20.0679023
-NO2,2017,ALL,High,Traffic NOx Emissions,26.21517812
+NO2,2017,ALL,Low,Traffic Density,19.47070703
+NO2,2017,ALL,Medium,Traffic Density,20.0679023
+NO2,2017,ALL,High,Traffic Density,26.21517812
 NO2,2017,ALL,ALL,ALL,21.1271846
 NO2,2017,Fall,Low,Building Density,17.59110339
 NO2,2017,Fall,Medium,Building Density,20.64709789
@@ -1761,9 +1761,9 @@ NO,2018,Winter,ALL,ALL,24.64110396
 NO2,2018,ALL,Low,Building Density,17.65870509
 NO2,2018,ALL,Medium,Building Density,20.22988849
 NO2,2018,ALL,High,Building Density,25.34691163
-NO2,2018,ALL,Low,Traffic NOx Emissions,18.81346673
-NO2,2018,ALL,Medium,Traffic NOx Emissions,18.82890669
-NO2,2018,ALL,High,Traffic NOx Emissions,25.33650864
+NO2,2018,ALL,Low,Traffic Density,18.81346673
+NO2,2018,ALL,Medium,Traffic Density,18.82890669
+NO2,2018,ALL,High,Traffic Density,25.33650864
 NO2,2018,ALL,ALL,ALL,20.56765131
 NO2,2018,Fall,Low,Building Density,16.59142361
 NO2,2018,Fall,Medium,Building Density,19.22446512
@@ -1947,9 +1947,9 @@ NO,2019,Winter,ALL,ALL,25.31973739
 NO2,2019,ALL,Low,Building Density,16.26315726
 NO2,2019,ALL,Medium,Building Density,18.82853831
 NO2,2019,ALL,High,Building Density,24.46514535
-NO2,2019,ALL,Low,Traffic NOx Emissions,17.17134908
-NO2,2019,ALL,Medium,Traffic NOx Emissions,17.7056606
-NO2,2019,ALL,High,Traffic NOx Emissions,24.37128531
+NO2,2019,ALL,Low,Traffic Density,17.17134908
+NO2,2019,ALL,Medium,Traffic Density,17.7056606
+NO2,2019,ALL,High,Traffic Density,24.37128531
 NO2,2019,ALL,ALL,ALL,19.24829305
 NO2,2019,Fall,Low,Building Density,16.55175443
 NO2,2019,Fall,Medium,Building Density,20.0122968
@@ -2125,9 +2125,9 @@ NO,2020,Winter,ALL,ALL,30.19005928
 NO2,2020,ALL,Low,Building Density,15.29372058
 NO2,2020,ALL,Medium,Building Density,17.52638051
 NO2,2020,ALL,High,Building Density,20.95562516
-NO2,2020,ALL,Low,Traffic NOx Emissions,16.1998511
-NO2,2020,ALL,Medium,Traffic NOx Emissions,16.07344782
-NO2,2020,ALL,High,Traffic NOx Emissions,21.36505641
+NO2,2020,ALL,Low,Traffic Density,16.1998511
+NO2,2020,ALL,Medium,Traffic Density,16.07344782
+NO2,2020,ALL,High,Traffic Density,21.36505641
 NO2,2020,ALL,ALL,ALL,18.13064111
 NO2,2020,Fall,Low,Building Density,16.70473538
 NO2,2020,Fall,Medium,Building Density,18.44895823
@@ -2303,9 +2303,9 @@ NO,2021,Winter,ALL,ALL,21.84142318
 NO2,2021,ALL,Low,Building Density,16.16429494
 NO2,2021,ALL,Medium,Building Density,17.63028253
 NO2,2021,ALL,High,Building Density,20.91850177
-NO2,2021,ALL,Low,Traffic NOx Emissions,16.73274926
-NO2,2021,ALL,Medium,Traffic NOx Emissions,16.54168942
-NO2,2021,ALL,High,Traffic NOx Emissions,21.21983564
+NO2,2021,ALL,Low,Traffic Density,16.73274926
+NO2,2021,ALL,Medium,Traffic Density,16.54168942
+NO2,2021,ALL,High,Traffic Density,21.21983564
 NO2,2021,ALL,ALL,ALL,18.5631833
 NO2,2021,Fall,Low,Building Density,17.36079036
 NO2,2021,Fall,Medium,Building Density,18.69844249
@@ -2481,9 +2481,9 @@ NO,2022,Winter,ALL,ALL,21.77677699
 NO2,2022,ALL,Low,Building Density,15.39829821
 NO2,2022,ALL,Medium,Building Density,17.00629394
 NO2,2022,ALL,High,Building Density,20.31481457
-NO2,2022,ALL,Low,Traffic NOx Emissions,16.29166444
-NO2,2022,ALL,Medium,Traffic NOx Emissions,16.28598574
-NO2,2022,ALL,High,Traffic NOx Emissions,19.97661444
+NO2,2022,ALL,Low,Traffic Density,16.29166444
+NO2,2022,ALL,Medium,Traffic Density,16.28598574
+NO2,2022,ALL,High,Traffic Density,19.97661444
 NO2,2022,ALL,ALL,ALL,17.85902261
 NO2,2022,Fall,Low,Building Density,16.94592446
 NO2,2022,Fall,Medium,Building Density,17.59950256
@@ -2659,37 +2659,37 @@ NO,2023,Winter,ALL,ALL,20.13632436
 NO2,2023,ALL,Low,Building Density,16.65840284
 NO2,2023,ALL,Medium,Building Density,17.79050838
 NO2,2023,ALL,High,Building Density,20.87821871
-NO2,2023,ALL,Low,Traffic NOx Emissions,17.03911827
-NO2,2023,ALL,Medium,Traffic NOx Emissions,16.78837545
-NO2,2023,ALL,High,Traffic NOx Emissions,21.32190769
+NO2,2023,ALL,Low,Traffic Density,17.03911827
+NO2,2023,ALL,Medium,Traffic Density,16.78837545
+NO2,2023,ALL,High,Traffic Density,21.32190769
 NO2,2023,ALL,ALL,ALL,18.64079386
 NO2,2023,Fall,Low,Building Density,18.84272958
-NO2,2023,Fall,Low,Traffic NOx Emissions,19.22580651
+NO2,2023,Fall,Low,Traffic Density,19.22580651
 NO2,2023,Fall,Medium,Building Density,20.07179155
-NO2,2023,Fall,Medium,Traffic NOx Emissions,18.36230909
+NO2,2023,Fall,Medium,Traffic Density,18.36230909
 NO2,2023,Fall,High,Building Density,24.04167779
-NO2,2023,Fall,High,Traffic NOx Emissions,25.01097165
+NO2,2023,Fall,High,Traffic Density,25.01097165
 NO2,2023,Fall,ALL,ALL,21.22403586
 NO2,2023,Spring,Low,Building Density,15.29195715
-NO2,2023,Spring,Low,Traffic NOx Emissions,15.41978121
+NO2,2023,Spring,Low,Traffic Density,15.41978121
 NO2,2023,Spring,Medium,Building Density,16.2504927
-NO2,2023,Spring,Medium,Traffic NOx Emissions,15.64730219
+NO2,2023,Spring,Medium,Traffic Density,15.64730219
 NO2,2023,Spring,High,Building Density,19.66260686
-NO2,2023,Spring,High,Traffic NOx Emissions,19.95599156
+NO2,2023,Spring,High,Traffic Density,19.95599156
 NO2,2023,Spring,ALL,ALL,17.11257353
 NO2,2023,Summer,Low,Building Density,12.86758006
-NO2,2023,Summer,Low,Traffic NOx Emissions,12.7547104
+NO2,2023,Summer,Low,Traffic Density,12.7547104
 NO2,2023,Summer,Medium,Building Density,13.45062073
-NO2,2023,Summer,Medium,Traffic NOx Emissions,12.73017456
+NO2,2023,Summer,Medium,Traffic Density,12.73017456
 NO2,2023,Summer,High,Building Density,16.70377413
-NO2,2023,Summer,High,Traffic NOx Emissions,17.37565908
+NO2,2023,Summer,High,Traffic Density,17.37565908
 NO2,2023,Summer,ALL,ALL,14.59355538
 NO2,2023,Winter,Low,Building Density,19.63134455
-NO2,2023,Winter,Low,Traffic NOx Emissions,20.87126381
+NO2,2023,Winter,Low,Traffic Density,20.87126381
 NO2,2023,Winter,Medium,Building Density,21.82365866
-NO2,2023,Winter,Medium,Traffic NOx Emissions,20.63856361
+NO2,2023,Winter,Medium,Traffic Density,20.63856361
 NO2,2023,Winter,High,Building Density,23.43781174
-NO2,2023,Winter,High,Traffic NOx Emissions,23.31391489
+NO2,2023,Winter,High,Traffic Density,23.31391489
 NO2,2023,Winter,ALL,ALL,21.80426829
 O3,2023,ALL,Low,Traffic Density,36.24880885
 O3,2023,ALL,Medium,Traffic Density,33.83542642
