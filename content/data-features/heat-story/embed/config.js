@@ -819,7 +819,7 @@ config = {
         {
             "id": "grocery-store-ac",
             "title": "We went to grocery stores and the library to stay cool",
-            "content": "We didn’t have AC until I was 7. Going to the grocery stores and local library. We took a little longer in the grocery store than we needed to. We took cold showers. We put the water in the fridge to be cool. We had a fan in every bedroom. Sometimes we took a rag and soaked in cold water before putting it on my skin. I upped my salt intake with electrolyte water.<br>-Kitty",
+            "content": "We didn’t have AC until I was 7. Going to the grocery stores and local library. We took a little longer in the grocery store than we needed to. We took cold showers. We put the water in the fridge to be cool. We had a fan in every bedroom. Sometimes we took a rag and soaked in cold water before putting it on my skin. I upped my salt intake with electrolyte water.<br><strong>-Kitty</strong>",
             "marker": {
                 "lat": 40.676652,
                 "lng": -73.823220,},
@@ -917,7 +917,7 @@ config = {
                 ]
             }
         },
-        /*QDA stories*/
+/*QDA stories*/
         {
             "id": "heat-sensitivity",
             "title": "Heat sensitivity",
@@ -971,6 +971,151 @@ config = {
                     "heat_stress" 
                 ]
             }
-        }
+        },
+/* SQWM stories */
+        {
+            "id": "Psychosocial-wellbeing",
+            "title": "Can't focus on school",
+            "content": "It affects my psychosocial well-being. I worry about the cost of my energy bill, power outages, and my stress levels. When my home is too hot, can't sleep and I can't focus on work or school. I use a fan, take cold showers, drink water, and eat watermelon to stay cool. <br><strong>-Struggling grad student</strong>",
+            "marker": {
+                "lat": 40.701724612663796,
+                "lng": -73.82345161918002,
+            },
+            "mapState": {
+                "lat": 40.701724612663796,
+                "lng": -73.82345161918002,
+                "zoom": 14,
+                "layers": [ 
+                    "nycAfternoon", 
+                    "heat_stress" 
+                ]
+            }
+        },
+        {
+            "id": "Getting-air",
+            "title": "I have to leave the subway",
+            "content": "I worry about overheating and not having enough water to hydrate. There have been times when I'm in the train station or on a train and it's gotten so hot that I have to exit the car or station just to get air. My neighborhood helps with the icy carts and ice cream trucks.<br><strong>-Diana, Queens resident, 2024</strong>",
+            "marker": {
+                "lat": 40.692141693784144,
+                "lng": -73.8270469316841,
+            },
+            "mapState": {
+                "lat": 40.692141693784144,
+                "lng": -73.8270469316841,
+                "zoom": 14,
+                "layers": [ 
+                    "nycAfternoon", 
+                    "heat_stress" 
+                ]
+            }
+        }, 
+        {
+            "id": "Avoid-leaving",
+            "title": "I try to avoid going out in the heat unless necessary",
+            "content": "Our home is an old brick house, which is like an oven. I worry about my cat - I hope he isn't too hot even with the windows open and the electric bill being high. To stay cool, we have to have AC or fans on all the time and take cool showers or wear less layers. We had to take another AC from my in-laws to help with the heat. <br><strong>-Debs C., 2024</strong>",
+            "marker": {
+                "lat": 40.69218684458226,
+                "lng": -73.73291440003689,
+            },
+            "mapState": {
+                "lat": 40.69218684458226,
+                "lng": -73.73291440003689,
+                "zoom": 14,
+                "layers": [ 
+                    "nycAfternoon", 
+                    "heat_stress" 
+                ]
+            }
+        },
+        {
+            "id": "Overworked",
+            "title": "I get overworked when it's hot",
+            "content": "I get overworked when it's too hot because people would call 911 just to go to the hospital for AC and I have to intake them; not to mention they don't hydrate properly so I have to give them saline. There's an increase in call volume for EMS. I check the weather on my phone and dress appropriately to stay cool. <br><strong>-Queens resident, 2024</strong>",
+            "marker": {
+                "lat": 40.70202957919236,
+                "lng": -73.74123146150714,
+            },
+            "mapState": {
+                "lat": 40.70202957919236,
+                "lng": -73.74123146150714,
+                "zoom": 14,
+                "layers": [ 
+                    "Heat_vulnerability_index", 
+                    "heat_stress" 
+                ]
+            }
+        }, 
+        {
+            "id": "Trouble-sleeping",
+            "title": "I have trouble sleeping when it's warm",
+            "content": "I worry about money and shelter. My sleep is affected by the heat; I have trouble sleeping when it's warm. I use AC and take cold showers to stay cool. <br><strong>-Johnmoses, 2024</strong>",
+            "marker": {
+                "lat": 40.68088025334419,
+                "lng": -73.84507398130488,
+            },
+            "mapState": {
+                "lat": 40.68088025334419,
+                "lng": -73.84507398130488,
+                "zoom": 14,
+                "layers": [ 
+                    "Heat_vulnerability_index", 
+                    "heat_stress" 
+                ]
+            }
+        }, 
+        {
+            "id": "Peak-hours",
+            "title": "I don't go outside during peak hours",
+            "content": "I dress in light clothing. I don't go outside during peak hours. The cooling centers are not close to me so I travel to them. I pay $250 per month in the winter for energy, but in the summer it also costly for AC and fan. Sometimes it costs more than in the winter. I stay indoors and I buy food so I don't have to cook. <br><strong>-Mohini, 2024</strong>",
+            "marker": {
+                "lat": 40.680441975958985,
+                "lng": -73.79396252866313,
+            },
+            "mapState": {
+                "lat": 40.680441975958985,
+                "lng": -73.79396252866313,
+                "zoom": 14,
+                "layers": [ 
+                    "Heat_vulnerability_index", 
+                    "heat_stress" 
+                ]
+            }
+        }, 
+        {
+            "id": "power-bill",
+            "title": "I worry about the cost of my power bill",
+            "content": "I go to the coffee shop or library to get cool. My home is too hot. <br><strong>-Queens resident, 2024</strong>",
+            "marker": {
+                "lat": 40.68011652370219,
+                "lng": -73.78022961806579,
+            },
+            "mapState": {
+                "lat": 40.68011652370219,
+                "lng": -73.78022961806579,
+                "zoom": 14,
+                "layers": [ 
+                    "Heat_vulnerability_index", 
+                    "heat_stress" 
+                ]
+            }
+        },
+        {
+            "id": "90s-bill",
+            "title": "We wait until it's in the 90s to put the air on",
+            "content": "We wait until it's extremely hot to turn on the AC. I worry about the children being hot. To try and save on costs, we wait until it's almost into the 90s to put the air on.  <br><strong>-Anonymous, 2024</strong>",
+            "marker": {
+                "lat": 40.85046293824912,
+                "lng": -73.85227787206723,
+            },
+            "mapState": {
+                "lat": 40.85046293824912,
+                "lng": -73.85227787206723,
+                "zoom": 14,
+                "layers": [ 
+                    "Household_air_conditioning", 
+                    "heat_stress" 
+                ]
+            }
+        },
     ]
 }
