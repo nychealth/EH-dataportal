@@ -1117,5 +1117,40 @@ config = {
                 ]
             }
         },
+        {
+            "id": "Asthma-worsens",
+            "title": "I get asthma attacks when it's too hot",
+            "content": "My sleep and daily life is affected when it's too hot because I get asthma attacks, which force me to go to the ER and I'm heavily out of breath. I worry about my pets and health. I go to public events/places, take cold showers, and keep a bucket of ice water to cool down. <br><strong>-Theresa D., 2024</strong>",
+            "marker": {
+                "lat": 40.85046293824912,
+                "lng": -73.85227787206723,
+            },
+            "mapState": {
+                "lat": 40.85046293824912,
+                "lng": -73.85227787206723,
+                "zoom": 14,
+                "layers": [ 
+                    "Air quality - PM2.5", 
+                    "Household_air_conditioning"
+                ]
+            }
+        },
+        {
+            "id": "Dysregulated",
+            "title": "My body does not know how to regulate",
+            "content": "I turn my AC on and have two extra fans if its over 70 degrees. I take long walks outside because my apartment gets very hot and it's cooler outside. We have to be careful when we cook during heat waves. We go outside at night to cool off and order take out. I worry about my health; my body does not know how to regulate during high temperature. I have been getting sick a lot. Whenever I walk my dog, I am conscious of how long the walk is. I worry about him getting heat stroke. I get emails from my doctor's office and vet's office to tell me what to look out for. <br><strong>-Queens resident., 2024</strong>",
+            "marker": {
+                "lat": 40.739596484892296,
+                "lng": -73.87787224451348,
+            },
+            "mapState": {
+                "lat": 40.739596484892296,
+                "lng": -73.87787224451348,
+                "zoom": 14,
+                "layers": [ 
+                    "heat_stress"
+                ]
+            }
+        }
     ]
 }
