@@ -737,7 +737,7 @@ config = {
         {
             "id": "heat-traffic-pollution",
             "title": "Heat, traffic, pollution and odors make the summer heat exhausting",
-            "content": "I live on Bruckner Boulevard, between Alexander and Willis Avenues, directly adjacent to the Willis Avenue Bridge. Heat during the summer months is completely exhausting because it not only brings the smell of hot trash from the waste transfer station, exacerbates the smog of the heavy highway traffic that usually starts about 5 am and reminds me of the ensuing high electric bill from the use of fans and air conditioners, there is very little tree coverage or shade to block the sun's rays or cool even the outside temperatures. From the moment Lilah and I leave the building, heat hits us and follows us throughout the entire neighborhood. <br>-Dr. Melissa Barber <div><img src=\"https://raw.githubusercontent.com/OpenStoryMap/geodata/main/nyc-heat-watch-2021/stories/melissa-barber/road3.jpeg\"></div>",
+            "content": "I live on Bruckner Boulevard, between Alexander and Willis Avenues, directly adjacent to the Willis Avenue Bridge. Heat during the summer months is completely exhausting because it not only brings the smell of hot trash from the waste transfer station, exacerbates the smog of the heavy highway traffic that usually starts about 5 am and reminds me of the ensuing high electric bill from the use of fans and air conditioners, there is very little tree coverage or shade to block the sun's rays or cool even the outside temperatures. From the moment Lilah and I leave the building, heat hits us and follows us throughout the entire neighborhood. <br>-<strong>Dr. Melissa Barber </strong><div><img src=\"https://raw.githubusercontent.com/OpenStoryMap/geodata/main/nyc-heat-watch-2021/stories/melissa-barber/road3.jpeg\"></div>",
             "marker": {
                 "lat": 40.805985,
                 "lng": -73.925476,},
@@ -754,7 +754,7 @@ config = {
           {
             "id": "high-ac-bills",
             "title": "Heat makes it hard to sleep—but AC costs too much",
-            "content": "Heat has caused much discomfort such as not being able to sleep because it’s too hot in my home.      There are days where we open all the windows and fans just to avoid having to turn the central air conditioning on and running up the bill. <br>-Anonymous",
+            "content": "Heat has caused much discomfort such as not being able to sleep because it’s too hot in my home.      There are days where we open all the windows and fans just to avoid having to turn the central air conditioning on and running up the bill. <br><strong>-Anonymous</strong>",
             "marker": {
                 "lat": 40.668111,
                 "lng": -73.827444,},
@@ -770,7 +770,7 @@ config = {
         {
             "id": "fainting",
             "title": "I can’t take the heat. I am worried about fainting.",
-            "content": "Normally our windows and doors are open for the cool breeze to enter our home. When it becomes too hot, we will close the windows and doors and put the AC on. We are careful not to run the AC for too long given the energy bill, but we run the risk of getting sick. It is difficult to concentrate and study when it is too hot. It is also difficult to sleep. My family gets cranky. We try to avoid being outside and reduce our outdoor activities. We go outside with an umbrella. We pack cold water to bring us and paper towels so we can soak them with the water and refresh ourselves with it. We don’t have a cooling centers within a 10 minute walk from my home.<br>-Queens resident",
+            "content": "Normally our windows and doors are open for the cool breeze to enter our home. When it becomes too hot, we will close the windows and doors and put the AC on. We are careful not to run the AC for too long given the energy bill, but we run the risk of getting sick. It is difficult to concentrate and study when it is too hot. It is also difficult to sleep. My family gets cranky. We try to avoid being outside and reduce our outdoor activities. We go outside with an umbrella. We pack cold water to bring us and paper towels so we can soak them with the water and refresh ourselves with it. We don’t have a cooling centers within a 10 minute walk from my home.<br><strong>-Queens resident</strong>",
             "marker": {
                 "lat": 40.70698,  
                 "lng": -73.79797,},
@@ -803,7 +803,7 @@ config = {
         {
             "id": "hotter-inside",
             "title": "It's hotter in our home than outside",
-            "content": "Our home tends to be very hot indoors with it being cooler outside than inside. We tend to slow down our movement during the heat because we feel a bit unwell. I usually sleep later and wake up earlier because I am unable to sleep, turning and twisting all night even with a fan. <br>I worry about the cost of my energy bill, power outages, the overheating of my cat, my health being impacted, and my friends’ health being impacted.<br>-Anonymous",
+            "content": "Our home tends to be very hot indoors with it being cooler outside than inside. We tend to slow down our movement during the heat because we feel a bit unwell. I usually sleep later and wake up earlier because I am unable to sleep, turning and twisting all night even with a fan. <br>I worry about the cost of my energy bill, power outages, the overheating of my cat, my health being impacted, and my friends’ health being impacted.<br><strong>-Anonymous</strong>",
             "marker": {
                 "lat": 40.667484,
                 "lng": -73.788095,},
