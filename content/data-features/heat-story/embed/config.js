@@ -395,7 +395,7 @@ config = {
                 "measureInfo": {
                     "indicatorID": 2141,
                     "measureID": 688,
-                    "geoType": "NTA",
+                    "geoType": "CD",
                     "time": "2018",
                 },
                 "exclusive": true,
@@ -412,7 +412,7 @@ config = {
                     "displayPropertyArgs": [
                         {
                             "displayName": "Daytime summer surface temperature",
-                            "units": "degrees, Fahrenheit",
+                            "units": "°F",
                             "format": "float"
                         }
                     ]
