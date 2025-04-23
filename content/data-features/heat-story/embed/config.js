@@ -421,33 +421,33 @@ config = {
         },
         {
             "property": {
-                "id": "Adults_with_asthma_past_12_months",
-                "name": "Adults with asthma - past 12 months",
+                "id": "Asthma_ED_visits",
+                "name": "Asthma emergency department visits - Adults",
                 "type": "measureData",
                 "buttonSection": "base",
                 "measureInfo": {
-                    "indicatorID": 18,
-                    "measureID": 363,
-                    "geoType": "UHF34",
+                    "indicatorID": 2380,
+                    "measureID": 1199,
+                    "geoType": "CD",
                     "time": "2022",
                 },
                 "exclusive": true,
                 "args": {
                     "colorFeatureProperty": "Adults with asthma, percent",
                     "minColor": "white",
-                    "maxColor": "green",
+                    "maxColor": "purple",
                     "color": "black",
-                    "opacity": 0.8,
-                    "legendDescription": "Asthma is a common disease characterized by breathing difficulty. Poor air quality and housing issues increase risk of developing and triggering asthma. <a href='../../data-explorer/asthma/?id=18#display=summary'>Get full data</a>."
+                    "opacity": 0.75,
+                    "legendDescription": "Asthma is a common disease characterized by breathing difficulty. Poor air quality and housing issues increase risk of developing and triggering asthma. <a href='../../data-explorer/asthma/?id=2380#display=summary'>Get full data</a>."
                 },
                 "displayProperties": {
                     "missingDisplay": "N/A",
                     "displayPropertyArgs": [
                         {
-                            "id": "Adults with asthma, percent",
-                            "displayName": "Adults with asthma, percent",
+                            "id": "Asthma emergency department visits (adults), age-adjusted rate",
+                            "displayName": "Asthma emergency department visits (adults), age-adjusted rate",
                             "format": "float",
-                            "units" : "%"
+                            "units" : "per 10,000"
                         }
                     ]
                 }
@@ -1066,7 +1066,7 @@ config = {
                 "lng": -73.8270469316841,
                 "zoom": 14,
                 "layers": [  
-                    "Heat_vulnerability_index" 
+                    "Daytime_summer_surface_temperature"
                 ]
             }
         }, 
@@ -1100,7 +1100,7 @@ config = {
                 "lng": -73.74123146150714,
                 "zoom": 14,
                 "layers": [ 
-                    "Heat_vulnerability_index",  
+                    "Daytime_summer_surface_temperature",  
                 ]
             }
         }, 
@@ -1134,7 +1134,7 @@ config = {
                 "lng": -73.79396252866313,
                 "zoom": 14,
                 "layers": [ 
-                    "Heat_vulnerability_index" 
+                    "Daytime_summer_surface_temperature" 
                 ]
             }
         }, 
@@ -1185,14 +1185,14 @@ config = {
                 "lng": -73.85227787206723,
                 "zoom": 14,
                 "layers": [ 
-                    "Adults_with_asthma_past_12_months", 
+                    "Asthma_ED_visits"
                 ]
             }
         },
         {
             "id": "Dysregulated",
             "title": "My body doesn't know how to regulate",
-            "content": "I turn my AC on and have two extra fans if its over 70 degrees. I take long walks outside because my apartment gets very hot and it's cooler outside. We have to be careful when we cook during heat waves. We go outside at night to cool off and order take out. I worry about my health; my body does not know how to regulate during high temperature. I have been getting sick a lot. Whenever I walk my dog, I am conscious of how long the walk is. I worry about him getting heat stroke. I get emails from my doctor's office and vet's office to tell me what to look out for. <br><strong>-Queens resident., 2024</strong>",
+            "content": "I turn my AC on and have two extra fans if its over 70 degrees. I take long walks outside because my apartment gets very hot and it's cooler outside. We have to be careful when we cook during heat waves. We go outside at night to cool off and order take out. I worry about my health; my body does not know how to regulate during high temperature. I have been getting sick a lot. Whenever I walk my dog, I am conscious of how long the walk is. I worry about him getting heat stroke. I get emails from my doctor's office and vet's office to tell me what to look out for. <br><strong>-Queens resident, 2024</strong>",
             "marker": {
                 "lat": 40.739596484892296,
                 "lng": -73.87787224451348,
@@ -1202,9 +1202,9 @@ config = {
                 "lng": -73.87787224451348,
                 "zoom": 14,
                 "layers": [ 
-                    "heat_stress_hospitalizations"
+                    "Daytime_summer_surface_temperature"
                 ]
             }
-        }
+        },
     ]
 }
