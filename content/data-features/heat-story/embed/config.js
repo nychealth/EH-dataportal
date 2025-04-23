@@ -44,7 +44,7 @@
  *     title: title to use to display the story
  *     content: html blob for the story
  *     mapState: map state to use for showing the story
- *         lat: latitide for the story
+ *         lat: latitude for the story
  *         lng: longitude for the story
  *         zoom: zoom level for the story
  *         layers: layers to use to display the story
@@ -381,6 +381,74 @@ config = {
                         {
                             "id": "Heat vulnerability index",
                             "displayName": "HVI"
+                        }
+                    ]
+                }
+            }
+        },
+        /* daytime surface temp 
+        {
+            "property": {
+                "id": "Daytime_summer_surface_temperature",
+                "name": "Daytime summer surface temperature",
+                "type": "measureData",
+                "buttonSection": "base",
+                "measureInfo": {
+                    "indicatorID": 2141,
+                    "measureID": 688,
+                    "geoType": "NTA",
+                    "time": "2018",
+                },
+                "exclusive": true,
+                "args": {
+                    "colorFeatureProperty": "Degrees fahrenheit",
+                    "minColor": "#fff2cc",
+                    "maxColor": "#6a329f",
+                    "color": "black",
+                    "opacity": 0.75,
+                    "legendDescription": "<strong>Surface temperatures</strong> vary based on vegetative cover (which promotes cooling), as well as by materials that retain heat (like paved roads, sidewalks, and buildings). Hotter neighborhoods tend to have more heat-exacerbated deaths associated with extreme heat events. <a href='../../data-explorer/air-quality/?id=2141#display=summary'>Get full data</a>."
+                },
+                "displayProperties": {
+                    "missingDisplay": "N/A",
+                    "displayPropertyArgs": [
+                        {
+                            "displayName": "Daytime summer surface temperature",
+                            "units": "degrees fahrenheit",
+                            "format": "float"
+                        }
+                    ]
+                }
+            }
+        },*/
+        {
+            "property": {
+                "id": "Adults_with_asthma_past_12_months",
+                "name": "Adults with asthma - past 12 months",
+                "type": "measureData",
+                "buttonSection": "base",
+                "measureInfo": {
+                    "indicatorID": 18,
+                    "measureID": 363,
+                    "geoType": "UHF34",
+                    "time": "2022",
+                },
+                "exclusive": true,
+                "args": {
+                    "colorFeatureProperty": "Adults with asthma, percent",
+                    "minColor": "white",
+                    "maxColor": "green",
+                    "color": "black",
+                    "opacity": 0.8,
+                    "legendDescription": "Asthma is a common disease characterized by breathing difficulty. Poor air quality and housing issues increase risk of developing and triggering asthma. <a href='../../data-explorer/asthma/?id=18#display=summary'>Get full data</a>."
+                },
+                "displayProperties": {
+                    "missingDisplay": "N/A",
+                    "displayPropertyArgs": [
+                        {
+                            "id": "Adults with asthma, percent",
+                            "displayName": "Adults with asthma, percent",
+                            "format": "float",
+                            "units" : "%"
                         }
                     ]
                 }
@@ -736,7 +804,7 @@ config = {
 
         {
             "id": "heat-traffic-pollution",
-            "title": "Heat, traffic, pollution and odors make the summer heat exhausting",
+            "title": "Heat, traffic and odors are exhausting",
             "content": "I live on Bruckner Boulevard, between Alexander and Willis Avenues, directly adjacent to the Willis Avenue Bridge. Heat during the summer months is completely exhausting because it not only brings the smell of hot trash from the waste transfer station, exacerbates the smog of the heavy highway traffic that usually starts about 5 am and reminds me of the ensuing high electric bill from the use of fans and air conditioners, there is very little tree coverage or shade to block the sun's rays or cool even the outside temperatures. From the moment Lilah and I leave the building, heat hits us and follows us throughout the entire neighborhood. <br>-<strong>Dr. Melissa Barber </strong><div><img src=\"https://raw.githubusercontent.com/OpenStoryMap/geodata/main/nyc-heat-watch-2021/stories/melissa-barber/road3.jpeg\"></div>",
             "marker": {
                 "lat": 40.805985,
@@ -753,7 +821,7 @@ config = {
 
           {
             "id": "high-ac-bills",
-            "title": "Heat makes it hard to sleep—but AC costs too much",
+            "title": "It's hard to sleep and AC costs too much",
             "content": "Heat has caused much discomfort such as not being able to sleep because it’s too hot in my home.      There are days where we open all the windows and fans just to avoid having to turn the central air conditioning on and running up the bill. <br><strong>-Anonymous</strong>",
             "marker": {
                 "lat": 40.668111,
@@ -769,7 +837,7 @@ config = {
         },
         {
             "id": "fainting",
-            "title": "I can’t take the heat. I am worried about fainting.",
+            "title": "I'm worried about fainting",
             "content": "Normally our windows and doors are open for the cool breeze to enter our home. When it becomes too hot, we will close the windows and doors and put the AC on. We are careful not to run the AC for too long given the energy bill, but we run the risk of getting sick. It is difficult to concentrate and study when it is too hot. It is also difficult to sleep. My family gets cranky. We try to avoid being outside and reduce our outdoor activities. We go outside with an umbrella. We pack cold water to bring us and paper towels so we can soak them with the water and refresh ourselves with it. We don’t have a cooling centers within a 10 minute walk from my home.<br><strong>-Queens resident</strong>",
             "marker": {
                 "lat": 40.70698,  
@@ -818,7 +886,7 @@ config = {
         },
         {
             "id": "grocery-store-ac",
-            "title": "We went to grocery stores and the library to stay cool",
+            "title": "We went to the library to stay cool",
             "content": "We didn’t have AC until I was 7. Going to the grocery stores and local library. We took a little longer in the grocery store than we needed to. We took cold showers. We put the water in the fridge to be cool. We had a fan in every bedroom. Sometimes we took a rag and soaked in cold water before putting it on my skin. I upped my salt intake with electrolyte water.<br><strong>-Kitty</strong>",
             "marker": {
                 "lat": 40.676652,
@@ -901,7 +969,7 @@ config = {
 
         {
             "id": "open-hydrants",
-            "title": "Open hydrants have repercussions",
+            "title": '"Open hydrants have repercussions"',
             "content": "Mid-80s open hydrants meant top floor apartment dwellers lost water pressure. My neighbors had to walk down five flights and carry buckets back upstairs.<br><br><a href=\"https://www1.nyc.gov/html/dep/html/press_releases/14-062pr.shtml#.Yvw7t3bMK73\" target=\"_blank\">You can get a spray cap from your local fire station and access an outreach program that can teach you how to use it</a>.",
             "marker": {
                 "lat": 40.8082044,
@@ -917,10 +985,10 @@ config = {
                 ]
             }
         },
-/*QDA stories*/
+/*QDA stories to add after they have reviewed
         {
-            "id": "heat-sensitivity",
-            "title": "Heat sensitivity",
+            "id": '"heat-sensitivity"',
+            "title": '"Heat sensitivity"',
             "content": "My landlord is not often responsive to complaints about heat, even when it's 60 degrees outside and there's no need for it. I have heat sensitivity that is a struggle to find the source of with my doctor. I become nauseous, dizzy and cannot sleep or eat when affected. I do not sweat much, so heat stroke or heat exhaustion is always a fear of mine. I do not really have help, I just buy fans, limit activity or take cool showers when affected.<br><br><strong>-Ren(he/him)</strong>",
             "marker": {
                 "lat": 40.60744008899693,
@@ -971,7 +1039,7 @@ config = {
                     "heat_stress" 
                 ]
             }
-        },
+        },*/
 /* SQWM stories */
         {
             "id": "Psychosocial-wellbeing",
@@ -1011,7 +1079,7 @@ config = {
         }, 
         {
             "id": "Avoid-leaving",
-            "title": "I try to avoid going out in the heat unless necessary",
+            "title": "I try to avoid going out in the heat",
             "content": "Our home is an old brick house, which is like an oven. I worry about my cat - I hope he isn't too hot even with the windows open and the electric bill being high. To stay cool, we have to have AC or fans on all the time and take cool showers or wear less layers. We had to take another AC from my in-laws to help with the heat. <br><strong>-Debs C., 2024</strong>",
             "marker": {
                 "lat": 40.69218684458226,
@@ -1101,7 +1169,7 @@ config = {
         },
         {
             "id": "90s-bill",
-            "title": "We wait until it's in the 90s to put the air on",
+            "title": "We only use AC when it's almost 90°",
             "content": "We wait until it's extremely hot to turn on the AC. I worry about the children being hot. To try and save on costs, we wait until it's almost into the 90s to put the air on.  <br><strong>-Anonymous, 2024</strong>",
             "marker": {
                 "lat": 40.85046293824912,
@@ -1130,14 +1198,13 @@ config = {
                 "lng": -73.85227787206723,
                 "zoom": 14,
                 "layers": [ 
-                    "Air quality - PM2.5", 
-                    "Household_air_conditioning"
+                    "Adults_with_asthma_past_12_months", 
                 ]
             }
         },
         {
             "id": "Dysregulated",
-            "title": "My body does not know how to regulate",
+            "title": "My body doesn't know how to regulate",
             "content": "I turn my AC on and have two extra fans if its over 70 degrees. I take long walks outside because my apartment gets very hot and it's cooler outside. We have to be careful when we cook during heat waves. We go outside at night to cool off and order take out. I worry about my health; my body does not know how to regulate during high temperature. I have been getting sick a lot. Whenever I walk my dog, I am conscious of how long the walk is. I worry about him getting heat stroke. I get emails from my doctor's office and vet's office to tell me what to look out for. <br><strong>-Queens resident., 2024</strong>",
             "marker": {
                 "lat": 40.739596484892296,
