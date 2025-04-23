@@ -386,7 +386,6 @@ config = {
                 }
             }
         },
-        /* daytime surface temp 
         {
             "property": {
                 "id": "Daytime_summer_surface_temperature",
@@ -401,25 +400,25 @@ config = {
                 },
                 "exclusive": true,
                 "args": {
-                    "colorFeatureProperty": "Degrees fahrenheit",
+                    "colorFeatureProperty": "Degrees, Fahrenheit",
                     "minColor": "#fff2cc",
                     "maxColor": "#6a329f",
                     "color": "black",
                     "opacity": 0.75,
-                    "legendDescription": "<strong>Surface temperatures</strong> vary based on vegetative cover (which promotes cooling), as well as by materials that retain heat (like paved roads, sidewalks, and buildings). Hotter neighborhoods tend to have more heat-exacerbated deaths associated with extreme heat events. <a href='../../data-explorer/air-quality/?id=2141#display=summary'>Get full data</a>."
+                    "legendDescription": "<strong>Surface temperatures</strong> vary based on vegetative cover (which promotes cooling), as well as by materials that retain heat (like paved roads, sidewalks, and buildings). Hotter neighborhoods tend to have more heat-exacerbated deaths associated with extreme heat events. <a href='../../data-explorer/climate/?id=2141#display=summary'>Get full data</a>."
                 },
                 "displayProperties": {
                     "missingDisplay": "N/A",
                     "displayPropertyArgs": [
                         {
                             "displayName": "Daytime summer surface temperature",
-                            "units": "degrees fahrenheit",
+                            "units": "degrees, Fahrenheit",
                             "format": "float"
                         }
                     ]
                 }
             }
-        },*/
+        },
         {
             "property": {
                 "id": "Adults_with_asthma_past_12_months",
@@ -942,10 +941,6 @@ config = {
                 "lng": -73.9186380,
                 "zoom": 15,
                 "layers": [
-                    /*
-                    "bronx-grayspace",
-                    "greenspace",
-                    "greenspaceNdvi",*/
                     "Vegetative_cover",
                 ]
             }
@@ -1054,8 +1049,7 @@ config = {
                 "lng": -73.82345161918002,
                 "zoom": 14,
                 "layers": [ 
-                    "nycAfternoon", 
-                    "heat_stress" 
+                    "Heat_stress_hospitalizations" 
                 ]
             }
         },
@@ -1071,9 +1065,8 @@ config = {
                 "lat": 40.692141693784144,
                 "lng": -73.8270469316841,
                 "zoom": 14,
-                "layers": [ 
-                    "nycAfternoon", 
-                    "heat_stress" 
+                "layers": [  
+                    "Heat_vulnerability_index" 
                 ]
             }
         }, 
@@ -1090,8 +1083,7 @@ config = {
                 "lng": -73.73291440003689,
                 "zoom": 14,
                 "layers": [ 
-                    "nycAfternoon", 
-                    "heat_stress" 
+                    "Heat_vulnerability_index" 
                 ]
             }
         },
@@ -1108,8 +1100,7 @@ config = {
                 "lng": -73.74123146150714,
                 "zoom": 14,
                 "layers": [ 
-                    "Heat_vulnerability_index", 
-                    "heat_stress" 
+                    "Heat_vulnerability_index",  
                 ]
             }
         }, 
@@ -1126,8 +1117,7 @@ config = {
                 "lng": -73.84507398130488,
                 "zoom": 14,
                 "layers": [ 
-                    "Heat_vulnerability_index", 
-                    "heat_stress" 
+                    "Heat_vulnerability_index" 
                 ]
             }
         }, 
@@ -1144,8 +1134,7 @@ config = {
                 "lng": -73.79396252866313,
                 "zoom": 14,
                 "layers": [ 
-                    "Heat_vulnerability_index", 
-                    "heat_stress" 
+                    "Heat_vulnerability_index" 
                 ]
             }
         }, 
@@ -1162,8 +1151,7 @@ config = {
                 "lng": -73.78022961806579,
                 "zoom": 14,
                 "layers": [ 
-                    "Heat_vulnerability_index", 
-                    "heat_stress" 
+                    "Vegetative_cover" 
                 ]
             }
         },
@@ -1180,8 +1168,7 @@ config = {
                 "lng": -73.85227787206723,
                 "zoom": 14,
                 "layers": [ 
-                    "Household_air_conditioning", 
-                    "heat_stress" 
+                    "Household_air_conditioning"  
                 ]
             }
         },
@@ -1215,7 +1202,7 @@ config = {
                 "lng": -73.87787224451348,
                 "zoom": 14,
                 "layers": [ 
-                    "heat_stress"
+                    "heat_stress_hospitalizations"
                 ]
             }
         }
