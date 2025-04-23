@@ -1205,6 +1205,6 @@ config = {
                     "Daytime_summer_surface_temperature"
                 ]
             }
-        },
+        }
     ]
 }
