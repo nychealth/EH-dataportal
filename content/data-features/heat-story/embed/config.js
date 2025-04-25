@@ -931,7 +931,7 @@ config = {
         {
             "id": "no-green-in-green-space",
             "title": 'No green in our "green space"',
-            "content": "How good is a green space when there is little to no green to be found? That's the situation we face in the South Bronx. So-called parks and playgrounds designated as green space by the City are often concrete slabs with very little tree canopy. See below for examples of what some of these spaces look like.<h4>Carlos Lozada</h4><div><img src=\"https://raw.githubusercontent.com/OpenStoryMap/geodata/main/nyc-heat-watch-2021/stories/bronx-greenspace/carlos-lozada.jpg\"></div>",
+            "content": "How good is a green space when there is little to no green to be found? That's the situation we face in the South Bronx. So-called parks and playgrounds designated as green space by the City are often concrete slabs with very little tree canopy. See below for examples of what some of these spaces look like.<strong>Carlos Lozada</strong><div><img src=\"https://raw.githubusercontent.com/OpenStoryMap/geodata/main/nyc-heat-watch-2021/stories/bronx-greenspace/carlos-lozada.jpg\"></div>",
             "marker": {
                 "lat": 40.8124376119,
                 "lng": -73.9186380,
@@ -964,7 +964,7 @@ config = {
 
         {
             "id": "open-hydrants",
-            "title": '"Open hydrants have repercussions"',
+            "title": "Open hydrants have repercussions",
             "content": "Mid-80s open hydrants meant top floor apartment dwellers lost water pressure. My neighbors had to walk down five flights and carry buckets back upstairs.<br><br><a href=\"https://www1.nyc.gov/html/dep/html/press_releases/14-062pr.shtml#.Yvw7t3bMK73\" target=\"_blank\">You can get a spray cap from your local fire station and access an outreach program that can teach you how to use it</a>.",
             "marker": {
                 "lat": 40.8082044,
@@ -1039,7 +1039,7 @@ config = {
         {
             "id": "Psychosocial-wellbeing",
             "title": "Can't focus on school",
-            "content": "It affects my psychosocial well-being. I worry about the cost of my energy bill, power outages, and my stress levels. When my home is too hot, can't sleep and I can't focus on work or school. I use a fan, take cold showers, drink water, and eat watermelon to stay cool. <br><strong>-Struggling grad student</strong>",
+            "content": "It affects my psychosocial well-being. I worry about the cost of my energy bill, power outages, and my stress levels. When my home is too hot, I can't sleep and I can't focus on work or school. I use a fan, take cold showers, drink water, and eat watermelon to stay cool. <br><strong>-Struggling grad student</strong>",
             "marker": {
                 "lat": 40.701724612663796,
                 "lng": -73.82345161918002,
@@ -1073,7 +1073,7 @@ config = {
         {
             "id": "Avoid-leaving",
             "title": "I try to avoid going out in the heat",
-            "content": "Our home is an old brick house, which is like an oven. I worry about my cat - I hope he isn't too hot even with the windows open and the electric bill being high. To stay cool, we have to have AC or fans on all the time and take cool showers or wear less layers. We had to take another AC from my in-laws to help with the heat. <br><strong>-Debs C., 2024</strong>",
+            "content": "Our home is an old brick house, which is like an oven. I worry about my cat — I hope he isn't too hot even with the windows open and the electric bill being high. To stay cool, we have to have AC or fans on all the time and take cool showers or wear less layers. We had to take another AC from my in-laws to help with the heat. <br><strong>-Debs C., 2024</strong>",
             "marker": {
                 "lat": 40.69218684458226,
                 "lng": -73.73291440003689,
@@ -1192,7 +1192,7 @@ config = {
         {
             "id": "Dysregulated",
             "title": "My body doesn't know how to regulate",
-            "content": "I turn my AC on and have two extra fans if its over 70 degrees. I take long walks outside because my apartment gets very hot and it's cooler outside. We have to be careful when we cook during heat waves. We go outside at night to cool off and order take out. I worry about my health; my body does not know how to regulate during high temperature. I have been getting sick a lot. Whenever I walk my dog, I am conscious of how long the walk is. I worry about him getting heat stroke. I get emails from my doctor's office and vet's office to tell me what to look out for. <br><strong>-Queens resident, 2024</strong>",
+            "content": "I turn my AC on and have two extra fans 'if its over 70 degrees. I take long walks outside because my apartment gets very hot and it's cooler outside. We have to be careful when we cook during heat waves. We go outside at night to cool off and order take out. I worry about my health; my body does not know how to regulate during high temperature. I have been getting sick a lot. Whenever I walk my dog, I am conscious of how long the walk is. I worry about him getting heat stroke. I get emails from my doctor's office and vet's office to tell me what to look out for. <br><strong>-Queens resident, 2024</strong>",
             "marker": {
                 "lat": 40.739596484892296,
                 "lng": -73.87787224451348,
