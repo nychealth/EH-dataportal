@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Public_domain_baby_bottle" data-name="Public domain baby bottle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 443.46 374.24">
+  <defs>
+    <style>
+      .cls-1, .cls-2, .cls-3, .cls-4 {
+        stroke-miterlimit: 10;
+        stroke-width: .44px;
+      }
+
+      .cls-1, .cls-2, .cls-4 {
+        stroke: #1d5caa;
+      }
+
+      .cls-1, .cls-3, .cls-4 {
+        fill: none;
+      }
+
+      .cls-2 {
+        fill: #1d5caa;
+      }
+
+      .cls-3 {
+        stroke: rgba(29, 92, 170, .95);
+      }
+
+      .cls-3, .cls-4 {
+        isolation: isolate;
+      }
+    </style>
+  </defs>
+  <g id="layer1">
+    <path id="path3934" class="cls-1" d="M93.19,172.04c0,.25-.94.45-2.1.45s-2.1-.2-2.1-.45.94-.45,2.1-.45,2.1.2,2.1.45h0Z"/>
+    <path id="path3809" class="cls-3" d="M89.91,159.8c-.01-.65-.35-1.38.7-1.66v-1.11c-.35-.83,1.4-.83,1.05,0v1.11c1.05.28.65,1.04.7,1.66h-2.44Z"/>
+    <g id="g3924">
+      <rect id="rect3908" class="cls-2" x="91.25" y="162.58" width=".51" height=".24"/>
+      <rect id="rect3910" class="cls-2" x="91.25" y="168.52" width=".51" height=".24"/>
+      <rect id="rect3912" class="cls-2" x="91.25" y="167.33" width=".51" height=".24"/>
+      <rect id="rect3914" class="cls-2" x="91.25" y="166.14" width=".51" height=".24"/>
+      <rect id="rect3916" class="cls-2" x="91.25" y="164.96" width=".51" height=".24"/>
+      <rect id="rect3918" class="cls-2" x="91.25" y="163.77" width=".51" height=".24"/>
+      <rect id="rect3920" class="cls-2" x="91.25" y="170.89" width=".51" height=".24"/>
+      <rect id="rect3922" class="cls-2" x="91.25" y="169.7" width=".51" height=".24"/>
+    </g>
+    <path id="rect3039" class="cls-2" d="M89.23,159.72c1.42-.06,1.99-.08,3.78,0,.15,0,.28.34.28.76s-.12.76-.28.76h-3.78c-.15,0-.28-.34-.28-.76s.12-.75.28-.76Z"/>
+    <path id="path4024" class="cls-4" d="M91.07,161.24l-1.66.02v.24h-.07c-.15,0-.27.06-.27.14s.12.14.27.14h.07c-.28.09-.52.29-.57.59l.05,9.47c.12.65,1.47.66,2.14.67h.17c.67,0,2.02-.02,2.14-.67l.05-9.47c-.06-.3-.32-.5-.6-.59h.1c.15,0,.27-.06.27-.14s-.12-.14-.27-.14h-.1v-.24l-1.64-.02h-.07Z"/>
+  </g>
+</svg>
