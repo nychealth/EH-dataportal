@@ -965,7 +965,7 @@ config = {
         {
             "id": "open-hydrants",
             "title": "Open hydrants have repercussions",
-            "content": "Mid-80s open hydrants meant top floor apartment dwellers lost water pressure. My neighbors had to walk down five flights and carry buckets back upstairs.<br><strong>-Anonymous</strong><br><br><a href=\"https://www1.nyc.gov/html/dep/html/press_releases/14-062pr.shtml#.Yvw7t3bMK73\" target=\"_blank\">You can get a spray cap from your local fire station and access an outreach program that can teach you how to use it</a>.",
+            "content": "Mid-80s open hydrants meant top floor apartment dwellers lost water pressure. My neighbors had to walk down five flights and carry buckets back upstairs.<br><strong>-Anonymous</strong><br><br><em><a href=\"https://www1.nyc.gov/html/dep/html/press_releases/14-062pr.shtml#.Yvw7t3bMK73\" target=\"_blank\">You can get a spray cap from your local fire station and access an outreach program that can teach you how to use it</a></em>.",
             "marker": {
                 "lat": 40.8082044,
                 "lng": -73.9232586,
