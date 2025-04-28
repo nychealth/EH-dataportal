@@ -844,7 +844,7 @@ config = {
             "mapState": {
                 "lat": 40.70698,
                 "lng": -73.79797,
-                "zoom": 14,
+                "zoom": 13,
                 "layers": [
                     "Heat_stress_hospitalizations"
                 ]
@@ -860,7 +860,7 @@ config = {
             "mapState": {
                 "lat": 40.844771,
                 "lng": -73.937088,
-                "zoom": 14,
+                "zoom": 13,
                 "layers": [ 
                     "nycAfternoon",
                     "Heat_vulnerability_index"
@@ -931,7 +931,7 @@ config = {
         {
             "id": "no-green-in-green-space",
             "title": 'No green in our "green space"',
-            "content": "How good is a green space when there is little to no green to be found? That's the situation we face in the South Bronx. So-called parks and playgrounds designated as green space by the City are often concrete slabs with very little tree canopy. See below for examples of what some of these spaces look like.<strong>Carlos Lozada</strong><div><img src=\"https://raw.githubusercontent.com/OpenStoryMap/geodata/main/nyc-heat-watch-2021/stories/bronx-greenspace/carlos-lozada.jpg\"></div>",
+            "content": "How good is a green space when there is little to no green to be found? That's the situation we face in the South Bronx. So-called parks and playgrounds designated as green space by the City are often concrete slabs with very little tree canopy. See below for examples of what some of these spaces look like.<br><strong>-Carlos Lozada</strong><div><img src=\"https://raw.githubusercontent.com/OpenStoryMap/geodata/main/nyc-heat-watch-2021/stories/bronx-greenspace/carlos-lozada.jpg\"></div>",
             "marker": {
                 "lat": 40.8124376119,
                 "lng": -73.9186380,
@@ -939,7 +939,7 @@ config = {
             "mapState": {
                 "lat": 40.8124376119,
                 "lng": -73.9186380,
-                "zoom": 15,
+                "zoom": 13,
                 "layers": [
                     "Vegetative_cover",
                 ]
@@ -965,7 +965,7 @@ config = {
         {
             "id": "open-hydrants",
             "title": "Open hydrants have repercussions",
-            "content": "Mid-80s open hydrants meant top floor apartment dwellers lost water pressure. My neighbors had to walk down five flights and carry buckets back upstairs.<br><br><a href=\"https://www1.nyc.gov/html/dep/html/press_releases/14-062pr.shtml#.Yvw7t3bMK73\" target=\"_blank\">You can get a spray cap from your local fire station and access an outreach program that can teach you how to use it</a>.",
+            "content": "Mid-80s open hydrants meant top floor apartment dwellers lost water pressure. My neighbors had to walk down five flights and carry buckets back upstairs.<br><strong>-Anonymous</strong><br><br><a href=\"https://www1.nyc.gov/html/dep/html/press_releases/14-062pr.shtml#.Yvw7t3bMK73\" target=\"_blank\">You can get a spray cap from your local fire station and access an outreach program that can teach you how to use it</a>.",
             "marker": {
                 "lat": 40.8082044,
                 "lng": -73.9232586,
@@ -973,7 +973,7 @@ config = {
             "mapState": {
                 "lat": 40.8082044,
                 "lng": -73.9232586,
-                "zoom": 14,
+                "zoom": 13,
                 "layers": [ 
                     "nycAfternoon", 
                     "heat_stress" 
@@ -1047,7 +1047,7 @@ config = {
             "mapState": {
                 "lat": 40.701724612663796,
                 "lng": -73.82345161918002,
-                "zoom": 14,
+                "zoom": 13,
                 "layers": [ 
                     "Heat_stress_hospitalizations" 
                 ]
@@ -1064,7 +1064,7 @@ config = {
             "mapState": {
                 "lat": 40.692141693784144,
                 "lng": -73.8270469316841,
-                "zoom": 14,
+                "zoom": 13,
                 "layers": [  
                     "Daytime_summer_surface_temperature"
                 ]
@@ -1081,7 +1081,7 @@ config = {
             "mapState": {
                 "lat": 40.69218684458226,
                 "lng": -73.73291440003689,
-                "zoom": 14,
+                "zoom": 13,
                 "layers": [ 
                     "Heat_vulnerability_index" 
                 ]
@@ -1098,7 +1098,7 @@ config = {
             "mapState": {
                 "lat": 40.70202957919236,
                 "lng": -73.74123146150714,
-                "zoom": 14,
+                "zoom": 13,
                 "layers": [ 
                     "Daytime_summer_surface_temperature",  
                 ]
@@ -1115,7 +1115,7 @@ config = {
             "mapState": {
                 "lat": 40.68088025334419,
                 "lng": -73.84507398130488,
-                "zoom": 14,
+                "zoom": 13,
                 "layers": [ 
                     "Heat_vulnerability_index" 
                 ]
@@ -1132,7 +1132,7 @@ config = {
             "mapState": {
                 "lat": 40.680441975958985,
                 "lng": -73.79396252866313,
-                "zoom": 14,
+                "zoom": 13,
                 "layers": [ 
                     "Daytime_summer_surface_temperature" 
                 ]
@@ -1149,7 +1149,7 @@ config = {
             "mapState": {
                 "lat": 40.68011652370219,
                 "lng": -73.78022961806579,
-                "zoom": 14,
+                "zoom": 13,
                 "layers": [ 
                     "Vegetative_cover" 
                 ]
@@ -1166,7 +1166,7 @@ config = {
             "mapState": {
                 "lat": 40.85046293824912,
                 "lng": -73.85227787206723,
-                "zoom": 14,
+                "zoom": 13,
                 "layers": [ 
                     "Household_air_conditioning"  
                 ]
@@ -1183,7 +1183,7 @@ config = {
             "mapState": {
                 "lat": 40.85046293824912,
                 "lng": -73.85227787206723,
-                "zoom": 14,
+                "zoom": 13,
                 "layers": [ 
                     "Asthma_ED_visits"
                 ]
@@ -1192,7 +1192,7 @@ config = {
         {
             "id": "Dysregulated",
             "title": "My body doesn't know how to regulate",
-            "content": "I turn my AC on and have two extra fans 'if its over 70 degrees. I take long walks outside because my apartment gets very hot and it's cooler outside. We have to be careful when we cook during heat waves. We go outside at night to cool off and order take out. I worry about my health; my body does not know how to regulate during high temperature. I have been getting sick a lot. Whenever I walk my dog, I am conscious of how long the walk is. I worry about him getting heat stroke. I get emails from my doctor's office and vet's office to tell me what to look out for. <br><strong>-Queens resident, 2024</strong>",
+            "content": "I turn my AC on and have two extra fans if its over 70 degrees. I take long walks outside because my apartment gets very hot and it's cooler outside. We have to be careful when we cook during heat waves. We go outside at night to cool off and order take out. I worry about my health; my body does not know how to regulate during high temperature. I have been getting sick a lot. Whenever I walk my dog, I am conscious of how long the walk is. I worry about him getting heat stroke. I get emails from my doctor's office and vet's office to tell me what to look out for. <br><strong>-Queens resident, 2024</strong>",
             "marker": {
                 "lat": 40.739596484892296,
                 "lng": -73.87787224451348,
@@ -1200,7 +1200,7 @@ config = {
             "mapState": {
                 "lat": 40.739596484892296,
                 "lng": -73.87787224451348,
-                "zoom": 14,
+                "zoom": 13,
                 "layers": [ 
                     "Daytime_summer_surface_temperature"
                 ]
