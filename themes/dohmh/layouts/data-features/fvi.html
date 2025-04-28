@@ -109,11 +109,11 @@ font-weight: bold!important;
   
                   <div class="border p-2 fs-sm mt-4">
                     <h6>Flood Vulnerability</h6>
-                    <i class="fas fa-square mr-1 color-1" aria-hidden="true"></i>1: Lowest risk   <br>
+                    <i class="fas fa-square mr-1 color-1" aria-hidden="true"></i>1: Less vulnerable   <br>
                     <i class="fas fa-square mr-1 color-2" aria-hidden="true"></i>2                <br>
                     <i class="fas fa-square mr-1 color-3" aria-hidden="true"></i>3                <br>
                     <i class="fas fa-square mr-1 color-4" aria-hidden="true"></i>4                <br>
-                    <i class="fas fa-square mr-1 color-5" aria-hidden="true"></i>5: Most risk     <br>
+                    <i class="fas fa-square mr-1 color-5" aria-hidden="true"></i>5: More vulnerable     <br>
   
   
                   </div>
@@ -149,25 +149,40 @@ font-weight: bold!important;
             <div class="row my-4">
               <div class="col-md-6">
                 <div class="asidebox">
-                  <h2 class="h5">Susceptibility to harm</h2>
+                  <h2 class="h5">About the data</h2>
                   <p class="fs-sm">
-                    The FVI combines the risk of physical exposure to different flooding types with socioeconomic factors that increase the risk of harm and affect how difficult it may be to prepare, evacuate or recover. These include factors like the proportion of people in a neighborhood who:
-                    <ul>
-                      <li>Are older or younger, have chronic illnesses, or have disabilities or mobility impairments.</li>
-                      <li>May face disruption to food, income, or healthcare access - including people who are isolated or have language barriers, people who are socially or economically marginalized, or people with unstable living situations (including people living in institutional settings or who are incarcerated).</li>
-                      <li>Own their home, which can increase cost and time it takes to recover. </li>
-                    </ul>
+                    The Flood Vulnerability Index (FVI) is part of the <a href="https://climate.cityofnewyork.us/initiatives/vulnerability-impacts-and-adaptation-analysis/">Climate Vulnerability, Impact, and Adaptation Analysis (VIA)</a> report from the Mayor's Office of Climate and Environmental Justice.
+                    </p>
+                  <p>FVI scores represent <strong>relative vulnerability</strong> compared to other scores for that Flood Vulnerability Index.</p>  
+                  <p>Each layer of the FVI is the result of the geometric average of the FSHRI combined with different physical exposure indices. Remember, a neighborhood with low vulnerability to one type of flooding may still have high vulnerability to another type of flooding. 
                   </p>
+                  <p class="fs-sm"><a href="fvi.geojson"><i class="fas fa-download mr-1" aria-hidden="true"></i>Download the data (geoJSON)</a>.</p>
                 </div>
               </div>
 
               <div class="col-md-6">
+
                 <div class="asidebox">
-                  <h2 class="h5">About the data</h2>
-                  <p class="fs-sm">Each layer of the FVI is the result of the geometric average of the FSHRI combined with different physical exposure indices. Remember, a neighborhood with low risk for one type of flooding may still have high vulnerability to another type of flooding. The Flood Vulnerability Index (FVI) is part of the <a href="https://climate.cityofnewyork.us/initiatives/vulnerability-impacts-and-adaptation-analysis/">Climate Vulnerability, Impact, and Adaptation Analysis (VIA)</a> report from the Mayor's Office of Climate and Environmental Justice.
-                  </p>
-                  <p class="fs-sm"><a href="fvi.geojson"><i class="fas fa-download mr-1" aria-hidden="true"></i>Download the data (geoJSON)</a>.</p>
+                  <h2 class="h5">Susceptibility to harm and ability to recover</h2>
+                  <p>Each FVI combines an Exposure Index to one of flood hazard scenarios combined with a single Flood Susceptibility to Harm and Recovery Index (FSHRI), which aggregates selected socio-demographic factors that have been observed to correlate with greater harm suffered due to flooding or lower ability to recover from flooding. The factors included in the FSHRI are:
+                    <ul>
+                      <li>Disability</li>
+                      <li>Language isolation</li>
+                      <li>Elder adults living alone</li>
+                      <li>Lack of health insurance</li>
+                      <li>Low-income households (below 75K annually)</li>
+                      <li>Home ownership</li>
+                      <li>Per capita income</li>
+                      <li>Rent and Cost burdened homes</li>
+                      <li>Population with a vulnerable age (below 5, above 65 yrs old)</li>
+                      <li>BIPOC residents</li>
+                    </ul></p>
+
+                  <p>Some of the differences in these risk factors across neighborhoods are rooted in past and present racism and drive variation in flood vulnerability across the city. 
+                </p>
                 </div>
+
+
 
               </div>
             </div>
