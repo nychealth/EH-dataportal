@@ -62,10 +62,17 @@ disease.
 {{< /rawhtml >}}
 You can see in the chart below that neighborhoods with high building density have reliably higher wintertime concentrations of PM2.5 than medium or low-density neighborhoods. (Since there’s seasonal variation in PM2.5 concentration, it’s easier to look at one season at a time.)
 
-{{< datawrapper title="Winter PM2.5 levels (in µg/m³) by neighborhood building density" src="XPYgD/2/" height="400">}}
-
+</div>
+<div class="wide my-4">
+<div aria-hidden="true">
+<iframe title="" aria-label="Interactive line chart" id="datawrapper-chart-XPYgD" src="https://datawrapper.dwcdn.net/XPYgD/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="411" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+</script>
+</div>
+</div><div class="sr-only">
+<iframe title="Winter PM2.5 levels (in micrograms per meter cubed (µg/m³) by neighborhood building density" aria-label="Table" id="datawrapper-chart-VZMcj" src="https://datawrapper.dwcdn.net/VZMcj/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="555" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+</script></div>
+<div class="narrow">
 You can also see that the wintertime PM2.5 concentrations have gone down dramatically over time, largely because the city has required buildings to {{< rawhtml >}}<a href="#laws" data-toggle="collapse" class="badge badge-pill badge-primary">reduce emissions</a>.</p>
-
 <div id="laws" class="collapse mb-2 drawerbg px-2 py-2 mx-2 fs-sm">
 <a href="https://www1.nyc.gov/assets/dep/downloads/pdf/air/local-law-43-biodiesel-fuel-requirement.pdf">Local Law 43 of 2010</a> outlawed the burning of heavy fuel oil (Number 6) in New York
 City buildings, requiring buildings to switch to cleaner fuels. In 2012, New York State lowered the allowed sulfur content of Number 2 fuel oil, which further cleaned up building emissions.
@@ -87,9 +94,16 @@ href="https://www.epa.gov/air-emissions-inventories/national-emissions-inventory
 more about the NEI</a>.
 </div>
 {{< /rawhtml >}}
-
-{{< datawrapper title="Tons of PM2.5 emitted per year, NYC" src="3bOXl/3/" height="400" >}}
-
+</div>
+<div class="wide my-4">
+<div aria-hidden="true">
+<iframe title="Emissions over time (revised)" aria-label="Interactive line chart" id="datawrapper-chart-3bOXl" src="https://datawrapper.dwcdn.net/3bOXl/3/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="450" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+</script></div>
+</div>
+<div class="sr-only">
+<iframe title="Emissions over time (revised)" aria-label="Table" id="datawrapper-chart-jQ5R1" src="https://datawrapper.dwcdn.net/jQ5R1/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="370" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+</script>
+</div><div class="narrow">
 We can see these trends in our PM2.5 land-use regression model, which links neighborhood factors to measured pollution, and allows us to estimate pollution levels in places where we don't measure it. Our model tells us which emissions sources explain the {{< rawhtml >}}<a href="#var" data-toggle="collapse" class="badge badge-pill badge-primary">differences across neighborhoods</a>.
 
 </p>
@@ -105,7 +119,16 @@ quality data at the NYCCAS Annual Report</a>.
 
 With the increase in commercial cooking emissions, our model shows that the number of restaurants with permits for grills or charbroilers in a neighborhood is now a better predictor of PM2.5 concentrations than building density and explains most of the variation across the city.
 
-{{< datawrapper title="Percent of variation explained" src="AEQXF/2/" height="400" >}}
+</div>
+<div class="wide my-4">
+<div aria-hidden="true">
+<iframe title="Winter" aria-label="Interactive line chart" id="datawrapper-chart-AEQXF" src="https://datawrapper.dwcdn.net/AEQXF/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="453" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+</script></div>
+</div>
+<div class="sr-only"><iframe title="Percent of variation explained (Winter)" aria-label="Table" id="datawrapper-chart-M1AkD" src="https://datawrapper.dwcdn.net/M1AkD/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="495" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+</script>
+</div>
+<div class="narrow">
 
 ## What can we do about this?
 
