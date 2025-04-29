@@ -1019,6 +1019,16 @@
     "description": "Hospitalizations for cold-related illnesses, such as hypothermia and frostbite, represent part of the public health burden of cold weather. Cold weather can also make chronic conditions worse.",
     "name": "Cold stress: 5-year hospitalizations"
   },
+  "2446": {
+    "IndicatorID": 2446,
+    "description": "Adults reporting visible mold in the home. Mold can worsen respiratory conditions like asthma, and indicate maintenance problems in a building.",
+    "name": "Homes with visible mold"
+  },
+  "2447": {
+    "IndicatorID": 2447,
+    "description": "The presence of mice or rats in the home is often associated with poor housing maintenance. These pests can contaminate food and worsen asthma.",
+    "name": "Homes with mice or rats in the unit or building"
+  },
   "25": {
     "IndicatorID": 25,
     "description": "Adults reporting secondhand smoke at home. Secondhand smoke, especially indoors, is bad for health - particularly for the health of children.",
