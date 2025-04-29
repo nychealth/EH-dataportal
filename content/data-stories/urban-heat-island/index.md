@@ -33,8 +33,8 @@ photocredit: "Tagger Yancey IV/NYC & Company"
 related:
   - title: "Interactive Heat Vulnerability Index"
     url: "data-features/hvi/"
-  - title: "Real-time heat-related illness"
-    url: "data-features/heat-syndrome/"
+  - title: "Heat story"
+    url: "data-features/heat-story/"
   - title: "Protecting New Yorkers from extreme heat"
     url: "data-stories/heat/"
 ---

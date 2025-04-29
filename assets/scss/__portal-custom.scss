@@ -248,31 +248,29 @@
 }
 
 .breadcrumb-item {
-
     // The separator between breadcrumbs (by default, a forward-slash: "/")
-    +.breadcrumb-item::before {
+    + .breadcrumb-item::before {
         display: inline-block; // Suppress underlining of the separator in modern browsers
         padding-right: $breadcrumb-item-padding;
         padding-left: $breadcrumb-item-padding;
         color: $breadcrumb-divider-color;
         content: "#{$breadcrumb-divider}";
     }
-
+    
     // IE9-11 hack to properly handle hyperlink underlines for breadcrumbs built
     // without `<ul>`s. The `::before` pseudo-element generates an element
     // *within* the .breadcrumb-item and thereby inherits the `text-decoration`.
     //
     // To trick IE into suppressing the underline, we give the pseudo-element an
     // underline and then immediately remove it.
-    +.breadcrumb-item:hover::before {
+    + .breadcrumb-item:hover::before {
         text-decoration: underline;
     }
-
     // stylelint-disable-next-line no-duplicate-selectors
-    +.breadcrumb-item:hover::before {
+    + .breadcrumb-item:hover::before {
         text-decoration: none;
     }
-
+    
     &.active {
         color: $breadcrumb-active-color;
     }
@@ -281,6 +279,10 @@
 
 // ==== Data story styles ==== //
 #datastoryheader {
+    width: 100%;
+    height: 400px;
+    background-size: cover;
+    display: flex;
     width: 100%;
     height: 400px;
     background-size: cover;
@@ -315,12 +317,12 @@
     color: white;
 }
 
-    .badge-medium {
-        background-color: #bcbcdc;
-    }
+.badge-medium {
+    background-color: #bcbcdc;
+}
 
-    .badge-better {
-        background-color:#f5f1f8;
+.badge-better {
+    background-color:#f5f1f8;
 }
 
 
@@ -368,8 +370,7 @@
   width: 25px;
 }
 
-.greyitem {
-    background-color: #E2E2E2;
+.greyitem {background-color: #E2E2E2;
     padding: 10px;
     height: 200px;
 }
@@ -407,8 +408,8 @@
     border-left: 8px solid #e0e0e0;
 }
 
-
 // ==== UHI data story: ==== //
+
 
 .table th {
     color: rgb(88, 88, 88) !important;
@@ -952,12 +953,6 @@ input[type=range]:focus::-ms-fill-upper {
 
 // ==== for data-index table ==== //
 
-// geobullets
-
-// .geobullets {
-//     padding-left: 0px!important
-// }
-
 .geobullets {
     color: white;
     padding: 5px 5px;
@@ -1259,10 +1254,6 @@ th.tablehead {
     text-decoration: none;
     color: #000000;
     background: #feff7f;
-}
-
-.flex_search-flexdatalist {
-
 }
 .flex_search-flexdatalist input:placeholder-shown {
     background-color: white;

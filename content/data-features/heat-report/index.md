@@ -26,8 +26,8 @@ related:
     url: "data-stories/urban-heat-island/"
   - title: "Interactive Heat Vulnerability Index"
     url: "data-features/hvi/"
-  - title: "Real-time heat-related illness"
-    url: "data-features/heat-syndrome/"
+  - title: "Heat story"
+    url: "data-features/heat-story/"
 weight: 25
 blurb: Annual analysis of heat related deaths, contributing factors,  and neighborhood impacts.
 ---
