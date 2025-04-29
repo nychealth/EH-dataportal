@@ -6,7 +6,7 @@
     <description>Recent content in Interactive on Environment &amp; Health Data Portal</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 22 Mar 2022 19:30:55 -0400</lastBuildDate>
+    <lastBuildDate>Mon, 28 Apr 2025 11:51:01 -0400</lastBuildDate>
     <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/interactive/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Real-Time Air Quality: PM2.5 in NYC</title>
@@ -35,6 +35,13 @@
       <pubDate>Tue, 24 Aug 2021 12:04:44 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/neighborhood-air-quality/</guid>
       <description>&lt;hr&gt;&#xA;&lt;p&gt;We combine data from our air quality monitoring network, NYCCAS, with other data to understand what makes air quality in one neighborhood different from air quality in another. We found that building emissions, building density, industrial areas, and traffic density are associated with differences in air quality.&lt;/p&gt;&#xA;&lt;p&gt;If we don&amp;rsquo;t have an air quality monitor in one neighborhood, but we know its building density, its industrial area, and its traffic, then we can model (estimate or predict) its air quality - based on monitored air quality in similar neighborhoods.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Your heat story</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-story/</link>
+      <pubDate>Mon, 28 Apr 2025 11:51:01 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-story/</guid>
+      <description>&lt;p&gt;As climate change worsens, extreme heat becomes more frequent and more intense. &lt;a href=&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/localtemp/&#34;&gt; Cities get even hotter because of the urban heat island effect.&lt;/a&gt; But even within New York City, some areas are hotter than others.&lt;/p&gt;&#xA;&lt;p&gt;Heat can &lt;a href=&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/heat/&#34;&gt; harm people’s health and more than 500 people die from heat-related causes each year in New York City.&lt;/a&gt; But these health impacts are not distributed equally; historic patterns of discrimination and disinvestment create disproportionate public health impacts from heat. For example, &lt;a href=&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-report/&#34;&gt;death rates are higher among Black New Yorkers and in neighborhoods with more residents living below the poverty line.&lt;/a&gt;&lt;/a&gt;&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

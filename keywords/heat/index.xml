@@ -6,7 +6,7 @@
     <description>Recent content in Heat on Environment &amp; Health Data Portal</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 03 Oct 2021 12:33:17 -0400</lastBuildDate>
+    <lastBuildDate>Mon, 28 Apr 2025 11:51:01 -0400</lastBuildDate>
     <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/heat/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Interactive Heat Vulnerability Index</title>
@@ -28,6 +28,13 @@
       <pubDate>Wed, 08 Sep 2021 11:14:56 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-report/</guid>
       <description>&lt;p&gt;Each summer, on average, an estimated 350 New Yorkers die prematurely because of hot weather in New York City (NYC). These heat-related deaths account for about 2% of all deaths over the warm season months of May through September.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Your heat story</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-story/</link>
+      <pubDate>Mon, 28 Apr 2025 11:51:01 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-story/</guid>
+      <description>&lt;p&gt;As climate change worsens, extreme heat becomes more frequent and more intense. &lt;a href=&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/localtemp/&#34;&gt; Cities get even hotter because of the urban heat island effect.&lt;/a&gt; But even within New York City, some areas are hotter than others.&lt;/p&gt;&#xA;&lt;p&gt;Heat can &lt;a href=&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/heat/&#34;&gt; harm people’s health and more than 500 people die from heat-related causes each year in New York City.&lt;/a&gt; But these health impacts are not distributed equally; historic patterns of discrimination and disinvestment create disproportionate public health impacts from heat. For example, &lt;a href=&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-report/&#34;&gt;death rates are higher among Black New Yorkers and in neighborhoods with more residents living below the poverty line.&lt;/a&gt;&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>Climate and health</title>
