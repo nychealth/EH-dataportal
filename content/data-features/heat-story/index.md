@@ -1,10 +1,12 @@
 ---
 title: "Your heat story"
-date: 2021-08-30T11:51:01-04:00
+date: 2025-04-28T11:51:01-04:00
 draft: false
 seo_title: "Your NYC heat story"
 seo_description: "Explore this summer's high temps and health effects."
-categories: [climatehealth]
+categories:
+  - climatehealth
+  - inequality
 keywords:
   [
     "interactive",
