@@ -6,7 +6,7 @@ draft: false
 <button id="btn2" class="btn btn-sm btn-outline-primary" onclick="map(2)">Heat stress deaths</button>
 
 <div id="map1" class="">
-<div style="min-height:655px"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/OEVex/embed.js?v=2" charset="utf-8"></script><noscript><img src="https://datawrapper.dwcdn.net/OEVex/full.png" alt="Map showing the heat vulnerability index for 2022 at the neighborhood tabulation area for New York City." /></noscript></div>
+<div style="min-height:655px"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/OEVex/embed.js?v=2" charset="utf-8"></script><noscript><img src="https://datawrapper.dwcdn.net/OEVex/full.png" alt="Map showing the heat vulnerability index for 2023 at the neighborhood tabulation area for New York City." /></noscript></div>
 </div>
 
 
