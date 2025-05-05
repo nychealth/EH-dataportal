@@ -24,8 +24,8 @@ To prepare for a hotter future and prevent heat-related deaths, the City needs l
   - Support community-based organizations (CBO) working to reduce the health impacts of climate change.
   - Include CBOs and residents in decision-making about and investments in community infrastructure and public space.
   - Fund and provide technical assistance for programs that support CBOs to build community resilience through social cohesion and access to physical and mental health resources that can help people stay safe in the heat.
-  - Work with local, state, and federal partners to ensure that indoor and outdoor workplaces are safe during hot weather.
   - Continue to strengthen emergency response to extreme heat, such as opening cooling centers, expanding awareness of other cool indoor spaces, and issuing heat-health warnings, prioritizing people and communities with the greatest need.
+- •	Work with local, state, and federal partners to ensure that indoor and outdoor workplaces are safe during hot weather, such as by setting occupational heat safety standards.
 
 More data and information about heat, climate, and health is available on the NYC Health Department’s&nbsp;[Climate and Health page.](..) Learn more about what the City is doing to mitigate the effects of heat as part of [PlaNYC: Getting Sustainability Done](https://climate.cityofnewyork.us/initiatives/planyc-getting-sustainability-done/).&nbsp;
 
