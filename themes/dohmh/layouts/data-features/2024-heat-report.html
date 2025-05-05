@@ -23,6 +23,8 @@
 
       <h1>{{ .Title }}</h1>
 
+      {{ if .Params.correction }}
+      <!-- Correct should exist for 2023 and 2024 reports --> 
       <div class="asidebox mb-2">
         <p class="fs-sm">
           This report was corrected on Apr. 2, 2025, after we identified an
@@ -34,6 +36,7 @@
           >.
         </p>
       </div>
+      {{ end }}
 
       {{- with .Resources.GetMatch "0-summary-intro.md" -}} {{ .Content }} {{-
       end -}}
