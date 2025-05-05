@@ -12,7 +12,7 @@ We report estimated heat-exacerbated deaths for the current and historical data 
 
 These models were run in 5-year rolling time windows between 1973 and 2022 (last year’s report included 1972 to 2021). We included deaths occurring on the date of exposure to hot weather and over the following 3 days because previous NYC Health Department studies have shown that heat-exacerbated deaths can occur up to 3 days after the initial hot weather [\[4\]](https://ehp.niehs.nih.gov/doi/10.1289/ehp.0900906). [Detailed methods used to estimate risks and attributable deaths can be found in the Appendix Methods and Supplemental Data](2025-Heat-Mortality-Report-Appendix.pdf).
 
-Estimated heat-exacerbated deaths — both those attributed to extreme and non-extreme hot days — declined substantially between 1972 and 2000 and plateaued after 2000 for about a decade (see Figure 3). Heat-exacerbated deaths at and above 82°F started increasing about a decade ago but plateaued in recent years (see Figure 3).
+EEstimated heat-exacerbated deaths — both those attributed to extreme and non-extreme hot days — declined substantially between 1972 and 2000 and plateaued after 2000 for about a decade. Heat-exacerbated deaths at and above 82°F then started increasing about a decade ago but plateaued again in recent years (see Figure 3).
 
 From 2017 to 2021, the most recent 5-year time window, the estimated annual average of heat-exacerbated deaths during May-September for all hot days was 568 (95% Confidence Interval \[95% CI\]: 223, 874). Heat-exacerbated deaths made up approximately 3% of all natural-cause deaths in the warm months in this most recent period.
 
