@@ -3,12 +3,12 @@ _schema: default
 draft: false
 ---
 
-Each summer, on average, **an estimated 580 New Yorkers die prematurely because of hot weather** in New York City (NYC). These heat-related deaths account for about 3% of all deaths over the warm season months of May through September. Of the 580 deaths:
+Each summer, on average, **more than 500 New Yorkers die prematurely because of hot weather** in New York City (NYC). In the most recent 5-year period (2018-2022), an estimated 525 people died annually due to heat. These heat-related deaths account for about 3% of all deaths over the warm season months of May through September. Of the 525 deaths:
 
-- There was an average of **7 heat-stress deaths** (caused directly by heat) per year.
-- There was an average of about **570 heat-exacerbated deaths** (caused indirectly by heat aggravating an underlying illness) per year.
+- There was an average of **5 heat-stress deaths** (caused directly by heat) per year.
+- There was an average of about **520 heat-exacerbated deaths** (caused indirectly by heat aggravating an underlying illness) per year.
 
-**Heat-exacerbated deaths increased in the past decade**, mainly due to hotter summers overall with more “non-extreme hot days” of 82°F up to but below the extreme heat threshold (95°F). Death counts have remained steady in the most recent years.
+**Heat-exacerbated deaths increased in the past decade**, mainly due to hotter summers overall with more “non-extreme hot days” of 82°F up to but below the extreme heat threshold (95°F). Estimates of the number of deaths have remained relatively steady in the most recent years. The 2018-2022 estimate is similar in magnitude to the 2017-2021 estimate of 570 in last year’s report, with more than 500 New Yorkers dying due to the heat every summer. The number of heat-exacerbated deaths in last year’s report was corrected to 570. See details on the correction here.
 
 **Black New Yorkers are more likely to die from heat stress**, with death rates two times higher than White New Yorkers. Black New Yorkers also have a higher likelihood of heat-exacerbated death compared to other New Yorkers. This inequity is due to past and current structural racism that creates economic, health care, housing, energy, and other systems that benefit White people and disadvantage people of color.
 
