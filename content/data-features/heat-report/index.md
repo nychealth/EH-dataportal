@@ -17,7 +17,7 @@ keywords:
   - mortality
 seo_title: 2025 Heat Mortality Report | Environment and Health Data Portal
 seo_description: Data and findings on the impact of heat in NYC.
-layout: 2024-heat-report
+layout: 24-25-heat-report
 content_weight: 6.0
 image: fig-4.jpeg
 report: true
