@@ -5,7 +5,7 @@ draft: false
 
 ## Conclusion
 
-Heat contributes to the deaths of about 580 New Yorkers, on average, each year during the warm season of May through September. Inequities by race and income persist in the people and neighborhoods most impacted. Deaths across all races, however, were more common at home, underscoring the importance of access to and affordability of home cooling to prevent death.
+Heat contributes to the deaths of more than 500 New Yorkers, on average, each year during the warm season of May through September. In the most recent 5-year period (2018-2022) there were an estimated 525 deaths annually. Inequities by race and income persist in the people and neighborhoods most impacted. Deaths across all races, however, were more common at home, underscoring the importance of access to and affordability of home cooling to prevent death.
 
 To prepare for a hotter future and prevent heat-related deaths, the City needs long-lasting, structural interventions alongside heat emergency preparedness and response. Adapting to a hotter climate means the City must:
 
