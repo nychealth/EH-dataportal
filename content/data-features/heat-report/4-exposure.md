@@ -11,5 +11,3 @@ Air conditioning access differs across race and class. Black New Yorkers and low
 The next most common place of heat exposure was outdoors (n=19, 43%). Another 7% (n=3) were exposed in parked cars, 2% (n=1) were exposed indoors at a worksite, 2% (n=1) were exposed on a subway platform.
 
 Overall, 11% (n=5) of deaths were work-related and another 14% (n=6) were individuals noted to be experiencing or suspected to be experiencing homelessness.
-
-
