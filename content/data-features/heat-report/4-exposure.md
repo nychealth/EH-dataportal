@@ -2,9 +2,7 @@
 _schema: default
 draft: false
 ---
-People who died from heat stress were most often exposed to dangerous heat in homes (58%, n=37 of 64 records with detailed information available about onset place). [Without AC, indoor temperatures can be much higher than outdoors, especially at night, and can continue for days after a heat wave](https://journals.ametsoc.org/view/journals/bams/99/12/bams-d-16-0280.1.xml)\[2\].
-
-Among New Yorkers exposed in homes, and for whom there was information about the presence or absence of an AC (n=24), none had or were using AC.
+People who died from heat stress were most often exposed to dangerous heat in homes (45%, n=20 of 44 records with detailed information available about onset place). Among New Yorkers exposed in homes, and for whom there was information about the presence or absence of an AC (n=15), none had or were using AC. [Without AC, indoor temperatures can be much higher than outdoors, especially at night, and can continue for days after a heat wave](https://journals.ametsoc.org/view/journals/bams/99/12/bams-d-16-0280.1.xml)\[2\].
 
 Among records with enough information to determine place of heat exposure (n=64), a third (n=18, 28%) of decedents were exposed outdoors, 8% (n=5) were exposed in parked cars, and 5% (n=3) were exposed indoors at worksites.
 
