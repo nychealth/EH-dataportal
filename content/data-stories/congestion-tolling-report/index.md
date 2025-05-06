@@ -114,7 +114,7 @@ function changeTolling(x) {
 <div class="narrow">
 
 ## Changes in PM2.5 air pollution
-PM2.5, or fine particles, are a major form of air pollution that can harm health. PM2.5 is emitted by fuel combustion – from vehicles, building boilers, restaurants, and other sources. [About 14% of the city’s PM2.5 comes from traffic]({{< baseURL >}}data-stories/traffic-and-air-pollution).  
+PM2.5, or fine particles, are a major form of air pollution that can harm health. PM2.5 is emitted by fuel combustion – from vehicles, building boilers, restaurants, and other sources. [About 14% of the city’s PM2.5 comes from traffic](../data-stories/traffic-and-air-pollution).  
 
 Inside the tolling zone, PM2.5 levels drop at several sites. Typically, we see PM2.5 levels rise in colder weather, as building boilers heat buildings and emit pollution.  
 
