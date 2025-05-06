@@ -10,7 +10,9 @@ draft: false
 </div>
 
 <div id="map2" class="hide">
+
 <div style="min-height:718px"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/ix4Mc/embed.js?v=1" charset="utf-8"></script><noscript><img src="https://datawrapper.dwcdn.net/ix4Mc/full.png" alt="Map of heat stress deaths for 2022 by neighborhood tabulation areas in New York City" /></noscript></div>
+
 </div>
 
 <script>
