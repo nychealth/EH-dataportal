@@ -140,7 +140,7 @@ This initial, 3-month report on traffic and air quality changes shows that traff
 
 However, this is not enough to draw conclusions about the effects of Congestion Relief Tolling on traffic and air quality. For reliable findings, we need to analyze data from 12 months before the start of tolling, and 12 months after the start of tolling. We will use analytical methods that will separate out the effects of the toll from other effects, like year-to-year changes in the city, seasonal variations, and other things that can affect traffic volume and air quality. And, that study will examine the effect of Congestion Relief Tolling on the 6 different pollutants typically examined by the [New York City Community Air Survey](../data-features/nyccas).  
 
-A future report, in 2026, will provide a reliable, comprehensive look at the tolling program’s changes to traffic volume and air quality.    
+A future report, in 2026, will provide a reliable, comprehensive look at the tolling program’s changes to traffic volume and air quality ([read more about our plan to analyze the impacts of Congestion Relief Tolling on New York City's air quality](https://www.nyc.gov/assets/doh/downloads/pdf/environmental/cbdtp-aq-monitoring-methods.pdf)).    
 
 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
