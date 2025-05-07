@@ -395,7 +395,7 @@ const renderTrendChart = (
         // console.log('running noCompare')
 
         // print text
-        let noCompareFootnote = `Because of a method change, data before ${compNoCompare} shouldn't be compared to later time periods.`
+        let noCompareFootnote = `A change in sampling methods in ${compNoCompare} may explain some differences in estimates from earlier years.`
         document.querySelector("#trend-unreliability").innerHTML += "<div class='fs-xs'>" + noCompareFootnote + "</div>" ;
         document.getElementById("trend-unreliability").classList.remove('hide')
 
