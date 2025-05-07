@@ -136,9 +136,9 @@ One location, Hamilton Bridge, shows an increase that is consistent with typical
 
 ## What it means  
 
-This initial, 3-month report on traffic and air quality changes shows that traffic appears to be lower in the relief zone and unchanged outside of it. PM2.5 levels inside the tolling zone dropped, and outside the zone, follow typical seasonal patterns.   
+This initial, 3-month report on traffic and air quality changes shows that traffic appears to be lower in the relief zone and unchanged outside of it. PM2.5 levels inside the tolling zone dropped slightly, and outside the zone, follow typical seasonal patterns.   
 
-However, this is not enough to draw conclusions about the effects of Congestion Relief Tolling on traffic and air quality. For reliable findings, we need to analyze data from 12 months before the start of tolling, and 12 months after the start of tolling. We will use analytical methods that will separate out the effects of the toll from other effects, like year-to-year changes in the city, seasonal variations, and other things that can affect traffic volume and air quality. And, that study will examine the effect of Congestion Relief Tolling on the 6 different pollutants typically examined by the New York City Community Air Survey.  
+However, this is not enough to draw conclusions about the effects of Congestion Relief Tolling on traffic and air quality. For reliable findings, we need to analyze data from 12 months before the start of tolling, and 12 months after the start of tolling. We will use analytical methods that will separate out the effects of the toll from other effects, like year-to-year changes in the city, seasonal variations, and other things that can affect traffic volume and air quality. And, that study will examine the effect of Congestion Relief Tolling on the 6 different pollutants typically examined by the [New York City Community Air Survey](../data-features/nyccas).  
 
 A future report, in 2026, will provide a reliable, comprehensive look at the tolling program’s changes to traffic volume and air quality.    
 
