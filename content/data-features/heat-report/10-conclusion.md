@@ -29,7 +29,7 @@ To prepare for a hotter future and prevent heat-related deaths, the City needs l
 
 More data and information about heat, climate, and health is available on the NYC Health Department’s&nbsp;[Climate and Health page.](..) Learn more about what the City is doing to mitigate the effects of heat as part of [PlaNYC: Getting Sustainability Done](https://climate.cityofnewyork.us/initiatives/planyc-getting-sustainability-done/).&nbsp;
 
-<div class="asidebox"><strong>Note on years of data included:</strong> For heat-stress, data for 2023 and 2024 are considered provisional because death data are still being compiled by the NYC Health Department Bureau of Vital Statistics. These numbers may be updated in future reports as final data become available; however, 2023 heat-stress numbers are less likely to change and are included in all heat-stress tables (2014-2023). The heat-exacerbated mortality analysis requires complete daily death counts to produce accurate estimates, making 2022 the most recent available year of data. {#note-on-years-of-data-included}</div> 
+<div class="asidebox"><strong>Note on years of data included:</strong> For heat-stress, data for 2023 and 2024 are considered provisional because death data are still being compiled by the NYC Health Department Bureau of Vital Statistics. These numbers may be updated in future reports as final data become available; however, 2023 heat-stress numbers are less likely to change and are included in all heat-stress tables (2014-2023). The heat-exacerbated mortality analysis requires complete daily death counts to produce accurate estimates, making 2022 the most recent available year of data. </div> 
 
 <div class="fs-sm px-2 py-1 mb-2">&nbsp;</div>
 
