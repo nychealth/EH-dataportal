@@ -1457,6 +1457,8 @@ const renderMeasures = async () => {
                 let compGeography       = [... new Set(compGroup.array("Geography"))];
                 let compName            = [... new Set(compGroup.array("ComparisonName"))];
 
+                document.getElementById('showCompTitle').innerHTML = compName
+
                 // console.log("compGeography", compGeography);
 
                 // console.log("compGeography", compGeography);
