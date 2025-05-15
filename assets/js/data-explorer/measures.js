@@ -1353,7 +1353,7 @@ const renderMeasures = async () => {
 
             // document.getElementById('tc1').innerText = header? header : 'hi'
 
-            trendSelectionLabel.innerHTML += header ? '<strong>' + header + '</strong>' : '';
+            trendSelectionLabel.innerHTML += header ?  header.toLowerCase()  : '';
 
             if (trendData) {
                 dropdownTrendSelection.innerHTML += DOMPurify.sanitize(`<button class="btn btn-primary dropdown-item trendbutton pl-2"
@@ -1440,7 +1440,7 @@ const renderMeasures = async () => {
             // add each unique legend title as a header, with the included comparison underneath
 
             document.getElementById('compMenu').classList.remove('hide');
-            compSelectionLabel.innerHTML += title ? '<strong>' + title + '</strong>' : '';
+            compSelectionLabel.innerHTML += title ? title.toLowerCase() : '';
 
             let comparisonIDs = [... new Set(titleGroup.array("ComparisonID"))]
 
@@ -1456,8 +1456,6 @@ const renderMeasures = async () => {
                 let compGeoTypeName     = [... new Set(compGroup.array("GeoTypeName"))];
                 let compGeography       = [... new Set(compGroup.array("Geography"))];
                 let compName            = [... new Set(compGroup.array("ComparisonName"))];
-
-                document.getElementById('showCompTitle').innerHTML = compName
 
                 // console.log("compGeography", compGeography);
 
