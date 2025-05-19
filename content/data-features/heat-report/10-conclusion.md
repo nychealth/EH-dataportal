@@ -20,7 +20,7 @@ To prepare for a hotter future and prevent heat-related deaths, the City needs l
   - Prohibit electricity disconnections during hot weather, even if bills are unpaid.
   - Fund energy efficient home improvements to help reduce family energy costs and decrease pressure on the electrical grid.
 - Invest in local resiliency to make all NYC neighborhoods and residents cooler and safer.
-  - Implement green infrastructure projects, especially in high HVI neighborhoods, including planting trees and other greenery and expanding cool roofs. For example, expanding the city’s tree canopy coverage to 30% (2023 <a href="https://climate.cityofnewyork.us/initiatives/planyc-getting-sustainability-done/" target="_blank" rel="noreferrer noopener">PlaNYC: Getting Sustainability Done</a>).  
+  - Implement green infrastructure projects, especially in high HVI neighborhoods, including planting trees and other greenery and expanding cool roofs. For example, expanding the city’s tree canopy coverage to 30% (2023 <a href="https://climate.cityofnewyork.us/initiatives/planyc-getting-sustainability-done/" target="_blank" rel="noreferrer noopener">PlaNYC: Getting Sustainability Done</a>).
   - Support community-based organizations (CBO) working to reduce the health impacts of climate change.
   - Include CBOs and residents in decision-making about and investments in community infrastructure and public space.
   - Fund and provide technical assistance for programs that support CBOs to build community resilience through social cohesion and access to physical and mental health resources that can help people stay safe in the heat.
@@ -29,7 +29,9 @@ To prepare for a hotter future and prevent heat-related deaths, the City needs l
 
 More data and information about heat, climate, and health is available on the NYC Health Department’s&nbsp;[Climate and Health page.](..) Learn more about what the City is doing to mitigate the effects of heat as part of [PlaNYC: Getting Sustainability Done](https://climate.cityofnewyork.us/initiatives/planyc-getting-sustainability-done/).&nbsp;
 
-<div class="asidebox"><strong>Note on years of data included:</strong> For heat-stress, data for 2023 and 2024 are considered provisional because death data are still being compiled by the NYC Health Department Bureau of Vital Statistics. These numbers may be updated in future reports as final data become available; however, 2023 heat-stress numbers are less likely to change and are included in all heat-stress tables (2014-2023). The heat-exacerbated mortality analysis requires complete daily death counts to produce accurate estimates, making 2022 the most recent available year of data. </div> 
+<div id="note-on-years-of-data-included">
+<div class="asidebox"><strong>Note on years of data included:</strong> For heat-stress, data for 2023 and 2024 are considered provisional because death data are still being compiled by the NYC Health Department Bureau of Vital Statistics. These numbers may be updated in future reports as final data become available; however, 2023 heat-stress numbers are less likely to change and are included in all heat-stress tables (2014-2023). The heat-exacerbated mortality analysis requires complete daily death counts to produce accurate estimates, making 2022 the most recent available year of data. </div>
+</div>
 
 <div class="fs-sm px-2 py-1 mb-2">&nbsp;</div>
 
