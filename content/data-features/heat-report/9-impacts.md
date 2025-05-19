@@ -2,7 +2,8 @@
 _schema: default
 draft: false
 ---
-The Heat Vulnerability Index (HVI) shows differences in community-level heat impacts during and shortly after extreme heat events (5). The HVI combines environmental factors (measures of a neighborhood’s average surface temperature and percentage of green space) with social factors (percentage of homes with air conditioning, residents’ median income, and the percentage of residents who are Black) to develop a relative measure of a neighborhood vulnerability to heat.
+
+The Heat Vulnerability Index (HVI) shows differences in community-level heat impacts during and shortly after extreme heat events [\[5\]](https://pmc.ncbi.nlm.nih.gov/articles/PMC4492264/). The HVI combines environmental factors (measures of a neighborhood’s average surface temperature and percentage of green space) with social factors (percentage of homes with air conditioning, residents’ median income, and the percentage of residents who are Black) to develop a relative measure of a neighborhood vulnerability to heat.
 
 Unlike many social vulnerability indices, the HVI is derived from NYC mortality data, which means that neighborhoods with elevated risk identified by the index are those areas with elevated heat-exacerbated deaths during extreme heat events. HVI scores range from 1 (lowest risk) to 5 (highest risk). The relative heat mortality risk of each <a href="https://www1.nyc.gov/content/planning/pages/resources/datasets/neighborhood-tabulation" target="_blank" rel="noreferrer noopener">Neighborhood Tabulation Area (NTA</a>) can be explored <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/key-topics/climatehealth/hvi" target="_blank" rel="noreferrer noopener">here</a>.
 
