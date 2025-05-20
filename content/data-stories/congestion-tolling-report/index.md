@@ -47,9 +47,11 @@ This map shows the locations of real-time air quality monitoring, both inside th
 <div class="wide my-4">
   <div class="row">
     <div class="col-md-6 col-sm-12">
+      <strong>Monitors inside the tolling zone</strong>
       <div style="min-height:529px" id="datawrapper-vis-8BsJV"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/8BsJV/embed.js" charset="utf-8" data-target="#datawrapper-vis-8BsJV"></script><noscript><img src="https://datawrapper.dwcdn.net/8BsJV/full.png" alt="" /></noscript></div>
     </div>
     <div class="col-md-6 col-sm-12">
+      <strong>Monitors outside the tolling zone</strong>
       <div style="min-height:529px" id="datawrapper-vis-F2t64"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/F2t64/embed.js" charset="utf-8" data-target="#datawrapper-vis-F2t64"></script><noscript><img src="https://datawrapper.dwcdn.net/F2t64/full.png" alt="" /></noscript></div>
     </div>
   </div>
@@ -96,4 +98,5 @@ So, why did the air pollution increase at the Hamilton Bridge monitor location?
 
 Well, we typically see seasonal variation in air pollution, especially from fall to winter. As the weather gets colder, building boilers burn more fuel to heat buildings, and emit more PM2.5. And, we know that this area has a higher concentration of buildings with boilers that burn a type of fuel that emits more PM2.5. 
 
-However, this is not enough to draw conclusions about the effects of Congestion Relief Tolling on traffic and air quality. For reliable findings, we still need to analyze data from 12 months before the start of tolling, and 12 months after the start of tolling. We will use analytical methods that will separate out the effects of the toll from other effects, like year-to-year changes in the city, seasonal variations, and other things that can affect traffic volume and air quality. And, that study will examine the effect of Congestion Relief Tolling on the five different pollutants typically examined by the New York City Community Air Survey.   
+## What does it mean?
+This is not enough to draw conclusions about the effects of Congestion Relief Tolling on traffic and air quality. For reliable findings, we still need to analyze data from 12 months before the start of tolling, and 12 months after the start of tolling. We will use analytical methods that will separate out the effects of the toll from other effects, like year-to-year changes in the city, seasonal variations, and other things that can affect traffic volume and air quality. And, that study will examine the effect of Congestion Relief Tolling on the five different pollutants typically examined by the New York City Community Air Survey.   
