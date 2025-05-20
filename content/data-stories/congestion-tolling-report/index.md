@@ -40,7 +40,7 @@ Here, we take a preliminary look at one kind of air pollution data from location
 But these data don’t let us draw strong conclusions about the toll’s effect. A comprehensive study will require 12 months of data before the tolling start date, and 12 months of data after the start date. For that evaluation, we will use scientific methods that will separate the effects of the toll from other factors that can affect traffic and air quality – like the season, weather patterns, activity patterns, and more. We expect to publish that evaluation in 2026.
 
 ## Where we measured air quality    
-This map shows the locations of real-time air quality monitoring, both inside the tolling zone, and outside the tolling zone. Locations outside of the zone were chosen because of community concerns that Congestion Relief Tolling would increase both traffic and air pollution outside the zone.  
+This map shows the locations of [real-time air quality monitoring](./data-features/realtime-air-quality), both inside the tolling zone, and outside the tolling zone. Locations outside of the zone were chosen because of community concerns that Congestion Relief Tolling would increase both traffic and air pollution outside the zone.  
 
 </div>
 
