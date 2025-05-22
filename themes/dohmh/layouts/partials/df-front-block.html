@@ -1,0 +1,32 @@
+<div class="row">
+  <div class="col-md-11 mx-auto mt-2 mb-3">
+      <nav aria-label="breadcrumb" class="">
+          <ul class="breadcrumb">
+              <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
+              <li class="breadcrumb-item"><a href={{ relURL "data-features" }}>Data Features</a></li>
+                  <li class="breadcrumb-item active d-none d-md-block" aria-current="page">{{ .Title }}</li>
+              </ul>
+        </nav>
+
+        <div class="mt-4">
+          <h1 id="top" class="h2" data-pagefind-weight="10.0">{{ .Title }}</h1>
+
+          <div class="row">
+            <div class="col-md-8">
+              {{ .Content }}
+            </div>
+
+            <div class="col-md-4">
+                <div class="fs-sm asidebox">
+                  <h2 class="h6">About the data</h2>
+                  <p class="fs-sm">
+                    {{ .Params.aboutTheData | safeHTML }}
+                  </p>
+                </div>
+            </div>
+          </div>
+
+        </div>
+    </div>
+</div>
+
