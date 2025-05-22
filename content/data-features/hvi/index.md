@@ -36,6 +36,7 @@ related:
     url: "data-features/heat-syndrome/"
 weight: 1
 blurb: Map of neighborhood heat vulnerability, and the neighborhood characteristics that affect it.
+aboutTheData: 'The data come from blah blah blah <a href="www.google.com">Download them here</a>'
 ---
 Hot weather is dangerous. In New York City – and across the country – more people die from heat than from all other natural disasters combined. As our climate continues to warm, we expect more heat events that can put people’s lives at risk.
 
