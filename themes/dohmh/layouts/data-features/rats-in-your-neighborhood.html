@@ -37,6 +37,11 @@
                 </div>
             </div>
 
+
+<!-- about the data asidebox--> 
+{{ if .Params.aboutTheData }}
+    {{ partial "df-about-the-data" . }}
+{{ end }}
             <div class="row my-2">
                 <div class="col-md-6 mb-2">
                     <div class="mb-1">
