@@ -252,9 +252,21 @@ const renderTable = () => {
         fixedHeader: true,
         orderFixed: [[ 0, 'desc' ], [ 3, 'asc' ]], // TimePeriod, GeoRank, BoroID
         columnDefs: [
-            { type: 'natural', targets: '_all' },
             { visible: false, targets: [0, 1, 2, 3, 4, 5, 6] },
             { searchable: false, targets: [...notSearchCols] },
+            { type: 'natural', targets: ['_all'] }, // enforces natural sorting - which handles number/string combos
+            {
+                targets: 8, // replace with correct index
+                render: function (data, type, row) {
+                    if (type === 'sort' || type === 'type') {
+                    // Remove commas and try to parse as float
+                    const cleaned = data.replace(/,/g, '');
+                    const num = parseFloat(cleaned);
+                    return isNaN(num) ? -Infinity : num;
+                    }
+                    return data; // For display and filtering, return original
+                }
+            },
             {
                 targets: 7, // Adjust to the column index where you need formatting
                 render: function (data, type, row) {
@@ -264,7 +276,8 @@ const renderTable = () => {
                     }
                     return data;
                 }
-            }
+            },
+
         ],
         language: {
             search: "Find a neighborhood:"  // Change the search box prompt text
