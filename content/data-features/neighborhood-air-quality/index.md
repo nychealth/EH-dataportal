@@ -36,7 +36,7 @@ related:
     url: "data-stories/hia/"
 weight: 2
 blurb: Two major air pollutant measurements and some factors that influence them across NYC neighborhoods.
----
+aboutTheData: 'The data come from blah blah blah <a href="www.google.com">Download them here</a>'
 
 ---
 

@@ -2,31 +2,13 @@
 
 <article class="container-fluid" id="skip-header-target">
 
-    <div class="row">
-        <div class="col-md-11 mx-auto mt-2 mb-3">
-            <nav aria-label="breadcrumb" class="">
-                <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
-                    <li class="breadcrumb-item"><a href={{ relURL "data-features" }}>Data Features</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </div>
+    {{ partial "df-front-block" . }}
 
     <div class="row">
         <div class="col-md-11 mx-auto" data-pagefind-weight="7.0">
-            <h1 id="top" class="h2" data-pagefind-weight="10.0">{{ .Title }}</h1>
-            <div class="row">
-                <div class="col-md-8 mr-auto">
-                    <p>{{ .Content }}</p>
-
-                </div>
+            
             </div>
         </div>
-
-    </div>
 
     <div class="row mb-4">
         <div class="col-md-5 ml-auto">
