@@ -225,6 +225,8 @@ const renderTable = () => {
 
     const notSearchCols = Array.from({length: dataColumnsCount}, (_, i) => i).filter(x => x != 7);
 
+    const sortBy = dataColumnsCount - 1 // get index position of last column
+
     // define which column indexes define which groups
     
     const groupColumnTime = 0
@@ -250,7 +252,8 @@ const renderTable = () => {
         ],
         bInfo: false,
         fixedHeader: true,
-        orderFixed: [[ 0, 'desc' ], [ 3, 'asc' ]], // TimePeriod, GeoRank, BoroID
+        order: [[sortBy, 'desc']],                  // Initial sort by the last column
+        orderFixed: [[ 0, 'desc' ], [ 3, 'asc' ]],  // TimePeriod, GeoRank 
         columnDefs: [
             { visible: false, targets: [0, 1, 2, 3, 4, 5, 6] },
             { searchable: false, targets: [...notSearchCols] },
