@@ -4,60 +4,38 @@
 
 <article class="container-fluid" id="skip-header-target">
 
-    <div class="row">
-        <div class="col-md-7 col-sm-12 mx-auto  mb-2">
-            <nav aria-label="breadcrumb" class="mt-2 mb-3">
-                <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
-                    <li class="breadcrumb-item"><a href={{ relURL "data-features" }}>Data Features</a></li>
-                    <li class="breadcrumb-item active d-none d-md-block" aria-current="page">{{ .Title }}</li>
-                </ul>
-            </nav>
-
-
-            <h1 class="h2" data-pagefind-weight="10.0">
-                {{ .Title }}
-            </h1>
-
-            <div data-pagefind-weight="7.0">
-                <p>We combine data from our air quality monitoring network, NYCCAS, with other data to understand what
-                    makes one neighborhood's air quality different from another's. We found that building emissions,
-                    commercial cooking, industrial areas, and traffic density are associated with differences in air
-                    quality.</p>
+    {{ partial "df-front-block" . }}
     
-                    <p>If we don't have an air quality monitor in one neighborhood, but we know this other information about it, then we can model its air quality - estimating or predicting it, based on
-                        monitored air quality in similar neighborhoods.</p>
+    <div data-pagefind-weight="7.0">
 
                     <div class="sr-only">
                         <div style="min-height:1028px" id="datawrapper-vis-5axZx"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/5axZx/embed.js" charset="utf-8" data-target="#datawrapper-vis-5axZx"></script><noscript><img src="https://datawrapper.dwcdn.net/5axZx/full.png" alt="" /></noscript></div>
                     </div>
                     </div>
     
-                
-    
-                <div class="my-2" aria-hidden="true">
-    
-                    <div class="fs-sm pb-1"><span class="home-label font-weight-bold">Enter a neighborhood to get data:</span></div>
-        
-                    <div class="btn-group" role="group" style="width:100%;">
-        
-                        <input
-                            id="flex_search"
-                            type='search'
-                            class='flexdatalist form-control'
-                            name='indicator_name_suggestion'
-                        />
-        
-                        <button id="clear" class="btn btn-md btn-warning">Clear</button>
-                    </div>
-        
-        
-                    <p class="float-right"><em class="fs-sm"><a
-                        href={{ relURL "data-stories/geographies" }}>About Neighborhood Tabulation Areas.</a></em> </p>
-    
-                </div>
+            
+<div class="row">
+    <div class="col-md-7 mx-4 mt-2 mb-3">   
+        <div class="my-2" aria-hidden="true">
+            <div class="fs-sm pb-1"><span class="home-label font-weight-bold">Enter a neighborhood to get data:</span></div>
+            <div class="btn-group" role="group" style="width:100%;">
+                <input
+                    id="flex_search"
+                    type='search'
+                    class='flexdatalist form-control'
+                    name='indicator_name_suggestion'
+                />
+
+                <button id="clear" class="btn btn-md btn-warning">Clear</button>
+            </div>
+
+
+            <p class="float-right"><em class="fs-sm"><a
+                href={{ relURL "data-stories/geographies" }}>About Neighborhood Tabulation Areas.</a></em> </p>
+
         </div>
-    </div>
+            </div>
+                </div>        
 
 
     <!-- new Layout -->
