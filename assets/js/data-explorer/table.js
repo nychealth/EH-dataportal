@@ -136,7 +136,7 @@ const renderTable = () => {
         .groupby("TimePeriod", "GeoTypeDesc", "GeoID", "GeoRank", "BoroID", "Borough", "Geography")
         .pivot("MeasurementDisplay", "DisplayCI", {sort: false})
         .derive({
-            Area: aq.escape(d => {  // create Area field: Borough + Neighborhood
+            Area: aq.escape(d => {  // create Area field: Borough + Neighborhood; xx and yy are used to replace later with HTML
                 if (d.Borough && d.GeoTypeDesc != 'Borough') {
                     return `${d.Geography} xx ${d.Borough} yy`;
                 } else {
@@ -184,8 +184,8 @@ const renderTable = () => {
             { before: 0 }
         )
     
-    // console.log("filteredTableAqData [renderTable]");
-    // filteredTableAqData.print({limit: 10})
+    console.log("filteredTableAqData [renderTable]");
+    filteredTableAqData.print({limit: 100})
     
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
     // export Arquero table to HTML
@@ -250,7 +250,7 @@ const renderTable = () => {
         ],
         bInfo: false,
         fixedHeader: true,
-        orderFixed: [[ 0, 'desc' ], [ 3, 'asc' ], [ 4, 'asc' ]], // TimePeriod, GeoRank, BoroID
+        orderFixed: [[ 0, 'desc' ], [ 3, 'asc' ]], // TimePeriod, GeoRank, BoroID
         columnDefs: [
             { type: 'natural', targets: '_all' },
             { visible: false, targets: [0, 1, 2, 3, 4, 5, 6] },
