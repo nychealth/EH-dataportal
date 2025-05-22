@@ -35,6 +35,7 @@ related:
     url: "data-features/hvi/"
 weight: 2
 blurb: Data tracking heat-related emergency department visits during hot weather.  
+aboutTheData: '<p><strong>Daily temperature</strong>: The maximum daily temperature is the heat index or temperature, whichever is higher, as recorded by the National Weather Service weather station at La Guardia Airport.</p> <p>In NYC, an <strong>extreme heat event</strong> is two or more days with a heat index reaching 95 °F, or one or more days reaching 100 °F.</p> <p><a href="https://github.com/nychealth/EHDP-data/tree/production/key-topics/heat-syndrome">Download these data</a>.</p>'
 ---
 
 The weather forecast is the best way to predict heat-related health outcomes.
