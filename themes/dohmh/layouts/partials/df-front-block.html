@@ -16,6 +16,7 @@
               {{ .Content }}
             </div>
 
+            {{ if .Params.aboutTheData }}
             <div class="col-md-4">
                 <div class="fs-sm asidebox">
                   <h2 class="h6">About the data</h2>
@@ -24,6 +25,8 @@
                   </p>
                 </div>
             </div>
+            {{ end }}
+
           </div>
 
         </div>
