@@ -20,7 +20,7 @@ related:
     url: "data-features/rat-portal/"
 weight: 1
 blurb: "Rat inspections for each property, and neighborhood-level rat data."
-aboutTheData: 'The data come from blah blah blah <a href="www.google.com">Download them here</a>'
+aboutTheData: '<a href="../../data-explorer/mice-and-rats/?id=2434#display=map">Data on rat inspections by neighborhood come from the Veterinary, Rodent, and Vector Surveillance System.</a> Visit our <a href="../rat-mitigation-zones">Rat Mitigation Zones feature to learn more about RMZs,</a> and download inspection and complaint data. <a href="../rat-information-portal">Get detailed inspection results for any property from the Rat Information Portal.</a>'
 ---
 
 What's going on with rats in your neighborhood, what's being done to fight them, and how can you help?
