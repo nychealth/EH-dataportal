@@ -36,7 +36,7 @@ related:
     url: "data-features/heat-syndrome/"
 weight: 1
 blurb: Map of neighborhood heat vulnerability, and the neighborhood characteristics that affect it.
-aboutTheData: 'These data come from the American Community Survey, NASA, the Housing and Vacancy Survey and more. For a complete list of sources and to download the data, <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/climate/?id=2411#display=summary">visit the Data Explorer here.</a>'
+aboutTheData: 'These data come from the American Community Survey, NASA, the Housing and Vacancy Survey and more. For a complete list of sources and to download the data, <a href="../../data-explorer/climate/?id=2411#display=summary">visit the Data Explorer</a> and <a href="hvi-nta-2020.csv" download="hvi-nta-2020.csv" >download the data here.</a>'
 ---
 
 Hot weather is dangerous. In New York City – and across the country – more people die from heat than from all other natural disasters combined. As our climate continues to warm, we expect more heat events that can put people’s lives at risk.
