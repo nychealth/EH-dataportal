@@ -80,7 +80,7 @@
 
 
 <link href="https://maps.nyc.gov/nyc-lib/v1.2.79/css/nyc-basic-lib.css" rel="stylesheet">
-<link rel="stylesheet" href="/IndicatorPublic/scss/theme.fdd432410fe3eb925c05c74d659a8648f90ff1af343371fa4a0c91eb8f723a6733ee5f73947b12642bea29b4459d918f384816f1c976af4cfa1e56c432636d5a.css" integrity="sha512-/dQyQQ/j65JcBcdNZZqGSPkP8a80M3H6SgyR649yOmcz7l9zlHsSZCvqKbRFnZGPOEgW8cl2r0z6HlbEMmNtWg==" /><script src="/IndicatorPublic/node_modules/dompurify/dist/purify.min.fc252d03ce2c596a961017a336baed59aed873872d8773a67b6ca6bc228ea3d61c678b21f7cb67754cb82eeb44db119c0200f87f2cf5eb2fa04b225d182079c3.js" integrity="sha512-/CUtA84sWWqWEBejNrrtWa7Yc4cth3Ome2ymvCKOo9YcZ4sh98tndUy4LutE2xGcAgD4fyz16y&#43;gSyJdGCB5ww=="></script>
+<link rel="stylesheet" href="/IndicatorPublic/scss/theme.fdd432410fe3eb925c05c74d659a8648f90ff1af343371fa4a0c91eb8f723a6733ee5f73947b12642bea29b4459d918f384816f1c976af4cfa1e56c432636d5a.css" integrity="sha512-/dQyQQ/j65JcBcdNZZqGSPkP8a80M3H6SgyR649yOmcz7l9zlHsSZCvqKbRFnZGPOEgW8cl2r0z6HlbEMmNtWg==" /><script src="/IndicatorPublic/node_modules/dompurify/dist/purify.min.62572d046f4f19922187d91ea2a23779991033d4fc4146e2062eea35800efd3504a3c8ea597e692e9e7ec7570a4500d1cc9fe5c86c89f5651534845dbb120817.js" integrity="sha512-YlctBG9PGZIhh9keoqI3eZkQM9T8QUbiBi7qNYAO/TUEo8jqWX5pLp5&#43;x1cKRQDRzJ/lyGyJ9WUVNIRduxIIFw=="></script>
 
 
 
@@ -1067,7 +1067,7 @@ Many … <a href="#" data-toggle="modal" data-target="#aboutModal"><em>Read more
 
                 <div class="tab-pane fade show active pt-2" id="tab-table" aria-labelledby="tab-btn-table" role="tabpanel">
                     <div class="row">
-                        <div class="col-md-2 pl-2">
+                        <div class="col-md-2 pl-2 pr-0">
 
                                 <div class="d-block clearfix">
                                 <a href="#" class="badge badge-pill badge-light d-md-none mb-1 float-right" data-toggle="collapse" data-target="#tableSidebar" aria-expanded="false" aria-controls="tableSidebar"><i class="fas fa-cog mr-1" aria-hidden="true"></i>Options</a>
@@ -1112,7 +1112,7 @@ Many … <a href="#" data-toggle="modal" data-target="#aboutModal"><em>Read more
                 <div class="tab-pane fade pt-2" id="tab-map" aria-labelledby="tab-btn-map" role="tabpanel">
 
                     <div class="row">
-                        <div class="col-md-2 pl-2">
+                        <div class="col-md-2 pl-2 pr-0">
 
                             <div class="d-block clearfix">
                                 <a href="#" class="badge badge-pill badge-light float-right d-md-none mb-1" data-toggle="collapse" data-target="#mapSidebar" aria-expanded="false" aria-controls="mapSidebar"><i class="fas fa-cog mr-1" aria-hidden="true"></i>Options</a>
@@ -1161,7 +1161,7 @@ Many … <a href="#" data-toggle="modal" data-target="#aboutModal"><em>Read more
                 <div class="tab-pane fade pt-2" id="tab-trend" aria-labelledby="tab-btn-trend" role="tabpanel">
 
                     <div class="row">
-                        <div class="col-md-2 pl-2">
+                        <div class="col-md-2 pl-2 pr-0">
 
                             <div class="d-block clearfix">
                                 <a href="#" class="badge badge-pill badge-light float-right d-md-none mb-1" data-toggle="collapse" data-target="#trendSidebar" aria-expanded="false" aria-controls="trendSidebar"><i class="fas fa-cog mr-1" aria-hidden="true"></i>Options</a>
@@ -1169,12 +1169,25 @@ Many … <a href="#" data-toggle="modal" data-target="#aboutModal"><em>Read more
                             </div>
 
                             <div id="trendSidebar" class="collapse dont-collapse-sm">
-                                <p class="fs-xs mb-0"><i data-toggle="modal" data-target="#trendModal" class="fas fa-question-circle float-right helper text-primary fs-sm"></i>Show by:</p>
-                                <div class="border optionbox mb-2">
+
+                                <p class="fs-xs mb-0"><i data-toggle="modal" data-target="#trendModal" class="fas fa-question-circle float-right helper text-primary fs-sm"></i>
+                                By <span id="tc1" class="font-weight-bold"></span></p>
+                                <div class="border optionbox mb-0">
                                     <div class="" aria-labelledby="dropdownTrendSelection">
                                         
                                     </div>
                                 </div>
+
+                                <div id="compMenu" class="hide">
+                                    <p class="fs-xs mt-2 mb-0">By <span id="tc2" class="font-weight-bold"></span></p>
+                                    <div class="border optionbox mb-0">
+                                        <div class="" aria-labelledby="dropdownCompSelection">
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+
+
 
 
                             </div>
@@ -1199,7 +1212,7 @@ Many … <a href="#" data-toggle="modal" data-target="#aboutModal"><em>Read more
                     <div class="tab-pane fade pt-2" id="tab-links" aria-labelledby="tab-btn-links" role="tabpanel">
 
                         <div class="row">
-                            <div class="col-md-2 pl-2">
+                            <div class="col-md-2 pl-2 pr-0">
 
                                 <div class="d-block clearfix">
                                     <a href="#" class="badge badge-pill badge-light float-right d-md-none mb-1" data-toggle="collapse" data-target="#linksSidebar" aria-expanded="false" aria-controls="linksSidebar"><i class="fas fa-cog mr-1" aria-hidden="true"></i>Options</a>
@@ -2776,12 +2789,12 @@ Many … <a href="#" data-toggle="modal" data-target="#aboutModal"><em>Read more
 
     </script><script type="text/javascript" src="/IndicatorPublic/js/data-explorer/global.e50a64d0a7e79e7476c62a9f79035a3f39c633cb3534de751365aa31c2a568fe35124393ce2fa1dea81b41a925f9f55da5b6efbcd52c5b603f2833d5deba8b5b.js" integrity="sha512-5Qpk0KfnnnR2xiqfeQNaPznGM8s1NN51E2WqMcKlaP41EkOTzi&#43;h3qgbQakl&#43;fVdpbbvvNUsW2A/KDPV3rqLWw=="></script>
     <script type="text/javascript" src="/IndicatorPublic/js/data-explorer/data.9784ea5e061da1101732b4147c4efe069a1e443e0cff9d04596f717c7d32f08e28560a218884d58ac2ce5a7214bcd6e7be0c706fce19505257d6cd78fdad1c74.js" integrity="sha512-l4TqXgYdoRAXMrQUfE7&#43;BpoeRD4M/50EWW9xfH0y8I4oVgohiITVisLOWnIUvNbnvgxwb84ZUFJX1s14/a0cdA=="></script>
-    <script type="text/javascript" src="/IndicatorPublic/js/data-explorer/measures.2c729307a53b6ade54494a0cabeac55225ada59b5e7d861e878448140d36d3547ac774b9e79cbda905da76121cf52223f0c06edd975491dbe1b5dea2e1b6266d.js" integrity="sha512-LHKTB6U7at5USUoMq&#43;rFUiWtpZtefYYeh4RIFA0201R6x3S555y9qQXadhIc9SIj8MBu3ZdUkdvhtd6i4bYmbQ=="></script>
-    <script type="text/javascript" src="/IndicatorPublic/js/data-explorer/table.f73eba99d16f5a2387ce95fcf562a5996e7ae10b2de8b86c7436c4871c858801f556a35ab69763c38f50106c3c560b22e641c23b085c4bf13ef04d45bed288dc.js" integrity="sha512-9z66mdFvWiOHzpX89WKlmW564Qst6LhsdDbEhxyFiAH1VqNatpdjw49QEGw8Vgsi5kHCOwhcS/E&#43;8E1FvtKI3A=="></script>
+    <script type="text/javascript" src="/IndicatorPublic/js/data-explorer/measures.4612a1cfbbfa614751b00e191de35144744f1d469a26bcae2e2ec7e22935fbafe7e37cb312476a9b0bf3299ba5ab53cf0416263f4b0b88685e66437b91f0e0b4.js" integrity="sha512-RhKhz7v6YUdRsA4ZHeNRRHRPHUaaJryuLi7H4ik1&#43;6/n43yzEkdqmwvzKZulq1PPBBYmP0sLiGheZkN7kfDgtA=="></script>
+    <script type="text/javascript" src="/IndicatorPublic/js/data-explorer/table.44b607dfcf13b8d386c724af50f556872c07047d53330575d2c359a74d6dca5e33b8fb14a3775d25eca9bc75e430397edf211437a1a2d5e4c4ed4789f120e963.js" integrity="sha512-RLYH388TuNOGxySvUPVWhywHBH1TMwV10sNZp01tyl4zuPsUo3ddJeypvHXkMDl&#43;3yEUN6Gi1eTE7UeJ8SDpYw=="></script>
     <script type="text/javascript" src="/IndicatorPublic/js/data-explorer/map.fc0a23bc0f1c6d55ca0f9dc0c8bc2fc82602e680e32a330eca0f9520fad1b8473fe2a63208700f06340aba40bd2f7b77550d3374653707c7effa821cd125b98f.js" integrity="sha512-/AojvA8cbVXKD53AyLwvyCYC5oDjKjMOyg&#43;VIPrRuEc/4qYyCHAPBjQKukC9L3t3VQ0zdGU3B8fv&#43;oIc0SW5jw=="></script>
     <script type="text/javascript" src="/IndicatorPublic/js/data-explorer/links.00df4359732acdd70a8cdde8d4b69b537f60f55041600d2c38142a9f81859e0c4e9293a3a8073cb150a586ab07396884b0f16280181a8506cff4a3ba2baeef84.js" integrity="sha512-AN9DWXMqzdcKjN3o1LabU39g9VBBYA0sOBQqn4GFngxOkpOjqAc8sVClhqsHOWiEsPFigBgahQbP9KO6K67vhA=="></script>
     <script type="text/javascript" src="/IndicatorPublic/js/data-explorer/disparities.173da8349082edb18b033a1bf1186a7848ace5250e204e0918749abff75838b1a5e93a7db3f3d101da05f0dcdb9e042f029b8a5f0c53e6c8829b7ddc3b1739e6.js" integrity="sha512-Fz2oNJCC7bGLAzob8RhqeEis5SUOIE4JGHSav/dYOLGl6Tp9s/PRAdoF8NzbngQvApuKXwxT5siCm33cOxc55g=="></script>
-    <script type="text/javascript" src="/IndicatorPublic/js/data-explorer/trend.0c873c6a7f3a64945239265d388d4d1d77b3f534db529acde8649f5fb135ed09e44b15f2bbb27a3e92fe7888d5a36464af06cafb501aacf508cf8e6c999e4965.js" integrity="sha512-DIc8an86ZJRSOSZdOI1NHXez9TTbUprN6GSfX7E17QnkSxXyu7J6PpL&#43;eIjVo2RkrwbK&#43;1AarPUIz45smZ5JZQ=="></script>
+    <script type="text/javascript" src="/IndicatorPublic/js/data-explorer/trend.7f57b446836d737e26ca8eb09f737e91ff09d5a5406fd5ca259e24820a1e6ad5dcc36cc24914d8cf2c3355db50803add6f41fd03518f8d6da30a26379febe716.js" integrity="sha512-f1e0RoNtc34myo6wn3N&#43;kf8J1aVAb9XKJZ4kggoeatXcw2zCSRTYzywzVdtQgDrdb0H9A1GPjW2jCiY3n&#43;vnFg=="></script>
     <script type="text/javascript" src="/IndicatorPublic/js/data-explorer/app.566e89835a74aaff24a901994558331f125c0cbfb40c056a9f368daf597156490fcf25eac51c37fc93493309f9cf259dc3335deb68506f2010d6d20769a345bd.js" integrity="sha512-Vm6Jg1p0qv8kqQGZRVgzHxJcDL&#43;0DAVqnzaNr1lxVkkPzyXqxRw3/JNJMwn5zyWdwzNd62hQbyAQ1tIHaaNFvQ=="></script>
     <script type="text/javascript" src="/IndicatorPublic/js/data-explorer/print.dbb0ae9e43587e8755f5b649920f377f293638a8e9812f4b5436494db53310a2f5131c56dbeaf60d61af65dd054e87f31286af2b813b6ddec736610595d444ee.js" integrity="sha512-27CunkNYfodV9bZJkg83fyk2OKjpgS9LVDZJTbUzEKL1ExxW2&#43;r2DWGvZd0FTofzEoavK4E7bd7HNmEFldRE7g=="></script>
   
