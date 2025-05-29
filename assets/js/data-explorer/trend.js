@@ -102,7 +102,6 @@ const renderTrendChart = (
     let compNoCompare       = [... new Set(metadata.array("TrendNoCompare"))].filter(nc => nc != null)[0]
     let compThresholds      = [... new Set(metadata.array("TrendThreshold"))]
 
-
     // console.log('compMeasurementType', compMeasurementType)
     // console.log('compDisplayTypes', compDisplayTypes)
 

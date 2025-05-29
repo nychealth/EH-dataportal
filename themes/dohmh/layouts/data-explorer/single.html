@@ -562,7 +562,7 @@
 
                 <div class="tab-pane fade show active pt-2" id="tab-table" aria-labelledby="tab-btn-table" role="tabpanel">
                     <div class="row">
-                        <div class="col-md-2 pl-2">
+                        <div class="col-md-2 pl-2 pr-0">
 
                                 <div class="d-block clearfix">
                                 <a href="#" class="badge badge-pill badge-light d-md-none mb-1 float-right" data-toggle="collapse" data-target="#tableSidebar" aria-expanded="false" aria-controls="tableSidebar"><i class="fas fa-cog mr-1" aria-hidden="true"></i>Options</a>
@@ -607,7 +607,7 @@
                 <div class="tab-pane fade pt-2" id="tab-map" aria-labelledby="tab-btn-map" role="tabpanel">
 
                     <div class="row">
-                        <div class="col-md-2 pl-2">
+                        <div class="col-md-2 pl-2 pr-0">
 
                             <div class="d-block clearfix">
                                 <a href="#" class="badge badge-pill badge-light float-right d-md-none mb-1" data-toggle="collapse" data-target="#mapSidebar" aria-expanded="false" aria-controls="mapSidebar"><i class="fas fa-cog mr-1" aria-hidden="true"></i>Options</a>
@@ -656,7 +656,7 @@
                 <div class="tab-pane fade pt-2" id="tab-trend" aria-labelledby="tab-btn-trend" role="tabpanel">
 
                     <div class="row">
-                        <div class="col-md-2 pl-2">
+                        <div class="col-md-2 pl-2 pr-0">
 
                             <div class="d-block clearfix">
                                 <a href="#" class="badge badge-pill badge-light float-right d-md-none mb-1" data-toggle="collapse" data-target="#trendSidebar" aria-expanded="false" aria-controls="trendSidebar"><i class="fas fa-cog mr-1" aria-hidden="true"></i>Options</a>
@@ -664,12 +664,25 @@
                             </div>
 
                             <div id="trendSidebar" class="collapse dont-collapse-sm">
-                                <p class="fs-xs mb-0"><i data-toggle="modal" data-target="#trendModal" class="fas fa-question-circle float-right helper text-primary fs-sm"></i>Show by:</p>
-                                <div class="border optionbox mb-2">
+
+                                <p class="fs-xs mb-0"><i data-toggle="modal" data-target="#trendModal" class="fas fa-question-circle float-right helper text-primary fs-sm"></i>
+                                By <span id="tc1" class="font-weight-bold"></span></p>
+                                <div class="border optionbox mb-0">
                                     <div class="" aria-labelledby="dropdownTrendSelection">
                                         <!-- INSERT MENU ITEMS HERE -->
                                     </div>
                                 </div>
+
+                                <div id="compMenu" class="hide">
+                                    <p class="fs-xs mt-2 mb-0">By <span id="tc2" class="font-weight-bold"></span></p>
+                                    <div class="border optionbox mb-0">
+                                        <div class="" aria-labelledby="dropdownCompSelection">
+                                            <!-- INSERT MENU ITEMS HERE -->
+                                        </div>
+                                    </div>
+                                </div>
+
+
 
 
                             </div>
@@ -694,7 +707,7 @@
                     <div class="tab-pane fade pt-2" id="tab-links" aria-labelledby="tab-btn-links" role="tabpanel">
 
                         <div class="row">
-                            <div class="col-md-2 pl-2">
+                            <div class="col-md-2 pl-2 pr-0">
 
                                 <div class="d-block clearfix">
                                     <a href="#" class="badge badge-pill badge-light float-right d-md-none mb-1" data-toggle="collapse" data-target="#linksSidebar" aria-expanded="false" aria-controls="linksSidebar"><i class="fas fa-cog mr-1" aria-hidden="true"></i>Options</a>
