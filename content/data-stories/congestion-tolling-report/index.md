@@ -31,16 +31,16 @@ related:
     url: "data-features/nyccas/"
 ---
 
-In January 2025, the Metropolitan Transportation Authority (MTA) started charging a toll for vehicles entering Manhattan's [Congestion Relief Zone](https://congestionreliefzone.mta.info/) (CRZ) to reduce traffic and raise money for public transportation improvements.   
+In January 2025, the Metropolitan Transportation Authority started charging a toll for vehicles entering Manhattan's [Congestion Relief Zone](https://congestionreliefzone.mta.info/) (CRZ) to reduce traffic within the zone and raise money for public transportation improvements.   
 
-But Congestion Relief Tolling won’t only change the CRZ – it may also cause changes in traffic patterns outside the CRZ.  And changes in traffic could lead to changes in air quality.
+But congestion relief tolling won’t only change traffic patterns within the zone – it may also cause changes in traffic patterns outside the zone as well. These changes in traffic patterns could lead to changes in air quality. 
 
-Here, we take a preliminary look at one kind of air pollution data from locations both inside and outside the tolling zone, three months before tolling and three months after tolling began.  Generally, we observe steady or decreasing levels of fine particle air pollution (or PM2.5) at most sites, both inside and outside the tolling zone.
- 
-But these data don’t let us draw strong conclusions about the toll’s effect. A comprehensive study will require 12 months of data before the tolling start date, and 12 months of data after the start date. For that evaluation, we will use scientific methods that will separate the effects of the toll from other factors that can affect traffic and air quality – like the season, weather patterns, activity patterns, and more. We expect to publish that evaluation in 2026.
+We looked at one kind of air pollution data from locations both inside and outside the tolling zone, three months before the tolling started (from October to December 2024) and three months after tolling began (from January to March 2025). Generally, we observed steady or decreasing levels of *fine particle air pollution* (or PM2.5) at most sites, both inside and outside the tolling zone. 
+
+But these data don’t let us draw strong conclusions about the toll’s effect. The work is ongoing - a comprehensive study will require 12 months of data before and after the start date. For that evaluation, we will use scientific methods that will separate the effects of the toll from other factors that can affect traffic and air quality – like the season, weather patterns, activity patterns, and more. We expect to publish that evaluation in 2026.
 
 ## Where we measured air quality    
-This map shows the locations of [real-time air quality monitoring](./data-features/realtime-air-quality), both inside the tolling zone, and outside the tolling zone. Locations outside of the zone were chosen because of community concerns that Congestion Relief Tolling would increase both traffic and air pollution outside the zone.  
+This map shows the locations of [real-time air quality monitoring](./data-features/realtime-air-quality), both inside and outside of the tolling zone. Locations outside of the zone were chosen based on community concerns that congestion relief tolling would increase both traffic and air pollution outside the zone.  
 
 </div>
 
@@ -60,9 +60,9 @@ This map shows the locations of [real-time air quality monitoring](./data-featur
 <div class="narrow">
 
 ## Inside the tolling zone: steady or decreasing levels of PM2.5
-PM2.5, or *fine particles*, are a major form of air pollution that can harm health. Long-term exposure to PM2.5 contributes to lung and heart disease, and short-term exposure contributes to asthma.
+PM2.5, or *fine particle air pollution*, is a major form of air pollution that can harm health. Long-term exposure to PM2.5 contributes to lung and heart disease, and short-term exposure contributes to asthma.
 
-**Inside the tolling zone**, PM2.5 levels drop at several sites. Typically, we see PM2.5 levels rise in colder weather, as building boilers heat buildings and emit pollution.  
+**Inside the tolling zone**, PM2.5 levels dropped at several sites. Typically, we see PM2.5 levels rise in colder weather, as building boilers are turned on to heat buildings and emit pollution.  
 
 </div>
 <div class="wide my-4 py-2">
@@ -70,12 +70,10 @@ PM2.5, or *fine particles*, are a major form of air pollution that can harm heal
 </div>
 <div class="narrow">
 
-The National Ambient Air Quality Standard for PM2.5 is 35 µg/m3 over a 24-hour-period, or 9 µg/m3 over a whole year. However, this is usually measured by a different type of air quality monitor, so these values aren’t strictly comparable to those thresholds. New York City’s air pollution is usually lower than these levels, as measured by the Environmental Protection Agency’s regulatory monitors.
-
 ## Most locations outside the zone also show steady or decreasing levels of PM2.5
-**Outside the tolling zone**, we compare monthly average PM2.5 levels to a control site on the Van Wyck Expressway. This site is used as a control because it’s not expected to be affected by the toll. 
+**Outside the tolling zone**, we compare monthly average PM2.5 levels to a control site on the Van Wyck Expressway. This site is used as a control because it was not expected to be affected by the toll. 
 
-Most locations show steady or decreasing concentrations of PM2.5.   
+Most locations showed steady or decreasing concentrations of PM2.5.   
 
 </div>
 <div class="wide my-4 py-2">
@@ -83,9 +81,9 @@ Most locations show steady or decreasing concentrations of PM2.5.  
 </div>
 <div class="narrow">
 
-One location, Hamilton Bridge, shows an increase in PM2.5 pollution. Typically, air pollution is analyzed by connecting changes in air pollution to changes among the things that can emit that air pollution.  PM2.5 is emitted by fuel combustion – from vehicles, building boilers, restaurants, and other sources. [About 14% of the city’s PM2.5 comes from traffic](../data-stories/traffic-and-air-pollution).  
+One location, Hamilton Bridge, showed an increase in PM2.5 pollution after tolling went into effect in January 2025. Typically, air pollution is analyzed by connecting changes in air pollution to changes among the things that can emit that air pollution.  PM2.5 is emitted by fuel combustion – from vehicles, building boilers, restaurants, and other sources. [About 14% of the city’s PM2.5 comes from traffic](../data-stories/traffic-and-air-pollution).  
 
-Did this location see an increase in traffic that would explain this increase in PM2.5? Traffic counts at Hamilton Bridge show that during the first 3 months of tolling, counts of all vehicles and of trucks only are comparable to a pre-tolling sample taken in October 2024. Though there is a higher level of PM2.5 in February 2025, there is not an increase in truck or all-vehicle traffic that month.
+Did this location see an increase in traffic that would explain this increase in PM2.5? Traffic counts at Hamilton Bridge show that from January to March 2025, counts of all vehicles and of trucks are comparable to a pre-tolling sample taken in October 2024. While more PM2.5 was observed in February 2025, we did not see an increase in traffic.
 
 </div>
   <div class="wide my-4">
@@ -94,9 +92,13 @@ Did this location see an increase in traffic that would explain this increase in
   </div>
 <div class="narrow">
 
-So, why did the air pollution increase at the Hamilton Bridge monitor location? 
+The increase in PM2.5 may be due to other sources of PM2.5. Air pollution amounts vary seasonally, especially from fall to winter. As the weather gets colder, building boilers burn more fuel to heat buildings, and emit more PM2.5. This area has a higher concentartion of buildings with boilers that burn a type of fuel that emits more PM2.5. 
 
 Well, we typically see seasonal variation in air pollution, especially from fall to winter. As the weather gets colder, building boilers burn more fuel to heat buildings, and emit more PM2.5. And, we know that this area has a higher concentration of buildings with boilers that burn a type of fuel that emits more PM2.5. 
 
-## What does it mean?
-This is not enough to draw conclusions about the effects of Congestion Relief Tolling on traffic and air quality. For reliable findings, we still need to analyze data from 12 months before the start of tolling, and 12 months after the start of tolling. We will use analytical methods that will separate out the effects of the toll from other effects, like year-to-year changes in the city, seasonal variations, and other things that can affect traffic volume and air quality. And, that study will examine the effect of Congestion Relief Tolling on the five different pollutants typically examined by the New York City Community Air Survey.   
+## Conclusion
+Generally, New York City's air quality is good, and improving over time. 
+
+In this initial look at air quality data from the first three months of congestion relief tolling, we observed steady or decreasing levels of PM2.5 at most sites, both inside and outside the tolling zone. 
+
+However, we do not have enough data to draw strong conclusions about the effects of congestion relief tolling on traffic and air quality. For reliable findings, we still need to analyze data from 12 months before and after the start of tolling. We will use analytical methods that will separate out the effects of the toll from other effects, like year-to-year changes in population and land use, seasonal variations, and other things that can affect traffic volume and air quality. That study will examine the effect of congestion relief tolling on the six different pollutants typically examined by the [New York City Community Air Survey](../data-features/nyccas). We expect to publish that evaluation in 2026.  
