@@ -63,8 +63,13 @@ Covering 8,000 miles, streets make up most of the public space in NYC. Cars and 
 <strong> Vision Zero </strong><br>
 <a href="https://www.nyc.gov/content/visionzero/pages/"> Redesigning streets for safety is a key part of Vision Zero, </a> New York City’s effort to eliminate roadway deaths and serious injuries. As part of Vision Zero, <a href="https://www.nyc.gov/html/dot/html/pedestrians/safeseniors.shtml"> pedestrian safety initiatives like Safe Streets for Seniors study crash data, conduct outreach, and develop ways to increase safety for all road users.</a>
 </div>
-
+<div aria-hidden="true">
 <iframe title="Ped Injury ED visit rate" aria-label="Map" id="datawrapper-chart-hhMJr" src="https://datawrapper.dwcdn.net/hhMJr/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="675" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
+</div>
+<div class="sr-only">
+<iframe title="Pedestrian injury emergency department visits, per 100,000 people" aria-label="Table" id="datawrapper-chart-ST3yX" src="https://datawrapper.dwcdn.net/ST3yX/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="926" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+</script>
+</div>
 
 ### Designing streets for people walking and biking—not just driving—can improve safety.
 
@@ -122,8 +127,14 @@ Public space has countless benefits and should be inclusive for all. <a href="ht
 
 Designing public space for people also means creating parks, pools, and other recreation areas that everyone can access. In most NYC neighborhoods, residents live within walking distance (within a half a mile) to a park. But in some neighborhoods, residents still don’t have this level of access to public space.
 
+<div aria-hidden="true">
 <div class="my-4 py-2 border-top border-bottom">
 <iframe title="In most neighborhoods, residents live within walking distance to a park" aria-label="Map" id="datawrapper-chart-h8KUM" src="https://datawrapper.dwcdn.net/h8KUM/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="781" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+</script>
+</div>
+</div>
+<div class="sr-only">
+<iframe title="In most NYC neighborhoods, most residents live within walking distance to a park" aria-label="Table" id="datawrapper-chart-XMwmK" src="https://datawrapper.dwcdn.net/XMwmK/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="959" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
 </script>
 </div>
 
@@ -145,7 +156,14 @@ As of 2023, 84.6% of New Yorkers live within walking distance to a park.<a href=
 </div>
 
 <div class="my-4 py-2 border-top border-bottom">
+<div aria-hidden="true">
 <iframe title="In higher-poverty neighborhoods, fewer people perceive their neighborhoods as safe." aria-label="Scatter Plot" id="datawrapper-chart-Y1J7m" src="https://datawrapper.dwcdn.net/Y1J7m/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="527" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+</script>
+</div>
+</div>
+
+<div class="sr-only">
+<iframe title="In higher-poverty neighborhoods, fewer people perceive their neighborhoods as safe" aria-label="Table" id="datawrapper-chart-64Jkr" src="https://datawrapper.dwcdn.net/64Jkr/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="1334" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
 </script>
 </div>
 
@@ -156,9 +174,7 @@ Prioritizing community engagement in the planning and development of public spac
 **Additional resources:**
 
 - <a href="https://www.nycgovparks.org/about/framework-for-an-equitable-future/community-parks-initiative">Learn more about the Community Parks Initiative</a>.
-
 - <a href="https://www.nyc.gov/assets/ddc/downloads/LL12_5-Year-Accessibility-Plan_DDC.pdf"> Learn more about the five-year design and construction accessibility plan</a>.
-
 - <a href="https://www.nycgovparks.org/about/vital-parks/"> Learn more about Vital Parks for All, a plan to protect and support our parks so that all New Yorkers can enjoy them</a>.
 
 To hear more from New Yorkers about how they view public space and health, listen to recordings from the community conversations:

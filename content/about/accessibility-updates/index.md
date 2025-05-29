@@ -77,17 +77,17 @@ The air quality sites are overlaid onto this point map using latitude and longit
 <div class="fs-sm py-1"><em>Screen-reader accessible table with zip codes instead of coordinates</em></div>
 </div>
 
-The point map shows sighted people where the monitors are, using latitude and longitude. But most people can't parse latitude and longitude and understand where a monitor is - so, a table that just shows each monitor's coordinates doesn't work as well as the map does. So, to provide a sense of where these monitors are located, we added the parent ZIP Code of each monitor th the table. These are more common in daily life, and can more easily give somebody a sense of where the monitor is.
+The point map shows sighted people where the monitors are, using latitude and longitude. But most people can't parse latitude and longitude and understand where a monitor is, and a table that just shows each monitor's coordinates doesn't work as well as the map does. So, to provide a sense of where these monitors are located, we added the parent ZIP Code of each monitor to the table. These are more common in daily life, and can more easily give somebody a sense of where the monitor is.
 
 ### When there's too much data for a table
 
-In some cases, tables wouldn’t add much meaningful context for a screen reader. Raster maps show data on a grid of small pixels – more than 80,000 for NYC. The pixels allow us to see nuanced gradations in data values by seeing where pixels are denser and deeper colors. In this example, [some users can observe that the concentration of two air pollutants, NO2 and PM2.5, decreased as traffic and commercial cooking decreased](../../data-stories/air-quality-and-covid/) during the first year of the COVID-19 pandemic.
+In some cases, tables wouldn’t add much meaningful context for a screen reader. Raster maps show data on a grid of small pixels – more than 80,000 for NYC. The pixels allow us to see nuanced gradations in data values by seeing where pixels are denser and deeper colors. In this example, [some users can observe that the concentration of two air pollutants, NO2 and PM2.5, decreased as traffic and commercial cooking decreased](../../data-stories/air-quality-and-covid-part-2/) during the first year of the COVID-19 pandemic.
 
 But providing somebody with a table of tens of thousands of x-y coordinates and values wouldn't communicate what these data show. So, we add descriptive alt text that explains the visualization's major takeaways about how air pollution changed during the COVID-19 pandemic.
 
-Similar to translating the locations of air quality monitoring sites, we have lots of information - and it's important to provide both access to the right kind of information for different users.
+Similar to translating the locations of air quality monitoring sites, we have lots of information — and it's important to provide both access to the right kind of information for different users.
 
-![](raster_maps.png)
+!["Left: An animated map of PM2.5 over time. This is a map that breaks NYC into 13,000 squares, showing how PM2.5 levels changed from Spring 2019 to Spring 2020. The Covid-19 pandemic resulted in reductions in traffic overall, improving the levels of these pollutants during stay-at-home orders. We see greater declines on the roadways as traffic dipped, and in highly congested and dense parts of NYC, such as lower Manhattan where traffic decreased and many small businesses were closed, reducing commercial cooking and other emissions. Right: This is a map that breaks NYC into 13,000 squares, showing how NO2 levels changed from Spring 2019 to Spring 2020. The Covid-19 pandemic resulted in reductions in traffic overall, improving the levels of these pollutants during stay-at-home orders. We see greater declines on the roadways as traffic dipped, and in highly congested and dense parts of NYC, such as lower Manhattan where traffic decreased and many small businesses were closed, reducing commercial cooking and other emissions."](raster_maps.png)
 <br>
 
 There are many interpretations of accessibility, and these examples are just a few strategies we used when thinking through how to improve access to the information we share, to in turn make it easier for more of you to understand and use.

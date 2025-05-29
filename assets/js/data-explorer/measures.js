@@ -1133,6 +1133,10 @@ const renderMeasures = async () => {
     const dropdownTableTimes = contentTable.querySelector('div[aria-labelledby="dropdownTableTimes"]');
 
     const dropdownTrendSelection = contentTrend.querySelector('div[aria-labelledby="dropdownTrendSelection"]');
+    const dropdownCompSelection  = contentTrend.querySelector('div[aria-labelledby="dropdownCompSelection"]');
+    const trendSelectionLabel = document.getElementById('tc1');
+    const compSelectionLabel = document.getElementById('tc2');
+
 
     const dropdownMapMeasures = contentMap.querySelector('div[aria-labelledby="dropdownMapMeasures"]');
     const dropdownMapTimes = contentMap.querySelector('div[aria-labelledby="dropdownMapTimes"]');
@@ -1149,6 +1153,10 @@ const renderMeasures = async () => {
     dropdownTableTimes.innerHTML = ``;
 
     dropdownTrendSelection.innerHTML = ``;
+    dropdownCompSelection.innerHTML = ``;
+    trendSelectionLabel.innerHTML = ``;
+    compSelectionLabel.innerHTML = ``;
+    document.getElementById('compMenu').classList.add('hide');
 
     dropdownMapMeasures.innerHTML = ``;
     dropdownMapTimes.innerHTML = ``;
@@ -1343,7 +1351,9 @@ const renderMeasures = async () => {
             // console.log("header", header);
             // console.log("index", index);
 
-            dropdownTrendSelection.innerHTML += header ? '<div class="dropdown-title"><strong>' + header + '</strong></div>' : '';
+            // document.getElementById('tc1').innerText = header? header : 'hi'
+
+            trendSelectionLabel.innerHTML += header ?  header.toLowerCase()  : '';
 
             if (trendData) {
                 dropdownTrendSelection.innerHTML += DOMPurify.sanitize(`<button class="btn btn-primary dropdown-item trendbutton pl-2"
@@ -1429,7 +1439,8 @@ const renderMeasures = async () => {
 
             // add each unique legend title as a header, with the included comparison underneath
 
-            dropdownTrendSelection.innerHTML += title ? '<div class="dropdown-title"><strong>' + title + '</strong></div>' : '';
+            document.getElementById('compMenu').classList.remove('hide');
+            compSelectionLabel.innerHTML += title ? title.toLowerCase() : '';
 
             let comparisonIDs = [... new Set(titleGroup.array("ComparisonID"))]
 
@@ -1457,14 +1468,14 @@ const renderMeasures = async () => {
 
                     if (compGeoTypeName[0] == "Citywide") {
 
-                    dropdownTrendSelection.innerHTML += `<button class="btn btn-primary dropdown-item comparisonbutton pl-2"
+                        dropdownCompSelection.innerHTML += `<button class="btn btn-primary dropdown-item comparisonbutton pl-2"
                         data-comparison-id="${comp}"  title="${compY_axis_title}">
                         ${compY_axis_title}
                         </button>`;
 
                     } else {
                         // I am very unhappy with this kludge
-                        dropdownTrendSelection.innerHTML += `<button class="btn btn-primary dropdown-item comparisonbutton pl-2"
+                        dropdownCompSelection.innerHTML += `<button class="btn btn-primary dropdown-item comparisonbutton pl-2"
                             data-comparison-id="${comp}"  title="${compGeography[compGeography.length - 1]} ">
                             ${compGeography[compGeography.length - 1]} 
                             </button>`;
@@ -1475,7 +1486,7 @@ const renderMeasures = async () => {
                     // console.log("1 measure [MeasurementType]");
                     // console.log(compMeasurementType);
 
-                    dropdownTrendSelection.innerHTML += `<button class="btn btn-primary dropdown-item comparisonbutton pl-2"
+                    dropdownCompSelection.innerHTML += `<button class="btn btn-primary dropdown-item comparisonbutton pl-2"
                         data-comparison-id="${comp}" title="${compMeasurementType}">
                         ${compMeasurementType}
                         </button>`;
@@ -1486,7 +1497,7 @@ const renderMeasures = async () => {
                     // console.log("compIndicatorMeasure", compIndicatorMeasure);
                     // console.log("compName", compName);
 
-                    dropdownTrendSelection.innerHTML += `<button class="btn btn-primary dropdown-item comparisonbutton pl-2"
+                    dropdownCompSelection.innerHTML += `<button class="btn btn-primary dropdown-item comparisonbutton pl-2"
                         data-comparison-id="${comp}" title="${compName}">
                         ${compName}
                         </button>`;
@@ -2181,6 +2192,12 @@ const renderMeasures = async () => {
                 // if disparities is enabled, show the button
 
                 // btnToggleDisparities.style.display = "inline";
+
+
+                // ----- set measure info boxes --------------------------------------------------- //
+
+                renderTitleDescription(indicatorShortName, indicatorDesc);
+
 
             } else {
 

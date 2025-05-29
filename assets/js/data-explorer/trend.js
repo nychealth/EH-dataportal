@@ -32,7 +32,7 @@ const renderTrendChart = (
 
     comp_unreliability.forEach(element => {
 
-        document.querySelector("#trend-unreliability").innerHTML += "<div class='fs-sm'>" + element + "</div>" ;
+        document.querySelector("#trend-unreliability").innerHTML += "<div class='fs-xs'>" + element + "</div>" ;
         document.getElementById('trend-unreliability').classList.remove('hide')
         
     });
@@ -50,7 +50,7 @@ const renderTrendChart = (
             columns = 1
         } else if (window.innerWidth < 440) {
             columns = 2
-            xAxisLabelField = 'fallbackYear'
+            xAxisLabelField = 'fallbackYear' // use fallbackYear for narrow screens, to label every other x-axis interval
         } else if (window.innerWidth < 1200) {
             columns = 3
             xAxisLabelField = 'fallbackYear'
@@ -101,7 +101,6 @@ const renderTrendChart = (
     let compDisplayTypes    = [... new Set(metadata.array("DisplayType"))].filter(dt => dt != "");
     let compNoCompare       = [... new Set(metadata.array("TrendNoCompare"))].filter(nc => nc != null)[0]
     let compThresholds      = [... new Set(metadata.array("TrendThreshold"))]
-
 
     // console.log('compMeasurementType', compMeasurementType)
     // console.log('compDisplayTypes', compDisplayTypes)
@@ -395,7 +394,7 @@ const renderTrendChart = (
         // console.log('running noCompare')
 
         // print text
-        let noCompareFootnote = `Because of a method change, data before ${compNoCompare} shouldn't be compared to later time periods.`
+        let noCompareFootnote = `A change in sampling methods in ${compNoCompare} may explain some differences in estimates from earlier years.`
         document.querySelector("#trend-unreliability").innerHTML += "<div class='fs-xs'>" + noCompareFootnote + "</div>" ;
         document.getElementById("trend-unreliability").classList.remove('hide')
 
@@ -471,7 +470,9 @@ const renderTrendChart = (
           "titlePadding": 10
         },
         "axisY": {"labelAngle": 0, "labelFontSize": 11, "tickMinStep": tickMinStep},
-        "legend": {"columns": 3},
+        "legend": {"columns": 3,"labelFontSize": 12,
+          "symbolSize": 140,
+          "offset": 45},
         "view": {"stroke": "transparent"},
         "line": {"color": "#1696d2", "stroke": "#1696d2", "strokeWidth": 2.5},
         "point": {"filled": true},
@@ -500,17 +501,40 @@ const renderTrendChart = (
         "subtitleFontSize": 13
       },
       "transform": [
+        // adds display to value
         {
           "calculate": `datum.DisplayValue + ' ${compDisplayTypes}'`, "as": "valueWithDisplay"
         },
-        {"calculate": "split(datum.TimePeriod, ' ')", "as": "TimePeriodSplit"},
+        // gets index position of row
+        {
+          "window": [
+            {
+              "op": "row_number",
+              "as": "index"
+            }
+          ]
+        },
+        // splits quarters, if it's quarterly data
+        {
+          "calculate": "datum.TimeType === 'quarter' ? replace(datum.TimePeriod, /-Q/, ' Q') : datum.TimePeriod",
+          "as": "TimeSplit1"
+    
+        }, 
+        // splits other data if it's long strings
+        {
+          "calculate": "split(datum.TimeSplit1, ' ')",
+          "as": "TimePeriodSplit"
+    
+        },
+
         {
           "calculate": "datum.TimePeriodSplit[datum.TimePeriodSplit.length - 1]",
           "as": "TimePeriodYear"
         },
         {"calculate": "year(datum.end_period)", "as": "year_end_period"},
+        // calculates every other year for x-axis label, as long as it's not quarterly data
         {
-          "calculate": "datum.year_end_period % 2 === 0 ? datum.TimePeriodSplit : ''",
+          "calculate": "(datum.TimeType !== 'quarter' && datum.year_end_period % 2 === 0) ? datum.TimePeriodSplit : (datum.TimeType === 'quarter' ? datum.TimePeriodSplit : '')",
           "as": "fallbackYear"
         }
       ],
@@ -651,201 +675,6 @@ const renderTrendChart = (
         },
       ]
     };
-
-    let compspec1 = {
-        "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-        "config": {
-          "range": {
-            "category": [
-              "#000000ff",
-              "#374c80",
-              "#ff764a",
-              "#bc5090",
-              "#ffa600",
-              "#ef5675"
-            ]
-          },
-          "background": "#FFFFFF",
-          "axisX": {
-            "labelAngle": 0,
-            "labelOverlap": "parity",
-            "labelFontSize": 11,
-            "titleFontSize": 13,
-            "titleFont": "sans-serif",
-            "titlePadding": 10,
-            "padding": 50
-          },
-          "axisY": {
-            "labelAngle": 0, 
-            "labelFontSize": 11, 
-            "tickMinStep": `${tickMinStep}`, 
-            "orient": "left",
-            "labelBaseline": "bottom",
-            "domain": false, 
-            "ticks": false
-          },
-          "legend": {
-            "columns": 6,
-            "labelFontSize": 14,
-            "symbolSize": 140,
-            "offset": 55.55555555555556
-          },
-          "view": {"stroke": "transparent"},
-          "line": {"color": "#1696d2", "stroke": "#1696d2"},
-          "point": {"filled": true},
-          "text": {"color": "#1696d2", "fontSize": 11, "fontWeight": 400, "size": 11}
-        },
-        "data": {
-            "values": data.objects()
-        },
-        "width": "container",
-        "height": 400,
-        "title": { 
-            "text": plotTitle,
-            "subtitlePadding": 10,
-            "fontWeight": "normal",
-            "anchor": "start", 
-            "fontSize": 18, 
-            "font": "sans-serif",
-            "baseline": "top",
-            "subtitle": plotSubtitle,
-            "dy": -10,
-            "subtitleFontSize": 13
-        },
-        "transform": [
-          {
-            "calculate": `datum.DisplayValue + ' ${compDisplayTypes}'`, "as": "valueWithDisplay"
-          },
-          {"calculate": "split(datum.TimePeriod, ' ')", "as": "TimePeriodSplit"},
-          {
-            "calculate": "datum.TimePeriodSplit[datum.TimePeriodSplit.length - 1]",
-            "as": "TimePeriodYear"
-          },
-          {"calculate": "year(datum.end_period)", "as": "year_end_period"},
-          {
-            "calculate": "datum.year_end_period % 2 === 0 ? datum.TimePeriodSplit : ''",
-            "as": "fallbackYear"
-          }
-        ],
-        "encoding": {
-          "x": {
-            "field": "end_period",
-            "type": "quantitative",
-            "title": null,
-            "axis": {"labels": false, "grid": false, "ticks": false}
-          },
-          "y": {
-            "field": "Value",
-            "type": "quantitative",
-            "title": null,
-            "axis": {"tickCount": 4},
-            "scale": {"domainMin": 0, "nice": true}
-          },
-          "color": {
-            "condition": {
-              "param": "hover",
-              "field": comp_group_col,
-              "type": "nominal",
-              "sort": true,
-              "legend": mobileLegend
-            },
-            "value": "gray"
-          },
-          "opacity": {"condition": {"param": "hover", "value": 1}, "value": 0.35},
-          "strokeWidth": {
-            "condition": { "test": "datum.Geography === 'New York City'", "value": 4},
-            "value": 2.5
-          },
-          "tooltip": [
-            {"title": "Time", "field": "TimePeriod"},
-            {"title": "Group", "field": comp_group_col},
-            {"title": comparisonToolTipLabel, "field": "valueWithDisplay"}
-          ]
-        },
-        "layer": [
-          {
-            "description": "Transparent layer to easier trigger hover",
-            "params": [
-              {
-                "name": "hover",
-                "select": {
-                  "type": "point",
-                  "fields": [comp_group_col],
-                  "on": "pointerover"
-                }
-              }
-            ],
-            "mark": {"type": "line", "stroke": "transparent","strokeWidth": 10}
-          },
-          {"mark": {
-            "type": "line", 
-            "point": {
-                "size": 40, 
-                "filled": false, 
-                "fill": "white"
-              }
-            }
-          },
-          {
-            "transform": [
-              {
-                "aggregate": [
-                  {"op": "argmin", "field": "end_period", "as": "Value"},
-                  {"op": "min", "field": "end_period", "as": "end_period"}
-                ],
-                "groupby": [comp_group_col]
-              }
-            ],
-            "encoding": {
-              "x": {"field": "end_period"},
-              "y": {"field": "Value['Value']"},
-              "text": {
-                "condition": {"param": "hover", "field": comp_group_col, "empty": false},
-                "value": ""
-              }
-            },
-            "mark": {
-                "type": "text", 
-                "align": "left",
-                "dx": -6, 
-                "dy": -14,
-                "fontSize": 14, 
-                "fontWeight": "bold"}
-          },
-          {
-            "mark": {"type": "text", "fontWeight": 100, "fontSize": 10},
-            "transform": [
-              {
-                "aggregate": [{"op": "min", "field": "end_period", "as": "min_end_period"}],
-                "groupby": [`${xAxisLabelField}`]
-              }
-            ],
-            "encoding": {
-              "x": {
-                "field": "min_end_period",
-                "type": "quantitative",
-                "axis": {"labels": false, "grid": false, "ticks": false}
-              },
-              "y": {"value": 425},
-              "text": {"field": xAxisLabelField, "type": "nominal"},
-              "color": {"value": "black"}
-            }
-          },
-          {
-            "mark": {"type": "tick"},
-            "encoding": {
-              "x": {
-                "field": "end_period",
-                "type": "quantitative",
-                "axis": {"labels": false, "grid": false, "ticks": true}
-              },
-              "y": {"value": 400},
-              "color": {"value": "black"}
-            }
-          },
-          ...noCompare
-        ]
-      }
     
     // ----------------------------------------------------------------------- //
     // render chart
