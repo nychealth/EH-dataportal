@@ -18,8 +18,8 @@ keywords:
 image: BrooklynBridgeParkFall_JulienneSchaer.jpg
 photocredit: Julienne Schaer/NYC & Company
 related:
-  - title: "Neighborhood reports: Climate"
-    url: "neighborhood-reports/#Climatereport"
+  - title: "Flood Vulnerability Index"
+    url: "data-features/flood-vulnerability-index/"
   - title: "How power outages affect health"
     url: "data-stories/poweroutages/"
   - title: "The urban heat island effect in NYC"
