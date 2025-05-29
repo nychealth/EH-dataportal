@@ -2182,6 +2182,12 @@ const renderMeasures = async () => {
 
                 // btnToggleDisparities.style.display = "inline";
 
+
+                // ----- set measure info boxes --------------------------------------------------- //
+
+                renderTitleDescription(indicatorShortName, indicatorDesc);
+
+
             } else {
 
                 // - - - no disparities - - - - - - - - - - - - - - - - - - - - - - - - - - //
