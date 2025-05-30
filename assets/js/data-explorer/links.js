@@ -286,7 +286,6 @@ const renderLinksChart = (
                         }
                     ],
                     "color": {
-                        // "title": "Borough",
                         "field": "Borough",
                         "type": "nominal"
                     },

@@ -40,14 +40,14 @@ const renderMap = (
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
     if (mapMeasurementType.includes('Percent') || mapMeasurementType.includes('percent') && !mapMeasurementType.includes('percentile')) {
-        isPercent = true
-        displayType         = '%'
-        subtitle = mapMeasurementType
+        isPercent = true;
+        displayType = '%';
+        subtitle = mapMeasurementType;
         
     } else {
-        isPercent = false
-        displayType         = metadata[0]?.DisplayType;
-        subtitle = mapMeasurementType + `${displayType ? ` (${displayType})` : ''}`
+        isPercent = false;
+        displayType = metadata[0]?.DisplayType;
+        subtitle = mapMeasurementType + `${displayType ? ` (${displayType})` : ''}`;
     }
 
 

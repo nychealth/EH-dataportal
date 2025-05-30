@@ -314,7 +314,6 @@ const renderTable = () => {
                     // console.log("i", i);
                     
                     const time = data[i][0]
-                    const groupName = `${time}-${group}`
                     
                     // console.log("time", time);
 

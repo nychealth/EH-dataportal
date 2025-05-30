@@ -45,51 +45,37 @@ const renderTrendChart = (
 
     let columns ;
     let xAxisLabelField;
-    let chartView = document.getElementById('trend')
-        if (window.innerWidth < 340) {
-            columns = 1
-        } else if (window.innerWidth < 440) {
-            columns = 2
-            xAxisLabelField = 'fallbackYear' // use fallbackYear for narrow screens, to label every other x-axis interval
-        } else if (window.innerWidth < 1200) {
-            columns = 3
-            xAxisLabelField = 'fallbackYear'
-        } else {
-            columns = 6
-            xAxisLabelField = 'TimePeriodSplit'
-        }
+    if (window.innerWidth < 340) {
+        columns = 1
+    } else if (window.innerWidth < 440) {
+        columns = 2
+        xAxisLabelField = 'fallbackYear' // use fallbackYear for narrow screens, to label every other x-axis interval
+    } else if (window.innerWidth < 1200) {
+        columns = 3
+        xAxisLabelField = 'fallbackYear'
+    } else {
+        columns = 6
+        xAxisLabelField = 'TimePeriodSplit'
+    }
 
     let mobileLegend;
     if (window.innerWidth < 720) {
-      mobileLegend =  {
-        "orient": "bottom",
-        "columns": 3,
-        "title": ''
-      }
+        mobileLegend =  {
+            "orient": "bottom",
+            "columns": 3,
+            "title": ''
+        }
     } else {
-      mobileLegend = null
+        mobileLegend = null
     }
     
     
-    let height = window.innerWidth < 576 ? 350 : 500;
-
     // ticks
 
     let Value = data.array("Value");
     let valueMax = Math.max.apply(null, Value);
     let tickMinStep = valueMax >= 3.0 ? 1 : 0.1
 
-    // colors (black, blue, orange, magenta, green, purple)
-    // alpha: hex 96 = 150(/255) = ~58/100
-
-    let colors = [
-      "#000000ff",
-      "#374c80",
-      "#bc5090",
-      "#ef5675",
-      "#ff764a",
-      "#ffa600"
-    ];
 
     // ----------------------------------------------------------------------- //
     // extract measure metadata for chart text
@@ -287,79 +273,60 @@ const renderTrendChart = (
 
 
     // ----------------------------------------------------------------------- //
-    // create transform after pivot that replaces "undefined" with ""
-    // ----------------------------------------------------------------------- //
-
-    let compReplaceInvalid = compGroupLabel.map(x => {return {"calculate": `isValid(datum[\"${x}\"]) ? (datum[\"${x}\"] + ' ${compDisplayTypes}') : ""`, "as": `${x}`}})
-    // console.log(compReplaceInvalid)
-
-    // ----------------------------------------------------------------------- //
-    // create tooltips JSON
-    // ----------------------------------------------------------------------- //
-
-    // will be spliced into the spec
-    
-    // let compTooltips = compGroupLabel.map(x => {return {"field": x, "type": "nominal", "format": ",.1~f"}})
-    let compTooltips = compGroupLabel.map(x => {return {"field": x, "type": "nominal"}})
-
-    // console.log("compTooltips", compTooltips);
-
-
-    // ----------------------------------------------------------------------- //
     // create Threshold line
     // ----------------------------------------------------------------------- //
     
     // console.log(compThresholds)
-
+    
     let dedupedThresholds = compThresholds.flat().filter(item => item !== null);
-
+    
     // Step 2: Deduplicate the array of objects
     let uniqueThresholds = [
-      ...new Map(dedupedThresholds.map(item => [JSON.stringify(item), item])).values()
+        ...new Map(dedupedThresholds.map(item => [JSON.stringify(item), item])).values()
     ];
 
     // console.log('unique thresholds')
     // console.log(uniqueThresholds);
 
-    var thresholdSpec = []
+    let thresholdSpec = []
 
     // loop through unique Thresholds
     for (let i = 0; i < uniqueThresholds.length; i ++ ) {
-      var value = i + 1
 
-      let thresholdLine = {
-              "description": `line layer ${value}`,
-              "mark": "line",
-              "encoding": {
+        let value = i + 1
+        
+        let thresholdLine = {
+            "description": `line layer ${value}`,
+            "mark": "line",
+            "encoding": {
                 "x": {"field": "end_period", "type": "temporal"},
                 "y": {"datum": uniqueThresholds[i].yValue},
                 "color": {"value": "#545454"},
                 "size": {"value": 2},
                 "strokeDash": {"value": [2, 2]}
-              }
             }
-
-        let thresholdLabel =
-            {
-              "description": `label layer ${value}`,
-              "mark": {
+        }
+        
+        let thresholdLabel = {
+            "description": `label layer ${value}`,
+            "mark": {
                 "type": "text",
                 "align": "right",
                 "baseline": "middle",
                 "color": "#545454",
                 "dy": -10,
                 "dx": -45
-              },
-              "encoding": {
+            },
+            "encoding": {
                 "x": {"aggregate": "max", "field": "end_period", "type": "temporal"},
                 "y": {"datum": uniqueThresholds[i].yValue, "type": "quantitative"},
                 "text": {"value": uniqueThresholds[i].title}
-              }
-           }
-
+            }
+        }
+        
         thresholdSpec.push(thresholdLine)
         thresholdSpec.push(thresholdLabel)
-        }
+    }
 
       // console.log(thresholdSpec)
 
@@ -409,10 +376,8 @@ const renderTrendChart = (
                     "datum": compNoCompare
                 },
                 "y": {}, // necessary to avoid multi-layering
-                // "xOffset": {"value": 0.5},
                 "color": {"value": "gray"},
                 "size": {"value": 1},
-                // "opacity": {"value": 0.5}
                 "strokeDash": {"value": [2, 2]}
             }
         }]
@@ -431,250 +396,250 @@ const renderTrendChart = (
     // ----------------------------------------------------------------------- //
 
     let metadataObject = metadata.objects()
-    // console.log(metadataObject)
     let comparisonToolTipLabel;
     if (metadataObject[0].ComparisonID === 566 || metadataObject[0].ComparisonID === 565 || metadataObject[0].ComparisonID === 564) {
       // console.log('AQ action days comparison')
-      // actionDays = true
-      comparisonToolTipLabel = 'Action days'
+      comparisonToolTipLabel = 'Action days';
     }  else {
       // console.log('false')
-      // actionDays = false
-      comparisonToolTipLabel = compMeasurementType
+      comparisonToolTipLabel = compMeasurementType;
     }
 
     // ----------------------------------------------------------------------- //
     // define spec
     // ----------------------------------------------------------------------- //
-
+    
     let compspec2 = {
-      "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-      "config": {
-        "range": {
-          "category": [
-            "#000000ff",
-            "#374c80",
-            "#ff764a",
-            "#bc5090",
-            "#ffa600",
-            "#ef5675"
-          ]
-        },
-        "background": "#FFFFFF",
-        "axisX": {
-          "labelAngle": 0,
-          "labelOverlap": "parity",
-          "labelFontSize": 11,
-          "titleFontSize": 13,
-          "titleFont": "sans-serif",
-          "titlePadding": 10
-        },
-        "axisY": {"labelAngle": 0, "labelFontSize": 11, "tickMinStep": tickMinStep},
-        "legend": {"columns": 3,"labelFontSize": 12,
-          "symbolSize": 140,
-          "offset": 45},
-        "view": {"stroke": "transparent"},
-        "line": {"color": "#1696d2", "stroke": "#1696d2", "strokeWidth": 2.5},
-        "point": {"filled": true},
-        "text": {"color": "#1696d2", "fontSize": 11, "fontWeight": 400, "size": 11}
-      },
-      "data": {
-        "values": data.objects(),
-        "format": {
-          "parse": {
-            "TimePeriod": "string"
-          }
-        }
-    },
-      "width": "container",
-      "height": 500,
-      "title": {
-        "text": plotTitle,
-        "subtitlePadding": 10,
-        "fontWeight": "normal",
-        "anchor": "start",
-        "fontSize": 18,
-        "font": "sans-serif",
-        "baseline": "top",
-        "subtitle": plotSubtitle,
-        "dy": -10,
-        "subtitleFontSize": 13
-      },
-      "transform": [
-        // adds display to value
-        {
-          "calculate": `datum.DisplayValue + ' ${compDisplayTypes}'`, "as": "valueWithDisplay"
-        },
-        // gets index position of row
-        {
-          "window": [
-            {
-              "op": "row_number",
-              "as": "index"
-            }
-          ]
-        },
-        // splits quarters, if it's quarterly data
-        {
-          "calculate": "datum.TimeType === 'quarter' ? replace(datum.TimePeriod, /-Q/, ' Q') : datum.TimePeriod",
-          "as": "TimeSplit1"
-    
-        }, 
-        // splits other data if it's long strings
-        {
-          "calculate": "split(datum.TimeSplit1, ' ')",
-          "as": "TimePeriodSplit"
-    
-        },
-
-        {
-          "calculate": "datum.TimePeriodSplit[datum.TimePeriodSplit.length - 1]",
-          "as": "TimePeriodYear"
-        },
-        {"calculate": "year(datum.end_period)", "as": "year_end_period"},
-        // calculates every other year for x-axis label, as long as it's not quarterly data
-        {
-          "calculate": "(datum.TimeType !== 'quarter' && datum.year_end_period % 2 === 0) ? datum.TimePeriodSplit : (datum.TimeType === 'quarter' ? datum.TimePeriodSplit : '')",
-          "as": "fallbackYear"
-        }
-      ],
-      "encoding": {
-        "x": {
-          "field": "end_period",
-          "type": "temporal",
-          "title": null,
-          "axis": {"ticks": false,"labels": false},
-          "scale": {
-            "padding": 20 
-          }
-        }
-      },
-      "layer": [
-        {
-          "description": "Transparent layer to trigger hover",
-          "params": [
-            {
-              "name": "hover",
-              "select": {
-                "type": "point",
-                "fields": [comp_group_col],
-                "on": "pointerover"
-              }
-            }
-          ],
-          "mark": {"type": "line", "stroke": "transparent", "strokeWidth": 15}
-        },
-        {
-          "description": "Encoding layer",
-          "encoding": {
-            "color": {
-              "field": comp_group_col,
-              "type": "nominal",
-              "sort": true,
-              "legend": mobileLegend
+        "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+        "config": {
+            "range": {
+                "category": [
+                    "#000000ff",
+                    "#374c80",
+                    "#ff764a",
+                    "#bc5090",
+                    "#ffa600",
+                    "#ef5675"
+                ]
             },
-            "opacity": {"condition": {"param": "hover", "value": 1}, "value": 0.2},
-            "y": {
-              "field": "Value",
-              "type": "quantitative",
-              "title": null,
-              "axis": {"tickCount": 4},
-              "scale": {"domainMin": 0, "nice": true}
+            "background": "#FFFFFF",
+            "axisX": {
+                "labelAngle": 0,
+                "labelOverlap": "parity",
+                "labelFontSize": 11,
+                "titleFontSize": 13,
+                "titleFont": "sans-serif",
+                "titlePadding": 10
             },
-            "tooltip": [
-              {
-                "title": "Time",
-                "field": "TimePeriod",
-                "type": "nominal"
-              },
-              {"title": "Group", "field": comp_group_col},
-              {"title": comparisonToolTipLabel, "field": "valueWithDisplay"}
-            ]
-          },
-          "layer": [
-            {
-              "description": "Establish line",
-              "mark": {
-                "type": "line",
-                "interpolate": "linear",
-                "point": {
-                  "filled": false,
-                  "fill": "white",
-                  "size": 40,
-                  "strokeWidth": 2.5,
-                  "tooltip": true
+            "axisY": {"labelAngle": 0, "labelFontSize": 11, "tickMinStep": tickMinStep},
+            "legend": {"columns": 3,"labelFontSize": 12,
+                "symbolSize": 140,
+                "offset": 45},
+                "view": {"stroke": "transparent"},
+                "line": {"color": "#1696d2", "stroke": "#1696d2", "strokeWidth": 2.5},
+                "point": {"filled": true},
+                "text": {"color": "#1696d2", "fontSize": 11, "fontWeight": 400, "size": 11}
+            },
+            "data": {
+                "values": data.objects(),
+                "format": {
+                    "parse": {
+                        "TimePeriod": "string"
+                    }
                 }
-              }
             },
-            {
-              "description": "Hover text",
-              "transform": [
+            "width": "container",
+            "height": 500,
+            "title": {
+                "text": plotTitle,
+                "subtitlePadding": 10,
+                "fontWeight": "normal",
+                "anchor": "start",
+                "fontSize": 18,
+                "font": "sans-serif",
+                "baseline": "top",
+                "subtitle": plotSubtitle,
+                "dy": -10,
+                "subtitleFontSize": 13
+            },
+            "transform": [
+                // adds display to value
                 {
-                  "aggregate": [
-                    {"op": "argmin", "field": "end_period", "as": "Value"},
-                    {"op": "min", "field": "end_period", "as": "end_period"}
-                  ],
-                  "groupby": [comp_group_col]
+                    "calculate": `datum.DisplayValue + ' ${compDisplayTypes}'`, "as": "valueWithDisplay"
+                },
+                // gets index position of row
+                {
+                    "window": [
+                        {
+                            "op": "row_number",
+                            "as": "index"
+                        }
+                    ]
+                },
+                // splits quarters, if it's quarterly data
+                {
+                    "calculate": "datum.TimeType === 'quarter' ? replace(datum.TimePeriod, /-Q/, ' Q') : datum.TimePeriod",
+                    "as": "TimeSplit1"
+                    
+                }, 
+                // splits other data if it's long strings
+                {
+                    "calculate": "split(datum.TimeSplit1, ' ')",
+                    "as": "TimePeriodSplit"
+                    
+                },
+                
+                {
+                    "calculate": "datum.TimePeriodSplit[datum.TimePeriodSplit.length - 1]",
+                    "as": "TimePeriodYear"
+                },
+                {
+                    "calculate": "year(datum.end_period)", 
+                    "as": "year_end_period"
+                },
+                // calculates every other year for x-axis label, as long as it's not quarterly data
+                {
+                    "calculate": "(datum.TimeType !== 'quarter' && datum.year_end_period % 2 === 0) ? datum.TimePeriodSplit : (datum.TimeType === 'quarter' ? datum.TimePeriodSplit : '')",
+                    "as": "fallbackYear"
                 }
-              ],
-              "encoding": {
-                "y": {"field": "Value['Value']"},
-                "text": {
-                  "condition": {
-                    "param": "hover",
-                    "field": comp_group_col,
-                    "empty": false
-                  },
-                  "value": ""
+            ],
+            "encoding": {
+                "x": {
+                    "field": "end_period",
+                    "type": "temporal",
+                    "title": null,
+                    "axis": {"ticks": false,"labels": false},
+                    "scale": {
+                        "padding": 20 
+                    }
                 }
-              },
-              "mark": {
-                "type": "text",
-                "align": "left",
-                "dx": -6,
-                "dy": -14,
-                "fontSize": 14,
-                "fontWeight": "bold"
-              }
-            }
-          ]
-        },
-        ...noCompare,
-        ...thresholdSpec,
-        {
-          "mark": {"type": "tick"},
-          "encoding": {
-            "x": {
-              "field": "end_period",
-              "type": "temporal",
-              "axis": {"labels": false, "grid": false, "ticks": true},
-              "scale": {"padding": 20}
             },
-            "y": {"value": 500},
-            "color": {"value": "black"}
-          }
-        },
-        {
-          "mark": {"type": "text", "fontWeight": 100, "fontSize": 10},
-          "transform": [
-            {
-              "aggregate": [{"op": "min", "field": "end_period", "as": "min_end_period"}],
-              "groupby": [`${xAxisLabelField}`]
-            }
-          ],
-          "encoding": {
-            "x": {
-              "field": "min_end_period",
-              "type": "temporal",
-              "axis": {"labels": false, "grid": false, "ticks": false}
-            },
-            "y": {"value": 515},
-            "text": {"field": xAxisLabelField, "type": "nominal"},
-            "color": {"value": "black"}
-          }
-        },
-      ]
-    };
+            "layer": [
+                {
+                    "description": "Transparent layer to trigger hover",
+                    "params": [
+                        {
+                            "name": "hover",
+                            "select": {
+                                "type": "point",
+                                "fields": [comp_group_col],
+                                "on": "pointerover"
+                            }
+                        }
+                    ],
+                    "mark": {"type": "line", "stroke": "transparent", "strokeWidth": 15}
+                },
+                {
+                    "description": "Encoding layer",
+                    "encoding": {
+                        "color": {
+                            "field": comp_group_col,
+                            "type": "nominal",
+                            "sort": true,
+                            "legend": mobileLegend
+                        },
+                        "opacity": {"condition": {"param": "hover", "value": 1}, "value": 0.2},
+                        "y": {
+                            "field": "Value",
+                            "type": "quantitative",
+                            "title": null,
+                            "axis": {"tickCount": 4},
+                            "scale": {"domainMin": 0, "nice": true}
+                        },
+                        "tooltip": [
+                            {
+                                "title": "Time",
+                                "field": "TimePeriod",
+                                "type": "nominal"
+                            },
+                            {"title": "Group", "field": comp_group_col},
+                            {"title": comparisonToolTipLabel, "field": "valueWithDisplay"}
+                        ]
+                    },
+                    "layer": [
+                        {
+                            "description": "Establish line",
+                            "mark": {
+                                "type": "line",
+                                "interpolate": "linear",
+                                "point": {
+                                    "filled": false,
+                                    "fill": "white",
+                                    "size": 40,
+                                    "strokeWidth": 2.5,
+                                    "tooltip": true
+                                }
+                            }
+                        },
+                        {
+                            "description": "Hover text",
+                            "transform": [
+                                {
+                                    "aggregate": [
+                                        {"op": "argmin", "field": "end_period", "as": "Value"},
+                                        {"op": "min", "field": "end_period", "as": "end_period"}
+                                    ],
+                                    "groupby": [comp_group_col]
+                                }
+                            ],
+                            "encoding": {
+                                "y": {"field": "Value['Value']"},
+                                "text": {
+                                    "condition": {
+                                        "param": "hover",
+                                        "field": comp_group_col,
+                                        "empty": false
+                                    },
+                                    "value": ""
+                                }
+                            },
+                            "mark": {
+                                "type": "text",
+                                "align": "left",
+                                "dx": -6,
+                                "dy": -14,
+                                "fontSize": 14,
+                                "fontWeight": "bold"
+                            }
+                        }
+                    ]
+                },
+                ...noCompare,
+                ...thresholdSpec,
+                {
+                    "mark": {"type": "tick"},
+                    "encoding": {
+                        "x": {
+                            "field": "end_period",
+                            "type": "temporal",
+                            "axis": {"labels": false, "grid": false, "ticks": true},
+                            "scale": {"padding": 20}
+                        },
+                        "y": {"value": 500},
+                        "color": {"value": "black"}
+                    }
+                },
+                {
+                    "mark": {"type": "text", "fontWeight": 100, "fontSize": 10},
+                    "transform": [
+                        {
+                            "aggregate": [{"op": "min", "field": "end_period", "as": "min_end_period"}],
+                            "groupby": [`${xAxisLabelField}`]
+                        }
+                    ],
+                    "encoding": {
+                        "x": {
+                            "field": "min_end_period",
+                            "type": "temporal",
+                            "axis": {"labels": false, "grid": false, "ticks": false}
+                        },
+                        "y": {"value": 515},
+                        "text": {"field": xAxisLabelField, "type": "nominal"},
+                        "color": {"value": "black"}
+                    }
+                },
+            ]
+        };
     
     // ----------------------------------------------------------------------- //
     // render chart

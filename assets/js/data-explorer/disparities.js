@@ -73,13 +73,10 @@ const renderDisparitiesChart = async (
     // put metadata into fields
     // ----------------------------------------------------------------------- //
 
-    const disparityIndicatorId     = disparityIndicator[0]?.IndicatorID
     const disparityIndicatorName   = disparityIndicator[0]?.IndicatorName
 
     const disparityMeasurementType = disparityMetadata[0]?.MeasurementType
     const disparityMeasureName     = disparityMetadata[0]?.MeasureName
-    // const disparityMeasureId       = disparityMetadata[0]?.MeasureID
-    const disparityDisplay         = disparityMetadata[0]?.DisplayType;
 
     const disparitySources         = disparityMetadata[0]?.Sources
     const disparitysAbout          = disparityMetadata[0]?.how_calculated
@@ -103,7 +100,6 @@ const renderDisparitiesChart = async (
         
         const myrng = new Math.seedrandom(primaryMeasureId)
         
-        // await loaddisparityData(disparityMetadata, disparityIndicatorId)
         let aqDisparityData = await createJoinedLinksData(primaryMeasureId, disparityMeasureId)
             .then(res => {
 
@@ -135,14 +131,6 @@ const renderDisparitiesChart = async (
 
     // console.log("primaryTime", primaryTime);
     // console.log("disparityTime", disparityTime);
-
-    // ----------------------------------------------------------------------- //
-    // get min value for adjusting axis
-    // ----------------------------------------------------------------------- //
-
-    // let aqData = aq.from(disparityData);
-    // let median = aqData.array("median");
-    // let medianMin = Math.min.apply(null, median);
 
     // ----------------------------------------------------------------------- //
     // get unique unreliability notes (dropping empty)

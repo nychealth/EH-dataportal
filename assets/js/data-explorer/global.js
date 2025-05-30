@@ -256,7 +256,6 @@ const renderTitleDescription = (title, desc) => {
     indicatorDescription.forEach((element) => {
         element.innerHTML = `${desc}`;
     });    
-    // indicatorDescription.innerHTML = `${desc}`;
 }
 
 // Renders copy for the About the measures and the Data sources sections

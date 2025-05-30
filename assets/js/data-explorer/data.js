@@ -30,7 +30,6 @@ fetch(`${data_repo}${data_branch}/indicators/metadata/metadata.json`)
             loadIndicator(paramId)
             // console.log('param id is set')
 
-            // fetch311(paramId)
         } else {
             // console.log('no param', url.searchParams.get('id'));
             loadIndicator()
@@ -174,8 +173,6 @@ const createComparisonData = async (comps) => {
         
         uniqueIndicatorMeasure.map(async ind => {
 
-            let measures = ind[1].flatMap(m => Object.values(m));
-            
             // get data for an indicator
 
             return aq.loadJSON(`${data_repo}${data_branch}/indicators/data/${ind[0]}.json`)
@@ -324,7 +321,6 @@ const loadIndicator = async (this_indicatorId, dont_add_to_history) => {
     // why are we waiting for this?
 
     if (indicatorComparisonId !== null) {
-        // await fetch_comparisons();
         fetch_comparisons();
     }
 
@@ -430,8 +426,6 @@ const joinData = () => {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
     // create table column header with display type
-
-    let measurementDisplayArray = [];
 
     let MeasureID = [];
     let MeasurementType = [];
@@ -957,7 +951,6 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
                     aqClosestSecondaryData,
                     [["GeoID", "GeoType"], ["GeoID", "GeoType"]]
                 )
-                // .join_left(timeTable, "TimePeriodID")
 
             // console.log("aqJoinedPrimarySecondaryData [createJoinedLinksData]");
             // aqJoinedPrimarySecondaryData.print()
