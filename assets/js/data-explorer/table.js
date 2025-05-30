@@ -184,8 +184,8 @@ const renderTable = () => {
             { before: 0 }
         )
     
-    console.log("filteredTableAqData [renderTable]");
-    filteredTableAqData.print({limit: 100})
+    // console.log("filteredTableAqData [renderTable]");
+    // filteredTableAqData.print({limit: 100})
     
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
     // export Arquero table to HTML
