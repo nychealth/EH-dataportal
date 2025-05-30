@@ -1,0 +1,196 @@
+{{- define "main" -}}
+
+<style>
+  .info {
+    padding: 6px 8px;
+    font: 14px/16px Arial, Helvetica, sans-serif;
+    background: white;
+    background: rgba(255,255,255,0.8);
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    border-radius: 5px;
+}
+.info h4 {
+    margin: 0 0 5px;
+    color: #777;
+}
+
+.fill-1 {
+  font-weight: bold;
+  background-color: #FED976;
+}
+
+.color-1 {
+  color: #FED976;
+}
+
+.fill-2 {
+  font-weight: bold;
+  background-color: #FEB24C;
+}
+
+.color-2 {
+  color: #FEB24C;
+}
+
+.fill-3 {
+  font-weight: bold;
+  background-color: #FD8D3C;
+}
+
+.color-3 {
+  color: #FD8D3C;
+}
+
+.fill-4 {
+  font-weight: bold;
+  background-color: #FC4E2A;
+}
+
+.color-4 {
+  color: #FC4E2A;
+}
+
+.fill-5 {
+  font-weight: bold;
+  background-color: #E31A1C;
+  color: white;
+}
+
+.color-5 {
+  color: #E31A1C;
+}
+
+.btn.active {
+font-weight: bold!important;
+}
+</style>
+
+<article class="container-fluid" id="skip-header-target">
+
+    <div class="row">
+        <div class="col-md-11 mx-auto">
+            <nav aria-label="breadcrumb" class="mt-2 mb-4">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
+                    <li class="breadcrumb-item"><a href={{ relURL "data-features" }}>Data Features</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
+                </ul>
+            </nav>
+
+            <h1 id="title">{{ .Title }}</h1>
+            {{- .Content  -}}
+
+            <div class="row mt-4" id="#display">
+              <div class="col-md-3">
+                <div class="d-none d-md-block">
+                  <h6 class="">Storm surge</h6>
+                  <div class="border p-1 fs-sm" id="">
+                    <p>Neighborhood-level vulnerability to storm surges, under sea level conditions and floodplains estimated for the selected time period.
+                    </p>
+                  </div>
+  
+                  <button class="btn btn-sm btn-block btn-outline-active text-body text-left my-0 fvi-selector text-align-left font-weight-normal" id="btn-FVI_storm_surge_present" onclick="updateChoropleth('FVI_storm_surge_present')">2020s</button>
+  
+                  <button class="btn btn-sm btn-block btn-outline-active text-body text-left my-0 fvi-selector text-align-left font-weight-normal" id="btn-FVI_storm_surge_2050s" onclick="updateChoropleth('FVI_storm_surge_2050s')">2050s</button>
+  
+                  <button class="btn btn-sm btn-block btn-outline-active text-body text-left my-0 fvi-selector text-align-left font-weight-normal" id="btn-FVI_storm_surge_2080s" onclick="updateChoropleth('FVI_storm_surge_2080s')">2080s</button>
+  
+                  <h6 class="mt-4">Tidal flooding</h6>
+                  <div class="border p-1 fs-sm" id="">
+                    <p>Neighborhood-level vulnerability to tidal flooding, under sea level conditions estimated for the selected time period.
+                    </p>
+                  </div>
+  
+                  <button class="btn btn-sm btn-block btn-outline-active text-body text-left my-0 fvi-selector text-align-left font-weight-normal" id="btn-FVI_tidal_2020s" onclick="updateChoropleth('FVI_tidal_2020s')" >2020s</button>
+  
+                  <button class="btn btn-sm btn-block btn-outline-active text-body text-left my-0 fvi-selector text-align-left font-weight-normal" id="btn-FVI_tidal_2050s" onclick="updateChoropleth('FVI_tidal_2050s')">2050s</button>
+  
+                  <button class="btn btn-sm btn-block btn-outline-active text-body text-left my-0 fvi-selector text-align-left font-weight-normal" id="btn-FVI_tidal_2080s" onclick="updateChoropleth('FVI_tidal_2080s')">2080s</button>
+  
+                  <div class="border p-2 fs-sm mt-4">
+                    <h6>Flood Vulnerability</h6>
+                    <i class="fas fa-square mr-1 color-1" aria-hidden="true"></i>1: Less vulnerable   <br>
+                    <i class="fas fa-square mr-1 color-2" aria-hidden="true"></i>2                <br>
+                    <i class="fas fa-square mr-1 color-3" aria-hidden="true"></i>3                <br>
+                    <i class="fas fa-square mr-1 color-4" aria-hidden="true"></i>4                <br>
+                    <i class="fas fa-square mr-1 color-5" aria-hidden="true"></i>5: More vulnerable     <br>
+  
+  
+                  </div>
+                </div>
+
+
+              </div>
+
+              <div class="col-md-9 col-sm-12">
+                <div class="d-md-none">
+
+                  <span>Vulnerability to</span>
+                  <div class="d-inline">
+                    <a href="#display" class="badge badge-primary align-baseline" id="type" onclick="changeType()">
+                      storm surge
+                    </a>
+
+                  </div>
+                  <span> during</span>
+                  <div class="d-inline">
+                    <a href="#display" class="badge badge-primary align-baseline" id="period" onclick="changePeriod()">
+                      2020s
+                    </a>
+                  </div>  
+                  <span>:</span>                
+                </div>
+
+                <div id="map" class="" style="width:100%; height: 90vh"></div>
+
+              </div>
+            </div>
+
+            <div class="row my-4">
+              <div class="col-md-6 col-sm-12">
+                <div class="card card-left-border shadow-sm fs-sm">
+                  <div class="card-body">
+                    <h2 class="h5 card-title">Physical exposure risk</h2>
+                    <p>Each FVI includes present and projected information about physical exposure risk to one specific type of flooding (like tidal or storm surge flooding).
+                      <p>Each of the Flood Vulnerability Indices show how vulnerability to these flood hazards is different across neighborhoods.
+                      <p>The storm surge FVI, for example, uses FEMA Special Flood Hazard Area (2015) data to map physical exposure risk to this type of flooding, relative to other parts of NYC.</p>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="col-sm-12 col-md-6">
+                <div class="card card-left-border shadow-sm fs-sm">
+                  <div class="card-body">
+                    <h2 class="h5 card title">Susceptibility to harm and capacity to recover</h2>
+                    <p>Each FVI also combines flood exposure information with a single Flood Susceptibility to Harm and Recovery Index (FSHRI), which aggregates selected socio-demographic factors that have been observed to correlate with greater harm suffered due to flooding or lower capacity to recover from flooding. 
+                      <p>The factors included in the FSHRI are: disability; language isolation; elder adults living alone; lack of health insurance; low-income households (below 75K annually); home ownership; per capita income; rent and cost burdened homes; Population with a vulnerable age (below 5, above 65 yrs old); and BIPOC residents. 
+                    <p>Some of the differences in these risk factors across neighborhoods are rooted in past and present racism and drive variation in flood vulnerability across the city. 
+                  </p>
+                  </div>
+                </div>
+              </div>
+
+        </div>
+    </div>
+
+    <div class="row" data-pagefind-weight="7.0">
+
+      <div class="col-12">
+      </div>
+
+
+    </div>
+
+
+</article>
+
+<!-- Related footer -->
+{{- partial "related-footer-2" . -}}
+
+<!--bring in JS -->
+
+<script type="text/javascript" src="fvi.js"></script>
+
+
+{{- end -}}

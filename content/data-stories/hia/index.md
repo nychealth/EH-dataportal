@@ -48,13 +48,31 @@ Since air pollution causes significant illness and death in New York City, it's 
 
 The New York City Community Air Survey, an extensive air quality monitoring program, lets us understand neighborhood-by-neighborhood differences in air quality and pinpoint neighborhoods with the worst air quality.
 
-{{< datawrapper src="3CeEA/1/" height="450" title="NYC's 10 worst neighborhoods for air quality..." >}}
+</div>
+<div class="wide my-4" aria-hidden="true">
+  <iframe title="NYC's 10 worst neighborhoods for air quality..." aria-label="Map" id="datawrapper-chart-3CeEA" src="https://datawrapper.dwcdn.net/3CeEA/3/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="590" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+  </script>
+</div>
+<div class="sr-only">
+  <iframe title="NYC's 10 worst neighborhoods for air quality..." aria-label="Table" id="datawrapper-chart-NvVfw" src="https://datawrapper.dwcdn.net/NvVfw/3/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="577" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+  </script>
+</div>
+<div class="narrow">
 
 You might think it would make sense to focus our efforts to reduce air pollution on these neighborhoods where air quality is the worst. But prioritizing only neighborhoods with the worst air pollution for air quality improvements won't get the most public health benefits. **Simply put, the worst health outcomes from air pollution _don't_ happen where the air quality is the worst.**
 
 In cities across the USA, there's a clear pattern: [the worst air quality tends to be in the poorest neighborhoods](https://pubmed.ncbi.nlm.nih.gov/24076625/). But through NYCCAS, we've found that New York City is different: our most polluted neighborhoods, in Midtown and Lower Manhattan, are among the wealthiest in the city. But kids and adults living in **high-poverty neighborhoods experience more air pollution-related health problems.**
 
-{{< datawrapper src="V1NVo/1/" height="450" title="...and air-quality-related health effects" >}}
+</div>
+<div class="wide my-4" aria-hidden="true">
+  <iframe title="...and air-quality-related health effects" aria-label="Map" id="datawrapper-chart-V1NVo" src="https://datawrapper.dwcdn.net/V1NVo/4/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="580" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+  </script>
+</div>
+<div class="sr-only">
+  <iframe title="...and air-quality-related health effects" aria-label="Table" id="datawrapper-chart-Rl7wk" src="https://datawrapper.dwcdn.net/Rl7wk/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="1794" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+  </script>
+</div>
+<div class="narrow">
 
 ## Using health impact assessments to make bigger improvements
 
@@ -62,11 +80,29 @@ We can use data modelling tools to predict which policies to improve air quality
 
 [A recent health impact assessment estimates the effects of reducing 80% of greenhouse gas emissions by 2050](https://pubs.acs.org/doi/full/10.1021/acs.est.0c00694), a policy called “80 x 50.” This policy would reduce fine particulate matter (also called PM2.5) throughout the city, regardless of neighborhood poverty level:
 
-{{< datawrapper src="pt7no/1/" height="168" title="Reductions in PM2.5 would be similar across neighborhoods.." >}}
+</div>
+<div class="wide my-4" aria-hidden="true">
+  <iframe title="Reductions in PM2.5 would be similar across neighborhoods..." aria-label="Arrow Plot" id="datawrapper-chart-pt7no" src="https://datawrapper.dwcdn.net/pt7no/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="199" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+  </script>
+</div>
+<div class="sr-only">
+<iframe title="Reductions in PM2.5 would be similar across neighborhoods... " aria-label="Table" id="datawrapper-chart-LVfkJ" src="https://datawrapper.dwcdn.net/LVfkJ/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="339" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+</script>
+</div>
+<div class="narrow">
 
 But, despite similar improvements in air quality, high poverty neighborhoods would have much greater health benefits. **Simply put, efforts to improve air quality have the most health impact in high-poverty neighborhoods.**
 
-{{< datawrapper src="OSgDo/1/" height="206" title="...but higher poverty areas would get the most health benefits." >}}
+</div>
+<div class="wide my-4" aria-hidden="true">
+  <iframe title="...but higher poverty areas would get the most health benefits." aria-label="Arrow Plot" id="datawrapper-chart-OSgDo" src="https://datawrapper.dwcdn.net/OSgDo/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="219" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+  </script>
+</div>
+<div class="sr-only">
+<iframe title="...but higher poverty areas would get the most health benefits." aria-label="Table" id="datawrapper-chart-4YVOx" src="https://datawrapper.dwcdn.net/4YVOx/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="358" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+</script>
+</div>
+<div class="narrow">
 
 That means that local efforts to improve air pollution – like reducing truck traffic, or providing incentives for buildings to convert to cleaner heating oil – should focus on neighborhoods with the highest poverty, not the ones with the worst air pollution.
 

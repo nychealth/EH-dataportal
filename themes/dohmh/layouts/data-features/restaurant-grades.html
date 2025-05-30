@@ -1,0 +1,138 @@
+{{- define "main" -}}
+
+<article class="container-fluid" id="skip-header-target">
+    
+    <div class="row">
+        <div class="col-md-11 mx-auto mt-4">
+            <nav aria-label="breadcrumb" class="mb-4">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="/key-topics/">Key Topics</a></li>
+                    <li class="breadcrumb-item"><a href="..">
+                        {{- with .Parent -}} {{ .Title }} </a></li>{{- end -}}
+                        <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-11 mx-auto mb-4">
+                    <h2>{{ .Title }}</h2>
+                    <img src="ds-foodletter.jpg" style="width:20%" class="float-right">
+                    <p class="">{{ .Content }}</p>
+
+
+
+
+                    <div class="row mt-4" style="clear:both">
+                      
+                      <!-- Control and output column --> 
+                      <div class="col-md-6">
+                        <div class="row mb-4">
+                          <div class="col-12">
+                            <h2 class="home-label border-bottom">Select a year</h2><br>
+                          </div>
+    
+
+                          <div class="col mx-auto">
+                            <button type="button" class="btn  btn-lg btn-outline-secondary" onclick="changeYear(-1)" id="downButton" disabled><i class="fas fa-arrow-circle-left h3 pt-1 mx-2"></i></button>
+                            <button type="button" class="btn btn-lg btn-outline-dark p-2" disabled><span id="year" class="h1 mx-4 py-2">2011</span></button>
+                            <button type="button" class="btn btn-lg  btn-outline-secondary" onclick="changeYear(1)" id="upButton"><i class="fas fa-arrow-circle-right h3 pt-1 mx-2"></i></button>
+
+                          </div>
+
+                        </div>
+
+                        <div class="row mt-4">
+                          <div class="col-12 fs-lg">
+
+                            <div class="row my-2">
+                              <div id="lineVis" style="width:100%;height:200px;" class="px-1">
+
+                              </div>
+
+                            </div>
+
+                          <p>Overall, <span id="citywide" class="font-weight-bold">XX %</span> of restaurants in NYC received A grades in <span id="year3" class="font-weight-bold">2011</span>. The lowest neighborhood had <span id="lowest" class="font-weight-bold">XX%</span> get A grades, and the highest had <span id="highest" class="font-weight-bold">ZZ%</span> get A grades.</p>
+
+                          <p class="fs-md"><em><span id="2020note"></span></em></p>
+
+                          <hr class="my-2">
+
+                          <a href="../../../data-explorer/restaurant-food-safety/" class="button btn btn-md btn-block btn-outline-primary"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Full dataset</a>
+
+                          <a href="https://a816-health.nyc.gov/ABCEatsRestaurants/#!/Search" class="button btn btn-md btn-block btn-outline-primary" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link mr-1"></i>Restaurant inspection results</a>
+
+                          <a href="../restaurant-inspection-checklist/" class="button btn btn-md btn-block btn-outline-primary mb-4">Restaurant inspection checklist</a>
+                        
+                            
+                          </div>
+                        </div>
+                      </div>
+
+                        <!-- map and bar column -->
+                        <div class="col-md-6" style="max-height: 850px;">
+                    
+                        <h2 class="home-label border-bottom">Percent of restaurants with A grades (<span id="year2">2011</span>)</h2>
+
+                        <div id="map"></div>
+
+                        </div>
+
+                    </div>
+
+        </div>
+        
+    </div>
+
+    <style>
+
+        #map {
+            width: 100%;
+            max-height: 450px;
+        }
+        
+        .slider {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 5px;
+            background: #ffffff;
+            outline: none;
+            opacity: 0.7;
+            -webkit-transition: .2s;
+            transition: opacity .2s;
+          }
+          
+          .slider:hover {
+            opacity: 1;
+          }
+          
+          .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 25px;
+            height: 25px;
+            background: #04AA6D;
+            cursor: pointer;
+          }
+          
+          .slider::-moz-range-thumb {
+            width: 25px;
+            height: 25px;
+            background: #04AA6D;
+            cursor: pointer;
+          }
+
+          #vg-tooltip-element {
+            width: 300px;
+          }
+        </style>
+    
+</article>
+
+<!--bring in JS -->
+<script type="text/javascript" src="restaurantgrades.js"></script>
+
+{{- end -}}

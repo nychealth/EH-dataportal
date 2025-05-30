@@ -1,7 +1,6 @@
-
 {{/*  add GA code for prod data  */}}
 
-{{ if eq hugo.Environment "production" "prod_prod" }}
+{{ if eq hugo.Environment "prod_prod" }}
 
     {{ warnf (print "prod environment: " hugo.Environment) }}
 
@@ -40,12 +39,21 @@
 {{ end }}
 
 
+<!-- favicon -->
+<!-- https://www.iconfinder.com/icons/7618350/heatmap_business_analytics_statistics_icon -->
+<!-- https://lucianojung.de/ -->
+
+<link rel="icon" href={{ relURL "7618350_heatmap_business_analytics_statistics_icon-gpr.ico" }}>
+
+
 <!-- Required meta tags -->
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 {{/*  <meta data-pagefind-filter="section[content]" content="Data Stories">  */}}
 
 <!-- Corrects IE Compatibility Mode -->
+
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 <title>{{ block "title" . }}
@@ -81,7 +89,9 @@
     <link href="https://maps.nyc.gov/nyc-lib/v1.2.79/css/nyc-basic-lib.css" rel="stylesheet">
 {{- end }}
 
-<!-- jQuery (full, compressed version) -->
+
+{{- /*  jQuery (full, compressed version)  */}}
+
 {{- $jquery := resources.Get "node_modules/jquery/dist/jquery.min.js" | resources.Fingerprint "sha512" }}
 
 <script src="{{ $jquery.RelPermalink }}" integrity="{{ $jquery.Data.Integrity }}" crossorigin="anonymous"></script>
@@ -119,12 +129,16 @@
 <link href="https://maps.nyc.gov/nyc-lib/v1.2.79/css/nyc-basic-lib.css" rel="stylesheet">
 
 
-<!-- main CSS -->
+
+{{- /*  main CSS  */}}
+
 {{- $sass := resources.Get "scss/theme.scss" }}
 {{- $style := $sass | toCSS | resources.Fingerprint "sha512" }}
 <link rel="stylesheet" href="{{ $style.RelPermalink }}" integrity="{{ $style.Data.Integrity }}" />
 
-<!-- Vega. To call, have vega: true in a page's frontmatter -->
+
+{{- /*  Vega. To call, have vega: true in a page's frontmatter  */}}
+
 {{- if .Params.vega -}}
 
     {{- /*  VegaLite  */}}
@@ -190,15 +204,14 @@
 
 {{- if .Params.arquero }}
 
-    {{- /*  Arquero  */}}
-
     {{- $arquero := resources.Get "node_modules/arquero/dist/arquero.min.js" | resources.Fingerprint "sha512" -}}
 
     <script src="{{ $arquero.RelPermalink }}" integrity="{{ $arquero.Data.Integrity }}"></script>
 
 {{- end }}
 
-<!-- Leaflet -->
+
+{{- /*  Leaflet  */}}
 
 {{- if .Params.leaflet }}
 
@@ -213,7 +226,6 @@
     {{- $leaflet := resources.Get "node_modules/leaflet/dist/leaflet.js" | resources.Fingerprint "sha512" }}
 
     <script src="{{ $leaflet.RelPermalink }}" integrity="{{ $leaflet.Data.Integrity }}"></script>
-
 
     <!-- leaflet easybutton CSS -->
 
@@ -241,6 +253,15 @@
     <!-- point in polygon -->
     <script src="https://cdn.rawgit.com/hayeswise/Leaflet.PointInPolygon/v1.0.0/wise-leaflet-pip.js"></script>
 
+
+
+    <!-- leaflet marker icons -->
+
+    {{- $leaflet_marker_icon := resources.Get "node_modules/leaflet/dist/images/marker-icon.png" }}
+    {{- $leaflet_marker_shadow := resources.Get "node_modules/leaflet/dist/images/marker-shadow.png" }}
+
+    {{- $leaflet_marker_icon.Publish -}}
+    {{- $leaflet_marker_shadow.Publish -}}
 
 
 {{- end -}}
@@ -320,10 +341,10 @@
 
 <script>
 
-    let baseURL = {{ relURL "" }}
+    let baseURL = {{ relURL "" }};
     let data_repo = "{{ $.Site.Params.data_repo }}";
     let data_branch = "{{ $.Site.Params.data_branch }}";
-    let hugoEnv = "{{ hugo.Environment }}"
+    let hugoEnv = "{{ hugo.Environment }}";
 
 </script>
 

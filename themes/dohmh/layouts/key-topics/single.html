@@ -117,7 +117,7 @@
                             <!-- First, get the main DE pages linked from KT page frontmatter -->
                             {{ if .Params.mainDEPages }}
                                 {{ range $index, $element := .Params.mainDEPages }}
-                                <a class="font-weight-bold" href="{{ .Site.BaseURL | relURL }}{{ .url }}">
+                                <a class="font-weight-bold" href="{{ relURL .url }}">
                                     {{ .title }}
                                 </a>
                                     {{ if eq (add $index 1) (len $.Params.mainDEPages) }}
