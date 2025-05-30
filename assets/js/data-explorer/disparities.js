@@ -43,9 +43,10 @@ const renderDisparitiesChart = async (
 
     // console.log(primaryMetadata[0])
 
-    var subtitle;
+    let subtitle;
 
     let primaryDisplay;
+    
     if (primaryMeasurementType.includes('Percent') || primaryMeasurementType.includes('percent') && !primaryMeasurementType.includes('percentile')) {
         primaryDisplay = '%' // assigns a % displayType for anything that includes percent (but NOT percentile) in its measurementType
         subtitle = primaryMeasurementType
@@ -74,10 +75,8 @@ const renderDisparitiesChart = async (
     // ----------------------------------------------------------------------- //
 
     const disparityIndicatorName   = disparityIndicator[0]?.IndicatorName
-
     const disparityMeasurementType = disparityMetadata[0]?.MeasurementType
     const disparityMeasureName     = disparityMetadata[0]?.MeasureName
-
     const disparitySources         = disparityMetadata[0]?.Sources
     const disparitysAbout          = disparityMetadata[0]?.how_calculated
 
@@ -334,12 +333,12 @@ const renderDisparitiesChart = async (
 
     vegaEmbed("#links", disspec,{
         actions: {
-          export: { png: false, svg: false },
-          source: false,  
-          compiled: false, 
-          editor: true 
+            export: { png: false, svg: false },
+            source: false,  
+            compiled: false, 
+            editor: true 
         }
-      });
+    });
 
     // set for printing
     printSpec = disspec;

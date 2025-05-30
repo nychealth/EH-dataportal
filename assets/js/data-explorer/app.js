@@ -219,7 +219,7 @@ $("#chartView").on("click", (e) => {
         let hiddenElement = document.createElement('a');
 
         // set view to send to file name
-        var view;
+        let view;
         if (window.location.hash == '#display=trend') {
             view = 'trend'
         } else if (window.location.hash == '#display=map') {

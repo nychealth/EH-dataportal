@@ -40,7 +40,7 @@ const renderLinksChart = (
         primaryDisplay = '%' // assigns a % displayType for anything that includes percent (but NOT percentile) in its measurementType
         primaryMeasurementDisplay = primaryMeasurementType 
     } else {
-        primaryDisplay         = "" + primaryMetadata[0]?.DisplayType; // else, the pre-existing assignment
+        primaryDisplay = "" + primaryMetadata[0]?.DisplayType; // else, the pre-existing assignment
         primaryMeasurementDisplay = primaryMeasurementType + ` (${primaryDisplay})`
 
     }
@@ -54,6 +54,7 @@ const renderLinksChart = (
 
     let secondaryDisplay;
     let secondaryMeasurementDisplay;
+
     if (secondaryMeasurementType.includes('Percent') || secondaryMeasurementType.includes('percent') && !secondaryMeasurementType.includes('percentile')) {
         secondaryDisplay = '%' // assigns a % displayType for anything that includes percent (but NOT percentile) in its measurementType
         secondaryMeasurementDisplay = secondaryMeasurementType
@@ -62,7 +63,7 @@ const renderLinksChart = (
         secondaryMeasurementDisplay = secondaryMeasurementType + ` (${secondaryDisplay})`
     }
 
-    const secondaryTimePeriod      = data[0]?.TimePeriod_2;
+    const secondaryTimePeriod = data[0]?.TimePeriod_2;
 
     const SecondaryAxis = 
         primaryMetadata[0].VisOptions[0].Links[0].Measures.filter(
@@ -155,7 +156,7 @@ const renderLinksChart = (
     // ----------------------------------------------------------------------- //
     // define spec
     // ----------------------------------------------------------------------- //
-
+    
     let linkspec = {
         "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
         "title": {
@@ -195,11 +196,11 @@ const renderLinksChart = (
             },
             "legend": {
                 "columns": columns,
-                    "labelFontSize": 14,
-                    "symbolSize": 140,
-                    "orient": "bottom",
-                    "title": null
-                },
+                "labelFontSize": 14,
+                "symbolSize": 140,
+                "orient": "bottom",
+                "title": null
+            },
             "view": { "stroke": "transparent" },
             "range": {
                 "category": [
@@ -208,7 +209,7 @@ const renderLinksChart = (
                     "#a05195",
                     "#d45087",
                     "#ffa600" 
-                    ]
+                ]
             }
         },
         "data": {
@@ -261,7 +262,7 @@ const renderLinksChart = (
                         "axis": {
                             "titleAlign": "center",
                             "tickCount": 4
-                          }
+                        }
                     },
                     "tooltip": [
                         {
@@ -309,28 +310,28 @@ const renderLinksChart = (
             },
             {
                 "mark": {
-                "type": "line",
-                "color": "darkgray"
+                    "type": "line",
+                    "color": "darkgray"
                 },
                 "transform": [
-                {
-                    "regression": yValue,
-                    "on": xValue
-                }
+                    {
+                        "regression": yValue,
+                        "on": xValue
+                    }
                 ],
                 "encoding": {
-                "x": {
-                    "field": xValue,
-                    "type": "quantitative"
-                },
-                "y": {
-                    "field": yValue,
-                    "type": "quantitative"
-                }
+                    "x": {
+                        "field": xValue,
+                        "type": "quantitative"
+                    },
+                    "y": {
+                        "field": yValue,
+                        "type": "quantitative"
+                    }
                 }
             }
         ]
-
+        
     }
 
     // ----------------------------------------------------------------------- //
@@ -339,12 +340,12 @@ const renderLinksChart = (
 
     vegaEmbed("#links", linkspec,{
         actions: {
-          export: { png: false, svg: false },
-          source: false,  
-          compiled: false, 
-          editor: true 
+            export: { png: false, svg: false },
+            source: false,  
+            compiled: false, 
+            editor: true 
         }
-      });
+    });
 
     // set for printing
     printSpec = linkspec;

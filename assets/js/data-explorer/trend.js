@@ -646,12 +646,12 @@ const renderTrendChart = (
     // ----------------------------------------------------------------------- //
     
     vegaEmbed("#trend", compspec2,{
-      actions: {
-        export: { png: false, svg: false },
-        source: false,  
-        compiled: false, 
-        editor: true 
-      }
+        actions: {
+            export: { png: false, svg: false },
+            source: false,  
+            compiled: false, 
+            editor: true 
+        }
     });
 
     // send info for printing

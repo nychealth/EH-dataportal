@@ -2238,13 +2238,13 @@ const renderMeasures = async () => {
 
                 // get measure metadata
 
-                const primaryMeasure         = defaultPrimaryLinksMeasureMetadata[0]?.MeasurementType;
-                const primaryAbout           = defaultPrimaryLinksMeasureMetadata[0]?.how_calculated;
-                const primarySources         = defaultPrimaryLinksMeasureMetadata[0]?.Sources;
+                const primaryMeasure   = defaultPrimaryLinksMeasureMetadata[0]?.MeasurementType;
+                const primaryAbout     = defaultPrimaryLinksMeasureMetadata[0]?.how_calculated;
+                const primarySources   = defaultPrimaryLinksMeasureMetadata[0]?.Sources;
 
-                const secondaryMeasure       = defaultSecondaryMeasureMetadata[0]?.MeasurementType;
-                const secondaryAbout         = defaultSecondaryMeasureMetadata[0]?.how_calculated;
-                const secondarySources       = defaultSecondaryMeasureMetadata[0]?.Sources;
+                const secondaryMeasure = defaultSecondaryMeasureMetadata[0]?.MeasurementType;
+                const secondaryAbout   = defaultSecondaryMeasureMetadata[0]?.how_calculated;
+                const secondarySources = defaultSecondaryMeasureMetadata[0]?.Sources;
 
 
                 // ----- set measure info boxes - - - - - - - - - - - - - - - - - - - - - - - - - - //
