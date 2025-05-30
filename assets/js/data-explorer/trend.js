@@ -670,8 +670,8 @@ const renderTrendChart = (
         .derive({Indicator: `'${indicatorName}: ${plotTitle} ${plotSubtitle}'`}) // add indicator name and type column
         .select(aq.not("GeoType", "GeoTypeDesc", "GeoTypeShortDesc", "GeoRank", "MeasureID", "ban_summary_flag", "DisplayValue", "start_period", "end_period"))
 
-        // console.log("downloadTable [renderTrendChart]");
-        // downloadTable.print()
+    // console.log("downloadTable [renderTrendChart]");
+    // downloadTable.print()
 
     CSVforDownload = downloadTable.toCSV()
     

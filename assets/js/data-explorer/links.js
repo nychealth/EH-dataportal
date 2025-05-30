@@ -364,8 +364,8 @@ const renderLinksChart = (
         .derive({ Value_1_Indicator: `'${yIndicatorName} - ${yMeasure && `${yMeasure}`} ${yDisplay && `${yDisplay}`}'`})
         .derive({ Value_2_Indicator: `'${xIndicatorName} - ${xMeasure} ${xDisplay && `(${xDisplay})`} '`})
         
-        // console.log("downloadTable [renderLinksChart]");
-        // downloadTable.print()
+    // console.log("downloadTable [renderLinksChart]");
+    // downloadTable.print()
 
     CSVforDownload = downloadTable.toCSV()
 
