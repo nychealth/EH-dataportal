@@ -14,7 +14,7 @@
     "dependencies": {
         "@fortawesome/fontawesome-free": "^6.6.0",
         "@mapbox/leaflet-pip": "^1.1.0",
-        "arquero": "^6.1.0",
+        "arquero": "^8.0.3",
         "bootstrap": "^4.3.1",
         "chroma-js": "~2.4.2",
         "d3": "^7.9.0",
