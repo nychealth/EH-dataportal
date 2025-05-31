@@ -18,8 +18,8 @@ keywords:
 image: BrooklynBridgeParkFall_JulienneSchaer.jpg
 photocredit: Julienne Schaer/NYC & Company
 related:
-  - title: "Neighborhood reports: Climate"
-    url: "neighborhood-reports/#Climatereport"
+  - title: "Flood Vulnerability Index"
+    url: "data-features/flood-vulnerability-index/"
   - title: "How power outages affect health"
     url: "data-stories/poweroutages/"
   - title: "The urban heat island effect in NYC"
@@ -99,7 +99,7 @@ The National Weather Service issued its first-ever flash flood emergency warning
   <iframe title="NYC's annual precipitation has increased about 20% since 1960" aria-label="Scatter Plot" id="datawrapper-chart-r4fxY" src="https://datawrapper.dwcdn.net/r4fxY/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="606" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
 </div>
 </div>
-<div class="xsr-only">
+<div class="sr-only">
 <iframe title="NYC's annual precipitation has increased about 20% since 1960" aria-label="Table" id="datawrapper-chart-aKa9y" src="https://datawrapper.dwcdn.net/aKa9y/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="6891" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
 </script>
 </div>
@@ -154,7 +154,7 @@ Certain populations are more vulnerable to the health risks of flooding and may 
 <iframe title="Flood Vulnerability Index" aria-label="Map" id="datawrapper-chart-HAWCl" src="https://datawrapper.dwcdn.net/HAWCl/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="691" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
 </div>
 </div>
-<div class="xsr-only">
+<div class="sr-only">
 <iframe title="This FVI identifies coastal areas at risk of storm surges — with especially vulnerable areas in southern Brooklyn and Queens." aria-label="Table" id="datawrapper-chart-yuQ6Y" src="https://datawrapper.dwcdn.net/yuQ6Y/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="1029" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
 </script>
 </div>

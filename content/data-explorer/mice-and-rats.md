@@ -18,6 +18,7 @@ indicators:
       - 2394
       - 48
       - 2416
+      - 2447
 related:
   - title: "Rat Mitigation Zones"
     url: "data-features/rat-mitigation-zones/"

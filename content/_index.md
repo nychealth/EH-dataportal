@@ -2,11 +2,11 @@
 title: "The Environment and Health Data Portal: Home page"
 draft: false
 seo_title: "NYC Environment and Health Data Portal."
-seo_description: "Data on how environments shape health in NYC."
-description: "Data on how environments shape health in NYC."
-featured_title: "Rats in your neighborhood"
-featured_text: "Learn about rats in your area and what's being done to fight them."
-featured_link: "data-features/rats-in-your-neighborhood/"
-featured_image: "rats_by_loc.jpg"
+seo_description: "Explore New Yorkers' heat stories"
+description: "Explore New Yorkers' heat stories"
+featured_title: "Your heat story"
+featured_text: "Explore New Yorkers' heat stories alongside data on surface temperature, AC access, and more by neighborhood."
+featured_link: "data-features/heat-story/"
+featured_image: "heat-story3.png"
 ImageNote: featured_image must be added to assets
 ---

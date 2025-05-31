@@ -1,0 +1,394 @@
+{{- define "main" -}}
+
+<style>
+
+  #map {
+    width: 90%;
+    height: 65vh;
+  }
+
+  /* dropdown list items - active styles based on if they're related to a primary or secondary button style */
+
+  .dropdown-item {
+    text-decoration: none;
+  }
+
+  .btn-outline-primary ~ .dropdown-menu .dropdown-item.active,
+  .btn-outline-primary ~ .dropdown-menu .dropdown-item:active {
+    color: #ffffff;
+    /*text-decoration: none;*/
+    background-color: #841972;
+  }
+
+  .btn-outline-secondary ~ .dropdown-menu .dropdown-item.active,
+  .btn-outline-secondary ~ .dropdown-menu .dropdown-item:active {
+    color: #ffffff;
+    /*text-decoration: none;*/
+    background-color: #181A7B;
+  }
+  
+  .story-card-content {
+    max-height: 68vh;
+    overflow-y: auto;
+  }
+
+  .story-card {
+    padding-bottom: 25px;
+  }
+
+  .content-card-height {
+    height: 70vh;
+    overflow-y:scroll;
+  }
+
+  .story-card-button {
+    width: 100%;
+    margin-bottom: 25px;
+    margin-top: 10px;
+    padding: 10px;
+  }
+
+  .story-card-button-container {
+    margin-right: 10px;
+    margin-left: 10px;
+  }
+
+  #refreshButton {
+    position: absolute;
+    font-family: inherit, Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 700;
+    top: 20px;
+    right: 20px;
+    padding: 10px;
+    z-index: 999;
+    visibility: hidden;
+  }
+
+  legend, .legend {
+    /* height: 135px; */
+    /* width: 3:1; */
+    overflow-y: auto;
+    /* font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+    font-family: sans-serif;
+    letter-spacing: 0px;
+    font-weight: 400;
+    border-radius: 5px;
+    background-color: #F5F5F5;
+    opacity: 0.95;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    margin-top: 0;
+    padding-top: 0;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  fieldset, .fieldset {
+    border: 0;
+    margin-top: 0;
+    padding-top: 0;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+  
+  /* set inside borders of popup table */
+
+  /* Remove all the outside borders of the existing table */
+
+  .popup-table {
+    margin: 0 auto;
+    border-collapse: collapse;
+    border-style: hidden;
+  }
+  .popup-table td {
+    padding: 0.5rem;
+    border: 1px solid #aaaaaa;
+  }
+
+.leaflet-bottom .leaflet-control {
+    margin-top: 0;
+    padding-top: 0;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.leaflet-right .leaflet-control {
+    margin-top: 0;
+    padding-top: 0;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.leaflet-control-layers-expanded {
+    padding: 10px;
+    color: #333;
+    background: #fff;
+}
+
+</style>
+
+<article class="container-fluid" id="skip-header-target">
+  <div class="row">
+    <div class="col-md-11 mx-auto mt-4">
+      <nav aria-label="breadcrumb" class="mb-4">
+        <ul class="breadcrumb">
+          <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
+          <li class="breadcrumb-item"><a href={{ relURL "data-features/" }}>Data Features</a></li>
+          <li class="breadcrumb-item active" aria-current="page">
+            {{ .Title }}
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <div class="col-md-2 mr-auto"></div>
+  </div>
+
+  <div class="row">
+    <div class="col-11 mx-auto">
+      <h1>
+        <i class="fas fa-star" aria-hidden="true" style="margin-right: 10px"></i
+        >{{ .Title }}
+      </h1>
+
+      <div class="row">
+        <div class="col-md-8 col-sm-12">
+          {{- .Content -}}
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <hr class="my-2 px-6">
+
+
+<div class="row mt-3">
+    <div class="col">
+      <h3 class="h4">Explore New Yorkers' heat stories</h3>
+    </div>
+  </div>
+
+  <div class="row my-3">
+    <div class="col-xs-12 col-sm-4 mx-auto">
+      <div id="story-dropdown" class="dropdown" >
+        <button class="btn btn-outline-primary btn-block dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          View story
+        </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="storyTitleDropdown">
+        </div>
+      </div>
+
+      <!-- Add card here --> 
+      {{/*  <div id="story-card-general-holder" class="story-card" style="height: 70vh">  */}}
+      <div id="story-card-general-holder" class="story-card">
+      </div>
+      
+    </div>
+    <div class="col-xs-12 col-sm-8 mx-auto">
+      <div id="map">
+        <button id="refreshButton" class="btn btn-sm btn-light btn-white"><i class="fas fa-undo" aria-hidden="true"> </i><span class="sr-only"> Reset</span></button>
+      </div>
+      <div class="border" id="legendDescriptions"></div>
+    </div>
+  </div>
+</div>
+
+<div id="wholeMap">
+  <div class="row">
+    <div class="col-md-4">
+      <div id="baseLayerButtons">
+        <h4 class="home-label">Community science data<a href="#communityScience"><i class="fas fa-info-circle ml-1"></i></a></h4>
+        <div id="buttonHolderStudyArea" style="display: inline-block"></div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div id="baseLayerButtons">
+        <h4 class="home-label">Citywide data</h4>
+        <div id="buttonHolderBase" style="display: inline-block"></div>
+      </div>
+    </div>
+
+    <div class="col-md-2">
+      <div id="baseLayerButtons" class="">
+        <h4 class="home-label" class="text-align-right">Add layers</h4>
+        <div id="buttonHolderAdditional" style="display: inline-block"></div>
+      </div>
+    </div>
+  </div>
+
+ 
+
+<hr class="my-2 px-6">
+
+
+<div class="row mt-4">
+    <div class="col-11 mx-auto">
+
+      <div class="row">
+        <div class="col-md-8 col-sm-12">
+          <h4 class="h5">Submit your heat story</h4>
+          <p>How does heat affect you in your home, your neighborhood, and your life? </p>
+          <p><a href='https://docs.google.com/forms/d/e/1FAIpQLSdwGh2hb4LeLsQxH-w9awMAF2qc_UgOsD_bBYhRVa3ECxM8Bg/viewform'>Submit a story here</a> - tell us how heat affects your life. You can even upload pictures of your home, neighborhood, park, or anything else that helps illustrate your story. You can add your name, or remain anonymous - it's up to you.</p>
+          <p>We'll review submissions and add some of them to this map. We'll only include whatever details you choose to share with us.</p>
+        </div>
+      </div>
+
+      <div class="row my-4">
+        <div class="col-md-6 col-sm-12">
+          <div class="btn-toggle">
+            <button class="btn btn-block btn-md btn-outline-primary" data-toggle="collapse" data-target="#toggle-target-1" aria-expanded="false" aria-controls="toggle-target-1">
+                <span class="title" id="communityScience">Community science data collection</span>
+            </button>
+          </div>
+
+        <div class="collapse p-2 border mb-2 fs-sm" id="toggle-target-1">
+          <p> Stories featured in the South Bronx and northern Manhattan were collected in partnership with South Bronx Unite, WE ACT for Environmental Justice, and CBOs 9-12. Stories featured in South Queens were collected in partnership with South Queens Women's March. These areas were selected because they are vulnerable to the health risks of extreme heat due to economic, racial, and social inequities.</p>
+          <p><strong> Hyperlocal data vs citywide data</strong></p>
+          <p> This heat story map features data collected across New York City and hosted on the Environment and Health Data Portal about air quality, air conditioning access, neighborhood poverty, and more. You can explore each dataset more thoroughly through our Data Explorer. The map also features a limited amount of data collected in northern Manhattan and the South Bronx because of the parameters of the original study. These hyperlocal data layers were generated through the community science approach described, and provide valuable insights into block-level differences at different times of day. </p>
+            <p> Using a community science approach, the data collection process was
+              led by residents living in areas most affected by heat. On Saturday
+              July 24, 2021, these community scientists traversed along 10
+              different one-hour long routes with heat sensors on their cars or
+              bicycles. These Type T Thermocouples sensors fired off every second
+              and captured block-by-block differences in heat and humidity while
+              using GPS to track geospatial data.</p>
+              <p>Data collection took place
+              during three windows: morning (6am–7am), afternoon (3pm–4pm), and
+              evening (7pm–8pm) in northern Manhattan and the South Bronx. Local
+              organizations <strong>South Bronx Unite, WE ACT for Environmental Justice,
+              and Community Boards 9–12 </strong> in northern Manhattan worked together to
+              design the routes around areas of concern to residents. These
+              included intersections, bus stops, common corridors of activity, as
+              well as public housing.</p>
+          <h5 class="h6">How do the methods and results differ from other projects?</h4>
+          <ul>
+              <li><strong>Measures outdoor air temperature:</strong> Previous models have been based on
+          satellite data, which record the temperature of the ground itself.
+          This project measured air temperature and humidity at the pedestrian level, which is at the height people actually feel heat. </li>
+              <li><strong>Finer spatial resolution: </strong>
+          These map outputs are in higher resolution (one meter–10
+          meters), meaning a finer spatial resolution than most public
+          satellite products related to land surface temperature and air
+          temperature. These more granular maps are more conducive to
+          designing targeted local mitigation efforts. </li>
+              <li><strong>Mobile data collection:</strong>
+          Data was collected in real time across several different
+          locations, while most existing air temperature data is collected in
+          one stationary location. </li>
+          <li><strong>Captures variance throughout the day:</strong> Data
+          collection occurred multiple times in the day (morning, afternoon,
+          and evening) to capture how heat may vary throughout the day.</li>
+      </ul>
+      Additional resources and references include Kemuning A. Adiputri's <a href='https://storymaps.arcgis.com/stories/4bda4f7fd7954640853f7ab76ef95403'>story map</a> on heat prostration shows historic heat victims across the study area between 1880-1940, using point addresses gained through historical newspapers in a randomized arrangement. This map aims to understand a pattern of reported heat victims (not to incorporate all victim data throughout history) to give a better understanding of the possible underlying factors."
+          </div>
+        </div>
+
+        <div class="col-md-6 col-sm-12">
+          <div class="btn-toggle">
+            <button class="btn btn-block btn-md btn-outline-primary" data-toggle="collapse" data-target="#toggle-target" aria-expanded="false" aria-controls="toggle-target">
+                <span class="title">Project credits</span>
+            </button>
+        </div>
+    
+        <div class="collapse p-2 border fs-sm" id="toggle-target">
+
+          <p> This project, <strong>"Addressing the Urban Heat Island Effect through an Equity Lens: A Community Science Project,”</strong> combines community science with interviews to create a way to look at heat vulnerability that focuses on the intersections of extreme heat, health, and social inequities.
+
+            <p>This project was part of a nationwide campaign from the NIHHIS (National Integrated Heat Health Information System) and jointly developed by NOAA (National Oceanic and Atmospheric Administration) and the CDC (Centers for Disease Control and Prevention). The NYC campaign partnered with South Bronx Unite and was funded by NOAA and Columbia University’s Earth Frontiers Grant. Data collection and analysis were the result of a partnership with CAPA Strategies.</p>
+          <ul class="extensible-list">
+              </li>
+              <li><strong>Liv Yoon,</strong> Principal Investigator</li>
+                <li><strong>Christian Braneon,</strong> Co-Investigator</li>
+                <li><strong>Melissa Barber,</strong> Founding Member and Advisory Board Member, South Bronx Unite</li>
+                <li><strong>Mychal Johnson,</strong> Founding Member and Advisory Board Member, South Bronx Unite</li>
+                <li><strong>Arif Ullah,</strong> Executive Director, South Bronx Unite</li>
+                <li><strong>Jolie Villegas,</strong> Research Assistant</li>
+                <li><strong>Kemuning Adiputri,</strong> Student Consultant</li>
+                <li><strong>Jason Biegel,</strong> Software Engineer</li>
+                <li><strong>Tom Zinckgraf,</strong> Software Engineer</li>
+                <li><strong>Project partners:</strong></li>
+                <li><a href="https://www.capastrategies.com/" target="_blank">CAPA Strategies</li>
+                <li><a href="https://www.southbronxunite.org/" target="_blank">South Bronx Unite</a></li>
+                <li><a href="https://www.weact.org/" target="_blank">WE ACT for Environmental Justice</a></li>
+                <li><a><a href="https://www.southqueenswomensmarch.org/">South Queens Women's March</a></li>
+                <li><a><a href="https://linktr.ee/queerdisabilityaid">Queer Disability Aid</a></li>
+                <li><a><a href="https://www.fountainhouse.org/">Fountain House</a></li>
+                <li>Community Boards 9-12</li>
+          </ul>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+          
+      
+  </div>
+<div class="row pt-5">
+    <div class="col-6 justify-content-start ml-5 mt-1">
+
+
+      </div> 
+    </div>
+  </div>
+<div class="row pt-5"></div>
+
+</article>
+
+<script>
+  window.BaseURL = {{ site.BaseURL }};
+  console.log("window.BaseURL", window.BaseURL);
+</script>
+
+
+<!-- chroma-js -->
+
+{{- $chroma := resources.Get "node_modules/chroma-js/chroma.min.js" }}
+
+
+<!-- GeoTIFF plugins -->
+
+{{- /*  leaflet-pip  */}}
+
+{{- $leaflet_pip := resources.Get "node_modules/@mapbox/leaflet-pip/leaflet-pip.min.js" }}
+
+
+{{- /*  georaster  */}}
+
+{{- $georaster := resources.Get "node_modules/georaster/dist/georaster.browser.bundle.min.js" }}
+
+
+{{- /*  georaster-layer-for-leaflet  */}}
+
+{{- $georaster_leaflet := resources.Get "node_modules/georaster-layer-for-leaflet/dist/georaster-layer-for-leaflet.min.js" }}
+
+
+{{- /*  geoblaze  */}}
+
+{{/*  {{- $geoblaze := resources.Get "node_modules/geoblaze/dist/geoblaze.web.min.js" | resources.Fingerprint "sha512" }}  */}}
+
+
+<!-- topojson -->
+
+{{- $topojson := resources.Get "node_modules/topojson-client/dist/topojson-client.min.js" }}
+
+
+{{- /*  bundling heat story dependencies  */}}
+
+{{- $heat_story_js_libs := slice $chroma $leaflet_pip $georaster $georaster_leaflet $topojson | resources.Concat "js/heat-story-js-libs.js" -}}
+{{- $heat_story_js_libs_secure := $heat_story_js_libs | resources.Fingerprint "sha512" -}}
+
+
+<!-- heat story libraries -->
+
+<script type="text/javascript" src="{{ $heat_story_js_libs_secure.RelPermalink }}" integrity="{{ $heat_story_js_libs_secure.Data.Integrity }}"></script>
+
+
+<!-- data feature embeds -->
+
+<script type="text/javascript" src="embed/config.js"></script>
+<script async type="text/javascript" src="embed/heat-story-leaflet.js"></script>
+
+
+{{- partial "related-footer-2" . -}}
+
+{{- end -}}
