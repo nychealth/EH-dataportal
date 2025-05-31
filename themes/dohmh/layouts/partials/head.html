@@ -107,7 +107,7 @@
 {{- /*  CSS  */}}
 
 {{- $fontawesome_CSS := resources.Get "node_modules/@fortawesome/fontawesome-free/css/all.min.css" | partial "short-fingerprint.html" }}
-<link rel="stylesheet" href="{{ $fontawesome_CSS.RelPermalink }}" integrity="{{ $fontawesome.Data.Integrity }}" crossorigin="anonymous"/>
+<link rel="stylesheet" href="{{ $fontawesome_CSS.RelPermalink }}" integrity="{{ $fontawesome_CSS.Data.Integrity }}" crossorigin="anonymous"/>
 
 {{- /*  JS  */}}
 
