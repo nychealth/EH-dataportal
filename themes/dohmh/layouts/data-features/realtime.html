@@ -458,8 +458,8 @@
 
 <!-- color name to hex converter -->
 <!-- from https://gist.github.com/njvack/02ad8efcb0d552b0230d -->
-{{- $color_convert := resources.Get "js/color-convert.js" -}}
-<script src="{{ $color_convert.RelPermalink }}"></script>
+{{- $color_convert := resources.Get "js/color-convert.js" | partial "short-fingerprint.html" -}}
+<script src="{{ $color_convert.RelPermalink }}" integrity="{{ $color_convert.Data.Integrity }}"></script>
 
 
 <!-- Uses a static stand-in file for local development - else uses the API -->
