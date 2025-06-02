@@ -92,7 +92,7 @@ Did this location see an increase in traffic that would explain this increase in
   </div>
 <div class="narrow">
 
-The increase in PM2.5 may be due to other sources of PM2.5. Air pollution amounts vary seasonally, especially from fall to winter. As the weather gets colder, building boilers burn more fuel to heat buildings, and emit more PM2.5. This area has a higher concentartion of buildings with boilers that burn a type of fuel that emits more PM2.5. 
+The increase in PM2.5 may be due to other sources of PM2.5. Air pollution amounts vary seasonally, especially from fall to winter. As the weather gets colder, building boilers burn more fuel to heat buildings, and emit more PM2.5. This area has a higher concentration of buildings with boilers that burn a type of fuel that emits more PM2.5. 
 
 Well, we typically see seasonal variation in air pollution, especially from fall to winter. As the weather gets colder, building boilers burn more fuel to heat buildings, and emit more PM2.5. And, we know that this area has a higher concentration of buildings with boilers that burn a type of fuel that emits more PM2.5. 
 
