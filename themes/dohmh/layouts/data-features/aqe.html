@@ -15,32 +15,37 @@
     
             
 <div class="row">
-    <div class="col-md-7 mx-4 mt-2 mb-3">   
-        <div class="my-2" aria-hidden="true">
-            <div class="fs-sm pb-1"><span class="home-label font-weight-bold">Enter a neighborhood to get data:</span></div>
-            <div class="btn-group" role="group" style="width:100%;">
-                <input
-                    id="flex_search"
-                    type='search'
-                    class='flexdatalist form-control'
-                    name='indicator_name_suggestion'
-                />
+    <div class="col-md-11 mx-auto mt-2 mb-3">   
+        <div class="row">
+            <div class="col-md-8">
+                <div class="my-2" aria-hidden="true">
+                    <div class="fs-sm pb-1"><span class="home-label font-weight-bold">Enter a neighborhood to get data:</span></div>
+                    <div class="btn-group" role="group" style="width:100%;">
+                        <input
+                            id="flex_search"
+                            type='search'
+                            class='flexdatalist form-control'
+                            name='indicator_name_suggestion'
+                        />
 
-                <button id="clear" class="btn btn-md btn-warning">Clear</button>
+                        <button id="clear" class="btn btn-md btn-warning">Clear</button>
+                    </div>
+
+
+                    <p class="float-right"><em class="fs-sm"><a
+                        href={{ relURL "data-stories/geographies" }}>About Neighborhood Tabulation Areas.</a></em> </p>
+
+                </div>
             </div>
-
-
-            <p class="float-right"><em class="fs-sm"><a
-                href={{ relURL "data-stories/geographies" }}>About Neighborhood Tabulation Areas.</a></em> </p>
-
         </div>
-            </div>
-                </div>        
+
+    </div>
+</div>        
 
 
     <!-- new Layout -->
     <div class="row my-4" id="showData">
-        <div class="col-md-10 mx-auto">
+        <div class="col-md-11 mx-auto">
             <h3><i class="fas fa-smog mr-1"></i>Air quality in <span id="NTA3" class="">your neighborhood</span> </h3>
             <div class="fs-sm">ZIP Codes: <span id="zips"></span></div>
 
