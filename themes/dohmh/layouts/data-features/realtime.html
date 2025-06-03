@@ -19,51 +19,14 @@
 
 <article class="container-fluid" id="skip-header-target">
 
+    {{ partial "df-front-block" . }}
 
-    <div class="row">
-        <div class="col-md-10 col-sm-12 mx-auto">
-            <div class="row">
-                <div class="col-12 mt-2 mb-3">
-                    <nav aria-label="breadcrumb">
-                        <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
-                            <li class="breadcrumb-item"><a href={{ relURL "data-features" }}>Data Features</a></li>
-                            <li class="breadcrumb-item active d-none d-sm-block" aria-current="page">{{ .Title }}</li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-
-            <h1 class="h2" data-pagefind-weight="10.0">
-                {{ .Title }}
-            </h1>
+            
             <div class="sr-only">
                 <h2 class="sr-only">Download accessible data</h2>
                 <p>This page contains visualizations. If you are using a screenreader, you can <a href="https://azdohv2staticweb.blob.core.windows.net/$web/nyccas_realtime_DEC.csv">download a CSV file of the last 7 days of realtime air quality data.</a></p>
                 </div>
             <div class="row">
-                <div class="col-md-8 mb-2">
-                    {{ .Content }}
-
-                </div>
-
-                <div class="col-md-4">
-                    <div class="fs-sm asidebox">
-                        <h3 class="h4">About the data</h3>
-                        <p>Data are hourly measurements of PM2.5, in micrograms per cubic meter of air (µg/m<sup>3</sup>). External factors can sometimes affect monitor functioning and make data temporarily unavailable. Data are preliminary and subject to change. Times are in Eastern Standard Time.</p>
-
-                        <strong>Street-level monitors</strong>
-                        <p>Data come from the <a href="../nyccas">NYC Community Air Survey</a>'s street-level monitors, which measure ground-level exposures. The BQE, FDR, Mott Haven, Van Wyck, Hamilton Bridge, and SI Expwy sites are supported with funds from the <a href="https://new.mta.info/project/CBDTP">MTA's CBD Tolling Program</a>. We apply a calibration factor to make our data comparable to DEC data and historical EPA data.</p>
-
-                        <strong>NYS DEC monitors</strong>
-                        <p>We show the average readings from 11 rooftop monitors from the <a href="https://www.dec.ny.gov/index.html">NY State Department of Environmental Conservation (DEC)</a>, which collects data for the Federal Clean Air Act.</p>
-                        <a href="#archiveModal" data-toggle="modal" data-target="#archiveModal"> <i class="fas fa-download mr-1" aria-hidden="true"></i>Download archived data</a>.
-
-                        
-
-
-                    </div>
-                </div>
             </div>
         </div>
     </div>

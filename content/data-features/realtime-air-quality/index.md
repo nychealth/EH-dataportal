@@ -34,8 +34,8 @@ related:
     url: "data-stories/traffic-and-air-pollution/"
   - title: "Fine particles (PM 2.5)"
     url: "data-explorer/air-quality/?id=2023#display=summary"
-weight: 1
-blurb: Hourly PM2.5 readings from real-time air quality monitors in strategic spots around the city.
+blurb: "Hourly PM2.5 readings from real-time air quality monitors in strategic spots around the city."
+aboutTheData: "Data are hourly measurements of PM2.5, in micrograms per cubic meter of air (µg/m<sup>3</sup>). External factors can sometimes affect monitor functioning and make data temporarily unavailable. Data are preliminary and subject to change. Times are in Eastern Standard Time.<br><br><strong>Street-level monitors</strong><br>Data come from the <a href='../NYCCAS'>NYC Community Air Survey</a>'s street-level monitors, which measure ground-level exposures. The BQE, FDR, Mott Haven, Van Wyck, Hamilton Bridge, and SI Expwy sites are supported with funds from the <a href='https://new.mta.info/project/CBDTP'>MTA's CBD Tolling Program.</a> We apply a calibration factor to make our data comparable to DEC data and historical EPA data.<br><br><strong>NYS DEC Monitors</strong><br>We show the average readings from 11 rooftop monitors from the <a href='https://www.dec.ny.gov/index.html'>NY State Department of Environmental Conservation (DEC)</a>, which collects data for the Federal Clean Air Act."
 ---
 
 Fine particles (PM2.5) are among the most harmful pollutants. Long-term exposure to PM2.5 contributes to an estimated 2,000 excess deaths from lung and heart disease each year in NYC (1 out of every 25 deaths in NYC), and short-term exposure contributes to asthma incidents severe enough to require a trip to the emergency department, and other health threats.
