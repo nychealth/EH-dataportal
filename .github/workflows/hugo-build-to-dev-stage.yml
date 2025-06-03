@@ -70,10 +70,10 @@ jobs:
           node-version: 22.5.x
           cache: "npm"
 
-      # install npm dependencies (if not cached)
+      # install npm dependencies
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install
 
       # list dependencies
       
