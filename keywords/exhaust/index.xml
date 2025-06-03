@@ -9,18 +9,11 @@
     <lastBuildDate>Tue, 08 Nov 2022 11:14:56 -0400</lastBuildDate>
     <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/exhaust/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Real-Time Air Quality: PM2.5 in NYC</title>
-      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/realtime-air-quality/</link>
-      <pubDate>Tue, 22 Mar 2022 19:30:55 -0400</pubDate>
-      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/realtime-air-quality/</guid>
-      <description>&lt;p&gt;Fine particles (PM2.5) are among the most harmful pollutants. Long-term exposure to PM2.5 contributes to an estimated 2,000 excess deaths from lung and heart disease each year in NYC (1 out of every 25 deaths in NYC), and short-term exposure contributes to asthma incidents severe enough to require a trip to the emergency department, and other health threats.&lt;/p&gt;&#xA;&lt;p&gt;The air quality in NYC is generally good and has been improving over time. For PM2.5, NYC meets the National Ambient Air Quality Standard of an annual average under 12 μg/m&lt;sup&gt;3&lt;/sup&gt;, and a 24-hour average under 35 μg/m&lt;sup&gt;3&lt;/sup&gt;.&lt;/p&gt;</description>
-    </item>
-    <item>
       <title>Your Neighborhood&#39;s Air Quality</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/neighborhood-air-quality/</link>
       <pubDate>Tue, 24 Aug 2021 12:04:44 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/neighborhood-air-quality/</guid>
-      <description>&lt;hr&gt;&#xA;&lt;p&gt;We combine data from our air quality monitoring network, NYCCAS, with other data to understand what makes air quality in one neighborhood different from air quality in another. We found that building emissions, building density, industrial areas, and traffic density are associated with differences in air quality.&lt;/p&gt;&#xA;&lt;p&gt;If we don&amp;rsquo;t have an air quality monitor in one neighborhood, but we know its building density, its industrial area, and its traffic, then we can model (estimate or predict) its air quality - based on monitored air quality in similar neighborhoods.&lt;/p&gt;</description>
+      <description>&lt;p&gt;We combine data from our air quality monitoring network, NYCCAS, with other data to understand what makes air quality in one neighborhood different from air quality in another. We found that building emissions, building density, industrial areas, and traffic density are associated with differences in air quality.&lt;/p&gt;&#xA;&lt;p&gt;If we don&amp;rsquo;t have an air quality monitor in one neighborhood, but we know its building density, its industrial area, and its traffic, then we can model (estimate or predict) its air quality - based on monitored air quality in similar neighborhoods.&lt;/p&gt;</description>
     </item>
     <item>
       <title>The New York City Community Air Survey</title>
@@ -28,6 +21,13 @@
       <pubDate>Tue, 08 Nov 2022 11:14:56 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/nyccas/</guid>
       <description>&lt;h2&gt;NYCCAS Report: 2008-2023&lt;/h2&gt;&#xA;&lt;p&gt;In 2007, the New York City Department of Health and Mental Hygiene (Health Department) established the New York City Community Air Survey (NYCCAS), the largest ongoing urban air monitoring program of any U.S. city. NYCCAS, which began collecting data in December 2008, is a collaboration between the Health Department and Queens College of the City University of New York and provides data to:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Help inform PlaNYC, the City’s sustainability plan&lt;/li&gt;&#xA;&lt;li&gt;Track changes in air quality over time&lt;/li&gt;&#xA;&lt;li&gt;Estimate exposures for health research&lt;/li&gt;&#xA;&lt;li&gt;Inform the public about local topics, such as &lt;a href=&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/breatheeasy/&#34;&gt;recent air quality improvements&lt;/a&gt;, &lt;a href=&#34;../../data-stories/aqts/&#34;&gt;car-free zones&lt;/a&gt;, &lt;a href=&#34;../../data-stories/aq-cooking/&#34;&gt;changes in the sources of air pollution&lt;/a&gt;, &lt;a href=&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/air-quality-snapshots/&#34;&gt;unique air quality studies conducted in New York City&lt;/a&gt;, &lt;a href=&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/hia/&#34;&gt;efforts to reduce health impacts&lt;/a&gt;, &lt;a href=&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/public-transit-creates-health/&#34;&gt;public health benefits of public transit&lt;/a&gt; and &lt;a href=&#34;../../data-stories/aq2/&#34;&gt;differences in air quality and related health impacts across NYC neighborhoods&lt;/a&gt;. NYCCAS also developed &lt;a href=&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/zappa/&#34;&gt;a tool (ZAPPA) that can help people understand how policy changes can change local emissions&lt;/a&gt;.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;This report:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Real-Time Air Quality: PM2.5 in NYC</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/realtime-air-quality/</link>
+      <pubDate>Tue, 22 Mar 2022 19:30:55 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/realtime-air-quality/</guid>
+      <description>&lt;p&gt;Fine particles (PM2.5) are among the most harmful pollutants. Long-term exposure to PM2.5 contributes to an estimated 2,000 excess deaths from lung and heart disease each year in NYC (1 out of every 25 deaths in NYC), and short-term exposure contributes to asthma incidents severe enough to require a trip to the emergency department, and other health threats.&lt;/p&gt;&#xA;&lt;p&gt;The air quality in NYC is generally good and has been improving over time. For PM2.5, NYC meets the National Ambient Air Quality Standard of an annual average under 12 μg/m&lt;sup&gt;3&lt;/sup&gt;, and a 24-hour average under 35 μg/m&lt;sup&gt;3&lt;/sup&gt;.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Air quality</title>

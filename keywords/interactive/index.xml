@@ -9,13 +9,6 @@
     <lastBuildDate>Wed, 28 May 2025 11:51:01 -0400</lastBuildDate>
     <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/interactive/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Real-Time Air Quality: PM2.5 in NYC</title>
-      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/realtime-air-quality/</link>
-      <pubDate>Tue, 22 Mar 2022 19:30:55 -0400</pubDate>
-      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/realtime-air-quality/</guid>
-      <description>&lt;p&gt;Fine particles (PM2.5) are among the most harmful pollutants. Long-term exposure to PM2.5 contributes to an estimated 2,000 excess deaths from lung and heart disease each year in NYC (1 out of every 25 deaths in NYC), and short-term exposure contributes to asthma incidents severe enough to require a trip to the emergency department, and other health threats.&lt;/p&gt;&#xA;&lt;p&gt;The air quality in NYC is generally good and has been improving over time. For PM2.5, NYC meets the National Ambient Air Quality Standard of an annual average under 12 μg/m&lt;sup&gt;3&lt;/sup&gt;, and a 24-hour average under 35 μg/m&lt;sup&gt;3&lt;/sup&gt;.&lt;/p&gt;</description>
-    </item>
-    <item>
       <title>Interactive Heat Vulnerability Index</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/hvi/</link>
       <pubDate>Wed, 25 Aug 2021 10:49:05 -0400</pubDate>
@@ -23,32 +16,39 @@
       <description>&lt;p&gt;Hot weather is dangerous. In New York City – and across the country – more people die from heat than from all other natural disasters combined. As our climate continues to warm, we expect more heat events that can put people’s lives at risk.&lt;/p&gt;&#xA;&lt;p&gt;In New York City, the risk of death from heat is unfairly distributed across neighborhoods. We identified neighborhood environmental and social factors associated with increased risk to create a heat vulnerability index. This can identify neighborhoods at highest risk and help inform neighborhood-level policies and programs that can protect people - sending resources to where they&amp;rsquo;re needed the most.&lt;/p&gt;</description>
     </item>
     <item>
-      <title>Flood Vulnerability Index</title>
-      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/flood-vulnerability-index/</link>
-      <pubDate>Wed, 28 May 2025 11:51:01 -0400</pubDate>
-      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/flood-vulnerability-index/</guid>
-      <description>&lt;div class=&#34;row&#34;&gt;&#xA;  &lt;div class=&#34;col-8&#34;&gt;&#xA;    &lt;p&gt;The Flood Vulnerability Index estimates the vulnerability to flooding across NYC. It combines information about &lt;strong&gt;exposure&lt;/strong&gt; (estimated flood extents under different current and future scenarios) with information about &lt;strong&gt;susceptibility to harm and capacity to recover&lt;/strong&gt;.&lt;/p&gt;&#xA;    &lt;p&gt;This information is used to estimate areas&#39; relative vulnerability to flooding to storm surges, and to tidal flooding. To account for changes in sea levels and flood plains, there are Flood Vulnerability Indices for three time periods: present-day (the 2020s), the 2050s, and the 2080s.&lt;/p&gt;</description>
+      <title>Your heat story</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-story/</link>
+      <pubDate>Mon, 28 Apr 2025 11:51:01 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-story/</guid>
+      <description>&lt;p&gt;As climate change worsens, extreme heat becomes more frequent and more intense. &lt;a href=&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/localtemp/&#34;&gt; Cities get even hotter because of the urban heat island effect.&lt;/a&gt; But even within New York City, some areas are hotter than others.&lt;/p&gt;&#xA;&lt;p&gt;Heat can &lt;a href=&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/heat/&#34;&gt; harm people’s health and more than 500 people die from heat-related causes each year in New York City.&lt;/a&gt; But these health impacts are not distributed equally; historic patterns of discrimination and disinvestment create disproportionate public health impacts from heat. For example, &lt;a href=&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-report/&#34;&gt;death rates are higher among Black New Yorkers and in neighborhoods with more residents living below the poverty line.&lt;/a&gt;&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>Real-time heat-related illness</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-syndrome/</link>
       <pubDate>Mon, 30 Aug 2021 11:51:01 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-syndrome/</guid>
-      <description>&lt;p&gt;The weather forecast is the best way to predict heat-related health outcomes.&lt;/p&gt;&#xA;&lt;p&gt;We can also track heat-related illness with near real-time electronic data from emergency departments at hospitals throughout NYC. These data include illnesses directly attributed to heat (including heat exhaustion, muscle cramps, fainting and heat stroke), not the full burden of heat-related health impacts.&lt;/p&gt;</description>
+      <description>&lt;p&gt;The weather forecast is the best way to predict heat-related health outcomes.&lt;/p&gt;&#xA;&lt;p&gt;We can also track heat-related illness with near real-time electronic data from emergency departments at hospitals throughout NYC. These data include illnesses directly attributed to heat (including heat exhaustion, muscle cramps, fainting and heat stroke), not the full burden of heat-related health impacts.&lt;/p&gt;&#xA;&lt;p&gt;We track these outcomes citywide by using a system called &lt;strong&gt;syndromic surveillance&lt;/strong&gt; which lets us know how many people who visit the emergency room (ED) are being affected by certain health conditions. About 10,000 patients visit the ED per day in NYC, and reasons for their visits are captured in hospital records. These reasons are de-identified and sent to the Health Department. The Health Department then searches the records for diagnostic codes (when available) and words describing why patients are at the ED to track specific health conditions in near real-time and understand citywide trends.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Your Neighborhood&#39;s Air Quality</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/neighborhood-air-quality/</link>
       <pubDate>Tue, 24 Aug 2021 12:04:44 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/neighborhood-air-quality/</guid>
-      <description>&lt;hr&gt;&#xA;&lt;p&gt;We combine data from our air quality monitoring network, NYCCAS, with other data to understand what makes air quality in one neighborhood different from air quality in another. We found that building emissions, building density, industrial areas, and traffic density are associated with differences in air quality.&lt;/p&gt;&#xA;&lt;p&gt;If we don&amp;rsquo;t have an air quality monitor in one neighborhood, but we know its building density, its industrial area, and its traffic, then we can model (estimate or predict) its air quality - based on monitored air quality in similar neighborhoods.&lt;/p&gt;</description>
+      <description>&lt;p&gt;We combine data from our air quality monitoring network, NYCCAS, with other data to understand what makes air quality in one neighborhood different from air quality in another. We found that building emissions, building density, industrial areas, and traffic density are associated with differences in air quality.&lt;/p&gt;&#xA;&lt;p&gt;If we don&amp;rsquo;t have an air quality monitor in one neighborhood, but we know its building density, its industrial area, and its traffic, then we can model (estimate or predict) its air quality - based on monitored air quality in similar neighborhoods.&lt;/p&gt;</description>
     </item>
     <item>
-      <title>Your heat story</title>
-      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-story/</link>
-      <pubDate>Mon, 28 Apr 2025 11:51:01 -0400</pubDate>
-      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-story/</guid>
-      <description>&lt;p&gt;As climate change worsens, extreme heat becomes more frequent and more intense. &lt;a href=&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/localtemp/&#34;&gt; Cities get even hotter because of the urban heat island effect.&lt;/a&gt; But even within New York City, some areas are hotter than others.&lt;/p&gt;&#xA;&lt;p&gt;Heat can &lt;a href=&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/heat/&#34;&gt; harm people’s health and more than 500 people die from heat-related causes each year in New York City.&lt;/a&gt; But these health impacts are not distributed equally; historic patterns of discrimination and disinvestment create disproportionate public health impacts from heat. For example, &lt;a href=&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-report/&#34;&gt;death rates are higher among Black New Yorkers and in neighborhoods with more residents living below the poverty line.&lt;/a&gt;&lt;/a&gt;&lt;/p&gt;</description>
+      <title>Flood Vulnerability Index</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/flood-vulnerability-index/</link>
+      <pubDate>Wed, 28 May 2025 11:51:01 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/flood-vulnerability-index/</guid>
+      <description>&lt;p&gt;The Flood Vulnerability Index estimates the vulnerability to flooding across NYC. It combines information about &lt;strong&gt;exposure&lt;/strong&gt; (estimated flood extents under different current and future scenarios) with information about &lt;strong&gt;susceptibility to harm and capacity to recover&lt;/strong&gt;.&lt;/p&gt;&#xA;&lt;p&gt;This information is used to estimate areas&amp;rsquo; relative vulnerability to flooding to storm surges, and to tidal flooding. To account for changes in sea levels and flood plains, there are Flood Vulnerability Indices for three time periods: present-day (the 2020s), the 2050s, and the 2080s.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Real-Time Air Quality: PM2.5 in NYC</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/realtime-air-quality/</link>
+      <pubDate>Tue, 22 Mar 2022 19:30:55 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/realtime-air-quality/</guid>
+      <description>&lt;p&gt;Fine particles (PM2.5) are among the most harmful pollutants. Long-term exposure to PM2.5 contributes to an estimated 2,000 excess deaths from lung and heart disease each year in NYC (1 out of every 25 deaths in NYC), and short-term exposure contributes to asthma incidents severe enough to require a trip to the emergency department, and other health threats.&lt;/p&gt;&#xA;&lt;p&gt;The air quality in NYC is generally good and has been improving over time. For PM2.5, NYC meets the National Ambient Air Quality Standard of an annual average under 12 μg/m&lt;sup&gt;3&lt;/sup&gt;, and a 24-hour average under 35 μg/m&lt;sup&gt;3&lt;/sup&gt;.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

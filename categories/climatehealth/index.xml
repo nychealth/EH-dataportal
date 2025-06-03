@@ -23,18 +23,25 @@
       <description>&lt;p&gt;A region&amp;rsquo;s climate is characterized by its usual weather conditions, seasons, and patterns in extreme weather events like heat waves, droughts, and hurricanes.&lt;/p&gt;&#xA;&lt;p&gt;The world’s climate is shifting, becoming warmer with more precipitation and weather extremes. Over the past century in New York City, average temperatures have increased by 0.25°F per decade, precipitation by 0.72 inches per decade, and sea levels by 1.2 inches per decade. By the 2020s, a projected 25-30 days above 90°F are expected in a typical summer, resulting in more frequent and intense heat waves. Rainfall and precipitation are expected to increase by up to 5%, together with another 10 inches of sea level rise and increased probability of coastal storms with flooding (NYC Panel on Climate Change, Climate Risk Information, 2009).&lt;/p&gt;</description>
     </item>
     <item>
-      <title>Flood Vulnerability Index</title>
-      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/flood-vulnerability-index/</link>
-      <pubDate>Wed, 28 May 2025 11:51:01 -0400</pubDate>
-      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/flood-vulnerability-index/</guid>
-      <description>&lt;div class=&#34;row&#34;&gt;&#xA;  &lt;div class=&#34;col-8&#34;&gt;&#xA;    &lt;p&gt;The Flood Vulnerability Index estimates the vulnerability to flooding across NYC. It combines information about &lt;strong&gt;exposure&lt;/strong&gt; (estimated flood extents under different current and future scenarios) with information about &lt;strong&gt;susceptibility to harm and capacity to recover&lt;/strong&gt;.&lt;/p&gt;&#xA;    &lt;p&gt;This information is used to estimate areas&#39; relative vulnerability to flooding to storm surges, and to tidal flooding. To account for changes in sea levels and flood plains, there are Flood Vulnerability Indices for three time periods: present-day (the 2020s), the 2050s, and the 2080s.&lt;/p&gt;</description>
+      <title>Your heat story</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-story/</link>
+      <pubDate>Mon, 28 Apr 2025 11:51:01 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-story/</guid>
+      <description>&lt;p&gt;As climate change worsens, extreme heat becomes more frequent and more intense. &lt;a href=&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/localtemp/&#34;&gt; Cities get even hotter because of the urban heat island effect.&lt;/a&gt; But even within New York City, some areas are hotter than others.&lt;/p&gt;&#xA;&lt;p&gt;Heat can &lt;a href=&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/heat/&#34;&gt; harm people’s health and more than 500 people die from heat-related causes each year in New York City.&lt;/a&gt; But these health impacts are not distributed equally; historic patterns of discrimination and disinvestment create disproportionate public health impacts from heat. For example, &lt;a href=&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-report/&#34;&gt;death rates are higher among Black New Yorkers and in neighborhoods with more residents living below the poverty line.&lt;/a&gt;&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>Real-time heat-related illness</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-syndrome/</link>
       <pubDate>Mon, 30 Aug 2021 11:51:01 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-syndrome/</guid>
-      <description>&lt;p&gt;The weather forecast is the best way to predict heat-related health outcomes.&lt;/p&gt;&#xA;&lt;p&gt;We can also track heat-related illness with near real-time electronic data from emergency departments at hospitals throughout NYC. These data include illnesses directly attributed to heat (including heat exhaustion, muscle cramps, fainting and heat stroke), not the full burden of heat-related health impacts.&lt;/p&gt;</description>
+      <description>&lt;p&gt;The weather forecast is the best way to predict heat-related health outcomes.&lt;/p&gt;&#xA;&lt;p&gt;We can also track heat-related illness with near real-time electronic data from emergency departments at hospitals throughout NYC. These data include illnesses directly attributed to heat (including heat exhaustion, muscle cramps, fainting and heat stroke), not the full burden of heat-related health impacts.&lt;/p&gt;&#xA;&lt;p&gt;We track these outcomes citywide by using a system called &lt;strong&gt;syndromic surveillance&lt;/strong&gt; which lets us know how many people who visit the emergency room (ED) are being affected by certain health conditions. About 10,000 patients visit the ED per day in NYC, and reasons for their visits are captured in hospital records. These reasons are de-identified and sent to the Health Department. The Health Department then searches the records for diagnostic codes (when available) and words describing why patients are at the ED to track specific health conditions in near real-time and understand citywide trends.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Flood Vulnerability Index</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/flood-vulnerability-index/</link>
+      <pubDate>Wed, 28 May 2025 11:51:01 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/flood-vulnerability-index/</guid>
+      <description>&lt;p&gt;The Flood Vulnerability Index estimates the vulnerability to flooding across NYC. It combines information about &lt;strong&gt;exposure&lt;/strong&gt; (estimated flood extents under different current and future scenarios) with information about &lt;strong&gt;susceptibility to harm and capacity to recover&lt;/strong&gt;.&lt;/p&gt;&#xA;&lt;p&gt;This information is used to estimate areas&amp;rsquo; relative vulnerability to flooding to storm surges, and to tidal flooding. To account for changes in sea levels and flood plains, there are Flood Vulnerability Indices for three time periods: present-day (the 2020s), the 2050s, and the 2080s.&lt;/p&gt;</description>
     </item>
     <item>
       <title>2024 NYC Heat-Related Mortality Report</title>
@@ -42,13 +49,6 @@
       <pubDate>Wed, 08 Sep 2021 11:14:56 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-report/</guid>
       <description>&lt;p&gt;Each summer, on average, an estimated 350 New Yorkers die prematurely because of hot weather in New York City (NYC). These heat-related deaths account for about 2% of all deaths over the warm season months of May through September.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Your heat story</title>
-      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-story/</link>
-      <pubDate>Mon, 28 Apr 2025 11:51:01 -0400</pubDate>
-      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-story/</guid>
-      <description>&lt;p&gt;As climate change worsens, extreme heat becomes more frequent and more intense. &lt;a href=&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/localtemp/&#34;&gt; Cities get even hotter because of the urban heat island effect.&lt;/a&gt; But even within New York City, some areas are hotter than others.&lt;/p&gt;&#xA;&lt;p&gt;Heat can &lt;a href=&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/heat/&#34;&gt; harm people’s health and more than 500 people die from heat-related causes each year in New York City.&lt;/a&gt; But these health impacts are not distributed equally; historic patterns of discrimination and disinvestment create disproportionate public health impacts from heat. For example, &lt;a href=&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-report/&#34;&gt;death rates are higher among Black New Yorkers and in neighborhoods with more residents living below the poverty line.&lt;/a&gt;&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>Public transit creates health</title>

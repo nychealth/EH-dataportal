@@ -9,18 +9,18 @@
     <lastBuildDate>Tue, 22 Mar 2022 19:30:55 -0400</lastBuildDate>
     <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/buildings/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Your Neighborhood&#39;s Air Quality</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/neighborhood-air-quality/</link>
+      <pubDate>Tue, 24 Aug 2021 12:04:44 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/neighborhood-air-quality/</guid>
+      <description>&lt;p&gt;We combine data from our air quality monitoring network, NYCCAS, with other data to understand what makes air quality in one neighborhood different from air quality in another. We found that building emissions, building density, industrial areas, and traffic density are associated with differences in air quality.&lt;/p&gt;&#xA;&lt;p&gt;If we don&amp;rsquo;t have an air quality monitor in one neighborhood, but we know its building density, its industrial area, and its traffic, then we can model (estimate or predict) its air quality - based on monitored air quality in similar neighborhoods.&lt;/p&gt;</description>
+    </item>
+    <item>
       <title>Real-Time Air Quality: PM2.5 in NYC</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/realtime-air-quality/</link>
       <pubDate>Tue, 22 Mar 2022 19:30:55 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/realtime-air-quality/</guid>
       <description>&lt;p&gt;Fine particles (PM2.5) are among the most harmful pollutants. Long-term exposure to PM2.5 contributes to an estimated 2,000 excess deaths from lung and heart disease each year in NYC (1 out of every 25 deaths in NYC), and short-term exposure contributes to asthma incidents severe enough to require a trip to the emergency department, and other health threats.&lt;/p&gt;&#xA;&lt;p&gt;The air quality in NYC is generally good and has been improving over time. For PM2.5, NYC meets the National Ambient Air Quality Standard of an annual average under 12 μg/m&lt;sup&gt;3&lt;/sup&gt;, and a 24-hour average under 35 μg/m&lt;sup&gt;3&lt;/sup&gt;.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Your Neighborhood&#39;s Air Quality</title>
-      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/neighborhood-air-quality/</link>
-      <pubDate>Tue, 24 Aug 2021 12:04:44 -0400</pubDate>
-      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/neighborhood-air-quality/</guid>
-      <description>&lt;hr&gt;&#xA;&lt;p&gt;We combine data from our air quality monitoring network, NYCCAS, with other data to understand what makes air quality in one neighborhood different from air quality in another. We found that building emissions, building density, industrial areas, and traffic density are associated with differences in air quality.&lt;/p&gt;&#xA;&lt;p&gt;If we don&amp;rsquo;t have an air quality monitor in one neighborhood, but we know its building density, its industrial area, and its traffic, then we can model (estimate or predict) its air quality - based on monitored air quality in similar neighborhoods.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Tracking changes in New York City&#39;s sources of air pollution</title>
