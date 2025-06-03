@@ -114,16 +114,16 @@ let showBoroughTrend;
 let showComparisonTrend;
 let showLinks;
 
-var CSVforDownload; 
-var downloadedIndicator;
-var downloadedIndicatorMeasurement;
+let CSVforDownload; 
+let downloadedIndicator;
+let downloadedIndicatorMeasurement;
 
 // variables for print specs
-var printSpec = {};
-var vizYear;
-var vizSource;
-var vizSourceSecond;
-var chartType;
+let printSpec = {};
+let vizYear;
+let vizSource;
+let vizSourceSecond;
+let chartType;
 
 // store hash, so display knows where it just was
 let currentHash;
@@ -256,7 +256,6 @@ const renderTitleDescription = (title, desc) => {
     indicatorDescription.forEach((element) => {
         element.innerHTML = `${desc}`;
     });    
-    // indicatorDescription.innerHTML = `${desc}`;
 }
 
 // Renders copy for the About the measures and the Data sources sections
@@ -270,7 +269,7 @@ const renderAboutSources = (about, sources) => {
     let type = typeof sources
 
     if (type === 'object') {
-        var singleSource;
+        let singleSource;
         singleSource = sources.every( (val, i, arr) => val === arr[0] )  
         singleSource === true ? dataSources.innerHTML = sources[0] : dataSources.innerHTML = sources
     } else {

@@ -12,18 +12,18 @@
         "url": "https://github.com/nychealth/EH-dataportal/issues"
     },
     "dependencies": {
-        "@fortawesome/fontawesome-free": "^6.3.0",
+        "@fortawesome/fontawesome-free": "^6.6.0",
         "@mapbox/leaflet-pip": "^1.1.0",
-        "arquero": "^5.1.0",
+        "arquero": "^8.0.3",
         "bootstrap": "^4.3.1",
         "chroma-js": "~2.4.2",
-        "d3": "^7.8.2",
+        "d3": "^7.9.0",
         "datatables.net": "^1.13.5",
         "datatables.net-buttons": "^2.4.1",
-        "datatables.net-buttons-dt": "^2.4.1",
-        "datatables.net-dt": "^1.13.5",
-        "datatables.net-rowgroup": "^1.4.0",
-        "dompurify": "^3.0.6",
+        "datatables.net-buttons-dt": "^2.4.3",
+        "datatables.net-dt": "^1.13.11",
+        "datatables.net-rowgroup": "^1.5.0",
+        "dompurify": "^3.1.6",
         "geoblaze": "^2.6.0",
         "georaster": "^1.6.0",
         "georaster-layer-for-leaflet": "^3.10.0",
@@ -36,11 +36,11 @@
         "popper.js": "^1.16.1",
         "seedrandom": "^3.0.5",
         "topojson-client": "^3.1.0",
-        "vega": "^5.22.1",
-        "vega-embed": "^6.21.0",
-        "vega-lite": "^5.6.0"
+        "vega": "^5.30.0",
+        "vega-embed": "^6.26.0",
+        "vega-lite": "^5.21.0"
     },
     "optionalDependencies": {
-        "hugo-extended": "0.145.0"
+        "hugo-extended": "^0.146.3"
     }
 }
