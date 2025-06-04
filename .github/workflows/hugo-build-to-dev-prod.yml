@@ -80,7 +80,18 @@ jobs:
 
       - name: List sub-dependencies
         run: npm ls --all
+      
+      # convert all line endings to Unix
 
+      - name: Update Ubuntu package index
+        run: sudo apt-get update
+        
+      - name: Install software
+        run: sudo apt-get install -y dos2unix
+        
+      - name: Convert line endings
+        run: find . -name '*.txt' -print0 |xargs -0 dos2unix
+      
       # set up Hugo
 
       - name: Set up Hugo
