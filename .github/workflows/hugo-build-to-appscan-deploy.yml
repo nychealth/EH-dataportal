@@ -95,7 +95,7 @@ jobs:
         run: sudo apt-get install -y dos2unix
         
       - name: Convert line endings
-        run: find . -name '*.txt' -print0 |xargs -0 dos2unix
+        run: find . -name '*.js' -or -name '*.css' -print0 | xargs -0 dos2unix
       
       # set up Hugo
 
