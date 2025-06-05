@@ -14,7 +14,7 @@ keywords:
   - screen readers
   - data visualization
 seo_title: Accessibility updates
-seo_description: "Accessibility updates on the EH Data Portal"
+seo_description: "Accessibility updates on the EH Data Portal."
 description: "Accessibility updates on the EH Data Portal."
 ---
 

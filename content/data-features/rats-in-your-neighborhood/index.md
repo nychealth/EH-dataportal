@@ -2,7 +2,7 @@
 title: "Rats in your neighborhood"
 date: 2025-03-31T11:14:56-04:00
 draft: false
-seo_title: "Rats in your neighborhood | Environment and Health Data Portal"
+seo_title: "Rats in your neighborhood"
 seo_description: "Look up rat inspection data for your address."
 description: "Look up rat inspection data for your address."
 tags:
