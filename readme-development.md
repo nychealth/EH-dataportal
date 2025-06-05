@@ -39,10 +39,14 @@ A run-down of main branches, actions, and purposes are:
 On merge, these branches are automatically [built](https://github.com/peaceiris/actions-hugo and [served](https://github.com/peaceiris/actions-gh-pages) to other branches using Github Actions (triggerd by a merged pull request).  _(Note that this requires a workflow YAML file in both [`main`](https://github.com/nychealth/EH-dataportal/blob/main/.github/workflows/hugo-build-dev-prod.yml) and [`development`](https://github.com/nychealth/EH-dataportal/blob/development/.github/workflows/hugo-build-dev-prod.yml).)_
 
 ### Automated actions
-When changes are merged into `development` or `production`, in addition to automated builds, these actions are triggered:
-- The site runs a CodeQL analysis on merges/builds, and is set up to use Github's Depandabot to review dependencies for vulnerabilities.
-- On merge to `development`, a Github Action builds and commits the site files to `builds/dev-prod`. On merge to `production`, an Action bulids and commits the site files to `builds/prod-prod`. We deploy this branch to our server to serve up the production site.
-- GitHub Actions and the deployment pipeline are set up to convert all end-of-line characters to Unix style (`LF`). This is nice for consistency and for avoiding git flagging hundreds of inconsequential changes, but it's actually important for subresource integrity calculations.
+When changes are merged into `development` or `production`, a Github Action builds and commits the site files to a build branch.
+- On merge to `development`, a Github Action builds and commits the site files to `builds/dev-prod`. 
+- On merge to `production`, an Action bulids and commits the site files to `builds/prod-prod`. We deploy this branch to our server to serve up the production site.
+
+In addition to automated builds, these actions are triggered: The site runs a CodeQL analysis on merges/builds, and is set up to use Github's Depandabot to review dependencies for vulnerabilities.
+
+**Note:**
+GitHub Actions and the deployment pipeline are set up to convert all end-of-line characters to Unix style (`LF`). This is nice for consistency and for avoiding git flagging hundreds of inconsequential changes, but it's actually important for subresource integrity calculations.
 
 ### Environments
 The `/config` folder includes subfolders with environment-specific configuration. Specifically, there are different configuration files for development, staging, and production envirnoments. You serve or build the site by specifying the environment (eg, `hugo serve --environment development` or `hugo --environment production`). This merges the contents of that environment's config file (in `/config/ENVIRONMENT/config.toml'`) with  `/config/_default/config.toml`. **You may find it useful to create aliases for these functions ([in Powershell](https://www.tutorialspoint.com/how-to-create-powershell-alias-permanently), or [Bash](https://www.shell-tips.com/bash/alias/))**.
