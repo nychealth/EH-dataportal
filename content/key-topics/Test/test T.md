@@ -6,7 +6,7 @@ seo_title: "Child Health in NYC"
 seo_description: "Data, data stories, interactives, and more about child health in New York City."
 description: "Data, data stories, interactives, and more about child health in New York City."
 tags:
-categories: ["childhealth" "pests"]
+categories: ["childhealth", "pests"]
 keyTopic: childhealth
 keywords: ["children", "child health", "housing", "asthma", "lead", "housing"]
 layout: single

@@ -3,7 +3,7 @@ title: "Rat Mitigation Zone Report: January 2023 to June 2023"
 date: 2021-09-08T11:14:56-04:00
 draft: false
 draft: false
-seo_title: "Rat Mitigation Zone Report."
+seo_title: "Rat Mitigation Zone Report"
 seo_description: "Reporting on rat inspection and mitigation work."
 tags: 
 categories: [pests]

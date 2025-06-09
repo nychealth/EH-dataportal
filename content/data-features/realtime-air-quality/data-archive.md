@@ -14,7 +14,7 @@ keywords:
     - pm2.5
     - pollutants
 seo_title: Real-time air quality data archive
-seo_description: Hourly PM2.5 data for NYC since October 2019
+seo_description: Hourly PM2.5 data for NYC since October 2019.
 layout: realtime-archive
 hide: true
 

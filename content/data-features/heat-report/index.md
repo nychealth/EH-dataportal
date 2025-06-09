@@ -15,7 +15,7 @@ keywords:
   - summer
   - disparities
   - mortality
-seo_title: 2024 Heat Mortality Report | Environment and Health Data Portal
+seo_title: 2024 Heat Mortality Report
 seo_description: Data and findings on the impact of heat in NYC.
 layout: 2024-heat-report
 content_weight: 6.0
