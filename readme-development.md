@@ -34,29 +34,51 @@ A run-down of main branches, actions, and purposes are:
 | Deploy to          | `EH-dataportal` branch: | `EHDP-data` branch: | Action on merge:             | Used for:              |
 |--------------------|-------------------------|---------------------|------------------------------|------------------------|
 | Production servers | `production`            | `production`        | Builds to `builds/prod-prod` | Live site              |
-| GitHub Pages       | `development`           | `production`        | Builds to `builds/dev-prod`  | General development    |
-| 307 (internal)     | `development`           | `staging`           | Builds to `builds/dev-stage` | Demoing data & content |
+| 307 (internal)     | `build-to-dev-stage`    | `staging`           | Builds to `builds/dev-stage` | Demoing data & content |
 
-On merge, these branches are automatically [built](https://github.com/peaceiris/actions-hugo and [served](https://github.com/peaceiris/actions-gh-pages) to other branches using Github Actions (triggerd by a merged pull request).  _(Note that this requires a workflow YAML file in both [`main`](https://github.com/nychealth/EH-dataportal/blob/main/.github/workflows/hugo-build-dev-prod.yml) and [`development`](https://github.com/nychealth/EH-dataportal/blob/development/.github/workflows/hugo-build-dev-prod.yml).)_
+On merge, these branches are automatically [built](https://github.com/peaceiris/actions-hugo) and [served](https://github.com/peaceiris/actions-gh-pages) to other branches using Github Actions (triggerd by a merged pull request).  _(Note that this requires a workflow YAML file in both [`production`](https://github.com/nychealth/EH-dataportal/blob/production/.github/workflows/hugo-build-to-dev-prod.yml) and the build branch, e.g. [`build-to-dev-stage`](https://github.com/nychealth/EH-dataportal/blob/build-to-dev-stage/.github/workflows/hugo-build-to-dev-stage.yml).)_
 
 ### Automated actions
-When changes are merged into `development` or `production`, a Github Action builds and commits the site files to a build branch.
-- On merge to `development`, a Github Action builds and commits the site files to `builds/dev-prod`. 
-- On merge to `production`, an Action bulids and commits the site files to `builds/prod-prod`. We deploy this branch to our server to serve up the production site.
 
-In addition to automated builds, these actions are triggered: The site runs a CodeQL analysis on merges/builds, and is set up to use Github's Depandabot to review dependencies for vulnerabilities.
+#### Builds
+When changes are merged into `production`, a Github Action bulids and commits the site files to `builds/prod-prod`. This build is configured using a GitHub actions workflow file located in [.github/workflows/](.github/workflows/). We deploy this branch to our server to serve up the production site.
+
+Current workflows:
+
+| Workflow:                     | `EH-dataportal` branch: | `EHDP-data` branch:   | Action on merge:                                  | In use?      |
+|-------------------------------|-------------------------|-----------------------|---------------------------------------------------|--------------|
+| `hugo-build-to-prod-prod.yml` | `production`            | `production`          | Builds to `builds/prod-prod`                      | Yes          |
+| `hugo-build-to-dev-stage.yml` | `build-to-dev-stage`    | `staging`             | Builds to `builds/dev-stage`                      | Yes          |
+| `hugo-build-to-dev-prod.yml`  | `development`           | `production`          | Builds to `builds/dev-prod`                       | No           |
+| `hugo-build-any-branch.yml`   | Any (need to specify)   | Any (need to specify) | By default, builds to `builds/[specified-branch]` | Yes          |
 
 **Note:**
 GitHub Actions and the deployment pipeline are set up to convert all end-of-line characters to Unix style (`LF`). This is configured in the workflow YAML files (step `set git EOL`). This is nice for consistency and for avoiding git flagging hundreds of inconsequential changes, but it's actually important for subresource integrity calculations.
 
+#### Other actions
+In addition to automated builds, these actions are triggered: The site runs a CodeQL analysis on merges/builds, and is set up to use Github's Depandabot to review dependencies for vulnerabilities.
+
 ### Environments
-The `/config` folder includes subfolders with environment-specific configuration. Specifically, there are different configuration files for development, staging, and production envirnoments. You serve or build the site by specifying the environment (eg, `hugo serve --environment development` or `hugo --environment production`). This merges the contents of that environment's config file (in `/config/ENVIRONMENT/config.toml'`) with  `/config/_default/config.toml`. **You may find it useful to create aliases for these functions ([in Powershell](https://www.tutorialspoint.com/how-to-create-powershell-alias-permanently), or [Bash](https://www.shell-tips.com/bash/alias/))**.
+The `/config` folder includes subfolders with environment-specific configuration. Specifically, there are different configuration files for different combinations of development or production site code, and staging or production data. You serve or build the site by specifying the environment (e.g., `hugo serve --environment production` or `hugo serve --environment dev_stage`). This merges the contents of that environment's config file (in `/config/ENVIRONMENT/config.toml'`) with `/config/_default/config.toml`. **You may find it useful to create aliases for these functions ([in Powershell](https://www.tutorialspoint.com/how-to-create-powershell-alias-permanently), or [Bash](https://www.shell-tips.com/bash/alias/))**.
 
 Some key uses of environment-specific variables in the `config` are:
-- Setting the BaseURL
-- Setting the variable `data_repo`, which tells the site to read data from `staging` or `production` branches of [EHDP-data](https://www.github.com/nychealth/EHDP-data).
+- Setting the `baseURL`
+- Setting the variable `data_branch`, which tells the site to read data from `staging` or `production` branches of [EHDP-data](https://www.github.com/nychealth/EHDP-data).
 
-To deploy to a new environment, update the baseURL in `config.toml`. Update the path, if necessary, in the environment-specific `config.toml` file. And, you may need to update paths in other files, like `search-results.js`. Crtl-F is your friend.
+To deploy to a new environment, update the `baseURL` in `config.toml`. Update the path, if necessary, in the environment-specific `config.toml` file.
+
+Current environments:
+
+| Environment:  | Build type: | Data branch: | Purpose                              | Notes                         |
+|---------------|-------------|--------------|--------------------------------------|-------------------------------|
+| `development` | Development | `production` | Preview site changes                 | Identical to `dev_prod`       |
+| `dev_prod`    | Development | `production` | Preview site changes                 |                               |
+| `dev_stage`   | Development | `staging`    | Preview combined site & data changes |                               |
+| `production`  | Production  | `production` | Deploy to production servers         | Identical to `prod_prod`      |
+| `prod_prod`   | Production  | `production` | Deploy to production servers         |                               |
+| `prod_stage`  | Production  | `staging`    | Preview data changes                 |                               |
+| `local_prod`  | Development | `production` | Preview site changes                 | Uses locally hosted data repo |
+| `local_stage` | Development | `staging`    | Preview combined site & data changes | Uses locally hosted data repo |
 
 ### Data repository
 
@@ -126,31 +148,32 @@ Shortcodes can be called from content files (markdown). Essentially, the shortco
 ### Data/Globals
 Data accessible throughout the site can be stored in the `data` folder. This can be referenced by site templates. For example, `featured_data.yml` is referenced by `partials/featured-data.html` and displayed on the Home Page and the Data Explorer landing page. You can update "featured datasets" by updating this file.
 
-Other content in `data` are SEO variables and Neighborhood Reports core content.
+Other content in `data` are SEO variables and Neighborhood Reports specifications.
 
 ### Subresource Integrity
-We use Hugo's `integrity` function; this calculates a "message digest" value for a resource, allowing us to include it in the `integrity` property of `<script>` and `<link>` tags, which usually load JavaScript and CSS files, respectively. Hugo also adds a hash value to the resource's eventual filename, and tells the pages to fetch the files with the hashed names. (We use a partial template to modify the way this filename hash is calculated, because Hugo's default is absurdly long.) This is a way of improving security by ensuring the integrity of the JS and CSS files. If *all* of these resources break on the production site, it may be because the server's certificate is expired. If *some* - but not *all* - of these break on the production site, Unix vs. Windows end-of-line characters may be to blame. See [Automated actions](#automated-actions) above for more info.
+We use Hugo's `integrity` function; this calculates a "message digest" value for a resource, allowing us to include it in the `integrity` property of `<script>` and `<link>` tags, which usually load JavaScript and CSS files, respectively. Hugo also adds a hash value to the resource's built filename, and tells the pages to fetch the files with the hashed names. (We use a partial template to modify the way this filename hash is calculated, because Hugo's default is absurdly long.) This is a way of improving security by ensuring the integrity of the JS and CSS files. 
+
+If *all* of these resources break on the production site, it may be because the server's certificate is expired. If *some* - but not *all* - of these break on the production site, Unix vs. Windows end-of-line characters may be to blame. See [Automated actions](#automated-actions) above for more info.
 
 ### Dependency bundling
 Dependencies (The JS libraries the site uses: D3, Arquero, Vega-Lite, Accessible Autocomplete, etc) are served by the site rather than linked from CDNs. When you run `npm install` to configure your local repo, they are stored in `/node_modules`. When you run a build (`hugo` or via merging to `development` or `production`, per Github Actions), Hugo grabs these dependencies, applies the Integrity hash (see above), and references these 'local' versions. 
 
 ### Image handling
-We use Hugo to automatically resize images. Where you put the source path of an image, there's additional code - Hugo resizes the image, generates a different size (puts it in the `/resources/_gen/images`), and automatically points to the resized image.
+We use Hugo to automatically resize images. Where you put the source path of an image, there's additional code - Hugo resizes the image, generates a different size (puts it in the `/resources/_gen/images`), and automatically points to the resized image. **Missing images are frequent causes of build failures.**
 
 ### Environment-specific code
-We use a variety of environment-specific code to produce:
-- A conditional modal
+We currently use a variety of environment-specific code to produce:
 - Different analytics for staging and production
-- ...and possibly other stuff. 
 
 ### Generating topic_indicators.json
-`data-index.html`, on site build, assembles a json file of topics and indicators. It ranges over DE topic frontmatter and produces a cross-reference of topics and indicators ([file](https://github.com/nychealth/EH-dataportal/blob/builds/prod-prod/IndicatorData/topic_indicators.json). This is used on `data-index.html` as well as on the Neighborhood Reports: when an indicator is clicked, it runs `getURL()` to find the parent topic for the indicator, generates a URL, and produces the Get The Dataset button. 
+`data-index.html`, on site build, assembles a json file of topics and indicators. It ranges over DE topic frontmatter and produces a cross-reference of topics and indicators ([file](https://github.com/nychealth/EH-dataportal/blob/builds/prod-prod/IndicatorData/topic_indicators.json)). This is used on `data-index.html` as well as on the Neighborhood Reports: when an indicator is clicked, it runs `getURL()` to find the parent topic for the indicator, generates a URL, and produces the Get The Dataset button. 
 
-### Cloudcannon integration
-The repo includes some files to integrate with Cloudcannon, an online CMS provider. Specifically:
-- `cloudcannon.config.yaml` sets up how the site appears in the CC CMS, what the editor reveals, what shortcodes are easily accessible, etc. 
-- `.cloudcannon/prebuild` is code that runs when Cloudcannon builds/serves the site.
-- `.cloudcannon/schemas` include frontmatter templates for when CC works with frontmatter.
+### CloudCannon integration
+The repo includes some files to integrate with CloudCannon, an online CMS provider. Specifically:
+- `cloudcannon.config.yaml` sets up how the site appears in the CloudCannon CMS, what the editor reveals, what shortcodes are easily accessible, etc. 
+- `.cloudcannon/prebuild` is code that runs immediately before CloudCannon builds a site branch.
+- `.cloudcannon/postbuild` is code that runs after CloudCannon builds a site branch.
+- `.cloudcannon/schemas` include frontmatter templates for when CloudCannon works with frontmatter.
 
 ### Build caching
-Resources used in a build (like a Neighborhood Report json spec, for example) may be cached by whatever machine is running the build. Updates to resources might not be reflected in a build if Hugo is using cached versions. In `config.toml`, setting the cache to have a `maxAge = 0` effectively turns it off, ensuring that Hugo will use the original, non-cached resources. Caching in Hugo is explained more [here](https://gohugo.io/getting-started/configuration/#configure-file-caches).
+Resources used in a build (like a Neighborhood Report json spec, for example) may be cached by whatever machine is running the build. Updates to resources might not be reflected in a build if Hugo is using cached versions. In `config.toml`, setting the cache to have a `maxAge = 0` effectively turns it off, ensuring that Hugo will use the original, non-cached resources. Caching in Hugo is explained more [here](https://gohugo.io/configuration/caches/).
