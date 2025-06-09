@@ -46,7 +46,7 @@ When changes are merged into `development` or `production`, a Github Action buil
 In addition to automated builds, these actions are triggered: The site runs a CodeQL analysis on merges/builds, and is set up to use Github's Depandabot to review dependencies for vulnerabilities.
 
 **Note:**
-GitHub Actions and the deployment pipeline are set up to convert all end-of-line characters to Unix style (`LF`). This is nice for consistency and for avoiding git flagging hundreds of inconsequential changes, but it's actually important for subresource integrity calculations.
+GitHub Actions and the deployment pipeline are set up to convert all end-of-line characters to Unix style (`LF`). This is configured in the workflow YAML files (step `set git EOL`). This is nice for consistency and for avoiding git flagging hundreds of inconsequential changes, but it's actually important for subresource integrity calculations.
 
 ### Environments
 The `/config` folder includes subfolders with environment-specific configuration. Specifically, there are different configuration files for development, staging, and production envirnoments. You serve or build the site by specifying the environment (eg, `hugo serve --environment development` or `hugo --environment production`). This merges the contents of that environment's config file (in `/config/ENVIRONMENT/config.toml'`) with  `/config/_default/config.toml`. **You may find it useful to create aliases for these functions ([in Powershell](https://www.tutorialspoint.com/how-to-create-powershell-alias-permanently), or [Bash](https://www.shell-tips.com/bash/alias/))**.
