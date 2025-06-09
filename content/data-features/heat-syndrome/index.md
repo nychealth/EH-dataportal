@@ -4,7 +4,7 @@ aliases:
   - /key-topics/climatehealth/syndromic/
 date: 2021-08-30T11:51:01-04:00
 draft: false
-seo_title: "Real-time heat-related illness in NYC."
+seo_title: "Real-time heat-related illness in NYC"
 seo_description: "Explore this summer's high temps and health effects."
 description: "Explore this summer's high temps and health effects."
 categories: [climatehealth, inequality, housing,healthoutcomes]

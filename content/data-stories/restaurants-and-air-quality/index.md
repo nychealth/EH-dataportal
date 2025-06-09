@@ -5,7 +5,7 @@ aliases:
   - /data-stories/aq-cooking/
 date: 2021-04-12T12:02:09-04:00
 draft: false
-seo_title: "Restaurants and air quality in NYC."
+seo_title: "Restaurants and air quality in NYC"
 seo_description: "Tracking changes in New York City's sources of air pollution."
 tags:
 categories: ["foodanddrink", "airquality", "neighborhoods"]

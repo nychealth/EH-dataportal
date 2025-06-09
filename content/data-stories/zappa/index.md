@@ -3,7 +3,7 @@ title: "ZAPPA: A tool to understand air quality policies"
 shortTitle: "ZAPPA and air quality"
 date: 2022-12-03T08:33:22-04:00
 draft: false
-seo_title: "ZAPPA: a tool to understand air quality policies."
+seo_title: "ZAPPA: a tool to understand air quality policies"
 seo_description: "A data story on ZAPPA, a tool to understand air quality policies."
 tags:
 categories: ["publicspace", "airquality"]
