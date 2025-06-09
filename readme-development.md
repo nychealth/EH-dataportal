@@ -10,14 +10,15 @@ You will need the following things properly installed on your computer.
 - [npm](https://www.npmjs.com/)
 - [Hugo](https://gohugo.io/) 
 
-With this repository cloned onto your machine, you can browse a local version of the site. In your local development environment, start the server by typing `hugo serve --environment development --disableFastRender` into the terminal.
+With this repository cloned onto your machine, you can browse a local version of the site. In your local development environment, start the server by typing `hugo serve --environment development` into the terminal.
 - `hugo serve` starts the server - you can then browse the site at http://localhost:1313/EH-dataportal
 - `--environment development` specifies that it will serve the site for the development environment, using content from `/config/development/config.toml`
-- `--disableFastRender` turns off fast render mode, so more small changes are rapidly served.
 
 You can browse the site at [http://localhost:1313/EH-dataportal](http://localhost:1313/EH-dataportal).
 
 To build the source code, simply enter the command `hugo`. This assembles the site’s files, building to `/docs` (this build-to destination can be specified in `config.toml`). 
+
+More help is available by typing `hugo --help` in the terminal.
 
 ### Start developing
 Our internal workflows are to begin work by:
