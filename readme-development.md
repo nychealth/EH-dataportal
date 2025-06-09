@@ -18,7 +18,7 @@ You can browse the site at [http://localhost:1313/EH-dataportal](http://localhos
 
 To build the source code, simply enter the command `hugo`. This assembles the site’s files, building to `/docs` (this build-to destination can be specified in `config.toml`). 
 
-More help is available by typing `hugo --help` in the terminal.
+More help is available by typing `hugo --help` in the terminal. You can also view help online at [Hugo's CLI docs page](https://gohugo.io/commands/hugo/).
 
 ### Start developing
 Our internal workflows are to begin work by:
