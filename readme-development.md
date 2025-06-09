@@ -39,13 +39,17 @@ A run-down of main branches, actions, and purposes are:
 On merge, these branches are automatically [built](https://github.com/peaceiris/actions-hugo and [served](https://github.com/peaceiris/actions-gh-pages) to other branches using Github Actions (triggerd by a merged pull request).  _(Note that this requires a workflow YAML file in both [`main`](https://github.com/nychealth/EH-dataportal/blob/main/.github/workflows/hugo-build-dev-prod.yml) and [`development`](https://github.com/nychealth/EH-dataportal/blob/development/.github/workflows/hugo-build-dev-prod.yml).)_
 
 ### Automated actions
-When changed are merged into `development` or `production`, in addition to automated builds, these actions are triggered:
-- The site runs a CodeQL analysis on merges/builds, and is set up to use Github's Depandabot to review dependencies for vulnerabilities.
-- On merge to `development`, a Github Action builds and commits the site files to `builds/dev-prod`. On merge to `production`, an Action bulids and commits the site files to `builds/prod-prod`. We deploy this branch to our server to serve up the production site. 
-- `Gruntfile.js` runs to create `/static/js/lunr/PagesIndex.json`, which powers the search function (`search-results.js`  uses Lunr functions to search `PagesIndex.json` and display results on the `search-results.html` template).
+When changes are merged into `development` or `production`, a Github Action builds and commits the site files to a build branch.
+- On merge to `development`, a Github Action builds and commits the site files to `builds/dev-prod`. 
+- On merge to `production`, an Action bulids and commits the site files to `builds/prod-prod`. We deploy this branch to our server to serve up the production site.
+
+In addition to automated builds, these actions are triggered: The site runs a CodeQL analysis on merges/builds, and is set up to use Github's Depandabot to review dependencies for vulnerabilities.
+
+**Note:**
+GitHub Actions and the deployment pipeline are set up to convert all end-of-line characters to Unix style (`LF`). This is configured in the workflow YAML files (step `set git EOL`). This is nice for consistency and for avoiding git flagging hundreds of inconsequential changes, but it's actually important for subresource integrity calculations.
 
 ### Environments
-The `/config` folder includes subfolders with environment-specific configuration. Specifically, there are different configuration files for development, staging, and production envirnoments. You serve or build the site by specifying the environment (eg, `hugo serve --environment development` or `hugo --environment production`). This merges the contents of that environment's config file (in `/config/ENVIRONMENT/config.toml'` with  `/config/_default/config.toml`. **You may find it useful to create aliases for these functions ([in Powershell](https://www.tutorialspoint.com/how-to-create-powershell-alias-permanently), or [Bash](https://www.shell-tips.com/bash/alias/))**.
+The `/config` folder includes subfolders with environment-specific configuration. Specifically, there are different configuration files for development, staging, and production envirnoments. You serve or build the site by specifying the environment (eg, `hugo serve --environment development` or `hugo --environment production`). This merges the contents of that environment's config file (in `/config/ENVIRONMENT/config.toml'`) with  `/config/_default/config.toml`. **You may find it useful to create aliases for these functions ([in Powershell](https://www.tutorialspoint.com/how-to-create-powershell-alias-permanently), or [Bash](https://www.shell-tips.com/bash/alias/))**.
 
 Some key uses of environment-specific variables in the `config` are:
 - Setting the BaseURL
@@ -123,8 +127,8 @@ Data accessible throughout the site can be stored in the `data` folder. This can
 
 Other content in `data` are SEO variables and Neighborhood Reports core content.
 
-### Hugo/JavaScript Integrity
-We use Hugo's integrity function; this adds hashes to JS filenames and tells the pages to fetch the files with the hashed names. This is a way of improving security by ensuring the integrity of the JS files. This might not work on production if the server's DigiCert is expired. 
+### Subresource Integrity
+We use Hugo's `integrity` function; this calculates a "message digest" value for a resource, allowing us to include it in the `integrity` property of `<script>` and `<link>` tags, which usually load JavaScript and CSS files, respectively. Hugo also adds a hash value to the resource's eventual filename, and tells the pages to fetch the files with the hashed names. (We use a partial template to modify the way this filename hash is calculated, because Hugo's default is absurdly long.) This is a way of improving security by ensuring the integrity of the JS and CSS files. If *all* of these resources break on the production site, it may be because the server's certificate is expired. If *some* - but not *all* - of these break on the production site, Unix vs. Windows end-of-line characters may be to blame. See [Automated actions](#automated-actions) above for more info.
 
 ### Dependency bundling
 Dependencies (The JS libraries the site uses: D3, Arquero, Vega-Lite, Accessible Autocomplete, etc) are served by the site rather than linked from CDNs. When you run `npm install` to configure your local repo, they are stored in `/node_modules`. When you run a build (`hugo` or via merging to `development` or `production`, per Github Actions), Hugo grabs these dependencies, applies the Integrity hash (see above), and references these 'local' versions. 
