@@ -4,10 +4,13 @@
 
 const renderMap = (
     data, 
-    metadata
+    metadata,
+    bin
 ) => {
 
     console.log("** renderMap");
+
+    console.log('***renderMap bin', bin)
 
     document.getElementById('viewDescription').innerHTML = 'This map shows data by different boundaries.'
 
@@ -33,6 +36,8 @@ const renderMap = (
     let subtitle;
     let isPercent;
     let topoFile = '';
+
+    // Set binning based on whether it's been passed in
 
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
@@ -68,7 +73,7 @@ const renderMap = (
         encode = {
             "latitude": {"field": "Lat", "type": "quantitative"},
             "longitude": {"field": "Long", "type": "quantitative"},
-            "size": {"bin": false, "field": "Value","type": "quantitative","scale": {"range": [0,750]},"legend": {
+            "size": {"bin": bin, "field": "Value","type": "quantitative","scale": {"range": [0,750]},"legend": {
                 "direction": "horizontal",
                 "title": "",
                 "offset": -25,
@@ -181,7 +186,7 @@ const renderMap = (
                         ],
                         "x": {"field": "GeoID", "sort": "y", "axis": null},
                         "color": {
-                            "bin": false,
+                            "bin": bin,
                             "field": "Value",
                             "type": "quantitative",
                             "scale": {"scheme": {"name": "viridis", "extent": [1, 0]}},
@@ -242,7 +247,7 @@ const renderMap = (
                 ],
                 "x": {"field": "GeoID", "sort": "y", "axis": null},
                 "color": {
-                    "bin": false,
+                    "bin": bin,
                     "field": "Value",
                     "type": "quantitative",
                     "scale": {"scheme": {"name": "viridis", "extent": [1, 0]}},
@@ -431,7 +436,7 @@ const renderMap = (
                         "encoding": {
                             ...encode,
                             "color": {
-                                "bin": false,
+                                "bin": bin,
                                 "field": "Value",
                                 "type": "quantitative",
                                 "scale": {"scheme": {"name": "viridis", "extent": [1, 0]}},

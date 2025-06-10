@@ -359,12 +359,30 @@ const setDefaultDisparitiesMeasure = (visArray) => {
 const updateMapData = (e) => {
 
     console.log("* updateMapData");
+    
 
     // ----- handle selection --------------------------------------------------- //
 
     let measureId;
     let time;
     let geo;
+    let bin = $('.binButton[aria-selected=true]').attr('id') === "binTrue";
+
+
+    if (e.target.classList.contains("binButton")) {
+        bin = e.target.id === "binTrue";
+
+        console.log(' -- bin', bin)
+
+        $('.binButton').removeClass("active");
+        $('.binButton').attr('aria-selected', false);
+
+        $(e.target).addClass("active");
+        $(e.target).attr('aria-selected', true);
+    }
+
+    console.log('--updateMapData bin:', bin)
+
 
     if (typeof e.target.dataset.measureId != 'undefined') {
 
@@ -500,7 +518,7 @@ const updateMapData = (e) => {
     
     // ----- render the map --------------------------------------------------- //
 
-    renderMap(filteredMapData, selectedMapMetadata);
+    renderMap(filteredMapData, selectedMapMetadata, bin);
 
     updateChartPlotSize();
 
@@ -1690,7 +1708,7 @@ const renderMeasures = async () => {
 
             // console.log("filteredMapData [showMap 1]", filteredMapData);
 
-            renderMap(filteredMapData, defaultMapMetadata);
+            renderMap(filteredMapData, defaultMapMetadata, true);
 
             updateChartPlotSize();
 
@@ -1755,7 +1773,7 @@ const renderMeasures = async () => {
 
             // console.log("filteredMapData [showMap 2]", filteredMapData);
 
-            renderMap(filteredMapData, selectedMapMetadata);
+            renderMap(filteredMapData, selectedMapMetadata, true);
 
             updateChartPlotSize();
         }
@@ -2534,6 +2552,7 @@ const renderMeasures = async () => {
     let trendMeasuresLinks = document.querySelectorAll('.trendbutton');
     let trendComparisonLinks = document.querySelectorAll('.comparisonbutton');
     let linksMeasuresLinks = document.querySelectorAll('.linksbutton');
+    let binButtons = document.querySelectorAll('.binButton')
 
     // adding click listeners using update functions
     // https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#memory_issues
@@ -2560,6 +2579,10 @@ const renderMeasures = async () => {
 
     linksMeasuresLinks.forEach(link => {
         link.addEventListener('click', updateLinksData);
+    })
+
+    binButtons.forEach(button => {
+        button.addEventListener('click', updateMapData)
     })
 
 
