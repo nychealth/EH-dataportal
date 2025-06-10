@@ -171,10 +171,11 @@
                 {{ $src := resources.GetMatch ( path.Join "**/image_tab_data_features.jpg" )}}
                 {{ $image := $src.Resize "x1200 jpg q75"}}
                 <img class="card-img-top" src="{{ relURL $image.RelPermalink }}">
-              </a>
+              
               <div class="card-body">
                 <h3 class="card-title">Data Features</h3>
                 <p>Custom interactives, dashboards and reports.</p>
+              </a>
                 <div class="d-flex justify-content-end">
                   <a class="fs-sm font-weight-bold" href={{ relURL "data-features" }}>Get data <i class="fas fa-arrow-circle-right ml-1" aria-hidden="true"></i></a>
                 </div>
