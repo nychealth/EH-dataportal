@@ -47,6 +47,7 @@ content/key-topics/climatehealth/hvi/hvi-nta.csv
 assets/js/data-explorer/some notes on refactoring.txt
 .Rhistory
 fooling around with gh.sh
+
 # local data
 static/IndicatorData/data/
 static/IndicatorData/comparisons.json
@@ -61,3 +62,6 @@ hugo122-help.txt
 hugo122-server-help.txt
 hugo145-help.txt
 hugo145-server-help.txt
+
+# don't track workspace settings
+.vscode/
