@@ -5,35 +5,17 @@ draft: false
 seo_title: "Rat complaints and NYC’s rat problem"
 seo_description: "How NYC acts on rat complaints."
 tags:
-categories: ["healthoutcomes", "inequality"]
-keywords:
-  [
-    "lead",
-    "lead poisoning",
-    "employment",
-    "workers",
-    "worker health",
-    "elevated blood lead levels",
-  ]
-tags:
-keywords:
-  [
-    "lead",
-    "lead poisoning",
-    "employment",
-    "workers",
-    "worker health",
-    "elevated blood lead levels",
-  ]
+categories: ["pestsandpesticides", "housing"]
+keywords: ["rats", "pests", "Rat Mitigation Zones", "rat inspection"]
 image: rat_burrow.jpeg
 photocredit: "ET / DOHMH"
 related:
-  - title: "Housing creates health"
-    url: "data-stories/housing-creates-health/"
-  - title: "Health, housing, and history"
-    url: "data-stories/housing/"
-  - title: "Lead testing (by age 3)"
-    url: "data-explorer/lead/?id=2189#display=summary"
+  - title: "Rat Mitigation Zones"
+    url: "data-features/rat-mitigation-zones/"
+  - title: "Why trash is a public health issue"
+    url: "data-stories/sanitation/"
+  - title: "Rats in your neighborhood"
+    url: "data-features/rats-in-your-neighborhood/"
 ---
 
 Everyone has a story about rats — or more likely, a complaint. If you have made a complaint using 311, you may wonder who receives it, and how it fits into the bigger picture of rat mitigation.
