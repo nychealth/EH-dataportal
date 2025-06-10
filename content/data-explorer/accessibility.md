@@ -1,41 +1,31 @@
 ---
-title: Active design
+title: Accessibility
 date: 2021-05-28 18:02:58.738512
 draft: false
 azlink: "https://www.nyc.gov/site/doh/health/health-topics/active-design.page"
-seo_title: "Active design data in NYC"
+seo_title: "Accessibility data in NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
-description: "Datasets and visualizations of active design data in NYC."
+description: "Datasets and visualizations of accessibility data in NYC."
 tags:
 categories: ["publicspace", "neighborhoods", "airquality", "climate"]
-keyTopic: publicspace
+keyTopic: Accessibility
 keywords:
-  [
-    "active design",
-    "infrastructure",
-    "transportation",
-    "physical activity",
-    "health",
-  ]
+  ["accessibility", "active design", "transportation", "housing", "health"]
 indicators:
-  - header: Neighborhood characteristics
+  - header: "Prevalence in asthma: adults and children"
     IndicatorID:
-      - 2388
-      - 2133
-      - 2181
-      - 2416
-      - 2389
-  - header: Transit coverage
+      - 2414
+      - 18
+      - 2392
+  - header: Housing and access
     IndicatorID:
-      - 2158
+      - 2408
+      - 2377
+      - 2145
+      - 2188
+  - header: Accessible transit and public space
+    IndicatorID:
       - 2391
-      - 2390
-      - 2426
-      - 2425
-  - header: Greenery coverage
-    IndicatorID:
-      - 2157
-      - 2143
 related:
   - title: "Public space creates health"
     url: "data-stories/public-space-creates-health/"
@@ -52,16 +42,4 @@ relatedData:
     url: "transportation-related-injuries/"
 ---
 
-Physical activity and healthy eating are among the leading ways to get and stay healthy.
-
-Active design is an applied, evidence-informed approach to improve physical, mental and social health outcomes through the design of the built environment.
-
-To improve health, we can:
-
-- Increase access to public parks and recreation
-- Create pedestrian plazas, and maintain sidewalks
-- Plant street trees
-- Provide safer cycling infrastructure and secure bicycle storage
-- Make stairways attractive and accessible
-
-Strategies like these can have a measurable effect on people’s ability to safely maintain their physical, mental, and social health.
+TK TK

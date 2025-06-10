@@ -23,10 +23,10 @@ keywords:
     "weather",
   ]
 layout: single
-image: nyc-climate.jpg
+image: subway-elevator.jpg
 mainDEPages:
-  - title: "Active design"
-    url: "data-explorer/active-design/"
+  - title: "Accessibility"
+    url: "data-explorer/accessibility/"
   - title: "Weather-related illness"
     url: "data-explorer/weather-related-illness/"
 ---
