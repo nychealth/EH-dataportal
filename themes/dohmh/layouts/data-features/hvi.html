@@ -47,10 +47,10 @@
             <div class="my-3">
                 <p>
                     <i class="far fa-square text-primary"></i>
-                    <span id="NTA" class="badge font-inherit">---</span><br>
+                    <span class="font-inherit"><span id="NTA">---</span></span><br>
                     <span class="fs-sm">ZIPs <span id="zipPrint">---</span></span></p>
 
-                <p>Heat vulnerability: <span id="hviVal" class="badge font-inherit">---</span></p>
+                <p>Heat vulnerability: <span class="font-inherit"><span id="hviVal">---</span></span></p>
 
             </div>
 
@@ -91,14 +91,17 @@
                 <tr>
                   <td>
                     <h4 class="h5">Temperature</h4>
-                    <div class="fs-sm"><a href={{ relURL "data-explorer/climate/?id=2141" }}>Daytime summer surface temperature</a> is different from air temperature, and varies more by neighborhood: some neighborhoods are hotter than others. A higher surface temperature is associated with a higher risk of death from heat waves.                         <span class="badge">Median neighborhood: 87.0° F</span>
+                    <div class="fs-sm"><a href={{ relURL "data-explorer/climate/?id=2141" }}>Daytime summer surface temperature</a> is different from air temperature, and varies more by neighborhood: some neighborhoods are hotter than others. A higher surface temperature is associated with a higher risk of death from heat waves.                         
+                        
                     </div>
 
                   </td>
                   <td>
                     <div class="p-3">
                         The daytime summer surface temperature in your neighborhood is <span id="tempVal" class="text-primary font-weight-bold">--° F</span>. 
-                        <br>This is <span id="tempTert"><span class="badge badge-light">--- than most neighborhoods</span></span>.
+                        <br>This is <span id="tempTert"><span class="badge badge-light">--- than most neighborhoods</span></span>. 
+                          <hr class="my-1"> 
+                        <span class="badge">Median neighborhood: 87.0° F</span>
                     </div>
                     </td>
                 </tr>
@@ -107,7 +110,7 @@
                     <h4 class="h5">Air conditioning</h4>
                     <div class="fs-sm">
                         Air conditioning is as necessary during extreme heat as heating is in winter. A neighborhood with a high percentage of <a href={{ relURL "data-explorer/climate/?id=2104" }}>households with air conditioners</a> means that more of its residents can be protected from extreme heat. 
-                        <span class="badge">Citywide: 91.0%</span>
+                        
 
                     </div>
                 </td>
@@ -115,6 +118,8 @@
                     <div class="p-3">
                         <span id="acVal" class="text-primary font-weight-bold">--%</span> of households in your neighborhood have AC. 
                         <br>This is <span id="acTert"><span class="badge badge-light">--- than most neighborhoods</span></span>.
+                          <hr class="my-1"> 
+                        <span class="badge">Citywide: 91.0%</span>
 
                     </div>
                 </td>
@@ -124,14 +129,16 @@
                     <h4 class="h5">Green space</h4>
                     <div class="fs-sm">
                         Green space is <a href={{ relURL "data-explorer/active-design/?id=2157" }}>tree</a>, <a href={{ relURL "data-explorer/active-design/?id=2143" }}>grass, or shrub cover</a>. Green space helps cool a neighborhood, address the <a href={{ relURL "data-stories/urban-heat-island" }} target="_blank">UHI</a>, and create a resilient city. It also has a small association with heat mortality, weaker than other components in the index.
-                        <span class="badge">Median neighborhood: 25.0%</span>
 
                     </div>
                   </td>
                   <td>
                     <div class="p-3">
                         <span id="greenVal" class="text-primary font-weight-bold">--%</span> of your neighborhood is green space. 
-                        <br>This is <span id="greenTert"><span class="badge badge-light">--- than most neighborhoods</span></span>.
+                        <br>This is <span id="greenTert"><span class="badge badge-light">--- than most neighborhoods</span></span>.                        
+                          <hr class="my-1"> 
+                        <span class="badge">Median neighborhood: 25.0%</span>
+
                     </div>
                   </td>
                 </tr>
@@ -140,7 +147,7 @@
                     <h4 class="h5">Median income</h4>
                     <div class="fs-sm">
                         Low income is a social factor that places people at risk of death during heat waves for many reasons. One reason is that people with limited financial resources may be less likely to afford owning or using an air conditioner during heat waves.
-                        <span class="badge">Citywide: $67,046</span>
+                       
 
                     </div>
                   </td>
@@ -148,6 +155,8 @@
                     <div class="p-3">
                         The median income in your neighborhood is <span id="incVal" class="text-primary font-weight-bold">$--</span>. 
                         <br>This is <span id="incTert"><span class="badge badge-light">--- than most neighborhoods</span></span>.
+                        <hr class="my-1">  
+                        <span class="badge">Citywide: $67,046</span>
                     </div>
                   </td>
                 </tr>
