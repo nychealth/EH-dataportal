@@ -40,12 +40,16 @@ When inspectors visit a property, they look for two major things:
 <div class="medium my-4 py-2">
     <div class="row">
         <div class="col-sm-6">
-            <img class="img-responsive" src="structural_burrow.jpeg" alt="rat burrow." style="width:100%">
+          <figure>
+            <img class="img-responsive" src="structural_burrow.jpeg" alt="rat burrow in a sidewalk crack." style="width:100%">
+            <figcaption class="small"><em>Cracks in the sidewalk allow for rats to make burrows and invade properties.</em></figcaption>
+          </figure>
         </div>
         <div class="col-sm-6">
-                    <img class="img-responsive" src="trash.jpeg" alt="trash that is not in a container." style="width:100%">
-        </div>
-        <div class="col-12 mt-1 fs-sm"><em>Cracks in the sidewalk allow for rats to make burrows and invade properties (left)</em>. <em>Trash and food waste that isn't in sealed containers creates conditions to attract rats (right)</em>.
+        <figure>
+          <img class="img-responsive" src="trash.jpeg" alt="trash that is not in a container." style="width:100%">
+            <figcaption class="small"><em>Trash and food waste that isn't in sealed containers creates conditions to attract rats.</em></figcaption>
+        </figure>
         </div>
     </div>
 </div>
@@ -60,12 +64,12 @@ If the property is City-owned, the Health Department contacts the agency that ma
 <div class="m-4 py-2">
     <div class="row">
         <div class="col-sm-6 mx-auto">
+        <figure>
             <img class="img-responsive" src="inspector_looks.jpg" alt="An inspector searches for signs of rats in a park" style="width:100%">
+            <figcaption class="small"><em>An inspector looks for rat burrows and signs of rats.</em></figcaption>
+        </figure>
         </div>
    </div>
-   <div class="row mb-2">
-            <div class="col-6 my-1 mx-auto fs-sm"> <em>An inspector looks for rat burrows and signs of rats.</em>   
-        </div>
 </div>
 
 <div class="narrow">
