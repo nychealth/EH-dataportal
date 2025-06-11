@@ -8,7 +8,7 @@ tags:
 categories: ["pestsandpesticides", "housing"]
 keywords: ["rats", "pests", "Rat Mitigation Zones", "rat inspection"]
 image: rat_burrow.jpeg
-photocredit: "ET / DOHMH"
+photocredit: "NYC Health Department"
 related:
   - title: "Rat Mitigation Zones"
     url: "data-features/rat-mitigation-zones/"
