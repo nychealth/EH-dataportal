@@ -12,11 +12,6 @@ keyTopic: Accessibility
 keywords:
   ["accessibility", "active design", "transportation", "housing", "health"]
 indicators:
-  - header: "Prevalence in asthma: adults and children"
-    IndicatorID:
-      - 2414
-      - 18
-      - 2392
   - header: Housing and access
     IndicatorID:
       - 2408
