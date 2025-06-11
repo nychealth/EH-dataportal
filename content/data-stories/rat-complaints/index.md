@@ -5,7 +5,7 @@ draft: false
 seo_title: "Rat complaints and NYC’s rat problem"
 seo_description: "How NYC acts on rat complaints."
 tags:
-categories: ["pestsandpesticides", "housing"]
+categories: ["pests", "housing"]
 keywords: ["rats", "pests", "Rat Mitigation Zones", "rat inspection"]
 image: rat_burrow.jpeg
 photocredit: "NYC Health Department"
