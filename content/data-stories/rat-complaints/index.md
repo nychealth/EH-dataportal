@@ -37,7 +37,7 @@ When inspectors visit a property, they look for two major things:
   - Cracks or holes they can live in
 
 </div>
-<div class="medium my-4 py-2">
+<div class="medium my-2 py-2">
     <div class="row">
         <div class="col-sm-6">
           <figure>
@@ -61,7 +61,7 @@ If the property is City-owned, the Health Department contacts the agency that ma
 
 </div>
 
-<div class="m-4 py-2">
+<div class="m-2 py-2">
     <div class="row">
         <div class="col-sm-6 mx-auto">
         <figure>
