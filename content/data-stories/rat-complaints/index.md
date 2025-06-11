@@ -60,7 +60,7 @@ If the property is City-owned, the Health Department contacts the agency that ma
 <div class="m-4 py-2">
     <div class="row">
         <div class="col-sm-6 mx-auto">
-            <img class="img-responsive" src="inspector.png" alt="rat burrow" style="width:100%">
+            <img class="img-responsive" src="inspector_looks.jpg" alt="An inspector searches for signs of rats in a park" style="width:100%">
         </div>
    </div>
    <div class="row mb-2">
