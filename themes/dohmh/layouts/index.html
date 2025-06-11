@@ -1,5 +1,18 @@
 {{ define "main" }}
 
+<style>
+  .content-card a {
+    text-decoration: none!important;
+    color: inherit;
+  }
+
+  .card-content:hover {
+   /* box-shadow: 5px 5px 5px lightgray;
+   border: 1px solid lightgray; */
+    transform: scale(1.01)
+  }
+</style>
+
 <article class="container-fluid p-0 overflow-hidden" id="primary-content">
   <div class="row no-gutters">
     <div class="container wide">
@@ -165,8 +178,8 @@
 
         <div class="col-lg-3 col-sm-6">
           <div class="card content-card">
+            <a class="position-relative" href={{ relURL "data-features" }}>
             <div class="card-content data-features mb-4">
-              <a class="position-relative" href={{ relURL "data-features" }}>
                 <div class="tab-data-features h-100 w-100 position-absolute"></div>
                 {{ $src := resources.GetMatch ( path.Join "**/image_tab_data_features.jpg" )}}
                 {{ $image := $src.Resize "x1200 jpg q75"}}
@@ -175,11 +188,10 @@
               <div class="card-body">
                 <h3 class="card-title">Data Features</h3>
                 <p>Custom interactives, dashboards and reports.</p>
-              </a>
-                <div class="d-flex justify-content-end">
-                </div>
               </div>
+                            
             </div>
+            </a>
           </div>
         </div>
 
