@@ -31,13 +31,9 @@ When you submit a complaint via 311, it goes to the NYC Health Department, which
 When inspectors visit a property, they look for two major things:
 
 - Signs of rats, like burrows, droppings, and gnaw or rub marks
-
 - Conditions that support rats:
-
   - Unsealed trash cans or loose food garbage they can eat,
-
   - Build up of old materials that rats can use to create nests, like piles of cardboard boxes or old equipment
-
   - Cracks or holes they can live in
 
 </div>
@@ -49,7 +45,7 @@ When inspectors visit a property, they look for two major things:
         <div class="col-sm-6">
                     <img class="img-responsive" src="trash.jpeg" alt="trash that is not in a container." style="width:100%">
         </div>
-        <div class="col-12 mt-1 fs-sm">Cracks in the sidewalk allow for rats to make burrows and invade properties <em>(left)</em>. Trash and food waste that isn't in sealed containers creates conditions to attract rats <em>(right)</em>.
+        <div class="col-12 mt-1 fs-sm"><em>Cracks in the sidewalk allow for rats to make burrows and invade properties (left)</em>. <em>Trash and food waste that isn't in sealed containers creates conditions to attract rats (right)</em>.
         </div>
     </div>
 </div>
@@ -68,7 +64,7 @@ If the property is City-owned, the Health Department contacts the agency that ma
         </div>
    </div>
    <div class="row mb-2">
-            <div class="col-6 my-1 mx-auto fs-sm"> An inspector looks for rat burrows and signs of rats.   
+            <div class="col-6 my-1 mx-auto fs-sm"> <em>An inspector looks for rat burrows and signs of rats.</em>   
         </div>
 </div>
 
@@ -81,13 +77,13 @@ In some cases, where conditions are especially severe, a Health Department exter
 <div class="my-4" aria-hidden="true">
   <div style="min-height:730px" id="datawrapper-vis-tTpnA"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/tTpnA/embed.js" charset="utf-8" data-target="#datawrapper-vis-tTpnA"></script><noscript><img src="https://datawrapper.dwcdn.net/tTpnA/full.png" alt="" /></noscript></div>
 </div>
-
 <div class="sr-only">
+<div style="min-height:1065px" id="datawrapper-vis-S4nq0"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/S4nq0/embed.js" charset="utf-8" data-target="#datawrapper-vis-S4nq0"></script><noscript><img src="https://datawrapper.dwcdn.net/S4nq0/full.png" alt="" /></noscript></div>
 </div>
 
 ### How to make a rat complaint – the smart way
 
-Not every complaint will trigger an inspection. If a property has recently been inspected, a new complaint won’t trigger another inspection. To find out if a new complaint will help, <a href="../../data-features/rat-information-portal/">visit the Rat Information Portal for up-to-date inspection results.</a> You can look up an address and see when it was last inspected, and if it passed or failed.
+Not every complaint will trigger an inspection. If a property has recently been inspected, a new complaint won’t trigger another inspection. To find out if a new complaint will help, <a href="../../data-features/rat-information-portal/">visit the Rat Information Portal for up-to-date inspection results</a>. You can look up an address and see when it was last inspected, and if it passed or failed.
 
 <!-- publish link here to other story Read more about how inspection data is the key to understanding rat activity. -->
 
@@ -95,13 +91,10 @@ Not every complaint will trigger an inspection. If a property has recently been 
 
 Want to help work toward a cleaner New York City?
 
-- <a href="https://www.nycservice.org/opportunity/a0TQq00000DwaIoMAJ/nyc-rat-pack">Join the Rat Pack, NYC’s squad of anti-rat community members.</a>
+- <a href="https://www.nycservice.org/opportunity/a0TQq00000DwaIoMAJ/nyc-rat-pack">Join the Rat Pack, NYC’s squad of anti-rat community members</a>.
 - If you’re a property owner, learn about rat prevention and management.
-
   - Enroll in a Health Department <a href="https://www.nyc.gov/site/doh/services/rats-control-training.page">Rat Academy class</a> – it’s free!
-
   - <a href="https://www.nyc.gov/site/doh/health/health-topics/rats.page">Read about the best ways to control rats</a>.
-
 - Learn more about the Health Department’s <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/rat-mitigation-zones/">rat control program</a>.
 
 If we work together, we can reduce rats in our communities and prevent them from harming our parks, homes, and make our neighborhoods more livable.
