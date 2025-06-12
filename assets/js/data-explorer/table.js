@@ -159,6 +159,7 @@ const renderTable = () => {
                 aq.matches(/^Number$/),
                 aq.matches("Number (total)"),
                 aq.matches(/number/i),
+                aq.matches(/3\.5\+/),
                 aq.matches("Density"),
                 aq.matches(/total/i),
                 aq.matches(/count/i),
