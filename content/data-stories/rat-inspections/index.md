@@ -62,16 +62,25 @@ This neighborhood-level approach means that rat problems can be tackled block by
 
 The Health Department designates some areas that have a high burden of rats as Rat Mitigation Zones (RMZ). In an RMZ, the Department conducts indexing, provides extra support to property owners and businesses, and works with multiple NYC agencies to reduce rats on public property.
 
+<div class="row">
+  <div class="col-6 mr-auto">
 <div class="card card-left-border shadow-sm mb-2 mt-2 fs-sm">
     <div class="card-body">
-    <strong>Rat Mitigation Zones</strong>
-<a href="../../data-features/rat-mitigation-zones/">Explore inspection data in RMZs.</a>
-<br>
-<strong>Rat Mitigation Zone report</strong>
-<a href="../../data-features/rat-report/">Read our updated Rat Mitigation Zone Report with data through June 2024.</a>
+    <strong>Rat Mitigation Zone data</strong>
+<a href="../../data-features/rat-mitigation-zones/">Explore inspection data in RMZs.</a></div>
+</div>
+</div>
+<div class="col-6">
+<div class="card card-left-border shadow-sm mb-2 mt-2 fs-sm">
+    <div class="card-body">
+    <strong>Rat Mitigation Zone report</strong>
+<a href="../../data-features/rat-report/">Featuring new data through June 2024</a>
+    </div>
+</div>
 </div>
 </div>
 
 <a href="../../data-features/rat-information-portal/">To get inspection data for individual properties, visit the Rat Information Portal</a>, where you can find out when a property was last inspected, whether it passed or failed, and more information.
 
+<br>
 Rats may be a fixture of city life, but as we work together to reduce their numbers and make our communities more livable, these tools can help us understand what’s happening throughout our city, boroughs, and even our blocks.
