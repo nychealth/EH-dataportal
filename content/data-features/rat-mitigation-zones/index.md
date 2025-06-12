@@ -16,8 +16,8 @@ arquero: true
 leaflet: true
 image: rmz-ss.png
 related:
-  - title: "Why trash is a public health issue"
-    url: "data-stories/sanitation/"
+  - title: "Rat complaints and NYC’s rat problem"
+    url: "data-stories/rat-complaints/"
   - title: "Rat Information Portal"
     url: "data-features/rat-information-portal/"
   - title: "Rats in your neighborhood"

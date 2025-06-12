@@ -20,8 +20,8 @@ keywords:
 image: ds-sanitation-trucks.jpg
 photocredit: "Michael Appleton/Mayoral Photography Office, City of New York"
 related:
-  - title: "Rats in your neighborhood"
-    url: "data-features/rats-in-your-neighborhood/"
+  - title: "Rat complaints and NYC’s rat problem"
+    url: "data-stories/rat-complaints/"
   - title: "Rat Mitigation Zones"
     url: "data-features/rat-mitigation-zones/"
   - title: "Mice and rats"

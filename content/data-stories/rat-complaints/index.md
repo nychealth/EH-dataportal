@@ -1,6 +1,6 @@
 ---
 title: "Rat complaints and NYC’s rat problem"
-date: 2025-06-09T08:29:34-04:00
+date: 2025-06-12T08:29:34-04:00
 draft: false
 seo_title: "Rat complaints and NYC’s rat problem"
 seo_description: "How NYC acts on rat complaints."
@@ -32,7 +32,7 @@ When inspectors visit a property, they look for two major things:
 
 - Signs of rats, like burrows, droppings, and gnaw or rub marks
 - Conditions that support rats:
-  - Unsealed trash cans or loose food garbage they can eat,
+  - Unsealed trash cans or loose food garbage they can eat
   - Build up of old materials that rats can use to create nests, like piles of cardboard boxes or old equipment
   - Cracks or holes they can live in
 
