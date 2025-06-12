@@ -1,6 +1,6 @@
 ---
 title: Inspection data are the key to controlling NYC’s rats
-draft: false
+draft: true
 date: 2022-11-07T08:49:22-04:00
 image: ds-codesign-team.jpg
 photocredit: EH Data Portal team
