@@ -2,16 +2,15 @@
 title: Inspection data are the key to controlling NYC’s rats
 draft: false
 date: 2025-06-07T08:49:22-04:00
-image: ds-codesign-team.jpg
-photocredit: EH Data Portal team
+image: inspector_looks3.jpg
+photocredit: NYC Health Department
 categories:
   - pests
 keywords:
   - rats
   - pests
-  - usability
-  - redesign
-  - user research
+  - rat inspections
+  - RMZ
 seo_title: Rat inspections in NYC
 seo_description: "Rat inspection data drives NYC's rat control strategy"
 related:
@@ -25,25 +24,29 @@ related:
 
 Rats are one of New York City’s hottest topics. You see them on the news, while scrolling on social media, and you’ve probably spied more than a few on your commute. We all want to know where in the city the rats are worst, and if the rats are multiplying or their numbers are declining.
 
-Each year, the Health Department gets about 40,000 complaints about rat activity through 311 <a href="../../data-features/rat-mitigation-zones/">(you can explore these data on NYC Open Data).</a> But complaint data – how many 311 complaints , and what neighborhoods have the most complaints – doesn't give us a full picture of rat activity in NYC. Some neighborhoods with high levels of rat activity don’t always generate a lot of complaints, and some neighborhoods with a lot of complaints don’t always have a high level of rat activity.
+Each year, the Health Department gets about 40,000 complaints about rat activity through 311 <a href="../../data-features/rat-mitigation-zones/">(you can explore these data on NYC Open Data)</a>. But complaint data – how many 311 complaints , and what neighborhoods have the most complaints – doesn't give us a full picture of rat activity in NYC. Some neighborhoods with high levels of rat activity don’t always generate a lot of complaints, and some neighborhoods with a lot of complaints don’t always have a high level of rat activity.
 
 So how do we get a clear picture of neighborhood-level rat activity? With inspection data.
 
 ### Inspections are the building blocks of rat control
 
-<div class="fs-xl m-1"><strong>The Health Department conducts over 150,000 inspections for rats each year. In some areas, nearly every single property is inspected at least once a year.</strong></div>
+<div class="card card-left-border shadow-sm mb-2 mt-2 fs-l">
+    <div class="card-body">
+    <strong>The Health Department conducts over 150,000 inspections for rats each year. In some areas, nearly every single property is inspected at least once a year.</strong>
+    </div>
+</div>
 
 Health Department inspectors conduct about 150,000 rat inspections each year. Some of these inspections are reactive, in response to a rat complaint. Others are proactive, conducted because we know from experience that there’s a high level of rat activity in the area.
 
-<!-- add other link -->
+<!-- add other story link -->
 
 <strong>You can read more about the inspection process here.</strong><br>
 
 Inspection data helps give us a well-rounded look at rat activity across New York City.
 
-It shows us both the percentage of properties inspected in a neighborhood, and the percentage that failed inspections. These failures could be for active signs of rats or rat-friendly conditions like open trash. <a href="../../data-explorer/mice-and-rats/?id=2434#display=map">We can look at rat inspection failures both by neighborhood,</a> or <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/rats/">failures by individual property</a>.
+It shows us both the percentage of properties inspected in a neighborhood, and the percentage that failed inspections. <a href="../../data-explorer/mice-and-rats/?id=2434#display=map">These failures could be for active signs of rats or rat-friendly conditions like open trash</a>.
 
-<div style="my-4">
+<div class="my-4">
 <div style="min-height:645px" id="datawrapper-vis-UCA7n"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/UCA7n/embed.js" charset="utf-8" data-target="#datawrapper-vis-UCA7n"></script><noscript><img src="https://datawrapper.dwcdn.net/UCA7n/full.png" alt="" /></noscript></div>
 </div>
 
