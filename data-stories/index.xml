@@ -6,8 +6,15 @@
     <description>Recent content in Data Stories on Environment &amp; Health Data Portal</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 08 Nov 2024 13:11:44 -0400</lastBuildDate>
+    <lastBuildDate>Thu, 12 Jun 2025 08:29:34 -0400</lastBuildDate>
     <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Rat complaints and NYC’s rat problem</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/rat-complaints/</link>
+      <pubDate>Thu, 12 Jun 2025 08:29:34 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/rat-complaints/</guid>
+      <description>&lt;p&gt;Everyone has a story about rats — or more likely, a complaint. If you have made a complaint using 311, you may wonder who receives it, and how it fits into the bigger picture of rat mitigation.&lt;/p&gt;&#xA;&lt;h3&gt;What happens to my 311 complaint?&lt;/h3&gt;&#xA;&lt;p&gt;Each year, the Health Department gets about 40,000 complaints about rat activity through 311 (&lt;a href=&#34;../../data-features/rat-mitigation-zones/&#34;&gt;you can explore these data on NYC Open Data)&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;p&gt;When you submit a complaint via 311, it goes to the NYC Health Department, which is responsible for enforcing the New York City Health Code requirement that building owners keep their properties pest-free. The Health Department checks your complaint against our records. If the property hasn&amp;rsquo;t been inspected recently, the Health Department will send an inspector.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Public transit creates health</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/public-transit-creates-health/</link>
@@ -98,6 +105,13 @@
       <pubDate>Sat, 03 Dec 2022 08:33:22 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/zappa/</guid>
       <description>&lt;p&gt;New York City’s air quality is generally good and has been improving over time. Still, air pollution threatens health: two pollutants, &lt;a href=&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/health-impacts-of-air-pollution/?id=2122#display=summary&#34;&gt;ozone and PM2.5 cause about 2,400 deaths per year in NYC, and thousands more emergency department visits and hospitalizations for asthma, heart, and lung problems&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;p&gt;It’s important to clean up the air to protect New Yorkers, and we know how to do it: reduce emissions from buildings, vehicles, restaurants, power plants, and other sources of pollutants.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Inspection data are the key to controlling NYC’s rats</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/rat-inspections/</link>
+      <pubDate>Mon, 07 Nov 2022 08:49:22 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/rat-inspections/</guid>
+      <description>&lt;p&gt;The Environment and Health Data Portal looks a little bit different! We recently redesigned our site to make it easier for you to find important data and information on how the environment affects health.  &lt;/p&gt;&#xA;&lt;p&gt;Here&amp;rsquo;s what the new site has to offer: &lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;An updated design:&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;The whole site got a fresh design to make exploring easier for you – whether you’re on a desktop computer, a phone, or a tablet. It&amp;rsquo;s been optimized for accessibility, translation, and clear, simple presentation of information, using the &lt;a href=&#34;https://www1.nyc.gov/assets/oti/html/nyc-core-framework/index.html&#34;&gt;NYC Core Framework&lt;/a&gt;, an open-source framework based on Bootstrap.  &lt;/p&gt;</description>
     </item>
     <item>
       <title>The redesigned EH Data Portal</title>

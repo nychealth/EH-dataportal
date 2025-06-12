@@ -6,7 +6,7 @@
     <description>Recent content in Rats on Environment &amp; Health Data Portal</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 31 Mar 2025 11:14:56 -0400</lastBuildDate>
+    <lastBuildDate>Thu, 12 Jun 2025 08:29:34 -0400</lastBuildDate>
     <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/rats/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Rats in your neighborhood</title>
@@ -21,6 +21,13 @@
       <pubDate>Thu, 01 Jun 2023 11:14:56 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/rat-mitigation-zones/</guid>
       <description>&lt;p&gt;Rats can contaminate food, spread disease and reduce our quality of life. Rat Mitigation Zones (RMZ) are areas with high levels of rat activity, where City agencies focus resources to address rats and the conditions that support them.&lt;/p&gt;&#xA;&lt;p&gt;Choose an RMZ on the map below to view data on complaints and NYC Health Department rat control activity.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Rat complaints and NYC’s rat problem</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/rat-complaints/</link>
+      <pubDate>Thu, 12 Jun 2025 08:29:34 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/rat-complaints/</guid>
+      <description>&lt;p&gt;Everyone has a story about rats — or more likely, a complaint. If you have made a complaint using 311, you may wonder who receives it, and how it fits into the bigger picture of rat mitigation.&lt;/p&gt;&#xA;&lt;h3&gt;What happens to my 311 complaint?&lt;/h3&gt;&#xA;&lt;p&gt;Each year, the Health Department gets about 40,000 complaints about rat activity through 311 (&lt;a href=&#34;../../data-features/rat-mitigation-zones/&#34;&gt;you can explore these data on NYC Open Data)&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;p&gt;When you submit a complaint via 311, it goes to the NYC Health Department, which is responsible for enforcing the New York City Health Code requirement that building owners keep their properties pest-free. The Health Department checks your complaint against our records. If the property hasn&amp;rsquo;t been inspected recently, the Health Department will send an inspector.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Why trash is a public health issue</title>

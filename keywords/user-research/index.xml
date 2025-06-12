@@ -23,6 +23,13 @@
       <description>&lt;p&gt;If you are a data scientist, programmer, open data enthusiast, open source evangelist, data visualiation specialist or somebody who aspires to be any of those, then there are some advanced features of the Environment and Health Data Portal that you can use to get and use our data.&lt;/p&gt;&#xA;&lt;h2&gt;Re-use data visualizations&lt;/h2&gt;&#xA;&lt;p&gt;The visualizations on our site&amp;rsquo;s &lt;a href=&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/&#34;&gt;Data Explorer&lt;/a&gt; use a JavaScript library called &lt;a href=&#34;https://vega.github.io/vega-lite/&#34;&gt;Vega-Lite&lt;/a&gt;. Vega-lite provides a few options for you to use the visualizations in other contexts.&lt;/p&gt;</description>
     </item>
     <item>
+      <title>Inspection data are the key to controlling NYC’s rats</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/rat-inspections/</link>
+      <pubDate>Mon, 07 Nov 2022 08:49:22 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/rat-inspections/</guid>
+      <description>&lt;p&gt;The Environment and Health Data Portal looks a little bit different! We recently redesigned our site to make it easier for you to find important data and information on how the environment affects health.  &lt;/p&gt;&#xA;&lt;p&gt;Here&amp;rsquo;s what the new site has to offer: &lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;An updated design:&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;The whole site got a fresh design to make exploring easier for you – whether you’re on a desktop computer, a phone, or a tablet. It&amp;rsquo;s been optimized for accessibility, translation, and clear, simple presentation of information, using the &lt;a href=&#34;https://www1.nyc.gov/assets/oti/html/nyc-core-framework/index.html&#34;&gt;NYC Core Framework&lt;/a&gt;, an open-source framework based on Bootstrap.  &lt;/p&gt;</description>
+    </item>
+    <item>
       <title>The redesigned EH Data Portal</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/about/redesign/</link>
       <pubDate>Mon, 07 Nov 2022 08:49:22 -0400</pubDate>
