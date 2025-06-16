@@ -158,21 +158,19 @@
 
         <div class="col-lg-3 col-sm-6">
           <div class="card content-card">
+            <a class="position-relative" href={{ relURL "data-stories" }}>
             <div class="card-content data-stories mb-4">
-              <a class="position-relative" href={{ relURL "data-stories" }}>
                 <div class="tab-data-stories h-100 w-100 position-absolute"></div>
                 {{ $src := resources.GetMatch ( path.Join "**/image_tab_data_stories.jpg" )}}
                 {{ $image := $src.Resize "x1200 jpg q75"}}
                 <img class="card-img-top" src="{{ relURL $image.RelPermalink }}">
-              </a>
               <div class="card-body">
                 <h3 class="card-title">Data stories</h3>
                 <p>Explainers on important health issues.</p>
-                <div class="d-flex justify-content-end">
-                  <a class="fs-sm font-weight-bold" href={{ relURL "data-stories" }}>All data stories<i class="fas fa-arrow-circle-right ml-1" aria-hidden="true"></i></a>
-                </div>
               </div>
+
             </div>
+          </a>
           </div>
         </div>
 
@@ -197,21 +195,20 @@
 
         <div class="col-lg-3 col-sm-6">
           <div class="card content-card">
+            <a class="position-relative" href={{ relURL "neighborhood-reports" }}>
             <div class="card-content n-reports mb-4">
-              <a class="position-relative" href={{ relURL "neighborhood-reports" }}>
                 <div class="tab-neighborhood-reports h-100 w-100 position-absolute"></div>
                 {{ $src := resources.GetMatch ( path.Join "**/image_tab_neighborhood_reports.jpg" )}}
                 {{ $image := $src.Resize "x1200 jpg q75"}}
                 <img class="card-img-top" src="{{ relURL $image.RelPermalink }}">
-              </a>
+           
               <div class="card-body">
                 <h3 class="card-title">Neighborhood Reports</h3>
                 <p>Data on key neighborhood issues.</p>
-                <div class="d-flex justify-content-end">
-                  <a class="fs-sm font-weight-bold" href={{ relURL "neighborhood-reports" }}>Search here <i class="fas fa-arrow-circle-right ml-1" aria-hidden="true"></i></a>
-                </div>
               </div>
+
             </div>
+          </a>
           </div>
         </div>
 
@@ -219,23 +216,24 @@
 
         <div class="col-lg-3 col-sm-6">
           <div class="card content-card">
+            <a class="position-relative" href={{ relURL "data-explorer" }}>
             <div class="card-content data-explorer mb-4">
-              <a class="position-relative" href={{ relURL "data-explorer" }}>
                 <div class="tab-data-explorer h-100 w-100 position-absolute"></div>
                 {{ $src := resources.GetMatch ( path.Join "**/image_tab_data_explorer.jpg" )}}
                 {{ $image := $src.Resize "x1200 jpg q75"}}
                 <img class="card-img-top" src="{{ relURL $image.RelPermalink }}">
-              </a>
+              
               <div class="card-body">
                 <h3 class="card-title">Data Explorer</h3>
                 <p>Maps, trends, tables, and more: hundreds of datasets.</p>
-                <div class="d-flex justify-content-end">
-                  <a class="fs-sm font-weight-bold" href={{ relURL "data-explorer" }}>Get data <i class="fas fa-arrow-circle-right ml-1" aria-hidden="true"></i></a>
-                </div>
               </div>
+
             </div>
+            </a>
           </div>
         </div>
+
+
       </div>
 
     </div>
