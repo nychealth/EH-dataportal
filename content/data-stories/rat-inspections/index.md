@@ -1,7 +1,7 @@
 ---
 title: Inspection data are the key to controlling NYC’s rats
 draft: false
-date: 2025-06-07T08:49:22-04:00
+date: 2025-06-14T08:49:22-04:00
 image: inspector_looks3.jpg
 photocredit: NYC Health Department
 categories:
@@ -40,7 +40,7 @@ Health Department inspectors conduct about 150,000 rat inspections each year. So
 
 <!-- add other story link -->
 
-<strong>You can read more about the inspection process here.</strong><br>
+<strong><a href="../../data-stories/rat-complaints">You can read more about the inspection process here.</a></strong><br>
 
 Inspection data helps give us a well-rounded look at rat activity across New York City.
 
