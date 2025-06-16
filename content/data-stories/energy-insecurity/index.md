@@ -1,25 +1,26 @@
 ---
 title: Energy is critical for health and climate resilience — but not all New Yorkers may be able to afford it
-shortTitle: Flooding and health
+shortTitle: Energy insecurity and health
 date: 2025-06-15T09:01:00-04:00
 draft: false
-seo_title: "What Hurricane Ida and Superstorm Sandy taught us about flooding and health"
-seo_description: "A data story about the health impacts from climate change-related flooding."
+seo_title: "Affordable energy is key to health and climate resilience"
+seo_description: "A data story about the health impacts from climate change-driven energy insecurity."
 tags:
 categories: ["housing", "inequality", "climate", "neighborhoods"]
 keywords:
   [
     "energy insecurity",
-    "storms",
+    "heat",
     "inequities",
     "affordable housing",
     "social determinants",
+    "air conditioning",
   ]
 image: AC_buildings.jpg
 photocredit: Photographer/Mayoral Photography Office, City of New York or NYC
 related:
-  - title: "Flood Vulnerability Index"
-    url: "data-features/flood-vulnerability-index/"
+  - title: "Heat Vulnerability Index"
+    url: "data-features/hvi/"
   - title: "How power outages affect health"
     url: "data-stories/poweroutages/"
   - title: "The urban heat island effect in NYC"
@@ -45,6 +46,10 @@ Almost 3 in 10 of New Yorkers — 28% — experience three or more forms of ener
 <div class="my-4 py-2 border-top border-bottom">
 <div style="min-height:561px" id="datawrapper-vis-KSQz7"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/KSQz7/embed.js" charset="utf-8" data-target="#datawrapper-vis-KSQz7"></script><noscript><img src="https://datawrapper.dwcdn.net/KSQz7/full.png" alt="" /></noscript></div>
 </div>
+
+<div class="sr-only">
+<div style="min-height:910px" id="datawrapper-vis-6t3WI"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/6t3WI/embed.js" charset="utf-8" data-target="#datawrapper-vis-6t3WI"></script><noscript><img src="https://datawrapper.dwcdn.net/6t3WI/full.png" alt="" /></noscript></div>
+</div>
 <div class="narrow">
 
 Heat-exacerbated deaths, which can happen when being too hot makes a chronic condition worse, have been increasing in the last decade. This is due to climate change increasing the number of hot days and heat waves, both of which are dangerous.
@@ -54,7 +59,13 @@ But 34% of energy-insecure New Yorkers reduced or did not use air conditioning d
 </div>
 
 <div class="my-4">
+<div aria-hidden="true">
 <div style="min-height:493px" id="datawrapper-vis-x9xYd"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/x9xYd/embed.js" charset="utf-8" data-target="#datawrapper-vis-x9xYd"></script><noscript><img src="https://datawrapper.dwcdn.net/x9xYd/full.png" alt="" /></noscript></div>
+</div>
+</div>
+
+<div class="sr-only">
+<div style="min-height:962px" id="datawrapper-vis-y773P"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/y773P/embed.js" charset="utf-8" data-target="#datawrapper-vis-y773P"></script><noscript><img src="https://datawrapper.dwcdn.net/y773P/full.png" alt="" /></noscript></div>
 </div>
 
 <div class="narrow">
@@ -63,7 +74,15 @@ Rented units with cracks, gaps, or holes in need of maintenance are also more ex
 
 New Yorkers who have trouble paying utility bills are more likely to be renters and live in properties with housing problems that threaten health. In [some lower-income neighborhoods, more than half of renter-occupied homes need maintenance to address mold, pests, lead paint hazards](../../data-stories/housing-creates-health/), or other issues that affect health. [Neighborhood poverty levels](../../data-explorer/economic-conditions/?id=103#display=summary) are determined by the percentage of people in a neighborhood with an income below the federal poverty line.
 
+<div class= "my-4">
+<div aria-hidden="true">
 <div style="min-height:756px" id="datawrapper-vis-A0l8y"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/A0l8y/embed.js" charset="utf-8" data-target="#datawrapper-vis-A0l8y"></script><noscript><img src="https://datawrapper.dwcdn.net/A0l8y/full.png" alt="Map showing health-related housing problems as a percent in the context of neighborhood poverty" /></noscript></div>
+</div>
+</div>
+
+<div class="sr-only">
+<div style="min-height:991px" id="datawrapper-vis-FhUSI"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/FhUSI/embed.js" charset="utf-8" data-target="#datawrapper-vis-FhUSI"></script><noscript><img src="https://datawrapper.dwcdn.net/FhUSI/full.png" alt="" /></noscript></div>
+</div>
 
 ### Black and Latino New Yorkers are more likely to experience energy insecurity 
 
