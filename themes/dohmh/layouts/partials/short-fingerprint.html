@@ -31,7 +31,7 @@
 {{ $short_relperm := replaceRE `(\.js$|\.css$)` ( print "." $rsrc_hash "$1" ) $relperm }}
 {{ $short_perm := replaceRE `(\.js$|\.css$)` ( print "." $rsrc_hash "$1" ) $relperm  }}
 
-{{ warnf ">>>>>  short_relperm  >> " $short_relperm }}
+{{/*  {{ warnf ">>>>>  short_relperm  >> " $short_relperm }}  */}}
 {{/*  {{ warnf ">>>>>  short_perm  >> " $short_perm }}  */}}
 
 {{/*  copy & publish resource to the short_path location  */}}
