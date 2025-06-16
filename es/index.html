@@ -45,11 +45,11 @@
 <title>NYC Environment and Health Data Portal</title>
 
 
-<meta name="build_datetime" content='lunes, 16 de junio de 2025, 13:45:16 EDT'>
+<meta name="build_datetime" content='lunes, 16 de junio de 2025, 13:56:43 EDT'>
 <meta name="build_environment" content='prod_prod'>
 <meta name="git_branch" content='production'>
-<meta name="git_last_hash" content='2a2afeef11'>
-<meta name="git_last_msg" content='Merge pull request #1288 from nychealth/content-heat-report-25'>
+<meta name="git_last_hash" content='31377ac3fd'>
+<meta name="git_last_msg" content='Merge pull request #1287 from nychealth/content-card-links'>
 
 
         <link rel="alternate" hreflang="en" href="/IndicatorPublic/" title="English">
@@ -411,6 +411,18 @@
 </header>
 <main id="skip-header-target" role="main" data-pagefind-body>
 
+<style>
+  .content-card a {
+    text-decoration: none!important;
+    color: inherit;
+  }
+
+  .card-content:hover {
+    
+    transform: scale(1.01)
+  }
+</style>
+
 <article class="container-fluid p-0 overflow-hidden" id="primary-content">
   <div class="row no-gutters">
     <div class="container wide">
@@ -478,7 +490,7 @@
       <div class="row">
         <div class="col-lg-4 px-20">
           <h2 class="fs-xl data-stories border-bottom pb-2"><i class="fas fa-passport mr-1" aria-hidden="true"></i>New data stories</h2>
-          <div class="card-content mb-4">
+          <div class="mb-4 ds-card">
             <div><a href="/IndicatorPublic/es/data-stories/violence/" class="row no-gutters border-bottom py-3">
                 <div class="col-4">
                   
@@ -584,61 +596,57 @@
 
         <div class="col-lg-3 col-sm-6">
           <div class="card content-card">
+            <a class="position-relative" href=/IndicatorPublic/data-stories>
             <div class="card-content data-stories mb-4">
-              <a class="position-relative" href=/IndicatorPublic/data-stories>
                 <div class="tab-data-stories h-100 w-100 position-absolute"></div>
                 
                 
                 <img class="card-img-top" src="/IndicatorPublic/images/image_tab_data_stories_hu_d40f4ef294557d22.jpg">
-              </a>
               <div class="card-body">
                 <h3 class="card-title">Data stories</h3>
                 <p>Explainers on important health issues.</p>
-                <div class="d-flex justify-content-end">
-                  <a class="fs-sm font-weight-bold" href=/IndicatorPublic/data-stories>All data stories<i class="fas fa-arrow-circle-right ml-1" aria-hidden="true"></i></a>
-                </div>
               </div>
+
             </div>
+          </a>
           </div>
         </div>
 
         <div class="col-lg-3 col-sm-6">
           <div class="card content-card">
+            <a class="position-relative" href=/IndicatorPublic/data-features>
             <div class="card-content data-features mb-4">
-              <a class="position-relative" href=/IndicatorPublic/data-features>
                 <div class="tab-data-features h-100 w-100 position-absolute"></div>
                 
                 
                 <img class="card-img-top" src="/IndicatorPublic/images/image_tab_data_features_hu_59734dfde578cd24.jpg">
-              </a>
+              
               <div class="card-body">
                 <h3 class="card-title">Data Features</h3>
                 <p>Custom interactives, dashboards and reports.</p>
-                <div class="d-flex justify-content-end">
-                  <a class="fs-sm font-weight-bold" href=/IndicatorPublic/data-features>Get data <i class="fas fa-arrow-circle-right ml-1" aria-hidden="true"></i></a>
-                </div>
               </div>
+                            
             </div>
+            </a>
           </div>
         </div>
 
         <div class="col-lg-3 col-sm-6">
           <div class="card content-card">
+            <a class="position-relative" href=/IndicatorPublic/neighborhood-reports>
             <div class="card-content n-reports mb-4">
-              <a class="position-relative" href=/IndicatorPublic/neighborhood-reports>
                 <div class="tab-neighborhood-reports h-100 w-100 position-absolute"></div>
                 
                 
                 <img class="card-img-top" src="/IndicatorPublic/images/image_tab_neighborhood_reports_hu_73d982f9034e9dab.jpg">
-              </a>
+           
               <div class="card-body">
                 <h3 class="card-title">Neighborhood Reports</h3>
-                <p>Data on key neighborhood issues.</p>
-                <div class="d-flex justify-content-end">
-                  <a class="fs-sm font-weight-bold" href=/IndicatorPublic/neighborhood-reports>Search here <i class="fas fa-arrow-circle-right ml-1" aria-hidden="true"></i></a>
-                </div>
+                <p>Data on key issues for your neighborhood.</p>
               </div>
+
             </div>
+          </a>
           </div>
         </div>
 
@@ -646,23 +654,24 @@
 
         <div class="col-lg-3 col-sm-6">
           <div class="card content-card">
+            <a class="position-relative" href=/IndicatorPublic/data-explorer>
             <div class="card-content data-explorer mb-4">
-              <a class="position-relative" href=/IndicatorPublic/data-explorer>
                 <div class="tab-data-explorer h-100 w-100 position-absolute"></div>
                 
                 
                 <img class="card-img-top" src="/IndicatorPublic/images/image_tab_data_explorer_hu_1b67140e7943b799.jpg">
-              </a>
+              
               <div class="card-body">
                 <h3 class="card-title">Data Explorer</h3>
                 <p>Maps, trends, tables, and more: hundreds of datasets.</p>
-                <div class="d-flex justify-content-end">
-                  <a class="fs-sm font-weight-bold" href=/IndicatorPublic/data-explorer>Get data <i class="fas fa-arrow-circle-right ml-1" aria-hidden="true"></i></a>
-                </div>
               </div>
+
             </div>
+            </a>
           </div>
         </div>
+
+
       </div>
 
     </div>
