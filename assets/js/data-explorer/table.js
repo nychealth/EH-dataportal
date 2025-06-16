@@ -136,7 +136,7 @@ const renderTable = () => {
         .groupby("TimePeriod", "GeoTypeDesc", "GeoID", "GeoRank", "BoroID", "Borough", "Geography")
         .pivot("MeasurementDisplay", "DisplayCI", {sort: false})
         .derive({
-            Area: aq.escape(d => {  // create Area field: Borough + Neighborhood
+            Area: aq.escape(d => {  // create Area field: Borough + Neighborhood; xx and yy are used to replace later with HTML
                 if (d.Borough && d.GeoTypeDesc != 'Borough') {
                     return `${d.Geography} xx ${d.Borough} yy`;
                 } else {
@@ -158,6 +158,7 @@ const renderTable = () => {
                 aq.matches("Number tested"),
                 aq.matches(/^Number$/),
                 aq.matches("Number (total)"),
+                aq.matches("Number (3.5+"),
                 aq.matches(/number/i),
                 aq.matches("Density"),
                 aq.matches(/total/i),
@@ -170,6 +171,7 @@ const renderTable = () => {
                 aq.matches("Age-adjusted rate (Males)"),
                 aq.matches("Age-adjusted rate"),
                 aq.matches("Average annual rate"),
+                aq.matches("Rate (3.5+"),
                 aq.matches(/rate/i),
                 aq.matches(/^Percent$/),
                 aq.matches("Age-adjusted percent"),
@@ -185,7 +187,7 @@ const renderTable = () => {
         )
     
     // console.log("filteredTableAqData [renderTable]");
-    // filteredTableAqData.print({limit: 10})
+    // filteredTableAqData.print({limit: 100})
     
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
     // export Arquero table to HTML
@@ -225,6 +227,8 @@ const renderTable = () => {
 
     const notSearchCols = Array.from({length: dataColumnsCount}, (_, i) => i).filter(x => x != 7);
 
+    const sortBy = dataColumnsCount - 1 // get index position of last column
+
     // define which column indexes define which groups
     
     const groupColumnTime = 0
@@ -250,11 +254,24 @@ const renderTable = () => {
         ],
         bInfo: false,
         fixedHeader: true,
-        orderFixed: [[ 0, 'desc' ], [ 3, 'asc' ], [ 4, 'asc' ]], // TimePeriod, GeoRank, BoroID
+        order: [[sortBy, 'desc']],                  // Initial sort by the last column
+        orderFixed: [[ 0, 'desc' ], [ 3, 'asc' ]],  // TimePeriod, GeoRank 
         columnDefs: [
-            { type: 'natural', targets: '_all' },
             { visible: false, targets: [0, 1, 2, 3, 4, 5, 6] },
             { searchable: false, targets: [...notSearchCols] },
+            { type: 'natural', targets: ['_all'] }, // enforces natural sorting - which handles number/string combos
+            {
+                targets: 8, // replace with correct index
+                render: function (data, type, row) {
+                    if (type === 'sort' || type === 'type') {
+                        // Remove commas and try to parse as float
+                        const cleaned = data.replace(/,/g, '');
+                        const num = parseFloat(cleaned);
+                        return isNaN(num) ? -Infinity : num;
+                    }
+                    return data; // For display and filtering, return original
+                }
+            },
             {
                 targets: 7, // Adjust to the column index where you need formatting
                 render: function (data, type, row) {
@@ -264,7 +281,8 @@ const renderTable = () => {
                     }
                     return data;
                 }
-            }
+            },
+
         ],
         language: {
             search: "Find a neighborhood:"  // Change the search box prompt text
@@ -298,7 +316,6 @@ const renderTable = () => {
                     // console.log("i", i);
                     
                     const time = data[i][0]
-                    const groupName = `${time}-${group}`
                     
                     // console.log("time", time);
 

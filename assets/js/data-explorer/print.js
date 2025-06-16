@@ -8,9 +8,9 @@
 // Fire print modal and draw chart on delay
 // ----------------------------------------------------------------------- //
 
-var visWidth;
+let visWidth;
 
-var initialSource = ["Chart: NYC Health Department - Environment and Health Data Portal"];
+let initialSource = ["Chart: NYC Health Department - Environment and Health Data Portal"];
 
 
 function printModal() {
@@ -23,7 +23,7 @@ function printModal() {
 // Draw chart
 // ----------------------------------------------------------------------- //
 
-var wrapLegend = false;
+let wrapLegend = false;
 
 function printViz() {
 
@@ -60,7 +60,7 @@ function changeTrendSpec() {
 
     checkSourceLength()
 
-    var sourceArray = ["Chart: NYC Health Department - Environment and Health Data Portal"]
+    let sourceArray = ["Chart: NYC Health Department - Environment and Health Data Portal"]
 
     if (Array.isArray(vizSource)) {
           sourceArray.push(...vizSource); // Spread to add each item separately
@@ -77,7 +77,7 @@ function changeTrendSpec() {
         "columns": columns
       }
 
-    var sourceLayer = {
+    let sourceLayer = {
         "description": "layer with source info",
         "mark": {
           "type": "text",
@@ -99,7 +99,7 @@ function changeTrendSpec() {
         }
       }
 
-    var modalFootnotes = document.getElementById('modalFootnotes')
+    let modalFootnotes = document.getElementById('modalFootnotes')
 
     modalFootnotes.innerHTML = document.getElementById('trend-unreliability').innerHTML
 
@@ -115,7 +115,7 @@ function changeTrendSpec() {
 function changeMapSpec(x) {
   checkSourceLength();
 
-  var sourceArray = initialSource;
+  let sourceArray = initialSource;
 
   // Safely add sources only once
   if (Array.isArray(vizSource)) {
@@ -146,7 +146,7 @@ function changeMapSpec(x) {
   });
 
   if (!sourceLayerExists) {
-      var sourceLayer = {
+      let sourceLayer = {
           "mark": {
               "type": "text",
               "fontSize": 11,
@@ -171,7 +171,7 @@ function changeMapSpec(x) {
   }
 
   // Update modal footnotes
-  var modalFootnotes = document.getElementById('modalFootnotes');
+  let modalFootnotes = document.getElementById('modalFootnotes');
   modalFootnotes.innerHTML = document.getElementById('map-unreliability').innerHTML;
 
   if (modalFootnotes.textContent.length < 8) {
@@ -187,7 +187,7 @@ function changeMapSpec(x) {
 function changeLinksSpec() {
   checkSourceLength()
 
-  var sourceArray = ["Chart: NYC Health Department - Environment and Health Data Portal"]
+  let sourceArray = ["Chart: NYC Health Department - Environment and Health Data Portal"]
 
       if (Array.isArray(vizSource)) {
         sourceArray.push(...vizSource); // Spread to add each item separately
@@ -197,7 +197,7 @@ function changeLinksSpec() {
 
     sourceArray.push(vizSourceSecond)
 
-    var sourceLayer = {
+    let sourceLayer = {
         "mark": {
           "type": "text",
           "fontSize": 11,
@@ -218,7 +218,7 @@ function changeLinksSpec() {
         }
       }
 
-      var modalFootnotes = document.getElementById('modalFootnotes')
+      let modalFootnotes = document.getElementById('modalFootnotes')
 
       modalFootnotes.innerHTML = document.getElementById('links-unreliability').innerHTML
   
@@ -235,7 +235,7 @@ function changeLinksSpec() {
 function changeDisparitiesSpec() {
     checkSourceLength()
 
-    var sourceLayer = {
+    let sourceLayer = {
         "mark": {
           "type": "text",
           "fontSize": 11,
@@ -259,7 +259,7 @@ function changeDisparitiesSpec() {
         }
       }
 
-      var modalFootnotes = document.getElementById('modalFootnotes')
+      let modalFootnotes = document.getElementById('modalFootnotes')
 
       modalFootnotes.innerHTML = document.getElementById('links-unreliability').innerHTML
   
@@ -271,7 +271,7 @@ function changeDisparitiesSpec() {
 // Deactive Save Button for table
 // ----------------------------------------------------------------------- //
 window.addEventListener('hashchange', function() {
-  var chartbtn = document.getElementById('chartSaver')
+  let chartbtn = document.getElementById('chartSaver')
   currentHash === 'display=summary' ? chartbtn.classList.add('disabled') : chartbtn.classList.remove('disabled')
 });
 

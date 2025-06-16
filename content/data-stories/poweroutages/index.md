@@ -22,8 +22,8 @@ photocredit: "Benjamin Kanter/Mayoral Photography Office, City of New York"
 related:
   - title: "Protecting New Yorkers from extreme heat"
     url: "data-stories/heat/"
-  - title: "Real-time heat-related illness"
-    url: "data-features/heat-syndrome/"
+  - title: "Flood Vulnerability Index"
+    url: "data-features/flood-vulnerability-index/"
   - title: "What storms Ida and Sandy taught us about flooding and health"
     url: "data-stories/flooding-and-health/"
 ---

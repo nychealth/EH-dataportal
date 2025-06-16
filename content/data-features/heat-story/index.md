@@ -32,6 +32,7 @@ related:
   - title: "Interactive Heat Vulnerability Index"
     url: "data-features/hvi/"
 blurb: Read about New Yorkers' experiences with heat in the context of climate and health data.
+weight: 2
 ---
 
 As climate change worsens, extreme heat becomes more frequent and more intense. <a href="{{<baseurl>}}data-stories/localtemp/"> Cities get even hotter because of the urban heat island effect.</a> But even within New York City, some areas are hotter than others.

@@ -169,18 +169,16 @@
 
 {{ define "js_bot" }}
 
-
-  {{- $js := resources.Get "js/uhflist.js" -}}
-  {{ $secureJS := $js | resources.Fingerprint "sha512" }}
-  <script type="text/javascript" src="{{ $secureJS.RelPermalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
+  {{- $uhflist_js := resources.Get "js/uhflist.js" | partial "short-fingerprint.html" -}}
+  <script type="text/javascript" src="{{ $uhflist_js.RelPermalink }}" integrity="{{ $uhflist_js.Data.Integrity }}"></script>
 
   <!-- flexdatalist -->
 
-  {{- $flexdatalist_css := resources.Get "node_modules/jquery-flexdatalist/jquery.flexdatalist.min.css" -}}
-  <link rel="stylesheet" href="{{ $flexdatalist_css.RelPermalink }}"/>
+  {{- $flexdatalist_css := resources.Get "node_modules/jquery-flexdatalist/jquery.flexdatalist.min.css" | partial "short-fingerprint.html" -}}
+  <link rel="stylesheet" href="{{ $flexdatalist_css.RelPermalink }}" integrity="{{ $flexdatalist_css.Data.Integrity }}"/>
 
-  {{- $flexdatalist_js := resources.Get "node_modules/jquery-flexdatalist/jquery.flexdatalist.min.js" -}}
-  <script type="text/javascript" src="{{ $flexdatalist_js.RelPermalink }}"></script>
+  {{- $flexdatalist_js := resources.Get "node_modules/jquery-flexdatalist/jquery.flexdatalist.min.js" | partial "short-fingerprint.html" -}}
+  <script type="text/javascript" src="{{ $flexdatalist_js.RelPermalink }}" integrity="{{ $flexdatalist_js.Data.Integrity }}"></script>
 
 
 <script type="text/javascript">

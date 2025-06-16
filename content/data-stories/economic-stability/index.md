@@ -2,8 +2,8 @@
 title: Economic stability creates health
 date: 2024-02-08T09:01:00-04:00
 draft: false
-seo_title: "How economic stability creates health "
-seo_description: "A data story about how economic stability creates health"
+seo_title: "How economic stability creates health"
+seo_description: "A data story about how economic stability creates health."
 tags:
 categories: ["housing", "inequality", "childhealth", "foodanddrink"]
 keywords:
