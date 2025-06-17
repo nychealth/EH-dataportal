@@ -6,7 +6,7 @@ draft: false
 seo_title: "Affordable energy is key to health and climate resilience"
 seo_description: "A data story about the health impacts from climate change-driven energy insecurity."
 tags:
-categories: ["housing", "inequality", "climate", "neighborhoods"]
+categories: ["housing", "inequality", "climatehealth", "neighborhoods"]
 keywords:
   [
     "energy insecurity",
@@ -76,12 +76,12 @@ New Yorkers who have trouble paying utility bills are more likely to be renters 
 
 <div class= "my-4">
 <div aria-hidden="true">
-<div style="min-height:756px" id="datawrapper-vis-A0l8y"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/A0l8y/embed.js" charset="utf-8" data-target="#datawrapper-vis-A0l8y"></script><noscript><img src="https://datawrapper.dwcdn.net/A0l8y/full.png" alt="Map showing health-related housing problems as a percent in the context of neighborhood poverty" /></noscript></div>
+<div style="min-height:756px" id="datawrapper-vis-JylAM"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/JylAM/embed.js" charset="utf-8" data-target="#datawrapper-vis-JylAM"></script><noscript><img src="https://datawrapper.dwcdn.net/JylAM/full.png" alt="Map showing health-related housing problems as a percent in the context of neighborhood poverty" /></noscript></div>
 </div>
 </div>
 
 <div class="sr-only">
-<div style="min-height:991px" id="datawrapper-vis-FhUSI"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/FhUSI/embed.js" charset="utf-8" data-target="#datawrapper-vis-FhUSI"></script><noscript><img src="https://datawrapper.dwcdn.net/FhUSI/full.png" alt="" /></noscript></div>
+<div style="min-height:973px" id="datawrapper-vis-A255F"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/A255F/embed.js" charset="utf-8" data-target="#datawrapper-vis-A255F"></script><noscript><img src="https://datawrapper.dwcdn.net/A255F/full.png" alt="" /></noscript></div>
 </div>
 
 ### Black and Latino New Yorkers are more likely to experience energy insecurity 
