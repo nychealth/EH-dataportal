@@ -41,18 +41,18 @@ Almost 3 in 10 of New Yorkers — 28% — experience three or more forms of ener
 
 [About one in three New Yorkers reported that their homes were too hot or too cold](https://pubmed.ncbi.nlm.nih.gov/38315917/) to be comfortable and safe. This can cause or trigger health issues , like asthma, heart problems, and mental health conditions.
 
+Heat-exacerbated deaths, which can happen when being too hot makes a chronic condition worse, have been increasing in the last decade. This is due to climate change increasing the number of hot days and heat waves, both of which are dangerous.
+
 </div>
 
 <div class="my-4 py-2 border-top border-bottom">
-<div style="min-height:561px" id="datawrapper-vis-KSQz7"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/KSQz7/embed.js" charset="utf-8" data-target="#datawrapper-vis-KSQz7"></script><noscript><img src="https://datawrapper.dwcdn.net/KSQz7/full.png" alt="" /></noscript></div>
+<div style="min-height:578px" id="datawrapper-vis-moaSW"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/moaSW/embed.js" charset="utf-8" data-target="#datawrapper-vis-moaSW"></script><noscript><img src="https://datawrapper.dwcdn.net/moaSW/full.png" alt="" /></noscript></div>
 </div>
 
 <div class="sr-only">
 <div style="min-height:910px" id="datawrapper-vis-6t3WI"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/6t3WI/embed.js" charset="utf-8" data-target="#datawrapper-vis-6t3WI"></script><noscript><img src="https://datawrapper.dwcdn.net/6t3WI/full.png" alt="" /></noscript></div>
 </div>
 <div class="narrow">
-
-Heat-exacerbated deaths, which can happen when being too hot makes a chronic condition worse, have been increasing in the last decade. This is due to climate change increasing the number of hot days and heat waves, both of which are dangerous.
 
 But 34% of energy-insecure New Yorkers reduced or did not use air conditioning during hot weather because of energy cost concerns. Renters with air conditioning are likely to have control over cooling their home, and choosing not to use air conditioning is an easy — but dangerous — option to lower electric bills. When it gets cold out, renters are less likely to control the heat in their units, making them more likely to rely on dangerous supplemental heating methods if their homes aren’t warm enough. These methods, like using the oven to heat a space, can cause carbon monoxide poisoning and fires.
 
@@ -90,10 +90,10 @@ Energy insecurity is not just about affordability; it is an equity issue. Black 
 
 Other New Yorkers more likely to be experiencing energy insecurity include New Yorkers who:
 
-- have recently immigrated to the US
-- were born outside the US
-- have had less education
-- use electric medical equipment
+- Have recently immigrated to the US
+- Were born outside the US
+- Have had less education
+- Use electric medical equipment
 
 Fixing the equity gap in energy access means ensuring these New Yorkers are prioritized through policies and programs.
 
