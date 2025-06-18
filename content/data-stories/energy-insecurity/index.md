@@ -86,7 +86,7 @@ New Yorkers who have trouble paying utility bills are more likely to be renters 
 
 ### Black and Latino New Yorkers are more likely to experience energy insecurity 
 
-Energy insecurity is not just about affordability; it is an equity issue. Black and Latino/a New Yorkers are more likely to experience energy insecurity and power outages, and are also more likely to live in housing in need of maintenance. And Black New Yorkers are twice as likely to die of heat-related illness than white New Yorkers. These disparities are a result of structural racism, driven by racist housing policies such as redlining, discriminatory neighborhood disinvestment and less access to quality resources.
+Energy insecurity is not just about affordability; it is an equity issue. Black and Latino New Yorkers are more likely to experience energy insecurity and power outages, and are also more likely to live in housing in need of maintenance. And Black New Yorkers are twice as likely to die of heat-related illness than white New Yorkers. These disparities are a result of structural racism, driven by racist housing policies such as redlining, discriminatory neighborhood disinvestment and less access to quality resources.
 
 Other New Yorkers more likely to be experiencing energy insecurity include New Yorkers who:
 
