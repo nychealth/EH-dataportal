@@ -2,7 +2,7 @@
 title: "Why trash is a public health issue"
 date: 2023-03-20T13:11:44-04:00
 draft: false
-seo_title: "How sanitation, trash, and rats affect our city."
+seo_title: "How sanitation, trash, and rats affect our city"
 seo_description: "A data story on the state of our neighborhoods, and what it takes to build safe, clean neighborhoods."
 tags:
 categories: ["publicspace", "inequality", "pests"]
@@ -20,8 +20,8 @@ keywords:
 image: ds-sanitation-trucks.jpg
 photocredit: "Michael Appleton/Mayoral Photography Office, City of New York"
 related:
-  - title: "Rats in your neighborhood"
-    url: "data-features/rats-in-your-neighborhood/"
+  - title: "Rat complaints and NYC’s rat problem"
+    url: "data-stories/rat-complaints/"
   - title: "Rat Mitigation Zones"
     url: "data-features/rat-mitigation-zones/"
   - title: "Mice and rats"

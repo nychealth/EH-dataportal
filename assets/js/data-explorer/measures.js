@@ -235,7 +235,6 @@ const setDefaultLinksMeasure = async (visArray) => {
 
         }
 
-        // defaultLinkMeasureTimes = defaultArray[0].AvailableTime; // <<<<<<<<<<
 
         const defaultPrimaryMeasureId = defaultArray[0].MeasureID;
         const defaultSecondaryMeasureId = defaultArray[0].VisOptions[0].Links[0].Measures[0]?.MeasureID;
@@ -931,7 +930,6 @@ const handleTableTimeFilter = (el) => {
 
         if (e.target.checked) {
 
-            // selectedTableTimes = [e.target.value]
             selectedTableTimes.push(e.target.value)
 
         } else {
@@ -1127,12 +1125,16 @@ const renderMeasures = async () => {
 
     // console.log("contentTrend", contentTrend);
 
-    // ----- set dropdowns for this indicator ================================================== //
+    // ===== set dropdowns for this indicator ================================================== //
 
     const dropdownTableGeos = contentTable.querySelector('div[aria-labelledby="dropdownTableGeos"]');
     const dropdownTableTimes = contentTable.querySelector('div[aria-labelledby="dropdownTableTimes"]');
 
     const dropdownTrendSelection = contentTrend.querySelector('div[aria-labelledby="dropdownTrendSelection"]');
+    const dropdownCompSelection  = contentTrend.querySelector('div[aria-labelledby="dropdownCompSelection"]');
+    const trendSelectionLabel = document.getElementById('tc1');
+    const compSelectionLabel = document.getElementById('tc2');
+
 
     const dropdownMapMeasures = contentMap.querySelector('div[aria-labelledby="dropdownMapMeasures"]');
     const dropdownMapTimes = contentMap.querySelector('div[aria-labelledby="dropdownMapTimes"]');
@@ -1142,13 +1144,16 @@ const renderMeasures = async () => {
 
     // console.log("dropdownTrendSelection", dropdownTrendSelection);
 
-
-    // clear Measure Dropdowns
+    // ----- clear Measure Dropdowns--------------------------------------------------- //
 
     dropdownTableGeos.innerHTML = ``;
     dropdownTableTimes.innerHTML = ``;
 
     dropdownTrendSelection.innerHTML = ``;
+    dropdownCompSelection.innerHTML = ``;
+    trendSelectionLabel.innerHTML = ``;
+    compSelectionLabel.innerHTML = ``;
+    document.getElementById('compMenu').classList.add('hide');
 
     dropdownMapMeasures.innerHTML = ``;
     dropdownMapTimes.innerHTML = ``;
@@ -1180,7 +1185,7 @@ const renderMeasures = async () => {
     $(btnToggleDisparities).off(".gtag")
 
 
-    // ----- create dropdowns for table ================================================== //
+    // ==== create dropdowns for table ================================================== //
 
     // ----- select all --------------------------------------------------- //
 
@@ -1235,7 +1240,7 @@ const renderMeasures = async () => {
     });
 
 
-    // ----- create dropdowns for map ================================================== //
+    // ===== create dropdowns for map ================================================== //
 
     // ----- geo types --------------------------------------------------- //
 
@@ -1250,8 +1255,6 @@ const renderMeasures = async () => {
 
     dropdownMapGeoTypes.forEach(geo => {
 
-        // selectedTableGeography.push(geo);
-        
         // console.log("selectedTableGeography:", selectedTableGeography);
 
         dropdownMapGeos.innerHTML += `<button class="btn btn-primary dropdown-item link-time mapgeosbutton pl-2"
@@ -1294,10 +1297,8 @@ const renderMeasures = async () => {
         const trend       = aqTrendTimesGeos && aqTrendTimesGeos.filter(`d => d.MeasureID === ${measure.MeasureID}`).numRows() > 0;
         const links       = measure.VisOptions[0].Links && measure.VisOptions[0].Links[0].Measures[0].MeasureID;
         const disparities = measure.VisOptions[0].Links[0].Disparities == 1
-        // const comparisons = indicatorComparisonId;
-        
-        const type  = measure.MeasurementType;
-        const measureId = measure.MeasureID;
+        const type        = measure.MeasurementType;
+        const measureId   = measure.MeasureID;
 
         // console.log("measure", measure.MeasureID, "type", type, "links", links, "map", map, "trend", trend);
 
@@ -1343,7 +1344,8 @@ const renderMeasures = async () => {
             // console.log("header", header);
             // console.log("index", index);
 
-            dropdownTrendSelection.innerHTML += header ? '<div class="dropdown-title"><strong>' + header + '</strong></div>' : '';
+
+            trendSelectionLabel.innerHTML += header ?  header.toLowerCase()  : '';
 
             if (trendData) {
                 dropdownTrendSelection.innerHTML += DOMPurify.sanitize(`<button class="btn btn-primary dropdown-item trendbutton pl-2"
@@ -1429,7 +1431,8 @@ const renderMeasures = async () => {
 
             // add each unique legend title as a header, with the included comparison underneath
 
-            dropdownTrendSelection.innerHTML += title ? '<div class="dropdown-title"><strong>' + title + '</strong></div>' : '';
+            document.getElementById('compMenu').classList.remove('hide');
+            compSelectionLabel.innerHTML += title ? title.toLowerCase() : '';
 
             let comparisonIDs = [... new Set(titleGroup.array("ComparisonID"))]
 
@@ -1457,14 +1460,14 @@ const renderMeasures = async () => {
 
                     if (compGeoTypeName[0] == "Citywide") {
 
-                    dropdownTrendSelection.innerHTML += `<button class="btn btn-primary dropdown-item comparisonbutton pl-2"
+                        dropdownCompSelection.innerHTML += `<button class="btn btn-primary dropdown-item comparisonbutton pl-2"
                         data-comparison-id="${comp}"  title="${compY_axis_title}">
                         ${compY_axis_title}
                         </button>`;
 
                     } else {
                         // I am very unhappy with this kludge
-                        dropdownTrendSelection.innerHTML += `<button class="btn btn-primary dropdown-item comparisonbutton pl-2"
+                        dropdownCompSelection.innerHTML += `<button class="btn btn-primary dropdown-item comparisonbutton pl-2"
                             data-comparison-id="${comp}"  title="${compGeography[compGeography.length - 1]} ">
                             ${compGeography[compGeography.length - 1]} 
                             </button>`;
@@ -1475,7 +1478,7 @@ const renderMeasures = async () => {
                     // console.log("1 measure [MeasurementType]");
                     // console.log(compMeasurementType);
 
-                    dropdownTrendSelection.innerHTML += `<button class="btn btn-primary dropdown-item comparisonbutton pl-2"
+                    dropdownCompSelection.innerHTML += `<button class="btn btn-primary dropdown-item comparisonbutton pl-2"
                         data-comparison-id="${comp}" title="${compMeasurementType}">
                         ${compMeasurementType}
                         </button>`;
@@ -1486,7 +1489,7 @@ const renderMeasures = async () => {
                     // console.log("compIndicatorMeasure", compIndicatorMeasure);
                     // console.log("compName", compName);
 
-                    dropdownTrendSelection.innerHTML += `<button class="btn btn-primary dropdown-item comparisonbutton pl-2"
+                    dropdownCompSelection.innerHTML += `<button class="btn btn-primary dropdown-item comparisonbutton pl-2"
                         data-comparison-id="${comp}" title="${compName}">
                         ${compName}
                         </button>`;
@@ -1850,7 +1853,6 @@ const renderMeasures = async () => {
             const about   = defaultTrendMetadata[0]?.how_calculated;
             const sources = defaultTrendMetadata[0].Sources;
             const measure = defaultTrendMetadata[0].MeasurementType;
-            // const times   = defaultTrendMetadata[0].VisOptions[0].Trend[0]?.TimePeriod;
 
             aqDefaultTrendMetadata = aq.from(defaultTrendMetadata)
                 .derive({
@@ -2180,7 +2182,11 @@ const renderMeasures = async () => {
 
                 // if disparities is enabled, show the button
 
-                // btnToggleDisparities.style.display = "inline";
+
+                // ----- set measure info boxes --------------------------------------------------- //
+
+                renderTitleDescription(indicatorShortName, indicatorDesc);
+
 
             } else {
 
@@ -2232,13 +2238,13 @@ const renderMeasures = async () => {
 
                 // get measure metadata
 
-                const primaryMeasure         = defaultPrimaryLinksMeasureMetadata[0]?.MeasurementType;
-                const primaryAbout           = defaultPrimaryLinksMeasureMetadata[0]?.how_calculated;
-                const primarySources         = defaultPrimaryLinksMeasureMetadata[0]?.Sources;
+                const primaryMeasure   = defaultPrimaryLinksMeasureMetadata[0]?.MeasurementType;
+                const primaryAbout     = defaultPrimaryLinksMeasureMetadata[0]?.how_calculated;
+                const primarySources   = defaultPrimaryLinksMeasureMetadata[0]?.Sources;
 
-                const secondaryMeasure       = defaultSecondaryMeasureMetadata[0]?.MeasurementType;
-                const secondaryAbout         = defaultSecondaryMeasureMetadata[0]?.how_calculated;
-                const secondarySources       = defaultSecondaryMeasureMetadata[0]?.Sources;
+                const secondaryMeasure = defaultSecondaryMeasureMetadata[0]?.MeasurementType;
+                const secondaryAbout   = defaultSecondaryMeasureMetadata[0]?.how_calculated;
+                const secondarySources = defaultSecondaryMeasureMetadata[0]?.Sources;
 
 
                 // ----- set measure info boxes - - - - - - - - - - - - - - - - - - - - - - - - - - //
@@ -2314,11 +2320,6 @@ const renderMeasures = async () => {
                     // set links/disparities click listener
                     
                     clickLinksToggle()
-
-
-                    // if disparities is enabled, show the button
-
-                    // btnToggleDisparities.style.display = "inline";
 
                 } else {
 
@@ -2423,8 +2424,6 @@ const renderMeasures = async () => {
     // if there's no trend data or only 1 time period in all of the measures, don't show the tab
 
     const onlyOneTime = trendMeasures.every(m => m.VisOptions[0].Trend[0]?.TimePeriodID.length <= 1)
-
-    // debugger;
 
     // disable trend tab if there are no trend measures (or only 1 time period) and there are no comparison
 
@@ -2615,7 +2614,6 @@ const renderMeasures = async () => {
 
         // console.log("click [dropdownMapMeasures]", e);
 
-        // if (e.target.classList.contains("dropdown-item") && !e.target.classList.contains("active")) {
         if (e.target.classList.contains("dropdown-item")) {
 
             // console.log("gtag [dropdownMapMeasures]");
@@ -2632,7 +2630,6 @@ const renderMeasures = async () => {
 
         // console.log("click [dropdownMapTimes]", e);
 
-        // if (e.target.classList.contains("dropdown-item") && !e.target.classList.contains("active")) {
         if (e.target.classList.contains("dropdown-item")) {
 
             // console.log("gtag [dropdownMapTimes]");
@@ -2649,7 +2646,6 @@ const renderMeasures = async () => {
 
         // console.log("click [dropdownMapGeos]", e);
 
-        // if (e.target.classList.contains("dropdown-item") && !e.target.classList.contains("active")) {
         if (e.target.classList.contains("dropdown-item")) {
 
             // console.log("gtag [dropdownMapGeos]");
@@ -2666,7 +2662,6 @@ const renderMeasures = async () => {
 
         // console.log("click [dropdownTrendSelection]", e);
 
-        // if (e.target.classList.contains("dropdown-item") && !e.target.classList.contains("active")) {
         if (e.target.classList.contains("dropdown-item")) {
 
             // console.log("gtag [dropdownTrendSelection]");
@@ -2683,7 +2678,6 @@ const renderMeasures = async () => {
 
         // console.log("click [dropdownLinksMeasures]", e);
 
-        // if (e.target.classList.contains("dropdown-item") && !e.target.classList.contains("active")) {
         if (e.target.classList.contains("dropdown-item")) {
 
             // console.log("gtag [dropdownLinksMeasures]");
@@ -2700,7 +2694,6 @@ const renderMeasures = async () => {
 
         // console.log("click [dropdownLinksMeasures]", e);
 
-        // if (e.target.classList.contains("dropdown-item") && !e.target.classList.contains("active")) {
         if (e.target.classList.contains("dropdown-item")) {
 
             // console.log("gtag [btnToggleDisparities]");
