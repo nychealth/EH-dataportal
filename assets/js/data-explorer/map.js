@@ -211,52 +211,97 @@ const renderMap = (
                     "labelFontSize": 13,
                 }
             },
-            "mark": {"type": "bar", "tooltip": true, "stroke": "#161616"},
-            "params": [
-                {"name": "highlight", "select": {"type": "point", "on": "mouseover", "clear": "mouseout"}}
-            ],
-            "encoding": {
-                "y": {
-                    "field": "Value", 
-                    "type": "quantitative", 
-                    "title": null,
-                    "axis": {
-                        "labelAngle": 0,
-                        "labelFontSize": 11,
-                        "tickCount": 3
+            "layer": [
+                {
+                    "mark": {"type": "bar", "tooltip": true, "stroke": "#161616"},
+                    "params": [
+                        {"name": "highlight", "select": {"type": "point", "on": "mouseover", "clear": "mouseout"}}
+                    ],
+                    "encoding": {
+                        "y": {
+                            "field": "Value", 
+                            "type": "quantitative", 
+                            "title": null,
+                            "axis": {
+                                "labelAngle": 0,
+                                "labelFontSize": 11,
+                                "tickCount": 3
+                            }
+                        },
+                        "tooltip": [
+                            {
+                                "field": "Geography", 
+                                "title": "Neighborhood"
+                            },
+                            {
+                                "field": "valueLabel",
+                                "title": `${mapMeasurementType}`
+                            },
+                            {
+                                "field": "TimePeriod",
+                                "title": "Time period"
+                            }
+                        ],
+                        "x": {"field": "GeoID", "sort": "y", "axis": null},
+                        "color": {
+                            "bin": false,
+                            "field": "Value",
+                            "type": "quantitative",
+                            "scale": {"scheme": {"name": "viridis", "extent": [1, 0]}},
+                            "legend": false
+                        },
+                        "stroke": {
+                            "condition": [{"param": "highlight", "empty": false, "value": "cyan"}],
+                            "value": "white"
+                        },
+                        "strokeWidth": {
+                            "condition": [{"param": "highlight", "empty": false, "value": 3}],
+                            "value": 0
+                        }
                     }
                 },
-                "tooltip": [
-                    {
-                        "field": "Geography", 
-                        "title": "Neighborhood"
-                    },
-                    {
-                        "field": "valueLabel",
-                        "title": `${mapMeasurementType}`
-                    },
-                    {
-                        "field": "TimePeriod",
-                        "title": "Time period"
-                    }
-                ],
-                "x": {"field": "GeoID", "sort": "y", "axis": null},
-                "color": {
-                    "bin": false,
-                    "field": "Value",
-                    "type": "quantitative",
-                    "scale": {"scheme": {"name": "viridis", "extent": [1, 0]}},
-                    "legend": false
-                },
-                "stroke": {
-                    "condition": [{"param": "highlight", "empty": false, "value": "cyan"}],
-                    "value": "white"
-                },
-                "strokeWidth": {
-                    "condition": [{"param": "highlight", "empty": false, "value": 3}],
-                    "value": 0
-                }
-            }
+                        {
+          "mark": {
+            "type": "rule",
+            "color": {
+              "condition": [
+                {"param": "highlight", "empty": false, "value": "black"}
+              ],
+              "value": "white"
+            },
+            "yOffset": -15,
+            "strokeWidth": 3
+          },
+          "transform": [
+            {"filter": {"param": "highlight", "empty": false}},
+            {"calculate": "datum.Value + 5", "as": "ValuePlusOffset"}
+          ],
+          "encoding": {
+            "x": {"field": "GeoID", "sort": "y"},
+            "y": {"field": "Value", "type": "quantitative"},
+            "y2": {"field": "ValuePlusOffset"}
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "dy": -35,
+            "align": "center",
+            "fontSize": 11,
+            "color": "black"
+          },
+          "transform": [
+            {"filter": {"param": "highlight", "empty": false}},
+            {"calculate": "datum.Value + 5", "as": "ValuePlusOffset"}
+          ],
+          "encoding": {
+            "x": {"field": "GeoID", "sort": "y"},
+            "y": {"field": "Value", "type": "quantitative"},
+            "text": {"field": "Geography"}
+          }
+        }
+            ]
+
         }
     }
 
