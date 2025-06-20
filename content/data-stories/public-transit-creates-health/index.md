@@ -24,8 +24,8 @@ keywords:
 image: Bus_Brooklyn_.jpg
 photocredit: "Marc A. Hermann / MTA New York City Transit"
 related:
-  - title: "Data on walking, driving, and cycling"
-    url: "data-explorer/walking-driving-and-cycling/?id=2415#display=summary"
+  - title: Initial data from Congestion Relief Tolling"
+    url: "data-stories/congestion-tolling-update"
   - title: "The public health impacts of PM2.5 from traffic air pollution"
     url: "data-stories/traffic-and-air-pollution/"
   - title: "Street safety in NYC"
