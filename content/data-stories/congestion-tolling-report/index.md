@@ -44,7 +44,7 @@ But these data don’t let us draw final conclusions about the toll’s effect a
 This map shows the locations of [real-time air quality monitoring](./data-features/realtime-air-quality), both inside and outside of the tolling zone. Locations outside of the zone were chosen based on the environmental review’s predictions that congestion relief tolling could increase traffic on some roads outside the zone.
 </div>
 
-<div class="wide my-4">
+<div class="wide my-4" aria-hidden="true">
   <div class="row">
     <div class="col-md-6 col-sm-12">
       <strong>Monitors inside the tolling zone</strong>
@@ -57,6 +57,24 @@ This map shows the locations of [real-time air quality monitoring](./data-featur
   </div>
 </div>
 
+<div class="sr-only">
+Monitors inside the tolling zone:
+
+- Manhattan side of the Queensboro bridge, Williamsburg Bridge, and Manhattan Bridge.
+- Broadway and 35th Street.
+- Midtown West, on 39th street between 7th and 8th avenues.
+
+Monitors outside the tolling zone:
+
+- Hamilton Bridge
+- Cross Bronx Expressway
+- Mott Haven
+- FDR Drive at Houston
+- BQE
+- Van Wyck Expressway
+- Staten Island Expressway
+</div>
+
 <div class="narrow">
 
 ## Inside the tolling zone: steady or decreasing levels of PM2.5
@@ -65,9 +83,14 @@ PM2.5, or *fine particle air pollution*, is a major form of air pollution that c
 **Inside the tolling zone**, PM2.5 levels dropped at several sites. Typically, we see PM2.5 levels rise in colder weather, as building boilers are turned on to heat buildings and emit pollution. 
 
 </div>
-<div class="wide my-4 py-2">
+<div class="wide my-4 py-2" aria-hidden="true">
 <div style="min-height:429px" id="datawrapper-vis-poCeg"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/poCeg/embed.js" charset="utf-8" data-target="#datawrapper-vis-poCeg"></script><noscript><img src="https://datawrapper.dwcdn.net/poCeg/full.png" alt="" /></noscript></div>
 </div>
+
+<div class="sr-only">
+<div style="min-height:499px" id="datawrapper-vis-1gL1D"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/1gL1D/embed.js" charset="utf-8" data-target="#datawrapper-vis-1gL1D"></script><noscript><img src="https://datawrapper.dwcdn.net/1gL1D/full.png" alt="" /></noscript></div>
+</div>
+
 <div class="narrow">
 
 ## Most locations outside the zone also show steady or decreasing levels of PM2.5
@@ -76,8 +99,12 @@ PM2.5, or *fine particle air pollution*, is a major form of air pollution that c
 Most locations showed steady or decreasing concentrations of PM2.5.  
 
 </div>
-<div class="wide my-4 py-2">
+<div class="wide my-4 py-2" aria-hidden="true">
 <div style="min-height:683px" id="datawrapper-vis-QnCs4"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/QnCs4/embed.js" charset="utf-8" data-target="#datawrapper-vis-QnCs4"></script><noscript><img src="https://datawrapper.dwcdn.net/QnCs4/full.png" alt="" /></noscript></div>
+</div>
+
+<div class="sr-only">
+<div style="min-height:496px" id="datawrapper-vis-34i25"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/34i25/embed.js" charset="utf-8" data-target="#datawrapper-vis-34i25"></script><noscript><img src="https://datawrapper.dwcdn.net/34i25/full.png" alt="" /></noscript></div>
 </div>
 <div class="narrow">
 
@@ -86,10 +113,13 @@ One location, Hamilton Bridge, showed an increase in PM2.5 pollution after tolli
 Did this location see an increase in traffic that would explain this increase in PM2.5? Traffic counts at Hamilton Bridge show that from January to March 2025, counts of all vehicles and of trucks are comparable to a pre-tolling sample taken in October 2024. While more PM2.5 was observed in February 2025, we did not see an increase in traffic.
 
 </div>
-  <div class="wide my-4">
+<div class="wide my-4" aria-hidden="true">
 <iframe title="Traffic counts at Hamilton Bridge" aria-label="Multiple Columns" id="datawrapper-chart-A09XN" src="https://datawrapper.dwcdn.net/A09XN/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="590" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r,i=0;r=e[i];i++)if(r.contentWindow===a.source){var d=a.data["datawrapper-height"][t]+"px";r.style.height=d}}}))}();
 </script>
-  </div>
+</div>
+<div class="sr-only">
+<div style="min-height:344px" id="datawrapper-vis-zvNzf"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/zvNzf/embed.js" charset="utf-8" data-target="#datawrapper-vis-zvNzf"></script><noscript><img src="https://datawrapper.dwcdn.net/zvNzf/full.png" alt="" /></noscript></div>
+</div>
 <div class="narrow">
 
 So, the increase in PM2.5 may be due to other sources of PM2.5. Air pollution amounts vary seasonally, especially from fall to winter. As the weather gets colder, building boilers burn more fuel to heat buildings, and emit more PM2.5. This area has a higher concentration of buildings with boilers that burn a type of fuel that emits more PM2.5.
