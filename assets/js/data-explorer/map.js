@@ -282,6 +282,7 @@ const renderMap = (
             "y2": {"field": "ValuePlusOffset"}
           }
         },
+        /*
         {
           "mark": {
             "type": "text",
@@ -300,6 +301,7 @@ const renderMap = (
             "text": {"field": "Geography"}
           }
         }
+        */
             ]
 
         }
