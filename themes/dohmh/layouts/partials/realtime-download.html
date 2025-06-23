@@ -126,8 +126,9 @@
 
     document.getElementById('months').value = chosenMonth
     var chosenFormat = 'csv'
-    var downloadURL = 'https://azdohv2staticweb.blob.core.windows.net/$web/hist/' + chosenFormat + '/' + chosenYear + '/' + chosenMonth + '/hourlyMonitoring.' + chosenFormat
-    
+    // var downloadURL = 'https://azdohv2staticweb.blob.core.windows.net/$web/hist/' + chosenFormat + '/' + chosenYear + '/' + chosenMonth + '/hourlyMonitoring.' + chosenFormat
+    var downloadURL = 'https://raw.githubusercontent.com/nychealth/nyccas-data/refs/heads/main/hist/' + chosenFormat + '/' + chosenYear + '/'  + chosenMonth + '.' + chosenFormat
+
     
     // loop through earliestDate.year through thisYear and create year options
     
@@ -147,7 +148,7 @@
     
     function updateURL() {
         document.getElementById(chosenYear).checked = true
-        downloadURL = 'https://azdohv2staticweb.blob.core.windows.net/$web/hist/' + chosenFormat + '/' + chosenYear + '/' + chosenMonth + '/hourlyMonitoring.' + chosenFormat
+        downloadURL = 'https://raw.githubusercontent.com/nychealth/nyccas-data/refs/heads/main/hist/' + chosenFormat + '/' + chosenYear + '/'  + chosenMonth + '.' + chosenFormat
         document.getElementById('targetURL').innerHTML = downloadURL
         document.getElementById('downloadLink').setAttribute('href',downloadURL)
     
