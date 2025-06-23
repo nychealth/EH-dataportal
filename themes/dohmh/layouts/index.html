@@ -52,6 +52,7 @@
           </div>
           <div class="col-md-6 px-20">
             <div class="card content-card">
+              <a href="{{ relURL .Params.featured_link }}">
               <div class="card-content primary">
 
                 {{ $src := resources.GetMatch ( path.Join "**" .Params.featured_image )}}
@@ -63,7 +64,7 @@
                   </div>
                 </div>
                 <div class="card-body">
-                  <h3><a href="{{ relURL .Params.featured_link }}">{{ .Params.featured_title }}</a></h3>
+                  <h3>{{ .Params.featured_title }}</h3>
                   <p>{{ .Params.featured_text }}</p>
                   <div class="d-flex justify-content-end mb-4 mb-md-0">
                     <!-- <a class="fs-sm font-weight-bold" href={{ relURL "data-stories" }}>All data stories<i class="fas fa-arrow-circle-right ml-1" aria-hidden="true"></i></a> -->
@@ -71,6 +72,7 @@
                 </div>
               </div>
             </div>
+            </a>
           </div>
         </div>
       </div>
