@@ -1,6 +1,7 @@
 ---
 title: "Outdoor Air and Health"
 neighborhood: "East New York"
+geocode: 204
 summary: "Air pollution is one of the most important environmental threats to urban populations and while all people are exposed, pollutant emissions, levels of exposure, and population vulnerability vary across neighborhoods. Exposures to common air pollutants have been linked to respiratory and cardiovascular diseases, cancers, and premature deaths."
 data_json: "Outdoor Air and Health in East New York"
 content_yml: "Outdoor_Air_and_Health"

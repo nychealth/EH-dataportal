@@ -1,3 +1,109 @@
-<div id="map">
-  Insert Leaflet map here
-</div>
+<div id="map" style="width: 100%; height: 450px"></div>
+
+<script>
+
+  var geocode = `{{ .Params.geocode }}`
+  console.log('GEOCODE:', geocode)
+
+  var lat = 40.715554;
+  var lng = -74.0026642;
+  var zoom = 10;
+
+  const UHF42 = "geojson/UHF42.geojson";
+
+  var map = L.map("map", { zoomControl: false }).setView([lat, lng], zoom); // [Lat,Long],Zoom
+  L.tileLayer(
+    "https://api.maptiler.com/maps/basic-v2/{z}/{x}/{y}.png?key=dwIJ8hO2KsTMegUfEpYE",
+    {
+      maxZoom: 15,
+      attribution:
+        '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>',
+    }
+  ).addTo(map);
+
+  L.control
+    .scale({
+      metric: false,
+      position: "bottomleft",
+    })
+    .addTo(map);
+
+  // add and style RMZs
+  var geog;
+  fetch("/IndicatorPublic/geojson/UHF42.geojson")
+    .then((response) => response.text())
+    .then((text) => {
+      // console.log("Raw text:", text); // ← check this!
+      const data = JSON.parse(text);
+      geog = L.geoJSON(data, {
+        style,
+        onEachFeature,
+      }).addTo(map);
+
+      // After 2 seconds, zoom to the neighborhood that matches the geocode
+      setTimeout(() => {
+        const targetLayer = Object.values(geog._layers).find(
+          (layer) => layer.feature.properties.GEOCODE == geocode
+        );
+
+        if (targetLayer) {
+          map.fitBounds(targetLayer.getBounds());
+
+          // Optionally, apply highlight style like in your click handler
+          geog.resetStyle();
+          targetLayer.setStyle({
+            weight: 3,
+            color: "white",
+            dashArray: "3",
+            fillOpacity: 0.5,
+          });
+          targetLayer.bringToFront();
+        } else {
+          console.warn("No matching GEOCODE found:", geocode);
+        }
+      }, 1000);
+    })
+    .catch((err) => console.error("Error loading GeoJSON:", err));
+
+  function style(feature) {
+    return {
+      weight: 1.5,
+      opacity: 1,
+      color: "black",
+      dashArray: "1",
+      fillOpacity: 0.15,
+      fillColor: "black",
+    };
+  }
+
+  // And what to do on mouseover, mouseout, and click
+  function onEachFeature(feature, layer) {
+    layer.on({
+      // mouseover: highlightFeature,
+      // mouseout: resetHighlight,
+      //  click: zoomToFeature // let's replace this with... something else!,
+      click: selectNeighborhood,
+    });
+    layer._leaflet_id = feature.properties.GEOCODE; // gives each item an ID based on GEOCODE
+  }
+
+  // Highlght feature
+  function selectNeighborhood(e) {
+    geog.resetStyle();
+    const layer = e.target;
+
+    layer.setStyle({
+      // Styles for hover-highlight
+      weight: 3,
+      color: "white",
+      dashArray: "3",
+      fillOpacity: 0.5,
+    });
+
+    layer.bringToFront();
+
+    map.fitBounds(e.target.getBounds());
+    
+  }
+
+</script>

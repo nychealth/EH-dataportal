@@ -145,32 +145,6 @@
                         Neighborhood overview
                     </div>
 
-                        <div class="border mb-2 nr-map-highlight sr-only">
-                        <div class="p-1">
-                            <p><strong style="color:#00923E">{{ $.Params.neighborhood }}</strong> includes ZIP Codes:
-                                <span class="home-label font-weight-bold" id="zips">
-
-                                    {{- /*  insert zip code  */}}
-
-                                    {{- $zipCodesString := replace $zip_codes "," ", " -}}
-
-                                    {{- print $zipCodesString -}}
-
-                                </span>.
-                            </p>
-                        </div>
-
-                        {{- partial "nr-map-highlight" . -}}
-
-                    </div>
-
-                    <nav role="navigation">
-                        <div class="sr-only">
-                            {{- partial "nr-sub_nav" (dict  "neighborhood_dir" $neighborhood_dir  "report_filename" $report_filename) -}}
-                        </div>
-                    </nav>
-
-
                 </div>
 
                 <div class="col-md-7">

@@ -209,7 +209,7 @@
 
 {{- /*  Leaflet  */}}
 
-{{- if .Params.leaflet }}
+{{ if or .Params.leaflet (eq .Section "neighborhood-reports") }}
 
     <!-- leaflet CSS -->
 
