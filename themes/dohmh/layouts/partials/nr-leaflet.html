@@ -87,23 +87,42 @@
     layer._leaflet_id = feature.properties.GEOCODE; // gives each item an ID based on GEOCODE
   }
 
-  // Highlght feature
-  function selectNeighborhood(e) {
-    geog.resetStyle();
-    const layer = e.target;
+  // USE MAP AS NAVIGATION
+function selectNeighborhood(e) {
+  geog.resetStyle();
+  const layer = e.target;
 
-    layer.setStyle({
-      // Styles for hover-highlight
-      weight: 3,
-      color: "white",
-      dashArray: "3",
-      fillOpacity: 0.5,
-    });
+  layer.setStyle({
+    weight: 3,
+    color: "white",
+    dashArray: "3",
+    fillOpacity: 0.5,
+  });
 
-    layer.bringToFront();
+  layer.bringToFront();
 
-    map.fitBounds(e.target.getBounds());
-    
+  const geocodeClicked = layer.feature.properties.GEOCODE;
+
+  // Find the matching neighborhood
+  const match = neighborhoods.find(
+    (n) => n.UHF_id == geocodeClicked
+  );
+
+  if (match && match.page_name) {
+    // Get the current URL parts
+    const parts = window.location.pathname.split("/");
+
+    // Replace the 3rd index (neighborhood slug) with the new one
+    parts[3] = match.page_name;
+
+    // Build the new path
+    const newPath = parts.join("/");
+
+    // Redirect
+    window.location.href = newPath;
+  } else {
+    console.warn("No matching neighborhood for GEOCODE:", geocodeClicked);
   }
+}
 
 </script>
