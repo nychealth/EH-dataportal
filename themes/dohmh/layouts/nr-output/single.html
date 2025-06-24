@@ -1,5 +1,20 @@
 {{- define "main" -}}
 
+<style>
+    .card-header {
+        padding: 0.5rem 0.5rem; 
+        background: white!important;
+    }
+
+    .card-header a {
+        color: black;
+    }
+
+    .report-section {
+        border-top: 8px solid #008939;
+    }
+</style>
+
 {{- /* ==== get topics and measures for this report ==== */}}
 
 {{- $report_topics := ( index ( index $.Site.Data.globals.NR_content $.Params.content_yml) "report_topics" ) -}}
@@ -136,7 +151,7 @@
             </nav>
 
             <div class="row">
-                <div class="col-md-5">
+                <div class="col-md-4">
                     <div class="border" style="height: 450px; width:100%">
                         {{ partial "nr-leaflet" . }}
                     </div>
@@ -147,7 +162,7 @@
 
                 </div>
 
-                <div class="col-md-7">
+                <div class="col-md-8">
                     <div class="row no-gutters">
                         <div class="col-lg mb-2 mr-1 mb-lg-0">
                         <button class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2"  id="Active">Active design</button>
@@ -188,7 +203,136 @@
                     </div>
 
                     <!-- OUTPUT -->
-                                    <div class="row">
+                    <div class="report-section pt-2">
+                    <h4 class="h6">Outdoor air pollutants</h4>
+                    <p class="fs-sm">Estimated annual average concentrations calculated from a model that used NYC Community Air Survey measurements.</p>
+
+                    <div class="accordion-group bg-white mb-4" role="tablist" id="accordion-01">
+
+                        <div class="card my-0">
+                            <a class="card-header border collapse collapsed" id="acc-button-01" data-toggle="collapse" href="#panel-acc-button-01"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-01">
+                                <div class="row no-gutters" style="width:100%">
+                                    <div class="col-7"> 
+                                       <span class="font-weight-bold">PM2.5</span><br>
+                                        <span class="fs-sm">Concentration of PM2.5 (fine particles) in the air</span>
+                                    </div>
+                                    <div class="col-3">
+                                       <span class="font-weight-bold">6.5</span> <br>
+                                        <span class="fs-sm">mcg/m3</span>
+                                    </div>
+                                    <div class="col-2">
+                                       <span class="font-weight-bold">WORSE</span> 
+                                    </div>
+                                </div>
+                            </a>
+
+                            <div class="collapse" id="panel-acc-button-01" role="tabpanel" aria-labelledby="acc-button-01" data-parent="#accordion-01">
+
+                                <div class="card-body border">
+                                    <img src="https://i.imgur.com/lusmVo9.png">
+
+                                </div>
+
+                            </div>
+                            <!-- .collapse -->
+
+                        </div>
+                        <!-- .card (end of first accordion, repeat as needed) -->
+
+                        <div class="card my-0">
+                            <a class="card-header border collapse collapsed" id="acc-button-02" data-toggle="collapse" href="#panel-acc-button-02"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-02">
+                                <div class="row no-gutters" style="width:100%">
+                                    <div class="col-7"> 
+                                       <span class="font-weight-bold">Black carbon</span><br>
+                                        <span class="fs-sm">Airborn concentration of black carbon</span>
+                                    </div>
+                                    <div class="col-3">
+                                       <span class="font-weight-bold">0.5</span> <br>
+                                        <span class="fs-sm">absorbance units</span>
+                                    </div>
+                                    <div class="col-2">
+                                       <span class="font-weight-bold">MIDDLE</span> 
+                                    </div>
+                                </div>
+                            </a>
+
+                            <div class="collapse" id="panel-acc-button-02" role="tabpanel" aria-labelledby="acc-button-02" data-parent="#accordion-01">
+
+                                <div class="card-body border">
+                                    <img src="https://i.imgur.com/lusmVo9.png">
+                                </div>
+
+                            </div>
+                            <!-- .collapse -->
+
+                        </div>
+                        <!-- .card (end of first accordion, repeat as needed) -->
+
+                        <div class="card my-0">
+                            <a class="card-header border collapse collapsed" id="acc-button-03" data-toggle="collapse" href="#panel-acc-button-03"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-03">
+                                <div class="row no-gutters" style="width:100%">
+                                    <div class="col-7"> 
+                                       <span class="font-weight-bold">Nitrogen dioxide</span><br>
+                                        <span class="fs-sm">Airborn concentration of NO2</span>
+                                    </div>
+                                    <div class="col-3">
+                                       <span class="font-weight-bold">14.9</span> <br>
+                                        <span class="fs-sm">ppb</span>
+                                    </div>
+                                    <div class="col-2">
+                                       <span class="font-weight-bold">WORSE</span> 
+                                    </div>
+                                </div>
+                            </a>
+
+                            <div class="collapse" id="panel-acc-button-03" role="tabpanel" aria-labelledby="acc-button-03" data-parent="#accordion-01">
+
+                                <div class="card-body border">
+                                    <img src="https://i.imgur.com/lusmVo9.png">
+                                </div>
+
+                            </div>
+                            <!-- .collapse -->
+
+                        </div>
+                        <!-- .card (end of first accordion, repeat as needed) -->
+
+                        <div class="card my-0">
+                            <a class="card-header border collapse collapsed" id="acc-button-04" data-toggle="collapse" href="#panel-acc-button-04"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-04">
+                                <div class="row no-gutters" style="width:100%">
+                                    <div class="col-7"> 
+                                       <span class="font-weight-bold">Ozone</span><br>
+                                        <span class="fs-sm">Concentration of ozone in the air</span>
+                                    </div>
+                                    <div class="col-3">
+                                       <span class="font-weight-bold">36.9</span> <br>
+                                        <span class="fs-sm">ppb</span>
+                                    </div>
+                                    <div class="col-2">
+                                       <span class="font-weight-bold">WORSE</span> 
+                                    </div>
+                                </div>
+                            </a>
+
+                            <div class="collapse" id="panel-acc-button-04" role="tabpanel" aria-labelledby="acc-button-04" data-parent="#accordion-01">
+
+                                <div class="card-body border">
+                                    <img src="https://i.imgur.com/lusmVo9.png">
+                                </div>
+
+                            </div>
+                            <!-- .collapse -->
+
+                        </div>
+                        <!-- .card (end of first accordion, repeat as needed) -->
+
+                    </div>
+                    </div>
+
+                    
+                    
+                    
+                    <div class="row">
                     <div class="col-12">
                         <div>
 
@@ -325,6 +469,42 @@
     </div>
 
     <script>
+
+        // Javascript for nav buttons:
+        const topicSlugs = {
+        Active: "active_design_physical_activity_and_health",
+        Asthma: "asthma_and_the_environment",
+        Climate: "climate_and_health",
+        Housing: "housing_and_health",
+        Outdoor: "outdoor_air_and_health",
+        };
+
+        Object.entries(topicSlugs).forEach(([buttonId, topicSlug]) => {
+        const button = document.getElementById(buttonId);
+        if (button) {
+            button.addEventListener("click", () => {
+            // Split current path
+            const parts = window.location.pathname.split("/");
+
+            // Replace the topic part of the URL (index 4 in your structure)
+            parts[4] = topicSlug;
+
+            // Reconstruct the new path and redirect
+            const newPath = parts.join("/");
+
+            window.location.href = newPath;
+            });
+        }
+        });
+
+        // Automatically set active class on page load based on URL
+        const currentTopic = window.location.pathname.split("/")[4];
+        Object.entries(topicSlugs).forEach(([buttonId, topicSlug]) => {
+        if (topicSlug === currentTopic) {
+            const button = document.getElementById(buttonId);
+            if (button) button.classList.add("active");
+        }
+        });
 
         let report_name = "{{ $.Params.title }}"
 

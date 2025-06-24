@@ -53,7 +53,7 @@
           geog.resetStyle();
           targetLayer.setStyle({
             weight: 3,
-            color: "white",
+            color: "#008939",
             dashArray: "3",
             fillOpacity: 0.5,
           });
@@ -61,7 +61,7 @@
         } else {
           console.warn("No matching GEOCODE found:", geocode);
         }
-      }, 1000);
+      }, 500);
     })
     .catch((err) => console.error("Error loading GeoJSON:", err));
 
@@ -71,8 +71,8 @@
       opacity: 1,
       color: "black",
       dashArray: "1",
-      fillOpacity: 0.15,
-      fillColor: "black",
+      fillOpacity: 0.05,
+      fillColor: "#008939",
     };
   }
 
@@ -94,7 +94,7 @@ function selectNeighborhood(e) {
 
   layer.setStyle({
     weight: 3,
-    color: "white",
+    color: '#008939',
     dashArray: "3",
     fillOpacity: 0.5,
   });
