@@ -691,312 +691,7 @@
 
 
 
-<button data-toggle="modal" data-target="#modal-obesityP-1" onclick='getURL( 2061 , "obesityP")' class="indicator-anchor">
-    <div class="row align-items-center d-print-none">
-        <div class="col-6 col-md-5">
-            <span class="indicator-short-name">Overweight</span>
-            <div class="print-only">Overweight or obesity (adults), 2022</div>
-        </div>
-        <div class="col-6 col-md-4 topic-list">
-            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/obesityP_106.svg" alt="Visualization showing neighborhood rank of 17 out of 42 for Overweight in High Bridge - Morrisania." width="100%" class="viz d-md-none mb-1"><span class="middle">Middle</span></div>
-        <div class="d-none d-md-inline col-md-3">
-            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/obesityP_106.svg" alt="Visualization showing neighborhood rank of 17 out of 42 for Overweight in High Bridge - Morrisania." class="viz">
-        </div>
-    </div>
-
-    
-    <div class="print-only row">
-        <div class="col-4 small border-right">
-            <span class="indicator-short-name">Overweight</span>
-            <div style="font-size: 12px;">Overweight or obesity (adults), 2022</div>
-        </div>
-        <div class="col-3 topic-list">
-            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/obesityP_106.svg" alt="Visualization showing neighborhood rank of 17 out of 42 for Overweight in High Bridge - Morrisania." width="100%" class="viz d-md-none mb-1"><span class="middle">Middle</span></div>
-        <div class="col-5 border-left">
-            <div class="comparison">
-                <div class="row">
-                    <div class="col">
-                        High Bridge - Morrisania: <span class="float-right">61.1</span><br>
-                        Bronx: <span class="float-right">65.5</span><br>
-                        New York City: <span class="float-right">56.2</span>
-                     </div>
-
-                </div>
-            </div>
-            <p style="font-size: 12px;"><em>Percent </em></p>
-        </div>
-    </div>
-
-</button>
-
-
-<div class="modal fade report-modal" id="modal-obesityP-1" tabindex="-1" role="dialog" aria-labelledby="indicatorModalLabel" aria-hidden="true">
-   <script>
-    
-     function getYear(x,y) {
-        var endDate = new Date(x) ;
-        
-        var year = endDate.getYear() + 1900
-        
-        document.getElementById(y).innerHTML = year
-    }
-   </script>
-   
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header text-left">
-                <h2 class="modal-title fs-xl" id="indicatorModalLabel" data-pagefind-ignore="all">Overweight</h2>
-                <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
-                    <span class="fas fa-times-circle"></span>
-                </button>
-            </div>
-
-            <div class="modal-body">
-                <h2 class="fs-xl" data-pagefind-ignore="all">Overweight or obesity (adults) <span class="font-weight-normal">(<span id="year-overweight">YEAR</span>)</span></h2>
-                <p>People who are overweight or obese are at increased risk for heart disease and diabetes.</p>
-            </div>
-
-            <script>
-                
-                getYear(`2022-12-31`,`year-overweight`)
-            </script>
-
-            <div class="modal-body">
-                <table class="table">
-                    <thead>
-                      <tr>
-                        <th scope="col"  style="border-top:none!important"><span class="sr-only">Location:</span></th>
-                        <th scope="col"style="width:35%;"><span class="">Percent </span></th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th scope="row"><span class="text-primary fs-xl float-right">High Bridge - Morrisania <span class="ml-2 float-right">61.1</span></span></th>
-
-                        <td>
-                            <div id="n-overweight" style="width:90%;" class="compBar neighb">
-                                &nbsp;
-                                <span class="sr-only">61.1</span>
-                            </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <th scope="row"><span class="fs-xl float-right">Bronx <span class="ml-2 float-right">65.5</span></span></th>
-                        <td>
-                            <div id="b-overweight" style="width:90%;" class="compBar nonNeighb">
-                                &nbsp;
-                                <span class="sr-only">65.5</span>
-                            </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <th scope="row"><span class="fs-xl float-right">New York City <span class="ml-2 float-right">56.2</span></span></th>
-                        <td>
-                            <div id="c-overweight" style="width:90%;" class="compBar nonNeighb">
-                                &nbsp;
-                                <span class="sr-only">56.2</span>
-                            </div>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table><div class="data-note float-right"></div><script>
-                    renderComparisonChart( 61.1 ,  65.5 ,  56.2 ,'n-overweight','b-overweight','c-overweight')
-                    
-                </script>
-
-            </div>
-            <hr>
-            <div class="modal-body">
-                <span class="home-label font-weight-bold">Comparison</span>
-                <p class="fs-lg">For overweight or obesity (adults), <strong class="text-primary">High Bridge - Morrisania</strong> is in the <span class="middle">middle</span> of NYC neighborhoods.</p>
-                <p class="fs-sm">  <em>Percent </em></p>
-                <div style="width:100%; height:30vmin; z-index:10000;" id="summary-obesityP-1"></div>
-
-            </div>
-            <hr>
-            <div class="modal-body" id="t-overweight">
-                <span class="home-label font-weight-bold">Trends over time</span>
-                <p class="fs-sm"><em>Percent </em></p>
-                <div style="width:100%; height:50vmin; z-index:10000;display:block;" id="trend-obesityP-1"></div><div class="data-note mt-3">Some years of data may have unstable rates or estimates suppressed due to low numbers.</div></div>
-            
-            <div class="modal-body hide" id="ta-overweight">
-                <span class="home-label font-weight-bold">Trends over time (not available)</span>
-                <p class="fs-sm"><em>There's only a single year of data available for this indicator, so we can't show a trend.</em></p>
-            </div>
-            <script>
-                checkTrend('1','overweight')
-            </script>
-            <hr>
-            <div class="modal-body">
-                <span class="home-label font-weight-bold">By neighborhood</span>
-                <p class="fs-sm"><em>Percent </em></p>
-                <div style="width:100%; height:60vmin; z-index:10000;" id="map-obesityP-1"></div><div class="data-note mt-3">Some neighborhoods may have estimates suppressed due to low numbers.</div></div>
-
-            <div class="modal-body">
-                <span class="home-label font-weight-bold">Source: </span><br> 
-                <span class="fs-sm">New York City Community Health Survey (CHS)</span>
-            </div>
-
-            
-            <div class="flex-column p-2"><a id="obesityP" style="display:none">
-                <button type="button" class="btn btn-inline btn-outline-secondary px-4 float-left">Get the data</button></a>
-                <button type="button" class="btn btn-primary px-4 float-right" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<style>
-    .compBar {
-        margin-top: 5px;
-        padding-left: 5px;
-        border-left: 3px solid darkgray;
-        max-height: 36px;
-
-    }
-
-    .nonNeighb {
-        background-color: #D8D8D8;
-    }
-
-    .neighb {
-        background-color: #00923E;
-    }
-</style>
-
-
-
-<script type="text/javascript">
-
-    $( "#modal-obesityP-1" ).on('shown.bs.modal', function() {
-
-        
-
-        gtag('event', 'click_modal', {
-                'modal_name': 'Overweight'
-            });
-
-        var opt = {"renderer": "svg"};
-
-            
-
-            
-
-            var summaryData =
-                arqTable
-                .filter(d => d.indicator_data_name == "obesityP")
-                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
-                .dedupe()
-                .groupby("neighborhood")
-                .orderby("neighborhood", aq.desc("end_date"))
-                .slice(0,1) 
-                .ungroup()
-                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
-                .orderby("unmodified_data_value_geo_entity") 
-                .select(aq.not("end_date"))
-                .objects()
-
-
-            vegaEmbed(
-                "#summary-obesityP-1",
-                summarySpec,
-                opt
-            ).then((res) => {
-
-                res.view.insert("summaryData", summaryData).run()
-
-            }).catch(console.error);;
-
-
-            
-
-            
-
-            var mapData = summaryData;
-
-
-            vegaEmbed(
-                "#map-obesityP-1",
-                mapSpec,
-                opt
-            ).then((res) => {
-
-                res.view.insert("mapData", mapData).run()
-
-            }).catch(console.error);
-
-
-            
-
-            
-
-            var trendData =
-                arqTable
-                .filter(d => d.indicator_data_name == "obesityP")
-                .select("start_date", "time", "geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note")
-                .dedupe()
-                .objects()
-
-
-            vegaEmbed(
-                "#trend-obesityP-1",
-                trendSpec,
-                opt
-            ).then((res) => {
-
-                res.view.insert("trendData", trendData).run()
-
-            }).catch(console.error);;
-
-    });
-
-    </script>
-
-
-<script>
-    function renderComparisonChart(n,b,c,nid,bid,cid) {
-        
-        var values = []
-
-        values.push(Number(n))
-        values.push(Number(b))
-        values.push(Number(c))
-
-        
-
-        
-        
-
-        
-        var max = Math.max(...values)
-
-        
-        var denom = max * 1.2
-        var nWidth = n / denom
-        var bWidth = b / denom
-        var cWidth = c / denom
-
-        
-        document.getElementById(nid).style.width = 100 * nWidth + '%' 
-        document.getElementById(bid).style.width = 100 * bWidth + '%'
-        document.getElementById(cid).style.width = 100 * cWidth + '%'
-
-    }
-
-    function checkTrend(x,y) {
-        if (x == 0 ) {
-            document.getElementById('t-'+y).classList.add('hide');
-            document.getElementById('ta-'+y).classList.remove('hide');
-            
-        } else {}
-    }
-
-</script>
-
-
-
-
-<button data-toggle="modal" data-target="#modal-bikeEDAA-2" onclick='getURL( 2092 , "bikeEDAA")' class="indicator-anchor">
+<button data-toggle="modal" data-target="#modal-bikeEDAA-1" onclick='getURL( 2092 , "bikeEDAA")' class="indicator-anchor">
     <div class="row align-items-center d-print-none">
         <div class="col-6 col-md-5">
             <span class="indicator-short-name">Bicycle injuries</span>
@@ -1035,7 +730,7 @@
 </button>
 
 
-<div class="modal fade report-modal" id="modal-bikeEDAA-2" tabindex="-1" role="dialog" aria-labelledby="indicatorModalLabel" aria-hidden="true">
+<div class="modal fade report-modal" id="modal-bikeEDAA-1" tabindex="-1" role="dialog" aria-labelledby="indicatorModalLabel" aria-hidden="true">
    <script>
     
      function getYear(x,y) {
@@ -1115,14 +810,14 @@
                 <span class="home-label font-weight-bold">Comparison</span>
                 <p class="fs-lg">For bicycle injury emergency department visits, <strong class="text-primary">High Bridge - Morrisania</strong> is in the <span class="middle">middle</span> of NYC neighborhoods.</p>
                 <p class="fs-sm">  <em>Age-adjusted rate per 100,000</em></p>
-                <div style="width:100%; height:30vmin; z-index:10000;" id="summary-bikeEDAA-2"></div>
+                <div style="width:100%; height:30vmin; z-index:10000;" id="summary-bikeEDAA-1"></div>
 
             </div>
             <hr>
             <div class="modal-body" id="t-bicycle-injuries">
                 <span class="home-label font-weight-bold">Trends over time</span>
                 <p class="fs-sm"><em>Age-adjusted rate per 100,000</em></p>
-                <div style="width:100%; height:50vmin; z-index:10000;display:block;" id="trend-bikeEDAA-2"></div><div class="data-note mt-3">Some years of data may have unstable rates or estimates suppressed due to low numbers.</div></div>
+                <div style="width:100%; height:50vmin; z-index:10000;display:block;" id="trend-bikeEDAA-1"></div><div class="data-note mt-3">Some years of data may have unstable rates or estimates suppressed due to low numbers.</div></div>
             
             <div class="modal-body hide" id="ta-bicycle-injuries">
                 <span class="home-label font-weight-bold">Trends over time (not available)</span>
@@ -1135,7 +830,7 @@
             <div class="modal-body">
                 <span class="home-label font-weight-bold">By neighborhood</span>
                 <p class="fs-sm"><em>Age-adjusted rate per 100,000</em></p>
-                <div style="width:100%; height:60vmin; z-index:10000;" id="map-bikeEDAA-2"></div><div class="data-note mt-3">Some neighborhoods may have estimates suppressed due to low numbers.</div></div>
+                <div style="width:100%; height:60vmin; z-index:10000;" id="map-bikeEDAA-1"></div><div class="data-note mt-3">Some neighborhoods may have estimates suppressed due to low numbers.</div></div>
 
             <div class="modal-body">
                 <span class="home-label font-weight-bold">Source: </span><br> 
@@ -1173,7 +868,7 @@
 
 <script type="text/javascript">
 
-    $( "#modal-bikeEDAA-2" ).on('shown.bs.modal', function() {
+    $( "#modal-bikeEDAA-1" ).on('shown.bs.modal', function() {
 
         
 
@@ -1203,7 +898,7 @@
 
 
             vegaEmbed(
-                "#summary-bikeEDAA-2",
+                "#summary-bikeEDAA-1",
                 summarySpec,
                 opt
             ).then((res) => {
@@ -1221,7 +916,7 @@
 
 
             vegaEmbed(
-                "#map-bikeEDAA-2",
+                "#map-bikeEDAA-1",
                 mapSpec,
                 opt
             ).then((res) => {
@@ -1244,7 +939,312 @@
 
 
             vegaEmbed(
-                "#trend-bikeEDAA-2",
+                "#trend-bikeEDAA-1",
+                trendSpec,
+                opt
+            ).then((res) => {
+
+                res.view.insert("trendData", trendData).run()
+
+            }).catch(console.error);;
+
+    });
+
+    </script>
+
+
+<script>
+    function renderComparisonChart(n,b,c,nid,bid,cid) {
+        
+        var values = []
+
+        values.push(Number(n))
+        values.push(Number(b))
+        values.push(Number(c))
+
+        
+
+        
+        
+
+        
+        var max = Math.max(...values)
+
+        
+        var denom = max * 1.2
+        var nWidth = n / denom
+        var bWidth = b / denom
+        var cWidth = c / denom
+
+        
+        document.getElementById(nid).style.width = 100 * nWidth + '%' 
+        document.getElementById(bid).style.width = 100 * bWidth + '%'
+        document.getElementById(cid).style.width = 100 * cWidth + '%'
+
+    }
+
+    function checkTrend(x,y) {
+        if (x == 0 ) {
+            document.getElementById('t-'+y).classList.add('hide');
+            document.getElementById('ta-'+y).classList.remove('hide');
+            
+        } else {}
+    }
+
+</script>
+
+
+
+
+<button data-toggle="modal" data-target="#modal-obesityP-2" onclick='getURL( 2061 , "obesityP")' class="indicator-anchor">
+    <div class="row align-items-center d-print-none">
+        <div class="col-6 col-md-5">
+            <span class="indicator-short-name">Overweight</span>
+            <div class="print-only">Overweight or obesity (adults), 2022</div>
+        </div>
+        <div class="col-6 col-md-4 topic-list">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/obesityP_106.svg" alt="Visualization showing neighborhood rank of 10 out of 42 for Overweight in High Bridge - Morrisania." width="100%" class="viz d-md-none mb-1"><span class="worse">Worse</span></div>
+        <div class="d-none d-md-inline col-md-3">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/obesityP_106.svg" alt="Visualization showing neighborhood rank of 10 out of 42 for Overweight in High Bridge - Morrisania." class="viz">
+        </div>
+    </div>
+
+    
+    <div class="print-only row">
+        <div class="col-4 small border-right">
+            <span class="indicator-short-name">Overweight</span>
+            <div style="font-size: 12px;">Overweight or obesity (adults), 2022</div>
+        </div>
+        <div class="col-3 topic-list">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/obesityP_106.svg" alt="Visualization showing neighborhood rank of 10 out of 42 for Overweight in High Bridge - Morrisania." width="100%" class="viz d-md-none mb-1"><span class="worse">Worse</span></div>
+        <div class="col-5 border-left">
+            <div class="comparison">
+                <div class="row">
+                    <div class="col">
+                        High Bridge - Morrisania: <span class="float-right">68.7</span><br>
+                        Bronx: <span class="float-right">71.3</span><br>
+                        New York City: <span class="float-right">59.3</span>
+                     </div>
+
+                </div>
+            </div>
+            <p style="font-size: 12px;"><em>Percent </em></p>
+        </div>
+    </div>
+
+</button>
+
+
+<div class="modal fade report-modal" id="modal-obesityP-2" tabindex="-1" role="dialog" aria-labelledby="indicatorModalLabel" aria-hidden="true">
+   <script>
+    
+     function getYear(x,y) {
+        var endDate = new Date(x) ;
+        
+        var year = endDate.getYear() + 1900
+        
+        document.getElementById(y).innerHTML = year
+    }
+   </script>
+   
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header text-left">
+                <h2 class="modal-title fs-xl" id="indicatorModalLabel" data-pagefind-ignore="all">Overweight</h2>
+                <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+                    <span class="fas fa-times-circle"></span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <h2 class="fs-xl" data-pagefind-ignore="all">Overweight or obesity (adults) <span class="font-weight-normal">(<span id="year-overweight">YEAR</span>)</span></h2>
+                <p>People who are overweight or obese are at increased risk for heart disease and diabetes.</p>
+            </div>
+
+            <script>
+                
+                getYear(`2022-12-31`,`year-overweight`)
+            </script>
+
+            <div class="modal-body">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col"  style="border-top:none!important"><span class="sr-only">Location:</span></th>
+                        <th scope="col"style="width:35%;"><span class="">Percent </span></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row"><span class="text-primary fs-xl float-right">High Bridge - Morrisania <span class="ml-2 float-right">68.7</span></span></th>
+
+                        <td>
+                            <div id="n-overweight" style="width:90%;" class="compBar neighb">
+                                &nbsp;
+                                <span class="sr-only">68.7</span>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl float-right">Bronx <span class="ml-2 float-right">71.3</span></span></th>
+                        <td>
+                            <div id="b-overweight" style="width:90%;" class="compBar nonNeighb">
+                                &nbsp;
+                                <span class="sr-only">71.3</span>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl float-right">New York City <span class="ml-2 float-right">59.3</span></span></th>
+                        <td>
+                            <div id="c-overweight" style="width:90%;" class="compBar nonNeighb">
+                                &nbsp;
+                                <span class="sr-only">59.3</span>
+                            </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table><div class="data-note float-right"></div><script>
+                    renderComparisonChart( 68.7 ,  71.3 ,  59.3 ,'n-overweight','b-overweight','c-overweight')
+                    
+                </script>
+
+            </div>
+            <hr>
+            <div class="modal-body">
+                <span class="home-label font-weight-bold">Comparison</span>
+                <p class="fs-lg">For overweight or obesity (adults), <strong class="text-primary">High Bridge - Morrisania</strong> is <span class="worse">worse</span> than most neighborhoods.</p>
+                <p class="fs-sm">  <em>Percent </em></p>
+                <div style="width:100%; height:30vmin; z-index:10000;" id="summary-obesityP-2"></div>
+
+            </div>
+            <hr>
+            <div class="modal-body" id="t-overweight">
+                <span class="home-label font-weight-bold">Trends over time</span>
+                <p class="fs-sm"><em>Percent </em></p>
+                <div style="width:100%; height:50vmin; z-index:10000;display:block;" id="trend-obesityP-2"></div><div class="data-note mt-3">Some years of data may have unstable rates or estimates suppressed due to low numbers.</div></div>
+            
+            <div class="modal-body hide" id="ta-overweight">
+                <span class="home-label font-weight-bold">Trends over time (not available)</span>
+                <p class="fs-sm"><em>There's only a single year of data available for this indicator, so we can't show a trend.</em></p>
+            </div>
+            <script>
+                checkTrend('1','overweight')
+            </script>
+            <hr>
+            <div class="modal-body">
+                <span class="home-label font-weight-bold">By neighborhood</span>
+                <p class="fs-sm"><em>Percent </em></p>
+                <div style="width:100%; height:60vmin; z-index:10000;" id="map-obesityP-2"></div><div class="data-note mt-3">Some neighborhoods may have estimates suppressed due to low numbers.</div></div>
+
+            <div class="modal-body">
+                <span class="home-label font-weight-bold">Source: </span><br> 
+                <span class="fs-sm">New York City Community Health Survey (CHS)</span>
+            </div>
+
+            
+            <div class="flex-column p-2"><a id="obesityP" style="display:none">
+                <button type="button" class="btn btn-inline btn-outline-secondary px-4 float-left">Get the data</button></a>
+                <button type="button" class="btn btn-primary px-4 float-right" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .compBar {
+        margin-top: 5px;
+        padding-left: 5px;
+        border-left: 3px solid darkgray;
+        max-height: 36px;
+
+    }
+
+    .nonNeighb {
+        background-color: #D8D8D8;
+    }
+
+    .neighb {
+        background-color: #00923E;
+    }
+</style>
+
+
+
+<script type="text/javascript">
+
+    $( "#modal-obesityP-2" ).on('shown.bs.modal', function() {
+
+        
+
+        gtag('event', 'click_modal', {
+                'modal_name': 'Overweight'
+            });
+
+        var opt = {"renderer": "svg"};
+
+            
+
+            
+
+            var summaryData =
+                arqTable
+                .filter(d => d.indicator_data_name == "obesityP")
+                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
+                .dedupe()
+                .groupby("neighborhood")
+                .orderby("neighborhood", aq.desc("end_date"))
+                .slice(0,1) 
+                .ungroup()
+                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
+                .orderby("unmodified_data_value_geo_entity") 
+                .select(aq.not("end_date"))
+                .objects()
+
+
+            vegaEmbed(
+                "#summary-obesityP-2",
+                summarySpec,
+                opt
+            ).then((res) => {
+
+                res.view.insert("summaryData", summaryData).run()
+
+            }).catch(console.error);;
+
+
+            
+
+            
+
+            var mapData = summaryData;
+
+
+            vegaEmbed(
+                "#map-obesityP-2",
+                mapSpec,
+                opt
+            ).then((res) => {
+
+                res.view.insert("mapData", mapData).run()
+
+            }).catch(console.error);
+
+
+            
+
+            
+
+            var trendData =
+                arqTable
+                .filter(d => d.indicator_data_name == "obesityP")
+                .select("start_date", "time", "geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note")
+                .dedupe()
+                .objects()
+
+
+            vegaEmbed(
+                "#trend-obesityP-2",
                 trendSpec,
                 opt
             ).then((res) => {
@@ -3585,9 +3585,9 @@
             <div class="comparison">
                 <div class="row">
                     <div class="col">
-                        High Bridge - Morrisania: <span class="float-right">53.1</span><br>
-                        Bronx: <span class="float-right">41.4</span><br>
-                        New York City: <span class="float-right">34</span>
+                        High Bridge - Morrisania: <span class="float-right">53.3</span><br>
+                        Bronx: <span class="float-right">41.6</span><br>
+                        New York City: <span class="float-right">34.2</span>
                      </div>
 
                 </div>
@@ -3640,36 +3640,36 @@
                     </thead>
                     <tbody>
                       <tr>
-                        <th scope="row"><span class="text-primary fs-xl float-right">High Bridge - Morrisania <span class="ml-2 float-right">53.1</span></span></th>
+                        <th scope="row"><span class="text-primary fs-xl float-right">High Bridge - Morrisania <span class="ml-2 float-right">53.3</span></span></th>
 
                         <td>
                             <div id="n-mice-or-rats-outside" style="width:90%;" class="compBar neighb">
                                 &nbsp;
-                                <span class="sr-only">53.1</span>
+                                <span class="sr-only">53.3</span>
                             </div>
                         </td>
                       </tr>
                       <tr>
-                        <th scope="row"><span class="fs-xl float-right">Bronx <span class="ml-2 float-right">41.4</span></span></th>
+                        <th scope="row"><span class="fs-xl float-right">Bronx <span class="ml-2 float-right">41.6</span></span></th>
                         <td>
                             <div id="b-mice-or-rats-outside" style="width:90%;" class="compBar nonNeighb">
                                 &nbsp;
-                                <span class="sr-only">41.4</span>
+                                <span class="sr-only">41.6</span>
                             </div>
                         </td>
                       </tr>
                       <tr>
-                        <th scope="row"><span class="fs-xl float-right">New York City <span class="ml-2 float-right">34</span></span></th>
+                        <th scope="row"><span class="fs-xl float-right">New York City <span class="ml-2 float-right">34.2</span></span></th>
                         <td>
                             <div id="c-mice-or-rats-outside" style="width:90%;" class="compBar nonNeighb">
                                 &nbsp;
-                                <span class="sr-only">34</span>
+                                <span class="sr-only">34.2</span>
                             </div>
                         </td>
                       </tr>
                     </tbody>
                   </table><div class="data-note float-right"></div><script>
-                    renderComparisonChart( 53.1 ,  41.4 ,  34 ,'n-mice-or-rats-outside','b-mice-or-rats-outside','c-mice-or-rats-outside')
+                    renderComparisonChart( 53.3 ,  41.6 ,  34.2 ,'n-mice-or-rats-outside','b-mice-or-rats-outside','c-mice-or-rats-outside')
                     
                 </script>
 
@@ -4562,9 +4562,9 @@
             <div class="comparison">
                 <div class="row">
                     <div class="col">
-                        High Bridge - Morrisania: <span class="float-right">17.7</span><br>
-                        Bronx: <span class="float-right">16.4</span><br>
-                        New York City: <span class="float-right">17.5</span>
+                        High Bridge - Morrisania: <span class="float-right">17.8</span><br>
+                        Bronx: <span class="float-right">16.5</span><br>
+                        New York City: <span class="float-right">17.6</span>
                      </div>
 
                 </div>
@@ -4617,36 +4617,36 @@
                     </thead>
                     <tbody>
                       <tr>
-                        <th scope="row"><span class="text-primary fs-xl float-right">High Bridge - Morrisania <span class="ml-2 float-right">17.7</span></span></th>
+                        <th scope="row"><span class="text-primary fs-xl float-right">High Bridge - Morrisania <span class="ml-2 float-right">17.8</span></span></th>
 
                         <td>
                             <div id="n-regular-biking" style="width:90%;" class="compBar neighb">
                                 &nbsp;
-                                <span class="sr-only">17.7</span>
+                                <span class="sr-only">17.8</span>
                             </div>
                         </td>
                       </tr>
                       <tr>
-                        <th scope="row"><span class="fs-xl float-right">Bronx <span class="ml-2 float-right">16.4</span></span></th>
+                        <th scope="row"><span class="fs-xl float-right">Bronx <span class="ml-2 float-right">16.5</span></span></th>
                         <td>
                             <div id="b-regular-biking" style="width:90%;" class="compBar nonNeighb">
                                 &nbsp;
-                                <span class="sr-only">16.4</span>
+                                <span class="sr-only">16.5</span>
                             </div>
                         </td>
                       </tr>
                       <tr>
-                        <th scope="row"><span class="fs-xl float-right">New York City <span class="ml-2 float-right">17.5</span></span></th>
+                        <th scope="row"><span class="fs-xl float-right">New York City <span class="ml-2 float-right">17.6</span></span></th>
                         <td>
                             <div id="c-regular-biking" style="width:90%;" class="compBar nonNeighb">
                                 &nbsp;
-                                <span class="sr-only">17.5</span>
+                                <span class="sr-only">17.6</span>
                             </div>
                         </td>
                       </tr>
                     </tbody>
                   </table><div class="data-note float-right"></div><script>
-                    renderComparisonChart( 17.7 ,  16.4 ,  17.5 ,'n-regular-biking','b-regular-biking','c-regular-biking')
+                    renderComparisonChart( 17.8 ,  16.5 ,  17.6 ,'n-regular-biking','b-regular-biking','c-regular-biking')
                     
                 </script>
 
@@ -4869,7 +4869,7 @@
                     <div class="col">
                         High Bridge - Morrisania: <span class="float-right">65.8</span><br>
                         Bronx: <span class="float-right">65.5</span><br>
-                        New York City: <span class="float-right">70.8</span>
+                        New York City: <span class="float-right">70.9</span>
                      </div>
 
                 </div>
@@ -4941,17 +4941,17 @@
                         </td>
                       </tr>
                       <tr>
-                        <th scope="row"><span class="fs-xl float-right">New York City <span class="ml-2 float-right">70.8</span></span></th>
+                        <th scope="row"><span class="fs-xl float-right">New York City <span class="ml-2 float-right">70.9</span></span></th>
                         <td>
                             <div id="c-exercise" style="width:90%;" class="compBar nonNeighb">
                                 &nbsp;
-                                <span class="sr-only">70.8</span>
+                                <span class="sr-only">70.9</span>
                             </div>
                         </td>
                       </tr>
                     </tbody>
                   </table><div class="data-note float-right"></div><script>
-                    renderComparisonChart( 65.8 ,  65.5 ,  70.8 ,'n-exercise','b-exercise','c-exercise')
+                    renderComparisonChart( 65.8 ,  65.5 ,  70.9 ,'n-exercise','b-exercise','c-exercise')
                     
                 </script>
 

@@ -16,7 +16,7 @@
   },
   "102": {
     "IndicatorID": 102,
-    "description": "Pesticides targeting rats and mice, applied by professional exterminators or licensed maintenance staff. These products are frequently added to tamper proof containers or applied directly to rodent burrows",
+    "description": "Pesticides targeting rats and mice, applied by professional exterminators or licensed maintenance staff. These products are frequently added to tamper proof containers or applied directly to rodent burrows.",
     "name": "Commercial use of rodenticides"
   },
   "103": {
@@ -51,8 +51,8 @@
   },
   "18": {
     "IndicatorID": 18,
-    "description": "Asthma is a common disease characterized by breathing difficulty. Poor air quality and housing issues increase risk of developing and triggering asthma.",
-    "name": "Adults with asthma (past 12 months)"
+    "description": "Adults who reported having an asthma attack in the past 12 months from when they were surveyed.",
+    "name": "Adults with a recent asthma attack"
   },
   "2": {
     "IndicatorID": 2,
@@ -326,7 +326,7 @@
   },
   "2101": {
     "IndicatorID": 2101,
-    "description": "Adults reporting mold in the home. Mold can worsen respiratory conditions like asthma, and indicate maintenance deficiencies in a building.",
+    "description": "Adults reporting mold in the home. Mold can worsen respiratory conditions like asthma, and indicate housing problems in a building.",
     "name": "Mold in homes"
   },
   "2104": {
@@ -427,7 +427,7 @@
   "2146": {
     "IndicatorID": 2146,
     "description": "Older adults are more vulnerable to extreme weather. Those living alone may have more difficulty getting resources they need in an emergency, and are at higher risk of weather-related illnesses like heat stroke and hypothermia.",
-    "name": "Older adults living alone"
+    "name": "Older adults living alone (65+)"
   },
   "2151": {
     "IndicatorID": 2151,
@@ -507,7 +507,7 @@
   "2188": {
     "IndicatorID": 2188,
     "description": "Grab bars in bathrooms can help prevent falls among older adults.",
-    "name": "Homes with grab bars in bathroom (among older adult households)"
+    "name": "Homes with grab bars in bathroom (age 65+)"
   },
   "2189": {
     "IndicatorID": 2189,
@@ -602,7 +602,7 @@
   "2312": {
     "IndicatorID": 2312,
     "description": "Pest control services provided by a professional exterminator in the individual's home.",
-    "name": "Commercial insecticide use"
+    "name": "Commercial insecticide use (by chemical type)"
   },
   "2317": {
     "IndicatorID": 2317,
@@ -631,7 +631,7 @@
   },
   "2335": {
     "IndicatorID": 2335,
-    "description": null,
+    "description": "People who do not speak English at home and/or are not English proficient.",
     "name": "Limited English"
   },
   "2336": {
@@ -651,8 +651,8 @@
   },
   "2339": {
     "IndicatorID": 2339,
-    "description": "Public high school students who reported having an asthma attack in the past 12 months.",
-    "name": "Youth asthma (past 12 months)"
+    "description": "Public high school students who reported having an asthma attack in the past 12 months from when they were surveyed.",
+    "name": "Youth with a recent asthma attack"
   },
   "2340": {
     "IndicatorID": 2340,
@@ -801,12 +801,12 @@
   },
   "2395": {
     "IndicatorID": 2395,
-    "description": "Cracks or holes are a maintenance deficiency linked to the presence of mice, rats, and cockroaches. Pests in the home can contaminate food and worsen asthma.",
+    "description": "Cracks or holes are a housing problem linked to the presence of mice, rats, and cockroaches. Pests in the home can contaminate food and worsen asthma.",
     "name": "Children in homes with cracks or holes (age 1-13)"
   },
   "2396": {
     "IndicatorID": 2396,
-    "description": "The need for supplemental heat may mean a building's main heat source doesn't work - and can indicate the presence of other health-threatening maintenance deficiencies, which can harm children's health.",
+    "description": "The need for supplemental heat may mean a building's main heat source doesn't work - and can indicate the presence of other health-threatening housing problems, which can harm children's health.",
     "name": "Children in homes with supplemental heat (age 13 and under)"
   },
   "2398": {
@@ -936,8 +936,8 @@
   },
   "2429": {
     "IndicatorID": 2429,
-    "description": "Children ages 1 to 13 who have had an asthma attack in the past year. Asthma attacks are a measureable adverse health outcome of asthma.",
-    "name": "Children with an asthma attack (past 12 months)"
+    "description": "Children ages 1 to 13 who have had an asthma attack in the past 12 months from when they were surveyed. Asthma attacks are a measurable adverse health outcome of asthma.",
+    "name": "Children with a recent asthma attack"
   },
   "2430": {
     "IndicatorID": 2430,
@@ -1021,8 +1021,8 @@
   },
   "2446": {
     "IndicatorID": 2446,
-    "description": "Adults reporting visible mold in the home. Mold can worsen respiratory conditions like asthma, and indicate maintenance problems in a building.",
-    "name": "Homes with visible mold"
+    "description": "Adults reporting mold in the home. Mold can worsen respiratory conditions like asthma, and indicate maintenance problems in a building.",
+    "name": "Homes with mold"
   },
   "2447": {
     "IndicatorID": 2447,
@@ -1111,7 +1111,7 @@
   },
   "40": {
     "IndicatorID": 40,
-    "description": "Cracks or holes are a maintenance deficiency linked to the presence of mice, rats, and cockroaches - which can harm residents' health.",
+    "description": "Cracks or holes are a housing problem linked to the presence of mice, rats, and cockroaches - which can harm residents' health.",
     "name": "Homes with cracks or holes"
   },
   "41": {
@@ -1121,7 +1121,7 @@
   },
   "42": {
     "IndicatorID": 42,
-    "description": "Leaks are a maintenance deficiency that can harm health by introducing mold, which can worsen respiratory conditions like asthma.",
+    "description": "Leaks are a housing problem that can harm health by introducing mold, which can worsen respiratory conditions like asthma.",
     "name": "Homes with leaks"
   },
   "45": {
@@ -1131,12 +1131,12 @@
   },
   "46": {
     "IndicatorID": 46,
-    "description": "Building quality predicts the number of housing maintenance deficiencies in a residence that place residents at increased risk of acute or chronic health problems.",
+    "description": "Building quality predicts the number of housing problems in a residence that place residents at increased risk of acute or chronic health problems.",
     "name": "Homes near structures rated good or excellent"
   },
   "47": {
     "IndicatorID": 47,
-    "description": "The need for supplemental heat may mean a building's main heat source doesn't work - and can indicate the presence of other health-threatening maintenance deficiencies.",
+    "description": "The need for supplemental heat may mean a building's main heat source doesn't work - and can indicate the presence of other health-threatening housing problems.",
     "name": "Homes using supplemental heat"
   },
   "48": {

@@ -646,7 +646,312 @@
                                             
                                         
 
-                                        </div>
+                                        
+
+<script>
+    function renderComparisonChart(n,b,c,nid,bid,cid) {
+        
+        var values = []
+
+        values.push(Number(n))
+        values.push(Number(b))
+        values.push(Number(c))
+
+        
+
+        
+        
+
+        
+        var max = Math.max(...values)
+
+        
+        var denom = max * 1.2
+        var nWidth = n / denom
+        var bWidth = b / denom
+        var cWidth = c / denom
+
+        
+        document.getElementById(nid).style.width = 100 * nWidth + '%' 
+        document.getElementById(bid).style.width = 100 * bWidth + '%'
+        document.getElementById(cid).style.width = 100 * cWidth + '%'
+
+    }
+
+    function checkTrend(x,y) {
+        if (x == 0 ) {
+            document.getElementById('t-'+y).classList.add('hide');
+            document.getElementById('ta-'+y).classList.remove('hide');
+            
+        } else {}
+    }
+
+</script>
+
+
+
+
+<button data-toggle="modal" data-target="#modal-Dayt688-1" onclick='getURL( 2141 , "Dayt688")' class="indicator-anchor">
+    <div class="row align-items-center d-print-none">
+        <div class="col-6 col-md-5">
+            <span class="indicator-short-name">Surface temperature</span>
+            <div class="print-only">Daytime summer surface temperature, 2018</div>
+        </div>
+        <div class="col-6 col-md-4 topic-list">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/Dayt688_105.svg" alt="Visualization showing neighborhood rank of 21 out of 42 for Surface temperature in Crotona - Tremont." width="100%" class="viz d-md-none mb-1"><span class="middle">Middle</span></div>
+        <div class="d-none d-md-inline col-md-3">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/Dayt688_105.svg" alt="Visualization showing neighborhood rank of 21 out of 42 for Surface temperature in Crotona - Tremont." class="viz">
+        </div>
+    </div>
+
+    
+    <div class="print-only row">
+        <div class="col-4 small border-right">
+            <span class="indicator-short-name">Surface temperature</span>
+            <div style="font-size: 12px;">Daytime summer surface temperature, 2018</div>
+        </div>
+        <div class="col-3 topic-list">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/Dayt688_105.svg" alt="Visualization showing neighborhood rank of 21 out of 42 for Surface temperature in Crotona - Tremont." width="100%" class="viz d-md-none mb-1"><span class="middle">Middle</span></div>
+        <div class="col-5 border-left">
+            <div class="comparison">
+                <div class="row">
+                    <div class="col">
+                        Crotona - Tremont: <span class="float-right">97.7</span><br>
+                        Bronx: <span class="float-right">97.1</span><br>
+                        New York City: <span class="float-right">98.6</span>
+                     </div>
+
+                </div>
+            </div>
+            <p style="font-size: 12px;"><em>Degrees Fahrenheit </em></p>
+        </div>
+    </div>
+
+</button>
+
+
+<div class="modal fade report-modal" id="modal-Dayt688-1" tabindex="-1" role="dialog" aria-labelledby="indicatorModalLabel" aria-hidden="true">
+   <script>
+    
+     function getYear(x,y) {
+        var endDate = new Date(x) ;
+        
+        var year = endDate.getYear() + 1900
+        
+        document.getElementById(y).innerHTML = year
+    }
+   </script>
+   
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header text-left">
+                <h2 class="modal-title fs-xl" id="indicatorModalLabel" data-pagefind-ignore="all">Surface temperature</h2>
+                <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+                    <span class="fas fa-times-circle"></span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <h2 class="fs-xl" data-pagefind-ignore="all">Daytime summer surface temperature <span class="font-weight-normal">(<span id="year-surface-temperature">YEAR</span>)</span></h2>
+                <p>Surface temperatures vary based on vegetative cover (which promotes cooling), as well as by materials that retain heat (like paved roads, sidewalks, and buildings). Hotter neighborhoods tend to have more heat-exacerbated deaths associated with extreme heat events.</p>
+            </div>
+
+            <script>
+                
+                getYear(`2018-12-31`,`year-surface-temperature`)
+            </script>
+
+            <div class="modal-body">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col"  style="border-top:none!important"><span class="sr-only">Location:</span></th>
+                        <th scope="col"style="width:35%;"><span class="">Degrees Fahrenheit </span></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row"><span class="text-primary fs-xl float-right">Crotona - Tremont <span class="ml-2 float-right">97.7</span></span></th>
+
+                        <td>
+                            <div id="n-surface-temperature" style="width:90%;" class="compBar neighb">
+                                &nbsp;
+                                <span class="sr-only">97.7</span>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl float-right">Bronx <span class="ml-2 float-right">97.1</span></span></th>
+                        <td>
+                            <div id="b-surface-temperature" style="width:90%;" class="compBar nonNeighb">
+                                &nbsp;
+                                <span class="sr-only">97.1</span>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl float-right">New York City <span class="ml-2 float-right">98.6</span></span></th>
+                        <td>
+                            <div id="c-surface-temperature" style="width:90%;" class="compBar nonNeighb">
+                                &nbsp;
+                                <span class="sr-only">98.6</span>
+                            </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table><div class="data-note float-right"></div><script>
+                    renderComparisonChart( 97.7 ,  97.1 ,  98.6 ,'n-surface-temperature','b-surface-temperature','c-surface-temperature')
+                    
+                </script>
+
+            </div>
+            <hr>
+            <div class="modal-body">
+                <span class="home-label font-weight-bold">Comparison</span>
+                <p class="fs-lg">For daytime summer surface temperature, <strong class="text-primary">Crotona - Tremont</strong> is in the <span class="middle">middle</span> of NYC neighborhoods.</p>
+                <p class="fs-sm">  <em>Degrees Fahrenheit </em></p>
+                <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Dayt688-1"></div>
+
+            </div>
+            <hr>
+            <div class="modal-body" id="t-surface-temperature">
+                <span class="home-label font-weight-bold">Trends over time</span>
+                <p class="fs-sm"><em>Degrees Fahrenheit </em></p>
+                <div style="width:100%; height:50vmin; z-index:10000;display:block;" id="trend-Dayt688-1"></div><div class="data-note mt-3">Some years of data may have unstable rates or estimates suppressed due to low numbers.</div></div>
+            
+            <div class="modal-body hide" id="ta-surface-temperature">
+                <span class="home-label font-weight-bold">Trends over time (not available)</span>
+                <p class="fs-sm"><em>There's only a single year of data available for this indicator, so we can't show a trend.</em></p>
+            </div>
+            <script>
+                checkTrend('0','surface-temperature')
+            </script>
+            <hr>
+            <div class="modal-body">
+                <span class="home-label font-weight-bold">By neighborhood</span>
+                <p class="fs-sm"><em>Degrees Fahrenheit </em></p>
+                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Dayt688-1"></div><div class="data-note mt-3">Some neighborhoods may have estimates suppressed due to low numbers.</div></div>
+
+            <div class="modal-body">
+                <span class="home-label font-weight-bold">Source: </span><br> 
+                <span class="fs-sm">U.S. Geological Survey</span>
+            </div>
+
+            
+            <div class="flex-column p-2"><a id="Dayt688" style="display:none">
+                <button type="button" class="btn btn-inline btn-outline-secondary px-4 float-left">Get the data</button></a>
+                <button type="button" class="btn btn-primary px-4 float-right" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .compBar {
+        margin-top: 5px;
+        padding-left: 5px;
+        border-left: 3px solid darkgray;
+        max-height: 36px;
+
+    }
+
+    .nonNeighb {
+        background-color: #D8D8D8;
+    }
+
+    .neighb {
+        background-color: #00923E;
+    }
+</style>
+
+
+
+<script type="text/javascript">
+
+    $( "#modal-Dayt688-1" ).on('shown.bs.modal', function() {
+
+        
+
+        gtag('event', 'click_modal', {
+                'modal_name': 'Surface temperature'
+            });
+
+        var opt = {"renderer": "svg"};
+
+            
+
+            
+
+            var summaryData =
+                arqTable
+                .filter(d => d.indicator_data_name == "Dayt688")
+                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
+                .dedupe()
+                .groupby("neighborhood")
+                .orderby("neighborhood", aq.desc("end_date"))
+                .slice(0,1) 
+                .ungroup()
+                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
+                .orderby("unmodified_data_value_geo_entity") 
+                .select(aq.not("end_date"))
+                .objects()
+
+
+            vegaEmbed(
+                "#summary-Dayt688-1",
+                summarySpec,
+                opt
+            ).then((res) => {
+
+                res.view.insert("summaryData", summaryData).run()
+
+            }).catch(console.error);;
+
+
+            
+
+            
+
+            var mapData = summaryData;
+
+
+            vegaEmbed(
+                "#map-Dayt688-1",
+                mapSpec,
+                opt
+            ).then((res) => {
+
+                res.view.insert("mapData", mapData).run()
+
+            }).catch(console.error);
+
+
+            
+
+            
+
+            var trendData =
+                arqTable
+                .filter(d => d.indicator_data_name == "Dayt688")
+                .select("start_date", "time", "geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note")
+                .dedupe()
+                .objects()
+
+
+            vegaEmbed(
+                "#trend-Dayt688-1",
+                trendSpec,
+                opt
+            ).then((res) => {
+
+                res.view.insert("trendData", trendData).run()
+
+            }).catch(console.error);;
+
+    });
+
+    </script>
+</div>
                                     
 
                                 </div>
@@ -708,7 +1013,617 @@
                                             
                                         
 
-                                        </div>
+                                        
+
+<script>
+    function renderComparisonChart(n,b,c,nid,bid,cid) {
+        
+        var values = []
+
+        values.push(Number(n))
+        values.push(Number(b))
+        values.push(Number(c))
+
+        
+
+        
+        
+
+        
+        var max = Math.max(...values)
+
+        
+        var denom = max * 1.2
+        var nWidth = n / denom
+        var bWidth = b / denom
+        var cWidth = c / denom
+
+        
+        document.getElementById(nid).style.width = 100 * nWidth + '%' 
+        document.getElementById(bid).style.width = 100 * bWidth + '%'
+        document.getElementById(cid).style.width = 100 * cWidth + '%'
+
+    }
+
+    function checkTrend(x,y) {
+        if (x == 0 ) {
+            document.getElementById('t-'+y).classList.add('hide');
+            document.getElementById('ta-'+y).classList.remove('hide');
+            
+        } else {}
+    }
+
+</script>
+
+
+
+
+<button data-toggle="modal" data-target="#modal-Heat539-1" onclick='getURL( 2076 , "Heat539")' class="indicator-anchor">
+    <div class="row align-items-center d-print-none">
+        <div class="col-6 col-md-5">
+            <span class="indicator-short-name">Heat hospitalizations</span>
+            <div class="print-only">Heat stress: yearly hospitalizations, 2016</div>
+        </div>
+        <div class="col-6 col-md-4 topic-list">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/Heat539_105.svg" alt="Visualization showing neighborhood rank of 2 out of 42 for Heat hospitalizations in Crotona - Tremont." width="100%" class="viz d-md-none mb-1"><span class="worse">Worse</span></div>
+        <div class="d-none d-md-inline col-md-3">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/Heat539_105.svg" alt="Visualization showing neighborhood rank of 2 out of 42 for Heat hospitalizations in Crotona - Tremont." class="viz">
+        </div>
+    </div>
+
+    
+    <div class="print-only row">
+        <div class="col-4 small border-right">
+            <span class="indicator-short-name">Heat hospitalizations</span>
+            <div style="font-size: 12px;">Heat stress: yearly hospitalizations, 2016</div>
+        </div>
+        <div class="col-3 topic-list">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/Heat539_105.svg" alt="Visualization showing neighborhood rank of 2 out of 42 for Heat hospitalizations in Crotona - Tremont." width="100%" class="viz d-md-none mb-1"><span class="worse">Worse</span></div>
+        <div class="col-5 border-left">
+            <div class="comparison">
+                <div class="row">
+                    <div class="col">
+                        Crotona - Tremont: <span class="float-right">3.7*</span><br>
+                        Bronx: <span class="float-right">2.3</span><br>
+                        New York City: <span class="float-right">1.8</span>
+                     </div>
+
+                </div>
+            </div>
+            <p style="font-size: 12px;"><em>Estimated annual rate per 100,000</em></p>
+        </div>
+    </div>
+
+</button>
+
+
+<div class="modal fade report-modal" id="modal-Heat539-1" tabindex="-1" role="dialog" aria-labelledby="indicatorModalLabel" aria-hidden="true">
+   <script>
+    
+     function getYear(x,y) {
+        var endDate = new Date(x) ;
+        
+        var year = endDate.getYear() + 1900
+        
+        document.getElementById(y).innerHTML = year
+    }
+   </script>
+   
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header text-left">
+                <h2 class="modal-title fs-xl" id="indicatorModalLabel" data-pagefind-ignore="all">Heat hospitalizations</h2>
+                <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+                    <span class="fas fa-times-circle"></span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <h2 class="fs-xl" data-pagefind-ignore="all">Heat stress: yearly hospitalizations <span class="font-weight-normal">(<span id="year-heat-hospitalizations">YEAR</span>)</span></h2>
+                <p>Heat stress hospitalizations weather are part of the public health burden due to hot weather.</p>
+            </div>
+
+            <script>
+                
+                getYear(`2016-12-31`,`year-heat-hospitalizations`)
+            </script>
+
+            <div class="modal-body">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col"  style="border-top:none!important"><span class="sr-only">Location:</span></th>
+                        <th scope="col"style="width:35%;"><span class="">Estimated annual rate per 100,000</span></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row"><span class="text-primary fs-xl float-right">Crotona - Tremont <span class="ml-2 float-right">3.7*</span></span></th>
+
+                        <td>
+                            <div id="n-heat-hospitalizations" style="width:90%;" class="compBar neighb">
+                                &nbsp;
+                                <span class="sr-only">3.7*</span>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl float-right">Bronx <span class="ml-2 float-right">2.3</span></span></th>
+                        <td>
+                            <div id="b-heat-hospitalizations" style="width:90%;" class="compBar nonNeighb">
+                                &nbsp;
+                                <span class="sr-only">2.3</span>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl float-right">New York City <span class="ml-2 float-right">1.8</span></span></th>
+                        <td>
+                            <div id="c-heat-hospitalizations" style="width:90%;" class="compBar nonNeighb">
+                                &nbsp;
+                                <span class="sr-only">1.8</span>
+                            </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table><div class="data-note float-right">* Estimate is based on small numbers so should be interpreted with caution.</div><script>
+                    renderComparisonChart( 3.7 ,  2.3 ,  1.8 ,'n-heat-hospitalizations','b-heat-hospitalizations','c-heat-hospitalizations')
+                    
+                </script>
+
+            </div>
+            <hr>
+            <div class="modal-body">
+                <span class="home-label font-weight-bold">Comparison</span>
+                <p class="fs-lg">For heat stress: yearly hospitalizations, <strong class="text-primary">Crotona - Tremont</strong> is <span class="worse">worse</span> than most neighborhoods.</p>
+                <p class="fs-sm">  <em>Estimated annual rate per 100,000</em></p>
+                <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Heat539-1"></div>
+
+            </div>
+            <hr>
+            <div class="modal-body" id="t-heat-hospitalizations">
+                <span class="home-label font-weight-bold">Trends over time</span>
+                <p class="fs-sm"><em>Estimated annual rate per 100,000</em></p>
+                <div style="width:100%; height:50vmin; z-index:10000;display:block;" id="trend-Heat539-1"></div><div class="data-note mt-3">Some years of data may have unstable rates or estimates suppressed due to low numbers.</div></div>
+            
+            <div class="modal-body hide" id="ta-heat-hospitalizations">
+                <span class="home-label font-weight-bold">Trends over time (not available)</span>
+                <p class="fs-sm"><em>There's only a single year of data available for this indicator, so we can't show a trend.</em></p>
+            </div>
+            <script>
+                checkTrend('1','heat-hospitalizations')
+            </script>
+            <hr>
+            <div class="modal-body">
+                <span class="home-label font-weight-bold">By neighborhood</span>
+                <p class="fs-sm"><em>Estimated annual rate per 100,000</em></p>
+                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Heat539-1"></div><div class="data-note mt-3">Some neighborhoods may have estimates suppressed due to low numbers.</div></div>
+
+            <div class="modal-body">
+                <span class="home-label font-weight-bold">Source: </span><br> 
+                <span class="fs-sm">New York State Statewide Planning and Research Cooperative System (SPARCS) Deidentified Hospital Discharge Data; United States Census</span>
+            </div>
+
+            
+            <div class="flex-column p-2"><a id="Heat539" style="display:none">
+                <button type="button" class="btn btn-inline btn-outline-secondary px-4 float-left">Get the data</button></a>
+                <button type="button" class="btn btn-primary px-4 float-right" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .compBar {
+        margin-top: 5px;
+        padding-left: 5px;
+        border-left: 3px solid darkgray;
+        max-height: 36px;
+
+    }
+
+    .nonNeighb {
+        background-color: #D8D8D8;
+    }
+
+    .neighb {
+        background-color: #00923E;
+    }
+</style>
+
+
+
+<script type="text/javascript">
+
+    $( "#modal-Heat539-1" ).on('shown.bs.modal', function() {
+
+        
+
+        gtag('event', 'click_modal', {
+                'modal_name': 'Heat hospitalizations'
+            });
+
+        var opt = {"renderer": "svg"};
+
+            
+
+            
+
+            var summaryData =
+                arqTable
+                .filter(d => d.indicator_data_name == "Heat539")
+                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
+                .dedupe()
+                .groupby("neighborhood")
+                .orderby("neighborhood", aq.desc("end_date"))
+                .slice(0,1) 
+                .ungroup()
+                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
+                .orderby("unmodified_data_value_geo_entity") 
+                .select(aq.not("end_date"))
+                .objects()
+
+
+            vegaEmbed(
+                "#summary-Heat539-1",
+                summarySpec,
+                opt
+            ).then((res) => {
+
+                res.view.insert("summaryData", summaryData).run()
+
+            }).catch(console.error);;
+
+
+            
+
+            
+
+            var mapData = summaryData;
+
+
+            vegaEmbed(
+                "#map-Heat539-1",
+                mapSpec,
+                opt
+            ).then((res) => {
+
+                res.view.insert("mapData", mapData).run()
+
+            }).catch(console.error);
+
+
+            
+
+            
+
+            var trendData =
+                arqTable
+                .filter(d => d.indicator_data_name == "Heat539")
+                .select("start_date", "time", "geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note")
+                .dedupe()
+                .objects()
+
+
+            vegaEmbed(
+                "#trend-Heat539-1",
+                trendSpec,
+                opt
+            ).then((res) => {
+
+                res.view.insert("trendData", trendData).run()
+
+            }).catch(console.error);;
+
+    });
+
+    </script>
+
+
+<script>
+    function renderComparisonChart(n,b,c,nid,bid,cid) {
+        
+        var values = []
+
+        values.push(Number(n))
+        values.push(Number(b))
+        values.push(Number(c))
+
+        
+
+        
+        
+
+        
+        var max = Math.max(...values)
+
+        
+        var denom = max * 1.2
+        var nWidth = n / denom
+        var bWidth = b / denom
+        var cWidth = c / denom
+
+        
+        document.getElementById(nid).style.width = 100 * nWidth + '%' 
+        document.getElementById(bid).style.width = 100 * bWidth + '%'
+        document.getElementById(cid).style.width = 100 * cWidth + '%'
+
+    }
+
+    function checkTrend(x,y) {
+        if (x == 0 ) {
+            document.getElementById('t-'+y).classList.add('hide');
+            document.getElementById('ta-'+y).classList.remove('hide');
+            
+        } else {}
+    }
+
+</script>
+
+
+
+
+<button data-toggle="modal" data-target="#modal-Asth1196-2" onclick='getURL( 2379 , "Asth1196")' class="indicator-anchor">
+    <div class="row align-items-center d-print-none">
+        <div class="col-6 col-md-5">
+            <span class="indicator-short-name">Asthma ED visits (age 5 to 17)</span>
+            <div class="print-only">Asthma emergency department visits (age 5 to 17), 2022</div>
+        </div>
+        <div class="col-6 col-md-4 topic-list">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/Asth1196_105.svg" alt="Visualization showing neighborhood rank of 5 out of 42 for Asthma ED visits (age 5 to 17) in Crotona - Tremont." width="100%" class="viz d-md-none mb-1"><span class="worse">Worse</span></div>
+        <div class="d-none d-md-inline col-md-3">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/Asth1196_105.svg" alt="Visualization showing neighborhood rank of 5 out of 42 for Asthma ED visits (age 5 to 17) in Crotona - Tremont." class="viz">
+        </div>
+    </div>
+
+    
+    <div class="print-only row">
+        <div class="col-4 small border-right">
+            <span class="indicator-short-name">Asthma ED visits (age 5 to 17)</span>
+            <div style="font-size: 12px;">Asthma emergency department visits (age 5 to 17), 2022</div>
+        </div>
+        <div class="col-3 topic-list">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/Asth1196_105.svg" alt="Visualization showing neighborhood rank of 5 out of 42 for Asthma ED visits (age 5 to 17) in Crotona - Tremont." width="100%" class="viz d-md-none mb-1"><span class="worse">Worse</span></div>
+        <div class="col-5 border-left">
+            <div class="comparison">
+                <div class="row">
+                    <div class="col">
+                        Crotona - Tremont: <span class="float-right">234.2</span><br>
+                        Bronx: <span class="float-right">211.7</span><br>
+                        New York City: <span class="float-right">127</span>
+                     </div>
+
+                </div>
+            </div>
+            <p style="font-size: 12px;"><em>Estimated annual rate per 10,000</em></p>
+        </div>
+    </div>
+
+</button>
+
+
+<div class="modal fade report-modal" id="modal-Asth1196-2" tabindex="-1" role="dialog" aria-labelledby="indicatorModalLabel" aria-hidden="true">
+   <script>
+    
+     function getYear(x,y) {
+        var endDate = new Date(x) ;
+        
+        var year = endDate.getYear() + 1900
+        
+        document.getElementById(y).innerHTML = year
+    }
+   </script>
+   
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header text-left">
+                <h2 class="modal-title fs-xl" id="indicatorModalLabel" data-pagefind-ignore="all">Asthma ED visits (age 5 to 17)</h2>
+                <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+                    <span class="fas fa-times-circle"></span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <h2 class="fs-xl" data-pagefind-ignore="all">Asthma emergency department visits (age 5 to 17) <span class="font-weight-normal">(<span id="year-asthma-ed-visits-age-5-to-17">YEAR</span>)</span></h2>
+                <p>Severe asthma attacks can result in a visit to the ED. Things like smoke, air pollution, dust mites, cockroaches, mold, pollen and pet dander can trigger asthma.</p>
+            </div>
+
+            <script>
+                
+                getYear(`2022-12-31`,`year-asthma-ed-visits-age-5-to-17`)
+            </script>
+
+            <div class="modal-body">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col"  style="border-top:none!important"><span class="sr-only">Location:</span></th>
+                        <th scope="col"style="width:35%;"><span class="">Estimated annual rate per 10,000</span></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row"><span class="text-primary fs-xl float-right">Crotona - Tremont <span class="ml-2 float-right">234.2</span></span></th>
+
+                        <td>
+                            <div id="n-asthma-ed-visits-age-5-to-17" style="width:90%;" class="compBar neighb">
+                                &nbsp;
+                                <span class="sr-only">234.2</span>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl float-right">Bronx <span class="ml-2 float-right">211.7</span></span></th>
+                        <td>
+                            <div id="b-asthma-ed-visits-age-5-to-17" style="width:90%;" class="compBar nonNeighb">
+                                &nbsp;
+                                <span class="sr-only">211.7</span>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl float-right">New York City <span class="ml-2 float-right">127</span></span></th>
+                        <td>
+                            <div id="c-asthma-ed-visits-age-5-to-17" style="width:90%;" class="compBar nonNeighb">
+                                &nbsp;
+                                <span class="sr-only">127</span>
+                            </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table><div class="data-note float-right"></div><script>
+                    renderComparisonChart( 234.2 ,  211.7 ,  127 ,'n-asthma-ed-visits-age-5-to-17','b-asthma-ed-visits-age-5-to-17','c-asthma-ed-visits-age-5-to-17')
+                    
+                </script>
+
+            </div>
+            <hr>
+            <div class="modal-body">
+                <span class="home-label font-weight-bold">Comparison</span>
+                <p class="fs-lg">For asthma emergency department visits (age 5 to 17), <strong class="text-primary">Crotona - Tremont</strong> is <span class="worse">worse</span> than most neighborhoods.</p>
+                <p class="fs-sm">  <em>Estimated annual rate per 10,000</em></p>
+                <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Asth1196-2"></div>
+
+            </div>
+            <hr>
+            <div class="modal-body" id="t-asthma-ed-visits-age-5-to-17">
+                <span class="home-label font-weight-bold">Trends over time</span>
+                <p class="fs-sm"><em>Estimated annual rate per 10,000</em></p>
+                <div style="width:100%; height:50vmin; z-index:10000;display:block;" id="trend-Asth1196-2"></div><div class="data-note mt-3">Some years of data may have unstable rates or estimates suppressed due to low numbers.</div></div>
+            
+            <div class="modal-body hide" id="ta-asthma-ed-visits-age-5-to-17">
+                <span class="home-label font-weight-bold">Trends over time (not available)</span>
+                <p class="fs-sm"><em>There's only a single year of data available for this indicator, so we can't show a trend.</em></p>
+            </div>
+            <script>
+                checkTrend('1','asthma-ed-visits-age-5-to-17')
+            </script>
+            <hr>
+            <div class="modal-body">
+                <span class="home-label font-weight-bold">By neighborhood</span>
+                <p class="fs-sm"><em>Estimated annual rate per 10,000</em></p>
+                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Asth1196-2"></div><div class="data-note mt-3">Some neighborhoods may have estimates suppressed due to low numbers.</div></div>
+
+            <div class="modal-body">
+                <span class="home-label font-weight-bold">Source: </span><br> 
+                <span class="fs-sm">New York State Statewide Planning and Research Cooperative System (SPARCS) Deidentified Hospital Discharge Data</span>
+            </div>
+
+            
+            <div class="flex-column p-2"><a id="Asth1196" style="display:none">
+                <button type="button" class="btn btn-inline btn-outline-secondary px-4 float-left">Get the data</button></a>
+                <button type="button" class="btn btn-primary px-4 float-right" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .compBar {
+        margin-top: 5px;
+        padding-left: 5px;
+        border-left: 3px solid darkgray;
+        max-height: 36px;
+
+    }
+
+    .nonNeighb {
+        background-color: #D8D8D8;
+    }
+
+    .neighb {
+        background-color: #00923E;
+    }
+</style>
+
+
+
+<script type="text/javascript">
+
+    $( "#modal-Asth1196-2" ).on('shown.bs.modal', function() {
+
+        
+
+        gtag('event', 'click_modal', {
+                'modal_name': 'Asthma ED visits (age 5 to 17)'
+            });
+
+        var opt = {"renderer": "svg"};
+
+            
+
+            
+
+            var summaryData =
+                arqTable
+                .filter(d => d.indicator_data_name == "Asth1196")
+                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
+                .dedupe()
+                .groupby("neighborhood")
+                .orderby("neighborhood", aq.desc("end_date"))
+                .slice(0,1) 
+                .ungroup()
+                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
+                .orderby("unmodified_data_value_geo_entity") 
+                .select(aq.not("end_date"))
+                .objects()
+
+
+            vegaEmbed(
+                "#summary-Asth1196-2",
+                summarySpec,
+                opt
+            ).then((res) => {
+
+                res.view.insert("summaryData", summaryData).run()
+
+            }).catch(console.error);;
+
+
+            
+
+            
+
+            var mapData = summaryData;
+
+
+            vegaEmbed(
+                "#map-Asth1196-2",
+                mapSpec,
+                opt
+            ).then((res) => {
+
+                res.view.insert("mapData", mapData).run()
+
+            }).catch(console.error);
+
+
+            
+
+            
+
+            var trendData =
+                arqTable
+                .filter(d => d.indicator_data_name == "Asth1196")
+                .select("start_date", "time", "geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note")
+                .dedupe()
+                .objects()
+
+
+            vegaEmbed(
+                "#trend-Asth1196-2",
+                trendSpec,
+                opt
+            ).then((res) => {
+
+                res.view.insert("trendData", trendData).run()
+
+            }).catch(console.error);;
+
+    });
+
+    </script>
+</div>
                                     
 
                                 </div>
@@ -770,7 +1685,1227 @@
                                             
                                         
 
-                                        </div>
+                                        
+
+<script>
+    function renderComparisonChart(n,b,c,nid,bid,cid) {
+        
+        var values = []
+
+        values.push(Number(n))
+        values.push(Number(b))
+        values.push(Number(c))
+
+        
+
+        
+        
+
+        
+        var max = Math.max(...values)
+
+        
+        var denom = max * 1.2
+        var nWidth = n / denom
+        var bWidth = b / denom
+        var cWidth = c / denom
+
+        
+        document.getElementById(nid).style.width = 100 * nWidth + '%' 
+        document.getElementById(bid).style.width = 100 * bWidth + '%'
+        document.getElementById(cid).style.width = 100 * cWidth + '%'
+
+    }
+
+    function checkTrend(x,y) {
+        if (x == 0 ) {
+            document.getElementById('t-'+y).classList.add('hide');
+            document.getElementById('ta-'+y).classList.remove('hide');
+            
+        } else {}
+    }
+
+</script>
+
+
+
+
+<button data-toggle="modal" data-target="#modal-Vege690-1" onclick='getURL( 2143 , "Vege690")' class="indicator-anchor">
+    <div class="row align-items-center d-print-none">
+        <div class="col-6 col-md-5">
+            <span class="indicator-short-name">Grass and tree cover</span>
+            <div class="print-only">Vegetative cover, 2017</div>
+        </div>
+        <div class="col-6 col-md-4 topic-list">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/Vege690_105.svg" alt="Visualization showing neighborhood rank of 25 out of 42 for Grass and tree cover in Crotona - Tremont." width="100%" class="viz d-md-none mb-1"><span class="middle">Middle</span></div>
+        <div class="d-none d-md-inline col-md-3">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/Vege690_105.svg" alt="Visualization showing neighborhood rank of 25 out of 42 for Grass and tree cover in Crotona - Tremont." class="viz">
+        </div>
+    </div>
+
+    
+    <div class="print-only row">
+        <div class="col-4 small border-right">
+            <span class="indicator-short-name">Grass and tree cover</span>
+            <div style="font-size: 12px;">Vegetative cover, 2017</div>
+        </div>
+        <div class="col-3 topic-list">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/Vege690_105.svg" alt="Visualization showing neighborhood rank of 25 out of 42 for Grass and tree cover in Crotona - Tremont." width="100%" class="viz d-md-none mb-1"><span class="middle">Middle</span></div>
+        <div class="col-5 border-left">
+            <div class="comparison">
+                <div class="row">
+                    <div class="col">
+                        Crotona - Tremont: <span class="float-right">32.0</span><br>
+                        Bronx: <span class="float-right">39</span><br>
+                        New York City: <span class="float-right">38</span>
+                     </div>
+
+                </div>
+            </div>
+            <p style="font-size: 12px;"><em>Percent </em></p>
+        </div>
+    </div>
+
+</button>
+
+
+<div class="modal fade report-modal" id="modal-Vege690-1" tabindex="-1" role="dialog" aria-labelledby="indicatorModalLabel" aria-hidden="true">
+   <script>
+    
+     function getYear(x,y) {
+        var endDate = new Date(x) ;
+        
+        var year = endDate.getYear() + 1900
+        
+        document.getElementById(y).innerHTML = year
+    }
+   </script>
+   
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header text-left">
+                <h2 class="modal-title fs-xl" id="indicatorModalLabel" data-pagefind-ignore="all">Grass and tree cover</h2>
+                <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+                    <span class="fas fa-times-circle"></span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <h2 class="fs-xl" data-pagefind-ignore="all">Vegetative cover <span class="font-weight-normal">(<span id="year-grass-and-tree-cover">YEAR</span>)</span></h2>
+                <p>Vegetative cover is the land covered by trees, grass, or other plants instead of a hard surface like roads, sidewalks, or buildings. Vegetative cover tends to reduce temperatures in the immediate area and may increase air quality.</p>
+            </div>
+
+            <script>
+                
+                getYear(`2017-12-31`,`year-grass-and-tree-cover`)
+            </script>
+
+            <div class="modal-body">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col"  style="border-top:none!important"><span class="sr-only">Location:</span></th>
+                        <th scope="col"style="width:35%;"><span class="">Percent </span></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row"><span class="text-primary fs-xl float-right">Crotona - Tremont <span class="ml-2 float-right">32.0</span></span></th>
+
+                        <td>
+                            <div id="n-grass-and-tree-cover" style="width:90%;" class="compBar neighb">
+                                &nbsp;
+                                <span class="sr-only">32.0</span>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl float-right">Bronx <span class="ml-2 float-right">39</span></span></th>
+                        <td>
+                            <div id="b-grass-and-tree-cover" style="width:90%;" class="compBar nonNeighb">
+                                &nbsp;
+                                <span class="sr-only">39</span>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl float-right">New York City <span class="ml-2 float-right">38</span></span></th>
+                        <td>
+                            <div id="c-grass-and-tree-cover" style="width:90%;" class="compBar nonNeighb">
+                                &nbsp;
+                                <span class="sr-only">38</span>
+                            </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table><div class="data-note float-right"></div><script>
+                    renderComparisonChart( 32 ,  39 ,  38 ,'n-grass-and-tree-cover','b-grass-and-tree-cover','c-grass-and-tree-cover')
+                    
+                </script>
+
+            </div>
+            <hr>
+            <div class="modal-body">
+                <span class="home-label font-weight-bold">Comparison</span>
+                <p class="fs-lg">For vegetative cover, <strong class="text-primary">Crotona - Tremont</strong> is in the <span class="middle">middle</span> of NYC neighborhoods.</p>
+                <p class="fs-sm">  <em>Percent </em></p>
+                <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Vege690-1"></div>
+
+            </div>
+            <hr>
+            <div class="modal-body" id="t-grass-and-tree-cover">
+                <span class="home-label font-weight-bold">Trends over time</span>
+                <p class="fs-sm"><em>Percent </em></p>
+                <div style="width:100%; height:50vmin; z-index:10000;display:block;" id="trend-Vege690-1"></div><div class="data-note mt-3">Some years of data may have unstable rates or estimates suppressed due to low numbers.</div></div>
+            
+            <div class="modal-body hide" id="ta-grass-and-tree-cover">
+                <span class="home-label font-weight-bold">Trends over time (not available)</span>
+                <p class="fs-sm"><em>There's only a single year of data available for this indicator, so we can't show a trend.</em></p>
+            </div>
+            <script>
+                checkTrend('1','grass-and-tree-cover')
+            </script>
+            <hr>
+            <div class="modal-body">
+                <span class="home-label font-weight-bold">By neighborhood</span>
+                <p class="fs-sm"><em>Percent </em></p>
+                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Vege690-1"></div><div class="data-note mt-3">Some neighborhoods may have estimates suppressed due to low numbers.</div></div>
+
+            <div class="modal-body">
+                <span class="home-label font-weight-bold">Source: </span><br> 
+                <span class="fs-sm">University of Vermont remote sensing LiDAR data, assessed using methodology described in: MacFaden, S.W., O&#39;Neil-Dunne, J.P.M., Royer, A.R., Lu, J.W.T., &amp; Rundle, A.G. (2012). High-resolution tree canopy mapping for New York City using LiDAR and object-based image analysis. Journal of Applied Remote Sensing, 6(1).</span>
+            </div>
+
+            
+            <div class="flex-column p-2"><a id="Vege690" style="display:none">
+                <button type="button" class="btn btn-inline btn-outline-secondary px-4 float-left">Get the data</button></a>
+                <button type="button" class="btn btn-primary px-4 float-right" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .compBar {
+        margin-top: 5px;
+        padding-left: 5px;
+        border-left: 3px solid darkgray;
+        max-height: 36px;
+
+    }
+
+    .nonNeighb {
+        background-color: #D8D8D8;
+    }
+
+    .neighb {
+        background-color: #00923E;
+    }
+</style>
+
+
+
+<script type="text/javascript">
+
+    $( "#modal-Vege690-1" ).on('shown.bs.modal', function() {
+
+        
+
+        gtag('event', 'click_modal', {
+                'modal_name': 'Grass and tree cover'
+            });
+
+        var opt = {"renderer": "svg"};
+
+            
+
+            
+
+            var summaryData =
+                arqTable
+                .filter(d => d.indicator_data_name == "Vege690")
+                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
+                .dedupe()
+                .groupby("neighborhood")
+                .orderby("neighborhood", aq.desc("end_date"))
+                .slice(0,1) 
+                .ungroup()
+                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
+                .orderby("unmodified_data_value_geo_entity") 
+                .select(aq.not("end_date"))
+                .objects()
+
+
+            vegaEmbed(
+                "#summary-Vege690-1",
+                summarySpec,
+                opt
+            ).then((res) => {
+
+                res.view.insert("summaryData", summaryData).run()
+
+            }).catch(console.error);;
+
+
+            
+
+            
+
+            var mapData = summaryData;
+
+
+            vegaEmbed(
+                "#map-Vege690-1",
+                mapSpec,
+                opt
+            ).then((res) => {
+
+                res.view.insert("mapData", mapData).run()
+
+            }).catch(console.error);
+
+
+            
+
+            
+
+            var trendData =
+                arqTable
+                .filter(d => d.indicator_data_name == "Vege690")
+                .select("start_date", "time", "geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note")
+                .dedupe()
+                .objects()
+
+
+            vegaEmbed(
+                "#trend-Vege690-1",
+                trendSpec,
+                opt
+            ).then((res) => {
+
+                res.view.insert("trendData", trendData).run()
+
+            }).catch(console.error);;
+
+    });
+
+    </script>
+
+
+<script>
+    function renderComparisonChart(n,b,c,nid,bid,cid) {
+        
+        var values = []
+
+        values.push(Number(n))
+        values.push(Number(b))
+        values.push(Number(c))
+
+        
+
+        
+        
+
+        
+        var max = Math.max(...values)
+
+        
+        var denom = max * 1.2
+        var nWidth = n / denom
+        var bWidth = b / denom
+        var cWidth = c / denom
+
+        
+        document.getElementById(nid).style.width = 100 * nWidth + '%' 
+        document.getElementById(bid).style.width = 100 * bWidth + '%'
+        document.getElementById(cid).style.width = 100 * cWidth + '%'
+
+    }
+
+    function checkTrend(x,y) {
+        if (x == 0 ) {
+            document.getElementById('t-'+y).classList.add('hide');
+            document.getElementById('ta-'+y).classList.remove('hide');
+            
+        } else {}
+    }
+
+</script>
+
+
+
+
+<button data-toggle="modal" data-target="#modal-Adul47-2" onclick='getURL( 25 , "Adul47")' class="indicator-anchor">
+    <div class="row align-items-center d-print-none">
+        <div class="col-6 col-md-5">
+            <span class="indicator-short-name">Secondhand smoke</span>
+            <div class="print-only">Secondhand smoke at home, 2012</div>
+        </div>
+        <div class="col-6 col-md-4 topic-list">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/Adul47_105.svg" alt="Visualization showing neighborhood rank of 3 out of 42 for Secondhand smoke in Crotona - Tremont." width="100%" class="viz d-md-none mb-1"><span class="worse">Worse</span></div>
+        <div class="d-none d-md-inline col-md-3">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/Adul47_105.svg" alt="Visualization showing neighborhood rank of 3 out of 42 for Secondhand smoke in Crotona - Tremont." class="viz">
+        </div>
+    </div>
+
+    
+    <div class="print-only row">
+        <div class="col-4 small border-right">
+            <span class="indicator-short-name">Secondhand smoke</span>
+            <div style="font-size: 12px;">Secondhand smoke at home, 2012</div>
+        </div>
+        <div class="col-3 topic-list">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/Adul47_105.svg" alt="Visualization showing neighborhood rank of 3 out of 42 for Secondhand smoke in Crotona - Tremont." width="100%" class="viz d-md-none mb-1"><span class="worse">Worse</span></div>
+        <div class="col-5 border-left">
+            <div class="comparison">
+                <div class="row">
+                    <div class="col">
+                        Crotona - Tremont: <span class="float-right">9.4</span><br>
+                        Bronx: <span class="float-right">6.7</span><br>
+                        New York City: <span class="float-right">4.9</span>
+                     </div>
+
+                </div>
+            </div>
+            <p style="font-size: 12px;"><em>Percent </em></p>
+        </div>
+    </div>
+
+</button>
+
+
+<div class="modal fade report-modal" id="modal-Adul47-2" tabindex="-1" role="dialog" aria-labelledby="indicatorModalLabel" aria-hidden="true">
+   <script>
+    
+     function getYear(x,y) {
+        var endDate = new Date(x) ;
+        
+        var year = endDate.getYear() + 1900
+        
+        document.getElementById(y).innerHTML = year
+    }
+   </script>
+   
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header text-left">
+                <h2 class="modal-title fs-xl" id="indicatorModalLabel" data-pagefind-ignore="all">Secondhand smoke</h2>
+                <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+                    <span class="fas fa-times-circle"></span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <h2 class="fs-xl" data-pagefind-ignore="all">Secondhand smoke at home <span class="font-weight-normal">(<span id="year-secondhand-smoke">YEAR</span>)</span></h2>
+                <p>Adults reporting secondhand smoke at home. Secondhand smoke, especially indoors, is bad for health - particularly for the health of children.</p>
+            </div>
+
+            <script>
+                
+                getYear(`2012-12-31`,`year-secondhand-smoke`)
+            </script>
+
+            <div class="modal-body">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col"  style="border-top:none!important"><span class="sr-only">Location:</span></th>
+                        <th scope="col"style="width:35%;"><span class="">Percent </span></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row"><span class="text-primary fs-xl float-right">Crotona - Tremont <span class="ml-2 float-right">9.4</span></span></th>
+
+                        <td>
+                            <div id="n-secondhand-smoke" style="width:90%;" class="compBar neighb">
+                                &nbsp;
+                                <span class="sr-only">9.4</span>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl float-right">Bronx <span class="ml-2 float-right">6.7</span></span></th>
+                        <td>
+                            <div id="b-secondhand-smoke" style="width:90%;" class="compBar nonNeighb">
+                                &nbsp;
+                                <span class="sr-only">6.7</span>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl float-right">New York City <span class="ml-2 float-right">4.9</span></span></th>
+                        <td>
+                            <div id="c-secondhand-smoke" style="width:90%;" class="compBar nonNeighb">
+                                &nbsp;
+                                <span class="sr-only">4.9</span>
+                            </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table><div class="data-note float-right"></div><script>
+                    renderComparisonChart( 9.4 ,  6.7 ,  4.9 ,'n-secondhand-smoke','b-secondhand-smoke','c-secondhand-smoke')
+                    
+                </script>
+
+            </div>
+            <hr>
+            <div class="modal-body">
+                <span class="home-label font-weight-bold">Comparison</span>
+                <p class="fs-lg">For secondhand smoke at home, <strong class="text-primary">Crotona - Tremont</strong> is <span class="worse">worse</span> than most neighborhoods.</p>
+                <p class="fs-sm">  <em>Percent </em></p>
+                <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Adul47-2"></div>
+
+            </div>
+            <hr>
+            <div class="modal-body" id="t-secondhand-smoke">
+                <span class="home-label font-weight-bold">Trends over time</span>
+                <p class="fs-sm"><em>Percent </em></p>
+                <div style="width:100%; height:50vmin; z-index:10000;display:block;" id="trend-Adul47-2"></div><div class="data-note mt-3">Some years of data may have unstable rates or estimates suppressed due to low numbers.</div></div>
+            
+            <div class="modal-body hide" id="ta-secondhand-smoke">
+                <span class="home-label font-weight-bold">Trends over time (not available)</span>
+                <p class="fs-sm"><em>There's only a single year of data available for this indicator, so we can't show a trend.</em></p>
+            </div>
+            <script>
+                checkTrend('1','secondhand-smoke')
+            </script>
+            <hr>
+            <div class="modal-body">
+                <span class="home-label font-weight-bold">By neighborhood</span>
+                <p class="fs-sm"><em>Percent </em></p>
+                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Adul47-2"></div><div class="data-note mt-3">Some neighborhoods may have estimates suppressed due to low numbers.</div></div>
+
+            <div class="modal-body">
+                <span class="home-label font-weight-bold">Source: </span><br> 
+                <span class="fs-sm">New York City Community Health Survey (CHS)</span>
+            </div>
+
+            
+            <div class="flex-column p-2"><a id="Adul47" style="display:none">
+                <button type="button" class="btn btn-inline btn-outline-secondary px-4 float-left">Get the data</button></a>
+                <button type="button" class="btn btn-primary px-4 float-right" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .compBar {
+        margin-top: 5px;
+        padding-left: 5px;
+        border-left: 3px solid darkgray;
+        max-height: 36px;
+
+    }
+
+    .nonNeighb {
+        background-color: #D8D8D8;
+    }
+
+    .neighb {
+        background-color: #00923E;
+    }
+</style>
+
+
+
+<script type="text/javascript">
+
+    $( "#modal-Adul47-2" ).on('shown.bs.modal', function() {
+
+        
+
+        gtag('event', 'click_modal', {
+                'modal_name': 'Secondhand smoke'
+            });
+
+        var opt = {"renderer": "svg"};
+
+            
+
+            
+
+            var summaryData =
+                arqTable
+                .filter(d => d.indicator_data_name == "Adul47")
+                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
+                .dedupe()
+                .groupby("neighborhood")
+                .orderby("neighborhood", aq.desc("end_date"))
+                .slice(0,1) 
+                .ungroup()
+                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
+                .orderby("unmodified_data_value_geo_entity") 
+                .select(aq.not("end_date"))
+                .objects()
+
+
+            vegaEmbed(
+                "#summary-Adul47-2",
+                summarySpec,
+                opt
+            ).then((res) => {
+
+                res.view.insert("summaryData", summaryData).run()
+
+            }).catch(console.error);;
+
+
+            
+
+            
+
+            var mapData = summaryData;
+
+
+            vegaEmbed(
+                "#map-Adul47-2",
+                mapSpec,
+                opt
+            ).then((res) => {
+
+                res.view.insert("mapData", mapData).run()
+
+            }).catch(console.error);
+
+
+            
+
+            
+
+            var trendData =
+                arqTable
+                .filter(d => d.indicator_data_name == "Adul47")
+                .select("start_date", "time", "geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note")
+                .dedupe()
+                .objects()
+
+
+            vegaEmbed(
+                "#trend-Adul47-2",
+                trendSpec,
+                opt
+            ).then((res) => {
+
+                res.view.insert("trendData", trendData).run()
+
+            }).catch(console.error);;
+
+    });
+
+    </script>
+
+
+<script>
+    function renderComparisonChart(n,b,c,nid,bid,cid) {
+        
+        var values = []
+
+        values.push(Number(n))
+        values.push(Number(b))
+        values.push(Number(c))
+
+        
+
+        
+        
+
+        
+        var max = Math.max(...values)
+
+        
+        var denom = max * 1.2
+        var nWidth = n / denom
+        var bWidth = b / denom
+        var cWidth = c / denom
+
+        
+        document.getElementById(nid).style.width = 100 * nWidth + '%' 
+        document.getElementById(bid).style.width = 100 * bWidth + '%'
+        document.getElementById(cid).style.width = 100 * cWidth + '%'
+
+    }
+
+    function checkTrend(x,y) {
+        if (x == 0 ) {
+            document.getElementById('t-'+y).classList.add('hide');
+            document.getElementById('ta-'+y).classList.remove('hide');
+            
+        } else {}
+    }
+
+</script>
+
+
+
+
+<button data-toggle="modal" data-target="#modal-Home88-3" onclick='getURL( 46 , "Home88")' class="indicator-anchor">
+    <div class="row align-items-center d-print-none">
+        <div class="col-6 col-md-5">
+            <span class="indicator-short-name">Neighborhood building quality</span>
+            <div class="print-only">Homes near structures rated good or excellent, 2017</div>
+        </div>
+        <div class="col-6 col-md-4 topic-list">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/Home88_105.svg" alt="Visualization showing neighborhood rank of 3 out of 42 for Neighborhood building quality in Crotona - Tremont." width="100%" class="viz d-md-none mb-1"><span class="worse">Worse</span></div>
+        <div class="d-none d-md-inline col-md-3">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/Home88_105.svg" alt="Visualization showing neighborhood rank of 3 out of 42 for Neighborhood building quality in Crotona - Tremont." class="viz">
+        </div>
+    </div>
+
+    
+    <div class="print-only row">
+        <div class="col-4 small border-right">
+            <span class="indicator-short-name">Neighborhood building quality</span>
+            <div style="font-size: 12px;">Homes near structures rated good or excellent, 2017</div>
+        </div>
+        <div class="col-3 topic-list">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/Home88_105.svg" alt="Visualization showing neighborhood rank of 3 out of 42 for Neighborhood building quality in Crotona - Tremont." width="100%" class="viz d-md-none mb-1"><span class="worse">Worse</span></div>
+        <div class="col-5 border-left">
+            <div class="comparison">
+                <div class="row">
+                    <div class="col">
+                        Crotona - Tremont: <span class="float-right">49.6</span><br>
+                        Bronx: <span class="float-right">62.5</span><br>
+                        New York City: <span class="float-right">80.7</span>
+                     </div>
+
+                </div>
+            </div>
+            <p style="font-size: 12px;"><em>Percent </em></p>
+        </div>
+    </div>
+
+</button>
+
+
+<div class="modal fade report-modal" id="modal-Home88-3" tabindex="-1" role="dialog" aria-labelledby="indicatorModalLabel" aria-hidden="true">
+   <script>
+    
+     function getYear(x,y) {
+        var endDate = new Date(x) ;
+        
+        var year = endDate.getYear() + 1900
+        
+        document.getElementById(y).innerHTML = year
+    }
+   </script>
+   
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header text-left">
+                <h2 class="modal-title fs-xl" id="indicatorModalLabel" data-pagefind-ignore="all">Neighborhood building quality</h2>
+                <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+                    <span class="fas fa-times-circle"></span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <h2 class="fs-xl" data-pagefind-ignore="all">Homes near structures rated good or excellent <span class="font-weight-normal">(<span id="year-neighborhood-building-quality">YEAR</span>)</span></h2>
+                <p>Building quality predicts the number of housing problems in a residence that place residents at increased risk of acute or chronic health problems.</p>
+            </div>
+
+            <script>
+                
+                getYear(`2017-12-31`,`year-neighborhood-building-quality`)
+            </script>
+
+            <div class="modal-body">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col"  style="border-top:none!important"><span class="sr-only">Location:</span></th>
+                        <th scope="col"style="width:35%;"><span class="">Percent </span></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row"><span class="text-primary fs-xl float-right">Crotona - Tremont <span class="ml-2 float-right">49.6</span></span></th>
+
+                        <td>
+                            <div id="n-neighborhood-building-quality" style="width:90%;" class="compBar neighb">
+                                &nbsp;
+                                <span class="sr-only">49.6</span>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl float-right">Bronx <span class="ml-2 float-right">62.5</span></span></th>
+                        <td>
+                            <div id="b-neighborhood-building-quality" style="width:90%;" class="compBar nonNeighb">
+                                &nbsp;
+                                <span class="sr-only">62.5</span>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl float-right">New York City <span class="ml-2 float-right">80.7</span></span></th>
+                        <td>
+                            <div id="c-neighborhood-building-quality" style="width:90%;" class="compBar nonNeighb">
+                                &nbsp;
+                                <span class="sr-only">80.7</span>
+                            </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table><div class="data-note float-right"></div><script>
+                    renderComparisonChart( 49.6 ,  62.5 ,  80.7 ,'n-neighborhood-building-quality','b-neighborhood-building-quality','c-neighborhood-building-quality')
+                    
+                </script>
+
+            </div>
+            <hr>
+            <div class="modal-body">
+                <span class="home-label font-weight-bold">Comparison</span>
+                <p class="fs-lg">For homes near structures rated good or excellent, <strong class="text-primary">Crotona - Tremont</strong> is <span class="worse">worse</span> than most neighborhoods.</p>
+                <p class="fs-sm">  <em>Percent </em></p>
+                <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Home88-3"></div>
+
+            </div>
+            <hr>
+            <div class="modal-body" id="t-neighborhood-building-quality">
+                <span class="home-label font-weight-bold">Trends over time</span>
+                <p class="fs-sm"><em>Percent </em></p>
+                <div style="width:100%; height:50vmin; z-index:10000;display:block;" id="trend-Home88-3"></div><div class="data-note mt-3">Some years of data may have unstable rates or estimates suppressed due to low numbers.</div></div>
+            
+            <div class="modal-body hide" id="ta-neighborhood-building-quality">
+                <span class="home-label font-weight-bold">Trends over time (not available)</span>
+                <p class="fs-sm"><em>There's only a single year of data available for this indicator, so we can't show a trend.</em></p>
+            </div>
+            <script>
+                checkTrend('1','neighborhood-building-quality')
+            </script>
+            <hr>
+            <div class="modal-body">
+                <span class="home-label font-weight-bold">By neighborhood</span>
+                <p class="fs-sm"><em>Percent </em></p>
+                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Home88-3"></div><div class="data-note mt-3">Some neighborhoods may have estimates suppressed due to low numbers.</div></div>
+
+            <div class="modal-body">
+                <span class="home-label font-weight-bold">Source: </span><br> 
+                <span class="fs-sm">New York City Housing and Vacancy Survey (NYCHVS)</span>
+            </div>
+
+            
+            <div class="flex-column p-2"><a id="Home88" style="display:none">
+                <button type="button" class="btn btn-inline btn-outline-secondary px-4 float-left">Get the data</button></a>
+                <button type="button" class="btn btn-primary px-4 float-right" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .compBar {
+        margin-top: 5px;
+        padding-left: 5px;
+        border-left: 3px solid darkgray;
+        max-height: 36px;
+
+    }
+
+    .nonNeighb {
+        background-color: #D8D8D8;
+    }
+
+    .neighb {
+        background-color: #00923E;
+    }
+</style>
+
+
+
+<script type="text/javascript">
+
+    $( "#modal-Home88-3" ).on('shown.bs.modal', function() {
+
+        
+
+        gtag('event', 'click_modal', {
+                'modal_name': 'Neighborhood building quality'
+            });
+
+        var opt = {"renderer": "svg"};
+
+            
+
+            
+
+            var summaryData =
+                arqTable
+                .filter(d => d.indicator_data_name == "Home88")
+                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
+                .dedupe()
+                .groupby("neighborhood")
+                .orderby("neighborhood", aq.desc("end_date"))
+                .slice(0,1) 
+                .ungroup()
+                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
+                .orderby("unmodified_data_value_geo_entity") 
+                .select(aq.not("end_date"))
+                .objects()
+
+
+            vegaEmbed(
+                "#summary-Home88-3",
+                summarySpec,
+                opt
+            ).then((res) => {
+
+                res.view.insert("summaryData", summaryData).run()
+
+            }).catch(console.error);;
+
+
+            
+
+            
+
+            var mapData = summaryData;
+
+
+            vegaEmbed(
+                "#map-Home88-3",
+                mapSpec,
+                opt
+            ).then((res) => {
+
+                res.view.insert("mapData", mapData).run()
+
+            }).catch(console.error);
+
+
+            
+
+            
+
+            var trendData =
+                arqTable
+                .filter(d => d.indicator_data_name == "Home88")
+                .select("start_date", "time", "geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note")
+                .dedupe()
+                .objects()
+
+
+            vegaEmbed(
+                "#trend-Home88-3",
+                trendSpec,
+                opt
+            ).then((res) => {
+
+                res.view.insert("trendData", trendData).run()
+
+            }).catch(console.error);;
+
+    });
+
+    </script>
+
+
+<script>
+    function renderComparisonChart(n,b,c,nid,bid,cid) {
+        
+        var values = []
+
+        values.push(Number(n))
+        values.push(Number(b))
+        values.push(Number(c))
+
+        
+
+        
+        
+
+        
+        var max = Math.max(...values)
+
+        
+        var denom = max * 1.2
+        var nWidth = n / denom
+        var bWidth = b / denom
+        var cWidth = c / denom
+
+        
+        document.getElementById(nid).style.width = 100 * nWidth + '%' 
+        document.getElementById(bid).style.width = 100 * bWidth + '%'
+        document.getElementById(cid).style.width = 100 * cWidth + '%'
+
+    }
+
+    function checkTrend(x,y) {
+        if (x == 0 ) {
+            document.getElementById('t-'+y).classList.add('hide');
+            document.getElementById('ta-'+y).classList.remove('hide');
+            
+        } else {}
+    }
+
+</script>
+
+
+
+
+<button data-toggle="modal" data-target="#modal-Adul706-4" onclick='getURL( 2155 , "Adul706")' class="indicator-anchor">
+    <div class="row align-items-center d-print-none">
+        <div class="col-6 col-md-5">
+            <span class="indicator-short-name">Older adults with AC</span>
+            <div class="print-only">Older adults with air conditioners (age 65&#43;), 2013</div>
+        </div>
+        <div class="col-6 col-md-4 topic-list">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/Adul706_105.svg" alt="Visualization showing neighborhood rank of 3 out of 42 for Older adults with AC in Crotona - Tremont." width="100%" class="viz d-md-none mb-1"><span class="worse">Worse</span></div>
+        <div class="d-none d-md-inline col-md-3">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/Adul706_105.svg" alt="Visualization showing neighborhood rank of 3 out of 42 for Older adults with AC in Crotona - Tremont." class="viz">
+        </div>
+    </div>
+
+    
+    <div class="print-only row">
+        <div class="col-4 small border-right">
+            <span class="indicator-short-name">Older adults with AC</span>
+            <div style="font-size: 12px;">Older adults with air conditioners (age 65&#43;), 2013</div>
+        </div>
+        <div class="col-3 topic-list">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/Adul706_105.svg" alt="Visualization showing neighborhood rank of 3 out of 42 for Older adults with AC in Crotona - Tremont." width="100%" class="viz d-md-none mb-1"><span class="worse">Worse</span></div>
+        <div class="col-5 border-left">
+            <div class="comparison">
+                <div class="row">
+                    <div class="col">
+                        Crotona - Tremont: <span class="float-right">71.6*</span><br>
+                        Bronx: <span class="float-right">84.6</span><br>
+                        New York City: <span class="float-right">87.7</span>
+                     </div>
+
+                </div>
+            </div>
+            <p style="font-size: 12px;"><em>Percent </em></p>
+        </div>
+    </div>
+
+</button>
+
+
+<div class="modal fade report-modal" id="modal-Adul706-4" tabindex="-1" role="dialog" aria-labelledby="indicatorModalLabel" aria-hidden="true">
+   <script>
+    
+     function getYear(x,y) {
+        var endDate = new Date(x) ;
+        
+        var year = endDate.getYear() + 1900
+        
+        document.getElementById(y).innerHTML = year
+    }
+   </script>
+   
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header text-left">
+                <h2 class="modal-title fs-xl" id="indicatorModalLabel" data-pagefind-ignore="all">Older adults with AC</h2>
+                <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+                    <span class="fas fa-times-circle"></span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <h2 class="fs-xl" data-pagefind-ignore="all">Older adults with air conditioners (age 65&#43;) <span class="font-weight-normal">(<span id="year-older-adults-with-ac">YEAR</span>)</span></h2>
+                <p>Older adults (over 65) are more vulnerable to hot weather and heat stress. Air conditioning reduces the risk of heat stroke and other heat-related illness.</p>
+            </div>
+
+            <script>
+                
+                getYear(`2013-12-31`,`year-older-adults-with-ac`)
+            </script>
+
+            <div class="modal-body">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col"  style="border-top:none!important"><span class="sr-only">Location:</span></th>
+                        <th scope="col"style="width:35%;"><span class="">Percent </span></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row"><span class="text-primary fs-xl float-right">Crotona - Tremont <span class="ml-2 float-right">71.6*</span></span></th>
+
+                        <td>
+                            <div id="n-older-adults-with-ac" style="width:90%;" class="compBar neighb">
+                                &nbsp;
+                                <span class="sr-only">71.6*</span>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl float-right">Bronx <span class="ml-2 float-right">84.6</span></span></th>
+                        <td>
+                            <div id="b-older-adults-with-ac" style="width:90%;" class="compBar nonNeighb">
+                                &nbsp;
+                                <span class="sr-only">84.6</span>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl float-right">New York City <span class="ml-2 float-right">87.7</span></span></th>
+                        <td>
+                            <div id="c-older-adults-with-ac" style="width:90%;" class="compBar nonNeighb">
+                                &nbsp;
+                                <span class="sr-only">87.7</span>
+                            </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table><div class="data-note float-right">* Estimate is based on small numbers so should be interpreted with caution.</div><script>
+                    renderComparisonChart( 71.6 ,  84.6 ,  87.7 ,'n-older-adults-with-ac','b-older-adults-with-ac','c-older-adults-with-ac')
+                    
+                </script>
+
+            </div>
+            <hr>
+            <div class="modal-body">
+                <span class="home-label font-weight-bold">Comparison</span>
+                <p class="fs-lg">For older adults with air conditioners (age 65&#43;), <strong class="text-primary">Crotona - Tremont</strong> is <span class="worse">worse</span> than most neighborhoods.</p>
+                <p class="fs-sm">  <em>Percent </em></p>
+                <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Adul706-4"></div>
+
+            </div>
+            <hr>
+            <div class="modal-body" id="t-older-adults-with-ac">
+                <span class="home-label font-weight-bold">Trends over time</span>
+                <p class="fs-sm"><em>Percent </em></p>
+                <div style="width:100%; height:50vmin; z-index:10000;display:block;" id="trend-Adul706-4"></div><div class="data-note mt-3">Some years of data may have unstable rates or estimates suppressed due to low numbers.</div></div>
+            
+            <div class="modal-body hide" id="ta-older-adults-with-ac">
+                <span class="home-label font-weight-bold">Trends over time (not available)</span>
+                <p class="fs-sm"><em>There's only a single year of data available for this indicator, so we can't show a trend.</em></p>
+            </div>
+            <script>
+                checkTrend('0','older-adults-with-ac')
+            </script>
+            <hr>
+            <div class="modal-body">
+                <span class="home-label font-weight-bold">By neighborhood</span>
+                <p class="fs-sm"><em>Percent </em></p>
+                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Adul706-4"></div><div class="data-note mt-3">Some neighborhoods may have estimates suppressed due to low numbers.</div></div>
+
+            <div class="modal-body">
+                <span class="home-label font-weight-bold">Source: </span><br> 
+                <span class="fs-sm">New York City Community Health Survey (CHS)</span>
+            </div>
+
+            
+            <div class="flex-column p-2"><a id="Adul706" style="display:none">
+                <button type="button" class="btn btn-inline btn-outline-secondary px-4 float-left">Get the data</button></a>
+                <button type="button" class="btn btn-primary px-4 float-right" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .compBar {
+        margin-top: 5px;
+        padding-left: 5px;
+        border-left: 3px solid darkgray;
+        max-height: 36px;
+
+    }
+
+    .nonNeighb {
+        background-color: #D8D8D8;
+    }
+
+    .neighb {
+        background-color: #00923E;
+    }
+</style>
+
+
+
+<script type="text/javascript">
+
+    $( "#modal-Adul706-4" ).on('shown.bs.modal', function() {
+
+        
+
+        gtag('event', 'click_modal', {
+                'modal_name': 'Older adults with AC'
+            });
+
+        var opt = {"renderer": "svg"};
+
+            
+
+            
+
+            var summaryData =
+                arqTable
+                .filter(d => d.indicator_data_name == "Adul706")
+                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
+                .dedupe()
+                .groupby("neighborhood")
+                .orderby("neighborhood", aq.desc("end_date"))
+                .slice(0,1) 
+                .ungroup()
+                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
+                .orderby("unmodified_data_value_geo_entity") 
+                .select(aq.not("end_date"))
+                .objects()
+
+
+            vegaEmbed(
+                "#summary-Adul706-4",
+                summarySpec,
+                opt
+            ).then((res) => {
+
+                res.view.insert("summaryData", summaryData).run()
+
+            }).catch(console.error);;
+
+
+            
+
+            
+
+            var mapData = summaryData;
+
+
+            vegaEmbed(
+                "#map-Adul706-4",
+                mapSpec,
+                opt
+            ).then((res) => {
+
+                res.view.insert("mapData", mapData).run()
+
+            }).catch(console.error);
+
+
+            
+
+            
+
+            var trendData =
+                arqTable
+                .filter(d => d.indicator_data_name == "Adul706")
+                .select("start_date", "time", "geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note")
+                .dedupe()
+                .objects()
+
+
+            vegaEmbed(
+                "#trend-Adul706-4",
+                trendSpec,
+                opt
+            ).then((res) => {
+
+                res.view.insert("trendData", trendData).run()
+
+            }).catch(console.error);;
+
+    });
+
+    </script>
+</div>
                                     
 
                                 </div>
@@ -832,7 +2967,1532 @@
                                             
                                         
 
-                                        </div>
+                                        
+
+<script>
+    function renderComparisonChart(n,b,c,nid,bid,cid) {
+        
+        var values = []
+
+        values.push(Number(n))
+        values.push(Number(b))
+        values.push(Number(c))
+
+        
+
+        
+        
+
+        
+        var max = Math.max(...values)
+
+        
+        var denom = max * 1.2
+        var nWidth = n / denom
+        var bWidth = b / denom
+        var cWidth = c / denom
+
+        
+        document.getElementById(nid).style.width = 100 * nWidth + '%' 
+        document.getElementById(bid).style.width = 100 * bWidth + '%'
+        document.getElementById(cid).style.width = 100 * cWidth + '%'
+
+    }
+
+    function checkTrend(x,y) {
+        if (x == 0 ) {
+            document.getElementById('t-'+y).classList.add('hide');
+            document.getElementById('ta-'+y).classList.remove('hide');
+            
+        } else {}
+    }
+
+</script>
+
+
+
+
+<button data-toggle="modal" data-target="#modal-poveACSP-1" onclick='getURL( 103 , "poveACSP")' class="indicator-anchor">
+    <div class="row align-items-center d-print-none">
+        <div class="col-6 col-md-5">
+            <span class="indicator-short-name">Poverty</span>
+            <div class="print-only">Neighborhood poverty, 2017-21</div>
+        </div>
+        <div class="col-6 col-md-4 topic-list">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/poveACSP_105.svg" alt="Visualization showing neighborhood rank of 3 out of 42 for Poverty in Crotona - Tremont." width="100%" class="viz d-md-none mb-1"><span class="worse">Worse</span></div>
+        <div class="d-none d-md-inline col-md-3">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/poveACSP_105.svg" alt="Visualization showing neighborhood rank of 3 out of 42 for Poverty in Crotona - Tremont." class="viz">
+        </div>
+    </div>
+
+    
+    <div class="print-only row">
+        <div class="col-4 small border-right">
+            <span class="indicator-short-name">Poverty</span>
+            <div style="font-size: 12px;">Neighborhood poverty, 2017-21</div>
+        </div>
+        <div class="col-3 topic-list">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/poveACSP_105.svg" alt="Visualization showing neighborhood rank of 3 out of 42 for Poverty in Crotona - Tremont." width="100%" class="viz d-md-none mb-1"><span class="worse">Worse</span></div>
+        <div class="col-5 border-left">
+            <div class="comparison">
+                <div class="row">
+                    <div class="col">
+                        Crotona - Tremont: <span class="float-right">33.6</span><br>
+                        Bronx: <span class="float-right">26.5</span><br>
+                        New York City: <span class="float-right">17</span>
+                     </div>
+
+                </div>
+            </div>
+            <p style="font-size: 12px;"><em>Percent </em></p>
+        </div>
+    </div>
+
+</button>
+
+
+<div class="modal fade report-modal" id="modal-poveACSP-1" tabindex="-1" role="dialog" aria-labelledby="indicatorModalLabel" aria-hidden="true">
+   <script>
+    
+     function getYear(x,y) {
+        var endDate = new Date(x) ;
+        
+        var year = endDate.getYear() + 1900
+        
+        document.getElementById(y).innerHTML = year
+    }
+   </script>
+   
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header text-left">
+                <h2 class="modal-title fs-xl" id="indicatorModalLabel" data-pagefind-ignore="all">Poverty</h2>
+                <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+                    <span class="fas fa-times-circle"></span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <h2 class="fs-xl" data-pagefind-ignore="all">Neighborhood poverty <span class="font-weight-normal">(<span id="year-poverty">YEAR</span>)</span></h2>
+                <p>The percent of households with incomes below the federal poverty level. Households without sufficient resources are often deprived of access to items such as health care and good quality housing that are needed to maintain good health.</p>
+            </div>
+
+            <script>
+                
+                getYear(`2021-12-31`,`year-poverty`)
+            </script>
+
+            <div class="modal-body">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col"  style="border-top:none!important"><span class="sr-only">Location:</span></th>
+                        <th scope="col"style="width:35%;"><span class="">Percent </span></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row"><span class="text-primary fs-xl float-right">Crotona - Tremont <span class="ml-2 float-right">33.6</span></span></th>
+
+                        <td>
+                            <div id="n-poverty" style="width:90%;" class="compBar neighb">
+                                &nbsp;
+                                <span class="sr-only">33.6</span>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl float-right">Bronx <span class="ml-2 float-right">26.5</span></span></th>
+                        <td>
+                            <div id="b-poverty" style="width:90%;" class="compBar nonNeighb">
+                                &nbsp;
+                                <span class="sr-only">26.5</span>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl float-right">New York City <span class="ml-2 float-right">17</span></span></th>
+                        <td>
+                            <div id="c-poverty" style="width:90%;" class="compBar nonNeighb">
+                                &nbsp;
+                                <span class="sr-only">17</span>
+                            </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table><div class="data-note float-right"></div><script>
+                    renderComparisonChart( 33.6 ,  26.5 ,  17 ,'n-poverty','b-poverty','c-poverty')
+                    
+                </script>
+
+            </div>
+            <hr>
+            <div class="modal-body">
+                <span class="home-label font-weight-bold">Comparison</span>
+                <p class="fs-lg">For neighborhood poverty, <strong class="text-primary">Crotona - Tremont</strong> is <span class="worse">worse</span> than most neighborhoods.</p>
+                <p class="fs-sm">  <em>Percent </em></p>
+                <div style="width:100%; height:30vmin; z-index:10000;" id="summary-poveACSP-1"></div>
+
+            </div>
+            <hr>
+            <div class="modal-body" id="t-poverty">
+                <span class="home-label font-weight-bold">Trends over time</span>
+                <p class="fs-sm"><em>Percent </em></p>
+                <div style="width:100%; height:50vmin; z-index:10000;display:block;" id="trend-poveACSP-1"></div><div class="data-note mt-3">Some years of data may have unstable rates or estimates suppressed due to low numbers.</div></div>
+            
+            <div class="modal-body hide" id="ta-poverty">
+                <span class="home-label font-weight-bold">Trends over time (not available)</span>
+                <p class="fs-sm"><em>There's only a single year of data available for this indicator, so we can't show a trend.</em></p>
+            </div>
+            <script>
+                checkTrend('1','poverty')
+            </script>
+            <hr>
+            <div class="modal-body">
+                <span class="home-label font-weight-bold">By neighborhood</span>
+                <p class="fs-sm"><em>Percent </em></p>
+                <div style="width:100%; height:60vmin; z-index:10000;" id="map-poveACSP-1"></div><div class="data-note mt-3">Some neighborhoods may have estimates suppressed due to low numbers.</div></div>
+
+            <div class="modal-body">
+                <span class="home-label font-weight-bold">Source: </span><br> 
+                <span class="fs-sm">American Community Survey</span>
+            </div>
+
+            
+            <div class="flex-column p-2"><a id="poveACSP" style="display:none">
+                <button type="button" class="btn btn-inline btn-outline-secondary px-4 float-left">Get the data</button></a>
+                <button type="button" class="btn btn-primary px-4 float-right" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .compBar {
+        margin-top: 5px;
+        padding-left: 5px;
+        border-left: 3px solid darkgray;
+        max-height: 36px;
+
+    }
+
+    .nonNeighb {
+        background-color: #D8D8D8;
+    }
+
+    .neighb {
+        background-color: #00923E;
+    }
+</style>
+
+
+
+<script type="text/javascript">
+
+    $( "#modal-poveACSP-1" ).on('shown.bs.modal', function() {
+
+        
+
+        gtag('event', 'click_modal', {
+                'modal_name': 'Poverty'
+            });
+
+        var opt = {"renderer": "svg"};
+
+            
+
+            
+
+            var summaryData =
+                arqTable
+                .filter(d => d.indicator_data_name == "poveACSP")
+                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
+                .dedupe()
+                .groupby("neighborhood")
+                .orderby("neighborhood", aq.desc("end_date"))
+                .slice(0,1) 
+                .ungroup()
+                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
+                .orderby("unmodified_data_value_geo_entity") 
+                .select(aq.not("end_date"))
+                .objects()
+
+
+            vegaEmbed(
+                "#summary-poveACSP-1",
+                summarySpec,
+                opt
+            ).then((res) => {
+
+                res.view.insert("summaryData", summaryData).run()
+
+            }).catch(console.error);;
+
+
+            
+
+            
+
+            var mapData = summaryData;
+
+
+            vegaEmbed(
+                "#map-poveACSP-1",
+                mapSpec,
+                opt
+            ).then((res) => {
+
+                res.view.insert("mapData", mapData).run()
+
+            }).catch(console.error);
+
+
+            
+
+            
+
+            var trendData =
+                arqTable
+                .filter(d => d.indicator_data_name == "poveACSP")
+                .select("start_date", "time", "geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note")
+                .dedupe()
+                .objects()
+
+
+            vegaEmbed(
+                "#trend-poveACSP-1",
+                trendSpec,
+                opt
+            ).then((res) => {
+
+                res.view.insert("trendData", trendData).run()
+
+            }).catch(console.error);;
+
+    });
+
+    </script>
+
+
+<script>
+    function renderComparisonChart(n,b,c,nid,bid,cid) {
+        
+        var values = []
+
+        values.push(Number(n))
+        values.push(Number(b))
+        values.push(Number(c))
+
+        
+
+        
+        
+
+        
+        var max = Math.max(...values)
+
+        
+        var denom = max * 1.2
+        var nWidth = n / denom
+        var bWidth = b / denom
+        var cWidth = c / denom
+
+        
+        document.getElementById(nid).style.width = 100 * nWidth + '%' 
+        document.getElementById(bid).style.width = 100 * bWidth + '%'
+        document.getElementById(cid).style.width = 100 * cWidth + '%'
+
+    }
+
+    function checkTrend(x,y) {
+        if (x == 0 ) {
+            document.getElementById('t-'+y).classList.add('hide');
+            document.getElementById('ta-'+y).classList.remove('hide');
+            
+        } else {}
+    }
+
+</script>
+
+
+
+
+<button data-toggle="modal" data-target="#modal-Obes506-2" onclick='getURL( 2063 , "Obes506")' class="indicator-anchor">
+    <div class="row align-items-center d-print-none">
+        <div class="col-6 col-md-5">
+            <span class="indicator-short-name">Obesity</span>
+            <div class="print-only">Obesity (adults), 2022</div>
+        </div>
+        <div class="col-6 col-md-4 topic-list">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/Obes506_105.svg" alt="Visualization showing neighborhood rank of 4 out of 42 for Obesity in Crotona - Tremont." width="100%" class="viz d-md-none mb-1"><span class="worse">Worse</span></div>
+        <div class="d-none d-md-inline col-md-3">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/Obes506_105.svg" alt="Visualization showing neighborhood rank of 4 out of 42 for Obesity in Crotona - Tremont." class="viz">
+        </div>
+    </div>
+
+    
+    <div class="print-only row">
+        <div class="col-4 small border-right">
+            <span class="indicator-short-name">Obesity</span>
+            <div style="font-size: 12px;">Obesity (adults), 2022</div>
+        </div>
+        <div class="col-3 topic-list">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/Obes506_105.svg" alt="Visualization showing neighborhood rank of 4 out of 42 for Obesity in Crotona - Tremont." width="100%" class="viz d-md-none mb-1"><span class="worse">Worse</span></div>
+        <div class="col-5 border-left">
+            <div class="comparison">
+                <div class="row">
+                    <div class="col">
+                        Crotona - Tremont: <span class="float-right">39.4</span><br>
+                        Bronx: <span class="float-right">37.4</span><br>
+                        New York City: <span class="float-right">26.8</span>
+                     </div>
+
+                </div>
+            </div>
+            <p style="font-size: 12px;"><em>Percent </em></p>
+        </div>
+    </div>
+
+</button>
+
+
+<div class="modal fade report-modal" id="modal-Obes506-2" tabindex="-1" role="dialog" aria-labelledby="indicatorModalLabel" aria-hidden="true">
+   <script>
+    
+     function getYear(x,y) {
+        var endDate = new Date(x) ;
+        
+        var year = endDate.getYear() + 1900
+        
+        document.getElementById(y).innerHTML = year
+    }
+   </script>
+   
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header text-left">
+                <h2 class="modal-title fs-xl" id="indicatorModalLabel" data-pagefind-ignore="all">Obesity</h2>
+                <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+                    <span class="fas fa-times-circle"></span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <h2 class="fs-xl" data-pagefind-ignore="all">Obesity (adults) <span class="font-weight-normal">(<span id="year-obesity">YEAR</span>)</span></h2>
+                <p>People who are obese are at increased risk for heart disease and diabetes. Neighborhood factors such as walkability and the types of food retail outlets available can impact residents' risk of being overweight or obese.</p>
+            </div>
+
+            <script>
+                
+                getYear(`2022-12-31`,`year-obesity`)
+            </script>
+
+            <div class="modal-body">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col"  style="border-top:none!important"><span class="sr-only">Location:</span></th>
+                        <th scope="col"style="width:35%;"><span class="">Percent </span></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row"><span class="text-primary fs-xl float-right">Crotona - Tremont <span class="ml-2 float-right">39.4</span></span></th>
+
+                        <td>
+                            <div id="n-obesity" style="width:90%;" class="compBar neighb">
+                                &nbsp;
+                                <span class="sr-only">39.4</span>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl float-right">Bronx <span class="ml-2 float-right">37.4</span></span></th>
+                        <td>
+                            <div id="b-obesity" style="width:90%;" class="compBar nonNeighb">
+                                &nbsp;
+                                <span class="sr-only">37.4</span>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl float-right">New York City <span class="ml-2 float-right">26.8</span></span></th>
+                        <td>
+                            <div id="c-obesity" style="width:90%;" class="compBar nonNeighb">
+                                &nbsp;
+                                <span class="sr-only">26.8</span>
+                            </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table><div class="data-note float-right"></div><script>
+                    renderComparisonChart( 39.4 ,  37.4 ,  26.8 ,'n-obesity','b-obesity','c-obesity')
+                    
+                </script>
+
+            </div>
+            <hr>
+            <div class="modal-body">
+                <span class="home-label font-weight-bold">Comparison</span>
+                <p class="fs-lg">For obesity (adults), <strong class="text-primary">Crotona - Tremont</strong> is <span class="worse">worse</span> than most neighborhoods.</p>
+                <p class="fs-sm">  <em>Percent </em></p>
+                <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Obes506-2"></div>
+
+            </div>
+            <hr>
+            <div class="modal-body" id="t-obesity">
+                <span class="home-label font-weight-bold">Trends over time</span>
+                <p class="fs-sm"><em>Percent </em></p>
+                <div style="width:100%; height:50vmin; z-index:10000;display:block;" id="trend-Obes506-2"></div><div class="data-note mt-3">Some years of data may have unstable rates or estimates suppressed due to low numbers.</div></div>
+            
+            <div class="modal-body hide" id="ta-obesity">
+                <span class="home-label font-weight-bold">Trends over time (not available)</span>
+                <p class="fs-sm"><em>There's only a single year of data available for this indicator, so we can't show a trend.</em></p>
+            </div>
+            <script>
+                checkTrend('1','obesity')
+            </script>
+            <hr>
+            <div class="modal-body">
+                <span class="home-label font-weight-bold">By neighborhood</span>
+                <p class="fs-sm"><em>Percent </em></p>
+                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Obes506-2"></div><div class="data-note mt-3">Some neighborhoods may have estimates suppressed due to low numbers.</div></div>
+
+            <div class="modal-body">
+                <span class="home-label font-weight-bold">Source: </span><br> 
+                <span class="fs-sm">New York City Community Health Survey (CHS)</span>
+            </div>
+
+            
+            <div class="flex-column p-2"><a id="Obes506" style="display:none">
+                <button type="button" class="btn btn-inline btn-outline-secondary px-4 float-left">Get the data</button></a>
+                <button type="button" class="btn btn-primary px-4 float-right" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .compBar {
+        margin-top: 5px;
+        padding-left: 5px;
+        border-left: 3px solid darkgray;
+        max-height: 36px;
+
+    }
+
+    .nonNeighb {
+        background-color: #D8D8D8;
+    }
+
+    .neighb {
+        background-color: #00923E;
+    }
+</style>
+
+
+
+<script type="text/javascript">
+
+    $( "#modal-Obes506-2" ).on('shown.bs.modal', function() {
+
+        
+
+        gtag('event', 'click_modal', {
+                'modal_name': 'Obesity'
+            });
+
+        var opt = {"renderer": "svg"};
+
+            
+
+            
+
+            var summaryData =
+                arqTable
+                .filter(d => d.indicator_data_name == "Obes506")
+                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
+                .dedupe()
+                .groupby("neighborhood")
+                .orderby("neighborhood", aq.desc("end_date"))
+                .slice(0,1) 
+                .ungroup()
+                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
+                .orderby("unmodified_data_value_geo_entity") 
+                .select(aq.not("end_date"))
+                .objects()
+
+
+            vegaEmbed(
+                "#summary-Obes506-2",
+                summarySpec,
+                opt
+            ).then((res) => {
+
+                res.view.insert("summaryData", summaryData).run()
+
+            }).catch(console.error);;
+
+
+            
+
+            
+
+            var mapData = summaryData;
+
+
+            vegaEmbed(
+                "#map-Obes506-2",
+                mapSpec,
+                opt
+            ).then((res) => {
+
+                res.view.insert("mapData", mapData).run()
+
+            }).catch(console.error);
+
+
+            
+
+            
+
+            var trendData =
+                arqTable
+                .filter(d => d.indicator_data_name == "Obes506")
+                .select("start_date", "time", "geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note")
+                .dedupe()
+                .objects()
+
+
+            vegaEmbed(
+                "#trend-Obes506-2",
+                trendSpec,
+                opt
+            ).then((res) => {
+
+                res.view.insert("trendData", trendData).run()
+
+            }).catch(console.error);;
+
+    });
+
+    </script>
+
+
+<script>
+    function renderComparisonChart(n,b,c,nid,bid,cid) {
+        
+        var values = []
+
+        values.push(Number(n))
+        values.push(Number(b))
+        values.push(Number(c))
+
+        
+
+        
+        
+
+        
+        var max = Math.max(...values)
+
+        
+        var denom = max * 1.2
+        var nWidth = n / denom
+        var bWidth = b / denom
+        var cWidth = c / denom
+
+        
+        document.getElementById(nid).style.width = 100 * nWidth + '%' 
+        document.getElementById(bid).style.width = 100 * bWidth + '%'
+        document.getElementById(cid).style.width = 100 * cWidth + '%'
+
+    }
+
+    function checkTrend(x,y) {
+        if (x == 0 ) {
+            document.getElementById('t-'+y).classList.add('hide');
+            document.getElementById('ta-'+y).classList.remove('hide');
+            
+        } else {}
+    }
+
+</script>
+
+
+
+
+<button data-toggle="modal" data-target="#modal-Seri691-3" onclick='getURL( 2144 , "Seri691")' class="indicator-anchor">
+    <div class="row align-items-center d-print-none">
+        <div class="col-6 col-md-5">
+            <span class="indicator-short-name">Psychological distress</span>
+            <div class="print-only">Serious psychological distress, 2012</div>
+        </div>
+        <div class="col-6 col-md-4 topic-list">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/Seri691_105.svg" alt="Visualization showing neighborhood rank of 6 out of 42 for Psychological distress in Crotona - Tremont." width="100%" class="viz d-md-none mb-1"><span class="worse">Worse</span></div>
+        <div class="d-none d-md-inline col-md-3">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/Seri691_105.svg" alt="Visualization showing neighborhood rank of 6 out of 42 for Psychological distress in Crotona - Tremont." class="viz">
+        </div>
+    </div>
+
+    
+    <div class="print-only row">
+        <div class="col-4 small border-right">
+            <span class="indicator-short-name">Psychological distress</span>
+            <div style="font-size: 12px;">Serious psychological distress, 2012</div>
+        </div>
+        <div class="col-3 topic-list">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/Seri691_105.svg" alt="Visualization showing neighborhood rank of 6 out of 42 for Psychological distress in Crotona - Tremont." width="100%" class="viz d-md-none mb-1"><span class="worse">Worse</span></div>
+        <div class="col-5 border-left">
+            <div class="comparison">
+                <div class="row">
+                    <div class="col">
+                        Crotona - Tremont: <span class="float-right">7.9</span><br>
+                        Bronx: <span class="float-right">7.1</span><br>
+                        New York City: <span class="float-right">5.5</span>
+                     </div>
+
+                </div>
+            </div>
+            <p style="font-size: 12px;"><em>Percent </em></p>
+        </div>
+    </div>
+
+</button>
+
+
+<div class="modal fade report-modal" id="modal-Seri691-3" tabindex="-1" role="dialog" aria-labelledby="indicatorModalLabel" aria-hidden="true">
+   <script>
+    
+     function getYear(x,y) {
+        var endDate = new Date(x) ;
+        
+        var year = endDate.getYear() + 1900
+        
+        document.getElementById(y).innerHTML = year
+    }
+   </script>
+   
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header text-left">
+                <h2 class="modal-title fs-xl" id="indicatorModalLabel" data-pagefind-ignore="all">Psychological distress</h2>
+                <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+                    <span class="fas fa-times-circle"></span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <h2 class="fs-xl" data-pagefind-ignore="all">Serious psychological distress <span class="font-weight-normal">(<span id="year-psychological-distress">YEAR</span>)</span></h2>
+                <p>Mental health conditions like series psychological distress can be worsened by extreme weather such as heat waves and coastal storms.</p>
+            </div>
+
+            <script>
+                
+                getYear(`2012-12-31`,`year-psychological-distress`)
+            </script>
+
+            <div class="modal-body">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col"  style="border-top:none!important"><span class="sr-only">Location:</span></th>
+                        <th scope="col"style="width:35%;"><span class="">Percent </span></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row"><span class="text-primary fs-xl float-right">Crotona - Tremont <span class="ml-2 float-right">7.9</span></span></th>
+
+                        <td>
+                            <div id="n-psychological-distress" style="width:90%;" class="compBar neighb">
+                                &nbsp;
+                                <span class="sr-only">7.9</span>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl float-right">Bronx <span class="ml-2 float-right">7.1</span></span></th>
+                        <td>
+                            <div id="b-psychological-distress" style="width:90%;" class="compBar nonNeighb">
+                                &nbsp;
+                                <span class="sr-only">7.1</span>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl float-right">New York City <span class="ml-2 float-right">5.5</span></span></th>
+                        <td>
+                            <div id="c-psychological-distress" style="width:90%;" class="compBar nonNeighb">
+                                &nbsp;
+                                <span class="sr-only">5.5</span>
+                            </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table><div class="data-note float-right"></div><script>
+                    renderComparisonChart( 7.9 ,  7.1 ,  5.5 ,'n-psychological-distress','b-psychological-distress','c-psychological-distress')
+                    
+                </script>
+
+            </div>
+            <hr>
+            <div class="modal-body">
+                <span class="home-label font-weight-bold">Comparison</span>
+                <p class="fs-lg">For serious psychological distress, <strong class="text-primary">Crotona - Tremont</strong> is <span class="worse">worse</span> than most neighborhoods.</p>
+                <p class="fs-sm">  <em>Percent </em></p>
+                <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Seri691-3"></div>
+
+            </div>
+            <hr>
+            <div class="modal-body" id="t-psychological-distress">
+                <span class="home-label font-weight-bold">Trends over time</span>
+                <p class="fs-sm"><em>Percent </em></p>
+                <div style="width:100%; height:50vmin; z-index:10000;display:block;" id="trend-Seri691-3"></div><div class="data-note mt-3">Some years of data may have unstable rates or estimates suppressed due to low numbers.</div></div>
+            
+            <div class="modal-body hide" id="ta-psychological-distress">
+                <span class="home-label font-weight-bold">Trends over time (not available)</span>
+                <p class="fs-sm"><em>There's only a single year of data available for this indicator, so we can't show a trend.</em></p>
+            </div>
+            <script>
+                checkTrend('0','psychological-distress')
+            </script>
+            <hr>
+            <div class="modal-body">
+                <span class="home-label font-weight-bold">By neighborhood</span>
+                <p class="fs-sm"><em>Percent </em></p>
+                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Seri691-3"></div><div class="data-note mt-3">Some neighborhoods may have estimates suppressed due to low numbers.</div></div>
+
+            <div class="modal-body">
+                <span class="home-label font-weight-bold">Source: </span><br> 
+                <span class="fs-sm">New York City Community Health Survey (CHS)</span>
+            </div>
+
+            
+            <div class="flex-column p-2"><a id="Seri691" style="display:none">
+                <button type="button" class="btn btn-inline btn-outline-secondary px-4 float-left">Get the data</button></a>
+                <button type="button" class="btn btn-primary px-4 float-right" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .compBar {
+        margin-top: 5px;
+        padding-left: 5px;
+        border-left: 3px solid darkgray;
+        max-height: 36px;
+
+    }
+
+    .nonNeighb {
+        background-color: #D8D8D8;
+    }
+
+    .neighb {
+        background-color: #00923E;
+    }
+</style>
+
+
+
+<script type="text/javascript">
+
+    $( "#modal-Seri691-3" ).on('shown.bs.modal', function() {
+
+        
+
+        gtag('event', 'click_modal', {
+                'modal_name': 'Psychological distress'
+            });
+
+        var opt = {"renderer": "svg"};
+
+            
+
+            
+
+            var summaryData =
+                arqTable
+                .filter(d => d.indicator_data_name == "Seri691")
+                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
+                .dedupe()
+                .groupby("neighborhood")
+                .orderby("neighborhood", aq.desc("end_date"))
+                .slice(0,1) 
+                .ungroup()
+                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
+                .orderby("unmodified_data_value_geo_entity") 
+                .select(aq.not("end_date"))
+                .objects()
+
+
+            vegaEmbed(
+                "#summary-Seri691-3",
+                summarySpec,
+                opt
+            ).then((res) => {
+
+                res.view.insert("summaryData", summaryData).run()
+
+            }).catch(console.error);;
+
+
+            
+
+            
+
+            var mapData = summaryData;
+
+
+            vegaEmbed(
+                "#map-Seri691-3",
+                mapSpec,
+                opt
+            ).then((res) => {
+
+                res.view.insert("mapData", mapData).run()
+
+            }).catch(console.error);
+
+
+            
+
+            
+
+            var trendData =
+                arqTable
+                .filter(d => d.indicator_data_name == "Seri691")
+                .select("start_date", "time", "geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note")
+                .dedupe()
+                .objects()
+
+
+            vegaEmbed(
+                "#trend-Seri691-3",
+                trendSpec,
+                opt
+            ).then((res) => {
+
+                res.view.insert("trendData", trendData).run()
+
+            }).catch(console.error);;
+
+    });
+
+    </script>
+
+
+<script>
+    function renderComparisonChart(n,b,c,nid,bid,cid) {
+        
+        var values = []
+
+        values.push(Number(n))
+        values.push(Number(b))
+        values.push(Number(c))
+
+        
+
+        
+        
+
+        
+        var max = Math.max(...values)
+
+        
+        var denom = max * 1.2
+        var nWidth = n / denom
+        var bWidth = b / denom
+        var cWidth = c / denom
+
+        
+        document.getElementById(nid).style.width = 100 * nWidth + '%' 
+        document.getElementById(bid).style.width = 100 * bWidth + '%'
+        document.getElementById(cid).style.width = 100 * cWidth + '%'
+
+    }
+
+    function checkTrend(x,y) {
+        if (x == 0 ) {
+            document.getElementById('t-'+y).classList.add('hide');
+            document.getElementById('ta-'+y).classList.remove('hide');
+            
+        } else {}
+    }
+
+</script>
+
+
+
+
+<button data-toggle="modal" data-target="#modal-Adul692-4" onclick='getURL( 2145 , "Adul692")' class="indicator-anchor">
+    <div class="row align-items-center d-print-none">
+        <div class="col-6 col-md-5">
+            <span class="indicator-short-name">Independence difficulty</span>
+            <div class="print-only">Independent living difficulty (adults), 2017-21</div>
+        </div>
+        <div class="col-6 col-md-4 topic-list">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/Adul692_105.svg" alt="Visualization showing neighborhood rank of 5 out of 42 for Independence difficulty in Crotona - Tremont." width="100%" class="viz d-md-none mb-1"><span class="worse">Worse</span></div>
+        <div class="d-none d-md-inline col-md-3">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/Adul692_105.svg" alt="Visualization showing neighborhood rank of 5 out of 42 for Independence difficulty in Crotona - Tremont." class="viz">
+        </div>
+    </div>
+
+    
+    <div class="print-only row">
+        <div class="col-4 small border-right">
+            <span class="indicator-short-name">Independence difficulty</span>
+            <div style="font-size: 12px;">Independent living difficulty (adults), 2017-21</div>
+        </div>
+        <div class="col-3 topic-list">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/Adul692_105.svg" alt="Visualization showing neighborhood rank of 5 out of 42 for Independence difficulty in Crotona - Tremont." width="100%" class="viz d-md-none mb-1"><span class="worse">Worse</span></div>
+        <div class="col-5 border-left">
+            <div class="comparison">
+                <div class="row">
+                    <div class="col">
+                        Crotona - Tremont: <span class="float-right">8.1</span><br>
+                        Bronx: <span class="float-right">7.9</span><br>
+                        New York City: <span class="float-right">5.8</span>
+                     </div>
+
+                </div>
+            </div>
+            <p style="font-size: 12px;"><em>Percent </em></p>
+        </div>
+    </div>
+
+</button>
+
+
+<div class="modal fade report-modal" id="modal-Adul692-4" tabindex="-1" role="dialog" aria-labelledby="indicatorModalLabel" aria-hidden="true">
+   <script>
+    
+     function getYear(x,y) {
+        var endDate = new Date(x) ;
+        
+        var year = endDate.getYear() + 1900
+        
+        document.getElementById(y).innerHTML = year
+    }
+   </script>
+   
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header text-left">
+                <h2 class="modal-title fs-xl" id="indicatorModalLabel" data-pagefind-ignore="all">Independence difficulty</h2>
+                <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+                    <span class="fas fa-times-circle"></span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <h2 class="fs-xl" data-pagefind-ignore="all">Independent living difficulty (adults) <span class="font-weight-normal">(<span id="year-independence-difficulty">YEAR</span>)</span></h2>
+                <p>People with disabilities or access or functional needs may need additional support during extreme weather. For example, they may need extra planning for safe travel out of evacuation zones during a hurricane, or back-up electricity to support medical equipment during power outages. Information provided here about adults with independent living difficulties can help emergency management professionals better prepare our residents for emergencies.</p>
+            </div>
+
+            <script>
+                
+                getYear(`2021-12-31`,`year-independence-difficulty`)
+            </script>
+
+            <div class="modal-body">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col"  style="border-top:none!important"><span class="sr-only">Location:</span></th>
+                        <th scope="col"style="width:35%;"><span class="">Percent </span></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row"><span class="text-primary fs-xl float-right">Crotona - Tremont <span class="ml-2 float-right">8.1</span></span></th>
+
+                        <td>
+                            <div id="n-independence-difficulty" style="width:90%;" class="compBar neighb">
+                                &nbsp;
+                                <span class="sr-only">8.1</span>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl float-right">Bronx <span class="ml-2 float-right">7.9</span></span></th>
+                        <td>
+                            <div id="b-independence-difficulty" style="width:90%;" class="compBar nonNeighb">
+                                &nbsp;
+                                <span class="sr-only">7.9</span>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl float-right">New York City <span class="ml-2 float-right">5.8</span></span></th>
+                        <td>
+                            <div id="c-independence-difficulty" style="width:90%;" class="compBar nonNeighb">
+                                &nbsp;
+                                <span class="sr-only">5.8</span>
+                            </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table><div class="data-note float-right"></div><script>
+                    renderComparisonChart( 8.1 ,  7.9 ,  5.8 ,'n-independence-difficulty','b-independence-difficulty','c-independence-difficulty')
+                    
+                </script>
+
+            </div>
+            <hr>
+            <div class="modal-body">
+                <span class="home-label font-weight-bold">Comparison</span>
+                <p class="fs-lg">For independent living difficulty (adults), <strong class="text-primary">Crotona - Tremont</strong> is <span class="worse">worse</span> than most neighborhoods.</p>
+                <p class="fs-sm">  <em>Percent </em></p>
+                <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Adul692-4"></div>
+
+            </div>
+            <hr>
+            <div class="modal-body" id="t-independence-difficulty">
+                <span class="home-label font-weight-bold">Trends over time</span>
+                <p class="fs-sm"><em>Percent </em></p>
+                <div style="width:100%; height:50vmin; z-index:10000;display:block;" id="trend-Adul692-4"></div><div class="data-note mt-3">Some years of data may have unstable rates or estimates suppressed due to low numbers.</div></div>
+            
+            <div class="modal-body hide" id="ta-independence-difficulty">
+                <span class="home-label font-weight-bold">Trends over time (not available)</span>
+                <p class="fs-sm"><em>There's only a single year of data available for this indicator, so we can't show a trend.</em></p>
+            </div>
+            <script>
+                checkTrend('1','independence-difficulty')
+            </script>
+            <hr>
+            <div class="modal-body">
+                <span class="home-label font-weight-bold">By neighborhood</span>
+                <p class="fs-sm"><em>Percent </em></p>
+                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Adul692-4"></div><div class="data-note mt-3">Some neighborhoods may have estimates suppressed due to low numbers.</div></div>
+
+            <div class="modal-body">
+                <span class="home-label font-weight-bold">Source: </span><br> 
+                <span class="fs-sm">American Community Survey</span>
+            </div>
+
+            
+            <div class="flex-column p-2"><a id="Adul692" style="display:none">
+                <button type="button" class="btn btn-inline btn-outline-secondary px-4 float-left">Get the data</button></a>
+                <button type="button" class="btn btn-primary px-4 float-right" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .compBar {
+        margin-top: 5px;
+        padding-left: 5px;
+        border-left: 3px solid darkgray;
+        max-height: 36px;
+
+    }
+
+    .nonNeighb {
+        background-color: #D8D8D8;
+    }
+
+    .neighb {
+        background-color: #00923E;
+    }
+</style>
+
+
+
+<script type="text/javascript">
+
+    $( "#modal-Adul692-4" ).on('shown.bs.modal', function() {
+
+        
+
+        gtag('event', 'click_modal', {
+                'modal_name': 'Independence difficulty'
+            });
+
+        var opt = {"renderer": "svg"};
+
+            
+
+            
+
+            var summaryData =
+                arqTable
+                .filter(d => d.indicator_data_name == "Adul692")
+                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
+                .dedupe()
+                .groupby("neighborhood")
+                .orderby("neighborhood", aq.desc("end_date"))
+                .slice(0,1) 
+                .ungroup()
+                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
+                .orderby("unmodified_data_value_geo_entity") 
+                .select(aq.not("end_date"))
+                .objects()
+
+
+            vegaEmbed(
+                "#summary-Adul692-4",
+                summarySpec,
+                opt
+            ).then((res) => {
+
+                res.view.insert("summaryData", summaryData).run()
+
+            }).catch(console.error);;
+
+
+            
+
+            
+
+            var mapData = summaryData;
+
+
+            vegaEmbed(
+                "#map-Adul692-4",
+                mapSpec,
+                opt
+            ).then((res) => {
+
+                res.view.insert("mapData", mapData).run()
+
+            }).catch(console.error);
+
+
+            
+
+            
+
+            var trendData =
+                arqTable
+                .filter(d => d.indicator_data_name == "Adul692")
+                .select("start_date", "time", "geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note")
+                .dedupe()
+                .objects()
+
+
+            vegaEmbed(
+                "#trend-Adul692-4",
+                trendSpec,
+                opt
+            ).then((res) => {
+
+                res.view.insert("trendData", trendData).run()
+
+            }).catch(console.error);;
+
+    });
+
+    </script>
+
+
+<script>
+    function renderComparisonChart(n,b,c,nid,bid,cid) {
+        
+        var values = []
+
+        values.push(Number(n))
+        values.push(Number(b))
+        values.push(Number(c))
+
+        
+
+        
+        
+
+        
+        var max = Math.max(...values)
+
+        
+        var denom = max * 1.2
+        var nWidth = n / denom
+        var bWidth = b / denom
+        var cWidth = c / denom
+
+        
+        document.getElementById(nid).style.width = 100 * nWidth + '%' 
+        document.getElementById(bid).style.width = 100 * bWidth + '%'
+        document.getElementById(cid).style.width = 100 * cWidth + '%'
+
+    }
+
+    function checkTrend(x,y) {
+        if (x == 0 ) {
+            document.getElementById('t-'+y).classList.add('hide');
+            document.getElementById('ta-'+y).classList.remove('hide');
+            
+        } else {}
+    }
+
+</script>
+
+
+
+
+<button data-toggle="modal" data-target="#modal-Olde693-5" onclick='getURL( 2146 , "Olde693")' class="indicator-anchor">
+    <div class="row align-items-center d-print-none">
+        <div class="col-6 col-md-5">
+            <span class="indicator-short-name">Older adults living alone (65&#43;)</span>
+            <div class="print-only">Older adults living alone (65&#43;), 2017-21</div>
+        </div>
+        <div class="col-6 col-md-4 topic-list">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/Olde693_105.svg" alt="Visualization showing neighborhood rank of 13 out of 42 for Older adults living alone (65&#43;) in Crotona - Tremont." width="100%" class="viz d-md-none mb-1"><span class="worse">Worse</span></div>
+        <div class="d-none d-md-inline col-md-3">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/Olde693_105.svg" alt="Visualization showing neighborhood rank of 13 out of 42 for Older adults living alone (65&#43;) in Crotona - Tremont." class="viz">
+        </div>
+    </div>
+
+    
+    <div class="print-only row">
+        <div class="col-4 small border-right">
+            <span class="indicator-short-name">Older adults living alone (65&#43;)</span>
+            <div style="font-size: 12px;">Older adults living alone (65&#43;), 2017-21</div>
+        </div>
+        <div class="col-3 topic-list">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/Olde693_105.svg" alt="Visualization showing neighborhood rank of 13 out of 42 for Older adults living alone (65&#43;) in Crotona - Tremont." width="100%" class="viz d-md-none mb-1"><span class="worse">Worse</span></div>
+        <div class="col-5 border-left">
+            <div class="comparison">
+                <div class="row">
+                    <div class="col">
+                        Crotona - Tremont: <span class="float-right">34.7</span><br>
+                        Bronx: <span class="float-right">33.7</span><br>
+                        New York City: <span class="float-right">29.3</span>
+                     </div>
+
+                </div>
+            </div>
+            <p style="font-size: 12px;"><em>Percent </em></p>
+        </div>
+    </div>
+
+</button>
+
+
+<div class="modal fade report-modal" id="modal-Olde693-5" tabindex="-1" role="dialog" aria-labelledby="indicatorModalLabel" aria-hidden="true">
+   <script>
+    
+     function getYear(x,y) {
+        var endDate = new Date(x) ;
+        
+        var year = endDate.getYear() + 1900
+        
+        document.getElementById(y).innerHTML = year
+    }
+   </script>
+   
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header text-left">
+                <h2 class="modal-title fs-xl" id="indicatorModalLabel" data-pagefind-ignore="all">Older adults living alone (65&#43;)</h2>
+                <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+                    <span class="fas fa-times-circle"></span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <h2 class="fs-xl" data-pagefind-ignore="all">Older adults living alone (65&#43;) <span class="font-weight-normal">(<span id="year-older-adults-living-alone-65&#43;">YEAR</span>)</span></h2>
+                <p>Older adults are more vulnerable to extreme weather. Those living alone may have more difficulty getting resources they need in an emergency, and are at higher risk of weather-related illnesses like heat stroke and hypothermia.</p>
+            </div>
+
+            <script>
+                
+                getYear(`2021-12-31`,`year-older-adults-living-alone-65\u002b`)
+            </script>
+
+            <div class="modal-body">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col"  style="border-top:none!important"><span class="sr-only">Location:</span></th>
+                        <th scope="col"style="width:35%;"><span class="">Percent </span></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row"><span class="text-primary fs-xl float-right">Crotona - Tremont <span class="ml-2 float-right">34.7</span></span></th>
+
+                        <td>
+                            <div id="n-older-adults-living-alone-65&#43;" style="width:90%;" class="compBar neighb">
+                                &nbsp;
+                                <span class="sr-only">34.7</span>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl float-right">Bronx <span class="ml-2 float-right">33.7</span></span></th>
+                        <td>
+                            <div id="b-older-adults-living-alone-65&#43;" style="width:90%;" class="compBar nonNeighb">
+                                &nbsp;
+                                <span class="sr-only">33.7</span>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="fs-xl float-right">New York City <span class="ml-2 float-right">29.3</span></span></th>
+                        <td>
+                            <div id="c-older-adults-living-alone-65&#43;" style="width:90%;" class="compBar nonNeighb">
+                                &nbsp;
+                                <span class="sr-only">29.3</span>
+                            </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table><div class="data-note float-right"></div><script>
+                    renderComparisonChart( 34.7 ,  33.7 ,  29.3 ,'n-older-adults-living-alone-65\u002b','b-older-adults-living-alone-65\u002b','c-older-adults-living-alone-65\u002b')
+                    
+                </script>
+
+            </div>
+            <hr>
+            <div class="modal-body">
+                <span class="home-label font-weight-bold">Comparison</span>
+                <p class="fs-lg">For older adults living alone (65&#43;), <strong class="text-primary">Crotona - Tremont</strong> is <span class="worse">worse</span> than most neighborhoods.</p>
+                <p class="fs-sm">  <em>Percent </em></p>
+                <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Olde693-5"></div>
+
+            </div>
+            <hr>
+            <div class="modal-body" id="t-older-adults-living-alone-65&#43;">
+                <span class="home-label font-weight-bold">Trends over time</span>
+                <p class="fs-sm"><em>Percent </em></p>
+                <div style="width:100%; height:50vmin; z-index:10000;display:block;" id="trend-Olde693-5"></div><div class="data-note mt-3">Some years of data may have unstable rates or estimates suppressed due to low numbers.</div></div>
+            
+            <div class="modal-body hide" id="ta-older-adults-living-alone-65&#43;">
+                <span class="home-label font-weight-bold">Trends over time (not available)</span>
+                <p class="fs-sm"><em>There's only a single year of data available for this indicator, so we can't show a trend.</em></p>
+            </div>
+            <script>
+                checkTrend('1','older-adults-living-alone-65\u002b')
+            </script>
+            <hr>
+            <div class="modal-body">
+                <span class="home-label font-weight-bold">By neighborhood</span>
+                <p class="fs-sm"><em>Percent </em></p>
+                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Olde693-5"></div><div class="data-note mt-3">Some neighborhoods may have estimates suppressed due to low numbers.</div></div>
+
+            <div class="modal-body">
+                <span class="home-label font-weight-bold">Source: </span><br> 
+                <span class="fs-sm">American Community Survey</span>
+            </div>
+
+            
+            <div class="flex-column p-2"><a id="Olde693" style="display:none">
+                <button type="button" class="btn btn-inline btn-outline-secondary px-4 float-left">Get the data</button></a>
+                <button type="button" class="btn btn-primary px-4 float-right" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .compBar {
+        margin-top: 5px;
+        padding-left: 5px;
+        border-left: 3px solid darkgray;
+        max-height: 36px;
+
+    }
+
+    .nonNeighb {
+        background-color: #D8D8D8;
+    }
+
+    .neighb {
+        background-color: #00923E;
+    }
+</style>
+
+
+
+<script type="text/javascript">
+
+    $( "#modal-Olde693-5" ).on('shown.bs.modal', function() {
+
+        
+
+        gtag('event', 'click_modal', {
+                'modal_name': 'Older adults living alone (65\u002b)'
+            });
+
+        var opt = {"renderer": "svg"};
+
+            
+
+            
+
+            var summaryData =
+                arqTable
+                .filter(d => d.indicator_data_name == "Olde693")
+                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
+                .dedupe()
+                .groupby("neighborhood")
+                .orderby("neighborhood", aq.desc("end_date"))
+                .slice(0,1) 
+                .ungroup()
+                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
+                .orderby("unmodified_data_value_geo_entity") 
+                .select(aq.not("end_date"))
+                .objects()
+
+
+            vegaEmbed(
+                "#summary-Olde693-5",
+                summarySpec,
+                opt
+            ).then((res) => {
+
+                res.view.insert("summaryData", summaryData).run()
+
+            }).catch(console.error);;
+
+
+            
+
+            
+
+            var mapData = summaryData;
+
+
+            vegaEmbed(
+                "#map-Olde693-5",
+                mapSpec,
+                opt
+            ).then((res) => {
+
+                res.view.insert("mapData", mapData).run()
+
+            }).catch(console.error);
+
+
+            
+
+            
+
+            var trendData =
+                arqTable
+                .filter(d => d.indicator_data_name == "Olde693")
+                .select("start_date", "time", "geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note")
+                .dedupe()
+                .objects()
+
+
+            vegaEmbed(
+                "#trend-Olde693-5",
+                trendSpec,
+                opt
+            ).then((res) => {
+
+                res.view.insert("trendData", trendData).run()
+
+            }).catch(console.error);;
+
+    });
+
+    </script>
+</div>
                                     
 
                                 </div>
@@ -849,7 +4509,7 @@
                     <div class="border mb-2 nr-map-highlight" style="height: 100%">
                         <div class="p-1">
                             <p><strong style="color:#00923E">Crotona - Tremont</strong> includes ZIP Codes:
-                                <span class="home-label font-weight-bold" id="zips"></span>.
+                                <span class="home-label font-weight-bold" id="zips">10453, 10457, 10460</span>.
                             </p>
                         </div><div id="vis1" class="chartdest" style="width: 100%; height: 300px;"></div>
 
