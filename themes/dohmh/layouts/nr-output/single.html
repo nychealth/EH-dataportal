@@ -122,26 +122,10 @@
 {{- $report_filename := .File.BaseFileName -}}
 
 
-<div class="d-flex flex-column report-header d-print-none">
-
-    <!-- Toggle #sidebar-nav on mobile -->
-    <div class="container-fluid p-0 d-lg-none">
-        <div>
-            <div class="btn-toggle">
-                <button class="btn btn-block btn-lg btn-primary shadow" data-toggle="collapse"
-                    data-target="#sidebar-nav" aria-expanded="false" aria-controls="sidebar-nav">
-                    <span class="title">Reports</span>
-                </button>
-            </div>
-        </div>
-    </div>
-
-</div>
-
 <section class="container-fluid" id="skip-header-target" data-pagefind-ignore="all">
 
     <div class="row">
-        <div class="col-lg-10 mx-auto col-12">
+        <div class="col-lg-12 mx-auto col-12">
             <nav aria-label="breadcrumb" class="mt-2 mb-3">
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
@@ -151,18 +135,86 @@
                 </ul>
             </nav>
 
-            <h1 class="report-title border-bottom mt-4">{{ $.Params.title }} in
-                <span class="sub-title">{{ $.Params.neighborhood }}</span>
-            </h1>
-
-            <p class="report-description fs-lg mt-2 mb-4">{{ $.Params.summary }}</p>
-
-
             <div class="row">
-                <div class="col-md-9 h-100 col-print-12">
+                <div class="col-md-5">
+                    <div class="border" style="height: 450px; width:100%">
+                        {{ partial "nr-leaflet" . }}
+                    </div>
 
-                <!-- REPORT CONTENT -->
-                <div class="row">
+                    <div class="border my-2" style="height: 350px;">
+                        Neighborhood overview
+                    </div>
+
+                        <div class="border mb-2 nr-map-highlight sr-only">
+                        <div class="p-1">
+                            <p><strong style="color:#00923E">{{ $.Params.neighborhood }}</strong> includes ZIP Codes:
+                                <span class="home-label font-weight-bold" id="zips">
+
+                                    {{- /*  insert zip code  */}}
+
+                                    {{- $zipCodesString := replace $zip_codes "," ", " -}}
+
+                                    {{- print $zipCodesString -}}
+
+                                </span>.
+                            </p>
+                        </div>
+
+                        {{- partial "nr-map-highlight" . -}}
+
+                    </div>
+
+                    <nav role="navigation">
+                        <div class="sr-only">
+                            {{- partial "nr-sub_nav" (dict  "neighborhood_dir" $neighborhood_dir  "report_filename" $report_filename) -}}
+                        </div>
+                    </nav>
+
+
+                </div>
+
+                <div class="col-md-7">
+                    <div class="row no-gutters">
+                        <div class="col-lg mb-2 mr-1 mb-lg-0">
+                        <button class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2"  id="Active">Active design</button>
+                        </div>
+                        <div class="col-lg mb-2 mr-1 mb-lg-0">
+                        <button class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2"  id="Asthma">Asthma</button>
+                        </div>
+                        <div class="col-lg mb-2 mr-1 mb-lg-0">
+                        <button class="btn btn-sm  btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2"  id="Climate">Climate</button>
+                        </div>
+                        <div class="col-lg mb-2 mr-1 mb-lg-0">
+                        <button class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2"  id="Housing">Housing</button>
+                        </div>
+                        <div class="col-md mb-2 mb-lg-0">
+                        <button class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2"  id="Outdoor">Outdoor Air</button>
+                        </div>
+                    </div>
+
+                    <h1 class="report-title border-bottom mt-2">{{ $.Params.title }} 
+                        <br><span style="font-weight:normal">in</span><br>
+                        <span class="sub-title">{{ $.Params.neighborhood }}</span>
+                    </h1>
+
+                    <p class="report-description fs-lg my-2">{{ $.Params.summary }}</p>
+
+                    <div class="row no-gutters mb-2">
+                                                <div class="col-lg mr-1 mb-lg-0"></div>
+
+                        <div class="col-lg mr-1 mb-lg-0">
+                            <button onclick="window.print()" class="btn btn-sm btn-block btn-report mt-2" target="_blank"><i class="fas fa-print mr-1"></i>Print Report</button>
+
+
+                        </div>
+
+                        <div class="col-lg mr-1 mb-lg-0">
+                            <button onclick="downloadData()" class="btn btn-sm btn-block btn-report mt-2" target="_blank"><i class="fa fa-download mr-1"></i>Download Report Data <span class="sr-only">(opens in a new tab)</span></button>
+                        </div>
+                    </div>
+
+                    <!-- OUTPUT -->
+                                    <div class="row">
                     <div class="col-12">
                         <div>
 
@@ -266,42 +318,24 @@
 
                     </div>
                 </div>
+
+                </div>
+            </div>
+
+
+
+
+            <div class="row">
+                <div class="col-md-9 h-100 col-print-12">
+
+                <!-- REPORT CONTENT -->
+
                 <!-- .narrow -->
 
                 </div>
 
                 <!-- NAV RIGHT SIDEBAR -->
                 <div class="col-md-3 h-100 d-print-none">
-                    <div class="border mb-2 nr-map-highlight" style="height: 100%">
-                        <div class="p-1">
-                            <p><strong style="color:#00923E">{{ $.Params.neighborhood }}</strong> includes ZIP Codes:
-                                <span class="home-label font-weight-bold" id="zips">
-
-                                    {{- /*  insert zip code  */}}
-
-                                    {{- $zipCodesString := replace $zip_codes "," ", " -}}
-
-                                    {{- print $zipCodesString -}}
-
-                                </span>.
-                            </p>
-                        </div>
-
-                        {{- partial "nr-map-highlight" . -}}
-
-                    </div>
-
-                    <nav role="navigation">
-                        <div class="">
-
-                            {{- partial "nr-sub_nav" (dict  "neighborhood_dir" $neighborhood_dir  "report_filename" $report_filename) -}}
-                        </div>
-                    </nav>
-
-                    <hr class="my-2">
-                    <button onclick="window.print()" class="btn btn-sm btn-block btn-report mt-2" target="_blank"><i class="fas fa-print mr-1"></i>Print Report</button>
-
-                    <button onclick="downloadData()" class="btn btn-sm btn-block btn-report mt-2" target="_blank"><i class="fa fa-download mr-1"></i>Download Report Data <span class="sr-only">(opens in a new tab)</span></button>
 
 
 
