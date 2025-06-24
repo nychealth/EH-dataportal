@@ -8,10 +8,20 @@
 
     .card-header a {
         color: black;
+        text-decoration: none;
     }
 
     .report-section {
         border-top: 8px solid #008939;
+    }
+
+    .card-header:hover {
+        background-color: #EFFAF4 !important;
+        text-decoration: none;
+    }
+
+    .card-header .btn:hover {
+        text-decoration: none;
     }
 </style>
 
@@ -181,155 +191,101 @@
                         </div>
                     </div>
 
-                    <h1 class="report-title border-bottom mt-2">{{ $.Params.title }} 
-                        <br><span style="font-weight:normal">in</span><br>
+                    <h1 class="report-title border-bottom mt-2">{{ $.Params.title }} <span style="font-weight:normal">in</span><br>
                         <span class="sub-title">{{ $.Params.neighborhood }}</span>
                     </h1>
 
                     <p class="report-description fs-lg my-2">{{ $.Params.summary }}</p>
 
-                    <div class="row no-gutters mb-2">
-                                                <div class="col-lg mr-1 mb-lg-0"></div>
-
-                        <div class="col-lg mr-1 mb-lg-0">
-                            <button onclick="window.print()" class="btn btn-sm btn-block btn-report mt-2" target="_blank"><i class="fas fa-print mr-1"></i>Print Report</button>
+                    <button onclick="window.print()" class="btn btn-sm btn-report mt-2" target="_blank"><i class="fas fa-print mr-1"></i>Print Report</button>
+                    <button onclick="downloadData()" class="btn btn-sm btn-report mt-2" target="_blank"><i class="fa fa-download mr-1"></i>Download Data <span class="sr-only">(opens in a new tab)</span></button>
 
 
-                        </div>
-
-                        <div class="col-lg mr-1 mb-lg-0">
-                            <button onclick="downloadData()" class="btn btn-sm btn-block btn-report mt-2" target="_blank"><i class="fa fa-download mr-1"></i>Download Report Data <span class="sr-only">(opens in a new tab)</span></button>
-                        </div>
-                    </div>
-
-                    <!-- OUTPUT -->
-                    <div class="report-section pt-2">
-                    <h4 class="h6">Outdoor air pollutants</h4>
+                    <!-- Another output test -->
+                    <div class="accordion my-4 report-section pt-2" id="accordionExample">
+                                            <h4 class="h6">Outdoor air pollutants</h4>
                     <p class="fs-sm">Estimated annual average concentrations calculated from a model that used NYC Community Air Survey measurements.</p>
 
-                    <div class="accordion-group bg-white mb-4" role="tablist" id="accordion-01">
-
-                        <div class="card my-0">
-                            <a class="card-header border collapse collapsed" id="acc-button-01" data-toggle="collapse" href="#panel-acc-button-01"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-01">
-                                <div class="row no-gutters" style="width:100%">
-                                    <div class="col-7"> 
-                                       <span class="font-weight-bold">PM2.5</span><br>
-                                        <span class="fs-sm">Concentration of PM2.5 (fine particles) in the air</span>
+                        <div class="card">
+                            <div class="card-header border" id="headingOne">
+                            <h2 class="mb-0">
+                                <button class="btn btn-block btn-sm text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    <div class="row no-gutters" style="width:100%">
+                                        <div class="col-8"> 
+                                        <span class="font-weight-bold">PM2.5</span><br>
+                                            <span class="fs-sm font-weight-normal">Concentration of PM2.5 (fine particles) in the air</span>
+                                        </div>
+                                        <div class="col-3">
+                                        <span class="font-weight-bold">6.5</span> <br>
+                                            <span class="fs-sm font-weight-normal">mcg/m3</span>
+                                        </div>
+                                        <div class="col-1">
+                                        <span class="worse">Worse</span>
+                                        </div>
                                     </div>
-                                    <div class="col-3">
-                                       <span class="font-weight-bold">6.5</span> <br>
-                                        <span class="fs-sm">mcg/m3</span>
-                                    </div>
-                                    <div class="col-2">
-                                       <span class="font-weight-bold">WORSE</span> 
-                                    </div>
-                                </div>
-                            </a>
-
-                            <div class="collapse" id="panel-acc-button-01" role="tabpanel" aria-labelledby="acc-button-01" data-parent="#accordion-01">
-
-                                <div class="card-body border">
-                                    <img src="https://i.imgur.com/lusmVo9.png">
-
-                                </div>
-
+                                </button>
+                            </h2>
                             </div>
-                            <!-- .collapse -->
 
-                        </div>
-                        <!-- .card (end of first accordion, repeat as needed) -->
-
-                        <div class="card my-0">
-                            <a class="card-header border collapse collapsed" id="acc-button-02" data-toggle="collapse" href="#panel-acc-button-02"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-02">
-                                <div class="row no-gutters" style="width:100%">
-                                    <div class="col-7"> 
-                                       <span class="font-weight-bold">Black carbon</span><br>
-                                        <span class="fs-sm">Airborn concentration of black carbon</span>
-                                    </div>
-                                    <div class="col-3">
-                                       <span class="font-weight-bold">0.5</span> <br>
-                                        <span class="fs-sm">absorbance units</span>
-                                    </div>
-                                    <div class="col-2">
-                                       <span class="font-weight-bold">MIDDLE</span> 
-                                    </div>
-                                </div>
-                            </a>
-
-                            <div class="collapse" id="panel-acc-button-02" role="tabpanel" aria-labelledby="acc-button-02" data-parent="#accordion-01">
-
-                                <div class="card-body border">
-                                    <img src="https://i.imgur.com/lusmVo9.png">
-                                </div>
-
+                            <div id="collapseOne" class="collapse border" aria-labelledby="headingOne" data-parent="#accordionExample">
+                            <div class="card-body">
+                                                            <img src="https://i.imgur.com/lusmVo9.png">
                             </div>
-                            <!-- .collapse -->
-
-                        </div>
-                        <!-- .card (end of first accordion, repeat as needed) -->
-
-                        <div class="card my-0">
-                            <a class="card-header border collapse collapsed" id="acc-button-03" data-toggle="collapse" href="#panel-acc-button-03"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-03">
-                                <div class="row no-gutters" style="width:100%">
-                                    <div class="col-7"> 
-                                       <span class="font-weight-bold">Nitrogen dioxide</span><br>
-                                        <span class="fs-sm">Airborn concentration of NO2</span>
-                                    </div>
-                                    <div class="col-3">
-                                       <span class="font-weight-bold">14.9</span> <br>
-                                        <span class="fs-sm">ppb</span>
-                                    </div>
-                                    <div class="col-2">
-                                       <span class="font-weight-bold">WORSE</span> 
-                                    </div>
-                                </div>
-                            </a>
-
-                            <div class="collapse" id="panel-acc-button-03" role="tabpanel" aria-labelledby="acc-button-03" data-parent="#accordion-01">
-
-                                <div class="card-body border">
-                                    <img src="https://i.imgur.com/lusmVo9.png">
-                                </div>
-
                             </div>
-                            <!-- .collapse -->
-
                         </div>
-                        <!-- .card (end of first accordion, repeat as needed) -->
-
-                        <div class="card my-0">
-                            <a class="card-header border collapse collapsed" id="acc-button-04" data-toggle="collapse" href="#panel-acc-button-04"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-04">
-                                <div class="row no-gutters" style="width:100%">
-                                    <div class="col-7"> 
-                                       <span class="font-weight-bold">Ozone</span><br>
-                                        <span class="fs-sm">Concentration of ozone in the air</span>
+                        <div class="card">
+                            <div class="card-header border" id="headingTwo">
+                            <h2 class="mb-0">
+                                <button class="btn btn-block btn-sm text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                                                <div class="row no-gutters" style="width:100%">
+                                        <div class="col-8"> 
+                                        <span class="font-weight-bold">Black carbon</span><br>
+                                            <span class="fs-sm font-weight-normal">Airborn concentration of black carbon</span>
+                                        </div>
+                                        <div class="col-3">
+                                        <span class="font-weight-bold">0.5</span> <br>
+                                            <span class="fs-sm font-weight-normal">absorbance units</span>
+                                        </div>
+                                        <div class="col-1">
+                                        <span class="middle">Middle</span> 
+                                        </div>
                                     </div>
-                                    <div class="col-3">
-                                       <span class="font-weight-bold">36.9</span> <br>
-                                        <span class="fs-sm">ppb</span>
-                                    </div>
-                                    <div class="col-2">
-                                       <span class="font-weight-bold">WORSE</span> 
-                                    </div>
-                                </div>
-                            </a>
-
-                            <div class="collapse" id="panel-acc-button-04" role="tabpanel" aria-labelledby="acc-button-04" data-parent="#accordion-01">
-
-                                <div class="card-body border">
-                                    <img src="https://i.imgur.com/lusmVo9.png">
-                                </div>
-
+                                </button>
+                            </h2>
                             </div>
-                            <!-- .collapse -->
-
+                            <div id="collapseTwo" class="collapse border" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                            <div class="card-body">
+                                                            <img src="https://i.imgur.com/lusmVo9.png">
+                            </div>
+                            </div>
                         </div>
-                        <!-- .card (end of first accordion, repeat as needed) -->
-
+                        <div class="card">
+                            <div class="card-header border" id="headingThree">
+                            <h2 class="mb-0">
+                                <button class="btn btn-block btn-sm text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                                                <div class="row no-gutters" style="width:100%">
+                                        <div class="col-8"> 
+                                        <span class="font-weight-bold">Nitrogen dioxide</span><br>
+                                            <span class="fs-sm font-weight-normal">Airborn concentration of NO2</span>
+                                        </div>
+                                        <div class="col-3">
+                                        <span class="font-weight-bold">14.9</span> <br>
+                                            <span class="fs-sm font-weight-normal">ppb</span>
+                                        </div>
+                                        <div class="col-1">
+                                        <span class="worse">Worse</span> 
+                                        </div>
+                                    </div>
+                                </button>
+                            </h2>
+                            </div>
+                            <div id="collapseThree" class="collapse border" aria-labelledby="headingThree" data-parent="#accordionExample">
+                            <div class="card-body">
+                                <img src="https://i.imgur.com/lusmVo9.png">
+                            </div>
+                            </div>
+                        </div>
                     </div>
-                    </div>
-
-                    
                     
                     
                     <div class="row">
