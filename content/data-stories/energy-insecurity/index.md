@@ -1,7 +1,7 @@
 ---
 title: Energy is critical for health and climate resilience — but not all New Yorkers may be able to afford it
 shortTitle: Energy insecurity and health
-date: 2025-06-15T09:01:00-04:00
+date: 2025-06-24T09:01:00-04:00
 draft: false
 seo_title: "Affordable energy is key to health and climate resilience"
 seo_description: "A data story about the health impacts from climate change-driven energy insecurity."
