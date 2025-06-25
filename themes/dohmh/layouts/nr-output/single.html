@@ -23,6 +23,16 @@
     .card-header .btn:hover {
         text-decoration: none;
     }
+
+    .comp-good {
+        background-color: blue;
+        color: white;
+    }
+
+    .comp-bad {
+        background-color: purple;
+        color: white;
+    }
 </style>
 
 {{- /* ==== get topics and measures for this report ==== */}}
@@ -494,7 +504,8 @@ aria-hidden="true" data-pagefind-ignore="all">
         data,
         destination,
         legendLabel,
-        indicatorTitle
+        indicatorTitle,
+        geocode
     ) => {
 
     console.log('running renderNRMap in ', destination)
@@ -601,20 +612,18 @@ aria-hidden="true" data-pagefind-ignore="all">
                 }
                 },
                 "stroke": {
-                "condition": [
-                    {"param": "highlight", "empty": false, "value": "cyan"}
-                ],
+                "condition": {
+                    "test": `datum.geo_join_id == ${geocode}`,
+                    "value": "cyan"
+                },
                 "value": "#2d2d2d"
                 },
                 "strokeWidth": {
-                "condition": [
-                    {"param": "highlight", "empty": false, "value": 1.25}
-                ],
-                "value": 0.5
+                "condition": {
+                    "test": `datum.geo_join_id == ${geocode}`,
+                    "value": 2.5
                 },
-                "order": {
-                "condition": [{"param": "highlight", "empty": false, "value": 1}],
-                "value": 0
+                "value": 0.5
                 },
                 "tooltip":[
                     {"field":"neighborhood", "title": "Neighborhood", "type":"nominal"},
@@ -655,13 +664,17 @@ aria-hidden="true" data-pagefind-ignore="all">
             "legend": false
             },
             "stroke": {
-            "condition": [
-                {"param": "highlight", "empty": false, "value": "cyan"}
-            ],
-            "value": "white"
+            "condition": {
+                "test": `datum.geo_join_id == ${geocode}`,
+                "value": "cyan"
+            },
+            "value": "#2d2d2d"
             },
             "strokeWidth": {
-            "condition": [{"param": "highlight", "empty": false, "value": 3}],
+            "condition": {
+                "test": `datum.geo_join_id == ${geocode}`,
+                "value": 2.5
+            },
             "value": 0
             }
         }

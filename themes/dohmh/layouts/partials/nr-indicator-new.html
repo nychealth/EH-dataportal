@@ -75,8 +75,8 @@ this partial takes 5 arguments as a dict:
             <p>
                 For {{ lower .data.indicator_short_name }}, <strong>{{ .neighborhood }}</strong> is:
                 <ul>
-                    <li> <span id="b-{{ urlize .data.indicator_short_name }}"></span> than <strong>{{ .borough }}</strong></li>
-                    <li> <span id="c-{{ urlize .data.indicator_short_name }}"></span> than <strong>Citywide</strong></li>
+                    <li> <span id="b-{{ urlize .data.indicator_short_name }}"></span> the <strong>{{ .borough }} average</strong></li>
+                    <li> <span id="c-{{ urlize .data.indicator_short_name }}"></span> the <strong>Citywide average</strong></li>
                 </ul>
                 
             </p>
@@ -122,35 +122,64 @@ this partial takes 5 arguments as a dict:
         document.getElementById(y).innerHTML = year;
     })(`{{ .data.end_date }}`, `year-{{ urlize .data.indicator_short_name }}`);
 
-    // Renders comparison sentences
-    (function(n,b,c,nid,bid,cid) {
+(function(n, b, c, nid, bid, cid, rr) {
+    n = Number(n);
+    b = Number(b);
+    c = Number(c);
 
-        // Compare n and b
-        let boroComp;
-        if (n > b) {
-            boroComp = "Higher";
-        } else if (n < b) {
-            boroComp = "Lower";
-        } else {
-            boroComp = "Equal"; 
-        }
+    let rankReverse = (rr === true || rr === 'true');
 
-        document.getElementById(bid).innerHTML = boroComp
+    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
+    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
 
-        // Compare n and c
-        let cityComp;
-        if (n > c) {
-            cityComp = "Higher";
-        } else if (n < c) {
-            cityComp = "Lower";
-        } else {
-            cityComp = "Equal";
-        }
+    let boroJudgement;
+    if (n > b && rankReverse) {
+      boroJudgement = 'comp-good';
+    } else if (n < b && rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n > b && !rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n < b && !rankReverse) {
+      boroJudgement = 'comp-good';
+    } else {
+      boroJudgement = 'comp-null';
+    }
 
-        document.getElementById(cid).innerHTML = cityComp
+    let cityJudgement;
+    if (n > c && rankReverse) {
+      cityJudgement = 'comp-good';
+    } else if (n < c && rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n > c && !rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n < c && !rankReverse) {
+      cityJudgement = 'comp-good';
+    } else {
+      cityJudgement = 'comp-null';
+    }
 
-    
-    })({{ .data.unmodified_data_value_geo_entity }}, {{ .data.data_value_boro }}, {{ .data.data_value_nyc }},'n-{{ urlize .data.indicator_short_name }}','b-{{ urlize .data.indicator_short_name }}','c-{{ urlize .data.indicator_short_name }}')
+    let boroEl = document.getElementById(bid);
+    if (boroEl) {
+        boroEl.innerHTML = boroComp;
+        boroEl.classList.add(boroJudgement);
+    }
+
+    let cityEl = document.getElementById(cid);
+    if (cityEl) {
+        cityEl.innerHTML = cityComp;
+        cityEl.classList.add(cityJudgement);
+    }
+
+})(
+    {{ .data.unmodified_data_value_geo_entity }},
+    {{ .data.data_value_boro }},
+    {{ .data.data_value_nyc }},
+    'n-{{ urlize .data.indicator_short_name }}',
+    'b-{{ urlize .data.indicator_short_name }}',
+    'c-{{ urlize .data.indicator_short_name }}',
+    {{ .data.rankReverse }}
+)
+
 
 </script>
 
@@ -198,7 +227,7 @@ this partial takes 5 arguments as a dict:
 
             var mapData = summaryData;
 
-            renderNRMap(mapData,  "#map-{{ .data.indicator_data_name }}-{{ .count }}", "{{ .data.measurement_type }} {{ .data.units }}","{{ .data.indicator_short_name }}")
+            renderNRMap(mapData,  "#map-{{ .data.indicator_data_name }}-{{ .count }}", "{{ .data.measurement_type }} {{ .data.units }}","{{ .data.indicator_short_name }}",geocode)
 
             /*
             vegaEmbed(
