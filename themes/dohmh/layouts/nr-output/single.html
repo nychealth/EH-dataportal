@@ -69,8 +69,8 @@
                 thisTopic = y
                 // console.log('topic is: ' + ind + ": " + thisTopic)
                 URL = {{ relURL "data-explorer/" }} + thisTopic + "/?id=" + ind; // creates URL
-                document.getElementById(dataname).style.display = "block";
-                document.getElementById(dataname).href = URL; // sends it to unique ID - Get the Dataset button
+                document.getElementById(indID).style.display = "block";
+                document.getElementById(indID).href = URL; // sends it to unique ID - Get the Dataset button
 
                 return
 
@@ -493,20 +493,23 @@ aria-hidden="true" data-pagefind-ignore="all">
   const renderNRMap = (
         data,
         destination,
-        legendLabel
+        legendLabel,
+        indicatorTitle
     ) => {
+
+    console.log('running renderNRMap in ', destination)
 
     let mapSpec = {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "title": {
-        "text": "TITLE",
+        "text": indicatorTitle,
         "subtitlePadding": 10,
-        "fontWeight": "normal",
+        "fontWeight": "bold",
         "anchor": "start",
-        "fontSize": 18,
+        "fontSize": 14,
         "font": "sans-serif",
         "baseline": "top",
-        "subtitle": "LEGEND LABEL",
+        "subtitle": '',
         "subtitleFontSize": 13
     },
     "data": {
@@ -584,13 +587,14 @@ aria-hidden="true" data-pagefind-ignore="all">
                 "shape": {"field": "geo", "type": "geojson"},
                 "color": {
                 "bin": false,
-                "field": "Value",
+                "field": "unmodified_data_value_geo_entity",
                 "type": "quantitative",
                 "scale": {"scheme": {"name": "viridis", "extent": [1, 0]}},
                 "legend": {
                     "direction": "horizontal",
                     "orient": "top-left",
-                    "title": null,
+                    "title": legendLabel,
+                    "fontWeight": "normal",
                     "tickCount": 3,
                     "offset": -25,
                     "gradientLength": 200
@@ -612,17 +616,16 @@ aria-hidden="true" data-pagefind-ignore="all">
                 "condition": [{"param": "highlight", "empty": false, "value": 1}],
                 "value": 0
                 },
-                "tooltip": [
-                {"field": "Geography", "title": "Neighborhood"},
-                {"field": "valueLabel", "title": "Percent"},
-                {"field": "TimePeriod", "title": "Time period"}
+                "tooltip":[
+                    {"field":"neighborhood", "title": "Neighborhood", "type":"nominal"},
+                    {"field":"unmodified_data_value_geo_entity", "title": legendLabel, "type":"quantitative"}
                 ]
             }
             }
         ]
         },
         {
-        "height": 150,
+        "height": 100,
         "width": "container",
         "config": {"axisY": {"labelAngle": 0, "labelFontSize": 13}},
         "mark": {"type": "bar", "tooltip": true, "stroke": "#161616"},
@@ -634,20 +637,19 @@ aria-hidden="true" data-pagefind-ignore="all">
         ],
         "encoding": {
             "y": {
-            "field": "Value",
+            "field": "unmodified_data_value_geo_entity",
             "type": "quantitative",
             "title": null,
             "axis": {"labelAngle": 0, "labelFontSize": 11, "tickCount": 3}
             },
-            "tooltip": [
-            {"field": "Geography", "title": "Neighborhood"},
-            {"field": "valueLabel", "title": "Percent"},
-            {"field": "TimePeriod", "title": "Time period"}
+            "tooltip":[
+                {"field":"neighborhood", "title": "Neighborhood", "type":"nominal"},
+                {"field":"unmodified_data_value_geo_entity", "title": legendLabel, "type":"quantitative"}
             ],
-            "x": {"field": "GeoID", "sort": "y", "axis": null},
+            "x": {"field": "geo_join_id", "sort": "y", "axis": null},
             "color": {
             "bin": false,
-            "field": "Value",
+            "field": "unmodified_data_value_geo_entity",
             "type": "quantitative",
             "scale": {"scheme": {"name": "viridis", "extent": [1, 0]}},
             "legend": false
@@ -666,6 +668,8 @@ aria-hidden="true" data-pagefind-ignore="all">
         }
     ]
     }
+
+    vegaEmbed(destination,mapSpec)
 
 
 
