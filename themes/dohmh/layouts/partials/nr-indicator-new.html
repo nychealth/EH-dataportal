@@ -1,0 +1,118 @@
+{{/* this partial takes 4 arguments as a dict: - neighborhood - borough - data -
+the actual data for this indicator x neighborhood - count - the nth indicator in
+this report topic, used for making unique element IDs */}}
+
+<script>
+  function renderComparisonChart(n, b, c, nid, bid, cid) {
+    // pass into an array
+    var values = [];
+
+    values.push(Number(n));
+    values.push(Number(b));
+    values.push(Number(c));
+
+    // drop '*' from string!
+
+    // console.log('values:')
+    // console.log(values)
+
+    // get maximum value
+    var max = Math.max(...values);
+
+    // denom for percent widths
+    var denom = max * 1.2;
+    var nWidth = n / denom;
+    var bWidth = b / denom;
+    var cWidth = c / denom;
+
+    // style chart divs
+    document.getElementById(nid).style.width = 100 * nWidth + "%";
+    document.getElementById(bid).style.width = 100 * bWidth + "%";
+    document.getElementById(cid).style.width = 100 * cWidth + "%";
+  }
+
+  function checkTrend(x, y) {
+    if (x == 0) {
+      document.getElementById("t-" + y).classList.add("hide");
+      document.getElementById("ta-" + y).classList.remove("hide");
+      // console.log(y)
+    } else {
+    }
+  }
+</script>
+
+<!-- INDICATOR ROW -->
+  <div class="card-header border" id="heading-{{ .data.indicator_data_name }}">
+    <h2 class="mb-0">
+      <button
+        class="btn btn-block btn-sm text-left"
+        type="button"
+        data-toggle="collapse"
+        data-target="#collapse-{{ .data.indicator_data_name }}"
+        aria-expanded="true"
+        aria-controls="collapse-{{ .data.indicator_data_name }}"
+      >
+        <div class="row no-gutters" style="width: 100%">
+          <div class="col-8">
+            <span class="font-weight-bold fs-md"
+              >{{ .data.indicator_short_name }}</span
+            ><br />
+            <span class="fs-sm font-weight-normal"
+              >{{- .data.indicator_long_name -}}</span
+            >
+          </div>
+          <div class="col-4">
+            {{- if eq (string .data.data_value_rank) "1" -}}<span
+              class="worse float-right"
+              >Worse</span
+            >
+            {{- else if eq (string .data.data_value_rank) "2" -}}<span
+              class="middle float-right"
+              >Middle</span
+            >
+            {{- else -}}<span class="better float-right">Better</span>
+            {{- end -}}
+            <span class="font-weight-bold fs-md"
+              >{{ .data.data_value_geo_entity }}</span
+            >
+            <br />
+            <span class="fs-xs font-weight-normal"
+              >{{ .data.measurement_type }} {{ .data.units }}</span
+            >
+          </div>
+        </div>
+      </button>
+    </h2>
+  </div>
+
+  <div
+    id="collapse-{{ .data.indicator_data_name }}"
+    class="collapse border"
+    aria-labelledby="heading-{{ .data.indicator_data_name }}"
+    data-parent="#accordion-{{ .count }}"
+  >
+    <div class="card-body">
+      <div class="row fs-sm">
+        <div class="col-5 border-right">
+          <p>
+            Quisque viverra metus ut varius ultricies. Ut sed enim nisl.
+            Curabitur arcu ante, sollicitudin sed purus vel, imperdiet hendrerit
+            ipsum.
+          </p>
+          <p>
+            Curabitur pellentesque lorem et consequat pretium. Suspendisse nec
+            luctus nunc. Proin ac elit dapibus odio tempus cursus. Donec
+            eleifend elementum nisi, at vestibulum felis mollis vel. Nulla
+            pulvinar fermentum consectetur.
+          </p>
+          <p>
+            Quisque viverra metus ut varius ultricies. Ut sed enim nisl.
+            Curabitur arcu ante, sollicitudin sed purus vel, imperdiet hendrerit
+            ipsum.
+          </p>
+        </div>
+        <div class="col-7">Map/Bar</div>
+      </div>
+    </div>
+    </div>
+

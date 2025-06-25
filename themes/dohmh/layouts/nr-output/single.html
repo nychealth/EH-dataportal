@@ -166,7 +166,7 @@
                         {{ partial "nr-leaflet" . }}
                     </div>
 
-                    <div class="border my-2" style="height: 350px;">
+                    <div class="report-topic my-2" style="height: 350px;">
                         Neighborhood overview
                     </div>
 
@@ -201,150 +201,17 @@
                     <button class="btn btn-sm btn-report mt-2 float-right" target="_blank"><i class="fas fa-question-circle mr-1" aria-hidden="true"></i>About comparisons <span class="sr-only">(opens in a new tab)</span></button>
 
 
-                    <!-- Another output test -->
-                    <div class="accordion my-4 report-section pt-2" id="accordionExample">
-                    <h4 class="fs-rg">Outdoor air pollutants</h4>
-                    <p class="fs-sm">Estimated annual average concentrations calculated from a model that used NYC Community Air Survey measurements.</p>
-
-                        <div class="card">
-                            <div class="card-header border" id="headingOne">
-                            <h2 class="mb-0">
-                                <button class="btn btn-block btn-sm text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                    <div class="row no-gutters" style="width:100%">
-                                        <div class="col-8"> 
-                                        <span class="font-weight-bold fs-md">PM2.5</span><br>
-                                            <span class="fs-sm font-weight-normal">Concentration of PM2.5 (fine particles) in the air</span>
-                                        </div>
-                                        <div class="col-4">
-                                        <span class="worse float-right">Worse</span>
-                                        <span class="font-weight-bold fs-md">6.5</span> <br>
-                                            <span class="fs-xs font-weight-normal">mcg/m3</span>
-                                        </div>
-                                    </div>
-                                </button>
-                            </h2>
-                            </div>
-
-                            <div id="collapseOne" class="collapse border" aria-labelledby="headingOne" data-parent="#accordionExample">
-                            <div class="card-body">
-                                <div class="row fs-sm">
-                                    <div class="col-5 border-right">
-                                         <p>Quisque viverra metus ut varius ultricies. Ut sed enim nisl. Curabitur arcu ante, sollicitudin sed purus vel, imperdiet hendrerit ipsum.</p>
-                                         <p>Curabitur pellentesque lorem et consequat pretium. Suspendisse nec luctus nunc. Proin ac elit dapibus odio tempus cursus. Donec eleifend elementum nisi, at vestibulum felis mollis vel. Nulla pulvinar fermentum consectetur.</p>
-                                        <p>Quisque viverra metus ut varius ultricies. Ut sed enim nisl. Curabitur arcu ante, sollicitudin sed purus vel, imperdiet hendrerit ipsum.</p>
-                                    </div>
-                                    <div class="col-7">
-                                        Map/Bar
-                                    </div>
-                                </div>
-                            </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header border" id="headingTwo">
-                            <h2 class="mb-0">
-                                <button class="btn btn-block btn-sm text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                                                <div class="row no-gutters" style="width:100%">
-                                        <div class="col-8"> 
-                                        <span class="font-weight-bold  fs-md">Black carbon</span><br>
-                                            <span class="fs-sm font-weight-normal">Airborn concentration of black carbon</span>
-                                        </div>
-                                        <div class="col-4">
-                                        <span class="middle float-right">Middle</span> 
-                                        <span class="font-weight-bold fs-md">0.5</span> <br>
-                                            <span class="fs-xs font-weight-normal">absorbance units</span>
-                                        </div>
-                                    </div>
-                                </button>
-                            </h2>
-                            </div>
-                            <div id="collapseTwo" class="collapse border" aria-labelledby="headingTwo" data-parent="#accordionExample">
-                            <div class="card-body">
-                                                            <img src="https://i.imgur.com/lusmVo9.png">
-                            </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header border" id="headingThree">
-                            <h2 class="mb-0">
-                                <button class="btn btn-block btn-sm text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                                                <div class="row no-gutters" style="width:100%">
-                                        <div class="col-8"> 
-                                        <span class="font-weight-bold fs-md">Nitrogen dioxide</span><br>
-                                            <span class="fs-sm font-weight-normal">Airborne concentration of NO2</span>
-                                        </div>
-                                        <div class="col-4">
-                                        <span class="worse float-right">Worse</span> 
-
-                                        <span class="font-weight-bold  fs-md">14.9</span> <br>
-                                            <span class="fs-xs font-weight-normal">ppb</span>
-                                        </div>
-                                    </div>
-                                </button>
-                            </h2>
-                            </div>
-                            <div id="collapseThree" class="collapse border" aria-labelledby="headingThree" data-parent="#accordionExample">
-                            <div class="card-body">
-                                <img src="https://i.imgur.com/lusmVo9.png">
-                            </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    
-                    <div class="row">
-                    <div class="col-12">
-                        <div>
-
-                            {{- range $index, $rt := $report_topics -}}
-
-                                <div class="report-topic">
-
-                                    <div class="topic-header">
-                                        <h2>
-                                            {{- $rt.report_topic -}} {{- /*  from YAML  */}}
-                                        </h2>
-                                        <p>
-                                            {{- $rt.report_topic_description -}} {{- /*  from YAML  */}}
-                                        </p>
-                                    </div>
-
-                                    <div class="container-fluid px-0 mb-4">
-
-                                        <!-- Hide on print -->
-
-                                        <div class="row indicator-headings mb-2 d-print-none">
-                                            <div class="col-6 col-md-5 pl-3">
-                                                Topic
-                                            </div>
-                                            <div class="col-6 col-md-4">
-
-                                                <div class="position-relative">
-                                                    <span class="meta">Compared to other neighborhoods<a href="#" data-toggle="modal" data-target="#modal-rank"
-                                                        class="info-modal meta"><i class="fas fa-question-circle fs-rg ml-1"></i> </span></a>
-
-                                                </div>
-
-                                            </div>
-                                            <div class="d-none d-md-inline col-md-3">
-                                                <span class="meta">All neighborhoods</span>
-                                            </div>
-                                        </div>
-
-                                        <!-- Only show on print -->
-
-                                        <div class="row indicator-headings mb-2 print-only">
-                                            <div class="col-4 font-weight-bold pl-3">
-                                                Topic
-                                            </div>
-                                            <div class="col-8">
-
-                                                <div class="position-relative">
-                                                    <span class="meta">Compared to other neighborhoods</span>
-                                                </div>
-
-                                            </div>
-                                        </div>
+                    <!-- Revised, programmatic output -->
+                    {{- range $index, $rt := $report_topics -}}
+                        
+                        <div class="accordion my-4 report-section pt-2" id="accordion-{{ $index }}">
+                            
+                            <h4 class="fs-rg">
+                                 {{- $rt.report_topic -}}
+                            </h4>
+                            <p class="fs-sm">
+                                 {{- $rt.report_topic_description -}}
+                            </p>
 
                                         {{- /*  filter measures for this topic  */}}
 
@@ -378,47 +245,26 @@
 
                                             {{- $count := add $index 1 -}}
 
-                                            {{- partial "nr-indicator.html" (dict "neighborhood" $.Params.neighborhood "borough" $row.borough_name "data" $row "count" $count) -}}
+                                            {{- partial "nr-indicator-new.html" (dict "neighborhood" $.Params.neighborhood "borough" $row.borough_name "data" $row "count" $count  ) -}}
 
                                         {{- end -}}
 
                                         {{ $zip_codes =  index $neighborhood_topic_data 0 "zip_code" -}}
 
-                                    </div>
-                                    <!-- .container -->
-
-                                </div>
-                                <!-- .report-topic -->
-
-                            {{- end -}}
-
+                        
                         </div>
 
-                    </div>
-                </div>
-
-                </div>
-            </div>
+                    {{- end -}}
 
 
-
-
-            <div class="row">
-                <div class="col-md-9 h-100 col-print-12">
-
-                <!-- REPORT CONTENT -->
-
-                <!-- .narrow -->
-
-                </div>
-
-                <!-- NAV RIGHT SIDEBAR -->
-                <div class="col-md-3 h-100 d-print-none">
-
-
-
+                    
                 </div>
             </div>
+
+
+
+
+
     <!-- .row -->
 
 
