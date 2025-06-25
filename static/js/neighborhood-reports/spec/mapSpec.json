@@ -46,7 +46,7 @@
                         "bin": false,
                         "field": "unmodified_data_value_geo_entity",
                         "type": "quantitative",
-                        "scale": {"scheme": {"name": "greens", "extent": [0, 1]}},
+                        "scale": {"scheme": {"name": "viridis", "extent": [1, 0]}},
                         "legend": {"orient": "top-left", "title": null}
                     },
                     "value": "#808080"

@@ -51,7 +51,7 @@
 
     const getURL = async (indID, dataname) => {
 
-        // console.log("getURL:", indID);
+        console.log("getURL:", indID, dataname);
 
         let thisTopic = '';
         let topicArray = [];
@@ -191,21 +191,21 @@
                         </div>
                     </div>
 
-                    <h1 class="report-title mt-3">{{ $.Params.title }} <span style="font-weight:normal">in</span></h1>
+                    <h1 class="h2 mt-3">{{ $.Params.title }} <span style="font-weight:normal">in</span></h1>
                         <span class="h2 sub-title text-primary">{{ $.Params.neighborhood }}</span>
 
                     <p class="report-description fs-lg my-2">{{ $.Params.summary }}</p>
 
                     <button onclick="window.print()" class="btn btn-sm btn-report mt-2" target="_blank"><i class="fas fa-print mr-1"></i>Print Report</button>
                     <button onclick="downloadData()" class="btn btn-sm btn-report mt-2" target="_blank"><i class="fa fa-download mr-1"></i>Download Data <span class="sr-only">(opens in a new tab)</span></button>
-                    <button class="btn btn-sm btn-report mt-2 float-right" target="_blank"><i class="fas fa-question-circle mr-1" aria-hidden="true"></i>About comparisons <span class="sr-only">(opens in a new tab)</span></button>
+                    <button class="btn btn-sm btn-report mt-2 float-right"   data-toggle="modal" data-target="#modal-rank"target="_blank"><i class="fas fa-question-circle mr-1" aria-hidden="true"></i>About comparisons <span class="sr-only">(opens in a new tab)</span></button>
 
 
                     <!-- Revised, programmatic output -->
                     {{- range $index, $rt := $report_topics -}}
                         
                         <div class="accordion my-4 report-section pt-2" id="accordion-{{ $index }}">
-                            
+
                             <h4 class="fs-rg">
                                  {{- $rt.report_topic -}}
                             </h4>
@@ -245,7 +245,7 @@
 
                                             {{- $count := add $index 1 -}}
 
-                                            {{- partial "nr-indicator-new.html" (dict "neighborhood" $.Params.neighborhood "borough" $row.borough_name "data" $row "count" $count  ) -}}
+                                            {{- partial "nr-indicator-new.html" (dict "neighborhood" $.Params.neighborhood "borough" $row.borough_name "data" $row "count" $count "index" $index  ) -}}
 
                                         {{- end -}}
 
@@ -444,20 +444,18 @@ aria-hidden="true" data-pagefind-ignore="all">
                 </button>
             </div>
             <div class="modal-body">
-                <p>Each indicator is placed in one of three categories:</p>
-                <ul>
-                    <li class="mb-2"><span class="better">Better</span></li>
-                    <li class="mb-2"><span class="middle">Middle</span></li>
-                    <li><span class="worse">Worse</span></li>
-                </ul>
-                <p>This shows us how the neighborhood compares to other NYC neighborhoods, if you ranked all of the NYC
-                    neighborhoods based on this indicator.</p>
-                <ul>
-                    <li><strong>Better:</strong> in the top 1/3rd of all NYC neighorhoods.</li>
-                    <li><strong>Middle:</strong> it's close to the NYC median - ranking somewhere in the middle third of
-                        all neighborhoods.</li>
-                        <li><strong>Worse:</strong> in the bottom 1/3rd of NYC neighborhoods.</li>
-                </ul>
+                <p>Each indicator is placed in one of three categories. that shows how the neighborhood compares to other NYC neighborhoods, if you ranked all of the NYC neighborhoods based on this indicator.
+                </p>
+                    <div class="my-2">
+                        <p><span class="better">Better</span><br>In the top third of all NYC neighorhoods.</p>
+                        <hr class="my-1">
+                        <p><span class="middle">Middle</span><br>Close to the NYC median - ranking in the middle third of
+                        all neighborhoods.</p>
+                        <hr class="my-1">
+
+                        <p><span class="worse">Worse</span><br>In the bottom third of NYC neighborhoods</p>
+                    </div>
+
                 <p>These are only based on the distribution of data values, not the range. The absolute values of
                     indicators in different categories may not be all that different.</p>
 
@@ -482,5 +480,15 @@ aria-hidden="true" data-pagefind-ignore="all">
     reportURL = '/' + report // get URL extension
 
 </script>
+
+
+
+<script>
+   $(document).on('shown.bs.collapse', '.collapse', function (e) {
+    console.log('Any accordion opened:', e.target.id);
+  });
+
+</script>
+
 
 {{- end -}}
