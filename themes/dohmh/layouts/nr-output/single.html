@@ -24,15 +24,23 @@
         text-decoration: none;
     }
 
-    .comp-good {
-        background-color: blue;
-        color: white;
+    .comp-good::before {
+    content: "✅ ";
     }
 
-    .comp-bad {
-        background-color: purple;
-        color: white;
+    .comp-bad::before {
+    content: "❌ ";
     }
+
+    .comp-null::before {
+    content: "😐 ";
+    }
+
+    .no-bullets li {
+        list-style:none;
+        padding-left: 10px;
+    }
+
 </style>
 
 {{- /* ==== get topics and measures for this report ==== */}}
