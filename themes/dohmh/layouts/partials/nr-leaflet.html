@@ -28,7 +28,7 @@
     })
     .addTo(map);
 
-  // add and style RMZs
+  // add and style geographies
   var geog;
   fetch("{{ .Site.BaseURL }}geojson/UHF42.geojson")
     .then((response) => response.text())
@@ -40,8 +40,10 @@
         onEachFeature,
       }).addTo(map);
 
-      // After 2 seconds, zoom to the neighborhood that matches the geocode
-      setTimeout(() => {
+
+    // After 2 seconds, optionally zoom to the neighborhood that matches the geocode
+    setTimeout(() => {
+      if (geocode && geocode.trim() !== "") {
         const targetLayer = Object.values(geog._layers).find(
           (layer) => layer.feature.properties.GEOCODE == geocode
         );
@@ -61,7 +63,11 @@
         } else {
           console.warn("No matching GEOCODE found:", geocode);
         }
-      }, 500);
+      } else {
+        console.log("No geocode provided; skipping zoom.");
+      }
+    }, 500);
+
     })
     .catch((err) => console.error("Error loading GeoJSON:", err));
 
@@ -79,13 +85,37 @@
   // And what to do on mouseover, mouseout, and click
   function onEachFeature(feature, layer) {
     layer.on({
-      // mouseover: highlightFeature,
-      // mouseout: resetHighlight,
+      mouseover: highlightFeature,
+      mouseout: resetHighlight,
       //  click: zoomToFeature // let's replace this with... something else!,
       click: selectNeighborhood,
     });
     layer._leaflet_id = feature.properties.GEOCODE; // gives each item an ID based on GEOCODE
   }
+
+  function highlightFeature(e) {
+      const layer = e.target;
+
+      layer.setStyle({
+        weight: 5,
+        color: "#444",
+        dashArray: "",
+        // Do NOT touch fillColor or fillOpacity
+      });
+
+      layer.bringToFront();
+    }
+
+    function resetHighlight(e) {
+      const layer = e.target;
+
+      layer.setStyle({
+        weight: 1.5,
+        color: "black",
+        dashArray: "1",
+      });
+    }
+
 
   // USE MAP AS NAVIGATION
 function selectNeighborhood(e) {

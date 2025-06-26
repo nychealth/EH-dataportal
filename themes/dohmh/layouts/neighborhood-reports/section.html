@@ -8,8 +8,8 @@
     }
   </style>
 
-  <div class="row">
-    <div class="col-md-10 mx-auto mb-4">
+  <div class="row mb-4">
+    <div class="col-lg-12 mx-auto col-12">
       <nav aria-label="breadcrumb" class="mt-2 mb-3">
         <ul class="breadcrumb">
             <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
@@ -19,57 +19,45 @@
 
       <div class="nr-accent">
         <div class="row">
-          <div class="col-md-8 col-sm-12 my-4">
+          <div class="col-md-7 col-sm-12 my-2">
             <h1><i class="fas fa-map-marked-alt mr-1" aria-hidden="true"></i>{{ .Title }}</h1>
             <p>{{- .Content -}}</p>
           </div>
         </div>
       </div>
 
-      <!-- Hidden, accessible list of clickable neighborhoods: rendered by JavaScript -->
-      <div class="row sr-only">
-        <h2>Select neighborhood</h2>
-        <ul id="neighborhoodList">
+      <div class="row">
+        <div class="col-md-7">
+              <h3>Choose report</h3>
 
-        </ul>
-      </div>
+              <div class="row no-gutters">
+                <div class="col-sm mb-2 mr-1 mb-lg-0">
+                  <button class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2" onclick="buttonChange('Active')" id="Active">Active design</button>
+                </div>
+                <div class="col-sm mb-2 mr-1 mb-lg-0">
+                  <button class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2" onclick="buttonChange('Asthma')" id="Asthma">Asthma</button>
+                </div>
+                <div class="col-sm mb-2 mr-1 mb-lg-0">
+                  <button class="btn btn-sm  btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2" onclick="buttonChange('Climate')" id="Climate">Climate</button>
+                </div>
+                <div class="col-sm mb-2 mr-1 mb-lg-0">
+                  <button class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2" onclick="buttonChange('Housing')" id="Housing">Housing</button>
+                </div>
+                <div class="col-sm mb-2 mr-1 mb-lg-0">
+                  <button class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2" onclick="buttonChange('Outdoor')" id="Outdoor">Outdoor Air</button>
+                </div>
 
-      <!-- Visible, interactive neighborhood/report selector -->
-      <div class="row" aria-hidden="true">
-        <div class="col-12">
-          <h3 class="mb-2">1. Choose report:</h3>
-          <div class="row">
-            <div class="col-lg mb-2 mb-lg-0">
-              <button class="btn btn-lg btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2" onclick="buttonChange('Active')" id="Active">Active design</button>
-            </div>
-            <div class="col-lg mb-2 mb-lg-0">
-              <button class="btn btn-lg btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2" onclick="buttonChange('Asthma')" id="Asthma">Asthma</button>
-            </div>
-            <div class="col-lg mb-2 mb-lg-0">
-              <button class="btn btn-lg  btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2" onclick="buttonChange('Climate')" id="Climate">Climate</button>
-            </div>
-            <div class="col-lg mb-2 mb-lg-0">
-              <button class="btn btn-lg btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2" onclick="buttonChange('Housing')" id="Housing">Housing</button>
-            </div>
-            <div class="col-md mb-2 mb-lg-0">
-              <button class="btn btn-lg btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2" onclick="buttonChange('Outdoor')" id="Outdoor">Outdoor Air</button>
-            </div>
-          </div>
+                <div class="col-12">
+                    <p id="descr" class="my-2"></p>
+                </div>
 
-          <div class="row my-3">
-            <div class="col-md-8">
-              <p id="descr"></p>
             </div>
-          </div>
-          <hr class="mt-2 mb-3" />
         </div>
 
-        <div class="col-12">
-          <h3>2. Choose Neighborhood</h3>
+        <div class="col-md-5">
+              <h3>Choose Neighborhood</h3>
 
-          <div class="row d-flex flex-md-row-reverse">
-            <div class="col-md-5">
-              <div class="btn-group" role="group" style="width:100%;">
+                <div class="btn-group" role="group" style="width:100%;">
 
                 <input
                     id="flex_search"
@@ -83,7 +71,12 @@
                 <button id="clear" class="btn btn-md btn-primary">Clear</button>
 
               </div>
-              <button class="d-flex btn btn-md text-left btn-outline-primary mt-1 w-100 text-decoration-none neighborhood-list-button p-2" onclick="showNeighborhoods()">
+
+              <div class="nr-clickable-uhf" style="height:400px" aria-hidden="true">
+                {{- partial "nr-clickable-uhf" . -}}
+              </div>
+
+                <button class="d-flex btn btn-md text-left btn-outline-primary mt-1 w-100 text-decoration-none neighborhood-list-button p-2" onclick="showNeighborhoods()">
                 <span class="flex-grow-1 text-lg">See neighborhood list</span>
                 <span class="plus">&plus;</span>
                 <span class="minus">&minus;</span>
@@ -91,17 +84,18 @@
               <div class="hide" id="showNeighbs">
                 <ul class="list-unstyled p-2 border border-top-0 border-primary neighborhood-list" id="neighborhoodList2"></ul>
               </div>
-            </div>
-            <div class="col-md-7 d-none d-md-block">
-              <div class="nr-clickable-uhf" style="height:550px" aria-hidden="true">
-                {{- partial "nr-clickable-uhf" . -}}
-              </div>
-            </div>
-          </div>
         </div>
+
 
       </div>
 
+      <!-- Hidden, accessible list of clickable neighborhoods: rendered by JavaScript -->
+      <div class="row sr-only">
+        <h2>Select neighborhood</h2>
+        <ul id="neighborhoodList">
+
+        </ul>
+      </div>
 
     </div>
   </div>
