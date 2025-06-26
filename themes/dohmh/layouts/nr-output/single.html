@@ -392,6 +392,7 @@
         // Automatically set active class on page load based on URL
         const currentTopic = window.location.pathname.split("/")[4];
         Object.entries(topicSlugs).forEach(([buttonId, topicSlug]) => {
+            console.log(buttonId, topicSlug, currentTopic)
         if (topicSlug === currentTopic) {
             const button = document.getElementById(buttonId);
             if (button) button.classList.add("active");
