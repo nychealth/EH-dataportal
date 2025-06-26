@@ -158,6 +158,7 @@ const renderTable = () => {
                 aq.matches("Number tested"),
                 aq.matches(/^Number$/),
                 aq.matches("Number (total)"),
+                aq.matches("Number (3.5+"),
                 aq.matches(/number/i),
                 aq.matches("Density"),
                 aq.matches(/total/i),
@@ -170,6 +171,7 @@ const renderTable = () => {
                 aq.matches("Age-adjusted rate (Males)"),
                 aq.matches("Age-adjusted rate"),
                 aq.matches("Average annual rate"),
+                aq.matches("Rate (3.5+"),
                 aq.matches(/rate/i),
                 aq.matches(/^Percent$/),
                 aq.matches("Age-adjusted percent"),
@@ -184,8 +186,8 @@ const renderTable = () => {
             { before: 0 }
         )
     
-    console.log("filteredTableAqData [renderTable]");
-    filteredTableAqData.print({limit: 100})
+    // console.log("filteredTableAqData [renderTable]");
+    // filteredTableAqData.print({limit: 100})
     
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
     // export Arquero table to HTML
@@ -262,10 +264,10 @@ const renderTable = () => {
                 targets: 8, // replace with correct index
                 render: function (data, type, row) {
                     if (type === 'sort' || type === 'type') {
-                    // Remove commas and try to parse as float
-                    const cleaned = data.replace(/,/g, '');
-                    const num = parseFloat(cleaned);
-                    return isNaN(num) ? -Infinity : num;
+                        // Remove commas and try to parse as float
+                        const cleaned = data.replace(/,/g, '');
+                        const num = parseFloat(cleaned);
+                        return isNaN(num) ? -Infinity : num;
                     }
                     return data; // For display and filtering, return original
                 }
@@ -314,7 +316,6 @@ const renderTable = () => {
                     // console.log("i", i);
                     
                     const time = data[i][0]
-                    const groupName = `${time}-${group}`
                     
                     // console.log("time", time);
 

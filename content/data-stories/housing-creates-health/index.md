@@ -3,7 +3,7 @@ title: "Housing creates health"
 date: 2024-03-05T01:18:56-04:00
 draft: false
 seo_title: "Housing creates health"
-seo_description: "A data story about how quality and affordable housing enhances public health"
+seo_description: "A data story about how quality and affordable housing enhances public health."
 tags:
 categories: ["housing", "inequality", "childhealth", "neighborhoods"]
 keywords:

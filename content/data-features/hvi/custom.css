@@ -61,28 +61,38 @@
     font-weight: bold;
     background-color: #EFC22F;
     color: black;
+    padding: 5px 10px;
+    border-radius: 3px;
 }
 
 .class-2 {
     font-weight: bold;
     background-color: #ED9224;
     color: black;
+    padding: 5px 10px;
+    border-radius: 3px;
 }
 
 .class-3 {
     font-weight: bold;
     background-color: #E75D1D;
     color: white;
+    padding: 5px 10px;
+    border-radius: 3px;
 }
 
 .class-4 {
     font-weight: bold;
     background-color: #BD3F37;
     color: white;
+    padding: 5px 10px;
+    border-radius: 3px;
 }
 
 .class-5 {
     font-weight: bold;
     background-color: #7F3836;
     color: white;
+    padding: 5px 10px;
+    border-radius: 3px;
 }

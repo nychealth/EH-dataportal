@@ -1,4 +1,4 @@
-﻿// from https://github.com/shevekk/Leaflet.ColorIcon
+// from https://github.com/shevekk/Leaflet.ColorIcon
 /* 
 MIT License
 

@@ -32,13 +32,6 @@
         width: max-content;
     }
 
-    /* Set font-size for table headers */
-    #summary-table table thead tr th {
-        font-size: 12px!important;
-        color: #4b4b4b;;
-        border: 1px solid #dee2e6;
-    }
-
 
     /* This CSS controls read more/show less toggle. */
     [aria-expanded="false"]>.expanded,
@@ -1128,16 +1121,13 @@
 
     {{- /*  Accessible Autocomplete  */}}
 
-    {{- $js := resources.Get "js/accessible-autocomplete.min.js" -}}
-    {{- $secureJS := $js | resources.Fingerprint "sha512" -}}
-
-    <script type="text/javascript" src="{{ $secureJS.RelPermalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
+    {{- $aa_js := resources.Get "js/accessible-autocomplete.min.js" | partial "short-fingerprint.html" -}}
+    <script type="text/javascript" src="{{ $aa_js.RelPermalink }}" integrity="{{ $aa_js.Data.Integrity }}"></script>
 
     {{- /*  Arquero  */}}
 
-    {{- $arquero := resources.Get "node_modules/arquero/dist/arquero.min.js" | resources.Fingerprint "sha512" }}
-
-    <script type="text/javascript" src="{{ $arquero.RelPermalink }}" integrity="{{ $arquero.Data.Integrity }}"></script>
+    {{- $arquero := resources.Get "node_modules/arquero/dist/arquero.min.js" | partial "short-fingerprint.html" -}}
+    <script src="{{ $arquero.RelPermalink }}" integrity="{{ $arquero.Data.Integrity }}"></script>
 
      {{- /*  DataTables  */}}
 
@@ -1145,9 +1135,9 @@
 
     {{- $dataTablesCSS := resources.Get "node_modules/datatables.net-dt/css/jquery.dataTables.min.css" }}
     {{- $dataTablesButtonsCSS := resources.Get "node_modules/datatables.net-buttons-dt/css/buttons.dataTables.min.css" }}
-    {{- $dtCSS := slice $dataTablesCSS $dataTablesButtonsCSS | resources.Concat "css/dtCSS.css" }}
+    {{- $dtCSS := slice $dataTablesCSS $dataTablesButtonsCSS | resources.Concat "css/dtCSS.css" | partial "short-fingerprint.html" }}
 
-    <link rel="stylesheet" href="{{ $dtCSS.RelPermalink }}">
+    <link rel="stylesheet" href="{{ $dtCSS.RelPermalink }}" integrity="{{ $dtCSS.Data.Integrity }}">
 
     {{- /*  JS  */}}
 
@@ -1158,7 +1148,7 @@
     {{- $dataTablesRowGroup := resources.Get "node_modules/datatables.net-rowgroup/js/dataTables.rowGroup.min.js" }}
 
     {{- $dataTablesBundleJS := slice $dataTables $dataTablesButtons $dataTablesButtonsHtml5 $dataTablesButtonsPrint $dataTablesRowGroup | resources.Concat "js/dataTableBundle.js" }}
-    {{- $DT_secureJS := $dataTablesBundleJS | resources.Fingerprint "sha512" }}
+    {{- $DT_secureJS := $dataTablesBundleJS | partial "short-fingerprint.html" }}
 
     <script type="text/javascript" src="{{ $DT_secureJS.RelPermalink }}" integrity="{{ $DT_secureJS.Data.Integrity }}"></script>
 
@@ -1170,28 +1160,28 @@
     {{- $vegaEmbed := resources.Get "node_modules/vega-embed/build/vega-embed.min.js" }}
 
     {{- $vegaBundleJS := slice $vega $vegaLite $vegaEmbed | resources.Concat "js/vegaBundle.js" }}
-    {{- $vega_secureJS := $vegaBundleJS | resources.Fingerprint "sha512" }}
+    {{- $vega_secureJS := $vegaBundleJS | partial "short-fingerprint.html" }}
 
     <script type="text/javascript" src="{{ $vega_secureJS.RelPermalink }}" integrity="{{ $vega_secureJS.Data.Integrity }}"></script>
 
     {{- /*  D3  */}}
 
     {{- $d3 := resources.Get "node_modules/d3/dist/d3.min.js" }}
-    {{- $d3_secureJS := $d3 | resources.Fingerprint "sha512" }}
+    {{- $d3_secureJS := $d3 | partial "short-fingerprint.html" }}
 
     <script type="text/javascript" src="{{ $d3_secureJS.RelPermalink }}" integrity="{{ $d3_secureJS.Data.Integrity }}"></script>
 
     {{- /*  naturalSort - from https://datatables.net/plug-ins/sorting/natural  */}}
 
     {{- $naturalSort := resources.Get "js/naturalSort.js" }}
-    {{- $naturalSort_secureJS := $naturalSort | resources.Fingerprint "sha512" }}
+    {{- $naturalSort_secureJS := $naturalSort | partial "short-fingerprint.html" }}
 
     <script type="text/javascript" src="{{ $naturalSort_secureJS.RelPermalink }}" integrity="{{ $naturalSort_secureJS.Data.Integrity }}"></script>
 
     {{- /*  seedrandom  */}}
 
     {{- $seedrandom := resources.Get "node_modules/seedrandom/seedrandom.min.js" }}
-    {{- $seedrandom_secureJS := $seedrandom | resources.Fingerprint "sha512" }}
+    {{- $seedrandom_secureJS := $seedrandom | partial "short-fingerprint.html" }}
 
     <script type="text/javascript" src="{{ $seedrandom_secureJS.RelPermalink }}" integrity="{{ $seedrandom_secureJS.Data.Integrity }}"></script>
 
@@ -1312,16 +1302,16 @@
     {{- $print       := resources.Get "js/data-explorer/print.js" -}}
 
 
-    {{- $global_secure      := $global | resources.Fingerprint "sha512" -}}
-    {{- $data_secure        := $data | resources.Fingerprint "sha512" -}}
-    {{- $measures_secure    := $measures | resources.Fingerprint "sha512" -}}
-    {{- $table_secure       := $table | resources.Fingerprint "sha512" -}}
-    {{- $map_secure         := $map | resources.Fingerprint "sha512" -}}
-    {{- $links_secure       := $links | resources.Fingerprint "sha512" -}}
-    {{- $disparities_secure := $disparities | resources.Fingerprint "sha512" -}}
-    {{- $trend_secure       := $trend | resources.Fingerprint "sha512" -}}
-    {{- $app_secure         := $app | resources.Fingerprint "sha512" -}}
-    {{- $print_secure       := $print | resources.Fingerprint "sha512" -}}
+    {{- $global_secure      := $global | partial "short-fingerprint.html" -}}
+    {{- $data_secure        := $data | partial "short-fingerprint.html" -}}
+    {{- $measures_secure    := $measures | partial "short-fingerprint.html" -}}
+    {{- $table_secure       := $table | partial "short-fingerprint.html" -}}
+    {{- $map_secure         := $map | partial "short-fingerprint.html" -}}
+    {{- $links_secure       := $links | partial "short-fingerprint.html" -}}
+    {{- $disparities_secure := $disparities | partial "short-fingerprint.html" -}}
+    {{- $trend_secure       := $trend | partial "short-fingerprint.html" -}}
+    {{- $app_secure         := $app | partial "short-fingerprint.html" -}}
+    {{- $print_secure       := $print | partial "short-fingerprint.html" -}}
 
 
     <script type="text/javascript" src="{{ $global_secure.RelPermalink }}" integrity="{{ $global_secure.Data.Integrity }}"></script>

@@ -2,6 +2,7 @@
 _schema: default
 draft: false
 ---
-**Table 2:** Air conditioning presence among heat-stress decedents exposed to heat in homes (2013-2022).
 
-<div style="min-height:208px"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/Xd4kw/embed.js?v=1" charset="utf-8"></script><noscript><img src="https://datawrapper.dwcdn.net/Xd4kw/full.png" alt="" /></noscript></div>
+**Table 2:** Air conditioning presence among heat-stress decedents exposed to heat in homes (2014-2023).
+
+<div style="min-height:212px" id="datawrapper-vis-xxAI4"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/xxAI4/embed.js" charset="utf-8" data-target="#datawrapper-vis-xxAI4"></script><noscript><img src="https://datawrapper.dwcdn.net/xxAI4/full.png" alt="" /></noscript></div>

@@ -159,8 +159,8 @@ function dataChange(GEOCODE) {
     document.querySelector("#hviVal").innerHTML = nHVI_RANK + ' out of 5';
 
     var cssClass = 'class-' + nHVI_RANK;
-    document.getElementById('hviVal').classList.remove(cssClass)    // remove old classes, if re-select
-    document.getElementById('NTA').classList.remove(cssClass)
+    document.getElementById('hviVal').removeAttribute("class")    // remove old classes, if re-select
+    document.getElementById('NTA').removeAttribute("class")
 
     document.getElementById('hviVal').classList.add(cssClass)       // add classes
     document.getElementById('NTA').classList.add(cssClass)

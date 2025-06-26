@@ -1,12 +1,12 @@
 ---
 title: "The Environment and Health Data Portal: Home page"
 draft: false
-seo_title: "NYC Environment and Health Data Portal."
-seo_description: "Explore New Yorkers' heat stories"
-description: "Explore New Yorkers' heat stories"
-featured_title: "Your heat story"
-featured_text: "Explore New Yorkers' heat stories alongside data on surface temperature, AC access, and more by neighborhood."
-featured_link: "data-features/heat-story/"
-featured_image: "heat-story3.png"
+seo_title: "NYC Environment and Health Data Portal"
+seo_description: "Energy insecurity, climate, and health in NYC."
+description: "Data story about energy insecurity and health"
+featured_title: "Energy insecurity is a threat to New Yorkers' health"
+featured_text: "Read about why affordable energy is key to climate resilience."
+featured_link: "data-stories/energy-insecurity/"
+featured_image: "AC_buildings.JPG"
 ImageNote: featured_image must be added to assets
 ---

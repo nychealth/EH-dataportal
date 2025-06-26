@@ -20,8 +20,8 @@ keywords:
 image: title7.jpg
 photocredit: "Benjamin Kanter/Mayoral Photography Office, City of New York"
 related:
-  - title: "Protecting New Yorkers from extreme heat"
-    url: "data-stories/heat/"
+  - title: "Energy is critical for health and climate resilience — but not all New Yorkers may be able to afford it"
+    url: "data-stories/energy-insecurity/"
   - title: "Flood Vulnerability Index"
     url: "data-features/flood-vulnerability-index/"
   - title: "What storms Ida and Sandy taught us about flooding and health"
