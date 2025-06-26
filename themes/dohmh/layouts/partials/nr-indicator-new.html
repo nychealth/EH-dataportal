@@ -9,7 +9,7 @@ this partial takes 5 arguments as a dict:
 
 
 <!-- INDICATOR ROW -->
-  <div class="card-header border-left border-top border-right" id="heading-{{ .data.indicator_data_name }}">
+  <div class="card-header border-top" id="heading-{{ .data.indicator_data_name }}">
     <h2 class="mb-0">
       <button
         class="btn btn-block btn-sm text-left"
@@ -56,7 +56,7 @@ this partial takes 5 arguments as a dict:
 <!-- Detail view -->
   <div
     id="collapse-{{ .data.indicator_data_name }}"
-    class="collapse border-left border-bottom border-right"
+    class="collapse border-bottom "
     aria-labelledby="heading-{{ .data.indicator_data_name }}"
     data-parent="#accordion-{{ .index }}"
     data-indicator-name="{{ .data.indicator_data_name }}"
@@ -100,7 +100,7 @@ this partial takes 5 arguments as a dict:
                         >
                         {{- else -}}<span class="better-sm fs-sm mt-1">Better than most</span>
                         {{- end -}} 
-                        &nbsp;NYC neighborhoods
+                        &nbsp; neighborhoods
                   </p>
 
                   <p>

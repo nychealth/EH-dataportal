@@ -12,7 +12,7 @@
     }
 
     .report-section {
-        border-top: 8px solid #008939;
+        border-top: 5px solid #008939!important;
     }
 
     .card-header:hover {
@@ -201,7 +201,7 @@
                         {{ partial "nr-leaflet" . }}
                     </div>
 
-                    <div class="report-topic card-body-no-top my-2">
+                    <div class="report-section card-body-no-top my-2">
 
                         <table class="table fs-sm">
                         <thead class="sr-only">
@@ -285,14 +285,17 @@
                     <!-- Revised, programmatic output -->
                     {{- range $index, $rt := $report_topics -}}
                         
-                        <div class="accordion my-4 report-section pt-2" id="accordion-{{ $index }}">
+                        <div class="accordion my-4 report-section pt-2 border-left border-right border-bottom" id="accordion-{{ $index }}">
 
-                            <h4 class="fs-rg">
-                                 {{- $rt.report_topic -}}
-                            </h4>
-                            <p class="fs-sm">
-                                 {{- $rt.report_topic_description -}}
-                            </p>
+                            <div class="px-2 pb-2">
+                                <h4 class="fs-rg">
+                                    {{- $rt.report_topic -}}
+                                </h4>
+                                <p class="fs-sm">
+                                    {{- $rt.report_topic_description -}}
+                                </p>
+                            </div>
+
 
                                         {{- /*  filter measures for this topic  */}}
 
