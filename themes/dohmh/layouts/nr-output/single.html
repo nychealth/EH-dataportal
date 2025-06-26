@@ -373,13 +373,18 @@
             // Split current path
             const parts = window.location.pathname.split("/");
 
+            console.log('parts:', parts)
+
+            const length = parts.length - 2
+
             // Replace the topic part of the URL (index 4 in your structure)
-            parts[4] = topicSlug;
+            parts[length] = topicSlug;
 
             // Reconstruct the new path and redirect
             const newPath = parts.join("/");
 
             window.location.href = newPath;
+
             });
         }
         });
