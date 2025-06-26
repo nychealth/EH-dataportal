@@ -88,21 +88,34 @@ this partial takes 5 arguments as a dict:
 
             <p class="fs-rg">
                 {{ .data.indicator_short_name }} in <strong>{{ .neighborhood }}</strong>:
-                <ul class="no-bullets fs-md">
-                    <li>{{- if eq (string .data.data_value_rank) "1" -}}<span
+                <div class=" fs-md">
+                  <p>
+                    {{- if eq (string .data.data_value_rank) "1" -}}<span
                           class="worse-sm fs-sm mt-1"
-                          >Worse than</span
+                          >Worse than most</span
                         >
                         {{- else if eq (string .data.data_value_rank) "2" -}}<span
                           class="middle-sm fs-sm mt-1"
                           >In the middle of</span
                         >
-                        {{- else -}}<span class="better-sm fs-sm mt-1">Better than</span>
+                        {{- else -}}<span class="better-sm fs-sm mt-1">Better than most</span>
                         {{- end -}} 
-                        &nbsp;most NYC neighborhoods</li>
-                    <li> <span id="b-{{ urlize .data.indicator_short_name }}"></span> the <strong>{{ .borough }} average</strong></li>
-                    <li> <span id="c-{{ urlize .data.indicator_short_name }}"></span> the <strong>Citywide average</strong></li>
-                </ul>
+                        &nbsp;NYC neighborhoods
+                  </p>
+
+                  <p>
+                    <span id="b-{{ urlize .data.indicator_short_name }}"></span> the <strong>{{ .borough }} average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="bv-{{ urlize .data.indicator_short_name }}">boro val</span> {{ .data.units }})</span>
+                  </p>
+
+                  <p>
+                    <span id="c-{{ urlize .data.indicator_short_name }}"></span> the <strong>Citywide average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="cv-{{ urlize .data.indicator_short_name }}">city val</span> {{ .data.units }})</span>
+                  </p>
+
+                    </div>
                 
             </p>
 
@@ -187,6 +200,10 @@ this partial takes 5 arguments as a dict:
         cityEl.innerHTML = cityComp;
         cityEl.classList.add(cityJudgement);
     }
+
+    document.getElementById('bv-{{ urlize .data.indicator_short_name }}').innerHTML = b;
+    document.getElementById('cv-{{ urlize .data.indicator_short_name }}').innerHTML = c;
+
 
 })(
     {{ .data.unmodified_data_value_geo_entity }},
