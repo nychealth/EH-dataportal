@@ -39,8 +39,8 @@ report_topics:
   - report_topic: Outdoor Air Quality
     report_topic_description: Outdoor pollutants that can worsen asthma symptoms.
     MeasureID:
-      - 365
-      - 386
+      - 1425
+      - 1435
   - report_topic: Social and Economic Risk Factors
     report_topic_description: These indicators describe conditions that make a neighborhood more at-risk for asthma.
     MeasureID:
