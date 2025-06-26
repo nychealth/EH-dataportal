@@ -30,7 +30,7 @@
 
   // add and style RMZs
   var geog;
-  fetch("{{ .Site.BaseURL }}/geojson/UHF42.geojson")
+  fetch("{{ .Site.BaseURL }}geojson/UHF42.geojson")
     .then((response) => response.text())
     .then((text) => {
       // console.log("Raw text:", text); // ← check this!
