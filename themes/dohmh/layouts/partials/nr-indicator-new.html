@@ -21,7 +21,7 @@ this partial takes 5 arguments as a dict:
         onclick="getURL({{ .data.IndicatorID }}, '{{ .data.indicator_data_name }}')"
       >
         <div class="row no-gutters" style="width: 100%">
-          <div class="col-7 border-right pr-1">
+          <div class="col-7">
             <span class="font-weight-bold fs-md"
               >{{ .data.indicator_short_name }}</span
             ><br />
@@ -62,28 +62,54 @@ this partial takes 5 arguments as a dict:
     data-indicator-name="{{ .data.indicator_data_name }}"
     data-count="{{ .count }}"
   >
-    <div class="card-body">
+    <div class="card-body card-body-no-top">
 
-      <div class="row fs-sm">
-        <div class="col-5 border-right">
+      <div class="row no-gutters fs-sm">
+                <div class="col-7 border-right h-100">
+                <!-- MAP -->
+                <div style="width:100%; height:40vmin; z-index:10000;" class="" id="map-{{ .data.indicator_data_name }}-{{ .count }}">
+                    ...map is loading...
+                </div>
+                {{- if isset .data "nbr_data_note" -}}
+                  <div class="data-note mt-1">{{ .data.nbr_data_note }}</div>
+                {{- end -}}
+        </div>
+
+        <div class="col-5 h-100 p-1">
             <!-- Explanatory text -->
-            <em><p class="fs-sm">{{- .data.indicator_description | safeHTML -}}</p></em>
+            <p class="fs-xs">
+              <em>
+              {{- .data.indicator_description | safeHTML -}}
+            </em> 
+            <a id="{{ .data.IndicatorID }}" href="" class="fs-xs" style="display:none"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Get the data</a>.
+            </p>
 
-                        <hr class="my-1">
+            <hr class="my-1">
 
-
-            <p>
-                For {{ lower .data.indicator_short_name }}, <strong>{{ .neighborhood }}</strong> is:
-                <ul class="no-bullets">
+            <p class="fs-rg">
+                {{ .data.indicator_short_name }} in <strong>{{ .neighborhood }}</strong>:
+                <ul class="no-bullets fs-md">
+                    <li>{{- if eq (string .data.data_value_rank) "1" -}}<span
+                          class="worse-sm fs-sm mt-1"
+                          >Worse than</span
+                        >
+                        {{- else if eq (string .data.data_value_rank) "2" -}}<span
+                          class="middle-sm fs-sm mt-1"
+                          >In the middle of</span
+                        >
+                        {{- else -}}<span class="better-sm fs-sm mt-1">Better than</span>
+                        {{- end -}} 
+                        &nbsp;most NYC neighborhoods</li>
                     <li> <span id="b-{{ urlize .data.indicator_short_name }}"></span> the <strong>{{ .borough }} average</strong></li>
                     <li> <span id="c-{{ urlize .data.indicator_short_name }}"></span> the <strong>Citywide average</strong></li>
                 </ul>
                 
             </p>
 
-
-
+            <div id="trend" class="sr-only">
             <p>In <strong>{{ .borough }}</strong>, it is [TREND]. Citywide, the trend is [TREND].</p>
+            </div>
+
 
 
             <hr class="my-1">
@@ -91,25 +117,17 @@ this partial takes 5 arguments as a dict:
             <!-- About the data -->
 
             <span id="year-{{ urlize .data.indicator_short_name }}" class="sr-only">YEAR</span>
-            <a id="{{ .data.IndicatorID }}" class="fs-sm" style="display:none"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Get the data</a>
+
 
             <span class="fs-xs"><strong>Source:</strong> {{ .data.data_source_list }}</span>
 
-                        <hr class="my-1">
+            <hr class="my-1">
 
             
 
 
         </div>
-        <div class="col-7">
-                <!-- MAP -->
-                <div style="width:100%; height:40vmin; z-index:10000;" class="" id="map-{{ .data.indicator_data_name }}-{{ .count }}">
-                    ...map is loading...
-                </div>
-                {{- if isset .data "nbr_data_note" -}}
-                <div class="data-note mt-1">Some neighborhoods may have estimates suppressed due to low numbers.</div>
-                {{- end -}}
-        </div>
+
       </div>
     </div>
   </div>

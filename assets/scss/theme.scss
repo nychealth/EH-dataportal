@@ -634,7 +634,11 @@ h2.report-info {
         width: 78px;
         display: inline-block;
     }
+}
 
+.better-sm, .middle-sm, .worse-sm {
+    display: inline-block;
+    font-size: inherit!important;
 }
 
 .worse {
@@ -648,6 +652,8 @@ h2.report-info {
 .better {
     background-color: #D1F0C8;
 }
+
+
 .comparison {
     font-weight: 600;
     margin-bottom: 1.25rem;

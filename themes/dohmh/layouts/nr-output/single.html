@@ -28,17 +28,34 @@
     content: "✅ ";
     }
 
+    .better-sm::before {
+    content: "✅ ";
+    }
+
     .comp-bad::before {
-    content: "❌ ";
+    content: "❗ ";
+    }
+
+    .worse-sm::before {
+    content: "❗ ";
     }
 
     .comp-null::before {
-    content: "😐 ";
+    content: "⬜ ";
+    }
+
+    .middle-sm::before {
+    content: "⬜ ";
     }
 
     .no-bullets li {
         list-style:none;
-        padding-left: 10px;
+        padding-left: 0px;
+    }
+
+    .card-body-no-top {
+        padding-top: 0px!important;
+        padding-left: 12px!important;
     }
 
 </style>
@@ -87,7 +104,7 @@
                 thisTopic = y
                 // console.log('topic is: ' + ind + ": " + thisTopic)
                 URL = {{ relURL "data-explorer/" }} + thisTopic + "/?id=" + ind; // creates URL
-                document.getElementById(indID).style.display = "block";
+                document.getElementById(indID).style.display = "inline-block";
                 document.getElementById(indID).href = URL; // sends it to unique ID - Get the Dataset button
 
                 return
@@ -521,7 +538,7 @@ aria-hidden="true" data-pagefind-ignore="all">
     let mapSpec = {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "title": {
-        "text": indicatorTitle,
+        "text": '',
         "subtitlePadding": 10,
         "fontWeight": "bold",
         "anchor": "start",
@@ -690,7 +707,7 @@ aria-hidden="true" data-pagefind-ignore="all">
     ]
     }
 
-    vegaEmbed(destination,mapSpec)
+    vegaEmbed(destination,mapSpec,{actions: true})
 
 
 
