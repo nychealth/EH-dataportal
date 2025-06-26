@@ -368,6 +368,7 @@
 
         Object.entries(topicSlugs).forEach(([buttonId, topicSlug]) => {
         const button = document.getElementById(buttonId);
+        var length
         if (button) {
             button.addEventListener("click", () => {
             // Split current path
@@ -375,7 +376,7 @@
 
             console.log('parts:', parts)
 
-            const length = parts.length - 2
+            length = parts.length - 2
 
             // Replace the topic part of the URL (index 4 in your structure)
             parts[length] = topicSlug;
@@ -390,9 +391,13 @@
         });
 
         // Automatically set active class on page load based on URL
-        const currentTopic = window.location.pathname.split("/")[4];
+        const parts = window.location.pathname.split("/");
+        currentTopic = parts[parts.length - 2]
+
+            // console.log(currentTopic)
+
         Object.entries(topicSlugs).forEach(([buttonId, topicSlug]) => {
-            console.log(buttonId, topicSlug, currentTopic)
+          //  console.log(buttonId, topicSlug, currentTopic)
         if (topicSlug === currentTopic) {
             const button = document.getElementById(buttonId);
             if (button) button.classList.add("active");
