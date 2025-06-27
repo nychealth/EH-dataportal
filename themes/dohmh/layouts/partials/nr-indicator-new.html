@@ -264,18 +264,6 @@ this partial takes 5 arguments as a dict:
 
             renderNRMap(mapData,  "#map-{{ .data.indicator_data_name }}-{{ .count }}", "{{ .data.measurement_type }} {{ .data.units }}","{{ .data.indicator_short_name }}",geocode)
 
-            /*
-            vegaEmbed(
-                "#map-{{ .data.indicator_data_name }}-{{ .count }}",
-                mapSpec,
-                opt
-            ).then((res) => {
-
-                res.view.insert("mapData", mapData).run()
-
-            }).catch(console.error);
-            */
-
     });
 
     </script>
