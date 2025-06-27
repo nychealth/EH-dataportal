@@ -218,7 +218,7 @@
                         <tbody>
                             <tr>
                             <td>Population</td>
-                            <td>XX,XXX</td>
+                            <td id="popPrint">XX,XXX</td>
                         </tr>
                         <tr>
                             <td>Over age 65</td>
@@ -774,10 +774,19 @@ aria-hidden="true" data-pagefind-ignore="all">
     }
 
     vegaEmbed(destination,mapSpec,{actions: true})
-
-
-
 }
+
+    let thisGeo = {{ .Params.GEOCODE}}
+
+   function renderDemographics(x) {
+        console.log(thisGeo)
+        const here = x.filter((neighb) => neighb.UHF_id === thisGeo)
+        console.log(here[0])
+
+        document.getElementById('popPrint').innerHTML = Number(here[0].Population).toLocaleString()
+    }
+
+    renderDemographics(neighborhoods)
 
 </script>
 
