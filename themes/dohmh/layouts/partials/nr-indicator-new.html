@@ -23,7 +23,7 @@ this partial takes 5 arguments as a dict:
         <div class="row no-gutters" style="width: 100%">
           <div class="col-7">
             <span class="font-weight-bold fs-md"
-              >{{ .data.indicator_short_name }}</span
+              >{{ .data.indicator_short_name }}:</span
             ><br />
             <span class="fs-sm font-weight-normal"
               >{{- .data.indicator_long_name -}}</span
@@ -58,7 +58,7 @@ this partial takes 5 arguments as a dict:
     id="collapse-{{ .data.indicator_data_name }}"
     class="collapse border-bottom "
     aria-labelledby="heading-{{ .data.indicator_data_name }}"
-    data-parent="#accordion-{{ .index }}"
+    data-parent="#accordion-{{ .accordionIndex }}"
     data-indicator-name="{{ .data.indicator_data_name }}"
     data-count="{{ .count }}"
   >

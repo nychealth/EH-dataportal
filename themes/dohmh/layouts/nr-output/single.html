@@ -284,6 +284,7 @@
 
                     <!-- Revised, programmatic output -->
                     {{- range $index, $rt := $report_topics -}}
+                        {{ $accordionIndex := $index }}
                         
                         <div class="accordion my-4 report-section pt-2 border-left border-right border-bottom" id="accordion-{{ $index }}">
 
@@ -329,7 +330,7 @@
 
                                             {{- $count := add $index 1 -}}
 
-                                            {{- partial "nr-indicator-new.html" (dict "neighborhood" $.Params.neighborhood "borough" $row.borough_name "data" $row "count" $count "index" $index  ) -}}
+                                            {{- partial "nr-indicator-new.html" (dict "neighborhood" $.Params.neighborhood "borough" $row.borough_name "data" $row "count" $count "accordionIndex" $accordionIndex "index" $index  ) -}}
 
                                         {{- end -}}
 
