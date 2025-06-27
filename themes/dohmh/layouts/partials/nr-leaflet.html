@@ -3,7 +3,6 @@
 <script>
 
   var geocode = `{{ .Params.geocode }}`
-  console.log('GEOCODE:', geocode)
 
   var lat = 40.715554;
   var lng = -74.0026642;
@@ -138,6 +137,8 @@ function selectNeighborhood(e) {
     (n) => n.UHF_id == geocodeClicked
   );
 
+  console.log('neighborhoods:',neighborhoods)
+
   if (match && match.page_name) {
     // Get the current URL parts
     const parts = window.location.pathname.split("/");
@@ -145,11 +146,19 @@ function selectNeighborhood(e) {
     // Replace the 3rd index (neighborhood slug) with the new one
     parts[3] = match.page_name;
 
-    // Build the new path
-    const newPath = parts.join("/");
+    var rpt;
+    console.log('checking reportURL')
+    if (reportURL.length > 2) {
+      rpt = reportURL
+    } else {
+      rpt = '/'
+    }
 
+    // Build the new path; this will now work if reportURL is set (as in the Output), or if it's not (as on a Neighborhood Landing Page)
+    const buildURL = '/IndicatorPublic/neighborhood-reports/' + parts[3] + rpt
+    
     // Redirect
-    window.location.href = newPath;
+    window.location.href = buildURL;
   } else {
     console.warn("No matching neighborhood for GEOCODE:", geocodeClicked);
   }
