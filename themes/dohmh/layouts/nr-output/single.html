@@ -218,39 +218,39 @@
                         <tbody>
                             <tr>
                             <td>Population</td>
-                            <td id="popPrint">XX,XXX</td>
+                            <td id="popPrint" class="text-right">XX,XXX</td>
                         </tr>
                         <tr>
                             <td>Over age 65</td>
-                            <td>YY%</td>
+                            <td id="oldPrint" class="text-right">YY%</td>
                         </tr>
                         <tr>
                             <td>Under age 18</td>
-                            <td>YY%</td>
+                            <td id="youngPrint" class="text-right">YY%</td>
                         </tr>
                         <tr>
                             <td>Median income</td>
-                            <td>$XX,YYY</td>
+                            <td id="incPrint" class="text-right">$XX,YYY</td>
                         </tr>
                         <tr>
                             <td>Poverty</td>
-                            <td>YY%</td>
+                            <td id="povPrint" class="text-right">YY%</td>
                         </tr>
                         <tr>
                             <td>Graduated high school</td>
-                            <td>YY%</td>
+                            <td id="gradPrint"  class="text-right">YY%</td>
                         </tr>
                         <tr>
                             <td>Limited English</td>
-                            <td>YY%</td>
+                            <td id="engPrint"  class="text-right">YY%</td>
                         </tr>
                         <tr>
                             <td>Owner-occupied homes</td>
-                            <td>YY%</td>
+                            <td id="ownPrint"  class="text-right">YY%</td>
                         </tr>
                         <tr>
                             <td>Rent-burdened households</td>
-                            <td>YY%</td>
+                            <td id="rentPrint" class="text-right">YY%</td>
                         </tr>
                         </tbody>
                         </table>
@@ -784,6 +784,13 @@ aria-hidden="true" data-pagefind-ignore="all">
         console.log(here[0])
 
         document.getElementById('popPrint').innerHTML = Number(here[0].Population).toLocaleString()
+        document.getElementById('incPrint').innerHTML = '$XX,YYY'
+        document.getElementById('povPrint').innerHTML = Number(here[0].PovertyPercent).toFixed(1) + '%'
+        document.getElementById('gradPrint').innerHTML = Number(here[0].PercentGraduatedHighSchool).toFixed(1) + '%'
+        document.getElementById('engPrint').innerHTML = Number(here[0].PercentLimitedEnglish).toFixed(1) + '%'
+        document.getElementById('ownPrint').innerHTML = Number(here[0].OwnerOccupiedPercent).toFixed(1) + '%'
+        document.getElementById('rentPrint').innerHTML = Number(here[0].PercentRentBurdened).toFixed(1) + '%'
+
     }
 
     renderDemographics(neighborhoods)
