@@ -155,7 +155,7 @@ function selectNeighborhood(e) {
     }
 
     // Build the new path; this will now work if reportURL is set (as in the Output), or if it's not (as on a Neighborhood Landing Page)
-    const buildURL = '/IndicatorPublic/neighborhood-reports/' + parts[3] + rpt
+    const buildURL = '{{ .Site.BaseURL }}/neighborhood-reports/' + parts[3] + rpt
     
     // Redirect
     window.location.href = buildURL;
