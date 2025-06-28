@@ -576,9 +576,12 @@ aria-hidden="true" data-pagefind-ignore="all">
 <script type="text/javascript">
     // get report path relative to section starting with "neighborhood-reports"
     let thisURL = window.location.pathname.match(/neighborhood-reports.*/)
+    console.log(thisURL)
     let thisNeighb = thisURL[0].split("/")[1]; // get this neighborhood
     let report = thisURL[0].split("/")[2]; // get this report
     reportURL = '/' + report // get URL extension
+    console.log('report:')
+    console.log(report, reportURL)
 
 </script>
 
