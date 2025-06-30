@@ -768,7 +768,9 @@ buttons.forEach(button => {
    function renderDemographics(x,y) {
         const here = x.filter((neighb) => neighb.UHF_id === y)
 
-        document.getElementById('popPrint').innerHTML = Number(here[0].Population).toLocaleString()
+        console.log(here)
+
+        document.getElementById('popPrint').innerHTML = Number(here[0].TotalPopulation).toLocaleString()
         document.getElementById('incPrint').innerHTML = '$XX,YYY'
         document.getElementById('povPrint').innerHTML = Number(here[0].PovertyPercent).toFixed(1) + '%'
         document.getElementById('gradPrint').innerHTML = Number(here[0].PercentGraduatedHighSchool).toFixed(1) + '%'
