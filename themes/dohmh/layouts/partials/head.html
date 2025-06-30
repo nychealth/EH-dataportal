@@ -211,6 +211,10 @@
 
 {{ if or .Params.leaflet (eq .Section "neighborhood-reports") }}
 
+    <!-- UHF42 neighborhood list javascript -->
+    {{- $uhflist_js := resources.Get "js/uhflist.js" | partial "short-fingerprint.html" -}}
+    <script type="text/javascript" src="{{ $uhflist_js.RelPermalink }}" integrity="{{ $uhflist_js.Data.Integrity }}"></script>
+
     <!-- leaflet CSS -->
 
     {{- $leaflet_CSS := resources.Get "node_modules/leaflet/dist/leaflet.css" | partial "short-fingerprint.html" }}

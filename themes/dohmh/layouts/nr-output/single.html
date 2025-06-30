@@ -261,19 +261,19 @@
                 <div class="col-md-8">
                     <div class="row no-gutters">
                             <div class="col-sm mb-2 mr-1 mb-lg-0">
-                            <button class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2"  id="Active">Active design</button>
+                            <button class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 output-topic-button" id="Active">Active design</button>
                             </div>
                             <div class="col-sm mb-2 mr-1 mb-lg-0">
-                            <button class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2"  id="Asthma">Asthma</button>
+                            <button class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 output-topic-button" id="Asthma">Asthma</button>
                             </div>
                             <div class="col-sm mb-2 mr-1 mb-lg-0">
-                            <button class="btn btn-sm  btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2"  id="Climate">Climate</button>
+                            <button class="btn btn-sm  btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 output-topic-button" id="Climate">Climate</button>
                             </div>
                             <div class="col-sm mb-2 mr-1 mb-lg-0">
-                            <button class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2"  id="Housing">Housing</button>
+                            <button class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 output-topic-button" id="Housing">Housing</button>
                             </div>
                             <div class="col-sm mb-2 mr-1 mb-lg-0">
-                            <button class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2"  id="Outdoor">Outdoor Air</button>
+                            <button class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 output-topic-button" id="Outdoor">Outdoor Air</button>
                             </div>
                     </div>
 
@@ -366,53 +366,6 @@
 
     <script>
 
-        // Javascript for nav buttons:
-        const topicSlugs = {
-        Active: "active_design_physical_activity_and_health",
-        Asthma: "asthma_and_the_environment",
-        Climate: "climate_and_health",
-        Housing: "housing_and_health",
-        Outdoor: "outdoor_air_and_health",
-        };
-
-        Object.entries(topicSlugs).forEach(([buttonId, topicSlug]) => {
-        const button = document.getElementById(buttonId);
-        var length
-        if (button) {
-            button.addEventListener("click", () => {
-            // Split current path
-            const parts = window.location.pathname.split("/");
-
-            console.log('parts:', parts)
-
-            length = parts.length - 2
-
-            // Replace the topic part of the URL (index 4 in your structure)
-            parts[length] = topicSlug;
-
-            // Reconstruct the new path and redirect
-            const newPath = parts.join("/");
-
-            window.location.href = newPath;
-
-            });
-        }
-        });
-
-        // Automatically set active class on page load based on URL
-        const parts = window.location.pathname.split("/");
-        currentTopic = parts[parts.length - 2]
-
-            // console.log(currentTopic)
-
-        Object.entries(topicSlugs).forEach(([buttonId, topicSlug]) => {
-          //  console.log(buttonId, topicSlug, currentTopic)
-        if (topicSlug === currentTopic) {
-            const button = document.getElementById(buttonId);
-            if (button) button.classList.add("active");
-        }
-        });
-
         let report_name = "{{ $.Params.title }}"
 
         // loading report CSV data here, so it only loads once per location
@@ -435,8 +388,6 @@
             // console.log("arqTable", arqTable);
 
         })
-
-
 
         // set data download location
         let reportData;
@@ -569,24 +520,58 @@ aria-hidden="true" data-pagefind-ignore="all">
     </div>
 </div>
 
+<!-- HANDLE TOPIC BUTTONS output-topic-button -->
+<script>
 
-{{- $uhflist_js := resources.Get "js/uhflist.js" | partial "short-fingerprint.html" -}}
-<script type="text/javascript" src="{{ $uhflist_js.RelPermalink }}" integrity="{{ $uhflist_js.Data.Integrity }}"></script>
+// FIRST, APPLY ACTIVE CLASS TO THE BUTTON FOR THE CHOSEN REPORT
+console.log('**getting report topic')
 
-<script type="text/javascript">
-    // get report path relative to section starting with "neighborhood-reports"
-    let thisURL = window.location.pathname.match(/neighborhood-reports.*/)
-    console.log(thisURL)
-    let thisNeighb = thisURL[0].split("/")[1]; // get this neighborhood
-    let report = thisURL[0].split("/")[2]; // get this report
-    reportURL = '/' + report // get URL extension
-    console.log('report:')
-    console.log(report, reportURL)
+    // look up matching key from topicSlugs
+    let matchingKey = null;
+
+    for (const [key, value] of Object.entries(topicSlugs)) {
+    if (value === chosenReport) {
+        matchingKey = key;
+        break;
+    }
+    }
+
+    document.getElementById(matchingKey).classList.add('active')
+
+// NOW, ADD EVENT LISTENER TO BUTTONS - AND REDIRECT ON CLICK
+const buttons = document.querySelectorAll('.output-topic-button');
+
+buttons.forEach(button => {
+    button.addEventListener('click', () => {
+        console.log('button clicked for: ', button.id)
+
+        // change URL destination in a way that matches topicSlugs 
+        const reportDestination = topicSlugs[button.id] || null;
+
+        // assemble new url
+        const pageURL = window.location.pathname.match(/neighborhood-reports.*/)[0]
+        var urlParts = pageURL.split('/')
+
+            urlParts.pop();
+            urlParts.pop();
+            console.log(urlParts)
+
+        var newURL = `{{ .Site.BaseURL }}` + urlParts[0] + '/' + urlParts[1] + '/' + reportDestination
+        console.log(newURL)
+
+        window.location.href = newURL
+
+    });
+});
+
 
 </script>
 
 
 
+
+
+<!-- RENDER MAP, RENDER DEMOGRAPHICS -->
 <script>
    $(document).on('shown.bs.collapse', '.collapse', function (e) {
     console.log('Any accordion opened:', e.target.id);
@@ -779,12 +764,9 @@ aria-hidden="true" data-pagefind-ignore="all">
     vegaEmbed(destination,mapSpec,{actions: true})
 }
 
-    let thisGeo = {{ .Params.GEOCODE}}
-
-   function renderDemographics(x) {
-        console.log(thisGeo)
-        const here = x.filter((neighb) => neighb.UHF_id === thisGeo)
-        console.log(here[0])
+    
+   function renderDemographics(x,y) {
+        const here = x.filter((neighb) => neighb.UHF_id === y)
 
         document.getElementById('popPrint').innerHTML = Number(here[0].Population).toLocaleString()
         document.getElementById('incPrint').innerHTML = '$XX,YYY'
@@ -796,7 +778,8 @@ aria-hidden="true" data-pagefind-ignore="all">
 
     }
 
-    renderDemographics(neighborhoods)
+    renderDemographics(neighborhoods, chosenGeo)
+    // 'neighborhoods' is a variable set in uhflist.js
 
 </script>
 
