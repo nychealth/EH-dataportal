@@ -233,7 +233,7 @@
 
       // Build the new path; this will now work if reportURL is set (as in the Output), or if it's not (as on a Neighborhood Landing Page)
 
-      const buildURL = '{{ .Site.BaseURL }}neighborhood-reports/' + parts[3] + "/" + dest
+      const buildURL = '{{ .Site.BaseURL }}neighborhood-reports/' + parts[3] + "/" + dest + '/'
       
       // Redirect - send to new page
          window.location.href = buildURL;
