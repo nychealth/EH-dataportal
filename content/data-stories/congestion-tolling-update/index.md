@@ -2,7 +2,7 @@
 title: "Initial data from Congestion Relief Tolling"
 aliases:
   - /data-stories/congestion-tolling-report/
-date: 2025-06-19T13:11:44-04:00
+date: 2025-07-01T08:11:44-04:00
 draft: false
 seo_title: "Initial data from Congestion Relief Tolling"
 seo_description: "A review of data from 3 months of Congestion Relief Tolling"
