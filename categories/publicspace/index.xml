@@ -6,7 +6,7 @@
     <description>Recent content in Publicspace on Environment &amp; Health Data Portal</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 28 May 2025 11:51:01 -0400</lastBuildDate>
+    <lastBuildDate>Tue, 01 Jul 2025 08:11:44 -0400</lastBuildDate>
     <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/categories/publicspace/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Flood Vulnerability Index</title>
@@ -14,6 +14,13 @@
       <pubDate>Wed, 28 May 2025 11:51:01 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/flood-vulnerability-index/</guid>
       <description>&lt;p&gt;The Flood Vulnerability Index estimates the vulnerability to flooding across NYC. It combines information about &lt;strong&gt;exposure&lt;/strong&gt; (estimated flood extents under different current and future scenarios) with information about &lt;strong&gt;susceptibility to harm and capacity to recover&lt;/strong&gt;.&lt;/p&gt;&#xA;&lt;p&gt;This information is used to estimate areas&amp;rsquo; relative vulnerability to flooding to storm surges, and to tidal flooding. To account for changes in sea levels and flood plains, there are Flood Vulnerability Indices for three time periods: present-day (the 2020s), the 2050s, and the 2080s.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Initial data from Congestion Relief Tolling</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/congestion-tolling-update/</link>
+      <pubDate>Tue, 01 Jul 2025 08:11:44 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/congestion-tolling-update/</guid>
+      <description>&lt;p&gt;In January 2025, the Metropolitan Transportation Authority Bridge and Tunnels (MTABT) started charging a toll for vehicles entering Manhattan’s &lt;a href=&#34;https://congestionreliefzone.mta.info/&#34;&gt;Congestion Relief Zone&lt;/a&gt; (the zone) to reduce traffic within the zone and raise money for public transportation improvements.&lt;/p&gt;&#xA;&lt;p&gt;During the environmental review process, modeling did not identify air pollution as a concern to be tracked. However, due to community concerns, government agencies – including the Health Department, MTABT, the NYC Department of Transportation, and the New York State Department of Transportation – committed to monitor and report on air quality.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Public transit creates health</title>
