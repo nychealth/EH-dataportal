@@ -100,19 +100,19 @@ this partial takes 5 arguments as a dict:
                         >
                         {{- else -}}<span class="better-sm fs-sm mt-1">Better than most</span>
                         {{- end -}} 
-                        &nbsp; neighborhoods
+                        &nbsp;neighborhoods
                   </p>
 
                   <p>
                     <span id="b-{{ urlize .data.indicator_short_name }}"></span> the <strong>{{ .borough }} average</strong> 
                     <br>
-                    <span class="fs-sm pl-3">(<span id="bv-{{ urlize .data.indicator_short_name }}">boro val</span>{{ if in .data.measurement_type "ercent" }}%{{ else }}{{ .data.units }}{{ end }})</span>
+                    <span class="fs-sm pl-3">(<span id="bv-{{ urlize .data.indicator_short_name }}">boro val</span>{{ if in .data.measurement_type "ercent" }}%{{ else }} {{ .data.units }}{{ end }})</span>
                   </p>
 
                   <p>
                     <span id="c-{{ urlize .data.indicator_short_name }}"></span> the <strong>Citywide average</strong> 
                     <br>
-                    <span class="fs-sm pl-3">(<span id="cv-{{ urlize .data.indicator_short_name }}">city val</span>{{ if in .data.measurement_type "ercent" }}%{{ else }}{{ .data.units }}{{ end }})</span>
+                    <span class="fs-sm pl-3">(<span id="cv-{{ urlize .data.indicator_short_name }}">city val</span>{{ if in .data.measurement_type "ercent" }}%{{ else }} {{ .data.units }}{{ end }})</span>
                   </p>
 
                     </div>
