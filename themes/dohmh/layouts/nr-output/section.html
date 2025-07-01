@@ -28,29 +28,35 @@
 
             ZIP Codes: {{ partial "nr-insert-zips" . }}
 
-            <div class="row mt-2">
+            <div class="row no-gutters mt-4">
 
               {{- range .Pages -}}
 
-                <div class="card content-card mb-4 col-sm-6 col-md-4">
-                  <div class="card-content">
+                <div class="card card-left-border shadow-sm col-11 mr-auto mb-4 p-0" data-pagefind-ignore="all">
 
-                    {{- if .Params.seo_image -}}
-                    {{- $src := resources.Get .Params.seo_image -}}
-                    {{- $image := $src.Fill "740x400" -}}
+                  <div class="row no-gutters">
 
-                    <a href="{{ .RelPermalink }}"><img src="{{ $image.RelPermalink }}" class="card-img-top" alt="City photograph for the {{ lower .Title }} report"></a>
-                    {{- end -}}
-
-                    <div class="card-body" data-pagefind-ignore="all">
+                    <div class="col-8 h-100 p-1">
                       <h2 class="card-title fs-md"><a href="{{ .RelPermalink }}" class="text-primary">{{ .Title }}</a></h2>
                       <p class="card-text fs-md">
                           {{ .Summary }}
                           </p>
-                         <p class="fs-md"> <a href="{{ .RelPermalink }}">See&nbsp;Report&nbsp;<i class="fas fa-arrow-circle-right"></i></a>
+                         <p class="fs-md text-right"> <a href="{{ .RelPermalink }}">See&nbsp;Report&nbsp;<i class="fas fa-arrow-circle-right"></i></a>
                         </p>
                     </div>
+
+                                          {{- if .Params.seo_image -}}
+                      {{- $src := resources.Get .Params.seo_image -}}
+                      {{- $image := $src.Fill "740x400" -}}
+
+                    <div class="col-4 h-100" style="background-image: url({{ $image.RelPermalink }});background-size: cover;">
+
+
+
+                    </div>
+                    {{- end -}}
                   </div>
+
                 </div>
 
               {{- end -}}
