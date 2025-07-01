@@ -20,8 +20,9 @@ this partial takes 5 arguments as a dict:
         aria-controls="collapse-{{ .data.indicator_data_name }}"
         onclick="getURL({{ .data.IndicatorID }}, '{{ .data.indicator_data_name }}')"
       >
+        <!-- MAIN ROW: SCREEN ONLY -->
         <div class="row no-gutters" style="width: 100%">
-          <div class="col-7">
+          <div class="col-7 d-print-none">
             <span class="font-weight-bold fs-md"
               >{{ .data.indicator_short_name }}</span
             ><br />
@@ -29,17 +30,20 @@ this partial takes 5 arguments as a dict:
               >{{- .data.indicator_long_name -}}</span
             >
           </div>
-          <div class="col-5 pl-1">
-            {{- if eq (string .data.data_value_rank) "1" -}}<span
-              class="worse float-right mt-1"
-              >Worse</span
-            >
-            {{- else if eq (string .data.data_value_rank) "2" -}}<span
-              class="middle float-right mt-1"
-              >Middle</span
-            >
-            {{- else -}}<span class="better float-right mt-1">Better</span>
-            {{- end -}}
+          <div class="col-5 pl-1 d-print-none">
+            <div class="float-right mt-1">
+              {{- if eq (string .data.data_value_rank) "1" -}}<span
+                class="worse"
+                >Worse</span
+              >
+              {{- else if eq (string .data.data_value_rank) "2" -}}<span
+                class="middle"
+                >Middle</span
+              >
+              {{- else -}}<span class="better">Better</span>
+              {{- end -}}
+            </div>
+
             <span class="font-weight-bold fs-lg"
               >{{ .data.data_value_geo_entity }}</span
             >
@@ -48,6 +52,43 @@ this partial takes 5 arguments as a dict:
               >{{ .data.measurement_type }} {{ .data.units }}</span
             >
           </div>
+
+          <!-- MAIN ROW: PRINT ONLY -->
+          <div class="col-12 print-only" style="flex-direction:row; width:100%;">
+
+            <!-- Column 1: 50% -->
+            <div style="width:50%;" class="border-right pl-1">
+              <span class="font-weight-bold fs-md">
+                {{ .data.indicator_short_name }}
+              </span><br />
+              <span class="fs-sm font-weight-normal">
+                {{- .data.indicator_long_name -}}
+              </span>
+            </div>
+
+            <!-- Column 2: 25% -->
+            <div style="width:25%" class="border-right pl-1">
+              <span class="font-weight-bold fs-lg">
+                {{ .data.data_value_geo_entity }}
+              </span><br />
+              <span class="fs-xs font-weight-normal">
+                {{ .data.measurement_type }} {{ .data.units }}
+              </span>
+            </div>
+
+            <!-- Column 3: 25% -->
+            <div style="width:25%;" class="pl-1">
+              {{- if eq (string .data.data_value_rank) "1" -}}
+                Worse than most neighborhoods
+              {{- else if eq (string .data.data_value_rank) "2" -}}
+                In the middle of NYC neighborhoods
+              {{- else -}}
+                Better than most neighborhoods
+              {{- end -}}
+            </div>
+
+          </div>
+
         </div>
       </button>
     </h2>

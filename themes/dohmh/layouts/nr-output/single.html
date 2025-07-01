@@ -58,6 +58,13 @@
         padding-left: 12px!important;
     }
 
+    @media print {
+        .col-print-12 {
+            max-width: 100%;
+            flex: 0 0 100%;
+        }
+    }
+
 </style>
 
 {{- /* ==== get topics and measures for this report ==== */}}
@@ -186,7 +193,7 @@
 
     <div class="row">
         <div class="col-lg-12 mx-auto col-12">
-            <nav aria-label="breadcrumb" class="mt-2 mb-3">
+            <nav aria-label="breadcrumb" class="mt-2 mb-3 d-print-none">
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item d-none d-sm-block"><a href={{ relURL "" }}>Home</a></li>
                     <li class="breadcrumb-item"><a href={{ relURL "neighborhood-reports" }}>Neighborhood Reports</a></li>
@@ -196,7 +203,7 @@
             </nav>
 
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-4 d-print-none">
                     <div class="border" style="height: 450px; width:100%">
                         {{ partial "nr-leaflet" . }}
                         
@@ -258,8 +265,8 @@
 
                 </div>
 
-                <div class="col-md-8">
-                    <div class="row no-gutters">
+                <div class="col-md-8 col-print-12">
+                    <div class="row no-gutters d-print-none">
                             <div class="col-sm mb-2 mr-1 mb-lg-0">
                             <button class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 output-topic-button" id="Active">Active design</button>
                             </div>
@@ -282,9 +289,11 @@
 
                     <p class="report-description fs-lg my-2">{{ $.Params.summary }}</p>
 
-                    <button onclick="window.print()" class="btn btn-sm btn-report mt-2" target="_blank"><i class="fas fa-print mr-1"></i>Print</button>
-                    <button onclick="downloadData()" class="btn btn-sm btn-report mt-2" target="_blank"><i class="fa fa-download mr-1"></i>Download <span class="sr-only">(opens in a new tab)</span></button>
-                    <button class="btn btn-sm btn-report mt-2 float-right"   data-toggle="modal" data-target="#modal-rank"target="_blank"><i class="fas fa-question-circle mr-1" aria-hidden="true"></i>Comparisons <span class="sr-only">(opens in a new tab)</span></button>
+                    <div class="d-print-none">
+                        <button onclick="window.print()" class="btn btn-sm btn-report mt-2" target="_blank"><i class="fas fa-print mr-1"></i>Print</button>
+                        <button onclick="downloadData()" class="btn btn-sm btn-report mt-2" target="_blank"><i class="fa fa-download mr-1"></i>Download <span class="sr-only">(opens in a new tab)</span></button>
+                        <button class="btn btn-sm btn-report mt-2 float-right"   data-toggle="modal" data-target="#modal-rank"target="_blank"><i class="fas fa-question-circle mr-1" aria-hidden="true"></i>Comparisons <span class="sr-only">(opens in a new tab)</span></button>
+                    </div>
 
 
                     <!-- Revised, programmatic output -->

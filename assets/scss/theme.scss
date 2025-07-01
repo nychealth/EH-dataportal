@@ -637,6 +637,15 @@ h2.report-info {
     }
 }
 
+@media print {
+    .better, .middle, .worse {
+        /* whatever styles you want only for print */
+        font-size: 1rem;
+        text-align: left;
+        color: black;
+    }
+}
+
 .better-sm, .middle-sm, .worse-sm {
     display: inline-block;
     font-size: inherit!important;
