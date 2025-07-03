@@ -200,12 +200,14 @@ var scatterplot = {
     "background": "#FFFFFF",
     "range": {
       "category": [
-        "#7fc97f",
-        "#beaed4",
-        "#fdc086",
-        "#ffff99",
-        "#386cb0",
-        "#f0027f"
+        "#f0f921",
+        "#febd2a",
+        "#f48849",
+        "#db5c68",
+        "#b83289",
+        "#8b0aa5", 
+        "#5302a3",
+        "#0d0887"
       ]
     }
   },
@@ -351,7 +353,9 @@ var scatterplotTwo = {
         "#fdc086",
         "#ffff99",
         "#386cb0",
-        "#f0027f"
+        "#f0027f",
+        "#5302a3",
+        "#0d0887"
       ]
     }
   },
