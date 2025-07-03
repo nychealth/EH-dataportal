@@ -14,7 +14,7 @@ function init() {
     // check if this year's URL exists, and if it does, draw this year's button
     UrlExists(yearURL)
 
-    console.log(UrlExists(yearURL))
+    // console.log(UrlExists(yearURL))
 
     if (fileExists == true) {
       for (let i = year; i > 2016; i--) {
@@ -31,6 +31,11 @@ function init() {
     }
 
     // console.log(allYears)
+    
+    // get colors for spec
+    colorArray = getMagmaColors(allYears.length)
+    colorArray = colorArray.reverse()
+
 
     for (let i = 0; i < allYears.length; i++) {
       var oneYear = allYears[i]
@@ -68,6 +73,18 @@ function UrlExists(url) {
     // console.log(fileExists)
     return http.status!=404;
 
+}
+
+// get Magma colors for the number of years
+function getMagmaColors(n) {
+  const colors = [];
+  for (let i = 0; i < n; i++) {
+    // Get evenly spaced t values from 0 to 1
+    const t = i / (n - 1);
+    colors.push(d3.interpolateMagma(t));
+  }
+  // console.log('got colors:', colors)
+  return colors;
 }
 
 
@@ -184,104 +201,6 @@ var spec = {
 vegaEmbed('#vis1',spec)
 
 
-// Scatterplot spec
-var scatterplot = {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": {
-    "text": "Heat-related illness ED visits",
-    "fontSize": 12,
-    "align": "left",
-    "anchor": "start"
-  },
-  "width": "container",
-  "height": 500,
-  "config": {
-    "legend": {"orient": "right", "title": null, "labelFontSize": 16},
-    "background": "#FFFFFF",
-    "range": {
-      "category": [
-        "#f0f921",
-        "#febd2a",
-        "#f48849",
-        "#db5c68",
-        "#b83289",
-        "#8b0aa5", 
-        "#5302a3",
-        "#0d0887"
-      ]
-    }
-  },
-  "view": {"stroke": "transparent"},
-  "data": {
-    "url": "https://raw.githubusercontent.com/nychealth/EHDP-data/production/key-topics/heat-syndrome/previous_years.csv"
-  },
-  "transform": [
-    {"calculate": "year(datum.END_DATE)", "as": "Year"},
-    {"filter": "datum.HEAT_ED_VISIT_COUNT > 0"}
-  ],
-  "mark": {"type": "point", "shape": "circle", "filled": true},
-  "params": [
-    {
-      "name": "year",
-      "select": {"type": "point", "fields": ["Year"], "on": "mouseover"},
-      "bind": "legend"
-    },
-    {
-      "name": "hover",
-      "value": "#7C7C7C",
-      "select": {"type": "point", "on": "mouseover"}
-    }
-  ],
-  "encoding": {
-    "x": {
-      "field": "MAX_DAILY_TEMP",
-      "type": "quantitative",
-      "scale": {"zero": false},
-      "title": "Maximum daily temp or heat index",
-      "axis": {"grid": true, "tickCount": 5, "labelExpr": "datum.value + '°F'"}
-    },
-    "y": {
-      "field": "HEAT_ED_VISIT_COUNT",
-      "type": "quantitative",
-      "scale": {"zero": false},
-      "title": "",
-      "axis": {"grid": false, "tickCount": 5}
-    },
-    "color": {"field": "Year", "title": "Year", "type": "nominal"},
-    "opacity": {
-      "condition": {"param": "year", "empty": true, "value": 1},
-      "value": 0.15
-    },
-    "stroke": {
-      "condition": {"param": "hover", "empty": false, "value": "#3e3e3e"},
-      "value": "#7C7C7C"
-    },
-    "strokeWidth": {
-      "condition": {"param": "hover", "empty": false, "value": 3},
-      "value": 1
-    },
-    "size": {
-      "condition": {"param": "hover", "empty": false, "value": 250},
-      "value": 150
-    },
-    "tooltip": [
-      {"field": "END_DATE", "type": "temporal", "title": "Date"},
-      {
-        "field": "MAX_DAILY_TEMP",
-        "type": "quantitative",
-        "title": "Maximum daily temperature"
-      },
-      {
-        "field": "HEAT_ED_VISIT_COUNT",
-        "type": "quantitative",
-        "title": "Heat-related illness ED visits"
-      }
-    ]
-  }
-}
-
-// Initial embed of scatterplot
-vegaEmbed('#vis2', scatterplot)
 
 
 // Year change function powered by year buttons
@@ -329,6 +248,95 @@ function toggleScatter(x) {
 
 
 
+init()
+
+// Scatterplot specs. They need to follow init() because that's how we get colorArray
+var scatterplot = {
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Heat-related illness ED visits",
+    "fontSize": 12,
+    "align": "left",
+    "anchor": "start"
+  },
+  "width": "container",
+  "height": 500,
+  "config": {
+    "legend": {"orient": "right", "title": null, "labelFontSize": 16},
+    "background": "#FFFFFF",
+    "range": {
+      "category": colorArray
+    }
+  },
+  "view": {"stroke": "transparent"},
+  "data": {
+    "url": "https://raw.githubusercontent.com/nychealth/EHDP-data/production/key-topics/heat-syndrome/previous_years.csv"
+  },
+  "transform": [
+    {"calculate": "year(datum.END_DATE)", "as": "Year"},
+    {"filter": "datum.HEAT_ED_VISIT_COUNT > 0"}
+  ],
+  "mark": {"type": "point", "shape": "circle", "filled": true},
+  "params": [
+    {
+      "name": "year",
+      "select": {"type": "point", "fields": ["Year"], "on": "mouseover"},
+      "bind": "legend"
+    },
+    {
+      "name": "hover",
+      "value": "#7C7C7C",
+      "select": {"type": "point", "on": "mouseover"}
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "MAX_DAILY_TEMP",
+      "type": "quantitative",
+      "scale": {"zero": false},
+      "title": "Maximum daily temp or heat index",
+      "axis": {"grid": true, "tickCount": 5, "labelExpr": "datum.value + '°F'"}
+    },
+    "y": {
+      "field": "HEAT_ED_VISIT_COUNT",
+      "type": "quantitative",
+      "scale": {"zero": false},
+      "title": "",
+      "axis": {"grid": false, "tickCount": 5}
+    },
+    "color": {"field": "Year", "title": "Year", "type": "nominal"},
+    "opacity": {
+      "condition": {"param": "year", "empty": true, "value": 0.8},
+      "value": 0.05
+    },
+    "stroke": {
+      "condition": {"param": "hover", "empty": false, "value": "#3e3e3e"},
+      "value": "#7C7C7C"
+    },
+    "strokeWidth": {
+      "condition": {"param": "hover", "empty": false, "value": 3},
+      "value": 1
+    },
+    "size": {
+      "condition": {"param": "hover", "empty": false, "value": 250},
+      "value": 150
+    },
+    "tooltip": [
+      {"field": "END_DATE", "type": "temporal", "title": "Date"},
+      {
+        "field": "MAX_DAILY_TEMP",
+        "type": "quantitative",
+        "title": "Maximum daily temperature"
+      },
+      {
+        "field": "HEAT_ED_VISIT_COUNT",
+        "type": "quantitative",
+        "title": "Heat-related illness ED visits"
+      }
+    ]
+  }
+}
+
 var scatterplotTwo = {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
@@ -347,16 +355,7 @@ var scatterplotTwo = {
     },
     "background": "#FFFFFF",
     "range": {
-      "category": [
-        "#f0f921",
-        "#febd2a",
-        "#f48849",
-        "#db5c68",
-        "#b83289",
-        "#8b0aa5", 
-        "#5302a3",
-        "#0d0887"
-      ]
+      "category": colorArray
     }
   },
   "view": {"stroke": "transparent"},
@@ -371,8 +370,7 @@ var scatterplotTwo = {
   "mark": {
     "type": "point", 
     "shape": "circle", 
-    "filled": true,
-    "opacity": 1
+    "filled": true
   },
   "params": [
     {
@@ -410,8 +408,8 @@ var scatterplotTwo = {
     },
     "color": {"field": "Year", "title": "Year", "type": "nominal"},
     "opacity": {
-      "condition": {"param": "year", "empty": true, "value": 1},
-      "value": 0.15
+      "condition": {"param": "year", "empty": true, "value": 0.8},
+      "value": 0.05
     },
     "stroke": {
       "condition": {"param": "hover", "empty": false, "value": "#3e3e3e"},
@@ -437,5 +435,5 @@ var scatterplotTwo = {
   }
 }
 
-
-init()
+// Initial embed of scatterplot
+vegaEmbed('#vis2', scatterplot)
