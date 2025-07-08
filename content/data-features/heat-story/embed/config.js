@@ -1122,7 +1122,7 @@ config = {
         {
             "id": "Peak-hours",
             "title": "I don't go outside during peak hours",
-            "content": "I dress in light clothing. I don't go outside during peak hours. The cooling centers are not close to me so I travel to them. I pay $250 per month in the winter for energy, but in the summer it also costly for AC and fan. Sometimes it costs more than in the winter. I stay indoors and I buy food so I don't have to cook. <br><strong>-Mohini, 2024</strong>",
+            "content": "I dress in light clothing. I don't go outside during peak hours. The cooling centers are not close to me so I travel to them. I pay $250 per month in the winter for energy, but in the summer it is also costly to run the AC and fan. Sometimes it costs more than in the winter. I stay indoors and I buy food so I don't have to cook. <br><strong>-Mohini, 2024</strong>",
             "marker": {
                 "lat": 40.680441975958985,
                 "lng": -73.79396252866313,
