@@ -17,4 +17,4 @@ The Environment & Health Data Portal is a project by the NYC Department of Healt
 
 <i class="fas fa-question-circle mr-1"></i>[Questions about the data? Visit our Github repo for info or to file an issue](https://www.github.com/nychealth/EH-dataportal).
 
-<i class="fas fa-envelope-open-text mr-1"></i>Concerned about an environment and health issue? Take action and [email your elected officials.](https://a816-dohbesp.nyc.gov/IndicatorPublic/take-action/email-electeds/).
+<i class="fas fa-envelope-open-text mr-1"></i>Concerned about an environment and health issue? Take action and [email your elected officials.](../take-action/email-electeds/).
