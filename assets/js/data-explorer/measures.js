@@ -1425,7 +1425,13 @@ const renderMeasures = async () => {
 
         let compLegendTitles = [... new Set(aqCombinedComparisonMetadata.array("LegendTitle"))]
 
+        console.log('compLegendTitles', compLegendTitles)
+
+        // if compLegend.Titles.length > 1...
+
         compLegendTitles.map(title => {
+
+            // console.log("title", title)
 
             let titleGroup = aqCombinedComparisonMetadata.filter(aq.escape(d => d.LegendTitle == title))
 
