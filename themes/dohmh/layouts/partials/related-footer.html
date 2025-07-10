@@ -46,7 +46,7 @@
                       {{ end }}
 
                     {{ else }}
-                    {{- partial "mod-related-main" (dict "section" "data-stories" "layout" "singlelisticon" "content" . ) -}}
+                    {{- partial "related-footer-content" (dict "section" "data-stories" "layout" "singlelisticon" "content" . ) -}}
                     {{ end }}
                   </div>
                 </div>
@@ -59,7 +59,7 @@
                   <hr class="my-2">
                 </div>
                   <div>
-                    {{- partial "mod-related-small" (dict  "content" . ) -}}
+                    {{- partial "related-footer-categories" (dict  "content" . ) -}}
                 </div>
                 </div>
               </div>
