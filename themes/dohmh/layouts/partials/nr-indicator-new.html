@@ -160,22 +160,25 @@ this partial takes 5 arguments as a dict:
                 
             </p>
 
-            <div id="trend" class="sr-only">
+            <!-- Placeholder for trend evaluation --> 
+            <div id="trend" class="hide">
             <p>In <strong>{{ .borough }}</strong>, it is [TREND]. Citywide, the trend is [TREND].</p>
             </div>
 
 
 
-            <hr class="my-1">
+            <hr class="mt-4">
 
             <!-- About the data -->
 
             <span id="year-{{ urlize .data.indicator_short_name }}" class="sr-only">YEAR</span>
 
-
+            <div class="my-1">
             <span class="fs-xs"><strong>Source:</strong> {{ .data.data_source_list }}</span>
 
-            <hr class="my-1">
+            </div>
+
+
 
             
 

@@ -209,8 +209,9 @@
                         
                     </div>
 
-                    <p class="mt-2 fs-rg">ZIP Codes: {{ partial "nr-insert-zips" . }}</p>
-
+                    <div class="fs-md my-1">
+                        <span style="font-weight:bold;color:darkslategrey">ZIP Codes:</span> {{ partial "nr-insert-zips" . }}
+                    </div>
 
 
                     <div class="report-section card-body-no-top my-2">
@@ -261,6 +262,8 @@
                         </tr>
                         </tbody>
                         </table>
+                        <span class="fs-xs" style="color:darkslategray;"><strong>Source:</strong> American Community Survey</span>
+
                     </div>
 
                 </div>
