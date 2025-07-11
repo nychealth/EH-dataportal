@@ -89,8 +89,13 @@
     </div>
   </div>
 
+  
 <div class="hide topic-descriptions" id="Asthma-Descr">
-  Asthma is a leading cause of hospitalizations for children. It can be made worse by housing and neighborhood characteristics. There are powerful inequities that drive racial disparities in asthma in NYC.
+  {{ with .Site.GetPage "/neighborhood-reports/Asthma_and_the_Environment.md" }}
+
+  <p>{{ .Content }}</p>
+  
+  {{ end }}
 </div>
 
 <div class="hide topic-descriptions" id="Climate-Descr">
@@ -98,11 +103,11 @@
 </div>
 
 <div class="hide topic-descriptions" id="Active-Descr">
-  The design and condition of buildings, streets, public transportation, and parks influence how much physical activity people get, how much they use active transportation, and how much other healthy behavior they do. A neighborhood built environment can also affect the safety of its residents.
+  The design and conditions of buildings, streets, public transportation and parks influence physical activity, use of active transportation and other healthy behavior. A neighborhood's features can also impact the safety of its residents.
 </div>
 
 <div class="hide topic-descriptions" id="Housing-Descr">
-  Housing conditions can drive health outcomes like asthma, lead poisoning, and carbon monoxide poisoning. We track housing neighborhood characteristics that can put people at risk - and special populations that are vulnernerable.
+  Housing conditions can drive health outcomes like asthma, lead poisoning, and carbon monoxide poisoning. We track housing neighborhood characteristics that can put people at risk - and special populations that are vulnerable.
 </div>
 
 <div class="hide" id="Outdoor-Descr">
