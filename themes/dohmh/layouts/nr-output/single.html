@@ -307,7 +307,12 @@
 
                             <div class="px-2 pb-2">
                                 <h4 class="fs-rg">
-                                    {{- $rt.report_topic -}}
+                                    <!-- Print report_topic in sentence case --> 
+                                    {{- $lower := lower $rt.report_topic -}}
+                                    {{- $first := upper (substr $lower 0 1) -}}
+                                    {{- $rest := substr $lower 1 -}}
+                                    {{- printf "%s%s" $first $rest -}}
+
                                 </h4>
                                 <p class="fs-sm">
                                     {{- $rt.report_topic_description -}}
