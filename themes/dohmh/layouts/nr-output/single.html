@@ -290,20 +290,39 @@
                     <h1 class="h2 mt-3">{{ $.Params.title }} <span style="font-weight:normal">in</span></h1>
                         <span class="h2 sub-title text-primary">{{ $.Params.neighborhood }}</span>
 
-                    <p class="report-description fs-lg my-2">{{ $.Params.summary }}</p>
-
                     <hr>
                     {{ $pagetitle := $.Params.title }}
                         {{ if in $pagetitle "Asthma" }}
-                            Show Asthma blurb that you retrieve using .Site.GetPage
+                            {{ with .Site.GetPage "/neighborhood-reports/Asthma_and_the_Environment.md" }}
+
+                            <p>{{ .Content }}</p>
+                        
+                            {{ end }}
                         {{ else if in $pagetitle "Active" }}
-                            Show active design blurb
+                            {{ with .Site.GetPage "/neighborhood-reports/Active_Design_Physical_Activity_and_Health.md" }}
+
+                        <p>{{ .Content }}</p>
+                    
+                            {{ end }}
                         {{ else if in $pagetitle "Outdoor" }}
-                            Show outdoor blurb
+
+                            {{ with .Site.GetPage "/neighborhood-reports/Outdoor_Air_and_Health.md" }}
+
+                        <p>{{ .Content }}</p>
+                    
+                            {{ end }}
                         {{ else if in $pagetitle "Housing" }}
-                            Show housing blurb
+                        {{ with .Site.GetPage "/neighborhood-reports/Housing_and_Health.md" }}
+
+                        <p>{{ .Content }}</p>
+                    
+                            {{ end }}
                         {{ else if in $pagetitle "Climate" }}
-                            Show climate blurb
+                        {{ with .Site.GetPage "/neighborhood-reports/Climate_and_Health" }}
+
+                        <p>{{ .Content }}</p>
+                    
+                            {{ end }}
                         {{ else }}
                             {{ $.Params.summary }}
                     {{ end }}
