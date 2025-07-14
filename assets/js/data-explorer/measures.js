@@ -1323,6 +1323,8 @@ const renderMeasures = async () => {
 
         if (trend) {
 
+            document.getElementById('trendMenuHolder').classList.remove('hide')
+
             // console.log(">>>> trend");
 
             trendMeasures.push(measure)
@@ -1353,6 +1355,10 @@ const renderMeasures = async () => {
                 ${type}
                 </button>`);
             }
+        }
+
+        if (!trend) {
+            console.log('no trend :)')
         }
 
 
