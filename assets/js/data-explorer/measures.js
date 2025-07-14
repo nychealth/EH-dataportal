@@ -1444,7 +1444,9 @@ const renderMeasures = async () => {
             // add each unique legend title as a header, with the included comparison underneath
 
             document.getElementById('compMenu').classList.remove('hide');
-            compSelectionLabel.innerHTML += title ? title.toLowerCase() : '';
+            // compSelectionLabel.innerHTML += title ? title.toLowerCase() : '';
+
+            dropdownCompSelection.innerHTML += `<span class="fs-xs"><strong>${title}</strong></span>`
 
             let comparisonIDs = [... new Set(titleGroup.array("ComparisonID"))]
 
