@@ -292,6 +292,22 @@
 
                     <p class="report-description fs-lg my-2">{{ $.Params.summary }}</p>
 
+                    <hr>
+                    {{ $pagetitle := $.Params.title }}
+                        {{ if in $pagetitle "Asthma" }}
+                            Show Asthma blurb that you retrieve using .Site.GetPage
+                        {{ else if in $pagetitle "Active" }}
+                            Show active design blurb
+                        {{ else if in $pagetitle "Outdoor" }}
+                            Show outdoor blurb
+                        {{ else if in $pagetitle "Housing" }}
+                            Show housing blurb
+                        {{ else if in $pagetitle "Climate" }}
+                            Show climate blurb
+                        {{ else }}
+                            {{ $.Params.summary }}
+                    {{ end }}
+
                     <div class="d-print-none">
                         <button onclick="window.print()" class="btn btn-sm btn-report mt-2" target="_blank"><i class="fas fa-print mr-1"></i>Print</button>
                         <button onclick="downloadData()" class="btn btn-sm btn-report mt-2" target="_blank"><i class="fa fa-download mr-1"></i>Download <span class="sr-only">(opens in a new tab)</span></button>
