@@ -1323,7 +1323,7 @@ const renderMeasures = async () => {
 
         if (trend) {
 
-            document.getElementById('trendMenuHolder').classList.remove('hide')
+            document.getElementById('trendMenuHolder').classList.remove('d-none')
 
             // console.log(">>>> trend");
 
