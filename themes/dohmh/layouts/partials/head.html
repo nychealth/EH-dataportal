@@ -92,8 +92,6 @@
 
 {{- /*  jQuery (full, compressed version)  */}}
 
-{{- $jquery := resources.Get "node_modules/jquery/dist/jquery.min.js" | resources.Fingerprint "sha512" }}
-
 {{- $jquery := resources.Get "node_modules/jquery/dist/jquery.min.js" | partial "short-fingerprint.html" }}
 <script src="{{ $jquery.RelPermalink }}" integrity="{{ $jquery.Data.Integrity }}" crossorigin="anonymous"></script>
 
