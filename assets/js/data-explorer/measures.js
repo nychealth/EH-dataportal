@@ -1151,8 +1151,8 @@ const renderMeasures = async () => {
 
     dropdownTrendSelection.innerHTML = ``;
     dropdownCompSelection.innerHTML = ``;
-    trendSelectionLabel.innerHTML = ``;
-    compSelectionLabel.innerHTML = ``;
+    trendSelectionLabel.innerHTML = `By `;
+    compSelectionLabel.innerHTML = `Show with:`;
     document.getElementById('compMenu').classList.add('hide');
 
     dropdownMapMeasures.innerHTML = ``;
@@ -1355,6 +1355,7 @@ const renderMeasures = async () => {
                 ${type}
                 </button>`);
             }
+
         }
 
         if (!trend) {

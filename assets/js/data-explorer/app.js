@@ -310,3 +310,22 @@ $("#rawData").on("click", (e) => {
     })
 
 });
+
+// ----------------------------------------------------------------------- //
+// menu generator function
+// ----------------------------------------------------------------------- //
+
+const createMenu = (header, measureId, type, destination) => {
+
+    console.log(header, measureId, type, destination)
+
+    var dest = document.getElementById(destination)
+
+    dest.classList.remove('d-none')
+    dest.innerHTML += DOMPurify.sanitize(`
+                <button class="btn btn-primary dropdown-item trendbutton pl-2"
+                data-measure-id="${measureId}" title="${type}">
+                    ${type}
+                </button>`);
+
+}
