@@ -7,6 +7,8 @@ this partial takes 5 arguments as a dict:
     - index, used to create the parent accordion id 
 */}}
 
+<!-- set directionality indicator -->
+{{ $rankReverse := .data.rankReverse }}
 
 <!-- INDICATOR ROW -->
   <div class="card-header border-top" id="heading-{{ .data.indicator_data_name }}">
@@ -32,16 +34,25 @@ this partial takes 5 arguments as a dict:
           </div>
           <div class="col-5 pl-1 d-print-none">
             <div class="float-right mt-1">
-              {{- if eq (string .data.data_value_rank) "1" -}}<span
-                class="worse"
-                >Worse</span
-              >
-              {{- else if eq (string .data.data_value_rank) "2" -}}<span
-                class="middle"
-                >Middle</span
-              >
-              {{- else -}}<span class="better">Better</span>
-              {{- end -}}
+              {{ if eq $rankReverse false }}
+                  {{- if eq (string .data.data_value_rank) "1" -}}<span
+                    class="worse">Higher</span>
+                  {{- else if eq (string .data.data_value_rank) "3" -}}<span
+                    class="better">Lower</span>
+                  {{- else -}}<span class="middle d-none"></span>
+                  {{- end -}}
+              {{ else }}
+                    {{- if eq (string .data.data_value_rank) "1" -}}<span
+                    class="worse">Lower</span>
+                  {{- else if eq (string .data.data_value_rank) "3" -}}<span
+                    class="better">Higher</span>
+                  {{- else -}}<span class="middle d-none"></span>
+                  {{- end -}}
+              {{ end }}
+
+
+
+
             </div>
 
             <span class="font-weight-bold fs-lg"
@@ -78,13 +89,30 @@ this partial takes 5 arguments as a dict:
 
             <!-- Column 3: 25% -->
             <div style="width:25%;" class="pl-1">
-              {{- if eq (string .data.data_value_rank) "1" -}}
-                Worse than most neighborhoods
-              {{- else if eq (string .data.data_value_rank) "2" -}}
-                In the middle of NYC neighborhoods
-              {{- else -}}
-                Better than most neighborhoods
-              {{- end -}}
+                {{ if eq $rankReverse false }}
+
+                  {{- if eq (string .data.data_value_rank) "1" -}}
+                    Higher than most neighborhoods
+                  {{- else if eq (string .data.data_value_rank) "2" -}}
+                    In the middle of NYC neighborhoods
+                  {{- else -}}
+                    Less than most neighborhoods
+                  {{- end -}}
+
+                {{ else }}
+
+                    {{- if eq (string .data.data_value_rank) "1" -}}
+                      Less than most neighborhoods
+                    {{- else if eq (string .data.data_value_rank) "2" -}}
+                      In the middle of NYC neighborhoods
+                    {{- else -}}
+                      Higher than most neighborhoods
+                    {{- end -}}
+
+                {{ end }}
+
+
+
             </div>
 
           </div>
@@ -130,17 +158,35 @@ this partial takes 5 arguments as a dict:
                 {{ .data.indicator_short_name }} in <strong>{{ .neighborhood }}</strong>:
                 <div class=" fs-md">
                   <p>
+                    {{ if eq $rankReverse false }}
+
                     {{- if eq (string .data.data_value_rank) "1" -}}<span
                           class="worse-sm fs-sm mt-1"
-                          >Worse than most</span
+                          >Higher than most</span
                         >
                         {{- else if eq (string .data.data_value_rank) "2" -}}<span
                           class="middle-sm fs-sm mt-1"
                           >In the middle of</span
                         >
-                        {{- else -}}<span class="better-sm fs-sm mt-1">Better than most</span>
+                        {{- else -}}<span class="better-sm fs-sm mt-1">Less than most</span>
                         {{- end -}} 
                         &nbsp;neighborhoods
+
+                    {{ else }}
+
+                          {{- if eq (string .data.data_value_rank) "1" -}}<span
+                          class="worse-sm fs-sm mt-1"
+                          >Less than most</span
+                        >
+                        {{- else if eq (string .data.data_value_rank) "2" -}}<span
+                          class="middle-sm fs-sm mt-1"
+                          >In the middle of</span
+                        >
+                        {{- else -}}<span class="better-sm fs-sm mt-1">Higher than most</span>
+                        {{- end -}} 
+                        &nbsp;neighborhoods
+
+                    {{ end }}
                   </p>
 
                   <p>

@@ -583,20 +583,14 @@
                 </button>
             </div>
             <div class="modal-body">
-                <p>Each indicator is placed in one of three categories. that shows how the neighborhood compares to other NYC neighborhoods, if you ranked all of the NYC neighborhoods based on this indicator.
-                </p>
-                    <div class="my-2">
-                        <p><span class="better">Better</span><br>In the top third of all NYC neighborhoods.</p>
-                        <hr class="my-1">
-                        <p><span class="middle">Middle</span><br>Close to the NYC median - ranking in the middle third of
-                        all neighborhoods.</p>
-                        <hr class="my-1">
-
-                        <p><span class="worse">Worse</span><br>In the bottom third of NYC neighborhoods</p>
-                    </div>
+                <p>For each dataset, we divide neighborhoods up into <strong>tertiles</strong>, or thirds.</p>
+                <p><strong>Higher</strong> means that for that dataset, the neighborhood is in the lowest third of all neighborhoods. </p>
+                <p><strong>Lower</strong> means that for that dataset, the neighborhood is in the lowest third of all neighborhoods.</p>
 
                 <p>These are only based on the distribution of data values, not the range. The absolute values of
                     indicators in different categories may not be all that different.</p>
+
+                <img src="{{ .Site.BaseURL }}images/tertile-example.png" style="width:100%" alt="An example bar chart. The one-third of neighborhoods with the lowest values are labelled Lower. The one-third of neighborhoods with the highest values are labelled Higher.">
 
             </div>
             <!-- .modal-body -->
