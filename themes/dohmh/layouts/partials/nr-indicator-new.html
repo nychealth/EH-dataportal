@@ -32,8 +32,18 @@ this partial takes 5 arguments as a dict:
               >{{- .data.indicator_long_name -}}</span
             >
           </div>
-          <div class="col-5 pl-1 d-print-none">
-            <div class="float-right mt-1">
+          <div class="col-3 pl-1 d-print-none">
+            <span class="font-weight-bold fs-lg"
+              >{{ .data.data_value_geo_entity }}</span
+            >
+            <br />
+            <span class="fs-xs font-weight-normal"
+              >{{ .data.measurement_type }} {{ .data.units }}</span
+            >
+          </div>
+
+          <div class="col-2 d-print-none">
+              <div class="float-right mt-1">
               {{ if eq $rankReverse false }}
                   {{- if eq (string .data.data_value_rank) "1" -}}<span
                     class="worse">Higher</span>
@@ -49,19 +59,7 @@ this partial takes 5 arguments as a dict:
                   {{- else -}}<span class="middle d-none"></span>
                   {{- end -}}
               {{ end }}
-
-
-
-
             </div>
-
-            <span class="font-weight-bold fs-lg"
-              >{{ .data.data_value_geo_entity }}</span
-            >
-            <br />
-            <span class="fs-xs font-weight-normal"
-              >{{ .data.measurement_type }} {{ .data.units }}</span
-            >
           </div>
 
           <!-- MAIN ROW: PRINT ONLY -->
