@@ -67,6 +67,13 @@
 
 </style>
 
+
+{{- /* ==== qrcode ==== */}}
+
+{{- $qrcode := resources.Get "node_modules/qrcode-generator/dist/qrcode.js" | partial "short-fingerprint.html" }}
+<script src="{{ $qrcode.RelPermalink }}" integrity="{{ $qrcode.Data.Integrity }}" crossorigin="anonymous"></script>
+
+
 {{- /* ==== get topics and measures for this report ==== */}}
 
 {{- $report_topics := ( index ( index $.Site.Data.globals.NR_content $.Params.content_yml) "report_topics" ) -}}
@@ -270,21 +277,21 @@
 
                 <div class="col-md-8 col-print-12">
                     <div class="row no-gutters d-print-none">
-                            <div class="col-sm mb-2 mr-1 mb-lg-0">
-                            <button class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 output-topic-button" id="Active">Active design</button>
-                            </div>
-                            <div class="col-sm mb-2 mr-1 mb-lg-0">
-                            <button class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 output-topic-button" id="Asthma">Asthma</button>
-                            </div>
-                            <div class="col-sm mb-2 mr-1 mb-lg-0">
-                            <button class="btn btn-sm  btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 output-topic-button" id="Climate">Climate</button>
-                            </div>
-                            <div class="col-sm mb-2 mr-1 mb-lg-0">
-                            <button class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 output-topic-button" id="Housing">Housing</button>
-                            </div>
-                            <div class="col-sm mb-2 mr-1 mb-lg-0">
-                            <button class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 output-topic-button" id="Outdoor">Outdoor Air</button>
-                            </div>
+                        <div class="col-sm mb-2 mr-1 mb-lg-0">
+                        <button class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 output-topic-button" id="Active">Active design</button>
+                        </div>
+                        <div class="col-sm mb-2 mr-1 mb-lg-0">
+                        <button class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 output-topic-button" id="Asthma">Asthma</button>
+                        </div>
+                        <div class="col-sm mb-2 mr-1 mb-lg-0">
+                        <button class="btn btn-sm  btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 output-topic-button" id="Climate">Climate</button>
+                        </div>
+                        <div class="col-sm mb-2 mr-1 mb-lg-0">
+                        <button class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 output-topic-button" id="Housing">Housing</button>
+                        </div>
+                        <div class="col-sm mb-2 mr-1 mb-lg-0">
+                        <button class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 output-topic-button" id="Outdoor">Outdoor Air</button>
+                        </div>
                     </div>
 
                     <h1 class="h2 mt-3">{{ $.Params.title }} <span style="font-weight:normal">in</span></h1>
@@ -398,8 +405,36 @@
 
                     {{- end -}}
 
+                    {{/*  adding QR code to print version  */}}
 
-                    
+                    <div class="row print-only">
+                        <div class="col-12">
+                            <p class="text-center">View this report online:</p>
+                        </div>
+                    </div>
+
+                    <div class="row print-only">
+                        <div class="col-12">
+
+                            <div id="qrcode" class="text-center">
+
+                                <script>
+
+                                    let qr = qrcode(10, "H");
+
+                                    qr.addData(location.href);
+                                    qr.make();
+
+                                    document.getElementById('qrcode').innerHTML = qr.createImgTag();
+                                    
+                                </script>
+                            
+                            </div>
+                        </div>
+
+                    </div>
+
+
                 </div>
             </div>
 
@@ -538,7 +573,7 @@
 
 <!-- Modal-Rank -->
 <div class="modal fade report-modal" id="modal-rank" tabindex="-1" role="dialog" aria-labelledby="rankModalLabel"
-aria-hidden="true" data-pagefind-ignore="all">
+     aria-hidden="true" data-pagefind-ignore="all">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
