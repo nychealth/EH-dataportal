@@ -33,28 +33,29 @@
                 </div>
 
                 <div class="col-md-8">
-                        <div class="row no-gutters d-print-none">
-                            <div class="col-sm mb-2 mr-1 mb-lg-0">
-                                {{ with .Site.GetPage "/neighborhood-reports/Active_Design_Physical_Activity_and_Health.md" }}
-                                <a href="{{ .RelPermalink }}" class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 output-topic-button" id="Active">Active design</a>
-                                {{ end }}
-                            </div>
-                            <div class="col-sm mb-2 mr-1 mb-lg-0">
-                                {{ with .Site.GetPage "/neighborhood-reports/Asthma_and_the_Environment.md" }}
-                                <a href="{{ .RelPermalink }}" class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 output-topic-button" id="Asthma">Asthma</a>
-                                {{ end }}                            </div>
-                            <div class="col-sm mb-2 mr-1 mb-lg-0">
-                                {{ with .Site.GetPage "/neighborhood-reports/Climate_and_Health.md" }}
-                                <a href="{{ .RelPermalink }}" class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 output-topic-button" id="Climate">Climate</a>
-                                {{ end }}                            </div>
-                            <div class="col-sm mb-2 mr-1 mb-lg-0">
-                                {{ with .Site.GetPage "/neighborhood-reports/Housing_and_Health.md" }}
-                                <a href="{{ .RelPermalink }}" class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 output-topic-button" id="Housing">Housing</a>
-                                {{ end }}                            </div>
-                            <div class="col-sm mb-2 mr-1 mb-lg-0">
-                                {{ with .Site.GetPage "/neighborhood-reports/Outdoor_Air_and_Health.md" }}
-                                <a href="{{ .RelPermalink }}" class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 output-topic-button" id="Outdoor">Outdoor Air</a>
-                                {{ end }}                            </div>
+                    <div class="row no-gutters d-print-none">
+                        <div class="col-sm mb-2 mr-1 mb-lg-0">
+                            {{ with .Site.GetPage "/neighborhood-reports/Active_Design_Physical_Activity_and_Health.md" }}
+                            <a href="{{ .RelPermalink }}" class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 output-topic-button" id="Active">Active design</a>
+                            {{ end }}
+                        </div>
+                        <div class="col-sm mb-2 mr-1 mb-lg-0">
+                            {{ with .Site.GetPage "/neighborhood-reports/Asthma_and_the_Environment.md" }}
+                            <a href="{{ .RelPermalink }}" class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 output-topic-button" id="Asthma">Asthma</a>
+                            {{ end }}                            </div>
+                        <div class="col-sm mb-2 mr-1 mb-lg-0">
+                            {{ with .Site.GetPage "/neighborhood-reports/Climate_and_Health.md" }}
+                            <a href="{{ .RelPermalink }}" class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 output-topic-button" id="Climate">Climate</a>
+                            {{ end }}                            </div>
+                        <div class="col-sm mb-2 mr-1 mb-lg-0">
+                            {{ with .Site.GetPage "/neighborhood-reports/Housing_and_Health.md" }}
+                            <a href="{{ .RelPermalink }}" class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 output-topic-button" id="Housing">Housing</a>
+                            {{ end }}                            </div>
+                        <div class="col-sm mb-2 mr-1 mb-lg-0">
+                            {{ with .Site.GetPage "/neighborhood-reports/Outdoor_Air_and_Health.md" }}
+                            <a href="{{ .RelPermalink }}" class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 output-topic-button" id="Outdoor">Outdoor Air</a>
+                            {{ end }}
+                        </div>
                     </div>
 
                     <h1 class="h2 mt-3" id="nrtitle">{{ $.Params.title }}</h1>
