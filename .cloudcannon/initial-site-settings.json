@@ -17,7 +17,7 @@
       }
     ],
     "preserved_paths": "node_modules/,.hugo_cache/,resources/",
-    "environment": "dev_stage",
+    "environment": "dev_prod",
     "source": "",
     "config": "",
     "configDir": "",
