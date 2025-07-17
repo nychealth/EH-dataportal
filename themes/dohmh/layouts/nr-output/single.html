@@ -209,6 +209,14 @@
                 </ul>
             </nav>
 
+            <!-- MOBILE TITLE --> 
+            <div class="row d-md-none">
+                <div class="col-12 mb-2">
+                    <h1 class="h2">{{ $.Params.title }} <span style="font-weight:normal">in</span></h1>
+                        <span class="h2 sub-title text-primary">{{ $.Params.neighborhood }}</span>
+                </div>
+            </div>
+
             <div class="row">
                 <div class="col-md-4 d-print-none">
                     <div class="border" style="height: 450px; width:100%">
@@ -278,24 +286,30 @@
                 <div class="col-md-8 col-print-12">
                     <div class="row no-gutters d-print-none">
                         <div class="col-sm mb-2 mr-1 mb-lg-0">
-                        <button class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 output-topic-button" id="Active">Active design</button>
+                        <button class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 output-topic-button" dest="Active" id="Active">Active design</button>
                         </div>
                         <div class="col-sm mb-2 mr-1 mb-lg-0">
-                        <button class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 output-topic-button" id="Asthma">Asthma</button>
+                        <button class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 output-topic-button" dest="Asthma" id="Asthma">Asthma</button>
                         </div>
                         <div class="col-sm mb-2 mr-1 mb-lg-0">
-                        <button class="btn btn-sm  btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 output-topic-button" id="Climate">Climate</button>
+                        <button class="btn btn-sm  btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 output-topic-button" dest="Climate" id="Climate">Climate</button>
                         </div>
                         <div class="col-sm mb-2 mr-1 mb-lg-0">
-                        <button class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 output-topic-button" id="Housing">Housing</button>
+                        <button class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 output-topic-button" dest="Housing" id="Housing">Housing</button>
                         </div>
                         <div class="col-sm mb-2 mr-1 mb-lg-0">
-                        <button class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 output-topic-button" id="Outdoor">Outdoor Air</button>
+                        <button class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 output-topic-button" dest="Outdoor" id="Outdoor">Outdoor Air</button>
                         </div>
                     </div>
 
-                    <h1 class="h2 mt-3">{{ $.Params.title }} <span style="font-weight:normal">in</span></h1>
-                        <span class="h2 sub-title text-primary">{{ $.Params.neighborhood }}</span>
+                    <div class="d-none d-md-block">
+                        <h1 class="h2 mt-3">{{ $.Params.title }} <span style="font-weight:normal">in</span></h1>
+                            <span class="h2 sub-title text-primary">{{ $.Params.neighborhood }}</span>
+                    </div>
+
+                    <div class="d-md-none my-1">
+                        <strong>{{ $.Params.title }}</strong>
+                    </div>
 
                     <hr>
                     {{ $pagetitle := $.Params.title }}
