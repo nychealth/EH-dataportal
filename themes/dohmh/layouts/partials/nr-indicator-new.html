@@ -42,6 +42,8 @@ this partial takes 5 arguments as a dict:
             >
           </div>
 
+          {{/*  comparison pills  */}}
+
           <div class="col-2 d-print-none">
               <div class="float-right mt-1">
               {{ if eq $rankReverse false }}
@@ -85,29 +87,32 @@ this partial takes 5 arguments as a dict:
               </span>
             </div>
 
+            {{/*  neighborhood comparisons for print  */}}
+
             <!-- Column 3: 25% -->
             <div style="width:25%;" class="pl-1">
-                {{ if eq $rankReverse false }}
 
-                  {{- if eq (string .data.data_value_rank) "1" -}}
-                    Higher than most neighborhoods
-                  {{- else if eq (string .data.data_value_rank) "2" -}}
-                    In the middle of NYC neighborhoods
-                  {{- else -}}
-                    Less than most neighborhoods
-                  {{- end -}}
+              {{ if eq $rankReverse false }}
 
-                {{ else }}
+                {{- if eq (string .data.data_value_rank) "1" -}}
+                  Higher than most neighborhoods
+                {{- else if eq (string .data.data_value_rank) "2" -}}
+                  In the middle of NYC neighborhoods
+                {{- else if eq (string .data.data_value_rank) "3" -}}
+                  Less than most neighborhoods
+                {{- end -}}
 
-                    {{- if eq (string .data.data_value_rank) "1" -}}
-                      Less than most neighborhoods
-                    {{- else if eq (string .data.data_value_rank) "2" -}}
-                      In the middle of NYC neighborhoods
-                    {{- else -}}
-                      Higher than most neighborhoods
-                    {{- end -}}
+              {{ else }}
 
-                {{ end }}
+                {{- if eq (string .data.data_value_rank) "1" -}}
+                  Less than most neighborhoods
+                {{- else if eq (string .data.data_value_rank) "2" -}}
+                  In the middle of NYC neighborhoods
+                {{- else if eq (string .data.data_value_rank) "3" -}}
+                  Higher than most neighborhoods
+                {{- end -}}
+
+              {{ end }}
 
 
 
@@ -149,8 +154,16 @@ this partial takes 5 arguments as a dict:
                   <div class="data-note mt-1">{{ .data.nbr_data_note }}</div>
                 {{- end -}}
         </div>
+        
+        {{/*  comparisons for expanded row content  */}}
+        
+        {{ $hide := "" }}
 
-        <div class="col-md-5 h-100 p-1">
+        {{ if eq .data.data_value_rank nil }} 
+          {{ $hide = "d-none" }} 
+        {{ end }}
+
+        <div class="col-md-5 h-100 p-1 {{ $hide }}">
 
             <p class="fs-rg">
                 {{ .data.indicator_short_name }} in <strong>{{ .neighborhood }}</strong>:
@@ -158,31 +171,23 @@ this partial takes 5 arguments as a dict:
                   <p>
                     {{ if eq $rankReverse false }}
 
-                    {{- if eq (string .data.data_value_rank) "1" -}}<span
-                          class="worse-sm fs-sm mt-1"
-                          >Higher than most</span
-                        >
-                        {{- else if eq (string .data.data_value_rank) "2" -}}<span
-                          class="middle-sm fs-sm mt-1"
-                          >In the middle of</span
-                        >
-                        {{- else -}}<span class="better-sm fs-sm mt-1">Less than most</span>
-                        {{- end -}} 
-                        &nbsp;neighborhoods
+                      {{- if eq (string .data.data_value_rank) "1" -}}
+                        <span class="worse-sm fs-sm mt-1">Higher than most</span>&nbsp;neighborhoods
+                      {{- else if eq (string .data.data_value_rank) "2" -}}
+                        <span class="middle-sm fs-sm mt-1">In the middle of</span>&nbsp;neighborhoods
+                      {{- else if eq (string .data.data_value_rank) "3" -}}
+                        <span class="better-sm fs-sm mt-1">Less than most</span>&nbsp;neighborhoods
+                      {{- end -}} 
 
                     {{ else }}
 
-                          {{- if eq (string .data.data_value_rank) "1" -}}<span
-                          class="worse-sm fs-sm mt-1"
-                          >Less than most</span
-                        >
-                        {{- else if eq (string .data.data_value_rank) "2" -}}<span
-                          class="middle-sm fs-sm mt-1"
-                          >In the middle of</span
-                        >
-                        {{- else -}}<span class="better-sm fs-sm mt-1">Higher than most</span>
-                        {{- end -}} 
-                        &nbsp;neighborhoods
+                      {{- if eq (string .data.data_value_rank) "1" -}}
+                        <span class="worse-sm fs-sm mt-1">Less than most</span>&nbsp;neighborhoods
+                      {{- else if eq (string .data.data_value_rank) "2" -}}
+                        <span class="middle-sm fs-sm mt-1">In the middle of</span>&nbsp;neighborhoods
+                      {{- else if eq (string .data.data_value_rank) "3" -}}
+                        <span class="better-sm fs-sm mt-1">Higher than most</span>&nbsp;neighborhoods
+                      {{- end -}} 
 
                     {{ end }}
                   </p>
