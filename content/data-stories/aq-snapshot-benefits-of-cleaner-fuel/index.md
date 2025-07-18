@@ -3,6 +3,8 @@ title: "AQ Snapshot: Benefits of cleaner fuel"
 shortTitle: "Air quality snapshots"
 aliases:
   - /data-stories/AQsnapshots/
+  - /data-stories/air-quality-snapshots/
+
 date: 2020-04-21T13:37:45-04:00
 draft: false
 seo_title: "AQ Snapshot: Benefits of cleaner fuel"
