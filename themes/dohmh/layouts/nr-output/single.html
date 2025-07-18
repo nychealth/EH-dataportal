@@ -878,13 +878,15 @@ buttons.forEach(button => {
    function renderDemographics(x,y) {
         const here = x.filter((neighb) => neighb.UHF_id === y)
 
+        console.log(here[0])
+
         document.getElementById('popPrint').innerHTML = Number(here[0].TotalPopulation).toLocaleString()
         document.getElementById('oldPrint').innerHTML = Number(here[0].PercentOver65).toFixed(1) + '%'
         document.getElementById('youngPrint').innerHTML = Number(here[0].PercentUnder18).toFixed(1) + '%'
         document.getElementById('povPrint').innerHTML = Number(here[0].PovertyPercent).toFixed(1) + '%'
         document.getElementById('gradPrint').innerHTML = Number(here[0].PercentGraduatedHighSchool).toFixed(1) + '%'
         document.getElementById('engPrint').innerHTML = Number(here[0].PercentLimitedEnglish).toFixed(1) + '%'
-        document.getElementById('ownPrint').innerHTML = Number(here[0].OwnerOccupiedPercent).toFixed(1) + '%'
+        document.getElementById('ownPrint').innerHTML = Number(here[0].PercentOwnerOccupied).toFixed(1) + '%'
         document.getElementById('rentPrint').innerHTML = Number(here[0].PercentRentBurdened).toFixed(1) + '%'
 
     }
