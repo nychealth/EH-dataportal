@@ -4,7 +4,7 @@ shortTitle: "Air quality snapshots"
 aliases:
   - /data-stories/AQsnapshots/
 date: 2020-04-21T13:37:45-04:00
-draft: false
+draft: true
 seo_title: "Air quality snapshots"
 seo_description: "Special findings from 10+ years of New York City's citywide air quality monitoring work."
 layout: flexible
