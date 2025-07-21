@@ -11,4 +11,12 @@ seo_description: "Active Design Physical Activity and Health data profile for th
 seo_image: "images/nyc_health_report_active_design_health.jpg"
 vega: true
 arquero: true
+categories: ["publicspace", "neighborhoods", "airquality", "climate"]
+related:
+  - title: "Public space creates health"
+    url: "data-stories/public-space-creates-health/"
+  - title: "Initial data from congestion pricing"
+    url: "data-stories/congestion-tolling-update/"
+  - title: "Street safety"
+    url: "data-stories/streets/"
 ---

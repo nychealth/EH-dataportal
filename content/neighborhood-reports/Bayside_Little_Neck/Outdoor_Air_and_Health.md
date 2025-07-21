@@ -11,4 +11,12 @@ seo_description: "Outdoor Air and Health data profile for the Bayside - Little N
 seo_image: "images/nyc_health_report_outdoor_air_health.jpg"
 vega: true
 arquero: true
+categories: ["airquality"]
+related:
+  - title: "Your neighborhood's air quality"
+    url: "data-features/neighborhood-air-quality/"
+  - title: "Air quality and congestion pricing"
+    url: "data-stories/congestion-relief-tolling/"
+  - title: "Realtime Air Quality"
+    url: "data-features/realtime-air-quality/"
 ---
