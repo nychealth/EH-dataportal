@@ -380,7 +380,7 @@
                         <div class="accordion my-4 report-section pt-2 border-left border-right border-bottom" id="accordion-{{ $index }}">
 
                             <div class="px-2 pb-2">
-                                <h4 class="fs-rg">
+                                <h3 class="h4 fs-rg">
                                     <!-- Print report_topic in sentence case --> 
                                     {{- $lower := lower $rt.report_topic -}}
                                     {{- $first := upper (substr $lower 0 1) -}}
@@ -469,6 +469,10 @@
                     </div>
 
 
+                    {{ partial "nr-report-footer-sm" . }}
+
+
+
                 </div>
             </div>
 
@@ -542,68 +546,6 @@
 
 </section>
 
-{{- /* Make sure we know what report content to load and that content_yml is set. If not we dont display the content */}}
-
-{{- if $.Params.content_yml -}}
-
-{{- /* Variable to load the the data file from the content_yml frontmatter */}}
-
-{{- $content := index $.Site.Data.globals.NR_footer $.Params.content_yml -}}
-
-<section class="related-reading d-print-none" data-pagefind-ignore="all">
-    <div class="container">
-        <div class="row">
-
-            <div class="col-lg">
-                <div class="card bg-white text-black mb-2">
-                    <div class="card-header">What is the City doing?</div>
-                    <div class="card-body">
-                        <ul class="list-group list-group-flush">
-                            {{- range $content.city -}}
-                            <li class="list-group-item border-0 py-1 bg-transparent">{{ if .link }}<a
-                                href="{{ .link }}">{{- end -}}{{ .copy }}{{ if .link }}</a>{{- end -}}</li>
-                                {{- end -}}
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <!-- .col for city -->
-
-            <div class="col-lg">
-                <div class="card bg-white text-black mb-2">
-                    <div class="card-header">What can you do?</div>
-                    <div class="card-body">
-                        <ul class="list-group list-group-flush">
-                            {{- range $content.you -}}
-                            <li class="list-group-item border-0 py-1 bg-transparent">{{ if .link }}<a
-                                href="{{ .link }}">{{- end -}}{{ .copy }}{{ if .link }}</a>{{- end -}}</li>
-                                {{- end -}}
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <!-- .col for you -->
-
-            <div class="col-lg">
-                <div class="card bg-white text-black">
-                    <div class="card-header">More NYC neighborhood data</div>
-                    <div class="card-body">
-                        <ul class="list-group list-group-flush">
-                            {{- range $content.data -}}
-                            <li class="list-group-item border-0 py-1 bg-transparent">{{ if .link }}<a
-                                href="{{ .link }}">{{- end -}}{{ .copy }}{{ if .link }}</a>{{- end -}}</li>
-                                {{- end -}}
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <!-- .col for data -->
-
-            <!-- .row -->
-        </div>
-    </div>
-</section>
-{{- end -}}
 
 <!-- Modal-Rank -->
 <div class="modal fade report-modal" id="modal-rank" tabindex="-1" role="dialog" aria-labelledby="rankModalLabel"
