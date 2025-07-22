@@ -744,6 +744,13 @@ const renderNRMap = (
                                     "gradientLength": 200
                                 }
                             },
+                            "order": {
+                                "condition": {
+                                    "test": `datum.geo_join_id == ${geocode}`,
+                                    "value": 1
+                                },
+                                "value": 0
+                            },
                             "stroke": {
                                 "condition": {
                                     "test": `datum.geo_join_id == ${geocode}`,
@@ -795,6 +802,13 @@ const renderNRMap = (
                         "type": "quantitative",
                         "scale": { "scheme": { "name": "viridis", "extent": [1, 0] } },
                         "legend": false
+                    },
+                    "order": {
+                        "condition": {
+                            "test": `datum.geo_join_id == ${geocode}`,
+                            "value": 1
+                        },
+                        "value": 0
                     },
                     "stroke": {
                         "condition": {
