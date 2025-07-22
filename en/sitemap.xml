@@ -281,24 +281,16 @@
     <lastmod>2025-06-12T08:29:34-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/rats/</loc>
     <lastmod>2025-06-12T08:29:34-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/keywords/climate-change/</loc>
-    <lastmod>2025-05-28T11:51:01-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/keywords/extreme-weather/</loc>
-    <lastmod>2025-05-28T11:51:01-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/keywords/flooding/</loc>
-    <lastmod>2025-05-28T11:51:01-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/keywords/hurricane/</loc>
-    <lastmod>2025-05-28T11:51:01-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/keywords/interactive/</loc>
-    <lastmod>2025-05-28T11:51:01-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/keywords/storm/</loc>
-    <lastmod>2025-05-28T11:51:01-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/keywords/airquality/</loc>
+    <lastmod>2025-06-01T11:51:01-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/keywords/aqi/</loc>
+    <lastmod>2025-06-01T11:51:01-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/ed-visit/</loc>
-    <lastmod>2025-04-28T11:51:01-04:00</lastmod></url><url>
+    <lastmod>2025-06-01T11:51:01-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/emergency-department/</loc>
-    <lastmod>2025-04-28T11:51:01-04:00</lastmod></url><url>
+    <lastmod>2025-06-01T11:51:01-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/emergency-room/</loc>
-    <lastmod>2025-04-28T11:51:01-04:00</lastmod><xhtml:link
+    <lastmod>2025-06-01T11:51:01-04:00</lastmod><xhtml:link
                 rel="alternate"
                 hreflang="es"
                 href="/IndicatorPublic/es/keywords/emergency-room/"
@@ -312,15 +304,29 @@
                 href="/IndicatorPublic/keywords/emergency-room/"
                 /></url><url>
     <loc>/IndicatorPublic/keywords/extreme-heat/</loc>
-    <lastmod>2025-04-28T11:51:01-04:00</lastmod></url><url>
+    <lastmod>2025-06-01T11:51:01-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/heat-mortality/</loc>
-    <lastmod>2025-04-28T11:51:01-04:00</lastmod></url><url>
+    <lastmod>2025-06-01T11:51:01-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/heat-related-illness/</loc>
-    <lastmod>2025-04-28T11:51:01-04:00</lastmod></url><url>
+    <lastmod>2025-06-01T11:51:01-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/hot-weather/</loc>
-    <lastmod>2025-04-28T11:51:01-04:00</lastmod></url><url>
+    <lastmod>2025-06-01T11:51:01-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/keywords/interactive/</loc>
+    <lastmod>2025-06-01T11:51:01-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/data-features/cooling-info/</loc>
+    <lastmod>2025-06-01T11:51:01-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/weather/</loc>
-    <lastmod>2025-04-28T11:51:01-04:00</lastmod></url><url>
+    <lastmod>2025-06-01T11:51:01-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/keywords/climate-change/</loc>
+    <lastmod>2025-05-28T11:51:01-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/keywords/extreme-weather/</loc>
+    <lastmod>2025-05-28T11:51:01-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/keywords/flooding/</loc>
+    <lastmod>2025-05-28T11:51:01-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/keywords/hurricane/</loc>
+    <lastmod>2025-05-28T11:51:01-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/keywords/storm/</loc>
+    <lastmod>2025-05-28T11:51:01-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/inspections/</loc>
     <lastmod>2025-03-31T11:14:56-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/rodents/</loc>
