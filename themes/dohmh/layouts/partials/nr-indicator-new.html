@@ -141,7 +141,6 @@ this partial takes 5 arguments as a dict:
             <!-- Explanatory text -->
             <p class="fs-md mt-1 mb-2">
               {{- .data.indicator_description | safeHTML -}}
-            <a id="{{ .data.IndicatorID }}" href="" class="ml-1" style="display:none"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Full dataset</a>
             </p>
         </div>
 
@@ -221,10 +220,15 @@ this partial takes 5 arguments as a dict:
 
         </div>
 
-        <div class="col-12">
+      </div>
+      <div class="row no-gutters">
+        <div class="col-7">
             <span class="fs-xs"><strong>Source:</strong> {{ .data.data_source_list }}</span>
-        </div>
 
+        </div>
+        <div class="col-5">
+            <p class="float-right"><a id="{{ .data.IndicatorID }}" href="" class="ml-1" style="display:none"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Full dataset</a></p>
+        </div>
       </div>
     </div>
   </div>
