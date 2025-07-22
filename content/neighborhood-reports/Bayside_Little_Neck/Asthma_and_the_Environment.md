@@ -11,12 +11,4 @@ seo_description: "Asthma and the Environment data profile for the Bayside - Litt
 seo_image: "images/nyc_health_report_asthma_environment.jpg"
 vega: true
 arquero: true
-categories: ["airquality", "healthoutcomes","childhealth"]
-related:
-  - title: "Why asthma is a social justice issue"
-    url: "data-stories/asthma-and-poverty/"
-  - title: "Health, housing, and history"
-    url: "data-stories/housing/"
-  - title: "Reduce air pollution in the most affected neighborhoods"
-    url: "data-stories/hia/"
 ---

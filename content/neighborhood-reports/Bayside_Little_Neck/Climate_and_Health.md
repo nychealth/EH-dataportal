@@ -11,12 +11,4 @@ seo_description: "Climate and Health data profile for the Bayside - Little Neck 
 seo_image: "images/nyc_health_report_climate_health.jpg"
 vega: true
 arquero: true
-categories: ["climatehealth","publicspace"]
-related:
-  - title: "Heat Vulnerability Index"
-    url: "data-features/heat-vulnerability-index/"
-  - title: "Your heat story"
-    url: "data-features/heat-story/"
-  - title: "Flood vulnerability index"
-    url: "data-features/flood-vulnerability-index/"
 ---

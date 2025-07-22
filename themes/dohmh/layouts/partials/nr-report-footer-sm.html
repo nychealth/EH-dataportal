@@ -7,37 +7,34 @@
 {{- $content := index $.Site.Data.globals.NR_footer $.Params.content_yml -}}
 
 <div class="row d-print-none" data-pagefind-ignore="all">
-    <div class="card content-card mb-4 col-6">
-        <div class="card-content primary">
+    <div class="col-6">
+        <div class="card card-left-border shadow-sm">
             <div class="card-body">
-                <!-- content -->
                 <h4 class="h5">What is the City doing?</h4>
-                <ul class="list-group list-group-flush fs-sm">
+                                <ul class="list-group list-group-flush fs-sm">
                     {{- range $content.city -}}
                     <li class="list-group-item border-bottom py-1 bg-transparent">{{ if .link }}<a
                         href="{{ .link }}">{{- end -}}{{ .copy }}{{ if .link }}</a>{{- end -}}</li>
                         {{- end -}}
                 </ul>
-
             </div>
         </div>
     </div>
 
-    <div class="card content-card mb-4 col-6">
-        <div class="card-content primary">
+        <div class="col-6">
+        <div class="card card-left-border shadow-sm">
             <div class="card-body">
-                <!-- content -->
                 <h4 class="h5">What can you do?</h4>
-                <ul class="list-group list-group-flush fs-sm">
+                                <ul class="list-group list-group-flush fs-sm">
                     {{- range $content.you -}}
                     <li class="list-group-item border-bottom py-1 bg-transparent">{{ if .link }}<a
                         href="{{ .link }}">{{- end -}}{{ .copy }}{{ if .link }}</a>{{- end -}}</li>
                         {{- end -}}
                 </ul>
-
             </div>
         </div>
     </div>
+
 
 </div>
 

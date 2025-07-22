@@ -11,12 +11,4 @@ seo_description: "Housing and Health data profile for the Bayside - Little Neck 
 seo_image: "images/nyc_health_report_housing_and_health.jpg"
 vega: true
 arquero: true
-categories: ["housing"]
-related:
-  - title: "Housing creates health"
-    url: "data-stories/housing-creates-health/"
-  - title: "Health, housing, and history"
-    url: "data-stories/housing/"
-  - title: "Heat vulnerability index"
-    url: "data-features/heat-vulnerability-index/"
 ---
