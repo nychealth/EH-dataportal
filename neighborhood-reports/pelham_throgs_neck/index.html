@@ -77,12 +77,43 @@
 
 
 <link href="https://maps.nyc.gov/nyc-lib/v1.2.79/css/nyc-basic-lib.css" rel="stylesheet">
-<link rel="stylesheet" href="/IndicatorPublic/scss/theme.852d3cac92054e362ea5b5775a6c24058b7bc7b4376eb0b0ed33d99bcfbcd866c537f805adb88e5b88034e5f1ced7434b2743c3951784dd5e6d59d5a73f8ac53.css" integrity="sha512-hS08rJIFTjYupbV3WmwkBYt7x7Q3brCw7TPZm8&#43;82GbFN/gFrbiOW4gDTl8c7XQ0snQ8OVF4TdXm1Z1ac/isUw==" /><script src="/IndicatorPublic/js/vegaBundle.e4ade9fcaad9ac2c.js" integrity="sha512-LkWr6y6bKGgWX909SKM6Di7qdYnz&#43;TC3sjpogKk0craxLhk5BEV9lyUNLHsi43&#43;zNkKVJ9hFVyDx3rHCMgG5hA=="></script>
+<link rel="stylesheet" href="/IndicatorPublic/scss/theme.84ed059041224edbdb53f50353668a3896c6d63a8dfdbc0511ae6b27b1fa92eb52b635a20792020724dfc8a086f147d93ea14572a71b7c93028b9c55c9946615.css" integrity="sha512-hO0FkEEiTtvbU/UDU2aKOJbG1jqN/bwFEa5rJ7H6kutStjWiB5ICByTfyKCG8UfZPqFFcqcbfJMCi5xVyZRmFQ==" /><script src="/IndicatorPublic/js/vegaBundle.e4ade9fcaad9ac2c.js" integrity="sha512-LkWr6y6bKGgWX909SKM6Di7qdYnz&#43;TC3sjpogKk0craxLhk5BEV9lyUNLHsi43&#43;zNkKVJ9hFVyDx3rHCMgG5hA=="></script>
     <script src="/IndicatorPublic/node_modules/d3/dist/d3.min.e8ba02e52482bcd1.js" integrity="sha512-vc58qvvBdrDR4etbxMdlTt4GBQk1qjvyORR2nrsPsFPyrs&#43;/u5c3&#43;1Ct6upOgdZoIl7eq6k3a1UPDSNAQi/32A=="></script><script src="/IndicatorPublic/node_modules/dompurify/dist/purify.min.51e02e1100da8c54.js" integrity="sha512-YlctBG9PGZIhh9keoqI3eZkQM9T8QUbiBi7qNYAO/TUEo8jqWX5pLp5&#43;x1cKRQDRzJ/lyGyJ9WUVNIRduxIIFw=="></script>
 
 
 
-<meta data-pagefind-filter="section[content]" content="Neighborhood Reports"><script>
+
+
+
+
+    <script type="text/javascript" src="/IndicatorPublic/js/uhflist.b1536832e3971312.js" integrity="sha512-Ojx3jYf1cvDARSQmePsSFfMk&#43;i59zFIu/I6Xq8f9Ob7PldTwRb6IcoydnNE41ZxncucYAU1sW88itK/Cpna4gQ=="></script>
+
+    
+    <link rel="stylesheet" href="/IndicatorPublic/node_modules/leaflet/dist/leaflet.6fc0beab3f024150.css" integrity="sha512-xwwBn7YBII4WryXcPpa1qciCiCLEWFVIPijj9DwNnq9JOGmYW4VM4geg&#43;v0pZBkfp/cXkr6W1YYxlNN8U4QY9g==" />
+
+    
+    <script src="/IndicatorPublic/node_modules/leaflet/dist/leaflet.74a58ca6295ebc05.js" integrity="sha512-BwHfrr4c9kmRkLw6iXFdzcdWV/PGkVgiIyIWLLlTSXzWQzxuSg4DiQUCpauz/EWjgk5TYQqX/kvn9pG1NpYfqg=="></script>
+
+    
+    <link rel="stylesheet" href="/IndicatorPublic/node_modules/leaflet-easybutton/src/easy-button.3c89cb9ecde941f8.css" integrity="sha512-aiVWmB2G8oV&#43;XfHo1CR6hEAxzCl48Lrl3UBzQ6P&#43;BEMkT8qY1tGecdQx6x/X8i9cCVrwQU9ipsOsZlNkRh9n7w==" />
+
+    
+    <script src="/IndicatorPublic/node_modules/leaflet-easybutton/src/easy-button.2aafa39ced85dc51.js" integrity="sha512-nMxgrgYu7vo/LNe5NFHZOIkwbodaU13UdYiDoDCuo3P2sryEyffrk1R3c2tFGbZ83AqaMbO19yhKnVgHztuqAw=="></script>
+
+    
+     
+
+    <script src="/IndicatorPublic/js/L.colorIcon.7c4343ea3f751533.js" integrity="sha512-wIyMqf8gl4m2CZ7lhU0bkB53Dr8zO30wdKqWVAS1VBnm166LqrN&#43;EjYFMQhiy5goEZe6kBqpUEOL6ZYuoHxHEQ=="></script>
+
+    
+    <script src="/IndicatorPublic/node_modules/leaflet-control-geocoder/dist/Control.Geocoder.0c7a825353b731cf.js" integrity="sha512-vB9&#43;3tjqAmryY1ZaJ6WvUqQ63d0/8M/Cu4O8fBzGgNudF4iWPfIfLVxbpRF6oRieqGol90ZFOOdkAsL4OPQo0w=="></script>
+
+    
+    <script src="https://cdn.rawgit.com/hayeswise/Leaflet.PointInPolygon/v1.0.0/wise-leaflet-pip.js"></script>
+
+
+
+    <meta data-pagefind-filter="section[content]" content="Neighborhood Reports"><script>
 
     let baseURL = "/IndicatorPublic/";
     let data_repo = "https:\/\/raw.githubusercontent.com\/nychealth\/EHDP-data\/";
@@ -108,7 +139,7 @@
 
 <header id="global-header" role="banner">
 
-    <div class="bg-black text-white" id="nyc-top-header">
+    <div class="bg-black text-white d-print-none" id="nyc-top-header">
 
         <div class="container-fluid wide">
 
@@ -314,7 +345,7 @@
 
     </div>
 
-    <div class="border-bottom px-2">
+    <div class="border-bottom px-2 d-print-none">
                                     
 
                                     <ul class="extensible-list horizontal justify-content-between my-1 d-lg-none">
@@ -447,7 +478,7 @@
 <main id="skip-header-target" role="main" data-pagefind-body><div>
   <div class="container-fluid">
     <div class="row">
-      <div class="col-lg-10 mx-auto col-sm-12">
+      <div class="col-lg-12 mx-auto col-sm-12">
         
         <nav aria-label="breadcrumb" class="mt-2 mb-3">
           <ul class="breadcrumb">
@@ -457,228 +488,343 @@
           </ul>
         </nav>
 
-        <h1 class="report-title border-bottom mt-4" data-pagefind-ignore="all">Neighborhood Reports for
-          <span class="sub-title">Pelham - Throgs Neck</span>
-        </h1><p class="report-description fs-lg mt-2 mb-4">Pelham - Throgs Neck includes ZIP Codes: <span id="zips" class="home-label font-weight-bold">10461, 10462, 10464, 10465, 10472, 10473.</span></p>
-
         <div class="row">
-          <div class="col-md-9">
+          <div class="col-md-4">
+            <div style="height: 450px"><div id="map" style="width: 100%; height:100%"></div>
 
-            <div class="row"><div class="card content-card mb-4 col-sm-6 col-md-4">
-                  <div class="card-content"><a href="/IndicatorPublic/neighborhood-reports/pelham_throgs_neck/active_design_physical_activity_and_health/"><img src="/IndicatorPublic/images/nyc_health_report_active_design_health_hu_6cef46c5b678263b.jpg" class="card-img-top" alt="City photograph for the active design, physical activity and health report"></a><div class="card-body" data-pagefind-ignore="all">
-                      <h2 class="card-title fs-md"><a href="/IndicatorPublic/neighborhood-reports/pelham_throgs_neck/active_design_physical_activity_and_health/" class="text-primary">Active Design, Physical Activity and Health</a></h2>
-                      <p class="card-text fs-md">
-                          The design and conditions of buildings, streets, public transportation and parks influence physical activity, use of active transportation and other healthy behavior. A neighborhood&rsquo;s features can also impact the safety of its residents.
-                          <a href="/IndicatorPublic/neighborhood-reports/pelham_throgs_neck/active_design_physical_activity_and_health/">See&nbsp;Report&nbsp;<i class="fas fa-arrow-circle-right"></i></a>
-                        </p>
+<style>
+  #map:hover {
+  cursor: pointer;
+  }
+</style>
+
+<script>
+
+  
+  
+  
+
+  var geocode = `104`
+
+  var lat = 40.715554;
+  var lng = -74.0026642;
+  var zoom = 10;
+
+  const UHF42 = "geojson/UHF42.geojson";
+
+  
+  
+  
+
+  var map = L.map("map", { zoomControl: false }).setView([lat, lng], zoom); 
+  L.tileLayer(
+    "https://api.maptiler.com/maps/basic-v2/{z}/{x}/{y}.png?key=dwIJ8hO2KsTMegUfEpYE",
+    {
+      maxZoom: 15,
+      attribution:
+        '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>',
+    }
+  ).addTo(map);
+
+  L.control
+    .scale({
+      metric: false,
+      position: "bottomleft",
+    })
+    .addTo(map);
+
+  
+  var geog;
+  fetch("https:\/\/a816-dohbesp.nyc.gov\/IndicatorPublic\/geojson/UHF42.geojson")
+    .then((response) => response.text())
+    .then((text) => {
+      
+      const data = JSON.parse(text);
+      geog = L.geoJSON(data, {
+        style,
+        onEachFeature,
+      }).addTo(map);
+
+
+    
+    setTimeout(() => {
+      if (geocode && geocode.trim() !== "") {
+        const targetLayer = Object.values(geog._layers).find(
+          (layer) => layer.feature.properties.GEOCODE == geocode
+        );
+
+        if (targetLayer) {
+          map.fitBounds(targetLayer.getBounds());
+
+          
+          geog.resetStyle();
+          targetLayer.setStyle({
+            weight: 3,
+            color: "#008939",
+            dashArray: "3",
+            fillOpacity: 0.5,
+          });
+          targetLayer.bringToFront();
+        } else {
+          console.warn("No matching GEOCODE found:", geocode);
+        }
+      } else {
+        console.log("No geocode provided; skipping zoom.");
+      }
+    }, 500);
+
+    })
+    .catch((err) => console.error("Error loading GeoJSON:", err));
+
+  function style(feature) {
+    return {
+      weight: 1.5,
+      opacity: 1,
+      color: "black",
+      dashArray: "1",
+      fillOpacity: 0.05,
+      fillColor: "#008939",
+    };
+  }
+
+  
+  function onEachFeature(feature, layer) {
+    layer.on({
+      mouseover: highlightFeature,
+      mouseout: resetHighlight,
+      
+      click: selectNeighborhood,
+    });
+    layer._leaflet_id = feature.properties.GEOCODE; 
+  }
+
+  function highlightFeature(e) {
+      const layer = e.target;
+
+      layer.setStyle({
+        weight: 5,
+        color: "#444",
+        dashArray: "",
+        
+      });
+
+      layer.bringToFront();
+    }
+
+    function resetHighlight(e) {
+      const layer = e.target;
+
+      layer.setStyle({
+        weight: 1.5,
+        color: "black",
+        dashArray: "1",
+      });
+    }
+
+  
+  
+  
+  
+    var intendedDestinationName 
+
+    console.log('***GETTING TOPIC AND NEIGHBORHOOD TO POWER NAVIGATION')
+
+    var chosenNeighborhood; 
+    var chosenGeo =  104 
+    var chosenReport;       
+    var chosenButton;       
+
+    
+    const topicSlugs = {
+        Active: "active_design_physical_activity_and_health",
+        Asthma: "asthma_and_the_environment",
+        Climate: "climate_and_health",
+        Housing: "housing_and_health",
+        Outdoor: "outdoor_air_and_health",
+    };
+
+    const topicValues = Object.values(topicSlugs);
+
+    
+    function getReportAndNeighborhood(x) {
+        const url = window.location.pathname.match(/neighborhood-reports.*/)[0]
+        var urlPieces = url.split("/")
+        
+
+        
+        if (topicValues.includes(urlPieces[1])) {
+            chosenNeighborhood = null
+            chosenReport = (urlPieces[1] && urlPieces[1].length > 2) ? urlPieces[1] : null;
+        } else {
+            chosenNeighborhood = (urlPieces[1] && urlPieces[1].length > 2) ? urlPieces[1] : null
+            chosenReport = (urlPieces[2] && urlPieces[2].length > 2) ? urlPieces[2] : null;
+        }
+
+
+        console.log('Neighborhood: ', chosenNeighborhood)
+        console.log('GeoCode: ', chosenGeo)
+        console.log('Report:', chosenReport)
+
+        pageTypeID()
+    }
+
+    getReportAndNeighborhood(window.location.href)
+
+    
+    function pageTypeID() {
+        console.log('***WHAT KIND OF PAGE IS THIS?')
+        if (chosenNeighborhood == null && chosenReport == null) {
+            console.log("NR Landing page")
+        } else if (chosenNeighborhood && chosenReport) {
+            console.log("Output for: ", chosenNeighborhood, chosenReport)
+        } else if (chosenReport && !chosenNeighborhood) {
+            console.log("Topic landing for: ", chosenReport)
+        } else {
+            console.log("Neighborhood landing for: ", chosenNeighborhood)
+        }
+        
+    }
+
+
+  
+  
+  
+  function selectNeighborhood(e) {
+    geog.resetStyle();
+    const layer = e.target;
+
+    layer.setStyle({
+      weight: 3,
+      color: '#008939',
+      dashArray: "3",
+      fillOpacity: 0.5,
+    });
+
+    layer.bringToFront();
+
+    const geocodeClicked = layer.feature.properties.GEOCODE;
+
+    
+    const match = neighborhoods.find(
+      (n) => n.UHF_id == geocodeClicked
+    );
+
+    console.log('neighborhoods:',neighborhoods)
+
+    if (match && match.page_name) {
+      
+      const parts = window.location.pathname.split("/");
+
+      
+      parts[3] = match.page_name;
+
+      
+      const dest = intendedDestinationName
+        ? intendedDestinationName
+        : (chosenReport ? chosenReport : '/');
+
+      
+
+      const buildURL = 'https:\/\/a816-dohbesp.nyc.gov\/IndicatorPublic\/neighborhood-reports/' + parts[3] + "/" + dest + '/'
+      
+      
+         window.location.href = buildURL;
+      
+
+    } else {
+      console.warn("No matching neighborhood for GEOCODE:", geocodeClicked);
+    }
+  }
+
+
+</script>
+</div>
+
+          </div>
+
+          <div class="col-md-8">
+            <h1 class="report-title border-bottom" data-pagefind-ignore="all">Neighborhood Reports for
+              <span class="sub-title">Pelham - Throgs Neck</span>
+            </h1>
+
+            <div class="fs-md"><span style="font-weight:bold;color:darkslategrey">ZIP Codes:</span> <span id="zips">10461, 10462, 10464, 10465, 10472, 10473.</span>
+
+            </div>
+
+            <div class="row mt-4"> <div class="card content-card mb-3 col-md-4 col-sm-6" data-pagefind-ignore="all">
+                  <div class="card-content primary"><div style="width: 100%; height: 200px; background-image: url(/IndicatorPublic/images/nyc_health_report_active_design_health_hu_7f39e47b6bc71383.jpg);background-size:cover">
+
+
+
+                </div><div class="card-body p-2">
+                      <h2 class="card-title fs-md"><a href="/IndicatorPublic/neighborhood-reports/pelham_throgs_neck/active_design_physical_activity_and_health/" class="text-primary fs-lg">Active Design, Physical Activity and Health</a></h2>
+                      <p class="card-text fs-sm">
+                          The design and conditions of buildings, streets, public transportation and parks influence physical activity, use of active transportation and other …
+                          </p>
+                         <p class="fs-sm text-right"> <a href="/IndicatorPublic/neighborhood-reports/pelham_throgs_neck/active_design_physical_activity_and_health/">See&nbsp;report&nbsp;<i class="fas fa-arrow-circle-right"></i></a>
+                        </p>                   
                     </div>
                   </div>
-                </div><div class="card content-card mb-4 col-sm-6 col-md-4">
-                  <div class="card-content"><a href="/IndicatorPublic/neighborhood-reports/pelham_throgs_neck/asthma_and_the_environment/"><img src="/IndicatorPublic/images/nyc_health_report_asthma_environment_hu_19e716d011e1c121.jpg" class="card-img-top" alt="City photograph for the asthma and the environment report"></a><div class="card-body" data-pagefind-ignore="all">
-                      <h2 class="card-title fs-md"><a href="/IndicatorPublic/neighborhood-reports/pelham_throgs_neck/asthma_and_the_environment/" class="text-primary">Asthma and the Environment</a></h2>
-                      <p class="card-text fs-md">
-                          Asthma is a common lung disease and a leading cause of hospitalizations for children under 15 years old. This report provides a summary of asthma indicators by neighborhood. It also describes housing and neighborhood characteristics that can make asthma worse.
-                          <a href="/IndicatorPublic/neighborhood-reports/pelham_throgs_neck/asthma_and_the_environment/">See&nbsp;Report&nbsp;<i class="fas fa-arrow-circle-right"></i></a>
-                        </p>
+                </div><div class="card content-card mb-3 col-md-4 col-sm-6" data-pagefind-ignore="all">
+                  <div class="card-content primary"><div style="width: 100%; height: 200px; background-image: url(/IndicatorPublic/images/nyc_health_report_asthma_environment_hu_ee0ae9d8d1d5d075.jpg);background-size:cover">
+
+
+
+                </div><div class="card-body p-2">
+                      <h2 class="card-title fs-md"><a href="/IndicatorPublic/neighborhood-reports/pelham_throgs_neck/asthma_and_the_environment/" class="text-primary fs-lg">Asthma and the Environment</a></h2>
+                      <p class="card-text fs-sm">
+                          Asthma is a common lung disease and a leading cause of hospitalizations for children under 15 years old. This report provides a summary of asthma …
+                          </p>
+                         <p class="fs-sm text-right"> <a href="/IndicatorPublic/neighborhood-reports/pelham_throgs_neck/asthma_and_the_environment/">See&nbsp;report&nbsp;<i class="fas fa-arrow-circle-right"></i></a>
+                        </p>                   
                     </div>
                   </div>
-                </div><div class="card content-card mb-4 col-sm-6 col-md-4">
-                  <div class="card-content"><a href="/IndicatorPublic/neighborhood-reports/pelham_throgs_neck/climate_and_health/"><img src="/IndicatorPublic/images/nyc_health_report_climate_health_hu_d5f73f3b84b17aac.jpg" class="card-img-top" alt="City photograph for the climate and health report"></a><div class="card-body" data-pagefind-ignore="all">
-                      <h2 class="card-title fs-md"><a href="/IndicatorPublic/neighborhood-reports/pelham_throgs_neck/climate_and_health/" class="text-primary">Climate and Health</a></h2>
-                      <p class="card-text fs-md">
-                          Extreme heat, coastal storms, flooding and episodes of elevated ozone are climate-related hazards that may increase with climate change and have important public health impacts in New York City. Extreme weather can cause power outages, which also threaten public health. This report provides neighborhood indicators of climate-related hazards, vulnerability and health impacts.
-                          <a href="/IndicatorPublic/neighborhood-reports/pelham_throgs_neck/climate_and_health/">See&nbsp;Report&nbsp;<i class="fas fa-arrow-circle-right"></i></a>
-                        </p>
+                </div><div class="card content-card mb-3 col-md-4 col-sm-6" data-pagefind-ignore="all">
+                  <div class="card-content primary"><div style="width: 100%; height: 200px; background-image: url(/IndicatorPublic/images/nyc_health_report_climate_health_hu_f7fb9d2c46ccafaa.jpg);background-size:cover">
+
+
+
+                </div><div class="card-body p-2">
+                      <h2 class="card-title fs-md"><a href="/IndicatorPublic/neighborhood-reports/pelham_throgs_neck/climate_and_health/" class="text-primary fs-lg">Climate and Health</a></h2>
+                      <p class="card-text fs-sm">
+                          Extreme heat, coastal storms, flooding and episodes of elevated ozone are climate-related hazards that may increase with climate change and have …
+                          </p>
+                         <p class="fs-sm text-right"> <a href="/IndicatorPublic/neighborhood-reports/pelham_throgs_neck/climate_and_health/">See&nbsp;report&nbsp;<i class="fas fa-arrow-circle-right"></i></a>
+                        </p>                   
                     </div>
                   </div>
-                </div><div class="card content-card mb-4 col-sm-6 col-md-4">
-                  <div class="card-content"><a href="/IndicatorPublic/neighborhood-reports/pelham_throgs_neck/housing_and_health/"><img src="/IndicatorPublic/images/nyc_health_report_housing_and_health_hu_a3be650a45340545.jpg" class="card-img-top" alt="City photograph for the housing and health report"></a><div class="card-body" data-pagefind-ignore="all">
-                      <h2 class="card-title fs-md"><a href="/IndicatorPublic/neighborhood-reports/pelham_throgs_neck/housing_and_health/" class="text-primary">Housing and Health</a></h2>
-                      <p class="card-text fs-md">
-                          This report provides a neighborhood summary of housing conditions and related health outcomes. It also describes population characteristics that can increase vulnerability to housing hazards.
-                          <a href="/IndicatorPublic/neighborhood-reports/pelham_throgs_neck/housing_and_health/">See&nbsp;Report&nbsp;<i class="fas fa-arrow-circle-right"></i></a>
-                        </p>
+                </div><div class="card content-card mb-3 col-md-4 col-sm-6" data-pagefind-ignore="all">
+                  <div class="card-content primary"><div style="width: 100%; height: 200px; background-image: url(/IndicatorPublic/images/nyc_health_report_housing_and_health_hu_d261ea5684ebe6ab.jpg);background-size:cover">
+
+
+
+                </div><div class="card-body p-2">
+                      <h2 class="card-title fs-md"><a href="/IndicatorPublic/neighborhood-reports/pelham_throgs_neck/housing_and_health/" class="text-primary fs-lg">Housing and Health</a></h2>
+                      <p class="card-text fs-sm">
+                          This report provides a neighborhood summary of housing conditions and related health outcomes. It also describes population characteristics that can …
+                          </p>
+                         <p class="fs-sm text-right"> <a href="/IndicatorPublic/neighborhood-reports/pelham_throgs_neck/housing_and_health/">See&nbsp;report&nbsp;<i class="fas fa-arrow-circle-right"></i></a>
+                        </p>                   
                     </div>
                   </div>
-                </div><div class="card content-card mb-4 col-sm-6 col-md-4">
-                  <div class="card-content"><a href="/IndicatorPublic/neighborhood-reports/pelham_throgs_neck/outdoor_air_and_health/"><img src="/IndicatorPublic/images/nyc_health_report_outdoor_air_health_hu_304250c747e86ffe.jpg" class="card-img-top" alt="City photograph for the outdoor air and health report"></a><div class="card-body" data-pagefind-ignore="all">
-                      <h2 class="card-title fs-md"><a href="/IndicatorPublic/neighborhood-reports/pelham_throgs_neck/outdoor_air_and_health/" class="text-primary">Outdoor Air and Health</a></h2>
-                      <p class="card-text fs-md">
-                          Air pollution is one of the most important environmental threats to urban populations and while all people are exposed, pollutant emissions, levels of exposure, and population vulnerability vary across neighborhoods. Exposures to common air pollutants have been linked to respiratory and cardiovascular diseases, cancers, and premature deaths.
-                          <a href="/IndicatorPublic/neighborhood-reports/pelham_throgs_neck/outdoor_air_and_health/">See&nbsp;Report&nbsp;<i class="fas fa-arrow-circle-right"></i></a>
-                        </p>
+                </div><div class="card content-card mb-3 col-md-4 col-sm-6" data-pagefind-ignore="all">
+                  <div class="card-content primary"><div style="width: 100%; height: 200px; background-image: url(/IndicatorPublic/images/nyc_health_report_outdoor_air_health_hu_715b7aa0bd0a7fc.jpg);background-size:cover">
+
+
+
+                </div><div class="card-body p-2">
+                      <h2 class="card-title fs-md"><a href="/IndicatorPublic/neighborhood-reports/pelham_throgs_neck/outdoor_air_and_health/" class="text-primary fs-lg">Outdoor Air and Health</a></h2>
+                      <p class="card-text fs-sm">
+                          Air pollution is one of the most important environmental threats to urban populations and while all people are exposed, pollutant emissions, levels of …
+                          </p>
+                         <p class="fs-sm text-right"> <a href="/IndicatorPublic/neighborhood-reports/pelham_throgs_neck/outdoor_air_and_health/">See&nbsp;report&nbsp;<i class="fas fa-arrow-circle-right"></i></a>
+                        </p>                   
                     </div>
                   </div>
                 </div></div>
 
-
           </div>
-
-          <div class="col-md-3">
-            <div class="border mb-2 nr-map-highlight"><div id="vis1" class="chartdest" style="width: 100%; height: 300px;"></div>
-
-<style>
-
-  .marks:hover {
-    cursor: pointer
-  }
-</style>
-
-<script type="text/javascript">
-    var spec = {
-        "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-        "width": "container",
-        "height": 400,
-        "autosize": {"type": "fit", "contains": "padding"},
-        "config": {
-          "view": {"stroke": "transparent"}
-        },
-        "layer": [
-          {
-            "data": {
-              "url": "https:\/\/raw.githubusercontent.com\/nychealth\/EHDP-data\/production/geography/UHF42.topo.json",
-              "format": {"type": "topojson", "feature": "collection"}
-            },
-            "mark": {"type": "geoshape", "stroke": "#ffffff", "fill": "lightgray"}
-          },
-          {
-            "data": {
-              "url": "https:\/\/raw.githubusercontent.com\/nychealth\/EHDP-data\/production/geography/UHF42.topo.json",
-              "format": {"type": "topojson", "feature": "collection"}
-            },
-            "transform": [
-              {
-                "lookup": "properties.GEOCODE",
-                "from": {
-                  "data": {
-                    "url": "/IndicatorPublic/UHF42.csv"
-                    },
-                  "key": "GEOCODE",
-                  "fields": ["GEOCODE", "Name", "GEONAME", "VALUE"]
-                },
-                "default": "no data"
-              }
-            ],
-            "mark": {"type": "geoshape", "stroke": "#ffffff"},
-            "params": [
-              {
-                "name": "highlight",
-                "select": {
-                  "type": "point",
-                  "on": "mouseover",
-                  "clear": "mouseout"
-                }
-              }
-            ],
-            "encoding": {
-              "color": {
-                "bin": false,
-                "field": "VALUE",
-                "type": "quantitative",
-                "legend": null,
-                "scale": {"scheme": {"name": "blues", "extent": [0.25, 0.75]}}
-              },
-              "stroke": {
-                "condition": {"test": "datum['GEOCODE'] == ''","value": "cyan"},
-                "value": "#dadada"
-              },
-              "strokeWidth": {
-                "condition": {"test": "datum['GEOCODE'] == ''","value": 2.5}, 
-                "value": 0.5
-              },
-              "order": {
-                "condition": {"test": "datum['GEOCODE'] == ''","value": 1},
-                "value": 0
-              },
-              "tooltip": [
-                {"field": "Name", "type": "nominal", "title": "Neighborhood"}
-              ]
-            }
-          }
-        ]
-      }
-
-      var neighborhoods = [];
-      var neighb = [];
-      var neighbName;
-      var rpt;
-      var parts
-    
-      
-      d3.csv("/IndicatorPublic/UHF42.csv").then(data => {
-        neighborhoods = data;
-        
-
-        
-        
-
-        let nr_part = window.location.href.match(/neighborhood-reports.*$/g)[0]
-        
-
-        parts = nr_part.split('/'); 
-        
-
-        
-
-        neighbName = parts[1]
-        rpt = parts[2] ? parts[2] : ""
-
-
-        
-        
-
-        neighb = neighborhoods.filter(x => x.GEONAME == neighbName) 
-        var geocode = neighb[0].GEOCODE 
-
-        drawChart(geocode)
-
-        
-        
-        
-        
-        
-
-        
-        var link = document.getElementById('neighbLink')
-        var dest = "/IndicatorPublic/neighborhood-reports/" + neighb[0].GEONAME + '/'
-
-        if (typeof link !== 'undefined' && link != null) {
-          link.setAttribute("href", dest) 
-        } else {}
-
-      })
-    
-      
-      function drawChart(x) {
-        spec.layer[1].encoding.stroke.condition.test = `datum['GEOCODE'] == '${x}'`
-        spec.layer[1].encoding.strokeWidth.condition.test = `datum['GEOCODE'] == '${x}'`
-        spec.layer[1].encoding.order.condition.test = `datum['GEOCODE'] == '${x}'`
-        vegaEmbed('#vis1', spec, {"actions": false}).then(result => {
-          result.view.addEventListener('click', function(event, item) {
-             
-            
-
-            
-            window.location = "/IndicatorPublic/neighborhood-reports/" + DOMPurify.sanitize(item.datum.GEONAME) + '/' + rpt + '/'
-          });
-          }).catch(console.warn);
-      }
-
-      vegaEmbed('#vis1', spec, {"actions": false}).then(result => {
-        result.view.addEventListener('click', function(event, item) {
-           
-          
-
-          
-          window.location = "/IndicatorPublic/neighborhood-reports/" + DOMPurify.sanitize(item.datum.GEONAME) + '/'
-        });
-        }).catch(console.warn);
-
-</script></div>
-          </div>
-
         </div>
-
 
       </div>
 
@@ -692,14 +838,10 @@
 </div>
 
 
-            
-
-<script type="text/javascript">
-
-</script><ul id="results"></ul>
+            <ul id="results"></ul>
   </main>
   
-  <footer class="bg-black" id="global-footer" role="contentinfo">
+  <footer class="bg-black d-print-none" id="global-footer" role="contentinfo">
 
   <h2 class="sr-only">
       Page Footer
