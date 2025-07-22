@@ -3059,6 +3059,284 @@
 
 
 
+  <div class="card-header border-top" id="heading-Air646">
+    <h2 class="mb-0">
+      <button
+        class="btn btn-block btn-sm text-left"
+        type="button"
+        data-toggle="collapse"
+        data-target="#collapse-Air646"
+        aria-expanded="true"
+        aria-controls="collapse-Air646"
+        onclick="getURL( 2115 , 'Air646')"
+      >
+        
+        <div class="row no-gutters" style="width: 100%">
+          <div class="col-7 d-print-none">
+            <span class="font-weight-bold fs-md"
+              >Benzene</span
+            ><br />
+            <span class="fs-sm font-weight-normal"
+              >Outdoor Air Toxics - Benzene, 2014</span
+            >
+          </div>
+          <div class="col-3 pl-1 d-print-none">
+            <span class="font-weight-bold fs-lg"
+              >0.9</span
+            >
+            <br />
+            <span class="fs-xs font-weight-normal"
+              >Annual average concentration µg/m3</span
+            >
+          </div>
+
+          
+
+          <div class="col-2 d-print-none">
+              <div class="float-right mt-1">
+              <span
+                    class="better">Lower</span>
+            </div>
+          </div>
+
+          
+          <div class="col-12 print-only" style="flex-direction:row; width:100%;">
+
+            
+            <div style="width:50%;" class="border-right pl-1">
+              <span class="font-weight-bold fs-md">
+                Benzene
+              </span><br />
+              <span class="fs-sm font-weight-normal">Outdoor Air Toxics - Benzene, 2014</span>
+            </div>
+
+            
+            <div style="width:25%" class="border-right pl-1">
+              <span class="font-weight-bold fs-lg">
+                0.9
+              </span><br />
+              <span class="fs-xs font-weight-normal">
+                Annual average concentration µg/m3
+              </span>
+            </div>
+
+            
+
+            
+            <div style="width:25%;" class="pl-1">
+
+              Less than most neighborhoods
+
+
+
+            </div>
+
+          </div>
+
+        </div>
+      </button>
+    </h2>
+  </div>
+
+
+  <div
+    id="collapse-Air646"
+    class="collapse border-bottom "
+    aria-labelledby="heading-Air646"
+    data-parent="#accordion-2"
+    data-indicator-name="Air646"
+    data-count="1"
+  >
+    <div class="card-body card-body-no-top">
+
+      <div class="row no-gutters fs-sm">
+        <div class="col-12">
+            
+            <p class="fs-md mt-1 mb-2">Benzene is an air pollutant resulting from motor vehicle and industrial emissions and tobacco smoke. Benzene is a known carcinogen that can also harm bone marrow and red blood cell function.<a id="2115" href="" class="ml-1" style="display:none"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Full dataset</a>
+            </p>
+        </div>
+
+                <div class="col-md-7 border-right h-100">
+                
+                <div style="width:100%; height:40vmin; z-index:10000;" class="" id="map-Air646-1">
+                    ...map is loading...
+                </div><div class="data-note mt-1"></div></div>
+        
+        
+        
+        
+
+        
+
+        <div class="col-md-5 h-100 p-1 ">
+
+            <p class="fs-rg">
+                Benzene in <strong>Flushing - Clearview</strong>:
+                <div class=" fs-md">
+                  <p>
+                    <span class="better-sm fs-sm mt-1">Less than most</span>&nbsp;neighborhoods
+                  </p>
+
+                  <p>
+                    <span id="b-benzene"></span> the <strong>Queens average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="bv-benzene">boro val</span> µg/m3)</span>
+                  </p>
+
+                  <p>
+                    <span id="c-benzene"></span> the <strong>Citywide average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="cv-benzene">city val</span> µg/m3)</span>
+                  </p>
+
+                    </div>
+                
+            </p>
+
+             
+            <div id="trend" class="hide">
+            <p>In <strong>Queens</strong>, it is [TREND]. Citywide, the trend is [TREND].</p>
+            </div>
+
+            
+
+            <span id="year-benzene" class="sr-only">YEAR</span>
+
+          
+
+        </div>
+
+        <div class="col-12">
+            <span class="fs-xs"><strong>Source:</strong> United States Environmental Protection Agency (EPA) Air Quality System (AQS) Data</span>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+<script>
+    
+    (function(x, y) {
+        var endDate = new Date(x);
+        var year = endDate.getFullYear(); 
+        document.getElementById(y).innerHTML = year;
+    })(`2014-12-31`, `year-benzene`);
+
+(function(n, b, c, nid, bid, cid, rr) {
+    n = Number(n);
+    b = Number(b);
+    c = Number(c);
+
+    let rankReverse = (rr === true || rr === 'true');
+
+    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
+    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
+
+    let boroJudgement;
+    if (n > b && rankReverse) {
+      boroJudgement = 'comp-good';
+    } else if (n < b && rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n > b && !rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n < b && !rankReverse) {
+      boroJudgement = 'comp-good';
+    } else {
+      boroJudgement = 'comp-null';
+    }
+
+    let cityJudgement;
+    if (n > c && rankReverse) {
+      cityJudgement = 'comp-good';
+    } else if (n < c && rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n > c && !rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n < c && !rankReverse) {
+      cityJudgement = 'comp-good';
+    } else {
+      cityJudgement = 'comp-null';
+    }
+
+    let boroEl = document.getElementById(bid);
+    if (boroEl) {
+        boroEl.innerHTML = boroComp;
+        boroEl.classList.add(boroJudgement);
+    }
+
+    let cityEl = document.getElementById(cid);
+    if (cityEl) {
+        cityEl.innerHTML = cityComp;
+        cityEl.classList.add(cityJudgement);
+    }
+
+    document.getElementById('bv-benzene').innerHTML = b;
+    document.getElementById('cv-benzene').innerHTML = c;
+
+
+})(
+     0.9 ,
+     0.8 ,
+     0.9 ,
+    'n-benzene',
+    'b-benzene',
+    'c-benzene',
+     false 
+)
+
+
+</script>
+
+
+
+
+<script type="text/javascript">
+
+    $( "#collapse-Air646" ).on('shown.bs.collapse', function() {
+
+        
+
+        gtag('event', 'click_modal', {
+                'modal_name': 'Benzene'
+            });
+
+        var opt = {"renderer": "svg"};
+
+            
+
+            
+
+            var summaryData =
+                arqTable
+                .filter(d => d.indicator_data_name == "Air646")
+                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
+                .dedupe()
+                .groupby("neighborhood")
+                .orderby("neighborhood", aq.desc("end_date"))
+                .slice(0,1) 
+                .ungroup()
+                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
+                .orderby("unmodified_data_value_geo_entity") 
+                .select(aq.not("end_date"))
+                .objects()
+
+
+            
+
+            
+
+            var mapData = summaryData;
+
+            renderNRMap(mapData,  "#map-Air646-1", "Annual average concentration µg\/m3","Benzene",geocode)
+
+    });
+
+    </script>
+
+
+
+
+
   <div class="card-header border-top" id="heading-Air647">
     <h2 class="mb-0">
       <button
@@ -3145,7 +3423,7 @@
     aria-labelledby="heading-Air647"
     data-parent="#accordion-2"
     data-indicator-name="Air647"
-    data-count="1"
+    data-count="2"
   >
     <div class="card-body card-body-no-top">
 
@@ -3158,7 +3436,7 @@
 
                 <div class="col-md-7 border-right h-100">
                 
-                <div style="width:100%; height:40vmin; z-index:10000;" class="" id="map-Air647-1">
+                <div style="width:100%; height:40vmin; z-index:10000;" class="" id="map-Air647-2">
                     ...map is loading...
                 </div><div class="data-note mt-1"></div></div>
         
@@ -3327,284 +3605,7 @@
 
             var mapData = summaryData;
 
-            renderNRMap(mapData,  "#map-Air647-1", "Annual average concentration µg\/m3","Formaldehyde",geocode)
-
-    });
-
-    </script>
-
-
-
-
-
-  <div class="card-header border-top" id="heading-Air646">
-    <h2 class="mb-0">
-      <button
-        class="btn btn-block btn-sm text-left"
-        type="button"
-        data-toggle="collapse"
-        data-target="#collapse-Air646"
-        aria-expanded="true"
-        aria-controls="collapse-Air646"
-        onclick="getURL( 2115 , 'Air646')"
-      >
-        
-        <div class="row no-gutters" style="width: 100%">
-          <div class="col-7 d-print-none">
-            <span class="font-weight-bold fs-md"
-              >Benzene</span
-            ><br />
-            <span class="fs-sm font-weight-normal"
-              >Outdoor Air Toxics - Benzene, 2014</span
-            >
-          </div>
-          <div class="col-3 pl-1 d-print-none">
-            <span class="font-weight-bold fs-lg"
-              >0.9</span
-            >
-            <br />
-            <span class="fs-xs font-weight-normal"
-              >Annual average concentration µg/m3</span
-            >
-          </div>
-
-          
-
-          <div class="col-2 d-print-none">
-              <div class="float-right mt-1">
-              <span class="middle d-none"></span>
-            </div>
-          </div>
-
-          
-          <div class="col-12 print-only" style="flex-direction:row; width:100%;">
-
-            
-            <div style="width:50%;" class="border-right pl-1">
-              <span class="font-weight-bold fs-md">
-                Benzene
-              </span><br />
-              <span class="fs-sm font-weight-normal">Outdoor Air Toxics - Benzene, 2014</span>
-            </div>
-
-            
-            <div style="width:25%" class="border-right pl-1">
-              <span class="font-weight-bold fs-lg">
-                0.9
-              </span><br />
-              <span class="fs-xs font-weight-normal">
-                Annual average concentration µg/m3
-              </span>
-            </div>
-
-            
-
-            
-            <div style="width:25%;" class="pl-1">
-
-              In the middle of NYC neighborhoods
-
-
-
-            </div>
-
-          </div>
-
-        </div>
-      </button>
-    </h2>
-  </div>
-
-
-  <div
-    id="collapse-Air646"
-    class="collapse border-bottom "
-    aria-labelledby="heading-Air646"
-    data-parent="#accordion-2"
-    data-indicator-name="Air646"
-    data-count="2"
-  >
-    <div class="card-body card-body-no-top">
-
-      <div class="row no-gutters fs-sm">
-        <div class="col-12">
-            
-            <p class="fs-md mt-1 mb-2">Benzene is an air pollutant resulting from motor vehicle and industrial emissions and tobacco smoke. Benzene is a known carcinogen that can also harm bone marrow and red blood cell function.<a id="2115" href="" class="ml-1" style="display:none"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Full dataset</a>
-            </p>
-        </div>
-
-                <div class="col-md-7 border-right h-100">
-                
-                <div style="width:100%; height:40vmin; z-index:10000;" class="" id="map-Air646-2">
-                    ...map is loading...
-                </div><div class="data-note mt-1"></div></div>
-        
-        
-        
-        
-
-        
-
-        <div class="col-md-5 h-100 p-1 ">
-
-            <p class="fs-rg">
-                Benzene in <strong>Flushing - Clearview</strong>:
-                <div class=" fs-md">
-                  <p>
-                    <span class="middle-sm fs-sm mt-1">In the middle of</span>&nbsp;neighborhoods
-                  </p>
-
-                  <p>
-                    <span id="b-benzene"></span> the <strong>Queens average</strong> 
-                    <br>
-                    <span class="fs-sm pl-3">(<span id="bv-benzene">boro val</span> µg/m3)</span>
-                  </p>
-
-                  <p>
-                    <span id="c-benzene"></span> the <strong>Citywide average</strong> 
-                    <br>
-                    <span class="fs-sm pl-3">(<span id="cv-benzene">city val</span> µg/m3)</span>
-                  </p>
-
-                    </div>
-                
-            </p>
-
-             
-            <div id="trend" class="hide">
-            <p>In <strong>Queens</strong>, it is [TREND]. Citywide, the trend is [TREND].</p>
-            </div>
-
-            
-
-            <span id="year-benzene" class="sr-only">YEAR</span>
-
-          
-
-        </div>
-
-        <div class="col-12">
-            <span class="fs-xs"><strong>Source:</strong> United States Environmental Protection Agency (EPA) Air Quality System (AQS) Data</span>
-        </div>
-
-      </div>
-    </div>
-  </div>
-
-<script>
-    
-    (function(x, y) {
-        var endDate = new Date(x);
-        var year = endDate.getFullYear(); 
-        document.getElementById(y).innerHTML = year;
-    })(`2014-12-31`, `year-benzene`);
-
-(function(n, b, c, nid, bid, cid, rr) {
-    n = Number(n);
-    b = Number(b);
-    c = Number(c);
-
-    let rankReverse = (rr === true || rr === 'true');
-
-    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
-    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
-
-    let boroJudgement;
-    if (n > b && rankReverse) {
-      boroJudgement = 'comp-good';
-    } else if (n < b && rankReverse) {
-      boroJudgement = 'comp-bad';
-    } else if (n > b && !rankReverse) {
-      boroJudgement = 'comp-bad';
-    } else if (n < b && !rankReverse) {
-      boroJudgement = 'comp-good';
-    } else {
-      boroJudgement = 'comp-null';
-    }
-
-    let cityJudgement;
-    if (n > c && rankReverse) {
-      cityJudgement = 'comp-good';
-    } else if (n < c && rankReverse) {
-      cityJudgement = 'comp-bad';
-    } else if (n > c && !rankReverse) {
-      cityJudgement = 'comp-bad';
-    } else if (n < c && !rankReverse) {
-      cityJudgement = 'comp-good';
-    } else {
-      cityJudgement = 'comp-null';
-    }
-
-    let boroEl = document.getElementById(bid);
-    if (boroEl) {
-        boroEl.innerHTML = boroComp;
-        boroEl.classList.add(boroJudgement);
-    }
-
-    let cityEl = document.getElementById(cid);
-    if (cityEl) {
-        cityEl.innerHTML = cityComp;
-        cityEl.classList.add(cityJudgement);
-    }
-
-    document.getElementById('bv-benzene').innerHTML = b;
-    document.getElementById('cv-benzene').innerHTML = c;
-
-
-})(
-     0.9 ,
-     0.8 ,
-     0.9 ,
-    'n-benzene',
-    'b-benzene',
-    'c-benzene',
-     false 
-)
-
-
-</script>
-
-
-
-
-<script type="text/javascript">
-
-    $( "#collapse-Air646" ).on('shown.bs.collapse', function() {
-
-        
-
-        gtag('event', 'click_modal', {
-                'modal_name': 'Benzene'
-            });
-
-        var opt = {"renderer": "svg"};
-
-            
-
-            
-
-            var summaryData =
-                arqTable
-                .filter(d => d.indicator_data_name == "Air646")
-                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
-                .dedupe()
-                .groupby("neighborhood")
-                .orderby("neighborhood", aq.desc("end_date"))
-                .slice(0,1) 
-                .ungroup()
-                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
-                .orderby("unmodified_data_value_geo_entity") 
-                .select(aq.not("end_date"))
-                .objects()
-
-
-            
-
-            
-
-            var mapData = summaryData;
-
-            renderNRMap(mapData,  "#map-Air646-2", "Annual average concentration µg\/m3","Benzene",geocode)
+            renderNRMap(mapData,  "#map-Air647-2", "Annual average concentration µg\/m3","Formaldehyde",geocode)
 
     });
 

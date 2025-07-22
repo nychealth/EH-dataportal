@@ -1948,283 +1948,6 @@
 
 
 
-  <div class="card-header border-top" id="heading-Adul47">
-    <h2 class="mb-0">
-      <button
-        class="btn btn-block btn-sm text-left"
-        type="button"
-        data-toggle="collapse"
-        data-target="#collapse-Adul47"
-        aria-expanded="true"
-        aria-controls="collapse-Adul47"
-        onclick="getURL( 25 , 'Adul47')"
-      >
-        
-        <div class="row no-gutters" style="width: 100%">
-          <div class="col-7 d-print-none">
-            <span class="font-weight-bold fs-md"
-              >Secondhand smoke</span
-            ><br />
-            <span class="fs-sm font-weight-normal"
-              >Secondhand smoke at home, 2012</span
-            >
-          </div>
-          <div class="col-3 pl-1 d-print-none">
-            <span class="font-weight-bold fs-lg"
-              >N/A**</span
-            >
-            <br />
-            <span class="fs-xs font-weight-normal"
-              >Percent </span
-            >
-          </div>
-
-          
-
-          <div class="col-2 d-print-none">
-              <div class="float-right mt-1">
-              <span class="middle d-none"></span>
-            </div>
-          </div>
-
-          
-          <div class="col-12 print-only" style="flex-direction:row; width:100%;">
-
-            
-            <div style="width:50%;" class="border-right pl-1">
-              <span class="font-weight-bold fs-md">
-                Secondhand smoke
-              </span><br />
-              <span class="fs-sm font-weight-normal">Secondhand smoke at home, 2012</span>
-            </div>
-
-            
-            <div style="width:25%" class="border-right pl-1">
-              <span class="font-weight-bold fs-lg">
-                N/A**
-              </span><br />
-              <span class="fs-xs font-weight-normal">
-                Percent 
-              </span>
-            </div>
-
-            
-
-            
-            <div style="width:25%;" class="pl-1">
-
-              In the middle of NYC neighborhoods
-
-
-
-            </div>
-
-          </div>
-
-        </div>
-      </button>
-    </h2>
-  </div>
-
-
-  <div
-    id="collapse-Adul47"
-    class="collapse border-bottom "
-    aria-labelledby="heading-Adul47"
-    data-parent="#accordion-2"
-    data-indicator-name="Adul47"
-    data-count="1"
-  >
-    <div class="card-body card-body-no-top">
-
-      <div class="row no-gutters fs-sm">
-        <div class="col-12">
-            
-            <p class="fs-md mt-1 mb-2">Adults reporting secondhand smoke at home. Secondhand smoke, especially indoors, is bad for health - particularly for the health of children.<a id="25" href="" class="ml-1" style="display:none"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Full dataset</a>
-            </p>
-        </div>
-
-                <div class="col-md-7 border-right h-100">
-                
-                <div style="width:100%; height:40vmin; z-index:10000;" class="" id="map-Adul47-1">
-                    ...map is loading...
-                </div><div class="data-note mt-1">** Estimate is suppressed due to insufficient data.</div></div>
-        
-        
-        
-        
-
-        
-
-        <div class="col-md-5 h-100 p-1 ">
-
-            <p class="fs-rg">
-                Secondhand smoke in <strong>Greenpoint</strong>:
-                <div class=" fs-md">
-                  <p>
-                    <span class="middle-sm fs-sm mt-1">In the middle of</span>&nbsp;neighborhoods
-                  </p>
-
-                  <p>
-                    <span id="b-secondhand-smoke"></span> the <strong>Brooklyn average</strong> 
-                    <br>
-                    <span class="fs-sm pl-3">(<span id="bv-secondhand-smoke">boro val</span>%)</span>
-                  </p>
-
-                  <p>
-                    <span id="c-secondhand-smoke"></span> the <strong>Citywide average</strong> 
-                    <br>
-                    <span class="fs-sm pl-3">(<span id="cv-secondhand-smoke">city val</span>%)</span>
-                  </p>
-
-                    </div>
-                
-            </p>
-
-             
-            <div id="trend" class="hide">
-            <p>In <strong>Brooklyn</strong>, it is [TREND]. Citywide, the trend is [TREND].</p>
-            </div>
-
-            
-
-            <span id="year-secondhand-smoke" class="sr-only">YEAR</span>
-
-          
-
-        </div>
-
-        <div class="col-12">
-            <span class="fs-xs"><strong>Source:</strong> New York City Community Health Survey (CHS)</span>
-        </div>
-
-      </div>
-    </div>
-  </div>
-
-<script>
-    
-    (function(x, y) {
-        var endDate = new Date(x);
-        var year = endDate.getFullYear(); 
-        document.getElementById(y).innerHTML = year;
-    })(`2012-12-31`, `year-secondhand-smoke`);
-
-(function(n, b, c, nid, bid, cid, rr) {
-    n = Number(n);
-    b = Number(b);
-    c = Number(c);
-
-    let rankReverse = (rr === true || rr === 'true');
-
-    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
-    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
-
-    let boroJudgement;
-    if (n > b && rankReverse) {
-      boroJudgement = 'comp-good';
-    } else if (n < b && rankReverse) {
-      boroJudgement = 'comp-bad';
-    } else if (n > b && !rankReverse) {
-      boroJudgement = 'comp-bad';
-    } else if (n < b && !rankReverse) {
-      boroJudgement = 'comp-good';
-    } else {
-      boroJudgement = 'comp-null';
-    }
-
-    let cityJudgement;
-    if (n > c && rankReverse) {
-      cityJudgement = 'comp-good';
-    } else if (n < c && rankReverse) {
-      cityJudgement = 'comp-bad';
-    } else if (n > c && !rankReverse) {
-      cityJudgement = 'comp-bad';
-    } else if (n < c && !rankReverse) {
-      cityJudgement = 'comp-good';
-    } else {
-      cityJudgement = 'comp-null';
-    }
-
-    let boroEl = document.getElementById(bid);
-    if (boroEl) {
-        boroEl.innerHTML = boroComp;
-        boroEl.classList.add(boroJudgement);
-    }
-
-    let cityEl = document.getElementById(cid);
-    if (cityEl) {
-        cityEl.innerHTML = cityComp;
-        cityEl.classList.add(cityJudgement);
-    }
-
-    document.getElementById('bv-secondhand-smoke').innerHTML = b;
-    document.getElementById('cv-secondhand-smoke').innerHTML = c;
-
-
-})(
-     null ,
-     4.3 ,
-     4.9 ,
-    'n-secondhand-smoke',
-    'b-secondhand-smoke',
-    'c-secondhand-smoke',
-     false 
-)
-
-
-</script>
-
-
-
-
-<script type="text/javascript">
-
-    $( "#collapse-Adul47" ).on('shown.bs.collapse', function() {
-
-        
-
-        gtag('event', 'click_modal', {
-                'modal_name': 'Secondhand smoke'
-            });
-
-        var opt = {"renderer": "svg"};
-
-            
-
-            
-
-            var summaryData =
-                arqTable
-                .filter(d => d.indicator_data_name == "Adul47")
-                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
-                .dedupe()
-                .groupby("neighborhood")
-                .orderby("neighborhood", aq.desc("end_date"))
-                .slice(0,1) 
-                .ungroup()
-                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
-                .orderby("unmodified_data_value_geo_entity") 
-                .select(aq.not("end_date"))
-                .objects()
-
-
-            
-
-            
-
-            var mapData = summaryData;
-
-            renderNRMap(mapData,  "#map-Adul47-1", "Percent ","Secondhand smoke",geocode)
-
-    });
-
-    </script>
-
-
-
-
-
   <div class="card-header border-top" id="heading-Home88">
     <h2 class="mb-0">
       <button
@@ -2310,7 +2033,7 @@
     aria-labelledby="heading-Home88"
     data-parent="#accordion-2"
     data-indicator-name="Home88"
-    data-count="2"
+    data-count="1"
   >
     <div class="card-body card-body-no-top">
 
@@ -2323,7 +2046,7 @@
 
                 <div class="col-md-7 border-right h-100">
                 
-                <div style="width:100%; height:40vmin; z-index:10000;" class="" id="map-Home88-2">
+                <div style="width:100%; height:40vmin; z-index:10000;" class="" id="map-Home88-1">
                     ...map is loading...
                 </div><div class="data-note mt-1"></div></div>
         
@@ -2492,7 +2215,7 @@
 
             var mapData = summaryData;
 
-            renderNRMap(mapData,  "#map-Home88-2", "Percent ","Neighborhood building quality",geocode)
+            renderNRMap(mapData,  "#map-Home88-1", "Percent ","Neighborhood building quality",geocode)
 
     });
 
@@ -2587,7 +2310,7 @@
     aria-labelledby="heading-Adul706"
     data-parent="#accordion-2"
     data-indicator-name="Adul706"
-    data-count="3"
+    data-count="2"
   >
     <div class="card-body card-body-no-top">
 
@@ -2600,7 +2323,7 @@
 
                 <div class="col-md-7 border-right h-100">
                 
-                <div style="width:100%; height:40vmin; z-index:10000;" class="" id="map-Adul706-3">
+                <div style="width:100%; height:40vmin; z-index:10000;" class="" id="map-Adul706-2">
                     ...map is loading...
                 </div><div class="data-note mt-1">* Estimate is based on small numbers so should be interpreted with caution.</div></div>
         
@@ -2769,7 +2492,7 @@
 
             var mapData = summaryData;
 
-            renderNRMap(mapData,  "#map-Adul706-3", "Percent ","Older adults with AC",geocode)
+            renderNRMap(mapData,  "#map-Adul706-2", "Percent ","Older adults with AC",geocode)
 
     });
 
@@ -2865,7 +2588,7 @@
     aria-labelledby="heading-Vege690"
     data-parent="#accordion-2"
     data-indicator-name="Vege690"
-    data-count="4"
+    data-count="3"
   >
     <div class="card-body card-body-no-top">
 
@@ -2878,7 +2601,7 @@
 
                 <div class="col-md-7 border-right h-100">
                 
-                <div style="width:100%; height:40vmin; z-index:10000;" class="" id="map-Vege690-4">
+                <div style="width:100%; height:40vmin; z-index:10000;" class="" id="map-Vege690-3">
                     ...map is loading...
                 </div><div class="data-note mt-1"></div></div>
         
@@ -3047,7 +2770,286 @@
 
             var mapData = summaryData;
 
-            renderNRMap(mapData,  "#map-Vege690-4", "Percent ","Grass and tree cover",geocode)
+            renderNRMap(mapData,  "#map-Vege690-3", "Percent ","Grass and tree cover",geocode)
+
+    });
+
+    </script>
+
+
+
+
+
+  <div class="card-header border-top" id="heading-Adul47">
+    <h2 class="mb-0">
+      <button
+        class="btn btn-block btn-sm text-left"
+        type="button"
+        data-toggle="collapse"
+        data-target="#collapse-Adul47"
+        aria-expanded="true"
+        aria-controls="collapse-Adul47"
+        onclick="getURL( 25 , 'Adul47')"
+      >
+        
+        <div class="row no-gutters" style="width: 100%">
+          <div class="col-7 d-print-none">
+            <span class="font-weight-bold fs-md"
+              >Secondhand smoke</span
+            ><br />
+            <span class="fs-sm font-weight-normal"
+              >Secondhand smoke at home, 2012</span
+            >
+          </div>
+          <div class="col-3 pl-1 d-print-none">
+            <span class="font-weight-bold fs-lg"
+              >N/A**</span
+            >
+            <br />
+            <span class="fs-xs font-weight-normal"
+              >Percent </span
+            >
+          </div>
+
+          
+
+          <div class="col-2 d-print-none">
+              <div class="float-right mt-1">
+              <span class="middle d-none"></span>
+            </div>
+          </div>
+
+          
+          <div class="col-12 print-only" style="flex-direction:row; width:100%;">
+
+            
+            <div style="width:50%;" class="border-right pl-1">
+              <span class="font-weight-bold fs-md">
+                Secondhand smoke
+              </span><br />
+              <span class="fs-sm font-weight-normal">Secondhand smoke at home, 2012</span>
+            </div>
+
+            
+            <div style="width:25%" class="border-right pl-1">
+              <span class="font-weight-bold fs-lg">
+                N/A**
+              </span><br />
+              <span class="fs-xs font-weight-normal">
+                Percent 
+              </span>
+            </div>
+
+            
+
+            
+            <div style="width:25%;" class="pl-1">
+
+              
+
+
+
+            </div>
+
+          </div>
+
+        </div>
+      </button>
+    </h2>
+  </div>
+
+
+  <div
+    id="collapse-Adul47"
+    class="collapse border-bottom "
+    aria-labelledby="heading-Adul47"
+    data-parent="#accordion-2"
+    data-indicator-name="Adul47"
+    data-count="4"
+  >
+    <div class="card-body card-body-no-top">
+
+      <div class="row no-gutters fs-sm">
+        <div class="col-12">
+            
+            <p class="fs-md mt-1 mb-2">Adults reporting secondhand smoke at home. Secondhand smoke, especially indoors, is bad for health - particularly for the health of children.<a id="25" href="" class="ml-1" style="display:none"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Full dataset</a>
+            </p>
+        </div>
+
+                <div class="col-md-7 border-right h-100">
+                
+                <div style="width:100%; height:40vmin; z-index:10000;" class="" id="map-Adul47-4">
+                    ...map is loading...
+                </div><div class="data-note mt-1">** Estimate is suppressed due to insufficient data.</div></div>
+        
+        
+        
+        
+
+         
+           
+        
+
+        <div class="col-md-5 h-100 p-1 d-none">
+
+            <p class="fs-rg">
+                Secondhand smoke in <strong>Greenpoint</strong>:
+                <div class=" fs-md">
+                  <p>
+                    
+                  </p>
+
+                  <p>
+                    <span id="b-secondhand-smoke"></span> the <strong>Brooklyn average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="bv-secondhand-smoke">boro val</span>%)</span>
+                  </p>
+
+                  <p>
+                    <span id="c-secondhand-smoke"></span> the <strong>Citywide average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="cv-secondhand-smoke">city val</span>%)</span>
+                  </p>
+
+                    </div>
+                
+            </p>
+
+             
+            <div id="trend" class="hide">
+            <p>In <strong>Brooklyn</strong>, it is [TREND]. Citywide, the trend is [TREND].</p>
+            </div>
+
+            
+
+            <span id="year-secondhand-smoke" class="sr-only">YEAR</span>
+
+          
+
+        </div>
+
+        <div class="col-12">
+            <span class="fs-xs"><strong>Source:</strong> New York City Community Health Survey (CHS)</span>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+<script>
+    
+    (function(x, y) {
+        var endDate = new Date(x);
+        var year = endDate.getFullYear(); 
+        document.getElementById(y).innerHTML = year;
+    })(`2012-12-31`, `year-secondhand-smoke`);
+
+(function(n, b, c, nid, bid, cid, rr) {
+    n = Number(n);
+    b = Number(b);
+    c = Number(c);
+
+    let rankReverse = (rr === true || rr === 'true');
+
+    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
+    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
+
+    let boroJudgement;
+    if (n > b && rankReverse) {
+      boroJudgement = 'comp-good';
+    } else if (n < b && rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n > b && !rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n < b && !rankReverse) {
+      boroJudgement = 'comp-good';
+    } else {
+      boroJudgement = 'comp-null';
+    }
+
+    let cityJudgement;
+    if (n > c && rankReverse) {
+      cityJudgement = 'comp-good';
+    } else if (n < c && rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n > c && !rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n < c && !rankReverse) {
+      cityJudgement = 'comp-good';
+    } else {
+      cityJudgement = 'comp-null';
+    }
+
+    let boroEl = document.getElementById(bid);
+    if (boroEl) {
+        boroEl.innerHTML = boroComp;
+        boroEl.classList.add(boroJudgement);
+    }
+
+    let cityEl = document.getElementById(cid);
+    if (cityEl) {
+        cityEl.innerHTML = cityComp;
+        cityEl.classList.add(cityJudgement);
+    }
+
+    document.getElementById('bv-secondhand-smoke').innerHTML = b;
+    document.getElementById('cv-secondhand-smoke').innerHTML = c;
+
+
+})(
+     null ,
+     4.3 ,
+     4.9 ,
+    'n-secondhand-smoke',
+    'b-secondhand-smoke',
+    'c-secondhand-smoke',
+     false 
+)
+
+
+</script>
+
+
+
+
+<script type="text/javascript">
+
+    $( "#collapse-Adul47" ).on('shown.bs.collapse', function() {
+
+        
+
+        gtag('event', 'click_modal', {
+                'modal_name': 'Secondhand smoke'
+            });
+
+        var opt = {"renderer": "svg"};
+
+            
+
+            
+
+            var summaryData =
+                arqTable
+                .filter(d => d.indicator_data_name == "Adul47")
+                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
+                .dedupe()
+                .groupby("neighborhood")
+                .orderby("neighborhood", aq.desc("end_date"))
+                .slice(0,1) 
+                .ungroup()
+                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
+                .orderby("unmodified_data_value_geo_entity") 
+                .select(aq.not("end_date"))
+                .objects()
+
+
+            
+
+            
+
+            var mapData = summaryData;
+
+            renderNRMap(mapData,  "#map-Adul47-4", "Percent ","Secondhand smoke",geocode)
 
     });
 

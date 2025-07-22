@@ -2757,6 +2757,283 @@
 
 
 
+  <div class="card-header border-top" id="heading-subDistP">
+    <h2 class="mb-0">
+      <button
+        class="btn btn-block btn-sm text-left"
+        type="button"
+        data-toggle="collapse"
+        data-target="#collapse-subDistP"
+        aria-expanded="true"
+        aria-controls="collapse-subDistP"
+        onclick="getURL( 2391 , 'subDistP')"
+      >
+        
+        <div class="row no-gutters" style="width: 100%">
+          <div class="col-7 d-print-none">
+            <span class="font-weight-bold fs-md"
+              >Subway access</span
+            ><br />
+            <span class="fs-sm font-weight-normal"
+              >Walking distance to a subway station, 2018</span
+            >
+          </div>
+          <div class="col-3 pl-1 d-print-none">
+            <span class="font-weight-bold fs-lg"
+              >39.0</span
+            >
+            <br />
+            <span class="fs-xs font-weight-normal"
+              >Percent </span
+            >
+          </div>
+
+          
+
+          <div class="col-2 d-print-none">
+              <div class="float-right mt-1">
+              <span class="middle d-none"></span>
+            </div>
+          </div>
+
+          
+          <div class="col-12 print-only" style="flex-direction:row; width:100%;">
+
+            
+            <div style="width:50%;" class="border-right pl-1">
+              <span class="font-weight-bold fs-md">
+                Subway access
+              </span><br />
+              <span class="fs-sm font-weight-normal">Walking distance to a subway station, 2018</span>
+            </div>
+
+            
+            <div style="width:25%" class="border-right pl-1">
+              <span class="font-weight-bold fs-lg">
+                39.0
+              </span><br />
+              <span class="fs-xs font-weight-normal">
+                Percent 
+              </span>
+            </div>
+
+            
+
+            
+            <div style="width:25%;" class="pl-1">
+
+              In the middle of NYC neighborhoods
+
+
+
+            </div>
+
+          </div>
+
+        </div>
+      </button>
+    </h2>
+  </div>
+
+
+  <div
+    id="collapse-subDistP"
+    class="collapse border-bottom "
+    aria-labelledby="heading-subDistP"
+    data-parent="#accordion-1"
+    data-indicator-name="subDistP"
+    data-count="3"
+  >
+    <div class="card-body card-body-no-top">
+
+      <div class="row no-gutters fs-sm">
+        <div class="col-12">
+            
+            <p class="fs-md mt-1 mb-2">The percentage of population within a quarter-mile of a subway station entrance. When more people have convenient access to the transit system, they're more likely to use it. Subway access encourages active transportation, which improves the health of residents.<a id="2391" href="" class="ml-1" style="display:none"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Full dataset</a>
+            </p>
+        </div>
+
+                <div class="col-md-7 border-right h-100">
+                
+                <div style="width:100%; height:40vmin; z-index:10000;" class="" id="map-subDistP-3">
+                    ...map is loading...
+                </div><div class="data-note mt-1"></div></div>
+        
+        
+        
+        
+
+        
+
+        <div class="col-md-5 h-100 p-1 ">
+
+            <p class="fs-rg">
+                Subway access in <strong>Southwest Queens</strong>:
+                <div class=" fs-md">
+                  <p>
+                    <span class="middle-sm fs-sm mt-1">In the middle of</span>&nbsp;neighborhoods
+                  </p>
+
+                  <p>
+                    <span id="b-subway-access"></span> the <strong>Queens average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="bv-subway-access">boro val</span>%)</span>
+                  </p>
+
+                  <p>
+                    <span id="c-subway-access"></span> the <strong>Citywide average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="cv-subway-access">city val</span>%)</span>
+                  </p>
+
+                    </div>
+                
+            </p>
+
+             
+            <div id="trend" class="hide">
+            <p>In <strong>Queens</strong>, it is [TREND]. Citywide, the trend is [TREND].</p>
+            </div>
+
+            
+
+            <span id="year-subway-access" class="sr-only">YEAR</span>
+
+          
+
+        </div>
+
+        <div class="col-12">
+            <span class="fs-xs"><strong>Source:</strong> United States Census; Metropolitan Transportation Authority </span>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+<script>
+    
+    (function(x, y) {
+        var endDate = new Date(x);
+        var year = endDate.getFullYear(); 
+        document.getElementById(y).innerHTML = year;
+    })(`2018-12-31`, `year-subway-access`);
+
+(function(n, b, c, nid, bid, cid, rr) {
+    n = Number(n);
+    b = Number(b);
+    c = Number(c);
+
+    let rankReverse = (rr === true || rr === 'true');
+
+    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
+    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
+
+    let boroJudgement;
+    if (n > b && rankReverse) {
+      boroJudgement = 'comp-good';
+    } else if (n < b && rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n > b && !rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n < b && !rankReverse) {
+      boroJudgement = 'comp-good';
+    } else {
+      boroJudgement = 'comp-null';
+    }
+
+    let cityJudgement;
+    if (n > c && rankReverse) {
+      cityJudgement = 'comp-good';
+    } else if (n < c && rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n > c && !rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n < c && !rankReverse) {
+      cityJudgement = 'comp-good';
+    } else {
+      cityJudgement = 'comp-null';
+    }
+
+    let boroEl = document.getElementById(bid);
+    if (boroEl) {
+        boroEl.innerHTML = boroComp;
+        boroEl.classList.add(boroJudgement);
+    }
+
+    let cityEl = document.getElementById(cid);
+    if (cityEl) {
+        cityEl.innerHTML = cityComp;
+        cityEl.classList.add(cityJudgement);
+    }
+
+    document.getElementById('bv-subway-access').innerHTML = b;
+    document.getElementById('cv-subway-access').innerHTML = c;
+
+
+})(
+     39 ,
+     29 ,
+     48 ,
+    'n-subway-access',
+    'b-subway-access',
+    'c-subway-access',
+     true 
+)
+
+
+</script>
+
+
+
+
+<script type="text/javascript">
+
+    $( "#collapse-subDistP" ).on('shown.bs.collapse', function() {
+
+        
+
+        gtag('event', 'click_modal', {
+                'modal_name': 'Subway access'
+            });
+
+        var opt = {"renderer": "svg"};
+
+            
+
+            
+
+            var summaryData =
+                arqTable
+                .filter(d => d.indicator_data_name == "subDistP")
+                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
+                .dedupe()
+                .groupby("neighborhood")
+                .orderby("neighborhood", aq.desc("end_date"))
+                .slice(0,1) 
+                .ungroup()
+                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
+                .orderby("unmodified_data_value_geo_entity") 
+                .select(aq.not("end_date"))
+                .objects()
+
+
+            
+
+            
+
+            var mapData = summaryData;
+
+            renderNRMap(mapData,  "#map-subDistP-3", "Percent ","Subway access",geocode)
+
+    });
+
+    </script>
+
+
+
+
+
   <div class="card-header border-top" id="heading-parkDisP">
     <h2 class="mb-0">
       <button
@@ -2843,7 +3120,7 @@
     aria-labelledby="heading-parkDisP"
     data-parent="#accordion-1"
     data-indicator-name="parkDisP"
-    data-count="3"
+    data-count="4"
   >
     <div class="card-body card-body-no-top">
 
@@ -2856,7 +3133,7 @@
 
                 <div class="col-md-7 border-right h-100">
                 
-                <div style="width:100%; height:40vmin; z-index:10000;" class="" id="map-parkDisP-3">
+                <div style="width:100%; height:40vmin; z-index:10000;" class="" id="map-parkDisP-4">
                     ...map is loading...
                 </div><div class="data-note mt-1"></div></div>
         
@@ -3025,7 +3302,7 @@
 
             var mapData = summaryData;
 
-            renderNRMap(mapData,  "#map-parkDisP-3", "Percent ","Park access",geocode)
+            renderNRMap(mapData,  "#map-parkDisP-4", "Percent ","Park access",geocode)
 
     });
 
@@ -3121,7 +3398,7 @@
     aria-labelledby="heading-bikeLanP"
     data-parent="#accordion-1"
     data-indicator-name="bikeLanP"
-    data-count="4"
+    data-count="5"
   >
     <div class="card-body card-body-no-top">
 
@@ -3134,7 +3411,7 @@
 
                 <div class="col-md-7 border-right h-100">
                 
-                <div style="width:100%; height:40vmin; z-index:10000;" class="" id="map-bikeLanP-4">
+                <div style="width:100%; height:40vmin; z-index:10000;" class="" id="map-bikeLanP-5">
                     ...map is loading...
                 </div><div class="data-note mt-1"></div></div>
         
@@ -3303,285 +3580,7 @@
 
             var mapData = summaryData;
 
-            renderNRMap(mapData,  "#map-bikeLanP-4", "Percent ","Bike lanes",geocode)
-
-    });
-
-    </script>
-
-
-
-
-
-  <div class="card-header border-top" id="heading-subDistP">
-    <h2 class="mb-0">
-      <button
-        class="btn btn-block btn-sm text-left"
-        type="button"
-        data-toggle="collapse"
-        data-target="#collapse-subDistP"
-        aria-expanded="true"
-        aria-controls="collapse-subDistP"
-        onclick="getURL( 2391 , 'subDistP')"
-      >
-        
-        <div class="row no-gutters" style="width: 100%">
-          <div class="col-7 d-print-none">
-            <span class="font-weight-bold fs-md"
-              >Subway access</span
-            ><br />
-            <span class="fs-sm font-weight-normal"
-              >Walking distance to a subway station, 2018</span
-            >
-          </div>
-          <div class="col-3 pl-1 d-print-none">
-            <span class="font-weight-bold fs-lg"
-              >39.0</span
-            >
-            <br />
-            <span class="fs-xs font-weight-normal"
-              >Percent </span
-            >
-          </div>
-
-          
-
-          <div class="col-2 d-print-none">
-              <div class="float-right mt-1">
-              <span
-                    class="worse">Lower</span>
-            </div>
-          </div>
-
-          
-          <div class="col-12 print-only" style="flex-direction:row; width:100%;">
-
-            
-            <div style="width:50%;" class="border-right pl-1">
-              <span class="font-weight-bold fs-md">
-                Subway access
-              </span><br />
-              <span class="fs-sm font-weight-normal">Walking distance to a subway station, 2018</span>
-            </div>
-
-            
-            <div style="width:25%" class="border-right pl-1">
-              <span class="font-weight-bold fs-lg">
-                39.0
-              </span><br />
-              <span class="fs-xs font-weight-normal">
-                Percent 
-              </span>
-            </div>
-
-            
-
-            
-            <div style="width:25%;" class="pl-1">
-
-              Less than most neighborhoods
-
-
-
-            </div>
-
-          </div>
-
-        </div>
-      </button>
-    </h2>
-  </div>
-
-
-  <div
-    id="collapse-subDistP"
-    class="collapse border-bottom "
-    aria-labelledby="heading-subDistP"
-    data-parent="#accordion-1"
-    data-indicator-name="subDistP"
-    data-count="5"
-  >
-    <div class="card-body card-body-no-top">
-
-      <div class="row no-gutters fs-sm">
-        <div class="col-12">
-            
-            <p class="fs-md mt-1 mb-2">The percentage of population within a quarter-mile of a subway station entrance. When more people have convenient access to the transit system, they're more likely to use it. Subway access encourages active transportation, which improves the health of residents.<a id="2391" href="" class="ml-1" style="display:none"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Full dataset</a>
-            </p>
-        </div>
-
-                <div class="col-md-7 border-right h-100">
-                
-                <div style="width:100%; height:40vmin; z-index:10000;" class="" id="map-subDistP-5">
-                    ...map is loading...
-                </div><div class="data-note mt-1"></div></div>
-        
-        
-        
-        
-
-        
-
-        <div class="col-md-5 h-100 p-1 ">
-
-            <p class="fs-rg">
-                Subway access in <strong>Southwest Queens</strong>:
-                <div class=" fs-md">
-                  <p>
-                    <span class="worse-sm fs-sm mt-1">Less than most</span>&nbsp;neighborhoods
-                  </p>
-
-                  <p>
-                    <span id="b-subway-access"></span> the <strong>Queens average</strong> 
-                    <br>
-                    <span class="fs-sm pl-3">(<span id="bv-subway-access">boro val</span>%)</span>
-                  </p>
-
-                  <p>
-                    <span id="c-subway-access"></span> the <strong>Citywide average</strong> 
-                    <br>
-                    <span class="fs-sm pl-3">(<span id="cv-subway-access">city val</span>%)</span>
-                  </p>
-
-                    </div>
-                
-            </p>
-
-             
-            <div id="trend" class="hide">
-            <p>In <strong>Queens</strong>, it is [TREND]. Citywide, the trend is [TREND].</p>
-            </div>
-
-            
-
-            <span id="year-subway-access" class="sr-only">YEAR</span>
-
-          
-
-        </div>
-
-        <div class="col-12">
-            <span class="fs-xs"><strong>Source:</strong> United States Census; Metropolitan Transportation Authority </span>
-        </div>
-
-      </div>
-    </div>
-  </div>
-
-<script>
-    
-    (function(x, y) {
-        var endDate = new Date(x);
-        var year = endDate.getFullYear(); 
-        document.getElementById(y).innerHTML = year;
-    })(`2018-12-31`, `year-subway-access`);
-
-(function(n, b, c, nid, bid, cid, rr) {
-    n = Number(n);
-    b = Number(b);
-    c = Number(c);
-
-    let rankReverse = (rr === true || rr === 'true');
-
-    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
-    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
-
-    let boroJudgement;
-    if (n > b && rankReverse) {
-      boroJudgement = 'comp-good';
-    } else if (n < b && rankReverse) {
-      boroJudgement = 'comp-bad';
-    } else if (n > b && !rankReverse) {
-      boroJudgement = 'comp-bad';
-    } else if (n < b && !rankReverse) {
-      boroJudgement = 'comp-good';
-    } else {
-      boroJudgement = 'comp-null';
-    }
-
-    let cityJudgement;
-    if (n > c && rankReverse) {
-      cityJudgement = 'comp-good';
-    } else if (n < c && rankReverse) {
-      cityJudgement = 'comp-bad';
-    } else if (n > c && !rankReverse) {
-      cityJudgement = 'comp-bad';
-    } else if (n < c && !rankReverse) {
-      cityJudgement = 'comp-good';
-    } else {
-      cityJudgement = 'comp-null';
-    }
-
-    let boroEl = document.getElementById(bid);
-    if (boroEl) {
-        boroEl.innerHTML = boroComp;
-        boroEl.classList.add(boroJudgement);
-    }
-
-    let cityEl = document.getElementById(cid);
-    if (cityEl) {
-        cityEl.innerHTML = cityComp;
-        cityEl.classList.add(cityJudgement);
-    }
-
-    document.getElementById('bv-subway-access').innerHTML = b;
-    document.getElementById('cv-subway-access').innerHTML = c;
-
-
-})(
-     39 ,
-     29 ,
-     48 ,
-    'n-subway-access',
-    'b-subway-access',
-    'c-subway-access',
-     true 
-)
-
-
-</script>
-
-
-
-
-<script type="text/javascript">
-
-    $( "#collapse-subDistP" ).on('shown.bs.collapse', function() {
-
-        
-
-        gtag('event', 'click_modal', {
-                'modal_name': 'Subway access'
-            });
-
-        var opt = {"renderer": "svg"};
-
-            
-
-            
-
-            var summaryData =
-                arqTable
-                .filter(d => d.indicator_data_name == "subDistP")
-                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
-                .dedupe()
-                .groupby("neighborhood")
-                .orderby("neighborhood", aq.desc("end_date"))
-                .slice(0,1) 
-                .ungroup()
-                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
-                .orderby("unmodified_data_value_geo_entity") 
-                .select(aq.not("end_date"))
-                .objects()
-
-
-            
-
-            
-
-            var mapData = summaryData;
-
-            renderNRMap(mapData,  "#map-subDistP-5", "Percent ","Subway access",geocode)
+            renderNRMap(mapData,  "#map-bikeLanP-5", "Percent ","Bike lanes",geocode)
 
     });
 

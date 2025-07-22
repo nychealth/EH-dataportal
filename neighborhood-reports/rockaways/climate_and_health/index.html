@@ -3636,283 +3636,6 @@
 
 
 
-  <div class="card-header border-top" id="heading-Seri691">
-    <h2 class="mb-0">
-      <button
-        class="btn btn-block btn-sm text-left"
-        type="button"
-        data-toggle="collapse"
-        data-target="#collapse-Seri691"
-        aria-expanded="true"
-        aria-controls="collapse-Seri691"
-        onclick="getURL( 2144 , 'Seri691')"
-      >
-        
-        <div class="row no-gutters" style="width: 100%">
-          <div class="col-7 d-print-none">
-            <span class="font-weight-bold fs-md"
-              >Psychological distress</span
-            ><br />
-            <span class="fs-sm font-weight-normal"
-              >Serious psychological distress, 2012</span
-            >
-          </div>
-          <div class="col-3 pl-1 d-print-none">
-            <span class="font-weight-bold fs-lg"
-              >N/A**</span
-            >
-            <br />
-            <span class="fs-xs font-weight-normal"
-              >Percent </span
-            >
-          </div>
-
-          
-
-          <div class="col-2 d-print-none">
-              <div class="float-right mt-1">
-              <span class="middle d-none"></span>
-            </div>
-          </div>
-
-          
-          <div class="col-12 print-only" style="flex-direction:row; width:100%;">
-
-            
-            <div style="width:50%;" class="border-right pl-1">
-              <span class="font-weight-bold fs-md">
-                Psychological distress
-              </span><br />
-              <span class="fs-sm font-weight-normal">Serious psychological distress, 2012</span>
-            </div>
-
-            
-            <div style="width:25%" class="border-right pl-1">
-              <span class="font-weight-bold fs-lg">
-                N/A**
-              </span><br />
-              <span class="fs-xs font-weight-normal">
-                Percent 
-              </span>
-            </div>
-
-            
-
-            
-            <div style="width:25%;" class="pl-1">
-
-              In the middle of NYC neighborhoods
-
-
-
-            </div>
-
-          </div>
-
-        </div>
-      </button>
-    </h2>
-  </div>
-
-
-  <div
-    id="collapse-Seri691"
-    class="collapse border-bottom "
-    aria-labelledby="heading-Seri691"
-    data-parent="#accordion-3"
-    data-indicator-name="Seri691"
-    data-count="3"
-  >
-    <div class="card-body card-body-no-top">
-
-      <div class="row no-gutters fs-sm">
-        <div class="col-12">
-            
-            <p class="fs-md mt-1 mb-2">Mental health conditions like series psychological distress can be worsened by extreme weather such as heat waves and coastal storms.<a id="2144" href="" class="ml-1" style="display:none"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Full dataset</a>
-            </p>
-        </div>
-
-                <div class="col-md-7 border-right h-100">
-                
-                <div style="width:100%; height:40vmin; z-index:10000;" class="" id="map-Seri691-3">
-                    ...map is loading...
-                </div><div class="data-note mt-1">** Estimate is suppressed due to insufficient data.</div></div>
-        
-        
-        
-        
-
-        
-
-        <div class="col-md-5 h-100 p-1 ">
-
-            <p class="fs-rg">
-                Psychological distress in <strong>Rockaways</strong>:
-                <div class=" fs-md">
-                  <p>
-                    <span class="middle-sm fs-sm mt-1">In the middle of</span>&nbsp;neighborhoods
-                  </p>
-
-                  <p>
-                    <span id="b-psychological-distress"></span> the <strong>Queens average</strong> 
-                    <br>
-                    <span class="fs-sm pl-3">(<span id="bv-psychological-distress">boro val</span>%)</span>
-                  </p>
-
-                  <p>
-                    <span id="c-psychological-distress"></span> the <strong>Citywide average</strong> 
-                    <br>
-                    <span class="fs-sm pl-3">(<span id="cv-psychological-distress">city val</span>%)</span>
-                  </p>
-
-                    </div>
-                
-            </p>
-
-             
-            <div id="trend" class="hide">
-            <p>In <strong>Queens</strong>, it is [TREND]. Citywide, the trend is [TREND].</p>
-            </div>
-
-            
-
-            <span id="year-psychological-distress" class="sr-only">YEAR</span>
-
-          
-
-        </div>
-
-        <div class="col-12">
-            <span class="fs-xs"><strong>Source:</strong> New York City Community Health Survey (CHS)</span>
-        </div>
-
-      </div>
-    </div>
-  </div>
-
-<script>
-    
-    (function(x, y) {
-        var endDate = new Date(x);
-        var year = endDate.getFullYear(); 
-        document.getElementById(y).innerHTML = year;
-    })(`2012-12-31`, `year-psychological-distress`);
-
-(function(n, b, c, nid, bid, cid, rr) {
-    n = Number(n);
-    b = Number(b);
-    c = Number(c);
-
-    let rankReverse = (rr === true || rr === 'true');
-
-    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
-    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
-
-    let boroJudgement;
-    if (n > b && rankReverse) {
-      boroJudgement = 'comp-good';
-    } else if (n < b && rankReverse) {
-      boroJudgement = 'comp-bad';
-    } else if (n > b && !rankReverse) {
-      boroJudgement = 'comp-bad';
-    } else if (n < b && !rankReverse) {
-      boroJudgement = 'comp-good';
-    } else {
-      boroJudgement = 'comp-null';
-    }
-
-    let cityJudgement;
-    if (n > c && rankReverse) {
-      cityJudgement = 'comp-good';
-    } else if (n < c && rankReverse) {
-      cityJudgement = 'comp-bad';
-    } else if (n > c && !rankReverse) {
-      cityJudgement = 'comp-bad';
-    } else if (n < c && !rankReverse) {
-      cityJudgement = 'comp-good';
-    } else {
-      cityJudgement = 'comp-null';
-    }
-
-    let boroEl = document.getElementById(bid);
-    if (boroEl) {
-        boroEl.innerHTML = boroComp;
-        boroEl.classList.add(boroJudgement);
-    }
-
-    let cityEl = document.getElementById(cid);
-    if (cityEl) {
-        cityEl.innerHTML = cityComp;
-        cityEl.classList.add(cityJudgement);
-    }
-
-    document.getElementById('bv-psychological-distress').innerHTML = b;
-    document.getElementById('cv-psychological-distress').innerHTML = c;
-
-
-})(
-     null ,
-     4.6 ,
-     5.5 ,
-    'n-psychological-distress',
-    'b-psychological-distress',
-    'c-psychological-distress',
-     false 
-)
-
-
-</script>
-
-
-
-
-<script type="text/javascript">
-
-    $( "#collapse-Seri691" ).on('shown.bs.collapse', function() {
-
-        
-
-        gtag('event', 'click_modal', {
-                'modal_name': 'Psychological distress'
-            });
-
-        var opt = {"renderer": "svg"};
-
-            
-
-            
-
-            var summaryData =
-                arqTable
-                .filter(d => d.indicator_data_name == "Seri691")
-                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
-                .dedupe()
-                .groupby("neighborhood")
-                .orderby("neighborhood", aq.desc("end_date"))
-                .slice(0,1) 
-                .ungroup()
-                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
-                .orderby("unmodified_data_value_geo_entity") 
-                .select(aq.not("end_date"))
-                .objects()
-
-
-            
-
-            
-
-            var mapData = summaryData;
-
-            renderNRMap(mapData,  "#map-Seri691-3", "Percent ","Psychological distress",geocode)
-
-    });
-
-    </script>
-
-
-
-
-
   <div class="card-header border-top" id="heading-Olde693">
     <h2 class="mb-0">
       <button
@@ -3998,7 +3721,7 @@
     aria-labelledby="heading-Olde693"
     data-parent="#accordion-3"
     data-indicator-name="Olde693"
-    data-count="4"
+    data-count="3"
   >
     <div class="card-body card-body-no-top">
 
@@ -4011,7 +3734,7 @@
 
                 <div class="col-md-7 border-right h-100">
                 
-                <div style="width:100%; height:40vmin; z-index:10000;" class="" id="map-Olde693-4">
+                <div style="width:100%; height:40vmin; z-index:10000;" class="" id="map-Olde693-3">
                     ...map is loading...
                 </div><div class="data-note mt-1"></div></div>
         
@@ -4180,7 +3903,7 @@
 
             var mapData = summaryData;
 
-            renderNRMap(mapData,  "#map-Olde693-4", "Percent ","Older adults living alone (65\u002b)",geocode)
+            renderNRMap(mapData,  "#map-Olde693-3", "Percent ","Older adults living alone (65\u002b)",geocode)
 
     });
 
@@ -4276,7 +3999,7 @@
     aria-labelledby="heading-Adul692"
     data-parent="#accordion-3"
     data-indicator-name="Adul692"
-    data-count="5"
+    data-count="4"
   >
     <div class="card-body card-body-no-top">
 
@@ -4289,7 +4012,7 @@
 
                 <div class="col-md-7 border-right h-100">
                 
-                <div style="width:100%; height:40vmin; z-index:10000;" class="" id="map-Adul692-5">
+                <div style="width:100%; height:40vmin; z-index:10000;" class="" id="map-Adul692-4">
                     ...map is loading...
                 </div><div class="data-note mt-1"></div></div>
         
@@ -4458,7 +4181,286 @@
 
             var mapData = summaryData;
 
-            renderNRMap(mapData,  "#map-Adul692-5", "Percent ","Independence difficulty",geocode)
+            renderNRMap(mapData,  "#map-Adul692-4", "Percent ","Independence difficulty",geocode)
+
+    });
+
+    </script>
+
+
+
+
+
+  <div class="card-header border-top" id="heading-Seri691">
+    <h2 class="mb-0">
+      <button
+        class="btn btn-block btn-sm text-left"
+        type="button"
+        data-toggle="collapse"
+        data-target="#collapse-Seri691"
+        aria-expanded="true"
+        aria-controls="collapse-Seri691"
+        onclick="getURL( 2144 , 'Seri691')"
+      >
+        
+        <div class="row no-gutters" style="width: 100%">
+          <div class="col-7 d-print-none">
+            <span class="font-weight-bold fs-md"
+              >Psychological distress</span
+            ><br />
+            <span class="fs-sm font-weight-normal"
+              >Serious psychological distress, 2012</span
+            >
+          </div>
+          <div class="col-3 pl-1 d-print-none">
+            <span class="font-weight-bold fs-lg"
+              >N/A**</span
+            >
+            <br />
+            <span class="fs-xs font-weight-normal"
+              >Percent </span
+            >
+          </div>
+
+          
+
+          <div class="col-2 d-print-none">
+              <div class="float-right mt-1">
+              <span class="middle d-none"></span>
+            </div>
+          </div>
+
+          
+          <div class="col-12 print-only" style="flex-direction:row; width:100%;">
+
+            
+            <div style="width:50%;" class="border-right pl-1">
+              <span class="font-weight-bold fs-md">
+                Psychological distress
+              </span><br />
+              <span class="fs-sm font-weight-normal">Serious psychological distress, 2012</span>
+            </div>
+
+            
+            <div style="width:25%" class="border-right pl-1">
+              <span class="font-weight-bold fs-lg">
+                N/A**
+              </span><br />
+              <span class="fs-xs font-weight-normal">
+                Percent 
+              </span>
+            </div>
+
+            
+
+            
+            <div style="width:25%;" class="pl-1">
+
+              
+
+
+
+            </div>
+
+          </div>
+
+        </div>
+      </button>
+    </h2>
+  </div>
+
+
+  <div
+    id="collapse-Seri691"
+    class="collapse border-bottom "
+    aria-labelledby="heading-Seri691"
+    data-parent="#accordion-3"
+    data-indicator-name="Seri691"
+    data-count="5"
+  >
+    <div class="card-body card-body-no-top">
+
+      <div class="row no-gutters fs-sm">
+        <div class="col-12">
+            
+            <p class="fs-md mt-1 mb-2">Mental health conditions like series psychological distress can be worsened by extreme weather such as heat waves and coastal storms.<a id="2144" href="" class="ml-1" style="display:none"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Full dataset</a>
+            </p>
+        </div>
+
+                <div class="col-md-7 border-right h-100">
+                
+                <div style="width:100%; height:40vmin; z-index:10000;" class="" id="map-Seri691-5">
+                    ...map is loading...
+                </div><div class="data-note mt-1">** Estimate is suppressed due to insufficient data.</div></div>
+        
+        
+        
+        
+
+         
+           
+        
+
+        <div class="col-md-5 h-100 p-1 d-none">
+
+            <p class="fs-rg">
+                Psychological distress in <strong>Rockaways</strong>:
+                <div class=" fs-md">
+                  <p>
+                    
+                  </p>
+
+                  <p>
+                    <span id="b-psychological-distress"></span> the <strong>Queens average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="bv-psychological-distress">boro val</span>%)</span>
+                  </p>
+
+                  <p>
+                    <span id="c-psychological-distress"></span> the <strong>Citywide average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="cv-psychological-distress">city val</span>%)</span>
+                  </p>
+
+                    </div>
+                
+            </p>
+
+             
+            <div id="trend" class="hide">
+            <p>In <strong>Queens</strong>, it is [TREND]. Citywide, the trend is [TREND].</p>
+            </div>
+
+            
+
+            <span id="year-psychological-distress" class="sr-only">YEAR</span>
+
+          
+
+        </div>
+
+        <div class="col-12">
+            <span class="fs-xs"><strong>Source:</strong> New York City Community Health Survey (CHS)</span>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+<script>
+    
+    (function(x, y) {
+        var endDate = new Date(x);
+        var year = endDate.getFullYear(); 
+        document.getElementById(y).innerHTML = year;
+    })(`2012-12-31`, `year-psychological-distress`);
+
+(function(n, b, c, nid, bid, cid, rr) {
+    n = Number(n);
+    b = Number(b);
+    c = Number(c);
+
+    let rankReverse = (rr === true || rr === 'true');
+
+    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
+    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
+
+    let boroJudgement;
+    if (n > b && rankReverse) {
+      boroJudgement = 'comp-good';
+    } else if (n < b && rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n > b && !rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n < b && !rankReverse) {
+      boroJudgement = 'comp-good';
+    } else {
+      boroJudgement = 'comp-null';
+    }
+
+    let cityJudgement;
+    if (n > c && rankReverse) {
+      cityJudgement = 'comp-good';
+    } else if (n < c && rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n > c && !rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n < c && !rankReverse) {
+      cityJudgement = 'comp-good';
+    } else {
+      cityJudgement = 'comp-null';
+    }
+
+    let boroEl = document.getElementById(bid);
+    if (boroEl) {
+        boroEl.innerHTML = boroComp;
+        boroEl.classList.add(boroJudgement);
+    }
+
+    let cityEl = document.getElementById(cid);
+    if (cityEl) {
+        cityEl.innerHTML = cityComp;
+        cityEl.classList.add(cityJudgement);
+    }
+
+    document.getElementById('bv-psychological-distress').innerHTML = b;
+    document.getElementById('cv-psychological-distress').innerHTML = c;
+
+
+})(
+     null ,
+     4.6 ,
+     5.5 ,
+    'n-psychological-distress',
+    'b-psychological-distress',
+    'c-psychological-distress',
+     false 
+)
+
+
+</script>
+
+
+
+
+<script type="text/javascript">
+
+    $( "#collapse-Seri691" ).on('shown.bs.collapse', function() {
+
+        
+
+        gtag('event', 'click_modal', {
+                'modal_name': 'Psychological distress'
+            });
+
+        var opt = {"renderer": "svg"};
+
+            
+
+            
+
+            var summaryData =
+                arqTable
+                .filter(d => d.indicator_data_name == "Seri691")
+                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
+                .dedupe()
+                .groupby("neighborhood")
+                .orderby("neighborhood", aq.desc("end_date"))
+                .slice(0,1) 
+                .ungroup()
+                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
+                .orderby("unmodified_data_value_geo_entity") 
+                .select(aq.not("end_date"))
+                .objects()
+
+
+            
+
+            
+
+            var mapData = summaryData;
+
+            renderNRMap(mapData,  "#map-Seri691-5", "Percent ","Psychological distress",geocode)
 
     });
 

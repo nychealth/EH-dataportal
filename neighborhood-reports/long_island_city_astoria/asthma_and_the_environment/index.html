@@ -1349,283 +1349,6 @@
 
 
 
-  <div class="card-header border-top" id="heading-Adul31">
-    <h2 class="mb-0">
-      <button
-        class="btn btn-block btn-sm text-left"
-        type="button"
-        data-toggle="collapse"
-        data-target="#collapse-Adul31"
-        aria-expanded="true"
-        aria-controls="collapse-Adul31"
-        onclick="getURL( 18 , 'Adul31')"
-      >
-        
-        <div class="row no-gutters" style="width: 100%">
-          <div class="col-7 d-print-none">
-            <span class="font-weight-bold fs-md"
-              >Asthma (adults)</span
-            ><br />
-            <span class="fs-sm font-weight-normal"
-              >Adults with a recent asthma attack, 2022</span
-            >
-          </div>
-          <div class="col-3 pl-1 d-print-none">
-            <span class="font-weight-bold fs-lg"
-              >N/A**</span
-            >
-            <br />
-            <span class="fs-xs font-weight-normal"
-              >Age-adjusted percent </span
-            >
-          </div>
-
-          
-
-          <div class="col-2 d-print-none">
-              <div class="float-right mt-1">
-              <span class="middle d-none"></span>
-            </div>
-          </div>
-
-          
-          <div class="col-12 print-only" style="flex-direction:row; width:100%;">
-
-            
-            <div style="width:50%;" class="border-right pl-1">
-              <span class="font-weight-bold fs-md">
-                Asthma (adults)
-              </span><br />
-              <span class="fs-sm font-weight-normal">Adults with a recent asthma attack, 2022</span>
-            </div>
-
-            
-            <div style="width:25%" class="border-right pl-1">
-              <span class="font-weight-bold fs-lg">
-                N/A**
-              </span><br />
-              <span class="fs-xs font-weight-normal">
-                Age-adjusted percent 
-              </span>
-            </div>
-
-            
-
-            
-            <div style="width:25%;" class="pl-1">
-
-              In the middle of NYC neighborhoods
-
-
-
-            </div>
-
-          </div>
-
-        </div>
-      </button>
-    </h2>
-  </div>
-
-
-  <div
-    id="collapse-Adul31"
-    class="collapse border-bottom "
-    aria-labelledby="heading-Adul31"
-    data-parent="#accordion-0"
-    data-indicator-name="Adul31"
-    data-count="2"
-  >
-    <div class="card-body card-body-no-top">
-
-      <div class="row no-gutters fs-sm">
-        <div class="col-12">
-            
-            <p class="fs-md mt-1 mb-2">Adults who reported having an asthma attack in the past 12 months from when they were surveyed.<a id="18" href="" class="ml-1" style="display:none"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Full dataset</a>
-            </p>
-        </div>
-
-                <div class="col-md-7 border-right h-100">
-                
-                <div style="width:100%; height:40vmin; z-index:10000;" class="" id="map-Adul31-2">
-                    ...map is loading...
-                </div><div class="data-note mt-1">** Estimate is suppressed due to insufficient data.</div></div>
-        
-        
-        
-        
-
-        
-
-        <div class="col-md-5 h-100 p-1 ">
-
-            <p class="fs-rg">
-                Asthma (adults) in <strong>Long Island City - Astoria</strong>:
-                <div class=" fs-md">
-                  <p>
-                    <span class="middle-sm fs-sm mt-1">In the middle of</span>&nbsp;neighborhoods
-                  </p>
-
-                  <p>
-                    <span id="b-asthma-adults"></span> the <strong>Queens average</strong> 
-                    <br>
-                    <span class="fs-sm pl-3">(<span id="bv-asthma-adults">boro val</span>%)</span>
-                  </p>
-
-                  <p>
-                    <span id="c-asthma-adults"></span> the <strong>Citywide average</strong> 
-                    <br>
-                    <span class="fs-sm pl-3">(<span id="cv-asthma-adults">city val</span>%)</span>
-                  </p>
-
-                    </div>
-                
-            </p>
-
-             
-            <div id="trend" class="hide">
-            <p>In <strong>Queens</strong>, it is [TREND]. Citywide, the trend is [TREND].</p>
-            </div>
-
-            
-
-            <span id="year-asthma-adults" class="sr-only">YEAR</span>
-
-          
-
-        </div>
-
-        <div class="col-12">
-            <span class="fs-xs"><strong>Source:</strong> New York City Community Health Survey (CHS)</span>
-        </div>
-
-      </div>
-    </div>
-  </div>
-
-<script>
-    
-    (function(x, y) {
-        var endDate = new Date(x);
-        var year = endDate.getFullYear(); 
-        document.getElementById(y).innerHTML = year;
-    })(`2022-12-31`, `year-asthma-adults`);
-
-(function(n, b, c, nid, bid, cid, rr) {
-    n = Number(n);
-    b = Number(b);
-    c = Number(c);
-
-    let rankReverse = (rr === true || rr === 'true');
-
-    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
-    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
-
-    let boroJudgement;
-    if (n > b && rankReverse) {
-      boroJudgement = 'comp-good';
-    } else if (n < b && rankReverse) {
-      boroJudgement = 'comp-bad';
-    } else if (n > b && !rankReverse) {
-      boroJudgement = 'comp-bad';
-    } else if (n < b && !rankReverse) {
-      boroJudgement = 'comp-good';
-    } else {
-      boroJudgement = 'comp-null';
-    }
-
-    let cityJudgement;
-    if (n > c && rankReverse) {
-      cityJudgement = 'comp-good';
-    } else if (n < c && rankReverse) {
-      cityJudgement = 'comp-bad';
-    } else if (n > c && !rankReverse) {
-      cityJudgement = 'comp-bad';
-    } else if (n < c && !rankReverse) {
-      cityJudgement = 'comp-good';
-    } else {
-      cityJudgement = 'comp-null';
-    }
-
-    let boroEl = document.getElementById(bid);
-    if (boroEl) {
-        boroEl.innerHTML = boroComp;
-        boroEl.classList.add(boroJudgement);
-    }
-
-    let cityEl = document.getElementById(cid);
-    if (cityEl) {
-        cityEl.innerHTML = cityComp;
-        cityEl.classList.add(cityJudgement);
-    }
-
-    document.getElementById('bv-asthma-adults').innerHTML = b;
-    document.getElementById('cv-asthma-adults').innerHTML = c;
-
-
-})(
-     null ,
-     3.1 ,
-     4.3 ,
-    'n-asthma-adults',
-    'b-asthma-adults',
-    'c-asthma-adults',
-     false 
-)
-
-
-</script>
-
-
-
-
-<script type="text/javascript">
-
-    $( "#collapse-Adul31" ).on('shown.bs.collapse', function() {
-
-        
-
-        gtag('event', 'click_modal', {
-                'modal_name': 'Asthma (adults)'
-            });
-
-        var opt = {"renderer": "svg"};
-
-            
-
-            
-
-            var summaryData =
-                arqTable
-                .filter(d => d.indicator_data_name == "Adul31")
-                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
-                .dedupe()
-                .groupby("neighborhood")
-                .orderby("neighborhood", aq.desc("end_date"))
-                .slice(0,1) 
-                .ungroup()
-                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
-                .orderby("unmodified_data_value_geo_entity") 
-                .select(aq.not("end_date"))
-                .objects()
-
-
-            
-
-            
-
-            var mapData = summaryData;
-
-            renderNRMap(mapData,  "#map-Adul31-2", "Age-adjusted percent ","Asthma (adults)",geocode)
-
-    });
-
-    </script>
-
-
-
-
-
   <div class="card-header border-top" id="heading-Asth1199">
     <h2 class="mb-0">
       <button
@@ -1711,7 +1434,7 @@
     aria-labelledby="heading-Asth1199"
     data-parent="#accordion-0"
     data-indicator-name="Asth1199"
-    data-count="3"
+    data-count="2"
   >
     <div class="card-body card-body-no-top">
 
@@ -1724,7 +1447,7 @@
 
                 <div class="col-md-7 border-right h-100">
                 
-                <div style="width:100%; height:40vmin; z-index:10000;" class="" id="map-Asth1199-3">
+                <div style="width:100%; height:40vmin; z-index:10000;" class="" id="map-Asth1199-2">
                     ...map is loading...
                 </div><div class="data-note mt-1"></div></div>
         
@@ -1893,7 +1616,286 @@
 
             var mapData = summaryData;
 
-            renderNRMap(mapData,  "#map-Asth1199-3", "Age-adjusted rate per 10,000","Asthma ED visits (adults)",geocode)
+            renderNRMap(mapData,  "#map-Asth1199-2", "Age-adjusted rate per 10,000","Asthma ED visits (adults)",geocode)
+
+    });
+
+    </script>
+
+
+
+
+
+  <div class="card-header border-top" id="heading-Adul31">
+    <h2 class="mb-0">
+      <button
+        class="btn btn-block btn-sm text-left"
+        type="button"
+        data-toggle="collapse"
+        data-target="#collapse-Adul31"
+        aria-expanded="true"
+        aria-controls="collapse-Adul31"
+        onclick="getURL( 18 , 'Adul31')"
+      >
+        
+        <div class="row no-gutters" style="width: 100%">
+          <div class="col-7 d-print-none">
+            <span class="font-weight-bold fs-md"
+              >Asthma (adults)</span
+            ><br />
+            <span class="fs-sm font-weight-normal"
+              >Adults with a recent asthma attack, 2022</span
+            >
+          </div>
+          <div class="col-3 pl-1 d-print-none">
+            <span class="font-weight-bold fs-lg"
+              >N/A**</span
+            >
+            <br />
+            <span class="fs-xs font-weight-normal"
+              >Age-adjusted percent </span
+            >
+          </div>
+
+          
+
+          <div class="col-2 d-print-none">
+              <div class="float-right mt-1">
+              <span class="middle d-none"></span>
+            </div>
+          </div>
+
+          
+          <div class="col-12 print-only" style="flex-direction:row; width:100%;">
+
+            
+            <div style="width:50%;" class="border-right pl-1">
+              <span class="font-weight-bold fs-md">
+                Asthma (adults)
+              </span><br />
+              <span class="fs-sm font-weight-normal">Adults with a recent asthma attack, 2022</span>
+            </div>
+
+            
+            <div style="width:25%" class="border-right pl-1">
+              <span class="font-weight-bold fs-lg">
+                N/A**
+              </span><br />
+              <span class="fs-xs font-weight-normal">
+                Age-adjusted percent 
+              </span>
+            </div>
+
+            
+
+            
+            <div style="width:25%;" class="pl-1">
+
+              
+
+
+
+            </div>
+
+          </div>
+
+        </div>
+      </button>
+    </h2>
+  </div>
+
+
+  <div
+    id="collapse-Adul31"
+    class="collapse border-bottom "
+    aria-labelledby="heading-Adul31"
+    data-parent="#accordion-0"
+    data-indicator-name="Adul31"
+    data-count="3"
+  >
+    <div class="card-body card-body-no-top">
+
+      <div class="row no-gutters fs-sm">
+        <div class="col-12">
+            
+            <p class="fs-md mt-1 mb-2">Adults who reported having an asthma attack in the past 12 months from when they were surveyed.<a id="18" href="" class="ml-1" style="display:none"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Full dataset</a>
+            </p>
+        </div>
+
+                <div class="col-md-7 border-right h-100">
+                
+                <div style="width:100%; height:40vmin; z-index:10000;" class="" id="map-Adul31-3">
+                    ...map is loading...
+                </div><div class="data-note mt-1">** Estimate is suppressed due to insufficient data.</div></div>
+        
+        
+        
+        
+
+         
+           
+        
+
+        <div class="col-md-5 h-100 p-1 d-none">
+
+            <p class="fs-rg">
+                Asthma (adults) in <strong>Long Island City - Astoria</strong>:
+                <div class=" fs-md">
+                  <p>
+                    
+                  </p>
+
+                  <p>
+                    <span id="b-asthma-adults"></span> the <strong>Queens average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="bv-asthma-adults">boro val</span>%)</span>
+                  </p>
+
+                  <p>
+                    <span id="c-asthma-adults"></span> the <strong>Citywide average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="cv-asthma-adults">city val</span>%)</span>
+                  </p>
+
+                    </div>
+                
+            </p>
+
+             
+            <div id="trend" class="hide">
+            <p>In <strong>Queens</strong>, it is [TREND]. Citywide, the trend is [TREND].</p>
+            </div>
+
+            
+
+            <span id="year-asthma-adults" class="sr-only">YEAR</span>
+
+          
+
+        </div>
+
+        <div class="col-12">
+            <span class="fs-xs"><strong>Source:</strong> New York City Community Health Survey (CHS)</span>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+<script>
+    
+    (function(x, y) {
+        var endDate = new Date(x);
+        var year = endDate.getFullYear(); 
+        document.getElementById(y).innerHTML = year;
+    })(`2022-12-31`, `year-asthma-adults`);
+
+(function(n, b, c, nid, bid, cid, rr) {
+    n = Number(n);
+    b = Number(b);
+    c = Number(c);
+
+    let rankReverse = (rr === true || rr === 'true');
+
+    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
+    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
+
+    let boroJudgement;
+    if (n > b && rankReverse) {
+      boroJudgement = 'comp-good';
+    } else if (n < b && rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n > b && !rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n < b && !rankReverse) {
+      boroJudgement = 'comp-good';
+    } else {
+      boroJudgement = 'comp-null';
+    }
+
+    let cityJudgement;
+    if (n > c && rankReverse) {
+      cityJudgement = 'comp-good';
+    } else if (n < c && rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n > c && !rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n < c && !rankReverse) {
+      cityJudgement = 'comp-good';
+    } else {
+      cityJudgement = 'comp-null';
+    }
+
+    let boroEl = document.getElementById(bid);
+    if (boroEl) {
+        boroEl.innerHTML = boroComp;
+        boroEl.classList.add(boroJudgement);
+    }
+
+    let cityEl = document.getElementById(cid);
+    if (cityEl) {
+        cityEl.innerHTML = cityComp;
+        cityEl.classList.add(cityJudgement);
+    }
+
+    document.getElementById('bv-asthma-adults').innerHTML = b;
+    document.getElementById('cv-asthma-adults').innerHTML = c;
+
+
+})(
+     null ,
+     3.1 ,
+     4.3 ,
+    'n-asthma-adults',
+    'b-asthma-adults',
+    'c-asthma-adults',
+     false 
+)
+
+
+</script>
+
+
+
+
+<script type="text/javascript">
+
+    $( "#collapse-Adul31" ).on('shown.bs.collapse', function() {
+
+        
+
+        gtag('event', 'click_modal', {
+                'modal_name': 'Asthma (adults)'
+            });
+
+        var opt = {"renderer": "svg"};
+
+            
+
+            
+
+            var summaryData =
+                arqTable
+                .filter(d => d.indicator_data_name == "Adul31")
+                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
+                .dedupe()
+                .groupby("neighborhood")
+                .orderby("neighborhood", aq.desc("end_date"))
+                .slice(0,1) 
+                .ungroup()
+                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
+                .orderby("unmodified_data_value_geo_entity") 
+                .select(aq.not("end_date"))
+                .objects()
+
+
+            
+
+            
+
+            var mapData = summaryData;
+
+            renderNRMap(mapData,  "#map-Adul31-3", "Age-adjusted percent ","Asthma (adults)",geocode)
 
     });
 
