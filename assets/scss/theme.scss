@@ -624,8 +624,9 @@ h2.report-info {
 }
 
 .better, .middle, .worse {
-    width: 135px;
-    height: 30px;
+    //* width: 135px;
+    padding: 3px;
+    //* height: 30px;
     border-radius: 8px;
     display: block;
     text-align: center;
@@ -634,7 +635,20 @@ h2.report-info {
         width: 78px;
         display: inline-block;
     }
+}
 
+@media print {
+    .better, .middle, .worse {
+        /* whatever styles you want only for print */
+        font-size: 1rem;
+        text-align: left;
+        color: black;
+    }
+}
+
+.better-sm, .middle-sm, .worse-sm {
+    display: inline-block;
+    font-size: inherit!important;
 }
 
 .worse {
@@ -648,6 +662,8 @@ h2.report-info {
 .better {
     background-color: #D1F0C8;
 }
+
+
 .comparison {
     font-weight: 600;
     margin-bottom: 1.25rem;
