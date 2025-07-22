@@ -6,12 +6,13 @@
 
 {{- $content := index $.Site.Data.globals.NR_footer $.Params.content_yml -}}
 
-<div class="row d-print-none" data-pagefind-ignore="all">
-    <div class="col-6">
+<div class="row d-print-none mb-4" data-pagefind-ignore="all">
+
+    <div class="col-4">
         <div class="card card-left-border shadow-sm">
             <div class="card-body">
                 <h4 class="h5">What is the City doing?</h4>
-                                <ul class="list-group list-group-flush fs-sm">
+                    <ul class="list-group list-group-flush fs-sm">
                     {{- range $content.city -}}
                     <li class="list-group-item border-bottom py-1 bg-transparent">{{ if .link }}<a
                         href="{{ .link }}">{{- end -}}{{ .copy }}{{ if .link }}</a>{{- end -}}</li>
@@ -21,7 +22,7 @@
         </div>
     </div>
 
-        <div class="col-6">
+    <div class="col-4">
         <div class="card card-left-border shadow-sm">
             <div class="card-body">
                 <h4 class="h5">What can you do?</h4>
@@ -34,6 +35,24 @@
             </div>
         </div>
     </div>
+
+        {{ if $content.keytopic }}
+        <div class="col-4">
+            <div class="card card-left-border shadow-sm">
+            <div class="card-body">
+
+            <h4 class="h5">More resources on:</h4>
+                <ul class="list-group list-group-flush">
+
+                {{ range $content.keytopic }}
+                <li class="list-group-item border-bottom py-1 bg-transparent">
+                    <a href="../../../key-topics/{{ .link }}">{{ .text }}</a>
+                </li>
+                {{ end }}
+            </div>
+            </div>
+        </div>
+    {{ end }}
 
 
 </div>
