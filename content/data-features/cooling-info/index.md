@@ -26,6 +26,7 @@ layout: cooling-info
 customJS: cooling-info.js
 config: config.js
 image: AC.png
+hide: true
 ---
 
 When it is hot and the air outside is unhealthy, how can you stay safe?
