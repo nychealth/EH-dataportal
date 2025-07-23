@@ -38,8 +38,6 @@ So how do we get a clear picture of neighborhood-level rat activity? With inspec
 
 Health Department inspectors conduct about 150,000 rat inspections each year. Some of these inspections are reactive, in response to a rat complaint. Others are proactive, conducted because we know from experience that there’s a high level of rat activity in the area.
 
-<!-- add other story link -->
-
 <strong><a href="../../data-stories/rat-complaints">You can read more about the inspection process here.</a></strong><br>
 
 Inspection data helps give us a well-rounded look at rat activity across New York City.
