@@ -47,7 +47,7 @@ Inspection data helps give us a well-rounded look at rat activity across New Yor
 It shows us both the percentage of properties inspected in a neighborhood, and the percentage that failed inspections. <a href="../../data-explorer/mice-and-rats/?id=2434#display=map">These failures could be for active signs of rats or rat-friendly conditions like open trash</a>.
 
 <div class="my-4">
-<div style="min-height:645px" id="datawrapper-vis-UCA7n"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/UCA7n/embed.js" charset="utf-8" data-target="#datawrapper-vis-UCA7n"></script><noscript><img src="https://datawrapper.dwcdn.net/UCA7n/full.png" alt="" /></noscript></div>
+<div style="min-height:679px" id="datawrapper-vis-JpYEi"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/JpYEi/embed.js" charset="utf-8" data-target="#datawrapper-vis-JpYEi"></script><noscript><img src="https://datawrapper.dwcdn.net/JpYEi/full.png" alt="" /></noscript></div>
 </div>
 
 In some neighborhoods, rat activity is much more common. For example, in Highbridge and Concourse, 40% of the locations inspected “failed” because they had signs of rats, whereas in Greenwich village and Soho, only 13% did. High failure rates combined with high inspection rates tell us that there is a lot of rat activity in a neighborhood overall. These data also provide a more reliable way to compare different neighborhoods than just looking at data showing which neighborhoods have more complaints.
