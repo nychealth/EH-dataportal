@@ -6,4 +6,4 @@ seo_title: "Neighborhood reports on climate and health in NYC | Environment and 
 urlExtension: "/climate_and_health/"
 vega: true
 ---
-Extreme heat, coastal storms, and flooding are climate-related hazards that are increasing because of climate change. They have important public health impacts in New York City. Extreme weather can cause power outages, which also threaten public health. This report provides neighborhood indicators of climate-related hazards, populations that may be most affected, built environment factors that can increase risk, and health impacts.
+As the climate changes, we track New York City's risk for extreme heat, storms and flooding, and episodes of elevated ozone. These have important public health impacts: already, heat kills more people than all other natural disasters.

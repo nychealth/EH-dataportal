@@ -1,0 +1,172 @@
+console.log("Config file loaded.")
+
+var content = [
+
+    
+
+
+    
+
+     /* Question 1*/
+
+    {
+        "id": 1,
+        "text": "Do any of these describe you or someone you live with?",
+        "prompt": "Certain health conditions and life situations can make you more vulnerable to extreme heat and unhealthy air quality. <ul> <li><strong>Health conditions</strong>: difficulty breathing, heart disease, asthma or other breathing condition, pregnant, diabetic, limited mobility, immunocompromised, mental health, cognitive, or developmental condition </li> <li><strong>Life situations</strong>:  work or exercise outside, limited access to indoor shelter, misuse drugs or alcohol, take medicine that makes it difficult for your body to stay cool, live alone </li> <li><strong>Age</strong>: Over 60 or under  16 </li></ul>",
+        "image": "Vulnerable_groups1.svg",
+        "options": [
+            {
+                "optionID": 1,
+                "copy": "Yes",
+                "message": "When it's hot outside or the air quality is unhealthy, listen to your body and check in on vulnerable friends, family, or neighbors.  Be ready to change plans if you need to move to a safer place.",
+                "setVariable": "sensitive('Yes')",
+                "goTo": 2
+            },
+            {   
+                "optionID": 2,
+                "copy": "No",
+                "message": "Great. Let's move on.",
+                "setVariable": "sensitive('No')",
+                "goTo": 2
+            },
+        ]
+
+    },
+
+    
+    /* Question 2*/
+
+    {
+        "id": 2,
+        "text": "Do you rely on electronic medical equipment?",
+        "prompt": "For example, a wheelchair, nebulizer, respirator, or dialysis machine.", 
+        "image": "Pacemaker.svg",
+        "options": [
+            {
+                "optionID": 1,
+                "copy": "Yes",
+                "message": "If the power goes out during a heat wave, you won't be able to charge the battery on this critical equipment. Make sure to have back-up batteries or another emergency plan. And, <a href='https://www.coned.com/en/accounts-billing/payment-plans-assistance/special-services'>register your equipment with your utility provider<a> so they can contact you during a power outage. <ul><li> CON ED: 1-800-752-6633 <li>PSEG: 1-800-490-0025</ul>",
+                "setVariable": "eme('Yes')",
+                "goTo": 3
+            },
+            {   
+                "optionID": 2,
+                "copy": "No",
+                "message": "Great. Let's move on.",
+                "setVariable": "eme('No')",
+                "goTo": 3
+            }
+        
+        ]
+
+    },
+
+    /* Question 3*/
+
+    {
+        "id": 3,
+        "text": "Do you have pets or live with animals?",
+        "prompt": "Animals are also vulnerable to heat and air quality.",
+        "image": "Parrot_pet.svg",
+        "options": [
+            {
+                "optionID": 1,
+                "copy": "Yes",
+                "message": "We'll make sure these recommendations include the safety of your animal.",
+                "setVariable": "animal('Yes')",
+                "goTo": 4
+            },
+            {
+                "optionID": 2,
+                "copy": "No",
+                "message": "Great, let's move on.",
+                "setVariable": "animal('No')",
+                "goTo": 4
+            }
+        ]
+    },
+
+
+    /* Question 4 */
+
+    {
+        "id": 4,
+        "text": "Do you have air conditioning (AC)?",
+        "prompt": "The best way to stay safe in hot weather is with air conditioning.", 
+        "image": "AC.svg",
+        "options": [
+            {
+                "optionID": 1,
+                "copy": "Yes",
+                "message": "Great! You have an air conditioner. If you don't have AC in every room, put your AC in the room you spend the most time in.",
+                "setVariable": "ac('Yes')",
+                "goTo": 5
+            },
+            {   
+                "optionID": 2,
+                "copy": "No",
+                "message": "On a hot day, inside  without air conditioning can be up to 10 degrees hotter than outside — and can stay hotter for days after it cools down outside. Being in air conditioning is the best way to stay safe when it's hot outside. Let's keep going to find other ways you can stay cool.",
+                "setVariable": "ac('No')",
+                "goTo": 6
+            }
+        ]
+
+    },
+
+
+    /* Question 5 */
+
+
+    {
+        "id": 5,
+        "text": "Do you limit your use of air conditioning because of the cost?",
+        "prompt": "If you limit your use of AC, the most important times to still use it are when it's over 80 degrees outside, and at night when apartments are still hot from earlier in the day.", 
+        "image": "Piggy_bank.svg",
+        "options": [
+            {
+                "optionID": 1,
+                "copy": "Yes",
+                "message": "Setting your air conditioner to 78F or Low Cool can keep you safe, comfortable, and save money. Visit the <a href='https://www.nyc.gov/site/hra/help/energy-assistance.page'>Home Energy Assistance Program</a> and <a href='https://www.coned.com/en/accounts-billing/payment-plans-assistance/help-paying-your-bill'>CON ED's Energy Affordability Program</a> to see if your'e eligible for help cooling your home.",
+                "setVariable": "limitAC('Yes')",
+                "goTo": 6
+            },
+            {   
+                "optionID": 2,
+                "copy": "No",
+                "message": "Great, let's move on to the next question.",
+                "setVariable": "limitAC('No')",
+                "goTo": 6
+            }
+        ]
+
+    },
+
+
+    /* Question 6 */
+
+    {
+        "id": 6,
+        "text": "Do you have a fan?",
+        "prompt": "Fans can help cool you down. But, fans do not cool the air.", 
+        "image": "Fan.svg",
+        "options": [
+            {
+                "optionID": 1,
+                "copy": "Yes",
+                "message": "Great, you have a fan. Fans can help cool you down when the air outside is cooler than the air inside. When it's hot, a fan alone is not enough. You can visit a cool place when it is hot outside.",
+                "setVariable": "fan('Yes')",
+                "goTo": 99
+            },
+            {   
+                "optionID": 2,
+                "copy": "No",
+                "message": "Let's figure out some other ways you can stay cool. Spending time in air conditioning — even for an hour or two — can help you stay safe. <a href='https://finder.nyc.gov/coolingcenters'>Visit a cool place when it is hot outside.</a>",
+                "setVariable": "fan('No')",
+                "goTo": 99
+            }
+        ]
+
+    },
+
+]
+    

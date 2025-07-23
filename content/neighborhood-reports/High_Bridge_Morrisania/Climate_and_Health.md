@@ -1,6 +1,7 @@
 ---
 title: "Climate and Health"
 neighborhood: "High Bridge - Morrisania"
+geocode: 106
 summary: "Extreme heat, coastal storms, flooding and episodes of elevated ozone are climate-related hazards that may increase with climate change and have important public health impacts in New York City. Extreme weather can cause power outages, which also threaten public health. This report provides neighborhood indicators of climate-related hazards, vulnerability and health impacts."
 data_json: "Climate and Health in High Bridge - Morrisania"
 content_yml: "Climate_and_Health"

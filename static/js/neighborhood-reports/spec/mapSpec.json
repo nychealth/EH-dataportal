@@ -41,15 +41,11 @@
             "encoding": {
                 "shape": {"field": "geo", "type": "geojson"},
                 "color": {
-                    "condition": {
-                        "test": "isValid(datum.unmodified_data_value_geo_entity)",
-                        "bin": false,
-                        "field": "unmodified_data_value_geo_entity",
-                        "type": "quantitative",
-                        "scale": {"scheme": {"name": "greens", "extent": [0, 1]}},
-                        "legend": {"orient": "top-left", "title": null}
-                    },
-                    "value": "#808080"
+                    "bin": false,
+                    "field": "unmodified_data_value_geo_entity",
+                    "type": "quantitative",
+                    "scale": {"scheme": {"name": "viridis", "extent": [1, 0]}},
+                    "legend": {"orient": "top-left", "title": null}
                 },
                 "stroke": {
                     "condition": [{"param": "highlight", "empty": false, "value": "orange"}],

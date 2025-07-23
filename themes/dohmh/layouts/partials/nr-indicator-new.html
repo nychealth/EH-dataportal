@@ -1,0 +1,357 @@
+{{/* 
+this partial takes 5 arguments as a dict: 
+    - neighborhood 
+    - borough 
+    - data: the actual data for this indicator x neighborhood 
+    - count - the nth indicator in this report topic, used for making unique element IDs
+    - index, used to create the parent accordion id 
+*/}}
+
+<!-- set directionality indicator -->
+{{ $rankReverse := .data.rankReverse }}
+
+<!-- INDICATOR ROW -->
+  <div class="card-header border-top" id="heading-{{ .data.indicator_data_name }}">
+    <h2 class="mb-0">
+      <button
+        class="btn btn-block btn-sm text-left"
+        type="button"
+        data-toggle="collapse"
+        data-target="#collapse-{{ .data.indicator_data_name }}"
+        aria-expanded="true"
+        aria-controls="collapse-{{ .data.indicator_data_name }}"
+        onclick="getURL({{ .data.IndicatorID }}, '{{ .data.indicator_data_name }}')"
+      >
+        <!-- MAIN ROW: SCREEN ONLY -->
+        <div class="row no-gutters" style="width: 100%">
+          <div class="col-7 d-print-none">
+            <span class="font-weight-bold fs-md"
+              >{{ .data.indicator_short_name }}</span
+            ><br />
+            <span class="fs-sm font-weight-normal"
+              >{{- .data.indicator_long_name -}}</span
+            >
+          </div>
+          <div class="col-3 pl-1 d-print-none">
+            <span class="font-weight-bold fs-lg"
+              >{{ .data.data_value_geo_entity }}</span
+            >
+            <br />
+            <span class="fs-xs font-weight-normal"
+              >{{ .data.measurement_type }} {{ .data.units }}</span
+            >
+          </div>
+
+          {{/*  comparison pills  */}}
+
+          <div class="col-2 d-print-none">
+              <div class="float-right mt-1">
+              {{ if eq $rankReverse false }}
+                  {{- if eq (string .data.data_value_rank) "1" -}}<span
+                    class="worse">Higher</span>
+                  {{- else if eq (string .data.data_value_rank) "3" -}}<span
+                    class="better">Lower</span>
+                  {{- else -}}<span class="middle d-none"></span>
+                  {{- end -}}
+              {{ else }}
+                    {{- if eq (string .data.data_value_rank) "1" -}}<span
+                    class="worse">Lower</span>
+                  {{- else if eq (string .data.data_value_rank) "3" -}}<span
+                    class="better">Higher</span>
+                  {{- else -}}<span class="middle d-none"></span>
+                  {{- end -}}
+              {{ end }}
+            </div>
+          </div>
+
+          <!-- MAIN ROW: PRINT ONLY -->
+          <div class="col-12 print-only" style="flex-direction:row; width:100%;">
+
+            <!-- Column 1: 50% -->
+            <div style="width:50%;" class="border-right pl-1">
+              <span class="font-weight-bold fs-md">
+                {{ .data.indicator_short_name }}
+              </span><br />
+              <span class="fs-sm font-weight-normal">
+                {{- .data.indicator_long_name -}}
+              </span>
+            </div>
+
+            <!-- Column 2: 25% -->
+            <div style="width:25%" class="border-right pl-1">
+              <span class="font-weight-bold fs-lg">
+                {{ .data.data_value_geo_entity }}
+              </span><br />
+              <span class="fs-xs font-weight-normal">
+                {{ .data.measurement_type }} {{ .data.units }}
+              </span>
+            </div>
+
+            {{/*  neighborhood comparisons for print  */}}
+
+            <!-- Column 3: 25% -->
+            <div style="width:25%;" class="pl-1">
+
+              {{ if eq $rankReverse false }}
+
+                {{- if eq (string .data.data_value_rank) "1" -}}
+                  Higher than most neighborhoods
+                {{- else if eq (string .data.data_value_rank) "2" -}}
+                  In the middle of NYC neighborhoods
+                {{- else if eq (string .data.data_value_rank) "3" -}}
+                  Less than most neighborhoods
+                {{- end -}}
+
+              {{ else }}
+
+                {{- if eq (string .data.data_value_rank) "1" -}}
+                  Less than most neighborhoods
+                {{- else if eq (string .data.data_value_rank) "2" -}}
+                  In the middle of NYC neighborhoods
+                {{- else if eq (string .data.data_value_rank) "3" -}}
+                  Higher than most neighborhoods
+                {{- end -}}
+
+              {{ end }}
+
+
+
+            </div>
+
+          </div>
+
+        </div>
+      </button>
+    </h2>
+  </div>
+
+<!-- Detail view -->
+  <div
+    id="collapse-{{ .data.indicator_data_name }}"
+    class="collapse border-bottom "
+    aria-labelledby="heading-{{ .data.indicator_data_name }}"
+    data-parent="#accordion-{{ .accordionIndex }}"
+    data-indicator-name="{{ .data.indicator_data_name }}"
+    data-count="{{ .count }}"
+  >
+    <div class="card-body card-body-no-top">
+
+      <div class="row no-gutters fs-sm">
+        <div class="col-12">
+            <!-- Explanatory text -->
+            <p class="fs-md mt-1 mb-2">
+              {{- .data.indicator_description | safeHTML -}}
+            </p>
+        </div>
+
+                <div class="col-md-7 border-right h-100">
+                <!-- MAP -->
+                <div style="width:100%; height:40vmin; z-index:100;" class="" id="map-{{ .data.indicator_data_name }}-{{ .count }}">
+                    ...map is loading...
+                </div>
+                {{- if isset .data "nbr_data_note" -}}
+                  <div class="data-note mt-1">{{ .data.nbr_data_note }}</div>
+                {{- end -}}
+        </div>
+        
+        {{/*  comparisons for expanded row content  */}}
+        
+        {{ $hide := "" }}
+
+        {{ if eq .data.data_value_rank nil }} 
+          {{ $hide = "d-none" }} 
+        {{ end }}
+
+        <div class="col-md-5 h-100 p-1 {{ $hide }}">
+
+            <p class="fs-rg">
+                {{ .data.indicator_short_name }} in <strong>{{ .neighborhood }}</strong>:
+                <div class=" fs-md">
+                  <p>
+                    {{ if eq $rankReverse false }}
+
+                      {{- if eq (string .data.data_value_rank) "1" -}}
+                        <span class="worse-sm fs-sm mt-1">Higher than most</span>&nbsp;neighborhoods
+                      {{- else if eq (string .data.data_value_rank) "2" -}}
+                        <span class="middle-sm fs-sm mt-1">In the middle of</span>&nbsp;neighborhoods
+                      {{- else if eq (string .data.data_value_rank) "3" -}}
+                        <span class="better-sm fs-sm mt-1">Less than most</span>&nbsp;neighborhoods
+                      {{- end -}} 
+
+                    {{ else }}
+
+                      {{- if eq (string .data.data_value_rank) "1" -}}
+                        <span class="worse-sm fs-sm mt-1">Less than most</span>&nbsp;neighborhoods
+                      {{- else if eq (string .data.data_value_rank) "2" -}}
+                        <span class="middle-sm fs-sm mt-1">In the middle of</span>&nbsp;neighborhoods
+                      {{- else if eq (string .data.data_value_rank) "3" -}}
+                        <span class="better-sm fs-sm mt-1">Higher than most</span>&nbsp;neighborhoods
+                      {{- end -}} 
+
+                    {{ end }}
+                  </p>
+
+                  <p>
+                    <span id="b-{{ urlize .data.indicator_short_name }}"></span> the <strong>{{ .borough }} average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="bv-{{ urlize .data.indicator_short_name }}">boro val</span>{{ if in .data.measurement_type "ercent" }}%{{ else }} {{ .data.units }}{{ end }})</span>
+                  </p>
+
+                  <p>
+                    <span id="c-{{ urlize .data.indicator_short_name }}"></span> the <strong>Citywide average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="cv-{{ urlize .data.indicator_short_name }}">city val</span>{{ if in .data.measurement_type "ercent" }}%{{ else }} {{ .data.units }}{{ end }})</span>
+                  </p>
+
+                    </div>
+                
+            </p>
+
+            <!-- Placeholder for trend evaluation --> 
+            <div id="trend" class="hide">
+            <p>In <strong>{{ .borough }}</strong>, it is [TREND]. Citywide, the trend is [TREND].</p>
+            </div>
+
+            <!-- About the data -->
+
+            <span id="year-{{ urlize .data.indicator_short_name }}" class="sr-only">YEAR</span>
+
+          
+
+        </div>
+
+      </div>
+      <div class="row no-gutters">
+        <div class="col-7">
+            <span class="fs-xs"><strong>Source:</strong> {{ .data.data_source_list }}</span>
+
+        </div>
+        <div class="col-5">
+            <p class="float-right"><a id="{{ .data.IndicatorID }}" href="" class="ml-1" style="display:none"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Full dataset</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+    // Prints the year to the accordion - formerly getYear()
+    (function(x, y) {
+        var endDate = new Date(x);
+        var year = endDate.getFullYear(); // cleaner than getYear() + 1900
+        document.getElementById(y).innerHTML = year;
+    })(`{{ .data.end_date }}`, `year-{{ urlize .data.indicator_short_name }}`);
+
+(function(n, b, c, nid, bid, cid, rr) {
+    n = Number(n);
+    b = Number(b);
+    c = Number(c);
+
+    let rankReverse = (rr === true || rr === 'true');
+
+    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
+    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
+
+    let boroJudgement;
+    if (n > b && rankReverse) {
+      boroJudgement = 'comp-good';
+    } else if (n < b && rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n > b && !rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n < b && !rankReverse) {
+      boroJudgement = 'comp-good';
+    } else {
+      boroJudgement = 'comp-null';
+    }
+
+    let cityJudgement;
+    if (n > c && rankReverse) {
+      cityJudgement = 'comp-good';
+    } else if (n < c && rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n > c && !rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n < c && !rankReverse) {
+      cityJudgement = 'comp-good';
+    } else {
+      cityJudgement = 'comp-null';
+    }
+
+    let boroEl = document.getElementById(bid);
+    if (boroEl) {
+        boroEl.innerHTML = boroComp;
+        boroEl.classList.add(boroJudgement);
+    }
+
+    let cityEl = document.getElementById(cid);
+    if (cityEl) {
+        cityEl.innerHTML = cityComp;
+        cityEl.classList.add(cityJudgement);
+    }
+
+    document.getElementById('bv-{{ urlize .data.indicator_short_name }}').innerHTML = b;
+    document.getElementById('cv-{{ urlize .data.indicator_short_name }}').innerHTML = c;
+
+
+})(
+    {{ .data.unmodified_data_value_geo_entity }},
+    {{ .data.data_value_boro }},
+    {{ .data.data_value_nyc }},
+    'n-{{ urlize .data.indicator_short_name }}',
+    'b-{{ urlize .data.indicator_short_name }}',
+    'c-{{ urlize .data.indicator_short_name }}',
+    {{ .data.rankReverse }}
+)
+
+
+</script>
+
+
+
+
+<script type="text/javascript">
+
+    $( "#collapse-{{ .data.indicator_data_name }}" ).on('shown.bs.collapse', function() {
+
+        {{ $envs := (slice "Production" "production" "prod_prod" "development") }}
+
+        {{ if ( in $envs hugo.Environment ) -}}
+
+            gtag('event', 'click_modal', {
+                'modal_name': '{{ .data.indicator_short_name }}'
+            });
+
+        {{- end }}
+
+        var opt = {"renderer": "svg"};
+
+            // ---- summary ---- //
+
+            // get most recent data for each neighborhood
+
+            var summaryData =
+                arqTable
+                .filter(d => d.indicator_data_name == {{ .data.indicator_data_name }})
+                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
+                .dedupe()
+                .groupby("neighborhood")
+                .orderby("neighborhood", aq.desc("end_date"))
+                .slice(0,1) // most recent row in neighborhood group
+                .ungroup()
+                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
+                .orderby("unmodified_data_value_geo_entity") // sort for ordered bar chart
+                .select(aq.not("end_date"))
+                .objects()
+
+
+            // ---- map ---- //
+
+            // uses summary data, but named dataset is in spec's '"transform" object
+
+            var mapData = summaryData;
+
+            renderNRMap(mapData,  "#map-{{ .data.indicator_data_name }}-{{ .count }}", "{{ .data.measurement_type }} {{ .data.units }}","{{ .data.indicator_short_name }}",geocode)
+
+    });
+
+    </script>

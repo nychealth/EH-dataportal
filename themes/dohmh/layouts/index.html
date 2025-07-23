@@ -1,5 +1,18 @@
 {{ define "main" }}
 
+<style>
+  .content-card a {
+    text-decoration: none!important;
+    color: inherit;
+  }
+
+  .card-content:hover {
+   /* box-shadow: 5px 5px 5px lightgray;
+   border: 1px solid lightgray; */
+    transform: scale(1.01)
+  }
+</style>
+
 <article class="container-fluid p-0 overflow-hidden" id="primary-content">
   <div class="row no-gutters">
     <div class="container wide">
@@ -39,6 +52,7 @@
           </div>
           <div class="col-md-6 px-20">
             <div class="card content-card">
+              <a href="{{ relURL .Params.featured_link }}">
               <div class="card-content primary">
 
                 {{ $src := resources.GetMatch ( path.Join "**" .Params.featured_image )}}
@@ -50,7 +64,7 @@
                   </div>
                 </div>
                 <div class="card-body">
-                  <h3><a href="{{ relURL .Params.featured_link }}">{{ .Params.featured_title }}</a></h3>
+                  <h3>{{ .Params.featured_title }}</h3>
                   <p>{{ .Params.featured_text }}</p>
                   <div class="d-flex justify-content-end mb-4 mb-md-0">
                     <!-- <a class="fs-sm font-weight-bold" href={{ relURL "data-stories" }}>All data stories<i class="fas fa-arrow-circle-right ml-1" aria-hidden="true"></i></a> -->
@@ -58,6 +72,7 @@
                 </div>
               </div>
             </div>
+            </a>
           </div>
         </div>
       </div>
@@ -67,7 +82,7 @@
       <div class="row">
         <div class="col-lg-4 px-20">
           <h2 class="fs-xl data-stories border-bottom pb-2"><i class="fas fa-passport mr-1" aria-hidden="true"></i>New data stories</h2>
-          <div class="card-content mb-4">
+          <div class="mb-4 ds-card">
             <div>
               {{- range first 3 ((where .Site.RegularPages "Section" "data-stories")) -}}
 
@@ -145,61 +160,57 @@
 
         <div class="col-lg-3 col-sm-6">
           <div class="card content-card">
+            <a class="position-relative" href={{ relURL "data-stories" }}>
             <div class="card-content data-stories mb-4">
-              <a class="position-relative" href={{ relURL "data-stories" }}>
                 <div class="tab-data-stories h-100 w-100 position-absolute"></div>
                 {{ $src := resources.GetMatch ( path.Join "**/image_tab_data_stories.jpg" )}}
                 {{ $image := $src.Resize "x1200 jpg q75"}}
                 <img class="card-img-top" src="{{ relURL $image.RelPermalink }}">
-              </a>
               <div class="card-body">
                 <h3 class="card-title">Data stories</h3>
                 <p>Explainers on important health issues.</p>
-                <div class="d-flex justify-content-end">
-                  <a class="fs-sm font-weight-bold" href={{ relURL "data-stories" }}>All data stories<i class="fas fa-arrow-circle-right ml-1" aria-hidden="true"></i></a>
-                </div>
               </div>
+
             </div>
+          </a>
           </div>
         </div>
 
         <div class="col-lg-3 col-sm-6">
           <div class="card content-card">
+            <a class="position-relative" href={{ relURL "data-features" }}>
             <div class="card-content data-features mb-4">
-              <a class="position-relative" href={{ relURL "data-features" }}>
                 <div class="tab-data-features h-100 w-100 position-absolute"></div>
                 {{ $src := resources.GetMatch ( path.Join "**/image_tab_data_features.jpg" )}}
                 {{ $image := $src.Resize "x1200 jpg q75"}}
                 <img class="card-img-top" src="{{ relURL $image.RelPermalink }}">
-              </a>
+              
               <div class="card-body">
                 <h3 class="card-title">Data Features</h3>
                 <p>Custom interactives, dashboards and reports.</p>
-                <div class="d-flex justify-content-end">
-                  <a class="fs-sm font-weight-bold" href={{ relURL "data-features" }}>Get data <i class="fas fa-arrow-circle-right ml-1" aria-hidden="true"></i></a>
-                </div>
               </div>
+                            
             </div>
+            </a>
           </div>
         </div>
 
         <div class="col-lg-3 col-sm-6">
           <div class="card content-card">
+            <a class="position-relative" href={{ relURL "neighborhood-reports" }}>
             <div class="card-content n-reports mb-4">
-              <a class="position-relative" href={{ relURL "neighborhood-reports" }}>
                 <div class="tab-neighborhood-reports h-100 w-100 position-absolute"></div>
                 {{ $src := resources.GetMatch ( path.Join "**/image_tab_neighborhood_reports.jpg" )}}
                 {{ $image := $src.Resize "x1200 jpg q75"}}
                 <img class="card-img-top" src="{{ relURL $image.RelPermalink }}">
-              </a>
+           
               <div class="card-body">
                 <h3 class="card-title">Neighborhood Reports</h3>
-                <p>Data on key neighborhood issues.</p>
-                <div class="d-flex justify-content-end">
-                  <a class="fs-sm font-weight-bold" href={{ relURL "neighborhood-reports" }}>Search here <i class="fas fa-arrow-circle-right ml-1" aria-hidden="true"></i></a>
-                </div>
+                <p>Data on key issues for your neighborhood.</p>
               </div>
+
             </div>
+          </a>
           </div>
         </div>
 
@@ -207,23 +218,24 @@
 
         <div class="col-lg-3 col-sm-6">
           <div class="card content-card">
+            <a class="position-relative" href={{ relURL "data-explorer" }}>
             <div class="card-content data-explorer mb-4">
-              <a class="position-relative" href={{ relURL "data-explorer" }}>
                 <div class="tab-data-explorer h-100 w-100 position-absolute"></div>
                 {{ $src := resources.GetMatch ( path.Join "**/image_tab_data_explorer.jpg" )}}
                 {{ $image := $src.Resize "x1200 jpg q75"}}
                 <img class="card-img-top" src="{{ relURL $image.RelPermalink }}">
-              </a>
+              
               <div class="card-body">
                 <h3 class="card-title">Data Explorer</h3>
                 <p>Maps, trends, tables, and more: hundreds of datasets.</p>
-                <div class="d-flex justify-content-end">
-                  <a class="fs-sm font-weight-bold" href={{ relURL "data-explorer" }}>Get data <i class="fas fa-arrow-circle-right ml-1" aria-hidden="true"></i></a>
-                </div>
               </div>
+
             </div>
+            </a>
           </div>
         </div>
+
+
       </div>
 
     </div>

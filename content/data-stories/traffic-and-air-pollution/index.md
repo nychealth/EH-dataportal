@@ -16,8 +16,8 @@ keywords:
 seo_title: Traffic and PM2.5 air pollution
 seo_description: "The public health impacts of PM2.5 from traffic air pollution in New York City affect neighborhoods differently."
 related:
-  - title: "Environments matter: the road to street safety in NYC"
-    url: "data-stories/streets/"
+  - title: Initial data from Congestion Relief Tolling"
+    url: "data-stories/congestion-tolling-update"
   - title: "Air quality in car-free areas"
     url: "data-stories/car-free-zones/"
   - title: "Real-Time Air Quality: PM2.5 in NYC"
