@@ -9,9 +9,9 @@
             <ul class="breadcrumb">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
               <li class="breadcrumb-item">
-                <a href="/data-features/">Data Features</a>
+                <a href="../">Data Features</a>
               </li>
-              <li class="breadcrumb-item active" aria-current="page">
+              <li class="breadcrumb-item active d-none d-md-block" aria-current="page">
                 {{ .Title }}
               </li>
             </ul>
@@ -21,19 +21,19 @@
           <p>{{ .Content }}</p>
 
           <div class="row my-2">
-            <div class="col-3 px-4">
+            <div class="col-3 px-1">
               <img src="img/AC.svg" />
             </div>
 
-            <div class="col-3 px-4">
+            <div class="col-3 px-1">
               <img src="img/Neighbors.svg" />
             </div>
 
-            <div class="col-3 px-4">
+            <div class="col-3 px-1">
               <img src="img/ACperson.svg" />
             </div>
 
-            <div class="col-3 px-4">
+            <div class="col-3 px-1">
               <img src="img/Piggy_bank.svg" />
             </div>
           </div>
@@ -75,8 +75,8 @@
         <p>
           Today's weather:
           <span id="hot" class="font-weight-bold p-1">HOT</span><br />
-          <span class="fs-sm">The forecast high is <span id="forecastTemp">YY</span> today. It is
-          currently <span id="currentTemp">XX</span>.
+          <span class="fs-sm">The forecast high is <span id="forecastTemp"><em>...getting temp...</em></span> today. It is
+          currently <span id="currentTemp"><em>...getting temp...</em></span>.
           <a href="https://forecast7.com/en/40d71n74d01/new-york/?unit=us"
             >Get a full weather forecast here</a
           >.</span>
@@ -85,9 +85,9 @@
         <hr class="my-2" />
 
         <p>
-          The current air quality is:
+          Current air quality:
           <span id="aqimeaning" class="font-weight-bold p-1"
-            >AQI interpretation</span
+            ><em>...getting air quality...</em></span
           ><br>
           <span class="fs-sm"><a href="https://www.airnow.gov/">Get air quality where you live</a>.</span>
         </p>
@@ -175,7 +175,7 @@
 
             </div>
             <div class="col-md-6">
-              <div class="card card-left-border shadow-sm">
+              <div class="card card-left-border shadow-sm mb-2">
                 <div class="card-body">
                     <p><a href="https://www.nyc.gov/site/em/ready/extreme-heat.page">Beat the Heat!</a> Resources for indoor and outdoor safety during extreme heat.
                     </p>
@@ -184,7 +184,7 @@
             </div>
         
             <div class="col-md-6">
-              <div class="card card-left-border shadow-sm">
+              <div class="card card-left-border shadow-sm mb-2">
                 <div class="card-body">
                     <p> <a href="https://www.nycgovparks.org/about/health-and-safety-guide/cool-it-nyc">Cool It! NYC</a>: A map of water features, drinking fountains, and tree shade in NYC Parks.
                     </p>
