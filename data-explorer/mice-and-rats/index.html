@@ -2270,6 +2270,36 @@
         
 
         <h1
+            id="IndicatorID-2447"
+            class="d-none">
+            Homes with mice or rats in the unit or building
+        </h1>
+        <h2
+            class="d-none">
+            The presence of mice or rats in the home is often associated with poor housing maintenance. These pests can contaminate food and worsen asthma.
+        </h2>
+
+
+    
+
+        
+
+        <h1
+            id="IndicatorID-48"
+            class="d-none">
+            Homes with mice or rats in the building
+        </h1>
+        <h2
+            class="d-none">
+            The presence of mice or rats in the home is often associated with poor housing maintenance. These pests can contaminate food and worsen asthma.
+        </h2>
+
+
+    
+
+        
+
+        <h1
             id="IndicatorID-24"
             class="d-none">
             Adults reporting mice or rats outside
@@ -2300,21 +2330,6 @@
         
 
         <h1
-            id="IndicatorID-48"
-            class="d-none">
-            Homes with mice or rats in the building
-        </h1>
-        <h2
-            class="d-none">
-            The presence of mice or rats in the home is often associated with poor housing maintenance. These pests can contaminate food and worsen asthma.
-        </h2>
-
-
-    
-
-        
-
-        <h1
             id="IndicatorID-2416"
             class="d-none">
             Litter basket coverage
@@ -2322,21 +2337,6 @@
         <h2
             class="d-none">
             Sanitation supports public health by providing clean, healthy public spaces for people to live, work, and get around. Litter baskets, or trash cans, are associated with a decrease in littering. Enclosed, non-wire baskets are generally better than wire baskets.
-        </h2>
-
-
-    
-
-        
-
-        <h1
-            id="IndicatorID-2447"
-            class="d-none">
-            Homes with mice or rats in the unit or building
-        </h1>
-        <h2
-            class="d-none">
-            The presence of mice or rats in the home is often associated with poor housing maintenance. These pests can contaminate food and worsen asthma.
         </h2>
 
 
@@ -2824,6 +2824,22 @@
 
                     
 
+                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2447 );
+                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
+                    indicatorDropdown.innerHTML += "<button class='indicator-dropdown-item dropdown-item' onclick='loadIndicator(2447)' data-indicator-id='2447'>" + this_indicatorName + `</button>`;
+
+                
+
+                    
+
+                    indicator = indicators.find(indicator => indicator.IndicatorID ===  48 );
+                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
+                    indicatorDropdown.innerHTML += "<button class='indicator-dropdown-item dropdown-item' onclick='loadIndicator(48)' data-indicator-id='48'>" + this_indicatorName + `</button>`;
+
+                
+
+                    
+
                     indicator = indicators.find(indicator => indicator.IndicatorID ===  24 );
                     this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
                     indicatorDropdown.innerHTML += "<button class='indicator-dropdown-item dropdown-item' onclick='loadIndicator(24)' data-indicator-id='24'>" + this_indicatorName + `</button>`;
@@ -2840,25 +2856,9 @@
 
                     
 
-                    indicator = indicators.find(indicator => indicator.IndicatorID ===  48 );
-                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
-                    indicatorDropdown.innerHTML += "<button class='indicator-dropdown-item dropdown-item' onclick='loadIndicator(48)' data-indicator-id='48'>" + this_indicatorName + `</button>`;
-
-                
-
-                    
-
                     indicator = indicators.find(indicator => indicator.IndicatorID ===  2416 );
                     this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
                     indicatorDropdown.innerHTML += "<button class='indicator-dropdown-item dropdown-item' onclick='loadIndicator(2416)' data-indicator-id='2416'>" + this_indicatorName + `</button>`;
-
-                
-
-                    
-
-                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2447 );
-                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
-                    indicatorDropdown.innerHTML += "<button class='indicator-dropdown-item dropdown-item' onclick='loadIndicator(2447)' data-indicator-id='2447'>" + this_indicatorName + `</button>`;
 
                 
 
@@ -2886,6 +2886,14 @@
                     this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
                     indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' data-indicator-id='2433'>" + this_indicatorName + `<i class="indicator-arrows fas fa-arrow-circle-right float-right font-weight-bold hide" id="arrow-2433" aria-hidden="true"></i></button>`;
 
+                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2447 );
+                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
+                    indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' data-indicator-id='2447'>" + this_indicatorName + `<i class="indicator-arrows fas fa-arrow-circle-right float-right font-weight-bold hide" id="arrow-2447" aria-hidden="true"></i></button>`;
+
+                    indicator = indicators.find(indicator => indicator.IndicatorID ===  48 );
+                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
+                    indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' data-indicator-id='48'>" + this_indicatorName + `<i class="indicator-arrows fas fa-arrow-circle-right float-right font-weight-bold hide" id="arrow-48" aria-hidden="true"></i></button>`;
+
                     indicator = indicators.find(indicator => indicator.IndicatorID ===  24 );
                     this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
                     indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' data-indicator-id='24'>" + this_indicatorName + `<i class="indicator-arrows fas fa-arrow-circle-right float-right font-weight-bold hide" id="arrow-24" aria-hidden="true"></i></button>`;
@@ -2894,17 +2902,9 @@
                     this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
                     indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' data-indicator-id='2394'>" + this_indicatorName + `<i class="indicator-arrows fas fa-arrow-circle-right float-right font-weight-bold hide" id="arrow-2394" aria-hidden="true"></i></button>`;
 
-                    indicator = indicators.find(indicator => indicator.IndicatorID ===  48 );
-                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
-                    indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' data-indicator-id='48'>" + this_indicatorName + `<i class="indicator-arrows fas fa-arrow-circle-right float-right font-weight-bold hide" id="arrow-48" aria-hidden="true"></i></button>`;
-
                     indicator = indicators.find(indicator => indicator.IndicatorID ===  2416 );
                     this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
                     indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' data-indicator-id='2416'>" + this_indicatorName + `<i class="indicator-arrows fas fa-arrow-circle-right float-right font-weight-bold hide" id="arrow-2416" aria-hidden="true"></i></button>`;
-
-                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2447 );
-                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
-                    indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' data-indicator-id='2447'>" + this_indicatorName + `<i class="indicator-arrows fas fa-arrow-circle-right float-right font-weight-bold hide" id="arrow-2447" aria-hidden="true"></i></button>`;
         }
 
         function createCitation() {

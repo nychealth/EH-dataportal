@@ -257,17 +257,17 @@
   },
   "housing-maintenance": {
     "IndicatorID": [
-      2396,
-      2395,
-      46,
-      47,
       45,
+      47,
       40,
       42,
       41,
       2399,
       2179,
-      2446
+      2446,
+      2396,
+      2395,
+      46
     ],
     "topic_name": "Housing maintenance"
   },
@@ -313,11 +313,11 @@
     "IndicatorID": [
       2434,
       2433,
+      2447,
+      48,
       24,
       2394,
-      48,
-      2416,
-      2447
+      2416
     ],
     "topic_name": "Mice and rats"
   },
