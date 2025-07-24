@@ -21,17 +21,17 @@ keywords:
 indicators:
   - header: null
     IndicatorID:
-      - 2396
-      - 2395
-      - 46
-      - 47
       - 45
+      - 47
       - 40
       - 42
       - 41
       - 2399
       - 2179
       - 2446
+      - 2396
+      - 2395
+      - 46
 related:
   - title: "Housing creates health"
     url: "data-stories/housing-creates-health/"
