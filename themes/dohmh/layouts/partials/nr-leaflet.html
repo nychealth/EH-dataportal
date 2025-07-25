@@ -18,13 +18,12 @@
     var lng = -74.0026642;
     var zoom = 10;
     
-    const UHF42 = "geojson/UHF42.geojson";
-    
     // --------------------------------------------------------------------------------------------------- // 
     // ---------- Initialize map ---------- // 
     // --------------------------------------------------------------------------------------------------- // 
     
-    var map = L.map("map", { zoomControl: false }).setView([lat, lng], zoom); // [Lat,Long],Zoom
+    let map = L.map("map", { zoomControl: false }).setView([lat, lng], zoom); // [Lat,Long],Zoom
+
     L.tileLayer(
     "https://api.maptiler.com/maps/basic-v2/{z}/{x}/{y}.png?key=dwIJ8hO2KsTMegUfEpYE",
     {
@@ -43,23 +42,27 @@
     
     // add and style geographies
     
-    var geog;
-    // let i = 0;
+    let uhf_geojson;
     
     fetch({{ relURL "geojson/UHF42.geojson" }})
-    .then((response) => response.text())
-    .then((text) => {
-        // console.log("Raw text:", text); // ← check this!
-        const data = JSON.parse(text);
-        geog = L.geoJSON(data, {
-            style: style,
-            onEachFeature: onEachFeature,
-            filter: (feature) => feature.properties.GEOCODE != 0
-        }).addTo(map);
-        
-        
-            // highlight and zoom to selected neighborhood
+        .then((response) => response.text())
+        .then((text) => {
+
+            // console.log("Raw text:", text); // ← check this!
             
+            const data = JSON.parse(text);
+
+            uhf_geojson = L.geoJSON(data, {
+
+                style: style,
+                onEachFeature: onEachFeature,
+                filter: (feature) => feature.properties.GEOCODE != 0
+
+            }).addTo(map);
+            
+            
+            // highlight and zoom to selected neighborhood
+                
             if (geocode && geocode.trim() !== "") {
 
                 // extract selected neighborhood layer
@@ -73,7 +76,7 @@
                 // if there's a selected neighborhood, style and zoom
                 
                 if (targetLayer) {
-                    
+
                     // reset style
                     
                     uhf_geojson.resetStyle();
@@ -111,9 +114,11 @@
                 console.log("No geocode provided; skipping zoom.");
                 
             }
-        
-    })
-    .catch((err) => console.error("Error loading GeoJSON:", err));
+            
+        })
+        .catch((err) => console.error("Error loading GeoJSON:", err));
+
+    // define styl function
     
     function style(feature) {
         return {
@@ -127,15 +132,14 @@
     }
     
     // And what to do on mouseover, mouseout, and click
+
     function onEachFeature(feature, layer) {
-        
-        // i += 1;
-        
-        // console.log(i, " - GEOCODE [onEachFeature]", feature.properties.GEOCODE);
         
         // bind tooltip to each feature i.e. neighborhood, open on mousover
         
-        layer.bindTooltip(feature.properties.GEONAME, {permanent: false, opacity: 0.85, className: "fs-md"});
+        layer.bindTooltip(feature.properties.GEONAME, {permanent: false, opacity: 0.9, className: "fs-md"});
+
+        // set event handlers for each layer
         
         layer.on({
             
@@ -146,6 +150,8 @@
         });
         
     }
+
+    // define function that styles highlighted layer
     
     function highlightFeature(e) {
         
@@ -161,21 +167,28 @@
         });
         
         layer.bringToFront();
+
+        // layer.openTooltip();
         
-        let tooltip = layer.getTooltip();
+        // let tooltip = layer.getTooltip();
         // console.log("tooltip", tooltip);
-        console.log("tooltip", tooltip.getElement());
         
     }
+
+    // define function that resets layer style
     
     function resetHighlight(e) {
+
         const layer = e.target;
+
+        // layer.closeTooltip();
         
         layer.setStyle({
             weight: 1.5,
             color: "black",
             dashArray: "1",
         });
+
     }
     
     // --------------------------------------------------------------------------------------------------- // 
@@ -184,10 +197,10 @@
     
     var intendedDestinationName // this needs to be declared even if it's not defined (it's used on the home page)
     
-    console.log('***GETTING TOPIC AND NEIGHBORHOOD TO POWER NAVIGATION')
+    // console.log('*** GETTING TOPIC AND NEIGHBORHOOD TO POWER NAVIGATION')
     
     var chosenNeighborhood; // this is for the neighborhood you are *on*
-    var chosenGeo = {{ .Params.geocode }}
+    var chosenGeo = {{ .Params.geocode }};
     var chosenReport;       // this is the report that you are *on*
     var chosenButton;       // this is a selected button, on NR home or Topic Landing
     
@@ -203,41 +216,62 @@
     const topicValues = Object.values(topicSlugs);
     
     // This looks at the URL, and gets the report and matching neighborhood
+
     function getReportAndNeighborhood(x) {
+
+        console.log("** getReportAndNeighborhood");
+
         const url = window.location.pathname.match(/neighborhood-reports.*/)[0]
         var urlPieces = url.split("/")
+
         // console.log('urlPieces', urlPieces)
         
         // if it's the topic landing page, then urlPieces[1] is a topic name. We'll check for this, else, assign [1] to chosenNeighborhood
+
         if (topicValues.includes(urlPieces[1])) {
+
             chosenNeighborhood = null
             chosenReport = (urlPieces[1] && urlPieces[1].length > 2) ? urlPieces[1] : null;
+
         } else {
+
             chosenNeighborhood = (urlPieces[1] && urlPieces[1].length > 2) ? urlPieces[1] : null
             chosenReport = (urlPieces[2] && urlPieces[2].length > 2) ? urlPieces[2] : null;
+
         }
-        
         
         console.log('Neighborhood: ', chosenNeighborhood)
         console.log('GeoCode: ', chosenGeo)
         console.log('Report:', chosenReport)
         
-        pageTypeID()
+        pageTypeID();
+
     }
     
     getReportAndNeighborhood(window.location.href)
     
     // this checks the page type; there may be some things that differ based on pagetype
+
     function pageTypeID() {
-        console.log('***WHAT KIND OF PAGE IS THIS?')
+
+        console.log('*** WHAT KIND OF PAGE IS THIS?')
+
         if (chosenNeighborhood == null && chosenReport == null) {
+
             console.log("NR Landing page")
+
         } else if (chosenNeighborhood && chosenReport) {
+
             console.log("Output for: ", chosenNeighborhood, chosenReport)
+
         } else if (chosenReport && !chosenNeighborhood) {
+
             console.log("Topic landing for: ", chosenReport)
+
         } else {
+
             console.log("Neighborhood landing for: ", chosenNeighborhood)
+
         }
         
     }
@@ -248,7 +282,11 @@
     // --------------------------------------------------------------------------------------------------- // 
     
     function selectNeighborhood(e) {
-        geog.resetStyle();
+
+        console.log("selectNeighborhood");
+
+        uhf_geojson.resetStyle();
+
         const layer = e.target;
         
         layer.setStyle({
@@ -262,14 +300,15 @@
         
         const geocodeClicked = layer.feature.properties.GEOCODE;
         
-        // Find the matching neighborhood
+        // Find the matching neighborhood - 'neighborhoods' is a variable set in uhflist.js
         const match = neighborhoods.find(
-        (n) => n.UHF_id == geocodeClicked
+            n => n.UHF_id == geocodeClicked
         );
         
-        console.log('neighborhoods:', neighborhoods)
+        // console.log('neighborhoods:', neighborhoods)
         
         if (match && match.page_name) {
+
             // Get the current URL parts
             const parts = window.location.pathname.split("/");
             
@@ -277,9 +316,7 @@
             parts[3] = match.page_name;
             
             // set report destination
-            const dest = intendedDestinationName
-            ? intendedDestinationName
-            : (chosenReport ? chosenReport : '/');
+            const dest = intendedDestinationName ? intendedDestinationName : (chosenReport ? chosenReport : '/');
             
             // Build the new path; this will now work if reportURL is set (as in the Output), or if it's not (as on a Neighborhood Landing Page)
             
