@@ -675,147 +675,209 @@
                         <div id="map" style="width: 100%; height:100%"></div>
 
 <style>
-  #map:hover {
-  cursor: pointer;
-  }
+    #map:hover {
+        cursor: pointer;
+    }
 </style>
 
 <script>
+    
+    
+    
+    
+    
+    var geocode = `502`
+    
+    var lat = 40.715554;
+    var lng = -74.0026642;
+    var zoom = 10;
+    
+    
+    
+    
+    
+    let map = L.map("map", { zoomControl: false }).setView([lat, lng], zoom); 
 
-  
-  
-  
-
-  var geocode = `502`
-
-  var lat = 40.715554;
-  var lng = -74.0026642;
-  var zoom = 10;
-
-  const UHF42 = "geojson/UHF42.geojson";
-
-  
-  
-  
-
-  var map = L.map("map", { zoomControl: false }).setView([lat, lng], zoom); 
-  L.tileLayer(
+    L.tileLayer(
     "https://api.maptiler.com/maps/basic-v2/{z}/{x}/{y}.png?key=dwIJ8hO2KsTMegUfEpYE",
     {
-      maxZoom: 15,
-      attribution:
+        maxZoom: 15,
+        attribution:
         '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>',
     }
-  ).addTo(map);
-
-  L.control
+    ).addTo(map);
+    
+    L.control
     .scale({
-      metric: false,
-      position: "bottomleft",
+        metric: false,
+        position: "bottomleft",
     })
     .addTo(map);
+    
+    
+    
+    let uhf_geojson;
+    
+    fetch("/IndicatorPublic/geojson/UHF42.geojson")
+        .then((response) => response.text())
+        .then((text) => {
 
-  
-  var geog;
-  fetch("https:\/\/a816-dohbesp.nyc.gov\/IndicatorPublic\/geojson/UHF42.geojson")
-    .then((response) => response.text())
-    .then((text) => {
-      
-      const data = JSON.parse(text);
-      geog = L.geoJSON(data, {
-        style,
-        onEachFeature,
-      }).addTo(map);
+            
+            
+            const data = JSON.parse(text);
 
+            uhf_geojson = L.geoJSON(data, {
+
+                style: style,
+                onEachFeature: onEachFeature,
+                filter: (feature) => feature.properties.GEOCODE != 0
+
+            }).addTo(map);
+            
+            
+            
+                
+            if (geocode && geocode.trim() !== "") {
+
+                
+                
+                const targetLayer = Object.values(uhf_geojson._layers).find(
+                
+                    (layer) => layer.feature.properties.GEOCODE == geocode
+                    
+                );
+
+                
+                
+                if (targetLayer) {
+
+                    
+                    
+                    uhf_geojson.resetStyle();
+                    
+                    
+                    
+                    targetLayer.setStyle({
+                        weight: 3,
+                        color: "#008939",
+                        dashArray: "3",
+                        fillOpacity: 0.5,
+                    });
+
+                    
+
+                    targetLayer.bringToFront();
+
+                    
+
+                    setTimeout(() => {
+                        
+                        map.flyToBounds(targetLayer.getBounds(), {duration: 0.5});
+
+                    }, 500);
+                
+                    
+                } else {
+                    
+                    console.warn("No matching GEOCODE found:", geocode);
+                    
+                }
+                
+            } else {
+                
+                console.log("No geocode provided; skipping zoom.");
+                
+            }
+            
+        })
+        .catch((err) => console.error("Error loading GeoJSON:", err));
 
     
-    setTimeout(() => {
-      if (geocode && geocode.trim() !== "") {
-        const targetLayer = Object.values(geog._layers).find(
-          (layer) => layer.feature.properties.GEOCODE == geocode
-        );
+    
+    function style(feature) {
+        return {
+            weight: 1.5,
+            opacity: 1,
+            color: "black",
+            dashArray: "1",
+            fillOpacity: 0.05,
+            fillColor: "#008939"
+        };
+    }
+    
+    
 
-        if (targetLayer) {
-          map.fitBounds(targetLayer.getBounds());
-
-          
-          geog.resetStyle();
-          targetLayer.setStyle({
-            weight: 3,
-            color: "#008939",
-            dashArray: "3",
-            fillOpacity: 0.5,
-          });
-          targetLayer.bringToFront();
-        } else {
-          console.warn("No matching GEOCODE found:", geocode);
-        }
-      } else {
-        console.log("No geocode provided; skipping zoom.");
-      }
-    }, 500);
-
-    })
-    .catch((err) => console.error("Error loading GeoJSON:", err));
-
-  function style(feature) {
-    return {
-      weight: 1.5,
-      opacity: 1,
-      color: "black",
-      dashArray: "1",
-      fillOpacity: 0.05,
-      fillColor: "#008939",
-    };
-  }
-
-  
-  function onEachFeature(feature, layer) {
-    layer.on({
-      mouseover: highlightFeature,
-      mouseout: resetHighlight,
-      
-      click: selectNeighborhood,
-    });
-    layer._leaflet_id = feature.properties.GEOCODE; 
-  }
-
-  function highlightFeature(e) {
-      const layer = e.target;
-
-      layer.setStyle({
-        weight: 5,
-        color: "#444",
-        dashArray: "",
+    function onEachFeature(feature, layer) {
         
-      });
+        
+        
+        layer.bindTooltip(feature.properties.GEONAME, {permanent: false, opacity: 0.9, className: "fs-md"});
 
-      layer.bringToFront();
+        
+        
+        layer.on({
+            
+            mouseover: highlightFeature,
+            mouseout: resetHighlight,
+            click: selectNeighborhood,
+            
+        });
+        
     }
 
+    
+    
+    function highlightFeature(e) {
+        
+        
+        
+        const layer = e.target;
+        
+        layer.setStyle({
+            weight: 5,
+            color: "#444",
+            dashArray: "",
+            
+        });
+        
+        layer.bringToFront();
+
+        
+        
+        
+        
+        
+    }
+
+    
+    
     function resetHighlight(e) {
-      const layer = e.target;
 
-      layer.setStyle({
-        weight: 1.5,
-        color: "black",
-        dashArray: "1",
-      });
+        const layer = e.target;
+
+        
+        
+        layer.setStyle({
+            weight: 1.5,
+            color: "black",
+            dashArray: "1",
+        });
+
     }
-
-  
-  
-  
-  
+    
+    
+    
+    
+    
     var intendedDestinationName 
-
-    console.log('***GETTING TOPIC AND NEIGHBORHOOD TO POWER NAVIGATION')
-
+    
+    
+    
     var chosenNeighborhood; 
-    var chosenGeo =  502 
+    var chosenGeo =  502 ;
     var chosenReport;       
     var chosenButton;       
-
+    
     
     const topicSlugs = {
         Active: "active_design_physical_activity_and_health",
@@ -824,103 +886,127 @@
         Housing: "housing_and_health",
         Outdoor: "outdoor_air_and_health",
     };
-
-    const topicValues = Object.values(topicSlugs);
-
     
+    const topicValues = Object.values(topicSlugs);
+    
+    
+
     function getReportAndNeighborhood(x) {
+
+        console.log("** getReportAndNeighborhood");
+
         const url = window.location.pathname.match(/neighborhood-reports.*/)[0]
         var urlPieces = url.split("/")
-        
 
         
+        
+        
+
         if (topicValues.includes(urlPieces[1])) {
+
             chosenNeighborhood = null
             chosenReport = (urlPieces[1] && urlPieces[1].length > 2) ? urlPieces[1] : null;
+
         } else {
+
             chosenNeighborhood = (urlPieces[1] && urlPieces[1].length > 2) ? urlPieces[1] : null
             chosenReport = (urlPieces[2] && urlPieces[2].length > 2) ? urlPieces[2] : null;
+
         }
-
-
+        
         console.log('Neighborhood: ', chosenNeighborhood)
         console.log('GeoCode: ', chosenGeo)
         console.log('Report:', chosenReport)
+        
+        pageTypeID();
 
-        pageTypeID()
     }
-
-    getReportAndNeighborhood(window.location.href)
-
     
+    getReportAndNeighborhood(window.location.href)
+    
+    
+
     function pageTypeID() {
-        console.log('***WHAT KIND OF PAGE IS THIS?')
+
+        console.log('*** WHAT KIND OF PAGE IS THIS?')
+
         if (chosenNeighborhood == null && chosenReport == null) {
+
             console.log("NR Landing page")
+
         } else if (chosenNeighborhood && chosenReport) {
+
             console.log("Output for: ", chosenNeighborhood, chosenReport)
+
         } else if (chosenReport && !chosenNeighborhood) {
+
             console.log("Topic landing for: ", chosenReport)
+
         } else {
+
             console.log("Neighborhood landing for: ", chosenNeighborhood)
+
         }
         
     }
-
-
-  
-  
-  
-  function selectNeighborhood(e) {
-    geog.resetStyle();
-    const layer = e.target;
-
-    layer.setStyle({
-      weight: 3,
-      color: '#008939',
-      dashArray: "3",
-      fillOpacity: 0.5,
-    });
-
-    layer.bringToFront();
-
-    const geocodeClicked = layer.feature.properties.GEOCODE;
-
     
-    const match = neighborhoods.find(
-      (n) => n.UHF_id == geocodeClicked
-    );
+    
+    
+    
+    
+    
+    function selectNeighborhood(e) {
 
-    console.log('neighborhoods:',neighborhoods)
+        console.log("selectNeighborhood");
 
-    if (match && match.page_name) {
-      
-      const parts = window.location.pathname.split("/");
+        uhf_geojson.resetStyle();
 
-      
-      parts[3] = match.page_name;
+        const layer = e.target;
+        
+        layer.setStyle({
+            weight: 3,
+            color: '#008939',
+            dashArray: "3",
+            fillOpacity: 0.5,
+        });
+        
+        layer.bringToFront();
+        
+        const geocodeClicked = layer.feature.properties.GEOCODE;
+        
+        
+        const match = neighborhoods.find(
+            n => n.UHF_id == geocodeClicked
+        );
+        
+        
+        
+        if (match && match.page_name) {
 
-      
-      const dest = intendedDestinationName
-        ? intendedDestinationName
-        : (chosenReport ? chosenReport : '/');
-
-      
-
-      const buildURL = 'https:\/\/a816-dohbesp.nyc.gov\/IndicatorPublic\/neighborhood-reports/' + parts[3] + "/" + dest + '/'
-      
-      
-         window.location.href = buildURL;
-      
-
-    } else {
-      console.warn("No matching neighborhood for GEOCODE:", geocodeClicked);
+            
+            const parts = window.location.pathname.split("/");
+            
+            
+            parts[3] = match.page_name;
+            
+            
+            const dest = intendedDestinationName ? intendedDestinationName : (chosenReport ? chosenReport : '/');
+            
+            
+            
+            const buildURL = "/IndicatorPublic/neighborhood-reports/" + parts[3] + "/" + dest + '/'
+            
+            
+            window.location.href = buildURL;
+            
+            
+        } else {
+            console.warn("No matching neighborhood for GEOCODE:", geocodeClicked);
+        }
     }
-  }
-
-
+    
+    
 </script>
-
                         
                     </div>
 
@@ -4952,7 +5038,7 @@ const renderNRMap = (
 
     
    function renderDemographics(x,y) {
-        const here = x.filter((neighb) => neighb.UHF_id === y)
+        const here = x.filter((neighb) => neighb.UHF_id == y)
 
         console.log(here[0])
 
