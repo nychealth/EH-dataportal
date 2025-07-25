@@ -58,25 +58,27 @@
         }).addTo(map);
         
         
-        // After 0.5 seconds, optionally zoom to the neighborhood that matches the geocode (for NR Output)
-        
-        setTimeout(() => {
+            // highlight and zoom to selected neighborhood
             
             if (geocode && geocode.trim() !== "") {
+
+                // extract selected neighborhood layer
                 
-                const targetLayer = Object.values(geog._layers).find(
+                const targetLayer = Object.values(uhf_geojson._layers).find(
                 
                     (layer) => layer.feature.properties.GEOCODE == geocode
                     
                 );
+
+                // if there's a selected neighborhood, style and zoom
                 
                 if (targetLayer) {
                     
-                    map.fitBounds(targetLayer.getBounds());
+                    // reset style
                     
-                    // Optionally, apply highlight style like in your click handler
+                    uhf_geojson.resetStyle();
                     
-                    geog.resetStyle();
+                    // apply highlight style
                     
                     targetLayer.setStyle({
                         weight: 3,
@@ -84,7 +86,19 @@
                         dashArray: "3",
                         fillOpacity: 0.5,
                     });
+
+                    // bring neighborhood to the front
+
                     targetLayer.bringToFront();
+
+                    // zoom in on selected neighborhood (after half a second)
+
+                    setTimeout(() => {
+                        
+                        map.flyToBounds(targetLayer.getBounds(), {duration: 0.5});
+
+                    }, 500);
+                
                     
                 } else {
                     
@@ -97,8 +111,6 @@
                 console.log("No geocode provided; skipping zoom.");
                 
             }
-            
-        }, 500);
         
     })
     .catch((err) => console.error("Error loading GeoJSON:", err));
