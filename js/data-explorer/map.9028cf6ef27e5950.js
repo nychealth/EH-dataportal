@@ -487,6 +487,7 @@ const renderMap = (
 
     // send info for printing
     vizYear = mapTime;
+    vizGeography = mapGeoType;
     vizSource = metadata[0].Sources
     printSpec = mapspec;
     chartType = 'map'
