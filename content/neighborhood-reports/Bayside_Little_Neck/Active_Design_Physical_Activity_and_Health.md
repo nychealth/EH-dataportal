@@ -1,6 +1,7 @@
 ---
 title: "Active Design, Physical Activity and Health"
 neighborhood: "Bayside - Little Neck"
+geocode: 404
 summary: "The design and conditions of buildings, streets, public transportation and parks influence physical activity, use of active transportation and other healthy behavior. A neighborhood's features can also impact the safety of its residents."
 data_json: "Active Design Physical Activity and Health in Bayside - Little Neck"
 content_yml: "Active_Design_Physical_Activity_and_Health"

@@ -1,6 +1,7 @@
 ---
 title: "Housing and Health"
 neighborhood: "East Flatbush - Flatbush"
+geocode: 207
 summary: "This report provides a neighborhood summary of housing conditions and related health outcomes. It also describes population characteristics that can increase vulnerability to housing hazards."
 data_json: "Housing and Health in East Flatbush - Flatbush"
 content_yml: "Housing_and_Health"
