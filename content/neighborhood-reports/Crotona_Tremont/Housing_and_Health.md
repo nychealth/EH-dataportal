@@ -1,6 +1,7 @@
 ---
 title: "Housing and Health"
 neighborhood: "Crotona - Tremont"
+geocode: 105
 summary: "This report provides a neighborhood summary of housing conditions and related health outcomes. It also describes population characteristics that can increase vulnerability to housing hazards."
 data_json: "Housing and Health in Crotona - Tremont"
 content_yml: "Housing_and_Health"

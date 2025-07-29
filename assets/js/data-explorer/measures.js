@@ -1151,8 +1151,8 @@ const renderMeasures = async () => {
 
     dropdownTrendSelection.innerHTML = ``;
     dropdownCompSelection.innerHTML = ``;
-    trendSelectionLabel.innerHTML = ``;
-    compSelectionLabel.innerHTML = ``;
+    trendSelectionLabel.innerHTML = `By `;
+    compSelectionLabel.innerHTML = `Show with:`;
     document.getElementById('compMenu').classList.add('hide');
 
     dropdownMapMeasures.innerHTML = ``;
@@ -1323,6 +1323,8 @@ const renderMeasures = async () => {
 
         if (trend) {
 
+            document.getElementById('trendMenuHolder').classList.remove('d-none')
+
             // console.log(">>>> trend");
 
             trendMeasures.push(measure)
@@ -1353,6 +1355,11 @@ const renderMeasures = async () => {
                 ${type}
                 </button>`);
             }
+
+        }
+
+        if (!trend) {
+            console.log('no trend :)')
         }
 
 
@@ -1425,14 +1432,22 @@ const renderMeasures = async () => {
 
         let compLegendTitles = [... new Set(aqCombinedComparisonMetadata.array("LegendTitle"))]
 
+        console.log('compLegendTitles', compLegendTitles)
+
+        // if compLegend.Titles.length > 1...
+
         compLegendTitles.map(title => {
+
+            // console.log("title", title)
 
             let titleGroup = aqCombinedComparisonMetadata.filter(aq.escape(d => d.LegendTitle == title))
 
             // add each unique legend title as a header, with the included comparison underneath
 
             document.getElementById('compMenu').classList.remove('hide');
-            compSelectionLabel.innerHTML += title ? title.toLowerCase() : '';
+            // compSelectionLabel.innerHTML += title ? title.toLowerCase() : '';
+
+            dropdownCompSelection.innerHTML += `<span class="fs-xs"><strong>${title}</strong></span>`
 
             let comparisonIDs = [... new Set(titleGroup.array("ComparisonID"))]
 

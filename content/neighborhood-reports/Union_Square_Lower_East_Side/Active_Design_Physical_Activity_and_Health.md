@@ -1,6 +1,7 @@
 ---
 title: "Active Design, Physical Activity and Health"
 neighborhood: "Union Square - Lower East Side"
+geocode: 309
 summary: "The design and conditions of buildings, streets, public transportation and parks influence physical activity, use of active transportation and other healthy behavior. A neighborhood's features can also impact the safety of its residents."
 data_json: "Active Design Physical Activity and Health in Union Square - Lower East Side"
 content_yml: "Active_Design_Physical_Activity_and_Health"

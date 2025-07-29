@@ -1,6 +1,7 @@
 ---
 title: "Outdoor Air and Health"
-neighborhood: "Greenwich Village - SoHo"
+neighborhood: "Greenwich Village - Soho"
+geocode: 308
 summary: "Air pollution is one of the most important environmental threats to urban populations and while all people are exposed, pollutant emissions, levels of exposure, and population vulnerability vary across neighborhoods. Exposures to common air pollutants have been linked to respiratory and cardiovascular diseases, cancers, and premature deaths."
 data_json: "Outdoor Air and Health in Greenwich Village - SoHo"
 content_yml: "Outdoor_Air_and_Health"

@@ -1,35 +1,35 @@
 report_topics:
   - report_topic: Adult Asthma
-    report_topic_description: Age-adjusted rates per 10,000 residents (or percent where indicated)
+    report_topic_description: Asthma symptoms in adults 18 and over. Asthma cannot be cured, but it can be controlled.
     MeasureID:
       - 31
       - 1199
       - 1204
   - report_topic: Child Asthma
-    report_topic_description: Rates per 10,000 residents, unless otherwise indicated.
+    report_topic_description: Asthma is a leading cause of emergency room visits, hospitalizations and missed school days in New York City’s poorest neighborhoods. In NYC, asthma is more common among low-income Black and Latino children.
     MeasureID:
       - 1196
       - 1201
   - report_topic: "Health Burden: Fine Particles (PM2.5)"
-    report_topic_description: Estimated health events attributable to PM2.5 exposures, (average annual rate per 100,000 residents)
+    report_topic_description: PM2.5 air pollution can trigger an asthma attack or make symptoms worse. Sometimes this results in an Emergency Department (ED) visit or a hospitalization.
     MeasureID:
       - 648
       - 657
   - report_topic: "Health Burden: Ozone (O3)"
-    report_topic_description: Estimated health events attributable to ozone (O3) exposures,(average annual rate per 100,000 residents), April through September
+    report_topic_description: Ozone air pollution can trigger an asthma attack or make symptoms worse. Sometimes this results in an Emergency Department (ED) visit or a hospitalization.
     MeasureID:
       - 653
       - 655
       - 659
       - 661
   - report_topic: Home Maintenance
-    report_topic_description: Percentage of homes with conditions that can affect asthma.
+    report_topic_description: When homes have cracks and leaks, dust mites, mold, and pests can thrive, affecting asthma.
     MeasureID:
       - 76
       - 80
       - 1248
   - report_topic: Indoor Air Quality
-    report_topic_description: Percentage of homes with potential sources of allergens and pollutants that can make asthma symptoms worse.
+    report_topic_description: Smoking and pests produce allergens and pollutants that can make asthma symptoms worse.
     MeasureID:
       - 47
       - 245
@@ -37,12 +37,12 @@ report_topics:
       - 625
       - 634
   - report_topic: Outdoor Air Quality
-    report_topic_description: Outdoor pollutants that can worsen asthma symptoms.
+    report_topic_description: Some outdoor pollutants are common triggers that can worsen asthma symptoms.
     MeasureID:
-      - 365
-      - 386
+      - 1425
+      - 1435
   - report_topic: Social and Economic Risk Factors
-    report_topic_description: These indicators describe conditions that make a neighborhood more at-risk for asthma.
+    report_topic_description: Not having access to quality healthcare can mean a neighborhood is more at-risk for asthma.
     MeasureID:
       - 221
       - 672
