@@ -1,7 +1,7 @@
 ---
 title: Inspection data are the key to controlling NYC’s rats
 draft: false
-date: 2025-06-14T08:49:22-04:00
+date: 2025-08-04T08:49:22-04:00
 image: inspector_looks3.jpg
 photocredit: NYC Health Department
 categories:
