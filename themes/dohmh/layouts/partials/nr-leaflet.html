@@ -1,147 +1,207 @@
 <div id="map" style="width: 100%; height:100%"></div>
 
 <style>
-  #map:hover {
-  cursor: pointer;
-  }
+    #map:hover {
+        cursor: pointer;
+    }
 </style>
 
 <script>
+    
+    // --------------------------------------------------------------------------------------------------- // 
+    // ---------- Establish initial variables ---------- // 
+    // --------------------------------------------------------------------------------------------------- // 
+    
+    var geocode = `{{ .Params.geocode }}`
+    
+    var lat = 40.715554;
+    var lng = -74.0026642;
+    var zoom = 10;
+    
+    // --------------------------------------------------------------------------------------------------- // 
+    // ---------- Initialize map ---------- // 
+    // --------------------------------------------------------------------------------------------------- // 
+    
+    let map = L.map("map", { zoomControl: false }).setView([lat, lng], zoom); // [Lat,Long],Zoom
 
-  // --------------------------------------------------------------------------------------------------- // 
-  // ---------- Establish initial variables ---------- // 
-  // --------------------------------------------------------------------------------------------------- // 
-
-  var geocode = `{{ .Params.geocode }}`
-
-  var lat = 40.715554;
-  var lng = -74.0026642;
-  var zoom = 10;
-
-  const UHF42 = "geojson/UHF42.geojson";
-
-  // --------------------------------------------------------------------------------------------------- // 
-  // ---------- Initialize map ---------- // 
-  // --------------------------------------------------------------------------------------------------- // 
-
-  var map = L.map("map", { zoomControl: false }).setView([lat, lng], zoom); // [Lat,Long],Zoom
-  L.tileLayer(
-    "https://api.maptiler.com/maps/basic-v2/{z}/{x}/{y}.png?key=dwIJ8hO2KsTMegUfEpYE",
+    L.tileLayer(
+        'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
     {
-      maxZoom: 15,
-      attribution:
-        '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>',
-    }
-  ).addTo(map);
-
-  L.control
+        maxZoom: 15,
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+     }).addTo(map);
+    
+    L.control
     .scale({
-      metric: false,
-      position: "bottomleft",
+        metric: false,
+        position: "bottomleft",
     })
     .addTo(map);
+    
+    // add and style geographies
+    
+    let uhf_geojson;
+    
+    fetch({{ relURL "geojson/UHF42.geojson" }})
+        .then((response) => response.text())
+        .then((text) => {
 
-  // add and style geographies
-  var geog;
-  fetch("{{ .Site.BaseURL }}geojson/UHF42.geojson")
-    .then((response) => response.text())
-    .then((text) => {
-      // console.log("Raw text:", text); // ← check this!
-      const data = JSON.parse(text);
-      geog = L.geoJSON(data, {
-        style,
-        onEachFeature,
-      }).addTo(map);
+            // console.log("Raw text:", text); // ← check this!
+            
+            const data = JSON.parse(text);
 
+            uhf_geojson = L.geoJSON(data, {
 
-    // After 0.5 seconds, optionally zoom to the neighborhood that matches the geocode (for NR Output)
-    setTimeout(() => {
-      if (geocode && geocode.trim() !== "") {
-        const targetLayer = Object.values(geog._layers).find(
-          (layer) => layer.feature.properties.GEOCODE == geocode
-        );
+                style: style,
+                onEachFeature: onEachFeature,
+                filter: (feature) => feature.properties.GEOCODE != 0
 
-        if (targetLayer) {
-          map.fitBounds(targetLayer.getBounds());
+            }).addTo(map);
+            
+            
+            // highlight and zoom to selected neighborhood
+                
+            if (geocode && geocode.trim() !== "") {
 
-          // Optionally, apply highlight style like in your click handler
-          geog.resetStyle();
-          targetLayer.setStyle({
-            weight: 3,
-            color: "#008939",
-            dashArray: "3",
-            fillOpacity: 0.5,
-          });
-          targetLayer.bringToFront();
-        } else {
-          console.warn("No matching GEOCODE found:", geocode);
-        }
-      } else {
-        console.log("No geocode provided; skipping zoom.");
-      }
-    }, 500);
+                // extract selected neighborhood layer
+                
+                const targetLayer = Object.values(uhf_geojson._layers).find(
+                
+                    (layer) => layer.feature.properties.GEOCODE == geocode
+                    
+                );
 
-    })
-    .catch((err) => console.error("Error loading GeoJSON:", err));
+                // if there's a selected neighborhood, style and zoom
+                
+                if (targetLayer) {
 
-  function style(feature) {
-    return {
-      weight: 1.5,
-      opacity: 1,
-      color: "black",
-      dashArray: "1",
-      fillOpacity: 0.05,
-      fillColor: "#008939",
-    };
-  }
+                    // reset style
+                    
+                    uhf_geojson.resetStyle();
+                    
+                    // apply highlight style
+                    
+                    targetLayer.setStyle({
+                        weight: 3,
+                        color: "#008939",
+                        dashArray: "3",
+                        fillOpacity: 0.5,
+                    });
 
-  // And what to do on mouseover, mouseout, and click
-  function onEachFeature(feature, layer) {
-    layer.on({
-      mouseover: highlightFeature,
-      mouseout: resetHighlight,
-      //  click: zoomToFeature // let's replace this with... something else!,
-      click: selectNeighborhood,
-    });
-    layer._leaflet_id = feature.properties.GEOCODE; // gives each item an ID based on GEOCODE
-  }
+                    // bring neighborhood to the front
 
-  function highlightFeature(e) {
-      const layer = e.target;
+                    targetLayer.bringToFront();
 
-      layer.setStyle({
-        weight: 5,
-        color: "#444",
-        dashArray: "",
-        // Do NOT touch fillColor or fillOpacity
-      });
+                    // zoom in on selected neighborhood (after half a second)
 
-      layer.bringToFront();
+                    setTimeout(() => {
+                        
+                        map.flyToBounds(targetLayer.getBounds(), {duration: 0.5});
+
+                    }, 500);
+                
+                    
+                } else {
+                    
+                    console.warn("No matching GEOCODE found:", geocode);
+                    
+                }
+                
+            } else {
+                
+                console.log("No geocode provided; skipping zoom.");
+                
+            }
+            
+        })
+        .catch((err) => console.error("Error loading GeoJSON:", err));
+
+    // define styl function
+    
+    function style(feature) {
+        return {
+            weight: 1.5,
+            opacity: 1,
+            color: "black",
+            dashArray: "1",
+            fillOpacity: 0.05,
+            fillColor: "#008939"
+        };
+    }
+    
+    // And what to do on mouseover, mouseout, and click
+
+    function onEachFeature(feature, layer) {
+        
+        // bind tooltip to each feature i.e. neighborhood, open on mousover
+        
+        layer.bindTooltip(feature.properties.GEONAME, {permanent: false, opacity: 0.9, className: "fs-md"});
+
+        // set event handlers for each layer
+        
+        layer.on({
+            
+            mouseover: highlightFeature,
+            mouseout: resetHighlight,
+            click: selectNeighborhood,
+            
+        });
+        
     }
 
+    // define function that styles highlighted layer
+    
+    function highlightFeature(e) {
+        
+        // console.log("highlightFeature", e);
+        
+        const layer = e.target;
+        
+        layer.setStyle({
+            weight: 5,
+            color: "#444",
+            dashArray: "",
+            // Do NOT touch fillColor or fillOpacity
+        });
+        
+        layer.bringToFront();
+
+        // layer.openTooltip();
+        
+        // let tooltip = layer.getTooltip();
+        // console.log("tooltip", tooltip);
+        
+    }
+
+    // define function that resets layer style
+    
     function resetHighlight(e) {
-      const layer = e.target;
 
-      layer.setStyle({
-        weight: 1.5,
-        color: "black",
-        dashArray: "1",
-      });
+        const layer = e.target;
+
+        // layer.closeTooltip();
+        
+        layer.setStyle({
+            weight: 1.5,
+            color: "black",
+            dashArray: "1",
+        });
+
     }
-
-  // --------------------------------------------------------------------------------------------------- // 
-  // ---------- this powers report and neighborhood identification, and subsequent navigation ---------- // 
-  // --------------------------------------------------------------------------------------------------- // 
-  
+    
+    // --------------------------------------------------------------------------------------------------- // 
+    // ---------- this powers report and neighborhood identification, and subsequent navigation ---------- // 
+    // --------------------------------------------------------------------------------------------------- // 
+    
     var intendedDestinationName // this needs to be declared even if it's not defined (it's used on the home page)
-
-    console.log('***GETTING TOPIC AND NEIGHBORHOOD TO POWER NAVIGATION')
-
+    
+    // console.log('*** GETTING TOPIC AND NEIGHBORHOOD TO POWER NAVIGATION')
+    
     var chosenNeighborhood; // this is for the neighborhood you are *on*
-    var chosenGeo = {{ .Params.geocode }}
+    var chosenGeo = {{ .Params.geocode }};
     var chosenReport;       // this is the report that you are *on*
     var chosenButton;       // this is a selected button, on NR home or Topic Landing
-
+    
     // Javascript for nav buttons:
     const topicSlugs = {
         Active: "active_design_physical_activity_and_health",
@@ -150,99 +210,124 @@
         Housing: "housing_and_health",
         Outdoor: "outdoor_air_and_health",
     };
-
+    
     const topicValues = Object.values(topicSlugs);
-
+    
     // This looks at the URL, and gets the report and matching neighborhood
+
     function getReportAndNeighborhood(x) {
+
+        console.log("** getReportAndNeighborhood");
+
         const url = window.location.pathname.match(/neighborhood-reports.*/)[0]
         var urlPieces = url.split("/")
-        // console.log('urlPieces', urlPieces)
 
+        // console.log('urlPieces', urlPieces)
+        
         // if it's the topic landing page, then urlPieces[1] is a topic name. We'll check for this, else, assign [1] to chosenNeighborhood
+
         if (topicValues.includes(urlPieces[1])) {
+
             chosenNeighborhood = null
             chosenReport = (urlPieces[1] && urlPieces[1].length > 2) ? urlPieces[1] : null;
+
         } else {
+
             chosenNeighborhood = (urlPieces[1] && urlPieces[1].length > 2) ? urlPieces[1] : null
             chosenReport = (urlPieces[2] && urlPieces[2].length > 2) ? urlPieces[2] : null;
+
         }
-
-
+        
         console.log('Neighborhood: ', chosenNeighborhood)
         console.log('GeoCode: ', chosenGeo)
         console.log('Report:', chosenReport)
+        
+        pageTypeID();
 
-        pageTypeID()
     }
-
+    
     getReportAndNeighborhood(window.location.href)
-
+    
     // this checks the page type; there may be some things that differ based on pagetype
+
     function pageTypeID() {
-        console.log('***WHAT KIND OF PAGE IS THIS?')
+
+        console.log('*** WHAT KIND OF PAGE IS THIS?')
+
         if (chosenNeighborhood == null && chosenReport == null) {
+
             console.log("NR Landing page")
+
         } else if (chosenNeighborhood && chosenReport) {
+
             console.log("Output for: ", chosenNeighborhood, chosenReport)
+
         } else if (chosenReport && !chosenNeighborhood) {
+
             console.log("Topic landing for: ", chosenReport)
+
         } else {
+
             console.log("Neighborhood landing for: ", chosenNeighborhood)
+
         }
         
     }
+    
+    
+    // --------------------------------------------------------------------------------------------------- // 
+    // ---------- Use map as navigation ---------- // 
+    // --------------------------------------------------------------------------------------------------- // 
+    
+    function selectNeighborhood(e) {
 
+        console.log("selectNeighborhood");
 
-  // --------------------------------------------------------------------------------------------------- // 
-  // ---------- Use map as navigation ---------- // 
-  // --------------------------------------------------------------------------------------------------- // 
-  function selectNeighborhood(e) {
-    geog.resetStyle();
-    const layer = e.target;
+        uhf_geojson.resetStyle();
 
-    layer.setStyle({
-      weight: 3,
-      color: '#008939',
-      dashArray: "3",
-      fillOpacity: 0.5,
-    });
+        const layer = e.target;
+        
+        layer.setStyle({
+            weight: 3,
+            color: '#008939',
+            dashArray: "3",
+            fillOpacity: 0.5,
+        });
+        
+        layer.bringToFront();
+        
+        const geocodeClicked = layer.feature.properties.GEOCODE;
+        
+        // Find the matching neighborhood - 'neighborhoods' is a variable set in uhflist.js
+        const match = neighborhoods.find(
+            n => n.UHF_id == geocodeClicked
+        );
+        
+        // console.log('neighborhoods:', neighborhoods)
+        
+        if (match && match.page_name) {
 
-    layer.bringToFront();
-
-    const geocodeClicked = layer.feature.properties.GEOCODE;
-
-    // Find the matching neighborhood
-    const match = neighborhoods.find(
-      (n) => n.UHF_id == geocodeClicked
-    );
-
-    console.log('neighborhoods:',neighborhoods)
-
-    if (match && match.page_name) {
-      // Get the current URL parts
-      const parts = window.location.pathname.split("/");
-
-      // Replace the 3rd index (neighborhood slug) with the new one
-      parts[3] = match.page_name;
-
-      // set report destination
-      const dest = intendedDestinationName
-        ? intendedDestinationName
-        : (chosenReport ? chosenReport : '/');
-
-      // Build the new path; this will now work if reportURL is set (as in the Output), or if it's not (as on a Neighborhood Landing Page)
-
-      const buildURL = '{{ .Site.BaseURL }}neighborhood-reports/' + parts[3] + "/" + dest + '/'
-      
-      // Redirect - send to new page
-         window.location.href = buildURL;
-      // console.log(buildURL)
-
-    } else {
-      console.warn("No matching neighborhood for GEOCODE:", geocodeClicked);
+            // Get the current URL parts
+            const parts = window.location.pathname.split("/");
+            
+            // Replace the 3rd index (neighborhood slug) with the new one
+            parts[3] = match.page_name;
+            
+            // set report destination
+            const dest = intendedDestinationName ? intendedDestinationName : (chosenReport ? chosenReport : '/');
+            
+            // Build the new path; this will now work if reportURL is set (as in the Output), or if it's not (as on a Neighborhood Landing Page)
+            
+            const buildURL = {{ relURL "neighborhood-reports/" }} + parts[3] + "/" + dest + '/'
+            
+            // Redirect - send to new page
+            window.location.href = buildURL;
+            // console.log(buildURL)
+            
+        } else {
+            console.warn("No matching neighborhood for GEOCODE:", geocodeClicked);
+        }
     }
-  }
-
-
+    
+    
 </script>

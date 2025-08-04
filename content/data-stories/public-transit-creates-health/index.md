@@ -24,7 +24,7 @@ keywords:
 image: Bus_Brooklyn_.jpg
 photocredit: "Marc A. Hermann / MTA New York City Transit"
 related:
-  - title: Initial data from Congestion Relief Tolling"
+  - title: "Initial data from Congestion Relief Tolling"
     url: "data-stories/congestion-tolling-update"
   - title: "The public health impacts of PM2.5 from traffic air pollution"
     url: "data-stories/traffic-and-air-pollution/"
