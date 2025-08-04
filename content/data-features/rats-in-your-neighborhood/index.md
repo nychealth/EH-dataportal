@@ -14,8 +14,8 @@ image: rmz-ss.png
 related:
   - title: "Rat Mitigation Zones"
     url: "data-features/rat-mitigation-zones"
-  - title: "Data: mice and rats"
-    url: "data-explorer/mice-and-rats/"
+  - title: "Inspection data are the key to controlling NYC’s rats"
+    url: "data-stories/rat-inspections/"
   - title: "Rat Information Portal"
     url: "data-features/rat-information-portal/"
 weight: 1
