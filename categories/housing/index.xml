@@ -6,7 +6,7 @@
     <description>Recent content in Housing on Environment &amp; Health Data Portal</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 24 Jun 2025 09:01:00 -0400</lastBuildDate>
+    <lastBuildDate>Mon, 04 Aug 2025 08:49:22 -0400</lastBuildDate>
     <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/categories/housing/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Rats in your neighborhood</title>
@@ -49,6 +49,13 @@
       <pubDate>Sat, 02 Oct 2021 07:56:00 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/displacement-risk/</guid>
       <description>&lt;p&gt;Housing stability creates health, but in NYC, many people have difficulty accessing healthy, stable housing.&lt;/p&gt;&#xA;&lt;p&gt;In some neighborhoods, residents at are higher risk of being displaced - forced to leave their homes, and their neighborhoods, due combinations of market pressure, rent burden, housing conditions, poverty, and injustice in the housing market.&lt;/p&gt;&#xA;&lt;p&gt;To show people&amp;rsquo;s risk of being forced out of their homes or neighborhoods, the Department of City Planning and the Department of Housing Preservation and Development created a Displacement Risk Index, part of the Equitable Development Data Explorer.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Inspection data are the key to controlling NYC’s rats</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/rat-inspections/</link>
+      <pubDate>Mon, 04 Aug 2025 08:49:22 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/rat-inspections/</guid>
+      <description>&lt;p&gt;Rats are one of New York City’s hottest topics. You see them on the news, while scrolling on social media, and you’ve probably spied more than a few on your commute. We all want to know where in the city the rats are worst, and if the rats are multiplying or their numbers are declining.&lt;/p&gt;&#xA;&lt;p&gt;Each year, the Health Department gets about 40,000 complaints about rat activity through 311 &lt;a href=&#34;../../data-features/rat-mitigation-zones/&#34;&gt;(you can explore these data on NYC Open Data)&lt;/a&gt;. But complaint data — how many 311 complaints, and what neighborhoods have the most complaints — doesn&amp;rsquo;t give us a full picture of rat activity in NYC. Some neighborhoods with high levels of rat activity don’t always generate a lot of complaints, and some neighborhoods with a lot of complaints don’t always have a high level of rat activity.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Energy is critical for health and climate resilience — but not all New Yorkers may be able to afford it</title>

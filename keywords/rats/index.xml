@@ -6,7 +6,7 @@
     <description>Recent content in Rats on Environment &amp; Health Data Portal</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 12 Jun 2025 08:29:34 -0400</lastBuildDate>
+    <lastBuildDate>Mon, 04 Aug 2025 08:49:22 -0400</lastBuildDate>
     <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/rats/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Rats in your neighborhood</title>
@@ -21,6 +21,13 @@
       <pubDate>Thu, 01 Jun 2023 11:14:56 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/rat-mitigation-zones/</guid>
       <description>&lt;p&gt;Rats can contaminate food, spread disease and reduce our quality of life. Rat Mitigation Zones (RMZ) are areas with high levels of rat activity, where City agencies focus resources to address rats and the conditions that support them.&lt;/p&gt;&#xA;&lt;p&gt;Choose an RMZ on the map below to view data on complaints and NYC Health Department rat control activity.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Inspection data are the key to controlling NYC’s rats</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/rat-inspections/</link>
+      <pubDate>Mon, 04 Aug 2025 08:49:22 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/rat-inspections/</guid>
+      <description>&lt;p&gt;Rats are one of New York City’s hottest topics. You see them on the news, while scrolling on social media, and you’ve probably spied more than a few on your commute. We all want to know where in the city the rats are worst, and if the rats are multiplying or their numbers are declining.&lt;/p&gt;&#xA;&lt;p&gt;Each year, the Health Department gets about 40,000 complaints about rat activity through 311 &lt;a href=&#34;../../data-features/rat-mitigation-zones/&#34;&gt;(you can explore these data on NYC Open Data)&lt;/a&gt;. But complaint data — how many 311 complaints, and what neighborhoods have the most complaints — doesn&amp;rsquo;t give us a full picture of rat activity in NYC. Some neighborhoods with high levels of rat activity don’t always generate a lot of complaints, and some neighborhoods with a lot of complaints don’t always have a high level of rat activity.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Rat complaints and NYC’s rat problem</title>

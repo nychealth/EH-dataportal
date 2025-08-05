@@ -399,11 +399,6 @@
     "description": "This score summarizes features that promote walking, including density of residences, intersections, subway stops, and retail area. Higher scores indicate greater walkability. Neighborhoods range from -4.0 to 9.4, with zero as an approximate NYC average. This indicator excludes some factors that may impact access and walkability, like maintenance, ADA access, neighborhood safety, and street trees.",
     "name": "Walkability index"
   },
-  "2135": {
-    "IndicatorID": 2135,
-    "description": "Falls are a leading cause of injury among older adults.",
-    "name": "Fall-related emergency department visits (age 65+)"
-  },
   "2136": {
     "IndicatorID": 2136,
     "description": "Falls are a leading cause of injury among older adults.",
@@ -853,16 +848,6 @@
     "IndicatorID": 2406,
     "description": "Carbon monoxide (CO) exposure can be life-threatening or fatal. ED visits and hospitalizations allows us to understand the burden of CO-related health impacts.",
     "name": "Carbon monoxide hospitalizations"
-  },
-  "2408": {
-    "IndicatorID": 2408,
-    "description": "Falls are a leading cause of injury among older adults.",
-    "name": "Home fall-related emergency department visits (age 65+)"
-  },
-  "2409": {
-    "IndicatorID": 2409,
-    "description": "Falls are a leading cause of injury among older adults.",
-    "name": "Home fall-related hospitalizations (age 65+)"
   },
   "2410": {
     "IndicatorID": 2410,

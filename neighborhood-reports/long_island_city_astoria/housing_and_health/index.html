@@ -1437,570 +1437,6 @@
 
 
 
-  <div class="card-header border-top" id="heading-Asth1201">
-    <h2 class="mb-0">
-      <button
-        class="btn btn-block btn-sm text-left"
-        type="button"
-        data-toggle="collapse"
-        data-target="#collapse-Asth1201"
-        aria-expanded="true"
-        aria-controls="collapse-Asth1201"
-        onclick="getURL( 2381 , 'Asth1201')"
-      >
-        
-        <div class="row no-gutters" style="width: 100%">
-          <div class="col-7 d-print-none">
-            <span class="font-weight-bold fs-md"
-              >Asthma hospitalizations (age 5 to 17)</span
-            ><br />
-            <span class="fs-sm font-weight-normal"
-              >Asthma hospitalizations (age 5 to 17), 2020</span
-            >
-          </div>
-          <div class="col-3 pl-1 d-print-none">
-            <span class="font-weight-bold fs-lg"
-              >2.3*</span
-            >
-            <br />
-            <span class="fs-xs font-weight-normal"
-              >Estimated annual rate per 10,000</span
-            >
-          </div>
-
-          
-
-          <div class="col-2 d-print-none">
-              <div class="float-right mt-1">
-              <span
-                    class="better">Lower</span>
-            </div>
-          </div>
-
-          
-          <div class="col-12 print-only" style="flex-direction:row; width:100%;">
-
-            
-            <div style="width:50%;" class="border-right pl-1">
-              <span class="font-weight-bold fs-md">
-                Asthma hospitalizations (age 5 to 17)
-              </span><br />
-              <span class="fs-sm font-weight-normal">Asthma hospitalizations (age 5 to 17), 2020</span>
-            </div>
-
-            
-            <div style="width:25%" class="border-right pl-1">
-              <span class="font-weight-bold fs-lg">
-                2.3*
-              </span><br />
-              <span class="fs-xs font-weight-normal">
-                Estimated annual rate per 10,000
-              </span>
-            </div>
-
-            
-
-            
-            <div style="width:25%;" class="pl-1">
-
-              Less than most neighborhoods
-
-
-
-            </div>
-
-          </div>
-
-        </div>
-      </button>
-    </h2>
-  </div>
-
-
-  <div
-    id="collapse-Asth1201"
-    class="collapse border-bottom "
-    aria-labelledby="heading-Asth1201"
-    data-parent="#accordion-0"
-    data-indicator-name="Asth1201"
-    data-count="2"
-  >
-    <div class="card-body card-body-no-top">
-
-      <div class="row no-gutters fs-sm">
-        <div class="col-12">
-            
-            <p class="fs-md mt-1 mb-2">Asthma hospitalizations are more severe asthma outcomes. They're often clustered in high-poverty neighborhoods, where disinvestment and poor housing conditions expose residents to triggers.</p>
-        </div>
-
-                <div class="col-md-7 border-right h-100">
-                
-                <div style="width:100%; height:40vmin; z-index:100;" class="" id="map-Asth1201-2">
-                    ...map is loading...
-                </div><div class="data-note mt-1">* Estimate is based on small numbers so should be interpreted with caution.</div></div>
-        
-        
-        
-        
-
-        
-
-        <div class="col-md-5 h-100 p-1 ">
-
-            <p class="fs-rg">
-                Asthma hospitalizations (age 5 to 17) in <strong>Long Island City - Astoria</strong>:
-                <div class=" fs-md">
-                  <p>
-                    <span class="better-sm fs-sm mt-1">Less than most</span>&nbsp;neighborhoods
-                  </p>
-
-                  <p>
-                    <span id="b-asthma-hospitalizations-age-5-to-17"></span> the <strong>Queens average</strong> 
-                    <br>
-                    <span class="fs-sm pl-3">(<span id="bv-asthma-hospitalizations-age-5-to-17">boro val</span> per 10,000)</span>
-                  </p>
-
-                  <p>
-                    <span id="c-asthma-hospitalizations-age-5-to-17"></span> the <strong>Citywide average</strong> 
-                    <br>
-                    <span class="fs-sm pl-3">(<span id="cv-asthma-hospitalizations-age-5-to-17">city val</span> per 10,000)</span>
-                  </p>
-
-                    </div>
-                
-            </p>
-
-             
-            <div id="trend" class="hide">
-            <p>In <strong>Queens</strong>, it is [TREND]. Citywide, the trend is [TREND].</p>
-            </div>
-
-            
-
-            <span id="year-asthma-hospitalizations-age-5-to-17" class="sr-only">YEAR</span>
-
-          
-
-        </div>
-
-      </div>
-      <div class="row no-gutters">
-        <div class="col-7">
-            <span class="fs-xs"><strong>Source:</strong> New York State Statewide Planning and Research Cooperative System (SPARCS) Deidentified Hospital Discharge Data</span>
-
-        </div>
-        <div class="col-5">
-            <p class="float-right"><a id="2381" href="" class="ml-1" style="display:none"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Full dataset</a></p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-<script>
-    
-    (function(x, y) {
-        var endDate = new Date(x);
-        var year = endDate.getFullYear(); 
-        document.getElementById(y).innerHTML = year;
-    })(`2020-12-31`, `year-asthma-hospitalizations-age-5-to-17`);
-
-(function(n, b, c, nid, bid, cid, rr) {
-    n = Number(n);
-    b = Number(b);
-    c = Number(c);
-
-    let rankReverse = (rr === true || rr === 'true');
-
-    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
-    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
-
-    let boroJudgement;
-    if (n > b && rankReverse) {
-      boroJudgement = 'comp-good';
-    } else if (n < b && rankReverse) {
-      boroJudgement = 'comp-bad';
-    } else if (n > b && !rankReverse) {
-      boroJudgement = 'comp-bad';
-    } else if (n < b && !rankReverse) {
-      boroJudgement = 'comp-good';
-    } else {
-      boroJudgement = 'comp-null';
-    }
-
-    let cityJudgement;
-    if (n > c && rankReverse) {
-      cityJudgement = 'comp-good';
-    } else if (n < c && rankReverse) {
-      cityJudgement = 'comp-bad';
-    } else if (n > c && !rankReverse) {
-      cityJudgement = 'comp-bad';
-    } else if (n < c && !rankReverse) {
-      cityJudgement = 'comp-good';
-    } else {
-      cityJudgement = 'comp-null';
-    }
-
-    let boroEl = document.getElementById(bid);
-    if (boroEl) {
-        boroEl.innerHTML = boroComp;
-        boroEl.classList.add(boroJudgement);
-    }
-
-    let cityEl = document.getElementById(cid);
-    if (cityEl) {
-        cityEl.innerHTML = cityComp;
-        cityEl.classList.add(cityJudgement);
-    }
-
-    document.getElementById('bv-asthma-hospitalizations-age-5-to-17').innerHTML = b;
-    document.getElementById('cv-asthma-hospitalizations-age-5-to-17').innerHTML = c;
-
-
-})(
-     2.3 ,
-     4 ,
-     8.3 ,
-    'n-asthma-hospitalizations-age-5-to-17',
-    'b-asthma-hospitalizations-age-5-to-17',
-    'c-asthma-hospitalizations-age-5-to-17',
-     false 
-)
-
-
-</script>
-
-
-
-
-<script type="text/javascript">
-
-    $( "#collapse-Asth1201" ).on('shown.bs.collapse', function() {
-
-        
-
-        gtag('event', 'click_modal', {
-                'modal_name': 'Asthma hospitalizations (age 5 to 17)'
-            });
-
-        var opt = {"renderer": "svg"};
-
-            
-
-            
-
-            var summaryData =
-                arqTable
-                .filter(d => d.indicator_data_name == "Asth1201")
-                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
-                .dedupe()
-                .groupby("neighborhood")
-                .orderby("neighborhood", aq.desc("end_date"))
-                .slice(0,1) 
-                .ungroup()
-                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
-                .orderby("unmodified_data_value_geo_entity") 
-                .select(aq.not("end_date"))
-                .objects()
-
-
-            
-
-            
-
-            var mapData = summaryData;
-
-            renderNRMap(mapData,  "#map-Asth1201-2", "Estimated annual rate per 10,000","Asthma hospitalizations (age 5 to 17)",geocode)
-
-    });
-
-    </script>
-
-
-
-
-
-  <div class="card-header border-top" id="heading-Asth1204">
-    <h2 class="mb-0">
-      <button
-        class="btn btn-block btn-sm text-left"
-        type="button"
-        data-toggle="collapse"
-        data-target="#collapse-Asth1204"
-        aria-expanded="true"
-        aria-controls="collapse-Asth1204"
-        onclick="getURL( 2382 , 'Asth1204')"
-      >
-        
-        <div class="row no-gutters" style="width: 100%">
-          <div class="col-7 d-print-none">
-            <span class="font-weight-bold fs-md"
-              >Asthma hospitalizations (adults)</span
-            ><br />
-            <span class="fs-sm font-weight-normal"
-              >Asthma hospitalizations (adults), 2022</span
-            >
-          </div>
-          <div class="col-3 pl-1 d-print-none">
-            <span class="font-weight-bold fs-lg"
-              >3.5</span
-            >
-            <br />
-            <span class="fs-xs font-weight-normal"
-              >Age-adjusted rate per 10,000</span
-            >
-          </div>
-
-          
-
-          <div class="col-2 d-print-none">
-              <div class="float-right mt-1">
-              <span
-                    class="better">Lower</span>
-            </div>
-          </div>
-
-          
-          <div class="col-12 print-only" style="flex-direction:row; width:100%;">
-
-            
-            <div style="width:50%;" class="border-right pl-1">
-              <span class="font-weight-bold fs-md">
-                Asthma hospitalizations (adults)
-              </span><br />
-              <span class="fs-sm font-weight-normal">Asthma hospitalizations (adults), 2022</span>
-            </div>
-
-            
-            <div style="width:25%" class="border-right pl-1">
-              <span class="font-weight-bold fs-lg">
-                3.5
-              </span><br />
-              <span class="fs-xs font-weight-normal">
-                Age-adjusted rate per 10,000
-              </span>
-            </div>
-
-            
-
-            
-            <div style="width:25%;" class="pl-1">
-
-              Less than most neighborhoods
-
-
-
-            </div>
-
-          </div>
-
-        </div>
-      </button>
-    </h2>
-  </div>
-
-
-  <div
-    id="collapse-Asth1204"
-    class="collapse border-bottom "
-    aria-labelledby="heading-Asth1204"
-    data-parent="#accordion-0"
-    data-indicator-name="Asth1204"
-    data-count="3"
-  >
-    <div class="card-body card-body-no-top">
-
-      <div class="row no-gutters fs-sm">
-        <div class="col-12">
-            
-            <p class="fs-md mt-1 mb-2">Asthma hospitalizations are more severe asthma outcomes. They're often clustered in high-poverty neighborhoods, where disinvestment and poor housing conditions expose residents to triggers.</p>
-        </div>
-
-                <div class="col-md-7 border-right h-100">
-                
-                <div style="width:100%; height:40vmin; z-index:100;" class="" id="map-Asth1204-3">
-                    ...map is loading...
-                </div><div class="data-note mt-1"></div></div>
-        
-        
-        
-        
-
-        
-
-        <div class="col-md-5 h-100 p-1 ">
-
-            <p class="fs-rg">
-                Asthma hospitalizations (adults) in <strong>Long Island City - Astoria</strong>:
-                <div class=" fs-md">
-                  <p>
-                    <span class="better-sm fs-sm mt-1">Less than most</span>&nbsp;neighborhoods
-                  </p>
-
-                  <p>
-                    <span id="b-asthma-hospitalizations-adults"></span> the <strong>Queens average</strong> 
-                    <br>
-                    <span class="fs-sm pl-3">(<span id="bv-asthma-hospitalizations-adults">boro val</span> per 10,000)</span>
-                  </p>
-
-                  <p>
-                    <span id="c-asthma-hospitalizations-adults"></span> the <strong>Citywide average</strong> 
-                    <br>
-                    <span class="fs-sm pl-3">(<span id="cv-asthma-hospitalizations-adults">city val</span> per 10,000)</span>
-                  </p>
-
-                    </div>
-                
-            </p>
-
-             
-            <div id="trend" class="hide">
-            <p>In <strong>Queens</strong>, it is [TREND]. Citywide, the trend is [TREND].</p>
-            </div>
-
-            
-
-            <span id="year-asthma-hospitalizations-adults" class="sr-only">YEAR</span>
-
-          
-
-        </div>
-
-      </div>
-      <div class="row no-gutters">
-        <div class="col-7">
-            <span class="fs-xs"><strong>Source:</strong> New York State Statewide Planning and Research Cooperative System (SPARCS) Deidentified Hospital Discharge Data</span>
-
-        </div>
-        <div class="col-5">
-            <p class="float-right"><a id="2382" href="" class="ml-1" style="display:none"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Full dataset</a></p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-<script>
-    
-    (function(x, y) {
-        var endDate = new Date(x);
-        var year = endDate.getFullYear(); 
-        document.getElementById(y).innerHTML = year;
-    })(`2022-12-31`, `year-asthma-hospitalizations-adults`);
-
-(function(n, b, c, nid, bid, cid, rr) {
-    n = Number(n);
-    b = Number(b);
-    c = Number(c);
-
-    let rankReverse = (rr === true || rr === 'true');
-
-    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
-    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
-
-    let boroJudgement;
-    if (n > b && rankReverse) {
-      boroJudgement = 'comp-good';
-    } else if (n < b && rankReverse) {
-      boroJudgement = 'comp-bad';
-    } else if (n > b && !rankReverse) {
-      boroJudgement = 'comp-bad';
-    } else if (n < b && !rankReverse) {
-      boroJudgement = 'comp-good';
-    } else {
-      boroJudgement = 'comp-null';
-    }
-
-    let cityJudgement;
-    if (n > c && rankReverse) {
-      cityJudgement = 'comp-good';
-    } else if (n < c && rankReverse) {
-      cityJudgement = 'comp-bad';
-    } else if (n > c && !rankReverse) {
-      cityJudgement = 'comp-bad';
-    } else if (n < c && !rankReverse) {
-      cityJudgement = 'comp-good';
-    } else {
-      cityJudgement = 'comp-null';
-    }
-
-    let boroEl = document.getElementById(bid);
-    if (boroEl) {
-        boroEl.innerHTML = boroComp;
-        boroEl.classList.add(boroJudgement);
-    }
-
-    let cityEl = document.getElementById(cid);
-    if (cityEl) {
-        cityEl.innerHTML = cityComp;
-        cityEl.classList.add(cityJudgement);
-    }
-
-    document.getElementById('bv-asthma-hospitalizations-adults').innerHTML = b;
-    document.getElementById('cv-asthma-hospitalizations-adults').innerHTML = c;
-
-
-})(
-     3.5 ,
-     4.5 ,
-     6.6 ,
-    'n-asthma-hospitalizations-adults',
-    'b-asthma-hospitalizations-adults',
-    'c-asthma-hospitalizations-adults',
-     false 
-)
-
-
-</script>
-
-
-
-
-<script type="text/javascript">
-
-    $( "#collapse-Asth1204" ).on('shown.bs.collapse', function() {
-
-        
-
-        gtag('event', 'click_modal', {
-                'modal_name': 'Asthma hospitalizations (adults)'
-            });
-
-        var opt = {"renderer": "svg"};
-
-            
-
-            
-
-            var summaryData =
-                arqTable
-                .filter(d => d.indicator_data_name == "Asth1204")
-                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
-                .dedupe()
-                .groupby("neighborhood")
-                .orderby("neighborhood", aq.desc("end_date"))
-                .slice(0,1) 
-                .ungroup()
-                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
-                .orderby("unmodified_data_value_geo_entity") 
-                .select(aq.not("end_date"))
-                .objects()
-
-
-            
-
-            
-
-            var mapData = summaryData;
-
-            renderNRMap(mapData,  "#map-Asth1204-3", "Age-adjusted rate per 10,000","Asthma hospitalizations (adults)",geocode)
-
-    });
-
-    </script>
-
-
-
-
-
   <div class="card-header border-top" id="heading-Chil777">
     <h2 class="mb-0">
       <button
@@ -2086,7 +1522,7 @@
     aria-labelledby="heading-Chil777"
     data-parent="#accordion-0"
     data-indicator-name="Chil777"
-    data-count="4"
+    data-count="2"
   >
     <div class="card-body card-body-no-top">
 
@@ -2098,7 +1534,7 @@
 
                 <div class="col-md-7 border-right h-100">
                 
-                <div style="width:100%; height:40vmin; z-index:100;" class="" id="map-Chil777-4">
+                <div style="width:100%; height:40vmin; z-index:100;" class="" id="map-Chil777-2">
                     ...map is loading...
                 </div><div class="data-note mt-1"></div></div>
         
@@ -2272,7 +1708,569 @@
 
             var mapData = summaryData;
 
-            renderNRMap(mapData,  "#map-Chil777-4", "Rate (5\u002b mcg\/dL) per 1,000 tested","Child lead poisoning",geocode)
+            renderNRMap(mapData,  "#map-Chil777-2", "Rate (5\u002b mcg\/dL) per 1,000 tested","Child lead poisoning",geocode)
+
+    });
+
+    </script>
+
+
+
+
+
+  <div class="card-header border-top" id="heading-Asth1201">
+    <h2 class="mb-0">
+      <button
+        class="btn btn-block btn-sm text-left"
+        type="button"
+        data-toggle="collapse"
+        data-target="#collapse-Asth1201"
+        aria-expanded="true"
+        aria-controls="collapse-Asth1201"
+        onclick="getURL( 2381 , 'Asth1201')"
+      >
+        
+        <div class="row no-gutters" style="width: 100%">
+          <div class="col-7 d-print-none">
+            <span class="font-weight-bold fs-md"
+              >Asthma hospitalizations (age 5 to 17)</span
+            ><br />
+            <span class="fs-sm font-weight-normal"
+              >Asthma hospitalizations (age 5 to 17), 2023</span
+            >
+          </div>
+          <div class="col-3 pl-1 d-print-none">
+            <span class="font-weight-bold fs-lg"
+              >13.3</span
+            >
+            <br />
+            <span class="fs-xs font-weight-normal"
+              >Estimated annual rate per 10,000</span
+            >
+          </div>
+
+          
+
+          <div class="col-2 d-print-none">
+              <div class="float-right mt-1">
+              <span class="middle d-none"></span>
+            </div>
+          </div>
+
+          
+          <div class="col-12 print-only" style="flex-direction:row; width:100%;">
+
+            
+            <div style="width:50%;" class="border-right pl-1">
+              <span class="font-weight-bold fs-md">
+                Asthma hospitalizations (age 5 to 17)
+              </span><br />
+              <span class="fs-sm font-weight-normal">Asthma hospitalizations (age 5 to 17), 2023</span>
+            </div>
+
+            
+            <div style="width:25%" class="border-right pl-1">
+              <span class="font-weight-bold fs-lg">
+                13.3
+              </span><br />
+              <span class="fs-xs font-weight-normal">
+                Estimated annual rate per 10,000
+              </span>
+            </div>
+
+            
+
+            
+            <div style="width:25%;" class="pl-1">
+
+              In the middle of NYC neighborhoods
+
+
+
+            </div>
+
+          </div>
+
+        </div>
+      </button>
+    </h2>
+  </div>
+
+
+  <div
+    id="collapse-Asth1201"
+    class="collapse border-bottom "
+    aria-labelledby="heading-Asth1201"
+    data-parent="#accordion-0"
+    data-indicator-name="Asth1201"
+    data-count="3"
+  >
+    <div class="card-body card-body-no-top">
+
+      <div class="row no-gutters fs-sm">
+        <div class="col-12">
+            
+            <p class="fs-md mt-1 mb-2">Asthma hospitalizations are more severe asthma outcomes. They're often clustered in high-poverty neighborhoods, where disinvestment and poor housing conditions expose residents to triggers.</p>
+        </div>
+
+                <div class="col-md-7 border-right h-100">
+                
+                <div style="width:100%; height:40vmin; z-index:100;" class="" id="map-Asth1201-3">
+                    ...map is loading...
+                </div><div class="data-note mt-1"></div></div>
+        
+        
+        
+        
+
+        
+
+        <div class="col-md-5 h-100 p-1 ">
+
+            <p class="fs-rg">
+                Asthma hospitalizations (age 5 to 17) in <strong>Long Island City - Astoria</strong>:
+                <div class=" fs-md">
+                  <p>
+                    <span class="middle-sm fs-sm mt-1">In the middle of</span>&nbsp;neighborhoods
+                  </p>
+
+                  <p>
+                    <span id="b-asthma-hospitalizations-age-5-to-17"></span> the <strong>Queens average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="bv-asthma-hospitalizations-age-5-to-17">boro val</span> per 10,000)</span>
+                  </p>
+
+                  <p>
+                    <span id="c-asthma-hospitalizations-age-5-to-17"></span> the <strong>Citywide average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="cv-asthma-hospitalizations-age-5-to-17">city val</span> per 10,000)</span>
+                  </p>
+
+                    </div>
+                
+            </p>
+
+             
+            <div id="trend" class="hide">
+            <p>In <strong>Queens</strong>, it is [TREND]. Citywide, the trend is [TREND].</p>
+            </div>
+
+            
+
+            <span id="year-asthma-hospitalizations-age-5-to-17" class="sr-only">YEAR</span>
+
+          
+
+        </div>
+
+      </div>
+      <div class="row no-gutters">
+        <div class="col-7">
+            <span class="fs-xs"><strong>Source:</strong> New York State Statewide Planning and Research Cooperative System (SPARCS) Deidentified Hospital Discharge Data</span>
+
+        </div>
+        <div class="col-5">
+            <p class="float-right"><a id="2381" href="" class="ml-1" style="display:none"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Full dataset</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+    
+    (function(x, y) {
+        var endDate = new Date(x);
+        var year = endDate.getFullYear(); 
+        document.getElementById(y).innerHTML = year;
+    })(`2023-12-31`, `year-asthma-hospitalizations-age-5-to-17`);
+
+(function(n, b, c, nid, bid, cid, rr) {
+    n = Number(n);
+    b = Number(b);
+    c = Number(c);
+
+    let rankReverse = (rr === true || rr === 'true');
+
+    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
+    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
+
+    let boroJudgement;
+    if (n > b && rankReverse) {
+      boroJudgement = 'comp-good';
+    } else if (n < b && rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n > b && !rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n < b && !rankReverse) {
+      boroJudgement = 'comp-good';
+    } else {
+      boroJudgement = 'comp-null';
+    }
+
+    let cityJudgement;
+    if (n > c && rankReverse) {
+      cityJudgement = 'comp-good';
+    } else if (n < c && rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n > c && !rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n < c && !rankReverse) {
+      cityJudgement = 'comp-good';
+    } else {
+      cityJudgement = 'comp-null';
+    }
+
+    let boroEl = document.getElementById(bid);
+    if (boroEl) {
+        boroEl.innerHTML = boroComp;
+        boroEl.classList.add(boroJudgement);
+    }
+
+    let cityEl = document.getElementById(cid);
+    if (cityEl) {
+        cityEl.innerHTML = cityComp;
+        cityEl.classList.add(cityJudgement);
+    }
+
+    document.getElementById('bv-asthma-hospitalizations-age-5-to-17').innerHTML = b;
+    document.getElementById('cv-asthma-hospitalizations-age-5-to-17').innerHTML = c;
+
+
+})(
+     13.3 ,
+     15.8 ,
+     21.8 ,
+    'n-asthma-hospitalizations-age-5-to-17',
+    'b-asthma-hospitalizations-age-5-to-17',
+    'c-asthma-hospitalizations-age-5-to-17',
+     false 
+)
+
+
+</script>
+
+
+
+
+<script type="text/javascript">
+
+    $( "#collapse-Asth1201" ).on('shown.bs.collapse', function() {
+
+        
+
+        gtag('event', 'click_modal', {
+                'modal_name': 'Asthma hospitalizations (age 5 to 17)'
+            });
+
+        var opt = {"renderer": "svg"};
+
+            
+
+            
+
+            var summaryData =
+                arqTable
+                .filter(d => d.indicator_data_name == "Asth1201")
+                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
+                .dedupe()
+                .groupby("neighborhood")
+                .orderby("neighborhood", aq.desc("end_date"))
+                .slice(0,1) 
+                .ungroup()
+                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
+                .orderby("unmodified_data_value_geo_entity") 
+                .select(aq.not("end_date"))
+                .objects()
+
+
+            
+
+            
+
+            var mapData = summaryData;
+
+            renderNRMap(mapData,  "#map-Asth1201-3", "Estimated annual rate per 10,000","Asthma hospitalizations (age 5 to 17)",geocode)
+
+    });
+
+    </script>
+
+
+
+
+
+  <div class="card-header border-top" id="heading-Asth1204">
+    <h2 class="mb-0">
+      <button
+        class="btn btn-block btn-sm text-left"
+        type="button"
+        data-toggle="collapse"
+        data-target="#collapse-Asth1204"
+        aria-expanded="true"
+        aria-controls="collapse-Asth1204"
+        onclick="getURL( 2382 , 'Asth1204')"
+      >
+        
+        <div class="row no-gutters" style="width: 100%">
+          <div class="col-7 d-print-none">
+            <span class="font-weight-bold fs-md"
+              >Asthma hospitalizations (adults)</span
+            ><br />
+            <span class="fs-sm font-weight-normal"
+              >Asthma hospitalizations (adults), 2023</span
+            >
+          </div>
+          <div class="col-3 pl-1 d-print-none">
+            <span class="font-weight-bold fs-lg"
+              >5.8</span
+            >
+            <br />
+            <span class="fs-xs font-weight-normal"
+              >Age-adjusted rate per 10,000</span
+            >
+          </div>
+
+          
+
+          <div class="col-2 d-print-none">
+              <div class="float-right mt-1">
+              <span class="middle d-none"></span>
+            </div>
+          </div>
+
+          
+          <div class="col-12 print-only" style="flex-direction:row; width:100%;">
+
+            
+            <div style="width:50%;" class="border-right pl-1">
+              <span class="font-weight-bold fs-md">
+                Asthma hospitalizations (adults)
+              </span><br />
+              <span class="fs-sm font-weight-normal">Asthma hospitalizations (adults), 2023</span>
+            </div>
+
+            
+            <div style="width:25%" class="border-right pl-1">
+              <span class="font-weight-bold fs-lg">
+                5.8
+              </span><br />
+              <span class="fs-xs font-weight-normal">
+                Age-adjusted rate per 10,000
+              </span>
+            </div>
+
+            
+
+            
+            <div style="width:25%;" class="pl-1">
+
+              In the middle of NYC neighborhoods
+
+
+
+            </div>
+
+          </div>
+
+        </div>
+      </button>
+    </h2>
+  </div>
+
+
+  <div
+    id="collapse-Asth1204"
+    class="collapse border-bottom "
+    aria-labelledby="heading-Asth1204"
+    data-parent="#accordion-0"
+    data-indicator-name="Asth1204"
+    data-count="4"
+  >
+    <div class="card-body card-body-no-top">
+
+      <div class="row no-gutters fs-sm">
+        <div class="col-12">
+            
+            <p class="fs-md mt-1 mb-2">Asthma hospitalizations are more severe asthma outcomes. They're often clustered in high-poverty neighborhoods, where disinvestment and poor housing conditions expose residents to triggers.</p>
+        </div>
+
+                <div class="col-md-7 border-right h-100">
+                
+                <div style="width:100%; height:40vmin; z-index:100;" class="" id="map-Asth1204-4">
+                    ...map is loading...
+                </div><div class="data-note mt-1"></div></div>
+        
+        
+        
+        
+
+        
+
+        <div class="col-md-5 h-100 p-1 ">
+
+            <p class="fs-rg">
+                Asthma hospitalizations (adults) in <strong>Long Island City - Astoria</strong>:
+                <div class=" fs-md">
+                  <p>
+                    <span class="middle-sm fs-sm mt-1">In the middle of</span>&nbsp;neighborhoods
+                  </p>
+
+                  <p>
+                    <span id="b-asthma-hospitalizations-adults"></span> the <strong>Queens average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="bv-asthma-hospitalizations-adults">boro val</span> per 10,000)</span>
+                  </p>
+
+                  <p>
+                    <span id="c-asthma-hospitalizations-adults"></span> the <strong>Citywide average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="cv-asthma-hospitalizations-adults">city val</span> per 10,000)</span>
+                  </p>
+
+                    </div>
+                
+            </p>
+
+             
+            <div id="trend" class="hide">
+            <p>In <strong>Queens</strong>, it is [TREND]. Citywide, the trend is [TREND].</p>
+            </div>
+
+            
+
+            <span id="year-asthma-hospitalizations-adults" class="sr-only">YEAR</span>
+
+          
+
+        </div>
+
+      </div>
+      <div class="row no-gutters">
+        <div class="col-7">
+            <span class="fs-xs"><strong>Source:</strong> New York State Statewide Planning and Research Cooperative System (SPARCS) Deidentified Hospital Discharge Data</span>
+
+        </div>
+        <div class="col-5">
+            <p class="float-right"><a id="2382" href="" class="ml-1" style="display:none"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Full dataset</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+    
+    (function(x, y) {
+        var endDate = new Date(x);
+        var year = endDate.getFullYear(); 
+        document.getElementById(y).innerHTML = year;
+    })(`2023-12-31`, `year-asthma-hospitalizations-adults`);
+
+(function(n, b, c, nid, bid, cid, rr) {
+    n = Number(n);
+    b = Number(b);
+    c = Number(c);
+
+    let rankReverse = (rr === true || rr === 'true');
+
+    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
+    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
+
+    let boroJudgement;
+    if (n > b && rankReverse) {
+      boroJudgement = 'comp-good';
+    } else if (n < b && rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n > b && !rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n < b && !rankReverse) {
+      boroJudgement = 'comp-good';
+    } else {
+      boroJudgement = 'comp-null';
+    }
+
+    let cityJudgement;
+    if (n > c && rankReverse) {
+      cityJudgement = 'comp-good';
+    } else if (n < c && rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n > c && !rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n < c && !rankReverse) {
+      cityJudgement = 'comp-good';
+    } else {
+      cityJudgement = 'comp-null';
+    }
+
+    let boroEl = document.getElementById(bid);
+    if (boroEl) {
+        boroEl.innerHTML = boroComp;
+        boroEl.classList.add(boroJudgement);
+    }
+
+    let cityEl = document.getElementById(cid);
+    if (cityEl) {
+        cityEl.innerHTML = cityComp;
+        cityEl.classList.add(cityJudgement);
+    }
+
+    document.getElementById('bv-asthma-hospitalizations-adults').innerHTML = b;
+    document.getElementById('cv-asthma-hospitalizations-adults').innerHTML = c;
+
+
+})(
+     5.8 ,
+     6.1 ,
+     8 ,
+    'n-asthma-hospitalizations-adults',
+    'b-asthma-hospitalizations-adults',
+    'c-asthma-hospitalizations-adults',
+     false 
+)
+
+
+</script>
+
+
+
+
+<script type="text/javascript">
+
+    $( "#collapse-Asth1204" ).on('shown.bs.collapse', function() {
+
+        
+
+        gtag('event', 'click_modal', {
+                'modal_name': 'Asthma hospitalizations (adults)'
+            });
+
+        var opt = {"renderer": "svg"};
+
+            
+
+            
+
+            var summaryData =
+                arqTable
+                .filter(d => d.indicator_data_name == "Asth1204")
+                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
+                .dedupe()
+                .groupby("neighborhood")
+                .orderby("neighborhood", aq.desc("end_date"))
+                .slice(0,1) 
+                .ungroup()
+                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
+                .orderby("unmodified_data_value_geo_entity") 
+                .select(aq.not("end_date"))
+                .objects()
+
+
+            
+
+            
+
+            var mapData = summaryData;
+
+            renderNRMap(mapData,  "#map-Asth1204-4", "Age-adjusted rate per 10,000","Asthma hospitalizations (adults)",geocode)
 
     });
 
