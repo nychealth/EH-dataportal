@@ -21,6 +21,9 @@ indicators:
   - header: Accessible transit and public space
     IndicatorID:
       - 2391
+      - 2455
+      - 2456
+      - 2457
 related:
   - title: "Public space creates health"
     url: "data-stories/public-space-creates-health/"
