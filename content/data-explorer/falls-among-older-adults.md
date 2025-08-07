@@ -29,10 +29,11 @@ indicators:
     IndicatorID:
       - 2188
       - 2403
+related:
   - title: "Interactive Heat Vulnerability Index"
     url: "data-features/hvi/"
   - title: "Housing creates health"
-    url: "housing-creates-health/"
+    url: "data-stories/housing-creates-health/"
 relatedData:
   - title: "Social conditions"
     url: "social-conditions/"
