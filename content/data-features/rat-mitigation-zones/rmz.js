@@ -246,11 +246,14 @@ var revSpecOne = {
           1703998800000,
           1719705600000,
           1735689600000,
-          1751328000000
+          1751328000000,
+            1767302400000
         ],
         "format": "%b %Y"
       },
-      "scale": {"domainMin": 1650841000000}
+      "scale": {
+        "domainMin": 1650841000000,
+        "domainMax": 1759276800000}
     },
     "y": {"field": "Number", "type": "quantitative", "title": ""},
     "color": {
@@ -382,7 +385,9 @@ var revSpecTwo = {
         ],
         "format": "%b %Y"
       },
-      "scale": {"domainMin": 1650841000000}
+      "scale": {
+        "domainMin": 1650841000000,
+        "domainMax": 1759276800000}
     },
     "y": {"field": "Number", "type": "quantitative", "title": ""},
     "color": {
@@ -508,7 +513,9 @@ var revSpecThree = {
         ],
         "format": "%b %Y"
       },
-      "scale": {"domainMin": 1650841000000}
+      "scale": {
+        "domainMin": 1650841000000,
+        "domainMax": 1759276800000}
     },
     "y": {"field": "Number", "type": "quantitative", "title": ""},
     "color": {
@@ -621,7 +628,9 @@ var specThree = {
         "values": [1656561600000,1672462800000,1688097600000,1703998800000,1719705600000,1735689600000,
           1751328000000],
         "format": "%b %Y"},
-      "scale": {"domainMin": 1650841000000}
+      "scale": {
+        "domainMin": 1650841000000,
+        "domainMax": 1759276800000}
     }
   },
   "layer": [
@@ -745,11 +754,15 @@ var revSpecFour = {
           1672462800000,
           1688097600000,
           1703998800000,
-          1719705600000
+          1719705600000,
+          1735689600000,
+          1751328000000
         ],
         "format": "%b %Y"
       },
-      "scale": {"domainMin": 1650841000000}
+      "scale": {
+        "domainMin": 1650841000000,
+        "domainMax": 1759276800000}
     },
     "y": {"field": "Number", "type": "quantitative", "title": ""},
     "color": {
