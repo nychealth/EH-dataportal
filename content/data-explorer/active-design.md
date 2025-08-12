@@ -7,8 +7,7 @@ seo_title: "Active design data in NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
 description: "Datasets and visualizations of active design data in NYC."
 tags:
-categories: ["publicspace", "neighborhoods", "airquality", "climate"]
-keyTopic: publicspace
+categories: ["publicspace", "neighborhoods", "airquality", "climate","accessibility"]
 keywords:
   [
     "active design",

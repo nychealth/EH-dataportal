@@ -7,8 +7,8 @@ seo_title: "Accessibility and Health in NYC"
 seo_description: "Data, data stories, interactives, and more about accessibility and health in NYC."
 description: "Data, data stories, interactives, and more about accessibility and health in NYC."
 tags:
-categories: [climatehealth]
-keyTopic: climatehealth
+categories: [accessibility]
+keyTopic: accessibility
 keywords:
   [
     "climate",
@@ -27,8 +27,6 @@ image: subway-elevator.jpg
 mainDEPages:
   - title: "Accessibility"
     url: "data-explorer/accessibility/"
-  - title: "Weather-related illness"
-    url: "data-explorer/weather-related-illness/"
 ---
 
 About 10% of New Yorkers have a disability with varying access needs. The environment can create barriers to meet those needs, or remove those barriers.
@@ -38,7 +36,5 @@ For example, when someone who needs electric medical equipment has access to rel
 Other examples include:
 
 - Tactile signage
-
 - Using plain, inclusive, accessible language for all digital and physical communications
-
 - Clarify the process for requesting accommodations

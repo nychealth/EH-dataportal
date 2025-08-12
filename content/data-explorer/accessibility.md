@@ -7,37 +7,34 @@ seo_title: "Accessibility data in NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
 description: "Datasets and visualizations of accessibility data in NYC."
 tags:
-categories: ["publicspace", "neighborhoods", "airquality", "climate"]
-keyTopic: Accessibility
+categories: ["accessibility","publicspace","housing"]
 keywords:
   ["accessibility", "active design", "transportation", "housing", "health"]
 indicators:
-  - header: Housing and access
-    IndicatorID:
-      - 2408
-      - 2377
-      - 2145
-      - 2188
   - header: Accessible transit and public space
     IndicatorID:
       - 2391
       - 2455
       - 2456
       - 2457
+  - header: Housing and access
+    IndicatorID:
+      - 2408
+      - 2377
+      - 2145
+      - 2188
 related:
   - title: "Public space creates health"
     url: "data-stories/public-space-creates-health/"
   - title: "Street safety in NYC"
     url: "data-stories/streets/"
-  - title: "Real-time air quality"
-    url: "data-features/realtime-air-quality"
 relatedData:
-  - title: "Walking, driving, and cycling"
-    url: "walking-driving-and-cycling"
-  - title: "Physical activity"
-    url: "physical-activity/"
-  - title: "Transportation related-injuries"
-    url: "transportation-related-injuries/"
+  - title: "Active design"
+    url: "active-design/"
+  - title: "Housing safety"
+    url: "housing-safety/"
+  - title: "Falls among older adults"
+    url: "falls-among-older-adults/"
 ---
 
 About 10% of New Yorkers have a disability with varying access needs. The environment can create barriers to meet those needs, or remove those barriers.
