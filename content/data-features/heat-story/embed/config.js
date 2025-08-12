@@ -1207,5 +1207,13 @@ config = {
                 ]
             }
         }
+    ],
+    "themes": [
+        "Heat",
+        "Health",
+        "Finances",
+        "A/C",
+        "Public space",
+        "Other"
     ]
 }

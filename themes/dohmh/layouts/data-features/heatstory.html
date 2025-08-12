@@ -139,47 +139,46 @@
       <div class="border" id="legendDescriptions"></div>
     </div>
   </div>
+  
 
-  <div class="row my-3">
-    <div class="col-xs-12 col-sm-4 mx-auto">
-      <div id="story-dropdown" class="dropdown" >
-        <button class="btn btn-outline-primary btn-block dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          View story
-        </button>
+  <div class="row my-3 d-none">
+    <div class="col-4">
+        <!-- Story card: dropdown meu --> 
+        <div id="story-dropdown" class="dropdown" >
+          <button class="btn btn-outline-primary btn-block dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            View story
+          </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="storyTitleDropdown">
+          </div>
         </div>
-      </div>
 
-      <!-- Add card here --> 
-      {{/*  <div id="story-card-general-holder" class="story-card" style="height: 70vh">  */}}
-      <div id="story-card-general-holder" class="story-card">
-      </div>
-      
+        <!-- Story cards --> 
+        <div id="story-card-general-holder" class="story-card">
+        </div>
+        <!-- End story cards --> 
     </div>
-    <div class="col-xs-12 col-sm-8 mx-auto">
 
+    <div class="col-8">
+        <!-- Data buttons - initially deposited here, and then duped into Leaflet Legend --> 
+        <div id="allDataButtons" class="fs-xs p-0 mb-1">
+            <span class="font-weight-bold text-black fs-sm p-1">Community science data<a href="#communityScience"><i class="fas fa-info-circle ml-1"></i></a></span>
+              <div id="buttonHolderStudyArea" class="list-group">
+              </div>
+            <hr>
+            <span class="font-weight-bold text-black fs-sm p-1">Citywide data</span>
+              <div id="buttonHolderBase" class="list-group"></div>
+            <hr>
+             <span class="font-weight-bold text-black fs-sm p-1">Add layer</span>
+              <div id="buttonHolderAdditional" class="list-group"></div>
+        </div>
+        <!-- end data buttons --> 
     </div>
+
   </div>
+
 </div>
 
-<div id="wholeMap">
-  <div class="row">
-    <div id="allDataButtons">
-        <h4 class="home-label">Community science data<a href="#communityScience"><i class="fas fa-info-circle ml-1"></i></a></h4>
-        <div id="buttonHolderStudyArea" style="display: inline-block"></div>
-        <hr>
-                <h4 class="home-label">Citywide data</h4>
-        <div id="buttonHolderBase" style="display: inline-block"></div>
-        <hr>
-                <h4 class="home-label" class="text-align-right">Add layers</h4>
-        <div id="buttonHolderAdditional" style="display: inline-block"></div>
-    </div>
-  </div>
-
- 
-
 <hr class="my-2 px-6">
-
 
 <div class="row mt-4">
     <div class="col-11 mx-auto">
@@ -282,7 +281,7 @@
   </div>
           
       
-  </div>
+
 <div class="row pt-5">
     <div class="col-6 justify-content-start ml-5 mt-1">
 

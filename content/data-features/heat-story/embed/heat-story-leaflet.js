@@ -21,7 +21,9 @@ function init() {
     $("#btn-getting-started").attr('aria-selected', true);
 
     setupMap();
+
     addListeners();
+    
     loadMetadata().catch(console.log);
 }
 
@@ -70,7 +72,6 @@ var legendPropertiesByLayer = {};
 var layersExclusive = new Set();
 
 var indicators = [];
-var mapElement = document.getElementById("wholeMap")
 
 let timeTable;
 
@@ -228,32 +229,10 @@ function setupMap() {
         const div = L.DomUtil.create('div', 'info legend');
         div.classList.add('fs-xs')
         div.classList.add('p-0')
-        div.innerHTML = `
-            <span class="font-weight-bold text-black fs-sm p-1">Community science data<a href="#communityScience"><i class="fas fa-info-circle ml-1"></i></a></span>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item"><a href="">Morning heat index</a>
-                    <li class="list-group-item"><a href="">Afternoon heat index</a>
-                    <li class="list-group-item"><a href="#">Evening heat index</a>
-                </ul>
-            <hr>
-            <span class="font-weight-bold text-black fs-sm p-1">Citywide data</span>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item"><a href="">Air quality: PM2.5</a>
-                    <li class="list-group-item"><a href="">Heat vulnerability index</a>
-                    <li class="list-group-item"><a href="#">Daytime summer surface temperature</a>
-                    <li class="list-group-item"><a href="#">Asthma ED visits (adults)</a>
-                    <li class="list-group-item"><a href="#">Vegetative cover</a>
-                    <li class="list-group-item"><a href="#">Heat stress hospitalizations</a>
-                    <li class="list-group-item"><a href="#">Neighborhood poverty</a>
-                    <li class="list-group-item"><a href="#">Households with AC</a>
-                </ul>
+        div.classList.add('mb-1')
 
-            <hr>
-             <span class="font-weight-bold text-black fs-sm p-1">More layers</span>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item"><a href="">Redlining</a>
-                </ul>
-            `
+        div.innerHTML = document.getElementById('allDataButtons').innerHTML
+
         return div;
     };
 
@@ -265,18 +244,22 @@ function setupMap() {
             const div = L.DomUtil.create('div', 'info legend');
             div.classList.add('fs-xs')
             div.classList.add('p-0')
+            div.classList.add('mt-1')
+
+            console.log(config.themes)
+
+            const content = config.themes
+                .map(theme => `<li class="list-group-item"><a href="">${theme}</a></li>`)
+                .join('');
+
             div.innerHTML = `
                 <span class="fs-sm font-weight-bold text-black p-1">Filter stories:</span>
-                    <ul class="list-group list-group-flush ">
-                        <li class="list-group-item"><a href="">Heat</a>
-                        <li class="list-group-item"><a href="">Health</a>
-                        <li class="list-group-item"><a href="">Finances</a>
-                        <li class="list-group-item"><a href="">AC use</a>
-                        <li class="list-group-item"><a href="">Public space</a>
-                        <li class="list-group-item"><a href="">Other</a>
-                        <li class="list-group-item"><a href="">Reset</a>
-                    </ul>
-                `
+                <ul class="list-group list-group-flush" id="themeBullets">
+                    ${content}
+                    <li class="list-group-item"><a href="">Reset</a>
+                </ul>
+            `;
+
             return div;
     }
     themeControl.addTo(map)
@@ -317,12 +300,10 @@ function addLayerButtons() {
         const layer = layers[i];
         const color = layer.property?.args?.color ?? "grey";
         const button = `
-            <button type="button" id="${layer.property.id}" class="mb-1 mr-1 layer-button btn btn-sm btn-outline-secondary no-underline">
-                <span style="color: ${color};">
-                    <i class="fas fa-square mr-1"></i>
-                </span>
-                ${layer.property.name}
-            </button>`
+             <a href="#map" class="layer-button list-group-item" id="${layer.property.id}"> 
+             ${layer.property.name}
+             </a>`
+
 
         const buttonHolder = buttonHolders[layer.property?.buttonSection ?? "additional"];
         buttonHolder.innerHTML += button;
@@ -330,12 +311,35 @@ function addLayerButtons() {
             layersExclusive.add(layer.property.id);
         }
     };
+
 }
 
 
 // ======================================================================= //
 // functions to display content
 // ======================================================================= //
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// create pins for every story
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+    // Create custom icon
+    const storyIcon = L.icon({
+        iconUrl: 'map-pin.svg',   // Path to your icon file
+        iconSize: [25, 41],       // Size of the icon [width, height]
+        iconAnchor: [12, 41],     // Point of the icon that corresponds to marker's location
+        popupAnchor: [0, -41]     // Point from which the popup should open relative to the iconAnchor
+    });
+
+    // Loop through stories and add to map, with Popup
+    config.stories.forEach(story => {
+        const lat = Number(story.mapState.lat);
+        const lng = Number(story.mapState.lng);
+
+        L.marker([lat, lng], { icon: storyIcon })
+            .addTo(map)
+            .bindPopup(story.content);
+    });
 
 // ----------------------------------------------------------------------- //
 // create story dropdown and card
