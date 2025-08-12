@@ -263,13 +263,23 @@ function setupMap() {
     const themeControl = L.control({position: 'topright'});
     themeControl.onAdd = function (map) {
             const div = L.DomUtil.create('div', 'info legend');
+            div.classList.add('fs-xs')
+            div.classList.add('p-0')
             div.innerHTML = `
-                <span class="fs-sm font-weight-bold text-black">Filter stories</span>
+                <span class="fs-sm font-weight-bold text-black p-1">Filter stories:</span>
+                    <ul class="list-group list-group-flush ">
+                        <li class="list-group-item"><a href="">Heat</a>
+                        <li class="list-group-item"><a href="">Health</a>
+                        <li class="list-group-item"><a href="">Finances</a>
+                        <li class="list-group-item"><a href="">AC use</a>
+                        <li class="list-group-item"><a href="">Public space</a>
+                        <li class="list-group-item"><a href="">Other</a>
+                        <li class="list-group-item"><a href="">Reset</a>
+                    </ul>
                 `
             return div;
     }
     themeControl.addTo(map)
-
 
 
 }
