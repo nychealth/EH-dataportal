@@ -92,4 +92,6 @@ Similar to translating the locations of air quality monitoring sites, we have lo
 
 There are many interpretations of accessibility, and these examples are just a few strategies we used when thinking through how to improve access to the information we share, to in turn make it easier for more of you to understand and use.
 
+<hr>
+
 If you are low vision or blind and would like to request a tactile print for some of our maps and datasets, email us at ehdp@health.nyc.gov to discuss what options may be available for you.
