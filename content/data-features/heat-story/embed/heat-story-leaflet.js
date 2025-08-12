@@ -215,11 +215,62 @@ function setupMap() {
 
     layerGroup.addTo(map);
 
-  map.on("zoomend", () => {
-    zoom = map.getZoom();
-    // scale the weight based on the zoom layer so it looks good zooming in and out
-    layerGroup.eachLayer((layer) => layer.setStyle && layer.setStyle({ weight: zoom / ZOOM_WEIGHT_SCALE_FACTOR }))
-  });
+    map.on("zoomend", () => {
+        zoom = map.getZoom();
+        // scale the weight based on the zoom layer so it looks good zooming in and out
+        layerGroup.eachLayer((layer) => layer.setStyle && layer.setStyle({ weight: zoom / ZOOM_WEIGHT_SCALE_FACTOR }))
+    });
+
+    // Add left-hand Control for data buttons
+    const dataControl = L.control({position: 'bottomleft'});
+
+    dataControl.onAdd = function (map) {
+        const div = L.DomUtil.create('div', 'info legend');
+        div.classList.add('fs-xs')
+        div.classList.add('p-0')
+        div.innerHTML = `
+            <span class="font-weight-bold text-black fs-sm p-1">Community science data<a href="#communityScience"><i class="fas fa-info-circle ml-1"></i></a></span>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><a href="">Morning heat index</a>
+                    <li class="list-group-item"><a href="">Afternoon heat index</a>
+                    <li class="list-group-item"><a href="#">Evening heat index</a>
+                </ul>
+            <hr>
+            <span class="font-weight-bold text-black fs-sm p-1">Citywide data</span>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><a href="">Air quality: PM2.5</a>
+                    <li class="list-group-item"><a href="">Heat vulnerability index</a>
+                    <li class="list-group-item"><a href="#">Daytime summer surface temperature</a>
+                    <li class="list-group-item"><a href="#">Asthma ED visits (adults)</a>
+                    <li class="list-group-item"><a href="#">Vegetative cover</a>
+                    <li class="list-group-item"><a href="#">Heat stress hospitalizations</a>
+                    <li class="list-group-item"><a href="#">Neighborhood poverty</a>
+                    <li class="list-group-item"><a href="#">Households with AC</a>
+                </ul>
+
+            <hr>
+             <span class="font-weight-bold text-black fs-sm p-1">More layers</span>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><a href="">Redlining</a>
+                </ul>
+            `
+        return div;
+    };
+
+    dataControl.addTo(map);
+
+    // Add right-hand Control for story thgemes
+    const themeControl = L.control({position: 'topright'});
+    themeControl.onAdd = function (map) {
+            const div = L.DomUtil.create('div', 'info legend');
+            div.innerHTML = `
+                <span class="fs-sm font-weight-bold text-black">Filter stories</span>
+                `
+            return div;
+    }
+    themeControl.addTo(map)
+
+
 
 }
 
