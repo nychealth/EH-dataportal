@@ -39,7 +39,10 @@ let lastMapState = JSON.parse(JSON.stringify(getting_started.mapState));
 
 
 // var map = L.map('map').setView([40.715554, -74.0026642], 11); // [Lat, Long], Zoom
-var map = L.map('map').setView([getting_started.mapState.lat, getting_started.mapState.lng], getting_started.mapState.zoom); // [Lat, Long], Zoom
+var map = L.map('map', {
+    minZoom: 10,
+    maxZoom: 14
+}).setView([getting_started.mapState.lat, getting_started.mapState.lng], getting_started.mapState.zoom); // [Lat, Long], Zoom
 
 
 
@@ -338,7 +341,11 @@ function addLayerButtons() {
 
         L.marker([lat, lng], { icon: storyIcon })
             .addTo(map)
-            .bindPopup(story.content);
+            .bindPopup(`
+                <strong>${story.title}</strong>
+                <hr>
+                ${story.content}
+                `);
     });
 
 // ----------------------------------------------------------------------- //
