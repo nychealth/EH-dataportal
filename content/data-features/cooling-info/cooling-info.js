@@ -21,35 +21,64 @@ var warmSeason;
 
 
 
-// ----------------------------------------------------------------- //
-// ---------- First, ingest weather API and print to page ---------- //
-// ----------------------------------------------------------------- //
+// ------------------------------------------------------------------ //
+// ---------- First, ingest weather data and print to page ---------- //
+// ------------------------------------------------------------------ //
 
-// API documentation: https://www.weatherapi.com/docs/
-// Sample returns: https://www.weatherapi.com/api-explorer.aspx#forecast
+  async function getCurrentTempNYC() {
+    const headers = { headers: { "User-Agent": "ehdp@health.nyc.gov" } };
 
-var apiData;
-fetch('https://api.weatherapi.com/v1/forecast.json?key=0d4a042ad8ec468da7b135156231711&q=NYC&days=1&aqi=yes&alerts=no')
-    .then(response => {return response.json()})
-    .then(data => {
-    // console.log(data)
-    apiData = data
+    // Step 1: Get station list
+    const stationsRes = await fetch("https://api.weather.gov/gridpoints/OKX/33,35/stations", headers);
+    const stationsData = await stationsRes.json();
+    const stationId = stationsData.features[0].properties.stationIdentifier;
 
-    printToPage()
-    getAQI()
-  })
+    // Step 2: Get latest observation
+    const obsRes = await fetch(`https://api.weather.gov/stations/${stationId}/observations/latest`, headers);
+    const obsData = await obsRes.json();
+    
+    const tempC = obsData.properties.temperature.value;
+    const tempF = tempC !== null ? (tempC * 9/5 + 32).toFixed(1) : null;
+    console.log(`Current temp in NYC: ${tempF}°F`);
 
-// WeatherAPI.com returns different AQI than EPA/Airnow, so, we use a different call for consistent AQI data.
-// https://docs.airnowapi.org/forecastsbyzip/query
-// https://docs.airnowapi.org/ForecastsByZip/docs
+    currentTemp = tempF
+
+    getForecastHighNYC()
+
+  }
+
+  async function getForecastHighNYC() {
+      // get NWS data to retrieve forecast high
+      const userAgent = { headers: { "User-Agent": "ehdp@health.nyc.gov" } };
+    
+      // Step 1: Get forecast URL
+      const pointsRes = await fetch("https://api.weather.gov/points/40.7128,-74.0060", userAgent);
+      const pointsData = await pointsRes.json();
+      
+      // Step 2: Fetch forecast data
+      const forecastUrl = pointsData.properties.forecast;
+      const forecastRes = await fetch(forecastUrl, userAgent);
+      const forecastData = await forecastRes.json();
+
+      // Step 3: Extract the high temp from the first daytime period
+      const high = forecastData.properties.periods.find(p => p.isDaytime).temperature;
+      console.log(`NYC High Temp: ${high}°F`);
+
+      forecastTemp = high
+
+      printToPage()
+      getAQI()
+  }
+
+  getCurrentTempNYC();
+
 
 var aqiAPI;
 function getAQI() {
   fetch('https://www.airnowapi.org/aq/observation/zipCode/current/?format=application/json&zipCode=10013&distance=25&API_KEY=B34C7BA1-26C7-4DD2-9B1C-AAFD7AF4F12F')
   .then(response => {return response.json()})
   .then(data => {
-    console.log('airnow api:')
-    console.log(data)
+
     aqiAPI = data
 
     if (aqiAPI[0].AQI > aqiAPI[1].AQI) {
@@ -58,7 +87,7 @@ function getAQI() {
       aqi = aqiAPI[1].Category.Number
     }
 
-    console.log('aqi is: ' + aqi)
+    console.log('The AQI is: ' + aqi)
 
     // print to page and style
     var aqiMeaning = document.getElementById('aqimeaning')
@@ -91,8 +120,6 @@ function getAQI() {
 
 function printToPage() {
     // Print current temp, max temp, and AQI
-    currentTemp = Number(apiData.current.temp_f)
-    forecastTemp = Number(apiData.forecast.forecastday[0].day.maxtemp_f)
     
     document.getElementById('currentTemp').innerHTML = currentTemp + '° F'
     document.getElementById('forecastTemp').innerHTML = forecastTemp  + '° F'
