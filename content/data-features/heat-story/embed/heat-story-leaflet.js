@@ -344,9 +344,12 @@ function addLayerButtons() {
             .addTo(map)
             .bindPopup(`
                 <strong>${story.title}</strong>
-                <hr>
+                <hr class="mb-1">
                 ${story.content}
-                `);
+                <hr class="my-1">
+                <em>Themes:</em> ${story.themes}
+                `
+                );
     });
 
 // ----------------------------------------------------------------------- //
