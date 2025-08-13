@@ -50,21 +50,28 @@
 
 <script>
 
-  function initialize() {
-    // Get weather API to retrieve forecast high
-    fetch('https://api.weatherapi.com/v1/forecast.json?key=0d4a042ad8ec468da7b135156231711&q=NYC&days=1&aqi=yes&alerts=no')
-      .then(response => {return response.json()})
-      .then(data => {
-      // console.log(data)
-      // console.log('forecast high: ' + data.forecast.forecastday[0].day.maxtemp_f)
+async  function initialize() {
+    // get NWS data to retrieve forecast high
+      const userAgent = { headers: { "User-Agent": "ehdp@health.nyc.gov" } };
+    
+      // Step 1: Get forecast URL
+      const pointsRes = await fetch("https://api.weather.gov/points/40.7128,-74.0060", userAgent);
+      const pointsData = await pointsRes.json();
+      
+      // Step 2: Fetch forecast data
+      const forecastUrl = pointsData.properties.forecast;
+      const forecastRes = await fetch(forecastUrl, userAgent);
+      const forecastData = await forecastRes.json();
 
-      if (data.forecast.forecastday[0].day.maxtemp_f > 90) {
-          // console.log('forecast max is: ' + data.forecast.forecastday[0].day.maxtemp_f)
-          fireHeatModal(data.forecast.forecastday[0].day.maxtemp_f)
-          document.getElementById('forecasthigh').textContent = data.forecast.forecastday[0].day.maxtemp_f + '°F'
+      // Step 3: Extract the high temp from the first daytime period
+      const high = forecastData.properties.periods.find(p => p.isDaytime).temperature;
+      console.log(`NYC High Temp: ${high}°F`);
+
+      if (high > 85) {
+        fireHeatModal(high)
+        document.getElementById('forecasthigh').textContent = high + '°F'
       } else {}
 
-    })
 
     // get AQI API to retrieve forecast AQI
     fetch('https://www.airnowapi.org/aq/observation/zipCode/current/?format=application/json&zipCode=10013&distance=25&API_KEY=B34C7BA1-26C7-4DD2-9B1C-AAFD7AF4F12F')
