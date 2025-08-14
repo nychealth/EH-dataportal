@@ -417,7 +417,7 @@ function addLayerButtons() {
                         .bindPopup(`
                             <strong>${config.stories[i].title}</strong>
                             <hr class="mb-1">
-                            ${story.content}
+                            ${config.stories[i].content}
                             <hr class="my-1">
                             <em>Themes:</em> ${config.stories[i].themes}
                             `
