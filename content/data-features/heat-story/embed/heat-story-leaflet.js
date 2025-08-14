@@ -357,6 +357,11 @@ function addLayerButtons() {
 
     function placeAllStoryPins() {
 
+        // start by removing .active from Theme FIlters
+        document.querySelectorAll('.theme-item.active').forEach(item => {
+            item.classList.remove('active');
+        });
+
 
         // Loop through stories and add to map, with Popup
         config.stories.forEach(story => {
