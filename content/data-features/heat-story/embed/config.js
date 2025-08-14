@@ -1236,7 +1236,6 @@ config = {
         "Caregiving",
         "Accessibility",
         "Mental health",
-        "Sleep",
-        "Other"
+        "Sleep"
     ]
 }
