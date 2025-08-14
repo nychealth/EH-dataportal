@@ -125,6 +125,11 @@
     background: #fff;
 }
 
+.fixHeight400 {
+  height: 400px;
+  overflow-y: scroll;
+}
+
 </style>
 
 <article class="container-fluid" id="skip-header-target">
@@ -196,11 +201,11 @@
         <div class="col-md-6 col-sm-12">
           <div class="btn-toggle">
             <button class="btn btn-block btn-md btn-outline-primary" data-toggle="collapse" data-target="#toggle-target-1" aria-expanded="false" aria-controls="toggle-target-1">
-                <span class="title" id="communityScience">Community science data collection</span>
+                <span class="title">Community science data collection</span>
             </button>
           </div>
 
-        <div class="collapse p-2 border mb-2 fs-sm" id="toggle-target-1">
+        <div class="collapse p-2 border fs-sm fixHeight400" id="toggle-target-1">
           <p> Stories featured in the South Bronx and northern Manhattan were collected in partnership with South Bronx Unite, WE ACT for Environmental Justice, and CBOs 9-12. Stories featured in South Queens were collected in partnership with South Queens Women's March. These areas were selected because they are vulnerable to the health risks of extreme heat due to economic, racial, and social inequities.</p>
           <p><strong> Hyperlocal data vs citywide data</strong></p>
           <p> This heat story map features data collected across New York City and hosted on the Environment and Health Data Portal about air quality, air conditioning access, neighborhood poverty, and more. You can explore each dataset more thoroughly through our Data Explorer. The map also features a limited amount of data collected in northern Manhattan and the South Bronx because of the parameters of the original study. These hyperlocal data layers were generated through the community science approach described, and provide valuable insights into block-level differences at different times of day. </p>
@@ -249,7 +254,7 @@
             </button>
         </div>
     
-        <div class="collapse p-2 border fs-sm" id="toggle-target">
+        <div class="collapse p-2 border fs-sm fixHeight400" id="toggle-target">
 
           <p> This project, <strong>"Addressing the Urban Heat Island Effect through an Equity Lens: A Community Science Project,”</strong> combines community science with interviews to create a way to look at heat vulnerability that focuses on the intersections of extreme heat, health, and social inequities.
 

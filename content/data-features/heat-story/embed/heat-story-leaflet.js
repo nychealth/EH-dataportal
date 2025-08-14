@@ -328,8 +328,9 @@ function addLayerButtons() {
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
     // Create custom icon
-    const storyIcon = L.icon({
+    const storyIcon = L.colorIcon({
         iconUrl: 'map-pin.svg',   // Path to your icon file
+        color: '#000000',
         iconSize: [25, 41],       // Size of the icon [width, height]
         iconAnchor: [12, 41],     // Point of the icon that corresponds to marker's location
         popupAnchor: [0, -41]     // Point from which the popup should open relative to the iconAnchor
