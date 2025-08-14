@@ -258,7 +258,7 @@ function setupMap() {
                 <span class="fs-sm font-weight-bold text-black p-1">Filter stories:</span>
                 <div class="list-group list-group-flush" id="themeBullets">
                     ${content}
-                    <a href="#" onClick="window.location.reload()" class="list-group-item">Reset</a>
+                    <a href="#map" onClick="placeAllStoryPins()" class="list-group-item">Show all</a>
                 </div>
             `;
 
