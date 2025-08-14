@@ -45,11 +45,11 @@
 <title>NYC Environment and Health Data Portal</title>
 
 
-<meta name="build_datetime" content='jueves, 14 de agosto de 2025, 9:37:06 EDT'>
+<meta name="build_datetime" content='jueves, 14 de agosto de 2025, 11:33:36 EDT'>
 <meta name="build_environment" content='prod_prod'>
 <meta name="git_branch" content='production'>
-<meta name="git_last_hash" content='c8c16f4c8a'>
-<meta name="git_last_msg" content='Merge pull request #1325 from nychealth/hotfix-unlink-teaser-text-KT'>
+<meta name="git_last_hash" content='d8480a30a7'>
+<meta name="git_last_msg" content='Merge pull request #1321 from nychealth/hotfix-tweak-temp-pop'>
 
 
         <link rel="alternate" hreflang="en" href="/IndicatorPublic/" title="English">
@@ -720,48 +720,155 @@
     </div>
   </div>
 
-
-
-  
+    
   <button id="openModalBtn" type="button" class="btn btn-primary hide" data-toggle="modal" data-target="#wxModal">Open Modal</button>
 
-  <div class="modal" tabindex="-1" role="dialog" id="wxModal">
-    <div class='modal-dialog modal-lg modal-dialog-centered' role='document'>
-        <div class='modal-content'>
-            <div class='modal-body'>
-              <p><span class="font-weight-bold">It's hot! The forecast high is <span id="forecasthigh" style="background-color:red;font-weight:bold;" class="p-1 text-white">XX</span></span>. Get resources on heat and health:
+    <div class="modal" tabindex="-1" role="dialog" id="wxModal">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title"><i class="fas fa-temperature-high mr-1" aria-hidden="true"></i>It's hot!</h5>
+        </div>
+        <div class="modal-body">
+            <p><span class="font-weight-bold">The forecast high is <span id="forecasthigh" style="background-color:red;font-weight:bold;" class="p-1 text-white">XX</span></span>. Get resources on heat and health:
                 <ul>
-                  <li><a href=/IndicatorPublic/data-features/heat-syndrome>Realtime heat illness data</a></li>
-                  <li><a href=/IndicatorPublic/data-features/hvi>The Heat Vulnerability Index</a></li>
-                  <li><a href=/IndicatorPublic/key-topics/climatehealth>All Climate and Health data and resources</a> </li>
+                    <li><a href=/IndicatorPublic/data-features/heat-syndrome>Realtime heat illness data</a></li>
+                    <li><a href=/IndicatorPublic/data-features/hvi>The Heat Vulnerability Index</a></li>
+                    <li><a href=/IndicatorPublic/key-topics/climatehealth>All Climate and Health data and resources</a> </li>
                 </ul>
-              </p>
-            </div>
-            <hr>
-            <button type="button" class="btn btn-outline-primary close-dialog" data-dismiss="modal">Close</button>
+                </p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Close</button>
+        </div>
         </div>
     </div>
-</div>
+    </div>
+
 
   
   <button id="openModalBtn2" type="button" class="btn btn-primary hide" data-toggle="modal" data-target="#aqiModal">Open Modal</button>
 
-<div class="modal" tabindex="-1" role="dialog" id="aqiModal">
-  <div class='modal-dialog modal-lg modal-dialog-centered' role='document'>
-      <div class='modal-content'>
-          <div class='modal-body'>
+    <div class="modal" tabindex="-1" role="dialog" id="aqiModal">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title"><i class="fas fa-smog mr-1" aria-hidden="true"></i></h5>
+        </div>
+        <div class="modal-body">
               <p><span class="font-weight-bold">Today's air quality is <span id="aqimeaning" class="p-1">AQI interpretation</span></span>. Get data on air quality:
                 <ul>
                   <li><a href=/IndicatorPublic/data-features/realtime-air-quality>Realtime air quality</a></li>
                   <li><a href=/IndicatorPublic/key-topics/airquality>All Air Quality data and resources</a></li>
                 </ul>
               </p>
-          </div>
-          <hr>
-          <button type="button" class="btn btn-outline-primary close-dialog" data-dismiss="modal">Close</button>
-      </div>
-  </div>
-</div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Close</button>
+        </div>
+        </div>
+    </div>
+    </div>
+
+<script>
+
+async  function initialize() {
+    
+      const userAgent = { headers: { "User-Agent": "ehdp@health.nyc.gov" } };
+    
+      
+      const pointsRes = await fetch("https://api.weather.gov/points/40.7128,-74.0060", userAgent);
+      const pointsData = await pointsRes.json();
+      
+      
+      const forecastUrl = pointsData.properties.forecast;
+      const forecastRes = await fetch(forecastUrl, userAgent);
+      const forecastData = await forecastRes.json();
+
+      
+      const high = forecastData.properties.periods.find(p => p.isDaytime).temperature;
+      console.log(`NYC High Temp: ${high}°F`);
+
+      if (high > 85) {
+        fireHeatModal(high)
+        document.getElementById('forecasthigh').textContent = high + '°F'
+      } else {}
+
+
+    
+    fetch('https://www.airnowapi.org/aq/observation/zipCode/current/?format=application/json&zipCode=10013&distance=25&API_KEY=B34C7BA1-26C7-4DD2-9B1C-AAFD7AF4F12F')
+    .then(response => {return response.json()})
+    .then(data => {
+      
+      var aqi1 = data[0].Category.Number
+      var aqi2 = data[1].Category.Number
+      var aqi
+
+      aqi1 >= aqi2 ? (aqi = aqi1) : (aqi = aqi2)
+
+      
+
+      aqi > 2 ? fireAQmodal(aqi) : {}
+
+    });
+
+  };
+
+  function fireHeatModal(x) {
+      var button = document.getElementById('openModalBtn');
+      button.addEventListener('click', function() {
+          console.log('heat modal fired.');
+      });
+  
+      button.click();
+
+  }
+
+  function fireAQmodal(aqi) {
+    var button = document.getElementById('openModalBtn2')
+    button.addEventListener('click', function() {
+      console.log('aq modal fired.')
+    });
+
+    
+    var aqiMeaning = document.getElementById('aqimeaning')
+    var aqiInterpretation; 
+    if (aqi == '1') {
+      aqiInterpretation = 'Good'
+      aqiMeaning.style['background-color'] = '#00E400'
+    } else if (aqi == '2') {
+      aqiInterpretation = 'Moderate'
+      aqiMeaning.style['background-color'] = '#FFFF00'
+    } else if (aqi == '3') {
+      aqiInterpretation = 'Unhealthy for sensitive groups'
+      aqiMeaning.style['background-color'] = '#FF7E00'
+    } else if (aqi == '4') {
+      aqiInterpretation = 'Unhealthy'
+      aqiMeaning.style['background-color'] = '#FF0000'
+      aqiMeaning.style.color = 'white'
+    } else if (aqi == '5') {
+      aqiInterpretation = 'Very unhealthy'
+      aqiMeaning.style['background-color'] = '#993399'
+      aqiMeaning.style.color = 'white'
+    } else if (aqi == '6') {
+      aqiInterpretation = 'Hazardous'
+      aqiMeaning.style['background-color'] = '#7E0023'
+      aqiMeaning.style.color = 'white'
+    }
+    aqiMeaning.textContent = aqiInterpretation
+
+    button.click();
+  }
+
+  
+  initialize();
+
+
+</script>
+
+
+
+
 
 
 
@@ -1108,95 +1215,6 @@
 <script type="text/javascript" src="/IndicatorPublic/js/main.e345555f1bc64916.js" integrity="sha512-VSyeDrW59WeoY4CdiN/bnfwuUGLxqnrjE6u98ho0b9dzriZfX/YY2DIuK5a5W&#43;GzGcaB6w6nuBijxkhahLatWg=="></script>
 
   <script type="text/javascript" src="/IndicatorPublic/js/accessible-autocomplete.min.20e7e606a030b0c1.js" integrity="sha512-oo28/kU49CzsZKQudUKfhzvYZkH&#43;oLMms6SAC1mRe5m4d9NxWwdAX/NpF&#43;2ePMCHP3tYplkF/1CM1C6MQnpfmg=="></script><script type="text/javascript" src="/IndicatorPublic/js/uhflist.b1536832e3971312.js" integrity="sha512-Ojx3jYf1cvDARSQmePsSFfMk&#43;i59zFIu/I6Xq8f9Ob7PldTwRb6IcoydnNE41ZxncucYAU1sW88itK/Cpna4gQ=="></script>
-
-<script>
-
-  function initialize() {
-    
-    fetch('https://api.weatherapi.com/v1/forecast.json?key=0d4a042ad8ec468da7b135156231711&q=NYC&days=1&aqi=yes&alerts=no')
-      .then(response => {return response.json()})
-      .then(data => {
-      
-      
-
-      if (data.forecast.forecastday[0].day.maxtemp_f > 90) {
-          
-          fireHeatModal(data.forecast.forecastday[0].day.maxtemp_f)
-          document.getElementById('forecasthigh').textContent = data.forecast.forecastday[0].day.maxtemp_f + '°F'
-      } else {}
-
-    })
-
-    
-    fetch('https://www.airnowapi.org/aq/observation/zipCode/current/?format=application/json&zipCode=10013&distance=25&API_KEY=B34C7BA1-26C7-4DD2-9B1C-AAFD7AF4F12F')
-    .then(response => {return response.json()})
-    .then(data => {
-      
-      var aqi1 = data[0].Category.Number
-      var aqi2 = data[1].Category.Number
-      var aqi
-
-      aqi1 >= aqi2 ? (aqi = aqi1) : (aqi = aqi2)
-
-      
-
-      aqi > 2 ? fireAQmodal(aqi) : {}
-
-    });
-
-  };
-
-  function fireHeatModal(x) {
-      var button = document.getElementById('openModalBtn');
-      button.addEventListener('click', function() {
-          console.log('heat modal fired.');
-      });
-  
-      button.click();
-
-  }
-
-  function fireAQmodal(aqi) {
-    var button = document.getElementById('openModalBtn2')
-    button.addEventListener('click', function() {
-      console.log('aq modal fired.')
-    });
-
-    
-    var aqiMeaning = document.getElementById('aqimeaning')
-    var aqiInterpretation; 
-    if (aqi == '1') {
-      aqiInterpretation = 'Good'
-      aqiMeaning.style['background-color'] = '#00E400'
-    } else if (aqi == '2') {
-      aqiInterpretation = 'Moderate'
-      aqiMeaning.style['background-color'] = '#FFFF00'
-    } else if (aqi == '3') {
-      aqiInterpretation = 'Unhealthy for sensitive groups'
-      aqiMeaning.style['background-color'] = '#FF7E00'
-    } else if (aqi == '4') {
-      aqiInterpretation = 'Unhealthy'
-      aqiMeaning.style['background-color'] = '#FF0000'
-      aqiMeaning.style.color = 'white'
-    } else if (aqi == '5') {
-      aqiInterpretation = 'Very unhealthy'
-      aqiMeaning.style['background-color'] = '#993399'
-      aqiMeaning.style.color = 'white'
-    } else if (aqi == '6') {
-      aqiInterpretation = 'Hazardous'
-      aqiMeaning.style['background-color'] = '#7E0023'
-      aqiMeaning.style.color = 'white'
-    }
-    aqiMeaning.textContent = aqiInterpretation
-
-    button.click();
-  }
-
-  
-  initialize();
-
-
-</script>
   
 </body>
 </html>
