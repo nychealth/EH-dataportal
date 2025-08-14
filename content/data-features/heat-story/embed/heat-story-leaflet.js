@@ -253,7 +253,7 @@ function setupMap() {
             console.log(config.themes)
 
             const content = config.themes
-                .map(theme => `<li class="list-group-item"><a href="">${theme}</a></li>`)
+                .map(theme => `<li class="list-group-item"><a href="#map" class="theme-item" data-theme-id="${theme}">${theme}</a></li>`)
                 .join('');
 
             div.innerHTML = `
@@ -266,8 +266,19 @@ function setupMap() {
 
             return div;
     }
+
     themeControl.addTo(map)
 
+    // add event listeners for .theme-item
+    var themeOptions = document.querySelectorAll('.theme-item')
+
+    themeOptions.forEach(theme => {
+        theme.addEventListener('click', function() {
+            console.log('theme clicked')
+
+            // Filter map for stories matching that theme. 
+        });
+    })
 
 }
 
@@ -352,7 +363,7 @@ function addLayerButtons() {
                 );
         
         thisStory.on('click', function (e) {
-            console.log('story clicked upon, and map update.')
+            console.log('story click.')
 
             updateMapStateForStory(story.id)
             

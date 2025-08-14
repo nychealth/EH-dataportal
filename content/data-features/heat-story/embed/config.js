@@ -1228,7 +1228,6 @@ config = {
         }
     ],
     "themes": [
-        "Heat",
         "Health",
         "Finances",
         "AC",
