@@ -250,8 +250,6 @@ function setupMap() {
             div.classList.add('p-0')
             div.classList.add('mt-1')
 
-            console.log(config.themes)
-
             const content = config.themes
                 .map(theme => `<a href="#map" class="list-group-item theme-item" data-theme-id="${theme}">${theme}</a></li>`)
                 .join('');
@@ -275,6 +273,8 @@ function setupMap() {
     themeOptions.forEach(theme => {
         theme.addEventListener('click', function(e) {
             console.log('theme clicked for:', e.target.attributes["data-theme-id"].nodeValue);
+
+            filterPins(e.target.attributes["data-theme-id"].nodeValue)
 
             // remove .active from all .theme-item elements
             document.querySelectorAll('.theme-item.active').forEach(item => {
@@ -344,6 +344,9 @@ function addLayerButtons() {
 // create pins for every story
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
+    // create layer group for pins, so we can clear them layter
+    let storyMarkers = L.layerGroup().addTo(map);
+
     // Create custom icon
     const storyIcon = L.icon({
         iconUrl: 'map-pin.svg',   // Path to your icon file
@@ -352,29 +355,94 @@ function addLayerButtons() {
         popupAnchor: [0, -41]     // Point from which the popup should open relative to the iconAnchor
     });
 
-    // Loop through stories and add to map, with Popup
-    config.stories.forEach(story => {
-        const lat = Number(story.mapState.lat);
-        const lng = Number(story.mapState.lng);
+    function placeAllStoryPins() {
 
-        var thisStory = L.marker([lat, lng], { icon: storyIcon })
-            .addTo(map)
-            .bindPopup(`
-                <strong>${story.title}</strong>
-                <hr class="mb-1">
-                ${story.content}
-                <hr class="my-1">
-                <em>Themes:</em> ${story.themes}
-                `
-                );
-        
-        thisStory.on('click', function (e) {
-            console.log('story click.')
 
-            updateMapStateForStory(story.id)
+        // Loop through stories and add to map, with Popup
+        config.stories.forEach(story => {
+
+            const lat = Number(story.mapState.lat);
+            const lng = Number(story.mapState.lng);
+
+            var thisStory = L.marker([lat, lng], { icon: storyIcon })
+                .addTo(map)
+                .bindPopup(`
+                    <strong>${story.title}</strong>
+                    <hr class="mb-1">
+                    ${story.content}
+                    <hr class="my-1">
+                    <em>Themes:</em> ${story.themes}
+                    `
+                    );
             
+            thisStory.on('click', function (e) {
+                console.log('story click.')
+
+                updateMapStateForStory(story.id)
+                
+            });
+
+            storyMarkers.addLayer(thisStory);
+
         });
-    });
+
+    }
+
+    placeAllStoryPins()
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // filter pins on theme click
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+    function filterPins(theme) {
+        console.log('filtering for ', theme)
+
+        // remove all pins
+        storyMarkers.clearLayers();
+
+        // loop through stories
+        for (let i = 0; i < config.stories.length; i++) {
+
+            if (config.stories[i].themes.includes(theme)) {
+                console.log('theme match for: ', config.stories[i].id)
+                console.log(config.stories[i].themes)
+                console.log(theme)
+
+                // add pins
+                    const lat = Number(config.stories[i].mapState.lat);
+                    const lng = Number(config.stories[i].mapState.lng);
+
+                    var thisStory = L.marker([lat, lng], { icon: storyIcon })
+                        .addTo(map)
+                        .bindPopup(`
+                            <strong>${config.stories[i].title}</strong>
+                            <hr class="mb-1">
+                            ${story.content}
+                            <hr class="my-1">
+                            <em>Themes:</em> ${config.stories[i].themes}
+                            `
+                            );
+                    
+                    thisStory.on('click', function (e) {
+                        console.log('story click.')
+
+                        updateMapStateForStory(config.stories[i].id)
+                        
+                    });
+
+                    // add them to storyMarkers layer
+                    storyMarkers.addLayer(thisStory);
+
+            } else {
+                // no theme match
+            }
+        }
+
+    }
+
+
+
+
 
 // ----------------------------------------------------------------------- //
 // create story dropdown and card
