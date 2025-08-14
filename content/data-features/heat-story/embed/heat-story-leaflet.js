@@ -253,15 +253,15 @@ function setupMap() {
             console.log(config.themes)
 
             const content = config.themes
-                .map(theme => `<li class="list-group-item"><a href="#map" class="theme-item" data-theme-id="${theme}">${theme}</a></li>`)
+                .map(theme => `<a href="#map" class="list-group-item theme-item" data-theme-id="${theme}">${theme}</a></li>`)
                 .join('');
 
             div.innerHTML = `
                 <span class="fs-sm font-weight-bold text-black p-1">Filter stories:</span>
-                <ul class="list-group list-group-flush" id="themeBullets">
+                <div class="list-group list-group-flush" id="themeBullets">
                     ${content}
-                    <li class="list-group-item"><a href="">Reset</a>
-                </ul>
+                    <a href="#map" class="list-group-item">Reset</a>
+                </div>
             `;
 
             return div;
@@ -270,15 +270,21 @@ function setupMap() {
     themeControl.addTo(map)
 
     // add event listeners for .theme-item
-    var themeOptions = document.querySelectorAll('.theme-item')
+    var themeOptions = document.querySelectorAll('.theme-item');
 
     themeOptions.forEach(theme => {
-        theme.addEventListener('click', function() {
-            console.log('theme clicked')
+        theme.addEventListener('click', function(e) {
+            console.log('theme clicked for:', e.target.attributes["data-theme-id"].nodeValue);
 
-            // Filter map for stories matching that theme. 
+            // remove .active from all .theme-item elements
+            document.querySelectorAll('.theme-item.active').forEach(item => {
+                item.classList.remove('active');
+            });
+
+            // add .active to the clicked .theme-item
+            e.target.classList.add('active');
         });
-    })
+    });
 
 }
 
