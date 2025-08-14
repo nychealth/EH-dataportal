@@ -8,6 +8,7 @@ categories:
     "inequality",
     "housing",
     "neighborhoods",
+    "healthoutcomes"
   ]
 layout: topiclanding
 seo_title: "Asthma and the Environment in NYC"
