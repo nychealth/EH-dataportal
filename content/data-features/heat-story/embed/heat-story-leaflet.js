@@ -328,9 +328,8 @@ function addLayerButtons() {
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
     // Create custom icon
-    const storyIcon = L.colorIcon({
+    const storyIcon = L.icon({
         iconUrl: 'map-pin.svg',   // Path to your icon file
-        color: '#000000',
         iconSize: [25, 41],       // Size of the icon [width, height]
         iconAnchor: [12, 41],     // Point of the icon that corresponds to marker's location
         popupAnchor: [0, -41]     // Point from which the popup should open relative to the iconAnchor
@@ -341,7 +340,7 @@ function addLayerButtons() {
         const lat = Number(story.mapState.lat);
         const lng = Number(story.mapState.lng);
 
-        L.marker([lat, lng], { icon: storyIcon })
+        var thisStory = L.marker([lat, lng], { icon: storyIcon })
             .addTo(map)
             .bindPopup(`
                 <strong>${story.title}</strong>
@@ -351,6 +350,13 @@ function addLayerButtons() {
                 <em>Themes:</em> ${story.themes}
                 `
                 );
+        
+        thisStory.on('click', function (e) {
+            console.log('story clicked upon, and map update.')
+
+            updateMapStateForStory(story.id)
+            
+        });
     });
 
 // ----------------------------------------------------------------------- //
@@ -1167,7 +1173,7 @@ function saveCurrentMapState() {
 
 async function updateMapStateForStory(storyId) {
 
-    console.log("* updateMapStateForStory");
+    console.log("* updateMapStateForStory with ", storyId );
 
     const storyConfig = config.stories.find(s => s.id == storyId);
 
