@@ -42,7 +42,8 @@ let lastMapState = JSON.parse(JSON.stringify(getting_started.mapState));
 var map = L.map('map', {
     minZoom: 10,
     maxZoom: 14,
-    scrollWheelZoom: false
+    scrollWheelZoom: false,
+    closePopupOnClick: false
 }).setView([getting_started.mapState.lat, getting_started.mapState.lng], getting_started.mapState.zoom); // [Lat, Long], Zoom
 
 
@@ -377,7 +378,11 @@ function addLayerButtons() {
                     ${story.content}
                     <hr class="my-1">
                     <em>Themes:</em> ${story.themes}
-                    `
+                    `,
+                    {
+                        autoClose: false,
+                        closeOnClick: false
+                    }
                     );
             
             thisStory.on('click', function (e) {

@@ -813,7 +813,7 @@ config = {
             "mapState": {
                 "lat": 40.805985,
                 "lng": -73.925476,
-                "zoom": 15,
+                "zoom": 12,
                 "layers": [
                     "nycHiEvening"
                 ]
@@ -831,7 +831,7 @@ config = {
             "mapState": {
                 "lat": 40.668111,
                 "lng": -73.827444,
-                "zoom": 13,
+                "zoom": 12,
                 "layers": [
                     "Household_air_conditioning"
                 ]
@@ -848,7 +848,7 @@ config = {
             "mapState": {
                 "lat": 40.70698,
                 "lng": -73.79797,
-                "zoom": 13,
+                "zoom": 12,
                 "layers": [
                     "Heat_stress_hospitalizations"
                 ]
@@ -865,7 +865,7 @@ config = {
             "mapState": {
                 "lat": 40.844771,
                 "lng": -73.937088,
-                "zoom": 13,
+                "zoom": 12,
                 "layers": [ 
                     "nycAfternoon",
                     "Heat_vulnerability_index"
@@ -883,7 +883,7 @@ config = {
             "mapState": {
                 "lat": 40.667484,
                 "lng": -73.788095,
-                "zoom": 13,
+                "zoom": 12,
                 "layers": [
                     "Heat_vulnerability_index"
                 ]
@@ -900,7 +900,7 @@ config = {
             "mapState": {
                 "lat": 40.676652,
                 "lng": -73.823220,
-                "zoom": 13,
+                "zoom": 12,
                 "layers": [
                     "Household_air_conditioning"
                 ]
@@ -947,7 +947,7 @@ config = {
             "mapState": {
                 "lat": 40.8124376119,
                 "lng": -73.9186380,
-                "zoom": 13,
+                "zoom": 12,
                 "layers": [
                     "Vegetative_cover",
                 ]
@@ -982,7 +982,7 @@ config = {
             "mapState": {
                 "lat": 40.8082044,
                 "lng": -73.9232586,
-                "zoom": 13,
+                "zoom": 12,
                 "layers": [ 
                     "nycAfternoon", 
                     "heat_stress" 
@@ -1002,7 +1002,7 @@ config = {
             "mapState": {
                 "lat": 40.76202190298572,
                 "lng": -73.92537488952408,
-                "zoom": 14,
+                "zoom": 12,
                 "layers": [ 
                     "Household_air_conditioning", 
                     "heat_stress" 
@@ -1059,7 +1059,7 @@ config = {
             "mapState": {
                 "lat": 40.701724612663796,
                 "lng": -73.82345161918002,
-                "zoom": 13,
+                "zoom": 12,
                 "layers": [ 
                     "Heat_stress_hospitalizations" 
                 ]
@@ -1077,7 +1077,7 @@ config = {
             "mapState": {
                 "lat": 40.692141693784144,
                 "lng": -73.8270469316841,
-                "zoom": 13,
+                "zoom": 12,
                 "layers": [  
                     "Daytime_summer_surface_temperature"
                 ]
@@ -1095,7 +1095,7 @@ config = {
             "mapState": {
                 "lat": 40.69218684458226,
                 "lng": -73.73291440003689,
-                "zoom": 13,
+                "zoom": 12,
                 "layers": [ 
                     "Heat_vulnerability_index" 
                 ]
@@ -1113,7 +1113,7 @@ config = {
             "mapState": {
                 "lat": 40.70202957919236,
                 "lng": -73.74123146150714,
-                "zoom": 13,
+                "zoom": 12,
                 "layers": [ 
                     "Daytime_summer_surface_temperature",  
                 ]
@@ -1131,7 +1131,7 @@ config = {
             "mapState": {
                 "lat": 40.68088025334419,
                 "lng": -73.84507398130488,
-                "zoom": 13,
+                "zoom": 12,
                 "layers": [ 
                     "Heat_vulnerability_index" 
                 ]
@@ -1149,7 +1149,7 @@ config = {
             "mapState": {
                 "lat": 40.680441975958985,
                 "lng": -73.79396252866313,
-                "zoom": 13,
+                "zoom": 12,
                 "layers": [ 
                     "Daytime_summer_surface_temperature" 
                 ]
@@ -1167,7 +1167,7 @@ config = {
             "mapState": {
                 "lat": 40.68011652370219,
                 "lng": -73.78022961806579,
-                "zoom": 13,
+                "zoom": 12,
                 "layers": [ 
                     "Vegetative_cover" 
                 ]
@@ -1185,7 +1185,7 @@ config = {
             "mapState": {
                 "lat": 40.85046293824912,
                 "lng": -73.85227787206723,
-                "zoom": 13,
+                "zoom": 12,
                 "layers": [ 
                     "Household_air_conditioning"  
                 ]
@@ -1203,7 +1203,7 @@ config = {
             "mapState": {
                 "lat": 40.85046293824912,
                 "lng": -73.85227787206723,
-                "zoom": 13,
+                "zoom": 12,
                 "layers": [ 
                     "Asthma_ED_visits"
                 ]
@@ -1221,7 +1221,7 @@ config = {
             "mapState": {
                 "lat": 40.739596484892296,
                 "lng": -73.87787224451348,
-                "zoom": 13,
+                "zoom": 12,
                 "layers": [ 
                     "Daytime_summer_surface_temperature"
                 ]
