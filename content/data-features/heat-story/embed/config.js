@@ -1229,7 +1229,6 @@ config = {
         }
     ],
     "themes": [
-        "Health",
         "Finances",
         "AC",
         "Public space",
