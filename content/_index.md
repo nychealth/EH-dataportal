@@ -2,11 +2,11 @@
 title: "The Environment and Health Data Portal: Home page"
 draft: false
 seo_title: "NYC Environment and Health Data Portal"
-seo_description: "Energy insecurity, climate, and health in NYC."
-description: "Data story about energy insecurity and health"
-featured_title: "Energy insecurity is a threat to New Yorkers' health"
-featured_text: "Read about why affordable energy is key to climate resilience."
-featured_link: "data-stories/energy-insecurity/"
-featured_image: "AC_buildings.JPG"
+seo_description: "NYC rat inspection data"
+description: "Data story about how NYC rat inspection data tells us which neighborhoods have the highest rat activity"
+featured_title: "Inspection data are the key to controlling NYC’s rats"
+featured_text: "Learn why inspection results are the most reliable way to understand rat activity in any NYC neighborhood."
+featured_link: "data-stories/rat-inspections/"
+featured_image: "inspector_looks3.JPG"
 ImageNote: featured_image must be added to assets
 ---
