@@ -14,8 +14,10 @@
     - Regular Pages (individual data stories) to have header-ds.html
     - DS landing page & all others to have header.html
   -->
-  
-  {{- partial "header.html" . -}}
+
+  {{- if not .Params.excludeHeader -}}
+    {{- partial "header.html" . -}}
+  {{- end -}}
 
 
 
@@ -23,10 +25,12 @@
     {{- block "main" . -}}{{- end -}}
     <ul id="results"></ul>
   </main>
-  
-  {{ partial "footer.html" . }}
+
+  {{- if not .Params.excludeFooter -}}
+    {{ partial "footer.html" . }}
+  {{- end -}}
   {{ partial "js_bottom.html" }}
   {{ block "js_bot" . }}{{ end }}
-  
+
 </body>
 </html>

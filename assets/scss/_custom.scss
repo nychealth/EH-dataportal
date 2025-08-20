@@ -280,3 +280,247 @@ $color-data-explorer: #0A408A;
 #toggleButton[aria-expanded="true"] {
   display: none;
 }
+
+/** NEW DATA EXPLORER STYLES **/
+.de-wrapper {
+
+  .de-accordion .card-body {
+    background-color: #EFFAF4;
+    font-size: 16px;
+    padding-left: 122px;
+    padding-top: 0px;
+  }
+
+  .de-accordion button[aria-expanded="true"] svg {
+    transform: rotate(180deg);
+  }
+
+  .de-accordion button:hover {
+    text-decoration: none;
+  }
+
+  .de-accordion-label {
+    width: 90px;
+  }
+
+  .modal-top-bg {
+    background-color: #008939;
+    height: 39px;
+  }
+
+
+
+  .de-tabs {
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: 2;
+
+  }
+
+  .de-main-details {
+    top: 2rem;
+    left: 2rem;
+    z-index: 2;
+    width: calc(100% - 4rem);
+
+  }
+
+  @media (min-width: 720px) {
+    .de-tabs {
+      right: 2rem;
+      left: auto;
+      bottom: auto;
+      top: 2rem;
+      width: 40%;
+    }
+    .de-main-details {
+      left: 2rem;
+      top: 2rem;
+      width: 40%;
+    }
+  }
+
+
+  .de-tabs-nav {
+    font-size: 12px;
+    text-align: center;
+    color: white;
+    font-weight: 700;
+  }
+
+  // Sticky navigation for About/Related Resources
+  .d-flex.border-bottom.border-top {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: white;
+  }
+
+  @media (min-width: 720px) {
+    .de-tabs-nav {
+      height: calc(100vh - 8rem);
+    }
+  }
+
+  .de-tabs-nav .nav-pills .nav-link, .de-tabs-nav .nav-tabs .nav-link {
+    color: white;
+    border-right: 1px solid rgba(255, 255, 255, 0.3);
+    max-width: 90px;
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+  }
+
+  @media (min-width: 720px) {
+    .de-tabs-nav .nav-pills .nav-link, .de-tabs-nav .nav-tabs .nav-link {
+      width: auto;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+      border-right: none;
+      flex: 0;
+      padding: 0.75rem 1rem;
+    }
+  }
+
+  /* Active tab pills styling */
+  .de-tabs-nav .nav-pills .nav-link.active {
+    background-color: white;
+    color: #008939 !important;
+  }
+
+  .de-tabs-nav .nav-pills .nav-link.active:hover {
+    background-color: white;
+    color: #008939 !important;
+  }
+
+  @media (min-width: 720px) {
+    .w-md-40 {
+        width: 40% !important;
+    }
+  }
+
+  .hover-underline:hover {
+    text-decoration: underline;
+  }
+
+
+  /* Rotate chevron when accordion is open */
+  .collapse.show + .card-header .fas.fa-chevron-down,
+  .card-header .btn[aria-expanded="true"] .fas.fa-chevron-down {
+      transform: rotate(180deg);
+      transition: transform 0.3s ease;
+  }
+
+  .fas.fa-chevron-down {
+      transition: transform 0.3s ease;
+  }
+
+  /* Mobile accordion header plus/minus toggle */
+  .toggle-icon.fa-minus {
+      opacity: 1;
+  }
+
+  .toggle-icon.fa-plus {
+      opacity: 1;
+  }
+
+  /* Ensure mobile accordion header has proper styling */
+  .bg-primary[data-toggle="collapse"] {
+      user-select: none;
+  }
+
+  .bg-primary[data-toggle="collapse"]:hover {
+      opacity: 0.9;
+  }
+
+  /* Active tab pills styling */
+  .nav-pills .nav-link.active {
+      background-color: white !important;
+      color: #007bff !important;
+  }
+
+  .nav-pills .nav-link.active:hover {
+      background-color: white !important;
+      color: #007bff !important;
+  }
+
+  /* Inactive tab pills styling */
+  .nav-pills .nav-link {
+      background-color: transparent !important;
+      color: white !important;
+  }
+
+  .nav-pills .nav-link:hover {
+      background-color: rgba(255, 255, 255, 0.1) !important;
+      color: white !important;
+  }
+
+  .nav-pills .nav-link.active {
+      background-color: white !important;
+      color: #007bff !important;
+  }
+
+  .nav-pills .nav-link.active:hover {
+      background-color: white !important;
+      color: #007bff !important;
+  }
+
+  #map {
+      height: calc(100vh - 4rem);
+      width: 100%;
+      z-index: 1;
+      position: relative;
+  }
+
+  /* CSS Grid for equal height cards */
+  .indicator-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem 2.5rem;
+      margin-bottom: 1rem;
+  }
+
+  @media (min-width: 768px) {
+      .indicator-grid {
+          grid-template-columns: repeat(2, 1fr);
+      }
+  }
+
+  .indicator-card {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+  }
+
+  .indicator-card h6 {
+      font-size: 16px;
+      font-weight: normal;
+  }
+
+
+  .indicator-card a {
+      text-decoration: underline;
+  }
+
+  .indicator-card a::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+  }
+
+  .indicator-card > div {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      transition: background-color 0.2s ease;
+  }
+
+  .indicator-card:hover > div {
+      background-color: #EFFAF4 !important;
+  }
+
+  /* Fix border color for cards */
+  .indicator-card .border {
+      border-color: #dee2e6 !important;
+  }
+}

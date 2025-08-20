@@ -9,6 +9,8 @@ datatables: true
 arquero: true
 image: image_charts-city@2x.jpg
 image2: image_3charts.png
+leaflet: true
+newDataExplorer: true
+excludeHeader: true
+excludeFooter: true
 ---
-
-Our site's data explorer contains hundreds of environmental health datasets. Get tables, maps, trends, and more to view neighborhood-level data on ways that environments affect health in NYC.

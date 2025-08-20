@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="42px" height="30px" viewBox="0 0 42 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Indicator menu icon</title>
+    <defs>
+        <path d="M0,0 L1440,0 L1440,1125 L0,1125 L0,0 Z" id="path-1"></path>
+    </defs>
+    <g id="Data-Explorer-Designs---APPROVED" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Designs-v3:A---Data-and-View-Controls-closed" transform="translate(-172, -22)" xlink:href="#path-1">
+            <path stroke="#DFDFDF" d="M1439.5,0.5 L1439.5,1124.5 L0.5,1124.5 L0.5,0.5 L1439.5,0.5 Z" stroke-linejoin="square"></path>
+            <g id="Nav-bar-" fill-rule="evenodd" transform="translate(-1, -2)">
+                <g id="Indicator-menu-icon" transform="translate(173, 24)">
+                    <line x1="13.75" y1="26.1111111" x2="40.4166667" y2="26.1111111" id="Path" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></line>
+                    <path d="M6.5625,26.25 C6.5625,27.8033009 5.30330086,29.0625 3.75,29.0625 C2.19669914,29.0625 0.9375,27.8033009 0.9375,26.25 C0.9375,24.6966991 2.19669914,23.4375 3.75,23.4375 C5.30330086,23.4375 6.5625,24.6966991 6.5625,26.25 Z" id="Path" fill="#FFFFFF"></path>
+                    <line x1="13.75" y1="14.8611111" x2="40.4166667" y2="14.8611111" id="Path-Copy-2" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></line>
+                    <path d="M6.5625,15 C6.5625,16.5533009 5.30330086,17.8125 3.75,17.8125 C2.19669914,17.8125 0.9375,16.5533009 0.9375,15 C0.9375,13.4466991 2.19669914,12.1875 3.75,12.1875 C5.30330086,12.1875 6.5625,13.4466991 6.5625,15 Z" id="Path-Copy" fill="#FFFFFF"></path>
+                    <line x1="13.75" y1="3.61111111" x2="40.4166667" y2="3.61111111" id="Path-Copy-4" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></line>
+                    <path d="M6.5625,3.75 C6.5625,5.30330086 5.30330086,6.5625 3.75,6.5625 C2.19669914,6.5625 0.9375,5.30330086 0.9375,3.75 C0.9375,2.19669914 2.19669914,0.9375 3.75,0.9375 C5.30330086,0.9375 6.5625,2.19669914 6.5625,3.75 Z" id="Path-Copy-3" fill="#FFFFFF"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
