@@ -43,7 +43,7 @@ It shows us both the percentage of properties inspected in a neighborhood, and t
 <div style="min-height:679px" id="datawrapper-vis-JpYEi"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/JpYEi/embed.js" charset="utf-8" data-target="#datawrapper-vis-JpYEi"></script><noscript><img src="https://datawrapper.dwcdn.net/JpYEi/full.png" alt="" /></noscript></div>
 </div>
 
-In some neighborhoods, rat activity is much more common. For example, in Highbridge and Concourse, 40% of the locations inspected “failed” because they had signs of rats, whereas in Greenwich village and Soho, only 13% did. High failure rates combined with high inspection rates tell us that there is a lot of rat activity in a neighborhood overall. These data also provide a more reliable way to compare different neighborhoods than just looking at data showing which neighborhoods have more complaints.
+In some neighborhoods, rat activity is much more common. For example, in Highbridge and Concourse, 47.3% of the locations inspected “failed” because they had signs of rats, whereas in Greenwich village and Soho, only 9% did. High failure rates combined with high inspection rates tell us that there is a lot of rat activity in a neighborhood overall. These data also provide a more reliable way to compare different neighborhoods than just looking at data showing which neighborhoods have more complaints.
 
 ### Managing rats through neighborhood-level action
 
