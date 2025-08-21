@@ -21,7 +21,6 @@ report_topics:
     MeasureID:
       - 94
       - 245
-      - 292
       - 625
   - report_topic: Social and Economic Risk Factors
     report_topic_description: Conditions associated with many adverse health outcomes.
@@ -30,3 +29,4 @@ report_topics:
       - 755
       - 1029
       - 25
+      - 1128
