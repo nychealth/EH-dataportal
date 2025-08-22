@@ -1248,7 +1248,7 @@
       <div class="row no-gutters fs-sm">
         <div class="col-12">
             
-            <p class="fs-md mt-1 mb-2">Surface temperatures vary based on vegetative cover (which promotes cooling), as well as by materials that retain heat (like paved roads, sidewalks, and buildings). Hotter neighborhoods tend to have more heat-exacerbated deaths associated with extreme heat events.</p>
+            <p class="fs-md mt-1 mb-2">Spatial average of surface temperature, measured by satellite. Surface temperatures vary because of vegetative cover (which promotes cooling), and paved roads, sidewalks, and buildings (which retain heat). Hotter neighborhoods tend to have more heat-exacerbated deaths associated with extreme heat events.</p>
         </div>
 
                 <div class="col-md-7 border-right h-100">
@@ -1552,7 +1552,7 @@
       <div class="row no-gutters fs-sm">
         <div class="col-12">
             
-            <p class="fs-md mt-1 mb-2">Severe asthma attacks can result in a visit to the ED. Things like smoke, air pollution, dust mites, cockroaches, mold, pollen and pet dander can trigger asthma.</p>
+            <p class="fs-md mt-1 mb-2">Emergency department visits for asthma. Things like smoke, air pollution, dust mites, cockroaches, mold, pollen and pet dander can trigger asthma.</p>
         </div>
 
                 <div class="col-md-7 border-right h-100">
@@ -1735,287 +1735,6 @@
 
     });
 
-    </script>
-
-
-
-
-
-  <div class="card-header border-top" id="heading-Heat539">
-    <h2 class="mb-0">
-      <button
-        class="btn btn-block btn-sm text-left"
-        type="button"
-        data-toggle="collapse"
-        data-target="#collapse-Heat539"
-        aria-expanded="true"
-        aria-controls="collapse-Heat539"
-        onclick="getURL( 2076 , 'Heat539')"
-      >
-        
-        <div class="row no-gutters" style="width: 100%">
-          <div class="col-7 d-print-none">
-            <span class="font-weight-bold fs-md"
-              >Heat hospitalizations</span
-            ><br />
-            <span class="fs-sm font-weight-normal"
-              >Heat stress: yearly hospitalizations, 2016</span
-            >
-          </div>
-          <div class="col-3 pl-1 d-print-none">
-            <span class="font-weight-bold fs-lg"
-              >1.9*</span
-            >
-            <br />
-            <span class="fs-xs font-weight-normal"
-              >Estimated annual rate per 100,000</span
-            >
-          </div>
-
-          
-
-          <div class="col-2 d-print-none">
-              <div class="float-right mt-1">
-              <span class="middle d-none"></span>
-            </div>
-          </div>
-
-          
-          <div class="col-12 print-only" style="flex-direction:row; width:100%;">
-
-            
-            <div style="width:50%;" class="border-right pl-1">
-              <span class="font-weight-bold fs-md">
-                Heat hospitalizations
-              </span><br />
-              <span class="fs-sm font-weight-normal">Heat stress: yearly hospitalizations, 2016</span>
-            </div>
-
-            
-            <div style="width:25%" class="border-right pl-1">
-              <span class="font-weight-bold fs-lg">
-                1.9*
-              </span><br />
-              <span class="fs-xs font-weight-normal">
-                Estimated annual rate per 100,000
-              </span>
-            </div>
-
-            
-
-            
-            <div style="width:25%;" class="pl-1">
-
-              In the middle of NYC neighborhoods
-
-
-
-            </div>
-
-          </div>
-
-        </div>
-      </button>
-    </h2>
-  </div>
-
-
-  <div
-    id="collapse-Heat539"
-    class="collapse border-bottom "
-    aria-labelledby="heading-Heat539"
-    data-parent="#accordion-1"
-    data-indicator-name="Heat539"
-    data-count="2"
-  >
-    <div class="card-body card-body-no-top">
-
-      <div class="row no-gutters fs-sm">
-        <div class="col-12">
-            
-            <p class="fs-md mt-1 mb-2">Heat stress hospitalizations weather are part of the public health burden due to hot weather.</p>
-        </div>
-
-                <div class="col-md-7 border-right h-100">
-                
-                <div style="width:100%; height:40vmin; z-index:100;" class="" id="map-Heat539-2">
-                    ...map is loading...
-                </div><div class="data-note mt-1">* Estimate is based on small numbers so should be interpreted with caution.</div></div>
-        
-        
-        
-        
-
-        
-
-        <div class="col-md-5 h-100 p-1 ">
-
-            <p class="fs-rg">
-                Heat hospitalizations in <strong>Bensonhurst - Bay Ridge</strong>:
-                <div class=" fs-md">
-                  <p>
-                    <span class="middle-sm fs-sm mt-1">In the middle of</span>&nbsp;neighborhoods
-                  </p>
-
-                  <p>
-                    <span id="b-heat-hospitalizations"></span> the <strong>Brooklyn average</strong> 
-                    <br>
-                    <span class="fs-sm pl-3">(<span id="bv-heat-hospitalizations">boro val</span> per 100,000)</span>
-                  </p>
-
-                  <p>
-                    <span id="c-heat-hospitalizations"></span> the <strong>Citywide average</strong> 
-                    <br>
-                    <span class="fs-sm pl-3">(<span id="cv-heat-hospitalizations">city val</span> per 100,000)</span>
-                  </p>
-
-                    </div>
-                
-            </p>
-
-             
-            <div id="trend" class="hide">
-            <p>In <strong>Brooklyn</strong>, it is [TREND]. Citywide, the trend is [TREND].</p>
-            </div>
-
-            
-
-            <span id="year-heat-hospitalizations" class="sr-only">YEAR</span>
-
-          
-
-        </div>
-
-      </div>
-      <div class="row no-gutters">
-        <div class="col-7">
-            <span class="fs-xs"><strong>Source:</strong> New York State Statewide Planning and Research Cooperative System (SPARCS) Deidentified Hospital Discharge Data; United States Census</span>
-
-        </div>
-        <div class="col-5">
-            <p class="float-right"><a id="2076" href="" class="ml-1" style="display:none"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Full dataset</a></p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-<script>
-    
-    (function(x, y) {
-        var endDate = new Date(x);
-        var year = endDate.getFullYear(); 
-        document.getElementById(y).innerHTML = year;
-    })(`2016-12-31`, `year-heat-hospitalizations`);
-
-(function(n, b, c, nid, bid, cid, rr) {
-    n = Number(n);
-    b = Number(b);
-    c = Number(c);
-
-    let rankReverse = (rr === true || rr === 'true');
-
-    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
-    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
-
-    let boroJudgement;
-    if (n > b && rankReverse) {
-      boroJudgement = 'comp-good';
-    } else if (n < b && rankReverse) {
-      boroJudgement = 'comp-bad';
-    } else if (n > b && !rankReverse) {
-      boroJudgement = 'comp-bad';
-    } else if (n < b && !rankReverse) {
-      boroJudgement = 'comp-good';
-    } else {
-      boroJudgement = 'comp-null';
-    }
-
-    let cityJudgement;
-    if (n > c && rankReverse) {
-      cityJudgement = 'comp-good';
-    } else if (n < c && rankReverse) {
-      cityJudgement = 'comp-bad';
-    } else if (n > c && !rankReverse) {
-      cityJudgement = 'comp-bad';
-    } else if (n < c && !rankReverse) {
-      cityJudgement = 'comp-good';
-    } else {
-      cityJudgement = 'comp-null';
-    }
-
-    let boroEl = document.getElementById(bid);
-    if (boroEl) {
-        boroEl.innerHTML = boroComp;
-        boroEl.classList.add(boroJudgement);
-    }
-
-    let cityEl = document.getElementById(cid);
-    if (cityEl) {
-        cityEl.innerHTML = cityComp;
-        cityEl.classList.add(cityJudgement);
-    }
-
-    document.getElementById('bv-heat-hospitalizations').innerHTML = b;
-    document.getElementById('cv-heat-hospitalizations').innerHTML = c;
-
-
-})(
-     1.9 ,
-     2.3 ,
-     1.8 ,
-    'n-heat-hospitalizations',
-    'b-heat-hospitalizations',
-    'c-heat-hospitalizations',
-     false 
-)
-
-
-</script>
-
-
-
-
-<script type="text/javascript">
-
-    $( "#collapse-Heat539" ).on('shown.bs.collapse', function() {
-
-        
-
-        gtag('event', 'click_modal', {
-                'modal_name': 'Heat hospitalizations'
-            });
-
-        var opt = {"renderer": "svg"};
-
-            
-
-            
-
-            var summaryData =
-                arqTable
-                .filter(d => d.indicator_data_name == "Heat539")
-                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
-                .dedupe()
-                .groupby("neighborhood")
-                .orderby("neighborhood", aq.desc("end_date"))
-                .slice(0,1) 
-                .ungroup()
-                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
-                .orderby("unmodified_data_value_geo_entity") 
-                .select(aq.not("end_date"))
-                .objects()
-
-
-            
-
-            
-
-            var mapData = summaryData;
-
-            renderNRMap(mapData,  "#map-Heat539-2", "Estimated annual rate per 100,000","Heat hospitalizations",geocode)
-
-    });
-
     </script></div>
                         
                         <div class="accordion my-4 report-section pt-2 border-left border-right border-bottom" id="accordion-2">
@@ -2137,7 +1856,7 @@
       <div class="row no-gutters fs-sm">
         <div class="col-12">
             
-            <p class="fs-md mt-1 mb-2">Building quality predicts the number of housing problems in a residence that place residents at increased risk of acute or chronic health problems.</p>
+            <p class="fs-md mt-1 mb-2">Building quality predicts the number of housing maintenance problems in a residence that place residents at increased risk of acute or chronic health problems.</p>
         </div>
 
                 <div class="col-md-7 border-right h-100">
@@ -2418,7 +2137,7 @@
       <div class="row no-gutters fs-sm">
         <div class="col-12">
             
-            <p class="fs-md mt-1 mb-2">Vegetative cover is the land covered by trees, grass, or other plants instead of a hard surface like roads, sidewalks, or buildings. Vegetative cover tends to reduce temperatures in the immediate area and may increase air quality.</p>
+            <p class="fs-md mt-1 mb-2">Land covered by trees, grass, or other plants. Vegetative cover reduces temperatures in the immediate area, and may increase air quality.</p>
         </div>
 
                 <div class="col-md-7 border-right h-100">
@@ -2607,289 +2326,6 @@
 
 
 
-  <div class="card-header border-top" id="heading-Adul47">
-    <h2 class="mb-0">
-      <button
-        class="btn btn-block btn-sm text-left"
-        type="button"
-        data-toggle="collapse"
-        data-target="#collapse-Adul47"
-        aria-expanded="true"
-        aria-controls="collapse-Adul47"
-        onclick="getURL( 25 , 'Adul47')"
-      >
-        
-        <div class="row no-gutters" style="width: 100%">
-          <div class="col-7 d-print-none">
-            <span class="font-weight-bold fs-md"
-              >Secondhand smoke</span
-            ><br />
-            <span class="fs-sm font-weight-normal"
-              >Secondhand smoke at home, 2012</span
-            >
-          </div>
-          <div class="col-3 pl-1 d-print-none">
-            <span class="font-weight-bold fs-lg"
-              >N/A**</span
-            >
-            <br />
-            <span class="fs-xs font-weight-normal"
-              >Percent </span
-            >
-          </div>
-
-          
-
-          <div class="col-2 d-print-none">
-              <div class="float-right mt-1">
-              <span class="middle d-none"></span>
-            </div>
-          </div>
-
-          
-          <div class="col-12 print-only" style="flex-direction:row; width:100%;">
-
-            
-            <div style="width:50%;" class="border-right pl-1">
-              <span class="font-weight-bold fs-md">
-                Secondhand smoke
-              </span><br />
-              <span class="fs-sm font-weight-normal">Secondhand smoke at home, 2012</span>
-            </div>
-
-            
-            <div style="width:25%" class="border-right pl-1">
-              <span class="font-weight-bold fs-lg">
-                N/A**
-              </span><br />
-              <span class="fs-xs font-weight-normal">
-                Percent 
-              </span>
-            </div>
-
-            
-
-            
-            <div style="width:25%;" class="pl-1">
-
-              
-
-
-
-            </div>
-
-          </div>
-
-        </div>
-      </button>
-    </h2>
-  </div>
-
-
-  <div
-    id="collapse-Adul47"
-    class="collapse border-bottom "
-    aria-labelledby="heading-Adul47"
-    data-parent="#accordion-2"
-    data-indicator-name="Adul47"
-    data-count="3"
-  >
-    <div class="card-body card-body-no-top">
-
-      <div class="row no-gutters fs-sm">
-        <div class="col-12">
-            
-            <p class="fs-md mt-1 mb-2">Adults reporting secondhand smoke at home. Secondhand smoke, especially indoors, is bad for health - particularly for the health of children.</p>
-        </div>
-
-                <div class="col-md-7 border-right h-100">
-                
-                <div style="width:100%; height:40vmin; z-index:100;" class="" id="map-Adul47-3">
-                    ...map is loading...
-                </div><div class="data-note mt-1">** Estimate is suppressed due to insufficient data.</div></div>
-        
-        
-        
-        
-
-         
-           
-        
-
-        <div class="col-md-5 h-100 p-1 d-none">
-
-            <p class="fs-rg">
-                Secondhand smoke in <strong>Bensonhurst - Bay Ridge</strong>:
-                <div class=" fs-md">
-                  <p>
-                    
-                  </p>
-
-                  <p>
-                    <span id="b-secondhand-smoke"></span> the <strong>Brooklyn average</strong> 
-                    <br>
-                    <span class="fs-sm pl-3">(<span id="bv-secondhand-smoke">boro val</span>%)</span>
-                  </p>
-
-                  <p>
-                    <span id="c-secondhand-smoke"></span> the <strong>Citywide average</strong> 
-                    <br>
-                    <span class="fs-sm pl-3">(<span id="cv-secondhand-smoke">city val</span>%)</span>
-                  </p>
-
-                    </div>
-                
-            </p>
-
-             
-            <div id="trend" class="hide">
-            <p>In <strong>Brooklyn</strong>, it is [TREND]. Citywide, the trend is [TREND].</p>
-            </div>
-
-            
-
-            <span id="year-secondhand-smoke" class="sr-only">YEAR</span>
-
-          
-
-        </div>
-
-      </div>
-      <div class="row no-gutters">
-        <div class="col-7">
-            <span class="fs-xs"><strong>Source:</strong> New York City Community Health Survey (CHS)</span>
-
-        </div>
-        <div class="col-5">
-            <p class="float-right"><a id="25" href="" class="ml-1" style="display:none"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Full dataset</a></p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-<script>
-    
-    (function(x, y) {
-        var endDate = new Date(x);
-        var year = endDate.getFullYear(); 
-        document.getElementById(y).innerHTML = year;
-    })(`2012-12-31`, `year-secondhand-smoke`);
-
-(function(n, b, c, nid, bid, cid, rr) {
-    n = Number(n);
-    b = Number(b);
-    c = Number(c);
-
-    let rankReverse = (rr === true || rr === 'true');
-
-    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
-    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
-
-    let boroJudgement;
-    if (n > b && rankReverse) {
-      boroJudgement = 'comp-good';
-    } else if (n < b && rankReverse) {
-      boroJudgement = 'comp-bad';
-    } else if (n > b && !rankReverse) {
-      boroJudgement = 'comp-bad';
-    } else if (n < b && !rankReverse) {
-      boroJudgement = 'comp-good';
-    } else {
-      boroJudgement = 'comp-null';
-    }
-
-    let cityJudgement;
-    if (n > c && rankReverse) {
-      cityJudgement = 'comp-good';
-    } else if (n < c && rankReverse) {
-      cityJudgement = 'comp-bad';
-    } else if (n > c && !rankReverse) {
-      cityJudgement = 'comp-bad';
-    } else if (n < c && !rankReverse) {
-      cityJudgement = 'comp-good';
-    } else {
-      cityJudgement = 'comp-null';
-    }
-
-    let boroEl = document.getElementById(bid);
-    if (boroEl) {
-        boroEl.innerHTML = boroComp;
-        boroEl.classList.add(boroJudgement);
-    }
-
-    let cityEl = document.getElementById(cid);
-    if (cityEl) {
-        cityEl.innerHTML = cityComp;
-        cityEl.classList.add(cityJudgement);
-    }
-
-    document.getElementById('bv-secondhand-smoke').innerHTML = b;
-    document.getElementById('cv-secondhand-smoke').innerHTML = c;
-
-
-})(
-     null ,
-     4.3 ,
-     4.9 ,
-    'n-secondhand-smoke',
-    'b-secondhand-smoke',
-    'c-secondhand-smoke',
-     false 
-)
-
-
-</script>
-
-
-
-
-<script type="text/javascript">
-
-    $( "#collapse-Adul47" ).on('shown.bs.collapse', function() {
-
-        
-
-        gtag('event', 'click_modal', {
-                'modal_name': 'Secondhand smoke'
-            });
-
-        var opt = {"renderer": "svg"};
-
-            
-
-            
-
-            var summaryData =
-                arqTable
-                .filter(d => d.indicator_data_name == "Adul47")
-                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
-                .dedupe()
-                .groupby("neighborhood")
-                .orderby("neighborhood", aq.desc("end_date"))
-                .slice(0,1) 
-                .ungroup()
-                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
-                .orderby("unmodified_data_value_geo_entity") 
-                .select(aq.not("end_date"))
-                .objects()
-
-
-            
-
-            
-
-            var mapData = summaryData;
-
-            renderNRMap(mapData,  "#map-Adul47-3", "Percent ","Secondhand smoke",geocode)
-
-    });
-
-    </script>
-
-
-
-
-
   <div class="card-header border-top" id="heading-Adul706">
     <h2 class="mb-0">
       <button
@@ -2975,7 +2411,7 @@
     aria-labelledby="heading-Adul706"
     data-parent="#accordion-2"
     data-indicator-name="Adul706"
-    data-count="4"
+    data-count="3"
   >
     <div class="card-body card-body-no-top">
 
@@ -2987,7 +2423,7 @@
 
                 <div class="col-md-7 border-right h-100">
                 
-                <div style="width:100%; height:40vmin; z-index:100;" class="" id="map-Adul706-4">
+                <div style="width:100%; height:40vmin; z-index:100;" class="" id="map-Adul706-3">
                     ...map is loading...
                 </div><div class="data-note mt-1">** Estimate is suppressed due to insufficient data.</div></div>
         
@@ -3163,7 +2599,7 @@
 
             var mapData = summaryData;
 
-            renderNRMap(mapData,  "#map-Adul706-4", "Percent ","Older adults with AC",geocode)
+            renderNRMap(mapData,  "#map-Adul706-3", "Percent ","Older adults with AC",geocode)
 
     });
 
@@ -3288,7 +2724,7 @@
       <div class="row no-gutters fs-sm">
         <div class="col-12">
             
-            <p class="fs-md mt-1 mb-2">Older adults are more vulnerable to extreme weather. Those living alone may have more difficulty getting resources they need in an emergency, and are at higher risk of weather-related illnesses like heat stroke and hypothermia.</p>
+            <p class="fs-md mt-1 mb-2">People age 65+ living alone. People living alone may have more difficulty getting resources they need in an emergency, and are at higher risk of weather-related illnesses like heat stroke and hypothermia.</p>
         </div>
 
                 <div class="col-md-7 border-right h-100">
@@ -3569,7 +3005,7 @@
       <div class="row no-gutters fs-sm">
         <div class="col-12">
             
-            <p class="fs-md mt-1 mb-2">The percent of households with incomes below the federal poverty level. Households without sufficient resources are often deprived of access to items such as health care and good quality housing that are needed to maintain good health.</p>
+            <p class="fs-md mt-1 mb-2">The percent of households with incomes below the federal poverty level. Households without sufficient resources are often deprived of access to health care, good quality housing, and other resources that protect health.</p>
         </div>
 
                 <div class="col-md-7 border-right h-100">
@@ -3758,287 +3194,6 @@
 
 
 
-  <div class="card-header border-top" id="heading-Obes506">
-    <h2 class="mb-0">
-      <button
-        class="btn btn-block btn-sm text-left"
-        type="button"
-        data-toggle="collapse"
-        data-target="#collapse-Obes506"
-        aria-expanded="true"
-        aria-controls="collapse-Obes506"
-        onclick="getURL( 2063 , 'Obes506')"
-      >
-        
-        <div class="row no-gutters" style="width: 100%">
-          <div class="col-7 d-print-none">
-            <span class="font-weight-bold fs-md"
-              >Obesity</span
-            ><br />
-            <span class="fs-sm font-weight-normal"
-              >Obesity (adults), 2022</span
-            >
-          </div>
-          <div class="col-3 pl-1 d-print-none">
-            <span class="font-weight-bold fs-lg"
-              >20.7</span
-            >
-            <br />
-            <span class="fs-xs font-weight-normal"
-              >Percent </span
-            >
-          </div>
-
-          
-
-          <div class="col-2 d-print-none">
-              <div class="float-right mt-1">
-              <span class="middle d-none"></span>
-            </div>
-          </div>
-
-          
-          <div class="col-12 print-only" style="flex-direction:row; width:100%;">
-
-            
-            <div style="width:50%;" class="border-right pl-1">
-              <span class="font-weight-bold fs-md">
-                Obesity
-              </span><br />
-              <span class="fs-sm font-weight-normal">Obesity (adults), 2022</span>
-            </div>
-
-            
-            <div style="width:25%" class="border-right pl-1">
-              <span class="font-weight-bold fs-lg">
-                20.7
-              </span><br />
-              <span class="fs-xs font-weight-normal">
-                Percent 
-              </span>
-            </div>
-
-            
-
-            
-            <div style="width:25%;" class="pl-1">
-
-              In the middle of NYC neighborhoods
-
-
-
-            </div>
-
-          </div>
-
-        </div>
-      </button>
-    </h2>
-  </div>
-
-
-  <div
-    id="collapse-Obes506"
-    class="collapse border-bottom "
-    aria-labelledby="heading-Obes506"
-    data-parent="#accordion-3"
-    data-indicator-name="Obes506"
-    data-count="3"
-  >
-    <div class="card-body card-body-no-top">
-
-      <div class="row no-gutters fs-sm">
-        <div class="col-12">
-            
-            <p class="fs-md mt-1 mb-2">People who are obese are at increased risk for heart disease and diabetes. Neighborhood factors such as walkability and the types of food retail outlets available can impact residents' risk of being overweight or obese.</p>
-        </div>
-
-                <div class="col-md-7 border-right h-100">
-                
-                <div style="width:100%; height:40vmin; z-index:100;" class="" id="map-Obes506-3">
-                    ...map is loading...
-                </div><div class="data-note mt-1"></div></div>
-        
-        
-        
-        
-
-        
-
-        <div class="col-md-5 h-100 p-1 ">
-
-            <p class="fs-rg">
-                Obesity in <strong>Bensonhurst - Bay Ridge</strong>:
-                <div class=" fs-md">
-                  <p>
-                    <span class="middle-sm fs-sm mt-1">In the middle of</span>&nbsp;neighborhoods
-                  </p>
-
-                  <p>
-                    <span id="b-obesity"></span> the <strong>Brooklyn average</strong> 
-                    <br>
-                    <span class="fs-sm pl-3">(<span id="bv-obesity">boro val</span>%)</span>
-                  </p>
-
-                  <p>
-                    <span id="c-obesity"></span> the <strong>Citywide average</strong> 
-                    <br>
-                    <span class="fs-sm pl-3">(<span id="cv-obesity">city val</span>%)</span>
-                  </p>
-
-                    </div>
-                
-            </p>
-
-             
-            <div id="trend" class="hide">
-            <p>In <strong>Brooklyn</strong>, it is [TREND]. Citywide, the trend is [TREND].</p>
-            </div>
-
-            
-
-            <span id="year-obesity" class="sr-only">YEAR</span>
-
-          
-
-        </div>
-
-      </div>
-      <div class="row no-gutters">
-        <div class="col-7">
-            <span class="fs-xs"><strong>Source:</strong> New York City Community Health Survey (CHS)</span>
-
-        </div>
-        <div class="col-5">
-            <p class="float-right"><a id="2063" href="" class="ml-1" style="display:none"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Full dataset</a></p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-<script>
-    
-    (function(x, y) {
-        var endDate = new Date(x);
-        var year = endDate.getFullYear(); 
-        document.getElementById(y).innerHTML = year;
-    })(`2022-12-31`, `year-obesity`);
-
-(function(n, b, c, nid, bid, cid, rr) {
-    n = Number(n);
-    b = Number(b);
-    c = Number(c);
-
-    let rankReverse = (rr === true || rr === 'true');
-
-    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
-    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
-
-    let boroJudgement;
-    if (n > b && rankReverse) {
-      boroJudgement = 'comp-good';
-    } else if (n < b && rankReverse) {
-      boroJudgement = 'comp-bad';
-    } else if (n > b && !rankReverse) {
-      boroJudgement = 'comp-bad';
-    } else if (n < b && !rankReverse) {
-      boroJudgement = 'comp-good';
-    } else {
-      boroJudgement = 'comp-null';
-    }
-
-    let cityJudgement;
-    if (n > c && rankReverse) {
-      cityJudgement = 'comp-good';
-    } else if (n < c && rankReverse) {
-      cityJudgement = 'comp-bad';
-    } else if (n > c && !rankReverse) {
-      cityJudgement = 'comp-bad';
-    } else if (n < c && !rankReverse) {
-      cityJudgement = 'comp-good';
-    } else {
-      cityJudgement = 'comp-null';
-    }
-
-    let boroEl = document.getElementById(bid);
-    if (boroEl) {
-        boroEl.innerHTML = boroComp;
-        boroEl.classList.add(boroJudgement);
-    }
-
-    let cityEl = document.getElementById(cid);
-    if (cityEl) {
-        cityEl.innerHTML = cityComp;
-        cityEl.classList.add(cityJudgement);
-    }
-
-    document.getElementById('bv-obesity').innerHTML = b;
-    document.getElementById('cv-obesity').innerHTML = c;
-
-
-})(
-     20.7 ,
-     26.3 ,
-     26.8 ,
-    'n-obesity',
-    'b-obesity',
-    'c-obesity',
-     false 
-)
-
-
-</script>
-
-
-
-
-<script type="text/javascript">
-
-    $( "#collapse-Obes506" ).on('shown.bs.collapse', function() {
-
-        
-
-        gtag('event', 'click_modal', {
-                'modal_name': 'Obesity'
-            });
-
-        var opt = {"renderer": "svg"};
-
-            
-
-            
-
-            var summaryData =
-                arqTable
-                .filter(d => d.indicator_data_name == "Obes506")
-                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
-                .dedupe()
-                .groupby("neighborhood")
-                .orderby("neighborhood", aq.desc("end_date"))
-                .slice(0,1) 
-                .ungroup()
-                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
-                .orderby("unmodified_data_value_geo_entity") 
-                .select(aq.not("end_date"))
-                .objects()
-
-
-            
-
-            
-
-            var mapData = summaryData;
-
-            renderNRMap(mapData,  "#map-Obes506-3", "Percent ","Obesity",geocode)
-
-    });
-
-    </script>
-
-
-
-
-
   <div class="card-header border-top" id="heading-Seri691">
     <h2 class="mb-0">
       <button
@@ -4125,7 +3280,7 @@
     aria-labelledby="heading-Seri691"
     data-parent="#accordion-3"
     data-indicator-name="Seri691"
-    data-count="4"
+    data-count="3"
   >
     <div class="card-body card-body-no-top">
 
@@ -4137,7 +3292,7 @@
 
                 <div class="col-md-7 border-right h-100">
                 
-                <div style="width:100%; height:40vmin; z-index:100;" class="" id="map-Seri691-4">
+                <div style="width:100%; height:40vmin; z-index:100;" class="" id="map-Seri691-3">
                     ...map is loading...
                 </div><div class="data-note mt-1">* Estimate is based on small numbers so should be interpreted with caution.</div></div>
         
@@ -4311,7 +3466,7 @@
 
             var mapData = summaryData;
 
-            renderNRMap(mapData,  "#map-Seri691-4", "Percent ","Psychological distress",geocode)
+            renderNRMap(mapData,  "#map-Seri691-3", "Percent ","Psychological distress",geocode)
 
     });
 
@@ -4407,19 +3562,19 @@
     aria-labelledby="heading-Adul692"
     data-parent="#accordion-3"
     data-indicator-name="Adul692"
-    data-count="5"
+    data-count="4"
   >
     <div class="card-body card-body-no-top">
 
       <div class="row no-gutters fs-sm">
         <div class="col-12">
             
-            <p class="fs-md mt-1 mb-2">People with disabilities or access or functional needs may need additional support during extreme weather. For example, they may need extra planning for safe travel out of evacuation zones during a hurricane, or back-up electricity to support medical equipment during power outages. Information provided here about adults with independent living difficulties can help emergency management professionals better prepare our residents for emergencies.</p>
+            <p class="fs-md mt-1 mb-2">Adults reporting independent living difficulty due to a physical, mental, or emotional problem. People with disabilities may need additional support during extreme weather. For example, extra planning for safe travel out of evacuation zones during a hurricane, or back-up electricity to support medical equipment during power outages.</p>
         </div>
 
                 <div class="col-md-7 border-right h-100">
                 
-                <div style="width:100%; height:40vmin; z-index:100;" class="" id="map-Adul692-5">
+                <div style="width:100%; height:40vmin; z-index:100;" class="" id="map-Adul692-4">
                     ...map is loading...
                 </div><div class="data-note mt-1"></div></div>
         
@@ -4593,7 +3748,7 @@
 
             var mapData = summaryData;
 
-            renderNRMap(mapData,  "#map-Adul692-5", "Percent ","Independence difficulty",geocode)
+            renderNRMap(mapData,  "#map-Adul692-4", "Percent ","Independence difficulty",geocode)
 
     });
 
