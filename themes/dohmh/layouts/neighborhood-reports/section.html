@@ -84,13 +84,28 @@
 
       </div>
 
-      <div class="row my-2">
-        <div class="col-12">
-          <h2 class="h4">About these neighborhoods</h2>
-          <p>These Neighborhood Reports include data for 42 NYC neighborhoods &mdash; a neighborhood scheme called "UHF42." There are different ways to break up NYC into neighborhoods. <a href="">Read about different neighborhood schemes present in our data</a>.</p>
-          <p>If you're looking for data for city council districts, <a href="">use this tool to get data for neighborhoods that overlap your district</a>.</p>
+      <div class="row my-4">
 
+        <div class="col-md-4 col-sm-12 mb-2">
+          <strong>About these neighborhoods</strong>
+          <p>There are different ways to break up NYC into neighborhoods. These Neighborhood Reports include data for 42 NYC neighborhoods &mdash; a neighborhood scheme called UHF42. <a href="../data-stories/geographies/">Read about different neighborhood schemes in our data</a>.</p>
+          <p>If you're looking for data for city council districts, use this tool to get data for neighborhoods that overlap your district.</p>
         </div>
+
+                    <div class="col-md-4 col-sm-6">
+                <strong>City Council district</strong>
+                <div class="border" style="height: 250px; overflow-y:scroll;" aria-labelledby="dropdownMenuButton" id="districtButtons">
+                  <!-- Districts get printed here -->
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-6">
+              <strong>Overlapping neighborhoods</strong>
+              <div class="border" id="overlaps" style="height: 250px; overflow-y:scroll;">
+                  <!-- Overlapping UHFs get printed here -->
+
+              </div>
+            </div>
       </div>
 
 
@@ -175,6 +190,59 @@
 
   {{- $flexdatalist_js := resources.Get "node_modules/jquery-flexdatalist/jquery.flexdatalist.min.js" | partial "short-fingerprint.html" -}}
   <script type="text/javascript" src="{{ $flexdatalist_js.RelPermalink }}" integrity="{{ $flexdatalist_js.Data.Integrity }}"></script>
+
+  <!-- CCD js -->
+  {{- $ccd_js := resources.Get "/js/ccd-to-uhf42.js" | partial "short-fingerprint.html" -}}
+  <script type="text/javascript" src="{{ $ccd_js.RelPermalink }}" integrity="{{ $ccd_js.Data.Integrity }}"></script>
+
+  <script>
+
+    var holder = document.getElementById('districtButtons')
+
+    for (let i = 1; i < 52; i ++) {
+      let thisButton = `
+        <a class="dropdown-item ccd-items" href="#about" id='button-${i}' onclick='getDistrict(${i})'>City Council District #${i}</a>
+      `
+      holder.innerHTML += thisButton
+    }
+
+
+    function getDistrict(x) {
+      console.log('Getting overlapping UHFs for District ' + x)
+
+      var overlaps = document.getElementById('overlaps')
+      overlaps.innerHTML = ''
+
+      // Style
+      var allButtons = document.querySelectorAll('.ccd-items')
+      allButtons.forEach(btn => {
+        btn.classList.remove('active')
+        btn.classList.remove('text-white')
+      })
+
+      var selected = document.getElementById(`button-${x}`)
+      selected.classList.add('active')
+      selected.classList.add('text-white')
+
+      // Loop through CCDtoUHF and get matches
+      var thisOverlap = CCDtoUHF.filter(neighborhood => neighborhood.CCD == x)
+      console.log(thisOverlap[0].matchingUHFs)
+
+      thisOverlap[0].matchingUHFs.forEach(ol => {
+        console.log(ol.GEONAME, ol.percent)
+          var uhfid = ol.UHF_id
+          var overl = ol.percent.toFixed(0)
+        
+        overlaps.innerHTML += `
+          <a href="" class="dropdown-item">
+            UHF ${uhfid} (${overl}% overlap)
+          </a>`
+      })
+
+    }
+    
+
+  </script>
 
 
 <script type="text/javascript">
