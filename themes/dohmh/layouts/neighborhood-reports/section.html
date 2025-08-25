@@ -94,14 +94,14 @@
 
                     <div class="col-md-4 col-sm-6">
                 <strong>City Council district</strong>
-                <div class="border" style="height: 250px; overflow-y:scroll;" aria-labelledby="dropdownMenuButton" id="districtButtons">
+                <div class="border fs-sm" style="height: 250px; overflow-y:scroll;" aria-labelledby="dropdownMenuButton" id="districtButtons">
                   <!-- Districts get printed here -->
                 </div>
             </div>
 
-            <div class="col-md-4 col-sm-6">
+            <div class="col-md-4 col-sm-6 hide" id="overlapReveal">
               <strong>Overlapping neighborhoods</strong>
-              <div class="border" id="overlaps" style="height: 250px; overflow-y:scroll;">
+              <div class="border fs-sm" id="overlaps" style="height: 250px; overflow-y:scroll;">
                   <!-- Overlapping UHFs get printed here -->
 
               </div>
@@ -209,6 +209,7 @@
 
     function getDistrict(x) {
       console.log('Getting overlapping UHFs for District ' + x)
+      document.getElementById('overlapReveal').classList.remove('hide')
 
       var overlaps = document.getElementById('overlaps')
       overlaps.innerHTML = ''
@@ -231,11 +232,13 @@
       thisOverlap[0].matchingUHFs.forEach(ol => {
         console.log(ol.GEONAME, ol.percent)
           var uhfid = ol.UHF_id
+          var name = ol.GEONAME
           var overl = ol.percent.toFixed(0)
+          var dest = ol.page_name
         
         overlaps.innerHTML += `
-          <a href="" class="dropdown-item">
-            UHF ${uhfid} (${overl}% overlap)
+          <a href="${dest}" class="dropdown-item">
+            ${name} (${overl}% overlap)
           </a>`
       })
 
