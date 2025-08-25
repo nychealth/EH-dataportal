@@ -230,16 +230,21 @@
       console.log(thisOverlap[0].matchingUHFs)
 
       thisOverlap[0].matchingUHFs.forEach(ol => {
-        console.log(ol.GEONAME, ol.percent)
-          var uhfid = ol.UHF_id
-          var name = ol.GEONAME
-          var overl = ol.percent.toFixed(0)
-          var dest = ol.page_name
-        
-        overlaps.innerHTML += `
-          <a href="${dest}" class="dropdown-item">
+
+        var uhfid = ol.UHF_id
+        var name = ol.GEONAME
+        var overl = ol.percent.toFixed(0)
+        var dest = ol.page_name
+
+        // set minimum overlap
+        if (overl < 5) {
+          return
+        } else {
+          overlaps.innerHTML += `
+          <a href="${dest}" class="dropdown-item text-primary font-weight-bold">
             ${name} (${overl}% overlap)
           </a>`
+        }
       })
 
     }
