@@ -54,6 +54,8 @@ function changeText(x) {
     // Add the "Go back" button
     if (x == 1) {
         document.getElementById('lastButton').classList.remove('hide')
+    } else if (x == 0 ) {
+        document.getElementById('lastButton').classList.add('hide')
     } else {}
 
     document.getElementById('lastButton').setAttribute('onclick',`changeText(${last})`)
