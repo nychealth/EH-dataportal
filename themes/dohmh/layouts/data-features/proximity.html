@@ -1,0 +1,119 @@
+{{- define "main" -}}
+
+<style>
+  .info {
+    padding: 6px 8px;
+    font: 14px/16px Arial, Helvetica, sans-serif;
+    background: white;
+    background: rgba(255,255,255,0.8);
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    border-radius: 5px;
+}
+.info h4 {
+    margin: 0 0 5px;
+    color: #777;
+}
+
+.fill-1 {
+  font-weight: bold;
+  background-color: #FED976;
+}
+
+.color-1 {
+  color: #FED976;
+}
+
+.fill-2 {
+  font-weight: bold;
+  background-color: #FEB24C;
+}
+
+.color-2 {
+  color: #FEB24C;
+}
+
+.fill-3 {
+  font-weight: bold;
+  background-color: #FD8D3C;
+}
+
+.color-3 {
+  color: #FD8D3C;
+}
+
+.fill-4 {
+  font-weight: bold;
+  background-color: #FC4E2A;
+}
+
+.color-4 {
+  color: #FC4E2A;
+}
+
+.fill-5 {
+  font-weight: bold;
+  background-color: #E31A1C;
+  color: white;
+}
+
+.color-5 {
+  color: #E31A1C;
+}
+
+.btn.active {
+font-weight: bold!important;
+}
+</style>
+
+<article class="container-fluid" id="skip-header-target">
+
+    {{ partial "df-front-block" . }}
+
+    <div class="row">
+        <div class="col-md-11 mx-auto">
+            <div id="map" class="" style="width:100%; height: 90vh"></div>
+
+
+            <div class="row my-4">
+              <div class="col-md-6 col-sm-12">
+                <div class="card card-left-border shadow-sm fs-sm">
+                  <div class="card-body">
+                    <h2 class="h5 card-title">Card</h2>
+                    <p>Copy</p>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="col-sm-12 col-md-6">
+                <div class="card card-left-border shadow-sm fs-sm">
+                  <div class="card-body">
+                    <h2 class="h5 card title">Card</h2>
+                      <p>Copy</p>
+                  </div>
+                </div>
+              </div>
+
+        </div>
+    </div>
+
+    <div class="row" data-pagefind-weight="7.0">
+
+      <div class="col-12">
+      </div>
+
+
+    </div>
+
+
+</article>
+
+<!-- Related footer -->
+{{- partial "related-footer" . -}}
+
+<!--bring in JS -->
+
+<script type="text/javascript" src="proximity.js"></script>
+
+
+{{- end -}}
