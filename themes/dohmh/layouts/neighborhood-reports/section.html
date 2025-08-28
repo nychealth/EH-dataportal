@@ -105,6 +105,7 @@
                   <!-- Overlapping UHFs get printed here -->
 
               </div>
+              <em class="fs-xs">Not shown: neighborhoods with less than 5% overlap.</em>
             </div>
       </div>
 
@@ -241,8 +242,11 @@
           return
         } else {
           overlaps.innerHTML += `
-          <a href="${dest}" class="dropdown-item text-primary font-weight-bold">
-            ${name} (${overl}% overlap)
+          <a href="${dest}" class="dropdown-item text-primary">
+            <span class="font-weight-bold">
+            ${name} 
+            </span> <br>
+            Overlap: ${overl}% area | XX% population
           </a>`
         }
       })
