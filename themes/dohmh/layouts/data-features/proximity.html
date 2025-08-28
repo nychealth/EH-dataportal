@@ -108,12 +108,35 @@ font-weight: bold!important;
 
 </article>
 
+
+
+<div id="legendHolder" class="hide">
+  <div class="text-primary">
+  <strong>Overlay</strong>
+  <p id="thisText">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec congue sagittis interdum. Etiam mollis sem nisi, eu pellentesque libero vestibulum ornare. Ut dapibus ante id augue luctus, a mattis sapien accumsan. Donec in ante leo. Nunc vitae aliquam nulla, consectetur consequat tellus. Praesent quis justo dolor. Praesent lacus urna, viverra sit amet auctor vitae, pretium vitae metus. Praesent tempus dolor ut dolor venenatis bibendum. Duis hendrerit, odio sed ultrices consequat, nisi turpis consectetur ante, in finibus dolor odio ut lorem. Nunc ac aliquam est.
+  </p>
+  <button class="btn btn-sm btn-outline-primary hide" id="lastButton">Go back</button>
+
+  <button class="btn btn-sm btn-primary" id="nextButton">Next step</button>
+  </div>
+</div>
+
+<style>
+  .legend {
+    max-width: 35%;
+    background: white;
+    
+  }
+</style>
+
+
+
 <!-- Related footer -->
 {{- partial "related-footer" . -}}
 
 <!--bring in JS -->
+<script type="text/javascript" src="proxConfig.js"></script>
 
 <script type="text/javascript" src="proximity.js"></script>
-
 
 {{- end -}}
