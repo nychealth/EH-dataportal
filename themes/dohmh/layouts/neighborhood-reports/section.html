@@ -54,6 +54,15 @@
                 </div>
 
             </div>
+
+            <div class="row mt-6">
+              <div class="col-12 fs-sm">
+                <strong><i class="fas fa-info-circle mr-1" aria-hidden="true"></i>About these neighborhoods</strong>
+                <p>There are different ways to break up NYC into neighborhoods. These Neighborhood Reports include data for 42 NYC neighborhoods &mdash; a neighborhood scheme called UHF42. <a href="../data-stories/geographies/">Read about different neighborhood schemes in our data</a>.</p>
+                <p><i class="fas fa-question-circle mr-1" aria-hidden="true"></i>If you're looking for data for <strong>city council districts</strong>, <a href="#about" data-toggle="modal" data-target="#CCDModal">use this tool to get data for neighborhoods that overlap your district</a>.</p>
+
+              </div>
+            </div>
         </div>
 
         <div class="col-md-5">
@@ -86,33 +95,56 @@
 
       <div class="row my-4">
 
-        <div class="col-md-4 col-sm-12 mb-2">
-          <strong>About these neighborhoods</strong>
-          <p>There are different ways to break up NYC into neighborhoods. These Neighborhood Reports include data for 42 NYC neighborhoods &mdash; a neighborhood scheme called UHF42. <a href="../data-stories/geographies/">Read about different neighborhood schemes in our data</a>.</p>
-          <p>If you're looking for data for city council districts, use this tool to get data for neighborhoods that overlap your district.</p>
+        <div class="col-md-4 col-sm-12 mb-2" id="about">
         </div>
-
-                    <div class="col-md-4 col-sm-6">
-                <strong>City Council district</strong>
-                <div class="border fs-sm" style="height: 250px; overflow-y:scroll;" aria-labelledby="dropdownMenuButton" id="districtButtons">
-                  <!-- Districts get printed here -->
-                </div>
-            </div>
-
-            <div class="col-md-4 col-sm-6 hide" id="overlapReveal">
-              <strong>Overlapping neighborhoods</strong>
-              <div class="border fs-sm" id="overlaps" style="height: 250px; overflow-y:scroll;">
-                  <!-- Overlapping UHFs get printed here -->
-
-              </div>
-              <em class="fs-xs">Not shown: neighborhoods with less than 5% overlap.</em>
-            </div>
       </div>
 
 
 
     </div>
   </div>
+
+  <!-- Council District Chooser Modal -->
+<div class="modal fade" id="CCDModal" tabindex="-1" role="dialog" aria-labelledby="CCDModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="CCDModalTitle">Get data for your City Council District</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row no-gutters">
+          <div class="col-12 mb-4">
+            <p>These <strong>Neighborhood Reports</strong> are presented for 42 NYC neighborhoods made up of groups of ZIP Codes - a neighborhood scheme called UHF42.</p>
+            <p>To get data for a City Council District, choose a district below. This will give you links to reports for UHF neighborhoods that overlap your City Council District.</p>
+          </div>
+
+          <div class="col-6">
+            <strong>City Council Districts</strong>
+                <div class="border fs-sm" style="height: 250px; overflow-y:scroll;" aria-labelledby="dropdownMenuButton" id="districtButtons">
+                  <!-- Districts get printed here -->
+                </div>
+          </div>
+
+          <div class="col-6 hide" id="overlapReveal">
+              <strong>Overlapping areas</strong>
+
+                <div class="border fs-sm" id="overlaps" style="height: 250px; overflow-y:scroll;">
+                  <!-- Overlapping UHFs get printed here -->
+
+              </div>
+              <em class="fs-xs">Not shown: neighborhoods with less than 5% overlap.</em>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 
   
 <div class="hide topic-descriptions" id="Asthma-Descr">
@@ -202,7 +234,7 @@
 
     for (let i = 1; i < 52; i ++) {
       let thisButton = `
-        <a class="dropdown-item ccd-items" href="#about" id='button-${i}' onclick='getDistrict(${i})'>City Council District #${i}</a>
+        <a class="dropdown-item ccd-items" href="#overlapReveal" id='button-${i}' onclick='getDistrict(${i})'>City Council District #${i}</a>
       `
       holder.innerHTML += thisButton
     }
