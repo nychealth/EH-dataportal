@@ -7,7 +7,7 @@ seo_description: "Explore data, visualizations, and more on ways that environmen
 description: "Datasets and visualizations of CEQR PAGE in NYC."
 tags:
 categories:
-  ["inequality", "publicspace", "healthoutcomes", "housing", "climatehealth"]
+  ["publicspace", "inequality", "healthoutcomes", "housing", "climatehealth"]
 keywords:
   [
     "mental health",
@@ -24,40 +24,42 @@ keywords:
 indicators:
   - header: Active design
     IndicatorID:
+      - 2133
       - 2388
       - 2391
-      - 2133
       - 2389
   - header: Climate
     IndicatorID:
-      - 2141
       - 2191
+      - 2141
       - 2185
       - 2377
   - header: Housing
     IndicatorID:
-      - 15
-      - 2365
       - 45
+      - 15
       - 107
+      - 2365
   - header: Neighborhood conditions
     IndicatorID:
       - 2143
       - 2400
       - 2073
-  - header: Health Outcomes and Care Access
+  - header: Birth and infancy
     IndicatorID:
-      - 7
-      - 4
       - 1
+      - 4
       - 5
       - 6
+      - 7
       - 8
-      - 2075
+  - header: Health and health care
+    IndicatorID:
       - 2132
       - 2232
-      - 2322
+      - 2075
       - 2418
+      - 2322
 related:
   - title: "Climate and health"
     url: "neighborhood-reports/climate_and_health/"
