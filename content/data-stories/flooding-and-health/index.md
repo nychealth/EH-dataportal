@@ -22,8 +22,8 @@ related:
     url: "data-features/flood-vulnerability-index/"
   - title: "How power outages affect health"
     url: "data-stories/poweroutages/"
-  - title: "The urban heat island effect in NYC"
-    url: "data-stories/urban-heat-island/"
+  - title: "Energy is critical for health and climate resilience — but not all New Yorkers may be able to afford it"
+    url: "data-stories/energy-insecurity/"
 ---
 
 <em>Superstorm Sandy (2012) and rainfall from Hurricane Ida (2021) broke records in NYC and resulted in injury and death. Both showed how the climate crisis is affecting the strength of storms and how profound the threat of flooding is to New Yorkers’ health.</em>

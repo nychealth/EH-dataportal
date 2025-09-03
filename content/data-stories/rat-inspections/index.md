@@ -1,100 +1,79 @@
 ---
 title: Inspection data are the key to controlling NYC’s rats
-draft: true
-date: 2022-11-07T08:49:22-04:00
-image: ds-codesign-team.jpg
-photocredit: EH Data Portal team
-categories:
-  - internal
-keywords:
-  - how we work
-  - civic service design
-  - usability
-  - redesign
-  - user research
-seo_title: Redesigned EH Data Portal
-seo_description: "We recently redesigned our site to make it easier for you to find important data and information on how the environment affects health."
+draft: false
+date: 2025-08-04T08:49:22-04:00
+image: inspector_looks3.jpg
+photocredit: NYC Health Department
+categories: ["pests", "housing"]
+keywords: ["rats", "pests", "Rat Mitigation Zones", "rat inspection"]
+seo_title: Rat inspections in NYC
+seo_description: "Rat inspection data drives NYC's rat control strategy"
 related:
-  - title: "Neighborhood boundaries on the EH Data Portal"
-    url: "data-stories/geographies/"
-  - title: "Why we're working with you to redesign the data portal"
-    url: "data-stories/codesign/"
+  - title: "Rat complaints and NYC’s rat problem"
+    url: "data-stories/rat-complaints/"
+  - title: "Rats in your neighborhood"
+    url: "data-features/rats-in-your-neighborhood/"
+  - title: "Rat Mitigation Zones"
+    url: "data-features/rat-mitigation-zones/"
 ---
 
-The Environment and Health Data Portal looks a little bit different\! We recently redesigned our site to make it easier for you to find important data and information on how the environment affects health.&nbsp;&nbsp;
+Rats are one of New York City’s hottest topics. You see them on the news, while scrolling on social media, and you’ve probably spied more than a few on your commute. We all want to know where in the city the rats are worst, and if the rats are multiplying or their numbers are declining.
 
-Here's what the new site has to offer:&nbsp;
+Each year, the Health Department gets about 40,000 complaints about rat activity through 311 <a href="../../data-features/rat-mitigation-zones/">(you can explore these data on NYC Open Data)</a>. But complaint data — how many 311 complaints, and what neighborhoods have the most complaints — doesn't give us a full picture of rat activity in NYC. Some neighborhoods with high levels of rat activity don’t always generate a lot of complaints, and some neighborhoods with a lot of complaints don’t always have a high level of rat activity.
 
-**An updated design:**
+So how do we get a clear picture of neighborhood-level rat activity? With inspection data.
 
-The whole site got a fresh design to make exploring easier for you – whether you’re on a desktop computer, a phone, or a tablet. It's been optimized for accessibility, translation, and clear, simple presentation of information, using the [NYC Core Framework](https://www1.nyc.gov/assets/oti/html/nyc-core-framework/index.html), an open-source framework based on Bootstrap.&nbsp;&nbsp;
+### Inspections are the building blocks of rat control
 
-The navigation bar at the top always tells you where you are and provides quick access to the main sections of the site: Data Stories, Neighborhood Reports, Key Topics, or Data Explorer.&nbsp;&nbsp;
+<div class="card card-left-border shadow-sm mb-2 mt-2 fs-l">
+    <div class="card-body">
+    <strong>The Health Department conducts over 150,000 inspections for rats each year. In some areas, nearly every single property is inspected at least once a year.</strong>
+    </div>
+</div>
 
-**New ways of connecting information:**
+Health Department inspectors conduct about 150,000 rat inspections each year. Some of these inspections are reactive, in response to a rat complaint. Others are proactive, conducted because we know from experience that there’s a high level of rat activity in the area.
 
-Our site has always aimed to show how environments affect health.&nbsp; Our updates focus not only on improving access to data, but also making it easier to explore connections between different datasets, topics and other site content:&nbsp;
+<strong><a href="../../data-stories/rat-complaints">You can read more about the inspection process here.</a></strong><br>
 
-- [Key Topics]({{< baseurl >}}key-topics/) bring together in one display related datasets, custom data interactives, data stories, and neighborhood reports for special areas of environmental health. You can explore resources across the site for : [Air Quality]({{< baseurl >}}key-topics/airquality/); [Climate]({{< baseurl >}}key-topics/climatehealth/); [Housing]({{< baseurl >}}key-topics/housing/); [Inequality and Health Inequities]({{< baseurl >}}key-topics/social/); [Active Design, Public Space, and Transportation]({{< baseurl >}}key-topics/transportation/); [Environmental Health Outcomes]({{< baseurl >}}key-topics/healthoutcomes/); [Child Health]({{< baseurl >}}key-topics/childhealth/); [Pests and Pesticides]({{< baseurl >}}key-topics/pests/); and [Food and Drink]({{< baseurl >}}key-topics/foodanddrink/).&nbsp;
+Inspection data helps give us a well-rounded look at rat activity across New York City.
 
-* Keywords link you to other pages on the similar topics.&nbsp;
+It shows us both the percentage of properties inspected in a neighborhood, and the percentage that failed inspections. <a href="../../data-explorer/mice-and-rats/?id=2434#display=map">These failures could be for active signs of rats or rat-friendly conditions like open trash</a>.
 
-![Image of keywords on a data story about the urban heat island effect that help connect content across the site. Some of the keywords listed include "heat", "hot weather" and "housing" ](keywords-screenshot.png)
+<div class="my-4">
+<div style="min-height:679px" id="datawrapper-vis-JpYEi"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/JpYEi/embed.js" charset="utf-8" data-target="#datawrapper-vis-JpYEi"></script><noscript><img src="https://datawrapper.dwcdn.net/JpYEi/full.png" alt="" /></noscript></div>
+</div>
 
-- Throughout the site, you'll see links to related content. For example: when you're browsing datasets about Air Quality, you'll be able to quickly jump directly to related Data Stories. &nbsp;
+In some neighborhoods, rat activity is much more common. For example, in Highbridge and Concourse, 47.3% of the locations inspected “failed” because they had signs of rats, whereas in Greenwich village and Soho, only 9% did. High failure rates combined with high inspection rates tell us that there is a lot of rat activity in a neighborhood overall. These data also provide a more reliable way to compare different neighborhoods than just looking at data showing which neighborhoods have more complaints.
 
-![Image of related content, which could be a data story, feature, or data set that is related to the content displayed. This screenshot shows a related data story called "An update on air quality during COVID-19" ](related-screenshot.png)
+### Managing rats through neighborhood-level action
 
-- And if you can't find what you're looking for, our re-vamped search function can help you find it.&nbsp;&nbsp;
+When you look at inspection data, you’ll see that in some neighborhoods, all or most of the properties have been inspected. In areas with high rat activity, the Health Department uses a process called indexing, where we inspect every single property in a targeted area (from a few blocks to a whole neighborhood).
 
-![](search-screenshot.png)
+This approach helps us address problem areas most efficiently. Think about it: If one property owner cleans up but a neighbor doesn’t, the block still has a rat problem. But if a whole block starts to address conditions that help rats thrive – cleaning up garbage, sealing burrows, and repairing holes in buildings – that can make a dent in the rat population.
 
-**Greater usability**&nbsp;
+This neighborhood-level approach means that rat problems can be tackled block by block instead of property by property (or rat by rat).
 
-Our goal is for you to be able to put our data and information to work improving health throughout our city. And when we do user research, one of the most common things we hear is, "It has to be easy to use." So, we've built the site with this as our mantra.&nbsp;
+The Health Department designates some areas that have a high burden of rats as Rat Mitigation Zones (RMZ). In an RMZ, the Department conducts indexing, provides extra support to property owners and businesses, and works with multiple NYC agencies to reduce rats on public property.
 
-For example, take a look at our re-vamped [Data Explorer]({{< baseurl >}}data-explorer/). &nbsp;
+<div class="row">
+  <div class="col-6 mr-auto">
+<div class="card card-left-border shadow-sm mb-2 mt-2 fs-sm">
+    <div class="card-body">
+    <strong>Rat Mitigation Zone data</strong>
+<a href="../../data-features/rat-mitigation-zones/">Explore inspection data in RMZs.</a></div>
+</div>
+</div>
+<div class="col-6">
+<div class="card card-left-border shadow-sm mb-2 mt-2 fs-sm">
+    <div class="card-body">
+    <strong>Rat Mitigation Zone report</strong>
+<a href="../../data-features/rat-report/">Featuring new data through June 2024</a>
+    </div>
+</div>
+</div>
+</div>
 
-![Image of the data explorer tool, showing a purple map with different concentrations of PM2.5 across New York City.](data-explorer-screenshot.png)
+<a href="../../data-features/rat-information-portal/">To get inspection data for individual properties, visit the Rat Information Portal</a>, where you can find out when a property was last inspected, whether it passed or failed, and more information.
 
-On the page:&nbsp;
-
-- We designed the visualization pages to be fast and smooth, making it easier to click around and explore.&nbsp;
-- &nbsp;About The Topic text added to the visualization page pairs information and context with the data.&nbsp;
-
-Making choices:&nbsp;
-
-- When you're exploring a dataset (or indicator), you can quickly&nbsp; load related indicators for the same topic.&nbsp;
-- Our re-designed data option menus make it easy to change the geography, year, or measure when you're looking at the data.&nbsp;
-- With a click of "Change topic", you can swiftly select a whole new area to explore.&nbsp;
-
-New ways to view data:&nbsp;
-
-We aim to highlight important stories in the data with our visualizations. For example:&nbsp;
-
-- The map is accompanied by a bar chart, so you can see the variation in the data in a different way.&nbsp;
-- The Links view lets you click a borough to filter the scatterplot.&nbsp;
-- The charts are designed so you can screenshot them to add directly into a presentation, grant, or essay.&nbsp;
-
-Getting more from the data:&nbsp;
-
-- We've added automatic data download functions and a "copy citation" button so you can easily access the raw data for analysis and cite it in your work.&nbsp;&nbsp;
-
-**New technology**&nbsp;
-
-We completely overhauled the Portal’s technology to improve usability, mobile compatibility, and accessibility. We use:
-
-- [Hugo](https://gohugo.io/), a static site generator&nbsp;
-- [Arquero](https://uwdata.github.io/arquero/), [Vega-Lite](https://vega.github.io/vega-lite/), and [DataTables](https://datatables.net/)&nbsp;to drive front-end data processing and visualization&nbsp;
-
-If you’re curious about the nuts and bolts, you can find out more in our [site repository](https://github.com/nychealth/EH-dataportal) and [data repository](https://github.com/nychealth/EHDP-data).&nbsp;&nbsp;
-
-**Help us develop\!**&nbsp;
-
-We built this site for you, so please help us continue developing it:&nbsp;
-
-- [Sign up for our email list](https://docs.google.com/forms/d/e/1FAIpQLSfUg3JE5ODNc6aqBPJwM8mZ80TYtK6ISw-OM7PBwKuoN3M--g/viewform?embedded=true)&nbsp;– we'll send occasional requests for users to participate in user testing or co-design work&nbsp;
-- Visit our Github repositories ([site](https://github.com/nychealth/EH-dataportal), [data](https://github.com/nychealth/EHDP-data)) and explore the code, file an issue, or suggest features&nbsp;
-- Email us with any questions you have at <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#101;&#104;&#100;&#112;&#64;&#104;&#101;&#97;&#108;&#116;&#104;&#46;&#110;&#121;&#99;&#46;&#103;&#111;&#118;">&#101;&#104;&#100;&#112;&#64;&#104;&#101;&#97;&#108;&#116;&#104;&#46;&#110;&#121;&#99;&#46;&#103;&#111;&#118;</a> – we're here to help.&nbsp;&nbsp;
-
-&nbsp;
+<br>
+Rats may be a fixture of city life, but as we work together to reduce their numbers and make our communities more livable, these tools can help us understand what’s happening throughout our city, boroughs, and even our blocks.

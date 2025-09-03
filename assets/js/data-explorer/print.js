@@ -30,7 +30,7 @@ function printViz() {
     window.innerWidth < 960 ? wrapLegend = true : wrapLegend = false
 
     chartType === 'trend' ? changeTrendSpec() : {}
-    chartType === 'map' ? changeMapSpec(vizYear) : {}
+    chartType === 'map' ? changeMapSpec(vizYear,vizGeography) : {}
     chartType === 'links' ? changeLinksSpec() : {}
     chartType === 'disparities' ? changeDisparitiesSpec() : {};
 
@@ -112,10 +112,12 @@ function changeTrendSpec() {
 // Modify map spec
 // ----------------------------------------------------------------------- //
 
-function changeMapSpec(x) {
+function changeMapSpec(x,y) {
   checkSourceLength();
 
   let sourceArray = initialSource;
+
+  console.log(y)
 
   // Safely add sources only once
   if (Array.isArray(vizSource)) {
@@ -137,7 +139,7 @@ function changeMapSpec(x) {
 
   // Update the title safely
   if (!printSpec.title.text.includes(x)) {
-      printSpec.title.text += ` - ${x}`;
+      printSpec.title.text += ` - ${x} (${y})`;
   }
 
   // Check if a sourceLayer has already been added

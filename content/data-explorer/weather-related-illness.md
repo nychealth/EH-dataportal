@@ -53,7 +53,7 @@ relatedData:
     url: "climate/"
   - title: "Asthma"
     url: "asthma/"
-  - title: "Housing safety/"
+  - title: "Housing safety"
     url: "housing-safety/"
 ---
 

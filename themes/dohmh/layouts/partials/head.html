@@ -92,8 +92,6 @@
 
 {{- /*  jQuery (full, compressed version)  */}}
 
-{{- $jquery := resources.Get "node_modules/jquery/dist/jquery.min.js" | resources.Fingerprint "sha512" }}
-
 {{- $jquery := resources.Get "node_modules/jquery/dist/jquery.min.js" | partial "short-fingerprint.html" }}
 <script src="{{ $jquery.RelPermalink }}" integrity="{{ $jquery.Data.Integrity }}" crossorigin="anonymous"></script>
 
@@ -209,7 +207,11 @@
 
 {{- /*  Leaflet  */}}
 
-{{- if .Params.leaflet }}
+{{ if or .Params.leaflet (eq .Section "neighborhood-reports") }}
+
+    <!-- UHF42 neighborhood list javascript -->
+    {{- $uhflist_js := resources.Get "js/uhflist.js" | partial "short-fingerprint.html" -}}
+    <script type="text/javascript" src="{{ $uhflist_js.RelPermalink }}" integrity="{{ $uhflist_js.Data.Integrity }}"></script>
 
     <!-- leaflet CSS -->
 

@@ -1,6 +1,7 @@
 ---
 title: "Housing and Health"
 neighborhood: "Southwest Queens"
+geocode: 407
 summary: "This report provides a neighborhood summary of housing conditions and related health outcomes. It also describes population characteristics that can increase vulnerability to housing hazards."
 data_json: "Housing and Health in Southwest Queens"
 content_yml: "Housing_and_Health"

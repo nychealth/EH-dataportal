@@ -15,6 +15,8 @@ USING DEC_AVG: This app excludes DEC_Avg from conventional functionality. monito
   THEN, ADD A UNIQUE PIN
 */
 
+// ADDING A NOTE
+
 
 // initialize variables (other variables are initialized closer to their prime use)
 var current_spec;
