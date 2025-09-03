@@ -4,14 +4,14 @@
 <article class="container-fluid de-wrapper" id="skip-header-target" data-pagefind-ignore="all">
 
     <section>
-        <div class="row bg-black">
-            <div class="col-2 col-md-1 d-flex align-items-center justify-content-center py-1" style="background-color: #3B3B3B;">
+        <div class="row bg-black nav-bar">
+            <div class="col-1 col-md-2 col-lg-1 h-100 hide d-none d-md-flex align-items-center justify-content-center py-1" style="background-color: #3B3B3B;">
                 <img src={{ relURL "7618350_heatmap_business_analytics_statistics_icon-gpr.ico" }} style="height: 52px" alt="">
             </div>
-            <div class="col-5 h4 font-weight-bold d-flex align-items-center px-3 mb-0">
-                <button type="button" class="bg-transparent border-0 d-flex align-items-center mr-1" data-toggle="modal" data-target="#topicSelector">
-                        <img src={{ relURL "images/indicator-menu-icon.svg" }} alt="">
-                    </button>
+            <div class="col-6 col-md-4 col-lg-5 h4 font-weight-bold d-flex align-items-center pl-0 pl-md-3 px-md-3 mb-0">
+                <button type="button" class="border-0 d-flex align-items-center mr-1 nav-topic-selector" data-toggle="modal" data-target="#topicSelector">
+                    <img src={{ relURL "images/indicator-menu-icon.svg" }} alt="">
+                </button>
                 <span class="ml-2 text-white">Asthma</span>
             </div>
             <!-- Topic Selector Modal -->
@@ -29,7 +29,7 @@
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                             </div>
                             <div class="row mt-3">
-                                <div class="col-6">
+                                <div class="col-12 col-lg-6">
                                     <ul class="list-unstyled">
                                         <li class="mb-1">
                                             <button type="button" class="border-0 text-primary bg-transparent hover-underline p-0" data-toggle="modal" data-target="#indicatorSelector">Active design</button>
@@ -206,7 +206,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-5 col-md-6">
+            <div class="col-6">
                 <div class="d-flex justify-content-end align-items-center h-100">
                     <!-- Modal Trigger -->
                     <button type="button" class="bg-transparent border-0 d-flex align-items-center mr-md-3" data-toggle="modal" data-target="#learnMore">
@@ -276,11 +276,11 @@
                             <div class="font-weight-bold mr-1 text-white fs-md">Take Action</div>
                             <img src={{ relURL "images/icon-green-arrow.svg" }} style="height: 21px" alt="">
                         </button>
-                        <div class="dropdown-menu dropdown-menu-right bg-primary p-2 text-right w-50" aria-labelledby="dropdownMenuButton">
-                            <div class="text-white font-weight-bold border-bottom border-light-green pb-2 mb-2">Concerned about this?</div>
+                        <div class="dropdown-menu dropdown-menu-right bg-primary p-2 text-right take-action-dropdown" aria-labelledby="dropdownMenuButton">
+                            <div class="text-white font-weight-bold border-bottom border-medium-green pb-2 mb-2">Concerned about this?</div>
                             <ul class="list-unstyled">
-                                <li class="mb-1 border-bottom pb-2"><a class="text-white" href="#">Email your elected officials</a></li>
-                                <li class="mb-1 border-bottom pb-2"><a class="text-white" href="#">Contact 311</a></li>
+                                <li class="mb-1 border-bottom border-medium-green pb-2"><a class="text-white" href="#">Email your elected officials</a></li>
+                                <li class="mb-1 border-bottom border-medium-green pb-2"><a class="text-white" href="#">Contact 311</a></li>
                             </ul>
                         </div>
                     </div>
@@ -292,7 +292,7 @@
             <div class="position-absolute  de-main-details">
                 <!-- Mobile Accordion Header -->
                 <div class="bg-primary text-white px-2 py-1 w-full d-flex d-md-none" data-toggle="collapse" data-target="#detailsContent" aria-expanded="false" aria-controls="detailsContent" style="cursor: pointer;">
-                    <div class="h4 font-weight-bold mb-0">Children ever diagnosed with asthma</div>
+                    <div class="h4 font-weight-bold mb-0 main-heading">Children ever diagnosed with asthma</div>
                     <i class="fas fa-plus ml-auto text-white toggle-icon" style="transition: opacity 0.3s ease; padding-top: 4px;"></i>
                 </div>
 
@@ -316,7 +316,7 @@
                         <div class="card">
                             <div class="card-header" id="headingAsthmaIndicators">
                                 <h2 class="mb-0">
-                                                                  <button class="btn btn-link btn-block text-left p-0 d-flex align-items-center" type="button" data-toggle="collapse" data-target="#collapseAsthmaIndicators" aria-expanded="false" aria-controls="collapseAsthmaIndicators">
+                                    <button class="btn btn-link btn-block text-left p-0 d-flex align-items-center" type="button" data-toggle="collapse" data-target="#collapseAsthmaIndicators" aria-expanded="false" aria-controls="collapseAsthmaIndicators">
                                     <span class="font-weight-bold mr-2 de-accordion-label text-primary">Measure: </span>
                                     <span class="flex-grow-1 text-black  pr-1">Estimated Annual Rate per 100,000</span>
                                     <i class="fas fa-chevron-down ml-auto text-primary"></i>
@@ -381,7 +381,7 @@
                         <div class="card">
                             <div class="card-header" id="headingAsthmaIndicatorsDesktop">
                                 <h2 class="mb-0">
-                                                                  <button class="btn btn-link btn-block text-left p-0 d-flex align-items-center" type="button" data-toggle="collapse" data-target="#collapseAsthmaIndicatorsDesktop" aria-expanded="false" aria-controls="collapseAsthmaIndicatorsDesktop">
+                                    <button class="btn btn-link btn-block text-left p-0 d-flex align-items-center" type="button" data-toggle="collapse" data-target="#collapseAsthmaIndicatorsDesktop" aria-expanded="false" aria-controls="collapseAsthmaIndicatorsDesktop">
                                     <span class="font-weight-bold mr-2 de-accordion-label text-primary">Measure: </span>
                                     <span class="flex-grow-1 text-black pr-1">Estimated Annual Rate per 100,000</span>
                                     <i class="fas fa-chevron-down ml-auto text-primary"></i>
@@ -450,7 +450,7 @@
                                     <img src={{ relURL "images/chart-FPO.png" }} alt="">
                                     <p class="fs-md">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
                                     <div class="d-flex align-items-center pt-2">
-                                        <a class="btn btn-outline-green" href="#">Save Chart</a>
+                                        <a class="btn btn-light-green-bg-outline" href="#">Save Chart</a>
                                         <a href="#" class="h6 ml-2 font-weight-normal">Data Source and Details</a>
                                     </div>
                                 </div>
@@ -466,7 +466,7 @@
                                     <img src={{ relURL "images/chart-FPO.png" }} alt="">
                                     <p class="fs-md">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
                                     <div class="d-flex align-items-center pt-2">
-                                        <a class="btn btn-outline-green" href="#">Save Chart</a>
+                                        <a class="btn btn-light-green-bg-outline" href="#">Save Chart</a>
                                         <a href="#" class="h6 ml-2 font-weight-normal">Data Source and Details</a>
                                     </div>
                                 </div>
@@ -482,7 +482,7 @@
                                     <div class="accordion-group" role="tablist" id="accordionTrends">
                                         <div class="card mb-1">
                                             <strong>
-                                                <a class="card-header collapse" id="acc-button-01" data-toggle="collapse" href="#panel-acc-button-01" role="tab" aria-expanded="false" aria-controls="panel-acc-button-01">
+                                                <a class="card-header collapse py-1" id="acc-button-01" data-toggle="collapse" href="#panel-acc-button-01" role="tab" aria-expanded="false" aria-controls="panel-acc-button-01">
                                                     <span class="title" role="heading" aria-level="3">Show with</span>
                                                 </a>
                                             </strong>
@@ -495,7 +495,7 @@
                                     </div>
                                     <p class="fs-md">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
                                     <div class="d-flex align-items-center pt-2">
-                                        <a class="btn btn-outline-green" href="#">Save Chart</a>
+                                        <a class="btn btn-light-green-bg-outline" href="#">Save Chart</a>
                                         <a href="#" class="h6 ml-2 font-weight-normal">Data Source and Details</a>
                                     </div>
                                 </div>
@@ -511,7 +511,7 @@
                                     <div class="accordion-group" role="tablist" id="accordionCorrelate">
                                         <div class="card mb-1">
                                             <strong>
-                                                <a class="card-header collapse" id="acc-button-02" data-toggle="collapse" href="#panel-acc-button-02" role="tab" aria-expanded="false" aria-controls="panel-acc-button-02">
+                                                <a class="card-header collapse py-1" id="acc-button-02" data-toggle="collapse" href="#panel-acc-button-02" role="tab" aria-expanded="false" aria-controls="panel-acc-button-02">
                                                     <span class="title" role="heading" aria-level="3">Show with</span>
                                                 </a>
                                             </strong>
@@ -524,7 +524,7 @@
                                     </div>
                                     <p class="fs-md">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
                                     <div class="d-flex align-items-center pt-2">
-                                        <a class="btn btn-outline-green" href="#">Save Chart</a>
+                                        <a class="btn btn-light-green-bg-outline" href="#">Save Chart</a>
                                         <a href="#" class="h6 ml-2 font-weight-normal">Data Source and Details</a>
                                     </div>
                                 </div>
@@ -533,15 +533,15 @@
                     </div>
                     <div class="bg-primary de-tabs-nav d-flex">
                         <div class="align-items-center d-flex d-md-none dropup">
-                            <button class="d-flex align-items-center px-2" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color: #3B3B3B; height: 100%; border: none; color: inherit; padding: 0;">
-                                <div class="font-weight-bold mr-1 text-white fs-md">Take Action</div>
-                                <img src={{ relURL "images/icon-green-arrow.svg" }} style="height: 21px" alt="">
+                            <a class="nav-link-sm d-flex align-items-center pl-2 pr-1" href="/" style="background-color: #3B3B3B; height: 100%; border: none; color: inherit; padding: 0;">Home</a>
+                            <button class="d-flex align-items-center px-1" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color: #3B3B3B; height: 100%; border: none; color: inherit; padding: 0;">
+                                <div class="font-weight-bold mr-1 text-white fs-xs">Take Action</div>
                             </button>
-                            <div class="dropdown-menu bg-primary p-2 text-left" style="width: 250px;" aria-labelledby="dropdownMenuButton">
-                                <div class="text-white font-weight-bold border-bottom border-light-green pb-2 mb-2">Concerned about this?</div>
+                            <div class="dropdown-menu bg-primary p-2 text-left take-action-dropdown" aria-labelledby="dropdownMenuButton">
+                                <div class="text-white font-weight-bold border-bottom border-medium-green pb-2 mb-2">Concerned about this?</div>
                                 <ul class="list-unstyled">
-                                    <li class="mb-1 border-bottom pb-2"><a class="text-white" href="#">Email your elected officials</a></li>
-                                    <li class="mb-1 border-bottom pb-2"><a class="text-white" href="#">Contact 311</a></li>
+                                    <li class="mb-1 border-bottom border-medium-green pb-2"><a class="text-white" href="#">Email your elected officials</a></li>
+                                    <li class="mb-1 border-bottom border-medium-green pb-2"><a class="text-white" href="#">Contact 311</a></li>
                                 </ul>
                             </div>
                         </div>

@@ -156,6 +156,16 @@ $color-data-explorer: #0A408A;
   }
 }
 
+.btn-light-green-bg-outline {
+  background-color: #EFFAF4;
+  color: #008939;
+  border: 1px solid #008939;
+  &:hover {
+    background-color: #008939;
+    color:white;
+  }
+}
+
 .nr-flexdatalist {
   height: 64px;
 }
@@ -284,6 +294,25 @@ $color-data-explorer: #0A408A;
 /** NEW DATA EXPLORER STYLES **/
 .de-wrapper {
 
+  .nav-bar {
+    min-height: 46px;
+  }
+
+  .nav-topic-selector {
+    background-color: #00923E;
+    height: 100%;
+  }
+
+  @media (min-width: 720px) {
+    .nav-topic-selector {
+      background-color: transparent;
+    }
+  }
+
+  .de-accordion .card {
+    border-bottom: 1px solid white !important;
+  }
+
   .de-accordion .card-body {
     background-color: #EFFAF4;
     font-size: 16px;
@@ -308,13 +337,22 @@ $color-data-explorer: #0A408A;
     height: 39px;
   }
 
+  .take-action-dropdown {
+    width: 280px;
+  }
 
+  @media (min-width: 720px) {
+    .take-action-dropdown {
+      width: 360px;
+    }
+  }
 
   .de-tabs {
     left: 0;
     bottom: 0;
     width: 100%;
     z-index: 2;
+    max-width: 500px;
 
   }
 
@@ -324,6 +362,10 @@ $color-data-explorer: #0A408A;
     z-index: 2;
     width: calc(100% - 4rem);
 
+  }
+
+  .de-main-details .main-heading {
+    font-size: 18px;
   }
 
   @media (min-width: 720px) {
@@ -337,7 +379,7 @@ $color-data-explorer: #0A408A;
     .de-main-details {
       left: 2rem;
       top: 2rem;
-      width: 40%;
+      width: 420px;
     }
   }
 
@@ -363,7 +405,8 @@ $color-data-explorer: #0A408A;
     }
   }
 
-  .de-tabs-nav .nav-pills .nav-link, .de-tabs-nav .nav-tabs .nav-link {
+  .de-tabs-nav .nav-pills .nav-link,
+  .de-tabs-nav .nav-tabs .nav-link {
     color: white;
     border-right: 1px solid rgba(255, 255, 255, 0.3);
     max-width: 90px;
@@ -372,13 +415,25 @@ $color-data-explorer: #0A408A;
     padding: 10px;
   }
 
+  .de-tabs-nav .nav-pills .nav-link-sm,
+  .de-tabs-nav .nav-tabs .nav-link-sm {
+    color: white;
+    border-right: 1px solid rgba(255, 255, 255, 0.3);
+    max-width: 80px;
+    flex: 1;
+    text-align: center;
+    padding: 10px 5px;
+  }
+
   @media (min-width: 720px) {
-    .de-tabs-nav .nav-pills .nav-link, .de-tabs-nav .nav-tabs .nav-link {
+    .de-tabs-nav .nav-pills .nav-link,
+    .de-tabs-nav .nav-tabs .nav-link {
       width: auto;
       border-bottom: 1px solid rgba(255, 255, 255, 0.3);
       border-right: none;
       flex: 0;
-      padding: 0.75rem 1rem;
+      padding: 1rem;
+      min-height: 89px;
     }
   }
 
