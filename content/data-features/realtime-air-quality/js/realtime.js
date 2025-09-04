@@ -123,25 +123,56 @@ function getStationsFromData() {
     loadMonitorLocations();
 }
 
+let colors = [
+  "#e41a1c",  // strong red
+  "#377eb8",  // medium blue
+  "#4daf4a",  // medium green
+  "#984ea3",  // purple
+  "#ff7f00",  // orange
+  "#dca936",  // golden yellow
+  "#a65628",  // brown
+  "#f781bf",  // pink
+  "#999999",  // gray
+  "#66c2a5",  // teal
+  "#fc8d62",  // salmon
+  "#1fbfc3",  // cyan (replacing light blue)
+  "#c85a9f",  // magenta
+  "#6ba54a",  // darker lime green
+  "#b15928"   // dark brown/rust
+];
+
+
 // ---- LOAD LOCATIONS: Creates list of active monitors and their metadata (lat/longs, colors, etc) ---- //
 function loadMonitorLocations() {
-    d3.csv("data/monitor_locations.csv").then(data => {
+    d3.csv("https://raw.githubusercontent.com/nychealth/nyccas-data/refs/heads/main/portal/station-new.csv").then(data => {
         allMonitorLocations = data;
+
+        // assign .Color to each item in allMonitorLocations, from colors
         for (let i = 0; i < allMonitorLocations.length; i++) {
-            // if stations includes allMonitorLocations[i].loc_col, push allMonitorLocations[i] to activeMonitors
+            allMonitorLocations[i].Color = colors[i % colors.length];
+        }
+
+        console.log('all monitor locations:')
+        console.log(allMonitorLocations)
+
+        for (let i = 0; i < allMonitorLocations.length; i++) {
+            // if stations includes allMonitorLocations[i].loc_col, push to activeMonitors
             if (stations.includes(allMonitorLocations[i].loc_col)) {
-                activeMonitors.push(allMonitorLocations[i])
+                activeMonitors.push(allMonitorLocations[i]);
             }
         }
+
         // alphabetize activeMonitors for color coordination
-        activeMonitors.sort(GetSortOrder("loc_col"))
+        activeMonitors.sort(GetSortOrder("loc_col"));
+        console.log('active Monitors:')
+        console.log(activeMonitors)
 
         // Draw page
-        drawMap()
+        drawMap();
         drawCheckboxes();
-        renderSpec(dataWithNulls.objects())
-        printRecentAverage()
-    })
+        renderSpec(dataWithNulls.objects());
+        printRecentAverage();
+    });
 }
 
 // ---- DRAW CHECKBOXES, table, and box listener ---- //
