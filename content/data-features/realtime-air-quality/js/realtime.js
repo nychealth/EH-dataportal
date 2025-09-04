@@ -184,7 +184,7 @@ function drawCheckboxes() {
 
         let tableCheckBox = 
                 `
-                <tr id="row-${activeMonitors[i].loc_col}">
+                <tr id="row-${activeMonitors[i].loc_col}" class="location-row" data-loc="${activeMonitors[i].loc_col}" data-color="${activeMonitors[i].Color}">
                 <th scope="row">
                     <input type="checkbox" id="${activeMonitors[i].loc_col}" name="${activeMonitors[i].loc_col}" value="${activeMonitors[i].Color}">
                     <label for="${activeMonitors[i].loc_col}"><span style="color: ${activeMonitors[i].Color};"><i class="fas fa-square mx-1"></i></span>${activeMonitors[i].Location}</label>
@@ -203,6 +203,62 @@ function drawCheckboxes() {
     }
 
     listenBoxes()
+    listenHover()
+}
+
+//-- Event listener on location row hover --//
+function listenHover() {
+  const rows = document.querySelectorAll('.location-row')
+
+  let hoveredSite = []
+
+  rows.forEach(row => {
+    row.addEventListener('mouseenter', (e) => {
+
+      // create nodelist of all checked items
+      getChecked = document.querySelectorAll('input[type=checkbox]:checked');
+
+        checkedSites = []; // clear the array of checked items
+          for (let i = 0; i < getChecked.length; i++) {
+          var siteName = getChecked[i].name
+          var siteColor = getChecked[i].value
+          var thisSite = {
+            "siteName": `${siteName}`,
+            "color": `${siteColor}`
+          }
+        checkedSites.push(thisSite)
+      }
+
+      // then, add the hovered site to it.
+      const site = e.currentTarget.getAttribute('data-loc')
+      const color = e.currentTarget.getAttribute('data-color')
+
+      hoveredSite = { siteName: site, color: color }  
+
+      checkedSites.push(hoveredSite)
+
+      renderSpec(dataWithNulls, checkedSites)
+    })
+
+    // on mouse leave, only chart checkedBoxes
+    row.addEventListener('mouseleave', () => {
+      // create nodelist of all checked items
+      getChecked = document.querySelectorAll('input[type=checkbox]:checked');
+
+      checkedSites = []; // clear the array of checked items
+      for (let i = 0; i < getChecked.length; i++) {
+          var siteName = getChecked[i].name
+          var siteColor = getChecked[i].value
+          var thisSite = {
+              "siteName": `${siteName}`,
+              "color": `${siteColor}`
+          }
+          checkedSites.push(thisSite)
+      }
+  
+      renderSpec(dataWithNulls, checkedSites)
+    })
+  })
 }
 
 //-- Event listener on checkboxes --//
@@ -705,6 +761,7 @@ const renderSpec = (
 
       // if there are checkedSites, then, push to spec.
       if (checkedSites) {
+
         for (let i = 0; i < checkedSites.length; i++) {
 
             var template =  {
