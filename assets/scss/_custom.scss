@@ -316,8 +316,13 @@ $color-data-explorer: #0A408A;
   .de-accordion .card-body {
     background-color: #EFFAF4;
     font-size: 16px;
-    padding-left: 122px;
     padding-top: 0px;
+  }
+
+  @media (min-width: 720px) {
+    .de-accordion .card-body {
+      padding-left: 122px;
+    }
   }
 
   .de-accordion button[aria-expanded="true"] svg {
@@ -413,6 +418,10 @@ $color-data-explorer: #0A408A;
     flex: 1;
     text-align: center;
     padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
   }
 
   .de-tabs-nav .nav-pills .nav-link-sm,
