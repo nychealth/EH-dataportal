@@ -712,66 +712,35 @@ async function renderSpec(
         "height": "container",
         "width": "container",
         "transform": [{"filter": `datum.starttime > ${chartStart}`}],
-        "signals": [
-            {
-              "name": "textlabel",
-              "value": "Click on one of messages above.",
-              "on": [
-                {
-                  "events": ".label:click",
-                  "update": "event.currentTarget.innerText",
-                  "force":  true
-                }
-              ]
-            }
-          ],
         "layer": [
-          {
-            "mark": {
-              "type": "line",
-              "interpolate": "monotone",
-              "point": {"size": 5, "opacity": 0},
-              "tooltip": null
+            {
+              "mark": {
+                "type": "line",
+                "tooltip": false
+              },
+              "encoding": {
+                "x": {"field": "starttime", "type": "temporal", "title": ""},
+                "y": {"field": "Value", "type": "quantitative", "title": " "},
+                "color": {
+                  "condition": {
+                    "test": "datum.SiteName === 'BQE'",
+                    "value": {"signal": "colorlabel"}
+                  },
+                  "field": "SiteName",
+                  "type": "nominal",
+                  "scale": {"range": ["lightgray"]}
+                },
+                
+                "strokeWidth": {
+                  "condition": {
+                    "test": "datum.SiteName === 'BQE'",
+                    "value": 2
+                  },
+                  "value": 0.5
+                  }
+              }
             },
-            "encoding": {
-              "x": {
-                "field": "starttime",
-                "type": "temporal",
-                "title": ""
-              },
-              "y": {
-                "field": "Value",
-                "type": "quantitative",
-                "title": " "
-              },
-              "color": {
-                "field": "SiteName",
-                "type": "nominal",
-                "scale": {"range": ["lightgray"]}
-              },
-              "opacity": {"value": 0.7},
-              "strokeWidth": {"value": 1.5}
-            }
-          },
-          {
-            "transform": [
-              {"filter": "datum.SiteName === 'BQE'"}
-              ],
-            "mark": {
-              "type": "line",
-              "interpolate": "monotone",
-              "point": {"size": 5, "opacity": 0},
-              "tooltip": null
-            },
-            "encoding": {
-              "x": {"field": "starttime", "type": "temporal", "title": ""},
-              "y": {"field": "Value", "type": "quantitative", "title": " "},
-              "color": {
-                "value": {"signal": "textlabel"}
-              },
-              "strokeWidth": {"value": 2}
-            }
-          },
+
           {
             "mark": "rule",
             "encoding": {
@@ -784,15 +753,31 @@ async function renderSpec(
         ]
       }
 
+      // vega-Lite spec
+      console.log('vega-lite spec:')
+      console.log(chartSpec)
+
       // compile chartSpec to vega
       const vegaSpec = vegaLite.compile(chartSpec).spec;
 
       const colorSignal = {
-          "name": "textlabel",
-          "value": "Click on one of color buttons above.",
+          "name": "colorlabel",
+          "value": "black",
           "on": [
             {
-              "events": ".label:click",
+              "events": ".colorLabel:click",
+              "update": "event.currentTarget.innerText",
+              "force":  true
+            }
+          ]
+        }
+
+      const textSignal = {
+          "name": "textlabel",
+          "value": "BQE",
+          "on": [
+            {
+              "events": ".lineLabel:click",
               "update": "event.currentTarget.innerText",
               "force":  true
             }
@@ -813,8 +798,11 @@ async function renderSpec(
         }
 
       vegaSpec.signals.push(colorSignal)
+      
+      vegaSpec.signals.push(textSignal)
       vegaSpec.marks.push(textMark)
       
+      console.log('vega spec:')
       console.log(vegaSpec)
 
 
