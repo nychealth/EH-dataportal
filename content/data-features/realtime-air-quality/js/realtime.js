@@ -186,7 +186,7 @@ function drawCheckboxes() {
 
         let tableCheckBox = 
                 `
-                <tr id="row-${activeMonitors[i].loc_col}" class="location-row" data-loc="${activeMonitors[i].loc_col}" data-color="${activeMonitors[i].Color}">
+                <tr id="row-${activeMonitors[i].loc_col}" class="location-row lineLabel" data-loc="${activeMonitors[i].loc_col}" data-color="${activeMonitors[i].Color}">
                 <th scope="row">
                     <input type="checkbox" id="${activeMonitors[i].loc_col}" name="${activeMonitors[i].loc_col}" value="${activeMonitors[i].Color}">
                     <label for="${activeMonitors[i].loc_col}"><span style="color: ${activeMonitors[i].Color};"><i class="fas fa-square mx-1"></i></span>${activeMonitors[i].Location}</label>
@@ -765,8 +765,8 @@ async function renderSpec(
           "value": "black",
           "on": [
             {
-              "events": ".colorLabel:click",
-              "update": "event.currentTarget.innerText",
+              "events": ".lineLabel:mouseenter",
+              "update": "event.currentTarget.dataset.color",
               "force":  true
             }
           ]
@@ -777,8 +777,8 @@ async function renderSpec(
           "value": "BQE",
           "on": [
             {
-              "events": ".lineLabel:click",
-              "update": "event.currentTarget.innerText",
+              "events": ".lineLabel:mouseenter",
+              "update": "event.currentTarget.dataset.loc",
               "force":  true
             }
           ]
@@ -789,8 +789,8 @@ async function renderSpec(
           "value": "FDR",
           "on": [
             {
-              "events": ".lineLabel:click",
-              "update": "event.currentTarget.innerText",
+              "events": ".lineLabel:mouseenter",
+              "update": "event.currentTarget.dataset.loc",
               "force": true
             }
           ]
@@ -810,12 +810,9 @@ async function renderSpec(
           }
         }
 
-      vegaSpec.signals.push(colorSignal)
-      
+      vegaSpec.signals.push(colorSignal)    
       vegaSpec.signals.push(textSignal)
-      
       vegaSpec.signals.push(locSignal)
-
       vegaSpec.marks.push(textMark)
       
       console.log('vega spec:')
