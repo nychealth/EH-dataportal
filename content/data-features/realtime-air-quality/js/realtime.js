@@ -19,6 +19,7 @@ USING DEC_AVG: This app excludes DEC_Avg from conventional functionality. monito
 
 
 // initialize variables (other variables are initialized closer to their prime use)
+var rtaqData = 'https://raw.githubusercontent.com/nychealth/nyccas-data/refs/heads/main/portal/view.csv'
 var current_spec;
 var dt;
 var times;
@@ -47,6 +48,7 @@ var specTwo;
 var ftl;
 var dataWithNulls = aq.table();
 var chartStart // takes either floorDate or filtered date
+var myView;
 
  
 // ---- INITIAL: ingest data feed ---- // 
@@ -237,7 +239,8 @@ function listenHover() {
 
       checkedSites.push(hoveredSite)
 
-      renderSpec(dataWithNulls, checkedSites)
+      // renderSpec(dataWithNulls, checkedSites)
+
     })
 
     // on mouse leave, only chart checkedBoxes
@@ -256,7 +259,7 @@ function listenHover() {
           checkedSites.push(thisSite)
       }
   
-      renderSpec(dataWithNulls, checkedSites)
+      // renderSpec(dataWithNulls, checkedSites)
     })
   })
 }
@@ -285,7 +288,7 @@ function listenBoxes() {
                 checkedSites.push(thisSite)
             }
         
-            renderSpec(dataWithNulls, checkedSites)
+            // renderSpec(dataWithNulls, checkedSites)
           
         })
     })
@@ -306,7 +309,7 @@ function getCheckedSites() {
         checkedSites.push(thisSite)
     }
 
-    renderSpec(dataWithNulls, checkedSites)
+    // renderSpec(dataWithNulls, checkedSites)
 
 }
 
@@ -563,7 +566,7 @@ function updateTime(x) {
 
     chartStart = filterTo                   
 
-    renderSpec(dataWithNulls, checkedSites)
+    // renderSpec(dataWithNulls, checkedSites)
 
 }
 
@@ -661,10 +664,10 @@ function GetSortOrder(prop) {
 
 
 // ---- RENDER CHART SPEC ---- // 
-const renderSpec = (
+async function renderSpec(
     data,
     checkedSites
-) => { 
+) { 
 
     let chartSpec = {
         "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
@@ -709,6 +712,19 @@ const renderSpec = (
         "height": "container",
         "width": "container",
         "transform": [{"filter": `datum.starttime > ${chartStart}`}],
+        "signals": [
+            {
+              "name": "textlabel",
+              "value": "Click on one of messages above.",
+              "on": [
+                {
+                  "events": ".label:click",
+                  "update": "event.currentTarget.innerText",
+                  "force":  true
+                }
+              ]
+            }
+          ],
         "layer": [
           {
             "mark": {
@@ -738,6 +754,25 @@ const renderSpec = (
             }
           },
           {
+            "transform": [
+              {"filter": "datum.SiteName === 'BQE'"}
+              ],
+            "mark": {
+              "type": "line",
+              "interpolate": "monotone",
+              "point": {"size": 5, "opacity": 0},
+              "tooltip": null
+            },
+            "encoding": {
+              "x": {"field": "starttime", "type": "temporal", "title": ""},
+              "y": {"field": "Value", "type": "quantitative", "title": " "},
+              "color": {
+                "value": {"signal": "textlabel"}
+              },
+              "strokeWidth": {"value": 2}
+            }
+          },
+          {
             "mark": "rule",
             "encoding": {
               "y": {"datum": 35},
@@ -745,80 +780,47 @@ const renderSpec = (
               "size": {"value": 2},
               "strokeDash": {"value": [2, 2]}
             }
-          },
-          {
-            "mark": "rect",
-            "encoding": {
-              "x": {"aggregate": "max", "field": "starttime", "type": "temporal"},
-              "x2": {"datum": maxTimeMinusDay, "type": "temporal"},
-              "opacity": {"value": 0}
-            }
           }
         ]
       }
 
-      chartSpec.layer.length = 3
+      // compile chartSpec to vega
+      const vegaSpec = vegaLite.compile(chartSpec).spec;
 
-      // if there are checkedSites, then, push to spec.
-      if (checkedSites) {
-
-        for (let i = 0; i < checkedSites.length; i++) {
-
-            var template =  {
-                "mark": {
-                  "type": "line",
-                  "interpolate": "monotone",
-                  "point": {"size": 20, "opacity": 0},
-                  "tooltip": true
-                },
-                "transform": [
-                  {"filter": `datum.SiteName === '${checkedSites[i].siteName}'`},
-                  {
-                    "calculate": "datum.Value + ' µg/m3'", 
-                    "as": "ValueWithText"
-                  }
-                  ],
-                "encoding": {
-                  "x": {
-                    "field": "starttime",
-                    "type": "temporal",
-                    "title": ""
-                  },
-                  "y": {
-                    "field": "Value",
-                    "type": "quantitative",
-                    "title": " "
-                  },
-                  "color": {
-                    "condition": [
-                      {
-                        "test": `datum.SiteName === '${checkedSites[i].siteName}'`, 
-                        "value": `${checkedSites[i].color}`
-                      }
-                    ]
-                  },
-                  "opacity": {"value": 0.7},
-                  "strokeWidth": {"value": 1.5},
-                  "tooltip": [
-                    {"field": "SiteName", "title": "Location"},
-                    {"field": "ValueWithText", "title": "PM2.5"},
-                    {
-                      "field": "starttime",
-                      "type": "temporal",
-                      "title": "Time (EST)",
-                      "timeUnit": "hoursminutes",
-                      "format": "%I:%M %p"
-                    },
-                    {"field": "starttime", "type": "temporal", "title": "Date"}
-                  ]
-                }
-              }
-    
-            // push it to spec
-            chartSpec.layer.push(template)
-    
+      const colorSignal = {
+          "name": "textlabel",
+          "value": "Click on one of color buttons above.",
+          "on": [
+            {
+              "events": ".label:click",
+              "update": "event.currentTarget.innerText",
+              "force":  true
+            }
+          ]
         }
-      }
 
-      vegaEmbed('#vis',chartSpec)
+      const textMark =  {
+          "type": "text",
+          "encode": {
+            "enter": {
+              "x": {"value": 0},
+              "y": {"value": 20}
+            },
+            "update": {
+              "text": {"signal": "textlabel"}
+            }
+          }
+        }
+
+      vegaSpec.signals.push(colorSignal)
+      vegaSpec.marks.push(textMark)
+      
+      console.log(vegaSpec)
+
+
+      vegaEmbed('#vis',vegaSpec).then(res => {
+        myView = res.view // save the vega view 
+        console.log('myView, vega with marks pushed:')
+        console.log(myView)
+      })
 }
