@@ -723,7 +723,7 @@ async function renderSpec(
                 "y": {"field": "Value", "type": "quantitative", "title": " "},
                 "color": {
                   "condition": {
-                    "test": "datum.SiteName === 'BQE'",
+                    "test": "datum.SiteName === locFilter",
                     "value": {"signal": "colorlabel"}
                   },
                   "field": "SiteName",
@@ -733,7 +733,7 @@ async function renderSpec(
                 
                 "strokeWidth": {
                   "condition": {
-                    "test": "datum.SiteName === 'BQE'",
+                    "test": "datum.SiteName === locFilter",
                     "value": 2
                   },
                   "value": 0.5
@@ -784,6 +784,19 @@ async function renderSpec(
           ]
         }
 
+        const locSignal =  {
+          "name": "locFilter", 
+          "value": "FDR",
+          "on": [
+            {
+              "events": ".lineLabel:click",
+              "update": "event.currentTarget.innerText",
+              "force": true
+            }
+          ]
+        }
+ 
+
       const textMark =  {
           "type": "text",
           "encode": {
@@ -800,6 +813,9 @@ async function renderSpec(
       vegaSpec.signals.push(colorSignal)
       
       vegaSpec.signals.push(textSignal)
+      
+      vegaSpec.signals.push(locSignal)
+
       vegaSpec.marks.push(textMark)
       
       console.log('vega spec:')
