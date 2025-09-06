@@ -205,8 +205,6 @@ function drawCheckboxes() {
 
     }
 
-    // listenBoxes()
-
     listenTable()
 
 }
@@ -220,14 +218,19 @@ function listenTable() {
       console.log('table listener:')
       console.log(e.currentTarget)
 
-      // pass e.currentTarget.dataset.loc and .color into renderSpec for use in the highlighted layer. 
-
       // remove previous active classes, add Active to clicked item
       rows.forEach(row => {
         row.classList.remove('row-active')
       })
 
       e.currentTarget.classList.add('row-active')
+
+      const chosenSite = {
+        "siteName": e.currentTarget.dataset.loc,
+        "color"   : e.currentTarget.dataset.color
+      }
+
+      // pass chosenSite into renderSpec for use in highlighted layer
 
     })
   })
