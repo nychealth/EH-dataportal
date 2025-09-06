@@ -187,11 +187,12 @@ function drawCheckboxes() {
         let tableCheckBox = 
                 `
                 <tr id="row-${activeMonitors[i].loc_col}" class="location-row lineLabel" data-loc="${activeMonitors[i].loc_col}" data-color="${activeMonitors[i].Color}">
-                <th scope="row">
-                    <input type="checkbox" id="${activeMonitors[i].loc_col}" name="${activeMonitors[i].loc_col}" value="${activeMonitors[i].Color}">
-                    <label for="${activeMonitors[i].loc_col}"><span style="color: ${activeMonitors[i].Color};"><i class="fas fa-square mx-1"></i></span>${activeMonitors[i].Location}</label>
-                    </th>
-                <td id="value-${activeMonitors[i].loc_col}-1" class="hide">Invisible column with all values - for sorting</td>
+                  <th scope="row">
+                    <span style="color: ${activeMonitors[i].Color};"><i class="fas fa-square mx-1"></i></span>${activeMonitors[i].Location}
+                  </th>
+                <td id="value-${activeMonitors[i].loc_col}-1" class="hide">
+                  Invisible column with all values - for sorting
+                </td>
                 <td>
                     <div id="value-${activeMonitors[i].loc_col}-2" style="background-color:lightblue;width:0%;" class="pr-1 my-1 barchart">
                     </div>
@@ -204,41 +205,34 @@ function drawCheckboxes() {
 
     }
 
-    listenBoxes()
+    // listenBoxes()
+
+    listenTable()
 
 }
 
 
+function listenTable() {
+  var rows = document.querySelectorAll('.location-row')
 
-//-- Event listener on checkboxes --//
+  rows.forEach(row => {
+    row.addEventListener('click',(e) => {
+      console.log('table listener:')
+      console.log(e.currentTarget)
 
-function listenBoxes() {
+      // pass e.currentTarget.dataset.loc and .color into renderSpec for use in the highlighted layer. 
 
-    boxes = document.querySelectorAll('input[type=checkbox]');
-    boxes.forEach(box => {
-        box.addEventListener('click', (ev) => {
+      // remove previous active classes, add Active to clicked item
+      rows.forEach(row => {
+        row.classList.remove('row-active')
+      })
 
-            // console.log(ev.target.checked, ev.target.name, ev.target.value);
+      e.currentTarget.classList.add('row-active')
 
-            // create nodelist of all checked items
-            getChecked = document.querySelectorAll('input[type=checkbox]:checked');
-
-            checkedSites = []; // clear the array of checked items
-            for (let i = 0; i < getChecked.length; i++) {
-                var siteName = getChecked[i].name
-                var siteColor = getChecked[i].value
-                var thisSite = {
-                    "siteName": `${siteName}`,
-                    "color": `${siteColor}`
-                }
-                checkedSites.push(thisSite)
-            }
-        
-            renderSpec(dataWithNulls, checkedSites)
-          
-        })
     })
+  })
 }
+
 
 // ---- gets checked sites, updates spec ---- // 
 function getCheckedSites() {
@@ -699,6 +693,45 @@ async function renderSpec(
         ]
       }
 
+      // if checked, layer:
+
+      var checkedLayer =     // needs sitename and color inserted, see below. 
+            {
+              "mark": {
+                "type": "line",
+                "interpolate": "monotone",
+                "point": {"size": 20, "opacity": 0},
+                "tooltip": true
+              },
+              "transform": [
+                {"filter": "datum.SiteName === 'Hamilton_Bridge'"},
+                {"calculate": "datum.Value + ' µg/m3'", "as": "ValueWithText"}
+              ],
+              "encoding": {
+                "x": {"field": "starttime", "type": "temporal", "title": ""},
+                "y": {"field": "Value", "type": "quantitative", "title": " "},
+                "color": {"value": "#377eb8"},
+                "opacity": {"value": 0.7},
+                "strokeWidth": {"value": 1.5},
+                "tooltip": [
+                  {"field": "SiteName", "title": "Location"},
+                  {"field": "ValueWithText", "title": "PM2.5"},
+                  {
+                    "field": "starttime",
+                    "type": "temporal",
+                    "title": "Time (EST)",
+                    "timeUnit": "hoursminutes",
+                    "format": "%I:%M %p"
+                  },
+                  {"field": "starttime", "type": "temporal", "title": "Date"}
+                ]
+              }
+            }
+
+        chartSpec.layer.push(checkedLayer)
+
+
+
       // vega-Lite spec
       console.log('vega-lite spec:')
       console.log(chartSpec)
@@ -708,7 +741,7 @@ async function renderSpec(
 
       const colorSignal = {
           "name": "colorlabel",
-          "value": "black",
+          "value": "lightgray",
           "on": [
             {
               "events": ".lineLabel:mouseenter",
