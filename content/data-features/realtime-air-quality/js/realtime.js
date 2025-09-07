@@ -456,12 +456,9 @@ function drawMap() {
 
 function resetZoom() {
     map.setView(monitors_center, 11).fitBounds(monitors_bounds);
-    // loop through rows and remove .table-highlight
-    var rows = document.querySelectorAll('.table-highlight')
-    rows.forEach(row => row.classList.remove('table-highlight'))
 
-    var sites = document.querySelectorAll('input[type=checkbox]:checked');
-    sites.forEach(site => site.checked = false)
+      var rows = document.querySelectorAll('.location-row')
+    rows.forEach(row => row.classList.remove('row-active'))
 
     chosenSite = null;
     renderSpec(dataWithNulls)
@@ -510,7 +507,7 @@ function updateData(x) {
     }
 
     // loop through rows and remove .table-highlight
-    var rows = document.querySelectorAll('.table-highlight')
+    var rows = document.querySelectorAll('.location-row')
     rows.forEach(row => row.classList.remove('row-active'))
 
     // add table row highlight...?
