@@ -1,10 +1,12 @@
 ---
-title: CEQR PAGE
+title: Neighborhood development health report
+aliases:
+  - neighborhood-ceqr-data/
 date: 2024-05-28 18:02:58.738512
 draft: false
-seo_title: "CEQR PAGE"
+seo_title: "Neighborhood development health report"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
-description: "Datasets and visualizations of CEQR PAGE in NYC."
+description: "Datasets and visualizations of Neighborhood development health report in NYC."
 tags:
 categories:
   ["publicspace", "inequality", "healthoutcomes", "housing", "climatehealth"]
@@ -75,4 +77,4 @@ relatedData:
 azlink: "https://www.nyc.gov/site/doh/health/health-topics/mental-health.page"
 ---
 
-CEQR PAGE CEQR PAGE CEQR PAGE CEQR PAGE CEQR PAGE CEQR PAGE CEQR PAGE CEQR PAGE CEQR PAGE CEQR PAGE CEQR PAGE
+Neighborhood development health report CEQR PAGE CEQR PAGE CEQR PAGE CEQR PAGE CEQR PAGE CEQR PAGE CEQR PAGE CEQR PAGE CEQR PAGE CEQR PAGE CEQR PAGE Neighborhood development health report.
