@@ -353,12 +353,37 @@ $color-data-explorer: #0A408A;
   }
 
   .de-tabs {
+    position: absolute;
     left: 0;
     bottom: 0;
     width: 100%;
     z-index: 2;
     max-width: 500px;
+  }
 
+  /* Ensure mobile bottom nav sits above iOS Safari toolbar */
+  @media (max-width: 719.98px) {
+    .de-tabs {
+      position: fixed !important;
+      left: 0 !important;
+      right: 0 !important;
+      bottom: env(safe-area-inset-bottom) !important;
+      bottom: constant(safe-area-inset-bottom) !important; /* iOS 11.0-11.2 fallback */
+      width: 100% !important;
+      max-width: none !important;
+    }
+
+    /* Give the page content breathing room equal to nav height + safe-area */
+    .de-wrapper {
+      padding-bottom: calc(56px + env(safe-area-inset-bottom));
+      padding-bottom: calc(56px + constant(safe-area-inset-bottom)); /* iOS 11.0-11.2 fallback */
+    }
+
+    .de-tabs-nav {
+      /* Add extra padding for the home indicator area */
+      padding-bottom: calc(8px + env(safe-area-inset-bottom));
+      padding-bottom: calc(8px + constant(safe-area-inset-bottom)); /* iOS 11.0-11.2 fallback */
+    }
   }
 
   .de-main-details {
@@ -467,6 +492,27 @@ $color-data-explorer: #0A408A;
     text-decoration: underline;
   }
 
+
+  /* Smooth accordion slide animations - horizontal slide */
+  .de-accordion .collapse {
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+    max-height: 0;
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+
+  .de-accordion .collapse.show {
+    max-height: 200px;
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .de-accordion .collapse.collapsing {
+    max-height: 200px;
+    opacity: 0.5;
+    transform: translateX(-10px);
+  }
 
   /* Rotate chevron when accordion is open */
   .collapse.show + .card-header .fas.fa-chevron-down,
