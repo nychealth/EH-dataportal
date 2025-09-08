@@ -488,6 +488,7 @@ function resetZoom() {
 
     var rows = document.querySelectorAll('.location-row')
     rows.forEach(row => row.classList.remove('row-active'))
+    rows.forEach(row => row.classList.remove('table-highlight'))
 
     chosenSite = undefined;
     renderSpec(dataWithNulls,null)
