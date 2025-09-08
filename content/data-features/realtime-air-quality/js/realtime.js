@@ -134,7 +134,6 @@ let colors = [
   "#dca936",  // golden yellow
   "#a65628",  // brown
   "#f781bf",  // pink
-  "#999999",  // gray
   "#66c2a5",  // teal
   "#fc8d62",  // salmon
   "#1fbfc3",  // cyan (replacing light blue)
@@ -151,8 +150,21 @@ function loadMonitorLocations() {
 
         // assign .Color to each item in allMonitorLocations, from colors
         for (let i = 0; i < allMonitorLocations.length; i++) {
-            allMonitorLocations[i].Color = colors[i % colors.length];
+
+            // make DEC gray, else, assign color from colors array
+            if (allMonitorLocations[i].loc_col === 'DEC_Avg') {
+              console.log('We are making DEC gray')
+              allMonitorLocations[i].Color = '#999999'
+            } else {
+              allMonitorLocations[i].Color = colors[i % colors.length];
+
+            }
+
         }
+
+
+
+        // make DEC gray. #999999
 
         console.log('all monitor locations:')
         console.log(allMonitorLocations)
@@ -595,9 +607,6 @@ async function renderSpec(
     site
 ) { 
 
-  console.log('site')
-  console.log(site)
-
     let chartSpec = {
         "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
         "description": "PM2.5 in micrograms per cubic meter",
@@ -723,7 +732,7 @@ async function renderSpec(
 
       } else {
         var checkedLayer
-        console.log('no selected sites')
+        console.log('No selected sites')
       }
 
 
