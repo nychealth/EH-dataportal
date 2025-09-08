@@ -457,11 +457,11 @@ function drawMap() {
 function resetZoom() {
     map.setView(monitors_center, 11).fitBounds(monitors_bounds);
 
-      var rows = document.querySelectorAll('.location-row')
+    var rows = document.querySelectorAll('.location-row')
     rows.forEach(row => row.classList.remove('row-active'))
 
-    chosenSite = null;
-    renderSpec(dataWithNulls)
+    chosenSite = undefined;
+    renderSpec(dataWithNulls,null)
 }
 
 // ---- TIME FILTER ---- //
@@ -684,7 +684,7 @@ async function renderSpec(
 
       // if checked, layer:
 
-      if (typeof site !== 'undefined') {
+      if ( site != null) {
         console.log('drawing chart with selected sites', site.siteName, site.color)
         var checkedLayer =     // needs sitename and color inserted, see below. 
               {
@@ -722,6 +722,7 @@ async function renderSpec(
           chartSpec.layer.push(checkedLayer)
 
       } else {
+        var checkedLayer
         console.log('no selected sites')
       }
 
@@ -758,6 +759,9 @@ async function renderSpec(
         ]
       }
 
+      vegaSpec.signals.push(colorSignal)    
+      vegaSpec.signals.push(locSignal)
+
       const textSignal = {
           "name": "textlabel",
           "value": "BQE",
@@ -783,8 +787,7 @@ async function renderSpec(
           }
         }
 
-      vegaSpec.signals.push(colorSignal)    
-      vegaSpec.signals.push(locSignal)
+
 
       // vegaSpec.signals.push(textSignal)
       // vegaSpec.marks.push(textMark)
