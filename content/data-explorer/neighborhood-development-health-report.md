@@ -12,6 +12,8 @@ categories:
   ["publicspace", "inequality", "healthoutcomes", "housing", "climatehealth"]
 keywords:
   [
+    "climate",
+    "weather-related illness",
     "mental health",
     "mental illness",
     "health care",
@@ -77,4 +79,6 @@ relatedData:
 azlink: "https://www.nyc.gov/site/doh/health/health-topics/mental-health.page"
 ---
 
-Neighborhood development health report CEQR PAGE CEQR PAGE CEQR PAGE CEQR PAGE CEQR PAGE CEQR PAGE CEQR PAGE CEQR PAGE CEQR PAGE CEQR PAGE CEQR PAGE Neighborhood development health report.
+How NYC was planned and built effects the health of New Yorkers. The unequal distribution of resources and investments, whether through racist housing policies and/or systematic disinvestment, has produced health outcomes that are also inequitable. The urban environment consists of our housing, roads, transportation networks, businesses, water and utility infrastructure, and more.
+
+This collection of datasets provides an overview of some of these effects, from access to neighborhood amenities (transit, healthy food options); housing and environmental factors (AC access, maintenance, pests); to health (insurance coverage, heat stress ED visits) and others. Taken holistically, these data shed light on where the health of our neighborhoods could be strengthened through better planning, building, and investing in our built environment, and may be useful for developers, planners, and community members who want to create a healthier NYC.
