@@ -1,20 +1,5 @@
 {{- define "main" -}}
 
-<style>
-    #map {
-        height: 35vh;
-        width: 100%;
-        max-width: 100%;
-        max-height: 100%;
-    }
-
-
-    leaflet-tooltip-box {
-        border: 1px solid
-    }
-
-</style>
-
 {{- /*  main content  */}}
 
 <article class="container-fluid" id="skip-header-target">
@@ -65,6 +50,31 @@
 
         .barchart {
             border-left: 1px solid black;
+        }
+
+        .modal-backdrop.show {
+            opacity: 0.70;
+            background-color: #424242
+        }
+
+        .location-row:hover {
+            background-color: #f3f6f4;
+        }
+
+        .row-active {
+            background-color: #f3f6f4;
+        }
+
+        #map {
+            height: 35vh;
+            width: 100%;
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+
+        leaflet-tooltip-box {
+            border: 1px solid
         }
     </style>
 
@@ -420,21 +430,6 @@
 
 <!-- Related footer -->
 {{- partial "related-footer" . -}}
-
-<style>
-    .modal-backdrop.show {
-        opacity: 0.70;
-        background-color: #424242
-    }
-
-    .location-row:hover {
-        background-color: #f3f6f4;
-    }
-
-    .row-active {
-        background-color: #f3f6f4;
-    }
-</style>
 
 
 <!-- color name to hex converter -->

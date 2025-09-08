@@ -233,20 +233,37 @@ function listenTable() {
       // remove previous active classes, add Active to clicked item
       rows.forEach(row => {
         row.classList.remove('row-active')
+        row.classList.remove('table-highlight')
       })
 
-      e.currentTarget.classList.add('row-active')
+      e.currentTarget.classList.add('table-highlight')
 
       chosenSite = {
         "siteName": e.currentTarget.dataset.loc,
         "color"   : e.currentTarget.dataset.color
       }
 
+      // send to zoom to
+      zoomTo(e.currentTarget.dataset.loc)
+
       // pass chosenSite into renderSpec for use in highlighted layer
       renderSpec(dataWithNulls, chosenSite)
 
     })
   })
+}
+
+function zoomTo(locationColumn) {
+  console.log('Zooming to ' + locationColumn + ' from table click')
+
+  // filter activeMonitors to locationColumn
+  const thisLocation = activeMonitors.filter((loc) => loc.loc_col === locationColumn)
+
+  console.log('this location:', thisLocation, thisLocation[0].Latitude, thisLocation[0].Longitude)
+
+  // map zoom to lat/long.
+  map.setView([thisLocation[0].Latitude, thisLocation[0].Longitude],13)
+
 }
 
 
@@ -401,7 +418,7 @@ function drawMap() {
         if (monitor.Location != "DEC Monitor Average") {
             var those_monitors = 
             L.marker([monitor.Latitude, monitor.Longitude], {icon: this_icon, riseOnHover: true, riseOffset: 2000})
-            .bindTooltip(monitor.Location, {permanent: true, opacity: 0.85, interactive: true})
+            .bindTooltip(monitor.Location, {permanent: false, opacity: 0.85, interactive: true})
             .addTo(monitors_group_noDEC)
         }
 
@@ -521,10 +538,11 @@ function updateData(x) {
     // loop through rows and remove .table-highlight
     var rows = document.querySelectorAll('.location-row')
     rows.forEach(row => row.classList.remove('row-active'))
+        rows.forEach(row => row.classList.remove('table-highlight'))
 
     // add table row highlight...?
     var row = 'row-'+x
-    document.getElementById(row).classList.add('row-active')
+    document.getElementById(row).classList.add('table-highlight')
 
     renderSpec(dataWithNulls, chosenSite)
 
