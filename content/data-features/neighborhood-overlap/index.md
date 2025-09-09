@@ -3,7 +3,7 @@ title: "Neighborhood overlap tool"
 date: 2025-09-02T07:56:00-04:00
 draft: false
 seo_title: "Explore neighborhood overlap boundaries"
-seo_description: "A data tool."
+seo_description: "A tool for getting useful health data."
 tags:
 categories: [publicspace]
 keywords: ["how we work", "geographies", "neighborhoods"]
