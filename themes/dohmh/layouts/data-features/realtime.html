@@ -1,20 +1,5 @@
 {{- define "main" -}}
 
-<style>
-    #map {
-        height: 35vh;
-        width: 100%;
-        max-width: 100%;
-        max-height: 100%;
-    }
-
-
-    leaflet-tooltip-box {
-        border: 1px solid
-    }
-
-</style>
-
 {{- /*  main content  */}}
 
 <article class="container-fluid" id="skip-header-target">
@@ -66,7 +51,42 @@
         .barchart {
             border-left: 1px solid black;
         }
+
+        .modal-backdrop.show {
+            opacity: 0.70;
+            background-color: #424242
+        }
+
+        .location-row:hover {
+            background-color: #f3f6f4;
+        }
+
+        .row-active {
+            background-color: #f3f6f4;
+        }
+
+        #map {
+            height: 35vh;
+            width: 100%;
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+
+        leaflet-tooltip-box {
+            border: 1px solid
+        }
     </style>
+
+    <!--
+    <div class="row my-4 border">
+        <div class="colorLabel" style="background:red;color:white; width:130px;">Red</div>
+        <div class="colorLabel" style="background:purple; color:white; width:130px;">Purple</div>
+
+        <div class="lineLabel" style="background:black;color:white; width:130px;" data-id="BQE">BQQE</div>
+        <div class="lineLabel" style="background:black; color:white; width:130px;" data-id="SI_Expwy">SI Expwy</div>
+    </div>
+    -->
 
     <div class="row mt-4 mb-2">
         <div class="col-12">
@@ -411,28 +431,11 @@
 <!-- Related footer -->
 {{- partial "related-footer" . -}}
 
-<style>
-    .modal-backdrop.show {
-        opacity: 0.70;
-        background-color: #424242
-    }
-</style>
-
 
 <!-- color name to hex converter -->
 <!-- from https://gist.github.com/njvack/02ad8efcb0d552b0230d -->
 {{- $color_convert := resources.Get "js/color-convert.js" | partial "short-fingerprint.html" -}}
 <script src="{{ $color_convert.RelPermalink }}" integrity="{{ $color_convert.Data.Integrity }}"></script>
-
-
-<!-- Uses a static stand-in file for local development - else uses the API -->
-<script>
-    var url = window.location.href
-    var rtaqData = 'https://raw.githubusercontent.com/nychealth/nyccas-data/refs/heads/main/portal/view.csv'
-    // url.includes('localhost') ? rtaqData = 'data/nyccas_realtime_DEC.csv' : rtaqData = 'https://azdohv2staticweb.blob.core.windows.net/$web/nyccas_realtime_DEC.csv'
-
-</script>
-
 
 
 <!--bring in realtime JS -->
