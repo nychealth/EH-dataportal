@@ -637,6 +637,19 @@
                                     </div>
                                 </div>
 
+                                <p class="fs-xs mb-0"><i data-toggle="modal" data-target="#binModal" class="fas fa-question-circle float-right helper text-primary fs-sm"></i>Legend bins:</p>
+                                <div class="border py-1 mb-2 optionbox">
+                                    <div class="" aria-labelledby="binsTF">
+                                        <button class="btn btn-primary dropdown-item binButton pl-2 active" id="binFalse" aria-selected="false" data-value=false>
+                                            False
+                                        </button>
+                                        <button class="btn btn-primary dropdown-item binButton pl-2" id="binTrue" aria-selected="true" data-value=true>
+                                            True
+                                        </button>
+
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
 
@@ -960,6 +973,26 @@
                     <p>Many datasets take a long time to reach us — a "lag" of several years, during which data are gathered from different entities to try to create a complete dataset; data are processed (cleaned, deduplicated, etc), and analyzed. It can take several years to prepare a dataset — so a dataset that is several years old is sometimes the most up-to-date information available. Still, this data continues to show us valuable trends and insights. </p>
                     <p>We also try to display datasets that have been available for many years. Some datasets (like those that are asked on surveys) are not asked every year of the survey, which means that we cannot provide annual data.</p>
                     <p>For some datasets, we have to aggregate time periods in order to break down data by borough or neighborhood.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Data Modal - Bins -->
+    <div class="modal fade" id="binModal" tabindex="-1" role="dialog" aria-labelledby="geoModalLabel" aria-hidden="true" data-pagefind-ignore="all">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="geoModalLabel"><i  class="fas fa-question-circle mr-1" aria-hidden="true"></i>Binning data</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>You can view map data <em>binned</em> or continuous.</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
