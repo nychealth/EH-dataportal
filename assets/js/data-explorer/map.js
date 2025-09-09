@@ -34,7 +34,6 @@ const renderMap = (
     let isPercent;
     let topoFile = '';
 
-
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
     // use some conditionals
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
@@ -68,7 +67,9 @@ const renderMap = (
         encode = {
             "latitude": {"field": "Lat", "type": "quantitative"},
             "longitude": {"field": "Long", "type": "quantitative"},
-            "size": {"bin": false, "field": "Value","type": "quantitative","scale": {"range": [0,750]},"legend": {
+            "size": {
+                "bin": false,
+                "field": "Value","type": "quantitative","scale": {"range": [0,750]},"legend": {
                 "direction": "horizontal",
                 "title": "",
                 "offset": -25,
@@ -181,7 +182,7 @@ const renderMap = (
                         ],
                         "x": {"field": "GeoID", "sort": "y", "axis": null},
                         "color": {
-                            "bin": false,
+                            "bin": false, 
                             "field": "Value",
                             "type": "quantitative",
                             "scale": {"scheme": {"name": "viridis", "extent": [1, 0]}},
@@ -242,7 +243,7 @@ const renderMap = (
                 ],
                 "x": {"field": "GeoID", "sort": "y", "axis": null},
                 "color": {
-                    "bin": false,
+                    "bin": false, 
                     "field": "Value",
                     "type": "quantitative",
                     "scale": {"scheme": {"name": "viridis", "extent": [1, 0]}},
@@ -431,7 +432,7 @@ const renderMap = (
                         "encoding": {
                             ...encode,
                             "color": {
-                                "bin": false,
+                                "bin": false, // change this bin value 
                                 "field": "Value",
                                 "type": "quantitative",
                                 "scale": {"scheme": {"name": "viridis", "extent": [1, 0]}},
@@ -471,6 +472,13 @@ const renderMap = (
         ]
     }
 
+    // compile mapspec to vega
+    var vegaSpec = vegaLite.compile(mapspec).spec
+
+    console.log(vegaSpec)
+
+
+
     
     // ----------------------------------------------------------------------- //
     // render chart
@@ -483,7 +491,12 @@ const renderMap = (
             compiled: false, 
             editor: true 
         }
-    });
+    }).then(res => {
+        vegaView = res.view;
+        savedSpec = mapspec;
+        // console.log(vegaView)
+    }
+    );
 
     // send info for printing
     vizYear = mapTime;
