@@ -2,6 +2,23 @@
 // app.js
 // ======================================================================= //
 
+var vegaView;
+var savedSpec;
+
+function setAllBinTrue(obj) {
+  if (Array.isArray(obj)) {
+    obj.forEach(setAllBinTrue); // Recurse into arrays
+  } else if (obj !== null && typeof obj === "object") {
+    Object.keys(obj).forEach(key => {
+      if (key === "bin") {
+        obj[key] = true; // Set bin to true
+      } else {
+        setAllBinTrue(obj[key]); // Recurse deeper
+      }
+    });
+  }
+}
+
 // ----------------------------------------------------------------------- //
 // history traversal
 // ----------------------------------------------------------------------- //
@@ -191,6 +208,24 @@ $('#indicatorButtons').on('click', e => {
 
 });
 
+// ----------------------------------------------------------------------- //
+// event listener for map bin buttons
+// ----------------------------------------------------------------------- //
+$(document).on("click", ".binButton", function (e) {
+  // Remove active + reset aria-selected from all
+  $(".binButton")
+    .removeClass("active")
+    .attr("aria-selected", "false");
+
+  // Add active + set aria-selected on the clicked one
+  $(this)
+    .addClass("active")
+    .attr("aria-selected", "true");
+
+  // Optional: grab the value (boolean from data-value)
+  const bin = $(this).data("value");
+  console.log("bin =", bin);
+});
 
 // ----------------------------------------------------------------------- //
 // export functions
