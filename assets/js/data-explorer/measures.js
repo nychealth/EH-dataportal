@@ -2546,6 +2546,7 @@ const renderMeasures = async () => {
     let mapMeasuresLinks = document.querySelectorAll('.mapmeasuresbutton');
     let mapTimesLinks = document.querySelectorAll('.maptimesbutton');
     let mapGeosLinks = document.querySelectorAll('.mapgeosbutton');
+    let mapBinLinks = document.querySelectorAll('.binButton');
     let trendMeasuresLinks = document.querySelectorAll('.trendbutton');
     let trendComparisonLinks = document.querySelectorAll('.comparisonbutton');
     let linksMeasuresLinks = document.querySelectorAll('.linksbutton');
@@ -2563,6 +2564,13 @@ const renderMeasures = async () => {
 
     mapGeosLinks.forEach(link => {
         link.addEventListener('click', updateMapData);
+    })
+
+    mapBinLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+           console.log('Changing binning')
+            //  console.log(e.currentTarget.dataset.value);
+        })
     })
 
     trendMeasuresLinks.forEach(link => {
