@@ -109,6 +109,15 @@
 
             console.log('Getting UHFs for Community District ' + geo)
             // Style CD selections
+                        var allButtons = document.querySelectorAll('.cd-items')
+            allButtons.forEach(btn => {
+                btn.classList.remove('active')
+                btn.classList.remove('text-white')
+            })
+
+            var selected = document.getElementById(`button-${geo}`)
+            selected.classList.add('active')
+            selected.classList.add('text-white')
 
             // Loop through source JS
             thisOverlap = CDtoUHF.filter(cd => cd.CD == geo)
