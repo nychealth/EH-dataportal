@@ -82,3 +82,9 @@ azlink: "https://www.nyc.gov/site/doh/health/health-topics/mental-health.page"
 How NYC was planned and built effects the health of New Yorkers. The unequal distribution of resources and investments, whether through racist housing policies and/or systematic disinvestment, has produced health outcomes that are also inequitable. The urban environment consists of our housing, roads, transportation networks, businesses, water and utility infrastructure, and more.
 
 This collection of datasets provides an overview of some of these effects, from access to neighborhood amenities (transit, healthy food options); housing and environmental factors (AC access, maintenance, pests); to health (insurance coverage, heat stress ED visits) and others. Taken holistically, these data shed light on where the health of our neighborhoods could be strengthened through better planning, building, and investing in our built environment, and may be useful for developers, planners, and community members who want to create a healthier NYC.
+
+**Active design:** Increased access to green and open space, as well as transit and healthy food options can make it easier to get in healthy physical activity and eat fresh foods.
+
+**Climate:** Differences in the built environment and housing can mean some neighborhoods are hotter than others, and more vulnerable to the health effects from heat.
+
+**Housing:** Access to stable, quality housing, free from pests, mold, and with enough space increases mental and physical health.
