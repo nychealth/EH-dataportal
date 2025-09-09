@@ -1,6 +1,7 @@
 ---
 title: "Active Design, Physical Activity and Health"
 neighborhood: "Rockaways"
+geocode: 410
 summary: "The design and conditions of buildings, streets, public transportation and parks influence physical activity, use of active transportation and other healthy behavior. A neighborhood's features can also impact the safety of its residents."
 data_json: "Active Design Physical Activity and Health in Rockaways"
 content_yml: "Active_Design_Physical_Activity_and_Health"

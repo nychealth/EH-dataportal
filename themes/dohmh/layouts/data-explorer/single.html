@@ -32,13 +32,6 @@
         width: max-content;
     }
 
-    /* Set font-size for table headers */
-    #summary-table table thead tr th {
-        font-size: 12px!important;
-        color: #4b4b4b;;
-        border: 1px solid #dee2e6;
-    }
-
 
     /* This CSS controls read more/show less toggle. */
     [aria-expanded="false"]>.expanded,
@@ -314,6 +307,13 @@
 
     .helper {
         cursor: pointer;
+    }
+
+    .other-helper {
+        cursor: pointer;
+          display: block;
+        width: 100%;
+        text-align: right;
     }
 
     .helper:hover {
@@ -675,18 +675,30 @@
 
                             </div>
 
-                            <div id="trendSidebar" class="collapse dont-collapse-sm">
+                            <div id="trendSidebar" class="collapse dont-collapse-sm d-flex flex-column">
 
-                                <p class="fs-xs mb-0"><i data-toggle="modal" data-target="#trendModal" class="fas fa-question-circle float-right helper text-primary fs-sm"></i>
-                                By <span id="tc1" class="font-weight-bold"></span></p>
-                                <div class="border optionbox mb-0">
-                                    <div class="" aria-labelledby="dropdownTrendSelection">
-                                        <!-- INSERT MENU ITEMS HERE -->
+                                <div id="trendMenuHolder" class="d-none">
+                                    <p class="fs-xs mb-0">
+                                        <span id="tc1" class="font-weight-bold">By </span>
+                                        <i data-toggle="modal" data-target="#trendModal" class="fas fa-question-circle float-right helper text-primary fs-sm"></i>
+
+                                    </p>
+
+                                    <div class="border optionbox mb-2">
+                                        <div class="" aria-labelledby="dropdownTrendSelection">
+                                            <!-- INSERT MENU ITEMS HERE -->
+                                        </div>
                                     </div>
                                 </div>
 
+
                                 <div id="compMenu" class="hide">
-                                    <p class="fs-xs mt-2 mb-0">By <span id="tc2" class="font-weight-bold"></span></p>
+                                    <p class="fs-xs mb-0">
+                                        <span id="tc2" class="font-weight-bold">Show with:</span>
+                                        <i data-toggle="modal" data-target="#trendModal" class="fas fa-question-circle float-right helper text-primary fs-sm"></i>
+
+                                    </p>
+
                                     <div class="border optionbox mb-0">
                                         <div class="" aria-labelledby="dropdownCompSelection">
                                             <!-- INSERT MENU ITEMS HERE -->
@@ -1151,7 +1163,7 @@
 
 
 <!-- RELATED FOOTER -->
-{{- partial "related-footer-2" . -}}
+{{- partial "related-footer" . -}}
 
 {{ end }}
 

@@ -1,8 +1,8 @@
 ---
 _schema: default
-title: 2024 NYC Heat-Related Mortality Report
+title: 2025 NYC Heat-Related Mortality Report
 draft: false
-date: 2021-09-08T11:14:56-04:00
+date: 2025-06-16T10:14:56-04:00
 categories:
   - climatehealth
   - inequality
@@ -15,21 +15,21 @@ keywords:
   - summer
   - disparities
   - mortality
-seo_title: 2024 Heat Mortality Report
+seo_title: 2025 Heat Mortality Report | Environment and Health Data Portal
 seo_description: Data and findings on the impact of heat in NYC.
-layout: 2024-heat-report
+layout: 24-25-heat-report
 content_weight: 6.0
 image: fig-4.jpeg
 report: true
 related:
+  - title: "Heat Vulnerability Index"
+    url: "data-features/hvi/"
   - title: "The urban heat island effect in NYC"
     url: "data-stories/urban-heat-island/"
-  - title: "Interactive Heat Vulnerability Index"
-    url: "data-features/hvi/"
-  - title: "Heat story"
+  - title: "Your heat story"
     url: "data-features/heat-story/"
 weight: 25
 blurb: Annual analysis of heat related deaths, contributing factors,  and neighborhood impacts.
 ---
 
-Each summer, on average, an estimated 350 New Yorkers die prematurely because of hot weather in New York City (NYC). These heat-related deaths account for about 2% of all deaths over the warm season months of May through September.
+Each summer, on average, more than 500 New Yorkers die prematurely because of hot weather in New York City (NYC). These heat-related deaths account for about 3% of all deaths over the warm season months of May through September.

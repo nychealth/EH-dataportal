@@ -15,8 +15,11 @@ USING DEC_AVG: This app excludes DEC_Avg from conventional functionality. monito
   THEN, ADD A UNIQUE PIN
 */
 
+// ADDING A NOTE
+
 
 // initialize variables (other variables are initialized closer to their prime use)
+var rtaqData = 'https://raw.githubusercontent.com/nychealth/nyccas-data/refs/heads/main/portal/view.csv'
 var current_spec;
 var dt;
 var times;
@@ -30,7 +33,7 @@ var filter;
 var stations = [];
 var allMonitorLocations;
 var activeMonitors = [];
-var checkedSites = [];
+var chosenSite;
 var getChecked;
 var boxes;
 var revisedSpecTwo = {};
@@ -45,6 +48,7 @@ var specTwo;
 var ftl;
 var dataWithNulls = aq.table();
 var chartStart // takes either floorDate or filtered date
+var myView;
 
  
 // ---- INITIAL: ingest data feed ---- // 
@@ -121,25 +125,68 @@ function getStationsFromData() {
     loadMonitorLocations();
 }
 
+let colors = [
+  "#e41a1c",  // strong red
+  "#377eb8",  // medium blue
+  "#4daf4a",  // medium green
+  "#984ea3",  // purple
+  "#ff7f00",  // orange
+  "#dca936",  // golden yellow
+  "#a65628",  // brown
+  "#f781bf",  // pink
+  "#66c2a5",  // teal
+  "#fc8d62",  // salmon
+  "#1fbfc3",  // cyan (replacing light blue)
+  "#c85a9f",  // magenta
+  "#6ba54a",  // darker lime green
+  "#b15928"   // dark brown/rust
+];
+
+
 // ---- LOAD LOCATIONS: Creates list of active monitors and their metadata (lat/longs, colors, etc) ---- //
 function loadMonitorLocations() {
-    d3.csv("data/monitor_locations.csv").then(data => {
+    d3.csv("https://raw.githubusercontent.com/nychealth/nyccas-data/refs/heads/main/portal/station-new.csv").then(data => {
         allMonitorLocations = data;
+
+        // assign .Color to each item in allMonitorLocations, from colors
         for (let i = 0; i < allMonitorLocations.length; i++) {
-            // if stations includes allMonitorLocations[i].loc_col, push allMonitorLocations[i] to activeMonitors
+
+            // make DEC gray, else, assign color from colors array
+            if (allMonitorLocations[i].loc_col === 'DEC_Avg') {
+              console.log('We are making DEC gray')
+              allMonitorLocations[i].Color = '#999999'
+            } else {
+              allMonitorLocations[i].Color = colors[i % colors.length];
+
+            }
+
+        }
+
+
+
+        // make DEC gray. #999999
+
+        console.log('all monitor locations:')
+        console.log(allMonitorLocations)
+
+        for (let i = 0; i < allMonitorLocations.length; i++) {
+            // if stations includes allMonitorLocations[i].loc_col, push to activeMonitors
             if (stations.includes(allMonitorLocations[i].loc_col)) {
-                activeMonitors.push(allMonitorLocations[i])
+                activeMonitors.push(allMonitorLocations[i]);
             }
         }
+
         // alphabetize activeMonitors for color coordination
-        activeMonitors.sort(GetSortOrder("loc_col"))
+        activeMonitors.sort(GetSortOrder("loc_col"));
+        console.log('active Monitors:')
+        console.log(activeMonitors)
 
         // Draw page
-        drawMap()
+        drawMap();
         drawCheckboxes();
-        renderSpec(dataWithNulls.objects())
-        printRecentAverage()
-    })
+        renderSpec(dataWithNulls.objects());
+        printRecentAverage();
+    });
 }
 
 // ---- DRAW CHECKBOXES, table, and box listener ---- //
@@ -151,12 +198,13 @@ function drawCheckboxes() {
 
         let tableCheckBox = 
                 `
-                <tr id="row-${activeMonitors[i].loc_col}">
-                <th scope="row">
-                    <input type="checkbox" id="${activeMonitors[i].loc_col}" name="${activeMonitors[i].loc_col}" value="${activeMonitors[i].Color}">
-                    <label for="${activeMonitors[i].loc_col}"><span style="color: ${activeMonitors[i].Color};"><i class="fas fa-square mx-1"></i></span>${activeMonitors[i].Location}</label>
-                    </th>
-                <td id="value-${activeMonitors[i].loc_col}-1" class="hide">Invisible column with all values - for sorting</td>
+                <tr id="row-${activeMonitors[i].loc_col}" class="location-row lineLabel" data-loc="${activeMonitors[i].loc_col}" data-color="${activeMonitors[i].Color}">
+                  <th scope="row">
+                    <span style="color: ${activeMonitors[i].Color};"><i class="fas fa-square mx-1"></i></span>${activeMonitors[i].Location}
+                  </th>
+                <td id="value-${activeMonitors[i].loc_col}-1" class="hide">
+                  Invisible column with all values - for sorting
+                </td>
                 <td>
                     <div id="value-${activeMonitors[i].loc_col}-2" style="background-color:lightblue;width:0%;" class="pr-1 my-1 barchart">
                     </div>
@@ -169,57 +217,55 @@ function drawCheckboxes() {
 
     }
 
-    listenBoxes()
+    listenTable()
+
 }
 
-//-- Event listener on checkboxes --//
 
-function listenBoxes() {
+function listenTable() {
+  var rows = document.querySelectorAll('.location-row')
 
-    boxes = document.querySelectorAll('input[type=checkbox]');
-    boxes.forEach(box => {
-        box.addEventListener('click', (ev) => {
+  rows.forEach(row => {
+    row.addEventListener('click',(e) => {
+      // console.log('table listener:')
+      // console.log(e.currentTarget)
 
-            // console.log(ev.target.checked, ev.target.name, ev.target.value);
+      // remove previous active classes, add Active to clicked item
+      rows.forEach(row => {
+        row.classList.remove('row-active')
+        row.classList.remove('table-highlight')
+      })
 
-            // create nodelist of all checked items
-            getChecked = document.querySelectorAll('input[type=checkbox]:checked');
+      e.currentTarget.classList.add('table-highlight')
 
-            checkedSites = []; // clear the array of checked items
-            for (let i = 0; i < getChecked.length; i++) {
-                var siteName = getChecked[i].name
-                var siteColor = getChecked[i].value
-                var thisSite = {
-                    "siteName": `${siteName}`,
-                    "color": `${siteColor}`
-                }
-                checkedSites.push(thisSite)
-            }
-        
-            renderSpec(dataWithNulls, checkedSites)
-          
-        })
+      chosenSite = {
+        "siteName": e.currentTarget.dataset.loc,
+        "color"   : e.currentTarget.dataset.color
+      }
+
+      // send to zoom to
+      zoomTo(e.currentTarget.dataset.loc)
+
+      // pass chosenSite into renderSpec for use in highlighted layer
+      renderSpec(dataWithNulls, chosenSite)
+
     })
+  })
 }
 
-// ---- gets checked sites, updates spec ---- // 
-function getCheckedSites() {
-    getChecked = document.querySelectorAll('input[type=checkbox]:checked');
+function zoomTo(locationColumn) {
+  console.log('Zooming to ' + locationColumn + ' from table click')
 
-    checkedSites = []; // clear the array of checked items
-    for (let i = 0; i < getChecked.length; i++) {
-        var siteName = getChecked[i].name
-        var siteColor = getChecked[i].value
-        var thisSite = {
-            "siteName": `${siteName}`,
-            "color": `${siteColor}`
-        }
-        checkedSites.push(thisSite)
-    }
+  // filter activeMonitors to locationColumn
+  const thisLocation = activeMonitors.filter((loc) => loc.loc_col === locationColumn)
 
-    renderSpec(dataWithNulls, checkedSites)
+  console.log('this location:', thisLocation, thisLocation[0].Latitude, thisLocation[0].Longitude)
+
+  // map zoom to lat/long.
+  map.setView([thisLocation[0].Latitude, thisLocation[0].Longitude],13)
 
 }
+
 
 // ---- PRINT RECENT AVERAGE TO TABLE ---- //
 
@@ -372,7 +418,7 @@ function drawMap() {
         if (monitor.Location != "DEC Monitor Average") {
             var those_monitors = 
             L.marker([monitor.Latitude, monitor.Longitude], {icon: this_icon, riseOnHover: true, riseOffset: 2000})
-            .bindTooltip(monitor.Location, {permanent: true, opacity: 0.85, interactive: true})
+            .bindTooltip(monitor.Location, {permanent: false, opacity: 0.85, interactive: true})
             .addTo(monitors_group_noDEC)
         }
 
@@ -439,15 +485,13 @@ function drawMap() {
 
 function resetZoom() {
     map.setView(monitors_center, 11).fitBounds(monitors_bounds);
-    // loop through rows and remove .table-highlight
-    var rows = document.querySelectorAll('.table-highlight')
+
+    var rows = document.querySelectorAll('.location-row')
+    rows.forEach(row => row.classList.remove('row-active'))
     rows.forEach(row => row.classList.remove('table-highlight'))
 
-    var sites = document.querySelectorAll('input[type=checkbox]:checked');
-    sites.forEach(site => site.checked = false)
-
-    checkedSites = [];
-    renderSpec(dataWithNulls)
+    chosenSite = undefined;
+    renderSpec(dataWithNulls,null)
 }
 
 // ---- TIME FILTER ---- //
@@ -474,7 +518,7 @@ function updateTime(x) {
 
     chartStart = filterTo                   
 
-    renderSpec(dataWithNulls, checkedSites)
+    renderSpec(dataWithNulls, chosenSite)
 
 }
 
@@ -482,21 +526,26 @@ function updateTime(x) {
 // ---- Update data based on map click ---- // 
 function updateData(x) {
     // look in active monitors for x.
-    var thisLocation = activeMonitors.filter(loc => loc.loc_col === x)
+    console.log('updating data for ', x)
+    var thisLocation = activeMonitors.filter(mon => mon.loc_col === x)
 
-    var thisLoc = document.getElementById(thisLocation[0].loc_col)
-    thisLoc.checked = true
+    console.log(thisLocation)
+
+    chosenSite = {
+      "siteName": thisLocation[0].loc_col,
+      "color":    thisLocation[0].Color
+    }
 
     // loop through rows and remove .table-highlight
-    var rows = document.querySelectorAll('.table-highlight')
-    rows.forEach(row => row.classList.remove('table-highlight'))
+    var rows = document.querySelectorAll('.location-row')
+    rows.forEach(row => row.classList.remove('row-active'))
+        rows.forEach(row => row.classList.remove('table-highlight'))
 
     // add table row highlight...?
     var row = 'row-'+x
     document.getElementById(row).classList.add('table-highlight')
 
-    // get all checked sites and update spec:
-    getCheckedSites()
+    renderSpec(dataWithNulls, chosenSite)
 
     // scroll chart into view (for mobile)
     document.getElementById('vis').scrollIntoView();
@@ -572,10 +621,10 @@ function GetSortOrder(prop) {
 
 
 // ---- RENDER CHART SPEC ---- // 
-const renderSpec = (
+async function renderSpec(
     data,
-    checkedSites
-) => { 
+    site
+) { 
 
     let chartSpec = {
         "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
@@ -621,33 +670,34 @@ const renderSpec = (
         "width": "container",
         "transform": [{"filter": `datum.starttime > ${chartStart}`}],
         "layer": [
-          {
-            "mark": {
-              "type": "line",
-              "interpolate": "monotone",
-              "point": {"size": 5, "opacity": 0},
-              "tooltip": null
+            {
+              "mark": {
+                "type": "line",
+                "tooltip": false
+              },
+              "encoding": {
+                "x": {"field": "starttime", "type": "temporal", "title": ""},
+                "y": {"field": "Value", "type": "quantitative", "title": " "},
+                "color": {
+                  "condition": {
+                    "test": "datum.SiteName === locFilter",
+                    "value": {"signal": "colorlabel"}
+                  },
+                  "field": "SiteName",
+                  "type": "nominal",
+                  "scale": {"range": ["lightgray"]}
+                },
+                
+                "strokeWidth": {
+                  "condition": {
+                    "test": "datum.SiteName === locFilter",
+                    "value": 2
+                  },
+                  "value": 0.5
+                  }
+              }
             },
-            "encoding": {
-              "x": {
-                "field": "starttime",
-                "type": "temporal",
-                "title": ""
-              },
-              "y": {
-                "field": "Value",
-                "type": "quantitative",
-                "title": " "
-              },
-              "color": {
-                "field": "SiteName",
-                "type": "nominal",
-                "scale": {"range": ["lightgray"]}
-              },
-              "opacity": {"value": 0.7},
-              "strokeWidth": {"value": 1.5}
-            }
-          },
+
           {
             "mark": "rule",
             "encoding": {
@@ -656,25 +706,16 @@ const renderSpec = (
               "size": {"value": 2},
               "strokeDash": {"value": [2, 2]}
             }
-          },
-          {
-            "mark": "rect",
-            "encoding": {
-              "x": {"aggregate": "max", "field": "starttime", "type": "temporal"},
-              "x2": {"datum": maxTimeMinusDay, "type": "temporal"},
-              "opacity": {"value": 0}
-            }
           }
         ]
       }
 
-      chartSpec.layer.length = 3
+      // if checked, layer:
 
-      // if there are checkedSites, then, push to spec.
-      if (checkedSites) {
-        for (let i = 0; i < checkedSites.length; i++) {
-
-            var template =  {
+      if ( site != null) {
+        console.log('drawing chart with selected sites', site.siteName, site.color)
+        var checkedLayer =     // needs sitename and color inserted, see below. 
+              {
                 "mark": {
                   "type": "line",
                   "interpolate": "monotone",
@@ -682,31 +723,13 @@ const renderSpec = (
                   "tooltip": true
                 },
                 "transform": [
-                  {"filter": `datum.SiteName === '${checkedSites[i].siteName}'`},
-                  {
-                    "calculate": "datum.Value + ' µg/m3'", 
-                    "as": "ValueWithText"
-                  }
-                  ],
+                  {"filter": `datum.SiteName === '${site.siteName}'`},
+                  {"calculate": "datum.Value + ' µg/m3'", "as": "ValueWithText"}
+                ],
                 "encoding": {
-                  "x": {
-                    "field": "starttime",
-                    "type": "temporal",
-                    "title": ""
-                  },
-                  "y": {
-                    "field": "Value",
-                    "type": "quantitative",
-                    "title": " "
-                  },
-                  "color": {
-                    "condition": [
-                      {
-                        "test": `datum.SiteName === '${checkedSites[i].siteName}'`, 
-                        "value": `${checkedSites[i].color}`
-                      }
-                    ]
-                  },
+                  "x": {"field": "starttime", "type": "temporal", "title": ""},
+                  "y": {"field": "Value", "type": "quantitative", "title": " "},
+                  "color": {"value": `${site.color}`},
                   "opacity": {"value": 0.7},
                   "strokeWidth": {"value": 1.5},
                   "tooltip": [
@@ -723,12 +746,87 @@ const renderSpec = (
                   ]
                 }
               }
-    
-            // push it to spec
-            chartSpec.layer.push(template)
-    
-        }
+
+          chartSpec.layer.push(checkedLayer)
+
+      } else {
+        var checkedLayer
+        console.log('No selected sites')
       }
 
-      vegaEmbed('#vis',chartSpec)
+
+      // vega-Lite spec
+      // console.log('vega-lite spec:')
+      // console.log(chartSpec)
+
+      // compile chartSpec to vega
+      const vegaSpec = vegaLite.compile(chartSpec).spec;
+
+      const colorSignal = {
+          "name": "colorlabel",
+          "value": "lightgray",
+          "on": [
+            {
+              "events": ".lineLabel:mouseenter",
+              "update": "event.currentTarget.dataset.color",
+              "force":  true
+            }
+          ]
+        }
+
+
+      const locSignal =  {
+        "name": "locFilter", 
+        "value": "",
+        "on": [
+          {
+            "events": ".lineLabel:mouseenter",
+            "update": "event.currentTarget.dataset.loc",
+            "force": true
+          }
+        ]
+      }
+
+      vegaSpec.signals.push(colorSignal)    
+      vegaSpec.signals.push(locSignal)
+
+      const textSignal = {
+          "name": "textlabel",
+          "value": "BQE",
+          "on": [
+            {
+              "events": ".lineLabel:mouseenter",
+              "update": "event.currentTarget.dataset.loc",
+              "force":  true
+            }
+          ]
+        }
+
+      const textMark =  {
+          "type": "text",
+          "encode": {
+            "enter": {
+              "x": {"value": 0},
+              "y": {"value": 20}
+            },
+            "update": {
+              "text": {"signal": "textlabel"}
+            }
+          }
+        }
+
+
+
+      // vegaSpec.signals.push(textSignal)
+      // vegaSpec.marks.push(textMark)
+      
+      // console.log('vega spec:')
+      // console.log(vegaSpec)
+
+
+      vegaEmbed('#vis',vegaSpec).then(res => {
+        myView = res.view // save the vega view 
+        // console.log('myView, vega with marks pushed:')
+        // console.log(myView)
+      })
 }

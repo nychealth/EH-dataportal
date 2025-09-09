@@ -980,6 +980,25 @@ config = {
                 ]
             }
         },
+/*QDA published*/
+        {
+            "id": "debilitating-heat",
+            "title": "Debilitating heat",
+            "content": "I am very physically disabled and movement takes a lot of effort, which in such debilitating heat, means I am an exhausted, sweaty mess even from trying to walk across the street. I can't afford to use AC often, so I'm still hot and miserable at home. I live in a third floor walk up, which is already a struggle, with no hallway AC. Subway stations near me are inaccessible and I have to go up many flights of stairs—nearly impossible in heat. This impedes my ability to leave my stuffy apartment to find accessible AC. I miss a lot of doctor's appointments, which takes a further toll on my health. Sleep is also very difficult, leaving me even more drained than normal from my physical disabilities. <br><strong>-Anonymous (they/them)</strong>",
+            "marker": {
+                "lat": 40.76202190298572,
+                "lng": -73.92537488952408,
+            },
+            "mapState": {
+                "lat": 40.76202190298572,
+                "lng": -73.92537488952408,
+                "zoom": 14,
+                "layers": [ 
+                    "Household_air_conditioning", 
+                    "heat_stress" 
+                ]
+            }
+        },
 /*QDA stories to add after they have reviewed
         {
             "id": '"heat-sensitivity"',
@@ -995,24 +1014,6 @@ config = {
                 "zoom": 14,
                 "layers": [ 
                     "nycAfternoon", 
-                    "heat_stress" 
-                ]
-            }
-        },
-        {
-            "id": "debilitating-heat",
-            "title": "Debilitating heat",
-            "content": "I am very physically disabled and movement takes a lot of effort, which in such debilitating heat, means I am an exhausted, sweaty mess even from trying to walk across the street. I can't afford to use AC often, so I'm still hot and miserable at home. I live in a third floor walk up, which is already a struggle, with no hallway AC. Subway stations near me are inaccessible and I have to go up many flights of stairs—nearly impossible in heat. This impedes my ability to leave my stuffy apartment to find accessible AC. I miss a lot of doctor's appointments, which takes a further toll on my health. Sleep is also very difficult, leaving me even more drained than normal from my physical disabilities. <br><strong>-Anonymous(they/them)</strong>",
-            "marker": {
-                "lat": 40.76202190298572,
-                "lng": -73.92537488952408,
-            },
-            "mapState": {
-                "lat": 40.76202190298572,
-                "lng": -73.92537488952408,
-                "zoom": 14,
-                "layers": [ 
-                    "Household_air_conditioning", 
                     "heat_stress" 
                 ]
             }

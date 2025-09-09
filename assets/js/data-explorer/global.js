@@ -121,6 +121,7 @@ let downloadedIndicatorMeasurement;
 // variables for print specs
 let printSpec = {};
 let vizYear;
+let vizGeography;
 let vizSource;
 let vizSourceSecond;
 let chartType;
