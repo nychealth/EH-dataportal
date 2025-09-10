@@ -7,26 +7,7 @@ var savedSpec;
 var binned = false
 
 
-function setBinValues(spec, binValue) {
-  function recurse(obj) {
-    if (Array.isArray(obj)) {
-      obj.forEach(item => recurse(item));
-    } else if (obj !== null && typeof obj === "object") {
-      for (let key in obj) {
-        if (key === "bin") {
-          obj[key] = binValue; // update bin to true/false
-        } else {
-          recurse(obj[key]); // keep searching deeper
-        }
-      }
-    }
-  }
 
-  // clone to avoid mutating original if desired
-  const newSpec = JSON.parse(JSON.stringify(spec));
-  recurse(newSpec);
-  return newSpec;
-}
 
 // ----------------------------------------------------------------------- //
 // history traversal
@@ -242,6 +223,30 @@ $(document).on("click", ".binButton", function (e) {
   vegaEmbed('#map', updatedSpec)
 
 });
+
+// ----------------------------------------------------------------------- //
+// recurses through spec, finds Bin keys, and changes them to true or false
+// ----------------------------------------------------------------------- //
+function setBinValues(spec, binValue) {
+  function recurse(obj) {
+    if (Array.isArray(obj)) {
+      obj.forEach(item => recurse(item));
+    } else if (obj !== null && typeof obj === "object") {
+      for (let key in obj) {
+        if (key === "bin") {
+          obj[key] = binValue; // update bin to true/false
+        } else {
+          recurse(obj[key]); // keep searching deeper
+        }
+      }
+    }
+  }
+
+  // clone to avoid mutating original if desired
+  const newSpec = JSON.parse(JSON.stringify(spec));
+  recurse(newSpec);
+  return newSpec;
+}
 
 // ----------------------------------------------------------------------- //
 // export functions
