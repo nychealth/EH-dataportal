@@ -2,19 +2,27 @@ console.log('Config ingested')
 
 var config = [
     {
-        "text": "Get started. Praesent quis justo dolor. Praesent lacus urna, viverra sit amet auctor vitae, pretium vitae metus. Praesent tempus dolor ut dolor venenatis bibendum. Duis hendrerit, odio sed ultrices consequat, nisi turpis consectetur ante, in finibus dolor odio ut lorem. Nunc ac aliquam est.",
-        "geoFile": 'geojson/null.geojson',
+        "text": `Isochrones for each ADA subway Station`,
+        "geoFile": `geojson/800m_isochrones_ADA_subway.geojson`,
     },
     {
-        "text": `First, we identified the points that we need. These points are ADA-compliant subway stops. Praesent quis justo dolor. Praesent lacus urna, viverra sit amet auctor vitae, pretium vitae metus. Praesent tempus dolor ut dolor venenatis bibendum. Duis hendrerit, odio sed ultrices consequat, nisi turpis consectetur ante, in finibus dolor odio ut lorem. Nunc ac aliquam est.`,
-        "geoFile": `geojson/point.geojson`,
+        "text": `Unioned isochrones`,
+        "geoFile": `geojson/isochrones_union_ADA.geojson`,
     },
     {
-        "text": `Next, we calculated the area around it that constitutes walking distance. We used the XYZ algorithm and assumed a walking distance of Twenty Miles. Praesent quis justo dolor. Praesent lacus urna, viverra sit amet auctor vitae, pretium vitae metus. Praesent tempus dolor ut dolor venenatis bibendum. Duis hendrerit, odio sed ultrices consequat, nisi turpis consectetur ante, in finibus dolor odio ut lorem. Nunc ac aliquam est.`,
-        "geoFile": `geojson/area.geojson`,
+        "text": `Block group percent walkable`,
+        "geoFile": `geojson/800m_BG_pct_walkable_ADA_subway.geojson`,
     },
     {
-        "text": `Last, we deep dorped a bing bong all the way to the whoop-whoop. Praesent quis justo dolor. Praesent lacus urna, viverra sit amet auctor vitae, pretium vitae metus. Praesent tempus dolor ut dolor venenatis bibendum. Duis hendrerit, odio sed ultrices consequat, nisi turpis consectetur ante, in finibus dolor odio ut lorem. Nunc ac aliquam est.`,
-        "geoFile": `geojson/null.geojson`,
+        "text": `Census Tract percent walkable`,
+        "geoFile": `geojson/800m_CT_pct_walkable_ADA_subway.geojson`,
+    },
+    {
+        "text": `NTA percent walkable`,
+        "geoFile": `geojson/800m_NTA2020_pct_walkable_ADA_subway.geojson`, 
+    },
+    {
+        "text": `CDTA percent walkable`,
+        "geoFile": `800m_CDTA2020_pct_walkable_ADA_subway.geojson`,
     }
 ]
