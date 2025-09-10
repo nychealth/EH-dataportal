@@ -4,19 +4,28 @@
 
 var vegaView;
 var savedSpec;
+var binned = false
 
-function setAllBinTrue(obj) {
-  if (Array.isArray(obj)) {
-    obj.forEach(setAllBinTrue); // Recurse into arrays
-  } else if (obj !== null && typeof obj === "object") {
-    Object.keys(obj).forEach(key => {
-      if (key === "bin") {
-        obj[key] = true; // Set bin to true
-      } else {
-        setAllBinTrue(obj[key]); // Recurse deeper
+
+function setBinValues(spec, binValue) {
+  function recurse(obj) {
+    if (Array.isArray(obj)) {
+      obj.forEach(item => recurse(item));
+    } else if (obj !== null && typeof obj === "object") {
+      for (let key in obj) {
+        if (key === "bin") {
+          obj[key] = binValue; // update bin to true/false
+        } else {
+          recurse(obj[key]); // keep searching deeper
+        }
       }
-    });
+    }
   }
+
+  // clone to avoid mutating original if desired
+  const newSpec = JSON.parse(JSON.stringify(spec));
+  recurse(newSpec);
+  return newSpec;
 }
 
 // ----------------------------------------------------------------------- //
@@ -225,6 +234,13 @@ $(document).on("click", ".binButton", function (e) {
   // Optional: grab the value (boolean from data-value)
   const bin = $(this).data("value");
   console.log("bin =", bin);
+  binned = bin
+
+  // transform savedSpec
+  const updatedSpec = setBinValues(savedSpec, bin);
+
+  vegaEmbed('#map', updatedSpec)
+
 });
 
 // ----------------------------------------------------------------------- //

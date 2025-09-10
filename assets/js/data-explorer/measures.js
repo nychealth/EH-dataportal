@@ -2568,8 +2568,8 @@ const renderMeasures = async () => {
 
     mapBinLinks.forEach(link => {
         link.addEventListener('click', (e) => {
-           console.log('Changing binning')
-            //  console.log(e.currentTarget.dataset.value);
+            console.log('Changing binning')
+            console.log(e.currentTarget.dataset.value);
         })
     })
 

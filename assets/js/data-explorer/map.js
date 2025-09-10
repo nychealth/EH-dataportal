@@ -8,6 +8,7 @@ const renderMap = (
 ) => {
 
     console.log("** renderMap");
+    // also uses global variable binned
 
     document.getElementById('viewDescription').innerHTML = 'This map shows data by different boundaries.'
 
@@ -68,7 +69,7 @@ const renderMap = (
             "latitude": {"field": "Lat", "type": "quantitative"},
             "longitude": {"field": "Long", "type": "quantitative"},
             "size": {
-                "bin": false,
+                "bin": binned,
                 "field": "Value","type": "quantitative","scale": {"range": [0,750]},"legend": {
                 "direction": "horizontal",
                 "title": "",
@@ -182,7 +183,7 @@ const renderMap = (
                         ],
                         "x": {"field": "GeoID", "sort": "y", "axis": null},
                         "color": {
-                            "bin": false, 
+                            "bin": binned, 
                             "field": "Value",
                             "type": "quantitative",
                             "scale": {"scheme": {"name": "viridis", "extent": [1, 0]}},
@@ -243,7 +244,7 @@ const renderMap = (
                 ],
                 "x": {"field": "GeoID", "sort": "y", "axis": null},
                 "color": {
-                    "bin": false, 
+                    "bin": binned, 
                     "field": "Value",
                     "type": "quantitative",
                     "scale": {"scheme": {"name": "viridis", "extent": [1, 0]}},
@@ -365,6 +366,12 @@ const renderMap = (
             "scale": {"invalid": {color: {value: '#808080'}}}
         },
         "projection": {"type": "mercator"},
+        "params": [
+            {
+                "name": "binValue",
+                "value": false
+            }
+        ],
         "transform": [
             {
                 "calculate": `datum.DisplayValue + ' ${displayType}'`,
@@ -432,7 +439,7 @@ const renderMap = (
                         "encoding": {
                             ...encode,
                             "color": {
-                                "bin": false, // change this bin value 
+                                "bin": binned, 
                                 "field": "Value",
                                 "type": "quantitative",
                                 "scale": {"scheme": {"name": "viridis", "extent": [1, 0]}},
@@ -472,10 +479,8 @@ const renderMap = (
         ]
     }
 
-    // compile mapspec to vega
-    var vegaSpec = vegaLite.compile(mapspec).spec
-
-    console.log(vegaSpec)
+    // clear out saved spec
+    savedSpec = ''
 
 
 
