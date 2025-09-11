@@ -271,12 +271,14 @@ There are four PUMAs that are made up of two CDs combined into one. Notice how t
 Each PUMA breaks down into Neighborhood Tabulation Areas (NTAs), and each NTA breaks down even further into census tracts.
 
 </div>
+<br>
 
 ##### Community districts
 
 <div class="p-indent">
-There are 59 Community Districts (CDs) in NYC, each overseen by a Community Board that advises on land use, zoning, city budgets, and more. As a political boundary, CDs are useful geographic units for breaking down city operations. [Learn more about Community Boards](https://www1.nyc.gov/site/cau/community-boards/about-commmunity-boards.page).
+There are 59 Community Districts (CDs) in NYC, each overseen by a Community Board that advises on land use, zoning, city budgets, and more. As a political boundary, CDs are useful geographic units for breaking down city operations. <a href="https://www1.nyc.gov/site/cau/community-boards/about-commmunity-boards.page">Learn more about Community Boards.</a>
 </div>
+<br>
 
 #### Boundary updates in 2020
 
@@ -286,7 +288,7 @@ In 2020, the US Census updated the boundaries of census tracts – which means t
 
 It can be difficult to work with several datasets when the data are for different types of neighborhoods. It can be a challenge to look up health data for a Community Board or a City Council District when those data are only available at UHF42.
 
-Beta NYC has a tool called Boundaries, which allows you to compare how NYC is divided into different districts using many of these schemes. This tool may help you decide which neighborhood area to choose when presenting data in research papers or at board meetings.
+<a href="https://boundaries.beta.nyc/?">Beta NYC has a tool called Boundaries, which allows you to compare how NYC is divided into different districts.</a> This tool may help you decide which neighborhood area to choose when presenting data in research papers or at board meetings.
 
 </div>
 
@@ -313,7 +315,7 @@ Here are some common scenarios that might help you think about which neighborhoo
 
 - If you're conducting a research study with Census data, PUMAs or NTAs might be best.
 
-Neighborhood boundaries may sometimes be imperfect representations of New York City’s communities. But even when data are only available at an inconvenient neighborhood scheme, they reveal important insights about health, housing, and the environment – showing differences by neighborhood, allowing us to explore why, and providing meaningful perspectives about inequities and opportunities across New York City.
+Neighborhood boundaries may sometimes be imperfect representations of New York City’s communities. But even when data are only available at an inconvenient neighborhood scheme, they reveal important insights about health, housing, and the environment—showing differences by neighborhood, allowing us to explore why, and providing meaningful perspectives about inequities and opportunities across New York City.
 
 ##### Appendix: common uses for each scheme
 
@@ -347,7 +349,7 @@ table :is(td) {
 Matching datasets: a brief overview of GEOIDs
 </h5>
       <p class="card-text">
-A GeoID (Geographic Identifier) is a unique code used to label a specific area on a map -- like a neighborhood, ZIP code, or census tract -- so that data about that area can be organized, matched, and analyzed.
+A GeoID (Geographic Identifier) is a unique code used to label a specific area on a map—like a neighborhood, ZIP code, or census tract—so that data about that area can be organized, matched, and analyzed.
       A GeoID is like a “name tag” for places. Every area, from a small city block to an entire borough, can have a code that identifies it in a dataset.
 
 | Boundary scheme  | GeoID Example  | Format        | Determined by                |
