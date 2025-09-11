@@ -53,7 +53,7 @@ Unioned isochrone map
 
 ## 4) Estimate the population in the walkable area
 
-Next we ask: *who actually lives inside this area?*  
+*Who actually lives inside this area?*  
 
 - We start with **Census Block Groups (BGs)** for population totals.  
 - Because block groups are large and might cross the walkable area, we use **PLUTO residential units** to figure out how many people are likely inside that  area.  

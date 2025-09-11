@@ -2,7 +2,7 @@ console.log('Config ingested')
 
 var config = [
     {
-        "text": `First, we mapped the accessible subway stations. TThese are the station entrances that have elevators or other accessible features.`,
+        "text": `First, we mapped the accessible subway stations. These are the station entrances that have elevators or other accessible features.`,
         "geoFile": `geojson/ADA_subway_stations.geojson`,
     },
     {
@@ -27,10 +27,10 @@ var config = [
     },
     {
         "text": `NTAs then roll up into Community District Tabulation Areas (CDTAs). Here we see the percent of each CDTA's population within walking distance.`,
-        "geoFile": `800m_CDTA2020_pct_walkable_ADA_subway.geojson`,
+        "geoFile": `geojson/800m_CDTA2020_pct_walkable_ADA_subway.geojson`,
     },
     {
         "text": `Finally, we looked at UHF42 neighborhoods. These boundaries don't line up cleanly with Census block groups, so we split block group populations across UHF42 areas based on where residential buildings fall. This way, we can estimate the percent of each UHF42 population within walking distance of an accessible subway station.`,
-        "geoFile": `800m_UHF42_pct_walkable_ADA_subway.geojson`,
+        "geoFile": `geojson/800m_UHF42_pct_walkable_ADA_subway.geojson`,
     }
 ]
