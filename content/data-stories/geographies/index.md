@@ -238,11 +238,44 @@ In the map below, notice how three UHF42 neighborhoods in the South Bronx are co
 <p>Continuing from the previous example, United Hospital Fund neighborhoods have similar boundaries, but they are not identical. Most UH42s break UH34s into smaller geographies; note how the South Bronx UH34 combines three UH42 neighborhoods (Highbridge - Morrisania, Crotona - Tremont and Hunts Point - Mott Haven).</p>
 </div>
 
-### How do you choose when boundaries overlap?
+### Boundary updates in 2020
 
-These different neighborhood boundaries can make things confusing. For example, say you live in Ditmas Park and you want to take some health data to a meeting of your Community Board. Ditmas Park is part of Community District 14, Flatbush/Midwood. But CD14 straddles two different UHF neighborhoods. This raises a difficult question: what neighborhood's data would you bring to your Community Board meeting?
+In 2020, the US Census updated the boundaries of census tracts –which means that schemes based on census tracts (NTAs, PUMAS, and CDTAs) also changed. These changes reflect population and housing changes and were made to more accurately represent the communities that live there. Our recent data generally uses the updated 2020 maps, but you may find older data on our website that uses 2010 map versions. The map changes are generally subtle, but they may affect trends in data for certain neighborhoods.
 
-{{< figure src="overlap.png" alt="An example of a Community District that overlaps two UHF42 neighborhoods.">}}
+### What to do when boundaries overlap?
+
+It can be difficult to work with several datasets when the data are for different types of neighborhoods. It can be a challenge to look up health data for a Community Board or a City Council District when those data are only available at UHF42.
+
+Beta NYC has a tool called Boundaries, which allows you to compare how NYC is divided into different districts using many of these schemes. This tool may help you decide which neighborhood area to choose when presenting data in research papers or at board meetings.
+
+<--!remove?-->
+
+</div>
+
+<div class="my-4">
+
+<iframe src="https://boundaries.beta.nyc/?" height="500" width="900" style="border:none;" title="Boundaries.beta"></iframe>
+
+</div>
+
+Using this tool, you can find that sometimes, neighborhoods in different “schemes” overlap pretty well – meaning that data for one “scheme” can be used in another scheme. But more often, different neighborhood schemes have boundaries that conflict and don’t conveniently overlap each other. When this happens, you can use the Boundaries tool to:
+
+- Look up the overlap between your desired area and the available neighborhood scheme.
+- Get values and see how much overlap there is – for example, if you are looking up a certain Community district, but it’s only available at a larger neighborhood scheme like UHF42, maybe 70% of the CD is in one UHF42, and only 30% is in another. That could make it easier to choose which UHF42 to use.
+
+### What about when data is available at multiple geographies? How do you choose?
+
+Here are some common scenarios that might help you think about which neighborhood scheme to choose for your needs.
+
+- If you're presenting at a Community Board meeting, you'll likely want to use Community Districts or CDTAs.
+
+- If you're using ZIP code level data, you might need to aggregate up to UHF neighborhoods.
+
+- If you're conducting a research study with Census data, PUMAs or NTAs might be best.
+
+Neighborhood boundaries may sometimes be imperfect representations of New York City’s communities. But even when data are only available at an inconvenient neighborhood scheme, they reveal important insights about health, housing, and the environment – showing differences by neighborhood, allowing us to explore why, and providing meaningful perspectives about inequities and opportunities across New York City.
+
+### Appendix: common uses for each scheme
 
 On the EH Data Portal, we aggregate data from lots of different sources. They might not line up exactly the way we want them to: when data are collected in different ways for different purposes, there will be differences in the underlying geography available. The fact that there’s no one consistent root unit does complicate things.
 
