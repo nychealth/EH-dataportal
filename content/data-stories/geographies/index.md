@@ -43,7 +43,7 @@ For example, dig around in the asthma data pages and you'll find [Adults with As
 
 **What are all these neighborhood schemes, why do we use one and not the other, and why isn’t the whole system consistent?**
 
-#### Most common neighborhood boundaries
+### Most common neighborhood boundaries
 
 The most common neighborhood boundary schemes on the EH Data Portal are United Hospital Fund neighborhoods, Community Districts, and Public Use Microdata Areas.
 
@@ -63,7 +63,7 @@ There are 55 PUMAs in NYC. PUMAs have similar boundaries to Community Districts,
 
 </div>
 
-#### Nesting: how neighborhood schemes have different root units
+### Nesting: how neighborhood schemes have different root units
 
 These neighborhood schemes have different building blocks. Let’s explore these.
 
@@ -278,7 +278,7 @@ Each PUMA breaks down into Neighborhood Tabulation Areas (NTAs), and each NTA br
 There are 59 Community Districts (CDs) in NYC, each overseen by a Community Board that advises on land use, zoning, city budgets, and more. As a political boundary, CDs are useful geographic units for breaking down city operations. [Learn more about Community Boards](https://www1.nyc.gov/site/cau/community-boards/about-commmunity-boards.page).
 </div>
 
-### Boundary updates in 2020
+#### Boundary updates in 2020
 
 In 2020, the US Census updated the boundaries of census tracts – which means that schemes based on census tracts (NTAs, PUMAS, and CDTAs) also changed. These changes reflect population and housing changes and were made to more accurately represent the communities that live there. Our recent data generally uses the updated 2020 maps, but you may find older data on our website that uses 2010 map versions. The map changes are generally subtle, but they may affect trends in data for certain neighborhoods.
 
@@ -315,7 +315,7 @@ Here are some common scenarios that might help you think about which neighborhoo
 
 Neighborhood boundaries may sometimes be imperfect representations of New York City’s communities. But even when data are only available at an inconvenient neighborhood scheme, they reveal important insights about health, housing, and the environment – showing differences by neighborhood, allowing us to explore why, and providing meaningful perspectives about inequities and opportunities across New York City.
 
-#### Appendix: common uses for each scheme
+##### Appendix: common uses for each scheme
 
 </div>
 <div class="wide my-2">
