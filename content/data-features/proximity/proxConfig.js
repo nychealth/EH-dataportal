@@ -22,7 +22,7 @@ var config = [
         "geoFile": `geojson/800m_CT_pct_walkable_ADA_subway.geojson`,
     },
     {
-        "text": `Similar to how Block Groups form Census Tracts, Census Tracts form Neighborhood Tabulation Areas (NTAs). In a similar fashion, we once again aggregated the data from Census Tracts to NTAs. Now we know the percent of each NTA population within walking distance of an Accessible Subway Station.`,
+        "text": `Similar to how Block Groups form Census Tracts, Census Tracts form Neighborhood Tabulation Areas (NTAs). We once again aggregated the data from Census Tracts to NTAs. Now we know the percent of each NTA population within walking distance of an Accessible Subway Station.`,
         "geoFile": `geojson/800m_NTA2020_pct_walkable_ADA_subway.geojson`, 
     },
     {
