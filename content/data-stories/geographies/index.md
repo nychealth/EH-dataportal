@@ -158,6 +158,7 @@ In the map below, notice how three UHF42 neighborhoods in the South Bronx are co
 </script>
 
 </div>
+
 <div class="sr-only">
 <p>While these geographies have similar boundaries between neighborhood areas, they are not identical. For example, areas in Mott Haven/Port Morris, Melrose South/Mott Haven-North, Longwood, and Hunts Point are all in separate Neighborhood Tabulation Areas. But in Community Districts, Mott Haven/Melrose is one Community District, and Hunts Point/Longwood is another. And in PUMAs, Mott Haven and Hunts point are both in one PUMA. These divisions don't nest neatly within one another - familiar neighborhoods can be broken up or aggregated into smaller and larger geographic schemes.</p>
 </div>
@@ -258,14 +259,9 @@ In the map below, notice how three UHF42 neighborhoods in the South Bronx are co
     </div>
 <!--end wide-->
 
--->
+##### Public Use Microdata Areas
 
-#### Community districts
-
-There are 59 Community Districts (CDs) in NYC, each overseen by a Community Board that advises on land use, zoning, city budgets, and more. As a political boundary, CDs are useful geographic units for breaking down city operations. [Learn more about Community Boards](https://www1.nyc.gov/site/cau/community-boards/about-commmunity-boards.page).
-
-#### Public Use Microdata Areas
-
+<div class="p-indent">
 Public Use Microdata Areas (PUMAs) have boundaries defined by the US Census. They are made up of groups of census tracts.
 
 There are 55 PUMAs in NYC. PUMAs have similar boundaries to Community Districts, which means that often, one can be used as a proxy for the other. In the map below, notice how Brooklyn CD 1, in Greenpoint/Williamsburg, is almost identical to the PUMA.
@@ -274,9 +270,17 @@ There are four PUMAs that are made up of two CDs combined into one. Notice how t
 
 Each PUMA breaks down into Neighborhood Tabulation Areas (NTAs), and each NTA breaks down even further into census tracts.
 
+</div>
+
+##### Community districts
+
+<div class="p-indent">
+There are 59 Community Districts (CDs) in NYC, each overseen by a Community Board that advises on land use, zoning, city budgets, and more. As a political boundary, CDs are useful geographic units for breaking down city operations. [Learn more about Community Boards](https://www1.nyc.gov/site/cau/community-boards/about-commmunity-boards.page).
+</div>
+
 ### Boundary updates in 2020
 
-In 2020, the US Census updated the boundaries of census tracts –which means that schemes based on census tracts (NTAs, PUMAS, and CDTAs) also changed. These changes reflect population and housing changes and were made to more accurately represent the communities that live there. Our recent data generally uses the updated 2020 maps, but you may find older data on our website that uses 2010 map versions. The map changes are generally subtle, but they may affect trends in data for certain neighborhoods.
+In 2020, the US Census updated the boundaries of census tracts – which means that schemes based on census tracts (NTAs, PUMAS, and CDTAs) also changed. These changes reflect population and housing changes and were made to more accurately represent the communities that live there. Our recent data generally uses the updated 2020 maps, but you may find older data on our website that uses 2010 map versions. The map changes are generally subtle, but they may affect trends in data for certain neighborhoods.
 
 ### What to do when boundaries overlap?
 
@@ -392,5 +396,3 @@ A GeoID is like a “name tag” for places. Every area, from a small city block
 A GeoID (Geographic Identifier) is a unique code used to label a specific area on a map, like a ZIP code or census tract, so that data about that area can be organized, matched, and analyzed.
 
 A GeoID is like a “name tag” for places. Every area, from a small city block to an entire borough, can have a code that identifies it in a dataset. These codes help different datasets talk to each other by matching information. Census GeoIDs are numeric and follow a strict nesting structure – as shown in the previous table. <a href="https://data.cityofnewyork.us/City-Government/2020-Census-Tracts-to-2020-NTAs-and-CDTAs-Equivale/hm78-6dwm/data_preview">Visit NYC OpenData for the full crosswalk of 2020 Census Tracts, to 2020 NTAs, to 2020 CDTAs.</a> If you’d like to see how ZIP Codes (or ZCTA) form UHFs, <a href="https://github.com/nychealth/EHDP-data/blob/production/geography/zcta_to_uhf.csv">visit the geographies folder in our data repository.</a>
-
--->
