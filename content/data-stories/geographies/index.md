@@ -74,9 +74,9 @@ United Hospital Fund neighborhoods (UHFs) have boundaries based on ZIP codes. Th
 
 Health data - like somebody’s hospitalization record, for example, or a response to a survey - often includes a person’s ZIP code. It’s the most readily available piece of geographic information in administrative data. It’s also the neighborhood designation that most people know and can provide when responding to a survey.
 
-To protect privacy, we often bundle (or aggregate) data from a larger area, so we need a scheme of neighborhoods that are made up of a collection of ZIP codes: UHFs. Collecting data by ZIP code and then "rolling up" into UHF neighborhoods has been used in health research for decades. The methods for our surveys (like the Community Health Survey) are designed to include enough people from each UHF neighborhood so that there’s a “representative sample” of all New Yorkers, and so that we can compare neighborhoods with high statistical confidence. Usually, we use UHF42 neighborhoods, which breaks the city down into 42 neighborhoods. Sometimes, though, we use UHF34 neighborhoods - by grouping together some of the neighborhoods, we can increase the statistical power of a survey.
+To protect privacy, we often bundle (or aggregate) data from a larger area, so we need a scheme of neighborhoods that are made up of a collection of ZIP codes: UHFs. Collecting data by ZIP code and then "rolling up" into UHF neighborhoods has been used in health research for decades. The methods for our surveys (like the Community Health Survey) are designed to include enough people from each UHF neighborhood so that there’s a “representative sample” of all New Yorkers, and so that we can compare neighborhoods with high statistical confidence. Usually, we use UHF42 neighborhoods, which breaks the city down into 42 neighborhoods. Sometimes, though, we use UHF34 neighborhoods—by grouping together some of the neighborhoods, we can increase the statistical power of a survey.
 
-In the map below, notice how three UHF42 neighborhoods in the South Bronx are combined into one UHF34 neighborhood - and how the UHF neighborhoods have ZIP codes (or, more precisely, ZIP code tabulation areas) as their root unit.
+In the map below, notice how three UHF42 neighborhoods in the South Bronx are combined into one UHF34 neighborhood—and how the UHF neighborhoods have ZIP codes (or, more precisely, ZIP code tabulation areas) as their root unit.
 
 </div>
 <div class="narrow my-4">
@@ -300,10 +300,10 @@ It can be difficult to work with several datasets when the data are for differen
 
 <div class="narrow">
 
-Using this tool, you can find that sometimes, neighborhoods in different “schemes” overlap pretty well – meaning that data for one “scheme” can be used in another scheme. But more often, different neighborhood schemes have boundaries that conflict and don’t conveniently overlap each other. When this happens, you can use the Boundaries tool to:
+Using this tool, you can find that sometimes, neighborhoods in different “schemes” overlap pretty well—meaning that data for one “scheme” can be used in another scheme. But more often, different neighborhood schemes have boundaries that conflict and don’t conveniently overlap each other. When this happens, you can use the Boundaries tool to:
 
 - Look up the overlap between your desired area and the available neighborhood scheme.
-- Get values and see how much overlap there is – for example, if you are looking up a certain Community district, but it’s only available at a larger neighborhood scheme like UHF42, maybe 70% of the CD is in one UHF42, and only 30% is in another. That could make it easier to choose which UHF42 to use.
+- Get values and see how much overlap there is—for example, if you are looking up a certain Community district, but it’s only available at a larger neighborhood scheme like UHF42, maybe 70% of the CD is in one UHF42, and only 30% is in another. That could make it easier to choose which UHF42 to use.
 
 ### What about when data is available at multiple geographies? How do you choose?
 
