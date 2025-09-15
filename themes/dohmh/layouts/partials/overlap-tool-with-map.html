@@ -139,8 +139,6 @@
             onEachFeature: function (feature, layer) {
               layer.on("click", function () {
                 const id = feature.properties[currentProperty];
-                console.log(feature.properties)
-                console.log(id);
 
                 if (name === 'CD') {
                     // print CD format to name bin
@@ -203,7 +201,6 @@
 
 
 function drawUHFs(UHF_ids) {
-  console.log('uhf layer before:', UHFLayer);
 
   // Remove previous layer if exists
   if (UHFLayer) {
@@ -232,8 +229,6 @@ function drawUHFs(UHF_ids) {
           fillOpacity: 0
         }
       }).addTo(map);
-
-      console.log('added UHF Layer:', UHFLayer);
 
       // Zoom to bounds of all selected polygons
       map.fitBounds(UHFLayer.getBounds());
@@ -268,7 +263,7 @@ function drawUHFs(UHF_ids) {
 
         }
 
-        console.log('This overlap:')
+        console.log('Overlapping neighborhoods:')
         console.log(thisOverlap[0].matchingUHFs)
         const uhfIds = thisOverlap[0].matchingUHFs.map(item => item.UHF_id);
         drawUHFs(uhfIds)
