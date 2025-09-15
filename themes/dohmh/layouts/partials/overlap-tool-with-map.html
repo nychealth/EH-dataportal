@@ -39,54 +39,6 @@
     </div>
 </div>
 
-<div class="row mt-2">
-    <div class="col-6">
-
-    <div class="nav nav-tabs device-md fs-sm" role="tablist">
-        <a class="nav-item nav-link active" id="tab-btn-01-a" href="#tab-01-a" data-toggle="tab"
-            aria-controls="tab-01-a" aria-selected="true" role="tab">
-            CDs
-        </a>
-        <a class="nav-item nav-link" id="tab-btn-01-b" href="#tab-01-b" data-toggle="tab"
-            aria-controls="tab-01-b" aria-selected="false" role="tab">
-            Council districts
-        </a>
-    </div>
-
-    <div class="tab-content mb-2" id="tabs-01-content">
-                    <div class="tab-pane fade show active" id="tab-01-a" aria-labelledby="tab-btn-01-a"
-                        role="tabpanel">
-                        <div class="border-left border-bottom border-right fs-sm" style="height: 250px; overflow-y:scroll;" id="CDButtons">
-                            <!-- CDs get printed here -->
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="tab-01-b" aria-labelledby="tab-btn-01-b" role="tabpanel" aria-hidden="true">
-                        <div class="border-left border-bottom border-right fs-sm" style="height: 250px; overflow-y:scroll;" id="districtButtons">
-                            <!-- Council Districts get printed here -->
-                        </div>
-                    </div>
-
-        </div>
-    </div>
-
-    <div class="col-6 hide" id="overlapReveal">
-        <div class="nav nav-tabs device-md fs-sm" role="tablist">
-            <a class="nav-item nav-link active" id="tab-btn-01-a" href="#tab-02-a" data-toggle="tab"
-                aria-controls="tab-02-a" aria-selected="true" role="tab">
-                Overlapping UHF42 neighborhoods
-            </a>
-        </div>
-        <div class="tab-content mb-2" id="tabs-02-content">
-                <div class="tab-pane fade show active" id="tab-02-a" aria-labelledby="tab-btn-02-a"
-                    role="tabpanel">
-                    <div class="border-left border-bottom border-right fs-sm" id="overlaps2" style="height: 250px; overflow-y:scroll;">
-                        <!-- Overlapping UHFs get printed here -->
-                    </div>
-                </div>
-        </div>
-        <em class="fs-xs">Not shown: neighborhoods with less than 5% overlap.</em>
-    </div>
-</div>
 
 <!-- CCD to UHF overlap js -->
 {{- $ccd_js := resources.Get "/js/ccd-to-uhf42.js" | partial "short-fingerprint.html" -}}
@@ -234,12 +186,13 @@
     // Load default (CD) on startup
     loadGeoJSON("CD");
 
-let UHFLayer; // keep track of the current UHF polygon layer
+let UHFLayer = null; // keep track of the current UHF polygon layer
 
 function drawUHF(UHF_id) {
   // Remove previous layer if exists
   if (UHFLayer) {
     map.removeLayer(UHFLayer);
+    UHFLayer = null
   }
 
   // Fetch the UHF42 GeoJSON
