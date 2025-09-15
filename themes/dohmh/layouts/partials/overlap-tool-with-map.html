@@ -202,36 +202,40 @@
     loadGeoJSON("CD");
 
 
-function drawUHF(UHF_id) {
-  // Remove UHF layer if exists
+function drawUHFs(UHF_ids) {
+  console.log('uhf layer before:', UHFLayer);
+
+  // Remove previous layer if exists
   if (UHFLayer) {
     map.removeLayer(UHFLayer);
-    UHFLayer = null
+    UHFLayer = null;
   }
 
   // Fetch the UHF42 GeoJSON
   fetch("https://raw.githubusercontent.com/nychealth/EHDP-data/refs/heads/production/geography/UHF42.geojson")
     .then(response => response.json())
     .then(data => {
-      // Filter for the feature matching the given UHF_id
-      const feature = data.features.find(f => f.properties.GEOCODE === UHF_id);
-      if (!feature) {
-        console.warn("No matching UHF polygon for:", UHF_id);
+      // Filter features for all matching UHF_ids
+      const features = data.features.filter(f => UHF_ids.includes(f.properties.GEOCODE));
+      if (features.length === 0) {
+        console.warn("No matching UHF polygons for:", UHF_ids);
         return;
       }
 
-      // Add the polygon with transparent fill and red dotted border
-      UHFLayer = L.geoJSON(feature, {
+      // Add all matching polygons as a single layer
+      UHFLayer = L.geoJSON(features, {
         style: {
           color: "red",
           weight: 2,
-          dashArray: "5,5", // red dotted line
+          dashArray: "5,5",
           fillColor: "transparent",
           fillOpacity: 0
         }
       }).addTo(map);
 
-      // Zoom to the polygon
+      console.log('added UHF Layer:', UHFLayer);
+
+      // Zoom to bounds of all selected polygons
       map.fitBounds(UHFLayer.getBounds());
     });
 }
@@ -266,12 +270,9 @@ function drawUHF(UHF_id) {
 
         console.log('This overlap:')
         console.log(thisOverlap[0].matchingUHFs)
+        const uhfIds = thisOverlap[0].matchingUHFs.map(item => item.UHF_id);
+        drawUHFs(uhfIds)
 
-        thisOverlap[0].matchingUHFs.forEach(match => {
-            console.log(match.UHF_id)
-            drawUHF(match.UHF_id)
-
-        })
 
         // Print matching overlaps to page
         thisOverlap[0].matchingUHFs.forEach(ol => {
