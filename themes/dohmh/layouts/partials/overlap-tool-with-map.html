@@ -74,20 +74,28 @@
 
     // JAVASCRIPT FOR MAP IMPLEMENTATION
     // Create the map
+
     var map = L.map('map').setView([40.7, -73.95], 11); // Centered on NYC
 
-    // Add a basemap
-    L.tileLayer(
-        'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
-    {
-        maxZoom: 15,
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-     }).addTo(map);
+
+    function initializeMap() {
+        // Add a basemap
+        L.tileLayer(
+            'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
+        {
+            maxZoom: 15,
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+        }).addTo(map);
+    }
+
+    initializeMap();
 
 
     let geojsonLayer;
     let selectedID = null;
     let currentProperty = null;
+    let UHFLayer = null; // keep track of the current UHF polygon layer
+
 
     // Function to load GeoJSON by name
     function loadGeoJSON(name) {
@@ -104,6 +112,13 @@
       if (geojsonLayer) {
         map.removeLayer(geojsonLayer);
       }
+
+        // Remove UHF layer if exists
+        if (UHFLayer) {
+            map.removeLayer(UHFLayer);
+            UHFLayer = null
+        }
+
 
       selectedID = null; // reset selection when switching layers
 
@@ -186,10 +201,9 @@
     // Load default (CD) on startup
     loadGeoJSON("CD");
 
-let UHFLayer = null; // keep track of the current UHF polygon layer
 
 function drawUHF(UHF_id) {
-  // Remove previous layer if exists
+  // Remove UHF layer if exists
   if (UHFLayer) {
     map.removeLayer(UHFLayer);
     UHFLayer = null
