@@ -9,6 +9,7 @@ categories: [publicspace]
 keywords: ["how we work", "geographies", "neighborhoods"]
 layout: neighborhood-overlap
 weight: 20
+leaflet: true
 blurb: A tool to help see overlapping neighborhoods
 aboutTheData: Sources - 2023 American Community Survey, and 2025 City Council Districts shapefile. <a href="https://github.com/nychealth/EHDP-data/tree/production/geography">Get more geography resources, including shapefiles, topojsons, and geojsons, from our Github repository</a>.
 related:
