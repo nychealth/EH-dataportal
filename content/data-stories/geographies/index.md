@@ -30,12 +30,6 @@ related:
     url: "neighborhood-reports/#Asthmareport"
 ---
 
-<style>
-    .p-indent {
-        margin-left: 30px;
-    }
-</style>
-
 New York City has hundreds of neighborhoods and nearly as many ways of drawing neighborhood boundaries. When you visit the Environment & Health Data Portal, you might notice that data is available in several different neighborhood schemes.
 
 For example, dig around in the asthma data pages and you'll find [Adults with Asthma]({{< baseurl >}}data-explorer/asthma/?id=18) presented by UHF34 neighborhoods, [Public School Children with Asthma]({{< baseurl >}}data-explorer/asthma/?id=2147) presented by UHF42 neighborhoods, and [Asthma emergency department visits]({{< baseurl >}}data-explorer/asthma/?id=2384) are offered by NTAs. Other data on the portal are offered by CD, ZIP code, PUMA, and occasionally even police precinct.
@@ -47,7 +41,7 @@ For example, dig around in the asthma data pages and you'll find [Adults with As
 
 The most common neighborhood boundary schemes on the EH Data Portal are United Hospital Fund neighborhoods, Community Districts, and Public Use Microdata Areas.
 
-<div class="my-2" style="margin-left:30px;">
+<div class="my-2 ml-3">
 
 **United Hospital Fund neighborhoods**
 
@@ -63,113 +57,71 @@ There are 55 PUMAs in NYC. PUMAs have similar boundaries to Community Districts,
 
 </div>
 
-### Nesting: how neighborhood schemes have different root units
-
-These neighborhood schemes have different building blocks. Let’s explore these.
-
-##### United Hospital Fund neighborhoods
-
-<div class="p-indent">
-United Hospital Fund neighborhoods (UHFs) have boundaries based on ZIP codes. This geography was created by the Health Department, the United Hospital Fund, and other city agencies in the 1980s. They were designed for health research, and to be similar to NYC’s Community Districts.
-
-Health data - like somebody’s hospitalization record, for example, or a response to a survey - often includes a person’s ZIP code. It’s the most readily available piece of geographic information in administrative data. It’s also the neighborhood designation that most people know and can provide when responding to a survey.
-
-To protect privacy, we often bundle (or aggregate) data from a larger area, so we need a scheme of neighborhoods that are made up of a collection of ZIP codes: UHFs. Collecting data by ZIP code and then "rolling up" into UHF neighborhoods has been used in health research for decades. The methods for our surveys (like the Community Health Survey) are designed to include enough people from each UHF neighborhood so that there’s a “representative sample” of all New Yorkers, and so that we can compare neighborhoods with high statistical confidence. Usually, we use UHF42 neighborhoods, which breaks the city down into 42 neighborhoods. Sometimes, though, we use UHF34 neighborhoods—by grouping together some of the neighborhoods, we can increase the statistical power of a survey.
-
-In the map below, notice how three UHF42 neighborhoods in the South Bronx are combined into one UHF34 neighborhood—and how the UHF neighborhoods have ZIP codes (or, more precisely, ZIP code tabulation areas) as their root unit.
-
 </div>
-<div class="narrow my-4">
-
-<div aria-hidden="true">
-<input type="radio" name="mainRadioGroup" value="cd" id="ucd" checked> <label for="ucd">Community Districts</label> &nbsp;&nbsp;
-<input type="radio" name="mainRadioGroup" value="puma" id="upuma"/> <label for="upuma">PUMAs</label> &nbsp;&nbsp;
-<input type="radio" name="mainRadioGroup" value="nta" id="unta"><label for="unta">NTAs</label>
-
-<!-- create map div -->
-<div id = 'map1' style = "width:100%; height: 550px"></div>
-
-<script>
-
-    var repo_branch = "{{< param data_repo >}}{{< param data_branch >}}"
-    var path = "data-stories/geographies" // hard-coded for now, but could Hugo paramaterize
-    var trans = "mapspec-en"
-
-    let cd_spec   = repo_branch + "/" + path + "/" + trans + "/" + "mapcd.vl.json";
-    let puma_spec = repo_branch + "/" + path + "/" + trans + "/" + "mappuma.vl.json";
-    let nta_spec  = repo_branch + "/" + path + "/" + trans + "/" + "mapnta.vl.json";
-
-    let cd_csv   = repo_branch + "/" + path + "/" + "CD_DATA.csv"
-    let puma_csv = repo_branch + "/" + path + "/" + "PUMA_DATA.csv"
-    let nta_csv  = repo_branch + "/" + path + "/" + "NTA_DATA.csv"
-
-    let cd_topo   = repo_branch + "/" + "geography" + "/" + "CD.topo.json"
-    let puma_topo = repo_branch + "/" + "geography" + "/" + "PUMA_or_Subborough.topo.json"
-    let nta_topo  = repo_branch + "/" + "geography" + "/" + "NTA_2010.topo.json"
-
-    // this code listens to the form with map chooser; must run after DOM loads
-    window.onload = main_radio_listener;
-
-    // listener for radio buttons
-
-    function main_radio_listener() {
-
-        radios = document.querySelectorAll('input[type=radio][name="mainRadioGroup"]');
-        radios.forEach(radio => radio.addEventListener('change', () => {
-
-            if (radio.value === 'cd') {
+<div class="wide">
+    <div class="row no-gutters border-top border-bottom py-2">
+        <div class="col-6">
+        <div aria-hidden="true">
+        <input type="radio" name="mainRadioGroup" value="cd" id="ucd" checked> <label for="ucd">Community Districts</label> &nbsp;&nbsp;
+        <input type="radio" name="mainRadioGroup" value="puma" id="upuma"/> <label for="upuma">PUMAs</label> &nbsp;&nbsp;
+        <!--<input type="radio" name="mainRadioGroup" value="nta" id="unta"><label for="unta">NTAs</label>-->
+        <!-- create map div -->
+        <div id = 'map1' style = "width:100%; height: 450px"></div>
+            <script>
+                var repo_branch = "{{< param data_repo >}}{{< param data_branch >}}"
+                var path = "data-stories/geographies" // hard-coded for now, but could Hugo paramaterize
+                var trans = "mapspec-en"
+                let cd_spec   = repo_branch + "/" + path + "/" + trans + "/" + "mapcd.vl.json";
+                let puma_spec = repo_branch + "/" + path + "/" + trans + "/" + "mappuma.vl.json";
+                let nta_spec  = repo_branch + "/" + path + "/" + trans + "/" + "mapnta.vl.json";
+                let cd_csv   = repo_branch + "/" + path + "/" + "CD_DATA.csv"
+                let puma_csv = repo_branch + "/" + path + "/" + "PUMA_DATA.csv"
+                let nta_csv  = repo_branch + "/" + path + "/" + "NTA_DATA.csv"
+                let cd_topo   = repo_branch + "/" + "geography" + "/" + "CD.topo.json"
+                let puma_topo = repo_branch + "/" + "geography" + "/" + "PUMA_or_Subborough.topo.json"
+                let nta_topo  = repo_branch + "/" + "geography" + "/" + "NTA_2010.topo.json"
+                // this code listens to the form with map chooser; must run after DOM loads
+                window.onload = main_radio_listener;
+                // listener for radio buttons
+                function main_radio_listener() {
+                    radios = document.querySelectorAll('input[type=radio][name="mainRadioGroup"]');
+                    radios.forEach(radio => radio.addEventListener('change', () => {
+                        if (radio.value === 'cd') {
+                            buildMap("#map1", cd_spec, cd_csv, cd_topo);
+                        }
+                        else if (radio.value === 'nta') {
+                            buildMap("#map1", nta_spec, nta_csv, nta_topo);
+                        }
+                        else {
+                            buildMap("#map1", puma_spec, puma_csv, puma_topo);
+                        };
+                    }));
+                };
+                // function for building the map
+                function buildMap(div, spec, csv, topo) {
+                    d3.json(spec).then(spec => {
+                        spec.layer[0].data.url = topo;
+                        spec.layer[1].data.url = topo;
+                        d3.csv(csv, d3.autoType).then(csv => {
+                            vegaEmbed(div, spec).then((res) => {
+                                resview = res.view.insert("csv", csv).run();
+                            });
+                        });
+                    });
+                };
+                // initialize the map
                 buildMap("#map1", cd_spec, cd_csv, cd_topo);
-            }
-            else if (radio.value === 'nta') {
-                buildMap("#map1", nta_spec, nta_csv, nta_topo);
-            }
-            else {
-                buildMap("#map1", puma_spec, puma_csv, puma_topo);
-            };
-
-        }));
-    };
-
-    // function for building the map
-
-    function buildMap(div, spec, csv, topo) {
-
-        d3.json(spec).then(spec => {
-
-            spec.layer[0].data.url = topo;
-            spec.layer[1].data.url = topo;
-
-            d3.csv(csv, d3.autoType).then(csv => {
-
-                vegaEmbed(div, spec).then((res) => {
-
-                    resview = res.view.insert("csv", csv).run();
-
-                });
-            });
-        });
-    };
-
-    // initialize the map
-
-    buildMap("#map1", cd_spec, cd_csv, cd_topo);
-
-
-</script>
-
-</div>
-
-<div class="sr-only">
-<p>While these geographies have similar boundaries between neighborhood areas, they are not identical. For example, areas in Mott Haven/Port Morris, Melrose South/Mott Haven-North, Longwood, and Hunts Point are all in separate Neighborhood Tabulation Areas. But in Community Districts, Mott Haven/Melrose is one Community District, and Hunts Point/Longwood is another. And in PUMAs, Mott Haven and Hunts point are both in one PUMA. These divisions don't nest neatly within one another - familiar neighborhoods can be broken up or aggregated into smaller and larger geographic schemes.</p>
-</div>
-
+            </script>
+        </div>
+        </div>
+        <div class="col-6 border-left pl-2">
 <div aria-hidden="true">
 <input type="radio" name="uhfRadioGroup" value="42" id="42" checked> <label for="42">UHF42</label> &nbsp;&nbsp;
 <input type="radio" name="uhfRadioGroup" value="34" id="34"/> <label for="34">UHF34</label> &nbsp;&nbsp;
-<input type="radio" name="uhfRadioGroup" value="zip" id="zip"><label for="zip">ZIP codes</label>
+<!--<input type="radio" name="uhfRadioGroup" value="zip" id="zip"><label for="zip">ZIP codes</label>-->
 
 <!-- create map div -->
-<div id = 'map2' style = "width:100%; height: 550px"></div>
+<div id = 'map2' style = "width:100%; height: 450px"></div>
 
 <script>
 
@@ -211,6 +163,72 @@ In the map below, notice how three UHF42 neighborhoods in the South Bronx are co
     buildMap("#map2", uhf42_spec, uhf42_csv, uhf42_topo);
 
 </script>
+</div>
+        </div>
+    </div>
+</div>
+
+<div class="narrow">
+
+### Nesting: how neighborhood schemes have different root units
+
+These neighborhood schemes have different building blocks. Let’s explore these.
+
+##### United Hospital Fund neighborhoods
+
+<div class="ml-3 mb-1">
+United Hospital Fund neighborhoods (UHFs) have boundaries based on ZIP codes. This geography was created by the Health Department, the United Hospital Fund, and other city agencies in the 1980s. They were designed for health research, and to be similar to NYC’s Community Districts.
+
+Health data - like somebody’s hospitalization record, for example, or a response to a survey - often includes a person’s ZIP code. It’s the most readily available piece of geographic information in administrative data. It’s also the neighborhood designation that most people know and can provide when responding to a survey.
+
+To protect privacy, we often bundle (or aggregate) data from a larger area, so we need a scheme of neighborhoods that are made up of a collection of ZIP codes: UHFs. Collecting data by ZIP code and then "rolling up" into UHF neighborhoods has been used in health research for decades. The methods for our surveys (like the Community Health Survey) are designed to include enough people from each UHF neighborhood so that there’s a “representative sample” of all New Yorkers, and so that we can compare neighborhoods with high statistical confidence. Usually, we use UHF42 neighborhoods, which breaks the city down into 42 neighborhoods. Sometimes, though, we use UHF34 neighborhoods—by grouping together some of the neighborhoods, we can increase the statistical power of a survey.
+
+In the map below, notice how three UHF42 neighborhoods in the South Bronx are combined into one UHF34 neighborhood—and how the UHF neighborhoods have ZIP codes (or, more precisely, ZIP code tabulation areas) as their root unit.
+</div>
+
+</div>
+<div class="narrow border-top border-bottom py-2">
+<div aria-hidden="true">
+<input type="radio" name="uhfRadioGroup2" value="42" id="2-42" checked> <label for="2-42">UHF42</label> &nbsp;&nbsp;
+<input type="radio" name="uhfRadioGroup2" value="34" id="2-34"/> <label for="2-34">UHF34</label> &nbsp;&nbsp;
+<input type="radio" name="uhfRadioGroup2" value="zip" id="2-zip"><label for="2-zip">ZIP codes</label>
+
+<!-- create map div -->
+<div id = 'map3' style = "width:100%; height: 450px"></div>
+
+<script>
+    // listener for radio buttons
+
+    function uhf_radio_listener() {
+
+        buttons = document.querySelectorAll('input[type=radio][name="uhfRadioGroup2"]');
+        buttons.forEach(button => button.addEventListener('change', () => {
+
+            if (button.value === '42') {
+                buildMap("#map3", uhf42_spec, uhf42_csv, uhf42_topo);
+            }
+            else if (button.value === '34') {
+                buildMap("#map3", uhf34_spec, uhf34_csv, uhf34_topo);
+            }
+            else {
+                buildMap("#map3", zip_spec, zip_csv, zip_topo);
+            };
+        }));
+    };
+
+    uhf_radio_listener();
+
+    // initialize map
+
+    buildMap("#map3", uhf42_spec, uhf42_csv, uhf42_topo);
+
+</script>
+</div>
+</div>
+<div class="narrow mt-2">
+
+<div class="sr-only">
+<p>While these geographies have similar boundaries between neighborhood areas, they are not identical. For example, areas in Mott Haven/Port Morris, Melrose South/Mott Haven-North, Longwood, and Hunts Point are all in separate Neighborhood Tabulation Areas. But in Community Districts, Mott Haven/Melrose is one Community District, and Hunts Point/Longwood is another. And in PUMAs, Mott Haven and Hunts point are both in one PUMA. These divisions don't nest neatly within one another - familiar neighborhoods can be broken up or aggregated into smaller and larger geographic schemes.</p>
 </div>
 
 <div class="sr-only">
@@ -261,7 +279,7 @@ In the map below, notice how three UHF42 neighborhoods in the South Bronx are co
 
 ##### Public Use Microdata Areas
 
-<div class="p-indent">
+<div class="ml-3 mb-1">
 Public Use Microdata Areas (PUMAs) have boundaries defined by the US Census. They are made up of groups of census tracts.
 
 There are 55 PUMAs in NYC. PUMAs have similar boundaries to Community Districts, which means that often, one can be used as a proxy for the other. In the map below, notice how Brooklyn CD 1, in Greenpoint/Williamsburg, is almost identical to the PUMA.
@@ -271,22 +289,20 @@ There are four PUMAs that are made up of two CDs combined into one. Notice how t
 Each PUMA breaks down into Neighborhood Tabulation Areas (NTAs), and each NTA breaks down even further into census tracts.
 
 </div>
-<br>
 
 ##### Community districts
 
-<div class="p-indent">
+<div class="ml-3 mb-2">
 There are 59 Community Districts (CDs) in NYC, each overseen by a Community Board that advises on land use, zoning, city budgets, and more. As a political boundary, CDs are useful geographic units for breaking down city operations. <a href="https://www1.nyc.gov/site/cau/community-boards/about-commmunity-boards.page">Learn more about Community Boards.</a>
 </div>
-<br>
 
 #### Boundary updates in 2020
 
 In 2020, the US Census updated the boundaries of census tracts – which means that schemes based on census tracts (NTAs, PUMAS, and CDTAs) also changed. These changes reflect population and housing changes and were made to more accurately represent the communities that live there. Our recent data generally uses the updated 2020 maps, but you may find older data on our website that uses 2010 map versions. The map changes are generally subtle, but they may affect trends in data for certain neighborhoods.
 
-### What to do when boundaries overlap?
+### What do you do when you're looking for data for one type of neighborhood, but the data is only available at a different scheme?
 
-It can be difficult to work with several datasets when the data are for different types of neighborhoods. It can be a challenge to look up health data for a Community Board or a City Council District when those data are only available at UHF42.
+It can be difficult to work with several datasets when the data are for different types of neighborhoods. For example, it can be a challenge to look up health data for a Community Board or a City Council District when those data are only available at UHF42.
 
 <a href="https://boundaries.beta.nyc/?">Beta NYC has a tool called Boundaries, which allows you to compare how NYC is divided into different districts.</a> This tool may help you decide which neighborhood area to choose when presenting data in research papers or at board meetings.
 
@@ -303,7 +319,7 @@ It can be difficult to work with several datasets when the data are for differen
 Using this tool, you can find that sometimes, neighborhoods in different “schemes” overlap pretty well—meaning that data for one “scheme” can be used in another scheme. But more often, different neighborhood schemes have boundaries that conflict and don’t conveniently overlap each other. When this happens, you can use the Boundaries tool to:
 
 - Look up the overlap between your desired area and the available neighborhood scheme.
-- Get values and see how much overlap there is—for example, if you are looking up a certain Community district, but it’s only available at a larger neighborhood scheme like UHF42, maybe 70% of the CD is in one UHF42, and only 30% is in another. That could make it easier to choose which UHF42 to use.
+- Get values and see how much overlap there is. For example, if you are looking up a certain Community District, but it’s only available at a larger neighborhood scheme like UHF42, maybe 70% of the CD is in one UHF42, and only 30% is in another. This can help you use the UHF42 data to estimate values for your CD.
 
 ### What about when data is available at multiple geographies? How do you choose?
 
