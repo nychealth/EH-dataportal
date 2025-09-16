@@ -68,37 +68,10 @@ jobs:
           node-version: 22.5.x
           cache: "npm"
 
-      # set up cache for node modules
-
-      - name: Cache node_modules
-        id: cache-nodemodules
-        uses: actions/cache@v4
-        env:
-          cache-name: cache-node-modules
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
-
-      # prune node_modules
-
-      - name: Prune dependencies
-        run: npm prune
-
-      # update npm dependencies (if cached)
-
-      - name: Update dependencies
-        if: steps.cache-nodemodules.outputs.cache-hit == 'true'
-        run: npm update
-
-      # install npm dependencies (if not cached)
+      # install npm dependencies
 
       - name: Install dependencies
-        if: steps.cache-nodemodules.outputs.cache-hit != 'true'
-        run: npm ci
+        run: npm install
 
       # list dependencies
       
@@ -107,7 +80,20 @@ jobs:
 
       - name: List sub-dependencies
         run: npm ls --all
+      
+      # convert all line endings to Unix
 
+      - name: Update Ubuntu package index
+        run: sudo apt-get update
+        
+      - name: Install software
+        run: sudo apt-get install -y dos2unix
+        
+      - name: Convert line endings
+        run: |
+          find . -name '*.js' -print0 | xargs -0 dos2unix
+          find . -name '*.css' -print0 | xargs -0 dos2unix
+      
       # set up Hugo
 
       - name: Set up Hugo

@@ -3,7 +3,7 @@ title: "Housing creates health"
 date: 2024-03-05T01:18:56-04:00
 draft: false
 seo_title: "Housing creates health"
-seo_description: "A data story about how quality and affordable housing enhances public health"
+seo_description: "A data story about how quality and affordable housing enhances public health."
 tags:
 categories: ["housing", "inequality", "childhealth", "neighborhoods"]
 keywords:
@@ -66,9 +66,13 @@ People living in higher-poverty neighborhoods are more likely to experience nega
 Across New York, half of all households are rent-burdened, meaning that more than 30% of their household income goes to rent. Spending so much on rent can leave too little money for food and other essentials. <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/economic-stability/"> Learn more about the health implications of experiencing rent burden in "How economic stability creates health." </a>
 
 <div class="chart-wrapper-ds">
-
+<div aria-hidden="true">
 <iframe class="" title="Percent of households that are rent-burdened by neighborhood (NTA)" aria-label="Map" id="datawrapper-chart-L4j3j" src="https://datawrapper.dwcdn.net/L4j3j/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="756" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
-
+</div>
+<div class="sr-only">
+<iframe title="Across New York City, half of all households are rent-burdened" aria-label="Table" id="datawrapper-chart-yWecX" src="https://datawrapper.dwcdn.net/yWecX/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="943" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+</script>
+</div>
 </div>
 
 A person who has a high rent burden is often confronting other housing challenges as well, like overcrowding (defined as more than one person per room). Overcrowding occurs much more often in high-poverty areas, and can have many negative effects, including facilitating spread of disease and making it difficult for children to find a quiet place to study.
@@ -86,6 +90,7 @@ A person who has a high rent burden is often confronting other housing challenge
 </div>
 
 <div class="chart-wrapper-ds">
+<div aria-hidden="true">
 <h4 class="mt-4 mb-2">Overcrowding tends to occur in areas with high poverty</h4>
 <div class="my-1 border-bottom">
 <button class="borobtn btn btn-sm btn-outline-secondary active" onclick="changeBoro(1)" id="btn1">Bronx</button>
@@ -114,6 +119,7 @@ A person who has a high rent burden is often confronting other housing challenge
     <div style="min-height:120px"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/oiSDa/embed.js?v=3" charset="utf-8"></script><noscript><img src="https://datawrapper.dwcdn.net/oiSDa/full.png" alt="" /></noscript></div>
 </div>
 </div>
+</div>
 
 <script>
 function changeBoro(x) {
@@ -134,7 +140,10 @@ function changeBoro(x) {
     document.getElementById(cont).classList.remove('hide')
 }
 </script>
-
+<div class="sr-only">
+<iframe title="Overcrowding tends to occur in areas with high poverty" aria-label="Table" id="datawrapper-chart-aV8VC" src="https://datawrapper.dwcdn.net/aV8VC/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="933" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+</script>
+</div>
 <div class="pullquote my-4">
 <figure class="">
     <figcaption figcaption class="mb-2"> “A lot of the young people I work with openly share that maybe they’re sharing a bed with several siblings.” <span class="float-right"></span> </figcaption>
@@ -172,6 +181,7 @@ Homes that are not properly maintained can undermine health, including because t
 <a href="https://www.nyc.gov/assets/doh/downloads/pdf/survey/asthma-housing-2021.pdf">Home maintenance issues are more common in high-poverty neighborhoods </a> and in public housing than in wealthier neighborhoods or privately-owned apartments.
 
 <div class="chart-wrapper-ds">
+<div aria-hidden="true">
 <h4 class="mt-4 mb-2">Maintenance issues are more common in high poverty-neighborhoods </h4>
 
 <div class="my-1 border-bottom">
@@ -198,6 +208,7 @@ Homes that are not properly maintained can undermine health, including because t
     <div style="min-height:120px"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/ZPS6h/embed.js?v=3" charset="utf-8"></script><noscript><img src="https://datawrapper.dwcdn.net/ZPS6h/full.png" alt="" /></noscript></div>
 </div>
 </div>
+</div>
 
 <script>
 function changeBoro2(x) {
@@ -218,7 +229,10 @@ function changeBoro2(x) {
     document.getElementById(cont).classList.remove('hide')
 }
 </script>
-
+<div class="sr-only">
+<iframe title="Maintenance issues are more common in high poverty-neighborhoods" aria-label="Table" id="datawrapper-chart-DOJSE" src="https://datawrapper.dwcdn.net/DOJSE/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="703" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+</script>
+</div>
 The consequences of these deficiencies can be dangerous. For example, people whose homes lack adequate heating might use space heaters, which are a fire risk. In January 2022, a malfunctioning space heater sparked a fire that killed 17 people in a high-rise building in the Bronx.
 
 Affordability and barriers to cooling can also result in consequences to health. Lack of air conditioning can result in heat stress during warmer weather and periods of extreme heat, making existing health conditions worse and, in extreme cases, resulting in hospitalization and even death.
@@ -228,9 +242,14 @@ Affordability and barriers to cooling can also result in consequences to health.
 A lack of affordable housing often leads to housing instability. Most evictions occur because the tenant can’t pay rent, and can result in frequent moves and homelessness, both of which threaten health in the short term and over time. New Yorkers living in high-poverty neighborhoods experience eviction at more than four times the rate of those living in low-poverty neighborhoods.
 
 <div class="chart-wrapper-ds">
+<div aria-hidden="true">
 <iframe title="Evictions are more common in higher poverty neighborhoods" class="" aria-label="Scatter Plot" id="datawrapper-chart-DEEg2" src="https://datawrapper.dwcdn.net/DEEg2/3/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="550" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
 </div>
-
+</div>
+<div class="sr-only">
+<iframe title="Evictions are more common in higher poverty neighborhoods" aria-label="Table" id="datawrapper-chart-VVpyh" src="https://datawrapper.dwcdn.net/VVpyh/3/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="1148" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+</script>
+</div>
 <div class="pullquote my-4">
 <figure class="">
     <figcaption figcaption class="mb-2"> “Children whose families are homeless, and they're being shuffled from place to place—they need to have stability. I think that needs to be addressed. Because it also affects their schooling, their mental health, their medical, you know, needs for both parents and the children. And I think the children are impacted most.”<span class="float-right"></span></figcaption>
@@ -249,7 +268,13 @@ A lack of affordable housing often leads to housing instability. Most evictions 
 When COVID-19 hit, New York City paused evictions, recognizing the twin threats of serious financial hardship and health risks created and made worse through experiencing homelessness. This was an effort to keep people housed — but also to keep people out of shelters, where the spread of COVID was hard to contain.
 
 <div class="chart-wrapper-ds">
+<div aria-hidden="true">
 <iframe title="Evictions plummeted in 2020" class="" aria-label="Interactive line chart" id="datawrapper-chart-xy1ku" src="https://datawrapper.dwcdn.net/xy1ku/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="423" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
+</div>
+</div>
+<div class="sr-only">
+<iframe title="Evictions plummeted in 2020" aria-label="Table" id="datawrapper-chart-cL0W5" src="https://datawrapper.dwcdn.net/cL0W5/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="380" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+</script>
 </div>
 
 When the eviction pause ended in 2021, homelessness in NYC began to rise at a staggering rate, with Black and Latino residents affected more than other racial groups. <a href="https://www.coalitionforthehomeless.org/facts-about-homelessness/#:~:text=In%20November%202023%2C%2092%2C824%20people,see%20the%20shelter%20census%20breakdown.&text=In%20November%202023%2C%2021%2C769%20families,breakdown%20of%20the%20census%20below."> This happened amid a backdrop of steadily increasing rates of homelessness over the past two decades, with roots that extend beyond the pandemic.</a>

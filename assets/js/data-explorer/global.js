@@ -114,16 +114,17 @@ let showBoroughTrend;
 let showComparisonTrend;
 let showLinks;
 
-var CSVforDownload; 
-var downloadedIndicator;
-var downloadedIndicatorMeasurement;
+let CSVforDownload; 
+let downloadedIndicator;
+let downloadedIndicatorMeasurement;
 
 // variables for print specs
-var printSpec = {};
-var vizYear;
-var vizSource;
-var vizSourceSecond;
-var chartType;
+let printSpec = {};
+let vizYear;
+let vizGeography;
+let vizSource;
+let vizSourceSecond;
+let chartType;
 
 // store hash, so display knows where it just was
 let currentHash;
@@ -167,14 +168,18 @@ const assignGeoRank = (GeoType) => {
             return 6;
         case 'CDTA2020':
             return 7;
-        case 'NTA2010':
+        case 'PUMA2010':
             return 8;
-        case 'NTA2020':
+        case 'PUMA2020':
+            return 8;
+        case 'NTA2010':
             return 9;
-        case 'NYHarbor':
+        case 'NTA2020':
             return 10;
-        case 'RMZ':
+        case 'NYHarbor':
             return 11;
+        case 'RMZ':
+            return 12;
     }
 }
 
@@ -189,6 +194,7 @@ const geoTypes = [
     "Subboro",
     "CD",
     "CDTA",
+    "PUMA",
     "NTA",
     "NYHarbor",
     "RMZ"
@@ -203,30 +209,36 @@ const geoTypes = [
 //  versioned geotypes in the data into generic geotypes.
 
 const prettifyGeoType = (GeoType) => {
-    
+
     switch (GeoType) {
-        
+
         case 'NYCKIDS2017':
-        return 'NYCKIDS';
-        
+            return 'NYCKIDS';
+
         case 'NYCKIDS2019':
-        return 'NYCKIDS';
-        
+            return 'NYCKIDS';
+
         case 'NYCKIDS2021':
-        return 'NYCKIDS';
-        
+            return 'NYCKIDS';
+
         case 'CDTA2020':
-        return 'CDTA';
-        
+            return 'CDTA';
+
         case 'NTA2010':
-        return 'NTA';
-        
+            return 'NTA';
+
         case 'NTA2020':
-        return 'NTA';
-        
+            return 'NTA';
+
+        case 'PUMA2010':
+            return 'PUMA';
+
+        case 'PUMA2020':
+            return 'PUMA';
+
         default:
-        return GeoType;
-        
+            return GeoType;
+
     }
 }
 
@@ -239,9 +251,12 @@ const prettifyGeoType = (GeoType) => {
 const renderTitleDescription = (title, desc) => {
 
     const indicatorTitle = document.getElementById('indicatorTitle');
-    const indicatorDescription = document.querySelector('.indicator-description');
+    const indicatorDescription = document.querySelectorAll('.indicator-description');
     indicatorTitle.innerHTML = title;
-    indicatorDescription.innerHTML = `${desc}`;
+
+    indicatorDescription.forEach((element) => {
+        element.innerHTML = `${desc}`;
+    });    
 }
 
 // Renders copy for the About the measures and the Data sources sections
@@ -255,7 +270,7 @@ const renderAboutSources = (about, sources) => {
     let type = typeof sources
 
     if (type === 'object') {
-        var singleSource;
+        let singleSource;
         singleSource = sources.every( (val, i, arr) => val === arr[0] )  
         singleSource === true ? dataSources.innerHTML = sources[0] : dataSources.innerHTML = sources
     } else {

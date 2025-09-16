@@ -14,10 +14,12 @@ indicators:
     IndicatorID:
       - 2434
       - 2433
+      - 2447
+      - 48
       - 24
       - 2394
-      - 48
       - 2416
+
 related:
   - title: "Rat Mitigation Zones"
     url: "data-features/rat-mitigation-zones/"

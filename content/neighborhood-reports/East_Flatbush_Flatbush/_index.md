@@ -1,5 +1,6 @@
 ---
 title: East Flatbush - Flatbush
+geocode: 207
 type: nr-output
 seo_title: "East Flatbush - Flatbush"
 seo_description: "Environmental Health data profiles for the East Flatbush - Flatbush neighborhood of NYC."

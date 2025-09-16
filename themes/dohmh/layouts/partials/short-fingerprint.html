@@ -1,0 +1,49 @@
+{{- /*  
+    
+    returns a resource object with a shorter hash path, but with all the rest the same
+
+*/ -}}
+
+{{/*  get resource from supplied object  */}}
+
+{{ $rsrc := . }}
+
+{{/*  {{ warnf ">>>>>  Name  >> " $rsrc.Name }}  */}}
+
+{{/*  fingerprinted file with Data.Integrity  */}}
+
+{{ $rsrc_secure := $rsrc | fingerprint "sha512" }}
+
+{{/*  call the name method to short-circuit whatever process causes the fingerprinted file to be written instead of the copied file ¯\_(ツ)_/¯  */}}
+
+{{ $rsrc_secure.Name }}
+
+{{/*  compute a short hash for the filename, for cache busting */}}
+
+{{ $rsrc_hash := $rsrc.Content | xxhash }}
+
+{{/*  {{ warnf ">>>>>  rsrc_hash  >> " $rsrc_hash  }}  */}}
+
+{{/*  path of file with short hash in the name  */}}
+
+{{ $relperm := $rsrc.Name }}
+
+{{ $short_relperm := replaceRE `(\.js$|\.css$)` ( print "." $rsrc_hash "$1" ) $relperm }}
+{{ $short_perm := replaceRE `(\.js$|\.css$)` ( print "." $rsrc_hash "$1" ) $relperm  }}
+
+{{/*  {{ warnf ">>>>>  short_relperm  >> " $short_relperm }}  */}}
+{{/*  {{ warnf ">>>>>  short_perm  >> " $short_perm }}  */}}
+
+{{/*  copy & publish resource to the short_path location  */}}
+
+{{ $rsrc_secure_short := "" }}
+
+{{ with $rsrc_secure }}
+    {{ with resources.Copy $short_relperm . }}
+        {{ $rsrc_secure_short = . }}
+    {{ end }}
+{{ end }}
+
+{{/*  return  */}}
+
+{{ return $rsrc_secure_short }}

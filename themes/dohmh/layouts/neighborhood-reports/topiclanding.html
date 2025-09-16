@@ -1,39 +1,22 @@
 {{- define "main" -}}
 
-<article class="container" id="skip-header-target">
+<article class="container-fluid" id="skip-header-target">
 
     <div class="row">
-        <div class="col-md-12 mx-auto mt-2">
-            <nav aria-label="breadcrumb" class="mb-3">
+        <div class="col-lg-12 mx-auto col-12">
+            <nav aria-label="breadcrumb" class="mt-2 mb-3">
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
                     <li class="breadcrumb-item"><a href={{ relURL "neighborhood-reports" }}>Neighborhood Reports</a></li>
                     <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
                 </ul>
             </nav>
-        </div>
-    </div>
 
-    <div class="row mb-4">
-
-        <div class="col-12">
-            <h1 id="nrtitle" data-pagefind-ignore="all">{{ .Title }}</h1>
-            <p>{{- .Content -}}</p>
-            <!-- Hidden, accessible list of clickable neighborhoods: rendered by JavaScript -->
-            <div class="row sr-only">
-                <h2>Select neighborhood</h2>
-                <ul id="neighborhoodList">
-                </ul>
-            </div>
-        </div>
-
-        <div class="col-md-8 mb-4" aria-hidden="true">
-
-            <h3 class="fs-rg mb-2">Choose a neighborhood to get a neighborhood report:</h3>
-            <hr class="mb-2">
-
-            <div class="row">
-                <div class="col-12">
+            <div class="row mb-4">
+                <div class="col-md-4">
+                    <div class="border" style="height: 450px; width:100%">
+                            {{ partial "nr-leaflet" . }}
+                    </div>
                     <div class="btn-group" role="group" style="width:100%!important;">
 
                         <input
@@ -47,49 +30,46 @@
                         <button id="clear" class="btn btn-md btn-warning">Clear</button>
 
                     </div>
-
-                    <div class="border-bottom nr-clickable-uhf" style="height:550px; width:100%;" aria-hidden="true">
-                        {{- partial "nr-clickable-uhf" . -}}
-                    </div>
-
-                    <button class="btn btn-sm float-right btn-outline-primary mt-1" onclick="showNeighborhoods()">Show neighborhood list</button>
-                    <div class="hide mt-2" id="showNeighbs">
-                        <h3>All neighborhoods:</h3>
-                        <ul id="neighborhoodList2"></ul>
-                    </div>
                 </div>
-            </div>
 
+                <div class="col-md-8">
+                    <div class="row no-gutters d-print-none">
+                        <div class="col-sm mb-2 mr-1 mb-lg-0">
+                            {{ with .Site.GetPage "/neighborhood-reports/Active_Design_Physical_Activity_and_Health.md" }}
+                            <a href="{{ .RelPermalink }}" class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 output-topic-button" id="Active">Active design</a>
+                            {{ end }}
+                        </div>
+                        <div class="col-sm mb-2 mr-1 mb-lg-0">
+                            {{ with .Site.GetPage "/neighborhood-reports/Asthma_and_the_Environment.md" }}
+                            <a href="{{ .RelPermalink }}" class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 output-topic-button" id="Asthma">Asthma</a>
+                            {{ end }}                            </div>
+                        <div class="col-sm mb-2 mr-1 mb-lg-0">
+                            {{ with .Site.GetPage "/neighborhood-reports/Climate_and_Health.md" }}
+                            <a href="{{ .RelPermalink }}" class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 output-topic-button" id="Climate">Climate</a>
+                            {{ end }}                            </div>
+                        <div class="col-sm mb-2 mr-1 mb-lg-0">
+                            {{ with .Site.GetPage "/neighborhood-reports/Housing_and_Health.md" }}
+                            <a href="{{ .RelPermalink }}" class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 output-topic-button" id="Housing">Housing</a>
+                            {{ end }}                            </div>
+                        <div class="col-sm mb-2 mr-1 mb-lg-0">
+                            {{ with .Site.GetPage "/neighborhood-reports/Outdoor_Air_and_Health.md" }}
+                            <a href="{{ .RelPermalink }}" class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 output-topic-button" id="Outdoor">Outdoor Air</a>
+                            {{ end }}
+                        </div>
+                    </div>
+
+                    <h1 class="h2 mt-3" id="nrtitle">{{ $.Params.title }}</h1>
+                    <p class="report-description fs-lg my-2">{{ .Content }}</p>
+
+                    <p class="font-weight-bold"><i class="fa-solid fa-arrow-left mr-1 text-primary"></i>Choose a neighborhood from the map to get a report.</p>
+
+
+                </div>
         </div>
-
-        <div class="col-md-4 text-right">
-            <h3 class="fs-rg mb-2">Neighborhood Reports</h3>
-
-            <hr class="mb-2">
-            {{ with .Site.GetPage "/neighborhood-reports/Active_Design_Physical_Activity_and_Health.md" }}
-            <p><a class="nrbtn btn btn-sm btn-outline-primary btn-block" href="{{ .RelPermalink }}" id="Active">{{ .Title }}
-            </a></p>
-            {{- end -}}
-            {{ with .Site.GetPage "/neighborhood-reports/Asthma_and_the_Environment.md" }}
-            <p><a  class="nrbtn btn btn-sm btn-outline-primary btn-block" href="{{ .RelPermalink }}" id="Asthma">{{ .Title }}
-            </a></p>
-            {{- end -}}
-            {{ with .Site.GetPage "/neighborhood-reports/Climate_and_Health.md" }}
-            <p><a  class="nrbtn btn btn-sm btn-outline-primary btn-block" href="{{ .RelPermalink }}" id="Climate">{{ .Title }}
-            </a></p>
-            {{- end -}}
-            {{ with .Site.GetPage "/neighborhood-reports/Housing_and_Health.md" }}
-            <p><a class="nrbtn btn btn-sm btn-outline-primary btn-block" href="{{ .RelPermalink }}" id="Housing">{{ .Title }}
-            </a></p>
-            {{- end -}}
-            {{ with .Site.GetPage "/neighborhood-reports/Outdoor_Air_and_Health.md" }}
-            <p><a class="nrbtn btn btn-sm btn-outline-primary btn-block" href="{{ .RelPermalink }}" id="Outdoor">{{ .Title }}
-            </a></p>
-            {{- end -}}
         </div>
-
-
     </div>
+
+
 
 </article>
 
@@ -163,17 +143,16 @@
 {{- end -}}
 
 
-{{- $js := resources.Get "js/uhflist.js" -}}
-{{ $secureJS := $js | resources.Fingerprint "sha512" }}
-<script type="text/javascript" src="{{ $secureJS.RelPermalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
+{{- $uhflist_js := resources.Get "js/uhflist.js" | partial "short-fingerprint.html" -}}
+<script type="text/javascript" src="{{ $uhflist_js.RelPermalink }}" integrity="{{ $uhflist_js.Data.Integrity }}"></script>
 
 <!-- flexdatalist -->
 
-{{- $flexdatalist_css := resources.Get "node_modules/jquery-flexdatalist/jquery.flexdatalist.min.css" -}}
-<link rel="stylesheet" href="{{ $flexdatalist_css.RelPermalink }}"/>
+{{- $flexdatalist_css := resources.Get "node_modules/jquery-flexdatalist/jquery.flexdatalist.min.css" | partial "short-fingerprint.html" -}}
+<link rel="stylesheet" href="{{ $flexdatalist_css.RelPermalink }}" integrity="{{ $flexdatalist_css.Data.Integrity }}"/>
 
-{{- $flexdatalist_js := resources.Get "node_modules/jquery-flexdatalist/jquery.flexdatalist.min.js" -}}
-<script type="text/javascript" src="{{ $flexdatalist_js.RelPermalink }}"></script>
+{{- $flexdatalist_js := resources.Get "node_modules/jquery-flexdatalist/jquery.flexdatalist.min.js" | partial "short-fingerprint.html" -}}
+<script type="text/javascript" src="{{ $flexdatalist_js.RelPermalink }}" integrity="{{ $flexdatalist_js.Data.Integrity }}"></script>
 
 
 <script type="text/javascript">

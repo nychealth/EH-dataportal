@@ -2,8 +2,8 @@
 title: Economic stability creates health
 date: 2024-02-08T09:01:00-04:00
 draft: false
-seo_title: "How economic stability creates health "
-seo_description: "A data story about how economic stability creates health"
+seo_title: "How economic stability creates health"
+seo_description: "A data story about how economic stability creates health."
 tags:
 categories: ["housing", "inequality", "childhealth", "foodanddrink"]
 keywords:
@@ -56,7 +56,13 @@ Health is determined by many factors. People tend to be healthier when they have
 The combined effects of poverty are increased sickness and death.
 
 <div class="my-4 py-2 border-top border-bottom">
+<div aria-hidden="true">
 <iframe title="Premature deaths rates are twice as high in poor neighborhoods as in wealthier ones " aria-label="Map" id="datawrapper-chart-56Vg1" src="https://datawrapper.dwcdn.net/56Vg1/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="786" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
+</div>
+</div>
+<div class="sr-only">
+<iframe title="Premature death rates are twice as high in poor neighborhoods as in wealthier ones" aria-label="Table" id="datawrapper-chart-2Rqll" src="https://datawrapper.dwcdn.net/2Rqll/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="932" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+</script>
 </div>
 
 ### Poverty forces people to do without necessities that keep them healthy, like food and medical care.
@@ -85,7 +91,13 @@ We see severe rent burden among New Yorkers of all income levels — but low-inc
 </div>
 
 <div class="my-4 py-2 border-top border-bottom">
+<div aria-hidden="true">
 <iframe title="Food insecurity in NYC" aria-label="Donut Chart" id="datawrapper-chart-XiHSE" src="https://datawrapper.dwcdn.net/XiHSE/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="398" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
+</div>
+</div>
+<div class="sr-only">
+<iframe title="Ten percent of New Yorkers don't have enough food" aria-label="Table" id="datawrapper-chart-HNb3L" src="https://datawrapper.dwcdn.net/HNb3L/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="299" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+</script>
 </div>
 
 Low-income New Yorkers also have to make tradeoffs when it comes to food. Food insecurity (not always having enough food) became even worse during the COVID-19 pandemic.
@@ -93,9 +105,14 @@ Low-income New Yorkers also have to make tradeoffs when it comes to food. Food i
 Our health is shaped not just by having <i> enough </i> food to eat but also by having the <i> right</i> foods to eat. NYC is known for its bodegas (mini-markets) but they don’t always offer healthy staples. For foods that make up a healthy diet, New Yorkers need grocery stores. But most high-poverty neighborhoods in NYC have more bodegas than grocery stores – making healthier food harder to access than unhealthy food.
 
 <div class="my-4 py-2 border-top border-bottom">
+<div aria-hidden="true">
 <iframe title="Neighborhoods with higher poverty have less access to healthy foods - a higher ratio of bodegas to supermarkets" aria-label="Scatter Plot" id="datawrapper-chart-we5Yo" src="https://datawrapper.dwcdn.net/we5Yo/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="600" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
 </div>
-
+</div>
+<div class="sr-only">
+<iframe title="Neighborhoods with higher poverty have less access to healthy foods — a higher ratio of bodegas to supermarkets" aria-label="Table" id="datawrapper-chart-Pg8tP" src="https://datawrapper.dwcdn.net/Pg8tP/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="1381" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+</script>
+</div>
 <a href="https://www.nyc.gov/site/doh/health/neighborhood-health/shop-health.page">The City’s Shop Healthy NYC! initiative encourages residents to talk to their bodega owners about offering more healthy options. </a>
 
 ### With no money to spare after rent and food, many New Yorkers go without the health care or medicines they need.
@@ -103,7 +120,13 @@ Our health is shaped not just by having <i> enough </i> food to eat but also by 
 Residents living in high-poverty neighborhoods are more likely to postpone health care. By going without these services, diseases can be more difficult to prevent, catch early, and treat, leading to more serious and costly health conditions.
 
 <div class="my-4 border-top border-bottom py-2">
+<div aria-hidden="true">
 <iframe title="Households in higher-poverty neighborhoods are more likely to postpone medical care" aria-label="Dot Plot" id="datawrapper-chart-W8Je1" src="https://datawrapper.dwcdn.net/W8Je1/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="523" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
+</div>
+</div>
+<div class="sr-only">
+<iframe title="Households in higher-poverty neighborhoods are more likely to postpone medical care" aria-label="Table" id="datawrapper-chart-Mz3G5" src="https://datawrapper.dwcdn.net/Mz3G5/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="925" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+</script>
 </div>
 
 Getting essential health care can mean the difference between staying afloat and winding up in medical debt.
@@ -132,15 +155,24 @@ Chronic stress related to finances can be debilitating because the factors causi
 In NYC, as in most places in the United States, there are more Black and Latino residents living in poverty than residents of other races. <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/housing/">This is a product of racism</a> and a history of policies that deprive people of color of access to home ownership, education and jobs, and other opportunities to build wealth and economic stability.
 
 <div class="my-4 border-top border-bottom py-2">
+<div aria-hidden="true">
 <iframe title="Poverty rates in segregated NYC neighborhoods" aria-label="Scatter Plot" id="datawrapper-chart-qBcx4" src="https://datawrapper.dwcdn.net/qBcx4/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="703" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
 </div>
-
+</div>
+<div class="sr-only">
+<iframe title="Poverty rates in segregated NYC neighborhoods" aria-label="Table" id="datawrapper-chart-uzt3a" src="https://datawrapper.dwcdn.net/uzt3a/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="946" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+</script>
+</div>
 <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/racial-wealth-gap/">This racial wealth gap persists across the United States</a> ,and results in health inequities. White New Yorkers are much less likely than New Yorkers of color to report their health as fair or poor.
 
 <div class="my-4 border-top border-bottom py-2">
-
+<div aria-hidden="true">
 <iframe title="Self-reported health status" aria-label="Split Bars" id="datawrapper-chart-26GS0" src="https://datawrapper.dwcdn.net/26GS0/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="291" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
-
+</div>
+<div class="sr-only">
+<iframe title="Self-reported health status" aria-label="Table" id="datawrapper-chart-SEtPT" src="https://datawrapper.dwcdn.net/SEtPT/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="322" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+</script>
+</div>
 </div>
 
 ### New Yorkers who participated in community conversations describe ways to decrease poverty and improve health

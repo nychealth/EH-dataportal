@@ -8,8 +8,8 @@
     }
   </style>
 
-  <div class="row">
-    <div class="col-md-10 mx-auto mb-4">
+  <div class="row mb-4">
+    <div class="col-lg-12 mx-auto col-12">
       <nav aria-label="breadcrumb" class="mt-2 mb-3">
         <ul class="breadcrumb">
             <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
@@ -19,57 +19,47 @@
 
       <div class="nr-accent">
         <div class="row">
-          <div class="col-md-8 col-sm-12 my-4">
+          <div class="col-md-7 col-sm-12 my-2">
             <h1><i class="fas fa-map-marked-alt mr-1" aria-hidden="true"></i>{{ .Title }}</h1>
             <p>{{- .Content -}}</p>
           </div>
         </div>
       </div>
 
-      <!-- Hidden, accessible list of clickable neighborhoods: rendered by JavaScript -->
-      <div class="row sr-only">
-        <h2>Select neighborhood</h2>
-        <ul id="neighborhoodList">
+      <div class="row">
+        <div class="col-md-7">
+              <h3>Choose report</h3>
 
-        </ul>
-      </div>
+              <div class="row no-gutters">
+                <div class="col-sm mb-2 mr-1 mb-lg-0">
+                  <button class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 nr-topic-button active" id="Active">Active design</button>
+                </div>
+                <div class="col-sm mb-2 mr-1 mb-lg-0">
+                  <button class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 nr-topic-button" id="Asthma">Asthma</button>
+                </div>
+                <div class="col-sm mb-2 mr-1 mb-lg-0">
+                  <button class="btn btn-sm  btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 nr-topic-button" id="Climate">Climate</button>
+                </div>
+                <div class="col-sm mb-2 mr-1 mb-lg-0">
+                  <button class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 nr-topic-button" id="Housing">Housing</button>
+                </div>
+                <div class="col-sm mb-2 mr-1 mb-lg-0">
+                  <button class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 nr-topic-button" id="Outdoor">Outdoor Air</button>
+                </div>
 
-      <!-- Visible, interactive neighborhood/report selector -->
-      <div class="row" aria-hidden="true">
-        <div class="col-12">
-          <h3 class="mb-2">1. Choose report:</h3>
-          <div class="row">
-            <div class="col-lg mb-2 mb-lg-0">
-              <button class="btn btn-lg btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2" onclick="buttonChange('Active')" id="Active">Active design</button>
-            </div>
-            <div class="col-lg mb-2 mb-lg-0">
-              <button class="btn btn-lg btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2" onclick="buttonChange('Asthma')" id="Asthma">Asthma</button>
-            </div>
-            <div class="col-lg mb-2 mb-lg-0">
-              <button class="btn btn-lg  btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2" onclick="buttonChange('Climate')" id="Climate">Climate</button>
-            </div>
-            <div class="col-lg mb-2 mb-lg-0">
-              <button class="btn btn-lg btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2" onclick="buttonChange('Housing')" id="Housing">Housing</button>
-            </div>
-            <div class="col-md mb-2 mb-lg-0">
-              <button class="btn btn-lg btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2" onclick="buttonChange('Outdoor')" id="Outdoor">Outdoor Air</button>
-            </div>
-          </div>
+                <div class="col-12">
+                    <p id="descr" class="my-2">
 
-          <div class="row my-3">
-            <div class="col-md-8">
-              <p id="descr"></p>
+                    </p>
+                </div>
+
             </div>
-          </div>
-          <hr class="mt-2 mb-3" />
         </div>
 
-        <div class="col-12">
-          <h3>2. Choose Neighborhood</h3>
+        <div class="col-md-5">
+              <h3>Choose Neighborhood</h3>
 
-          <div class="row d-flex flex-md-row-reverse">
-            <div class="col-md-5">
-              <div class="btn-group" role="group" style="width:100%;">
+                <div class="btn-group" role="group" style="width:100%;">
 
                 <input
                     id="flex_search"
@@ -83,46 +73,44 @@
                 <button id="clear" class="btn btn-md btn-primary">Clear</button>
 
               </div>
-              <button class="d-flex btn btn-md text-left btn-outline-primary mt-1 w-100 text-decoration-none neighborhood-list-button p-2" onclick="showNeighborhoods()">
-                <span class="flex-grow-1 text-lg">See neighborhood list</span>
-                <span class="plus">&plus;</span>
-                <span class="minus">&minus;</span>
-              </button>
-              <div class="hide" id="showNeighbs">
-                <ul class="list-unstyled p-2 border border-top-0 border-primary neighborhood-list" id="neighborhoodList2"></ul>
+
+              <div class="nr-clickable-uhf" style="height:400px" aria-hidden="true">
+                {{- partial "nr-leaflet" . -}}
               </div>
-            </div>
-            <div class="col-md-7 d-none d-md-block">
-              <div class="nr-clickable-uhf" style="height:550px" aria-hidden="true">
-                {{- partial "nr-clickable-uhf" . -}}
-              </div>
-            </div>
-          </div>
+
+                {{ partial "nr-show-zips" . }}
         </div>
 
+
       </div>
+
 
 
     </div>
   </div>
 
-<div class="hide" id="AsthmaDescr">
-  Asthma is a leading cause of hospitalizations for children. It can be made worse by housing and neighborhood characteristics. There are powerful inequities that drive racial disparities in asthma in NYC.
+  
+<div class="hide topic-descriptions" id="Asthma-Descr">
+  {{ with .Site.GetPage "/neighborhood-reports/Asthma_and_the_Environment.md" }}
+
+  <p>{{ .Content }}</p>
+  
+  {{ end }}
 </div>
 
-<div class="hide" id="ClimateDescr">
+<div class="hide topic-descriptions" id="Climate-Descr">
   As the climate changes, we track New York City's risk for extreme heat, storms and flooding, and episodes of elevated ozone. These have important public health impacts: already, heat kills more people than all other natural disasters.
 </div>
 
-<div class="hide" id="ActiveDescr">
-  The design and condition of buildings, streets, public transportation, and parks influence how much physical activity people get, how much they use active transportation, and how much other healthy behavior they do. A neighborhood built environment can also affect the safety of its residents.
+<div class="hide topic-descriptions" id="Active-Descr">
+  The design and conditions of buildings, streets, public transportation and parks influence physical activity, use of active transportation and other healthy behavior. A neighborhood's features can also impact the safety of its residents.
 </div>
 
-<div class="hide" id="HousingDescr">
-  Housing conditions can drive health outcomes like asthma, lead poisoning, and carbon monoxide poisoning. We track housing neighborhood characteristics that can put people at risk - and special populations that are vulnernerable.
+<div class="hide topic-descriptions" id="Housing-Descr">
+  Housing conditions can drive health outcomes like asthma, lead poisoning, and carbon monoxide poisoning. We track housing neighborhood characteristics that can put people at risk - and special populations that are vulnerable.
 </div>
 
-<div class="hide" id="OutdoorDescr">
+<div class="hide" id="Outdoor-Descr">
   Air pollution is one of the most important environmental threats to people who live in urban areas. Exposures are linked to respiratory and heart diseases, cancers, and premature deaths. Meanwhile, emissions, levels of exposure, and population vulnerability vary across neighborhoods.
 </div>
 
@@ -165,96 +153,78 @@
 
 </article>
 
+
+
 {{- end -}}
 
 {{ define "js_bot" }}
 
-
-  {{- $js := resources.Get "js/uhflist.js" -}}
-  {{ $secureJS := $js | resources.Fingerprint "sha512" }}
-  <script type="text/javascript" src="{{ $secureJS.RelPermalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
-
   <!-- flexdatalist -->
 
-  {{- $flexdatalist_css := resources.Get "node_modules/jquery-flexdatalist/jquery.flexdatalist.min.css" -}}
-  <link rel="stylesheet" href="{{ $flexdatalist_css.RelPermalink }}"/>
+  {{- $flexdatalist_css := resources.Get "node_modules/jquery-flexdatalist/jquery.flexdatalist.min.css" | partial "short-fingerprint.html" -}}
+  <link rel="stylesheet" href="{{ $flexdatalist_css.RelPermalink }}" integrity="{{ $flexdatalist_css.Data.Integrity }}"/>
 
-  {{- $flexdatalist_js := resources.Get "node_modules/jquery-flexdatalist/jquery.flexdatalist.min.js" -}}
-  <script type="text/javascript" src="{{ $flexdatalist_js.RelPermalink }}"></script>
+  {{- $flexdatalist_js := resources.Get "node_modules/jquery-flexdatalist/jquery.flexdatalist.min.js" | partial "short-fingerprint.html" -}}
+  <script type="text/javascript" src="{{ $flexdatalist_js.RelPermalink }}" integrity="{{ $flexdatalist_js.Data.Integrity }}"></script>
 
 
 <script type="text/javascript">
 
-// establish report, and reportURL - change this with a toggle on the report buttons
-var report;
-var reportURL = '' // this is used in nr-clickable-uhf
+// we use these variables for report selection
+var intendedDestination;
+var intendedDestinationName = null;
 
-// button Change function. Pass first word into function from buttons
-function buttonChange(x) {
+// MANAGES TOPIC BUTTONS ON HOME PAGE
+function handleTopicButtons() {
+  const buttons = document.querySelectorAll('.nr-topic-button');
 
-  // if x is blank, default to "Asthma"
+  buttons.forEach(button => {
+    button.addEventListener('click', () => {
+      // 1. Remove 'active' from all buttons
+      buttons.forEach(b => b.classList.remove('active'));
 
-  x = x == "" ? "Active" : x;
+      // 2. Add 'active' to the clicked button
+      button.classList.add('active');
 
-  // if x contains "report" or "#" rmeove it
-  x = x.replace("report", "").replace("#", "")
+      // 3. Set intended destination
+      setIntendedDestination(button.id)
 
-  report = x;
+      changeHomeCopy(button.id)
 
-  // append "report" to report name
-  window.location.hash = report + "report"; // changing hash - we'll use this later.
+    });
+  });
+}
 
-  var copyHolder = x + 'Descr'
-  var copy = document.getElementById(copyHolder).innerHTML
-  // console.log(copy)
-  document.getElementById('descr').innerHTML = copy
 
-  // this checks
-  if (report == "Asthma") {
-    reportURL = '/asthma_and_the_environment/'
-  } else if (report == "Climate") {
-    reportURL = '/climate_and_health/'
-  } else if (report == "Housing") {
-    reportURL = '/housing_and_health/'
-  } else if (report == "Outdoor") {
-    reportURL = '/outdoor_air_and_health/'
-  } else if (report == "Active") {
-    reportURL = '/active_design_physical_activity_and_health/'
-  };
+function changeHomeCopy(x) {
+      var copyHolder = x + '-Descr'
 
-  // loop through buttons and set styles
-  var buttons = document.querySelectorAll(".btn-outline-primary")
-  for (let i = 0; i < buttons.length; i ++) {
-    buttons[i].classList.remove("active")
+      if (document.getElementById(copyHolder)) {
+        var copy = document.getElementById(copyHolder).innerHTML
+        document.getElementById('descr').innerHTML = copy
+      } else {
+        console.log('Not home page; doing nothing.')
+      }
+}
+
+
+function setIntendedDestination(x) {
+  console.log('Intended destination: ', x)
+  intendedDestination = x
+
+  // look up intendedDestination in topicSlugs, and retrieve the URL Path for the intended destination
+  if (topicSlugs.hasOwnProperty(intendedDestination)) {
+      intendedDestinationName = topicSlugs[intendedDestination];
   }
 
-  document.getElementById(report).classList.add("active")
+  console.log('intended destination url: ', intendedDestinationName);
 
 }
 
-// run initial with hash, with logic to default to asthma
-buttonChange(window.location.hash)
-
-// populate accessible neighborhood-selection
-var ul = document.getElementById("neighborhoodList");
-var ul2 = document.getElementById("neighborhoodList2");
-
-neighborhoods.forEach(function (neighborhood) {
-  var li = document.createElement("li");
-  li.innerHTML = "<a href='" + {{ relURL "neighborhood-reports/" }} + neighborhood.page_name + "/" + "'>" + neighborhood.UHF_name + "</a>: " + neighborhood.Zipcodes
-  ul.appendChild(li);
-  ul2.appendChild(li)
-});
-
-function showNeighborhoods() {
-
-    document.getElementById('showNeighbs').classList.toggle('hide')
-    document.getElementById('showNeighbs').classList.toggle('show')
-    let button = document.querySelector('.neighborhood-list-button');
-    button.classList.toggle('active');
-
-  }
-
+// SET DEFAULTS FOR HOME PAGE
+setIntendedDestination('Active') // default
+document.getElementById('descr').innerHTML = document.getElementById('Active-Descr').innerHTML
+handleTopicButtons()
 
 
 // ===== load flexdatalist ================================================== //
@@ -293,7 +263,7 @@ function loadList() {
     // console.log('chosen neighb:')
     // console.log(set.page_name);
 
-    window.location.href = {{ relURL "neighborhood-reports/" }} + set.page_name + reportURL
+    window.location.href = {{ relURL "neighborhood-reports/" }} + set.page_name + '/' + intendedDestinationName
 
 })
 

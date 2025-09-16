@@ -4,7 +4,7 @@ shortTitle: The racial wealth gap
 date: 2023-06-16T09:01:00-04:00
 draft: false
 seo_title: "How the racial wealth gap affects health"
-seo_description: "A data story about how the racial wealth gap affects health"
+seo_description: "A data story about how the racial wealth gap affects health."
 tags:
 tags:
 categories: ["inequality"]
@@ -30,8 +30,12 @@ Income and wealth are two different concepts. Income is measured by earnings, wh
 
 The Federal Reserve Board’s 2019 Survey of Consumer Finances (SCF) shows that, nationally, the average White family holds nearly eight times the wealth of the average Black family and over five times the wealth of the average Hispanic family.
 
-<div class="chart-wrapper-ds">
+<div class="chart-wrapper-ds" aria-hidden="true">
 <iframe title="Mean and median net worth for  White, Black, and  Hispanic people in the US" aria-label="Grouped Column Chart" id="datawrapper-chart-nqi4y" src="https://datawrapper.dwcdn.net/nqi4y/7/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="481" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
+</div>
+<div class="sr-only">
+<iframe title="Mean and median net worth for White, Black and Hispanic people in the US" aria-label="Table" id="datawrapper-chart-vmOjI" src="https://datawrapper.dwcdn.net/vmOjI/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="271" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+</script>
 </div>
 
 ### Racist and discriminatory policies have prevented Black families from accruing assets, financial security, and wealth
@@ -142,8 +146,12 @@ Data shows that Black-White racial health inequities have not narrowed over time
 
 Between 2019 and 2021, the U.S. experienced a widening of its life expectancy gap during the COVID-19 pandemic with Hispanic and non-Hispanic Black populations experiencing larger declines in life expectancy over the two-year period than non-Hispanic White populations.
 
-<div class="chart-wrapper-ds">
+<div class="chart-wrapper-ds" aria-hidden="true">
 <iframe title="Health inequities have not improved over time" aria-label="Interactive line chart" id="datawrapper-chart-AbBga" src="https://datawrapper.dwcdn.net/AbBga/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="400" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+</script>
+</div>
+<div class="sr-only">
+<iframe title="Racial health inequities have not improved over time (Copy)" aria-label="Table" id="datawrapper-chart-uPSl8" src="https://datawrapper.dwcdn.net/uPSl8/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="836" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
 </script>
 </div>
 
@@ -192,7 +200,7 @@ Effective solutions to racial inequities in wealth and health must simultaneousl
   <div class="col-md-4 card content-card mb-3">
     <div class="card-content primary p-2">
       <img src="rwg_visual_abstract.png">
-      <em class="fs-sm"><a href="rwg_visual_abstract.png" target="_blank">Full-size visual abstract for this report</a>.</em>
+      <em class="fs-sm"><a href="rwg_visual_abstract.png" target="_blank" alt="Analyzing the racial wealth gap and implications for health full report">Full-size visual abstract for this report</a>.</em>
     </div>
   </div>
 </div>

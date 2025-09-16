@@ -2,33 +2,11 @@
 
 <article class="container-fluid" id="skip-header-target">
 
-    <div class="row">
-        <div class="col-md-11 mx-auto mt-2 mb-3">
-            <nav aria-label="breadcrumb" class="">
-                <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
-                    <li class="breadcrumb-item"><a href={{ relURL "data-features" }}>Data Features</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </div>
+    {{ partial "df-front-block" . }}
 
-    <div class="row">
-        <div class="col-md-11 mx-auto" data-pagefind-weight="7.0">
-            <h1 id="top" class="h2" data-pagefind-weight="10.0">{{ .Title }}</h1>
-            <div class="row">
-                <div class="col-md-8 mr-auto">
-                    <p>{{ .Content }}</p>
 
-                </div>
-            </div>
-        </div>
 
-    </div>
-
-    <div class="row mb-4">
+    <div class="row mt-3 mb-4">
         <div class="col-md-5 ml-auto">
             <div id="map" class="border d-sm-none d-md-block">
             </div>
@@ -40,18 +18,16 @@
 
             </div>
 
-            <div class="border p-1 mt-2">
-                <h3 class="home-label font-weight-bold"><i class="fas fa-file-download mr-1" aria-hidden="true"></i>Download data:</h3>
-                <ul>
-                    <li><a href="311-complaints.csv">311 complaints</a></li>
-                    <li><a href="initial-inspections.csv">Initial inspections</a></li>
-                    <li><a href="compliance-inspections.csv">Compliance inspections</a></li>
-                    <li><a href="exterminator-visits.csv">Exterminator visits</a></li>
-                </ul>
-                <p class="fs-sm">Inspections are of all properties that have a tax lot, including privately-owned property, public property, parks, schools, and vacant lots.</p>
+            <div class="border p-3 mt-2 d-sm-none d-md-block">
+                                        <h4>Are you in an RMZ? Here's what you need to know.</h4>
+                        <p>If you live or work in an RMZ, you can expect more frequent inspections for rats and the conditions that attract them. The NYC Health Department will work with the NYC Departments of Parks and Recreation, Department of Sanitation, Department of Education, and Housing Authority to address rat conditions on city-owned property. </p>
+                        <p></p>
+
+
+                        <p>The Health Department also works to control rats in areas that are not RMZs.  Get <a href="https://www.nyc.gov/rats">information and resources on how to address rats</a> in your neighborhood, or to <a href="https://www.nyc.gov/site/doh/services/rats-control-training.page">sign up for a free Rat Academy training</a>.</p>
+
             </div>
 
-            <a class="btn btn-outline-primary btn-block my-2" href="../rat-information-portal">For individual property inspection results, visit the Rat Information Portal</a>
 
         </div>
 
@@ -59,7 +35,7 @@
 
                 <div class="row">
                     <div class="col-12">
-                        <div class="dropdown mb-2">
+                        <div class="dropdown">
                             <button class="btn btn-outline-primary btn-block btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                               Choose zone
                             </button>
@@ -148,12 +124,6 @@
             <div class="row">
                 <div class="col-md-8 mr-auto">
                     <div class="mb-2">
-                        <h4>Are you in an RMZ? Here's what you need to know.</h4>
-                        <p>If you live or work in an RMZ, you can expect more frequent inspections for rats and the conditions that attract them. The NYC Health Department will work with the NYC Departments of Parks and Recreation, Department of Sanitation, Department of Education, and Housing Authority to address rat conditions on city-owned property. </p>
-                        <p></p>
-
-
-                        <p>The Health Department also works to control rats in areas that are not RMZs.  Get <a href="https://www.nyc.gov/rats">information and resources on how to address rats</a> in your neighborhood, or to <a href="https://www.nyc.gov/site/doh/services/rats-control-training.page">sign up for a free Rat Academy training</a>.</p>
                     </div>
 
                 </div>
@@ -192,7 +162,7 @@
 </article>
 
 <!-- Related footer -->
-{{- partial "related-footer-2" . -}}
+{{- partial "related-footer" . -}}
 
 <!--bring in rmz JS -->
 <script type="text/javascript" src="rmz.js"></script>

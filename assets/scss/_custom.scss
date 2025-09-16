@@ -27,12 +27,12 @@ table {
 }
 
 .print-only {
-  display: none;
+  display: none!important;
 }
 
 @media print {
   .print-only {
-    display: flex;
+    display: flex!important;
   }
   .reports {
     width: 100% !important;

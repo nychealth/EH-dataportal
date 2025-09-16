@@ -1,7 +1,6 @@
-
 {{/*  add GA code for prod data  */}}
 
-{{ if eq hugo.Environment "production" "prod_prod" }}
+{{ if eq hugo.Environment "prod_prod" }}
 
     {{ warnf (print "prod environment: " hugo.Environment) }}
 
@@ -40,12 +39,21 @@
 {{ end }}
 
 
+<!-- favicon -->
+<!-- https://www.iconfinder.com/icons/7618350/heatmap_business_analytics_statistics_icon -->
+<!-- https://lucianojung.de/ -->
+
+<link rel="icon" href={{ relURL "7618350_heatmap_business_analytics_statistics_icon-gpr.ico" }}>
+
+
 <!-- Required meta tags -->
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 {{/*  <meta data-pagefind-filter="section[content]" content="Data Stories">  */}}
 
 <!-- Corrects IE Compatibility Mode -->
+
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 <title>{{ block "title" . }}
@@ -81,9 +89,10 @@
     <link href="https://maps.nyc.gov/nyc-lib/v1.2.79/css/nyc-basic-lib.css" rel="stylesheet">
 {{- end }}
 
-<!-- jQuery (full, compressed version) -->
-{{- $jquery := resources.Get "node_modules/jquery/dist/jquery.min.js" | resources.Fingerprint "sha512" }}
 
+{{- /*  jQuery (full, compressed version)  */}}
+
+{{- $jquery := resources.Get "node_modules/jquery/dist/jquery.min.js" | partial "short-fingerprint.html" }}
 <script src="{{ $jquery.RelPermalink }}" integrity="{{ $jquery.Data.Integrity }}" crossorigin="anonymous"></script>
 
 <!-- favicon -->
@@ -95,14 +104,12 @@
 
 {{- /*  CSS  */}}
 
-{{- $fontawesome_CSS := resources.Get "node_modules/@fortawesome/fontawesome-free/css/all.min.css" }}
-
-<link rel="stylesheet" href="{{ $fontawesome_CSS.RelPermalink }}" />
+{{- $fontawesome_CSS := resources.Get "node_modules/@fortawesome/fontawesome-free/css/all.min.css" | partial "short-fingerprint.html" }}
+<link rel="stylesheet" href="{{ $fontawesome_CSS.RelPermalink }}" integrity="{{ $fontawesome_CSS.Data.Integrity }}" crossorigin="anonymous"/>
 
 {{- /*  JS  */}}
 
-{{- $fontawesome := resources.Get "node_modules/@fortawesome/fontawesome-free/js/all.min.js" | resources.Fingerprint "sha512" }}
-
+{{- $fontawesome := resources.Get "node_modules/@fortawesome/fontawesome-free/js/all.min.js" | partial "short-fingerprint.html" }}
 <script src="{{ $fontawesome.RelPermalink }}" integrity="{{ $fontawesome.Data.Integrity }}" crossorigin="anonymous"></script>
 
 {{- /*  webfonts  */}}
@@ -119,12 +126,16 @@
 <link href="https://maps.nyc.gov/nyc-lib/v1.2.79/css/nyc-basic-lib.css" rel="stylesheet">
 
 
-<!-- main CSS -->
+
+{{- /*  main CSS  */}}
+
 {{- $sass := resources.Get "scss/theme.scss" }}
 {{- $style := $sass | toCSS | resources.Fingerprint "sha512" }}
 <link rel="stylesheet" href="{{ $style.RelPermalink }}" integrity="{{ $style.Data.Integrity }}" />
 
-<!-- Vega. To call, have vega: true in a page's frontmatter -->
+
+{{- /*  Vega. To call, have vega: true in a page's frontmatter  */}}
+
 {{- if .Params.vega -}}
 
     {{- /*  VegaLite  */}}
@@ -133,14 +144,12 @@
     {{- $vegaLite := resources.Get "node_modules/vega-lite/build/vega-lite.min.js" }}
     {{- $vegaEmbed := resources.Get "node_modules/vega-embed/build/vega-embed.min.js" }}
 
-    {{- $vegaBundleJS := slice $vega $vegaLite $vegaEmbed | resources.Concat "js/vegaBundle.js" | resources.Fingerprint "sha512" -}}
-
+    {{- $vegaBundleJS := slice $vega $vegaLite $vegaEmbed | resources.Concat "js/vegaBundle.js" | partial "short-fingerprint.html" -}}
     <script src="{{ $vegaBundleJS.RelPermalink }}" integrity="{{ $vegaBundleJS.Data.Integrity }}"></script>
 
     {{- /*  D3  */}}
 
-    {{- $d3 := resources.Get "node_modules/d3/dist/d3.min.js" | resources.Fingerprint "sha512" }}
-
+    {{- $d3 := resources.Get "node_modules/d3/dist/d3.min.js" | partial "short-fingerprint.html" }}
     <script src="{{ $d3.RelPermalink }}" integrity="{{ $d3.Data.Integrity }}"></script>
 
 {{- end -}}
@@ -148,8 +157,7 @@
 
 {{- /*  sanitizing html strings with dompurify  */}}
 
-{{- $dompurify := resources.Get "node_modules/dompurify/dist/purify.min.js" | resources.Fingerprint "sha512" -}}
-
+{{- $dompurify := resources.Get "node_modules/dompurify/dist/purify.min.js" | partial "short-fingerprint.html" -}}
 <script src="{{ $dompurify.RelPermalink }}" integrity="{{ $dompurify.Data.Integrity }}"></script>
 
 <!-- Other data libraries. To call, have datatables: true in a page's frontmatter -->
@@ -158,8 +166,7 @@
 
     {{- /*  D3  */ -}}
 
-    {{- $d3 := resources.Get "node_modules/d3/dist/d3.min.js" | resources.Fingerprint "sha512" }}
-
+    {{- $d3 := resources.Get "node_modules/d3/dist/d3.min.js" | partial "short-fingerprint.html" }}
     <script src="{{ $d3.RelPermalink }}" integrity="{{ $d3.Data.Integrity }}"></script>
 
      {{- /*  DataTables  */ -}}
@@ -168,9 +175,9 @@
 
     {{- $dataTablesCSS := resources.Get "node_modules/datatables.net-dt/css/jquery.dataTables.min.css" -}}
     {{- $dataTablesButtonsCSS := resources.Get "node_modules/datatables.net-buttons-dt/css/buttons.dataTables.min.css" -}}
-    {{- $dtCSS := slice $dataTablesCSS $dataTablesButtonsCSS | resources.Concat "css/dtCSS.css" }}
+    {{- $dtCSS := slice $dataTablesCSS $dataTablesButtonsCSS | resources.Concat "css/dtCSS.css" | partial "short-fingerprint.html" }}
 
-    <link rel="stylesheet" href="{{ $dtCSS.RelPermalink }}" >
+    <link rel="stylesheet" href="{{ $dtCSS.RelPermalink }}" integrity="{{ $dtCSS.Data.Integrity }}">
 
     {{- /*  JS  */}}
 
@@ -180,7 +187,7 @@
     {{- $dataTablesButtonsPrint := resources.Get "node_modules/datatables.net-buttons/js/buttons.print.min.js" }}
     {{- $dataTablesRowGroup := resources.Get "node_modules/datatables.net-rowgroup/js/dataTables.rowGroup.min.js" }}
     
-    {{- $dataTablesBundleJS := slice $dataTables $dataTablesButtons $dataTablesButtonsHtml5 $dataTablesButtonsPrint $dataTablesRowGroup | resources.Concat "js/dataTableBundle.js" | resources.Fingerprint "sha512" }}
+    {{- $dataTablesBundleJS := slice $dataTables $dataTablesButtons $dataTablesButtonsHtml5 $dataTablesButtonsPrint $dataTablesRowGroup | resources.Concat "js/dataTableBundle.js" | partial "short-fingerprint.html" }}
 
     <script src="{{ $dataTablesBundleJS.RelPermalink }}" integrity="{{ $dataTablesBundleJS.Data.Integrity }}"></script>
 
@@ -192,55 +199,63 @@
 
     {{- /*  Arquero  */}}
 
-    {{- $arquero := resources.Get "node_modules/arquero/dist/arquero.min.js" | resources.Fingerprint "sha512" -}}
-
+    {{- $arquero := resources.Get "node_modules/arquero/dist/arquero.min.js" | partial "short-fingerprint.html" -}}
     <script src="{{ $arquero.RelPermalink }}" integrity="{{ $arquero.Data.Integrity }}"></script>
 
 {{- end }}
 
-<!-- Leaflet -->
 
-{{- if .Params.leaflet }}
+{{- /*  Leaflet  */}}
+
+{{ if or .Params.leaflet (eq .Section "neighborhood-reports") }}
+
+    <!-- UHF42 neighborhood list javascript -->
+    {{- $uhflist_js := resources.Get "js/uhflist.js" | partial "short-fingerprint.html" -}}
+    <script type="text/javascript" src="{{ $uhflist_js.RelPermalink }}" integrity="{{ $uhflist_js.Data.Integrity }}"></script>
 
     <!-- leaflet CSS -->
 
-    {{- $leaflet_CSS := resources.Get "node_modules/leaflet/dist/leaflet.css" }}
-
-    <link rel="stylesheet" href="{{ $leaflet_CSS.RelPermalink }}" />
+    {{- $leaflet_CSS := resources.Get "node_modules/leaflet/dist/leaflet.css" | partial "short-fingerprint.html" }}
+    <link rel="stylesheet" href="{{ $leaflet_CSS.RelPermalink }}" integrity="{{ $leaflet_CSS.Data.Integrity }}" />
 
     <!-- leaflet source -->
 
-    {{- $leaflet := resources.Get "node_modules/leaflet/dist/leaflet.js" | resources.Fingerprint "sha512" }}
-
+    {{- $leaflet := resources.Get "node_modules/leaflet/dist/leaflet.js" | partial "short-fingerprint.html" }}
     <script src="{{ $leaflet.RelPermalink }}" integrity="{{ $leaflet.Data.Integrity }}"></script>
-
 
     <!-- leaflet easybutton CSS -->
 
-    {{- $easybutton_CSS := resources.Get "node_modules/leaflet-easybutton/src/easy-button.css" }}
-
-    <link rel="stylesheet" href="{{ $easybutton_CSS.RelPermalink }}" />
+    {{- $easybutton_CSS := resources.Get "node_modules/leaflet-easybutton/src/easy-button.css" | partial "short-fingerprint.html" }}
+    <link rel="stylesheet" href="{{ $easybutton_CSS.RelPermalink }}" integrity="{{ $easybutton_CSS.Data.Integrity }}" />
 
     <!-- leaflet easybutton source -->
 
-    {{- $easybutton := resources.Get "node_modules/leaflet-easybutton/src/easy-button.js" | resources.Fingerprint "sha512" }}
-
+    {{- $easybutton := resources.Get "node_modules/leaflet-easybutton/src/easy-button.js" | partial "short-fingerprint.html" }}
     <script src="{{ $easybutton.RelPermalink }}" integrity="{{ $easybutton.Data.Integrity }}"></script>
 
     <!-- Leaflet.colorIcon -->
     <!-- https://github.com/shevekk/Leaflet.ColorIcon -->
 
-    {{- $colorIcon := resources.Get "js/L.colorIcon.js" | resources.Fingerprint "sha512" }} <!-- need to use Hugo Pipes to get file from assets dir -->
+    {{- $colorIcon := resources.Get "js/L.colorIcon.js" | partial "short-fingerprint.html" }} <!-- need to use Hugo Pipes to get file from assets dir -->
 
     <script src="{{ $colorIcon.RelPermalink }}" integrity="{{ $colorIcon.Data.Integrity }}"></script>
 
     <!--Geocoder -->
-    {{- $geocoder := resources.Get "node_modules/leaflet-control-geocoder/dist/Control.Geocoder.js" | resources.Fingerprint "sha512" }}
+    {{- $geocoder := resources.Get "node_modules/leaflet-control-geocoder/dist/Control.Geocoder.js" | partial "short-fingerprint.html" }}
     <script src="{{ $geocoder.RelPermalink}}" integrity="{{ $geocoder.Data.Integrity }}"></script>
 
     <!-- point in polygon -->
     <script src="https://cdn.rawgit.com/hayeswise/Leaflet.PointInPolygon/v1.0.0/wise-leaflet-pip.js"></script>
 
+
+
+    <!-- leaflet marker icons -->
+
+    {{- $leaflet_marker_icon := resources.Get "node_modules/leaflet/dist/images/marker-icon.png" }}
+    {{- $leaflet_marker_shadow := resources.Get "node_modules/leaflet/dist/images/marker-shadow.png" }}
+
+    {{- $leaflet_marker_icon.Publish -}}
+    {{- $leaflet_marker_shadow.Publish -}}
 
 
 {{- end -}}
@@ -251,7 +266,7 @@
 
     {{- /*  D3  */ -}}
 
-    {{- $d3 := resources.Get "node_modules/d3/dist/d3.min.js" | resources.Fingerprint "sha512" }}
+    {{- $d3 := resources.Get "node_modules/d3/dist/d3.min.js" | partial "short-fingerprint.html" }}
 
     <script src="{{ $d3.RelPermalink }}" integrity="{{ $d3.Data.Integrity }}"></script>
 
@@ -260,10 +275,10 @@
      {{- /*  CSS  */ -}}
 
     {{- $dataTablesCSS := resources.Get "node_modules/datatables.net-dt/css/jquery.dataTables.min.css" -}}
-    {{- $dataTablesButtonsCSS := resources.Get "node_modules/datatables.net-buttons-dt/css/buttons.dataTables.min.css" }}
-    {{- $dtCSS := slice $dataTablesCSS $dataTablesButtonsCSS | resources.Concat "css/dtCSS.css" }}
+    {{- $dataTablesButtonsCSS := resources.Get "node_modules/datatables.net-buttons-dt/css/buttons.dataTables.min.css" -}}
+    {{- $dtCSS := slice $dataTablesCSS $dataTablesButtonsCSS | resources.Concat "css/dtCSS.css" | partial "short-fingerprint.html" }}
 
-    <link rel="stylesheet" href="{{ $dtCSS.RelPermalink }}" >
+    <link rel="stylesheet" href="{{ $dtCSS.RelPermalink }}" integrity="{{ $dtCSS.Data.Integrity }}">
 
     {{- /*  JS  */}}
 
@@ -272,22 +287,15 @@
     {{- $dataTablesButtonsHtml5 := resources.Get "node_modules/datatables.net-buttons/js/buttons.html5.min.js" }}
     {{- $dataTablesButtonsPrint := resources.Get "node_modules/datatables.net-buttons/js/buttons.print.min.js" }}
     {{- $dataTablesRowGroup := resources.Get "node_modules/datatables.net-rowgroup/js/dataTables.rowGroup.min.js" }}
-    
     {{- $dataTablesButtonsDt := resources.Get "node_modules/datatables.net-buttons-dt/js/buttons.dataTables.min.js" }}
 
-    {{- $dataTablesBundleJS := slice $dataTables $dataTablesButtons $dataTablesButtonsHtml5 $dataTablesButtonsPrint $dataTablesRowGroup $dataTablesButtonsDt | resources.Concat "js/dataTableBundle.js" | resources.Fingerprint "sha512" }}
+    {{- $dataTablesBundleJS := slice $dataTables $dataTablesButtons $dataTablesButtonsHtml5 $dataTablesButtonsPrint $dataTablesRowGroup $dataTablesButtonsDt | resources.Concat "js/dataTableBundle.js" | partial "short-fingerprint.html" }}
 
     <script src="{{ $dataTablesBundleJS.RelPermalink }}" integrity="{{ $dataTablesBundleJS.Data.Integrity }}"></script>
 
     {{- /*  Arquero  */}}
 
-    {{- $arquero := resources.Get "node_modules/arquero/dist/arquero.min.js" | resources.Fingerprint "sha512" }}
-
-    {{- /*  DOMPurify  */}}
-
-    {{- $dompurify := resources.Get "node_modules/dompurify/dist/purify.min.js" | resources.Fingerprint "sha512" }}
-
-
+    {{- $arquero := resources.Get "node_modules/arquero/dist/arquero.min.js" | partial "short-fingerprint.html" }}
     <script src="{{ $arquero.RelPermalink }}" integrity="{{ $arquero.Data.Integrity }}"></script>
 
 {{- end -}}
@@ -320,10 +328,10 @@
 
 <script>
 
-    let baseURL = {{ relURL "" }}
+    let baseURL = {{ relURL "" }};
     let data_repo = "{{ $.Site.Params.data_repo }}";
     let data_branch = "{{ $.Site.Params.data_branch }}";
-    let hugoEnv = "{{ hugo.Environment }}"
+    let hugoEnv = "{{ hugo.Environment }}";
 
 </script>
 

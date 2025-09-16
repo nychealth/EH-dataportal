@@ -3,7 +3,7 @@
 
 <header id="global-header" role="banner">
 
-    <div class="bg-black text-white" id="nyc-top-header">
+    <div class="bg-black text-white d-print-none" id="nyc-top-header">
 
         <div class="container-fluid wide">
 
@@ -59,6 +59,8 @@
         </div>
         <!-- .container-fluid -->
 
+
+
     </div>
     <!-- #nyc-top-header -->
     <div class="site-header bg-primary" style='background-image: url({{ relURL "images/header_background.jpg" }})'>
@@ -87,37 +89,17 @@
 
                         <div class="d-lg-flex align-items-center">
 
-                            <!-- Mobile Toggle Buttons -->
-
-                            <ul class="extensible-list horizontal justify-content-between my-2 d-lg-none">
-                                <li>
-                                    <button class="navbar-toggler no-btn-style" type="button" title="Main Menu" data-toggle="collapse"
-                                        data-target="#nav-primary" aria-controls="nav-primary" aria-expanded="false"
-                                        aria-label="Toggle navigation">
-                                        <span class="sr-only">Main Menu</span>
-                                        <span class="fas fa-bars fa-lg text-white" ></span>
-                                    </button>
-                                </li>
-
-                                <li>
-                                    <a class="nav-link" href="#" type="button" data-toggle="modal" data-target="#searchModal" title="Search" data-toggle="collapse">
-                                        <span class="sr-only">Search</span>
-                                        <i class="fa fa-magnifying-glass text-white"></i>
-                                    </a>
-                                </li>
-                            </ul>
-
-                            <div class="collapse d-lg-block mx-n2 mx-lg-2" id="nav-primary">
+                            <div class="d-none d-lg-block mx-n2 mx-lg-2" id="nav-primary-top">
 
                                 <nav class="nav" role="navigation">
 
                                     <div class="nav-item bg-white text-primary border dropdown">
-                                        <a class="nav-link dropdown-toggle" href="#" id="nav-item-topic"
+                                        <a class="nav-link dropdown-toggle" href="#" id="nav-item-topic-top"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             Topics
                                         </a>
 
-                                        <div class="dropdown-menu wider-menu" aria-labelledby="nav-item-topic">
+                                        <div class="dropdown-menu wider-menu" aria-labelledby="nav-item-topic-top">
                                             <ul class="extensible-list p-0">
                                                 {{ range sort (where .Site.Pages "Section" "key-topics") "Params.Title" }}
                                                 {{- if not .Params.hide -}}
@@ -138,12 +120,12 @@
                                     <!-- .nav-item -->
 
                                     <div class="nav-item bg-white text-primary border dropdown">
-                                        <a class="nav-link dropdown-toggle" href="#" id="nav-item-type"
+                                        <a class="nav-link dropdown-toggle" href="#" id="nav-item-type-top"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             Explore
                                         </a>
 
-                                        <div class="dropdown-menu wider-menu" aria-labelledby="nav-item-type">
+                                        <div class="dropdown-menu wider-menu" aria-labelledby="nav-item-type-top">
                                             <ul class="extensible-list p-0">
 
                                                 {{/*  get all menus  */ -}}
@@ -213,7 +195,7 @@
                                     <!-- .nav-item -->
                                     <div class="nav-item bg-none text-white border border-white ml-1">
 
-                                        <a href="#" class="nav-link text-white " data-toggle="modal" data-target="#subscribeModal">
+                                        <a href="#" class="nav-link text-white" data-subscribe-click="header" data-toggle="modal" data-target="#subscribeModal">
                                             Subscribe
                                         </a>
                                     </div>
@@ -221,6 +203,7 @@
                                 </nav>
 
                             </div>
+
 
                         </div>
                         <!-- .d-flex -->
@@ -244,7 +227,144 @@
         </div>
 
 
-        </div>
+    </div>
+
+    <div class="border-bottom px-2 d-print-none">
+                                    <!-- Mobile Toggle Buttons -->
+
+                                    <ul class="extensible-list horizontal justify-content-between my-1 d-lg-none">
+                                        <li>
+                                            <button class="navbar-toggler no-btn-style" type="button" title="Main Menu" data-toggle="collapse"
+                                                data-target="#nav-primary" aria-controls="nav-primary" aria-expanded="false"
+                                                aria-label="Toggle navigation">
+                                                <span class="sr-only">Main Menu</span>
+                                                <span class="fas fa-bars fa-lg text-primary" ></span>
+                                            </button>
+                                        </li>
+        
+                                        <li>
+                                            <a class="nav-link" href="#" type="button" data-toggle="modal" data-target="#searchModal" title="Search" data-toggle="collapse">
+                                                <span class="sr-only">Search</span>
+                                                <i class="fa fa-magnifying-glass text-primary"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+        
+                                    <div class="collapse d-lg-none mx-n2 mx-lg-2" id="nav-primary">
+        
+                                        <nav class="nav" role="navigation">
+        
+                                            <div class="nav-item bg-white text-primary border dropdown">
+                                                <a class="nav-link dropdown-toggle" href="#" id="nav-item-topic"
+                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    Topics
+                                                </a>
+        
+                                                <div class="dropdown-menu wider-menu" aria-labelledby="nav-item-topic">
+                                                    <ul class="extensible-list p-0">
+                                                        {{ range sort (where .Site.Pages "Section" "key-topics") "Params.Title" }}
+                                                        {{- if not .Params.hide -}}
+                                                            {{- if .Params.shortTitle }}
+                                                            <a class="" href="{{ .RelPermalink }}"> <li class="">{{ .Params.shortTitle }}</li></a>
+                                                            <hr class="my-1">
+                                                            {{- else }}
+                                                            <a class="" href="{{ .RelPermalink }}"> <li class="">{{ .Params.title }}</li></a>
+                                                            <hr class="my-1">
+                                                            {{- end -}}
+                                                        {{- end -}}
+                                                        {{ end }}
+                                                            <a href={{ relURL "key-topics" }}>All topics</a>
+        
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <!-- .nav-item -->
+        
+                                            <div class="nav-item bg-white text-primary border dropdown">
+                                                <a class="nav-link dropdown-toggle" href="#" id="nav-item-type"
+                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    Explore
+                                                </a>
+        
+                                                <div class="dropdown-menu wider-menu" aria-labelledby="nav-item-type">
+                                                    <ul class="extensible-list p-0">
+        
+                                                        {{/*  get all menus  */ -}}
+        
+                                                        {{- $all_menus := .Site.Menus.main -}}
+        
+                                                        {{- /*  set exclusions  */ -}}
+        
+                                                        {{- $exclude := ( slice "Search" "Key Topics" ) -}}
+        
+                                                        {{- /*  filter menus  */ -}}
+        
+                                                        {{- $want_menus := where $all_menus "Name" "not in" $exclude -}}
+        
+                                                        {{- /*  get filtered count  */ -}}
+        
+                                                        {{- $count := len $want_menus -}}
+        
+                                                        {{- /*  range over wanted menus  */ -}}
+        
+                                                        {{- range $index, $menu := $want_menus -}}
+        
+                                                            {{- /*  check if last item (adding 1 to index b/c of 0-indexing)  */ -}}
+        
+                                                            {{- $last := eq ( add $index 1 ) $count -}}
+        
+                                                            {{- /*  add element  */ -}}
+        
+                                                            <a href="{{ .URL }}"><li><span class="mr-1">{{ $menu.Pre }}</span>{{ $menu.Name }}</li></a>
+        
+                                                            {{- /*  only add the horizontal bar if it's not the last item  */ -}}
+        
+                                                            {{- if not $last }}
+        
+                                                                <hr class="my-1">
+        
+                                                            {{ end -}}
+        
+                                                        {{- end -}}
+        
+        
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <!-- .nav-item -->
+        
+                                            <div class="nav-item bg-white text-primary border">
+                                                {{ with .GetPage "about" -}}
+                                                <a class="nav-link " href="{{ .RelPermalink }}">
+                                                    About
+                                                </a>
+                                                {{- end -}}
+                                            </div>
+        
+        
+                                            <!-- .nav-item -->
+                                            
+        
+                                            <div class="nav-item bg-white text-primary border d-none d-lg-block">
+                                                <a class="nav-link" href="#" type="button" data-toggle="modal" data-target="#searchModal" title="Search" data-toggle="collapse">
+                                                            <span class="sr-only">Search</span>
+                                                            <i class="fa fa-magnifying-glass text-body"></i>
+                                                        </a>
+                                            </div>
+                                            <!-- .nav-item -->
+        
+                                            <!-- .nav-item -->
+                                            <div class="nav-item bg-none text-primary border">
+        
+                                                <a href="#" class="nav-link text-primary " data-toggle="modal" data-target="#subscribeModal">
+                                                    Subscribe
+                                                </a>
+                                            </div>
+        
+                                        </nav>
+        
+                                    </div>
+    </div>
 
         <div class="modal" tabindex="-1" role="dialog" id="subscribeModal">
             <div class='modal-dialog modal-lg modal-dialog-centered' role='document'>
