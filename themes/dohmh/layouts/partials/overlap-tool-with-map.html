@@ -1,0 +1,364 @@
+<style>
+    #map {
+        width: 100%;
+        height: 65vh;
+    }
+
+</style>
+
+<div class="row my-2">
+    <div class="col-12">
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="CD" value="CD" checked>
+            <label class="form-check-label" for="CD">Community Districts</label>
+            </div>
+            <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="CCD" value="CCD">
+            <label class="form-check-label" for="CCD">City Council Districts</label>
+        </div>
+    </div>
+
+    <div class="col-8">
+        <div id="map" class="border"></div>
+    </div>
+
+    <div class="col-4">
+
+        <strong><i class="fas fa-square mr-1" style="color:#66c2a5" aria-hidden="true"></i>Chosen neighborhood:</strong> 
+
+        <div id="chosen" class="mb-2">
+            <span id="neighbHolder">
+                Choose a neighborhood by clicking on the map
+            </span>
+        </div>
+
+        <hr class="my-2">
+
+        <strong><i class="far fa-square mr-1" style="color:red" aria-hidden="true"></i>Overlapping UHF neighborhoods:</strong>
+        <div id="overlaps" class="">
+          <!-- Printing -->            
+        </div>
+        <hr class="my-2">
+
+        <div class="fs-sm hide" id="prompt">
+          <em>Click to view Neigborhood Reports for overlapping UHF neighborhoods.</em>
+        </div>
+    </div>
+</div>
+
+
+<!-- CCD to UHF overlap js -->
+{{- $ccd_js := resources.Get "/js/ccd-to-uhf42.js" | partial "short-fingerprint.html" -}}
+<script type="text/javascript" src="{{ $ccd_js.RelPermalink }}" integrity="{{ $ccd_js.Data.Integrity }}"></script>
+
+<!-- CD to UHF overlap js -->
+{{- $cd_js := resources.Get "/js/cd-to-uhf42.js" | partial "short-fingerprint.html" -}}
+<script type="text/javascript" src="{{ $cd_js.RelPermalink }}" integrity="{{ $cd_js.Data.Integrity }}"></script>
+
+
+<script>
+
+  // URLs for geojson
+  var geojsonURLs = [
+    {
+        "name": "CD",
+        "url": "https://raw.githubusercontent.com/nychealth/EHDP-data/refs/heads/production/geography/CD.geojson",
+        "property": "GEOCODE"
+    },
+    {
+        "name": "CCD",
+        "url": "https://raw.githubusercontent.com/nychealth/EHDP-data/refs/heads/production/geography/CityCouncilDistrict.geojson",
+        "property": "CounDist"
+    },
+        {
+        "name": "UHF42",
+        "url": "https://raw.githubusercontent.com/nychealth/EHDP-data/refs/heads/production/geography/UHF42.geojson",
+        "property": "tbd"
+    }
+  ]
+
+
+
+    // JAVASCRIPT FOR MAP IMPLEMENTATION
+    // Create the map
+
+    var map = L.map('map').setView([40.7, -73.95], 11); // Centered on NYC
+
+
+    function initializeMap() {
+        // Add a basemap
+        L.tileLayer(
+            'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
+        {
+            maxZoom: 15,
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+        }).addTo(map);
+
+        // add reset button
+        L.easyButton({
+            position: "bottomleft",
+            states: [{
+                title: "Reset",
+                icon: "fas fa-undo",
+                
+                onClick: function() {
+                    
+                    reset();
+                }
+            }]
+        }).addTo(map);    
+    }
+
+    initializeMap();
+
+    function reset() {
+      console.log('Reset')
+      // loadGeoJSON("CD");
+
+      var radioButtons = document.querySelectorAll('input[name="inlineRadioOptions"]');
+      var selectedValue = null;
+
+      radioButtons.forEach(rb => {
+        if (rb.checked) {
+          selectedValue = rb.value;
+        }
+      });
+
+      loadGeoJSON(selectedValue)
+
+    }
+
+
+    let geojsonLayer;
+    let selectedID = null;
+    let currentProperty = null;
+    let UHFLayer = null; // keep track of the current UHF polygon layer
+
+
+    // Function to load GeoJSON by name
+    function loadGeoJSON(name) {
+      const match = geojsonURLs.find(d => d.name === name);
+      if (!match) {
+        console.error("No matching GeoJSON for", name);
+        return;
+      }
+
+      // Store the property name for this layer
+      currentProperty = match.property;
+
+      // Remove old layer if exists
+      if (geojsonLayer) {
+        map.removeLayer(geojsonLayer);
+      }
+
+        // Remove UHF layer if exists
+        if (UHFLayer) {
+            map.removeLayer(UHFLayer);
+            UHFLayer = null
+        }
+
+
+      selectedID = null; // reset selection when switching layers
+
+      // Fetch and add new GeoJSON
+      fetch(match.url)
+        .then(response => response.json())
+        .then(data => {
+          geojsonLayer = L.geoJSON(data, {
+            style: function (feature) {
+              // Default style before any click
+              return {
+                color: "#333",
+                weight: 1,
+                fillColor: "#66c2a5",
+                fillOpacity: 0.4
+              };
+            },
+            onEachFeature: function (feature, layer) {
+              layer.on("click", function () {
+                const id = feature.properties[currentProperty];
+
+                var neighborhoodName;
+
+                if (name === 'CD') {
+                    neighborhoodName = feature.properties.GEONAME
+                    getUHFs('CD', id)
+                } else if (name === 'CCD') {
+                    // print CCD format to name bin
+                    neighborhoodName = 'Council District #' + id
+                    getUHFs('CCD', id)
+                }
+
+                document.getElementById('neighbHolder').innerHTML = neighborhoodName
+
+                // Create popup content (bold text)
+                const popupContent = `<b>${neighborhoodName}</b>`;
+                layer.bindPopup(popupContent);
+
+
+                selectedID = id;
+
+                // Reset styles for all features
+                geojsonLayer.setStyle(function (f) {
+                  if (f.properties[currentProperty] === selectedID) {
+                    // Clicked feature highlighted
+                    return {
+                      color: "#333",
+                      weight: 2,
+                      fillColor: "#66c2a5",
+                      fillOpacity: 0.6
+                    };
+                  } else {
+                    // Non-clicked features invisible
+                    return {
+                      color: "#e5e5e5",
+                      weight: 1,
+                      fillColor: "transparent",
+                      fillOpacity: 0
+                    };
+                  }
+                });
+
+                // Zoom to clicked feature
+                map.fitBounds(layer.getBounds());
+                layer.openPopup();
+              });
+            }
+          }).addTo(map);
+
+          // Fit bounds to all features initially
+          map.fitBounds(geojsonLayer.getBounds());
+        });
+    }
+
+    // Radio button listeners
+    const radios = document.querySelectorAll('input[name="inlineRadioOptions"]');
+    radios.forEach(radio => {
+      radio.addEventListener('change', function () {
+        if (this.checked) {
+          console.log("Loading:", this.value);
+          loadGeoJSON(this.value);
+        }
+      });
+    });
+
+    // Load default (CD) on startup
+    loadGeoJSON("CD");
+
+function drawUHFs(UHF_ids) {
+
+  // Remove previous layer if exists
+  if (UHFLayer) {
+    map.removeLayer(UHFLayer);
+    UHFLayer = null;
+  }
+
+  // Fetch the UHF42 GeoJSON
+  fetch("https://raw.githubusercontent.com/nychealth/EHDP-data/refs/heads/production/geography/UHF42.geojson")
+    .then(response => response.json())
+    .then(data => {
+      // Filter features for all matching UHF_ids
+      const features = data.features.filter(f => UHF_ids.includes(f.properties.GEOCODE));
+      if (features.length === 0) {
+        console.warn("No matching UHF polygons for:", UHF_ids);
+        return;
+      }
+
+      // Add all matching polygons as a single layer
+      UHFLayer = L.geoJSON(features, {
+        style: {
+          color: "red",
+          weight: 1,
+          dashArray: "3,5",
+          fillColor: "transparent",
+          fillOpacity: 0
+        },
+        onEachFeature: function (feature, layer) {
+          const tooltipContent = `UHF42:<br>
+                                  ${feature.properties.GEONAME}`;
+          layer.bindTooltip(tooltipContent, {
+            permanent: true,
+            direction: "center",   // puts label inside polygon
+            className: "uhf-label" // optional for custom styling
+          });
+        }
+      }).addTo(map);
+
+      // Zoom to bounds of all selected polygons
+      map.fitBounds(UHFLayer.getBounds());
+
+      // remove clickability from CD/CCDs
+      geojsonLayer.eachLayer(layer => {
+        layer.off("click"); // removes click events
+      });
+    });
+}
+
+
+
+    var thisOverlap ;
+    function getUHFs(from, geo) {
+
+        document.getElementById('prompt').classList.remove('hide')
+
+        var overlaps = document.getElementById('overlaps')
+        overlaps.innerHTML = ''
+
+        if (from === 'CCD') {
+
+            console.log('Getting UHFs for City Council District ' + geo)
+
+
+            // Loop through source JS
+            thisOverlap = CCDtoUHF.filter(neighborhood => neighborhood.CCD == geo)
+
+        } else if (from === 'CD') {
+
+            console.log('Getting UHFs for Community District ' + geo)
+
+            // Loop through source JS
+            thisOverlap = CDtoUHF.filter(cd => cd.CD == geo)
+
+        } else {
+
+            console.log('Error.')
+
+        }
+
+        console.log('Overlapping neighborhoods:')
+        console.log(thisOverlap[0].matchingUHFs)
+        const uhfIds = thisOverlap[0].matchingUHFs.map(item => item.UHF_id);
+        drawUHFs(uhfIds)
+
+
+        // Print matching overlaps to page
+        thisOverlap[0].matchingUHFs.forEach(ol => {
+
+            var uhfid = ol.UHF_id
+            var name = ol.GEONAME
+            var overl = ol.percent.toFixed(1)
+            var dest = ol.page_name
+            var popol = (from === 'CCD') 
+                ? ol.pop_pct_of_ccd.toFixed(1) 
+                : (from === 'CD') 
+                    ? ol.pop_pct_of_cd.toFixed(1) 
+                    : null;
+
+            // set minimum overlap
+            if (overl < 0) {
+                return
+                } else {
+                overlaps.innerHTML += `
+                <a href="{{ .Site.BaseURL }}neighborhood-reports/${dest}" class="dropdown-item text-primary">
+                    <span class="font-weight-bold">
+                    ${name} 
+                    </span> <br>
+                    Overlap: ${overl}% area | ${popol}% population
+                </a>`
+                }
+            }
+        )
+    }
+
+      
+</script>
