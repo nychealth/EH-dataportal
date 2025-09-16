@@ -147,15 +147,22 @@
               layer.on("click", function () {
                 const id = feature.properties[currentProperty];
 
+                var neighborhoodName;
+
                 if (name === 'CD') {
-                    // print CD format to name bin
-                    document.getElementById('neighbHolder').innerHTML = feature.properties.GEONAME
+                    neighborhoodName = feature.properties.GEONAME
                     getUHFs('CD', id)
                 } else if (name === 'CCD') {
                     // print CCD format to name bin
-                    document.getElementById('neighbHolder').innerHTML = 'Council District #' + id
+                    neighborhoodName = 'Council District #' + id
                     getUHFs('CCD', id)
                 }
+
+                document.getElementById('neighbHolder').innerHTML = neighborhoodName
+
+                // Create popup content (bold text)
+                const popupContent = `<b>${neighborhoodName}</b>`;
+                layer.bindPopup(popupContent);
 
 
                 selectedID = id;
@@ -183,6 +190,7 @@
 
                 // Zoom to clicked feature
                 map.fitBounds(layer.getBounds());
+                layer.openPopup();
               });
             }
           }).addTo(map);
@@ -205,7 +213,6 @@
 
     // Load default (CD) on startup
     loadGeoJSON("CD");
-
 
 function drawUHFs(UHF_ids) {
 
@@ -234,6 +241,15 @@ function drawUHFs(UHF_ids) {
           dashArray: "3,5",
           fillColor: "transparent",
           fillOpacity: 0
+        },
+        onEachFeature: function (feature, layer) {
+          const tooltipContent = `UHF42:<br>
+                                  ${feature.properties.GEONAME}`;
+          layer.bindTooltip(tooltipContent, {
+            permanent: true,
+            direction: "center",   // puts label inside polygon
+            className: "uhf-label" // optional for custom styling
+          });
         }
       }).addTo(map);
 
@@ -241,6 +257,7 @@ function drawUHFs(UHF_ids) {
       map.fitBounds(UHFLayer.getBounds());
     });
 }
+
 
 
     var thisOverlap ;
