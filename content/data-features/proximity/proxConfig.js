@@ -16,7 +16,7 @@ var config = [
         "geonameField": "station"
     },
     {
-        "text": `Then we combined all those walk areas into one map. This way, the whole citywide coverage is easier to see at once.`,
+        "text": `Then we combined all those walk areas into one map. This way, the whole citywide coverage is easier to see at once. Everybody who lives in these green areas lives within a half-mile of an ADA-compliant, accessible subway station.`,
         "geoFile": `geojson/isochrones_union_ADA.geojson`,
         "choropleth": false,
         "valueField": "",
