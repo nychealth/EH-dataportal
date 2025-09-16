@@ -61,7 +61,7 @@ function changeText(x) {
     document.getElementById('lastButton').setAttribute('onclick',`changeText(${last})`)
 
     // load GeoJSON as specified in config, if it exists
-    loadGeoJSON(config[x].geoFile)
+    loadGeoJSON(config[x].geoFile,config[x].choropleth, config[x].valueField)
 
     // if we're at the end of the config, then, remove the Next Button
     if (next == config.length) {
@@ -73,22 +73,78 @@ function changeText(x) {
 }
 
 // function to load geojson
-function loadGeoJSON(url) {
+function loadGeoJSON(url, choro, propertyField) {
   fetch(url)
     .then(res => res.json())
     .then(data => {
       if (geojsonLayer) {
         map.removeLayer(geojsonLayer);
       }
+
+      let min = Infinity;
+      let max = -Infinity;
+
+      if (choro && propertyField) {
+        data.features.forEach(f => {
+          const val = f.properties[propertyField];
+          if (typeof val === "number") {
+            if (val < min) min = val;
+            if (val > max) max = val;
+          }
+        });
+      }
+
+      // --- helper to map value -> color ---
+      function getColor(value) {
+        if (!choro || value == null || min === max) {
+          return "green"; // fallback
+        }
+        // normalize between 0 and 1
+        const t = (value - min) / (max - min);
+
+        // interpolate between white and dark green
+        const start = [255, 255, 255]; // white
+        const end   = [0, 51, 0];    // dark green
+
+        const r = Math.round(start[0] + t * (end[0] - start[0]));
+        const g = Math.round(start[1] + t * (end[1] - start[1]));
+        const b = Math.round(start[2] + t * (end[2] - start[2]));
+
+        return `rgb(${r},${g},${b})`;
+      }
+
       geojsonLayer = L.geoJSON(data, {
         pointToLayer: function (feature, latlng) {
           return L.marker(latlng, { icon: customIcon });
+        },
+        style: function (feature) {
+          if (choro && propertyField && feature.properties[propertyField] !== undefined) {
+            const value = feature.properties[propertyField];
+            return {
+              color: "#333333",   // outline
+              weight: 1,
+              opacity: 1,
+              fillColor: getColor(value),
+              fillOpacity: 0.7
+            };
+          } else {
+            return {
+              color: "#333333",   // dark gray outline
+              weight: 2,
+              opacity: 1,
+              fillColor: "green",
+              fillOpacity: 0.3
+            };
+          }
         }
       }).addTo(map);
+
+      // Optional: fit map view to new layer
       // map.fitBounds(geojsonLayer.getBounds());
     })
-    .catch(err => console.error('Error loading GeoJSON:', err));
+    .catch(err => console.error("Error loading GeoJSON:", err));
 }
+
 
 
 
