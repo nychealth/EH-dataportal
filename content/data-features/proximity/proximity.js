@@ -61,7 +61,7 @@ function changeText(x) {
     document.getElementById('lastButton').setAttribute('onclick',`changeText(${last})`)
 
     // load GeoJSON as specified in config, if it exists
-    loadGeoJSON(config[x].geoFile,config[x].choropleth, config[x].valueField)
+    loadGeoJSON(config[x].geoFile,config[x].choropleth, config[x].valueField,config[x].geonameField)
 
     // if we're at the end of the config, then, remove the Next Button
     if (next == config.length) {
@@ -72,8 +72,7 @@ function changeText(x) {
 
 }
 
-// function to load geojson
-function loadGeoJSON(url, choro, propertyField) {
+function loadGeoJSON(url, choro, propertyField, nameField) {
   fetch(url)
     .then(res => res.json())
     .then(data => {
@@ -99,12 +98,11 @@ function loadGeoJSON(url, choro, propertyField) {
         if (!choro || value == null || min === max) {
           return "green"; // fallback
         }
-        // normalize between 0 and 1
-        const t = (value - min) / (max - min);
+        const t = (value - min) / (max - min); // normalize
 
         // interpolate between white and dark green
         const start = [255, 255, 255]; // white
-        const end   = [0, 51, 0];    // dark green
+        const end   = [0, 51, 0];      // dark green
 
         const r = Math.round(start[0] + t * (end[0] - start[0]));
         const g = Math.round(start[1] + t * (end[1] - start[1]));
@@ -121,7 +119,7 @@ function loadGeoJSON(url, choro, propertyField) {
           if (choro && propertyField && feature.properties[propertyField] !== undefined) {
             const value = feature.properties[propertyField];
             return {
-              color: "#333333",   // outline
+              color: "#333333",
               weight: 1,
               opacity: 1,
               fillColor: getColor(value),
@@ -129,14 +127,22 @@ function loadGeoJSON(url, choro, propertyField) {
             };
           } else {
             return {
-              color: "#333333",   // dark gray outline
+              color: "#333333",
               weight: 2,
               opacity: 1,
               fillColor: "green",
               fillOpacity: 0.3
             };
           }
-        }
+        },
+        onEachFeature: choro
+          ? function (feature, layer) {
+              const name = feature.properties[nameField];
+              const val = feature.properties[propertyField];
+              const tooltipContent = `<b>${name}</b><br>${val}`;
+              layer.bindTooltip(tooltipContent, { sticky: true });
+            }
+          : undefined
       }).addTo(map);
 
       // Optional: fit map view to new layer
@@ -144,6 +150,8 @@ function loadGeoJSON(url, choro, propertyField) {
     })
     .catch(err => console.error("Error loading GeoJSON:", err));
 }
+
+
 
 
 
