@@ -24,17 +24,24 @@
 
     <div class="col-4">
 
-        <strong>Chosen neighborhood:</strong> 
+        <strong><i class="fas fa-square mr-1" style="color:#66c2a5" aria-hidden="true"></i>Chosen neighborhood:</strong> 
 
-        <div id="chosen" class="border mb-2 p-1">
+        <div id="chosen" class="mb-2">
             <span id="neighbHolder">
                 Choose a neighborhood by clicking on the map
             </span>
         </div>
 
-        <strong>Overlapping UHF neighborhoods:</strong>
-        <div id="overlaps" class="border">
-            
+        <hr class="my-2">
+
+        <strong><i class="far fa-square mr-1" style="color:red" aria-hidden="true"></i>Overlapping UHF neighborhoods:</strong>
+        <div id="overlaps" class="">
+          <!-- Printing -->            
+        </div>
+        <hr class="my-2">
+
+        <div class="fs-sm hide" id="prompt">
+          <em>Click to view Neigborhood Reports for overlapping UHF neighborhoods.</em>
         </div>
     </div>
 </div>
@@ -166,8 +173,8 @@
                   } else {
                     // Non-clicked features invisible
                     return {
-                      color: "transparent",
-                      weight: 0,
+                      color: "#e5e5e5",
+                      weight: 1,
                       fillColor: "transparent",
                       fillOpacity: 0
                     };
@@ -223,8 +230,8 @@ function drawUHFs(UHF_ids) {
       UHFLayer = L.geoJSON(features, {
         style: {
           color: "red",
-          weight: 2,
-          dashArray: "5,5",
+          weight: 1,
+          dashArray: "3,5",
           fillColor: "transparent",
           fillOpacity: 0
         }
@@ -238,6 +245,8 @@ function drawUHFs(UHF_ids) {
 
     var thisOverlap ;
     function getUHFs(from, geo) {
+
+        document.getElementById('prompt').classList.remove('hide')
 
         var overlaps = document.getElementById('overlaps')
         overlaps.innerHTML = ''
@@ -274,7 +283,7 @@ function drawUHFs(UHF_ids) {
 
             var uhfid = ol.UHF_id
             var name = ol.GEONAME
-            var overl = ol.percent.toFixed(0)
+            var overl = ol.percent.toFixed(1)
             var dest = ol.page_name
             var popol = (from === 'CCD') 
                 ? ol.pop_pct_of_ccd.toFixed(1) 
