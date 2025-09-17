@@ -1,0 +1,25 @@
+{{ $p := .page }}
+{{ $i := .index }}
+
+<div class="card accordion-item border">
+  <a class="card-header font-weight-bold collapse"
+     id="acc-button-{{ $i }}"
+     data-toggle="collapse"
+     href="#panel-acc-button-{{ $i }}"
+     role="tab"
+     aria-expanded="false"
+     aria-controls="panel-acc-button-{{ $i }}">
+    <span class="title" role="heading" aria-level="3">
+      {{ $p.Title }}
+    </span>
+  </a>
+  <div class="collapse"
+       id="panel-acc-button-{{ $i }}"
+       role="tabpanel"
+       aria-labelledby="acc-button-{{ $i }}"
+       data-parent="#sectionsAccordion">
+    <div class="bg-white text-black p-2">
+      {{ $p.Content }}
+    </div>
+  </div>
+</div>

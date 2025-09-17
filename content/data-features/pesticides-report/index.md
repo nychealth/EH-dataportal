@@ -12,7 +12,7 @@ keywords:
   - City agencies
 seo_title: Pesticides Report.
 seo_description: Pesticides Report.
-layout: report
+layout: pesticides-report
 hide: false
 report: true
 ---
@@ -120,29 +120,3 @@ Proin aliquam justo eget rhoncus aliquam. Integer pharetra blandit sapien, ut ef
 
 #### Summary of agencies pesticide use
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas lorem lorem, aliquam quis auctor ut, condimentum vel nibh. Praesent eget metus varius, aliquam velit nec, ullamcorper arcu. Donec dapibus nulla quis lacus blandit facilisis. Vivamus ultricies id leo ac aliquet. Integer cursus diam eu quam efficitur placerat. Nam velit est, suscipit nec lobortis rutrum, accumsan a dui. Phasellus quis purus feugiat nisl ullamcorper ullamcorper. Aenean placerat nulla eu felis vulputate, et venenatis metus molestie. Maecenas at quam orci. Nunc sagittis vestibulum mauris quis volutpat. Proin aliquam justo eget rhoncus aliquam. Integer pharetra blandit sapien, ut efficitur urna. Maecenas fringilla odio eget nibh blandit pulvinar. Donec euismod eros nec dapibus aliquet. Phasellus vitae hendrerit quam.
-
-##### Administration for Children's Services
-The New York City Administration for Children’s Services (ACS) provides for the protection of New York City’s children from abuse and neglect. Along with their community partners, ACS provides neighborhood-based services to help ensure children grow up in safe, permanent homes with strong families. The Department of Juvenile Justice (DJJ) was merged into this agency in December 2010. The agency contracts for pest management services. Table 4 summarizes ACS pesticide use by pesticide type. Table 5 lists all pesticide products used in 2023, primarily at facilities previously under management of the DJJ. 
-- [Download data on pesticide use by ACS]()
-
-**Types of Pesticides Used by ACS in 2023**
-| Pesticide type | Volume (gallons) | % of total volume | Weight (lbs) | % of total weight | Times applied | % of times applied |
-|----------------|------------------|-------------------|--------------|-------------------|---------------|--------------------|
-| Rodenticide    | 0                | 0%                | 79.98        | 93.2%             | 58            | 18.2%              |
-| Insecticide    | 2.34             | 100%              | 5.88         | 6.8%              | 260           | 81.8%              |
-| Totals         | 2.34             |                   | 85.85        |                   | 318           |                    |
-
-<hr>
-
-##### Brooklyn Public Libraries
-The Brooklyn Public Library (BPL) serves Brooklyn’s 2.5 million residents, offering thousands of public programs, millions of books, and use of more than 850 free Internet-accessible computers at its 66 locations. Contractors are hired for pest management as needed and the major pest infestations are roaches and mice. Table 6 summarizes BPL pesticide use by pesticide type. Table 7 lists all pesticide products used in 2023.
-- [Download data on pesticide use by BPL]()
-
-**Types of Pesticides Used by BPL in 2023**
-| Pesticide type | Volume (gallons) | % of total volume | Weight (lbs) | % of total weight | Times applied | % of times applied |
-|----------------|------------------|-------------------|--------------|-------------------|---------------|--------------------|
-| Rodenticide    | 0                | 0%                | 103.52       | 89.3%             | 340           | 47.8%              |
-| Insecticide    | 0.04             | 100%              | 12.35        | 10.7%             | 371           | 52.2%              |
-| Totals         | 0.04             |                   | 115.87       |                   | 711           |                    |
-
-<hr>
