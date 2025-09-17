@@ -114,6 +114,10 @@
     function reset() {
       console.log('Reset')
       // loadGeoJSON("CD");
+      document.getElementById('overlaps').innerHTML = ''
+      document.getElementById('neighbHolder').innerHTML = ''
+      document.getElementById('prompt').classList.add('hide')
+
 
       var radioButtons = document.querySelectorAll('input[name="inlineRadioOptions"]');
       var selectedValue = null;
@@ -345,7 +349,7 @@ function drawUHFs(UHF_ids) {
                     : null;
 
             // set minimum overlap
-            if (overl < 0) {
+            if (overl < 0.1) {
                 return
                 } else {
                 overlaps.innerHTML += `
