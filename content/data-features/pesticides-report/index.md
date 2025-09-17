@@ -15,9 +15,10 @@ seo_description: Pesticides Report.
 layout: pesticides-report
 hide: false
 report: true
+vega: true
 ---
 
-## Pesticide use by NYC Agencies in 2023
+## Pesticide use by NYC Agencies in 202X
 
 Local Law 54 of 2007 requires the New York City Department of Health and Mental Hygiene (The Health Department) to summarize pesticide use by City agencies annually. New York City agencies account for a small fraction of all pesticides used in the city. New York State receives pesticide use data from all commercial applicators. New York City agencies’ use in 2022 (the last year for which New York State data has been processed) accounted for an estimated 2% of the total volume of liquid pesticides, and 15% of the total pounds of solid pesticides applied within the five boroughs of New York City, after excluding mosquito larvicide applications. 
 

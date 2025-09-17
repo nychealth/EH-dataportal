@@ -19,7 +19,18 @@
        aria-labelledby="acc-button-{{ $i }}"
        data-parent="#sectionsAccordion">
     <div class="bg-white text-black p-2">
-      {{ $p.Content }}
+      <p>{{ $p.Content }}</p>
+        
+      <p class="font-weight-bold">Types of pesticides used by {{ $p.Params.filterBy }}:</p>
+
+      <div id="table-{{ $i }}"></div>
+
+      <script>
+          document.addEventListener("agencyDataReady", function() {
+            renderAgencyTable('{{ $p.Params.filterBy }}','table-{{ $i }}')
+          });
+      </script>
+
     </div>
   </div>
 </div>
