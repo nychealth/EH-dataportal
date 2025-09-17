@@ -17,9 +17,9 @@
 
     // load CSV and assign to the global
     d3.csv("data/dummydata.csv").then(function(data) {
-    agencyData = data;
-    console.log("CSV loaded:", agencyData);
-    document.dispatchEvent(new Event("agencyDataReady"));
+        agencyData = data;                                      // assign to global variable
+        console.log("CSV loaded:", agencyData);                 // print to console
+        document.dispatchEvent(new Event("agencyDataReady"));   // send an event that triggers other scripts
     });
 
     function renderAgencyTable(agencyName, targetId) {

@@ -26,6 +26,7 @@
       <div id="table-{{ $i }}"></div>
 
       <script>
+          // event so that this script is only fired once the Agency Data are loaded
           document.addEventListener("agencyDataReady", function() {
             renderAgencyTable('{{ $p.Params.filterBy }}','table-{{ $i }}')
           });
