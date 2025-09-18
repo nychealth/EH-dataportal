@@ -1,5 +1,5 @@
 ---
-title: "Find your UHF neigborhood"
+title: "Find your UHF neighborhood"
 date: 2025-09-02T07:56:00-04:00
 draft: false
 seo_title: "Explore neighborhood overlap boundaries, and get UHF neighborhoods"
