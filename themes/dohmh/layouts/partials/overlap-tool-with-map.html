@@ -179,6 +179,20 @@
               };
             },
             onEachFeature: function (feature, layer) {
+                // Determine tooltip label
+                let tooltipLabel;
+                if (name === 'CD') {
+                  tooltipLabel = feature.properties.GEONAME;
+                } else if (name === 'CCD') {
+                  tooltipLabel = 'Council District #' + feature.properties[currentProperty];
+                } else {
+                  tooltipLabel = feature.properties[currentProperty];
+                }
+
+                // Bind tooltip (hover label)
+                layer.bindTooltip(`<b>${tooltipLabel}</b>`, { sticky: true });
+
+              // bind actions
               layer.on("click", function () {
                 const id = feature.properties[currentProperty];
 
