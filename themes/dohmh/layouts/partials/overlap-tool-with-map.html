@@ -179,6 +179,7 @@
               };
             },
             onEachFeature: function (feature, layer) {
+
                 // Determine tooltip label
                 let tooltipLabel;
                 if (name === 'CD') {
@@ -192,29 +193,35 @@
                 // Bind tooltip (hover label)
                 layer.bindTooltip(`<b>${tooltipLabel}</b>`, { sticky: true });
 
+
+
               // bind actions
               layer.on("click", function () {
                 const id = feature.properties[currentProperty];
-
-                var neighborhoodName;
+                let neighborhoodName;
 
                 if (name === 'CD') {
-                    neighborhoodName = feature.properties.GEONAME
-                    getUHFs('CD', id)
+                  neighborhoodName = feature.properties.GEONAME;
+                  getUHFs('CD', id);
                 } else if (name === 'CCD') {
-                    // print CCD format to name bin
-                    neighborhoodName = 'Council District #' + id
-                    getUHFs('CCD', id)
+                  neighborhoodName = 'Council District #' + id;
+                  getUHFs('CCD', id);
                 }
 
-                document.getElementById('neighbHolder').innerHTML = neighborhoodName
+                document.getElementById('neighbHolder').innerHTML = neighborhoodName;
 
                 // Create popup content (bold text)
                 const popupContent = `<b>${neighborhoodName}</b>`;
                 layer.bindPopup(popupContent);
 
-
                 selectedID = id;
+
+                // Remove tooltips from non-selected features
+                geojsonLayer.eachLayer(function (l) {
+                  if (l !== layer) {
+                    l.unbindTooltip();
+                  }
+                });
 
                 // Reset styles for all features
                 geojsonLayer.setStyle(function (f) {
@@ -241,6 +248,7 @@
                 map.fitBounds(layer.getBounds());
                 layer.openPopup();
               });
+
             }
           }).addTo(map);
 
