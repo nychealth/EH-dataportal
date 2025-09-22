@@ -295,6 +295,7 @@ Each PUMA breaks down into Neighborhood Tabulation Areas (NTAs), and each NTA br
 <div class="ml-3 mb-2">
 
 There are 59 Community Districts (CDs) in NYC, each overseen by a Community Board that advises on land use, zoning, city budgets, and more. As a political boundary, CDs are useful geographic units for breaking down city operations. <a href="https://www1.nyc.gov/site/cau/community-boards/about-commmunity-boards.page">Learn more about Community Boards.</a>
+
 </div>
 
 #### Boundary updates in 2020
@@ -328,7 +329,7 @@ Using these tools, you can find that sometimes, neighborhoods in different “sc
 
 Here are some common scenarios that might help you think about which neighborhood scheme to choose for your needs.
 
-- If you're presenting at a Community Board meeting, you'll likely want to use data by Community Districts. You can use data by PUMA/subboro, or CDTA, since these are similar to Community Districts. 
+- If you're presenting at a Community Board meeting, you can use data by Community Districts, CDTAs (if census data), or estimate with PUMA/subboro.
 - If you're using ZIP code level data, you might need to aggregate up to UHF neighborhoods.
 - If you're conducting a research study with Census data, PUMAs or NTAs might be best.
 
