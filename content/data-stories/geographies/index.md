@@ -184,6 +184,7 @@ Health data - like somebody’s hospitalization record, for example, or a respon
 To protect privacy, we often bundle (or aggregate) data from a larger area, so we need a scheme of neighborhoods that are made up of a collection of ZIP codes: UHFs. Collecting data by ZIP code and then "rolling up" into UHF neighborhoods has been used in health research for decades. The methods for our surveys (like the Community Health Survey) are designed to include enough people from each UHF neighborhood so that there’s a “representative sample” of all New Yorkers, and so that we can compare neighborhoods with high statistical confidence. Usually, we use UHF42 neighborhoods, which breaks the city down into 42 neighborhoods. Sometimes, though, we use UHF34 neighborhoods—by grouping together some of the neighborhoods, we can increase the statistical power of a survey.
 
 In the map below, notice how three UHF42 neighborhoods in the South Bronx are combined into one UHF34 neighborhood—and how the UHF neighborhoods have ZIP codes (or, more precisely, ZIP code tabulation areas) as their root unit.
+
 </div>
 
 </div>
@@ -333,40 +334,47 @@ Here are some common scenarios that might help you think about which neighborhoo
 
 Neighborhood boundaries may sometimes be imperfect representations of New York City’s communities. But even when data are only available at an inconvenient neighborhood scheme, they reveal important insights about health, housing, and the environment—showing differences by neighborhood, allowing us to explore why, and providing meaningful perspectives about inequities and opportunities across New York City.
 
-##### Appendix: common uses for each scheme
-
 </div>
-<div class="wide my-2">
 
 <style>
-table :is(td) {
+.table--bordered {
   border-top: 2px solid black;
   padding: 0.5em;
 }
+tr {border-bottom: 1px dashed black;
+}
 </style>
 
-| Boundaries  | Based on              | Number in NYC | Common use                                                                          |
-| ----------- | --------------------- | ------------- | ----------------------------------------------------------------------------------- |
-| UHF42       | ZIP codes             | 42            | Health surveillance and public health reporting (like the Community Health Survey)  |
-| UHF34       | ZIP codes             | 34            | More statistical power for public health reporting                                  |
-| CD          | Political boundaries  | 59            | Local governance through Community Boards                                           |
-| CDTA        | Census tracts         | 59            | Approximating CDs, for census-compatible statistical analysis                       |
-| PUMA        | Census tracts         | 55            | Research, using statistically meaningful areas of ~100,000 people                   |
-| NTA         | Census tracts         | 195           | Neighborhood identity, fine-grained data                                            |
+<div class="wide my-4">
+    <div class="card card-left-border shadow-sm mt-2 mb-4 my-4 fs-sm">
+        <div class="card-body">
+            <h5 class="card-title">Appendix: common uses for each scheme</h5>
+<table class="table--bordered">
 
+| Boundaries  | Based on              | Number in NYC | Common use                                                                              |
+| ----------- | --------------------- | ------------- | --------------------------------------------------------------------------------------- |
+| UHF42       | ZIP codes             | 42            | Health surveillance and public health reporting <br>(like the Community Health Survey)  |
+| UHF34       | ZIP codes             | 34            | More statistical power for public health reporting                                      |
+| CD          | Political boundaries  | 59            | Local governance through Community Boards                                               |
+| CDTA        | Census tracts         | 59            | Approximating CDs, for census-compatible <br>statistical analysis                       |
+| PUMA        | Census tracts         | 55            | Research, <br>using statistically meaningful areas of ~100,000 people                   |
+| NTA         | Census tracts         | 195           | Neighborhood identity, fine-grained data                                                |
+
+</table>
 </div>
-<div class="narrow">
-
 </div>
 
+<div class="wide my-4">
 <div class="card card-left-border shadow-sm mt-2 mb-4 my-4 fs-sm">
   <div class="card-body">
-  <h5 class="card-title">
+    <h5 class="card-title">
 Matching datasets: a brief overview of GEOIDs
-</h5>
+    </h5>
       <p class="card-text">
 A GeoID (Geographic Identifier) is a unique code used to label a specific area on a map—like a neighborhood, ZIP code, or census tract—so that data about that area can be organized, matched, and analyzed.
       A GeoID is like a “name tag” for places. Every area, from a small city block to an entire borough, can have a code that identifies it in a dataset.
+
+<table class="table--bordered">
 
 | Boundary scheme  | GeoID Example  | Format        | Determined by                |
 | ---------------- | -------------- | ------------- | ---------------------------- |
@@ -380,14 +388,18 @@ A GeoID (Geographic Identifier) is a unique code used to label a specific area o
 | CD               | 203            | Numeric       | BoroCD (Borough + District)  |
 | ZCTA (ZIP)       | 10454          | Numeric       | Census ZIP approximation     |
 
+</table>
+</div>
+</div>
+
+<div class="narrow">
+
 <br>A GeoID (Geographic Identifier) is a unique code used to label a specific area on a map, like a ZIP code or census tract, so that data about that area can be organized, matched, and analyzed.
 
 <p>A GeoID is like a “name tag” for places. Every area, from a small city block to an entire borough, can have a code that identifies it in a dataset. These codes help different datasets talk to each other by matching information. Census GeoIDs are numeric and follow a strict nesting structure – as shown in the previous table. <a href="https://data.cityofnewyork.us/City-Government/2020-Census-Tracts-to-2020-NTAs-and-CDTAs-Equivale/hm78-6dwm/data_preview">Visit NYC OpenData for the full crosswalk of 2020 Census Tracts, to 2020 NTAs, to 2020 CDTAs.</a> If you’d like to see how ZIP Codes (or ZCTA) form UHFs, <a href="https://github.com/nychealth/EHDP-data/blob/production/geography/zcta_to_uhf.csv">visit the geographies folder in our data repository.</a></p>
 
   </div>
 </div>
-
-<div class="wide my-4">
 
 <!-- text if we don't like the card ### Matching datasets: a brief overview of GEOIDs
 
