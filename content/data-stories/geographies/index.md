@@ -114,6 +114,9 @@ There are 55 PUMAs in NYC. PUMAs have similar boundaries to Community Districts,
             </script>
         </div>
         </div>
+<div class="sr-only">
+<p>While these geographies have similar boundaries between neighborhood areas, they are not identical. For example, areas in Mott Haven/Port Morris, Melrose South/Mott Haven-North, Longwood, and Hunts Point are all in separate Neighborhood Tabulation Areas. But in Community Districts, Mott Haven/Melrose is one Community District, and Hunts Point/Longwood is another. And in PUMAs, Mott Haven and Hunts point are both in one PUMA. These divisions don't nest neatly within one another - familiar neighborhoods can be broken up or aggregated into smaller and larger geographic schemes.</p>
+</div>
         <div class="col-6 border-left pl-2">
 <div aria-hidden="true">
 <input type="radio" name="uhfRadioGroup" value="42" id="42" checked> <label for="42">UHF42</label> &nbsp;&nbsp;
@@ -166,6 +169,9 @@ There are 55 PUMAs in NYC. PUMAs have similar boundaries to Community Districts,
 </div>
         </div>
     </div>
+</div>
+<div class="sr-only">
+<p>Continuing from the previous example, United Hospital Fund neighborhoods have similar boundaries, but they are not identical. Most UH42s break UH34s into smaller geographies; note how the South Bronx UH34 combines three UH42 neighborhoods (Highbridge - Morrisania, Crotona - Tremont and Hunts Point - Mott Haven).</p>
 </div>
 
 <div class="narrow">
@@ -227,14 +233,6 @@ In the map below, notice how three UHF42 neighborhoods in the South Bronx are co
 </div>
 </div>
 <div class="narrow mt-2">
-
-<div class="sr-only">
-<p>While these geographies have similar boundaries between neighborhood areas, they are not identical. For example, areas in Mott Haven/Port Morris, Melrose South/Mott Haven-North, Longwood, and Hunts Point are all in separate Neighborhood Tabulation Areas. But in Community Districts, Mott Haven/Melrose is one Community District, and Hunts Point/Longwood is another. And in PUMAs, Mott Haven and Hunts point are both in one PUMA. These divisions don't nest neatly within one another - familiar neighborhoods can be broken up or aggregated into smaller and larger geographic schemes.</p>
-</div>
-
-<div class="sr-only">
-<p>Continuing from the previous example, United Hospital Fund neighborhoods have similar boundaries, but they are not identical. Most UH42s break UH34s into smaller geographies; note how the South Bronx UH34 combines three UH42 neighborhoods (Highbridge - Morrisania, Crotona - Tremont and Hunts Point - Mott Haven).</p>
-</div>
 
 <!--start wide-->
 <!-- nesting diagram.
@@ -321,6 +319,8 @@ Using this tool, you can find that sometimes, neighborhoods in different “sche
 
 - Look up the overlap between your desired area and the available neighborhood scheme.
 - Get values and see how much overlap there is. For example, if you are looking up a certain Community District, but it’s only available at a larger neighborhood scheme like UHF42, maybe 70% of the CD is in one UHF42, and only 30% is in another. This can help you use the UHF42 data to estimate values for your CD.
+
+You can also use our new Neighborhood Overlap tool, where you can search by Community District or City Council District, and see what UHF42 neighborhoods overlap it.
 
 ### What about when data is available at multiple geographies? How do you choose?
 
