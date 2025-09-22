@@ -33,7 +33,6 @@ related:
 New York City has hundreds of neighborhoods and nearly as many ways of drawing neighborhood boundaries. When you visit the Environment & Health Data Portal, you might notice that data is available in several different neighborhood schemes.
 
 For example, dig around in the asthma data pages and you'll find [Adults with Asthma]({{< baseurl >}}data-explorer/asthma/?id=18) presented by UHF34 neighborhoods, [Public School Children with Asthma]({{< baseurl >}}data-explorer/asthma/?id=2147) presented by UHF42 neighborhoods, and [Asthma emergency department visits]({{< baseurl >}}data-explorer/asthma/?id=2384) are offered by NTAs. Other data on the portal are offered by CD, ZIP code, PUMA, and occasionally even police precinct.
-<br>
 
 **What are all these neighborhood schemes, why do we use one and not the other, and why isn’t the whole system consistent?**
 
@@ -335,6 +334,8 @@ Here are some common scenarios that might help you think about which neighborhoo
 
 Neighborhood boundaries can be imperfect representations of New York City’s communities. But even when data are only available at imperfect neighborhood schemes, they reveal important insights about health, housing, and the environment. When we analyze differences by neighborhood, the data allow us to explore questions and provide meaningful perspectives about inequities and opportunities across New York City.
 
+---
+
 </div>
 
 <style>
@@ -427,3 +428,4 @@ A GeoID is like a “name tag” for places. Every area, from a small city block
 A GeoID (Geographic Identifier) is a unique code used to label a specific area on a map, like a ZIP code or census tract, so that data about that area can be organized, matched, and analyzed.
 
 A GeoID is like a “name tag” for places. Every area, from a small city block to an entire borough, can have a code that identifies it in a dataset. These codes help different datasets talk to each other by matching information. Census GeoIDs are numeric and follow a strict nesting structure – as shown in the previous table. <a href="https://data.cityofnewyork.us/City-Government/2020-Census-Tracts-to-2020-NTAs-and-CDTAs-Equivale/hm78-6dwm/data_preview">Visit NYC OpenData for the full crosswalk of 2020 Census Tracts, to 2020 NTAs, to 2020 CDTAs.</a> If you’d like to see how ZIP Codes (or ZCTA) form UHFs, <a href="https://github.com/nychealth/EHDP-data/blob/production/geography/zcta_to_uhf.csv">visit the geographies folder in our data repository.</a>
+-->
