@@ -315,12 +315,12 @@ It can be difficult to work with several datasets when the data are for differen
 
 <div class="narrow">
 
-Using this tool, you can find that sometimes, neighborhoods in different “schemes” overlap pretty well—meaning that data for one “scheme” can be used in another scheme. But more often, different neighborhood schemes have boundaries that conflict and don’t conveniently overlap each other. When this happens, you can use the Boundaries tool to:
+You can also use our new <a href="../data-features/find-your-uhf/">Find your UHF neighborhood tool</a>, where you can search by Community District or City Council District, and see what UHF42 neighborhoods overlap it.
+
+Using these tools, you can find that sometimes, neighborhoods in different “schemes” overlap pretty well—meaning that data for one “scheme” can be used in another scheme. But more often, different neighborhood schemes have boundaries that conflict and don’t conveniently overlap each other. When this happens, you can use the Boundaries or the UHF neighborhood tools to:
 
 - Look up the overlap between your desired area and the available neighborhood scheme.
 - Get values and see how much overlap there is. For example, if you are looking up a certain Community District, but it’s only available at a larger neighborhood scheme like UHF42, maybe 70% of the CD is in one UHF42, and only 30% is in another. This can help you use the UHF42 data to estimate values for your CD.
-
-You can also use our new Neighborhood Overlap tool, where you can search by Community District or City Council District, and see what UHF42 neighborhoods overlap it.
 
 ### What about when data is available at multiple geographies? How do you choose?
 
