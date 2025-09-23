@@ -6,7 +6,7 @@
     <description>Recent content in Data Features on Environment &amp; Health Data Portal</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 16 Jun 2025 10:14:56 -0400</lastBuildDate>
+    <lastBuildDate>Tue, 02 Sep 2025 07:56:00 -0400</lastBuildDate>
     <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Rats in your neighborhood</title>
@@ -70,6 +70,13 @@
       <pubDate>Sun, 08 Sep 2024 11:14:56 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/rat-report/</guid>
       <description>&lt;p&gt;The NYC Health Department (Department) submits this report pursuant to NYC Administrative Code&#xA;17.133.3 to detail rat mitigation efforts in the Rat Mitigation Zones (RMZ). As required, this report&#xA;includes:&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;The metrics the Department is using to measure the efficacy of rat mitigation in such&#xA;zones, including a description of whether the Department has seen improvement, as&#xA;measured by such metrics, and, if so, how such improvement has been achieved;&lt;/li&gt;&#xA;&lt;li&gt;An overview of the current and planned rat mitigation measures, including goals and specific&#xA;benchmarks and timelines, in each such zone;&lt;/li&gt;&#xA;&lt;li&gt;A description of the public outreach measures undertaken by the Department in relation to&#xA;rat mitigation in each such zone;&lt;/li&gt;&#xA;&lt;li&gt;Explanations of the creation or elimination of rat mitigation zones, or any change of&#xA;boundaries of such zone, since the previous report, if applicable; and&lt;/li&gt;&#xA;&lt;li&gt;Explanations of any changes to the rat mitigation measures used in each such zone since&#xA;the previous report, if applicable.&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h3&gt;Introduction&lt;/h3&gt;&#xA;&lt;p&gt;The Department’s rat control program takes a multi-pronged, evidence-based approach across&#xA;New York City that builds on our decades of experience. We know that rats thrive when they have ready access to food, water, a place to live, and effective transportation routes. Reducing the rat population, therefore, requires managing garbage, eliminating nesting areas and sealing cracks and holes in sidewalks and buildings. Our approach, called Integrated Pest Management (IPM) includes:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Find your UHF neighborhood</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/find-your-uhf/</link>
+      <pubDate>Tue, 02 Sep 2025 07:56:00 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/find-your-uhf/</guid>
+      <description>&lt;p&gt;Environmental health data can come at several different geographies, or neighborhood boundary schemes. Often, health data are available at a neighborhood boundary scheme called UHF42, which breaks up NYC into 42 neighborhoods (&lt;a href=&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/geographies/&#34;&gt;read more about UHF42 geographies&lt;/a&gt;).&lt;/p&gt;&#xA;&lt;p&gt;Sometimes, you may be looking for data for a Community District or a City Council District, but the data are only available by UHF42 neighborhood. Click on the Community District or a City Council District below to identify the overlapping UHFs, and get links to our Neighborhood Reports with data by UHF42 neighborhood.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Displacement Risk</title>

@@ -531,6 +531,15 @@
                 </div>
 
             </div>
+
+            <div class="row mt-6">
+              <div class="col-12 fs-sm">
+                <strong><i class="fas fa-info-circle mr-1" aria-hidden="true"></i>About these neighborhoods</strong>
+                <p>There are different ways to break up NYC into neighborhoods. These Neighborhood Reports include data for 42 NYC neighborhoods &mdash; a neighborhood scheme called UHF42. <a href="../data-stories/geographies/">Read about different neighborhood schemes in our data</a>.</p>
+                <p><i class="fas fa-question-circle mr-1" aria-hidden="true"></i>If you're looking for data for <strong>Community Districts</strong> or <strong>City Council Districts</strong>, <a href="#about" data-toggle="modal" data-target="#CCDModal">use this tool to get data for overlapping neighborhoods</a>.</p>
+
+              </div>
+            </div>
         </div>
 
         <div class="col-md-5">
@@ -927,10 +936,203 @@
 
       </div>
 
+      <div class="row my-4">
+
+        <div class="col-md-4 col-sm-12 mb-2" id="about">
+        </div>
+      </div>
+
 
 
     </div>
   </div>
+
+  
+<div class="modal fade" id="CCDModal" tabindex="-1" role="dialog" aria-labelledby="CCDModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="CCDModalTitle">Get data for Community Districts or City Council District</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row no-gutters">
+          <div class="col-12 mb-4">
+            <p>These <strong>Neighborhood Reports</strong> are presented for 42 NYC neighborhoods made up of groups of ZIP Codes - a neighborhood scheme called UHF42.</p>
+            <p>To get data for Community Districts or City Council Districts, choose a district below. This will give you links to reports for UHF neighborhoods that overlap your neighborhood.</p>
+
+            <div class="row mt-2">
+    <div class="col-6">
+
+    <div class="nav nav-tabs device-md fs-sm" role="tablist">
+        <a class="nav-item nav-link active" id="tab-btn-01-a" href="#tab-01-a" data-toggle="tab"
+            aria-controls="tab-01-a" aria-selected="true" role="tab">
+            CDs
+        </a>
+        <a class="nav-item nav-link" id="tab-btn-01-b" href="#tab-01-b" data-toggle="tab"
+            aria-controls="tab-01-b" aria-selected="false" role="tab">
+            Council districts
+        </a>
+    </div>
+
+    <div class="tab-content mb-2" id="tabs-01-content">
+                    <div class="tab-pane fade show active" id="tab-01-a" aria-labelledby="tab-btn-01-a"
+                        role="tabpanel">
+                        <div class="border-left border-bottom border-right fs-sm" style="height: 250px; overflow-y:scroll;" id="CDButtons">
+                            
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="tab-01-b" aria-labelledby="tab-btn-01-b" role="tabpanel" aria-hidden="true">
+                        <div class="border-left border-bottom border-right fs-sm" style="height: 250px; overflow-y:scroll;" id="districtButtons">
+                            
+                        </div>
+                    </div>
+
+                </div>
+    </div>
+
+    <div class="col-6 hide" id="overlapReveal">
+        <div class="nav nav-tabs device-md fs-sm" role="tablist">
+            <a class="nav-item nav-link active" id="tab-btn-01-a" href="#tab-02-a" data-toggle="tab"
+                aria-controls="tab-02-a" aria-selected="true" role="tab">
+                Overlapping UHF42 neighborhoods
+            </a>
+        </div>
+        <div class="tab-content mb-2" id="tabs-02-content">
+                <div class="tab-pane fade show active" id="tab-02-a" aria-labelledby="tab-btn-02-a"
+                    role="tabpanel">
+                    <div class="border-left border-bottom border-right fs-sm" id="overlaps" style="height: 250px; overflow-y:scroll;">
+                        
+                    </div>
+                </div>
+        </div>
+        <em class="fs-xs">Not shown: neighborhoods with less than 5% overlap.</em>
+    </div>
+</div>
+
+<script type="text/javascript" src="/IndicatorPublic/js/ccd-to-uhf42.8066300bd14daf18.js" integrity="sha512-3pgtQqI2sx/aq9&#43;ZobhAGSbdE&#43;w2Gc5izqb&#43;K3vO1kprP3zBaqg/W2EBCL8R5yxl25QoU9dNOfmxpQjV2rmkAA=="></script>
+
+<script type="text/javascript" src="/IndicatorPublic/js/cd-to-uhf42.f3c2d33b4153b3d5.js" integrity="sha512-x2cdNEk&#43;3Uul&#43;4uMvCVl9mjGyvE/VgsiuXHdeDoMzOUMiKliInndWJQ0a&#43;7dRanLfQShFQBZRpttSc/lMv9lMA=="></script>
+
+
+<script>
+
+    
+    var CDholder = document.getElementById('CDButtons')
+
+    CDtoUHF.forEach(cd => {
+        let thisButton = `
+            <a class="dropdown-item cd-items" href="#top" id='button-${cd.CD}' onclick='getUHFs("CD", ${cd.CD})'>${cd.CD_NAME}</a>
+        `
+        CDholder.innerHTML += thisButton
+
+    })
+
+
+    
+    var holder = document.getElementById('districtButtons')
+
+    CCDtoUHF.forEach(ccd => {
+          let thisButton = `
+        <a class="dropdown-item ccd-items" href="#top" id='button-${ccd.CCD}' onclick='getUHFs("CCD", ${ccd.CCD})'>City Council District #${ccd.CCD}</a>
+      `
+      holder.innerHTML += thisButton
+    })
+
+
+    var thisOverlap ;
+    function getUHFs(from, geo) {
+        document.getElementById('overlapReveal').classList.remove('hide')
+
+        var overlaps = document.getElementById('overlaps')
+        overlaps.innerHTML = ''
+
+        if (from === 'CCD') {
+
+            console.log('Getting UHFs for City Council District ' + geo)
+            
+            var allButtons = document.querySelectorAll('.ccd-items')
+            allButtons.forEach(btn => {
+                btn.classList.remove('active')
+                btn.classList.remove('text-white')
+            })
+
+            var selected = document.getElementById(`button-${geo}`)
+            selected.classList.add('active')
+            selected.classList.add('text-white')
+
+            
+            thisOverlap = CCDtoUHF.filter(neighborhood => neighborhood.CCD == geo)
+
+        } else if (from === 'CD') {
+
+            console.log('Getting UHFs for Community District ' + geo)
+            
+                        var allButtons = document.querySelectorAll('.cd-items')
+            allButtons.forEach(btn => {
+                btn.classList.remove('active')
+                btn.classList.remove('text-white')
+            })
+
+            var selected = document.getElementById(`button-${geo}`)
+            selected.classList.add('active')
+            selected.classList.add('text-white')
+
+            
+            thisOverlap = CDtoUHF.filter(cd => cd.CD == geo)
+
+        } else {
+
+            console.log('Error.')
+
+        }
+
+        console.log('This overlap:')
+        console.log(thisOverlap[0])
+
+        
+        thisOverlap[0].matchingUHFs.forEach(ol => {
+
+            var uhfid = ol.UHF_id
+            var name = ol.GEONAME
+            var overl = ol.percent.toFixed(0)
+            var dest = ol.page_name
+            var popol = (from === 'CCD') 
+                ? ol.pop_pct_of_ccd.toFixed(1) 
+                : (from === 'CD') 
+                    ? ol.pop_pct_of_cd.toFixed(1) 
+                    : null;
+
+            
+            if (overl < 5) {
+                return
+                } else {
+                overlaps.innerHTML += `
+                <a href="https:\/\/a816-dohbesp.nyc.gov\/IndicatorPublic\//neighborhood-reports/${dest}" class="dropdown-item text-primary">
+                    <span class="font-weight-bold">
+                    ${name} 
+                    </span> <br>
+                    Overlap: ${overl}% area | ${popol}% population
+                </a>`
+                }
+            }
+        )
+    }
+</script>
+
+          </div>
+
+
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 
   
 <div class="hide topic-descriptions" id="Asthma-Descr">

@@ -6,8 +6,15 @@
     <description>Recent content in How We Work on Environment &amp; Health Data Portal</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 07 Jan 2025 08:49:22 -0400</lastBuildDate>
+    <lastBuildDate>Tue, 02 Sep 2025 07:56:00 -0400</lastBuildDate>
     <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/how-we-work/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Find your UHF neighborhood</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/find-your-uhf/</link>
+      <pubDate>Tue, 02 Sep 2025 07:56:00 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/find-your-uhf/</guid>
+      <description>&lt;p&gt;Environmental health data can come at several different geographies, or neighborhood boundary schemes. Often, health data are available at a neighborhood boundary scheme called UHF42, which breaks up NYC into 42 neighborhoods (&lt;a href=&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/geographies/&#34;&gt;read more about UHF42 geographies&lt;/a&gt;).&lt;/p&gt;&#xA;&lt;p&gt;Sometimes, you may be looking for data for a Community District or a City Council District, but the data are only available by UHF42 neighborhood. Click on the Community District or a City Council District below to identify the overlapping UHFs, and get links to our Neighborhood Reports with data by UHF42 neighborhood.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Making data visualizations more accessible</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/about/accessibility-updates/</link>
@@ -48,7 +55,7 @@
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/geographies/</link>
       <pubDate>Sat, 01 Aug 2020 08:33:22 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/geographies/</guid>
-      <description>&lt;p&gt;New York City has hundreds of neighborhoods and nearly as many ways of drawing neighborhood boundaries. When you visit the Environment &amp;amp; Health Data Portal, you might notice that data is available in several different neighborhood schemes.&lt;/p&gt;&#xA;&lt;p&gt;For example, dig around in the asthma data pages and you&amp;rsquo;ll find &lt;a href=&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/asthma/?id=18&#34;&gt;Adults with Asthma&lt;/a&gt; presented by UHF34 neighborhoods, &lt;a href=&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/asthma/?id=2147&#34;&gt;Public School Children with Asthma&lt;/a&gt; presented by UHF42 neighborhoods, and &lt;a href=&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/asthma/?id=2384&#34;&gt;Asthma emergency department visits&lt;/a&gt; are offered by NTAs. Other data on the portal are offered by CD, ZIP code, PUMA, and occasionally even police precinct. &lt;strong&gt;What are all these neighborhood schemes, why do we use one and not the other, and why isn’t the whole system consistent?&lt;/strong&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;New York City has hundreds of neighborhoods and nearly as many ways of drawing neighborhood boundaries. When you visit the Environment &amp;amp; Health Data Portal, you might notice that data is available in several different neighborhood schemes.&lt;/p&gt;&#xA;&lt;p&gt;For example, dig around in the asthma data pages and you&amp;rsquo;ll find &lt;a href=&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/asthma/?id=18&#34;&gt;Adults with Asthma&lt;/a&gt; presented by UHF34 neighborhoods, &lt;a href=&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/asthma/?id=2147&#34;&gt;Public School Children with Asthma&lt;/a&gt; presented by UHF42 neighborhoods, and &lt;a href=&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/asthma/?id=2384&#34;&gt;Asthma emergency department visits&lt;/a&gt; are offered by NTAs. Other data on the portal are offered by CD, ZIP code, PUMA, and occasionally even police precinct.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Our Roadmap: An Open Path Forward</title>

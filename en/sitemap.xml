@@ -21,6 +21,8 @@
     <lastmod>2021-09-08T11:14:56-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/data-features/rat-report/</loc>
     <lastmod>2024-09-08T11:14:56-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/data-features/find-your-uhf/</loc>
+    <lastmod>2025-09-02T07:56:00-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/data-features/displacement-risk/</loc>
     <lastmod>2021-10-02T07:56:00-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/data-features/heat-report/</loc>
@@ -28,7 +30,7 @@
     <loc>/IndicatorPublic/data-features/heat-report-archive/2024/</loc>
     <lastmod>2021-09-08T11:14:56-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/categories/</loc>
-    <lastmod>2025-08-04T08:49:22-04:00</lastmod><xhtml:link
+    <lastmod>2025-09-02T07:56:00-04:00</lastmod><xhtml:link
                 rel="alternate"
                 hreflang="es"
                 href="/IndicatorPublic/es/categories/"
@@ -40,6 +42,68 @@
                 rel="alternate"
                 hreflang="en"
                 href="/IndicatorPublic/categories/"
+                /></url><url>
+    <loc>/IndicatorPublic/data-features/</loc>
+    <lastmod>2025-09-02T07:56:00-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/keywords/geographies/</loc>
+    <lastmod>2025-09-02T07:56:00-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/keywords/how-we-work/</loc>
+    <lastmod>2025-09-02T07:56:00-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/keywords/</loc>
+    <lastmod>2025-09-02T07:56:00-04:00</lastmod><xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="/IndicatorPublic/es/keywords/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/IndicatorPublic/zh/keywords/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/IndicatorPublic/keywords/"
+                /></url><url>
+    <loc>/IndicatorPublic/keywords/neighborhoods/</loc>
+    <lastmod>2025-09-02T07:56:00-04:00</lastmod><xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="/IndicatorPublic/es/keywords/neighborhoods/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/IndicatorPublic/zh/keywords/neighborhoods/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/IndicatorPublic/keywords/neighborhoods/"
+                /></url><url>
+    <loc>/IndicatorPublic/categories/publicspace/</loc>
+    <lastmod>2025-09-02T07:56:00-04:00</lastmod><xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="/IndicatorPublic/es/categories/publicspace/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/IndicatorPublic/zh/categories/publicspace/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/IndicatorPublic/categories/publicspace/"
+                /></url><url>
+    <loc>/IndicatorPublic/</loc>
+    <lastmod>2025-09-02T07:56:00-04:00</lastmod><xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="/IndicatorPublic/es/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/IndicatorPublic/zh/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/IndicatorPublic/"
                 /></url><url>
     <loc>/IndicatorPublic/data-stories/</loc>
     <lastmod>2025-08-04T08:49:22-04:00</lastmod><xhtml:link
@@ -71,20 +135,6 @@
                 /></url><url>
     <loc>/IndicatorPublic/data-stories/rat-inspections/</loc>
     <lastmod>2025-08-04T08:49:22-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/keywords/</loc>
-    <lastmod>2025-08-04T08:49:22-04:00</lastmod><xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="/IndicatorPublic/es/keywords/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="/IndicatorPublic/zh/keywords/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/IndicatorPublic/keywords/"
-                /></url><url>
     <loc>/IndicatorPublic/categories/pests/</loc>
     <lastmod>2025-08-04T08:49:22-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/pests/</loc>
@@ -107,20 +157,6 @@
     <lastmod>2025-08-04T08:49:22-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/rats/</loc>
     <lastmod>2025-08-04T08:49:22-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/</loc>
-    <lastmod>2025-08-04T08:49:22-04:00</lastmod><xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="/IndicatorPublic/es/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="/IndicatorPublic/zh/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/IndicatorPublic/"
-                /></url><url>
     <loc>/IndicatorPublic/keywords/air-quality/</loc>
     <lastmod>2025-07-01T08:11:44-04:00</lastmod><xhtml:link
                 rel="alternate"
@@ -163,20 +199,6 @@
     <lastmod>2025-07-01T08:11:44-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/public-transportation/</loc>
     <lastmod>2025-07-01T08:11:44-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/categories/publicspace/</loc>
-    <lastmod>2025-07-01T08:11:44-04:00</lastmod><xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="/IndicatorPublic/es/categories/publicspace/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="/IndicatorPublic/zh/categories/publicspace/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/IndicatorPublic/categories/publicspace/"
-                /></url><url>
     <loc>/IndicatorPublic/keywords/safety/</loc>
     <lastmod>2025-07-01T08:11:44-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/streets/</loc>
@@ -267,8 +289,6 @@
                 /></url><url>
     <loc>/IndicatorPublic/keywords/climate/</loc>
     <lastmod>2025-06-16T10:14:56-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/data-features/</loc>
-    <lastmod>2025-06-16T10:14:56-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/disparities/</loc>
     <lastmod>2025-06-16T10:14:56-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/mortality/</loc>
@@ -337,22 +357,8 @@
     <lastmod>2025-01-07T08:49:22-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/data-visualization/</loc>
     <lastmod>2025-01-07T08:49:22-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/keywords/how-we-work/</loc>
-    <lastmod>2025-01-07T08:49:22-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/categories/internal/</loc>
-    <lastmod>2025-01-07T08:49:22-04:00</lastmod><xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="/IndicatorPublic/es/categories/internal/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="/IndicatorPublic/zh/categories/internal/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/IndicatorPublic/categories/internal/"
-                /></url><url>
+    <lastmod>2025-01-07T08:49:22-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/about/accessibility-updates/</loc>
     <lastmod>2025-01-07T08:49:22-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/open-source/</loc>
@@ -665,20 +671,6 @@
                 /></url><url>
     <loc>/IndicatorPublic/keywords/east-harlem/</loc>
     <lastmod>2023-03-19T08:49:22-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/keywords/neighborhoods/</loc>
-    <lastmod>2023-03-19T08:49:22-04:00</lastmod><xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="/IndicatorPublic/es/keywords/neighborhoods/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="/IndicatorPublic/zh/keywords/neighborhoods/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/IndicatorPublic/keywords/neighborhoods/"
-                /></url><url>
     <loc>/IndicatorPublic/keywords/redlining/</loc>
     <lastmod>2023-03-19T08:49:22-04:00</lastmod><xhtml:link
                 rel="alternate"
@@ -1330,89 +1322,17 @@
     <loc>/IndicatorPublic/data-stories/heat/</loc>
     <lastmod>2020-09-09T08:33:22-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/geographic/</loc>
-    <lastmod>2020-08-01T08:33:22-04:00</lastmod><xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="/IndicatorPublic/es/keywords/geographic/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="/IndicatorPublic/zh/keywords/geographic/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/IndicatorPublic/keywords/geographic/"
-                /></url><url>
+    <lastmod>2020-08-01T08:33:22-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/geography/</loc>
-    <lastmod>2020-08-01T08:33:22-04:00</lastmod><xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="/IndicatorPublic/es/keywords/geography/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="/IndicatorPublic/zh/keywords/geography/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/IndicatorPublic/keywords/geography/"
-                /></url><url>
+    <lastmod>2020-08-01T08:33:22-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/health-data/</loc>
-    <lastmod>2020-08-01T08:33:22-04:00</lastmod><xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="/IndicatorPublic/es/keywords/health-data/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="/IndicatorPublic/zh/keywords/health-data/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/IndicatorPublic/keywords/health-data/"
-                /></url><url>
+    <lastmod>2020-08-01T08:33:22-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/maps/</loc>
-    <lastmod>2020-08-01T08:33:22-04:00</lastmod><xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="/IndicatorPublic/es/keywords/maps/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="/IndicatorPublic/zh/keywords/maps/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/IndicatorPublic/keywords/maps/"
-                /></url><url>
+    <lastmod>2020-08-01T08:33:22-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/methods/</loc>
-    <lastmod>2020-08-01T08:33:22-04:00</lastmod><xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="/IndicatorPublic/es/keywords/methods/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="/IndicatorPublic/zh/keywords/methods/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/IndicatorPublic/keywords/methods/"
-                /></url><url>
+    <lastmod>2020-08-01T08:33:22-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/data-stories/geographies/</loc>
-    <lastmod>2020-08-01T08:33:22-04:00</lastmod><xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="/IndicatorPublic/es/data-stories/geographies/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="/IndicatorPublic/zh/data-stories/geographies/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/IndicatorPublic/data-stories/geographies/"
-                /></url><url>
+    <lastmod>2020-08-01T08:33:22-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/about/roadmap/</loc>
     <lastmod>2020-07-07T08:49:22-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/data-stories/air-quality-and-covid/</loc>
