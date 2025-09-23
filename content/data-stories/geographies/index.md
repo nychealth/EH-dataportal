@@ -282,9 +282,7 @@ In the map below, notice how three UHF42 neighborhoods in the South Bronx are co
 
 Public Use Microdata Areas (PUMAs) have boundaries defined by the US Census. They are made up of groups of census tracts.
 
-There are 55 PUMAs in NYC. PUMAs have similar boundaries to Community Districts, which means that often, one can be used as a proxy for the other. In the map below, notice how Brooklyn CD 1, in Greenpoint/Williamsburg, is almost identical to the PUMA.
-
-There are four PUMAs that are made up of two CDs combined into one. Notice how two CDs in the South Bronx combine to form one PUMA.
+There are 55 PUMAs in NYC. PUMAs have similar boundaries to Community Districts, which means that often, one can be used as a proxy for the other. In the CD/PUMA map above, notice how Brooklyn CD 1, in Greenpoint/Williamsburg, is almost identical to the PUMA. And, there are four PUMAs that are made up of two CDs combined into one. Notice how two CDs in the South Bronx combine to form one PUMA.
 
 Each PUMA breaks down into Neighborhood Tabulation Areas (NTAs), and each NTA breaks down even further into census tracts.
 
