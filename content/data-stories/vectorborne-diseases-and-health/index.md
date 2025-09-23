@@ -8,8 +8,8 @@ seo_description: "A data story about how climate change is affecting vector-born
 tags:
 categories: ["pests and pesticides", "climate", "neighborhoods"]
 keywords: ["vector-borne disease", "rain", "inequities", "mosquitoes", "ticks"]
-image: BrooklynBridgeParkFall_JulienneSchaer.jpg
-photocredit: Julienne Schaer/NYC & Company
+image: NY_forest.jpg
+photocredit: Dougtone/CC-BY-SA 2.0
 related:
   - title: "What Hurricane Ida and Superstorm Sandy taught us about flooding and health"
     url: "data-stories/flooding-and-health/"
