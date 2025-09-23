@@ -1,0 +1,28 @@
+{{- define "main" -}}
+
+<article class="container-fluid" id="skip-header-target">
+
+    {{ partial "df-front-block" . }}
+
+    <div class="row" data-pagefind-weight="7.0">
+        <div class="col-11 mx-auto px-2 mb-6">
+
+            <div>
+                {{- partial "overlap-tool-with-map" . }}
+            </div>
+
+            <div class="my-2">
+                <p>For more about different neighborhood boundary schemes that are present in our data - and why they're not all the same - read our data story, <a href="{{ .Site.BaseURL }}data-stories/geographies">About neighborhood boundaries on the EH Data Portal</a>. You can also <a href="https://github.com/nychealth/EHDP-data/tree/production/geography">download shapefiles, topojson, and geojson files from our Github repository</a>.
+
+                <p><a href="https://boundaries.beta.nyc">To visualize more neighborhood overlaps, use Boundaries.Beta.NYC</a>, which includes many more NYC geographic schemes.</p> 
+                    
+            </div>
+        </div>
+    </div>
+
+</article>
+
+<!-- Related footer -->
+{{- partial "related-footer" . -}}
+
+{{- end -}}
