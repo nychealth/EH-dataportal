@@ -54,33 +54,29 @@ People can get West Nile virus when mosquitoes are active, usually between July 
 
 </div>
 
-<ul class="nav nav-tabs">
-  <li class="nav-item">
-    <a class="nav-link active" aria-current="page" href="#">Active</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#">Link</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#">Link</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-  </li>
+<div class="row">
+<div class="col-12">
+<ul class="nav nav-tabs nav-fill">
+    <li class="active"><a data-toggle="tab" href="#home">Anaplasmosis</a></li>
+    <li><a data-toggle="tab" href="#menu1">Babesiosis</a></li>
+    <li><a data-toggle="tab" href="#menu2">Lyme</a></li>
 </ul>
 
-<div class="wide my-4">
-<div class="my-2">
-<div style="min-height:491px" id="datawrapper-vis-FhfVN"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/FhfVN/embed.js" charset="utf-8" data-target="#datawrapper-vis-FhfVN"></script><noscript><img src="https://datawrapper.dwcdn.net/FhfVN/full.png" alt="A line chart showing anaplasmosis cases have been increasing in NYC since 2000, with the most dramatic increase in Manhattan over other boroughs." /></noscript></div>
-</div>
-
-<div class="my-2">
-<div style="min-height:334px" id="datawrapper-vis-yRPHe"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/yRPHe/embed.js" charset="utf-8" data-target="#datawrapper-vis-yRPHe"></script><noscript><img src="https://datawrapper.dwcdn.net/yRPHe/full.png" alt="A line chart showing anaplasmosis cases have been increasing in NYC since 2000, with the most dramatic increase in Manhattan over other boroughs." /></noscript></div>
-</div>
-
-<div class="my-2">
+<div class="tab-content">
+    <div id="home" class="tab-pane fade in active">
+      <h3>Anaplasmosis</h3>
+    <div style="min-height:491px" id="datawrapper-vis-FhfVN"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/FhfVN/embed.js" charset="utf-8" data-target="#datawrapper-vis-FhfVN"></script><noscript><img src="https://datawrapper.dwcdn.net/FhfVN/full.png" alt="A line chart showing anaplasmosis cases have been increasing in NYC since 2000, with the most dramatic increase in Manhattan over other boroughs." /></noscript></div>
+    </div>
+    <div id="menu1" class="tab-pane fade">
+      <h3>Babesiosis</h3>
 <div style="min-height:291px" id="datawrapper-vis-TYamB"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/TYamB/embed.js" charset="utf-8" data-target="#datawrapper-vis-TYamB"></script><noscript><img src="https://datawrapper.dwcdn.net/TYamB/full.png" alt="A line chart showing babesiosis cases have been increasing in NYC since 2000, with the most dramatic increase in Manhattan over other boroughs." /></noscript></div>
-</div>
+    </div>
+    <div id="menu2" class="tab-pane fade">
+      <h3>Lyme</h3>
+      <div style="min-height:334px" id="datawrapper-vis-yRPHe"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/yRPHe/embed.js" charset="utf-8" data-target="#datawrapper-vis-yRPHe"></script><noscript><img src="https://datawrapper.dwcdn.net/yRPHe/full.png" alt="A line chart showing anaplasmosis cases have been increasing in NYC since 2000, with the most dramatic increase in Manhattan over other boroughs." /></noscript></div>
+      </div>
+  </div>
+  </div>
 </div>
 
 <div class="narrow">
@@ -91,7 +87,7 @@ Diseases transmitted by ticks are a growing health concern. <a href="https://www
 
 The only vector that spreads tick-borne disease within NYC is the blacklegged tick. This tick can spread Lyme disease, anaplasmosis, and babesiosis. Within NYC, blacklegged ticks only live on Staten Island and in the northern Bronx. A smaller number of New Yorkers become sick from spending time outdoors in these areas.
 
-Although the increase in Lyme disease cases reported that began in 2022 is due to a change in the way cases are defined, the slow but steady increase in tick-borne diseases overall is likely related to the climate crisis.
+Although the increase in Lyme disease cases reported that began in 2022 is due to a change in the way cases are defined, the slow but steady increase in tick-borne diseases overall is likely related to the climate change.
 
 ### Climate variables like temperature and rainfall can affect vector-borne diseases
 
