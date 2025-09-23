@@ -1,30 +1,22 @@
 ---
 title: What the climate crisis means for vector-borne disease in NYC
 shortTitle: Vector-borne disease and health
-date: 2024-06-11T09:01:00-04:00
+date: 2025-09-12T09:01:00-04:00
 draft: false
-seo_title: "What Hurricane Ida and Superstorm Sandy taught us about flooding and health"
-seo_description: "A data story about the health impacts from climate change-related flooding."
+seo_title: "Climate change, tick- and mosquito-borne illness in NYC"
+seo_description: "A data story about how climate change is affecting vector-borne disease in NYC."
 tags:
-categories: ["housing", "inequality", "climate", "neighborhoods"]
-keywords:
-  [
-    "vector-borne disease",
-    "rain",
-    "inequities",
-    "affordable housing",
-    "mosquitoes",
-    "ticks",
-  ]
+categories: ["pests and pesticides", "climate", "neighborhoods"]
+keywords: ["vector-borne disease", "rain", "inequities", "mosquitoes", "ticks"]
 image: BrooklynBridgeParkFall_JulienneSchaer.jpg
 photocredit: Julienne Schaer/NYC & Company
 related:
-  - title: "Flood Vulnerability Index"
-    url: "data-features/flood-vulnerability-index/"
-  - title: "How power outages affect health"
-    url: "data-stories/poweroutages/"
+  - title: "What Hurricane Ida and Superstorm Sandy taught us about flooding and health"
+    url: "data-stories/flooding-and-health/"
   - title: "Energy is critical for health and climate resilience — but not all New Yorkers may be able to afford it"
     url: "data-stories/energy-insecurity/"
+  - title: "Rats in your neighborhood"
+    url: "data-features/rats-in-your-neighborhood/"
 ---
 
 ### Mosquitoes and ticks can cause serious diseases for New Yorkers
