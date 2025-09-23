@@ -36,6 +36,7 @@ Because of climate change, vector surveillance and testing is more important tha
 Vector-borne disease cases are increasing in NYC, likely due to climate change.
 
 _Most NYC residents with West Nile virus disease were most likely infected by mosquitoes within the five boroughs..._
+_...But most people with a tick-borne disease are bitten by an infected tick while spending time outdoors outside of NYC._
 
 </div>
 <div class="wide my-4">
@@ -80,15 +81,13 @@ People can get West Nile virus when mosquitoes are active, usually between July 
   </div>
 </div>
 -->
-<div style="min-height:491px" id="datawrapper-vis-FhfVN"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/FhfVN/embed.js" charset="utf-8" data-target="#datawrapper-vis-FhfVN"></script><noscript><img src="https://datawrapper.dwcdn.net/FhfVN/full.png" alt="A line chart showing anaplasmosis cases have been increasing in NYC since 2000, with the most dramatic increase in Manhattan over other boroughs." /></noscript></div>
+<div style="min-height:491px" class="m-2" id="datawrapper-vis-FhfVN"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/FhfVN/embed.js" charset="utf-8" data-target="#datawrapper-vis-FhfVN"></script><noscript><img src="https://datawrapper.dwcdn.net/FhfVN/full.png" alt="A line chart showing anaplasmosis cases have been increasing in NYC since 2000, with the most dramatic increase in Manhattan over other boroughs." /></noscript></div>
 
-<div style="min-height:334px" id="datawrapper-vis-yRPHe"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/yRPHe/embed.js" charset="utf-8" data-target="#datawrapper-vis-yRPHe"></script><noscript><img src="https://datawrapper.dwcdn.net/yRPHe/full.png" alt="A line chart showing anaplasmosis cases have been increasing in NYC since 2000, with the most dramatic increase in Manhattan over other boroughs." /></noscript>
+<div style="min-height:334px" class="m-2" id="datawrapper-vis-yRPHe"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/yRPHe/embed.js" charset="utf-8" data-target="#datawrapper-vis-yRPHe"></script><noscript><img src="https://datawrapper.dwcdn.net/yRPHe/full.png" alt="A line chart showing anaplasmosis cases have been increasing in NYC since 2000, with the most dramatic increase in Manhattan over other boroughs." /></noscript></div>
 
-<div style="min-height:291px" id="datawrapper-vis-TYamB"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/TYamB/embed.js" charset="utf-8" data-target="#datawrapper-vis-TYamB"></script><noscript><img src="https://datawrapper.dwcdn.net/TYamB/full.png" alt="A line chart showing babesiosis cases have been increasing in NYC since 2000, with the most dramatic increase in Manhattan over other boroughs." /></noscript></div>
+<div style="min-height:291px" class="m-2" id="datawrapper-vis-TYamB"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/TYamB/embed.js" charset="utf-8" data-target="#datawrapper-vis-TYamB"></script><noscript><img src="https://datawrapper.dwcdn.net/TYamB/full.png" alt="A line chart showing babesiosis cases have been increasing in NYC since 2000, with the most dramatic increase in Manhattan over other boroughs." /></noscript></div>
 
 <div class="narrow">
-
-_...But most people with a tick-borne disease are bitten by an infected tick while spending time outdoors outside of NYC._
 
 Diseases transmitted by ticks are a growing health concern. <a href="https://www.nyc.gov/site/doh/health/health-topics/ticks.page">The number of New Yorkers with tick-borne diseases such as Lyme disease, anaplasmosis, and babesiosis, has increased over time.</a> These diseases can cause flu-like symptoms and sometimes more serious complications. The majority of New Yorkers who get sick with a tick-borne disease are infected while spending time outdoors outside of NYC, like in upstate New York or surrounding states.
 
