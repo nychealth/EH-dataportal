@@ -139,7 +139,7 @@ function drawChart(w,s) {
     {"filter": "datum.Variable==='Poverty'"},
     {"calculate": "datum.Value/100", "as": "Value"},
     {
-      "calculate": "datum.Neighborhood == 'veryhigh' ? 'Very high (50%+)' : datum.Neighborhood == 'high' ? 'High (35 to 49%)' : datum.Neighborhood == 'moderate' ? 'Moderate (20 to 34%)' : datum.Neighborhood == 'low' ? 'Low (Under 20%)' : 'All NYC: 29.2%'",
+      "calculate": "datum.Neighborhood == 'veryhigh' ? 'Very high poverty neighborhoods (50%+)' : datum.Neighborhood == 'high' ? 'High poverty neighborhoods (35 to 49%)' : datum.Neighborhood == 'moderate' ? 'Moderate poverty neighborhoods (20 to 34%)' : datum.Neighborhood == 'low' ? 'Low poverty neighborhoods (Under 20%)' : 'All NYC'",
       "as": "PovLabel"
     },
     {
@@ -199,7 +199,7 @@ function drawChart(w,s) {
           },
         "tooltip": [
 
-          {"field": "PovLabel", "type": "ordinal", "title": "Neighborhood poverty"},
+          {"field": "PovLabel", "type": "ordinal", "title": "Area"},
           {
             "field": "Value",
             "type": "quantitative",
@@ -245,7 +245,7 @@ var prematureMortSpec = {
     {"filter": `datum.Scenario==='${s}'`},
     {"filter": "datum.Variable==='PrematureMort'"},
     {
-      "calculate": "datum.Neighborhood == 'veryhigh' ? 'Very high (50%+)' : datum.Neighborhood == 'high' ? 'High (35 to 49%)' : datum.Neighborhood == 'moderate' ? 'Moderate (20 to 34%)' : datum.Neighborhood == 'low' ? 'Low (Under 20%)' : 'All NYC: 29.2%'",
+      "calculate": "datum.Neighborhood == 'veryhigh' ? 'Very high poverty neighborhoods (50%+)' : datum.Neighborhood == 'high' ? 'High poverty neighborhoods (35 to 49%)' : datum.Neighborhood == 'moderate' ? 'Moderate poverty neighborhoods (20 to 34%)' : datum.Neighborhood == 'low' ? 'Low poverty neighborhoods (Under 20%)' : ' All NYC'",
       "as": "PovLabel"
     },
     {
@@ -308,7 +308,7 @@ var prematureMortSpec = {
           },
         "tooltip": [
 
-          {"field": "PovLabel", "type": "ordinal", "title": "Neighborhood poverty"},
+          {"field": "PovLabel", "type": "ordinal", "title": "Area"},
           {"field": "ValueLabel", "type": "nominal", "title": "Premature mortality"},
           {
             "field": "Wage",

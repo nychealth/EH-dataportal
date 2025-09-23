@@ -25,6 +25,8 @@ related:
     url: "data-stories/economic-stability/"
   - title: "Premature mortality"
     url: "data-explorer/mortality/?id=2322#display=summary"
+  - title: "Neighborhood poverty"
+    url: "data-explorer/economic-conditions/?id=103#display=summary"
 ---
 
 In 2016, we published a paper showing how a higher minimum wage could have reduced thousands of premature deaths in NYC — up to 8%. Since our initial analysis, disparities in premature mortality have only grown. We’ve since updated this data using the same methods, analyzing adjusted minimum wages of $20 and $30 an hour. These new estimates continue to suggest that raising the minimum wage can reduce premature death disparities significantly — by providing the most benefits to the neighborhoods with the highest levels of poverty.
