@@ -1,5 +1,5 @@
 ---
-title: What the climate crisis means for vector-borne disease in NYC
+title: What climate change means for vector-borne disease in NYC
 shortTitle: Vector-borne disease and health
 date: 2025-09-12T09:01:00-04:00
 draft: false
@@ -53,6 +53,21 @@ Most people infected with West Nile virus don’t get sick or are only mildly il
 People can get West Nile virus when mosquitoes are active, usually between July and October. With climate change, we find people getting sick both earlier and later each year. People older than 60 have the highest risk of getting sick with West Nile virus. Most infections occur due to a mosquito bite within NYC.
 
 </div>
+
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link active" aria-current="page" href="#">Active</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">Link</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">Link</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+  </li>
+</ul>
 
 <div class="wide my-4">
 <div class="my-2">
