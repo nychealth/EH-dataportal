@@ -122,14 +122,14 @@ function drawChart(w,s) {
       "titleFont": "sans-serif",
       "titlePadding": 10,
       "domain": false,
-      "ticks": false
+      "ticks": true
     },
     "view": {"stroke": "transparent"},
     "axisY": {
       "domain": true,
       "domainColor": "lightgray",
       "ticks": true,
-      "tickCount": 5
+      "tickCount": 4
     }
   },
   "transform": [
@@ -172,7 +172,7 @@ function drawChart(w,s) {
           "type": "quantitative",
           "title": null,
           "axis": {"format": ".0%"},
-          "scale": {"domain": [0.1, 0.6]}
+          "scale": {"domain": [0, 0.6]}
         },
         "color": {
             "condition": {
@@ -229,14 +229,14 @@ var prematureMortSpec = {
       "titleFont": "sans-serif",
       "titlePadding": 10,
       "domain": false,
-      "ticks": false
+      "ticks": true
     },
     "view": {"stroke": "transparent"},
     "axisY": {
       "domain": true,
       "domainColor": "lightgray",
       "ticks": true,
-      "tickCount": 5
+      "tickCount": 4
     }
   },
   "transform": [
@@ -280,7 +280,8 @@ var prematureMortSpec = {
         "y": {
           "field": "Value",
           "type": "quantitative",
-          "title": null
+          "title": null,
+          "scale": {"domain": [0, 400]}
         },
           "color": {
             "condition": {
