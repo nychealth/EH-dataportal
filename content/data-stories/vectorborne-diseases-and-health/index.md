@@ -141,6 +141,8 @@ Climate change impacts vector-borne diseases as it does many other health issues
 
 ## Climate change is making summers hotter and wetter in NYC, and mosquito populations are increasing
 
+The number of days per warm season where the average temperature exceeded 86 degrees F has been steadily climbing in NYC since 1975 due to human-caused climate change. Days under 74 degrees F have also been decreasing.
+
 </div>
 
 <div class="wide my-4 my-4 py-2 border-top border-bottom">
@@ -152,7 +154,6 @@ Climate change impacts vector-borne diseases as it does many other health issues
 <div class="sr-only">
 <div style="min-height:910px" id="datawrapper-vis-6t3WI"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/6t3WI/embed.js" charset="utf-8" data-target="#datawrapper-vis-6t3WI"></script><noscript><img src="https://datawrapper.dwcdn.net/6t3WI/full.png" alt="The number of days over 86°F has been rising in NYC each summer (Table)" /></noscript></div>
 </div>
-<figcaption class="figure-caption mt-2">The number of days per warm season where the average temperature exceeded 86 degrees F has been steadily climbing in NYC since 1975 due to human-caused climate change. Days under 74 degrees F have also been decreasing.</figcaption>
 
 </div>
 
