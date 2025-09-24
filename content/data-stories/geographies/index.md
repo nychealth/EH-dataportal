@@ -48,7 +48,7 @@ United Hospital Fund neighborhoods (UHFs) are a neighborhood scheme created by t
 
 **Community districts**
 
-There are 59 Community Districts (CDs) in NYC, each overseen by a Community Board that advises on land use, zoning, city budgets, and more. As a political boundary, CDs are useful geographic units for breaking down city operations. Learn more about Community Boards.
+There are 59 Community Districts (CDs) in NYC, each overseen by a Community Board that advises on land use, zoning, city budgets, and more. As a political boundary, CDs are useful geographic units for breaking down city operations. <a href="https://www1.nyc.gov/site/cau/community-boards/about-commmunity-boards.page">Learn more about Community Boards.</a>
 
 **Public Use Microdata Areas**
 
@@ -292,7 +292,7 @@ Each PUMA breaks down into Neighborhood Tabulation Areas (NTAs), and each NTA br
 
 <div class="ml-3 mb-2">
 
-There are 59 Community Districts (CDs) in NYC, each overseen by a Community Board that advises on land use, zoning, city budgets, and more. As a political boundary, CDs are useful geographic units for breaking down city operations. <a href="https://www1.nyc.gov/site/cau/community-boards/about-commmunity-boards.page">Learn more about Community Boards.</a>
+Unlike PUMAs and UHFs, Community Districts don’t have a convenient root unit. So, NYC Planning created Community District Tabulation Areas (CDTAs) to approximate Community Districts using census tracts as their building blocks. Census tracts don’t always align perfectly with Community District boundaries—there are areas where tract lines and CD boundaries differ slightly. But, they’re close enough that CDTAs can serve as a “census-compatible” version of CDs. This makes them especially useful for linking Community District data with data from the US Census or American Community Survey (ACS).
 
 </div>
 
