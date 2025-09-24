@@ -6,7 +6,7 @@ draft: false
 seo_title: "Climate change, tick- and mosquito-borne illness in NYC"
 seo_description: "A data story about how climate change is affecting vector-borne disease in NYC."
 tags:
-categories: ["pests and pesticides", "climate", "neighborhoods"]
+categories: ["pests", "climatehealth", "neighborhoods"]
 keywords: ["vector-borne disease", "rain", "inequities", "mosquitoes", "ticks"]
 image: NY_forest.jpg
 photocredit: Dougtone/CC-BY-SA 2.0
