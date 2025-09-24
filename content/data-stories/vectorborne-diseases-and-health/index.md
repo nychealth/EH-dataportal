@@ -1,7 +1,7 @@
 ---
 title: What climate change means for vector-borne disease in NYC
 shortTitle: Vector-borne disease and health
-date: 2025-09-12T09:01:00-04:00
+date: 2025-09-23T09:01:00-04:00
 draft: false
 seo_title: "Climate change, tick- and mosquito-borne illness in NYC"
 seo_description: "A data story about how climate change is affecting vector-borne disease in NYC."
@@ -38,10 +38,15 @@ Vector-borne disease cases are increasing in NYC, likely due to climate change.
 </div>
 <div class="wide my-4">
 
+<div aria-hidden="true">
 <div class="my-4 py-2 border-top border-bottom">
 <div style="min-height:225px" id="datawrapper-vis-cmOHA"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/cmOHA/embed.js" charset="utf-8" data-target="#datawrapper-vis-cmOHA"></script><noscript><img src="https://datawrapper.dwcdn.net/cmOHA/full.png" alt="Since 1999, years with over 25 cases have become more frequent (Column Chart)" /></noscript></div>
 </div>
+</div>
 
+<div class="sr-only">
+<iframe title="Since 1999, years with over 25 cases have become more frequent" aria-label="Table" id="datawrapper-chart-SV4Jp" src="https://datawrapper.dwcdn.net/SV4Jp/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="930" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r,i=0;r=e[i];i++)if(r.contentWindow===a.source){var d=a.data["datawrapper-height"][t]+"px";r.style.height=d}}})}();
+</script>
 </div>
 
 <div class="narrow">
@@ -54,6 +59,7 @@ People can get West Nile virus when mosquitoes are active, usually between July 
 
 <div class="wide my-4">
 
+<div aria-hidden="true">
 <div class="nav nav-tabs device-md mb-3" role="tablist">
     <a class="nav-item nav-link active" id="tab-btn-02-a" href="#tab-02-a" data-toggle="tab"
         aria-controls="tab-02-a" aria-selected="true" role="tab">
@@ -81,7 +87,17 @@ People can get West Nile virus when mosquitoes are active, usually between July 
       <div style="min-height:334px" id="datawrapper-vis-yRPHe"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/yRPHe/embed.js" charset="utf-8" data-target="#datawrapper-vis-yRPHe"></script><noscript><img src="https://datawrapper.dwcdn.net/yRPHe/full.png" alt="A line chart showing anaplasmosis cases have been increasing in NYC since 2000, with the most dramatic increase in Manhattan over other boroughs." /></noscript></div>
     </div>
 </div>
+</div>
 
+<div class="sr-only">
+<div style="min-height:930px" id="datawrapper-vis-mPZdX"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/mPZdX/embed.js" charset="utf-8" data-target="#datawrapper-vis-mPZdX"></script><noscript><img src="https://datawrapper.dwcdn.net/mPZdX/full.png" alt="A line chart showing anaplasmosis cases have been increasing in NYC since 2000, with the most dramatic increase in Manhattan over other boroughs." /></noscript></div>
+</div>
+<div class="sr-only">
+<div style="min-height:910px" id="datawrapper-vis-wLmZA"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/wLmZA/embed.js" charset="utf-8" data-target="#datawrapper-vis-wLmZA"></script><noscript><img src="https://datawrapper.dwcdn.net/wLmZA/full.png" alt="A line chart showing babesiosis cases have been increasing in NYC since 2000, with the most dramatic increase in Manhattan over other boroughs." /></noscript></div>
+</div>
+<div class="sr-only">
+<div style="min-height:953px" id="datawrapper-vis-eDTvQ"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/eDTvQ/embed.js" charset="utf-8" data-target="#datawrapper-vis-eDTvQ"></script><noscript><img src="https://datawrapper.dwcdn.net/eDTvQ/full.png" alt="A line chart showing anaplasmosis cases have been increasing in NYC since 2000, with the most dramatic increase in Manhattan over other boroughs." /></noscript></div>
+</div>
 </div>
 
 <div class="narrow">
@@ -127,8 +143,13 @@ Climate change impacts vector-borne diseases as it does many other health issues
 
 <div class="wide my-4 my-4 py-2 border-top border-bottom">
 
+<div aria-hidden="true">
 <div style="min-height:597px" id="datawrapper-vis-moaSW"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/moaSW/embed.js" charset="utf-8" data-target="#datawrapper-vis-moaSW"></script><noscript><img src="https://datawrapper.dwcdn.net/moaSW/full.png" alt="The number of very hot days has been rising in NYC (Line chart)" /></noscript></div>
+</div>
 
+<div class="sr-only">
+<div style="min-height:910px" id="datawrapper-vis-6t3WI"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/6t3WI/embed.js" charset="utf-8" data-target="#datawrapper-vis-6t3WI"></script><noscript><img src="https://datawrapper.dwcdn.net/6t3WI/full.png" alt="The number of days over 86°F has been rising in NYC each summer (Table)" /></noscript></div>
+</div>
 <figcaption class="figure-caption mt-2">The number of days per warm season where the average temperature exceeded 86 degrees F has been steadily climbing in NYC since 1975 due to human-caused climate change. Days under 74 degrees F have also been decreasing.</figcaption>
 
 </div>
