@@ -62,7 +62,7 @@ There are 55 PUMAs in NYC. PUMAs have similar boundaries to Community Districts,
         <div class="col-6">
         <div aria-hidden="true">
         <input type="radio" name="mainRadioGroup" value="cd" id="ucd" checked> <label for="ucd">Community Districts</label> &nbsp;&nbsp;
-        <input type="radio" name="mainRadioGroup" value="puma" id="upuma"/> <label for="upuma">PUMAs</label> &nbsp;&nbsp;
+        <input type="radio" name="mainRadioGroup" value="puma" id="upuma"/> <label for="upuma">PUMAs (2020)</label> &nbsp;&nbsp;
         <!--<input type="radio" name="mainRadioGroup" value="nta" id="unta"><label for="unta">NTAs</label>-->
         <!-- create map div -->
         <div id = 'map1' style = "width:100%; height: 450px"></div>
@@ -75,9 +75,11 @@ There are 55 PUMAs in NYC. PUMAs have similar boundaries to Community Districts,
                 let nta_spec  = repo_branch + "/" + path + "/" + trans + "/" + "mapnta.vl.json";
                 let cd_csv   = repo_branch + "/" + path + "/" + "CD_DATA.csv"
                 let puma_csv = repo_branch + "/" + path + "/" + "PUMA_DATA.csv"
+                let puma2020_csv = repo_branch + "/" + path + "/" + "PUMA2020_DATA.csv"
                 let nta_csv  = repo_branch + "/" + path + "/" + "NTA_DATA.csv"
                 let cd_topo   = repo_branch + "/" + "geography" + "/" + "CD.topo.json"
                 let puma_topo = repo_branch + "/" + "geography" + "/" + "PUMA_or_Subborough.topo.json"
+                let puma2020_topo = repo_branch + "/" + "geography" + "/" + "PUMA2020.topo.json"
                 let nta_topo  = repo_branch + "/" + "geography" + "/" + "NTA_2010.topo.json"
                 // this code listens to the form with map chooser; must run after DOM loads
                 window.onload = main_radio_listener;
@@ -92,7 +94,7 @@ There are 55 PUMAs in NYC. PUMAs have similar boundaries to Community Districts,
                             buildMap("#map1", nta_spec, nta_csv, nta_topo);
                         }
                         else {
-                            buildMap("#map1", puma_spec, puma_csv, puma_topo);
+                            buildMap("#map1", puma_spec, puma2020_csv, puma2020_topo);
                         };
                     }));
                 };
