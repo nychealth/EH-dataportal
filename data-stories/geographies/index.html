@@ -489,7 +489,7 @@
 <p><strong>United Hospital Fund neighborhoods</strong></p>
 <p>United Hospital Fund neighborhoods (UHFs) are a neighborhood scheme created by the Health Department, the United Hospital Fund, and other city agencies in the 1980s. They were designed for health research, and to be roughly similar to NYC’s Community Districts. There are two versions of this scheme: UHF42 (with 42 neighborhoods), and UHF34, with 34 neighborhoods (where several neighborhoods from UHF42 are combined into one). But since there are 59 community districts, UHF42 isn’t that close to CDs.</p></p>
 <p><strong>Community districts</strong></p>
-<p>There are 59 Community Districts (CDs) in NYC, each overseen by a Community Board that advises on land use, zoning, city budgets, and more. As a political boundary, CDs are useful geographic units for breaking down city operations. Learn more about Community Boards.</p>
+<p>There are 59 Community Districts (CDs) in NYC, each overseen by a Community Board that advises on land use, zoning, city budgets, and more. As a political boundary, CDs are useful geographic units for breaking down city operations. <a href="https://www1.nyc.gov/site/cau/community-boards/about-commmunity-boards.page">Learn more about Community Boards.</a></p>
 <p><strong>Public Use Microdata Areas</strong></p>
 <p>There are 55 PUMAs in NYC. PUMAs have similar boundaries to Community Districts, but there are four PUMAs that are made up of two CDs combined into one PUMA. Because they are so similar, PUMAS and CDs can be used as a proxy for each other. PUMAs are also called “Subboro.”</p>
 </div>
@@ -499,7 +499,7 @@
         <div class="col-6">
         <div aria-hidden="true">
         <input type="radio" name="mainRadioGroup" value="cd" id="ucd" checked> <label for="ucd">Community Districts</label> &nbsp;&nbsp;
-        <input type="radio" name="mainRadioGroup" value="puma" id="upuma"/> <label for="upuma">PUMAs</label> &nbsp;&nbsp;
+        <input type="radio" name="mainRadioGroup" value="puma" id="upuma"/> <label for="upuma">PUMAs (2020)</label> &nbsp;&nbsp;
         <!--<input type="radio" name="mainRadioGroup" value="nta" id="unta"><label for="unta">NTAs</label>-->
         <!-- create map div -->
         <div id = 'map1' style = "width:100%; height: 450px"></div>
@@ -512,9 +512,11 @@
                 let nta_spec  = repo_branch + "/" + path + "/" + trans + "/" + "mapnta.vl.json";
                 let cd_csv   = repo_branch + "/" + path + "/" + "CD_DATA.csv"
                 let puma_csv = repo_branch + "/" + path + "/" + "PUMA_DATA.csv"
+                let puma2020_csv = repo_branch + "/" + path + "/" + "PUMA2020_DATA.csv"
                 let nta_csv  = repo_branch + "/" + path + "/" + "NTA_DATA.csv"
                 let cd_topo   = repo_branch + "/" + "geography" + "/" + "CD.topo.json"
                 let puma_topo = repo_branch + "/" + "geography" + "/" + "PUMA_or_Subborough.topo.json"
+                let puma2020_topo = repo_branch + "/" + "geography" + "/" + "PUMA2020.topo.json"
                 let nta_topo  = repo_branch + "/" + "geography" + "/" + "NTA_2010.topo.json"
                 // this code listens to the form with map chooser; must run after DOM loads
                 window.onload = main_radio_listener;
@@ -529,7 +531,7 @@
                             buildMap("#map1", nta_spec, nta_csv, nta_topo);
                         }
                         else {
-                            buildMap("#map1", puma_spec, puma_csv, puma_topo);
+                            buildMap("#map1", puma_spec, puma2020_csv, puma2020_topo);
                         };
                     }));
                 };
@@ -613,7 +615,7 @@
 <h5>United Hospital Fund neighborhoods</h5>
 <div class="ml-3 mb-1">
 <p>United Hospital Fund neighborhoods (UHFs) have boundaries based on ZIP codes. This geography was created by the Health Department, the United Hospital Fund, and other city agencies in the 1980s. They were designed for health research, and to be similar to NYC’s Community Districts.</p>
-<p>Health data - like somebody’s hospitalization record, for example, or a response to a survey - often includes a person’s ZIP code. It’s the most readily available piece of geographic information in administrative data. It’s also the neighborhood designation that most people know and can provide when responding to a survey.</p>
+<p>Health data—like somebody’s hospitalization record, for example, or a response to a survey—often includes a person’s ZIP code. It’s the most readily available piece of geographic information in administrative data. It’s also the neighborhood designation that most people know and can provide when responding to a survey.</p>
 <p>To protect privacy, we often bundle (or aggregate) data from a larger area, so we need a scheme of neighborhoods that are made up of a collection of ZIP codes: UHFs. Collecting data by ZIP code and then &ldquo;rolling up&rdquo; into UHF neighborhoods has been used in health research for decades. The methods for our surveys (like the Community Health Survey) are designed to include enough people from each UHF neighborhood so that there’s a “representative sample” of all New Yorkers, and so that we can compare neighborhoods with high statistical confidence. Usually, we use UHF42 neighborhoods, which breaks the city down into 42 neighborhoods. Sometimes, though, we use UHF34 neighborhoods—by grouping together some of the neighborhoods, we can increase the statistical power of a survey.</p>
 <p>In the map below, notice how three UHF42 neighborhoods in the South Bronx are combined into one UHF34 neighborhood—and how the UHF neighborhoods have ZIP codes (or, more precisely, ZIP code tabulation areas) as their root unit.</p>
 </div>
@@ -704,10 +706,10 @@
 </div>
 <h5>Community districts</h5>
 <div class="ml-3 mb-2">
-<p>There are 59 Community Districts (CDs) in NYC, each overseen by a Community Board that advises on land use, zoning, city budgets, and more. As a political boundary, CDs are useful geographic units for breaking down city operations. <a href="https://www1.nyc.gov/site/cau/community-boards/about-commmunity-boards.page">Learn more about Community Boards.</a></p>
+<p>Unlike PUMAs and UHFs, Community Districts don’t have a convenient root unit. So, NYC Planning created Community District Tabulation Areas (CDTAs) to approximate Community Districts using census tracts as their building blocks. Census tracts don’t always align perfectly with Community District boundaries—there are areas where tract lines and CD boundaries differ slightly. But, they’re close enough that CDTAs can serve as a “census-compatible” version of CDs. This makes them especially useful for linking Community District data with data from the US Census or American Community Survey (ACS).</p>
 </div>
 <h4>Boundary updates in 2020</h4>
-<p>In 2020, the US Census updated the boundaries of census tracts – which means that schemes based on census tracts (NTAs, PUMAS, and CDTAs) also changed. These changes reflect population and housing changes and were made to more accurately represent the communities that live there. Our recent data generally uses the updated 2020 maps, but you may find older data on our website that uses 2010 map versions. The map changes are generally subtle, but they may affect trends in data for certain neighborhoods.</p>
+<p>In 2020, the US Census updated the boundaries of census tracts—which means that schemes based on census tracts (NTAs, PUMAS, and CDTAs) also changed. These changes reflect population and housing changes and were made to more accurately represent the communities that live there. Our recent data generally uses the updated 2020 maps, but you may find older data on our website that uses 2010 map versions. The map changes are generally subtle, but they may affect trends in data for certain neighborhoods.</p>
 <h3>What do you do when you&rsquo;re looking for data for one type of neighborhood, but the data is only available at a different scheme?</h3>
 <p>It can be difficult to work with several datasets when the data are for different types of neighborhoods. For example, it can be a challenge to look up health data for a Community Board or a City Council District when those data are only available at UHF42.</p>
 <p><a href="https://boundaries.beta.nyc/?">Beta NYC has a tool called Boundaries, which allows you to compare how NYC is divided into different districts.</a> This tool may help you decide which neighborhood area to choose when presenting data in research papers or at board meetings.</p>
@@ -877,7 +879,7 @@ A GeoID (Geographic Identifier) is a unique code used to label a specific area o
 </div>
 <div class="narrow">
 <p><br>A GeoID (Geographic Identifier) is a unique code used to label a specific area on a map, like a ZIP code or census tract, so that data about that area can be organized, matched, and analyzed.</p>
-<p>A GeoID is like a “name tag” for places. Every area, from a small city block to an entire borough, can have a code that identifies it in a dataset. These codes help different datasets talk to each other by matching information. Census GeoIDs are numeric and follow a strict nesting structure – as shown in the previous table. <a href="https://data.cityofnewyork.us/City-Government/2020-Census-Tracts-to-2020-NTAs-and-CDTAs-Equivale/hm78-6dwm/data_preview">Visit NYC OpenData for the full crosswalk of 2020 Census Tracts, to 2020 NTAs, to 2020 CDTAs.</a> If you’d like to see how ZIP Codes (or ZCTA) form UHFs, <a href="https://github.com/nychealth/EHDP-data/blob/production/geography/zcta_to_uhf.csv">visit the geographies folder in our data repository.</a></p>
+<p>A GeoID is like a “name tag” for places. Every area, from a small city block to an entire borough, can have a code that identifies it in a dataset. These codes help different datasets talk to each other by matching information. Census GeoIDs are numeric and follow a strict nesting structure—as shown in the previous table. <a href="https://data.cityofnewyork.us/City-Government/2020-Census-Tracts-to-2020-NTAs-and-CDTAs-Equivale/hm78-6dwm/data_preview">Visit NYC OpenData for the full crosswalk of 2020 Census Tracts, to 2020 NTAs, to 2020 CDTAs.</a> If you’d like to see how ZIP Codes (or ZCTA) form UHFs, <a href="https://github.com/nychealth/EHDP-data/blob/production/geography/zcta_to_uhf.csv">visit the geographies folder in our data repository.</a></p>
   </div>
 </div>
 <!-- text if we don't like the card ### Matching datasets: a brief overview of GEOIDs
