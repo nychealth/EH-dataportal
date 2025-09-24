@@ -36,6 +36,7 @@ Because of climate change, vector surveillance and testing is more important tha
 Vector-borne disease cases are increasing in NYC, likely due to climate change.
 
 </div>
+
 <div class="wide my-4">
 
 <div aria-hidden="true">
@@ -49,6 +50,7 @@ Vector-borne disease cases are increasing in NYC, likely due to climate change.
 </script>
 </div>
 
+</div>
 <div class="narrow">
 
 Most people infected with West Nile virus don’t get sick or are only mildly ill, so they may not get tested, and we don’t learn that they had the virus. The people that are more likely to get tested are those who are severely ill and hospitalized with West Nile Neuroinvasive Disease. This type of West Nile virus infection affects the central nervous system, including the brain, often causing encephalitis or meningitis. Since 1999, there have been between two and 45 people with West Nile Neuroinvasive Disease each year. Six of the nine years with more than 25 cases have been since 2010.
