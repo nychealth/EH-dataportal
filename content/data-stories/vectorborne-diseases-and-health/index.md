@@ -35,9 +35,6 @@ Because of climate change, vector surveillance and testing is more important tha
 
 Vector-borne disease cases are increasing in NYC, likely due to climate change.
 
-_Most NYC residents with West Nile virus disease were most likely infected by mosquitoes within the five boroughs..._
-_...But most people with a tick-borne disease are bitten by an infected tick while spending time outdoors outside of NYC._
-
 </div>
 <div class="wide my-4">
 
