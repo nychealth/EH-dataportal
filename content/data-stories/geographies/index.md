@@ -298,7 +298,7 @@ Unlike PUMAs and UHFs, Community Districts don’t have a convenient root unit. 
 
 #### Boundary updates in 2020
 
-In 2020, the US Census updated the boundaries of census tracts – which means that schemes based on census tracts (NTAs, PUMAS, and CDTAs) also changed. These changes reflect population and housing changes and were made to more accurately represent the communities that live there. Our recent data generally uses the updated 2020 maps, but you may find older data on our website that uses 2010 map versions. The map changes are generally subtle, but they may affect trends in data for certain neighborhoods.
+In 2020, the US Census updated the boundaries of census tracts—which means that schemes based on census tracts (NTAs, PUMAS, and CDTAs) also changed. These changes reflect population and housing changes and were made to more accurately represent the communities that live there. Our recent data generally uses the updated 2020 maps, but you may find older data on our website that uses 2010 map versions. The map changes are generally subtle, but they may affect trends in data for certain neighborhoods.
 
 ### What do you do when you're looking for data for one type of neighborhood, but the data is only available at a different scheme?
 
