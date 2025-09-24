@@ -19,13 +19,13 @@ related:
     url: "data-features/rats-in-your-neighborhood/"
 ---
 
-### Mosquitoes and ticks can cause serious diseases for New Yorkers
+## Mosquitoes and ticks can cause serious diseases for New Yorkers
 
 Bugs play an important role in our ecosystem: They pollinate plants, break down organic matter into soil, and are a source of food for animals. Some also spread diseases. We call bugs that spread disease vectors.
 
 Some bugs, including certain types of mosquitoes and ticks, can pick up disease-causing germs from people and animals they bite. They can then spread them to the next person or animal they bite. Diseases that spread this way are called vector-borne diseases.  Examples you may have heard of in NYC are West Nile virus disease, spread by mosquitoes, and Lyme disease, spread by ticks. These diseases are sensitive to climate factors such as rainfall, humidity, and temperature.
 
-### Vector surveillance is critical for detecting and controlling vectors and vector-borne disease
+## Vector surveillance is critical for detecting and controlling vectors and vector-borne disease
 
 Vector surveillance monitors bugs that spread disease and identifies new and emerging vectors. This process helps us understand where these vectors are in NYC, how many there are, and when they are active throughout the year.
 
