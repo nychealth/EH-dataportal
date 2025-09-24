@@ -108,7 +108,7 @@ The only vector that spreads tick-borne disease within NYC is the blacklegged ti
 
 Although the increase in Lyme disease cases reported that began in 2022 is due to a change in the way cases are defined, the slow but steady increase in tick-borne diseases overall is likely related to the climate change.
 
-### Climate variables like temperature and rainfall can affect vector-borne diseases
+## Climate variables like temperature and rainfall can affect vector-borne diseases
 
 Climate change impacts vector-borne diseases as it does many other health issues. However, the direct impact of the changing climate on vector-borne diseases is more challenging to anticipate than it is for <a href="../../data-features/heat-report">frequent heat waves</a> and <a href="../flooding-and-health/">intense storms.</a> This is because of the complex interactions between climate factors, like heat and rainfall, and the vectors themselves, their ecosystems, and the animals and people they bite.
 
@@ -137,7 +137,7 @@ Climate change impacts vector-borne diseases as it does many other health issues
 
 <div class="narrow">
 
-### Climate change is making summers hotter and wetter in NYC, and mosquito populations are increasing
+## Climate change is making summers hotter and wetter in NYC, and mosquito populations are increasing
 
 </div>
 
@@ -158,13 +158,13 @@ Climate change impacts vector-borne diseases as it does many other health issues
 
 Summers have been getting hotter in NYC due to the Earth’s rising average temperature. Rainfall has also been increasing and becoming more intense. The number of mosquitoes that can spread West Nile virus and the number of batches (also called pools) of these <a href="https://www.nyc.gov/site/doh/health/health-topics/west-nile-virus-reports.page">mosquitoes testing positive for West Nile virus have also been increasing</a> in NYC since tracking began in 1999. Mosquitoes tend to favor hot, wet, and humid weather, so these trends are likely related.
 
-### Human-led changes to natural areas and hot, humid summers mean ticks are active in more places for more of the year
+## Human-led changes to natural areas and hot, humid summers mean ticks are active in more places for more of the year
 
 As we keep developing and living in formerly natural areas and people move into habitats where ticks and their animal hosts live, people are more exposed to ticks and at increased risk of tick-borne diseases. Ticks thrive in warmer weather as long as there is humidity. Longer warm seasons and shorter, milder winters mean that ticks can thrive in more places for more of the year. New tick species have been found on Staten Island in recent years, including <a href="https://academic.oup.com/jme/article-abstract/61/3/764/7615025?redirectedFrom=fulltext&login=false">the Asian longhorned tick and the Gulf Coast tick</a>. These ticks can spread the bacteria that causes a type of spotted fever. This disease can cause fever, rash, and aches.
 
 However, ticks don’t survive well when it is too hot and dry. High temperatures and dry conditions, like during the drought in NYC in fall 2024, can reduce tick activity.
 
-### Preventing vector-borne diseases
+## Preventing vector-borne diseases
 
 Certain people, especially people 55 and older and those with weakened immune systems, may be at greater risk for getting sick from West Nile virus. <a href="https://www.nyc.gov/site/doh/health/health-topics/west-nile-virus-spray.page">The Health Department works to control mosquito populations.</a> We treat marshlands, natural bodies of water, and catch basins with larvicide (a pesticide that kills mosquito larvae) during the season to prevent mosquito larvae from emerging as adult mosquitoes. We spray to control adult mosquitoes (adulticiding) using trucks when surveillance shows a high risk of disease to humans in certain areas.
 
