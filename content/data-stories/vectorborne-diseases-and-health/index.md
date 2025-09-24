@@ -55,37 +55,37 @@ People can get West Nile virus when mosquitoes are active, usually between July 
 
 </div>
 
-<!-- commenting out tabs
-<div class="row">
-<div class="col-12">
-<ul class="nav nav-tabs nav-fill">
-    <li class="active"><a data-toggle="tab" href="#home">Anaplasmosis</a></li>
-    <li><a data-toggle="tab" href="#menu1">Babesiosis</a></li>
-    <li><a data-toggle="tab" href="#menu2">Lyme</a></li>
-</ul>
+<div class="wide my-4">
 
-<div class="tab-content">
-    <div id="home" class="tab-pane fade in active">
-      <h3>Anaplasmosis</h3>
+<div class="nav nav-tabs device-md mb-3" role="tablist">
+    <a class="nav-item nav-link active" id="tab-btn-02-a" href="#tab-02-a" data-toggle="tab"
+        aria-controls="tab-02-a" aria-selected="true" role="tab">
+        Anaplasmosis cases
+    </a>
+    <a class="nav-item nav-link" id="tab-btn-02-b" href="#tab-02-b" data-toggle="tab"
+        aria-controls="tab-02-b" aria-selected="false" role="tab">
+        Babesiosis cases
+    </a>
+    <a class="nav-item nav-link" id="tab-btn-02-c" href="#tab-02-c" data-toggle="tab"
+        aria-controls="tab-02-c" aria-selected="false" role="tab">
+        Lyme cases
+    </a>
+</div>
+
+<div class="tab-content" id="tabs-02-content">
+    <div class="tab-pane fade show active" id="tab-02-a" aria-labelledby="tab-btn-02-a"
+        role="tabpanel">
     <div style="min-height:491px" id="datawrapper-vis-FhfVN"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/FhfVN/embed.js" charset="utf-8" data-target="#datawrapper-vis-FhfVN"></script><noscript><img src="https://datawrapper.dwcdn.net/FhfVN/full.png" alt="A line chart showing anaplasmosis cases have been increasing in NYC since 2000, with the most dramatic increase in Manhattan over other boroughs." /></noscript></div>
     </div>
-    <div id="menu1" class="tab-pane fade">
-      <h3>Babesiosis</h3>
-<div style="min-height:291px" id="datawrapper-vis-TYamB"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/TYamB/embed.js" charset="utf-8" data-target="#datawrapper-vis-TYamB"></script><noscript><img src="https://datawrapper.dwcdn.net/TYamB/full.png" alt="A line chart showing babesiosis cases have been increasing in NYC since 2000, with the most dramatic increase in Manhattan over other boroughs." /></noscript></div>
+    <div class="tab-pane fade" id="tab-02-b" aria-labelledby="tab-btn-02-b" role="tabpanel">
+    <div style="min-height:291px" id="datawrapper-vis-TYamB"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/TYamB/embed.js" charset="utf-8" data-target="#datawrapper-vis-TYamB"></script><noscript><img src="https://datawrapper.dwcdn.net/TYamB/full.png" alt="A line chart showing babesiosis cases have been increasing in NYC since 2000, with the most dramatic increase in Manhattan over other boroughs." /></noscript></div>
     </div>
-    <div id="menu2" class="tab-pane fade">
-      <h3>Lyme</h3>
+    <div class="tab-pane fade" id="tab-02-c" aria-labelledby="tab-btn-02-c" role="tabpanel">
       <div style="min-height:334px" id="datawrapper-vis-yRPHe"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/yRPHe/embed.js" charset="utf-8" data-target="#datawrapper-vis-yRPHe"></script><noscript><img src="https://datawrapper.dwcdn.net/yRPHe/full.png" alt="A line chart showing anaplasmosis cases have been increasing in NYC since 2000, with the most dramatic increase in Manhattan over other boroughs." /></noscript></div>
-      </div>
-  </div>
-  </div>
+    </div>
 </div>
--->
-<div style="min-height:491px" class="m-2" id="datawrapper-vis-FhfVN"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/FhfVN/embed.js" charset="utf-8" data-target="#datawrapper-vis-FhfVN"></script><noscript><img src="https://datawrapper.dwcdn.net/FhfVN/full.png" alt="A line chart showing anaplasmosis cases have been increasing in NYC since 2000, with the most dramatic increase in Manhattan over other boroughs." /></noscript></div>
 
-<div style="min-height:334px" class="m-2" id="datawrapper-vis-yRPHe"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/yRPHe/embed.js" charset="utf-8" data-target="#datawrapper-vis-yRPHe"></script><noscript><img src="https://datawrapper.dwcdn.net/yRPHe/full.png" alt="A line chart showing anaplasmosis cases have been increasing in NYC since 2000, with the most dramatic increase in Manhattan over other boroughs." /></noscript></div>
-
-<div style="min-height:291px" class="m-2" id="datawrapper-vis-TYamB"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/TYamB/embed.js" charset="utf-8" data-target="#datawrapper-vis-TYamB"></script><noscript><img src="https://datawrapper.dwcdn.net/TYamB/full.png" alt="A line chart showing babesiosis cases have been increasing in NYC since 2000, with the most dramatic increase in Manhattan over other boroughs." /></noscript></div>
+</div>
 
 <div class="narrow">
 
