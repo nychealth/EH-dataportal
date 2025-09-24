@@ -1,7 +1,7 @@
 ---
 title: What climate change means for vector-borne disease in NYC
 shortTitle: Vector-borne disease and health
-date: 2025-09-23T09:01:00-04:00
+date: 2025-09-24T09:01:00-04:00
 draft: false
 seo_title: "Climate change, tick- and mosquito-borne illness in NYC"
 seo_description: "A data story about how climate change is affecting vector-borne disease in NYC."
