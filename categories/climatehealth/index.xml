@@ -6,7 +6,7 @@
     <description>Recent content in Climatehealth on Environment &amp; Health Data Portal</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 01 Jul 2025 08:11:44 -0400</lastBuildDate>
+    <lastBuildDate>Wed, 24 Sep 2025 09:01:00 -0400</lastBuildDate>
     <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/categories/climatehealth/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Interactive Heat Vulnerability Index</title>
@@ -56,6 +56,13 @@
       <pubDate>Wed, 08 Sep 2021 11:14:56 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-report-archive/2024/</guid>
       <description>&lt;p&gt;Each summer, on average, an estimated 350 New Yorkers die prematurely because of hot weather in New York City (NYC). These heat-related deaths account for about 2% of all deaths over the warm season months of May through September.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>What climate change means for vector-borne disease in NYC</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/vectorborne-diseases-and-health/</link>
+      <pubDate>Wed, 24 Sep 2025 09:01:00 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/vectorborne-diseases-and-health/</guid>
+      <description>&lt;h2&gt;Mosquitoes and ticks can cause serious diseases for New Yorkers&lt;/h2&gt;&#xA;&lt;p&gt;Bugs play an important role in our ecosystem: They pollinate plants, break down organic matter into soil, and are a source of food for animals. Some also spread diseases. We call bugs that spread disease vectors.&lt;/p&gt;&#xA;&lt;p&gt;Some bugs, including certain types of mosquitoes and ticks, can pick up disease-causing germs from people and animals they bite. They can then spread them to the next person or animal they bite. Diseases that spread this way are called vector-borne diseases.  Examples you may have heard of in NYC are West Nile virus disease, spread by mosquitoes, and Lyme disease, spread by ticks. These diseases are sensitive to climate factors such as rainfall, humidity, and temperature.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Initial data from Congestion Relief Tolling</title>

@@ -6,7 +6,7 @@
     <description>Recent content in The Environment and Health Data Portal: Home page on Environment &amp; Health Data Portal</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 02 Sep 2025 07:56:00 -0400</lastBuildDate>
+    <lastBuildDate>Wed, 24 Sep 2025 09:01:00 -0400</lastBuildDate>
     <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Rats in your neighborhood</title>
@@ -105,6 +105,13 @@
       <pubDate>Wed, 08 Sep 2021 11:14:56 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-report-archive/2024/</guid>
       <description>&lt;p&gt;Each summer, on average, an estimated 350 New Yorkers die prematurely because of hot weather in New York City (NYC). These heat-related deaths account for about 2% of all deaths over the warm season months of May through September.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>What climate change means for vector-borne disease in NYC</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/vectorborne-diseases-and-health/</link>
+      <pubDate>Wed, 24 Sep 2025 09:01:00 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/vectorborne-diseases-and-health/</guid>
+      <description>&lt;h2&gt;Mosquitoes and ticks can cause serious diseases for New Yorkers&lt;/h2&gt;&#xA;&lt;p&gt;Bugs play an important role in our ecosystem: They pollinate plants, break down organic matter into soil, and are a source of food for animals. Some also spread diseases. We call bugs that spread disease vectors.&lt;/p&gt;&#xA;&lt;p&gt;Some bugs, including certain types of mosquitoes and ticks, can pick up disease-causing germs from people and animals they bite. They can then spread them to the next person or animal they bite. Diseases that spread this way are called vector-borne diseases.  Examples you may have heard of in NYC are West Nile virus disease, spread by mosquitoes, and Lyme disease, spread by ticks. These diseases are sensitive to climate factors such as rainfall, humidity, and temperature.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Inspection data are the key to controlling NYC’s rats</title>
@@ -636,7 +643,7 @@
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/transportation-related-injuries/</link>
       <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/transportation-related-injuries/</guid>
-      <description>&lt;p&gt;Traffic injuries are no accident. Like other public health concerns, they are preventable through data driven solutions. In NYC, traffic injuries, which include injuries among pedestrians, bicyclists, motorcyclists, and motor vehicle occupants, are a leading cause of injury-related hospitalizations and emergency department visits.&lt;/p&gt;&#xA;&lt;p&gt;In February 2014, NYC launched &lt;a href=&#34;http://www.nyc.gov/html/visionzero/pages/home/home.html&#34;&gt;“Vision Zero”&lt;/a&gt;, an action plan to reduce injuries and deaths on city streets. Vision Zero is a multi-agency effort, incorporating road engineering, traffic enforcement, community outreach and education, and policy work to make NYC streets safer.&lt;/p&gt;</description>
+      <description>&lt;p&gt;Traffic injuries are no accident. Like other public health problems, they follow predictable patterns and can be prevented.  In NYC, traffic injuries, which include injuries among pedestrians, bicyclists, motorcyclists, motor vehicle occupants, and others, are a leading cause of injury-related hospitalizations and emergency department visits.&lt;/p&gt;&#xA;&lt;h3&gt;Traffic Safety and the Environment&lt;/h3&gt;&#xA;&lt;p&gt;Many factors contribute to traffic injuries, including human, vehicle and environmental factors. The built environment influences traffic injury outcomes by shaping the actions of road users, as well as mitigating the effects of crashes when they do happen. Built environment features for safer road design include: pedestrian islands, improved signal timing, automated enforcement, separated bicycle paths, speed humps, and more.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Vector-borne disease</title>

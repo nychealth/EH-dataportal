@@ -406,7 +406,7 @@
   },
   "2136": {
     "IndicatorID": 2136,
-    "description": "Falls are a leading cause of injury among older adults.",
+    "description": "Hospitalizations due to falls among people over age 65. Falls are a leading cause of injury among older adults.",
     "name": "Fall-related hospitalizations (age 65+)"
   },
   "2141": {
@@ -926,7 +926,7 @@
   },
   "2427": {
     "IndicatorID": 2427,
-    "description": "Concentration of bacteria in waterways. Fecal coliform and enterococci are human-health-related indicators of water quality. Fecal coliform bacteria are found in human and animal intestines and are associated with wastewater. Enterococci may be a more sensitive indicator of wastewater pollution in a saltwater environment.",
+    "description": "Concentration of bacteria in waterways. Fecal coliform and enterococci are human-health-related indicators of water quality. Fecal coliform bacteria are found in human and animal intestines and are associated with wastewater. Enterococci may be a better indicator of wastewater pollution in a saltwater environment.",
     "name": "Bacteria"
   },
   "2428": {

@@ -30,7 +30,7 @@
     <loc>/IndicatorPublic/data-features/heat-report-archive/2024/</loc>
     <lastmod>2021-09-08T11:14:56-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/categories/</loc>
-    <lastmod>2025-09-02T07:56:00-04:00</lastmod><xhtml:link
+    <lastmod>2025-09-24T09:01:00-04:00</lastmod><xhtml:link
                 rel="alternate"
                 hreflang="es"
                 href="/IndicatorPublic/es/categories/"
@@ -43,14 +43,26 @@
                 hreflang="en"
                 href="/IndicatorPublic/categories/"
                 /></url><url>
-    <loc>/IndicatorPublic/data-features/</loc>
-    <lastmod>2025-09-02T07:56:00-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/keywords/geographies/</loc>
-    <lastmod>2025-09-02T07:56:00-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/keywords/how-we-work/</loc>
-    <lastmod>2025-09-02T07:56:00-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/categories/climatehealth/</loc>
+    <lastmod>2025-09-24T09:01:00-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/data-stories/</loc>
+    <lastmod>2025-09-24T09:01:00-04:00</lastmod><xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="/IndicatorPublic/es/data-stories/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/IndicatorPublic/zh/data-stories/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/IndicatorPublic/data-stories/"
+                /></url><url>
+    <loc>/IndicatorPublic/keywords/inequities/</loc>
+    <lastmod>2025-09-24T09:01:00-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/</loc>
-    <lastmod>2025-09-02T07:56:00-04:00</lastmod><xhtml:link
+    <lastmod>2025-09-24T09:01:00-04:00</lastmod><xhtml:link
                 rel="alternate"
                 hreflang="es"
                 href="/IndicatorPublic/es/keywords/"
@@ -63,6 +75,52 @@
                 hreflang="en"
                 href="/IndicatorPublic/keywords/"
                 /></url><url>
+    <loc>/IndicatorPublic/keywords/mosquitoes/</loc>
+    <lastmod>2025-09-24T09:01:00-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/categories/neighborhoods/</loc>
+    <lastmod>2025-09-24T09:01:00-04:00</lastmod><xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="/IndicatorPublic/es/categories/neighborhoods/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/IndicatorPublic/zh/categories/neighborhoods/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/IndicatorPublic/categories/neighborhoods/"
+                /></url><url>
+    <loc>/IndicatorPublic/categories/pests/</loc>
+    <lastmod>2025-09-24T09:01:00-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/keywords/rain/</loc>
+    <lastmod>2025-09-24T09:01:00-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/</loc>
+    <lastmod>2025-09-24T09:01:00-04:00</lastmod><xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="/IndicatorPublic/es/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/IndicatorPublic/zh/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/IndicatorPublic/"
+                /></url><url>
+    <loc>/IndicatorPublic/keywords/ticks/</loc>
+    <lastmod>2025-09-24T09:01:00-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/keywords/vector-borne-disease/</loc>
+    <lastmod>2025-09-24T09:01:00-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/data-stories/vectorborne-diseases-and-health/</loc>
+    <lastmod>2025-09-24T09:01:00-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/data-features/</loc>
+    <lastmod>2025-09-02T07:56:00-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/keywords/geographies/</loc>
+    <lastmod>2025-09-02T07:56:00-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/keywords/how-we-work/</loc>
+    <lastmod>2025-09-02T07:56:00-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/neighborhoods/</loc>
     <lastmod>2025-09-02T07:56:00-04:00</lastmod><xhtml:link
                 rel="alternate"
@@ -91,34 +149,6 @@
                 hreflang="en"
                 href="/IndicatorPublic/categories/publicspace/"
                 /></url><url>
-    <loc>/IndicatorPublic/</loc>
-    <lastmod>2025-09-02T07:56:00-04:00</lastmod><xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="/IndicatorPublic/es/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="/IndicatorPublic/zh/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/IndicatorPublic/"
-                /></url><url>
-    <loc>/IndicatorPublic/data-stories/</loc>
-    <lastmod>2025-08-04T08:49:22-04:00</lastmod><xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="/IndicatorPublic/es/data-stories/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="/IndicatorPublic/zh/data-stories/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/IndicatorPublic/data-stories/"
-                /></url><url>
     <loc>/IndicatorPublic/categories/housing/</loc>
     <lastmod>2025-08-04T08:49:22-04:00</lastmod><xhtml:link
                 rel="alternate"
@@ -134,8 +164,6 @@
                 href="/IndicatorPublic/categories/housing/"
                 /></url><url>
     <loc>/IndicatorPublic/data-stories/rat-inspections/</loc>
-    <lastmod>2025-08-04T08:49:22-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/categories/pests/</loc>
     <lastmod>2025-08-04T08:49:22-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/pests/</loc>
     <lastmod>2025-08-04T08:49:22-04:00</lastmod><xhtml:link
@@ -186,8 +214,6 @@
                 href="/IndicatorPublic/categories/airquality/"
                 /></url><url>
     <loc>/IndicatorPublic/keywords/built-environment/</loc>
-    <lastmod>2025-07-01T08:11:44-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/categories/climatehealth/</loc>
     <lastmod>2025-07-01T08:11:44-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/fine-particles/</loc>
     <lastmod>2025-07-01T08:11:44-04:00</lastmod></url><url>
@@ -256,22 +282,6 @@
                 rel="alternate"
                 hreflang="en"
                 href="/IndicatorPublic/categories/inequality/"
-                /></url><url>
-    <loc>/IndicatorPublic/keywords/inequities/</loc>
-    <lastmod>2025-06-24T09:01:00-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/categories/neighborhoods/</loc>
-    <lastmod>2025-06-24T09:01:00-04:00</lastmod><xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="/IndicatorPublic/es/categories/neighborhoods/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="/IndicatorPublic/zh/categories/neighborhoods/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/IndicatorPublic/categories/neighborhoods/"
                 /></url><url>
     <loc>/IndicatorPublic/keywords/social-determinants/</loc>
     <lastmod>2025-06-24T09:01:00-04:00</lastmod><xhtml:link
@@ -1208,8 +1218,6 @@
     <loc>/IndicatorPublic/keywords/social-conditions/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/testing/</loc>
-    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
-    <loc>/IndicatorPublic/keywords/ticks/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/IndicatorPublic/data-explorer/transportation-related-injuries/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
