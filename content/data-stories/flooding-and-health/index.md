@@ -20,8 +20,8 @@ photocredit: Julienne Schaer/NYC & Company
 related:
   - title: "Flood Vulnerability Index"
     url: "data-features/flood-vulnerability-index/"
-  - title: "How power outages affect health"
-    url: "data-stories/poweroutages/"
+  - title: "What climate change means for vector-borne disease in NYC"
+    url: "data-stories/vectorborne-diseases-and-health/"
   - title: "Energy is critical for health and climate resilience — but not all New Yorkers may be able to afford it"
     url: "data-stories/energy-insecurity/"
 ---
