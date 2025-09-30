@@ -1,11 +1,11 @@
 ---
-title: "Injury deaths in NYC"
+title: "Injury deaths in NYC adults: how homicide and suicide contribute"
 date: 2023-10-18T13:11:44-04:00
 draft: false
 seo_title: "Injury deaths in NYC adults: how homicide and suicide contribute"
 seo_description: "A data story on deaths due to injury - and ways we can prevent them."
 tags:
-categories: ["healthoutcomes", "inequality","injuryandviolence"]
+categories: ["healthoutcomes", "inequality", "injuryandviolence"]
 keywords:
   [
     "injuries",
