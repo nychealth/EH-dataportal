@@ -212,7 +212,7 @@
       <description>&lt;p&gt;If you are a data scientist, programmer, open data enthusiast, open source evangelist, data visualiation specialist or somebody who aspires to be any of those, then there are some advanced features of the Environment and Health Data Portal that you can use to get and use our data.&lt;/p&gt;&#xA;&lt;h2&gt;Re-use data visualizations&lt;/h2&gt;&#xA;&lt;p&gt;The visualizations on our site&amp;rsquo;s &lt;a href=&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/&#34;&gt;Data Explorer&lt;/a&gt; use a JavaScript library called &lt;a href=&#34;https://vega.github.io/vega-lite/&#34;&gt;Vega-Lite&lt;/a&gt;. Vega-lite provides a few options for you to use the visualizations in other contexts.&lt;/p&gt;</description>
     </item>
     <item>
-      <title>Injury deaths in NYC</title>
+      <title>Injury deaths in NYC adults: how homicide and suicide contribute</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/injury-deaths/</link>
       <pubDate>Wed, 18 Oct 2023 13:11:44 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/injury-deaths/</guid>
