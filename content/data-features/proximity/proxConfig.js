@@ -63,7 +63,7 @@ var config = [
         "geoFile": `geojson/800m_UHF42_pct_walkable_ADA_subway.geojson`,
         "choropleth": true,
         "labelName": "Neighborhood",
-        "valueField": "pct_walk_accessible",
+        "valueField": "pct_units_walk",
         "geonameField": "GEONAME"
     }
 ]
