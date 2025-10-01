@@ -59,7 +59,7 @@ var config = [
         "geonameField": "GEONAME"
     },
     {
-        "text": `We also calculated these data for UHF42 neighborhoods. But the boundaries of UHF42 neighborhoods don't line up cleanly with Census block groups. So we split block group populations across UHF42 areas based on where residential buildings fall. This way, we can estimate the percent of each UHF42 population within walking distance of an accessible subway station.`,
+        "text": `We also calculated these data for UHF42 neighborhoods. But the boundaries of UHF42 neighborhoods don't line up cleanly with Census block groups. Instead of using block groups, we determined if the PLUTO residential building units were inside the walkable area. Then we found the total residential units in each UHF area. This allowed us to deduce the percent of each UHF population within walking distance of an accessible subway station.`,
         "geoFile": `geojson/800m_UHF42_pct_walkable_ADA_subway.geojson`,
         "choropleth": true,
         "labelName": "Neighborhood",
