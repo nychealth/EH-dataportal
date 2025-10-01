@@ -2,7 +2,7 @@ console.log('Config ingested')
 
 var config = [
     {
-        "text": `First, we mapped the accessible subway stations. These are the station entrances that have elevators or other accessible features.`,
+        "text": `First, we mapped NYC's accessible subway stations. These are the station entrances that have elevators or other accessible features.`,
         "geoFile": `geojson/ADA_subway_stations.geojson`,
         "choropleth": false,
         "labelName": "Station",
@@ -10,7 +10,7 @@ var config = [
         "geonameField": "Stop Name"
     },
     {
-        "text": `Next, we showed the range of a 10-15 minute walk from each station. Using the walking network and Dijkstra's algorithm, we marked all areas within about 800 meters.`,
+        "text": `Next, we showed the range of a 10-15 minute walk from each station (roughly half a mile or 800 meters).`,
         "geoFile": `geojson/800m_isochrones_ADA_subway.geojson`,
         "choropleth": false,
         "labelName": "Station",
@@ -18,24 +18,22 @@ var config = [
         "geonameField": "station"
     },
     {
-        "text": `Then we combined all those walk areas into one map. This way, the whole citywide coverage is easier to see at once. Everybody who lives in these green areas lives within a half-mile of an ADA-compliant, accessible subway station.`,
+        "text": `Then we combined all these walkable areas into one map, making it easier to see all citywide coverage. The population within these green shapes live within a half-mile of an ADA-compliant, accessible subway station. `,
         "geoFile": `geojson/isochrones_union_ADA.geojson`,
         "choropleth": false,
         "labelName": "",
         "valueField": "",
         "geonameField": ""
     },
-    /*
+        // add in zoomed-in image instead of loading geojson file //
     {
-        "text": `We then added people. For each Census block group, we looked at residential buildings and estimated how many people live inside the walkable area. This gives the percent of each block group population that is within walking distance of an accessible station.`,
+        "text": `Now that we understand where the walkable areas are, we need to calculate how many people live in them. To do this, we looked at the residential buildings in each Census block group (one way of <a href="../../data-stories/geographies/">drawing boundaries across NYC</a>) and estimated how many people live inside the walkable area. This let us calculate the number of people in each Census block group that lives within walking distance of an accessible station.</p>`,
         "geoFile": `geojson/800m_BG_pct_walkable_ADA_subway.geojson`,
         "choropleth": true,
         "valueField": "total"
     },
-    */
     {
-        "text": `We then added people. For each Census block group, we looked at residential buildings and estimated how many people live inside the walkable area. This let us calculate the number of people in each Census block group that lives within walking distance of an accessible station.</p>
-        <p>Since block groups nest into Census tracts, we added them up and calculated the percent of each population in each Census Tract that lives within walking distance of an accessible station.`,
+        "text": `<p>It can be helpful to understand proximity indicators as applied to larger neighborhood boundary schemes too. Since block groups nest into Census tracts, we added them up and calculated the percent of each population in each Census Tract that lives within walking distance of an accessible station.`,
         "geoFile": `geojson/800m_CT_pct_walkable_ADA_subway.geojson`,
         "choropleth": true,
         "labelName": "Census tract",
