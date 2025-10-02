@@ -159,7 +159,7 @@ Table 2 lists the ten most frequently used products for each pesticide type on N
 <div id="table2" class="my-4" style="width:100%;overflow-x:scroll;height:500px;overflow-y:scroll;"></div>
 
 <script>
-  renderIntroTable('Table-2',"table2")
+  renderIntroTable('Table-2',"table2",false)
 </script>
 
 
@@ -171,7 +171,7 @@ Table 3 contains a complete list of application amounts by target pest.
 <div id="table3" class="my-4"></div>
 
 <script>
-  renderIntroTable('Table-3',"table3",true)
+  renderIntroTable('Table-3',"table3",false,true)
 </script>
 
 The level of completeness of city agency pesticide reporting has improved dramatically since 2008, with more recent years being most reflective of real variation in pest control practices. Figures 1 and 2 show trends through 2024 in use of pesticides by type, with solid and liquid products reported by weight and volume, respectively.

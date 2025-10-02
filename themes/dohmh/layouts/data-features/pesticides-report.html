@@ -42,7 +42,7 @@ function renderAgencyTable(agencyName, targetId) {
     printTable(filtered, targetId);
 }
 
-function renderIntroTable(tableName, destination, standard) {
+function renderIntroTable(tableName, destination, standard, numeric) {
     const file = 'data/' + tableName + '.csv';
    
     d3.csv(file).then(function(data) {
@@ -55,16 +55,16 @@ function renderIntroTable(tableName, destination, standard) {
         } else {
             // fallback: just dump raw data
             let table = `<table cellpadding="5" class="table table-striped">
-                            <thead><tr>`;
-            Object.keys(data[0]).forEach(col => {
-                table += `<th>${col}</th>`;
+                            <thead><tr class="fs-xs">`;
+            Object.keys(data[0]).forEach((col, i) => {
+                table += `<th${(numeric && i > 0) ? ' class="num"' : ''}>${col}</th>`;
             });
             table += `</tr></thead><tbody>`;
 
             data.forEach(row => {
                 table += `<tr>`;
-                Object.values(row).forEach(val => {
-                    table += `<td>${val}</td>`;
+                Object.values(row).forEach((val, i) => {
+                    table += `<td${(numeric && i > 0) ? ' class="num"' : ''}>${val}</td>`;
                 });
                 table += `</tr>`;
             });
