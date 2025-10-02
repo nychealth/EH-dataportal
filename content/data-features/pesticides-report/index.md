@@ -143,18 +143,36 @@ Pesticide use can be measured and compared in several ways. Throughout the remai
 Pesticides were applied 843,418 times by New York City agencies in 2024, 42% more than in 2023, due to a 64% increase in reports of larvicide applications that was driven by a change to reporting individual catch basin applications. In addition, there was a 22% decrease in reports of pyrethroid applications targeting roaches and bed bugs, primarily at NYCHA. The pesticides applied most frequently by New York City agencies (by application count) were insecticides. Insecticides were the also the most heavily used solid products (52% by weight). However, rodenticides were the most heavily used solid products when excluding larvicides (47% by weight), and the most heavily used liquid/gas (69% by volume). In 2024, 59% of the insecticides reported by weight were bacterial products designed to kill mosquito larvae in stagnant waters away from human contact. Excluding these products used as part of the Health Department mosquito-borne disease control programs, 30% of total solid pesticides by weight were insecticides and 47% were rodenticides. The majority of rodenticide applied by city agencies is placed directly into rat burrows and poses little risk of exposure to the public. Table 1 summarizes these findings of applications by pesticide type.
 
 **Table 1: Total Applications Reported Applied by NYC Agencies in 2023, by Pesticide Type**
-<div style="width:100%; height: 150px; border:1px solid black;"></div>
+
+<div id="table1" class="my-4">
+</div>
+
+<script>
+  renderIntroTable('Table-1',"table1", true)
+</script>
+
 
 Table 2 lists the ten most frequently used products for each pesticide type on New York City owned or leased property in 2024. For each, we list the total volume, weight, and number of applications (No. Apps), as well as the active ingredient(s), the EPA toxicity category (EPA Tox Cat), whether the product is considered a known, possible, or suspect carcinogen by EPA (EPA Carcin), whether the product is listed by the State of California as a reproductive or developmental hazard (CA Dev Toxin), and whether the product is listed as carcinogen by IARC (IARC Carcin). For this and subsequent product tables, the toxicity category refers to the EPA’s assigned label warning to indicate the degree of acute toxicity from oral, dermal and inhalation exposures on a scale from 1 to 4. Toxicity Category 1 indicates pesticides considered highly toxic and whose labels require the signal word “Danger”. Toxicity Category 2 products are considered moderately toxic and product labels carry the word “Warning”. Toxicity Category 3 products are considered slightly toxic, while Toxicity 4 products are considered relatively non-toxic, and both carry the signal word “Caution.” A complete list of products used by New York City by pesticide type is included in Appendix 1.
 
 **Table 2: Ten Most Frequently Applied Pesticide Products by NYC Agencies in 2023 by Type**
-<div style="width:100%; height: 150px; border:1px solid black;"></div>
+
+<div id="table2" class="my-4" style="width:100%;overflow-x:scroll;height:500px;overflow-y:scroll;"></div>
+
+<script>
+  renderIntroTable('Table-2',"table2")
+</script>
+
 
 #### Changes in pesticide use
 Table 3 contains a complete list of application amounts by target pest.
 
 **Table 3: List of pesticide applications by New York City Agencies by target pest, 2023**
-<div style="width:100%; height: 150px; border:1px solid black;"></div>
+
+<div id="table3" class="my-4"></div>
+
+<script>
+  renderIntroTable('Table-3',"table3",true)
+</script>
 
 The level of completeness of city agency pesticide reporting has improved dramatically since 2008, with more recent years being most reflective of real variation in pest control practices. Figures 1 and 2 show trends through 2024 in use of pesticides by type, with solid and liquid products reported by weight and volume, respectively.
 
