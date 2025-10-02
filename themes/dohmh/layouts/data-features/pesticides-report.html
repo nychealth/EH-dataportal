@@ -16,7 +16,7 @@
     var agencyData = [];
 
     // load CSV and assign to the global
-    d3.csv("data/dummydata.csv").then(function(data) {
+    d3.csv("data/agency-totals.csv").then(function(data) {
         agencyData = data;                                      // assign to global variable
         console.log("CSV loaded:", agencyData);                 // print to console
         document.dispatchEvent(new Event("agencyDataReady"));   // send an event that triggers other scripts
@@ -30,18 +30,18 @@
         let table = `<table border="1" cellpadding="5">
                         <thead>
                         <tr>
-                            <th>Type</th>
+                            <th>Pesticide type</th>
                             <th>Agency</th>
-                            <th>Amount</th>
+                            <th>Total applications</th>
                         </tr>
                         </thead>
                         <tbody>`;
 
         filtered.forEach(row => {
             table += `<tr>
-                        <td>${row.Type}</td>
+                        <td>${row['Pesticide Type']}</td>
                         <td>${row.Agency}</td>
-                        <td>${row.Amount}</td>
+                        <td>${row['Total Applications']}</td>
                     </tr>`;
         });
 
