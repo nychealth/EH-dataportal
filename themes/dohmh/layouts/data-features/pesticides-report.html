@@ -5,7 +5,16 @@
         padding: 2px 25px;
         border-bottom: 1px solid lightgray;
       }
+
+      .table td.num, 
+        .table th.num {
+        text-align: right;
+        }
       
+        .total-row {
+            border-top: 2px solid black;
+        }
+
       h2, h3, h4 {
         margin-top: 40px;
       }
@@ -22,34 +31,61 @@
         document.dispatchEvent(new Event("agencyDataReady"));   // send an event that triggers other scripts
     });
 
-    function renderAgencyTable(agencyName, targetId) {
-        // filter
-        const filtered = agencyData.filter(d => d.Agency === agencyName);
+function renderAgencyTable(agencyName, targetId) {
+    // filter
+    const filtered = agencyData.filter(d => d.Agency === agencyName);
 
-        // build table element
-        let table = `<table border="1" cellpadding="5">
-                        <thead>
-                        <tr>
-                            <th>Pesticide type</th>
-                            <th>Agency</th>
-                            <th>Total applications</th>
-                        </tr>
-                        </thead>
-                        <tbody>`;
+    console.log('filtered data for ' + agencyName);
+    console.log(filtered);
 
-        filtered.forEach(row => {
-            table += `<tr>
-                        <td>${row['Pesticide Type']}</td>
-                        <td>${row.Agency}</td>
-                        <td>${row['Total Applications']}</td>
-                    </tr>`;
-        });
+    // compute totals (convert strings -> numbers)
+    const totalVolume = filtered.reduce((sum, row) => sum + parseFloat(row['Volume in Gallons'] || 0), 0);
+    const totalWeight = filtered.reduce((sum, row) => sum + parseFloat(row['Weight in Pounds'] || 0), 0);
 
-        table += `</tbody></table>`;
+    // build table element
+    let table = `<table cellpadding="5" class="table table-striped">
+                    <thead>
+                    <tr class="fs-xs">
+                        <th>Type</th>
+                        <th class="border-left num">Volume (gallons)</th>
+                        <th class="num">Percent of total volume</th>
+                        <th class="border-left num">Weight (lbs)</th>
+                        <th class="num">Percent of total weight</th>
+                    </tr>
+                    </thead>
+                    <tbody>`;
 
-        // inject into the DOM
-        document.getElementById(targetId).innerHTML = table;
-    }
+    filtered.forEach(row => {
+        const volume = parseFloat(row['Volume in Gallons'] || 0);
+        const weight = parseFloat(row['Weight in Pounds'] || 0);
+
+        const volumePct = totalVolume ? ((volume / totalVolume) * 100).toFixed(1) + "%" : "0%";
+        const weightPct = totalWeight ? ((weight / totalWeight) * 100).toFixed(1) + "%" : "0%";
+
+        table += `<tr>
+                    <td>${row['Pesticide Type']}</td>
+                    <td class="border-left num">${volume.toLocaleString()}</td>
+                    <td class="num">${volumePct}</td>
+                    <td class="border-left num">${weight.toLocaleString()}</td>
+                    <td class="num">${weightPct}</td>
+                  </tr>`;
+    });
+
+    // totals row
+    table += `<tr class="font-weight-bold border-top total-row">
+                <td>Total</td>
+                <td class="border-left num">${totalVolume.toLocaleString()}</td>
+                <td class="num">100%</td>
+                <td class="border-left num">${totalWeight.toLocaleString()}</td>
+                <td class="num">100%</td>
+              </tr>`;
+
+    table += `</tbody></table>`;
+
+    // inject into the DOM
+    document.getElementById(targetId).innerHTML = table;
+}
+
 </script>
 
 <article class="container-fluid" id="skip-header-target">
