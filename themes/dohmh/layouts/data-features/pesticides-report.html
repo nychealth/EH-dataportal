@@ -1,5 +1,16 @@
 {{- define "main" -}}
 
+<!--
+    The pesticides report:
+     - Reads index.md for the .Content section; divs and scripts in index.md render Table-1, Table-2, and Table-3 as tables.
+     - Loops through all of the .md files in /pesticides-sections and generates accordion sections, with tables, for each 
+     - The "filterBy" field in those files' frontmatter specifies how each accordion filters data in agency-totals.csv
+
+    Ultimately:
+     - Updates should largely be focused on updating the tables and figures
+     - The template should render the tables accurately 
+-->
+
 <style>
     thead, th, td {
         padding: 2px 25px;
