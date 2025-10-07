@@ -151,15 +151,15 @@ function drawMap(w,s,v) {
     var subtitle = "Poverty"
     var variable = "poverty"
     var label = "%"
-    var legendLabel = "Percent"
-    var colors = 'viridis'
+    var legendLabel = "Change in poverty"
+    var colors = 'bluegreen'
   } else {
     var destination = "#mapDest2"
     var subtitle = "Premature mortality"
     var variable = "prematuremort"
     var label = " per 100,000 people"
-    var legendLabel = "Per 100,000 people"
-    var colors = 'magma'
+    var legendLabel = "Change in premature mortality"
+    var colors = 'purpleblue'
   }
 
   var mapSpec = {
@@ -186,7 +186,11 @@ function drawMap(w,s,v) {
   },
   "projection": {"type": "mercator"},
   "transform": [
-    {"calculate": `datum.Value + '${label}'`, "as": "valueLabel"},
+    {"calculate": `datum.modelledValue + '${label}'`, "as": "valueLabel"},
+    {
+      "calculate": "toNumber(datum.modelledValue) + toNumber(datum.changeFromBaseline)",
+      "as": "Baseline"
+    },
     {
       "filter": `datum.Wage === '${w}'`
     },
@@ -257,9 +261,9 @@ function drawMap(w,s,v) {
             "shape": {"field": "geo", "type": "geojson"},
             "color": {
               "bin": true,
-              "field": "Value",
+              "field": "changeFromBaseline",
               "type": "quantitative",
-              "scale": {"scheme": {"name": colors, "extent": [1, 0]}},
+              "scale": {"scheme": {"name": colors, "extent": [1, -0.25]}},
               "legend": {
                 "direction": "horizontal",
                 "orient": "top-left",
@@ -287,7 +291,9 @@ function drawMap(w,s,v) {
             },
             "tooltip": [
               {"field": "CD Name", "title": "Neighborhood"},
-              {"field": "valueLabel", "title": `${subtitle}`}
+              {"field": "Baseline", "title": "Baseline"},
+              {"field": "valueLabel", "title": `${subtitle}`},
+              {"field": "changeFromBaseline", "title": "Change"}
             ]
           }
         }
