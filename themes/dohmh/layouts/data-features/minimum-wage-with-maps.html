@@ -151,11 +151,13 @@ function drawMap(w,s,v) {
     var subtitle = "Poverty"
     var variable = "poverty"
     var label = "%"
+    var colors = 'viridis'
   } else {
     var destination = "#mapDest2"
     var subtitle = "Premature mortality"
     var variable = "prematuremort"
     var label = " per 100,000 people"
+    var colors = 'magma'
   }
 
   var mapSpec = {
@@ -255,7 +257,7 @@ function drawMap(w,s,v) {
               "bin": true,
               "field": "Value",
               "type": "quantitative",
-              "scale": {"scheme": {"name": "viridis", "extent": [1, 0]}},
+              "scale": {"scheme": {"name": colors, "extent": [1, 0]}},
               "legend": {
                 "direction": "horizontal",
                 "orient": "top-left",
