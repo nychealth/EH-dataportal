@@ -153,6 +153,8 @@ function drawMap(w,s,v) {
     var label = "%"
     var legendLabel = "Change in poverty"
     var colors = 'bluegreen'
+    var min = 0
+    var max = -20
   } else {
     var destination = "#mapDest2"
     var subtitle = "Premature mortality"
@@ -160,6 +162,8 @@ function drawMap(w,s,v) {
     var label = " per 100,000 people"
     var legendLabel = "Change in premature mortality"
     var colors = 'purpleblue'
+    var min = 0
+    var max = -20
   }
 
   var mapSpec = {
@@ -186,10 +190,17 @@ function drawMap(w,s,v) {
   },
   "projection": {"type": "mercator"},
   "transform": [
-    {"calculate": `datum.modelledValue + '${label}'`, "as": "valueLabel"},
     {
-      "calculate": "toNumber(datum.modelledValue) + toNumber(datum.changeFromBaseline)",
+      "calculate": `format(datum.modelledValue, '.1f') + '${label}'`,
+      "as": "valueLabel"
+    },
+    {
+      "calculate": "round((toNumber(datum.modelledValue) - toNumber(datum.changeFromBaseline)) * 10) / 10",
       "as": "Baseline"
+    },
+    {
+      "calculate": `format(datum.Baseline, '.1f') + '${label}'`,
+      "as": "baselineLabel"
     },
     {
       "filter": `datum.Wage === '${w}'`
@@ -263,7 +274,9 @@ function drawMap(w,s,v) {
               "bin": true,
               "field": "changeFromBaseline",
               "type": "quantitative",
-              "scale": {"scheme": {"name": colors, "extent": [1, -0.25]}},
+              "scale": {
+                "scheme": {"name": colors, "extent": [1, -0.25]}
+              },
               "legend": {
                 "direction": "horizontal",
                 "orient": "top-left",
@@ -291,9 +304,9 @@ function drawMap(w,s,v) {
             },
             "tooltip": [
               {"field": "CD Name", "title": "Neighborhood"},
-              {"field": "Baseline", "title": "Baseline"},
-              {"field": "valueLabel", "title": `${subtitle}`},
-              {"field": "changeFromBaseline", "title": "Change"}
+              {"field": "baselineLabel", "title": `${subtitle} at baseline`},
+              {"field": "valueLabel", "title": `${subtitle} under chosen scenario`},
+              {"field": "changeFromBaseline", "title": "Change", "format": ".1f"}
             ]
           }
         }
@@ -301,7 +314,7 @@ function drawMap(w,s,v) {
 }
 
 
-  vegaEmbed(destination, mapSpec,{actions: false});
+  vegaEmbed(destination, mapSpec,{actions: true});
 
 }
 
