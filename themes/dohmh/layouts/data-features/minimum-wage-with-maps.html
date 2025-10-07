@@ -151,12 +151,14 @@ function drawMap(w,s,v) {
     var subtitle = "Poverty"
     var variable = "poverty"
     var label = "%"
+    var legendLabel = "Percent"
     var colors = 'viridis'
   } else {
     var destination = "#mapDest2"
     var subtitle = "Premature mortality"
     var variable = "prematuremort"
     var label = " per 100,000 people"
+    var legendLabel = "Per 100,000 people"
     var colors = 'magma'
   }
 
@@ -261,7 +263,7 @@ function drawMap(w,s,v) {
               "legend": {
                 "direction": "horizontal",
                 "orient": "top-left",
-                "title": `${subtitle} (${label})`,
+                "title": `${legendLabel}`,
                 "tickCount": 3,
                 "offset": -25,
                 "gradientLength": 150
