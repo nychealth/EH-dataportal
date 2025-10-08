@@ -165,7 +165,7 @@ function drawMap(w,s,v) {
     var variable = "poverty"
     var label = "%"
     var legendLabel = "Change in poverty"
-    var colors = 'purpleorange'
+    var colors = 'redyellowblue'
     var min = 0
     var max = -20
   } else {
@@ -174,7 +174,7 @@ function drawMap(w,s,v) {
     var variable = "prematuremort"
     var label = " per 100,000 people"
     var legendLabel = "Change in premature mortality"
-    var colors = 'blueorange'
+    var colors = 'redyellowgreen'
     var min = 0
     var max = -20
   }
@@ -305,13 +305,13 @@ function drawMap(w,s,v) {
               "type": "quantitative",
               "scale": {
                 "domain": [minValue, 0, -minValue],
-                "scheme": {"name": colors,"extent": [0,1]}
+                "scheme": {"name": colors,"extent": [1,0]}
               },
               "legend": {
                 "direction": "horizontal",
                 "orient": "top-left",
                 "title": `${legendLabel}`,
-                "tickCount": 4,
+                "tickCount": 3,
                 "offset": -25,
                 "gradientLength": 150
               }
