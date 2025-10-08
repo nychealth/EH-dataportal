@@ -20,48 +20,43 @@
           <div class="row my-2">
             <div class="col-md-4">
               <div class="row">
-                <div class="col-6">
-                    <p class="home-label mb-0">Minimum wage:</p>
+
+                <div class="col-12">
+                        <p class="home-label mb-0">Minimum wage:</p>
                         <button class="wagecontrol btn btn-sm btn-outline-secondary active px-2" data-value="b30">$30</button>
-                        <button class="wagecontrol btn btn-sm btn-outline-secondary px-2" data-value="a20">$20</button>         
+                        <button class="wagecontrol btn btn-sm btn-outline-secondary px-2" data-value="a20">$20</button>        
 
-                </div>
-
-                <div class="col-6">
-                    <p class="home-label mb-0">Scenario</p>
-                        <button class="scenariocontrol btn btn-sm btn-outline-secondary active px-2" data-value="scen1">1</button>
-                        <button class="scenariocontrol btn btn-sm btn-outline-secondary px-2" data-value="scen2">2</button>
-                        <button class="scenariocontrol btn btn-sm btn-outline-secondary px-2" data-value="scen3">3</button>
-
-                </div>
-
-                <div class="col-12 mt-2">
-                    <div class="asidebox mb-4 ">
-                        <div id="scen1" class="fs-md">
-                            <p><strong>Scenario 1:</strong> the higher minimum wage raises wages of people who previously earned less than the new minimum wage, but does not affect employment.</p>
-                        </div>
-                        <div id="scen2" class="fs-md">
-                            <p><strong>Scenario 2:</strong> a higher minimum wage creates "spillover effects:" people earning near the new minimum wage also see wage increases.</p>
-                        </div>
-                            <div id="scen3" class="fs-md">
-                            <p><strong>Scenario 3:</strong> a higher minimum wage has no spillover effects, and also results in a 15% loss of minimum wage jobs.</p>
-                            </div>
-                    </div>
-
-                      <div class="asidebox">
-                        <div id="b30" class="mwage fs-md">
+                      <div class="card card-left-border shadow-sm mt-1 mb-4">
+                        <div id="b30" class="mwage fs-md card-body">
                         <p>A <strong>$30 minimum wage</strong> could:</p>
                         <p>✅ Reduce citywide poverty from 33.5% to somewhere between 27.7 and 31.2%.</p>
                         <p>✅ Reduce the premature mortality rate (deaths before age 65, per 100,000 people) from 215.7 to between 195.4 and 207.6. This could <strong>prevent as many as 1,400 premature deaths</strong>.</p>
                         <p> <strong>These impacts would be largest in neighborhoods with higher poverty.</strong> </p>     
                         </div>
 
-                        <div id="a20" class="mwage fs-md" style="display:none;">
+                        <div id="a20" class="mwage fs-md card-body" style="display:none;">
                         <p>A <strong>$20 minimum wage</strong> could:</p>
                         <p>✅ Reduce citywide poverty from 33.5% to somewhere between 32.2 and 33.6%.</p>
                         <p>✅ Reduce the premature mortality rate (deaths before age 65, per 100,000 people) from 215.7 to between 211 and 216. This represents as much as 2.6% of all premature deaths in NYC (in 2023).</p>
                         <p>In 2023, there were about 11,000 premature deaths in NYC. </p>                      
                         </div>
+                    </div>
+
+                      <p class="home-label mb-0">Scenario</p>
+                        <button class="scenariocontrol btn btn-sm btn-outline-secondary active px-2" data-value="scen1">1</button>
+                        <button class="scenariocontrol btn btn-sm btn-outline-secondary px-2" data-value="scen2">2</button>
+                        <button class="scenariocontrol btn btn-sm btn-outline-secondary px-2" data-value="scen3">3</button>
+
+                    <div class="card card-left-border shadow-sm mb-4 mt-1">
+                        <div id="scen1" class="fs-md card-body">
+                            <p><strong>Scenario 1:</strong> the higher minimum wage raises wages of people who previously earned less than the new minimum wage, but does not affect employment.</p>
+                        </div>
+                        <div id="scen2" class="fs-md card-body">
+                            <p><strong>Scenario 2:</strong> a higher minimum wage creates "spillover effects:" people earning near the new minimum wage also see wage increases.</p>
+                        </div>
+                            <div id="scen3" class="fs-md card-body">
+                            <p><strong>Scenario 3:</strong> a higher minimum wage has no spillover effects, and also results in a 15% loss of minimum wage jobs.</p>
+                            </div>
                     </div>
                 </div>
 
@@ -116,8 +111,11 @@
           </div>
 
         <div class="row mt-4">
-            <div class="col-md-8 mr-auto">
-                <p>Quisque neque est, ultrices et lacus aliquam, convallis ornare arcu. Curabitur efficitur metus et risus pharetra finibus. Vestibulum tincidunt nunc in efficitur vehicula. In hac habitasse platea dictumst. Proin semper est leo, eu malesuada ligula tincidunt sit amet. Nulla ac tincidunt magna, sit amet commodo quam. Cras a sapien a ante pharetra tristique. Quisque iaculis leo vitae dapibus rutrum. In eu sem vitae turpis pulvinar porta ut eu dui.</p>
+            <div class="col-md-6 mr-auto">
+              <div class="asidebox fs-sm">
+                <p><strong>Note:</strong> for this analysis, we modelled <strong>expected premature mortality</strong>, using a variety of demographic factors - detailed below. Expected premature mortality - when modelled based on these factors - correlates very closely to <strong>actual premature mortality</strong>. Using expected premature mortality allowed us to model new values for premature mortality, based on changing the values for components of the model - namely, poverty, under the new minimum wages and scenarios. </p>
+                <p>Additional methodological details will be in our forthcoming manuscript.</p>
+              </div>
             </div>
 
             <div class="col-12 mt-2">
