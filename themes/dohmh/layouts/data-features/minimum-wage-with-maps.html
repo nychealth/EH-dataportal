@@ -137,6 +137,21 @@
 var wage = "b30";
 var scenario = "scen1";
 
+var dataFile;
+
+async function ingestData() {
+  // Wait for the CSV to finish loading
+  const data = await d3.csv('data/data.csv');
+  dataFile = data;
+  // console.log('Data loaded:', dataFile);
+
+  // Now safe to draw maps
+  drawMap(wage, scenario, 'poverty');
+  drawMap(wage, scenario, 'prematuremort');
+}
+
+ingestData();
+
 
 function redrawChart(settings) {
   drawChart(x,y,x)
@@ -144,15 +159,15 @@ function redrawChart(settings) {
 
 function drawMap(w,s,v) {
 
-  console.log(w,s,v)
+  // console.log(w,s,v)
 
-  if (v === "Poverty") {
+  if (v === "poverty" || v === 'Poverty') {
     var destination = "#mapDest"
     var subtitle = "Poverty"
     var variable = "poverty"
     var label = "%"
     var legendLabel = "Change in poverty"
-    var colors = 'bluegreen'
+    var colors = 'purpleorange'
     var min = 0
     var max = -20
   } else {
@@ -161,10 +176,26 @@ function drawMap(w,s,v) {
     var variable = "prematuremort"
     var label = " per 100,000 people"
     var legendLabel = "Change in premature mortality"
-    var colors = 'purpleblue'
+    var colors = 'blueorange'
     var min = 0
     var max = -20
   }
+
+    // Filter the data based on the arguments
+    const filtered = dataFile.filter(d =>
+      d.Wage === w &&
+      d.Variable === v &&
+      d.Scenario === s
+    );
+
+    // console.log('filtered:', filtered)
+
+    // Convert changeFromBaseline to number and find min/max
+    const values = filtered.map(d => +d.changeFromBaseline);
+    const minValue = Math.min(...values);
+    const maxValue = Math.max(...values);
+
+    console.log(subtitle, 'min:', minValue, 'Max:', maxValue);
 
   var mapSpec = {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
@@ -271,17 +302,18 @@ function drawMap(w,s,v) {
           "encoding": {
             "shape": {"field": "geo", "type": "geojson"},
             "color": {
-              "bin": true,
+              "bin": false,
               "field": "changeFromBaseline",
               "type": "quantitative",
               "scale": {
-                "scheme": {"name": colors, "extent": [1, -0.25]}
+                "domain": [minValue, 0, -minValue],
+                "scheme": {"name": colors,"extent": [0,1]}
               },
               "legend": {
                 "direction": "horizontal",
                 "orient": "top-left",
                 "title": `${legendLabel}`,
-                "tickCount": 3,
+                "tickCount": 4,
                 "offset": -25,
                 "gradientLength": 150
               }
@@ -303,7 +335,7 @@ function drawMap(w,s,v) {
               "value": 0
             },
             "tooltip": [
-              {"field": "CD Name", "title": "Neighborhood"},
+              {"field": "CD Name", "title": "Community district"},
               {"field": "baselineLabel", "title": `${subtitle} at baseline`},
               {"field": "valueLabel", "title": `${subtitle} under chosen scenario`},
               {"field": "changeFromBaseline", "title": "Change", "format": ".1f"}
@@ -317,9 +349,6 @@ function drawMap(w,s,v) {
   vegaEmbed(destination, mapSpec,{actions: true});
 
 }
-
-drawMap(wage,scenario,"Poverty")
-drawMap(wage,scenario,"Premature")
 
 function drawChart(w,s) {
 
@@ -587,8 +616,8 @@ function setupButtonGroup(selector, variableName) {
 
       console.log(`wage: ${wage}, scenario: ${scenario}`);
       drawChart(wage, scenario);
-      drawMap(wage,scenario,"Poverty");
-      drawMap(wage,scenario,"PM")
+      drawMap(wage,scenario,"poverty");
+      drawMap(wage,scenario,"prematuremort")
 
     });
   });
