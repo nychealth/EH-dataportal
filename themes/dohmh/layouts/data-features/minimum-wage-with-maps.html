@@ -30,14 +30,14 @@
                         <div id="b30" class="mwage fs-md card-body">
                         <p>A <strong>$30 minimum wage</strong> could:</p>
                         <p>✅ Reduce citywide poverty from 33.5% to somewhere between 27.7 and 31.2%.</p>
-                        <p>✅ Reduce the premature mortality rate (deaths before age 65, per 100,000 people) from 215.7 to between 195.4 and 207.6. This could <strong>prevent as many as 1,400 premature deaths</strong>.</p>
+                        <p>✅ Reduce the premature death rate (deaths before age 65, per 100,000 people) from 215.7 to between 195.4 and 207.6. This could <strong>prevent as many as 1,400 premature deaths</strong>.</p>
                         <p> <strong>These impacts would be largest in neighborhoods with higher poverty.</strong> </p>     
                         </div>
 
                         <div id="a20" class="mwage fs-md card-body" style="display:none;">
                         <p>A <strong>$20 minimum wage</strong> could:</p>
                         <p>✅ Reduce citywide poverty from 33.5% to somewhere between 32.2 and 33.6%.</p>
-                        <p>✅ Reduce the premature mortality rate (deaths before age 65, per 100,000 people) from 215.7 to between 211 and 216. This represents as much as 2.6% of all premature deaths in NYC (in 2023).</p>
+                        <p>✅ Reduce the premature death rate (deaths before age 65, per 100,000 people) from 215.7 to between 211 and 216. This represents as much as 2.6% of all premature deaths in NYC (in 2023).</p>
                         <p>In 2023, there were about 11,000 premature deaths in NYC. </p>                      
                         </div>
                     </div>
@@ -58,6 +58,11 @@
                             <p><strong>Scenario 3:</strong> a higher minimum wage has no spillover effects, and also results in a 15% loss of minimum wage jobs.</p>
                             </div>
                     </div>
+
+                        <div class="asidebox fs-sm mb-2">
+                        <p><strong>Note:</strong> for this analysis, we modelled <strong>expected premature death</strong>, using a variety of demographic factors - detailed below. Expected premature death - when modelled based on these factors - correlates very closely to <strong>actual premature death</strong>. Using expected premature death allowed us to model new values for premature death, based on changing the values for components of the model - namely, poverty, under the new minimum wages and scenarios. </p>
+                        <p>Additional methodological details will be in our forthcoming manuscript.</p>
+                      </div>
                 </div>
 
               </div>
@@ -91,17 +96,17 @@
               
               <div class="row mt-3">
                   <div class="col-12 mb-1">
-                    <h3 class="h6">Premature mortality: <span style="font-weight:normal">Deaths before age 65</span></h3>
+                    <h3 class="h6">Premature death: <span style="font-weight:normal">Deaths before age 65</span></h3>
                   </div>
                 <div class="col-md-4 col-sm-12">
-                    <div class="fs-xs font-weight-bold">Premature mortality, per 100,000 people</div>
+                    <div class="fs-xs font-weight-bold">Premature deaths, per 100,000 people</div>
 
                     <div id="chartDest2">
                     Chart goes here
                     </div>
                 </div>
                 <div class="col-md-8 col-sm-12">
-                  <div class="fs-xs font-weight-bold">Change in premature mortality</div>
+                  <div class="fs-xs font-weight-bold">Change in premature deaths</div>
 
                   <div class="map-holder" id="mapDest2">
                     map goes here
@@ -119,10 +124,8 @@
 
         <div class="row mt-4">
             <div class="col-md-6 mr-auto">
-              <div class="asidebox fs-sm">
-                <p><strong>Note:</strong> for this analysis, we modelled <strong>expected premature mortality</strong>, using a variety of demographic factors - detailed below. Expected premature mortality - when modelled based on these factors - correlates very closely to <strong>actual premature mortality</strong>. Using expected premature mortality allowed us to model new values for premature mortality, based on changing the values for components of the model - namely, poverty, under the new minimum wages and scenarios. </p>
-                <p>Additional methodological details will be in our forthcoming manuscript.</p>
-              </div>
+              <h2 class="h3">Demographic data by neighborhood poverty</h2>
+              <p>Poverty and resultant premature death in New York City is highly concentrated by neighborhood. Owing to <a href="https://www.nyc.gov/assets/doh/downloads/pdf/boh/racism-public-health-crisis-resolution.pdf">the impacts of structural racism</a>, high poverty neighborhoods tend to have larger proportions of Black and Hispanic residents. Our analysis suggests that a minimum wage could have an impact on racial and ethnic inequities in premature deaths. </p>
             </div>
 
             <div class="col-12 mt-2">
@@ -177,10 +180,10 @@ function drawMap(w,s,v) {
     var max = -20
   } else {
     var destination = "#mapDest2"
-    var subtitle = "Premature mortality"
+    var subtitle = "Premature death"
     var variable = "prematuremort"
     var label = " per 100,000 people"
-    var legendLabel = "Change in premature mortality"
+    var legendLabel = "Change in premature deaths"
     var colors = 'pinkyellowgreen'
     var min = 0
     var max = -20
@@ -351,7 +354,7 @@ function drawMap(w,s,v) {
 }
 
 
-  vegaEmbed(destination, mapSpec,{actions: true});
+  vegaEmbed(destination, mapSpec,{actions: false});
 
 }
 
@@ -563,7 +566,7 @@ var prematureMortSpec = {
         "tooltip": [
 
           {"field": "PovLabel", "type": "ordinal", "title": "Area"},
-          {"field": "ValueLabel", "type": "nominal", "title": "Premature mortality"},
+          {"field": "ValueLabel", "type": "nominal", "title": "Premature deaths"},
           {
             "field": "Wage",
             "title": "Minimum wage"
