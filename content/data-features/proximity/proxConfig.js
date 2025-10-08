@@ -30,7 +30,9 @@ var config = [
         "text": `Now that we understand where the walkable areas are, we need to calculate how many people live in them. To do this, we looked at the residential buildings in each Census block group (one way of <a href="../../data-stories/geographies/">drawing boundaries across NYC</a>) and estimated how many people live inside the walkable area. This let us calculate the number of people in each Census block group that lives within walking distance of an accessible station.</p>`,
         "geoFile": `geojson/800m_BG_pct_walkable_ADA_subway.geojson`,
         "choropleth": true,
-        "valueField": "pct_pop_walk"
+        "labelName": "Block Group",
+        "valueField": "pct_pop_walk",
+        "geonameField": "GEOID"
     },
     {
         "text": `<p>It can be helpful to understand proximity indicators as applied to larger neighborhood boundary schemes too. Since block groups nest into Census tracts, we added them up and calculated the percent of each population in each Census Tract that lives within walking distance of an accessible station.`,
