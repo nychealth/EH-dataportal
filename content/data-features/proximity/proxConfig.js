@@ -27,7 +27,7 @@ var config = [
     },
         // add in zoomed-in image instead of loading geojson file //
     {
-        "text": `Now that we understand where the walkable areas are, we need to calculate how many people live in them. To do this, we looked at the residential buildings in each Census block group (one way of <a href="../../data-stories/geographies/">drawing boundaries across NYC</a>) and estimated how many people live inside the walkable area. This let us calculate the number of people in each Census block group that lives within walking distance of an accessible station.</p>`,
+        "text": `<p>Now that we understand where the walkable areas are, we need to calculate how many people live in them. To do this, we looked at the residential buildings in each Census block group (one way of <a href="../../data-stories/geographies/">drawing boundaries across NYC</a>) and estimated how many people live inside the walkable area. This let us calculate the number of people in each Census block group that lives within walking distance of an accessible station.</p> <p>We used NYC's PLUTO building file—a city dataset that lists every building and its number of residential units—to estimate how many people live inside the walkable area. For every Census block group, we compared the housing units located within the green walk zones to the total housing units in that block group. For example, if a quarter of the housing units in a block group fall inside the walk zone, we estimate that about a quarter of the block group population live within walking distance of an accessible station.</p>`,
         "geoFile": `geojson/800m_BG_pct_walkable_ADA_subway.geojson`,
         "choropleth": true,
         "labelName": "Block Group",
@@ -59,7 +59,7 @@ var config = [
         "geonameField": "GEONAME"
     },
     {
-        "text": `We also calculated these data for UHF42 neighborhoods. But the boundaries of UHF42 neighborhoods don't line up cleanly with Census block groups. Instead of using block groups, we determined if the PLUTO residential building units were inside the walkable area. Then we found the total residential units in each UHF area. This allowed us to deduce the percent of each UHF population within walking distance of an accessible subway station.`,
+        "text": `<p>We also calculated these data for UHF42 neighborhoods. Because the boundaries of UHF42 neighborhoods don't line up neatly with Census block groups, we applied the same PLUTO-based method directly to the building data. We identified which residential buildings fell inside the walkable areas and then compared those to all residential units within each UHF42 neighborhood.</p> <p>This allowed us to estimate the percentage of the population for each UHF42 neighborhood living within walking distance of an accessible subway station.`,
         "geoFile": `geojson/800m_UHF42_pct_walkable_ADA_subway.geojson`,
         "choropleth": true,
         "labelName": "Neighborhood",
