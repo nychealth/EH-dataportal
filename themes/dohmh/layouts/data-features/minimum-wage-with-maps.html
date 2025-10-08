@@ -402,19 +402,16 @@ function drawChart(w,s) {
       "as": "PovLabel"
     },
     {
+      "calculate": "datum.Neighborhood == 'veryhigh' ? 'Very high poverty' : datum.Neighborhood == 'high' ? 'High poverty' : datum.Neighborhood == 'moderate' ? 'Moderate poverty' : datum.Neighborhood == 'low' ? 'Low poverty' : 'All NYC'",
+      "as": "SmPovLabel"
+    },
+    {
         "calculate": `datum.Time === 'Before' ? '$15' : '${wageVal}'`,
         "as": 'Wage'
     }
   ],
       "height": height,
       "width": "container",
-      "mark": {
-        "type": "line", 
-        "point": {
-          "filled": true,
-          "size": 60
-        }
-      },
       "encoding": {
         "x": {
           "field": "Time",
@@ -447,7 +444,7 @@ function drawChart(w,s) {
                     }
         },
         "strokeWidth": 3,
-          "strokeDash": {
+        "strokeDash": {
             "condition": [
               {
                 "test": "datum.Neighborhood == 'NYC'",
@@ -456,7 +453,6 @@ function drawChart(w,s) {
             ]
           },
         "tooltip": [
-
           {"field": "PovLabel", "type": "ordinal", "title": "Area"},
           {
             "field": "Value",
@@ -469,7 +465,33 @@ function drawChart(w,s) {
             "title": "Minimum wage"
           },
         ]
-      }
+      },
+      "layer": [
+        {
+          "mark": {
+            "type": "line", 
+            "point": {
+              "filled": true,
+              "size": 60
+            }
+          }
+        },
+                {
+                "transform": [
+                {"filter": "datum.Time === 'Before'"} 
+                ],
+                "encoding": {
+                  "y": {"field": "Value"}
+                },
+                "layer": [
+                  {"mark": {"type": "circle"}},
+                  {
+                    "mark": {"type": "text", "align": "left", "dx": 4, "dy": -8},
+                    "encoding": {"text": {"field": "SmPovLabel", "type": "nominal"}}
+                  }
+                ]
+              }
+      ]
 }
 
 var prematureMortSpec = {
@@ -505,6 +527,10 @@ var prematureMortSpec = {
     {
       "calculate": "datum.Neighborhood == 'veryhigh' ? 'Very high poverty neighborhoods (50%+)' : datum.Neighborhood == 'high' ? 'High poverty neighborhoods (35 to 49%)' : datum.Neighborhood == 'moderate' ? 'Moderate poverty neighborhoods (20 to 34%)' : datum.Neighborhood == 'low' ? 'Low poverty neighborhoods (Under 20%)' : ' All NYC'",
       "as": "PovLabel"
+    },
+    {
+      "calculate": "datum.Neighborhood == 'veryhigh' ? 'Very high poverty' : datum.Neighborhood == 'high' ? 'High poverty' : datum.Neighborhood == 'moderate' ? 'Moderate poverty' : datum.Neighborhood == 'low' ? 'Low poverty' : 'All NYC'",
+      "as": "SmPovLabel"
     },
     {
       "calculate": "datum.Value + ' per 100,000 people'",
