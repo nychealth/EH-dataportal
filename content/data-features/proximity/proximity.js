@@ -141,7 +141,7 @@ function loadGeoJSON(url, choro, propertyField, nameField, labelField) {
               const label = labelField
               const name = feature.properties[nameField];
               var val = feature.properties[propertyField];
-              val = Number(val).toFixed(1)
+              val = Number(val).toFixed(2)*100
               const tooltipContent = `${labelField} <b>${name}</b>, ${val}% of residents<br>live in walking distance of an accessible subway station.`;
               layer.bindTooltip(tooltipContent, { sticky: true });
             }
