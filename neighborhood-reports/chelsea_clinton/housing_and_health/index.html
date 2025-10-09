@@ -1719,287 +1719,6 @@
 
 
 
-  <div class="card-header border-top" id="heading-Chil777">
-    <h2 class="mb-0">
-      <button
-        class="btn btn-block btn-sm text-left"
-        type="button"
-        data-toggle="collapse"
-        data-target="#collapse-Chil777"
-        aria-expanded="true"
-        aria-controls="collapse-Chil777"
-        onclick="getURL( 2184 , 'Chil777')"
-      >
-        
-        <div class="row no-gutters" style="width: 100%">
-          <div class="col-7 d-print-none">
-            <span class="font-weight-bold fs-md"
-              >Child lead poisoning</span
-            ><br />
-            <span class="fs-sm font-weight-normal"
-              >Elevated blood lead levels (under age 6), 2023</span
-            >
-          </div>
-          <div class="col-3 pl-1 d-print-none">
-            <span class="font-weight-bold fs-lg"
-              >10.4</span
-            >
-            <br />
-            <span class="fs-xs font-weight-normal"
-              >Rate (5&#43; mcg/dL) per 1,000 tested</span
-            >
-          </div>
-
-          
-
-          <div class="col-2 d-print-none">
-              <div class="float-right mt-1">
-              <span class="middle d-none"></span>
-            </div>
-          </div>
-
-          
-          <div class="col-12 print-only" style="flex-direction:row; width:100%;">
-
-            
-            <div style="width:50%;" class="border-right pl-1">
-              <span class="font-weight-bold fs-md">
-                Child lead poisoning
-              </span><br />
-              <span class="fs-sm font-weight-normal">Elevated blood lead levels (under age 6), 2023</span>
-            </div>
-
-            
-            <div style="width:25%" class="border-right pl-1">
-              <span class="font-weight-bold fs-lg">
-                10.4
-              </span><br />
-              <span class="fs-xs font-weight-normal">
-                Rate (5&#43; mcg/dL) per 1,000 tested
-              </span>
-            </div>
-
-            
-
-            
-            <div style="width:25%;" class="pl-1">
-
-              In the middle of NYC neighborhoods
-
-
-
-            </div>
-
-          </div>
-
-        </div>
-      </button>
-    </h2>
-  </div>
-
-
-  <div
-    id="collapse-Chil777"
-    class="collapse border-bottom "
-    aria-labelledby="heading-Chil777"
-    data-parent="#accordion-0"
-    data-indicator-name="Chil777"
-    data-count="3"
-  >
-    <div class="card-body card-body-no-top">
-
-      <div class="row no-gutters fs-sm">
-        <div class="col-12">
-            
-            <p class="fs-md mt-1 mb-2">Blood lead levels above 5 mcg/dL among children under age 6. Lead poisoning can cause learning and behavior problems, and delay growth and mental development. There is no safe level of lead in the blood.</p>
-        </div>
-
-                <div class="col-md-7 border-right h-100">
-                
-                <div style="width:100%; height:40vmin; z-index:100;" class="" id="map-Chil777-3">
-                    ...map is loading...
-                </div><div class="data-note mt-1"></div></div>
-        
-        
-        
-        
-
-        
-
-        <div class="col-md-5 h-100 p-1 ">
-
-            <p class="fs-rg">
-                Child lead poisoning in <strong>Chelsea - Clinton</strong>:
-                <div class=" fs-md">
-                  <p>
-                    <span class="middle-sm fs-sm mt-1">In the middle of</span>&nbsp;neighborhoods
-                  </p>
-
-                  <p>
-                    <span id="b-child-lead-poisoning"></span> the <strong>Manhattan average</strong> 
-                    <br>
-                    <span class="fs-sm pl-3">(<span id="bv-child-lead-poisoning">boro val</span> per 1,000 tested)</span>
-                  </p>
-
-                  <p>
-                    <span id="c-child-lead-poisoning"></span> the <strong>Citywide average</strong> 
-                    <br>
-                    <span class="fs-sm pl-3">(<span id="cv-child-lead-poisoning">city val</span> per 1,000 tested)</span>
-                  </p>
-
-                    </div>
-                
-            </p>
-
-             
-            <div id="trend" class="hide">
-            <p>In <strong>Manhattan</strong>, it is [TREND]. Citywide, the trend is [TREND].</p>
-            </div>
-
-            
-
-            <span id="year-child-lead-poisoning" class="sr-only">YEAR</span>
-
-          
-
-        </div>
-
-      </div>
-      <div class="row no-gutters">
-        <div class="col-7">
-            <span class="fs-xs"><strong>Source:</strong> New York City Healthy Homes Program</span>
-
-        </div>
-        <div class="col-5">
-            <p class="float-right"><a id="2184" href="" class="ml-1" style="display:none"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Full dataset</a></p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-<script>
-    
-    (function(x, y) {
-        var endDate = new Date(x);
-        var year = endDate.getFullYear(); 
-        document.getElementById(y).innerHTML = year;
-    })(`2023-12-31`, `year-child-lead-poisoning`);
-
-(function(n, b, c, nid, bid, cid, rr) {
-    n = Number(n);
-    b = Number(b);
-    c = Number(c);
-
-    let rankReverse = (rr === true || rr === 'true');
-
-    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
-    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
-
-    let boroJudgement;
-    if (n > b && rankReverse) {
-      boroJudgement = 'comp-good';
-    } else if (n < b && rankReverse) {
-      boroJudgement = 'comp-bad';
-    } else if (n > b && !rankReverse) {
-      boroJudgement = 'comp-bad';
-    } else if (n < b && !rankReverse) {
-      boroJudgement = 'comp-good';
-    } else {
-      boroJudgement = 'comp-null';
-    }
-
-    let cityJudgement;
-    if (n > c && rankReverse) {
-      cityJudgement = 'comp-good';
-    } else if (n < c && rankReverse) {
-      cityJudgement = 'comp-bad';
-    } else if (n > c && !rankReverse) {
-      cityJudgement = 'comp-bad';
-    } else if (n < c && !rankReverse) {
-      cityJudgement = 'comp-good';
-    } else {
-      cityJudgement = 'comp-null';
-    }
-
-    let boroEl = document.getElementById(bid);
-    if (boroEl) {
-        boroEl.innerHTML = boroComp;
-        boroEl.classList.add(boroJudgement);
-    }
-
-    let cityEl = document.getElementById(cid);
-    if (cityEl) {
-        cityEl.innerHTML = cityComp;
-        cityEl.classList.add(cityJudgement);
-    }
-
-    document.getElementById('bv-child-lead-poisoning').innerHTML = b;
-    document.getElementById('cv-child-lead-poisoning').innerHTML = c;
-
-
-})(
-     10.4 ,
-     8.2 ,
-     12 ,
-    'n-child-lead-poisoning',
-    'b-child-lead-poisoning',
-    'c-child-lead-poisoning',
-     false 
-)
-
-
-</script>
-
-
-
-
-<script type="text/javascript">
-
-    $( "#collapse-Chil777" ).on('shown.bs.collapse', function() {
-
-        
-
-        gtag('event', 'click_modal', {
-                'modal_name': 'Child lead poisoning'
-            });
-
-        var opt = {"renderer": "svg"};
-
-            
-
-            
-
-            var summaryData =
-                arqTable
-                .filter(d => d.indicator_data_name == "Chil777")
-                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
-                .dedupe()
-                .groupby("neighborhood")
-                .orderby("neighborhood", aq.desc("end_date"))
-                .slice(0,1) 
-                .ungroup()
-                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
-                .orderby("unmodified_data_value_geo_entity") 
-                .select(aq.not("end_date"))
-                .objects()
-
-
-            
-
-            
-
-            var mapData = summaryData;
-
-            renderNRMap(mapData,  "#map-Chil777-3", "Rate (5\u002b mcg\/dL) per 1,000 tested","Child lead poisoning",geocode)
-
-    });
-
-    </script>
-
-
-
-
-
   <div class="card-header border-top" id="heading-Heat540">
     <h2 class="mb-0">
       <button
@@ -2086,7 +1805,7 @@
     aria-labelledby="heading-Heat540"
     data-parent="#accordion-0"
     data-indicator-name="Heat540"
-    data-count="4"
+    data-count="3"
   >
     <div class="card-body card-body-no-top">
 
@@ -2098,7 +1817,7 @@
 
                 <div class="col-md-7 border-right h-100">
                 
-                <div style="width:100%; height:40vmin; z-index:100;" class="" id="map-Heat540-4">
+                <div style="width:100%; height:40vmin; z-index:100;" class="" id="map-Heat540-3">
                     ...map is loading...
                 </div><div class="data-note mt-1">* Estimate is based on small numbers so should be interpreted with caution.</div></div>
         
@@ -2272,7 +1991,289 @@
 
             var mapData = summaryData;
 
-            renderNRMap(mapData,  "#map-Heat540-4", "Age-adjusted rate per 100,000","Heat hospitalizations",geocode)
+            renderNRMap(mapData,  "#map-Heat540-3", "Age-adjusted rate per 100,000","Heat hospitalizations",geocode)
+
+    });
+
+    </script>
+
+
+
+
+
+  <div class="card-header border-top" id="heading-Chil777">
+    <h2 class="mb-0">
+      <button
+        class="btn btn-block btn-sm text-left"
+        type="button"
+        data-toggle="collapse"
+        data-target="#collapse-Chil777"
+        aria-expanded="true"
+        aria-controls="collapse-Chil777"
+        onclick="getURL( 2184 , 'Chil777')"
+      >
+        
+        <div class="row no-gutters" style="width: 100%">
+          <div class="col-7 d-print-none">
+            <span class="font-weight-bold fs-md"
+              >Child lead poisoning</span
+            ><br />
+            <span class="fs-sm font-weight-normal"
+              >Elevated blood lead levels (under age 6), 2024</span
+            >
+          </div>
+          <div class="col-3 pl-1 d-print-none">
+            <span class="font-weight-bold fs-lg"
+              >12.7</span
+            >
+            <br />
+            <span class="fs-xs font-weight-normal"
+              >Rate (5&#43; mcg/dL) per 1,000 tested</span
+            >
+          </div>
+
+          
+
+          <div class="col-2 d-print-none">
+              <div class="float-right mt-1">
+              <span
+                    class="worse">Higher</span>
+            </div>
+          </div>
+
+          
+          <div class="col-12 print-only" style="flex-direction:row; width:100%;">
+
+            
+            <div style="width:50%;" class="border-right pl-1">
+              <span class="font-weight-bold fs-md">
+                Child lead poisoning
+              </span><br />
+              <span class="fs-sm font-weight-normal">Elevated blood lead levels (under age 6), 2024</span>
+            </div>
+
+            
+            <div style="width:25%" class="border-right pl-1">
+              <span class="font-weight-bold fs-lg">
+                12.7
+              </span><br />
+              <span class="fs-xs font-weight-normal">
+                Rate (5&#43; mcg/dL) per 1,000 tested
+              </span>
+            </div>
+
+            
+
+            
+            <div style="width:25%;" class="pl-1">
+
+              Higher than most neighborhoods
+
+
+
+            </div>
+
+          </div>
+
+        </div>
+      </button>
+    </h2>
+  </div>
+
+
+  <div
+    id="collapse-Chil777"
+    class="collapse border-bottom "
+    aria-labelledby="heading-Chil777"
+    data-parent="#accordion-0"
+    data-indicator-name="Chil777"
+    data-count="4"
+  >
+    <div class="card-body card-body-no-top">
+
+      <div class="row no-gutters fs-sm">
+        <div class="col-12">
+            
+            <p class="fs-md mt-1 mb-2">Blood lead levels above 5 mcg/dL among children under age 6. Lead poisoning can cause learning and behavior problems, and delay growth and mental development. There is no safe level of lead in the blood.</p>
+        </div>
+
+                <div class="col-md-7 border-right h-100">
+                
+                <div style="width:100%; height:40vmin; z-index:100;" class="" id="map-Chil777-4">
+                    ...map is loading...
+                </div><div class="data-note mt-1"></div></div>
+        
+        
+        
+        
+
+        
+
+        <div class="col-md-5 h-100 p-1 ">
+
+            <p class="fs-rg">
+                Child lead poisoning in <strong>Chelsea - Clinton</strong>:
+                <div class=" fs-md">
+                  <p>
+                    <span class="worse-sm fs-sm mt-1">Higher than most</span>&nbsp;neighborhoods
+                  </p>
+
+                  <p>
+                    <span id="b-child-lead-poisoning"></span> the <strong>Manhattan average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="bv-child-lead-poisoning">boro val</span> per 1,000 tested)</span>
+                  </p>
+
+                  <p>
+                    <span id="c-child-lead-poisoning"></span> the <strong>Citywide average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="cv-child-lead-poisoning">city val</span> per 1,000 tested)</span>
+                  </p>
+
+                    </div>
+                
+            </p>
+
+             
+            <div id="trend" class="hide">
+            <p>In <strong>Manhattan</strong>, it is [TREND]. Citywide, the trend is [TREND].</p>
+            </div>
+
+            
+
+            <span id="year-child-lead-poisoning" class="sr-only">YEAR</span>
+
+          
+
+        </div>
+
+      </div>
+      <div class="row no-gutters">
+        <div class="col-7">
+            <span class="fs-xs"><strong>Source:</strong> New York City Healthy Homes Program</span>
+
+        </div>
+        <div class="col-5">
+            <p class="float-right"><a id="2184" href="" class="ml-1" style="display:none"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Full dataset</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+    
+    (function(x, y) {
+        var endDate = new Date(x);
+        var year = endDate.getFullYear(); 
+        document.getElementById(y).innerHTML = year;
+    })(`2024-12-31`, `year-child-lead-poisoning`);
+
+(function(n, b, c, nid, bid, cid, rr) {
+    n = Number(n);
+    b = Number(b);
+    c = Number(c);
+
+    let rankReverse = (rr === true || rr === 'true');
+
+    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
+    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
+
+    let boroJudgement;
+    if (n > b && rankReverse) {
+      boroJudgement = 'comp-good';
+    } else if (n < b && rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n > b && !rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n < b && !rankReverse) {
+      boroJudgement = 'comp-good';
+    } else {
+      boroJudgement = 'comp-null';
+    }
+
+    let cityJudgement;
+    if (n > c && rankReverse) {
+      cityJudgement = 'comp-good';
+    } else if (n < c && rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n > c && !rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n < c && !rankReverse) {
+      cityJudgement = 'comp-good';
+    } else {
+      cityJudgement = 'comp-null';
+    }
+
+    let boroEl = document.getElementById(bid);
+    if (boroEl) {
+        boroEl.innerHTML = boroComp;
+        boroEl.classList.add(boroJudgement);
+    }
+
+    let cityEl = document.getElementById(cid);
+    if (cityEl) {
+        cityEl.innerHTML = cityComp;
+        cityEl.classList.add(cityJudgement);
+    }
+
+    document.getElementById('bv-child-lead-poisoning').innerHTML = b;
+    document.getElementById('cv-child-lead-poisoning').innerHTML = c;
+
+
+})(
+     12.7 ,
+     9.1 ,
+     11.4 ,
+    'n-child-lead-poisoning',
+    'b-child-lead-poisoning',
+    'c-child-lead-poisoning',
+     false 
+)
+
+
+</script>
+
+
+
+
+<script type="text/javascript">
+
+    $( "#collapse-Chil777" ).on('shown.bs.collapse', function() {
+
+        
+
+        gtag('event', 'click_modal', {
+                'modal_name': 'Child lead poisoning'
+            });
+
+        var opt = {"renderer": "svg"};
+
+            
+
+            
+
+            var summaryData =
+                arqTable
+                .filter(d => d.indicator_data_name == "Chil777")
+                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
+                .dedupe()
+                .groupby("neighborhood")
+                .orderby("neighborhood", aq.desc("end_date"))
+                .slice(0,1) 
+                .ungroup()
+                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
+                .orderby("unmodified_data_value_geo_entity") 
+                .select(aq.not("end_date"))
+                .objects()
+
+
+            
+
+            
+
+            var mapData = summaryData;
+
+            renderNRMap(mapData,  "#map-Chil777-4", "Rate (5\u002b mcg\/dL) per 1,000 tested","Child lead poisoning",geocode)
 
     });
 
