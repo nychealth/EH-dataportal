@@ -1,5 +1,7 @@
 ---
 featured:
+- copy: Elevated blood lead levels (under age 6)
+  link: data-explorer/lead/?id=2184
 - copy: Bicycle injury emergency department visits
   link: data-explorer/transportation-related-injuries/?id=2092
 - copy: Bicycle injury hospitalizations
