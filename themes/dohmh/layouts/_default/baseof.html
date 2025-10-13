@@ -15,11 +15,11 @@
     - DS landing page & all others to have header.html
   -->
 
-  {{- if not .Params.excludeHeader -}}
+  {{- if .Params.headerDE -}}
+    {{- partial "header-de.html" . -}}
+  {{- else -}}
     {{- partial "header.html" . -}}
   {{- end -}}
-
-
 
   <main id="skip-header-target" role="main" data-pagefind-body>
     {{- block "main" . -}}{{- end -}}

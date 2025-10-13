@@ -11,6 +11,6 @@ image: image_charts-city@2x.jpg
 image2: image_3charts.png
 leaflet: true
 newDataExplorer: true
-excludeHeader: true
+headerDE: true
 excludeFooter: true
 ---

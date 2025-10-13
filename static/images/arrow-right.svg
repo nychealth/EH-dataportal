@@ -7,7 +7,7 @@
     <g id="Data-Explorer-Designs---APPROVED" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <g id="Designs-v3:A---Data-and-View-Controls-Open" transform="translate(-824, -128)" xlink:href="#path-1">
             <path stroke="#DFDFDF" d="M1439.5,0.5 L1439.5,1124.5 L0.5,1124.5 L0.5,0.5 L1439.5,0.5 Z" stroke-linejoin="square"></path>
-            <g id="Data-Overlay-Open-/-Chart" fill-rule="evenodd" transform="translate(780, 120)" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round">
+            <g id="Data-Overlay-Open-/-Chart" fill-rule="evenodd" transform="translate(780, 120)" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round">
                 <g id="close-arrow" transform="translate(38, 0)" stroke-width="2.5">
                     <path d="M17.8,10 L24.8,17 M24.8,17 L17.8,24 M24.8,17 L8,17" id="Shape"></path>
                 </g>

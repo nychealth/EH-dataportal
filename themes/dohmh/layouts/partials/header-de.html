@@ -1,0 +1,573 @@
+<!-- For keyboard users -->
+<a class="sr-only sr-only-focusable skip-menu" href="#skip-header-target">Skip Header</a>
+
+<header id="global-header" role="banner" class="collapse">
+    <div class="bg-black text-white d-print-none" id="nyc-top-header">
+        <div class="container-fluid wide">
+            <div class="row py-1 align-items-center justify-content-between">
+                <div class="col-auto">
+                    <p class="d-none d-md-flex fs-md">
+                        <a class="text-reset" href="https://www1.nyc.gov/">
+                            <strong>nyc.gov</strong>
+                        </a>
+                        <span class="mx-1" aria-hidden="true">></span>
+                        <a class="text-reset" href="https://www1.nyc.gov/">
+                            Health
+                        </a>
+                        <span class="mx-1" aria-hidden="true">></span>
+                        <a class="text-reset" href="{{ .RelPermalink }}">
+                            EH Data Portal
+                        </a>
+                    </p>
+                </div>
+                <!-- .col -->
+
+                <div class="col-auto">
+                    <ul class="extensible-list horizontal fs-md">
+                        <li class="d-print-none">
+                            <a class="text-reset" href="https://www1.nyc.gov/">
+                                <strong>311</strong>
+                            </a>
+                        </li>
+                        <li class="d-print-none">
+                            <a class="text-reset" href="https://www1.nyc.gov/home/search/index.page">
+                                <strong>Search all NYC.gov</strong>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www1.nyc.gov/" title="Go to nyc.gov">
+                                <img class="d-block" src={{ relURL "images/nyc-bubble-logo.svg" }} width="45" alt="NYC Logo">
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- .col -->
+            </div>
+            <!-- .row -->
+        </div>
+        <!-- .container-fluid -->
+    </div>
+    <!-- #nyc-top-header -->
+    <div class="site-header bg-primary" style='background-image: url({{ relURL "images/header_background.jpg" }})'>
+        <div class="wrap-header">
+            <div class="container-fluid wide">
+                <div class="row align-items-center">
+                    <div class="col-lg py-3">
+                        <div class="d-flex justify-content-center justify-content-lg-start">
+                            <a href={{ relURL "" }}><img src={{ relURL "7618350_heatmap_business_analytics_statistics_icon-gpr.ico" }} style="height: 67px" class="pr-1"></a>
+                            <p class="text-white title-hover">
+                                <span class="site-subtitle"><a href='{{ relURL "" }}' class="link-no-dec">Environment & Health</span>
+                                <span class="site-title">Data Portal</a></span>
+                            </p>
+                        </div>
+                        <!-- .d-flex -->
+                    </div>
+                    <!-- .col -->
+
+                    <div class="col-lg-auto border-top border-lg-0 d-print-none">
+                        <div class="d-lg-flex align-items-center">
+                            <div class="d-none d-lg-block mx-n2 mx-lg-2" id="nav-primary-top">
+                                <nav class="nav" role="navigation">
+                                    <div class="nav-item bg-white text-primary border dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="nav-item-topic-top"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Topics
+                                        </a>
+                                        <div class="dropdown-menu wider-menu" aria-labelledby="nav-item-topic-top">
+                                            <ul class="extensible-list p-0">
+                                                {{ range sort (where .Site.Pages "Section" "key-topics") "Params.Title" }}
+                                                {{- if not .Params.hide -}}
+                                                    {{- if .Params.shortTitle }}
+                                                    <a class="" href="{{ .RelPermalink }}"> <li class="">{{ .Params.shortTitle }}</li></a>
+                                                    <hr class="my-1">
+                                                    {{- else }}
+                                                    <a class="" href="{{ .RelPermalink }}"> <li class="">{{ .Params.title }}</li></a>
+                                                    <hr class="my-1">
+                                                    {{- end -}}
+                                                {{- end -}}
+                                                {{ end }}
+                                                <a href={{ relURL "key-topics" }}>All topics</a>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <!-- .nav-item -->
+
+                                    <div class="nav-item bg-white text-primary border dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="nav-item-type-top"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Explore
+                                        </a>
+                                        <div class="dropdown-menu wider-menu" aria-labelledby="nav-item-type-top">
+                                            <ul class="extensible-list p-0">
+                                                {{/*  get all menus  */ -}}
+                                                {{- $all_menus := .Site.Menus.main -}}
+                                                {{- /*  set exclusions  */ -}}
+                                                {{- $exclude := ( slice "Search" "Key Topics" ) -}}
+                                                {{- /*  filter menus  */ -}}
+                                                {{- $want_menus := where $all_menus "Name" "not in" $exclude -}}
+                                                {{- /*  get filtered count  */ -}}
+                                                {{- $count := len $want_menus -}}
+                                                {{- /*  range over wanted menus  */ -}}
+                                                {{- range $index, $menu := $want_menus -}}
+                                                    {{- /*  check if last item (adding 1 to index b/c of 0-indexing)  */ -}}
+                                                    {{- $last := eq ( add $index 1 ) $count -}}
+                                                    {{- /*  add element  */ -}}
+                                                    <a href="{{ .URL }}"><li><span class="mr-1">{{ $menu.Pre }}</span>{{ $menu.Name }}</li></a>
+                                                    {{- /*  only add the horizontal bar if it's not the last item  */ -}}
+                                                    {{- if not $last }}
+                                                        <hr class="my-1">
+                                                    {{ end -}}
+                                                {{- end -}}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <!-- .nav-item -->
+
+                                    <div class="nav-item bg-white text-primary border">
+                                        {{ with .GetPage "about" -}}
+                                        <a class="nav-link " href="{{ .RelPermalink }}">
+                                            About
+                                        </a>
+                                        {{- end -}}
+                                    </div>
+                                    <!-- .nav-item -->
+
+                                    <div class="nav-item bg-white text-primary border d-none d-lg-block">
+                                        <a class="nav-link" href="#" type="button" data-toggle="modal" data-target="#searchModal" title="Search" data-toggle="collapse">
+                                            <span class="sr-only">Search</span>
+                                            <i class="fa fa-magnifying-glass text-body"></i>
+                                        </a>
+                                    </div>
+                                    <!-- .nav-item -->
+
+                                    <div class="nav-item bg-none text-white border border-white ml-1">
+                                        <a href="#" class="nav-link text-white" data-subscribe-click="header" data-toggle="modal" data-target="#subscribeModal">
+                                            Subscribe
+                                        </a>
+                                    </div>
+                                </nav>
+                            </div>
+                        </div>
+                        <!-- .d-flex -->
+                    </div>
+                    <!-- .col -->
+                </div>
+                <!-- .row -->
+            </div>
+            <!-- .container-fluid -->
+        </div>
+        <!-- .wrap-header -->
+
+        <div class="container-fluid border-top collapse" id="global-language">
+            <div class="narrow py-2">
+                <div id="google_translate_element"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="border-bottom px-2 d-print-none">
+        <!-- Mobile Toggle Buttons -->
+        <ul class="extensible-list horizontal justify-content-between my-1 d-lg-none">
+            <li>
+                <button class="navbar-toggler no-btn-style" type="button" title="Main Menu" data-toggle="collapse"
+                    data-target="#nav-primary" aria-controls="nav-primary" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="sr-only">Main Menu</span>
+                    <span class="fas fa-bars fa-lg text-primary" ></span>
+                </button>
+            </li>
+            <li>
+                <a class="nav-link" href="#" type="button" data-toggle="modal" data-target="#searchModal" title="Search" data-toggle="collapse">
+                    <span class="sr-only">Search</span>
+                    <i class="fa fa-magnifying-glass text-primary"></i>
+                </a>
+            </li>
+        </ul>
+
+        <div class="collapse d-lg-none mx-n2 mx-lg-2" id="nav-primary">
+            <nav class="nav" role="navigation">
+                <div class="nav-item bg-white text-primary border dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="nav-item-topic"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Topics
+                    </a>
+                    <div class="dropdown-menu wider-menu" aria-labelledby="nav-item-topic">
+                        <ul class="extensible-list p-0">
+                            {{ range sort (where .Site.Pages "Section" "key-topics") "Params.Title" }}
+                            {{- if not .Params.hide -}}
+                                {{- if .Params.shortTitle }}
+                                <a class="" href="{{ .RelPermalink }}"> <li class="">{{ .Params.shortTitle }}</li></a>
+                                <hr class="my-1">
+                                {{- else }}
+                                <a class="" href="{{ .RelPermalink }}"> <li class="">{{ .Params.title }}</li></a>
+                                <hr class="my-1">
+                                {{- end -}}
+                            {{- end -}}
+                            {{ end }}
+                            <a href={{ relURL "key-topics" }}>All topics</a>
+                        </ul>
+                    </div>
+                </div>
+                <!-- .nav-item -->
+
+                <div class="nav-item bg-white text-primary border dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="nav-item-type"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Explore
+                    </a>
+                    <div class="dropdown-menu wider-menu" aria-labelledby="nav-item-type">
+                        <ul class="extensible-list p-0">
+                            {{/*  get all menus  */ -}}
+                            {{- $all_menus := .Site.Menus.main -}}
+                            {{- /*  set exclusions  */ -}}
+                            {{- $exclude := ( slice "Search" "Key Topics" ) -}}
+                            {{- /*  filter menus  */ -}}
+                            {{- $want_menus := where $all_menus "Name" "not in" $exclude -}}
+                            {{- /*  get filtered count  */ -}}
+                            {{- $count := len $want_menus -}}
+                            {{- /*  range over wanted menus  */ -}}
+                            {{- range $index, $menu := $want_menus -}}
+                                {{- /*  check if last item (adding 1 to index b/c of 0-indexing)  */ -}}
+                                {{- $last := eq ( add $index 1 ) $count -}}
+                                {{- /*  add element  */ -}}
+                                <a href="{{ .URL }}"><li><span class="mr-1">{{ $menu.Pre }}</span>{{ $menu.Name }}</li></a>
+                                {{- /*  only add the horizontal bar if it's not the last item  */ -}}
+                                {{- if not $last }}
+                                    <hr class="my-1">
+                                {{ end -}}
+                            {{- end -}}
+                        </ul>
+                    </div>
+                </div>
+                <!-- .nav-item -->
+
+                <div class="nav-item bg-white text-primary border">
+                    {{ with .GetPage "about" -}}
+                    <a class="nav-link " href="{{ .RelPermalink }}">
+                        About
+                    </a>
+                    {{- end -}}
+                </div>
+                <!-- .nav-item -->
+
+                <div class="nav-item bg-white text-primary border d-none d-lg-block">
+                    <a class="nav-link" href="#" type="button" data-toggle="modal" data-target="#searchModal" title="Search" data-toggle="collapse">
+                        <span class="sr-only">Search</span>
+                        <i class="fa fa-magnifying-glass text-body"></i>
+                    </a>
+                </div>
+                <!-- .nav-item -->
+
+                <div class="nav-item bg-none text-primary border">
+                    <a href="#" class="nav-link text-primary " data-toggle="modal" data-target="#subscribeModal">
+                        Subscribe
+                    </a>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <div class="modal" tabindex="-1" role="dialog" id="subscribeModal">
+        <div class='modal-dialog modal-lg modal-dialog-centered' role='document'>
+            <div class='modal-content'>
+                <div class='modal-body' style="height:75vh;">
+                    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfUg3JE5ODNc6aqBPJwM8mZ80TYtK6ISw-OM7PBwKuoN3M--g/viewform" width="100%" frameborder="no" height="100%"></iframe>
+                </div>
+                <hr>
+                <button type="button" class="btn btn-outline-primary close-dialog" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<div class="row bg-black de-nav-bar">
+  <div class="h-100 hide d-flex align-items-center justify-content-center py-1 px-2" style="background-color: #3B3B3B;">
+      <button type="button" class="btn btn-link p-0 border-0" data-toggle="collapse" data-target="#global-header" aria-controls="global-header" aria-expanded="false" aria-label="Toggle Main Header">
+          <img src={{ relURL "7618350_heatmap_business_analytics_statistics_icon-gpr.ico" }} style="height: 52px; width: 52px;" alt="Toggle Header">
+      </button>
+  </div>
+  <div class="h4 font-weight-bold d-flex align-items-center mb-0">
+      <button type="button" class="border-0 d-flex align-items-center nav-topic-selector p-2 bg-transparent" data-toggle="modal" data-target="#topicSelector">
+          <img src={{ relURL "images/indicator-menu-icon.svg" }} alt="">
+      </button>
+      <span class="ml-1 text-white">Asthma</span>
+  </div>
+  <!-- Topic Selector Modal -->
+  <div class="modal fade" id="topicSelector" tabindex="-1" role="dialog" aria-labelledby="topicSelectorLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+              <div class="bg-primary modal-top-bg position-relative d-flex justify-content-end align-items-center">
+                  <button type="button" class="bg-transparent border-0" data-dismiss="modal" aria-label="Close" style="top: 10px; right: 15px; color: white; opacity: 1;">
+                      <span class="h3" aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+              <div class="modal-body p-3 pb-6">
+                  <h4 class="modal-title mb-1">Select a Topic  >  <span class="font-weight-normal">Select an Indicator</span></h4>
+                  <div class="border-bottom border-gray-300 pb-3">
+                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                  </div>
+                  <div class="row mt-3">
+                      <div class="col-12 col-lg-6">
+                          <ul class="list-unstyled">
+                              <li class="mb-1">
+                                  <button type="button" class="border-0 text-primary bg-transparent hover-underline p-0 text-left" data-toggle="modal" data-target="#indicatorSelector">Active design</button>
+                                  <p><em>Here is a little something about active design</em></p>
+                              </li>
+                              <li class="mb-1">
+                                  <button type="button" class="border-0 text-primary bg-transparent hover-underline p-0 text-left" data-toggle="modal" data-target="#indicatorSelector">Air quality</button>
+                              </li>
+                              <li class="mb-1"><button type="button" class="border-0 text-primary bg-transparent hover-underline p-0 text-left" data-toggle="modal" data-target="#indicatorSelector">Alcohol access and use</button></li>
+                              <li class="mb-1"><button type="button" class="border-0 text-primary bg-transparent hover-underline p-0 text-left" data-toggle="modal" data-target="#indicatorSelector">Asthma</button></li>
+                              <li class="mb-1"><button type="button" class="border-0 text-primary bg-transparent hover-underline p-0 text-left" data-toggle="modal" data-target="#indicatorSelector">Asthma triggers at home</button></li>
+                              <li class="mb-1"><button type="button" class="border-0 text-primary bg-transparent hover-underline p-0 text-left" data-toggle="modal" data-target="#indicatorSelector">Bed bugs</button></li>
+                              <li class="mb-1"><button type="button" class="border-0 text-primary bg-transparent hover-underline p-0 text-left" data-toggle="modal" data-target="#indicatorSelector">Birth defects</button></li>
+                              <li class="mb-1"><button type="button" class="border-0 text-primary bg-transparent hover-underline p-0 text-left" data-toggle="modal" data-target="#indicatorSelector">Birth outcomes</button></li>
+                              <li class="mb-1"><button type="button" class="border-0 text-primary bg-transparent hover-underline p-0 text-left" data-toggle="modal" data-target="#indicatorSelector">Cancer</button></li>
+                              <li class="mb-1"><button type="button" class="border-0 text-primary bg-transparent hover-underline p-0 text-left" data-toggle="modal" data-target="#indicatorSelector">Cancers in children</button></li>
+                              <li class="mb-1"><button type="button" class="border-0 text-primary bg-transparent hover-underline p-0 text-left" data-toggle="modal" data-target="#indicatorSelector">Carbon monoxide</button></li>
+                              <li class="mb-1"><button type="button" class="border-0 text-primary bg-transparent hover-underline p-0 text-left" data-toggle="modal" data-target="#indicatorSelector">Cigarette smoke</button></li>
+                              <li class="mb-1"><button type="button" class="border-0 text-primary bg-transparent hover-underline p-0 text-left" data-toggle="modal" data-target="#indicatorSelector">Climate</button></li>
+                          </ul>
+                      </div>
+                      <div class="col-6">
+                          <ul class="list-unstyled">
+                              <li class="mb-1"><button type="button" class="border-0 text-primary bg-transparent hover-underline p-0 text-left" data-toggle="modal" data-target="#indicatorSelector">Mortality</button></li>
+                              <li class="mb-1"><button type="button" class="border-0 text-primary bg-transparent hover-underline p-0 text-left" data-toggle="modal" data-target="#indicatorSelector">Overweight</button></li>
+                              <li class="mb-1"><button type="button" class="border-0 text-primary bg-transparent hover-underline p-0 text-left" data-toggle="modal" data-target="#indicatorSelector">Pesticides</button></li>
+                              <li class="mb-1"><button type="button" class="border-0 text-primary bg-transparent hover-underline p-0 text-left" data-toggle="modal" data-target="#indicatorSelector">Physical activity</button></li>
+                              <li class="mb-1"><button type="button" class="border-0 text-primary bg-transparent hover-underline p-0 text-left" data-toggle="modal" data-target="#indicatorSelector">Restaurant food safety</button></li>
+                              <li class="mb-1"><button type="button" class="border-0 text-primary bg-transparent hover-underline p-0 text-left" data-toggle="modal" data-target="#indicatorSelector">Social conditions</button></li>
+                              <li class="mb-1"><button type="button" class="border-0 text-primary bg-transparent hover-underline p-0 text-left" data-toggle="modal" data-target="#indicatorSelector">Transportation-related injuries</button></li>
+                              <li class="mb-1">
+                                  <button type="button" class="border-0 text-primary bg-transparent hover-underline p-0" data-toggle="modal" data-target="#indicatorSelector">Vector-borne disease</button>
+                                  <p><em>Here is a little something about vector-borne disease</em></p>
+                              </li>
+                              <li><button type="button" class="border-0 text-primary bg-transparent hover-underline p-0" data-toggle="modal" data-target="#indicatorSelector">Violence</button></li>
+                          </ul>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <!-- Indicator Selector Modal -->
+  <div class="modal fade" id="indicatorSelector" tabindex="-1" role="dialog" aria-labelledby="indicatorSelectorLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+              <div class="bg-primary modal-top-bg position-relative d-flex justify-content-end align-items-center">
+                  <button type="button" class="bg-transparent border-0" data-dismiss="modal" aria-label="Close" style="top: 10px; right: 15px; color: white; opacity: 1;">
+                      <span class="h3" aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+              <div class="modal-body p-3 pb-6">
+                  <h4 class="modal-title mb-1"><span class="font-weight-normal">Select a Topic</span>  >  Select an Indicator</h4>
+                  <div class="border-bottom border-gray-300 pb-3">
+                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                  </div>
+
+                  <div class="mt-3">
+                      <h5 class="font-weight-bold mb-2">Indicator Category</h5>
+                      <div class="indicator-grid">
+                          <div class="indicator-card">
+                              <div class="border p-2 border-gray-300 rounded">
+                                  <div class="d-flex justify-content-between align-items-start">
+                                      <h6><a href="#">Indicator Title</a></h6>
+                                  </div>
+                                  <p class="mb-0" style="font-size: 14px;">Indicator description goes here. Indicator description goes here.</p>
+                              </div>
+                          </div>
+                          <div class="indicator-card">
+                              <div class="border p-2 border-gray-300 rounded">
+                                  <h6><a href="#">Indicator Title</a></h6>
+                                  <p class="mb-0" style="font-size: 14px;"> Indicator description goes here. Indicator description goes here. Indicator description goes here. Indicator description goes here.</p>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="mt-4">
+                      <h5 class="font-weight-bold mb-2">Indicator Category</h5>
+                      <div class="indicator-grid">
+                          <div class="indicator-card">
+                              <div class="border p-2 border-gray-300 rounded">
+                                  <div class="d-flex justify-content-between align-items-start">
+                                      <h6><a href="#">Indicator Title</a></h6>
+                                  </div>
+                                  <p class="mb-0" style="font-size: 14px;">Indicator description goes here. Indicator description goes here.</p>
+                              </div>
+                          </div>
+                          <div class="indicator-card">
+                              <div class="border p-2 border-gray-300 rounded">
+                                  <h6><a href="#">Indicator Title</a></h6>
+                                  <p class="mb-0" style="font-size: 14px;"> Indicator description goes here. Indicator description goes here. Indicator description goes here. Indicator description goes here.</p>
+                              </div>
+                          </div>
+                          <div class="indicator-card">
+                              <div class="border p-2 border-gray-300 rounded">
+                                  <div class="d-flex justify-content-between align-items-start">
+                                      <h6><a href="#">Indicator Title</a></h6>
+                                  </div>
+                                  <p class="mb-0" style="font-size: 14px;">Indicator description goes here. Indicator description goes here.</p>
+                              </div>
+                          </div>
+                          <div class="indicator-card">
+                              <div class="border p-2 border-gray-300 rounded">
+                                  <h6><a href="#">Indicator Title</a></h6>
+                                  <p class="mb-0" style="font-size: 14px;"> Indicator description goes here. Indicator description goes here. Indicator description goes here. Indicator description goes here.</p>
+                              </div>
+                          </div>
+                          <div class="indicator-card">
+                              <div class="border p-2 border-gray-300 rounded">
+                                  <div class="d-flex justify-content-between align-items-start">
+                                      <h6><a href="#">Indicator Title</a></h6>
+                                  </div>
+                                  <p class="mb-0" style="font-size: 14px;">Indicator description goes here. Indicator description goes here.</p>
+                              </div>
+                          </div>
+                          <div class="indicator-card">
+                              <div class="border p-2 border-gray-300 rounded">
+                                  <h6><a href="#">Indicator Title</a></h6>
+                                  <p class="mb-0" style="font-size: 14px;"> Indicator description goes here. Indicator description goes here. Indicator description goes here. Indicator description goes here.</p>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="mt-4">
+                      <h5 class="font-weight-bold mb-2">Indicator Category</h5>
+                      <div class="indicator-grid">
+                          <div class="indicator-card">
+                              <div class="border p-2 border-gray-300 rounded">
+                                  <div class="d-flex justify-content-between align-items-start">
+                                      <h6><a href="#">Indicator Title</a></h6>
+                                  </div>
+                                  <p class="mb-0" style="font-size: 14px;">Indicator description goes here. Indicator description goes here.</p>
+                              </div>
+                          </div>
+                          <div class="indicator-card">
+                              <div class="border p-2 border-gray-300 rounded">
+                                  <h6><a href="#">Indicator Title</a></h6>
+                                  <p class="mb-0" style="font-size: 14px;"> Indicator description goes here. Indicator description goes here. Indicator description goes here. Indicator description goes here.</p>
+                              </div>
+                          </div>
+                          <div class="indicator-card">
+                              <div class="border p-2 border-gray-300 rounded">
+                                  <div class="d-flex justify-content-between align-items-start">
+                                      <h6><a href="#">Indicator Title</a></h6>
+                                  </div>
+                                  <p class="mb-0" style="font-size: 14px;">Indicator description goes here. Indicator description goes here.</p>
+                              </div>
+                          </div>
+                          <div class="indicator-card">
+                              <div class="border p-2 border-gray-300 rounded">
+                                  <h6><a href="#">Indicator Title</a></h6>
+                                  <p class="mb-0" style="font-size: 14px;"> Indicator description goes here. Indicator description goes here. Indicator description goes here. Indicator description goes here.</p>
+                              </div>
+                          </div>
+                          <div class="indicator-card">
+                              <div class="border p-2 border-gray-300 rounded">
+                                  <div class="d-flex justify-content-between align-items-start">
+                                      <h6><a href="#">Indicator Title</a></h6>
+                                  </div>
+                                  <p class="mb-0" style="font-size: 14px;">Indicator description goes here. Indicator description goes here.</p>
+                              </div>
+                          </div>
+                          <div class="indicator-card">
+                              <div class="border p-2 border-gray-300 rounded">
+                                  <h6><a href="#">Indicator Title</a></h6>
+                                  <p class="mb-0" style="font-size: 14px;"> Indicator description goes here. Indicator description goes here. Indicator description goes here. Indicator description goes here.</p>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="flex-grow-1 pr-2 pr-md-0">
+      <div class="d-flex justify-content-end align-items-center h-100 pr-1 pr-md-3">
+          <!-- Modal Trigger -->
+          <button type="button" class="bg-transparent border-0 d-flex align-items-center mr-md-3" data-toggle="modal" data-target="#learnMore">
+              <div class="font-weight-bold mr-1 text-white fs-md d-none d-md-block">Learn More</div>
+              <img src={{ relURL "images/icon-green-info.png" }} style="height: 21px" alt="">
+          </button>
+          <!-- Learn More Modal -->
+          <div class="modal fade" id="learnMore" tabindex="-1" role="dialog" aria-labelledby="learnMoreLabel" aria-hidden="true">
+              <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                  <div class="bg-primary modal-top-bg position-relative d-flex justify-content-end align-items-center">
+                      <button type="button" class="bg-transparent border-0" data-dismiss="modal" aria-label="Close" style="top: 10px; right: 15px; color: white; opacity: 1;">
+                          <span class="h3" aria-hidden="true">&times;</span>
+                      </button>
+                  </div>
+                  <div class="modal-body p-3">
+                      <div class="d-flex border-bottom border-top my-2 py-1">
+                          <a class="mr-5" href="#about">About</a>
+                          <a href="#relatedResources">Related Resources</a>
+                      </div>
+                      <h4 class="modal-title" id="about">About Asthma</h4>
+                      <div class="border-bottom pb-2 mb-2">
+                          <p>Asthma is a common disease in which the lungs become swollen, making breathing difficult. Symptoms include wheezing, coughing, shortness of breath and tightness in the chest. The exact causes of asthma are not known. Asthma cannot be cured, but it can be controlled.</p>
+
+                          <p>Asthma is a leading cause of emergency room visits, hospitalizations and missed school days in New York City’s poorest neighborhoods. In NYC, asthma is more common among low-income Black and Latino children.</p>
+
+                          <p>Asthma and the Environment</p>
+                          <p>Things in the environment can trigger an asthma attack or make symptoms worse. Common triggers include:</p>
+
+                          <p>Tobacco smoke</p>
+                          <p>Air pollution, such as particulates, ozone and diesel exhaust. If you smoke, quit. Don’t allow smoking in your home or car. Remove clutter and clean regularly.</p>
+                          <p>Asthma is a common disease in which the lungs become swollen, making breathing difficult. Symptoms include wheezing, coughing, shortness of breath and tightness in the chest. The exact causes of asthma are not known. Asthma cannot be cured, but it can be controlled.</p>
+
+                          <p>Asthma is a leading cause of emergency room visits, hospitalizations and missed school days in New York City’s poorest neighborhoods. In NYC, asthma is more common among low-income Black and Latino children.</p>
+
+                          <p>Asthma and the Environment</p>
+                          <p>Things in the environment can trigger an asthma attack or make symptoms worse. Common triggers include:</p>
+
+                          <p>Tobacco smoke</p>
+                          <p>Air pollution, such as particulates, ozone and diesel exhaust. If you smoke, quit. Don’t allow smoking in your home or car. Remove clutter and clean regularly.</p>
+                          <p>Asthma is a common disease in which the lungs become swollen, making breathing difficult. Symptoms include wheezing, coughing, shortness of breath and tightness in the chest. The exact causes of asthma are not known. Asthma cannot be cured, but it can be controlled.</p>
+
+                          <p>Asthma is a leading cause of emergency room visits, hospitalizations and missed school days in New York City’s poorest neighborhoods. In NYC, asthma is more common among low-income Black and Latino children.</p>
+
+                          <p>Asthma and the Environment</p>
+                          <p>Things in the environment can trigger an asthma attack or make symptoms worse. Common triggers include:</p>
+
+                          <p>Tobacco smoke</p>
+                          <p>Air pollution, such as particulates, ozone and diesel exhaust. If you smoke, quit. Don’t allow smoking in your home or car. Remove clutter and clean regularly.</p>
+                      </div>
+
+                      <h4 class="modal-title" id="relatedResources">Related Resources</h4>
+                      <p class="font-weight-bold">Data</p>
+                      <ul>
+                          <li><a href="#">Asthma and the Environment</a></li>
+                      </ul>
+                      <div class="d-flex align-items-center pt-2">
+                          <a class="btn btn-light-green-bg-outline" href="#">Save Info</a>
+                          <a href="#" class="h6 ml-2 font-weight-normal">Data Source and Details</a>
+                      </div>
+                  </div>
+              </div>
+              </div>
+          </div>
+          <div class="align-items-center d-none d-md-flex dropdown">
+              <button class="d-flex align-items-center" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background: none; border: none; color: inherit; padding: 0;">
+                  <div class="font-weight-bold mr-1 text-white fs-md">Take Action</div>
+                  <img src={{ relURL "images/icon-green-arrow.svg" }} style="height: 21px" alt="">
+              </button>
+              <div class="dropdown-menu dropdown-menu-right p-2 text-right take-action-dropdown" aria-labelledby="dropdownMenuButton">
+                  <div class="font-weight-bold border-bottom border-gray-300 text-primary pb-2 mb-1">Concerned about this?</div>
+                  <ul class="list-unstyled fs-sm">
+                      <li class="mb-1 border-bottom border-gray-300 pb-1"><a href="#">Email your elected officials</a></li>
+                      <li class="mb-1 border-bottom border-gray-300 pb-1">
+                        <span class="d-block"><a href="#">Contact 311</a></span>
+                        <span class="d-block"><a href="#">Another option</a></span>
+                        <span class="d-block"><a href="#">Another option</a></span>
+                    </li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+<!-- #global-header -->
