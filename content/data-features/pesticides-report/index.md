@@ -16,6 +16,7 @@ layout: pesticides-report
 hide: false
 report: true
 vega: true
+weight: 40
 ---
 
 ## Pesticide use by NYC Agencies in 2024
@@ -26,7 +27,7 @@ In 2024, 35 municipal agencies reported their pesticide use to the Health Depart
 
 
 Key findings:
-- Pesticides were applied 843,418 times by New York City agencies in 2024. Agencies used 20,134 gallons and 195,063 pounds of products (Table 1). There was an increase in number of applications from 2023, due to a change in reporting larviciding by individual catch basin. There was a decrease in pesticide use by volume, driven by a decline in use of CO2 rodenticide gas and liquid insecticides. 
+- Pesticides were applied 843,418 times by New York City agencies in 2024. Agencies used 20,134 gallons and 195,063 pounds of products (Table 1). There was an increase in number of applications from 2023, due to a change in reporting larviciding by individual catch basin. There was a decrease in pesticide use by volume, driven by a decline in use of CO<sup>2</sup> rodenticide gas and liquid insecticides. 
 - The Health Department conducts larviciding to prevent spread of West Nile Virus and other mosquito-borne diseases. With the increase in the reporting of individual larvicide applications in catch basins, mosquitos moved to the most targeted pest in 2024, followed by cockroaches and rats, based on total number of applications (Table 3).
 - Most liquid or gas pesticide products (69% by volume) and solid products (52% by weight) used by city agencies were rodenticides and insecticides, respectively (Table 1). After excluding larvicides (31% of all solid products), rodenticides make up the highest percentage of solid pesticide products used (47% by weight). 
 - Insecticides
@@ -50,7 +51,7 @@ When Local Law 37 was enacted on May 9, 2005, New York City (NYC) became the lar
 
 With the enactment of Local Law 37, prohibitions of use were phased in for certain pesticides used by agencies or their contractors on City-owned and -leased properties. By November 2005, EPA Toxicity Category 1 (signal word “danger”) was prohibited. By May 2006, use of pesticides classified by the EPA as of July 19, 2004, as possible, probable, or known human carcinogens was prohibited. Finally, by November 2006, use of pesticides classified by the State of California’s Office of Environmental Health Hazard Assessment as developmental toxicants as of March 4, 2005, was prohibited. In May 2021 the law was further amended to include prohibition of any additional chemicals added to the EPA and California lists since the original law. The legislation further amended the law to prohibit any chemicals listed as a carcinogen by the World Health Organization’s International Association for Research on Cancer (IARC) – including glyphosate, a commonly used herbicide listed as “probably carcinogenic to humans” – as of the date of the law’s passage. Additional prohibitions on use of synthetic pesticide chemicals in city parks went into effect in late 2022, eighteen months after the adoption of the amended law. The impact of the prohibitions in city parks is evident in this report. 
 
-Local Law 37 exempted from prohibition several uses and products that posed little or no risk of human exposure, including rodenticides placed in tamper-proof containers or applied directly into rat burrows or inaccessible areas, containerized insect baits, and certain other types of insecticides, such as boric acid, silica, and diatomaceous earth. Local Law 37 also empowered the New York City Department of Health and Mental Hygiene (The Health Department) to consider and grant requests for waivers from prohibition on a case-by-case basis. The Health Department issues annual waivers from prohibition of insecticide gels containing the ingredients fipronil, hydramethylnon, and avermectin due to their effectiveness and low potential for human exposure. The Health Department maintains a webpage on Local Law 37 at [LL37 Website](http://nyc.gov/health/ll37) that includes a list of all waivers granted to agencies, as well as the original waiver applications.
+Local Law 37 exempted from prohibition several uses and products that posed little or no risk of human exposure, including rodenticides placed in tamper-proof containers or applied directly into rat burrows or inaccessible areas, containerized insect baits, and certain other types of insecticides, such as boric acid, silica, and diatomaceous earth. Local Law 37 also empowered the New York City Department of Health and Mental Hygiene (The Health Department) to consider and grant requests for waivers from prohibition on a case-by-case basis. The Health Department issues annual waivers from prohibition of insecticide gels containing the ingredients fipronil, hydramethylnon, and avermectin due to their effectiveness and low potential for human exposure. <a href="http://nyc.gov/health/ll37" target="_blank">The Health Department's webpage on Local Law 37 includes a list of all waivers granted to agencies</a>, as well as the original waiver applications.
 
 In October 2007, New York City enacted Local Law 54, which requires the Health Department to issue an agency pesticide use summary report to the City Council and the Mayor. This eighteenth annual summary report demonstrates that city agencies have made significant improvements to the quality and delivery of pesticide use data since the enactment of Local Law 37. In 2006, only three agencies provided data in an electronic format that enabled summarization. In 2024, all agencies reported data electronically.
 
@@ -116,10 +117,7 @@ In 2024, 31% of the total insecticides applied by volume, and 90% by weight, wer
 New York City agencies used herbicides in 2024 primarily for vegetation control in parks and for the maintenance of highways and street medians. The active ingredients most frequently used were triclopyr, butoxyethyl ester, imazamox and Glufosinate-ammonium. A total of 1,318 gallons and 21,989 pounds of herbicides were applied in 2024, accounting for 7% of total pesticide volume and 11% of total pesticide weight overall (16% after excluding mosquito larviciding). (Table 1)
 
 ###### *Glyphosate*
-Though recent use by NYC agencies has been declining, glyphosates remain a commonly used liquid herbicide in the US, best known as Roundup® products. Glyphosate is a broad-spectrum, non-selective systemic herbicide that can be used throughout the growing season. In early 2015, the International Agency for Research on Cancer (IARC), a branch of the World Health Organization (WHO), changed the classification for glyphosate to a “probable human carcinogen.” However, a risk assessment by the European Food Safety Authority (EFSA) determined that glyphosate is “unlikely to pose a carcinogenic hazard to humans.”^1^ Glyphosate shows little acute toxicity, but there has been growing concern that chronic exposure may increase risk of certain cancers. There is also some evidence that heavy use of the chemical in warm climates with soil high in certain toxic metals could present significant risk for developing kidney damage in agricultural workers. Glyphosate use had increased as agencies phased out the use of other herbicides prohibited under Local Law 37 but has been declining since 2013. The amendments to Local Law 37 passed in 2023 now prohibit the use of glyphosate products due to IARC classifying the chemical as a probable carcinogen. In 2024, 2% of liquid herbicide use (by volume) contained glyphosate compared to 53% in 2016 (Figure 3). Practically all the glyphosate use in 2024 was on a single NYC golf course that is exempt from the product prohibition or around medians where vehicle traffic creates a hazard.
-
----
-1. ^1^ European Food Safety Authority. Conclusion on the peer review of the pesticide risk assessment of the active substance glyphosate. *Efsa J* 2015;13:4302.
+Though recent use by NYC agencies has been declining, glyphosates remain a commonly used liquid herbicide in the US, best known as Roundup® products. Glyphosate is a broad-spectrum, non-selective systemic herbicide that can be used throughout the growing season. In early 2015, the International Agency for Research on Cancer (IARC), a branch of the World Health Organization (WHO), changed the classification for glyphosate to a “probable human carcinogen.” However, [a risk assessment by the European Food Safety Authority determined that glyphosate is “unlikely to pose a carcinogenic hazard to humans.”](https://www.efsa.europa.eu/en/efsajournal/pub/8164) Glyphosate shows little acute toxicity, but there has been growing concern that chronic exposure may increase risk of certain cancers. There is also some evidence that heavy use of the chemical in warm climates with soil high in certain toxic metals could present significant risk for developing kidney damage in agricultural workers. Glyphosate use had increased as agencies phased out the use of other herbicides prohibited under Local Law 37 but has been declining since 2013. The amendments to Local Law 37 passed in 2023 now prohibit the use of glyphosate products due to IARC classifying the chemical as a probable carcinogen. In 2024, 2% of liquid herbicide use (by volume) contained glyphosate compared to 53% in 2016 (Figure 3). Practically all the glyphosate use in 2024 was on a single NYC golf course that is exempt from the product prohibition or around medians where vehicle traffic creates a hazard.
 
 ###### *Dinitroaniline*
 Dinitroaniline-based herbicides, which are often combined with fertilizers, are used early in the growing season as pre-emergents. They are of low acute toxicity to people, but several dinitroanilines are classified by EPA as suspected human carcinogens. Dinitroaniline herbicides break down slowly. Common dinitroaniline active ingredients are pendimethalin, trifluralin, benefin, benfluralin, and prodiamine. Agencies used dinitroaniline products containing prodiamine in 2024, including Lebanon Fertilizer with Barricade (0.43%) Preemer, Turfgrass Fertilizer with Barricade (0.43%) Preemer, and Quali-Pro Prodiamine 4L ® applied on city golf courses.
@@ -142,49 +140,35 @@ Pesticide use can be measured and compared in several ways. Throughout the remai
 
 Pesticides were applied 843,418 times by New York City agencies in 2024, 42% more than in 2023, due to a 64% increase in reports of larvicide applications that was driven by a change to reporting individual catch basin applications. In addition, there was a 22% decrease in reports of pyrethroid applications targeting roaches and bed bugs, primarily at NYCHA. The pesticides applied most frequently by New York City agencies (by application count) were insecticides. Insecticides were the also the most heavily used solid products (52% by weight). However, rodenticides were the most heavily used solid products when excluding larvicides (47% by weight), and the most heavily used liquid/gas (69% by volume). In 2024, 59% of the insecticides reported by weight were bacterial products designed to kill mosquito larvae in stagnant waters away from human contact. Excluding these products used as part of the Health Department mosquito-borne disease control programs, 30% of total solid pesticides by weight were insecticides and 47% were rodenticides. The majority of rodenticide applied by city agencies is placed directly into rat burrows and poses little risk of exposure to the public. Table 1 summarizes these findings of applications by pesticide type.
 
-**Table 1: Total Applications Reported Applied by NYC Agencies in 2023, by Pesticide Type**
-
-<div id="table1" class="my-4">
-</div>
-
-<script>
-  renderIntroTable('Table-1',"table1", true)
-</script>
-
+**Table 1: Total Applications Reported Applied by NYC Agencies in 2024, by Pesticide Type**
+<div style="width:100%; height: 150px; border:1px solid black;"></div>
 
 Table 2 lists the ten most frequently used products for each pesticide type on New York City owned or leased property in 2024. For each, we list the total volume, weight, and number of applications (No. Apps), as well as the active ingredient(s), the EPA toxicity category (EPA Tox Cat), whether the product is considered a known, possible, or suspect carcinogen by EPA (EPA Carcin), whether the product is listed by the State of California as a reproductive or developmental hazard (CA Dev Toxin), and whether the product is listed as carcinogen by IARC (IARC Carcin). For this and subsequent product tables, the toxicity category refers to the EPA’s assigned label warning to indicate the degree of acute toxicity from oral, dermal and inhalation exposures on a scale from 1 to 4. Toxicity Category 1 indicates pesticides considered highly toxic and whose labels require the signal word “Danger”. Toxicity Category 2 products are considered moderately toxic and product labels carry the word “Warning”. Toxicity Category 3 products are considered slightly toxic, while Toxicity 4 products are considered relatively non-toxic, and both carry the signal word “Caution.” A complete list of products used by New York City by pesticide type is included in Appendix 1.
 
-**Table 2: Ten Most Frequently Applied Pesticide Products by NYC Agencies in 2023 by Type**
-
-<div id="table2" class="my-4" style="width:100%;overflow-x:scroll;height:500px;overflow-y:scroll;"></div>
-
-<script>
-  renderIntroTable('Table-2',"table2",false)
-</script>
-
+**Table 2: Ten Most Frequently Applied Pesticide Products by NYC Agencies in 2024 by Type**
+<div style="width:100%; height: 150px; border:1px solid black;"></div>
 
 #### Changes in pesticide use
 Table 3 contains a complete list of application amounts by target pest.
 
-**Table 3: List of pesticide applications by New York City Agencies by target pest, 2023**
-
-<div id="table3" class="my-4"></div>
-
-<script>
-  renderIntroTable('Table-3',"table3",false,true)
-</script>
+**Table 3: List of pesticide applications by New York City Agencies by target pest, 2024**
+<div style="width:100%; height: 150px; border:1px solid black;"></div>
 
 The level of completeness of city agency pesticide reporting has improved dramatically since 2008, with more recent years being most reflective of real variation in pest control practices. Figures 1 and 2 show trends through 2024 in use of pesticides by type, with solid and liquid products reported by weight and volume, respectively.
 
 In Figure 1, the Health Department mosquito control program larvicides are charted separately from other insecticides, because they represent a large proportion of agency insecticide use and their year-to-year use varies more with weather than other insecticides. Larvicide use (Figure 1) increased 21% by weight and 64% by application count in 2024. The 64% rise is primarily due to an increase in the number of individual sewer catch basins treated as separate applications. Larvicides continue to make up the majority of solid insecticide products used by weight (59%). Use of solid rodenticide products declined in 2024 (21% by weight, from 2023 to 2024), after three years of increases. Solid insecticide use went up considerably in 2024 due to more than twice the amount of best practice baits and gels used. Herbicide levels remained steady with the use of outdoor granular turf formulations that include fertilizer (adding to the product weight) mainly on golf courses and large institutional lawns (Figure 1). 
 
 **Figure 1: Pesticides Applied by City Agencies Reported by Weight**
-<div style="width:100%; height: 150px; border:1px solid black;"></div>
+<div class="mb-4">
+<div style="min-height:422px" id="datawrapper-vis-a3OOO"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/a3OOO/embed.js" charset="utf-8" data-target="#datawrapper-vis-a3OOO"></script><noscript><img src="https://datawrapper.dwcdn.net/a3OOO/full.png" alt="Figure 1: Pesticides applied by City agencies (Line chart)" /></noscript></div>
+</div>
+
 
 **Figure 2: Pesticides Applied by City Agencies Reported by Volume**
-<div style="width:100%; height: 150px; border:1px solid black;"></div>
-
-Rodenticides and mosquito larvicides are not included in Figure 2 as those products are almost exclusively solid formulations reported by weight. However, in 2024 agencies continued to use a carbon dioxide (CO2) gas product that was reported by volume. The volume amount of that CO2 gas rodenticide was much higher than the other pesticide types reported in Figure 2 and is not included in Figure 2, which aims to track liquid volume amounts. There was a 32% decrease in liquid insecticide use in 2024 compared to 2023, due to a decrease in use of pyrethroids and liquid BMP insecticides (Appendix 1 & 3). From 2008 to 2024, there was a 78% decrease in the volume of liquid insecticides used (Figure 2). Liquid herbicide use increased 2% by volume (Figure 2) from 2023 to 2024, but there has been a 99% decrease in glyphosate levels applied since 2012 (Figure 3).
+<div class="mb-4">
+<div style="min-height:386px" id="datawrapper-vis-iSj4e"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/iSj4e/embed.js" charset="utf-8" data-target="#datawrapper-vis-iSj4e"></script><noscript><img src="https://datawrapper.dwcdn.net/iSj4e/full.png" alt="Line chart" /></noscript></div>
+</div>
+Rodenticides and mosquito larvicides are not included in Figure 2 as those products are almost exclusively solid formulations reported by weight. However, in 2024 agencies continued to use a carbon dioxide (CO<sup>2</sup>) gas product that was reported by volume. The volume amount of that CO<sup>2</sup> gas rodenticide was much higher than the other pesticide types reported in Figure 2 and is not included in Figure 2, which aims to track liquid volume amounts. There was a 32% decrease in liquid insecticide use in 2024 compared to 2023, due to a decrease in use of pyrethroids and liquid BMP insecticides (Appendix 1 & 3). From 2008 to 2024, there was a 78% decrease in the volume of liquid insecticides used (Figure 2). Liquid herbicide use increased 2% by volume (Figure 2) from 2023 to 2024, but there has been a 99% decrease in glyphosate levels applied since 2012 (Figure 3).
 
 **Figure 3: Amount of Glyphosphate Reported by Weight**
 <div style="width:100%; height: 150px; border:1px solid black;"></div>
@@ -213,4 +197,4 @@ Rodenticide use decreased by 21% in 2024 by weight (Figure 1), while the number 
 Mosquito control measures include larviciding (killing larvae) and adulticiding (killing flying adults). The Health Department Vector Control program and their contractors were the primary applicators; 59,943.10 pounds of mosquito larvicide and 395 gallons of adulticide were applied in 2024. The application count increased 64% from 2023 while the amount of larvicide applied in sewer catch basins by weight rose less significantly (21%, Figure 1). The agency continues to monitor mosquito populations across the five boroughs, especially the populations that commonly carry mosquito-borne pathogens such as the West Nile and Zika viruses. The amount of adulticide applied by the Health Department varies year to year depending on weather and severity of mosquito infestations. There was no significant change in the number of adulticide applications from 2023 to 2024 (data not shown).
 
 #### Summary of agencies pesticide use
-For each reporting agency, we summarize total pesticide use by pesticide type with a link to download the pesticide products used.
+For each reporting agency, we summarize total pesticide use by pesticide type with a link to download the pesticide product totals used contained in Appendix 2 below.
