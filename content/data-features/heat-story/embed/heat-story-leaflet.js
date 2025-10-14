@@ -38,8 +38,8 @@ const getting_started = config.stories.find(s => s.id == "getting-started");
 let lastMapState = JSON.parse(JSON.stringify(getting_started.mapState));
 
 
-// var map = L.map('map').setView([40.715554, -74.0026642], 11); // [Lat, Long], Zoom
-var map = L.map('map', {
+// let map = L.map('map').setView([40.715554, -74.0026642], 11); // [Lat, Long], Zoom
+let map = L.map('map', {
     minZoom: 10,
     maxZoom: 14,
     scrollWheelZoom: false,
@@ -53,30 +53,30 @@ var map = L.map('map', {
 // ----------------------------------------------------------------------- //
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-// set the popup content separately to handle intersecting layers
+// set the infoBox content separately to handle intersecting layers
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
-var popup = null;
-var popupContent = "";
+let infoBox = null;
+let infoBoxContent = "";
 
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 // set up layers
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
-var tileLayerGroup = L.layerGroup();
-var layerGroup = L.layerGroup();
-var storyMarkerLayerGroup = L.layerGroup();
+let tileLayerGroup = L.layerGroup();
+let layerGroup = L.layerGroup();
+let storyMarkerLayerGroup = L.layerGroup();
 
-var layerMouseOver = null;
-var featureMouseOver = null;
+let layerMouseOver = null;
+let featureMouseOver = null;
 
-var legendControl = null;
-var legendPropertiesByLayer = {};
+let legendControl = null;
+let legendPropertiesByLayer = {};
 
-var layersExclusive = new Set();
+let layersExclusive = new Set();
 
-var indicators = [];
+let indicators = [];
 
 let timeTable;
 
@@ -153,7 +153,7 @@ const geoTypes = [
 
 L.TopoJSON = L.GeoJSON.extend({
     addData: function (data) {
-        var geojson, key;
+        let geojson, key;
         if (data.type === "Topology") {
             for (key in data.objects) {
                 if (data.objects.hasOwnProperty(key)) {
@@ -210,7 +210,7 @@ function setupMap() {
 
     L.tileLayer(
         'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
-	    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     }).addTo(map);
 
     // add tile layer group to map
@@ -227,10 +227,18 @@ function setupMap() {
         layerGroup.eachLayer((layer) => layer.setStyle && layer.setStyle({ weight: zoom / ZOOM_WEIGHT_SCALE_FACTOR }))
     });
 
-    // Add left-hand Control for data buttons
-    const dataControl = L.control({position: 'bottomleft'});
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // map controls
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+    // ===== Add left-hand Control for data buttons ===== //
+
+    const dataControl = L.control({position: 'topleft'});
 
     dataControl.onAdd = function (map) {
+
+        console.log(">>> create info legend [dataControl.onAdd]");
         const div = L.DomUtil.create('div', 'info legend');
         div.classList.add('fs-xs')
         div.classList.add('p-0')
@@ -238,41 +246,88 @@ function setupMap() {
 
         div.innerHTML = document.getElementById('allDataButtons').innerHTML
 
+        console.log("div", div);
+
         return div;
+
     };
 
     dataControl.addTo(map);
 
-    // Add right-hand Control for story thgemes
+
+    // ===== Add right-hand Control for story themes ===== //
+
     const themeControl = L.control({position: 'topright'});
+
     themeControl.onAdd = function (map) {
-            const div = L.DomUtil.create('div', 'info legend');
-            div.classList.add('fs-xs')
-            div.classList.add('p-0')
-            div.classList.add('mt-1')
 
-            const content = config.themes
-                .map(theme => `<a href="#map" class="list-group-item theme-item" data-theme-id="${theme}">${theme}</a></li>`)
-                .join('');
+        console.log("create info legend [themeControl.onAdd]");
 
-            div.innerHTML = `
-                <span class="fs-sm font-weight-bold text-black p-1">Filter stories:</span>
-                <div class="list-group list-group-flush" id="themeBullets">
-                    ${content}
-                    <a href="#map" onClick="placeAllStoryPins()" class="list-group-item">Show all</a>
-                </div>
-            `;
+        const div = L.DomUtil.create('div', 'info legend');
+        div.classList.add('fs-xs')
+        div.classList.add('p-0')
+        div.classList.add('mt-1')
 
-            return div;
+        const content = config.themes
+            .map(theme => `<a href="#map" class="list-group-item theme-item" data-theme-id="${theme}">${theme}</a></li>`)
+            .join('');
+
+        div.innerHTML = `
+            <span class="fs-sm font-weight-bold text-black p-1">Filter stories:</span>
+            <div class="list-group list-group-flush" id="themeBullets">
+                ${content}
+                <a href="#map" onClick="placeAllStoryPins()" class="list-group-item">Show all</a>
+            </div>
+        `;
+
+        console.log("div [themeControl.onAdd]", div);
+
+        return div;
+
     }
 
     themeControl.addTo(map)
 
-    // add event listeners for .theme-item
-    var themeOptions = document.querySelectorAll('.theme-item');
+
+    // ===== Add infobox for mouseover details ===== //
+
+    infoBox = L.control({position: 'bottomleft'});
+
+    infoBox.onAdd = function (map) {
+
+        // this._div = L.DomUtil.create('div', 'info leaflet-control');
+        this._div = L.DomUtil.create('div', 'info bg-white');
+
+        console.log("this._div [setupMap]", this._div);
+
+        this.update();
+        return this._div;
+
+    };
+
+    infoBox.update = function (details) {
+
+        console.log("details [infoBox.update]", details);
+
+        const contents = details ? details : '<h3 class="h6 card-header">Hover over a neighborhood</h3>';
+        this._div.innerHTML = contents;
+
+        console.log("contents [infoBox.update]", contents);
+        console.log("this [infoBox.update]", this);
+
+    };
+
+    infoBox.addTo(map);
+
+
+    // ===== add event listeners for .theme-item ===== //
+
+    let themeOptions = document.querySelectorAll('.theme-item');
 
     themeOptions.forEach(theme => {
+
         theme.addEventListener('click', function(e) {
+
             console.log('theme clicked for:', e.target.attributes["data-theme-id"].nodeValue);
 
             filterPins(e.target.attributes["data-theme-id"].nodeValue)
@@ -284,7 +339,9 @@ function setupMap() {
 
             // add .active to the clicked .theme-item
             e.target.classList.add('active');
+
         });
+
     });
 
 }
@@ -298,11 +355,11 @@ function setupMap() {
 // get the elements to append
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
-var buttonHolderStudyArea = document.getElementById('buttonHolderStudyArea')
-var buttonHolderBase = document.getElementById('buttonHolderBase')
-var buttonHolderAdditional = document.getElementById('buttonHolderAdditional')
+let buttonHolderStudyArea = document.getElementById('buttonHolderStudyArea')
+let buttonHolderBase = document.getElementById('buttonHolderBase')
+let buttonHolderAdditional = document.getElementById('buttonHolderAdditional')
 
-var buttonHolders = {
+let buttonHolders = {
     studyArea: buttonHolderStudyArea,
     base: buttonHolderBase,
     additional: buttonHolderAdditional
@@ -317,6 +374,7 @@ function addLayerButtons() {
     console.log("* addLayerButtons");
     
     const layers = config.layers;
+
     for (let i = 0; i < layers.length; i++) {
 
         const layer = layers[i];
@@ -329,6 +387,7 @@ function addLayerButtons() {
 
         const buttonHolder = buttonHolders[layer.property?.buttonSection ?? "additional"];
         buttonHolder.innerHTML += button;
+
         if (layer.property?.exclusive === true) {
             layersExclusive.add(layer.property.id);
         }
@@ -345,112 +404,112 @@ function addLayerButtons() {
 // create pins for every story
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
-    // create layer group for pins, so we can clear them layter
-    let storyMarkers = L.layerGroup().addTo(map);
+// create layer group for pins, so we can clear them later
+let storyMarkers = L.layerGroup().addTo(map);
 
-    // Create custom icon
-    const storyIcon = L.icon({
-        iconUrl: 'map-pin.svg',   // Path to your icon file
-        iconSize: [25, 41],       // Size of the icon [width, height]
-        iconAnchor: [12, 41],     // Point of the icon that corresponds to marker's location
-        popupAnchor: [0, -41]     // Point from which the popup should open relative to the iconAnchor
+// Create custom icon
+const storyIcon = L.icon({
+    iconUrl: 'map-pin.svg',   // Path to your icon file
+    iconSize: [25, 41],       // Size of the icon [width, height]
+    iconAnchor: [12, 41],     // Point of the icon that corresponds to marker's location
+    popupAnchor: [0, -41]     // Point from which the popup should open relative to the iconAnchor
+});
+
+function placeAllStoryPins() {
+
+    // start by removing .active from Theme FIlters
+    document.querySelectorAll('.theme-item.active').forEach(item => {
+        item.classList.remove('active');
     });
 
-    function placeAllStoryPins() {
 
-        // start by removing .active from Theme FIlters
-        document.querySelectorAll('.theme-item.active').forEach(item => {
-            item.classList.remove('active');
+    // Loop through stories and add to map, with popup
+    config.stories.forEach(story => {
+
+        const lat = Number(story.mapState.lat);
+        const lng = Number(story.mapState.lng);
+
+        let thisStory = L.marker([lat, lng], { icon: storyIcon })
+            .addTo(map)
+            .bindPopup(`
+                <strong>${story.title}</strong>
+                <hr class="mb-1">
+                ${story.content}
+                <hr class="my-1">
+                <em>Themes:</em> ${story.themes}
+                `,
+                {
+                    autoClose: false,
+                    closeOnClick: false
+                }
+                );
+        
+        thisStory.on('click', function (e) {
+            console.log('story click.')
+
+            updateMapStateForStory(story.id)
+            
         });
 
+        storyMarkers.addLayer(thisStory);
 
-        // Loop through stories and add to map, with Popup
-        config.stories.forEach(story => {
+    });
 
-            const lat = Number(story.mapState.lat);
-            const lng = Number(story.mapState.lng);
+}
 
-            var thisStory = L.marker([lat, lng], { icon: storyIcon })
+placeAllStoryPins()
+
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// filter pins on theme click
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+function filterPins(theme) {
+    console.log('filtering for ', theme)
+
+    // remove all pins
+    storyMarkers.clearLayers();
+
+    // loop through stories
+    for (let i = 0; i < config.stories.length; i++) {
+
+        if (config.stories[i].themes.includes(theme)) {
+
+            console.log('theme match for: ', config.stories[i].id)
+            console.log(config.stories[i].themes)
+            console.log(theme)
+
+            // add pins
+            const lat = Number(config.stories[i].mapState.lat);
+            const lng = Number(config.stories[i].mapState.lng);
+
+            let thisStory = L.marker([lat, lng], { icon: storyIcon })
                 .addTo(map)
                 .bindPopup(`
-                    <strong>${story.title}</strong>
+                    <strong>${config.stories[i].title}</strong>
                     <hr class="mb-1">
-                    ${story.content}
+                    ${config.stories[i].content}
                     <hr class="my-1">
-                    <em>Themes:</em> ${story.themes}
-                    `,
-                    {
-                        autoClose: false,
-                        closeOnClick: false
-                    }
+                    <em>Themes:</em> ${config.stories[i].themes}
+                    `
                     );
             
             thisStory.on('click', function (e) {
                 console.log('story click.')
 
-                updateMapStateForStory(story.id)
+                updateMapStateForStory(config.stories[i].id)
                 
             });
 
+            // add them to storyMarkers layer
             storyMarkers.addLayer(thisStory);
 
-        });
-
-    }
-
-    placeAllStoryPins()
-
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-    // filter pins on theme click
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-
-    function filterPins(theme) {
-        console.log('filtering for ', theme)
-
-        // remove all pins
-        storyMarkers.clearLayers();
-
-        // loop through stories
-        for (let i = 0; i < config.stories.length; i++) {
-
-            if (config.stories[i].themes.includes(theme)) {
-                console.log('theme match for: ', config.stories[i].id)
-                console.log(config.stories[i].themes)
-                console.log(theme)
-
-                // add pins
-                    const lat = Number(config.stories[i].mapState.lat);
-                    const lng = Number(config.stories[i].mapState.lng);
-
-                    var thisStory = L.marker([lat, lng], { icon: storyIcon })
-                        .addTo(map)
-                        .bindPopup(`
-                            <strong>${config.stories[i].title}</strong>
-                            <hr class="mb-1">
-                            ${config.stories[i].content}
-                            <hr class="my-1">
-                            <em>Themes:</em> ${config.stories[i].themes}
-                            `
-                            );
-                    
-                    thisStory.on('click', function (e) {
-                        console.log('story click.')
-
-                        updateMapStateForStory(config.stories[i].id)
-                        
-                    });
-
-                    // add them to storyMarkers layer
-                    storyMarkers.addLayer(thisStory);
-
-            } else {
-                // no theme match
-            }
+        } else {
+            // no theme match
         }
-
     }
 
-
+}
 
 
 
@@ -512,7 +571,7 @@ function drawStoryCardDropdown() {
 let size = 30;
 let half = size/2;
 
-var map_pin = L.icon({
+let map_pin = L.icon({
     // iconUrl: 'map_pin.png',
     iconUrl: 'map-pin.svg',
     iconSize: [size, size],
@@ -665,12 +724,15 @@ async function createRedlinedLayer({ id, name, urls, args, displayProperties }) 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
     // create geojson layer
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+    // PUT MOUSOVER INFO CONTROL HERE IN `onEachFeature`
     
     const layer = L.geoJSON(
         Object.values(data),
         {
             style: onStyle,
             onEachFeature: function(feature, layer) {
+
                 layer.on('mouseover', function(event) {
 
                     // console.log("mouseover [createRedlinedLayer]");
@@ -678,13 +740,20 @@ async function createRedlinedLayer({ id, name, urls, args, displayProperties }) 
                     layerMouseOver = layer;
                     featureMouseOver = feature;
                     layerMouseOver[layer.options[CUSTOM_ID_FIELD]] = true;
-                    updatePopup(event.latlng);
+
+                    updateInfoBox(event.latlng);
+
                 });
+
                 layer.on('mouseout', function() {
+
                     if (layer.options[CUSTOM_ID_FIELD] == layerMouseOver.options._custom_id) {
+
                         layerMouseOver = null;
                         featureMouseOver = null;
+
                     }
+
                 });
             },
             _custom_id: id,
@@ -746,7 +815,8 @@ async function createMeasuresLayer({ id, name, measureInfo, args, displayPropert
     }
 
     // All metrics have an Id of value. Add that to 
-    const updatedDisplayProperties = {...displayProperties, 
+    const updatedDisplayProperties = {
+        ...displayProperties, 
         displayPropertyArgs: displayProperties.displayPropertyArgs
             ? displayProperties.displayPropertyArgs.map(x => { return {...x, id: "Value"}})
             : [{ "id": "Value", }]
@@ -762,22 +832,29 @@ async function createMeasuresLayer({ id, name, measureInfo, args, displayPropert
         {
             style: onStyle,
             onEachFeature: function(feature, layer) {
-                //layer.bindPopup("Hello popup", {});
+
+                //layer.bindPopup("Hello infoBox", {});
+
                 layer.on('mouseover', function(event) {
 
-                    // console.log("mouseover [createMeasuresLayer]");
+                    console.log("mouseover [createMeasuresLayer]");
 
                     layerMouseOver = layer;
                     featureMouseOver = feature;
                     layerMouseOver[layer.options[CUSTOM_ID_FIELD]] = true;
-                    updatePopup(event.latlng);
+                    updateInfoBox(event.latlng);
+
                 });
+
                 layer.on('mouseout', function() {
+
                     if (layer.options[CUSTOM_ID_FIELD] == layerMouseOver.options._custom_id) {
                         layerMouseOver = null;
                         featureMouseOver = null;
                     }
+                    
                 });
+
             },
             _custom_id: id,
             displayProperties: updatedDisplayProperties,
@@ -888,7 +965,7 @@ async function createGeoJsonLayer({ id, name, url, args, displayProperties }) {
                     layerMouseOver = layer;
                     featureMouseOver = feature;
                     layerMouseOver[layer.options[CUSTOM_ID_FIELD]] = true;
-                    updatePopup(event.latlng);
+                    updateInfoBox(event.latlng);
 
                 });
 
@@ -1038,7 +1115,7 @@ async function createGeotiffLayer({ id, url, args, name }) {
 
     //     console.log(`georaster (${lat.toFixed(5)}, ${lng.toFixed(5)}): ${value}`);
         
-    //     // updatePopup(event.latlng);
+    //     // updateInfoBox(event.latlng);
             
     // });
     
@@ -1251,7 +1328,7 @@ function saveCurrentMapState() {
     lastMapState.lng = lng;
     lastMapState.zoom = zoom;
 
-    var layersVisible = []
+    let layersVisible = []
     layerGroup.eachLayer(l => layersVisible.push(l.options[CUSTOM_ID_FIELD]));
     lastMapState.layers = layersVisible.filter(x => x);
 }
@@ -1287,7 +1364,7 @@ async function updateMapStateForStory(storyId) {
 
     const layers = mapState.layers;
 
-    var layersVisible = []
+    let layersVisible = []
     layerGroup.eachLayer(l => layersVisible.push(l.options[CUSTOM_ID_FIELD]));
 
     // add the layers that are not in the visible layer
@@ -1317,7 +1394,7 @@ async function resetMapState() {
 
     console.log("* resetMapState");
 
-    // reset map state var to "getting-started" state
+    // reset map state let to "getting-started" state
 
     lastMapState = JSON.parse(JSON.stringify(getting_started.mapState));
 
@@ -1358,7 +1435,7 @@ async function resetMapState() {
 
 
 // ----------------------------------------------------------------------- //
-// popup functions
+// infoBox functions
 // ----------------------------------------------------------------------- //
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
@@ -1402,7 +1479,7 @@ function formatValue(value, type) {
 
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-// create popup HTML
+// create infoBox HTML
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 /*
  * The html is based on displayProperties and displayPropertyArgs
@@ -1411,12 +1488,12 @@ function formatValue(value, type) {
 
 //  NEED A WAY TO CREATE THE POPUP THAT IS AWARE OF ALL LAYERS, WITHOUT FIRING AN EVENT ON LITERALLY EVERY MOUSEMOVE
 
-function featureInfoToHtmlForPopup(feature, layer) {
+function featureInfoToHtmlForInfoBox(feature, layer) {
 
-    // console.log("* featureInfoToHtmlForPopup");
+    // console.log("* featureInfoToHtmlForInfoBox");
 
-    // console.log("feature [featureInfoToHtmlForPopup]", feature);
-    // console.log("layer [featureInfoToHtmlForPopup]", layer);
+    // console.log("feature [featureInfoToHtmlForInfoBox]", feature);
+    // console.log("layer [featureInfoToHtmlForInfoBox]", layer);
     
     const displayProperties = layer.options.displayProperties;
 
@@ -1466,7 +1543,7 @@ function featureInfoToHtmlForPopup(feature, layer) {
     const featureTable = Object.entries(featureMap)
         .map(x => `<tr class="fs-sm"><td>${x[0]}</td><td style="text-align: left;">${x[1] ?? missingDisplay}</td></tr>`);
 
-    // console.log("featureTable [featureInfoToHtmlForPopup]", featureTable);
+    // console.log("featureTable [featureInfoToHtmlForInfoBox]", featureTable);
 
     // debugger;
 
@@ -1478,44 +1555,44 @@ function featureInfoToHtmlForPopup(feature, layer) {
 
     // return `<h5>${layer.options.name}</h5><table class="table popup-table table-bordered" style="width:100%">${featureTable.join('')}</table>`;
 
-    let popup_html = 
-        `<h3 class="h6">${layer.options.name}</h3>` +
-        // `<table class="table popup-table" rules="all" style="width:100%">` + 
-        `<table class="table popup-table" style="width:100%">` + 
+    let infobox_html = 
+        `<h3 class="h6 card-header">${layer.options.name}</h3>` +
+        // `<table class="table infoBox-table" rules="all" style="width:100%">` + 
+        `<table class="table card-body infoBox-table" style="width:100%">` + 
         // `<tr><th>${layer.options.name}</th></tr>` + 
         `<tr class="fs-sm"><td>Neighborhood (${geoTypePretty})</td><td>${geoName}</td></tr>` +
         `${featureTable.join('')}</table>`
 
-    return popup_html;
+    return infobox_html;
 }
 
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-// Format the popup (tooltip)
+// Format the infoBox (tooltip)
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
-// Iterate over each feature in the popup and turn it into html
+// Iterate over each feature in the infoBox and turn it into html
 
-function formatPopup(features) {
+function formatInfoBox(features) {
 
-    // console.log("* formatPopup");
+    // console.log("* formatInfoBox");
 
-    // console.log("features [formatPopup]", features);
+    // console.log("features [formatInfoBox]", features);
     
     const updates = features
         .sort((a, b) => (a?.layer?.options?.sortOrder ?? 999) - (b?.layer?.options?.sortOrder ?? 999))
-        .map(({ feature, layer }) => featureInfoToHtmlForPopup(feature, layer))
+        .map(({ feature, layer }) => featureInfoToHtmlForInfoBox(feature, layer))
         .filter(x => x != "")
         .join("<br />");
 
-    // console.log("updates [formatPopup]", updates);
+    // console.log("updates [formatInfoBox]", updates);
 
     return updates == "" ? null : updates;
 }
 
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-// update the popup (tooltip)
+// update the infoBox (tooltip)
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 /*
  * This function looks at the visible layers in the layer group,
@@ -1525,26 +1602,48 @@ function formatPopup(features) {
  * This functionality is not native to leaflet, so we used a third party library.
  */
 
-function updatePopup({ lat, lng }) {
+ 
+    // ===== Add control that shows state info on hover ===== //
 
-    // console.log("* updatePopup");
+    // const info = L.control({position: 'bottomleft'});
+
+    // info.onAdd = function (map) {
+
+    //     this._div = L.DomUtil.create('div', 'info');
+    //     this.update();
+    //     return this._div;
+
+    // };
+
+    // info.update = function (props) {
+
+    //     const contents = props ? `<b>${props.name}</b><br />${props.density} people / mi<sup>2</sup>` : 'Hover over a state';
+    //     this._div.innerHTML = `<h4>US Population Density</h4>${contents}`;
+
+    // };
+
+    // info.addTo(map);
+
+function updateInfoBox({ lat, lng }) {
+
+    // console.log("* updateInfoBox");
     
     const visibleLayers = Object.keys(layerGroup._layers);
 
-    // console.log("visibleLayers [updatePopup]", visibleLayers);
+    // console.log("visibleLayers [updateInfoBox]", visibleLayers);
 
-    // if there are no layers, then we don't need a popup
+    // if there are no layers, then we don't need a infoBox
     if (Object.keys(layerGroup._layers).length == 0 || featureMouseOver == null) {
     // if (Object.keys(layerGroup._layers).length == 0) {
 
-        // console.log("no layers [updatePopup]");
+        // console.log("no layers [updateInfoBox]");
 
-        if (popup != null) {
-            popup.removeFrom(map);
-            popup = null;
-        }
+        // if (infoBox != null) {
+        //     infoBox.removeFrom(map);
+        //     infoBox = null;
+        // }
 
-        popupContent = null;
+        infoBoxContent = null;
         return;
     }
 
@@ -1568,8 +1667,8 @@ function updatePopup({ lat, lng }) {
 
             // this is our main layer. we know we overlap here because we are in this function, so ignore it.
 
-            // console.log("CUSTOM_ID_FIELD [updatePopup]", layerMouseOver.options[CUSTOM_ID_FIELD]);
-            // console.log("_custom_id [updatePopup]", _layer.options._custom_id);
+            // console.log("CUSTOM_ID_FIELD [updateInfoBox]", layerMouseOver.options[CUSTOM_ID_FIELD]);
+            // console.log("_custom_id [updateInfoBox]", _layer.options._custom_id);
 
             if (layerMouseOver.options[CUSTOM_ID_FIELD] == _layer.options._custom_id) {
                 return;
@@ -1594,41 +1693,42 @@ function updatePopup({ lat, lng }) {
         });
     }
 
-    const content = formatPopup(features);
+    const content = formatInfoBox(features);
 
-    // console.log("popup [updatePopup]", popup);
-    // console.log("content [updatePopup]", content);
+    // console.log("infoBox [updateInfoBox]", infoBox);
+    console.log("content [updateInfoBox]", content);
 
-    if (popup == null && content != null) {
+    if (infoBox == null && content != null) {
 
-        // new popup
+        // new infoBox
 
-        // console.log("> new popup");
+        // console.log("> new infoBox");
 
-        popup = L.popup({autoPan: false, maxWidth: 560}).setLatLng({ lat, lng }).setContent(content).openOn(map);
-        popupContent = content;
+        // infoBox = L.popup({autoPan: false, maxWidth: 560}).setLatLng({ lat, lng }).setContent(content).openOn(map);
+        infoBox.update(content)
+        infoBoxContent = content;
 
-    } else if ( popup != null && content != null) {
+    } else if ( infoBox != null && content != null) {
 
-        // change the content of an existing popup
+        // change the content of an existing infoBox
 
-        // console.log("> change popup");
+        // console.log("> change infoBox");
 
-        popup.setLatLng({ lat, lng });
+        // infoBox.setLatLng({ lat, lng });
 
-        if (content != popupContent) {
-            popupContent = content;
-            popup.setContent(content);
+        if (content != infoBoxContent) {
+            infoBoxContent = content;
+            infoBox.update(content)
         }
 
-    } else if (popup != null && content == null) {
+    } else if (infoBox != null && content == null) {
 
-        // popup should be removed
+        // infoBox should be removed
 
-        // console.log("> remove popup");
+        // console.log("> remove infoBox");
 
-        popup.removeFrom(map);
-        popup = null;
+        // infoBox.removeFrom(map);
+        infoBox = null;
 
     }
 }
@@ -1655,13 +1755,20 @@ L.Control.Legend = L.Control.extend({
     initialize: function (layerGroup, options) {
         L.Util.setOptions(this, options);
     },
+
     onAdd: function (map) {
-        // console.log("onAdd [L.Control.Legend]");
+
+        console.log("onAdd [L.Control.Legend]");
+
         const htmls = [];
+
         layerGroup.eachLayer(layer => {
+
             const layerEventHash = this.options?.properties?.layerEventHash;
+
             // the layer may exist on the map if we remove it (async code, in the process of removing)
             // check the last layer hash to see if this layer shouldn't be in the legend
+
             if (layerEventHash?.type == 'layerremove' && layerEventHash?.id == layer.options[CUSTOM_ID_FIELD]) {
                 return;
             }
@@ -1669,22 +1776,36 @@ L.Control.Legend = L.Control.extend({
             if (layer.options?.legendFunc == null) {
                 return;
             }
+
             const html = layer.options.legendFunc();
+
             if (html === '') {
                 return;
             }
+
             htmls.push(html);
+
         });
 
         if (!htmls.length) {
             return L.DomUtil.create('div', '');
         }
+        
+        // console.log("create info legend [onAdd - L.Control.Legend]");
 
-        var div = L.DomUtil.create('div', 'info legend mb-2');
+        let div = L.DomUtil.create('div', 'info legend mb-2');
+        // div.id = 
+
+        console.log("div [onAdd - L.Control.Legend]", div);
+
         L.DomUtil.addClass(div, 'leaflet-control-layers-expanded');
+
         const innerHtml = '<fieldset><h6></h6><table>' + htmls.join('<br />') + '</table></fieldset>';
+
         // console.log("innerHtml [onAdd]", innerHtml);
+
         div.innerHTML = innerHtml;
+
         return div;
     }
 });
@@ -1783,7 +1904,7 @@ const legendFuncForColorMap = (id, name, args) => {
 
     const backgroundCss = `background: linear-gradient(to right, ${gradients.join(', ')});`
 
-    var legend = name + '<span style="'
+    let legend = name + '<span style="'
         + backgroundCss
         + ' height: 20px; width: 100%;'
         + ' display: block; background-repeat: no-repeat;'
@@ -1843,7 +1964,7 @@ const legendFuncForLayer = (id, name, args, layer) => {
             ? `background-image: linear-gradient(to right, ${args.minColor}, ${args?.maxColor});`
             : ('' + background + borderColor);
 
-        var legend = name + '<span style="'
+        let legend = name + '<span style="'
             + backgroundCss
             + ' height: 20px;  width: 100%;'
             + ' display: block; background-repeat: no-repeat; '
@@ -2143,18 +2264,18 @@ function addListeners() {
     
     map.addEventListener('mousemove', (event) => {
 
-        updatePopup(event.latlng);
+        updateInfoBox(event.latlng);
 
     });
 
     
     // ----------------------------------------------------------------------- //
-    // when the popup is closed, reset the popup variable
+    // when the infoBox is closed, reset the infoBox variable
     // ----------------------------------------------------------------------- //
 
     map.addEventListener('popupclose', () => {
 
-        popup = null;
+        infoBox = null;
 
     });
 
