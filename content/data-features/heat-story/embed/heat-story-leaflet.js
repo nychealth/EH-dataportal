@@ -40,6 +40,7 @@ let lastMapState = JSON.parse(JSON.stringify(getting_started.mapState));
 
 // let map = L.map('map').setView([40.715554, -74.0026642], 11); // [Lat, Long], Zoom
 let map = L.map('map', {
+    zoomControl: false,
     minZoom: 10,
     maxZoom: 14,
     scrollWheelZoom: false,
@@ -291,38 +292,6 @@ function setupMap() {
 
     themeControl.addTo(map)
 
-
-    // ===== Add infobox for mouseover details ===== //
-
-    infoBox = L.control({position: 'bottomleft'});
-
-    infoBox.onAdd = function (map) {
-
-        // this._div = L.DomUtil.create('div', 'info leaflet-control');
-        this._div = L.DomUtil.create('div', 'info bg-white');
-
-        console.log("this._div [setupMap]", this._div);
-
-        this.update();
-        return this._div;
-
-    };
-
-    infoBox.update = function (details) {
-
-        console.log("details [infoBox.update]", details);
-
-        const contents = details ? details : '<div class="ard-header">Hover over a neighborhood</div>';
-        this._div.innerHTML = contents;
-
-        console.log("contents [infoBox.update]", contents);
-        console.log("this [infoBox.update]", this);
-
-    };
-
-    infoBox.addTo(map);
-
-
     // ===== add event listeners for .theme-item ===== //
 
     let themeOptions = document.querySelectorAll('.theme-item');
@@ -348,6 +317,53 @@ function setupMap() {
     });
 
 }
+
+    // Custom control with + ⟳ - buttons in one row
+    const zoomRefreshControl = L.control({ position: 'bottomleft' });
+
+    zoomRefreshControl.onAdd = function(map) {
+    const div = L.DomUtil.create('div', 'leaflet-bar leaflet-control d-flex');
+
+    // Button styles
+    div.style.display = 'flex';
+    div.style.margin = '0 0 10px 10px';
+    div.style.flexDirection = 'row';
+    div.style.alignItems = 'center';
+    div.style.justifyContent = 'center';
+    div.style.gap = '2px';
+    div.style.background = 'white';
+
+    // Add buttons
+        div.innerHTML = `
+        <a href="#" class="leaflet-control-button" style="border-bottom:none;border-right:1px solid #ccc;" title="Zoom in"><i class="fa-solid fa-plus"></i></a>
+        <a href="#" class="leaflet-control-button" style="border-bottom:none;border-right:1px solid #ccc;" title="Reset map"><i class="fas fa-undo"></i></a>
+        <a href="#" class="leaflet-control-button" style="border-bottom:none;" title="Zoom out"><i class="fa-solid fa-minus"></i></a>
+        `;
+
+
+    // Get button elements
+    const [zoomInBtn, refreshBtn, zoomOutBtn] = div.querySelectorAll('.leaflet-control-button');
+
+    // Hook up actions
+    zoomInBtn.onclick = function(e) {
+        e.preventDefault();
+        map.zoomIn();
+    };
+
+    zoomOutBtn.onclick = function(e) {
+        e.preventDefault();
+        map.zoomOut();
+    };
+
+    refreshBtn.onclick = function(e) {
+        e.preventDefault();
+        resetMapState(); // uses your existing function
+    };
+
+    return div;
+    };
+
+    zoomRefreshControl.addTo(map);
 
 
 // ----------------------------------------------------------------------- //
