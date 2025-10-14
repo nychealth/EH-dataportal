@@ -168,27 +168,40 @@ In Figure 1, the Health Department mosquito control program larvicides are chart
 <div class="mb-4">
 <div style="min-height:386px" id="datawrapper-vis-iSj4e"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/iSj4e/embed.js" charset="utf-8" data-target="#datawrapper-vis-iSj4e"></script><noscript><img src="https://datawrapper.dwcdn.net/iSj4e/full.png" alt="Line chart" /></noscript></div>
 </div>
+
 Rodenticides and mosquito larvicides are not included in Figure 2 as those products are almost exclusively solid formulations reported by weight. However, in 2024 agencies continued to use a carbon dioxide (CO<sup>2</sup>) gas product that was reported by volume. The volume amount of that CO<sup>2</sup> gas rodenticide was much higher than the other pesticide types reported in Figure 2 and is not included in Figure 2, which aims to track liquid volume amounts. There was a 32% decrease in liquid insecticide use in 2024 compared to 2023, due to a decrease in use of pyrethroids and liquid BMP insecticides (Appendix 1 & 3). From 2008 to 2024, there was a 78% decrease in the volume of liquid insecticides used (Figure 2). Liquid herbicide use increased 2% by volume (Figure 2) from 2023 to 2024, but there has been a 99% decrease in glyphosate levels applied since 2012 (Figure 3).
 
-**Figure 3: Amount of Glyphosphate Reported by Weight**
-<div style="width:100%; height: 150px; border:1px solid black;"></div>
+**Figure 3: Amount of Glyphosphate Reported by Volume**
+
+<div class="mb-4">
+<div style="min-height:391px" id="datawrapper-vis-keMa9"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/keMa9/embed.js" charset="utf-8" data-target="#datawrapper-vis-keMa9"></script><noscript><img src="https://datawrapper.dwcdn.net/keMa9/full.png" alt="Line chart" /></noscript></div>
+</div>
 
 ##### Use of spray formulations vs. Best Management Practices
 The reported use of BMP products to combat roaches had declined in recent years from a higher level in 2020 but increased sharply in 2024. BMP product use was 1.4 times higher in 2024 compared with 2023 due to large increases in the amount of insect growth regulator, bait, and gel products used (Figure 4).
 
 **Figure 4: Amount of Best Management Products by Weight To Treat Roaches**
-<div style="width:100%; height: 150px; border:1px solid black;"></div>
+
+<div class="mb-4">
+<div style="min-height:391px" id="datawrapper-vis-COTDr"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/COTDr/embed.js" charset="utf-8" data-target="#datawrapper-vis-COTDr"></script><noscript><img src="https://datawrapper.dwcdn.net/COTDr/full.png" alt="Line chart" /></noscript></div>
+</div>
 
 There was an 33% decrease in the number of pyrethroid applications and a 62% increase in the number of BMP applications to treat roaches from 2023 to 2024 (Figure 5).
 
 **Figure 5: Number of applications of insecticides to treat Roaches**
-<div style="width:100%; height: 150px; border:1px solid black;"></div>
+
+<div class="mb-4">
+<div style="min-height:391px" id="datawrapper-vis-4Dunm"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/4Dunm/embed.js" charset="utf-8" data-target="#datawrapper-vis-4Dunm"></script><noscript><img src="https://datawrapper.dwcdn.net/4Dunm/full.png" alt="Line chart" /></noscript></div>
+</div>
 
 ##### Bed Bugs vs. Roaches
 Use of pyrethroid spray products targeting roaches decreased 74% by volume, and the number of applications decreased 33% from 2023 to 2024 (Figures 5 and 6). There was also a 55% decrease in gallons of pyrethroids used by city agencies to treat bed bugs from 2023 to 2024 (Figure 6). However, citywide, the number of pyrethroid applications to treat bed bugs increased 93% in 2024. Total volume of pyrethroid use for control of bed bugs has remained low since 2015 compared with previous years, while volume for cockroaches has declined from a high in 2017 (Figure 6).
 
 **Figure 6: Amount of Pyrethroids Reported by Volume to Treat Bed Bugs and Roaches**
-<div style="width:100%; height: 150px; border:1px solid black;"></div>
+
+<div class="mb-4">
+<div style="min-height:391px" id="datawrapper-vis-DWFeK"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/DWFeK/embed.js" charset="utf-8" data-target="#datawrapper-vis-DWFeK"></script><noscript><img src="https://datawrapper.dwcdn.net/DWFeK/full.png" alt="Line chart" /></noscript></div>
+</div>
 
 ##### Rodents
 Rodenticide use decreased by 21% in 2024 by weight (Figure 1), while the number of applications increased by 9%. Use varies year to year according to findings during the ongoing neighborhood rat surveillance and control initiative (Rat Indexing - NYC Health). The decrease in rodenticide by weight was due to lower amounts of anti-coagulant products and Rat Ice used in 2024.
