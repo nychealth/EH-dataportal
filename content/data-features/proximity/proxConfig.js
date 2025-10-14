@@ -10,7 +10,7 @@ var config = [
         "geonameField": "Stop Name"
     },
     {
-        "text": `Next, we showed the range of a 10-15 minute walk from each station (roughly half a mile or 800 meters).`,
+        "text": `<p>Next, we used Dijkstra's algorithm to calculate walkable areas based on a walking-network. This network considers obstacles like highways and rivers impassable for pedestrians. Each green shape represents the area that can be reached within a 10-15 minute walk (about a half mile or 800 meters) from an accessible subway station.</p> <p>Dijkstra's algorithm is a common method for finding the shortest path between points on a network, such as streets in a city. It works by exploring all possible paths from a starting point and selecting the shortest one to reach each destination.</p>`,
         "geoFile": `geojson/800m_isochrones_ADA_subway.geojson`,
         "choropleth": false,
         "labelName": "Station",
