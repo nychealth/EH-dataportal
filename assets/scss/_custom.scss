@@ -291,16 +291,37 @@ $color-data-explorer: #0A408A;
   display: none;
 }
 
-/** NEW DATA EXPLORER STYLES **/
-.de-wrapper {
 
-  .nav-bar {
-    min-height: 46px;
-  }
+.take-action-dropdown {
+  width: 260px;
+}
+/** NEW DATA EXPLORER STYLES **/
+
+.de-nav-bar {
+  min-height: 46px;
+  margin-left: 0 !important;
+}
+
+.de-wrapper {
 
   .nav-topic-selector {
     background-color: #00923E;
     height: 100%;
+  }
+
+  .dropdown-menu-de {
+    border: none;
+    border-bottom: 4px solid #008939;
+    padding: 10px;
+    font-size: 14px;
+
+    button {
+      border-bottom: 1px solid #D8D8D8;
+      padding: 8px 0;
+    }
+    button:hover {
+      background-color: #ffffff;
+    }
   }
 
   @media (min-width: 720px) {
@@ -342,23 +363,13 @@ $color-data-explorer: #0A408A;
     height: 39px;
   }
 
-  .take-action-dropdown {
-    width: 280px;
-  }
-
-  @media (min-width: 720px) {
-    .take-action-dropdown {
-      width: 360px;
-    }
-  }
-
   .de-tabs {
     position: absolute;
     left: 0;
     bottom: 0;
     width: 100%;
     z-index: 2;
-    max-width: 500px;
+    max-width: 600px;
   }
 
   /* Ensure mobile bottom nav sits above iOS Safari toolbar */
@@ -391,7 +402,16 @@ $color-data-explorer: #0A408A;
     left: 2rem;
     z-index: 2;
     width: calc(100% - 4rem);
+  }
 
+  .de-legend {
+    bottom: 5rem;
+    left: 2rem;
+    z-index: 2;
+    padding: 1rem;
+    font-size: 14px;
+    background-color: #ffffff;
+    width: calc(100% - 4rem)
   }
 
   .de-main-details .main-heading {
@@ -404,12 +424,19 @@ $color-data-explorer: #0A408A;
       left: auto;
       bottom: auto;
       top: 2rem;
-      width: 40%;
+      width: 50%;
+    }
+    .de-tabs:not(.has-open-panel) {
+      width: 72px !important;
     }
     .de-main-details {
       left: 2rem;
       top: 2rem;
-      width: 420px;
+      width: 380px;
+    }
+
+    .de-legend {
+      width: 380px
     }
   }
 
@@ -439,7 +466,6 @@ $color-data-explorer: #0A408A;
   .de-tabs-nav .nav-tabs .nav-link {
     color: white;
     border-right: 1px solid rgba(255, 255, 255, 0.3);
-    max-width: 90px;
     flex: 1;
     text-align: center;
     padding: 10px;
@@ -447,6 +473,7 @@ $color-data-explorer: #0A408A;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    max-width: 60px;
   }
 
   .de-tabs-nav .nav-pills .nav-link-sm,
@@ -466,8 +493,9 @@ $color-data-explorer: #0A408A;
       border-bottom: 1px solid rgba(255, 255, 255, 0.3);
       border-right: none;
       flex: 0;
-      padding: 1rem;
+      padding: .5rem;
       min-height: 89px;
+      max-width: 90px;
     }
   }
 
