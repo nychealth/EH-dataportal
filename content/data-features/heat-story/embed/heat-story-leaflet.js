@@ -241,10 +241,13 @@ function setupMap() {
         console.log(">>> create info legend [dataControl.onAdd]");
         const div = L.DomUtil.create('div', 'info legend');
         div.classList.add('fs-xs')
+        div.classList.add('left-bar-width')
         div.classList.add('p-0')
         div.classList.add('mb-1')
 
         div.innerHTML = document.getElementById('allDataButtons').innerHTML
+
+        div.innerHTML += `<div id="infoboxHolderTarget"></div>`
 
         console.log("div", div);
 
@@ -309,7 +312,7 @@ function setupMap() {
 
         console.log("details [infoBox.update]", details);
 
-        const contents = details ? details : '<h3 class="h6 card-header">Hover over a neighborhood</h3>';
+        const contents = details ? details : '<div class="ard-header">Hover over a neighborhood</div>';
         this._div.innerHTML = contents;
 
         console.log("contents [infoBox.update]", contents);
@@ -746,6 +749,8 @@ async function createRedlinedLayer({ id, name, urls, args, displayProperties }) 
                 });
 
                 layer.on('mouseout', function() {
+
+                    console.log('This should clear the info box...')
 
                     if (layer.options[CUSTOM_ID_FIELD] == layerMouseOver.options._custom_id) {
 
@@ -1210,6 +1215,8 @@ async function getOrCreateLayer(layerId) {
 
 async function addLayerToMap(layerId) {
 
+    document.getElementById('infoboxHolderTarget').innerHTML = '' // clear 'tooltip' box
+
     console.log("* addLayerToMap:", layerId);
     
     const layer = await getOrCreateLayer(layerId);
@@ -1540,8 +1547,11 @@ function featureInfoToHtmlForInfoBox(feature, layer) {
     // console.log("GEOTypePretty", geoTypePretty);
 
     // then create that into an html table
+    console.log('featureMap:')
+    console.log(featureMap)
+
     const featureTable = Object.entries(featureMap)
-        .map(x => `<tr class="fs-sm"><td>${x[0]}</td><td style="text-align: left;">${x[1] ?? missingDisplay}</td></tr>`);
+        .map(x => `<tr class="fs-xs" style="max-width:100%;"><td>${x[0]}</td><td style="text-align: left;">${x[1] ?? missingDisplay}</td></tr>`);
 
     // console.log("featureTable [featureInfoToHtmlForInfoBox]", featureTable);
 
@@ -1555,15 +1565,21 @@ function featureInfoToHtmlForInfoBox(feature, layer) {
 
     // return `<h5>${layer.options.name}</h5><table class="table popup-table table-bordered" style="width:100%">${featureTable.join('')}</table>`;
 
-    let infobox_html = 
-        `<h3 class="h6 card-header">${layer.options.name}</h3>` +
-        // `<table class="table infoBox-table" rules="all" style="width:100%">` + 
-        `<table class="table card-body infoBox-table" style="width:100%">` + 
-        // `<tr><th>${layer.options.name}</th></tr>` + 
-        `<tr class="fs-sm"><td>Neighborhood (${geoTypePretty})</td><td>${geoName}</td></tr>` +
-        `${featureTable.join('')}</table>`
+    const [[indicator, value]] = Object.entries(featureMap);
 
-    return infobox_html;
+    document.getElementById('infoboxHolderTarget').innerHTML = 
+    `<div class="font-weight-bold text-black p-1" 
+            style="max-width: 100%;">
+        ${indicator}
+    </div>` +
+    `<div class="p-1 fs-xs text-black" style="max-width:100%;">
+        <span style="display:inline-block; max-width:80%; white-space:normal; word-wrap:break-word; overflow-wrap:break-word;">
+            ${geoName}
+        </span>
+        <div class="float-right">${value}</div>
+    </div>`;
+
+    // return infobox_html;
 }
 
 
