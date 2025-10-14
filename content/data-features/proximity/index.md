@@ -33,7 +33,7 @@ aboutTheData: '<p><strong>Accessible subway stations</strong><br> Locations are 
 
 How close people live to important resources, like transit, schools, or clinics, affects their ability to use them.
 
-For this example, we look at **Accessible subway stations**. Using a walking-network, we mapped all areas within an 800-meter (~10-15 minute) walk of these stations. Then we overlaid Census population data, adjusting for where residential buildings are located, to estimate the percent of people in each neighborhood who live within walking distance.
+For this example, we look at **Accessible subway stations**. Using a walking-network, we mapped all areas within a half mile (or ~10-15 minute) walk of these stations. Then we overlaid Census population data, adjusting for where residential buildings are located, to estimate the percent of people in each neighborhood who live within walking distance.
 
 We show results at several geographic levels, including Census block groups, Census tracts, Neighborhood Tabulation Areas (NTAs), Community District Tabulation Areas (CDTAs), and UHF42 neighborhoods.
 
