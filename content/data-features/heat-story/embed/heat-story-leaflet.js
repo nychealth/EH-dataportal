@@ -1590,7 +1590,7 @@ function featureInfoToHtmlForInfoBox(feature, layer) {
     </div>` +
     `<div class="p-1 fs-xs text-black" style="max-width:100%;">
         <span style="display:inline-block; max-width:80%; white-space:normal; word-wrap:break-word; overflow-wrap:break-word;">
-            ${geoName}
+        ${geoName ?? 'This area:'}
         </span>
         <div class="float-right">${value}</div>
     </div>`;
