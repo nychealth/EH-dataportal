@@ -323,7 +323,7 @@
 
   async function ingestData() {
     // Wait for the CSV to finish loading
-    const data = await d3.csv("data/data1.csv");
+    const data = await d3.csv("data/map-data.csv");
     dataFile = data;
     // console.log('Data loaded:', dataFile);
 
@@ -393,7 +393,7 @@
         subtitleFontSize: 0,
       },
       data: {
-        url: "data/data1.csv",
+        url: "data/map-data.csv",
       },
       config: {
         concat: { spacing: 20 },
@@ -431,13 +431,23 @@
         },
         {
           calculate:
-            "datum.changeFromBaseline > 0 ? 'Increase' : datum.changeFromBaseline < 0 ? 'Decrease' : 'no change'",
+            "datum.changeFromBaseline > 0 ? 'Increase' : datum.changeFromBaseline < 0 ? 'Decrease' : 'No change'",
           as: "changeDirection",
         },
         {
           calculate: `datum.changeDirection + ' of ' + datum.absChange + '${label2}' + '${label3}'`,
           as: "changeLabel",
         },
+        {
+          calculate: `
+            datum.changeFromBaseline > 0
+              ? 'Increase of ' + datum.absChange + '${label2}' + '${label3}'
+              : datum.changeFromBaseline < 0
+                ? 'Decrease of ' + datum.absChange + '${label2}' + '${label3}'
+                : 'No change'
+          `,
+          as: 'combinedChange'
+        }
       ],
       layer: [
         {
@@ -533,7 +543,7 @@
                 field: "valueLabel",
                 title: `Modelled ${subtitle} under new scenario`,
               },
-              { field: "changeLabel", title: "Change" },
+              { field: "combinedChange", title: "Change" },
             ],
           },
         },
