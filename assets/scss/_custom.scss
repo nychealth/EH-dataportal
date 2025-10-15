@@ -405,7 +405,7 @@ $color-data-explorer: #0A408A;
   }
 
   .de-legend {
-    bottom: 5rem;
+    bottom: 9rem;
     left: 2rem;
     z-index: 2;
     padding: 1rem;
@@ -436,7 +436,8 @@ $color-data-explorer: #0A408A;
     }
 
     .de-legend {
-      width: 380px
+      width: 380px;
+      bottom: 2rem;
     }
   }
 
