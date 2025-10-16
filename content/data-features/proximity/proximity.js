@@ -103,9 +103,26 @@ function loadGeoJSON(url, choro, propertyField, nameField, labelField,zoom) {
         map.setView([40.673676, -73.883420], 15)
 
         // And, open two popups for specific points. 
+        L.popup()
+          .setLatLng([40.676654471226826, -73.87824895843853])
+          .setContent("Block group population inside walkable area: XX%")
+          .addTo(map);
+
+        L.popup()
+          .setLatLng([40.678889, -73.879806])
+          .setContent("Block group population outside walkable area: YY%")
+          .addTo(map);
 
       } else if (zoom == false) {
         console.log('zoom no')
+         map.setView([lat,lng], 11)
+
+         // clear popups
+         map.eachLayer(function (layer) {
+          if (layer instanceof L.Popup) {
+            map.removeLayer(layer);
+          }
+        });
       }
 
       // --- helper to map value -> color ---
