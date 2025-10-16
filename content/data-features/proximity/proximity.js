@@ -61,7 +61,7 @@ function changeText(x) {
     document.getElementById('lastButton').setAttribute('onclick',`changeText(${last})`)
 
     // load GeoJSON as specified in config, if it exists
-    loadGeoJSON(config[x].geoFile,config[x].choropleth, config[x].valueField,config[x].geonameField,config[x].labelName)
+    loadGeoJSON(config[x].geoFile,config[x].choropleth, config[x].valueField,config[x].geonameField,config[x].labelName,config[x].zoom)
 
     // if we're at the end of the config, then, remove the Next Button
     if (next == config.length) {
@@ -72,7 +72,7 @@ function changeText(x) {
 
 }
 
-function loadGeoJSON(url, choro, propertyField, nameField, labelField) {
+function loadGeoJSON(url, choro, propertyField, nameField, labelField,zoom) {
   fetch(url)
     .then(res => res.json())
     .then(data => {
@@ -144,6 +144,7 @@ function loadGeoJSON(url, choro, propertyField, nameField, labelField) {
               if (label === "Block Group") {
                 val *= 100;
               }
+              zoom == true
               val = val.toFixed(2)
               const tooltipContent = `${labelField} <b>${name}</b>, ${val}% of residents<br>live in walking distance of an accessible subway station.`;
               layer.bindTooltip(tooltipContent, { sticky: true });
