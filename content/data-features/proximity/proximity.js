@@ -15,8 +15,8 @@
 
   var map = L.map('map', {
       zoomControl: false,
-      scrollWheelZoom: true,
-      doubleClickZoom: false
+      scrollWheelZoom: false,
+      doubleClickZoom: true
   }).setView([lat,lng],zoom); // [Lat,Long],Zoom
   L.tileLayer('https://api.maptiler.com/maps/basic-v2/{z}/{x}/{y}.png?key=dwIJ8hO2KsTMegUfEpYE',{
       maxZoom:15,
@@ -30,6 +30,7 @@
 
   legend.onAdd = function (map) {
       const div = L.DomUtil.create('div', 'legend');
+      div.classList.add('overflower')
       div.innerHTML = document.getElementById('legendHolder').innerHTML
       return div;
   };
@@ -47,6 +48,7 @@ function changeText(x) {
     var nextButton = document.getElementById('nextButton')
 
     textHolder.innerHTML = config[x].text
+    textHolder.classList.add('overflower')
 
     nextButton.setAttribute('onclick',`changeText(${next})`)
     nextButton.classList.remove('hide')
@@ -98,6 +100,7 @@ function loadGeoJSON(url, choro, propertyField, nameField, labelField,zoom) {
         console.log('zoom yes')
 
         // Tell the map to zoom to a specific lat / long
+        map.setView([40.67280207976877, -73.86795580794916], 15)
 
         // And, open two popups for specific points. 
 
