@@ -3,4 +3,4 @@ title: "Sugar lookup tool"
 layout: sugar
 ---
 
-Sugar lookup
+Use this tool to look up beverages to see how many calories it takes to have 50g of added sugar. 
