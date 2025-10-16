@@ -458,7 +458,7 @@ function placeAllStoryPins() {
                 <em>Themes:</em> ${story.themes}
                 `,
                 {
-                    autoClose: false,
+                    autoClose: true,
                     closeOnClick: false
                 }
                 );
@@ -1457,6 +1457,10 @@ async function resetMapState() {
     $('.layer-button').removeClass("active");
     $('.layer-button').attr('aria-selected', false);
 
+    // close any open story pins
+    map.closePopup();
+
+
 }
 
 
@@ -1587,11 +1591,11 @@ function featureInfoToHtmlForInfoBox(feature, layer) {
     const [[indicator, value]] = Object.entries(featureMap);
 
     document.getElementById('infoboxHolderTarget').innerHTML = 
-    `<div class="fs-xs text-black font-weight-bold border-bottom" style="max-width: 275px; overflow-x: wrap;">
+    `<div class="fs-xs mt-1 text-black font-weight-bold border-bottom" style="max-width: 275px; overflow-x: wrap;">
         <span style="display:inline-block; max-width:80%; white-space:normal; word-wrap:break-word; overflow-wrap:break-word;">
         ${geoName ?? 'This area:'}
-        </span>
-        <div class="float-right"><span>${value ?? 'Suppressed'}</span></div>
+        </span> 
+        <span style="display:inline-block; max-width: 20%;">${value ?? 'Suppressed'}</span>
     </div>`;
 
     // return infobox_html;
