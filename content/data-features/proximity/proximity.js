@@ -108,10 +108,15 @@ function loadGeoJSON(url, choro, propertyField, nameField, labelField,zoom) {
           .setContent("Block group population inside walkable area: 67.93%")
           .addTo(map);
 
-        L.popup()
+        L.popup({
+            offset: [0, 20] // move popup 20px down from the anchor point
+          })
           .setLatLng([40.678889, -73.879806])
           .setContent("Block group population outside walkable area: 32.07%")
           .addTo(map);
+
+        L.marker([40.675377, -73.872106],{ icon: customIcon })
+          .addTo(map)
 
       } else if (zoom == false) {
         console.log('zoom no')
