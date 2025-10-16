@@ -15,7 +15,7 @@
 
   var map = L.map('map', {
       zoomControl: false,
-      scrollWheelZoom: false,
+      scrollWheelZoom: true,
       doubleClickZoom: false
   }).setView([lat,lng],zoom); // [Lat,Long],Zoom
   L.tileLayer('https://api.maptiler.com/maps/basic-v2/{z}/{x}/{y}.png?key=dwIJ8hO2KsTMegUfEpYE',{
@@ -73,6 +73,7 @@ function changeText(x) {
 }
 
 function loadGeoJSON(url, choro, propertyField, nameField, labelField,zoom) {
+
   fetch(url)
     .then(res => res.json())
     .then(data => {
@@ -91,6 +92,17 @@ function loadGeoJSON(url, choro, propertyField, nameField, labelField,zoom) {
             if (val > max) max = val;
           }
         });
+      }
+
+      if (zoom == true) {
+        console.log('zoom yes')
+
+        // Tell the map to zoom to a specific lat / long
+
+        // And, open two popups for specific points. 
+
+      } else if (zoom == false) {
+        console.log('zoom no')
       }
 
       // --- helper to map value -> color ---
@@ -144,7 +156,6 @@ function loadGeoJSON(url, choro, propertyField, nameField, labelField,zoom) {
               if (label === "Block Group") {
                 val *= 100;
               }
-              zoom == true
               val = val.toFixed(2)
               const tooltipContent = `${labelField} <b>${name}</b>, ${val}% of residents<br>live in walking distance of an accessible subway station.`;
               layer.bindTooltip(tooltipContent, { sticky: true });

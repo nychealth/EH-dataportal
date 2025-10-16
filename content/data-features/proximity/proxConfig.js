@@ -8,7 +8,7 @@ var config = [
         "labelName": "Station",
         "valueField": "",
         "geonameField": "Stop Name",
-        "zoom": ""
+        "zoom": false
     },
     {
         "text": `<p>Next, we used Dijkstra's algorithm to calculate walkable areas based on a walking-network. This network considers obstacles like highways and rivers impassable for pedestrians. Each green shape represents the area that can be reached within a 10-15 minute walk (about a half mile or 800 meters) from an accessible subway station.</p> <p>Dijkstra's algorithm is a common method for finding the shortest path between points on a network, such as streets in a city. It works by exploring all possible paths from a starting point and selecting the shortest one to reach each destination.</p>`,
@@ -17,7 +17,7 @@ var config = [
         "labelName": "Station",
         "valueField": "",
         "geonameField": "station",
-        "zoom": ""
+        "zoom": false
     },
     {
         "text": `Then we combined all these walkable areas into one map, making it easier to see all citywide coverage. The population within these green shapes live within a half-mile of an ADA-compliant, accessible subway station. `,
@@ -26,7 +26,7 @@ var config = [
         "labelName": "",
         "valueField": "",
         "geonameField": "",
-        "zoom": ""
+        "zoom": false
     },
         // add in zoomed-in image instead of loading geojson file //
     {
@@ -36,7 +36,7 @@ var config = [
         "labelName": "Block Group",
         "valueField": "pct_pop_walk",
         "geonameField": "GEOID",
-        "example" : "true"
+        "zoom" : true
     },
     {
         "text": `<p>It can be helpful to understand proximity indicators as applied to larger neighborhood boundary schemes too. Since block groups nest into Census tracts, we added them up and calculated the percent of each population in each Census Tract that lives within walking distance of an accessible station.`,
@@ -45,7 +45,7 @@ var config = [
         "labelName": "Census tract",
         "valueField": "pct_pop_walk",
         "geonameField": "CT2020",
-        "zoom": ""
+        "zoom": false
     },
     {
         "text": `Census tracts combine to make Neighborhood Tabulation Areas (NTAs). Summing up tracts, we find the percent of each NTA's population within walking distance.`,
@@ -54,7 +54,7 @@ var config = [
         "labelName": "NTA",
         "valueField": "pct_pop_walk",
         "geonameField": "GEONAME",
-        "zoom": ""
+        "zoom": false
     },
     {
         "text": `NTAs then roll up into Community District Tabulation Areas (CDTAs). Here we see the percent of each CDTA's population within walking distance.`,
@@ -63,7 +63,7 @@ var config = [
         "labelName": "Community District",
         "valueField": "pct_pop_walk",
         "geonameField": "GEONAME",
-        "zoom": ""
+        "zoom": false
     },
     {
         "text": `<p>We also calculated these data for UHF42 neighborhoods. Because the boundaries of UHF42 neighborhoods don't line up neatly with Census block groups, we applied the same PLUTO-based method directly to the building data. We identified which residential buildings fell inside the walkable areas and then compared those to all residential units within each UHF42 neighborhood.</p> <p>This allowed us to estimate the percentage of the population for each UHF42 neighborhood living within walking distance of an accessible subway station.`,
@@ -72,6 +72,6 @@ var config = [
         "labelName": "Neighborhood",
         "valueField": "pct_units_walk",
         "geonameField": "GEONAME",
-        "zoom": ""
+        "zoom": false
     }
 ]
