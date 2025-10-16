@@ -248,7 +248,7 @@ function setupMap() {
 
         div.innerHTML = document.getElementById('allDataButtons').innerHTML
 
-        div.innerHTML += `<div id="infoboxHolderTarget"></div>`
+        // div.innerHTML += `<div id="infoboxHolderTarget"></div>`
 
         console.log("div", div);
 
@@ -1231,7 +1231,10 @@ async function getOrCreateLayer(layerId) {
 
 async function addLayerToMap(layerId) {
 
-    document.getElementById('infoboxHolderTarget').innerHTML = '' // clear 'tooltip' box
+    if (document.getElementById('infoboxHolderTarget')) {
+        document.getElementById('infoboxHolderTarget').innerHTML = '' // clear 'tooltip' box
+    } else {
+    }
 
     console.log("* addLayerToMap:", layerId);
     
@@ -1584,15 +1587,11 @@ function featureInfoToHtmlForInfoBox(feature, layer) {
     const [[indicator, value]] = Object.entries(featureMap);
 
     document.getElementById('infoboxHolderTarget').innerHTML = 
-    `<div class="font-weight-bold text-black p-1" 
-            style="max-width: 100%;">
-        ${indicator}
-    </div>` +
-    `<div class="p-1 fs-xs text-black" style="max-width:100%;">
+    `<div class="fs-xs text-black font-weight-bold border-bottom" style="max-width: 275px; overflow-x: wrap;">
         <span style="display:inline-block; max-width:80%; white-space:normal; word-wrap:break-word; overflow-wrap:break-word;">
         ${geoName ?? 'This area:'}
         </span>
-        <div class="float-right"><span style="font-weight:bold;">${value}</span></div>
+        <div class="float-right"><span>${value ?? 'Suppressed'}</span></div>
     </div>`;
 
     // return infobox_html;
@@ -1832,7 +1831,7 @@ L.Control.Legend = L.Control.extend({
 
         L.DomUtil.addClass(div, 'leaflet-control-layers-expanded');
 
-        const innerHtml = '<fieldset><h6></h6><table>' + htmls.join('<br />') + '</table></fieldset>';
+        const innerHtml = '<div id="infoboxHolderTarget" style="max-width: 275px; overflow-x: wrap;"></div><fieldset><h6></h6><table>' + htmls.join('<br />') + '</table></fieldset>';
 
         // console.log("innerHtml [onAdd]", innerHtml);
 
