@@ -76,6 +76,7 @@ function changeText(x) {
 
 function loadGeoJSON(url, choro, propertyField, nameField, labelField,zoom) {
 
+  // then, get geojson
   fetch(url)
     .then(res => res.json())
     .then(data => {
@@ -102,29 +103,38 @@ function loadGeoJSON(url, choro, propertyField, nameField, labelField,zoom) {
         // Tell the map to zoom to a specific lat / long
         map.setView([40.673676, -73.883420], 15)
 
-        // And, open two popups for specific points. 
-        L.popup()
-          .setLatLng([40.676654471226826, -73.87824895843853])
-          .setContent("Block group population inside walkable area: 67.93%")
+        // --- add pin to isochrone center ---
+        L.marker([40.675377, -73.872106], { icon: customIcon })
           .addTo(map);
 
-        L.popup({
-            offset: [0, 20] // move popup 20px down from the anchor point
-          })
-          .setLatLng([40.678889, -73.879806])
-          .setContent("Block group population outside walkable area: 32.07%")
-          .addTo(map);
-
-        L.marker([40.675377, -73.872106],{ icon: customIcon })
+        // add for block group
+        L.marker([40.67777173561341, -73.87902747921927], { icon: customIcon })
           .addTo(map)
+          .bindPopup(
+            `This block group:<br>
+            Population outside walkable area: <strong>67.93%</strong><br>
+            Population inside walkable area: <strong>32.07%</strong>`,
+            {
+              autoClose: false,
+              closeOnClick: false,
+              className: 'my-popup-box'
+            }
+          )
+          .openPopup(); // immediately opens the popup
 
       } else if (zoom == false) {
-        console.log('zoom no')
          map.setView([lat,lng], 11)
 
          // clear popups
          map.eachLayer(function (layer) {
           if (layer instanceof L.Popup) {
+            map.removeLayer(layer);
+          }
+        });
+
+        // clear pins
+          map.eachLayer(function (layer) {
+          if (layer instanceof L.Marker) {
             map.removeLayer(layer);
           }
         });
@@ -174,15 +184,19 @@ function loadGeoJSON(url, choro, propertyField, nameField, labelField,zoom) {
         },
         onEachFeature: choro
           ? function (feature, layer) {
-            console.log(feature)
-              const label = labelField
+              if (zoom === true) return; // 🚫 suppress tooltip in zoom mode
+
+              const label = labelField;
               const name = feature.properties[nameField];
               var val = feature.properties[propertyField];
+
               if (label === "Block Group") {
                 val *= 100;
               }
-              val = val.toFixed(2)
+
+              val = val.toFixed(2);
               const tooltipContent = `${labelField} <b>${name}</b>, ${val}% of residents<br>live in walking distance of an accessible subway station.`;
+
               layer.bindTooltip(tooltipContent, { sticky: true });
             }
           : undefined
