@@ -428,10 +428,10 @@ let storyMarkers = L.layerGroup().addTo(map);
 
 // Create custom icon
 const storyIcon = L.icon({
-    iconUrl: 'map-pin.svg',   // Path to your icon file
-    iconSize: [25, 41],       // Size of the icon [width, height]
-    iconAnchor: [12, 41],     // Point of the icon that corresponds to marker's location
-    popupAnchor: [0, -41]     // Point from which the popup should open relative to the iconAnchor
+    iconUrl: 'map-pin-hollow_P.svg',   // Path to your icon file
+    iconSize: [29, 47],       // Size of the icon [width, height]
+    iconAnchor: [14, 47],     // Point of the icon that corresponds to marker's location
+    popupAnchor: [0, -47]     // Point from which the popup should open relative to the iconAnchor
 });
 
 function placeAllStoryPins() {
@@ -1592,7 +1592,7 @@ function featureInfoToHtmlForInfoBox(feature, layer) {
         <span style="display:inline-block; max-width:80%; white-space:normal; word-wrap:break-word; overflow-wrap:break-word;">
         ${geoName ?? 'This area:'}
         </span>
-        <div class="float-right">${value}</div>
+        <div class="float-right"><span style="font-weight:bold;">${value}</span></div>
     </div>`;
 
     // return infobox_html;
