@@ -100,7 +100,7 @@ function loadGeoJSON(url, choro, propertyField, nameField, labelField,zoom) {
         console.log('zoom yes')
 
         // Tell the map to zoom to a specific lat / long
-        map.setView([40.67280207976877, -73.86795580794916], 15)
+        map.setView([40.673676, -73.883420], 15)
 
         // And, open two popups for specific points. 
 
