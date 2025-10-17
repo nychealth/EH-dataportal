@@ -9,7 +9,7 @@ tags:
 categories: [inequality, healthoutcomes]
 keywords:
   [
-    "minimum wave",
+    "minimum wage",
     "poverty",
     "analysis",
     "mortality",
@@ -30,7 +30,7 @@ related:
     url: "data-explorer/economic-conditions/?id=103#display=summary"
 ---
 
-In 2016, the Health Department published a paper showing how a higher minimum wage could have reduced thousands of premature deaths in NYC — up to 8%. 
+In 2016, the Health Department published a paper showing how a higher minimum wage could have reduced thousands of premature deaths in NYC — up to 8%.
 
 Since our initial analysis, inequities in premature death have only grown. These inequities motivated us to launch [Healthy NYC](https://www.nyc.gov/site/doh/about/about-doh/healthynyc.page).
 
