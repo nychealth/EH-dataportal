@@ -165,7 +165,7 @@
 
                                     <div class="card-body">
                                         <h3 class="h5"><a class="text-black" href="{{ .RelPermalink }}" class="text-primary">{{ .Title }}</a></h3>
-                                        <div class="mb-2">
+                                        <div class="mb12 fs-sm">
                                             {{ if .Params.blurb }}
                                                 {{ .Params.blurb | plainify | htmlUnescape | truncate 150 }}
                                             {{ else }}
