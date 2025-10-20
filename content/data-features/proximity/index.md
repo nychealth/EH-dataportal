@@ -1,20 +1,19 @@
 ---
-title: "PROXIMITY Indicators"
+title: "Proximity indicators"
 date: 2025-08-27T11:51:01-04:00
 draft: false
-seo_title: "PROXIMITY Indicators"
-seo_description: "Data on PROXIMITY Indicators."
-description: "Data on PROXIMITY Indicators."
+seo_title: "Proximity indicators"
+seo_description: "Calculating population walking distance to important resources."
+description: "Calculating population walking distance to important resources."
 categories: [publicspace, housing]
 keywords:
   [
-    "interactive",
-    "flooding",
-    "storm",
-    "hurricane",
-    "extreme weather",
-    "climate change",
-    "climate"
+    "proximity",
+    "accessibility",
+    "transit",
+    "built environment",
+    "active design",
+    "analysis"
   ]
 layout: proximity
 vega: true
@@ -33,10 +32,11 @@ aboutTheData: '<p><strong>Accessible subway stations</strong><br> Locations are 
 
 How close people live to important resources, like transit, schools, or clinics, affects their ability to use them.
 
-For this example, we look at **Accessible subway stations**. Using a walking-network, we mapped all areas within a half mile (or ~10-15 minute) walk of these stations. Then we overlaid Census population data, adjusting for where residential buildings are located, to estimate the percent of people in each neighborhood who live within walking distance.
+So, we've calculated a series of 'proximity' indicators - the percent of each neighborhood's population that lives within walking distance to parks, subway stations, and more. We calculated these data for several [geographies](../../data-stories/geographies/), including Neighborhood Tabulation Areas (NTAs), Community District Tabulation Areas (CDTAs), and UHF42 neighborhoods.
 
-We show results at several geographic levels, including Census block groups, Census tracts, Neighborhood Tabulation Areas (NTAs), Community District Tabulation Areas (CDTAs), and UHF42 neighborhoods.
+**Here's how we calculated these indicators.** In this example, we'll use *proximity to accessible subway stations* as an example - but this same method can be used to calculate proximity to lots of other resources. These methods help us understand how well New Yorkers are connected to the resources that support daily life and health. 
 
-While this feature highlights subway access, the same proximity method can be used for other resources. Using this methodology, we can better understand how well New Yorkers are connected to the things that support health and daily life.
+For this example, we look at **Accessible subway stations**. Using a walking-network, we mapped all areas within a half mile (or ~10-15 minute) walk of these stations. Then we overlaid Census population data, adjusting for where residential buildings are located, to estimate the percent of people in each neighborhood who live within walking distance
 
-The maps below illustrate how we moved through each step of the process.
+
+
