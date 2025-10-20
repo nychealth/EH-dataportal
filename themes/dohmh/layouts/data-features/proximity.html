@@ -23,6 +23,13 @@
   filter: drop-shadow(0 0 1px white) drop-shadow(0 0 1px white);
 }
 
+@media (max-width: 768px) {
+  .mobile-text-scroll {
+    height: 50vh;
+    overflow-y: scroll;
+  }
+}
+
 </style>
 
 <article class="container-fluid" id="skip-header-target">
@@ -33,7 +40,7 @@
         <div class="col-md-11 mx-auto">
         
         <div class="row no-gutters">
-          <div class="col-md-3 border p-1">
+          <div class="col-md-3 border p-1 mobile-text-scroll">
             <div class="d-inline-block mb-1" style="width:100%;">
               <button class="btn btn-sm btn-outline-primary hide w45" id="lastButton">Go back</button>
               <button class="btn btn-sm btn-primary float-right w45" id="nextButton">Next step</button>
