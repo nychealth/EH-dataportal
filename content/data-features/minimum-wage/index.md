@@ -20,7 +20,7 @@ keywords:
 layout: minimum-wage-with-maps
 vega: true
 weight: 10
-aboutTheData: "This updated minimum wage analysis was conducted using the same methods as the 2016 paper, <a href='https://ajph.aphapublications.org/doi/10.2105/AJPH.2016.303188?url_ver=Z39.88-2003&rfr_id=ori%3Arid%3Acrossref.org&rfr_dat=cr_pub++0pubmed'>Estimating potential reductions in premature mortality in New York City from raising the minimum wage to $15.</a> Data sources: Vital Statistics, American Community Survey, and DOHMH population estimates."
+aboutTheData: "This updated minimum wage analysis was conducted using the same methods as the 2016 paper, <a href='https://ajph.aphapublications.org/doi/10.2105/AJPH.2016.303188?url_ver=Z39.88-2003&rfr_id=ori%3Arid%3Acrossref.org&rfr_dat=cr_pub++0pubmed'>Estimating potential reductions in premature mortality in New York City from raising the minimum wage to $15.</a> Data sources: Vital Statistics, American Community Survey, and DOHMH population estimates. </p><p><a href='data/chart-data.csv'>Download chart data</a> or <a href='data/map-data.csv'>download map data</a>."
 related:
   - title: "Economic stability affects health"
     url: "data-stories/economic-stability/"

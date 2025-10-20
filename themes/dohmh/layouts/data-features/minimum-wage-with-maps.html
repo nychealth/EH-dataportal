@@ -14,6 +14,8 @@
 <article class="container-fluid" id="skip-header-target">
   {{ partial "df-front-block" . }}
 
+  <a href="#accessibleTables" class="sr-only">Skip to accessible data tables.</a>
+
   <div class="row mb-4">
     <div class="col-11 mx-auto">
       <div class="row my-2">
@@ -127,7 +129,7 @@
           </div>
         </div>
 
-        <div class="col-md-8">
+        <div class="col-md-8" aria-hidden="true">
           <div class="row">
             <div class="col-12 mb-1">
               <h3 class="h6">
@@ -310,6 +312,16 @@
         </div>
       </div>
     </div>
+  </div>
+
+  <div class="sr-only" id="accessibleTables">
+    <h2>Chart data</h2>
+    {{ partial "render-accessible-table.html" (dict "csvPath" "data/chart-data.csv" "containerId" "csv-table-container-1") }}
+
+    <h2>Map data</h2>
+    {{ partial "render-accessible-table.html" (dict "csvPath" "data/map-data.csv" "containerId" "csv-table-container-2") }}
+
+
   </div>
 </article>
 
