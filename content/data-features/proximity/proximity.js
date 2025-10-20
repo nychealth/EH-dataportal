@@ -14,7 +14,7 @@
   });
 
   var map = L.map('map', {
-      zoomControl: false,
+      zoomControl: true,
       scrollWheelZoom: false,
       doubleClickZoom: true
   }).setView([lat,lng],zoom); // [Lat,Long],Zoom
@@ -25,22 +25,8 @@
   }).addTo(map);
 
 
-  // Add 'legend' (indicator info) to map
-  const legend = L.control({position: 'topleft'});
-
-  legend.onAdd = function (map) {
-      const div = L.DomUtil.create('div', 'legend');
-      div.classList.add('overflower')
-      div.innerHTML = document.getElementById('legendHolder').innerHTML
-      return div;
-  };
-
-  legend.addTo(map);
-
-
-
 function changeText(x) {
-    console.log('Running text for ', x)
+    // console.log('Running text for ', x)
 
     var next = x+1
     var last = x-1
@@ -63,7 +49,7 @@ function changeText(x) {
     document.getElementById('lastButton').setAttribute('onclick',`changeText(${last})`)
 
     // load GeoJSON as specified in config, if it exists
-    loadGeoJSON(config[x].geoFile,config[x].choropleth, config[x].valueField,config[x].geonameField,config[x].labelName,config[x].zoom)
+    loadGeoJSON(config[x])
 
     // if we're at the end of the config, then, remove the Next Button
     if (next == config.length) {
@@ -74,10 +60,25 @@ function changeText(x) {
 
 }
 
-function loadGeoJSON(url, choro, propertyField, nameField, labelField,zoom) {
+function loadGeoJSON(config = {}) {
+  const {
+    geoFile = null,
+    choropleth = null,
+    valueField = null,
+    geonameField = null,
+    labelName = null,
+    zoom = false,
+    pin = false
+  } = config;
 
-  // then, get geojson
-  fetch(url)
+  // Make sure we have a file to load
+  if (!geoFile) {
+    console.warn("loadGeoJSON: Missing geoFile (URL). Skipping load.");
+    return;
+  }
+
+  // --- Fetch GeoJSON ---
+  fetch(geoFile)
     .then(res => res.json())
     .then(data => {
       if (geojsonLayer) {
@@ -87,9 +88,9 @@ function loadGeoJSON(url, choro, propertyField, nameField, labelField,zoom) {
       let min = Infinity;
       let max = -Infinity;
 
-      if (choro && propertyField) {
+      if (choropleth && valueField) {
         data.features.forEach(f => {
-          const val = f.properties[propertyField];
+          const val = f.properties[valueField];
           if (typeof val === "number") {
             if (val < min) min = val;
             if (val > max) max = val;
@@ -97,17 +98,19 @@ function loadGeoJSON(url, choro, propertyField, nameField, labelField,zoom) {
         });
       }
 
-      if (zoom == true) {
-        console.log('zoom yes')
+      // --- Handle Zoom ---
+      if (zoom === true) {
+        map.setView([40.675377, -73.872106], 15);
+      } else {
+        map.setView([lat, lng], 11);
+      }
 
-        // Tell the map to zoom to a specific lat / long
-        map.setView([40.673676, -73.883420], 15)
+      // --- Handle Pins ---
+      if (pin === true) {
+        // Add pin to isochrone center
+        L.marker([40.675377, -73.872106], { icon: customIcon }).addTo(map);
 
-        // --- add pin to isochrone center ---
-        L.marker([40.675377, -73.872106], { icon: customIcon })
-          .addTo(map);
-
-        // add for block group
+        // Add pin for block group
         L.marker([40.67777173561341, -73.87902747921927], { icon: customIcon })
           .addTo(map)
           .bindPopup(
@@ -120,36 +123,29 @@ function loadGeoJSON(url, choro, propertyField, nameField, labelField,zoom) {
               className: 'my-popup-box'
             }
           )
-          .openPopup(); // immediately opens the popup
-
-      } else if (zoom == false) {
-         map.setView([lat,lng], 11)
-
-         // clear popups
-         map.eachLayer(function (layer) {
-          if (layer instanceof L.Popup) {
-            map.removeLayer(layer);
-          }
+          .openPopup();
+      } else {
+        // Clear all popups
+        map.eachLayer(layer => {
+          if (layer instanceof L.Popup) map.removeLayer(layer);
         });
 
-        // clear pins
-          map.eachLayer(function (layer) {
-          if (layer instanceof L.Marker) {
-            map.removeLayer(layer);
-          }
+        // Clear all pins
+        map.eachLayer(layer => {
+          if (layer instanceof L.Marker) map.removeLayer(layer);
         });
       }
 
-      // --- helper to map value -> color ---
+      // --- Helper to map value -> color ---
       function getColor(value) {
-        if (!choro || value == null || min === max) {
+        if (!choropleth || value == null || min === max) {
           return "green"; // fallback
         }
+
         const t = (value - min) / (max - min); // normalize
 
-        // interpolate between white and dark green
         const start = [255, 255, 255]; // white
-        const end   = [0, 51, 0];      // dark green
+        const end = [0, 51, 0];       // dark green
 
         const r = Math.round(start[0] + t * (end[0] - start[0]));
         const g = Math.round(start[1] + t * (end[1] - start[1]));
@@ -158,13 +154,14 @@ function loadGeoJSON(url, choro, propertyField, nameField, labelField,zoom) {
         return `rgb(${r},${g},${b})`;
       }
 
+      // --- Create GeoJSON Layer ---
       geojsonLayer = L.geoJSON(data, {
-        pointToLayer: function (feature, latlng) {
-          return L.marker(latlng, { icon: customIcon });
-        },
-        style: function (feature) {
-          if (choro && propertyField && feature.properties[propertyField] !== undefined) {
-            const value = feature.properties[propertyField];
+        pointToLayer: (feature, latlng) =>
+          L.marker(latlng, { icon: customIcon }),
+
+        style: feature => {
+          if (choropleth && valueField && feature.properties[valueField] !== undefined) {
+            const value = feature.properties[valueField];
             return {
               color: "#333333",
               weight: 1,
@@ -182,31 +179,39 @@ function loadGeoJSON(url, choro, propertyField, nameField, labelField,zoom) {
             };
           }
         },
-        onEachFeature: choro
-          ? function (feature, layer) {
-              if (zoom === true) return; // 🚫 suppress tooltip in zoom mode
 
-              const label = labelField;
-              const name = feature.properties[nameField];
-              var val = feature.properties[propertyField];
+        onEachFeature: (feature, layer) => {
+          if (choropleth) {
+            // --- Choropleth case ---
+            if (zoom === true) return; // suppress tooltip in zoom mode
 
-              if (label === "Block Group") {
-                val *= 100;
-              }
+            const name = feature.properties[geonameField];
+            let val = feature.properties[valueField];
 
-              val = val.toFixed(2);
-              const tooltipContent = `${labelField} <b>${name}</b>, ${val}% of residents<br>live in walking distance of an accessible subway station.`;
-
-              layer.bindTooltip(tooltipContent, { sticky: true });
+            if (labelName === "Block Group") {
+              val *= 100;
             }
-          : undefined
-      }).addTo(map);
 
-      // Optional: fit map view to new layer
-      // map.fitBounds(geojsonLayer.getBounds());
+            val = val.toFixed(2);
+            const tooltipContent = `${labelName} <b>${name}</b>, ${val}% of residents<br>live in walking distance of an accessible subway station.`;
+
+            layer.bindTooltip(tooltipContent, { sticky: true });
+          } else {
+            // --- Non-choropleth case ---
+            const displayValue = feature.properties[labelName];
+
+            if (displayValue !== undefined) {
+              const popupContent = `<strong>${labelName}:</strong> ${displayValue}`;
+              layer.bindPopup(popupContent);
+            }
+          }
+        }
+
+      }).addTo(map);
     })
     .catch(err => console.error("Error loading GeoJSON:", err));
 }
+
 
 
 

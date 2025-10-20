@@ -31,45 +31,31 @@
 
     <div class="row">
         <div class="col-md-11 mx-auto">
-
-            <!-- Mobile controls --> 
-            <div class="d-md-none my-2 border p-1">
-              <p id="mobileText" class="fs-sm">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec congue sagittis interdum. Etiam mollis sem nisi, eu pellentesque libero vestibulum ornare. Ut dapibus ante id augue luctus, a mattis sapien accumsan. Donec in ante leo. Nunc vitae aliquam nulla, consectetur consequat tellus. Praesent quis justo dolor. Praesent lacus urna, viverra sit amet auctor vitae, pretium vitae metus. Praesent tempus dolor ut dolor venenatis bibendum. Duis hendrerit, odio sed ultrices consequat, nisi turpis consectetur ante, in finibus dolor odio ut lorem. Nunc ac aliquam est. <a href="" id="mobileNext">Next</a>.
-              </p>
-
+        
+        <div class="row no-gutters">
+          <div class="col-md-3 border p-1">
+            <div class="d-inline-block mb-1" style="width:100%;">
+              <button class="btn btn-sm btn-outline-primary hide w45" id="lastButton">Go back</button>
+              <button class="btn btn-sm btn-primary float-right w45" id="nextButton">Next step</button>
             </div>
+            <p id="thisText">
+              <!-- Content text gets printed in here -->
+            </p>
 
-            <div id="map" class="my-1 mb-4" style="width:100%; height: 90vmin"></div>
+          </div>
+
+          <div class="col-md-9">
+            <div id="map" class="" style="width:100%; height: 90vmin"></div>
+
+          </div>
+
+        </div>
+
 
     </div>
 
 </article>
 
-
-<!-- HTML holder for overlay HTML -->
-<div id="legendHolder" class="hide">
-  <div class="text-black d-none d-md-block" style="height: 100%; position: relative;">
-    <div>
-      <p id="thisText">
-        <!-- Ingest text from config --> 
-      </p>
-    </div>
-
-
-    <div class="sinkbox" style="width:100%;">
-
-        <button class="btn btn-sm btn-outline-primary hide w45" id="lastButton">Go back</button>
-
-        <button class="btn btn-sm btn-primary float-right w45" id="nextButton">Next step</button>
-
-    </div>
-
-  </div>
-
-
-
-</div>
 
 <style>
   .sinkbox {

@@ -2,76 +2,93 @@ console.log('Config ingested')
 
 var config = [
     {
-        "text": `First, we mapped NYC's accessible subway stations. These are the station entrances that have elevators or other accessible features.`,
+        "text": `First, we got a list of all subway stations from the Metropolitan Transportation Authority (MTA). The MTA’s subway station data includes whether different platforms at each station are accessible. We filtered this list to only look at stations that have entrances that are accessible - they have an elevator, ramp, or (like Rockaway Park-Beach 116 St) are at ground level and don't need an elevator or ramp to be accessible.</p><p>This map includes 127 subway stations out of 496 – that's <strong>about 25% of subway stations</strong> (as of September, 2025). `,
         "geoFile": `geojson/ADA_subway_stations.geojson`,
         "choropleth": false,
-        "labelName": "Station",
+        "labelName": "Stop Name",
         "valueField": "",
         "geonameField": "Stop Name",
-        "zoom": false
+        "zoom": false,
+        "pin": false
     },
     {
-        "text": `<p>Next, we used Dijkstra's algorithm to calculate walkable areas based on a walking-network. This network considers obstacles like highways and rivers impassable for pedestrians. Each green shape represents the area that can be reached within a 10-15 minute walk (about a half mile or 800 meters) from an accessible subway station.</p> <p>Dijkstra's algorithm is a common method for finding the shortest path between points on a network, such as streets in a city. It works by exploring all possible paths from a starting point and selecting the shortest one to reach each destination.</p>`,
+        "text": `Next, we needed to figure out an area around each station that’s within walking distance. We defined “walking distance” as being a half mile (or 800 meters). This is about a 10- to 15-minute walk for many people.  </p><p>We used <strong>Dijkstra’s algorithm</strong> to calculate walkable areas. Dijkstra's algorithm is a common method for finding the shortest path between points on a network, such as streets in a city. It works by exploring all possible paths from a starting point and selecting the shortest one to reach each destination. For our purposes, we used a walking network, which excludes things like highways and rivers.  </p><p>Running Dijkstra’s algorithm results in an area around each accessible subway station. Each green shape is the area that can be reached within a 10- to 15-minute walk  from an accessible subway station.`,
         "geoFile": `geojson/800m_isochrones_ADA_subway.geojson`,
         "choropleth": false,
-        "labelName": "Station",
+        "labelName": "",
         "valueField": "",
-        "geonameField": "station",
-        "zoom": false
+        "geonameField": "",
+        "zoom": false,
+        "pin": false
     },
     {
-        "text": `Then we combined all these walkable areas into one map, making it easier to see all citywide coverage. The population within these green shapes live within a half-mile of an ADA-compliant, accessible subway station. `,
+        "text": `Obviously, these overlap. So,  we combined all these walkable areas into one map, making it easier to see all citywide coverage. The population within these green shapes live within a half-mile of an accessible subway station.`,
         "geoFile": `geojson/isochrones_union_ADA.geojson`,
         "choropleth": false,
         "labelName": "",
         "valueField": "",
         "geonameField": "",
-        "zoom": false
+        "zoom": false,
+        "pin": false
     },
-        // add in zoomed-in image instead of loading geojson file //
     {
-        "text": `<p>Now that we understand where the walkable areas are, we need to calculate how many people live in them. To do this, we looked at the residential buildings in each Census block group (one way of <a href="../../data-stories/geographies/">drawing boundaries across NYC</a>) and estimated how many people live inside the walkable area. This let us calculate the number of people in each Census block group that lives within walking distance of an accessible station.</p> <p>We used NYC's PLUTO building file—a city dataset that lists every building and its number of residential units—to estimate how many people live inside the walkable area. For every Census block group, we compared the housing units located within the green walk zones to the total housing units in that block group. For example, if a quarter of the housing units in a block group fall inside the walk zone, we estimate that about a quarter of the block group population live within walking distance of an accessible station.</p>`,
+        "text": `So, how many people live in these areas? To calculate this, we used Census data. First we overlaid Census block groups on top of our walkable areas. Some of them are completely inside, but some of them are split by the walkable area. </p><p>For the block groups that are split, we used <a href="https://www.nyc.gov/content/planning/pages/resources/datasets/mappluto-pluto-change">NYC’s PLUTO building file– a city dataset that lists every building</a> and its number of residential units – to estimate how many people live inside and outside the walkable area, based on the proportion of residential units are inside or outside the area.  </p><p>In this block group, <strong>32.07% of the housing units are inside the green area</strong> – so we estimate that 32.07% of the block group’s population lives within walking distance of that subway station.  `,
         "geoFile": `geojson/bg_plus_isochrone_station_188.geojson`,
         "choropleth": true,
         "labelName": "Block Group",
         "valueField": "pct_pop_walk",
         "geonameField": "GEOID",
-        "zoom" : true
+        "zoom" : true,
+        "pin": true
     },
     {
-        "text": `<p>It can be helpful to understand proximity indicators as applied to larger neighborhood boundary schemes too. Since block groups nest into Census tracts, we added them up and calculated the percent of each population in each Census Tract that lives within walking distance of an accessible station.`,
+        "text": `Once we have this information, we start adding things up citywide. Since block groups combine to form Census Tracts, we added them up and calculated the percent of each population in each Census Tract that lives within walking distance of an accessible station. `,
         "geoFile": `geojson/800m_CT_pct_walkable_ADA_subway.geojson`,
         "choropleth": true,
         "labelName": "Census tract",
         "valueField": "pct_pop_walk",
         "geonameField": "CT2020",
-        "zoom": false
+        "zoom": false,
+        "pin": false
     },
     {
-        "text": `Census tracts combine to make Neighborhood Tabulation Areas (NTAs). Summing up tracts, we find the percent of each NTA's population within walking distance.`,
+        "text": `Every Neighborhood Tabulation Area (NTA) is made up of a group of Census Tracts. So, summing up tracts, we can find the percent of each NTA's population within walking distance of an accessible subway station.`,
         "geoFile": `geojson/800m_NTA2020_pct_walkable_ADA_subway.geojson`, 
         "choropleth": true,
         "labelName": "NTA",
         "valueField": "pct_pop_walk",
         "geonameField": "GEONAME",
-        "zoom": false
+        "zoom": false,
+        "pin": false
     },
     {
-        "text": `NTAs then roll up into Community District Tabulation Areas (CDTAs). Here we see the percent of each CDTA's population within walking distance.`,
+        "text": `NTAs then combine to form  Community District Tabulation Areas (CDTAs). CDTAs are a Census-compatible geography that is very similar to NYC’s Community Districts. Here we see the percent of each CDTA's population within walking distance. `,
         "geoFile": `geojson/800m_CDTA2020_pct_walkable_ADA_subway.geojson`,
         "choropleth": true,
         "labelName": "Community District",
         "valueField": "pct_pop_walk",
         "geonameField": "GEONAME",
-        "zoom": false
+        "zoom": false,
+        "pin": false
     },
     {
-        "text": `<p>We also calculated these data for UHF42 neighborhoods. Because the boundaries of UHF42 neighborhoods don't line up neatly with Census block groups, we applied the same PLUTO-based method directly to the building data. We identified which residential buildings fell inside the walkable areas and then compared those to all residential units within each UHF42 neighborhood.</p> <p>This allowed us to estimate the percentage of the population for each UHF42 neighborhood living within walking distance of an accessible subway station.`,
+        "text": `In NYC, health data are often calculated at a geography called UHF42. But unlike CDTAs and NTAs, the boundaries of UHF42 neighborhoods don't line up neatly with Census block groups. </p><p>So, to calculate the percentage of each UHF42 neighborhood’s population that lives within walking distance of an accessible subway station, we applied the same PLUTO-based method directly to the building data. We identified which residential buildings fell inside the walkable areas and then compared those to all residential units within each UHF42 neighborhood.</p>  <p>This allowed us to estimate the percentage of the population for each UHF42 neighborhood living within walking distance of an accessible subway station.`,
         "geoFile": `geojson/800m_UHF42_pct_walkable_ADA_subway.geojson`,
         "choropleth": true,
         "labelName": "Neighborhood",
         "valueField": "pct_units_walk",
         "geonameField": "GEONAME",
-        "zoom": false
-    }
+        "zoom": false,
+        "pin": false
+    },
+        {
+        "text": `While we used this method to calculate the percent of population that lives within walking distance of an accessible subway stop - but it can be used for a wide variety of other data, to understand population-level proximity to things that can support or threaten health. `,
+        "geoFile": `geojson/ADA_subway_stations.geojson`,
+        "choropleth": false,
+        "labelName": "Station",
+        "valueField": "",
+        "geonameField": "Stop Name",
+        "zoom": false,
+        "pin": false
+    },
 ]
