@@ -82,8 +82,8 @@ var config = [
         "pin": false
     },
         {
-        "text": `While we used this method to calculate the percent of population that lives within walking distance of an accessible subway stop - but it can be used for a wide variety of other data, to understand population-level proximity to things that can support or threaten health. `,
-        "geoFile": `geojson/ADA_subway_stations.geojson`,
+        "text": `While we used this method to calculate the percent of population that lives within walking distance of an accessible subway stop - but it can be used for a wide variety of other data. This can help shed light on population-level proximity to things that can support or threaten health. `,
+        "geoFile": ``,
         "choropleth": false,
         "labelName": "Station",
         "valueField": "",
