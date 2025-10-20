@@ -107,6 +107,15 @@
                             {{ end }}
 
 
+                        <!-- Neighborhood Reports -->
+                        {{- if where ( where .Site.RegularPages "Section" "neighborhood-reports") ".Params.categories" "intersect" ( slice .Params.keyTopic ) -}}
+                        <div class="nr-accent mt-2">
+                          <div class="h3 fs-lg"><i class="fas fa-map-marked-alt mr-1" aria-hidden="true"></i>Neighborhood Reports:</div>
+                        </div>
+                            <div class="mt-2">
+                              {{ partial "related" (dict "section" "neighborhood-reports" "layout" "button" "extraClass" "link-track text-left" "content" . ) -}}
+                            </div>
+                        {{- end -}}
 
                             
 
@@ -122,10 +131,10 @@
         <div class="row mt-4">
             <div class="col-12">
                 <div class="row">
-                    <div class="col-md-4 col-sm-12">
+                    <div class="col-md-5 col-sm-12">
 
-                        <!-- stick data features here --> 
-                                            {{- $filteredPages := where (where .Site.RegularPages "Section" "data-features") ".Params.categories" "intersect" (slice .Params.keyTopic) -}}
+            <!-- stick data features here --> 
+                {{- $filteredPages := where (where .Site.RegularPages "Section" "data-features") ".Params.categories" "intersect" (slice .Params.keyTopic) -}}
                     {{- if gt (len $filteredPages) 0 -}}
                         <div class="df-accent mt-4 mb-2 mt-md-0">
                             <div class="h3 fs-lg"><i class="fas fa-chart-bar mr-1 key-topics" aria-hidden="true"></i>Data Features:</div>
@@ -162,7 +171,7 @@
                                     <h4 class="fs-md"><a class="link-track" href="{{ .RelPermalink }}" class="text-primary">{{ .Title }}</a></h4>
                                     <p class="fs-sm">
                                     {{ if .Params.blurb }}
-                                        {{ .Params.blurb | plainify | htmlUnescape | truncate 200 }}
+                                        {{ .Params.blurb | plainify | htmlUnescape | truncate 175 }}
                                     {{ else }}
                                         {{ .Content | plainify | htmlUnescape | truncate 175 }}
                                     {{ end }}      
@@ -178,7 +187,7 @@
                         
                     </div>
 
-                    <div class="col-md-4 col-sm-12">
+                    <div class="col-md-5 col-sm-12">
                         {{- if where ( where .Site.RegularPages "Section" "data-stories") ".Params.categories" "intersect" ( slice .Params.keyTopic ) -}}
                         <div class="ds-accent">
                             <div class="h3 fs-lg"><i class="fas fa-passport mr-1" aria-hidden="true"></i>Data Stories:</div>
@@ -206,7 +215,7 @@
                                     {{- .Scratch.Set "intro" $title }}
                                     {{- .Scratch.Add "intro" " | " }}
                                     {{- .Scratch.Add "intro" $content }}
-                                  <p class="fs-sm text-align-right h-100 pl-0 mb-2">{{ $content | truncate 115 }}</p>
+                                  <p class="fs-sm text-align-right h-100 pl-0 mb-2">{{ $content | truncate 225 }}</p>
                                 </div>
                               </div>
 
@@ -261,29 +270,6 @@
                             {{ end -}}
                         </div>
                     </div>
-
-                    <div class="col-md-4 col-sm-12 mt-3 mt-md-0">
-                        {{- if where ( where .Site.RegularPages "Section" "neighborhood-reports") ".Params.categories" "intersect" ( slice .Params.keyTopic ) -}}
-                        <div class="nr-accent">
-                          <div class="h3 fs-lg"><i class="fas fa-map-marked-alt mr-1" aria-hidden="true"></i>Neighborhood Reports:</div>
-                        </div>
-                            <div class="mt-2">
-                              {{ partial "related" (dict "section" "neighborhood-reports" "layout" "button" "extraClass" "link-track text-left" "content" . ) -}}
-                            </div>
-                        {{- end -}}
-                    </div>
-
-
-                </div>
-
-                <div class="row mb-4">
-                    <div class="col-md-6 col-sm-12">
-
-
-
-                    </div>
-
-
 
                 </div>
 
