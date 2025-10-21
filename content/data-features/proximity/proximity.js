@@ -68,7 +68,8 @@ function loadGeoJSON(config = {}) {
     geonameField = null,
     labelName = null,
     zoom = false,
-    pin = false
+    pin = false,
+    suppressTooltip = false
   } = config;
 
   // Make sure we have a file to load
@@ -183,7 +184,7 @@ function loadGeoJSON(config = {}) {
         onEachFeature: (feature, layer) => {
           if (choropleth) {
             // --- Choropleth case ---
-            if (zoom === true) return; // suppress tooltip in zoom mode
+            if (suppressTooltip === true) return; // suppress tooltip in zoom mode
 
             const name = feature.properties[geonameField];
             let val = feature.properties[valueField];
