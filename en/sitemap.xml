@@ -301,9 +301,21 @@
     <lastmod>2025-06-16T10:14:56-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/disparities/</loc>
     <lastmod>2025-06-16T10:14:56-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/categories/healthoutcomes/</loc>
+    <lastmod>2025-06-16T10:14:56-04:00</lastmod><xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="/IndicatorPublic/es/categories/healthoutcomes/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/IndicatorPublic/zh/categories/healthoutcomes/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/IndicatorPublic/categories/healthoutcomes/"
+                /></url><url>
     <loc>/IndicatorPublic/keywords/mortality/</loc>
-    <lastmod>2025-06-16T10:14:56-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/categories/outcomes/</loc>
     <lastmod>2025-06-16T10:14:56-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/report/</loc>
     <lastmod>2025-06-16T10:14:56-04:00</lastmod></url><url>
@@ -457,20 +469,6 @@
     <lastmod>2024-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/health-care-access/</loc>
     <lastmod>2024-05-28T18:02:58+00:00</lastmod></url><url>
-    <loc>/IndicatorPublic/categories/healthoutcomes/</loc>
-    <lastmod>2024-05-28T18:02:58+00:00</lastmod><xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="/IndicatorPublic/es/categories/healthoutcomes/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="/IndicatorPublic/zh/categories/healthoutcomes/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/IndicatorPublic/categories/healthoutcomes/"
-                /></url><url>
     <loc>/IndicatorPublic/keywords/hospitalization/</loc>
     <lastmod>2024-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/IndicatorPublic/data-explorer/mental-health/</loc>
@@ -984,6 +982,8 @@
     <loc>/IndicatorPublic/data-features/beaches/</loc>
     <lastmod>2021-09-08T11:14:56-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/beaches/</loc>
+    <lastmod>2021-09-08T11:14:56-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/categories/outcomes/</loc>
     <lastmod>2021-09-08T11:14:56-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/park/</loc>
     <lastmod>2021-09-08T11:14:56-04:00</lastmod></url><url>

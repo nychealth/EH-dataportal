@@ -6,7 +6,7 @@
     <description>Recent content in Healthoutcomes on Environment &amp; Health Data Portal</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 28 May 2024 18:02:58 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 16 Jun 2025 10:14:56 -0400</lastBuildDate>
     <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/categories/healthoutcomes/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Real-time heat-related illness</title>
@@ -14,6 +14,13 @@
       <pubDate>Mon, 30 Aug 2021 11:51:01 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-syndrome/</guid>
       <description>&lt;p&gt;The weather forecast is the best way to predict heat-related health outcomes.&lt;/p&gt;&#xA;&lt;p&gt;We can also track heat-related illness with near real-time electronic data from emergency departments at hospitals throughout NYC. These data include illnesses directly attributed to heat (including heat exhaustion, muscle cramps, fainting and heat stroke), not the full burden of heat-related health impacts.&lt;/p&gt;&#xA;&lt;p&gt;We track these outcomes citywide by using a system called &lt;strong&gt;syndromic surveillance&lt;/strong&gt; which lets us know how many people who visit the emergency room (ED) are being affected by certain health conditions. About 10,000 patients visit the ED per day in NYC, and reasons for their visits are captured in hospital records. These reasons are de-identified and sent to the Health Department. The Health Department then searches the records for diagnostic codes (when available) and words describing why patients are at the ED to track specific health conditions in near real-time and understand citywide trends.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>2025 NYC Heat-Related Mortality Report</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-report/</link>
+      <pubDate>Mon, 16 Jun 2025 10:14:56 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-report/</guid>
+      <description>&lt;p&gt;Each summer, on average, more than 500 New Yorkers die prematurely because of hot weather in New York City (NYC). These heat-related deaths account for about 3% of all deaths over the warm season months of May through September.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Mental health</title>
