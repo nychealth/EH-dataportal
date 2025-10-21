@@ -183,10 +183,6 @@
                     </div>
 
 
-
-
-                        <hr class="my-3">
-
                         {{- range $filteredPages.ByWeight -}}
                             <!-- Show reports, except those with 'hide' frontmatter -->
                             {{- if and (.Params.report) (not .Params.hide) -}}
