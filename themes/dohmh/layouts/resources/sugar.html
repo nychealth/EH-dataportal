@@ -1,12 +1,13 @@
 {{- define "main" -}}
 
 <article id="skip-header-target">
-    <div class="container wide" data-pagefind-weight="0">
+    <div class="container-fluid" data-pagefind-weight="0">
         <div class="row">
             <div class="col-sm-12 mt-2 mb-2">
                 <nav aria-label="breadcrumb" class="">
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
+                        <li class="breadcrumb-item"><a href='../'>Resources</a></li>
                         <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
                     </ul>
                 </nav>
@@ -22,33 +23,92 @@
                 </div>
             </div>
 
-            <div class="col-md-12 col-lg-8 pr-xl-4">
+            <div class="col-md-12">
                 {{- .Content -}}
 
-                <ul class="nav nav-tabs mb-3" id="pills-tab" role="tablist">
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link active" id="pills-home-tab" data-toggle="pill" data-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Browse</button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="pills-profile-tab" data-toggle="pill" data-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Search</button>
-                    </li>
-                    </ul>
-                    <div class="tab-content" id="pills-tabContent">
-                    <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-                        Browse sections
-                    </div>
-                    <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-                        Search (DW table)
-                    </div>
+                <hr>
+
+                <!-- Container for the DataTables table -->
+                <div id="brandFilterContainer" class="mb-2">
+                <label for="brandFilter">Filter by Brand:</label>
+                <select id="brandFilter">
+                    <option value="">All Brands</option>
+                </select>
                 </div>
+
+                <div id="fullSugarTableContainer" class="my-4">
+                <table id="fullSugarTable" class="table table-striped table-bordered table-sm" style="width:100%">
+                    <thead></thead>
+                    <tbody></tbody>
+                </table>
+                </div>
+
+
             </div>
-
-
 
         </div>
 
     </div>
 
 </article>
+
+<script>
+let sugarData = [];
+
+d3.csv("sugar-items.csv").then(function(data) {
+  sugarData = data;
+  renderFullSugarTable();
+});
+
+function renderFullSugarTable() {
+  if (!sugarData || sugarData.length === 0) return;
+
+  const columns = Object.keys(sugarData[0]);
+
+  // Populate table header
+  const thead = $("#fullSugarTable thead");
+  thead.empty();
+  const headerRow = $("<tr>");
+  columns.forEach(col => headerRow.append($("<th>").text(col)));
+  thead.append(headerRow);
+
+  // Populate table body
+  const tbody = $("#fullSugarTable tbody");
+  tbody.empty();
+  sugarData.forEach(row => {
+    const tr = $("<tr>");
+    columns.forEach(col => tr.append($("<td>").text(row[col])));
+    tbody.append(tr);
+  });
+
+  // Initialize DataTable
+  const table = $("#fullSugarTable").DataTable({
+    paging: true,
+    searching: true,
+    pageLength: 25,
+    lengthChange: false,
+    ordering: true,
+    autoWidth: false,
+    destroy: true,
+    columnDefs: [
+      { targets: ["Brand Name", "Item Name"].map(c => columns.indexOf(c)), orderable: false }
+    ]
+  });
+
+  // Populate Brand Filter dropdown above table
+  const brandFilter = $("#brandFilter");
+  const uniqueBrands = [...new Set(sugarData.map(d => d["Brand Name"]))].sort();
+  uniqueBrands.forEach(b => brandFilter.append(`<option value="${b}">${b}</option>`));
+
+  // Wire dropdown change to filter the DataTable
+  brandFilter.on("change", function() {
+    const val = $.fn.dataTable.util.escapeRegex($(this).val());
+    table.column(columns.indexOf("Brand Name"))
+      .search(val ? "^" + val + "$" : "", true, false)
+      .draw();
+  });
+}
+</script>
+
 
 {{- end -}}
