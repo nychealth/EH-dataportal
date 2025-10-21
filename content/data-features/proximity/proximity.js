@@ -194,7 +194,7 @@ function loadGeoJSON(config = {}) {
             }
 
             val = val.toFixed(2);
-            const tooltipContent = `${labelName} <b>${name}</b>, ${val}% of residents<br>live in walking distance of an accessible subway station.`;
+            const tooltipContent = `${labelName} <b>${name}</b>: ${val}% of residents<br>live in walking distance of an accessible subway station.`;
 
             layer.bindTooltip(tooltipContent, { sticky: true });
           } else {
