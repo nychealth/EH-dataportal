@@ -22,7 +22,7 @@ var config = [
         "pin": false
     },
     {
-        "text": `Obviously, these overlap. So,  we combined all the overlapping walkable areas into one area.</p><p>Now, we can   see the parts of the city that are within a half-mile of an accessible subway station. And, of course, the people who live inside these green shapes live within walking distance of an accessible subway station.`,
+        "text": `Obviously, these overlap. So,  we combined all the overlapping walkable areas into one area.</p><p>Now, we can   see the parts of the city that are within a half mile of an accessible subway station. And, of course, the people who live inside these green shapes live within walking distance of an accessible subway station.`,
         "geoFile": `geojson/isochrones_union_ADA.geojson`,
         "choropleth": false,
         "labelName": "",
