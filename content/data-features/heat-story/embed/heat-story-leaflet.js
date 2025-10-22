@@ -1590,12 +1590,16 @@ function featureInfoToHtmlForInfoBox(feature, layer) {
 
     const [[indicator, value]] = Object.entries(featureMap);
 
+    const units = layer.options.displayProperties.displayPropertyArgs[0].units 
+    ? layer.options.displayProperties.displayPropertyArgs[0].units 
+    : '';
+
+    const display = value ? value + ' ' + units : 'Supressed'
+
     document.getElementById('infoboxHolderTarget').innerHTML = 
     `<div class="fs-xs mt-1 text-black font-weight-bold border-bottom" style="max-width: 275px; overflow-x: wrap;">
-        <span style="display:inline-block; max-width:80%; white-space:normal; word-wrap:break-word; overflow-wrap:break-word;">
-        ${geoName ?? 'This area:'}
-        </span> 
-        <span style="display:inline-block; max-width: 20%;">${value ?? 'Suppressed'}</span>
+        ${geoName ?? 'This area'}: <br>
+        ${display}
     </div>`;
 
     // return infobox_html;
