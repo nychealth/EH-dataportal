@@ -4,6 +4,26 @@
   loadGeoJSON() renders the map based on the settings in proxConfig
 */
 
+// ----------------------------------------------
+// -------------------- PRELOAD GEOJSON FILES
+// ----------------------------------------------
+const geojsonCache = {};
+
+async function preloadGeoJSONs() {
+  const uniqueFiles = [...new Set(config.map(c => c.geoFile))];
+
+  const promises = uniqueFiles.map(file =>
+    fetch(file)
+      .then(res => res.json())
+      .then(data => {
+        geojsonCache[file] = data;
+      })
+      .catch(err => console.error("Error preloading", file, err))
+  );
+
+  await Promise.all(promises);
+  console.log("✅ All GeoJSONs preloaded:", Object.keys(geojsonCache));
+}
 
 // ----------------------------------------------
 // -------------------- INITIALIZE MAP 
@@ -70,6 +90,7 @@ function changeText(x) {
 
 }
 
+
 // ----------------------------------------------
 // -------------------- Load geoJSON and config content 
 // ----------------------------------------------
@@ -91,10 +112,18 @@ function loadGeoJSON(config = {}) {
     return;
   }
 
-  // --- Fetch GeoJSON ---
-  fetch(geoFile)
-    .then(res => res.json())
+  // --- Load data from cache if available ---
+  let dataPromise;
+  if (geojsonCache && geojsonCache[geoFile]) {
+    dataPromise = Promise.resolve(geojsonCache[geoFile]);
+  } else {
+    console.warn("GeoJSON not preloaded, fetching:", geoFile);
+    dataPromise = fetch(geoFile).then(res => res.json());
+  }
+
+  dataPromise
     .then(data => {
+      // Clear existing GeoJSON layer
       if (geojsonLayer) {
         map.removeLayer(geojsonLayer);
       }
@@ -102,6 +131,7 @@ function loadGeoJSON(config = {}) {
       let min = Infinity;
       let max = -Infinity;
 
+      // --- Determine range for choropleth ---
       if (choropleth && valueField) {
         data.features.forEach(f => {
           const val = f.properties[valueField];
@@ -139,27 +169,23 @@ function loadGeoJSON(config = {}) {
           )
           .openPopup();
       } else {
-        // Clear all popups
+        // Clear all popups and pins
         map.eachLayer(layer => {
-          if (layer instanceof L.Popup) map.removeLayer(layer);
-        });
-
-        // Clear all pins
-        map.eachLayer(layer => {
-          if (layer instanceof L.Marker) map.removeLayer(layer);
+          if (layer instanceof L.Popup || layer instanceof L.Marker) {
+            map.removeLayer(layer);
+          }
         });
       }
 
-      // --- Helper to map value -> color ---
+      // --- Helper: map value -> color ---
       function getColor(value) {
         if (!choropleth || value == null || min === max) {
           return "green"; // fallback
         }
 
         const t = (value - min) / (max - min); // normalize
-
         const start = [255, 255, 255]; // white
-        const end = [0, 51, 0];       // dark green
+        const end = [0, 51, 0];        // dark green
 
         const r = Math.round(start[0] + t * (end[0] - start[0]));
         const g = Math.round(start[1] + t * (end[1] - start[1]));
@@ -213,7 +239,6 @@ function loadGeoJSON(config = {}) {
           } else {
             // --- Non-choropleth case ---
             const displayValue = feature.properties[labelName];
-
             if (displayValue !== undefined) {
               const popupContent = `<strong>${labelName}:</strong> ${displayValue}`;
               layer.bindPopup(popupContent);
@@ -226,7 +251,10 @@ function loadGeoJSON(config = {}) {
     .catch(err => console.error("Error loading GeoJSON:", err));
 }
 
+
 // ----------------------------------------------
 // -------------------- Run initial
 // ----------------------------------------------
-changeText(0)
+preloadGeoJSONs().then(() => {
+  changeText(0);
+});
