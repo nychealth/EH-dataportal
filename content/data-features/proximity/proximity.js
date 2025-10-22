@@ -1,3 +1,10 @@
+/*
+  Content is stored in proxConfig.js - a simple JSON content config with fields for text, geofile, and some other fields.
+  changeText() runs on button click and brings us through the content in proxConfig
+  loadGeoJSON() renders the map based on the settings in proxConfig
+*/
+
+
 // ----------------------------------------------
 // -------------------- INITIALIZE MAP 
 // ----------------------------------------------
@@ -24,6 +31,9 @@
       attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>',
   }).addTo(map);
 
+// ----------------------------------------------
+// -------------------- Function to change text on button click 
+// ----------------------------------------------
 
 function changeText(x) {
     // console.log('Running text for ', x)
@@ -60,6 +70,9 @@ function changeText(x) {
 
 }
 
+// ----------------------------------------------
+// -------------------- Load geoJSON and config content 
+// ----------------------------------------------
 function loadGeoJSON(config = {}) {
   const {
     geoFile = null,
@@ -213,10 +226,7 @@ function loadGeoJSON(config = {}) {
     .catch(err => console.error("Error loading GeoJSON:", err));
 }
 
-
-
-
-
-
-
+// ----------------------------------------------
+// -------------------- Run initial
+// ----------------------------------------------
 changeText(0)

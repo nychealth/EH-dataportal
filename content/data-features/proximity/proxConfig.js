@@ -2,7 +2,7 @@ console.log('Config ingested')
 
 var config = [
     {
-        "text": `First, we got a list of <a href='https://catalog.data.gov/dataset/mta-subway-stations'>all subway stations from the Metropolitan Transportation Authority (MTA)</a>. The MTA's subway station data includes whether different platforms at each station are accessible. We filtered this list to only look at stations that have entrances that are accessible - they have an elevator, ramp, or (like Rockaway Park-Beach 116 St) are at ground level and don't need an elevator or ramp to be accessible.</p><p>This map includes 127 subway stations out of 496 - that's <strong>about 25% of subway stations</strong> (as of September, 2025). `,
+        "text": `First, we got a list of <a href='https://catalog.data.gov/dataset/mta-subway-stations'>all subway stations from the Metropolitan Transportation Authority (MTA)</a>. The MTA's subway station data includes whether different platforms at each station are accessible. We filtered this list to only look at stations that have entrances that are accessible - they have an elevator, ramp, or are at ground level and don't need an elevator or ramp to be accessible.</p><p>This map includes 127 subway stations out of 496 - that's <strong>about 25% of subway stations</strong> (as of September, 2025). `,
         "geoFile": `geojson/ADA_subway_stations.geojson`,
         "choropleth": false,
         "labelName": "Stop Name",
@@ -62,7 +62,7 @@ var config = [
         "zoom": true,
         "pin": false
     },
-        {
+    {
         "text": `Zooming out again, we can see data for the whole city, by NTA. We can see that in some neighborhoods - like many in Manhattan, and some parts of Brooklyn and the Bronx - almost everybody lives within walking distance of an accessible subway station.</p><p>But in some neighborhoods - like some in Queens and Staten Island - nobody lives within walking distance of an accessible subway station.`,
         "geoFile": `geojson/800m_NTA2020_pct_walkable_ADA_subway.geojson`, 
         "choropleth": true,
@@ -102,4 +102,15 @@ var config = [
         "zoom": false,
         "pin": false
     }
+    /*
+    {
+        "text": `This is a sample config element. Text is what appears in the text box.`,
+        "choropleth": "Should be true or false; this determines whether to render the geojson as a choropleth",
+        "labelName": "Determines how the geographies are labelled in the tooltip",
+        "valueField": "The field in the geojson file that includes the values to display",
+        "geonameField": "The field in the geojson that includes the geography name to display",
+        "zoom": "Should be true or false; determines whether to zoom to an example area.",
+        "pin": "True or false; determines whether to show the exampel pins."
+    },
+    */
 ]

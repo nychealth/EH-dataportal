@@ -36,8 +36,8 @@ aboutTheData: '<p><strong>Accessible subway stations</strong><br> Locations are 
 
 How close people live to important resources, like transit, schools, or clinics, affects their ability to use them.
 
-So, we've calculated a series of 'proximity' indicators - the percent of each neighborhood's population that lives within walking distance to parks, subway stations, and more. We calculated these data for several [geographies](../../data-stories/geographies/), including Neighborhood Tabulation Areas (NTAs), Community District Tabulation Areas (CDTAs), and UHF42 neighborhoods.
+So, we've calculated a series of 'proximity' indicators - the percent of each neighborhood's population that lives within walking distance to parks, subway stations, and more. 
 
-**Here's how we calculated these indicators.** In this example, we'll use _proximity to accessible subway stations_ as an example - but this same method can be used to calculate proximity to lots of other resources. These methods help us understand how well New Yorkers are connected to the resources that support daily life and health.
+**To calculate these indicators,** we calculate an area that is the walking distance around points of interest, and then determine a geography's population that is inside this area. In this example, we're determining the percent of each neighborhood's population that lives within walking distance of an accessible subway stop. 
 
-For this example, we look at **Accessible subway stations**. Using a walking-network, we mapped all areas within a half mile (or ~10-15 minute) walk of these stations. Then we overlaid Census population data, adjusting for where residential buildings are located, to estimate the percent of people in each neighborhood who live within walking distance
+Click through below for an explanation of how we calculate this. 
