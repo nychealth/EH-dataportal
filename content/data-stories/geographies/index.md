@@ -22,8 +22,8 @@ layout: single
 vega: true
 photocredit: "Edwin J. Torres/Mayoral Photography Office, City of New York"
 related:
-  - title: "Our roadmap: An open path forward"
-    url: "data-stories/roadmap/"
+  - title: "Estimating population-level access"
+    url: "data-features/proximity/"
   - title: "Why we're working with you to redesign the data portal"
     url: "data-stories/codesign/"
   - title: "Neighborhood Reports: Asthma"

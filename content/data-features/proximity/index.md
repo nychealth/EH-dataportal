@@ -1,5 +1,5 @@
 ---
-title: "Proximity indicators"
+title: "Estimating population-level access"
 date: 2025-08-27T11:51:01-04:00
 draft: false
 seo_title: "Proximity indicators"
@@ -36,8 +36,8 @@ aboutTheData: '<p><strong>Accessible subway stations</strong><br> Locations are 
 
 How close people live to important resources, like transit, schools, or clinics, affects their ability to use them.
 
-So, we've calculated a series of 'proximity' indicators - the percent of each neighborhood's population that lives within walking distance to parks, subway stations, and more. 
+So, we've calculated a series of 'proximity' indicators - the percent of each neighborhood's population that lives within walking distance to parks, subway stations, and more.
 
-**To calculate these indicators,** we calculate an area that is the walking distance around points of interest, and then determine a geography's population that is inside this area. In this example, we're determining the percent of each neighborhood's population that lives within walking distance of an accessible subway stop. 
+**To calculate these indicators,** we calculate an area that is the walking distance around points of interest, and then determine a geography's population that is inside this area. In this example, we're determining the percent of each neighborhood's population that lives within walking distance of an accessible subway stop.
 
-Click through below for an explanation of how we calculate this. 
+Click through below for an explanation of how we calculate this.
