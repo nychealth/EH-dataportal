@@ -144,6 +144,8 @@ Each of these deaths is a tragedy — but solutions exist. Limiting access to me
 ##### Further resources and reading:
 
 <a href="https://sprc.org/effective-prevention/comprehensive-approach"> Suicide Prevention Resource Center </a>
+<br>
+<a href="https://www.nyc.gov/site/doh/data/data-sets/injury.page">Injury statistics: Deaths, hospitalizations, ED visits</a>
 
 <hr class="my-2">
 
