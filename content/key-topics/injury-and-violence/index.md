@@ -21,7 +21,7 @@ Violence is a public health issue. Violence, which includes harm to others as we
 
 Unintentional injuries such as falls and traffic crashes impact thousands of New Yorkers every year. Patterns of injury differ by type, but they affect people of all ages and all demographics. Injuries can cause significant disability and can be life-altering.
 
-Fortunately, injuries are preventable. Social and environmental factors like education, housing quality, road design, healthcare, and jobs play a role in influencing or modifying injury risk. Prevention requires changing these environments and systems to make everyone safer. By analyzing injuries, we can better understand the problems, reduce risk and protect people’s health.
+Fortunately, injuries are preventable. Social and environmental factors like education, housing quality, road design, healthcare, and jobs play a role in influencing or modifying injury risk. Prevention requires changing these environments and systems to make everyone safer. By analyzing injuries, we can better understand the patterns, reduce risk and protect people’s health.
 
 <strong>Resources:</strong>
 <br>
