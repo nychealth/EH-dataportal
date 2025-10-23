@@ -34,7 +34,7 @@ async function preloadGeoJSONs() {
   var zoom = 11;
   let geojsonLayer; // so we can clear it later
   const customIcon = L.icon({
-    iconUrl: 'images/map-marker.svg',
+    iconUrl: 'images/map-pin-hollow_P.svg',
     iconSize: [32, 32],   // adjust depending on your SVG
     iconAnchor: [16, 32], // point of the icon which will correspond to marker's location
     popupAnchor: [0, -32] // optional, where popups open relative to icon
