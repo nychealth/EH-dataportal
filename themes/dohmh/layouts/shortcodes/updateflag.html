@@ -1,3 +1,9 @@
 <div class="border mb-4 p-1 fs-sm">
-    Since we published this data story, the data in it have been updated. <a href="{{.Get `linkdest` }}">Get updated data on {{.Get "linktitle" }}</a>.
+    Since we published this data story, some data in it have been updated. Get updated data on:
+    {{- $data := .Get "data" | transform.Unmarshal -}}
+        <ul>
+        {{- range $data }}
+            <li><a href="{{ .src }}">{{ .text }}</a></li>
+        {{- end }}
+        </ul>
 </div>
