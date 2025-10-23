@@ -5,7 +5,7 @@ draft: false
 seo_title: "Proximity indicators"
 seo_description: "How we estimate population-level access to important resources."
 description: "How we estimate population-level access to important resources"
-categories: [publicspace, housingm, accessibility]
+categories: [publicspace, housing, accessibility]
 keywords:
   [
     "proximity",
