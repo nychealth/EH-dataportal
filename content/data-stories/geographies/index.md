@@ -22,7 +22,7 @@ layout: single
 vega: true
 photocredit: "Edwin J. Torres/Mayoral Photography Office, City of New York"
 related:
-  - title: "Estimating population-level access"
+  - title: "Proximity indicators"
     url: "data-features/proximity/"
   - title: "Why we're working with you to redesign the data portal"
     url: "data-stories/codesign/"
