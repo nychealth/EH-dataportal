@@ -21,10 +21,11 @@ report_topics:
     MeasureID:
       - 94
       - 245
-      - 292
       - 625
   - report_topic: Social and Economic Risk Factors
-    report_topic_description: Conditions that make a neighborhood more at-risk for housing hazards.
+    report_topic_description: Conditions associated with many adverse health outcomes.
     MeasureID:
       - 25
       - 755
+      - 1029
+      - 1128
