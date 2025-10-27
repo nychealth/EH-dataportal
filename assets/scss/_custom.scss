@@ -395,6 +395,14 @@ $color-data-explorer: #0A408A;
       padding-bottom: calc(8px + env(safe-area-inset-bottom));
       padding-bottom: calc(8px + constant(safe-area-inset-bottom)); /* iOS 11.0-11.2 fallback */
     }
+
+    .tab-content {
+      max-height: 50vh;
+      overflow-y: auto;
+      position: relative;
+      z-index: 10;
+      padding-top: 10px;
+    }
   }
 
   .de-main-details {
@@ -460,6 +468,11 @@ $color-data-explorer: #0A408A;
   @media (min-width: 720px) {
     .de-tabs-nav {
       height: calc(100vh - 8rem);
+    }
+
+    .tab-content {
+      max-height: calc(100vh - 8rem);
+      overflow-y: auto;
     }
   }
 
