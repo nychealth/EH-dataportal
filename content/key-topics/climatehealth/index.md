@@ -35,4 +35,4 @@ Climate, including extreme weather, has a direct impact on health. As NYC's clim
 
 In New York City, those most vulnerable to the dangers of hot weather are older adults and people with health conditions like heart disease, diabetes, and cognitive impairment - especially those in low-income, Black, and Brown communities. Air conditioning is the best defense against the heat. Equitable access and responsible use of air conditioning is crucial to protect the lives of all New Yorkers while reducing impacts on the environment.
 
-Addressing the health impacts of climate change is a priority for NYC Health. The Department updates its <a href="climatehealth_strategy_2025.pdf">Climate Health Strategy </a> to guide priorities and efforts annually.
+Addressing the health impacts of climate change is a priority for NYC Health. The Department updates its <a href="https://www.nyc.gov/assets/doh/downloads/pdf/about/climate-health-strategy-2025.pdf">Climate Health Strategy </a> to guide priorities and efforts annually.
