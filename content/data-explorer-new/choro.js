@@ -1,5 +1,8 @@
 // Initialize the map
-const map = L.map('map').setView([40.700142, -73.921546], 11);
+const map = L.map('map', {
+  zoomControl: false
+}).setView([40.700142, -73.921546], 11);
+
 
 // Add a basemap
 L.tileLayer('https://api.maptiler.com/maps/basic-v2/{z}/{x}/{y}.png?key=dwIJ8hO2KsTMegUfEpYE',{
