@@ -1719,6 +1719,288 @@
 
 
 
+  <div class="card-header border-top" id="heading-preMorAA">
+    <h2 class="mb-0">
+      <button
+        class="btn btn-block btn-sm text-left"
+        type="button"
+        data-toggle="collapse"
+        data-target="#collapse-preMorAA"
+        aria-expanded="true"
+        aria-controls="collapse-preMorAA"
+        onclick="getURL( 2322 , 'preMorAA')"
+      >
+        
+        <div class="row no-gutters" style="width: 100%">
+          <div class="col-7 d-print-none">
+            <span class="font-weight-bold fs-md"
+              >Death before 65</span
+            ><br />
+            <span class="fs-sm font-weight-normal"
+              >Premature mortality, 2020</span
+            >
+          </div>
+          <div class="col-3 pl-1 d-print-none">
+            <span class="font-weight-bold fs-lg"
+              >157.1</span
+            >
+            <br />
+            <span class="fs-xs font-weight-normal"
+              >Age-adjusted rate per 100,000</span
+            >
+          </div>
+
+          
+
+          <div class="col-2 d-print-none">
+              <div class="float-right mt-1">
+              <span
+                    class="better">Lower</span>
+            </div>
+          </div>
+
+          
+          <div class="col-12 print-only" style="flex-direction:row; width:100%;">
+
+            
+            <div style="width:50%;" class="border-right pl-1">
+              <span class="font-weight-bold fs-md">
+                Death before 65
+              </span><br />
+              <span class="fs-sm font-weight-normal">Premature mortality, 2020</span>
+            </div>
+
+            
+            <div style="width:25%" class="border-right pl-1">
+              <span class="font-weight-bold fs-lg">
+                157.1
+              </span><br />
+              <span class="fs-xs font-weight-normal">
+                Age-adjusted rate per 100,000
+              </span>
+            </div>
+
+            
+
+            
+            <div style="width:25%;" class="pl-1">
+
+              Less than most neighborhoods
+
+
+
+            </div>
+
+          </div>
+
+        </div>
+      </button>
+    </h2>
+  </div>
+
+
+  <div
+    id="collapse-preMorAA"
+    class="collapse border-bottom "
+    aria-labelledby="heading-preMorAA"
+    data-parent="#accordion-0"
+    data-indicator-name="preMorAA"
+    data-count="3"
+  >
+    <div class="card-body card-body-no-top">
+
+      <div class="row no-gutters fs-sm">
+        <div class="col-12">
+            
+            <p class="fs-md mt-1 mb-2">Deaths before age 65. This can indicate the overall health of a population.</p>
+        </div>
+
+                <div class="col-md-7 border-right h-100">
+                
+                <div style="width:100%; height:40vmin; z-index:100;" class="" id="map-preMorAA-3">
+                    ...map is loading...
+                </div><div class="data-note mt-1"></div></div>
+        
+        
+        
+        
+
+        
+
+        <div class="col-md-5 h-100 p-1 ">
+
+            <p class="fs-rg">
+                Death before 65 in <strong>Willowbrook</strong>:
+                <div class=" fs-md">
+                  <p>
+                    <span class="better-sm fs-sm mt-1">Less than most</span>&nbsp;neighborhoods
+                  </p>
+
+                  <p>
+                    <span id="b-death-before-65"></span> the <strong>Staten Island average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="bv-death-before-65">boro val</span> per 100,000)</span>
+                  </p>
+
+                  <p>
+                    <span id="c-death-before-65"></span> the <strong>Citywide average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="cv-death-before-65">city val</span> per 100,000)</span>
+                  </p>
+
+                    </div>
+                
+            </p>
+
+             
+            <div id="trend" class="hide">
+            <p>In <strong>Staten Island</strong>, it is [TREND]. Citywide, the trend is [TREND].</p>
+            </div>
+
+            
+
+            <span id="year-death-before-65" class="sr-only">YEAR</span>
+
+          
+
+        </div>
+
+      </div>
+      <div class="row no-gutters">
+        <div class="col-7">
+            <span class="fs-xs"><strong>Source:</strong> New York City Bureau of Vital Statistics; New York City Bureau of Vital Statistics; United States Census </span>
+
+        </div>
+        <div class="col-5">
+            <p class="float-right"><a id="2322" href="" class="ml-1" style="display:none"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Full dataset</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+    
+    (function(x, y) {
+        var endDate = new Date(x);
+        var year = endDate.getFullYear(); 
+        document.getElementById(y).innerHTML = year;
+    })(`2020-12-31`, `year-death-before-65`);
+
+(function(n, b, c, nid, bid, cid, rr) {
+    n = Number(n);
+    b = Number(b);
+    c = Number(c);
+
+    let rankReverse = (rr === true || rr === 'true');
+
+    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
+    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
+
+    let boroJudgement;
+    if (n > b && rankReverse) {
+      boroJudgement = 'comp-good';
+    } else if (n < b && rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n > b && !rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n < b && !rankReverse) {
+      boroJudgement = 'comp-good';
+    } else {
+      boroJudgement = 'comp-null';
+    }
+
+    let cityJudgement;
+    if (n > c && rankReverse) {
+      cityJudgement = 'comp-good';
+    } else if (n < c && rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n > c && !rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n < c && !rankReverse) {
+      cityJudgement = 'comp-good';
+    } else {
+      cityJudgement = 'comp-null';
+    }
+
+    let boroEl = document.getElementById(bid);
+    if (boroEl) {
+        boroEl.innerHTML = boroComp;
+        boroEl.classList.add(boroJudgement);
+    }
+
+    let cityEl = document.getElementById(cid);
+    if (cityEl) {
+        cityEl.innerHTML = cityComp;
+        cityEl.classList.add(cityJudgement);
+    }
+
+    document.getElementById('bv-death-before-65').innerHTML = b;
+    document.getElementById('cv-death-before-65').innerHTML = c;
+
+
+})(
+     157.1 ,
+     231.4 ,
+     244 ,
+    'n-death-before-65',
+    'b-death-before-65',
+    'c-death-before-65',
+     false 
+)
+
+
+</script>
+
+
+
+
+<script type="text/javascript">
+
+    $( "#collapse-preMorAA" ).on('shown.bs.collapse', function() {
+
+        
+
+        gtag('event', 'click_modal', {
+                'modal_name': 'Death before 65'
+            });
+
+        var opt = {"renderer": "svg"};
+
+            
+
+            
+
+            var summaryData =
+                arqTable
+                .filter(d => d.indicator_data_name == "preMorAA")
+                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
+                .dedupe()
+                .groupby("neighborhood")
+                .orderby("neighborhood", aq.desc("end_date"))
+                .slice(0,1) 
+                .ungroup()
+                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
+                .orderby("unmodified_data_value_geo_entity") 
+                .select(aq.not("end_date"))
+                .objects()
+
+
+            
+
+            
+
+            var mapData = summaryData;
+
+            renderNRMap(mapData,  "#map-preMorAA-3", "Age-adjusted rate per 100,000","Death before 65",geocode)
+
+    });
+
+    </script>
+
+
+
+
+
   <div class="card-header border-top" id="heading-obesityP">
     <h2 class="mb-0">
       <button
@@ -1804,7 +2086,7 @@
     aria-labelledby="heading-obesityP"
     data-parent="#accordion-0"
     data-indicator-name="obesityP"
-    data-count="3"
+    data-count="4"
   >
     <div class="card-body card-body-no-top">
 
@@ -1816,7 +2098,7 @@
 
                 <div class="col-md-7 border-right h-100">
                 
-                <div style="width:100%; height:40vmin; z-index:100;" class="" id="map-obesityP-3">
+                <div style="width:100%; height:40vmin; z-index:100;" class="" id="map-obesityP-4">
                     ...map is loading...
                 </div><div class="data-note mt-1"></div></div>
         
@@ -1990,288 +2272,7 @@
 
             var mapData = summaryData;
 
-            renderNRMap(mapData,  "#map-obesityP-3", "Percent ","Overweight",geocode)
-
-    });
-
-    </script>
-
-
-
-
-
-  <div class="card-header border-top" id="heading-preMorAA">
-    <h2 class="mb-0">
-      <button
-        class="btn btn-block btn-sm text-left"
-        type="button"
-        data-toggle="collapse"
-        data-target="#collapse-preMorAA"
-        aria-expanded="true"
-        aria-controls="collapse-preMorAA"
-        onclick="getURL( 2322 , 'preMorAA')"
-      >
-        
-        <div class="row no-gutters" style="width: 100%">
-          <div class="col-7 d-print-none">
-            <span class="font-weight-bold fs-md"
-              >Death before 65</span
-            ><br />
-            <span class="fs-sm font-weight-normal"
-              >Premature mortality, 2016</span
-            >
-          </div>
-          <div class="col-3 pl-1 d-print-none">
-            <span class="font-weight-bold fs-lg"
-              >147.7</span
-            >
-            <br />
-            <span class="fs-xs font-weight-normal"
-              >Age-adjusted rate per 100,000</span
-            >
-          </div>
-
-          
-
-          <div class="col-2 d-print-none">
-              <div class="float-right mt-1">
-              <span class="middle d-none"></span>
-            </div>
-          </div>
-
-          
-          <div class="col-12 print-only" style="flex-direction:row; width:100%;">
-
-            
-            <div style="width:50%;" class="border-right pl-1">
-              <span class="font-weight-bold fs-md">
-                Death before 65
-              </span><br />
-              <span class="fs-sm font-weight-normal">Premature mortality, 2016</span>
-            </div>
-
-            
-            <div style="width:25%" class="border-right pl-1">
-              <span class="font-weight-bold fs-lg">
-                147.7
-              </span><br />
-              <span class="fs-xs font-weight-normal">
-                Age-adjusted rate per 100,000
-              </span>
-            </div>
-
-            
-
-            
-            <div style="width:25%;" class="pl-1">
-
-              In the middle of NYC neighborhoods
-
-
-
-            </div>
-
-          </div>
-
-        </div>
-      </button>
-    </h2>
-  </div>
-
-
-  <div
-    id="collapse-preMorAA"
-    class="collapse border-bottom "
-    aria-labelledby="heading-preMorAA"
-    data-parent="#accordion-0"
-    data-indicator-name="preMorAA"
-    data-count="4"
-  >
-    <div class="card-body card-body-no-top">
-
-      <div class="row no-gutters fs-sm">
-        <div class="col-12">
-            
-            <p class="fs-md mt-1 mb-2">Deaths before age 65. This can indicate the overall health of a population.</p>
-        </div>
-
-                <div class="col-md-7 border-right h-100">
-                
-                <div style="width:100%; height:40vmin; z-index:100;" class="" id="map-preMorAA-4">
-                    ...map is loading...
-                </div><div class="data-note mt-1"></div></div>
-        
-        
-        
-        
-
-        
-
-        <div class="col-md-5 h-100 p-1 ">
-
-            <p class="fs-rg">
-                Death before 65 in <strong>Willowbrook</strong>:
-                <div class=" fs-md">
-                  <p>
-                    <span class="middle-sm fs-sm mt-1">In the middle of</span>&nbsp;neighborhoods
-                  </p>
-
-                  <p>
-                    <span id="b-death-before-65"></span> the <strong>Staten Island average</strong> 
-                    <br>
-                    <span class="fs-sm pl-3">(<span id="bv-death-before-65">boro val</span> per 100,000)</span>
-                  </p>
-
-                  <p>
-                    <span id="c-death-before-65"></span> the <strong>Citywide average</strong> 
-                    <br>
-                    <span class="fs-sm pl-3">(<span id="cv-death-before-65">city val</span> per 100,000)</span>
-                  </p>
-
-                    </div>
-                
-            </p>
-
-             
-            <div id="trend" class="hide">
-            <p>In <strong>Staten Island</strong>, it is [TREND]. Citywide, the trend is [TREND].</p>
-            </div>
-
-            
-
-            <span id="year-death-before-65" class="sr-only">YEAR</span>
-
-          
-
-        </div>
-
-      </div>
-      <div class="row no-gutters">
-        <div class="col-7">
-            <span class="fs-xs"><strong>Source:</strong> New York City Bureau of Vital Statistics; New York City Bureau of Vital Statistics; United States Census </span>
-
-        </div>
-        <div class="col-5">
-            <p class="float-right"><a id="2322" href="" class="ml-1" style="display:none"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Full dataset</a></p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-<script>
-    
-    (function(x, y) {
-        var endDate = new Date(x);
-        var year = endDate.getFullYear(); 
-        document.getElementById(y).innerHTML = year;
-    })(`2016-12-31`, `year-death-before-65`);
-
-(function(n, b, c, nid, bid, cid, rr) {
-    n = Number(n);
-    b = Number(b);
-    c = Number(c);
-
-    let rankReverse = (rr === true || rr === 'true');
-
-    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
-    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
-
-    let boroJudgement;
-    if (n > b && rankReverse) {
-      boroJudgement = 'comp-good';
-    } else if (n < b && rankReverse) {
-      boroJudgement = 'comp-bad';
-    } else if (n > b && !rankReverse) {
-      boroJudgement = 'comp-bad';
-    } else if (n < b && !rankReverse) {
-      boroJudgement = 'comp-good';
-    } else {
-      boroJudgement = 'comp-null';
-    }
-
-    let cityJudgement;
-    if (n > c && rankReverse) {
-      cityJudgement = 'comp-good';
-    } else if (n < c && rankReverse) {
-      cityJudgement = 'comp-bad';
-    } else if (n > c && !rankReverse) {
-      cityJudgement = 'comp-bad';
-    } else if (n < c && !rankReverse) {
-      cityJudgement = 'comp-good';
-    } else {
-      cityJudgement = 'comp-null';
-    }
-
-    let boroEl = document.getElementById(bid);
-    if (boroEl) {
-        boroEl.innerHTML = boroComp;
-        boroEl.classList.add(boroJudgement);
-    }
-
-    let cityEl = document.getElementById(cid);
-    if (cityEl) {
-        cityEl.innerHTML = cityComp;
-        cityEl.classList.add(cityJudgement);
-    }
-
-    document.getElementById('bv-death-before-65').innerHTML = b;
-    document.getElementById('cv-death-before-65').innerHTML = c;
-
-
-})(
-     147.7 ,
-     185.3 ,
-     162.9 ,
-    'n-death-before-65',
-    'b-death-before-65',
-    'c-death-before-65',
-     false 
-)
-
-
-</script>
-
-
-
-
-<script type="text/javascript">
-
-    $( "#collapse-preMorAA" ).on('shown.bs.collapse', function() {
-
-        
-
-        gtag('event', 'click_modal', {
-                'modal_name': 'Death before 65'
-            });
-
-        var opt = {"renderer": "svg"};
-
-            
-
-            
-
-            var summaryData =
-                arqTable
-                .filter(d => d.indicator_data_name == "preMorAA")
-                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
-                .dedupe()
-                .groupby("neighborhood")
-                .orderby("neighborhood", aq.desc("end_date"))
-                .slice(0,1) 
-                .ungroup()
-                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
-                .orderby("unmodified_data_value_geo_entity") 
-                .select(aq.not("end_date"))
-                .objects()
-
-
-            
-
-            
-
-            var mapData = summaryData;
-
-            renderNRMap(mapData,  "#map-preMorAA-4", "Age-adjusted rate per 100,000","Death before 65",geocode)
+            renderNRMap(mapData,  "#map-obesityP-4", "Percent ","Overweight",geocode)
 
     });
 
