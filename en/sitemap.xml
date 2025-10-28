@@ -19,6 +19,8 @@
     <lastmod>2025-05-28T11:51:01-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/data-features/rat-information-portal/</loc>
     <lastmod>2021-09-08T11:14:56-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/data-features/minimum-wage/</loc>
+    <lastmod>2025-09-08T21:14:56-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/data-features/rat-report/</loc>
     <lastmod>2024-09-08T11:14:56-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/data-features/find-your-uhf/</loc>
@@ -115,8 +117,62 @@
     <lastmod>2025-09-24T09:01:00-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/data-stories/vectorborne-diseases-and-health/</loc>
     <lastmod>2025-09-24T09:01:00-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/keywords/analysis/</loc>
+    <lastmod>2025-09-08T21:14:56-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/data-features/</loc>
-    <lastmod>2025-09-02T07:56:00-04:00</lastmod></url><url>
+    <lastmod>2025-09-08T21:14:56-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/keywords/health/</loc>
+    <lastmod>2025-09-08T21:14:56-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/categories/healthoutcomes/</loc>
+    <lastmod>2025-09-08T21:14:56-04:00</lastmod><xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="/IndicatorPublic/es/categories/healthoutcomes/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/IndicatorPublic/zh/categories/healthoutcomes/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/IndicatorPublic/categories/healthoutcomes/"
+                /></url><url>
+    <loc>/IndicatorPublic/categories/inequality/</loc>
+    <lastmod>2025-09-08T21:14:56-04:00</lastmod><xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="/IndicatorPublic/es/categories/inequality/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/IndicatorPublic/zh/categories/inequality/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/IndicatorPublic/categories/inequality/"
+                /></url><url>
+    <loc>/IndicatorPublic/keywords/minimum-wage/</loc>
+    <lastmod>2025-09-08T21:14:56-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/keywords/mortality/</loc>
+    <lastmod>2025-09-08T21:14:56-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/keywords/policy/</loc>
+    <lastmod>2025-09-08T21:14:56-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/keywords/poverty/</loc>
+    <lastmod>2025-09-08T21:14:56-04:00</lastmod><xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="/IndicatorPublic/es/keywords/poverty/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/IndicatorPublic/zh/keywords/poverty/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/IndicatorPublic/keywords/poverty/"
+                /></url><url>
+    <loc>/IndicatorPublic/keywords/premature-mortality/</loc>
+    <lastmod>2025-09-08T21:14:56-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/geographies/</loc>
     <lastmod>2025-09-02T07:56:00-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/how-we-work/</loc>
@@ -269,20 +325,6 @@
     <lastmod>2025-06-24T09:01:00-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/heat/</loc>
     <lastmod>2025-06-24T09:01:00-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/categories/inequality/</loc>
-    <lastmod>2025-06-24T09:01:00-04:00</lastmod><xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="/IndicatorPublic/es/categories/inequality/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="/IndicatorPublic/zh/categories/inequality/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/IndicatorPublic/categories/inequality/"
-                /></url><url>
     <loc>/IndicatorPublic/keywords/social-determinants/</loc>
     <lastmod>2025-06-24T09:01:00-04:00</lastmod><xhtml:link
                 rel="alternate"
@@ -300,22 +342,6 @@
     <loc>/IndicatorPublic/keywords/climate/</loc>
     <lastmod>2025-06-16T10:14:56-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/disparities/</loc>
-    <lastmod>2025-06-16T10:14:56-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/categories/healthoutcomes/</loc>
-    <lastmod>2025-06-16T10:14:56-04:00</lastmod><xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="/IndicatorPublic/es/categories/healthoutcomes/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="/IndicatorPublic/zh/categories/healthoutcomes/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/IndicatorPublic/categories/healthoutcomes/"
-                /></url><url>
-    <loc>/IndicatorPublic/keywords/mortality/</loc>
     <lastmod>2025-06-16T10:14:56-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/report/</loc>
     <lastmod>2025-06-16T10:14:56-04:00</lastmod></url><url>
@@ -433,20 +459,6 @@
     <lastmod>2024-08-19T01:18:56-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/parks/</loc>
     <lastmod>2024-08-19T01:18:56-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/keywords/poverty/</loc>
-    <lastmod>2024-08-19T01:18:56-04:00</lastmod><xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="/IndicatorPublic/es/keywords/poverty/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="/IndicatorPublic/zh/keywords/poverty/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/IndicatorPublic/keywords/poverty/"
-                /></url><url>
     <loc>/IndicatorPublic/keywords/public-space/</loc>
     <lastmod>2024-08-19T01:18:56-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/data-stories/public-space-creates-health/</loc>
@@ -462,8 +474,6 @@
     <loc>/IndicatorPublic/data-stories/flooding-and-health/</loc>
     <lastmod>2024-06-11T09:01:00-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/depression/</loc>
-    <lastmod>2024-05-28T18:02:58+00:00</lastmod></url><url>
-    <loc>/IndicatorPublic/keywords/health/</loc>
     <lastmod>2024-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/health-care/</loc>
     <lastmod>2024-05-28T18:02:58+00:00</lastmod></url><url>
@@ -744,8 +754,6 @@
                 href="/IndicatorPublic/keywords/lungs/"
                 /></url><url>
     <loc>/IndicatorPublic/keywords/policies/</loc>
-    <lastmod>2022-12-15T15:23:23-05:00</lastmod></url><url>
-    <loc>/IndicatorPublic/keywords/policy/</loc>
     <lastmod>2022-12-15T15:23:23-05:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/cold/</loc>
     <lastmod>2022-12-15T13:11:44-04:00</lastmod></url><url>
