@@ -4,53 +4,48 @@
 {{- $half := div (len $pages | add 1) 2 -}}
 
 <div class="col-md-6 fs-sm">
-    {{- range first $half $pages }}
-        {{- if not .Params.hideFromRange }}
-
-            <p class="mb-1">
-                <a href="#" onclick="getIndicators(
-                `{{ .Title }}`,
-                [
-                {{- $first := true -}}
-                {{- range .Params.indicators }}
-                {{- range .IndicatorID }}
-                    {{- if not $first }}, {{- end -}}
-                    {{ . }}
-                    {{- $first = false -}}
-                {{- end }}
-                {{- end }}
-                ]
-                )">{{ .Title }}</a>: <em>if blurb, blurb.</em>
-
-
-            </p>
+{{- range first $half $pages }}
+    {{- if not .Params.hideFromRange }}
+        {{/* Build JSON for this page */}}
+        {{- $indicatorsJSON := slice -}}
+        {{- range .Params.indicators }}
+            {{- $indicatorsJSON = $indicatorsJSON | append (dict "header" .header "indicators" .IndicatorID) -}}
         {{- end }}
+        {{- $json := $indicatorsJSON | jsonify -}}
+
+        <p class="mb-1">
+            <a href="#"
+               data-indicators='{{ $json }}'
+               onclick="getIndicatorsForTopic(`{{ .Title }}`, this.dataset.indicators, `{{ .RelPermalink }}`)">
+                {{ .Title }}
+            </a>: <em>if blurb, blurb.</em>
+        </p>
     {{- end }}
+{{- end }}
+
+
 </div>
 
 <div class="col-md-6 fs-sm">
-    {{- range after $half $pages }}
-        {{- if not .Params.hideFromRange }}
-
-            <p class="mb-1">
-                <a href="#" onclick="getIndicators(
-                `{{ .Title }}`,
-                [
-                {{- $first := true -}}
-                {{- range .Params.indicators }}
-                {{- range .IndicatorID }}
-                    {{- if not $first }}, {{- end -}}
-                    {{ . }}
-                    {{- $first = false -}}
-                {{- end }}
-                {{- end }}
-                ]
-                )">{{ .Title }}</a>: <em>if blurb, blurb.</em>
-
-
-            </p>
+{{- range after $half $pages }}
+    {{- if not .Params.hideFromRange }}
+        {{/* Build JSON for this page */}}
+        {{- $indicatorsJSON := slice -}}
+        {{- range .Params.indicators }}
+            {{- $indicatorsJSON = $indicatorsJSON | append (dict "header" .header "indicators" .IndicatorID) -}}
         {{- end }}
+        {{- $json := $indicatorsJSON | jsonify -}}
+
+        <p class="mb-1">
+            <a href="#"
+               data-indicators='{{ $json }}'
+               onclick="getIndicatorsForTopic(`{{ .Title }}`, this.dataset.indicators, `{{ .RelPermalink }}`)">
+                {{ .Title }}
+            </a>: <em>if blurb, blurb.</em>
+        </p>
     {{- end }}
+{{- end }}
+
 </div>
 
 <div class="col-12 mt-2 border-top pt-2">
@@ -62,27 +57,3 @@
       {{- end }}
   {{- end }}
 </div>
-
-<script>
-function getIndicators(title, indicators) {
-    console.log('Indicators for', title);
-    console.log(indicators);
-
-    // Get topic modal element and force initialize
-    const topicModalEl = document.getElementById('topicSelector');
-    const topicModal = new bootstrap.Modal(topicModalEl);
-    topicModalEl.classList.remove('show');       // remove visible class
-    topicModalEl.style.display = 'none';        // hide element
-    topicModal._backdrop && topicModal._backdrop.remove(); // remove backdrop if present
-    document.body.classList.remove('modal-open'); // remove body scroll lock
-
-    // Open indicator modal
-    const indicatorModalEl = document.getElementById('indicatorSelector');
-    const indicatorModal = new bootstrap.Modal(indicatorModalEl);
-    indicatorModal.show();
-}
-
-
-
-
-</script>
