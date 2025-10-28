@@ -9,6 +9,12 @@ description: "Datasets and visualizations of alcohol data in NYC."
 tags:
 categories: ["foodanddrink", "neighborhoods"]
 keywords: ["drink", "alcohol", "neighborhoods"]
+datatables: true
+arquero: true
+leaflet: true
+newDataExplorer: true
+headerDE: true
+excludeFooter: true
 indicators:
   - header: null
     IndicatorID:

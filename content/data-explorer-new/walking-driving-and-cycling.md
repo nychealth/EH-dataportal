@@ -4,6 +4,12 @@ title: Walking, driving, and cycling
 draft: false
 azlink: "https://www.nyc.gov/site/doh/health/health-topics/active-design.page"
 date: 2021-05-28T18:02:58Z
+datatables: true
+arquero: true
+leaflet: true
+newDataExplorer: true
+headerDE: true
+excludeFooter: true
 categories:
   - publicspace
   - airquality

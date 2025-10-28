@@ -9,6 +9,12 @@ description: "Datasets and visualizations of active design data in NYC."
 tags:
 categories: ["publicspace", "neighborhoods", "airquality", "climate"]
 keyTopic: publicspace
+datatables: true
+arquero: true
+leaflet: true
+newDataExplorer: true
+headerDE: true
+excludeFooter: true
 keywords:
   [
     "active design",

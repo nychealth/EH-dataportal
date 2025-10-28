@@ -6,6 +6,12 @@ azlinks: "https://www.nyc.gov/site/doh/health/health-topics/pregnancy.page"
 seo_title: "Birth defects data for NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
 description: "Datasets and visualizations of birth defects data in NYC."
+datatables: true
+arquero: true
+leaflet: true
+newDataExplorer: true
+headerDE: true
+excludeFooter: true
 tags:
 categories: ["childhealth", "healthoutcomes"]
 keywords: ["children", "birth", "birth defects", "babies", "pregnancy"]

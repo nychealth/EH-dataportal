@@ -8,6 +8,12 @@ seo_description: "Explore data, visualizations, and more on ways that environmen
 description: "Datasets and visualizations of air quality data in NYC."
 tags:
 categories: ["airquality", "childhealth", "publicspace", "neighborhoods"]
+datatables: true
+arquero: true
+leaflet: true
+newDataExplorer: true
+headerDE: true
+excludeFooter: true
 keywords:
   [
     "air quality",

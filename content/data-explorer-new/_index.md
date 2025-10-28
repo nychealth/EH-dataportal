@@ -5,10 +5,10 @@ draft: false
 seo_title: "Explore Data on NYC's neighborhoods"
 seo_description: "Explore data on how environments shape health in neighborhoods throughout New York City."
 description: "Datasets and visualizations on how environments shape health in NYC."
-datatables: true
-arquero: true
 image: image_charts-city@2x.jpg
 image2: image_3charts.png
+datatables: true
+arquero: true
 leaflet: true
 newDataExplorer: true
 headerDE: true

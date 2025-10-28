@@ -601,6 +601,11 @@
 <script type="text/javascript" src="{{ $choro_secure.RelPermalink }}" integrity="{{ $choro_secure.Data.Integrity }}"></script>
 
 <script>
+// fire modal
+  $(document).ready(function() {
+    $('#topicSelector').modal('show');
+  });
+
 function updateDropdownText(clickedItem) {
     // Find the parent dropdown and its button
     const dropdown = clickedItem.closest('.dropdown');

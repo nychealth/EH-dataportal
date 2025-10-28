@@ -5,6 +5,12 @@ draft: true
 seo_title: "Carbon monoxide poisoning data for NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
 description: "Datasets and visualizations of carbon monoxide poisoning data in NYC."
+datatables: true
+arquero: true
+leaflet: true
+newDataExplorer: true
+headerDE: true
+excludeFooter: true
 tags: 
 categories: ["housing","childhealth","healthoutcomes"]
 keywords: ["carbon","monoxide","poisoning","hospitalization","emergency department visits","children","housing"] 

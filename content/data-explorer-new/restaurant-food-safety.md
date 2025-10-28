@@ -6,6 +6,12 @@ azlink: "https://www.nyc.gov/site/doh/health/health-topics/food-and-restaurants.
 seo_title: "Restaurant food safety data for NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
 description: "Datasets and visualizations of restaurant food safety in NYC."
+datatables: true
+arquero: true
+leaflet: true
+newDataExplorer: true
+headerDE: true
+excludeFooter: true
 tags:
 categories: ["foodanddrink"]
 keywords:

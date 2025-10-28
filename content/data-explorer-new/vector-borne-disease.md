@@ -6,6 +6,12 @@ azlink: "https://www.nyc.gov/site/doh/health/health-topics/west-nile-virus.page"
 seo_title: "Vector-borne disease data for NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
 description: "Datasets and visualizations of vector-borne disease in NYC."
+datatables: true
+arquero: true
+leaflet: true
+newDataExplorer: true
+headerDE: true
+excludeFooter: true
 tags:
 categories: ["pests", "climatehealth", "healthoutcomes"]
 keywords: ["ticks", "lyme disease", "lyme", "disease", "climate change"]

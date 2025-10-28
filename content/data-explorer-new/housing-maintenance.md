@@ -6,6 +6,12 @@ azlink: "https://www.nyc.gov/site/doh/health/health-topics/healthy-home.page"
 seo_title: "Housing maintenance data for NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
 description: "Datasets and visualizations of housing maintenance in NYC."
+datatables: true
+arquero: true
+leaflet: true
+newDataExplorer: true
+headerDE: true
+excludeFooter: true
 tags:
 categories: ["housing", "inequality", "neighborhoods"]
 keywords:

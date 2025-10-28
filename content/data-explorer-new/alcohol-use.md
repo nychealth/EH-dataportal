@@ -9,6 +9,12 @@ description: "Datasets and visualizations of alcohol use data in NYC."
 tags:
 categories: ["foodanddrink"]
 keywords: ["drinking", "alcohol", "binge drinking"]
+datatables: true
+arquero: true
+leaflet: true
+newDataExplorer: true
+headerDE: true
+excludeFooter: true
 indicators:
   - header: null
     IndicatorID:
