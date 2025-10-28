@@ -1,0 +1,63 @@
+{{/*
+  Usage:
+    {{ partial "render-accessible-table.html" (dict "csvPath" "/data-features/minimum-wage/data/chart-data.csv" "containerId" "csv-table-container") }}
+*/}}
+
+{{ $csvPath := .csvPath }}
+{{ $containerId := .containerId | default "csv-table-container" }}
+
+<div id="{{ $containerId }}" role="region" aria-label="Data table" style="height: 400px; overflow-y:scroll;"></div>
+
+<script>
+  (function() {
+    if (typeof d3 === 'undefined') {
+      console.error("D3.js is not loaded. CSV table cannot be rendered.");
+      return;
+    }
+
+    const csvPath = "{{ $csvPath }}";
+    const container = document.getElementById("{{ $containerId }}");
+
+    d3.csv(csvPath).then(data => {
+      if (!data || data.length === 0) {
+        container.innerHTML = "<p>No data found.</p>";
+        return;
+      }
+
+      const table = document.createElement("table");
+      table.className = "table table-striped table-bordered table-sm";
+
+      // Create thead
+      const thead = document.createElement("thead");
+      thead.className = "thead-light";
+      const headerRow = document.createElement("tr");
+      Object.keys(data[0]).forEach(col => {
+        const th = document.createElement("th");
+        th.scope = "col";
+        th.textContent = col;
+        headerRow.appendChild(th);
+      });
+      thead.appendChild(headerRow);
+      table.appendChild(thead);
+
+      // Create tbody
+      const tbody = document.createElement("tbody");
+      data.forEach(row => {
+        const tr = document.createElement("tr");
+        Object.values(row).forEach(cell => {
+          const td = document.createElement("td");
+          td.textContent = cell;
+          tr.appendChild(td);
+        });
+        tbody.appendChild(tr);
+      });
+      table.appendChild(tbody);
+
+      // Insert table into container
+      container.appendChild(table);
+    }).catch(error => {
+      console.error("Error loading CSV:", error);
+      container.innerHTML = "<p>Error loading CSV. See console for details.</p>";
+    });
+  })();
+</script>
