@@ -13,6 +13,7 @@ layout: indicator-catalog
 datatables: true
 arquero: true
 aliases: data-reference
+hideFromRange: true
 ---
 
 Search by term, get metadata and download links.

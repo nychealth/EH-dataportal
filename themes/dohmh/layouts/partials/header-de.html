@@ -293,6 +293,7 @@
       </button>
       <span class="ml-1 text-white">{{ .Title }}</span>
   </div>
+
   <!-- Topic Selector Modal -->
   <div class="modal fade" id="topicSelector" tabindex="-1" role="dialog" aria-labelledby="topicSelectorLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg" role="document">
@@ -302,12 +303,17 @@
                       <span class="h3" aria-hidden="true">&times;</span>
                   </button>
               </div>
-              <div class="modal-body p-3 pb-6">
+              <div class="modal-body p-3 pb-3">
                   <h4 class="modal-title mb-1">Select a Topic  >  <span class="font-weight-normal">Select an Indicator</span></h4>
                   <div class="border-bottom border-gray-300 pb-3">
                       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                   </div>
                   <div class="row mt-3">
+                    
+                    {{ partial "de-chooser-modal" . }}
+
+
+                    <!-- Original topic list, hardcoded
                       <div class="col-12 col-lg-6">
                           <ul class="list-unstyled">
                               <li class="mb-1">
@@ -330,6 +336,7 @@
                               <li class="mb-1"><button type="button" class="border-0 text-primary bg-transparent hover-underline p-0 text-left" data-toggle="modal" data-target="#indicatorSelector">Climate</button></li>
                           </ul>
                       </div>
+
                       <div class="col-6">
                           <ul class="list-unstyled">
                               <li class="mb-1"><button type="button" class="border-0 text-primary bg-transparent hover-underline p-0 text-left" data-toggle="modal" data-target="#indicatorSelector">Mortality</button></li>
@@ -346,11 +353,14 @@
                               <li><button type="button" class="border-0 text-primary bg-transparent hover-underline p-0" data-toggle="modal" data-target="#indicatorSelector">Violence</button></li>
                           </ul>
                       </div>
+                    -->
+
                   </div>
               </div>
           </div>
       </div>
   </div>
+
   <!-- Indicator Selector Modal -->
   <div class="modal fade" id="indicatorSelector" tabindex="-1" role="dialog" aria-labelledby="indicatorSelectorLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg" role="document">
