@@ -400,6 +400,13 @@
 
 </article>
 
+        <!-- Populate indicator selection modal for this page -->
+        {{- $indicatorsJSON := slice -}}
+        {{- range .Params.indicators }}
+            {{- $indicatorsJSON = $indicatorsJSON | append (dict "header" .header "indicators" .IndicatorID) -}}
+        {{- end }}
+        {{- $json := $indicatorsJSON | jsonify -}}
+
 <script>
     // Toggle tab active state when clicking an already-active tab
     document.addEventListener('DOMContentLoaded', function() {
@@ -610,6 +617,12 @@
 
 
 <script>
+// Hugo JSON becomes a real JS object
+const these_indicators = {{ $json | safeJS }};
+
+// Immediately call your function
+printIndicators(these_indicators, "{{ .RelPermalink }}");
+
 function updateDropdownText(clickedItem) {
     // Find the parent dropdown and its button
     const dropdown = clickedItem.closest('.dropdown');
