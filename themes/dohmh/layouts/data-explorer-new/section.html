@@ -6,6 +6,7 @@
         border-bottom-left-radius: 50%;
     }
 
+
     .viridis-rect {
       width: 100%;
       height: 22px;
@@ -19,6 +20,7 @@
         #3b528b 80%,
         #440154 100%)
         }
+
 </style>
 
 
@@ -585,10 +587,18 @@
 <script src="https://d3js.org/d3.v7.min.js"></script>
 
 
-<!-- local files: must be in this order (for now) -->
-<script src="geography.js"></script>
-<script src="choroData.js"></script>
-<script src="choro.js"></script>
+<!-- JAVASCRIPT FILES -->
+{{- $geo            := resources.Get "js/data-explorer-new/geography.js" -}}
+{{- $geo_secure     := $geo | partial "short-fingerprint.html" -}}
+<script type="text/javascript" src="{{ $geo_secure.RelPermalink }}" integrity="{{ $geo_secure.Data.Integrity }}"></script>
+
+{{- $choroData            := resources.Get "js/data-explorer-new/choroData.js" -}}
+{{- $choroData_secure     := $choroData | partial "short-fingerprint.html" -}}
+<script type="text/javascript" src="{{ $choroData_secure.RelPermalink }}" integrity="{{ $choroData_secure.Data.Integrity }}"></script>
+
+{{- $choro            := resources.Get "js/data-explorer-new/choro.js" -}}
+{{- $choro_secure     := $choro | partial "short-fingerprint.html" -}}
+<script type="text/javascript" src="{{ $choro_secure.RelPermalink }}" integrity="{{ $choro_secure.Data.Integrity }}"></script>
 
 <script>
 function updateDropdownText(clickedItem) {
