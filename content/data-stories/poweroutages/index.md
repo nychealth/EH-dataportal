@@ -28,6 +28,10 @@ related:
     url: "data-stories/flooding-and-health/"
 ---
 
+{{< updateflag data=`[
+  {"src": "../../data-explorer/economic-conditions/?id=103", "text": "Economic conditions"}
+]` >}}
+
 Imagine your child has asthma. One summer night, a powerful storm rolls in and knocks the power out.
 
 Your child starts to have trouble breathing. Usually, you’d use a home nebulizer, an electric machine that turns liquid medicine into a mist that your child breathes in through a face mask.

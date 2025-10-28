@@ -40,6 +40,13 @@ related:
     url: "data-explorer/housing-maintenance/?id=2396#display=summary"
 ---
 
+{{< updateflag data=`[
+  {"src": "../../data-explorer/housing-maintenance/?id=45", "text": "Housing maintenance"},
+  {"src": "../../data-explorer/economic-conditions/?id=103", "text": "Neighborhood poverty"},
+  {"src": "../../data-explorer/asthma/?id=2379", "text": "Asthma emergency department visits (ages 5 to 17)"},
+  {"src": "../../data-explorer/social-conditions/?id=2325", "text": "Race and ethnicity"}
+]` >}}
+
 ### For health, place matters
 
 What determines whether or not you’re healthy? You may think about what you eat, whether you exercise, whether you smoke and your family medical history.

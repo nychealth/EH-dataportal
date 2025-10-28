@@ -35,6 +35,10 @@ related:
     url: "data-stories/air-quality-and-covid/"
 ---
 
+{{< updateflag data=`[
+  {"src": "../../data-explorer/air-quality/?id=2023", "text": "Fine particles(PM2.5)"}
+]` >}}
+
 As city life changes, so does its air quality, as sources of emissions that affect the city's outdoor air quality, like truck traffic, building boilers and restaurants, also change. For more than a decade, we have been tracking air quality through the {{< rawhtml >}} <a href="#NYCCAS" data-toggle="collapse" class="badge badge-pill badge-primary">NYC Community Air Survey (NYCCAS)</a>{{< /rawhtml >}} and exploring the factors that drive neighborhood differences. We have found some interesting changes in the sources of air pollution across NYC neighborhoods.
 
 {{< rawhtml >}}

@@ -32,7 +32,14 @@ related:
     url: "data-stories/block-by-block/"
 ---
 
-Health is determined by many factors. People tend to be healthier when they have economic stability, live in quality housing and have access to public space and safe, connected communities. In 2020, the NYC Health Department held a series of community conversations with residents and local stakeholders across 26 neighborhoods. New Yorkers shared personal stories about their priorities for building healthier neighborhoods, healthier childhoods and more. This is one part of a three-part series on how <strong> housing, economic stability, and public space create health. </strong>
+{{< updateflag data=`[
+{"src": "../../data-explorer/mortality/?id=2322", "text": "Premature death"},
+{"src": "../../data-explorer/economic-conditions/?id=103", "text": "Neighborhood poverty"},
+{"src": "../../data-explorer/healthy-eating/?id=2389", "text": "Unhealthy food access"},
+{"src": "../../data-explorer/health-care/?id=2232", "text": "Self-reported health"}
+]` >}}
+
+Health is determined by many factors. People tend to be healthier when they have economic stability, live in quality housing and have access to public space and safe, connected communities. In 2020, the NYC Health Department held a series of community conversations with residents and local stakeholders across 26 neighborhoods. New Yorkers shared personal stories about their priorities for building healthier neighborhoods, healthier childhoods and more. This is one part of a three-part series on how <strong> <a href="../housing-creates-health">housing</a>, economic stability, and <a href="../public-space-creates-health">public space</a> create health. </strong>
 
 <div class="pullquote my-4">
 <figure class="my-2">

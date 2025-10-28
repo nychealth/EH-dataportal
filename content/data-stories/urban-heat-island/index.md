@@ -39,6 +39,10 @@ related:
     url: "data-stories/heat/"
 ---
 
+{{< updateflag data=`[
+  {"src": "../../data-explorer/climate/?id=2143", "text": "Climate"}
+]` >}}
+
 In New York City and across the country, more people die from extreme heat than from all other natural disasters combined. To understand how to keep New Yorkers safe from extreme heat, we studied neighborhood factors that affect temperature, and found that grass, shrubs, and trees can play a major role. Let’s take a look.
 
 At 6.00 PM on June 30, 2018, the air temperature at the LaGuardia Airport Weather Station was 89° Fahrenheit (F). At the same time, the air temperature on a block in East Harlem (below left) was nearly 5° hotter than at the Weather Station, and the temperature on a block in Bed-Stuy (below right) was 3.5° hotter.
