@@ -502,50 +502,32 @@
                       </button>
                   </div>
                   <div class="modal-body p-3">
-                      <div class="d-flex border-bottom border-top my-2 py-1">
+                      <div class="d-flex border-top border-bottom my-2 py-1">
                           <a class="mr-5" href="#about">About</a>
                           <a href="#relatedResources">Related Resources</a>
                       </div>
-                      <h4 class="modal-title" id="about">About Asthma</h4>
-                      <div class="border-bottom pb-2 mb-2">
-                          <p>Asthma is a common disease in which the lungs become swollen, making breathing difficult. Symptoms include wheezing, coughing, shortness of breath and tightness in the chest. The exact causes of asthma are not known. Asthma cannot be cured, but it can be controlled.</p>
+                      <h4 class="modal-title" id="about">About {{ .Title }}</h4>
+                      <div class="pb-2 mb-2">
+                            {{ .Content }}
 
-                          <p>Asthma is a leading cause of emergency room visits, hospitalizations and missed school days in New York City’s poorest neighborhoods. In NYC, asthma is more common among low-income Black and Latino children.</p>
+                        <ul>
+                          <li><a href="{{ .Params.azlink }}">More info about {{ .Title }}</a></li>
+                        </ul>
+                        </div>
 
-                          <p>Asthma and the Environment</p>
-                          <p>Things in the environment can trigger an asthma attack or make symptoms worse. Common triggers include:</p>
+                      <h4 class="modal-title sr-only" id="relatedResources">Related Resources</h4>
 
-                          <p>Tobacco smoke</p>
-                          <p>Air pollution, such as particulates, ozone and diesel exhaust. If you smoke, quit. Don’t allow smoking in your home or car. Remove clutter and clean regularly.</p>
-                          <p>Asthma is a common disease in which the lungs become swollen, making breathing difficult. Symptoms include wheezing, coughing, shortness of breath and tightness in the chest. The exact causes of asthma are not known. Asthma cannot be cured, but it can be controlled.</p>
+                        {{ partial "related-footer-de" . }}
 
-                          <p>Asthma is a leading cause of emergency room visits, hospitalizations and missed school days in New York City’s poorest neighborhoods. In NYC, asthma is more common among low-income Black and Latino children.</p>
-
-                          <p>Asthma and the Environment</p>
-                          <p>Things in the environment can trigger an asthma attack or make symptoms worse. Common triggers include:</p>
-
-                          <p>Tobacco smoke</p>
-                          <p>Air pollution, such as particulates, ozone and diesel exhaust. If you smoke, quit. Don’t allow smoking in your home or car. Remove clutter and clean regularly.</p>
-                          <p>Asthma is a common disease in which the lungs become swollen, making breathing difficult. Symptoms include wheezing, coughing, shortness of breath and tightness in the chest. The exact causes of asthma are not known. Asthma cannot be cured, but it can be controlled.</p>
-
-                          <p>Asthma is a leading cause of emergency room visits, hospitalizations and missed school days in New York City’s poorest neighborhoods. In NYC, asthma is more common among low-income Black and Latino children.</p>
-
-                          <p>Asthma and the Environment</p>
-                          <p>Things in the environment can trigger an asthma attack or make symptoms worse. Common triggers include:</p>
-
-                          <p>Tobacco smoke</p>
-                          <p>Air pollution, such as particulates, ozone and diesel exhaust. If you smoke, quit. Don’t allow smoking in your home or car. Remove clutter and clean regularly.</p>
-                      </div>
-
-                      <h4 class="modal-title" id="relatedResources">Related Resources</h4>
+                    <!--
                       <p class="font-weight-bold">Data</p>
-                      <ul>
-                          <li><a href="#">Asthma and the Environment</a></li>
-                      </ul>
+
                       <div class="d-flex align-items-center pt-2">
                           <a class="btn btn-light-green-bg-outline" href="#">Save Info</a>
                           <a href="#" class="h6 ml-2 font-weight-normal">Data Source and Details</a>
                       </div>
+                    -->
+
                   </div>
               </div>
               </div>
