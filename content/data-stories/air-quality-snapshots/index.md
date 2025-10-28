@@ -61,6 +61,16 @@ related:
 <div class="col-xl-8 overflow-hidden fs-rg mr-auto" id="primary-content">
     <div class="my-2">
         <div class="narrow">
+            <p>{{< updateflag data=`[
+  {"src": "../../data-explorer/air-quality/?id=2023", "text": "seasonal fine particles (PM2.5)"},
+  {"src": "../../data-explorer/air-quality/?id=2025", "text": "seasonal Nitrogen dioxide (NO2)"},      
+  {"src": "../../data-explorer/health-impacts-of-air-pollution/?id=2108", "text": "Deaths due to PM2.5"},
+  {"src": "../../data-explorer/health-impacts-of-air-pollution/?id=2120", "text": "Cardiovascular hospitalizations (age 40+) due to PM2.5"},
+  {"src": "../../data-explorer/health-impacts-of-air-pollution/?id=2117", "text": "Asthma ED visits due to PM2.5"},
+  {"src": "../../data-explorer/health-impacts-of-air-pollution/?id=2119", "text": "Respiratory hospitalizations (age 20+) due to PM2.5"},
+  {"src": "../../data-explorer/economic-conditions/?id=103", "text": "Neighborhood poverty"}
+  
+]` >}}</p>
             <p>For 10 years, the New York City Community Air Survey (NYCCAS) has measured air quality at 100 locations around NYC. We’ve combined these measurements with data on things related to air quality - like traffic, building emissions, green space, and much more - to model seasonal air quality in every New York City neighborhood. 
                 </p>
             <p>Our full findings are available in <a href="{{< baseurl >}}key-topics/airquality/nyccas/">our annual report</a> - but here are a few other interesting things we've found along the way.</p>
