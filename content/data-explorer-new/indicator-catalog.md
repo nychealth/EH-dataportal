@@ -5,6 +5,7 @@ draft: false
 seo_title: "Catalog of Indicators on The Environment and Health Data Portal"
 seo_description: "Browse a catalog of indicators on the Environment and Health Data Portal."
 description: "Browse a catalog of indicators on the Environment and Health Data Portal."
+blurb: "Search by term, get metadata and download links."
 tags: 
 categories: 
 keyTopic: 

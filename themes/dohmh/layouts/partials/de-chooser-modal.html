@@ -3,7 +3,7 @@
 {{- $pages := where .Site.RegularPages.ByTitle "Section" "data-explorer-new" -}}
 {{- $half := div (len $pages | add 1) 2 -}}
 
-<div class="col-md-6 fs-sm">
+<div class="col-md-6">
 {{- range first $half $pages }}
     {{- if not .Params.hideFromRange }}
         {{/* Build JSON for this page */}}
@@ -15,6 +15,7 @@
 
         <p class="mb-1">
             <a href="#"
+               class="font-weight-bold"
                data-indicators='{{ $json }}'
                onclick="getIndicatorsForTopic(`{{ .Title }}`, this.dataset.indicators, `{{ .RelPermalink }}`)">
                 {{ .Title }}</a>: <em>if blurb, blurb.</em>
@@ -25,7 +26,7 @@
 
 </div>
 
-<div class="col-md-6 fs-sm">
+<div class="col-md-6">
 {{- range after $half $pages }}
     {{- if not .Params.hideFromRange }}
         {{/* Build JSON for this page */}}
@@ -37,6 +38,7 @@
 
         <p class="mb-1">
             <a href="#"
+               class="font-weight-bold"
                data-indicators='{{ $json }}'
                onclick="getIndicatorsForTopic(`{{ .Title }}`, this.dataset.indicators, `{{ .RelPermalink }}`)">
                 {{ .Title }}</a>: <em>if blurb, blurb.</em>
@@ -46,12 +48,14 @@
 
 </div>
 
-<div class="col-12 mt-2 border-top pt-2">
   {{- range .Site.RegularPages.ByTitle }}
       {{- if and (eq .Section "data-explorer-new") .Params.hideFromRange }}
+      <div class="col-6 mt-2 border-top pt-2">
+
           <p class="mb-1">
-              <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+              <a href="{{ .RelPermalink }}">{{ .Title }}</a>{{ with .Params.blurb }}: {{ . }}{{ end }}
           </p>
+          </div>
       {{- end }}
   {{- end }}
-</div>
+
