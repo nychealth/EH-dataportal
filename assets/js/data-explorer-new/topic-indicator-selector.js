@@ -126,6 +126,11 @@ function checkURL() {
 
 }
 
+checkURL()
+
+// --------------------------------------------------------
+// Print basic indicator info from metadata to page 
+// --------------------------------------------------------
 async function printIndicatorInfo(x) {
 
     x = Number(x)
@@ -136,26 +141,80 @@ async function printIndicatorInfo(x) {
 
     // Find the indicator object where IndicatorID matches x
     const indicator = data.find(d => d.IndicatorID === x);
-    if (!indicator) {
-        console.warn("No indicator found for ID:", x);
-        return;
-    }
 
-    // Query holders
-    const nameHolders = document.querySelectorAll('.indicator-name');
-    const descriptionHolders = document.querySelectorAll('.indicator-description');
+    console.log('This indicator:');
+    console.log(indicator)
 
-    // Fill name fields
-    nameHolders.forEach(el => {
-        el.textContent = indicator.IndicatorName ?? "";
-    });
+        if (!indicator) {
+            console.warn("No indicator found for ID:", x);
+            return;
+        }
 
-    // Fill description fields
-    descriptionHolders.forEach(el => {
-        el.textContent = indicator.IndicatorDescription ?? "";
-    });
+        // Query holders
+        const nameHolders = document.querySelectorAll('.indicator-name');
+        const descriptionHolders = document.querySelectorAll('.indicator-description');
+
+        // Fill name fields
+        nameHolders.forEach(el => {
+            el.textContent = indicator.IndicatorName ?? "";
+        });
+
+        // Fill description fields
+        descriptionHolders.forEach(el => {
+            el.textContent = indicator.IndicatorDescription ?? "";
+        });
+
+        // Handle Data Source and How Calculated
+        const howCalculatedEl = document.getElementById('howCalculated');
+        const dataSourcesEl = document.getElementById('dataSources');
+
+        // Clear previous content
+        howCalculatedEl.innerHTML = '';
+        dataSourcesEl.innerHTML = '';
+
+        // To store unique sources
+        const uniqueSources = new Set();
+
+        // Loop through Measures
+        indicator.Measures.forEach(measure => {
+            // Append MeasurementType and how_calculated
+            const p = document.createElement('p');
+            p.innerHTML = `<strong>${measure.MeasurementType}:</strong> ${measure.how_calculated}`;
+            howCalculatedEl.appendChild(p);
+
+            // Collect sources
+            if (measure.Sources) {
+                uniqueSources.add(measure.Sources);
+            }
+        });
+
+        // Display unique sources
+        uniqueSources.forEach(source => {
+            const p = document.createElement('p');
+            p.textContent = source;
+            dataSourcesEl.appendChild(p);
+        });
+
 
 }
 
 
-checkURL()
+
+
+function copyCitation() {
+    const citeText = document.getElementById('citeText').innerText;
+
+    // Create temporary textarea
+    const temp = document.createElement('textarea');
+    temp.value = citeText;
+    document.body.appendChild(temp);
+    temp.select();
+    temp.setSelectionRange(0, 99999);
+
+    navigator.clipboard.writeText(temp.value).then(() => {
+        const btn = document.getElementById('citeButton');
+        btn.innerHTML = `<i class="fas fa-copy mr-1" aria-hidden="true"></i>Copied!`;
+    });
+
+    document.body.removeChild(temp); // clean up
+}

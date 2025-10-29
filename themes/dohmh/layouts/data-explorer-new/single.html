@@ -358,20 +358,29 @@
                                     </button>
                                 </div>
                                 <div class="p-2 pt-md-0">
-                                    <div class="dropdown fs-sm mb-1">
-                                        <button class="btn fs-sm d-flex align-items-center w-100 text-left bg-white font-weight-normal border" type="button" id="dynamicDropdownButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <span class="flex-grow-1">Show with</span>
-                                            <i class="fas fa-chevron-down ml-auto text-primary"></i>
-                                        </button>
-                                        <div class="dropdown-menu dropdown-menu-de w-100 border-none" aria-labelledby="dynamicDropdownButton1">
-                                            <button class="dropdown-item" type="button" onclick="updateDropdownText(this)">Estimated Annual Rate per 100,000</button>
-                                            <button class="dropdown-item" type="button" onclick="updateDropdownText(this)">Another measure</button>
-                                            <button class="dropdown-item" type="button" onclick="updateDropdownText(this)">Another measure</button>
-                                        </div>
+                                    <p class="h5">About the data</p>
+
+                                    <p class="h6 border-top pt-1">How the data were calculated</p>
+                                    <p id="howCalculated"> <!-- How calculated inserted here --> </p>
+
+                                    <p class="h6 border-top pt-1">Data sources</p>
+                                    <p id="dataSources"> <!-- Data sources inserted here --> </p>
+
+                                    <p class="h6 border-top pt-1">Cite the data</p>
+                                    <div id="citation">
+                                        <p><span id="citeText">
+                                            New York City Department of Health, Environment & Health Data Portal. 
+                                            {{ .Title }} data: 
+                                            <span class="indicator-name">Adults with asthma</span>. 
+                                            Accessed at {{ .Permalink }} on 
+                                            {{ time.Now | time.Format ":date_medium" }}.
+                                            </span>
+                                            <span class="float-right">
+                                            <a href="#" id="citeButton" onclick="copyCitation()"><i class="fas fa-copy mr-1" aria-hidden="true"></i>Copy citation.</a>
+                                            </span>
+                                        </p>
                                     </div>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+
                                 </div>
                             </div>
                         </div>
@@ -425,45 +434,6 @@
         </div>
 
     </section>
-
-    <div class="row mt-2 hide">
-        <div class="col-md-8 col-sm-12 pr-md-6">
-
-            {{ .Content }}
-
-            {{ $src := .Resources.GetMatch .Params.image }}
-            {{ with $src }}
-            {{ $image := .Resize "1200x" }}
-                <img class="block mt-2 mb-3" src="{{ $image.RelPermalink }}" width="{{ $image.Width }}" height="{{ $image.Height }}" alt="">
-            {{ end }}
-
-            {{- partial "de-topic-indicators.html" . -}}
-
-            <p class="h4 mb-3 font-weight-bold">Find Datasets by Topic</p>
-            <div class="mb-3">
-                {{ partial "de-chooser-accordion.html" (dict "layout" "double" "context" .)  }}
-            </div>
-        </div>
-
-        <div class="col-md-4 col-sm-12 pl-md-3 mb-5">
-
-            <!-- Recently updated data -->
-            <h3 class="h4 mb-1 pb-1">Recently updated datasets</h3>
-            {{ range .Site.Data.recently_updated_data.featured}}
-            <div class=" mb-1 pt-1 border-top font-weight-bold">
-                <a href="{{ relURL .link }}" class="px-2 d-inline-block">{{ .copy }}</a>
-            </div>
-            {{ end }}
-
-            <h3 class="h4 mb-1 pb-1 mt-5">Browse datasets</h3>
-
-            <p class="mb-1 pt-1 border-top px-2"><a class="font-weight-bold" href="data-index">Dataset index</a> - Search by term, see available years and geographies, and filter by data source.</p>
-
-            <p class="mb-1 pt-1 border-top px-2"><a class="font-weight-bold" href="indicator-catalog">Catalog of indicators</a> - Search by term, get metadata and download links.</p>
-
-        </div>
-
-    </div>
 
 </article>
 

@@ -81,7 +81,7 @@ function createPopupContent(properties) {
   return `
     <div class="popup-content">
       <strong>${properties.Geography}</strong>
-      <hr>
+      <hr class="my-1">
       <em>Asthma ED visits (age 5 to 17)</em>: in <strong>${properties.TimePeriod || 'Unknown'}</strong>, the estimated annual rate was <strong>${properties.Value}</strong> per 10,000.
       <span style="font-size:12px">${properties.Note.length > 1 ? `<hr><em>Note:</em> ${properties.Note}` : ''}</span>
     </div>

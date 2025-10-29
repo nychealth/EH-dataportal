@@ -417,45 +417,6 @@
 
     </section>
 
-    <div class="row mt-2 hide">
-        <div class="col-md-8 col-sm-12 pr-md-6">
-
-            {{ .Content }}
-
-            {{ $src := .Resources.GetMatch .Params.image }}
-            {{ with $src }}
-            {{ $image := .Resize "1200x" }}
-                <img class="block mt-2 mb-3" src="{{ $image.RelPermalink }}" width="{{ $image.Width }}" height="{{ $image.Height }}" alt="">
-            {{ end }}
-
-            {{- partial "de-topic-indicators.html" . -}}
-
-            <p class="h4 mb-3 font-weight-bold">Find Datasets by Topic</p>
-            <div class="mb-3">
-                {{ partial "de-chooser-accordion.html" (dict "layout" "double" "context" .)  }}
-            </div>
-        </div>
-
-        <div class="col-md-4 col-sm-12 pl-md-3 mb-5">
-
-            <!-- Recently updated data -->
-            <h3 class="h4 mb-1 pb-1">Recently updated datasets</h3>
-            {{ range .Site.Data.recently_updated_data.featured}}
-            <div class=" mb-1 pt-1 border-top font-weight-bold">
-                <a href="{{ relURL .link }}" class="px-2 d-inline-block">{{ .copy }}</a>
-            </div>
-            {{ end }}
-
-            <h3 class="h4 mb-1 pb-1 mt-5">Browse datasets</h3>
-
-            <p class="mb-1 pt-1 border-top px-2"><a class="font-weight-bold" href="data-index">Dataset index</a> - Search by term, see available years and geographies, and filter by data source.</p>
-
-            <p class="mb-1 pt-1 border-top px-2"><a class="font-weight-bold" href="indicator-catalog">Catalog of indicators</a> - Search by term, get metadata and download links.</p>
-
-        </div>
-
-    </div>
-
 </article>
 
 <script>
