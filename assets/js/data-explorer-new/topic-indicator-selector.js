@@ -147,6 +147,7 @@ async function printIndicatorInfo(x) {
 
         if (!indicator) {
             console.warn("No indicator found for ID:", x);
+            $('#indicatorSelector').modal('show'); // fire Indicator Selection Modal
             return;
         }
 
