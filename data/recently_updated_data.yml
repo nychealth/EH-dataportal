@@ -1,24 +1,18 @@
 ---
 featured:
-- copy: Homes with mold
-  link: data-explorer/housing-maintenance/?id=2446
-- copy: Homes using supplemental heat
-  link: data-explorer/housing-maintenance/?id=47
-- copy: Homes with cockroaches
-  link: data-explorer/asthma-triggers/?id=107
-- copy: Homes with cracks or holes
-  link: data-explorer/housing-maintenance/?id=40
-- copy: Homes with leaks
-  link: data-explorer/housing-maintenance/?id=42
-- copy: Homes with mice or rats in the unit or building
-  link: data-explorer/mice-and-rats/?id=2447
-- copy: Household air conditioning
-  link: data-explorer/climate/?id=2185
-- copy: Renter-occupied homes with any health-related housing problems
-  link: data-explorer/housing-maintenance/?id=2399
-- copy: Depression (adults)
-  link: data-explorer/mental-health/?id=2417
-- copy: Firearm ED visits
-  link: data-explorer/violence/?id=2437
-- copy: Rat indexing in Rat Mitigation Zones (RMZs)
-  link: data-explorer/mice-and-rats/?id=2433
+- copy: Premature mortality
+  link: data-explorer/mortality/?id=2322
+- copy: Death (infants)
+  link: data-explorer/birth-outcomes/?id=5
+- copy: Preterm births
+  link: data-explorer/birth-outcomes/?id=1
+- copy: Elevated blood lead levels (under age 6)
+  link: data-explorer/lead/?id=2184
+- copy: Bicycle injury emergency department visits
+  link: data-explorer/transportation-related-injuries/?id=2092
+- copy: Pedestrian injury emergency department visits
+  link: data-explorer/transportation-related-injuries/?id=2094
+- copy: Fall-related emergency department visits (age 65+) 
+  link: data-explorer/falls-among-older-adults/?id=2135
+- copy: Home fall-related emergency department visits (age 65+)
+  link: data-explorer/falls-among-older-adults/?id=2408
