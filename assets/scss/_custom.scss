@@ -398,10 +398,16 @@ $color-data-explorer: #0A408A;
 
     .tab-content {
       max-height: 50vh;
-      overflow-y: auto;
+      overflow-y: scroll;
+      overflow-x: auto;
       position: relative;
       z-index: 10;
       padding-top: 10px;
+    }
+
+    .closeTabPane {
+      position: absolute;
+      left: -32px;
     }
   }
 
@@ -468,11 +474,16 @@ $color-data-explorer: #0A408A;
   @media (min-width: 720px) {
     .de-tabs-nav {
       height: calc(100vh - 8rem);
+      overflow-y: visible;
     }
 
     .tab-content {
       max-height: calc(100vh - 8rem);
-      overflow-y: visible;
+      overflow-y: scroll;
+    }
+
+    .close-tab-pane {
+      position: absolute;
     }
   }
 

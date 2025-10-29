@@ -255,7 +255,7 @@
                             <!-- Bar -->
                             <div class="tab-pane relative fade" id="v-pills-bar" role="tabpanel" aria-labelledby="v-pills-bar-tab">
                                 <div class="bg-white d-none d-md-block bl50" style="margin-left: -32px;">
-                                    <button type="button" class="bg-primary border-0 bl50 py-1" aria-label="Close" onclick="closeTabPane('v-pills-bar')">
+                                    <button type="button" class="bg-primary border-0 bl50 py-1 close-tab-pane" aria-label="Close" onclick="closeTabPane('v-pills-bar')">
                                         <img src={{ relURL "images/arrow-right.svg" }} style="margin-bottom: 2px;" alt="">
                                     </button>
                                 </div>
@@ -271,7 +271,7 @@
                             <!-- Table -->
                             <div class="tab-pane relative fade" id="v-pills-table" role="tabpanel" aria-labelledby="v-pills-table-tab">
                                 <div class="bg-white d-none d-md-block bl50" style="margin-left: -32px;">
-                                    <button type="button" class="bg-primary border-0 bl50 py-1" aria-label="Close" onclick="closeTabPane('v-pills-table')">
+                                    <button type="button" class="bg-primary border-0 bl50 py-1 close-tab-pane" aria-label="Close" onclick="closeTabPane('v-pills-table')">
                                         <img src={{ relURL "images/arrow-right.svg" }} style="margin-bottom: 2px;" alt="">
                                     </button>
                                 </div>
@@ -287,14 +287,14 @@
                             <!-- Trends -->
                             <div class="tab-pane relative fade" id="v-pills-trends" role="tabpanel" aria-labelledby="v-pills-trends-tab">
                                 <div class="bg-white d-none d-md-block bl50" style="margin-left: -32px;">
-                                    <button type="button" class="bg-primary border-0 bl50 py-1" aria-label="Close" onclick="closeTabPane('v-pills-trends')">
+                                    <button type="button" class="bg-primary border-0 bl50 py-1 close-tab-pane" aria-label="Close" onclick="closeTabPane('v-pills-trends')">
                                         <img src={{ relURL "images/arrow-right.svg" }} style="margin-bottom: 2px;" alt="">
                                     </button>
                                 </div>
                                 <div class="p-2 pt-md-0">
                                     <div class="accordion-group" role="tablist" id="accordionTrends">
                                         <div class="card mb-1">
-                                            <div class="dropdown fs-sm mb-1">
+                                            <div class="dropdown fs-sm mb-1 pt-2">
                                                 <button class="btn fs-sm d-flex align-items-center w-100 text-left bg-white font-weight-normal border" type="button" id="dynamicDropdownButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                     <span class="flex-grow-1">Show with</span>
                                                     <i class="fas fa-chevron-down ml-auto text-primary"></i>
@@ -320,14 +320,14 @@
                                 </div>
                             </div>
                             <!-- Correlate -->
-                            <div class="tab-pane fade" id="v-pills-correlate" role="tabpanel" aria-labelledby="v-pills-correlate-tab">
+                            <div class="tab-pane relative fade" id="v-pills-correlate" role="tabpanel" aria-labelledby="v-pills-correlate-tab">
                                 <div class="bg-white d-none d-md-block bl50" style="margin-left: -32px;">
-                                    <button type="button" class="bg-primary border-0 bl50 py-1" aria-label="Close" onclick="closeTabPane('v-pills-correlate')">
+                                    <button type="button" class="bg-primary border-0 bl50 py-1 close-tab-pane" aria-label="Close" onclick="closeTabPane('v-pills-correlate')">
                                         <img src={{ relURL "images/arrow-right.svg" }} style="margin-bottom: 2px;" alt="">
                                     </button>
                                 </div>
                                 <div class="p-2 pt-md-0">
-                                    <div class="dropdown fs-sm mb-1">
+                                    <div class="dropdown fs-sm mb-1 pt-2">
                                         <button class="btn fs-sm d-flex align-items-center w-100 text-left bg-white font-weight-normal border" type="button" id="dynamicDropdownButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <span class="flex-grow-1">Show with</span>
                                             <i class="fas fa-chevron-down ml-auto text-primary"></i>
@@ -351,14 +351,14 @@
                                 </div>
                             </div>
                             <!-- Data Store -->
-                            <div class="tab-pane fade" id="v-pills-ds" role="tabpanel" aria-labelledby="v-pills-ds-tab">
+                            <div class="tab-pane relative fade" id="v-pills-ds" role="tabpanel" aria-labelledby="v-pills-ds-tab">
                                 <div class="bg-white d-none d-md-block bl50" style="margin-left: -32px;">
-                                    <button type="button" class="bg-primary border-0 bl50 py-1" aria-label="Close" onclick="closeTabPane('v-pills-ds')">
+                                    <button type="button" class="bg-primary border-0 bl50 py-1 close-tab-pane" aria-label="Close" onclick="closeTabPane('v-pills-ds')">
                                         <img src={{ relURL "images/arrow-right.svg" }} style="margin-bottom: 2px;" alt="">
                                     </button>
                                 </div>
                                 <div class="p-2 pt-md-0">
-                                    <p class="h5">About the data</p>
+                                    <p class="h5 pt-1">About the data</p>
 
                                     <p class="h6 border-top pt-1">How the data were calculated</p>
                                     <p id="howCalculated"> <!-- How calculated inserted here --> </p>
