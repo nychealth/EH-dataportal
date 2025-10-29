@@ -472,7 +472,7 @@ $color-data-explorer: #0A408A;
 
     .tab-content {
       max-height: calc(100vh - 8rem);
-      overflow-y: auto;
+      overflow-y: visible;
     }
   }
 
