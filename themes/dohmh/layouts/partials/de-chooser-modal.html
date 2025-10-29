@@ -18,7 +18,7 @@
                class="font-weight-bold"
                data-indicators='{{ $json }}'
                onclick="getIndicatorsForTopic(`{{ .Title }}`, this.dataset.indicators, `{{ .RelPermalink }}`)">
-                {{ .Title }}</a>: <em>if blurb, blurb.</em>
+                {{ .Title }}</a>:{{ with .Params.blurb }}: {{ . }} {{ else }} <em>If blurb then blurb.</em> {{ end }}
         </p>
     {{- end }}
 {{- end }}
@@ -41,7 +41,7 @@
                class="font-weight-bold"
                data-indicators='{{ $json }}'
                onclick="getIndicatorsForTopic(`{{ .Title }}`, this.dataset.indicators, `{{ .RelPermalink }}`)">
-                {{ .Title }}</a>: <em>if blurb, blurb.</em>
+                {{ .Title }}</a>:{{ with .Params.blurb }}: {{ . }} {{ else }} <em>If blurb then blurb.</em> {{ end }}
         </p>
     {{- end }}
 {{- end }}

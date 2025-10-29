@@ -37,14 +37,18 @@ const values = attributeData.map(d => d.Value).filter(v => v != null);
 const minValue = Math.min(...values);
 const maxValue = Math.max(...values);
 
+document.getElementById('minVal').innerHTML = minValue
+document.getElementById('maxVal').innerHTML = maxValue
+
+
 // --- Create the color scale ---
 const colorScale = d3.scaleSequential()
-    .domain([maxValue, minValue])  // ✅ Correct order: min first, max second
+    .domain([maxValue, minValue]) 
     .interpolator(d3.interpolateViridis);
 
 // --- Define style function ---
 function styleFeature(feature) {
-  const value = feature.properties.Value;  // use Value directly now
+  const value = feature.properties.Value;  
   return {
     fillColor: value != null ? colorScale(value) : '#ccc',  // gray if no data
     weight: 0.35,
@@ -53,7 +57,25 @@ function styleFeature(feature) {
   };
 }
 
-// --- Function to create popup content ---
+function highlightFeature(e) {
+  const layer = e.target;
+  layer.setStyle({
+    weight: 3,
+    color: '#000',      // or something that contrasts well
+    fillOpacity: 0.9    // optional: slightly emphasize fill
+  });
+
+  // Bring to front so boundary is visible above neighbors
+  if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+    layer.bringToFront();
+  }
+}
+
+function resetHighlight(e) {
+  geojsonLayer.resetStyle(e.target);
+}
+
+// --- Create popup content ---
 function createPopupContent(properties) {
 
   return `
@@ -67,9 +89,51 @@ function createPopupContent(properties) {
 }
 
 // --- Add the GeoJSON to the map ---
-L.geoJson(geojson, {
+const geojsonLayer = L.geoJson(geojson, {
   style: styleFeature,
   onEachFeature: function(feature, layer) {
+
+    // Existing popup binding
     layer.bindPopup(createPopupContent(feature.properties));
+
+    // Hover to update legend
+    layer.on('mouseover', function(e) {
+      const props = feature.properties;
+
+      // Update legend text
+      document.getElementById('hoveredGeo').textContent = props.Geography || 'Unknown';
+      document.getElementById('hoveredValue').textContent = props.Value ?? '—';
+
+      // Update Unites, Eventually
+      document.getElementById('hoveredUnits').textContent = 'per 10,000';
+      
+      // Move the legend tick
+      const percentage = calculatePercent(props.Value); 
+      document.querySelector('.viridis-tick').style.left = percentage + '%';
+
+      highlightFeature(e); 
+    });
+
+    // Reset when mouse leaves
+    layer.on('mouseout', function(e) {
+      document.getElementById('hoveredGeo').textContent = 'Hover for details';
+      document.getElementById('hoveredValue').textContent = '';
+      document.getElementById('hoveredUnits').textContent = '';
+
+      resetHighlight(e);
+    });
   }
 }).addTo(map);
+
+
+function calculatePercent(x) {
+
+  const range = maxValue - minValue
+
+  const placement = x - minValue 
+
+  const calculation = 100 * placement / range
+
+  return calculation
+
+}

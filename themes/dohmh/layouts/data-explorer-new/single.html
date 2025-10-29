@@ -6,10 +6,15 @@
         border-bottom-left-radius: 50%;
     }
 
+    .viridis-wrapper {
+  position: relative;
+  width: 100%;
+  height: 22px; /* slightly taller to fit text */
+}
 
     .viridis-rect {
       width: 100%;
-      height: 22px;
+      height: 100%;
       border-radius: 6px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.12);
       /* Viridis-like gradient (several sampled hex stops) */
@@ -20,6 +25,41 @@
         #3b528b 80%,
         #440154 100%)
         }
+
+        /* Min and Max labels */
+.legend-min,
+.legend-max {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.65rem;
+  font-weight: bold;
+  padding: 0 4px;
+  line-height: 1;
+  text-shadow: 0 0 3px rgba(0,0,0,0.5); /* improves contrast on bright areas */
+}
+
+.legend-min {
+  left: 0;
+  color: black;
+}
+
+.legend-max {
+  right: 0;
+  color: #fff;
+}
+
+/* Tick */
+.viridis-tick {
+  position: absolute;
+  left: 50%;              /* static for now; change dynamically later */
+  transform: translateX(-50%);
+  width: 2px;
+  height: 26px;           /* extends slightly above and below the bar */
+  background: #000;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
 
 </style>
 
@@ -175,10 +215,37 @@
             </div>
 
             <div class="position-absolute de-legend">
-                    <div class="float-left pl-1 fs-xs font-weight-bold" style="padding-top: 2px;">Min</div>
-                    <div class="float-right pr-1 text-white fs-xs font-weight-bold" style="padding-top: 2px;">Max</div>
-                  <div class="viridis-rect" role="img" aria-label="Rectangle filled with Viridis color scale"></div>
+
+            <!-- Row 1 -->
+            <div class="d-flex justify-content-between fs-sm mb-1">
+                <div><span id="hoveredGeo">Hover for details</span>:</div> 
+                <div class="font-weight-bold">
+                    <span id="hoveredValue">
+                        <!-- Value -->
+                    </span> 
+                    <span id="hoveredUnits">
+                        <!-- Units -->
+                    </span>
+                </div>
             </div>
+
+            <!-- Wrapper for gradient, labels, and tick -->
+            <div class="viridis-wrapper position-relative">
+                <div class="viridis-rect" role="img" aria-label="Rectangle filled with Viridis color scale"></div>
+
+                <!-- Overlayed labels and tick -->
+                <div class="legend-min">
+                    <span id="minVal">Min</span>
+                </div>
+                <div class="legend-max">
+                    <span id="maxVal">Max</span>
+                </div>
+                <div class="viridis-tick"></div>
+            </div>
+
+            </div>
+
+
 
 
             <div class="position-absolute de-tabs fs-sm">
