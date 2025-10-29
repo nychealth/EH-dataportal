@@ -118,15 +118,17 @@ function checkURL() {
 
     const chosenIndicator = urlParams.get('id');
 
+
     console.log('Chosen indicator:' + chosenIndicator) // output indicator ID
 
     printIndicatorInfo(chosenIndicator)
 
     draw311Buttons(chosenIndicator)
 
-}
 
-checkURL()
+
+
+}
 
 // --------------------------------------------------------
 // Print basic indicator info from metadata to page 

@@ -627,7 +627,13 @@
 <script>
 // fire modal
   $(document).ready(function() {
-    $('#topicSelector').modal('show');
+
+    let url = new URL(window.location.href);
+
+    // Add the parameter
+    url.searchParams.set('home', 'true');
+
+    $('#topicSelector').modal('show'); // fire Topic Selector
   });
 
 function updateDropdownText(clickedItem) {
