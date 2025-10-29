@@ -1,7 +1,11 @@
+// --------------------------------------------------------
 // all indicator metadata as global variable
+// --------------------------------------------------------
 let indicators = null; 
 
-// Immediately start loading metadata
+// --------------------------------------------------------
+// Immediately start loading metadata.json
+// --------------------------------------------------------
 const indicatorsPromise = fetch(`${data_repo}${data_branch}/indicators/metadata/metadata.json`)
   .then(response => response.json())
   .then(data => {
@@ -19,7 +23,9 @@ async function ensureIndicatorsLoaded() {
   return await indicatorsPromise; 
 }
 
-
+// --------------------------------------------------------
+// When a topic is selected, show indicator menu modal, and print indicators
+// --------------------------------------------------------
 function getIndicatorsForTopic(title, indicatorsJSON, dest) {
     
     const indicators = JSON.parse(indicatorsJSON);
@@ -39,7 +45,9 @@ function getIndicatorsForTopic(title, indicatorsJSON, dest) {
 }
 
 
-
+// --------------------------------------------------------
+// Print chosen topic's indicators to indicator selection modal 
+// --------------------------------------------------------
 async function printIndicators(x, destination) {
     // Destination
     const indicatorDestination = document.getElementById("indicatorDestination");
@@ -76,7 +84,7 @@ async function printIndicators(x, destination) {
                 <div class="indicator-card mb-1">
                     <div class="border p-2 border-gray-300 rounded">
                         <div class="d-flex justify-content-between align-items-start">
-                            <h6><a href='${destination}'>${indicator.IndicatorName}</a></h6>
+                            <h6><a href='${destination}?id=${indicator.IndicatorID}'>${indicator.IndicatorName}</a></h6>
                         </div>
                         <p class="mb-0" style="font-size: 14px;">${indicator.IndicatorDescription}</p>
                     </div>
@@ -98,3 +106,56 @@ async function printIndicators(x, destination) {
 }
 
 
+// --------------------------------------------------------
+// Check for URL parameter (?id=XXXX) and load indicator metadata 
+// --------------------------------------------------------
+
+function checkURL() {
+    
+    const queryString = window.location.search;
+    
+    const urlParams = new URLSearchParams(queryString);
+
+    const chosenIndicator = urlParams.get('id');
+
+    console.log('Chosen indicator:' + chosenIndicator) // output indicator ID
+
+    printIndicatorInfo(chosenIndicator)
+
+    draw311Buttons(chosenIndicator)
+
+}
+
+async function printIndicatorInfo(x) {
+
+    x = Number(x)
+
+    // Ensure metadata are loaded
+    const data = await ensureIndicatorsLoaded();
+    console.log("Indicators ready!", data);
+
+    // Find the indicator object where IndicatorID matches x
+    const indicator = data.find(d => d.IndicatorID === x);
+    if (!indicator) {
+        console.warn("No indicator found for ID:", x);
+        return;
+    }
+
+    // Query holders
+    const nameHolders = document.querySelectorAll('.indicator-name');
+    const descriptionHolders = document.querySelectorAll('.indicator-description');
+
+    // Fill name fields
+    nameHolders.forEach(el => {
+        el.textContent = indicator.IndicatorName ?? "";
+    });
+
+    // Fill description fields
+    descriptionHolders.forEach(el => {
+        el.textContent = indicator.IndicatorDescription ?? "";
+    });
+
+}
+
+
+checkURL()
