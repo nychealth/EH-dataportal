@@ -18,11 +18,11 @@ seo_description: "Data sources"
 description: "Data sources"
 ---
 
-The Environment and Health Data Portal hosts over 200 datasets on topics like air quality, climate, pests, housing, and much more. These data can tell us a lot about how environmental factors like housing, air quality, and socioeconomic status can shape health from neighborhood to neighborhood. But where does all of this data come from? How often is it updated? And how do we select which datasets to feature?
+The Environment and Health Data Portal hosts over 200 datasets on topics like air quality, climate, pests, housing, and much more. These data can tell us how environmental factors like housing, air quality, and socioeconomic status can shape health from neighborhood to neighborhood. But where does this data come from? How often is it updated? And how do we pick which datasets to feature?
 
 ## Question #1: Where do you get your data?
 
-We get data from many sources: some from NYC Health or other city agencies like NYC Parks or Department of Investigations (DOI); and some from outside sources, like the CDC, SPARCS, the U.S. Census, and the EPA. Here are some of the core ones:
+We get data from many sources: some from NYC Health or other city agencies like <a href="https://www.nycgovparks.org/">NYC Parks</a> or Department of Investigations; and some from outside sources, like the [CDC](https://www.cdc.gov/), [SPARCS](https://www.health.ny.gov/statistics/sparcs/), the [U.S. Census](https://www.census.gov/), and the [EPA](https://www.epa.gov/). Here are some of the core ones:
 
 <hr>
 <div aria-hidden="true">
@@ -197,7 +197,7 @@ Collected continuously and systematically, surveillance data includes some regul
 <div class="collapse" id="panel-acc-button-05" role="tabpanel" aria-labelledby="acc-button-05" data-parent="#accordion-01">
     <div class="card-body  fs-md">
 <p>
-There are other kinds of data too. There is administrative data, which is collected by healthcare or government organizations. An example of this are evictions (court-ordered), which are available through the Department of Investigations (DOI). There is also operational data, like our litter basket coverage data, which is from the Department of Sanitation (DSNY), but available through NYC Open Data.
+There are other kinds of data, too. There is administrative data, which is collected by healthcare or government organizations. An example of this are evictions (court-ordered), which are available through the Department of Investigations (DOI). There is also operational data, like our litter basket coverage data, which is from the Department of Sanitation (DSNY), but available through NYC Open Data.
 
 NYC’s Local Law 11 requires city agencies to make data considered “public” available through a single data portal so that anyone can access and use it. This type of transparency reflects the idea that public data belongs to the public, and empowers all New Yorkers to have understand key information about civic life. Note that not all data used by city agencies is considered public; due to privacy laws, much health data is excluded from this requirement.
 
