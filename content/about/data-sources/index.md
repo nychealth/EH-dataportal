@@ -54,7 +54,7 @@ We get data from many sources: some from NYC Health or other city agencies like 
         <p><strong>What is the Community Health Survey (CHS)?</strong> This phone survey is conducted by NYC Health and interviews about 10,000 New Yorkers each year. Running since 2009, CHS reports detailed data on many chronic diseases and health behaviors, helping us see trends at the neighborhood, borough, and citywide level.<br><br>
         <strong>CHS indicators include:</strong>
         <ul>
-        <li>Mental health: Adults with depression</li>
+        <li><a href="../../data-explorer/mental-health/?id=2417">Mental health: Adults with depression</a></li>
         <li>Health care: Adults with health insurance</li>
         <li>Asthma: Adults with a recent asthma attack</li>
         <li>Physical activity: Recent exercise</li>
@@ -223,8 +223,8 @@ Another great example are transit datasets. Accessible subway stations and bus s
 
 ## Question #3: Why is some of your data out of date?
 
-There are many different kinds of environment and health data with many different characteristics. These data (ranging from neighborhood poverty and cold-stress hospitalizations, to Citi bike station density and cockroach sightings) aren’t all measured, collected, recorded, organized, and reported in the same way, or within the same time period.
+There are many different kinds of environment and health data with many different characteristics. These data (ranging from neighborhood poverty and cold-stress hospitalizations, to Citi bike station density and cockroach sightings) aren’t all measured, collected, recorded, organized, and reported in the same way, or within the same time period.Sometimes data is also aggregated into multi-year batches to protect privacy while being stable enough to show impacts at the neighborhood level.
 
-Sometimes data is also aggregated into multi-year batches to protect privacy while being stable enough to show impacts at the neighborhood level. As a result, some types of data aren't updated as frequently as others. But that doesn’t mean that older datasets don’t tell us valuable information. Significant trends in health can take a long time to show up. Ultimately, we use data for many reasons, including to support our decisions. If the data shows that one group is more likely to suffer from heat-related illness, for example, we know that isn’t going to be addressed overnight. We can use it to inform programs that span multiple years – even if we do get a fresh batch of data every year, it’s not likely to change our core strategy.
+As a result, some types of data aren't updated as frequently as others. But that doesn’t mean that older datasets don’t tell us valuable information. Significant trends in health can take a long time to show up. Ultimately, we use data for many reasons, including to support our decisions. If the data shows that one group is more likely to suffer from heat-related illness, for example, we know that isn’t going to be addressed overnight. We can use it to inform programs that span multiple years – even if we do get a fresh batch of data every year, it’s not likely to change our core strategy.
 
 To sum up, each of our sources collect data in different ways and on different timelines -- meaning that things don't always line up perfectly. But they still all capture valuable information about health and the environment that shapes it in NYC.
