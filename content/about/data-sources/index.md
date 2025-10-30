@@ -55,9 +55,9 @@ We get data from many sources: some from NYC Health or other city agencies like 
         <strong>CHS indicators include:</strong>
         <ul>
         <li><a href="../../data-explorer/mental-health/?id=2417">Mental health: Adults with depression</a></li>
-        <li>Health care: Adults with health insurance</li>
-        <li>Asthma: Adults with a recent asthma attack</li>
-        <li>Physical activity: Recent exercise</li>
+        <li><a href="../../data-explorer/economic-conditions/?id=2132">Health care: Adults with health insurance</a></li>
+        <li><a href="../../data-explorer/asthma/?id=18">Asthma: Adults with a recent asthma attack</a></li>
+        <li><a href="../../data-explorer/physical-activity/?id=2060">Physical activity: Recent exercise</a></li>
         </ul>
       <strong>What we use it for: </strong>CHS data helps us track the health of New Yorkers and connect the dots between health behavior and health status. This can then help us prioritize programs to help where it matters most. If we see, for example, that there are fewer adults with a doctor in West Queens, we can try to address that through campaigns and outreach. Or if there are more adults with a recent asthma attack in the South Bronx, we can communicate with healthcare providers, neighborhood centers, and schools to provide resources and and education, prevention, and mitigation plans.</p>
     </div>
@@ -215,7 +215,7 @@ We try to paint a picture of how environments shape health in NYC across time �
 
 <img src="../data-sources/Litterbasket_NTA.png">
 
-But sometimes we see something interesting on NYC open data, or another source, that provides interesting context to NYC’s environment and health. A great example of this is our litter basket coverage data. These humble amenities may be overlooked, but have a strong connection to health: when there are more litter baskets, there is less litter, and fewer pests. Fewer pests are healthier for a neighborhood and <a href="../../data-stories/sanitation">cleaner streets have a positive impact on mental health and feelings of safety and positivity</a>. Public bathrooms also make it easier for people to partake in public life.
+But sometimes we see something on NYC open data, or another source, that provides interesting context to NYC’s environment and health. For example, our litter basket coverage data. These humble amenities may be overlooked, but have a strong connection to health: when there are more litter baskets, there is less litter, and fewer pests. Fewer pests are healthier for a neighborhood and <a href="../../data-stories/sanitation">cleaner streets have a positive impact on mental health and feelings of safety and positivity</a>. Public bathrooms also make it easier for people to partake in public life.
 
 <!-- maybe delete one of these examples -->
 
