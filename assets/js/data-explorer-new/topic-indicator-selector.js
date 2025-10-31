@@ -58,7 +58,7 @@ async function printIndicators(x, destination) {
 
     // Ensure metadata are loaded
     const data = await ensureIndicatorsLoaded();
-    console.log("Indicators ready!", data);
+    console.log("Indicators ready to print to indicator selection modal!", data);
 
     // Clear existing content
     indicatorDestination.innerHTML = '';
@@ -116,16 +116,15 @@ function checkURL() {
     
     const urlParams = new URLSearchParams(queryString);
 
-    const chosenIndicator = urlParams.get('id');
+    const chosenIndicator = Number(urlParams.get('id'));
 
-
-    console.log('Chosen indicator:' + chosenIndicator) // output indicator ID
+    console.log('Chosen indicator: ', chosenIndicator) // output indicator ID
 
     printIndicatorInfo(chosenIndicator)
 
     draw311Buttons(chosenIndicator)
 
-
+    printMenus(chosenIndicator)
 
 
 }
@@ -135,11 +134,9 @@ function checkURL() {
 // --------------------------------------------------------
 async function printIndicatorInfo(x) {
 
-    x = Number(x)
-
     // Ensure metadata are loaded
     const data = await ensureIndicatorsLoaded();
-    console.log("Indicators ready!", data);
+    console.log("Indicators ready to print to page!");
 
     // Find the indicator object where IndicatorID matches x
     const indicator = data.find(d => d.IndicatorID === x);

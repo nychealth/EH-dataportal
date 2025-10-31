@@ -99,13 +99,13 @@
                                 <div class="dropdown fs-sm">
                                     <div class="font-weight-bold mr-2 text-primary fs-sm mb-1">Measure: </div>
                                     <button class="btn fs-sm d-flex align-items-center w-100 text-left bg-white font-weight-normal" type="button" id="dynamicDropdownButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <span class="flex-grow-1">Estimated Annual Rate per 100,000</span>
+                                        <span class="flex-grow-1 measure-name">Estimated Annual Rate per 100,000</span>
                                         <i class="fas fa-chevron-down ml-auto text-primary"></i>
                                     </button>
-                                    <div class="dropdown-menu dropdown-menu-de w-100 border-none" aria-labelledby="dynamicDropdownButton1">
+                                    <div class="dropdown-menu dropdown-menu-de w-100 border-none measures-holder" aria-labelledby="dynamicDropdownButton1">
                                         <button class="dropdown-item" type="button" onclick="updateDropdownText(this)">Estimated Annual Rate per 100,000</button>
                                         <button class="dropdown-item" type="button" onclick="updateDropdownText(this)">Another measure</button>
-                                        <button class="dropdown-item" type="button" onclick="updateDropdownText(this)">Another measure</button>
+                                        <button class="dropdown-item" type="button" onclick="updateDropdownText(this)">Another oops measure</button>
                                     </div>
                                 </div>
                             </div>
@@ -163,10 +163,10 @@
                                 <div class="dropdown fs-sm">
                                     <div class="font-weight-bold mr-2 text-primary fs-sm mb-1">Measure: </div>
                                     <button class="btn fs-sm d-flex align-items-center w-100 text-left bg-white font-weight-normal" type="button" id="dynamicDropdownButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <span class="flex-grow-1">Estimated Annual Rate per 100,000</span>
+                                        <span class="flex-grow-1 measure-name">Change measure</span>
                                         <i class="fas fa-chevron-down ml-auto text-primary"></i>
                                     </button>
-                                    <div class="dropdown-menu dropdown-menu-de w-100 border-none" aria-labelledby="dynamicDropdownButton1">
+                                    <div class="dropdown-menu dropdown-menu-de w-100 border-none measures-holder" aria-labelledby="dynamicDropdownButton1">
                                         <button class="dropdown-item" type="button" onclick="updateDropdownText(this)">Estimated Annual Rate per 100,000</button>
                                         <button class="dropdown-item" type="button" onclick="updateDropdownText(this)">Another measure</button>
                                         <button class="dropdown-item" type="button" onclick="updateDropdownText(this)">Another measure</button>
@@ -181,7 +181,7 @@
                                 <div class="dropdown fs-sm">
                                     <div class="font-weight-bold mr-2 text-primary fs-sm mb-1">Boundary: </div>
                                     <button class="btn fs-sm d-flex align-items-center w-100 text-left bg-white font-weight-normal" type="button" id="dynamicDropdownButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <span class="flex-grow-1">Citywide</span>
+                                        <span class="flex-grow-1">Change boundary</span>
                                         <i class="fas fa-chevron-down ml-auto text-primary"></i>
                                     </button>
                                     <div class="dropdown-menu dropdown-menu-de w-100 border-none" aria-labelledby="dynamicDropdownButton2">
@@ -199,7 +199,7 @@
                                 <div class="dropdown fs-sm">
                                     <div class="font-weight-bold mr-2 text-primary fs-sm mb-1">Year: </div>
                                     <button class="btn fs-sm d-flex align-items-center w-100 text-left bg-white font-weight-normal mb-2" type="button" id="dynamicDropdownButton3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <span class="flex-grow-1">2025</span>
+                                        <span class="flex-grow-1">Change time</span>
                                         <i class="fas fa-chevron-down ml-auto text-primary"></i>
                                     </button>
                                     <div class="dropdown-menu dropdown-menu-de w-100 border-none" aria-labelledby="dynamicDropdownButton3">
@@ -651,6 +651,10 @@
 {{- $selector            := resources.Get "js/data-explorer-new/topic-indicator-selector.js" -}}
 {{- $selector_secure     := $selector | partial "short-fingerprint.html" -}}
 <script type="text/javascript" src="{{ $selector_secure.RelPermalink }}" integrity="{{ $selector_secure.Data.Integrity }}"></script>
+
+{{- $menus            := resources.Get "js/data-explorer-new/menu.js" -}}
+{{- $menus_secure     := $menus | partial "short-fingerprint.html" -}}
+<script type="text/javascript" src="{{ $menus_secure.RelPermalink }}" integrity="{{ $menus_secure.Data.Integrity }}"></script>
 
 
 <script>
