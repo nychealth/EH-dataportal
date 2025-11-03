@@ -115,7 +115,11 @@ function renderFullSugarTable() {
 
   // Populate dropdown
   const brandFilter = $("#brandFilter");
-  const uniqueBrands = [...new Set(sugarData.map(d => d["Brand Name"]))].sort();
+    // Normalize brands by trimming whitespace
+    sugarData.forEach(d => d["Brand Name"] = d["Brand Name"].trim());
+
+    const uniqueBrands = [...new Set(sugarData.map(d => d["Brand Name"]))].sort();
+
   uniqueBrands.forEach(b => brandFilter.append(`<option value="${b}">${b}</option>`));
 
   // Filtering
