@@ -6,6 +6,7 @@ azlink: "https://www.nyc.gov/site/doh/health/health-topics/air-quality.page"
 seo_title: "Air quality data for NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
 description: "Datasets and visualizations of air quality data in NYC."
+blurb: "PM2.5, Ozone, and other pollutants."
 tags:
 categories: ["airquality", "childhealth", "publicspace", "neighborhoods"]
 datatables: true
@@ -14,6 +15,7 @@ leaflet: true
 newDataExplorer: true
 headerDE: true
 excludeFooter: true
+
 keywords:
   [
     "air quality",

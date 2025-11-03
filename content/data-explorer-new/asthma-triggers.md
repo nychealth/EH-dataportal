@@ -6,6 +6,7 @@ azlink: "https://www.nyc.gov/site/doh/health/health-topics/asthma.page"
 seo_title: "Data on asthma triggers in NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
 description: "Datasets and visualizations of asthma trigger data in NYC."
+blurb: "Homes with pests and mold"
 datatables: true
 arquero: true
 leaflet: true
@@ -49,7 +50,6 @@ relatedData:
     url: "housing-maintenance/"
   - title: "Mice and rats"
     url: "mice-and-rats/"
-
 ---
 
 Housing conditions can trigger asthma. In New York City, childhood asthma is a significant health threat that affects thousands of children per year.

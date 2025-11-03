@@ -6,6 +6,7 @@ azlink: "https://www.nyc.gov/site/doh/health/health-topics/asthma.page"
 seo_title: "Asthma data for NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
 description: "Datasets and visualizations of asthma data in NYC."
+blurb: "Adult and youth health outcomes"
 datatables: true
 arquero: true
 leaflet: true

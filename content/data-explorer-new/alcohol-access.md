@@ -6,6 +6,7 @@ azlink: "https://www.nyc.gov/site/doh/health/health-topics/alcohol-and-drug-use.
 seo_title: "Alcohol access data for NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
 description: "Datasets and visualizations of alcohol data in NYC."
+blurb:
 tags:
 categories: ["foodanddrink", "neighborhoods"]
 keywords: ["drink", "alcohol", "neighborhoods"]
