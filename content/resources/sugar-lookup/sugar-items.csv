@@ -1,851 +1,480 @@
-﻿Brand Name,Item Name,Calories needed to have 50g of added sugar
+﻿Brand Name,Item Name,Calories needed for 50g of added sugar
 1919 Root Beer,Classic American Root Beer,243
 1919 Root Beer,Caffeine Free Root Beer,243
-7Up,Lemon Lime Flavored Soda,185
 7Up,"Soda, Cherry",184
+7Up,Lemon Lime Flavored Soda,185
 7Up,"Soda, Lemon Lime Flavored",184
 7Up,"Soda, Caffeine Free, Lemon Lime",184
-7Up,Watermelon & Strawberry Flavored Soda,184
-7Up,"Soda, Cherry Flavored",184
-7Up,Soda,200
-7Up,Tropical Flavored Soda,184
 7Up,"Soda, Shirley Temple, Pomegranate and Cherry",189
-A&W,Ice Cream Sundae Soda,188
-A&W,Cream Soda,191
 A&W,Root Beer Soft Drink,186
 A&W,"Soda, Cream",185
-A&W,Root Beer,185
-A&W,Root Beer Cotton Candy,196
-A&W,"Dessert Topper, Root Beer Float",241
-A&W,"Root Beer, Aged Vanilla",189
-Ale81,"Soft Drink, The Original",200
+A&W,Root Beer,186
 Ale81,Paw Paw Soft Drink,200
-Ale81,"Soft Drink, Blackberry",200
+Ale81,"Soft Drink, The Original",200
 Ale81,Strawmelon Softdrink,200
+Ale81,"Soft Drink, Blackberry",200
 Ale81,"Soft Drink, Cherry",200
-Ale81,"Soft Drink, Orange Cream",200
-Ale81,"Cherry, Soft Drink",194
 Arizona,with Ginseng and Honey Green Tea,200
-Arizona,Green Tea,196
 Arizona,Green Tea with Ginseng and Honey,182
-Arizona,"Iced Tea, Raspberry",194
-Arizona,Half Iced Tea & Half Lemonade,222
+Arizona,Green Tea,196
 Arizona,"Lemon Tea, Premium",203
 Arizona,"Green Tea, with Ginseng and Honey",196
-Arizona,Lite Half & Half Iced Tea Lemonade,222
-Arizona,"Fruit Juice Cocktail, Fruit Punch",237
-Arizona,Southern Style Real Brewed Tea,203
-Arizona,"Sweet Tea, Southern-Style, Real Brewed",203
-Arizona,Blueberry White Tea,212
-Arizona,Raspberry Iced Tea,210
-Arizona,Frost Chill Zicle Juice Cocktail,219
+Arizona,Half Iced Tea & Half Lemonade,222
+Arizona,"Iced Tea, Raspberry",194
 Barq's,Root Beer Carbonated Beverage,182
 Barq's,Red Creme Soda,189
 Barq's,Root Beer,189
-Barq's,Root Beer Fridge Pack,182
-Barq's,Creme Soda,182
-Barq's,"Creme Soda, French Vanilla, Fridge Pack",178
 Big Red,Soda,186
-Big Red,Carbonated Water,186
 Big Red,Carbonated Beverage,186
+Big Red,Carbonated Water,186
 Blue Sky,Cherry Vanilla Cane Sugar,210
 Body Armor,Strawberry Kiwi Flavored Flash I.V. Rapid Rehydration Electrolyte Beverage,267
 Body Armor,Tropical Punch Flash I.V. Electrolyte Beverage,267
 Body Armor,Grape Rapid Rehydration Electrolyte Beverage,267
 Body Armor,"Super Drink, Blackout Berry",222
 Body Armor,"Super Drink, Pineapple Coconut",231
-Body Armor,Flash I.V. Cucumber Lime Flavored Electrolyte Beverage,267
-Body Armor,Fruit Punch Sports Drink,224
-Body Armor,Fruit Punch SuperDrink,237
-Body Armor,Orange Mango Flavored SuperDrink,231
-Body Armor,"Superior Hydration Super Drink, Orange Mango",237
-Body Armor,Fruit Punch Super Hydration,227
-Body Armor,Strawberry Kiwi Flash I.V. Rapid Rehydration Electrolyte Beverage,267
 Bolthouse Farms,Chocolate Protein Shake,541
+Bolthouse Farms,Vanilla Bean Protein Shake,680
 Bolthouse Farms,Banana Honey Protein Shake with Almond Butter,690
 Bolthouse Farms,"Coffee Beverage, Mocha  Cappuccino",413
 Bolthouse Farms,"Soy & Tea Beverage, Vanilla Chai",364
-Bolthouse Farms,Vanilla Bean Protein Shake,680
-Bolthouse Farms,"Breakfast Smoothie, Strawberry Parfait",648
 Bolthouse Farms,Coffee Protein Shake with Caffeine,556
-Bolthouse Farms,Dairy Free Vanilla Cinnamon Protein Shake with Oatmilk,519
-Bolthouse Farms,Dairy Free Chocolate Salted Caramel Protein Shake with Oatmilk,563
-Bolthouse Farms,"Coffee Beverage, Mocha Cappuccino",429
+Bolthouse Farms,"Breakfast Smoothie, Strawberry Parfait",648
 Brisk,Lemon Flavor Iced Tea,206
 Brisk,Lemon Iced Tea,206
 Brisk,"Iced Tea, Strawberry Melon",206
 Brisk,Blood Orange Ice Tea,206
 Brisk,"Iced Tea, Blueberry Pomegranate",188
-Brisk,"Iced Tea, Lemon",206
-Brisk,"Iced Tea, Passion Pineapple Punch",188
-Brisk,Fruit Punch Juice Drink,206
-Brisk,Raspberry Iced Tea,206
-Brisk,"Half & Half, Iced Tea + Lemonade",188
-Brisk,Passionfruit Iced Tea,206
-Brisk,Sweet Tea Iced Tea,176
-Brisk,Peach Iced Tea,184
-Brisk,"Iced Tea, Blackberry Smash",188
 Califia Farms,Pumpkin Spice Oat Barista Blend with Oatmilk,500
 Califia Farms,Pumpkin Spice Almond Latte,375
 Califia Farms,"Almond Latte, Mocha, Plant Based",400
 Califia Farms,"Almond Latte, Chai",400
-Califia Farms,"Limeade, Ginger",222
-Califia Farms,"Lemonade, Tart Cherry",229
-Califia Farms,Mocha Cold Brew Coffee with Almondmilk,400
+Califia Farms,Cold Brew Mocha Coffee with Almondmilk,400
 Canada Dry,"Ginger Ale, Caffeine Free",191
 Canada Dry,Fruit Splash Cherry Ginger Ale,194
 Canada Dry,Ginger Ale,197
 Canada Dry,"Ginger Ale, Cherry, Fruit Splash",195
 Canada Dry,Tonic Water,200
-Canada Dry,"Ginger Ale, Cranberry",194
-Canada Dry,"Cherry Ginger Ale, Fruit Splash",194
-Canada Dry,"Ginger Ale, Blackberry",195
-Canada Dry,"Ginger Ale, Caffeine Free, Blackberry",194
-Canada Dry,Blackberry Ginger Ale,194
-Canada Dry,Bitter Lemon,188
-Canada Dry,Black Cherry Ginger Ale,196
-Canada Dry,Blackberry Ginger Ale Soda,195
-Canada Dry,"Soda, Caffeine Free, Ginger Ale",194
-Canada Dry,"Ginger Ale, Sparkling, Green Tea",200
 Capri Sun,Pacific Cooler Juice Drink Blend,281
-Capri Sun,Fruit Punch Juice Drink Blend,300
+Capri Sun,Strawberry Kiwi Juice Drink Blend,250
 Chameleon Cold-Brew,Apple Cider Vinegar Cold-Brew Tea,219
 Cheerwine,Real Cane Sugar Soft Drink,179
+Cheerwine,Soft Drink,179
 Coca-Cola,Cherry Soda,192
-Coca-Cola,Coca-Cola Soda,183
 Coca-Cola,"Cola, Original Taste",179
-Coca-Cola,"Cola, Vanilla",179
 Coca-Cola,"Flavored Soda, Cherry",181
+Coca-Cola,Coca-Cola Soda,183
+Coca-Cola,"Cola, Vanilla",179
 Coca-Cola,"Carbonated Beverage, Original Taste",179
-Coca-Cola,"Soda, Original Taste, Fridge Pack",179
-Coca-Cola,Orange Cream,179
+Coca-Cola,Original Taste Coca Cola,179
 Coca-Cola,Orange Cream Orange Vanilla Soda,185
+Coca-Cola,Orange Cream,179
 Coca-Cola,Soda,179
-Coca-Cola,Cherry Vanilla Cola,185
-Coca-Cola,Razzleberry Peach Tea,200
-Coca-Cola,Space Flavored Cola,188
-Coca-Cola,Cinnamon Flavored Soda Cola,188
-Coca-Cola,Orange Cream Vanilla Flavored Soda,185
+Frostie,Root Beer,186
+Frostie,"Soda, Blue Cream",223
+Frostie,Strawberry Soda,196
+Frostie,Blue Cream Soda,190
+Frostie,Blue Lemonade,192
+Fruta,"Premium Fruit Juice, Guava Pineapple Juice Drink",281
+Fruta,Premium Juice Fruit Punch,250
+Fruta,"Premium Juice, Guava Pineapple",281
+Fuze,Lemon Iced Tea,184
+Fuze,"Iced Tea, Lemon",207
+Fuze,Lemon Plus Sweet Fruit Flavored Black Tea,182
+Gatorade,"Thirst Quencher Powder, Lemon-Lime",190
+Gatorade,Lemon Lime Thirst Quencher,190
+Gatorade,Cool Blue Thirst Quencher,190
+Gatorade,"Thirst Quencher, Fruit Punch",190
+Gatorade,"Thirst Quencher, Perform 02, Frost Glacier Freeze",190
+Gatorade,"Thirst Quencher, Orange",190
+Gatorade,"Thirst Quencher, Glacier Freeze",190
+Gatorade,"Fruit Punch Berry, Thirst Quencher",190
+Gatorade,Lime Cucumber Thirst Quencher,190
+Gatorade,"Thirst Quencher, Glacier Cherry",190
+Glaceau,Energy Tropical Citrus Vitamin Water,196
+Glaceau,Blue Raspberry Limeade Elevate Vitamin Water,205
+Glaceau,Acai-Blueberry-Pomegranate Vitamin Water,192
+Glaceau,Tropical Citrus Vitamin Water,185
+Glaceau,Dragonfruit Vitaminwater,196
+Gold Peak,Iced Sweet Tea,198
+Gold Peak,"Brewed Tea, Green Tea, Real",197
+Gold Peak,"Brewed Tea, Georgia Peach, Real",197
+Gold Peak,"Brewed Tea, Real, Extra Sweet",199
+Gold Peak,"Tea, Slightly Sweet",188
+Gold Peak Tea,"Iced Tea, Sweet Tea",193
+Gold Peak Tea,Green Tea,200
+Gold Peak Tea,"Lemon, Real Brewed Tea",205
+Harney & Sons,Organic Lemonade with Maple Syrup,200
+Harney & Sons,Lavender Vanilla Milk Chocolate Tea Infused Chocolate Bar,647
+Harney & Sons,Organic Orange Mango Juice Drink from Concentrate,194
+Hawaiian Punch,Fruit Juicy Red,211
+Hawaiian Punch,Candy Jellies,333
+Hawaiian Sun,Pass-O-Guava Nectar,221
+Hawaiian Sun,"Syrup, Coconut",261
+Hawaiian Sun,"Drink, Guava Nectar",234
+Hawaiian Sun,Passion Orange Juice Drink,194
+Hawaiian Sun,Coconut Syrup,261
+Health-Ade,Citrus Immune Boost Kombucha,267
+Health-Ade,Citrus Immune Boost Glow Up Kombucha,267
+Henry Weinhard's,"Gourmet Soda, Black Cherry Cream",198
+Henry Weinhard's,"Gourmet Soda, Vanilla Cream",200
+Henry Weinhard's,Root Beer,220
+Honest,Honey Green Tea,184
+Honest,"Half & Half, Just a Tad Sweet",200
+Honest,Organic Honey Green Tea,184
+Hubert's,Lemonade,200
+IBC,Root Beer,200
+IBC,Cream Soda,205
+IBC,Black Cherry Soda,198
+Jarritos,Mandarin Flavor Soda,203
+Jarritos,Grapefruit Soda,206
+Jarritos,"Soda, Guava",212
+Jarritos,"Soda, Strawberry",200
+Jarritos,Pineapple Flavored Soda,212
+Joe Tea,"Tea, Peach",202
+Joe Tea,"Tea, Raspberry",206
+Joe Tea,"Half Lemon Tea, Half Lemonade",214
+Joe Tea,Peach Tea,200
+Joe Tea,Raspberry Tea Lemonade,217
+Jones,"Soda, Berry Lemonade",212
+Jones,Cane Sugar Cream Soda,206
+Jones,Birthday Cake Soda,207
+Jones,"Cane Sugar Soda, Green Apple Flavor",212
+Jones,"Cane Sugar Soda, Root Beer",196
+Jones Soda Co.,Berry Lemonade Soda,225
+Kevita,"Sparkling Drink, Lemon Ginger, Probiotic Refresher",233
+Kevita,Pineapple Peach Kombucha,200
+Kevita,Ginger Master Brew Kombucha,200
+Kevita,Giner Master Brew Kombucha,200
+Kevita,"Sparkling Probiotic Drink, Lemon Ginger",225
+Kool-Aid,Caffeine Free Tropical Punch Drink Mix,196
+Kool-Aid,Caffeine Free Grape Drink Mix,200
+Kool-Aid,Cherry Drink Mix,196
+Kool-Aid,Grape Flavored Soda,212
+Kool-Aid,Black Cherry Soda,227
+Laziza,Non-Alcoholic Pineapple Malt Beverage,316
+Laziza,Non-Alcoholic Pomegranate Malt Beverage,316
+Laziza,Non-Alcoholic Raspberry Malt Beverage,316
+Lester's Fixins,"Soda, Pickle Flavored",202
+Lipton,Peach Iced Tea,200
+Lipton,Fusions Lemonade Iced Tea,196
+Lipton,"Iced Tea, Lemon",208
+Lipton,Raspberry White Tea,214
+Lipton,Pineapple Mango Lemonade Iced Tea,196
+Lipton,"Iced Tea Mix, Lemon",208
+Lipton,"Green Tea, With Citrus",207
+Lorina,Blood Orange Flavored Sparkling Beverage,200
+Lorina,Artisanal Sparkling Blood Orange,204
+Lorina,Artisanal Sparkling Lemonade,204
+Maine Root,"Non Alcoholic Ginger Spicy Brew,",207
+Maine Root,Caffeine Free Blueberry Soda,207
+Maine Root,Sarsaparilla,207
+Manzanita Sol,Apple Juice Drink,188
+Manzanita Sol,Apple Juice,188
+Manzanita Sol,Apple Soda,188
+Mello Yello,Citrus Flavored Soda,191
+Mello Yello,"Soda, Citrus Flavored",191
+Mello Yello,"Soda, Citrus Flavored, Fridge Pack",185
+Merchant's Craft,Washington Apple Soft Drink,219
+Merchant's Craft,Doc Merchant Soft Drink,212
+Merchant's Craft,"Soft Drink, Fizzle Berry",209
+Merchant's Craft,Strawberry Soft Drink,214
+Merchant's Craft,Caffeine Free Root Beer,214
+Minute Maid,Fruit Punch,200
+Minute Maid,Lemonade,185
+Minute Maid,"Fruit Juice, Cranberry Grape",244
+Minute Maid,"Flavored Juice Beverage, Cranberry Apple Raspberry",237
+Minute Maid,Peach Punch,200
+Minute Maid,"Juice, Mango Punch",190
+Minute Maid,"Juice, Strawberry Lemonade",194
+Mirinda,"Soft Drink, Carbonated, Orange Flavor",206
+Mirinda,"Soft Drink, Orange Flavor, Carbonated",159
+Mirinda,"Soft Drink, Orange Flavored",200
+Monster,Bad Apple Energy Drink,207
+Monster,Electric Blue Energy Drink,206
+Monster,"Java Coffee + Energy Drink, Mean Bean",458
+Monster,Java Coffee + Energy Drink,458
+Monster,Orange Dreamsicle Energy Drink,217
+Monster,"Energy Juice, Pipeline Punch",250
+Monster,"Energy Coffee, Triple Shot, Loca Mocha",478
+Monster,Rio Punch Flavor Energy plus Juice Drink,212
+Monster,Mega Energy Drink,207
+Monster,"Java Coffee + Energy, Irish Blend",475
+Schweppes,"Ginger Ale, Caffeine Free",182
+Schweppes,Ginger Ale,182
+Schweppes,Tonic Water,197
+Schweppes,Raspberry Ginger Ale,184
+Schweppes,Premium Ginger Ale,196
+Seagrams,Ginger Ale,191
+Seagrams,"Ginger Ale, Fridge Pack",197
+Shasta,Ginge Ale,206
+Shasta,"Soda, Caffeine Free, Raspberry Creme",206
+Shasta,"Cola, Root Beer, Draft Style",205
+Shasta,"Soda, Lemon Lime, Twist",200
+Shasta,"Root Beer, Caffeine Free, Draft Style",197
+Sierra Mist,"Soda, Lemon Lime",192
+Sierra Mist,Caffeine Free Lemon Lime Flavored Soda,196
+Simply,"Lemonade, All Natural",204
+Simply,Lemonade,204
+Simply,"Lemonade, with Raspberry",220
+Simply,"Lemonade, with Strawberry",220
+Simply,Strawberry Juice Drink,208
+Simply,Limeade,214
+Simply,"Cocktail, Cranberry",232
+Snapple,"Juice Drink, Snapple Apple",238
+Snapple,"Juice Drink, Kiwi Strawberry",214
+Snapple,"Juice Drink, Fruit Punch",238
+Snapple,"Juice Drink, Mango Madness",250
+Snapple,All Natural Peach Tea & Lemonade,208
+Snapple,Snapple Apple Juice Drink,238
+Snapple,Lemonade Iced Tea,210
+SoBe,"Elixir Flavored Beverage, Cranberry Grapefruit",198
+SoBe,Pina Colada Liz Blizz,202
+SoBe,Morning Patrol Strawberry Banana Drink,202
+Sprecher,Cream Craft Soda,250
+Sprecher,Strawberry Charged Lemonade Carbonated Sparkling Drink,200
+Sprecher,"Fire-Brewed Craft Soda, Root Beer",255
+Sprecher,Orange Dream Craft Soda,202
+Sprecher,Caffeinated Root Beer,255
+Sprite,Soda,184
+Sprite,"Soda, Lemon-Lime, 6 PK",189
+Sprite,"Soda, Lemon-Lime",184
+Sprite,"Soda, Cherry Lime, Chill",188
+Sprite,Lemon-Lime and Tea Flavored Soda,189
+Sprite,"Soda, Winter Spiced Cranberry",185
+Sprite,Lemon-Lime Soda,184
+Squirt,"Thirst Quencher, Caffeine Free, Grapefruit",190
+Squirt,Grapefruit Soda Thirst Quencher,194
+Squirt,"Soda, Ruby Red, Thirst Quencher",189
+Squirt,"Thirst Quencher, Grapefruit",184
+Squirt,Thirst Quencher Grapefruit Soda,190
+Starbucks,Frappuccino Chilled Coffee Drink,422
+Starbucks,"Coffee Drink, Peppermint Mocha",441
+Starbucks,"Chilled Coffee Drink, Vanilla",453
+Starbucks,"Chilled Coffee Drink, Caramel",469
+Starbucks,"Espresso Beverage, Chilled, Caramel Macchiato",500
+Starbucks,Vanilla Latte Iced Espresso,475
+Starbucks,Pumpkin Spice Frappuccino,469
+Starbucks,Vanilla Coffee Drink,476
+Starbucks,Frappuccino,441
+Starbucks,"Chilled Coffee Drink, White Chocolate Mocha",469
+StarKist,"Soda, Strawberry Orange",191
+Starry,Lemon Lime Flavored Soda,185
+Starry,Caffeine Free Lemon Lime Flavored Soda,192
+Starry,Caffeine Free Lemon Lime Soda,192
+Starry,"Caffeine Free Soda, Lemon Lime",192
+Starry,"Flavored Soda, Lemon Lime",192
+Stewart's,Root Beer,197
+Stewart's,"Fountain Classics, Cream Soda",198
+Stewart's,Black Cherry Wishniak Soda,205
+Stewart's,"Soda, Orange and Cream",200
+Stewart's,Mango Dragon Fruit Sherbet,409
+Stubborn Soda,"Soda, Agave Vanilla Cream",197
+Stubborn Soda,"Soda, Classic Root Beer",192
+Stubborn Soda,Black Cherry Tarragon,194
+Summit,Naturally Flavored Soda,198
+Summit,Cola,205
+Summit,"Cola, Naturally Flavored Soda",205
+Summit,Citrus Twist Lemon Lime Soda,189
+Summit,"Energy Drink, Red Thunder",213
+Sun Drop,Cherry Lemon Citrus Soda,190
+Sun Drop,Citrus Soda,189
+Sun Drop,"Soda, Citrus",189
+Sunkist,"Carbonated Water, Orange",191
+Sunkist,"Lemonade Soda, Berry Lemonade",198
+Sunkist,Strawberry Soda,189
+Sunkist,Orange Soda,183
+Sunkist,Strawberry Orange Soda,183
+Sunny D,"Citrus Punch, Orange",265
+Sunny D,"Drink, Blue Raspberry",222
+Sunny D,Frozen Tangy Original Drink,526
+Tazo,Classic Chai Latte Black Tea Concentrate,229
+Tazo,"Black Tea Concentrate, Pumpkin Spice Latte",200
+Tazo,Decaf Chai Latte Black Tea Concentrate,196
+Tazo,Espresso Chai Latte Black Tea Concentrate,250
+Tazo,"Green Tea Concentrate, Matcha Latte",217
+Topo Chico,Margarita Flavored Alcohol Beverage,528
+Topo Chico,Prickly Pear Margarita,528
+Topo Chico,Tonic Water,222
+Tropicana,Spicy Sweet Pumpkin Spice Latte Iced Espresso,523
+Tropicana,Pineapple Mango Juice Drink Blend,227
+Tropicana,Classic Lemonade,214
+Tropicana,"Juice Drink Blend, Pineapple Mango",233
+Tropicana,"Juice Beverage, Cranberry",232
+Tropicana,Tropical Punch Juice Drink Blend,250
+Tropicana,Strawberry Peach Juice Drink Blend,250
+Twister,Fruit Punch,229
+Twister,"Flavored Drink, Tropical Punch",250
+Twister,Fruit Punch Flavored Drink,219
+Twister,"Flavored Drink, Grape Punch",227
+Twister,"Flavored Drink, Watermelon",227
+V8,"Juice Beverage, Strawberry Kiwi",235
+V8,Fruit Medley,255
+V8,"Beverage, Mango Peach",235
+Vernors,Black Cherry Ginger Soda,197
+Vernors,Creamy Vanilla & Ginger Soda,197
+Vernors,Ginger Soda,188
+Virgil's,Root Beer,202
+Virgil's,Naturally Bold Root Beer,202
+Virgil's,Handcrafted Vanilla Cream,202
+Virgil's,Cane Sugar Black Cherry Soda,202
+Virgil's,Cane Sugar Cola,202
+Vitamin Water,Energy Tropical Citrus Water Beverage,185
+Vitamin Water,"Nutrient Enhanced Water Beverage, Power-C, Dragon Fruit",196
+Vitamin Water,"Nutrient Enhanced Water Beverage, Focus, Kiwi-Strawberry",192
+Vitamin Water,"Nutrient Enhanced Water Beverage, Elevate, Blue Raspberry Limeade",192
+Vitamin Water,Refresh Nutrient Enhanced Tropical Mango Water Beverage,185
+Warheads,Super Sour Double Drops,300
+Warheads,Sour Lemon Soda,214
+Warheads,Sour! Watermelon Soda,214
+Warheads,"Sour!, Blue Raspberry Soda",214
+Warheads,Sour Black Cherry Soda,214
+WBC,Maraschino Cherry Cola Craft Sodas,200
+WBC,Spicy Ginger Craft Sodas,213
+WBC,Vanilla Cream Craft Soda,213
+WBC,Blue Raspberry Craft Sodas,192
+WBC,Black Cherry Craft Sodas,203
+WBC,Chicago Style Root Beer,203
+Wild Bill's,Root Beer,198
+Wild Bill's,Blazing Black Cherry With Pure Cane Sugar,200
+Wild Bill's,Vintage Vanilla Cream Soda,198
+Wild Bill's,Original Cola,198
+Wild Bill's,Outlaw Orange Cream Old Fashioned Soda Pop,202
+Yerba Mate,Watermelody Organic Yerba Mate,222
 Costa,Mocha Iced Coffee Latte,500
 Country Club,"Soda, Merengue",202
 Country Club,"Soda, Raspberry",202
 Country Club,Grape Soda,202
-Country Time,Half & Half Lemonade & Iced Tea,205
 Country Time,"Drink Mix, Lemonade",208
+Country Time,Half & Half Lemonade & Iced Tea,205
+Country Time,Cherry Lemonade Drink Mix,217
 Country Time,Strawberry Lemonade,210
 Country Time,Pink Lemonade,208
-Country Time,Strawberry Lemonade Flavored Drink Mix with Other Natural Flavor,210
-Country Time,Lemonade Flavored Drink,211
-Country Time,Pink Lemonade & Lemonade Cotton Candy,196
-Country Time,Lemonade Drink,203
-Country Time,Cherry Lemonade Drink Mix,217
-Country Time,"Drink, Strawberry Lemonade",203
+Crush,Peach Soda,194
+Crush,Strawberry Soda,185
+Crush,Orange Soda,192
 Crush,Blue Raspberry Soda,198
 Crush,Grape Juice,190
-Crush,Strawberry Soda,185
-Crush,Peach Soda,194
-Crush,"Soda, Orange",186
-Crush,Orange Soda,192
-Crush,"Soda, Peach",191
-Crush,Grape Soda,192
-Crush,"Soda, Pineapple",186
-Crush,Grapefruit Juice,190
-Crush,"Soda, Lemon",283
-Crush,"Soda, Strawberry",185
-Crush,"Soda, Grapefruit Toronja",190
-Crush,"Soda, Grape",186
-Dole,"Diced Peaches, in Strawberry Flavored Gel, Gel",250
 Dole,Lemonade,196
-Dole,Mixed Fruit Gel,263
 Dole,"Lemonade, Strawberry",196
-Dole,"Mandarin Oranges, in Orange Flavored Gel, Gel",263
-Dole,"Fruit Bowls, Diced Peaches/Mandarin Oranges, Gel, Variety Pack",250
-Dole,"Pineapple, Gel",250
-Dole,Mandarin Oranges,333
 Dole,Lemonade from Concentrate,195
-Dole,"Diced Peaches, Gel",250
-Dove,Vanilla & Chocolate Ice Cream with Milk Chocolate Bars,681
-Dove,"Ice Cream, Party Peppermint",607
 Dr. Brown's,"Black Cherry Soda, Natural Flavor",200
-Dr. Brown's,Extra Dry Ginger Ale,210
 Dr. Brown's,The Original Cream Soda,200
-Dr. Brown's,Draft Style Root Beer,202
-Dr. Brown's,"Cream Soda, Original",205
+Dr. Brown's,Extra Dry Ginger Ale,210
 Dr. Pepper,Dr Pepper Soda,185
+Dr. Pepper,Strawberries & Cream Soda,192
 Dr. Pepper,Blackberry Soda,192
 Dr. Pepper,Soda,192
-Dr. Pepper,Strawberries & Cream Soda,192
-Dr. Pepper,Blackberry Flavored Soda,192
 Dr. Pepper,"Soda, 23 Flavors",203
-Dr. Pepper,Creamy Coconut Carbonated Soft Drink,192
-Dr. Pepper,Dr Pepper,192
-Dr. Pepper,"Soda, Strawberries & Cream",191
-Dr. Pepper,Cherry Soda,190
-Dr. Pepper,"Soda, Cherry",190
-Dr. Pepper,"Soda, Blackberry",192
-Dr. Pepper,Creamy Coconut Soda,192
-Dr. Pepper,Dark Berry,190
 Fanta,Chucky's Punch,186
 Fanta,Strawberry Flavored Soda,182
+Fanta,Grape Flavored Soda,193
 Fanta,"Soda, Orange",182
 Fanta,Caffeine Free Grape Flavored Soda,192
-Fanta,Grape Flavored Soda,193
-Fanta,Pineapple Flavored Soda,188
-Fanta,"Soda, Strawberry",189
-Fanta,"Soda, Pineapple",188
-Fanta,"Soda, Berry",188
-Fanta,"Soda, Pineapple Mango, Prebiotic",188
-Fanta,Strawberry Soda,182
-Fanta,Pineapple Soda,197
-Fanta,Orange Soda,182
-Fanta,Strawberry Soda,182
-Fanta,Pineapple Soda,197
-Fanta,Orange Soda,182
-Faygo,Creme Soda,200
-Faygo,Cotton Candy Soda,200
-Faygo,Bubble Pop! Soda,207
-Faygo,Super Pop Soda,207
 Faygo,Strawberry Redpop!,194
-Faygo,Original Root Beer,198
-Faygo,Firework Soda,202
-Faygo,"Rock & Rye, Artificially Flavored Creme Soda",194
-Faygo,Cola,200
-Faygo,Peach Soda,196
-Faygo,Cola!,200
-Faygo,Redpop!,194
+Faygo,"Caffeine Free Drink, Firework",209
+Faygo,Bubble Pop! Soda,207
+Faygo,Cotton Candy Soda,200
+Faygo,Creme Soda,200
+Faygo,Super Pop Soda,207
+Faygo,"Soda, Grape",195
 Fentimans,Ginger Beer,262
+Fentimans,Ginger Beer & Muddled Lime,267
 Fentimans,Rose Lemonade,289
-Fentimans,"Cola, Curiosity, Traditional",214
 Fentimans,Cherry Cola,214
-Fentimans,Traditional Rose Lemonade,289
-Fentimans,"Soda, Ginger Beer, Traditional",262
-Fentimans,"Soda, Rose Lemonade, Traditional",289
 Fentimans,Pink Ginger Beverage,238
 Fever-Tree,Tonic Water,219
 Fever-Tree,Elderflower Tonic Water,224
 Fever-Tree,Distillers Cola,194
 Fever-Tree,Ginger Beer,225
 Fever-Tree,"Margarita Mix, Classic",214
-Fever-Tree,"Ginger Beer, Premium",221
-Fever-Tree,"Ginger Ale, Premium",235
-Fever-Tree,"Ginger Beer, Non-Alcoholic, Premium",218
-Fever-Tree,"Tonic Water, Indian, Premium",205
-Fever-Tree,Refreshingly Light Ginger Beer,225
-Frostie,Root Beer,186
-Frostie,"Soda, Blue Cream",223
-Frostie,Orange Soda,198
-Frostie,Pink Lemonade,208
-Frostie,WatermelonLemonade,190
-Frostie,Strawberry Soda,196
-Frostie,"Soda, Cherry Limeade",206
-Frostie,Blue Lemonade,192
-Frostie,"Lemonade, Strawberry",179
-Frostie,Blue Cream Soda,190
-Fruta,Premium Juice Fruit Punch,250
-Fruta,"Juice Drink, Orange Carrot",294
-Fruta,"Premium Fruit Juice, Guava Pineapple Juice Drink",281
-Fuze,"Iced Tea, Lemon",207
-Fuze,Lemon Plus Sweet Fruit Flavored Black Tea,182
-Fuze,Lemon & Sweet Tea Fruit Flavored Black Tea,194
-Fuze,Watermelon Lime Fruit Flavored Green Tea,190
-Fuze,Pineapple & Mango Flavored Green Tea,190
-Fuze,"Fruit Flavored Green Tea, Pineapple plus Mango",190
-Fuze,Strawberry Peach Fruit Flavored Green Tea,190
-Gatorade,"Thirst Quencher, Lemon-Lime",206
-Gatorade,Lemon Lime Thirst Quencher,190
-Gatorade,"Thirst Quencher, Fruit Punch",190
-Gatorade,Cool Blue Thirst Quencher,190
-Gatorade,"Thirst Quencher, Perform 02, Frost Glacier Freeze",190
-Gatorade,"Thirst Quencher, Glacier Freeze",190
-Gatorade,"Thirst Quencher, Orange",190
-Gatorade,Lime Cucumber Thirst Quencher,190
-Gatorade,"Thirst Quencher, Instant Mix, Glacier Freeze",190
-Gatorade,"Fruit Punch Berry, Thirst Quencher",190
-Gatorade,Midnight Ice Thirst Quencher,190
-Gatorade,Glacier Freeze Glacier Cherry Thirst Quencher,190
-Gatorade,"Thirst Quencher, Glacier Cherry",190
-Gatorade,Lemon Lime Orange Thirst Quencher,190
-Genuine Faygo,"Sodapop, Grapefruit Lime",194
-Genuine Faygo,"Naturally Caffeine Free Drink, Deelicious Firework",211
-Genuine Faygo,"Soda, Grape",195
-Genuine Faygo,"Caffeine Free Drink, Firework",209
-Genuine Faygo,Dee-licious Cola,200
-Genuine Faygo,Fruit Punch Soda,199
-Genuine Faygo,"Carbonated Water, Rock & Rye",196
-Genuine Faygo,Orange Soda Pop,200
-Glaceau,Energy Tropical Citrus Vitamin Water,196
-Glaceau,Blue Raspberry Limeade Elevate Vitamin Water,205
-Glaceau,"Vitamin Water, Active",217
-Glaceau,Acai-Blueberry-Pomegranate Vitamin Water,192
-Glaceau,Orange Orange Vitamin Water,185
-Glaceau,Acai Blueberry Pomegranate Vitamin Water,182
-Glaceau,"Vitamin Water, Acai Blueberry Pomegranate",192
-Glaceau,Tropical Citrus Vitamin Water,185
-Glaceau,"Vitamin Water, Tropical Mango Flavored",185
-Glaceau,Dragonfruit Vitaminwater,196
-Gold Peak,Iced Sweet Tea,198
-Gold Peak,"Brewed Tea, Green Tea, Real",197
-Gold Peak,"Brewed Tea, Sweet Tea, Real",188
-Gold Peak,"Tea, Slightly Sweet",188
-Gold Peak,"Brewed Tea, California Raspberry, Real",200
-Gold Peak,"Brewed Tea, Real, Extra Sweet",199
-Gold Peak,"Brewed Tea, Georgia Peach, Real",197
-Gold Peak,Extra Sweet Brewed Tea,190
-Gold Peak,Sweet Tea,188
-Gold Peak,Lemon Flavored Tea & Lemonade,200
-Gold Peak Tea,"Iced Tea, Sweet Tea",193
-Gold Peak Tea,"Lemon, Real Brewed Tea",205
-Gold Peak Tea,Green Tea,200
-Gold Peak Tea,Peach with Real Sugar,195
-Gold Peak Tea,Real Brewed Peach Tea,195
-Harney & Sons,Organic Lemonade with Maple Syrup,200
-Harney & Sons,Organic Orange Mango Juice Drink from Concentrate,194
-Hawaiian Punch,Candy Jellies,333
-Hawaiian Punch,Fruit Juicy Red Flavored Juice Drink,200
-Hawaiian Punch,Fruit Juicy Red,211
-Hawaiian Punch,"Juice Drink, Fruit Juicy Red",200
-Hawaiian Sun,"Drink, Guava Nectar",234
-Hawaiian Sun,Pass-O-Guava Nectar,221
-Hawaiian Sun,Pineapple Orange Juice Drink,283
-Hawaiian Sun,"Green Tea, Lychee",194
-Hawaiian Sun,Passion Orange Juice Drink,194
-Hawaiian Sun,"Passion Fruit, Lilikoi Jelly",188
-Hawaiian Sun,Island Iced Tea,200
-Hawaiian Sun,"Syrup, Coconut",261
-Health-Ade,Citrus Immune Boost Kombucha,267
-Henry Weinhard's,"Gourmet Soda, Black Cherry Cream",198
-Henry Weinhard's,"Gourmet Soda, Vanilla Cream",200
-Henry Weinhard's,Root Beer,220
-Honest,Organic Honey Green Tea,184
-Honest,"Herbal Tea, Organic, Berry Hibiscus Flavored",250
-Honest Tea,"Half & Half, Just a Tad Sweet",200
-Honest Tea,Honey Green Tea,184
-Honest Tea,Organic Honey Green Tea,184
-Hubert's,Lemonade,200
-IBC,Root Beer,200
-IBC,Cream Soda,205
-IBC,Black Cherry Soda,198
-Jarritos,Mandarin Flavor Soda,203
-Jarritos,"Soda, Guava",212
-Jarritos,Grapefruit Soda,206
-Jarritos,Pineapple Flavored Soda,212
-Jarritos,"Soda, Pineapple",200
-Jarritos,Pineapple Natural Flavor Soda,206
-Jarritos,"Soda, Strawberry",200
-Jarritos,"Soda, Fruit Punch",206
-Jarritos,"Soda, Mandarin",200
-Jarritos,"Soda, Tamarind",206
-Joe Tea,"Tea, Peach",202
-Joe Tea,"Tea, Raspberry",206
-Joe Tea,"Half Lemon Tea, Half Lemonade",214
-Joe Tea,Peach Tea,200
-Joe Tea,Raspberry Tea Lemonade,217
-Joe Tea,Sweet Joe Tea,208
-Jones,Cane Sugar Cream Soda,206
-Jones,"Soda, Berry Lemonade",212
-Jones,"Cane Sugar Soda, Green Apple Flavor",212
-Jones,Orange & Cream Soda,212
-Jones,"Cane Sugar Soda, Root Beer",196
-Jones,Birthday Cake Soda,207
-Jones,Strawberry Lime Cane Sugar Soda,212
-Jones Soda Co.,Berry Lemonade Soda,225
-Kevita,"Sparkling Drink, Lemon Ginger, Probiotic Refresher",233
-Kevita,Lemon Ginger Probiotic Refresher Sparkling Drink,225
-Kevita,Pineapple Peach Kombucha,200
-Kevita,"Sparkling Probiotic Drink, Lemon Ginger",225
-Kevita,Giner Master Brew Kombucha,200
-Kevita,Kombucha,200
-Kevita,Ginger Master Brew Kombucha,200
-Kevita,Pineapple Peach Master Brew Kombucha,200
-Kool-Aid,Caffeine Free Tropical Punch Drink Mix,196
-Kool-Aid,Cherry Drink Mix,196
-Kool-Aid,Orange Flavored Soda,206
-Kool-Aid,Grape Flavored Soda,212
-Kool-Aid,Caffeine Free Grape Drink Mix,200
-Kool-Aid,Black Cherry Soda,227
-Kool-Aid,Drink Mix,204
-Laziza,Non-Alcoholic Apple Malt Beverage,316
-Laziza,Non-Alcoholic Peach Malt Beverage,316
-Laziza,Non-Alcoholic Pineapple Malt Beverage,316
-Laziza,Non-Alcoholic Pomegranate Malt Beverage,316
-Lester's Fixins,"Soda, Pickle Flavored",202
-Lipton,Peach Iced Tea,200
-Lipton,Fusions Lemonade Iced Tea,196
-Lipton,Raspberry White Tea,214
-Lipton,Pineapple Mango Lemonade Iced Tea,196
-Lipton,"Iced Tea, Lemon",208
-Lipton,"Green Tea, With Citrus",207
-Lipton,Green Tea Citrus,194
-Lipton,Sweetened Lemon Ice Tea Mix,208
-Lipton,Iced Sweet Tea,188
-Lipton,Lemon Iced Tea,208
-Lipton,Peach Flavor Georgia Style Iced Tea,200
-Lipton,Black Tea with Lemon Tea Concentrate,200
-Lipton,"Green Tea, Watermelon",205
-Lorina,Blood Orange Flavored Sparkling Beverage,200
-Lorina,Artisanal Sparkling Lemonade,204
-Lorina,Artisanal Sparkling Blood Orange,204
-Lorina,Sparkling Pink Lemonade,210
-Maine Root,"Non Alcoholic Ginger Spicy Brew,",207
-Maine Root,Sarsaparilla,207
-Maine Root,Mexican Cola,207
-Maine Root,Caffeine Free Blueberry Soda,207
-Manzanita Sol,Apple Juice Drink,188
-Manzanita Sol,Apple Juice,188
-Manzanita Sol,"Soda, Apple",188
-Mello Yello,"Soda, Citrus Flavored",191
-Mello Yello,Citrus Flavored Soda,191
-Merchant's Craft,Caffeine Free Root Beer,214
-Merchant's Craft,Washington Apple Soft Drink,219
-Merchant's Craft,Caffeine Free Lemon Lime Soft Drink,203
-Merchant's Craft,Doc Merchant Soft Drink,212
-Merchant's Craft,Strawberry Soft Drink,214
-Merchant's Craft,"Soft Drink, Fizzle Berry",209
-Merchant's Craft,Orange Swirl Soft Drink,206
-Merchant's Craft,Caffein Free Washington Apple Soft Drink,219
-Minute Maid,Lemonade,185
-Minute Maid,Fruit Punch,200
-Minute Maid,"Fruit Juice, Cranberry Grape",244
-Minute Maid,"Juice, Strawberry Lemonade",194
-Minute Maid,"Flavored Juice Beverage, Cranberry Apple Raspberry",237
-Minute Maid,Peach Punch,200
-Minute Maid,"Juice, Mango Punch",190
-Minute Maid,Berry Punch,200
-Minute Maid,"Fruit Drink, Blue Raspberry",200
-Minute Maid,"Pasteurized Juice Blend, Tropical Punch",200
-Minute Maid,"Lemonade, Frozen Concentrated",204
-Minute Maid,Pineapple Burst Juice,204
-Minute Maid,"Fruit Drink, Strawberry Kiwi",211
-Mirinda,"Soft Drink, Orange Flavored",200
-Mirinda,"Soft Drink, Carbonated, Orange Flavor",206
-Monster,Mango Loco Juice,272
-Monster,"Java Coffee + Energy Drink, Mean Bean",458
-Monster,Java Coffee + Energy Drink,458
-Monster,"Energy Juice, Pipeline Punch",250
-Monster,"Energy Coffee, Triple Shot, Loca Mocha",478
-Monster,Mega Energy Drink,207
-Monster,"Java Coffee + Energy, Irish Blend",475
-Monster,Rio Punch Flavor Energy plus Juice Drink,212
-Monster,"Energy Coffee, Triple Shot, Mean Bean",478
-Monster,Khaotic Energy Juice,250
-Monster,Pipeline Punch Energy Juice,250
 Mountain Dew,Code Red Cherry Soda,132
 Mountain Dew,Dragon Fruit Soda,193
-Mountain Dew,Carbonated Water,185
 Mountain Dew,Voltage,185
+Mountain Dew,Carbonated Water,185
 Mountain Dew,LiveWire Soda,188
-Mountain Dew,"Soda, Purple Thunder",182
-Mountain Dew,Dragon Fruit Flavored Soda,192
 Mountain Dew,Soda,185
+Mountain Dew,"Soda, Purple Thunder",182
+Mountain Dew,Code Red Soda,188
 Mountain Dew,Mountain Dew,185
-Mountain Dew,Purple Thunder Soda,185
-Mountain Dew,"Soda, Baja Laguna Lemonade",193
-Mountain Dew,MAJOR MELON DEW with Watermelon Flavor,182
-Mountain Dew,Purple Thunder Dew with A Blast of Berry Plum,185
-Mountain Dew,Lemon Lime Soda,185
+Mountain Dew,Baja Blast Soda,193
 Moxie,Soda,189
 Moxie,Original Elixir,203
 Mug,Root Beer,186
 Mug,"Root Beer, No Caffeine",183
 Mug,Root Beer Soda,186
-Mug,Cream Soda,191
 Naked,Vanilla Protein Vanilla Flavored Almondmilk Smoothie,402
-Naked,"Smoothie, Orange Vanilla Creme",650
-Naked,"Almondmilk Smoothie, Protein, Chocolate",446
 Nature's Twist,Caffeine-Free Original Orangeade,205
-Nature's Twist,"Lemonade, Original",204
 Nature's Twist,Pink Lemonade,204
+Nature's Twist,"Lemonade, Original",204
 New creation soda works,"Soda, Strawberry Habanero",214
-Northern Soda Company,"Craft Soda, Cream Soda",185
-Northern Soda Company,"Craft Soda, Black Cherry",185
-Northern Soda Company,"Craft Soda, Orange",190
-Northern Soda Company,"Craft Soda, Root Beer",185
-Northern Soda Company,"Craft Soda, Sunday Purple",190
+Northern Soda Company,"Soda, Craft, Cane Sugar, Minnesota Apple",183
+Northern Soda Company,"Soda, Craft, Cane Sugar, Pontoon Punch",185
+Northern Soda Company,Butter Scotch Root Beer Craft Soda,185
 Orangina,"Citrus Beverage, Sparkling",238
+Orangina,"Sparkling Blood Orange Beverage, Rouge",242
+Orangina,Sparkling Citrus Beverage,232
 Orangina,Rouge Sparkling Blood Orange Beverage,241
 Peace Tea,"Tea, Just Peachy",191
 Peace Tea,Razzleberry Sweet Iced Tea,196
 Peace Tea,"Tea, Lemon-Flavored",196
 Peace Tea,Just Peachy Tea,200
 Peace Tea,Lemon-Flavored Tea Caddy Shack,190
-Peace Tea,Razzleberry Tea,190
-Peace Tea,Sno-berry Tea,189
-Peace Tea,"Tea, Str-Ah-Berry Lemon",196
-Peace Tea,"Tea, Razzleberry",200
-Peace Tea,"Tea, Lemon Flavored, Caddy Shack",190
-Peace Tea,"Tea, Cherry Vibes",185
-Peace Tea,Raspberry Tea,200
-Peace Tea,Tea And Lemonade,229
 Pepsi,Soda,183
 Pepsi,Throwback Cola,188
 Pepsi,Wild Cherry Cola,186
 Pepsi,Cola,183
 Pepsi,Wild Cherry & Cream Soda,183
 Pepsi,Wild Cherry Soda,190
-Pepsi,"Cola, Wild Cherry & Cream",188
 Pepsi,"Cola, Wild Cherry",190
-Pepsi,"Carbonated Drink, Wild Cherry",190
-Pepsi,Wild Cherry Soda Drink,190
-Pepsi,Black Cherry Cola,192
-Pepsi,Mango,183
-Pepsi,"Pepsi, Cola",192
-Pepsi,Caffeine Free Soda,181
-Pepsi,Caffeine Free,183
-Pepsi,Mango Cola,183
-Pepsi,Pepsi with a Splash of Pineapple Juice with Other Natural Flavors,188
-Pepsi,Carbonated Beverage,188
-Pepsi,Soft Drink,183
-Pepsi,Mountain Dew,190
-Pepsi,Cola Soda Drink,183
-Pepsi,Berry Soda,183
 Pibb Xtra,"Soda, Spicy Cherry",184
 Pibb Xtra,Cherry Soda,179
-Pibb Xtra,Spicy Cherry Soda,180
-Pibb Xtra,Artificially Flavored Spicy Cherry Soda,184
 Pibb Xtra,"Soda, Spicy Cherry, Fridge Pack",184
-Polar,Mandarin Oranges,300
-Polar,Mixed Fruit in Light Syrup,265
 Polar,Peaches in Light Syrup,237
-Polar,Raspberry Lime Soda,182
-Polar,"Sparkling Beverage, Orange Dry",200
+Polar,"Maltin, Maltl Beverage",380
+Polar,Mixed Fruit in Light Syrup,265
+Polar,Premium Tonic Water Crafted with Quinine,184
 Polar,Fruit Cocktail,167
-Polar,Root Beer Soda,188
-Polar,Cream Soda,182
-Polar,Grape Soda,185
-Polar,Birch Beer Soda,188
-Power Edge,"Sports Drink, Grape",200
-Power Edge,Fruit Punch Sports Drink,200
 Power Edge,"Sports Drink, Mountain Berry Blast",200
 Power Edge,Sour Blue Razz Flavored Sports Drink,190
-Power Edge,Mountain Berry Blast Sports Drink,191
-Power Edge,"Fruit Punch,Mountain Berry Blast, Grape Sports Drink",200
+Power Edge,"Sports Drink, Grape",200
 Power Edge,"Sports Drink, Melon Flavored",190
-Power Edge,Fruit Punch Flavored Sports Drink,190
-Power Edge,Lemon Lime Flavored Sports Drink,190
-Power Edge,Orange Sports Drink,190
-Powerade,Fruit Punch Sports Drink,191
+Power Edge,"Fruit Punch,Mountain Berry Blast, Grape Sports Drink",200
 Powerade,"Sports Drink, Mountain Berry Blast",190
+Powerade,Fruit Punch Sports Drink,191
 Powerade,"Sports Drink, Fruit Punch",190
-Powerade,"Sports Drink, Grape",190
 Powerade,"Sports Drink, Orange",190
-Powerade,Xtra Sour Cherry Kicker Sports Drink,200
 Powerade,Grape Flavor Sports Drink,200
-Powerade,"Sports Drink + B Vitamins, Orange",191
-Powerade,"Sports Drink, Lemon Lime",190
-Powerade,"Sports Drink, Strawberry Lemonade",190
-Powerade,Xtra Sour Peach Pucker Sports Drink,200
-Powerade,Xtra Sour Grape Shocker Sports Drink,200
-Powerade,Island Burst Tropical Punch Flavored Sports Drink,190
-Powerade,Mountain Berry Blast Sports Drink,190
-Powerade,Cherry Kicker,206
 Q Mixers,Spicy Grapefruit Margarita Mix,222
-Q Mixers,Tropical Ginger Beer,225
-Q Mixers,Elderflower Tonic Water Contains Quinine,211
-Q Mixers,Spicy Hibiscus Ginger Beer,225
 Q Mixers,Spicy Mango Margarita Mix,237
+Q Mixers,Margarita Mix,250
 Ramune,Strawberry Flavor Carbonated Soft Drink,235
 Ramune,Melon Flavor Carbonated Soft Drink,217
-Ramune,"Soft Drink, Original Flavor, Carbonated",222
 Ramune,"Soft Drink, Peach Flavor",196
-Ramune,Blueberry Flavor Carbonated Soft Drink,206
-Ramune,"Carbonated Soft Drink, Grape",208
-Ramune,Honey Bee Ramune Original Carbonated Drink,200
-Ramune,Carbonated Soft Drink Strawberry,275
-Ramune,Blue Hawaii Carbonated Soft Drink,275
-Ramune,Carbonated Soft Drink,206
-RC COLA,Cola,190
-Reading Draft,Birch Beer Premium Reserve Soda,202
-Reading Draft,Citrus Twist Premium Reserve Soda,194
+Ramune,Orange Flavor Premium Carbonated Soft Drink,212
+Ramune,Pineapple Flavor Hello Kitty Carbonate Soft Drink,206
+RC COLA,Cola,174
+RC COLA,Cherry Cola,182
 Reading Draft,Orange Cream Reserve Soda,202
+Reading Draft,Blueberry Birch Soda,202
+Reading Draft,Apple Ginger Ale,200
+Red Bull,"Energy Drink, Coconut Berry",212
 Red Bull,Strawberry Apricot Energy Drink,211
 Red Bull,"Energy Drink, Juneberry",211
-Red Bull,"Energy Drink, Coconut Berry",211
 Red Bull,Tropical Energy Drink,211
-Red Bull,Curuba Elderflower The Summer Edition Energy Drink,211
-Red Bull,"Energy Drink, Wild Berries",211
 Red Bull,"Energy Drink, Watermelon",212
-Red Bull,Blueberry Energy Drink,211
-Red Bull,"The Yellow Edition Energy Drink, Tropical",214
-Red Bull,White Peach Energy Drink,212
-Red Bull,Fuji Apple & Ginger Energy Drink,212
-Red Bull,The Yellow Edition Tropical Energy Drink,204
-Red Bull,"Energy Drink, The Peach Edition",212
+Red Bull,Curuba Elderflower The Summer Edition Energy Drink,211
+Red Bull,Wild Berries Energy Drink,211
+Rise Brewing Co.,"Coffee, Dairy Free, Organic, Cold Brew, Oat Milk Latte",563
 Rise Brewing Co.,"Coffee, Dairy Free, Organic, Cold Brew, Oat Milk Mocha",556
 Rise Brewing Co.,"Coffee, Dairy Free, Organic, Cold Brew, Oat Milk Vanilla",594
 Rockstar,Fruit Punch with Natural Flavor,205
 Rockstar,Energy Drink,206
 Rockstar,Whipped Strawberry Energy Drink,212
-Rockstar,Pineapple Energy Drink,197
 Rockstar,Pina Colada Boom Non Alcoholic Energy Drink,199
-Rockstar,Hardcore Apple Energy Drink,205
-Rockstar,Berry Sangria,205
-Rockstar,Strawberry Peach Energy Drink,197
-Rockstar,Whipped Orange Energy Drink,214
-Rockstar,Watermelon Energy Drink,197
-Rockstar,"Energy Drink, Strawberry, Aguas Frescas",217
-Rockstar,"Energy Drink, Peach Berry Freeze",197
-Rockstar,"Energy Drink, Pineapple, Aguas Frescas",227
-Rockstar,"Energy Drink, Blackberry Goji",205
+Rockstar,Pineapple Energy Drink,197
+San Pellegrino,Aranciata Sparkling Orange & Blood Orange Beverage,271
+San Pellegrino,Limonata Italian Sparkling Drinks,220
 San Pellegrino,"Sparkling Beverage, Orange and Pomegranate",261
-San Pellegrino,Orange Juice,271
-San Pellegrino,Sparkling Blood Orange Beverage,304
-San Pellegrino,Sparkling Lemon Beverage,300
-Sanpellegrino,Aranciata Sparkling Orange & Blood Orange Beverage,271
-Sanpellegrino,Limonata Italian Sparkling Drinks,220
-Sanpellegrino,Aranciata Sparkling Orange Beverage,273
-Sanpellegrino,"Sparkling Beverage, Grapefruit",250
-Sanpellegrino,Lemonade Sparkling Water Beverage,240
-Sanpellegrino,Blood Orange Italian Sparkling Drinks,271
-Sanpellegrino,"Sparkling Drinks, Italian, Melograno & Arancia",261
-Sanpellegrino,Ginger Beer,222
-Sanpellegrino,"Sparkling Drinks, Italian, Aranciata Rossa",271
-Sanpellegrino,"Sparkling Drinks, Italian, Pompelmo",250
-Schweppes,"Ginger Ale, Caffeine Free",182
-Schweppes,Raspberry Ginger Ale,184
-Schweppes,Ginger Ale,182
-Schweppes,Tonic Water,197
-Schweppes,Dry Grape Ginger Ale,184
-Schweppes,Cranberry Raspberry Ginger Ale,194
-Schweppes,"Tonic Water, Caffeine Free, Tonic Water",197
-Schweppes,Premium Ginger Ale,196
-Seagrams,"Ginger Ale, Fridge Pack",197
-Seagrams,Ginger Ale,191
-Shasta,Ginge Ale,206
-Shasta,"Cola, Root Beer, Draft Style",205
-Shasta,"Soda, Lemon Lime, Twist",200
-Shasta,"Soda, Caffeine Free, Raspberry Creme",206
-Shasta,Ginger Ale,200
-Shasta,"Cola, Cherry",194
-Shasta,"Soda, Caffeine Free, + Vitamin C, Orange",197
-Shasta,Cola,203
-Shasta,"Soda, Caffeine Free, Apple",207
-Shasta,"Soda, Caffeine Free, + Vitamin C, Lemon Lime",207
-Sierra Mist,"Soda, Lemon Lime",192
-Sierra Mist,Caffeine Free Lemon Lime Flavored Soda,196
-Sierra Mist,"Soda, Lemon Lime Flavored, Caffeine Free",189
-Sierra Mist,"Soda, Lemon Lime Flavored",189
-Simply,"Lemonade, All Natural",204
-Simply,Lemonade,204
-Simply,"Lemonade, with Raspberry",220
-Simply,"Lemonade, with Strawberry",220
-Simply,Limeade,214
-Simply,Strawberry Juice Drink,208
-Simply,"Juice Drink, Pineapple",250
-Simply,"Juice Drink, Peach, All Natural",238
-Simply,"Cocktail, Cranberry",232
-Simply,"Juice Drink, Fruit Punch",227
-Simply,Not from Concentrate Lemonade,204
-Simply,Peach Juice Drink,238
-Simply Lemonade,Raspberry Lemonade,220
-Simply Lemonade,All Natural Lemon Juice,204
-Simply Lemonade,Lemonade with Strawberry Juice Blend,220
-Simply Lemonade,Lemonade with Stawrberry,220
-Simply Lemonade,Lemonade with Raspberry,220
-Simply Spiked,Passion Fruit Limeade,500
-Simply Spiked,Signature Limeade,500
-Simply Spiked,Raspberry Lemonade,500
-Simply Spiked,Mango Peach Juice Can,500
-Simply Spiked,"Beer, Strawberry Lemonade",500
-Simply Spiked,Blackberry Limeade Real Fruit Juice,500
-Simply Spiked,Peach Variety Pack,500
-Simply Spiked,Signature peach,500
-Snapple,"Juice Drink, Kiwi Strawberry",214
-Snapple,"Juice Drink, Snapple Apple",238
-Snapple,"Juice Drink, Mango Madness",250
-Snapple,"Juice Drink, Fruit Punch",238
-Snapple,All Natural Peach Tea & Lemonade,208
-Snapple,Peach Tea,196
-Snapple,Lemonade Iced Tea,210
-Snapple,"Tea, Lemon",204
-Snapple,Fruit Punch Juice Drink,238
-Snapple,Snapple Apple Juice Drink,238
-Snapple,Snapple Apple,238
-Snapple,"Juice Drink, Starfruit, Orange & Nectarine, Sun",262
-Snapple,"Tea, Peach Tea & Lemonade",208
-Snapple,"Fruit Juice, Strawberry Pineapple Lemonade",219
-Snapple,Kiwi Strawberry Flavored Juice Drink,214
-Snapple,Apple Juice Drink,238
-SoBe,Pina Colada Liz Blizz,202
-SoBe,Morning Patrol Strawberry Banana Drink,202
-Sprecher,Cream Craft Soda,250
-Sprecher,Orange Dream Craft Soda,202
-Sprecher,Strawberry Charged Lemonade Carbonated Sparkling Drink,200
-Sprecher,"Fire-Brewed Craft Soda, Root Beer",255
-Sprecher,Cherry Cola Craft Soda,227
-Sprecher,Door County Cherry Soda Fire-Brewed Craft Soda,216
-Sprecher,Fire Brewed Watermelon Soda,200
-Sprecher,"Soda, Grape",222
-Sprecher,Cream Soda Fire-Brewed Craft Soda,250
-Sprecher,Wisconsin Maple Root Beer,227
-Sprite,Soda,184
-Sprite,"Soda, Lemon-Lime, 6 PK",189
-Sprite,"Soda, Cherry Lime, Chill",188
-Sprite,"Soda, Lemon-Lime",184
-Sprite,Lemon Lime Soda,194
-Sprite,Lemon-Lime and Tea Flavored Soda,189
-Sprite,Lemon-Lime Soda,184
-Sprite,Tropical Mix Lemon-Lime & Tropical Flavored Soda,190
-Sprite,"Soda, Cherry",185
-Sprite,"Soda, +Tea",189
-Sprite,Vanilla Frost Lemon-Lime Flavored Soda,182
-Sprite,"Soda, Chill, Cherry Lime",184
-Sprite,Winter Spiced Cranberry Lemon-Lime Flavored Soda,182
-Sprite,"Soda, Lemonade, Legacy",190
-Sprite,"Soda, Ginger",191
-Sprite,Lemon Lime Carbonated Drink,183
-Squirt,"Thirst Quencher, Caffeine Free, Grapefruit",190
-Squirt,Grapefruit Soda Thirst Quencher,194
-Squirt,"Soda, Ruby Red, Thirst Quencher",189
-Squirt,"Caffeine Free Thirst Quencher, Grapefruit",190
-Squirt,"Soda, Grapefruit, Thirst Quencher",184
-Squirt,"Soda, Grape",187
-Starbucks,Frappuccino Chilled Coffee Drink,422
-Starbucks,Vanilla Latte Iced Espresso,475
-Starbucks,Chilled Pumpkin Spice Latte Espresso Beverage,523
-Starbucks,Vanilla Coffee Drink,476
-Starbucks,Pink Drink Strawberry Acai Coconutmilk Beverage,300
-Starbucks,"Coffee Drink, Salted Caramel Cream, Premium Cold Brew",400
-StarKist,"Soda, Strawberry Orange",191
-Starry,Caffeine Free Lemon Lime Flavored Soda,192
-Starry,Lemon Lime Flavored Soda,185
-Starry,Caffeine Free Lemon Lime Soda,192
-Starry,"Soda, Caffeine Free, Lemon Lime Flavored",192
-Starry,"Soda, Lemon Lime",192
-Starry,"Soda, Lemon Lime Flavored",192
-Starry,Lemon Lime,192
-Starry,"Caffeine Free Soda, Lemon Lime",192
-Stewart's,Root Beer,197
-Stewart's,Chocolate Caramel Tornado Ice Cream,658
-Stewart's,Black Cherry Wishniak Soda,205
-Stewart's,Cream Soda,198
-Stewart's,Premium Eggnog,639
-Stewart's,Peanut Butter Cookie Ice Cream,652
-Stewart's,"Fountain Classics, Cream Soda",198
-Stewart's,"Ice Cream, Cotton Candy",688
-Stewart's,"Soda, Orange and Cream",200
-Stewart's,"Wishniak Soda, Black Cherry",205
-Stewart's,"Super Rich Ice Cream, Raspberry Cheesecake",643
-Stewart's,"Refresher, Cranberry Apple",268
-Stubborn Soda,"Soda, Agave Vanilla Cream",197
-Stubborn Soda,"Soda, Classic Root Beer",192
-Summit,Naturally Flavored Soda,198
-Summit,Cola,205
-Summit,Citrus Twist Lemon Lime Soda,189
-Summit,Organic Mocktail Spritz Non-Alcoholic Flavored Sparkling Beverage,208
-Summit,"Cola, Naturally Flavored Soda",205
-Summit,Red Thunder Berry Energy Drink,216
-Summit,"Energy Drink, Red Thunder",213
-Summit,Citrus Twist Soda,189
-Sun Drop,Cherry Lemon Citrus Soda,190
-Sun Drop,Citrus Soda,189
-Sun Drop,"Soda, Citrus",189
-Sunkist,"Carbonated Water, Orange",191
-Sunkist,Strawberry Orange Soda,183
-Sunkist,"Lemonade Soda, Berry Lemonade",198
-Sunkist,Orange Soda,183
-Sunkist,Strawberry Soda,189
-Sunkist,"Soda, Raspberry Blood Orange",191
-Sunkist,Watermelon Lemonade Soda,186
-Sunkist,"Soda, Watermelon Lemonade",188
-Sunkist,"Soda, Grape",189
-Sunkist,Strawberry Lemonade Soda,186
-Sunkist,Pink Lemonade,206
-Sunkist,Berry Lemonade,198
-Sunkist,Grape Soda,187
-Sunny D,"Citrus Punch, Orange",265
-Sunny D,"Drink, Blue Raspberry",222
-Sunny D,"Citrus Punch, Tangy Original",265
-Sunny D,Frozen Tangy Original Drink,526
-Sunny D,"Drink, Rocket Pop",235
-Sunny D,"Citrus Punch, Smooth Orange",235
-Sunny D,"Orange Flavored Citrus Punch, Tangy Original",265
-Tazo,Classic Chai Latte Black Tea Concentrate,229
-Tazo,"Black Tea Concentrate, Pumpkin Spice Latte",200
-Tazo,Espresso Chai Latte Black Tea Concentrate,250
-Tazo,Organic Chai Latte Black Tea,196
-Tazo,Decaf Chai Latte Black Tea Concentrate,196
-Tazo,"Green Tea Concentrate, Matcha Latte",217
-Tazo,Strawberry Matcha Latte Green Tea Concentrate,214
-Tazo,Chocolate Chai Latte Black Tea Concentrate,225
-Tazo,Iced Peach Mango Herbal Tea Concentrate,231
-Tazo,Green Tea Matcha Latte,217
-Tazo,"Black Tea Chai Latte, Vanilla Caramel",250
-Tazo,Black Tea Classic Chai Latte,344
-Tazo,Lemon Ginger Tea,220
-Topo Chico,Margarita Flavored Alcohol Beverage,528
-Topo Chico,Prickly Pear Margarita,528
-Tropicana,Pineapple Mango Juice Drink Blend,227
-Tropicana,Classic Lemonade,214
-Tropicana,Strawberry Peach Juice Drink Blend,250
-Tropicana,Tropical Punch Juice Drink Blend,250
-Tropicana,"Juice Drink Blend, Tropical Punch",240
-Tropicana,"Juice Drink Blend, Pineapple Mango",233
-Tropicana,"Juice Beverage, Cranberry",232
-Tropicana,Strawberry Lemonade,220
-Tropicana,Peach Pineapple Juice Drink Blend,235
-Tropicana,"Lemonade, Classic",224
-Twister,Fruit Punch,229
-Twister,"Flavored Drink, Tropical Punch",250
-Twister,Fruit Punch Flavored Drink,219
-Twister,"Flavored Drink, Peach Orchard Punch",238
-Twister,Tropical Punch Flavored Drink,250
-Twister,"Flavored Drink, Orangeade",217
-Twister,Berry Punch Flavored Drink,226
-Twister,Peach Orchard Punch Flavored Drink,224
-Twister,"Flavored Drink, Watermelon",227
-Twister,"Flavored Drink, Grape Punch",227
-V8,"Juice Beverage, Tropical Blend",235
-V8,"Juice Beverage, Berry Blend",222
-V8,"Juice Beverage, Strawberry Kiwi",235
-V8,"Juice Beverage, Fruit Medley",222
-V8,Tropical Blend Juice Beverage,233
-V8,"Beverage, Mango Peach",235
-V8,Fruit Medley,255
-V8,"Splash, Berry Blend",259
-Vernors,Black Cherry Ginger Soda,197
-Vernors,Ginger Soda,188
-Vernors,Boston Cooler Soda,197
-Vernors,The Original Ginger Soda,184
-Vernors,"Ginger Soda, Black Cherry",197
-Virgil's,Root Beer,202
-Virgil's,Naturally Bold Root Beer,202
-Virgil's,Handcrafted Vanilla Cream,202
-Virgil's,Cane Sugar Black Cherry Soda,202
-Virgil's,Handcrafted Black Cherry Sparkling Filtered Water,202
-Virgil's,Orange Cream,200
-Virgil's,Cane Sugar Cola,202
-Virgil's,Handcrafted Root Beer,202
-Virgil's,Vanilla Cream Soda,202
-Vitamin Water,Energy Tropical Citrus Water Beverage,185
-Vitamin Water,"Nutrient Enhanced Water Beverage, Power-C, Dragon Fruit",196
-Vitamin Water,"Nutrient Enhanced Water Beverage, Focus, Kiwi-Strawberry",192
-Vitamin Water,"Nutrient Enhanced Water Beverage, Elevate, Blue Raspberry Limeade",192
-Vitamin Water,"Nutrient Enhanced Water Beverage, Focus, Kiwi Strawberry",182
-Vitamin Water,"Nutrient Enhanced Water Beverage, Essential, Orange-Orange",185
-Vitamin Water,"Nutrient Enhanced Water Beverage, XXX, Acai Blueberry Pomegranate",188
-Vitamin Water,"Nutrient Enhanced Water Beverage, Power-C, Dragonfruit",188
-Vitamin Water,"Nutrient Enhanced Water Beverage, Energy, Tropical Citrus",188
-Vitamin Water,Tropical Citrus Energy Drink,188
-Vitamin Water,Acai-Blueberry-Pomegranate XXX Vitamin Water,192
-Vitamin Water,Acai-Blueberry-Pomegranate Flavored Nutrient Enhanced Water Beverage,192
-Warheads,Sour Lemon Soda,214
-Warheads,Sour Black Cherry Soda,214
-Warheads,Sour Grape Soda,214
-Warheads,"Squeeze Candy, Sour Watermelon",313
-Warheads,Sour! Watermelon Soda,214
-Warheads,"Sour!, Blue Raspberry Soda",214
-Warheads,Sour Green Apple Soda,214
-Warheads,Super Sour Double Drops,300
-Warheads,Ooze Chewz Ropes,363
-Warheads,Peach Soda,214
-WBC,Blue Raspberry Craft Sodas,192
-WBC,Maraschino Cherry Cola Craft Sodas,200
-WBC,Chicago Style Root Beer,203
-Wild Bill's,Outlaw Orange Cream Old Fashioned Soda Pop,202
-Wild Bill's,Root Beer,198
-Wild Bill's,Strawberry Cream Craft Beverage,193
-Wild Bill's,Blazing Black Cherry With Pure Cane Sugar,200
-Wild Bill's,Original Cola,198
-Wild Bill's,Rocket Pop Premium Small Batch Soda,198
-Wild Bill's,"Craft Soda, Watermelon",193
-Yerba Mate,Watermelody Organic Yerba Mate,222
+San Pellegrino,Aranciata Sparkling Orange Beverage,273
+San Pellegrino,"Sparkling Beverage, Grapefruit",250
