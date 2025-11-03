@@ -109,6 +109,10 @@ function renderFullSugarTable() {
   input.appendTo(dtFilter);
   input.addClass("form-control form-control-sm w-100");
 
+  input.on("input", function () {
+    table.search(this.value).draw();
+    });
+
   // Populate dropdown
   const brandFilter = $("#brandFilter");
   const uniqueBrands = [...new Set(sugarData.map(d => d["Brand Name"]))].sort();
