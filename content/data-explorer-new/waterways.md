@@ -6,6 +6,7 @@ azlink: "https://www.nyc.gov/site/doh/health/health-topics/rec-water-illness.pag
 seo_title: "Waterway data for NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
 description: "Datasets and visualizations of waterway quality in NYC."
+blurb: "Quality standards"
 datatables: true
 arquero: true
 leaflet: true

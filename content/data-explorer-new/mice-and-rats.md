@@ -6,6 +6,7 @@ azlink: "https://www.nyc.gov/site/doh/health/health-topics/rats.page"
 seo_title: "Mice and rats data for NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
 description: "Datasets and visualizations of mice and rat data in NYC."
+blurb: "Inspections and sightings"
 datatables: true
 arquero: true
 leaflet: true

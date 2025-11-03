@@ -6,6 +6,7 @@ azlink: "https://www.nyc.gov/site/doh/health/health-topics/food-drinking-water-s
 seo_title: "Drinking water quality data for NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
 description: "Datasets and visualizations of drinking water quality data in NYC."
+blurb: "Contaminant levels"
 datatables: true
 arquero: true
 leaflet: true

@@ -6,6 +6,7 @@ azlink: "https://www.nyc.gov/site/doh/health/health-topics/eating-well.page"
 seo_title: "Overweight data for NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
 description: "Datasets and visualizations of obesity and overweight in NYC."
+blurb: " "
 datatables: true
 arquero: true
 leaflet: true

@@ -5,6 +5,7 @@ draft: false
 seo_title: "Economic conditions data for NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
 description: "Datasets and visualizations of economic condition data in NYC."
+blurb: "Poverty and rent."
 datatables: true
 arquero: true
 leaflet: true
@@ -12,7 +13,7 @@ newDataExplorer: true
 headerDE: true
 excludeFooter: true
 tags:
-categories: ["inequality", "housing","injuryandviolence"]
+categories: ["inequality", "housing", "injuryandviolence"]
 keywords:
   [
     "social",

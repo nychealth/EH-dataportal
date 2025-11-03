@@ -52,6 +52,7 @@ seo_description: >-
   Explore data, visualizations, and more on ways that environments shape health
   in New York City's neighborhoods.
 description: "Datasets and visualizations of walking, driving, and cycling in NYC."
+blurb: "Access and density"
 related:
   - title: "Public space creates health"
     url: "data-stories/public-space-creates-health/"
