@@ -9,6 +9,7 @@ keywords:
   ["federal funding", "heat", "food safety", "air quality", "poison control"]
 seo_title: Public sector resources protect NYC health
 seo_description: "Federal, state, and local governments support NYC's health"
+shortTitle: Public sector resources protect NYC health
 related:
   - title: "Tracking changes in New York City's sources of air pollution"
     url: "data-stories/restaurants-and-air-quality/"
