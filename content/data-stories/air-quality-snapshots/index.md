@@ -62,12 +62,9 @@ related:
     <div class="my-2">
         <div class="narrow">
             <p>{{< updateflag data=`[
-  {"src": "../../data-explorer/air-quality/?id=2023", "text": "seasonal fine particles (PM2.5)"},
-  {"src": "../../data-explorer/air-quality/?id=2025", "text": "seasonal Nitrogen dioxide (NO2)"},      
-  {"src": "../../data-explorer/health-impacts-of-air-pollution/?id=2108", "text": "Deaths due to PM2.5"},
-  {"src": "../../data-explorer/health-impacts-of-air-pollution/?id=2120", "text": "Cardiovascular hospitalizations (age 40+) due to PM2.5"},
-  {"src": "../../data-explorer/health-impacts-of-air-pollution/?id=2117", "text": "Asthma ED visits due to PM2.5"},
-  {"src": "../../data-explorer/health-impacts-of-air-pollution/?id=2119", "text": "Respiratory hospitalizations (age 20+) due to PM2.5"},
+  {"src": "../../data-explorer/air-quality/?id=2023", "text": "Seasonal fine particles (PM2.5)"},
+  {"src": "../../data-explorer/air-quality/?id=2025", "text": "Seasonal Nitrogen dioxide (NO2)"},      
+  {"src": "../../data-explorer/health-impacts-of-air-pollution/", "text": "Health impacts of air pollution"},
   {"src": "../../data-explorer/economic-conditions/?id=103", "text": "Neighborhood poverty"}
   
 ]` >}}</p>
