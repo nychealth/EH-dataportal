@@ -46,7 +46,7 @@ Connecting the dots between hot weather and health risks will protect renters in
 ### Preparing for and recovering from extreme storms
 
 <figure class="figure">
-<img src="../federal-funding/waterfront_redhook.jpg" class="figure-img my-1" alt="Redhook's waterfront"><figcaption class="figure-caption">Image credit: Joe Buglewicz</figcaption>
+<img src="../federal-funding/waterfront_redhook.jpg" class="figure-img my-1" alt="Redhook's waterfront and rocky shore"><figcaption class="figure-caption">Image credit: Joe Buglewicz</figcaption>
 </figure>
 <br><br>
 
