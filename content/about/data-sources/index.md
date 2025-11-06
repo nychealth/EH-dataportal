@@ -24,34 +24,15 @@ The Environment and Health Data Portal hosts over 200 datasets on topics like ai
 
 We get data from many sources: some from NYC Health or other city agencies like <a href="https://www.nycgovparks.org/">NYC Parks</a> or Department of Investigations; and some from outside sources, like the [CDC](https://www.cdc.gov/), [SPARCS](https://www.health.ny.gov/statistics/sparcs/), the [U.S. Census](https://www.census.gov/), and the [EPA](https://www.epa.gov/). Here are some of the core ones:
 
-<hr>
-<div aria-hidden="true">
-<div class="nav nav-tabs device-md mb-3" role="tablist">
-    <a class="nav-item nav-link active" id="tab-btn-02-a" href="#tab-02-a" data-toggle="tab"
-        aria-controls="tab-01-a" aria-selected="true" role="tab">
-        <i class="fa-solid fa-clipboard-list"></i> CHS  
+<div class="accordion-group my-3" role="tablist" id="accordion-02">
+  <div class="card">
+    <a class="card-header collapse collapsed font-weight-bold" id="acc-button-2a" data-toggle="collapse" href="#panel-acc-button-2a"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-2a">
+      <span class="title" role="heading" aria-level="3"><i class="fa-solid fa-clipboard-list"></i> CHS</span>
     </a>
-    <a class="nav-item nav-link" id="tab-btn-02-b" href="#tab-02-b" data-toggle="tab"
-        aria-controls="tab-02-b" aria-selected="false" role="tab">
-        <i class="fa-solid fa-hospital"></i> SPARCS
-    </a>
-    <a class="nav-item nav-link" id="tab-btn-02-c" href="#tab-02-c" data-toggle="tab"
-        aria-controls="tab-02-c" aria-selected="false" role="tab">
-        <i class="fa-solid fa-house"></i> HVS
-    </a>
-        <a class="nav-item nav-link" id="tab-btn-02-d" href="#tab-02-d" data-toggle="tab"
-        aria-controls="tab-02-d" aria-selected="false" role="tab">
-        <i class="fa-solid fa-clipboard-list"></i> ACS
-    </a>
-        <a class="nav-item nav-link" id="tab-btn-02-e" href="#tab-02-e" data-toggle="tab"
-        aria-controls="tab-02-e" aria-selected="false" role="tab">
-        <i class="fa-solid fa-wind"></i> NYCCAS
-    </a>
-</div>
 
-<div class="tab-content fs-sm p-1" id="tabs-02-content">
-    <div class="tab-pane fade show active" id="tab-02-a" aria-labelledby="tab-btn-02-a" role="tabpanel">
-        <p><strong>What is the Community Health Survey (CHS)?</strong> This phone survey is conducted by NYC Health and interviews about 10,000 New Yorkers each year. Running since 2009, CHS reports detailed data on many chronic diseases and health behaviors, helping us see trends at the neighborhood, borough, and citywide level.<br><br>
+  <div class="collapse" id="panel-acc-button-2a" role="tabpanel" aria-labelledby="acc-button-2a" data-parent="#accordion-02">
+    <div class="card-body card-white fs-md">
+<p><strong>What is the Community Health Survey (CHS)?</strong> This phone survey is conducted by NYC Health and interviews about 10,000 New Yorkers each year. Running since 2009, CHS reports detailed data on many chronic diseases and health behaviors, helping us see trends at the neighborhood, borough, and citywide level.<br><br>
         <strong>CHS indicators include:</strong>
         <ul>
         <li><a href="../../data-explorer/mental-health/?id=2417">Mental health: Adults with depression</a></li>
@@ -61,8 +42,21 @@ We get data from many sources: some from NYC Health or other city agencies like 
         </ul>
       <strong>What we use it for: </strong>CHS data helps us track the health of New Yorkers and connect the dots between health behavior and health status. This helps us prioritize programs where they matter most. If we see, for example, that there are fewer adults with a doctor in West Queens, we can try to address that through campaigns and outreach. Or if there are more adults with a recent asthma attack in the South Bronx, we can communicate with healthcare providers, neighborhood centers, and schools to provide resources and and education, prevention, and mitigation plans.</p>
     </div>
-    <div class="tab-pane fade" id="tab-02-b" aria-labelledby="tab-btn-02-b" role="tabpanel"><p>
-    <strong>What is New York Statewide Planning and Research Cooperative System (SPARCS)?</strong> SPARCS collects patient-level data, like diagnoses, treatments, and characteristics for both inpatient and outpatient stays throughout the state. It was established in 1979 as a collaboration between the NY state government and the healthcare system. <br><br>
+  </div>
+  <!-- .collapse -->
+  </div>
+
+  <!-- .card (end of first accordion, repeat as needed) -->
+
+  <div class="card">
+      <a class="card-header collapse collapsed font-weight-bold" id="acc-button-2b" data-toggle="collapse" href="#panel-acc-button-2b"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-2b">
+        <span class="title" role="heading" aria-level="3"><i class="fa-solid fa-hospital"></i> SPARCS</span>
+      </a>
+
+<div class="collapse" id="panel-acc-button-2b" role="tabpanel" aria-labelledby="acc-button-2b" data-parent="#accordion-02">
+    <div class="card-body fs-md">
+<p>
+<strong>What is New York Statewide Planning and Research Cooperative System (SPARCS)?</strong> SPARCS collects patient-level data, like diagnoses, treatments, and characteristics for both inpatient and outpatient stays throughout the state. It was established in 1979 as a collaboration between the NY state government and the healthcare system. <br><br>
   <strong>SPARCS indicators include: </strong>
     <ul>
     <li>heat-stress hospitalizations and emergency department visits</li>
@@ -70,11 +64,24 @@ We get data from many sources: some from NYC Health or other city agencies like 
     <li>Asthma hospitalizations </li>
     <li>Bicycle injury hospitalizations </li>
     </ul>
-  <strong>What we use it for:</strong> Patient-level data from healthcare facilities can help us understand how environmental factors (for example hot days and socioeconomic status) relate to health outcomes (like heat-related hospitalizations among different demographics). These vital data help us characterize severity and risk factors for different populations.</p>
-    </div>
-    <div class="tab-pane fade" id="tab-02-c" aria-labelledby="tab-btn-02-c" role="tabpanel">
-        <p>
-        <strong>What is the Housing and Vacancy Survey (HVS)?</strong> Taken every three years, the Housing and Vacancy Survey is by HPD and the Census Bureau. The main purpose of HVS is to describe how many rental units are vacant to understand more about rent control and stabilization and the housing market.<br><br>
+  <strong>What we use it for:</strong> Patient-level data from healthcare facilities can help us understand how environmental factors (for example hot days and socioeconomic status) relate to health outcomes (like heat-related hospitalizations among different demographics). These vital data help us characterize severity and risk factors for different populations.
+</p>
+</div>
+
+</div>
+<!-- .collapse -->
+
+</div>
+
+  <div class="card">
+      <a class="card-header font-weight-bold collapse collapsed" id="acc-button-2c" data-toggle="collapse" href="#panel-acc-button-2c"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-2c">
+        <span class="title" role="heading" aria-level="3"><i class="fa-solid fa-house"></i> HVS</span>
+      </a>
+
+<div class="collapse" id="panel-acc-button-2c" role="tabpanel" aria-labelledby="acc-button-2c" data-parent="#accordion-02">
+    <div class="card-body fs-md">
+<p>
+<strong>What is the Housing and Vacancy Survey (HVS)?</strong> Taken every three years, the Housing and Vacancy Survey is by HPD and the Census Bureau. The main purpose of HVS is to describe how many rental units are vacant to understand more about rent control and stabilization and the housing market.<br><br>
         <strong>HVS indicators include: </strong>
           <ul>
           <li>Homes with cracks or holes</li>
@@ -83,11 +90,21 @@ We get data from many sources: some from NYC Health or other city agencies like 
           <li>Rent-burdened households  </li>
           </ul>
         <strong>What we use it for:</strong> It helps us understand the state and quality of our available housing, which ties into important health outcomes. HVS data about housing issues that affect health can help us connect these issues to other disparities and inequities across NYC, like income, health care, heat and cold vulnerability and more.
-        </p>
-    </div>
-    <div class="tab-pane fade" id="tab-02-d" aria-labelledby="tab-btn-02-d" role="tabpanel">
-        <p>
-        <strong>What is the American Community Survey (ACS)?</strong> Taken annually by the US census, this survey collects population, housing, and workforce data like unemployment, income, insurance, and more. <br><br>
+</p>
+</div>
+
+</div>
+<!-- .collapse -->
+</div>
+
+  <div class="card">
+      <a class="card-header font-weight-bold collapse collapsed" id="acc-button-2d" data-toggle="collapse" href="#panel-acc-button-2d"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-2d">
+        <span class="title" role="heading" aria-level="3"><i class="fa-solid fa-clipboard-list"></i> ACS</span>
+      </a>
+
+<div class="collapse" id="panel-acc-button-2d" role="tabpanel" aria-labelledby="acc-button-2d" data-parent="#accordion-02">
+    <div class="card-body  fs-md"><p>
+<strong>What is the American Community Survey (ACS)?</strong> Taken annually by the US census, this survey collects population, housing, and workforce data like unemployment, income, insurance, and more. <br><br>
         <strong>HVS indicators include: </strong>
           <ul>
           <li>Older adults living alone (65+) </li>
@@ -95,11 +112,19 @@ We get data from many sources: some from NYC Health or other city agencies like 
           <li>Neighborhood poverty  </li>
           </ul>
         <strong>What we use it for:</strong> This critical data helps us understand the links between inequality, the social determinants of health, and health outcomes. ACS data on income is used to show how neighborhoods with higher levels of poverty tend to live in neighborhoods with less quality housing, and also have higher rates of many chronic diseases and premature death. 
-        </p>
-    </div>
-      <div class="tab-pane fade" id="tab-02-e" aria-labelledby="tab-btn-02-e" role="tabpanel">
-        <p>
-        <strong>What is the New York City Community Air Survey (NYCCAS)?</strong> Started in 2008, NYCCAS is the largest ongoing urban air monitoring program of any U.S. city. NYCCAS tracks air pollutants at the street-level, where people spend most of their time. <br><br>
+            </div></p>
+</div>
+<!-- .collapse -->
+</div>
+
+  <div class="card">
+      <a class="card-header font-weight-bold collapse collapsed" id="acc-button-2e" data-toggle="collapse" href="#panel-acc-button-2e"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-2e">
+        <span class="title" role="heading" aria-level="3"><i class="fa-solid fa-smog"></i> NYCCAS</span>
+      </a>
+
+<div class="collapse" id="panel-acc-button-2e" role="tabpanel" aria-labelledby="acc-button-2e" data-parent="#accordion-02">
+    <div class="card-body  fs-md">
+<strong>What is the New York City Community Air Survey (NYCCAS)?</strong> Started in 2008, NYCCAS is the largest ongoing urban air monitoring program of any U.S. city. NYCCAS tracks air pollutants at the street-level, where people spend most of their time. <br><br>
         <strong>NYCCAS indicators include:</strong>
           <ul>
           <li>Concentration of fine particles (PM2.5)  </li>
@@ -107,17 +132,22 @@ We get data from many sources: some from NYC Health or other city agencies like 
           <li>Sulfur dioxide (SO2)  </li>
           </ul>
         <strong>What we use it for:</strong> It helps us inform PlaNYC, track changes in air quality over time, estimate exposures for health research, inform the public about local topics, such as air quality improvements, health benefits of public transit to air quality, and efforts to reduce the health impacts of air pollution.  
-        </p>
-    </div>
 </div>
-<br>
+
+</div>
+<!-- .collapse -->
+</div>
+</div>
+
+---
+
 <hr>
 
 ### What types of data sources are there?
 
 There are many kinds of data, which are collected, cleaned, and updated in different ways. Here are some of the categories data can fall into, and some may even fall into multiple categories.
 
-<div class="accordion-group narrow my-3" role="tablist" id="accordion-01">
+<div class="accordion-group my-3" role="tablist" id="accordion-01">
   <div class="card">
     <a class="card-header collapse collapsed font-weight-bold" id="acc-button-01" data-toggle="collapse" href="#panel-acc-button-01"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-01">
       <span class="title" role="heading" aria-level="3">Regulatory data</span>
