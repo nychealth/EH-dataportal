@@ -6,7 +6,7 @@
     <description>Recent content in Air Quality on Environment &amp; Health Data Portal</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 01 Jul 2025 08:11:44 -0400</lastBuildDate>
+    <lastBuildDate>Tue, 04 Nov 2025 08:49:22 -0400</lastBuildDate>
     <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/air-quality/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Your Neighborhood&#39;s Air Quality</title>
@@ -14,6 +14,13 @@
       <pubDate>Tue, 24 Aug 2021 12:04:44 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/neighborhood-air-quality/</guid>
       <description>&lt;p&gt;We combine data from our air quality monitoring network, NYCCAS, with other data to understand what makes air quality in one neighborhood different from air quality in another. We found that building emissions, building density, industrial areas, and traffic density are associated with differences in air quality.&lt;/p&gt;&#xA;&lt;p&gt;If we don&amp;rsquo;t have an air quality monitor in one neighborhood, but we know its building density, its industrial area, and its traffic, then we can model (estimate or predict) its air quality - based on monitored air quality in similar neighborhoods.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>NYC is working to protect your health — but we can’t do it alone</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/federal-funding/</link>
+      <pubDate>Tue, 04 Nov 2025 08:49:22 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/federal-funding/</guid>
+      <description>&lt;p&gt;New Yorkers benefit from one of the largest health departments in the world. And at the NYC Health Department, we have one of the most robust environmental health programs in the country. From investigating foodborne illnesses, to monitoring local air, to creating guidance before deadly storms or extreme heat — and much more — the Health Department&amp;rsquo;s work supports the health of all New Yorkers.&lt;/p&gt;&#xA;&lt;p&gt;But we can’t do it alone. We depend on a broad network of public-sector resources from the city, state and federal government to plan for and protect New Yorkers against many public health threats.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Initial data from Congestion Relief Tolling</title>
