@@ -282,7 +282,7 @@ textarea {
 
 .main {
     position: relative;
-    max-width: 940px;
+    /* max-width: 940px; */
     margin: 0px auto;
     background: #eeeeee;
 }
