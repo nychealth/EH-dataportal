@@ -19,7 +19,7 @@ related:
     url: "data-stories/food/"
 ---
 
-New Yorkers benefit from one of the largest health departments in the world. And at the NYC Health Department, we have one of the most robust environmental health programs in the country. From investigating food illnesses, to monitoring local air, to creating guidance before deadly storms or extreme heat — and much more — the Health Department's work supports the health of all New Yorkers.
+New Yorkers benefit from one of the largest health departments in the world. And at the NYC Health Department, we have one of the most robust environmental health programs in the country. From investigating foodborne illnesses, to monitoring local air, to creating guidance before deadly storms or extreme heat — and much more — the Health Department's work supports the health of all New Yorkers.
 
 But we can’t do it alone. We depend on a broad network of public-sector resources from the city, state and federal government to plan for and protect New Yorkers against many public health threats.
 
@@ -29,7 +29,7 @@ Whether it’s national weather forecast data that we need to prepare for extrem
 
 Preventing heat-related illness is a collaborative effort because climate and weather conditions do not stop at city, state, or national borders.
 
-Hot weather is becoming more intense due to climate change. <a href="../../data-features/heat-report">More than 500 New Yorkers die prematurely due to hot weather each year</a>. most of them because they didn’t have access to an air conditioner (AC) at home.
+Hot weather is becoming more intense due to climate change. <a href="../../data-features/heat-report">More than 500 New Yorkers die prematurely due to hot weather each year</a>, most of them because they didn’t have access to an air conditioner (AC) at home.
 
 <strong>So how do we help New Yorkers stay cool and prevent avoidable heat illness and death?</strong>
 
@@ -72,7 +72,7 @@ Still, foodborne illness persists. In 2024, food safety investigators responded 
 
 - <strong>Inspect:</strong> We make regular visits to food establishments to check for sanitary handling, storage, and serving of food.
 
-- <strong>Investigate:</strong> We interview patients with suspected foodborne illness and visit associated food establishments to investigate outbreaks quickly to stop them from spreading.
+- <strong>Investigate:</strong> We interview patients with suspected foodborne illness, and visit associated food establishments to investigate outbreaks quickly to stop them from spreading.
 
 Foodborne illness doesn’t care about geographic boundaries. NYC residents have access to all kinds of food — around 30,000 restaurants and 14,000 grocery stores — with sources from all around the US and the world. When tracing an outbreak back to the source, especially when every hour counts, the success of our effort depends on knowledgeable food safety and disease control experts working at every level of government to support local response.
 
