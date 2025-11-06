@@ -503,7 +503,7 @@ As the climate changes, NYC faces rising average temperatures and heat waves tha
         </div>
     </form>
     <iframe id="mapframe" width="100%" height="600" frameborder="0" scrolling="no"
-        src="2019.html"></iframe>
+        src="{{< baseURL >}}maps/UHI/2019.html"></iframe>
     </iframe>
     <div class="float-right fs-sm">
         <img src="tree.png" width="15px" alt="A tree icon."> Temperature sensor mounted on tree.
@@ -531,9 +531,9 @@ As the climate changes, NYC faces rising average temperatures and heat waves tha
         radios.forEach(function (radio) {
             return radio.addEventListener('change', function () {
                 if (radio.value === '2018') {
-                    document.getElementById('mapframe').src = "2018.html";
+                    document.getElementById('mapframe').src = `{{< baseURL >}}maps/UHI/2018.html`;
                 } else {
-                    document.getElementById('mapframe').src = "2019.html";
+                    document.getElementById('mapframe').src = `{{< baseURL >}}maps/UHI/2019.html`;
                 }
                 ;
             });
