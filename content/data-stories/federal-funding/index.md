@@ -4,7 +4,7 @@ draft: false
 date: 2025-11-04T08:49:22-04:00
 image: NYC_bridge.jpg
 photocredit: Julienne Schaer
-categories: ["airquality", "climate", "foodanddrink"]
+categories: ["airquality", "climatehealth", "foodanddrink"]
 keywords:
   ["federal funding", "heat", "food safety", "air quality", "poison control"]
 seo_title: Public sector resources protect NYC health

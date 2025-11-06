@@ -6,7 +6,7 @@ draft: false
 seo_title: "What Hurricane Ida and Superstorm Sandy taught us about flooding and health"
 seo_description: "A data story about the health impacts from climate change-related flooding."
 tags:
-categories: ["housing", "inequality", "climate", "neighborhoods"]
+categories: ["housing", "inequality", "climatehealth", "neighborhoods"]
 keywords:
   [
     "flooding",
