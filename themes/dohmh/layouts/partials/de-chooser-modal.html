@@ -8,7 +8,7 @@
   "header" .header "indicators" .IndicatorID) -}} {{- end }} {{- $json :=
   $indicatorsJSON | jsonify -}}
 
-  <p class="mb-1">
+  <div class="border-bottom pb-1 mb-1">
     <a
       href="#"
       class="font-weight-bold"
@@ -16,9 +16,8 @@
       onclick="getIndicatorsForTopic(`{{ .Title }}`, this.dataset.indicators, `{{ .RelPermalink }}`)"
     >
       {{ .Title }}</a
-    >:{{ with .Params.blurb }} {{ . }} {{ else }}
-    <em>If blurb then blurb.</em> {{ end }}
-  </p>
+    >{{ with .Params.blurb }} <p style="font-size:14px" class=""> {{ . }} </p>{{ end }}
+  </div>
   {{- end }} {{- end }}
 </div>
 
@@ -29,7 +28,7 @@
   "header" .header "indicators" .IndicatorID) -}} {{- end }} {{- $json :=
   $indicatorsJSON | jsonify -}}
 
-  <p class="mb-1">
+  <div class="border-bottom pb-1 mb-1">
     <a
       href="#"
       class="font-weight-bold"
@@ -37,9 +36,8 @@
       onclick="getIndicatorsForTopic(`{{ .Title }}`, this.dataset.indicators, `{{ .RelPermalink }}`)"
     >
       {{ .Title }}</a
-    >:{{ with .Params.blurb }}: {{ . }} {{ else }}
-    <em>If blurb then blurb.</em> {{ end }}
-  </p>
+    >{{ with .Params.blurb }} <p style="font-size:14px" class=""> {{ . }} </p>{{ end }}
+  </div>
   {{- end }} {{- end }}
 </div>
 

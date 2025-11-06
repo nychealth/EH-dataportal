@@ -84,7 +84,7 @@ async function printIndicators(x, destination) {
                 <div class="indicator-card mb-1">
                     <div class="border p-2 border-gray-300 rounded">
                         <div class="d-flex justify-content-between align-items-start">
-                            <h6><a href='${destination}?id=${indicator.IndicatorID}'>${indicator.IndicatorName}</a></h6>
+                            <a class='h6' href='${destination}?id=${indicator.IndicatorID}'>${indicator.IndicatorName}</a>
                         </div>
                         <p class="mb-0" style="font-size: 14px;">${indicator.IndicatorDescription}</p>
                     </div>
