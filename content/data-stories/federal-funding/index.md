@@ -46,7 +46,7 @@ Connecting the dots between hot weather and health risks will protect renters in
 ### Preparing for and recovering from extreme storms
 
 <figure class="figure">
-<img src="../federal-funding/waterfront_redhook.jpg" class="figure-img my-1" alt=""><figcaption class="figure-caption">Image credit: Joe Buglewicz</figcaption>
+<img src="../federal-funding/waterfront_redhook.jpg" class="figure-img my-1" alt="Redhook's waterfront"><figcaption class="figure-caption">Image credit: Joe Buglewicz</figcaption>
 </figure>
 <br><br>
 
@@ -81,7 +81,7 @@ When our city, state and federal colleagues have access to advanced lab technolo
 ### Tracking pollution helps make our air cleaner
 
 <figure class="figure">
-<img src="../federal-funding/CentralPark_MarleyWhite.jpg" class="figure-img my-1" alt=""><figcaption class="figure-caption">Image credit: Marley White</figcaption>
+<img src="../federal-funding/CentralPark_MarleyWhite.jpg" class="figure-img my-1" alt="Central Park with bright purple flowers in bloom"><figcaption class="figure-caption">Image credit: Marley White</figcaption>
 </figure>
 <br><br>
 
