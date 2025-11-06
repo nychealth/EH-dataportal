@@ -45,6 +45,11 @@ Connecting the dots between hot weather and health risks will protect renters in
 
 ### Preparing for and recovering from extreme storms
 
+<figure class="figure">
+<img src="../federal-funding/waterfront_redhook.jpg" class="figure-img my-1" alt=""><figcaption class="figure-caption">Image credit: Joe Buglewicz</figcaption>
+</figure>
+<br><br>
+
 <a href="../flooding-and-health">Flooding from powerful storms, like Hurricanes Ida and Sandy, can cause injury and death,</a> as well as disrupt access to food, medical care, and reliable power.
 
 Like with heat events, public weather data helps us prepare, plan, and recover. Emergency preparedness teams use this information to alert New Yorkers who are especially vulnerable to flooding, like those living in basement apartments or low-lying areas of the city.
@@ -74,6 +79,11 @@ Foodborne illness doesn’t care about geographic boundaries. NYC residents have
 When our city, state and federal colleagues have access to advanced lab technologies, they can quickly identify pathogens and keep a handful of cases from turning into an outbreak.
 
 ### Tracking pollution helps make our air cleaner
+
+<figure class="figure">
+<img src="../federal-funding/CentralPark_MarleyWhite.jpg" class="figure-img my-1" alt=""><figcaption class="figure-caption">Image credit: Marley White</figcaption>
+</figure>
+<br><br>
 
 Natural resources — our air, water, forests — don't have boundaries, and pollution from other parts of the world travels to NYC (and vice versa). By having common standards for measuring the cleanliness of our air, water and other natural resources, we can make collective improvements across local, city, state, and national lines.
 
