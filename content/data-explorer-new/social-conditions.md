@@ -10,6 +10,7 @@ blurb: "race/ethnicity, education, living alone"
 datatables: true
 arquero: true
 leaflet: true
+vega: true
 newDataExplorer: true
 headerDE: true
 excludeFooter: true

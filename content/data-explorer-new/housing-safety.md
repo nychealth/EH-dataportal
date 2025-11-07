@@ -10,6 +10,7 @@ blurb: "AC and electric medical equipment"
 datatables: true
 arquero: true
 leaflet: true
+vega: true
 newDataExplorer: true
 headerDE: true
 excludeFooter: true

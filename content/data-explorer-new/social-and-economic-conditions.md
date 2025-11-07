@@ -9,6 +9,7 @@ description: "Datasets and visualizations of social and economic conditions in N
 datatables: true
 arquero: true
 leaflet: true
+vega: true
 newDataExplorer: true
 headerDE: true
 excludeFooter: true

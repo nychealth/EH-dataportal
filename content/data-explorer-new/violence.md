@@ -10,6 +10,7 @@ blurb: "Assault and firearm related ED and hospital visits"
 datatables: true
 arquero: true
 leaflet: true
+vega: true
 newDataExplorer: true
 headerDE: true
 excludeFooter: true

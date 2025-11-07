@@ -12,6 +12,7 @@ categories: ["airquality", "childhealth", "publicspace", "neighborhoods"]
 datatables: true
 arquero: true
 leaflet: true
+vega: true
 newDataExplorer: true
 headerDE: true
 excludeFooter: true

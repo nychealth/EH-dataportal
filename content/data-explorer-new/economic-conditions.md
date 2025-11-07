@@ -9,6 +9,7 @@ blurb: "Poverty and rent."
 datatables: true
 arquero: true
 leaflet: true
+vega: true
 newDataExplorer: true
 headerDE: true
 excludeFooter: true

@@ -10,6 +10,7 @@ blurb: "Heat- and cold-related illness and death"
 datatables: true
 arquero: true
 leaflet: true
+vega: true
 newDataExplorer: true
 headerDE: true
 excludeFooter: true

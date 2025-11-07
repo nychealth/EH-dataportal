@@ -8,6 +8,7 @@ description: "Datasets and visualizations of lead hazards in NYC."
 datatables: true
 arquero: true
 leaflet: true
+vega: true
 newDataExplorer: true
 headerDE: true
 excludeFooter: true

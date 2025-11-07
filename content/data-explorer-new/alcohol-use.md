@@ -13,6 +13,7 @@ keywords: ["drinking", "alcohol", "binge drinking"]
 datatables: true
 arquero: true
 leaflet: true
+vega: true
 newDataExplorer: true
 headerDE: true
 excludeFooter: true

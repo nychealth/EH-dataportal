@@ -10,6 +10,7 @@ blurb: "limb, heart, and genetic conditions"
 datatables: true
 arquero: true
 leaflet: true
+vega: true
 newDataExplorer: true
 headerDE: true
 excludeFooter: true

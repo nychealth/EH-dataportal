@@ -10,6 +10,7 @@ blurb: "Hospital and ED visits, and deaths"
 datatables: true
 arquero: true
 leaflet: true
+vega: true
 newDataExplorer: true
 headerDE: true
 excludeFooter: true

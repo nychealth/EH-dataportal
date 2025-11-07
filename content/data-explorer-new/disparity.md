@@ -8,6 +8,7 @@ keywords: ["social justice","social determinants","disparities","injustice","jus
 datatables: true
 arquero: true
 leaflet: true
+vega: true
 newDataExplorer: true
 headerDE: true
 excludeFooter: true

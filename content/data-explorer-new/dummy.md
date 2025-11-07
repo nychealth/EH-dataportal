@@ -7,8 +7,10 @@ seo_description: "Explore data, visualizations, and more on ways that environmen
 datatables: true
 arquero: true
 leaflet: true
+vega: true
 newDataExplorer: true
 headerDE: true
+vega: true
 excludeFooter: true
 tags: 
 categories: ["transportation","climatehealth"]

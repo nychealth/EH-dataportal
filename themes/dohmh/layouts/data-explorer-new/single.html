@@ -260,7 +260,12 @@
                                     </button>
                                 </div>
                                 <div class="p-2 pt-md-0">
+                                    <div id="barHolder" style="width:100%;height:500px;">
+                                        Bar chart to go here
+                                    </div>
+                                    <!--
                                     <img src={{ relURL "images/de-bar-chart.png" }} alt="" style="max-width:100%;">
+                                    -->
                                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
                                     <div class="d-flex align-items-center pt-2">
                                         <a class="btn-sm btn-light-green-bg-outline" href="#">Save Chart</a>
@@ -655,6 +660,12 @@
 {{- $menus            := resources.Get "js/data-explorer-new/menu.js" -}}
 {{- $menus_secure     := $menus | partial "short-fingerprint.html" -}}
 <script type="text/javascript" src="{{ $menus_secure.RelPermalink }}" integrity="{{ $menus_secure.Data.Integrity }}"></script>
+
+{{- $bar              := resources.Get "js/data-explorer-new/bar.js" -}}
+{{- $bar_secure       := $bar | partial "short-fingerprint.html" -}}
+<script type="text/javascript" src="{{ $bar_secure.RelPermalink }}" integrity="{{ $bar_secure.Data.Integrity }}"></script>
+
+
 
 
 <script>
