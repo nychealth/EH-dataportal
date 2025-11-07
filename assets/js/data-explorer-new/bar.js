@@ -1156,10 +1156,11 @@ console.log('Running renderBar()')
     "legend": {"disable": true},
     "scale": {"invalid": {"color": {"value": "#808080"}}}
   },
+  "autosize": { "type": "fit", "contains": "padding" },
   "transform": [
     {"calculate": "datum.DisplayValue + ' per 10,000'", "as": "valueLabel"}
   ],
-  "height": 350,
+  "height": 500,
   "width": "container",
   "mark": {"type": "bar", "tooltip": true, "stroke": "#161616"},
   "params": [
@@ -1206,8 +1207,8 @@ console.log('Running renderBar()')
             compiled: false, 
             editor: true 
         }
+    }).then(result => {
+          window.myVegaView = result.view; // store the vega-view result to resize later
     });
-
-
 
 }

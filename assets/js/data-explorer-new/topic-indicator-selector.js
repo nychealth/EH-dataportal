@@ -228,3 +228,14 @@ function copyCitation() {
 
     document.body.removeChild(temp); // clean up
 }
+
+
+// ----------------------------------------------------------------------- //
+// chart resize
+// ----------------------------------------------------------------------- //
+
+const updateChartPlotSize = () => {
+    setTimeout(() => {
+        window.dispatchEvent(new Event('resize'));
+    }, 200)   
+}
