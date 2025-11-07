@@ -111,23 +111,33 @@ async function printIndicators(x, destination) {
 // --------------------------------------------------------
 
 function checkURL() {
-    
-    const queryString = window.location.search;
-    
-    const urlParams = new URLSearchParams(queryString);
+    const urlParams = new URLSearchParams(window.location.search);
 
-    const chosenIndicator = Number(urlParams.get('id'));
+    // URL Format Expected:
+    // .../TOPIC/?id=2133&measure=239&geo=CDTA
 
-    console.log('Chosen indicator: ', chosenIndicator) // output indicator ID
+    // Convert to a plain object:
+    const paramsObj = Object.fromEntries(urlParams.entries());
 
-    printIndicatorInfo(chosenIndicator)
+    console.log('URL Parameters:')
+    console.log(paramsObj); // Outputs URL Parameters in json
 
-    draw311Buttons(chosenIndicator)
+    const chosenIndicator = Number(paramsObj.id);
 
-    printMenus(chosenIndicator)
+    // Send for Indicator Functions
+    printIndicatorInfo(chosenIndicator);
+    draw311Buttons(chosenIndicator);
+    printMenus(chosenIndicator);
+
+    // run renderBar()
+    renderBar()
+
+    // Run selections for Measure, Geography, and TimePeriod
+
 
 
 }
+
 
 // --------------------------------------------------------
 // Print basic indicator info from metadata to page 
