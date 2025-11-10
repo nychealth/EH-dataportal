@@ -17,9 +17,9 @@ const indicatorsPromise = fetch(`${data_repo}${data_branch}/indicators/metadata/
   .catch(error => console.error("Error loading metadata.json:", error));
 
 // Waits for indicators to be ready
-async function ensureIndicatorsLoaded() {
+async function ensureIndicatorsLoaded(x) {
   if (indicators) return indicators; 
-  console.log("Waiting for indicators to load...");
+  console.log("Waiting for indicators to load for " + x);
   return await indicatorsPromise; 
 }
 
@@ -57,8 +57,8 @@ async function printIndicators(x, destination) {
     }
 
     // Ensure metadata are loaded
-    const data = await ensureIndicatorsLoaded();
-    console.log("Indicators ready to print to indicator selection modal!", data);
+    const data = await ensureIndicatorsLoaded('indicator selection modal');
+    // console.log("Indicators ready to print to indicator selection modal!", data);
 
     // Clear existing content
     indicatorDestination.innerHTML = '';
@@ -113,8 +113,7 @@ async function printIndicators(x, destination) {
 function checkURL() {
     const urlParams = new URLSearchParams(window.location.search);
 
-    // URL Format Expected:
-    // .../TOPIC/?id=2133&measure=239&geo=CDTA
+    // URL Format Expected: .../TOPIC/?id=2133&measure=239&geo=CDTA
 
     // Convert to a plain object:
     const paramsObj = Object.fromEntries(urlParams.entries());
@@ -130,7 +129,7 @@ function checkURL() {
     printMenus(chosenIndicator);
 
     // run renderBar()
-    renderBar()
+    renderBar(attributeData)
 
     // Run selections for Measure, Geography, and TimePeriod
 
@@ -145,8 +144,8 @@ function checkURL() {
 async function printIndicatorInfo(x) {
 
     // Ensure metadata are loaded
-    const data = await ensureIndicatorsLoaded();
-    console.log("Indicators ready to print to page!");
+    const data = await ensureIndicatorsLoaded('printing to page');
+    // console.log("Indicators ready to print to page!");
 
     // Find the indicator object where IndicatorID matches x
     const indicator = data.find(d => d.IndicatorID === x);
@@ -210,7 +209,9 @@ async function printIndicatorInfo(x) {
 
 
 
-
+// --------------------------------------------------------
+// Simple copy citation function
+// --------------------------------------------------------
 function copyCitation() {
     const citeText = document.getElementById('citeText').innerText;
 
@@ -231,7 +232,7 @@ function copyCitation() {
 
 
 // ----------------------------------------------------------------------- //
-// chart resize
+// chart resizer (doesn't work when called)
 // ----------------------------------------------------------------------- //
 
 const updateChartPlotSize = () => {

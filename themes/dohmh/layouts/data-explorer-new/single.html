@@ -52,6 +52,7 @@
 /* Tick */
 .viridis-tick {
   position: absolute;
+  display: none;
   left: 50%;              /* static for now; change dynamically later */
   transform: translateX(-50%);
   width: 2px;
@@ -240,7 +241,7 @@
                 <div class="legend-max">
                     <span id="maxVal">Max</span>
                 </div>
-                <div class="viridis-tick"></div>
+                <div class="viridis-tick" id="legend-tick"></div>
             </div>
 
             </div>

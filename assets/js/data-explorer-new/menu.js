@@ -4,8 +4,8 @@ async function printMenus(x) {
     console.log('Menus running')
 
     // Ensure metadata are loaded
-    const data = await ensureIndicatorsLoaded();
-    console.log("Indicators ready to print menus!");
+    const data = await ensureIndicatorsLoaded('printing measure menu');
+    // console.log("Indicators ready to print menus!");
 
     // Find indicator by ID (make sure x is a number)
     const thisOne = indicators.find(d => d.IndicatorID === Number(x));
