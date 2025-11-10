@@ -79,23 +79,40 @@ console.log('Running renderBar()')
     }
   }
     },
-            {
-          "mark": {
-            "type": "rule",
-            "color": "black",
-            "xOffset": 15,
-            "strokeWidth": 1
+    {
+      "mark": {
+        "type": "rule",
+        "xOffset": 15,
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "y": {"field": "GeoID", "sort": "-x"},
+        "x": {"field": "Value", "type": "quantitative"},
+        "color": {
+          "condition": {
+            "test": "datum.GeoID == selectedGeo",
+            "value": "black"
           },
-          "transform": [{"filter": "datum.GeoID === 301"}],
-          "encoding": {
-            "y": {"field": "GeoID", "sort": "-x"},
-            "x": {"field": "Value", "type": "quantitative"}
-          }
+          "value": "transparent"
         }
+      }
+    }
+
+
   ]
 }
 
-  vegaEmbed("#barHolder", barSpec, {
+const vegaSpec = vegaLite.compile(barSpec).spec;
+
+const geoSignal = {
+  "name": "selectedGeo",
+  "value": null
+}
+
+vegaSpec.signals.push(geoSignal)
+
+
+  vegaEmbed("#barHolder", vegaSpec, {
     actions: {
       export: { png: false, svg: false },
       source: false,
@@ -103,6 +120,8 @@ console.log('Running renderBar()')
       editor: true 
     }
   }).then(result => {
+      window.myVegaView = result.view; // store the vega view globally
+
       let lastHighlightedLayer = null;
 
       result.view.addEventListener('mouseover', (event, item) => {

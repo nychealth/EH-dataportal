@@ -134,11 +134,21 @@ const geojsonLayer = L.geoJson(geojson, {
       const props = feature.properties;
       updateHoverUI(props);
       highlightFeature(e); 
+
+        if (window.myVegaView) {
+          window.myVegaView.signal("selectedGeo", props.GeoID).run();
+        }
+
     });
 
     layer.on('mouseout', function(e) {
       clearHoverUI();
       resetHighlight(e);
+
+        if (window.myVegaView) {
+          window.myVegaView.signal("selectedGeo", null).run();
+        }
+
     });
 
   }
