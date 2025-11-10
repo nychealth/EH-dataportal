@@ -34,13 +34,15 @@ console.log('Running renderBar()')
     "legend": {"disable": true},
     "scale": {"invalid": {"color": {"value": "#808080"}}}
   },
-  "autosize": { "type": "fit", "contains": "padding" },
+  "autosize": {"type": "fit", "contains": "padding"},
   "transform": [
     {"calculate": "datum.DisplayValue + ' per 10,000'", "as": "valueLabel"}
   ],
   "height": 500,
   "width": "container",
-  "mark": {"type": "bar", "tooltip": true, "stroke": "#161616"},
+  "layer": [
+    {
+        "mark": {"type": "bar", "tooltip": true, "stroke": "#161616"},
   "params": [
     {
       "name": "highlight",
@@ -76,6 +78,21 @@ console.log('Running renderBar()')
       "value": 0
     }
   }
+    },
+            {
+          "mark": {
+            "type": "rule",
+            "color": "black",
+            "xOffset": 15,
+            "strokeWidth": 1
+          },
+          "transform": [{"filter": "datum.GeoID === 301"}],
+          "encoding": {
+            "y": {"field": "GeoID", "sort": "-x"},
+            "x": {"field": "Value", "type": "quantitative"}
+          }
+        }
+  ]
 }
 
   vegaEmbed("#barHolder", barSpec, {
