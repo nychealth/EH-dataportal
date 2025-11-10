@@ -58,3 +58,9 @@ function styleAndPrintMenu(items, destination, type) {
 function changeMeasure(type, measureID) {
     console.log(`change - ${type}: ${measureID}`);
 }
+
+
+function styleMenuItem(x) {
+    // pass stuff in, one place to describe the HTML, and return it
+
+}
