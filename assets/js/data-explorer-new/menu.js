@@ -9,13 +9,14 @@ async function printMenus(x) {
 
     // Find indicator by ID (make sure x is a number)
     const thisOne = indicators.find(d => d.IndicatorID === Number(x));
-    console.log(thisOne);
+    // console.log(thisOne);
 
     const measures = thisOne.Measures.map(m => ({
         MeasurementType: m.MeasurementType,
         MeasureID: m.MeasureID
     }));
 
+    console.log('These measures:')
     console.log(measures);
 
     styleAndPrintMenu(measures, '.measures-holder', 'measure');
