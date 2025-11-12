@@ -70,6 +70,7 @@
     <section>
 
         <div class="row position-relative" style="z-index: 2;">
+
             <div class="position-absolute  de-main-details">
                 <!-- Mobile Accordion Header -->
                 <div class="bg-primary text-white px-2 py-1 w-full d-flex d-md-none" data-toggle="collapse" data-target="#detailsContent" aria-expanded="false" aria-controls="detailsContent" style="cursor: pointer;">
@@ -215,34 +216,35 @@
                 </div>
             </div>
 
+            <!-- Legend overlay -->
             <div class="position-absolute de-legend">
 
-            <!-- Row 1 -->
-            <div class="d-flex justify-content-between fs-sm mb-1">
-                <div><span id="hoveredGeo">Hover for details</span>:</div> 
-                <div class="font-weight-bold">
-                    <span id="hoveredValue">
-                        <!-- Value -->
-                    </span> 
-                    <span id="hoveredUnits">
-                        <!-- Units -->
-                    </span>
+                <!-- Labels -->
+                <div class="d-flex justify-content-between fs-sm mb-1">
+                    <div><span id="hoveredGeo">Hover for details</span>:</div> 
+                    <div class="font-weight-bold">
+                        <span id="hoveredValue">
+                            <!-- Value -->
+                        </span> 
+                        <span id="hoveredUnits">
+                            <!-- Units -->
+                        </span>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Wrapper for gradient, labels, and tick -->
-            <div class="viridis-wrapper position-relative">
-                <div class="viridis-rect" role="img" aria-label="Rectangle filled with Viridis color scale"></div>
+                <!-- Gradient, min/max, and tick -->
+                <div class="viridis-wrapper position-relative">
+                    <div class="viridis-rect" role="img" aria-label="Rectangle filled with Viridis color scale"></div>
 
-                <!-- Overlayed labels and tick -->
-                <div class="legend-min">
-                    <span id="minVal">Min</span>
+                    <!-- Overlayed labels and tick -->
+                    <div class="legend-min">
+                        <span id="minVal">Min</span>
+                    </div>
+                    <div class="legend-max">
+                        <span id="maxVal">Max</span>
+                    </div>
+                    <div class="viridis-tick" id="legend-tick"></div>
                 </div>
-                <div class="legend-max">
-                    <span id="maxVal">Max</span>
-                </div>
-                <div class="viridis-tick" id="legend-tick"></div>
-            </div>
 
             </div>
 
@@ -252,7 +254,8 @@
             <div class="position-absolute de-tabs fs-sm">
                 <div class="d-flex flex-column flex-md-row justify-content-end ">
                     <div>
-                        <div class="tab-content bg-white" id="v-pills-tabContent">
+                        <!-- Tab content -->
+                        <div class="tab-content bg-white pt-0" id="v-pills-tabContent">
                             <!-- Bar -->
                             <div class="tab-pane relative fade" id="v-pills-bar" role="tabpanel" aria-labelledby="v-pills-bar-tab">
                                 <div class="bg-white d-none d-md-block bl50" style="margin-left: -32px;">
@@ -274,6 +277,7 @@
                                     </div>
                                 </div>
                             </div>
+
                             <!-- Table -->
                             <div class="tab-pane relative fade" id="v-pills-table" role="tabpanel" aria-labelledby="v-pills-table-tab">
                                 <div class="bg-white d-none d-md-block bl50" style="margin-left: -32px;">
@@ -290,6 +294,7 @@
                                     </div>
                                 </div>
                             </div>
+
                             <!-- Trends -->
                             <div class="tab-pane relative fade" id="v-pills-trends" role="tabpanel" aria-labelledby="v-pills-trends-tab">
                                 <div class="bg-white d-none d-md-block bl50" style="margin-left: -32px;">
@@ -325,6 +330,7 @@
                                     </div>
                                 </div>
                             </div>
+
                             <!-- Correlate -->
                             <div class="tab-pane relative fade" id="v-pills-correlate" role="tabpanel" aria-labelledby="v-pills-correlate-tab">
                                 <div class="bg-white d-none d-md-block bl50" style="margin-left: -32px;">
@@ -356,7 +362,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- Data Store -->
+
+                            <!-- Data Source -->
                             <div class="tab-pane relative fade" id="v-pills-ds" role="tabpanel" aria-labelledby="v-pills-ds-tab">
                                 <div class="bg-white d-none d-md-block bl50" style="margin-left: -32px;">
                                     <button type="button" class="bg-primary border-0 bl50 py-1 close-tab-pane" aria-label="Close" onclick="closeTabPane('v-pills-ds')">
@@ -391,7 +398,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="bg-primary de-tabs-nav d-flex">
+
+                    <!-- Tabs -->
+                    <div class="bg-primary de-tabs-nav d-flex pb-0">
+
+                        <!-- Mobile take action / 311 -->
                         <div class="align-items-center d-flex d-md-none dropup">
                             <button class="d-flex align-items-center px-1" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color: #3B3B3B; height: 100%; border: none; color: inherit; padding: 0;">
                                 <div class="font-weight-bold px-1 text-white fs-xs">Take<br>Action</div>
@@ -408,6 +419,8 @@
                                 </ul>
                             </div>
                         </div>
+
+                        <!-- Desktop / mobile greenbar view options -->
                         <div class="nav flex-row flex-md-column nav-pills flex-grow-1" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                             <a class="nav-link" id="v-pills-bar-tab" data-toggle="pill"  href="#v-pills-bar" role="tab" aria-controls="v-pills-bar" aria-selected="true">
                                 <svg width="26" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 24"><path d="M26 3.5A2.5 2.5 0 0 1 23.5 6h-21A2.5 2.5 0 0 1 0 3.5v-1A2.5 2.5 0 0 1 2.5 0h21A2.5 2.5 0 0 1 26 2.5v1ZM17.5 15a2.5 2.5 0 0 0 2.5-2.5v-1A2.5 2.5 0 0 0 17.5 9h-15A2.5 2.5 0 0 0 0 11.5v1A2.5 2.5 0 0 0 2.5 15h15Zm-6 9a2.5 2.5 0 0 0 2.5-2.5v-1a2.5 2.5 0 0 0-2.5-2.5h-9A2.5 2.5 0 0 0 0 20.5v1A2.5 2.5 0 0 0 2.5 24h9Z" style="fill: currentColor;" fill-rule="nonzero"/></svg>
@@ -429,6 +442,7 @@
                                 <div class="mt-1">Data<br>Sources</div>
                             </a>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -443,12 +457,12 @@
 
 </article>
 
-        <!-- Populate indicator selection modal for this page -->
-        {{- $indicatorsJSON := slice -}}
-        {{- range .Params.indicators }}
-            {{- $indicatorsJSON = $indicatorsJSON | append (dict "header" .header "indicators" .IndicatorID) -}}
-        {{- end }}
-        {{- $json := $indicatorsJSON | jsonify -}}
+    <!-- Populate indicator selection modal for this page -->
+    {{- $indicatorsJSON := slice -}}
+    {{- range .Params.indicators }}
+        {{- $indicatorsJSON = $indicatorsJSON | append (dict "header" .header "indicators" .IndicatorID) -}}
+    {{- end }}
+    {{- $json := $indicatorsJSON | jsonify -}}
 
 <script>
     // Toggle tab active state when clicking an already-active tab
@@ -630,12 +644,6 @@
         // No initial check - class should only be added on user interaction
     });
 </script>
-
-<!-- TopoJSON client -->
-<script src="https://unpkg.com/topojson-client@3"></script>
-<!-- d3 -->
-<script src="https://d3js.org/d3.v7.min.js"></script>
-
 
 <!-- JAVASCRIPT FILES -->
 {{- $geo            := resources.Get "js/data-explorer-new/geography.js" -}}

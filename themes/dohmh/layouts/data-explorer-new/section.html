@@ -604,24 +604,10 @@
     });
 </script>
 
-<!-- TopoJSON client -->
-<script src="https://unpkg.com/topojson-client@3"></script>
-<!-- d3 -->
-<script src="https://d3js.org/d3.v7.min.js"></script>
 
-
-<!-- JAVASCRIPT FILES -->
-{{- $geo            := resources.Get "js/data-explorer-new/geography.js" -}}
-{{- $geo_secure     := $geo | partial "short-fingerprint.html" -}}
-<script type="text/javascript" src="{{ $geo_secure.RelPermalink }}" integrity="{{ $geo_secure.Data.Integrity }}" defer></script>
-
-{{- $choroData            := resources.Get "js/data-explorer-new/choroData.js" -}}
-{{- $choroData_secure     := $choroData | partial "short-fingerprint.html" -}}
-<script type="text/javascript" src="{{ $choroData_secure.RelPermalink }}" integrity="{{ $choroData_secure.Data.Integrity }}" defer></script>
-
-{{- $choro            := resources.Get "js/data-explorer-new/choro.js" -}}
-{{- $choro_secure     := $choro | partial "short-fingerprint.html" -}}
-<script type="text/javascript" src="{{ $choro_secure.RelPermalink }}" integrity="{{ $choro_secure.Data.Integrity }}" defer></script>
+{{- $basemap            := resources.Get "js/data-explorer-new/basemap.js" -}}
+{{- $basemap_secure     := $basemap | partial "short-fingerprint.html" -}}
+<script type="text/javascript" src="{{ $basemap_secure.RelPermalink }}" integrity="{{ $basemap_secure.Data.Integrity }}" defer></script>
 
 {{- $selector            := resources.Get "js/data-explorer-new/topic-indicator-selector.js" -}}
 {{- $selector_secure     := $selector | partial "short-fingerprint.html" -}}
