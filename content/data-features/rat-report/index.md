@@ -135,10 +135,10 @@ Table 3 shows the total number of compliance inspections for each RMZ in a 6-mon
 
 <!-- TABLE 3 -->
    <div id="table-3-1" class="table3tables">
-      <div style="min-height:289px" id="datawrapper-vis-bMzMo"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/bMzMo/embed.js" charset="utf-8" data-target="#datawrapper-vis-bMzMo"></script><noscript><img src="https://datawrapper.dwcdn.net/bMzMo/full.png" alt="Table" /></noscript></div>
+<div style="min-height:306px" id="datawrapper-vis-jaV7S"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/jaV7S/embed.js" charset="utf-8" data-target="#datawrapper-vis-jaV7S"></script><noscript><img src="https://datawrapper.dwcdn.net/jaV7S/full.png" alt="Table" /></noscript></div>
    </div>
 <div id="table-3-2" class="table3tables hide">
-<div style="min-height:289px" id="datawrapper-vis-LAaPy"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/LAaPy/embed.js" charset="utf-8" data-target="#datawrapper-vis-LAaPy"></script><noscript><img src="https://datawrapper.dwcdn.net/LAaPy/full.png" alt="Table" /></noscript></div>
+<div style="min-height:307px" id="datawrapper-vis-PaKDr"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/PaKDr/embed.js" charset="utf-8" data-target="#datawrapper-vis-PaKDr"></script><noscript><img src="https://datawrapper.dwcdn.net/PaKDr/full.png" alt="Table" /></noscript></div>
    </div>
 <div id="table-3-3" class="table3tables hide">
 <div style="min-height:306px" id="datawrapper-vis-pCGDW"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/pCGDW/embed.js" charset="utf-8" data-target="#datawrapper-vis-pCGDW"></script><noscript><img src="https://datawrapper.dwcdn.net/pCGDW/full.png" alt="Table" /></noscript></div>
