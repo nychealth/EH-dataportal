@@ -109,12 +109,12 @@ Overall, in the first six months of 2025 in the four RMZs, the Department issued
 <div style="min-height:289px" id="datawrapper-vis-LAaPy"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/LAaPy/embed.js" charset="utf-8" data-target="#datawrapper-vis-LAaPy"></script><noscript><img src="https://datawrapper.dwcdn.net/LAaPy/full.png" alt="Table" /></noscript></div>
 	</div>
    <div id="table-2-3" class="table2tables hide">
-   		<div style="min-height:270px" id="datawrapper-vis-IwkOp"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/IwkOp/embed.js" charset="utf-8" data-target="#datawrapper-vis-IwkOp"></script><noscript><img src="https://datawrapper.dwcdn.net/IwkOp/full.png" alt="" /></noscript></div></div>
+   		<div style="min-height:289px" id="datawrapper-vis-mVQJR"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/mVQJR/embed.js" charset="utf-8" data-target="#datawrapper-vis-mVQJR"></script><noscript><img src="https://datawrapper.dwcdn.net/mVQJR/full.png" alt="Table" /></noscript></div></div>
    	<div id="table-2-4" class="table2tables hide">
-		<div style="min-height:275px" id="datawrapper-vis-oY4ON"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/oY4ON/embed.js" charset="utf-8" data-target="#datawrapper-vis-oY4ON"></script><noscript><img src="https://datawrapper.dwcdn.net/oY4ON/full.png" alt="" /></noscript></div>
+<div style="min-height:289px" id="datawrapper-vis-DKVEV"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/DKVEV/embed.js" charset="utf-8" data-target="#datawrapper-vis-DKVEV"></script><noscript><img src="https://datawrapper.dwcdn.net/DKVEV/full.png" alt="Table" /></noscript></div>
    </div>
     <div id="table-2-5" class="table2tables hide">
-		<div style="min-height:245px" id="datawrapper-vis-c4G1a"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/c4G1a/embed.js" charset="utf-8" data-target="#datawrapper-vis-c4G1a"></script><noscript><img src="https://datawrapper.dwcdn.net/c4G1a/full.png" alt="" /></noscript></div>
+<div style="min-height:289px" id="datawrapper-vis-9i7xg"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/9i7xg/embed.js" charset="utf-8" data-target="#datawrapper-vis-9i7xg"></script><noscript><img src="https://datawrapper.dwcdn.net/9i7xg/full.png" alt="Table" /></noscript></div>
    </div>
 </div>
 <strong>II.&ensp;Summonses</strong>
