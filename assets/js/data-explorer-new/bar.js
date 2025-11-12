@@ -58,8 +58,7 @@ console.log('Running renderBar()')
     },
     "tooltip": [
       {"field": "Geography", "title": "Neighborhood"},
-      {"field": "valueLabel", "title": "Age-adjusted rate"},
-      {"field": "TimePeriod", "title": "Time period"}
+      {"field": "valueLabel", "title": "Age-adjusted rate"}
     ],
     "y": {"field": "GeoID", "sort": "-x", "axis": null},
     "color": {
@@ -128,6 +127,7 @@ vegaSpec.signals.push(geoSignal)
       editor: true 
     }
   }).then(result => {
+
       window.myVegaView = result.view; // store the vega view globally
 
       let lastHighlightedLayer = null;

@@ -152,6 +152,8 @@
                 const targetId = this.getAttribute('href');
                 const targetPane = document.querySelector(targetId);
 
+                updateChartPlotSize()
+
                 // Check if this tab is already active
                 if (this.classList.contains('active') && targetPane.classList.contains('show')) {
                     e.preventDefault();
