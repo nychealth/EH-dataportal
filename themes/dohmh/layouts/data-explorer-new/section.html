@@ -39,17 +39,28 @@
 
 
 <script>
-// fire modal
-  $(document).ready(function() {
+$(document).ready(function() {
+  // Add ?home=true to URL (same as before)
+  const url = new URL(window.location.href);
+  url.searchParams.set('home', 'true');
+  window.history.replaceState({}, '', url);
 
-    let url = new URL(window.location.href);
+  // Fire both modals on page load
+  $('#topicSelector').modal('show');
 
-    // Add the parameter
-    url.searchParams.set('home', 'true');
 
-    $('#topicSelector').modal('show'); // fire Topic Selector
+  // Reopen each if closed or dismissed
+  $('#topicSelector').on('hidden.bs.modal', function () {
+    $('#topicSelector').modal('show');
   });
 
+  $('#indicatorSelector').on('hidden.bs.modal', function () {
+    $('#indicatorSelector').modal('show');
+  });
+});
 </script>
+
+
+
 
 {{ end }}
