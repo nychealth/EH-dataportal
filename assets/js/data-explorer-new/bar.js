@@ -70,16 +70,23 @@ console.log('Running renderBar()')
       "legend": false
     },
     "stroke": {
-      "condition": [{"param": "highlight", "empty": false, "value": "cyan"}],
-      "value": "white"
+      "condition": [
+        {"param": "highlight", "empty": false, "value": "black"},
+                {
+          "test": "datum.GeoID == selectedGeo",
+          "value": "black"
+        }
+      ],
+      "value": "transparent"
     },
     "strokeWidth": {
-      "condition": [{"param": "highlight", "empty": false, "value": 3}],
-      "value": 0
+      "value": 2
     }
   }
     },
+    /*
     {
+      "description": "This layer was a rule that's triggered on map hover. Commented out in favor of keeping the stroke instead; we could use this to trigger a text label instead of using a Tooltip."
       "mark": {
         "type": "rule",
         "xOffset": 15,
@@ -97,6 +104,7 @@ console.log('Running renderBar()')
         }
       }
     }
+    */
 
 
   ]
