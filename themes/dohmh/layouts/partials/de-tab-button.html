@@ -1,0 +1,45 @@
+                    <!-- Tabs -->
+                    <div class="bg-primary de-tabs-nav d-flex pb-0">
+
+                        <!-- Mobile take action / 311 -->
+                        <div class="align-items-center d-flex d-md-none dropup">
+                            <button class="d-flex align-items-center px-1" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color: #3B3B3B; height: 100%; border: none; color: inherit; padding: 0;">
+                                <div class="font-weight-bold px-1 text-white fs-xs">Take<br>Action</div>
+                            </button>
+                            <div class="dropdown-menu p-2 text-left take-action-dropdown" aria-labelledby="dropdownMenuButton">
+                                <div class="font-weight-bold border-bottom border-gray-300 text-primary pb-2 mb-1">Concerned about this?</div>
+                                <ul class="list-unstyled fs-sm">
+                                    <li class="mb-1 border-bottom border-gray-300 pb-1 font-weight-normal"><a href="#">Email your elected officials</a></li>
+                                    <li class="mb-1 border-bottom border-gray-300 pb-1 font-weight-normal">
+                                      <span class="d-block"><a href="#">Contact 311</a></span>
+                                      <span class="d-block"><a href="#">Another option</a></span>
+                                      <span class="d-block"><a href="#">Another option</a></span>
+                                  </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Desktop / mobile greenbar view options -->
+                        <div class="nav flex-row flex-md-column nav-pills flex-grow-1" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                            <a class="nav-link" id="v-pills-bar-tab" data-toggle="pill"  href="#v-pills-bar" role="tab" aria-controls="v-pills-bar" aria-selected="true">
+                                <svg width="26" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 24"><path d="M26 3.5A2.5 2.5 0 0 1 23.5 6h-21A2.5 2.5 0 0 1 0 3.5v-1A2.5 2.5 0 0 1 2.5 0h21A2.5 2.5 0 0 1 26 2.5v1ZM17.5 15a2.5 2.5 0 0 0 2.5-2.5v-1A2.5 2.5 0 0 0 17.5 9h-15A2.5 2.5 0 0 0 0 11.5v1A2.5 2.5 0 0 0 2.5 15h15Zm-6 9a2.5 2.5 0 0 0 2.5-2.5v-1a2.5 2.5 0 0 0-2.5-2.5h-9A2.5 2.5 0 0 0 0 20.5v1A2.5 2.5 0 0 0 2.5 24h9Z" style="fill: currentColor;" fill-rule="nonzero"/></svg>
+                                <div class="mt-1 d-none d-md-block">Bar</div>
+                            </a>
+                            <a class="nav-link" id="v-pills-trends-tab" data-toggle="pill"  href="#v-pills-trends" role="tab" aria-controls="v-pills-trends" aria-selected="false">
+                                <svg width="37" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 37 20"><path d="m2 18.452 11.042-11.23 7.905 8.041A44.685 44.685 0 0 1 35.125 2" style="stroke: currentColor;" stroke-width="2.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                <div class="mt-1 d-none d-md-block">Trends</div>
+                            </a>
+                            <a class="nav-link" id="v-pills-correlate-tab" data-toggle="pill"  href="#v-pills-correlate" role="tab" aria-controls="v-pills-correlate" aria-selected="false">
+                                <svg width="29" height="27" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 29 27"><g transform="translate(1 2)" fill="none" fill-rule="evenodd"><circle style="fill: currentColor;" cx="20.158" cy="5.427" r="2.5"/><circle style="fill: currentColor;" cx="10.3" cy="7.456" r="2.5"/><circle style="fill: currentColor;" cx="16.778" cy="12.529" r="2.5"/><circle style="fill: currentColor;" cx="10.3" cy="16.588" r="2.5"/><path style="stroke: currentColor;" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="M.65 23.415h26M.65 23.415V0"/></g></svg>
+                                <div class="mt-1 d-none d-md-block">Correlate</div>
+                            </a>
+                            <a class="nav-link" id="v-pills-table-tab" data-toggle="pill"  href="#v-pills-table" role="tab" aria-controls="v-pills-table" aria-selected="false">
+                                <svg width="27" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 27 24"><path d="M0 2.727C0 1.22 1.066 0 2.38 0h21.89c1.314 0 2.38 1.222 2.38 2.727v18.546c0 1.505-1.066 2.727-2.38 2.727H2.38C1.064 24 0 22.779 0 21.273V2.727Zm24.746 5.455c0-.301-.213-.546-.475-.546h-9.518c-.263 0-.476.245-.476.546v2.182c0 .3.213.545.476.545h9.518c.262 0 .475-.244.475-.545V8.182Zm0 5.454c0-.3-.213-.545-.475-.545h-9.518c-.263 0-.476.244-.476.545v2.182c0 .301.213.546.476.546h9.518c.262 0 .475-.245.475-.546v-2.182Zm0 5.455c0-.301-.213-.546-.475-.546h-9.518c-.263 0-.476.245-.476.546v2.182c0 .3.213.545.476.545h9.518c.262 0 .475-.244.475-.545V19.09Zm-12.849 2.727c.263 0 .476-.244.476-.545V19.09c0-.301-.213-.546-.476-.546H2.38c-.262 0-.475.245-.475.546v2.182c0 .3.213.545.475.545h9.518ZM2.38 16.364h9.518c.263 0 .476-.245.476-.546v-2.182c0-.3-.213-.545-.476-.545H2.38c-.262 0-.475.244-.475.545v2.182c0 .301.213.546.475.546Zm0-5.455h9.518c.263 0 .476-.244.476-.545V8.182c0-.301-.213-.546-.476-.546H2.38c-.262 0-.475.245-.475.546v2.182c0 .3.213.545.475.545Z" style="fill: currentColor;" fill-rule="nonzero"/></svg>
+                                <div class="mt-1 d-none d-md-block">Table</div>
+                            </a>
+                            <a class="nav-link border-md-top border-md-white d-flex justify-content-center flex-column" id="v-pills-ds-tab" data-toggle="pill" href="#v-pills-ds" role="tab" aria-controls="v-pills-ds" aria-selected="false" style="margin-top: auto;">
+                                <div class="mt-1">Data<br>Sources</div>
+                            </a>
+                        </div>
+
+                    </div>
