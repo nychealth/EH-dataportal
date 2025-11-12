@@ -687,3 +687,64 @@ $color-data-explorer: #0A408A;
       border-color: #dee2e6 !important;
   }
 }
+
+    .bl50 {
+        border-top-left-radius: 50%;
+        border-bottom-left-radius: 50%;
+    }
+
+    .viridis-wrapper {
+  position: relative;
+  width: 100%;
+  height: 22px; /* slightly taller to fit text */
+}
+
+    .viridis-rect {
+      width: 100%;
+      height: 100%;
+      border-radius: 6px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+      /* Viridis-like gradient (several sampled hex stops) */
+        background: linear-gradient(90deg,
+        #fde725 0%,
+        #5dc863 30%,
+        #21908c 55%,
+        #3b528b 80%,
+        #440154 100%)
+        }
+
+        /* Min and Max labels */
+.legend-min,
+.legend-max {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.65rem;
+  font-weight: bold;
+  padding: 0 4px;
+  line-height: 1;
+  text-shadow: 0 0 3px rgba(0,0,0,0.5); /* improves contrast on bright areas */
+}
+
+.legend-min {
+  left: 0;
+  color: black;
+}
+
+.legend-max {
+  right: 0;
+  color: #fff;
+}
+
+/* Tick */
+.viridis-tick {
+  position: absolute;
+  display: none;
+  left: 50%;              /* static for now; change dynamically later */
+  transform: translateX(-50%);
+  width: 2px;
+  height: 26px;           /* extends slightly above and below the bar */
+  background: #000;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
