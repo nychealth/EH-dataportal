@@ -50,16 +50,6 @@
     $('#topicSelector').modal('show'); // fire Topic Selector
   });
 
-// ----------------------------------------------------------------------- //
-// chart resize
-// ----------------------------------------------------------------------- //
-
-function updateChartPlotSize() {
-    setTimeout(() => {
-        window.dispatchEvent(new Event('resize'));
-    }, 200)
-}
-
 </script>
 
 {{ end }}
