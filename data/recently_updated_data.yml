@@ -1,20 +1,18 @@
 ---
 featured:
+- copy: Premature mortality
+  link: data-explorer/mortality/?id=2322
+- copy: Death (infants)
+  link: data-explorer/birth-outcomes/?id=5
+- copy: Preterm births
+  link: data-explorer/birth-outcomes/?id=1
 - copy: Elevated blood lead levels (under age 6)
   link: data-explorer/lead/?id=2184
 - copy: Bicycle injury emergency department visits
   link: data-explorer/transportation-related-injuries/?id=2092
-- copy: Bicycle injury hospitalizations
-  link: data-explorer/transportation-related-injuries/?id=2086
 - copy: Pedestrian injury emergency department visits
   link: data-explorer/transportation-related-injuries/?id=2094
-- copy: Pedestrian injury hospitalizations
-  link: data-explorer/transportation-related-injuries/?id=2093
 - copy: Fall-related emergency department visits (age 65+) 
   link: data-explorer/falls-among-older-adults/?id=2135
-- copy: Fall-related hospitalizations (age 65+)
-  link: data-explorer/falls-among-older-adults/?id=2136
 - copy: Home fall-related emergency department visits (age 65+)
   link: data-explorer/falls-among-older-adults/?id=2408
-- copy: Home fall-related hospitalizations (age 65+)
-  link: data-explorer/falls-among-older-adults/?id=2409
