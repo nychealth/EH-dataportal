@@ -1,6 +1,7 @@
 {{/*
   Usage:
     {{ partial "render-accessible-table.html" (dict "csvPath" "/data-features/minimum-wage/data/chart-data.csv" "containerId" "csv-table-container") }}
+    This will render an accessible table from /static or from a /content directory, but does so on the client side. 
 */}}
 
 {{ $csvPath := .csvPath }}

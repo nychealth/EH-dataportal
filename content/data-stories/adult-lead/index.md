@@ -38,6 +38,8 @@ related:
 
 Lead is a harmful metal that can cause serious health issues. When lead poisoning makes headlines, the focus is usually on children’s health: Kids are at higher risk for lead exposure, which can cause developmental, learning and behavior issues.
 
+{{< csvtable src="sample-data.csv" screenreader="false" >}}
+
 But lead can also harm adults. In adults, lead can cause increased blood pressure, kidney and brain problems, infertility and impotence. During pregnancy, lead exposure can cause miscarriage or babies to be born too soon or too small.
 
 There is no safe blood lead level at any age: Even low levels of lead in the blood can cause health problems. Chronic exposure can make lead build up in the body, and the longer you have been exposed, the more difficult it is for your body to get rid of lead.
