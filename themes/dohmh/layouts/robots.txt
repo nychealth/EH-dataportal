@@ -1,4 +1,10 @@
+{{- $envs := (slice "production" "prod_prod") -}}
+
+{{- if ( not ( in $envs hugo.Environment ) ) -}}
+
 User-agent: *
 {{- range .Pages }}
 Disallow: {{ .RelPermalink }}
+{{- end -}}
+
 {{- end -}}
