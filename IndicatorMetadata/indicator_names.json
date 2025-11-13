@@ -504,11 +504,6 @@
     "description": "Households reporting functioning air conditioning (AC). AC is an important way to prevent heat stress, especially for people with limited mobility.",
     "name": "Household air conditioning"
   },
-  "2188": {
-    "IndicatorID": 2188,
-    "description": "Homes with grab bars in the bathroom, among homes with adults age 65+. Grab bars in bathrooms can help prevent falls among older adults.",
-    "name": "Homes with grab bars in bathroom (age 65+)"
-  },
   "2189": {
     "IndicatorID": 2189,
     "description": "Children tested for lead before age 3. In New York State, all children must be tested for lead before age 3. There is no safe level of lead in the blood.",
@@ -833,11 +828,6 @@
     "IndicatorID": 2401,
     "description": "Households that postponed health care in the last 12 months",
     "name": "Postponing health care"
-  },
-  "2403": {
-    "IndicatorID": 2403,
-    "description": "Households that reported people 65 or older who fell in the home. Falls are a leading cause of injury among older adults.",
-    "name": "Homes with reported falls (age 65+)"
   },
   "2404": {
     "IndicatorID": 2404,

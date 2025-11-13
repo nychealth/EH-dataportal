@@ -1156,6 +1156,288 @@
 
 
 
+  <div class="card-header border-top" id="heading-Fine1425">
+    <h2 class="mb-0">
+      <button
+        class="btn btn-block btn-sm text-left"
+        type="button"
+        data-toggle="collapse"
+        data-target="#collapse-Fine1425"
+        aria-expanded="true"
+        aria-controls="collapse-Fine1425"
+        onclick="getURL( 2023 , 'Fine1425')"
+      >
+        
+        <div class="row no-gutters" style="width: 100%">
+          <div class="col-7 d-print-none">
+            <span class="font-weight-bold fs-md"
+              >PM2.5 (Fine particles)</span
+            ><br />
+            <span class="fs-sm font-weight-normal"
+              >Fine particles (PM 2.5), 2024</span
+            >
+          </div>
+          <div class="col-3 pl-1 d-print-none">
+            <span class="font-weight-bold fs-lg"
+              >6.2</span
+            >
+            <br />
+            <span class="fs-xs font-weight-normal"
+              >Annual mean mcg/m3</span
+            >
+          </div>
+
+          
+
+          <div class="col-2 d-print-none">
+              <div class="float-right mt-1">
+              <span
+                    class="better">Lower</span>
+            </div>
+          </div>
+
+          
+          <div class="col-12 print-only" style="flex-direction:row; width:100%;">
+
+            
+            <div style="width:50%;" class="border-right pl-1">
+              <span class="font-weight-bold fs-md">
+                PM2.5 (Fine particles)
+              </span><br />
+              <span class="fs-sm font-weight-normal">Fine particles (PM 2.5), 2024</span>
+            </div>
+
+            
+            <div style="width:25%" class="border-right pl-1">
+              <span class="font-weight-bold fs-lg">
+                6.2
+              </span><br />
+              <span class="fs-xs font-weight-normal">
+                Annual mean mcg/m3
+              </span>
+            </div>
+
+            
+
+            
+            <div style="width:25%;" class="pl-1">
+
+              Less than most neighborhoods
+
+
+
+            </div>
+
+          </div>
+
+        </div>
+      </button>
+    </h2>
+  </div>
+
+
+  <div
+    id="collapse-Fine1425"
+    class="collapse border-bottom "
+    aria-labelledby="heading-Fine1425"
+    data-parent="#accordion-0"
+    data-indicator-name="Fine1425"
+    data-count="1"
+  >
+    <div class="card-body card-body-no-top">
+
+      <div class="row no-gutters fs-sm">
+        <div class="col-12">
+            
+            <p class="fs-md mt-1 mb-2">Concentration of fine particles in the air. Fine particles are emitted by vehicles, building boilers, and other combustion — and are a major form of air pollution that harms health. Neighborhood sensors measure PM2.5 at the street-level, where people are most active. These sensors are designed to let us measure differences in air pollution over time and locations within New York City.</p>
+        </div>
+
+                <div class="col-md-7 border-right h-100">
+                
+                <div style="width:100%; height:40vmin; z-index:100;" class="" id="map-Fine1425-1">
+                    ...map is loading...
+                </div><div class="data-note mt-1"></div></div>
+        
+        
+        
+        
+
+        
+
+        <div class="col-md-5 h-100 p-1 ">
+
+            <p class="fs-rg">
+                PM2.5 (Fine particles) in <strong>East Flatbush - Flatbush</strong>:
+                <div class=" fs-md">
+                  <p>
+                    <span class="better-sm fs-sm mt-1">Less than most</span>&nbsp;neighborhoods
+                  </p>
+
+                  <p>
+                    <span id="b-pm2.5-fine-particles"></span> the <strong>Brooklyn average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="bv-pm2.5-fine-particles">boro val</span> mcg/m3)</span>
+                  </p>
+
+                  <p>
+                    <span id="c-pm2.5-fine-particles"></span> the <strong>Citywide average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="cv-pm2.5-fine-particles">city val</span> mcg/m3)</span>
+                  </p>
+
+                    </div>
+                
+            </p>
+
+             
+            <div id="trend" class="hide">
+            <p>In <strong>Brooklyn</strong>, it is [TREND]. Citywide, the trend is [TREND].</p>
+            </div>
+
+            
+
+            <span id="year-pm2.5-fine-particles" class="sr-only">YEAR</span>
+
+          
+
+        </div>
+
+      </div>
+      <div class="row no-gutters">
+        <div class="col-7">
+            <span class="fs-xs"><strong>Source:</strong> New York City Community Air Survey</span>
+
+        </div>
+        <div class="col-5">
+            <p class="float-right"><a id="2023" href="" class="ml-1" style="display:none"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Full dataset</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+    
+    (function(x, y) {
+        var endDate = new Date(x);
+        var year = endDate.getFullYear(); 
+        document.getElementById(y).innerHTML = year;
+    })(`2024-12-31`, `year-pm2.5-fine-particles`);
+
+(function(n, b, c, nid, bid, cid, rr) {
+    n = Number(n);
+    b = Number(b);
+    c = Number(c);
+
+    let rankReverse = (rr === true || rr === 'true');
+
+    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
+    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
+
+    let boroJudgement;
+    if (n > b && rankReverse) {
+      boroJudgement = 'comp-good';
+    } else if (n < b && rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n > b && !rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n < b && !rankReverse) {
+      boroJudgement = 'comp-good';
+    } else {
+      boroJudgement = 'comp-null';
+    }
+
+    let cityJudgement;
+    if (n > c && rankReverse) {
+      cityJudgement = 'comp-good';
+    } else if (n < c && rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n > c && !rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n < c && !rankReverse) {
+      cityJudgement = 'comp-good';
+    } else {
+      cityJudgement = 'comp-null';
+    }
+
+    let boroEl = document.getElementById(bid);
+    if (boroEl) {
+        boroEl.innerHTML = boroComp;
+        boroEl.classList.add(boroJudgement);
+    }
+
+    let cityEl = document.getElementById(cid);
+    if (cityEl) {
+        cityEl.innerHTML = cityComp;
+        cityEl.classList.add(cityJudgement);
+    }
+
+    document.getElementById('bv-pm2.5-fine-particles').innerHTML = b;
+    document.getElementById('cv-pm2.5-fine-particles').innerHTML = c;
+
+
+})(
+     6.2 ,
+     6.4 ,
+     6.3 ,
+    'n-pm2.5-fine-particles',
+    'b-pm2.5-fine-particles',
+    'c-pm2.5-fine-particles',
+     false 
+)
+
+
+</script>
+
+
+
+
+<script type="text/javascript">
+
+    $( "#collapse-Fine1425" ).on('shown.bs.collapse', function() {
+
+        
+
+        gtag('event', 'click_modal', {
+                'modal_name': 'PM2.5 (Fine particles)'
+            });
+
+        var opt = {"renderer": "svg"};
+
+            
+
+            
+
+            var summaryData =
+                arqTable
+                .filter(d => d.indicator_data_name == "Fine1425")
+                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
+                .dedupe()
+                .groupby("neighborhood")
+                .orderby("neighborhood", aq.desc("end_date"))
+                .slice(0,1) 
+                .ungroup()
+                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
+                .orderby("unmodified_data_value_geo_entity") 
+                .select(aq.not("end_date"))
+                .objects()
+
+
+            
+
+            
+
+            var mapData = summaryData;
+
+            renderNRMap(mapData,  "#map-Fine1425-1", "Annual mean mcg\/m3","PM2.5 (Fine particles)",geocode)
+
+    });
+
+    </script>
+
+
+
+
+
   <div class="card-header border-top" id="heading-Blac1428">
     <h2 class="mb-0">
       <button
@@ -1174,7 +1456,7 @@
               >Black carbon</span
             ><br />
             <span class="fs-sm font-weight-normal"
-              >Black carbon, 2023</span
+              >Black carbon, 2024</span
             >
           </div>
           <div class="col-3 pl-1 d-print-none">
@@ -1204,7 +1486,7 @@
               <span class="font-weight-bold fs-md">
                 Black carbon
               </span><br />
-              <span class="fs-sm font-weight-normal">Black carbon, 2023</span>
+              <span class="fs-sm font-weight-normal">Black carbon, 2024</span>
             </div>
 
             
@@ -1242,7 +1524,7 @@
     aria-labelledby="heading-Blac1428"
     data-parent="#accordion-0"
     data-indicator-name="Blac1428"
-    data-count="1"
+    data-count="2"
   >
     <div class="card-body card-body-no-top">
 
@@ -1254,7 +1536,7 @@
 
                 <div class="col-md-7 border-right h-100">
                 
-                <div style="width:100%; height:40vmin; z-index:100;" class="" id="map-Blac1428-1">
+                <div style="width:100%; height:40vmin; z-index:100;" class="" id="map-Blac1428-2">
                     ...map is loading...
                 </div><div class="data-note mt-1"></div></div>
         
@@ -1321,7 +1603,7 @@
         var endDate = new Date(x);
         var year = endDate.getFullYear(); 
         document.getElementById(y).innerHTML = year;
-    })(`2023-12-31`, `year-black-carbon`);
+    })(`2024-12-31`, `year-black-carbon`);
 
 (function(n, b, c, nid, bid, cid, rr) {
     n = Number(n);
@@ -1377,8 +1659,8 @@
 
 })(
      0.5 ,
-     0.6 ,
-     0.6 ,
+     0.5 ,
+     0.5 ,
     'n-black-carbon',
     'b-black-carbon',
     'c-black-carbon',
@@ -1428,288 +1710,7 @@
 
             var mapData = summaryData;
 
-            renderNRMap(mapData,  "#map-Blac1428-1", "Annual mean absorbance units","Black carbon",geocode)
-
-    });
-
-    </script>
-
-
-
-
-
-  <div class="card-header border-top" id="heading-Fine1425">
-    <h2 class="mb-0">
-      <button
-        class="btn btn-block btn-sm text-left"
-        type="button"
-        data-toggle="collapse"
-        data-target="#collapse-Fine1425"
-        aria-expanded="true"
-        aria-controls="collapse-Fine1425"
-        onclick="getURL( 2023 , 'Fine1425')"
-      >
-        
-        <div class="row no-gutters" style="width: 100%">
-          <div class="col-7 d-print-none">
-            <span class="font-weight-bold fs-md"
-              >PM2.5 (Fine particles)</span
-            ><br />
-            <span class="fs-sm font-weight-normal"
-              >Fine particles (PM 2.5), 2023</span
-            >
-          </div>
-          <div class="col-3 pl-1 d-print-none">
-            <span class="font-weight-bold fs-lg"
-              >6.6</span
-            >
-            <br />
-            <span class="fs-xs font-weight-normal"
-              >Annual mean mcg/m3</span
-            >
-          </div>
-
-          
-
-          <div class="col-2 d-print-none">
-              <div class="float-right mt-1">
-              <span class="middle d-none"></span>
-            </div>
-          </div>
-
-          
-          <div class="col-12 print-only" style="flex-direction:row; width:100%;">
-
-            
-            <div style="width:50%;" class="border-right pl-1">
-              <span class="font-weight-bold fs-md">
-                PM2.5 (Fine particles)
-              </span><br />
-              <span class="fs-sm font-weight-normal">Fine particles (PM 2.5), 2023</span>
-            </div>
-
-            
-            <div style="width:25%" class="border-right pl-1">
-              <span class="font-weight-bold fs-lg">
-                6.6
-              </span><br />
-              <span class="fs-xs font-weight-normal">
-                Annual mean mcg/m3
-              </span>
-            </div>
-
-            
-
-            
-            <div style="width:25%;" class="pl-1">
-
-              In the middle of NYC neighborhoods
-
-
-
-            </div>
-
-          </div>
-
-        </div>
-      </button>
-    </h2>
-  </div>
-
-
-  <div
-    id="collapse-Fine1425"
-    class="collapse border-bottom "
-    aria-labelledby="heading-Fine1425"
-    data-parent="#accordion-0"
-    data-indicator-name="Fine1425"
-    data-count="2"
-  >
-    <div class="card-body card-body-no-top">
-
-      <div class="row no-gutters fs-sm">
-        <div class="col-12">
-            
-            <p class="fs-md mt-1 mb-2">Concentration of fine particles in the air. Fine particles are emitted by vehicles, building boilers, and other combustion — and are a major form of air pollution that harms health. Neighborhood sensors measure PM2.5 at the street-level, where people are most active. These sensors are designed to let us measure differences in air pollution over time and locations within New York City.</p>
-        </div>
-
-                <div class="col-md-7 border-right h-100">
-                
-                <div style="width:100%; height:40vmin; z-index:100;" class="" id="map-Fine1425-2">
-                    ...map is loading...
-                </div><div class="data-note mt-1"></div></div>
-        
-        
-        
-        
-
-        
-
-        <div class="col-md-5 h-100 p-1 ">
-
-            <p class="fs-rg">
-                PM2.5 (Fine particles) in <strong>East Flatbush - Flatbush</strong>:
-                <div class=" fs-md">
-                  <p>
-                    <span class="middle-sm fs-sm mt-1">In the middle of</span>&nbsp;neighborhoods
-                  </p>
-
-                  <p>
-                    <span id="b-pm2.5-fine-particles"></span> the <strong>Brooklyn average</strong> 
-                    <br>
-                    <span class="fs-sm pl-3">(<span id="bv-pm2.5-fine-particles">boro val</span> mcg/m3)</span>
-                  </p>
-
-                  <p>
-                    <span id="c-pm2.5-fine-particles"></span> the <strong>Citywide average</strong> 
-                    <br>
-                    <span class="fs-sm pl-3">(<span id="cv-pm2.5-fine-particles">city val</span> mcg/m3)</span>
-                  </p>
-
-                    </div>
-                
-            </p>
-
-             
-            <div id="trend" class="hide">
-            <p>In <strong>Brooklyn</strong>, it is [TREND]. Citywide, the trend is [TREND].</p>
-            </div>
-
-            
-
-            <span id="year-pm2.5-fine-particles" class="sr-only">YEAR</span>
-
-          
-
-        </div>
-
-      </div>
-      <div class="row no-gutters">
-        <div class="col-7">
-            <span class="fs-xs"><strong>Source:</strong> New York City Community Air Survey</span>
-
-        </div>
-        <div class="col-5">
-            <p class="float-right"><a id="2023" href="" class="ml-1" style="display:none"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Full dataset</a></p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-<script>
-    
-    (function(x, y) {
-        var endDate = new Date(x);
-        var year = endDate.getFullYear(); 
-        document.getElementById(y).innerHTML = year;
-    })(`2023-12-31`, `year-pm2.5-fine-particles`);
-
-(function(n, b, c, nid, bid, cid, rr) {
-    n = Number(n);
-    b = Number(b);
-    c = Number(c);
-
-    let rankReverse = (rr === true || rr === 'true');
-
-    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
-    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
-
-    let boroJudgement;
-    if (n > b && rankReverse) {
-      boroJudgement = 'comp-good';
-    } else if (n < b && rankReverse) {
-      boroJudgement = 'comp-bad';
-    } else if (n > b && !rankReverse) {
-      boroJudgement = 'comp-bad';
-    } else if (n < b && !rankReverse) {
-      boroJudgement = 'comp-good';
-    } else {
-      boroJudgement = 'comp-null';
-    }
-
-    let cityJudgement;
-    if (n > c && rankReverse) {
-      cityJudgement = 'comp-good';
-    } else if (n < c && rankReverse) {
-      cityJudgement = 'comp-bad';
-    } else if (n > c && !rankReverse) {
-      cityJudgement = 'comp-bad';
-    } else if (n < c && !rankReverse) {
-      cityJudgement = 'comp-good';
-    } else {
-      cityJudgement = 'comp-null';
-    }
-
-    let boroEl = document.getElementById(bid);
-    if (boroEl) {
-        boroEl.innerHTML = boroComp;
-        boroEl.classList.add(boroJudgement);
-    }
-
-    let cityEl = document.getElementById(cid);
-    if (cityEl) {
-        cityEl.innerHTML = cityComp;
-        cityEl.classList.add(cityJudgement);
-    }
-
-    document.getElementById('bv-pm2.5-fine-particles').innerHTML = b;
-    document.getElementById('cv-pm2.5-fine-particles').innerHTML = c;
-
-
-})(
-     6.6 ,
-     6.7 ,
-     6.7 ,
-    'n-pm2.5-fine-particles',
-    'b-pm2.5-fine-particles',
-    'c-pm2.5-fine-particles',
-     false 
-)
-
-
-</script>
-
-
-
-
-<script type="text/javascript">
-
-    $( "#collapse-Fine1425" ).on('shown.bs.collapse', function() {
-
-        
-
-        gtag('event', 'click_modal', {
-                'modal_name': 'PM2.5 (Fine particles)'
-            });
-
-        var opt = {"renderer": "svg"};
-
-            
-
-            
-
-            var summaryData =
-                arqTable
-                .filter(d => d.indicator_data_name == "Fine1425")
-                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
-                .dedupe()
-                .groupby("neighborhood")
-                .orderby("neighborhood", aq.desc("end_date"))
-                .slice(0,1) 
-                .ungroup()
-                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
-                .orderby("unmodified_data_value_geo_entity") 
-                .select(aq.not("end_date"))
-                .objects()
-
-
-            
-
-            
-
-            var mapData = summaryData;
-
-            renderNRMap(mapData,  "#map-Fine1425-2", "Annual mean mcg\/m3","PM2.5 (Fine particles)",geocode)
+            renderNRMap(mapData,  "#map-Blac1428-2", "Annual mean absorbance units","Black carbon",geocode)
 
     });
 
@@ -1737,12 +1738,12 @@
               >Nitrogen dioxide</span
             ><br />
             <span class="fs-sm font-weight-normal"
-              >Nitrogen dioxide (NO2), 2023</span
+              >Nitrogen dioxide (NO2), 2024</span
             >
           </div>
           <div class="col-3 pl-1 d-print-none">
             <span class="font-weight-bold fs-lg"
-              >16.1</span
+              >14.4</span
             >
             <br />
             <span class="fs-xs font-weight-normal"
@@ -1766,13 +1767,13 @@
               <span class="font-weight-bold fs-md">
                 Nitrogen dioxide
               </span><br />
-              <span class="fs-sm font-weight-normal">Nitrogen dioxide (NO2), 2023</span>
+              <span class="fs-sm font-weight-normal">Nitrogen dioxide (NO2), 2024</span>
             </div>
 
             
             <div style="width:25%" class="border-right pl-1">
               <span class="font-weight-bold fs-lg">
-                16.1
+                14.4
               </span><br />
               <span class="fs-xs font-weight-normal">
                 Annual mean ppb
@@ -1883,7 +1884,7 @@
         var endDate = new Date(x);
         var year = endDate.getFullYear(); 
         document.getElementById(y).innerHTML = year;
-    })(`2023-12-31`, `year-nitrogen-dioxide`);
+    })(`2024-12-31`, `year-nitrogen-dioxide`);
 
 (function(n, b, c, nid, bid, cid, rr) {
     n = Number(n);
@@ -1938,9 +1939,9 @@
 
 
 })(
-     16.1 ,
-     16.6 ,
-     15.5 ,
+     14.4 ,
+     14.6 ,
+     14.1 ,
     'n-nitrogen-dioxide',
     'b-nitrogen-dioxide',
     'c-nitrogen-dioxide',
@@ -2018,12 +2019,12 @@
               >Ozone</span
             ><br />
             <span class="fs-sm font-weight-normal"
-              >Ozone (O3), 2023</span
+              >Ozone (O3), 2024</span
             >
           </div>
           <div class="col-3 pl-1 d-print-none">
             <span class="font-weight-bold fs-lg"
-              >37.3</span
+              >34.5</span
             >
             <br />
             <span class="fs-xs font-weight-normal"
@@ -2048,13 +2049,13 @@
               <span class="font-weight-bold fs-md">
                 Ozone
               </span><br />
-              <span class="fs-sm font-weight-normal">Ozone (O3), 2023</span>
+              <span class="fs-sm font-weight-normal">Ozone (O3), 2024</span>
             </div>
 
             
             <div style="width:25%" class="border-right pl-1">
               <span class="font-weight-bold fs-lg">
-                37.3
+                34.5
               </span><br />
               <span class="fs-xs font-weight-normal">
                 Summer mean ppb
@@ -2165,7 +2166,7 @@
         var endDate = new Date(x);
         var year = endDate.getFullYear(); 
         document.getElementById(y).innerHTML = year;
-    })(`2023-12-31`, `year-ozone`);
+    })(`2024-12-31`, `year-ozone`);
 
 (function(n, b, c, nid, bid, cid, rr) {
     n = Number(n);
@@ -2220,9 +2221,9 @@
 
 
 })(
-     37.3 ,
-     36.8 ,
-     35.5 ,
+     34.5 ,
+     34.2 ,
+     34 ,
     'n-ozone',
     'b-ozone',
     'c-ozone',
