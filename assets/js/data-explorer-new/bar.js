@@ -13,14 +13,14 @@ console.log('Running renderBar()')
   var barSpec = {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
-    "text": "Asthma emergency department visits (adults)",
+    "text": "Indicator name",
     "subtitlePadding": 10,
     "fontWeight": "normal",
     "anchor": "start",
     "fontSize": 0,
     "font": "sans-serif",
     "baseline": "top",
-    "subtitle": "Age-adjusted rate (per 10,000)",
+    "subtitle": "Measure name (measurement type)",
     "subtitleFontSize": 10
   },
   "data": {

@@ -49,26 +49,28 @@
             </button>
         </div>
         <div class="p-2 pt-md-0">
-            <div class="accordion-group" role="tablist" id="accordionTrends">
-                <div class="card mb-1">
-                    <div class="dropdown fs-sm mb-1 pt-2">
-                        <button class="btn fs-sm d-flex align-items-center w-100 text-left bg-white font-weight-normal border" type="button" id="dynamicDropdownButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="flex-grow-1">Show with</span>
-                            <i class="fas fa-chevron-down ml-auto text-primary"></i>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-de w-100 border-none" aria-labelledby="dynamicDropdownButton1">
-                            <button class="dropdown-item" type="button" onclick="updateDropdownText(this)">Estimated Annual Rate per 100,000</button>
-                            <button class="dropdown-item" type="button" onclick="updateDropdownText(this)">Another measure</button>
-                            <button class="dropdown-item" type="button" onclick="updateDropdownText(this)">Another measure</button>
-                        </div>
-                    </div>
-                    <div class="collapse show" id="panel-acc-button-01" role="tabpanel" aria-labelledby="acc-button-01" data-parent="#accordionTrends">
-                        <div class="card-body bg-white">
-                            <img src={{ relURL "images/de-trend-chart.png" }} alt="">
-                        </div>
-                    </div>
+            <div class="dropdown fs-sm mb-1 pt-2">
+                <button class="btn fs-sm d-flex align-items-center w-100 text-left bg-white font-weight-normal border" type="button" id="dynamicDropdownButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="flex-grow-1">Show with</span>
+                    <i class="fas fa-chevron-down ml-auto text-primary"></i>
+                </button>
+                <div class="dropdown-menu dropdown-menu-de w-100 border-none" aria-labelledby="dynamicDropdownButton1">
+                    <button class="dropdown-item" type="button" onclick="updateDropdownText(this)">Estimated Annual Rate per 100,000</button>
+                    <button class="dropdown-item" type="button" onclick="updateDropdownText(this)">Another measure</button>
+                    <button class="dropdown-item" type="button" onclick="updateDropdownText(this)">Another measure</button>
                 </div>
             </div>
+
+            <div id="trendHolder" class="w-100" style="height: 400px">
+                <!-- Trend chart printed here -->
+            </div>
+
+            <!--
+            <div class="card-body bg-white">
+                <img src={{ relURL "images/de-trend-chart.png" }} alt="">
+            </div>
+            -->
+
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
             <div class="d-flex align-items-center pt-2">
                 <a class="btn-sm btn-light-green-bg-outline" href="#">Save Chart</a>
@@ -87,20 +89,26 @@
         </div>
         <div class="p-2 pt-md-0">
             <div class="dropdown fs-sm mb-1 pt-2">
-                <button class="btn fs-sm d-flex align-items-center w-100 text-left bg-white font-weight-normal border" type="button" id="dynamicDropdownButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <button class="btn fs-sm d-flex align-items-center w-100 text-left bg-white font-weight-normal border" type="button" id="dynamicDropdownButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <span class="flex-grow-1">Show with</span>
                     <i class="fas fa-chevron-down ml-auto text-primary"></i>
                 </button>
-                <div class="dropdown-menu dropdown-menu-de w-100 border-none" aria-labelledby="dynamicDropdownButton1">
+                <div class="dropdown-menu dropdown-menu-de w-100 border-none" aria-labelledby="dynamicDropdownButton2">
                     <button class="dropdown-item" type="button" onclick="updateDropdownText(this)">Estimated Annual Rate per 100,000</button>
                     <button class="dropdown-item" type="button" onclick="updateDropdownText(this)">Another measure</button>
                     <button class="dropdown-item" type="button" onclick="updateDropdownText(this)">Another measure</button>
                 </div>
             </div>
 
+            <div id="correlateHolder" style="width:100%; height: 450px">
+                <!-- Correlate chart printed here -->
+            </div>
+
+            <!--
             <div class="card-body bg-white">
                 <img src={{ relURL "images/de-correlate.png" }} alt="">
             </div>
+            -->
 
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
             <div class="d-flex align-items-center pt-2">

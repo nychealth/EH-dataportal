@@ -64,8 +64,13 @@
 {{- $bar_secure       := $bar | partial "short-fingerprint.html" -}}
 <script type="text/javascript" src="{{ $bar_secure.RelPermalink }}" integrity="{{ $bar_secure.Data.Integrity }}"></script>
 
+{{- $trend              := resources.Get "js/data-explorer-new/trend.js" -}}
+{{- $trend_secure       := $trend | partial "short-fingerprint.html" -}}
+<script type="text/javascript" src="{{ $trend_secure.RelPermalink }}" integrity="{{ $trend_secure.Data.Integrity }}"></script>
 
-
+{{- $correlate              := resources.Get "js/data-explorer-new/correlate.js" -}}
+{{- $correlate_secure       := $correlate | partial "short-fingerprint.html" -}}
+<script type="text/javascript" src="{{ $correlate_secure.RelPermalink }}" integrity="{{ $correlate_secure.Data.Integrity }}"></script>
 
 <script>
 // Hugo JSON becomes a real JS object

@@ -130,6 +130,8 @@ function checkURL() {
 
     // run renderBar()
     renderBar(attributeData)
+    renderTrend()
+    renderCorrelate()
 
     // Run selections for Measure, Geography, and TimePeriod
 
