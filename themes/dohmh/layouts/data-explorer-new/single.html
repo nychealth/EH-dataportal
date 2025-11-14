@@ -72,6 +72,10 @@
 {{- $correlate_secure       := $correlate | partial "short-fingerprint.html" -}}
 <script type="text/javascript" src="{{ $correlate_secure.RelPermalink }}" integrity="{{ $correlate_secure.Data.Integrity }}"></script>
 
+{{- $table              := resources.Get "js/data-explorer-new/table.js" -}}
+{{- $table_secure       := $table | partial "short-fingerprint.html" -}}
+<script type="text/javascript" src="{{ $table_secure.RelPermalink }}" integrity="{{ $table_secure.Data.Integrity }}"></script>
+
 <script>
 // Hugo JSON becomes a real JS object
 const these_indicators = {{ $json | safeJS }};
