@@ -59,10 +59,10 @@ We get data from many sources: some from NYC Health or other city agencies like 
 <strong>What is New York Statewide Planning and Research Cooperative System (SPARCS)?</strong> SPARCS collects patient-level data, like diagnoses, treatments, and characteristics for both inpatient and outpatient stays throughout the state. It was established in 1979 as a collaboration between the NY state government and the healthcare system. <br><br>
   <strong>SPARCS indicators include: </strong>
     <ul>
-    <li>heat-stress hospitalizations and emergency department visits</li>
-    <li>psychiatric hospitalizations</li>
-    <li>Asthma hospitalizations </li>
-    <li>Bicycle injury hospitalizations </li>
+    <li><a href="../../data-explorer/weather-related-illness/?id=2376">Heat-stress hospitalizations and emergency department visits</a></li>
+    <li><a href="../../data-explorer/mental-health/?id=2418">Psychiatric hospitalizations</a></li>
+    <li><a href="../../data-explorer/asthma/?id=2382">Asthma hospitalizations</a></li>
+    <li><a href="../../data-explorer/transportation-related-injuries/?id=2086">Bicycle injury hospitalizations</a></li>
     </ul>
   <strong>What we use it for:</strong> Patient-level data from healthcare facilities can help us understand how environmental factors (for example hot days and socioeconomic status) relate to health outcomes (like heat-related hospitalizations among different demographics). These vital data help us characterize severity and risk factors for different populations.
 </p>
