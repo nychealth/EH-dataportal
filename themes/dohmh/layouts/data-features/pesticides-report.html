@@ -42,15 +42,15 @@ d3.csv("data/agency-totals.csv").then(function(data) {
     document.dispatchEvent(new Event("agencyDataReady"));   // send an event that triggers other scripts
 });
 
-function renderAgencyTable(agencyName, targetId) {
+function renderAgencyTable(agencyName, targetId, noDataProvided) {
     // filter
     const filtered = agencyData.filter(d => d.Agency === agencyName);
 
-    console.log('filtered data for ' + agencyName);
-    console.log(filtered);
+    console.log('Printing for ' + agencyName);
+    // console.log(noDataProvided);
 
     // delegate to shared table printer
-    printTable(filtered, targetId, {{ .Params.reportingYear }});
+    printTable(filtered, targetId, `{{ .Params.reportingYear }}`, noDataProvided);
 }
 
 function renderIntroTable(tableName, destination, standard, numeric) {
@@ -58,7 +58,7 @@ function renderIntroTable(tableName, destination, standard, numeric) {
    
     d3.csv(file).then(function(data) {
         console.log('File loaded: ' + tableName);
-        console.log(data);
+        // console.log(data);
 
         if (standard) {
             // use same formatted table
@@ -86,10 +86,16 @@ function renderIntroTable(tableName, destination, standard, numeric) {
     });
 }
 
-function printTable(data, destination, year) {
+function printTable(data, destination, year, noDataProvided) {
     const container = document.getElementById(destination);
 
-    // fallback if no data
+    // if agency explicitly provided *no data* at all
+    if (noDataProvided === 'true') {
+        container.innerHTML = `<p><em>No application data was provided for ${year}.</em></p>`;
+        return;
+    }
+
+    // fallback if data array is empty
     if (!data || data.length === 0) {
         container.innerHTML = `<p><em>The agency reported that no pesticides were used in ${year}.</em></p>`;
         return;

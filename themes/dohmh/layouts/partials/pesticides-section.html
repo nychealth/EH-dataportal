@@ -27,12 +27,14 @@
 
       <div id="table-{{ $i }}"></div>
 
-      <p><a href="#appendices">All agency pesticide products used in <span class="reportingYearPrint"></span> are available for download in Appendix 2</a>.</p>
+      <hr class="my-2">
+
+      <p class="fs-sm"><a href="#appendices">All agency pesticide products used in <span class="reportingYearPrint"></span> are available for download in Appendix 2</a>.</p>
 
       <script>
           // event so that this script is only fired once the Agency Data are loaded
           document.addEventListener("agencyDataReady", function() {
-            renderAgencyTable('{{ $p.Params.filterBy }}','table-{{ $i }}')
+            renderAgencyTable('{{ $p.Params.filterBy }}','table-{{ $i }}','{{ $p.Params.noDataProvided }}')
           });
       </script>
 
