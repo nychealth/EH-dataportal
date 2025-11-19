@@ -1,6 +1,6 @@
 ---
 _schema: default
-title: Pesticide use by NYC Agencies
+title: Pesticide Use by NYC Agencies
 draft: false
 date: 2025-04-08T11:14:56-04:00
 categories:
@@ -10,8 +10,9 @@ keywords:
   - pesticides
   - chemicals
   - City agencies
-seo_title: Pesticides Report.
-seo_description: Pesticides Report.
+  - reporting
+seo_title: Pesticide Use by NYC Agencies.
+seo_description: Data on the use of pesticides by NYC agencies.
 layout: pesticides-report
 hide: false
 report: true
