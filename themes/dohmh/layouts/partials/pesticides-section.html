@@ -1,5 +1,7 @@
 {{ $p := .page }}
 {{ $i := .index }}
+{{ $parent := .parent }}
+
 
 <div class="card accordion-item border">
   <a class="card-header font-weight-bold collapse"
@@ -24,6 +26,8 @@
       <p class="font-weight-bold">Types of pesticides used by {{ $p.Params.filterBy }}:</p>
 
       <div id="table-{{ $i }}"></div>
+
+      <p><a href="#appendices">All agency pesticide products used in <span class="reportingYearPrint"></span> are available for download in Appendix 2</a>.</p>
 
       <script>
           // event so that this script is only fired once the Agency Data are loaded

@@ -1,6 +1,6 @@
 ---
 _schema: default
-title: Pesticides Report
+title: Pesticide use by NYC Agencies
 draft: false
 date: 2025-04-08T11:14:56-04:00
 categories:
@@ -17,9 +17,8 @@ hide: false
 report: true
 vega: true
 weight: 40
+reportingYear: 2024
 ---
-
-## Pesticide use by NYC Agencies in 2024
 
 Local Law 54 of 2007 requires the New York City Department of Health and Mental Hygiene (The Health Department) to summarize pesticide use by City agencies annually. New York City agencies account for a small fraction of all pesticides used in the city. New York State receives pesticide use data from all commercial applicators. New York City agencies’ use in 2022 (the last year for which New York State data has been processed) accounted for an estimated 5% of the total volume of liquid pesticides, and 18% of the total pounds of solid pesticides applied within the five boroughs of New York City, after excluding mosquito larvicide applications. 
 
@@ -219,4 +218,4 @@ Rodenticide use decreased by 21% in 2024 by weight (Figure 1), while the number 
 Mosquito control measures include larviciding (killing larvae) and adulticiding (killing flying adults). The Health Department Vector Control program and their contractors were the primary applicators; 59,943.10 pounds of mosquito larvicide and 395 gallons of adulticide were applied in 2024. The application count increased 64% from 2023 while the amount of larvicide applied in sewer catch basins by weight rose less significantly (21%, Figure 1). The agency continues to monitor mosquito populations across the five boroughs, especially the populations that commonly carry mosquito-borne pathogens such as the West Nile and Zika viruses. The amount of adulticide applied by the Health Department varies year to year depending on weather and severity of mosquito infestations. There was no significant change in the number of adulticide applications from 2023 to 2024 (data not shown).
 
 #### Summary of agencies pesticide use
-For each reporting agency, we summarize total pesticide use by pesticide type with a link to download the pesticide product totals used contained in Appendix 2 below.
+For each reporting agency, we summarize total pesticide use by pesticide type with a link to [download the pesticide product totals used contained in Appendix 2](#appendices).

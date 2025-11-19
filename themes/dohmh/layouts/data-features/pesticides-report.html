@@ -50,7 +50,7 @@ function renderAgencyTable(agencyName, targetId) {
     console.log(filtered);
 
     // delegate to shared table printer
-    printTable(filtered, targetId);
+    printTable(filtered, targetId, {{ .Params.reportingYear }});
 }
 
 function renderIntroTable(tableName, destination, standard, numeric) {
@@ -86,12 +86,12 @@ function renderIntroTable(tableName, destination, standard, numeric) {
     });
 }
 
-function printTable(data, destination) {
+function printTable(data, destination, year) {
     const container = document.getElementById(destination);
 
     // fallback if no data
     if (!data || data.length === 0) {
-        container.innerHTML = `<p>The agency reported that no pesticides were used in this year of reporting.</p>`;
+        container.innerHTML = `<p><em>The agency reported that no pesticides were used in ${year}.</em></p>`;
         return;
     }
 
@@ -182,7 +182,7 @@ function printTable(data, destination) {
             </div>
 
                 <h1 class="h2" data-pagefind-weight="10.0">
-                    {{ .Title }}
+                    {{ .Title }} in {{ .Params.reportingYear }}
                 </h1>
 
                 {{- .Content  -}}
@@ -195,13 +195,13 @@ function printTable(data, destination) {
                     {{ $sections := .Resources.Match "pesticides-sections/*.md" }}
 
                     {{ range $i, $s := $sections }}
-                        {{ partial "pesticides-section.html" (dict "page" $s "index" $i) }}
+                        {{ partial "pesticides-section.html" (dict "page" $s "index" $i "reportingYear" .Params.reportingYear ) }}
                     {{ end }}
                     
                     </div>
                 </div>
 
-                <h2>Appendices</h2>
+                <h2 id="appendices">Appendices</h2>
                 <p>Download data on pesticide use by City agencies:</p>
                 <ul>
                     <li><a href="data/Appendix-1.csv">Appendix 1: Citywide Product Totals</a></li>
@@ -213,15 +213,23 @@ function printTable(data, destination) {
 
     </div>
 
-<!-- Modal for correction on 2023 Heat Mort Report --> 
-{{ if .Params.modal }}
-    {{ partial "heat-report-correction" . }}
-{{ end }}
-
 </article>
 
 {{- if .Params.js -}}
     <script src="{{ .Params.js }}"></script>
 {{- end -}}
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const year = {{ .Params.reportingYear }};
+
+  if (!year) return;
+
+  document.querySelectorAll('.reportingYearPrint').forEach(el => {
+    el.innerHTML = year;
+  });
+});
+</script>
+
 
 {{- end -}}
