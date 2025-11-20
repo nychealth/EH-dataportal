@@ -84,10 +84,10 @@ We get data from many sources: some from NYC Health or other city agencies like 
 <strong>What is the Housing and Vacancy Survey (HVS)?</strong> Taken every three years, the Housing and Vacancy Survey is by HPD and the Census Bureau. The main purpose of HVS is to describe how many rental units are vacant to understand more about rent control and stabilization and the housing market.<br><br>
         <strong>HVS indicators include: </strong>
           <ul>
-          <li>Homes with cracks or holes</li>
-          <li>Homes with mold </li>
-          <li>Household air conditioning  </li>
-          <li>Rent-burdened households  </li>
+          <li><a href="../../data-explorer/housing-maintenance/?id=40">Homes with cracks or holes</a></li>
+          <li><a href="../../data-explorer/housing-maintenance/?id=2446">Homes with mold</a></li>
+          <li><a href="../../data-explorer/housing-safety/?id=2185">Household air conditioning<a></li>
+          <li><a href="../../data-explorer/housing-stability/?id=2336">Rent-burdened households</a></li>
           </ul>
         <strong>What we use it for:</strong> It helps us understand the state and quality of our available housing, which ties into important health outcomes. HVS data about housing issues that affect health can help us connect these issues to other disparities and inequities across NYC, like income, health care, heat and cold vulnerability and more.
 </p>
@@ -107,9 +107,9 @@ We get data from many sources: some from NYC Health or other city agencies like 
 <strong>What is the American Community Survey (ACS)?</strong> Taken annually by the US census, this survey collects population, housing, and workforce data like unemployment, income, insurance, and more. <br><br>
         <strong>HVS indicators include: </strong>
           <ul>
-          <li>Older adults living alone (65+) </li>
-          <li>Foreign-born population  </li>
-          <li>Neighborhood poverty  </li>
+          <li><a href="../../data-explorer/social-conditions/?id=2146">Older adults living alone (65+)</a></li>
+          <li><a href="../../data-explorer/social-conditions/?id=14">Foreign-born population</a></li>
+          <li><a href="../../data-explorer/economic-conditions/?id=103">Neighborhood poverty</a></li>
           </ul>
         <strong>What we use it for:</strong> This critical data helps us understand the links between inequality, the social determinants of health, and health outcomes. ACS data on income is used to show how neighborhoods with higher levels of poverty tend to live in neighborhoods with less quality housing, and also have higher rates of many chronic diseases and premature death. 
             </div></p>
@@ -127,9 +127,9 @@ We get data from many sources: some from NYC Health or other city agencies like 
 <strong>What is the New York City Community Air Survey (NYCCAS)?</strong> Started in 2008, NYCCAS is the largest ongoing urban air monitoring program of any U.S. city. NYCCAS tracks air pollutants at the street-level, where people spend most of their time. <br><br>
         <strong>NYCCAS indicators include:</strong>
           <ul>
-          <li>Concentration of fine particles (PM2.5)  </li>
-          <li>Ozone (O3)  </li>
-          <li>Sulfur dioxide (SO2)  </li>
+          <li><a href="../../data-explorer/air-quality/?id=2023">Concentration of fine particles (PM2.5)</a></li>
+          <li><a href="../../data-explorer/air-quality/?id=2027">Ozone (O3)</a></li>
+          <li><a href="../../data-explorer/air-quality/?id=2026">Sulfur dioxide (SO2)</a></li>
           </ul>
         <strong>What we use it for:</strong> It helps us inform PlaNYC, track changes in air quality over time, estimate exposures for health research, inform the public about local topics, such as air quality improvements, health benefits of public transit to air quality, and efforts to reduce the health impacts of air pollution.  
 </div>
