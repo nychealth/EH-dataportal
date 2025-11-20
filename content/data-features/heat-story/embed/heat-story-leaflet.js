@@ -16,7 +16,7 @@ function init() {
 
     drawStoryCardDropdown();
 
-    drawStoryCard("getting-started");
+    // drawStoryCard("getting-started");
     $("#btn-getting-started").addClass("active");
     $("#btn-getting-started").attr('aria-selected', true);
 
@@ -34,8 +34,11 @@ function init() {
 
 // set based on "getting-started" card
 
+const initial_state = config.initialMapState
+
 const getting_started = config.stories.find(s => s.id == "getting-started");
-let lastMapState = JSON.parse(JSON.stringify(getting_started.mapState));
+
+let lastMapState = JSON.parse(JSON.stringify(initial_state));
 
 
 // let map = L.map('map').setView([40.715554, -74.0026642], 11); // [Lat, Long], Zoom
@@ -45,7 +48,7 @@ let map = L.map('map', {
     maxZoom: 14,
     scrollWheelZoom: false,
     closePopupOnClick: false
-}).setView([getting_started.mapState.lat, getting_started.mapState.lng], getting_started.mapState.zoom); // [Lat, Long], Zoom
+}).setView([initial_state.lat, initial_state.lng], initial_state.zoom); // [Lat, Long], Zoom
 
 
 
@@ -608,7 +611,7 @@ const handleStoryClick = (e) => {
 
     const id = e.target.dataset.storyId;
     
-    drawStoryCard(id)
+    // drawStoryCard(id)
 
     // remove active class from every list element
 
@@ -1422,13 +1425,13 @@ async function resetMapState() {
 
     // reset map state let to "getting-started" state
 
-    lastMapState = JSON.parse(JSON.stringify(getting_started.mapState));
+    lastMapState = JSON.parse(JSON.stringify(initialMapState));
 
     // reset map view
 
-    console.log("getting_started.mapState", getting_started.mapState);
+    console.log("initial map state", initialMapState);
 
-    map.setView([getting_started.mapState.lat, getting_started.mapState.lng], getting_started.mapState.zoom); // [Lat, Long], Zoom
+    map.setView([initial_state.lat, initial_state.lng], initial_state.zoom); // [Lat, Long], Zoom
 
     // clear data layers
 
@@ -1450,7 +1453,7 @@ async function resetMapState() {
     $("#btn-getting-started").addClass("active");
     $("#btn-getting-started").attr('aria-selected', true);
 
-    drawStoryCard("getting-started");
+    // drawStoryCard("getting-started");
 
     // reset the layer buttons
 

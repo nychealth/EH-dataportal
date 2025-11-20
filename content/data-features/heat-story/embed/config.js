@@ -52,11 +52,11 @@
 
 config = {
     "initialMapState": {
-       "lat": 40.763862,
-       "lng": -74.05,
-       "zoom": 12,
+       "lat": 40.7032036,
+       "lng": -73.9191882,
+       "zoom": 14,
        "layers": [
-          "nycAfternoon"
+          "Daytime_summer_surface_temperature"
        ]
     },
     "layers": [
@@ -788,7 +788,7 @@ config = {
         // Stories start here // 
     ],
     "stories": [
-        
+        /*
         {
             "id": "getting-started",
             "title": "Get started",
@@ -801,6 +801,7 @@ config = {
                 "layers": [ ]
             }
         },
+        */
 
         {
             "id": "heat-traffic-pollution",
