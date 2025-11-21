@@ -206,13 +206,13 @@ function drawChart(injuryHighlight) {
       "field": "Age group",
       "type": "nominal",
       "sort": {"field": "xAxisNum"},
-      "axis": {"ticks": true, "labelAngle": 0}
+      "axis": {"ticks": true, "labelAngle": 0,"orient": "top","title": ""}
     },
     "y": {
       "field": "Rank",
       "type": "quantitative",
       "sort": "descending",
-      "scale": {"domain": [1, 10.5]}
+      "scale": {"domain": [0.1, 10.5]}
     },
     "size": {
       "field": "RatePer100k",
