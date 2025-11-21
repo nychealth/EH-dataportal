@@ -36,6 +36,10 @@
               All deaths
             </button>
 
+            <button class="btn btn-sm btn-outline-info ml-2" id="showInjury">
+              Highlight injuries
+            </button>
+
             <hr class="my-1">
 
 
@@ -84,7 +88,7 @@
 </article>
 
 <script>
-  // TYPE BUTTONS
+// TYPE BUTTONS
 document.querySelectorAll('.type-button').forEach(btn => {
   btn.addEventListener('click', function () {
     // remove active from all type buttons
@@ -119,10 +123,31 @@ document.querySelectorAll('.subtype-button').forEach(btn => {
   });
 });
 
-function drawChart() {
+// HIGHLIGHT INJURY button
+const injuryBtn = document.getElementById('showInjury');
+let injuryOn = false; // record keeper
+
+injuryBtn.addEventListener('click', function () {
+  injuryOn = !injuryOn;        // flip state
+  this.classList.toggle('active', injuryOn); // sync class
+
+  const state = injuryOn ? 'on' : 'off';
+
+  console.log(state)
+  // yourFunction(state); // call your function with "on" or "off"
+  drawChart(state)
+});
+
+function drawChart(injuryHighlight) {
+
+  if (injuryHighlight === 'on') {
+    color =  {"field": "Intent", "type": "nominal","legend": null}
+  } else {
+    color =  {"value": "#f5f5f5"}
+  }
 
   var spec = {
-  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "height": "container",
   "width": "container",
   "data": {
@@ -147,6 +172,7 @@ function drawChart() {
       "domain": false,
       "ticks": false
     },
+    /*
     "legend": {
       "columns": 6,
       "labelFontSize": 14,
@@ -154,6 +180,7 @@ function drawChart() {
       "orient": "bottom",
       "title": null
     },
+    */
     "view": {"stroke": "transparent"},
     "range": {"category": ["#ffa600", "#f5f5f5", "#40826D", "#5d5d5d"]}
   },
@@ -193,7 +220,6 @@ function drawChart() {
       "scale": {"range": [200, 10000]},
       "legend": null
     },
-    "color": {"field": "Intent", "type": "nominal"},
     "stroke": {
       "condition": {"param": "hover", "empty": false, "value": "black"},
       "value": "#7C7C7C"
@@ -202,6 +228,7 @@ function drawChart() {
       "condition": {"param": "hover", "empty": false, "value": 2},
       "value": 0.5
     },
+    "color": color
     /*
     "tooltip": [
       {"title": "Age", "field": "Age group", "type": "nominal"},
