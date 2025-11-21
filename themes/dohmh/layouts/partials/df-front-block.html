@@ -4,7 +4,13 @@
           <ul class="breadcrumb">
               <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
               <li class="breadcrumb-item"><a href={{ relURL "data-features" }}>Data Features</a></li>
-                  <li class="breadcrumb-item active d-none d-md-block" aria-current="page">{{ .Title }}</li>
+                  <li class="breadcrumb-item active d-none d-md-block" aria-current="page">
+                    {{ if .Params.shortTitle }}
+                      {{ .Params.shortTitle }}
+                    {{ else }}
+                      {{ .Title }}
+                    {{ end }}
+                    </li>
               </ul>
         </nav>
 

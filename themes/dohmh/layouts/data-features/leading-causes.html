@@ -1,0 +1,218 @@
+{{- define "main" -}}
+
+<style>
+  .vega-embed {
+    height: 100%;
+  }
+
+  #chart {
+    width: 100%;
+    height: 80vh;
+  }
+</style>
+
+<article class="container-fluid" id="skip-header-target">
+  {{ partial "df-front-block" . }}
+
+  <a href="#accessibleTables" class="sr-only">Skip to accessible data tables.</a>
+
+  <div class="row mb-4">
+    <div class="col-11 mx-auto">
+
+      <button class="btn btn btn-outline-primary type-button" id="edvisits">
+        ED visits
+      </button>
+      <button class="btn btn btn-outline-primary  type-button" id="hospitalizations">
+        Hospitalizations
+      </button>
+      <button class="btn btn btn-outline-primary active type-button" id="deaths">
+        Deaths
+      </button>
+
+      <div class="my-1">
+        <button class="btn btn-sm btn-outline-secondary subtype-button" id="injuryOnly">
+          Injury-related only
+        </button>
+        <button class="btn btn-sm btn-outline-secondary active subtype-button" id="all">
+          All deaths
+        </button>
+      </div>
+
+
+      <div class="row my-4">
+        <div class="col-12">
+            <div id="chart"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="sr-only" id="accessibleTables">
+    {{/* 
+    <h2>Chart data</h2>
+    {{ partial "render-accessible-table.html" (dict "csvPath" "data/chart-data.csv" "containerId" "csv-table-container-1") }}
+
+    <h2>Map data</h2>
+    {{ partial "render-accessible-table.html" (dict "csvPath" "data/map-data.csv" "containerId" "csv-table-container-2") }}
+
+    */}}
+  </div>
+
+</article>
+
+<script>
+  // TYPE BUTTONS
+document.querySelectorAll('.type-button').forEach(btn => {
+  btn.addEventListener('click', function () {
+    // remove active from all type buttons
+    document.querySelectorAll('.type-button').forEach(b => b.classList.remove('active'));
+
+    // add active to clicked one
+    this.classList.add('active');
+
+    // log its id
+    console.log(this.id);
+
+    // update the text inside #all
+    const allBtn = document.getElementById('all');
+    if (allBtn) {
+      allBtn.textContent = `All ${this.textContent.trim()}`;
+    }
+  });
+});
+
+
+// SUBTYPE BUTTONS
+document.querySelectorAll('.subtype-button').forEach(btn => {
+  btn.addEventListener('click', function () {
+    // remove active from all subtype buttons
+    document.querySelectorAll('.subtype-button').forEach(b => b.classList.remove('active'));
+
+    // add active to clicked one
+    this.classList.add('active');
+
+    // log its id
+    console.log(this.id);
+  });
+});
+
+function drawChart() {
+
+  var spec = {
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "height": "container",
+  "width": "container",
+  "data": {
+    "url": "https://gist.githubusercontent.com/mmontesanonyc/30bd54ae0feddfc4a36c34f7c29f7688/raw/60537dc6c3fbd9fa9e424c48dc62f4b1340878cb/deaths.csv"
+  },
+  "config": {
+    "background": "#FFFFFF",
+    "axisX": {
+      "labelFontSize": 11,
+      "titleFontSize": 15,
+      "titleFont": "sans-serif",
+      "titlePadding": 10,
+      "titleFontWeight": "normal"
+    },
+    "axisY": {
+      "labelFontSize": 11,
+      "titleFontSize": 0,
+      "labelAngle": 0,
+      "titlePadding": 10,
+      "titleFont": "sans-serif",
+      "tickMinStep": 1,
+      "domain": false,
+      "ticks": false
+    },
+    "legend": {
+      "columns": 6,
+      "labelFontSize": 14,
+      "symbolSize": 140,
+      "orient": "bottom",
+      "title": null
+    },
+    "view": {"stroke": "transparent"},
+    "range": {"category": ["#ffa600", "#f5f5f5", "#40826D", "#5d5d5d"]}
+  },
+  "transform": [
+    {"calculate": "toNumber(datum.xAxis)", "as": "xAxisNum"},
+    {"calculate": "datum.RatePer100k + ' per 100,000'", "as": "RateWith"}
+    
+    ],
+  "mark": {"type": "circle"},
+  "params": [
+    {
+      "name": "hover",
+      "value": "#7C7C7C",
+      "select": {"type": "point", "on": "mouseover"}
+    },
+    {
+      "name": "hoverPoint",
+      "select": {"type": "point", "on": "hover"}
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "Age group",
+      "type": "nominal",
+      "sort": {"field": "xAxisNum"},
+      "axis": {"ticks": true, "labelAngle": 0}
+    },
+    "y": {
+      "field": "Rank",
+      "type": "quantitative",
+      "sort": "descending",
+      "scale": {"domain": [1, 10.5]}
+    },
+    "size": {
+      "field": "RatePer100k",
+      "type": "quantitative",
+      "scale": {"range": [200, 10000]},
+      "legend": null
+    },
+    "color": {"field": "Intent", "type": "nominal"},
+    "stroke": {
+      "condition": {"param": "hover", "empty": false, "value": "black"},
+      "value": "#7C7C7C"
+    },
+    "strokeWidth": {
+      "condition": {"param": "hover", "empty": false, "value": 2},
+      "value": 0.5
+    },
+    "tooltip": [
+      {"title": "Age", "field": "Age group", "type": "nominal"},
+      {"title": "Rank", "field": "Rank", "type": "quantitative"},
+      {"title": "Cause of death", "field": "Cause", "type": "nominal"},
+      {"title": "Death rate", "field": "RateWith", "type": "nominal"},
+      {
+        "title": "Average annual deaths",
+        "field": "AverageAnnualCount",
+        "type": "quantitative"
+      }
+    ]
+  }
+}
+vegaEmbed('#chart',spec).then(result => {
+  const view = result.view;
+
+  // add event listener for hovering marks
+  view.addEventListener('mouseover', event => {
+    // check if the hovered item is a data mark
+    if (event.item && event.item.datum) {
+      console.log(event.item.datum); // full datum of the hovered bubble
+    }
+  });
+});
+
+
+}
+
+drawChart()
+
+</script>
+
+<!-- Related footer -->
+{{- partial "related-footer" . -}}
+
+{{- end -}}
