@@ -19,29 +19,51 @@
   <div class="row mb-4">
     <div class="col-11 mx-auto">
 
-      <button class="btn btn btn-outline-primary type-button" id="edvisits">
-        ED visits
-      </button>
-      <button class="btn btn btn-outline-primary  type-button" id="hospitalizations">
-        Hospitalizations
-      </button>
-      <button class="btn btn btn-outline-primary active type-button" id="deaths">
-        Deaths
-      </button>
+          <button class="btn btn-sm btn-outline-primary type-button" id="edvisits">
+            ED visits
+          </button>
+          <button class="btn btn-sm btn-outline-primary  type-button" id="hospitalizations">
+            Hospitalizations
+          </button>
+          <button class="btn btn-sm btn-outline-primary active type-button" id="deaths">
+            Deaths
+          </button>
 
-      <div class="my-1">
-        <button class="btn btn-sm btn-outline-secondary subtype-button" id="injuryOnly">
-          Injury-related only
-        </button>
-        <button class="btn btn-sm btn-outline-secondary active subtype-button" id="all">
-          All deaths
-        </button>
-      </div>
+            <button class="btn btn-sm btn-outline-secondary subtype-button ml-2" id="injuryOnly">
+              Injury-related only
+            </button>
+            <button class="btn btn-sm btn-outline-secondary active subtype-button" id="all">
+              All deaths
+            </button>
+
+            <hr class="my-1">
 
 
-      <div class="row my-4">
-        <div class="col-12">
+      <div class="row my-2">
+        <div class="col-md-9">
             <div id="chart"></div>
+        </div>
+
+        <div class="col-md-3">
+          <div id="prompt">
+              Hover over a bubble to see data
+          </div>
+
+          <div id="readout" class="my-2 hide">
+            <span class="fs-sm">Age:</span><br>
+            <span class="font-weight-bold" id="agePrint">Xty2</span>
+            <hr class="my-1">
+            <span class="fs-sm">Cause of death:</span><br>
+            <span class="font-weight-bold" id="causePrint">Fiddly diddly</span>
+            <hr class=my-1>
+            <span class="fs-sm">Death rate:</span><br>
+            <span class="font-weight-bold" id="ratePrint">ZZZZ per 100,000 people</span>
+            <hr class=my-1>
+            <span class="fs-sm">Average annual deaths:</span><br>
+            <span class="font-weight-bold" id="countPrint">XXYY</span>
+            <hr class=my-1>
+          </div>
+
         </div>
       </div>
 
@@ -180,6 +202,7 @@ function drawChart() {
       "condition": {"param": "hover", "empty": false, "value": 2},
       "value": 0.5
     },
+    /*
     "tooltip": [
       {"title": "Age", "field": "Age group", "type": "nominal"},
       {"title": "Rank", "field": "Rank", "type": "quantitative"},
@@ -191,16 +214,28 @@ function drawChart() {
         "type": "quantitative"
       }
     ]
+      */
   }
 }
-vegaEmbed('#chart',spec).then(result => {
+
+vegaEmbed('#chart', spec).then(result => {
   const view = result.view;
 
-  // add event listener for hovering marks
+  // Mouse over event
   view.addEventListener('mouseover', event => {
-    // check if the hovered item is a data mark
+
+    showOnHover(event)
+
+  });
+
+  // Mouse out event
+  view.addEventListener('mouseleave', event => {
+
+    clearOnHover()
+
     if (event.item && event.item.datum) {
-      console.log(event.item.datum); // full datum of the hovered bubble
+      console.log('Mouse left:', event.item.datum);
+      // do stuff when mouse leaves the mark
     }
   });
 });
@@ -209,6 +244,37 @@ vegaEmbed('#chart',spec).then(result => {
 }
 
 drawChart()
+
+function showOnHover(event) {
+
+  document.getElementById('readout').classList.remove('hide');    
+  document.getElementById('prompt').classList.add('hide');
+
+  if (event.item && event.item.datum) {
+    const datum = event.item.datum;
+
+    console.log('Hovered over:', datum);
+
+    document.getElementById('agePrint').innerHTML = datum['Age group'];
+    document.getElementById('causePrint').innerHTML = datum['Cause'];
+
+    // Format numbers with commas and no decimal places
+    const rateFormatted = Number(datum['RatePer100k']).toLocaleString(undefined, {
+      maximumFractionDigits: 1
+    });
+    const countFormatted = Number(datum['AverageAnnualCount']).toLocaleString(undefined, {
+      maximumFractionDigits: 0
+    });
+
+    document.getElementById('ratePrint').innerHTML = rateFormatted + ' per 100,000 people';
+    document.getElementById('countPrint').innerHTML = countFormatted;
+  }
+}
+
+function clearOnHover() {
+      document.getElementById('readout').classList.add('hide')
+      document.getElementById('prompt').classList.remove('hide')
+}
 
 </script>
 
