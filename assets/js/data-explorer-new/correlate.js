@@ -48,8 +48,8 @@ const renderCorrelate = () => {
     },
     "view": {"stroke": "transparent"},
     "range": {
-      "category": ["#40826D", "#000F89", "#a05195", "#d45087", "#ffa600"]
-    }
+      "category": ["#374c80", "#ff764a", "#bc5090", "#ffa600", "#ef5675"]
+    },
   },
   "data": {
     "values": [
