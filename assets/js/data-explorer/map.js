@@ -34,6 +34,10 @@ const renderMap = (
     let isPercent;
     let topoFile = '';
 
+    const hasCI = data.some(d => /\(.*\)/.test(d.CI)); // looks to see if there are parentheses in the CI field, if yes, true
+    // console.log('has CI?', hasCI)
+
+
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
     // use some conditionals
@@ -97,9 +101,12 @@ const renderMap = (
         }}
     }
 
-    // ----------------------------------------------------------------------- //
-    // modify spec for means
-    // ----------------------------------------------------------------------- //
+    /* ----------------------------------------------------------------------- //
+    // modify bar spec:
+        - If the measurement Type is a mean, then give it a dot with a gray bar. Dots better represent Means.
+        - if the data has CIs, then, give a gray CI bar
+        - Else, just give a standard bar
+    // -----------------------------------------------------------------------  */
 
     let barChart
     
@@ -144,7 +151,7 @@ const renderMap = (
                     "config": {"axisY": {"labelAngle": 0, "labelFontSize": 13}},
                     "mark": {
                         "type": "circle",
-                        "size": 80,
+                        "size": 100,
                         "tooltip": true,
                         "stroke": "#161616"
                     },
@@ -201,7 +208,110 @@ const renderMap = (
                 }
             ]
         }
-    } else {
+    } else if (hasCI == true) {
+                barChart = {
+            "layer": [
+                {
+                    "height": 150,
+                    "width": "container",
+                    "config": {"axisY": {"labelAngle": 0, "labelFontSize": 13}},
+                    "mark": {"type": "bar", "tooltip": true, "stroke": "#161616"},
+                    "encoding": {
+                        "y": {
+                        "field": "ciLow",
+                        "type": "quantitative",
+                        "title": null,
+                        "axis": {"labelAngle": 0, "labelFontSize": 11, "tickCount": 3}
+                        },
+                        "y2": {
+                        "field": "ciHigh"
+                        },
+                        "tooltip": [
+                            {
+                                "field": "Geography", 
+                                "title": "Neighborhood"
+                            },
+                            {
+                                "field": "valueLabel",
+                                "title": `${mapMeasurementType}`
+                            },
+                            {
+                                "field": "TimePeriod",
+                                "title": "Time period"
+                            }
+                        ],
+                        "x": {"field": "GeoID", "sort": "Value", "axis": null},
+                        "color": {"value": "#f1f1f1ff"},
+                        "stroke": {"value": "white"},
+                        "strokeWidth": {"value": 3}
+                    }
+                },
+                {
+                    "height": 150,
+                    "width": "container",
+                    "config": {"axisY": {"labelAngle": 0, "labelFontSize": 13}},
+                    "mark": {
+                        "type": "circle",
+                        "size": 100,
+                        "tooltip": true,
+                        "stroke": "#161616"
+                    },
+                    "params": [
+                        {
+                            "name": "highlight",
+                            "select": {
+                                "type": "point",
+                                "on": "mouseover",
+                                "clear": "mouseout"
+                            }
+                        }
+                    ],
+                    "encoding": {
+                        "y": {
+                            "field": "Value",
+                            "type": "quantitative",
+                            "title": null,
+                            "axis": {"labelAngle": 0, "labelFontSize": 11, "tickCount": 3}
+                        },
+                        "tooltip": [
+                            {
+                                "field": "Geography", 
+                                "title": "Neighborhood"
+                            },
+                            {
+                                "field": "valueLabel",
+                                "title": `${mapMeasurementType}`
+                            },
+                            {
+                                "field": "TimePeriod",
+                                "title": "Time period"
+                            }
+                        ],
+                        "x": {"field": "GeoID", "sort": "y", "axis": null},
+                        "color": {
+                            "bin": false,
+                            "field": "Value",
+                            "type": "quantitative",
+                            "scale": {"scheme": {"name": "viridis", "extent": [1, 0]}},
+                            "legend": false
+                        },
+                        "stroke": {
+                            "condition": [
+                                {"param": "highlight", "empty": false, "value": "cyan"}
+                            ],
+                            "value": "white"
+                        },
+                        "strokeWidth": {
+                            "condition": [{"param": "highlight", "empty": false, "value": 3}],
+                            "value": 0
+                        }
+                    }
+                }
+            ]
+        }
+    }
+    
+    else {
         barChart = {
             "height": 150,
             "width": "container",
@@ -368,6 +478,14 @@ const renderMap = (
             {
                 "calculate": `datum.DisplayValue + ' ${displayType}'`,
                 "as": "valueLabel"
+            },
+            {
+                "calculate": "datum.CI && datum.CI !== '' ? split(replace(datum.CI, /[()]/g, ''), ', ')[0] : null",
+                "as": "ciLow"
+            },
+            {
+                "calculate": "datum.CI && datum.CI !== '' ? split(replace(datum.CI, /[()]/g, ''), ', ')[1] : null",
+                "as": "ciHigh"
             }
         ],
         "vconcat": [
