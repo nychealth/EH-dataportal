@@ -209,7 +209,7 @@ const renderMap = (
             ]
         }
     } else if (hasCI == true) {
-                barChart = {
+        barChart = {
             "layer": [
                 {
                     "height": 150,
@@ -234,6 +234,10 @@ const renderMap = (
                             {
                                 "field": "valueLabel",
                                 "title": `${mapMeasurementType}`
+                            },
+                            {
+                                "field": "CInoParens",
+                                "title": "Confidence interval"
                             },
                             {
                                 "field": "TimePeriod",
@@ -281,6 +285,10 @@ const renderMap = (
                             {
                                 "field": "valueLabel",
                                 "title": `${mapMeasurementType}`
+                            },
+                            {
+                                "field": "CInoParens",
+                                "title": "Confidence interval"
                             },
                             {
                                 "field": "TimePeriod",
@@ -486,6 +494,10 @@ const renderMap = (
             {
                 "calculate": "datum.CI && datum.CI !== '' ? split(replace(datum.CI, /[()]/g, ''), ', ')[1] : null",
                 "as": "ciHigh"
+            },
+            {
+            "calculate": "datum.CI ? replace(replace(datum.CI, /[()]/g, ''), /, /, ' to ') : null",
+            "as": "CInoParens"
             }
         ],
         "vconcat": [
