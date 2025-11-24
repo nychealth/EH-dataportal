@@ -299,11 +299,11 @@ const renderMap = (
                             "condition": [
                                 {"param": "highlight", "empty": false, "value": "cyan"}
                             ],
-                            "value": "white"
+                            "value": "black"
                         },
                         "strokeWidth": {
                             "condition": [{"param": "highlight", "empty": false, "value": 3}],
-                            "value": 0
+                            "value": 0.5
                         }
                     }
                 }
