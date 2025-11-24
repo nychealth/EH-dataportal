@@ -212,7 +212,8 @@ function drawChart(injuryHighlight) {
       "field": "Rank",
       "type": "quantitative",
       "sort": "descending",
-      "scale": {"domain": [0.1, 10.5]}
+      "scale": {"domain": [0.1, 10.5]},
+      "axis": {"grid": false}
     },
     "size": {
       "field": "RatePer100k",
@@ -302,6 +303,102 @@ function clearOnHover() {
       document.getElementById('readout').classList.add('hide')
       document.getElementById('prompt').classList.remove('hide')
 }
+
+
+/*
+ALT SPEC
+  var spec = {
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "height": "container",
+  "width": "container",
+  "data": {
+    "url": "https://gist.githubusercontent.com/mmontesanonyc/30bd54ae0feddfc4a36c34f7c29f7688/raw/60537dc6c3fbd9fa9e424c48dc62f4b1340878cb/deaths.csv"
+  },
+  "config": {
+    "background": "#FFFFFF",
+    "axisX": {
+      "labelFontSize": 11,
+      "titleFontSize": 15,
+      "titleFont": "sans-serif",
+      "titlePadding": 10,
+      "titleFontWeight": "normal",
+      "domain": false,
+      "grid": false
+    },
+    "axisY": {
+      "labelFontSize": 11,
+      "titleFontSize": 0,
+      "labelAngle": 0,
+      "titlePadding": 10,
+      "titleFont": "sans-serif",
+      "tickMinStep": 1,
+      "domain": false,
+      "ticks": false,
+      "grid": false
+    },
+    "view": {"stroke": "transparent"},
+    "range": {"category": ["#ffa600", "#f5f5f5", "#40826D", "#5d5d5d"]}
+  },
+  "transform": [
+    {"calculate": "toNumber(datum.xAxis)", "as": "xAxisNum"},
+    {"calculate": "datum.RatePer100k + ' per 100,000'", "as": "RateWith"}
+    
+    ],
+  "mark": {"type": "circle"},
+  "params": [
+    {
+      "name": "hover",
+      "value": "#7C7C7C",
+      "select": {"type": "point", "on": "mouseover"}
+    },
+    {
+      "name": "hoverPoint",
+      "select": {"type": "point", "on": "hover"}
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "xAxis",
+      "type": "quantitative",
+      "axis": {
+        "ticks": false,
+        "labelAngle": 0,
+        "orient": "top",
+        "title": "",
+        "labelExpr": "datum.value == 1 ? '<1' : datum.value == 2 ? '1-4' : datum.value == 3 ? '5-9' : datum.value == 4 ? '10-14' : datum.value == 5 ? '15-24' : datum.value == 6 ? '25-34' : datum.value == 7 ? '35-44' : datum.value == 8 ? '45-54' : datum.value == 9 ? '55-64' : datum.value == 10 ? '65+' : datum.value == 13 ? 'All ages' : '' "
+      }
+    },
+    "y": {
+      "field": "Rank",
+      "type": "quantitative",
+      "sort": "descending",
+      "scale": {"domain": [0.1, 10.5]},
+      "axis": {
+        "grid": false
+      }
+    },
+    "size": {
+      "field": "RatePer100k",
+      "type": "quantitative",
+      "scale": {"range": [200, 10000]},
+      "legend": null
+    },
+    "stroke": {
+      "condition": {"param": "hover", "empty": false, "value": "black"},
+      "value": "#7C7C7C"
+    },
+    "strokeWidth": {
+      "condition": {"param": "hover", "empty": false, "value": 2},
+      "value": 0.5
+    },
+    "color": color
+  }
+}
+
+
+
+
+*/
 
 </script>
 
