@@ -216,6 +216,16 @@ const renderMap = (
                     "width": "container",
                     "config": {"axisY": {"labelAngle": 0, "labelFontSize": 13}},
                     "mark": {"type": "bar", "tooltip": true, "stroke": "#161616"},
+                    "params": [
+                        {
+                            "name": "highlight",
+                            "select": {
+                                "type": "point",
+                                "on": "mouseover",
+                                "clear": "mouseout"
+                            }
+                        }
+                    ],
                     "encoding": {
                         "y": {
                         "field": "ciLow",
@@ -246,8 +256,16 @@ const renderMap = (
                         ],
                         "x": {"field": "GeoID", "sort": "Value", "axis": null},
                         "color": {"value": "#f1f1f1ff"},
-                        "stroke": {"value": "white"},
-                        "strokeWidth": {"value": 3}
+                        "stroke": {
+                            "condition": [
+                                {"param": "highlight", "empty": false, "value": "cyan"}
+                            ],
+                            "value": "white"
+                        },
+                        "strokeWidth": {
+                            "condition": [{"param": "highlight", "empty": false, "value": 3}],
+                            "value": 0
+                        }
                     }
                 },
                 {
@@ -260,16 +278,6 @@ const renderMap = (
                         "tooltip": true,
                         "stroke": "#161616"
                     },
-                    "params": [
-                        {
-                            "name": "highlight",
-                            "select": {
-                                "type": "point",
-                                "on": "mouseover",
-                                "clear": "mouseout"
-                            }
-                        }
-                    ],
                     "encoding": {
                         "y": {
                             "field": "Value",
@@ -304,13 +312,9 @@ const renderMap = (
                             "legend": false
                         },
                         "stroke": {
-                            "condition": [
-                                {"param": "highlight", "empty": false, "value": "cyan"}
-                            ],
                             "value": "black"
                         },
                         "strokeWidth": {
-                            "condition": [{"param": "highlight", "empty": false, "value": 3}],
                             "value": 0.5
                         }
                     }
