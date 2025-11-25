@@ -1,0 +1,41 @@
+<!-- Print Modal -->
+<div class="modal fade" id="printModal" tabindex="-1" role="dialog" aria-labelledby="printModalTitle" aria-hidden="true" data-pagefind-ignore="all">
+    <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="printModalTitle">Save this visualization</h5>
+            </div>
+            <div class="modal-body">
+                You can re-size the image below by clicking and dragging from the lower-right corner. You can also click the three dots in the
+                upper-right-hand corner of the chart and choose "save as PNG" or "save as SVG" to download the chart.
+                <hr class="my-1">
+
+                <div id="printVis" style="height: 400px; width:600px; max-width:100%;" class="vis-print-modal border p-1">
+                    Vis container
+                </div>
+
+                <div id="modalFootnotes" class="fs-xs p-1 pl-3">
+
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+  div.vis-print-modal {
+  resize:both;
+  overflow:auto; /* something other than visible */
+}
+</style>
+
+<script>
+  function printModal() {
+    $('#printModal').modal('show');
+    console.log('Showing print modal')
+}
+</script>
