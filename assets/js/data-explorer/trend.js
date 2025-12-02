@@ -578,35 +578,32 @@ const renderTrendChart = (
                         },
                         {
                             "description": "Hover text",
-"transform": [
-  {
-    "aggregate": [
-      {"op": "argmax", "field": "end_period", "as": "endDate"},
-      {"op": "max", "field": "end_period", "as": "end_period"}
-    ],
-    "groupby": ["Geography"]
-  },
-  {
-    "window": [{"op": "row_number", "as": "order"}],
-    "sort": [{"field": "endDate.Value", "order": "ascending"}]
-  },
-  {"window": [{"op": "count", "as": "totalCount"}]},
-  {"calculate": "(datum.totalCount + 1) / 2", "as": "medianOrder"},
-  {
-    "joinaggregate": [
-      {"op": "median", "field": "endDate.Value", "as": "medianValue"},
-      {"op": "max", "field": "endDate.Value", "as": "maxVal"}
-    ]
-  },
-  {
-    "calculate": "datum.medianValue - datum.endDate.Value",
-    "as": "valueDiff"
-  },
-  {
-    "calculate": "datum.endDate.Value + (datum.valueDiff / datum.maxVal * -15)",
-    "as": "labelValue"
-  }
-],
+                        "transform": [
+                            {
+                            "aggregate": [
+                                {"op": "argmax", "field": "end_period", "as": "endDate"},
+                                {"op": "max", "field": "end_period", "as": "end_period"}
+                            ],
+                            "groupby": ["Geography"]
+                            },
+                            {
+                            "window": [{"op": "row_number", "as": "order"}],
+                            "sort": [{"field": "endDate.Value", "order": "ascending"}]
+                            },
+                            {"window": [{"op": "count", "as": "totalCount"}]},
+                            {"calculate": "(datum.totalCount + 1) / 2", "as": "medianOrder"},
+                            {
+                            "joinaggregate": [
+                                {"op": "median", "field": "endDate.Value", "as": "medianValue"},
+                                {"op": "max", "field": "endDate.Value", "as": "maxVal"},
+                                {"op": "min", "field": "endDate.Value", "as": "minVal"}
+                            ]
+                            },
+                            {
+                            "calculate": "datum.endDate.Value == null ? null : datum.medianValue + (datum.endDate.Value - datum.medianValue) * 1.2",
+                            "as": "labelValue"
+                            }
+                        ],
                             "encoding": {
                                 "y": {"field": "labelValue"},
                                 "text": {
@@ -617,11 +614,9 @@ const renderTrendChart = (
                                 "type": "text",
                                 "align": "left",
                                 "dx": 5,
-                                "dy": {
-                                    "expr": "datum.dyOffset"
-                                },
+                                "dy": 0,
                                 "fontSize": 11,
-                                "fontWeight": "bold"
+                                "fontWeight": "normal"
                             }
                         }
                     ]
