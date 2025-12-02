@@ -578,53 +578,37 @@ const renderTrendChart = (
                         },
                         {
                             "description": "Hover text",
-                            "transform": [
-                            {
-                                "aggregate": [
-                                {"op": "argmax", "field": "end_period", "as": "endDate"},
-                                {"op": "max", "field": "end_period", "as": "end_period"}
-                                ],
-                                "groupby": ["Geography"]
-                            },
-
-                            /* 1. Order rows */
-                            {
-                                "window": [
-                                {"op": "row_number", "as": "order"}
-                                ],
-                                "sort": [{"field": "endDate.Value", "order": "ascending"}]
-                            },
-
-                            /* 2. Count rows */
-                            {
-                                "window": [
-                                {"op": "count", "as": "totalCount"}
-                                ]
-                            },
-                            {
-                                "calculate": "(datum.totalCount + 1) / 2",
-                                "as": "medianOrder"
-                            },
-                            {
-                            "joinaggregate": [
-                                {
-                                "op": "median",
-                                "field": "endDate.Value",
-                                "as": "medianValue"
-                                }
-                            ]
-                            },
-                            {
-                            "calculate": "datum.medianValue - datum.endDate.Value",
-                            "as": "valueDiff"
-                            },
-                            {
-                            "calculate": "(datum.medianValue - datum.endDate.Value) / datum.endDate.maxVal * 50",
-                            "as": "dyOffset"
-                            }
-                            ],
+"transform": [
+  {
+    "aggregate": [
+      {"op": "argmax", "field": "end_period", "as": "endDate"},
+      {"op": "max", "field": "end_period", "as": "end_period"}
+    ],
+    "groupby": ["Geography"]
+  },
+  {
+    "window": [{"op": "row_number", "as": "order"}],
+    "sort": [{"field": "endDate.Value", "order": "ascending"}]
+  },
+  {"window": [{"op": "count", "as": "totalCount"}]},
+  {"calculate": "(datum.totalCount + 1) / 2", "as": "medianOrder"},
+  {
+    "joinaggregate": [
+      {"op": "median", "field": "endDate.Value", "as": "medianValue"},
+      {"op": "max", "field": "endDate.Value", "as": "maxVal"}
+    ]
+  },
+  {
+    "calculate": "datum.medianValue - datum.endDate.Value",
+    "as": "valueDiff"
+  },
+  {
+    "calculate": "datum.endDate.Value + (datum.valueDiff / datum.maxVal * -15)",
+    "as": "labelValue"
+  }
+],
                             "encoding": {
-                                "y": {"field": "endDate['Value']"},
+                                "y": {"field": "labelValue"},
                                 "text": {
                                         "field": comp_group_col,
                                 }
