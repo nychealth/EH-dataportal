@@ -54,6 +54,15 @@
                 </div>
 
             </div>
+
+            <div class="row mt-6">
+              <div class="col-12 fs-sm">
+                <strong><i class="fas fa-info-circle mr-1" aria-hidden="true"></i>About these neighborhoods</strong>
+                <p>There are different ways to break up NYC into neighborhoods. These Neighborhood Reports include data for 42 NYC neighborhoods &mdash; a neighborhood scheme called UHF42. <a href="../data-stories/geographies/">Read about different neighborhood schemes in our data</a>.</p>
+                <p><i class="fas fa-question-circle mr-1" aria-hidden="true"></i>If you're looking for data for <strong>Community Districts</strong> or <strong>City Council Districts</strong>, <a href="#about" data-toggle="modal" data-target="#CCDModal">use this tool to get data for overlapping neighborhoods</a>.</p>
+
+              </div>
+            </div>
         </div>
 
         <div class="col-md-5">
@@ -84,10 +93,46 @@
 
       </div>
 
+      <div class="row my-4">
+
+        <div class="col-md-4 col-sm-12 mb-2" id="about">
+        </div>
+      </div>
+
 
 
     </div>
   </div>
+
+  <!-- Council District Chooser Modal -->
+<div class="modal fade" id="CCDModal" tabindex="-1" role="dialog" aria-labelledby="CCDModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="CCDModalTitle">Get data for Community Districts or City Council District</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row no-gutters">
+          <div class="col-12 mb-4">
+            <p>These <strong>Neighborhood Reports</strong> are presented for 42 NYC neighborhoods made up of groups of ZIP Codes - a neighborhood scheme called UHF42.</p>
+            <p>To get data for Community Districts or City Council Districts, choose a district below. This will give you links to reports for UHF neighborhoods that overlap your neighborhood.</p>
+
+            {{ partial "overlap-tool" . }}
+
+          </div>
+
+
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 
   
 <div class="hide topic-descriptions" id="Asthma-Descr">

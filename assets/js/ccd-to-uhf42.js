@@ -1,0 +1,1643 @@
+var CCDtoUHF = [
+  {
+    "CCD": "1",
+    "matchingUHFs": [
+      {
+        "UHF_id": 310,
+        "GEONAME": "Lower Manhattan",
+        "percent": 42.013754,
+        "page_name": "lower_manhattan",
+        "pop_pct_of_ccd": 38.602652
+      },
+      {
+        "UHF_id": 309,
+        "GEONAME": "Union Square - Lower East Side",
+        "percent": 26.042412,
+        "page_name": "union_square_lower_east_side",
+        "pop_pct_of_ccd": 37.233243
+      },
+      {
+        "UHF_id": 308,
+        "GEONAME": "Greenwich Village - Soho",
+        "percent": 25.305111,
+        "page_name": "greenwich_village_soho",
+        "pop_pct_of_ccd": 24.164105
+      },
+      {
+        "UHF_id": 202,
+        "GEONAME": "Downtown  - Heights - Slope",
+        "percent": 1.11801,
+        "page_name": "downtown_heights_slope",
+        "pop_pct_of_ccd": 0.0
+      }
+    ]
+  },
+  {
+    "CCD": "2",
+    "matchingUHFs": [
+      {
+        "UHF_id": 309,
+        "GEONAME": "Union Square - Lower East Side",
+        "percent": 66.991463,
+        "page_name": "union_square_lower_east_side",
+        "pop_pct_of_ccd": 64.972833
+      },
+      {
+        "UHF_id": 307,
+        "GEONAME": "Gramercy Park -  Murray Hill",
+        "percent": 18.762905,
+        "page_name": "gramercy_park_murray_hill",
+        "pop_pct_of_ccd": 22.165338
+      },
+      {
+        "UHF_id": 308,
+        "GEONAME": "Greenwich Village - Soho",
+        "percent": 8.387148,
+        "page_name": "greenwich_village_soho",
+        "pop_pct_of_ccd": 7.326787
+      },
+      {
+        "UHF_id": 306,
+        "GEONAME": "Chelsea - Clinton",
+        "percent": 6.015978,
+        "page_name": "chelsea_clinton",
+        "pop_pct_of_ccd": 5.535042
+      },
+      {
+        "UHF_id": 201,
+        "GEONAME": "Greenpoint",
+        "percent": 0.04614,
+        "page_name": "greenpoint",
+        "pop_pct_of_ccd": 0.0
+      }
+    ]
+  },
+  {
+    "CCD": "3",
+    "matchingUHFs": [
+      {
+        "UHF_id": 306,
+        "GEONAME": "Chelsea - Clinton",
+        "percent": 73.514205,
+        "page_name": "chelsea_clinton",
+        "pop_pct_of_ccd": 77.984045
+      },
+      {
+        "UHF_id": 308,
+        "GEONAME": "Greenwich Village - Soho",
+        "percent": 19.615919,
+        "page_name": "greenwich_village_soho",
+        "pop_pct_of_ccd": 18.662471
+      },
+      {
+        "UHF_id": 307,
+        "GEONAME": "Gramercy Park -  Murray Hill",
+        "percent": 3.318846,
+        "page_name": "gramercy_park_murray_hill",
+        "pop_pct_of_ccd": 3.067829
+      },
+      {
+        "UHF_id": 309,
+        "GEONAME": "Union Square - Lower East Side",
+        "percent": 0.485686,
+        "page_name": "union_square_lower_east_side",
+        "pop_pct_of_ccd": 0.285654
+      }
+    ]
+  },
+  {
+    "CCD": "4",
+    "matchingUHFs": [
+      {
+        "UHF_id": 307,
+        "GEONAME": "Gramercy Park -  Murray Hill",
+        "percent": 52.796985,
+        "page_name": "gramercy_park_murray_hill",
+        "pop_pct_of_ccd": 61.447349
+      },
+      {
+        "UHF_id": 305,
+        "GEONAME": "Upper East Side",
+        "percent": 24.830671,
+        "page_name": "upper_east_side",
+        "pop_pct_of_ccd": 30.973957
+      },
+      {
+        "UHF_id": 306,
+        "GEONAME": "Chelsea - Clinton",
+        "percent": 16.368485,
+        "page_name": "chelsea_clinton",
+        "pop_pct_of_ccd": 5.215899
+      },
+      {
+        "UHF_id": 309,
+        "GEONAME": "Union Square - Lower East Side",
+        "percent": 6.271358,
+        "page_name": "union_square_lower_east_side",
+        "pop_pct_of_ccd": 2.362795
+      },
+      {
+        "UHF_id": 201,
+        "GEONAME": "Greenpoint",
+        "percent": 0.015678,
+        "page_name": "greenpoint",
+        "pop_pct_of_ccd": 0.0
+      },
+      {
+        "UHF_id": 401,
+        "GEONAME": "Long Island City - Astoria",
+        "percent": 0.001504,
+        "page_name": "long_island_city_astoria",
+        "pop_pct_of_ccd": 0.0
+      }
+    ]
+  },
+  {
+    "CCD": "5",
+    "matchingUHFs": [
+      {
+        "UHF_id": 305,
+        "GEONAME": "Upper East Side",
+        "percent": 94.548869,
+        "page_name": "upper_east_side",
+        "pop_pct_of_ccd": 97.599196
+      },
+      {
+        "UHF_id": 307,
+        "GEONAME": "Gramercy Park -  Murray Hill",
+        "percent": 3.287149,
+        "page_name": "gramercy_park_murray_hill",
+        "pop_pct_of_ccd": 2.400804
+      },
+      {
+        "UHF_id": 303,
+        "GEONAME": "East Harlem",
+        "percent": 0.097529,
+        "page_name": "east_harlem",
+        "pop_pct_of_ccd": 0.0
+      },
+      {
+        "UHF_id": 401,
+        "GEONAME": "Long Island City - Astoria",
+        "percent": 0.010904,
+        "page_name": "long_island_city_astoria",
+        "pop_pct_of_ccd": 0.0
+      }
+    ]
+  },
+  {
+    "CCD": "6",
+    "matchingUHFs": [
+      {
+        "UHF_id": 304,
+        "GEONAME": "Upper West Side",
+        "percent": 45.026973,
+        "page_name": "upper_west_side",
+        "pop_pct_of_ccd": 88.113932
+      },
+      {
+        "UHF_id": 306,
+        "GEONAME": "Chelsea - Clinton",
+        "percent": 8.531272,
+        "page_name": "chelsea_clinton",
+        "pop_pct_of_ccd": 11.886068
+      },
+      {
+        "UHF_id": 305,
+        "GEONAME": "Upper East Side",
+        "percent": 0.258095,
+        "page_name": "upper_east_side",
+        "pop_pct_of_ccd": 0.0
+      },
+      {
+        "UHF_id": 303,
+        "GEONAME": "East Harlem",
+        "percent": 0.103325,
+        "page_name": "east_harlem",
+        "pop_pct_of_ccd": 0.0
+      },
+      {
+        "UHF_id": 302,
+        "GEONAME": "Central Harlem - Morningside Heights",
+        "percent": 0.04959,
+        "page_name": "central_harlem_morningside_heights",
+        "pop_pct_of_ccd": 0.0
+      },
+      {
+        "UHF_id": 307,
+        "GEONAME": "Gramercy Park -  Murray Hill",
+        "percent": 0.006443,
+        "page_name": "gramercy_park_murray_hill",
+        "pop_pct_of_ccd": 0.0
+      }
+    ]
+  },
+  {
+    "CCD": "7",
+    "matchingUHFs": [
+      {
+        "UHF_id": 304,
+        "GEONAME": "Upper West Side",
+        "percent": 37.09797,
+        "page_name": "upper_west_side",
+        "pop_pct_of_ccd": 46.591658
+      },
+      {
+        "UHF_id": 301,
+        "GEONAME": "Washington Heights - Inwood",
+        "percent": 34.971442,
+        "page_name": "washington_heights",
+        "pop_pct_of_ccd": 37.50753
+      },
+      {
+        "UHF_id": 302,
+        "GEONAME": "Central Harlem - Morningside Heights",
+        "percent": 27.711289,
+        "page_name": "central_harlem_morningside_heights",
+        "pop_pct_of_ccd": 15.900812
+      }
+    ]
+  },
+  {
+    "CCD": "8",
+    "matchingUHFs": [
+      {
+        "UHF_id": 303,
+        "GEONAME": "East Harlem",
+        "percent": 51.035656,
+        "page_name": "east_harlem",
+        "pop_pct_of_ccd": 0.0
+      },
+      {
+        "UHF_id": 107,
+        "GEONAME": "Hunts Point - Mott Haven",
+        "percent": 35.74359,
+        "page_name": "hunts_point_mott_haven",
+        "pop_pct_of_ccd": 88.406778
+      },
+      {
+        "UHF_id": 106,
+        "GEONAME": "High Bridge - Morrisania",
+        "percent": 10.36054,
+        "page_name": "high_bridge_morrisania",
+        "pop_pct_of_ccd": 11.593222
+      },
+      {
+        "UHF_id": 305,
+        "GEONAME": "Upper East Side",
+        "percent": 0.91402,
+        "page_name": "upper_east_side",
+        "pop_pct_of_ccd": 0.0
+      },
+      {
+        "UHF_id": 302,
+        "GEONAME": "Central Harlem - Morningside Heights",
+        "percent": 0.003691,
+        "page_name": "central_harlem_morningside_heights",
+        "pop_pct_of_ccd": 0.0
+      }
+    ]
+  },
+  {
+    "CCD": "9",
+    "matchingUHFs": [
+      {
+        "UHF_id": 302,
+        "GEONAME": "Central Harlem - Morningside Heights",
+        "percent": 81.717088,
+        "page_name": "central_harlem_morningside_heights",
+        "pop_pct_of_ccd": 82.925831
+      },
+      {
+        "UHF_id": 303,
+        "GEONAME": "East Harlem",
+        "percent": 10.594787,
+        "page_name": "east_harlem",
+        "pop_pct_of_ccd": 10.747965
+      },
+      {
+        "UHF_id": 301,
+        "GEONAME": "Washington Heights - Inwood",
+        "percent": 7.996687,
+        "page_name": "washington_heights",
+        "pop_pct_of_ccd": 6.326204
+      },
+      {
+        "UHF_id": 304,
+        "GEONAME": "Upper West Side",
+        "percent": 0.017187,
+        "page_name": "upper_west_side",
+        "pop_pct_of_ccd": 0.0
+      }
+    ]
+  },
+  {
+    "CCD": "10",
+    "matchingUHFs": [
+      {
+        "UHF_id": 301,
+        "GEONAME": "Washington Heights - Inwood",
+        "percent": 94.881899,
+        "page_name": "washington_heights",
+        "pop_pct_of_ccd": 100.0
+      },
+      {
+        "UHF_id": 101,
+        "GEONAME": "Kingsbridge - Riverdale",
+        "percent": 4.261549,
+        "page_name": "kingsbridge_riverdale",
+        "pop_pct_of_ccd": 0.0
+      },
+      {
+        "UHF_id": 302,
+        "GEONAME": "Central Harlem - Morningside Heights",
+        "percent": 0.000216,
+        "page_name": "central_harlem_morningside_heights",
+        "pop_pct_of_ccd": 0.0
+      }
+    ]
+  },
+  {
+    "CCD": "11",
+    "matchingUHFs": [
+      {
+        "UHF_id": 101,
+        "GEONAME": "Kingsbridge - Riverdale",
+        "percent": 55.157723,
+        "page_name": "kingsbridge_riverdale",
+        "pop_pct_of_ccd": 42.212164
+      },
+      {
+        "UHF_id": 103,
+        "GEONAME": "Fordham - Bronx Park",
+        "percent": 27.235794,
+        "page_name": "fordham_bronx_pk",
+        "pop_pct_of_ccd": 34.049917
+      },
+      {
+        "UHF_id": 102,
+        "GEONAME": "Northeast Bronx",
+        "percent": 17.215164,
+        "page_name": "northeast_bronx",
+        "pop_pct_of_ccd": 23.723627
+      }
+    ]
+  },
+  {
+    "CCD": "12",
+    "matchingUHFs": [
+      {
+        "UHF_id": 102,
+        "GEONAME": "Northeast Bronx",
+        "percent": 83.362506,
+        "page_name": "northeast_bronx",
+        "pop_pct_of_ccd": 74.815009
+      },
+      {
+        "UHF_id": 103,
+        "GEONAME": "Fordham - Bronx Park",
+        "percent": 14.122431,
+        "page_name": "fordham_bronx_pk",
+        "pop_pct_of_ccd": 25.184991
+      },
+      {
+        "UHF_id": 104,
+        "GEONAME": "Pelham - Throgs Neck",
+        "percent": 0.012528,
+        "page_name": "pelham_throgs_neck",
+        "pop_pct_of_ccd": 0.0
+      }
+    ]
+  },
+  {
+    "CCD": "13",
+    "matchingUHFs": [
+      {
+        "UHF_id": 104,
+        "GEONAME": "Pelham - Throgs Neck",
+        "percent": 81.158175,
+        "page_name": "pelham_throgs_neck",
+        "pop_pct_of_ccd": 73.974406
+      },
+      {
+        "UHF_id": 102,
+        "GEONAME": "Northeast Bronx",
+        "percent": 10.751823,
+        "page_name": "northeast_bronx",
+        "pop_pct_of_ccd": 15.247701
+      },
+      {
+        "UHF_id": 103,
+        "GEONAME": "Fordham - Bronx Park",
+        "percent": 1.733884,
+        "page_name": "fordham_bronx_pk",
+        "pop_pct_of_ccd": 7.387712
+      },
+      {
+        "UHF_id": 105,
+        "GEONAME": "Crotona - Tremont",
+        "percent": 1.000451,
+        "page_name": "crotona_tremont",
+        "pop_pct_of_ccd": 2.885474
+      }
+    ]
+  },
+  {
+    "CCD": "14",
+    "matchingUHFs": [
+      {
+        "UHF_id": 105,
+        "GEONAME": "Crotona - Tremont",
+        "percent": 45.366004,
+        "page_name": "crotona_tremont",
+        "pop_pct_of_ccd": 45.967444
+      },
+      {
+        "UHF_id": 103,
+        "GEONAME": "Fordham - Bronx Park",
+        "percent": 35.840962,
+        "page_name": "fordham_bronx_pk",
+        "pop_pct_of_ccd": 42.364542
+      },
+      {
+        "UHF_id": 101,
+        "GEONAME": "Kingsbridge - Riverdale",
+        "percent": 16.965554,
+        "page_name": "kingsbridge_riverdale",
+        "pop_pct_of_ccd": 10.054022
+      },
+      {
+        "UHF_id": 106,
+        "GEONAME": "High Bridge - Morrisania",
+        "percent": 2.46763,
+        "page_name": "high_bridge_morrisania",
+        "pop_pct_of_ccd": 1.613991
+      }
+    ]
+  },
+  {
+    "CCD": "15",
+    "matchingUHFs": [
+      {
+        "UHF_id": 105,
+        "GEONAME": "Crotona - Tremont",
+        "percent": 59.806897,
+        "page_name": "crotona_tremont",
+        "pop_pct_of_ccd": 57.54774
+      },
+      {
+        "UHF_id": 103,
+        "GEONAME": "Fordham - Bronx Park",
+        "percent": 37.895404,
+        "page_name": "fordham_bronx_pk",
+        "pop_pct_of_ccd": 42.034707
+      },
+      {
+        "UHF_id": 104,
+        "GEONAME": "Pelham - Throgs Neck",
+        "percent": 2.252309,
+        "page_name": "pelham_throgs_neck",
+        "pop_pct_of_ccd": 0.0
+      },
+      {
+        "UHF_id": 106,
+        "GEONAME": "High Bridge - Morrisania",
+        "percent": 0.385235,
+        "page_name": "high_bridge_morrisania",
+        "pop_pct_of_ccd": 0.417554
+      },
+      {
+        "UHF_id": 107,
+        "GEONAME": "Hunts Point - Mott Haven",
+        "percent": 0.039776,
+        "page_name": "hunts_point_mott_haven",
+        "pop_pct_of_ccd": 0.0
+      }
+    ]
+  },
+  {
+    "CCD": "16",
+    "matchingUHFs": [
+      {
+        "UHF_id": 106,
+        "GEONAME": "High Bridge - Morrisania",
+        "percent": 87.068873,
+        "page_name": "high_bridge_morrisania",
+        "pop_pct_of_ccd": 91.913596
+      },
+      {
+        "UHF_id": 105,
+        "GEONAME": "Crotona - Tremont",
+        "percent": 13.11718,
+        "page_name": "crotona_tremont",
+        "pop_pct_of_ccd": 8.086404
+      },
+      {
+        "UHF_id": 103,
+        "GEONAME": "Fordham - Bronx Park",
+        "percent": 0.023548,
+        "page_name": "fordham_bronx_pk",
+        "pop_pct_of_ccd": 0.0
+      },
+      {
+        "UHF_id": 101,
+        "GEONAME": "Kingsbridge - Riverdale",
+        "percent": 0.003649,
+        "page_name": "kingsbridge_riverdale",
+        "pop_pct_of_ccd": 0.0
+      }
+    ]
+  },
+  {
+    "CCD": "17",
+    "matchingUHFs": [
+      {
+        "UHF_id": 107,
+        "GEONAME": "Hunts Point - Mott Haven",
+        "percent": 64.771152,
+        "page_name": "hunts_point_mott_haven",
+        "pop_pct_of_ccd": 51.119704
+      },
+      {
+        "UHF_id": 106,
+        "GEONAME": "High Bridge - Morrisania",
+        "percent": 16.471605,
+        "page_name": "high_bridge_morrisania",
+        "pop_pct_of_ccd": 28.457869
+      },
+      {
+        "UHF_id": 104,
+        "GEONAME": "Pelham - Throgs Neck",
+        "percent": 8.946544,
+        "page_name": "pelham_throgs_neck",
+        "pop_pct_of_ccd": 10.24037
+      },
+      {
+        "UHF_id": 105,
+        "GEONAME": "Crotona - Tremont",
+        "percent": 7.594636,
+        "page_name": "crotona_tremont",
+        "pop_pct_of_ccd": 10.182057
+      }
+    ]
+  },
+  {
+    "CCD": "18",
+    "matchingUHFs": [
+      {
+        "UHF_id": 104,
+        "GEONAME": "Pelham - Throgs Neck",
+        "percent": 96.338884,
+        "page_name": "pelham_throgs_neck",
+        "pop_pct_of_ccd": 95.844989
+      },
+      {
+        "UHF_id": 105,
+        "GEONAME": "Crotona - Tremont",
+        "percent": 1.607392,
+        "page_name": "crotona_tremont",
+        "pop_pct_of_ccd": 3.427961
+      },
+      {
+        "UHF_id": 107,
+        "GEONAME": "Hunts Point - Mott Haven",
+        "percent": 0.046864,
+        "page_name": "hunts_point_mott_haven",
+        "pop_pct_of_ccd": 0.0
+      }
+    ]
+  },
+  {
+    "CCD": "19",
+    "matchingUHFs": [
+      {
+        "UHF_id": 403,
+        "GEONAME": "Flushing - Clearview",
+        "percent": 69.611998,
+        "page_name": "flushing_clearview",
+        "pop_pct_of_ccd": 73.741681
+      },
+      {
+        "UHF_id": 404,
+        "GEONAME": "Bayside - Little Neck",
+        "percent": 29.757173,
+        "page_name": "bayside_little_neck",
+        "pop_pct_of_ccd": 26.213669
+      }
+    ]
+  },
+  {
+    "CCD": "20",
+    "matchingUHFs": [
+      {
+        "UHF_id": 403,
+        "GEONAME": "Flushing - Clearview",
+        "percent": 71.379725,
+        "page_name": "flushing_clearview",
+        "pop_pct_of_ccd": 88.884885
+      },
+      {
+        "UHF_id": 406,
+        "GEONAME": "Fresh Meadows",
+        "percent": 25.141679,
+        "page_name": "fresh_meadows",
+        "pop_pct_of_ccd": 9.382316
+      },
+      {
+        "UHF_id": 404,
+        "GEONAME": "Bayside - Little Neck",
+        "percent": 3.152514,
+        "page_name": "bayside_little_neck",
+        "pop_pct_of_ccd": 1.7328
+      },
+      {
+        "UHF_id": 402,
+        "GEONAME": "West Queens",
+        "percent": 0.666658,
+        "page_name": "west_queens",
+        "pop_pct_of_ccd": 0.0
+      }
+    ]
+  },
+  {
+    "CCD": "21",
+    "matchingUHFs": [
+      {
+        "UHF_id": 402,
+        "GEONAME": "West Queens",
+        "percent": 61.611881,
+        "page_name": "west_queens",
+        "pop_pct_of_ccd": 100.0
+      },
+      {
+        "UHF_id": 403,
+        "GEONAME": "Flushing - Clearview",
+        "percent": 15.46791,
+        "page_name": "flushing_clearview",
+        "pop_pct_of_ccd": 0.0
+      }
+    ]
+  },
+  {
+    "CCD": "22",
+    "matchingUHFs": [
+      {
+        "UHF_id": 401,
+        "GEONAME": "Long Island City - Astoria",
+        "percent": 60.013433,
+        "page_name": "long_island_city_astoria",
+        "pop_pct_of_ccd": 89.248971
+      },
+      {
+        "UHF_id": 402,
+        "GEONAME": "West Queens",
+        "percent": 27.965472,
+        "page_name": "west_queens",
+        "pop_pct_of_ccd": 10.751029
+      }
+    ]
+  },
+  {
+    "CCD": "23",
+    "matchingUHFs": [
+      {
+        "UHF_id": 409,
+        "GEONAME": "Southeast Queens",
+        "percent": 48.617611,
+        "page_name": "southeast_queens",
+        "pop_pct_of_ccd": 51.698541
+      },
+      {
+        "UHF_id": 404,
+        "GEONAME": "Bayside - Little Neck",
+        "percent": 35.183519,
+        "page_name": "bayside_little_neck",
+        "pop_pct_of_ccd": 27.031444
+      },
+      {
+        "UHF_id": 408,
+        "GEONAME": "Jamaica",
+        "percent": 11.067292,
+        "page_name": "jamaica",
+        "pop_pct_of_ccd": 13.914971
+      },
+      {
+        "UHF_id": 406,
+        "GEONAME": "Fresh Meadows",
+        "percent": 5.276943,
+        "page_name": "fresh_meadows",
+        "pop_pct_of_ccd": 7.355044
+      }
+    ]
+  },
+  {
+    "CCD": "24",
+    "matchingUHFs": [
+      {
+        "UHF_id": 406,
+        "GEONAME": "Fresh Meadows",
+        "percent": 53.696508,
+        "page_name": "fresh_meadows",
+        "pop_pct_of_ccd": 42.460467
+      },
+      {
+        "UHF_id": 408,
+        "GEONAME": "Jamaica",
+        "percent": 37.357034,
+        "page_name": "jamaica",
+        "pop_pct_of_ccd": 45.01321
+      },
+      {
+        "UHF_id": 405,
+        "GEONAME": "Ridgewood - Forest Hills",
+        "percent": 6.607752,
+        "page_name": "ridgewood_forest_hills",
+        "pop_pct_of_ccd": 12.526323
+      },
+      {
+        "UHF_id": 403,
+        "GEONAME": "Flushing - Clearview",
+        "percent": 2.427318,
+        "page_name": "flushing_clearview",
+        "pop_pct_of_ccd": 0.0
+      },
+      {
+        "UHF_id": 402,
+        "GEONAME": "West Queens",
+        "percent": 0.259259,
+        "page_name": "west_queens",
+        "pop_pct_of_ccd": 0.0
+      },
+      {
+        "UHF_id": 407,
+        "GEONAME": "Southwest Queens",
+        "percent": 0.033328,
+        "page_name": "southwest_queens",
+        "pop_pct_of_ccd": 0.0
+      }
+    ]
+  },
+  {
+    "CCD": "25",
+    "matchingUHFs": [
+      {
+        "UHF_id": 402,
+        "GEONAME": "West Queens",
+        "percent": 99.845537,
+        "page_name": "west_queens",
+        "pop_pct_of_ccd": 100.0
+      },
+      {
+        "UHF_id": 405,
+        "GEONAME": "Ridgewood - Forest Hills",
+        "percent": 0.186401,
+        "page_name": "ridgewood_forest_hills",
+        "pop_pct_of_ccd": 0.0
+      }
+    ]
+  },
+  {
+    "CCD": "26",
+    "matchingUHFs": [
+      {
+        "UHF_id": 401,
+        "GEONAME": "Long Island City - Astoria",
+        "percent": 57.96902,
+        "page_name": "long_island_city_astoria",
+        "pop_pct_of_ccd": 51.996816
+      },
+      {
+        "UHF_id": 402,
+        "GEONAME": "West Queens",
+        "percent": 42.209401,
+        "page_name": "west_queens",
+        "pop_pct_of_ccd": 48.003184
+      },
+      {
+        "UHF_id": 201,
+        "GEONAME": "Greenpoint",
+        "percent": 0.00029,
+        "page_name": "greenpoint",
+        "pop_pct_of_ccd": 0.0
+      }
+    ]
+  },
+  {
+    "CCD": "27",
+    "matchingUHFs": [
+      {
+        "UHF_id": 408,
+        "GEONAME": "Jamaica",
+        "percent": 62.968612,
+        "page_name": "jamaica",
+        "pop_pct_of_ccd": 69.681571
+      },
+      {
+        "UHF_id": 409,
+        "GEONAME": "Southeast Queens",
+        "percent": 37.125503,
+        "page_name": "southeast_queens",
+        "pop_pct_of_ccd": 30.318429
+      },
+      {
+        "UHF_id": 407,
+        "GEONAME": "Southwest Queens",
+        "percent": 0.093462,
+        "page_name": "southwest_queens",
+        "pop_pct_of_ccd": 0.0
+      }
+    ]
+  },
+  {
+    "CCD": "28",
+    "matchingUHFs": [
+      {
+        "UHF_id": 408,
+        "GEONAME": "Jamaica",
+        "percent": 57.800086,
+        "page_name": "jamaica",
+        "pop_pct_of_ccd": 55.099304
+      },
+      {
+        "UHF_id": 407,
+        "GEONAME": "Southwest Queens",
+        "percent": 42.422767,
+        "page_name": "southwest_queens",
+        "pop_pct_of_ccd": 44.900696
+      },
+      {
+        "UHF_id": 409,
+        "GEONAME": "Southeast Queens",
+        "percent": 0.000409,
+        "page_name": "southeast_queens",
+        "pop_pct_of_ccd": 0.0
+      }
+    ]
+  },
+  {
+    "CCD": "29",
+    "matchingUHFs": [
+      {
+        "UHF_id": 407,
+        "GEONAME": "Southwest Queens",
+        "percent": 57.447788,
+        "page_name": "southwest_queens",
+        "pop_pct_of_ccd": 55.655291
+      },
+      {
+        "UHF_id": 405,
+        "GEONAME": "Ridgewood - Forest Hills",
+        "percent": 41.498466,
+        "page_name": "ridgewood_forest_hills",
+        "pop_pct_of_ccd": 44.344709
+      },
+      {
+        "UHF_id": 408,
+        "GEONAME": "Jamaica",
+        "percent": 0.821309,
+        "page_name": "jamaica",
+        "pop_pct_of_ccd": 0.0
+      },
+      {
+        "UHF_id": 406,
+        "GEONAME": "Fresh Meadows",
+        "percent": 0.486436,
+        "page_name": "fresh_meadows",
+        "pop_pct_of_ccd": 0.0
+      }
+    ]
+  },
+  {
+    "CCD": "30",
+    "matchingUHFs": [
+      {
+        "UHF_id": 405,
+        "GEONAME": "Ridgewood - Forest Hills",
+        "percent": 62.202472,
+        "page_name": "ridgewood_forest_hills",
+        "pop_pct_of_ccd": 66.716816
+      },
+      {
+        "UHF_id": 402,
+        "GEONAME": "West Queens",
+        "percent": 38.019489,
+        "page_name": "west_queens",
+        "pop_pct_of_ccd": 33.283184
+      },
+      {
+        "UHF_id": 201,
+        "GEONAME": "Greenpoint",
+        "percent": 0.029728,
+        "page_name": "greenpoint",
+        "pop_pct_of_ccd": 0.0
+      },
+      {
+        "UHF_id": 211,
+        "GEONAME": "Williamsburg - Bushwick",
+        "percent": 0.000135,
+        "page_name": "williamsburg_bushwick",
+        "pop_pct_of_ccd": 0.0
+      }
+    ]
+  },
+  {
+    "CCD": "31",
+    "matchingUHFs": [
+      {
+        "UHF_id": 409,
+        "GEONAME": "Southeast Queens",
+        "percent": 25.749765,
+        "page_name": "southeast_queens",
+        "pop_pct_of_ccd": 89.126937
+      },
+      {
+        "UHF_id": 410,
+        "GEONAME": "Rockaway",
+        "percent": 24.034339,
+        "page_name": "rockaways",
+        "pop_pct_of_ccd": 0.0
+      },
+      {
+        "UHF_id": 408,
+        "GEONAME": "Jamaica",
+        "percent": 5.050878,
+        "page_name": "jamaica",
+        "pop_pct_of_ccd": 9.78441
+      },
+      {
+        "UHF_id": 407,
+        "GEONAME": "Southwest Queens",
+        "percent": 0.062556,
+        "page_name": "southwest_queens",
+        "pop_pct_of_ccd": 0.0
+      }
+    ]
+  },
+  {
+    "CCD": "32",
+    "matchingUHFs": [
+      {
+        "UHF_id": 410,
+        "GEONAME": "Rockaway",
+        "percent": 36.178983,
+        "page_name": "rockaways",
+        "pop_pct_of_ccd": 0.0
+      },
+      {
+        "UHF_id": 407,
+        "GEONAME": "Southwest Queens",
+        "percent": 34.642681,
+        "page_name": "southwest_queens",
+        "pop_pct_of_ccd": 84.392351
+      },
+      {
+        "UHF_id": 405,
+        "GEONAME": "Ridgewood - Forest Hills",
+        "percent": 21.164237,
+        "page_name": "ridgewood_forest_hills",
+        "pop_pct_of_ccd": 15.198873
+      },
+      {
+        "UHF_id": 204,
+        "GEONAME": "East New York",
+        "percent": 0.241562,
+        "page_name": "east_new_york",
+        "pop_pct_of_ccd": 0.227402
+      },
+      {
+        "UHF_id": 208,
+        "GEONAME": "Canarsie - Flatlands",
+        "percent": 0.037401,
+        "page_name": "canarsie_flatlands",
+        "pop_pct_of_ccd": 0.0
+      }
+    ]
+  },
+  {
+    "CCD": "33",
+    "matchingUHFs": [
+      {
+        "UHF_id": 201,
+        "GEONAME": "Greenpoint",
+        "percent": 51.285708,
+        "page_name": "greenpoint",
+        "pop_pct_of_ccd": 47.655587
+      },
+      {
+        "UHF_id": 202,
+        "GEONAME": "Downtown  - Heights - Slope",
+        "percent": 43.025241,
+        "page_name": "downtown_heights_slope",
+        "pop_pct_of_ccd": 42.050912
+      },
+      {
+        "UHF_id": 211,
+        "GEONAME": "Williamsburg - Bushwick",
+        "percent": 4.732998,
+        "page_name": "williamsburg_bushwick",
+        "pop_pct_of_ccd": 10.293501
+      },
+      {
+        "UHF_id": 401,
+        "GEONAME": "Long Island City - Astoria",
+        "percent": 0.012177,
+        "page_name": "long_island_city_astoria",
+        "pop_pct_of_ccd": 0.0
+      },
+      {
+        "UHF_id": 203,
+        "GEONAME": "Bedford Stuyvesant - Crown Heights",
+        "percent": 0.000373,
+        "page_name": "bedford_stuyvesant_crown_heights",
+        "pop_pct_of_ccd": 0.0
+      }
+    ]
+  },
+  {
+    "CCD": "34",
+    "matchingUHFs": [
+      {
+        "UHF_id": 201,
+        "GEONAME": "Greenpoint",
+        "percent": 41.679003,
+        "page_name": "greenpoint",
+        "pop_pct_of_ccd": 41.084921
+      },
+      {
+        "UHF_id": 211,
+        "GEONAME": "Williamsburg - Bushwick",
+        "percent": 40.014331,
+        "page_name": "williamsburg_bushwick",
+        "pop_pct_of_ccd": 39.043383
+      },
+      {
+        "UHF_id": 405,
+        "GEONAME": "Ridgewood - Forest Hills",
+        "percent": 18.609297,
+        "page_name": "ridgewood_forest_hills",
+        "pop_pct_of_ccd": 19.871696
+      },
+      {
+        "UHF_id": 402,
+        "GEONAME": "West Queens",
+        "percent": 0.032527,
+        "page_name": "west_queens",
+        "pop_pct_of_ccd": 0.0
+      },
+      {
+        "UHF_id": 204,
+        "GEONAME": "East New York",
+        "percent": 0.00039,
+        "page_name": "east_new_york",
+        "pop_pct_of_ccd": 0.0
+      }
+    ]
+  },
+  {
+    "CCD": "35",
+    "matchingUHFs": [
+      {
+        "UHF_id": 203,
+        "GEONAME": "Bedford Stuyvesant - Crown Heights",
+        "percent": 53.275982,
+        "page_name": "bedford_stuyvesant_crown_heights",
+        "pop_pct_of_ccd": 55.142641
+      },
+      {
+        "UHF_id": 202,
+        "GEONAME": "Downtown  - Heights - Slope",
+        "percent": 34.008949,
+        "page_name": "downtown_heights_slope",
+        "pop_pct_of_ccd": 30.767211
+      },
+      {
+        "UHF_id": 207,
+        "GEONAME": "East Flatbush - Flatbush",
+        "percent": 13.203057,
+        "page_name": "east_flatbush_flatbush",
+        "pop_pct_of_ccd": 14.090148
+      }
+    ]
+  },
+  {
+    "CCD": "36",
+    "matchingUHFs": [
+      {
+        "UHF_id": 203,
+        "GEONAME": "Bedford Stuyvesant - Crown Heights",
+        "percent": 58.979894,
+        "page_name": "bedford_stuyvesant_crown_heights",
+        "pop_pct_of_ccd": 53.73145
+      },
+      {
+        "UHF_id": 211,
+        "GEONAME": "Williamsburg - Bushwick",
+        "percent": 39.051456,
+        "page_name": "williamsburg_bushwick",
+        "pop_pct_of_ccd": 43.045421
+      },
+      {
+        "UHF_id": 202,
+        "GEONAME": "Downtown  - Heights - Slope",
+        "percent": 2.322202,
+        "page_name": "downtown_heights_slope",
+        "pop_pct_of_ccd": 3.223129
+      }
+    ]
+  },
+  {
+    "CCD": "37",
+    "matchingUHFs": [
+      {
+        "UHF_id": 204,
+        "GEONAME": "East New York",
+        "percent": 66.415172,
+        "page_name": "east_new_york",
+        "pop_pct_of_ccd": 52.415981
+      },
+      {
+        "UHF_id": 211,
+        "GEONAME": "Williamsburg - Bushwick",
+        "percent": 25.403216,
+        "page_name": "williamsburg_bushwick",
+        "pop_pct_of_ccd": 38.065579
+      },
+      {
+        "UHF_id": 203,
+        "GEONAME": "Bedford Stuyvesant - Crown Heights",
+        "percent": 8.075087,
+        "page_name": "bedford_stuyvesant_crown_heights",
+        "pop_pct_of_ccd": 9.502386
+      },
+      {
+        "UHF_id": 405,
+        "GEONAME": "Ridgewood - Forest Hills",
+        "percent": 0.579715,
+        "page_name": "ridgewood_forest_hills",
+        "pop_pct_of_ccd": 0.016054
+      },
+      {
+        "UHF_id": 407,
+        "GEONAME": "Southwest Queens",
+        "percent": 0.102623,
+        "page_name": "southwest_queens",
+        "pop_pct_of_ccd": 0.0
+      }
+    ]
+  },
+  {
+    "CCD": "38",
+    "matchingUHFs": [
+      {
+        "UHF_id": 205,
+        "GEONAME": "Sunset Park",
+        "percent": 55.796483,
+        "page_name": "sunset_park",
+        "pop_pct_of_ccd": 50.092755
+      },
+      {
+        "UHF_id": 209,
+        "GEONAME": "Bensonhurst - Bay Ridge",
+        "percent": 19.682128,
+        "page_name": "bensonhurst_bay_ridge",
+        "pop_pct_of_ccd": 28.630487
+      },
+      {
+        "UHF_id": 202,
+        "GEONAME": "Downtown  - Heights - Slope",
+        "percent": 19.255575,
+        "page_name": "downtown_heights_slope",
+        "pop_pct_of_ccd": 11.132882
+      },
+      {
+        "UHF_id": 206,
+        "GEONAME": "Borough Park",
+        "percent": 4.648671,
+        "page_name": "borough_park",
+        "pop_pct_of_ccd": 10.143876
+      }
+    ]
+  },
+  {
+    "CCD": "39",
+    "matchingUHFs": [
+      {
+        "UHF_id": 202,
+        "GEONAME": "Downtown  - Heights - Slope",
+        "percent": 56.692405,
+        "page_name": "downtown_heights_slope",
+        "pop_pct_of_ccd": 68.121873
+      },
+      {
+        "UHF_id": 206,
+        "GEONAME": "Borough Park",
+        "percent": 24.114586,
+        "page_name": "borough_park",
+        "pop_pct_of_ccd": 31.515654
+      },
+      {
+        "UHF_id": 207,
+        "GEONAME": "East Flatbush - Flatbush",
+        "percent": 18.56548,
+        "page_name": "east_flatbush_flatbush",
+        "pop_pct_of_ccd": 0.0
+      },
+      {
+        "UHF_id": 203,
+        "GEONAME": "Bedford Stuyvesant - Crown Heights",
+        "percent": 0.705758,
+        "page_name": "bedford_stuyvesant_crown_heights",
+        "pop_pct_of_ccd": 0.362473
+      },
+      {
+        "UHF_id": 205,
+        "GEONAME": "Sunset Park",
+        "percent": 0.354823,
+        "page_name": "sunset_park",
+        "pop_pct_of_ccd": 0.0
+      }
+    ]
+  },
+  {
+    "CCD": "40",
+    "matchingUHFs": [
+      {
+        "UHF_id": 207,
+        "GEONAME": "East Flatbush - Flatbush",
+        "percent": 81.294983,
+        "page_name": "east_flatbush_flatbush",
+        "pop_pct_of_ccd": 82.394233
+      },
+      {
+        "UHF_id": 206,
+        "GEONAME": "Borough Park",
+        "percent": 18.671307,
+        "page_name": "borough_park",
+        "pop_pct_of_ccd": 17.105125
+      },
+      {
+        "UHF_id": 203,
+        "GEONAME": "Bedford Stuyvesant - Crown Heights",
+        "percent": 0.292552,
+        "page_name": "bedford_stuyvesant_crown_heights",
+        "pop_pct_of_ccd": 0.500642
+      }
+    ]
+  },
+  {
+    "CCD": "41",
+    "matchingUHFs": [
+      {
+        "UHF_id": 203,
+        "GEONAME": "Bedford Stuyvesant - Crown Heights",
+        "percent": 79.509264,
+        "page_name": "bedford_stuyvesant_crown_heights",
+        "pop_pct_of_ccd": 82.666806
+      },
+      {
+        "UHF_id": 207,
+        "GEONAME": "East Flatbush - Flatbush",
+        "percent": 15.193782,
+        "page_name": "east_flatbush_flatbush",
+        "pop_pct_of_ccd": 11.96859
+      },
+      {
+        "UHF_id": 211,
+        "GEONAME": "Williamsburg - Bushwick",
+        "percent": 5.050916,
+        "page_name": "williamsburg_bushwick",
+        "pop_pct_of_ccd": 5.176188
+      },
+      {
+        "UHF_id": 208,
+        "GEONAME": "Canarsie - Flatlands",
+        "percent": 0.505303,
+        "page_name": "canarsie_flatlands",
+        "pop_pct_of_ccd": 0.188417
+      },
+      {
+        "UHF_id": 204,
+        "GEONAME": "East New York",
+        "percent": 0.048087,
+        "page_name": "east_new_york",
+        "pop_pct_of_ccd": 0.0
+      }
+    ]
+  },
+  {
+    "CCD": "42",
+    "matchingUHFs": [
+      {
+        "UHF_id": 204,
+        "GEONAME": "East New York",
+        "percent": 43.239211,
+        "page_name": "east_new_york",
+        "pop_pct_of_ccd": 70.604534
+      },
+      {
+        "UHF_id": 208,
+        "GEONAME": "Canarsie - Flatlands",
+        "percent": 31.66098,
+        "page_name": "canarsie_flatlands",
+        "pop_pct_of_ccd": 22.153698
+      },
+      {
+        "UHF_id": 203,
+        "GEONAME": "Bedford Stuyvesant - Crown Heights",
+        "percent": 3.474955,
+        "page_name": "bedford_stuyvesant_crown_heights",
+        "pop_pct_of_ccd": 6.494947
+      },
+      {
+        "UHF_id": 410,
+        "GEONAME": "Rockaway",
+        "percent": 0.536564,
+        "page_name": "rockaways",
+        "pop_pct_of_ccd": 0.0
+      },
+      {
+        "UHF_id": 207,
+        "GEONAME": "East Flatbush - Flatbush",
+        "percent": 0.454772,
+        "page_name": "east_flatbush_flatbush",
+        "pop_pct_of_ccd": 0.746821
+      },
+      {
+        "UHF_id": 407,
+        "GEONAME": "Southwest Queens",
+        "percent": 0.025944,
+        "page_name": "southwest_queens",
+        "pop_pct_of_ccd": 0.0
+      }
+    ]
+  },
+  {
+    "CCD": "43",
+    "matchingUHFs": [
+      {
+        "UHF_id": 206,
+        "GEONAME": "Borough Park",
+        "percent": 45.571254,
+        "page_name": "borough_park",
+        "pop_pct_of_ccd": 41.488027
+      },
+      {
+        "UHF_id": 209,
+        "GEONAME": "Bensonhurst - Bay Ridge",
+        "percent": 27.605923,
+        "page_name": "bensonhurst_bay_ridge",
+        "pop_pct_of_ccd": 28.17889
+      },
+      {
+        "UHF_id": 210,
+        "GEONAME": "Coney Island - Sheepshead Bay",
+        "percent": 16.202492,
+        "page_name": "coney_island_sheepshead_bay",
+        "pop_pct_of_ccd": 15.10426
+      },
+      {
+        "UHF_id": 205,
+        "GEONAME": "Sunset Park",
+        "percent": 11.094997,
+        "page_name": "sunset_park",
+        "pop_pct_of_ccd": 15.228822
+      }
+    ]
+  },
+  {
+    "CCD": "44",
+    "matchingUHFs": [
+      {
+        "UHF_id": 206,
+        "GEONAME": "Borough Park",
+        "percent": 74.852463,
+        "page_name": "borough_park",
+        "pop_pct_of_ccd": 80.280121
+      },
+      {
+        "UHF_id": 210,
+        "GEONAME": "Coney Island - Sheepshead Bay",
+        "percent": 23.588886,
+        "page_name": "coney_island_sheepshead_bay",
+        "pop_pct_of_ccd": 18.846483
+      },
+      {
+        "UHF_id": 207,
+        "GEONAME": "East Flatbush - Flatbush",
+        "percent": 1.695595,
+        "page_name": "east_flatbush_flatbush",
+        "pop_pct_of_ccd": 0.873395
+      }
+    ]
+  },
+  {
+    "CCD": "45",
+    "matchingUHFs": [
+      {
+        "UHF_id": 207,
+        "GEONAME": "East Flatbush - Flatbush",
+        "percent": 71.963324,
+        "page_name": "east_flatbush_flatbush",
+        "pop_pct_of_ccd": 73.243774
+      },
+      {
+        "UHF_id": 208,
+        "GEONAME": "Canarsie - Flatlands",
+        "percent": 20.113538,
+        "page_name": "canarsie_flatlands",
+        "pop_pct_of_ccd": 15.518717
+      },
+      {
+        "UHF_id": 206,
+        "GEONAME": "Borough Park",
+        "percent": 8.169442,
+        "page_name": "borough_park",
+        "pop_pct_of_ccd": 11.169932
+      },
+      {
+        "UHF_id": 210,
+        "GEONAME": "Coney Island - Sheepshead Bay",
+        "percent": 0.129205,
+        "page_name": "coney_island_sheepshead_bay",
+        "pop_pct_of_ccd": 0.067578
+      }
+    ]
+  },
+  {
+    "CCD": "46",
+    "matchingUHFs": [
+      {
+        "UHF_id": 208,
+        "GEONAME": "Canarsie - Flatlands",
+        "percent": 86.574863,
+        "page_name": "canarsie_flatlands",
+        "pop_pct_of_ccd": 81.184418
+      },
+      {
+        "UHF_id": 210,
+        "GEONAME": "Coney Island - Sheepshead Bay",
+        "percent": 12.203441,
+        "page_name": "coney_island_sheepshead_bay",
+        "pop_pct_of_ccd": 18.815582
+      },
+      {
+        "UHF_id": 207,
+        "GEONAME": "East Flatbush - Flatbush",
+        "percent": 0.014655,
+        "page_name": "east_flatbush_flatbush",
+        "pop_pct_of_ccd": 0.0
+      },
+      {
+        "UHF_id": 204,
+        "GEONAME": "East New York",
+        "percent": 2.8e-05,
+        "page_name": "east_new_york",
+        "pop_pct_of_ccd": 0.0
+      }
+    ]
+  },
+  {
+    "CCD": "47",
+    "matchingUHFs": [
+      {
+        "UHF_id": 209,
+        "GEONAME": "Bensonhurst - Bay Ridge",
+        "percent": 53.378645,
+        "page_name": "bensonhurst_bay_ridge",
+        "pop_pct_of_ccd": 61.07385
+      },
+      {
+        "UHF_id": 210,
+        "GEONAME": "Coney Island - Sheepshead Bay",
+        "percent": 36.44935,
+        "page_name": "coney_island_sheepshead_bay",
+        "pop_pct_of_ccd": 31.432901
+      },
+      {
+        "UHF_id": 205,
+        "GEONAME": "Sunset Park",
+        "percent": 8.585712,
+        "page_name": "sunset_park",
+        "pop_pct_of_ccd": 7.489117
+      }
+    ]
+  },
+  {
+    "CCD": "48",
+    "matchingUHFs": [
+      {
+        "UHF_id": 210,
+        "GEONAME": "Coney Island - Sheepshead Bay",
+        "percent": 92.593763,
+        "page_name": "coney_island_sheepshead_bay",
+        "pop_pct_of_ccd": 91.049088
+      },
+      {
+        "UHF_id": 206,
+        "GEONAME": "Borough Park",
+        "percent": 4.347302,
+        "page_name": "borough_park",
+        "pop_pct_of_ccd": 5.882015
+      },
+      {
+        "UHF_id": 207,
+        "GEONAME": "East Flatbush - Flatbush",
+        "percent": 2.91637,
+        "page_name": "east_flatbush_flatbush",
+        "pop_pct_of_ccd": 3.065977
+      }
+    ]
+  },
+  {
+    "CCD": "49",
+    "matchingUHFs": [
+      {
+        "UHF_id": 502,
+        "GEONAME": "Stapleton - St. George",
+        "percent": 49.199539,
+        "page_name": "stapleton_st_george",
+        "pop_pct_of_ccd": 51.449146
+      },
+      {
+        "UHF_id": 501,
+        "GEONAME": "Port  Richmond",
+        "percent": 45.242868,
+        "page_name": "port_richmond",
+        "pop_pct_of_ccd": 41.717762
+      },
+      {
+        "UHF_id": 503,
+        "GEONAME": "Willowbrook",
+        "percent": 5.325544,
+        "page_name": "willowbrook",
+        "pop_pct_of_ccd": 6.833092
+      }
+    ]
+  },
+  {
+    "CCD": "50",
+    "matchingUHFs": [
+      {
+        "UHF_id": 503,
+        "GEONAME": "Willowbrook",
+        "percent": 48.033816,
+        "page_name": "willowbrook",
+        "pop_pct_of_ccd": 35.386074
+      },
+      {
+        "UHF_id": 502,
+        "GEONAME": "Stapleton - St. George",
+        "percent": 23.034134,
+        "page_name": "stapleton_st_george",
+        "pop_pct_of_ccd": 28.848372
+      },
+      {
+        "UHF_id": 504,
+        "GEONAME": "South Beach - Tottenville",
+        "percent": 21.296825,
+        "page_name": "south_beach_tottenville",
+        "pop_pct_of_ccd": 32.718667
+      },
+      {
+        "UHF_id": 209,
+        "GEONAME": "Bensonhurst - Bay Ridge",
+        "percent": 4.48163,
+        "page_name": "bensonhurst_bay_ridge",
+        "pop_pct_of_ccd": 0.0
+      },
+      {
+        "UHF_id": 501,
+        "GEONAME": "Port  Richmond",
+        "percent": 1.606992,
+        "page_name": "port_richmond",
+        "pop_pct_of_ccd": 3.046887
+      },
+      {
+        "UHF_id": 205,
+        "GEONAME": "Sunset Park",
+        "percent": 0.000944,
+        "page_name": "sunset_park",
+        "pop_pct_of_ccd": 0.0
+      }
+    ]
+  },
+  {
+    "CCD": "51",
+    "matchingUHFs": [
+      {
+        "UHF_id": 504,
+        "GEONAME": "South Beach - Tottenville",
+        "percent": 87.992001,
+        "page_name": "south_beach_tottenville",
+        "pop_pct_of_ccd": 85.021568
+      },
+      {
+        "UHF_id": 503,
+        "GEONAME": "Willowbrook",
+        "percent": 11.408113,
+        "page_name": "willowbrook",
+        "pop_pct_of_ccd": 14.978432
+      }
+    ]
+  }
+]
