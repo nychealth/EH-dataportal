@@ -1,4 +1,4 @@
-﻿Pesticide Type	Agency	EPA Reg. #	EPA Prod Name	Volume in Gallons	Weight in Pounds	Total Applications	Active Ingredient Data	tox_cd	EPA Carcinogen	Prop65 Developmental Toxin	IARC Carcinogen
+﻿Pesticide Type,EPA Reg. #,EPA Prod Name,Volume in Gallons,Weight in Pounds,Total Applications,Active Ingredient Data,tox_cd,EPA Carcinogen,Prop65 Developmental Toxin,IARC Carcinogen
 Rodenticide,ACS,7173-308,Chlorophacinone Soft Bait,0,47.69,187,Chlorophacinone,3,NO,NO,NO
 Rodenticide,ACS,7173-258,DIFETHIALONE PASTE PLACE PACKS,0,21.76,152,Difethialone,3,NO,NO,NO
 RODENTICIDE,ACS,7173-310,Bromethalin Soft Bait II,0,14.92,124,Bromethalin,3,NO,NO,NO

@@ -1,4 +1,4 @@
-Pesticide Type	EPA Reg. #	EPA Prod Name	Volume in Gallons	Weight in Pounds	Total Applications	Active Ingredient Data
+Pesticide Type,EPA Reg. #,EPA Prod Name,Volume in Gallons,Weight in Pounds,Total Applications,Active Ingredient Data
 Insecticide,73049-429,VECTOMAX FG,0,12867.49,479020,"Bacillus sphaericus; Bacillus thuringiensis, subsp. Israelensis, strain AM 65-52"
 Insecticide,100-1484,DUPONT ADVION COCKROACH GEL BAIT,9.02,1552.66,64371,Indoxacarb
 Insecticide,2724-351,ZOECON RF-259 EMULSIFIABLE CONCENTRATE,40.48,6.19,47749,(7S)-Hydroprene
