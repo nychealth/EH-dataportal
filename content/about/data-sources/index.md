@@ -22,7 +22,7 @@ The Environment and Health Data Portal hosts over 200 datasets on topics like ai
 
 ## Question #1: Where do you get your data?
 
-We get data from many sources: some from NYC Health or other city agencies like <a href="https://www.nycgovparks.org/">NYC Parks</a> or Department of Investigations; and some from outside sources, like the [CDC](https://www.cdc.gov/), [SPARCS](https://www.health.ny.gov/statistics/sparcs/), the [U.S. Census](https://www.census.gov/), and the [EPA](https://www.epa.gov/). Here are some of the core ones:
+We get data from many sources: some from NYC Health or other city agencies like <a href="https://www.nycgovparks.org/">NYC Parks</a> or <a href="https://www.nyc.gov/site/doi/index.page">Department of Investigations</a>; and some from outside sources, like the [CDC](https://www.cdc.gov/), [SPARCS](https://www.health.ny.gov/statistics/sparcs/), the [U.S. Census](https://www.census.gov/), and the [EPA](https://www.epa.gov/). Here are some of the core datasets:
 
 <div class="accordion-group my-3" role="tablist" id="accordion-02">
   <div class="card">
@@ -32,8 +32,8 @@ We get data from many sources: some from NYC Health or other city agencies like 
 
   <div class="collapse" id="panel-acc-button-2a" role="tabpanel" aria-labelledby="acc-button-2a" data-parent="#accordion-02">
     <div class="card-body card-white fs-md">
-<p><strong>What is the Community Health Survey (CHS)?</strong> This phone survey is conducted by NYC Health and interviews about 10,000 New Yorkers each year. Running since 2009, CHS reports detailed data on many chronic diseases and health behaviors, helping us see trends at the neighborhood, borough, and citywide level.<br><br>
-        <strong>CHS indicators include:</strong>
+<p><strong><a href="https://www.nyc.gov/site/doh/data/data-sets/community-health-survey.page">What is the Community Health Survey (CHS)?</a></strong> This phone survey is conducted by NYC Health and interviews about 10,000 New Yorkers each year. Running since 2009, CHS reports detailed data on many chronic diseases and health behaviors, helping us see trends at the neighborhood, borough, and citywide level.<br><br>
+        <strong>Some CHS indicators include:</strong>
         <ul>
         <li><a href="../../data-explorer/mental-health/?id=2417">Mental health: Adults with depression</a></li>
         <li><a href="../../data-explorer/economic-conditions/?id=2132">Health care: Adults with health insurance</a></li>
@@ -56,15 +56,15 @@ We get data from many sources: some from NYC Health or other city agencies like 
 <div class="collapse" id="panel-acc-button-2b" role="tabpanel" aria-labelledby="acc-button-2b" data-parent="#accordion-02">
     <div class="card-body fs-md">
 <p>
-<strong>What is New York Statewide Planning and Research Cooperative System (SPARCS)?</strong> SPARCS collects patient-level data, like diagnoses, treatments, and characteristics for both inpatient and outpatient stays throughout the state. It was established in 1979 as a collaboration between the NY state government and the healthcare system. <br><br>
-  <strong>SPARCS indicators include: </strong>
+<strong><a href="https://www.nyc.gov/site/doh/data/data-sets/community-health-survey.page">What is New York Statewide Planning and Research Cooperative System (SPARCS)?</a></strong> SPARCS is a billing claims data system that collects patient-level data, like diagnoses, treatments, and characteristics for both inpatient and outpatient stays in every hospital throughout New York state. It is a collaboration between the NY state government and the healthcare system. At the NYC Health department, we restrict data to just hospitals within NYC and sometimes NYC residents.<br><br>
+  <strong>Some SPARCS indicators include: </strong>
     <ul>
     <li><a href="../../data-explorer/weather-related-illness/?id=2376">Heat-stress hospitalizations and emergency department visits</a></li>
     <li><a href="../../data-explorer/mental-health/?id=2418">Psychiatric hospitalizations</a></li>
     <li><a href="../../data-explorer/asthma/?id=2382">Asthma hospitalizations</a></li>
     <li><a href="../../data-explorer/transportation-related-injuries/?id=2086">Bicycle injury hospitalizations</a></li>
     </ul>
-  <strong>What we use it for:</strong> Patient-level data from healthcare facilities can help us understand how environmental factors (for example hot days and socioeconomic status) relate to health outcomes (like heat-related hospitalizations among different demographics). These vital data help us characterize severity and risk factors for different populations.
+  <strong>What we use it for:</strong> Patient-level data from healthcare facilities can help us understand how environmental factors (for example, hot days and socioeconomic status) relate to health outcomes (like heat-related hospitalizations among different demographics). These data help us characterize severity and risk factors for different populations.
 </p>
 </div>
 
@@ -81,8 +81,8 @@ We get data from many sources: some from NYC Health or other city agencies like 
 <div class="collapse" id="panel-acc-button-2c" role="tabpanel" aria-labelledby="acc-button-2c" data-parent="#accordion-02">
     <div class="card-body fs-md">
 <p>
-<strong>What is the Housing and Vacancy Survey (HVS)?</strong> Taken every three years, the Housing and Vacancy Survey is by HPD and the Census Bureau. The main purpose of HVS is to describe how many rental units are vacant to understand more about rent control and stabilization and the housing market.<br><br>
-        <strong>HVS indicators include: </strong>
+<strong><a href="http://census.gov/programs-surveys/nychvs.html">What is the Housing and Vacancy Survey (HVS)?</a></strong> The NYC Department of Housing Preservation and Development (HPD) and the US Census Bureau together conduct the HVS every 3 years. The main purpose of HVS is to describe how many rental units are vacant to understand more about rent control and stabilization and the housing market.<br><br>
+        <strong>Some HVS indicators include: </a></strong>
           <ul>
           <li><a href="../../data-explorer/housing-maintenance/?id=40">Homes with cracks or holes</a></li>
           <li><a href="../../data-explorer/housing-maintenance/?id=2446">Homes with mold</a></li>
@@ -104,14 +104,14 @@ We get data from many sources: some from NYC Health or other city agencies like 
 
 <div class="collapse" id="panel-acc-button-2d" role="tabpanel" aria-labelledby="acc-button-2d" data-parent="#accordion-02">
     <div class="card-body  fs-md"><p>
-<strong>What is the American Community Survey (ACS)?</strong> Taken annually by the US census, this survey collects population, housing, and workforce data like unemployment, income, insurance, and more. <br><br>
-        <strong>HVS indicators include: </strong>
+<strong><a href="https://www.census.gov/programs-surveys/acs.html">What is the American Community Survey (ACS)?</a></strong> The US Census Bureau conducts the ACS annually, collecting population, housing, and workforce data like unemployment, income, insurance, and more. <br><br>
+        <strong>Some ACS indicators include: </a></strong>
           <ul>
-          <li><a href="../../data-explorer/social-conditions/?id=2146">Older adults living alone (65+)</a></li>
+          <li><a href="../../data-explorer/social-conditions/?id=2146">Older adults living alone (65+)</li>
           <li><a href="../../data-explorer/social-conditions/?id=14">Foreign-born population</a></li>
           <li><a href="../../data-explorer/economic-conditions/?id=103">Neighborhood poverty</a></li>
           </ul>
-        <strong>What we use it for:</strong> This critical data helps us understand the links between inequality, the social determinants of health, and health outcomes. ACS data on income is used to show how neighborhoods with higher levels of poverty tend to live in neighborhoods with less quality housing, and also have higher rates of many chronic diseases and premature death. 
+        <strong>What we use it for:</strong> This  data helps us understand the links between inequality, the social determinants of health, and health outcomes. ACS data on income is used to show, for example, how neighborhoods with higher levels of poverty tend to also have less quality housing, and have higher rates of many chronic diseases and premature death. 
             </div></p>
 </div>
 <!-- .collapse -->
@@ -124,8 +124,8 @@ We get data from many sources: some from NYC Health or other city agencies like 
 
 <div class="collapse" id="panel-acc-button-2e" role="tabpanel" aria-labelledby="acc-button-2e" data-parent="#accordion-02">
     <div class="card-body  fs-md">
-<strong>What is the New York City Community Air Survey (NYCCAS)?</strong> Started in 2008, NYCCAS is the largest ongoing urban air monitoring program of any U.S. city. NYCCAS tracks air pollutants at the street-level, where people spend most of their time. <br><br>
-        <strong>NYCCAS indicators include:</strong>
+<strong><a href="../../data-features/nyccas">What is the New York City Community Air Survey (NYCCAS)?</a></strong> Started in 2008, NYCCAS is the largest ongoing urban air monitoring program of any U.S. city. NYCCAS tracks air pollutants at the street-level, where people spend most of their time. <br><br>
+        <strong>Some NYCCAS indicators include:</strong>
           <ul>
           <li><a href="../../data-explorer/air-quality/?id=2023">Concentration of fine particles (PM2.5)</a></li>
           <li><a href="../../data-explorer/air-quality/?id=2027">Ozone (O3)</a></li>
@@ -156,7 +156,7 @@ There are many kinds of data, which are collected, cleaned, and updated in diffe
   <div class="collapse" id="panel-acc-button-01" role="tabpanel" aria-labelledby="acc-button-01" data-parent="#accordion-01">
     <div class="card-body card-white fs-md">
     <p>
-Collecting this type of data is mandated by the local, state, or federal government, which typically means it is updated regularly and reliably. In New York state, blood lead level testing is mandated. Because it is mandatory, it also means that blood lead levels of NYC populations are regularly updated, so there are many years of this data available. Still, not everyone goes to the doctor, even if testing is required. Air quality monitoring is another example of regulatory data. A common limitation on regulatory data is resources – e.g. it isn’t possible to put an air quality monitor on every block.
+Collecting this type of data is mandated by the local, state, or federal government, which typically means it is updated regularly and reliably. In New York state, blood lead level testing is mandated. Because it is mandatory, it also means that blood lead levels of NYC populations are regularly updated, so there are many years of this data available. Still, not everyone goes to the doctor, even if testing is required. Federal air quality monitoring is another example of regulatory data. A common limitation on regulatory data is resources – e.g., it isn’t possible to put an air quality monitor on every block.
     </p>
     </div>
   </div>
@@ -173,9 +173,9 @@ Collecting this type of data is mandated by the local, state, or federal governm
 <div class="collapse" id="panel-acc-button-02" role="tabpanel" aria-labelledby="acc-button-02" data-parent="#accordion-01">
     <div class="card-body fs-md">
 <p>
-Questions are answered by a selection of respondents, usually over the phone, via e-mail, or another way. Surveys like the Community Health Survey, the Housing and Vacancy Survey, and the American Community Survey are taken regularly at different intervals. While most surveys are voluntary, some, like ACS, are compulsory.
+A selection of survey respondents answer questions online, via phone, or e-mail. Surveys like the Community Health Survey, the Housing and Vacancy Survey, and the American Community Survey are conducted regularly at different intervals. While most surveys are voluntary, some, like ACS, are compulsory.
 
-Sometimes, a survey drops a question, and we have to decide how to continue to track that indicator. In 2015, CHS dropped a question about recent cycling, so we looked for other indicators in both the CHS and ACS, with the goal of finding something with many years of data so we could see the change over time. We found monthly bicycle use. The reliability of survey data depends on the willingness of respondents, as well as their honesty, the framing of the questions, and many other factors.
+Sometimes, a survey conducted every year drops a question, and we have to decide how to continue to track that dataset. In 2015, CHS dropped a question about recent cycling, so we looked for other indicators in both the CHS and ACS, with the goal of finding something with many years of data so we could see the change over time. We found <a href="../../data-explorer/physical-activity/?id=2059#display=summary">monthly bicycle use</a>, another survey question from CHS. The reliability of survey data depends on the willingness of respondents, as well as their honesty, the framing of the questions, and many other factors.
 
 </p>
 </div>
@@ -193,7 +193,7 @@ Sometimes, a survey drops a question, and we have to decide how to continue to t
 <div class="collapse" id="panel-acc-button-03" role="tabpanel" aria-labelledby="acc-button-03" data-parent="#accordion-01">
     <div class="card-body fs-md">
 <p>
-Standardized information about people sharing a condition or experience. This includes birth and death records, which have been updated for a very long time.
+Registry and population data is standardized information that must be collected about every person or event. This includes birth and death records, and Census data, which have all been recorded for a long time.
 
 Premature mortality from the NYC Bureau of Vital Statistics and the US Census; or cancers in children from the New York State Cancer Registry both fall into this category.
 
@@ -221,13 +221,13 @@ Collected continuously and systematically, surveillance data includes some regul
 
   <div class="card">
       <a class="card-header font-weight-bold collapse collapsed" id="acc-button-05" data-toggle="collapse" href="#panel-acc-button-05"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-05">
-        <span class="title" role="heading" aria-level="3">Other types of data and open data</span>
+        <span class="title" role="heading" aria-level="3">Other types of data and Open Data</span>
       </a>
 
 <div class="collapse" id="panel-acc-button-05" role="tabpanel" aria-labelledby="acc-button-05" data-parent="#accordion-01">
     <div class="card-body  fs-md">
 <p>
-There are other kinds of data, too. There is administrative data, which is collected by healthcare or government organizations. An example of this are evictions (court-ordered), which are available through the Department of Investigations (DOI). There is also operational data, like our litter basket coverage data, which is from the Department of Sanitation (DSNY), but available through NYC Open Data.
+There are other kinds of data, too. There is administrative data, which is collected by healthcare or government organizations as part of conducting routine business or activities. An example of this are evictions (court-ordered), which are available through the Department of Investigations (DOI). There is also operational data, like our litter basket coverage data, which is from the Department of Sanitation (DSNY), but available through <a href="https://opendata.cityofnewyork.us/">NYC Open Data</a>.
 
 NYC’s Local Law 11 requires city agencies to make data considered “public” available through a single data portal so that anyone can access and use it. This type of transparency reflects the idea that public data belongs to the public, and empowers all New Yorkers to have understand key information about civic life. Note that not all data used by city agencies is considered public; due to privacy laws, much health data is excluded from this requirement.
 
@@ -241,11 +241,11 @@ NYC’s Local Law 11 requires city agencies to make data considered “public”
 
 ## Question #2: How do you choose datasets?
 
-We try to paint a picture of how environments shape health in NYC across time – we use datasets to quantify the state of various measures of health, and explanatory text to frame it, provide context, and add meaning. That said, there are many, many more datasets out there – so how do we choose? We have frequent conversations with our data stewards to determine what datasets would add the most value to the portal.
+We try to paint a picture of how environments shape health in NYC across time – we use datasets to quantify the state of various measures of health, and explanatory text to frame it, provide context, and add meaning. That said, there are many, many more datasets out there – so how do we choose? We have frequent conversations with our data experts to determine what datasets would add the most value to the portal.
 
 <img src="../data-sources/Litterbasket_NTA.png">
 
-But sometimes we see something on NYC open data, or another source, that provides interesting context to NYC’s environment and health. For example, our litter basket coverage data. These humble amenities may be overlooked, but have a strong connection to health: when there are more litter baskets, there is less litter, and fewer pests. Fewer pests are healthier for a neighborhood and <a href="../../data-stories/sanitation">cleaner streets have a positive impact on mental health and feelings of safety and positivity</a>. Public bathrooms also make it easier for people to partake in public life.
+But sometimes we see something on NYC Open Data, or another source, that provides interesting context to NYC’s environment and health, for example, our litter basket coverage data. These humble amenities may be overlooked, but have a strong connection to health: when there are more litter baskets, there is less litter, and fewer pests. Fewer pests are healthier for a neighborhood and <a href="../../data-stories/sanitation">cleaner streets have a positive impact on mental health and feelings of safety and positivity</a>. Public bathrooms also make it easier for people to partake in public life.
 
 <!-- maybe delete one of these examples -->
 
