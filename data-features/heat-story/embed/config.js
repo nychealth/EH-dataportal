@@ -54,9 +54,9 @@ config = {
     "initialMapState": {
        "lat": 40.7032036,
        "lng": -73.9191882,
-       "zoom": 14,
+       "zoom": 11,
        "layers": [
-          "Daytime_summer_surface_temperature"
+          ""
        ]
     },
     "layers": [
