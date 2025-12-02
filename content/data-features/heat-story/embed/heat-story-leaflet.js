@@ -47,7 +47,8 @@ let map = L.map('map', {
     minZoom: 10,
     maxZoom: 14,
     scrollWheelZoom: false,
-    closePopupOnClick: false
+    closePopupOnClick: false,
+    doubleClickZoom: false
 }).setView([initial_state.lat, initial_state.lng], initial_state.zoom); // [Lat, Long], Zoom
 
 
@@ -1425,13 +1426,13 @@ async function resetMapState() {
 
     // reset map state let to "getting-started" state
 
-    lastMapState = JSON.parse(JSON.stringify(initialMapState));
+    lastMapState = JSON.parse(JSON.stringify(config.initialMapState));
 
     // reset map view
 
-    console.log("initial map state", initialMapState);
+    console.log("initial map state", config.initialMapState);
 
-    map.setView([initial_state.lat, initial_state.lng], initial_state.zoom); // [Lat, Long], Zoom
+    map.setView([config.initialMapState.lat, config.initialMapState.lng], config.initialMapState.zoom); // [Lat, Long], Zoom
 
     // clear data layers
 
