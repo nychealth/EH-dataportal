@@ -66,7 +66,7 @@ function renderIntroTable(tableName, destination, standard, numeric) {
         } else {
             // fallback: just dump raw data
             let table = `<table cellpadding="5" class="table table-striped">
-                            <thead><tr class="fs-xs">`;
+                            <thead><tr class="fs-sm">`;
             Object.keys(data[0]).forEach((col, i) => {
                 table += `<th${(numeric && i > 0) ? ' class="num"' : ''}>${col}</th>`;
             });
@@ -109,7 +109,7 @@ function printTable(data, destination, year, noDataProvided) {
     // build table element
     let table = `<table cellpadding="5" class="table table-striped">
                     <thead>
-                    <tr class="fs-xs">
+                    <tr class="fs-sm">
                         <th>Type</th>
                         <th class="border-left num">Volume (gallons)</th>
                         <th class="num">Percent of total volume</th>
