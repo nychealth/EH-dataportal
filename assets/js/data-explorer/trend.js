@@ -449,7 +449,7 @@ const renderTrendChart = (
                 }
             },
             "width": "container",
-            "height": 500,
+            "height": 400,
             "title": {
                 "text": plotTitle,
                 "subtitlePadding": 10,
@@ -501,6 +501,11 @@ const renderTrendChart = (
                 {
                     "calculate": "(datum.TimeType !== 'quarter' && datum.year_end_period % 2 === 0) ? datum.TimePeriodSplit : (datum.TimeType === 'quarter' ? datum.TimePeriodSplit : '')",
                     "as": "fallbackYear"
+                },
+                {
+                    "joinaggregate": [
+                    {"op": "max", "field": "Value", "as": "maxVal"}
+                    ]
                 }
             ],
             "encoding": {
@@ -574,31 +579,64 @@ const renderTrendChart = (
                         {
                             "description": "Hover text",
                             "transform": [
+                            {
+                                "aggregate": [
+                                {"op": "argmax", "field": "end_period", "as": "endDate"},
+                                {"op": "max", "field": "end_period", "as": "end_period"}
+                                ],
+                                "groupby": ["Geography"]
+                            },
+
+                            /* 1. Order rows */
+                            {
+                                "window": [
+                                {"op": "row_number", "as": "order"}
+                                ],
+                                "sort": [{"field": "endDate.Value", "order": "ascending"}]
+                            },
+
+                            /* 2. Count rows */
+                            {
+                                "window": [
+                                {"op": "count", "as": "totalCount"}
+                                ]
+                            },
+                            {
+                                "calculate": "(datum.totalCount + 1) / 2",
+                                "as": "medianOrder"
+                            },
+                            {
+                            "joinaggregate": [
                                 {
-                                    "aggregate": [
-                                        {"op": "argmin", "field": "end_period", "as": "Value"},
-                                        {"op": "min", "field": "end_period", "as": "end_period"}
-                                    ],
-                                    "groupby": [comp_group_col]
+                                "op": "median",
+                                "field": "endDate.Value",
+                                "as": "medianValue"
                                 }
+                            ]
+                            },
+                            {
+                            "calculate": "datum.medianValue - datum.endDate.Value",
+                            "as": "valueDiff"
+                            },
+                            {
+                            "calculate": "(datum.medianValue - datum.endDate.Value) / datum.endDate.maxVal * 50",
+                            "as": "dyOffset"
+                            }
                             ],
                             "encoding": {
-                                "y": {"field": "Value['Value']"},
+                                "y": {"field": "endDate['Value']"},
                                 "text": {
-                                    "condition": {
-                                        "param": "hover",
                                         "field": comp_group_col,
-                                        "empty": false
-                                    },
-                                    "value": ""
                                 }
                             },
                             "mark": {
                                 "type": "text",
                                 "align": "left",
-                                "dx": -6,
-                                "dy": -14,
-                                "fontSize": 14,
+                                "dx": 5,
+                                "dy": {
+                                    "expr": "datum.dyOffset"
+                                },
+                                "fontSize": 11,
                                 "fontWeight": "bold"
                             }
                         }
@@ -615,7 +653,7 @@ const renderTrendChart = (
                             "axis": {"labels": false, "grid": false, "ticks": true},
                             "scale": {"padding": 20}
                         },
-                        "y": {"value": 500},
+                        "y": {"value": 400},
                         "color": {"value": "black"}
                     }
                 },
@@ -633,7 +671,7 @@ const renderTrendChart = (
                             "type": "temporal",
                             "axis": {"labels": false, "grid": false, "ticks": false}
                         },
-                        "y": {"value": 515},
+                        "y": {"value": 415},
                         "text": {"field": xAxisLabelField, "type": "nominal"},
                         "color": {"value": "black"}
                     }
