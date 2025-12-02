@@ -1,0 +1,21 @@
+{{/* 
+    USAGE:
+    {{< csvtable src="data/mytable.csv" screenreader="false" >}}
+*/}}
+
+{{ $src := .Get "src" }}
+{{ $screenreader := .Get "screenreader" | default "false" | lower }}
+{{ $file := .Page.Resources.GetMatch $src }}
+
+{{ if not $file }}
+  <p><strong>Error:</strong> CSV file "{{ $src }}" not found.</p>
+{{ else }}
+  {{ $content := partial "render-table.html" (dict "file" $file) }}
+  {{ if eq $screenreader "true" }}
+    <div class="sr-only">
+      {{ $content | safeHTML }}
+    </div>
+  {{ else }}
+      {{ $content | safeHTML }}
+  {{ end }}
+{{ end }}
