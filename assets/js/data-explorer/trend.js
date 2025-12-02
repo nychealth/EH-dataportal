@@ -584,7 +584,7 @@ const renderTrendChart = (
                                 {"op": "argmax", "field": "end_period", "as": "endDate"},
                                 {"op": "max", "field": "end_period", "as": "end_period"}
                             ],
-                            "groupby": ["Geography"]
+                            "groupby": [`${comp_group_col}`]
                             },
                             {
                             "window": [{"op": "row_number", "as": "order"}],
