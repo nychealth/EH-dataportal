@@ -241,7 +241,7 @@ NYC’s Local Law 11 requires city agencies to make data considered “public”
 
 ## Question #2: How do you choose datasets?
 
-We try to paint a picture of how environments shape health in NYC across time – we use datasets to quantify the state of various measures of health, and explanatory text to frame it, provide context, and add meaning. That said, there are many, many more datasets out there – so how do we choose? We have frequent conversations with our data experts to determine what datasets would add the most value to the portal.
+We try to paint a picture of how environments shape health in NYC across time – we use datasets to quantify the state of various measures of health, and explanatory text to frame it, provide context, and add meaning. That said, there are many, many more datasets out there – so how do we choose? We have frequent conversations with our data experts to determine what datasets would add the most value to the Portal.
 
 <img src="../data-sources/Litterbasket_NTA.png">
 
@@ -249,12 +249,12 @@ But sometimes we see something on NYC Open Data, or another source, that provide
 
 <!-- maybe delete one of these examples -->
 
-Another great example are transit datasets. Accessible subway stations and bus stops with audio announcements are both found on NYC Open Data, and illustrate how accessible transit (and thus, all of New York City) is to New Yorkers with disabilities, those transporting small children, older adults, and everyone! While these data don’t have as much of a <i>direct</i> connection with health, they are valuable to the portal’s mission of showing how the environment – built, social, economic – shapes health.
+Transit datasets like accessible subway stations and bus stops with audio announcements are both found on NYC Open Data, and illustrate how accessible transit (and thus, all of New York City) is to New Yorkers with disabilities, those transporting small children, older adults, and everyone!
 
-## Question #3: Why is some of your data out of date?
+## Question #3: Why aren’t some of your data more recent?
 
-There are many different kinds of environment and health data with many different characteristics. These data (ranging from neighborhood poverty and cold-stress hospitalizations, to Citi bike station density and cockroach sightings) aren’t all measured, collected, recorded, organized, and reported in the same way, or within the same time period.Sometimes data is also aggregated into multi-year batches to protect privacy while being stable enough to show impacts at the neighborhood level.
+These data (ranging from neighborhood poverty and cold-stress hospitalizations, to Citi bike station density and cockroach sightings) aren’t all measured, collected, recorded, organized, and reported in the same way, or within the same time period. Sometimes data is also aggregated into multi-year batches to protect privacy while being stable enough to show impacts at the neighborhood level.
 
 As a result, some types of data aren't updated as frequently as others. But that doesn’t mean that older datasets don’t tell us valuable information. Significant trends in health can take a long time to show up. Ultimately, we use data for many reasons, including to support our decisions. If the data shows that one group is more likely to suffer from heat-related illness, for example, we know that isn’t going to be addressed overnight. We can use it to inform programs that span multiple years – even if we do get a fresh batch of data every year, it’s not likely to change our core strategy.
 
-To sum up, each of our sources collect data in different ways and on different timelines -- meaning that things don't always line up perfectly. But they still all capture valuable information about health and the environment that shapes it in NYC.
+Each of the Portal’s data sources captures diverse, valuable information that together how the environment – built, social, economic – shapes population health.
