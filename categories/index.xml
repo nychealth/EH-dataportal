@@ -6,8 +6,15 @@
     <description>Recent content in Categories on Environment &amp; Health Data Portal</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 04 Nov 2025 08:49:22 -0400</lastBuildDate>
+    <lastBuildDate>Mon, 01 Dec 2025 11:14:56 -0400</lastBuildDate>
     <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Pests</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/categories/pests/</link>
+      <pubDate>Mon, 01 Dec 2025 11:14:56 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/categories/pests/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Airquality</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/categories/airquality/</link>
@@ -34,13 +41,6 @@
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/categories/neighborhoods/</link>
       <pubDate>Wed, 24 Sep 2025 09:01:00 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/categories/neighborhoods/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Pests</title>
-      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/categories/pests/</link>
-      <pubDate>Wed, 24 Sep 2025 09:01:00 -0400</pubDate>
-      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/categories/pests/</guid>
       <description></description>
     </item>
     <item>
