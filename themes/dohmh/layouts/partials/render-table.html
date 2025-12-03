@@ -1,29 +1,30 @@
 {{/*
   Usage:
     {{ partial "render-table.html" (dict "file" (.Page.Resources.GetMatch "table.csv")) }}
-    Will render a table from a data file stored in the content's /content folder. 
-    Also called from the csvtable shortcode.
 */}}
-
 
 {{- $file := .file -}}
 {{- $data := $file | transform.Unmarshal (dict "delimiter" ",") -}}
 
-<table class="table table-striped table-bordered">
+<table class="table table-striped table-bordered fs-sm">
   {{- range $i, $row := $data }}
     {{- if eq $i 0 }}
       <thead>
         <tr>
-          {{- range $row }}
-            <th>{{ . }}</th>
+          {{- range $j, $cell := $row }}
+            <th class="{{ if gt $j 0 }}text-right{{ end }}">{{ $cell }}</th>
           {{- end }}
         </tr>
       </thead>
       <tbody>
     {{- else }}
-        <tr>
-          {{- range $row }}
-            <td>{{ . }}</td>
+        {{- $first := index $row 0 }}
+        {{- $lower := lower $first }}
+        {{- $isTotal := or (in $lower "total") (in $lower "totals") }}
+
+        <tr class="{{ if $isTotal }}font-weight-bold{{ end }}">
+          {{- range $j, $cell := $row }}
+            <td class="{{ if gt $j 0 }}text-right{{ end }}">{{ $cell }}</td>
           {{- end }}
         </tr>
     {{- end }}

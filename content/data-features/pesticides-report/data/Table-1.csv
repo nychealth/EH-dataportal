@@ -1,6 +1,6 @@
-Pesticide Type,Volume in Gallons,Weight in Pounds,PCT wo larvicides,Total Applications
-Rodenticide,13879.29,63843.17,47.2%,142880
-Insecticide,1005.23,101097.35,30.5%,695719
-Herbicide,1318.46,21989.44,16.3%,3440
-Fungicide,3838.08,8133.03,6.0%,1289
-Other,93.16,0.48,0.000%,90
+Pesticide Type,Volume (gallons),Percent of total volume,Weight (pounds),Percent of total weight,Percent without larvicides,Total Applications,Percent of applications
+Rodenticide,"13,879.29",68.93%,"63,843.17",32.73%,47.20%,"142,880.00",16.94%
+Insecticide,"1,005.23",4.99%,"101,097.35",51.83%,30.50%,"695,719.00",82.49%
+Herbicide,"1,318.46",6.55%,"21,989.44",11.27%,16.30%,"3,440.00",0.41%
+Fungicide,"3,838.08",19.06%,"8,133.03",4.17%,6.00%,"1,289.00",0.15%
+Other,93.16,0.46%,0.48,0.00%,0.00%,90.00,0.01%
