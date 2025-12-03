@@ -156,7 +156,7 @@ There are many kinds of data, which are collected, cleaned, and updated in diffe
   <div class="collapse" id="panel-acc-button-01" role="tabpanel" aria-labelledby="acc-button-01" data-parent="#accordion-01">
     <div class="card-body card-white fs-md">
     <p>
-Collecting this type of data is mandated by the local, state, or federal government, which typically means it is updated regularly and reliably. In New York state, blood lead level testing is mandated. Because it is mandatory, it also means that blood lead levels of NYC populations are regularly updated, so there are many years of this data available. Still, not everyone goes to the doctor, even if testing is required. Federal air quality monitoring is another example of regulatory data. A common limitation on regulatory data is resources – e.g., it isn’t possible to put an air quality monitor on every block.
+Collecting this type of data is mandated by the local, state, or federal government, which typically means it is updated regularly and reliably. In New York state, blood lead level testing is mandated. Because it is mandatory, it also means that blood lead levels of NYC populations are regularly updated, so there are many years of this data available. Still, not everyone goes to the doctor, even if testing is required. Federal air quality monitoring is another example of regulatory data. 
     </p>
     </div>
   </div>
@@ -206,15 +206,17 @@ Premature mortality from the NYC Bureau of Vital Statistics and the US Census; o
 
   <div class="card">
       <a class="card-header font-weight-bold collapse collapsed" id="acc-button-04" data-toggle="collapse" href="#panel-acc-button-04"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-04">
-        <span class="title" role="heading" aria-level="3">Syndromic surveillance</span>
+        <span class="title" role="heading" aria-level="3">Near real-time data</span>
       </a>
 
 <div class="collapse" id="panel-acc-button-04" role="tabpanel" aria-labelledby="acc-button-04" data-parent="#accordion-01">
     <div class="card-body  fs-md">
 <p>
-Collected continuously and systematically, surveillance data includes some regulatory data like air and water quality monitoring. Monitoring air and water systematically started around the 1970s with the Clean Air Act, so it has not been collected for as long as older types of data, like birth and death records. Testing might be taken frequently throughout the year, but only reported every quarter for a more accurate interpretation.
-                </p>
-            </div>
+Collected continuously and systematically, near real-time data can include environmental data, like <a href="../data-features/realtime-air-quality">real-time air quality (PM2.5) monitoring</a>, which is updated hourly. It can also include near real-time health data, <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-syndrome/">such as the total daily visits to the Emergency Department during the hot weather season</a>.
+
+</p>
+</div>
+
 </div>
 <!-- .collapse -->
 </div>
