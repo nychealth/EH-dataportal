@@ -137,6 +137,28 @@ We get data from many sources: some from NYC Health or other city agencies like 
 </div>
 <!-- .collapse -->
 </div>
+
+  <div class="card">
+      <a class="card-header font-weight-bold collapse collapsed" id="acc-button-2f" data-toggle="collapse" href="#panel-acc-button-2f"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-2f">
+        <span class="title" role="heading" aria-level="3"><i class="fa-solid fa-smog"></i> Vital stats*</span>
+      </a>
+
+<div class="collapse" id="panel-acc-button-2f" role="tabpanel" aria-labelledby="acc-button-2f" data-parent="#accordion-02">
+    <div class="card-body  fs-md">
+<strong><a href="../../data-features/nyccas">What is the New York City Community Air Survey (NYCCAS)?</a></strong> Started in 2008, NYCCAS is the largest ongoing urban air monitoring program of any U.S. city. NYCCAS tracks air pollutants at the street-level, where people spend most of their time. <br><br>
+        <strong>Some NYCCAS indicators include:</strong>
+          <ul>
+          <li><a href="../../data-explorer/air-quality/?id=2023">Concentration of fine particles (PM2.5)</a></li>
+          <li><a href="../../data-explorer/air-quality/?id=2027">Ozone (O3)</a></li>
+          <li><a href="../../data-explorer/air-quality/?id=2026">Sulfur dioxide (SO2)</a></li>
+          </ul>
+        <strong>What we use it for:</strong> It helps us inform PlaNYC, track changes in air quality over time, estimate exposures for health research, inform the public about local topics, such as air quality improvements, health benefits of public transit to air quality, and efforts to reduce the health impacts of air pollution.  
+</div>
+
+</div>
+<!-- .collapse -->
+</div>
+
 </div>
 
 ---
@@ -156,7 +178,7 @@ There are many kinds of data, which are collected, cleaned, and updated in diffe
   <div class="collapse" id="panel-acc-button-01" role="tabpanel" aria-labelledby="acc-button-01" data-parent="#accordion-01">
     <div class="card-body card-white fs-md">
     <p>
-Collecting this type of data is mandated by the local, state, or federal government, which typically means it is updated regularly and reliably. In New York state, blood lead level testing is mandated. Because it is mandatory, it also means that blood lead levels of NYC populations are regularly updated, so there are many years of this data available. Still, not everyone goes to the doctor, even if testing is required. Federal air quality monitoring is another example of regulatory data. 
+Collecting this type of data is mandated by the local, state, or federal government, which typically means it is updated regularly and reliably. In New York state, blood lead level testing is mandated. Because it is mandatory, it also means that blood lead levels of NYC populations are regularly updated, so there are many years of this data available. Still, not everyone goes to the doctor, even if testing is required. Federal air quality monitoring required by the Clean Air Act is another example of regulatory data.
     </p>
     </div>
   </div>
