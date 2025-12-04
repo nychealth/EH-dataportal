@@ -16,6 +16,11 @@ indicators:
       - 2132
       - 2401
       - 2232
+      - 2459
+      - 2461
+      - 2462
+      - 2463
+      - 2464
 related:
   - title: "Injury deaths in NYC"
     url: "data-stories/injury-deaths/"

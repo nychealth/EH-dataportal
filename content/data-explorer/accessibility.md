@@ -17,12 +17,19 @@ indicators:
       - 2455
       - 2456
       - 2457
+      - 2458
+      - 2460
   - header: Housing and access
     IndicatorID:
       - 2408
       - 2377
       - 2145
       - 2188
+      - 2459
+      - 2461
+      - 2462
+      - 2463
+      - 2464
 related:
   - title: "Public space creates health"
     url: "data-stories/public-space-creates-health/"
