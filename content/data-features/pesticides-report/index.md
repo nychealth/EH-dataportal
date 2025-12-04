@@ -1,7 +1,7 @@
 ---
 _schema: default
 title: Pesticide Use by NYC Agencies
-draft: false
+draft: true
 date: 2025-04-08T11:14:56-04:00
 categories:
   - pests
