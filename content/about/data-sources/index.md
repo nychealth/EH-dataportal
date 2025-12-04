@@ -27,12 +27,12 @@ We get data from many sources: some from NYC Health or other city agencies like 
 <div class="accordion-group my-3" role="tablist" id="accordion-02">
   <div class="card">
     <a class="card-header collapse collapsed font-weight-bold" id="acc-button-2a" data-toggle="collapse" href="#panel-acc-button-2a"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-2a">
-      <span class="title" role="heading" aria-level="3"><i class="fa-solid fa-clipboard-list"></i> CHS</span>
+      <span class="title" role="heading" aria-level="3"><i class="fa-solid fa-clipboard-list"></i> Community Health Survey</span>
     </a>
 
   <div class="collapse" id="panel-acc-button-2a" role="tabpanel" aria-labelledby="acc-button-2a" data-parent="#accordion-02">
     <div class="card-body card-white fs-md">
-<p><strong><a href="https://www.nyc.gov/site/doh/data/data-sets/community-health-survey.page">What is the Community Health Survey (CHS)?</a></strong> This phone survey is conducted by NYC Health and interviews about 10,000 New Yorkers each year. Running since 2009, CHS reports detailed data on many chronic diseases and health behaviors, helping us see trends at the neighborhood, borough, and citywide level.<br><br>
+<p><strong><a href="https://www.nyc.gov/site/doh/data/data-sets/community-health-survey.page">What is the Community Health Survey (CHS)?</a></strong> This survey is conducted by NYC Health and interviews about 10,000 New Yorkers each year. Running since 2002, CHS reports detailed data on many chronic diseases and health behaviors, helping us see trends at the neighborhood, borough, and citywide level.<br><br>
         <strong>Some CHS indicators include:</strong>
         <ul>
         <li><a href="../../data-explorer/mental-health/?id=2417">Mental health: Adults with depression</a></li>
@@ -50,7 +50,7 @@ We get data from many sources: some from NYC Health or other city agencies like 
 
   <div class="card">
       <a class="card-header collapse collapsed font-weight-bold" id="acc-button-2b" data-toggle="collapse" href="#panel-acc-button-2b"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-2b">
-        <span class="title" role="heading" aria-level="3"><i class="fa-solid fa-hospital"></i> SPARCS</span>
+        <span class="title" role="heading" aria-level="3"><i class="fa-solid fa-hospital"></i> Statewide Planning and Research Cooperative System</span>
       </a>
 
 <div class="collapse" id="panel-acc-button-2b" role="tabpanel" aria-labelledby="acc-button-2b" data-parent="#accordion-02">
@@ -75,7 +75,7 @@ We get data from many sources: some from NYC Health or other city agencies like 
 
   <div class="card">
       <a class="card-header font-weight-bold collapse collapsed" id="acc-button-2c" data-toggle="collapse" href="#panel-acc-button-2c"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-2c">
-        <span class="title" role="heading" aria-level="3"><i class="fa-solid fa-house"></i> HVS</span>
+        <span class="title" role="heading" aria-level="3"><i class="fa-solid fa-house"></i> Housing and Vacancy Survey</span>
       </a>
 
 <div class="collapse" id="panel-acc-button-2c" role="tabpanel" aria-labelledby="acc-button-2c" data-parent="#accordion-02">
@@ -99,7 +99,7 @@ We get data from many sources: some from NYC Health or other city agencies like 
 
   <div class="card">
       <a class="card-header font-weight-bold collapse collapsed" id="acc-button-2d" data-toggle="collapse" href="#panel-acc-button-2d"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-2d">
-        <span class="title" role="heading" aria-level="3"><i class="fa-solid fa-clipboard-list"></i> ACS</span>
+        <span class="title" role="heading" aria-level="3"><i class="fa-solid fa-clipboard-list"></i> American Community Survey</span>
       </a>
 
 <div class="collapse" id="panel-acc-button-2d" role="tabpanel" aria-labelledby="acc-button-2d" data-parent="#accordion-02">
@@ -111,7 +111,7 @@ We get data from many sources: some from NYC Health or other city agencies like 
           <li><a href="../../data-explorer/social-conditions/?id=14">Foreign-born population</a></li>
           <li><a href="../../data-explorer/economic-conditions/?id=103">Neighborhood poverty</a></li>
           </ul>
-        <strong>What we use it for:</strong> This  data helps us understand the links between inequality, the social determinants of health, and health outcomes. ACS data on income is used to show, for example, how neighborhoods with higher levels of poverty tend to also have less quality housing, and have higher rates of many chronic diseases and premature death. 
+        <strong>What we use it for:</strong> This data helps us understand the links between inequality, the social determinants of health, and health outcomes. ACS data on income is used to show, for example, how neighborhoods with higher levels of poverty tend to also have less quality housing, and have higher rates of many chronic diseases and premature death. 
             </div></p>
 </div>
 <!-- .collapse -->
@@ -140,19 +140,23 @@ We get data from many sources: some from NYC Health or other city agencies like 
 
   <div class="card">
       <a class="card-header font-weight-bold collapse collapsed" id="acc-button-2f" data-toggle="collapse" href="#panel-acc-button-2f"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-2f">
-        <span class="title" role="heading" aria-level="3"><i class="fa-solid fa-smog"></i> Vital stats*</span>
+        <span class="title" role="heading" aria-level="3"><i class="fa-solid fa-cake-candles"></i></i> Bureau of Vital Statistics</span>
       </a>
 
 <div class="collapse" id="panel-acc-button-2f" role="tabpanel" aria-labelledby="acc-button-2f" data-parent="#accordion-02">
     <div class="card-body  fs-md">
-<strong><a href="../../data-features/nyccas">What is the New York City Community Air Survey (NYCCAS)?</a></strong> Started in 2008, NYCCAS is the largest ongoing urban air monitoring program of any U.S. city. NYCCAS tracks air pollutants at the street-level, where people spend most of their time. <br><br>
-        <strong>Some NYCCAS indicators include:</strong>
-          <ul>
-          <li><a href="../../data-explorer/air-quality/?id=2023">Concentration of fine particles (PM2.5)</a></li>
-          <li><a href="../../data-explorer/air-quality/?id=2027">Ozone (O3)</a></li>
-          <li><a href="../../data-explorer/air-quality/?id=2026">Sulfur dioxide (SO2)</a></li>
-          </ul>
-        <strong>What we use it for:</strong> It helps us inform PlaNYC, track changes in air quality over time, estimate exposures for health research, inform the public about local topics, such as air quality improvements, health benefits of public transit to air quality, and efforts to reduce the health impacts of air pollution.  
+<strong><a href="https://www.nyc.gov/site/doh/data/data-sets/vital-statistics-data.page">What is the Bureau of Vital Statistics?</a></strong>
+
+Reporting all vital events in NYC since the 1800s, the NYC Bureau of Vital Statistics' records information about birth and death rates, infant mortality, and causes of death.
+<br><br>
+<strong>Some Bureau of Vital Statistics indicators include:</strong>
+
+<ul>
+<li><a href="../../data-explorer/mortality/?id=2322">Premature mortality</a></li>
+<li><a href="../../data-explorer/mortality/?id=5">Death (infants)</a></li>
+<li><a href="../../data-explorer/birth-outcomes/?id=4">Low birth weight at full term</a></li>
+</ul>
+<strong>What we use it for:</strong><p>Vital stats data, like premature death rates, can help us get a snapshot of the general health of New Yorkers. When we analyze these data alongside social determinants of health it can help us understand the burden of factors like neighborhood poverty on health outcomes. In one analysis, we found a <a href="../../data-features/minimum-wage">higher minimum wage could save thousands of lives</a>. We use cause of death records in our <a href="../../data-features/heat-report">annual heat mortality report</a>, to calculate how many deaths can be attributed to heat-related causes, and understand how race, income, and AC access shape vulnerability to heat-related illness and mortality.</p>
 </div>
 
 </div>
@@ -275,9 +279,11 @@ But sometimes we see something on NYC Open Data, or another source, that provide
 
 Transit datasets like accessible subway stations and bus stops with audio announcements are both found on NYC Open Data, and illustrate how accessible transit (and thus, all of New York City) is to New Yorkers with disabilities, those transporting small children, older adults, and everyone!
 
+**Each data sets contributes a piece of information that helps us understand the whole, but no one dataset can provide everything.**
+
 ## Question #3: Why aren’t some of your data more recent?
 
-These data (ranging from neighborhood poverty and cold-stress hospitalizations, to Citi bike station density and cockroach sightings) aren’t all measured, collected, recorded, organized, and reported in the same way, or within the same time period. Sometimes data is also aggregated into multi-year batches to protect privacy while being stable enough to show impacts at the neighborhood level.
+These data (ranging from neighborhood poverty and cold-stress hospitalizations, to Citi bike station density and cockroach sightings) aren’t all measured, collected, recorded, organized, and reported in the same way, or within the same time period. Sometimes data are also aggregated into multi-year batches to protect privacy while being stable enough to show impacts at the neighborhood level.
 
 As a result, some types of data aren't updated as frequently as others. But that doesn’t mean that older datasets don’t tell us valuable information. Significant trends in health can take a long time to show up. Ultimately, we use data for many reasons, including to support our decisions. If the data shows that one group is more likely to suffer from heat-related illness, for example, we know that isn’t going to be addressed overnight. We can use it to inform programs that span multiple years – even if we do get a fresh batch of data every year, it’s not likely to change our core strategy.
 
