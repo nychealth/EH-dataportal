@@ -1,6 +1,6 @@
 baseURL = "https://gcappbesp307.health.dohmh.nycnet/dev-stage/"
 [params]
-    data_branch = "staging"
+    data_branch = "content-new-accessibility-topic"
 
 [caches]
     [caches.getresource]
