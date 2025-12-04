@@ -9,6 +9,6 @@ type: nr-output
 seo_title: "Housing and Health in Union Square - Lower East Side"
 seo_description: "Housing and Health data profile for the Union Square - Lower East Side neighborhood of NYC."
 seo_image: "images/nyc_health_report_housing_and_health.jpg"
-vega: true
-arquero: true
+
+
 ---

@@ -16,7 +16,7 @@ seo_description: Data on the use of pesticides by NYC agencies.
 layout: pesticides-report
 hide: false
 report: true
-vega: true
+
 weight: 40
 reportingYear: 2024
 ---
