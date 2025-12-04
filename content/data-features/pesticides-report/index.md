@@ -142,23 +142,35 @@ Pesticides were applied 843,418 times by New York City agencies in <span class="
 
 **Table 1: Total Applications Reported Applied by NYC Agencies in <span class="reportingYearPrint"></span>, by Pesticide Type**
 
-{{< csvtable src="data/table-1.csv" screenreader="false" >}}
+{{< csvtable 
+  src="data/table-1.csv" 
+  screenreader="false" 
+  datatable="true"
+  search="false"
+  paging="false"
+>}}
 
 Table 2 lists the ten most frequently used products for each pesticide type on New York City owned or leased property in <span class="reportingYearPrint"></span>. For each, we list the total volume, weight, and number of applications (No. Apps), as well as the active ingredient(s), the EPA toxicity category (EPA Tox Cat), whether the product is considered a known, possible, or suspect carcinogen by EPA (EPA Carcin), whether the product is listed by the State of California as a reproductive or developmental hazard (CA Dev Toxin), and whether the product is listed as carcinogen by IARC (IARC Carcin). For this and subsequent product tables, the toxicity category refers to the EPA’s assigned label warning to indicate the degree of acute toxicity from oral, dermal and inhalation exposures on a scale from 1 to 4. Toxicity Category 1 indicates pesticides considered highly toxic and whose labels require the signal word “Danger”. Toxicity Category 2 products are considered moderately toxic and product labels carry the word “Warning”. Toxicity Category 3 products are considered slightly toxic, while Toxicity 4 products are considered relatively non-toxic, and both carry the signal word “Caution.” A complete list of products used by New York City by pesticide type is included in Appendix 1.
 
 **Table 2: Ten Most Frequently Applied Pesticide Products by NYC Agencies in <span class="reportingYearPrint"></span> by Type**
 
-<div style="overflow-x:scroll;height: 50vh;overflow-y:scroll;">
-{{< csvtable src="data/table-2.csv" screenreader="false" >}}
-</div>
-
+{{< csvtable 
+  src="data/table-2.csv" 
+  screenreader="false" 
+  datatable="true"
+  maxheight="50vh"
+  download="true"
+>}}
 
 #### Changes in pesticide use
 Table 3 contains a complete list of application amounts by target pest.
 
 **Table 3: List of pesticide applications by New York City Agencies by target pest, <span class="reportingYearPrint"></span>**
 
-{{< csvtable src="data/table-3.csv" screenreader="false" >}}
+{{< csvtable 
+  src="data/table-3.csv" 
+  screenreader="false" 
+>}}
 
 The level of completeness of city agency pesticide reporting has improved dramatically since 2008, with more recent years being most reflective of real variation in pest control practices. Figures 1 and 2 show trends through <span class="reportingYearPrint"></span> in use of pesticides by type, with solid and liquid products reported by weight and volume, respectively.
 
