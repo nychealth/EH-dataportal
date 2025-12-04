@@ -29,10 +29,11 @@ indicators:
     IndicatorID:
       - 2188
       - 2403
+related:
   - title: "Interactive Heat Vulnerability Index"
     url: "data-features/hvi/"
   - title: "Housing creates health"
-    url: "housing-creates-health/"
+    url: "data-stories/housing-creates-health/"
 relatedData:
   - title: "Social conditions"
     url: "social-conditions/"
@@ -50,7 +51,7 @@ Although falls can occur anywhere, falls among older adults frequently happen at
 
 ### About the data and indicators
 
-Falls indicators presented on this site are derived from administrative emergency department (ED) and hospitalization billing records from the New York Statewide Planning and Research Cooperative System (SPARCS). Fall-related ED visits and hospitalizations are identified using diagnostic codes from the International Classification of Diseases, 10th revision, Clinical Modification, as defined by the Center for Disease Control and Prevention’s external cause-of-injury matrix and using diagnostic information from any diagnosis field. Place of injury codes for these ED visits and hospitalizations allow for identification of falls that have occurred in the home. Data are based on address of the patient, not the address where the fall occurred.  Only falls resulting in outcomes severe enough to require treatment in the hospital ED or an inpatient stay are included; falls resulting in no health outcomes or outcomes treated outside of a NYC hospital are not captured. ED visit counts include treated and released visits, and hospitalization counts include only live discharges. ED visits and hospitalizations include NYC residents aged 65 years and older discharged from a NYC hospital.
+Falls indicators presented on this site are derived from administrative emergency department (ED) and hospitalization billing records from the New York Statewide Planning and Research Cooperative System (SPARCS). Fall-related ED visits and hospitalizations are identified using diagnostic codes from the International Classification of Diseases, 10th revision, Clinical Modification, as defined by the Center for Disease Control and Prevention’s external cause-of-injury matrix and using diagnostic information from any diagnosis field. Place of injury codes for these ED visits and hospitalizations allow for identification of falls that have occurred in the home. Data are based on address of the patient, not the address where the fall occurred. Only falls resulting in outcomes severe enough to require treatment in the hospital ED or an inpatient stay are included; falls resulting in no health outcomes or outcomes treated outside of a NYC hospital are not captured. ED visit counts include treated and released visits, and hospitalization counts include only live discharges. ED visits and hospitalizations include NYC residents aged 65 years and older discharged from a NYC hospital.
 
 ### Prevention
 
@@ -62,3 +63,4 @@ To help prevent falls, older adults should:
 - Ask building owner, landlord, or super to make all necessary home repairs, and install grab bars in the shower and near the toilet
 - Ask doctor, nurse, and/or pharmacist to review all medicines
 - Talk with doctors about previous falls and prevention strategies
+- Have your vision and hearing screened annually

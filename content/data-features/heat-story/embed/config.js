@@ -52,11 +52,11 @@
 
 config = {
     "initialMapState": {
-       "lat": 40.763862,
-       "lng": -74.05,
-       "zoom": 12,
+       "lat": 40.7032036,
+       "lng": -73.9191882,
+       "zoom": 11,
        "layers": [
-          "nycAfternoon"
+          ""
        ]
     },
     "layers": [
@@ -788,10 +788,11 @@ config = {
         // Stories start here // 
     ],
     "stories": [
-        
+        /*
         {
             "id": "getting-started",
             "title": "Get started",
+            "themes": [],
             "content": "<p style=\"text-align: left;\">Select a story to learn about how heat is affecting New Yorkers. Browse data sets that show disparities in temperature, heat stress, neighborhood poverty, and AC access, and then add a layer to look at these data next to redlining and green cover maps. <br><strong></strong></p>",
             "mapState": {
                 "lat": 40.715554,
@@ -800,10 +801,12 @@ config = {
                 "layers": [ ]
             }
         },
+        */
 
         {
             "id": "heat-traffic-pollution",
             "title": "Heat, traffic and odors are exhausting",
+            "themes": ["Public space","Finances"],
             "content": "I live on Bruckner Boulevard, between Alexander and Willis Avenues, directly adjacent to the Willis Avenue Bridge. Heat during the summer months is completely exhausting because it not only brings the smell of hot trash from the waste transfer station, exacerbates the smog of the heavy highway traffic that usually starts about 5 am and reminds me of the ensuing high electric bill from the use of fans and air conditioners, there is very little tree coverage or shade to block the sun's rays or cool even the outside temperatures. From the moment Lilah and I leave the building, heat hits us and follows us throughout the entire neighborhood. <br>-<strong>Dr. Melissa Barber </strong><div><img src=\"https://raw.githubusercontent.com/OpenStoryMap/geodata/main/nyc-heat-watch-2021/stories/melissa-barber/road3.jpeg\"></div>",
             "marker": {
                 "lat": 40.805985,
@@ -811,7 +814,7 @@ config = {
             "mapState": {
                 "lat": 40.805985,
                 "lng": -73.925476,
-                "zoom": 15,
+                "zoom": 12,
                 "layers": [
                     "nycHiEvening"
                 ]
@@ -821,14 +824,15 @@ config = {
           {
             "id": "high-ac-bills",
             "title": "It's hard to sleep and AC costs too much",
-            "content": "Heat has caused much discomfort such as not being able to sleep because it’s too hot in my home.      There are days where we open all the windows and fans just to avoid having to turn the central air conditioning on and running up the bill. <br><strong>-Anonymous</strong>",
+            "themes": ["Sleep","Finances"],
+            "content": "Heat has caused much discomfort such as not being able to sleep because it’s too hot in my home. There are days where we open all the windows and fans just to avoid having to turn the central air conditioning on and running up the bill. <br><strong>-Anonymous</strong>",
             "marker": {
                 "lat": 40.668111,
                 "lng": -73.827444,},
             "mapState": {
                 "lat": 40.668111,
                 "lng": -73.827444,
-                "zoom": 13,
+                "zoom": 12,
                 "layers": [
                     "Household_air_conditioning"
                 ]
@@ -837,6 +841,7 @@ config = {
         {
             "id": "fainting",
             "title": "I'm worried about fainting",
+            "themes": ["AC","Mental health"],
             "content": "Normally our windows and doors are open for the cool breeze to enter our home. When it becomes too hot, we will close the windows and doors and put the AC on. We are careful not to run the AC for too long given the energy bill, but we run the risk of getting sick. It is difficult to concentrate and study when it is too hot. It is also difficult to sleep. My family gets cranky. We try to avoid being outside and reduce our outdoor activities. We go outside with an umbrella. We pack cold water to bring us and paper towels so we can soak them with the water and refresh ourselves with it. We don’t have a cooling centers within a 10 minute walk from my home.<br><strong>-Queens resident</strong>",
             "marker": {
                 "lat": 40.70698,  
@@ -844,7 +849,7 @@ config = {
             "mapState": {
                 "lat": 40.70698,
                 "lng": -73.79797,
-                "zoom": 13,
+                "zoom": 12,
                 "layers": [
                     "Heat_stress_hospitalizations"
                 ]
@@ -852,6 +857,7 @@ config = {
         },
         {
             "id": "brutal-heat",
+            "themes": ["Heat","Health"],
             "title": "Brutal even for the young and healthy",
             "content": "I endured two hot summers in Washington Heights before installing an air conditioner. I was young and healthy, but it was still brutal. Cooking made the heat worse, and I worked at a bakery where no amount of air conditioning could keep up with the oven.",
             "marker": {
@@ -860,7 +866,7 @@ config = {
             "mapState": {
                 "lat": 40.844771,
                 "lng": -73.937088,
-                "zoom": 13,
+                "zoom": 12,
                 "layers": [ 
                     "nycAfternoon",
                     "Heat_vulnerability_index"
@@ -870,6 +876,7 @@ config = {
         {
             "id": "hotter-inside",
             "title": "It's hotter in our home than outside",
+            "themes": ["Heat","Sleep"],
             "content": "Our home tends to be very hot indoors with it being cooler outside than inside. We tend to slow down our movement during the heat because we feel a bit unwell. I usually sleep later and wake up earlier because I am unable to sleep, turning and twisting all night even with a fan. <br>I worry about the cost of my energy bill, power outages, the overheating of my cat, my health being impacted, and my friends’ health being impacted.<br><strong>-Anonymous</strong>",
             "marker": {
                 "lat": 40.667484,
@@ -877,7 +884,7 @@ config = {
             "mapState": {
                 "lat": 40.667484,
                 "lng": -73.788095,
-                "zoom": 13,
+                "zoom": 12,
                 "layers": [
                     "Heat_vulnerability_index"
                 ]
@@ -886,6 +893,7 @@ config = {
         {
             "id": "grocery-store-ac",
             "title": "We went to the library to stay cool",
+            "themes": ["AC","Public space"],
             "content": "We didn’t have AC until I was 7. Going to the grocery stores and local library. We took a little longer in the grocery store than we needed to. We took cold showers. We put the water in the fridge to be cool. We had a fan in every bedroom. Sometimes we took a rag and soaked in cold water before putting it on my skin. I upped my salt intake with electrolyte water.<br><strong>-Kitty</strong>",
             "marker": {
                 "lat": 40.676652,
@@ -893,7 +901,7 @@ config = {
             "mapState": {
                 "lat": 40.676652,
                 "lng": -73.823220,
-                "zoom": 13,
+                "zoom": 12,
                 "layers": [
                     "Household_air_conditioning"
                 ]
@@ -931,6 +939,7 @@ config = {
         {
             "id": "no-green-in-green-space",
             "title": 'No green in our "green space"',
+            "themes": ["Public space"],
             "content": "How good is a green space when there is little to no green to be found? That's the situation we face in the South Bronx. So-called parks and playgrounds designated as green space by the City are often concrete slabs with very little tree canopy. See below for examples of what some of these spaces look like.<br><strong>-Carlos Lozada</strong><div><img src=\"https://raw.githubusercontent.com/OpenStoryMap/geodata/main/nyc-heat-watch-2021/stories/bronx-greenspace/carlos-lozada.jpg\"></div>",
             "marker": {
                 "lat": 40.8124376119,
@@ -939,7 +948,7 @@ config = {
             "mapState": {
                 "lat": 40.8124376119,
                 "lng": -73.9186380,
-                "zoom": 13,
+                "zoom": 12,
                 "layers": [
                     "Vegetative_cover",
                 ]
@@ -965,6 +974,7 @@ config = {
         {
             "id": "open-hydrants",
             "title": "Open hydrants have repercussions",
+            "themes": ["Heat","Public space"],
             "content": "Mid-80s open hydrants meant top floor apartment dwellers lost water pressure. My neighbors had to walk down five flights and carry buckets back upstairs.<br><strong>-Anonymous</strong><br><br><em><a href=\"https://www1.nyc.gov/html/dep/html/press_releases/14-062pr.shtml#.Yvw7t3bMK73\" target=\"_blank\">You can get a spray cap from your local fire station and access an outreach program that can teach you how to use it</a></em>.",
             "marker": {
                 "lat": 40.8082044,
@@ -973,9 +983,29 @@ config = {
             "mapState": {
                 "lat": 40.8082044,
                 "lng": -73.9232586,
-                "zoom": 13,
+                "zoom": 12,
                 "layers": [ 
                     "nycAfternoon", 
+                    "heat_stress" 
+                ]
+            }
+        },
+/*QDA published*/
+        {
+            "id": "debilitating-heat",
+            "title": "Debilitating heat",
+            "themes": ["Accessibility","Mental health"],
+            "content": "I am very physically disabled and movement takes a lot of effort, which in such debilitating heat, means I am an exhausted, sweaty mess even from trying to walk across the street. I can't afford to use AC often, so I'm still hot and miserable at home. I live in a third floor walk up, which is already a struggle, with no hallway AC. Subway stations near me are inaccessible and I have to go up many flights of stairs—nearly impossible in heat. This impedes my ability to leave my stuffy apartment to find accessible AC. I miss a lot of doctor's appointments, which takes a further toll on my health. Sleep is also very difficult, leaving me even more drained than normal from my physical disabilities. <br><strong>-Anonymous (they/them)</strong>",
+            "marker": {
+                "lat": 40.76202190298572,
+                "lng": -73.92537488952408,
+            },
+            "mapState": {
+                "lat": 40.76202190298572,
+                "lng": -73.92537488952408,
+                "zoom": 12,
+                "layers": [ 
+                    "Household_air_conditioning", 
                     "heat_stress" 
                 ]
             }
@@ -995,24 +1025,6 @@ config = {
                 "zoom": 14,
                 "layers": [ 
                     "nycAfternoon", 
-                    "heat_stress" 
-                ]
-            }
-        },
-        {
-            "id": "debilitating-heat",
-            "title": "Debilitating heat",
-            "content": "I am very physically disabled and movement takes a lot of effort, which in such debilitating heat, means I am an exhausted, sweaty mess even from trying to walk across the street. I can't afford to use AC often, so I'm still hot and miserable at home. I live in a third floor walk up, which is already a struggle, with no hallway AC. Subway stations near me are inaccessible and I have to go up many flights of stairs—nearly impossible in heat. This impedes my ability to leave my stuffy apartment to find accessible AC. I miss a lot of doctor's appointments, which takes a further toll on my health. Sleep is also very difficult, leaving me even more drained than normal from my physical disabilities. <br><strong>-Anonymous(they/them)</strong>",
-            "marker": {
-                "lat": 40.76202190298572,
-                "lng": -73.92537488952408,
-            },
-            "mapState": {
-                "lat": 40.76202190298572,
-                "lng": -73.92537488952408,
-                "zoom": 14,
-                "layers": [ 
-                    "Household_air_conditioning", 
                     "heat_stress" 
                 ]
             }
@@ -1039,6 +1051,7 @@ config = {
         {
             "id": "Psychosocial-wellbeing",
             "title": "Can't focus on school",
+            "themes": ["Sleep","Mental health"],
             "content": "It affects my psychosocial well-being. I worry about the cost of my energy bill, power outages, and my stress levels. When my home is too hot, I can't sleep and I can't focus on work or school. I use a fan, take cold showers, drink water, and eat watermelon to stay cool. <br><strong>-Struggling grad student</strong>",
             "marker": {
                 "lat": 40.701724612663796,
@@ -1047,7 +1060,7 @@ config = {
             "mapState": {
                 "lat": 40.701724612663796,
                 "lng": -73.82345161918002,
-                "zoom": 13,
+                "zoom": 12,
                 "layers": [ 
                     "Heat_stress_hospitalizations" 
                 ]
@@ -1056,6 +1069,7 @@ config = {
         {
             "id": "Getting-air",
             "title": "I have to leave the subway",
+            "themes": ["Heat"],
             "content": "I worry about overheating and not having enough water to hydrate. There have been times when I'm in the train station or on a train and it's gotten so hot that I have to exit the car or station just to get air. My neighborhood helps with the icy carts and ice cream trucks.<br><strong>-Diana, Queens resident, 2024</strong>",
             "marker": {
                 "lat": 40.692141693784144,
@@ -1064,7 +1078,7 @@ config = {
             "mapState": {
                 "lat": 40.692141693784144,
                 "lng": -73.8270469316841,
-                "zoom": 13,
+                "zoom": 12,
                 "layers": [  
                     "Daytime_summer_surface_temperature"
                 ]
@@ -1073,6 +1087,7 @@ config = {
         {
             "id": "Avoid-leaving",
             "title": "I try to avoid going out in the heat",
+            "themes": ["Caregiving","Finances","AC"],
             "content": "Our home is an old brick house, which is like an oven. I worry about my cat — I hope he isn't too hot even with the windows open and the electric bill being high. To stay cool, we have to have AC or fans on all the time and take cool showers or wear less layers. We had to take another AC from my in-laws to help with the heat. <br><strong>-Debs C., 2024</strong>",
             "marker": {
                 "lat": 40.69218684458226,
@@ -1081,7 +1096,7 @@ config = {
             "mapState": {
                 "lat": 40.69218684458226,
                 "lng": -73.73291440003689,
-                "zoom": 13,
+                "zoom": 12,
                 "layers": [ 
                     "Heat_vulnerability_index" 
                 ]
@@ -1090,6 +1105,7 @@ config = {
         {
             "id": "Overworked",
             "title": "I get overworked when it's hot",
+            "themes": ["Mental Health"],
             "content": "I get overworked when it's too hot because people would call 911 just to go to the hospital for AC and I have to intake them; not to mention they don't hydrate properly so I have to give them saline. There's an increase in call volume for EMS. I check the weather on my phone and dress appropriately to stay cool. <br><strong>-Queens resident, 2024</strong>",
             "marker": {
                 "lat": 40.70202957919236,
@@ -1098,7 +1114,7 @@ config = {
             "mapState": {
                 "lat": 40.70202957919236,
                 "lng": -73.74123146150714,
-                "zoom": 13,
+                "zoom": 12,
                 "layers": [ 
                     "Daytime_summer_surface_temperature",  
                 ]
@@ -1107,6 +1123,7 @@ config = {
         {
             "id": "Trouble-sleeping",
             "title": "I have trouble sleeping when it's warm",
+            "themes": ["Sleep","Finances"],
             "content": "I worry about money and shelter. My sleep is affected by the heat; I have trouble sleeping when it's warm. I use AC and take cold showers to stay cool. <br><strong>-Johnmoses, 2024</strong>",
             "marker": {
                 "lat": 40.68088025334419,
@@ -1115,7 +1132,7 @@ config = {
             "mapState": {
                 "lat": 40.68088025334419,
                 "lng": -73.84507398130488,
-                "zoom": 13,
+                "zoom": 12,
                 "layers": [ 
                     "Heat_vulnerability_index" 
                 ]
@@ -1124,6 +1141,7 @@ config = {
         {
             "id": "Peak-hours",
             "title": "I don't go outside during peak hours",
+            "themes": ["AC","Finances"],
             "content": "I dress in light clothing. I don't go outside during peak hours. The cooling centers are not close to me so I travel to them. I pay $250 per month in the winter for energy, but in the summer it also costly for AC and fan. Sometimes it costs more than in the winter. I stay indoors and I buy food so I don't have to cook. <br><strong>-Mohini, 2024</strong>",
             "marker": {
                 "lat": 40.680441975958985,
@@ -1132,7 +1150,7 @@ config = {
             "mapState": {
                 "lat": 40.680441975958985,
                 "lng": -73.79396252866313,
-                "zoom": 13,
+                "zoom": 12,
                 "layers": [ 
                     "Daytime_summer_surface_temperature" 
                 ]
@@ -1141,6 +1159,7 @@ config = {
         {
             "id": "power-bill",
             "title": "I worry about the cost of my power bill",
+            "themes": ["Finances"],
             "content": "I go to the coffee shop or library to get cool. My home is too hot. <br><strong>-Queens resident, 2024</strong>",
             "marker": {
                 "lat": 40.68011652370219,
@@ -1149,7 +1168,7 @@ config = {
             "mapState": {
                 "lat": 40.68011652370219,
                 "lng": -73.78022961806579,
-                "zoom": 13,
+                "zoom": 12,
                 "layers": [ 
                     "Vegetative_cover" 
                 ]
@@ -1158,6 +1177,7 @@ config = {
         {
             "id": "90s-bill",
             "title": "We only use AC when it's almost 90°",
+            "themes": ["AC","Finances"],
             "content": "We wait until it's extremely hot to turn on the AC. I worry about the children being hot. To try and save on costs, we wait until it's almost into the 90s to put the air on.  <br><strong>-Anonymous, 2024</strong>",
             "marker": {
                 "lat": 40.85046293824912,
@@ -1166,7 +1186,7 @@ config = {
             "mapState": {
                 "lat": 40.85046293824912,
                 "lng": -73.85227787206723,
-                "zoom": 13,
+                "zoom": 12,
                 "layers": [ 
                     "Household_air_conditioning"  
                 ]
@@ -1175,6 +1195,7 @@ config = {
         {
             "id": "Asthma-worsens",
             "title": "I get asthma attacks when it's too hot",
+            "themes": ["Health","Sleep"],
             "content": "My sleep and daily life is affected when it's too hot because I get asthma attacks, which force me to go to the ER and I'm heavily out of breath. I worry about my pets and health. I go to public events/places, take cold showers, and keep a bucket of ice water to cool down. <br><strong>-Theresa D., 2024</strong>",
             "marker": {
                 "lat": 40.85046293824912,
@@ -1183,7 +1204,7 @@ config = {
             "mapState": {
                 "lat": 40.85046293824912,
                 "lng": -73.85227787206723,
-                "zoom": 13,
+                "zoom": 12,
                 "layers": [ 
                     "Asthma_ED_visits"
                 ]
@@ -1192,6 +1213,7 @@ config = {
         {
             "id": "Dysregulated",
             "title": "My body doesn't know how to regulate",
+            "themes": ["Caregiving"],
             "content": "I turn my AC on and have two extra fans if its over 70 degrees. I take long walks outside because my apartment gets very hot and it's cooler outside. We have to be careful when we cook during heat waves. We go outside at night to cool off and order take out. I worry about my health; my body does not know how to regulate during high temperature. I have been getting sick a lot. Whenever I walk my dog, I am conscious of how long the walk is. I worry about him getting heat stroke. I get emails from my doctor's office and vet's office to tell me what to look out for. <br><strong>-Queens resident, 2024</strong>",
             "marker": {
                 "lat": 40.739596484892296,
@@ -1200,11 +1222,20 @@ config = {
             "mapState": {
                 "lat": 40.739596484892296,
                 "lng": -73.87787224451348,
-                "zoom": 13,
+                "zoom": 12,
                 "layers": [ 
                     "Daytime_summer_surface_temperature"
                 ]
             }
         }
+    ],
+    "themes": [
+        "Finances",
+        "AC",
+        "Public space",
+        "Caregiving",
+        "Accessibility",
+        "Mental health",
+        "Sleep"
     ]
 }

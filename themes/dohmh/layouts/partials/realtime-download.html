@@ -69,15 +69,10 @@
 
             <a class="btn btn-info float-right ml-1" href="#" id="downloadLink"><i class="fas fa-download mr-1" aria-hidden="true"></i>Download data</a>
 
-            <div class="dropdown d-inline-block mb-2 float-right">
-                <a class="btn btn-outline-info dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Site info
+            <div class="d-inline-block mb-2 float-right">
+                <a class="btn btn-outline-info" href="https://raw.githubusercontent.com/nychealth/nyccas-data/refs/heads/main/portal/station-new.csv" role="button" id="dropdownMenuLink">
+                    <i class="fas fa-download mr-1" aria-hidden="true"></i>Site info
                 </a>
-              
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                    <a  class="dropdown-item"  href="https://azdohv2staticweb.blob.core.windows.net/$web/hist/csv/location.csv">Download as CSV</a> 
-                    <a class="dropdown-item" href="https://azdohv2staticweb.blob.core.windows.net/$web/hist/json/location.json">Download as JSON</a>
-                </div>
               </div>
 
               <p class="mt-2 text-end"><span class="home-label font-weight-bold">Site info:</span> <span class="fs-sm">This file contains information about the <code>SiteID</code> field in the data files. </span></p>
@@ -126,8 +121,9 @@
 
     document.getElementById('months').value = chosenMonth
     var chosenFormat = 'csv'
-    var downloadURL = 'https://azdohv2staticweb.blob.core.windows.net/$web/hist/' + chosenFormat + '/' + chosenYear + '/' + chosenMonth + '/hourlyMonitoring.' + chosenFormat
-    
+    // var downloadURL = 'https://azdohv2staticweb.blob.core.windows.net/$web/hist/' + chosenFormat + '/' + chosenYear + '/' + chosenMonth + '/hourlyMonitoring.' + chosenFormat
+    var downloadURL = 'https://raw.githubusercontent.com/nychealth/nyccas-data/refs/heads/main/hist/' + chosenFormat + '/' + chosenYear + '/'  + chosenMonth + '.' + chosenFormat
+
     
     // loop through earliestDate.year through thisYear and create year options
     
@@ -147,7 +143,7 @@
     
     function updateURL() {
         document.getElementById(chosenYear).checked = true
-        downloadURL = 'https://azdohv2staticweb.blob.core.windows.net/$web/hist/' + chosenFormat + '/' + chosenYear + '/' + chosenMonth + '/hourlyMonitoring.' + chosenFormat
+        downloadURL = 'https://raw.githubusercontent.com/nychealth/nyccas-data/refs/heads/main/hist/' + chosenFormat + '/' + chosenYear + '/'  + chosenMonth + '.' + chosenFormat
         document.getElementById('targetURL').innerHTML = downloadURL
         document.getElementById('downloadLink').setAttribute('href',downloadURL)
     

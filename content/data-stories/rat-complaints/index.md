@@ -12,8 +12,8 @@ photocredit: "NYC Health Department"
 related:
   - title: "Rat Mitigation Zones"
     url: "data-features/rat-mitigation-zones/"
-  - title: "Why trash is a public health issue"
-    url: "data-stories/sanitation/"
+  - title: "Inspection data are the key to controlling NYC’s rats"
+    url: "data-stories/rat-inspections/"
   - title: "Rats in your neighborhood"
     url: "data-features/rats-in-your-neighborhood/"
 ---
@@ -89,7 +89,7 @@ In some cases, where conditions are especially severe, a Health Department exter
 
 Not every complaint will trigger an inspection. If a property has recently been inspected, a new complaint won’t trigger another inspection. To find out if a new complaint will help, <a href="../../data-features/rat-information-portal/">visit the Rat Information Portal for up-to-date inspection results</a>. You can look up an address and see when it was last inspected, and if it passed or failed.
 
-<!-- publish link here to other story Read more about how inspection data is the key to understanding rat activity. -->
+<strong><a href="../../data-stories/rat-inspections">Read more about how inspection data is the key to understanding rat activity.</a></strong><br>
 
 ### Get involved
 

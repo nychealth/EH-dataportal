@@ -35,7 +35,7 @@ related:
   - title: "Real-time heat-related illness"
     url: "data-features/heat-syndrome/"
 weight: 1
-blurb: Map of neighborhood heat vulnerability, and the neighborhood characteristics that affect it.
+blurb: Neighborhood heat vulnerability, and the neighborhood characteristics that affect it.
 aboutTheData: 'The HVI is based on data from the American Community Survey, NASA, the Housing and Vacancy Survey and more. <a href="../../data-explorer/climate/?id=2411#display=summary">Get details on how the HVI is calculated</a>, or <a href="hvi-nta-2020.csv" download="hvi-nta-2020.csv" >download the data.</a>'
 ---
 
