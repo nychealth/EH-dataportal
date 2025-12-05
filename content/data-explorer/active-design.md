@@ -7,7 +7,8 @@ seo_title: "Active design data in NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
 description: "Datasets and visualizations of active design data in NYC."
 tags:
-categories: ["publicspace", "neighborhoods", "airquality", "climate","accessibility"]
+categories:
+  ["publicspace", "neighborhoods", "airquality", "climate", "accessibility"]
 keywords:
   [
     "active design",
@@ -49,8 +50,8 @@ related:
 relatedData:
   - title: "Walking, driving, and cycling"
     url: "walking-driving-and-cycling"
-  - title: "Physical activity"
-    url: "physical-activity/"
+  - title: "Accessibility"
+    url: "accessibility/"
   - title: "Transportation related-injuries"
     url: "transportation-related-injuries/"
 ---

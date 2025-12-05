@@ -7,7 +7,7 @@ seo_title: "Accessibility data in NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
 description: "Datasets and visualizations of accessibility data in NYC."
 tags:
-categories: ["accessibility","publicspace","housing"]
+categories: ["accessibility", "publicspace", "housing"]
 keywords:
   ["accessibility", "active design", "transportation", "housing", "health"]
 indicators:
@@ -29,6 +29,7 @@ indicators:
       - 2462
       - 2463
       - 2464
+  - header:
 related:
   - title: "Public space creates health"
     url: "data-stories/public-space-creates-health/"
