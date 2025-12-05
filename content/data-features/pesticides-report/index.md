@@ -1,7 +1,7 @@
 ---
 _schema: default
 title: Pesticide Use by NYC Agencies
-draft: true
+draft: false
 date: 2025-04-08T11:14:56-04:00
 categories:
   - pests
@@ -163,32 +163,56 @@ Table 2 lists the ten most frequently used products for each pesticide type on N
 </div>
 
 <div id="fungicide" class="pesticide-section d-block" >
-  <div style="overflow-x:scroll;">
-    {{< csvtable src="data/Table-2-Fungicide.csv" screenreader="false" >}}
+  <div>
+    {{< csvtable 
+        src="data/Table-2-Fungicide.csv" 
+        screenreader="false" 
+          download="true"
+          fontsize="fs-xs"
+        >}}
   </div>
 </div>
 
 <div id="herbicide" class="pesticide-section d-none" >
-  <div style="overflow-x:scroll">
-    {{< csvtable src="data/Table-2-Herbicide.csv" screenreader="false" >}}
+  <div>
+    {{< csvtable 
+        src="data/Table-2-Herbicide.csv" 
+        screenreader="false" 
+        download="true"
+        fontsize="fs-xs"
+        >}}
   </div>
 </div>
 
 <div id="insecticide" class="pesticide-section d-none" >
-  <div style="overflow-x:scroll;">
-    {{< csvtable src="data/Table-2-Insecticide.csv" screenreader="false" >}}
+  <div>
+    {{< csvtable 
+        src="data/Table-2-Insecticide.csv" 
+        screenreader="false" 
+        download="true"
+        fontsize="fs-xs"
+        >}}
   </div>
 </div>
 
 <div id="rodenticide" class="pesticide-section d-none">
-  <div style="overflow-x:scroll;">
-    {{< csvtable src="data/Table-2-Rodenticide.csv" screenreader="false" >}}
+  <div>
+    {{< csvtable 
+        src="data/Table-2-Rodenticide.csv" 
+        screenreader="false" 
+        download="true"
+        fontsize="fs-xs"
+        >}}
   </div>
 </div>
 
 <div id="other" class="pesticide-section d-none">
-  <div style="overflow-x:scroll;">
-    {{< csvtable src="data/Table-2-Other.csv" screenreader="false" >}}
+  <div>
+    {{< csvtable 
+        src="data/Table-2-Other.csv" 
+        screenreader="false"
+        download="true"
+        fontsize="fs-xs" >}}
   </div>
 </div>
 

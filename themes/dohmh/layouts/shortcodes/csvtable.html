@@ -7,6 +7,7 @@ Example usage:
                ordering="true"
                maxheight="50vh"
                download="true"
+               fontsize="fs-xs"
   >}}
 
   src: uses a local src in the content directory
@@ -26,6 +27,7 @@ Example usage:
 {{ $search := .Get "search" | default "true" | lower }}
 {{ $ordering := .Get "ordering" | default "true" | lower }}
 {{ $download := .Get "download" | default "true" | lower }}
+{{ $fontsize := .Get "fontsize" | default "fs-sm" | lower }}
 
 {{ $file := .Page.Resources.GetMatch $src }}
 
@@ -40,6 +42,7 @@ Example usage:
       "ordering" $ordering
       "maxheight" $maxheight
       "download" $download
+      "fontsize" $fontsize
   ) }}
 
   {{ $content | safeHTML }}
