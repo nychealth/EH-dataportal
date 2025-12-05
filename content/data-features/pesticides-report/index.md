@@ -148,10 +148,43 @@ Table 2 lists the ten most frequently used products for each pesticide type on N
 
 **Table 2: Ten Most Frequently Applied Pesticide Products by NYC Agencies in <span class="reportingYearPrint"></span> by Type**
 
-<div style="overflow-x:scroll;height: 50vh;overflow-y:scroll;">
-{{< csvtable src="data/table-2.csv" screenreader="false" >}}
+<div id="pesticide-buttons" class="mb-1">
+  <button onclick="toggleSection('fungicide', this)" class="btn btn-sm btn-outline-primary active">Fungicide</button>
+  <button onclick="toggleSection('herbicide', this)" class="btn btn-sm btn-outline-primary">Herbicide</button>
+  <button onclick="toggleSection('insecticide', this)" class="btn btn-sm btn-outline-primary">Insecticide</button>
+  <button onclick="toggleSection('rodenticide', this)" class="btn btn-sm btn-outline-primary">Rodenticide</button>
+  <button onclick="toggleSection('other', this)" class="btn btn-sm btn-outline-primary">Other</button>
 </div>
 
+<div id="fungicide" class="pesticide-section d-block" >
+  <div style="overflow-x:scroll;">
+    {{< csvtable src="data/Table-2-Fungicide.csv" screenreader="false" >}}
+  </div>
+</div>
+
+<div id="herbicide" class="pesticide-section d-none" >
+  <div style="overflow-x:scroll">
+    {{< csvtable src="data/Table-2-Herbicide.csv" screenreader="false" >}}
+  </div>
+</div>
+
+<div id="insecticide" class="pesticide-section d-none" >
+  <div style="overflow-x:scroll;">
+    {{< csvtable src="data/Table-2-Insecticide.csv" screenreader="false" >}}
+  </div>
+</div>
+
+<div id="rodenticide" class="pesticide-section d-none">
+  <div style="overflow-x:scroll;">
+    {{< csvtable src="data/Table-2-Rodenticide.csv" screenreader="false" >}}
+  </div>
+</div>
+
+<div id="other" class="pesticide-section d-none">
+  <div style="overflow-x:scroll;">
+    {{< csvtable src="data/Table-2-Other.csv" screenreader="false" >}}
+  </div>
+</div>
 
 #### Changes in pesticide use
 Table 3 contains a complete list of application amounts by target pest.

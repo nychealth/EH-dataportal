@@ -160,7 +160,37 @@ function printTable(data, destination, year, noDataProvided) {
     container.innerHTML = table;
 }
 
+function toggleSection(id, btn) {
+  const section = document.getElementById(id);
+  if (!section) return;
 
+  // Hide all sections
+  document.querySelectorAll('.pesticide-section').forEach(sec => {
+    sec.classList.remove('d-block');
+    sec.classList.add('d-none');
+  });
+
+  // Determine if the clicked section should be shown
+  const isHidden = section.classList.contains('d-none');
+
+  // Show it (or hide it if currently shown)
+  if (isHidden) {
+    section.classList.remove('d-none');
+    section.classList.add('d-block');
+  } else {
+    section.classList.remove('d-block');
+    section.classList.add('d-none');
+  }
+
+  // Update active button state
+  document.querySelectorAll('#pesticide-buttons button').forEach(b => {
+    b.classList.remove('active');
+  });
+
+  if (isHidden) {
+    btn.classList.add('active');
+  }
+}
 </script>
 
 <article class="container-fluid" id="skip-header-target">
