@@ -22,7 +22,7 @@ keywords:
   ]
 layout: heatstory
 leaflet: true
-arquero: true
+
 image: heatstory.png
 related:
   - title: "NYC Heat-Related Mortality Report"

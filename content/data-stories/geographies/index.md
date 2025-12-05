@@ -19,7 +19,7 @@ keywords:
   ]
 image: ds-geographies.jpg
 layout: single
-vega: true
+
 photocredit: "Edwin J. Torres/Mayoral Photography Office, City of New York"
 related:
   - title: "Find your UHF"

@@ -9,6 +9,6 @@ type: nr-output
 seo_title: "Active Design in Port Richmond"
 seo_description: "Active Design Physical Activity and Health data profile for the Port Richmond neighborhood of NYC."
 seo_image: "images/nyc_health_report_active_design_health.jpg"
-vega: true
-arquero: true
+
+
 ---

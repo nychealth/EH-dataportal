@@ -1,7 +1,9 @@
 {{/*
   Usage:
     {{ partial "render-accessible-table.html" (dict "csvPath" "/data-features/minimum-wage/data/chart-data.csv" "containerId" "csv-table-container") }}
-    This will render an accessible table from /static or from a /content directory, but does so on the client side. 
+    This will render an accessible table from /static or from a /content directory, but does so on the client side.
+    That means that it can fetch a REMOTE file and render an accessible CSV onto the page (when a user loads a page), 
+    Whereas render-table fetches a local file and builds an accessible table TO the page, at build time.
 */}}
 
 {{ $csvPath := .csvPath }}
