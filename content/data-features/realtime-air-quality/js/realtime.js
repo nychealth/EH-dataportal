@@ -198,7 +198,7 @@ function drawCheckboxes() {
 
         let tableCheckBox = 
                 `
-                <tr id="row-${activeMonitors[i].loc_col}" class="location-row lineLabel" data-loc="${activeMonitors[i].loc_col}" data-color="${activeMonitors[i].Color}">
+                <tr id="row-${activeMonitors[i].loc_col}" class="location-row lineLabel" data-loc="${activeMonitors[i].loc_col}" data-color="${activeMonitors[i].Color}" data-fallback="lightgray">
                   <th scope="row">
                     <span style="color: ${activeMonitors[i].Color};"><i class="fas fa-square mx-1"></i></span>${activeMonitors[i].Location}
                   </th>
@@ -770,9 +770,16 @@ async function renderSpec(
               "events": ".lineLabel:mouseenter",
               "update": "event.currentTarget.dataset.color",
               "force":  true
+            },
+            {
+              "events": ".lineLabel:mouseout",
+              "update": "'lightgray'",
+              "force": true
             }
           ]
         }
+
+
 
 
       const locSignal =  {
@@ -783,11 +790,16 @@ async function renderSpec(
             "events": ".lineLabel:mouseenter",
             "update": "event.currentTarget.dataset.loc",
             "force": true
+          },
+          {
+            "events": ".lineLabel:mouseout",
+            "update": "''",      
+            "force": true
           }
         ]
       }
 
-      vegaSpec.signals.push(colorSignal)    
+      vegaSpec.signals.push(colorSignal) 
       vegaSpec.signals.push(locSignal)
 
       const textSignal = {
