@@ -5,4 +5,4 @@ baseURL = "https://gcappbesp307.health.dohmh.nycnet/dev-stage/"
 [caches]
     [caches.getresource]
       dir = ':cacheDir/:project'
-      maxAge = -1
+      maxAge = 0
