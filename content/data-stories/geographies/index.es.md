@@ -9,7 +9,7 @@ categories: ["internal","neighborhoods"]
 keywords: ["geography","maps","neighborhoods","health data","methods","geographic"]
 image: ds-geographies.jpg
 layout: single
-vega: true
+
 photocredit: "Edwin J. Torres/Mayoral Photography Office, City of New York"
 ---
 

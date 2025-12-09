@@ -6,7 +6,7 @@ draft: false
 seo_title: "What Hurricane Ida and Superstorm Sandy taught us about flooding and health"
 seo_description: "A data story about the health impacts from climate change-related flooding."
 tags:
-categories: ["housing", "inequality", "climate", "neighborhoods"]
+categories: ["housing", "inequality", "climatehealth", "neighborhoods"]
 keywords:
   [
     "flooding",
@@ -20,8 +20,8 @@ photocredit: Julienne Schaer/NYC & Company
 related:
   - title: "Flood Vulnerability Index"
     url: "data-features/flood-vulnerability-index/"
-  - title: "What climate change means for vector-borne disease in NYC"
-    url: "data-stories/vectorborne-diseases-and-health/"
+  - title: "NYC is working to protect your health — but we can’t do it alone"
+    url: "data-stories/federal-funding/"
   - title: "Energy is critical for health and climate resilience — but not all New Yorkers may be able to afford it"
     url: "data-stories/energy-insecurity/"
 ---

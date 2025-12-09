@@ -25,7 +25,7 @@ keywords:
   ]
 layout: hvi
 customJS: hvi.js
-vega: true
+
 image: hvi.png
 related:
   - title: "The urban heat island effect in NYC"

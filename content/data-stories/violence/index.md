@@ -8,7 +8,7 @@ seo_description: "A data story on violence, disparities, and real public health 
 categories: ["housing","inequality","childhealth","healthoutcomes","neighborhoods","injuryandviolence"]
 keywords: ["violence","assaults","injustice","poverty","social determinants","redlining","disinvestment","racism","neighborhoods"]
 image: ds-violence.jpg
-vega: true
+
 photocredit: "Benjamin Kanter/Mayoral Photography Office, City of New York"
 related:
   - title: "Injury deaths in NYC"
