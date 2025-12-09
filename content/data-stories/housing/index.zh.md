@@ -8,7 +8,7 @@ tags:
 categories: ["housing","inequality","childhealth","healthoutcomes","neighborhoods","injuryandviolence"]
 keywords: ["poverty","asthma","injustice","housing","social determinants","redlining","disinvestment","racism","renting","pests","maintenance","maintenance deficiencies"]
 image: ds-housing.jpeg
-vega: true
+
 ---
 ### 为了健康，地点很重要。
 什么决定您是否健康？您可能会考虑您吃了什么，您是否锻炼，您是否吸烟和您的家庭病史。

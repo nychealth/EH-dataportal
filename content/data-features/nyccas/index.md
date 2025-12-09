@@ -17,7 +17,7 @@ seo_title: NYC Community Air Survey Annual Report
 seo_description: Data, findings, and more from NYC's citywide air quality monitoring program.
 aliases:
   - /key-topics/airquality/nyccas/
-vega: true
+
 image: images/banner-2023.jpg
 layout: nyccas-report
 report: true

@@ -9,6 +9,6 @@ type: nr-output
 seo_title: "Asthma and the Environment in West Queens"
 seo_description: "Asthma and the Environment data profile for the West Queens neighborhood of NYC."
 seo_image: "images/nyc_health_report_asthma_environment.jpg"
-vega: true
-arquero: true
+
+
 ---
