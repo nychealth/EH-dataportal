@@ -10658,5 +10658,5 @@ table.dataTable thead > tr > td.sorting_asc_disabled:before,
 table.dataTable thead > tr > td.sorting_asc_disabled:after,
 table.dataTable thead > tr > td.sorting_desc_disabled:before,
 table.dataTable thead > tr > td.sorting_desc_disabled:after {
-  line-height: 16px !important;
-  font-size: 1.5em !important; }
+  line-height: 12px !important;
+  font-size: 1em !important; }
