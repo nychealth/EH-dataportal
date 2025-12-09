@@ -18,19 +18,6 @@ keywords:
     "stroke",
   ]
 indicators:
-  - header: Neighborhood Air Quality
-    IndicatorID:
-      - 2023
-      - 2024
-      - 2028
-      - 2025
-      - 2027
-      - 2026
-  - header: Citywide Regulatory Monitoring
-    IndicatorID:
-      - 92
-      - 57
-      - 55
   - header: Diabetes
     IndicatorID:
       - 2465
