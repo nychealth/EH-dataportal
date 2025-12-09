@@ -151,7 +151,7 @@ function drawChart(injuryHighlight) {
   "height": "container",
   "width": "container",
   "data": {
-    "url": "https://gist.githubusercontent.com/mmontesanonyc/30bd54ae0feddfc4a36c34f7c29f7688/raw/60537dc6c3fbd9fa9e424c48dc62f4b1340878cb/deaths.csv"
+    "url": "data/mort-ranks.csv"
   },
   "config": {
     "background": "#FFFFFF",
@@ -185,8 +185,15 @@ function drawChart(injuryHighlight) {
     "range": {"category": ["#ffa600", "#f5f5f5", "#40826D", "#5d5d5d"]}
   },
   "transform": [
-    {"calculate": "toNumber(datum.xAxis)", "as": "xAxisNum"},
-    {"calculate": "datum.RatePer100k + ' per 100,000'", "as": "RateWith"}
+{
+  "filter": "datum.InjuryRelated == 0"
+},
+{
+  "calculate": "(datum.agegroup == '<1' ? 1 : datum.agegroup == '1 - 4' ? 2 : datum.agegroup == '5 - 9' ? 3 : datum.agegroup == '10 - 14' ? 4 : datum.agegroup == '15 - 24' ? 5 : datum.agegroup == '25 - 34' ? 6 : datum.agegroup == '35 - 44' ? 7 : datum.agegroup == '45 - 54' ? 8 : datum.agegroup == '55 - 64' ? 9 : datum.agegroup == '65+' ? 10 : datum.agegroup == 'All ages' ? 12 : null)",
+  "as": "xAxisNum"
+},
+
+    {"calculate": "datum.rate + ' per 100,000'", "as": "RateWith"}
     
     ],
   "mark": {"type": "circle"},
@@ -203,20 +210,20 @@ function drawChart(injuryHighlight) {
   ],
   "encoding": {
     "x": {
-      "field": "Age group",
+      "field": "agegroup",
       "type": "nominal",
       "sort": {"field": "xAxisNum"},
       "axis": {"ticks": true, "labelAngle": 0,"orient": "top","title": ""}
     },
     "y": {
-      "field": "Rank",
+      "field": "rank",
       "type": "quantitative",
       "sort": "descending",
       "scale": {"domain": [0.1, 10.5]},
       "axis": {"grid": false}
     },
     "size": {
-      "field": "RatePer100k",
+      "field": "rate",
       "type": "quantitative",
       "scale": {"range": [200, 10000]},
       "legend": null
@@ -281,16 +288,16 @@ function showOnHover(event) {
   if (event.item && event.item.datum) {
     const datum = event.item.datum;
 
-    console.log('Hovered over:', datum);
+    // console.log('Hovered over:', datum);
 
-    document.getElementById('agePrint').innerHTML = datum['Age group'];
-    document.getElementById('causePrint').innerHTML = datum['Cause'];
+    document.getElementById('agePrint').innerHTML = datum['agegroup'];
+    document.getElementById('causePrint').innerHTML = datum['cause_text'];
 
     // Format numbers with commas and no decimal places
-    const rateFormatted = Number(datum['RatePer100k']).toLocaleString(undefined, {
+    const rateFormatted = Number(datum['rate']).toLocaleString(undefined, {
       maximumFractionDigits: 1
     });
-    const countFormatted = Number(datum['AverageAnnualCount']).toLocaleString(undefined, {
+    const countFormatted = Number(datum['Annual_Average_Count']).toLocaleString(undefined, {
       maximumFractionDigits: 0
     });
 
