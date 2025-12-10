@@ -46,9 +46,6 @@
       <div class="row my-2">
         <div class="col-md-9">
             <div id="chart"></div>
-            <div class="border-top fs-xs">
-              <p><em>Causes of death with very low counts are not shown.</em></p>
-            </div>
         </div>
 
         <div class="col-md-3">
@@ -80,7 +77,7 @@
 
   <div class="sr-only" id="accessibleTables">
     <h2>Accessible data table</h2>
-    {{ partial "render-accessible-table.html" (dict "csvPath" "data/mort-ranks.csv" "containerId" "csv-table-container-1") }}
+    {{ partial "render-accessible-table.html" (dict "csvPath" "data/leading-causes.csv" "containerId" "csv-table-container-1") }}
   </div>
 
 </article>
@@ -164,7 +161,7 @@ function drawChart(outcome, intent, injuryHighlight) {
   var color
   // injury FILTER condition
   if (intent == 1) {
-    filter = "datum.InjuryRelated == 1"
+    filter = "datum.InjuryOnly == 1"
     injuryHighlight = 'off'
     color =  {
               "field": "Intent",
@@ -188,7 +185,7 @@ function drawChart(outcome, intent, injuryHighlight) {
               }
             }
   } else {
-    filter = "datum.InjuryRelated == 0"
+    filter = "datum.InjuryOnly == 0"
     color = {"value": "#bcbcbc"}
   }
 
@@ -208,7 +205,7 @@ function drawChart(outcome, intent, injuryHighlight) {
   "height": "container",
   "width": "container",
   "data": {
-    "url": "data/mort-ranks.csv"
+    "url": "data/leading-causes.csv"
   },
   "config": {
     "background": "#FFFFFF",
@@ -273,28 +270,41 @@ function drawChart(outcome, intent, injuryHighlight) {
       "axis": {"ticks": true, "labelAngle": 0,"orient": "top","title": ""}
     },
     "y": {
-      "field": "rank",
+      "field": "rank_unique",
       "type": "quantitative",
       "sort": "descending",
       "scale": {"domain": [0.1, 10.5]},
       "axis": {"grid": false}
     },
     "size": {
+      "condition": [
+        {
+          "test": "datum.flag === '^'",
+          "value": 10
+        }
+      ],
       "field": "rate",
       "type": "quantitative",
       "scale": {"range": [200, 10000]},
       "legend": null
     },
-    "opacity": {
-      "condition": {
-        "param": "hover",
-        "empty": false,
-        "value": 1
+      "opacity": {
+        "condition": [
+          {
+            "test": "datum.flag === '^'",
+            "value": 0.2
+          },
+          {
+            "param": "hover",
+            "empty": false,
+            "value": 1
+          }
+        ],
+        "value": 0.65
       },
-      "value": 0.65
-    },
+
     "color": color,
-        "stroke": {
+    "stroke": {
       "condition": [
         {
           "test": "datum.Intent === 'Injury'",
@@ -365,17 +375,23 @@ function showOnHover(event) {
 
     // console.log('Hovered over:', datum);
 
-    var cause = datum.cause_text.replace("Injury: ", ""); // Remove 'Injury: ' from cause field, since we're also using Intent field below
+    var cause = datum.cause_text.replace("Injury: ", "");
 
+    // If cause is empty, show "No deaths, no cause"
+    if (datum.cause_text === '') {
+      document.getElementById('causePrint').innerText = '(None)';
+    } else {
+      document.getElementById('causePrint').innerHTML =
+        (datum.Intent ? datum.Intent + ': ' : '') + cause;
+    }
 
     document.getElementById('agePrint').innerHTML = datum['agegroup'];
-    document.getElementById('causePrint').innerHTML =
-      (datum.Intent ? datum.Intent + ': ' : '') + cause;
 
-    document.getElementById('flagNote').innerHTML = datum.flag === '*' ? 'Unstable rate due to high relative standard error.' : ''
+
+    document.getElementById('flagNote').innerHTML = datum.flag === '*' ? 'Unstable rate due to high relative standard error.' : datum.flag === '^' ? 'Causes of death with very low counts are not shown.' : ''
 
     document.getElementById('rank').innerHTML = 
-      (datum.rank == 1 ? "Top": (datum.rank == 2 ? "2nd leading" : (datum.rank == 3 ? "3rd leading" : `${datum.rank}th leading`) ) )
+      (datum.rank_unique == 1 ? "Top": (datum.rank_unique == 2 ? "2nd leading" : (datum.rank_unique == 3 ? "3rd leading" : `${datum.rank_unique}th leading`) ) )
 
     // Format numbers with commas and no decimal places
     const rateFormatted = Number(datum['rate']).toLocaleString(undefined, {
