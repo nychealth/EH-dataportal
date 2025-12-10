@@ -33,8 +33,6 @@ related:
   {"src": "../../data-explorer/violence/", "text": "Violence"}
 ]` >}}
 
-data-explorer/violence
-
 Young and middle-aged adults (ages 15 to 44) do not typically die from the natural causes that kill older adults. Injuries, both intentional — violence or suicide — and unintentional, dominate as causes of death. These premature deaths are tragic, unnecessary and preventable.
 
 Below we focus on homicide and suicide, reflecting areas of focus in the [NYC Health Department’s recently released HealthyNYC](https://www.nyc.gov/site/doh/about/about-doh/healthynyc.page), which identifies the major drivers of decreasing life expectancy and health equity in our city and identifies strategies to reduce each driver’s impact.
@@ -46,7 +44,7 @@ Suicide and homicide do not just affect the immediate victims. The impacts radia
 
 </div>
 <div class="wide my-4" aria-hidden="true">
-<iframe title=" Homicide and Suicideare among top causes of death from  ages 15 to 44" aria-label="Scatter Plot" id="datawrapper-chart-jtm6b" src="https://datawrapper.dwcdn.net/jtm6b/6/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="720" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
+<iframe title=" Homicide and Suicide are among top causes of death from  ages 15 to 44" aria-label="Scatter Plot" id="datawrapper-chart-jtm6b" src="https://datawrapper.dwcdn.net/jtm6b/6/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="720" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
 </div>
 
 <div class="sr-only">
