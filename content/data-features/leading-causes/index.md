@@ -1,5 +1,5 @@
 ---
-title: "Leading causes of injuries and deaths in NYC"
+title: "Leading causes of injuries and deaths in NYC (2021 - 2023)"
 shortTitle: "Leading causes"
 date: 2025-11-08T21:14:56-04:00
 draft: false
@@ -20,7 +20,7 @@ keywords:
 layout: leading-causes
 vega: true
 weight: 10
-aboutTheData: "Quisque volutpat, odio id mollis pharetra, mauris risus imperdiet nunc, sit amet dictum metus erat vitae massa. Aenean diam eros, mattis sit amet est at, imperdiet ultricies nunc. Suspendisse placerat, leo ac laoreet congue, justo massa rutrum turpis, id volutpat purus lorem sed nibh."
+aboutTheData: "Quisque volutpat, odio id mollis pharetra, mauris risus imperdiet nunc, sit amet dictum metus erat vitae massa. Aenean diam eros, mattis sit amet est at, imperdiet ultricies nunc. Suspendisse placerat, leo ac laoreet congue, justo massa rutrum turpis, id volutpat purus lorem sed nibh. <strong>Data for 2021 - 2023</strong>."
 related:
   - title: "How homicide and suicide contribute to injury deaths"
     url: "data-stories/injury-deaths/"
