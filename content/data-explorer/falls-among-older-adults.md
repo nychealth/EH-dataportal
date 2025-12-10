@@ -25,10 +25,6 @@ indicators:
     IndicatorID:
       - 2136
       - 2409
-  - header: Safety
-    IndicatorID:
-      - 2188
-      - 2403
 related:
   - title: "Interactive Heat Vulnerability Index"
     url: "data-features/hvi/"
