@@ -577,8 +577,15 @@ const renderTrendChart = (
                             }
                         },
                         {
-                            "description": "Hover text",
+                        "description": "Hover text",
                         "transform": [
+                            // get dataset max, and endate Median
+                            {
+                            "joinaggregate": [
+                                {"op": "max", "field": "Value", "as": "maxVal"}
+                            ]
+                            },
+                            // Get max date
                             {
                             "aggregate": [
                                 {"op": "argmax", "field": "end_period", "as": "endDate"},
@@ -586,23 +593,52 @@ const renderTrendChart = (
                             ],
                             "groupby": [`${comp_group_col}`]
                             },
+
+                            // re-store endDateValue
                             {
-                            "window": [{"op": "row_number", "as": "order"}],
-                            "sort": [{"field": "endDate.Value", "order": "ascending"}]
+                            "calculate": "datum.endDate ? datum.endDate.Value : null",
+                            "as": "endDateValue"
                             },
-                            {"window": [{"op": "count", "as": "totalCount"}]},
-                            {"calculate": "(datum.totalCount + 1) / 2", "as": "medianOrder"},
-                            {
-                            "joinaggregate": [
-                                {"op": "median", "field": "endDate.Value", "as": "medianValue"},
-                                {"op": "max", "field": "endDate.Value", "as": "maxVal"},
-                                {"op": "min", "field": "endDate.Value", "as": "minVal"}
-                            ]
+                                        {
+                            "calculate": "datum.endDate.maxVal",
+                            "as": "maxChartVal"
                             },
-                            {
-                            "calculate": "datum.endDate.Value == null ? null : datum.medianValue + (datum.endDate.Value - datum.medianValue) * 1.2",
-                            "as": "labelValue"
-                            }
+
+                                // initial labelValue == endDateValue
+                                {
+                                    "calculate": "datum.endDateValue",
+                                    "as": "labelValue"
+                                },
+
+                                // PASS 1: compare against previous labelValue (which currently equals endDateValue)
+                                {
+                                    "window": [{"op": "lag", "field": "labelValue", "as": "prevLabel"}],
+                                    "sort": [{"field": "endDateValue", "order": "ascending"}]
+                                },
+                                {
+                                    "calculate": "datum.prevLabel === null ? (datum.labelValue - 0.025 * datum.maxChartVal) : (datum.labelValue - datum.prevLabel < 0.05 * datum.maxChartVal ? datum.prevLabel + 0.05 * datum.maxChartVal : datum.labelValue)",
+                                    "as": "labelValue"
+                                },
+
+                                // PASS 2: re-check using the updated labelValue
+                                {
+                                    "window": [{"op": "lag", "field": "labelValue", "as": "prevLabel2"}],
+                                    "sort": [{"field": "endDateValue", "order": "ascending"}]
+                                },
+                                {
+                                    "calculate": "datum.prevLabel2 === null ? datum.labelValue : (datum.labelValue - datum.prevLabel2 < 0.05 * datum.maxChartVal ? datum.prevLabel2 + 0.05 * datum.maxChartVal : datum.labelValue)",
+                                    "as": "labelValue"
+                                },
+
+                                // PASS 3: final pass
+                                {
+                                    "window": [{"op": "lag", "field": "labelValue", "as": "prevLabel3"}],
+                                    "sort": [{"field": "endDateValue", "order": "ascending"}]
+                                },
+                                {
+                                    "calculate": "datum.prevLabel3 === null ? datum.labelValue : (datum.labelValue - datum.prevLabel3 < 0.05 * datum.maxChartVal ? datum.prevLabel3 + 0.05 * datum.maxChartVal : datum.labelValue)",
+                                    "as": "labelValue"
+                                }
                         ],
                             "encoding": {
                                 "y": {"field": "labelValue"},
@@ -615,8 +651,8 @@ const renderTrendChart = (
                                 "align": "left",
                                 "dx": 5,
                                 "dy": 0,
-                                "fontSize": 11,
-                                "fontWeight": "normal"
+                                "fontSize": 10,
+                                "fontWeight": "bold"
                             }
                         }
                     ]
