@@ -55,17 +55,18 @@
 
           <div id="readout" class="my-2 hide">
             <span class="fs-sm">Age:</span><br>
-            <span class="font-weight-bold" id="agePrint">Xty2</span>
+            <span class="font-weight-bold" id="agePrint">---</span>
             <hr class="my-1">
-            <span class="fs-sm">Cause of death:</span><br>
-            <span class="font-weight-bold" id="causePrint">Fiddly diddly</span>
+            <span class="fs-sm"><span id="rank">--</span> cause of death:</span><br>
+            <span class="font-weight-bold" id="causePrint">---</span>
             <hr class=my-1>
             <span class="fs-sm">Death rate:</span><br>
-            <span class="font-weight-bold" id="ratePrint">ZZZZ per 100,000 people</span>
+            <span class="font-weight-bold" id="ratePrint">---</span>
             <hr class=my-1>
             <span class="fs-sm">Average annual deaths:</span><br>
-            <span class="font-weight-bold" id="countPrint">XXYY</span>
+            <span class="font-weight-bold" id="countPrint">---</span>
             <hr class=my-1>
+            <p class="fs-xs"><em><span id="flagNote" class="fs-xs">Note:</span></em></p>
           </div>
 
         </div>
@@ -89,6 +90,45 @@ var highlight = 'off'       // on or off (injury highlight)
 
 const injuryBtn = document.getElementById('showInjury');
 let injuryOn = false; // record keeper
+
+var rankConfig = [
+  {
+    "position": 1,
+    "label": "Top"
+  },
+    {
+    "position": 2,
+    "label": "2nd leading"
+  },
+    {
+    "position": 4,
+    "label": "4th leading"
+  },
+    {
+    "position": 5,
+    "label": "5th leading"
+  },
+    {
+    "position": 6,
+    "label": "6th leading"
+  },
+    {
+    "position": 7,
+    "label": "7th leading"
+  },
+    {
+    "position": 8,
+    "label": "8th leading"
+  },
+    {
+    "position": 9,
+    "label": "9th leading"
+  },
+    {
+    "position": 10,
+    "label": "10th leading"
+  }
+]
 
 // TYPE BUTTONS
 document.querySelectorAll('.type-button').forEach(btn => {
@@ -156,25 +196,48 @@ function drawChart(outcome, intent, injuryHighlight) {
   console.log('Injury related?', intent)
   console.log('Highlighting injury?', injuryHighlight)
 
-
-
   var filter
+  var color
   // injury FILTER condition
   if (intent == 1) {
     filter = "datum.InjuryRelated == 1"
     injuryHighlight = 'off'
+    color =  {
+              "field": "Intent",
+              "type": "nominal",
+              "scale": {
+                "domain": [
+                  "Unintentional",
+                  "Suicide",
+                  "Homicide",
+                  "Undetermined"
+                ],
+                "range": [
+                  "#8ca0ca",
+                  "#65c1a4",
+                  "#fc8c61",
+                  "#eeeeee"
+                ]
+              },
+              "legend": {
+                "orient": "bottom"
+              }
+            }
   } else {
     filter = "datum.InjuryRelated == 0"
+    color = {"value": "#bcbcbc"}
   }
 
   // injury highlight condition
+  var strokeHighlight
+  var strokeHighlightWidth
   if (injuryHighlight === 'on') {
-    color =  {"field": "Intent", "type": "nominal","legend": null}
+    strokeHighlight = "#841972"
+    strokeHighlightWidth = 3
   } else {
-    color =  {"value": "#f5f5f5"}
+    strokeHighlight = "#7C7C7C"
+    strokeHighlightWidth = 1
   }
-
-
 
   var spec = {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
@@ -259,14 +322,34 @@ function drawChart(outcome, intent, injuryHighlight) {
       "legend": null
     },
     "stroke": {
-      "condition": {"param": "hover", "empty": false, "value": "black"},
+      "condition": [
+        {
+          "test": "datum.Intent === 'Injury'",
+          "value": strokeHighlight 
+        },
+      ],
       "value": "#7C7C7C"
     },
+    "strokeOpacity": {"value": 1},
     "strokeWidth": {
-      "condition": {"param": "hover", "empty": false, "value": 2},
-      "value": 0.5
+      "condition": [
+        {
+          "test": "datum.Intent === 'Injury'",
+          "value": strokeHighlightWidth          
+        },
+      ],
+      "value": 1
+    },
+    "opacity": {
+      "condition": {
+        "param": "hover",
+        "empty": false,
+        "value": 1
+      },
+      "value": 0.8
     },
     "color": color
+
     /*
     "tooltip": [
       {"title": "Age", "field": "Age group", "type": "nominal"},
@@ -319,7 +402,13 @@ function showOnHover(event) {
     // console.log('Hovered over:', datum);
 
     document.getElementById('agePrint').innerHTML = datum['agegroup'];
-    document.getElementById('causePrint').innerHTML = datum['cause_text'];
+    document.getElementById('causePrint').innerHTML =
+      (datum.Intent ? datum.Intent + ': ' : '') + datum.cause_text;
+
+    document.getElementById('flagNote').innerHTML = datum.flag === '*' ? 'Unstable rate due to high relative standard error.' : ''
+
+    document.getElementById('rank').innerHTML = 
+      (datum.rank == 1 ? "Top": (datum.rank == 2 ? "2nd leading" : (datum.rank == 3 ? "3rd leading" : `${datum.rank}th leading`) ) )
 
     // Format numbers with commas and no decimal places
     const rateFormatted = Number(datum['rate']).toLocaleString(undefined, {
