@@ -180,9 +180,13 @@ function drawChart(outcome, intent, injuryHighlight) {
                   "#eeeeee"
                 ]
               },
-              "legend": {
-                "orient": "bottom"
-              }
+                "legend": {
+                  "title": null,
+                  "orient": "bottom",
+                  "labelFontSize": 14,
+                  "labelFontWeight": 500,     
+                  "symbolSize": 200   
+                }
             }
   } else {
     filter = "datum.InjuryOnly == 0"
