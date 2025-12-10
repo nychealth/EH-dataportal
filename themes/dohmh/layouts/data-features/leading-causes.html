@@ -29,10 +29,10 @@
             Deaths
           </button>
 
-            <button class="btn btn-sm btn-outline-secondary subtype-button ml-2" id="injuryOnly">
+            <button class="btn btn-sm btn-outline-secondary subtype-button ml-2" id="injuryOnly" data-injury="1">
               Injury-related only
             </button>
-            <button class="btn btn-sm btn-outline-secondary active subtype-button" id="all">
+            <button class="btn btn-sm btn-outline-secondary active subtype-button" id="all" data-injury="0">
               All deaths
             </button>
 
@@ -88,6 +88,12 @@
 </article>
 
 <script>
+// GLOBAL VARIABLES
+var outcome = 'deaths'      // deaths, visits, or hosps
+var intent = 0              // injury true = 1
+var highlight = 'off'       // on or off (injury highlight)
+
+
 // TYPE BUTTONS
 document.querySelectorAll('.type-button').forEach(btn => {
   btn.addEventListener('click', function () {
@@ -112,14 +118,27 @@ document.querySelectorAll('.type-button').forEach(btn => {
 // SUBTYPE BUTTONS
 document.querySelectorAll('.subtype-button').forEach(btn => {
   btn.addEventListener('click', function () {
+
     // remove active from all subtype buttons
     document.querySelectorAll('.subtype-button').forEach(b => b.classList.remove('active'));
 
     // add active to clicked one
     this.classList.add('active');
 
-    // log its id
-    console.log(this.id);
+    // update global intent based on data-injury
+    intent = Number(this.dataset.injury);
+
+    // show/hide #showInjury only when "All deaths" is selected
+    if (intent === 0) {
+      document.querySelector('#showInjury').classList.remove('d-none');
+    } else {
+      document.querySelector('#showInjury').classList.add('d-none');
+    }
+
+    console.log("intent:", intent);
+
+    drawChart(outcome, intent, highlight)
+
   });
 });
 
@@ -131,20 +150,35 @@ injuryBtn.addEventListener('click', function () {
   injuryOn = !injuryOn;        // flip state
   this.classList.toggle('active', injuryOn); // sync class
 
-  const state = injuryOn ? 'on' : 'off';
+  highlight = injuryOn ? 'on' : 'off';
 
-  console.log(state)
-  // yourFunction(state); // call your function with "on" or "off"
-  drawChart(state)
+  console.log(highlight)
+  // yourFunction(highlight); // call your function with "on" or "off"
+  drawChart(outcome, intent, highlight)
 });
 
-function drawChart(injuryHighlight) {
+function drawChart(outcome, intent, injuryHighlight) {
 
+  console.log('Drawing chart for', outcome)
+  console.log('Injury related?', intent)
+  console.log('Highlighting injury?', injuryHighlight)
+
+  // injury highlight condition
   if (injuryHighlight === 'on') {
     color =  {"field": "Intent", "type": "nominal","legend": null}
   } else {
     color =  {"value": "#f5f5f5"}
   }
+
+  var filter
+  // injury FILTER condition
+  if (intent == 1) {
+    filter = "datum.InjuryRelated == 1"
+  } else {
+    filter = "datum.InjuryRelated == 0"
+  }
+
+  console.log(filter)
 
   var spec = {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
@@ -186,7 +220,7 @@ function drawChart(injuryHighlight) {
   },
   "transform": [
 {
-  "filter": "datum.InjuryRelated == 0"
+  "filter": filter
 },
 {
   "calculate": "(datum.agegroup == '<1' ? 1 : datum.agegroup == '1 - 4' ? 2 : datum.agegroup == '5 - 9' ? 3 : datum.agegroup == '10 - 14' ? 4 : datum.agegroup == '15 - 24' ? 5 : datum.agegroup == '25 - 34' ? 6 : datum.agegroup == '35 - 44' ? 7 : datum.agegroup == '45 - 54' ? 8 : datum.agegroup == '55 - 64' ? 9 : datum.agegroup == '65+' ? 10 : datum.agegroup == 'All ages' ? 12 : null)",
@@ -278,7 +312,7 @@ vegaEmbed('#chart', spec).then(result => {
 
 }
 
-drawChart()
+drawChart(outcome, intent, highlight)
 
 function showOnHover(event) {
 
