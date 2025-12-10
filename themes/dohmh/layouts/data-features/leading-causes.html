@@ -163,6 +163,17 @@ function drawChart(outcome, intent, injuryHighlight) {
   console.log('Injury related?', intent)
   console.log('Highlighting injury?', injuryHighlight)
 
+
+
+  var filter
+  // injury FILTER condition
+  if (intent == 1) {
+    filter = "datum.InjuryRelated == 1"
+    injuryHighlight = 'off'
+  } else {
+    filter = "datum.InjuryRelated == 0"
+  }
+
   // injury highlight condition
   if (injuryHighlight === 'on') {
     color =  {"field": "Intent", "type": "nominal","legend": null}
@@ -170,15 +181,7 @@ function drawChart(outcome, intent, injuryHighlight) {
     color =  {"value": "#f5f5f5"}
   }
 
-  var filter
-  // injury FILTER condition
-  if (intent == 1) {
-    filter = "datum.InjuryRelated == 1"
-  } else {
-    filter = "datum.InjuryRelated == 0"
-  }
 
-  console.log(filter)
 
   var spec = {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
