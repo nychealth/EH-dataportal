@@ -46,6 +46,9 @@
       <div class="row my-2">
         <div class="col-md-9">
             <div id="chart"></div>
+            <div class="border-top fs-xs">
+              <p><em>Causes of death with very low counts are not shown.</em></p>
+            </div>
         </div>
 
         <div class="col-md-3">
@@ -90,45 +93,6 @@ var highlight = 'off'       // on or off (injury highlight)
 
 const injuryBtn = document.getElementById('showInjury');
 let injuryOn = false; // record keeper
-
-var rankConfig = [
-  {
-    "position": 1,
-    "label": "Top"
-  },
-    {
-    "position": 2,
-    "label": "2nd leading"
-  },
-    {
-    "position": 4,
-    "label": "4th leading"
-  },
-    {
-    "position": 5,
-    "label": "5th leading"
-  },
-    {
-    "position": 6,
-    "label": "6th leading"
-  },
-    {
-    "position": 7,
-    "label": "7th leading"
-  },
-    {
-    "position": 8,
-    "label": "8th leading"
-  },
-    {
-    "position": 9,
-    "label": "9th leading"
-  },
-    {
-    "position": 10,
-    "label": "10th leading"
-  }
-]
 
 // TYPE BUTTONS
 document.querySelectorAll('.type-button').forEach(btn => {
@@ -321,7 +285,16 @@ function drawChart(outcome, intent, injuryHighlight) {
       "scale": {"range": [200, 10000]},
       "legend": null
     },
-    "stroke": {
+    "opacity": {
+      "condition": {
+        "param": "hover",
+        "empty": false,
+        "value": 1
+      },
+      "value": 0.65
+    },
+    "color": color,
+        "stroke": {
       "condition": [
         {
           "test": "datum.Intent === 'Injury'",
@@ -339,16 +312,7 @@ function drawChart(outcome, intent, injuryHighlight) {
         },
       ],
       "value": 1
-    },
-    "opacity": {
-      "condition": {
-        "param": "hover",
-        "empty": false,
-        "value": 1
-      },
-      "value": 0.8
-    },
-    "color": color
+    }
 
     /*
     "tooltip": [
@@ -401,9 +365,12 @@ function showOnHover(event) {
 
     // console.log('Hovered over:', datum);
 
+    var cause = datum.cause_text.replace("Injury: ", ""); // Remove 'Injury: ' from cause field, since we're also using Intent field below
+
+
     document.getElementById('agePrint').innerHTML = datum['agegroup'];
     document.getElementById('causePrint').innerHTML =
-      (datum.Intent ? datum.Intent + ': ' : '') + datum.cause_text;
+      (datum.Intent ? datum.Intent + ': ' : '') + cause;
 
     document.getElementById('flagNote').innerHTML = datum.flag === '*' ? 'Unstable rate due to high relative standard error.' : ''
 
