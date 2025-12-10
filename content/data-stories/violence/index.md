@@ -27,7 +27,7 @@ keywords:
     "neighborhoods",
   ]
 image: ds-violence.jpg
-vega: true
+
 photocredit: "Benjamin Kanter/Mayoral Photography Office, City of New York"
 related:
   - title: "Injury deaths in NYC"

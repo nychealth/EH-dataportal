@@ -31,8 +31,8 @@ related:
     url: "data-stories/traffic-and-air-pollution/"
   - title: "Real-Time Air Quality: PM2.5 in NYC"
     url: "data-features/realtime-air-quality/"
-  - title: "Air quality during COVID-19"
-    url: "data-stories/air-quality-and-covid/"
+  - title: "NYC is working to protect your health — but we can’t do it alone"
+    url: "data-stories/federal-funding/"
 ---
 
 {{< updateflag data=`[

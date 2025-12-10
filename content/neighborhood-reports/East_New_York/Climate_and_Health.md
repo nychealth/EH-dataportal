@@ -9,6 +9,6 @@ type: nr-output
 seo_title: "Climate and Health in East New York"
 seo_description: "Climate and Health data profile for the East New York neighborhood of NYC."
 seo_image: "images/nyc_health_report_climate_health.jpg"
-vega: true
-arquero: true
+
+
 ---

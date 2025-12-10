@@ -27,10 +27,10 @@ photocredit: "Will Steacy/NYC & Company"
 related:
   - title: "Economic stability creates health"
     url: "data-stories/economic-stability/"
+  - title: "Raising the minimum wage would save lives"
+    url: "data-features/minimum-wage"
   - title: "A walk through history"
     url: "data-stories/block-by-block/"
-  - title: "Health, housing, and history"
-    url: "data-stories/housing/"
 ---
 
 {{< updateflag data=`[

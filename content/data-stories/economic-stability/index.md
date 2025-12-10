@@ -24,12 +24,12 @@ keywords:
 image: CrownHeights_JulienneSchaer-065.JPG
 photocredit: Julienne Schaer/NYC & Company
 related:
-  - title: "Housing creates health"
-    url: "data-stories/housing-creates-health/"
-  - title: "The racial wealth gap and public health equity"
-    url: "data-stories/racial-wealth-gap/"
+  - title: "Raising the minimum wage would save lives"
+    url: "data-features/minimum-wage"
   - title: "A walk through history"
     url: "data-stories/block-by-block/"
+  - title: "Housing creates health"
+    url: "data-stories/housing-creates-health/"
 ---
 
 {{< updateflag data=`[

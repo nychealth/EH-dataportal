@@ -1,0 +1,46 @@
+{{/*
+Example usage:
+  {{< csvtable src="data/mytable.csv"             
+               datatable="true"
+               paging="true"
+               search="true"
+               ordering="true"
+               maxheight="50vh"
+               download="true"
+  >}}
+
+  src: uses a local src in the content directory
+  datatable: if true, it will use datatables.net to enhance the table
+  paging: if true, it will paginate the table
+  search: if true, it will add a search field to the table
+  ordering: if true, will add column sorting
+  maxheight: if true, will set a maxheight and vertical scrolling in the table. 
+  download: add download button
+
+*/}}
+
+{{ $src := .Get "src" }}
+{{ $maxheight := .Get "maxheight" | default "" }}
+{{ $dt := .Get "datatable" | default "false" | lower }}
+{{ $paging := .Get "paging" | default "true" | lower }}
+{{ $search := .Get "search" | default "true" | lower }}
+{{ $ordering := .Get "ordering" | default "true" | lower }}
+{{ $download := .Get "download" | default "true" | lower }}
+
+{{ $file := .Page.Resources.GetMatch $src }}
+
+{{ if not $file }}
+  <p><strong>Error:</strong> CSV file "{{ $src }}" not found.</p>
+{{ else }}
+  {{ $content := partial "render-table.html" (dict
+      "file" $file
+      "datatable" $dt
+      "paging" $paging
+      "search" $search
+      "ordering" $ordering
+      "maxheight" $maxheight
+      "download" $download
+  ) }}
+
+  {{ $content | safeHTML }}
+{{ end }}
