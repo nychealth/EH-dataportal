@@ -630,13 +630,31 @@ const renderTrendChart = (
                                     "as": "labelValue"
                                 },
 
-                                // PASS 3: final pass
+                                // PASS 3: 
                                 {
                                     "window": [{"op": "lag", "field": "labelValue", "as": "prevLabel3"}],
                                     "sort": [{"field": "endDateValue", "order": "ascending"}]
                                 },
                                 {
                                     "calculate": "datum.prevLabel3 === null ? datum.labelValue : (datum.labelValue - datum.prevLabel3 < 0.05 * datum.maxChartVal ? datum.prevLabel3 + 0.05 * datum.maxChartVal : datum.labelValue)",
+                                    "as": "labelValue"
+                                },
+                                  // PASS 4:
+                                {
+                                    "window": [{"op": "lag", "field": "labelValue", "as": "prevLabel4"}],
+                                    "sort": [{"field": "endDateValue", "order": "ascending"}]
+                                },
+                                {
+                                    "calculate": "datum.prevLabel4 === null ? datum.labelValue : (datum.labelValue - datum.prevLabel4 < 0.05 * datum.maxChartVal ? datum.prevLabel4 + 0.05 * datum.maxChartVal : datum.labelValue)",
+                                    "as": "labelValue"
+                                },
+                                    // PASS 5:
+                                {
+                                    "window": [{"op": "lag", "field": "labelValue", "as": "prevLabel5"}],
+                                    "sort": [{"field": "endDateValue", "order": "ascending"}]
+                                },
+                                {
+                                    "calculate": "datum.prevLabel5 === null ? datum.labelValue : (datum.labelValue - datum.prevLabel5 < 0.05 * datum.maxChartVal ? datum.prevLabel5 + 0.05 * datum.maxChartVal : datum.labelValue)",
                                     "as": "labelValue"
                                 }
                         ],
