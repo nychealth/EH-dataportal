@@ -7,7 +7,7 @@ draft: false
 seo_title: "Interactive heat vulnerability index"
 seo_description: "Data on neighborhood-level vulnerability to heat's health effects in NYC."
 description: "Data on neighborhood-level vulnerability to heat's health effects in NYC."
-categories: ["climatehealth", "inequality", "housing"]
+categories: ["climatehealth", "inequality", "housing", "accessibility"]
 keywords:
   [
     "interactive",

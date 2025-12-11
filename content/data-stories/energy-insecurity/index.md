@@ -6,7 +6,8 @@ draft: false
 seo_title: "Affordable energy is key to health and climate resilience"
 seo_description: "A data story about the health impacts from climate change-driven energy insecurity."
 tags:
-categories: ["housing", "inequality", "climatehealth", "neighborhoods"]
+categories:
+  ["housing", "inequality", "climatehealth", "neighborhoods", "accessibility"]
 keywords:
   [
     "energy insecurity",

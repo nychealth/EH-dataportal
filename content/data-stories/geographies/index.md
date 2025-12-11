@@ -22,8 +22,8 @@ layout: single
 
 photocredit: "Edwin J. Torres/Mayoral Photography Office, City of New York"
 related:
-  - title: "Find your UHF"
-    url: "data-features/find-your-uhf/"
+  - title: "Proximity indicators"
+    url: "data-features/proximity/"
   - title: "Why we're working with you to redesign the data portal"
     url: "data-stories/codesign/"
   - title: "Neighborhood Reports: Asthma"

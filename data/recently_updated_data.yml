@@ -1,18 +1,22 @@
 ---
 featured:
+- copy: Accessible subway stations
+  link: data-explorer/accessibility/?id=2455
+- copy: Walking distance to an accessible subway station
+  link: data-explorer/accessibility/?id=2458
+- copy: Bus stops with audio announcements
+  link: data-explorer/accessibility/?id=2456
+- copy: Walking distance to an audio bus stop
+  link: data-explorer/accessibility/?id=2460
+- copy: Public bathroom availability
+  link: data-explorer/accessibility/?id=2457
+- copy: Difficulty walking
+  link: data-explorer/accessibility/?id=2459
 - copy: Premature mortality
   link: data-explorer/mortality/?id=2322
-- copy: Death (infants)
-  link: data-explorer/birth-outcomes/?id=5
-- copy: Preterm births
-  link: data-explorer/birth-outcomes/?id=1
-- copy: Elevated blood lead levels (under age 6)
-  link: data-explorer/lead/?id=2184
 - copy: Bicycle injury emergency department visits
   link: data-explorer/transportation-related-injuries/?id=2092
 - copy: Pedestrian injury emergency department visits
   link: data-explorer/transportation-related-injuries/?id=2094
 - copy: Fall-related emergency department visits (age 65+) 
   link: data-explorer/falls-among-older-adults/?id=2135
-- copy: Home fall-related emergency department visits (age 65+)
-  link: data-explorer/falls-among-older-adults/?id=2408

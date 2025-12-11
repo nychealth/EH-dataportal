@@ -7,6 +7,7 @@ seo_description: "Explore this summer's high temps and health effects."
 categories:
   - climatehealth
   - inequality
+  - accessibility
 keywords:
   [
     "interactive",
