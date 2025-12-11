@@ -30,7 +30,7 @@ keywords:
     "maintenance deficiencies",
   ]
 image: ds-housing.jpeg
-vega: true
+
 related:
   - title: "Housing creates health"
     url: "data-stories/housing-creates-health/"

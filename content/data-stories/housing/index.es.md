@@ -8,7 +8,7 @@ tags:
 categories: ["housing","inequality","childhealth","healthoutcomes","neighborhoods","injuryandviolence"]
 keywords: ["poverty","asthma","injustice","housing","social determinants","redlining","disinvestment","racism","renting","pests","maintenance","maintenance deficiencies"]
 image: ds-housing.jpeg
-vega: true
+
 ---
 ### Para la salud, el lugar importa
 ¿Qué determina si usted está saludable o no? Puede pensar en lo que come, si hace ejercicio, si fuma y los antecedentes médicos de su familia.

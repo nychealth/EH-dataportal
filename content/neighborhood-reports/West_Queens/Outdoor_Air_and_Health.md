@@ -9,6 +9,6 @@ type: nr-output
 seo_title: "Outdoor Air and Health in West Queens"
 seo_description: "Outdoor Air and Health data profile for the West Queens neighborhood of NYC."
 seo_image: "images/nyc_health_report_outdoor_air_health.jpg"
-vega: true
-arquero: true
+
+
 ---
