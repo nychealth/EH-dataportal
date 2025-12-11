@@ -121,6 +121,8 @@ function loadCauseData() {
 // GENERATE CAUSE MENU
 function updateCauseMenu(outcome, intent) {
 
+  document.getElementById('buttonTitle').innerHTML = 'Cause'
+
   const menu = document.getElementById("causeMenu");
   menu.innerHTML = ""; // Clear previous items
 
@@ -266,7 +268,6 @@ document.querySelectorAll('.subtype-button').forEach(btn => {
 
     drawChart(outcome, intent, highlight)
     updateCauseMenu(outcome, intent);
-
 
   });
 });
