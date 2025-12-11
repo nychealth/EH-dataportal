@@ -13,23 +13,24 @@ keywords:
 indicators:
   - header: Accessible transit and public space
     IndicatorID:
-      - 2391
       - 2455
-      - 2456
-      - 2457
       - 2458
+      - 2391
+      - 2456
       - 2460
-  - header: Housing and access
+      - 2457
+  - header: Disability types
     IndicatorID:
-      - 2408
-      - 2377
       - 2145
       - 2459
       - 2461
       - 2462
       - 2463
       - 2464
-  - header:
+  - header: Housing
+    IndicatorID:
+      - 2408
+      - 2377
 related:
   - title: "Proximity indicators"
     url: "data-features/proximity/"
