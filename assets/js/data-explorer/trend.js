@@ -550,16 +550,7 @@ const renderTrendChart = (
                             "title": null,
                             "axis": {"tickCount": 4},
                             "scale": {"domainMin": 0, "nice": true}
-                        },
-                        "tooltip": [
-                            {
-                                "title": "Time",
-                                "field": "TimePeriod",
-                                "type": "nominal"
-                            },
-                            {"title": "Group", "field": comp_group_col},
-                            {"title": comparisonToolTipLabel, "field": "valueWithDisplay"}
-                        ]
+                        }
                     },
                     "layer": [
                         {
@@ -574,6 +565,17 @@ const renderTrendChart = (
                                     "strokeWidth": 2.5,
                                     "tooltip": true
                                 }
+                            },
+                            "encoding": {
+                                "tooltip": [
+                                    {
+                                        "title": "Time",
+                                        "field": "TimePeriod",
+                                        "type": "nominal"
+                                    },
+                                    {"title": "Group", "field": comp_group_col},
+                                    {"title": comparisonToolTipLabel, "field": "valueWithDisplay"}
+                                     ]
                             }
                         },
                         {
@@ -662,7 +664,10 @@ const renderTrendChart = (
                                 "y": {"field": "labelValue"},
                                 "text": {
                                         "field": comp_group_col,
-                                }
+                                },
+                                "tooltip": [
+                                    {"title": "Group", "field": comp_group_col},
+                                 ]
                             },
                             "mark": {
                                 "type": "text",
