@@ -1,6 +1,6 @@
 ---
 title: "Proximity indicators"
-date: 2025-08-27T11:51:01-04:00
+date: 2025-12-10T11:51:01-04:00
 draft: false
 seo_title: "Proximity indicators"
 seo_description: "How we estimate population-level access to important resources."
