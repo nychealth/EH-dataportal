@@ -6,8 +6,15 @@
     <description>Recent content in Publicspace on Environment &amp; Health Data Portal</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 02 Sep 2025 07:56:00 -0400</lastBuildDate>
+    <lastBuildDate>Wed, 10 Dec 2025 11:51:01 -0400</lastBuildDate>
     <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/categories/publicspace/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Proximity indicators</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/proximity/</link>
+      <pubDate>Wed, 10 Dec 2025 11:51:01 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/proximity/</guid>
+      <description>&lt;p&gt;How close people live to important resources, like transit, schools, or clinics, affects their ability to use them.&lt;/p&gt;&#xA;&lt;p&gt;So, we&amp;rsquo;ve calculated a series of &lt;a href=&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/accessibility/?id=2391#display=summary&#34;&gt;&amp;lsquo;proximity&amp;rsquo; indicators&lt;/a&gt; - the percent of each neighborhood&amp;rsquo;s population that lives within walking distance to parks, subway stations, and more.&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;To calculate these indicators,&lt;/strong&gt; we calculate an area that is the walking distance around points of interest, and then determine a geography&amp;rsquo;s population that is inside this area. In this example, we&amp;rsquo;re determining the percent of each neighborhood&amp;rsquo;s population that lives within walking distance of an accessible subway stop.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Flood Vulnerability Index</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/flood-vulnerability-index/</link>
@@ -105,6 +112,13 @@
       <pubDate>Wed, 08 Sep 2021 11:14:56 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/beaches/</guid>
       <description>&lt;p&gt;One month before New York City&amp;rsquo;s beaches open to the public, the Health Departments starts sampling and monitoring beaches. Sampling provides data about current water quality conditions, and monitoring identifies sources of pollution that affect water quality.&lt;/p&gt;&#xA;&lt;p&gt;Each beach is monitored and sampled every week, except for Rockaway and Breezy Point beaches, which are sampled twice each week. Samples are tested for bacteria, debris, animal waste, medical or infectious waste, toxic contaminants, petroleum products, and sewage and wastewater discharge following heavy rainfall.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Accessibility</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/accessibility/</link>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/accessibility/</guid>
+      <description>&lt;p&gt;About 10% of New Yorkers have a disability with varying access needs. The environment can create barriers to meet those needs, or remove those barriers.&lt;/p&gt;&#xA;&lt;p&gt;For example, when someone who needs electric medical equipment has access to reliable and affordable energy, or someone who uses a wheelchair or scooter has access to smooth, crack-free streets and sidewalks, and transit stations with working elevators. While there is no one-size-fits-all approach to ensuring accessibility in every context, there are so many ways to improve it: we can ensure ASL interpretation is available at doctor’s offices and safety trainings, evacuation plans for storms include guidance for people using mobility aids, and parks are close and easy to visit for physical activity.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Active design</title>

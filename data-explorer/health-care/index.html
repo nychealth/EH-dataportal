@@ -246,6 +246,8 @@
                                         <div class="dropdown-menu wider-menu" aria-labelledby="nav-item-topic-top">
                                             <ul class="extensible-list p-0">
                                                 
+                                                    <a class="" href="/IndicatorPublic/key-topics/accessibility/"> <li class="">Accessibility</li></a>
+                                                    <hr class="my-1">
                                                     <a class="" href="/IndicatorPublic/key-topics/airquality/"> <li class="">Air quality</li></a>
                                                     <hr class="my-1">
                                                     <a class="" href="/IndicatorPublic/key-topics/childhealth/"> <li class="">Child health</li></a>
@@ -387,6 +389,8 @@
                                                 <div class="dropdown-menu wider-menu" aria-labelledby="nav-item-topic">
                                                     <ul class="extensible-list p-0">
                                                         
+                                                            <a class="" href="/IndicatorPublic/key-topics/accessibility/"> <li class="">Accessibility</li></a>
+                                                            <hr class="my-1">
                                                             <a class="" href="/IndicatorPublic/key-topics/airquality/"> <li class="">Air quality</li></a>
                                                             <hr class="my-1">
                                                             <a class="" href="/IndicatorPublic/key-topics/childhealth/"> <li class="">Child health</li></a>
@@ -1599,6 +1603,9 @@ Health insurance coverage is associated with many health benefits. People … <a
                          <div class="card-body bg-white">
                              <ul>
                                  
+                                     <li><a href="/IndicatorPublic/data-explorer/accessibility/">Accessibility</a>
+                                     </li>
+                                 
                                      <li><a href="/IndicatorPublic/data-explorer/asthma/">Asthma</a>
                                      </li>
                                  
@@ -1871,6 +1878,9 @@ Health insurance coverage is associated with many health benefits. People … <a
                         <div class="card-body bg-white">
                             <ul>
                                 
+                                    <li><a href="/IndicatorPublic/data-explorer/accessibility/">Accessibility</a>
+                                    </li>
+                                
                                     <li><a href="/IndicatorPublic/data-explorer/active-design/">Active design</a>
                                     </li>
                                 
@@ -1930,7 +1940,9 @@ Health insurance coverage is associated with many health benefits. People … <a
                         <div class="card-body bg-white">
                             <ul>
 
-                                <li><a href="/IndicatorPublic/data-explorer/active-design/">Active design</a></li>
+                                <li><a href="/IndicatorPublic/data-explorer/accessibility/">Accessibility</a></li>
+
+                                    <li><a href="/IndicatorPublic/data-explorer/active-design/">Active design</a></li>
 
                                     <li><a href="/IndicatorPublic/data-explorer/air-quality/">Air quality</a></li>
 
@@ -2254,7 +2266,7 @@ Health insurance coverage is associated with many health benefits. People … <a
         </h1>
         <h2
             class="d-none">
-            Adults with any kind of health insurance. People with health insurance are more likely to have a regular doctor, receive preventive care services, better manage chronic health conditions, have longer life expectancy, and more.
+            Adults with any kind of health insurance. People with health insurance are more likely to have a regular doctor, receive preventive care services, better manage chronic health conditions, and have longer life expectancy.
         </h2>
 
 
@@ -2285,6 +2297,81 @@ Health insurance coverage is associated with many health benefits. People … <a
         <h2
             class="d-none">
             Adults reporting that their health is excellent, very good, or good.
+        </h2>
+
+
+    
+
+        
+
+        <h1
+            id="IndicatorID-2459"
+            class="d-none">
+            Difficulty walking
+        </h1>
+        <h2
+            class="d-none">
+            People with disabilities or access needs that make it difficult to walk or climb stairs. When transit and buildings have more accessible infrastructure like elevators and ramps it can make NYC easier to navigate for all New Yorkers. People with ambulatory difficulties may also need accommodation to navigate their home.
+        </h2>
+
+
+    
+
+        
+
+        <h1
+            id="IndicatorID-2461"
+            class="d-none">
+            Cognitive difficulty
+        </h1>
+        <h2
+            class="d-none">
+            People reporting trouble remembering, concentrating, or making decisions. Individuals with this difficulty may have access needs or benefit from accommodations.
+        </h2>
+
+
+    
+
+        
+
+        <h1
+            id="IndicatorID-2462"
+            class="d-none">
+            Hearing difficulty
+        </h1>
+        <h2
+            class="d-none">
+            People reporting serious trouble hearing. Individuals with trouble hearing may have access needs or benefit from accommodations.
+        </h2>
+
+
+    
+
+        
+
+        <h1
+            id="IndicatorID-2463"
+            class="d-none">
+            Self-care difficulty
+        </h1>
+        <h2
+            class="d-none">
+            People reporting trouble practicing self-care. These individuals have trouble with essential self-care activities such as bathing, dressing, and getting around their residence. They may benefit from assistance or accommodations.
+        </h2>
+
+
+    
+
+        
+
+        <h1
+            id="IndicatorID-2464"
+            class="d-none">
+            Vision difficulty
+        </h1>
+        <h2
+            class="d-none">
+            People reporting blindness or serious trouble seeing (even when wearing glasses). These individuals may have access needs or benefit from accommodations.
         </h2>
 
 
@@ -2362,7 +2449,10 @@ Health insurance coverage is associated with many health benefits. People … <a
                   <hr class="my-2">
                 </div>
                   <div>
-<a class="text-black" href="/IndicatorPublic/key-topics/health-equity/">
+<a class="text-black" href="/IndicatorPublic/key-topics/accessibility/">
+            Accessibility
+          </a>
+          <hr class="my-2"><a class="text-black" href="/IndicatorPublic/key-topics/health-equity/">
             Inequality and health inequities
           </a>
           <hr class="my-2"></div>
@@ -2783,6 +2873,46 @@ Health insurance coverage is associated with many health benefits. People … <a
 
                 
 
+                    
+
+                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2459 );
+                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
+                    indicatorDropdown.innerHTML += "<button class='indicator-dropdown-item dropdown-item' onclick='loadIndicator(2459)' data-indicator-id='2459'>" + this_indicatorName + `</button>`;
+
+                
+
+                    
+
+                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2461 );
+                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
+                    indicatorDropdown.innerHTML += "<button class='indicator-dropdown-item dropdown-item' onclick='loadIndicator(2461)' data-indicator-id='2461'>" + this_indicatorName + `</button>`;
+
+                
+
+                    
+
+                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2462 );
+                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
+                    indicatorDropdown.innerHTML += "<button class='indicator-dropdown-item dropdown-item' onclick='loadIndicator(2462)' data-indicator-id='2462'>" + this_indicatorName + `</button>`;
+
+                
+
+                    
+
+                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2463 );
+                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
+                    indicatorDropdown.innerHTML += "<button class='indicator-dropdown-item dropdown-item' onclick='loadIndicator(2463)' data-indicator-id='2463'>" + this_indicatorName + `</button>`;
+
+                
+
+                    
+
+                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2464 );
+                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
+                    indicatorDropdown.innerHTML += "<button class='indicator-dropdown-item dropdown-item' onclick='loadIndicator(2464)' data-indicator-id='2464'>" + this_indicatorName + `</button>`;
+
+                
+
         }
 
 
@@ -2814,6 +2944,26 @@ Health insurance coverage is associated with many health benefits. People … <a
                     indicator = indicators.find(indicator => indicator.IndicatorID ===  2232 );
                     this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
                     indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' data-indicator-id='2232'>" + this_indicatorName + `<i class="indicator-arrows fas fa-arrow-circle-right float-right font-weight-bold hide" id="arrow-2232" aria-hidden="true"></i></button>`;
+
+                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2459 );
+                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
+                    indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' data-indicator-id='2459'>" + this_indicatorName + `<i class="indicator-arrows fas fa-arrow-circle-right float-right font-weight-bold hide" id="arrow-2459" aria-hidden="true"></i></button>`;
+
+                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2461 );
+                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
+                    indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' data-indicator-id='2461'>" + this_indicatorName + `<i class="indicator-arrows fas fa-arrow-circle-right float-right font-weight-bold hide" id="arrow-2461" aria-hidden="true"></i></button>`;
+
+                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2462 );
+                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
+                    indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' data-indicator-id='2462'>" + this_indicatorName + `<i class="indicator-arrows fas fa-arrow-circle-right float-right font-weight-bold hide" id="arrow-2462" aria-hidden="true"></i></button>`;
+
+                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2463 );
+                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
+                    indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' data-indicator-id='2463'>" + this_indicatorName + `<i class="indicator-arrows fas fa-arrow-circle-right float-right font-weight-bold hide" id="arrow-2463" aria-hidden="true"></i></button>`;
+
+                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2464 );
+                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
+                    indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' data-indicator-id='2464'>" + this_indicatorName + `<i class="indicator-arrows fas fa-arrow-circle-right float-right font-weight-bold hide" id="arrow-2464" aria-hidden="true"></i></button>`;
         }
 
         function createCitation() {

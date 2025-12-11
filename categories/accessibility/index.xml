@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Accessibility on Environment &amp; Health Data Portal</title>
+    <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/categories/accessibility/</link>
+    <description>Recent content in Accessibility on Environment &amp; Health Data Portal</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 10 Dec 2025 11:51:01 -0400</lastBuildDate>
+    <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/categories/accessibility/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Interactive Heat Vulnerability Index</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/hvi/</link>
+      <pubDate>Wed, 25 Aug 2021 10:49:05 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/hvi/</guid>
+      <description>&lt;p&gt;Hot weather is dangerous. In New York City – and across the country – more people die from heat than from all other natural disasters combined. As our climate continues to warm, we expect more heat events that can put people’s lives at risk.&lt;/p&gt;&#xA;&lt;p&gt;In New York City, the risk of death from heat is unfairly distributed across neighborhoods. We identified neighborhood environmental and social factors associated with increased risk to create a heat vulnerability index. This can identify neighborhoods at highest risk and help inform neighborhood-level policies and programs that can protect people - sending resources to where they&amp;rsquo;re needed the most.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Your heat story</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-story/</link>
+      <pubDate>Mon, 28 Apr 2025 11:51:01 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-story/</guid>
+      <description>&lt;p&gt;As climate change worsens, extreme heat becomes more frequent and more intense. &lt;a href=&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/localtemp/&#34;&gt; Cities get even hotter because of the urban heat island effect.&lt;/a&gt; But even within New York City, some areas are hotter than others.&lt;/p&gt;&#xA;&lt;p&gt;Heat can &lt;a href=&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/heat/&#34;&gt; harm people’s health and more than 500 people die from heat-related causes each year in New York City.&lt;/a&gt; But these health impacts are not distributed equally; historic patterns of discrimination and disinvestment create disproportionate public health impacts from heat. For example, &lt;a href=&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-report/&#34;&gt;death rates are higher among Black New Yorkers and in neighborhoods with more residents living below the poverty line.&lt;/a&gt;&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Proximity indicators</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/proximity/</link>
+      <pubDate>Wed, 10 Dec 2025 11:51:01 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/proximity/</guid>
+      <description>&lt;p&gt;How close people live to important resources, like transit, schools, or clinics, affects their ability to use them.&lt;/p&gt;&#xA;&lt;p&gt;So, we&amp;rsquo;ve calculated a series of &lt;a href=&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/accessibility/?id=2391#display=summary&#34;&gt;&amp;lsquo;proximity&amp;rsquo; indicators&lt;/a&gt; - the percent of each neighborhood&amp;rsquo;s population that lives within walking distance to parks, subway stations, and more.&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;To calculate these indicators,&lt;/strong&gt; we calculate an area that is the walking distance around points of interest, and then determine a geography&amp;rsquo;s population that is inside this area. In this example, we&amp;rsquo;re determining the percent of each neighborhood&amp;rsquo;s population that lives within walking distance of an accessible subway stop.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Flood Vulnerability Index</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/flood-vulnerability-index/</link>
+      <pubDate>Wed, 28 May 2025 11:51:01 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/flood-vulnerability-index/</guid>
+      <description>&lt;p&gt;The Flood Vulnerability Index estimates the vulnerability to flooding across NYC. It combines information about &lt;strong&gt;exposure&lt;/strong&gt; (estimated flood extents under different current and future scenarios) with information about &lt;strong&gt;susceptibility to harm and capacity to recover&lt;/strong&gt;.&lt;/p&gt;&#xA;&lt;p&gt;This information is used to estimate areas&amp;rsquo; relative vulnerability to flooding to storm surges, and to tidal flooding. To account for changes in sea levels and flood plains, there are Flood Vulnerability Indices for three time periods: present-day (the 2020s), the 2050s, and the 2080s.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Energy is critical for health and climate resilience — but not all New Yorkers may be able to afford it</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/energy-insecurity/</link>
+      <pubDate>Tue, 24 Jun 2025 09:01:00 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/energy-insecurity/</guid>
+      <description>&lt;p&gt;Whether it’s electricity powering air conditioning in the summer, gas or oil heating in the winter, or the other forms that energy can take, people need energy to stay healthy and safe. Energy also powers life-sustaining medical equipment, keeps refrigerators running at safe temperatures for food and medicines, and lets us charge phones needed to call for help and get information during an emergency. But not every New Yorker can afford the energy they need. While conserving energy is good for the environment, being forced to go without energy when it’s needed due to cost is dangerous to health. When people can’t afford to pay their energy bill or to purchase or maintain a heating or cooling system, it’s a form of energy insecurity. Due to rising outdoor temperatures, the demand for energy to keep us safe goes up, and so do the costs.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Accessibility</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/key-topics/accessibility/</link>
+      <pubDate>Tue, 03 Jun 2025 12:33:17 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/key-topics/accessibility/</guid>
+      <description>&lt;p&gt;About 10% of New Yorkers have a disability with varying access needs. The environment can create barriers to meet those needs, or remove those barriers.&lt;/p&gt;&#xA;&lt;p&gt;For example, when someone who needs electric medical equipment has access to reliable and affordable energy, or someone who uses a wheelchair or scooter has access to smooth, crack-free streets and sidewalks, and transit stations with working elevators. While there is no one-size-fits-all approach to ensuring accessibility in every context, there are so many ways to improve it: we can ensure ASL interpretation is available at doctor’s offices and safety trainings, evacuation plans for storms include guidance for people using mobility aids, and parks are close and easy to visit for physical activity.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Public space creates health</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/public-space-creates-health/</link>
+      <pubDate>Mon, 19 Aug 2024 01:18:56 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/public-space-creates-health/</guid>
+      <description>&lt;p&gt;Health is determined by many factors. People tend to be healthier when they have economic stability, live in quality housing and have access to public space and safe, connected communities. In 2020, the NYC Health Department held a series of community conversations with residents and local stakeholders across 26 neighborhoods. New Yorkers shared personal stories about their priorities for building healthier neighborhoods, healthier childhoods and more. This is one part of a three-part series on how &lt;strong&gt;&lt;a href=&#34;../housing-creates-health&#34;&gt;housing&lt;/a&gt;, &lt;a href=&#34;../economic-stability/&#34;&gt;economic stability&lt;/a&gt; and public space create health.&lt;/strong&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How power outages affect health</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/poweroutages/</link>
+      <pubDate>Mon, 10 Jan 2022 12:34:38 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/poweroutages/</guid>
+      <description>&lt;p&gt;Imagine your child has asthma. One summer night, a powerful storm rolls in and knocks the power out.&lt;/p&gt;&#xA;&lt;p&gt;Your child starts to have trouble breathing. Usually, you’d use a home nebulizer, an electric machine that turns liquid medicine into a mist that your child breathes in through a face mask.&lt;/p&gt;&#xA;&lt;p&gt;But the power is out. Without the nebulizer, your child’s breathing gets worse - and you wonder, is it time to go to the hospital again?&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Accessibility</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/accessibility/</link>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/accessibility/</guid>
+      <description>&lt;p&gt;About 10% of New Yorkers have a disability with varying access needs. The environment can create barriers to meet those needs, or remove those barriers.&lt;/p&gt;&#xA;&lt;p&gt;For example, when someone who needs electric medical equipment has access to reliable and affordable energy, or someone who uses a wheelchair or scooter has access to smooth, crack-free streets and sidewalks, and transit stations with working elevators. While there is no one-size-fits-all approach to ensuring accessibility in every context, there are so many ways to improve it: we can ensure ASL interpretation is available at doctor’s offices and safety trainings, evacuation plans for storms include guidance for people using mobility aids, and parks are close and easy to visit for physical activity.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Active design</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/active-design/</link>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/active-design/</guid>
+      <description>&lt;p&gt;Physical activity and healthy eating are among the leading ways to get and stay healthy.&lt;/p&gt;&#xA;&lt;p&gt;Active design is an applied, evidence-informed approach to improve physical, mental and social health outcomes through the design of the built environment.&lt;/p&gt;&#xA;&lt;p&gt;To improve health, we can:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Increase access to public parks and recreation&lt;/li&gt;&#xA;&lt;li&gt;Create pedestrian plazas, and maintain sidewalks&lt;/li&gt;&#xA;&lt;li&gt;Plant street trees&lt;/li&gt;&#xA;&lt;li&gt;Provide safer cycling infrastructure and secure bicycle storage&lt;/li&gt;&#xA;&lt;li&gt;Make stairways attractive and accessible&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Strategies like these can have a measurable effect on people’s ability to safely maintain their physical, mental, and social health.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Falls among older adults</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/falls-among-older-adults/</link>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/falls-among-older-adults/</guid>
+      <description>&lt;p&gt;Each year, one in three older adults (65 years and older) falls. Among New York City&amp;rsquo;s older adults, there are approximately 30,500 emergency department (ED) visits, 16,600 hospitalizations, and 300 deaths each year. Falls are not a normal part of aging, and research shows that many falls can be prevented.&lt;/p&gt;&#xA;&lt;h3&gt;Falls and the environment&lt;/h3&gt;&#xA;&lt;p&gt;Although falls can occur anywhere, falls among older adults frequently happen at home. More than one-half of fall-related hospitalizations among older adults were due to falls in the home. There are many risk factors for falls among older adults including previous falls, gait or balance problems, and use of multiple medications that interact with one another or cause side effects. Physical features of the environment can also put seniors at risk. Common fall risks hazards in homes include slippery surfaces, inadequate lighting, and tripping hazards, such as clutter, loose rugs, or uneven flooring.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Health care</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/health-care/</link>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/health-care/</guid>
+      <description>&lt;p&gt;Health care is a valuable tool to stay healthy.&lt;/p&gt;&#xA;&lt;p&gt;Health insurance coverage is associated with many health benefits. People with health insurance are more likely to have a regular doctor, receive preventive care services, better manage chronic health conditions, have longer life expectancy, and more.&lt;/p&gt;&#xA;&lt;p&gt;However, not all New Yorkers can access appropriate amounts of care. Many New Yorkers remain uninsured. People without access to appropriate health care don&amp;rsquo;t receive the care they need to stay healthy. They may postpone care, be unable to afford medication or treatment, and become sicker and die earlier than people with good health insurance and good health care.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Housing safety</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/housing-safety/</link>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/housing-safety/</guid>
+      <description>&lt;p&gt;Most people spend most of their time in their home. That makes the home a crucial environment that can affect one&amp;rsquo;s health - both in terms of safety characteristics within the home, and in terms of factors that affect housing stability.&lt;/p&gt;&#xA;&lt;h3&gt;Safety characteristics&lt;/h3&gt;&#xA;&lt;p&gt;A home&amp;rsquo;s safety characteristics might include:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Air conditioning, which is a vital tool to protect people who are at risk of heat-related illness and death&lt;/li&gt;&#xA;&lt;li&gt;Electric medical equipment. People who rely on electric medical equipment are at risk during power outages.&lt;/li&gt;&#xA;&lt;li&gt;Grab bars in bathrooms, which can help older people and people with mobility impairments stay safe.&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
+    </item>
+    <item>
+      <title>Transportation-related injuries</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/transportation-related-injuries/</link>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/transportation-related-injuries/</guid>
+      <description>&lt;p&gt;Traffic injuries are no accident. Like other public health problems, they follow predictable patterns and can be prevented.  In NYC, traffic injuries, which include injuries among pedestrians, bicyclists, motorcyclists, motor vehicle occupants, and others, are a leading cause of injury-related hospitalizations and emergency department visits.&lt;/p&gt;&#xA;&lt;h3&gt;Traffic Safety and the Environment&lt;/h3&gt;&#xA;&lt;p&gt;Many factors contribute to traffic injuries, including human, vehicle and environmental factors. The built environment influences traffic injury outcomes by shaping the actions of road users, as well as mitigating the effects of crashes when they do happen. Built environment features for safer road design include: pedestrian islands, improved signal timing, automated enforcement, separated bicycle paths, speed humps, and more.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Walking, driving, and cycling</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/walking-driving-and-cycling/</link>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/walking-driving-and-cycling/</guid>
+      <description>&lt;p&gt;People get around New York City in many ways - public transit, walking, cycling, driving, and other modes too. When these individual behaviors are added up, they shape our city and our health.&lt;/p&gt;&#xA;&lt;p&gt;Our built environment influences these behaviors. The design of our streets and presence of infrastructure like bicycle lanes, well maintained sidewalks, safe street crossings, dedicated bus lanes and convenient access to the subway have the potential to increase both the usage and safety of these forms of transportation. Increased access and feeling of safety also impact many aspects of health, including physical activity and mental health. Meanwhile, car and truck traffic takes a toll on our public health, contributing to air pollution, transportation-related injuries, and climate change.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Active Design, Physical Activity and Health</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/neighborhood-reports/active_design_physical_activity_and_health/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/neighborhood-reports/active_design_physical_activity_and_health/</guid>
+      <description>&lt;p&gt;The design and conditions of buildings, streets, public transportation and parks influence physical activity, use of active transportation and other healthy behavior. A neighborhood&amp;rsquo;s features can also impact the safety of its residents.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

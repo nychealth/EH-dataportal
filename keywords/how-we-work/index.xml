@@ -23,6 +23,13 @@
       <description>&lt;p&gt;At the Environment and Health Data Portal, our mission is to make data easy to understand, access, and use. These principles extend to how we approach digital accessibility. New York City’s Local Law 26 requires City agencies to make their websites accessible. But this isn’t just a requirement — it’s also the best way we can serve our public. While there is no one-size-fits-all solution to digital accessibility since access needs can be as unique as people, we can take approaches that help our information reach a wider range of users.&lt;/p&gt;</description>
     </item>
     <item>
+      <title>Proximity indicators</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/about/proximity-indicators/</link>
+      <pubDate>Tue, 07 Jan 2025 08:49:22 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/about/proximity-indicators/</guid>
+      <description>&lt;p&gt;People&amp;rsquo;s ability to reach services with limited mobility is one practical way to describe accessibility. In this case, we focus on a proximity indicator for Accessible subway stations: the share of residents who live within a typical walking distance of an ADA-compliant subway station.&lt;/p&gt;&#xA;&lt;p&gt;&amp;ldquo;Proximity&amp;rdquo; indicators - the percent of a population living within walking distance to XXX.&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Link to indicators&lt;/li&gt;&#xA;&lt;li&gt;Link&lt;/li&gt;&#xA;&lt;li&gt;Link&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;&lt;strong&gt;So how do we calculate that?&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;h2&gt;1) Identify ADA-accessible subway stations&lt;/h2&gt;&#xA;&lt;p&gt;We start with the MTA Subway Stations dataset and keep only stations flagged as &lt;strong&gt;ADA-accessible&lt;/strong&gt;. These stations are the points where people with mobility needs can actually get into the subway system.&lt;/p&gt;</description>
+    </item>
+    <item>
       <title>New Data Explorer features</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/about/new-data-explorer-features/</link>
       <pubDate>Mon, 07 Oct 2024 08:49:22 -0400</pubDate>

@@ -6,7 +6,7 @@
     <description>Recent content in Heat-Related Illness on Environment &amp; Health Data Portal</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 01 Jun 2025 11:51:01 -0400</lastBuildDate>
+    <lastBuildDate>Tue, 03 Jun 2025 12:33:17 -0400</lastBuildDate>
     <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/heat-related-illness/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Interactive Heat Vulnerability Index</title>
@@ -28,6 +28,13 @@
       <pubDate>Mon, 30 Aug 2021 11:51:01 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-syndrome/</guid>
       <description>&lt;p&gt;The weather forecast is the best way to predict heat-related health outcomes.&lt;/p&gt;&#xA;&lt;p&gt;We can also track heat-related illness with near real-time electronic data from emergency departments at hospitals throughout NYC. These data include illnesses directly attributed to heat (including heat exhaustion, muscle cramps, fainting and heat stroke), not the full burden of heat-related health impacts.&lt;/p&gt;&#xA;&lt;p&gt;We track these outcomes citywide by using a system called &lt;strong&gt;syndromic surveillance&lt;/strong&gt; which lets us know how many people who visit the emergency room (ED) are being affected by certain health conditions. About 10,000 patients visit the ED per day in NYC, and reasons for their visits are captured in hospital records. These reasons are de-identified and sent to the Health Department. The Health Department then searches the records for diagnostic codes (when available) and words describing why patients are at the ED to track specific health conditions in near real-time and understand citywide trends.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Accessibility</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/key-topics/accessibility/</link>
+      <pubDate>Tue, 03 Jun 2025 12:33:17 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/key-topics/accessibility/</guid>
+      <description>&lt;p&gt;About 10% of New Yorkers have a disability with varying access needs. The environment can create barriers to meet those needs, or remove those barriers.&lt;/p&gt;&#xA;&lt;p&gt;For example, when someone who needs electric medical equipment has access to reliable and affordable energy, or someone who uses a wheelchair or scooter has access to smooth, crack-free streets and sidewalks, and transit stations with working elevators. While there is no one-size-fits-all approach to ensuring accessibility in every context, there are so many ways to improve it: we can ensure ASL interpretation is available at doctor’s offices and safety trainings, evacuation plans for storms include guidance for people using mobility aids, and parks are close and easy to visit for physical activity.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Stay safe from heat and air pollution</title>

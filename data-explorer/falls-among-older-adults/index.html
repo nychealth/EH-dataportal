@@ -246,6 +246,8 @@
                                         <div class="dropdown-menu wider-menu" aria-labelledby="nav-item-topic-top">
                                             <ul class="extensible-list p-0">
                                                 
+                                                    <a class="" href="/IndicatorPublic/key-topics/accessibility/"> <li class="">Accessibility</li></a>
+                                                    <hr class="my-1">
                                                     <a class="" href="/IndicatorPublic/key-topics/airquality/"> <li class="">Air quality</li></a>
                                                     <hr class="my-1">
                                                     <a class="" href="/IndicatorPublic/key-topics/childhealth/"> <li class="">Child health</li></a>
@@ -387,6 +389,8 @@
                                                 <div class="dropdown-menu wider-menu" aria-labelledby="nav-item-topic">
                                                     <ul class="extensible-list p-0">
                                                         
+                                                            <a class="" href="/IndicatorPublic/key-topics/accessibility/"> <li class="">Accessibility</li></a>
+                                                            <hr class="my-1">
                                                             <a class="" href="/IndicatorPublic/key-topics/airquality/"> <li class="">Air quality</li></a>
                                                             <hr class="my-1">
                                                             <a class="" href="/IndicatorPublic/key-topics/childhealth/"> <li class="">Child health</li></a>
@@ -1611,6 +1615,9 @@
                          <div class="card-body bg-white">
                              <ul>
                                  
+                                     <li><a href="/IndicatorPublic/data-explorer/accessibility/">Accessibility</a>
+                                     </li>
+                                 
                                      <li><a href="/IndicatorPublic/data-explorer/asthma/">Asthma</a>
                                      </li>
                                  
@@ -1883,6 +1890,9 @@
                         <div class="card-body bg-white">
                             <ul>
                                 
+                                    <li><a href="/IndicatorPublic/data-explorer/accessibility/">Accessibility</a>
+                                    </li>
+                                
                                     <li><a href="/IndicatorPublic/data-explorer/active-design/">Active design</a>
                                     </li>
                                 
@@ -1942,7 +1952,9 @@
                         <div class="card-body bg-white">
                             <ul>
 
-                                <li><a href="/IndicatorPublic/data-explorer/active-design/">Active design</a></li>
+                                <li><a href="/IndicatorPublic/data-explorer/accessibility/">Accessibility</a></li>
+
+                                    <li><a href="/IndicatorPublic/data-explorer/active-design/">Active design</a></li>
 
                                     <li><a href="/IndicatorPublic/data-explorer/air-quality/">Air quality</a></li>
 
@@ -2315,6 +2327,21 @@
 
     
 
+        
+
+        <h1
+            id="IndicatorID-2403"
+            class="d-none">
+            
+        </h1>
+        <h2
+            class="d-none">
+            
+        </h2>
+
+
+    
+
 <section data-pagefind-ignore="all" class="mt-lg-5">
     <div class="container-fluid mb-5">
         <div class="row">
@@ -2372,7 +2399,10 @@
                   <hr class="my-2">
                 </div>
                   <div>
-<a class="text-black" href="/IndicatorPublic/key-topics/housing/">
+<a class="text-black" href="/IndicatorPublic/key-topics/accessibility/">
+            Accessibility
+          </a>
+          <hr class="my-2"><a class="text-black" href="/IndicatorPublic/key-topics/housing/">
             Housing
           </a>
           <hr class="my-2"><a class="text-black" href="/IndicatorPublic/key-topics/injury-and-violence/">
@@ -2804,6 +2834,19 @@
 
                 
 
+                header = 'Safety';
+                indicatorDropdown.innerHTML += header.length ? '<div class="dropdown-title"><strong>' + header + '</strong></div>' : '';
+
+                
+
+                     defaultIndicatorId =  2403  
+
+                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2403 );
+                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
+                    indicatorDropdown.innerHTML += "<button class='indicator-dropdown-item dropdown-item' onclick='loadIndicator(2403)' data-indicator-id='2403'>" + this_indicatorName + `</button>`;
+
+                
+
         }
 
 
@@ -2840,6 +2883,15 @@
                     indicator = indicators.find(indicator => indicator.IndicatorID ===  2409 );
                     this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
                     indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' data-indicator-id='2409'>" + this_indicatorName + `<i class="indicator-arrows fas fa-arrow-circle-right float-right font-weight-bold hide" id="arrow-2409" aria-hidden="true"></i></button>`;
+
+                header = 'Safety';
+                indicatorButtons.innerHTML += header.length ? '<div class="pl-1 pt-2 home-label border">' + header + '</div>': '';
+
+                defaultIndicatorId =  2403 
+
+                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2403 );
+                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
+                    indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' data-indicator-id='2403'>" + this_indicatorName + `<i class="indicator-arrows fas fa-arrow-circle-right float-right font-weight-bold hide" id="arrow-2403" aria-hidden="true"></i></button>`;
         }
 
         function createCitation() {

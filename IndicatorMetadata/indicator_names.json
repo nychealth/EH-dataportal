@@ -21,7 +21,7 @@
   },
   "103": {
     "IndicatorID": 103,
-    "description": "The percent of households with incomes below the federal poverty level. Households without sufficient resources are often deprived of access to health care, good quality housing, and other resources that protect health.",
+    "description": "Households with incomes below the federal poverty level. Households without sufficient resources are often deprived of access to health care, good quality housing, and other resources that protect health.",
     "name": "Neighborhood poverty"
   },
   "107": {
@@ -261,7 +261,7 @@
   },
   "2086": {
     "IndicatorID": 2086,
-    "description": "Nonfatal hospitalizations due to bicycle injuries. Bicycle injury hospitalizations can indicate the overall safety of cycling in the city - for transportation, work, or fun.",
+    "description": "Nonfatal hospitalizations due to bicycle injuries. Bicycle injury hospitalizations can indicate the overall safety of cycling in the city.",
     "name": "Bicycle injury hospitalizations"
   },
   "2087": {
@@ -291,7 +291,7 @@
   },
   "2092": {
     "IndicatorID": 2092,
-    "description": "ED visits related to bicycle injuries.  Bicycle injury ED visits can indicate the overall safety of cycling in the city - for transportation, work, or fun.",
+    "description": "ED visits related to bicycle injuries.  Bicycle injury ED visits can indicate the overall safety of cycling in the city.",
     "name": "Bicycle injury emergency department visits"
   },
   "2093": {
@@ -382,7 +382,7 @@
   "2122": {
     "IndicatorID": 2122,
     "description": "ED visits for asthma due to ozone. These are part of the health burden of air pollution.",
-    "name": "Asthma emergency departments visits due to Ozone"
+    "name": "Asthma emergency department visits due to Ozone"
   },
   "2124": {
     "IndicatorID": 2124,
@@ -391,7 +391,7 @@
   },
   "2132": {
     "IndicatorID": 2132,
-    "description": "Adults with any kind of health insurance. People with health insurance are more likely to have a regular doctor, receive preventive care services, better manage chronic health conditions, have longer life expectancy, and more.",
+    "description": "Adults with any kind of health insurance. People with health insurance are more likely to have a regular doctor, receive preventive care services, better manage chronic health conditions, and have longer life expectancy.",
     "name": "Health insurance (adults)"
   },
   "2133": {
@@ -441,7 +441,7 @@
   },
   "2157": {
     "IndicatorID": 2157,
-    "description": "The percent of a neighborhood that is shaded by trees. Tree shade can lower a neighborhood's temperatures, can make it more comfortable and attractive to walk and stay active.",
+    "description": "The percent of a neighborhood that is shaded by trees. Tree shade can lower a neighborhood's temperature, making it more comfortable for physical activity.",
     "name": "Tree canopy cover"
   },
   "2158": {
@@ -876,12 +876,12 @@
   },
   "2416": {
     "IndicatorID": 2416,
-    "description": "Public litter baskets (trash  cans). Litter baskets are associated with a decrease in littering. Enclosed, non-wire baskets are generally better than wire baskets. Generally, sanitation supports public health by providing clean, healthy public spaces for people to live, work, and get around.",
+    "description": "Public litter baskets (trash cans). Litter baskets are associated with a decrease in littering. Enclosed, non-wire baskets are generally better than wire baskets. Sanitation supports public health by providing clean, healthy public spaces for people to live, work, and get around.",
     "name": "Litter basket coverage"
   },
   "2417": {
     "IndicatorID": 2417,
-    "description": "Adults who had probable depression. Depression is a common mental health condition that is characterized by feelings of sadness, difficulty concentrating, tiredness or reduced energy, and loss of interest in activities that used to bring enjoyment.",
+    "description": "Adults who had depression. Depression is a common mental health condition that is characterized by feelings of sadness, difficulty concentrating, tiredness or reduced energy, and loss of interest in activities that used to bring enjoyment.",
     "name": "Depression (adults)"
   },
   "2418": {
@@ -1019,6 +1019,56 @@
     "description": "Households reporting mice or rats in their unit or building. The presence of mice or rats in the home is often associated with poor housing maintenance. These pests can contaminate food and worsen asthma.",
     "name": "Homes with mice or rats in the unit or building"
   },
+  "2455": {
+    "IndicatorID": 2455,
+    "description": "Accessible subway stations may include ramps, elevators, audio and visual information, or other access improvements, which can help New Yorkers with disabilities, those traveling with strollers, and older people use public transit more safely and reliably. Accessible infrastructure ensures that subway stations follow American Disabilities Act (ADA) guidelines.",
+    "name": "Accessible subway stations"
+  },
+  "2456": {
+    "IndicatorID": 2456,
+    "description": "Bus stops equipped with button-activated audio announcements provide real-time bus arrival information for people who are blind or visually impaired.",
+    "name": "Bus stops with audio announcements"
+  },
+  "2457": {
+    "IndicatorID": 2457,
+    "description": "Public bathrooms that are in service and open during scheduled hours. Public bathrooms help everyone take part in public life and make the city more livable for all New Yorkers.",
+    "name": "Public bathroom availability"
+  },
+  "2458": {
+    "IndicatorID": 2458,
+    "description": "Population within a half mile of an accessible subway station. When more people have convenient access to the transit system, they're more likely to use it. Accessible subway stations may include ramps, elevators, or other access improvements that help New Yorkers with disabilities, those traveling with strollers, and older adults use public transit more safely and reliably. Accessible infrastructure ensures that subway stations follow American Disabilities Act (ADA) guidelines.",
+    "name": "Walking distance to an accessible subway station"
+  },
+  "2459": {
+    "IndicatorID": 2459,
+    "description": "People with disabilities or access needs that make it difficult to walk or climb stairs. When transit and buildings have more accessible infrastructure like elevators and ramps it can make NYC easier to navigate for all New Yorkers. People with ambulatory difficulties may also need accommodation to navigate their home.",
+    "name": "Difficulty walking"
+  },
+  "2460": {
+    "IndicatorID": 2460,
+    "description": "Population within a half mile of an accessible subway station. Bus stops equipped with button-activated audio announcements provide real-time bus arrival information for people who are blind or visually impaired.",
+    "name": "Walking distance to an audio bus stop"
+  },
+  "2461": {
+    "IndicatorID": 2461,
+    "description": "People reporting trouble remembering, concentrating, or making decisions. Individuals with this difficulty may have access needs or benefit from accommodations.",
+    "name": "Cognitive difficulty"
+  },
+  "2462": {
+    "IndicatorID": 2462,
+    "description": "People reporting serious trouble hearing. Individuals with trouble hearing may have access needs or benefit from accommodations.",
+    "name": "Hearing difficulty"
+  },
+  "2463": {
+    "IndicatorID": 2463,
+    "description": "People reporting trouble practicing self-care. These individuals have trouble with essential self-care activities such as bathing, dressing, and getting around their residence. They may benefit from assistance or accommodations.",
+    "name": "Self-care difficulty"
+  },
+  "2464": {
+    "IndicatorID": 2464,
+    "description": "People reporting blindness or serious trouble seeing (even when wearing glasses). These individuals may have access needs or benefit from accommodations.",
+    "name": "Vision difficulty"
+  },
   "25": {
     "IndicatorID": 25,
     "description": "Adults reporting secondhand smoke at home. Secondhand smoke, especially indoors, is bad for health - particularly for the health of children.",
@@ -1141,12 +1191,12 @@
   },
   "55": {
     "IndicatorID": 55,
-    "description": "Days when ozone levels are at unhealthy levels. Ozone is a common air pollutant that can harm breathing and worsen asthma and other respiratory conditions.",
+    "description": "Days when ozone levels are at unhealthy levels. Ozone is a common air pollutant that can harm breathing and worsen asthma and other respiratory conditions. Ozone action days are when the AQI is above 100, mainly due to ozone.",
     "name": "Ozone action days"
   },
   "57": {
     "IndicatorID": 57,
-    "description": "Days when PM2.5 is at an unhealthy level. PM2.5 is emitted by combustion and are a major form of air pollution that harms health.",
+    "description": "Days when PM2.5 is at an unhealthy level. PM2.5 is emitted by combustion and are a major form of air pollution that harms health. PM2.5 action days are when the AQI is above 100, mainly due to PM2.5",
     "name": "Fine particles (PM 2.5) action days"
   },
   "6": {

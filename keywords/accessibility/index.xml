@@ -6,14 +6,35 @@
     <description>Recent content in Accessibility on Environment &amp; Health Data Portal</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 07 Jan 2025 08:49:22 -0400</lastBuildDate>
+    <lastBuildDate>Wed, 10 Dec 2025 11:51:01 -0400</lastBuildDate>
     <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/accessibility/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Proximity indicators</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/proximity/</link>
+      <pubDate>Wed, 10 Dec 2025 11:51:01 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/proximity/</guid>
+      <description>&lt;p&gt;How close people live to important resources, like transit, schools, or clinics, affects their ability to use them.&lt;/p&gt;&#xA;&lt;p&gt;So, we&amp;rsquo;ve calculated a series of &lt;a href=&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/accessibility/?id=2391#display=summary&#34;&gt;&amp;lsquo;proximity&amp;rsquo; indicators&lt;/a&gt; - the percent of each neighborhood&amp;rsquo;s population that lives within walking distance to parks, subway stations, and more.&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;To calculate these indicators,&lt;/strong&gt; we calculate an area that is the walking distance around points of interest, and then determine a geography&amp;rsquo;s population that is inside this area. In this example, we&amp;rsquo;re determining the percent of each neighborhood&amp;rsquo;s population that lives within walking distance of an accessible subway stop.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Making data visualizations more accessible</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/about/accessibility-updates/</link>
       <pubDate>Tue, 07 Jan 2025 08:49:22 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/about/accessibility-updates/</guid>
       <description>&lt;p&gt;At the Environment and Health Data Portal, our mission is to make data easy to understand, access, and use. These principles extend to how we approach digital accessibility. New York City’s Local Law 26 requires City agencies to make their websites accessible. But this isn’t just a requirement — it’s also the best way we can serve our public. While there is no one-size-fits-all solution to digital accessibility since access needs can be as unique as people, we can take approaches that help our information reach a wider range of users.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Proximity indicators</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/about/proximity-indicators/</link>
+      <pubDate>Tue, 07 Jan 2025 08:49:22 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/about/proximity-indicators/</guid>
+      <description>&lt;p&gt;People&amp;rsquo;s ability to reach services with limited mobility is one practical way to describe accessibility. In this case, we focus on a proximity indicator for Accessible subway stations: the share of residents who live within a typical walking distance of an ADA-compliant subway station.&lt;/p&gt;&#xA;&lt;p&gt;&amp;ldquo;Proximity&amp;rdquo; indicators - the percent of a population living within walking distance to XXX.&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Link to indicators&lt;/li&gt;&#xA;&lt;li&gt;Link&lt;/li&gt;&#xA;&lt;li&gt;Link&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;&lt;strong&gt;So how do we calculate that?&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;h2&gt;1) Identify ADA-accessible subway stations&lt;/h2&gt;&#xA;&lt;p&gt;We start with the MTA Subway Stations dataset and keep only stations flagged as &lt;strong&gt;ADA-accessible&lt;/strong&gt;. These stations are the points where people with mobility needs can actually get into the subway system.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Accessibility</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/accessibility/</link>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/accessibility/</guid>
+      <description>&lt;p&gt;About 10% of New Yorkers have a disability with varying access needs. The environment can create barriers to meet those needs, or remove those barriers.&lt;/p&gt;&#xA;&lt;p&gt;For example, when someone who needs electric medical equipment has access to reliable and affordable energy, or someone who uses a wheelchair or scooter has access to smooth, crack-free streets and sidewalks, and transit stations with working elevators. While there is no one-size-fits-all approach to ensuring accessibility in every context, there are so many ways to improve it: we can ensure ASL interpretation is available at doctor’s offices and safety trainings, evacuation plans for storms include guidance for people using mobility aids, and parks are close and easy to visit for physical activity.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
