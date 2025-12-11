@@ -58,7 +58,8 @@ const renderTrendChart = (
         xAxisLabelField = 'TimePeriodSplit'
     }
 
-    let mobileLegend;
+    let mobileLegend = null
+    /*
     if (window.innerWidth < 720) {
         mobileLegend =  {
             "orient": "bottom",
@@ -68,6 +69,7 @@ const renderTrendChart = (
     } else {
         mobileLegend = null
     }
+    */
     
     
     // ticks
