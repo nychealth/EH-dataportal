@@ -31,6 +31,8 @@ indicators:
       - 2464
   - header:
 related:
+  - title: "Proximity indicators"
+    url: "data-features/proximity/"
   - title: "Public space creates health"
     url: "data-stories/public-space-creates-health/"
   - title: "Street safety in NYC"
