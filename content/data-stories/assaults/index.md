@@ -4,9 +4,20 @@ date: 2020-02-13T08:29:34-04:00
 draft: false
 seo_title: "Data on violence in NYC"
 seo_description: "Violence is a public health problem, and here's how we can look at it to improve it."
-tags: 
-categories: ["inequality","healthoutcomes","neighborhoods","injuryandviolence"]
-keywords: ["violence","assaults","poverty","public health","injuries","hospitalizations","emergency department visits","ED visits"]
+tags:
+categories:
+  ["inequality", "healthoutcomes", "neighborhoods", "injuryandviolence"]
+keywords:
+  [
+    "violence",
+    "assaults",
+    "poverty",
+    "public health",
+    "injuries",
+    "hospitalizations",
+    "emergency department visits",
+    "ED visits",
+  ]
 image: ds-assaults.jpg
 photocredit: "Benjamin Kanter/Mayoral Photography Office, City of New York"
 related:
@@ -18,9 +29,14 @@ related:
     url: "data-explorer/violence/?id=2375#display=summary"
 ---
 
+{{< updateflag data=`[
+  {"src": "../../data-explorer/violence/?id=2375", "text": "Violence-related hospitalizations (all ages)"},
+  {"src": "../../data-explorer/economic-conditions/?id=103", "text": "Neighborhood poverty"}
+]` >}}
+
 Violence has profound effects. An assault, a shooting, a homicide, or any use of force affects people in many deep ways.
 
-Violence causes physical and emotional harm. It can inflict fear, a constant sense of unease. It can cause short- and long-term trauma. Violence can affect people throughout their lives - including their health. It can lead to poor birth outcomes, compromised childhood development, negative health behaviors, physical and mental illness, and premature deaths.
+Violence causes physical and emotional harm. It can inflict fear, a constant sense of unease. It can cause short- and long-term trauma. Violence can affect people throughout their lives—including their health. It can lead to poor birth outcomes, compromised childhood development, negative health behaviors, physical and mental illness, and premature deaths.
 
 And violence doesn't just affect the immediate people harmed. It ripples throughout a community, affecting family members, loved ones, friends, and neighbors.
 
@@ -28,7 +44,7 @@ And violence doesn't just affect the immediate people harmed. It ripples through
 
 Violence is a real and pressing public health threat, and it doesn't affect New Yorkers equally.
 
-We can look at violence by looking at data on non-fatal assault hospitalizations - violence that results in somebody going to the hospital, but not dying. While the hospitalization data capture where the person injured in the assault lives – and not where the assault occurred – they can be interpreted as indicators of violence in the neighborhood.
+We can look at violence by looking at data on non-fatal assault hospitalizations—violence that results in somebody going to the hospital, but not dying. While the hospitalization data capture where the person injured in the assault lives—and not where the assault occurred—they can be interpreted as indicators of violence in the neighborhood.
 
 <div aria-hidden="true">
 {{< datawrapper title="Violence rates are highest in the Bronx and Brooklyn" src="dVe0S/4/" height="559" >}}
@@ -38,9 +54,9 @@ We can look at violence by looking at data on non-fatal assault hospitalizations
 <div style="min-height:1006px" id="datawrapper-vis-xLudO"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/xLudO/embed.js" charset="utf-8" data-target="#datawrapper-vis-xLudO"></script><noscript><img src="https://datawrapper.dwcdn.net/xLudO/full.png" alt="" /></noscript></div>
 </div>
 
-In this map, we can see that the highest rates of non-fatal assault hospitalizations - the darkest shades of purple on the map - are concentrated in the Bronx, parts of Harlem, northeastern Brooklyn, and northern Staten Island.
+In this map, we can see that the highest rates of non-fatal assault hospitalizations—the darkest shades of purple on the map—are concentrated in the Bronx, parts of Harlem, northeastern Brooklyn, and northern Staten Island.
 
-Hospitalization rates for these neighborhoods are nearly 4 times the City’s average:
+Hospitalization rates for these neighborhoods are nearly four times the City’s average:
 
 <div aria-hidden="true">
 {{< datawrapper title="A huge disparity in NYC's neighborhood violence rates" src="062qz/2/" height="357" >}}

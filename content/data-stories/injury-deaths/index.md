@@ -30,6 +30,10 @@ related:
     url: "data-explorer/violence/?id=2400#display=summary"
 ---
 
+{{< updateflag data=`[
+  {"src": "../../data-explorer/violence/", "text": "Violence"}
+]` >}}
+
 Young and middle-aged adults (ages 15 to 44) do not typically die from the natural causes that kill older adults. Injuries, both intentional — violence or suicide — and unintentional, dominate as causes of death. These premature deaths are tragic, unnecessary and preventable.
 
 Below we focus on homicide and suicide, reflecting areas of focus in the [NYC Health Department’s recently released HealthyNYC](https://www.nyc.gov/site/doh/about/about-doh/healthynyc.page), which identifies the major drivers of decreasing life expectancy and health equity in our city and identifies strategies to reduce each driver’s impact.
@@ -48,6 +52,7 @@ Suicide and homicide do not just affect the immediate victims. The impacts radia
   <iframe title=" Homicide and Suicide are among top causes of death from  ages 15 to 44 (2017 - 2019)" aria-label="Table" id="datawrapper-chart-nyBxm" src="https://datawrapper.dwcdn.net/nyBxm/4/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="1102" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r,i=0;r=e[i];i++)if(r.contentWindow===a.source){var d=a.data["datawrapper-height"][t]+"px";r.style.height=d}}}))}();
   </script>
 </div>
+
 <div class="narrow">
 
 For each subgroup within young and middle-aged New Yorkers — ages 15 to 24, 25 to 34, and 35 to 44 — the homicide and suicide patterns look slightly different.
@@ -164,3 +169,4 @@ like Homicide and Suicide are top causes of death in NYC—especially among ages
 
 <div class="asidebox">
 <em><i class="fas fa-hands-helping text-center mr-1"></i>New Yorkers seeking support with their mental health can connect to trained counselors, for free and in over 200 languages, through 988. For 24/7 support, call or text 988. If you or someone you know is at immediate risk of hurting themselves, or in immediate danger, call 911.</em></div>
+</div>

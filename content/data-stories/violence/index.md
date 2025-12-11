@@ -5,8 +5,27 @@ date: 2021-02-08T08:07:31-04:00
 draft: false
 seo_title: "Why violence is a public health issue"
 seo_description: "A data story on violence, disparities, and real public health justice in NYC."
-categories: ["housing","inequality","childhealth","healthoutcomes","neighborhoods","injuryandviolence"]
-keywords: ["violence","assaults","injustice","poverty","social determinants","redlining","disinvestment","racism","neighborhoods"]
+categories:
+  [
+    "housing",
+    "inequality",
+    "childhealth",
+    "healthoutcomes",
+    "neighborhoods",
+    "injuryandviolence",
+  ]
+keywords:
+  [
+    "violence",
+    "assaults",
+    "injustice",
+    "poverty",
+    "social determinants",
+    "redlining",
+    "disinvestment",
+    "racism",
+    "neighborhoods",
+  ]
 image: ds-violence.jpg
 
 photocredit: "Benjamin Kanter/Mayoral Photography Office, City of New York"
@@ -18,6 +37,11 @@ related:
   - title: "Violence-related emergency department visits (all ages)"
     url: "data-explorer/violence/?id=2400#display=summary"
 ---
+
+{{< updateflag data=`[
+  {"src": "../../data-explorer/violence/?id=2400", "text": "Violence"},
+  {"src": "../../data-explorer/economic-conditions/?id=103", "text": "Economic conditions"}
+]` >}}
 
 ## Using public health to prevent violence
 
