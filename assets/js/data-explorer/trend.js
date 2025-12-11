@@ -668,14 +668,13 @@ const renderTrendChart = (
                                         "field": comp_group_col,
                                 },
                                 "tooltip": [
-                                    {"title": "Group", "field": comp_group_col},
                                  ]
                             },
                             "mark": {
                                 "type": "text",
                                 "align": "left",
-                                "dx": 5,
-                                "dy": 0,
+                                "dx": 8,
+                                "dy": -5,
                                 "fontSize": 10,
                                 "fontWeight": "bold"
                             }
