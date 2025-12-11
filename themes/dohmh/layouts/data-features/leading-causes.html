@@ -9,6 +9,10 @@
     width: 100%;
     height: 80vh;
   }
+
+  .dropdown-item.active, .dropdown-item:active {
+    color: white;
+  }
 </style>
 
 <article class="container-fluid" id="skip-header-target">
@@ -18,6 +22,8 @@
 
   <div class="row mb-4">
     <div class="col-11 mx-auto">
+
+        <h2 class="sr-only" id="visualization">Visualization</h2>
 
           <button class="btn btn-sm btn-outline-primary type-button" id="edvisits">
             ED visits
@@ -29,16 +35,24 @@
             Deaths
           </button>
 
-            <button class="btn btn-sm btn-outline-secondary subtype-button ml-2" id="injuryOnly" data-injury="1">
-              Injury-related only
-            </button>
-            <button class="btn btn-sm btn-outline-secondary active subtype-button" id="all" data-injury="0">
+              <button class="btn btn-sm btn-outline-secondary active subtype-button ml-2" id="all" data-injury="0">
               All deaths
             </button>
-
-            <button class="btn btn-sm btn-outline-info ml-2" id="showInjury">
-              Highlight injuries
+            <button class="btn btn-sm btn-outline-secondary subtype-button" id="injuryOnly" data-injury="1">
+              Injury-related only
             </button>
+
+
+            <div class="dropdown d-inline-block ml-2 border-left">
+              <button class="btn btn-sm btn-outline-light border-none text-black mr-0 border-none" disabled style="border:none!important;">Highlight:</button>
+              <button class="btn btn-sm btn-outline-info dropdown-toggle ml-0" type="button" data-toggle="dropdown" aria-expanded="false" id="buttonTitle">
+                Cause
+              </button>
+              <div class="dropdown-menu" id="causeMenuHolder" style="height: 40vh;overflow-y:scroll">
+                <a class="dropdown-item cause-highlight" href="#visualization" id="showInjury" data-cause="Injury">Injuries</a>
+                <div id="causeMenu"></div>
+              </div>
+            </div>
 
             <hr class="my-1">
 
@@ -84,12 +98,128 @@
 
 <script>
 // GLOBAL VARIABLES
-var outcome = 'deaths'      // deaths, visits, or hosps
+var outcome = 'Death'      // deaths, visits, or hosps
 var intent = 0              // injury true = 1
 var highlight = 'off'       // on or off (injury highlight)
 
 const injuryBtn = document.getElementById('showInjury');
 let injuryOn = false; // record keeper
+
+// RETRIEVE DATA FILE, AND ADD CAUSES TO DROPDOWN MENU
+let cachedCauseData = null;
+
+// Load CSV once, cache it:
+function loadCauseData() {
+  return cachedCauseData
+    ? Promise.resolve(cachedCauseData)
+    : d3.csv("data/leading-causes.csv").then(d => {
+        cachedCauseData = d;
+        return d;
+      });
+}
+
+// GENERATE CAUSE MENU
+function updateCauseMenu(outcome, intent) {
+
+  const menu = document.getElementById("causeMenu");
+  menu.innerHTML = ""; // Clear previous items
+
+  loadCauseData().then(data => {
+
+    // Filter according to globals
+    const filtered = data.filter(d =>
+      d.type === outcome &&
+      String(d.InjuryOnly) === String(intent)
+    );
+
+    // Collect unique cleaned causes
+    const uniqueCauses = new Set();
+
+    filtered.forEach(d => {
+      if (d.cause_text) {
+        const cleaned = d.cause_text.replace(/^Injury:\s*/, "");
+        uniqueCauses.add(cleaned.trim());
+      }
+    });
+
+    const causes = [...uniqueCauses];
+
+    console.log(causes)
+
+    // show/hide #showInjury only when "All deaths" is selected
+    if (intent === 0) {
+      document.querySelector('#showInjury').classList.remove('d-none');
+    } else {
+      document.querySelector('#showInjury').classList.add('d-none');
+    }
+
+    // Create menu items
+    causes.forEach(cause => {
+      const a = document.createElement("a");
+      a.className = "dropdown-item cause-highlight";
+      a.href = "#visualization";
+      a.dataset.cause = cause;
+      a.textContent = cause;
+      menu.appendChild(a);
+    });
+
+    // Add <hr>
+    const hr = document.createElement("hr");
+    hr.className = "my-1";
+    menu.appendChild(hr);
+
+    // Add Reset
+    const reset = document.createElement("a");
+    reset.className = "dropdown-item";
+    reset.href = "#visualization";
+    reset.dataset.cause = "reset";
+    reset.textContent = "Reset";
+    menu.appendChild(reset);
+
+  });
+}
+
+// EVENT LISTENER ON CAUSE MENU
+document.addEventListener("click", function (e) {
+  const target = e.target.closest(".cause-highlight");
+  if (!target) return; // click wasn't on a cause item
+
+  // remove .active from all
+  document.querySelectorAll(".cause-highlight.active")
+    .forEach(el => el.classList.remove("active"))
+
+  // add .active to the clicked one
+  target.classList.add("active");
+
+  // HIGHLIGHT THE CHART
+  console.log('highlighting', target.dataset.cause)
+  drawChart(outcome, intent, target.dataset.cause)
+
+
+});
+
+// CAUSE MENU TEXT AND RESET
+document.addEventListener("click", function (e) {
+  const target = e.target.closest(".dropdown-item");
+
+  if (!target) return;
+
+  const cause = target.dataset.cause;
+  const buttonTitle = document.getElementById("buttonTitle");
+
+  // Reset clicked
+  if (cause === "reset") {
+    buttonTitle.innerText = "Cause";
+    highlight = 'off'
+    drawChart(outcome, intent, highlight)
+    return;
+  }
+
+  // A cause item clicked
+  if (target.classList.contains("cause-highlight")) {
+    buttonTitle.innerText = target.innerText.trim();
+  }
+});
 
 // TYPE BUTTONS
 document.querySelectorAll('.type-button').forEach(btn => {
@@ -135,27 +265,18 @@ document.querySelectorAll('.subtype-button').forEach(btn => {
     console.log("intent:", intent);
 
     drawChart(outcome, intent, highlight)
+    updateCauseMenu(outcome, intent);
+
 
   });
 });
 
-// HIGHLIGHT INJURY button
-injuryBtn.addEventListener('click', function () {
-  injuryOn = !injuryOn;        // flip state
-  this.classList.toggle('active', injuryOn); // sync class
-
-  highlight = injuryOn ? 'on' : 'off';
-
-  console.log(highlight)
-  // yourFunction(highlight); // call your function with "on" or "off"
-  drawChart(outcome, intent, highlight)
-});
-
-function drawChart(outcome, intent, injuryHighlight) {
+// CHART DRAWING FUNCTION
+function drawChart(outcome, intent, highlight) {
 
   console.log('Drawing chart for', outcome)
   console.log('Injury related?', intent)
-  console.log('Highlighting injury?', injuryHighlight)
+  console.log('Highlighting:', highlight)
 
   var filter
   var color
@@ -196,12 +317,20 @@ function drawChart(outcome, intent, injuryHighlight) {
   // injury highlight condition
   var strokeHighlight
   var strokeHighlightWidth
-  if (injuryHighlight === 'on') {
-    strokeHighlight = "#841972"
+  var fieldHighlight = "datum.Intent === 'Injury'"
+
+  if (highlight === 'Injury') {
+    fieldHighlight = "datum.Intent === 'Injury'"
+    strokeHighlight = "black"
     strokeHighlightWidth = 3
-  } else {
+  } else if (highlight === 'off') {
+    fieldHighlight = "datum.Intent === 'Injury'"
     strokeHighlight = "#7C7C7C"
     strokeHighlightWidth = 1
+  } else {
+    fieldHighlight = `datum.cause_text === '${highlight}' || datum.cause_text === 'Injury: ${highlight}'`
+    strokeHighlight = "black"
+    strokeHighlightWidth = 3
   }
 
   var spec = {
@@ -243,6 +372,9 @@ function drawChart(outcome, intent, injuryHighlight) {
     "range": {"category": ["#ffa600", "#f5f5f5", "#40826D", "#5d5d5d"]}
   },
   "transform": [
+{
+  "filter": `datum.type == '${outcome}'`
+}, 
 {
   "filter": filter
 },
@@ -311,7 +443,7 @@ function drawChart(outcome, intent, injuryHighlight) {
     "stroke": {
       "condition": [
         {
-          "test": "datum.Intent === 'Injury'",
+          "test": fieldHighlight,
           "value": strokeHighlight 
         },
       ],
@@ -321,7 +453,7 @@ function drawChart(outcome, intent, injuryHighlight) {
     "strokeWidth": {
       "condition": [
         {
-          "test": "datum.Intent === 'Injury'",
+          "test": fieldHighlight,
           "value": strokeHighlightWidth          
         },
       ],
@@ -369,6 +501,7 @@ vegaEmbed('#chart', spec).then(result => {
 
 }
 
+// SIDEBAR TOOLTIP
 function showOnHover(event) {
 
   document.getElementById('readout').classList.remove('hide');    
@@ -410,6 +543,7 @@ function showOnHover(event) {
   }
 }
 
+// CLEAR TOOLTIP
 function clearOnHover() {
       document.getElementById('readout').classList.add('hide')
       document.getElementById('prompt').classList.remove('hide')
@@ -417,6 +551,8 @@ function clearOnHover() {
 
 // INITIALIZE CHART
 drawChart(outcome, intent, highlight)
+updateCauseMenu(outcome, intent);
+
 
 
 </script>
