@@ -417,6 +417,10 @@ function drawChart(outcome, intent, highlight) {
         {
           "test": "datum.flag === '^'",
           "value": 10
+        },
+        {
+          "test": "datum.rate === ''",
+          "value": 10
         }
       ],
       "field": "rate",
@@ -429,6 +433,10 @@ function drawChart(outcome, intent, highlight) {
           {
             "test": "datum.flag === '^'",
             "value": 0.2
+          },
+          {
+            "test": "datum.rate === ''",
+            "value": 10
           },
           {
             "param": "hover",
