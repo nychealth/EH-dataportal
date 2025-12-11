@@ -674,7 +674,7 @@ const renderTrendChart = (
                                 "type": "text",
                                 "align": "left",
                                 "dx": 8,
-                                "dy": -5,
+                                "dy": 5,
                                 "fontSize": 10,
                                 "fontWeight": "bold"
                             }
