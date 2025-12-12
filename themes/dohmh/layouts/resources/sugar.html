@@ -1,5 +1,38 @@
 {{- define "main" -}}
 
+<style>
+  .combo-cell {
+  padding: 6px 0;
+}
+
+.combo-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 3px 0;            
+  border-bottom: 1px solid #ddd;
+}
+
+.combo-row:last-child {
+  border-bottom: none; 
+}
+
+.combo-label {
+  font-size: 0.85rem;
+  color: #303030;
+  margin-right: 10px;
+}
+
+.combo-value {
+  font-weight: 700;           
+  font-size: 0.95rem;
+  color: #000;
+  text-align: right;
+  white-space: nowrap;
+}
+
+</style>
+
 <article id="skip-header-target">
     <div class="container-fluid" data-pagefind-weight="0">
         <div class="row">
@@ -67,7 +100,7 @@
 <script>
 let sugarData = [];
 
-d3.csv("sugar-items-new.csv").then(function(data) {
+d3.csv("sugar-items-data.csv").then(function(data) {
   sugarData = data;
   renderFullSugarTable();
 });
@@ -75,39 +108,106 @@ d3.csv("sugar-items-new.csv").then(function(data) {
 function renderFullSugarTable() {
   if (!sugarData || sugarData.length === 0) return;
 
-  const columns = Object.keys(sugarData[0]);
+  const columns = Object.keys(sugarData[0]); // 5 CSV columns
 
+  // ---- HEADER: add 6th combined column ----
   $("#fullSugarTable thead").empty().append(
-    $("<tr>").append(columns.map(c => $("<th>").text(c)))
+    $("<tr>").append([
+      ...columns.map(c => $("<th>").text(c)),
+      $("<th>").text("Sugar info")  // NEW COLUMN HEADER
+    ])
   );
 
+  // ---- BODY: add 6th placeholder cell ----
   const tbody = $("#fullSugarTable tbody").empty();
   sugarData.forEach(row => {
     const tr = $("<tr>");
-    columns.forEach(col => tr.append($("<td>").text(row[col])));
+
+    // original 5 CSV columns
+    columns.forEach(col => {
+      tr.append($("<td>").text(row[col]));
+    });
+
+    // empty TD for DataTables to fill
+    tr.append($("<td>"));
+
     tbody.append(tr);
   });
 
+  // Identify numeric columns for right-alignment
   const numericCols = columns
     .map((c, i) => ({ index: i, sample: sugarData[0][c] }))
     .filter(col => !isNaN(parseFloat(col.sample)));
 
+  // ---- DATATABLE INIT ----
   const table = $("#fullSugarTable").DataTable({
     paging: true,
     searching: true,
     pageLength: 25,
     lengthChange: false,
-    ordering: true,
+    ordering: false,
     autoWidth: false,
     destroy: true,
-    columnDefs: numericCols.map(col => ({
-      targets: col.index,
-      className: "dt-body-right"
-    }))
+
+    columnDefs: [
+      {
+        targets: 0,         // first column
+        render: function (data, type, row) {
+          const original = row[0]; // text from CSV
+
+          return `
+            <span class="fs-rg font-weight-bold">${original}</span>
+          `;
+        }
+      },
+
+      {
+        targets: 1,         // first column
+        render: function (data, type, row) {
+          const original = row[1]; // text from CSV
+
+          return `
+            <span class="fs-sm font-weight-bold">${original}</span>
+          `;
+        }
+      },
+
+      // Hide original columns 3, 4, 5 (0-based indices: 2, 3, 4)
+      { targets: [2, 3, 4], visible: false },
+
+      // ---- Combined HTML column (index 5) ----
+      {
+        targets: 5,
+        data: null,
+        render: function (data, type, row) {
+          const c3 = row[2]; // 3rd CSV column
+          const c4 = row[3]; // 4th CSV column
+          const c5 = row[4]; // 5th CSV column
+
+          return `
+            <div class="combo-cell">
+              <div class="combo-row">
+                <span class="combo-label">NFL: Added Sugars:</span>
+                <span class="combo-value">${c5}</span>
+              </div>
+
+              <div class="combo-row">
+                <span class="combo-label">NFL: Calories:</span>
+                <span class="combo-value">${c4}</span>
+              </div>
+
+              <div class="combo-row">
+                <span class="combo-label">Calories needed for 50g sugar:</span>
+                <span class="combo-value">${c3}</span>
+              </div>
+            </div>
+          `;
+        }
+      }
+    ]
   });
 
-
-  // Move & restyle Search box
+  // ---- MOVE SEARCH BOX ----
   const dtFilter = $("#fullSugarTable_filter");
   $("#searchContainer").append(dtFilter);
 
@@ -120,18 +220,16 @@ function renderFullSugarTable() {
 
   input.on("input", function () {
     table.search(this.value).draw();
-    });
+  });
 
-  // Populate dropdown
+  // ---- POPULATE BRAND DROPDOWN ----
   const brandFilter = $("#brandFilter");
-    // Normalize brands by trimming whitespace
-    sugarData.forEach(d => d["Brand Name"] = d["Brand Name"].trim());
 
-    const uniqueBrands = [...new Set(sugarData.map(d => d["Brand Name"]))].sort();
+  sugarData.forEach(d => d["Brand Name"] = d["Brand Name"].trim());
+  const uniqueBrands = [...new Set(sugarData.map(d => d["Brand Name"]))].sort();
 
   uniqueBrands.forEach(b => brandFilter.append(`<option value="${b}">${b}</option>`));
 
-  // Filtering
   brandFilter.on("change", function() {
     const val = $.fn.dataTable.util.escapeRegex($(this).val());
     table.column(columns.indexOf("Brand Name"))
@@ -139,12 +237,12 @@ function renderFullSugarTable() {
       .draw();
   });
 
-  // Clear
   $("#clearBrandFilter").on("click", function() {
     brandFilter.val("");
     table.column(columns.indexOf("Brand Name")).search("").draw();
   });
 }
 </script>
+
 
 {{- end -}}
