@@ -1,5 +1,5 @@
 ---
-title: "Sugar lookup tool"
+title: "Precalculations sugar lookup tool"
 layout: sugar
 vega: true
 datatables: true
