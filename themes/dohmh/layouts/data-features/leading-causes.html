@@ -25,13 +25,13 @@
 
         <h2 class="sr-only" id="visualization">Visualization</h2>
 
-          <button class="btn btn-sm btn-outline-primary type-button" id="edvisits">
+          <button class="btn btn-sm btn-outline-primary type-button" id="ED">
             ED visits
           </button>
-          <button class="btn btn-sm btn-outline-primary  type-button" id="hospitalizations">
+          <button class="btn btn-sm btn-outline-primary  type-button" id="Hospitalization">
             Hospitalizations
           </button>
-          <button class="btn btn-sm btn-outline-primary active type-button" id="deaths">
+          <button class="btn btn-sm btn-outline-primary active type-button" id="Death">
             Deaths
           </button>
 
@@ -74,13 +74,13 @@
             <span class="fs-sm">Age:</span><br>
             <span class="font-weight-bold" id="agePrint">---</span>
             <hr class="my-1">
-            <span class="fs-sm"><span id="rank">--</span> cause of death:</span><br>
+            <span class="fs-sm"><span id="rank">--</span> cause of <span class="outcome">outcome</span>:</span><br>
             <span class="font-weight-bold" id="causePrint">---</span>
             <hr class=my-1>
-            <span class="fs-sm">Death rate:</span><br>
+            <span class="fs-sm"><span class="outcome capitalize-it">outcome</span> rate:</span><br>
             <span class="font-weight-bold" id="ratePrint">---</span>
             <hr class=my-1>
-            <span class="fs-sm">Average annual deaths:</span><br>
+            <span class="fs-sm">Average annual  <span class="outcome">outcome</span>s:</span><br>
             <span class="font-weight-bold" id="countPrint">---</span>
             <hr class=my-1>
             <p class="fs-xs"><em><span id="flagNote" class="fs-xs">Note:</span></em></p>
@@ -227,6 +227,7 @@ document.addEventListener("click", function (e) {
 });
 
 // TYPE BUTTONS (ed, hosp, death)
+/*
 document.querySelectorAll('.type-button').forEach(btn => {
   btn.addEventListener('click', function () {
     // remove active from all type buttons
@@ -237,14 +238,21 @@ document.querySelectorAll('.type-button').forEach(btn => {
 
     // log its id
     console.log(this.id);
+    outcome = this.id
 
     // update the text inside #all
     const allBtn = document.getElementById('all');
     if (allBtn) {
       allBtn.textContent = `All ${this.textContent.trim()}`;
     }
+
+    // re draw chart and menu
+    // drawChart(outcome, intent, highlight)
+    // updateCauseMenu(outcome, intent);
+
   });
 });
+*/
 
 // SUBTYPE BUTTONS (all, or injury-only)
 document.querySelectorAll('.subtype-button').forEach(btn => {
@@ -276,6 +284,16 @@ document.querySelectorAll('.subtype-button').forEach(btn => {
 
 // CHART DRAWING FUNCTION
 function drawChart(outcome, intent, highlight) {
+
+  var outcomeLabel = (outcome === 'ed') ? 'ED Visits' : outcome
+
+  document.querySelectorAll('.outcome').forEach(el => {
+    el.innerHTML = outcomeLabel.toLowerCase()
+  })
+
+  document.querySelectorAll(".capitalize-it").forEach(el => {
+    el.innerHTML = capitalizeFirstLetter(el.innerHTML)
+  })
 
   console.log('Drawing chart for', outcome)
   console.log('Injury related?', intent)
@@ -507,6 +525,7 @@ vegaEmbed('#chart', spec).then(result => {
       // do stuff when mouse leaves the mark
     }
   });
+
 });
 
 
@@ -564,6 +583,9 @@ function clearOnHover() {
 drawChart(outcome, intent, highlight)
 updateCauseMenu(outcome, intent);
 
+function capitalizeFirstLetter(val) {
+    return String(val).charAt(0).toUpperCase() + String(val).slice(1);
+}
 
 
 </script>
