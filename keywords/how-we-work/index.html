@@ -283,8 +283,9 @@
                                     
                                     <div class="nav-item bg-none text-white border border-white ml-1">
 
-                                        <a href="#" class="nav-link text-white" data-subscribe-click="header" data-toggle="modal" data-target="#subscribeModal">
-                                            Subscribe
+                                        <a class="nav-link text-white subscribe-link" href=/IndicatorPublic/About/subscribe>Subscribe</a>
+                                            
+
                                         </a>
                                     </div>
 
@@ -474,14 +475,6 @@
                     <div class="card-content">
                         <div class="card-body">
                             <h4 class="card-title">
-                                <a href="/IndicatorPublic/about/proximity-indicators/" class="text-primary fs-rg mb-1">Proximity indicators</a></h4>
-                                <p class="card-text mt-0">People’s ability to reach services with limited mobility is one practical way to describe accessibility. In this case, we focus on a proximity …</p>
-                        </div>
-                    </div>
-                </div><div class="card content-card mb-3 px-0 mx-0 fs-sm">
-                    <div class="card-content">
-                        <div class="card-body">
-                            <h4 class="card-title">
                                 <a href="/IndicatorPublic/about/new-data-explorer-features/" class="text-primary fs-rg mb-1">New Data Explorer features</a></h4>
                                 <p class="card-text mt-0">If you browse data on our Data Explorer, you might notice some new changes. In recent months, we’ve been rolling out a series of modifications and …</p>
                         </div>
@@ -527,29 +520,18 @@
 Open Tech …</p>
                         </div>
                     </div>
+                </div><div class="card content-card mb-3 px-0 mx-0 fs-sm">
+                    <div class="card-content">
+                        <div class="card-body">
+                            <h4 class="card-title">
+                                <a href="/IndicatorPublic/data-stories/codesign/" class="text-primary fs-rg mb-1">Why we&#39;re working with you to redesign the data portal</a></h4>
+                                <p class="card-text mt-0">We’re making changes, and we need your help.
+A few months ago, when we redesigned the home page of the Environment &amp; Health Data Portal, we wrote that …</p>
+                        </div>
+                    </div>
                 </div><div class="row my-3">
                   <div class="col-md-4 mx-auto">
-                      
-    <ul class="pagination pagination-default">
-      <li class="page-item disabled">
-        <a aria-disabled="true" aria-label="First" class="page-link" role="button" tabindex="-1"><span aria-hidden="true">&laquo;&laquo;</span></a>
-      </li>
-      <li class="page-item disabled">
-        <a aria-disabled="true" aria-label="Previous" class="page-link" role="button" tabindex="-1"><span aria-hidden="true">&laquo;</span></a>
-      </li>
-      <li class="page-item active">
-        <a aria-current="page" aria-label="Page 1" class="page-link" role="button">1</a>
-      </li>
-      <li class="page-item">
-        <a href="/IndicatorPublic/keywords/how-we-work/page/2/" aria-label="Page 2" class="page-link" role="button">2</a>
-      </li>
-      <li class="page-item">
-        <a href="/IndicatorPublic/keywords/how-we-work/page/2/" aria-label="Next" class="page-link" role="button"><span aria-hidden="true">&raquo;</span></a>
-      </li>
-      <li class="page-item">
-        <a href="/IndicatorPublic/keywords/how-we-work/page/2/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
-      </li>
-    </ul></div>
+                      </div>
 
               </div>
         </div>
@@ -858,40 +840,51 @@ Open Tech …</p>
 </script>
 
 
-<script src="/IndicatorPublic/node_modules/popper.js/dist/umd/popper.min.4a9265d50608a5d0.js" integrity="sha512-ubuT8Z88WxezgSqf3RLuNi5lmjstiJcyezx34yIU2gAHonIi27Na7atqzUZCOoY4CExaoFumzOsFQ2Ch&#43;I/HCw==" crossorigin="anonymous"></script>
-<script src="/IndicatorPublic/node_modules/bootstrap/dist/js/bootstrap.bundle.min.47b12e1c6fc26bc7.js" integrity="sha512-igl8WEUuas9k5dtnhKqyyld6TzzRjvMqLC79jkgT3z02FvJyHAuUtyemm/P/jYSne1xwFI06ezQxEwweaiV7VA==" crossorigin="anonymous"></script>
-
+<script
+  src="/IndicatorPublic/node_modules/popper.js/dist/umd/popper.min.4a9265d50608a5d0.js"
+  integrity="sha512-ubuT8Z88WxezgSqf3RLuNi5lmjstiJcyezx34yIU2gAHonIi27Na7atqzUZCOoY4CExaoFumzOsFQ2Ch&#43;I/HCw=="
+  crossorigin="anonymous"
+></script>
+<script
+  src="/IndicatorPublic/node_modules/bootstrap/dist/js/bootstrap.bundle.min.47b12e1c6fc26bc7.js"
+  integrity="sha512-igl8WEUuas9k5dtnhKqyyld6TzzRjvMqLC79jkgT3z02FvJyHAuUtyemm/P/jYSne1xwFI06ezQxEwweaiV7VA=="
+  crossorigin="anonymous"
+></script>
 
 
 <script>
   function googleTranslateElementInit() {
-      new google.translate.TranslateElement({
-          pageLanguage: 'en'
-      }, 'google_translate_element');
+    new google.translate.TranslateElement(
+      {
+        pageLanguage: "en",
+      },
+      "google_translate_element"
+    );
 
-      
-      document.querySelectorAll("div[class^=VI] svg").forEach(e => e.outerHTML = "");
+    
+    document
+      .querySelectorAll("div[class^=VI] svg")
+      .forEach((e) => (e.outerHTML = ""));
   }
 </script>
 
 <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
 <script>
-
-    document.querySelectorAll("[data-target='#subscribeModal']").forEach(el => {
-
-        el.addEventListener("click", e => {
-
-            gtag('event', 'click_subscribe', {
-                page: window.location.pathname,
-                place: e.target.dataset.subscribeClick
-            });
-
-        });
+  document.querySelectorAll(".subscribe-link").forEach((el) => {
+    el.addEventListener("click", (e) => {
+      gtag("event", "click_subscribe", {
+        page: window.location.pathname,
+        place: e.target.dataset.subscribeClick,
+      });
     });
-
+  });
 </script>
-<script type="text/javascript" src="/IndicatorPublic/js/main.e345555f1bc64916.js" integrity="sha512-VSyeDrW59WeoY4CdiN/bnfwuUGLxqnrjE6u98ho0b9dzriZfX/YY2DIuK5a5W&#43;GzGcaB6w6nuBijxkhahLatWg=="></script>
+<script
+  type="text/javascript"
+  src="/IndicatorPublic/js/main.e345555f1bc64916.js"
+  integrity="sha512-VSyeDrW59WeoY4CdiN/bnfwuUGLxqnrjE6u98ho0b9dzriZfX/YY2DIuK5a5W&#43;GzGcaB6w6nuBijxkhahLatWg=="
+></script>
 </body>
 </html>
 

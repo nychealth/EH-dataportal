@@ -45,11 +45,11 @@
 <title>NYC Environment and Health Data Portal</title>
 
 
-<meta name="build_datetime" content='Thursday, December 11, 2025, 3:17:10 pm EST'>
+<meta name="build_datetime" content='Monday, December 15, 2025, 12:52:35 pm EST'>
 <meta name="build_environment" content='prod_prod'>
 <meta name="git_branch" content='production'>
-<meta name="git_last_hash" content='45586056c5'>
-<meta name="git_last_msg" content='Merge pull request #1375 from nychealth/feature-data-story-update-shortcode'>
+<meta name="git_last_hash" content='5f5a45a23b'>
+<meta name="git_last_msg" content='Merge pull request #1381 from nychealth/feature-accessibility-bundle'>
 
 
         <link rel="alternate" hreflang="es" href="/IndicatorPublic/es/" title="Español">
@@ -297,8 +297,9 @@
                                     
                                     <div class="nav-item bg-none text-white border border-white ml-1">
 
-                                        <a href="#" class="nav-link text-white" data-subscribe-click="header" data-toggle="modal" data-target="#subscribeModal">
-                                            Subscribe
+                                        <a class="nav-link text-white subscribe-link" href=/IndicatorPublic/About/subscribe>Subscribe</a>
+                                            
+
                                         </a>
                                     </div>
 
@@ -624,7 +625,7 @@
                 <i class="fas fa-bullhorn h2 text-primary" aria-hidden="true"></i>
               </div>
             </div>
-            <p class="text-black mb-4"><a class="font-weight-bold" href="#" data-subscribe-click="homepage" data-toggle="modal" data-target="#subscribeModal">Sign up here!</a> We won't share your email address.</p>
+            <p class="text-black mb-4"><a class="font-weight-bold subscribe-link" href=/IndicatorPublic/About/subscribe>Sign up here!</a> We won't share your email address.</p>
           </div>
 
           <div class="shadow-sm mb-3 p-3 card-left-border">
@@ -1236,40 +1237,51 @@ async  function initialize() {
   
 
 
-<script src="/IndicatorPublic/node_modules/popper.js/dist/umd/popper.min.4a9265d50608a5d0.js" integrity="sha512-ubuT8Z88WxezgSqf3RLuNi5lmjstiJcyezx34yIU2gAHonIi27Na7atqzUZCOoY4CExaoFumzOsFQ2Ch&#43;I/HCw==" crossorigin="anonymous"></script>
-<script src="/IndicatorPublic/node_modules/bootstrap/dist/js/bootstrap.bundle.min.47b12e1c6fc26bc7.js" integrity="sha512-igl8WEUuas9k5dtnhKqyyld6TzzRjvMqLC79jkgT3z02FvJyHAuUtyemm/P/jYSne1xwFI06ezQxEwweaiV7VA==" crossorigin="anonymous"></script>
-
+<script
+  src="/IndicatorPublic/node_modules/popper.js/dist/umd/popper.min.4a9265d50608a5d0.js"
+  integrity="sha512-ubuT8Z88WxezgSqf3RLuNi5lmjstiJcyezx34yIU2gAHonIi27Na7atqzUZCOoY4CExaoFumzOsFQ2Ch&#43;I/HCw=="
+  crossorigin="anonymous"
+></script>
+<script
+  src="/IndicatorPublic/node_modules/bootstrap/dist/js/bootstrap.bundle.min.47b12e1c6fc26bc7.js"
+  integrity="sha512-igl8WEUuas9k5dtnhKqyyld6TzzRjvMqLC79jkgT3z02FvJyHAuUtyemm/P/jYSne1xwFI06ezQxEwweaiV7VA=="
+  crossorigin="anonymous"
+></script>
 
 
 <script>
   function googleTranslateElementInit() {
-      new google.translate.TranslateElement({
-          pageLanguage: 'en'
-      }, 'google_translate_element');
+    new google.translate.TranslateElement(
+      {
+        pageLanguage: "en",
+      },
+      "google_translate_element"
+    );
 
-      
-      document.querySelectorAll("div[class^=VI] svg").forEach(e => e.outerHTML = "");
+    
+    document
+      .querySelectorAll("div[class^=VI] svg")
+      .forEach((e) => (e.outerHTML = ""));
   }
 </script>
 
 <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
 <script>
-
-    document.querySelectorAll("[data-target='#subscribeModal']").forEach(el => {
-
-        el.addEventListener("click", e => {
-
-            gtag('event', 'click_subscribe', {
-                page: window.location.pathname,
-                place: e.target.dataset.subscribeClick
-            });
-
-        });
+  document.querySelectorAll(".subscribe-link").forEach((el) => {
+    el.addEventListener("click", (e) => {
+      gtag("event", "click_subscribe", {
+        page: window.location.pathname,
+        place: e.target.dataset.subscribeClick,
+      });
     });
-
+  });
 </script>
-<script type="text/javascript" src="/IndicatorPublic/js/main.e345555f1bc64916.js" integrity="sha512-VSyeDrW59WeoY4CdiN/bnfwuUGLxqnrjE6u98ho0b9dzriZfX/YY2DIuK5a5W&#43;GzGcaB6w6nuBijxkhahLatWg=="></script>
+<script
+  type="text/javascript"
+  src="/IndicatorPublic/js/main.e345555f1bc64916.js"
+  integrity="sha512-VSyeDrW59WeoY4CdiN/bnfwuUGLxqnrjE6u98ho0b9dzriZfX/YY2DIuK5a5W&#43;GzGcaB6w6nuBijxkhahLatWg=="
+></script>
 
   <script type="text/javascript" src="/IndicatorPublic/js/accessible-autocomplete.min.20e7e606a030b0c1.js" integrity="sha512-oo28/kU49CzsZKQudUKfhzvYZkH&#43;oLMms6SAC1mRe5m4d9NxWwdAX/NpF&#43;2ePMCHP3tYplkF/1CM1C6MQnpfmg=="></script><script type="text/javascript" src="/IndicatorPublic/js/uhflist.b1536832e3971312.js" integrity="sha512-Ojx3jYf1cvDARSQmePsSFfMk&#43;i59zFIu/I6Xq8f9Ob7PldTwRb6IcoydnNE41ZxncucYAU1sW88itK/Cpna4gQ=="></script>
   

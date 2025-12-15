@@ -128,6 +128,13 @@
       <description>&lt;p&gt;New Yorkers benefit from one of the largest health departments in the world. And at the NYC Health Department, we have one of the most robust environmental health programs in the country. From investigating foodborne illnesses, to monitoring local air, to creating guidance before deadly storms or extreme heat — and much more — the Health Department&amp;rsquo;s work supports the health of all New Yorkers.&lt;/p&gt;&#xA;&lt;p&gt;But we can’t do it alone. We depend on a broad network of public-sector resources from the city, state and federal government to plan for and protect New Yorkers against many public health threats.&lt;/p&gt;</description>
     </item>
     <item>
+      <title>Subscribe for updates</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/about/subscribe/</link>
+      <pubDate>Thu, 30 Oct 2025 13:30:21 -0500</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/about/subscribe/</guid>
+      <description>&lt;p&gt;Thanks for visiting the Environment and Health Data Portal.&lt;/p&gt;&#xA;&lt;p&gt;We&amp;rsquo;d like to add you to our email list. We&amp;rsquo;ll email you every few months with site updates, and occasional opportunities to participate in user research. We won&amp;rsquo;t share your email and you can unsubscribe at any time.&lt;/p&gt;&#xA;&lt;div class=&#34;my-2&#34;&gt;&#xA;&lt;iframe src=&#34;https://docs.google.com/forms/d/e/1FAIpQLSfUg3JE5ODNc6aqBPJwM8mZ80TYtK6ISw-OM7PBwKuoN3M--g/viewform?embedded=true&#34; style=&#34;width:100%; height: 600px&#34; frameborder=&#34;0&#34; marginheight=&#34;0&#34; marginwidth=&#34;0&#34;&gt;Loading…&lt;/iframe&gt;&#xA;&lt;/div&gt;</description>
+    </item>
+    <item>
       <title>What climate change means for vector-borne disease in NYC</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/vectorborne-diseases-and-health/</link>
       <pubDate>Wed, 24 Sep 2025 09:01:00 -0400</pubDate>
@@ -182,13 +189,6 @@
       <pubDate>Tue, 07 Jan 2025 08:49:22 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/about/accessibility-updates/</guid>
       <description>&lt;p&gt;At the Environment and Health Data Portal, our mission is to make data easy to understand, access, and use. These principles extend to how we approach digital accessibility. New York City’s Local Law 26 requires City agencies to make their websites accessible. But this isn’t just a requirement — it’s also the best way we can serve our public. While there is no one-size-fits-all solution to digital accessibility since access needs can be as unique as people, we can take approaches that help our information reach a wider range of users.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Proximity indicators</title>
-      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/about/proximity-indicators/</link>
-      <pubDate>Tue, 07 Jan 2025 08:49:22 -0400</pubDate>
-      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/about/proximity-indicators/</guid>
-      <description>&lt;p&gt;People&amp;rsquo;s ability to reach services with limited mobility is one practical way to describe accessibility. In this case, we focus on a proximity indicator for Accessible subway stations: the share of residents who live within a typical walking distance of an ADA-compliant subway station.&lt;/p&gt;&#xA;&lt;p&gt;&amp;ldquo;Proximity&amp;rdquo; indicators - the percent of a population living within walking distance to XXX.&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Link to indicators&lt;/li&gt;&#xA;&lt;li&gt;Link&lt;/li&gt;&#xA;&lt;li&gt;Link&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;&lt;strong&gt;So how do we calculate that?&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;h2&gt;1) Identify ADA-accessible subway stations&lt;/h2&gt;&#xA;&lt;p&gt;We start with the MTA Subway Stations dataset and keep only stations flagged as &lt;strong&gt;ADA-accessible&lt;/strong&gt;. These stations are the points where people with mobility needs can actually get into the subway system.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Public transit creates health</title>

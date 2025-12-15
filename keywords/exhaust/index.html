@@ -283,8 +283,9 @@
                                     
                                     <div class="nav-item bg-none text-white border border-white ml-1">
 
-                                        <a href="#" class="nav-link text-white" data-subscribe-click="header" data-toggle="modal" data-target="#subscribeModal">
-                                            Subscribe
+                                        <a class="nav-link text-white subscribe-link" href=/IndicatorPublic/About/subscribe>Subscribe</a>
+                                            
+
                                         </a>
                                     </div>
 
@@ -806,40 +807,51 @@ Like many cities, New …</p>
 </script>
 
 
-<script src="/IndicatorPublic/node_modules/popper.js/dist/umd/popper.min.4a9265d50608a5d0.js" integrity="sha512-ubuT8Z88WxezgSqf3RLuNi5lmjstiJcyezx34yIU2gAHonIi27Na7atqzUZCOoY4CExaoFumzOsFQ2Ch&#43;I/HCw==" crossorigin="anonymous"></script>
-<script src="/IndicatorPublic/node_modules/bootstrap/dist/js/bootstrap.bundle.min.47b12e1c6fc26bc7.js" integrity="sha512-igl8WEUuas9k5dtnhKqyyld6TzzRjvMqLC79jkgT3z02FvJyHAuUtyemm/P/jYSne1xwFI06ezQxEwweaiV7VA==" crossorigin="anonymous"></script>
-
+<script
+  src="/IndicatorPublic/node_modules/popper.js/dist/umd/popper.min.4a9265d50608a5d0.js"
+  integrity="sha512-ubuT8Z88WxezgSqf3RLuNi5lmjstiJcyezx34yIU2gAHonIi27Na7atqzUZCOoY4CExaoFumzOsFQ2Ch&#43;I/HCw=="
+  crossorigin="anonymous"
+></script>
+<script
+  src="/IndicatorPublic/node_modules/bootstrap/dist/js/bootstrap.bundle.min.47b12e1c6fc26bc7.js"
+  integrity="sha512-igl8WEUuas9k5dtnhKqyyld6TzzRjvMqLC79jkgT3z02FvJyHAuUtyemm/P/jYSne1xwFI06ezQxEwweaiV7VA=="
+  crossorigin="anonymous"
+></script>
 
 
 <script>
   function googleTranslateElementInit() {
-      new google.translate.TranslateElement({
-          pageLanguage: 'en'
-      }, 'google_translate_element');
+    new google.translate.TranslateElement(
+      {
+        pageLanguage: "en",
+      },
+      "google_translate_element"
+    );
 
-      
-      document.querySelectorAll("div[class^=VI] svg").forEach(e => e.outerHTML = "");
+    
+    document
+      .querySelectorAll("div[class^=VI] svg")
+      .forEach((e) => (e.outerHTML = ""));
   }
 </script>
 
 <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
 <script>
-
-    document.querySelectorAll("[data-target='#subscribeModal']").forEach(el => {
-
-        el.addEventListener("click", e => {
-
-            gtag('event', 'click_subscribe', {
-                page: window.location.pathname,
-                place: e.target.dataset.subscribeClick
-            });
-
-        });
+  document.querySelectorAll(".subscribe-link").forEach((el) => {
+    el.addEventListener("click", (e) => {
+      gtag("event", "click_subscribe", {
+        page: window.location.pathname,
+        place: e.target.dataset.subscribeClick,
+      });
     });
-
+  });
 </script>
-<script type="text/javascript" src="/IndicatorPublic/js/main.e345555f1bc64916.js" integrity="sha512-VSyeDrW59WeoY4CdiN/bnfwuUGLxqnrjE6u98ho0b9dzriZfX/YY2DIuK5a5W&#43;GzGcaB6w6nuBijxkhahLatWg=="></script>
+<script
+  type="text/javascript"
+  src="/IndicatorPublic/js/main.e345555f1bc64916.js"
+  integrity="sha512-VSyeDrW59WeoY4CdiN/bnfwuUGLxqnrjE6u98ho0b9dzriZfX/YY2DIuK5a5W&#43;GzGcaB6w6nuBijxkhahLatWg=="
+></script>
 </body>
 </html>
 

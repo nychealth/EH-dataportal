@@ -287,8 +287,9 @@
                                     
                                     <div class="nav-item bg-none text-white border border-white ml-1">
 
-                                        <a href="#" class="nav-link text-white" data-subscribe-click="header" data-toggle="modal" data-target="#subscribeModal">
-                                            Subscribe
+                                        <a class="nav-link text-white subscribe-link" href=/IndicatorPublic/About/subscribe>Subscribe</a>
+                                            
+
                                         </a>
                                     </div>
 
@@ -469,7 +470,7 @@
       <h1>About the EH Data Portal</h1><p>The NYC Environment &amp; Health Data Portal shows how environments affect health, by publishing data and information that explain the connection. Public health professionals, community-based organizations, community boards, city agencies, elected officials, health workers, advocates, and everyday New Yorkers use this website to get important information that they need to do their jobs and make important, informed decisions about health.</p>
 <p>The Environment &amp; Health Data Portal is a project by the NYC Department of Health and Mental Hygiene&rsquo;s Bureau of Environmental Surveillance and Policy. Our bureau works to analyze data on environmental health and translate it to Health Department and Citywide policies that protect New Yorkers, improve our environment, and maintain our health. We are grateful for the support and collaboration of our principal design partners, <a href="https://mod-lab.com/">Minds On Design Lab</a>, to develop and enhance the Environment and Health Data Portal.</p>
 <p><i class="fas fa-info-circle mr-1"></i><a href="/IndicatorPublic/about/jobs/">Check out open positions in our bureau</a>.</p>
-<p><i class="fas fa-envelope mr-1"></i>Email us with thoughts, questions, or concerns at <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#101;&#104;&#100;&#112;&#64;&#104;&#101;&#97;&#108;&#116;&#104;&#46;&#110;&#121;&#99;&#46;&#103;&#111;&#118;">ehdp@health.nyc.gov</a>, or <a href="#" data-subscribe-click="about" data-toggle="modal" data-target="#subscribeModal">sign up for our email list</a>. We won&rsquo;t share your email address.</p></p>
+<p><i class="fas fa-envelope mr-1"></i>Email us with thoughts, questions, or concerns at <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#101;&#104;&#100;&#112;&#64;&#104;&#101;&#97;&#108;&#116;&#104;&#46;&#110;&#121;&#99;&#46;&#103;&#111;&#118;">ehdp@health.nyc.gov</a>, or <a class="subscribe-link" href="../about/subscribe">sign up for our email list</a>. We won&rsquo;t share your email address.</p></p>
 <p><i class="fas fa-question-circle mr-1"></i><a href="https://www.github.com/nychealth/EH-dataportal">Questions about the data? Visit our Github repo for info or to file an issue</a>.</p>
 <p><i class="fas fa-envelope-open-text mr-1"></i>Concerned about an environment and health issue? Take action and <a href="/IndicatorPublic/take-action/email-electeds/">email your elected officials.</a>.</p>
 
@@ -477,10 +478,11 @@
       <div class="row"><div class="card content-card mb-4 col-sm-6">
         <div class="card-content primary">
           <div class="card-body">
-              <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/about/proximity-indicators/" class="text-primary">Proximity indicators</a></h3>
-              <div class="mb-2">People’s ability to reach services with limited mobility is one practical way to describe …</div>
+              <h3 class="card-title"><a class="text-black" href="/IndicatorPublic/about/subscribe/" class="text-primary">Subscribe for updates</a></h3>
+              <div class="mb-2">Thanks for visiting the Environment and Health Data Portal.
+We’d like to add you to our email list. …</div>
               <div class="d-flex justify-content-end link">
-                  <a class="fs-sm font-weight-bold" href="/IndicatorPublic/about/proximity-indicators/">Read more <i class="fa-solid fa-angle-right"></i></a>
+                  <a class="fs-sm font-weight-bold" href="/IndicatorPublic/about/subscribe/">Read more <i class="fa-solid fa-angle-right"></i></a>
               </div>
           </div>
       </div>
@@ -869,40 +871,51 @@
   
 
 
-<script src="/IndicatorPublic/node_modules/popper.js/dist/umd/popper.min.4a9265d50608a5d0.js" integrity="sha512-ubuT8Z88WxezgSqf3RLuNi5lmjstiJcyezx34yIU2gAHonIi27Na7atqzUZCOoY4CExaoFumzOsFQ2Ch&#43;I/HCw==" crossorigin="anonymous"></script>
-<script src="/IndicatorPublic/node_modules/bootstrap/dist/js/bootstrap.bundle.min.47b12e1c6fc26bc7.js" integrity="sha512-igl8WEUuas9k5dtnhKqyyld6TzzRjvMqLC79jkgT3z02FvJyHAuUtyemm/P/jYSne1xwFI06ezQxEwweaiV7VA==" crossorigin="anonymous"></script>
-
+<script
+  src="/IndicatorPublic/node_modules/popper.js/dist/umd/popper.min.4a9265d50608a5d0.js"
+  integrity="sha512-ubuT8Z88WxezgSqf3RLuNi5lmjstiJcyezx34yIU2gAHonIi27Na7atqzUZCOoY4CExaoFumzOsFQ2Ch&#43;I/HCw=="
+  crossorigin="anonymous"
+></script>
+<script
+  src="/IndicatorPublic/node_modules/bootstrap/dist/js/bootstrap.bundle.min.47b12e1c6fc26bc7.js"
+  integrity="sha512-igl8WEUuas9k5dtnhKqyyld6TzzRjvMqLC79jkgT3z02FvJyHAuUtyemm/P/jYSne1xwFI06ezQxEwweaiV7VA=="
+  crossorigin="anonymous"
+></script>
 
 
 <script>
   function googleTranslateElementInit() {
-      new google.translate.TranslateElement({
-          pageLanguage: 'en'
-      }, 'google_translate_element');
+    new google.translate.TranslateElement(
+      {
+        pageLanguage: "en",
+      },
+      "google_translate_element"
+    );
 
-      
-      document.querySelectorAll("div[class^=VI] svg").forEach(e => e.outerHTML = "");
+    
+    document
+      .querySelectorAll("div[class^=VI] svg")
+      .forEach((e) => (e.outerHTML = ""));
   }
 </script>
 
 <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
 <script>
-
-    document.querySelectorAll("[data-target='#subscribeModal']").forEach(el => {
-
-        el.addEventListener("click", e => {
-
-            gtag('event', 'click_subscribe', {
-                page: window.location.pathname,
-                place: e.target.dataset.subscribeClick
-            });
-
-        });
+  document.querySelectorAll(".subscribe-link").forEach((el) => {
+    el.addEventListener("click", (e) => {
+      gtag("event", "click_subscribe", {
+        page: window.location.pathname,
+        place: e.target.dataset.subscribeClick,
+      });
     });
-
+  });
 </script>
-<script type="text/javascript" src="/IndicatorPublic/js/main.e345555f1bc64916.js" integrity="sha512-VSyeDrW59WeoY4CdiN/bnfwuUGLxqnrjE6u98ho0b9dzriZfX/YY2DIuK5a5W&#43;GzGcaB6w6nuBijxkhahLatWg=="></script>
+<script
+  type="text/javascript"
+  src="/IndicatorPublic/js/main.e345555f1bc64916.js"
+  integrity="sha512-VSyeDrW59WeoY4CdiN/bnfwuUGLxqnrjE6u98ho0b9dzriZfX/YY2DIuK5a5W&#43;GzGcaB6w6nuBijxkhahLatWg=="
+></script>
 
   
   
