@@ -99,16 +99,16 @@ Hospitalization,1,<1,8,7.9814498312,,7,Unintentional,Struck by or Against
 Hospitalization,1,<1,7,7.6344302733,,8,Unintentional,Suffocation
 Hospitalization,1,<1,6,5.8993324839,,9,Unintentional,Bite or Sting
 Hospitalization,1,<1,4,3.8172151367,,10,Unintentional,Natural or Environmental
-Hospitalization,1,All Ages,32653,130.31982816,,1,Unintentional,Fall
-Hospitalization,1,All Ages,13024,51.979464121,,2,Unintentional,Unspecified Mechanism
-Hospitalization,1,All Ages,5922,23.63501125,,3,Unintentional,Drug Poisoning
-Hospitalization,1,All Ages,1957,7.9013623147,,4,Self-Harm,Drug Poisoning
-Hospitalization,1,All Ages,1868,7.455285548,,5,Assault,Struck by or Against
-Hospitalization,1,All Ages,1473,5.8788199209,,6,Unintentional,Motor Vehicle Occupant
-Hospitalization,1,All Ages,1345,5.3679652367,,7,Unintentional,Struck by or Against
-Hospitalization,1,All Ages,1212,4.8371552913,,8,Unintentional,Pedestrian Struck by Motor Vehicle
-Hospitalization,1,All Ages,999,4.0334496435,,9,Unintentional,Motorcyclist
-Hospitalization,1,All Ages,843,3.3644570219,,10,Unintentional,Foreign Object
+Hospitalization,1,All ages,32653,130.31982816,,1,Unintentional,Fall
+Hospitalization,1,All ages,13024,51.979464121,,2,Unintentional,Unspecified Mechanism
+Hospitalization,1,All ages,5922,23.63501125,,3,Unintentional,Drug Poisoning
+Hospitalization,1,All ages,1957,7.9013623147,,4,Self-Harm,Drug Poisoning
+Hospitalization,1,All ages,1868,7.455285548,,5,Assault,Struck by or Against
+Hospitalization,1,All ages,1473,5.8788199209,,6,Unintentional,Motor Vehicle Occupant
+Hospitalization,1,All ages,1345,5.3679652367,,7,Unintentional,Struck by or Against
+Hospitalization,1,All ages,1212,4.8371552913,,8,Unintentional,Pedestrian Struck by Motor Vehicle
+Hospitalization,1,All ages,999,4.0334496435,,9,Unintentional,Motorcyclist
+Hospitalization,1,All ages,843,3.3644570219,,10,Unintentional,Foreign Object
 ED,1,1 - 4,13275,3566.9061914,,1,Unintentional,Fall
 ED,1,1 - 4,4082,1096.8068605,,2,Unintentional,Struck by or Against
 ED,1,1 - 4,3955,1062.7723507,,3,Unintentional,Unspecified Mechanism
@@ -209,16 +209,16 @@ ED,1,<1,104,108.61712162,,7,Unintentional,Bite or Sting
 ED,1,<1,89,92.307202395,,8,Unintentional,Cut or Pierce
 ED,1,<1,75,77.732380965,,9,Unintentional,Non-Drug Poisoning
 ED,1,<1,74,77.038341849,,10,Unintentional,Other Classifiable Mechanism
-ED,1,All Ages,158501,632.58576801,,1,Unintentional,Fall
-ED,1,All Ages,74166,296.00037899,,2,Unintentional,Unspecified Mechanism
-ED,1,All Ages,52318,208.80387008,,3,Unintentional,Struck by or Against
-ED,1,All Ages,36299,144.87120455,,4,Unintentional,Motor Vehicle Occupant
-ED,1,All Ages,31411,125.3629413,,5,Unintentional,Overexertion
-ED,1,All Ages,30478,121.63928958,,6,Unintentional,Cut or Pierce
-ED,1,All Ages,30355,121.14839016,,7,Assault,Struck by or Against
-ED,1,All Ages,12859,51.320940504,,8,Unintentional,Bite or Sting
-ED,1,All Ages,10444,41.682549392,,9,Unintentional,Foreign Object
-ED,1,All Ages,9329,37.232526166,,10,Unintentional,Other Classifiable Mechanism
+ED,1,All ages,158501,632.58576801,,1,Unintentional,Fall
+ED,1,All ages,74166,296.00037899,,2,Unintentional,Unspecified Mechanism
+ED,1,All ages,52318,208.80387008,,3,Unintentional,Struck by or Against
+ED,1,All ages,36299,144.87120455,,4,Unintentional,Motor Vehicle Occupant
+ED,1,All ages,31411,125.3629413,,5,Unintentional,Overexertion
+ED,1,All ages,30478,121.63928958,,6,Unintentional,Cut or Pierce
+ED,1,All ages,30355,121.14839016,,7,Assault,Struck by or Against
+ED,1,All ages,12859,51.320940504,,8,Unintentional,Bite or Sting
+ED,1,All ages,10444,41.682549392,,9,Unintentional,Foreign Object
+ED,1,All ages,9329,37.232526166,,10,Unintentional,Other Classifiable Mechanism
 Hospitalization,0,1 - 4,6382,,,1,,Diseases of the Respiratory System
 Hospitalization,0,1 - 4,1951,,,2,,Infectious and Parasitic Diseases
 Hospitalization,0,1 - 4,1294,,,3,,Diseases of the Nervous System
@@ -319,16 +319,16 @@ Hospitalization,0,<1,464,,,7,,Diseases of the Nervous System
 Hospitalization,0,<1,386,,,8,Injury,"Injury, Poisoning and Other Consequences of External Causes"
 Hospitalization,0,<1,333,,,9,,"Endocrine, Nutritional and Metabolic Diseases"
 Hospitalization,0,<1,311,,,10,,Diseases of the Genitourinary System
-Hospitalization,0,All Ages,130486,,,1,,Diseases of the Circulatory System
-Hospitalization,0,All Ages,110801,,,2,,"Pregnancy, Childbirth and the Puerperium"
-Hospitalization,0,All Ages,94995,,,3,,Conditions Originating in the Perinatal Period
-Hospitalization,0,All Ages,93558,,,4,,Infectious and Parasitic Diseases
-Hospitalization,0,All Ages,84594,,,5,,Diseases of the Digestive System
-Hospitalization,0,All Ages,65162,,,6,Injury,"Injury, Poisoning and Other Consequences of External Causes"
-Hospitalization,0,All Ages,63976,,,7,,"Mental, Behavioral and Neurodevelopmental Disorders"
-Hospitalization,0,All Ages,53866,,,8,,"Endocrine, Nutritional and Metabolic Diseases"
-Hospitalization,0,All Ages,51617,,,9,,Neoplasms
-Hospitalization,0,All Ages,50001,,,10,,Diseases of the Respiratory System
+Hospitalization,0,All ages,130486,,,1,,Diseases of the Circulatory System
+Hospitalization,0,All ages,110801,,,2,,"Pregnancy, Childbirth and the Puerperium"
+Hospitalization,0,All ages,94995,,,3,,Conditions Originating in the Perinatal Period
+Hospitalization,0,All ages,93558,,,4,,Infectious and Parasitic Diseases
+Hospitalization,0,All ages,84594,,,5,,Diseases of the Digestive System
+Hospitalization,0,All ages,65162,,,6,Injury,"Injury, Poisoning and Other Consequences of External Causes"
+Hospitalization,0,All ages,63976,,,7,,"Mental, Behavioral and Neurodevelopmental Disorders"
+Hospitalization,0,All ages,53866,,,8,,"Endocrine, Nutritional and Metabolic Diseases"
+Hospitalization,0,All ages,51617,,,9,,Neoplasms
+Hospitalization,0,All ages,50001,,,10,,Diseases of the Respiratory System
 ED,0,1 - 4,42661,,,1,,Diseases of the Respiratory System
 ED,0,1 - 4,34729,,,2,,"Symptoms, Signs and Abnormal Clinical and Laboratory Findings"
 ED,0,1 - 4,31188,,,3,,Infectious and Parasitic Diseases
@@ -429,16 +429,16 @@ ED,0,<1,3251,,,7,,Factors Influencing Health Status and Contact with Health Serv
 ED,0,<1,2542,,,8,,Diseases of the Skin
 ED,0,<1,2314,,,9,,Dental diseases
 ED,0,<1,1405,,,10,,Diseases of the Ear
-ED,0,All Ages,530956,,,1,,"Symptoms, Signs and Abnormal Clinical and Laboratory Findings"
-ED,0,All Ages,432095,,,2,Injury,"Injury, Poisoning and Other Consequences of External Causes"
-ED,0,All Ages,291524,,,3,,Diseases of the Musculoskeletal System and Connective Tissue
-ED,0,All Ages,221951,,,4,,"Mental, Behavioral and Neurodevelopmental Disorders"
-ED,0,All Ages,199552,,,5,,Diseases of the Respiratory System
-ED,0,All Ages,191574,,,6,,Infectious and Parasitic Diseases
-ED,0,All Ages,167011,,,7,,Diseases of the Circulatory System
-ED,0,All Ages,163628,,,8,,Diseases of the Digestive System
-ED,0,All Ages,158287,,,9,,Dental diseases
-ED,0,All Ages,154289,,,10,,Diseases of the Genitourinary System
+ED,0,All ages,530956,,,1,,"Symptoms, Signs and Abnormal Clinical and Laboratory Findings"
+ED,0,All ages,432095,,,2,Injury,"Injury, Poisoning and Other Consequences of External Causes"
+ED,0,All ages,291524,,,3,,Diseases of the Musculoskeletal System and Connective Tissue
+ED,0,All ages,221951,,,4,,"Mental, Behavioral and Neurodevelopmental Disorders"
+ED,0,All ages,199552,,,5,,Diseases of the Respiratory System
+ED,0,All ages,191574,,,6,,Infectious and Parasitic Diseases
+ED,0,All ages,167011,,,7,,Diseases of the Circulatory System
+ED,0,All ages,163628,,,8,,Diseases of the Digestive System
+ED,0,All ages,158287,,,9,,Dental diseases
+ED,0,All ages,154289,,,10,,Diseases of the Genitourinary System
 Death,0,All ages,5523,66.12375319,,1,,Heart disease
 Death,0,All ages,3859,46.20840261,,2,,Malignant neoplasms
 Death,0,All ages,2743,32.842368723,,3,,COVID-19
