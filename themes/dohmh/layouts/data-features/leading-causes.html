@@ -227,7 +227,6 @@ document.addEventListener("click", function (e) {
 });
 
 // TYPE BUTTONS (ed, hosp, death)
-/*
 document.querySelectorAll('.type-button').forEach(btn => {
   btn.addEventListener('click', function () {
     // remove active from all type buttons
@@ -247,12 +246,12 @@ document.querySelectorAll('.type-button').forEach(btn => {
     }
 
     // re draw chart and menu
-    // drawChart(outcome, intent, highlight)
-    // updateCauseMenu(outcome, intent);
+    drawChart(outcome, intent, highlight)
+    updateCauseMenu(outcome, intent);
 
   });
 });
-*/
+
 
 // SUBTYPE BUTTONS (all, or injury-only)
 document.querySelectorAll('.subtype-button').forEach(btn => {
