@@ -5,5 +5,5 @@ seo_title: "East New York"
 geocode: 204
 seo_description: "Environmental Health data profiles for the East New York neighborhood of NYC."
 seo_image: ""
-vega: true
+
 ---

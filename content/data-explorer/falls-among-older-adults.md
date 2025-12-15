@@ -7,7 +7,7 @@ seo_title: "Falls among older adults: data for NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
 description: "Datasets and visualizations of falls data in NYC."
 tags:
-categories: ["housing", "healthoutcomes","injuryandviolence"]
+categories: ["housing", "healthoutcomes","injuryandviolence","accessibility"]
 keywords:
   [
     "older adults",
@@ -27,7 +27,6 @@ indicators:
       - 2409
   - header: Safety
     IndicatorID:
-      - 2188
       - 2403
 related:
   - title: "Interactive Heat Vulnerability Index"

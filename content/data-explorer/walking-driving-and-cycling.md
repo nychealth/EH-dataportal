@@ -7,6 +7,7 @@ date: 2021-05-28T18:02:58Z
 categories:
   - publicspace
   - airquality
+  - accessibility
 keywords:
   - transportation
   - walking
