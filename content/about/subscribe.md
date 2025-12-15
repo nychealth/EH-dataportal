@@ -11,6 +11,6 @@ Thanks for visiting the Environment and Health Data Portal.
 
 We'd like to add you to our email list. We'll email you every few months with site updates, and occasional opportunities to participate in user research. We won't share your email and you can unsubscribe at any time.
 
-<div class="wide my-2">
-<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfUg3JE5ODNc6aqBPJwM8mZ80TYtK6ISw-OM7PBwKuoN3M--g/viewform?embedded=true" width="800" height="532" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+<div class="my-2">
+<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfUg3JE5ODNc6aqBPJwM8mZ80TYtK6ISw-OM7PBwKuoN3M--g/viewform?embedded=true" style="width:100%; height: 600px" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
 </div>
