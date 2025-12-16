@@ -61,7 +61,7 @@
         <div class="col-md-9">
             <div id="chart"></div>
             <div class="border-top">
-              <p class="fs-xs">Bubble size is proportional to the death rate for each cause of death.</p>
+              <p class="fs-xs">Bubble size is proportional to the rate for each cause.</p>
             </div>
         </div>
 
@@ -77,10 +77,10 @@
             <span class="fs-sm"><span id="rank">--</span> cause of <span class="outcome">outcome</span>:</span><br>
             <span class="font-weight-bold" id="causePrint">---</span>
             <hr class=my-1>
-            <span class="fs-sm"><span class="outcome capitalize-it">outcome</span> rate:</span><br>
+            <span class="fs-sm">Rate:</span><br>
             <span class="font-weight-bold" id="ratePrint">---</span>
             <hr class=my-1>
-            <span class="fs-sm">Average annual  <span class="outcome">outcome</span>s:</span><br>
+            <span class="fs-sm">Average annual number:</span><br>
             <span class="font-weight-bold" id="countPrint">---</span>
             <hr class=my-1>
             <p class="fs-xs"><em><span id="flagNote" class="fs-xs">Note:</span></em></p>
@@ -100,15 +100,41 @@
 </article>
 
 <script>
+
+// ---------------------------------------------------------- //
 // GLOBAL VARIABLES
+// ---------------------------------------------------------- //
 var outcome = 'Death'      // deaths, visits, or hosps
 var intent = 0              // injury true = 1
 var highlight = 'off'       // on or off (injury highlight)
 
+const config = [
+  {
+    "id": "ED",
+    "printName": "ED visits",
+    "shTerm": "Self-Harm",
+    "hhTerm": "Assault"
+  },
+  {
+    "id": "Hospitalization",
+    "printName": "hospitalization",
+    "shTerm": "Self-Harm",
+    "hhTerm": "Assault"
+  },
+  {
+    "id": "Death",
+    "printName": "death",
+    "shTerm": "Suicide",
+    "hhTerm": "Homicide"
+  }
+]
+
 const injuryBtn = document.getElementById('showInjury');
 let injuryOn = false; // record keeper
 
-// RETRIEVE DATA FILE, AND ADD CAUSES TO DROPDOWN MENU
+// ---------------------------------------------------------- //
+// RETRIEVE DATA FILE
+// ---------------------------------------------------------- //
 let cachedCauseData = null;
 
 // Load CSV once, cache it:
@@ -121,7 +147,70 @@ function loadCauseData() {
       });
 }
 
-// GENERATE CAUSE MENU
+// ---------------------------------------------------------- //
+// BUTTON EVENT LISTENERS
+// ---------------------------------------------------------- //
+
+// Main buttons (ED, Hosp, Death)
+document.querySelectorAll('.type-button').forEach(btn => {
+  btn.addEventListener('click', function () {
+    // remove active from all type buttons
+    document.querySelectorAll('.type-button').forEach(b => b.classList.remove('active'));
+
+    // add active to clicked one
+    this.classList.add('active');
+
+    // log its id
+    console.log(this.id);
+    outcome = this.id
+
+    // update the text inside #all
+    const allBtn = document.getElementById('all');
+    if (allBtn) {
+      allBtn.textContent = `All ${this.textContent.trim()}`;
+    }
+
+    // re draw chart and menu
+    drawChart(outcome, intent, highlight)
+    updateCauseMenu(outcome, intent);
+
+  });
+});
+
+
+// Sub-buttons (Injury-related only)
+document.querySelectorAll('.subtype-button').forEach(btn => {
+  btn.addEventListener('click', function () {
+
+    // remove active from all subtype buttons
+    document.querySelectorAll('.subtype-button').forEach(b => b.classList.remove('active'));
+
+    // add active to clicked one
+    this.classList.add('active');
+
+    // update global intent based on data-injury
+    intent = Number(this.dataset.injury);
+
+    // show/hide #showInjury only when "All deaths" is selected
+    if (intent === 0) {
+      document.querySelector('#showInjury').classList.remove('d-none');
+    } else {
+      document.querySelector('#showInjury').classList.add('d-none');
+    }
+
+    console.log("intent:", intent);
+
+    drawChart(outcome, intent, highlight)
+    updateCauseMenu(outcome, intent);
+
+  });
+});
+
+// ---------------------------------------------------------- //
+// WRITE CAUSE MENU
+// ---------------------------------------------------------- //
+
+// Generate cause menu
 function updateCauseMenu(outcome, intent) {
 
   document.getElementById('buttonTitle').innerHTML = 'Cause'
@@ -184,7 +273,7 @@ function updateCauseMenu(outcome, intent) {
   });
 }
 
-// EVENT LISTENER ON CAUSE MENU
+// Event listener
 document.addEventListener("click", function (e) {
   const target = e.target.closest(".cause-highlight");
   if (!target) return; // click wasn't on a cause item
@@ -203,7 +292,7 @@ document.addEventListener("click", function (e) {
 
 });
 
-// CAUSE MENU TEXT AND RESET
+// Text and reset
 document.addEventListener("click", function (e) {
   const target = e.target.closest(".dropdown-item");
 
@@ -226,81 +315,31 @@ document.addEventListener("click", function (e) {
   }
 });
 
-// TYPE BUTTONS (ed, hosp, death)
-document.querySelectorAll('.type-button').forEach(btn => {
-  btn.addEventListener('click', function () {
-    // remove active from all type buttons
-    document.querySelectorAll('.type-button').forEach(b => b.classList.remove('active'));
 
-    // add active to clicked one
-    this.classList.add('active');
-
-    // log its id
-    console.log(this.id);
-    outcome = this.id
-
-    // update the text inside #all
-    const allBtn = document.getElementById('all');
-    if (allBtn) {
-      allBtn.textContent = `All ${this.textContent.trim()}`;
-    }
-
-    // re draw chart and menu
-    drawChart(outcome, intent, highlight)
-    updateCauseMenu(outcome, intent);
-
-  });
-});
-
-
-// SUBTYPE BUTTONS (all, or injury-only)
-document.querySelectorAll('.subtype-button').forEach(btn => {
-  btn.addEventListener('click', function () {
-
-    // remove active from all subtype buttons
-    document.querySelectorAll('.subtype-button').forEach(b => b.classList.remove('active'));
-
-    // add active to clicked one
-    this.classList.add('active');
-
-    // update global intent based on data-injury
-    intent = Number(this.dataset.injury);
-
-    // show/hide #showInjury only when "All deaths" is selected
-    if (intent === 0) {
-      document.querySelector('#showInjury').classList.remove('d-none');
-    } else {
-      document.querySelector('#showInjury').classList.add('d-none');
-    }
-
-    console.log("intent:", intent);
-
-    drawChart(outcome, intent, highlight)
-    updateCauseMenu(outcome, intent);
-
-  });
-});
-
+// ---------------------------------------------------------- //
 // CHART DRAWING FUNCTION
+// ---------------------------------------------------------- //
 function drawChart(outcome, intent, highlight) {
-
-  var outcomeLabel = (outcome === 'ed') ? 'ED Visits' : outcome
-
-  document.querySelectorAll('.outcome').forEach(el => {
-    el.innerHTML = outcomeLabel.toLowerCase()
-  })
-
-  document.querySelectorAll(".capitalize-it").forEach(el => {
-    el.innerHTML = capitalizeFirstLetter(el.innerHTML)
-  })
 
   console.log('Drawing chart for', outcome)
   console.log('Injury related?', intent)
   console.log('Highlighting:', highlight)
 
+  // Filter metadata config for chosen outcome
+  var metadata = config.filter(chosenOutcome => chosenOutcome.id === outcome)
+  metadata = metadata[0]
+  console.log('metadata', metadata)
+
+  // Print outcome to legend
+  document.querySelectorAll('.outcome').forEach(el => {
+    el.innerHTML = metadata.printName
+  })
+
+  // Set up some variables
   var filter
   var color
-  // injury FILTER condition
+
+  // Injury filter
   if (intent == 1) {
     filter = "datum.InjuryOnly == 1"
     injuryHighlight = 'off'
@@ -310,8 +349,8 @@ function drawChart(outcome, intent, highlight) {
               "scale": {
                 "domain": [
                   "Unintentional",
-                  "Suicide",
-                  "Homicide",
+                  metadata.shTerm,
+                  metadata.hhTerm,
                   "Undetermined"
                 ],
                 "range": [
@@ -379,15 +418,6 @@ function drawChart(outcome, intent, highlight) {
       "domain": false,
       "ticks": false
     },
-    /*
-    "legend": {
-      "columns": 6,
-      "labelFontSize": 14,
-      "symbolSize": 140,
-      "orient": "bottom",
-      "title": null
-    },
-    */
     "view": {"stroke": "transparent"},
     "range": {"category": ["#ffa600", "#f5f5f5", "#40826D", "#5d5d5d"]}
   },
@@ -504,33 +534,29 @@ function drawChart(outcome, intent, highlight) {
   }
 }
 
+// Print chart
 vegaEmbed('#chart', spec).then(result => {
   const view = result.view;
 
-  // Mouse over event
+  // Mouse over event - sending to other function
   view.addEventListener('mouseover', event => {
-
     showOnHover(event)
-
   });
 
   // Mouse out event
   view.addEventListener('mouseleave', event => {
-
     clearOnHover()
-
     if (event.item && event.item.datum) {
       console.log('Mouse left:', event.item.datum);
-      // do stuff when mouse leaves the mark
     }
   });
 
 });
-
-
 }
 
-// SIDEBAR TOOLTIP
+// ---------------------------------------------------------- //
+// TOOLTIP FUNCTIONALITY
+// ---------------------------------------------------------- //
 function showOnHover(event) {
 
   document.getElementById('readout').classList.remove('hide');    
@@ -572,19 +598,23 @@ function showOnHover(event) {
   }
 }
 
-// CLEAR TOOLTIP
 function clearOnHover() {
       document.getElementById('readout').classList.add('hide')
       document.getElementById('prompt').classList.remove('hide')
 }
 
-// INITIALIZE CHART
-drawChart(outcome, intent, highlight)
-updateCauseMenu(outcome, intent);
-
+// ---------------------------------------------------------- //
+// Misc helper functions
+// ---------------------------------------------------------- //
 function capitalizeFirstLetter(val) {
     return String(val).charAt(0).toUpperCase() + String(val).slice(1);
 }
+
+// ---------------------------------------------------------- //
+// Initialize chart
+// ---------------------------------------------------------- //
+drawChart(outcome, intent, highlight)
+updateCauseMenu(outcome, intent);
 
 
 </script>
