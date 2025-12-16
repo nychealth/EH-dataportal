@@ -84,6 +84,11 @@
             <span class="font-weight-bold" id="countPrint">---</span>
             <hr class=my-1>
             <p class="fs-xs"><em><span id="flagNote" class="fs-xs">Note:</span></em></p>
+
+            <div class="mt-3 border-top fs-sm">
+              <span><span id="printCause">---</span>:<br>
+              <span id="printDescription">---</span>
+            </div>
           </div>
 
         </div>
@@ -136,6 +141,7 @@ let injuryOn = false; // record keeper
 // RETRIEVE DATA FILE
 // ---------------------------------------------------------- //
 let cachedCauseData = null;
+let cachedDescriptions = null;
 
 // Load CSV once, cache it:
 function loadCauseData() {
@@ -145,6 +151,15 @@ function loadCauseData() {
         cachedCauseData = d;
         return d;
       });
+}
+
+function loadDescriptions() {
+  return cachedDescriptions
+    ? Promise.resolve(cachedDescriptions)
+    : d3.csv("data/cause-descriptions.csv").then(d => {
+      cachedDescriptions = d;
+      return d;
+    });
 }
 
 // ---------------------------------------------------------- //
@@ -567,6 +582,8 @@ function showOnHover(event) {
 
     // console.log('Hovered over:', datum);
 
+    printDescription(datum.cause_text)
+
     var cause = datum.cause_text.replace("Injury: ", "");
 
     // If cause is empty, show "No deaths, no cause"
@@ -603,6 +620,28 @@ function clearOnHover() {
       document.getElementById('prompt').classList.remove('hide')
 }
 
+function printDescription(x) {
+
+  console.log(x)
+
+  loadDescriptions().then(data => { 
+
+    let thisCause = data.filter(datum => datum.cause === x)
+
+    if (thisCause[0]) {
+      console.log(thisCause[0].description)
+      document.getElementById('printCause').innerHTML = x
+      document.getElementById('printDescription').innerHTML = thisCause[0].description
+    } else {
+      console.log('No description found yet')
+      document.getElementById('printCause').innerHTML = x
+      document.getElementById('printDescription').innerHTML = '(No description yet)'
+
+    }
+
+  })
+
+}
 // ---------------------------------------------------------- //
 // Misc helper functions
 // ---------------------------------------------------------- //
