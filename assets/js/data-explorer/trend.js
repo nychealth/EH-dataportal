@@ -10,7 +10,7 @@ const renderTrendChart = (
     console.log("*** renderTrendChart");
 
     let mdo = metadata.objects()
-    mdo[0].ComparisonName === 'Boroughs' ? document.getElementById('viewDescription').innerHTML = 'Trends are shown by borough for stable rates.' : document.getElementById('viewDescription').innerHTML = ''
+    mdo[0].ComparisonName === 'Boroughs' ? document.getElementById('viewDescription').innerHTML = 'Hover on lines for more information.' : document.getElementById('viewDescription').innerHTML = 'Hover on lines for more information'
 
     // console.log("metadata [renderTrendChart]");
     // metadata.print()
