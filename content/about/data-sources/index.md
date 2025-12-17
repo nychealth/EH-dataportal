@@ -18,7 +18,9 @@ seo_description: "Data sources"
 description: "Data sources"
 ---
 
-The Environment and Health Data Portal hosts over 200 datasets on topics like air quality, climate, pests, housing, and much more. These data can tell us how environmental factors like housing, air quality, and socioeconomic status can shape health from neighborhood to neighborhood. But where does this data come from? How often is it updated? And how do we pick which datasets to feature?
+The Environment and Health Data Portal hosts over 200 sets of measures from data sources that cover topics like air quality, climate, pests, housing, and much more. These data can tell us how environmental factors like housing, air quality, and socioeconomic status can shape health from neighborhood to neighborhood. But where does this data come from? How often is it updated? And how do we pick which datasets to feature?
+
+we host over 200 sets of measures from data sources that cover topics like air quality, climate, pests, housing, and much more.
 
 ## Question #1: Where do you get your data?
 
@@ -56,7 +58,7 @@ We get data from many sources: some from NYC Health or other city agencies like 
 <div class="collapse" id="panel-acc-button-2b" role="tabpanel" aria-labelledby="acc-button-2b" data-parent="#accordion-02">
     <div class="card-body fs-md">
 <p>
-<strong><a href="https://www.nyc.gov/site/doh/data/data-sets/community-health-survey.page">What is New York Statewide Planning and Research Cooperative System (SPARCS)?</a></strong> SPARCS is a billing claims data system that collects patient-level data, like diagnoses, treatments, and characteristics for both inpatient and outpatient stays in every hospital throughout New York state. It is a collaboration between the NY state government and the healthcare system. At the NYC Health department, we restrict data to just hospitals within NYC and sometimes NYC residents.<br><br>
+<strong><a href="https://www.health.ny.gov/statistics/sparcs/">What is New York Statewide Planning and Research Cooperative System (SPARCS)?</a></strong> SPARCS is a billing claims data system that collects patient-level data, like diagnoses, treatments, and characteristics for both inpatient and outpatient stays in every hospital throughout New York state. It is a collaboration between the NY state government and the healthcare system. At the NYC Health department, we restrict data to just hospitals within NYC and sometimes NYC residents.<br><br>
   <strong>Some SPARCS indicators include: </strong>
     <ul>
     <li><a href="../../data-explorer/weather-related-illness/?id=2376">Heat-stress hospitalizations and emergency department visits</a></li>
