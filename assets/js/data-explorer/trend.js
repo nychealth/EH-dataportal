@@ -465,6 +465,12 @@ const renderTrendChart = (
                 "subtitleFontSize": 13
             },
             "transform": [
+                // Adds space to line name
+                {
+                    "calculate": `replace(datum.${comp_group_col}, /(.{1,15})(\\s+|$)/g, '$1\\n')`,
+                    "as": "textLabel"
+                },
+
                 // adds display to value
                 {
                     "calculate": `datum.DisplayValue + ' ${compDisplayTypes}'`, "as": "valueWithDisplay"
@@ -665,13 +671,14 @@ const renderTrendChart = (
                             "encoding": {
                                 "y": {"field": "labelValue"},
                                 "text": {
-                                        "field": comp_group_col,
+                                        "field": "endDate.textLabel",
                                 },
                                 "tooltip": [
                                  ]
                             },
                             "mark": {
                                 "type": "text",
+                                "lineBreak": "\n",
                                 "align": "left",
                                 "dx": 8,
                                 "dy": 5,
