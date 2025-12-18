@@ -59,17 +59,24 @@ const renderTrendChart = (
     }
 
     let mobileLegend = null
-    /*
+    let endLabelFontSize = 10
+
     if (window.innerWidth < 720) {
         mobileLegend =  {
-            "orient": "bottom",
-            "columns": 3,
-            "title": ''
-        }
+                "orient": "bottom",
+                "columns": 3, 
+                "title": "", 
+                "labelFontWeight": "bold",
+                "labelColor": {
+                "expr": "scale('color', datum.label)"
+                }
+            }
+        endLabelFontSize = 0
     } else {
         mobileLegend = null
+        endLabelFontSize = 10
     }
-    */
+
     
     
     // ticks
@@ -434,13 +441,17 @@ const renderTrendChart = (
                 "titlePadding": 10
             },
             "axisY": {"labelAngle": 0, "labelFontSize": 11, "tickMinStep": tickMinStep},
-            "legend": {"columns": 3,"labelFontSize": 12,
-                "symbolSize": 140,
-                "offset": 45},
-                "view": {"stroke": "transparent"},
-                "line": {"color": "#1696d2", "stroke": "#1696d2", "strokeWidth": 2.5},
-                "point": {"filled": true},
-                "text": {"color": "#1696d2", "fontSize": 11, "fontWeight": 400, "size": 11}
+            "legend": {
+                "columns": 3,
+                "labelFontSize": 10,
+                "symbolSize": 50,
+                "offset": 45,
+                "symbolType": "stroke"
+            },
+            "view": {"stroke": "transparent"},
+            "line": {"color": "#1696d2", "stroke": "#1696d2", "strokeWidth": 2.5},
+            "point": {"filled": true},
+            "text": {"color": "#1696d2", "fontSize": 11, "fontWeight": 400, "size": 11}
             },
             "data": {
                 "values": data.objects(),
@@ -682,7 +693,7 @@ const renderTrendChart = (
                                 "align": "left",
                                 "dx": 8,
                                 "dy": 5,
-                                "fontSize": 10,
+                                "fontSize": endLabelFontSize, // hides on mobile, in favor of legend. 
                                 "fontWeight": "bold"
                             }
                         }
