@@ -22,7 +22,7 @@ The Environment and Health Data Portal hosts over 200 sets of measures from data
 
 we host over 200 sets of measures from data sources that cover topics like air quality, climate, pests, housing, and much more.
 
-## Question #1: Where do you get your data?
+## Where do you get your data?
 
 We get data from many sources: some from NYC Health or other city agencies like <a href="https://www.nycgovparks.org/">NYC Parks</a> or <a href="https://www.nyc.gov/site/doi/index.page">Department of Investigations</a>; and some from outside sources, like the [CDC](https://www.cdc.gov/), [SPARCS](https://www.health.ny.gov/statistics/sparcs/), the [U.S. Census](https://www.census.gov/), and the [EPA](https://www.epa.gov/). Here are some of the core datasets:
 
@@ -269,7 +269,7 @@ NYC’s Local Law 11 requires city agencies to make data considered “public”
 </div>
 </div>
 
-## Question #2: How do you choose datasets?
+## How do you choose datasets?
 
 We use datasets from many sources to quantify the state of various measures of health, and explanatory text to frame it, provide context, and add meaning. No single dataset can tell us everything, but together, they can paint a picture of how environments shape health in NYC across time. That said, there are tons of datasets out there – so how do we choose? We have frequent conversations with our data experts to determine what datasets would add the most value to the Portal.
 
@@ -279,7 +279,7 @@ But sometimes we see something on NYC Open Data, or another source, that provide
 
 Transit datasets like <a href="../../data-explorer/accessibility/?id=2455">accessible subway stations</a> and <a href="../../data-explorer/accessibility/?id=2456">bus stops with audio announcements</a> are also from NYC Open Data, and illustrate how accessible transit (and thus, all of New York City) is to New Yorkers with disabilities, caregivers, older adults, and everyone!
 
-## Question #3: Why aren’t some of your data more recent?
+## Why aren’t some of your data more recent?
 
 These data (ranging from <a href="../../data-explorer/economic-conditions/?id=103">neighborhood poverty</a> and <a href="../../data-explorer/weather-related-illness/?id=2174"> cold-stress hospitalizations</a>, to <a href="../../data-explorer/walking-driving-and-cycling/?id=2426">Citi bike station density</a> and <a href="../../data-explorer/cockroaches/?id=22">cockroach sightings</a>) aren’t all measured, collected, recorded, organized, and reported in the same way, or within the same time period. Sometimes data are also aggregated into multi-year batches to protect privacy while being stable enough to show impacts at the neighborhood level.
 
