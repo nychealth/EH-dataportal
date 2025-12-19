@@ -271,22 +271,18 @@ NYC’s Local Law 11 requires city agencies to make data considered “public”
 
 ## Question #2: How do you choose datasets?
 
-We try to paint a picture of how environments shape health in NYC across time – we use datasets to quantify the state of various measures of health, and explanatory text to frame it, provide context, and add meaning. That said, there are many, many more datasets out there – so how do we choose? We have frequent conversations with our data experts to determine what datasets would add the most value to the Portal.
+We use datasets from many sources to quantify the state of various measures of health, and explanatory text to frame it, provide context, and add meaning. No single dataset can tell us everything, but together, they can paint a picture of how environments shape health in NYC across time. That said, there are tons of datasets out there – so how do we choose? We have frequent conversations with our data experts to determine what datasets would add the most value to the Portal.
 
 <img src="../data-sources/Litterbasket_NTA.png">
 
-But sometimes we see something on NYC Open Data, or another source, that provides interesting context to NYC’s environment and health, for example, our litter basket coverage data. These humble amenities may be overlooked, but have a strong connection to health: when there are more litter baskets, there is less litter, and fewer pests. Fewer pests are healthier for a neighborhood and <a href="../../data-stories/sanitation">cleaner streets have a positive impact on mental health and feelings of safety and positivity</a>. Public bathrooms also make it easier for people to partake in public life.
+But sometimes we see something on NYC Open Data, or another source, that provides interesting context to NYC’s environment and health, for example, our <a href="../../data-explorer/mice-and-rats/?id=2416">litter basket coverage data</a>. These humble amenities may be overlooked, but have a strong connection to health: when there are more litter baskets, there is less litter, and fewer pests. Fewer pests are healthier for a neighborhood and <a href="../../data-stories/sanitation">cleaner streets have a positive impact on mental health and feelings of safety and positivity</a>. <a href="../../data-explorer/accessibility/?id=2457">Public bathrooms also make it easier for people to partake in public life</a>.
 
-<!-- maybe delete one of these examples -->
-
-Transit datasets like accessible subway stations and bus stops with audio announcements are both found on NYC Open Data, and illustrate how accessible transit (and thus, all of New York City) is to New Yorkers with disabilities, those transporting small children, older adults, and everyone!
-
-**Each data sets contributes a piece of information that helps us understand the whole, but no one dataset can provide everything.**
+Transit datasets like <a href="../../data-explorer/accessibility/?id=2455">accessible subway stations</a> and <a href="../../data-explorer/accessibility/?id=2456">bus stops with audio announcements</a> are both found on NYC Open Data, and illustrate how accessible transit (and thus, all of New York City) is to New Yorkers with disabilities, caregivers, older adults, and everyone!
 
 ## Question #3: Why aren’t some of your data more recent?
 
-These data (ranging from neighborhood poverty and cold-stress hospitalizations, to Citi bike station density and cockroach sightings) aren’t all measured, collected, recorded, organized, and reported in the same way, or within the same time period. Sometimes data are also aggregated into multi-year batches to protect privacy while being stable enough to show impacts at the neighborhood level.
+These data (ranging from <a href="../../data-explorer/economic-conditions/?id=103">neighborhood poverty</a> <a href="../../data-explorer/weather-related-illness/?id=2174">and cold-stress hospitalizations</a>, to <a href="../../data-explorer/walking-driving-and-cycling/?id=2426">Citi bike station density</a> and <a href="../../data-explorer/cockroaches/?id=22">cockroach sightings</a>) aren’t all measured, collected, recorded, organized, and reported in the same way, or within the same time period. Sometimes data are also aggregated into multi-year batches to protect privacy while being stable enough to show impacts at the neighborhood level.
 
 As a result, some types of data aren't updated as frequently as others. But that doesn’t mean that older datasets don’t tell us valuable information. Significant trends in health can take a long time to show up. When it comes to <a href="../../data-explorer/falls-among-older-adults/?id=2136/"> Fall-related hospitalizations (age 65+)</a>, for instance, our most recent dataset is from 2023. However, the chart tells us that borough-level trends have been pretty even since 2018. Any programs and outreach we are developing to address these issues are likely to still be needed year over year, even as we await a batch of newer data.
 
-In sum, each of the Portal’s data sources captures diverse, valuable information that together show how the environment – built, social, economic – shapes population health.
+As you can see, combining data from different sources and looking at them in the context of one another is part of what makes the Portal such a powerful tool. No one piece of data tells us the whole story, but together, each of the Portal’s data sources captures diverse, valuable information that together show how the environment – built, social, economic – shapes population health in NYC.
