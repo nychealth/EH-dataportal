@@ -63,7 +63,6 @@ const renderTrendChart = (
 
     if (window.innerWidth < 720) {
         mobileLegend =  {
-                "orient": "bottom",
                 "columns": 3, 
                 "title": "", 
                 "labelFontWeight": "bold",
@@ -446,7 +445,8 @@ const renderTrendChart = (
                 "labelFontSize": 10,
                 "symbolSize": 50,
                 "offset": 45,
-                "symbolType": "stroke"
+                "symbolType": "stroke",
+                "orient": "top"
             },
             "view": {"stroke": "transparent"},
             "line": {"color": "#1696d2", "stroke": "#1696d2", "strokeWidth": 2.5},
@@ -465,14 +465,14 @@ const renderTrendChart = (
             "height": 400,
             "title": {
                 "text": plotTitle,
-                "subtitlePadding": 10,
+                "subtitlePadding": 5,
                 "fontWeight": "normal",
                 "anchor": "start",
                 "fontSize": 18,
                 "font": "sans-serif",
                 "baseline": "top",
                 "subtitle": plotSubtitle,
-                "dy": -10,
+                "dy": -5,
                 "subtitleFontSize": 13
             },
             "transform": [
