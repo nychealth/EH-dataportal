@@ -197,7 +197,7 @@ function renderFullSugarTable() {
               </div>
 
               <div class="combo-row">
-                <span class="combo-label">Calories needed for 50g sugar:</span>
+                <span class="combo-label">Calories needed for 50g of added sugar:</span>
                 <span class="combo-value">${c3}</span>
               </div>
             </div>
@@ -231,11 +231,12 @@ function renderFullSugarTable() {
   uniqueBrands.forEach(b => brandFilter.append(`<option value="${b}">${b}</option>`));
 
   brandFilter.on("change", function() {
-    const val = $.fn.dataTable.util.escapeRegex($(this).val());
+    const val = $(this).val();
     table.column(columns.indexOf("Brand Name"))
-      .search(val ? "^" + val + "$" : "", true, false)
-      .draw();
+        .search(val || "", true, false) // exact match false
+        .draw();
   });
+
 
   $("#clearBrandFilter").on("click", function() {
     brandFilter.val("");
