@@ -17,20 +17,21 @@ seo_title: NYC Community Air Survey Annual Report
 seo_description: Data, findings, and more from NYC's citywide air quality monitoring program.
 aliases:
   - /key-topics/airquality/nyccas/
-
 image: images/banner-2023.jpg
 layout: nyccas-report
 report: true
 related:
-  - title: "What our air quality monitors tell us about NYC's neighborhoods"
-    url: "data-stories/air-quality-by-neighborhood/"
-  - title: "Real-Time Air Quality: PM2.5 in NYC"
-    url: "data-features/realtime-air-quality/"
-  - title: "Air quality snapshots: special findings from 10 years of NYCCAS"
-    url: "data-stories/air-quality-snapshots/"
-blurb: Key findings from NYC's comprehensive air quality monitoring program, including pollutant trends and local sources.
+  - title: What our air quality monitors tell us about NYC's neighborhoods
+    url: data-stories/air-quality-by-neighborhood/
+  - title: 'Real-Time Air Quality: PM2.5 in NYC'
+    url: data-features/realtime-air-quality/
+  - title: 'Air quality snapshots: special findings from 10 years of NYCCAS'
+    url: data-stories/air-quality-snapshots/
+blurb: >-
+  Key findings from NYC's comprehensive air quality monitoring program,
+  including pollutant trends and local sources.
 ---
-## NYCCAS Report: 2008-2023
+## NYCCAS Report: 2008-2024
 
 In 2007, the New York City Department of Health and Mental Hygiene (Health Department) established the New York City Community Air Survey (NYCCAS), the largest ongoing urban air monitoring program of any U.S. city. NYCCAS, which began collecting data in December 2008, is a collaboration between the Health Department and Queens College of the City University of New York and provides data to:
 
@@ -42,7 +43,7 @@ In 2007, the New York City Department of Health and Mental Hygiene (Health Depar
 This report:
 
 * Provides a summary of key findings, the air monitoring program, monitoring site selection, and descriptions of the pollutants measured
-* Describes the trends in air pollutant levels from more than a decade of data from winter 2008-2009 through fall 2023 for fine particulate matter, nitrogen dioxide, nitric oxide, black carbon, wintertime sulfur dioxide, and summertime ozone
+* Describes the trends in air pollutant levels from more than a decade of data from winter 2008-2009 through fall 2024 for fine particulate matter, nitrogen dioxide, nitric oxide, black carbon, wintertime sulfur dioxide, and summertime ozone
 * Presents maps of neighborhood air pollution levels by year
 * Identifies the local sources that contribute the most to differences in these pollutants across New York City neighborhoods
 
@@ -50,14 +51,14 @@ This report:
 
 ### Key Findings
 
-**Citywide, annual average levels of four key pollutants have gone down between the first year of monitoring, 2009, and the most recent year of data, 2023.** During late spring and summer 2023, wildfire smoke from Canada caused an increase in measurements of fine particles (PM<sub>2\.5</sub>), including Black Carbon (BC). However, the 2023 levels of these pollutants still represent a decrease from levels when monitoring began in 2009.
+**Citywide, annual average levels of four key pollutants have gone down between the first year of monitoring, 2009, and the most recent year of data, 2024.**
 
-* Fine particles&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-29%
-* Nitrogen Dioxide (NO<sub>2</sub>)&nbsp; &nbsp; -38%
-* Nitric Oxide (NO)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; -60%
+* Fine particles&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-36%
+* Nitrogen Dioxide (NO<sub>2</sub>)&nbsp; &nbsp; -41%
+* Nitric Oxide (NO)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; -62%
 * Sulfur Dioxide (SO<sub>2</sub>)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; -98%
 
-**Air quality improved significantly after local regulations required building owners to convert to cleaner heating oils by 2015.** These heating oils were a major source of SO<sub>2</sub> in New York City. In 2023, only one of our 84 sites detected any SO<sub>2</sub>, and the level at that site was similar to SO<sub>2</sub> levels measured on Whiteface Mountain in the Adirondack Mountains, demonstrating the success of the clean heating oil requirements.
+**Air quality improved significantly after local regulations required building owners to convert to cleaner heating oils by 2015.** These heating oils were a major source of SO<sub>2</sub> in New York City. Since 2017, most of the measurements collected for SO<sub>2</sub> were below what our monitors can detect.  The SO<sub>2</sub> levels in the city are similar to SO<sub>2</sub> levels measured on Whiteface Mountain in the Adirondack Mountains, demonstrating the success of the clean heating oil requirements. As a result, starting in 2024, NYCCAS no longer monitors for SO<sub>2</sub>.
 
 **Ozone (O<sub>3</sub>) levels were higher in 2023 than any previous year of NYCCAS monitoring.** Ozone is produced when there are oxides of nitrogen (NO<sub>x</sub>) and volatile organic carbon emissions in the presence of sunlight and heat, which is why we see higher levels in the summer. Summer 2023 was one of the hottest in recorded history, likely causing higher O<sub>3</sub>&nbsp;levels.
 
