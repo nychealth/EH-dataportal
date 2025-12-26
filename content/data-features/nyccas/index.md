@@ -60,7 +60,7 @@ This report:
 
 **Air quality improved significantly after local regulations required building owners to convert to cleaner heating oils by 2015.** These heating oils were a major source of SO<sub>2</sub> in New York City. Since 2017, most of the measurements collected for SO<sub>2</sub> were below what our monitors can detect.  The SO<sub>2</sub> levels in the city are similar to SO<sub>2</sub> levels measured on Whiteface Mountain in the Adirondack Mountains, demonstrating the success of the clean heating oil requirements. As a result, starting in 2024, NYCCAS no longer monitors for SO<sub>2</sub>.
 
-**Ozone (O<sub>3</sub>) levels were higher in 2023 than any previous year of NYCCAS monitoring.** Ozone is produced when there are oxides of nitrogen (NO<sub>x</sub>) and volatile organic carbon emissions in the presence of sunlight and heat, which is why we see higher levels in the summer. Summer 2023 was one of the hottest in recorded history, likely causing higher O<sub>3</sub>&nbsp;levels.
+**Ozone (O<sub>3</sub>) levels were slightly lower in 2024 compared to 2023, but are still above the average historical NYCCAS level.** Ozone is produced when there are oxides of nitrogen (NO<sub>x</sub>) and volatile organic carbon emissions in the presence of sunlight and heat, which is why we see higher levels in the summer.
 
 There has not been a consistent trend in O<sub>3</sub> levels over the history of NYCCAS monitoring, but we may expect O<sub>3</sub> levels to trend higher in the future with further increases in average temperatures due to climate change.
 
