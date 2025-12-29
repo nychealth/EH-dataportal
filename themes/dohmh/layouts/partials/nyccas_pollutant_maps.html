@@ -94,9 +94,11 @@
 </div>
 
 <script>
+  // This script controls the static images for all years. These maps are all on the same scale for any one pollutant so that somebody can see change over time as they click through it. Images are stored in /content/data-features/nyccas/embed/map-images/
+
   // update image
-  var thisYear = 2025
-  var chosenYear = thisYear - 2
+  var thisYear = 2025             // Update this for the report
+  var chosenYear = thisYear - 2   // This is the year for which the data goes through
   var mtPol = "BC"
 
   function updateRaster() {
@@ -156,6 +158,8 @@
 </style>
 
 <script>
+  // This script controls which pollutant's leaflet map is displayed, based on button clicks. These maps are stored in /static/nyccas/raster
+
   const polbtns = document.querySelectorAll('.polbtn')
   var mapPol;
   var embed;
