@@ -25,34 +25,37 @@
 
         <h2 class="sr-only" id="visualization">Visualization</h2>
 
-          <button class="btn btn-sm btn-outline-primary type-button" id="ED">
+          <button class="btn btn btn-outline-primary type-button px-3" id="ED">
             ED visits
           </button>
-          <button class="btn btn-sm btn-outline-primary  type-button" id="Hospitalization">
+          <button class="btn btn btn-outline-primary  type-button px-3" id="Hospitalization">
             Hospitalizations
           </button>
-          <button class="btn btn-sm btn-outline-primary active type-button" id="Death">
+          <button class="btn btn btn-outline-primary active type-button px-3" id="Death">
             Deaths
           </button>
 
-              <button class="btn btn-sm btn-outline-secondary active subtype-button ml-2" id="all" data-injury="0">
-              All deaths
-            </button>
-            <button class="btn btn-sm btn-outline-secondary subtype-button" id="injuryOnly" data-injury="1">
-              Injury-related only
-            </button>
+          <div class="d-block mt-1">
+                  <button class="btn btn-sm btn-outline-secondary active subtype-button px-4" id="all" data-injury="0">
+                  All
+                </button>
+                <button class="btn btn-sm btn-outline-secondary subtype-button" id="injuryOnly" data-injury="1">
+                  Injury-related only
+                </button>
+
+                                <div class="dropdown d-inline-block ml-5">
+                  <button class="btn btn-sm btn-outline-info dropdown-toggle ml-0" type="button" data-toggle="dropdown" aria-expanded="false" id="buttonTitle">
+                    Highlight
+                  </button>
+                  <div class="dropdown-menu" id="causeMenuHolder" style="height: 40vh;overflow-y:scroll">
+                    <a class="dropdown-item cause-highlight" href="#visualization" id="showInjury" data-cause="Injury">Injuries</a>
+                    <div id="causeMenu"></div>
+                  </div>
+                </div>
+
+          </div>
 
 
-            <div class="dropdown d-inline-block ml-2 border-left">
-              <button class="btn btn-sm btn-outline-light border-none text-black mr-0 border-none" disabled style="border:none!important;">Highlight:</button>
-              <button class="btn btn-sm btn-outline-info dropdown-toggle ml-0" type="button" data-toggle="dropdown" aria-expanded="false" id="buttonTitle">
-                Cause
-              </button>
-              <div class="dropdown-menu" id="causeMenuHolder" style="height: 40vh;overflow-y:scroll">
-                <a class="dropdown-item cause-highlight" href="#visualization" id="showInjury" data-cause="Injury">Injuries</a>
-                <div id="causeMenu"></div>
-              </div>
-            </div>
 
             <hr class="my-1">
 
@@ -176,10 +179,12 @@ document.querySelectorAll('.type-button').forEach(btn => {
     outcome = this.id
 
     // update the text inside #all
+    /*
     const allBtn = document.getElementById('all');
     if (allBtn) {
       allBtn.textContent = `All ${this.textContent.trim()}`;
     }
+    */
 
     // re draw chart and menu
     drawChart(outcome, intent, highlight)
@@ -224,7 +229,7 @@ document.querySelectorAll('.subtype-button').forEach(btn => {
 // Generate cause menu
 function updateCauseMenu(outcome, intent) {
 
-  document.getElementById('buttonTitle').innerHTML = 'Cause'
+  document.getElementById('buttonTitle').innerHTML = 'Highlight'
 
   const menu = document.getElementById("causeMenu");
   menu.innerHTML = ""; // Clear previous items
@@ -314,7 +319,7 @@ document.addEventListener("click", function (e) {
 
   // Reset clicked
   if (cause === "reset") {
-    buttonTitle.innerText = "Cause";
+    buttonTitle.innerText = "Highlight";
     highlight = 'off'
     drawChart(outcome, intent, highlight)
     return;
