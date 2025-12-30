@@ -9,7 +9,7 @@ const renderMap = (
 
     console.log("** renderMap");
 
-    document.getElementById('viewDescription').innerHTML = 'This map shows data by different boundaries.'
+    document.getElementById('viewDescription').innerHTML = 'Hover over the map or chart for more information.'
 
     // console.log("data [renderMap]", data);
     // console.log("metadata [renderMap]", metadata);
