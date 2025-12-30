@@ -1019,6 +1019,11 @@
     "description": "Households reporting mice or rats in their unit or building. The presence of mice or rats in the home is often associated with poor housing maintenance. These pests can contaminate food and worsen asthma.",
     "name": "Homes with mice or rats in the unit or building"
   },
+  "2449": {
+    "IndicatorID": 2449,
+    "description": "Concentration of fine particles in the air. Fine particles are emitted by vehicles, building boilers, and other combustion - and are a major form of air pollution that harms health. Regulatory PM2.5 sensors collect readings on the tops of buildings that measure regional changes in air quality for the federal Clean Air Act. This indicator is one of the federal standards for PM2.5 (9.0 µg/m3).",
+    "name": "Regulatory PM2.5 monitoring"
+  },
   "2455": {
     "IndicatorID": 2455,
     "description": "Accessible subway stations may include ramps, elevators, audio and visual information, or other access improvements, which can help New Yorkers with disabilities, those traveling with strollers, and older people use public transit more safely and reliably. Accessible infrastructure ensures that subway stations follow American Disabilities Act (ADA) guidelines.",
