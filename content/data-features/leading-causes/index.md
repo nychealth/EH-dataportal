@@ -20,7 +20,7 @@ keywords:
 layout: leading-causes
 vega: true
 weight: 10
-aboutTheData: "Quisque volutpat, odio id mollis pharetra, mauris risus imperdiet nunc, sit amet dictum metus erat vitae massa. Aenean diam eros, mattis sit amet est at, imperdiet ultricies nunc. Suspendisse placerat, leo ac laoreet congue, justo massa rutrum turpis, id volutpat purus lorem sed nibh. <strong>Data for 2021 - 2023</strong>."
+aboutTheData: "Quisque volutpat, odio id mollis pharetra, mauris risus imperdiet nunc, sit amet dictum metus erat vitae massa. Aenean diam eros, mattis sit amet est at, imperdiet ultricies nunc. Suspendisse placerat, leo ac laoreet congue, justo massa rutrum turpis, id volutpat purus lorem sed nibh. <strong>Data for 2021 - 2023</strong>: <a href='data/leading-causes.csv'>Data</a>, and <a href='data/cause-descriptions.csv'>descriptions and sources</a>."
 related:
   - title: "How homicide and suicide contribute to injury deaths"
     url: "data-stories/injury-deaths/"
