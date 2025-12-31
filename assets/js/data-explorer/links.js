@@ -199,7 +199,7 @@ const renderLinksChart = (
                 "labelFontSize": 12,
                 "labelFontWeight": "bold",
                 "symbolSize": 140,
-                "orient": "top",
+                "orient": "bottom",
                 "title": null,
                 "labelColor": {
                 "expr": "scale('color', datum.label)"
