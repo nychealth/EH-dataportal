@@ -64,7 +64,7 @@
         <div class="col-md-9">
             <div id="chart"></div>
             <div class="border-top">
-              <p class="fs-xs">Bubble size is proportional to the rate for each cause.</p>
+              <p class="fs-xs"><strong>Note:</strong> <span id='footnote'></span>Bubble size is proportional to the rate for each cause.</p>
             </div>
         </div>
 
@@ -77,8 +77,8 @@
             <span class="fs-sm">Age:</span><br>
             <span class="font-weight-bold" id="agePrint">---</span>
             <hr class="my-1">
-            <span class="fs-sm"><span id="rank">--</span> cause of <span class="outcome">outcome</span>:</span><br>
-            <span class="font-weight-bold mb-0" id="causePrint">---</span>
+            <p class="fs-sm mb-0"><span id="rank">--</span> cause of <span id="intent"></span> <span class="outcome">outcome</span>:</p>
+            <span class="font-weight-bold my-0" id="causePrint">---</span>
             <p class="mt-0 fs-xs" id="printDescription">---</p>
             <hr class=my-1>
             <span class="fs-sm">Rate:</span><br>
@@ -117,19 +117,22 @@ const config = [
     "id": "ED",
     "printName": "ED visits",
     "shTerm": "Self-Harm",
-    "hhTerm": "Assault"
+    "hhTerm": "Assault",
+    "footnote": ""
   },
   {
     "id": "Hospitalization",
     "printName": "hospitalization",
     "shTerm": "Self-Harm",
-    "hhTerm": "Assault"
+    "hhTerm": "Assault",
+    "footnote": "Hospitalization data includes ordinary birth-related hospitalizations. "
   },
   {
     "id": "Death",
     "printName": "death",
     "shTerm": "Suicide",
-    "hhTerm": "Homicide"
+    "hhTerm": "Homicide",
+    "footnote": ""
   }
 ]
 
@@ -214,7 +217,7 @@ document.querySelectorAll('.subtype-button').forEach(btn => {
       document.querySelector('#showInjury').classList.add('d-none');
     }
 
-    console.log("intent:", intent);
+    // console.log("intent:", intent);
 
     drawChart(outcome, intent, highlight)
     updateCauseMenu(outcome, intent);
@@ -254,7 +257,7 @@ function updateCauseMenu(outcome, intent) {
 
     const causes = [...uniqueCauses];
 
-    console.log(causes)
+    // console.log(causes)
 
     // show/hide #showInjury only when "All deaths" is selected
     if (intent === 0) {
@@ -341,10 +344,13 @@ function drawChart(outcome, intent, highlight) {
   console.log('Injury related?', intent)
   console.log('Highlighting:', highlight)
 
+  intent == 1 ? document.getElementById('intent').innerHTML = "injury-related" : document.getElementById('intent').innerHTML = ""
+
   // Filter metadata config for chosen outcome
   var metadata = config.filter(chosenOutcome => chosenOutcome.id === outcome)
   metadata = metadata[0]
   console.log('metadata', metadata)
+  document.getElementById('footnote').innerHTML = metadata.footnote
 
   // Print outcome to legend
   document.querySelectorAll('.outcome').forEach(el => {
