@@ -1,22 +1,22 @@
 ---
 featured:
 - copy: Accessible subway stations
-  link: data-explorer/accessibility/?id=2455
+  link: accessibility/?id=2455
 - copy: Walking distance to an accessible subway station
-  link: data-explorer/accessibility/?id=2458
+  link: accessibility/?id=2458
 - copy: Bus stops with audio announcements
-  link: data-explorer/accessibility/?id=2456
+  link: accessibility/?id=2456
 - copy: Walking distance to an audio bus stop
-  link: data-explorer/accessibility/?id=2460
+  link: accessibility/?id=2460
 - copy: Public bathroom availability
-  link: data-explorer/accessibility/?id=2457
+  link: accessibility/?id=2457
 - copy: Difficulty walking
-  link: data-explorer/accessibility/?id=2459
+  link: accessibility/?id=2459
 - copy: Premature mortality
-  link: data-explorer/mortality/?id=2322
+  link: mortality/?id=2322
 - copy: Bicycle injury emergency department visits
-  link: data-explorer/transportation-related-injuries/?id=2092
+  link: transportation-related-injuries/?id=2092
 - copy: Pedestrian injury emergency department visits
-  link: data-explorer/transportation-related-injuries/?id=2094
+  link: transportation-related-injuries/?id=2094
 - copy: Fall-related emergency department visits (age 65+) 
-  link: data-explorer/falls-among-older-adults/?id=2135
+  link: falls-among-older-adults/?id=2135

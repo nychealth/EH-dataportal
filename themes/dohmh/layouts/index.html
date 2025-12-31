@@ -118,7 +118,7 @@
 
           {{- range .Site.Data.recently_updated_data.featured -}}
           <div class="link-w-underline">
-            <a href="{{ relURL .link }}">{{ .copy }}</a>
+            <a href={{ relURL ( path.Join "data-explorer" .link ) }}>{{ .copy }}</a>
           </div>
           {{- end -}}
 
