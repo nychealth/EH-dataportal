@@ -84,9 +84,8 @@ function changeTrendSpec() {
     let columns;
     wrapLegend === true ? columns = 3 : columns = 6;
 
-    /*
     printSpec.layer[1].encoding.color.legend = {
-        "orient": "bottom",
+        "orient": "top",
         "title": null,
         "columns": columns,
         "labelFontWeight": "bold",
@@ -94,7 +93,6 @@ function changeTrendSpec() {
           "expr": "scale('color', datum.label)"
           }
       }
-      */
 
     let sourceLayer = {
         "description": "layer with source info",
@@ -217,6 +215,18 @@ function changeLinksSpec() {
     }
 
     sourceArray.push(vizSourceSecond)
+
+
+    printSpec.config.legend = {
+        "orient": "top",
+        "title": null,
+        "labelFontSize": 12,
+        "labelFontWeight": "bold",
+        "labelColor": {
+          "expr": "scale('color', datum.label)"
+          }
+      }
+
 
     let sourceLayer = {
         "mark": {
