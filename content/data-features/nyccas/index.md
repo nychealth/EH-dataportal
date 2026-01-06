@@ -38,7 +38,7 @@ In 2007, the New York City Department of Health and Mental Hygiene (Health Depar
 * Help inform PlaNYC, the City’s sustainability plan
 * Track changes in air quality over time
 * Estimate exposures for health research
-* Inform the public about local topics, such as [recent air quality improvements](../../data-stories/breatheeasy), [car-free zones](../../data-stories/aqts/), [changes in the sources of air pollution](../../data-stories/aq-cooking/), [unique air quality studies conducted in New York City](../../data-stories/air-quality-snapshots/), [efforts to reduce health impacts](../../data-stories/hia/), [public health benefits of public transit](../../data-stories/public-transit-creates-health/) and [differences in air quality and related health impacts across NYC neighborhoods](../../data-stories/aq2/). NYCCAS also developed [a tool (ZAPPA) that can help people understand how policy changes can change local emissions](../../data-stories/zappa/).
+* Inform the public about local topics, such as [recent air quality improvements](../../data-stories/breatheeasy), [car-free zones](../../data-stories/aqts/), [changes in the sources of air pollution](../../data-stories/aq-cooking/), [unique air quality studies conducted in New York City](../../data-stories/air-quality-snapshots/), [efforts to reduce health impacts](../../data-stories/hia/), [public health benefits of public transit](../../data-stories/public-transit-creates-health/) and [differences in air quality and related health impacts across NYC neighborhoods](../../data-stories/aq2/). NYCCAS also developed [a tool (ZAPPA) that can help people understand how policy changes can change local emissions](../../data-stories/zappa/). NYCCAS also published a first look at the[initial air quality data from Congestion Relief Tolling](https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/congestion-tolling-update/).
 
 This report:
 
@@ -53,7 +53,7 @@ This report:
 
 **Citywide, annual average levels of four key pollutants have gone down between the first year of monitoring, 2009, and the most recent year of data, 2024.**
 
-* Fine particles (PM<sub>2\.5</sub>)&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-36%
+* Fine particles (PM<sub>2\.5</sub>)&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;-36%
 * Nitrogen Dioxide (NO<sub>2</sub>)&nbsp; &nbsp; -41%
 * Nitric Oxide (NO)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; -62%
 * Sulfur Dioxide (SO<sub>2</sub>)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; -98%
