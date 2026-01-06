@@ -53,7 +53,7 @@ This report:
 
 **Citywide, annual average levels of four key pollutants have gone down between the first year of monitoring, 2009, and the most recent year of data, 2024.**
 
-* Fine particles (PM<sub>2\.5</sub>)&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;-36%
+* Fine particles (PM<sub>2\.5</sub>)&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;-36%
 * Nitrogen Dioxide (NO<sub>2</sub>)&nbsp; &nbsp; -41%
 * Nitric Oxide (NO)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; -62%
 * Sulfur Dioxide (SO<sub>2</sub>)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; -98%
