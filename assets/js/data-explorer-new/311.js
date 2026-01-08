@@ -36,20 +36,28 @@ function draw311Buttons(indicator_id) {
             // console.log(filteredCrosswalk)
 
             // Creates label if there are 311 links
+
             if (filteredCrosswalk.length > 0) {
+
                 document.getElementById('311label').innerHTML = 'Contact 311 about:'
                 dest.forEach(element => element.classList.remove('hide'))
+
             } else {
+
                 document.getElementById('311label').innerHTML = ''
                 dest.forEach(element => element.classList.add('hide'))
+
             };
 
             // draws 311 buttons
             for (let i = 0; i < filteredCrosswalk.length; i ++ ) {
+
                 let title = filteredCrosswalk[i].topic
                 let destination = filteredCrosswalk[i].kaLink
                 let btn = `<a href="https://portal.311.nyc.gov/article/?kanumber=${destination}" class="mr-1" target="_blank" rel="noopener noreferrer">${title}</a>| `
+                
                 dest.forEach(element => element.innerHTML += btn)
+
             }
     })
 }

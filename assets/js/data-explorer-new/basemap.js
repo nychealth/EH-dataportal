@@ -1,6 +1,6 @@
 // Initialize the map
 const map = L.map('map', {
-  zoomControl: false
+    zoomControl: false
 }).setView([40.700142, -73.921546], 11);
 
 
