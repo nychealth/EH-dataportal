@@ -3,10 +3,7 @@ _schema: default
 title: 2025 NYC Heat-Related Mortality Report
 draft: false
 date: 2025-06-16T10:14:56-04:00
-categories:
-  - climatehealth
-  - inequality
-  - outcomes
+categories: [climatehealth, inequality,healthoutcomes]
 keywords:
   - heat
   - report

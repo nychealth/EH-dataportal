@@ -1,0 +1,102 @@
+{{- define "main" -}}
+
+<style>
+  .info {
+    padding: 6px 8px;
+    font: 14px/16px Arial, Helvetica, sans-serif;
+    background: white;
+    background: rgba(255,255,255,0.8);
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    border-radius: 5px;
+    overflow-y: scroll;
+}
+.info h4 {
+    margin: 0 0 5px;
+    color: #777;
+}
+
+.overflower {
+  overflow-y: scroll;
+}
+
+.leaflet-marker-icon {
+  filter: drop-shadow(0 0 1px white) drop-shadow(0 0 1px white);
+}
+
+@media (max-width: 768px) {
+  .mobile-text-scroll {
+    height: 50vh;
+    overflow-y: scroll;
+  }
+}
+
+</style>
+
+<article class="container-fluid" id="skip-header-target">
+
+    {{ partial "df-front-block" . }}
+
+    <div class="row mt-2">
+        <div class="col-md-11 mx-auto">
+        
+        <div class="row no-gutters">
+          <div class="col-md-3 border p-1 mobile-text-scroll" style="max-height: 90vmin; overflow-y:scroll;">
+            <div class="d-inline-block mb-1" style="width:100%;">
+              <button class="btn btn-sm btn-outline-primary hide w45" id="lastButton">Go back</button>
+              <button class="btn btn-sm btn-primary float-right w45" id="nextButton">Next step</button>
+            </div>
+            <p id="thisText">
+              <!-- Content text gets printed in here -->
+            </p>
+
+          </div>
+
+          <div class="col-md-9">
+            <div id="map" class="" style="width:100%; height: 90vmin"></div>
+
+          </div>
+
+        </div>
+
+
+    </div>
+
+</article>
+
+
+<style>
+  .sinkbox {
+    position: absolute; 
+    bottom: 0;
+  }
+
+  .w45 {
+    width: 45%;
+  }
+
+  .legend {
+    max-width: 35%;
+    height: 87vmin;
+    background: #ffffff;
+    opacity: 0.8
+  }
+
+  @media (max-width: 720px) {
+  .legend {
+    background: transparent;
+    opacity: 1; /* reset so text/images aren’t faded */
+  }
+}
+</style>
+
+
+
+<!-- Related footer -->
+{{- partial "related-footer" . -}}
+
+<!--bring in JS -->
+<script type="text/javascript" src="proxConfig.js"></script>
+
+<script type="text/javascript" src="proximity.js"></script>
+
+{{- end -}}

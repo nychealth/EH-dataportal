@@ -30,7 +30,7 @@ keywords:
     "maintenance deficiencies",
   ]
 image: ds-housing.jpeg
-vega: true
+
 related:
   - title: "Housing creates health"
     url: "data-stories/housing-creates-health/"
@@ -39,6 +39,13 @@ related:
   - title: "Housing maintenance"
     url: "data-explorer/housing-maintenance/?id=2396#display=summary"
 ---
+
+{{< updateflag data=`[
+  {"src": "../../data-explorer/housing-maintenance/?id=45", "text": "Housing maintenance"},
+  {"src": "../../data-explorer/economic-conditions/?id=103", "text": "Neighborhood poverty"},
+  {"src": "../../data-explorer/asthma/?id=2379", "text": "Asthma emergency department visits (ages 5 to 17)"},
+  {"src": "../../data-explorer/social-conditions/?id=2325", "text": "Race and ethnicity"}
+]` >}}
 
 ### For health, place matters
 

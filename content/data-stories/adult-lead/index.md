@@ -36,6 +36,10 @@ related:
     url: "data-explorer/lead/?id=2189#display=summary"
 ---
 
+{{< updateflag data=`[
+  {"src": "../../data-explorer/worker-health/?id=2209", "text": "Adult lead poisoning"}
+]` >}}
+
 Lead is a harmful metal that can cause serious health issues. When lead poisoning makes headlines, the focus is usually on children’s health: Kids are at higher risk for lead exposure, which can cause developmental, learning and behavior issues.
 
 But lead can also harm adults. In adults, lead can cause increased blood pressure, kidney and brain problems, infertility and impotence. During pregnancy, lead exposure can cause miscarriage or babies to be born too soon or too small.

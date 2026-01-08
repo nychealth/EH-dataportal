@@ -12,7 +12,7 @@ const renderLinksChart = (
 
     console.log("** renderLinksChart");
 
-    document.getElementById('viewDescription').innerHTML = 'View scatterplots, correlations, and disparities.'
+    document.getElementById('viewDescription').innerHTML = 'Hover on points for more information.'
     document.getElementById('correlateHolder').classList.remove('hide')
 
 

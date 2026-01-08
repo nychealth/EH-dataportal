@@ -5,5 +5,5 @@ seo_title: "Fordham - Bronx Pk"
 geocode: 103
 seo_description: "Environmental Health data profiles for the Fordham - Bronx Pk neighborhood of NYC."
 seo_image: ""
-vega: true
+
 ---

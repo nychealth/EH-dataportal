@@ -11,15 +11,15 @@ tags:
 categories: [pests, housing]
 keywords: ["rats", "rat mitigation zones", "pests", "inspections", "rodents"]
 layout: rmz
-vega: true
-arquero: true
+
+
 leaflet: true
 image: rmz-ss.png
 related:
   - title: "Rat complaints and NYC’s rat problem"
     url: "data-stories/rat-complaints/"
-  - title: "Rat Information Portal"
-    url: "data-features/rat-information-portal/"
+  - title: "Inspection data are the key to controlling NYC’s rats"
+    url: "data-stories/rat-inspections/"
   - title: "Rats in your neighborhood"
     url: "data-features/rats-in-your-neighborhood/"
 weight: 2

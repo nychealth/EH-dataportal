@@ -5,8 +5,19 @@ draft: false
 seo_title: "A brief history of redlining"
 seo_description: "A data story on how redlining affected NYC's neighborhoods and its residents."
 tags:
-categories: ["housing","inequality","childhealth","neighborhoods","injuryandviolence"]
-keywords: ["poverty","asthma","injustice","housing","social determinants","redlining","disinvestment","racism"]
+categories:
+  ["housing", "inequality", "childhealth", "neighborhoods", "injuryandviolence"]
+keywords:
+  [
+    "poverty",
+    "asthma",
+    "injustice",
+    "housing",
+    "social determinants",
+    "redlining",
+    "disinvestment",
+    "racism",
+  ]
 image: ds-redlining.jpeg
 related:
   - title: "Housing creates health"
@@ -16,6 +27,12 @@ related:
   - title: "Economic conditions"
     url: "data-explorer/economic-conditions/?id=103#display=summary"
 ---
+
+{{< updateflag data=`[
+  {"src": "../../data-explorer/economic-conditions/?id=103", "text": "Neighborhood poverty"},
+  {"src": "../../data-explorer/asthma/?id=2379", "text": "Asthma emergency department visits (ages 5 to 17)"},
+  {"src": "../../data-explorer/social-conditions/?id=2325", "text": "Race and ethnicity"}
+]` >}}
 
 ### Inside the 90-year-old financial policy that harms our health
 
