@@ -34,7 +34,7 @@ related:
 ---
 
 <div class="border mb-4 p-1 fs-sm">
-  <i class="far fa-clock mr-1" aria-hidden="true"></i>Since we published this data story, some data in it have been updated. <ul><li><a href="https://www.mta.info/document/195631#nameddest=Air%20Quality%20and%20Emissions">Get updated data on air quality and emissions.</li></ul></a>
+  <i class="far fa-clock mr-1" aria-hidden="true"></i>Since we published this, an update is available.<ul><li><a href="https://www.mta.info/document/195631#nameddest=Air%20Quality%20and%20Emissions">Read MTA's report on the first year of the program, which includes our updated air quality analyses.</li></ul></a>
 </div>
 
 In January 2025, the Metropolitan Transportation Authority Bridge and Tunnels (MTABT) started charging a toll for vehicles entering Manhattan’s [Congestion Relief Zone](https://congestionreliefzone.mta.info/) (the zone) to reduce traffic within the zone and raise money for public transportation improvements.
