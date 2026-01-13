@@ -123,7 +123,12 @@ const renderMap = (
                             "field": "Value",
                             "type": "quantitative",
                             "title": null,
-                            "axis": {"labelAngle": 0, "labelFontSize": 11, "tickCount": 3}
+                            "axis": {
+                                "labelAngle": 0, 
+                                "labelFontSize": 11, 
+                                "tickCount": 3,
+                                "labelExpr": "(isObject(datum) ? datum.value : datum) === 0 ? '' : (isObject(datum) ? datum.value : datum)"
+                            }
                         },
                         "tooltip": [
                             {
@@ -170,7 +175,12 @@ const renderMap = (
                             "field": "Value",
                             "type": "quantitative",
                             "title": null,
-                            "axis": {"labelAngle": 0, "labelFontSize": 11, "tickCount": 3}
+                            "axis": {
+                                "labelAngle": 0, 
+                                "labelFontSize": 11, 
+                                "tickCount": 3,
+                                "labelExpr": "(isObject(datum) ? datum.value : datum) === 0 ? '' : (isObject(datum) ? datum.value : datum)"
+                            }
                         },
                         "tooltip": [
                             {
@@ -231,7 +241,12 @@ const renderMap = (
                         "field": "ciLow",
                         "type": "quantitative",
                         "title": null,
-                        "axis": {"labelAngle": 0, "labelFontSize": 11, "tickCount": 3}
+                        "axis": {
+                            "labelAngle": 0, 
+                            "labelFontSize": 11, 
+                            "tickCount": 3,
+                            "labelExpr": "(isObject(datum) ? datum.value : datum) === 0 ? '' : (isObject(datum) ? datum.value : datum)"
+                        }
                         },
                         "y2": {
                         "field": "ciHigh"
@@ -283,7 +298,12 @@ const renderMap = (
                             "field": "Value",
                             "type": "quantitative",
                             "title": null,
-                            "axis": {"labelAngle": 0, "labelFontSize": 11, "tickCount": 3}
+                            "axis": {
+                                "labelAngle": 0, 
+                                "labelFontSize": 11, 
+                                "tickCount": 3,
+                                "labelExpr": "(isObject(datum) ? datum.value : datum) === 0 ? '' : (isObject(datum) ? datum.value : datum)"
+                            }
                         },
                         "tooltip": [
                             {
@@ -345,7 +365,8 @@ const renderMap = (
                     "axis": {
                         "labelAngle": 0,
                         "labelFontSize": 11,
-                        "tickCount": 3
+                        "tickCount": 3,
+                        "labelExpr": "(isObject(datum) ? datum.value : datum) === 0 ? '' : (isObject(datum) ? datum.value : datum)"
                     }
                 },
                 "tooltip": [
