@@ -1,5 +1,7 @@
 // ASYNC BECAUSE IT AWAITS metadata.json VIA ensureIndicatorsLoaded()
 
+console.log(">> menu.js");
+
 async function printMenus(x) {
     
     console.log('Menus running')

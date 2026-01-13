@@ -1,4 +1,4 @@
-console.log('running correlate.js')
+console.log('>> correlate.js')
 
 const renderCorrelate = () => {
     

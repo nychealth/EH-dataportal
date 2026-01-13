@@ -1,3 +1,5 @@
+console.log(">> topic-indicator-selector.js");
+
 // --------------------------------------------------------
 // all indicator metadata as global variable
 // --------------------------------------------------------

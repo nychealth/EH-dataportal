@@ -1,4 +1,4 @@
-console.log('running Trend.js')
+console.log('>> trend.js')
 
 const renderTrend = () => {
     
