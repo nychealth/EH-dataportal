@@ -103,7 +103,7 @@ const renderLinksChart = (
             yTimePeriod    = primaryTimePeriod;
             xIndicatorName = secondaryIndicatorName;
             yIndicatorName = primaryIndicatorName;
-            xAxisLabel     = [secondaryIndicatorName, `${secondaryMeasurementType} (${secondaryTimePeriod})`]
+            xAxisLabel     = [secondaryIndicatorName, `${secondaryMeasurementType}, ${secondaryMetadata[0].DisplayType} (${secondaryTimePeriod})`]
             yAxisLabel     = primaryMeasurementDisplay + ` (${yTimePeriod})` 
             break;
         case 'y':
@@ -120,7 +120,7 @@ const renderLinksChart = (
             yTimePeriod    = secondaryTimePeriod;
             xIndicatorName = primaryIndicatorName;
             yIndicatorName = secondaryIndicatorName;
-            xAxisLabel     = [primaryIndicatorName, `${primaryMeasurementType} (${primaryTimePeriod})`]
+            xAxisLabel     = [primaryIndicatorName, `${primaryMeasurementType}, ${primaryMetadata[0].DisplayType} (${primaryTimePeriod})`]
             yAxisLabel     = secondaryMeasurementDisplay + ` (${yTimePeriod})`  
             break;
     }
@@ -196,10 +196,14 @@ const renderLinksChart = (
             },
             "legend": {
                 "columns": columns,
-                "labelFontSize": 14,
+                "labelFontSize": 12,
+                "labelFontWeight": "bold",
                 "symbolSize": 140,
                 "orient": "bottom",
-                "title": null
+                "title": null,
+                "labelColor": {
+                "expr": "scale('color', datum.label)"
+                }
             },
             "view": { "stroke": "transparent" },
             "range": {
