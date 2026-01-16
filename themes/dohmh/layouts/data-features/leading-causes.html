@@ -23,7 +23,7 @@
     >Skip to accessible data tables.</a
   >
 
-  <div class="row mt-2 mb-4">
+  <div class="row mt-4 mb-4">
     <div class="col-11 mx-auto px-0">
       <h2 class="sr-only" id="visualization">Visualization</h2>
 
@@ -54,16 +54,19 @@
       </div>
 
       <div class="row mt-1">
-        <div class="col-lg-4 col-md-8 col-sm-8">
+        <div class="col-lg-2 col-md-4 col-sm">
           <button
-            class="btn btn-sm btn-outline-secondary subtype-button px-4"
+            class="btn btn-sm btn-block btn-outline-secondary subtype-button px-4"
             id="all"
             data-injury="0"
           >
             All
           </button>
-          <button
-            class="btn btn-sm btn-outline-secondary subtype-button active"
+        </div>
+
+        <div class="col-lg-2 col-md-4 col-sm">
+                    <button
+            class="btn btn-sm btn-block btn-outline-secondary subtype-button active"
             id="injuryOnly"
             data-injury="1"
           >
@@ -71,10 +74,10 @@
           </button>
         </div>
 
-        <div class="col-lg-2 col-md-3 col-sm-4">
-          <div class="dropdown d-inline-block">
+        <div class="col-lg-2 col-md-4 col-sm">
+                    <div class="dropdown d-inline-block">
             <button
-              class="btn btn-sm btn-outline-info dropdown-toggle ml-0"
+              class="btn btn-sm btn-block btn-outline-info dropdown-toggle ml-0"
               type="button"
               data-toggle="dropdown"
               aria-expanded="false"
@@ -142,7 +145,7 @@
         </div>
       </div>
 
-      <div class="row fs-sm">
+      <div class="row fs-sm mt-4">
         <div class="col-sm-4">
           <div class="card card-left-border shadow-sm fs-sm">
             <div class="card-body">
