@@ -21,29 +21,43 @@
   <a href="#accessibleTables" class="sr-only">Skip to accessible data tables.</a>
 
   <div class="row mt-2 mb-4">
-    <div class="col-11 mx-auto">
+    <div class="col-11 mx-auto px-0">
 
         <h2 class="sr-only" id="visualization">Visualization</h2>
 
-          <button class="btn btn btn-outline-primary type-button px-2" id="ED">
-            Emergency department visits
-          </button>
-          <button class="btn btn btn-outline-primary  type-button px-4" id="Hospitalization">
+        <div class="row">
+          <div class="col-lg-2 col-md-4 col-sm">
+            <button class="btn btn-block btn-outline-primary type-button " id="ED">
+              ED visits
+            </button>
+          </div>
+
+          <div class="col-lg-2 col-md-4 col-sm">
+          <button class="btn  btn-block btn-outline-primary  type-button 3" id="Hospitalization">
             Hospitalizations
           </button>
-          <button class="btn btn btn-outline-primary active type-button px-4" id="Death">
+          </div>
+
+          <div class="col-lg-2 col-md-4 col-sm">
+          <button class="btn btn-block btn-outline-primary active type-button" id="Death">
             Deaths
           </button>
+          </div>
 
-          <div class="d-block mt-1">
+        </div>
+
+        <div class="row mt-1">
+          <div class="col-lg-4 col-md-8 col-sm-8">
                   <button class="btn btn-sm btn-outline-secondary subtype-button px-4" id="all" data-injury="0">
                   All
                 </button>
                 <button class="btn btn-sm btn-outline-secondary subtype-button active" id="injuryOnly" data-injury="1">
                   Injury-related only
                 </button>
+          </div>
 
-                                <div class="dropdown d-inline-block ml-5">
+          <div class="col-lg-2 col-md-3 col-sm-4">
+            <div class="dropdown d-inline-block">
                   <button class="btn btn-sm btn-outline-info dropdown-toggle ml-0" type="button" data-toggle="dropdown" aria-expanded="false" id="buttonTitle">
                     Highlight
                   </button>
@@ -52,17 +66,19 @@
                     <div id="causeMenu"></div>
                   </div>
                 </div>
-
           </div>
 
+        </div>
 
-
-            <hr class="my-1">
+      <hr class="my-1">
 
 
       <div class="row my-2">
         <div class="col-md-9">
+
+            <!-- Chart -->
             <div id="chart"></div>
+
             <div class="border-top">
               <p class="fs-xs"><strong>Note:</strong> <span id='footnote'></span>Bubble size is proportional to the rate for each cause.</p>
             </div>
@@ -376,7 +392,7 @@ function drawChart(outcome, intent, highlight) {
 
   // Set up some variables
   var filter
-  var color
+  var color = {"value": "#bcbcbc"}
 
   // Injury filter
   if (intent == 1) {
@@ -402,15 +418,74 @@ function drawChart(outcome, intent, highlight) {
                 "legend": {
                   "title": null,
                   "orient": "bottom",
-                  "labelFontSize": 14,
+                  "labelFontSize": 12,
                   "labelFontWeight": 500,     
-                  "symbolSize": 200   
+                  "symbolSize": 200,        
+                  // "labelColor": {"expr": "scale('color', datum.label)"}   
                 }
             }
   } else {
     filter = "datum.InjuryOnly == 0"
-    color = {"value": "#bcbcbc"}
   }
+
+  if (outcome === 'Death' && highlight === 'Injury') {
+    console.log('color highlight with injury')
+    color = {
+              "field": "cause_text",
+              "type": "nominal",
+              "scale": {
+                "domain": [
+                  "Injury: Unintentional",
+                  "Injury: Suicide",
+                  "Injury: Homicide",
+                  "Injury: Undetermined intent"
+                ],
+                "range": [
+                  "#8ca0ca",
+                  "#65c1a4",
+                  "#fc8c61",
+                  "lightgray"
+                ]
+              },
+                "legend": {
+                  "title": null,
+                  "orient": "bottom",
+                  "labelFontSize": 12,
+                  "labelFontWeight": 500,     
+                  "symbolSize": 200,
+                  // "labelColor": {"expr": "scale('color', datum.label)"}      
+                }
+            }
+  } else {
+  }
+
+  /*
+{
+              "field": "cause_text",
+              "type": "nominal",
+              "scale": {
+                "domain": [
+                  "Injury: Unintentional",
+                  "Injury: Suicide",
+                  "Injury: Homicide",
+                  "Injury: Undetermined intent"
+                ],
+                "range": [
+                  "#8ca0ca",
+                  "#65c1a4",
+                  "#fc8c61",
+                  "lightgray"
+                ]
+              },
+                "legend": {
+                  "title": null,
+                  "orient": "bottom",
+                  "labelFontSize": 12,
+                  "labelFontWeight": 500,     
+                  "symbolSize": 200   
+                }
+            },
+  */
 
   // injury highlight condition
   var strokeHighlight
