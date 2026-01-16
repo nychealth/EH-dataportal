@@ -1,444 +1,466 @@
 ﻿type,InjuryOnly,agegroup,Annual_Average_Count,rate,flag,rank_unique,Intent,cause_text
 Hospitalization,1,1 - 4,268,72.099422074,,1,Unintentional,Fall
-Hospitalization,1,1 - 4,149,40.124895763,,2,Unintentional,Unspecified Mechanism
-Hospitalization,1,1 - 4,133,35.646670789,,3,Unintentional,Hot Object or Substance
-Hospitalization,1,1 - 4,97,26.063269346,,4,Unintentional,Drug Poisoning
-Hospitalization,1,1 - 4,82,22.122431369,,5,Unintentional,Foreign Object
-Hospitalization,1,1 - 4,58,15.673787407,,6,Unintentional,Bite or Sting
-Hospitalization,1,1 - 4,27,7.2547244571,,7,Unintentional,Non-Drug Poisoning
-Hospitalization,1,1 - 4,24,6.4486439619,,8,Unintentional,Struck by or Against
+Hospitalization,1,1 - 4,149,40.124895763,,2,Unintentional,Unspecified mechanism
+Hospitalization,1,1 - 4,133,35.646670789,,3,Unintentional,Hot object or substance
+Hospitalization,1,1 - 4,97,26.063269346,,4,Unintentional,Drug poisoning
+Hospitalization,1,1 - 4,82,22.122431369,,5,Unintentional,Foreign object
+Hospitalization,1,1 - 4,58,15.673787407,,6,Unintentional,Bite or sting
+Hospitalization,1,1 - 4,27,7.2547244571,,7,Unintentional,Non-drug poisoning
+Hospitalization,1,1 - 4,24,6.4486439619,,8,Unintentional,Struck by or against
 Hospitalization,1,1 - 4,20,5.2843054688,,9,Assault,Abuse
-Hospitalization,1,1 - 4,12,3.1347574815,,10,Unintentional,Pedestrian Struck by Motor Vehicle
+Hospitalization,1,1 - 4,12,3.1347574815,,10,Unintentional,Pedestrian struck by motor vehicle
 Hospitalization,1,10 - 14,230,49.40630095,,1,Unintentional,Fall
-Hospitalization,1,10 - 14,162,34.727617335,,2,Unintentional,Unspecified Mechanism
-Hospitalization,1,10 - 14,135,28.999350558,,3,Self-Harm,Drug Poisoning
-Hospitalization,1,10 - 14,49,10.597293537,,4,Unintentional,Struck by or Against
-Hospitalization,1,10 - 14,38,8.162780157,,5,Unintentional,Pedestrian Struck by Motor Vehicle
-Hospitalization,1,10 - 14,35,7.4467468099,,6,Self-Harm,Cut or Pierce
-Hospitalization,1,10 - 14,27,5.7998701116,,7,Unintentional,Bite or Sting
-Hospitalization,1,10 - 14,27,5.8714734463,,8,Unintentional,Drug Poisoning
-Hospitalization,1,10 - 14,26,5.6566634421,,9,Assault,Struck by or Against
-Hospitalization,1,10 - 14,25,5.2986467686,,10,Unintentional,Foreign Object
-Hospitalization,1,15 - 24,686,72.527617438,,1,Unintentional,Unspecified Mechanism
-Hospitalization,1,15 - 24,583,61.667867233,,2,Self-Harm,Drug Poisoning
+Hospitalization,1,10 - 14,162,34.727617335,,2,Unintentional,Unspecified mechanism
+Hospitalization,1,10 - 14,135,28.999350558,,3,Self-Harm,Drug poisoning
+Hospitalization,1,10 - 14,49,10.597293537,,4,Unintentional,Struck by or against
+Hospitalization,1,10 - 14,38,8.162780157,,5,Unintentional,Pedestrian struck by motor vehicle
+Hospitalization,1,10 - 14,35,7.4467468099,,6,Self-Harm,Cut or pierce
+Hospitalization,1,10 - 14,27,5.7998701116,,7,Unintentional,Bite or sting
+Hospitalization,1,10 - 14,27,5.8714734463,,8,Unintentional,Drug poisoning
+Hospitalization,1,10 - 14,26,5.6566634421,,9,Assault,Struck by or against
+Hospitalization,1,10 - 14,25,5.2986467686,,10,Unintentional,Foreign object
+Hospitalization,1,15 - 24,686,72.527617438,,1,Unintentional,Unspecified mechanism
+Hospitalization,1,15 - 24,583,61.667867233,,2,Self-Harm,Drug poisoning
 Hospitalization,1,15 - 24,565,59.763885054,,3,Unintentional,Fall
-Hospitalization,1,15 - 24,255,27.008339795,,4,Unintentional,Drug Poisoning
-Hospitalization,1,15 - 24,251,26.514714785,,5,Assault,Struck by or Against
-Hospitalization,1,15 - 24,239,25.280652262,,6,Unintentional,Motor Vehicle Occupant
+Hospitalization,1,15 - 24,255,27.008339795,,4,Unintentional,Drug poisoning
+Hospitalization,1,15 - 24,251,26.514714785,,5,Assault,Struck by or against
+Hospitalization,1,15 - 24,239,25.280652262,,6,Unintentional,Motor vehicle occupant
 Hospitalization,1,15 - 24,197,20.838027178,,7,Unintentional,Motorcyclist
-Hospitalization,1,15 - 24,165,17.417911042,,8,Assault,Cut or Pierce
-Hospitalization,1,15 - 24,152,16.113330661,,9,Unintentional,Struck by or Against
+Hospitalization,1,15 - 24,165,17.417911042,,8,Assault,Cut or pierce
+Hospitalization,1,15 - 24,152,16.113330661,,9,Unintentional,Struck by or against
 Hospitalization,1,15 - 24,142,15.020303854,,10,Assault,Firearm
 Hospitalization,1,25 - 34,1240,89.508071242,,1,Unintentional,Fall
-Hospitalization,1,25 - 34,1171,84.528718716,,2,Unintentional,Unspecified Mechanism
-Hospitalization,1,25 - 34,633,45.704201924,,3,Unintentional,Drug Poisoning
-Hospitalization,1,25 - 34,469,33.86921911,,4,Assault,Struck by or Against
-Hospitalization,1,25 - 34,364,26.291943528,,5,Self-Harm,Drug Poisoning
-Hospitalization,1,25 - 34,304,21.91396208,,6,Unintentional,Motor Vehicle Occupant
+Hospitalization,1,25 - 34,1171,84.528718716,,2,Unintentional,Unspecified mechanism
+Hospitalization,1,25 - 34,633,45.704201924,,3,Unintentional,Drug poisoning
+Hospitalization,1,25 - 34,469,33.86921911,,4,Assault,Struck by or against
+Hospitalization,1,25 - 34,364,26.291943528,,5,Self-Harm,Drug poisoning
+Hospitalization,1,25 - 34,304,21.91396208,,6,Unintentional,Motor vehicle occupant
 Hospitalization,1,25 - 34,304,21.938016924,,7,Unintentional,Motorcyclist
-Hospitalization,1,25 - 34,247,17.82463875,,8,Assault,Cut or Pierce
-Hospitalization,1,25 - 34,188,13.542876675,,9,Unintentional,Cut or Pierce
-Hospitalization,1,25 - 34,178,12.821231382,,10,Unintentional,Struck by or Against
+Hospitalization,1,25 - 34,247,17.82463875,,8,Assault,Cut or pierce
+Hospitalization,1,25 - 34,188,13.542876675,,9,Unintentional,Cut or pierce
+Hospitalization,1,25 - 34,178,12.821231382,,10,Unintentional,Struck by or against
 Hospitalization,1,35 - 44,1673,144.46249186,,1,Unintentional,Fall
-Hospitalization,1,35 - 44,1359,117.37217603,,2,Unintentional,Unspecified Mechanism
-Hospitalization,1,35 - 44,794,68.546272044,,3,Unintentional,Drug Poisoning
-Hospitalization,1,35 - 44,420,36.302750545,,4,Assault,Struck by or Against
-Hospitalization,1,35 - 44,267,23.031086785,,5,Self-Harm,Drug Poisoning
-Hospitalization,1,35 - 44,242,20.929500116,,6,Unintentional,Motor Vehicle Occupant
+Hospitalization,1,35 - 44,1359,117.37217603,,2,Unintentional,Unspecified mechanism
+Hospitalization,1,35 - 44,794,68.546272044,,3,Unintentional,Drug poisoning
+Hospitalization,1,35 - 44,420,36.302750545,,4,Assault,Struck by or against
+Hospitalization,1,35 - 44,267,23.031086785,,5,Self-Harm,Drug poisoning
+Hospitalization,1,35 - 44,242,20.929500116,,6,Unintentional,Motor vehicle occupant
 Hospitalization,1,35 - 44,239,20.67040039,,7,Unintentional,Motorcyclist
-Hospitalization,1,35 - 44,186,16.092971891,,8,Assault,Cut or Pierce
-Hospitalization,1,35 - 44,167,14.423218099,,9,Unintentional,Cut or Pierce
-Hospitalization,1,35 - 44,166,14.336851524,,10,Unintentional,Pedestrian Struck by Motor Vehicle
+Hospitalization,1,35 - 44,186,16.092971891,,8,Assault,Cut or pierce
+Hospitalization,1,35 - 44,167,14.423218099,,9,Unintentional,Cut or pierce
+Hospitalization,1,35 - 44,166,14.336851524,,10,Unintentional,Pedestrian struck by motor vehicle
 Hospitalization,1,45 - 54,2285,223.01726912,,1,Unintentional,Fall
-Hospitalization,1,45 - 54,1585,154.66434681,,2,Unintentional,Unspecified Mechanism
-Hospitalization,1,45 - 54,1038,101.34191004,,3,Unintentional,Drug Poisoning
-Hospitalization,1,45 - 54,298,29.117499031,,4,Assault,Struck by or Against
-Hospitalization,1,45 - 54,238,23.261465707,,5,Self-Harm,Drug Poisoning
-Hospitalization,1,45 - 54,184,17.958502196,,6,Unintentional,Motor Vehicle Occupant
-Hospitalization,1,45 - 54,161,15.74622294,,7,Unintentional,Pedestrian Struck by Motor Vehicle
-Hospitalization,1,45 - 54,144,14.021946461,,8,Unintentional,Struck by or Against
+Hospitalization,1,45 - 54,1585,154.66434681,,2,Unintentional,Unspecified mechanism
+Hospitalization,1,45 - 54,1038,101.34191004,,3,Unintentional,Drug poisoning
+Hospitalization,1,45 - 54,298,29.117499031,,4,Assault,Struck by or against
+Hospitalization,1,45 - 54,238,23.261465707,,5,Self-Harm,Drug poisoning
+Hospitalization,1,45 - 54,184,17.958502196,,6,Unintentional,Motor vehicle occupant
+Hospitalization,1,45 - 54,161,15.74622294,,7,Unintentional,Pedestrian struck by motor vehicle
+Hospitalization,1,45 - 54,144,14.021946461,,8,Unintentional,Struck by or against
 Hospitalization,1,45 - 54,133,13.013407388,,9,Unintentional,Motorcyclist
-Hospitalization,1,45 - 54,110,10.703527577,,10,Assault,Cut or Pierce
+Hospitalization,1,45 - 54,110,10.703527577,,10,Assault,Cut or pierce
 Hospitalization,1,5 - 9,287,60.298787504,,1,Unintentional,Fall
-Hospitalization,1,5 - 9,116,24.470089347,,2,Unintentional,Unspecified Mechanism
-Hospitalization,1,5 - 9,41,8.5540140412,,3,Unintentional,Bite or Sting
-Hospitalization,1,5 - 9,38,7.9930950877,,4,Unintentional,Foreign Object
-Hospitalization,1,5 - 9,31,6.4505679655,,5,Unintentional,Hot Object or Substance
-Hospitalization,1,5 - 9,27,5.6091895352,,6,Unintentional,Pedestrian Struck by Motor Vehicle
-Hospitalization,1,5 - 9,24,5.1183854509,,7,Unintentional,Drug Poisoning
-Hospitalization,1,5 - 9,23,4.7678111049,,8,Unintentional,Struck by or Against
-Hospitalization,1,5 - 9,15,3.0850542444,,9,Unintentional,Non-Drug Poisoning
-Hospitalization,1,5 - 9,10,2.1034460757,,10,Unintentional,Motor Vehicle Occupant
+Hospitalization,1,5 - 9,116,24.470089347,,2,Unintentional,Unspecified mechanism
+Hospitalization,1,5 - 9,41,8.5540140412,,3,Unintentional,Bite or sting
+Hospitalization,1,5 - 9,38,7.9930950877,,4,Unintentional,Foreign object
+Hospitalization,1,5 - 9,31,6.4505679655,,5,Unintentional,Hot object or substance
+Hospitalization,1,5 - 9,27,5.6091895352,,6,Unintentional,Pedestrian struck by motor vehicle
+Hospitalization,1,5 - 9,24,5.1183854509,,7,Unintentional,Drug poisoning
+Hospitalization,1,5 - 9,23,4.7678111049,,8,Unintentional,Struck by or against
+Hospitalization,1,5 - 9,15,3.0850542444,,9,Unintentional,Non-drug poisoning
+Hospitalization,1,5 - 9,10,2.1034460757,,10,Unintentional,Motor vehicle occupant
 Hospitalization,1,55 - 64,4458,432.09314137,,1,Unintentional,Fall
-Hospitalization,1,55 - 64,2420,234.52700114,,2,Unintentional,Unspecified Mechanism
-Hospitalization,1,55 - 64,1690,163.77150692,,3,Unintentional,Drug Poisoning
-Hospitalization,1,55 - 64,244,23.617473182,,4,Assault,Struck by or Against
-Hospitalization,1,55 - 64,210,20.322011808,,5,Unintentional,Pedestrian Struck by Motor Vehicle
-Hospitalization,1,55 - 64,191,18.545047342,,6,Unintentional,Motor Vehicle Occupant
-Hospitalization,1,55 - 64,188,18.221962893,,7,Self-Harm,Drug Poisoning
-Hospitalization,1,55 - 64,175,16.961933544,,8,Unintentional,Struck by or Against
-Hospitalization,1,55 - 64,118,11.46949792,,9,Unintentional,Foreign Object
-Hospitalization,1,55 - 64,115,11.178721917,,10,Unintentional,Non-Drug Poisoning
+Hospitalization,1,55 - 64,2420,234.52700114,,2,Unintentional,Unspecified mechanism
+Hospitalization,1,55 - 64,1690,163.77150692,,3,Unintentional,Drug poisoning
+Hospitalization,1,55 - 64,244,23.617473182,,4,Assault,Struck by or against
+Hospitalization,1,55 - 64,210,20.322011808,,5,Unintentional,Pedestrian struck by motor vehicle
+Hospitalization,1,55 - 64,191,18.545047342,,6,Unintentional,Motor vehicle occupant
+Hospitalization,1,55 - 64,188,18.221962893,,7,Self-Harm,Drug poisoning
+Hospitalization,1,55 - 64,175,16.961933544,,8,Unintentional,Struck by or against
+Hospitalization,1,55 - 64,118,11.46949792,,9,Unintentional,Foreign object
+Hospitalization,1,55 - 64,115,11.178721917,,10,Unintentional,Non-drug poisoning
 Hospitalization,1,65+,21478,1536.8231753,,1,Unintentional,Fall
-Hospitalization,1,65+,5210,372.76339577,,2,Unintentional,Unspecified Mechanism
-Hospitalization,1,65+,1351,96.66709598,,3,Unintentional,Drug Poisoning
-Hospitalization,1,65+,436,31.220633762,,4,Unintentional,Struck by or Against
-Hospitalization,1,65+,298,21.322571874,,5,Unintentional,Pedestrian Struck by Motor Vehicle
-Hospitalization,1,65+,273,19.55761626,,6,Unintentional,Motor Vehicle Occupant
-Hospitalization,1,65+,234,16.743227579,,7,Unintentional,Foreign Object
-Hospitalization,1,65+,181,12.950958085,,8,Self-Harm,Drug Poisoning
-Hospitalization,1,65+,169,12.092331029,,9,Unintentional,Natural or Environmental
+Hospitalization,1,65+,5210,372.76339577,,2,Unintentional,Unspecified mechanism
+Hospitalization,1,65+,1351,96.66709598,,3,Unintentional,Drug poisoning
+Hospitalization,1,65+,436,31.220633762,,4,Unintentional,Struck by or against
+Hospitalization,1,65+,298,21.322571874,,5,Unintentional,Pedestrian struck by motor vehicle
+Hospitalization,1,65+,273,19.55761626,,6,Unintentional,Motor vehicle occupant
+Hospitalization,1,65+,234,16.743227579,,7,Unintentional,Foreign object
+Hospitalization,1,65+,181,12.950958085,,8,Self-Harm,Drug poisoning
+Hospitalization,1,65+,169,12.092331029,,9,Unintentional,Natural or environmental
 Hospitalization,1,65+,169,12.068480278,,10,Unintentional,Overexertion
 Hospitalization,1,<1,169,175.59189629,,1,Unintentional,Fall
-Hospitalization,1,<1,166,173.16275938,,2,Unintentional,Unspecified Mechanism
-Hospitalization,1,<1,42,43.724464293,,3,Unintentional,Hot Object or Substance
+Hospitalization,1,<1,166,173.16275938,,2,Unintentional,Unspecified mechanism
+Hospitalization,1,<1,42,43.724464293,,3,Unintentional,Hot object or substance
 Hospitalization,1,<1,30,30.884740651,,4,Assault,Abuse
-Hospitalization,1,<1,19,19.433095241,,5,Unintentional,Foreign Object
-Hospitalization,1,<1,13,13.186743199,,6,Unintentional,Drug Poisoning
-Hospitalization,1,<1,8,7.9814498312,,7,Unintentional,Struck by or Against
+Hospitalization,1,<1,19,19.433095241,,5,Unintentional,Foreign object
+Hospitalization,1,<1,13,13.186743199,,6,Unintentional,Drug poisoning
+Hospitalization,1,<1,8,7.9814498312,,7,Unintentional,Struck by or against
 Hospitalization,1,<1,7,7.6344302733,,8,Unintentional,Suffocation
-Hospitalization,1,<1,6,5.8993324839,,9,Unintentional,Bite or Sting
-Hospitalization,1,<1,4,3.8172151367,,10,Unintentional,Natural or Environmental
+Hospitalization,1,<1,6,5.8993324839,,9,Unintentional,Bite or sting
+Hospitalization,1,<1,4,3.8172151367,,10,Unintentional,Natural or environmental
 Hospitalization,1,All ages,32653,130.31982816,,1,Unintentional,Fall
-Hospitalization,1,All ages,13024,51.979464121,,2,Unintentional,Unspecified Mechanism
-Hospitalization,1,All ages,5922,23.63501125,,3,Unintentional,Drug Poisoning
-Hospitalization,1,All ages,1957,7.9013623147,,4,Self-Harm,Drug Poisoning
-Hospitalization,1,All ages,1868,7.455285548,,5,Assault,Struck by or Against
-Hospitalization,1,All ages,1473,5.8788199209,,6,Unintentional,Motor Vehicle Occupant
-Hospitalization,1,All ages,1345,5.3679652367,,7,Unintentional,Struck by or Against
-Hospitalization,1,All ages,1212,4.8371552913,,8,Unintentional,Pedestrian Struck by Motor Vehicle
+Hospitalization,1,All ages,13024,51.979464121,,2,Unintentional,Unspecified mechanism
+Hospitalization,1,All ages,5922,23.63501125,,3,Unintentional,Drug poisoning
+Hospitalization,1,All ages,1957,7.9013623147,,4,Self-Harm,Drug poisoning
+Hospitalization,1,All ages,1868,7.455285548,,5,Assault,Struck by or against
+Hospitalization,1,All ages,1473,5.8788199209,,6,Unintentional,Motor vehicle occupant
+Hospitalization,1,All ages,1345,5.3679652367,,7,Unintentional,Struck by or against
+Hospitalization,1,All ages,1212,4.8371552913,,8,Unintentional,Pedestrian struck by motor vehicle
 Hospitalization,1,All ages,999,4.0334496435,,9,Unintentional,Motorcyclist
-Hospitalization,1,All ages,843,3.3644570219,,10,Unintentional,Foreign Object
+Hospitalization,1,All ages,843,3.3644570219,,10,Unintentional,Foreign object
 ED,1,1 - 4,13275,3566.9061914,,1,Unintentional,Fall
-ED,1,1 - 4,4082,1096.8068605,,2,Unintentional,Struck by or Against
-ED,1,1 - 4,3955,1062.7723507,,3,Unintentional,Unspecified Mechanism
-ED,1,1 - 4,2372,637.34097824,,4,Unintentional,Foreign Object
-ED,1,1 - 4,1756,471.91534771,,5,Unintentional,Bite or Sting
-ED,1,1 - 4,900,241.82414857,,6,Unintentional,Other Classifiable Mechanism
-ED,1,1 - 4,849,228.21034465,,7,Unintentional,Cut or Pierce
-ED,1,1 - 4,782,210.11831576,,8,Unintentional,Hot Object or Substance
+ED,1,1 - 4,4082,1096.8068605,,2,Unintentional,Struck by or against
+ED,1,1 - 4,3955,1062.7723507,,3,Unintentional,Unspecified mechanism
+ED,1,1 - 4,2372,637.34097824,,4,Unintentional,Foreign object
+ED,1,1 - 4,1756,471.91534771,,5,Unintentional,Bite or sting
+ED,1,1 - 4,900,241.82414857,,6,Unintentional,Other classifiable mechanism
+ED,1,1 - 4,849,228.21034465,,7,Unintentional,Cut or pierce
+ED,1,1 - 4,782,210.11831576,,8,Unintentional,Hot object or substance
 ED,1,1 - 4,757,203.3114138,,9,Unintentional,Overexertion
-ED,1,1 - 4,709,190.50369037,,10,Unintentional,Motor Vehicle Occupant
+ED,1,1 - 4,709,190.50369037,,10,Unintentional,Motor vehicle occupant
 ED,1,10 - 14,7764,1667.7132687,,1,Unintentional,Fall
-ED,1,10 - 14,4928,1058.512097,,2,Unintentional,Struck by or Against
-ED,1,10 - 14,3571,767.08652475,,3,Unintentional,Unspecified Mechanism
+ED,1,10 - 14,4928,1058.512097,,2,Unintentional,Struck by or against
+ED,1,10 - 14,3571,767.08652475,,3,Unintentional,Unspecified mechanism
 ED,1,10 - 14,2469,530.3659002,,4,Unintentional,Overexertion
-ED,1,10 - 14,1272,273.23832526,,5,Assault,Struck by or Against
-ED,1,10 - 14,1066,228.91586107,,6,Unintentional,Cut or Pierce
-ED,1,10 - 14,844,181.37124682,,7,Unintentional,Motor Vehicle Occupant
-ED,1,10 - 14,706,151.58425958,,8,Unintentional,Bite or Sting
-ED,1,10 - 14,638,137.04878264,,9,Unintentional,Other Classifiable Mechanism
+ED,1,10 - 14,1272,273.23832526,,5,Assault,Struck by or against
+ED,1,10 - 14,1066,228.91586107,,6,Unintentional,Cut or pierce
+ED,1,10 - 14,844,181.37124682,,7,Unintentional,Motor vehicle occupant
+ED,1,10 - 14,706,151.58425958,,8,Unintentional,Bite or sting
+ED,1,10 - 14,638,137.04878264,,9,Unintentional,Other classifiable mechanism
 ED,1,10 - 14,516,110.91356547,,10,Assault,Abuse
 ED,1,15 - 24,12721,1345.5512575,,1,Unintentional,Fall
-ED,1,15 - 24,10544,1115.2751907,,2,Unintentional,Unspecified Mechanism
-ED,1,15 - 24,8828,933.76222295,,3,Unintentional,Struck by or Against
-ED,1,15 - 24,6230,658.95412849,,4,Unintentional,Motor Vehicle Occupant
+ED,1,15 - 24,10544,1115.2751907,,2,Unintentional,Unspecified mechanism
+ED,1,15 - 24,8828,933.76222295,,3,Unintentional,Struck by or against
+ED,1,15 - 24,6230,658.95412849,,4,Unintentional,Motor vehicle occupant
 ED,1,15 - 24,5822,615.7971991,,5,Unintentional,Overexertion
-ED,1,15 - 24,5537,585.72133246,,6,Assault,Struck by or Against
-ED,1,15 - 24,5396,570.8068054,,7,Unintentional,Cut or Pierce
-ED,1,15 - 24,1795,189.90459286,,8,Unintentional,Bite or Sting
-ED,1,15 - 24,1515,160.28709231,,9,Unintentional,Other Classifiable Mechanism
+ED,1,15 - 24,5537,585.72133246,,6,Assault,Struck by or against
+ED,1,15 - 24,5396,570.8068054,,7,Unintentional,Cut or pierce
+ED,1,15 - 24,1795,189.90459286,,8,Unintentional,Bite or sting
+ED,1,15 - 24,1515,160.28709231,,9,Unintentional,Other classifiable mechanism
 ED,1,15 - 24,1471,155.56239579,,10,Assault,Abuse
 ED,1,25 - 34,17394,1255.2298236,,1,Unintentional,Fall
-ED,1,25 - 34,13724,990.41005569,,2,Unintentional,Unspecified Mechanism
-ED,1,25 - 34,10090,728.14010118,,3,Unintentional,Motor Vehicle Occupant
-ED,1,25 - 34,9310,671.85176828,,4,Unintentional,Struck by or Against
-ED,1,25 - 34,8477,611.73871533,,5,Assault,Struck by or Against
-ED,1,25 - 34,8310,599.66318409,,6,Unintentional,Cut or Pierce
+ED,1,25 - 34,13724,990.41005569,,2,Unintentional,Unspecified mechanism
+ED,1,25 - 34,10090,728.14010118,,3,Unintentional,Motor vehicle occupant
+ED,1,25 - 34,9310,671.85176828,,4,Unintentional,Struck by or against
+ED,1,25 - 34,8477,611.73871533,,5,Assault,Struck by or against
+ED,1,25 - 34,8310,599.66318409,,6,Unintentional,Cut or pierce
 ED,1,25 - 34,6466,466.6158468,,7,Unintentional,Overexertion
-ED,1,25 - 34,2256,162.77912338,,8,Unintentional,Bite or Sting
+ED,1,25 - 34,2256,162.77912338,,8,Unintentional,Bite or sting
 ED,1,25 - 34,1972,142.30845189,,9,Assault,Abuse
-ED,1,25 - 34,1828,131.9408145,,10,Unintentional,Other Classifiable Mechanism
+ED,1,25 - 34,1828,131.9408145,,10,Unintentional,Other classifiable mechanism
 ED,1,35 - 44,16012,1382.8728172,,1,Unintentional,Fall
-ED,1,35 - 44,11413,985.70172555,,2,Unintentional,Unspecified Mechanism
-ED,1,35 - 44,6979,602.75233003,,3,Unintentional,Motor Vehicle Occupant
-ED,1,35 - 44,6753,583.26227283,,4,Unintentional,Struck by or Against
-ED,1,35 - 44,6385,551.47937307,,5,Assault,Struck by or Against
+ED,1,35 - 44,11413,985.70172555,,2,Unintentional,Unspecified mechanism
+ED,1,35 - 44,6979,602.75233003,,3,Unintentional,Motor vehicle occupant
+ED,1,35 - 44,6753,583.26227283,,4,Unintentional,Struck by or against
+ED,1,35 - 44,6385,551.47937307,,5,Assault,Struck by or against
 ED,1,35 - 44,5526,477.26169591,,6,Unintentional,Overexertion
-ED,1,35 - 44,5505,475.44799782,,7,Unintentional,Cut or Pierce
-ED,1,35 - 44,1599,138.07136528,,8,Unintentional,Bite or Sting
-ED,1,35 - 44,1396,120.56773932,,9,Unintentional,Other Classifiable Mechanism
-ED,1,35 - 44,1380,119.15708525,,10,Unintentional,Drug Poisoning
+ED,1,35 - 44,5505,475.44799782,,7,Unintentional,Cut or pierce
+ED,1,35 - 44,1599,138.07136528,,8,Unintentional,Bite or sting
+ED,1,35 - 44,1396,120.56773932,,9,Unintentional,Other classifiable mechanism
+ED,1,35 - 44,1380,119.15708525,,10,Unintentional,Drug poisoning
 ED,1,45 - 54,16530,1613.337181,,1,Unintentional,Fall
-ED,1,45 - 54,9348,912.36999199,,2,Unintentional,Unspecified Mechanism
-ED,1,45 - 54,5126,500.33298056,,3,Unintentional,Struck by or Against
-ED,1,45 - 54,4696,458.36474173,,4,Unintentional,Motor Vehicle Occupant
+ED,1,45 - 54,9348,912.36999199,,2,Unintentional,Unspecified mechanism
+ED,1,45 - 54,5126,500.33298056,,3,Unintentional,Struck by or against
+ED,1,45 - 54,4696,458.36474173,,4,Unintentional,Motor vehicle occupant
 ED,1,45 - 54,4239,413.72875439,,5,Unintentional,Overexertion
-ED,1,45 - 54,4067,396.94145886,,6,Assault,Struck by or Against
-ED,1,45 - 54,3687,359.8532478,,7,Unintentional,Cut or Pierce
-ED,1,45 - 54,1316,128.4097974,,8,Unintentional,Bite or Sting
-ED,1,45 - 54,1295,126.42525278,,9,Unintentional,Drug Poisoning
-ED,1,45 - 54,963,93.956801344,,10,Unintentional,Other Classifiable Mechanism
+ED,1,45 - 54,4067,396.94145886,,6,Assault,Struck by or against
+ED,1,45 - 54,3687,359.8532478,,7,Unintentional,Cut or pierce
+ED,1,45 - 54,1316,128.4097974,,8,Unintentional,Bite or sting
+ED,1,45 - 54,1295,126.42525278,,9,Unintentional,Drug poisoning
+ED,1,45 - 54,963,93.956801344,,10,Unintentional,Other classifiable mechanism
 ED,1,5 - 9,9705,2041.3243016,,1,Unintentional,Fall
-ED,1,5 - 9,4505,947.60245711,,2,Unintentional,Struck by or Against
-ED,1,5 - 9,3228,678.99239324,,3,Unintentional,Unspecified Mechanism
-ED,1,5 - 9,1315,276.60315896,,4,Unintentional,Foreign Object
-ED,1,5 - 9,1224,257.3916848,,5,Unintentional,Bite or Sting
-ED,1,5 - 9,942,198.2147352,,6,Unintentional,Cut or Pierce
-ED,1,5 - 9,866,182.08831529,,7,Unintentional,Motor Vehicle Occupant
+ED,1,5 - 9,4505,947.60245711,,2,Unintentional,Struck by or against
+ED,1,5 - 9,3228,678.99239324,,3,Unintentional,Unspecified mechanism
+ED,1,5 - 9,1315,276.60315896,,4,Unintentional,Foreign object
+ED,1,5 - 9,1224,257.3916848,,5,Unintentional,Bite or sting
+ED,1,5 - 9,942,198.2147352,,6,Unintentional,Cut or pierce
+ED,1,5 - 9,866,182.08831529,,7,Unintentional,Motor vehicle occupant
 ED,1,5 - 9,805,169.32740909,,8,Unintentional,Overexertion
-ED,1,5 - 9,684,143.94582645,,9,Unintentional,Other Classifiable Mechanism
+ED,1,5 - 9,684,143.94582645,,9,Unintentional,Other classifiable mechanism
 ED,1,5 - 9,404,84.909106589,,10,Assault,Abuse
 ED,1,55 - 64,21842,2117.0754654,,1,Unintentional,Fall
-ED,1,55 - 64,8741,847.22434919,,2,Unintentional,Unspecified Mechanism
-ED,1,55 - 64,4462,432.51315115,,3,Unintentional,Struck by or Against
-ED,1,55 - 64,3585,347.50963276,,4,Unintentional,Motor Vehicle Occupant
+ED,1,55 - 64,8741,847.22434919,,2,Unintentional,Unspecified mechanism
+ED,1,55 - 64,4462,432.51315115,,3,Unintentional,Struck by or against
+ED,1,55 - 64,3585,347.50963276,,4,Unintentional,Motor vehicle occupant
 ED,1,55 - 64,3284,318.27049018,,5,Unintentional,Overexertion
-ED,1,55 - 64,3010,291.74525696,,6,Assault,Struck by or Against
-ED,1,55 - 64,2871,278.27263546,,7,Unintentional,Cut or Pierce
-ED,1,55 - 64,1677,162.54378602,,8,Unintentional,Drug Poisoning
-ED,1,55 - 64,1174,113.79034275,,9,Unintentional,Bite or Sting
-ED,1,55 - 64,846,81.966524574,,10,Unintentional,Pedestrian Struck by Motor Vehicle
+ED,1,55 - 64,3010,291.74525696,,6,Assault,Struck by or against
+ED,1,55 - 64,2871,278.27263546,,7,Unintentional,Cut or pierce
+ED,1,55 - 64,1677,162.54378602,,8,Unintentional,Drug poisoning
+ED,1,55 - 64,1174,113.79034275,,9,Unintentional,Bite or sting
+ED,1,55 - 64,846,81.966524574,,10,Unintentional,Pedestrian struck by motor vehicle
 ED,1,65+,40321,2885.0346074,,1,Unintentional,Fall
-ED,1,65+,8727,624.43652599,,2,Unintentional,Unspecified Mechanism
-ED,1,65+,3973,284.27710757,,3,Unintentional,Struck by or Against
-ED,1,65+,2109,150.90370498,,4,Unintentional,Motor Vehicle Occupant
+ED,1,65+,8727,624.43652599,,2,Unintentional,Unspecified mechanism
+ED,1,65+,3973,284.27710757,,3,Unintentional,Struck by or against
+ED,1,65+,2109,150.90370498,,4,Unintentional,Motor vehicle occupant
 ED,1,65+,1984,141.9835239,,5,Unintentional,Overexertion
-ED,1,65+,1763,126.17047563,,6,Unintentional,Cut or Pierce
-ED,1,65+,1258,90.012736301,,7,Assault,Struck by or Against
-ED,1,65+,991,70.884433569,,8,Unintentional,Drug Poisoning
-ED,1,65+,929,66.495895286,,9,Unintentional,Bite or Sting
-ED,1,65+,727,51.994638351,,10,Unintentional,Pedestrian Struck by Motor Vehicle
+ED,1,65+,1763,126.17047563,,6,Unintentional,Cut or pierce
+ED,1,65+,1258,90.012736301,,7,Assault,Struck by or against
+ED,1,65+,991,70.884433569,,8,Unintentional,Drug poisoning
+ED,1,65+,929,66.495895286,,9,Unintentional,Bite or sting
+ED,1,65+,727,51.994638351,,10,Unintentional,Pedestrian struck by motor vehicle
 ED,1,<1,2937,3057.5893245,,1,Unintentional,Fall
-ED,1,<1,915,952.56868637,,2,Unintentional,Unspecified Mechanism
-ED,1,<1,351,365.06457489,,3,Unintentional,Struck by or Against
-ED,1,<1,288,299.47787845,,4,Unintentional,Foreign Object
-ED,1,<1,191,198.49518711,,5,Unintentional,Motor Vehicle Occupant
-ED,1,<1,174,181.14420921,,6,Unintentional,Hot Object or Substance
-ED,1,<1,104,108.61712162,,7,Unintentional,Bite or Sting
-ED,1,<1,89,92.307202395,,8,Unintentional,Cut or Pierce
-ED,1,<1,75,77.732380965,,9,Unintentional,Non-Drug Poisoning
-ED,1,<1,74,77.038341849,,10,Unintentional,Other Classifiable Mechanism
+ED,1,<1,915,952.56868637,,2,Unintentional,Unspecified mechanism
+ED,1,<1,351,365.06457489,,3,Unintentional,Struck by or against
+ED,1,<1,288,299.47787845,,4,Unintentional,Foreign object
+ED,1,<1,191,198.49518711,,5,Unintentional,Motor vehicle occupant
+ED,1,<1,174,181.14420921,,6,Unintentional,Hot object or substance
+ED,1,<1,104,108.61712162,,7,Unintentional,Bite or sting
+ED,1,<1,89,92.307202395,,8,Unintentional,Cut or pierce
+ED,1,<1,75,77.732380965,,9,Unintentional,Non-drug poisoning
+ED,1,<1,74,77.038341849,,10,Unintentional,Other classifiable mechanism
 ED,1,All ages,158501,632.58576801,,1,Unintentional,Fall
-ED,1,All ages,74166,296.00037899,,2,Unintentional,Unspecified Mechanism
-ED,1,All ages,52318,208.80387008,,3,Unintentional,Struck by or Against
-ED,1,All ages,36299,144.87120455,,4,Unintentional,Motor Vehicle Occupant
+ED,1,All ages,74166,296.00037899,,2,Unintentional,Unspecified mechanism
+ED,1,All ages,52318,208.80387008,,3,Unintentional,Struck by or against
+ED,1,All ages,36299,144.87120455,,4,Unintentional,Motor vehicle occupant
 ED,1,All ages,31411,125.3629413,,5,Unintentional,Overexertion
-ED,1,All ages,30478,121.63928958,,6,Unintentional,Cut or Pierce
-ED,1,All ages,30355,121.14839016,,7,Assault,Struck by or Against
-ED,1,All ages,12859,51.320940504,,8,Unintentional,Bite or Sting
-ED,1,All ages,10444,41.682549392,,9,Unintentional,Foreign Object
-ED,1,All ages,9329,37.232526166,,10,Unintentional,Other Classifiable Mechanism
-Hospitalization,0,1 - 4,902,242.27197107,,6,Injury,"Injury, Poisoning and Other Consequences of External Causes"
-Hospitalization,0,1 - 4,442,118.6729618,,9,,Blood diseases and Disorders Involving the Immune Mechanism
+ED,1,All ages,30478,121.63928958,,6,Unintentional,Cut or pierce
+ED,1,All ages,30355,121.14839016,,7,Assault,Struck by or against
+ED,1,All ages,12859,51.320940504,,8,Unintentional,Bite or sting
+ED,1,All ages,10444,41.682549392,,9,Unintentional,Foreign object
+ED,1,All ages,9329,37.232526166,,10,Unintentional,Other classifiable mechanism
+Hospitalization,0,1 - 4,902,242.27197107,,6,"Injury, poisoning and other consequences
+of external causes","Injury, poisoning and other consequences of external causes"
+Hospitalization,0,1 - 4,442,118.6729618,,9,,Blood diseases and disorders involving the immune mechanism
 Hospitalization,0,1 - 4,447,120.19555829,,8,,Skin diseases
-Hospitalization,0,1 - 4,1951,524.2210154,,2,,Infectious and Parasitic Diseases
-Hospitalization,0,1 - 4,6382,1714.8914714,,1,,Respiratory System diseases
-Hospitalization,0,1 - 4,1167,313.65487715,,4,,Digestive System diseases
-Hospitalization,0,1 - 4,552,148.40837562,,7,,"Congenital Malformations, Deformations and Chromosomal Abnormalities"
-Hospitalization,0,1 - 4,1294,347.59982245,,3,,Nervous System diseases
-Hospitalization,0,1 - 4,908,244.06326106,,5,,"Endocrine, Nutritional and Metabolic diseases"
-Hospitalization,0,1 - 4,420,112.85126933,,10,,"Symptoms, Signs and Abnormal Clinical and Laboratory Findings"
-Hospitalization,0,10 - 14,294,63.225744549,,10,,Genitourinary System diseases
-Hospitalization,0,10 - 14,1683,361.52523695,,1,,"Mental, Behavioral and Neurodevelopmental Disorders"
-Hospitalization,0,10 - 14,563,120.86642899,,7,,"Endocrine, Nutritional and Metabolic diseases"
-Hospitalization,0,10 - 14,440,94.444798483,,9,,Blood diseases and Disorders Involving the Immune Mechanism
-Hospitalization,0,10 - 14,454,97.452138541,,8,,Infectious and Parasitic Diseases
-Hospitalization,0,10 - 14,1310,281.32950208,,2,,Digestive System diseases
-Hospitalization,0,10 - 14,1019,218.96299754,,4,,Nervous System diseases
-Hospitalization,0,10 - 14,585,125.73545575,,6,,Musculoskeletal System and Connective Tissue diseases
-Hospitalization,0,10 - 14,817,175.42817004,,5,Injury,"Injury, Poisoning and Other Consequences of External Causes"
-Hospitalization,0,10 - 14,1075,230.92075444,,3,,Respiratory System diseases
-Hospitalization,0,15 - 24,2428,256.79078162,,6,,Infectious and Parasitic Diseases
-Hospitalization,0,15 - 24,2163,228.83045074,,7,,Nervous System diseases
-Hospitalization,0,15 - 24,1639,173.33289612,,9,,Blood diseases and Disorders Involving the Immune Mechanism
-Hospitalization,0,15 - 24,3415,361.19247109,,4,Injury,"Injury, Poisoning and Other Consequences of External Causes"
-Hospitalization,0,15 - 24,4465,472.32861604,,3,,Digestive System diseases
-Hospitalization,0,15 - 24,1459,154.29307434,,10,,Musculoskeletal System and Connective Tissue diseases
-Hospitalization,0,15 - 24,9095,962.00462527,,2,,"Mental, Behavioral and Neurodevelopmental Disorders"
-Hospitalization,0,15 - 24,17243,1823.9091504,,1,,"Pregnancy, Childbirth and the Puerperium"
-Hospitalization,0,15 - 24,1699,179.75002124,,8,,Respiratory System diseases
-Hospitalization,0,15 - 24,2885,305.13077361,,5,,"Endocrine, Nutritional and Metabolic diseases"
-Hospitalization,0,25 - 34,2104,151.83416976,,10,,Blood diseases and Disorders Involving the Immune Mechanism
-Hospitalization,0,25 - 34,2836,204.68266009,,8,,Nervous System diseases
-Hospitalization,0,25 - 34,5455,393.68156247,,6,,Infectious and Parasitic Diseases
-Hospitalization,0,25 - 34,5701,411.40998185,,5,Injury,"Injury, Poisoning and Other Consequences of External Causes"
-Hospitalization,0,25 - 34,2769,199.84763662,,9,,Genitourinary System diseases
-Hospitalization,0,25 - 34,6807,491.24800615,,4,,"Endocrine, Nutritional and Metabolic diseases"
-Hospitalization,0,25 - 34,3622,261.37992532,,7,,Circulatory System diseases
-Hospitalization,0,25 - 34,8576,618.90705858,,3,,Digestive System diseases
-Hospitalization,0,25 - 34,13955,1007.0319523,,2,,"Mental, Behavioral and Neurodevelopmental Disorders"
-Hospitalization,0,25 - 34,59534,4296.2430905,,1,,"Pregnancy, Childbirth and the Puerperium"
-Hospitalization,0,35 - 44,2982,257.51633912,,10,,Musculoskeletal System and Connective Tissue diseases
-Hospitalization,0,35 - 44,3638,314.20160147,,9,,Genitourinary System diseases
+Hospitalization,0,1 - 4,1951,524.2210154,,2,,Infectious and parasitic diseases
+Hospitalization,0,1 - 4,6382,1714.8914714,,1,,Respiratory system diseases
+Hospitalization,0,1 - 4,1167,313.65487715,,4,,Digestive system diseases
+Hospitalization,0,1 - 4,552,148.40837562,,7,,"Congenital malformations, deformations and chromosomal abnormalities"
+Hospitalization,0,1 - 4,1294,347.59982245,,3,,Nervous system diseases
+Hospitalization,0,1 - 4,908,244.06326106,,5,,"Endocrine, nutritional and metabolic diseases"
+Hospitalization,0,1 - 4,420,112.85126933,,10,,"Symptoms, signs and abnormal clinical and laboratory findings"
+Hospitalization,0,10 - 14,294,63.225744549,,10,,Genitourinary system diseases
+Hospitalization,0,10 - 14,1683,361.52523695,,1,,"Mental, behavioral and neurodevelopmental disorders"
+Hospitalization,0,10 - 14,563,120.86642899,,7,,"Endocrine, nutritional and metabolic diseases"
+Hospitalization,0,10 - 14,440,94.444798483,,9,,Blood diseases and disorders involving the immune mechanism
+Hospitalization,0,10 - 14,454,97.452138541,,8,,Infectious and parasitic diseases
+Hospitalization,0,10 - 14,1310,281.32950208,,2,,Digestive system diseases
+Hospitalization,0,10 - 14,1019,218.96299754,,4,,Nervous system diseases
+Hospitalization,0,10 - 14,585,125.73545575,,6,,Musculoskeletal system and connective tissue diseases
+Hospitalization,0,10 - 14,817,175.42817004,,5,"Injury, poisoning and other consequences
+of external causes","Injury, poisoning and other consequences of external causes"
+Hospitalization,0,10 - 14,1075,230.92075444,,3,,Respiratory system diseases
+Hospitalization,0,15 - 24,2428,256.79078162,,6,,Infectious and parasitic diseases
+Hospitalization,0,15 - 24,2163,228.83045074,,7,,Nervous system diseases
+Hospitalization,0,15 - 24,1639,173.33289612,,9,,Blood diseases and disorders involving the immune mechanism
+Hospitalization,0,15 - 24,3415,361.19247109,,4,"Injury, poisoning and other consequences
+of external causes","Injury, poisoning and other consequences of external causes"
+Hospitalization,0,15 - 24,4465,472.32861604,,3,,Digestive system diseases
+Hospitalization,0,15 - 24,1459,154.29307434,,10,,Musculoskeletal system and connective tissue diseases
+Hospitalization,0,15 - 24,9095,962.00462527,,2,,"Mental, behavioral and neurodevelopmental disorders"
+Hospitalization,0,15 - 24,17243,1823.9091504,,1,,"Pregnancy, childbirth and the puerperium"
+Hospitalization,0,15 - 24,1699,179.75002124,,8,,Respiratory system diseases
+Hospitalization,0,15 - 24,2885,305.13077361,,5,,"Endocrine, nutritional and metabolic diseases"
+Hospitalization,0,25 - 34,2104,151.83416976,,10,,Blood diseases and disorders involving the immune mechanism
+Hospitalization,0,25 - 34,2836,204.68266009,,8,,Nervous system diseases
+Hospitalization,0,25 - 34,5455,393.68156247,,6,,Infectious and parasitic diseases
+Hospitalization,0,25 - 34,5701,411.40998185,,5,"Injury, poisoning and other consequences
+of external causes","Injury, poisoning and other consequences of external causes"
+Hospitalization,0,25 - 34,2769,199.84763662,,9,,Genitourinary system diseases
+Hospitalization,0,25 - 34,6807,491.24800615,,4,,"Endocrine, nutritional and metabolic diseases"
+Hospitalization,0,25 - 34,3622,261.37992532,,7,,Circulatory system diseases
+Hospitalization,0,25 - 34,8576,618.90705858,,3,,Digestive system diseases
+Hospitalization,0,25 - 34,13955,1007.0319523,,2,,"Mental, behavioral and neurodevelopmental disorders"
+Hospitalization,0,25 - 34,59534,4296.2430905,,1,,"Pregnancy, childbirth and the puerperium"
+Hospitalization,0,35 - 44,2982,257.51633912,,10,,Musculoskeletal system and connective tissue diseases
+Hospitalization,0,35 - 44,3638,314.20160147,,9,,Genitourinary system diseases
 Hospitalization,0,35 - 44,4695,405.46228285,,8,,Neoplasms
-Hospitalization,0,35 - 44,6894,595.38238226,,6,,Circulatory System diseases
-Hospitalization,0,35 - 44,7209,622.64543124,,5,,Infectious and Parasitic Diseases
-Hospitalization,0,35 - 44,7227,624.20002959,,4,,"Endocrine, Nutritional and Metabolic diseases"
-Hospitalization,0,35 - 44,10089,871.3235908,,3,,Digestive System diseases
-Hospitalization,0,35 - 44,12596,1087.8733843,,2,,"Mental, Behavioral and Neurodevelopmental Disorders"
-Hospitalization,0,35 - 44,6204,535.7894452,,7,Injury,"Injury, Poisoning and Other Consequences of External Causes"
-Hospitalization,0,35 - 44,33202,2867.514249,,1,,"Pregnancy, Childbirth and the Puerperium"
-Hospitalization,0,45 - 54,3749,365.93701576,,10,,Respiratory System diseases
-Hospitalization,0,45 - 54,7568,738.64100336,,6,,"Endocrine, Nutritional and Metabolic diseases"
+Hospitalization,0,35 - 44,6894,595.38238226,,6,,Circulatory system diseases
+Hospitalization,0,35 - 44,7209,622.64543124,,5,,Infectious and parasitic diseases
+Hospitalization,0,35 - 44,7227,624.20002959,,4,,"Endocrine, nutritional and metabolic diseases"
+Hospitalization,0,35 - 44,10089,871.3235908,,3,,Digestive system diseases
+Hospitalization,0,35 - 44,12596,1087.8733843,,2,,"Mental, behavioral and neurodevelopmental disorders"
+Hospitalization,0,35 - 44,6204,535.7894452,,7,"Injury, poisoning and other consequences
+of external causes","Injury, poisoning and other consequences of external causes"
+Hospitalization,0,35 - 44,33202,2867.514249,,1,,"Pregnancy, childbirth and the puerperium"
+Hospitalization,0,45 - 54,3749,365.93701576,,10,,Respiratory system diseases
+Hospitalization,0,45 - 54,7568,738.64100336,,6,,"Endocrine, nutritional and metabolic diseases"
 Hospitalization,0,45 - 54,7684,749.96266779,,5,,Neoplasms
-Hospitalization,0,45 - 54,9684,945.13124509,,4,,Infectious and Parasitic Diseases
-Hospitalization,0,45 - 54,10540,1028.6773205,,3,,"Mental, Behavioral and Neurodevelopmental Disorders"
-Hospitalization,0,45 - 54,11483,1120.7797113,,2,,Digestive System diseases
-Hospitalization,0,45 - 54,4871,475.37977189,,9,,Genitourinary System diseases
-Hospitalization,0,45 - 54,13598,1327.139819,,1,,Circulatory System diseases
-Hospitalization,0,45 - 54,5356,522.78110831,,8,,Musculoskeletal System and Connective Tissue diseases
-Hospitalization,0,45 - 54,7345,716.8760795,,7,Injury,"Injury, Poisoning and Other Consequences of External Causes"
+Hospitalization,0,45 - 54,9684,945.13124509,,4,,Infectious and parasitic diseases
+Hospitalization,0,45 - 54,10540,1028.6773205,,3,,"Mental, behavioral and neurodevelopmental disorders"
+Hospitalization,0,45 - 54,11483,1120.7797113,,2,,Digestive system diseases
+Hospitalization,0,45 - 54,4871,475.37977189,,9,,Genitourinary system diseases
+Hospitalization,0,45 - 54,13598,1327.139819,,1,,Circulatory system diseases
+Hospitalization,0,45 - 54,5356,522.78110831,,8,,Musculoskeletal system and connective tissue diseases
+Hospitalization,0,45 - 54,7345,716.8760795,,7,"Injury, poisoning and other consequences
+of external causes","Injury, poisoning and other consequences of external causes"
 Hospitalization,0,5 - 9,269,56.582699436,,10,,Skin diseases
-Hospitalization,0,5 - 9,274,57.704537344,,9,,"Congenital Malformations, Deformations and Chromosomal Abnormalities"
-Hospitalization,0,5 - 9,288,60.509132111,,8,,Musculoskeletal System and Connective Tissue diseases
-Hospitalization,0,5 - 9,380,79.860836008,,7,,Blood diseases and Disorders Involving the Immune Mechanism
-Hospitalization,0,5 - 9,424,89.18611361,,6,,"Endocrine, Nutritional and Metabolic diseases"
-Hospitalization,0,5 - 9,703,147.80214425,,5,Injury,"Injury, Poisoning and Other Consequences of External Causes"
-Hospitalization,0,5 - 9,703,147.94237399,,4,,Infectious and Parasitic Diseases
-Hospitalization,0,5 - 9,1135,238.67101472,,3,,Nervous System diseases
-Hospitalization,0,5 - 9,1183,248.83767076,,2,,Digestive System diseases
-Hospitalization,0,5 - 9,2588,544.30172952,,1,,Respiratory System diseases
-Hospitalization,0,55 - 64,8019,777.24425766,,10,,Genitourinary System diseases
-Hospitalization,0,55 - 64,8266,801.15250684,,9,,Respiratory System diseases
-Hospitalization,0,55 - 64,9915,960.9823835,,8,,"Endocrine, Nutritional and Metabolic diseases"
-Hospitalization,0,55 - 64,10470,1014.8082526,,7,,"Mental, Behavioral and Neurodevelopmental Disorders"
-Hospitalization,0,55 - 64,10777,1044.5320219,,6,,Musculoskeletal System and Connective Tissue diseases
-Hospitalization,0,55 - 64,11408,1105.691908,,5,Injury,"Injury, Poisoning and Other Consequences of External Causes"
+Hospitalization,0,5 - 9,274,57.704537344,,9,,"Congenital malformations, deformations and chromosomal abnormalities"
+Hospitalization,0,5 - 9,288,60.509132111,,8,,Musculoskeletal system and connective tissue diseases
+Hospitalization,0,5 - 9,380,79.860836008,,7,,Blood diseases and disorders involving the immune mechanism
+Hospitalization,0,5 - 9,424,89.18611361,,6,,"Endocrine, nutritional and metabolic diseases"
+Hospitalization,0,5 - 9,703,147.80214425,,5,"Injury, poisoning and other consequences
+of external causes","Injury, poisoning and other consequences of external causes"
+Hospitalization,0,5 - 9,703,147.94237399,,4,,Infectious and parasitic diseases
+Hospitalization,0,5 - 9,1135,238.67101472,,3,,Nervous system diseases
+Hospitalization,0,5 - 9,1183,248.83767076,,2,,Digestive system diseases
+Hospitalization,0,5 - 9,2588,544.30172952,,1,,Respiratory system diseases
+Hospitalization,0,55 - 64,8019,777.24425766,,10,,Genitourinary system diseases
+Hospitalization,0,55 - 64,8266,801.15250684,,9,,Respiratory system diseases
+Hospitalization,0,55 - 64,9915,960.9823835,,8,,"Endocrine, nutritional and metabolic diseases"
+Hospitalization,0,55 - 64,10470,1014.8082526,,7,,"Mental, behavioral and neurodevelopmental disorders"
+Hospitalization,0,55 - 64,10777,1044.5320219,,6,,Musculoskeletal system and connective tissue diseases
+Hospitalization,0,55 - 64,11408,1105.691908,,5,"Injury, poisoning and other consequences
+of external causes","Injury, poisoning and other consequences of external causes"
 Hospitalization,0,55 - 64,12109,1173.6365675,,4,,Neoplasms
-Hospitalization,0,55 - 64,14954,1449.3891442,,3,,Digestive System diseases
-Hospitalization,0,55 - 64,16026,1553.3577197,,2,,Infectious and Parasitic Diseases
-Hospitalization,0,55 - 64,28863,2797.5559308,,1,,Circulatory System diseases
-Hospitalization,0,65+,12366,884.83903128,,10,,Nervous System diseases
-Hospitalization,0,65+,17236,1233.2508097,,9,,"Endocrine, Nutritional and Metabolic diseases"
-Hospitalization,0,65+,19146,1369.915616,,8,,Respiratory System diseases
-Hospitalization,0,65+,23110,1653.5964548,,7,,Musculoskeletal System and Connective Tissue diseases
-Hospitalization,0,65+,23221,1661.5149043,,6,,Genitourinary System diseases
+Hospitalization,0,55 - 64,14954,1449.3891442,,3,,Digestive system diseases
+Hospitalization,0,55 - 64,16026,1553.3577197,,2,,Infectious and parasitic diseases
+Hospitalization,0,55 - 64,28863,2797.5559308,,1,,Circulatory system diseases
+Hospitalization,0,65+,12366,884.83903128,,10,,Nervous system diseases
+Hospitalization,0,65+,17236,1233.2508097,,9,,"Endocrine, nutritional and metabolic diseases"
+Hospitalization,0,65+,19146,1369.915616,,8,,Respiratory system diseases
+Hospitalization,0,65+,23110,1653.5964548,,7,,Musculoskeletal system and connective tissue diseases
+Hospitalization,0,65+,23221,1661.5149043,,6,,Genitourinary system diseases
 Hospitalization,0,65+,23276,1665.4502783,,5,,Neoplasms
-Hospitalization,0,65+,28283,2023.7124172,,4,Injury,"Injury, Poisoning and Other Consequences of External Causes"
-Hospitalization,0,65+,30703,2196.8450226,,3,,Digestive System diseases
-Hospitalization,0,65+,47989,3433.7449973,,2,,Infectious and Parasitic Diseases
-Hospitalization,0,65+,75792,5423.1123323,,1,,Circulatory System diseases
-Hospitalization,0,<1,311,323.7692475,,10,,Genitourinary System diseases
-Hospitalization,0,<1,333,346.67253832,,9,,"Endocrine, Nutritional and Metabolic diseases"
-Hospitalization,0,<1,386,402.19566758,,8,Injury,"Injury, Poisoning and Other Consequences of External Causes"
-Hospitalization,0,<1,464,483.39824412,,7,,Nervous System diseases
-Hospitalization,0,<1,541,562.86572288,,6,,"Symptoms, Signs and Abnormal Clinical and Laboratory Findings"
-Hospitalization,0,<1,664,691.26295929,,5,,Digestive System diseases
-Hospitalization,0,<1,1065,1108.7274874,,4,,"Congenital Malformations, Deformations and Chromosomal Abnormalities"
-Hospitalization,0,<1,1658,1726.4223004,,3,,Infectious and Parasitic Diseases
-Hospitalization,0,<1,2944,3064.5297156,,2,,Respiratory System diseases
-Hospitalization,0,<1,94979,98879.058782,,1,,Conditions Originating in the Perinatal Period
-Hospitalization,0,All ages,50001,598.67379729,,10,,Respiratory System diseases
+Hospitalization,0,65+,28283,2023.7124172,,4,"Injury, poisoning and other consequences
+of external causes","Injury, poisoning and other consequences of external causes"
+Hospitalization,0,65+,30703,2196.8450226,,3,,Digestive system diseases
+Hospitalization,0,65+,47989,3433.7449973,,2,,Infectious and parasitic diseases
+Hospitalization,0,65+,75792,5423.1123323,,1,,Circulatory system diseases
+Hospitalization,0,<1,311,323.7692475,,10,,Genitourinary system diseases
+Hospitalization,0,<1,333,346.67253832,,9,,"Endocrine, nutritional and metabolic diseases"
+Hospitalization,0,<1,386,402.19566758,,8,"Injury, poisoning and other consequences
+of external causes","Injury, poisoning and other consequences of external causes"
+Hospitalization,0,<1,464,483.39824412,,7,,Nervous system diseases
+Hospitalization,0,<1,541,562.86572288,,6,,"Symptoms, signs and abnormal clinical and laboratory findings"
+Hospitalization,0,<1,664,691.26295929,,5,,Digestive system diseases
+Hospitalization,0,<1,1065,1108.7274874,,4,,"Congenital malformations, deformations and chromosomal abnormalities"
+Hospitalization,0,<1,1658,1726.4223004,,3,,Infectious and parasitic diseases
+Hospitalization,0,<1,2944,3064.5297156,,2,,Respiratory system diseases
+Hospitalization,0,<1,94979,98879.058782,,1,,Conditions originating in the perinatal period
+Hospitalization,0,All ages,50001,598.67379729,,10,,Respiratory system diseases
 Hospitalization,0,All ages,51617,618.01842741,,9,,Neoplasms
-Hospitalization,0,All ages,53866,644.94206569,,8,,"Endocrine, Nutritional and Metabolic diseases"
-Hospitalization,0,All ages,63976,765.99467059,,7,,"Mental, Behavioral and Neurodevelopmental Disorders"
-Hospitalization,0,All ages,65162,780.19882544,,6,Injury,"Injury, Poisoning and Other Consequences of External Causes"
-Hospitalization,0,All ages,84594,1012.8572146,,5,,Digestive System diseases
-Hospitalization,0,All ages,93558,1120.184591,,4,,Infectious and Parasitic Diseases
-Hospitalization,0,All ages,94995,1137.3940081,,3,,Conditions Originating in the Perinatal Period
-Hospitalization,0,All ages,110801,1326.6337402,,2,,"Pregnancy, Childbirth and the Puerperium"
-Hospitalization,0,All ages,130486,1562.3333112,,1,,Circulatory System diseases
-ED,0,1 - 4,31083,8351.8000112,,4,Injury,"Injury, Poisoning and Other Consequences of External Causes"
-ED,0,1 - 4,34729,9331.5460709,,2,,"Symptoms, Signs and Abnormal Clinical and Laboratory Findings"
-ED,0,1 - 4,13860,3724.091888,,6,,Digestive System diseases
-ED,0,1 - 4,31188,8379.923264,,3,,Infectious and Parasitic Diseases
-ED,0,1 - 4,6973,1873.5101999,,9,,Factors Influencing Health Status and Contact with Health Services
+Hospitalization,0,All ages,53866,644.94206569,,8,,"Endocrine, nutritional and metabolic diseases"
+Hospitalization,0,All ages,63976,765.99467059,,7,,"Mental, behavioral and neurodevelopmental disorders"
+Hospitalization,0,All ages,65162,780.19882544,,6,"Injury, poisoning and other consequences
+of external causes","Injury, poisoning and other consequences of external causes"
+Hospitalization,0,All ages,84594,1012.8572146,,5,,Digestive system diseases
+Hospitalization,0,All ages,93558,1120.184591,,4,,Infectious and parasitic diseases
+Hospitalization,0,All ages,94995,1137.3940081,,3,,Conditions originating in the perinatal period
+Hospitalization,0,All ages,110801,1326.6337402,,2,,"Pregnancy, childbirth and the puerperium"
+Hospitalization,0,All ages,130486,1562.3333112,,1,,Circulatory system diseases
+ED,0,1 - 4,31083,8351.8000112,,4,"Injury, poisoning and other consequences
+of external causes","Injury, poisoning and other consequences of external causes"
+ED,0,1 - 4,34729,9331.5460709,,2,,"Symptoms, signs and abnormal clinical and laboratory findings"
+ED,0,1 - 4,13860,3724.091888,,6,,Digestive system diseases
+ED,0,1 - 4,31188,8379.923264,,3,,Infectious and parasitic diseases
+ED,0,1 - 4,6973,1873.5101999,,9,,Factors influencing health status and contact with health services
 ED,0,1 - 4,8775,2357.8750131,,7,,Ear diseases
 ED,0,1 - 4,15349,4124.0869426,,5,,Dental diseases
-ED,0,1 - 4,42661,11462.643771,,1,,Respiratory System diseases
+ED,0,1 - 4,42661,11462.643771,,1,,Respiratory system diseases
 ED,0,1 - 4,5167,1388.3393063,,10,,Skin diseases
-ED,0,1 - 4,7412,1991.5562102,,8,,External Causes of Morbidity
-ED,0,10 - 14,6214,1334.900969,,6,,Musculoskeletal System and Connective Tissue diseases
-ED,0,10 - 14,11922,2560.9648693,,3,,Respiratory System diseases
-ED,0,10 - 14,7918,1700.8656127,,5,,"Mental, Behavioral and Neurodevelopmental Disorders"
-ED,0,10 - 14,5544,1190.9066629,,7,,Digestive System diseases
-ED,0,10 - 14,14929,3206.8985517,,2,,"Symptoms, Signs and Abnormal Clinical and Laboratory Findings"
+ED,0,1 - 4,7412,1991.5562102,,8,,External causes of morbidity
+ED,0,10 - 14,6214,1334.900969,,6,,Musculoskeletal system and connective tissue diseases
+ED,0,10 - 14,11922,2560.9648693,,3,,Respiratory system diseases
+ED,0,10 - 14,7918,1700.8656127,,5,,"Mental, behavioral and neurodevelopmental disorders"
+ED,0,10 - 14,5544,1190.9066629,,7,,Digestive system diseases
+ED,0,10 - 14,14929,3206.8985517,,2,,"Symptoms, signs and abnormal clinical and laboratory findings"
 ED,0,10 - 14,4289,921.32010772,,9,,Dental diseases
 ED,0,10 - 14,3332,715.74693377,,10,,Skin diseases
-ED,0,10 - 14,22784,4894.1595308,,1,Injury,"Injury, Poisoning and Other Consequences of External Causes"
-ED,0,10 - 14,8331,1789.5821444,,4,,Infectious and Parasitic Diseases
-ED,0,10 - 14,5452,1171.0725392,,8,,Factors Influencing Health Status and Contact with Health Services
+ED,0,10 - 14,22784,4894.1595308,,1,"Injury, poisoning and other consequences
+of external causes","Injury, poisoning and other consequences of external causes"
+ED,0,10 - 14,8331,1789.5821444,,4,,Infectious and parasitic diseases
+ED,0,10 - 14,5452,1171.0725392,,8,,Factors influencing health status and contact with health services
 ED,0,15 - 24,20844,2204.8466219,,9,,Dental diseases
-ED,0,15 - 24,23354,2470.346359,,7,,Respiratory System diseases
-ED,0,15 - 24,21338,2257.0298372,,8,,Infectious and Parasitic Diseases
-ED,0,15 - 24,24774,2620.4788797,,6,,Musculoskeletal System and Connective Tissue diseases
-ED,0,15 - 24,61097,6462.6443985,,1,Injury,"Injury, Poisoning and Other Consequences of External Causes"
-ED,0,15 - 24,27909,2952.159627,,4,,"Pregnancy, Childbirth and the Puerperium"
-ED,0,15 - 24,18764,1984.7956445,,10,,Digestive System diseases
-ED,0,15 - 24,28841,3050.6730753,,3,,"Mental, Behavioral and Neurodevelopmental Disorders"
-ED,0,15 - 24,60761,6427.1033979,,2,,"Symptoms, Signs and Abnormal Clinical and Laboratory Findings"
-ED,0,15 - 24,25318,2678.0214522,,5,,Genitourinary System diseases
-ED,0,25 - 34,27545,1987.7479062,,10,,Infectious and Parasitic Diseases
-ED,0,25 - 34,32045,2312.5123431,,8,,Factors Influencing Health Status and Contact with Health Services
+ED,0,15 - 24,23354,2470.346359,,7,,Respiratory system diseases
+ED,0,15 - 24,21338,2257.0298372,,8,,Infectious and parasitic diseases
+ED,0,15 - 24,24774,2620.4788797,,6,,Musculoskeletal system and connective tissue diseases
+ED,0,15 - 24,61097,6462.6443985,,1,"Injury, poisoning and other consequences
+of external causes","Injury, poisoning and other consequences of external causes"
+ED,0,15 - 24,27909,2952.159627,,4,,"Pregnancy, childbirth and the puerperium"
+ED,0,15 - 24,18764,1984.7956445,,10,,Digestive system diseases
+ED,0,15 - 24,28841,3050.6730753,,3,,"Mental, behavioral and neurodevelopmental disorders"
+ED,0,15 - 24,60761,6427.1033979,,2,,"Symptoms, signs and abnormal clinical and laboratory findings"
+ED,0,15 - 24,25318,2678.0214522,,5,,Genitourinary system diseases
+ED,0,25 - 34,27545,1987.7479062,,10,,Infectious and parasitic diseases
+ED,0,25 - 34,32045,2312.5123431,,8,,Factors influencing health status and contact with health services
 ED,0,25 - 34,35190,2539.4457331,,6,,Dental diseases
-ED,0,25 - 34,47018,3393.0318412,,5,,Musculoskeletal System and Connective Tissue diseases
-ED,0,25 - 34,28560,2061.0189583,,9,,Digestive System diseases
-ED,0,25 - 34,50730,3660.9065741,,4,,"Mental, Behavioral and Neurodevelopmental Disorders"
-ED,0,25 - 34,34049,2457.1060051,,7,,Genitourinary System diseases
-ED,0,25 - 34,57549,4153.0205546,,3,,"Pregnancy, Childbirth and the Puerperium"
-ED,0,25 - 34,79896,5765.6812921,,2,Injury,"Injury, Poisoning and Other Consequences of External Causes"
-ED,0,25 - 34,89611,6466.7356399,,1,,"Symptoms, Signs and Abnormal Clinical and Laboratory Findings"
-ED,0,35 - 44,23098,1994.9239485,,10,,Digestive System diseases
-ED,0,35 - 44,23551,2034.0192183,,9,,Factors Influencing Health Status and Contact with Health Services
-ED,0,35 - 44,23917,2065.6293849,,8,,"Pregnancy, Childbirth and the Puerperium"
+ED,0,25 - 34,47018,3393.0318412,,5,,Musculoskeletal system and connective tissue diseases
+ED,0,25 - 34,28560,2061.0189583,,9,,Digestive system diseases
+ED,0,25 - 34,50730,3660.9065741,,4,,"Mental, behavioral and neurodevelopmental disorders"
+ED,0,25 - 34,34049,2457.1060051,,7,,Genitourinary system diseases
+ED,0,25 - 34,57549,4153.0205546,,3,,"Pregnancy, childbirth and the puerperium"
+ED,0,25 - 34,79896,5765.6812921,,2,"Injury, poisoning and other consequences
+of external causes","Injury, poisoning and other consequences of external causes"
+ED,0,25 - 34,89611,6466.7356399,,1,,"Symptoms, signs and abnormal clinical and laboratory findings"
+ED,0,35 - 44,23098,1994.9239485,,10,,Digestive system diseases
+ED,0,35 - 44,23551,2034.0192183,,9,,Factors influencing health status and contact with health services
+ED,0,35 - 44,23917,2065.6293849,,8,,"Pregnancy, childbirth and the puerperium"
 ED,0,35 - 44,24977,2157.1779549,,7,,Dental diseases
-ED,0,35 - 44,25940,2240.348967,,6,,Genitourinary System diseases
-ED,0,35 - 44,27152,2345.0252565,,5,,Circulatory System diseases
-ED,0,35 - 44,48214,4164.0780685,,4,,"Mental, Behavioral and Neurodevelopmental Disorders"
-ED,0,35 - 44,50163,4332.4353129,,3,,Musculoskeletal System and Connective Tissue diseases
-ED,0,35 - 44,59739,5159.4240616,,2,Injury,"Injury, Poisoning and Other Consequences of External Causes"
-ED,0,35 - 44,75247,6498.7969136,,1,,"Symptoms, Signs and Abnormal Clinical and Laboratory Findings"
+ED,0,35 - 44,25940,2240.348967,,6,,Genitourinary system diseases
+ED,0,35 - 44,27152,2345.0252565,,5,,Circulatory system diseases
+ED,0,35 - 44,48214,4164.0780685,,4,,"Mental, behavioral and neurodevelopmental disorders"
+ED,0,35 - 44,50163,4332.4353129,,3,,Musculoskeletal system and connective tissue diseases
+ED,0,35 - 44,59739,5159.4240616,,2,"Injury, poisoning and other consequences
+of external causes","Injury, poisoning and other consequences of external causes"
+ED,0,35 - 44,75247,6498.7969136,,1,,"Symptoms, signs and abnormal clinical and laboratory findings"
 ED,0,45 - 54,17870,1744.0893917,,10,,Dental diseases
-ED,0,45 - 54,20024,1954.3535216,,6,,Genitourinary System diseases
-ED,0,45 - 54,29879,2916.2069952,,5,,Circulatory System diseases
-ED,0,45 - 54,19519,1905.0652411,,7,,Digestive System diseases
-ED,0,45 - 54,36458,3558.2885157,,4,,"Mental, Behavioral and Neurodevelopmental Disorders"
-ED,0,45 - 54,47717,4657.1731691,,3,Injury,"Injury, Poisoning and Other Consequences of External Causes"
-ED,0,45 - 54,18613,1816.6066044,,8,,Infectious and Parasitic Diseases
-ED,0,45 - 54,53925,5263.1424841,,2,,Musculoskeletal System and Connective Tissue diseases
-ED,0,45 - 54,67078,6546.8825895,,1,,"Symptoms, Signs and Abnormal Clinical and Laboratory Findings"
-ED,0,45 - 54,18390,1794.9067475,,9,,Factors Influencing Health Status and Contact with Health Services
-ED,0,5 - 9,3563,749.45783677,,10,,Musculoskeletal System and Connective Tissue diseases
-ED,0,5 - 9,3778,794.6819274,,9,,External Causes of Morbidity
+ED,0,45 - 54,20024,1954.3535216,,6,,Genitourinary system diseases
+ED,0,45 - 54,29879,2916.2069952,,5,,Circulatory system diseases
+ED,0,45 - 54,19519,1905.0652411,,7,,Digestive system diseases
+ED,0,45 - 54,36458,3558.2885157,,4,,"Mental, behavioral and neurodevelopmental disorders"
+ED,0,45 - 54,47717,4657.1731691,,3,"Injury, poisoning and other consequences
+of external causes","Injury, poisoning and other consequences of external causes"
+ED,0,45 - 54,18613,1816.6066044,,8,,Infectious and parasitic diseases
+ED,0,45 - 54,53925,5263.1424841,,2,,Musculoskeletal system and connective tissue diseases
+ED,0,45 - 54,67078,6546.8825895,,1,,"Symptoms, signs and abnormal clinical and laboratory findings"
+ED,0,45 - 54,18390,1794.9067475,,9,,Factors influencing health status and contact with health services
+ED,0,5 - 9,3563,749.45783677,,10,,Musculoskeletal system and connective tissue diseases
+ED,0,5 - 9,3778,794.6819274,,9,,External causes of morbidity
 ED,0,5 - 9,4172,877.48758792,,8,,Ear diseases
-ED,0,5 - 9,6113,1285.9067009,,7,,Factors Influencing Health Status and Contact with Health Services
+ED,0,5 - 9,6113,1285.9067009,,7,,Factors influencing health status and contact with health services
 ED,0,5 - 9,10060,2115.9966373,,6,,Dental diseases
-ED,0,5 - 9,10438,2195.6471287,,5,,Digestive System diseases
-ED,0,5 - 9,15384,3235.871328,,4,,Infectious and Parasitic Diseases
-ED,0,5 - 9,21241,4467.9298094,,3,,"Symptoms, Signs and Abnormal Clinical and Laboratory Findings"
-ED,0,5 - 9,24062,5061.3820622,,2,Injury,"Injury, Poisoning and Other Consequences of External Causes"
-ED,0,5 - 9,24741,5204.065821,,1,,Respiratory System diseases
-ED,0,55 - 64,15949,1545.8621605,,10,,Respiratory System diseases
-ED,0,55 - 64,17158,1663.0771984,,9,,Infectious and Parasitic Diseases
-ED,0,55 - 64,17489,1695.0948673,,8,,Genitourinary System diseases
-ED,0,55 - 64,17660,1711.7337164,,7,,Factors Influencing Health Status and Contact with Health Services
-ED,0,55 - 64,19167,1857.7355786,,6,,Digestive System diseases
-ED,0,55 - 64,33148,3212.8486808,,5,,Circulatory System diseases
-ED,0,55 - 64,33464,3243.509395,,4,,"Mental, Behavioral and Neurodevelopmental Disorders"
-ED,0,55 - 64,46367,4494.169295,,3,Injury,"Injury, Poisoning and Other Consequences of External Causes"
-ED,0,55 - 64,56466,5473.0182485,,2,,Musculoskeletal System and Connective Tissue diseases
-ED,0,55 - 64,69027,6690.4327587,,1,,"Symptoms, Signs and Abnormal Clinical and Laboratory Findings"
-ED,0,65+,14183,1014.8494779,,10,,Nervous System diseases
-ED,0,65+,14554,1041.3715136,,9,,"Mental, Behavioral and Neurodevelopmental Disorders"
-ED,0,65+,14699,1051.7227398,,8,,Factors Influencing Health Status and Contact with Health Services
-ED,0,65+,17844,1276.7784313,,7,,Infectious and Parasitic Diseases
-ED,0,65+,20369,1457.4717249,,6,,Digestive System diseases
-ED,0,65+,22953,1642.3627509,,5,,Genitourinary System diseases
-ED,0,65+,35436,2535.5018437,,4,,Circulatory System diseases
-ED,0,65+,46929,3357.8519059,,3,,Musculoskeletal System and Connective Tissue diseases
-ED,0,65+,53918,3857.9306134,,2,Injury,"Injury, Poisoning and Other Consequences of External Causes"
-ED,0,65+,82249,5885.1013895,,1,,"Symptoms, Signs and Abnormal Clinical and Laboratory Findings"
+ED,0,5 - 9,10438,2195.6471287,,5,,Digestive system diseases
+ED,0,5 - 9,15384,3235.871328,,4,,Infectious and parasitic diseases
+ED,0,5 - 9,21241,4467.9298094,,3,,"Symptoms, signs and abnormal clinical and laboratory findings"
+ED,0,5 - 9,24062,5061.3820622,,2,"Injury, poisoning and other consequences
+of external causes","Injury, poisoning and other consequences of external causes"
+ED,0,5 - 9,24741,5204.065821,,1,,Respiratory system diseases
+ED,0,55 - 64,15949,1545.8621605,,10,,Respiratory system diseases
+ED,0,55 - 64,17158,1663.0771984,,9,,Infectious and parasitic diseases
+ED,0,55 - 64,17489,1695.0948673,,8,,Genitourinary system diseases
+ED,0,55 - 64,17660,1711.7337164,,7,,Factors influencing health status and contact with health services
+ED,0,55 - 64,19167,1857.7355786,,6,,Digestive system diseases
+ED,0,55 - 64,33148,3212.8486808,,5,,Circulatory system diseases
+ED,0,55 - 64,33464,3243.509395,,4,,"Mental, behavioral and neurodevelopmental disorders"
+ED,0,55 - 64,46367,4494.169295,,3,"Injury, poisoning and other consequences
+of external causes","Injury, poisoning and other consequences of external causes"
+ED,0,55 - 64,56466,5473.0182485,,2,,Musculoskeletal system and connective tissue diseases
+ED,0,55 - 64,69027,6690.4327587,,1,,"Symptoms, signs and abnormal clinical and laboratory findings"
+ED,0,65+,14183,1014.8494779,,10,,Nervous system diseases
+ED,0,65+,14554,1041.3715136,,9,,"Mental, behavioral and neurodevelopmental disorders"
+ED,0,65+,14699,1051.7227398,,8,,Factors influencing health status and contact with health services
+ED,0,65+,17844,1276.7784313,,7,,Infectious and parasitic diseases
+ED,0,65+,20369,1457.4717249,,6,,Digestive system diseases
+ED,0,65+,22953,1642.3627509,,5,,Genitourinary system diseases
+ED,0,65+,35436,2535.5018437,,4,,Circulatory system diseases
+ED,0,65+,46929,3357.8519059,,3,,Musculoskeletal system and connective tissue diseases
+ED,0,65+,53918,3857.9306134,,2,"Injury, poisoning and other consequences
+of external causes","Injury, poisoning and other consequences of external causes"
+ED,0,65+,82249,5885.1013895,,1,,"Symptoms, signs and abnormal clinical and laboratory findings"
 ED,0,<1,1405,1462.6874365,,10,,Ear diseases
 ED,0,<1,2314,2409.0097708,,9,,Dental diseases
 ED,0,<1,2542,2646.0241288,,8,,Skin diseases
-ED,0,<1,3251,3384.1347284,,7,,Factors Influencing Health Status and Contact with Health Services
-ED,0,<1,4308,4485.2277856,,6,,Digestive System diseases
-ED,0,<1,4898,5098.7583639,,5,,Conditions Originating in the Perinatal Period
-ED,0,<1,5432,5655.3777347,,4,Injury,"Injury, Poisoning and Other Consequences of External Causes"
-ED,0,<1,11873,12360.142612,,3,,Infectious and Parasitic Diseases
-ED,0,<1,12468,12979.919543,,2,,Respiratory System diseases
-ED,0,<1,16084,16744.387707,,1,,"Symptoms, Signs and Abnormal Clinical and Laboratory Findings"
-ED,0,All ages,154289,1847.3303592,,10,,Genitourinary System diseases
+ED,0,<1,3251,3384.1347284,,7,,Factors influencing health status and contact with health services
+ED,0,<1,4308,4485.2277856,,6,,Digestive system diseases
+ED,0,<1,4898,5098.7583639,,5,,Conditions originating in the perinatal period
+ED,0,<1,5432,5655.3777347,,4,"Injury, poisoning and other consequences
+of external causes","Injury, poisoning and other consequences of external causes"
+ED,0,<1,11873,12360.142612,,3,,Infectious and parasitic diseases
+ED,0,<1,12468,12979.919543,,2,,Respiratory system diseases
+ED,0,<1,16084,16744.387707,,1,,"Symptoms, signs and abnormal clinical and laboratory findings"
+ED,0,All ages,154289,1847.3303592,,10,,Genitourinary system diseases
 ED,0,All ages,158287,1895.1990396,,9,,Dental diseases
-ED,0,All ages,163628,1959.1436782,,8,,Digestive System diseases
-ED,0,All ages,167011,1999.6528583,,7,,Circulatory System diseases
-ED,0,All ages,191574,2293.7455143,,6,,Infectious and Parasitic Diseases
-ED,0,All ages,199552,2389.2633671,,5,,Respiratory System diseases
-ED,0,All ages,221951,2657.4580853,,4,,"Mental, Behavioral and Neurodevelopmental Disorders"
-ED,0,All ages,291524,3490.4585316,,3,,Musculoskeletal System and Connective Tissue diseases
-ED,0,All ages,432095,5173.5411277,,2,Injury,"Injury, Poisoning and Other Consequences of External Causes"
-ED,0,All ages,530956,6357.2193685,,1,,"Symptoms, Signs and Abnormal Clinical and Laboratory Findings"
+ED,0,All ages,163628,1959.1436782,,8,,Digestive system diseases
+ED,0,All ages,167011,1999.6528583,,7,,Circulatory system diseases
+ED,0,All ages,191574,2293.7455143,,6,,Infectious and parasitic diseases
+ED,0,All ages,199552,2389.2633671,,5,,Respiratory system diseases
+ED,0,All ages,221951,2657.4580853,,4,,"Mental, behavioral and neurodevelopmental disorders"
+ED,0,All ages,291524,3490.4585316,,3,,Musculoskeletal system and connective tissue diseases
+ED,0,All ages,432095,5173.5411277,,2,"Injury, poisoning and other consequences
+of external causes","Injury, poisoning and other consequences of external causes"
+ED,0,All ages,530956,6357.2193685,,1,,"Symptoms, signs and abnormal clinical and laboratory findings"
 Death,0,All ages,5523,66.12375319,,1,,Heart disease
 Death,0,All ages,3859,46.20840261,,2,,Malignant neoplasms
 Death,0,All ages,2743,32.842368723,,3,,COVID-19
@@ -452,16 +474,16 @@ Death,0,All ages,429,5.1404752601,,10,,Other diseases of nervous system
 Death,1,All ages,898,10.74790363,,1,Unintentional,Poisoning
 Death,1,All ages,201,2.406604489,,2,Unintentional,Fall
 Death,1,All ages,112,1.3449845983,,3,Homicide,Firearm
-Death,1,All ages,98,1.1693783006,,4,Unintentional,Motor Vehicle Traffic
+Death,1,All ages,98,1.1693783006,,4,Unintentional,Motor vehicle traffic
 Death,1,All ages,66,0.7902283397,,5,Suicide,Suffocation
-Death,1,All ages,58,0.6944430864,,6,Undetermined,Unknown Mechanism
+Death,1,All ages,58,0.6944430864,,6,Undetermined,Unknown mechanism
 Death,1,All ages,42,0.506863632,,7,Unintentional,Suffocation
 Death,1,All ages,40,0.4789262665,,8,Suicide,Fall
 Death,1,All ages,31,0.3671768043,,9,Suicide,Poisoning
-Death,1,All ages,25,0.3033199688,,10,Homicide,Cut or Pierce
-Death,1,<1,5,5.2052933682,*,1,Undetermined,Unknown Mechanism
+Death,1,All ages,25,0.3033199688,,10,Homicide,Cut or pierce
+Death,1,<1,5,5.2052933682,*,1,Undetermined,Unknown mechanism
 Death,1,<1,2,1.7350977894,*,2,Unintentional,Suffocation
-Death,1,<1,2,1.7350977894,*,3,Homicide,Unknown Mechanism
+Death,1,<1,2,1.7350977894,*,3,Homicide,Unknown mechanism
 Death,1,<1,,,^,4,,
 Death,1,<1,,,^,5,,
 Death,1,<1,,,^,6,,
@@ -479,7 +501,7 @@ Death,1,1 - 4,,,^,7,,
 Death,1,1 - 4,,,^,8,,
 Death,1,1 - 4,,,^,9,,
 Death,1,1 - 4,,,^,10,,
-Death,1,5 - 9,2,0.350574346,*,1,Unintentional,Fire or Burn
+Death,1,5 - 9,2,0.350574346,*,1,Unintentional,Fire or burn
 Death,1,5 - 9,,,^,2,,
 Death,1,5 - 9,,,^,3,,
 Death,1,5 - 9,,,^,4,,
@@ -497,64 +519,64 @@ Death,1,10 - 14,,,^,7,,
 Death,1,10 - 14,,,^,8,,
 Death,1,15 - 24,34,3.6316697113,,1,Homicide,Firearm
 Death,1,15 - 24,27,2.8207143389,,2,Unintentional,Poisoning
-Death,1,15 - 24,14,1.5161339571,,3,Unintentional,Motor Vehicle Traffic
+Death,1,15 - 24,14,1.5161339571,,3,Unintentional,Motor vehicle traffic
 Death,1,15 - 24,6,0.599401797,,4,Suicide,Fall
 Death,1,15 - 24,5,0.5288839385,*,5,Suicide,Suffocation
 Death,1,15 - 24,5,0.5288839385,*,6,Suicide,Poisoning
-Death,1,15 - 24,3,0.3173303631,*,7,Undetermined,Unknown Mechanism
-Death,1,15 - 24,2,0.2115535754,*,8,Homicide,Cut or Pierce
+Death,1,15 - 24,3,0.3173303631,*,7,Undetermined,Unknown mechanism
+Death,1,15 - 24,2,0.2115535754,*,8,Homicide,Cut or pierce
 Death,1,15 - 24,,,*,9,,
 Death,1,15 - 24,,,*,10,,
 Death,1,25 - 34,136,9.8143759921,,1,Unintentional,Poisoning
 Death,1,25 - 34,48,3.463897409,,2,Homicide,Firearm
-Death,1,25 - 34,18,1.3230163715,,3,Unintentional,Motor Vehicle Traffic
+Death,1,25 - 34,18,1.3230163715,,3,Unintentional,Motor vehicle traffic
 Death,1,25 - 34,17,1.226796999,,4,Suicide,Suffocation
 Death,1,25 - 34,8,0.5773162348,,5,Suicide,Fall
-Death,1,25 - 34,8,0.5773162348,,6,Homicide,Cut or Pierce
+Death,1,25 - 34,8,0.5773162348,,6,Homicide,Cut or pierce
 Death,1,25 - 34,7,0.4810968624,,7,Suicide,Poisoning
-Death,1,25 - 34,5,0.3367678037,*,8,Undetermined,Unknown Mechanism
+Death,1,25 - 34,5,0.3367678037,*,8,Undetermined,Unknown mechanism
 Death,1,25 - 34,5,0.3367678037,*,9,Unintentional,Fall
 Death,1,25 - 34,4,0.2646032743,*,10,Unintentional,Suffocation
 Death,1,35 - 44,194,16.726326778,,1,Unintentional,Poisoning
 Death,1,35 - 44,19,1.6697537919,,2,Homicide,Firearm
-Death,1,35 - 44,16,1.3530763486,,3,Unintentional,Motor Vehicle Traffic
-Death,1,35 - 44,15,1.2667097732,,4,Undetermined,Unknown Mechanism
+Death,1,35 - 44,16,1.3530763486,,3,Unintentional,Motor vehicle traffic
+Death,1,35 - 44,15,1.2667097732,,4,Undetermined,Unknown mechanism
 Death,1,35 - 44,12,1.0076100469,,5,Suicide,Suffocation
 Death,1,35 - 44,7,0.5757771696,,6,Suicide,Fall
-Death,1,35 - 44,7,0.5757771696,,7,Homicide,Cut or Pierce
+Death,1,35 - 44,7,0.5757771696,,7,Homicide,Cut or pierce
 Death,1,35 - 44,6,0.5181994527,,8,Unintentional,Fall
 Death,1,35 - 44,4,0.3454663018,*,9,Suicide,Poisoning
-Death,1,35 - 44,3,0.2878885848,*,10,Unintentional,Other Pedestrian
+Death,1,35 - 44,3,0.2878885848,*,10,Unintentional,Other pedestrian
 Death,1,45 - 54,197,19.259842935,,1,Unintentional,Poisoning
-Death,1,45 - 54,11,1.106139628,,2,Unintentional,Motor Vehicle Traffic
+Death,1,45 - 54,11,1.106139628,,2,Unintentional,Motor vehicle traffic
 Death,1,45 - 54,10,0.9760055541,,3,Unintentional,Fall
 Death,1,45 - 54,7,0.6832038879,,4,Suicide,Poisoning
 Death,1,45 - 54,7,0.6832038879,,5,Suicide,Fall
-Death,1,45 - 54,7,0.6506703694,,6,Undetermined,Unknown Mechanism
+Death,1,45 - 54,7,0.6506703694,,6,Undetermined,Unknown mechanism
 Death,1,45 - 54,7,0.6506703694,,7,Suicide,Suffocation
 Death,1,45 - 54,7,0.6506703694,,8,Homicide,Firearm
-Death,1,45 - 54,4,0.3904022216,*,9,Suicide,Other Mechanism
+Death,1,45 - 54,4,0.3904022216,*,9,Suicide,Other mechanism
 Death,1,45 - 54,4,0.3904022216,*,10,Suicide,Firearm
 Death,1,55 - 64,271,26.234457215,,1,Unintentional,Poisoning
 Death,1,55 - 64,26,2.5523671428,,2,Unintentional,Fall
 Death,1,55 - 64,13,1.2277209041,,3,Suicide,Suffocation
-Death,1,55 - 64,12,1.1307955696,,4,Undetermined,Unknown Mechanism
-Death,1,55 - 64,11,1.0338702351,,5,Unintentional,Motor Vehicle Traffic
+Death,1,55 - 64,12,1.1307955696,,4,Undetermined,Unknown mechanism
+Death,1,55 - 64,11,1.0338702351,,5,Unintentional,Motor vehicle traffic
 Death,1,55 - 64,5,0.5169351175,*,6,Unintentional,Suffocation
 Death,1,55 - 64,5,0.5169351175,*,7,Suicide,Fall
 Death,1,55 - 64,4,0.3877013382,*,8,Suicide,Poisoning
-Death,1,55 - 64,4,0.3553928933,*,9,Unintentional,Natural or Environmental
-Death,1,55 - 64,3,0.2907760036,*,10,Unintentional,Unknown Mechanism
+Death,1,55 - 64,4,0.3553928933,*,9,Unintentional,Natural or environmental
+Death,1,55 - 64,3,0.2907760036,*,10,Unintentional,Unknown mechanism
 Death,1,65+,152,10.875942701,,1,Unintentional,Fall
 Death,1,65+,73,5.2471653382,,2,Unintentional,Poisoning
 Death,1,65+,27,1.908060123,,3,Unintentional,Suffocation
-Death,1,65+,25,1.7649556138,,4,Unintentional,Motor Vehicle Traffic
+Death,1,65+,25,1.7649556138,,4,Unintentional,Motor vehicle traffic
 Death,1,65+,11,0.8109255523,,5,Suicide,Suffocation
-Death,1,65+,11,0.8109255523,,6,Unintentional,Fire or Burn
-Death,1,65+,11,0.7632240492,,7,Undetermined,Unknown Mechanism
-Death,1,65+,8,0.5724180369,,8,Unintentional,Unknown Mechanism
+Death,1,65+,11,0.8109255523,,6,Unintentional,Fire or burn
+Death,1,65+,11,0.7632240492,,7,Undetermined,Unknown mechanism
+Death,1,65+,8,0.5724180369,,8,Unintentional,Unknown mechanism
 Death,1,65+,7,0.4770150307,,9,Suicide,Fall
-Death,1,65+,5,0.3339105215,*,10,Unintentional,Natural or Environmental
+Death,1,65+,5,0.3339105215,*,10,Unintentional,Natural or environmental
 Death,0,<1,33,34.35493623,,1,,Perinatal conditions
 Death,0,<1,27,28.455603746,,2,,Congenital anomalies
 Death,0,<1,23,23.944349494,,3,,Short gestation/low birth weight
