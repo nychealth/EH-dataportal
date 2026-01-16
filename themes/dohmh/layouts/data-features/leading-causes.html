@@ -36,10 +36,10 @@
           </button>
 
           <div class="d-block mt-1">
-                  <button class="btn btn-sm btn-outline-secondary active subtype-button px-4" id="all" data-injury="0">
+                  <button class="btn btn-sm btn-outline-secondary subtype-button px-4" id="all" data-injury="0">
                   All
                 </button>
-                <button class="btn btn-sm btn-outline-secondary subtype-button" id="injuryOnly" data-injury="1">
+                <button class="btn btn-sm btn-outline-secondary subtype-button active" id="injuryOnly" data-injury="1">
                   Injury-related only
                 </button>
 
@@ -126,7 +126,7 @@
 // GLOBAL VARIABLES
 // ---------------------------------------------------------- //
 var outcome = 'Death'      // deaths, visits, or hosps
-var intent = 0              // injury true = 1
+var intent = 1              // injury true = 1
 var highlight = 'off'       // on or off (injury highlight)
 
 const config = [
