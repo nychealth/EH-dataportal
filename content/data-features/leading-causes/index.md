@@ -30,8 +30,8 @@ related:
     url: "data-explorer/mental-health/"
 ---
 
-This tool shows the leading causes of death, hospitalizations, and emergency department visits in New York City with a special focus on injuries by age group.
+This tool shows the leading causes of emergency department visits (ED visits), hospitalizations, and deaths in New York City with a special focus on injuries by age group.
 
-By looking at injuries by severity – death versus hospitalization versus emergency department visit – we can better understand patterns of harm.
+Showing injuries by severity – (ED visits, hospitalizations, or deaths) – demonstrates patterns of harm.
 
-By looking at injuries by age group, we can understand the different impacts of injury across the lifespan. For example, falls injuries rank highly among older adults while suffocation injuries rank highly among infants. Showing the data by age group helps focus prevention efforts more effectively.
+By looking at injuries by age group, we can see the different impacts of injury across the lifespan. For example, falls injuries rank highly among older adults while suffocation injuries rank highly among infants. Showing the data by age group helps focus prevention efforts more effectively on different top causes for people of different ages.
