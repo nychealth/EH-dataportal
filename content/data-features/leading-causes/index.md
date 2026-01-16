@@ -20,7 +20,7 @@ keywords:
 layout: leading-causes
 vega: true
 weight: 10
-aboutTheData: "Quisque volutpat, odio id mollis pharetra, mauris risus imperdiet nunc, sit amet dictum metus erat vitae massa. Aenean diam eros, mattis sit amet est at, imperdiet ultricies nunc. Suspendisse placerat, leo ac laoreet congue, justo massa rutrum turpis, id volutpat purus lorem sed nibh. <strong>Data for 2021 - 2023</strong>: <a href='data/leading-causes.csv'>Data</a>, and <a href='data/cause-descriptions.csv'>descriptions and sources</a>."
+aboutTheData: "This updated leading causes of death, hospitalizations, and emergency department visits analysis was conducted using data from the New York Statewide Planning and Research Cooperative System (SPARCS) and NYC DOH Bureau of Vital Statistics. <a href='../../key-topics/injury-and-violence/'>Explore more data on injuries in New York City</a>. Visit <a href='https://wisqars.cdc.gov/lcd/'>WISQARS</a> to explore data on injury nationwide. Download chart data.  <strong>Data for 2021 - 2023</strong>: <a href='data/leading-causes.csv'>Data</a>, and <a href='data/cause-descriptions.csv'>descriptions and sources</a>."
 related:
   - title: "How homicide and suicide contribute to injury deaths"
     url: "data-stories/injury-deaths/"
@@ -30,10 +30,8 @@ related:
     url: "data-explorer/mental-health/"
 ---
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur porttitor orci ut libero ornare, ut eleifend libero tristique. Sed nec risus lorem. Praesent rhoncus, leo in tincidunt dignissim, diam magna dictum felis, euismod commodo nibh massa eu lorem. Integer ornare orci quis sollicitudin dictum. 
+This tool shows the leading causes of death, hospitalizations, and emergency department visits in New York City with a special focus on injuries by age group.
 
-Praesent pretium cursus libero, feugiat porta nisi aliquam nec. Donec tortor elit, tincidunt quis ante ut, lobortis elementum enim. Praesent viverra iaculis justo, sed congue est vehicula eu. Sed lectus felis, varius at malesuada vel, porttitor quis erat. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. 
+By looking at injuries by severity – death versus hospitalization versus emergency department visit – we can better understand patterns of harm.
 
-Vestibulum pulvinar mi leo, id commodo est luctus et. Etiam elementum nulla ipsum, id tincidunt augue pellentesque eget. Maecenas tempor sapien a mi finibus dignissim.
-
-
+By looking at injuries by age group, we can understand the different impacts of injury across the lifespan. For example, falls injuries rank highly among older adults while suffocation injuries rank highly among infants. Showing the data by age group helps focus prevention efforts more effectively.
