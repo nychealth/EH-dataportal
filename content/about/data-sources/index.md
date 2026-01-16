@@ -20,8 +20,6 @@ description: "Data sources"
 
 The Environment and Health Data Portal hosts over 200 sets of measures from data sources that cover topics like air quality, climate, pests, housing, and much more. These data can tell us how environmental factors like housing, air quality, and socioeconomic status can shape health from neighborhood to neighborhood. But where does this data come from? How often is it updated? And how do we pick which datasets to feature?
 
-we host over 200 sets of measures from data sources that cover topics like air quality, climate, pests, housing, and much more.
-
 ## Where do you get your data?
 
 We get data from many sources: some from the NYC Health Department or other city agencies like <a href="https://www.nycgovparks.org/">NYC Parks</a> or <a href="https://www.nyc.gov/site/doi/index.page">Department of Investigations</a>; and some from outside sources, like the [CDC](https://www.cdc.gov/), [SPARCS](https://www.health.ny.gov/statistics/sparcs/), the [U.S. Census](https://www.census.gov/), and the [EPA](https://www.epa.gov/). Here are some of the core datasets:
