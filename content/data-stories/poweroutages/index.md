@@ -6,7 +6,7 @@ draft: false
 seo_title: "How Power Outages Affect Health"
 seo_description: "As we experience a changing climate, a reliable supply of electricity is crucial to keep people safe from extreme weather."
 tags:
-categories: ["inequality", "healthoutcomes", "climatehealth"]
+categories: ["inequality", "healthoutcomes", "climatehealth", "accessibility"]
 keywords:
   [
     "asthma",
@@ -27,6 +27,10 @@ related:
   - title: "What storms Ida and Sandy taught us about flooding and health"
     url: "data-stories/flooding-and-health/"
 ---
+
+{{< updateflag data=`[
+  {"src": "../../data-explorer/economic-conditions/?id=103", "text": "Economic conditions"}
+]` >}}
 
 Imagine your child has asthma. One summer night, a powerful storm rolls in and knocks the power out.
 

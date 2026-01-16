@@ -30,6 +30,11 @@ related:
     url: "data-features/heat-syndrome/"
 ---
 
+{{< updateflag data=`[
+  {"src": "../../data-explorer/weather-related-illness/?id=2074", "text": "Heat stress: deaths"},
+  {"src": "../../data-explorer/climate/?id=2185", "text": "Household air conditioning"}
+]` >}}
+
 Hot weather is dangerous. In New York City and across the country, more people on average die from extreme heat each year than from all other natural disasters.
 
 Heat stress happens when your body’s temperature increases quickly. When the body can no longer control its temperature or cool itself down, it can lead to death.

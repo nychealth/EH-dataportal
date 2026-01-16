@@ -31,6 +31,11 @@ related:
     url: "data-stories/air-quality-and-covid-part-2/"
 ---
 
+{{< updateflag data=`[
+  {"src": "../../data-explorer/air-quality/?id=92", "text": "Air quality action days"},
+  {"src": "../../data-explorer/air-quality/?id=2023", "text": "Fine particles (PM2.5)"}
+]` >}}
+
 The air we breathe can have a major effect on our health — air pollution can make asthma worse and can cause heart disease, lung disease, strokes, and even cancer.
 
 Fortunately, New York City has made great strides in recent years to improve air quality. Let’s take a look.
@@ -53,7 +58,7 @@ Over the years, though, the number of advisory days has gone down. That’s good
 
 ### What's behind this improvement?
 
-Since the winter of 2008/2009, the Health Department has been measuring air quality through the NYC Community Air Survey (NYCCAS). It’s the largest urban air monitoring program in the USA, and measures six different kinds of air pollution at about 100 locations around the city.
+Since the winter of 2008/2009, the Health Department has been measuring air quality through the <a href="../../data-features/nyccas">NYC Community Air Survey (NYCCAS)</a>. It’s the largest urban air monitoring program in the USA, and measures six different kinds of air pollution at about 100 locations around the city.
 
 <div class="wide my-4" aria-hidden="true">
 <iframe title="NYCCAS monitor locations" aria-label="Map" id="datawrapper-chart-d7DDS" src="https://datawrapper.dwcdn.net/d7DDS/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="656" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();

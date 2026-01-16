@@ -22,7 +22,7 @@ keywords:
     "ED visit",
   ]
 layout: syndromic
-vega: true
+
 js: heatsyndrome.js
 image: syndromic.png
 related:

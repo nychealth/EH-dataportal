@@ -25,7 +25,7 @@ keywords:
 layout: aqe
 customJS: aqe.js
 accessibleAutocomplete: /js/accessible-autocomplete.min.js
-vega: true
+
 image: aqe.png
 related:
   - title: "Air quality"

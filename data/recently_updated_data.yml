@@ -1,18 +1,28 @@
 ---
 featured:
+- copy: Children ever diagnosed with asthma
+  link: asthma/?id=2392
+- copy: Children in homes with visible mold or mildew (age 1-13)
+  link: asthma-triggers/?id=2430
+- copy: Secondhand smoke exposure at home (children)
+  link: cigarette-smoke/?id=2404
+- copy: Accessible subway stations
+  link: accessibility/?id=2455
+- copy: Walking distance to an accessible subway station
+  link: accessibility/?id=2458
+- copy: Bus stops with audio announcements
+  link: accessibility/?id=2456
+- copy: Walking distance to an audio bus stop
+  link: accessibility/?id=2460
+- copy: Public bathroom availability
+  link: accessibility/?id=2457
+- copy: Difficulty walking
+  link: accessibility/?id=2459
 - copy: Premature mortality
-  link: data-explorer/mortality/?id=2322
-- copy: Death (infants)
-  link: data-explorer/birth-outcomes/?id=5
-- copy: Preterm births
-  link: data-explorer/birth-outcomes/?id=1
-- copy: Elevated blood lead levels (under age 6)
-  link: data-explorer/lead/?id=2184
+  link: mortality/?id=2322
 - copy: Bicycle injury emergency department visits
-  link: data-explorer/transportation-related-injuries/?id=2092
+  link: transportation-related-injuries/?id=2092
 - copy: Pedestrian injury emergency department visits
-  link: data-explorer/transportation-related-injuries/?id=2094
+  link: transportation-related-injuries/?id=2094
 - copy: Fall-related emergency department visits (age 65+) 
-  link: data-explorer/falls-among-older-adults/?id=2135
-- copy: Home fall-related emergency department visits (age 65+)
-  link: data-explorer/falls-among-older-adults/?id=2408
+  link: falls-among-older-adults/?id=2135

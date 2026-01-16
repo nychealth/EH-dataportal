@@ -47,6 +47,10 @@ related:
     url: "data-stories/air-quality-and-covid/"
 ---
 
+{{< updateflag data=`[
+  {"src": "../../data-explorer/air-quality/?id=2023", "text": "Air quality"}
+]` >}}
+
 On March 20, 2020, New York State announced the COVID-19 shutdown, officially known as NY Pause. In NYC, it lasted until June 8, 2020.
 
 With stay-at-home orders in NY and other states, New York City's air quality changed significantly. Earlier, [we looked at data collected from real-time air pollution monitors to see how day-to-day pollution changed when people started to stay home]({{< ref "data-stories/air-quality-and-covid" >}}).

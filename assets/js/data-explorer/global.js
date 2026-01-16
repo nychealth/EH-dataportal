@@ -158,6 +158,8 @@ const assignGeoRank = (GeoType) => {
             return 2;
         case 'NYCKIDS2021':
             return 2;
+        case 'NYCKIDS2023':
+            return 2;
         case 'UHF34':
             return 3;
         case 'UHF42':
@@ -219,6 +221,9 @@ const prettifyGeoType = (GeoType) => {
             return 'NYCKIDS';
 
         case 'NYCKIDS2021':
+            return 'NYCKIDS';
+
+        case 'NYCKIDS2023':
             return 'NYCKIDS';
 
         case 'CDTA2020':
