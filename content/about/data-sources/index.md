@@ -24,7 +24,7 @@ we host over 200 sets of measures from data sources that cover topics like air q
 
 ## Where do you get your data?
 
-We get data from many sources: some from NYC Health or other city agencies like <a href="https://www.nycgovparks.org/">NYC Parks</a> or <a href="https://www.nyc.gov/site/doi/index.page">Department of Investigations</a>; and some from outside sources, like the [CDC](https://www.cdc.gov/), [SPARCS](https://www.health.ny.gov/statistics/sparcs/), the [U.S. Census](https://www.census.gov/), and the [EPA](https://www.epa.gov/). Here are some of the core datasets:
+We get data from many sources: some from the NYC Health Department or other city agencies like <a href="https://www.nycgovparks.org/">NYC Parks</a> or <a href="https://www.nyc.gov/site/doi/index.page">Department of Investigations</a>; and some from outside sources, like the [CDC](https://www.cdc.gov/), [SPARCS](https://www.health.ny.gov/statistics/sparcs/), the [U.S. Census](https://www.census.gov/), and the [EPA](https://www.epa.gov/). Here are some of the core datasets:
 
 <div class="accordion-group my-3" role="tablist" id="accordion-02">
   <div class="card">
@@ -34,7 +34,7 @@ We get data from many sources: some from NYC Health or other city agencies like 
 
   <div class="collapse" id="panel-acc-button-2a" role="tabpanel" aria-labelledby="acc-button-2a" data-parent="#accordion-02">
     <div class="card-body card-white fs-md">
-<p><strong><a href="https://www.nyc.gov/site/doh/data/data-sets/community-health-survey.page">What is the Community Health Survey (CHS)?</a></strong> This survey is conducted by NYC Health and interviews about 10,000 New Yorkers each year. Running since 2002, CHS reports detailed data on many chronic diseases and health behaviors, helping us see trends at the neighborhood, borough, and citywide level.<br><br>
+<p><strong><a href="https://www.nyc.gov/site/doh/data/data-sets/community-health-survey.page">What is the Community Health Survey (CHS)?</a></strong> This survey is conducted by the NYC Health Department and interviews about 10,000 New Yorkers each year. Running since 2002, CHS reports detailed data on many chronic diseases and health behaviors, helping us see trends at the neighborhood, borough, and citywide level.<br><br>
         <strong>Some CHS indicators include:</strong>
         <ul>
         <li><a href="../../data-explorer/mental-health/?id=2417">Mental health: Adults with depression</a></li>
@@ -58,7 +58,7 @@ We get data from many sources: some from NYC Health or other city agencies like 
 <div class="collapse" id="panel-acc-button-2b" role="tabpanel" aria-labelledby="acc-button-2b" data-parent="#accordion-02">
     <div class="card-body fs-md">
 <p>
-<strong><a href="https://www.health.ny.gov/statistics/sparcs/">What is New York Statewide Planning and Research Cooperative System (SPARCS)?</a></strong> SPARCS is a billing claims data system that collects patient-level data, like diagnoses, treatments, and characteristics for both inpatient and outpatient stays in every hospital throughout New York state. It is a collaboration between the NY state government and the healthcare system. At the NYC Health department, we restrict data to just hospitals within NYC and sometimes NYC residents.<br><br>
+<strong><a href="https://www.health.ny.gov/statistics/sparcs/">What is New York Statewide Planning and Research Cooperative System (SPARCS)?</a></strong> SPARCS is a billing claims data system that collects patient-level data, like diagnoses, treatments, and characteristics for both inpatient and outpatient stays in every hospital throughout New York state. It is a collaboration between the NY state government and the healthcare system. At the NYC Health Department, we restrict data to hospitals within NYC and sometimes to NYC residents.<br><br>
   <strong>Some SPARCS indicators include: </strong>
     <ul>
     <li><a href="../../data-explorer/weather-related-illness/?id=2376">Heat-stress hospitalizations and emergency department visits</a></li>
@@ -113,7 +113,7 @@ We get data from many sources: some from NYC Health or other city agencies like 
           <li><a href="../../data-explorer/social-conditions/?id=14">Foreign-born population</a></li>
           <li><a href="../../data-explorer/economic-conditions/?id=103">Neighborhood poverty</a></li>
           </ul>
-        <strong>What we use it for:</strong> This data helps us understand the links between inequality, the social determinants of health, and health outcomes. ACS data on income is used to show, for example, how neighborhoods with higher levels of poverty tend to also have less quality housing, and have higher rates of many chronic diseases and premature death. 
+        <strong>What we use it for:</strong> This data helps us understand the links between inequality, the social determinants of health, and health outcomes. ACS data on income is used to show, for example, how neighborhoods with higher levels of poverty tend to also have poorer quality housing, and have higher rates of many chronic diseases and premature death. 
             </div></p>
 </div>
 <!-- .collapse -->
@@ -158,7 +158,7 @@ Reporting all vital events in NYC since the 1800s, the NYC Bureau of Vital Stati
 <li><a href="../../data-explorer/mortality/?id=5">Death (infants)</a></li>
 <li><a href="../../data-explorer/birth-outcomes/?id=4">Low birth weight at full term</a></li>
 </ul>
-<strong>What we use it for:</strong><p>Vital stats data, like premature death rates, can help us get a snapshot of the general health of New Yorkers. When we analyze these data alongside social determinants of health it can help us understand the burden of factors like neighborhood poverty on health outcomes. In one analysis, we found a <a href="../../data-features/minimum-wage">higher minimum wage could save thousands of lives</a>. We use cause of death records in our <a href="../../data-features/heat-report">annual heat mortality report</a>, to calculate how many deaths can be attributed to heat-related causes, and understand how race, income, and AC access shape vulnerability to heat-related illness and mortality.</p>
+<strong>What we use it for:</strong><p>Vital stats data, like premature death rates, can help us get a snapshot of the general health of New Yorkers. When we analyze these data alongside social determinants of health, it can help us understand the burden of factors like neighborhood poverty on health outcomes. In one analysis, we found a <a href="../../data-features/minimum-wage">higher minimum wage could save thousands of lives</a>. We use cause of death records in our <a href="../../data-features/heat-report">annual heat mortality report</a>, to calculate how many deaths can be attributed to heat-related causes, and understand how race, income, and AC access shape vulnerability to heat-related illness and mortality.</p>
 </div>
 
 </div>
@@ -283,6 +283,6 @@ Transit datasets like <a href="../../data-explorer/accessibility/?id=2455">acces
 
 These data (ranging from <a href="../../data-explorer/economic-conditions/?id=103">neighborhood poverty</a> and <a href="../../data-explorer/weather-related-illness/?id=2174"> cold-stress hospitalizations</a>, to <a href="../../data-explorer/walking-driving-and-cycling/?id=2426">Citi bike station density</a> and <a href="../../data-explorer/cockroaches/?id=22">cockroach sightings</a>) aren’t all measured, collected, recorded, organized, and reported in the same way, or within the same time period. Sometimes data are also aggregated into multi-year batches to protect privacy while being stable enough to show impacts at the neighborhood level.
 
-As a result, some types of data aren't updated as frequently as others. But that doesn’t mean that older datasets don’t tell us valuable information. Significant trends in health can take a long time to show up. When it comes to <a href="../../data-explorer/falls-among-older-adults/?id=2136/"> Fall-related hospitalizations (age 65+)</a>, for instance, our most recent dataset is from 2023. However, the chart tells us that borough-level trends have been pretty even since 2018. Any programs and outreach we are developing to address these issues are likely to still be needed year over year, even as we await a batch of newer data.
+As a result, some types of data aren't updated as frequently as others. But that doesn’t mean that older datasets don’t tell us valuable information. Significant trends in health can take a long time to show up. When it comes to <a href="../../data-explorer/falls-among-older-adults/?id=2136/"> Fall-related hospitalizations (age 65+)</a>, for instance, our most recent dataset is from 2023. However, the chart tells us that borough-level trends have been relatively stable since 2018. Any programs and outreach we are developing to address these issues will still be relevant year after year, even as we await a batch of newer data.
 
 Combining data from different sources and looking at them in the context of one another is part of what makes the Portal such a powerful tool, and improves our understanding across data types and time frames. Together, each of the Portal’s data sources captures diverse, valuable information that together show how the environment – built, social, economic – shapes population health in NYC.
