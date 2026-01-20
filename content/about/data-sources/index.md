@@ -257,7 +257,7 @@ Collected continuously and systematically, near real-time data can include envir
 <p>
 There are other kinds of data, too. There is administrative data, which is collected by healthcare or government organizations as part of conducting routine business or activities. An example of this are evictions (court-ordered), which are available through the Department of Investigations (DOI). There is also operational data, like our litter basket coverage data, which is from the Department of Sanitation (DSNY), but available through <a href="https://opendata.cityofnewyork.us/">NYC Open Data</a>.
 
-NYC’s Local Law 11 requires city agencies to make data considered “public” available through a single data portal so that anyone can access and use it. This type of transparency reflects the idea that public data belongs to the public, and empowers all New Yorkers to have understand key information about civic life. Note that not all data used by city agencies is considered public; due to privacy laws, much health data is excluded from this requirement.
+NYC’s Local Law 11 requires city agencies to make data considered “public” available through a single data portal so that anyone can access and use it. This type of transparency reflects the idea that public data belongs to the public, and empowers all New Yorkers to understand key information about civic life. Note that not all data used by city agencies is considered public; due to privacy laws, much health data is excluded from this requirement.
 
 </p>
 </div>
