@@ -1,6 +1,6 @@
 ---
 title: "Published papers"
-date: 2026-01-06T13:30:21-05:00
+date: 2026-01-20T13:30:21-05:00
 draft: false
 seo_title: "Publications | EHDP"
 seo_description: "Publications | EHDP"
