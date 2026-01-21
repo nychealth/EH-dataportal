@@ -1,8 +1,8 @@
 EPA Prod Name,EPA Reg. #,Volume in Gallons,Weight in Pounds,Total Applications,Active Ingredient Data,tox_cd,EPA Carcinogen,Prop65 Developmental Toxin,IARC Carcinogen
-HORMODIN 1,59807-4,0,0.48,66,IBA,3,NO,NO,NO
-PETTIT NEPTUNE 5 HARD HYBRID ABLATIVE ANTIFOULING PAINT,60061-142,17,0,17,Copper oxide (ous),2,NO,NO,NO
-GREEN STOP LIQUID ALGAECIDE,70299-16-84732,0.97,0,2,"Hydrogen peroxide, Peroxyacetic acid",1,NO,NO,NO
-PROGIBB 4% PLANT GROWTH REGULATOR SOLUTION,73049-15,0,0,2,Gibberellins,2,NO,NO,NO
-BROMMAX 7.1,63838-5,70,0,1,Sodium bromide; Sodium hypochlorite,1,NO,NO,NO
-MICROBE LIFE ALGAWAY 5.4 ALGAECIDE FOR PONDS,14802-8-74466,4.25,0,1,Poly(oxyethylene) (dimethylimino) ethylene (dimethylimino) ethylene dichloride,3,NO,NO,NO
-SANIDATE 5.0,70299-19,0.94,0,1,"Hydrogen peroxide, Peroxyacetic acid",1,NO,NO,NO
+HORMODIN 1,59807-4,0.0,0.5,66,IBA,3,NO,NO,NO
+PETTIT NEPTUNE 5 HARD HYBRID ABLATIVE ANTIFOULING PAINT,60061-142,17.0,0.0,17,Copper oxide (ous),2,NO,NO,NO
+GREEN STOP LIQUID ALGAECIDE,70299-16-84732,1.0,0.0,2,"Hydrogen peroxide, Peroxyacetic acid",1,NO,NO,NO
+PROGIBB 4% PLANT GROWTH REGULATOR SOLUTION,73049-15,0.0,0.0,2,Gibberellins,2,NO,NO,NO
+BROMMAX 7.1,63838-5,70.0,0.0,1,Sodium bromide; Sodium hypochlorite,1,NO,NO,NO
+MICROBE LIFE ALGAWAY 5.4 ALGAECIDE FOR PONDS,14802-8-74466,4.3,0.0,1,Poly(oxyethylene) (dimethylimino) ethylene (dimethylimino) ethylene dichloride,3,NO,NO,NO
+SANIDATE 5.0,70299-19,0.9,0.0,1,"Hydrogen peroxide, Peroxyacetic acid",1,NO,NO,NO
