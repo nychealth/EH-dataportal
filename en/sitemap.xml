@@ -49,18 +49,10 @@
                 hreflang="en"
                 href="/IndicatorPublic/"
                 /></url><url>
-    <loc>/IndicatorPublic/categories/accessibility/</loc>
-    <lastmod>2025-12-10T11:51:01-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/accessibility/</loc>
-    <lastmod>2025-12-10T11:51:01-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/keywords/active-design/</loc>
-    <lastmod>2025-12-10T11:51:01-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/keywords/analysis/</loc>
-    <lastmod>2025-12-10T11:51:01-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/keywords/built-environment/</loc>
-    <lastmod>2025-12-10T11:51:01-04:00</lastmod></url><url>
+    <lastmod>2026-01-20T08:49:22-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/categories/</loc>
-    <lastmod>2025-12-10T11:51:01-04:00</lastmod><xhtml:link
+    <lastmod>2026-01-20T08:49:22-04:00</lastmod><xhtml:link
                 rel="alternate"
                 hreflang="es"
                 href="/IndicatorPublic/es/categories/"
@@ -73,6 +65,42 @@
                 hreflang="en"
                 href="/IndicatorPublic/categories/"
                 /></url><url>
+    <loc>/IndicatorPublic/keywords/data-visualization/</loc>
+    <lastmod>2026-01-20T08:49:22-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/keywords/how-we-work/</loc>
+    <lastmod>2026-01-20T08:49:22-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/categories/internal/</loc>
+    <lastmod>2026-01-20T08:49:22-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/keywords/</loc>
+    <lastmod>2026-01-20T08:49:22-04:00</lastmod><xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="/IndicatorPublic/es/keywords/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/IndicatorPublic/zh/keywords/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/IndicatorPublic/keywords/"
+                /></url><url>
+    <loc>/IndicatorPublic/keywords/open-source/</loc>
+    <lastmod>2026-01-20T08:49:22-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/keywords/redesign/</loc>
+    <lastmod>2026-01-20T08:49:22-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/keywords/screen-readers/</loc>
+    <lastmod>2026-01-20T08:49:22-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/about/data-sources/</loc>
+    <lastmod>2026-01-20T08:49:22-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/categories/accessibility/</loc>
+    <lastmod>2025-12-10T11:51:01-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/keywords/active-design/</loc>
+    <lastmod>2025-12-10T11:51:01-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/keywords/analysis/</loc>
+    <lastmod>2025-12-10T11:51:01-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/keywords/built-environment/</loc>
+    <lastmod>2025-12-10T11:51:01-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/data-features/</loc>
     <lastmod>2025-12-10T11:51:01-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/categories/housing/</loc>
@@ -88,20 +116,6 @@
                 rel="alternate"
                 hreflang="en"
                 href="/IndicatorPublic/categories/housing/"
-                /></url><url>
-    <loc>/IndicatorPublic/keywords/</loc>
-    <lastmod>2025-12-10T11:51:01-04:00</lastmod><xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="/IndicatorPublic/es/keywords/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="/IndicatorPublic/zh/keywords/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/IndicatorPublic/keywords/"
                 /></url><url>
     <loc>/IndicatorPublic/keywords/proximity/</loc>
     <lastmod>2025-12-10T11:51:01-04:00</lastmod></url><url>
@@ -275,8 +289,6 @@
     <lastmod>2025-09-08T21:14:56-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/geographies/</loc>
     <lastmod>2025-09-02T07:56:00-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/keywords/how-we-work/</loc>
-    <lastmod>2025-09-02T07:56:00-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/neighborhoods/</loc>
     <lastmod>2025-09-02T07:56:00-04:00</lastmod><xhtml:link
                 rel="alternate"
@@ -437,17 +449,7 @@
     <lastmod>2025-03-31T11:14:56-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/rodents/</loc>
     <lastmod>2025-03-31T11:14:56-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/keywords/data-visualization/</loc>
-    <lastmod>2025-01-07T08:49:22-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/categories/internal/</loc>
-    <lastmod>2025-01-07T08:49:22-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/about/accessibility-updates/</loc>
-    <lastmod>2025-01-07T08:49:22-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/keywords/open-source/</loc>
-    <lastmod>2025-01-07T08:49:22-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/keywords/redesign/</loc>
-    <lastmod>2025-01-07T08:49:22-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/keywords/screen-readers/</loc>
     <lastmod>2025-01-07T08:49:22-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/global-warming/</loc>
     <lastmod>2024-11-08T13:11:44-04:00</lastmod></url><url>

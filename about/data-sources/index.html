@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+
+
+
+    
+
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-64BWDRHRGB"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-64BWDRHRGB');
+    </script>
+
+    
+    <meta name="robots" content="all" />
+
+    
+
+
+
+
+
+
+
+
+<link rel="icon" href=/IndicatorPublic/7618350_heatmap_business_analytics_statistics_icon-gpr.ico>
+
+
+
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<title>Understanding EHDP data sources</title>
+
+
+
+
+<meta name="description" content="Data sources ">
+<link rel="canonical" href="/IndicatorPublic/about/data-sources/" />
+<meta name="geo.region" content="" />
+<meta name="geo.placename" content="Environment &amp; Health Data Portal" />
+
+
+<meta property="fb:profile_id" content="0" />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="en_us" />
+<meta property="og:url" content="/IndicatorPublic/about/data-sources/" />
+<meta property="og:title" content="Understanding EHDP data sources  &ndash; Environment &amp; Health Data Portal" />
+<meta property="og:description" content="Data sources " />
+<meta property="og:site_name" content="Environment &amp; Health Data Portal" />
+<meta property="og:image" content="/IndicatorPublic/images/report_bottom_background_hu_4b0c9d96f35f17c1.jpg">
+<meta property="og:see_also" content="https://twitter.com/nycHealthy" />
+<meta name="twitter:title" content="Understanding EHDP data sources  &ndash; Environment &amp; Health Data Portal">
+<meta name="twitter:description" content=" Data sources ">
+<meta name="twitter:image" content=" /IndicatorPublic/images/report_bottom_background.jpg">
+<meta name="twitter:site" content="@nycHealthy">
+<meta name="twitter:creator" content="@nycHealthy">
+<script src="/IndicatorPublic/node_modules/jquery/dist/jquery.min.9d6bd9b75ea55acc.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR&#43;8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous"></script>
+
+
+
+
+<link rel="icon" href=/IndicatorPublic/7618350_heatmap_business_analytics_statistics_icon-gpr.ico type="image/x-icon">
+<link rel="stylesheet" href="/IndicatorPublic/node_modules/@fortawesome/fontawesome-free/css/all.min.c2b5ea5c3ed56d7e.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck&#43;w&#43;/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous"/>
+<script src="/IndicatorPublic/node_modules/@fortawesome/fontawesome-free/js/all.min.dcdf2ea735e27179.js" integrity="sha512-b&#43;nQTCdtTBIRIbraqNEwsjB6UvL3UEMkXnhzd8awtCYh0Kcsjl9uEgwVFVbhoj3uu1DO1ZMacNvLoyJJiNfcvg==" crossorigin="anonymous"></script>
+
+
+<link href="https://maps.nyc.gov/nyc-lib/v1.2.79/css/nyc-basic-lib.css" rel="stylesheet">
+<link rel="stylesheet" href="/IndicatorPublic/scss/theme.b39a6f7222efb6b4f9da2af250213ebbd4ec312db7a1c7346f3af766a9522422d6a6dc5f3da7592fbbb5794de3b3c8f61b0c028a5fb08f266b38f5b763017762.css" integrity="sha512-s5pvciLvtrT52iryUCE&#43;u9TsMS23occ0bzr3ZqlSJCLWptxfPadZL7u1eU3js8j2GwwCil&#43;wjyZrOPW3YwF3Yg==" />
+
+<script src="/IndicatorPublic/js/vegaBundle.e4ade9fcaad9ac2c.js" integrity="sha512-LkWr6y6bKGgWX909SKM6Di7qdYnz&#43;TC3sjpogKk0craxLhk5BEV9lyUNLHsi43&#43;zNkKVJ9hFVyDx3rHCMgG5hA=="></script>
+    <script src="/IndicatorPublic/node_modules/d3/dist/d3.min.e8ba02e52482bcd1.js" integrity="sha512-vc58qvvBdrDR4etbxMdlTt4GBQk1qjvyORR2nrsPsFPyrs&#43;/u5c3&#43;1Ct6upOgdZoIl7eq6k3a1UPDSNAQi/32A=="></script>
+
+    <link rel="stylesheet" href="/IndicatorPublic/css/dtCSS.ca22f93a97a2c929.css" integrity="sha512-MnBF9nlF7ALNyiZc1PdMFCWlrCeRxbwGPkoSN/mG&#43;&#43;G9wKnQ9i9h0ri5WPZBFEZZDmt9c03eBqm2d9Ik0VnxnA==">
+
+    <script src="/IndicatorPublic/js/dataTableBundle.92ddecdc54e348e3.js" integrity="sha512-0Ol//8r7cRIyT6qiLvoRch/OUywWd6krLfr9bvXufKFOOJbs30dqZx9dFaBW5JE7QHqUlb25drIUASu&#43;x5BVOQ=="></script><script src="/IndicatorPublic/node_modules/arquero/dist/arquero.min.7d016e4b24d47a0f.js" integrity="sha512-2mGOsKuhJM952DEP&#43;f1bIw&#43;YqERehwv8otcrFxOHpJxHTX36YE&#43;BdlmqGbJ&#43;NC9ThzCPdxk2pbehhP6XEan1jg=="></script>
+
+    <script type="text/javascript" src="/IndicatorPublic/js/uhflist.b1536832e3971312.js" integrity="sha512-Ojx3jYf1cvDARSQmePsSFfMk&#43;i59zFIu/I6Xq8f9Ob7PldTwRb6IcoydnNE41ZxncucYAU1sW88itK/Cpna4gQ=="></script>
+
+    
+    <link rel="stylesheet" href="/IndicatorPublic/node_modules/leaflet/dist/leaflet.6fc0beab3f024150.css" integrity="sha512-xwwBn7YBII4WryXcPpa1qciCiCLEWFVIPijj9DwNnq9JOGmYW4VM4geg&#43;v0pZBkfp/cXkr6W1YYxlNN8U4QY9g==" />
+
+    
+    <script src="/IndicatorPublic/node_modules/leaflet/dist/leaflet.74a58ca6295ebc05.js" integrity="sha512-BwHfrr4c9kmRkLw6iXFdzcdWV/PGkVgiIyIWLLlTSXzWQzxuSg4DiQUCpauz/EWjgk5TYQqX/kvn9pG1NpYfqg=="></script>
+
+    
+    <link rel="stylesheet" href="/IndicatorPublic/node_modules/leaflet-easybutton/src/easy-button.3c89cb9ecde941f8.css" integrity="sha512-aiVWmB2G8oV&#43;XfHo1CR6hEAxzCl48Lrl3UBzQ6P&#43;BEMkT8qY1tGecdQx6x/X8i9cCVrwQU9ipsOsZlNkRh9n7w==" />
+
+    
+    <script src="/IndicatorPublic/node_modules/leaflet-easybutton/src/easy-button.2aafa39ced85dc51.js" integrity="sha512-nMxgrgYu7vo/LNe5NFHZOIkwbodaU13UdYiDoDCuo3P2sryEyffrk1R3c2tFGbZ83AqaMbO19yhKnVgHztuqAw=="></script>
+
+    
+     
+
+    <script src="/IndicatorPublic/js/L.colorIcon.7c4343ea3f751533.js" integrity="sha512-wIyMqf8gl4m2CZ7lhU0bkB53Dr8zO30wdKqWVAS1VBnm166LqrN&#43;EjYFMQhiy5goEZe6kBqpUEOL6ZYuoHxHEQ=="></script>
+
+    
+    <script src="/IndicatorPublic/node_modules/leaflet-control-geocoder/dist/Control.Geocoder.0c7a825353b731cf.js" integrity="sha512-vB9&#43;3tjqAmryY1ZaJ6WvUqQ63d0/8M/Cu4O8fBzGgNudF4iWPfIfLVxbpRF6oRieqGol90ZFOOdkAsL4OPQo0w=="></script>
+
+    
+    <script src="https://cdn.rawgit.com/hayeswise/Leaflet.PointInPolygon/v1.0.0/wise-leaflet-pip.js"></script>
+
+
+
+    <script src="/IndicatorPublic/node_modules/dompurify/dist/purify.min.51e02e1100da8c54.js" integrity="sha512-YlctBG9PGZIhh9keoqI3eZkQM9T8QUbiBi7qNYAO/TUEo8jqWX5pLp5&#43;x1cKRQDRzJ/lyGyJ9WUVNIRduxIIFw=="></script>
+
+
+
+
+
+
+
+<script>
+
+    let baseURL = "/IndicatorPublic/";
+    let data_repo = "https:\/\/raw.githubusercontent.com\/nychealth\/EHDP-data\/";
+    let data_branch = "production";
+    let hugoEnv = "prod_prod";
+
+</script>
+
+
+<meta 
+        data-pagefind-meta="title:Where does our data come from? | About the EH Data Portal"
+        class="d-none"
+    >
+
+  </head>
+
+
+
+<body>
+
+  
+<a class="sr-only sr-only-focusable skip-menu" href="#skip-header-target">Skip Header</a>
+
+<header id="global-header" role="banner">
+
+    <div class="bg-black text-white d-print-none" id="nyc-top-header">
+
+        <div class="container-fluid wide">
+
+            <div class="row py-1 align-items-center justify-content-between">
+
+                <div class="col-auto">
+                    <p class="d-none d-md-flex fs-md">
+                        <a class="text-reset" href="https://www1.nyc.gov/">
+                            <strong>nyc.gov</strong>
+                        </a>
+                        <span class="mx-1" aria-hidden="true">></span>
+                        <a class="text-reset" href="https://www1.nyc.gov/">
+                            Health
+                        </a>
+                        <span class="mx-1" aria-hidden="true">></span>
+                        <a class="text-reset" href="/IndicatorPublic/about/data-sources/">
+                        EH Data Portal
+                        </a>
+                    </p>
+                </div>
+                
+
+                <div class="col-auto">
+
+                    <ul class="extensible-list horizontal fs-md">
+                        <li class="d-print-none">
+                            <a class="text-reset" href="https://www1.nyc.gov/">
+                                <strong>
+                                    311
+                                </strong>
+                            </a>
+                        </li>
+                        <li class="d-print-none">
+                            <a class="text-reset" href="https://www1.nyc.gov/home/search/index.page">
+                                <strong>
+                                    Search all NYC.gov
+                                </strong>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www1.nyc.gov/" title="Go to nyc.gov">
+                                <img class="d-block" src=/IndicatorPublic/images/nyc-bubble-logo.svg width="45" alt="NYC Logo">
+                            </a>
+                        </li>
+                    </ul>
+
+                </div>
+                
+
+            </div>
+            
+
+        </div>
+        
+
+
+
+    </div>
+    
+    <div class="site-header bg-primary" style='background-image: url(/IndicatorPublic/images/header_background.jpg)'>
+        <div class="wrap-header">
+
+            <div class="container-fluid wide">
+
+                <div class="row align-items-center">
+
+                    <div class="col-lg py-3">
+                        <div class="d-flex justify-content-center justify-content-lg-start">
+                            <a href=/IndicatorPublic/><img src=/IndicatorPublic/7618350_heatmap_business_analytics_statistics_icon-gpr.ico style="height: 67px" class="pr-1"></a>
+
+                            <p class="text-white title-hover">
+                                <span class="site-subtitle"><a href='/IndicatorPublic/' class="link-no-dec">Environment & Health</span>
+                                <span class="site-title">Data Portal</a></span>
+                            </p>
+
+
+                        </div>
+                        
+                    </div>
+                    
+
+                    <div class="col-lg-auto border-top border-lg-0 d-print-none">
+
+                        <div class="d-lg-flex align-items-center">
+
+                            <div class="d-none d-lg-block mx-n2 mx-lg-2" id="nav-primary-top">
+
+                                <nav class="nav" role="navigation">
+
+                                    <div class="nav-item bg-white text-primary border dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="nav-item-topic-top"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Topics
+                                        </a>
+
+                                        <div class="dropdown-menu wider-menu" aria-labelledby="nav-item-topic-top">
+                                            <ul class="extensible-list p-0">
+                                                
+                                                    <a class="" href="/IndicatorPublic/key-topics/accessibility/"> <li class="">Accessibility</li></a>
+                                                    <hr class="my-1">
+                                                    <a class="" href="/IndicatorPublic/key-topics/airquality/"> <li class="">Air quality</li></a>
+                                                    <hr class="my-1">
+                                                    <a class="" href="/IndicatorPublic/key-topics/childhealth/"> <li class="">Child health</li></a>
+                                                    <hr class="my-1">
+                                                    <a class="" href="/IndicatorPublic/key-topics/climatehealth/"> <li class="">Climate</li></a>
+                                                    <hr class="my-1">
+                                                    <a class="" href="/IndicatorPublic/key-topics/healthoutcomes/"> <li class="">Health outcomes</li></a>
+                                                    <hr class="my-1">
+                                                    <a class="" href="/IndicatorPublic/key-topics/foodanddrink/"> <li class="">Food and drink</li></a>
+                                                    <hr class="my-1">
+                                                    <a class="" href="/IndicatorPublic/key-topics/housing/"> <li class="">Housing</li></a>
+                                                    <hr class="my-1">
+                                                    <a class="" href="/IndicatorPublic/key-topics/health-equity/"> <li class="">Inequality</li></a>
+                                                    <hr class="my-1">
+                                                    <a class="" href="/IndicatorPublic/key-topics/injury-and-violence/"> <li class="">Injury and violence</li></a>
+                                                    <hr class="my-1">
+                                                    <a class="" href="/IndicatorPublic/key-topics/pests/"> <li class="">Pests and pesticides</li></a>
+                                                    <hr class="my-1">
+                                                    <a class="" href="/IndicatorPublic/key-topics/public-space/"> <li class="">Public space</li></a>
+                                                    <hr class="my-1">
+                                                    <a href=/IndicatorPublic/key-topics>All topics</a>
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    
+
+                                    <div class="nav-item bg-white text-primary border dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="nav-item-type-top"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Explore
+                                        </a>
+
+                                        <div class="dropdown-menu wider-menu" aria-labelledby="nav-item-type-top">
+                                            <ul class="extensible-list p-0">
+
+                                                <a href="/IndicatorPublic/data-stories/"><li><span class="mr-1"><span class='text-primary data-stories'><i class='fas fa-passport' aria-hidden='true'></i></span></span>Data Stories</li></a>
+
+                                                        <hr class="my-1">
+
+                                                    <a href="/IndicatorPublic/data-features/"><li><span class="mr-1"><span class='df-accent'><i class='fas fa-chart-bar' aria-hidden='true'></i></span></span>Data Features</li></a>
+
+                                                        <hr class="my-1">
+
+                                                    <a href="/IndicatorPublic/neighborhood-reports/"><li><span class="mr-1"><span class='text-primary n-reports'><i class='fas fa-map-marked-alt' aria-hidden='true'></i></span></span>Neighborhood Reports</li></a>
+
+                                                        <hr class="my-1">
+
+                                                    <a href="/IndicatorPublic/data-explorer/"><li><span class="mr-1"><span class='text-primary data-explorer'><i class='fas fa-chart-line' aria-hidden='true'></i></span></span>Data Explorer</li></a></ul>
+                                        </div>
+                                    </div>
+                                    
+
+                                    <div class="nav-item bg-white text-primary border">
+                                        <a class="nav-link " href="/IndicatorPublic/about/">
+                                            About
+                                        </a></div>
+
+
+                                    
+                                    
+
+                                    <div class="nav-item bg-white text-primary border d-none d-lg-block">
+                                        <a class="nav-link" href="#" type="button" data-toggle="modal" data-target="#searchModal" title="Search" data-toggle="collapse">
+                                                    <span class="sr-only">Search</span>
+                                                    <i class="fa fa-magnifying-glass text-body"></i>
+                                                </a>
+                                    </div>
+                                    
+
+                                    
+                                    <div class="nav-item bg-none text-white border border-white ml-1">
+
+                                        <a class="nav-link text-white subscribe-link" href=/IndicatorPublic/About/subscribe>Subscribe</a>
+                                            
+
+                                        </a>
+                                    </div>
+
+                                </nav>
+
+                            </div>
+
+
+                        </div>
+                        
+
+                    </div>
+                    
+
+                </div>
+                
+
+            </div>
+            
+
+        </div>
+        
+
+        <div class="container-fluid border-top collapse" id="global-language">
+            <div class="narrow py-2">
+                <div id="google_translate_element"></div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="border-bottom px-2 d-print-none">
+                                    
+
+                                    <ul class="extensible-list horizontal justify-content-between my-1 d-lg-none">
+                                        <li>
+                                            <button class="navbar-toggler no-btn-style" type="button" title="Main Menu" data-toggle="collapse"
+                                                data-target="#nav-primary" aria-controls="nav-primary" aria-expanded="false"
+                                                aria-label="Toggle navigation">
+                                                <span class="sr-only">Main Menu</span>
+                                                <span class="fas fa-bars fa-lg text-primary" ></span>
+                                            </button>
+                                        </li>
+        
+                                        <li>
+                                            <a class="nav-link" href="#" type="button" data-toggle="modal" data-target="#searchModal" title="Search" data-toggle="collapse">
+                                                <span class="sr-only">Search</span>
+                                                <i class="fa fa-magnifying-glass text-primary"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+        
+                                    <div class="collapse d-lg-none mx-n2 mx-lg-2" id="nav-primary">
+        
+                                        <nav class="nav" role="navigation">
+        
+                                            <div class="nav-item bg-white text-primary border dropdown">
+                                                <a class="nav-link dropdown-toggle" href="#" id="nav-item-topic"
+                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    Topics
+                                                </a>
+        
+                                                <div class="dropdown-menu wider-menu" aria-labelledby="nav-item-topic">
+                                                    <ul class="extensible-list p-0">
+                                                        
+                                                            <a class="" href="/IndicatorPublic/key-topics/accessibility/"> <li class="">Accessibility</li></a>
+                                                            <hr class="my-1">
+                                                            <a class="" href="/IndicatorPublic/key-topics/airquality/"> <li class="">Air quality</li></a>
+                                                            <hr class="my-1">
+                                                            <a class="" href="/IndicatorPublic/key-topics/childhealth/"> <li class="">Child health</li></a>
+                                                            <hr class="my-1">
+                                                            <a class="" href="/IndicatorPublic/key-topics/climatehealth/"> <li class="">Climate</li></a>
+                                                            <hr class="my-1">
+                                                            <a class="" href="/IndicatorPublic/key-topics/healthoutcomes/"> <li class="">Health outcomes</li></a>
+                                                            <hr class="my-1">
+                                                            <a class="" href="/IndicatorPublic/key-topics/foodanddrink/"> <li class="">Food and drink</li></a>
+                                                            <hr class="my-1">
+                                                            <a class="" href="/IndicatorPublic/key-topics/housing/"> <li class="">Housing</li></a>
+                                                            <hr class="my-1">
+                                                            <a class="" href="/IndicatorPublic/key-topics/health-equity/"> <li class="">Inequality</li></a>
+                                                            <hr class="my-1">
+                                                            <a class="" href="/IndicatorPublic/key-topics/injury-and-violence/"> <li class="">Injury and violence</li></a>
+                                                            <hr class="my-1">
+                                                            <a class="" href="/IndicatorPublic/key-topics/pests/"> <li class="">Pests and pesticides</li></a>
+                                                            <hr class="my-1">
+                                                            <a class="" href="/IndicatorPublic/key-topics/public-space/"> <li class="">Public space</li></a>
+                                                            <hr class="my-1">
+                                                            <a href=/IndicatorPublic/key-topics>All topics</a>
+        
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            
+        
+                                            <div class="nav-item bg-white text-primary border dropdown">
+                                                <a class="nav-link dropdown-toggle" href="#" id="nav-item-type"
+                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    Explore
+                                                </a>
+        
+                                                <div class="dropdown-menu wider-menu" aria-labelledby="nav-item-type">
+                                                    <ul class="extensible-list p-0">
+        
+                                                        <a href="/IndicatorPublic/data-stories/"><li><span class="mr-1"><span class='text-primary data-stories'><i class='fas fa-passport' aria-hidden='true'></i></span></span>Data Stories</li></a>
+        
+                                                                <hr class="my-1">
+        
+                                                            <a href="/IndicatorPublic/data-features/"><li><span class="mr-1"><span class='df-accent'><i class='fas fa-chart-bar' aria-hidden='true'></i></span></span>Data Features</li></a>
+        
+                                                                <hr class="my-1">
+        
+                                                            <a href="/IndicatorPublic/neighborhood-reports/"><li><span class="mr-1"><span class='text-primary n-reports'><i class='fas fa-map-marked-alt' aria-hidden='true'></i></span></span>Neighborhood Reports</li></a>
+        
+                                                                <hr class="my-1">
+        
+                                                            <a href="/IndicatorPublic/data-explorer/"><li><span class="mr-1"><span class='text-primary data-explorer'><i class='fas fa-chart-line' aria-hidden='true'></i></span></span>Data Explorer</li></a></ul>
+                                                </div>
+                                            </div>
+                                            
+        
+                                            <div class="nav-item bg-white text-primary border">
+                                                <a class="nav-link " href="/IndicatorPublic/about/">
+                                                    About
+                                                </a></div>
+        
+        
+                                            
+                                            
+        
+                                            <div class="nav-item bg-white text-primary border d-none d-lg-block">
+                                                <a class="nav-link" href="#" type="button" data-toggle="modal" data-target="#searchModal" title="Search" data-toggle="collapse">
+                                                            <span class="sr-only">Search</span>
+                                                            <i class="fa fa-magnifying-glass text-body"></i>
+                                                        </a>
+                                            </div>
+                                            
+        
+                                            
+                                            <div class="nav-item bg-none text-primary border">
+        
+                                                <a href="#" class="nav-link text-primary " data-toggle="modal" data-target="#subscribeModal">
+                                                    Subscribe
+                                                </a>
+                                            </div>
+        
+                                        </nav>
+        
+                                    </div>
+    </div>
+
+        <div class="modal" tabindex="-1" role="dialog" id="subscribeModal">
+            <div class='modal-dialog modal-lg modal-dialog-centered' role='document'>
+                <div class='modal-content'>
+                    <div class='modal-body' style="height:75vh;">
+                        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfUg3JE5ODNc6aqBPJwM8mZ80TYtK6ISw-OM7PBwKuoN3M--g/viewform" width="100%" frameborder="no" height="100%"></iframe>
+                    </div>
+                    <hr>
+                    <button type="button" class="btn btn-outline-primary close-dialog" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+
+</header>
+<main id="skip-header-target" role="main" data-pagefind-body><article class="container-fluid overflow-hidden" id="primary-content">
+
+  <div class="row mb-4">
+    <div class="col-md-8 col-sm-12 mx-auto">
+
+      <nav aria-label="breadcrumb" class="mt-2 mb-3">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href=/IndicatorPublic/>Home</a></li>
+            <li class="breadcrumb-item"><a href=/IndicatorPublic/about>About</a></li>
+            <li class="breadcrumb-item active " aria-current="page">Where does our data come from?</li>
+        </ul>
+      </nav>
+
+      
+      <h1>Where does our data come from?</h1><p>The Environment and Health Data Portal hosts over 200 sets of measures from data sources that cover topics like air quality, climate, pests, housing, and much more. These data can tell us how environmental factors like housing, air quality, and socioeconomic status can shape health from neighborhood to neighborhood. But where does this data come from? How often is it updated? And how do we pick which datasets to feature?</p>
+<h2>Where do you get your data?</h2>
+<p>We get data from many sources: some from the NYC Health Department or other city agencies like <a href="https://www.nycgovparks.org/">NYC Parks</a> or <a href="https://www.nyc.gov/site/doi/index.page">Department of Investigations</a>; and some from outside sources, like the <a href="https://www.cdc.gov/">CDC</a>, <a href="https://www.health.ny.gov/statistics/sparcs/">SPARCS</a>, the <a href="https://www.census.gov/">U.S. Census</a>, and the <a href="https://www.epa.gov/">EPA</a>. Here are some of the core datasets:</p>
+<div class="accordion-group my-3" role="tablist" id="accordion-02">
+  <div class="card">
+    <a class="card-header collapse collapsed font-weight-bold" id="acc-button-2a" data-toggle="collapse" href="#panel-acc-button-2a"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-2a">
+      <span class="title" role="heading" aria-level="3"><i class="fa-solid fa-clipboard-list"></i> Community Health Survey</span>
+    </a>
+  <div class="collapse" id="panel-acc-button-2a" role="tabpanel" aria-labelledby="acc-button-2a" data-parent="#accordion-02">
+    <div class="card-body card-white fs-md">
+<p><strong><a href="https://www.nyc.gov/site/doh/data/data-sets/community-health-survey.page">What is the Community Health Survey (CHS)?</a></strong> This survey is conducted by the NYC Health Department and interviews about 10,000 New Yorkers each year. Running since 2002, CHS reports detailed data on many chronic diseases and health behaviors, helping us see trends at the neighborhood, borough, and citywide level.<br><br>
+        <strong>Some CHS indicators include:</strong>
+        <ul>
+        <li><a href="../../data-explorer/mental-health/?id=2417">Mental health: Adults with depression</a></li>
+        <li><a href="../../data-explorer/economic-conditions/?id=2132">Health care: Adults with health insurance</a></li>
+        <li><a href="../../data-explorer/asthma/?id=18">Asthma: Adults with a recent asthma attack</a></li>
+        <li><a href="../../data-explorer/physical-activity/?id=2060">Physical activity: Recent exercise</a></li>
+        </ul>
+      <strong>What we use it for: </strong>CHS data helps us track the health of New Yorkers and connect the dots between health behavior and health status. This helps us prioritize programs where they matter most. If we see, for example, that there are fewer adults with a doctor in West Queens, we can try to address that through campaigns and outreach. Or if there are more adults with a recent asthma attack in the South Bronx, we can communicate with healthcare providers, neighborhood centers, and schools to provide resources and and education, prevention, and mitigation plans.</p>
+    </div>
+  </div>
+  <!-- .collapse -->
+  </div>
+  <!-- .card (end of first accordion, repeat as needed) -->
+  <div class="card">
+      <a class="card-header collapse collapsed font-weight-bold" id="acc-button-2b" data-toggle="collapse" href="#panel-acc-button-2b"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-2b">
+        <span class="title" role="heading" aria-level="3"><i class="fa-solid fa-hospital"></i> Statewide Planning and Research Cooperative System</span>
+      </a>
+<div class="collapse" id="panel-acc-button-2b" role="tabpanel" aria-labelledby="acc-button-2b" data-parent="#accordion-02">
+    <div class="card-body fs-md">
+<p>
+<strong><a href="https://www.health.ny.gov/statistics/sparcs/">What is New York Statewide Planning and Research Cooperative System (SPARCS)?</a></strong> SPARCS is a billing claims data system that collects patient-level data, like diagnoses, treatments, and characteristics for both inpatient and outpatient stays in every hospital throughout New York state. It is a collaboration between the NY state government and the healthcare system. At the NYC Health Department, we restrict data to hospitals within NYC and sometimes to NYC residents.<br><br>
+  <strong>Some SPARCS indicators include: </strong>
+    <ul>
+    <li><a href="../../data-explorer/weather-related-illness/?id=2376">Heat-stress hospitalizations and emergency department visits</a></li>
+    <li><a href="../../data-explorer/mental-health/?id=2418">Psychiatric hospitalizations</a></li>
+    <li><a href="../../data-explorer/asthma/?id=2382">Asthma hospitalizations</a></li>
+    <li><a href="../../data-explorer/transportation-related-injuries/?id=2086">Bicycle injury hospitalizations</a></li>
+    </ul>
+  <strong>What we use it for:</strong> Patient-level data from healthcare facilities can help us understand how environmental factors (for example, hot days and socioeconomic status) relate to health outcomes (like heat-related hospitalizations among different demographics). These data help us characterize severity and risk factors for different populations.
+</p>
+</div>
+</div>
+<!-- .collapse -->
+</div>
+  <div class="card">
+      <a class="card-header font-weight-bold collapse collapsed" id="acc-button-2c" data-toggle="collapse" href="#panel-acc-button-2c"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-2c">
+        <span class="title" role="heading" aria-level="3"><i class="fa-solid fa-house"></i> Housing and Vacancy Survey</span>
+      </a>
+<div class="collapse" id="panel-acc-button-2c" role="tabpanel" aria-labelledby="acc-button-2c" data-parent="#accordion-02">
+    <div class="card-body fs-md">
+<p>
+<strong><a href="http://census.gov/programs-surveys/nychvs.html">What is the Housing and Vacancy Survey (HVS)?</a></strong> The NYC Department of Housing Preservation and Development (HPD) and the US Census Bureau together conduct the HVS every 3 years. The main purpose of HVS is to describe how many rental units are vacant to understand more about rent control and stabilization and the housing market.<br><br>
+        <strong>Some HVS indicators include: </a></strong>
+          <ul>
+          <li><a href="../../data-explorer/housing-maintenance/?id=40">Homes with cracks or holes</a></li>
+          <li><a href="../../data-explorer/housing-maintenance/?id=2446">Homes with mold</a></li>
+          <li><a href="../../data-explorer/housing-safety/?id=2185">Household air conditioning<a></li>
+          <li><a href="../../data-explorer/housing-stability/?id=2336">Rent-burdened households</a></li>
+          </ul>
+        <strong>What we use it for:</strong> It helps us understand the state and quality of our available housing, which ties into important health outcomes. HVS data about housing issues that affect health can help us connect these issues to other disparities and inequities across NYC, like income, health care, heat and cold vulnerability and more.
+</p>
+</div>
+</div>
+<!-- .collapse -->
+</div>
+  <div class="card">
+      <a class="card-header font-weight-bold collapse collapsed" id="acc-button-2d" data-toggle="collapse" href="#panel-acc-button-2d"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-2d">
+        <span class="title" role="heading" aria-level="3"><i class="fa-solid fa-clipboard-list"></i> American Community Survey</span>
+      </a>
+<div class="collapse" id="panel-acc-button-2d" role="tabpanel" aria-labelledby="acc-button-2d" data-parent="#accordion-02">
+    <div class="card-body  fs-md"><p>
+<strong><a href="https://www.census.gov/programs-surveys/acs.html">What is the American Community Survey (ACS)?</a></strong> The US Census Bureau conducts the ACS annually, collecting population, housing, and workforce data like unemployment, income, insurance, and more. <br><br>
+        <strong>Some ACS indicators include: </a></strong>
+          <ul>
+          <li><a href="../../data-explorer/social-conditions/?id=2146">Older adults living alone (65+)</li>
+          <li><a href="../../data-explorer/social-conditions/?id=14">Foreign-born population</a></li>
+          <li><a href="../../data-explorer/economic-conditions/?id=103">Neighborhood poverty</a></li>
+          </ul>
+        <strong>What we use it for:</strong> This data helps us understand the links between inequality, the social determinants of health, and health outcomes. ACS data on income is used to show, for example, how neighborhoods with higher levels of poverty tend to also have poorer quality housing, and have higher rates of many chronic diseases and premature death. 
+            </div></p>
+</div>
+<!-- .collapse -->
+</div>
+  <div class="card">
+      <a class="card-header font-weight-bold collapse collapsed" id="acc-button-2e" data-toggle="collapse" href="#panel-acc-button-2e"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-2e">
+        <span class="title" role="heading" aria-level="3"><i class="fa-solid fa-smog"></i> NYCCAS</span>
+      </a>
+<div class="collapse" id="panel-acc-button-2e" role="tabpanel" aria-labelledby="acc-button-2e" data-parent="#accordion-02">
+    <div class="card-body  fs-md">
+<strong><a href="../../data-features/nyccas">What is the New York City Community Air Survey (NYCCAS)?</a></strong> Started in 2008, NYCCAS is the largest ongoing urban air monitoring program of any U.S. city. NYCCAS tracks air pollutants at the street-level, where people spend most of their time. <br><br>
+        <strong>Some NYCCAS indicators include:</strong>
+          <ul>
+          <li><a href="../../data-explorer/air-quality/?id=2023">Concentration of fine particles (PM2.5)</a></li>
+          <li><a href="../../data-explorer/air-quality/?id=2027">Ozone (O3)</a></li>
+          <li><a href="../../data-explorer/air-quality/?id=2026">Sulfur dioxide (SO2)</a></li>
+          </ul>
+        <strong>What we use it for:</strong> It helps us inform PlaNYC, track changes in air quality over time, estimate exposures for health research, inform the public about local topics, such as air quality improvements, health benefits of public transit to air quality, and efforts to reduce the health impacts of air pollution.  
+</div>
+</div>
+<!-- .collapse -->
+</div>
+  <div class="card">
+      <a class="card-header font-weight-bold collapse collapsed" id="acc-button-2f" data-toggle="collapse" href="#panel-acc-button-2f"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-2f">
+        <span class="title" role="heading" aria-level="3"><i class="fa-solid fa-cake-candles"></i></i> Bureau of Vital Statistics</span>
+      </a>
+<div class="collapse" id="panel-acc-button-2f" role="tabpanel" aria-labelledby="acc-button-2f" data-parent="#accordion-02">
+    <div class="card-body  fs-md">
+<strong><a href="https://www.nyc.gov/site/doh/data/data-sets/vital-statistics-data.page">What is the Bureau of Vital Statistics?</a></strong>
+<p>Reporting all vital events in NYC since the 1800s, the NYC Bureau of Vital Statistics&rsquo; records information about birth and death rates, infant mortality, and causes of death.
+<br><br>
+<strong>Some Bureau of Vital Statistics indicators include:</strong></p>
+<ul>
+<li><a href="../../data-explorer/mortality/?id=2322">Premature mortality</a></li>
+<li><a href="../../data-explorer/mortality/?id=5">Death (infants)</a></li>
+<li><a href="../../data-explorer/birth-outcomes/?id=4">Low birth weight at full term</a></li>
+</ul>
+<strong>What we use it for:</strong><p>Vital stats data, like premature death rates, can help us get a snapshot of the general health of New Yorkers. When we analyze these data alongside social determinants of health, it can help us understand the burden of factors like neighborhood poverty on health outcomes. In one analysis, we found a <a href="../../data-features/minimum-wage">higher minimum wage could save thousands of lives</a>. We use cause of death records in our <a href="../../data-features/heat-report">annual heat mortality report</a>, to calculate how many deaths can be attributed to heat-related causes, and understand how race, income, and AC access shape vulnerability to heat-related illness and mortality.</p>
+</div>
+</div>
+<!-- .collapse -->
+</div>
+</div>
+<hr>
+<hr>
+<h3>What types of data sources are there?</h3>
+<p>There are many kinds of data, which are collected, cleaned, and updated in different ways. Here are some of the categories data can fall into, and some may even fall into multiple categories.</p>
+<div class="accordion-group my-3" role="tablist" id="accordion-01">
+  <div class="card">
+    <a class="card-header collapse collapsed font-weight-bold" id="acc-button-01" data-toggle="collapse" href="#panel-acc-button-01"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-01">
+      <span class="title" role="heading" aria-level="3">Regulatory data</span>
+    </a>
+  <div class="collapse" id="panel-acc-button-01" role="tabpanel" aria-labelledby="acc-button-01" data-parent="#accordion-01">
+    <div class="card-body card-white fs-md">
+    <p>
+Collecting this type of data is mandated by the local, state, or federal government, which typically means it is updated regularly and reliably. In New York state, blood lead level testing is mandated. Because it is mandatory, it also means that blood lead levels of NYC populations are regularly updated, so there are many years of this data available. Still, not everyone goes to the doctor, even if testing is required. Federal air quality monitoring required by the Clean Air Act is another example of regulatory data.
+    </p>
+    </div>
+  </div>
+  <!-- .collapse -->
+  </div>
+  <!-- .card (end of first accordion, repeat as needed) -->
+  <div class="card">
+      <a class="card-header collapse collapsed font-weight-bold" id="acc-button-02" data-toggle="collapse" href="#panel-acc-button-02"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-02">
+        <span class="title" role="heading" aria-level="3">Survey data</span>
+      </a>
+<div class="collapse" id="panel-acc-button-02" role="tabpanel" aria-labelledby="acc-button-02" data-parent="#accordion-01">
+    <div class="card-body fs-md">
+<p>
+A selection of survey respondents answer questions online, via phone, or e-mail. Surveys like the Community Health Survey, the Housing and Vacancy Survey, and the American Community Survey are conducted regularly at different intervals. While most surveys are voluntary, some, like ACS, are compulsory.
+<p>Sometimes, a survey conducted every year drops a question, and we have to decide how to continue to track that dataset. In 2015, CHS dropped a question about recent cycling, so we looked for other indicators in both the CHS and ACS, with the goal of finding something with many years of data so we could see the change over time. We found <a href="../../data-explorer/physical-activity/?id=2059#display=summary">monthly bicycle use</a>, another survey question from CHS. The reliability of survey data depends on the willingness of respondents, as well as their honesty, the framing of the questions, and many other factors.</p>
+</p>
+</div>
+</div>
+<!-- .collapse -->
+</div>
+  <div class="card">
+      <a class="card-header font-weight-bold collapse collapsed" id="acc-button-03" data-toggle="collapse" href="#panel-acc-button-03"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-03">
+        <span class="title" role="heading" aria-level="3">Registry / population data</span>
+      </a>
+<div class="collapse" id="panel-acc-button-03" role="tabpanel" aria-labelledby="acc-button-03" data-parent="#accordion-01">
+    <div class="card-body fs-md">
+<p>
+Registry and population data is standardized information that must be collected about every person or event. This includes birth and death records, and Census data, which have all been recorded for a long time.
+<p>Premature mortality from the NYC Bureau of Vital Statistics and the US Census; or cancers in children from the New York State Cancer Registry both fall into this category.</p>
+</p>
+</div>
+</div>
+<!-- .collapse -->
+</div>
+  <div class="card">
+      <a class="card-header font-weight-bold collapse collapsed" id="acc-button-04" data-toggle="collapse" href="#panel-acc-button-04"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-04">
+        <span class="title" role="heading" aria-level="3">Near real-time data</span>
+      </a>
+<div class="collapse" id="panel-acc-button-04" role="tabpanel" aria-labelledby="acc-button-04" data-parent="#accordion-01">
+    <div class="card-body  fs-md">
+<p>
+Collected continuously and systematically, near real-time data can include environmental data, like <a href="../data-features/realtime-air-quality">real-time air quality (PM2.5) monitoring</a>, which is updated hourly. It can also include near real-time health data, <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-syndrome/">such as the total daily visits to the Emergency Department during the hot weather season</a>.
+</p>
+</div>
+</div>
+<!-- .collapse -->
+</div>
+  <div class="card">
+      <a class="card-header font-weight-bold collapse collapsed" id="acc-button-05" data-toggle="collapse" href="#panel-acc-button-05"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-05">
+        <span class="title" role="heading" aria-level="3">Other types of data and Open Data</span>
+      </a>
+<div class="collapse" id="panel-acc-button-05" role="tabpanel" aria-labelledby="acc-button-05" data-parent="#accordion-01">
+    <div class="card-body  fs-md">
+<p>
+There are other kinds of data, too. There is administrative data, which is collected by healthcare or government organizations as part of conducting routine business or activities. An example of this are evictions (court-ordered), which are available through the Department of Investigations (DOI). There is also operational data, like our litter basket coverage data, which is from the Department of Sanitation (DSNY), but available through <a href="https://opendata.cityofnewyork.us/">NYC Open Data</a>.
+<p>NYC’s Local Law 11 requires city agencies to make data considered “public” available through a single data portal so that anyone can access and use it. This type of transparency reflects the idea that public data belongs to the public, and empowers all New Yorkers to understand key information about civic life. Note that not all data used by city agencies is considered public; due to privacy laws, much health data is excluded from this requirement.</p>
+</p>
+</div>
+</div>
+<!-- .collapse -->
+</div>
+</div>
+<h2>How do you choose datasets?</h2>
+<p>We use datasets from many sources to quantify the state of various measures of health, and explanatory text to frame it, provide context, and add meaning. No single dataset can tell us everything, but together, they can paint a picture of how environments shape health in NYC across time. That said, there are tons of datasets out there – so how do we choose? We have frequent conversations with our data experts to determine what datasets would add the most value to the Portal.</p>
+<img src="../data-sources/Litterbasket_NTA.png">
+<p>But sometimes we see something on NYC Open Data, or another source, that provides interesting context to NYC’s environment and health, for example, our <a href="../../data-explorer/mice-and-rats/?id=2416">litter basket coverage data</a>. These humble amenities may be overlooked, but have a strong connection to health: when there are more litter baskets, there is less litter, and fewer pests. Fewer pests are healthier for a neighborhood and <a href="../../data-stories/sanitation">cleaner streets have a positive impact on mental health and feelings of safety and positivity</a>. <a href="../../data-explorer/accessibility/?id=2457">Public bathrooms also make it easier for people to partake in public life</a>.</p>
+<p>Transit datasets like <a href="../../data-explorer/accessibility/?id=2455">accessible subway stations</a> and <a href="../../data-explorer/accessibility/?id=2456">bus stops with audio announcements</a> are also from NYC Open Data, and illustrate how accessible transit (and thus, all of New York City) is to New Yorkers with disabilities, caregivers, older adults, and everyone!</p>
+<h2>Why aren’t some of your data more recent?</h2>
+<p>These data (ranging from <a href="../../data-explorer/economic-conditions/?id=103">neighborhood poverty</a> and <a href="../../data-explorer/weather-related-illness/?id=2174"> cold-stress hospitalizations</a>, to <a href="../../data-explorer/walking-driving-and-cycling/?id=2426">Citi bike station density</a> and <a href="../../data-explorer/cockroaches/?id=22">cockroach sightings</a>) aren’t all measured, collected, recorded, organized, and reported in the same way, or within the same time period. Sometimes data are also aggregated into multi-year batches to protect privacy while being stable enough to show impacts at the neighborhood level.</p>
+<p>As a result, some types of data aren&rsquo;t updated as frequently as others. But that doesn’t mean that older datasets don’t tell us valuable information. Significant trends in health can take a long time to show up. When it comes to <a href="../../data-explorer/falls-among-older-adults/?id=2136/"> Fall-related hospitalizations (age 65+)</a>, for instance, our most recent dataset is from 2023. However, the chart tells us that borough-level trends have been relatively stable since 2018. Any programs and outreach we are developing to address these issues will still be relevant year after year, even as we await a batch of newer data.</p>
+<p>Combining data from different sources and looking at them in the context of one another is part of what makes the Portal such a powerful tool, and improves our understanding across data types and time frames. Together, each of the Portal’s data sources captures diverse, valuable information that together show how the environment – built, social, economic – shapes population health in NYC.</p>
+<hr class="my-4">
+        <strong class="keywords">Published on:</strong><br>January 20, 2026</div>
+    
+  </div>
+
+</article><ul id="results"></ul>
+  </main>
+  
+  <footer class="bg-black d-print-none" id="global-footer" role="contentinfo">
+
+  <h2 class="sr-only">
+      Page Footer
+  </h2>
+
+  <div class="bg-opacity-black-25 text-white" id="nyc-footer">
+
+      <div class="container py-3 d-none" id="languages">
+
+          <div class="row fs-md d-print-none">
+
+              <div class="col-6 col-md-4 col-lg mb-2 mb-lg-0">
+                  <ul class="extensible-list">
+                      <li><a class="lang-select text-reset" href="#" data-lang="ar">عربى</a></li>
+                      <li><a class="lang-select text-reset" href="#" data-lang="bn">বাঙালি</a></li>
+                  </ul>
+              </div>
+              <div class="col-6 col-md-4 col-lg mb-2 mb-lg-0">
+                  <ul class="extensible-list">
+                      <li><a class="lang-select text-reset" href="#" data-lang="zh-CN">中文</a></li>
+                      <li><a class="lang-select text-reset" href="#" data-lang="fr">français</a></li>
+                  </ul>
+              </div>
+              <div class="col-6 col-md-4 col-lg mb-2 mb-lg-0">
+                  <ul class="extensible-list">
+                      <li><a class="lang-select text-reset" href="#" data-lang="ht">Kreyòl Ayisyen</a></li>
+                      <li><a class="lang-select text-reset" href="#" data-lang="ko">한국어</a></li>
+                  </ul>
+              </div>
+              <div class="col-6 col-md-4 col-lg mb-2 mb-lg-0">
+                  <ul class="extensible-list">
+                      <li><a class="lang-select text-reset" href="#" data-lang="pl">Polskie</a></li>
+                      <li><a class="lang-select text-reset" href="#" data-lang="ru">русский</a></li>
+                  </ul>
+              </div>
+              <div class="col-6 col-md-4 col-lg">
+                  <ul class="extensible-list">
+                      <li><a class="lang-select text-reset" href="#" data-lang="es">Español</a></li>
+                      <li><a class="lang-select text-reset" href="#" data-lang="ur">اردو</a></li>
+                  </ul>
+              </div>
+          </div>
+
+      </div>
+      
+
+      <div class="container py-3 d-print-none" id="languages">
+
+          <ul class="fs-md" role="list">
+              <li><a class="lang-select text-reset" href="#" data-lang="ar">عربى</a></li>
+              <li><a class="lang-select text-reset" href="#" data-lang="bn">বাঙালি</a></li>
+              <li><a class="lang-select text-reset" href="#" data-lang="zh-CN">中文</a></li>
+              <li><a class="lang-select text-reset" href="#" data-lang="fr">français</a></li>
+              <li><a class="lang-select text-reset" href="#" data-lang="ht">Kreyòl Ayisyen</a></li>
+              <li><a class="lang-select text-reset" href="#" data-lang="ko">한국어</a></li>
+              <li><a class="lang-select text-reset" href="#" data-lang="pl">Polskie</a></li>
+              <li><a class="lang-select text-reset" href="#" data-lang="ru">русский</a></li>
+              <li><a class="lang-select text-reset" href="#" data-lang="es">Español</a></li>
+              <li><a class="lang-select text-reset" href="#" data-lang="ur">اردو</a></li>
+          </ul>
+
+      </div>
+      
+
+      <hr class="opacity-10" aria-hidden="true">
+
+      <div class="container py-3">
+          <div class="row">
+              <div class="col-md-6 col-lg-8 mb-3 mb-lg-0">
+                  <nav class="row fs-md d-print-none" role="navigation">
+                      <div class="col-lg mb-3 mb-lg-0">
+                          <ul class="extensible-list">
+                              <li>
+                                  <a class="text-reset" href="https://www1.nyc.gov/nyc-resources/agencies.page">
+                                      <strong>Directory of City Agencies</strong>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a class="text-reset" href="https://a858-nycnotify.nyc.gov/notifynyc/">
+                                      <strong>Notify NYC</strong>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a class="text-reset"
+                                      href="https://www1.nyc.gov/connect/mobile-applications.page">
+                                      <strong>NYC Mobile Apps</strong>
+                                  </a>
+                              </li>
+                          </ul>
+                      </div>
+                      
+
+                      <div class="col-lg mb-3 mb-lg-0">
+
+                          <ul class="extensible-list">
+                              <li>
+                                  <a class="text-reset" href="https://www1.nyc.gov/home/contact-us.page">
+                                      <strong>Contact NYC Government</strong>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a class="text-reset" href="https://a856-citystore.nyc.gov/">
+                                      <strong>CityStore</strong>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a class="text-reset" href="https://www.nyc.gov/nyc-resources/nyc-maps.page">
+                                      <strong>Maps</strong>
+                                  </a>
+                              </li>
+                          </ul>
+
+                      </div>
+                      
+
+                      <div class="col-lg mb-3 mb-lg-0">
+
+                          <ul class="extensible-list">
+                              <li>
+                                  <a class="text-reset"
+                                      href="https://a127-ess.nyc.gov/psp/prdess/?cmd=login&languageCd=ENG&">
+                                      <strong>City Employees</strong>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a class="text-reset" href="https://www1.nyc.gov/connect/social-media.page">
+                                      <strong>Stay Connected</strong>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a class="text-reset"
+                                      href="https://www1.nyc.gov/nyc-resources/resident-toolkit.page">
+                                      <strong>Resident Toolkit</strong>
+                                  </a>
+                              </li>
+                          </ul>
+                      </div>
+                      
+
+                  </nav>
+              </div>
+              
+
+              <div class="col-md-6 col-lg-4">
+
+                  <a class="mb-2" href="https://www1.nyc.gov" title="Go to nyc.gov" target="_blank" rel="noopener noreferrer">
+                      
+                      <img class="mb-2" src="/IndicatorPublic/images/nyc-bubble-logo.svg" width="90" alt="NYC Logo">
+                      <span class="sr-only">(opens in a new tab)</span>
+                  </a>
+                  <p class="fs-sm">© City of New York. 2022 All Rights Reserved,<br>NYC is a trademark and service mark of the City of New
+                    York.</p>
+
+                  <ul class="extensible-list horizontal fs-sm d-print-none">
+                      <li>
+                          <a class="text-reset" href="https://www1.nyc.gov/home/privacy-policy.page">Privacy
+                              Policy</a>
+                      </li>
+                      <li>
+                          <a class="text-reset" href="https://www1.nyc.gov/home/terms-of-use.page">Terms
+                              of Use</a>
+                      </li>
+                      <li>
+                          <a class="text-reset" href="https://www1.nyc.gov/site/mopd/index.page"
+                              title="Mayor's Office for People with Disabilities">
+                              <span class="sr-only">Learn more about Digital Accessibility
+                                from the Mayor's Office for People with Disabilities.</span>
+                              <span class="fab fa-lg fa-accessible-icon"></span>
+                          </a>
+                      </li>
+                  </ul>
+
+              </div>
+              
+
+          </div>
+          
+
+      </div>
+      
+
+  </div>
+  
+
+</footer>
+
+
+<div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="searchModalLabel" data-pagefind-ignore="all">Search</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <link href=/IndicatorPublic/pagefind/pagefind-ui.css rel="stylesheet">
+            <script src=/IndicatorPublic/pagefind/pagefind-ui.js type="text/javascript"></script>
+            <div id="search"></div>
+            <script>
+
+                window.addEventListener('DOMContentLoaded', (event) => {
+
+                    new PagefindUI({
+                        element: "#search",
+                        showSubResults: true,
+                        showImages: false,
+                        baseUrl: baseURL,
+                        showEmptyFilters: true,
+                        debounceTimeoutMs: 500,
+                        
+                        processTerm: function (term) {
+
+                            gtag('event', 'search', {
+                                search_term: term
+                            });
+
+                            return term;
+
+                        },
+                        processResult: function (result) {
+
+                            
+                            
+                            
+
+                            
+
+                            result.meta.title = result.meta.title
+                                .replace(/&#(\d+);/g, ((match, dec) => `${String.fromCharCode(dec)}`))
+                                .replaceAll("&amp;", "&");
+
+                            
+
+                            result.sub_results.forEach(sub => {
+
+                                
+
+                                sub.url = sub.url.replace("#IndicatorID-", "?id=");
+
+                                
+
+                                sub.title = sub.title
+                                    .replace(/&#(\d+);/g, ((match, dec) => `${String.fromCharCode(dec)}`))
+                                    .replaceAll("&amp;", "&");
+
+                            });
+
+                            
+                            
+                            
+
+                            
+                            var allResults = document.getElementsByClassName('pagefind-ui__result-link');
+
+                            
+                            for (h = 0; h < allResults.length; h += 1) {
+
+                                allResults[h].setAttribute('onclick',"gtag('event', 'search_click', { page_viewed: '" + allResults[h].href + "' });");
+
+                            }
+
+                            
+
+                            
+                            
+
+                        }
+                    });
+
+                    
+
+                    
+
+                    const searchModal = document.getElementById('searchModal')
+                    const searchInput = document.getElementsByClassName('pagefind-ui__search-input')[0]
+
+                    $(searchModal).on('shown.bs.modal', () => {
+                        searchInput.focus();
+                        searchInput.select();
+                    })
+
+
+                });
+
+
+            </script>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+<script>
+
+
+</script>
+  
+
+
+<script
+  src="/IndicatorPublic/node_modules/popper.js/dist/umd/popper.min.4a9265d50608a5d0.js"
+  integrity="sha512-ubuT8Z88WxezgSqf3RLuNi5lmjstiJcyezx34yIU2gAHonIi27Na7atqzUZCOoY4CExaoFumzOsFQ2Ch&#43;I/HCw=="
+  crossorigin="anonymous"
+></script>
+<script
+  src="/IndicatorPublic/node_modules/bootstrap/dist/js/bootstrap.bundle.min.47b12e1c6fc26bc7.js"
+  integrity="sha512-igl8WEUuas9k5dtnhKqyyld6TzzRjvMqLC79jkgT3z02FvJyHAuUtyemm/P/jYSne1xwFI06ezQxEwweaiV7VA=="
+  crossorigin="anonymous"
+></script>
+
+
+<script>
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement(
+      {
+        pageLanguage: "en",
+      },
+      "google_translate_element"
+    );
+
+    
+    document
+      .querySelectorAll("div[class^=VI] svg")
+      .forEach((e) => (e.outerHTML = ""));
+  }
+</script>
+
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+<script>
+  document.querySelectorAll(".subscribe-link").forEach((el) => {
+    el.addEventListener("click", (e) => {
+      gtag("event", "click_subscribe", {
+        page: window.location.pathname,
+        place: e.target.dataset.subscribeClick,
+      });
+    });
+  });
+</script>
+<script
+  type="text/javascript"
+  src="/IndicatorPublic/js/main.e345555f1bc64916.js"
+  integrity="sha512-VSyeDrW59WeoY4CdiN/bnfwuUGLxqnrjE6u98ho0b9dzriZfX/YY2DIuK5a5W&#43;GzGcaB6w6nuBijxkhahLatWg=="
+></script>
+
+  
+  
+</body>
+</html>

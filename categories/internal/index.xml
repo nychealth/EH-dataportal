@@ -6,8 +6,15 @@
     <description>Recent content in Internal on Environment &amp; Health Data Portal</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 07 Jan 2025 08:49:22 -0400</lastBuildDate>
+    <lastBuildDate>Tue, 20 Jan 2026 08:49:22 -0400</lastBuildDate>
     <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/categories/internal/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Where does our data come from?</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/about/data-sources/</link>
+      <pubDate>Tue, 20 Jan 2026 08:49:22 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/about/data-sources/</guid>
+      <description>&lt;p&gt;The Environment and Health Data Portal hosts over 200 sets of measures from data sources that cover topics like air quality, climate, pests, housing, and much more. These data can tell us how environmental factors like housing, air quality, and socioeconomic status can shape health from neighborhood to neighborhood. But where does this data come from? How often is it updated? And how do we pick which datasets to feature?&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Making data visualizations more accessible</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/about/accessibility-updates/</link>

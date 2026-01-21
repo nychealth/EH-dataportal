@@ -6,7 +6,7 @@
     <description>Recent content in How We Work on Environment &amp; Health Data Portal</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 02 Sep 2025 07:56:00 -0400</lastBuildDate>
+    <lastBuildDate>Tue, 20 Jan 2026 08:49:22 -0400</lastBuildDate>
     <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/how-we-work/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Find your UHF neighborhood</title>
@@ -14,6 +14,13 @@
       <pubDate>Tue, 02 Sep 2025 07:56:00 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/find-your-uhf/</guid>
       <description>&lt;p&gt;Environmental health data can come at several different geographies, or neighborhood boundary schemes. Often, health data are available at a neighborhood boundary scheme called UHF42, which breaks up NYC into 42 neighborhoods (&lt;a href=&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/geographies/&#34;&gt;read more about UHF42 geographies&lt;/a&gt;).&lt;/p&gt;&#xA;&lt;p&gt;Sometimes, you may be looking for data for a Community District or a City Council District, but the data are only available by UHF42 neighborhood. Click on the Community District or a City Council District below to identify the overlapping UHFs, and get links to our Neighborhood Reports with data by UHF42 neighborhood.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Where does our data come from?</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/about/data-sources/</link>
+      <pubDate>Tue, 20 Jan 2026 08:49:22 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/about/data-sources/</guid>
+      <description>&lt;p&gt;The Environment and Health Data Portal hosts over 200 sets of measures from data sources that cover topics like air quality, climate, pests, housing, and much more. These data can tell us how environmental factors like housing, air quality, and socioeconomic status can shape health from neighborhood to neighborhood. But where does this data come from? How often is it updated? And how do we pick which datasets to feature?&lt;/p&gt;</description>
     </item>
     <item>
       <title>Making data visualizations more accessible</title>
