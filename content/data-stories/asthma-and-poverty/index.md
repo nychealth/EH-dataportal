@@ -38,8 +38,6 @@ related:
   {"src": "../../data-explorer/asthma/?id=2379", "text": "Asthma ED visits (age 5 to 17)"}
 ]` >}}
 
-data-explorer/economic-conditions/?id=103#display=summary
-
 Poverty affects health in many ways. In New York City, the story of asthma clearly illustrates this connection.
 
 To understand the connection between poverty and asthma, take a look at this map of poverty rates in New York City, below. The darker the color, the more residents living in poverty.
