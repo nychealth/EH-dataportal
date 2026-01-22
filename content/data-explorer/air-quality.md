@@ -31,12 +31,10 @@ indicators:
       - 2026
   - header: Citywide Regulatory Monitoring
     IndicatorID:
+      - 2449
       - 92
       - 57
       - 55
-      - 2449
-  - header: null
-    IndicatorID:
 related:
   - title: "Real-time air quality"
     url: "data-features/realtime-air-quality/"
