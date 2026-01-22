@@ -1,52 +1,86 @@
-{{/* de-chooser-modal.html */}} {{- $pages := where .Site.RegularPages.ByTitle
-"Section" "data-explorer-new" -}} {{- $half := div (len $pages | add 1) 2 -}}
+{{/* de-chooser-modal.html */}} 
+
+{{- $pages := where .Site.RegularPages.ByTitle "Section" "data-explorer-new" -}} 
+{{- $half := div (len $pages | add 1) 2 -}}
 
 <div class="col-md-6">
-  {{- range first $half $pages }} {{- if not .Params.hideFromRange }} {{/* Build
-  JSON for this page */}} {{- $indicatorsJSON := slice -}} {{- range
-  .Params.indicators }} {{- $indicatorsJSON = $indicatorsJSON | append (dict
-  "header" .header "indicators" .IndicatorID) -}} {{- end }} {{- $json :=
-  $indicatorsJSON | jsonify -}}
 
-  <div class="border-bottom pb-1 mb-1">
-    <a
-      href="#"
-      class="font-weight-bold"
-      data-indicators="{{ $json }}"
-      onclick="getIndicatorsForTopic(`{{ .Title }}`, this.dataset.indicators, `{{ .RelPermalink }}`)"
-    >
-      {{ .Title }}</a
-    >{{ with .Params.blurb }} <p style="font-size:14px" class=""> {{ . }} </p>{{ end }}
-  </div>
-  {{- end }} {{- end }}
+    {{- range first $half $pages }} 
+
+        {{- if not .Params.hideFromRange }} 
+
+            {{/* Build JSON for this page */}} 
+            
+            {{- $indicatorsJSON := slice -}} 
+            
+            {{- range .Params.indicators }} 
+                {{- $indicatorsJSON = $indicatorsJSON | append (dict "header" .header "indicators" .IndicatorID) -}} 
+            {{- end }} 
+            
+            {{- $json := $indicatorsJSON | jsonify -}}
+            
+            <div class="border-bottom pb-1 mb-1">
+                <a
+                    href="#"
+                    class="font-weight-bold"
+                    data-indicators="{{ $json }}"
+                    onclick="getIndicatorsForTopic(`{{ .Title }}`, this.dataset.indicators, `{{ .RelPermalink }}`)">
+                    {{ .Title }}
+                </a>
+
+                {{ with .Params.blurb }} <p style="font-size:14px" class=""> {{ . }} </p>{{ end }}
+
+            </div>
+        {{- end }} 
+    {{- end }}
 </div>
 
 <div class="col-md-6">
-  {{- range after $half $pages }} {{- if not .Params.hideFromRange }} {{/* Build
-  JSON for this page */}} {{- $indicatorsJSON := slice -}} {{- range
-  .Params.indicators }} {{- $indicatorsJSON = $indicatorsJSON | append (dict
-  "header" .header "indicators" .IndicatorID) -}} {{- end }} {{- $json :=
-  $indicatorsJSON | jsonify -}}
 
-  <div class="border-bottom pb-1 mb-1">
-    <a
-      href="#"
-      class="font-weight-bold"
-      data-indicators="{{ $json }}"
-      onclick="getIndicatorsForTopic(`{{ .Title }}`, this.dataset.indicators, `{{ .RelPermalink }}`)"
-    >
-      {{ .Title }}</a
-    >{{ with .Params.blurb }} <p style="font-size:14px" class=""> {{ . }} </p>{{ end }}
-  </div>
-  {{- end }} {{- end }}
+{{- range after $half $pages }} 
+
+    {{- if not .Params.hideFromRange }} 
+    
+        {{/* Build JSON for this page */}} 
+        
+        {{- $indicatorsJSON := slice -}} 
+
+        {{- range .Params.indicators }} 
+            {{- $indicatorsJSON = $indicatorsJSON | append (dict "header" .header "indicators" .IndicatorID) -}} 
+        {{- end }} 
+        
+        {{- $json := $indicatorsJSON | jsonify -}}
+        
+        <div class="border-bottom pb-1 mb-1">
+            <a
+                href="#"
+                class="font-weight-bold"
+                data-indicators="{{ $json }}"
+                onclick="getIndicatorsForTopic(`{{ .Title }}`, this.dataset.indicators, `{{ .RelPermalink }}`)">
+                {{ .Title }}
+            </a>
+            
+            {{ with .Params.blurb }} <p style="font-size:14px" class=""> {{ . }} </p>{{ end }}
+
+        </div>
+
+    {{- end }} 
+    
+{{- end }}
+
 </div>
 
-{{- range .Site.RegularPages.ByTitle }} {{- if and (eq .Section
-"data-explorer-new") .Params.hideFromRange }}
-<div class="col-6 mt-2 border-top pt-2">
-  <p class="mb-1">
-    <a href="{{ .RelPermalink }}">{{ .Title }}</a>{{ with .Params.blurb }}: {{ .
-    }}{{ end }}
-  </p>
-</div>
-{{- end }} {{- end }}
+{{- range .Site.RegularPages.ByTitle }} 
+
+    {{- if and (eq .Section "data-explorer-new") .Params.hideFromRange }}
+
+        <div class="col-6 mt-2 border-top pt-2">
+            <p class="mb-1">
+                <a href="{{ .RelPermalink }}">{{ .Title }}</a>{{ with .Params.blurb }}: {{ . }}{{ end }}
+            </p>
+        </div>
+
+    {{- end }} 
+
+{{- end }}
+

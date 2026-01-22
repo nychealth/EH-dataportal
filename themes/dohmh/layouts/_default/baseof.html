@@ -1,36 +1,36 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
-  {{- partial "head.html" . }}
-  {{ block "js_top" . -}}{{- end -}}
+    {{- partial "head.html" . }}
+    {{ block "js_top" . -}}{{- end -}}
 </head>
 
 {{/*  {{ warnf ( print ( printf "[%d] " math.Counter ) ( string .RelPermalink ) ) }}  */}}
 
 <body>
-
-  <!--
-    For data stories:
-    - Regular Pages (individual data stories) to have header-ds.html
-    - DS landing page & all others to have header.html
-  -->
-
-  {{- if .Params.headerDE -}}
-    {{- partial "header-de.html" . -}}
-  {{- else -}}
-    {{- partial "header.html" . -}}
-  {{- end -}}
-
-  <main id="skip-header-target" role="main" data-pagefind-body>
-    {{- block "main" . -}}{{- end -}}
-    <ul id="results"></ul>
-  </main>
-
-  {{- if not .Params.excludeFooter -}}
-    {{ partial "footer.html" . }}
-  {{- end -}}
-  {{ partial "js_bottom.html" }}
-  {{ block "js_bot" . }}{{ end }}
-
+    
+    <!--
+        For data stories:
+        - Regular Pages (individual data stories) to have header-ds.html
+        - DS landing page & all others to have header.html
+    -->
+    
+    {{- if .Params.headerDE -}}
+        {{- partial "header-de.html" . -}}
+    {{- else -}}
+        {{- partial "header.html" . -}}
+    {{- end -}}
+    
+    <main id="skip-header-target" role="main" data-pagefind-body>
+        {{- block "main" . -}}{{- end -}}
+        <ul id="results"></ul>
+    </main>
+    
+    {{- if not .Params.excludeFooter -}}
+        {{ partial "footer.html" . }}
+    {{- end -}}
+        {{ partial "js_bottom.html" }}
+    {{ block "js_bot" . }}{{ end }}
+    
 </body>
 </html>

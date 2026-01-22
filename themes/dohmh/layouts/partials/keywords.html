@@ -1,6 +1,7 @@
 <div class="related-border-sm pt-2" data-pagefind-ignore="all">
 {{- if .Params.keywords -}}
-<h5 class="font-weight-bold keywords fs-sm">Keywords:</h5>
+
+    <h5 class="font-weight-bold keywords fs-sm">Keywords:</h5>
     <div class="fs-xs">
         {{- range .Params.keywords -}}<a class="" href="{{ "keywords/" | relLangURL }}{{ . | urlize }}/">{{ . }}</a> |&#32;
         {{- end -}}

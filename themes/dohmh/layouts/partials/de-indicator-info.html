@@ -1,178 +1,178 @@
-            <!-- Upper left indicator detail box -->
-            <div class="position-absolute  de-main-details">
+<!-- Upper left indicator detail box -->
+<div class="position-absolute  de-main-details">
 
-                <!-- Mobile Indicator Header -->
-                <div class="bg-primary text-white px-2 py-1 w-full d-flex d-md-none" data-toggle="collapse" data-target="#detailsContent" aria-expanded="false" aria-controls="detailsContent" style="cursor: pointer;">
-                    <div>
-                        <div class="h6 font-weight-bold mb-0 main-heading indicator-name">Loading indicator...</div>
-                        <div class="font-weight-bold fs-xs" style="color: #FFED98;">Popular ★</div>
-                    </div>
-                    <i class="fas fa-plus ml-auto text-white toggle-icon" style="transition: opacity 0.3s ease; padding-top: 4px;"></i>
-                </div>
+    <!-- Mobile Indicator Header -->
+    <div class="bg-primary text-white px-2 py-1 w-full d-flex d-md-none" data-toggle="collapse" data-target="#detailsContent" aria-expanded="false" aria-controls="detailsContent" style="cursor: pointer;">
+        <div>
+            <div class="h6 font-weight-bold mb-0 main-heading indicator-name">Loading indicator...</div>
+            <div class="font-weight-bold fs-xs" style="color: #FFED98;">Popular ★</div>
+        </div>
+        <i class="fas fa-plus ml-auto text-white toggle-icon" style="transition: opacity 0.3s ease; padding-top: 4px;"></i>
+    </div>
 
-                <!-- Desktop Indicator Header (always visible) -->
-                <div class="bg-primary text-white px-2 py-1 w-full d-none d-md-flex">
-                    <div class="h6 font-weight-bold mb-0 indicator-name">Loading indicator...</div>
-                    <span class="ml-2 text-nowrap font-weight-bold flex-grow-1 text-right fs-xs" style="color: #FFED98;">Popular ★</span>
-                </div>
+    <!-- Desktop Indicator Header (always visible) -->
+    <div class="bg-primary text-white px-2 py-1 w-full d-none d-md-flex">
+        <div class="h6 font-weight-bold mb-0 indicator-name">Loading indicator...</div>
+        <span class="ml-2 text-nowrap font-weight-bold flex-grow-1 text-right fs-xs" style="color: #FFED98;">Popular ★</span>
+    </div>
 
-                <!-- Mobile Collapsible Content -->
-                <div id="detailsContent" class="collapse d-md-none">
-                    <div class="bg-white p-2 fs-sm">
-                        <p class="indicator-description">Loading indicator description...</p>
-                        <button type="button" class="border-0 text-primary bg-transparent hover-underline p-0" data-toggle="modal" data-target="#indicatorSelector">Change dataset ></button>
-                    </div>
+    <!-- Mobile Collapsible Content -->
+    <div id="detailsContent" class="collapse d-md-none">
+        <div class="bg-white p-2 fs-sm">
+            <p class="indicator-description">Loading indicator description...</p>
+            <button type="button" class="border-0 text-primary bg-transparent hover-underline p-0" data-toggle="modal" data-target="#indicatorSelector">Change dataset ></button>
+        </div>
 
-                    <div>
-                        <!-- Dropdown 1 -->
-                        <div class="card">
-                            <div class="card-header pb-0">
-                                <div class="dropdown fs-sm">
-                                    <div class="font-weight-bold mr-2 text-primary fs-sm mb-1">Measure: </div>
-                                    <button class="btn fs-sm d-flex align-items-center w-100 text-left bg-white font-weight-normal" type="button" id="dynamicDropdownButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <span class="flex-grow-1 measure-name">Estimated Annual Rate per 100,000</span>
-                                        <i class="fas fa-chevron-down ml-auto text-primary"></i>
-                                    </button>
-                                    <div class="dropdown-menu dropdown-menu-de w-100 border-none measures-holder" aria-labelledby="dynamicDropdownButton1">
-                                        <button class="dropdown-item" type="button" onclick="updateDropdownText(this)">Estimated Annual Rate per 100,000</button>
-                                        <button class="dropdown-item" type="button" onclick="updateDropdownText(this)">Another measure</button>
-                                        <button class="dropdown-item" type="button" onclick="updateDropdownText(this)">Another oops measure</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Dropdown 2 -->
-                        <div class="card">
-                            <div class="card-header pb-0">
-                                <div class="dropdown fs-sm">
-                                    <div class="font-weight-bold mr-2 text-primary fs-sm mb-1">Boundary: </div>
-                                    <button class="btn fs-sm d-flex align-items-center w-100 text-left bg-white font-weight-normal" type="button" id="dynamicDropdownButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <span class="flex-grow-1">Citywide</span>
-                                        <i class="fas fa-chevron-down ml-auto text-primary"></i>
-                                    </button>
-                                    <div class="dropdown-menu dropdown-menu-de w-100 border-none" aria-labelledby="dynamicDropdownButton2">
-                                        <button class="dropdown-item" type="button" onclick="updateDropdownText(this)">Citywide</button>
-                                        <button class="dropdown-item" type="button" onclick="updateDropdownText(this)">Another boundary</button>
-                                        <button class="dropdown-item" type="button" onclick="updateDropdownText(this)">Another boundary</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Dropdown 3 -->
-                        <div class="card">
-                            <div class="card-header pb-0">
-                                <div class="dropdown fs-sm">
-                                    <div class="font-weight-bold mr-2 text-primary fs-sm mb-1">Year: </div>
-                                    <button class="btn fs-sm d-flex align-items-center w-100 text-left bg-white font-weight-normal mb-2" type="button" id="dynamicDropdownButton3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <span class="flex-grow-1">2025</span>
-                                        <i class="fas fa-chevron-down ml-auto text-primary"></i>
-                                    </button>
-                                    <div class="dropdown-menu dropdown-menu-de w-100 border-none" aria-labelledby="dynamicDropdownButton3">
-                                        <button class="dropdown-item" type="button" onclick="updateDropdownText(this)">2025</button>
-                                        <button class="dropdown-item" type="button" onclick="updateDropdownText(this)">2024</button>
-                                        <button class="dropdown-item" type="button" onclick="updateDropdownText(this)">2023</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Desktop Content (always visible) -->
-                <div class="d-none d-md-block">
-                    <div class="bg-white p-2 fs-sm">
-                        <p class="indicator-description fs-sm">Loading indicator description... </p>
-                        <button type="button" class="border-0 text-primary bg-transparent hover-underline p-0" data-toggle="modal" data-target="#indicatorSelector">Change dataset ></button>
-                    </div>
-
-                    <div>
-                        <!-- Dropdown 1 -->
-                        <div class="card">
-                            <div class="card-header pb-0">
-                                <div class="dropdown fs-sm">
-                                    <div class="font-weight-bold mr-2 text-primary fs-sm mb-1">Measure: </div>
-                                    <button class="btn fs-sm d-flex align-items-center w-100 text-left bg-white font-weight-normal" type="button" id="dynamicDropdownButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <span class="flex-grow-1 measure-name">Change measure</span>
-                                        <i class="fas fa-chevron-down ml-auto text-primary"></i>
-                                    </button>
-                                    <div class="dropdown-menu dropdown-menu-de w-100 border-none measures-holder" aria-labelledby="dynamicDropdownButton1">
-                                        <button class="dropdown-item" type="button" onclick="updateDropdownText(this)">Estimated Annual Rate per 100,000</button>
-                                        <button class="dropdown-item" type="button" onclick="updateDropdownText(this)">Another measure</button>
-                                        <button class="dropdown-item" type="button" onclick="updateDropdownText(this)">Another measure</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Dropdown 2 -->
-                        <div class="card">
-                            <div class="card-header pb-0">
-                                <div class="dropdown fs-sm">
-                                    <div class="font-weight-bold mr-2 text-primary fs-sm mb-1">Boundary: </div>
-                                    <button class="btn fs-sm d-flex align-items-center w-100 text-left bg-white font-weight-normal" type="button" id="dynamicDropdownButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <span class="flex-grow-1">Change boundary</span>
-                                        <i class="fas fa-chevron-down ml-auto text-primary"></i>
-                                    </button>
-                                    <div class="dropdown-menu dropdown-menu-de w-100 border-none" aria-labelledby="dynamicDropdownButton2">
-                                        <button class="dropdown-item" type="button" onclick="updateDropdownText(this)">Citywide</button>
-                                        <button class="dropdown-item" type="button" onclick="updateDropdownText(this)">Another boundary</button>
-                                        <button class="dropdown-item" type="button" onclick="updateDropdownText(this)">Another boundary</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Dropdown 3 -->
-                        <div class="card">
-                            <div class="card-header pb-0">
-                                <div class="dropdown fs-sm">
-                                    <div class="font-weight-bold mr-2 text-primary fs-sm mb-1">Year: </div>
-                                    <button class="btn fs-sm d-flex align-items-center w-100 text-left bg-white font-weight-normal mb-2" type="button" id="dynamicDropdownButton3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <span class="flex-grow-1">Change time</span>
-                                        <i class="fas fa-chevron-down ml-auto text-primary"></i>
-                                    </button>
-                                    <div class="dropdown-menu dropdown-menu-de w-100 border-none" aria-labelledby="dynamicDropdownButton3">
-                                        <button class="dropdown-item" type="button" onclick="updateDropdownText(this)">2025</button>
-                                        <button class="dropdown-item" type="button" onclick="updateDropdownText(this)">2024</button>
-                                        <button class="dropdown-item" type="button" onclick="updateDropdownText(this)">2023</button>
-                                    </div>
-                                </div>
-                            </div>
+        <div>
+            <!-- Dropdown 1 -->
+            <div class="card">
+                <div class="card-header pb-0">
+                    <div class="dropdown fs-sm">
+                        <div class="font-weight-bold mr-2 text-primary fs-sm mb-1">Measure: </div>
+                        <button class="btn fs-sm d-flex align-items-center w-100 text-left bg-white font-weight-normal" type="button" id="dynamicDropdownButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="flex-grow-1 measure-name">Estimated Annual Rate per 100,000</span>
+                            <i class="fas fa-chevron-down ml-auto text-primary"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-de w-100 border-none measures-holder" aria-labelledby="dynamicDropdownButton1">
+                            <button class="dropdown-item" type="button" onclick="updateDropdownText(this)">Estimated Annual Rate per 100,000</button>
+                            <button class="dropdown-item" type="button" onclick="updateDropdownText(this)">Another measure</button>
+                            <button class="dropdown-item" type="button" onclick="updateDropdownText(this)">Another oops measure</button>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Legend overlay -->
-            <div class="position-absolute de-legend">
-
-                <!-- Labels -->
-                <div class="d-flex justify-content-between fs-sm mb-1">
-                    <div><span id="hoveredGeo">Hover for details</span>:</div> 
-                    <div class="font-weight-bold">
-                        <span id="hoveredValue">
-                            <!-- Value -->
-                        </span> 
-                        <span id="hoveredUnits">
-                            <!-- Units -->
-                        </span>
+            <!-- Dropdown 2 -->
+            <div class="card">
+                <div class="card-header pb-0">
+                    <div class="dropdown fs-sm">
+                        <div class="font-weight-bold mr-2 text-primary fs-sm mb-1">Boundary: </div>
+                        <button class="btn fs-sm d-flex align-items-center w-100 text-left bg-white font-weight-normal" type="button" id="dynamicDropdownButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="flex-grow-1">Citywide</span>
+                            <i class="fas fa-chevron-down ml-auto text-primary"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-de w-100 border-none" aria-labelledby="dynamicDropdownButton2">
+                            <button class="dropdown-item" type="button" onclick="updateDropdownText(this)">Citywide</button>
+                            <button class="dropdown-item" type="button" onclick="updateDropdownText(this)">Another boundary</button>
+                            <button class="dropdown-item" type="button" onclick="updateDropdownText(this)">Another boundary</button>
+                        </div>
                     </div>
                 </div>
-
-                <!-- Gradient, min/max, and tick -->
-                <div class="viridis-wrapper position-relative">
-                    <div class="viridis-rect" role="img" aria-label="Rectangle filled with Viridis color scale"></div>
-
-                    <!-- Overlayed labels and tick -->
-                    <div class="legend-min">
-                        <span id="minVal">Min</span>
-                    </div>
-                    <div class="legend-max">
-                        <span id="maxVal">Max</span>
-                    </div>
-                    <div class="viridis-tick" id="legend-tick"></div>
-                </div>
-
             </div>
+
+            <!-- Dropdown 3 -->
+            <div class="card">
+                <div class="card-header pb-0">
+                    <div class="dropdown fs-sm">
+                        <div class="font-weight-bold mr-2 text-primary fs-sm mb-1">Year: </div>
+                        <button class="btn fs-sm d-flex align-items-center w-100 text-left bg-white font-weight-normal mb-2" type="button" id="dynamicDropdownButton3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="flex-grow-1">2025</span>
+                            <i class="fas fa-chevron-down ml-auto text-primary"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-de w-100 border-none" aria-labelledby="dynamicDropdownButton3">
+                            <button class="dropdown-item" type="button" onclick="updateDropdownText(this)">2025</button>
+                            <button class="dropdown-item" type="button" onclick="updateDropdownText(this)">2024</button>
+                            <button class="dropdown-item" type="button" onclick="updateDropdownText(this)">2023</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Desktop Content (always visible) -->
+    <div class="d-none d-md-block">
+        <div class="bg-white p-2 fs-sm">
+            <p class="indicator-description fs-sm">Loading indicator description... </p>
+            <button type="button" class="border-0 text-primary bg-transparent hover-underline p-0" data-toggle="modal" data-target="#indicatorSelector">Change dataset ></button>
+        </div>
+
+        <div>
+            <!-- Dropdown 1 -->
+            <div class="card">
+                <div class="card-header pb-0">
+                    <div class="dropdown fs-sm">
+                        <div class="font-weight-bold mr-2 text-primary fs-sm mb-1">Measure: </div>
+                        <button class="btn fs-sm d-flex align-items-center w-100 text-left bg-white font-weight-normal" type="button" id="dynamicDropdownButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="flex-grow-1 measure-name">Change measure</span>
+                            <i class="fas fa-chevron-down ml-auto text-primary"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-de w-100 border-none measures-holder" aria-labelledby="dynamicDropdownButton1">
+                            <button class="dropdown-item" type="button" onclick="updateDropdownText(this)">Estimated Annual Rate per 100,000</button>
+                            <button class="dropdown-item" type="button" onclick="updateDropdownText(this)">Another measure</button>
+                            <button class="dropdown-item" type="button" onclick="updateDropdownText(this)">Another measure</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dropdown 2 -->
+            <div class="card">
+                <div class="card-header pb-0">
+                    <div class="dropdown fs-sm">
+                        <div class="font-weight-bold mr-2 text-primary fs-sm mb-1">Boundary: </div>
+                        <button class="btn fs-sm d-flex align-items-center w-100 text-left bg-white font-weight-normal" type="button" id="dynamicDropdownButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="flex-grow-1">Change boundary</span>
+                            <i class="fas fa-chevron-down ml-auto text-primary"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-de w-100 border-none" aria-labelledby="dynamicDropdownButton2">
+                            <button class="dropdown-item" type="button" onclick="updateDropdownText(this)">Citywide</button>
+                            <button class="dropdown-item" type="button" onclick="updateDropdownText(this)">Another boundary</button>
+                            <button class="dropdown-item" type="button" onclick="updateDropdownText(this)">Another boundary</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dropdown 3 -->
+            <div class="card">
+                <div class="card-header pb-0">
+                    <div class="dropdown fs-sm">
+                        <div class="font-weight-bold mr-2 text-primary fs-sm mb-1">Year: </div>
+                        <button class="btn fs-sm d-flex align-items-center w-100 text-left bg-white font-weight-normal mb-2" type="button" id="dynamicDropdownButton3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="flex-grow-1">Change time</span>
+                            <i class="fas fa-chevron-down ml-auto text-primary"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-de w-100 border-none" aria-labelledby="dynamicDropdownButton3">
+                            <button class="dropdown-item" type="button" onclick="updateDropdownText(this)">2025</button>
+                            <button class="dropdown-item" type="button" onclick="updateDropdownText(this)">2024</button>
+                            <button class="dropdown-item" type="button" onclick="updateDropdownText(this)">2023</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Legend overlay -->
+<div class="position-absolute de-legend">
+
+    <!-- Labels -->
+    <div class="d-flex justify-content-between fs-sm mb-1">
+        <div><span id="hoveredGeo">Hover for details</span>:</div> 
+        <div class="font-weight-bold">
+            <span id="hoveredValue">
+                <!-- Value -->
+            </span> 
+            <span id="hoveredUnits">
+                <!-- Units -->
+            </span>
+        </div>
+    </div>
+
+    <!-- Gradient, min/max, and tick -->
+    <div class="viridis-wrapper position-relative">
+        <div class="viridis-rect" role="img" aria-label="Rectangle filled with Viridis color scale"></div>
+
+        <!-- Overlayed labels and tick -->
+        <div class="legend-min">
+            <span id="minVal">Min</span>
+        </div>
+        <div class="legend-max">
+            <span id="maxVal">Max</span>
+        </div>
+        <div class="viridis-tick" id="legend-tick"></div>
+    </div>
+
+</div>

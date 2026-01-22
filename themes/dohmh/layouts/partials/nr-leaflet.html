@@ -12,11 +12,11 @@
     // ---------- Establish initial variables ---------- // 
     // --------------------------------------------------------------------------------------------------- // 
     
-    var geocode = `{{ .Params.geocode }}`
+    let geocode = `{{ .Params.geocode }}`;
     
-    var lat = 40.715554;
-    var lng = -74.0026642;
-    var zoom = 10;
+    let lat = 40.715554;
+    let lng = -74.0026642;
+    let zoom = 10;
     
     // --------------------------------------------------------------------------------------------------- // 
     // ---------- Initialize map ---------- // 
@@ -193,14 +193,14 @@
     // ---------- this powers report and neighborhood identification, and subsequent navigation ---------- // 
     // --------------------------------------------------------------------------------------------------- // 
     
-    var intendedDestinationName // this needs to be declared even if it's not defined (it's used on the home page)
+    let intendedDestinationName // this needs to be declared even if it's not defined (it's used on the home page)
     
     // console.log('*** GETTING TOPIC AND NEIGHBORHOOD TO POWER NAVIGATION')
     
-    var chosenNeighborhood; // this is for the neighborhood you are *on*
-    var chosenGeo = {{ .Params.geocode }};
-    var chosenReport;       // this is the report that you are *on*
-    var chosenButton;       // this is a selected button, on NR home or Topic Landing
+    let chosenNeighborhood; // this is for the neighborhood you are *on*
+    let chosenGeo = {{ .Params.geocode }};
+    let chosenReport;       // this is the report that you are *on*
+    let chosenButton;       // this is a selected button, on NR home or Topic Landing
     
     // Javascript for nav buttons:
     const topicSlugs = {
@@ -220,7 +220,7 @@
         console.log("** getReportAndNeighborhood");
 
         const url = window.location.pathname.match(/neighborhood-reports.*/)[0]
-        var urlPieces = url.split("/")
+        let urlPieces = url.split("/")
 
         // console.log('urlPieces', urlPieces)
         

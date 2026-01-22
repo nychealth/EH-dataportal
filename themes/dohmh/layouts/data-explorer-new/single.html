@@ -1,11 +1,5 @@
 {{- define "main" -}}
 
-<style>
-
-
-</style>
-
-
 <article class="container-fluid de-wrapper" id="skip-header-target" data-pagefind-ignore="all">
 
     <section>
@@ -13,7 +7,6 @@
         <div class="row position-relative" style="z-index: 2;">
 
             {{- partial "de-indicator-info" . -}}
-
 
             {{- partial "de-tabs" . -}}
 
@@ -30,76 +23,80 @@
 {{- partial "de-print-chart-modal" . -}}
 
 <!-- Populate indicator selection modal for this page -->
+
 {{- $indicatorsJSON := slice -}}
+
 {{- range .Params.indicators }}
     {{- $indicatorsJSON = $indicatorsJSON | append (dict "header" .header "indicators" .IndicatorID) -}}
 {{- end }}
+
 {{- $json := $indicatorsJSON | jsonify -}}
 
 
 <!-- JAVASCRIPT FILES -->
-{{- $geo            := resources.Get "js/data-explorer-new/geography.js" -}}
-{{- $geo_secure     := $geo | partial "short-fingerprint.html" -}}
+{{- $geo        := resources.Get "js/data-explorer-new/geography.js" -}}
+{{- $geo_secure := $geo | partial "short-fingerprint.html" -}}
 <script type="text/javascript" src="{{ $geo_secure.RelPermalink }}" integrity="{{ $geo_secure.Data.Integrity }}"></script>
 
-{{- $choroData            := resources.Get "js/data-explorer-new/choroData.js" -}}
-{{- $choroData_secure     := $choroData | partial "short-fingerprint.html" -}}
+{{- $choroData        := resources.Get "js/data-explorer-new/choroData.js" -}}
+{{- $choroData_secure := $choroData | partial "short-fingerprint.html" -}}
 <script type="text/javascript" src="{{ $choroData_secure.RelPermalink }}" integrity="{{ $choroData_secure.Data.Integrity }}"></script>
 
-{{- $choro            := resources.Get "js/data-explorer-new/choro.js" -}}
-{{- $choro_secure     := $choro | partial "short-fingerprint.html" -}}
+{{- $choro        := resources.Get "js/data-explorer-new/choro.js" -}}
+{{- $choro_secure := $choro | partial "short-fingerprint.html" -}}
 <script type="text/javascript" src="{{ $choro_secure.RelPermalink }}" integrity="{{ $choro_secure.Data.Integrity }}"></script>
 
-{{- $311            := resources.Get "js/data-explorer-new/311.js" -}}
-{{- $311_secure     := $311 | partial "short-fingerprint.html" -}}
+{{- $311        := resources.Get "js/data-explorer-new/311.js" -}}
+{{- $311_secure := $311 | partial "short-fingerprint.html" -}}
 <script type="text/javascript" src="{{ $311_secure.RelPermalink }}" integrity="{{ $311_secure.Data.Integrity }}"></script>
 
-{{- $selector            := resources.Get "js/data-explorer-new/topic-indicator-selector.js" -}}
-{{- $selector_secure     := $selector | partial "short-fingerprint.html" -}}
+{{- $selector        := resources.Get "js/data-explorer-new/topic-indicator-selector.js" -}}
+{{- $selector_secure := $selector | partial "short-fingerprint.html" -}}
 <script type="text/javascript" src="{{ $selector_secure.RelPermalink }}" integrity="{{ $selector_secure.Data.Integrity }}"></script>
 
-{{- $menus            := resources.Get "js/data-explorer-new/menu.js" -}}
-{{- $menus_secure     := $menus | partial "short-fingerprint.html" -}}
+{{- $menus        := resources.Get "js/data-explorer-new/menu.js" -}}
+{{- $menus_secure := $menus | partial "short-fingerprint.html" -}}
 <script type="text/javascript" src="{{ $menus_secure.RelPermalink }}" integrity="{{ $menus_secure.Data.Integrity }}"></script>
 
-{{- $bar              := resources.Get "js/data-explorer-new/bar.js" -}}
-{{- $bar_secure       := $bar | partial "short-fingerprint.html" -}}
+{{- $bar        := resources.Get "js/data-explorer-new/bar.js" -}}
+{{- $bar_secure := $bar | partial "short-fingerprint.html" -}}
 <script type="text/javascript" src="{{ $bar_secure.RelPermalink }}" integrity="{{ $bar_secure.Data.Integrity }}"></script>
 
-{{- $trend              := resources.Get "js/data-explorer-new/trend.js" -}}
-{{- $trend_secure       := $trend | partial "short-fingerprint.html" -}}
+{{- $trend        := resources.Get "js/data-explorer-new/trend.js" -}}
+{{- $trend_secure := $trend | partial "short-fingerprint.html" -}}
 <script type="text/javascript" src="{{ $trend_secure.RelPermalink }}" integrity="{{ $trend_secure.Data.Integrity }}"></script>
 
-{{- $correlate              := resources.Get "js/data-explorer-new/correlate.js" -}}
-{{- $correlate_secure       := $correlate | partial "short-fingerprint.html" -}}
+{{- $correlate        := resources.Get "js/data-explorer-new/correlate.js" -}}
+{{- $correlate_secure := $correlate | partial "short-fingerprint.html" -}}
 <script type="text/javascript" src="{{ $correlate_secure.RelPermalink }}" integrity="{{ $correlate_secure.Data.Integrity }}"></script>
 
-{{- $table              := resources.Get "js/data-explorer-new/table.js" -}}
-{{- $table_secure       := $table | partial "short-fingerprint.html" -}}
+{{- $table        := resources.Get "js/data-explorer-new/table.js" -}}
+{{- $table_secure := $table | partial "short-fingerprint.html" -}}
 <script type="text/javascript" src="{{ $table_secure.RelPermalink }}" integrity="{{ $table_secure.Data.Integrity }}"></script>
 
 <script>
-// Hugo JSON becomes a real JS object
-const these_indicators = {{ $json | safeJS }};
+    // Hugo JSON becomes a real JS object
+    const these_indicators = {{ $json | safeJS }};
 
-// Immediately call your function
-printIndicators(these_indicators, "{{ .RelPermalink }}");
+    // Immediately call your function
+    printIndicators(these_indicators, "{{ .RelPermalink }}");
 
-function updateDropdownText(clickedItem) {
-    // Find the parent dropdown and its button
-    const dropdown = clickedItem.closest('.dropdown');
-    const button = dropdown.querySelector('button[id^="dynamicDropdownButton"]');
+    function updateDropdownText(clickedItem) {
+        // Find the parent dropdown and its button
+        const dropdown = clickedItem.closest('.dropdown');
+        const button = dropdown.querySelector('button[id^="dynamicDropdownButton"]');
 
-    // Update only the span text content, preserving the icon
-    const span = button.querySelector('span');
-    span.textContent = clickedItem.textContent;
+        // Update only the span text content, preserving the icon
+        const span = button.querySelector('span');
+        span.textContent = clickedItem.textContent;
 
-    // Close the dropdown
-    const dropdownMenu = dropdown.querySelector('.dropdown-menu');
-    dropdownMenu.classList.remove('show');
-}
+        // Close the dropdown
+        const dropdownMenu = dropdown.querySelector('.dropdown-menu');
+        dropdownMenu.classList.remove('show');
+    }
 
-checkURL()
+    checkURL()
+    
 </script>
 
 {{ end }}

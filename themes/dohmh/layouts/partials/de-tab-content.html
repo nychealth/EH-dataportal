@@ -1,5 +1,6 @@
 <!-- Tab content -->
 <div class="tab-content bg-white pt-0" id="v-pills-tabContent">
+
     <!-- Bar -->
     <div class="tab-pane relative fade" id="v-pills-bar" role="tabpanel" aria-labelledby="v-pills-bar-tab">
         <div class="bg-white d-none d-md-block bl50" style="margin-left: -32px;">
@@ -161,7 +162,9 @@
 </div>
 
 <script>
+
     // Toggle tab active state when clicking an already-active tab
+
     document.addEventListener('DOMContentLoaded', function() {
         const tabLinks = document.querySelectorAll('.nav-link[data-toggle="pill"]');
 
@@ -194,6 +197,7 @@
         });
 
         // Add a separate listener to ensure container is visible when clicking any tab
+
         document.addEventListener('click', function(e) {
             if (e.target.closest('.nav-link[data-toggle="pill"]')) {
                 const tabContent = document.querySelector('#v-pills-tabContent');
@@ -211,6 +215,7 @@
     });
 
     // Function to close a specific tab pane
+
     function closeTabPane(paneId) {
         const targetPane = document.querySelector('#' + paneId);
         const targetTab = document.querySelector('[href="#' + paneId + '"]');
@@ -232,6 +237,7 @@
     }
 
     // Mobile accordion functionality
+
     document.addEventListener('DOMContentLoaded', function() {
         const mobileAccordionHeader = document.querySelector('.bg-primary[data-toggle="collapse"]');
         const detailsContent = document.querySelector('#detailsContent');
@@ -275,6 +281,7 @@
     });
 
     // Panel state monitoring for has-open-panel class
+
     document.addEventListener('DOMContentLoaded', function() {
         const deTabsElement = document.querySelector('.de-tabs');
         const panelIds = ['v-pills-bar', 'v-pills-table', 'v-pills-trends', 'v-pills-correlate', 'v-pills-ds'];
@@ -344,40 +351,41 @@
 
 
 
-    $(document).ready(function() {
-  const displayMap = {
-    'v-pills-bar': 'bar',
-    'v-pills-trends': 'trend',
-    'v-pills-correlate': 'correlate',
-    'v-pills-table': 'table',
-    'v-pills-ds': 'source'
-  };
-
-  // When a tab becomes active, update the hash
-  $('.nav-link[data-toggle="pill"]').on('shown.bs.tab', function (e) {
-    const targetId = $(e.target).attr('href').replace('#', '');
-    const displayValue = displayMap[targetId];
-    if (displayValue) {
-      history.replaceState(null, '', `#display=${displayValue}`);
+$(document).ready(function() {
+    const displayMap = {
+        'v-pills-bar': 'bar',
+        'v-pills-trends': 'trend',
+        'v-pills-correlate': 'correlate',
+        'v-pills-table': 'table',
+        'v-pills-ds': 'source'
+    };
+    
+    // When a tab becomes active, update the hash
+    $('.nav-link[data-toggle="pill"]').on('shown.bs.tab', function (e) {
+        const targetId = $(e.target).attr('href').replace('#', '');
+        const displayValue = displayMap[targetId];
+        if (displayValue) {
+            history.replaceState(null, '', `#display=${displayValue}`);
+        }
+    });
+    
+    // On page load, open the correct tab if hash exists. Currently has sizing issues.
+    /*
+    const hash = window.location.hash;
+    if (hash.startsWith('#display=')) {
+        const value = hash.replace('#display=', '');
+        const match = Object.entries(displayMap).find(([id, val]) => val === value);
+        if (match) {
+            const [panelId] = match;
+            const $tab = $(`.nav-link[href="#${panelId}"]`);
+            if ($tab.length) {
+                $tab.tab('show');
+                updateChartPlotSize()
+            }
+        }
     }
-  });
-
-  // On page load, open the correct tab if hash exists. Currently has sizing issues.
-  /*
-  const hash = window.location.hash;
-  if (hash.startsWith('#display=')) {
-    const value = hash.replace('#display=', '');
-    const match = Object.entries(displayMap).find(([id, val]) => val === value);
-    if (match) {
-      const [panelId] = match;
-      const $tab = $(`.nav-link[href="#${panelId}"]`);
-      if ($tab.length) {
-        $tab.tab('show');
-        updateChartPlotSize()
-      }
-    }
-  }
-  */
-
+    */
+    
 });
+
 </script>

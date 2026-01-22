@@ -10,7 +10,6 @@
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-
         gtag('config', 'G-64BWDRHRGB');
     </script>
 
@@ -32,7 +31,6 @@
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-
         gtag('config', 'G-PB98MPZ31B');
     </script>
 
@@ -86,7 +84,7 @@
 
 {{- if .Params.mapLib }}
     <!-- nyc-lib css (for maps in the core framework)-->
-    <link href="https://maps.nyc.gov/nyc-lib/v1.2.79/css/nyc-basic-lib.css" rel="stylesheet">
+    <link href={{ relURL "css/nyc-basic-lib-v1.2.79.css" }} rel="stylesheet">
 {{- end }}
 
 
@@ -135,7 +133,7 @@
 
 {{- /*  Call all data libraries if it's not a section page, except for Neighborhood Reports  */}}
 
-{{ if or (eq .Kind "page") (eq .Section "neighborhood-reports") }}
+{{ if or (eq .Kind "page") (eq .Section "neighborhood-reports") (eq .Section "data-explorer-new") }}
 
     {{- /*  VegaLite  */}}
 
@@ -182,7 +180,9 @@
     {{- /* LEAFLET */}}
 
     <!-- TopoJSON client -->
-    <script src="https://unpkg.com/topojson-client@3"></script>
+    {{/*  <script src="https://unpkg.com/topojson-client@3"></script>  */}}
+    {{- $topojson_js := resources.Get "node_modules/topojson-client/dist/topojson-client.min.js" | partial "short-fingerprint.html" }}
+    <script type="text/javascript" src="{{ $topojson_js.RelPermalink }}" integrity="{{ $topojson_js.Data.Integrity }}"></script>
 
     <!-- UHF42 neighborhood list javascript -->
     {{- $uhflist_js := resources.Get "js/uhflist.js" | partial "short-fingerprint.html" -}}

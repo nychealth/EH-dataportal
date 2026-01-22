@@ -9,29 +9,28 @@
 
 <!-- Hidden, accessible list of clickable neighborhoods: rendered by JavaScript -->
 <div class="row sr-only">
-<h2>Select neighborhood</h2>
+    <h2>Select neighborhood</h2>
     <ul id="neighborhoodList">
-
     </ul>
 </div>
 
 <script>
     // populate accessible neighborhood-selection
-    var ul = document.getElementById("neighborhoodList");
-    var ul2 = document.getElementById("neighborhoodList2");
-
+    let ul = document.getElementById("neighborhoodList");
+    let ul2 = document.getElementById("neighborhoodList2");
+    
     neighborhoods.forEach(function (neighborhood) {
-    var li = document.createElement("li");
-    li.innerHTML = "<a href='" + {{ relURL "neighborhood-reports/" }} + neighborhood.page_name + "/" + "'>" + neighborhood.UHF_name + "</a>: " + neighborhood.Zipcodes
-    ul.appendChild(li);
-    ul2.appendChild(li)
+        let li = document.createElement("li");
+        li.innerHTML = "<a href='" + {{ relURL "neighborhood-reports/" }} + neighborhood.page_name + "/" + "'>" + neighborhood.UHF_name + "</a>: " + neighborhood.Zipcodes
+        ul.appendChild(li);
+        ul2.appendChild(li)
     });
-
+    
     function showNeighborhoods() {
+    console.log("** showNeighborhoods");
         document.getElementById('showNeighbs').classList.toggle('hide')
         document.getElementById('showNeighbs').classList.toggle('show')
         let button = document.querySelector('.neighborhood-list-button');
         button.classList.toggle('active');
-
     }
 </script>

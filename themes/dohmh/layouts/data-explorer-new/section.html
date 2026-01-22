@@ -6,7 +6,6 @@
 
         <!-- Section.html doesn't have the left-side indicator box and legend overlays-->
 
-
         <!-- For visual continuity, Section.html has the right-side green bar, but no tab content -->
 
         <div class="row position-relative" style="z-index: 2;">
@@ -39,28 +38,24 @@
 
 
 <script>
-$(document).ready(function() {
-  // Add ?home=true to URL (same as before)
-  const url = new URL(window.location.href);
-  url.searchParams.set('home', 'true');
-  window.history.replaceState({}, '', url);
-
-  // Fire both modals on page load
-  $('#topicSelector').modal('show');
-
-
-  // Reopen each if closed or dismissed
-  $('#topicSelector').on('hidden.bs.modal', function () {
-    $('#topicSelector').modal('show');
-  });
-
-  $('#indicatorSelector').on('hidden.bs.modal', function () {
-    $('#indicatorSelector').modal('show');
-  });
-});
+    $(document).ready(function() {
+        // Add ?home=true to URL (same as before)
+        const url = new URL(window.location.href);
+        url.searchParams.set('home', 'true');
+        window.history.replaceState({}, '', url);
+        
+        // Fire both modals on page load
+        $('#topicSelector').modal('show');
+        
+        // Reopen each if closed or dismissed
+        $('#topicSelector').on('hidden.bs.modal', function () {
+            $('#topicSelector').modal('show');
+        });
+        
+        $('#indicatorSelector').on('hidden.bs.modal', function () {
+            $('#indicatorSelector').modal('show');
+        });
+    });
 </script>
-
-
-
 
 {{ end }}

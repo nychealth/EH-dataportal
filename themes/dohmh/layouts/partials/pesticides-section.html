@@ -4,40 +4,44 @@
 
 
 <div class="card accordion-item border">
-  <a class="card-header font-weight-bold collapse"
-     id="acc-button-{{ $i }}"
-     data-toggle="collapse"
-     href="#panel-acc-button-{{ $i }}"
-     role="tab"
-     aria-expanded="false"
-     aria-controls="panel-acc-button-{{ $i }}">
-    <span class="title" role="heading" aria-level="3">
-      {{ $p.Title }}
-    </span>
-  </a>
-  <div class="collapse"
-       id="panel-acc-button-{{ $i }}"
-       role="tabpanel"
-       aria-labelledby="acc-button-{{ $i }}"
-       data-parent="#sectionsAccordion">
-    <div class="bg-white text-black p-2">
-      <p>{{ $p.Content }}</p>
+    <a 
+        class="card-header font-weight-bold collapse"
+        id="acc-button-{{ $i }}"
+        data-toggle="collapse"
+        href="#panel-acc-button-{{ $i }}"
+        role="tab"
+        aria-expanded="false"
+        aria-controls="panel-acc-button-{{ $i }}">
+
+        <span class="title" role="heading" aria-level="3">
+            {{ $p.Title }}
+        </span>
+    </a>
+    <div 
+        class="collapse"
+        id="panel-acc-button-{{ $i }}"
+        role="tabpanel"
+        aria-labelledby="acc-button-{{ $i }}"
+        data-parent="#sectionsAccordion">
+
+        <div class="bg-white text-black p-2">
+            <p>{{ $p.Content }}</p>
+    
+            <p class="font-weight-bold">Types of pesticides used by {{ $p.Params.filterBy }}:</p>
+            
+            <div id="table-{{ $i }}"></div>
+            
+            <hr class="my-2">
         
-      <p class="font-weight-bold">Types of pesticides used by {{ $p.Params.filterBy }}:</p>
-
-      <div id="table-{{ $i }}"></div>
-
-      <hr class="my-2">
-
-      <p class="fs-sm"><a href="#appendices">All agency pesticide products used in <span class="reportingYearPrint"></span> are available for download in Appendix 2</a>.</p>
-
-      <script>
-          // event so that this script is only fired once the Agency Data are loaded
-          document.addEventListener("agencyDataReady", function() {
-            renderAgencyTable('{{ $p.Params.filterBy }}','table-{{ $i }}','{{ $p.Params.noDataProvided }}')
-          });
-      </script>
-
+            <p class="fs-sm"><a href="#appendices">All agency pesticide products used in <span class="reportingYearPrint"></span> are available for download in Appendix 2</a>.</p>
+            
+            <script>
+                // event so that this script is only fired once the Agency Data are loaded
+                document.addEventListener("agencyDataReady", function() {
+                    renderAgencyTable('{{ $p.Params.filterBy }}','table-{{ $i }}','{{ $p.Params.noDataProvided }}')
+                });
+            </script>
+    
+        </div>
     </div>
-  </div>
 </div>

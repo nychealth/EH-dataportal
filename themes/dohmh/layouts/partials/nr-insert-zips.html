@@ -9,5 +9,4 @@
 
 {{- $zip_codes := ( index ( where $uhflist "page_name" $neighborhood_dir ) 0 "Zipcodes" ) -}}
 
-
 <span id="zips">{{- $zip_codes -}}.</span>
