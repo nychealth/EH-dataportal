@@ -4,7 +4,7 @@ console.log(">> menu.js");
 
 async function printMenus(x) {
     
-    console.log('Menus running')
+    console.log('* printMenus')
     
     // Ensure metadata are loaded
     const data = await ensureIndicatorsLoaded('printing measure menu');
@@ -27,7 +27,7 @@ async function printMenus(x) {
 
 // THIS IS THE MENU-STYLING FUNCTION - IT TAKES IN AN ARRAY OF OPTIONS/ITEMS, THE DESTINATION ELEMENT, AND THE OPTION TYPE
 
-function styleAndPrintMenu(items, destination, type) {
+    console.log("* styleAndPrintMenu");
     
     // Select *all* matching containers
     const containers = document.querySelectorAll(destination);
@@ -63,6 +63,6 @@ function styleAndPrintMenu(items, destination, type) {
 // This starts to step on Measure.JS's toes a little bit - but this is a chance measure function that right now, runs off of dropdown/button click, and logs to the console. 
 // "Type" will be any option: geo, timeperiod, measure, etc. 
 
-function changeMeasure(type, measureID) {
+    console.log("* changeMeasure");
     console.log(`change - ${type}: ${measureID}`);
 }

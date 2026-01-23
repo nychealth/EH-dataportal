@@ -8,7 +8,7 @@ const renderBar = (
     data, 
     metadata
 ) => {
-    console.log('Running renderBar()')
+    console.log('* renderBar')
     
     var barSpec = {
         "$schema": "https://vega.github.io/schema/vega-lite/v5.json",

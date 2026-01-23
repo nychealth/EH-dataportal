@@ -1,6 +1,8 @@
 console.log('>> correlate.js')
 
 const renderCorrelate = () => {
+
+    console.log('* renderCorrelate')
     
     var correlateSpec = {
         "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
