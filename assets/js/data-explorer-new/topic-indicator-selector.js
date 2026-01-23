@@ -22,17 +22,31 @@ const indicatorsPromise = fetch(`${data_repo}${data_branch}/indicators/metadata/
 
 // Waits for indicators to be ready
 
-async function ensureIndicatorsLoaded(x) {
-    if (indicators) return indicators; 
-    console.log("Waiting for indicators to load for " + x);
-    return await indicatorsPromise; 
+const ensureIndicatorsLoaded = async (topic) => {
+
+    console.log("* ensureIndicatorsLoaded");
+
+    if (indicators) {
+
+        return indicators; 
+
+    } else {
+
+        console.log("Waiting for indicators to load for " + topic);
+        
+        return await indicatorsPromise; 
+
+    }
+
 }
 
 // --------------------------------------------------------
 // When a topic is selected, show indicator menu modal, and print indicators
 // --------------------------------------------------------
 
-function getIndicatorsForTopic(title, indicatorsJSON, dest) {
+const getIndicatorsForTopic = (title, indicatorsJSON, dest) => {
+
+    console.log("* getIndicatorsForTopic");
     
     const indicators = JSON.parse(indicatorsJSON);
     
@@ -55,7 +69,10 @@ function getIndicatorsForTopic(title, indicatorsJSON, dest) {
 // Print chosen topic's indicators to indicator selection modal 
 // --------------------------------------------------------
 
-async function printIndicators(x, destination) {
+const printIndicators = async (indList, destination) => {
+
+    console.log("* printIndicators");
+    
     // Destination
     const indicatorDestination = document.getElementById("indicatorDestination");
     if (!indicatorDestination) {
@@ -70,7 +87,7 @@ async function printIndicators(x, destination) {
     // Clear existing content
     indicatorDestination.innerHTML = '';
     
-    x.forEach(section => {
+    indList.forEach(section => {
         // Only proceed if there are indicators
         if (!section.indicators || section.indicators.length === 0) return;
         
@@ -117,7 +134,9 @@ async function printIndicators(x, destination) {
 // Check for URL parameter (?id=XXXX) and load indicator metadata 
 // --------------------------------------------------------
 
-function checkURL() {
+const checkURL = () => {
+
+    console.log("* checkURL");
 
     const urlParams = new URLSearchParams(window.location.search);
     
@@ -151,21 +170,23 @@ function checkURL() {
 // Print basic indicator info from metadata to page 
 // --------------------------------------------------------
 
-async function printIndicatorInfo(x) {
+const printIndicatorInfo = async (indicatorId) => {
+
+    console.log("* printIndicatorInfo");
     
     // Ensure metadata are loaded
     const data = await ensureIndicatorsLoaded('printing to page');
     // console.log("Indicators ready to print to page!");
     
-    // Find the indicator object where IndicatorID matches x
-    const indicator = data.find(d => d.IndicatorID === x);
+    // Find the indicator object where IndicatorID matches indicatorId
+    const indicator = data.find(d => d.IndicatorID === indicatorId);
     
     console.log('This indicator:');
     console.log(indicator)
     
     if (!indicator) {
 
-        console.warn("No indicator found for ID:", x);
+        console.warn("No indicator found for ID:", indicatorId);
         $('#indicatorSelector').modal('show'); // fire Indicator Selection Modal
         return;
 
@@ -231,7 +252,9 @@ async function printIndicatorInfo(x) {
 // Simple copy citation function
 // --------------------------------------------------------
 
-function copyCitation() {
+const copyCitation = () => {
+
+    console.log("* copyCitation");
 
     const citeText = document.getElementById('citeText').innerText;
     
@@ -256,7 +279,11 @@ function copyCitation() {
 // ----------------------------------------------------------------------- //
 
 const updateChartPlotSize = () => {
+
+    console.log("* updateChartPlotSize");
+
     setTimeout(() => {
         window.dispatchEvent(new Event('resize'));
-    }, 200)   
+    }, 200)
+
 }

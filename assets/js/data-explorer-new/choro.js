@@ -53,7 +53,7 @@ const colorScale = d3.scaleSequential()
 
 // --- Define style function ---
 
-function styleFeature(feature) {
+const styleFeature = (feature) => {
     const value = feature.properties.Value;  
     return {
         fillColor: value != null ? colorScale(value) : '#ccc',  // gray if no data
@@ -63,7 +63,7 @@ function styleFeature(feature) {
     };
 }
 
-function highlightFeature(e) {
+const highlightFeature = (e) => {
     const layer = e.target;
     layer.setStyle({
         weight: 3,
@@ -76,13 +76,13 @@ function highlightFeature(e) {
     }
 }
 
-function resetHighlight(e) {
+const resetHighlight = (e) => {
     geojsonLayer.resetStyle(e.target);
 }
 
 // --- Create popup content ---
 
-function createPopupContent(properties) {
+const createPopupContent = (properties) => {
     
     return `
     <div class="popup-content">
@@ -94,7 +94,7 @@ function createPopupContent(properties) {
   `;
 }
 
-function updateHoverUI(props) {
+const updateHoverUI = (props) => {
 
     // Update legend text
     document.getElementById('hoveredGeo').textContent = props.Geography || 'Unknown';
@@ -110,7 +110,7 @@ function updateHoverUI(props) {
 
 }
 
-function clearHoverUI() {
+const clearHoverUI = () => {
 
     document.getElementById('hoveredGeo').textContent = 'Hover for details';
     document.getElementById('hoveredValue').textContent = '';
@@ -132,7 +132,7 @@ const geoIDtoLayer = {};   // <--- ADD THIS
 const geojsonLayer = L.geoJson(geojson, {
 
     style: styleFeature,
-    onEachFeature: function(feature, layer) {
+    onEachFeature: (feature, layer) => {
         
         // Store reference so we can highlight later using GeoID from chart
         
@@ -145,7 +145,7 @@ const geojsonLayer = L.geoJson(geojson, {
         
         layer.bindPopup(createPopupContent(feature.properties));
         
-        layer.on('mouseover', function(e) {
+        layer.on('mouseover', (e) => {
             const props = feature.properties;
             updateHoverUI(props);
             highlightFeature(e); 
@@ -156,7 +156,7 @@ const geojsonLayer = L.geoJson(geojson, {
             
         });
         
-        layer.on('mouseout', function(e) {
+        layer.on('mouseout', (e) => {
             clearHoverUI();
             resetHighlight(e);
             
@@ -170,9 +170,9 @@ const geojsonLayer = L.geoJson(geojson, {
 }).addTo(map);
 
 
-function calculatePercent(x) {
-    const range = maxValue - minValue
-    const placement = x - minValue 
-    const calculation = 100 * placement / range
-    return calculation
+const calculatePercent = (x) => {
+    const range = maxValue - minValue;
+    const placement = x - minValue;
+    const calculation = 100 * placement / range;
+    return calculation;
 }

@@ -8,7 +8,7 @@
 
 //------- function to draw 311 buttons
 
-function draw311Buttons(indicator_id) {
+const draw311Buttons = (indicator_id) => {
 
     console.log("* draw311Buttons");
 
