@@ -39,9 +39,20 @@
 
 <script>
     $(document).ready(function() {
+
+        // hide the topic modal when indicator modal opens. might have to manually remove 'show' class
+        // screen gets extra dark when indicator modal pops open
+
+        console.log("* fire selector modals [document.ready]");
+
         // Add ?home=true to URL (same as before)
         const url = new URL(window.location.href);
+
+
+        {{/*  what does this do, exactly?  */}}
+
         url.searchParams.set('home', 'true');
+
         window.history.replaceState({}, '', url);
         
         // Fire both modals on page load
@@ -49,11 +60,15 @@
         
         // Reopen each if closed or dismissed
         $('#topicSelector').on('hidden.bs.modal', function () {
-            $('#topicSelector').modal('show');
+            console.log("* topicSelector [again]");
+            // $('#topicSelector').modal('show');
         });
         
         $('#indicatorSelector').on('hidden.bs.modal', function () {
-            $('#indicatorSelector').modal('show');
+            {{/*  don't fire this on topic selection  */}}
+            {{/*  topic selector is still open when this opens  */}}
+            console.log("* indicatorSelector [again]");
+            // $('#indicatorSelector').modal('show');
         });
     });
 </script>

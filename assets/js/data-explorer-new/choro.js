@@ -24,20 +24,26 @@ attributeData.forEach(item => {
 });
 
 // --- Attach data to each feature ---
+
 geojson.features.forEach(feature => {
+
     const geoID = feature.properties.GEOCODE;
     const matchedData = dataLookup[geoID];
+
     if (matchedData) {
+
         feature.properties = {
             ...feature.properties,  // keep original properties (like GEOCODE, GEONAME, etc)
             ...matchedData          // add all fields from matchedData
         };
+
     } else {
         feature.properties.dataValue = null;  // mark as missing data
     }
 });
 
 // --- Find the min and max values in your dataset ---
+
 const values = attributeData.map(d => d.Value).filter(v => v != null);
 const minValue = Math.min(...values);
 const maxValue = Math.max(...values);
@@ -49,22 +55,31 @@ document.getElementById('maxVal').innerHTML = maxValue
 // --- Create the color scale ---
 
 const colorScale = d3.scaleSequential()
-.domain([maxValue, minValue]) 
-.interpolator(d3.interpolateViridis);
+    .domain([maxValue, minValue]) 
+    .interpolator(d3.interpolateViridis);
 
-// --- Define style function ---
+
+// --- Define style functions ---
 
 const styleFeature = (feature) => {
-    const value = feature.properties.Value;  
+
+    console.log("* styleFeature");
+
+    const value = feature.properties.Value;
+
     return {
         fillColor: value != null ? colorScale(value) : '#ccc',  // gray if no data
         weight: 0.35,
         color: 'black',
         fillOpacity: 0.8
     };
+
 }
 
 const highlightFeature = (e) => {
+
+    console.log("* highlightFeature");
+
     const layer = e.target;
     layer.setStyle({
         weight: 3,
@@ -75,15 +90,23 @@ const highlightFeature = (e) => {
     if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
         layer.bringToFront();
     }
+
 }
 
 const resetHighlight = (e) => {
+
+    console.log("* resetHighlight");
+
     geojsonLayer.resetStyle(e.target);
 }
 
 // --- Create popup content ---
 
+// add parameters for names
+
 const createPopupContent = (properties) => {
+
+    console.log("* createPopupContent");
     
     return `
     <div class="popup-content">
@@ -96,6 +119,8 @@ const createPopupContent = (properties) => {
 }
 
 const updateHoverUI = (props) => {
+
+    console.log("* updateHoverUI");
 
     // Update legend text
     document.getElementById('hoveredGeo').textContent = props.Geography || 'Unknown';
@@ -113,6 +138,8 @@ const updateHoverUI = (props) => {
 
 const clearHoverUI = () => {
 
+    console.log("* clearHoverUI");
+    
     document.getElementById('hoveredGeo').textContent = 'Hover for details';
     document.getElementById('hoveredValue').textContent = '';
     document.getElementById('hoveredUnits').textContent = '';
@@ -126,7 +153,6 @@ const clearHoverUI = () => {
 // --------------------------------------------------------------------------- //
 const geoIDtoLayer = {};   // <--- ADD THIS
 // --------------------------------------------------------------------------- //
-
 
 // --- Add the GeoJSON to the map ---
 
@@ -147,7 +173,11 @@ const geojsonLayer = L.geoJson(geojson, {
         layer.bindPopup(createPopupContent(feature.properties));
         
         layer.on('mouseover', (e) => {
+
+            console.log("** mouseover");
+
             const props = feature.properties;
+
             updateHoverUI(props);
             highlightFeature(e); 
             
@@ -158,6 +188,9 @@ const geojsonLayer = L.geoJson(geojson, {
         });
         
         layer.on('mouseout', (e) => {
+
+            console.log("** mouseout");
+
             clearHoverUI();
             resetHighlight(e);
             

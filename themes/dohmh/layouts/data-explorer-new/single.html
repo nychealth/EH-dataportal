@@ -82,6 +82,9 @@
     printIndicators(these_indicators, "{{ .RelPermalink }}");
 
     function updateDropdownText(clickedItem) {
+
+        console.log("* updateDropdownText");
+        
         // Find the parent dropdown and its button
         const dropdown = clickedItem.closest('.dropdown');
         const button = dropdown.querySelector('button[id^="dynamicDropdownButton"]');

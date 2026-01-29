@@ -18,13 +18,13 @@ const indicatorsPromise = fetch(`${data_repo}${data_branch}/indicators/metadata/
         // console.log(indicators);
         return data; // resolve promise
     })
-    .catch(error => console.error("Error loading metadata.json:", error));
+    .catch(error => console.error("# Error loading metadata.json:", error));
 
 // Waits for indicators to be ready
 
 const ensureIndicatorsLoaded = async (topic) => {
 
-    console.log("* ensureIndicatorsLoaded");
+    console.log("* ensureIndicatorsLoaded (", topic, ")");
 
     if (indicators) {
 
@@ -32,7 +32,7 @@ const ensureIndicatorsLoaded = async (topic) => {
 
     } else {
 
-        console.log("Waiting for indicators to load for " + topic);
+        console.log("# Waiting for indicators to load for " + topic);
         
         return await indicatorsPromise; 
 
