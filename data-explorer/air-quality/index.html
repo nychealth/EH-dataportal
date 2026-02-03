@@ -2377,6 +2377,21 @@
         
 
         <h1
+            id="IndicatorID-2449"
+            class="d-none">
+            Regulatory PM2.5 monitoring
+        </h1>
+        <h2
+            class="d-none">
+            Concentration of fine particles in the air. Fine particles are emitted by vehicles, building boilers, and other combustion - and are a major form of air pollution that harms health. Regulatory PM2.5 sensors collect readings on the tops of buildings that measure regional changes in air quality for the federal Clean Air Act. This indicator is one of the federal standards for PM2.5 (9.0 µg/m3).
+        </h2>
+
+
+    
+
+        
+
+        <h1
             id="IndicatorID-92"
             class="d-none">
             Air quality action days
@@ -2414,21 +2429,6 @@
         <h2
             class="d-none">
             Days when ozone levels are at unhealthy levels. Ozone is a common air pollutant that can harm breathing and worsen asthma and other respiratory conditions. Ozone action days are when the AQI is above 100, mainly due to ozone.
-        </h2>
-
-
-    
-
-        
-
-        <h1
-            id="IndicatorID-"
-            class="d-none">
-            
-        </h1>
-        <h2
-            class="d-none">
-            
         </h2>
 
 
@@ -2965,7 +2965,15 @@
 
                 
 
-                     defaultIndicatorId =  92  
+                     defaultIndicatorId =  2449  
+
+                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2449 );
+                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
+                    indicatorDropdown.innerHTML += "<button class='indicator-dropdown-item dropdown-item' onclick='loadIndicator(2449)' data-indicator-id='2449'>" + this_indicatorName + `</button>`;
+
+                
+
+                    
 
                     indicator = indicators.find(indicator => indicator.IndicatorID ===  92 );
                     this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
@@ -2986,11 +2994,6 @@
                     indicator = indicators.find(indicator => indicator.IndicatorID ===  55 );
                     this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
                     indicatorDropdown.innerHTML += "<button class='indicator-dropdown-item dropdown-item' onclick='loadIndicator(55)' data-indicator-id='55'>" + this_indicatorName + `</button>`;
-
-                
-
-                header = '';
-                indicatorDropdown.innerHTML += header.length ? '<div class="dropdown-title"><strong>' + header + '</strong></div>' : '';
 
                 
 
@@ -3037,7 +3040,11 @@
                 header = 'Citywide Regulatory Monitoring';
                 indicatorButtons.innerHTML += header.length ? '<div class="pl-1 pt-2 home-label border">' + header + '</div>': '';
 
-                defaultIndicatorId =  92 
+                defaultIndicatorId =  2449 
+
+                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2449 );
+                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
+                    indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' data-indicator-id='2449'>" + this_indicatorName + `<i class="indicator-arrows fas fa-arrow-circle-right float-right font-weight-bold hide" id="arrow-2449" aria-hidden="true"></i></button>`;
 
                     indicator = indicators.find(indicator => indicator.IndicatorID ===  92 );
                     this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
@@ -3050,11 +3057,6 @@
                     indicator = indicators.find(indicator => indicator.IndicatorID ===  55 );
                     this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
                     indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' data-indicator-id='55'>" + this_indicatorName + `<i class="indicator-arrows fas fa-arrow-circle-right float-right font-weight-bold hide" id="arrow-55" aria-hidden="true"></i></button>`;
-
-                header = '';
-                indicatorButtons.innerHTML += header.length ? '<div class="pl-1 pt-2 home-label border">' + header + '</div>': '';
-
-                
         }
 
         function createCitation() {
