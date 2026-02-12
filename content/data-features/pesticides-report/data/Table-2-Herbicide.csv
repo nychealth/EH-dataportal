@@ -1,11 +1,11 @@
-EPA Prod Name,EPA Reg. #,Volume in Gallons,Weight in Pounds,Total Applications,Active Ingredient Data,tox_cd,EPA Carcinogen,Prop65 Developmental Toxin,IARC Carcinogen
-GARLON 4 ULTRA,62719-527,123.6,99.4,431,Triclopyr,2,NO,NO,NO
-MILESTONE,62719-519,22.1,0.0,414,"Aminopyralid, triisopropanolamine salt",3,NO,NO,NO
-PATHFINDER II,62719-176,92.4,225.6,388,"Triclopyr, butoxyethyl ester",3,NO,NO,NO
-DERRINGER HERBICIDE,7969-443,199.4,0.0,359,Glufosinate-ammonium,2,NO,NO,NO
-ESPLANADE 200 SC,101563-144,5.3,0.0,358,Indaziflam,3,NO,NO,NO
-NUFARM POLARIS HERBICIDE,228-534,52.5,0.0,354,"Imazapyr, isopropylamine salt",3,NO,NO,NO
-METHOD 240SL HERBICIDE,101563-177,10.2,0.0,354,Aminocyclopyrachlor potassium salt,3,NO,NO,NO
-PRIMO MAXX,100-937,39.6,0.0,59,Trinexapac-ethyl,3,NO,NO,NO
-NUP-18013,228-743,20.5,0.0,55,Glufosinate-ammonium,3,NO,NO,NO
-DIMENSION 2EW,62719-542,64.6,0.0,50,Dithiopyr,2,NO,NO,NO
+GARLON 4 ULTRA,62719-527,123.6,99.4,431,Triclopyr,2,NO,NO
+MILESTONE,62719-519,22.1,0.0,414,"Aminopyralid, triisopropanolamine salt",3,NO,NO
+PATHFINDER II,62719-176,92.4,225.6,388,"Triclopyr, butoxyethyl ester",3,NO,NO
+DERRINGER HERBICIDE,7969-443,199.4,0.0,359,Glufosinate-ammonium,2,NO,NO
+ESPLANADE 200 SC,101563-144,5.3,0.0,358,Indaziflam,3,NO,NO
+NUFARM POLARIS HERBICIDE,228-534,52.5,0.0,354,"Imazapyr, isopropylamine salt",3,NO,NO
+METHOD 240SL HERBICIDE,101563-177,10.2,0.0,354,Aminocyclopyrachlor potassium salt,3,NO,NO
+PRIMO MAXX,100-937,39.6,0.0,59,Trinexapac-ethyl,3,NO,NO
+NUP-18013,228-743,20.5,0.0,55,Glufosinate-ammonium,3,NO,NO
+DIMENSION 2EW,62719-542,64.6,0.0,50,Dithiopyr,2,NO,NO
+EPA prod name,EPA reg. #,Volume in gallons,Weight in pounds,Total applications,Active ingredient data,tox_cd,Prop65 developmental toxin,EPA carcinogen

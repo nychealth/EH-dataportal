@@ -1,4 +1,4 @@
-EPA Prod Name,EPA Reg. #,Volume in Gallons,Weight in Pounds,Total Applications,Active Ingredient Data,tox_cd,EPA Carcinogen,Prop65 Developmental Toxin,IARC Carcinogen
+EPA prod name,EPA reg. #,Volume in gallons,Weight in pounds,Total applications,Active ingredient data,tox_cd,EPA carcinogen,Prop65 developmental toxin,IARC carcinogen
 DIFETHIALONE PASTE PLACE PACKS,7173-258,0.3,24018.7,78501,Difethialone,3,NO,NO,NO
 CONTRAC RODENTICIDE,12455-69,0.0,16039.9,20833,Bromadiolone,3,NO,NO,NO
 FINAL RODENTICIDE,12455-90,0.0,8035.2,12955,Brodifacoum,3,NO,NO,NO

@@ -1,4 +1,4 @@
-EPA Prod Name,EPA Reg. #,Volume in Gallons,Weight in Pounds,Total Applications,Active Ingredient Data,tox_cd,EPA Carcinogen,Prop65 Developmental Toxin,IARC Carcinogen
+EPA prod name,EPA reg. #,Volume in gallons,Weight in pounds,Total applications,Active ingredient data,tox_cd,EPA carcinogen,Prop65 developmental toxin,IARC carcinogen
 T-22G BIOLOGICAL PLANT PROTECTANT GRANULES,68539-3,0.0,95.1,119,Trichoderma harzianum rifai strain KRL-AG2,3,NO,NO,NO
 DACONIL ACTION,100-1364,822.8,6.3,107,Acibenzolar-S-methyl; Chlorothalonil,2,YES,NO,YES
 QUALI-PRO T-NEX,53883-353,43.0,0.0,66,Trinexapac-ethyl,3,NO,NO,NO

@@ -1,4 +1,4 @@
-EPA Prod Name,EPA Reg. #,Volume in Gallons,Weight in Pounds,Total Applications,Active Ingredient Data,tox_cd,EPA Carcinogen,Prop65 Developmental Toxin,IARC Carcinogen
+EPA prod name,EPA reg. #,Volume in gallons,Weight in pounds,Total applications,Active ingredient data,tox_cd,EPA carcinogen,Prop65 developmental toxin,IARC carcinogen
 HORMODIN 1,59807-4,0.0,0.5,66,IBA,3,NO,NO,NO
 PETTIT NEPTUNE 5 HARD HYBRID ABLATIVE ANTIFOULING PAINT,60061-142,17.0,0.0,17,Copper oxide (ous),2,NO,NO,NO
 GREEN STOP LIQUID ALGAECIDE,70299-16-84732,1.0,0.0,2,"Hydrogen peroxide, Peroxyacetic acid",1,NO,NO,NO
