@@ -28,8 +28,7 @@ indicators:
       - 2471
       - 2472
       - 2473
-      - 2474
-      - 2475
+
 related:
   - title: "Economic stability creates health"
     url: "data-stories/economic-stability/"
