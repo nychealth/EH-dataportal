@@ -23,6 +23,30 @@
     </div>
     </div>
 
+  <!-- Invisible button to trigger cold modal --> 
+
+  <button id="openModalBtnC" type="button" class="btn btn-primary hide" data-toggle="modal" data-target="#wzModal">Open Modal</button>
+
+    <div class="modal" tabindex="-1" role="dialog" id="wzModal">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title"><i class="fas fa-temperature-high mr-1" aria-hidden="true"></i>It's cold!</h5>
+        </div>
+        <div class="modal-body">
+          <p><span class="font-weight-bold">The forecast high is <span id="forecastlow" style="background-color:blue;font-weight:bold;" class="p-1 text-white">XX</span></span>. Get resources on heat and health:
+              <ul>
+                  <li><a href={{ relURL "data-stories/cold" }}>Cold weather safety</a></li>
+                  <li><a href={{ relURL "key-topics/climatehealth" }}>All Climate and Health data and resources</a> </li>
+              </ul>
+              </p>
+      </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Close</button>
+        </div>
+        </div>
+    </div>
+    </div>
 
   <!-- Invisible button to trigger modal -->
   <button id="openModalBtn2" type="button" class="btn btn-primary hide" data-toggle="modal" data-target="#aqiModal">Open Modal</button>
@@ -70,8 +94,10 @@ async  function initialize() {
       if (high > 85) {
         fireHeatModal(high)
         document.getElementById('forecasthigh').textContent = high + '°F'
+       } else if (high < 32) {
+        fireColdModal(high)
+        document.getElementById('forecastlow').textContent = high + '°F'
       } else {}
-
 
     // get AQI API to retrieve forecast AQI
     fetch('https://www.airnowapi.org/aq/observation/zipCode/current/?format=application/json&zipCode=10013&distance=25&API_KEY=B34C7BA1-26C7-4DD2-9B1C-AAFD7AF4F12F')
@@ -101,6 +127,16 @@ async  function initialize() {
       button.click();
 
   }
+
+  function fireColdModal(x) {
+    var button = document.getElementById('openModalBtnC');
+    button.addEventListener('click', function() {
+        console.log('heat modal fired.');
+    });
+
+    button.click();
+
+}
 
   function fireAQmodal(aqi) {
     var button = document.getElementById('openModalBtn2')
