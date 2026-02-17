@@ -5,7 +5,7 @@ hide: true
 pollutantsMeasured:
   - name: Fine Particles
     copy: >
-      Fine particles (PM<sub>2.5</sub>) are tiny airborne solid and liquid
+      [Fine particles (PM<sub>2.5</sub>)](https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/traffic-and-air-pollution/) are tiny airborne solid and liquid
       particles less than 2.5 microns in diameter. They are small enough to
       penetrate deep into the lungs and enter the bloodstream, which can worsen
       lung and heart disease and lead to hospital admissions and premature
