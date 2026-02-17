@@ -39,13 +39,13 @@ The New York City Health Department (Health Department) established the New York
 * Estimate air pollution exposures for health research
 * Help inform <a href="https://www.nyc.gov/content/climate/pages/planyc-getting-sustainabilty-done" target="_blank" rel="noopener">PlaNYC</a>, the City’s sustainability plan
 * Inform the public about local topics, such as [recent air quality improvements](../../data-stories/breatheeasy), [car-free zones](../../data-stories/aqts/), [changes in the sources of air pollution](../../data-stories/aq-cooking/), [unique air quality studies conducted in New York City](../../data-stories/air-quality-snapshots/), [efforts to reduce health impacts](../../data-stories/hia/), [public health benefits of public transit](../../data-stories/public-transit-creates-health/) and [differences in air quality and related health impacts across NYC neighborhoods](../../data-stories/aq2/).
-* NYCCAS also developed [a tool (ZAPPA) that can help people understand how policy changes can change local emissions](../../data-stories/zappa/).
-* NYCCAS also published a first look at the [initial air quality data from Congestion Relief Tolling](https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/congestion-tolling-update/).
+* Developed <a href="https://treehug-app.its.unc.edu/trappa/" target="_blank" rel="noopener">a tool (TRAPPA) that can help people understand how policy changes can change local emissions</a>.
+* Published a first look at the [initial air quality data from Congestion Relief Tolling](https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/congestion-tolling-update/).
 
 This report:
 
 * Provides a summary of key findings, the air monitoring program, monitoring site selection, and descriptions of the pollutants measured
-* Describes the trends in air pollutant levels from more than a decade of data from winter 2008-2009 through fall 2024 for fine particulate matter, nitrogen dioxide, nitric oxide, black carbon, wintertime sulfur dioxide, and summertime ozone
+* Describes the trends in air pollutant levels from more than 15 years of data from winter 2008-2009 through fall 2024 for fine particulate matter, nitrogen dioxide, nitric oxide, black carbon, wintertime sulfur dioxide, and summertime ozone
 * Presents maps of neighborhood air pollution levels by year
 * Identifies the local sources that contribute the most to differences in these pollutants across New York City neighborhoods
 
@@ -60,7 +60,7 @@ This report:
 * Nitric Oxide (NO)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; -62%
 * Sulfur Dioxide (SO<sub>2</sub>)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; -98%
 
-**Air quality improved significantly after local regulations required building owners to convert to cleaner heating oils by 2015.** These heating oils were a major source of SO<sub>2</sub> in New York City. Since 2017, most of the measurements collected for SO<sub>2</sub> have been below what our monitors can detect. The SO<sub>2</sub> levels in the city are similar to SO<sub>2</sub> levels measured on Whiteface Mountain in the Adirondack Mountains, demonstrating the success of the clean heating oil requirements. NYCCAS has continued to monitor for SO<sub>2</sub> until 2024 to confirm these results and track any spatial changes in monitoring.
+**Air quality improved significantly after local regulations required building owners to convert to cleaner heating oils by 2015.** These heating oils were a major source of SO<sub>2</sub> in New York City. Since 2017, most of the measurements collected for SO<sub>2</sub> have been below what our monitors can detect. The SO<sub>2</sub> levels in the city are similar to SO<sub>2</sub> levels measured on Whiteface Mountain in the Adirondack Mountains, demonstrating the success of the clean heating oil requirements.
 
 **Ozone (O<sub>3</sub>) levels were slightly lower in 2024 compared to 2023, but are still above the average historical NYCCAS level.** Ozone is produced when there are oxides of nitrogen (NO<sub>x</sub>) and volatile organic carbon emissions in the presence of sunlight and heat, which is why we see higher levels in the summer.
 
