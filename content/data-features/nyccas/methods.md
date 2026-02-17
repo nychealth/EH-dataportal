@@ -49,18 +49,18 @@ pollutantsMeasured:
       such as places with  high traffic density. In areas with heavy traffic,
       NO<sub>X</sub> reacts with any ground-level O<sub>3</sub> to reduce
       O<sub>3</sub> concentrations. As a result, NYCCAS has measured lower
-      O<sub>3</sub> levels near roadways, in city centers and in other areas of
-      high NO<sub>X</sub> emissions density. Higher levels of O<sub>3</sub> are
-      seen in areas away from dense traffic and building emissions.
-      O<sub>3</sub> exposure can cause coughing, shortness of breath, and
-      aggravate lung diseases. 
+      O<sub>3</sub> levels near roadways, in other areas of high NO<sub>X</sub>
+      emissions density, such as in midtown Manhattan. Higher levels of 
+      O<sub>3</sub> are seen in areas away from dense traffic and building
+      emissions. O<sub>3</sub> exposure can cause coughing, shortness of breath, 
+      and aggravate lung diseases. 
     number: 4
   - name: Sulfur Dioxide
     copy: >
       Sulfur dioxide (SO<sub>2</sub>) is produced mainly by burning oils with
       high sulfur content, such as No. 4 and No. 6 oil (also known as residual
       fuel oil), or high-sulfur No. 2 oil. The primary use of fuel oil in NYC is
-      to heat buildings and water, which is why we only monitor it in the
+      to heat buildings and water, which is why we only monitor SO<sub>2</sub> in the
       winter. Some high-sulfur oil is also used to generate electricity and
       power marine vessels. SO<sub>2</sub> exposures can worsen lung diseases,
       causing hospitalizations and emergency department visits for asthma and
