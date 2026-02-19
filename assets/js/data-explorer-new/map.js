@@ -1,0 +1,357 @@
+// ======================================================================= //
+// map.js
+// ======================================================================= //
+
+const renderMap = (
+    data, 
+    metadata
+) => {
+
+    console.log("** renderMap");
+
+    document.getElementById('viewDescription').innerHTML = 'Hover over the map or chart for more information.'
+
+    // console.log("data [renderMap]", data);
+    // console.log("metadata [renderMap]", metadata);
+
+    // ----------------------------------------------------------------------- //
+    // get unique time in data
+    // ----------------------------------------------------------------------- //
+    
+    const mapTimes =  [...new Set(data.map(item => item.TimePeriod))];
+
+    // console.log("mapTimes [map.js]", mapTimes);
+
+    // ----------------------------------------------------------------------- //
+    // set metadata
+    // ----------------------------------------------------------------------- //
+
+    let mapGeoType            = data[0]?.GeoType;
+    let mapMeasurementType    = metadata[0]?.MeasurementType;
+    let mapTime = mapTimes[0];
+    let displayType;
+    let subtitle;
+    let isPercent;
+    let topoFile = '';
+
+    const hasCI = data.some(d => /\(.*\)/.test(d.CI)); // looks to see if there are parentheses in the CI field, if yes, true
+    // console.log('has CI?', hasCI)
+
+
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // use some conditionals
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+    if (mapMeasurementType.includes('Percent') || mapMeasurementType.includes('percent') && !mapMeasurementType.includes('percentile')) {
+        isPercent = true;
+        displayType = '%';
+        subtitle = mapMeasurementType;
+        
+    } else {
+        isPercent = false;
+        displayType = metadata[0]?.DisplayType;
+        subtitle = mapMeasurementType + `${displayType ? ` (${displayType})` : ''}`;
+    }
+
+
+    // ----------------------------------------------------------------------- //
+    // bubble map for non-rates (counts/numbers)
+    // ----------------------------------------------------------------------- //
+
+    let markType = 'geoshape'  
+    let encode = {"shape": {"field": "geo", "type": "geojson"}}
+    let strokeWidth = 1.25
+    let legend;
+
+    if (mapMeasurementType.includes('Number') ||
+        mapMeasurementType.includes('number') || 
+        mapMeasurementType.includes('Total population')
+    ) {
+        // circle
+    } else {
+        // choro
+    }
+
+    /* ----------------------------------------------------------------------- //
+    // modify bar spec:
+        - If the measurement Type is a mean, then give it a dot with a gray bar. Dots better represent Means.
+        - if the data has CIs, then, give a gray CI bar
+        - Else, just give a standard bar
+    // -----------------------------------------------------------------------  */
+
+    let barChart
+    
+    if (mapMeasurementType.includes('Mean') || mapMeasurementType.includes('mean')) {
+
+    } else if (hasCI == true) {
+
+    } else {
+        
+    }
+
+
+    // ----------------------------------------------------------------------- //
+    // get unique unreliability notes (dropping empty)
+    // ----------------------------------------------------------------------- //
+
+    const map_unreliability = [...new Set(data.map(d => d.Note))].filter(d => !d == "");
+
+    document.querySelector("#map-unreliability").innerHTML = "<span class='fs-xs'><strong>Notes:</strong></span> "; // blank to start
+    document.getElementById("map-unreliability").classList.add('hide')  // blank to start
+
+
+    map_unreliability.forEach(element => {
+
+        document.querySelector("#map-unreliability").innerHTML += "<div class='fs-xs'>" + element + "</div>" ;
+        document.getElementById('map-unreliability').classList.remove('hide')
+
+    });
+
+    // ----------------------------------------------------------------------- //
+    // set geo file based on geo type
+    // ----------------------------------------------------------------------- //
+
+    // console.log("mapGeoType [renderMap]", mapGeoType);
+
+    if (mapGeoType === "NTA2010") {
+        topoFile = 'NTA_2010.topo.json';
+
+    } else if (mapGeoType === "NTA2020") {
+        topoFile = 'NTA_2020.topo.json';
+
+    } else if (mapGeoType === "NYHarbor") {
+        topoFile = 'ny_harbor.topo.json';
+
+    } else if (mapGeoType === "CD") {
+        topoFile = 'CD.topo.json';
+
+    } else if (mapGeoType === "CDTA2020") {
+        topoFile = 'CDTA_2020.topo.json';
+
+    } else if (mapGeoType === "PUMA2010") {
+        topoFile = 'PUMA2010.topo.json';
+
+    } else if (mapGeoType === "PUMA2020") {
+        topoFile = 'PUMA2020.topo.json';
+
+    } else if (mapGeoType === "Subboro") {
+        topoFile = 'PUMA_or_Subborough.topo.json';
+
+    } else if (mapGeoType === "UHF42") {
+        topoFile = 'UHF42.topo.json';
+
+    } else if (mapGeoType === "UHF34") {
+        topoFile = 'UHF34.topo.json';
+
+    } else if (mapGeoType === "NYCKIDS2017") {
+        topoFile = 'NYCKids_2017.topo.json';
+
+    } else if (mapGeoType === "NYCKIDS2019") {
+        topoFile = 'NYCKids_2019.topo.json';
+
+    } else if (mapGeoType === "NYCKIDS2021") {
+        topoFile = 'NYCKids_2021.topo.json';
+
+    } else if (mapGeoType === "NYCKIDS2023") {
+        topoFile = 'NYCKids_2023.topo.json';
+
+    } else if (mapGeoType === "Borough") {
+        topoFile = 'borough.topo.json';
+
+    } else if (mapGeoType === "RMZ") {
+        topoFile = 'RMZ.topo.json';
+        
+    }
+
+    // ----------------------------------------------------------------------- //
+    // define spec
+    // ----------------------------------------------------------------------- //
+    
+    let mapspec = {
+        "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+        "title": {
+            "text": indicatorName,
+            "subtitlePadding": 10,
+            "fontWeight": "normal",
+            "anchor": "start", 
+            "fontSize": 18, 
+            "font": "sans-serif",
+            "baseline": "top",
+            "subtitle": subtitle,
+            "subtitleFontSize": 13
+        },
+        "data": {
+            "values": data,
+            "format": {
+                "parse": {
+                    "Value": "number"
+                }
+            }
+        },
+        "config": {
+            "concat": {"spacing": 20}, 
+            "view": {"stroke": "transparent"},
+            "axisY": {"domain": false,"ticks": false,"labelBaseline": "bottom",},
+            "legend": {"disable": true},
+            "scale": {"invalid": {color: {value: '#808080'}}}
+        },
+        "projection": {"type": "mercator"},
+        "transform": [
+            {
+                "calculate": `datum.DisplayValue + ' ${displayType}'`,
+                "as": "valueLabel"
+            },
+            {
+                "calculate": "datum.CI && datum.CI !== '' ? split(replace(datum.CI, /[()]/g, ''), ', ')[0] : null",
+                "as": "ciLow"
+            },
+            {
+                "calculate": "datum.CI && datum.CI !== '' ? split(replace(datum.CI, /[()]/g, ''), ', ')[1] : null",
+                "as": "ciHigh"
+            },
+            {
+            "calculate": "datum.CI ? replace(replace(datum.CI, /[()]/g, ''), /, /, ' to ') : null",
+            "as": "CInoParens"
+            }
+        ],
+        "vconcat": [
+            {
+                "layer": [
+                    {
+                        "height": 500,
+                        "width": "container",
+                        "data": {
+                            "url": `${data_repo}${data_branch}/geography/borough.topo.json`,
+                            "format": {
+                                "type": "topojson",
+                                "feature": "collection"
+                            }
+                        },
+                        "mark": {
+                            "type": "geoshape",
+                            "stroke": "#fafafa",
+                            "fill": "#C5C5C5",
+                            "strokeWidth": 0.5
+                        }
+                    }, 
+                    // Second neighborhood data layer - for count-dot map underlayer (ok to leave on for rates)
+                    {
+                        "height": 500,
+                        "width": "container",
+                        "data": {
+                            "url": `${data_repo}${data_branch}/geography/${topoFile}`,
+                            "format": {
+                                "type": "topojson",
+                                "feature": "collection"
+                            }
+                        },
+                        "mark": {
+                            "type": "geoshape",
+                            "stroke": "#a2a2a2",
+                            "fill": "#e7e7e7",
+                            "strokeWidth": 0.5
+                        }
+                    },
+                    {
+                        "height": 500,
+                        "width": "container",
+                        "mark": {"type": markType, "invalid": null},
+                        "params": [
+                            {"name": "highlight", "select": {"type": "point", "on": "mouseover", "clear": "mouseout"}}
+                        ],
+                        "transform": [
+                            {
+                                "lookup": "GeoID",
+                                "from": {
+                                    "data": {
+                                        "url": `${data_repo}${data_branch}/geography/${topoFile}`,
+                                        "format": {"type": "topojson", "feature": "collection"}
+                                    },
+                                    "key": "properties.GEOCODE"
+                                },
+                                "as": "geo"
+                            }
+                        ],
+                        "encoding": {
+                            ...encode,
+                            "color": {
+                                "bin": false,
+                                "field": "Value",
+                                "type": "quantitative",
+                                "scale": {"scheme": {"name": "viridis", "extent": [1, 0]}},
+                                ...legend    
+                            },
+                            "stroke": {
+                                "condition": [{"param": "highlight", "empty": false, "value": "cyan"}],
+                                "value": "#2d2d2d"
+                            },
+                            "strokeWidth": {
+                                "condition": [{"param": "highlight", "empty": false, "value": strokeWidth}],
+                                "value": 0.5
+                            },
+                            "order": {
+                                "condition": [{"param": "highlight", "empty": false, "value": 1}],
+                                "value": 0
+                            },
+                            "tooltip": [
+                                {
+                                    "field": "Geography", 
+                                    "title": "Neighborhood"
+                                },
+                                {
+                                    "field": "valueLabel",
+                                    "title": `${mapMeasurementType}`
+                                },
+                                {
+                                    "field": "TimePeriod",
+                                    "title": "Time period"
+                                }
+                            ],
+                        },
+                    }
+                ]
+            },
+            barChart
+        ]
+    }
+
+    
+    // ----------------------------------------------------------------------- //
+    // render chart
+    // ----------------------------------------------------------------------- //
+
+    vegaEmbed("#map", mapspec,{
+        actions: {
+            export: { png: false, svg: false },
+            source: false,  
+            compiled: false, 
+            editor: true 
+        }
+    });
+
+    // send info for printing
+    vizYear = mapTime;
+    vizGeography = mapGeoType;
+    vizSource = metadata[0].Sources
+    printSpec = mapspec;
+    chartType = 'map'
+
+    // console.log(mapspec)
+
+    // ----------------------------------------------------------------------- //
+    // Send chart data to download
+    // ----------------------------------------------------------------------- //
+
+    let dataForDownload = [...mapspec.data.values] // create a copy
+
+    let downloadTable = aq.from(dataForDownload)
+        .derive({Indicator: `'${indicatorName}: ${mapMeasurementType}${displayType && ` (${displayType})`}'`}) // add indicator name and type column
+        .select(aq.not('GeoRank', "end_period", "start_period", "ban_summary_flag", "GeoTypeShortDesc", "MeasureID", "DisplayValue")) // remove excess columns
+    
+    // console.log("downloadTable [renderMap]");
+    // downloadTable.print()
+
+    CSVforDownload = downloadTable.toCSV()
+
+}
