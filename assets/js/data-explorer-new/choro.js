@@ -14,14 +14,19 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}' + (L.Brows
     minZoom: 0
 }).addTo(map);
 
+///////////////////////////////////////////////////////////////////////////////
+// ADD THIS ALL TO DATA SCRIPT?
+
 // --- Convert TopoJSON to GeoJSON ---
 const geojson = topojson.feature(topojsonData, topojsonData.objects.collection);
 
+
 // --- Create a lookup for data and attributes ---
 const dataLookup = {};
-attributeData.forEach(item => {
+mapData.forEach(item => {
     dataLookup[item.GeoID] = item;  // store the full record
 });
+
 
 // --- Attach data to each feature ---
 
@@ -42,9 +47,12 @@ geojson.features.forEach(feature => {
     }
 });
 
+//
+///////////////////////////////////////////////////////////////////////////////
+
 // --- Find the min and max values in your dataset ---
 
-const values = attributeData.map(d => d.Value).filter(v => v != null);
+const values = mapData.map(d => d.Value).filter(v => v != null);
 const minValue = Math.min(...values);
 const maxValue = Math.max(...values);
 
@@ -63,7 +71,7 @@ const colorScale = d3.scaleSequential()
 
 const styleFeature = (feature) => {
 
-    console.log("* styleFeature");
+    // console.log("* styleFeature");
 
     const value = feature.properties.Value;
 
@@ -76,9 +84,10 @@ const styleFeature = (feature) => {
 
 }
 
+
 const highlightFeature = (e) => {
 
-    console.log("* highlightFeature");
+    // console.log("* highlightFeature");
 
     const layer = e.target;
     layer.setStyle({
@@ -95,7 +104,7 @@ const highlightFeature = (e) => {
 
 const resetHighlight = (e) => {
 
-    console.log("* resetHighlight");
+    // console.log("* resetHighlight");
 
     geojsonLayer.resetStyle(e.target);
 }
@@ -106,7 +115,7 @@ const resetHighlight = (e) => {
 
 const createPopupContent = (properties) => {
 
-    console.log("* createPopupContent");
+    // console.log("* createPopupContent");
     
     return `
     <div class="popup-content">
@@ -120,7 +129,7 @@ const createPopupContent = (properties) => {
 
 const updateHoverUI = (props) => {
 
-    console.log("* updateHoverUI");
+    // console.log("* updateHoverUI");
 
     // Update legend text
     document.getElementById('hoveredGeo').textContent = props.Geography || 'Unknown';
@@ -138,7 +147,7 @@ const updateHoverUI = (props) => {
 
 const clearHoverUI = () => {
 
-    console.log("* clearHoverUI");
+    // console.log("* clearHoverUI");
     
     document.getElementById('hoveredGeo').textContent = 'Hover for details';
     document.getElementById('hoveredValue').textContent = '';
@@ -172,9 +181,34 @@ const geojsonLayer = L.geoJson(geojson, {
         
         layer.bindPopup(createPopupContent(feature.properties));
         
+        layer.on('click', (e) => {
+
+            console.log("** click", feature.properties);
+
+            if (window.myVegaView) {
+                window.myVegaView.signal("selectedGeo", props.GeoID).run();
+            }
+            
+        });
+        
         layer.on('mouseover', (e) => {
 
-            console.log("** mouseover");
+            // console.log("** mouseover");
+
+            const props = feature.properties;
+
+            updateHoverUI(props);
+            highlightFeature(e); 
+            
+            if (window.myVegaView) {
+                window.myVegaView.signal("selectedGeo", props.GeoID).run();
+            }
+            
+        });
+        
+        layer.on('mouseover', (e) => {
+
+            // console.log("** mouseover");
 
             const props = feature.properties;
 
@@ -189,7 +223,7 @@ const geojsonLayer = L.geoJson(geojson, {
         
         layer.on('mouseout', (e) => {
 
-            console.log("** mouseout");
+            // console.log("** mouseout");
 
             clearHoverUI();
             resetHighlight(e);

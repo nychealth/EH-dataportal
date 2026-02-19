@@ -154,11 +154,13 @@ const checkURL = () => {
     printIndicatorInfo(chosenIndicator);
     draw311Buttons(chosenIndicator);
     printMenus(chosenIndicator);
+    loadIndicator(chosenIndicator);
     
     // run renderBar()
-    renderBar(attributeData)
-    renderTrend()
-    renderCorrelate()
+    renderMap(mapData);
+    renderBar(mapData);
+    renderTrend(trendData);
+    renderCorrelate(linksData);
     
     // Run selections for Measure, Geography, and TimePeriod
     
@@ -273,17 +275,3 @@ const copyCitation = () => {
     document.body.removeChild(temp); // clean up
 }
 
-
-// ----------------------------------------------------------------------- //
-// chart resizer (doesn't work when called)
-// ----------------------------------------------------------------------- //
-
-const updateChartPlotSize = () => {
-
-    console.log("* updateChartPlotSize");
-
-    setTimeout(() => {
-        window.dispatchEvent(new Event('resize'));
-    }, 200)
-
-}

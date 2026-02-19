@@ -62,7 +62,7 @@ const styleAndPrintMenu = (items, destination, type) => {
 }
 
 
-// This starts to step on Measure.JS's toes a little bit - but this is a chance measure function that right now, runs off of dropdown/button click, and logs to the console. 
+// This starts to step on Measure.JS's toes a little bit - but this is a change measure function that right now, runs off of dropdown/button click, and logs to the console. 
 // "Type" will be any option: geo, timeperiod, measure, etc. 
 
 const changeMeasure = (type, measureID) => {
