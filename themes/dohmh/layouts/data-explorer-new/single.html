@@ -20,6 +20,7 @@
 
 </article>
 
+
 {{- partial "de-print-chart-modal" . -}}
 
 <!-- Populate indicator selection modal for this page -->
@@ -42,7 +43,8 @@
 {{- $geo       := resources.Get "js/data-explorer-new/geography.js" -}}
 {{- $data      := resources.Get "js/data-explorer-new/data.js" -}}
 {{/*  {{- $choroData := resources.Get "js/data-explorer-new/choroData.js" -}}  */}}
-{{- $choro     := resources.Get "js/data-explorer-new/choro.js" -}}
+{{/*  {{- $choro     := resources.Get "js/data-explorer-new/choro.js" -}}  */}}
+{{- $map       := resources.Get "js/data-explorer-new/map.js" -}}
 {{- $311       := resources.Get "js/data-explorer-new/311.js" -}}
 {{- $selector  := resources.Get "js/data-explorer-new/topic-indicator-selector.js" -}}
 {{- $menus     := resources.Get "js/data-explorer-new/menu.js" -}}
@@ -57,7 +59,8 @@
 {{- $geo_secure       := $geo | partial "short-fingerprint.html" -}}
 {{- $data_secure      := $data | partial "short-fingerprint.html" -}}
 {{/*  {{- $choroData_secure := $choroData | partial "short-fingerprint.html" -}}  */}}
-{{- $choro_secure     := $choro | partial "short-fingerprint.html" -}}
+{{/*  {{- $choro_secure     := $choro | partial "short-fingerprint.html" -}}  */}}
+{{- $map_secure       := $map | partial "short-fingerprint.html" -}}
 {{- $311_secure       := $311 | partial "short-fingerprint.html" -}}
 {{- $selector_secure  := $selector | partial "short-fingerprint.html" -}}
 {{- $menus_secure     := $menus | partial "short-fingerprint.html" -}}
@@ -72,7 +75,8 @@
 <script type="text/javascript" src="{{ $geo_secure.RelPermalink }}" integrity="{{ $geo_secure.Data.Integrity }}"></script>
 <script type="text/javascript" src="{{ $data_secure.RelPermalink }}" integrity="{{ $data_secure.Data.Integrity }}"></script>
 {{/*  <script type="text/javascript" src="{{ $choroData_secure.RelPermalink }}" integrity="{{ $choroData_secure.Data.Integrity }}"></script>  */}}
-<script type="text/javascript" src="{{ $choro_secure.RelPermalink }}" integrity="{{ $choro_secure.Data.Integrity }}"></script>
+{{/*  <script type="text/javascript" src="{{ $choro_secure.RelPermalink }}" integrity="{{ $choro_secure.Data.Integrity }}"></script>  */}}
+<script type="text/javascript" src="{{ $map_secure.RelPermalink }}" integrity="{{ $map_secure.Data.Integrity }}"></script>
 <script type="text/javascript" src="{{ $311_secure.RelPermalink }}" integrity="{{ $311_secure.Data.Integrity }}"></script>
 <script type="text/javascript" src="{{ $selector_secure.RelPermalink }}" integrity="{{ $selector_secure.Data.Integrity }}"></script>
 <script type="text/javascript" src="{{ $menus_secure.RelPermalink }}" integrity="{{ $menus_secure.Data.Integrity }}"></script>

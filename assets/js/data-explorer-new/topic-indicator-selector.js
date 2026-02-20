@@ -15,7 +15,7 @@ const indicatorsPromise = fetch(`${data_repo}${data_branch}/indicators/metadata/
     .then(data => {
         console.log("* fetch metadata.json");
         indicators = data; 
-        // console.log(indicators);
+        console.log(">> indicators [fetch]", indicators);
         return data; // resolve promise
     })
     .catch(error => console.error("# Error loading metadata.json:", error));
@@ -82,7 +82,7 @@ const printIndicators = async (indList, destination) => {
     
     // Ensure metadata are loaded
     const data = await ensureIndicatorsLoaded('indicator selection modal');
-    // console.log("Indicators ready to print to indicator selection modal!", data);
+    console.log("Indicators ready to print to indicator selection modal!", data);
     
     // Clear existing content
     indicatorDestination.innerHTML = '';
@@ -134,9 +134,11 @@ const printIndicators = async (indList, destination) => {
 // Check for URL parameter (?id=XXXX) and load indicator metadata 
 // --------------------------------------------------------
 
-const checkURL = () => {
+const checkURL = async () => {
 
     console.log("* checkURL");
+
+    console.log("indicators [checkURL]", indicators);
 
     const urlParams = new URLSearchParams(window.location.search);
     
@@ -154,7 +156,14 @@ const checkURL = () => {
     printIndicatorInfo(chosenIndicator);
     draw311Buttons(chosenIndicator);
     printMenus(chosenIndicator);
-    loadIndicator(chosenIndicator);
+
+    const _indicators = await ensureIndicatorsLoaded('printing measure menu');
+
+    console.log(">> indicators [checkURL]", _indicators);
+
+    await loadIndicator(chosenIndicator);
+
+    // await loadData(chosenIndicator);
     
     // run renderBar()
     renderMap(mapData);

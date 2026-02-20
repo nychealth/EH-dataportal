@@ -15,28 +15,30 @@ const loadIndicator = async (this_indicatorId, dont_add_to_history) => {
 
     console.log("* loadIndicator:", parseFloat(this_indicatorId));
 
+    console.log("indicators [loadIndicator]", indicators);
+
     currentHash = window.location.hash;
 
     // if indicatorId isn't given, use the first indicator from the dropdown list
     //  (which is populated by Hugo reading the content frontmatter).
 
-    const firstIndicatorId = document.querySelectorAll('#indicator-dropdown button')[0].getAttribute('data-indicator-id');
+    // const firstIndicatorId = document.querySelectorAll('#indicator-dropdown button')[0].getAttribute('data-indicator-id');
 
     indicatorId = this_indicatorId ? parseFloat(this_indicatorId) : parseFloat(firstIndicatorId);
 
     // remove active class from every list element
-    $(".indicator-dropdown-item").removeClass("active");
-    $(".indicator-dropdown-item").attr('aria-selected', false);
+    // $(".indicator-dropdown-item").removeClass("active");
+    // $(".indicator-dropdown-item").attr('aria-selected', false);
 
-    $(".indicator-arrows").addClass("hide");
-    document.getElementById(`arrow-${indicatorId}`).classList.remove('hide')
+    // $(".indicator-arrows").addClass("hide");
+    // document.getElementById(`arrow-${indicatorId}`).classList.remove('hide')
 
     // get the list element for this indicator (in buttons and dropdowns)
-    const thisIndicatorEl = document.querySelectorAll(`button[data-indicator-id='${indicatorId}']`)
+    // const thisIndicatorEl = document.querySelectorAll(`button[data-indicator-id='${indicatorId}']`)
 
     // set this element as active & selected
-    $(thisIndicatorEl).addClass("active");
-    $(thisIndicatorEl).attr('aria-selected', true);
+    // $(thisIndicatorEl).addClass("active");
+    // $(thisIndicatorEl).attr('aria-selected', true);
 
     // indicatorId comes in as  a string, so "find" uses '==' instead of '==='
 
@@ -47,11 +49,11 @@ const loadIndicator = async (this_indicatorId, dont_add_to_history) => {
     indicatorComparisonId = indicator?.Comparisons;
     indicatorMeasures = indicator?.Measures;
 
-    // console.log("indicatorMeasures [loadIndicator]", indicatorMeasures);
+    console.log("indicatorMeasures [loadIndicator]", indicatorMeasures);
 
     // create Citation
 
-    createCitation(); // re-runs on updating Indicator
+    // createCitation(); // re-runs on updating Indicator
 
     // reset selected measure flags
 
@@ -95,9 +97,9 @@ const loadIndicator = async (this_indicatorId, dont_add_to_history) => {
 
     // call data loading function
 
-    const indicatorTitle = document.getElementById('indicatorNameMobile')
+    // const indicatorTitle = document.getElementById('indicatorNameMobile')
 
-    indicatorTitle.innerHTML = DOMPurify.sanitize(indicatorName)
+    // indicatorTitle.innerHTML = DOMPurify.sanitize(indicatorName)
 
     // call function to fetch comparisons data
 
@@ -112,7 +114,7 @@ const loadIndicator = async (this_indicatorId, dont_add_to_history) => {
         fetch_comparisons();
     }
 
-    loadData(indicatorId);
+    await loadData(indicatorId);
 
 }
 
@@ -124,7 +126,7 @@ const loadData = async (this_indicatorId) => {
 
     console.log("* loadData");
 
-    fetch(`${data_repo}${data_branch}/indicators/data/${this_indicatorId}.json`)
+    await fetch(`${data_repo}${data_branch}/indicators/data/${this_indicatorId}.json`)
         .then(response => response.json())
         .then(async data => {
 
@@ -146,7 +148,7 @@ const loadData = async (this_indicatorId) => {
 
             // call the data-to-geo joining function
 
-            joinData();
+            await joinData();
 
             
         })
@@ -202,7 +204,7 @@ const loadTime = async () => {
 // function to join indicator data and geo data
 // ----------------------------------------------------------------------- //
 
-const joinData = () => {
+const joinData = async () => {
 
     console.log("* joinData");
 
@@ -443,7 +445,7 @@ const joinData = () => {
     
     // foundational joined dataset ----------
 
-    // console.log(">>>> joinedAqData [joinData]");
+    console.log(">>>> joinedAqData [joinData]");
 
     joinedAqData = aqIndicatorData
         // join the additional geo info
@@ -455,8 +457,8 @@ const joinData = () => {
         .orderby(aq.desc('end_period'), aq.desc('GeoRank'))
         .reify()
     
-    // console.log(">>>> joinedAqData [joinData]");
-    // joinedAqData.print()
+    console.log(">>>> joinedAqData [joinData]");
+    joinedAqData.print()
 
 
     // data for summary table ----------
@@ -474,7 +476,7 @@ const joinData = () => {
         .reify()
         .objects()
 
-    // console.log(">>>> tableData [joinData]", tableData);
+    console.log(">>>> tableData [joinData]", tableData);
 
     // data for map ----------
 
@@ -486,7 +488,7 @@ const joinData = () => {
         .reify()
         .objects()
 
-    // console.log(">>>> mapData [joinData]", mapData);
+    console.log(">>>> mapData [joinData]", mapData);
     
 
     // data for trend chart ----------
@@ -499,7 +501,7 @@ const joinData = () => {
         .reify()
         .objects()
 
-    // console.log(">>>> trendData [joinData]", trendData);
+    console.log(">>>> trendData [joinData]", trendData);
 
     // data for links & disparities chart ----------
 
@@ -510,11 +512,11 @@ const joinData = () => {
         .filter(d => !op.match(d.GeoType, /Citywide|Borough/)) // remove Citywide and Boro
         .objects()
 
-    // console.log(">>>> linksData [joinData]", linksData);
+    console.log(">>>> linksData [joinData]", linksData);
 
     // call the measure rendering etc. function
 
-    renderMeasures();
+    // checkURL();
 
 }
 

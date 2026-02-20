@@ -9,10 +9,10 @@ const renderBar = (
 
     console.log("** renderBar");
 
-    document.getElementById('viewDescription').innerHTML = 'Hover over the map or chart for more information.'
+    // document.getElementById('viewDescription').innerHTML = 'Hover over the map or chart for more information.'
 
-    // console.log("data [renderBar]", data);
-    // console.log("metadata [renderBar]", metadata);
+    console.log("data [renderBar]", data);
+    console.log("metadata [renderBar]", metadata);
 
     // ----------------------------------------------------------------------- //
     // get unique time in data
@@ -27,7 +27,7 @@ const renderBar = (
     // ----------------------------------------------------------------------- //
 
     let barGeoType            = data[0]?.GeoType;
-    let barMeasurementType    = metadata[0]?.MeasurementType;
+    // let barMeasurementType    = metadata[0]?.MeasurementType;
     let barTime = barTimes[0];
     let displayType;
     let subtitle;
@@ -43,16 +43,16 @@ const renderBar = (
     // use some conditionals
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
-    if (barMeasurementType.includes('Percent') || barMeasurementType.includes('percent') && !barMeasurementType.includes('percentile')) {
-        isPercent = true;
-        displayType = '%';
-        subtitle = barMeasurementType;
+    // if (barMeasurementType.includes('Percent') || barMeasurementType.includes('percent') && !barMeasurementType.includes('percentile')) {
+    //     isPercent = true;
+    //     displayType = '%';
+    //     subtitle = barMeasurementType;
         
-    } else {
-        isPercent = false;
-        displayType = metadata[0]?.DisplayType;
-        subtitle = barMeasurementType + `${displayType ? ` (${displayType})` : ''}`;
-    }
+    // } else {
+    //     isPercent = false;
+    //     displayType = metadata[0]?.DisplayType;
+    //     subtitle = barMeasurementType + `${displayType ? ` (${displayType})` : ''}`;
+    // }
 
 
     /* ----------------------------------------------------------------------- //
@@ -64,13 +64,13 @@ const renderBar = (
 
     let barChart
     
-    if (barMeasurementType.includes('Mean') || barMeasurementType.includes('mean')) {
+    // if (barMeasurementType.includes('Mean') || barMeasurementType.includes('mean')) {
 
-    } else if (hasCI == true) {
+    // } else if (hasCI == true) {
 
-    } else {
+    // } else {
         
-    }
+    // }
 
 
     // ----------------------------------------------------------------------- //
@@ -201,7 +201,7 @@ const renderBar = (
     // send info for printing
     vizYear = barTime;
     vizGeography = barGeoType;
-    vizSource = metadata[0].Sources
+    // vizSource = metadata[0].Sources
     printSpec = barspec;
     chartType = 'bar'
 
