@@ -70,8 +70,8 @@ pollutantsMeasured:
     number: 5
 ---
 
-The NYC Health Department designed NYCCAS to understand how average air pollution levels vary from place to place within New York City. NYCCAS staff mount samplers on street light poles 10 to 12 feet off the ground along residential and commercial streets and in parks. The monitors use a small battery-powered pump and filters to collect air samples. Our air samplers are deployed at each NYCCAS site once each season and collect data for a two-week period. Samples are collected in all seasons for NO, NO<sub>2</sub>, PM<sub>2\.5</sub> and BC; in the summer for O<sub>3</sub>; and in the winter for SO<sub>2</sub>. For more details on sample collection methods, see [Appendix 1 (PDF)](pdf/Appendix1.pdf).
+<p style="my-2">Total traffic on the Major Deegan was on average 7% lower in 2025 compared to 2024. Truck traffic was 9% lower. PM2.5 levels on the Major Deegan decreased by 26% after tolling began.
 
-The New York State Department of Environmental Conservation also has a network of 16 air quality monitors in New York City that are required by the federal government, but they are mounted on building roofs. We placed our air samplers at street level to measure pollution where people spend time, and where traffic-related pollution levels are usually higher.
+Traffic-related pollutants (NO2, NO) in the nearby neighborhood decreased by 1 to 2% and truck-related pollutants (PM2.5, BC) decreased by 3-4%. Ozone levels did not change (not shown).
 
-NYCCAS has also deployed eight monitors that can measure PM<sub>2\.5</sub> levels in real time. These monitors allow us to monitor air pollution as it changes based on the time of day, weather or due to local pollution sources, such as heavy-duty trucks. [Get data on real-time air quality](../../data-features/realtime-air-quality/).
+TKTKTK</p>

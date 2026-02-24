@@ -52,13 +52,34 @@
             {{ partial "cp-chart.html" . }}
         </div>
 
-        <!-- two-column Section A and Section B -->
-        
+        <!-- single column layout community sites + charts -->
+
+        <div class="col-md-8 mx-auto col-sm-12">
+            <div class="row"><div class="l-green-border px-1 mb-2">
+                <h3>Community sites</h3>
+                <img src="{{ .Params.fullurl }}images/map2.png" alt="NYCCAS installation" align="left" style="width:50%;" class="m-1 p-1">
+               {{- with .Resources.GetMatch "community-sites.md" -}}
+                        {{ .Content }}
+                {{- end -}}
+                </div>
+                <div class="row">
+                    <div class="col-4"><img src="{{ .Params.fullurl }}images/barchart1.png" alt="NYCCAS installation" style="width:100%;" class="my-2 p-2">
+                    </div>
+                    <div class="col-4"><img src="{{ .Params.fullurl }}images/barchart1.png" alt="NYCCAS installation" style="width:100%;" class="my-2 p-2">
+                    </div>
+                    <div class="col-4"><img src="{{ .Params.fullurl }}images/barchart1.png" alt="NYCCAS installation" style="width:100%;" class="my-2 p-2"></div>
+                </div>
+        </div> 
+        </div>
+
+        <!-- two-column Section A and Section B? 
+
         <div class="col-md-5 ml-auto col-sm-12">
             <div class="l-green-border px-1 mb-2">
                 <h3>Title A</h3>
-                {{- with .Resources.GetMatch "Pollutants-measured.md" -}}
-                    {{ .Content }}
+                <img src="{{ .Params.fullurl }}images/map2.png" alt="NYCCAS installation" align="left" style="width:100%;" class="my-2 pl-2">
+               {{- with .Resources.GetMatch "community-sites.md" -}}
+                        {{ .Content }}
                 {{- end -}}
             </div>
         </div>
@@ -91,6 +112,8 @@
             </div>
         </div>
 
+    -->
+
         <div class="col-md-8 col-sm-12 mx-auto">
             <hr class="my-4">
         </div>
@@ -98,16 +121,17 @@
         <!-- two-column Sites -->
         <div class="col-md-5 ml-auto col-sm-12">
             <div class="l-green-border px-1 mb-2">
-                <h3>NYCCAS Sites</h3>
+                <h3>Traffic times</h3>
 
-                        {{- with .Resources.GetMatch "nyccas-sites.md" -}}
+                        {{- with .Resources.GetMatch "traffic-times.md" -}}
                             {{ .Content }}
                         {{- end -}}
 
                     </div>
                 </div>
                 <div class="col-sm-6 col-cx-12">
-                    <iframe src={{ relURL "nyccas/embeds/nyccas-sites-leaflet.html" }} frameborder="no" style="width: 100%; height: 550px"></iframe>
+                    <img src="{{ .Params.fullurl }}images/barchart3.png" alt="NYCCAS installation" style="width:50%;" class="my-2 pl-2">
+                    <img src="{{ .Params.fullurl }}images/barchart3.png" alt="NYCCAS installation" style="width:50%;" class="my-2 pl-2">
                 </div>
 
             </div>
@@ -123,10 +147,10 @@
 
     <div class="row">
         <div class="col-md-8 col-sm-12 mx-auto">
-            <h2>Pollutant Maps</h2>
+            <h2>Air quality changes</h2>
             <img src="{{ .Params.fullurl }}images/NyccasInstall_red.jpg" alt="NYCCAS installation" align="right" style="width:50%;" class="my-2 pl-2">
 
-            {{- with .Resources.GetMatch "pollutant-maps.md" -}}
+            {{- with .Resources.GetMatch "air-quality-changes.md" -}}
                 {{ .Content }}
             {{- end -}}
 
@@ -170,8 +194,8 @@
 
 
 
-
     </div>
+
     <!-- .row -->
 
 </article>
