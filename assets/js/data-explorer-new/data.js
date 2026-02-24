@@ -207,8 +207,8 @@ const joinData = async () => {
 
     console.log("* joinData");
 
-    // console.log("indicators [joinData]", indicators);
-    // console.log("indicatorMeasures [joinData]", indicatorMeasures);
+    console.log("indicators [joinData]", indicators);
+    console.log("indicatorMeasures [joinData]", indicatorMeasures);
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
     // get metadata fields
@@ -240,8 +240,8 @@ const joinData = async () => {
 
     // take array of arquero tables and combine them into 1 arquero table - like bind_rows in dplyr
 
-    // console.log("aqMeasureDisplay [joinData]");
-    // aqMeasureDisplay.print()
+    console.log("aqMeasureDisplay [joinData]");
+    aqMeasureDisplay.print()
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
     // getting time periods for each viz for each measure x geo combo
@@ -282,8 +282,8 @@ const joinData = async () => {
                             MeasureID: [measure.MeasureID]
                         })
 
-                        // console.log("aqMeasureGeo");
-                        // aqMeasureGeo.print()
+                        console.log("aqMeasureGeo");
+                        aqMeasureGeo.print()
 
                         // cross them to expand / recycle geotype & measure table rows
 
@@ -294,7 +294,7 @@ const joinData = async () => {
                     }
                 )
 
-            // console.log("aqTableTimesGeosMeasureArray", aqTableTimesGeosMeasureArray);
+            console.log("aqTableTimesGeosMeasureArray", aqTableTimesGeosMeasureArray);
 
             // combine array of arquero tables into 1 arquero table
 
@@ -338,7 +338,7 @@ const joinData = async () => {
                     }
                 )
 
-            // console.log("aqMapTimesGeosMeasureArray", aqMapTimesGeosMeasureArray);
+            console.log("aqMapTimesGeosMeasureArray", aqMapTimesGeosMeasureArray);
 
             // combine array of arquero tables into 1 arquero table
 
@@ -382,7 +382,7 @@ const joinData = async () => {
                     }
                 )
 
-            // console.log("aqTrendTimesGeosMeasureArray", aqTrendTimesGeosMeasureArray);
+            console.log("aqTrendTimesGeosMeasureArray", aqTrendTimesGeosMeasureArray);
 
             // combine array of arquero tables into 1 arquero table
 
@@ -429,14 +429,14 @@ const joinData = async () => {
             .orderby(aq.desc('end_period'), "MeasureID")
 
 
-    // console.log("aqTableTimesGeos [joinData]");
-    // aqTableTimesGeos.print()
+    console.log("aqTableTimesGeos [joinData]");
+    aqTableTimesGeos.print()
 
-    // console.log("aqMapTimesGeos [joinData]");
-    // aqMapTimesGeos.print()
+    console.log("aqMapTimesGeos [joinData]");
+    aqMapTimesGeos.print()
 
-    // console.log("aqTrendTimesGeos [joinData]");
-    // aqTrendTimesGeos.print()
+    console.log("aqTrendTimesGeos [joinData]");
+    aqTrendTimesGeos.print()
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
     // joining
