@@ -37,26 +37,23 @@
 
         </div>
         <!-- .col (main) -->
-        <div class="col-md-10 col-sm-12 mx-auto">
-            {{ partial "cp-chart.html" . }}
-        </div>
-        <!-- two-column methods and pollutants -->
-
-
+        <!-- two-column xx and xx -->
        
         <div class="col-md-8 col-sm-12 mx-auto mb-2">
-        <hr class="my-4">
-        <h2>Pollutant Trends</h2>
-            {{- with .Resources.GetMatch "pollutant-trends.md" -}}
+        <h2>Key sites</h2>
+        <img src="{{ .Params.fullurl }}images/map-screenshot.png" alt="NYCCAS installation" align="right" style="width:50%;" class="my-2 pl-2">
+            {{- with .Resources.GetMatch "key-sites.md" -}}
                 {{ .Content }}
             {{- end -}}
-            <img src="{{ .Params.fullurl }}images/map-screenshot.png" alt="NYCCAS installation" align="right" style="width:50%;" class="my-2 pl-2">
+            
         </div>
-
         <div class="col-md-10 col-sm-12 mx-auto">
-            {{ partial "congestion_pricing_pollutant_slope.html" . }}
+            <div style="text-align: center;" class="my-2"><h3 class="h4">Results from EJ sites</h3></div>
+            {{ partial "cp-chart.html" . }}
         </div>
 
+        <!-- two-column Section A and Section B -->
+        
         <div class="col-md-5 ml-auto col-sm-12">
             <div class="l-green-border px-1 mb-2">
                 <h3>Title A</h3>
@@ -66,6 +63,7 @@
             </div>
         </div>
 
+        
         <div class="col-md-5 mr-auto col-sm-12">
             <h3>Pollutants Measured</h3>
 
