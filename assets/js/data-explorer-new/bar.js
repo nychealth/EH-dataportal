@@ -2,6 +2,8 @@
 // bar.js
 // ======================================================================= //
 
+console.log(">> bar.js");
+
 const renderBar = (
     data, 
     metadata

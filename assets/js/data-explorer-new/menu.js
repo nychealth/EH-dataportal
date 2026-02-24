@@ -1,6 +1,10 @@
-// ASYNC BECAUSE IT AWAITS metadata.json VIA ensureIndicatorsLoaded()
+// ======================================================================= //
+// menu.js
+// ======================================================================= //
 
 console.log(">> menu.js");
+
+// ASYNC BECAUSE IT AWAITS metadata.json VIA ensureIndicatorsLoaded()
 
 const printMenus = async (x) => {
     

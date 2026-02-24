@@ -2,6 +2,8 @@
 // map.js
 // ======================================================================= //
 
+console.log(">> map.js");
+
 const renderMap = (
     data, 
     metadata

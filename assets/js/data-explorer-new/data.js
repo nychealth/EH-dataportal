@@ -1,11 +1,10 @@
-console.log(">> data.js");
-
 // ======================================================================= //
+// data.js
+// ======================================================================= //
+
 // data loading and manipulation functions
-// ======================================================================= //
 
-// I reversed the order of these function declarations to make the process
-//  of data creation easier to understand
+console.log(">> data.js");
 
 // ----------------------------------------------------------------------- //
 // function to load indicator metadata
