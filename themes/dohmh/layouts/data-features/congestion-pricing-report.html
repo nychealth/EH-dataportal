@@ -69,7 +69,7 @@
                     </div>
                     <div class="col-4"><img src="{{ .Params.fullurl }}images/barchart1.png" alt="NYCCAS installation" style="width:100%;" class="my-2 p-2"></div>
                 </div>
-        </div> 
+            </div> 
         </div>
 
         <!-- two-column Section A and Section B? 
@@ -112,11 +112,10 @@
             </div>
         </div>
 
-    -->
-
         <div class="col-md-8 col-sm-12 mx-auto">
             <hr class="my-4">
         </div>
+    -->
 
         <!-- two-column Sites -->
         <div class="col-md-5 ml-auto col-sm-12">
@@ -133,13 +132,9 @@
                     <img src="{{ .Params.fullurl }}images/barchart3.png" alt="NYCCAS installation" style="width:50%;" class="my-2 pl-2">
                     <img src="{{ .Params.fullurl }}images/barchart3.png" alt="NYCCAS installation" style="width:50%;" class="my-2 pl-2">
                 </div>
-
-            </div>
-
-            <hr class="my-2">
-
+                <hr class="my-2">  
         </div>
-    </div>
+
 
     <!-- single column -->
 
@@ -148,34 +143,37 @@
     <div class="row">
         <div class="col-md-8 col-sm-12 mx-auto">
             <h2>Air quality changes</h2>
-            <img src="{{ .Params.fullurl }}images/NyccasInstall_red.jpg" alt="NYCCAS installation" align="right" style="width:50%;" class="my-2 pl-2">
+            <img src="{{ .Params.fullurl }}images/map3.png" alt="NYCCAS installation" align="left" class="m-1 p-1">
 
             {{- with .Resources.GetMatch "air-quality-changes.md" -}}
                 {{ .Content }}
             {{- end -}}
-
-            <hr class="my-4">            
+         
         </div>
 
+        <!-- Commenting out partial
         <div class="col-md-10 col-sm-12 mx-auto">
             {{ partial "nyccas_pollutant_maps.html" . }}
         </div>
+        -->
 
         <div class="col-md-8 col-sm-12 mx-auto">
             <hr class="my-4">
 
-            <h2>Pollutant Predictors</h2>
-            {{- with .Resources.GetMatch "pollutant-predictors.md" -}}
+            <h2></h2>
+            <img src="{{ .Params.fullurl }}images/map4.png" alt="NYCCAS installation" align="right" class="m-1 p-1">
+            {{- with .Resources.GetMatch "aq-outside-crz.md" -}}
                 {{ .Content }}
             {{- end -}}
 
         </div>
 
+        <!-- commenting out table 
         <div class="col-md-10 col-sm-12 mx-auto">
             {{ partial "nyccas_pollutant_table" . }}
         </div>
-
-        <div class="col-md-8 col-sm-12 mx-auto">
+    --> 
+        <div class="col-md-8 col-sm-12 mx-auto"> <!-- maybe there is a new column like this somewhere and i delete that div? -->
 
             <h2>Conclusion</h2>
             {{- with .Resources.GetMatch "conclusion.md" -}}
