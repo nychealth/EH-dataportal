@@ -4,4 +4,16 @@ draft: false
 hide: true
 ---
 
-TK TK
+Congestion Relief Zone tolling resulted in small decreases in ​air pollution within the zone and did not result in increases in pollution​levels in communities outside the zone as suggested by the analyses​ in the Environmental Assessment. ​
+
+​More Resources​
+
+- MTA info​
+
+- Real time page​
+
+- Appendices​
+
+- Traffic data site​
+
+- AQS data site
