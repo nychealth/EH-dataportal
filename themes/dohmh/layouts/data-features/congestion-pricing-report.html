@@ -56,11 +56,12 @@
 
         <div class="col-md-8 mx-auto col-sm-12">
             <div class="row"><div class="l-green-border px-1 mb-2">
-                <h3>Community sites</h3>
-                <img src="{{ .Params.fullurl }}images/map2.png" alt="NYCCAS installation" align="left" style="width:50%;" class="m-1 p-1">
+                <h3></h3>
                {{- with .Resources.GetMatch "community-sites.md" -}}
                         {{ .Content }}
                 {{- end -}}
+                <hr class="my-2">  
+                <img src="{{ .Params.fullurl }}images/map2.png" alt="NYCCAS installation" align="left" style="width:50%;" class="m-1 p-1">
                 </div>
                 <div class="row">
                     <div class="col-4"><img src="{{ .Params.fullurl }}images/barchart1.png" alt="NYCCAS installation" style="width:100%;" class="my-2 p-2">
