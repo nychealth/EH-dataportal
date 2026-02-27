@@ -41,7 +41,7 @@
        
         <div class="col-md-8 col-sm-12 mx-auto mb-2">
         <h2>Key sites</h2>
-        <img src="{{ .Params.fullurl }}images/map-screenshot.png" alt="NYCCAS installation" align="right" style="width:50%;" class="my-2 pl-2">
+        <img src="{{ .Params.fullurl }}images/map-screenshot.png" alt="NYCCAS installation" align="none" style="width:100%;" class="my-2 pl-2">
             {{- with .Resources.GetMatch "key-sites.md" -}}
                 {{ .Content }}
             {{- end -}}
