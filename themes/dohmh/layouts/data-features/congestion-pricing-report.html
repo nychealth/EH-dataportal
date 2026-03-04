@@ -49,28 +49,22 @@
         </div>
         <div class="col-md-10 col-sm-12 mx-auto">
             <div style="text-align: center;" class="my-2"><h3 class="h4">Results from EJ sites</h3></div>
-            {{ partial "cp-chart.html" . }}
+<!--            {{ partial "cp-chart.html" . }} temp hide partial -->
         </div>
 
         <!-- single column layout community sites + charts -->
 
         <div class="col-md-8 mx-auto col-sm-12">
-            <div class="row"><div class="l-green-border px-1 mb-2">
+            <div class="l-green-border px-1 mb-2">
                 <h3></h3>
                {{- with .Resources.GetMatch "community-sites.md" -}}
                         {{ .Content }}
                 {{- end -}} 
-                <img src="{{ .Params.fullurl }}images/map2.png" alt="NYCCAS installation" align="left" style="width:50%;" class="m-1 p-1">
-                </div>
-                <div class="row">
-                    <div class="col-4"><img src="{{ .Params.fullurl }}images/barchart1.png" alt="NYCCAS installation" style="width:100%;" class="my-2 p-2">
-                    </div>
-                    <div class="col-4"><img src="{{ .Params.fullurl }}images/barchart1.png" alt="NYCCAS installation" style="width:100%;" class="my-2 p-2">
-                    </div>
-                    <div class="col-4"><img src="{{ .Params.fullurl }}images/barchart1.png" alt="NYCCAS installation" style="width:100%;" class="my-2 p-2"></div>
-                </div>
-            </div> 
-        </div>
+                {{ partial "cp-chart.html" . }}
+                <img src="{{ .Params.fullurl }}images/Mott_haven_site.png" alt="map of" align="right" style="width:50%;" class="p-1">
+                <p align="left">"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
+            </div>
+        </div> 
 
         <!-- two-column Section A and Section B? 
 
@@ -119,19 +113,24 @@
 
         <!-- two-column Sites -->
         <div class="col-md-5 ml-auto col-sm-12">
-            <div class="l-green-border px-1 mb-2">
-                <h3>Traffic times</h3>
+            <div class="l-green-border px-1 mb-2" align="">
+                <h3>How did traffic and PM2.5 near the highways change?</h3>
 
                         {{- with .Resources.GetMatch "traffic-times.md" -}}
                             {{ .Content }}
                         {{- end -}}
 
                     </div>
-                </div>
-                <div class="col-sm-6 col-cx-12">
-                    <img src="{{ .Params.fullurl }}images/barchart3.png" alt="NYCCAS installation" style="width:50%;" class="my-2 pl-2">
-                    <img src="{{ .Params.fullurl }}images/barchart3.png" alt="NYCCAS installation" style="width:50%;" class="my-2 pl-2">
-                </div>
+        </div>
+        <div class="row">
+                    <div class="col-4"><img src="{{ .Params.fullurl }}images/barchart1.png" alt="NYCCAS installation" style="width:100%;" class="my-2 p-2">
+                    </div>
+                    <div class="col-4"><img src="{{ .Params.fullurl }}images/barchart1.png" alt="NYCCAS installation" style="width:100%;" class="my-2 p-2">
+                    </div>
+                    <div class="col-4"><img src="{{ .Params.fullurl }}images/barchart1.png" alt="NYCCAS installation" style="width:100%;" class="my-2 p-2"></div>
+        </div>
+
+
                 <hr class="my-2">  
         </div>
 
@@ -144,7 +143,10 @@
         <div class="col-md-8 col-sm-12 mx-auto">
             <h2>Air quality changes</h2>
             <img src="{{ .Params.fullurl }}images/map3.png" alt="NYCCAS installation" align="left" class="m-1 p-1">
-
+        <div class="col-sm-5 col-cx-12">
+                <img src="{{ .Params.fullurl }}images/barchart3.png" alt="NYCCAS installation" style="width:50%;" class="my-2 pl-2">
+                <img src="{{ .Params.fullurl }}images/barchart3.png" alt="NYCCAS installation" style="width:50%;" class="my-2 pl-2">
+        </div>
             {{- with .Resources.GetMatch "air-quality-changes.md" -}}
                 {{ .Content }}
             {{- end -}}

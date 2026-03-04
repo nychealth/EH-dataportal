@@ -1,17 +1,35 @@
 <div class="row">
   <div class="col-12 d-flex justify-content-center">
-    <div id="cpSiteButtons" class="btn-group flex-wrap" role="group" aria-label="Choose site"></div>
+    <div
+      id="cpSiteButtons"
+      class="btn-group flex-wrap"
+      role="group"
+      aria-label="Choose site"
+    ></div>
   </div>
+</div>
+
+<div class="fs-sm">
+  <p style="my-2">
+    Total traffic on the Major Deegan was on average 7% lower in 2025 compared
+    to 2024. Truck traffic was 9% lower. PM2.5 levels on the Major Deegan
+    decreased by 26% after tolling began.
+  </p>
+  <p>
+    Traffic-related pollutants (NO2, NO) in the nearby neighborhood decreased by
+    1 to 2% and truck-related pollutants (PM2.5, BC) decreased by 3-4%. Ozone
+    levels did not change (not shown).
+  </p>
 </div>
 
 <div class="row mt-2">
   <div class="col-12 d-flex justify-content-center">
-    <div id="cpVis" style="width:100%; max-width:1000px;"></div>
+    <div id="cpVis" style="width: 100%; max-width: 1000px"></div>
   </div>
 </div>
 
 <script>
-   const CP_CONTAINER_ID = "cpVis";
+  const CP_CONTAINER_ID = "cpVis";
 
   // Buttons for sites
   const SITES = [
@@ -21,7 +39,7 @@
     "Van Wyck",
     "Staten Island",
     "FDR",
-    "Hamilton Bridge"
+    "Hamilton Bridge",
   ];
 
   // Default selection
@@ -29,78 +47,98 @@
 
   // Base spec
   const baseSpec = {
-    "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
-    "config": {
-      "header": {
-        "labelAlign": "left",
-        "labelAnchor": "start",
-        "labelFont": "Helvetica",
-        "labelFontWeight": "bold",
-        "labelFontSize": 12
+    $schema: "https://vega.github.io/schema/vega-lite/v6.json",
+    config: {
+      header: {
+        labelAlign: "left",
+        labelAnchor: "start",
+        labelFont: "Helvetica",
+        labelFontWeight: "bold",
+        labelFontSize: 12,
       },
-      "view": {"stroke": null},
-      "axisX": {"labelAngle": 0, "domain": false},
-      "axisY": {
-        "domain": false,
-        "ticks": false,
-        "tickCount": 3,
-        "orient": "left",
-        "title": null
-      }
+      view: { stroke: null },
+      axisX: { labelAngle: 0, domain: false },
+      axisY: {
+        domain: false,
+        ticks: false,
+        tickCount: 3,
+        orient: "left",
+        title: null,
+      },
     },
-    "data": {
-      "url": "https://gist.githubusercontent.com/mmontesanonyc/c4a858aba1959c377188e9c2dbb50681/raw/2d439386e74ce7dbbb0b31bac8cc736f28d18114/cp-test-data-with-units.csv"
+    data: {
+      url: "https://gist.githubusercontent.com/mmontesanonyc/c4a858aba1959c377188e9c2dbb50681/raw/2d439386e74ce7dbbb0b31bac8cc736f28d18114/cp-test-data-with-units.csv",
     },
-    "resolve": {"scale": {"y": "independent"}},
-    "transform": [
-      {"filter": "datum.Site === 'Mott Haven'"},
-      {"calculate": "datum.Parameter + ' (' + datum.Unit + ')'", "as": "ParameterWithUnit"},
-      {"calculate": "datum.Average + ' ' + datum.Unit", "as": "ValueWithUnit"},
-      {"calculate": "datum.LC + ', ' + datum.UC", "as": "ciRange"},
+    resolve: { scale: { y: "independent" } },
+    transform: [
+      { filter: "datum.Site === 'Mott Haven'" },
       {
-        "calculate": "datum.Time === 'Pre' ? 'Before congestion pricing' : datum.Time === 'Post' ? 'With congestion pricing' : datum.Time",
-        "as": "TimeLabel"
-      }
-    ],
-    "facet": {"field": "ParameterWithUnit", "title": null},
-    "spec": {
-      "width": 150,
-      "height": 250,
-      "encoding": {
-        "x": { "field": "Time", "type": "nominal", "sort": "descending", "title": null }
+        calculate: "datum.Parameter + ' (' + datum.Unit + ')'",
+        as: "ParameterWithUnit",
       },
-      "layer": [
+      { calculate: "datum.Average + ' ' + datum.Unit", as: "ValueWithUnit" },
+      { calculate: "datum.LC + ', ' + datum.UC", as: "ciRange" },
+      {
+        calculate:
+          "datum.Time === 'Pre' ? 'Before congestion pricing' : datum.Time === 'Post' ? 'With congestion pricing' : datum.Time",
+        as: "TimeLabel",
+      },
+    ],
+    facet: { field: "ParameterWithUnit", title: null },
+    spec: {
+      width: 150,
+      height: 250,
+      encoding: {
+        x: { field: "Time", type: "nominal", sort: "descending", title: null },
+      },
+      layer: [
         {
-          "mark": { "type": "rule", "strokeWidth": 5, "color": "lightgray", "strokeCap": "round" },
-          "encoding": { "y": {"field": "UC", "type": "quantitative"}, "y2": {"field": "LC", "type": "quantitative"} }
+          mark: {
+            type: "rule",
+            strokeWidth: 5,
+            color: "lightgray",
+            strokeCap: "round",
+          },
+          encoding: {
+            y: { field: "UC", type: "quantitative" },
+            y2: { field: "LC", type: "quantitative" },
+          },
         },
         {
-          "mark": { "type": "line", "color": "blue", "strokeDash": [2, 2] },
-          "encoding": { "y": {"field": "Average", "type": "quantitative"} }
+          mark: { type: "line", color: "blue", strokeDash: [2, 2] },
+          encoding: { y: { field: "Average", type: "quantitative" } },
         },
         {
-          "mark": { "type": "circle", "size": 100, "color": "blue" },
-          "encoding": {
-            "y": { "field": "Average", "type": "quantitative", "scale": {"domainMin": 0, "nice": false} },
-            "tooltip": [
-              { "field": "Parameter", "type": "nominal", "title": "Pollutant" },
-              { "field": "TimeLabel", "type": "nominal", "title": "Period" },
-              { "field": "ValueWithUnit", "type": "nominal", "title": "Average" },
-              { "field": "ciRange", "type": "nominal", "title": "Confidence interval" }
-            ]
-          }
-        }
-      ]
+          mark: { type: "circle", size: 100, color: "blue" },
+          encoding: {
+            y: {
+              field: "Average",
+              type: "quantitative",
+              scale: { domainMin: 0, nice: false },
+            },
+            tooltip: [
+              { field: "Parameter", type: "nominal", title: "Pollutant" },
+              { field: "TimeLabel", type: "nominal", title: "Period" },
+              { field: "ValueWithUnit", type: "nominal", title: "Average" },
+              {
+                field: "ciRange",
+                type: "nominal",
+                title: "Confidence interval",
+              },
+            ],
+          },
+        },
+      ],
     },
-    "columns": 5
+    columns: 5,
   };
-
 
   function specForSite(site) {
     // structuredClone first; fallback to JSON clone
-    const spec = (typeof structuredClone === "function")
-      ? structuredClone(baseSpec)
-      : JSON.parse(JSON.stringify(baseSpec));
+    const spec =
+      typeof structuredClone === "function"
+        ? structuredClone(baseSpec)
+        : JSON.parse(JSON.stringify(baseSpec));
 
     spec.transform[0].filter = `datum.Site === '${site}'`;
     return spec;
@@ -113,10 +151,14 @@
     el.innerHTML = ""; // clear previous render
 
     try {
-      await vegaEmbed(el, specForSite(site), { actions: false, renderer: "canvas" });
+      await vegaEmbed(el, specForSite(site), {
+        actions: false,
+        renderer: "canvas",
+      });
     } catch (err) {
       console.error("CP Vega render failed:", err);
-      el.innerHTML = "<pre style='white-space:pre-wrap'>Chart failed to render. See console.</pre>";
+      el.innerHTML =
+        "<pre style='white-space:pre-wrap'>Chart failed to render. See console.</pre>";
     }
   }
 
@@ -137,7 +179,9 @@
       btn.addEventListener("click", async () => {
         currentSite = site;
         // toggle active state
-        [...btnWrap.querySelectorAll("button")].forEach(b => b.classList.remove("active"));
+        [...btnWrap.querySelectorAll("button")].forEach((b) =>
+          b.classList.remove("active")
+        );
         btn.classList.add("active");
 
         await draw(site);
@@ -149,7 +193,9 @@
 
   document.addEventListener("DOMContentLoaded", async () => {
     if (typeof vegaEmbed !== "function") {
-      console.error("vegaEmbed not available. Are the Vega scripts loaded above this script?");
+      console.error(
+        "vegaEmbed not available. Are the Vega scripts loaded above this script?"
+      );
       return;
     }
 
@@ -158,96 +204,101 @@
   });
 
   const cpSpec = {
-    "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
-    "config": {
-      "header": {
-        "labelAlign": "left",
-        "labelAnchor": "start",
-        "labelFont": "Helvetica",
-        "labelFontWeight": "bold",
-        "labelFontSize": 12
+    $schema: "https://vega.github.io/schema/vega-lite/v6.json",
+    config: {
+      header: {
+        labelAlign: "left",
+        labelAnchor: "start",
+        labelFont: "Helvetica",
+        labelFontWeight: "bold",
+        labelFontSize: 12,
       },
-      "view": {"stroke": null},
-      "axisX": {"labelAngle": 0, "domain": false},
-      "axisY": {
-        "domain": false,
-        "ticks": false,
-        "tickCount": 3,
-        "orient": "left",
-        "title": null
-      }
+      view: { stroke: null },
+      axisX: { labelAngle: 0, domain: false },
+      axisY: {
+        domain: false,
+        ticks: false,
+        tickCount: 3,
+        orient: "left",
+        title: null,
+      },
     },
-    "data": {
-      "url": "https://gist.githubusercontent.com/mmontesanonyc/c4a858aba1959c377188e9c2dbb50681/raw/2d439386e74ce7dbbb0b31bac8cc736f28d18114/cp-test-data-with-units.csv"
+    data: {
+      url: "https://gist.githubusercontent.com/mmontesanonyc/c4a858aba1959c377188e9c2dbb50681/raw/2d439386e74ce7dbbb0b31bac8cc736f28d18114/cp-test-data-with-units.csv",
     },
-    "resolve": {"scale": {"y": "independent"}},
-    "transform": [
-      {"filter": "datum.Site === 'Mott Haven'"},
-        {
-      "calculate": "datum.Parameter + ' (' + datum.Unit + ')'",
-      "as": "ParameterWithUnit"
-    },
-    {
-      "calculate": "datum.Average + ' ' + datum.Unit",
-      "as": "ValueWithUnit"
-    },
-    {
-      "calculate": "datum.LC + ', ' + datum.UC",
-      "as": "ciRange"
-    },
+    resolve: { scale: { y: "independent" } },
+    transform: [
+      { filter: "datum.Site === 'Mott Haven'" },
       {
-      "calculate": "datum.Time === 'Pre' ? 'Before congestion pricing' : datum.Time === 'Post' ? 'With congestion pricing' : datum.Time",
-      "as": "TimeLabel"
-    }
-      ],
-    "facet": {"field": "ParameterWithUnit", "title": null},
-    "spec": {
-      "width": 150,
-      "height": 250,
-      "encoding": {
-        "x": {
-          "field": "Time",
-          "type": "nominal",
-          "sort": "descending",
-          "title": null
-        }
+        calculate: "datum.Parameter + ' (' + datum.Unit + ')'",
+        as: "ParameterWithUnit",
       },
-      "layer": [
+      {
+        calculate: "datum.Average + ' ' + datum.Unit",
+        as: "ValueWithUnit",
+      },
+      {
+        calculate: "datum.LC + ', ' + datum.UC",
+        as: "ciRange",
+      },
+      {
+        calculate:
+          "datum.Time === 'Pre' ? 'Before congestion pricing' : datum.Time === 'Post' ? 'With congestion pricing' : datum.Time",
+        as: "TimeLabel",
+      },
+    ],
+    facet: { field: "ParameterWithUnit", title: null },
+    spec: {
+      width: 150,
+      height: 250,
+      encoding: {
+        x: {
+          field: "Time",
+          type: "nominal",
+          sort: "descending",
+          title: null,
+        },
+      },
+      layer: [
         {
-          "mark": {
-            "type": "rule",
-            "strokeWidth": 5,
-            "color": "lightgray",
-            "strokeCap": "round"
+          mark: {
+            type: "rule",
+            strokeWidth: 5,
+            color: "lightgray",
+            strokeCap: "round",
           },
-          "encoding": {
-            "y": {"field": "UC", "type": "quantitative"},
-            "y2": {"field": "LC", "type": "quantitative"}
-          }
+          encoding: {
+            y: { field: "UC", type: "quantitative" },
+            y2: { field: "LC", type: "quantitative" },
+          },
         },
         {
-          "mark": {"type": "line", "color": "blue", "strokeDash": [2, 2]},
-          "encoding": {"y": {"field": "Average", "type": "quantitative"}}
+          mark: { type: "line", color: "blue", strokeDash: [2, 2] },
+          encoding: { y: { field: "Average", type: "quantitative" } },
         },
         {
-          "mark": {"type": "circle", "size": 100, "color": "blue"},
-          "encoding": {
-            "y": {
-              "field": "Average",
-              "type": "quantitative",
-              "scale": {"domainMin": 0, "nice": false}
+          mark: { type: "circle", size: 100, color: "blue" },
+          encoding: {
+            y: {
+              field: "Average",
+              type: "quantitative",
+              scale: { domainMin: 0, nice: false },
             },
-                "tooltip": [
-        { "field": "Parameter", "type": "nominal", "title": "Pollutant" },
-        { "field": "TimeLabel", "type": "nominal", "title": "Period" },
-        { "field": "ValueWithUnit", "type": "nominal", "title": "Average" },
-        { "field": "ciRange", "type": "nominal", "title": "Confidence interval"},
-      ]
-          }
-        }
-      ]
+            tooltip: [
+              { field: "Parameter", type: "nominal", title: "Pollutant" },
+              { field: "TimeLabel", type: "nominal", title: "Period" },
+              { field: "ValueWithUnit", type: "nominal", title: "Average" },
+              {
+                field: "ciRange",
+                type: "nominal",
+                title: "Confidence interval",
+              },
+            ],
+          },
+        },
+      ],
     },
-    "columns": 5
+    columns: 5,
   };
 
   document.addEventListener("DOMContentLoaded", async () => {
@@ -258,7 +309,8 @@
       await vegaEmbed(el, cpSpec, { actions: false, renderer: "canvas" });
     } catch (err) {
       console.error("CP Vega render failed:", err);
-      el.innerHTML = "<pre style='white-space:pre-wrap'>Chart failed to render.</pre>";
+      el.innerHTML =
+        "<pre style='white-space:pre-wrap'>Chart failed to render.</pre>";
     }
   });
 </script>
