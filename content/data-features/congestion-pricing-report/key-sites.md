@@ -6,8 +6,9 @@ hide: true
 
 ### Measured pollutants and key sites
 
-Air quality monitoring and analysis for CRZ tolling includes five pollutants - fine particulate matter (PM2.5), nitrogen dioxide (NO2), nitric oxide (NO), ozone (O3) and black carbon (BC). Of all the pollutants monitored, NO2 is the best indicator of traffic - related air pollution. The NYCCAS network deploys monitors at 84 sites across the city once per season. At a subset of these sites, located in EJ-designated communities near highways, the Health Department increased the frequency of monitoring and deployed additional real time PM2.5 and BC monitors. Traffic counts were also taken near these locations. These 6 communities are:​
+Air quality monitoring and analysis for CRZ tolling includes five pollutants - fine particulate matter (PM2.5), nitrogen dioxide (NO2), nitric oxide (NO), ozone (O3) and black carbon (BC). Of all the pollutants monitored, NO2 is the best indicator of traffic - related air pollution. The NYCCAS network deploys monitors at 84 sites across the city once per season. At a subset of these sites, located in EJ-designated communities near highways, the Health Department increased the frequency of monitoring and deployed additional real time PM2.5 and BC monitors. Traffic counts were also taken near these locations. These six communities are:​
 
+<div class="col-8" align="center">
 <div class="accordion-group my-3" role="tablist" id="accordion-02">
   <div class="card">
     <a class="card-header collapse collapsed font-weight-bold" id="acc-button-2a" data-toggle="collapse" href="#panel-acc-button-2a"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-2a">
@@ -110,6 +111,7 @@ and connecting links in the Bronx, Manhattan, and Queens –Hunts Point (Hunts P
 <!-- .collapse -->
 </div>
 
+</div>
 </div>
 
 This report provides results for each of the 6 EJ communities of the 5 common air pollutants described above and traffic to determine whether CRZ tolling caused traffic and pollution levels to change in those neighborhoods. This report will also update the analyses presented in the Congestion Relief Zone Tolling First Evaluation Report including the effect of the program on air pollution in the zone and across the region.

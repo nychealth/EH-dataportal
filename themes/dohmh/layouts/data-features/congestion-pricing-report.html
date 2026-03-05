@@ -41,7 +41,7 @@
         <!-- two-column xx and xx -->
        
         <div class="col-md-8 col-sm-12 mx-auto mb-2">
-        <h2>Key sites</h2>
+        <h2 class="h3">Key sites</h3>
         <div style="min-height:657px" class="m-2 pl-2" id="datawrapper-vis-ifGO1"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/ifGO1/embed.js" charset="utf-8" data-target="#datawrapper-vis-ifGO1"></script><noscript><img src="https://datawrapper.dwcdn.net/ifGO1/full.png" alt="Symbol map" /></noscript></div>
             {{- with .Resources.GetMatch "key-sites.md" -}}
                 {{ .Content }}
@@ -124,7 +124,7 @@
         </div>
         <div class="col-md-8 col-sm-12 mx-auto"> <!-- maybe there is a new column like this somewhere and i delete that div? -->
 
-            <h2>Conclusion</h2>
+            <h2 class="h3">Conclusion</h2>
             {{- with .Resources.GetMatch "conclusion.md" -}}
                 {{ .Content }}
             {{- end -}}
