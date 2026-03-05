@@ -4,6 +4,4 @@ draft: false
 hide: true
 ---
 
-Traffic and truck-related pollutants (PM2.5, BC) decreased after CRZ tolling began during all periods of the day.While traffic was highest during morning rush hours, PM2.5 levels varied slightly over the day due to the influence of other sources like heating systems in buildings, restaurant cooking and construction.
-
-TK TK
+Total traffic on the Major Deegan was on average 7% lower in 2025 compared to 2024. Truck traffic was 9% lower. PM2.5 levels on the Major Deegan decreased by 26% after tolling began.​

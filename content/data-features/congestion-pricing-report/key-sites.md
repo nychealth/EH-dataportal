@@ -11,7 +11,7 @@ Air quality monitoring and analysis for CRZ tolling includes five pollutants - f
 <div class="accordion-group my-3" role="tablist" id="accordion-02">
   <div class="card">
     <a class="card-header collapse collapsed font-weight-bold" id="acc-button-2a" data-toggle="collapse" href="#panel-acc-button-2a"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-2a">
-      <span class="title" role="heading" aria-level="3"> The Trans -Manhattan Expressway</span>
+      <span class="title" role="heading" aria-level="3"> The Trans-Manhattan Expressway</span>
     </a>
 
   <div class="collapse" id="panel-acc-button-2a" role="tabpanel" aria-labelledby="acc-button-2a" data-parent="#accordion-02">
@@ -31,7 +31,7 @@ Air quality monitoring and analysis for CRZ tolling includes five pollutants - f
 
 <div class="collapse" id="panel-acc-button-2b" role="tabpanel" aria-labelledby="acc-button-2b" data-parent="#accordion-02">
     <div class="card-body fs-md">
-<p>(Cross Bronx Expwy) in the Highbridge -Tremont neighborhood (High Bridge – Morrisania and Crotona Tremont communities). 
+<p>(Cross Bronx Expwy) in the Highbridge-Tremont neighborhood (High Bridge – Morrisania and Crotona Tremont communities). 
 </p>
 </div>
 
@@ -47,7 +47,7 @@ Air quality monitoring and analysis for CRZ tolling includes five pollutants - f
 
 <div class="collapse" id="panel-acc-button-2c" role="tabpanel" aria-labelledby="acc-button-2c" data-parent="#accordion-02">
     <div class="card-body fs-md">
-<p>The FDR between E. 10 St. and the Manhattan Bridge (FDR)on the Lower East Side (Union Square -Lower East Side community).​<br><br>
+<p>The FDR between E. 10 St. and the Manhattan Bridge (FDR) on the Lower East Side (Union Square -Lower East Side community).​<br><br>
 </p>
 </div>
 

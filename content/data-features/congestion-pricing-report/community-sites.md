@@ -17,4 +17,3 @@ hide: true
 
 <hr class="my-2">
 
-<!-- add pollutant buttons -->

@@ -4,8 +4,4 @@ draft: false
 hide: true
 ---
 
-### Pollution within the CRZ
-
-Along major roads inside the CRZ, daily average PM2.5 declined by 7%. ​In the neighborhoods within the CRZ, NO2 and NO went down by X% ​and PM2.5 and BC by X%.
-
-TK TK
+Traffic and truck-related pollutants (PM2.5, BC) decreased after CRZ tolling began during all periods of the day. While traffic was highest during morning rush hours, PM2.5 levels varied slightly over the day due to the influence of other sources like heating systems in buildings, restaurant cooking and construction.​

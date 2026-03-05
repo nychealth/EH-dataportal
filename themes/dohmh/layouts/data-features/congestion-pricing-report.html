@@ -37,24 +37,29 @@
 
         </div>
         <!-- .col (main) -->
+
         <!-- two-column xx and xx -->
        
         <div class="col-md-8 col-sm-12 mx-auto mb-2">
         <h2>Key sites</h2>
-        <img src="{{ .Params.fullurl }}images/map-screenshot.png" alt="NYCCAS installation" align="none" style="width:100%;" class="my-2 pl-2">
+        <div style="min-height:657px" class="m-2 pl-2" id="datawrapper-vis-ifGO1"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/ifGO1/embed.js" charset="utf-8" data-target="#datawrapper-vis-ifGO1"></script><noscript><img src="https://datawrapper.dwcdn.net/ifGO1/full.png" alt="Symbol map" /></noscript></div>
             {{- with .Resources.GetMatch "key-sites.md" -}}
                 {{ .Content }}
             {{- end -}}
             
         </div>
-        <div class="col-md-10 col-sm-12 mx-auto">
+        <div class="col-md-10 col-sm-12 mx-auto mt-2">
             <div style="text-align: center;" class="my-2"><h3 class="h4">Results from EJ sites</h3></div>
-<!--            {{ partial "cp-chart.html" . }} temp hide partial -->
         </div>
+
+    </div>
+
+    <hr class="my-2">
 
         <!-- single column layout community sites + charts -->
 
-        <div class="col-md-8 mx-auto col-sm-12">
+    <div class="row">
+        <div class="col-md-8 mx-auto col-sm-12 mb-2">
             <div class="l-green-border px-1 mb-2">
                 <h3></h3>
                {{- with .Resources.GetMatch "community-sites.md" -}}
@@ -62,102 +67,50 @@
                 {{- end -}} 
                 {{ partial "cp-chart.html" . }}
                 <img src="{{ .Params.fullurl }}images/Mott_haven_site.png" alt="map of" align="right" style="width:50%;" class="p-1">
-                <p align="left">"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
+                <p align="left">"test Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
             </div>
-        </div> 
+            
+        </div>
 
-        <!-- two-column Section A and Section B? 
+        <hr class="my-2"> 
 
-        <div class="col-md-5 ml-auto col-sm-12">
+        <div class="col-md-8 mx-auto col-sm-12">
             <div class="l-green-border px-1 mb-2">
-                <h3>Title A</h3>
-                <img src="{{ .Params.fullurl }}images/map2.png" alt="NYCCAS installation" align="left" style="width:100%;" class="my-2 pl-2">
-               {{- with .Resources.GetMatch "community-sites.md" -}}
-                        {{ .Content }}
-                {{- end -}}
+            
+                <h3 class="h5">How did traffic and PM2.5 near the highways change?</h3>
+            <div class="row">
+            <div class="col-4 my-1"><img src="{{ .Params.fullurl }}images/barchart1.png" alt="bar chart" style="width:100%;" class="my-1"><p align="center"><strong>Real-time PM2.5</strong></p>
             </div>
-        </div>
-
+            <div class="col-4 my-1"><img src="{{ .Params.fullurl }}images/barchart1.png" alt="bar chart" style="width:100%;" class="my-1"><p align="center"><strong>test</strong></p>
+            </div>
+            <div class="col-4 my-1"><img src="{{ .Params.fullurl }}images/barchart1.png" alt="bar chart" style="width:100%;" class="my-1"><p align="center"><strong>test</strong></p>
+            </div>
+            </div>
         
-        <div class="col-md-5 mr-auto col-sm-12">
-            <h3>Pollutants Measured</h3>
-
-            <div class="accordion-group mt-2 mb-3" role="tablist" id="accordion-01">
-
-                {{- with .Resources.GetMatch "Pollutants-measured.md" -}}
-                {{- range .Params.pollutantsMeasured -}}
-
-                <div class="card accordion-item border">
-                    <a class="card-header font-weight-bold collapse" id="acc-button-{{ .number }}" data-toggle="collapse" href="#panel-acc-button-{{ .number }}" role="tab" aria-expanded="false" aria-controls="panel-acc-button-{{ .number }}">
-                        <span class="title" role="heading" aria-level="3">
-                            {{ .name }}
-                        </span>
-                    </a>
-                    <div class="collapse" id="panel-acc-button-{{ .number }}" role="tabpanel" aria-labelledby="acc-button-{{ .number }}" data-parent="#accordion-01">
-                        <div class="bg-white text-black p-2">
-                            {{ .copy | markdownify }}
-                        </div>
-                    </div>
-                </div>
-
-                {{- end -}}
-                {{- end -}}
-
+                    {{- with .Resources.GetMatch "traffic-times.md" -}}
+                        {{ .Content }}
+                    {{- end -}}
             </div>
         </div>
+                
+        <hr class="my-2"> 
 
-        <div class="col-md-8 col-sm-12 mx-auto">
-            <hr class="my-4">
-        </div>
-    -->
-
-        <!-- two-column Sites -->
-        <div class="col-md-5 ml-auto col-sm-12">
-            <div class="l-green-border px-1 mb-2" align="">
-                <h3>How did traffic and PM2.5 near the highways change?</h3>
-
-                        {{- with .Resources.GetMatch "traffic-times.md" -}}
-                            {{ .Content }}
-                        {{- end -}}
-
+        <div class="col-md-8 mx-auto col-sm-12">
+                    <div class="l-green-border px-1 mb-2">
+                    
+                        <h3 class="h5">Looking closer at daytime traffic patterns</h3>
+                    <div class="row">
+                    <div class="col-4 my-1"><img src="{{ .Params.fullurl }}images/barchart3.png" alt="bar chart" style="width:100%;" class="my-1"><p align="center"><strong>Daily average traffic</strong></p>
+                    </div>
+                    <div class="col-4 my-1"><img src="{{ .Params.fullurl }}images/barchart3.png" alt="bar chart" style="width:100%;" class="my-1"><p align="center"><strong>Average PM2.5</strong></p>
+                    </div>
+                    </div>
+                
+                    {{- with .Resources.GetMatch "air-quality-changes.md" -}}
+                        {{ .Content }}
+                    {{- end -}}
                     </div>
         </div>
-        <div class="row">
-                    <div class="col-4"><img src="{{ .Params.fullurl }}images/barchart1.png" alt="NYCCAS installation" style="width:100%;" class="my-2 p-2">
-                    </div>
-                    <div class="col-4"><img src="{{ .Params.fullurl }}images/barchart1.png" alt="NYCCAS installation" style="width:100%;" class="my-2 p-2">
-                    </div>
-                    <div class="col-4"><img src="{{ .Params.fullurl }}images/barchart1.png" alt="NYCCAS installation" style="width:100%;" class="my-2 p-2"></div>
-        </div>
-
-
-                <hr class="my-2">  
-        </div>
-
-
-    <!-- single column -->
-
-    <!-- Pollutant maps: text to FMV, maps to template -->
-
-    <div class="row">
-        <div class="col-md-8 col-sm-12 mx-auto">
-            <h2>Air quality changes</h2>
-            <img src="{{ .Params.fullurl }}images/map3.png" alt="NYCCAS installation" align="left" class="m-1 p-1">
-        <div class="col-sm-5 col-cx-12">
-                <img src="{{ .Params.fullurl }}images/barchart3.png" alt="NYCCAS installation" style="width:50%;" class="my-2 pl-2">
-                <img src="{{ .Params.fullurl }}images/barchart3.png" alt="NYCCAS installation" style="width:50%;" class="my-2 pl-2">
-        </div>
-            {{- with .Resources.GetMatch "air-quality-changes.md" -}}
-                {{ .Content }}
-            {{- end -}}
-         
-        </div>
-
-        <!-- Commenting out partial
-        <div class="col-md-10 col-sm-12 mx-auto">
-            {{ partial "nyccas_pollutant_maps.html" . }}
-        </div>
-        -->
 
         <div class="col-md-8 col-sm-12 mx-auto">
             <hr class="my-4">
@@ -169,12 +122,6 @@
             {{- end -}}
 
         </div>
-
-        <!-- commenting out table 
-        <div class="col-md-10 col-sm-12 mx-auto">
-            {{ partial "nyccas_pollutant_table" . }}
-        </div>
-    --> 
         <div class="col-md-8 col-sm-12 mx-auto"> <!-- maybe there is a new column like this somewhere and i delete that div? -->
 
             <h2>Conclusion</h2>
@@ -192,10 +139,9 @@
             </div>
         </div>
 
-
-
     </div>
 
+    </div>
     <!-- .row -->
 
 </article>
