@@ -6,7 +6,15 @@ hide: true
 
 ### Measured pollutants and key sites
 
-Air quality monitoring and analysis for CRZ tolling includes five pollutants - fine particulate matter (PM2.5), nitrogen dioxide (NO2), nitric oxide (NO), ozone (O3) and black carbon (BC). Of all the pollutants monitored, NO2 is the best indicator of traffic - related air pollution. The NYCCAS network deploys monitors at 84 sites across the city once per season. At a subset of these sites, located in EJ-designated communities near highways, the Health Department increased the frequency of monitoring and deployed additional real time PM2.5 and BC monitors. Traffic counts were also taken near these locations. These six communities are:​
+Air quality monitoring and analysis for CRZ tolling includes five pollutants:
+
+- fine particulate matter (PM2.5)
+- nitrogen dioxide (NO2)
+- nitric oxide (NO)
+- ozone (O3)
+- black carbon (BC).
+
+NO2 is the best indicator of traffic-related air pollution. The NYCCAS network deploys monitors at 84 sites across the city once per season. At a subset of these sites, located in EJ-designated communities near highways, the Health Department increased the frequency of monitoring and deployed additional real time PM2.5 and BC monitors. Traffic counts were also taken near these locations. These six communities are:​
 
 <div class="col-8" align="center">
 <div class="accordion-group my-3" role="tablist" id="accordion-02">
