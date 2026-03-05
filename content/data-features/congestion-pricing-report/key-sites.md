@@ -122,7 +122,10 @@ and connecting links in the Bronx, Manhattan, and Queens –Hunts Point (Hunts P
 </div>
 </div>
 
-This report provides results for each of the 6 EJ communities of the 5 common air pollutants described above and traffic to determine whether CRZ tolling caused traffic and pollution levels to change in those neighborhoods. This report will also update the analyses presented in the Congestion Relief Zone Tolling First Evaluation Report including the effect of the program on air pollution in the zone and across the region.
+<strong>This report:</strong>
+
+- Provides results for each of the six EJ communities of the five common air pollutants and traffic to determine whether CRZ tolling caused traffic and pollution levels to change in those neighborhoods.
+- Provides an update to the analyses presented in the Congestion Relief Zone Tolling First Evaluation Report including the effect of the program on air pollution in the zone and across the region.
 
 #### EJ-Designated Community Sites ​
 
