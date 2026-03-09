@@ -21,6 +21,7 @@ indicators:
   - header: Diabetes
     IndicatorID:
       - 2465
+      - 2466
       - 2467
       - 2468
       - 2469
