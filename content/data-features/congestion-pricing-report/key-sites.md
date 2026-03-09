@@ -16,7 +16,7 @@ Air quality monitoring and analysis for CRZ tolling includes five pollutants:
 
 NO2 is the best indicator of traffic-related air pollution. The NYCCAS network deploys monitors at 84 sites across the city once per season. At a subset of these sites, located in EJ-designated communities near highways, the Health Department increased the frequency of monitoring and deployed additional real time PM2.5 and BC monitors. Traffic counts were also taken near these locations. These six communities are:​
 
-<div class="col-8" align="center">
+<div class="col-8" align="">
 <div class="accordion-group my-3" role="tablist" id="accordion-02">
   <div class="card">
     <a class="card-header collapse collapsed font-weight-bold" id="acc-button-2a" data-toggle="collapse" href="#panel-acc-button-2a"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-2a">
