@@ -31,4 +31,14 @@ related:
 blurb: CP summer report
 ---
 
-In January 2025, the Metropolitan Transportation Authority Bridge and Tunnels (MTABT) started charging a toll for vehicles entering Manhattan’s Congestion Relief Zone (the zone) to reduce traffic within the zone and raise money for public transportation improvements. During the environmental review process, modeling did not identify air pollution as a concern to be tracked. However, due to community concerns, government agencies – including the Health Department, MTABT, the NYC Department of Transportation, and the New York State Department of Transportation – committed to monitor and report on air quality. TK TK
+<!-- note this text is not final / approved and still needs links! -->
+
+In January 2025, Metropolitan Transportation Authority Bridge and Tunnels (MTABT) started charging a toll for vehicles entering Manhattan’s most gridlocked areas. Congestion tolling, or congestion pricing was introduced to New York City to reduce traffic in the Congestion Relief Zone (CRZ) while raising money for public transit improvements.
+
+##### Monitoring for air quality changes
+
+Modeling from the mandatory environmental review process did not identify air pollution as a concern to be tracked. However, due to community concerns, government agencies committed to monitor and report on air quality. The NYC Health Department expanded their existing air quality monitoring network to evaluate the impact of congestion tolling on NYC’s air quality, especially on Environmental Justice (EJ) communities identified in the assessment.
+
+##### A complete evaluation
+
+With a full year of data since congestion tolling began, we can now accurately evaluate any effect of CRZ tolling on air quality. A full year of data means we can isolate any impact from the CRZ from other factors that affect air pollution, like changes in wind, temperature, building heating, commercial cooking, construction and industrial activities. Two interim reports Initial data from Congestion Relief Tolling and the Congestion Relief Zone Tolling First Evaluation Report noted that air pollution either did not change, or slightly decreased both within and outside the zone.
