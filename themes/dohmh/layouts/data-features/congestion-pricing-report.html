@@ -42,7 +42,8 @@
        
         <div class="col-md-8 col-sm-12 mx-auto mb-2">
         <h2 class="h3">Key sites</h3>
-        <div style="min-height:657px" class="m-2 pl-2" id="datawrapper-vis-ifGO1"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/ifGO1/embed.js" charset="utf-8" data-target="#datawrapper-vis-ifGO1"></script><noscript><img src="https://datawrapper.dwcdn.net/ifGO1/full.png" alt="Symbol map" /></noscript></div>
+            <iframe src={{ relURL "congestion_pricing/embeds/congestion_pricing_monitoring.html" }} frameborder="no" style="width: 100%; height: 550px"></iframe>
+
             {{- with .Resources.GetMatch "key-sites.md" -}}
                 {{ .Content }}
             {{- end -}}
