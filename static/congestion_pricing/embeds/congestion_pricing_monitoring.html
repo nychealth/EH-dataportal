@@ -60,14 +60,20 @@
             // console.table(sites)
             addSitesToMap()
         })
-
+        var testIcon = L.icon({
+            iconUrl: 'map-pin-hollow_P.svg',
+        
+            iconSize:     [38, 95], // size of the icon
+            iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+            popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+        });
 
         // loop through MonitoringLocations.csv, add them to map as points
         function addSitesToMap() {
 
             for (let i = 0; i < sites.length; i++) {
 
-                var site = L.marker([Number(sites[i].Latitude), Number(sites[i].Longitude)]).addTo(map) // add to map
+                var site = L.marker([Number(sites[i].Latitude), Number(sites[i].Longitude)], {icon: testIcon}).addTo(map) // add to map
                 site.bindPopup("Site ID: " + sites[i].SiteID + "<br>Type: " + sites[i].SiteType) // popup content
 
                 console.log(">>>> site", site._popup._content)
