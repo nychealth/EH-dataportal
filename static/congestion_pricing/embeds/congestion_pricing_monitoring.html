@@ -74,7 +74,7 @@
             for (let i = 0; i < sites.length; i++) {
 
                 var site = L.marker([Number(sites[i].Latitude), Number(sites[i].Longitude)], {icon: testIcon}).addTo(map) // add to map
-                site.bindPopup("Site ID: " + sites[i].SiteID + "<br>Type: " + sites[i].SiteType) // popup content
+                site.bindPopup("Site ID: " + sites[i].SiteID + "<br><strong>Type: </strong>" + sites[i].SiteType + "<br>Group: " + sites[i].Group) // popup content
 
                 console.log(">>>> site", site._popup._content)
 
