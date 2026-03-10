@@ -21,11 +21,11 @@
         img.integrated-monitor{ 
             filter: hue-rotate(230deg);
         }
-        img.pm-monitor { 
-            filter: hue-rotate(180deg);
-        }
-        img.bc-monitor { 
+        img.PM-monitor { 
             filter: hue-rotate(90deg);
+        }
+        img.BC-monitor { 
+            filter: hue-rotate(180deg);
         }
 
     </style>
@@ -78,7 +78,7 @@
                     // color for routine site
                     site._icon.classList.add("traffic");
                 } else if (sites[i].SiteType === 'Integrated Monitor') {
-                    // color for EJ site // how does it know the colors? 
+                    // color for EJ site // 
                     site._icon.classList.add("integrated-monitor");
                 } else if (sites[i].SiteType === 'PM2.5 Real Time Monitor') {
                     // color for EJ site
