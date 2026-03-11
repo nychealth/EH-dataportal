@@ -15,7 +15,6 @@ keywords:
     "worker health",
     "elevated blood lead levels",
   ]
-
 image: OneWorldObservatory_TaggerYanceyIV_6565.jpg
 photocredit: "Tagger Yancey IV/NYC & Company"
 related:
