@@ -2,7 +2,6 @@
 title: "Rat Mitigation Zone Report: January 2025 to June 2025"
 date: 2025-12-01T11:14:56-04:00
 draft: false
-draft: false
 seo_title: "Rat Mitigation Zone Report"
 seo_description: "Reporting on rat inspection and mitigation work."
 tags: 

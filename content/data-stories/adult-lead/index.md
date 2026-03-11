@@ -15,16 +15,7 @@ keywords:
     "worker health",
     "elevated blood lead levels",
   ]
-tags:
-keywords:
-  [
-    "lead",
-    "lead poisoning",
-    "employment",
-    "workers",
-    "worker health",
-    "elevated blood lead levels",
-  ]
+
 image: OneWorldObservatory_TaggerYanceyIV_6565.jpg
 photocredit: "Tagger Yancey IV/NYC & Company"
 related:
