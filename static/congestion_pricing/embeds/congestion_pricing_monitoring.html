@@ -12,7 +12,8 @@
     <style>
         #map {
             width:100%;
-            height:100vh;
+            height:50vh;
+            max-width: 1000px;
         }
 
         img.traffic { 
@@ -62,6 +63,13 @@
             iconSize:     [33, 82], // size of the icon
             iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
             popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+        })
+        var testIcon2 = L.icon({
+            iconUrl: 'map-pin-solid-full.svg',
+        
+            iconSize:     [33, 82], // size of the icon
+            iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+            popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
         });
 
         // loop through MonitoringLocations.csv, add them to map as points
@@ -76,6 +84,21 @@
 
                 // style based on SiteType (or, use: https://github.com/pointhi/leaflet-color-markers)
 
+                if (sites[i].SiteType === 'Traffic Counter') {
+                    // color for routine site
+                    site._icon.classList.add("traffic");
+                } else if (sites[i].SiteType === 'Integrated Monitor') {
+                    // color for EJ site // 
+                    site._icon.classList.add("integrated-monitor");
+                } else if (sites[i].SiteType === 'PM2.5 Real Time Monitor') {
+                    // color for EJ site
+                    site._icon.classList.add("PM-monitor");
+                } else {
+                    // color for retired site
+                    site._icon.classList.add("BC-monitor");
+                }
+
+                // icon based on SiteType CONFIGURE (or, use: https://github.com/pointhi/leaflet-color-markers)
                 if (sites[i].SiteType === 'Traffic Counter') {
                     // color for routine site
                     site._icon.classList.add("traffic");

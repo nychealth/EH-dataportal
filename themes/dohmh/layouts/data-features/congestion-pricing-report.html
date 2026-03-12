@@ -60,13 +60,11 @@
         <!-- single column layout community sites + charts -->
 
     <div class="row">
-        <div class="col-md-10 mx-auto col-sm-12 mb-2">
-            <div class="l-green-border px-1">
-                <h3></h3>
-               {{- with .Resources.GetMatch "community-sites.md" -}}
-                        {{ .Content }}
-                {{- end -}} 
+        <div class="col-md-12 mx-auto col-sm-12 mb-2">
+            <div class="l-green-border px-1"> 
+                <div class="col-8">
                 {{ partial "cp-chart.html" . }}
+                </div>
             </div>
             <hr class="my-1"> 
         </div>
