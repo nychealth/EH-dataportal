@@ -120,6 +120,7 @@
         <div class="cold-md-4 col-sm-12 mx-auto">
             {{- with .Resources.GetMatch "aq-inside-crz.md" -}}
                 {{ .Content }}
+                {{ partial "cp-chart_crz.html" . }}
             {{- end -}}
         </div>
         </div>
@@ -133,6 +134,7 @@
             {{- with .Resources.GetMatch "aq-outside-crz.md" -}}
                 {{ .Content }}
             {{- end -}}
+
         </div>
     </div>
 
