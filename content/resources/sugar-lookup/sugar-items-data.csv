@@ -1,59 +1,47 @@
 ﻿Brand Name,Item Name,Calories needed for 50g added sugar,NFL: Calories,NFL: Added Sugars
 1919 Root Beer,Classic American Root Beer,243,228,47
-1919 Root Beer,Caffeine Free Root Beer,243,228,47
-7Up,"Soda, Cherry",184,140,38
-7Up,Lemon Lime Flavored Soda,185,200,54
-7Up,"Soda, Lemon Lime Flavored",184,140,38
-7Up,"Soda, Caffeine Free, Lemon Lime",184,140,38
-7Up,"Soda, Shirley Temple, Pomegranate and Cherry",189,170,45
-A&W,Root Beer Soft Drink,186,160,43
-A&W,"Soda, Cream",185,170,46
+7Up,Cherry Soda,184,140,38
+7Up,Lemon Lime Flavored Soda,184,140,38
+7Up,"Shirley Temple, Pomegranate and Cherry Soda",189,170,45
+A&W,Cream Soda,185,170,46
 A&W,Root Beer,186,160,43
 Ale81,Paw Paw Soft Drink,200,120,30
-Ale81,"Soft Drink, The Original",200,120,30
-Ale81,Strawmelon Softdrink,200,120,30
-Ale81,"Soft Drink, Blackberry",200,120,30
-Ale81,"Soft Drink, Cherry",200,120,30
-Arizona,with Ginseng and Honey Green Tea,200,120,30
+Ale81,Soft Drink,200,120,30
+Ale81,Strawmelon Soft Drink,200,120,30
+Ale81,Blackberry Soft Drink,200,120,30
+Ale81,Cherry Soft Drink,200,120,30
 Arizona,Green Tea with Ginseng and Honey,182,80,22
 Arizona,Green Tea,196,90,23
-Arizona,"Lemon Tea, Premium",203,130,32
-Arizona,"Green Tea, with Ginseng and Honey",196,90,23
+Arizona,Premium Lemon Tea,203,130,32
 Arizona,Half Iced Tea & Half Lemonade,222,80,18
-Arizona,"Iced Tea, Raspberry",194,120,31
-Barq's,Root Beer Carbonated Beverage,182,160,44
+Arizona,Raspberry Iced Tea,194,120,31
+Barq's,Root Beer,182,160,44
 Barq's,Red Creme Soda,189,170,45
-Barq's,Root Beer,189,170,45
 Big Red,Soda,186,160,43
-Big Red,Carbonated Beverage,186,160,43
-Big Red,Carbonated Water,186,160,43
 Blue Sky,Cherry Vanilla Cane Sugar,210,130,31
 Body Armor,Strawberry Kiwi Flavored Flash I.V. Rapid Rehydration Electrolyte Beverage,267,80,15
 Body Armor,Tropical Punch Flash I.V. Electrolyte Beverage,267,80,15
 Body Armor,Grape Rapid Rehydration Electrolyte Beverage,267,80,15
-Body Armor,"Super Drink, Blackout Berry",222,120,27
-Body Armor,"Super Drink, Pineapple Coconut",231,120,26
+Body Armor,Blackout Berry Super Drink,222,120,27
+Body Armor,Pineapple Coconut Super Drink,231,120,26
 Bolthouse Farms,Chocolate Protein Shake,541,400,37
 Bolthouse Farms,Vanilla Bean Protein Shake,680,340,25
 Bolthouse Farms,Banana Honey Protein Shake with Almond Butter,690,400,29
-Bolthouse Farms,"Coffee Beverage, Mocha  Cappuccino",413,330,40
+Bolthouse Farms,Mocha Cappuccino Coffee Beverage,413,330,40
 Bolthouse Farms,"Soy & Tea Beverage, Vanilla Chai",364,320,44
 Bolthouse Farms,Coffee Protein Shake with Caffeine,556,400,36
-Bolthouse Farms,"Breakfast Smoothie, Strawberry Parfait",648,350,27
+Bolthouse Farms,Strawberry Parfait Breakfast Smoothie,648,350,27
 Brisk,Lemon Flavor Iced Tea,206,70,17
-Brisk,Lemon Iced Tea,206,70,17
-Brisk,"Iced Tea, Strawberry Melon",206,70,17
+Brisk,Strawberry Melon Iced Tea,206,70,17
 Brisk,Blood Orange Ice Tea,206,70,17
-Brisk,"Iced Tea, Blueberry Pomegranate",188,60,16
+Brisk,Blueberry Pomegranate Iced Tea,188,60,16
 Califia Farms,Pumpkin Spice Oat Barista Blend with Oatmilk,500,150,15
 Califia Farms,Pumpkin Spice Almond Latte,375,120,16
 Califia Farms,"Almond Latte, Mocha, Plant Based",400,120,15
 Califia Farms,"Almond Latte, Chai",400,120,15
 Califia Farms,Mocha Cold Brew Coffee with Almondmilk,400,120,15
-Canada Dry,"Ginger Ale, Caffeine Free",191,210,55
 Canada Dry,Fruit Splash Cherry Ginger Ale,194,140,36
 Canada Dry,Ginger Ale,197,130,33
-Canada Dry,"Ginger Ale, Cherry, Fruit Splash",195,230,59
 Canada Dry,Tonic Water,200,140,35
 Capri Sun,Pacific Cooler Juice Drink Blend,281,90,16
 Capri Sun,Strawberry Kiwi Juice Drink Blend,250,90,18
@@ -61,20 +49,15 @@ Chameleon Cold-Brew,Apple Cider Vinegar Cold-Brew Tea,219,70,16
 Cheerwine,Soft Drink,179,150,42
 Cheerwine,Real Cane Sugar Soft Drink,179,150,42
 Coca-Cola,Cherry Soda,192,100,26
-Coca-Cola,"Cola, Original Taste",179,140,39
-Coca-Cola,"Flavored Soda, Cherry",181,210,58
-Coca-Cola,Coca-Cola Soda,183,190,52
-Coca-Cola,"Cola, Vanilla",179,150,42
-Coca-Cola,"Carbonated Beverage, Original Taste",179,140,39
-Coca-Cola,Original Taste Coca Cola,179,150,42
+Coca-Cola,Vanilla Cola,179,150,42
 Coca-Cola,Orange Cream Orange Vanilla Soda,185,240,65
 Coca-Cola,Orange Cream,179,140,39
 Coca-Cola,Soda,179,140,39
 Costa,Mocha Iced Coffee Latte,500,160,16
-Country Club,"Soda, Raspberry",202,190,47
-Country Club,"Soda, Merengue",202,190,47
+Country Club,Raspberry Soda,202,190,47
+Country Club,Merengue Soda,202,190,47
 Country Club,Grape Soda,202,190,47
-Country Time,"Drink Mix, Lemonade",208,100,24
+Country Time,Lemonade Drink Mix,208,100,24
 Country Time,Half & Half Lemonade & Iced Tea,205,90,22
 Country Time,Cherry Lemonade Drink Mix,217,130,30
 Country Time,Strawberry Lemonade,210,130,31
@@ -85,25 +68,23 @@ Crush,Orange Soda,192,230,60
 Crush,Blue Raspberry Soda,198,170,43
 Crush,Grape Juice,190,270,71
 Dole,Lemonade,196,110,28
-Dole,"Lemonade, Strawberry",196,110,28
+Dole,Strawberry Lemonade,196,110,28
 Dole,Lemonade from Concentrate,195,160,41
-Dr. Brown's,"Black Cherry Soda, Natural Flavor",200,180,45
+Dr. Brown's,Black Cherry Soda,200,180,45
 Dr. Brown's,The Original Cream Soda,200,180,45
 Dr. Brown's,Extra Dry Ginger Ale,210,130,31
-Dr. Pepper,Dr Pepper Soda,185,240,65
 Dr. Pepper,Strawberries & Cream Soda,192,150,39
 Dr. Pepper,Blackberry Soda,192,150,39
 Dr. Pepper,Soda,192,150,39
-Dr. Pepper,"Soda, 23 Flavors",203,150,37
 Fanta,Chucky's Punch,186,260,70
 Fanta,Strawberry Flavored Soda,182,160,44
 Fanta,Grape Flavored Soda,193,170,44
 Fanta,Caffeine Free Grape Flavored Soda,192,280,73
-Fanta,"Soda, Orange",182,160,44
+Fanta,Orange Soda,182,160,44
 Faygo,Strawberry Redpop!,194,140,36
-Faygo,"Caffeine Free Drink, Firework",209,180,43
-Faygo,"Soda, Grape",195,160,41
-Faygo,"Sodapop, Grapefruit Lime",194,120,31
+Faygo,Firework Soda,209,180,43
+Faygo,Grape Soda,195,160,41
+Faygo,Grapefruit Lime Sodapop,194,120,31
 Faygo,"Rock & Rye, Artificially Flavored Creme Soda",194,140,36
 Faygo,Cotton Candy Soda,200,140,35
 Faygo,Creme Soda,200,140,35
@@ -114,37 +95,33 @@ Fentimans,Cherry Cola,214,90,21
 Fentimans,Pink Ginger Beverage,238,100,21
 Fever-Tree,Tonic Water,219,70,16
 Fever-Tree,Elderflower Tonic Water,224,70,15.6
-Fever-Tree,"Margarita Mix, Classic",214,120,28
+Fever-Tree,Classic Margarita Mix,214,120,28
 Fever-Tree,Distillers Cola,194,70,18
-Fever-Tree,"Pink Grapefruit, Sparkling",206,70,17
+Fever-Tree,Sparkling Pink Grapefruit,206,70,17
 Frostie,Root Beer,186,145,39
-Frostie,"Soda, Blue Cream",223,178,40
+Frostie,Blue Cream Soda,223,178,40
 Frostie,Strawberry Soda,196,110,28
-Frostie,"Lemonade, Strawberry",179,100,28
-Frostie,WatermelonLemonade,190,110,29
-Fruta,"Premium Fruit Juice, Guava Pineapple Juice Drink",281,90,16
-Fruta,Premium Juice Fruit Punch,250,100,20
-Fruta,"Premium Juice, Guava Pineapple",281,90,16
+Frostie,Strawberry Lemonade Soda,179,100,28
+Frostie,Watermelon Lemonade Soda,190,110,29
+Fruta,Guava Pineapple Juice Drink,281,90,16
+Fruta,Fruit Punch,250,100,20
 Fuze,Lemon Plus Sweet Fruit Flavored Black Tea,182,80,22
 Fuze,Lemon Iced Tea,184,70,19
-Fuze,"Iced Tea, Lemon",207,120,29
 Gatorade,"Thirst Quencher Powder, Lemon-Lime",190,80,21
 Gatorade,Lemon Lime Thirst Quencher,190,80,21
 Gatorade,Cool Blue Thirst Quencher,190,80,21
-Gatorade,"Thirst Quencher, Fruit Punch",190,80,21
-Gatorade,"Thirst Quencher, Perform 02, Frost Glacier Freeze",190,80,21
-Gatorade,"Thirst Quencher, Orange",190,80,21
-Gatorade,"Thirst Quencher, Glacier Freeze",190,80,21
-Gatorade,"Fruit Punch Berry, Thirst Quencher",190,80,21
+Gatorade,Fruit Punch Thirst Quencher,190,80,21
+Gatorade,"Perform 02, Frost Glacier Freeze Thirst Quencher",190,80,21
+Gatorade,Orange Thirst Quencher,190,80,21
+Gatorade,Glacier Freeze Thirst Quencher,190,80,21
+Gatorade,Fruit Punch Berry Thirst Quencher,190,80,21
 Gatorade,Lime Cucumber Thirst Quencher,190,80,21
-Gatorade,"Thirst Quencher, Glacier Cherry",190,80,21
+Gatorade,Glacier Cherry Thirst Quencher,190,80,21
 Glaceau,Energy Tropical Citrus Vitamin Water,196,90,23
 Glaceau,Blue Raspberry Limeade Elevate Vitamin Water,205,90,22
 Glaceau,"Power-C Vitamin Water, Dragonfruit",185,100,27
 Glaceau,Acai Blueberry Pomegranate Vitamin Water,182,80,22
-Glaceau,Acai-Blueberry-Pomegranate Vitamin Water,192,100,26
-Gold Peak Tea,"Iced Tea, Sweet Tea",193,170,44
-Gold Peak Tea,Iced Sweet Tea,198,190,48
+Gold Peak Tea,Sweet Tea Iced Tea,193,170,44
 Gold Peak Tea,"Brewed Tea, Green Tea, Real",197,150,38
 Gold Peak Tea,"Brewed Tea, Georgia Peach, Real",197,130,33
 Gold Peak Tea,"Brewed Tea, Real, Extra Sweet",199,270,68
@@ -154,8 +131,7 @@ Harney & Sons,Lavender Vanilla Milk Chocolate Tea Infused Chocolate Bar,647,220,
 Hawaiian Punch,Candy Jellies,333,100,15
 Hawaiian Punch,Fruit Juicy Red,211,80,19
 Hawaiian Sun,Pass-O-Guava Nectar,221,150,34
-Hawaiian Sun,"Drink, Guava Nectar",234,150,32
-Hawaiian Sun,"Syrup, Coconut",261,120,23
+Hawaiian Sun,Guava Nectar Drink,234,150,32
 Hawaiian Sun,Coconut Syrup,261,120,23
 Hawaiian Sun,Passion Orange Juice Drink,194,140,36
 Health-Ade,Citrus Immune Boost Kombucha,267,80,15
@@ -164,79 +140,23 @@ Henry Weinhard's,"Gourmet Soda, Black Cherry Cream",198,170,43
 Henry Weinhard's,"Gourmet Soda, Vanilla Cream",200,180,45
 Henry Weinhard's,"Gourmet Soda, Orange Cream",198,170,43
 Honest,Organic Honey Green Tea,184,70,19
-Honest,Honey Green Tea,184,70,19
 Honest,"Half & Half, Just a Tad Sweet",200,100,25
-Mountain Dew,Code Red Cherry Soda,132,200,76
-Mountain Dew,Dragon Fruit Soda,193,170,44
-Mountain Dew,Voltage,185,170,46
-Mountain Dew,Carbonated Water,185,230,62
-Mountain Dew,LiveWire Soda,188,290,77
-Mountain Dew,Soda,185,170,46
-Mountain Dew,"Soda, Purple Thunder",182,160,44
-Mountain Dew,Code Red Soda,188,240,64
-Mountain Dew,Mountain Dew,185,230,62
-Mountain Dew,Baja Blast Soda,193,170,44
-Moxie,Soda,189,140,37
-Moxie,Original Elixir,203,150,37
-Mug,Root Beer,186,160,43
-Mug,"Root Beer, No Caffeine",183,220,60
-Mug,Root Beer Soda,186,160,43
-Naked,Vanilla Protein Vanilla Flavored Almondmilk Smoothie,402,370,46
-Nature's Twist,"Lemonade, Original",204,110,27
-Nature's Twist,Caffeine-Free Original Orangeade,205,230,56
-Nature's Twist,Pink Lemonade,204,110,27
-New creation soda works,"Soda, Strawberry Habanero",214,120,28
-Northern Soda Company,"Craft Soda, Cream Soda",185,170,46
-Northern Soda Company,"Craft Soda, Orange",190,160,42
-Northern Soda Company,Butter Scotch Root Beer Craft Soda,185,170,46
-Orangina,"Citrus Beverage, Sparkling",238,100,21
-Orangina,Rouge Sparkling Blood Orange Beverage,241,140,29
-Orangina,"Sparkling Blood Orange Beverage, Rouge",242,160,33
-Orangina,Sparkling Citrus Beverage,232,130,28
-Peace Tea,"Tea, Just Peachy",191,130,34
-Peace Tea,Razzleberry Sweet Iced Tea,196,110,28
-Peace Tea,"Tea, Lemon-Flavored",196,110,28
-Peace Tea,Just Peachy Tea,200,100,25
-Peace Tea,Lemon-Flavored Tea Caddy Shack,190,80,21
-Pepsi,Soda,183,150,41
-Pepsi,Throwback Cola,188,150,40
-Pepsi,Wild Cherry Cola,186,220,59
-Pepsi,Cola,183,150,41
-Pepsi,Wild Cherry & Cream Soda,183,150,41
-Pepsi,Wild Cherry Soda,190,160,42
-Pepsi,"Cola, Wild Cherry",190,160,42
-Schweppes,"Ginger Ale, Caffeine Free",182,120,33
-Schweppes,Ginger Ale,182,120,33
-Schweppes,Tonic Water,197,130,33
-Schweppes,Raspberry Ginger Ale,184,140,38
-Schweppes,Premium Ginger Ale,196,180,46
-Seagrams,Ginger Ale,191,130,34
-Seagrams,"Ginger Ale, Fridge Pack",197,130,33
-Shasta,Ginge Ale,206,70,17
-Shasta,"Soda, Caffeine Free, Raspberry Creme",206,140,34
-Shasta,"Cola, Root Beer, Draft Style",205,90,22
-Shasta,"Soda, Lemon Lime, Twist",200,80,20
-Shasta,"Root Beer, Caffeine Free, Draft Style",197,130,33
-Yerba Mate,Watermelody Organic Yerba Mate,222,80,18
 Hubert's,Lemonade,200,60,15
 IBC,Root Beer,200,160,40
 IBC,Cream Soda,205,180,44
 IBC,Black Cherry Soda,198,170,43
 Jarritos,Mandarin Flavor Soda,203,150,37
 Jarritos,Grapefruit Soda,206,140,34
-Jarritos,"Soda, Strawberry",200,140,35
-Jarritos,"Soda, Guava",212,110,26
+Jarritos,Strawberry Soda,200,140,35
+Jarritos,Guava Soda,212,110,26
 Jarritos,Pineapple Flavored Soda,212,110,26
-Joe Tea,"Tea, Peach",202,250,62
-Joe Tea,"Tea, Raspberry",206,280,68
+Joe Tea,Raspberry Tea,206,280,68
 Joe Tea,"Half Lemon Tea, Half Lemonade",214,240,56
 Joe Tea,Raspberry Tea Lemonade,217,260,60
 Joe Tea,Peach Tea,200,200,50
 Jones Soda Co.,Berry Lemonade Soda,225,90,20
 Kevita,"Sparkling Drink, Lemon Ginger, Probiotic Refresher",233,70,15
 Kevita,Pineapple Peach Kombucha,200,60,15
-Kevita,Lemon Ginger Probiotic Refresher Sparkling Drink,225,90,20
-Kevita,Kombucha,200,60,15
 Kevita,Ginger Master Brew Kombucha,200,60,15
 Kool-Aid,Caffeine Free Tropical Punch Drink Mix,196,110,28
 Kool-Aid,Caffeine Free Grape Drink Mix,200,100,25
@@ -246,26 +166,21 @@ Kool-Aid,Strawberry Drink Mix,196,110,28
 Laziza,Non-Alcoholic Pineapple Malt Beverage,316,120,19
 Laziza,Non-Alcoholic Pomegranate Malt Beverage,316,120,19
 Laziza,Non-Alcoholic Raspberry Malt Beverage,316,120,19
-Lester's Fixins,"Soda, Pickle Flavored",202,170,42
+Lester's Fixins,Pickle Flavored Soda,202,170,42
 Lipton,Peach Iced Tea,200,100,25
 Lipton,Fusions Lemonade Iced Tea,196,90,23
-Lipton,"Iced Tea, Lemon",208,100,24
+Lipton,Lemon Iced Tea,208,100,24
 Lipton,Pineapple Mango Lemonade Iced Tea,196,90,23
 Lipton,Raspberry White Tea,214,90,21
 Lipton,"Green Tea, With Citrus",207,120,29
-Lipton,"Iced Tea Mix, Lemon",208,100,24
+Lipton,Lemon Iced Tea Mix,208,100,24
 Lorina,Blood Orange Flavored Sparkling Beverage,200,100,25
-Lorina,Artisanal Sparkling Blood Orange,204,110,27
 Lorina,Artisanal Sparkling Lemonade,204,110,27
-Maine Root,"Non Alcoholic Ginger Spicy Brew,",207,145,35
+Maine Root,Non Alcoholic Ginger Spicy Brew,207,145,35
 Maine Root,Caffeine Free Blueberry Soda,207,145,35
 Maine Root,Sarsaparilla,207,145,35
-Manzanita Sol,Apple Juice Drink,188,120,32
-Manzanita Sol,Apple Juice,188,120,32
 Manzanita Sol,Apple Soda,188,120,32
 Mello Yello,Citrus Flavored Soda,191,180,47
-Mello Yello,"Soda, Citrus Flavored",191,180,47
-Mello Yello,"Soda, Citrus Flavored, Fridge Pack",185,170,46
 Merchant's Craft,Washington Apple Soft Drink,219,140,32
 Merchant's Craft,Doc Merchant Soft Drink,212,140,33
 Merchant's Craft,Caffeine Free Root Beer,214,150,35
@@ -273,41 +188,122 @@ Merchant's Craft,Caffeine Free Lemon Lime Soft Drink,203,130,32
 Merchant's Craft,"Soft Drink, Fizzle Berry",209,180,43
 Minute Maid,Fruit Punch,200,80,20
 Minute Maid,Lemonade,185,100,27
-Minute Maid,"Fruit Juice, Cranberry Grape",244,190,39
-Minute Maid,"Flavored Juice Beverage, Cranberry Apple Raspberry",237,180,38
+Minute Maid,Cranberry Grape Fruit Juice,244,190,39
+Minute Maid, Cranberry Apple Raspberry Flavored Juice Beverage,237,180,38
 Minute Maid,Peach Punch,200,80,20
-Minute Maid,"Juice, Mango Punch",190,80,21
-Minute Maid,"Juice, Strawberry Lemonade",194,70,18
-Mirinda,"Soft Drink, Carbonated, Orange Flavor",206,70,17
-Mirinda,"Soft Drink, Orange Flavor, Carbonated",159,70,22
-Mirinda,"Soft Drink, Orange Flavored",200,100,25
+Minute Maid,Mango Punch Juice,190,80,21
+Minute Maid,Strawberry Lemonade Juice,194,70,18
+Mirinda,Orange Flavor Soft Drink,206,70,17
 Monster,Bad Apple Energy Drink,207,170,41
 Monster,Electric Blue Energy Drink,206,210,51
 Monster,"Java Coffee + Energy Drink, Mean Bean",458,220,24
-Monster,Java Coffee + Energy Drink,458,220,24
 Monster,Orange Dreamsicle Energy Drink,217,200,46
-Monster,"Energy Juice, Pipeline Punch",250,190,38
+Monster,Pipeline Punch Energy Juice,250,190,38
 Monster,"Energy Coffee, Triple Shot, Loca Mocha",478,220,23
 Monster,Rio Punch Flavor Energy plus Juice Drink,212,140,33
 Monster,"Java Coffee + Energy, Irish Blend",475,190,20
 Monster,Mega Energy Drink,207,170,41
-Sierra Mist,"Soda, Lemon Lime",192,200,52
+Mountain Dew,Dragon Fruit Soda,193,170,44
+Mountain Dew,Voltage,185,170,46
+Mountain Dew,Carbonated Water,185,230,62
+Mountain Dew,LiveWire Soda,188,290,77
+Mountain Dew,Soda,185,170,46
+Mountain Dew,Purple Thunder Soda,182,160,44
+Mountain Dew,Code Red Soda,188,240,64
+Mountain Dew,Baja Blast Soda,193,170,44
+Moxie,Soda,189,140,37
+Moxie,Original Elixir,203,150,37
+Mug,Root Beer Soda,186,160,43
+Naked,Vanilla Protein Vanilla Flavored Almondmilk Smoothie,402,370,46
+Nature's Twist,Original Lemonade,204,110,27
+Nature's Twist,Caffeine-Free Original Orangeade,205,230,56
+Nature's Twist,Pink Lemonade,204,110,27
+New creation soda works,Strawberry Habanero Soda,214,120,28
+Northern Soda Company,"Craft Soda, Cream Soda",185,170,46
+Northern Soda Company,"Craft Soda, Orange",190,160,42
+Northern Soda Company,Butter Scotch Root Beer Craft Soda,185,170,46
+Orangina,Sparkling Citrus Beverage,238,100,21
+Orangina,Rouge Sparkling Blood Orange Beverage,241,140,29
+Peace Tea,Razzleberry Sweet Iced Tea,196,110,28
+Peace Tea,Lemon-Flavored Tea,196,110,28
+Peace Tea,Just Peachy Tea,200,100,25
+Peace Tea,Lemon-Flavored Tea Caddy Shack,190,80,21
+Pepsi,Soda,183,150,41
+Pepsi,Throwback Cola,188,150,40
+Pepsi,Wild Cherry & Cream Soda,183,150,41
+Pepsi,Wild Cherry Soda,190,160,42
+Pibb Xtra,Spicy Cherry Soda,184,140,38
+Polar,Maltin Malt Beverage,380,190,25
+Polar,Peaches in Light Syrup,237,90,19
+Polar,Mixed Fruit in Light Syrup,265,90,17
+Polar,Fruit Cocktail,167,50,15
+Polar,Premium Tonic Water Crafted with Quinine,184,70,19
+Power Edge,Mountain Berry Blast Sports Drink,200,140,35
+Power Edge,Grape Sports Drink,200,140,35
+Power Edge,Melon Flavored Sports Drink,190,80,21
+Power Edge,Sour Blue Razz Flavored Sports Drink,190,80,21
+Power Edge,"Fruit Punch,Mountain Berry Blast, Grape Sports Drink",200,140,35
+Powerade,Mountain Berry Blast Sports Drink,190,80,21
+Powerade,Fruit Punch Sports Drink,190,80,21
+Powerade,Orange Sports Drink,190,80,21
+Powerade,Grape Flavor Sports Drink,200,140,35
+Q Mixers,Spicy Grapefruit Margarita Mix,222,80,18
+Q Mixers,Tropical Ginger Beer,225,90,20
+Q Mixers,Spicy Mango Margarita Mix,237,90,19
+Ramune,Strawberry Flavor Carbonated Soft Drink,235,80,17
+Ramune,Melon Flavor Carbonated Soft Drink,217,100,23
+Ramune,Peach Flavor Soft Drink,196,90,23
+Ramune,"Original Flavor, Carbonated Soft Drink",222,80,18
+Ramune,Pineapple Flavor Hello Kitty Carbonate Soft Drink,206,70,17
+RC COLA,Cola,174,150,43
+RC COLA,Cherry Cola,182,160,44
+Reading Draft,Orange Cream Reserve Soda,202,170,42
+Reading Draft,Blueberry Birch Soda,202,170,42
+Reading Draft,Birch Beer Premium Reserve Soda,202,170,42
+Red Bull,Coconut Berry Energy Drink,212,110,26
+Red Bull,Strawberry Apricot Energy Drink,211,160,38
+Red Bull,Juneberry Energy Drink,211,160,38
+Red Bull,Tropical Energy Drink,211,160,38
+Red Bull,Watermelon Energy Drink,212,110,26
+Red Bull,Curuba Elderflower The Summer Edition Energy Drink,211,160,38
+Red Bull,Wild Berries Energy Drink,211,160,38
+Rise Brewing Co.,"Coffee, Dairy Free, Organic, Cold Brew, Oat Milk Latte",563,180,16
+Rise Brewing Co.,"Coffee, Dairy Free, Organic, Cold Brew, Oat Milk Mocha",556,200,18
+Rise Brewing Co.,"Coffee, Dairy Free, Organic, Cold Brew, Oat Milk Vanilla",594,190,16
+Rockstar,Fruit Punch with Natural Flavor,205,250,61
+Rockstar,Energy Drink,206,260,63
+Rockstar,Whipped Strawberry Energy Drink,212,280,66
+Rockstar,Pina Colada Boom Non Alcoholic Energy Drink,199,270,68
+Rockstar,Pineapple Energy Drink,197,240,61
+San Pellegrino,Aranciata Sparkling Orange & Blood Orange Beverage,271,130,24
+San Pellegrino,Limonata Italian Sparkling Drinks,220,110,25
+San Pellegrino,Orange and Pomegranate Sparkling Beverage,261,120,23
+San Pellegrino,Aranciata Sparkling Orange Beverage,273,120,22
+San Pellegrino,Grapefruit Sparkling Beverage,250,130,26
+Schweppes,Ginger Ale,182,120,33
+Schweppes,Tonic Water,197,130,33
+Schweppes,Raspberry Ginger Ale,184,140,38
+Schweppes,Premium Ginger Ale,196,180,46
+Seagrams,Ginger Ale,191,130,34
+Seagrams,"Ginger Ale, Fridge Pack",197,130,33
+Shasta,Ginger Ale,206,70,17
+Shasta,Raspberry Cr�me Soda,206,140,34
+Shasta,Draft Style Root Beer Cola,205,90,22
+Shasta,"Soda, Lemon Lime, Twist",200,80,20
 Sierra Mist,Caffeine Free Lemon Lime Flavored Soda,196,90,23
-Simply,"Lemonade, All Natural",204,110,27
 Simply,Lemonade,204,110,27
 Simply,"Lemonade, with Raspberry",220,110,25
 Simply,"Lemonade, with Strawberry",220,110,25
 Simply,Strawberry Juice Drink,208,100,24
 Simply,Limeade,214,120,28
-Simply,"Cocktail, Cranberry",232,130,28
-Snapple,"Juice Drink, Snapple Apple",238,100,21
-Snapple,"Juice Drink, Kiwi Strawberry",214,90,21
-Snapple,"Juice Drink, Fruit Punch",238,100,21
-Snapple,"Juice Drink, Mango Madness",250,100,20
+Simply,Cranberry Cocktail,232,130,28
+Snapple,Kiwi Strawberry Juice Drink,214,90,21
+Snapple,Fruit Punch Juice Drink,238,100,21
+Snapple,Mango Madness Juice Drink,250,100,20
 Snapple,All Natural Peach Tea & Lemonade,208,150,36
 Snapple,Snapple Apple Juice Drink,238,100,21
 Snapple,Lemonade Iced Tea,210,210,50
-SoBe,"Elixir Flavored Beverage, Cranberry Grapefruit",198,250,63
+SoBe,Cranberry Grapefruit Elixir Flavored Beverage ,198,250,63
 SoBe,Morning Patrol Strawberry Banana Drink,202,250,62
 SoBe,Pina Colada Liz Blizz,202,250,62
 Sprecher,Cream Craft Soda,250,300,60
@@ -316,56 +312,42 @@ Sprecher,"Fire-Brewed Craft Soda, Root Beer",255,260,51
 Sprecher,Orange Dream Craft Soda,202,230,57
 Sprecher,Caffeinated Root Beer,255,260,51
 Sprite,Soda,184,140,38
-Sprite,"Soda, Lemon-Lime, 6 PK",189,200,53
-Sprite,"Soda, Lemon-Lime",184,140,38
-Sprite,"Soda, Cherry Lime, Chill",188,240,64
+Sprite,"Cherry Lime, Chill Soda",188,240,64
 Sprite,Lemon-Lime and Tea Flavored Soda,189,140,37
-Sprite,"Soda, Winter Spiced Cranberry",185,200,54
+Sprite,Winter Spiced Cranberry Soda,185,200,54
 Sprite,Lemon-Lime Soda,184,140,38
-Squirt,"Thirst Quencher, Caffeine Free, Grapefruit",190,240,63
 Squirt,Grapefruit Soda Thirst Quencher,194,140,36
-Squirt,"Soda, Ruby Red, Thirst Quencher",189,280,74
-Squirt,"Thirst Quencher, Grapefruit",184,140,38
-Squirt,"Thirst Quencher, Ruby Red",189,170,45
+Squirt,Ruby Red Thirst Quencher,189,170,45
 Starbucks,Frappuccino Chilled Coffee Drink,422,270,32
-Starbucks,"Coffee Drink, Peppermint Mocha",441,300,34
-Starbucks,"Chilled Coffee Drink, Vanilla",453,290,32
-Starbucks,"Chilled Coffee Drink, Caramel",469,300,32
-Starbucks,"Espresso Beverage, Chilled, Caramel Macchiato",500,190,19
+Starbucks,Peppermint Mocha Coffee Drink,441,300,34
+Starbucks,Vanilla Chilled Coffee Drink,453,290,32
+Starbucks,Caramel Chilled Coffee Drink,469,300,32
+Starbucks,"Caramel Macchiato Chilled, Espresso Beverage",500,190,19
 Starbucks,Vanilla Latte Iced Espresso,475,190,20
 Starbucks,Pumpkin Spice Frappuccino,469,300,32
 Starbucks,Vanilla Coffee Drink,476,200,21
-Starbucks,Frappuccino,441,300,34
-Starbucks,"Chilled Coffee Drink, White Chocolate Mocha",469,300,32
-StarKist,"Soda, Strawberry Orange",191,260,68
-Starry,Lemon Lime Flavored Soda,185,240,65
+Starbucks,White Chocolate Mocha Chilled Coffee Drink,469,300,32
+StarKist,Strawberry Orange Soda,191,260,68
 Starry,Caffeine Free Lemon Lime Flavored Soda,192,150,39
-Starry,Caffeine Free Lemon Lime Soda,192,150,39
-Starry,"Caffeine Free Soda, Lemon Lime",192,150,39
-Starry,"Lemon Lime Soda, Caffeine Free",192,150,39
 Stewart's,Root Beer,197,150,38
 Stewart's,"Fountain Classics, Cream Soda",198,170,43
 Stewart's,Black Cherry Wishniak Soda,205,180,44
-Stewart's,"Soda, Orange and Cream",200,180,45
-Stewart's,Cream Soda,198,170,43
-Stubborn Soda,"Soda, Agave Vanilla Cream",197,150,38
-Stubborn Soda,"Soda, Classic Root Beer",192,150,39
+Stewart's,Orange and Cream Soda,200,180,45
+Stubborn Soda,Agave Vanilla Cream Soda,197,150,38
+Stubborn Soda,Classic Root Beer Soda,192,150,39
 Stubborn Soda,Black Cherry Tarragon,194,140,36
-Summit,Naturally Flavored Soda,198,170,43
 Summit,Cola,205,160,39
 Summit,"Cola, Naturally Flavored Soda",205,160,39
 Summit,Red Thunder Berry Energy Drink,216,160,37
-Summit,"Energy Drink, Red Thunder",213,170,40
 Sun Drop,Citrus Soda,189,170,45
 Sun Drop,Cherry Lemon Citrus Soda,190,240,63
-Sun Drop,"Soda, Citrus",189,170,45
 Sunkist,"Carbonated Water, Orange",191,260,68
-Sunkist,"Lemonade Soda, Berry Lemonade",198,170,43
+Sunkist,Berry Lemonade Soda,198,170,43
 Sunkist,Strawberry Soda,189,170,45
 Sunkist,Strawberry Orange Soda,183,150,41
 Sunkist,Orange Soda,183,150,41
-Sunny D,"Citrus Punch, Orange",265,90,17
-Sunny D,"Drink, Blue Raspberry",222,80,18
+Sunny D,Orange Citrus Punch,265,90,17
+Sunny D,Blue Raspberry Drink,222,80,18
 Sunny D,Frozen Tangy Original Drink,526,200,19
 Tazo,Classic Chai Latte Black Tea Concentrate,229,110,24
 Tazo,"Black Tea Concentrate, Pumpkin Spice Latte",200,120,30
@@ -378,18 +360,15 @@ Topo Chico,Tonic Water,222,80,18
 Tropicana,Spicy Sweet Pumpkin Spice Latte Iced Espresso,523,230,22
 Tropicana,Pineapple Mango Juice Drink Blend,227,100,22
 Tropicana,Classic Lemonade,214,120,28
-Tropicana,"Juice Drink Blend, Pineapple Mango",233,140,30
-Tropicana,"Juice Beverage, Cranberry",232,130,28
+Tropicana,Cranberry Juice Beverage,232,130,28
 Tropicana,Tropical Punch Juice Drink Blend,250,90,18
 Tropicana,Strawberry Peach Juice Drink Blend,250,90,18
-Twister,Fruit Punch,229,110,24
-Twister,"Flavored Drink, Tropical Punch",250,110,22
-Twister,"Flavored Drink, Grape Punch",227,100,22
-Twister,Fruit Punch Flavored Drink,219,140,32
-Twister,Tropical Punch Flavored Drink,250,110,22
-V8,"Juice Beverage, Strawberry Kiwi",235,80,17
+Twister,Fruit Punch Juice Drink,229,110,24
+Twister,Grape Punch Juice Drink,227,100,22
+Twister,Tropical Punch Juice Drink,250,110,22
+V8,Strawberry Kiwi Juice Beverage,235,80,17
 V8,Fruit Medley,255,112,22
-V8,"Beverage, Mango Peach",235,80,17
+V8,Mango Peach Beverage,235,80,17
 Vernors,Black Cherry Ginger Soda,197,150,38
 Vernors,Creamy Vanilla & Ginger Soda,197,150,38
 Vernors,The Original Ginger Soda,184,140,38
@@ -399,10 +378,10 @@ Virgil's,Handcrafted Vanilla Cream,202,170,42
 Virgil's,Handcrafted Black Cherry Sparkling Filtered Water,202,170,42
 Virgil's,Handcrafted Root Beer,202,170,42
 Vitamin Water,Energy Tropical Citrus Water Beverage,185,100,27
-Vitamin Water,"Nutrient Enhanced Water Beverage, Power-C, Dragon Fruit",196,90,23
-Vitamin Water,"Nutrient Enhanced Water Beverage, Focus, Kiwi-Strawberry",192,100,26
-Vitamin Water,"Nutrient Enhanced Water Beverage, Elevate, Blue Raspberry Limeade",192,100,26
-Vitamin Water,Refresh Nutrient Enhanced Tropical Mango Water Beverage,185,100,27
+Vitamin Water,"Power-C, Dragon Fruit Nutrient Enhanced Water Beverage",196,90,23
+Vitamin Water,"Focus, Kiwi-Strawberry Nutrient Enhanced Water Beverage",192,100,26
+Vitamin Water,"Elevate, Blue Raspberry Limeade Nutrient Enhanced Water Beverage",192,100,26
+Vitamin Water,"Refresh, Tropical Mango Nutrient Enhanced Water Beverage",185,100,27
 Warheads,Super Sour Double Drops,300,90,15
 Warheads,Sour Lemon Soda,214,150,35
 Warheads,Sour! Watermelon Soda,214,150,35
@@ -419,54 +398,4 @@ Wild Bill's,Blazing Black Cherry With Pure Cane Sugar,200,180,45
 Wild Bill's,Vintage Vanilla Cream Soda,198,170,43
 Wild Bill's,Outlaw Orange Cream Old Fashioned Soda Pop,202,190,47
 Wild Bill's,Original Cola,198,170,43
-Pibb Xtra,"Soda, Spicy Cherry",184,140,38
-Pibb Xtra,Cherry Soda,179,140,39
-Pibb Xtra,"Soda, Spicy Cherry, Fridge Pack",184,140,38
-Polar,"Maltin, Maltl Beverage",380,190,25
-Polar,Peaches in Light Syrup,237,90,19
-Polar,Mixed Fruit in Light Syrup,265,90,17
-Polar,Fruit Cocktail,167,50,15
-Polar,Premium Tonic Water Crafted with Quinine,184,70,19
-Power Edge,"Sports Drink, Mountain Berry Blast",200,140,35
-Power Edge,"Sports Drink, Grape",200,140,35
-Power Edge,"Sports Drink, Melon Flavored",190,80,21
-Power Edge,Sour Blue Razz Flavored Sports Drink,190,80,21
-Power Edge,"Fruit Punch,Mountain Berry Blast, Grape Sports Drink",200,140,35
-Powerade,"Sports Drink, Mountain Berry Blast",190,80,21
-Powerade,Fruit Punch Sports Drink,191,130,34
-Powerade,"Sports Drink, Fruit Punch",190,80,21
-Powerade,"Sports Drink, Orange",190,80,21
-Powerade,Grape Flavor Sports Drink,200,140,35
-Q Mixers,Spicy Grapefruit Margarita Mix,222,80,18
-Q Mixers,Tropical Ginger Beer,225,90,20
-Q Mixers,Spicy Mango Margarita Mix,237,90,19
-Ramune,Strawberry Flavor Carbonated Soft Drink,235,80,17
-Ramune,Melon Flavor Carbonated Soft Drink,217,100,23
-Ramune,"Soft Drink, Peach Flavor",196,90,23
-Ramune,"Soft Drink, Original Flavor, Carbonated",222,80,18
-Ramune,Pineapple Flavor Hello Kitty Carbonate Soft Drink,206,70,17
-RC COLA,Cola,174,150,43
-RC COLA,Cherry Cola,182,160,44
-Reading Draft,Orange Cream Reserve Soda,202,170,42
-Reading Draft,Blueberry Birch Soda,202,170,42
-Reading Draft,Birch Beer Premium Reserve Soda,202,170,42
-Red Bull,"Energy Drink, Coconut Berry",212,110,26
-Red Bull,Strawberry Apricot Energy Drink,211,160,38
-Red Bull,"Energy Drink, Juneberry",211,160,38
-Red Bull,Tropical Energy Drink,211,160,38
-Red Bull,"Energy Drink, Watermelon",212,110,26
-Red Bull,Curuba Elderflower The Summer Edition Energy Drink,211,160,38
-Red Bull,Wild Berries Energy Drink,211,160,38
-Rise Brewing Co.,"Coffee, Dairy Free, Organic, Cold Brew, Oat Milk Latte",563,180,16
-Rise Brewing Co.,"Coffee, Dairy Free, Organic, Cold Brew, Oat Milk Mocha",556,200,18
-Rise Brewing Co.,"Coffee, Dairy Free, Organic, Cold Brew, Oat Milk Vanilla",594,190,16
-Rockstar,Fruit Punch with Natural Flavor,205,250,61
-Rockstar,Energy Drink,206,260,63
-Rockstar,Whipped Strawberry Energy Drink,212,280,66
-Rockstar,Pina Colada Boom Non Alcoholic Energy Drink,199,270,68
-Rockstar,Pineapple Energy Drink,197,240,61
-San Pellegrino,Aranciata Sparkling Orange & Blood Orange Beverage,271,130,24
-San Pellegrino,Limonata Italian Sparkling Drinks,220,110,25
-San Pellegrino,"Sparkling Beverage, Orange and Pomegranate",261,120,23
-San Pellegrino,Aranciata Sparkling Orange Beverage,273,120,22
-San Pellegrino,"Sparkling Beverage, Grapefruit",250,130,26
+Yerba Mate,Watermelody Organic Yerba Mate,222,80,18
