@@ -35,7 +35,7 @@ const renderMap = (
     let subtitle;
     let isPercent;
     let topoFile = '';
-    let geojson;
+    // let geojson;
 
     const hasCI = data.some(d => /\(.*\)/.test(d.CI)); // looks to see if there are parentheses in the CI field, if yes, true
     // console.log('has CI?', hasCI)
@@ -184,11 +184,17 @@ const renderMap = (
             
             // --- Convert TopoJSON to GeoJSON ---
 
-            geojson = topojson.feature(topology, topology.objects.collection);
+            let geojson = topojson.feature(topology, topology.objects.collection);
+
+            console.log("geojson [renderMap fetch]", geojson);
 
             // --- Attach data to each feature ---
 
-            geojson.features.forEach(feature => {
+            geojson.features.forEach((feature, i) => {
+
+                if (i == 0) {
+                    console.log("***** properties", feature.properties)
+                }
 
                 const geoID = feature.properties.GEOCODE;
                 const matchedData = dataLookup[geoID];
@@ -204,8 +210,85 @@ const renderMap = (
                     feature.properties.dataValue = null;  // mark as missing data
                 }
             });
+
+            return geojson;
             
             
+        })
+        .then(geojson => {
+            
+            // --------------------------------------------------------------------------- //
+            // Lookup to match GeoID → Leaflet layer
+            // --------------------------------------------------------------------------- //
+            const geoIDtoLayer = {};   // <--- ADD THIS
+            // --------------------------------------------------------------------------- //
+
+            // --- Add the GeoJSON to the map ---
+
+            console.log("geojson [renderMap]", geojson);
+
+            const geojsonLayer = L.geoJson(geojson, {
+
+                style: styleFeature,
+                onEachFeature: (feature, layer) => {
+
+                    console.log(">>> feature", feature.properties);
+                    // console.log(">>> layer", layer);
+                    
+                    // Store reference so we can highlight later using GeoID from chart
+                    
+                    const geoID = feature.properties.GeoID || feature.properties.GEOCODE;
+                    if (geoID) {
+                        geoIDtoLayer[geoID] = layer;
+                    }
+                    
+                    // ----------------------------------------------------------------------- //
+                    
+                    layer.bindPopup(createPopupContent(feature.properties));
+                    
+                    layer.on('click', (e) => {
+
+                        console.log("** click", feature.properties);
+
+                        if (window.myVegaView) {
+                            window.myVegaView.signal("selectedGeo", props.GeoID).run();
+                        }
+                        
+                    });
+                    
+                    layer.on('mouseover', (e) => {
+
+                        // console.log("** mouseover");
+
+                        const props = feature.properties;
+
+                        updateHoverUI(props);
+                        highlightFeature(e); 
+                        
+                        if (window.myVegaView) {
+                            window.myVegaView.signal("selectedGeo", props.GeoID).run();
+                        }
+                        
+                    });
+                    
+                    layer.on('mouseout', (e) => {
+
+                        // console.log("** mouseout");
+
+                        clearHoverUI();
+                        resetHighlight(geojsonLayer, e);
+                        
+                        if (window.myVegaView) {
+                            window.myVegaView.signal("selectedGeo", null).run();
+                        }
+                        
+                    });
+                    
+                }
+            }).addTo(map);
+
+
+
         })
 
 
@@ -261,11 +344,12 @@ const renderMap = (
 
     }
 
-    const resetHighlight = (e) => {
+    const resetHighlight = (layer, e) => {
 
         // console.log("* resetHighlight");
 
-        geojsonLayer.resetStyle(e.target);
+        layer.resetStyle(e.target);
+
     }
 
     // --- Create popup content ---
@@ -274,16 +358,23 @@ const renderMap = (
 
     const createPopupContent = (properties) => {
 
-        // console.log("* createPopupContent");
-        
-        return `
-        <div class="popup-content">
-        <strong>${properties.Geography}</strong>
-        <hr class="my-1">
-        <em>Asthma ED visits (age 5 to 17)</em>: in <strong>${properties.TimePeriod || 'Unknown'}</strong>, the estimated annual rate was <strong>${properties.Value}</strong> per 10,000.
-        <span style="font-size:12px">${properties.Note.length > 1 ? `<hr><em>Note:</em> ${properties.Note}` : ''}</span>
-        </div>
-    `;
+        console.log("* createPopupContent");
+        console.log("properties [createPopupContent]", properties);
+
+        if (properties.GeoRank) {
+            
+            return `
+            <div class="popup-content">
+            <strong>${properties.Geography}</strong>
+            <hr class="my-1">
+            <em>Asthma ED visits (age 5 to 17)</em>: in <strong>${properties.TimePeriod || 'Unknown'}</strong>, the estimated annual rate was <strong>${properties.Value}</strong> per 10,000.
+            <span style="font-size:12px">${properties.Note.length > 1 ? `<hr><em>Note:</em> ${properties.Note}` : ''}</span>
+            </div>
+        `;
+
+        } else {
+            return;
+        }
     }
 
     const updateHoverUI = (props) => {
@@ -315,96 +406,12 @@ const renderMap = (
 
     }
 
-
-    // --------------------------------------------------------------------------- //
-    // Lookup to match GeoID → Leaflet layer
-    // --------------------------------------------------------------------------- //
-    const geoIDtoLayer = {};   // <--- ADD THIS
-    // --------------------------------------------------------------------------- //
-
-    // --- Add the GeoJSON to the map ---
-
-    const geojsonLayer = L.geoJson(geojson, {
-
-        style: styleFeature,
-        onEachFeature: (feature, layer) => {
-            
-            // Store reference so we can highlight later using GeoID from chart
-            
-            const geoID = feature.properties.GeoID || feature.properties.GEOCODE;
-            if (geoID) {
-                geoIDtoLayer[geoID] = layer;
-            }
-            
-            // ----------------------------------------------------------------------- //
-            
-            layer.bindPopup(createPopupContent(feature.properties));
-            
-            layer.on('click', (e) => {
-
-                console.log("** click", feature.properties);
-
-                if (window.myVegaView) {
-                    window.myVegaView.signal("selectedGeo", props.GeoID).run();
-                }
-                
-            });
-            
-            layer.on('mouseover', (e) => {
-
-                // console.log("** mouseover");
-
-                const props = feature.properties;
-
-                updateHoverUI(props);
-                highlightFeature(e); 
-                
-                if (window.myVegaView) {
-                    window.myVegaView.signal("selectedGeo", props.GeoID).run();
-                }
-                
-            });
-            
-            layer.on('mouseover', (e) => {
-
-                // console.log("** mouseover");
-
-                const props = feature.properties;
-
-                updateHoverUI(props);
-                highlightFeature(e); 
-                
-                if (window.myVegaView) {
-                    window.myVegaView.signal("selectedGeo", props.GeoID).run();
-                }
-                
-            });
-            
-            layer.on('mouseout', (e) => {
-
-                // console.log("** mouseout");
-
-                clearHoverUI();
-                resetHighlight(e);
-                
-                if (window.myVegaView) {
-                    window.myVegaView.signal("selectedGeo", null).run();
-                }
-                
-            });
-            
-        }
-    }).addTo(map);
-
-
     const calculatePercent = (x) => {
         const range = maxValue - minValue;
         const placement = x - minValue;
         const calculation = 100 * placement / range;
         return calculation;
     }
-
-
 
 
     // send info for printing
