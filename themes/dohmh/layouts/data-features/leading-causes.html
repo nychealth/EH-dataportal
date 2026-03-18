@@ -90,13 +90,16 @@
               id="causeMenuHolder"
               style="height: 40vh; overflow-y: scroll"
             >
+
+            <!--
               <a
                 class="dropdown-item cause-highlight"
                 href="#visualization"
                 id="showInjury"
                 data-cause="Injury"
-                >Injuries</a
-              >
+                >Injuries</a>
+            -->
+                
               <div id="causeMenu"></div>
             </div>
           </div>
@@ -260,7 +263,7 @@
     },
   ];
 
-  const injuryBtn = document.getElementById("showInjury");
+  // const injuryBtn = document.getElementById("showInjury");
   let injuryOn = false; // record keeper
 
   // ---------------------------------------------------------- //
@@ -336,11 +339,14 @@
       intent = Number(this.dataset.injury);
 
       // show/hide #showInjury only when "All deaths" is selected
+
+      /*
       if (intent === 0) {
         document.querySelector("#showInjury").classList.remove("d-none");
       } else {
         document.querySelector("#showInjury").classList.add("d-none");
       }
+      */
 
       // console.log("intent:", intent);
 
@@ -381,11 +387,13 @@
       // console.log(causes)
 
       // show/hide #showInjury only when "All deaths" is selected
+      /*
       if (intent === 0) {
         document.querySelector("#showInjury").classList.remove("d-none");
       } else {
         document.querySelector("#showInjury").classList.add("d-none");
       }
+      */
 
       // Create menu items
       causes.forEach((cause) => {
