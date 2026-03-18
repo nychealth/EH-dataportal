@@ -175,9 +175,9 @@ const checkURL = async () => {
     
     // run renderBar()
     renderMap(mapData, defaultMapMetadata);
-    // renderBar(mapData);
-    // renderTrend(trendData);
-    // renderCorrelate(linksData);
+    renderBar(mapData, defaultMapMetadata);
+    // renderTrendChart(trendData, defaultTrendMetadata);
+    // renderCorrelate(linksData, defaultLinksMetadata);
     
     // Run selections for Measure, Geography, and TimePeriod
     

@@ -50,10 +50,9 @@
 {{- $311       := resources.Get "js/data-explorer-new/311.js" -}}
 {{- $selector  := resources.Get "js/data-explorer-new/topic-indicator-selector.js" -}}
 {{- $menus     := resources.Get "js/data-explorer-new/menu.js" -}}
-{{/*  {{- $bar       := resources.Get "js/data-explorer-new/bar.js" -}}  */}}
+{{- $bar       := resources.Get "js/data-explorer-new/bar.js" -}}
 {{- $trend     := resources.Get "js/data-explorer-new/trend.js" -}}
-{{- $correlate := resources.Get "js/data-explorer-new/correlate.js" -}}
-{{- $table     := resources.Get "js/data-explorer-new/table.js" -}}
+{{/*  {{- $correlate := resources.Get "js/data-explorer-new/correlate.js" -}}  */}}
 
 
 {{- $global_secure    := $global | partial "short-fingerprint.html" -}}
@@ -68,10 +67,9 @@
 {{- $311_secure       := $311 | partial "short-fingerprint.html" -}}
 {{- $selector_secure  := $selector | partial "short-fingerprint.html" -}}
 {{- $menus_secure     := $menus | partial "short-fingerprint.html" -}}
-{{/*  {{- $bar_secure       := $bar | partial "short-fingerprint.html" -}}  */}}
+{{- $bar_secure       := $bar | partial "short-fingerprint.html" -}}
 {{- $trend_secure     := $trend | partial "short-fingerprint.html" -}}
-{{- $correlate_secure := $correlate | partial "short-fingerprint.html" -}}
-{{- $table_secure     := $table | partial "short-fingerprint.html" -}}
+{{/*  {{- $correlate_secure := $correlate | partial "short-fingerprint.html" -}}  */}}
 
 
 <script type="text/javascript" src="{{ $global_secure.RelPermalink }}" integrity="{{ $global_secure.Data.Integrity }}"></script>
@@ -86,10 +84,9 @@
 <script type="text/javascript" src="{{ $311_secure.RelPermalink }}" integrity="{{ $311_secure.Data.Integrity }}"></script>
 <script type="text/javascript" src="{{ $selector_secure.RelPermalink }}" integrity="{{ $selector_secure.Data.Integrity }}"></script>
 <script type="text/javascript" src="{{ $menus_secure.RelPermalink }}" integrity="{{ $menus_secure.Data.Integrity }}"></script>
-{{/*  <script type="text/javascript" src="{{ $bar_secure.RelPermalink }}" integrity="{{ $bar_secure.Data.Integrity }}"></script>
+<script type="text/javascript" src="{{ $bar_secure.RelPermalink }}" integrity="{{ $bar_secure.Data.Integrity }}"></script>
 <script type="text/javascript" src="{{ $trend_secure.RelPermalink }}" integrity="{{ $trend_secure.Data.Integrity }}"></script>
-<script type="text/javascript" src="{{ $correlate_secure.RelPermalink }}" integrity="{{ $correlate_secure.Data.Integrity }}"></script>
-<script type="text/javascript" src="{{ $table_secure.RelPermalink }}" integrity="{{ $table_secure.Data.Integrity }}"></script>  */}}
+{{/*  <script type="text/javascript" src="{{ $correlate_secure.RelPermalink }}" integrity="{{ $correlate_secure.Data.Integrity }}"></script>  */}}
 
 
 <script>
