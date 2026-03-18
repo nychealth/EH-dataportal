@@ -5,8 +5,14 @@
 console.log('>> trend.js')
 
 
-const renderTrend = () => {
+const renderTrendChart = (
+    data, 
+    metadata
+) => {
 
     console.log("** renderTrend");
+
+    console.log("data [renderTrend]", data);
+    console.log("metadata [renderTrend]", metadata);
 
 }
