@@ -232,7 +232,7 @@ const renderMap = (
                 style: styleFeature,
                 onEachFeature: (feature, layer) => {
 
-                    console.log(">>> feature", feature.properties);
+                    // console.log(">>> feature", feature.properties);
                     // console.log(">>> layer", layer);
                     
                     // Store reference so we can highlight later using GeoID from chart
@@ -358,8 +358,8 @@ const renderMap = (
 
     const createPopupContent = (properties) => {
 
-        console.log("* createPopupContent");
-        console.log("properties [createPopupContent]", properties);
+        // console.log("* createPopupContent");
+        // console.log("properties [createPopupContent]", properties);
 
         if (properties.GeoRank) {
             
