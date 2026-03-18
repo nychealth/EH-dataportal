@@ -1,47 +1,22 @@
 <div class="row">
   <div class="col-12 d-flex justify-content-center">
     <div
-      id="cpSiteButtons"
-      class="btn-group flex-wrap"
+      id="cpSiteButtons2"
+      class="btn-group btn-block flex-wrap"
       role="group"
       aria-label="Choose site"
     ></div>
   </div>
 </div>
 
-<!-- delete all this stuff iwthout breaking the partial... --> 
-<h3>Major Deegan Expressway/Mott Haven</h3>
-
-<div class="row">
-  <div class="col-sm-7">
-    <img
-      src="{{ .Params.fullurl }}images/Mott_haven_site2.png" alt="map of" align="" style="width: 100%" class="p-1"
-    />
-    </div>
-    <div class="col-sm-5">
-      <div class="fs-md">
-      <p style="my-2">
-        Traffic-related pollutants (NO2, NO) in the nearby neighborhood
-        decreased by 1 to 2% and truck-related pollutants (PM2.5, BC) decreased
-        by 3-4%. Ozone levels did not change (not shown).
-        <ul>
-          <li>TK</li>
-          <li>TK</li>
-          <li>TK</li>
-        </ul>
-      </p>
-    </div>
-  </div>
-</div>
-
-  <div class="row mt-2">
+  <div class="row">
     <div class="col-12 d-flex justify-content-center">
-      <div id="cpVis" style="width: 100%; max-width: 1000px"></div>
+      <div id="cpVis2" style="width: 100%;"></div>
     </div>
   </div>
 
   <script>
-    const CP_CONTAINER_ID = "cpVis";
+    const CP_CONTAINER_ID = "cpVis2";
 
     // Buttons for sites
     const SITES = [
@@ -180,7 +155,7 @@
     }
 
     function renderButtons() {
-      const btnWrap = document.getElementById("cpSiteButtons");
+      const btnWrap = document.getElementById("cpSiteButtons2");
       if (!btnWrap) return;
 
       btnWrap.innerHTML = "";
@@ -319,7 +294,7 @@
     };
 
     document.addEventListener("DOMContentLoaded", async () => {
-      const el = document.getElementById("cpVis");
+      const el = document.getElementById("cpVis2");
       if (!el) return;
 
       try {
