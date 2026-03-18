@@ -130,7 +130,9 @@ const printIndicators = async (indList, destination) => {
         
         // Append to destination
         indicatorDestination.innerHTML += sectionHtml;
+
     });
+
 }
 
 
@@ -167,13 +169,15 @@ const checkURL = async () => {
 
     await loadIndicator(chosenIndicator);
 
+    await renderMeasures();
+
     // await loadData(chosenIndicator);
     
     // run renderBar()
-    renderMap(mapData);
-    renderBar(mapData);
-    renderTrend(trendData);
-    renderCorrelate(linksData);
+    renderMap(mapData, defaultMapMetadata);
+    // renderBar(mapData);
+    // renderTrend(trendData);
+    // renderCorrelate(linksData);
     
     // Run selections for Measure, Geography, and TimePeriod
     
