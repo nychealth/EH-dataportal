@@ -65,6 +65,28 @@ const styleAndPrintMenu = (items, destination, type) => {
     });
 }
 
+const updateDropdownText = (clickedItem) => {
+
+    console.log("* updateDropdownText");
+
+    console.log("*** clickedItem [updateDropdownText]", clickedItem);
+    
+    // Find the parent dropdown and its button
+    const dropdown = clickedItem.closest('.dropdown');
+    const button = dropdown.querySelector('button[id$="OptionsDropdownButton"]');
+
+    console.log("*** button [updateDropdownText]", button);
+
+    // Update only the span text content, preserving the icon
+    const span = button.querySelector('span');
+    span.textContent = clickedItem.textContent;
+
+    console.log("*** clickedItem.textContent [updateDropdownText]", clickedItem.textContent);
+
+    // Close the dropdown
+    const dropdownMenu = dropdown.querySelector('.dropdown-menu');
+    dropdownMenu.classList.remove('show');
+}
 
 // This starts to step on Measure.JS's toes a little bit - but this is a change measure function that right now, runs off of dropdown/button click, and logs to the console. 
 // "Type" will be any option: geo, timeperiod, measure, etc. 
