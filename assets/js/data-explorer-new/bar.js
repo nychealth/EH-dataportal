@@ -79,149 +79,149 @@ const renderBar = (
     // define spec
     // ----------------------------------------------------------------------- //
     
-    let barspec = {
-        "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-        "title": {
-            "text": indicatorName,
-            "subtitlePadding": 10,
-            "fontWeight": "normal",
-            "anchor": "start", 
-            "fontSize": 18, 
-            "font": "sans-serif",
-            "baseline": "top",
-            "subtitle": subtitle,
-            "subtitleFontSize": 13
-        },
-        "data": {
-            "values": data,
-            "format": {
-                "parse": {
-                    "Value": "number"
-                }
-            }
-        },
-        "config": {
-            "concat": {"spacing": 20}, 
-            "view": {"stroke": "transparent"},
-            "axisY": {"domain": false,"ticks": false,"labelBaseline": "bottom",},
-            "legend": {"disable": true},
-            "scale": {"invalid": {color: {value: '#808080'}}}
-        },
-        "transform": [
-            {
-                "calculate": `datum.DisplayValue + ' ${displayType}'`,
-                "as": "valueLabel"
-            },
-            {
-                "calculate": "datum.CI && datum.CI !== '' ? split(replace(datum.CI, /[()]/g, ''), ', ')[0] : null",
-                "as": "ciLow"
-            },
-            {
-                "calculate": "datum.CI && datum.CI !== '' ? split(replace(datum.CI, /[()]/g, ''), ', ')[1] : null",
-                "as": "ciHigh"
-            },
-            {
-            "calculate": "datum.CI ? replace(replace(datum.CI, /[()]/g, ''), /, /, ' to ') : null",
-            "as": "CInoParens"
-            }
-        ],
-        "height": 500,
-        "width": "container",
-        "layer": [
-            {
-                "mark": {"type": markType, "invalid": null},
-                "params": [
-                    {"name": "highlight", "select": {"type": "point", "on": "mouseover", "clear": "mouseout"}}
-                ],
-                "transform": [
-                    {
-                        "lookup": "GeoID",
-                        "from": {
-                            "data": {
-                                "url": `${data_repo}${data_branch}/geography/${topoFile}`,
-                                "format": {"type": "topojson", "feature": "collection"}
-                            },
-                            "key": "properties.GEOCODE"
-                        },
-                        "as": "geo"
-                    }
-                ],
-                "encoding": {
-                    ...encode,
-                    "color": {
-                        "bin": false,
-                        "field": "Value",
-                        "type": "quantitative",
-                        "scale": {"scheme": {"name": "viridis", "extent": [1, 0]}},
-                        ...legend    
-                    },
-                    "stroke": {
-                        "condition": [{"param": "highlight", "empty": false, "value": "cyan"}],
-                        "value": "#2d2d2d"
-                    },
-                    "strokeWidth": {
-                        "condition": [{"param": "highlight", "empty": false, "value": strokeWidth}],
-                        "value": 0.5
-                    },
-                    "order": {
-                        "condition": [{"param": "highlight", "empty": false, "value": 1}],
-                        "value": 0
-                    },
-                    "tooltip": [
-                        {
-                            "field": "Geography", 
-                            "title": "Neighborhood"
-                        },
-                        {
-                            "field": "valueLabel",
-                            "title": `${barMeasurementType}`
-                        },
-                        {
-                            "field": "TimePeriod",
-                            "title": "Time period"
-                        }
-                    ],
-                },
-            }
-        ]
-    }
+    // let barspec = {
+    //     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    //     "title": {
+    //         "text": indicatorName,
+    //         "subtitlePadding": 10,
+    //         "fontWeight": "normal",
+    //         "anchor": "start", 
+    //         "fontSize": 18, 
+    //         "font": "sans-serif",
+    //         "baseline": "top",
+    //         "subtitle": subtitle,
+    //         "subtitleFontSize": 13
+    //     },
+    //     "data": {
+    //         "values": data,
+    //         "format": {
+    //             "parse": {
+    //                 "Value": "number"
+    //             }
+    //         }
+    //     },
+    //     "config": {
+    //         "concat": {"spacing": 20}, 
+    //         "view": {"stroke": "transparent"},
+    //         "axisY": {"domain": false,"ticks": false,"labelBaseline": "bottom",},
+    //         "legend": {"disable": true},
+    //         "scale": {"invalid": {color: {value: '#808080'}}}
+    //     },
+    //     "transform": [
+    //         {
+    //             "calculate": `datum.DisplayValue + ' ${displayType}'`,
+    //             "as": "valueLabel"
+    //         },
+    //         {
+    //             "calculate": "datum.CI && datum.CI !== '' ? split(replace(datum.CI, /[()]/g, ''), ', ')[0] : null",
+    //             "as": "ciLow"
+    //         },
+    //         {
+    //             "calculate": "datum.CI && datum.CI !== '' ? split(replace(datum.CI, /[()]/g, ''), ', ')[1] : null",
+    //             "as": "ciHigh"
+    //         },
+    //         {
+    //         "calculate": "datum.CI ? replace(replace(datum.CI, /[()]/g, ''), /, /, ' to ') : null",
+    //         "as": "CInoParens"
+    //         }
+    //     ],
+    //     "height": 500,
+    //     "width": "container",
+    //     "layer": [
+    //         {
+    //             "mark": {"type": markType, "invalid": null},
+    //             "params": [
+    //                 {"name": "highlight", "select": {"type": "point", "on": "mouseover", "clear": "mouseout"}}
+    //             ],
+    //             "transform": [
+    //                 {
+    //                     "lookup": "GeoID",
+    //                     "from": {
+    //                         "data": {
+    //                             "url": `${data_repo}${data_branch}/geography/${topoFile}`,
+    //                             "format": {"type": "topojson", "feature": "collection"}
+    //                         },
+    //                         "key": "properties.GEOCODE"
+    //                     },
+    //                     "as": "geo"
+    //                 }
+    //             ],
+    //             "encoding": {
+    //                 ...encode,
+    //                 "color": {
+    //                     "bin": false,
+    //                     "field": "Value",
+    //                     "type": "quantitative",
+    //                     "scale": {"scheme": {"name": "viridis", "extent": [1, 0]}},
+    //                     ...legend    
+    //                 },
+    //                 "stroke": {
+    //                     "condition": [{"param": "highlight", "empty": false, "value": "cyan"}],
+    //                     "value": "#2d2d2d"
+    //                 },
+    //                 "strokeWidth": {
+    //                     "condition": [{"param": "highlight", "empty": false, "value": strokeWidth}],
+    //                     "value": 0.5
+    //                 },
+    //                 "order": {
+    //                     "condition": [{"param": "highlight", "empty": false, "value": 1}],
+    //                     "value": 0
+    //                 },
+    //                 "tooltip": [
+    //                     {
+    //                         "field": "Geography", 
+    //                         "title": "Neighborhood"
+    //                     },
+    //                     {
+    //                         "field": "valueLabel",
+    //                         "title": `${barMeasurementType}`
+    //                     },
+    //                     {
+    //                         "field": "TimePeriod",
+    //                         "title": "Time period"
+    //                     }
+    //                 ],
+    //             },
+    //         }
+    //     ]
+    // }
 
     
     // ----------------------------------------------------------------------- //
     // render chart
     // ----------------------------------------------------------------------- //
 
-    vegaEmbed("#bar", barspec,{
-        actions: {
-            export: { png: false, svg: false },
-            source: false,  
-            compiled: false, 
-            editor: true 
-        }
-    });
+    // vegaEmbed("#bar", barspec,{
+    //     actions: {
+    //         export: { png: false, svg: false },
+    //         source: false,  
+    //         compiled: false, 
+    //         editor: true 
+    //     }
+    // });
 
     // send info for printing
     vizYear = barTime;
     vizGeography = barGeoType;
-    // vizSource = metadata[0].Sources
-    printSpec = barspec;
-    chartType = 'bar'
+    // vizSource = metadata[0].Sources;
+    // printSpec = barspec;
+    chartType = 'bar';
 
-    // console.log(barspec)
+    // console.log(barspec);
 
     // ----------------------------------------------------------------------- //
     // Send chart data to download
     // ----------------------------------------------------------------------- //
 
-    let dataForDownload = [...barspec.data.values] // create a copy
+    // let dataForDownload = [...barspec.data.values] // create a copy
 
-    let downloadTable = aq.from(dataForDownload)
-        .derive({Indicator: `'${indicatorName}: ${barMeasurementType}${displayType && ` (${displayType})`}'`}) // add indicator name and type column
-        .select(aq.not('GeoRank', "end_period", "start_period", "ban_summary_flag", "GeoTypeShortDesc", "MeasureID", "DisplayValue")) // remove excess columns
+    // let downloadTable = aq.from(dataForDownload)
+    //     .derive({Indicator: `'${indicatorName}: ${barMeasurementType}${displayType && ` (${displayType})`}'`}) // add indicator name and type column
+    //     .select(aq.not('GeoRank', "end_period", "start_period", "ban_summary_flag", "GeoTypeShortDesc", "MeasureID", "DisplayValue")) // remove excess columns
     
     // console.log("downloadTable [renderBar]");
     // downloadTable.print()
 
-    CSVforDownload = downloadTable.toCSV()
+    // CSVforDownload = downloadTable.toCSV()
 
 }
