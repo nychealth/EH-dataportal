@@ -240,8 +240,8 @@ const joinData = async () => {
 
     // take array of arquero tables and combine them into 1 arquero table - like bind_rows in dplyr
 
-    console.log("aqMeasureDisplay [joinData]");
-    aqMeasureDisplay.print()
+    // console.log("aqMeasureDisplay [joinData]");
+    // aqMeasureDisplay.print()
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
     // getting time periods for each viz for each measure x geo combo
@@ -282,8 +282,8 @@ const joinData = async () => {
                             MeasureID: [measure.MeasureID]
                         })
 
-                        console.log("aqMeasureGeo");
-                        aqMeasureGeo.print()
+                        // console.log("aqMeasureGeo");
+                        // aqMeasureGeo.print()
 
                         // cross them to expand / recycle geotype & measure table rows
 
@@ -294,7 +294,6 @@ const joinData = async () => {
                     }
                 )
 
-            console.log("aqTableTimesGeosMeasureArray", aqTableTimesGeosMeasureArray);
 
             // combine array of arquero tables into 1 arquero table
 
@@ -302,6 +301,9 @@ const joinData = async () => {
                 aqTableTimesGeosMeasureArray
                     .flatMap(d => d)
                     .reduce((a, b) => a.concat(b))
+
+            // console.log(">> aqTableTimesGeosMeasure [joinData]");
+            // aqTableTimesGeosMeasure.print()
 
             // push table for this measure to array with all measures
 
@@ -338,7 +340,6 @@ const joinData = async () => {
                     }
                 )
 
-            console.log("aqMapTimesGeosMeasureArray", aqMapTimesGeosMeasureArray);
 
             // combine array of arquero tables into 1 arquero table
 
@@ -346,6 +347,9 @@ const joinData = async () => {
                 aqMapTimesGeosMeasureArray
                     .flatMap(d => d)
                     .reduce((a, b) => a.concat(b))
+
+            console.log(">> aqMapTimesGeosMeasure [joinData]");
+            aqMapTimesGeosMeasure.print()
 
             // push table for this measure to array with all measures
 
@@ -382,7 +386,6 @@ const joinData = async () => {
                     }
                 )
 
-            console.log("aqTrendTimesGeosMeasureArray", aqTrendTimesGeosMeasureArray);
 
             // combine array of arquero tables into 1 arquero table
 
@@ -390,6 +393,9 @@ const joinData = async () => {
                 aqTrendTimesGeosMeasureArray
                     .flatMap(d => d)
                     .reduce((a, b) => a.concat(b))
+
+            // console.log(">> aqTrendTimesGeosMeasure [joinData]");
+            // aqTrendTimesGeosMeasure.print()
 
             // push table for this measure to array with all measures
 
@@ -429,14 +435,14 @@ const joinData = async () => {
             .orderby(aq.desc('end_period'), "MeasureID")
 
 
-    console.log("aqTableTimesGeos [joinData]");
-    aqTableTimesGeos.print()
+    // console.log(">> aqTableTimesGeos [joinData]");
+    // aqTableTimesGeos.print()
 
-    console.log("aqMapTimesGeos [joinData]");
-    aqMapTimesGeos.print()
+    // console.log(">> aqMapTimesGeos [joinData]");
+    // aqMapTimesGeos.print()
 
-    console.log("aqTrendTimesGeos [joinData]");
-    aqTrendTimesGeos.print()
+    // console.log(">> aqTrendTimesGeos [joinData]");
+    // aqTrendTimesGeos.print()
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
     // joining
@@ -456,8 +462,8 @@ const joinData = async () => {
         .orderby(aq.desc('end_period'), aq.desc('GeoRank'))
         .reify()
     
-    console.log(">>>> joinedAqData [joinData]");
-    joinedAqData.print()
+    // console.log(">>>> joinedAqData [joinData]");
+    // joinedAqData.print()
 
 
     // data for summary table ----------
@@ -475,7 +481,7 @@ const joinData = async () => {
         .reify()
         .objects()
 
-    console.log(">>>> tableData [joinData]", tableData);
+    // console.log(">>>> tableData [joinData]", tableData);
 
     // data for map ----------
 
@@ -500,7 +506,7 @@ const joinData = async () => {
         .reify()
         .objects()
 
-    console.log(">>>> trendData [joinData]", trendData);
+    // console.log(">>>> trendData [joinData]", trendData);
 
     // data for links & disparities chart ----------
 
@@ -511,7 +517,7 @@ const joinData = async () => {
         .filter(d => !op.match(d.GeoType, /Citywide|Borough/)) // remove Citywide and Boro
         .objects()
 
-    console.log(">>>> linksData [joinData]", linksData);
+    // console.log(">>>> linksData [joinData]", linksData);
 
     // call the measure rendering etc. function
 

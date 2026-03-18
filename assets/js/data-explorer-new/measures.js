@@ -82,6 +82,8 @@ const setDefaultMapMeasure = (visArray) => {
 
     defaultMapMetadata = defaultArray;
 
+    console.log(">> defaultMapMetadata", defaultMapMetadata);
+
 }
 
 
@@ -162,6 +164,9 @@ const setDefaultTrendMeasure = (visArray) => {
     // assigning to global object
 
     defaultTrendMetadata = defaultArray;
+
+    console.log(">> defaultTrendMetadata", defaultTrendMetadata);
+
 }
 
 
@@ -169,7 +174,7 @@ const setDefaultTrendMeasure = (visArray) => {
 
 const setDefaultLinksMeasure = async (visArray) => {
 
-    // console.log("* setDefaultLinksMeasure");
+    console.log("* setDefaultLinksMeasure");
 
     // modified so that defaultPrimaryLinksMeasureMetadata is explicitly set, instead of by reference
     //  through defaultArray
@@ -266,7 +271,7 @@ const setDefaultLinksMeasure = async (visArray) => {
 
         joinedLinksDataObjects = defaultLinksDataMetadata.data
 
-        // console.log(">> joinedLinksDataObjects [setDefaultLinksMeasure]", joinedLinksDataObjects);
+        console.log(">> joinedLinksDataObjects [setDefaultLinksMeasure]", joinedLinksDataObjects);
 
     }
 }
@@ -277,7 +282,7 @@ const setDefaultLinksMeasure = async (visArray) => {
 
 const setDefaultDisparitiesMeasure = (visArray) => {
 
-    // console.log("* setDefaultDisparitiesMeasure");
+    console.log("* setDefaultDisparitiesMeasure");
 
     let defaultArray = [];
 
@@ -347,6 +352,9 @@ const setDefaultDisparitiesMeasure = (visArray) => {
     // assigning to global object
 
     defaultDisparitiesMetadata = defaultArray;
+
+    console.log(">> defaultDisparitiesMetadata", defaultDisparitiesMetadata);
+    
 }
 
 
@@ -502,7 +510,7 @@ const updateMapData = (e) => {
     
     // ----- render the map --------------------------------------------------- //
 
-    // renderMap(filteredMapData, selectedMapMetadata);
+    renderMap(filteredMapData, selectedMapMetadata);
 
     updateChartPlotSize();
 
@@ -849,7 +857,7 @@ const updateLinksData = async (e) => {
 
     // ----- render the chart --------------------------------------------------- //
 
-    renderLinksChart(
+    renderCorrelate(
         joinedLinksDataObjects,
         selectedPrimaryMeasureMetadata,
         selectedSecondaryMeasureMetadata,
@@ -944,7 +952,7 @@ const handleTableTimeFilter = (el) => {
                 selectedTableTimes.splice(index, 1);
             }
         }
-        // renderTable()
+        renderTable()
     })
 }
 
@@ -2288,7 +2296,7 @@ const renderMeasures = async () => {
 
                 // console.log("defaultSecondaryMeasureMetadata [showLinks 1]", defaultSecondaryMeasureMetadata);
 
-                renderLinksChart(
+                renderCorrelate(
                     joinedLinksDataObjects,
                     defaultPrimaryLinksMeasureMetadata,
                     defaultSecondaryMeasureMetadata,
@@ -2375,7 +2383,7 @@ const renderMeasures = async () => {
 
                 // ----- render the chart - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
-                renderLinksChart(
+                renderCorrelate(
                     joinedLinksDataObjects,
                     selectedPrimaryMeasureMetadata,
                     selectedSecondaryMeasureMetadata,
@@ -2471,31 +2479,31 @@ const renderMeasures = async () => {
 
     // this actually might be superfluous. as long as show and update funs work thru this logic, all the case should be covered.
 
-    if (linksMeasures.length === 0 && disparitiesMeasures.length === 0) {
+    // if (linksMeasures.length === 0 && disparitiesMeasures.length === 0) {
 
-        // console.log("no links, no disp");
+    //     // console.log("no links, no disp");
 
-        // - - - no links, no disparities - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    //     // - - - no links, no disparities - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
-        // no reason to enable the links tab, so if it's selected switch to table view and disable the tab
+    //     // no reason to enable the links tab, so if it's selected switch to table view and disable the tab
 
-        if (tabLinksSelected && window.location.hash === '#display=links') {
+    //     if (tabLinksSelected && window.location.hash === '#display=links') {
 
-            // replace history stack entry
+    //         // replace history stack entry
 
-            // url.hash = "display=summary";
-            // window.history.replaceState({ id: indicatorId, hash: url.hash}, '', url);
+    //         // url.hash = "display=summary";
+    //         // window.history.replaceState({ id: indicatorId, hash: url.hash}, '', url);
 
-        }
+    //     }
 
-        // disable the links tab
+    //     // disable the links tab
 
-        disableTab(tabLinks);
+    //     disableTab(tabLinks);
 
-    } else {
+    // } else {
 
-        enableTab(tabLinks);
-    }
+    //     enableTab(tabLinks);
+    // }
 
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
@@ -2728,61 +2736,61 @@ const renderMeasures = async () => {
     // add event handler functions to summary tab checkboxes
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
-    const checkboxTime    = document.querySelectorAll('.checkbox-time');
-    const checkboxTimeAll = document.querySelectorAll('.checkbox-time-all');
-    const checkboxGeo     = document.querySelectorAll('.checkbox-geo');
+    // const checkboxTime    = document.querySelectorAll('.checkbox-time');
+    // const checkboxTimeAll = document.querySelectorAll('.checkbox-time-all');
+    // const checkboxGeo     = document.querySelectorAll('.checkbox-geo');
 
     // single time checkboxes
 
-    checkboxTime.forEach(checkbox => {
-        handleTableTimeFilter(checkbox);
-    })
+    // checkboxTime.forEach(checkbox => {
+    //     handleTableTimeFilter(checkbox);
+    // })
 
     // "select all" time checkbox
 
-    checkboxTimeAll[0].addEventListener('change', (e) => {
+    // checkboxTimeAll[0].addEventListener('change', (e) => {
 
-        if (!e.target.checked) {
+    //     if (!e.target.checked) {
 
-            // console.log("not checked");
+    //         // console.log("not checked");
 
-            checkboxTime.forEach(checkbox => {
+    //         checkboxTime.forEach(checkbox => {
 
-                // console.log("checkbox", checkbox);
+    //             // console.log("checkbox", checkbox);
 
-                $(checkbox).find("input").prop("checked", false)
-                selectedTableTimes = []
+    //             $(checkbox).find("input").prop("checked", false)
+    //             selectedTableTimes = []
 
-            })
+    //         })
 
-            // console.log("selectedTableTimes [not checked]", selectedTableTimes);
+    //         // console.log("selectedTableTimes [not checked]", selectedTableTimes);
 
-        } else if (e.target.checked) {
+    //     } else if (e.target.checked) {
 
-            // console.log("checked");
+    //         // console.log("checked");
 
-            checkboxTime.forEach(checkbox => {
+    //         checkboxTime.forEach(checkbox => {
 
-                // console.log("checkbox", checkbox);
+    //             // console.log("checkbox", checkbox);
 
-                $(checkbox).find("input").prop("checked", true)
-                selectedTableTimes.push($(checkbox).find("input").val())
+    //             $(checkbox).find("input").prop("checked", true)
+    //             selectedTableTimes.push($(checkbox).find("input").val())
 
-            })
+    //         })
 
-            // console.log("selectedTableTimes [checked]", selectedTableTimes);
+    //         // console.log("selectedTableTimes [checked]", selectedTableTimes);
 
-        }
+    //     }
 
-        // renderTable()
+    //     renderTable()
 
-    })
+    // })
 
     // single geo checkboxes
 
-    checkboxGeo.forEach(checkbox => {
-        handleTableGeoFilter(checkbox);
-    })
+    // checkboxGeo.forEach(checkbox => {
+    //     handleTableGeoFilter(checkbox);
+    // })
 
 
 }

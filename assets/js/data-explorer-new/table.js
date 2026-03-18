@@ -3,3 +3,10 @@
 // ======================================================================= //
 
 console.log('>> table.js')
+
+
+const renderTable = () => {
+
+    console.log("** renderTable");
+
+}

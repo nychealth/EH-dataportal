@@ -132,7 +132,7 @@ let chartType;
 let currentHash;
 let state;
 
-const btnToggleDisparities = document.querySelector('.btn-toggle-disparities');
+// const btnToggleDisparities = document.querySelector('.btn-toggle-disparities');
 
 // modifying the measure dropdown innerHTML removes the event listeners from the dropdown list. So, i added it to the HTML, and we can remove it when we call renderTrendChart, if necessary
 
@@ -255,38 +255,38 @@ const prettifyGeoType = (GeoType) => {
 
 // Renders the Indicator Title and Description
 
-const renderTitleDescription = (title, desc) => {
+// const renderTitleDescription = (title, desc) => {
 
-    const indicatorTitle = document.getElementById('indicatorTitle');
-    const indicatorDescription = document.querySelectorAll('.indicator-description');
-    indicatorTitle.innerHTML = title;
+//     const indicatorTitle = document.getElementById('indicatorTitle');
+//     const indicatorDescription = document.querySelectorAll('.indicator-description');
+//     indicatorTitle.innerHTML = title;
 
-    indicatorDescription.forEach((element) => {
-        element.innerHTML = `${desc}`;
-    });    
-}
+//     indicatorDescription.forEach((element) => {
+//         element.innerHTML = `${desc}`;
+//     });    
+// }
 
 // Renders copy for the About the measures and the Data sources sections
 
-const renderAboutSources = (about, sources) => {
+// const renderAboutSources = (about, sources) => {
 
-    console.log("**** renderAboutSources");
-    dataSources.innerHTML = ''
+//     console.log("**** renderAboutSources");
+//     dataSources.innerHTML = ''
 
-    // de-dupe data sources
-    let type = typeof sources
+//     // de-dupe data sources
+//     let type = typeof sources
 
-    if (type === 'object') {
-        let singleSource;
-        singleSource = sources.every( (val, i, arr) => val === arr[0] )  
-        singleSource === true ? dataSources.innerHTML = sources[0] : dataSources.innerHTML = sources
-    } else {
-        dataSources.innerHTML = sources
-    }
+//     if (type === 'object') {
+//         let singleSource;
+//         singleSource = sources.every( (val, i, arr) => val === arr[0] )  
+//         singleSource === true ? dataSources.innerHTML = sources[0] : dataSources.innerHTML = sources
+//     } else {
+//         dataSources.innerHTML = sources
+//     }
 
-    aboutMeasures.innerHTML = about;
+//     aboutMeasures.innerHTML = about;
     
-}
+// }
 
 // ----------------------------------------------------------------------- //
 // chart resize
