@@ -11,7 +11,7 @@ pollutantsMeasured:
       lung and heart disease and lead to hospital admissions and premature
       deaths. </p> <p>PM<sub>2.5</sub> can be either directly emitted or formed
       in the atmosphere from other pollutants. Fuel combustion in vehicles,
-      boilers in buildings, power plants, construction equipment, marine vessels
+      boilers in buildings, power plants, construction equipment, marine vessels,
       and commercial cooking are all common sources of PM<sub>2.5</sub>. Between
       20% and 30% of the PM<sub>2.5</sub> in New York City's air comes from
       sources in areas upwind from the city, such as coal-burning power plants
@@ -24,7 +24,7 @@ pollutantsMeasured:
       other sources that burn fossil fuels. It comprises up to 20% of fine
       particulate matter in New York City. Unlike other fine particles, BC is
       primarily from local sources. Inhalation of BC is associated with health
-      problems, including respiratory and cardiovascular disease, cancer and
+      problems, including respiratory and cardiovascular disease, cancer, and
       birth defects. BC also contributes to climate change by altering the
       patterns of rain and clouds.
     number: 2
@@ -49,7 +49,7 @@ pollutantsMeasured:
       such as places with  high traffic density. In areas with heavy traffic,
       NO<sub>X</sub> reacts with any ground-level O<sub>3</sub> to reduce
       O<sub>3</sub> concentrations. As a result, NYCCAS has measured lower
-      O<sub>3</sub> levels near roadways, in other areas of high NO<sub>X</sub>
+      O<sub>3</sub> levels near roadways and in other areas of high NO<sub>X</sub>
       emissions density, such as in midtown Manhattan. Higher levels of 
       O<sub>3</sub> are seen in areas away from dense traffic and building
       emissions. O<sub>3</sub> exposure can cause coughing, shortness of breath, 
@@ -69,7 +69,7 @@ pollutantsMeasured:
       PM<sub>2.5</sub> exposures downwind of SO<sub>2</sub> emissions.
     number: 5
 ---
-The NYC Health Department designed NYCCAS to understand how average air pollution levels vary from place to place within New York City. NYCCAS staff mount samplers on street light poles 10 to 12 feet off the ground along residential and commercial streets and in parks. The monitors use a small battery-powered pump and filters to collect air samples. Our air samplers are deployed at each NYCCAS site once each season and collect data for a two-week period. Samples are collected in all seasons for NO, NO<sub>2</sub>, PM<sub>2\.5</sub> and BC; in the summer for O<sub>3</sub>. For more details on sample collection methods, see [Appendix 1 (PDF)](pdf/Appendix1.pdf).
+The NYC Health Department designed NYCCAS to understand how average air pollution levels vary from place to place within New York City. NYCCAS staff mount samplers on street light poles 10 to 12 feet off the ground along residential and commercial streets and in parks. The monitors use a small battery-powered pump and filters to collect air samples. Our air samplers are deployed at each NYCCAS site once each season and collect data for a two-week period. Samples are collected in all seasons for NO, NO<sub>2</sub>, PM<sub>2\.5</sub> and BC; and in the summer for O<sub>3</sub>. For more details on sample collection methods, see [Appendix 1 (PDF)](pdf/Appendix1.pdf).
 
 The New York State Department of Environmental Conservation also has a network of 16 air quality monitors in New York City that are required by the federal government, but they are mounted on building roofs. We placed our air samplers at street level to measure pollution where people spend time, and where traffic-related pollution levels are usually higher.
 
