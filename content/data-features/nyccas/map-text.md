@@ -3,7 +3,7 @@ _schema: default
 draft: false
 hide: true
 BC: >-
-    - Citywide, annual average levels of Black Carbon declined by 56% between 2009 and 2024, an average of 0.05 micrograms per cubic meter per year. 
+    - Citywide, annual average levels of black carbon declined by 56% between 2009 and 2024, an average of 0.05 micrograms per cubic meter per year. 
 
     - Across the 16-year period, higher levels were consistently seen near warehouses within industrial areas (reflecting increased truck traffic density) and in areas with higher nearby commercial cooking grills and charbroilers. 
 
