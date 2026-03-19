@@ -38,9 +38,9 @@ The New York City Health Department (Health Department) established the New York
 * Track changes in air quality over time
 * Estimate air pollution exposures for health research
 * Help inform <a href="https://www.nyc.gov/content/climate/pages/planyc-getting-sustainabilty-done" target="_blank" rel="noopener">PlaNYC</a>, the City’s sustainability plan
-* Inform the public about local topics, such as [recent air quality improvements](../../data-stories/breatheeasy), [car-free zones](../../data-stories/aqts/), [changes in the sources of air pollution](../../data-stories/aq-cooking/), [unique air quality studies conducted in New York City](../../data-stories/air-quality-snapshots/), [efforts to reduce health impacts](../../data-stories/hia/), [public health benefits of public transit](../../data-stories/public-transit-creates-health/) and [differences in air quality and related health impacts across NYC neighborhoods](../../data-stories/aq2/).
-* Developed <a href="https://treehug-app.its.unc.edu/trappa/" target="_blank" rel="noopener">a tool (TRAPPA) to show how policy changes can change local emissions</a>.
-* Published [initial air quality data from Congestion Relief Tolling](https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/congestion-tolling-update/).
+* Inform the public about local topics, such as [recent air quality improvements](../../data-stories/breatheeasy), [car-free zones](../../data-stories/aqts/), [changes in the sources of air pollution](../../data-stories/aq-cooking/), [unique air quality studies conducted in New York City](../../data-stories/air-quality-snapshots/), [efforts to reduce health impacts](../../data-stories/hia/), [public health benefits of public transit](../../data-stories/public-transit-creates-health/) and [differences in air quality and related health impacts across NYC neighborhoods](../../data-stories/aq2/)
+* Develop <a href="https://treehug-app.its.unc.edu/trappa/" target="_blank" rel="noopener">a tool (TRAPPA) to show how policy changes can change local emissions</a>
+* Publish [initial air quality data from Congestion Relief Tolling](https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/congestion-tolling-update/)
 
 This report:
 
@@ -56,9 +56,9 @@ This report:
 **Annual average levels of four key pollutants have gone down, citywide, between the first year of monitoring, 2009, and the most recent year of data, 2024.**
 
 * Fine particles (PM<sub>2\.5</sub>)&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;-36%
-* Nitrogen Dioxide (NO<sub>2</sub>)&nbsp; &nbsp; -41%
-* Nitric Oxide (NO)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; -62%
-* Sulfur Dioxide (SO<sub>2</sub>)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; -98%
+* Nitrogen dioxide (NO<sub>2</sub>)&nbsp; &nbsp; -41%
+* Nitric oxide (NO)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; -62%
+* Sulfur dioxide (SO<sub>2</sub>)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; -98%
 
 **Air quality improved significantly after local regulations required building owners to convert to cleaner heating oils by 2015.** These heating oils were a major source of SO<sub>2</sub> in New York City. Since 2017, most of the measurements collected for SO<sub>2</sub> have been below what our monitors can detect. The SO<sub>2</sub> levels in the city are similar to SO<sub>2</sub> levels measured on Whiteface Mountain in the Adirondack Mountains, demonstrating the success of the clean heating oil requirements.
 
@@ -68,7 +68,7 @@ There has not been a consistent trend in O<sub>3</sub> levels over the history o
 
 **Air quality changes with location.**
 
-PM<sub>2\.5</sub>, NO<sub>2</sub>, NO, and BC are highest in:
+PM<sub>2\.5</sub>, NO<sub>2</sub>, NO, and black carbon (BC) are highest in:
 
 * Areas with higher density of commercial cooking grills and charbroilers
 * Industrial areas, specifically areas with higher density of warehouses
