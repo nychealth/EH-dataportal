@@ -33,6 +33,12 @@
 </div> -->
 </div>
 
+<style>
+  .vega-embed {
+    height: 200 !important;
+  }
+</style>
+
 
     <script>
       const CP_CONTAINER_ID = "cpVis";
@@ -185,6 +191,7 @@
         SITES.forEach((site) => {
           const btn = document.createElement("button");
           btn.type = "button";
+          btn.id = site.replaceAll(" ", "-");
           btn.className = "btn btn-sm btn-outline-dark m-1";
           btn.textContent = site;
 
@@ -264,7 +271,7 @@
         facet: { field: "ParameterWithUnit", title: null },
         spec: {
           width: 150,
-          height: 250,
+          height: 500,
           encoding: {
             x: {
               field: "Time",
