@@ -19,177 +19,210 @@
                 </div>
             </div>
 
-            <h1 class="h2 data-stories mb-3"><i class="fas fa-passport" aria-hidden="true" style="margin-right: 10px"></i>{{ .Title }}</h1>
+            <h1 class="h2 data-stories mb-3"><i class="fas fa-passport" aria-hidden="true"
+                   style="margin-right: 10px"></i>{{ .Title }}</h1>
             <div class="container-fluid px-0">
 
                 {{ $src := .Resources.GetMatch .Params.image }}
                 {{ with $src }}
-                {{ $image := .Resize "1200x" }}
-                    <img class="block mb-3" src="{{ $image.RelPermalink }}" width="{{ $image.Width }}" height="{{ $image.Height }}" alt="">
+                    {{ $image := .Resize "1200x" }}
+                    <img class="block mb-3" src="{{ $image.RelPermalink }}" width="{{ $image.Width }}"
+                        height="{{ $image.Height }}" alt="">
                 {{ end }}
             </div>
 
             <div data-pagefind-weight="7.0">
-            {{- .Content -}}
+                {{- .Content -}}
             </div>
-            
+
             <div class="row">
                 <div class="col-10 mx-auto">
-                  <hr class="my-2 px-6" />
+                    <hr class="my-2 px-6" />
                 </div>
-              </div>
+            </div>
 
         </div>
         <!-- .col (main) -->
 
         <!-- two-column xx and xx -->
-       
-        <div class="col-md-8 col-sm-12 mx-auto mb-2 my-1">
-        <h2 class="h3">Key sites</h3>
-            <div class="">
-<!--            <iframe src={{ relURL "congestion_pricing/embeds/congestion_pricing_monitoring.html" }} frameborder="yes" style="width: 100%; height: 550px"></iframe> -->
 
-            {{- with .Resources.GetMatch "key-sites.md" -}}
-                {{ .Content }}
-            {{- end -}}
-            </div>
+        <div class="col-md-8 col-sm-12 mx-auto mb-2 my-1">
+            <h2 class="h3">Key sites</h3>
+                <div class="">
+                    <!--            <iframe src={{ relURL "congestion_pricing/embeds/congestion_pricing_monitoring.html" }} frameborder="yes" style="width: 100%; height: 550px"></iframe> -->
+
+                    {{- with .Resources.GetMatch "key-sites.md" -}}
+                        {{ .Content }}
+                    {{- end -}}
+                </div>
         </div>
         <div class="col-md-10 col-sm-12 mx-auto mt-2">
-            <div style="text-align: center;" class="my-2"><h3 class="h4">Results from EJ sites</h3></div>
+            <div style="text-align: center;" class="my-2">
+                <h3 class="h4">Results from EJ sites</h3>
+            </div>
         </div>
 
     </div>
 
     <hr class="my-2 px-6">
 
-        <!-- single column layout community sites + charts -->
+    <!-- single column layout community sites + charts -->
 
     <div class="row my-3">
         <div class="col-md-11 mx-auto col-sm-12 mb-2">
-            <div class="l-green-border px-1"> 
+            <div class="l-green-border px-1">
                 <div class="col-8">
-                {{ partial "cp-chart.html" . }}
+                    {{ partial "cp-chart.html" . }}
                 </div>
             </div>
-              <div class="row">
-    <div class="col-10 mx-auto">
-        <div class="row">
-            <div class="col-10 mx-auto">
-              <hr class="my-2 px-6" />
+            <div class="row">
+                <div class="col-10 mx-auto">
+                    <div class="row">
+                        <div class="col-10 mx-auto">
+                            <hr class="my-2 px-6" />
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-    </div>
-  </div>
         </div>
-        
-        <!-- testing out a new format
-        <div class="row mt-1 mb-3">
-            <div class="col-md-10 col-sm-12 mx-auto my-1">
-              <h2>Heat Exacerbated Deaths</h2>
-            </div>
-            <div class="col-md-5 ml-auto col-sm-12">
-              {{- with .Resources.GetMatch "traffic-times.md" -}} {{ .Content }} {{-
-              end -}}
-            </div>
-        
-            <div class="col-md-5 mr-auto col-sm-12">
-              <div class="p-2 border">
-                {{- with .Resources.GetMatch "bar_charts_traffic1.md" -}} {{ .Content }} {{- end
-                -}}
-              </div>
-            </div>
-          </div>
 
-        -->
+        <!-- testing out a new format
+                <div class="row mt-1 mb-3">
+                    <div class="col-md-10 col-sm-12 mx-auto my-1">
+                        <h2>Heat Exacerbated Deaths</h2>
+                    </div>
+                    <div class="col-md-5 ml-auto col-sm-12">
+                        {{- with .Resources.GetMatch "traffic-times.md" -}} {{ .Content }} {{-
+                        end -}}
+                    </div>
+                    
+                    <div class="col-md-5 mr-auto col-sm-12">
+                        <div class="p-2 border">
+                            {{- with .Resources.GetMatch "bar_charts_traffic1.md" -}} {{ .Content }} {{- end
+                            -}}
+                        </div>
+                    </div>
+                </div>
+                
+            -->
 
         <div class="col-md-8 mx-auto col-sm-12">
             <div class="l-green-border px-1 mb-2">
-            
+
                 <div class="col-md-10 col-sm-12 ml-auto my-1">
                     <h3 class="h4">How did traffic and PM2.5 near the highways change?</h3>
-                  </div>
-            <div class="row">
-            <div class="col-4 my-3 py-2">
-                <div style="min-height:560px" id="datawrapper-vis-LcSZD"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/LcSZD/embed.js" charset="utf-8" data-target="#datawrapper-vis-LcSZD"></script><noscript><img src="https://datawrapper.dwcdn.net/LcSZD/full.png" alt="All traffic changes on the  Major Deegan/Mott Haven Expressway  in year one of congestion tolling (Column Chart)" /></noscript></div>
-            </div>
-            <div class="col-4 my-3 py-2"><div style="min-height:510px" id="datawrapper-vis-aAN8W"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/aAN8W/embed.js" charset="utf-8" data-target="#datawrapper-vis-aAN8W"></script><noscript><img src="https://datawrapper.dwcdn.net/aAN8W/full.png" alt="Real-time PM2.5 changes on the  Major Deegan/Mott Haven Expressway  in year one of congestion tolling (Column Chart)" /></noscript></div>
-            </div>
-            <div class="col-4 my-3 py-2"><div style="min-height:510px" id="datawrapper-vis-8jmq8"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/8jmq8/embed.js" charset="utf-8" data-target="#datawrapper-vis-8jmq8"></script><noscript><img src="https://datawrapper.dwcdn.net/8jmq8/full.png" alt="Truck changes on the  Major Deegan/Mott Haven Expressway  in year one of congestion tolling (Column Chart)" /></noscript></div>
+                </div>
+                <div class="row">
+                    <div class="col-4 my-3 py-2">
+                        <div style="min-height:560px" id="datawrapper-vis-LcSZD">
+                            <script type="text/javascript" defer src="https://datawrapper.dwcdn.net/LcSZD/embed.js"
+                                    charset="utf-8" data-target="#datawrapper-vis-LcSZD"></script><noscript><img
+                                     src="https://datawrapper.dwcdn.net/LcSZD/full.png"
+                                     alt="All traffic changes on the  Major Deegan/Mott Haven Expressway  in year one of congestion tolling (Column Chart)" /></noscript>
+                        </div>
+                    </div>
+                    <div class="col-4 my-3 py-2">
+                        <div style="min-height:510px" id="datawrapper-vis-aAN8W">
+                            <script type="text/javascript" defer src="https://datawrapper.dwcdn.net/aAN8W/embed.js"
+                                    charset="utf-8" data-target="#datawrapper-vis-aAN8W"></script><noscript><img
+                                     src="https://datawrapper.dwcdn.net/aAN8W/full.png"
+                                     alt="Real-time PM2.5 changes on the  Major Deegan/Mott Haven Expressway  in year one of congestion tolling (Column Chart)" /></noscript>
+                        </div>
+                    </div>
+                    <div class="col-4 my-3 py-2">
+                        <div style="min-height:510px" id="datawrapper-vis-8jmq8">
+                            <script type="text/javascript" defer src="https://datawrapper.dwcdn.net/8jmq8/embed.js"
+                                    charset="utf-8" data-target="#datawrapper-vis-8jmq8"></script><noscript><img
+                                     src="https://datawrapper.dwcdn.net/8jmq8/full.png"
+                                     alt="Truck changes on the  Major Deegan/Mott Haven Expressway  in year one of congestion tolling (Column Chart)" /></noscript>
+                        </div>
+                    </div>
+                </div>
+                {{- with .Resources.GetMatch "traffic-times.md" -}}
+                    {{ .Content }}
+                {{- end -}}
+
+
             </div>
         </div>
-                    {{- with .Resources.GetMatch "traffic-times.md" -}}
-                        {{ .Content }}
-                    {{- end -}}
-                    
-                
-        </div>
-        </div>
-                
+
         <div class="row">
             <div class="col-10 mx-auto">
-              <hr class="my-2 px-6" />
+                <hr class="my-2 px-6" />
             </div>
-          </div>
+        </div>
 
         <div class="col-md-8 mx-auto col-sm-12">
-                    <div class="l-green-border px-1 mb-2">
-                    
-                        <div class="col-md-10 col-sm-12 ml-auto my-1">
-                            <h3 class="h4">Looking closer at daytime traffic patterns</h3>
-                          </div>
-                    <div class="row">
-                    <div class="col-4 my-1"><div style="min-height:465px" id="datawrapper-vis-SCfdc"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/SCfdc/embed.js" charset="utf-8" data-target="#datawrapper-vis-SCfdc"></script><noscript><img src="https://datawrapper.dwcdn.net/SCfdc/full.png" alt="Daily average traffic  pre and post (Grouped column chart)" /></noscript></div>
+            <div class="l-green-border px-1 mb-2">
+
+                <div class="col-md-10 col-sm-12 ml-auto my-1">
+                    <h3 class="h4">Looking closer at daytime traffic patterns</h3>
+                </div>
+                <div class="row">
+                    <div class="col-4 my-1">
+                        <div style="min-height:465px" id="datawrapper-vis-SCfdc">
+                            <script type="text/javascript" defer src="https://datawrapper.dwcdn.net/SCfdc/embed.js"
+                                    charset="utf-8" data-target="#datawrapper-vis-SCfdc"></script><noscript><img
+                                     src="https://datawrapper.dwcdn.net/SCfdc/full.png"
+                                     alt="Daily average traffic  pre and post (Grouped column chart)" /></noscript>
+                        </div>
                     </div>
-                    <div class="col-4 my-1"><div style="min-height:478px" id="datawrapper-vis-dJ3OR"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/dJ3OR/embed.js" charset="utf-8" data-target="#datawrapper-vis-dJ3OR"></script><noscript><img src="https://datawrapper.dwcdn.net/dJ3OR/full.png" alt="Grouped column chart" /></noscript></div>
+                    <div class="col-4 my-1">
+                        <div style="min-height:478px" id="datawrapper-vis-dJ3OR">
+                            <script type="text/javascript" defer src="https://datawrapper.dwcdn.net/dJ3OR/embed.js"
+                                    charset="utf-8" data-target="#datawrapper-vis-dJ3OR"></script><noscript><img
+                                     src="https://datawrapper.dwcdn.net/dJ3OR/full.png"
+                                     alt="Grouped column chart" /></noscript>
+                        </div>
                     </div>
-                    </div>
-                
-                    {{- with .Resources.GetMatch "air-quality-changes.md" -}}
-                        {{ .Content }}
-                    {{- end -}}
-                    </div>
+                </div>
+
+                {{- with .Resources.GetMatch "air-quality-changes.md" -}}
+                    {{ .Content }}
+                {{- end -}}
+            </div>
         </div>
 
         <div class="row">
             <div class="col-10 mx-auto">
-              <hr class="my-2 px-6" />
+                <hr class="my-2 px-6" />
             </div>
-          </div>
+        </div>
 
         <div class="row">
+            <div class="col-md-8 col-sm-12 mx-auto">
+                <div class="col-md-8 col-sm-12 mx-auto">
+                    <img src="{{ .Params.fullurl }}images/map3.png" alt="" align="right" class="m-1" />
+                </div>
+                <div class="col-6">
+                    {{- with .Resources.GetMatch "aq-inside-crz.md" -}}
+                        {{ .Content }}
+                        {{ partial "cp-chart_crz.html" . }}
+                    {{- end -}}
+                    <!--  <img src="{{ .Params.fullurl }}images/CRZ_standin.png" alt="" align="none" class="m-1"/> -->
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-8 col-sm-12 mx-auto mb-2">
+                <h2></h2>
+                <img src="{{ .Params.fullurl }}images/map4.png" alt="" align="right" class="" />
+                {{- with .Resources.GetMatch "aq-outside-crz.md" -}}
+                    {{ .Content }}
+                {{- end -}}
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-10 mx-auto">
+                <hr class="my-2 px-6" />
+            </div>
+        </div>
+
         <div class="col-md-8 col-sm-12 mx-auto">
-        <div class="col-md-8 col-sm-12 mx-auto">
-            <img src="{{ .Params.fullurl }}images/map3.png" alt="" align="right" class="m-1"/>
-        </div>
-        <div class="col-6">
-            {{- with .Resources.GetMatch "aq-inside-crz.md" -}}
-                {{ .Content }}
-                {{ partial "cp-chart_crz.html" . }}               
-            {{- end -}}
-          <!--  <img src="{{ .Params.fullurl }}images/CRZ_standin.png" alt="" align="none" class="m-1"/> -->
-        </div>
-        </div>
-        </div>
-
-    <div class="row">
-
-        <div class="col-md-8 col-sm-12 mx-auto mb-2">
-            <h2></h2>
-            <img src="{{ .Params.fullurl }}images/map4.png" alt="" align="right" class=""/>
-            {{- with .Resources.GetMatch "aq-outside-crz.md" -}}
-                {{ .Content }}
-            {{- end -}}
-
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-10 mx-auto">
-          <hr class="my-2 px-6" />
-        </div>
-      </div>
-
-        <div class="col-md-8 col-sm-12 mx-auto"> 
 
             <h2 class="h3">Conclusion</h2>
             {{- with .Resources.GetMatch "conclusion.md" -}}
@@ -198,15 +231,14 @@
 
             <div class="row">
                 <div class="col-10 mx-auto">
-                  <hr class="my-2 px-6" />
+                    <hr class="my-2 px-6" />
                 </div>
-              </div>
+            </div>
 
         </div>
 
     </div>
 
-    </div>
     <!-- .row -->
 
 </article>

@@ -2,20 +2,20 @@
 <head>
     <title></title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
+    
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css" integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=" crossorigin="" />
     <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js" integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=" crossorigin=""></script>
-
+    
     <!--D3-->
     <script src="https://d3js.org/d3.v5.min.js"></script>
-
+    
     <style>
         #map {
             width:100%;
             height:50vh;
             max-width: 1000px;
         }
-
+        
         img.traffic { 
             filter: hue-rotate(0deg); 
         }
@@ -28,31 +28,34 @@
         img.BC-monitor { 
             filter: hue-rotate(180deg);
         }
-
+        
     </style>
 </head>
 
 <body>
+    
     <h1 class="sr-only">Monitoring locations</h1>
-<div class="container-fluid">
-    <div class="row">
-        <div id="map"></div>
+    <div class="container-fluid">
+        <div class="row">
+            <div id="map"></div>
+        </div>
     </div>
-</div>
-
-
+    
+    
     <script>
-
+        
         var map = L.map('map').setView([40.715554,-74.0026642],10); // [Lat,Long],Zoom
+        
         L.tileLayer(
-        'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
-	    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-        }).addTo(map);
-
+            'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', 
+            {attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'}
+        ).addTo(map);
+        
         var sites;
-
+        
         // using d3.csv to import csv - may use a lighter approach...?
         d3.csv('MonitoringLocations.csv').then(function(data) {
+
             sites = data.filter(site => site.SiteType != 'Retired Site'); // filter out Retired Sites
             // console.table(sites)
             addSitesToMap()
@@ -60,31 +63,32 @@
         // var testSite = L.marker([40.748817, -73.985428]).addTo(map).bindPopup('This is TEST.');
         var testIcon = L.icon({
             iconUrl: 'map-pin-hollow_P.svg',
-        
+            
             iconSize:     [33, 82], // size of the icon
             iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
             popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
         })
         var testIcon2 = L.icon({
             iconUrl: 'map-pin-solid-full.svg',
-        
+            
             iconSize:     [33, 82], // size of the icon
             iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
             popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
         });
-
+        
         // loop through MonitoringLocations.csv, add them to map as points
         function addSitesToMap() {
-
+            
             for (let i = 0; i < sites.length; i++) {
-
+                
                 var site = L.marker([Number(sites[i].Latitude), Number(sites[i].Longitude)], {icon: testIcon}).addTo(map) // add to map
                 site.bindPopup("Site ID: " + sites[i].SiteID + "<br><strong>Type: </strong>" + sites[i].SiteType + "<br>Group: " + sites[i].Group) // popup content
-
-                console.log(">>>> site", site._popup._content)
-
+                
+                // console.log(">>>> site", site._popup._content)
+                console.log(">>>> site", site)
+                
                 // style based on SiteType (or, use: https://github.com/pointhi/leaflet-color-markers)
-
+                
                 if (sites[i].SiteType === 'Traffic Counter') {
                     // color for routine site
                     site._icon.classList.add("traffic");
@@ -98,7 +102,7 @@
                     // color for retired site
                     site._icon.classList.add("BC-monitor");
                 }
-
+                
                 // icon based on SiteType CONFIGURE (or, use: https://github.com/pointhi/leaflet-color-markers)
                 if (sites[i].SiteType === 'Traffic Counter') {
                     // color for routine site
@@ -115,13 +119,13 @@
                 }
             }
         }
-
+        
     </script>
-
-
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
+    
+    
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    
 </body>
 </html>
