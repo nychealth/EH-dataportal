@@ -30,7 +30,7 @@ Because the Van Wyck Expressway did not experience changes in traffic due to CRZ
 <div class="col-6">
 <div class="col-12" align="">
 <div class="accordion-group my-1" role="tablist" id="accordion-02">
-  <div class="card">
+  <div class="card border border-info">
     <a class="card-header collapse collapsed font-weight-bold" id="acc-button-2a" data-toggle="collapse" href="#panel-acc-button-2a"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-2a">
       <span class="title" role="heading" aria-level="3"> The Trans-Manhattan Expressway</span>
     </a>
@@ -45,7 +45,7 @@ Because the Van Wyck Expressway did not experience changes in traffic due to CRZ
 
   <!-- .card (end of first accordion, repeat as needed) -->
 
-  <div class="card">
+  <div class="card border border-info">
       <a class="card-header collapse collapsed font-weight-bold" id="acc-button-2b" data-toggle="collapse" href="#panel-acc-button-2b"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-2b">
         <span class="title" role="heading" aria-level="3"> The Cross-Bronx Expressway</span>
       </a>
@@ -61,7 +61,7 @@ Because the Van Wyck Expressway did not experience changes in traffic due to CRZ
 
 </div>
 
-  <div class="card">
+  <div class="card border border-info">
       <a class="card-header font-weight-bold collapse collapsed" id="acc-button-2c" data-toggle="collapse" href="#panel-acc-button-2c"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-2c">
         <span class="title" role="heading" aria-level="3"> The FDR </span>
       </a>
@@ -76,7 +76,7 @@ Because the Van Wyck Expressway did not experience changes in traffic due to CRZ
 <!-- .collapse -->
 </div>
 
-  <div class="card">
+  <div class="card border border-info">
       <a class="card-header font-weight-bold collapse collapsed" id="acc-button-2d" data-toggle="collapse" href="#panel-acc-button-2d"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-2d">
         <span class="title" role="heading" aria-level="3"> The Robert F. Kennedy Bridge</span>
       </a>
@@ -84,13 +84,12 @@ Because the Van Wyck Expressway did not experience changes in traffic due to CRZ
 <div class="collapse" id="panel-acc-button-2d" role="tabpanel" aria-labelledby="acc-button-2d" data-parent="#accordion-02">
     <div class="card-body  fs-md"><p>
 and connecting links in the Bronx, Manhattan, and Queens –Hunts Point (Hunts Point-Mott Haven community). ​ <br><br>
-        <strong>Some ACS indicators include: </a></strong>
             </div></p>
 </div>
 <!-- .collapse -->
 </div>
 
-  <div class="card">
+  <div class="card border border-info">
       <a class="card-header font-weight-bold collapse collapsed" id="acc-button-2e" data-toggle="collapse" href="#panel-acc-button-2e"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-2e">
         <span class="title" role="heading" aria-level="3"> The Brooklyn-Queens Expressway</span>
       </a>
@@ -104,7 +103,7 @@ and connecting links in the Bronx, Manhattan, and Queens –Hunts Point (Hunts P
 <!-- .collapse -->
 </div>
 
-  <div class="card">
+  <div class="card border border-info">
       <a class="card-header font-weight-bold collapse collapsed" id="acc-button-2f" data-toggle="collapse" href="#panel-acc-button-2f"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-2f">
         <span class="title" role="heading" aria-level="3"> The Staten Island Expressway</span>
       </a>
@@ -119,7 +118,7 @@ and connecting links in the Bronx, Manhattan, and Queens –Hunts Point (Hunts P
 <!-- .collapse -->
 </div>
 
-  <div class="card">
+  <div class="card border border-info">
       <a class="card-header font-weight-bold collapse collapsed" id="acc-button-2g" data-toggle="collapse" href="#panel-acc-button-2g"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-2g">
         <span class="title" role="heading" aria-level="3">Van Wyck Expressway</span>
       </a>
