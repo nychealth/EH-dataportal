@@ -2,6 +2,12 @@
 // bar.js
 // ======================================================================= //
 
+/*
+    STATUS:
+        - Geo is not filtered, in data. We need something like 'selected Geography' coming in from Map; we can filter in this spec.
+
+*/
+
 console.log(">> bar.js");
 
 const renderBar = (
@@ -9,7 +15,7 @@ const renderBar = (
     metadata
 ) => {
 
-    console.log("** renderBar");
+    console.log("** renderBar new");
 
     // document.getElementById('viewDescription').innerHTML = 'Hover over the map or chart for more information.'
 
@@ -79,126 +85,118 @@ const renderBar = (
     // define spec
     // ----------------------------------------------------------------------- //
     
-    // let barspec = {
-    //     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    //     "title": {
-    //         "text": indicatorName,
-    //         "subtitlePadding": 10,
-    //         "fontWeight": "normal",
-    //         "anchor": "start", 
-    //         "fontSize": 18, 
-    //         "font": "sans-serif",
-    //         "baseline": "top",
-    //         "subtitle": subtitle,
-    //         "subtitleFontSize": 13
-    //     },
-    //     "data": {
-    //         "values": data,
-    //         "format": {
-    //             "parse": {
-    //                 "Value": "number"
-    //             }
-    //         }
-    //     },
-    //     "config": {
-    //         "concat": {"spacing": 20}, 
-    //         "view": {"stroke": "transparent"},
-    //         "axisY": {"domain": false,"ticks": false,"labelBaseline": "bottom",},
-    //         "legend": {"disable": true},
-    //         "scale": {"invalid": {color: {value: '#808080'}}}
-    //     },
-    //     "transform": [
-    //         {
-    //             "calculate": `datum.DisplayValue + ' ${displayType}'`,
-    //             "as": "valueLabel"
-    //         },
-    //         {
-    //             "calculate": "datum.CI && datum.CI !== '' ? split(replace(datum.CI, /[()]/g, ''), ', ')[0] : null",
-    //             "as": "ciLow"
-    //         },
-    //         {
-    //             "calculate": "datum.CI && datum.CI !== '' ? split(replace(datum.CI, /[()]/g, ''), ', ')[1] : null",
-    //             "as": "ciHigh"
-    //         },
-    //         {
-    //         "calculate": "datum.CI ? replace(replace(datum.CI, /[()]/g, ''), /, /, ' to ') : null",
-    //         "as": "CInoParens"
-    //         }
-    //     ],
-    //     "height": 500,
-    //     "width": "container",
-    //     "layer": [
-    //         {
-    //             "mark": {"type": markType, "invalid": null},
-    //             "params": [
-    //                 {"name": "highlight", "select": {"type": "point", "on": "mouseover", "clear": "mouseout"}}
-    //             ],
-    //             "transform": [
-    //                 {
-    //                     "lookup": "GeoID",
-    //                     "from": {
-    //                         "data": {
-    //                             "url": `${data_repo}${data_branch}/geography/${topoFile}`,
-    //                             "format": {"type": "topojson", "feature": "collection"}
-    //                         },
-    //                         "key": "properties.GEOCODE"
-    //                     },
-    //                     "as": "geo"
-    //                 }
-    //             ],
-    //             "encoding": {
-    //                 ...encode,
-    //                 "color": {
-    //                     "bin": false,
-    //                     "field": "Value",
-    //                     "type": "quantitative",
-    //                     "scale": {"scheme": {"name": "viridis", "extent": [1, 0]}},
-    //                     ...legend    
-    //                 },
-    //                 "stroke": {
-    //                     "condition": [{"param": "highlight", "empty": false, "value": "cyan"}],
-    //                     "value": "#2d2d2d"
-    //                 },
-    //                 "strokeWidth": {
-    //                     "condition": [{"param": "highlight", "empty": false, "value": strokeWidth}],
-    //                     "value": 0.5
-    //                 },
-    //                 "order": {
-    //                     "condition": [{"param": "highlight", "empty": false, "value": 1}],
-    //                     "value": 0
-    //                 },
-    //                 "tooltip": [
-    //                     {
-    //                         "field": "Geography", 
-    //                         "title": "Neighborhood"
-    //                     },
-    //                     {
-    //                         "field": "valueLabel",
-    //                         "title": `${barMeasurementType}`
-    //                     },
-    //                     {
-    //                         "field": "TimePeriod",
-    //                         "title": "Time period"
-    //                     }
-    //                 ],
-    //             },
-    //         }
-    //     ]
-    // }
+    var barSpec = {
+        "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+        "title": {
+            "text": "Indicator name",
+            "subtitlePadding": 10,
+            "fontWeight": "normal",
+            "anchor": "start",
+            "fontSize": 0,
+            "font": "sans-serif",
+            "baseline": "top",
+            "subtitle": "Measure name (measurement type)",
+            "subtitleFontSize": 10
+        },
+        "data": {
+            "values": data,
+            "format": {"parse": {"Value": "number"}}
+        },
+        "config": {
+            "view": {"stroke": "transparent"},
+            "axisY": {"domain": false, "ticks": false, "labelBaseline": "bottom"},
+            "axisX": {"domain": false, "ticks": false},
+            "legend": {"disable": true},
+            "scale": {"invalid": {"color": {"value": "#808080"}}}
+        },
+        "autosize": {"type": "fit", "contains": "padding"},
+        "transform": [
+            {"calculate": "datum.DisplayValue + ' per 10,000'", "as": "valueLabel"}
+        ],
+        "height": 500,
+        "width": "container",
+        "layer": [
+            {
+                "mark": {"type": "bar", "tooltip": true, "stroke": "#161616"},
+                "params": [
+                    {
+                        "name": "highlight",
+                        "select": {"type": "point", "on": "mouseover", "clear": "mouseout"}
+                    }
+                ],
+                "encoding": {
+                    "x": {
+                        "field": "Value",
+                        "type": "quantitative",
+                        "title": null,
+                        "axis": {"labelAngle": 0, "labelFontSize": 11, "tickCount": 3}
+                    },
+                    "tooltip": [
+                        {"field": "Geography", "title": "Neighborhood"},
+                        {"field": "valueLabel", "title": "Age-adjusted rate"}
+                    ],
+                    "y": {"field": "GeoID", "sort": "-x", "axis": null},
+                    "color": {
+                        "bin": false,
+                        "field": "Value",
+                        "type": "quantitative",
+                        "scale": {"scheme": {"name": "viridis", "extent": [1, 0]}},
+                        "legend": false
+                    },
+                    // "stroke": {
+                    //     "condition": [
+                    //         {"param": "highlight", "empty": false, "value": "black"},
+                    //         {
+                    //             "test": "datum.GeoID == selectedGeo",
+                    //             "value": "black"
+                    //         }
+                    //     ],
+                    //     "value": "transparent"
+                    // },
+                    "strokeWidth": {
+                        "value": 2
+                    }
+                }
+            },
+            /*
+            {
+            "description": "This layer was a rule that's triggered on map hover. Commented out in favor of keeping the stroke instead; we could use this to trigger a text label instead of using a Tooltip."
+            "mark": {
+            "type": "rule",
+            "xOffset": 15,
+            "strokeWidth": 1
+            },
+            "encoding": {
+            "y": {"field": "GeoID", "sort": "-x"},
+            "x": {"field": "Value", "type": "quantitative"},
+            "color": {
+            "condition": {
+            "test": "datum.GeoID == selectedGeo",
+            "value": "black"
+            },
+            "value": "transparent"
+            }
+            }
+            }
+            */
+            
+            
+        ]
+    }
 
     
     // ----------------------------------------------------------------------- //
     // render chart
     // ----------------------------------------------------------------------- //
 
-    // vegaEmbed("#bar", barspec,{
-    //     actions: {
-    //         export: { png: false, svg: false },
-    //         source: false,  
-    //         compiled: false, 
-    //         editor: true 
-    //     }
-    // });
+    vegaEmbed("#barHolder", barSpec,{
+        actions: {
+            export: { png: false, svg: false },
+            source: false,  
+            compiled: false, 
+            editor: true 
+        }
+    });
 
     // send info for printing
     vizYear = barTime;
