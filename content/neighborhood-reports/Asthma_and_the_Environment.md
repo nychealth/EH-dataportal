@@ -10,7 +10,8 @@ categories:
     "neighborhoods",
     "healthoutcomes"
   ]
-layout: topiclanding
+layout: nr-topic-spa
+content_yml: Asthma_and_the_Environment
 seo_title: "Asthma and the Environment in NYC"
 urlExtension: "/asthma_and_the_environment/"
 
