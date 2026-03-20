@@ -13,7 +13,8 @@ console.log(">> bar.js");
 const renderBar = (
     data, 
     metadata,
-    geography
+    geography,
+    timePeriod
 ) => {
 
     console.log("** renderBar new");
@@ -37,7 +38,7 @@ const renderBar = (
     // ----------------------------------------------------------------------- //
 
     let barGeoType            = data[0]?.GeoType;
-    // let barMeasurementType    = metadata[0]?.MeasurementType;
+    let barMeasurementType    = metadata[0]?.MeasurementType;
     let barTime = barTimes[0];
     let displayType;
     let subtitle;
@@ -53,16 +54,16 @@ const renderBar = (
     // use some conditionals
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
-    // if (barMeasurementType.includes('Percent') || barMeasurementType.includes('percent') && !barMeasurementType.includes('percentile')) {
-    //     isPercent = true;
-    //     displayType = '%';
-    //     subtitle = barMeasurementType;
+    if (barMeasurementType.includes('Percent') || barMeasurementType.includes('percent') && !barMeasurementType.includes('percentile')) {
+        isPercent = true;
+        displayType = '%';
+        subtitle = barMeasurementType;
         
-    // } else {
-    //     isPercent = false;
-    //     displayType = metadata[0]?.DisplayType;
-    //     subtitle = barMeasurementType + `${displayType ? ` (${displayType})` : ''}`;
-    // }
+    } else {
+        isPercent = false;
+        displayType = metadata[0]?.DisplayType;
+        subtitle = barMeasurementType + `${displayType ? ` (${displayType})` : ''}`;
+    }
 
 
     /* ----------------------------------------------------------------------- //
@@ -97,7 +98,7 @@ const renderBar = (
             "fontSize": 0,
             "font": "sans-serif",
             "baseline": "top",
-            "subtitle": "Measure name (measurement type)",
+            "subtitle": metadata[0].MeasureName,
             "subtitleFontSize": 10
         },
         "data": {
@@ -114,7 +115,7 @@ const renderBar = (
         "autosize": {"type": "fit", "contains": "padding"},
         "transform": [
             {"filter": `datum.GeoType === '${geography}'`},
-            {"calculate": "datum.DisplayValue + ' per 10,000'", "as": "valueLabel"}
+            {"calculate": `datum.DisplayValue + '${displayType}'`, "as": "valueLabel"}
         ],
         "height": 500,
         "width": "container",
@@ -136,7 +137,7 @@ const renderBar = (
                     },
                     "tooltip": [
                         {"field": "Geography", "title": "Neighborhood"},
-                        {"field": "valueLabel", "title": "Age-adjusted rate"}
+                        {"field": "valueLabel", "title": metadata[0].MeasureName}
                     ],
                     "y": {"field": "GeoID", "sort": "-x", "axis": null},
                     "color": {
