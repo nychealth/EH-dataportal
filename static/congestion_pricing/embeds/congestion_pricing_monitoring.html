@@ -44,7 +44,8 @@
     
     <script>
         
-        var map = L.map('map').setView([40.715554,-74.0026642],10); // [Lat,Long],Zoom
+        var map = L.map('map',{minZoom: 8,
+            maxZoom: 16}).setView([40.715554,-74.0026642],10); // [Lat,Long],Zoom
         
         L.tileLayer(
             'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', 

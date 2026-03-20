@@ -50,7 +50,7 @@
             <h2 class="h3">Key sites</h3>
                 <div class="row">
             <div class="col-6 mx-auto my-1">
-                    <iframe src={{ relURL "congestion_pricing/embeds/congestion_pricing_monitoring.html" }} frameborder="yes" style="width: 100%; height: 400px"></iframe>
+                    <iframe src={{ relURL "congestion_pricing/embeds/congestion_pricing_monitoring.html" }} frameborder="no" style="width: 100%; height: 400px"></iframe>
                 </div>
                 <div class="col-6">
                     {{- with .Resources.GetMatch "key-sites.md" -}}
@@ -158,8 +158,11 @@
         </div>
         </div>
 
-    
-        <div class="col-md-8 mx-auto col-sm-12 display: block;">
+
+    <!-- divider -->
+
+
+        <div class="col-md-8 mx-auto col-sm-12">
             <div class="l-green-border px-1 mb-2">
                 <div class="row justify-content-between">
                     <div class="col-3">
@@ -176,27 +179,14 @@
 
             </div>
         </div>
-
+        
         <div class="row">
-            <div class="col-10 mx-auto">
-                <hr class="my-2 px-6" />
-            </div>
-        </div>
 
-    <!-- divider -->
-
-        <div class="row">
             <div class="col-md-8 col-sm-12 mx-auto mb-2">
                 <h2></h2>
-                <img src="{{ .Params.fullurl }}images/map3.png" alt="" align="right" class="m-1" />
-                {{- with .Resources.GetMatch "aq-inside-crz.md" -}}
-                    {{ .Content }}
-                {{- end -}}
                 {{ partial "cp-chart_crz.html" . }}
-
             </div>
         </div>
-
         <div class="row">
 
             <div class="col-md-8 col-sm-12 mx-auto mb-2">

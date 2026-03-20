@@ -16,7 +16,7 @@
   </div>
 
   <script>
-    const CP_CONTAINER_ID2 = "cpVis2";
+    const CP_CONTAINER2_ID = "cpVis2";
 
     // Buttons for sites
     const SITES = [
@@ -137,7 +137,7 @@
     }
 
     async function draw(site) {
-      const el = document.getElementById(CP_CONTAINER_ID2);
+      const el = document.getElementById(CP_CONTAINER2_ID);
       if (!el) return;
 
       el.innerHTML = ""; // clear previous render
