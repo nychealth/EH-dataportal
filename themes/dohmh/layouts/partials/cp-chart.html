@@ -1,334 +1,339 @@
 <div class="row justify-content-center">
     <div class="col-2">
         <div class="sticky-top">
-          <div
+            <div
             id="cpSiteButtons"
             class="btn-group btn-block flex-wrap"
             role="group"
             aria-label="Choose site"
-          ></div>
+            ></div>
         </div>
       </div>
     <div class="col-10">
         <div class="row">
-        <div class="col-8">
-        <iframe src={{ relURL "congestion_pricing/embeds/congestion_pricing_monitoring.html" }} frameborder="no" style="width: 100%; height: 500px"></iframe>
-        
-    </div>
-        <div class="col-4 p-1"><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam es. </p>
+            <div class="col-8">
+                <iframe src={{ relURL "congestion_pricing/embeds/congestion_pricing_monitoring.html" }} frameborder="no" style="width: 100%; height: 500px"></iframe>
+                
+            </div>
+            <div class="col-4 p-1"><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam es. </p>
+            </div>
         </div>
-    </div>
         <h3 class="h4 my-2">How did air quality change?</h3>
         <div id="cpVis" style="width: 100%; max-width: 1000px;"></div>
     </div>
-
+    
 </div>
 
 <style>
-  .vega-embed {
-    height: 200 !important;
-  }
+    .vega-embed {
+        height: 200 !important;
+    }
 </style>
 
 <script>
-  const cp_container_id = "cpVis";
-
-  // Buttons for sites
-  const site_names = [
-    "Mott Haven",
-    "Cross Bronx Expwy",
-    "BQE",
-    "Van Wyck",
-    "Staten Island",
-    "FDR",
-    "Hamilton Bridge",
-  ];
-
-  // Default selection
-  let currentSite = "Mott Haven";
-
-  // Base spec
-  const baseSpec = {
-    $schema: "https://vega.github.io/schema/vega-lite/v6.json",
-    config: {
-      header: {
-        labelAlign: "left",
-        labelAnchor: "start",
-        labelFont: "Helvetica",
-        labelFontWeight: "bold",
-        labelFontSize: 12,
-      },
-      view: { stroke: null },
-      axisX: { labelAngle: 0, domain: false },
-      axisY: {
-        domain: false,
-        ticks: false,
-        tickCount: 3,
-        orient: "left",
-        title: null,
-      },
-    },
-    data: {
-      url: "https://gist.githubusercontent.com/mmontesanonyc/c4a858aba1959c377188e9c2dbb50681/raw/2d439386e74ce7dbbb0b31bac8cc736f28d18114/cp-test-data-with-units.csv",
-    },
-    resolve: { scale: { y: "independent" } },
-    transform: [
-      { filter: "datum.Site === 'Mott Haven'" },
-      {
-        calculate: "datum.Parameter + ' (' + datum.Unit + ')'",
-        as: "ParameterWithUnit",
-      },
-      {
-        calculate: "datum.Average + ' ' + datum.Unit",
-        as: "ValueWithUnit",
-      },
-      {
-        calculate: "datum.LC + ', ' + datum.UC",
-        as: "ciRange",
-      },
-      {
-        calculate:
-          "datum.Time === 'Pre' ? 'Before congestion pricing' : datum.Time === 'Post' ? 'With congestion pricing' : datum.Time",
-        as: "TimeLabel",
-      },
-    ],
-    facet: { field: "ParameterWithUnit", title: null },
-    spec: {
-      width: 150,
-      height: 250,
-      encoding: {
-        x: {
-          field: "Time",
-          type: "nominal",
-          sort: "descending",
-          title: null,
-        },
-      },
-      layer: [
-        {
-          mark: {
-            type: "rule",
-            strokeWidth: 5,
-            color: "lightgray",
-            strokeCap: "round",
-          },
-          encoding: {
-            y: { field: "UC", type: "quantitative" },
-            y2: { field: "LC", type: "quantitative" },
-          },
-        },
-        {
-          mark: { type: "line", color: "blue", strokeDash: [2, 2] },
-          encoding: { y: { field: "Average", type: "quantitative" } },
-        },
-        {
-          mark: { type: "circle", size: 100, color: "blue" },
-          encoding: {
-            y: {
-              field: "Average",
-              type: "quantitative",
-              scale: { domainMin: 0, nice: false },
+    const cp_container_id = "cpVis";
+    
+    // Buttons for sites
+    const site_names = [
+        "Mott Haven",
+        "Cross Bronx Expwy",
+        "BQE",
+        "Van Wyck",
+        "Staten Island",
+        "FDR",
+        "Hamilton Bridge",
+    ];
+    
+    // Default selection
+    let currentSite = "Mott Haven";
+    
+    // Base spec
+    const baseSpec = {
+        $schema: "https://vega.github.io/schema/vega-lite/v6.json",
+        config: {
+            header: {
+                labelAlign: "left",
+                labelAnchor: "start",
+                labelFont: "Helvetica",
+                labelFontWeight: "bold",
+                labelFontSize: 12,
             },
-            tooltip: [
-              { field: "Parameter", title: "Pollutant", type: "nominal" },
-              { field: "TimeLabel", title: "Period", type: "nominal" },
-              { field: "ValueWithUnit", title: "Average", type: "nominal" },
-              {
-                field: "ciRange",
-                title: "Confidence interval",
-                type: "nominal",
-              },
-            ],
-          },
+            view: { stroke: null },
+            axisX: { labelAngle: 0, domain: false },
+            axisY: {
+                domain: false,
+                ticks: false,
+                tickCount: 3,
+                orient: "left",
+                title: null,
+            },
         },
-      ],
-    },
-    columns: 5,
-  };
+        data: {
+            url: "https://gist.githubusercontent.com/mmontesanonyc/c4a858aba1959c377188e9c2dbb50681/raw/2d439386e74ce7dbbb0b31bac8cc736f28d18114/cp-test-data-with-units.csv",
+        },
+        resolve: { scale: { y: "independent" } },
+        transform: [
+        { filter: "datum.Site === 'Mott Haven'" },
+        {
+            calculate: "datum.Parameter + ' (' + datum.Unit + ')'",
+            as: "ParameterWithUnit",
+        },
+        {
+            calculate: "datum.Average + ' ' + datum.Unit",
+            as: "ValueWithUnit",
+        },
+        {
+            calculate: "datum.LC + ', ' + datum.UC",
+            as: "ciRange",
+        },
+        {
+            calculate:
+            "datum.Time === 'Pre' ? 'Before congestion pricing' : datum.Time === 'Post' ? 'With congestion pricing' : datum.Time",
+            as: "TimeLabel",
+        },
+        ],
+        facet: { field: "ParameterWithUnit", title: null },
+        spec: {
+            width: 150,
+            height: 250,
+            encoding: {
+                x: {
+                    field: "Time",
+                    type: "nominal",
+                    sort: "descending",
+                    title: null,
+                },
+            },
+            layer: [
+            {
+                mark: {
+                    type: "rule",
+                    strokeWidth: 5,
+                    color: "lightgray",
+                    strokeCap: "round",
+                },
+                encoding: {
+                    y: { field: "UC", type: "quantitative" },
+                    y2: { field: "LC", type: "quantitative" },
+                },
+            },
+            {
+                mark: { type: "line", color: "blue", strokeDash: [2, 2] },
+                encoding: { y: { field: "Average", type: "quantitative" } },
+            },
+            {
+                mark: { type: "circle", size: 100, color: "blue" },
+                encoding: {
+                    y: {
+                        field: "Average",
+                        type: "quantitative",
+                        scale: { domainMin: 0, nice: false },
+                    },
+                    tooltip: [
+                    { field: "Parameter", title: "Pollutant", type: "nominal" },
+                    { field: "TimeLabel", title: "Period", type: "nominal" },
+                    { field: "ValueWithUnit", title: "Average", type: "nominal" },
+                    {
+                        field: "ciRange",
+                        title: "Confidence interval",
+                        type: "nominal",
+                    },
+                    ],
+                },
+            },
+            ],
+        },
+        columns: 5,
+    };
+    
+    function specForSite(site) {
 
-  function specForSite(site) {
-    // structuredClone first; fallback to JSON clone
-    const spec =
-      typeof structuredClone === "function"
-        ? structuredClone(baseSpec)
-        : JSON.parse(JSON.stringify(baseSpec));
-
-    spec.transform[0].filter = `datum.Site === '${site}'`;
-
-    return spec;
-  }
-
-  async function draw(site) {
-    const el = document.getElementById(cp_container_id);
-
-    if (!el) return;
-
-    el.innerHTML = ""; // clear previous render
-
-    try {
-      await vegaEmbed(el, specForSite(site), {
-        actions: false,
-        renderer: "canvas",
-      });
-    } catch (err) {
-      console.error("CP Vega render failed:", err);
-      el.innerHTML =
-        "<pre style='white-space:pre-wrap'>Chart failed to render. See console.</pre>";
+        // structuredClone first; fallback to JSON clone
+        const spec = typeof structuredClone === "function" ? structuredClone(baseSpec) : JSON.parse(JSON.stringify(baseSpec));
+        
+        spec.transform[0].filter = `datum.Site === '${site}'`;
+        
+        return spec;
     }
-  }
+    
+    async function draw(site) {
 
-  function renderButtons() {
-    const btnWrap = document.getElementById("cpSiteButtons");
+        const el = document.getElementById(cp_container_id);
+        
+        if (!el) return;
+        
+        el.innerHTML = ""; // clear previous render
+        
+        try {
+            await vegaEmbed(el, specForSite(site), {
 
-    if (!btnWrap) return;
+                actions: false,
+                renderer: "canvas",
 
-    btnWrap.innerHTML = "";
+            });
+        } catch (err) {
 
-    site_names.forEach((site) => {
-      const btn = document.createElement("button");
+            console.error("CP Vega render failed:", err);
+            el.innerHTML = "<pre style='white-space:pre-wrap'>Chart failed to render. See console.</pre>";
 
-      btn.type = "button";
-      btn.id = site.replaceAll(" ", "-");
-      btn.className = "btn btn-sm btn-outline-dark m-1";
-      btn.textContent = site;
+        }
+    }
+    
+    function renderButtons() {
 
-      if (site === currentSite) btn.classList.add("active");
+        const btnWrap = document.getElementById("cpSiteButtons");
+        
+        if (!btnWrap) return;
+        
+        btnWrap.innerHTML = "";
+        
+        site_names.forEach((site) => {
 
-      btn.addEventListener("click", async () => {
-        currentSite = site;
-        // toggle active state
-        [...btnWrap.querySelectorAll("button")].forEach((b) =>
-          b.classList.remove("active")
-        );
-        btn.classList.add("active");
+            const btn = document.createElement("button");
+            
+            btn.type = "button";
+            btn.id = site.replaceAll(" ", "-");
+            btn.className = "btn btn-sm btn-outline-dark m-1";
+            btn.textContent = site;
+            
+            if (site === currentSite) btn.classList.add("active");
+            
+            btn.addEventListener("click", async () => {
 
-        await draw(site);
-      });
+                currentSite = site;
+                
+                // toggle active state
+                [...btnWrap.querySelectorAll("button")].forEach((b) =>
+                    b.classList.remove("active")
+                );
+                btn.classList.add("active");
+                
+                await draw(site);
+            });
+            
+            btnWrap.appendChild(btn);
+        });
+    }
+    
+    document.addEventListener("DOMContentLoaded", async () => {
+        if (typeof vegaEmbed !== "function") {
+            console.error(
+                "vegaEmbed not available. Are the Vega scripts loaded above this script?"
+            );
+            return;
+        }
 
-      btnWrap.appendChild(btn);
+        renderButtons();
+        await draw(currentSite);
     });
-  }
-
-  document.addEventListener("DOMContentLoaded", async () => {
-    if (typeof vegaEmbed !== "function") {
-      console.error(
-        "vegaEmbed not available. Are the Vega scripts loaded above this script?"
-      );
-      return;
-    }
-
-    renderButtons();
-    await draw(currentSite);
-  });
-
-  const cpSpec = {
-    $schema: "https://vega.github.io/schema/vega-lite/v6.json",
-    config: {
-      header: {
-        labelAlign: "left",
-        labelAnchor: "start",
-        labelFont: "Helvetica",
-        labelFontWeight: "bold",
-        labelFontSize: 12,
-      },
-      view: { stroke: null },
-      axisX: { labelAngle: 0, domain: false },
-      axisY: {
-        domain: false,
-        ticks: false,
-        tickCount: 3,
-        orient: "left",
-        title: null,
-      },
-    },
-    data: {
-      url: "https://gist.githubusercontent.com/mmontesanonyc/c4a858aba1959c377188e9c2dbb50681/raw/2d439386e74ce7dbbb0b31bac8cc736f28d18114/cp-test-data-with-units.csv",
-    },
-    resolve: { scale: { y: "independent" } },
-    transform: [
-      { filter: "datum.Site === 'Mott Haven'" },
-      {
-        calculate: "datum.Parameter + ' (' + datum.Unit + ')'",
-        as: "ParameterWithUnit",
-      },
-      {
-        calculate: "datum.Average + ' ' + datum.Unit",
-        as: "ValueWithUnit",
-      },
-      {
-        calculate: "datum.LC + ', ' + datum.UC",
-        as: "ciRange",
-      },
-      {
-        calculate:
-          "datum.Time === 'Pre' ? 'Before congestion pricing' : datum.Time === 'Post' ? 'With congestion pricing' : datum.Time",
-        as: "TimeLabel",
-      },
-    ],
-    facet: { field: "ParameterWithUnit", title: null },
-    spec: {
-      width: 150,
-      height: 250,
-      encoding: {
-        x: {
-          field: "Time",
-          type: "nominal",
-          sort: "descending",
-          title: null,
-        },
-      },
-      layer: [
-        {
-          mark: {
-            type: "rule",
-            strokeWidth: 5,
-            color: "lightgray",
-            strokeCap: "round",
-          },
-          encoding: {
-            y: { field: "UC", type: "quantitative" },
-            y2: { field: "LC", type: "quantitative" },
-          },
-        },
-        {
-          mark: { type: "line", color: "blue", strokeDash: [2, 2] },
-          encoding: { y: { field: "Average", type: "quantitative" } },
-        },
-        {
-          mark: { type: "circle", size: 100, color: "blue" },
-          encoding: {
-            y: {
-              field: "Average",
-              type: "quantitative",
-              scale: { domainMin: 0, nice: false },
+    
+    const cpSpec = {
+        $schema: "https://vega.github.io/schema/vega-lite/v6.json",
+        config: {
+            header: {
+                labelAlign: "left",
+                labelAnchor: "start",
+                labelFont: "Helvetica",
+                labelFontWeight: "bold",
+                labelFontSize: 12,
             },
-            tooltip: [
-              { field: "Parameter", title: "Pollutant", type: "nominal" },
-              { field: "TimeLabel", title: "Period", type: "nominal" },
-              { field: "ValueWithUnit", title: "Average", type: "nominal" },
-              {
-                field: "ciRange",
-                title: "Confidence interval",
-                type: "nominal",
-              },
-            ],
-          },
+            view: { stroke: null },
+            axisX: { labelAngle: 0, domain: false },
+            axisY: {
+                domain: false,
+                ticks: false,
+                tickCount: 3,
+                orient: "left",
+                title: null,
+            },
         },
-      ],
-    },
-    columns: 5,
-  };
-
-  document.addEventListener("DOMContentLoaded", async () => {
-    const el = document.getElementById("cpVis");
-    if (!el) return;
-
-    try {
-      await vegaEmbed(el, cpSpec, { actions: false, renderer: "canvas" });
-    } catch (err) {
-      console.error("CP Vega render failed:", err);
-      el.innerHTML =
-        "<pre style='white-space:pre-wrap'>Chart failed to render.</pre>";
-    }
-  });
+        data: {
+            url: "https://gist.githubusercontent.com/mmontesanonyc/c4a858aba1959c377188e9c2dbb50681/raw/2d439386e74ce7dbbb0b31bac8cc736f28d18114/cp-test-data-with-units.csv",
+        },
+        resolve: { scale: { y: "independent" } },
+        transform: [
+        { filter: "datum.Site === 'Mott Haven'" },
+        {
+            calculate: "datum.Parameter + ' (' + datum.Unit + ')'",
+            as: "ParameterWithUnit",
+        },
+        {
+            calculate: "datum.Average + ' ' + datum.Unit",
+            as: "ValueWithUnit",
+        },
+        {
+            calculate: "datum.LC + ', ' + datum.UC",
+            as: "ciRange",
+        },
+        {
+            calculate:
+            "datum.Time === 'Pre' ? 'Before congestion pricing' : datum.Time === 'Post' ? 'With congestion pricing' : datum.Time",
+            as: "TimeLabel",
+        },
+        ],
+        facet: { field: "ParameterWithUnit", title: null },
+        spec: {
+            width: 150,
+            height: 250,
+            encoding: {
+                x: {
+                    field: "Time",
+                    type: "nominal",
+                    sort: "descending",
+                    title: null,
+                },
+            },
+            layer: [
+            {
+                mark: {
+                    type: "rule",
+                    strokeWidth: 5,
+                    color: "lightgray",
+                    strokeCap: "round",
+                },
+                encoding: {
+                    y: { field: "UC", type: "quantitative" },
+                    y2: { field: "LC", type: "quantitative" },
+                },
+            },
+            {
+                mark: { type: "line", color: "blue", strokeDash: [2, 2] },
+                encoding: { y: { field: "Average", type: "quantitative" } },
+            },
+            {
+                mark: { type: "circle", size: 100, color: "blue" },
+                encoding: {
+                    y: {
+                        field: "Average",
+                        type: "quantitative",
+                        scale: { domainMin: 0, nice: false },
+                    },
+                    tooltip: [
+                    { field: "Parameter", title: "Pollutant", type: "nominal" },
+                    { field: "TimeLabel", title: "Period", type: "nominal" },
+                    { field: "ValueWithUnit", title: "Average", type: "nominal" },
+                    {
+                        field: "ciRange",
+                        title: "Confidence interval",
+                        type: "nominal",
+                    },
+                    ],
+                },
+            },
+            ],
+        },
+        columns: 5,
+    };
+    
+    document.addEventListener("DOMContentLoaded", async () => {
+        const el = document.getElementById("cpVis");
+        if (!el) return;
+        
+        try {
+            await vegaEmbed(el, cpSpec, { actions: false, renderer: "canvas" });
+        } catch (err) {
+            console.error("CP Vega render failed:", err);
+            el.innerHTML = "<pre style='white-space:pre-wrap'>Chart failed to render.</pre>";
+        }
+    });
 </script>
