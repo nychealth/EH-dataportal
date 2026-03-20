@@ -50,7 +50,7 @@
             <h2 class="h3">Key sites</h3>
                 <div class="row">
             <div class="col-6 mx-auto my-1">
-                    <iframe src={{ relURL "congestion_pricing/embeds/congestion_pricing_monitoring.html" }} frameborder="yes" style="width: 100%; height: 450px"></iframe>
+                    <iframe src={{ relURL "congestion_pricing/embeds/congestion_pricing_monitoring.html" }} frameborder="yes" style="width: 100%; height: 400px"></iframe>
                 </div>
                 <div class="col-6">
                     {{- with .Resources.GetMatch "key-sites.md" -}}
@@ -76,80 +76,102 @@
 
     </div>
 
-    <hr class="my-2 px-6">
-
-    <!-- single column layout community sites + charts -->
-
-    <div class="row my-3">
-        <div class="col-md-11 mx-auto col-sm-12 mb-2">
-            
-                <div class="col-8">
-                    {{ partial "cp-chart.html" . }}
-                </div>
-           
+    <div class="row">
+        <div class="col-10 mx-auto">
             <div class="row">
                 <div class="col-10 mx-auto">
-                    <div class="row">
-                        <div class="col-10 mx-auto">
-                            <hr class="my-2 px-6" />
-                        </div>
-                    </div>
+                    <hr class="my-2 px-6" />
                 </div>
             </div>
         </div>
+    </div>
 
-        <!-- testing out a new format
-                <div class="row mt-1 mb-3">
-                    <div class="col-md-10 col-sm-12 mx-auto my-1">
-                        <h2>Heat Exacerbated Deaths</h2>
-                    </div>
-                    <div class="col-md-5 ml-auto col-sm-12">
-                        {{- with .Resources.GetMatch "traffic-times.md" -}} {{ .Content }} {{-
-                        end -}}
-                    </div>
-                    
-                    <div class="col-md-5 mr-auto col-sm-12">
-                        <div class="p-2 border">
-                            {{- with .Resources.GetMatch "bar_charts_traffic1.md" -}} {{ .Content }} {{- end
-                            -}}
-                        </div>
+    <!-- neighborhood snapshots begin -->
+
+    <div class="row my-1">
+        <div class="col-md-11 mx-auto col-sm-12 mb-2">
+            
+                <div class="col-10"> 
+                    {{ partial "cp-chart.html" . }}
+                </div>
+
+        <div class="row m-4"> 
+            <div class="col-md-6 col-sm-12">
+            <div class="card card-left-border shadow-sm mb-2 fs-sm">
+              <div class="card-body">
+              <p class="card-text"><strong>Looking closer at daytime traffic patterns</strong>&nbsp; Traffic and truck-related pollutants (PM2.5, BC) decreased after CRZ tolling began during all periods of the day. While traffic was highest during morning rush hours, PM2.5 levels varied slightly over the day due to the influence of other sources like heating systems in buildings, restaurant cooking and construction.​</p>
+              <div class="row">
+                <div class="col-5 my-1">
+                    <div style="min-height:465px" id="datawrapper-vis-SCfdc">
+                        <script type="text/javascript" defer src="https://datawrapper.dwcdn.net/SCfdc/embed.js"
+                                charset="utf-8" data-target="#datawrapper-vis-SCfdc"></script><noscript><img
+                                 src="https://datawrapper.dwcdn.net/SCfdc/full.png"
+                                 alt="Daily average traffic  pre and post (Grouped column chart)" /></noscript>
                     </div>
                 </div>
-                
-            -->
+                <div class="col-5 my-1">
+                    <div style="min-height:478px" id="datawrapper-vis-dJ3OR">
+                        <script type="text/javascript" defer src="https://datawrapper.dwcdn.net/dJ3OR/embed.js"
+                                charset="utf-8" data-target="#datawrapper-vis-dJ3OR"></script><noscript><img
+                                 src="https://datawrapper.dwcdn.net/dJ3OR/full.png"
+                                 alt="Grouped column chart" /></noscript>
+                    </div>
+                </div>
+            </div>
+              </div>
+            </div>
+          </div> 
 
+          <div class="col-md-6 col-sm-12">
+            <div class="card card-left-border shadow-sm mb-2 fs-sm">
+              <div class="card-body">
+              <p class="card-text"><strong>How did traffic and PM2.5 near the highways change?</strong> Total traffic on the Major Deegan was on average 7% lower in 2025 compared to 2024. Truck traffic was 9% lower. PM2.5 levels on the Major Deegan decreased by 26% after tolling began.​</p>
+              <div class="row justify-content-between">
+                <div class="col-4 my-3">
+                    <div style="min-height:560px" id="datawrapper-vis-LcSZD">
+                        <script type="text/javascript" defer src="https://datawrapper.dwcdn.net/LcSZD/embed.js"
+                                charset="utf-8" data-target="#datawrapper-vis-LcSZD"></script><noscript><img
+                                 src="https://datawrapper.dwcdn.net/LcSZD/full.png"
+                                 alt="All traffic changes on the  Major Deegan/Mott Haven Expressway  in year one of congestion tolling (Column Chart)" /></noscript>
+                    </div>
+                </div>
+                <div class="col-4 my-3">
+                    <div style="min-height:510px" id="datawrapper-vis-aAN8W">
+                        <script type="text/javascript" defer src="https://datawrapper.dwcdn.net/aAN8W/embed.js"
+                                charset="utf-8" data-target="#datawrapper-vis-aAN8W"></script><noscript><img
+                                 src="https://datawrapper.dwcdn.net/aAN8W/full.png"
+                                 alt="Real-time PM2.5 changes on the  Major Deegan/Mott Haven Expressway  in year one of congestion tolling (Column Chart)" /></noscript>
+                    </div>
+                </div>
+                <div class="col-4 my-3">
+                    <div style="min-height:510px" id="datawrapper-vis-8jmq8">
+                        <script type="text/javascript" defer src="https://datawrapper.dwcdn.net/8jmq8/embed.js"
+                                charset="utf-8" data-target="#datawrapper-vis-8jmq8"></script><noscript><img
+                                 src="https://datawrapper.dwcdn.net/8jmq8/full.png"
+                                 alt="Truck changes on the  Major Deegan/Mott Haven Expressway  in year one of congestion tolling (Column Chart)" /></noscript>
+                    </div>
+                </div>
+            </div> 
+              </div>
+            </div>
+          </div> 
+        </div>
+        </div>
+
+    
         <div class="col-md-8 mx-auto col-sm-12 display: block;">
             <div class="l-green-border px-1 mb-2">
-                <h3 class="h4">How did traffic and PM2.5 near the highways change?</h3>
                 <div class="row justify-content-between">
-                    <div class="col-3 my-3">
-                        <div style="min-height:560px" id="datawrapper-vis-LcSZD">
-                            <script type="text/javascript" defer src="https://datawrapper.dwcdn.net/LcSZD/embed.js"
-                                    charset="utf-8" data-target="#datawrapper-vis-LcSZD"></script><noscript><img
-                                     src="https://datawrapper.dwcdn.net/LcSZD/full.png"
-                                     alt="All traffic changes on the  Major Deegan/Mott Haven Expressway  in year one of congestion tolling (Column Chart)" /></noscript>
-                        </div>
+                    <div class="col-3">
+                        <div style="min-height:273px" id="datawrapper-vis-8jmq8"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/8jmq8/embed.js" charset="utf-8" data-target="#datawrapper-vis-8jmq8"></script><noscript><img src="https://datawrapper.dwcdn.net/8jmq8/full.png" alt="Column Chart" /></noscript></div>
                     </div>
-                    <div class="col-3 my-3">
-                        <div style="min-height:510px" id="datawrapper-vis-aAN8W">
-                            <script type="text/javascript" defer src="https://datawrapper.dwcdn.net/aAN8W/embed.js"
-                                    charset="utf-8" data-target="#datawrapper-vis-aAN8W"></script><noscript><img
-                                     src="https://datawrapper.dwcdn.net/aAN8W/full.png"
-                                     alt="Real-time PM2.5 changes on the  Major Deegan/Mott Haven Expressway  in year one of congestion tolling (Column Chart)" /></noscript>
-                        </div>
+                    <div class="col-3">
+                        <div style="min-height:273px" id="datawrapper-vis-8jmq8"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/8jmq8/embed.js" charset="utf-8" data-target="#datawrapper-vis-8jmq8"></script><noscript><img src="https://datawrapper.dwcdn.net/8jmq8/full.png" alt="Column Chart" /></noscript></div>
                     </div>
-                    <div class="col-3 my-3">
-                        <div style="min-height:510px" id="datawrapper-vis-8jmq8">
-                            <script type="text/javascript" defer src="https://datawrapper.dwcdn.net/8jmq8/embed.js"
-                                    charset="utf-8" data-target="#datawrapper-vis-8jmq8"></script><noscript><img
-                                     src="https://datawrapper.dwcdn.net/8jmq8/full.png"
-                                     alt="Truck changes on the  Major Deegan/Mott Haven Expressway  in year one of congestion tolling (Column Chart)" /></noscript>
-                        </div>
+                    <div class="col-3">
+                        <div style="min-height:273px" id="datawrapper-vis-8jmq8"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/8jmq8/embed.js" charset="utf-8" data-target="#datawrapper-vis-8jmq8"></script><noscript><img src="https://datawrapper.dwcdn.net/8jmq8/full.png" alt="Column Chart" /></noscript></div>
                     </div>
                 </div>
-                {{- with .Resources.GetMatch "traffic-times.md" -}}
-                    {{ .Content }}
-                {{- end -}}
 
 
             </div>
@@ -161,52 +183,17 @@
             </div>
         </div>
 
-        <div class="col-md-8 mx-auto col-sm-12 display:block;">
-            <div class="l-green-border px-1 mb-2">
-                <h3 class="h4 mr-auto">Looking closer at daytime traffic patterns</h3>
-                <div class="row">
-                    <div class="col-3 my-1">
-                        <div style="min-height:465px" id="datawrapper-vis-SCfdc">
-                            <script type="text/javascript" defer src="https://datawrapper.dwcdn.net/SCfdc/embed.js"
-                                    charset="utf-8" data-target="#datawrapper-vis-SCfdc"></script><noscript><img
-                                     src="https://datawrapper.dwcdn.net/SCfdc/full.png"
-                                     alt="Daily average traffic  pre and post (Grouped column chart)" /></noscript>
-                        </div>
-                    </div>
-                    <div class="col-3 my-1">
-                        <div style="min-height:478px" id="datawrapper-vis-dJ3OR">
-                            <script type="text/javascript" defer src="https://datawrapper.dwcdn.net/dJ3OR/embed.js"
-                                    charset="utf-8" data-target="#datawrapper-vis-dJ3OR"></script><noscript><img
-                                     src="https://datawrapper.dwcdn.net/dJ3OR/full.png"
-                                     alt="Grouped column chart" /></noscript>
-                        </div>
-                    </div>
-                </div>
+    <!-- divider -->
 
-                {{- with .Resources.GetMatch "air-quality-changes.md" -}}
+        <div class="row">
+            <div class="col-md-8 col-sm-12 mx-auto mb-2">
+                <h2></h2>
+                <img src="{{ .Params.fullurl }}images/map3.png" alt="" align="right" class="m-1" />
+                {{- with .Resources.GetMatch "aq-inside-crz.md" -}}
                     {{ .Content }}
                 {{- end -}}
-            </div>
-        </div>
+                {{ partial "cp-chart_crz.html" . }}
 
-        <div class="row">
-            <div class="col-10 mx-auto">
-                <hr class="my-2 px-6" />
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-8 col-sm-12 mx-auto">
-                <div class="col-md-8 col-sm-12 mx-auto">
-                    <img src="{{ .Params.fullurl }}images/map3.png" alt="" align="right" class="m-1" />
-                </div>
-                <div class="col-6">
-                    {{- with .Resources.GetMatch "aq-inside-crz.md" -}}
-                        {{ .Content }}
-                        {{ partial "cp-chart_crz.html" . }}
-                    {{- end -}}
-                    <!--  <img src="{{ .Params.fullurl }}images/CRZ_standin.png" alt="" align="none" class="m-1"/> -->
-                </div>
             </div>
         </div>
 
@@ -235,12 +222,18 @@
                 {{ .Content }}
             {{- end -}}
 
-            <div class="row">
-                <div class="col-10 mx-auto">
-                    <hr class="my-2 px-6" />
+
+
+        </div>
+
+        <div class="row">
+            <div class="col-8 mx-auto">
+                <div class="row">
+                    <div class="col-10 mx-auto">
+                        <hr class="my-2 px-6" />
+                    </div>
                 </div>
             </div>
-
         </div>
 
     </div>
