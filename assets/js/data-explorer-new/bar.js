@@ -73,53 +73,11 @@ const renderBar = (
         - Else, just give a standard bar
     // -----------------------------------------------------------------------  */
 
-    let barChart
+    let barDisplay
     
-    // if (barMeasurementType.includes('Mean') || barMeasurementType.includes('mean')) {
+    if (barMeasurementType.includes('Mean') || barMeasurementType.includes('mean') ) {
 
-    // } else if (hasCI == true) {
-
-    // } else {
-        
-    // }
-
-
-    // ----------------------------------------------------------------------- //
-    // define spec
-    // ----------------------------------------------------------------------- //
-    
-    var barSpec = {
-        "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-        "title": {
-            "text": "Indicator name",
-            "subtitlePadding": 10,
-            "fontWeight": "normal",
-            "anchor": "start",
-            "fontSize": 0,
-            "font": "sans-serif",
-            "baseline": "top",
-            "subtitle": metadata[0].MeasureName,
-            "subtitleFontSize": 10
-        },
-        "data": {
-            "values": data,
-            "format": {"parse": {"Value": "number"}}
-        },
-        "config": {
-            "view": {"stroke": "transparent"},
-            "axisY": {"domain": false, "ticks": false, "labelBaseline": "bottom"},
-            "axisX": {"domain": false, "ticks": false},
-            "legend": {"disable": true},
-            "scale": {"invalid": {"color": {"value": "#808080"}}}
-        },
-        "autosize": {"type": "fit", "contains": "padding"},
-        "transform": [
-            {"filter": `datum.GeoType === '${geography}'`},
-            {"calculate": `datum.DisplayValue + ' ${displayType}'`, "as": "valueLabel"}
-        ],
-        "height": 500,
-        "width": "container",
-        "layer": [
+        barDisplay = [
             {
                 "mark": {"type": "bar", "tooltip": true, "stroke": "#161616"},
                 "params": [
@@ -140,7 +98,7 @@ const renderBar = (
                         {"field": "valueLabel", "title": metadata[0].MeasureName},
                         {"field": "TimePeriodID", "title": 'TimePeriodID'}
                     ],
-                    "y": {"field": "GeoID", "sort": "-x", "axis": null},
+                    "y": {"field": "GeoID", "sort": "x", "axis": null},
                     "color": {
                         "bin": false,
                         "field": "Value",
@@ -187,15 +145,182 @@ const renderBar = (
             }
             }
             */
-            
-            
-        ]
+        ]    
+
+    } else if (hasCI == true) {
+
+        barDisplay = null
+    }
+    
+    else {
+        barDisplay = [
+            {
+                    "mark": {"type": "bar", "tooltip": true, "stroke": "#161616"},
+                    "encoding": {
+                        "x": {
+                            "field": "Value",
+                            "type": "quantitative",
+                            "title": null,
+                            "axis": {"labelAngle": 0, "labelFontSize": 11, "tickCount": 3}
+                        },
+                        "tooltip": [
+                            {
+                                "field": "Geography", 
+                                "title": "Neighborhood"
+                            },
+                            {
+                                "field": "valueLabel",
+                                "title": `mapmeasurementtype`
+                            },
+                            {
+                                "field": "TimePeriod",
+                                "title": "Time period"
+                            }
+                        ],
+                        "y": {"field": "GeoID", "sort": "x", "axis": null},
+                        "color": {"value": "#f9f9f9"},
+                        "stroke": {"value": "white"},
+                        "strokeWidth": {"value": 3}
+                    }
+            },
+            {
+                "mark": {
+                    "type": "circle",
+                    "size": 100,
+                    "tooltip": true,
+                    "stroke": "#161616"
+                },
+                "params": [
+                    {
+                        "name": "highlight",
+                        "select": {"type": "point", "on": "mouseover", "clear": "mouseout"}
+                    }
+                ],
+                "encoding": {
+                    "x": {
+                        "field": "Value",
+                        "type": "quantitative",
+                        "title": null,
+                        "axis": {"labelAngle": 0, "labelFontSize": 11, "tickCount": 3}
+                    },
+                    "tooltip": [
+                        {"field": "Geography", "title": "Neighborhood"},
+                        {"field": "valueLabel", "title": metadata[0].MeasureName},
+                        {"field": "TimePeriodID", "title": 'TimePeriodID'}
+                    ],
+                    "y": {"field": "GeoID", "sort": "-x", "axis": null},
+                    "color": {
+                        "bin": false,
+                        "field": "Value",
+                        "type": "quantitative",
+                        "scale": {"scheme": {"name": "viridis", "extent": [1, 0]}},
+                        "legend": false
+                    },
+                    // "stroke": {
+                    //     "value": "transparent"
+                    // },
+                    "stroke": {
+                        "condition": [
+                            {"param": "highlight", "empty": false, "value": "black"},
+                            {
+                                "test": "datum.GeoID == selectedGeo",
+                                "value": "black"
+                            }
+                        ],
+                        "value": "transparent"
+                    },
+                    "strokeWidth": {
+                        "value": 2
+                    }
+                }
+            },
+            /*
+            {
+
+            }
+            */
+            /*
+            {
+            "description": "This layer was a rule that's triggered on map hover. Commented out in favor of keeping the stroke instead; we could use this to trigger a text label instead of using a Tooltip."
+            "mark": {
+            "type": "rule",
+            "xOffset": 15,
+            "strokeWidth": 1
+            },
+            "encoding": {
+            "y": {"field": "GeoID", "sort": "-x"},
+            "x": {"field": "Value", "type": "quantitative"},
+            "color": {
+            "condition": {
+            "test": "datum.GeoID == selectedGeo",
+            "value": "black"
+            },
+            "value": "transparent"
+            }
+            }
+            }
+            */
+        ]        
+    }
+
+
+    // ----------------------------------------------------------------------- //
+    // define spec
+    // ----------------------------------------------------------------------- //
+    
+    var barSpec = {
+        "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+        "title": {
+            "text": "Indicator name",
+            "subtitlePadding": 10,
+            "fontWeight": "normal",
+            "anchor": "start",
+            "fontSize": 0,
+            "font": "sans-serif",
+            "baseline": "top",
+            "subtitle": metadata[0].MeasureName,
+            "subtitleFontSize": 10
+        },
+        "data": {
+            "values": data,
+            "format": {"parse": {"Value": "number"}}
+        },
+        "config": {
+            "view": {"stroke": "transparent"},
+            "axisY": {"domain": false, "ticks": false, "labelBaseline": "bottom"},
+            "axisX": {"domain": false, "ticks": false},
+            "legend": {"disable": true},
+            "scale": {"invalid": {"color": {"value": "#808080"}}}
+        },
+        "autosize": {"type": "fit", "contains": "padding"},
+        "transform": [
+            {"filter": `datum.GeoType === '${geography}'`},
+            {"calculate": `datum.DisplayValue + ' ${displayType}'`, "as": "valueLabel"},
+            {
+                "calculate": "datum.CI && datum.CI !== '' ? split(replace(datum.CI, /[()]/g, ''), ', ')[0] : datum.Value * .95", // hard set for test
+                "as": "ciLow"
+            },
+            {
+                "calculate": "datum.CI && datum.CI !== '' ? split(replace(datum.CI, /[()]/g, ''), ', ')[1] : datum.Value * 1.05", // hard set for test
+                "as": "ciHigh"
+            },
+            {
+            "calculate": "datum.CI ? replace(replace(datum.CI, /[()]/g, ''), /, /, ' to ') : null",
+            "as": "CInoParens"
+            }
+        ],
+        "height": 500,
+        "width": "container",
+        "layer": barDisplay
     }
 
     
     // ----------------------------------------------------------------------- //
     // render chart
     // ----------------------------------------------------------------------- //
+
+    console.log('vega-lite spec:')
+    console.log(barSpec)
 
     const vegaSpec = vegaLite.compile(barSpec).spec;
     
