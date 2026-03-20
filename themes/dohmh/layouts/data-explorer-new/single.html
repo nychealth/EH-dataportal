@@ -39,6 +39,7 @@
 {{- /*  non-bundled DE code - get resource, fingerprint, include  */}}
 
 {{- $global    := resources.Get "js/data-explorer-new/global.js" -}}
+{{- $utilities := resources.Get "js/data-explorer-new/utilities.js" -}}
 {{- $app       := resources.Get "js/data-explorer-new/app.js" -}}
 {{- $geo       := resources.Get "js/data-explorer-new/geography.js" -}}
 {{- $data      := resources.Get "js/data-explorer-new/data.js" -}}
@@ -56,6 +57,7 @@
 
 
 {{- $global_secure    := $global | partial "short-fingerprint.html" -}}
+{{- $utilities_secure := $utilities | partial "short-fingerprint.html" -}}
 {{- $app_secure       := $app | partial "short-fingerprint.html" -}}
 {{- $geo_secure       := $geo | partial "short-fingerprint.html" -}}
 {{- $data_secure      := $data | partial "short-fingerprint.html" -}}
@@ -73,6 +75,7 @@
 
 
 <script type="text/javascript" src="{{ $global_secure.RelPermalink }}" integrity="{{ $global_secure.Data.Integrity }}"></script>
+<script type="text/javascript" src="{{ $utilities_secure.RelPermalink }}" integrity="{{ $utilities_secure.Data.Integrity }}"></script>
 <script type="text/javascript" src="{{ $app_secure.RelPermalink }}" integrity="{{ $app_secure.Data.Integrity }}"></script>
 <script type="text/javascript" src="{{ $geo_secure.RelPermalink }}" integrity="{{ $geo_secure.Data.Integrity }}"></script>
 <script type="text/javascript" src="{{ $data_secure.RelPermalink }}" integrity="{{ $data_secure.Data.Integrity }}"></script>
