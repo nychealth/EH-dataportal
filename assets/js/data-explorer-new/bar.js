@@ -137,7 +137,8 @@ const renderBar = (
                     },
                     "tooltip": [
                         {"field": "Geography", "title": "Neighborhood"},
-                        {"field": "valueLabel", "title": metadata[0].MeasureName}
+                        {"field": "valueLabel", "title": metadata[0].MeasureName},
+                        {"field": "TimePeriodID", "title": 'TimePeriodID'}
                     ],
                     "y": {"field": "GeoID", "sort": "-x", "axis": null},
                     "color": {
@@ -147,19 +148,19 @@ const renderBar = (
                         "scale": {"scheme": {"name": "viridis", "extent": [1, 0]}},
                         "legend": false
                     },
-                    "stroke": {
-                        "value": "transparent"
-                    },
                     // "stroke": {
-                    //     "condition": [
-                    //         {"param": "highlight", "empty": false, "value": "black"},
-                    //         {
-                    //             "test": "datum.GeoID == selectedGeo",
-                    //             "value": "black"
-                    //         }
-                    //     ],
                     //     "value": "transparent"
                     // },
+                    "stroke": {
+                        "condition": [
+                            {"param": "highlight", "empty": false, "value": "black"},
+                            {
+                                "test": "datum.GeoID == selectedGeo",
+                                "value": "black"
+                            }
+                        ],
+                        "value": "transparent"
+                    },
                     "strokeWidth": {
                         "value": 2
                     }
@@ -196,13 +197,68 @@ const renderBar = (
     // render chart
     // ----------------------------------------------------------------------- //
 
-    vegaEmbed("#barHolder", barSpec,{
+    const vegaSpec = vegaLite.compile(barSpec).spec;
+    
+    const geoSignal = {
+        "name": "selectedGeo",
+        "value": null
+    }
+    
+    vegaSpec.signals.push(geoSignal)
+    
+    
+    vegaEmbed("#barHolder", vegaSpec, {
+
         actions: {
             export: { png: false, svg: false },
-            source: false,  
-            compiled: false, 
+            source: false,
+            compiled: false,
             editor: true 
         }
+        
+    }).then(result => {
+        
+        window.myVegaView = result.view; // store the vega view globally
+        
+        let lastHighlightedLayer = null;
+
+        result.view.addEventListener('mouseover', (event, item) => {
+            if (item && item.datum && item.datum.GeoID) {
+                const geoID = item.datum.GeoID;
+
+                const mapAPI = window.mapInterop;
+                if (!mapAPI) return; // map not ready yet
+
+                const layer = mapAPI.geoIDtoLayer[geoID];
+
+                if (layer && layer !== lastHighlightedLayer) {
+
+                    // Reset previous
+                    if (lastHighlightedLayer) {
+                        mapAPI.resetHighlight(lastHighlightedLayer);
+                    }
+
+                    // Highlight new
+                    mapAPI.highlightFeature({ target: layer });
+                    lastHighlightedLayer = layer;
+
+                    mapAPI.updateHoverUI(layer.feature.properties);
+                }
+            }
+        });
+
+        result.view.addEventListener('mouseout', () => {
+            const mapAPI = window.mapInterop;
+            if (!mapAPI) return;
+
+            if (lastHighlightedLayer) {
+                mapAPI.resetHighlight(lastHighlightedLayer);
+                lastHighlightedLayer = null;
+            }
+
+            mapAPI.clearHoverUI();
+        });
+        
     });
 
     // send info for printing

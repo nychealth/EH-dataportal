@@ -174,7 +174,7 @@ const renderMap = (
             // --------------------------------------------------------------------------- //
             // Lookup to match GeoID → Leaflet layer
             // --------------------------------------------------------------------------- //
-            const geoIDtoLayer = {};   // <--- ADD THIS
+            const geoIDtoLayer = {};   
             // --------------------------------------------------------------------------- //
 
             // --- Add the GeoJSON to the map ---
@@ -242,6 +242,15 @@ const renderMap = (
                     
                 }
             }).addTo(map);
+
+            window.mapInterop = {
+                geoIDtoLayer,
+                geojsonLayer,
+                highlightFeature,
+                resetHighlight: (layer) => geojsonLayer.resetStyle(layer),
+                updateHoverUI,
+                clearHoverUI
+            };
 
 
 
