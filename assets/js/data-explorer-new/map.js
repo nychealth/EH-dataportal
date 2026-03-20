@@ -255,33 +255,40 @@ const renderMap = (
                         }
                         
                     });
+
+                    let currentlyHighlighted = null
                     
                     layer.on('mouseover', (e) => {
-
-                        // console.log("** mouseover");
-
                         const props = feature.properties;
 
+                        // Reset previous highlight if it exists
+                        if (currentlyHighlighted && currentlyHighlighted !== e.target) {
+                            geojsonLayer.resetStyle(currentlyHighlighted);
+                        }
+
+                        currentlyHighlighted = e.target;
+
                         updateHoverUI(props);
-                        highlightFeature(e); 
-                        
+                        highlightFeature(e);
+
                         if (window.myVegaView) {
                             window.myVegaView.signal("selectedGeo", props.GeoID).run();
                         }
-                        
                     });
                     
                     layer.on('mouseout', (e) => {
 
-                        // console.log("** mouseout");
+                        // Only clear if THIS layer is still the active one
+                        if (currentlyHighlighted === e.target) {
+                            geojsonLayer.resetStyle(e.target);
+                            currentlyHighlighted = null;
 
-                        clearHoverUI();
-                        resetHighlight(geojsonLayer, e);
-                        
-                        if (window.myVegaView) {
-                            window.myVegaView.signal("selectedGeo", null).run();
+                            clearHoverUI();
+
+                            if (window.myVegaView) {
+                                window.myVegaView.signal("selectedGeo", null).run();
+                            }
                         }
-                        
                     });
                     
                 }
