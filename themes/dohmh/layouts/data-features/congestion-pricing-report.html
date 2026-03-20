@@ -46,16 +46,28 @@
 
         <!-- two-column xx and xx -->
 
-        <div class="col-md-8 col-sm-12 mx-auto mb-2 my-1">
+        <div class="col-md-8 col-sm-12 mx-auto my-1">
             <h2 class="h3">Key sites</h3>
-                <div class="">
-                    <!--            <iframe src={{ relURL "congestion_pricing/embeds/congestion_pricing_monitoring.html" }} frameborder="yes" style="width: 100%; height: 550px"></iframe> -->
-
+                <div class="row">
+            <div class="col-6 mx-auto my-1">
+                    <iframe src={{ relURL "congestion_pricing/embeds/congestion_pricing_monitoring.html" }} frameborder="yes" style="width: 100%; height: 450px"></iframe>
+                </div>
+                <div class="col-6">
                     {{- with .Resources.GetMatch "key-sites.md" -}}
                         {{ .Content }}
                     {{- end -}}
                 </div>
+            </div>
+        <div class="row mx-1">
+            {{- with .Resources.GetMatch "ej-sites.md" -}}
+            {{ .Content }}
+            {{- end -}}
         </div>
+        </div>
+
+
+
+
         <div class="col-md-10 col-sm-12 mx-auto mt-2">
             <div style="text-align: center;" class="my-2">
                 <h3 class="h4">Results from EJ sites</h3>
@@ -109,7 +121,7 @@
         <div class="col-md-8 mx-auto col-sm-12 display: block;">
             <div class="l-green-border px-1 mb-2">
                 <h3 class="h4">How did traffic and PM2.5 near the highways change?</h3>
-                <div class="row">
+                <div class="row justify-content-between">
                     <div class="col-3 my-3">
                         <div style="min-height:560px" id="datawrapper-vis-LcSZD">
                             <script type="text/javascript" defer src="https://datawrapper.dwcdn.net/LcSZD/embed.js"
@@ -151,7 +163,7 @@
 
         <div class="col-md-8 mx-auto col-sm-12 display:block;">
             <div class="l-green-border px-1 mb-2">
-                <h3 class="h4 mr-autom-2">Looking closer at daytime traffic patterns</h3>
+                <h3 class="h4 mr-auto">Looking closer at daytime traffic patterns</h3>
                 <div class="row">
                     <div class="col-3 my-1">
                         <div style="min-height:465px" id="datawrapper-vis-SCfdc">
