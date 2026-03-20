@@ -261,15 +261,15 @@ const renderMap = (
                     layer.on('mouseover', (e) => {
                         const props = feature.properties;
 
-                        // Reset previous highlight if it exists
-                        if (currentlyHighlighted && currentlyHighlighted !== e.target) {
-                            geojsonLayer.resetStyle(currentlyHighlighted);
-                        }
+                        // 🔥 HARD RESET: clear ALL highlights
+                        geojsonLayer.eachLayer((l) => {
+                            geojsonLayer.resetStyle(l);
+                        });
 
-                        currentlyHighlighted = e.target;
+                        // Apply highlight to current
+                        highlightFeature(e);
 
                         updateHoverUI(props);
-                        highlightFeature(e);
 
                         if (window.myVegaView) {
                             window.myVegaView.signal("selectedGeo", props.GeoID).run();
@@ -277,17 +277,12 @@ const renderMap = (
                     });
                     
                     layer.on('mouseout', (e) => {
+                        geojsonLayer.resetStyle(e.target);
 
-                        // Only clear if THIS layer is still the active one
-                        if (currentlyHighlighted === e.target) {
-                            geojsonLayer.resetStyle(e.target);
-                            currentlyHighlighted = null;
+                        clearHoverUI();
 
-                            clearHoverUI();
-
-                            if (window.myVegaView) {
-                                window.myVegaView.signal("selectedGeo", null).run();
-                            }
+                        if (window.myVegaView) {
+                            window.myVegaView.signal("selectedGeo", null).run();
                         }
                     });
                     
