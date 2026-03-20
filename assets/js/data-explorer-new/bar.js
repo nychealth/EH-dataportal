@@ -115,7 +115,7 @@ const renderBar = (
         "autosize": {"type": "fit", "contains": "padding"},
         "transform": [
             {"filter": `datum.GeoType === '${geography}'`},
-            {"calculate": `datum.DisplayValue + '${displayType}'`, "as": "valueLabel"}
+            {"calculate": `datum.DisplayValue + ' ${displayType}'`, "as": "valueLabel"}
         ],
         "height": 500,
         "width": "container",
