@@ -175,7 +175,7 @@ const checkURL = async () => {
     
     // run renderBar()
     renderMap(mapData, defaultMapMetadata);
-    renderBar(mapData, defaultMapMetadata);
+    // renderBar(mapData, defaultMapMetadata);
     // renderTrendChart(trendData, defaultTrendMetadata);
     // renderCorrelate(linksData, defaultLinksMetadata);
     

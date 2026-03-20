@@ -102,12 +102,14 @@ const renderMap = (
     // });
 
     // ----------------------------------------------------------------------- //
-    // set geo file based on geo type
+    // set geo file based on geo type, and render bar filtering for geotype
     // ----------------------------------------------------------------------- //
 
     // console.log("mapGeoType [renderMap]", mapGeoType);
 
     topoFile = getGeoFile(mapGeoType)
+
+    renderBar(data, metadata, mapGeoType)
 
     // ----------------------------------------------------------------------- //
     // define spec

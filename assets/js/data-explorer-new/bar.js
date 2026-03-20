@@ -12,7 +12,8 @@ console.log(">> bar.js");
 
 const renderBar = (
     data, 
-    metadata
+    metadata,
+    geography
 ) => {
 
     console.log("** renderBar new");
@@ -21,6 +22,7 @@ const renderBar = (
 
     console.log("data [renderBar]", data);
     console.log("metadata [renderBar]", metadata);
+    console.log("geo [renderBar]", geography);
 
     // ----------------------------------------------------------------------- //
     // get unique time in data
@@ -111,6 +113,7 @@ const renderBar = (
         },
         "autosize": {"type": "fit", "contains": "padding"},
         "transform": [
+            {"filter": `datum.GeoType === '${geography}'`},
             {"calculate": "datum.DisplayValue + ' per 10,000'", "as": "valueLabel"}
         ],
         "height": 500,
@@ -142,6 +145,9 @@ const renderBar = (
                         "type": "quantitative",
                         "scale": {"scheme": {"name": "viridis", "extent": [1, 0]}},
                         "legend": false
+                    },
+                    "stroke": {
+                        "value": "transparent"
                     },
                     // "stroke": {
                     //     "condition": [
