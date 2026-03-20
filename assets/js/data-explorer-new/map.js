@@ -332,7 +332,7 @@ const renderMap = (
             <div class="popup-content">
             <strong>${properties.Geography}</strong>
             <hr class="my-1">
-            <em>Asthma ED visits (age 5 to 17)</em>: in <strong>${properties.TimePeriod || 'Unknown'}</strong>, the estimated annual rate was <strong>${properties.Value}</strong> per 10,000.
+            <em>${indicator.IndicatorName}</em>: <strong>${properties.Value}</strong> ${metadata[0].MeasurementType.toLowerCase()} (${properties.TimePeriod || 'Unknown'})
             <span style="font-size:12px">${properties.Note.length > 1 ? `<hr><em>Note:</em> ${properties.Note}` : ''}</span>
             </div>
         `;
@@ -349,7 +349,7 @@ const renderMap = (
         // Update legend text
         document.getElementById('hoveredGeo').textContent = props.Geography || 'Unknown';
         document.getElementById('hoveredValue').textContent = props.Value ?? '—';
-        document.getElementById('hoveredUnits').textContent = 'per 10,000';
+        document.getElementById('hoveredUnits').textContent = metadata[0].MeasurementType.toLowerCase();
         
         // Show legend tick
         document.getElementById('legend-tick').style.display = 'block';
