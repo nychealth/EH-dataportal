@@ -230,6 +230,7 @@ function listenTable() {
     var rows = document.querySelectorAll('.location-row')
     
     rows.forEach(row => {
+        
         row.addEventListener('click',(e) => {
             // console.log('table listener:')
             // console.log(e.currentTarget)
@@ -780,7 +781,6 @@ async function renderSpec(
         ]
     }
     
-    
     const locSignal =  {
         "name": "locFilter", 
         "value": "",
@@ -793,7 +793,7 @@ async function renderSpec(
         ]
     }
     
-    vegaSpec.signals.push(colorSignal)    
+    vegaSpec.signals.push(colorSignal)
     vegaSpec.signals.push(locSignal)
     
     const textSignal = {
