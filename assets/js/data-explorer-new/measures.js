@@ -952,7 +952,7 @@ const handleTableTimeFilter = (el) => {
                 selectedTableTimes.splice(index, 1);
             }
         }
-        renderTable()
+        // renderTable()
     })
 }
 
@@ -971,7 +971,7 @@ const handleTableGeoFilter = (el) => {
         // only render table if a geography is checked
 
         if (selectedTableGeography.length > 0) {
-            renderTable()
+            // renderTable()
 
         } else {
             document.querySelector("#tableID").innerHTML = '';
@@ -1574,7 +1574,7 @@ const renderMeasures = async () => {
 
         // ----- render the table --------------------------------------------------- //
 
-        renderTable();
+        // renderTable();
 
         updateChartPlotSize();
 

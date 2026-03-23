@@ -481,6 +481,8 @@ const joinData = async () => {
         .reify()
         .objects()
 
+    renderTable(tableData)
+
     // console.log(">>>> tableData [joinData]", tableData);
 
     // data for map ----------
