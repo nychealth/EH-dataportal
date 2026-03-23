@@ -9,7 +9,7 @@ const renderMap = (
 
     console.log("** renderMap");
 
-    document.getElementById('viewDescription').innerHTML = 'This map shows data by different boundaries.'
+    document.getElementById('viewDescription').innerHTML = 'Hover over the map or chart for more information.'
 
     // console.log("data [renderMap]", data);
     // console.log("metadata [renderMap]", metadata);
@@ -444,6 +444,9 @@ const renderMap = (
 
     } else if (mapGeoType === "NYCKIDS2021") {
         topoFile = 'NYCKids_2021.topo.json';
+
+    } else if (mapGeoType === "NYCKIDS2023") {
+        topoFile = 'NYCKids_2023.topo.json';
 
     } else if (mapGeoType === "Borough") {
         topoFile = 'borough.topo.json';

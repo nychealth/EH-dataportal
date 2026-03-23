@@ -44,9 +44,9 @@
 
                 <!-- Recently updated data -->
                 <h3 class="h4 mb-1 pb-1">Recently updated datasets</h3>
-                {{ range .Site.Data.recently_updated_data.featured}}
+                {{ range .Site.Data.recently_updated_data.featured }}
                 <div class=" mb-1 pt-1 border-top font-weight-bold">
-                    <a href="{{ relURL .link }}" class="px-2 d-inline-block">{{ .copy }}</a>
+                    <a href={{ relURL ( path.Join "data-explorer" .link ) }} class="px-2 d-inline-block">{{ .copy }}</a>
                 </div>
                 {{ end }}
 

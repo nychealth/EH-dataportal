@@ -22,20 +22,6 @@ keywords:
     "breathing",
     "restaurants",
   ]
-tags:
-keywords:
-  [
-    "air quality",
-    "traffic",
-    "transportation",
-    "covid",
-    "covid-19",
-    "coronavirus",
-    "air pollution",
-    "lungs",
-    "breathing",
-    "restaurants",
-  ]
 image: ds-aqcovid.jpeg
 photocredit: "Ed Reed/Mayoral Photography Office, City of New York"
 related:

@@ -6,9 +6,7 @@ draft: false
 seo_title: "How the racial wealth gap affects health"
 seo_description: "A data story about how the racial wealth gap affects health."
 tags:
-tags:
 categories: ["inequality"]
-keywords: ["racial wealth gap", "health equity", "inequalities", "inequities"]
 keywords: ["racial wealth gap", "health equity", "inequalities", "inequities"]
 image: CrownHeights_JulienneSchaer-065.JPG
 photocredit: "Julienne Schaer/NYC & Company"
