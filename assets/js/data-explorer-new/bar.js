@@ -77,85 +77,9 @@ const renderBar = (
     
     if (barMeasurementType.includes('Mean') || barMeasurementType.includes('mean') ) {
 
-        barDisplay = [
+                barDisplay = [
             {
-                "mark": {"type": "bar", "tooltip": true, "stroke": "#161616"},
-                "params": [
-                    {
-                        "name": "highlight",
-                        "select": {"type": "point", "on": "mouseover", "clear": "mouseout"}
-                    }
-                ],
-                "encoding": {
-                    "x": {
-                        "field": "Value",
-                        "type": "quantitative",
-                        "title": null,
-                        "axis": {"labelAngle": 0, "labelFontSize": 11, "tickCount": 3}
-                    },
-                    "tooltip": [
-                        {"field": "Geography", "title": "Neighborhood"},
-                        {"field": "valueLabel", "title": metadata[0].MeasureName},
-                        {"field": "TimePeriodID", "title": 'TimePeriodID'}
-                    ],
-                    "y": {"field": "GeoID", "sort": "x", "axis": null},
-                    "color": {
-                        "bin": false,
-                        "field": "Value",
-                        "type": "quantitative",
-                        "scale": {"scheme": {"name": "viridis", "extent": [1, 0]}},
-                        "legend": false
-                    },
-                    // "stroke": {
-                    //     "value": "transparent"
-                    // },
-                    "stroke": {
-                        "condition": [
-                            {"param": "highlight", "empty": false, "value": "black"},
-                            {
-                                "test": "datum.GeoID == selectedGeo",
-                                "value": "black"
-                            }
-                        ],
-                        "value": "transparent"
-                    },
-                    "strokeWidth": {
-                        "value": 2
-                    }
-                }
-            },
-            /*
-            {
-            "description": "This layer was a rule that's triggered on map hover. Commented out in favor of keeping the stroke instead; we could use this to trigger a text label instead of using a Tooltip."
-            "mark": {
-            "type": "rule",
-            "xOffset": 15,
-            "strokeWidth": 1
-            },
-            "encoding": {
-            "y": {"field": "GeoID", "sort": "-x"},
-            "x": {"field": "Value", "type": "quantitative"},
-            "color": {
-            "condition": {
-            "test": "datum.GeoID == selectedGeo",
-            "value": "black"
-            },
-            "value": "transparent"
-            }
-            }
-            }
-            */
-        ]    
-
-    } else if (hasCI == true) {
-
-        barDisplay = null
-    }
-    
-    else {
-        barDisplay = [
-            {
-                    "mark": {"type": "bar", "tooltip": true, "stroke": "#161616"},
+                    "mark": {"type": "bar", "tooltip": true},
                     "encoding": {
                         "x": {
                             "field": "Value",
@@ -169,18 +93,12 @@ const renderBar = (
                                 "title": "Neighborhood"
                             },
                             {
-                                "field": "valueLabel",
-                                "title": `mapmeasurementtype`
-                            },
-                            {
                                 "field": "TimePeriod",
                                 "title": "Time period"
                             }
                         ],
-                        "y": {"field": "GeoID", "sort": "x", "axis": null},
-                        "color": {"value": "#f9f9f9"},
-                        "stroke": {"value": "white"},
-                        "strokeWidth": {"value": 3}
+                        "y": {"field": "GeoID", "sort": "-x", "axis": null},
+                        "color": {"value": "#f1f1f1"}
                     }
             },
             {
@@ -260,7 +178,87 @@ const renderBar = (
             }
             }
             */
-        ]        
+        ]  
+
+ 
+
+    } else if (hasCI == true) {
+
+        barDisplay = null
+    }
+    
+    else {
+      
+        barDisplay = [
+            {
+                "mark": {"type": "bar", "tooltip": true, "stroke": "#161616"},
+                "params": [
+                    {
+                        "name": "highlight",
+                        "select": {"type": "point", "on": "mouseover", "clear": "mouseout"}
+                    }
+                ],
+                "encoding": {
+                    "x": {
+                        "field": "Value",
+                        "type": "quantitative",
+                        "title": null,
+                        "axis": {"labelAngle": 0, "labelFontSize": 11, "tickCount": 3}
+                    },
+                    "tooltip": [
+                        {"field": "Geography", "title": "Neighborhood"},
+                        {"field": "valueLabel", "title": metadata[0].MeasureName},
+                        {"field": "TimePeriodID", "title": 'TimePeriodID'}
+                    ],
+                    "y": {"field": "GeoID", "sort": "x", "axis": null},
+                    "color": {
+                        "bin": false,
+                        "field": "Value",
+                        "type": "quantitative",
+                        "scale": {"scheme": {"name": "viridis", "extent": [1, 0]}},
+                        "legend": false
+                    },
+                    // "stroke": {
+                    //     "value": "transparent"
+                    // },
+                    "stroke": {
+                        "condition": [
+                            {"param": "highlight", "empty": false, "value": "black"},
+                            {
+                                "test": "datum.GeoID == selectedGeo",
+                                "value": "black"
+                            }
+                        ],
+                        "value": "transparent"
+                    },
+                    "strokeWidth": {
+                        "value": 2
+                    }
+                }
+            },
+            /*
+            {
+            "description": "This layer was a rule that's triggered on map hover. Commented out in favor of keeping the stroke instead; we could use this to trigger a text label instead of using a Tooltip."
+            "mark": {
+            "type": "rule",
+            "xOffset": 15,
+            "strokeWidth": 1
+            },
+            "encoding": {
+            "y": {"field": "GeoID", "sort": "-x"},
+            "x": {"field": "Value", "type": "quantitative"},
+            "color": {
+            "condition": {
+            "test": "datum.GeoID == selectedGeo",
+            "value": "black"
+            },
+            "value": "transparent"
+            }
+            }
+            }
+            */
+        ]   
+
     }
 
 
