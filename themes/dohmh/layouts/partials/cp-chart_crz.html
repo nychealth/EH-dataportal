@@ -33,7 +33,7 @@
     let currentSite_1 = "Mott Haven";
 
     // Base spec
-    const baseSpec = {
+    const baseSpec_1 = {
       $schema: "https://vega.github.io/schema/vega-lite/v6.json",
       config: {
         header: {
@@ -129,8 +129,8 @@
       // structuredClone first; fallback to JSON clone
       const spec =
         typeof structuredClone === "function"
-          ? structuredClone(baseSpec)
-          : JSON.parse(JSON.stringify(baseSpec));
+          ? structuredClone(baseSpec_1)
+          : JSON.parse(JSON.stringify(baseSpec_1));
 
       spec.transform[0].filter = `datum.Site === '${site}'`;
       return spec;
@@ -143,7 +143,7 @@
       el.innerHTML = ""; // clear previous render
 
       try {
-        await vegaEmbed(el, specForSite(site), {
+        await vegaEmbed(el, specForSite_1(site), {
           actions: false,
           renderer: "canvas",
         });

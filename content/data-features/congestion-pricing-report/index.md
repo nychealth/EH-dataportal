@@ -37,7 +37,7 @@ In January 2025, Metropolitan Transportation Authority Bridge and Tunnels (MTABT
 
 ##### Monitoring for air quality changes
 
-Modeling from the mandatory environmental review process did not identify air pollution as a concern to be tracked. However, due to community concerns, government agencies committed to monitor and report on air quality. The NYC Health Department expanded their existing air quality monitoring network to evaluate the impact of congestion tolling on NYC’s air quality, especially on Environmental Justice (EJ) communities identified in the assessment.
+Modeling from the mandatory environmental review process did not identify air pollution as a concern to be tracked. However, due to community concerns, government agencies (including the Health Department, MTABT, the NYC Department of Transportation, and the New York State Department of Transportation), committed to monitor and report on air quality. The NYC Health Department expanded their existing air quality monitoring network to evaluate the impact of congestion tolling on NYC’s air quality, especially on Environmental Justice (EJ) communities identified in the assessment.
 
 ##### A complete evaluation
 
