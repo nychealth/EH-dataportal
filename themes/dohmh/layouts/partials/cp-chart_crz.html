@@ -30,7 +30,7 @@
     ];
 
     // Default selection
-    let currentSite = "Mott Haven";
+    let currentSite_1 = "Mott Haven";
 
     // Base spec
     const baseSpec = {
@@ -166,10 +166,10 @@
         btn.className = "btn btn-sm btn-outline-dark m-1";
         btn.textContent = site;
 
-        if (site === currentSite) btn.classList.add("active");
+        if (site === currentSite_1) btn.classList.add("active");
 
         btn.addEventListener("click", async () => {
-          currentSite = site;
+          currentSite_1 = site;
           // toggle active state
           [...btnWrap.querySelectorAll("button")].forEach((b) =>
             b.classList.remove("active")
@@ -192,7 +192,7 @@
       }
 
       renderButtons();
-      await draw(currentSite);
+      await draw(currentSite_1);
     });
 
     const cpSpec = {
