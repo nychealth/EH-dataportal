@@ -32,6 +32,7 @@ indicators:
       - 2104
       - 2185
       - 2377
+      - 2140
 related:
   - title: "Interactive Heat Vulnerability Index"
     url: "data-features/hvi/"
@@ -47,7 +48,6 @@ relatedData:
   - title: "Housing safety/"
     url: "Housing safety/"
 weight: 1
-      - 2140
 ---
 
 A region's climate is characterized by its usual weather conditions, seasons, and patterns in extreme weather events like heat waves, droughts, and hurricanes.
