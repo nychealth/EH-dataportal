@@ -1,69 +1,17 @@
 {{- define "main" -}}
 
-<style>
-    #map {
-        height: 35vh;
-        width: 100%;
-        max-width: 100%;
-        max-height: 100%;
-    }
-
-
-    leaflet-tooltip-box {
-        border: 1px solid
-    }
-
-</style>
-
 {{- /*  main content  */}}
 
 <article class="container-fluid" id="skip-header-target">
 
+    {{ partial "df-front-block" . }}
 
-    <div class="row">
-        <div class="col-md-10 col-sm-12 mx-auto">
-            <div class="row">
-                <div class="col-12 mt-2 mb-3">
-                    <nav aria-label="breadcrumb">
-                        <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
-                            <li class="breadcrumb-item"><a href={{ relURL "data-features" }}>Data Features</a></li>
-                            <li class="breadcrumb-item active d-none d-sm-block" aria-current="page">{{ .Title }}</li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-
-            <h1 class="h2" data-pagefind-weight="10.0">
-                {{ .Title }}
-            </h1>
+            
             <div class="sr-only">
                 <h2 class="sr-only">Download accessible data</h2>
                 <p>This page contains visualizations. If you are using a screenreader, you can <a href="https://azdohv2staticweb.blob.core.windows.net/$web/nyccas_realtime_DEC.csv">download a CSV file of the last 7 days of realtime air quality data.</a></p>
                 </div>
             <div class="row">
-                <div class="col-md-8 mb-2">
-                    {{ .Content }}
-
-                </div>
-
-                <div class="col-md-4">
-                    <div class="fs-sm asidebox">
-                        <h3 class="h4">About the data</h3>
-                        <p>Data are hourly measurements of PM2.5, in micrograms per cubic meter of air (µg/m<sup>3</sup>). External factors can sometimes affect monitor functioning and make data temporarily unavailable. Data are preliminary and subject to change. Times are in Eastern Standard Time.</p>
-
-                        <strong>Street-level monitors</strong>
-                        <p>Data come from the <a href="../nyccas">NYC Community Air Survey</a>'s street-level monitors, which measure ground-level exposures. The BQE, FDR, Mott Haven, Van Wyck, Hamilton Bridge, and SI Expwy sites are supported with funds from the <a href="https://new.mta.info/project/CBDTP">MTA's CBD Tolling Program</a>. We apply a calibration factor to make our data comparable to DEC data and historical EPA data.</p>
-
-                        <strong>NYS DEC monitors</strong>
-                        <p>We show the average readings from 11 rooftop monitors from the <a href="https://www.dec.ny.gov/index.html">NY State Department of Environmental Conservation (DEC)</a>, which collects data for the Federal Clean Air Act.</p>
-                        <a href="#archiveModal" data-toggle="modal" data-target="#archiveModal"> <i class="fas fa-download mr-1" aria-hidden="true"></i>Download archived data</a>.
-
-                        
-
-
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -103,7 +51,42 @@
         .barchart {
             border-left: 1px solid black;
         }
+
+        .modal-backdrop.show {
+            opacity: 0.70;
+            background-color: #424242
+        }
+
+        .location-row:hover {
+            background-color: #f3f6f4;
+        }
+
+        .row-active {
+            background-color: #f3f6f4;
+        }
+
+        #map {
+            height: 35vh;
+            width: 100%;
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+
+        leaflet-tooltip-box {
+            border: 1px solid
+        }
     </style>
+
+    <!--
+    <div class="row my-4 border">
+        <div class="colorLabel" style="background:red;color:white; width:130px;">Red</div>
+        <div class="colorLabel" style="background:purple; color:white; width:130px;">Purple</div>
+
+        <div class="lineLabel" style="background:black;color:white; width:130px;" data-id="BQE">BQQE</div>
+        <div class="lineLabel" style="background:black; color:white; width:130px;" data-id="SI_Expwy">SI Expwy</div>
+    </div>
+    -->
 
     <div class="row mt-4 mb-2">
         <div class="col-12">
@@ -356,19 +339,26 @@
     <div class="row my-2">
         <div class="col-md-10 mx-auto col-sm-12">
             <div class="row p-2 border-top border-bottom">
-                <div class="col-md-8 ml-auto">
+                <div class="col-md-4">
                     <h3>The Air Quality Index</h3>
                     <p><a href="https://www.airnow.gov/aqi/aqi-basics/">The Air Quality Index is the US Environmental Protection Agency's way of reporting air quality</a>. It reports whether any of five major pollutants (ground-level ozone, fine particles, carbon monoxide, sulfur dioxide and nitrogen dioxide) are at levels that can harm health.             </p>
                     <p><strong>AQI Resources:</strong></p>
                     <p><a href="https://www.nyc.gov/site/doh/health/health-topics/air-quality-fire-smoke-and-effect-on-air-quality.page"><i class="fas fa-external-link-alt mr-1" aria-hidden="true"></i>Protect yourself during bad air quality</a></p>
-                    <p><a href="https://www.airnow.gov/sites/default/files/2023-03/air-quality-guide-for-particle-pollution_0.pdf"><i class="fas fa-external-link-alt mr-1" aria-hidden="true"></i>What to do at different AQI levels</a></p>
-
+                    <p><a href="https://www.nyc.gov/assets/doh/downloads/pdf/eode/aqi-guidelines-general.pdf"><i class="fas fa-external-link-alt mr-1" aria-hidden="true"></i>What to do at different AQI levels</a></p>
                 </div>
-
-                <div class="col-md-3 mr-auto">
-                    <iframe class="my-2 float-right" title="Example 1" height="340" width="230" src="https://widget.airnow.gov/aq-dial-widget-primary-pollutant/?city=New%20York%20City&state=NY&country=USA&transparent=true" style="border: none; border-radius: 25px;"></iframe>
+                <div class="col-md-3 mr-auto border-right">
+                    <iframe class="my-2 float-left" title="Example 1" height="340" width="230" src="https://widget.airnow.gov/aq-dial-widget-primary-pollutant/?city=New%20York%20City&state=NY&country=USA&transparent=true" style="border: none; border-radius: 25px;"></iframe>
+            </div>
+                <div class="col-md-5 mx-auto">
+                    <h3>Community air quality programs</h3>
+                    <p>Many community-based organizations run independent air quality monitoring systems, which contribute to the broader picture of air quality and health in NYC. </p>
+                    <p><a href="https://www.southbronxunite.org/air-pollution-and-public-health?ref=blog.quant-aq.com"><i class="fas fa-external-link-alt mr-1" aria-hidden="true"></i>South Bronx Unite: Air pollution and health</a></p>
+                    <p><a href="https://app.quant-aq.com/map"><i class="fas fa-external-link-alt mr-1" aria-hidden="true"></i>WE ACT for Environmental Justice: QuantAQ</a></p>
+                    <p><a href="https://map.purpleair.com/air-quality-standards-us-epa-aqi?opt=%2F1%2Flp%2Fa10%2Fp604800%2FcC0#12/40.68064/-74.00391"><i class="fas fa-external-link-alt mr-1" aria-hidden="true"></i>Red Hook Initiative: US EPA PM2.5 by Purple Air</a></p>
+                    <p><a href="https://aircasting.org/fixed_stream?streamId=2785129&sessionId=1924804&streamId=2785129&thresholdMin=0&thresholdLow=12&thresholdMiddle=35&thresholdHigh=55&thresholdMax=150&currentUserSettings=CALENDAR_VIEW&sessionType=fixed&measurementType=Particulate+Matter&sensorName=AirBeam3-PM2.5&previousUserSettings=MODAL_VIEW"><i class="fas fa-external-link-alt mr-1" aria-hidden="true"></i>Sixth Street Center: AirCasting</a></p>
+                    <p class="fs-sm">Does your organization conduct hyperlocal air quality monitoring? Get in touch at <a href="mailto:ehdp@health.nyc.gov">ehdp@health.nyc.gov</a>.</p>
                 </div>
-
+                </div>
             </div>
         </div>
     </div>
@@ -446,30 +436,13 @@
 </article>
 
 <!-- Related footer -->
-{{- partial "related-footer-2" . -}}
-
-<style>
-    .modal-backdrop.show {
-        opacity: 0.70;
-        background-color: #424242
-    }
-</style>
+{{- partial "related-footer" . -}}
 
 
 <!-- color name to hex converter -->
 <!-- from https://gist.github.com/njvack/02ad8efcb0d552b0230d -->
-{{- $color_convert := resources.Get "js/color-convert.js" -}}
-<script src="{{ $color_convert.RelPermalink }}"></script>
-
-
-<!-- Uses a static stand-in file for local development - else uses the API -->
-<script>
-    var url = window.location.href
-    var rtaqData
-    url.includes('localhost') ? rtaqData = 'data/nyccas_realtime_DEC.csv' : rtaqData = 'https://azdohv2staticweb.blob.core.windows.net/$web/nyccas_realtime_DEC.csv'
-
-</script>
-
+{{- $color_convert := resources.Get "js/color-convert.js" | partial "short-fingerprint.html" -}}
+<script src="{{ $color_convert.RelPermalink }}" integrity="{{ $color_convert.Data.Integrity }}"></script>
 
 
 <!--bring in realtime JS -->

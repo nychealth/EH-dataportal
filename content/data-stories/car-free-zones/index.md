@@ -37,6 +37,11 @@ related:
     url: "data-stories/hia/"
 ---
 
+{{< updateflag data=`[
+  {"src": "../../data-explorer/air-quality/?id=2028", "text": "seasonal Nitric oxide (NO)"},
+  {"src": "../../data-explorer/air-quality/?id=2023", "text": "seasonal fine particles (PM2.5)"}
+]` >}}
+
 Does the air improve in car-free zones? People often ask us this, and it's a great question. To answer, we turn to the NYC Community Air Survey, or NYCCAS. NYCCAS is our network of air quality monitors around the city.
 
 ### NYCCAS monitors air with nearly 100 sensors across the city
@@ -47,13 +52,21 @@ We use these monitors to measure levels of six different pollutants: fine partic
 
 We can look at changes to Times Square to understand what happens to local air quality when a street is relieved of car traffic. Starting in the summer of 2009, five blocks of Broadway through Times Square (and some adjacent space) were closed to cars, increasing the amount of plaza space available for pedestrians.
 
+<div aria-hidden="true">
 {{< datawrapper title="Times Square: more space for pedestrians, less for cars" src="Rnsgj/4/" height="543" >}}
+</div>
 
 NYCCAS' nearby air quality monitor measured the air pollutants before and after the change. With this monitor, we could see whether redirecting traffic led to any changes in air quality.
 
 First, let’s look at NO, a pollutant that primarily comes from car emissions. In early 2009, Times Square’s NO concentration was higher than the average concentration in Midtown. But when Times Square went car-free, the NO concentration fell to below the Midtown average.
 
+<div aria-hidden="true">
 {{< datawrapper title="Nitric Oxide in a car-free Times Square" src="Un0yG/1/" height="450" >}}
+</div>
+
+<div class="sr-only">
+<div style="min-height:473px" id="datawrapper-vis-Hb6ua"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/Hb6ua/embed.js" charset="utf-8" data-target="#datawrapper-vis-Hb6ua"></script><noscript><img src="https://datawrapper.dwcdn.net/Hb6ua/full.png" alt="In summer 2009: Times Square went car-free, and Nitric oxide, a pollutant that mostly comes from car emissions, fell from 135 parts per billion in spring 2009, to 30 parts per billion that summer. " /></noscript></div>
+</div>
 
 ### NO went down. Did other pollutants?
 
@@ -61,7 +74,13 @@ Next, let’s look at PM2.5. This pollutant comes from traffic emissions, but it
 
 In winter 2008, Times Square’s PM2.5 was a little bit higher than the Midtown average.
 
+<div aria-hidden="true">
 {{< datawrapper title="PM2.5 in a car-free Times Square" src="xBWEn/1/" height="450" >}}
+</div>
+
+<div class="sr-only">
+<div style="min-height:473px" id="datawrapper-vis-4Ryy6"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/4Ryy6/embed.js" charset="utf-8" data-target="#datawrapper-vis-4Ryy6"></script><noscript><img src="https://datawrapper.dwcdn.net/4Ryy6/full.png" alt="" /></noscript></div>
+</div>
 
 Unlike NO, the PM2.5 concentration in Times Square didn’t change much. That’s because there are a lot more sources of PM2.5 in the area – like buildings.
 

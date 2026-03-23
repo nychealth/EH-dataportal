@@ -16,7 +16,7 @@ const renderDisparitiesChart = async (
 
     console.log("** renderDisparitiesChart");
 
-    document.getElementById('viewDescription').innerHTML = 'View scatterplots, correlations, and disparities.'
+    document.getElementById('viewDescription').innerHTML = 'Hover on points for more information.'
     document.getElementById('correlateHolder').classList.add('hide')
 
 
@@ -43,9 +43,10 @@ const renderDisparitiesChart = async (
 
     // console.log(primaryMetadata[0])
 
-    var subtitle;
+    let subtitle;
 
     let primaryDisplay;
+    
     if (primaryMeasurementType.includes('Percent') || primaryMeasurementType.includes('percent') && !primaryMeasurementType.includes('percentile')) {
         primaryDisplay = '%' // assigns a % displayType for anything that includes percent (but NOT percentile) in its measurementType
         subtitle = primaryMeasurementType
@@ -73,14 +74,9 @@ const renderDisparitiesChart = async (
     // put metadata into fields
     // ----------------------------------------------------------------------- //
 
-    const disparityIndicatorId     = disparityIndicator[0]?.IndicatorID
     const disparityIndicatorName   = disparityIndicator[0]?.IndicatorName
-
     const disparityMeasurementType = disparityMetadata[0]?.MeasurementType
     const disparityMeasureName     = disparityMetadata[0]?.MeasureName
-    // const disparityMeasureId       = disparityMetadata[0]?.MeasureID
-    const disparityDisplay         = disparityMetadata[0]?.DisplayType;
-
     const disparitySources         = disparityMetadata[0]?.Sources
     const disparitysAbout          = disparityMetadata[0]?.how_calculated
 
@@ -103,7 +99,6 @@ const renderDisparitiesChart = async (
         
         const myrng = new Math.seedrandom(primaryMeasureId)
         
-        // await loaddisparityData(disparityMetadata, disparityIndicatorId)
         let aqDisparityData = await createJoinedLinksData(primaryMeasureId, disparityMeasureId)
             .then(res => {
 
@@ -135,14 +130,6 @@ const renderDisparitiesChart = async (
 
     // console.log("primaryTime", primaryTime);
     // console.log("disparityTime", disparityTime);
-
-    // ----------------------------------------------------------------------- //
-    // get min value for adjusting axis
-    // ----------------------------------------------------------------------- //
-
-    // let aqData = aq.from(disparityData);
-    // let median = aqData.array("median");
-    // let medianMin = Math.min.apply(null, median);
 
     // ----------------------------------------------------------------------- //
     // get unique unreliability notes (dropping empty)
@@ -346,12 +333,12 @@ const renderDisparitiesChart = async (
 
     vegaEmbed("#links", disspec,{
         actions: {
-          export: { png: false, svg: false },
-          source: false,  
-          compiled: false, 
-          editor: true 
+            export: { png: false, svg: false },
+            source: false,  
+            compiled: false, 
+            editor: true 
         }
-      });
+    });
 
     // set for printing
     printSpec = disspec;

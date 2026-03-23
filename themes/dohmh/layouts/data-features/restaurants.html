@@ -1,0 +1,38 @@
+{{- define "main" -}}
+
+<article class="container-fluid" id="skip-header-target">
+    
+    <div class="row">
+        <div class="col-md-11 mx-auto mt-4">
+            <nav aria-label="breadcrumb" class="mb-4">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="/key-topics/">Key Topics</a></li>
+                    <li class="breadcrumb-item"><a href="..">
+                        {{- with .Parent -}} {{ .Title }} </a></li>{{- end -}}
+                        <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-11 mx-auto">
+                    <h2>{{ .Title }}</h2>
+                    <p>{{ .Content }}</p>
+
+        </div>
+        
+    </div>
+
+    <div class="row">
+        <div class="col-md-11 mx-auto mb-4">
+            <hr class="my-2">
+            <p>Do you work in a restaurant? Is there somehow this page can be more helpful to you? Let us know: <a href="mailto:ehdp@health.nyc.gov">ehdp@health.nyc.gov</a>.</p>
+        </div>
+    </div>
+    
+</article>
+
+{{- end -}}

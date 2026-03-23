@@ -30,7 +30,6 @@ fetch(`${data_repo}${data_branch}/indicators/metadata/metadata.json`)
             loadIndicator(paramId)
             // console.log('param id is set')
 
-            // fetch311(paramId)
         } else {
             // console.log('no param', url.searchParams.get('id'));
             loadIndicator()
@@ -174,8 +173,6 @@ const createComparisonData = async (comps) => {
         
         uniqueIndicatorMeasure.map(async ind => {
 
-            let measures = ind[1].flatMap(m => Object.values(m));
-            
             // get data for an indicator
 
             return aq.loadJSON(`${data_repo}${data_branch}/indicators/data/${ind[0]}.json`)
@@ -324,7 +321,6 @@ const loadIndicator = async (this_indicatorId, dont_add_to_history) => {
     // why are we waiting for this?
 
     if (indicatorComparisonId !== null) {
-        // await fetch_comparisons();
         fetch_comparisons();
     }
 
@@ -430,8 +426,6 @@ const joinData = () => {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
     // create table column header with display type
-
-    let measurementDisplayArray = [];
 
     let MeasureID = [];
     let MeasurementType = [];
@@ -754,7 +748,7 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
     // primary measure metadata
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
-    // get metadata for the selected primary measure, assign to global variable
+    // get metadata for the selected primary measure, assign to global letiable
     // indicatorMeasures created in loadIndicator
 
     let primaryMeasureMetadata = indicatorMeasures.filter(
@@ -792,7 +786,7 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
 
     const secondaryIndicatorId = secondaryIndicator[0]?.IndicatorID
 
-    // get metadata for the selected secondary measure, assign to global variable
+    // get metadata for the selected secondary measure, assign to global letiable
 
     let secondaryMeasureMetadata = secondaryIndicator[0].Measures?.filter(
         measure => measure.MeasureID === secondaryMeasureId
@@ -957,7 +951,6 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
                     aqClosestSecondaryData,
                     [["GeoID", "GeoType"], ["GeoID", "GeoType"]]
                 )
-                // .join_left(timeTable, "TimePeriodID")
 
             // console.log("aqJoinedPrimarySecondaryData [createJoinedLinksData]");
             // aqJoinedPrimarySecondaryData.print()
@@ -1016,7 +1009,7 @@ function draw311Buttons(indicator_id) {
             document.getElementById('311').innerHTML = ''
 
             // since we bring the takeaction partial in 2x on the DE page, we need to do this based on a class instead of an ID.
-            var dest = document.querySelectorAll('.destination311')
+            let dest = document.querySelectorAll('.destination311')
             dest.forEach(element => element.innerHTML = '')
 
             filteredCrosswalk = crosswalk.filter(indicator => indicator.IndicatorID == indicator_id )
@@ -1034,9 +1027,9 @@ function draw311Buttons(indicator_id) {
 
             // draws 311 buttons
             for (let i = 0; i < filteredCrosswalk.length; i ++ ) {
-                var title = filteredCrosswalk[i].topic
-                var destination = filteredCrosswalk[i].kaLink
-                var btn = `<a href="https://portal.311.nyc.gov/article/?kanumber=${destination}" class="mr-1" target="_blank" rel="noopener noreferrer">${title}</a>| `
+                let title = filteredCrosswalk[i].topic
+                let destination = filteredCrosswalk[i].kaLink
+                let btn = `<a href="https://portal.311.nyc.gov/article/?kanumber=${destination}" class="mr-1" target="_blank" rel="noopener noreferrer">${title}</a>| `
                 dest.forEach(element => element.innerHTML += btn)
             }
     })

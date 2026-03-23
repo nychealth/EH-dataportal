@@ -1,5 +1,84 @@
 {{- define "main" -}}
 
+<style>
+    .card-header {
+        padding: 0.5rem 0.5rem; 
+        background: white!important;
+    }
+
+    .card-header a {
+        color: black;
+        text-decoration: none;
+    }
+
+    .report-section {
+        border-top: 5px solid #008939!important;
+    }
+
+    .card-header:hover {
+        background-color: #EFFAF4 !important;
+        text-decoration: none;
+    }
+
+    .card-header .btn:hover {
+        text-decoration: none;
+    }
+
+    .comp-good::before {
+    content: "✅ ";
+    }
+
+    .better-sm::before {
+    content: "✅ ";
+    }
+
+    .comp-bad::before {
+    content: "‼️ ";
+    }
+
+    .worse-sm::before {
+    content: "‼️ ";
+    }
+
+    .comp-null::before {
+    content: "⚪ ";
+    }
+
+    .middle-sm::before {
+    content: "⚪ ";
+    }
+
+    .no-bullets li {
+        list-style:none;
+        padding-left: 0px;
+    }
+
+    .card-body-no-top {
+        padding-top: 0px!important;
+        padding-left: 12px!important;
+    }
+
+    .leading-sm {
+        line-height: 105%;
+        font-size: small
+    }
+
+    @media print {
+        .col-print-12 {
+            max-width: 100%;
+            flex: 0 0 100%;
+        }
+    }
+
+</style>
+
+
+{{- /* ==== qrcode ==== */}}
+
+{{- $qrcode := resources.Get "node_modules/qrcode-generator/dist/qrcode.js" | partial "short-fingerprint.html" }}
+<script src="{{ $qrcode.RelPermalink }}" integrity="{{ $qrcode.Data.Integrity }}" crossorigin="anonymous"></script>
+
+
 {{- /* ==== get topics and measures for this report ==== */}}
 
 {{- $report_topics := ( index ( index $.Site.Data.globals.NR_content $.Params.content_yml) "report_topics" ) -}}
@@ -26,7 +105,7 @@
 
     const getURL = async (indID, dataname) => {
 
-        // console.log("getURL:", indID);
+        console.log("getURL:", indID, dataname);
 
         let thisTopic = '';
         let topicArray = [];
@@ -44,8 +123,8 @@
                 thisTopic = y
                 // console.log('topic is: ' + ind + ": " + thisTopic)
                 URL = {{ relURL "data-explorer/" }} + thisTopic + "/?id=" + ind; // creates URL
-                document.getElementById(dataname).style.display = "block";
-                document.getElementById(dataname).href = URL; // sends it to unique ID - Get the Dataset button
+                document.getElementById(indID).style.display = "inline-block";
+                document.getElementById(indID).href = URL; // sends it to unique ID - Get the Dataset button
 
                 return
 
@@ -122,99 +201,198 @@
 {{- $report_filename := .File.BaseFileName -}}
 
 
-<div class="d-flex flex-column report-header d-print-none">
-
-    <!-- Toggle #sidebar-nav on mobile -->
-    <div class="container-fluid p-0 d-lg-none">
-        <div>
-            <div class="btn-toggle">
-                <button class="btn btn-block btn-lg btn-primary shadow" data-toggle="collapse"
-                    data-target="#sidebar-nav" aria-expanded="false" aria-controls="sidebar-nav">
-                    <span class="title">Reports</span>
-                </button>
-            </div>
-        </div>
-    </div>
-
-</div>
-
 <section class="container-fluid" id="skip-header-target" data-pagefind-ignore="all">
 
     <div class="row">
-        <div class="col-lg-10 mx-auto col-12">
-            <nav aria-label="breadcrumb" class="mt-2 mb-3">
+        <div class="col-lg-12 mx-auto col-12">
+            <nav aria-label="breadcrumb" class="mt-2 mb-3 d-print-none">
                 <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
+                    <li class="breadcrumb-item d-none d-sm-block"><a href={{ relURL "" }}>Home</a></li>
                     <li class="breadcrumb-item"><a href={{ relURL "neighborhood-reports" }}>Neighborhood Reports</a></li>
-                    <li class="breadcrumb-item"><a href=".." id="neighbLink">{{ $.Params.neighborhood }}</a></li>
-                    <li class="breadcrumb-item active"><a href="{{ .RelPermalink }}">{{ $.Params.title }}</a></li>
+                    <li class="breadcrumb-item"><a href="../" id="neighbLink">{{ $.Params.neighborhood }}</a></li>
+                    <li class="breadcrumb-item active d-none d-sm-block"><a href="{{ .RelPermalink }}">{{ $.Params.title }}</a></li>
                 </ul>
             </nav>
 
-            <h1 class="report-title border-bottom mt-4">{{ $.Params.title }} in
-                <span class="sub-title">{{ $.Params.neighborhood }}</span>
-            </h1>
-
-            <p class="report-description fs-lg mt-2 mb-4">{{ $.Params.summary }}</p>
-
+            <!-- MOBILE TITLE --> 
+            <div class="row d-md-none">
+                <div class="col-12 mb-2">
+                    <h1 class="h2">{{ $.Params.title }} <span style="font-weight:normal">in</span></h1>
+                        <span class="h2 sub-title text-primary">{{ $.Params.neighborhood }}</span>
+                </div>
+            </div>
 
             <div class="row">
-                <div class="col-md-9 h-100 col-print-12">
+                <div class="col-md-4 d-print-none">
+                    <div class="border" style="height: 450px; width:100%">
+                        {{ partial "nr-leaflet" . }}
+                        
+                    </div>
 
-                <!-- REPORT CONTENT -->
-                <div class="row">
-                    <div class="col-12">
-                        <div>
+                    <div class="fs-md my-1">
+                        <span style="font-weight:bold;color:darkslategrey">ZIP Codes:</span> {{ partial "nr-insert-zips" . }}
+                    </div>
 
-                            {{- range $index, $rt := $report_topics -}}
 
-                                <div class="report-topic">
+                    <div class="report-section card-body-no-top my-2">
 
-                                    <div class="topic-header">
-                                        <h2>
-                                            {{- $rt.report_topic -}} {{- /*  from YAML  */}}
-                                        </h2>
-                                        <p>
-                                            {{- $rt.report_topic_description -}} {{- /*  from YAML  */}}
-                                        </p>
-                                    </div>
+                        <table class="table fs-sm" style="color:darkslategrey">
+                        <thead class="sr-only">
+                        <tr>
+                            <th>Metric</th>
+                            <th>Value</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                            <td><strong>Population</strong></td>
+                            <td id="popPrint" class="text-right">XX,XXX</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Over age 65</strong></td>
+                            <td id="oldPrint" class="text-right">YY%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Under age 18</strong></td>
+                            <td id="youngPrint" class="text-right">YY%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Poverty</strong></td>
+                            <td id="povPrint" class="text-right">YY%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Graduated high school</strong></td>
+                            <td id="gradPrint"  class="text-right">YY%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Limited English</strong></td>
+                            <td id="engPrint"  class="text-right">YY%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Owner-occupied homes</strong></td>
+                            <td id="ownPrint"  class="text-right">YY%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Rent-burdened households</strong></td>
+                            <td id="rentPrint" class="text-right">YY%</td>
+                        </tr>
+                        </tbody>
+                        </table>
+                        <span class="fs-xs" style="color:darkslategray;"><strong>Source:</strong> American Community Survey (2019-2023) </span>
 
-                                    <div class="container-fluid px-0 mb-4">
+                    </div>
 
-                                        <!-- Hide on print -->
+                    <hr class="my-2">
+                            <div class="asidebox m-2 pxy-2 text-muted">
+                            <strong>Indicator rankings</strong>
+                            <p class="leading-sm">For each dataset, we divide neighborhoods up into <strong>tertiles</strong>, or thirds. This provides a rough comparison of this neighborhood, to all other NYC neighborhoods, for this indicator.</p>
 
-                                        <div class="row indicator-headings mb-2 d-print-none">
-                                            <div class="col-6 col-md-5 pl-3">
-                                                Topic
-                                            </div>
-                                            <div class="col-6 col-md-4">
+                            <div class="row no-gutters">
+                                <div class="col-4 mr-auto fs-xs" style="line-height: 100%">
+                                    <strong>Lower</strong>: for that dataset, the neighborhood is in the lowest third of all neighborhoods.
+                                </div>
+                                <div class="col-4 ml-auto fs-xs" style="line-height: 100%;">
+                                    <strong>Higher</strong>: for that dataset, the neighborhood is in the upper third of all neighborhoods. </div>
+                            </div>
+                            <img class="my-1" src="{{ .Site.BaseURL }}images/edited_tertile.jpg" style="width:100%" alt="An example bar chart. The one-third of neighborhoods with the lowest values are labelled Lower. The one-third of neighborhoods with the highest values are labelled Higher.">
 
-                                                <div class="position-relative">
-                                                    <span class="meta">Compared to other neighborhoods<a href="#" data-toggle="modal" data-target="#modal-rank"
-                                                        class="info-modal meta"><i class="fas fa-question-circle fs-rg ml-1"></i> </span></a>
+                            <p class="leading-sm"><span class="fs-xs">These are only based on the distribution of data values, not the range. The absolute values of indicators in different categories may not be all that different.</span></p>
 
-                                                </div>
+                            </div>
 
-                                            </div>
-                                            <div class="d-none d-md-inline col-md-3">
-                                                <span class="meta">All neighborhoods</span>
-                                            </div>
-                                        </div>
+                </div>
 
-                                        <!-- Only show on print -->
+                <div class="col-md-8 col-print-12">
+                    <div class="row no-gutters d-print-none">
+                        <div class="col-sm mb-2 mr-1 mb-lg-0">
+                        <button class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 output-topic-button" dest="Active" id="Active">Active design</button>
+                        </div>
+                        <div class="col-sm mb-2 mr-1 mb-lg-0">
+                        <button class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 output-topic-button" dest="Asthma" id="Asthma">Asthma</button>
+                        </div>
+                        <div class="col-sm mb-2 mr-1 mb-lg-0">
+                        <button class="btn btn-sm  btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 output-topic-button" dest="Climate" id="Climate">Climate</button>
+                        </div>
+                        <div class="col-sm mb-2 mr-1 mb-lg-0">
+                        <button class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 output-topic-button" dest="Housing" id="Housing">Housing</button>
+                        </div>
+                        <div class="col-sm mb-2 mr-1 mb-lg-0">
+                        <button class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 output-topic-button" dest="Outdoor" id="Outdoor">Outdoor Air</button>
+                        </div>
+                    </div>
 
-                                        <div class="row indicator-headings mb-2 print-only">
-                                            <div class="col-4 font-weight-bold pl-3">
-                                                Topic
-                                            </div>
-                                            <div class="col-8">
+                    <div class="d-none d-md-block">
+                        <h1 class="h2 mt-3">{{ $.Params.title }} <span style="font-weight:normal">in</span></h1>
+                            <span class="h2 sub-title text-primary">{{ $.Params.neighborhood }}</span>
+                    </div>
 
-                                                <div class="position-relative">
-                                                    <span class="meta">Compared to other neighborhoods</span>
-                                                </div>
+                    <div class="d-md-none my-1">
+                        <strong>{{ $.Params.title }}</strong>
+                    </div>
 
-                                            </div>
-                                        </div>
+                    <hr>
+                    {{ $pagetitle := $.Params.title }}
+                        {{ if in $pagetitle "Asthma" }}
+                            {{ with .Site.GetPage "/neighborhood-reports/Asthma_and_the_Environment.md" }}
+
+                            <p>{{ .Content }}</p>
+                        
+                            {{ end }}
+                        {{ else if in $pagetitle "Active" }}
+                            {{ with .Site.GetPage "/neighborhood-reports/Active_Design_Physical_Activity_and_Health.md" }}
+
+                        <p>{{ .Content }}</p>
+                    
+                            {{ end }}
+                        {{ else if in $pagetitle "Outdoor" }}
+
+                            {{ with .Site.GetPage "/neighborhood-reports/Outdoor_Air_and_Health.md" }}
+
+                        <p>{{ .Content }}</p>
+                    
+                            {{ end }}
+                        {{ else if in $pagetitle "Housing" }}
+                        {{ with .Site.GetPage "/neighborhood-reports/Housing_and_Health.md" }}
+
+                        <p>{{ .Content }}</p>
+                    
+                            {{ end }}
+                        {{ else if in $pagetitle "Climate" }}
+                        {{ with .Site.GetPage "/neighborhood-reports/Climate_and_Health" }}
+
+                        <p>{{ .Content }}</p>
+                    
+                            {{ end }}
+                        {{ else }}
+                            {{ $.Params.summary }}
+                    {{ end }}
+
+                    <div class="d-print-none">
+                        <button onclick="window.print()" class="btn btn-sm btn-report mt-2" target="_blank"><i class="fas fa-print mr-1"></i>Print</button>
+                        <button onclick="downloadData()" class="btn btn-sm btn-report mt-2" target="_blank"><i class="fa fa-download mr-1"></i>Download <span class="sr-only">(opens in a new tab)</span></button>
+                    </div>
+
+
+                    <!-- Revised, programmatic output -->
+                    {{- range $index, $rt := $report_topics -}}
+                        {{ $accordionIndex := $index }}
+                        
+                        <div class="accordion my-4 report-section pt-2 border-left border-right border-bottom" id="accordion-{{ $index }}">
+
+                            <div class="px-2 pb-2">
+                                <h3 class="h4 fs-rg">
+                                    <!-- Print report_topic in sentence case --> 
+                                    {{- $lower := lower $rt.report_topic -}}
+                                    {{- $first := upper (substr $lower 0 1) -}}
+                                    {{- $rest := substr $lower 1 -}}
+                                    {{- printf "%s%s" $first $rest -}}
+
+                                </h3>
+                                <p class="fs-sm">
+                                    {{- $rt.report_topic_description -}}
+                                </p>
+                            </div>
+
 
                                         {{- /*  filter measures for this topic  */}}
 
@@ -248,68 +426,59 @@
 
                                             {{- $count := add $index 1 -}}
 
-                                            {{- partial "nr-indicator.html" (dict "neighborhood" $.Params.neighborhood "borough" $row.borough_name "data" $row "count" $count) -}}
+                                            {{- partial "nr-indicator-new.html" (dict "neighborhood" $.Params.neighborhood "borough" $row.borough_name "data" $row "count" $count "accordionIndex" $accordionIndex "index" $index  ) -}}
 
                                         {{- end -}}
 
                                         {{ $zip_codes =  index $neighborhood_topic_data 0 "zip_code" -}}
 
-                                    </div>
-                                    <!-- .container -->
+                        
+                        </div>
 
-                                </div>
-                                <!-- .report-topic -->
+                    {{- end -}}
 
-                            {{- end -}}
 
+
+                    {{/*  adding QR code to print version  */}}
+
+                    <div class="row print-only">
+                        <div class="col-12">
+                            <p class="text-center">View this report online:</p>
+                        </div>
+                    </div>
+
+                    <div class="row print-only">
+                        <div class="col-12">
+
+                            <div id="qrcode" class="text-center">
+
+                                <script>
+
+                                    let qr = qrcode(10, "M");
+
+                                    qr.addData(location.href);
+                                    qr.make();
+
+                                    document.getElementById('qrcode').innerHTML = qr.createImgTag();
+                                    
+                                </script>
+                            
+                            </div>
                         </div>
 
                     </div>
-                </div>
-                <!-- .narrow -->
-
-                </div>
-
-                <!-- NAV RIGHT SIDEBAR -->
-                <div class="col-md-3 h-100 d-print-none">
-                    <div class="border mb-2 nr-map-highlight" style="height: 100%">
-                        <div class="p-1">
-                            <p><strong style="color:#00923E">{{ $.Params.neighborhood }}</strong> includes ZIP Codes:
-                                <span class="home-label font-weight-bold" id="zips">
-
-                                    {{- /*  insert zip code  */}}
-
-                                    {{- $zipCodesString := replace $zip_codes "," ", " -}}
-
-                                    {{- print $zipCodesString -}}
-
-                                </span>.
-                            </p>
-                        </div>
-
-                        {{- partial "nr-map-highlight" . -}}
-
-                    </div>
-
-                    <nav role="navigation">
-                        <div class="">
-
-                            {{- partial "nr-sub_nav" (dict  "neighborhood_dir" $neighborhood_dir  "report_filename" $report_filename) -}}
-                        </div>
-                    </nav>
-
-                    <hr class="my-2">
-                    <button onclick="window.print()" class="btn btn-sm btn-block btn-report mt-2" target="_blank"><i class="fas fa-print mr-1"></i>Print Report</button>
-
-                    <button onclick="downloadData()" class="btn btn-sm btn-block btn-report mt-2" target="_blank"><i class="fa fa-download mr-1"></i>Download Report Data <span class="sr-only">(opens in a new tab)</span></button>
-
-
 
                 </div>
             </div>
-    <!-- .row -->
+
+            {{ partial "nr-report-footer-sm" . }}
 
 
+
+
+
+
+        <!-- .row -->
         </div>
 
 
@@ -340,8 +509,6 @@
             // console.log("arqTable", arqTable);
 
         })
-
-
 
         // set data download location
         let reportData;
@@ -375,72 +542,11 @@
 
 </section>
 
-{{- /* Make sure we know what report content to load and that content_yml is set. If not we dont display the content */}}
 
-{{- if $.Params.content_yml -}}
-
-{{- /* Variable to load the the data file from the content_yml frontmatter */}}
-
-{{- $content := index $.Site.Data.globals.NR_footer $.Params.content_yml -}}
-
-<section class="related-reading d-print-none" data-pagefind-ignore="all">
-    <div class="container">
-        <div class="row">
-
-            <div class="col-lg">
-                <div class="card bg-white text-black mb-2">
-                    <div class="card-header">What is the City doing?</div>
-                    <div class="card-body">
-                        <ul class="list-group list-group-flush">
-                            {{- range $content.city -}}
-                            <li class="list-group-item border-0 py-1 bg-transparent">{{ if .link }}<a
-                                href="{{ .link }}">{{- end -}}{{ .copy }}{{ if .link }}</a>{{- end -}}</li>
-                                {{- end -}}
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <!-- .col for city -->
-
-            <div class="col-lg">
-                <div class="card bg-white text-black mb-2">
-                    <div class="card-header">What can you do?</div>
-                    <div class="card-body">
-                        <ul class="list-group list-group-flush">
-                            {{- range $content.you -}}
-                            <li class="list-group-item border-0 py-1 bg-transparent">{{ if .link }}<a
-                                href="{{ .link }}">{{- end -}}{{ .copy }}{{ if .link }}</a>{{- end -}}</li>
-                                {{- end -}}
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <!-- .col for you -->
-
-            <div class="col-lg">
-                <div class="card bg-white text-black">
-                    <div class="card-header">More NYC neighborhood data</div>
-                    <div class="card-body">
-                        <ul class="list-group list-group-flush">
-                            {{- range $content.data -}}
-                            <li class="list-group-item border-0 py-1 bg-transparent">{{ if .link }}<a
-                                href="{{ .link }}">{{- end -}}{{ .copy }}{{ if .link }}</a>{{- end -}}</li>
-                                {{- end -}}
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <!-- .col for data -->
-
-            <!-- .row -->
-        </div>
-    </div>
-</section>
-{{- end -}}
 
 <!-- Modal-Rank -->
 <div class="modal fade report-modal" id="modal-rank" tabindex="-1" role="dialog" aria-labelledby="rankModalLabel"
-aria-hidden="true" data-pagefind-ignore="all">
+     aria-hidden="true" data-pagefind-ignore="all">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -450,22 +556,14 @@ aria-hidden="true" data-pagefind-ignore="all">
                 </button>
             </div>
             <div class="modal-body">
-                <p>Each indicator is placed in one of three categories:</p>
-                <ul>
-                    <li class="mb-2"><span class="better">Better</span></li>
-                    <li class="mb-2"><span class="middle">Middle</span></li>
-                    <li><span class="worse">Worse</span></li>
-                </ul>
-                <p>This shows us how the neighborhood compares to other NYC neighborhoods, if you ranked all of the NYC
-                    neighborhoods based on this indicator.</p>
-                <ul>
-                    <li><strong>Better:</strong> in the top 1/3rd of all NYC neighorhoods.</li>
-                    <li><strong>Middle:</strong> it's close to the NYC median - ranking somewhere in the middle third of
-                        all neighborhoods.</li>
-                        <li><strong>Worse:</strong> in the bottom 1/3rd of NYC neighborhoods.</li>
-                </ul>
+                <p>For each dataset, we divide neighborhoods up into <strong>tertiles</strong>, or thirds.</p>
+                <p><strong>Higher</strong> means that for that dataset, the neighborhood is in the lowest third of all neighborhoods. </p>
+                <p><strong>Lower</strong> means that for that dataset, the neighborhood is in the lowest third of all neighborhoods.</p>
+
                 <p>These are only based on the distribution of data values, not the range. The absolute values of
                     indicators in different categories may not be all that different.</p>
+
+                <img src="{{ .Site.BaseURL }}images/tertile-example.png" style="width:100%" alt="An example bar chart. The one-third of neighborhoods with the lowest values are labelled Lower. The one-third of neighborhoods with the highest values are labelled Higher.">
 
             </div>
             <!-- .modal-body -->
@@ -476,18 +574,285 @@ aria-hidden="true" data-pagefind-ignore="all">
     </div>
 </div>
 
+<!-- HANDLE TOPIC BUTTONS output-topic-button -->
+<script>
 
-{{- $js := resources.Get "js/uhflist.js" -}}
-{{ $secureJS := $js | resources.Fingerprint "sha512" }}
-<script type="text/javascript" src="{{ $secureJS.RelPermalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
+// FIRST, APPLY ACTIVE CLASS TO THE BUTTON FOR THE CHOSEN REPORT
+console.log('**getting report topic')
 
-<script type="text/javascript">
-    // get report path relative to section starting with "neighborhood-reports"
-    let thisURL = window.location.pathname.match(/neighborhood-reports.*/)
-    let thisNeighb = thisURL[0].split("/")[1]; // get this neighborhood
-    let report = thisURL[0].split("/")[2]; // get this report
-    reportURL = '/' + report // get URL extension
+    // look up matching key from topicSlugs
+    let matchingKey = null;
+
+    for (const [key, value] of Object.entries(topicSlugs)) {
+    if (value === chosenReport) {
+        matchingKey = key;
+        break;
+    }
+    }
+
+    document.getElementById(matchingKey).classList.add('active')
+
+// NOW, ADD EVENT LISTENER TO BUTTONS - AND REDIRECT ON CLICK
+const buttons = document.querySelectorAll('.output-topic-button');
+
+buttons.forEach(button => {
+    button.addEventListener('click', () => {
+        console.log('button clicked for: ', button.id)
+
+        // change URL destination in a way that matches topicSlugs 
+        const reportDestination = topicSlugs[button.id] || null;
+
+        // assemble new url
+        const pageURL = window.location.pathname.match(/neighborhood-reports.*/)[0]
+        var urlParts = pageURL.split('/')
+
+            urlParts.pop();
+            urlParts.pop();
+            console.log(urlParts)
+
+        var newURL = `{{ .Site.BaseURL }}` + urlParts[0] + '/' + urlParts[1] + '/' + reportDestination + '/'
+        console.log(newURL)
+
+        window.location.href = newURL
+
+    });
+});
+
 
 </script>
+
+
+
+
+
+<!-- RENDER MAP, RENDER DEMOGRAPHICS -->
+<script>
+   $(document).on('shown.bs.collapse', '.collapse', function (e) {
+    console.log('Any accordion opened:', e.target.id);
+  });
+
+
+
+const renderNRMap = (
+    data,
+    destination,
+    legendLabel,
+    indicatorTitle,
+    geocode
+) => {
+
+    console.log('running renderNRMap in ', destination)
+
+    let mapSpec = {
+        "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+        "title": {
+            "text": '',
+            "subtitlePadding": 10,
+            "fontWeight": "bold",
+            "anchor": "start",
+            "fontSize": 14,
+            "font": "sans-serif",
+            "baseline": "top",
+            "subtitle": '',
+            "subtitleFontSize": 13
+        },
+        "data": {
+            "values": data,
+            "format": { "parse": { "Value": "number" } }
+        },
+        "config": {
+            "concat": { "spacing": 20 },
+            "view": { "stroke": "transparent" },
+            "axisY": { "domain": false, "ticks": false, "labelBaseline": "bottom" },
+            "legend": { "disable": true },
+            "scale": { "invalid": { "color": { "value": "#808080" } } }
+        },
+        "projection": { "type": "mercator" },
+        "transform": [{ "calculate": "datum.DisplayValue + ' %'", "as": "valueLabel" }],
+        "vconcat": [
+            {
+                "layer": [
+                    {
+                        "height": 350,
+                        "width": "container",
+                        "data": {
+                            "url": "https://raw.githubusercontent.com/nychealth/EHDP-data/production/geography/borough.topo.json",
+                            "format": { "type": "topojson", "feature": "collection" }
+                        },
+                        "mark": {
+                            "type": "geoshape",
+                            "stroke": "#fafafa",
+                            "fill": "#C5C5C5",
+                            "strokeWidth": 0.5
+                        }
+                    },
+                    {
+                        "height": 350,
+                        "width": "container",
+                        "data": {
+                            "url": "https://raw.githubusercontent.com/nychealth/EHDP-data/production/geography/UHF42.topo.json",
+                            "format": { "type": "topojson", "feature": "collection" }
+                        },
+                        "mark": {
+                            "type": "geoshape",
+                            "stroke": "#a2a2a2",
+                            "fill": "#e7e7e7",
+                            "strokeWidth": 0.5
+                        }
+                    },
+                    {
+                        "height": 350,
+                        "width": "container",
+                        "mark": { "type": "geoshape", "invalid": null },
+                        "params": [
+                            {
+                                "name": "highlight",
+                                "select": {
+                                    "type": "point",
+                                    "on": "mouseover",
+                                    "clear": "mouseout"
+                                }
+                            }
+                        ],
+                        "transform": [
+                            {
+                                "lookup": "geo_join_id",
+                                "from": {
+                                    "data": {
+                                        "url": "https://raw.githubusercontent.com/nychealth/EHDP-data/production/geography/UHF42.topo.json",
+                                        "format": { "type": "topojson", "feature": "collection" }
+                                    },
+                                    "key": "properties.GEOCODE"
+                                },
+                                "as": "geo"
+                            }
+                        ],
+                        "encoding": {
+                            "shape": { "field": "geo", "type": "geojson" },
+                            "color": {
+                                "bin": false,
+                                "field": "unmodified_data_value_geo_entity",
+                                "type": "quantitative",
+                                "scale": { "scheme": { "name": "viridis", "extent": [1, 0] } },
+                                "legend": {
+                                    "direction": "horizontal",
+                                    "orient": "top-left",
+                                    "title": legendLabel,
+                                    "fontWeight": "normal",
+                                    "tickCount": 3,
+                                    "offset": -25,
+                                    "gradientLength": 200
+                                }
+                            },
+                            "order": {
+                                "condition": {
+                                    "test": `datum.geo_join_id == ${geocode}`,
+                                    "value": 1
+                                },
+                                "value": 0
+                            },
+                            "stroke": {
+                                "condition": {
+                                    "test": `datum.geo_join_id == ${geocode}`,
+                                    "value": "cyan"
+                                },
+                                "value": "#2d2d2d"
+                            },
+                            "strokeWidth": {
+                                "condition": {
+                                    "test": `datum.geo_join_id == ${geocode}`,
+                                    "value": 2.5
+                                },
+                                "value": 0.5
+                            },
+                            "tooltip": [
+                                { "field": "neighborhood", "title": "Neighborhood", "type": "nominal" },
+                                { "field": "unmodified_data_value_geo_entity", "title": legendLabel, "type": "quantitative" }
+                            ]
+                        }
+                    }
+                ]
+            },
+            {
+                "height": 100,
+                "width": "container",
+                "config": { "axisY": { "labelAngle": 0, "labelFontSize": 13 } },
+                "mark": { "type": "bar", "tooltip": true, "stroke": "#161616" },
+                "params": [
+                    {
+                        "name": "highlight",
+                        "select": { "type": "point", "on": "mouseover", "clear": "mouseout" }
+                    }
+                ],
+                "encoding": {
+                    "y": {
+                        "field": "unmodified_data_value_geo_entity",
+                        "type": "quantitative",
+                        "title": null,
+                        "axis": { "labelAngle": 0, "labelFontSize": 11, "tickCount": 3 }
+                    },
+                    "tooltip": [
+                        { "field": "neighborhood", "title": "Neighborhood", "type": "nominal" },
+                        { "field": "unmodified_data_value_geo_entity", "title": legendLabel, "type": "quantitative" }
+                    ],
+                    "x": { "field": "geo_join_id", "sort": "y", "axis": null },
+                    "color": {
+                        "bin": false,
+                        "field": "unmodified_data_value_geo_entity",
+                        "type": "quantitative",
+                        "scale": { "scheme": { "name": "viridis", "extent": [1, 0] } },
+                        "legend": false
+                    },
+                    "order": {
+                        "condition": {
+                            "test": `datum.geo_join_id == ${geocode}`,
+                            "value": 1
+                        },
+                        "value": 0
+                    },
+                    "stroke": {
+                        "condition": {
+                            "test": `datum.geo_join_id == ${geocode}`,
+                            "value": "cyan"
+                        },
+                        "value": "#2d2d2d"
+                    },
+                    "strokeWidth": {
+                        "condition": {
+                            "test": `datum.geo_join_id == ${geocode}`,
+                            "value": 2.5
+                        },
+                        "value": 0
+                    }
+                }
+            }
+        ]
+    }
+
+    vegaEmbed(destination, mapSpec, { actions: true })
+}
+
+    
+   function renderDemographics(x,y) {
+        const here = x.filter((neighb) => neighb.UHF_id == y)
+
+        console.log(here[0])
+
+        document.getElementById('popPrint').innerHTML = Number(here[0].TotalPopulation).toLocaleString()
+        document.getElementById('oldPrint').innerHTML = Number(here[0].PercentOver65).toFixed(1) + '%'
+        document.getElementById('youngPrint').innerHTML = Number(here[0].PercentUnder18).toFixed(1) + '%'
+        document.getElementById('povPrint').innerHTML = Number(here[0].PovertyPercent).toFixed(1) + '%'
+        document.getElementById('gradPrint').innerHTML = Number(here[0].PercentGraduatedHighSchool).toFixed(1) + '%'
+        document.getElementById('engPrint').innerHTML = Number(here[0].PercentLimitedEnglish).toFixed(1) + '%'
+        document.getElementById('ownPrint').innerHTML = Number(here[0].PercentOwnerOccupied).toFixed(1) + '%'
+        document.getElementById('rentPrint').innerHTML = Number(here[0].PercentRentBurdened).toFixed(1) + '%'
+
+    }
+
+    renderDemographics(neighborhoods, chosenGeo)
+    // 'neighborhoods' is a variable set in uhflist.js
+
+</script>
+
 
 {{- end -}}

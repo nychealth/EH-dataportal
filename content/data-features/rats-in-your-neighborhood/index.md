@@ -2,7 +2,7 @@
 title: "Rats in your neighborhood"
 date: 2025-03-31T11:14:56-04:00
 draft: false
-seo_title: "Rats in your neighborhood | Environment and Health Data Portal"
+seo_title: "Rats in your neighborhood"
 seo_description: "Look up rat inspection data for your address."
 description: "Look up rat inspection data for your address."
 tags:
@@ -14,12 +14,13 @@ image: rmz-ss.png
 related:
   - title: "Rat Mitigation Zones"
     url: "data-features/rat-mitigation-zones"
-  - title: "Data: mice and rats"
-    url: "data-explorer/mice-and-rats/"
+  - title: "Inspection data are the key to controlling NYC’s rats"
+    url: "data-stories/rat-inspections/"
   - title: "Rat Information Portal"
-    url: "data-features/rat-portal/"
+    url: "data-features/rat-information-portal/"
 weight: 1
-blurb: "Rat inspections for each property, and neighborhood-level rat data."  
+blurb: "Rat inspections for each property, and neighborhood-level rat data."
+aboutTheData: 'Data on rat inspections by neighborhood come from the Veterinary, Rodent, and Vector Surveillance System. <a href="../rat-mitigation-zones">Learn more about Rat Mitigation Zones</a> and <a href="../rat-information-portal">Get detailed inspection results</a>.'
 ---
 
 What's going on with rats in your neighborhood, what's being done to fight them, and how can you help?

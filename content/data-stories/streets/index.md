@@ -6,8 +6,25 @@ draft: false
 seo_title: "The road to street safety in NYC"
 seo_description: "A data story on safety for pedestrians and cyclists."
 tags:
-categories: ["publicspace","healthoutcomes","neighborhoods","injuryandviolence"]
-keywords: ["transportation","built environment","streets","cycling", "biking", "active design","injuries","fatalities","roads","safety","bike lanes","cycle lanes","hospitalizations","emergency department visits"]
+categories:
+  ["publicspace", "healthoutcomes", "neighborhoods", "injuryandviolence"]
+keywords:
+  [
+    "transportation",
+    "built environment",
+    "streets",
+    "cycling",
+    "biking",
+    "active design",
+    "injuries",
+    "fatalities",
+    "roads",
+    "safety",
+    "bike lanes",
+    "cycle lanes",
+    "hospitalizations",
+    "emergency department visits",
+  ]
 image: ds-streets.jpg
 photocredit: "Michael Appleton/Mayoral Photography Office, City of New York"
 related:
@@ -18,6 +35,10 @@ related:
   - title: "Walking, driving, and cycling"
     url: "data-explorer/walking-driving-and-cycling/?id=2415#display=summary"
 ---
+
+{{< updateflag data=`[
+  {"src": "../../data-explorer/transportation-related-injuries/", "text": "Transportation-related injuries"}
+]` >}}
 
 The COVID-19 public health emergency has changed New York City in many ways—including how we get around the city. As the city continues to adapt to COVID-19, New Yorkers will look for ways to get around that feel safe—redistributing transit among different modes to ease crowding and increase safety on public transportation.
 
@@ -46,8 +67,14 @@ What’s behind the very different rates across the five boroughs? By looking at
 
 </div>
 <div class="narrow my-4 border-top border-bottom p-2">
+<div aria-hidden="true">
 <iframe title="Brooklyn has a higher rate of cycling injuries" aria-label="map" id="datawrapper-chart-jDbZr" src="https://datawrapper.dwcdn.net/jDbZr/10/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="727"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}}))}();
 </script>
+</div>
+<div class="sr-only">
+<iframe title="Brooklyn has a higher rate of cycling injuries" aria-label="Table" id="datawrapper-chart-yy7ko" src="https://datawrapper.dwcdn.net/yy7ko/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="970" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+</script>
+</div>
 <iframe title="" aria-label="Table" id="datawrapper-chart-voUs9" src="https://datawrapper.dwcdn.net/voUs9/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="297" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
 </script>
 </div>
@@ -58,12 +85,18 @@ Brooklyn has a higher rate of cyclist injury ED visits and hospitalizations than
 One might expect cycling to carry higher injury risk in areas with more traffic and with more cyclists. The map below shows neighborhoods with high, medium, and low traffic density - measured in vehicle miles travelled.
 
 <div class="my-4 p-2 border-top border-bottom">
+<div aria-hidden="true">
 <iframe title="Manhattan has higher traffic density than Brooklyn"
 aria-label="USA new york city neighborhoods (ntas) choropleth map"
 id="datawrapper-chart-gAERt" src="//datawrapper.dwcdn.net/gAERt/3/"
 scrolling="no" frameborder="0"
 style="width: 0; min-width: 100% !important; border: none;"
 height="531"></iframe>
+</div>
+<div class="sr-only">
+<iframe title="Manhattan has higher traffic density than Brooklyn" aria-label="Table" id="datawrapper-chart-Muxbx" src="https://datawrapper.dwcdn.net/Muxbx/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="873" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+</script>
+</div>
 <script type="text/javascript">!function () { "use strict"; window.addEventListener("message", function (a) { if (void 0 !== a.data["datawrapper-height"]) for (var e in a.data["datawrapper-height"]) { var t = document.getElementById("datawrapper-chart-" + e) || document.querySelector("iframe[src*='" + e + "']"); t && (t.style.height = a.data["datawrapper-height"][e] + "px") } }) }();
 </script>
 </div>
@@ -73,8 +106,14 @@ Overall, _despite_ Manhattan having higher traffic density than Brooklyn, it has
 Now let’s look at the number of cyclists on NYC streets. When we map cycling in New York City, we see a slightly larger percentage of Manhattan adults bicycle at least monthly (19.5%), compared to Brooklyn adults (17.3%).
 
 <div class="my-4 p-2 border-top border-bottom">
+<div aria-hidden="true">
 <iframe title="Cycling rates are higher in Manhattan" aria-label="map" id="datawrapper-chart-QCtIR" src="https://datawrapper.dwcdn.net/QCtIR/4/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="694"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}}))}();
 </script>
+</div>
+<div class="sr-only">
+<iframe title="Cycling rates are higher in Manhattan" aria-label="Table" id="datawrapper-chart-Uu8zR" src="https://datawrapper.dwcdn.net/Uu8zR/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="978" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+</script>
+</div>
 <iframe title="" aria-label="Table" id="datawrapper-chart-CWXON" src="https://datawrapper.dwcdn.net/CWXON/3/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="300" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
 </script>
 </div>
@@ -88,8 +127,14 @@ In public health, we don’t just look at the influence of health behaviors (e.g
 Bicycle network coverage may be a factor influencing NYC injury rates.
 
 <div class="my-4 p-2 border-top border-bottom">
+<div aria-hidden="true">
 <iframe title="Manhattan's bicycle network is denser" aria-label="Map" id="datawrapper-chart-6Iwi2" src="https://datawrapper.dwcdn.net/6Iwi2/5/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="629" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
 </script>
+</div>
+<div class="sr-only">
+<iframe title="Manhattan's bicycle network is denser" aria-label="Table" id="datawrapper-chart-sdrHi" src="https://datawrapper.dwcdn.net/sdrHi/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="829" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+</script>
+</div>
 <iframe title="Bicycle network coverage" aria-label="Table" id="datawrapper-chart-AEeT8" src="https://datawrapper.dwcdn.net/AEeT8/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="300" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
 </script>
 </div>

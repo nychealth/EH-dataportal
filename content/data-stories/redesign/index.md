@@ -12,7 +12,7 @@ keywords:
   - usability
   - redesign
   - user research
-seo_title: Redesigned EH Data Portal | Data story | Environment & Health Data Portal
+seo_title: Redesigned EH Data Portal
 seo_description: "We recently redesigned our site to make it easier for you to find important data and information on how the environment affects health."
 related:
   - title: "Neighborhood boundaries on the EH Data Portal"
@@ -39,11 +39,11 @@ Our site has always aimed to show how environments affect health.&nbsp; Our upda
 
 * Keywords link you to other pages on the similar topics.&nbsp;
 
-![](keywords-screenshot.png)
+![Image of keywords on a data story about the urban heat island effect that help connect content across the site. Some of the keywords listed include "heat", "hot weather" and "housing" ](keywords-screenshot.png)
 
 - Throughout the site, you'll see links to related content. For example: when you're browsing datasets about Air Quality, you'll be able to quickly jump directly to related Data Stories. &nbsp;
 
-![](related-screenshot.png)
+![Image of related content, which could be a data story, feature, or data set that is related to the content displayed. This screenshot shows a related data story called "An update on air quality during COVID-19" ](related-screenshot.png)
 
 - And if you can't find what you're looking for, our re-vamped search function can help you find it.&nbsp;&nbsp;
 
@@ -55,7 +55,7 @@ Our goal is for you to be able to put our data and information to work improving
 
 For example, take a look at our re-vamped [Data Explorer]({{< baseurl >}}data-explorer/). &nbsp;
 
-![](data-explorer-screenshot.png)
+![Image of the data explorer tool, showing a purple map with different concentrations of PM2.5 across New York City.](data-explorer-screenshot.png)
 
 On the page:&nbsp;
 

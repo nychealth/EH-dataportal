@@ -9,7 +9,9 @@ For templates, use descriptive titles that will help us easily identify what som
 
 ## Storing resources like images, data files, PDFs 
 
-If a resource only needs to be accessed by one piece of content, then you can store it in that page’s content folder. If it needs to be accessed by several pieces of content, then you can store it in the /static folder.  
+If a resource only needs to be accessed by one piece of content, then you can store it in that page’s content folder. If it needs to be accessed by several pieces of content, then you can store it in the `/static` folder.  
+
+While most page-level resources can be stored in the page's content folder, HTML files (eg, embeds) should be stored in `/static` or as a partial. 
 
 Storing resources in /assets is rarely necessary – this is for items that Hugo will process during the serve or build.   
 
@@ -19,7 +21,7 @@ We have it enabled to support some layout stuff, but it would be better to avoid
 
 ## Always use relative links  
 
-This will ensure that links work on any environment: local, staging, production. Remember that the code needed to do a relative link from a template is different from what you need to do from a markdown file. 
+This will ensure that links work on any environment: local, staging, production. Remember that the code needed to do a relative link from a template (using `{{ .Site.BaseURL }}`) is different from what you need to do from a markdown file (using the `{{< baseURL >}}` shortcode). 
 
 ## Use web content, not PDFs 
 

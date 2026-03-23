@@ -4,11 +4,24 @@
 
 // console.log('print vis js running')
 
+const el = document.getElementById("printVis");
+
+const ro = new ResizeObserver(() => {
+  updateChartPlotSize();
+});
+
+ro.observe(el);
+
+let view;
+
 // ----------------------------------------------------------------------- //
 // Fire print modal and draw chart on delay
 // ----------------------------------------------------------------------- //
 
-var visWidth;
+let visWidth;
+
+let initialSource = ["Chart: NYC Health Department - Environment and Health Data Portal"];
+
 
 function printModal() {
     $('#printModal').modal('show');
@@ -20,16 +33,17 @@ function printModal() {
 // Draw chart
 // ----------------------------------------------------------------------- //
 
-var wrapLegend = false;
+let wrapLegend = false;
 
 function printViz() {
 
     window.innerWidth < 960 ? wrapLegend = true : wrapLegend = false
 
     chartType === 'trend' ? changeTrendSpec() : {}
-    chartType === 'map' ? changeMapSpec(vizYear) : {}
+    chartType === 'map' ? changeMapSpec(vizYear,vizGeography) : {}
     chartType === 'links' ? changeLinksSpec() : {}
     chartType === 'disparities' ? changeDisparitiesSpec() : {};
+
 
 
     vegaEmbed("#printVis", printSpec, {
@@ -39,7 +53,7 @@ function printViz() {
           compiled: false, 
           editor: true 
         }
-      });
+      })
     
     updateChartPlotSize();
 
@@ -55,11 +69,13 @@ function printViz() {
 
 function changeTrendSpec() {
 
+    printSpec.height = 400
+
     checkSourceLength()
 
-    var sourceArray = ["Chart: NYC Health Department - Environment and Health Data Portal"]
+    let sourceArray = ["Chart: NYC Health Department - Environment and Health Data Portal"]
 
-        if (Array.isArray(vizSource)) {
+    if (Array.isArray(vizSource)) {
           sourceArray.push(...vizSource); // Spread to add each item separately
       } else if (typeof vizSource === "string") {
           sourceArray.push(vizSource); // Add string directly
@@ -69,12 +85,16 @@ function changeTrendSpec() {
     wrapLegend === true ? columns = 3 : columns = 6;
 
     printSpec.layer[1].encoding.color.legend = {
-        "orient": "bottom",
+        "orient": "top",
         "title": null,
-        "columns": columns
+        "columns": columns,
+        "labelFontWeight": "bold",
+        "labelColor": {
+          "expr": "scale('color', datum.label)"
+          }
       }
 
-    var sourceLayer = {
+    let sourceLayer = {
         "description": "layer with source info",
         "mark": {
           "type": "text",
@@ -83,7 +103,7 @@ function changeTrendSpec() {
           "align": "left",
           "baseline": "bottom",
           "dx": 5,
-          "dy": 175
+          "dy": 75
         },
         "data": {
             "values": [{}]  // Use an empty object as a dummy value
@@ -96,7 +116,7 @@ function changeTrendSpec() {
         }
       }
 
-    var modalFootnotes = document.getElementById('modalFootnotes')
+    let modalFootnotes = document.getElementById('modalFootnotes')
 
     modalFootnotes.innerHTML = document.getElementById('trend-unreliability').innerHTML
 
@@ -109,49 +129,75 @@ function changeTrendSpec() {
 // Modify map spec
 // ----------------------------------------------------------------------- //
 
-function changeMapSpec(x) {
-    checkSourceLength()
+function changeMapSpec(x,y) {
+  checkSourceLength();
 
-    var sourceArray = ["Chart: NYC Health Department - Environment and Health Data Portal"]
+  let sourceArray = initialSource;
 
-        if (Array.isArray(vizSource)) {
-          sourceArray.push(...vizSource); // Spread to add each item separately
-      } else if (typeof vizSource === "string") {
-          sourceArray.push(vizSource); // Add string directly
+  console.log(y)
+
+  // Safely add sources only once
+  if (Array.isArray(vizSource)) {
+      const allElementsExist = vizSource.every(item => sourceArray.includes(item));
+      console.log('do all elements exist in this array?', allElementsExist);
+
+      if (!allElementsExist) {
+          vizSource.forEach(item => {
+              if (!sourceArray.includes(item)) {
+                  sourceArray.push(item);
+              }
+          });
       }
+  } else if (typeof vizSource === "string") {
+      if (!sourceArray.includes(vizSource)) {
+          sourceArray.push(vizSource);
+      }
+  }
 
-    printSpec.title.text += ` - ${x}`
+  // Update the title safely
+  if (!printSpec.title.text.includes(x)) {
+      printSpec.title.text += ` - ${x} (${y})`;
+  }
 
-    var sourceLayer =  {
-        "mark": {
-          "type": "text",
-          "fontSize": 11,
-          "fontWeight": "normal",
-          "align": "left",
-          "baseline": "bottom",
-          "dx": 5,
-          "dy": 0
-        },
-        "data": {
-            "values": [{}]  // Use an empty object as a dummy value
+  // Check if a sourceLayer has already been added
+  const sourceLayerExists = printSpec.vconcat.some(layer => {
+      return layer.mark && layer.mark.type === 'text' && layer.encoding && layer.encoding.text && layer.encoding.text.value === sourceArray;
+  });
+
+  if (!sourceLayerExists) {
+      let sourceLayer = {
+          "mark": {
+              "type": "text",
+              "fontSize": 11,
+              "fontWeight": "normal",
+              "align": "left",
+              "baseline": "bottom",
+              "dx": 5,
+              "dy": 0
           },
-        "encoding": {
-          "text": {"value": sourceArray},
-          "x": {"value": 0},
-          "y": {"value": 0},
-          "color": {"value": "gray"}
-        }
-      }
+          "data": {
+              "values": [{}]  // Use an empty object as a dummy value
+          },
+          "encoding": {
+              "text": { "value": sourceArray },
+              "x": { "value": 0 },
+              "y": { "value": 0 },
+              "color": { "value": "gray" }
+          }
+      };
 
-      var modalFootnotes = document.getElementById('modalFootnotes')
+      printSpec.vconcat.push(sourceLayer);
+  }
 
-      modalFootnotes.innerHTML = document.getElementById('map-unreliability').innerHTML
-  
-      modalFootnotes.textContent.length < 8 ? modalFootnotes.classList.add('hide') : {};
+  // Update modal footnotes
+  let modalFootnotes = document.getElementById('modalFootnotes');
+  modalFootnotes.innerHTML = document.getElementById('map-unreliability').innerHTML;
 
-      printSpec.vconcat.push(sourceLayer)
-
+  if (modalFootnotes.textContent.length < 8) {
+      modalFootnotes.classList.add('hide');
+  }
 }
+
 
 // ----------------------------------------------------------------------- //
 // Modify links spec
@@ -160,7 +206,7 @@ function changeMapSpec(x) {
 function changeLinksSpec() {
   checkSourceLength()
 
-  var sourceArray = ["Chart: NYC Health Department - Environment and Health Data Portal"]
+  let sourceArray = ["Chart: NYC Health Department - Environment and Health Data Portal"]
 
       if (Array.isArray(vizSource)) {
         sourceArray.push(...vizSource); // Spread to add each item separately
@@ -170,7 +216,19 @@ function changeLinksSpec() {
 
     sourceArray.push(vizSourceSecond)
 
-    var sourceLayer = {
+
+    printSpec.config.legend = {
+        "orient": "top",
+        "title": null,
+        "labelFontSize": 12,
+        "labelFontWeight": "bold",
+        "labelColor": {
+          "expr": "scale('color', datum.label)"
+          }
+      }
+
+
+    let sourceLayer = {
         "mark": {
           "type": "text",
           "fontSize": 11,
@@ -191,7 +249,7 @@ function changeLinksSpec() {
         }
       }
 
-      var modalFootnotes = document.getElementById('modalFootnotes')
+      let modalFootnotes = document.getElementById('modalFootnotes')
 
       modalFootnotes.innerHTML = document.getElementById('links-unreliability').innerHTML
   
@@ -208,7 +266,7 @@ function changeLinksSpec() {
 function changeDisparitiesSpec() {
     checkSourceLength()
 
-    var sourceLayer = {
+    let sourceLayer = {
         "mark": {
           "type": "text",
           "fontSize": 11,
@@ -232,7 +290,7 @@ function changeDisparitiesSpec() {
         }
       }
 
-      var modalFootnotes = document.getElementById('modalFootnotes')
+      let modalFootnotes = document.getElementById('modalFootnotes')
 
       modalFootnotes.innerHTML = document.getElementById('links-unreliability').innerHTML
   
@@ -244,7 +302,7 @@ function changeDisparitiesSpec() {
 // Deactive Save Button for table
 // ----------------------------------------------------------------------- //
 window.addEventListener('hashchange', function() {
-  var chartbtn = document.getElementById('chartSaver')
+  let chartbtn = document.getElementById('chartSaver')
   currentHash === 'display=summary' ? chartbtn.classList.add('disabled') : chartbtn.classList.remove('disabled')
 });
 

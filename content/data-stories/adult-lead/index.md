@@ -2,20 +2,10 @@
 title: "Lead poisoning affects adults too"
 date: 2023-07-13T08:29:34-04:00
 draft: false
-seo_title: "Lead poisoning affects adults, too."
+seo_title: "Lead poisoning affects adults, too"
 seo_description: "The products that put people at risk of elevated blood lead levels."
 tags:
 categories: ["healthoutcomes", "inequality"]
-keywords:
-  [
-    "lead",
-    "lead poisoning",
-    "employment",
-    "workers",
-    "worker health",
-    "elevated blood lead levels",
-  ]
-tags:
 keywords:
   [
     "lead",
@@ -36,6 +26,10 @@ related:
     url: "data-explorer/lead/?id=2189#display=summary"
 ---
 
+{{< updateflag data=`[
+  {"src": "../../data-explorer/worker-health/?id=2209", "text": "Adult lead poisoning"}
+]` >}}
+
 Lead is a harmful metal that can cause serious health issues. When lead poisoning makes headlines, the focus is usually on children’s health: Kids are at higher risk for lead exposure, which can cause developmental, learning and behavior issues.
 
 But lead can also harm adults. In adults, lead can cause increased blood pressure, kidney and brain problems, infertility and impotence. During pregnancy, lead exposure can cause miscarriage or babies to be born too soon or too small.
@@ -54,7 +48,13 @@ For example, New York State law requires that health care providers check pregna
 
 </div>
 
-<iframe title="Lead poisoning in NYC adults" class="wide my-4" aria-label="Interactive line chart" id="datawrapper-chart-i7Bgo" src="https://datawrapper.dwcdn.net/i7Bgo/4/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="485" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
+<div class="wide my-4" aria-hidden="true">
+  <iframe title="Lead poisoning in NYC adults" aria-label="Interactive line chart" id="datawrapper-chart-i7Bgo" src="https://datawrapper.dwcdn.net/i7Bgo/4/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="485" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
+</div>
+
+<div class="sr-only">
+  <div style="min-height:750px" id="datawrapper-vis-c7jtG"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/c7jtG/embed.js" charset="utf-8" data-target="#datawrapper-vis-c7jtG"></script><noscript><img src="https://datawrapper.dwcdn.net/c7jtG/full.png" alt="Between 2001-2003 and 2016-2018, annual average lead poisoning rates among adult New Yorkers had fallen from 7.1 per 100,000 workers to 2.1 per 100,000 workers. Staten Island had the highest current annual average at 5.5 and Manhattan had the lowest at 0.7 in 2016-2018." /></noscript></div>
+</div>
 
 <div class="narrow">
 

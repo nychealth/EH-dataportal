@@ -35,8 +35,8 @@ indicators:
 related:
   - title: "Interactive Heat Vulnerability Index"
     url: "data-features/hvi/"
-  - title: "Realtime heat illness"
-    url: "data-stories/heat-syndrome/"
+  - title: "Flood Vulnerability Index"
+    url: "data-features/flood-vulnerability-index/"
   - title: "What Hurricane Ida and Superstorm Sandy taught us about flooding and health"
     url: "data-stories/flooding-and-health/"
 relatedData:

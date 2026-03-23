@@ -5,7 +5,7 @@ aliases:
   - /data-stories/aq2/
 date: 2019-11-25T13:24:52-04:00
 draft: false
-seo_title: "About NYC's air quality, neighborhood by neighborhood."
+seo_title: "About NYC's air quality, neighborhood by neighborhood"
 seo_description: "What our air quality monitors tell us about NYC's neighborhoods."
 tags:
 categories: ["publicspace", "airquality", "neighborhoods"]
@@ -38,6 +38,10 @@ related:
     url: "data-features/realtime-air-quality/"
 ---
 
+{{< updateflag data=`[
+  {"src": "../../data-explorer/air-quality/?id=2023", "text": "seasonal fine particles (PM2.5)"}
+]` >}}
+
 In [Part 1]({{< ref "/data-stories/car-free-zones" >}}), we looked at data from the New York City Community Air Survey (NYCCAS) - a network of about 100 air quality monitors - to see if air quality improves in areas that go car-free. And the answer is yes.
 
 NYCCAS tells us that more traffic means more air pollution nearby. So, even if we don't have a nearby monitor, we can predict that an area that goes car-free (like Park Drive in Prospect Park, for example) sees an improvement in air quality.
@@ -48,7 +52,13 @@ We combine NYCCAS data with other data to make reliable estimates about air qual
 
 For example, when we group neighborhoods based on traffic (high, medium, or low traffic density), we can see that high-traffic neighborhoods have more PM2.5 than medium- and low-traffic neighborhoods.
 
+<div aria-hidden="true">
 {{< datawrapper title="Seasonal PM2.5 concentrations" src="1iDTX/2/" height="400" >}}
+</div>
+
+<div class="sr-only">
+<div style="min-height:426px" id="datawrapper-vis-JA1Yk"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/JA1Yk/embed.js" charset="utf-8" data-target="#datawrapper-vis-JA1Yk"></script><noscript><img src="https://datawrapper.dwcdn.net/JA1Yk/full.png" alt="" /></noscript></div>
+</div>
 
 Interestingly, medium-traffic neighborhoods and low-traffic neighborhoods see similar levels of PM2.5 pollution. Only with high traffic density do we see higher pollution levels. You can also see that PM2.5 is a little higher in the winter and summer for all neighborhoods (regardless of traffic density). Pollution levels vary by season due changes in energy use (heating and cooling), and weather patterns.
 
@@ -58,7 +68,15 @@ NYC's air quality has been improving. Over the last ten years, NYCCAS has shown 
 
 Because the level of PM2.5 varies by season, it can be helpful to look at one season at a time. The chart below shows the average summertime levels of PM2.5. You can see that air quality has gotten better across all neighborhoods, regardless of traffic density.
 
+<div aria-hidden="true">
+
 {{< datawrapper title="Summer PM2.5 concentrations in NYC" src="Dwtb1/2/" height="400" >}}
+
+</div>
+
+<div class="sr-only">
+<div style="min-height:455px" id="datawrapper-vis-ODTtg"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/ODTtg/embed.js" charset="utf-8" data-target="#datawrapper-vis-ODTtg"></script><noscript><img src="https://datawrapper.dwcdn.net/ODTtg/full.png" alt="" /></noscript></div>
+</div>
 
 NYCCAS was designed to record trends like this, and to measure big, broad changes. If we want to make big air quality changes, we’ll need big interventions: create large car-free zones, reduce traffic volume, and place greater restrictions on harmful emissions.
 

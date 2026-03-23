@@ -35,7 +35,7 @@ SECTION-SPECIFIC CARDS WITH SECTION-COLOR ON THE BOTTOM BORDER:
         </a>
         {{- else -}}
         <a class="" href="{{ .RelPermalink }}">
-        <div style="width:100%; height:250px; background-image: URL('{{ .Site.BaseURL }}/images/home-sample-image-DE-5.png'); background-size: cover"></div></a>
+        <div style='width:100%; height:250px; background-image: URL({{ relURL "images/home-sample-image-DE-5.png" }}); background-size: cover'></div></a>
 
         {{- end -}}
 
@@ -188,3 +188,15 @@ Photo attribution caption
     From markdown files, use the baseURL shortcode. 
 
 -->
+
+<!-- Rendering accessible tables -->
+
+{{/* 
+    We have a few partials and shortcodes that can be used to render accessible tables.
+
+    The shortcode 'csvtable.html' is called this way: {{< csvtable src="data/mytable.csv" screenreader="false" >}}
+    This can be used in a data story to render an accessible table. Set screenreader="true" to give it an sr-only class.
+    This shortcode invokes the render-table.html partial (this partial can also be used from templates.
+    Additionally, the render-accessible-table.html partial can be used to do this with Javascript on the client side, rather than at build time. 
+
+*/}}

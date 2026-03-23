@@ -4,9 +4,9 @@ shortTitle: Flooding and health
 date: 2024-06-11T09:01:00-04:00
 draft: false
 seo_title: "What Hurricane Ida and Superstorm Sandy taught us about flooding and health"
-seo_description: "A data story about the health impacts from climate change-related flooding"
+seo_description: "A data story about the health impacts from climate change-related flooding."
 tags:
-categories: ["housing", "inequality", "climate", "neighborhoods"]
+categories: ["housing", "inequality", "climatehealth", "neighborhoods"]
 keywords:
   [
     "flooding",
@@ -18,17 +18,15 @@ keywords:
 image: BrooklynBridgeParkFall_JulienneSchaer.jpg
 photocredit: Julienne Schaer/NYC & Company
 related:
-  - title: "Neighborhood reports: Climate"
-    url: "neighborhood-reports/#Climatereport"
-  - title: "How power outages affect health"
-    url: "data-stories/poweroutages/"
-  - title: "The urban heat island effect in NYC"
-    url: "data-stories/urban-heat-island/"
+  - title: "Flood Vulnerability Index"
+    url: "data-features/flood-vulnerability-index/"
+  - title: "NYC is working to protect your health — but we can’t do it alone"
+    url: "data-stories/federal-funding/"
+  - title: "Energy is critical for health and climate resilience — but not all New Yorkers may be able to afford it"
+    url: "data-stories/energy-insecurity/"
 ---
 
 <em>Superstorm Sandy (2012) and rainfall from Hurricane Ida (2021) broke records in NYC and resulted in injury and death. Both showed how the climate crisis is affecting the strength of storms and how profound the threat of flooding is to New Yorkers’ health.</em>
-
-<p></p>
 
 ### Superstorm Sandy’s coastal flooding damaged hundreds of thousands of homes
 
@@ -97,8 +95,13 @@ The National Weather Service issued its first-ever flash flood emergency warning
 </div>
 
 <div class="narrow my-4 py-2 border-top border-bottom">
+<div aria-hidden="true">
   <iframe title="NYC's annual precipitation has increased about 20% since 1960" aria-label="Scatter Plot" id="datawrapper-chart-r4fxY" src="https://datawrapper.dwcdn.net/r4fxY/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="606" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
-
+</div>
+</div>
+<div class="sr-only">
+<iframe title="NYC's annual precipitation has increased about 20% since 1960" aria-label="Table" id="datawrapper-chart-aKa9y" src="https://datawrapper.dwcdn.net/aKa9y/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="6891" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+</script>
 </div>
 
 #### But it's not just volume of rainfall that's increasing, it's intensity
@@ -146,9 +149,14 @@ Certain populations are more vulnerable to the health risks of flooding and may 
       <p><em>The FVI is part of the <a href="https://climate.cityofnewyork.us/initiatives/vulnerability-impacts-and-adaptation-analysis/"> Vulnerability, Impacts, and Adaptation report (VIA) and can be fully accessed as part of the EJNYC Mapping Tool</a></em></p>
       </div>
 </div>
-
+<div aria-hidden="true">
 <div class="my-4 border-top border-bottom py-2">
 <iframe title="Flood Vulnerability Index" aria-label="Map" id="datawrapper-chart-HAWCl" src="https://datawrapper.dwcdn.net/HAWCl/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="691" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
+</div>
+</div>
+<div class="sr-only">
+<iframe title="This FVI identifies coastal areas at risk of storm surges — with especially vulnerable areas in southern Brooklyn and Queens." aria-label="Table" id="datawrapper-chart-yuQ6Y" src="https://datawrapper.dwcdn.net/yuQ6Y/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="1029" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+</script>
 </div>
 
 #### Be prepared for the next flood: sign-up for emergency alerts, make a plan, and know your risk

@@ -1,20 +1,28 @@
 ---
 featured:
-- copy: Depression (adults)
-  link: data-explorer/mental-health/?id=2417
-- copy: Psychiatric hospitalizations (adults)
-  link: data-explorer/mental-health/?id=2418
-- copy: Serious psychological distress (adults)
-  link: data-explorer/mental-health/?id=2419
-- copy: 'Cold stress: 5-year emergency department visits'
-  link: data-explorer/weather-related-illness/?id=2444
-- copy: 'Cold stress: 5-year hospitalizations'
-  link: data-explorer/weather-related-illness/?id=2445
-- copy: Firearm ED visits
-  link: data-explorer/violence/?id=2437
-- copy: Assault ED visits
-  link: data-explorer/violence/?id=2400
-- copy: Rat inspections
-  link: data-explorer/mice-and-rats/?id=2434
-- copy: Rat indexing in Rat Mitigation Zones (RMZs)
-  link: data-explorer/mice-and-rats/?id=2433
+- copy: Children ever diagnosed with asthma
+  link: asthma/?id=2392
+- copy: Children in homes with visible mold or mildew (age 1-13)
+  link: asthma-triggers/?id=2430
+- copy: Secondhand smoke exposure at home (children)
+  link: cigarette-smoke/?id=2404
+- copy: Accessible subway stations
+  link: accessibility/?id=2455
+- copy: Walking distance to an accessible subway station
+  link: accessibility/?id=2458
+- copy: Bus stops with audio announcements
+  link: accessibility/?id=2456
+- copy: Walking distance to an audio bus stop
+  link: accessibility/?id=2460
+- copy: Public bathroom availability
+  link: accessibility/?id=2457
+- copy: Difficulty walking
+  link: accessibility/?id=2459
+- copy: Premature mortality
+  link: mortality/?id=2322
+- copy: Bicycle injury emergency department visits
+  link: transportation-related-injuries/?id=2092
+- copy: Pedestrian injury emergency department visits
+  link: transportation-related-injuries/?id=2094
+- copy: Fall-related emergency department visits (age 65+) 
+  link: falls-among-older-adults/?id=2135

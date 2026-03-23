@@ -1,0 +1,441 @@
+{{- define "main" -}}
+
+<article class="container-fluid" id="skip-header-target">
+
+    <div class="row">
+        <div class="col-md-11 mx-auto mt-4">
+            <nav aria-label="breadcrumb" class="mb-4">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="/key-topics/">Key Topics</a></li>
+                    <li class="breadcrumb-item"><a href="..">
+                        {{- with .Parent -}} {{ .Title }} </a></li>{{- end -}}
+                    <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
+                </ul>
+            </nav>
+
+            <h1><i class="fas fa-star" aria-hidden="true" style="margin-right: 10px"></i>
+                {{ .Title }}</h1>
+
+                {{- .Content  -}}
+        </div>
+    </div>
+
+
+</article>
+
+<div class="bucket border px-4 my-2">
+    <div>
+        <img tabindex="0" class="superimpose" id="backgroundImage" alt="" src="newbackgroundtest4.svg" />
+        <img tabindex="-1" class="superimpose" id="crackinwallOverlay" alt="" src="crackinwall.svg" />
+        <img tabindex="-1" class="superimpose" id="peelingpaintOverlay" alt="" src="peelingpaint.svg" />
+        <img tabindex="-1" class="superimpose" id="bowlOverlay" alt="" src="openfood.svg" style="position: absolute;top:-3%;left: 15%;" />
+        <img tabindex="-1" class="superimpose" id="moldOverlay" alt="" src="mold2.svg" style="position:absolute; top: 5%; left: -2%;"/>
+        <img tabindex="-1" class="superimpose" id="smokedetector_1Overlay" alt="" src="smokedetector_1.svg" style="position:absolute;top: 3%;left: 25%;" />
+        <img tabindex="-1" class="superimpose" id="pestdropOverlay" alt="" src="chewdrop.svg" style="position:absolute;top: 4.5%;left: -1%;" />
+        <img tabindex="-1" class="superimpose" id="bottleOverlay" alt="" src="bottle.svg" style="position:absolute;top: 6%;left: -3%;" />
+        <img tabindex="-1" class="superimpose" id="ceramicwareOverlay" alt="" src="ceramicbowlA.svg" style="position:absolute;top: 5%;left: -3%;" />
+        <img tabindex="-1" class="superimpose" id="cleanersOverlay" alt="" src="cleaners.svg" style="position:absolute;top: 4%;left: -0.5%;" />
+        <img tabindex="-1" class="superimpose" id="spillOverlay" alt="" src="spill.svg" style="position: absolute; top: 5%;left: -0.5%;"/> 
+        <img tabindex="-1" class="superimpose" id="leakingpipeOverlay" alt="" src="leakingpipe.svg" style="position: absolute; top: 5%;left: -0.5%;"/>
+        <img tabindex="-1" class="superimpose" id="regularpipeOverlay" alt="" src="regularpipe.svg" style="position: absolute; top: 5%;left: -0.5%;"/>
+
+    <div class="clickables">
+      <a id="crackinwallDot" href="#" onclick="crackinwall()" aria-label="A crack in the wall" style="position:absolute;top: 40%;left: 30%;" tabindex="0" class="dot dot-border" data-toggle="modal" data-target="#crackinwallModal" role="button"></a>
+      <a id="peelingpaintDot" href="#" onclick="peelingpaint()" aria-label="Peeling paint on a wall" style="position:absolute;top: 55%;left: 3%;" tabindex="0" class="dot dot-border" data-toggle="modal" data-target="#peelingpaintModal" role="button"></a>
+      <a id="bowlDot" href="#" onclick="bowl()" aria-label="A pet bowl with food inside" style="position:absolute;top: 74%;left: 18%;" tabindex="0" class="dot dot-border" data-toggle="modal" data-target="#bowlModal" role="button"></a>
+      <a id="bowl2Dot" href="#"  onclick="bowl()" aria-label="A pet bowl with food inside" style="position:absolute;top: 74%;left: 80%;" tabindex="0" class="dot-lg dot-border" data-toggle="modal" data-target="#bowlModal" role="button"></a>
+      <a id="bottleDot" href="#" onclick="bottle()" aria-label="A baby bottle" style="position:absolute;top: 46%;left: 13%;" tabindex="0" class="dot dot-border" data-toggle="modal" data-target="#bottleModal" role="button"></a>
+      <a id="pestdropDot" href="#" onclick="pestdrop()" aria-label="Pest droppings from a pest like a mouse" style="position:absolute;top: 67%;left: 5%;" tabindex="0" class="dot-lg dot-border" data-toggle="modal" data-target="#pestdropModal" role="button"></a>
+      <a id="ceramicwareDot" href="#" onclick="ceramicware()" aria-label="A glazed ceramic bowl" style="position:absolute;top: 44%;left: 51%;" tabindex="0" class="dot-lg dot-border" data-toggle="modal" data-target="#ceramicwareModal" role="button"></a>
+      <a id="moldDot" href="#" onclick="mold()" aria-label="Mold stains on a wall" style="position:absolute;top: 40%;left: 39.5%;" tabindex="0" class="dot dot-border" data-toggle="modal" data-target="#moldModal" role="button"></a>
+      <a id="smokedetector_1Dot" href="#" onclick="smokedetector_1()" aria-label="A smoke detector" style="position:absolute;top: 33%;left: 86%;" tabindex="0" class="dot dot-border" data-toggle="modal" data-target="#smokedetector_1Modal" role="button"></a>
+      <a id="spillDot" href="#"onclick="spill()" aria-label="A puddle of water on the floor" style="position:absolute;top: 65%;left: 28%; size: 200%" tabindex="0" class="dot dot-border" data-toggle="modal" data-target="#spillModal" role="button"></a>
+      <a id="cleanersDot" href="#" onclick="cleaners()" aria-label="Household cleaners in an open cabinet" style="position:absolute;top: 60%;left: 24%;" tabindex="0" class="dot dot-border" data-toggle="modal" data-target="#cleanersModal" role="button"></a>
+
+        </div>
+    </div>
+</div>
+
+<!-- Resource cards -->
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-11 mx-auto mb-4">
+      <p class="fs-sm"><em>If repairs are not being made or you think that repair work is being done unsafely, <strong>call 311.</strong> NYCHA residents should call 718-707-7771 to report a maintenance problem.</em></p>
+
+      <h3 class="mt-4">Keep your home healthy</h3>
+      <p><ul>
+        <li>To manage pests, get the Integrated Pest Management toolkit <a href="https://www.nyc.gov/assets/doh/downloads/pdf/pesticide/mgmt-tips.pdf"><span class="sr-only">integrated pest management</span> for residents</a> or <a href="https://www.nyc.gov/assets/doh/downloads/pdf/pesticide/ipm-toolkit.pdf"><span class="sr-only">integrated pest management</span> for building managers</a>.</li>
+        <li>To manage mold, <a href="https://www.nyc.gov/assets/doh/downloads/pdf/epi/prevent-and-get-rid-of-mold.pdf">download this mold prevention brochure</a>. </li>
+        <li><a href="https://www.nyc.gov/site/doh/health/health-topics/healthy-neighborhoods-asthma-triggers.page">Request a free home assessment of asthma triggers</a>.</li>
+        <li><a href="https://www.nyc.gov/assets/doh/downloads/pdf/poison/poison-brochure-proof.pdf">Poison-proof your home</a> and <a href="https://www.nyc.gov/lead">visit nyc.gov/lead for resources on lead poisoning prevention</a>.</li>
+        <li><a href="https://www.nyc.gov/site/doh/health/health-topics/carbon-monoxide.page">Protect your family from carbon monoxide poisoning</a>.</li>
+      </ul></p>
+      <p><a href="https://www.nyc.gov/health/healthyhomes">Get more resources on keeping your home healthy at the Healthy Homes webpage</a>.</p>
+    </div>
+  </div>
+    
+</div>
+
+<!-- Modals -->
+
+<div class="modal fade" id="pestdropModal" tabindex="-1" role="dialog" aria-labelledby="pestdropDot" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+            <h2 class="h4">Pest droppings and chew marks</h2>
+            <h3 class="h5">Why it's dangerous</h3>
+            <p>Cockroach and mouse droppings or chew marks are a sign of pests, which can worsen allergies and asthma symptoms.</p>
+            <h3 class="h5">What you can do</h3>
+            <p>To get rid of pests and keep them from coming back, deprive them of food, water, shelter and ways to get around.</p>
+            <p>Report gaps, cracks or holes and other conditions that can attract pests to building management.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="spillModal" tabindex="-1" role="dialog" aria-labelledby="spillDot" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+            <h2 class="h4">Moisture issues</h2>
+            <h3 class="h5">Why it's dangerous</h3>
+            <p>Water leaks and moisture issues such as leaks, standing water, or moisture that won't dry can attract pests and cause mold growth.</p>
+            <p>Pests and mold can trigger or worsen asthma and allergies, and can create unsanitary conditions.</p>
+            <h3 class="h5">What you can do</h3>
+            <p>Keep your home dry by running a fan or opening a window. Use a dehumidifier to lower humidity levels. Use water and detergent to clean small areas of mold on walls or other hard surfaces.</p>
+            <p>Report, mold, water leaks and plumbing issues to building management.</p>  
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="bowlModal" tabindex="-1" role="dialog" aria-labelledby="bowlDot" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+            <h2 class="h4">Open food</h2>
+            <h3 class="h5">Why it's dangerous</h3>
+            <p>Open food packages, pet food left out and garbage cans that don’t close tightly can attract roaches and mice. These pests can make asthma and allergy symptoms worse.</p>
+            <h3 class="h5">What you can do</h3>
+            <p>Block access to food sources. 
+            <p>Clean up clutter, keep food in sealed containers, don’t leave pet food out, and store trash in a can with a tight-fitting lid. Rinse recyclables before sorting them.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="moldModal" tabindex="-1" role="dialog" aria-labelledby="moldDot" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+            <h2 class="h4">Mold</h2>
+            <h3 class="h5">Why it's dangerous</h3>
+            <p>Stains or visible mold growth on walls may be a sign of a moisture problem. </p>
+            <p>Mold can cause or worsen allergies and asthma.</p>
+            <h3 class="h5">What you can do</h3>
+            <p> Use water and soap (or dish detergent) to clean mold on walls or other hard surfaces. </p>
+            <p> Fix leaks from faucets or pipes. </p>
+            <p> Report, mold, water leaks and plumbing issues to building management.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="crackinwallModal" tabindex="-1" role="dialog" aria-labelledby="crackinwallDot" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+            <h2 class="h4">Gaps, cracks or holes </h2>
+            <h3 class="h5">Why it's dangerous</h3>
+            <p>Gaps, cracks or holes can let in pests like mice and cockroaches.</p>
+            <p>Cockroaches and mice can contaminate food, damage homes, and make allergies and asthma worse.</p>
+
+            <h3 class="h5">What you can do</h3>
+            <p>To get rid of pests and keep them from coming back, you have to deprive them of food, water, shelter and ways to get around.</p>
+            <p>Seal pests out. Report gaps, cracks or holes and other conditions that can attract pests to building management.</p>    
+            </ul></p>  
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="peelingpaintModal" tabindex="-1" role="dialog" aria-labelledby="peelingpaintDot" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+            <h2 class="h4">Peeling paint</h2>
+            <h3 class="h5">Why it's dangerous</h3>
+            <p>Peeling or damaged paint can contain lead, especially in older buildings.</p>
+            <p>Lead can cause serious health effects. It is especially dangerous for children and pregnant people but can be harmful to anyone. </p>
+            <h3 class="h5">What you can do</h3>
+            <p>Report peeling paint to your landlord. 
+            <p>Remind your provider to test your child for lead poisoning at ages 1 and 2 and ask about testing older children if you have peeling paint. Call 311 to find a provider.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- COMMENTING OUT SHOE
+  <div class="modal fade" id="shoesModal" tabindex="-1" role="dialog" aria-labelledby="shoesDot" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+            <h2 class="h4">Dirty shoes kept indoors</h2>
+            <h3 class="h5">Why it's dangerous</h3>
+            <p>Dust and debris from worksites can contain lead.
+            <p>Lead can cause serious health effects. It is especially dangerous for children and pregnant people but can be harmful to anyone.</p>
+            <h3 class="h5">What you can do</h3>
+            <p>Remove dirty work shoes before entering your home. Keep your home clean. Wash floors, windowsills, hands and toys often.
+            <p>Remind your provider to test your child for lead poisoning at ages 1 and 2 and ask about testing older children if you have peeling paint. Call 311 to find a provider.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+-->
+
+  <div class="modal fade" id="bottleModal" tabindex="-1" role="dialog" aria-labelledby="bottleDot" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+            <h2 class="h4">Using cold water from the sink to make baby formula </h2>
+            <h3 class="h5">Why it's dangerous</h3>
+            <p>Some buildings or homes may have lead pipes and plumbing fixtures. 
+            <p>When water comes in contact with old plumbing and pipes that contain lead, it can get into drinking water. Higher lead levels may be found when the water has not been used for several hours. Also, lead dissolves more easily into hot water. 
+            <p>Lead can cause serious health effects. It is especially dangerous for children and pregnant people but can be harmful to anyone.</p>
+            <h3 class="h5">What you can do</h3>
+            <p>Use only cold tap water to make baby formula and for drinking and cooking. Run your tap for at least 30 seconds, until the water is noticeably colder.
+            <p>NYC residents can call 311 to get a free lead test kit for drinking water. You will receive the results within 30 days of submitting the water sample.</p>
+            <p>Remind your provider to test your child for lead poisoning at ages 1 and 2 and ask about testing older children if you have peeling paint. Call 311 to find a provider.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="ceramicwareModal" tabindex="-1" role="dialog" aria-labelledby="ceramicwareDot" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+            <h2 class="h4">Cooking with traditional glazed ceramicware</h2>
+            <h3 class="h5">Why it's dangerous</h3>
+            <p>Traditional or handmade ceramicware from around the world can contain lead. 
+            <p>The lead can get into food and drink when these types of products are used to cook or store food and drinks.</p>
+            <p>Lead can cause serious health effects. It is especially dangerous for children and pregnant people but can be harmful to anyone.</p> 
+            <h3 class="h5">What you can do</h3>
+            <p>Do not use traditional or handmade glazed ceramic ware to prepare, cook, serve, or store food or drinks. These ceramic wares may contain high levels of lead.
+            <p>You can use these types of traditional ceramic ware for decoration. If you have used these products to prepare, cook, serve or store food, ask your doctor for a blood lead test. </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="cleanersModal" tabindex="-1" role="dialog" aria-labelledby="cleanersDot" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+            <h2 class="h4">Household cleaners, pesticides under the kitchen sink</h2>
+            <h3 class="h5">Why it's dangerous</h3>
+            <p>Common household products like bleach, ammonia, pest repellents, detergents, and more are poisonous and should be kept somewhere pets and children can’t reach.</p> 
+            <h3 class="h5">What you can do</h3>
+            <p>Keep harmful household products on a high shelf or in locked cabinet that children can’t reach.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="smokedetector_1Modal" tabindex="-1" role="dialog" aria-labelledby="smokedectector_1Dot" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+            <h2 class="h4">Smoke and carbon monoxide detectors that don’t work, need new batteries, or are located too close to the kitchen.</h2>
+            <h3 class="h5">Why it's dangerous</h3>
+            <p>Fire spreads fast and carbon monoxide (CO) is a colorless and odorless gas that can cause illness and sudden death.</p>
+            <p>70% of fire deaths have occurred in homes where there were no working smoke or CO detectors.</p>
+            <h3 class="h5">What you can do</h3>
+            <p>Ask your building owner to install a smoke and a CO detector in or near the sleeping areas of your home.
+            <p>Test your detector regularly by pressing the test button. Replace detectors every 10 years or when the detector signals that it has reached the end of life and needs to be replaced.
+            <p>Keep detector clean by regularly dusting or vacuuming.
+            <p>Do not put detectors within five feet of gas burning appliances such as stoves and dryers or near cooking areas.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function spill() {
+            document.getElementById('spillOverlay').classList.add('hide')
+            document.getElementById('leakingpipeOverlay').classList.add('hide')
+            document.getElementById('spillDot').classList.remove('dot-border')
+    
+    }
+
+    function bottle() {
+      document.getElementById('bottleOverlay').classList.add('hide')
+      document.getElementById('bottleDot').classList.remove('dot-border')
+
+    }
+
+    function bowl() {
+      document.getElementById('bowlOverlay').classList.add('hide')
+      document.getElementById('bowlDot').classList.remove('dot-border')
+      document.getElementById('bowl2Dot').classList.remove('dot-border')
+    }
+
+    function mold() {
+      document.getElementById('moldOverlay').classList.add('hide')
+      document.getElementById('moldDot').classList.remove('dot-border')
+
+    }
+
+    function crackinwall() {
+      document.getElementById('crackinwallOverlay').classList.add('hide')
+      document.getElementById('crackinwallDot').classList.remove('dot-border')
+
+    }
+
+    function peelingpaint() {
+      document.getElementById('peelingpaintOverlay').classList.add('hide')
+      document.getElementById('peelingpaintDot').classList.remove('dot-border')
+
+    }
+
+    function smokedetector_1() {
+      // document.getElementById('smokedetector_1Overlay').classList.add('hide')
+      document.getElementById('smokedetector_1Dot').classList.remove('dot-border')
+
+    }
+
+//    function stovespill() {
+//      document.getElementById('stovespillOverlay').classList.add('hide')
+//      document.getElementById('stovespillDot').classList.remove('dot-border')
+
+// }
+
+//    function shoes() {
+//      document.getElementById('shoesOverlay').classList.add('hide')
+//      document.getElementById('shoesDot').classList.remove('dot-border')
+
+//    }
+
+    function pestdrop() {
+      document.getElementById('pestdropOverlay').classList.add('hide')
+      document.getElementById('pestdropDot').classList.remove('dot-border')
+
+    }
+
+    function ceramicware() {
+      document.getElementById('ceramicwareOverlay').classList.add('hide')
+      document.getElementById('ceramicwareDot').classList.remove('dot-border')
+
+    }
+
+    function cleaners() {
+      document.getElementById('cleanersOverlay').classList.add('hide')
+      document.getElementById('cleanersDot').classList.remove('dot-border')
+
+    }
+
+    </script>
+
+  <style>
+    /* Custom CSS to position the modal on the right */
+    .modal-dialog {
+        margin: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        position: fixed;
+        width: 500px; /* You can adjust the width as per your preference */
+      }
+  
+      .modal-content {
+        height: 100%;
+        border-radius: 0;
+      }
+  
+      .modal-header {
+        border-bottom: none;
+      }
+  
+      .modal-body {
+        overflow-y: auto;
+      }
+
+    .bucket {
+        position: relative;
+        max-width: 1300px;
+        margin: auto;
+        aspect-ratio: 15 / 11; /* Sets the aspect ratio according to the size of background.svg */
+    }
+
+    .superimpose {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        height: 100%;
+    }
+
+    .dot {
+        height: 70px;
+        width: 70px;
+        border-radius: 50%;
+        display: inline-block;
+        cursor: pointer;
+        border: 1px dashed orange;
+
+      }
+
+      .dot-lg {
+      
+      height: 100px;
+      width: 100px;
+      border-radius: 50%;
+      display: inline-block;
+      cursor: pointer;
+      border: 1px dashed orange;
+      
+      }
+
+      .dot-border {
+          border: 3px solid orange;
+      }
+  </style>
+
+
+
+{{- end -}}

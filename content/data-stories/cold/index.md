@@ -32,3 +32,5 @@ related:
 ---
 
 [Cold weather can be dangerous]({{< baseurl >}}data-explorer/weather-related-illness/?id=2175#display=summary). Here are some tips for staying safe this winter.
+
+[Learn more about cold weather health risks and get resources to stay safe this winter](https://www1.nyc.gov/site/doh/health/emergency-preparedness/emergencies-extreme-weather-cold-weather.page).

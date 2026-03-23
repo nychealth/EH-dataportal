@@ -3,7 +3,7 @@ title: "Real-time asthma emergency department visits"
 date: 2021-10-02T07:56:00-04:00
 draft: true
 seo_title: "Daily asthma ED visits"
-seo_description: "Near real-time data."
+seo_description: "Near real-time data on asthma emergency department visits in NYC."
 description: "Near real-time data on asthma emergency department visits in NYC."
 tags: 
 categories: [housing, airquality, childhealth, climatehealth, healthoutcomes, pests]
@@ -11,7 +11,7 @@ keyTopic: housing
 keywords: ["housing","gentrification","displacement","justice","equity"]
 image: nyc-children-playing.jpg
 layout: asthma-syndrome
-vega: true
+
 ---
 
 Asthma is a common disease that makes breathing difficult, causing coughing, wheezing, and shortness of breath.

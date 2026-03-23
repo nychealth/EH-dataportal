@@ -32,13 +32,6 @@
         width: max-content;
     }
 
-    /* Set font-size for table headers */
-    #summary-table table thead tr th {
-        font-size: 12px!important;
-        color: #4b4b4b;;
-        border: 1px solid #dee2e6;
-    }
-
 
     /* This CSS controls read more/show less toggle. */
     [aria-expanded="false"]>.expanded,
@@ -229,11 +222,6 @@
         cursor: pointer;
     }
 
-    .visFooterBox {
-        max-height: 250px;
-        overflow-y: scroll;
-    }
-
     .nav-pills .nav-link.active {
         border: 0px!important;
     }
@@ -316,6 +304,13 @@
         cursor: pointer;
     }
 
+    .other-helper {
+        cursor: pointer;
+          display: block;
+        width: 100%;
+        text-align: right;
+    }
+
     .helper:hover {
         color: purple!important;
     }
@@ -353,6 +348,11 @@
             line-height: 1.35
         }
 
+        .dataTables_wrapper .dataTables_length, .dataTables_wrapper .dataTables_filter {
+            float: none;
+            text-align: right!important;
+        }
+
     </style>
 
 
@@ -363,33 +363,36 @@
                 <ul class="breadcrumb mr-auto">
                     <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
                     <li class="breadcrumb-item"><a href={{ relURL "data-explorer" }}>Data Explorer</a></li>
-                    <li class="breadcrumb-item d-none d-md-block">{{ .Title }}
+                    <li class="breadcrumb-item d-none d-lg-block">{{ .Title }}
                         <button type="button" 
                             class="btn btn-outline-light text-primary badge" 
                             title="Change topic"
                             data-toggle="modal" 
                             data-target="#topicModal"
                             aria-labelledby="topicModalLabel"
-                        ><i class="fa-solid fa-arrow-right-arrow-left font-weight-bold" aria-hidden="true"></i>
+                        ><i class="fa-solid fa-list font-weight-bold" aria-hidden="true"></i>
                         </button></li>
                 </ul>
             </nav>
-            <div class="float-right pr-1 d-none d-md-block">
-                {{- partial "socialshare" . -}}
-            </div>
 
             <h1 class="h2 mt-2">
-                <button type="button"
-                    class="btn btn-outline-light text-primary badge d-lg-none float-left mr-1"
-                    title="Change topic"
-                    data-toggle="modal" 
-                    data-target="#topicModal"
-                    aria-labelledby="topicModalLabel"
-                >
-                <i class="fas fa-list"></i>
-                </button>
                 {{ .Title }} </h1>
-            <p>Get maps, charts, tables, and more. <i data-toggle="modal" data-target="#aboutModal" class="d-lg-none fas fa-question-circle helper text-primary"></i></span></p>
+
+                <!-- Desktop teaser -->
+                <div class="d-none d-lg-block">
+                    <p>Get maps, charts, tables, and more.</p>
+                </div>
+
+                <!-- Mobile about text -->
+                <div class="d-lg-none">
+                    <p class="fs-sm mb-0">{{ .Content | plainify | truncate 125 }} <a href="#" data-toggle="modal" data-target="#aboutModal"><em>Read more</em></a>.</p>   
+
+                    <span class="float-right mt-0">
+                        <a href="#"  data-toggle="modal" class="badge badge-pill badge-light" data-target="#topicModal"
+                        aria-labelledby="topicModalLabel">Change topic</a>
+                    </span>
+
+                </div>
 
         </div>
     </div>
@@ -453,6 +456,11 @@
                 {{- partial "takeaction" . -}}
             </div>
 
+            <!-- Social share -->
+            <div class="d-none d-lg-block mt-4">
+                {{- partial "socialshare" . -}}
+            </div>
+
 
 
 
@@ -460,29 +468,40 @@
         
         <div class="col-lg-8 mx-auto col-md-12">
         
-            <!-- Indicator selection (mobile) -->
-            <div class="dropdown d-lg-none d-block">
-                <button class="btn btn-sm btn-outline-primary btn-sm float-left text-wrap mr-1" type="button"
-                        id="dropdownIndicator" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fas fa-exchange-alt"></i>
-                </button>
+        <!-- Indicator display and selection (mobile) -->
+        <div class="dropdown d-lg-none border p-1">
 
-                <div id="indicatorNameMobile" class="ml-1 font-weight-bold">Indicator name Mobile</div>
+            <div id="indicatorNameMobile" class="font-weight-bold">Loading dataset - </div>
 
+            <p class="fs-sm mb-0">
+                <span class="indicator-description">Just a moment...</span>
+            </p>
 
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownIndicator" id="indicator-dropdown">
-                    <!-- Dropdown items are rendered using renderIndicatorDropdown -->
-                </div>
+            <div class="d-flex justify-content-end mt-0">
+                <div class="dropdown show">
+                    <a class="badge badge-pill badge-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Change dataset
+                    </a>
+                  
+                    <div class="dropdown-menu dropdown-menu-right px-1" aria-labelledby="dropdownMenuLink" id="indicator-dropdown">
+                        <!-- Indicator links rendered here -->
+                    </div>
+                  </div>
             </div>
+        </div>
 
         {{- if .Params.archive -}}
             <div class="border p-1"><p><strong>Note:&nbsp;</strong>{{- .Params.archive | safeHTML -}}</p></div>
         {{- end -}}
 
-        <!-- Indicator title and description -->
-        <span class="border-bottom font-weight-bold d-none d-lg-block"><span id="indicatorTitle">Loading data...</span></span>
-        <div class="d-block mt-1">
-            <p class="fs-sm indicator-description ">Just a moment...</p>
+        <!-- DESKTOP: Indicator title and description -->
+        <div class="d-none d-lg-block">
+            <span class="border-bottom font-weight-bold d-block">
+                <span id="indicatorTitle">Loading indicator...</span>
+            </span>
+            <div class="d-block mt-1">
+                <p class="fs-sm indicator-description ">Just a moment...</p>
+            </div>
         </div>
 
         <!-- view selection buttons -->
@@ -523,7 +542,7 @@
                     </div>
                 </a>
 
-                <a class="ml-auto mt-auto p-1 fs-sm float-right d-none d-xl-block" id="viewDescription">
+                <a class="ml-auto mt-auto p-1 fs-xs float-right d-none d-xl-block" id="viewDescription">
                     Click tabs for more data views.
                 </a>
         
@@ -538,32 +557,34 @@
 
                 <div class="tab-pane fade show active pt-2" id="tab-table" aria-labelledby="tab-btn-table" role="tabpanel">
                     <div class="row">
-                        <div class="col-md-2 pl-2">
+                        <div class="col-md-2 pl-2 pr-0">
 
-                                <a href="#" class="badge badge-pill badge-light d-md-none mb-1" data-toggle="collapse" data-target="#tableSidebar" aria-expanded="false" aria-controls="tableSidebar"><i class="fas fa-cog mr-1" aria-hidden="true"></i>Display options</a>
+                                <div class="d-block clearfix">
+                                    <a href="#" class="badge badge-pill badge-light d-md-none mb-1 float-right" data-toggle="collapse" data-target="#tableSidebar" aria-expanded="false" aria-controls="tableSidebar"><i class="fas fa-cog mr-1" aria-hidden="true"></i>Options</a>
+                                </div>
 
                                 <div id="tableSidebar" class="collapse dont-collapse-sm">
-                                <p class="fs-xs mb-0"><i data-toggle="modal" data-target="#geoModal" class="fas fa-question-circle float-right helper text-primary fs-sm"></i></button>Boundaries:</p>
-                                <div class="border py-1 mb-2 optionbox">
+                                    <p class="fs-xs mb-0"><i data-toggle="modal" data-target="#geoModal" class="fas fa-question-circle float-right helper text-primary fs-sm"></i></button>Boundaries:</p>
+                                    <div class="border py-1 mb-2 optionbox">
 
-                                    <div class="" aria-labelledby="dropdownTableGeos">
-                                        <!-- INSERT MENU ITEMS HERE -->
-                                    </div>
-                                </div>
-
-                                <p class="fs-xs mb-0"><i data-toggle="modal" data-target="#timeModal" class="fas fa-question-circle float-right helper text-primary fs-sm"></i>Available times:</p>
-                                <div class="border py-1 mb-2 optionbox">
-                                    <div class="" aria-labelledby="dropdownTableTimes">
-                                        <!-- INSERT MENU ITEMS HERE -->
+                                        <div class="" aria-labelledby="dropdownTableGeos">
+                                            <!-- INSERT MENU ITEMS HERE -->
+                                        </div>
                                     </div>
 
-                                </div>
+                                    <p class="fs-xs mb-0"><i data-toggle="modal" data-target="#timeModal" class="fas fa-question-circle float-right helper text-primary fs-sm"></i>Available times:</p>
+                                    <div class="border py-1 mb-2 optionbox">
+                                        <div class="" aria-labelledby="dropdownTableTimes">
+                                            <!-- INSERT MENU ITEMS HERE -->
+                                        </div>
+
+                                    </div>
                                 </div>
                             </div>
 
                         <div class="col-md-10">
                             <span id="tableTitle" class="home-label border-bottom"></span>
-                            <div id="summary-table" class="" style="height:560px!important">
+                            <div id="summary-table" class="" style="min-height:550px!important">
                                 <!-- INSERT SUMMARY TABLE HERE -->
                             </div>
 
@@ -581,9 +602,12 @@
                 <div class="tab-pane fade pt-2" id="tab-map" aria-labelledby="tab-btn-map" role="tabpanel">
 
                     <div class="row">
-                        <div class="col-md-2 pl-2">
+                        <div class="col-md-2 pl-2 pr-0">
 
-                            <a href="#" class="badge badge-pill badge-light d-md-none mb-1" data-toggle="collapse" data-target="#mapSidebar" aria-expanded="false" aria-controls="mapSidebar"><i class="fas fa-cog mr-1" aria-hidden="true"></i>Display options</a>
+                            <div class="d-block clearfix">
+                                <a href="#" class="badge badge-pill badge-light float-right d-md-none mb-1" data-toggle="collapse" data-target="#mapSidebar" aria-expanded="false" aria-controls="mapSidebar"><i class="fas fa-cog mr-1" aria-hidden="true"></i>Options</a>
+
+                            </div>
 
 
                             <div id="mapSidebar" class="collapse dont-collapse-sm">
@@ -627,17 +651,44 @@
                 <div class="tab-pane fade pt-2" id="tab-trend" aria-labelledby="tab-btn-trend" role="tabpanel">
 
                     <div class="row">
-                        <div class="col-md-2 pl-2">
+                        <div class="col-md-2 pl-2 pr-0">
 
-                            <a href="#" class="badge badge-pill badge-light d-md-none mb-1" data-toggle="collapse" data-target="#trendSidebar" aria-expanded="false" aria-controls="trendSidebar"><i class="fas fa-cog mr-1" aria-hidden="true"></i>Display options</a>
+                            <div class="d-block clearfix">
+                                <a href="#" class="badge badge-pill badge-light float-right d-md-none mb-1" data-toggle="collapse" data-target="#trendSidebar" aria-expanded="false" aria-controls="trendSidebar"><i class="fas fa-cog mr-1" aria-hidden="true"></i>Options</a>
+                            </div>
 
                             <div id="trendSidebar" class="collapse dont-collapse-sm">
-                                <p class="fs-xs mb-0"><i data-toggle="modal" data-target="#trendModal" class="fas fa-question-circle float-right helper text-primary fs-sm"></i>Show by:</p>
-                                <div class="border optionbox mb-2">
-                                    <div class="" aria-labelledby="dropdownTrendSelection">
-                                        <!-- INSERT MENU ITEMS HERE -->
+
+                                <div id="trendMenuHolder" class="d-none">
+                                    <p class="fs-xs mb-0">
+                                        <span id="tc1" class="font-weight-bold">By </span>
+                                        <i data-toggle="modal" data-target="#trendModal" class="fas fa-question-circle float-right helper text-primary fs-sm"></i>
+
+                                    </p>
+
+                                    <div class="border optionbox mb-2">
+                                        <div class="" aria-labelledby="dropdownTrendSelection">
+                                            <!-- INSERT MENU ITEMS HERE -->
+                                        </div>
                                     </div>
                                 </div>
+
+
+                                <div id="compMenu" class="hide">
+                                    <p class="fs-xs mb-0">
+                                        <span id="tc2" class="font-weight-bold">Show with:</span>
+                                        <i data-toggle="modal" data-target="#trendModal" class="fas fa-question-circle float-right helper text-primary fs-sm"></i>
+
+                                    </p>
+
+                                    <div class="border optionbox mb-0">
+                                        <div class="" aria-labelledby="dropdownCompSelection">
+                                            <!-- INSERT MENU ITEMS HERE -->
+                                        </div>
+                                    </div>
+                                </div>
+
+
 
 
                             </div>
@@ -662,9 +713,12 @@
                     <div class="tab-pane fade pt-2" id="tab-links" aria-labelledby="tab-btn-links" role="tabpanel">
 
                         <div class="row">
-                            <div class="col-md-2 pl-2">
+                            <div class="col-md-2 pl-2 pr-0">
 
-                                <a href="#" class="badge badge-pill badge-light d-md-none mb-1" data-toggle="collapse" data-target="#linksSidebar" aria-expanded="false" aria-controls="linksSidebar"><i class="fas fa-cog mr-1" aria-hidden="true"></i>Display options</a>
+                                <div class="d-block clearfix">
+                                    <a href="#" class="badge badge-pill badge-light float-right d-md-none mb-1" data-toggle="collapse" data-target="#linksSidebar" aria-expanded="false" aria-controls="linksSidebar"><i class="fas fa-cog mr-1" aria-hidden="true"></i>Options</a>
+
+                                </div>
 
                                 <div id="linksSidebar" class="collapse dont-collapse-sm">
                                     <p class="fs-xs mb-0"><i data-toggle="modal" data-target="#linksModal" class="fas fa-question-circle float-right helper text-primary fs-sm"></i>Show as:</p>
@@ -725,7 +779,7 @@
                             <!-- Data sources -->
                             <div class="col-md-10 col-sm-12">
                                     <div class="visFooterBox">
-                                        <span class="fs-xs font-weight-bold">Source:</span> <p class="fs-xs indicator-sources"></p>
+                                        <span class="fs-xs font-weight-bold">Source: <a href="../../about/data-sources"><i class="fa-solid fa-circle-question"></i></a></span> <p class="fs-xs indicator-sources"></p>
                                     </div>
                             </div>
                         </div>
@@ -976,13 +1030,11 @@
                 <div class="modal-header">
                     <h5 class="modal-title" id="printModalTitle">Save this visualization</h5>
                 </div>
-                <div class="modal-body">
-                    Use this view to screenshot or print this visualization. You can also click the three dots in the
-                    upper-right-hand corner of the chart and choose "save as PNG" or "save as SVG" to download the chart.
-                    This function works best on a desktop computer.
-                    <hr class="my-1">
+                <div class="modal-body" style="min-height: 800px">
+                    Use this view to screenshot or print this visualization. <strong>Resize the visualization</strong> using the grab in the bottom-right. Click the <strong>three dots in the
+                    upper-right-hand corner</strong> of the chart and choose "save as PNG" or "save as SVG" to download the chart. <em>This  works best on a desktop computer.</em>
     
-                    <div id="printVis" style="height: 400px; width:100%;" class="vis-print-modal">
+                    <div id="printVis" style="min-height: 600px; width:100%;resize:both; overflow: auto;" class="vis-print-modal border d-block">
                         Vis container
                     </div>
     
@@ -1070,7 +1122,7 @@
 
 
 <!-- RELATED FOOTER -->
-{{- partial "related-footer-2" . -}}
+{{- partial "related-footer" . -}}
 
 {{ end }}
 
@@ -1080,16 +1132,13 @@
 
     {{- /*  Accessible Autocomplete  */}}
 
-    {{- $js := resources.Get "js/accessible-autocomplete.min.js" -}}
-    {{- $secureJS := $js | resources.Fingerprint "sha512" -}}
-
-    <script type="text/javascript" src="{{ $secureJS.RelPermalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
+    {{- $aa_js := resources.Get "js/accessible-autocomplete.min.js" | partial "short-fingerprint.html" -}}
+    <script type="text/javascript" src="{{ $aa_js.RelPermalink }}" integrity="{{ $aa_js.Data.Integrity }}"></script>
 
     {{- /*  Arquero  */}}
 
-    {{- $arquero := resources.Get "node_modules/arquero/dist/arquero.min.js" | resources.Fingerprint "sha512" }}
-
-    <script type="text/javascript" src="{{ $arquero.RelPermalink }}" integrity="{{ $arquero.Data.Integrity }}"></script>
+    {{- $arquero := resources.Get "node_modules/arquero/dist/arquero.min.js" | partial "short-fingerprint.html" -}}
+    <script src="{{ $arquero.RelPermalink }}" integrity="{{ $arquero.Data.Integrity }}"></script>
 
      {{- /*  DataTables  */}}
 
@@ -1097,9 +1146,9 @@
 
     {{- $dataTablesCSS := resources.Get "node_modules/datatables.net-dt/css/jquery.dataTables.min.css" }}
     {{- $dataTablesButtonsCSS := resources.Get "node_modules/datatables.net-buttons-dt/css/buttons.dataTables.min.css" }}
-    {{- $dtCSS := slice $dataTablesCSS $dataTablesButtonsCSS | resources.Concat "css/dtCSS.css" }}
+    {{- $dtCSS := slice $dataTablesCSS $dataTablesButtonsCSS | resources.Concat "css/dtCSS.css" | partial "short-fingerprint.html" }}
 
-    <link rel="stylesheet" href="{{ $dtCSS.RelPermalink }}">
+    <link rel="stylesheet" href="{{ $dtCSS.RelPermalink }}" integrity="{{ $dtCSS.Data.Integrity }}">
 
     {{- /*  JS  */}}
 
@@ -1110,7 +1159,7 @@
     {{- $dataTablesRowGroup := resources.Get "node_modules/datatables.net-rowgroup/js/dataTables.rowGroup.min.js" }}
 
     {{- $dataTablesBundleJS := slice $dataTables $dataTablesButtons $dataTablesButtonsHtml5 $dataTablesButtonsPrint $dataTablesRowGroup | resources.Concat "js/dataTableBundle.js" }}
-    {{- $DT_secureJS := $dataTablesBundleJS | resources.Fingerprint "sha512" }}
+    {{- $DT_secureJS := $dataTablesBundleJS | partial "short-fingerprint.html" }}
 
     <script type="text/javascript" src="{{ $DT_secureJS.RelPermalink }}" integrity="{{ $DT_secureJS.Data.Integrity }}"></script>
 
@@ -1122,28 +1171,28 @@
     {{- $vegaEmbed := resources.Get "node_modules/vega-embed/build/vega-embed.min.js" }}
 
     {{- $vegaBundleJS := slice $vega $vegaLite $vegaEmbed | resources.Concat "js/vegaBundle.js" }}
-    {{- $vega_secureJS := $vegaBundleJS | resources.Fingerprint "sha512" }}
+    {{- $vega_secureJS := $vegaBundleJS | partial "short-fingerprint.html" }}
 
     <script type="text/javascript" src="{{ $vega_secureJS.RelPermalink }}" integrity="{{ $vega_secureJS.Data.Integrity }}"></script>
 
     {{- /*  D3  */}}
 
     {{- $d3 := resources.Get "node_modules/d3/dist/d3.min.js" }}
-    {{- $d3_secureJS := $d3 | resources.Fingerprint "sha512" }}
+    {{- $d3_secureJS := $d3 | partial "short-fingerprint.html" }}
 
     <script type="text/javascript" src="{{ $d3_secureJS.RelPermalink }}" integrity="{{ $d3_secureJS.Data.Integrity }}"></script>
 
     {{- /*  naturalSort - from https://datatables.net/plug-ins/sorting/natural  */}}
 
     {{- $naturalSort := resources.Get "js/naturalSort.js" }}
-    {{- $naturalSort_secureJS := $naturalSort | resources.Fingerprint "sha512" }}
+    {{- $naturalSort_secureJS := $naturalSort | partial "short-fingerprint.html" }}
 
     <script type="text/javascript" src="{{ $naturalSort_secureJS.RelPermalink }}" integrity="{{ $naturalSort_secureJS.Data.Integrity }}"></script>
 
     {{- /*  seedrandom  */}}
 
     {{- $seedrandom := resources.Get "node_modules/seedrandom/seedrandom.min.js" }}
-    {{- $seedrandom_secureJS := $seedrandom | resources.Fingerprint "sha512" }}
+    {{- $seedrandom_secureJS := $seedrandom | partial "short-fingerprint.html" }}
 
     <script type="text/javascript" src="{{ $seedrandom_secureJS.RelPermalink }}" integrity="{{ $seedrandom_secureJS.Data.Integrity }}"></script>
 
@@ -1259,21 +1308,21 @@
     {{- $map         := resources.Get "js/data-explorer/map.js" -}}
     {{- $links       := resources.Get "js/data-explorer/links.js" -}}
     {{- $disparities := resources.Get "js/data-explorer/disparities.js" -}}
-    {{- $trend := resources.Get "js/data-explorer/trend.js" -}}
+    {{- $trend       := resources.Get "js/data-explorer/trend.js" -}}
     {{- $app         := resources.Get "js/data-explorer/app.js" -}}
-    {{- $print         := resources.Get "js/data-explorer/print.js" -}}
+    {{- $print       := resources.Get "js/data-explorer/print.js" -}}
 
 
-    {{- $global_secure      := $global | resources.Fingerprint "sha512" -}}
-    {{- $data_secure        := $data | resources.Fingerprint "sha512" -}}
-    {{- $measures_secure    := $measures | resources.Fingerprint "sha512" -}}
-    {{- $table_secure       := $table | resources.Fingerprint "sha512" -}}
-    {{- $map_secure         := $map | resources.Fingerprint "sha512" -}}
-    {{- $links_secure       := $links | resources.Fingerprint "sha512" -}}
-    {{- $disparities_secure := $disparities | resources.Fingerprint "sha512" -}}
-    {{- $trend_secure := $trend | resources.Fingerprint "sha512" -}}
-    {{- $app_secure         := $app | resources.Fingerprint "sha512" -}}
-    {{- $print_secure         := $print | resources.Fingerprint "sha512" -}}
+    {{- $global_secure      := $global | partial "short-fingerprint.html" -}}
+    {{- $data_secure        := $data | partial "short-fingerprint.html" -}}
+    {{- $measures_secure    := $measures | partial "short-fingerprint.html" -}}
+    {{- $table_secure       := $table | partial "short-fingerprint.html" -}}
+    {{- $map_secure         := $map | partial "short-fingerprint.html" -}}
+    {{- $links_secure       := $links | partial "short-fingerprint.html" -}}
+    {{- $disparities_secure := $disparities | partial "short-fingerprint.html" -}}
+    {{- $trend_secure       := $trend | partial "short-fingerprint.html" -}}
+    {{- $app_secure         := $app | partial "short-fingerprint.html" -}}
+    {{- $print_secure       := $print | partial "short-fingerprint.html" -}}
 
 
     <script type="text/javascript" src="{{ $global_secure.RelPermalink }}" integrity="{{ $global_secure.Data.Integrity }}"></script>

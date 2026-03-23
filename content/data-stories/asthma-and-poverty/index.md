@@ -33,15 +33,31 @@ related:
     url: "data-stories/hia/"
 ---
 
+{{< updateflag data=`[
+  {"src": "../../data-explorer/economic-conditions/?id=103", "text": "Neighborhood poverty"},
+  {"src": "../../data-explorer/asthma/?id=2379", "text": "Asthma ED visits (age 5 to 17)"}
+]` >}}
+
 Poverty affects health in many ways. In New York City, the story of asthma clearly illustrates this connection.
 
 To understand the connection between poverty and asthma, take a look at this map of poverty rates in New York City, below. The darker the color, the more residents living in poverty.
 
+<div aria-hidden="true">
 {{< datawrapper title="Poverty in New York City" src="s32oq/3/" height="600" >}}
+</div>
+<div class="sr-only">
+<div style="min-height:930px" id="datawrapper-vis-ecp3d"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/ecp3d/embed.js" charset="utf-8" data-target="#datawrapper-vis-ecp3d"></script><noscript><img src="https://datawrapper.dwcdn.net/ecp3d/full.png" alt="" /></noscript></div>
+</div>
 
 Now, compare that to a map of emergency department visits for asthma in children age 5 to 17, below. The darker the color, the higher the rate of children visiting the emergency department with asthma.
 
+<div aria-hidden="true">
 {{< datawrapper title="Child asthma in NYC" src="xHdgu/1/" height="600" >}}
+</div>
+
+<div class="sr-only">
+<div style="min-height:907px" id="datawrapper-vis-KvyVJ"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/KvyVJ/embed.js" charset="utf-8" data-target="#datawrapper-vis-KvyVJ"></script><noscript><img src="https://datawrapper.dwcdn.net/KvyVJ/full.png" alt="" /></noscript></div>
+</div>
 
 The similarities are clear. Throughout the city, neighborhoods with higher rates of poverty also experience higher rates of childhood asthma, which we can see from the rates of emergency department visits.
 
@@ -51,7 +67,12 @@ We can look at the connections between these two maps, of poverty and asthma, wi
 
 On the scatter plot below, each dot represents one neighborhood. Its horizontal position represents the neighborhood's poverty rate, and its vertical position represents its asthma rate. The pattern of dots, roughly grouped around an ascending line, shows a connection between poverty and asthma: the higher the poverty rate, the higher the asthma rate.
 
+<div aria-hidden="true">
 {{< datawrapper title="The correlation between poverty and asthma" src="YiBqa/2/" height="409" >}}
+</div>
+<div class="sr-only">
+<div style="min-height:8325px" id="datawrapper-vis-pxkwE"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/pxkwE/embed.js" charset="utf-8" data-target="#datawrapper-vis-pxkwE"></script><noscript><img src="https://datawrapper.dwcdn.net/pxkwE/full.png" alt="Higher poverty areas overlap with higher child ED visits for asthma. In Mott Haven-Port Morris, where there is a 45.1% poverty rate, there are	683 ED visits by children per 10,000 residents. In Park Slope-Gowanus, there is a 7.3% poverty rate, and fewer child ED visits at 68 per 10,000 residents. " /></noscript></div>
+</div>
 
 ### Why does this connection exist?
 

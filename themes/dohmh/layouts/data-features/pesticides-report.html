@@ -1,0 +1,241 @@
+{{- define "main" -}}
+
+<!--
+    The pesticides report:
+     - Reads index.md for the .Content section; divs and scripts in index.md render Table-1, Table-2, and Table-3 as tables.
+     - Loops through all of the .md files in /pesticides-sections and generates accordion sections, with tables, for each 
+     - The "filterBy" field in those files' frontmatter specifies how each accordion filters data in agency-totals.csv
+
+    Ultimately:
+     - Updates should largely be focused on updating the tables and figures
+     - The template should render the tables accurately 
+-->
+
+<style>
+    thead, th, td {
+        padding: 2px 25px;
+        border-bottom: 1px solid lightgray;
+      }
+
+      .table td.num, 
+        .table th.num {
+        text-align: right;
+        }
+      
+        .total-row {
+            border-top: 2px solid black;
+        }
+
+      h2, h3, h4 {
+        margin-top: 40px;
+      }
+</style>
+
+<script>
+// INGEST BIG AGENCY DATA FILE TO USE LATER
+var agencyData = [];
+
+// load CSV and assign to the global
+d3.csv("data/agency-totals.csv").then(function(data) {
+    agencyData = data;                                      // assign to global variable
+    console.log("CSV loaded:", agencyData);                 // print to console
+    document.dispatchEvent(new Event("agencyDataReady"));   // send an event that triggers other scripts
+});
+
+function renderAgencyTable(agencyName, targetId, noDataProvided) {
+    // filter
+    const filtered = agencyData.filter(d => d.Agency === agencyName);
+
+    console.log('Printing for ' + agencyName);
+    // console.log(noDataProvided);
+
+    // delegate to shared table printer
+    printTable(filtered, targetId, `{{ .Params.reportingYear }}`, noDataProvided);
+}
+
+function renderIntroTable(tableName, destination, standard, numeric) {
+    const file = 'data/' + tableName + '.csv';
+   
+    d3.csv(file).then(function(data) {
+        console.log('File loaded: ' + tableName);
+        // console.log(data);
+
+        if (standard) {
+            // use same formatted table
+            printTable(data, destination);
+        } else {
+            // fallback: just dump raw data
+            let table = `<table cellpadding="5" class="table table-striped">
+                            <thead><tr class="fs-sm">`;
+            Object.keys(data[0]).forEach((col, i) => {
+                table += `<th${(numeric && i > 0) ? ' class="num"' : ''}>${col}</th>`;
+            });
+            table += `</tr></thead><tbody>`;
+
+            data.forEach(row => {
+                table += `<tr>`;
+                Object.values(row).forEach((val, i) => {
+                    table += `<td${(numeric && i > 0) ? ' class="num"' : ''}>${val}</td>`;
+                });
+                table += `</tr>`;
+            });
+
+            table += `</tbody></table>`;
+            document.getElementById(destination).innerHTML = table;
+        }
+    });
+}
+
+function printTable(data, destination, year, noDataProvided) {
+    const container = document.getElementById(destination);
+
+    // if agency explicitly provided *no data* at all
+    if (noDataProvided === 'true') {
+        container.innerHTML = `<p><em>No application data was provided for ${year}.</em></p>`;
+        return;
+    }
+
+    // fallback if data array is empty
+    if (!data || data.length === 0) {
+        container.innerHTML = `<p><em>The agency reported that no pesticides were used in ${year}.</em></p>`;
+        return;
+    }
+
+    // compute totals (convert strings -> numbers)
+    const totalVolume = data.reduce((sum, row) => sum + parseFloat(row['Volume in Gallons'] || 0), 0);
+    const totalWeight = data.reduce((sum, row) => sum + parseFloat(row['Weight in Pounds'] || 0), 0);
+    const totalApps = data.reduce((sum, row) => sum + parseFloat(row['Total Applications'] || 0), 0);
+
+    // build table element
+    let table = `<table cellpadding="5" class="table table-striped">
+                    <thead>
+                    <tr class="fs-sm">
+                        <th>Type</th>
+                        <th class="border-left num">Volume (gallons)</th>
+                        <th class="num">Percent of total volume</th>
+                        <th class="border-left num">Weight (lbs)</th>
+                        <th class="num">Percent of total weight</th>
+                        <th class="border-left num">Total applications</th>
+                        <th class="num">Percent of total applications</th>
+                    </tr>
+                    </thead>
+                    <tbody>`;
+
+    data.forEach(row => {
+        const volume = parseFloat(row['Volume in Gallons'] || 0);
+        const weight = parseFloat(row['Weight in Pounds'] || 0);
+        const apps = parseFloat(row['Total Applications'] || 0);
+
+        const volumePct = totalVolume ? ((volume / totalVolume) * 100).toFixed(1) + "%" : "0%";
+        const weightPct = totalWeight ? ((weight / totalWeight) * 100).toFixed(1) + "%" : "0%";
+        const appsPct = totalApps ? ((apps / totalApps) * 100).toFixed(1) + "%" : "0%";
+
+        const rowName = row['Pesticide Type'] ? row['Pesticide Type'] : row.Target;
+
+        table += `<tr>
+                    <td>${rowName}</td>
+                    <td class="border-left num">${volume.toLocaleString()}</td>
+                    <td class="num">${volumePct}</td>
+                    <td class="border-left num">${weight.toLocaleString()}</td>
+                    <td class="num">${weightPct}</td>
+                    <td class="border-left num">${apps.toLocaleString()}</td>
+                    <td class="num">${appsPct}</td>
+                  </tr>`;
+    });
+
+    // totals row
+    table += `<tr class="font-weight-bold border-top total-row">
+                <td>Total</td>
+                <td class="border-left num">${totalVolume.toLocaleString()}</td>
+                <td class="num"></td>
+                <td class="border-left num">${totalWeight.toLocaleString()}</td>
+                <td class="num"></td>
+                <td class="border-left num">${totalApps.toLocaleString()}</td>
+                <td class="num"></td>
+              </tr>`;
+
+    table += `</tbody></table>`;
+
+    // inject into the DOM
+    container.innerHTML = table;
+}
+
+
+</script>
+
+<article class="container-fluid" id="skip-header-target">
+
+    <div class="row">
+
+    {{ $weight := "" }}
+
+    {{ with .Params.content_weight }}
+        {{ $weight = . }}
+    {{ end }}
+
+        <div class="col-md-8 col-sm-12 mx-auto mb-6" data-pagefind-weight="{{ $weight }}">
+            <div class="row">
+                <div class="col-12 mx-auto mt-2 mb-3">
+                    <nav aria-label="breadcrumb">
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
+                            <li class="breadcrumb-item"><a href={{ relURL "data-features" }}>Data Features</a></li>
+        
+                            <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+
+                <h1 class="h2" data-pagefind-weight="10.0">
+                    {{ .Title }} in {{ .Params.reportingYear }}
+                </h1>
+
+                {{- .Content  -}}
+
+                <hr class="my-2">
+
+                <div class="my-4">
+                    <div class="accordion-group" id="sectionsAccordion">
+
+                    {{ $sections := .Resources.Match "pesticides-sections/*.md" }}
+
+                    {{ range $i, $s := $sections }}
+                        {{ partial "pesticides-section.html" (dict "page" $s "index" $i "reportingYear" .Params.reportingYear ) }}
+                    {{ end }}
+                    
+                    </div>
+                </div>
+
+                <h2 id="appendices">Appendices</h2>
+                <p>Download data on pesticide use by City agencies:</p>
+                <ul>
+                    <li><a href="data/Appendix-1.csv">Appendix 1: Citywide Product Totals</a></li>
+                    <li><a href="data/Appendix-2.csv">Appendix 2: Agency Product Totals</a></li>
+                    <li><a href="data/Appendix-3.csv">Appendix 3: Best Practice Product Totals</a></li>
+                </ul>
+
+        </div>
+
+    </div>
+
+</article>
+
+{{- if .Params.js -}}
+    <script src="{{ .Params.js }}"></script>
+{{- end -}}
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const year = {{ .Params.reportingYear }};
+
+  if (!year) return;
+
+  document.querySelectorAll('.reportingYearPrint').forEach(el => {
+    el.innerHTML = year;
+  });
+});
+</script>
+
+
+{{- end -}}

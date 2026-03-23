@@ -3,7 +3,7 @@ title: Housing maintenance
 date: 2021-05-28 18:02:58.817845
 draft: false
 azlink: "https://www.nyc.gov/site/doh/health/health-topics/healthy-home.page"
-seo_title: "Housing maintenance data for NYC | Environment and Health Data Portal"
+seo_title: "Housing maintenance data for NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
 description: "Datasets and visualizations of housing maintenance in NYC."
 tags:
@@ -21,16 +21,17 @@ keywords:
 indicators:
   - header: null
     IndicatorID:
-      - 2396
-      - 2395
-      - 46
-      - 47
       - 45
+      - 47
       - 40
       - 42
       - 41
       - 2399
       - 2179
+      - 2446
+      - 2396
+      - 2395
+      - 46
 related:
   - title: "Housing creates health"
     url: "data-stories/housing-creates-health/"

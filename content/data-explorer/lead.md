@@ -36,7 +36,7 @@ relatedData:
     url: "economic-conditions/"
   - title: "Housing maintenance"
     url: "housing-maintenance/"
-  - title: "Housing Safety/"
+  - title: "Housing Safety"
     url: "housing-safety/"
 ---
 
