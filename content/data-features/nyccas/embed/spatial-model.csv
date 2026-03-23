@@ -13,5 +13,5 @@
 12,bc,Commercial cooking,Number of permitted commercial cooking grills and charbroilers within 100 meters,Emissions from commercial cooking
 13,bc,Building emissions,PM<sub>2.5</sub> emissions from heat and hot water oil-burning boilers in buildings within 100 meters,Combustion of heating oil
 14,bc,Industrial land use,"Area with industrial land-use within 1,000 meters",Emissions from trucks idling and traveling to and from industrial areas; and industrial combustion equipment
-15,o3,NO<sub>2</sub>,Level of NO<sub>2</sub> measured at the same location,"Nitric oxides (NO<sub>x</sub>) at elevated concentrations react with ground-level ozone (O<sub>3</sub>), to create NO<sub>2</sub> and O<sub>3</sub>, also called ""quenching"" ozone"
+15,o3,NO<sub>2</sub>,Level of NO<sub>2</sub> measured at the same location,"Nitric oxides (NO<sub>x</sub>) at elevated concentrations react with ground-level ozone (O<sub>3</sub>), to create NO<sub>2</sub> and oxygen, also called ""quenching"" ozone"
 16,o3,Tree cover,Tree cover within 50 meters,Reduced levels through reactions of ozone with leaf surfaces
