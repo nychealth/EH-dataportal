@@ -29,6 +29,8 @@ indicators:
       - 2091
       - 64
       - 690
+      - 2476
+      - 2477
 related:
   - title: "The racial wealth gap has big implications for public health and health equity"
     url: "data-stories/racial-wealth-gap/"
