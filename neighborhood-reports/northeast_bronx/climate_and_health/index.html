@@ -1168,6 +1168,288 @@
 
 
 
+  <div class="card-header border-top" id="heading-Area687">
+    <h2 class="mb-0">
+      <button
+        class="btn btn-block btn-sm text-left"
+        type="button"
+        data-toggle="collapse"
+        data-target="#collapse-Area687"
+        aria-expanded="true"
+        aria-controls="collapse-Area687"
+        onclick="getURL( 2140 , 'Area687')"
+      >
+        
+        <div class="row no-gutters" style="width: 100%">
+          <div class="col-7 d-print-none">
+            <span class="font-weight-bold fs-md"
+              >Coastal flood risk</span
+            ><br />
+            <span class="fs-sm font-weight-normal"
+              >Residents living in a hurricane evacuation zone, 2024</span
+            >
+          </div>
+          <div class="col-3 pl-1 d-print-none">
+            <span class="font-weight-bold fs-lg"
+              >22.5</span
+            >
+            <br />
+            <span class="fs-xs font-weight-normal"
+              >Percent </span
+            >
+          </div>
+
+          
+
+          <div class="col-2 d-print-none">
+              <div class="float-right mt-1">
+              <span
+                    class="better">Lower</span>
+            </div>
+          </div>
+
+          
+          <div class="col-12 print-only" style="flex-direction:row; width:100%;">
+
+            
+            <div style="width:50%;" class="border-right pl-1">
+              <span class="font-weight-bold fs-md">
+                Coastal flood risk
+              </span><br />
+              <span class="fs-sm font-weight-normal">Residents living in a hurricane evacuation zone, 2024</span>
+            </div>
+
+            
+            <div style="width:25%" class="border-right pl-1">
+              <span class="font-weight-bold fs-lg">
+                22.5
+              </span><br />
+              <span class="fs-xs font-weight-normal">
+                Percent 
+              </span>
+            </div>
+
+            
+
+            
+            <div style="width:25%;" class="pl-1">
+
+              Less than most neighborhoods
+
+
+
+            </div>
+
+          </div>
+
+        </div>
+      </button>
+    </h2>
+  </div>
+
+
+  <div
+    id="collapse-Area687"
+    class="collapse border-bottom "
+    aria-labelledby="heading-Area687"
+    data-parent="#accordion-0"
+    data-indicator-name="Area687"
+    data-count="1"
+  >
+    <div class="card-body card-body-no-top">
+
+      <div class="row no-gutters fs-sm">
+        <div class="col-12">
+            
+            <p class="fs-md mt-1 mb-2">Hurricane Evacuation Zones are determined by New York City Emergency Management and indicate varying threat levels of coastal flooding from storm surge. Evacuation orders may be given during hurricanes or coastal flooding events. There are six zones, ranked by storm surge risk. Zone 1 is the highest risk for flooding. Residents in these zones may receive evacuation orders during hurricanes or tropical storms.</p>
+        </div>
+
+                <div class="col-md-7 border-right h-100">
+                
+                <div style="width:100%; height:40vmin; z-index:100;" class="" id="map-Area687-1">
+                    ...map is loading...
+                </div><div class="data-note mt-1"></div></div>
+        
+        
+        
+        
+
+        
+
+        <div class="col-md-5 h-100 p-1 ">
+
+            <p class="fs-rg">
+                Coastal flood risk in <strong>Northeast Bronx</strong>:
+                <div class=" fs-md">
+                  <p>
+                    <span class="better-sm fs-sm mt-1">Less than most</span>&nbsp;neighborhoods
+                  </p>
+
+                  <p>
+                    <span id="b-coastal-flood-risk"></span> the <strong>Bronx average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="bv-coastal-flood-risk">boro val</span>%)</span>
+                  </p>
+
+                  <p>
+                    <span id="c-coastal-flood-risk"></span> the <strong>Citywide average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="cv-coastal-flood-risk">city val</span>%)</span>
+                  </p>
+
+                    </div>
+                
+            </p>
+
+             
+            <div id="trend" class="hide">
+            <p>In <strong>Bronx</strong>, it is [TREND]. Citywide, the trend is [TREND].</p>
+            </div>
+
+            
+
+            <span id="year-coastal-flood-risk" class="sr-only">YEAR</span>
+
+          
+
+        </div>
+
+      </div>
+      <div class="row no-gutters">
+        <div class="col-7">
+            <p class="fs-xs"><strong>Source:</strong> New York City Office of Emergency Management</p>
+
+        </div>
+        <div class="col-5">
+            <p class="float-right"><a id="2140" href="" class="ml-1" style="display:none"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Full dataset</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+    
+    (function(x, y) {
+        var endDate = new Date(x);
+        var year = endDate.getFullYear(); 
+        document.getElementById(y).innerHTML = year;
+    })(`2024-12-31`, `year-coastal-flood-risk`);
+
+(function(n, b, c, nid, bid, cid, rr) {
+    n = Number(n);
+    b = Number(b);
+    c = Number(c);
+
+    let rankReverse = (rr === true || rr === 'true');
+
+    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
+    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
+
+    let boroJudgement;
+    if (n > b && rankReverse) {
+      boroJudgement = 'comp-good';
+    } else if (n < b && rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n > b && !rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n < b && !rankReverse) {
+      boroJudgement = 'comp-good';
+    } else {
+      boroJudgement = 'comp-null';
+    }
+
+    let cityJudgement;
+    if (n > c && rankReverse) {
+      cityJudgement = 'comp-good';
+    } else if (n < c && rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n > c && !rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n < c && !rankReverse) {
+      cityJudgement = 'comp-good';
+    } else {
+      cityJudgement = 'comp-null';
+    }
+
+    let boroEl = document.getElementById(bid);
+    if (boroEl) {
+        boroEl.innerHTML = boroComp;
+        boroEl.classList.add(boroJudgement);
+    }
+
+    let cityEl = document.getElementById(cid);
+    if (cityEl) {
+        cityEl.innerHTML = cityComp;
+        cityEl.classList.add(cityJudgement);
+    }
+
+    document.getElementById('bv-coastal-flood-risk').innerHTML = b;
+    document.getElementById('cv-coastal-flood-risk').innerHTML = c;
+
+
+})(
+     22.5 ,
+     28.7 ,
+     39 ,
+    'n-coastal-flood-risk',
+    'b-coastal-flood-risk',
+    'c-coastal-flood-risk',
+     false 
+)
+
+
+</script>
+
+
+
+
+<script type="text/javascript">
+
+    $( "#collapse-Area687" ).on('shown.bs.collapse', function() {
+
+        
+
+        gtag('event', 'click_modal', {
+                'modal_name': 'Coastal flood risk'
+            });
+
+        var opt = {"renderer": "svg"};
+
+            
+
+            
+
+            var summaryData =
+                arqTable
+                .filter(d => d.indicator_data_name == "Area687")
+                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
+                .dedupe()
+                .groupby("neighborhood")
+                .orderby("neighborhood", aq.desc("end_date"))
+                .slice(0,1) 
+                .ungroup()
+                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
+                .orderby("unmodified_data_value_geo_entity") 
+                .select(aq.not("end_date"))
+                .objects()
+
+
+            
+
+            
+
+            var mapData = summaryData;
+
+            renderNRMap(mapData,  "#map-Area687-1", "Percent ","Coastal flood risk",geocode)
+
+    });
+
+    </script>
+
+
+
+
+
   <div class="card-header border-top" id="heading-Dayt688">
     <h2 class="mb-0">
       <button
@@ -1254,7 +1536,7 @@
     aria-labelledby="heading-Dayt688"
     data-parent="#accordion-0"
     data-indicator-name="Dayt688"
-    data-count="1"
+    data-count="2"
   >
     <div class="card-body card-body-no-top">
 
@@ -1266,7 +1548,7 @@
 
                 <div class="col-md-7 border-right h-100">
                 
-                <div style="width:100%; height:40vmin; z-index:100;" class="" id="map-Dayt688-1">
+                <div style="width:100%; height:40vmin; z-index:100;" class="" id="map-Dayt688-2">
                     ...map is loading...
                 </div><div class="data-note mt-1"></div></div>
         
@@ -1440,7 +1722,7 @@
 
             var mapData = summaryData;
 
-            renderNRMap(mapData,  "#map-Dayt688-1", "Degrees Fahrenheit ","Surface temperature",geocode)
+            renderNRMap(mapData,  "#map-Dayt688-2", "Degrees Fahrenheit ","Surface temperature",geocode)
 
     });
 
