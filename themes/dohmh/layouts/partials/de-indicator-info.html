@@ -48,13 +48,12 @@
                     <div class="dropdown fs-sm">
                         <div class="font-weight-bold mr-2 text-primary fs-sm mb-1">Boundary: </div>
                         <button class="btn fs-sm d-flex align-items-center w-100 text-left bg-white font-weight-normal" type="button" id="geoOptionsDropdownButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="flex-grow-1">Citywide</span>
+                            <span class="flex-grow-1 geo-name">Unchanged</span>
                             <i class="fas fa-chevron-down ml-auto text-primary"></i>
                         </button>
-                        <div class="dropdown-menu dropdown-menu-de w-100 border-none" aria-labelledby="geoOptionsDropdownButton">
-                            <button class="dropdown-item" type="button" onclick="updateDropdownText(this)">Citywide</button>
-                            <button class="dropdown-item" type="button" onclick="updateDropdownText(this)">Another boundary</button>
-                            <button class="dropdown-item" type="button" onclick="updateDropdownText(this)">Another boundary</button>
+                        <div class="dropdown-menu dropdown-menu-de w-100 border-none geo-holder" aria-labelledby="geoOptionsDropdownButton">
+                            <button class="dropdown-item" type="button" onclick="updateDropdownText(this)">Unchanged</button>
+
                         </div>
                     </div>
                 </div>
@@ -66,13 +65,12 @@
                     <div class="dropdown fs-sm">
                         <div class="font-weight-bold mr-2 text-primary fs-sm mb-1">Year: </div>
                         <button class="btn fs-sm d-flex align-items-center w-100 text-left bg-white font-weight-normal mb-2" type="button" id="timeOptionsDropdownButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="flex-grow-1">2025</span>
+                            <span class="flex-grow-1 time-name">2025</span>
                             <i class="fas fa-chevron-down ml-auto text-primary"></i>
                         </button>
-                        <div class="dropdown-menu dropdown-menu-de w-100 border-none" aria-labelledby="timeOptionsDropdownButton">
-                            <button class="dropdown-item" type="button" onclick="updateDropdownText(this)">2025</button>
-                            <button class="dropdown-item" type="button" onclick="updateDropdownText(this)">2024</button>
-                            <button class="dropdown-item" type="button" onclick="updateDropdownText(this)">2023</button>
+                        <div class="dropdown-menu dropdown-menu-de w-100 border-none time-holder" aria-labelledby="timeOptionsDropdownButton">
+                            <button class="dropdown-item" type="button" onclick="updateDropdownText(this)">Unchanged</button>
+
                         </div>
                     </div>
                 </div>
@@ -112,11 +110,11 @@
                     <div class="dropdown fs-sm">
                         <div class="font-weight-bold mr-2 text-primary fs-sm mb-1">Boundary: </div>
                         <button class="btn fs-sm d-flex align-items-center w-100 text-left bg-white font-weight-normal" type="button" id="geoOptionsDropdownButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="flex-grow-1">Change boundary</span>
+                            <span class="flex-grow-1 geo-name">Unchanged</span>
                             <i class="fas fa-chevron-down ml-auto text-primary"></i>
                         </button>
-                        <div class="dropdown-menu dropdown-menu-de w-100 border-none" aria-labelledby="geoOptionsDropdownButton">
-                            <button class="dropdown-item" type="button" onclick="updateDropdownText(this)">Citywide</button>
+                        <div class="dropdown-menu dropdown-menu-de w-100 border-none geo-holder" aria-labelledby="geoOptionsDropdownButton">
+                            <button class="dropdown-item" type="button" onclick="updateDropdownText(this)">Unchanged II</button>
                             <button class="dropdown-item" type="button" onclick="updateDropdownText(this)">Another boundary</button>
                             <button class="dropdown-item" type="button" onclick="updateDropdownText(this)">Another boundary</button>
                         </div>
@@ -130,11 +128,11 @@
                     <div class="dropdown fs-sm">
                         <div class="font-weight-bold mr-2 text-primary fs-sm mb-1">Year: </div>
                         <button class="btn fs-sm d-flex align-items-center w-100 text-left bg-white font-weight-normal mb-2" type="button" id="timeOptionsDropdownButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="flex-grow-1">Change time</span>
+                            <span class="flex-grow-1 time-name">Change time</span>
                             <i class="fas fa-chevron-down ml-auto text-primary"></i>
                         </button>
-                        <div class="dropdown-menu dropdown-menu-de w-100 border-none" aria-labelledby="timeOptionsDropdownButton">
-                            <button class="dropdown-item" type="button" onclick="updateDropdownText(this)">2025</button>
+                        <div class="dropdown-menu dropdown-menu-de w-100 border-none time-holder" aria-labelledby="timeOptionsDropdownButton">
+                            <button class="dropdown-item" type="button" onclick="updateDropdownText(this)">Unchanged II</button>
                             <button class="dropdown-item" type="button" onclick="updateDropdownText(this)">2024</button>
                             <button class="dropdown-item" type="button" onclick="updateDropdownText(this)">2023</button>
                         </div>

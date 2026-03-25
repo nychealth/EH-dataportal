@@ -51,3 +51,9 @@ function getGeoFile(mapGeoType) {
         return 'RMZ.topo.json';   
     }
 }
+
+function replaceTimePeriodID() {
+
+}
+
+function getFinestGeography() {}
