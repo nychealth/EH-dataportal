@@ -3,7 +3,7 @@
     <div
       id="cpSiteButtons2"
       class="btn-group btn-block flex-wrap"
-      role="group"z
+      role="group"
       aria-label="Choose site"
     ></div>
   </div>
@@ -14,6 +14,12 @@
       <div id="cpVis2" style="width: 100%;"></div>
     </div>
   </div>
+
+  <style>
+    .vega-embed {
+        height: 200px !important;
+    }
+</style>
 
   <script>
     const CP_CONTAINER2_ID = "cpVis2";
@@ -125,7 +131,7 @@
       columns: 5,
     };
 
-    function specForSite(site) {
+    function specForSite1(site) {
       // structuredClone first; fallback to JSON clone
       const spec1 =
         typeof structuredClone === "function"
@@ -136,14 +142,14 @@
       return spec1;
     }
 
-    async function draw(site) {
+    async function draw_crz(site) {
       const el = document.getElementById(CP_CONTAINER2_ID);
       if (!el) return;
 
       el.innerHTML = ""; // clear previous render
 
       try {
-        await vegaEmbed(el, specForSite_1(site), {
+        await vegaEmbed(el, specForSite1(site), {
           actions: false,
           renderer: "canvas",
         });
@@ -154,7 +160,7 @@
       }
     }
 
-    function renderButtons() {
+    function renderButtons_crz() {
       const btnWrap1 = document.getElementById("cpSiteButtons2");
       if (!btnWrap1) return;
 
@@ -166,7 +172,7 @@
         btn1.className = "btn btn-sm btn-outline-dark m-1";
         btn1.textContent = site;
 
-        if (site === currentSite_1) btn.classList.add("active");
+        if (site === currentSite_1) btn1.classList.add("active");
 
         btn1.addEventListener("click", async () => {
           currentSite_1 = site;
@@ -176,7 +182,7 @@
           );
           btn1.classList.add("active");
 
-          await draw(site);
+          await draw_crz(site);
         });
 
         btnWrap1.appendChild(btn1);
@@ -191,8 +197,8 @@
         return;
       }
 
-      renderButtons();
-      await draw(currentSite_1);
+      renderButtons_crz();
+      await draw_crz(currentSite_1);
     });
 
     const cpSpec1 = {

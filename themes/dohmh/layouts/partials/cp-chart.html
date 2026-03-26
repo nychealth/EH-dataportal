@@ -28,7 +28,7 @@
 
 <style>
     .vega-embed {
-        height: 200 !important;
+        height: 200px !important;
     }
 </style>
 
@@ -218,124 +218,16 @@
     }
     
     document.addEventListener("DOMContentLoaded", async () => {
+        const el = document.getElementById(cp_container_id);
+        if (!el) return;
+    
+        // wait for vegaEmbed to be available
         if (typeof vegaEmbed !== "function") {
-            console.error(
-                "vegaEmbed not available. Are the Vega scripts loaded above this script?"
-            );
+            console.error("vegaEmbed not available. Are the Vega scripts loaded above this script?");
             return;
         }
-
+    
         renderButtons();
         await draw(currentSite);
-    });
-    
-    const cpSpec = {
-        $schema: "https://vega.github.io/schema/vega-lite/v6.json",
-        config: {
-            header: {
-                labelAlign: "left",
-                labelAnchor: "start",
-                labelFont: "Helvetica",
-                labelFontWeight: "bold",
-                labelFontSize: 12,
-            },
-            view: { stroke: null },
-            axisX: { labelAngle: 0, domain: false },
-            axisY: {
-                domain: false,
-                ticks: false,
-                tickCount: 3,
-                orient: "left",
-                title: null,
-            },
-        },
-        data: {
-            url: "https://gist.githubusercontent.com/mmontesanonyc/c4a858aba1959c377188e9c2dbb50681/raw/2d439386e74ce7dbbb0b31bac8cc736f28d18114/cp-test-data-with-units.csv",
-        },
-        resolve: { scale: { y: "independent" } },
-        transform: [
-        { filter: "datum.Site === 'Mott Haven'" },
-        {
-            calculate: "datum.Parameter + ' (' + datum.Unit + ')'",
-            as: "ParameterWithUnit",
-        },
-        {
-            calculate: "datum.Average + ' ' + datum.Unit",
-            as: "ValueWithUnit",
-        },
-        {
-            calculate: "datum.LC + ', ' + datum.UC",
-            as: "ciRange",
-        },
-        {
-            calculate:
-            "datum.Time === 'Pre' ? 'Before congestion pricing' : datum.Time === 'Post' ? 'With congestion pricing' : datum.Time",
-            as: "TimeLabel",
-        },
-        ],
-        facet: { field: "ParameterWithUnit", title: null },
-        spec: {
-            width: 150,
-            height: 250,
-            encoding: {
-                x: {
-                    field: "Time",
-                    type: "nominal",
-                    sort: "descending",
-                    title: null,
-                },
-            },
-            layer: [
-            {
-                mark: {
-                    type: "rule",
-                    strokeWidth: 5,
-                    color: "lightgray",
-                    strokeCap: "round",
-                },
-                encoding: {
-                    y: { field: "UC", type: "quantitative" },
-                    y2: { field: "LC", type: "quantitative" },
-                },
-            },
-            {
-                mark: { type: "line", color: "blue", strokeDash: [2, 2] },
-                encoding: { y: { field: "Average", type: "quantitative" } },
-            },
-            {
-                mark: { type: "circle", size: 100, color: "blue" },
-                encoding: {
-                    y: {
-                        field: "Average",
-                        type: "quantitative",
-                        scale: { domainMin: 0, nice: false },
-                    },
-                    tooltip: [
-                    { field: "Parameter", title: "Pollutant", type: "nominal" },
-                    { field: "TimeLabel", title: "Period", type: "nominal" },
-                    { field: "ValueWithUnit", title: "Average", type: "nominal" },
-                    {
-                        field: "ciRange",
-                        title: "Confidence interval",
-                        type: "nominal",
-                    },
-                    ],
-                },
-            },
-            ],
-        },
-        columns: 5,
-    };
-    
-    document.addEventListener("DOMContentLoaded", async () => {
-        const el = document.getElementById("cpVis");
-        if (!el) return;
-        
-        try {
-            await vegaEmbed(el, cpSpec, { actions: false, renderer: "canvas" });
-        } catch (err) {
-            console.error("CP Vega render failed:", err);
-            el.innerHTML = "<pre style='white-space:pre-wrap'>Chart failed to render.</pre>";
-        }
     });
 </script>
