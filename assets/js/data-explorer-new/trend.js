@@ -2,7 +2,7 @@
 // trend.js
 // ======================================================================= //
 
-console.log('>> trend.js')
+// console.log('>> trend.js')
 
 
 const renderTrendChart = (

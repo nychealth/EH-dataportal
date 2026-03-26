@@ -2,7 +2,7 @@
 // links.js
 // ======================================================================= //
 
-console.log(">> disparities.js");
+// console.log(">> disparities.js");
 
 const renderDisparitiesChart = (
     data

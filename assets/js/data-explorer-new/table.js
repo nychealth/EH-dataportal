@@ -2,7 +2,7 @@
 // table.js
 // ======================================================================= //
 
-console.log('>> table.js')
+// console.log('>> table.js')
 
 
 const renderTable = (tableData) => {

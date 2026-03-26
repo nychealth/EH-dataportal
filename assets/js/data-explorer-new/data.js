@@ -4,7 +4,7 @@
 
 // data loading and manipulation functions
 
-console.log(">> data.js");
+// console.log(">> data.js");
 
 // ----------------------------------------------------------------------- //
 // function to load indicator metadata
@@ -14,7 +14,7 @@ const loadIndicator = async (this_indicatorId, dont_add_to_history) => {
 
     console.log("* loadIndicator:", parseFloat(this_indicatorId));
 
-    console.log("indicators [loadIndicator]", indicators);
+    // console.log("indicators [loadIndicator]", indicators);
 
     currentHash = window.location.hash;
 
@@ -48,7 +48,7 @@ const loadIndicator = async (this_indicatorId, dont_add_to_history) => {
     indicatorComparisonId = indicator?.Comparisons;
     indicatorMeasures = indicator?.Measures;
 
-    console.log("indicatorMeasures [loadIndicator]", indicatorMeasures);
+    // console.log("indicatorMeasures [loadIndicator]", indicatorMeasures);
 
     // create Citation
 
@@ -207,8 +207,8 @@ const joinData = async () => {
 
     console.log("* joinData");
 
-    console.log("indicators [joinData]", indicators);
-    console.log("indicatorMeasures [joinData]", indicatorMeasures);
+    // console.log("indicators [joinData]", indicators);
+    // console.log("indicatorMeasures [joinData]", indicatorMeasures);
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
     // get metadata fields
@@ -348,8 +348,8 @@ const joinData = async () => {
                     .flatMap(d => d)
                     .reduce((a, b) => a.concat(b))
 
-            console.log(">> aqMapTimesGeosMeasure [joinData]");
-            aqMapTimesGeosMeasure.print()
+            // console.log(">> aqMapTimesGeosMeasure [joinData]");
+            // aqMapTimesGeosMeasure.print()
 
             // push table for this measure to array with all measures
 
@@ -450,7 +450,7 @@ const joinData = async () => {
     
     // foundational joined dataset ----------
 
-    console.log(">>>> joinedAqData [joinData]");
+    // console.log(">>>> joinedAqData [joinData]");
 
     joinedAqData = aqIndicatorData
         // join the additional geo info
@@ -495,7 +495,7 @@ const joinData = async () => {
         .reify()
         .objects()
 
-    console.log(">>>> mapData [joinData]", mapData);
+    // console.log(">>>> mapData [joinData]", mapData);
     
 
     // data for trend chart ----------

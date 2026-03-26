@@ -8,7 +8,7 @@
 
 */
 
-console.log(">> bar.js");
+// console.log(">> bar.js");
 
 const renderBar = (
     data, 
@@ -21,9 +21,9 @@ const renderBar = (
 
     // document.getElementById('viewDescription').innerHTML = 'Hover over the map or chart for more information.'
 
-    console.log("data [renderBar]", data);
-    console.log("metadata [renderBar]", metadata);
-    console.log("geo [renderBar]", geography);
+    // console.log("data [renderBar]", data);
+    // console.log("metadata [renderBar]", metadata);
+    // console.log("geo [renderBar]", geography);
 
     // ----------------------------------------------------------------------- //
     // get unique time in data
@@ -317,10 +317,12 @@ const renderBar = (
     // render chart
     // ----------------------------------------------------------------------- //
 
-    console.log('vega-lite spec:')
-    console.log(barSpec)
+    // console.log('vega-lite spec:')
+    // console.log(barSpec)
 
     const vegaSpec = vegaLite.compile(barSpec).spec;
+
+    // console.log("vegaSpec", vegaSpec);
     
     const geoSignal = {
         "name": "selectedGeo",

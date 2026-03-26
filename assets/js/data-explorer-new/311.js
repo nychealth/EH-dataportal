@@ -4,7 +4,7 @@
 
 //  fetch and load 311 Crosswalk into global object
 
-console.log(">> 311.js");
+// console.log(">> 311.js");
 
 //------- call function
 

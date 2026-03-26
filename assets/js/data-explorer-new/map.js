@@ -2,7 +2,7 @@
 // map.js
 // ======================================================================= //
 
-console.log(">> map.js");
+// console.log(">> map.js");
 
 const renderMap = (
     data, 
@@ -13,8 +13,8 @@ const renderMap = (
 
     // document.getElementById('viewDescription').innerHTML = 'Hover over the map or chart for more information.'
 
-    console.log("data [renderMap]", data);
-    console.log("metadata [renderMap]", metadata);
+    // console.log("data [renderMap]", data);
+    // console.log("metadata [renderMap]", metadata);
 
     // ----------------------------------------------------------------------- //
     // get unique time in data
@@ -140,14 +140,14 @@ const renderMap = (
 
             let geojson = topojson.feature(topology, topology.objects.collection);
 
-            console.log("geojson [renderMap fetch]", geojson);
+            // console.log("geojson [renderMap fetch]", geojson);
 
             // --- Attach data to each feature ---
 
             geojson.features.forEach((feature, i) => {
 
                 if (i == 0) {
-                    console.log("***** properties", feature.properties)
+                    // console.log("***** properties", feature.properties)
                 }
 
                 const geoID = feature.properties.GEOCODE;
@@ -179,7 +179,7 @@ const renderMap = (
 
             // --- Add the GeoJSON to the map ---
 
-            console.log("geojson [renderMap]", geojson);
+            // console.log("geojson [renderMap]", geojson);
 
             const geojsonLayer = L.geoJson(geojson, {
 

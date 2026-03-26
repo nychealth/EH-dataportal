@@ -2,7 +2,7 @@
 // topic-indicator-selector.js
 // ======================================================================= //
 
-console.log(">> topic-indicator-selector.js");
+// console.log(">> topic-indicator-selector.js");
 
 // --------------------------------------------------------
 // all indicator metadata as global variable
@@ -19,7 +19,7 @@ const indicatorsPromise = fetch(`${data_repo}${data_branch}/indicators/metadata/
     .then(data => {
         console.log("* fetch metadata.json");
         indicators = data; 
-        console.log(">> indicators [fetch]", indicators);
+        // console.log(">> indicators [fetch]", indicators);
         return data; // resolve promise
     })
     .catch(error => console.error("# Error loading metadata.json:", error));
@@ -28,7 +28,7 @@ const indicatorsPromise = fetch(`${data_repo}${data_branch}/indicators/metadata/
 
 const ensureIndicatorsLoaded = async (topic) => {
 
-    console.log("* ensureIndicatorsLoaded (", topic, ")");
+    // console.log("* ensureIndicatorsLoaded (", topic, ")");
 
     if (indicators) {
 
@@ -36,7 +36,7 @@ const ensureIndicatorsLoaded = async (topic) => {
 
     } else {
 
-        console.log("# Waiting for indicators to load for " + topic);
+        // console.log("# Waiting for indicators to load for " + topic);
         
         return await indicatorsPromise; 
 
@@ -61,7 +61,7 @@ const getIndicatorsForTopic = (title, indicatorsJSON, dest) => {
     $('#indicatorSelector').modal('show');
     
     // set destination
-    console.log('destination:', dest)
+    // console.log('destination:', dest)
     
     // pass indicator json to print function
     printIndicators(indicators, dest)
@@ -86,7 +86,7 @@ const printIndicators = async (indList, destination) => {
     
     // Ensure metadata are loaded
     const data = await ensureIndicatorsLoaded('indicator selection modal');
-    console.log("Indicators ready to print to indicator selection modal!", data);
+    // console.log("Indicators ready to print to indicator selection modal!", data);
     
     // Clear existing content
     indicatorDestination.innerHTML = '';
@@ -144,7 +144,7 @@ const checkURL = async () => {
 
     console.log("* checkURL");
 
-    console.log("indicators [checkURL]", indicators);
+    // console.log("indicators [checkURL]", indicators);
 
     const urlParams = new URLSearchParams(window.location.search);
     
@@ -165,7 +165,7 @@ const checkURL = async () => {
 
     const _indicators = await ensureIndicatorsLoaded('printing measure menu');
 
-    console.log(">> indicators [checkURL]", _indicators);
+    // console.log(">> indicators [checkURL]", _indicators);
 
     await loadIndicator(chosenIndicator);
 

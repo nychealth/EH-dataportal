@@ -2,7 +2,7 @@
 // basemap.js
 // ======================================================================= //
 
-console.log(">> basemap.js");
+// console.log(">> basemap.js");
 
 // Initialize the map
 const map = L.map('map', {

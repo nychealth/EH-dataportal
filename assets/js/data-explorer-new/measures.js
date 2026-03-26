@@ -2,7 +2,7 @@
 // measures.js
 // ======================================================================= //
 
-console.log(">> measures.js");
+// console.log(">> measures.js");
 
 // ----------------------------------------------------------------------- //
 // tab default measure functions
@@ -82,7 +82,7 @@ const setDefaultMapMeasure = (visArray) => {
 
     defaultMapMetadata = defaultArray;
 
-    console.log(">> defaultMapMetadata", defaultMapMetadata);
+    // console.log(">> defaultMapMetadata", defaultMapMetadata);
 
 }
 
@@ -165,7 +165,7 @@ const setDefaultTrendMeasure = (visArray) => {
 
     defaultTrendMetadata = defaultArray;
 
-    console.log(">> defaultTrendMetadata", defaultTrendMetadata);
+    // console.log(">> defaultTrendMetadata", defaultTrendMetadata);
 
 }
 
@@ -271,7 +271,7 @@ const setDefaultLinksMeasure = async (visArray) => {
 
         joinedLinksDataObjects = defaultLinksDataMetadata.data
 
-        console.log(">> joinedLinksDataObjects [setDefaultLinksMeasure]", joinedLinksDataObjects);
+        // console.log(">> joinedLinksDataObjects [setDefaultLinksMeasure]", joinedLinksDataObjects);
 
     }
 }
@@ -353,7 +353,7 @@ const setDefaultDisparitiesMeasure = (visArray) => {
 
     defaultDisparitiesMetadata = defaultArray;
 
-    console.log(">> defaultDisparitiesMetadata", defaultDisparitiesMetadata);
+    // console.log(">> defaultDisparitiesMetadata", defaultDisparitiesMetadata);
     
 }
 
@@ -387,7 +387,7 @@ const updateMapData = (e) => {
         time = $('.maptimesbutton.active').attr("data-time")
         geo = $('.mapgeosbutton.active').attr("data-geo")
 
-        console.log(">>> measure", "measureId", measureId, "time", time);
+        // console.log(">>> measure", "measureId", measureId, "time", time);
 
         // persistent selection
         
@@ -1369,7 +1369,7 @@ const renderMeasures = async () => {
         }
 
         if (!trend) {
-            console.log('no trend :)')
+            // console.log('no trend :)')
         }
 
 
@@ -1442,7 +1442,7 @@ const renderMeasures = async () => {
 
         let compLegendTitles = [... new Set(aqCombinedComparisonMetadata.array("LegendTitle"))]
 
-        console.log('compLegendTitles', compLegendTitles)
+        // console.log('compLegendTitles', compLegendTitles)
 
         // if compLegend.Titles.length > 1...
 
