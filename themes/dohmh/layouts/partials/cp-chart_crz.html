@@ -19,7 +19,7 @@
     const CP_CONTAINER2_ID = "cpVis2";
 
     // Buttons for sites
-    const SITES = [
+    const SITES2 = [
       "Mott Haven",
       "Cross Bronx Expwy",
       "BQE",
@@ -127,13 +127,13 @@
 
     function specForSite(site) {
       // structuredClone first; fallback to JSON clone
-      const spec =
+      const spec1 =
         typeof structuredClone === "function"
           ? structuredClone(baseSpec_1)
           : JSON.parse(JSON.stringify(baseSpec_1));
 
-      spec.transform[0].filter = `datum.Site === '${site}'`;
-      return spec;
+      spec1.transform[0].filter = `datum.Site === '${site}'`;
+      return spec1;
     }
 
     async function draw(site) {
@@ -155,31 +155,31 @@
     }
 
     function renderButtons() {
-      const btnWrap = document.getElementById("cpSiteButtons2");
-      if (!btnWrap) return;
+      const btnWrap1 = document.getElementById("cpSiteButtons2");
+      if (!btnWrap1) return;
 
-      btnWrap.innerHTML = "";
+      btnWrap1.innerHTML = "";
 
-      SITES.forEach((site) => {
-        const btn = document.createElement("button");
-        btn.type = "button";
-        btn.className = "btn btn-sm btn-outline-dark m-1";
-        btn.textContent = site;
+      SITES2.forEach((site) => {
+        const btn1 = document.createElement("button");
+        btn1.type = "button";
+        btn1.className = "btn btn-sm btn-outline-dark m-1";
+        btn1.textContent = site;
 
         if (site === currentSite_1) btn.classList.add("active");
 
-        btn.addEventListener("click", async () => {
+        btn1.addEventListener("click", async () => {
           currentSite_1 = site;
           // toggle active state
-          [...btnWrap.querySelectorAll("button")].forEach((b) =>
+          [...btnWrap1.querySelectorAll("button")].forEach((b) =>
             b.classList.remove("active")
           );
-          btn.classList.add("active");
+          btn1.classList.add("active");
 
           await draw(site);
         });
 
-        btnWrap.appendChild(btn);
+        btnWrap1.appendChild(btn1);
       });
     }
 
@@ -195,7 +195,7 @@
       await draw(currentSite_1);
     });
 
-    const cpSpec = {
+    const cpSpec1 = {
       $schema: "https://vega.github.io/schema/vega-lite/v6.json",
       config: {
         header: {
@@ -298,7 +298,7 @@
       if (!el) return;
 
       try {
-        await vegaEmbed(el, cpSpec, { actions: false, renderer: "canvas" });
+        await vegaEmbed(el, cpSpec1, { actions: false, renderer: "canvas" });
       } catch (err) {
         console.error("CP Vega render failed:", err);
         el.innerHTML =
