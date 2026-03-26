@@ -45,7 +45,7 @@ const loadIndicator = async (this_indicatorId, dont_add_to_history) => {
     indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : '';
     indicatorDesc = indicator?.IndicatorDescription ? indicator.IndicatorDescription : '';
     indicatorShortName = indicator?.IndicatorShortname ? indicator.IndicatorShortname : indicatorName;
-    indicatorComparisonId = indicator?.Comparisons;
+    // indicatorComparisonId = indicator?.Comparisons;
     indicatorMeasures = indicator?.Measures;
 
     // console.log("indicatorMeasures [loadIndicator]", indicatorMeasures);
@@ -110,7 +110,7 @@ const loadIndicator = async (this_indicatorId, dont_add_to_history) => {
     // why are we waiting for this?
 
     if (indicatorComparisonId !== null) {
-        fetch_comparisons();
+        // fetch_comparisons();
     }
 
     await loadData(indicatorId);

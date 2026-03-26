@@ -1717,7 +1717,7 @@ const renderMeasures = async () => {
 
             renderMap(filteredMapData, defaultMapMetadata);
 
-            updateChartPlotSize();
+            // updateChartPlotSize();
 
             // ----- persistent selection --------------------------------------------------- //
 
@@ -1782,7 +1782,7 @@ const renderMeasures = async () => {
 
             renderMap(filteredMapData, selectedMapMetadata);
 
-            updateChartPlotSize();
+            // updateChartPlotSize();
         }
 
 
@@ -1922,7 +1922,7 @@ const renderMeasures = async () => {
                 
                 renderTrendChart(aqFilteredTrendData, aqDefaultTrendMetadata);
 
-                updateChartPlotSize();
+                // updateChartPlotSize();
                 
             } else if (measureIdsSummer.includes(defaultTrendMeasureId)) {
 
@@ -1933,7 +1933,7 @@ const renderMeasures = async () => {
                 
                 renderTrendChart(aqFilteredTrendData, aqDefaultTrendMetadata);
 
-                updateChartPlotSize();
+                // updateChartPlotSize();
                 
             } else {
 
@@ -1943,7 +1943,7 @@ const renderMeasures = async () => {
                 
                 renderTrendChart(aqFilteredTrendData, aqDefaultTrendMetadata);
                 
-                updateChartPlotSize();
+                // updateChartPlotSize();
                 
             }
 
@@ -1980,7 +1980,7 @@ const renderMeasures = async () => {
 
             renderTrendChart(aqFilteredTrendData, aqSelectedTrendMetadata);
 
-            updateChartPlotSize();
+            // updateChartPlotSize();
 
         }
 
@@ -2111,7 +2111,7 @@ const renderMeasures = async () => {
                 aqFilteredComparisonMetadata
             );
 
-            updateChartPlotSize();
+            // updateChartPlotSize();
 
         } else {
 
@@ -2128,7 +2128,7 @@ const renderMeasures = async () => {
                 aqFilteredComparisonMetadata
             );
 
-            updateChartPlotSize();
+            // updateChartPlotSize();
             
         }
         
@@ -2183,7 +2183,7 @@ const renderMeasures = async () => {
 
                     renderDisparitiesChart(defaultDisparitiesMetadata, 221)
 
-                    updateChartPlotSize();
+                    // updateChartPlotSize();
 
                 }
 
@@ -2304,7 +2304,7 @@ const renderMeasures = async () => {
                     secondaryIndicatorName
                 );
 
-                updateChartPlotSize();
+                // updateChartPlotSize();
 
 
                 // ----- persistent selection - - - - - - - - - - - - - - - - - - - - - - - - - - //
@@ -2391,7 +2391,7 @@ const renderMeasures = async () => {
                     secondaryIndicatorName
                 );
 
-                updateChartPlotSize();
+                // updateChartPlotSize();
             }
         }
 

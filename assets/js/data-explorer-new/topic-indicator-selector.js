@@ -174,10 +174,11 @@ const checkURL = async () => {
     // await loadData(chosenIndicator);
     
     // run renderBar()
-    renderMap(mapData, defaultMapMetadata);
-    // renderBar(mapData, defaultMapMetadata);
-    // renderTrendChart(trendData, defaultTrendMetadata);
-    // renderCorrelate(linksData, defaultLinksMetadata);
+    // renderMap(filteredMapData, defaultMapMetadata);
+    showMap();
+    // renderBar(filteredMapData, defaultMapMetadata);
+    // renderTrendChart(filteredTrendData, defaultTrendMetadata);
+    // renderCorrelate(joinedLinksDataObjects, defaultLinksMetadata);
     
     // Run selections for Measure, Geography, and TimePeriod
     

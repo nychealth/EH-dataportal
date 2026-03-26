@@ -201,6 +201,7 @@ const renderMap = (
                     layer.bindPopup(createPopupContent(feature.properties));
                     
                     layer.on('click', (e) => {
+                        const props = feature.properties;
 
                         console.log("** click", feature.properties);
 
