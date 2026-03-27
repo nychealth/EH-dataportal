@@ -2396,6 +2396,21 @@
 
     
 
+        
+
+        <h1
+            id="IndicatorID-2140"
+            class="d-none">
+            Residents living in a hurricane evacuation zone
+        </h1>
+        <h2
+            class="d-none">
+            Hurricane Evacuation Zones are determined by New York City Emergency Management and indicate varying threat levels of coastal flooding from storm surge. Evacuation orders may be given during hurricanes or coastal flooding events. There are six zones, ranked by storm surge risk. Zone 1 is the highest risk for flooding. Residents in these zones may receive evacuation orders during hurricanes or tropical storms.
+        </h2>
+
+
+    
+
 <section data-pagefind-ignore="all" class="mt-lg-5">
     <div class="container-fluid mb-5">
         <div class="row">
@@ -2942,6 +2957,14 @@
 
                 
 
+                    
+
+                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2140 );
+                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
+                    indicatorDropdown.innerHTML += "<button class='indicator-dropdown-item dropdown-item' onclick='loadIndicator(2140)' data-indicator-id='2140'>" + this_indicatorName + `</button>`;
+
+                
+
         }
 
 
@@ -2999,6 +3022,10 @@
                     indicator = indicators.find(indicator => indicator.IndicatorID ===  2377 );
                     this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
                     indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' data-indicator-id='2377'>" + this_indicatorName + `<i class="indicator-arrows fas fa-arrow-circle-right float-right font-weight-bold hide" id="arrow-2377" aria-hidden="true"></i></button>`;
+
+                    indicator = indicators.find(indicator => indicator.IndicatorID ===  2140 );
+                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
+                    indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' data-indicator-id='2140'>" + this_indicatorName + `<i class="indicator-arrows fas fa-arrow-circle-right float-right font-weight-bold hide" id="arrow-2140" aria-hidden="true"></i></button>`;
         }
 
         function createCitation() {
