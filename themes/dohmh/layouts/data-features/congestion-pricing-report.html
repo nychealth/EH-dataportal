@@ -158,12 +158,24 @@
             <h3 class="h4">Air pollution inside of the CRZ</h3>
             <div class="row">
                 <div class="col-6">
-                    <img src="{{ .Params.fullurl }}images/map3.png" alt="" class="img-fluid" />
+<!--                    <img src="{{ .Params.fullurl }}images/map3.png" alt="" class="img-fluid" /> -->
+    <div style="min-height:540px" id="datawrapper-vis-YFkVt"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/YFkVt/embed.js" charset="utf-8" data-target="#datawrapper-vis-YFkVt"></script><noscript><img src="https://datawrapper.dwcdn.net/YFkVt/full.png" alt="Locator map" /></noscript></div>
                 </div>
                 <div class="col-6">
                     {{- with .Resources.GetMatch "aq-inside-crz.md" -}}
                         {{ .Content }}
                     {{- end -}}
+                    <div class="row justify-content-between mt-1">
+                        <div class="col-4">
+                            <div style="min-height:109px" id="datawrapper-vis-3F9Bw"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/3F9Bw/embed.js" charset="utf-8" data-target="#datawrapper-vis-3F9Bw"></script><noscript><img src="https://datawrapper.dwcdn.net/3F9Bw/full.png" alt="Arrow Plot" /></noscript></div>
+                        </div>
+                        <div class="col-4">
+                            <div style="min-height:109px" id="datawrapper-vis-3F9Bw"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/3F9Bw/embed.js" charset="utf-8" data-target="#datawrapper-vis-3F9Bw"></script><noscript><img src="https://datawrapper.dwcdn.net/3F9Bw/full.png" alt="Arrow Plot" /></noscript></div>
+                        </div>
+                        <div class="col-4">
+                            <div style="min-height:109px" id="datawrapper-vis-3F9Bw"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/3F9Bw/embed.js" charset="utf-8" data-target="#datawrapper-vis-3F9Bw"></script><noscript><img src="https://datawrapper.dwcdn.net/3F9Bw/full.png" alt="Arrow Plot" /></noscript></div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="row mt-2" style="margin-bottom: 8rem;">
@@ -174,7 +186,7 @@
         </div>
     </div>
 
-        <div class="col-md-8 mx-auto col-sm-12">
+      <!-- <div class="col-md-8 mx-auto col-sm-12">
             <div class="l-green-border px-1 mb-4">
                 <div class="row justify-content-between">
                     <div class="col-3">
@@ -190,8 +202,7 @@
 
 
             </div>
-        </div>
-        <!-- what is going on right here...? --> 
+        </div> -->
 
         <div class="row">
 
