@@ -95,6 +95,7 @@ async  function initialize() {
       const high = forecastData.properties.periods.find(p => p.isDaytime).temperature;
       console.log(`NYC High Temp: ${high}°F`);
 
+      // Step 4: Extract the low temp from the first daytime period
       const low = forecastData.properties.periods.find(p => !p.isDaytime).temperature;
       console.log(`NYC Low Temp: ${low}°F`);
 
