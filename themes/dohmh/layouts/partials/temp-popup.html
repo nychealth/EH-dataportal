@@ -34,7 +34,7 @@
             <h5 class="modal-title"><i class="fas fa-temperature-high mr-1" aria-hidden="true"></i>It's cold!</h5>
         </div>
         <div class="modal-body">
-          <p><span class="font-weight-bold">The forecast high is <span id="forecastlow" style="background-color:blue;font-weight:bold;" class="p-1 text-white">XX</span></span>. Get resources on cold and health:
+          <p><span class="font-weight-bold">The forecast low is <span id="forecastlow" style="background-color:blue;font-weight:bold;" class="p-1 text-white">XX</span></span>. Get resources on cold and health:
               <ul>
                   <li><a href={{ relURL "data-stories/cold" }}>Cold weather safety</a></li>
                   <li><a href={{ relURL "key-topics/climatehealth" }}>All Climate and Health data and resources</a></li>
@@ -95,12 +95,15 @@ async  function initialize() {
       const high = forecastData.properties.periods.find(p => p.isDaytime).temperature;
       console.log(`NYC High Temp: ${high}°F`);
 
+      const low = forecastData.properties.periods.find(p => !p.isDaytime).temperature;
+      console.log(`NYC Low Temp: ${low}°F`);
+
       if (high > 85) {
         fireHeatModal(high)
         document.getElementById('forecasthigh').textContent = high + '°F'
-       } else if (high < 32) {
-        fireColdModal(high)
-        document.getElementById('forecastlow').textContent = high + '°F'
+       } else if (low < 32) {
+        fireColdModal(low)
+        document.getElementById('forecastlow').textContent = low + '°F'
       } else {}
 
     // get AQI API to retrieve forecast AQI
