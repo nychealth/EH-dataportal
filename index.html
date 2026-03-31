@@ -45,11 +45,11 @@
 <title>NYC Environment and Health Data Portal</title>
 
 
-<meta name="build_datetime" content='Friday, March 27, 2026, 9:10:22 am EDT'>
+<meta name="build_datetime" content='Tuesday, March 31, 2026, 3:53:58 pm EDT'>
 <meta name="build_environment" content='prod_prod'>
 <meta name="git_branch" content='production'>
-<meta name="git_last_hash" content='608888e494'>
-<meta name="git_last_msg" content='Merge pull request #1405 from nychealth/feature-add-hurricane-zones'>
+<meta name="git_last_hash" content='b620ec5e4d'>
+<meta name="git_last_msg" content='Merge pull request #1408 from nychealth/feature-cold-temp-modal'>
 
 
         <link rel="alternate" hreflang="es" href="/IndicatorPublic/es/" title="Español">
@@ -801,6 +801,32 @@
     </div>
     </div>
 
+   
+
+  <button id="openModalBtnC" type="button" class="btn btn-primary hide" data-toggle="modal" data-target="#wzModal">Open Modal</button>
+
+    <div class="modal" tabindex="-1" role="dialog" id="wzModal">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title"><i class="fas fa-temperature-high mr-1" aria-hidden="true"></i>It's cold!</h5>
+        </div>
+        <div class="modal-body">
+          <p><span class="font-weight-bold">The forecast low is <span id="forecastlow" style="background-color:blue;font-weight:bold;" class="p-1 text-white">XX</span></span>. Get resources on cold and health:
+              <ul>
+                  <li><a href=/IndicatorPublic/data-stories/cold>Cold weather safety</a></li>
+                  <li><a href=/IndicatorPublic/key-topics/climatehealth>All Climate and Health data and resources</a></li>
+                  <li><a href="https://www.nyc.gov/site/hpd/services-and-information/heat-and-hot-water-information.page">Heat and hot water info</a></li>
+                  <li><a href="https://portal.311.nyc.gov/article/?kanumber=KA-03702">Warming centers</a></li>
+              </ul>
+              </p>
+      </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Close</button>
+        </div>
+        </div>
+    </div>
+    </div>
 
   
   <button id="openModalBtn2" type="button" class="btn btn-primary hide" data-toggle="modal" data-target="#aqiModal">Open Modal</button>
@@ -816,6 +842,8 @@
                 <ul>
                   <li><a href=/IndicatorPublic/data-features/realtime-air-quality>Realtime air quality</a></li>
                   <li><a href=/IndicatorPublic/key-topics/airquality>All Air Quality data and resources</a></li>
+                  <li><a href="google.com">All Air Quality data and resources</a></li>
+                  
                 </ul>
               </p>
         </div>
@@ -845,11 +873,17 @@ async  function initialize() {
       const high = forecastData.properties.periods.find(p => p.isDaytime).temperature;
       console.log(`NYC High Temp: ${high}°F`);
 
+      
+      const low = forecastData.properties.periods.find(p => !p.isDaytime).temperature;
+      console.log(`NYC Low Temp: ${low}°F`);
+
       if (high > 85) {
         fireHeatModal(high)
         document.getElementById('forecasthigh').textContent = high + '°F'
+       } else if (low < 32) {
+        fireColdModal(low)
+        document.getElementById('forecastlow').textContent = low + '°F'
       } else {}
-
 
     
     fetch('https://www.airnowapi.org/aq/observation/zipCode/current/?format=application/json&zipCode=10013&distance=25&API_KEY=B34C7BA1-26C7-4DD2-9B1C-AAFD7AF4F12F')
@@ -879,6 +913,16 @@ async  function initialize() {
       button.click();
 
   }
+
+  function fireColdModal(x) {
+    var button = document.getElementById('openModalBtnC');
+    button.addEventListener('click', function() {
+        console.log('cold modal fired.');
+    });
+
+    button.click();
+
+}
 
   function fireAQmodal(aqi) {
     var button = document.getElementById('openModalBtn2')
@@ -921,6 +965,7 @@ async  function initialize() {
 
 
 </script>
+
 
 
 
