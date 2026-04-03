@@ -94,15 +94,6 @@
         </div>
         </div>
 
-
-
-
-        <div class="col-md-10 col-sm-12 mx-auto mt-2">
-            <div style="text-align: center;" class="my-1">
-                <h3 class="h4 cp-sticky-header">Results from EJ sites</h3>
-            </div>
-        </div>
-
     </div>
 
     <div class="row">
@@ -110,6 +101,7 @@
             <div class="row">
                 <div class="col-10 mx-auto">
                     <hr class="my-2 px-6" />
+                    <h3 class="h3 cp-sticky-header">Results from EJ sites</h3>
                 </div>
             </div>
         </div>
@@ -243,9 +235,19 @@
 
 
 
+        <div class="row">
+            <div class="col-10 mx-auto">
+                <div class="row">
+                    <div class="col-10 mx-auto">
+                        <hr class="my-2 px-4" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="col-md-8 col-sm-12 mx-auto">
 
-            <h2 class="h3">Conclusion</h2>
+            <h2>Conclusion</h2>
             {{- with .Resources.GetMatch "conclusion.md" -}}
                 {{ .Content }}
             {{- end -}}
