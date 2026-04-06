@@ -159,13 +159,58 @@
     return String(value).replace(/&/g, '&amp;').replace(/"/g, '&quot;');
   }
 
+  // uhflist.js has one known typo: "Crotona -Tremont" (missing space after dash).
+  // EHDP-data report JSONs use "Crotona - Tremont". This map corrects it so
+  // lookups against report data and sidebar demographics stay aligned.
+  var nameCorrections = {
+    'Crotona -Tremont': 'Crotona - Tremont'
+  };
+
+  function getUhfIdForDisplayName(displayName) {
+    if (!displayName || typeof neighborhoods === 'undefined') return null;
+    var entry = neighborhoods.find(function (n) {
+      var corrected = nameCorrections[n.UHF_name] || n.UHF_name;
+      return corrected === displayName;
+    });
+    return entry ? entry.UHF_id : null;
+  }
+
   // --- demographics sidebar ---
 
+  function clearDemographicsSidebar() {
+    var metricIds = [
+      'nr-pop',
+      'nr-old',
+      'nr-young',
+      'nr-pov',
+      'nr-grad',
+      'nr-eng',
+      'nr-own',
+      'nr-rent'
+    ];
+    metricIds.forEach(function (id) {
+      var node = document.getElementById(id);
+      if (node) node.innerHTML = '';
+    });
+    var zipList = document.getElementById('nr-zip-list');
+    if (zipList) zipList.textContent = '';
+    var demoPanel = document.getElementById('nr-demographics');
+    if (demoPanel) demoPanel.style.display = 'none';
+    var zipPanel = document.getElementById('nr-zip-codes');
+    if (zipPanel) zipPanel.style.display = 'none';
+  }
+
   function renderDemographics(geocode) {
-    if (typeof neighborhoods === 'undefined') return;
+    if (typeof neighborhoods === 'undefined' || geocode == null || geocode === '') {
+      clearDemographicsSidebar();
+      return;
+    }
 
     var here = neighborhoods.filter(function (n) { return n.UHF_id == geocode; });
-    if (!here.length) return;
+    if (!here.length) {
+      clearDemographicsSidebar();
+      return;
+    }
 
     var d = here[0];
 
@@ -289,7 +334,7 @@
         'data-parent="#' + accordionParentId + '" ' +
         'data-indicator-name="' + (row.indicator_data_name || '') + '" ' +
         'data-legend-label="' + escapeAttr(units) + '" ' +
-        'data-geocode="' + (row.geo_join_id || '') + '">' +
+        'data-geocode="' + (row.geo_join_id || row.geo_entity_id || '') + '">' +
         '<div class="card-body card-body-no-top">' +
           '<div class="row no-gutters fs-sm">' +
             '<div class="col-12">' +
@@ -337,7 +382,7 @@
     });
   }
 
-  function renderAll(neighborhoodName) {
+  function renderAll(neighborhoodName, mapGeocode) {
     currentNeighborhood = neighborhoodName;
     renderedPanels = {};
     accordionCounter = 0;
@@ -345,10 +390,29 @@
     currentGeocode = null;
     for (var sid in sectionData) {
       var nb = sectionData[sid][neighborhoodName];
-      if (nb && nb.length && nb[0].geo_join_id) {
-        currentGeocode = nb[0].geo_join_id;
-        break;
+      if (nb && nb.length) {
+        var row0 = nb[0];
+        var gj =
+          row0.geo_join_id != null && row0.geo_join_id !== ''
+            ? row0.geo_join_id
+            : row0.geo_entity_id;
+        if (gj != null && gj !== '') {
+          currentGeocode = gj;
+          break;
+        }
       }
+    }
+
+    if (
+      (currentGeocode == null || currentGeocode === '') &&
+      mapGeocode != null &&
+      mapGeocode !== ''
+    ) {
+      currentGeocode = mapGeocode;
+    }
+
+    if (currentGeocode == null || currentGeocode === '') {
+      currentGeocode = getUhfIdForDisplayName(neighborhoodName);
     }
 
     config.sections.forEach(function (section) {
@@ -371,10 +435,7 @@
     if (mobileTitle) mobileTitle.style.display = '';
     if (mobileNeighborhood) mobileNeighborhood.textContent = neighborhoodName;
 
-    // Demographics sidebar
-    if (currentGeocode) {
-      renderDemographics(currentGeocode);
-    }
+    renderDemographics(currentGeocode);
 
     setNeighborhoodInURL(neighborhoodName);
     updateTopicLinks(neighborhoodName);
@@ -626,13 +687,6 @@
     }
   }
 
-  // uhflist.js has one known typo: "Crotona -Tremont" (missing space after dash).
-  // The EHDP-data report JSONs use "Crotona - Tremont". This map corrects it
-  // so lookups against report data succeed.
-  var nameCorrections = {
-    'Crotona -Tremont': 'Crotona - Tremont'
-  };
-
   function geocodeToName(geocode) {
     if (typeof neighborhoods === 'undefined') return null;
     var match = neighborhoods.find(function (n) { return n.UHF_id == geocode; });
@@ -668,7 +722,7 @@
     var name = geocodeToName(geocode) || layer.feature.properties.GEONAME;
     selectLayer(layer, true);
     if (dataReady) {
-      renderAll(name);
+      renderAll(name, geocode);
     }
   }
 

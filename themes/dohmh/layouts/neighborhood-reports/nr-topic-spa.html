@@ -238,8 +238,12 @@
             with the green top border and border styling.
           */}}
           {{- range $i, $rt := $reportTopics -}}
-            {{- $sectionId := $rt.report_topic | urlize -}}
-            <div class="accordion my-4 report-section pt-2 border-left border-right border-bottom" id="nr-accordion-{{ $sectionId }}">
+            {{/*
+              Use the range index for DOM ids (nr-accordion-N / nr-section-N), not urlized titles.
+              Topic titles can urlize to strings that are awkward for CSS selectors or can drift
+              between Hugo versions; mismatched id vs NR_TOPIC_SPA_CONFIG leaves sections empty.
+            */}}
+            <div class="accordion my-4 report-section pt-2 border-left border-right border-bottom" id="nr-accordion-{{ $i }}">
               <div class="px-2 pb-2">
                 <h3 class="h4 fs-rg">
                   {{ $rt.report_topic }}
@@ -248,7 +252,7 @@
                   {{ $rt.report_topic_description }}
                 </p>
               </div>
-              <div id="nr-section-{{ $sectionId }}">
+              <div id="nr-section-{{ $i }}">
               </div>
             </div>
           {{- end -}}
@@ -284,11 +288,10 @@
         {{- $reportFile := print $contentKey " " $cleanTopic ".json" -}}
         {{- $reportFileEncoded := replace $reportFile " " "%20" -}}
         {{- $url := print $.Site.Params.data_repo $.Site.Params.data_branch "/neighborhood-reports/data/report/" $reportFileEncoded -}}
-        {{- $sectionId := $rt.report_topic | urlize -}}
         {{- if $i }},{{ end -}}
         {
-          "id": "{{ $sectionId }}",
-          "containerId": "nr-section-{{ $sectionId }}",
+          "id": "{{ $i }}",
+          "containerId": "nr-section-{{ $i }}",
           "reportUrl": "{{ $url }}"
         }
       {{- end -}}
