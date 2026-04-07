@@ -42,7 +42,7 @@ function initializeNYCLIB() {
     nycMap = new nyc.ol.FrameworkMap({
         mapTarget: '#nycMap',
         searchTarget: '#map-search1',
-        geoclientUrl: 'https://api.nyc.gov/geoclient/v2/search?key=a13f6e450dc24806941ff2b66b078fb1'
+        geoclientUrl: 'https://api.nyc.gov/geoclient/v2/search?key=ab310d5ecfc14284ada7e32c980221c3'
     });
     
     console.log("nycMap [initializeNYCLIB]", nycMap);
