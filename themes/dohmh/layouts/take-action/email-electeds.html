@@ -3,428 +3,439 @@
 <script src="https://d3js.org/d3.v5.min.js"></script>
 
 <article class="container-fluid overflow-hidden" id="primary-content">
-
-  <div class="row mb-4">
-    <div class="col-md-9 mx-auto">
-      <!--start main column-->
-
-      <nav aria-label="breadcrumb" class="my-2">
-        <ul class="breadcrumb mr-auto">
-            <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
-            <li class="breadcrumb-item"><a href="..">
-              {{- with .Parent -}} {{ .Title }} </a></li>{{- end -}}
-            <li class="breadcrumb-item active">{{ .Title }}</li>
-        </ul>
-    </nav>
-
-      <div class="row py-2">
-        <div class="col-12">
-          <h1>{{- .Title -}}</h1>
-          {{- .Content -}}
-        </div>
-      </div>
-
-
-      <!-- INTERACTIVE VERSION -->
-      <div class="row my-2 border-top pt-2">
-        <div class="col-12">
-          <h2 class="h4">First, enter your address.</h2>
-          <p>We'll look up your elected officials and get their contact information.</p>
-
-          <!-- Search/input -->
-          <div class="srch input-group" role="search" autocomplete="off" id="searchHolder">
-            <input class="rad-all form-control form-control-lg" placeholder="Search Address" id="map-search">
-          </div>
-
-          <!-- Map gets drawn here -->
-          <div id='mapLocator' style="height:350px;"></div>
-          <em>This page works for NYC addresses only. We won't store any information you enter on this page.</em>
-
-        </div>
-      </div>
-
-      <div class="row hide my-4" id="outputRow">
-        <div class="col-12">
-          <h2 class="h4">Next, get your elected officials' contact info:</h2>
-          <table id="newTable" class="table table-striped mb-2">
-            <thead class="thead-light">
-              <tr>
-                <th>Office</th>
-                <th><i class="fas fa-globe mr-1" aria-hidden="true"></i>Name & website</th>
-                <th><i class="fas fa-phone-square mr-1" aria-hidden="true"></i>Office phone</th>
-                <th><i class="fas fa-envelope mr-1" aria-hidden="true"></i>Email address</th>
-              </tr>
-            </thead>
-            <tbody id="newTableBody">
-  
-            </tbody>
-          </table>
-
-          <div class="mt-2 asidebox">
-          <a href="https://www.mygovnyc.org/" id="link">Get a full list of all your elected officials from Who Reps Me? NYC</a>.
-          </div>
-        </div>
-      </div>
-
-
-    <div class="row my-2 hide" id="contactContainer" data-pagefind-ignore="all">
-      <div class="col-12">
-        <h2 class="h4">Then, write them an email.</h2>
-        <h3 class="h5" id="tips"><i class="fas fa-envelope-open-text mr-1"></i>Email tips</h3>
-        <p>Elected officials serve the people - and want to know how their constituents feel. Here are some tips for writing an effective email, or script for a phone call.</p>
-        <p><strong>Identify yourself as a constituent:</strong> tell them where you live and that they are your elected representative. For example: <em>"I live on Hunts Point Ave in the Bronx, in your district."</em></p>
-        <p><strong>State your concerns.</strong> For example: <em>"Our neighborhood's rates of childhood asthma are among the highest in the city."</em></p>
-
-        <p><strong>Tell your story:</strong> Offer some brief detail on how you see this environmental health issue affecting you and the people you know. For example: <em>"Last year, my daughter was diagnosed with asthma, and this issue is a challenge for our whole family."</em></p>
-
-        <p><strong>Cite data:</strong> For example: <em>"According to data on housing conditions, 75% of renters' households in our neighborhood have maintenance problems that threaten health. (NYC Environment and Health Data Portal: https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/housing-maintenance/?id=2399#display=map)" </em></p>
-
-        <p><strong>Make a request:</strong> You can ask them where they stand on the issue, what they're doing to improve it, or what services are available to help their constituents.</p>
-
-      </div>
-
-        <div class="col-md-6">
-          <div class="p-3 my-2 asidebox">
-            <p><i class="fas fa-vote-yea mr-1"></i>You can contact elected officials whether or not you are registered to vote. If you're not, 
-              <a class="" href="https://voterreg.dmv.ny.gov/motorvoter/" target="_blank" rel="noreferrer noopener"><i class="fas fa-external-link-alt mr-1"></i>register to vote here</a>.</p>
-          </div>
-
-        </div>
-
-        <div class="col-md-6">
-          <div class="p-3 my-2 asidebox">
-            <p><i class="fas fa-phone-square mr-1"></i><em>Some officials don't have email addresses, but you can always call their offices and use your email as a script.</em></p>
-            </div>
-
-        </div>
-    </div>
-
-    <style>
-      .glow {
-        animation: glow 1s infinite alternate;
-      }
-
-      @keyframes glow {
-        from {
-          box-shadow: 0 0 5px -5px #008939;
-        }
-        to {
-          box-shadow: 0 0 5px 5px #008939;
-        }
-      }
-    </style>
-
-
-
-    <div class="row my-4 hide" id="register">
-      <div class="col p-3 mx-4 sr-only" style="background-color: #f1f1f1; border-left: 2px solid darkgray;">
-        <p>You can contact these elected officials whether you are registered to vote, or not. If you're not, <a href="https://voterreg.dmv.ny.gov/motorvoter/">click here to register to vote</a>.</a></p>
-      </div>
-    </div>
-
-    </div>
-    <!--end main column-->
-  </div>
-
-</article>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.4.4/proj4.js"></script>
-<script src="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/build/ol.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.4.0/papaparse.min.js"></script>
-<script src="https://maps.nyc.gov/nyc-lib/v1.2.79/js/babel-polyfill.js"></script>
-<script src="https://maps.nyc.gov/nyc-lib/v1.2.79/js/nyc-ol-lib.js"></script>
-
-<script>
-
-// ------------------------------------------------------- // 
-// ********** Load map and ingest initial data: ********** //
-// ------------------------------------------------------- // 
-
-var map;
-function drawMap() {
-  document.getElementById('mapLocator').innerHTML = ''
-  document.getElementById('searchHolder').innerHTML = `<input class="rad-all form-control form-control-lg" placeholder="Search Address" id="map-search">`
-  
-  map = new nyc.ol.FrameworkMap({
-    mapTarget: '#mapLocator',
-    searchTarget: '#map-search',
-    // searchTarget: true,
-    // startAt: '125 Worth Street',
-    geoclientUrl: 'https://maps.nyc.gov/geoclient/v1/search.json?app_key=74DF5DB1D7320A9A2&app_id=nyc-lib-example'
-    // Developer portal app_key and id don't work, though the nycLib example works
-    //geoclientUrl: 'https://maps.nyc.gov/geoclient/v1/search.json?app_key=cfed478bf47829a2951bc5a3bbc26422&app_id=2d2a1b38'
-    });
-
-    console.log("*** draw map");
-
-}
-
-drawMap()
-
-// Add event listener on entry form
-document.getElementById('map-search').addEventListener("change", getData)
-
-// Check hash for an existing address
-
-
-// ----------------------------------------------------------------------  //
-// ********** Runs data fetching if there's a url hash: ****************** //
-// ----------------------------------------------------------------------  //
-/*
-var hash = window.location.hash
-if (hash.length > 5) {
-  console.log('we have a hash, folks:')
-  hash = hash.replace(/%20/g, " ");
-  hash = hash.substring(1);
-  console.log(hash)
-  document.getElementById('map-search').value = hash
-  setTimeout(getDataFromHash, 1000)
-} else {}
-
-function getDataFromHash() {
-  console.log('enter click')
-  document.getElementById('map-search').dispatchEvent(enterEvent)
-  let button = document.querySelector('#searchHolder button');
-
-  button.dispatchEvent(enterEvent)
-  // getData()
-}
-*/
-
-// ----------------------------------------------------------------------  //
-// ********** Gets data when event listener detects map change: ********** //
-// ----------------------------------------------------------------------  //
-
-async function getData() {
-  console.log('*** Getting data:')
-  waitForGlobal("map.location.name", function() {
-    console.log("map.location [post]", map.location);
-
-    // Get data
-    getDataFor(map.location)
-
-    // Next, set up reset
-    document.getElementById('map-search').disabled = true
-    let button = document.querySelector('#searchHolder button');
-
-    // Turn search button into Start Over button
-    if (button) {
-        button.innerHTML = 'Start over'
-        button.onclick = function() {
-          location.reload(); // Reload the page
-        };
-      }
-  })
-}
-
-// ----------------------------------------------------------------------  //
-// ********** Get data function - retrieving from API: ******************* //
-// ----------------------------------------------------------------------  //
-
-function getDataFor(x) {
-  console.log('**** Getting data for:')
-  console.log(map.location.name)
-
-  // add hash
-  window.location.hash = map.location.name
-
-  // add location to link to mygovnyc
-  var linkURL = `https://www.mygovnyc.org/?addr=${map.location.name}`
-  document.getElementById('link').setAttribute("href",linkURL)
-
-  let loc   = map.location
-  let data  = map.location.data
-
-  // First, un-hide elements
-  document.getElementById('outputRow').classList.remove('hide')
-  document.getElementById('contactContainer').classList.remove('hide')
-
-  // Passing in the name (must match LWV API), the district, and the LWV Api url string. And, order.
-  retrieveAPIData('Mayor',null,null);
-  retrieveAPIData('NYC Public Advocate',null,null);
-  retrieveAPIData('NYC Comptroller',null,null)
-  
-  retrieveAPIData('City Council',removeLeadingZero(data.cityCouncilDistrict),'lwvnyc_council')
-  retrieveAPIData('Community Board',removeLeadingZero(data.communityDistrict),'nyccommboard')
-  retrieveAPIData('Borough President',removeLeadingZero(data.bblBoroughCode),'lwvnyc_borough')
-  retrieveAPIData('State Assembly Member',removeLeadingZero(data.assemblyDistrict),'lwvnyc_nyassembly')
-  retrieveAPIData('State Senator', removeLeadingZero(data.stateSenatorialDistrict),'lwvnyc_nysenate')
-  retrieveAPIData('US Representative', removeLeadingZero(data.congressionalDistrict),'lwvnyc_congress')
-  retrieveAPIData('US Senator',null,null)
-}
-
-async function retrieveAPIData(x,y,z) {
-  let xEncode = encodeURIComponent(x)
-  let url;
-
-  if (y === null) {
-    url = `https://www.mygovnyc.org/api/v1/query/lwvnyc_other?columns=*&filter=districttitle%3D'${xEncode}'`;
-  } else {
-    url = `https://www.mygovnyc.org/api/v1/query/${z}?columns=*&filter=district%3D'${y}'`;
-  }
-  
-    try {
-        const response = await fetch(url);
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        
-        const data = await response.json();
-
-        // console.log('Data for ' + x)
-        // console.log(data); // Log the data to the console
-        printData(data,x)    // Send to print function 
-
-    } catch (error) {
-        console.error("Error fetching data:", error);
-    }
-
-}
-
-function removeLeadingZero(str) {
-  if (str.startsWith('0')) {
-      return str.slice(1);
-  }
-  return str;
-}
-
-// ----------------------------------------------------------------------  //
-// ********** Print data to page from API: ******************************* //
-// ----------------------------------------------------------------------  //
-
-function printData(data, office) {
-  console.log('*** printing data');
-
-  let sort;
-  if (office.includes('US ')) {
-    sort = 10;
-  } else if (office.includes('State')) {
-    sort = 9;
-  } else if (office.includes('Borough')) {
-    sort = 6;
-  }  else if (office.includes('Community')) {
-    sort = 5
-  } else if (office.includes ('Council')) {
-    sort = 4
-  } else if (office.includes('NYC')) {
-    sort = 3
-  } else if (office.includes('Mayor')) {
-    sort = 1
-  }
-  
-  let tableBody = document.getElementById('newTableBody');
-
-  for (let i = 0; i < data.length; i++) {
-    // Create table row
-    let row = document.createElement('tr');
-
-    let cell_office = document.createElement('td');
-
-      if (office.includes('Council')) {
-        cell_office.innerHTML = office + ' District ' + data[i].district
-      } else if (office.includes('Community')) {
-        cell_office.innerHTML = office + ' ' + data[i].district
-      } else if (office.includes('Borough')) {
-        cell_office.innerHTML = data[i].districttitle
-      } else {
-        cell_office.innerHTML = office
-      }
-
-
-    let cell_name = document.createElement('td');
-    let url = data[i].website ? data[i].website : '';
-    let name = data[i].firstname ? data[i].firstname + ' ' + data[i].lastname : 'Chairperson ' + data[i].chairperso;
-    cell_name.innerHTML = `<a href="${url}" target="_blank">${name}</a>`;
-
-    let cell_phone = document.createElement('td');
-    let phone = data[i].phone_capital ? data[i].phone_capital + '<br>' + data[i].phone_dist1 : data[i].phone;
-    cell_phone.innerHTML = office === 'Mayor' ? 'Not available' : phone; 
-
-    let cell_email = document.createElement('td');
-    let email = data[i].email;
-      if (isValidEmail(email) === true) {
-        cell_email.innerHTML =  `<strong><a href="mailto:${email}">${email}</a></strong>`
-      } else {
-        cell_email.innerHTML =  `<strong><a href="${email}" target="_blank"><i class="fas fa-external-link-alt mr-1" aria-hidden="true"></i>Contact page</a></strong>`
-      }
-
-    // Append cells to row
-    row.appendChild(cell_office);
-    row.appendChild(cell_name);
-    row.appendChild(cell_phone);
-    row.appendChild(cell_email);
-
-    // Insert row at the correct sorted position
-    let inserted = false;
-    let rows = tableBody.getElementsByTagName("tr");
     
-    for (let j = 0; j < rows.length; j++) {
-      let existingSort = rows[j].getAttribute("data-sort"); // Get existing sort value
-      if (existingSort && parseInt(existingSort) > sort) {
-        tableBody.insertBefore(row, rows[j]); // Insert before the first row with a higher sort value
-        inserted = true;
-        break;
-      }
-    }
-
-    if (!inserted) {
-      tableBody.appendChild(row); // Append if no row had a higher sort value
-    }
-
-    row.setAttribute("data-sort", sort); // Store the sort value for future comparisons
-  }
-}
-
-// ----------------------------------------------------------------------  //
-// ********** Misc supportive functions: ********************************* //
-// ----------------------------------------------------------------------  //
-
-// window.checkNested = function(obj, args) {
-const checkNested = function(obj, args) {
-  for (var i = 0; i < args.length; i++) {
-    if (!obj || !obj.hasOwnProperty(args[i])) {
-      return false;
-    }
-    obj = obj[args[i]];
-  }
-  return true;
-}
-  
-const waitForGlobal = function(keyPath, callback) {
-  var args = keyPath.split('.');
-  if (checkNested(window, args)) {
-    callback();
-  } else {
-    setTimeout(function() {
-      // window.waitForGlobal(keyPath, callback);
-      waitForGlobal(keyPath, callback);
-    }, 100);
-  }
-}
-  
-function startOver() {
-  location.reload()
-}
-
-function isValidEmail(email) {
-  return (email.match(/@/g) || []).length === 1;
-}
-
-function isValidPhoneNumber(phone) {
-  const phoneRegex = /^\d{3}[- ]\d{3}[- ]\d{4}$/;
-  return phoneRegex.test(phone);
-}
-
-// Create a new keyboard event
-const enterEvent = new KeyboardEvent('keydown', {
-  key: 'Enter',
-  keyCode: 13, // Deprecated but still sometimes needed
-  which: 13,   // Deprecated but still sometimes needed
-  code: 'Enter',
-  bubbles: true
-});
-
-</script>
-
-
-{{- end -}}
+    <div class="row mb-4">
+        <div class="col-md-9 mx-auto">
+            <!--start main column-->
+            
+            <nav aria-label="breadcrumb" class="my-2">
+                <ul class="breadcrumb mr-auto">
+                    <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
+                    <li class="breadcrumb-item"><a href="..">
+                        {{- with .Parent -}} {{ .Title }} </a></li>{{- end -}}
+                        <li class="breadcrumb-item active">{{ .Title }}</li>
+                    </ul>
+                </nav>
+                
+                <div class="row py-2">
+                    <div class="col-12">
+                        <h1>{{- .Title -}}</h1>
+                        {{- .Content -}}
+                    </div>
+                </div>
+                
+                
+                <!-- INTERACTIVE VERSION -->
+                <div class="row my-2 border-top pt-2">
+                    <div class="col-12">
+                        <h2 class="h4">First, enter your address.</h2>
+                        <p>We'll look up your elected officials and get their contact information.</p>
+                        
+                        <!-- Search/input -->
+                        <div class="srch input-group" role="search" autocomplete="off" id="searchHolder">
+                            <input class="rad-all form-control form-control-lg" placeholder="Search Address" id="map-search">
+                        </div>
+                        
+                        <!-- Map gets drawn here -->
+                        <div id='mapLocator' style="height:350px;"></div>
+                        <em>This page works for NYC addresses only. We won't store any information you enter on this page.</em>
+                        
+                    </div>
+                </div>
+                
+                <div class="row hide my-4" id="outputRow">
+                    <div class="col-12">
+                        <h2 class="h4">Next, get your elected officials' contact info:</h2>
+                        <table id="newTable" class="table table-striped mb-2">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th>Office</th>
+                                    <th><i class="fas fa-globe mr-1" aria-hidden="true"></i>Name & website</th>
+                                    <th><i class="fas fa-phone-square mr-1" aria-hidden="true"></i>Office phone</th>
+                                    <th><i class="fas fa-envelope mr-1" aria-hidden="true"></i>Email address</th>
+                                </tr>
+                            </thead>
+                            <tbody id="newTableBody">
+                                
+                            </tbody>
+                        </table>
+                        
+                        <div class="mt-2 asidebox">
+                            <a href="https://www.mygovnyc.org/" id="link">Get a full list of all your elected officials from Who Reps Me? NYC</a>.
+                        </div>
+                    </div>
+                </div>
+                
+                
+                <div class="row my-2 hide" id="contactContainer" data-pagefind-ignore="all">
+                    <div class="col-12">
+                        <h2 class="h4">Then, write them an email.</h2>
+                        <h3 class="h5" id="tips"><i class="fas fa-envelope-open-text mr-1"></i>Email tips</h3>
+                        <p>Elected officials serve the people - and want to know how their constituents feel. Here are some tips for writing an effective email, or script for a phone call.</p>
+                        <p><strong>Identify yourself as a constituent:</strong> tell them where you live and that they are your elected representative. For example: <em>"I live on Hunts Point Ave in the Bronx, in your district."</em></p>
+                        <p><strong>State your concerns.</strong> For example: <em>"Our neighborhood's rates of childhood asthma are among the highest in the city."</em></p>
+                        
+                        <p><strong>Tell your story:</strong> Offer some brief detail on how you see this environmental health issue affecting you and the people you know. For example: <em>"Last year, my daughter was diagnosed with asthma, and this issue is a challenge for our whole family."</em></p>
+                        
+                        <p><strong>Cite data:</strong> For example: <em>"According to data on housing conditions, 75% of renters' households in our neighborhood have maintenance problems that threaten health. (NYC Environment and Health Data Portal: https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/housing-maintenance/?id=2399#display=map)" </em></p>
+                        
+                        <p><strong>Make a request:</strong> You can ask them where they stand on the issue, what they're doing to improve it, or what services are available to help their constituents.</p>
+                        
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <div class="p-3 my-2 asidebox">
+                            <p><i class="fas fa-vote-yea mr-1"></i>You can contact elected officials whether or not you are registered to vote. If you're not, 
+                                <a class="" href="https://voterreg.dmv.ny.gov/motorvoter/" target="_blank" rel="noreferrer noopener"><i class="fas fa-external-link-alt mr-1"></i>register to vote here</a>.</p>
+                            </div>
+                            
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <div class="p-3 my-2 asidebox">
+                                <p><i class="fas fa-phone-square mr-1"></i><em>Some officials don't have email addresses, but you can always call their offices and use your email as a script.</em></p>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+                    <style>
+                        .glow {
+                            animation: glow 1s infinite alternate;
+                        }
+                        
+                        @keyframes glow {
+                            from {
+                                box-shadow: 0 0 5px -5px #008939;
+                            }
+                            to {
+                                box-shadow: 0 0 5px 5px #008939;
+                            }
+                        }
+                    </style>
+                    
+                    
+                    
+                    <div class="row my-4 hide" id="register">
+                        <div class="col p-3 mx-4 sr-only" style="background-color: #f1f1f1; border-left: 2px solid darkgray;">
+                            <p>You can contact these elected officials whether you are registered to vote, or not. If you're not, <a href="https://voterreg.dmv.ny.gov/motorvoter/">click here to register to vote</a>.</a></p>
+                        </div>
+                    </div>
+                    
+                </div>
+                <!--end main column-->
+            </div>
+            
+        </article>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.4.4/proj4.js"></script>
+        <script src="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/build/ol.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.4.0/papaparse.min.js"></script>
+        <script src="https://maps.nyc.gov/nyc-lib/v1.4.78/js/babel-polyfill.js"></script>
+        <script src="https://maps.nyc.gov/nyc-lib/v1.4.78/js/nyc-ol-lib.js"></script>
+        
+        <script>
+            
+            // ------------------------------------------------------- // 
+            // ********** Load map and ingest initial data: ********** //
+            // ------------------------------------------------------- // 
+            
+            var map;
+            function drawMap() {
+                document.getElementById('mapLocator').innerHTML = ''
+                document.getElementById('searchHolder').innerHTML = `<input class="rad-all form-control form-control-lg" placeholder="Search Address" id="map-search">`
+                
+                map = new nyc.ol.FrameworkMap({
+                    mapTarget: '#mapLocator',
+                    searchTarget: '#map-search',
+                    // searchTarget: true,
+                    // startAt: '125 Worth Street',
+                    geoclientUrl: 'https://api.nyc.gov/geoclient/v2/search?key=a13f6e450dc24806941ff2b66b078fb1'
+                });
+                
+                console.log("*** draw map");
+                
+            }
+            
+            drawMap()
+            
+            // Add event listener on entry form
+            document.getElementById('map-search').addEventListener("change", getData)
+            
+            let searchButton = document.querySelector('.btn.btn-srch');
+            
+            // Check if the button exists to avoid errors
+            if (searchButton) {
+                
+                searchButton.onclick = function() {
+                    
+                    $("#map-search").parent().trigger("submit")
+                    
+                };
+                
+            }
+            
+            // Check hash for an existing address
+            
+            
+            // ----------------------------------------------------------------------  //
+            // ********** Runs data fetching if there's a url hash: ****************** //
+            // ----------------------------------------------------------------------  //
+            /*
+            var hash = window.location.hash
+            if (hash.length > 5) {
+                console.log('we have a hash, folks:')
+                hash = hash.replace(/%20/g, " ");
+                hash = hash.substring(1);
+                console.log(hash)
+                document.getElementById('map-search').value = hash
+                setTimeout(getDataFromHash, 1000)
+            } else {}
+            
+            function getDataFromHash() {
+                console.log('enter click')
+                document.getElementById('map-search').dispatchEvent(enterEvent)
+                let button = document.querySelector('#searchHolder button');
+                
+                button.dispatchEvent(enterEvent)
+                // getData()
+            }
+            */
+            
+            // ----------------------------------------------------------------------  //
+            // ********** Gets data when event listener detects map change: ********** //
+            // ----------------------------------------------------------------------  //
+            
+            async function getData() {
+                console.log('*** Getting data:')
+                waitForGlobal("map.location.name", function() {
+                    console.log("map.location [post]", map.location);
+                    
+                    // Get data
+                    getDataFor(map.location)
+                    
+                    // Next, set up reset
+                    document.getElementById('map-search').disabled = true
+                    let button = document.querySelector('#searchHolder button');
+                    
+                    // Turn search button into Start Over button
+                    if (button) {
+                        button.innerHTML = 'Start over'
+                        button.onclick = function() {
+                            location.reload(); // Reload the page
+                        };
+                    }
+                })
+            }
+            
+            // ----------------------------------------------------------------------  //
+            // ********** Get data function - retrieving from API: ******************* //
+            // ----------------------------------------------------------------------  //
+            
+            function getDataFor(x) {
+                console.log('**** Getting data for:')
+                console.log(map.location.name)
+                
+                // add hash
+                window.location.hash = map.location.name
+                
+                // add location to link to mygovnyc
+                var linkURL = `https://www.mygovnyc.org/?addr=${map.location.name}`
+                document.getElementById('link').setAttribute("href",linkURL)
+                
+                let loc   = map.location
+                let data  = map.location.data
+                
+                // First, un-hide elements
+                document.getElementById('outputRow').classList.remove('hide')
+                document.getElementById('contactContainer').classList.remove('hide')
+                
+                // Passing in the name (must match LWV API), the district, and the LWV Api url string. And, order.
+                retrieveAPIData('Mayor',null,null);
+                retrieveAPIData('NYC Public Advocate',null,null);
+                retrieveAPIData('NYC Comptroller',null,null)
+                
+                retrieveAPIData('City Council',removeLeadingZero(data.cityCouncilDistrict),'lwvnyc_council')
+                retrieveAPIData('Community Board',removeLeadingZero(data.communityDistrict),'nyccommboard')
+                retrieveAPIData('Borough President',removeLeadingZero(data.bblBoroughCode),'lwvnyc_borough')
+                retrieveAPIData('State Assembly Member',removeLeadingZero(data.assemblyDistrict),'lwvnyc_nyassembly')
+                retrieveAPIData('State Senator', removeLeadingZero(data.stateSenatorialDistrict),'lwvnyc_nysenate')
+                retrieveAPIData('US Representative', removeLeadingZero(data.congressionalDistrict),'lwvnyc_congress')
+                retrieveAPIData('US Senator',null,null)
+            }
+            
+            async function retrieveAPIData(x,y,z) {
+                let xEncode = encodeURIComponent(x)
+                let url;
+                
+                if (y === null) {
+                    url = `https://www.mygovnyc.org/api/v1/query/lwvnyc_other?columns=*&filter=districttitle%3D'${xEncode}'`;
+                } else {
+                    url = `https://www.mygovnyc.org/api/v1/query/${z}?columns=*&filter=district%3D'${y}'`;
+                }
+                
+                try {
+                    const response = await fetch(url);
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    
+                    const data = await response.json();
+                    
+                    // console.log('Data for ' + x)
+                    // console.log(data); // Log the data to the console
+                    printData(data,x)    // Send to print function 
+                    
+                } catch (error) {
+                    console.error("Error fetching data:", error);
+                }
+                
+            }
+            
+            function removeLeadingZero(str) {
+                if (str.startsWith('0')) {
+                    return str.slice(1);
+                }
+                return str;
+            }
+            
+            // ----------------------------------------------------------------------  //
+            // ********** Print data to page from API: ******************************* //
+            // ----------------------------------------------------------------------  //
+            
+            function printData(data, office) {
+                console.log('*** printing data');
+                
+                let sort;
+                if (office.includes('US ')) {
+                    sort = 10;
+                } else if (office.includes('State')) {
+                    sort = 9;
+                } else if (office.includes('Borough')) {
+                    sort = 6;
+                }  else if (office.includes('Community')) {
+                    sort = 5
+                } else if (office.includes ('Council')) {
+                    sort = 4
+                } else if (office.includes('NYC')) {
+                    sort = 3
+                } else if (office.includes('Mayor')) {
+                    sort = 1
+                }
+                
+                let tableBody = document.getElementById('newTableBody');
+                
+                for (let i = 0; i < data.length; i++) {
+                    // Create table row
+                    let row = document.createElement('tr');
+                    
+                    let cell_office = document.createElement('td');
+                    
+                    if (office.includes('Council')) {
+                        cell_office.innerHTML = office + ' District ' + data[i].district
+                    } else if (office.includes('Community')) {
+                        cell_office.innerHTML = office + ' ' + data[i].district
+                    } else if (office.includes('Borough')) {
+                        cell_office.innerHTML = data[i].districttitle
+                    } else {
+                        cell_office.innerHTML = office
+                    }
+                    
+                    
+                    let cell_name = document.createElement('td');
+                    let url = data[i].website ? data[i].website : '';
+                    let name = data[i].firstname ? data[i].firstname + ' ' + data[i].lastname : 'Chairperson ' + data[i].chairperso;
+                    cell_name.innerHTML = `<a href="${url}" target="_blank">${name}</a>`;
+                    
+                    let cell_phone = document.createElement('td');
+                    let phone = data[i].phone_capital ? data[i].phone_capital + '<br>' + data[i].phone_dist1 : data[i].phone;
+                    cell_phone.innerHTML = office === 'Mayor' ? 'Not available' : phone; 
+                    
+                    let cell_email = document.createElement('td');
+                    let email = data[i].email;
+                    if (isValidEmail(email) === true) {
+                        cell_email.innerHTML =  `<strong><a href="mailto:${email}">${email}</a></strong>`
+                    } else {
+                        cell_email.innerHTML =  `<strong><a href="${email}" target="_blank"><i class="fas fa-external-link-alt mr-1" aria-hidden="true"></i>Contact page</a></strong>`
+                    }
+                    
+                    // Append cells to row
+                    row.appendChild(cell_office);
+                    row.appendChild(cell_name);
+                    row.appendChild(cell_phone);
+                    row.appendChild(cell_email);
+                    
+                    // Insert row at the correct sorted position
+                    let inserted = false;
+                    let rows = tableBody.getElementsByTagName("tr");
+                    
+                    for (let j = 0; j < rows.length; j++) {
+                        let existingSort = rows[j].getAttribute("data-sort"); // Get existing sort value
+                        if (existingSort && parseInt(existingSort) > sort) {
+                            tableBody.insertBefore(row, rows[j]); // Insert before the first row with a higher sort value
+                            inserted = true;
+                            break;
+                        }
+                    }
+                    
+                    if (!inserted) {
+                        tableBody.appendChild(row); // Append if no row had a higher sort value
+                    }
+                    
+                    row.setAttribute("data-sort", sort); // Store the sort value for future comparisons
+                }
+            }
+            
+            // ----------------------------------------------------------------------  //
+            // ********** Misc supportive functions: ********************************* //
+            // ----------------------------------------------------------------------  //
+            
+            // window.checkNested = function(obj, args) {
+                const checkNested = function(obj, args) {
+                    for (var i = 0; i < args.length; i++) {
+                        if (!obj || !obj.hasOwnProperty(args[i])) {
+                            return false;
+                        }
+                        obj = obj[args[i]];
+                    }
+                    return true;
+                }
+                
+                const waitForGlobal = function(keyPath, callback) {
+                    var args = keyPath.split('.');
+                    if (checkNested(window, args)) {
+                        callback();
+                    } else {
+                        setTimeout(function() {
+                            // window.waitForGlobal(keyPath, callback);
+                            waitForGlobal(keyPath, callback);
+                        }, 100);
+                    }
+                }
+                
+                function startOver() {
+                    location.reload()
+                }
+                
+                function isValidEmail(email) {
+                    return (email.match(/@/g) || []).length === 1;
+                }
+                
+                function isValidPhoneNumber(phone) {
+                    const phoneRegex = /^\d{3}[- ]\d{3}[- ]\d{4}$/;
+                    return phoneRegex.test(phone);
+                }
+                
+                // Create a new keyboard event
+                const enterEvent = new KeyboardEvent('keydown', {
+                    key: 'Enter',
+                    keyCode: 13, // Deprecated but still sometimes needed
+                    which: 13,   // Deprecated but still sometimes needed
+                    code: 'Enter',
+                    bubbles: true
+                });
+                
+            </script>
+            
+            
+            {{- end -}}

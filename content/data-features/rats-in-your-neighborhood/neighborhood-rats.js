@@ -34,29 +34,46 @@ REVISIONS, SCOPE:
 //----------------------------------------
 // INITIALIZE NYC-MAP LIBRARY 
 //---------------------------------------- 
+
 function initializeNYCLIB() {
+    
+    console.log("initialize");
+    
     nycMap = new nyc.ol.FrameworkMap({
         mapTarget: '#nycMap',
         searchTarget: '#map-search1',
-        geoclientUrl: 'https://maps.nyc.gov/geoclient/v1/search.json?app_key=74DF5DB1D7320A9A2&app_id=nyc-lib-example'
+        geoclientUrl: 'https://api.nyc.gov/geoclient/v2/search?key=a13f6e450dc24806941ff2b66b078fb1'
     });
-
+    
+    console.log("nycMap [initializeNYCLIB]", nycMap);
+    
     document.addEventListener("DOMContentLoaded", function() {
+
         var searchButton = document.querySelector('.btn.btn-srch');
     
         // Check if the button exists to avoid errors
         if (searchButton) {
+
             searchButton.onclick = function() {
-                setTimeout(geocode,2500)
+
+                $("#map-search1").parent().trigger("submit")
+                // $("#map-search1").trigger("submit")
+                setTimeout(geocode, 2500)
+
             };
+
         }
 
         // add event listener to form
         document.querySelector('#map-search1').addEventListener('keypress', function (e) {
+
             if (e.key === 'Enter') {
+
                 console.log('***Form submitted')
-                setTimeout(geocode,2500)
+                setTimeout(geocode, 2500)
+
             }
+
         });
     });
 }
@@ -89,31 +106,31 @@ L.easyButton({
             resetZoom();
         }
     }]
-}).addTo(leafletMap);    
+}).addTo(leafletMap);
 
 // add and style RMZs
 fetch(RMZgeojson)
-  .then(response => response.json())
-  .then(data => {
-    L.geoJSON(data, {
-      style: {
-        color: "darkgray",  // Gray border
-        weight: 1,         // Thin outline
-        fillColor: "lightgray",
-        fillOpacity: 0.5   // Semi-opaque fill
-      },
-      onEachFeature: function (feature, layer) {
-        if (feature.properties && feature.properties.Label) {
-          layer.bindPopup(
-            '<strong>Rat Mitigation Zone:</strong><br>' + 
-            feature.properties.Label + 
-            '<hr><a href="../rat-mitigation-zones/" style="font-size: 12px">Get data on RMZs</a>.</p>'
-        );
-        }
-      }
-    }).addTo(leafletMap);
-  })
-  .catch(error => console.error("Error loading GeoJSON:", error));
+    .then(response => response.json())
+    .then(data => {
+        L.geoJSON(data, {
+            style: {
+                color: "darkgray",  // Gray border
+                weight: 1,         // Thin outline
+                fillColor: "lightgray",
+                fillOpacity: 0.5   // Semi-opaque fill
+            },
+            onEachFeature: function (feature, layer) {
+                if (feature.properties && feature.properties.Label) {
+                    layer.bindPopup(
+                        '<strong>Rat Mitigation Zone:</strong><br>' + 
+                        feature.properties.Label + 
+                        '<hr><a href="../rat-mitigation-zones/" style="font-size: 12px">Get data on RMZs</a>.</p>'
+                    );
+                }
+            }
+        }).addTo(leafletMap);
+    })
+    .catch(error => console.error("Error loading GeoJSON:", error));
 
 
 
@@ -127,31 +144,33 @@ function resetZoom() {
 // GEOCODE THROUGH NYC-MAP 
 //---------------------------------------- 
 function geocode() {
+    
+    console.log("nycMap [geocode]", nycMap);
     console.log('***Geocoding')
     document.getElementById('status').innerHTML = 'Getting data...'
     if (nycMap.location.type === 'geocoded') {
         console.log('- location found. Details:') // get data...
         locationDetails = nycMap.location
         console.log(locationDetails)
-
+        
         /*
-            Data to use:
-                nycMap.location.name                    sentence name
-                nycMap.location.data.latitude           to put into Leaflet
-                nycMap.location.data.longitude          to put into Leaflet
-                nycMap.location.data.bbl                BBL for passing into open data api?
-                nycMap.location.data.communityDistrict  Community District
+        Data to use:
+        nycMap.location.name                    sentence name
+        nycMap.location.data.latitude           to put into Leaflet
+        nycMap.location.data.longitude          to put into Leaflet
+        nycMap.location.data.bbl                BBL for passing into open data api?
+        nycMap.location.data.communityDistrict  Community District
         */
-
+        
         thisCD  = nycMap.location.data.communityDistrict
         thisBBL = nycMap.location.data.bbl
-
+        
         // place marker on leaflet map
         addMarker(nycMap.location.data.latitude,nycMap.location.data.longitude,nycMap.location.name)
-
+        
         // get property data
         getPropertyData(thisBBL)
-
+        
     } else {
         console.log('***Location not found :( ')
     }
@@ -163,9 +182,9 @@ function geocode() {
 function addMarker(lat,long,locationName) {
     // Remove prior markers
     mapMarkers.forEach(marker => map.removeLayer(marker))
-
+    
     console.log('- adding marker...')
-
+    
     // set icon
     let this_icon = L.colorIcon({
         iconSize : [30, 30],
@@ -173,18 +192,18 @@ function addMarker(lat,long,locationName) {
         iconUrl: "images/map-marker.svg",
         color: 'darkgray'
     });
-
+    
     // add marker
     var marker = L.marker([lat,long],{icon: this_icon}).addTo(leafletMap);
     marker.bindPopup(locationName)
     .openPopup();
     mapMarkers.push(marker)
-
+    
     leafletMap.setView([lat, long], 13);
-
+    
     // check if this point is in RMZs
     checkPointInRMZ(lat,long)
-
+    
 }
 
 
@@ -194,12 +213,12 @@ function addMarker(lat,long,locationName) {
 async function checkPointInRMZ(lat,long) {
     console.log('***Checking if location is in RMZ')
     await getGeoJSON(RMZgeojson)
-
+    
     inputLatLong = [lat,long]
-
+    
     for (let i = 0; i < geojsonData.features.length; i++) {
         // console.log(i)
-
+        
         // Loop through all the nested multipolygons
         if (geojsonData.features[i].geometry.type === "MultiPolygon") {
             for (let j = 0; j < geojsonData.features[i].geometry.coordinates.length; j++) {
@@ -239,13 +258,13 @@ async function checkPointInRMZ(lat,long) {
             }
         }
     }
-
+    
     if (isRMZ === false) {
         console.log('- not in an RMZ.')
     }
-
+    
     showParentCD(lat,long)
-
+    
 }
 
 //----------------------------------------
@@ -254,16 +273,16 @@ async function checkPointInRMZ(lat,long) {
 async function showParentCD(lat,long) {
     // get CD geojson
     await getGeoJSON(CDgeojson)
-
+    
     // filter for geocoded CD
     const thisCDArea = {
         type: "FeatureCollection",
         features: geojsonData.features.filter(feature => feature.properties.boro_cd === thisCD),
-      };
+    };
     
     // Add to map
     const CDlayer = L.geoJSON(thisCDArea).addTo(leafletMap)
-
+    
     // get data for CD
     getCDIndicatorData(thisCD)
 }
@@ -284,46 +303,46 @@ function showRMZCard(x) {
 var CDIndicatorData;
 function getCDIndicatorData(x) {
     console.log('***Getting CD Indicator data for ', x)
-
-    const URL = 'https://raw.githubusercontent.com/nychealth/EHDP-data/refs/heads/production/indicators/data/2434.json';
-        // passes geoID into function
-
-        return new Promise((resolve, reject) => {
-            fetch(URL)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.json(); // Parse data
-                })
-                .then(data => {
-                    // Get the keys and length of data
-                    const keys = Object.keys(data);
-                    const dataLength = data[keys[0]].length;
-
-                    // Restructure the data
-                    const restructuredData = [];
-                    for (let i = 0; i < dataLength; i++) {
-                        const record = {};
-                        keys.forEach(key => {
-                            record[key] = data[key][i];
-                        });
-                        restructuredData.push(record);
-                    }
     
-                    // FILTER FOR COMMUINTY DISTRICTS, and THIS CD
-                    CDIndicatorData = restructuredData.filter(item => item.GeoType === 'CD') 
-                    CDIndicatorData = CDIndicatorData.filter(item => item.GeoID == x)
-
-                    console.log('- CDIndicatorData:',CDIndicatorData);
-                    printCDData(CDIndicatorData);
-                    resolve(); // Resolve promise 
-                })
-                .catch(error => {
-                    console.error('Error fetching the Indicator data:', error);
-                    reject(error); // Reject the promise if there’s an error
+    const URL = 'https://raw.githubusercontent.com/nychealth/EHDP-data/refs/heads/production/indicators/data/2434.json';
+    // passes geoID into function
+    
+    return new Promise((resolve, reject) => {
+        fetch(URL)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json(); // Parse data
+        })
+        .then(data => {
+            // Get the keys and length of data
+            const keys = Object.keys(data);
+            const dataLength = data[keys[0]].length;
+            
+            // Restructure the data
+            const restructuredData = [];
+            for (let i = 0; i < dataLength; i++) {
+                const record = {};
+                keys.forEach(key => {
+                    record[key] = data[key][i];
                 });
+                restructuredData.push(record);
+            }
+            
+            // FILTER FOR COMMUINTY DISTRICTS, and THIS CD
+            CDIndicatorData = restructuredData.filter(item => item.GeoType === 'CD') 
+            CDIndicatorData = CDIndicatorData.filter(item => item.GeoID == x)
+            
+            console.log('- CDIndicatorData:',CDIndicatorData);
+            printCDData(CDIndicatorData);
+            resolve(); // Resolve promise 
+        })
+        .catch(error => {
+            console.error('Error fetching the Indicator data:', error);
+            reject(error); // Reject the promise if there’s an error
         });
+    });
 }
 
 //----------------------------------------
@@ -332,9 +351,9 @@ function getCDIndicatorData(x) {
 
 var propertyData;
 async function getPropertyData(x) {
-
+    
     var openDataSource = 'https://data.cityofnewyork.us/resource/a2h9-9z38.json?bbl=' + x
-
+    
     return new Promise((resolve, reject) => {
         // Fetch the GeoJSON data
         fetch(openDataSource)
@@ -356,7 +375,7 @@ async function getPropertyData(x) {
             reject(error); // Reject the promise if there’s an error
         });
     });
-
+    
 }
 
 
@@ -371,47 +390,47 @@ async function getPropertyData(x) {
 
 function printCDData(data) {
     console.log('- Printing CD data to page.')
-
+    
     document.getElementById('cdOutput').classList.remove('hide')
-
+    
     document.getElementById('cdID').innerHTML = 'Community District ' + thisCD;
-
+    
     // get Time Periods to match to TimePeriod ID
     fetch('https://raw.githubusercontent.com/nychealth/EHDP-data/refs/heads/production/indicators/metadata/TimePeriods.json')
     .then(response => response.json())
     .then(timePeriods => {
         // Create a lookup map
         const timePeriodMap = new Map(timePeriods.map(tp => [tp.TimePeriodID, tp.TimePeriod]));
-
+        
         // Add TimePeriod to each object in data
         data = data.map(item => ({
             ...item,
             TimePeriod: timePeriodMap.get(item.TimePeriodID) || "Unknown" // Add TimePeriod without removing TimePeriodID
         }));
-
+        
         // Find the max TimePeriodID, and filter for it (this works for this indicator)
         const maxTimePeriodID = Math.max(...data.map(item => item.TimePeriodID));
         const mostRecentData = data.filter(item => item.TimePeriodID === maxTimePeriodID);
-
+        
         // Print year to page
         document.getElementById('yearPrint').innerHTML = mostRecentData
-            .filter(item => item.MeasureID === 1381)
-            .map(item => item.TimePeriod);
-
+        .filter(item => item.MeasureID === 1381)
+        .map(item => item.TimePeriod);
+        
         // Print inspected percent to page
         const inspected = mostRecentData
-            .filter(item => item.MeasureID === 1381)
-            .map(item => item.DisplayValue);
-
-            document.getElementById('cdProp').innerHTML = inspected + '%'
-    
+        .filter(item => item.MeasureID === 1381)
+        .map(item => item.DisplayValue);
+        
+        document.getElementById('cdProp').innerHTML = inspected + '%'
+        
         // Print failed to page
         const failed = mostRecentData
-            .filter(item => item.MeasureID === 1383)
-            .map(item => item.DisplayValue);
-    
-            document.getElementById('cdFail').innerHTML = failed + '%'
-    
+        .filter(item => item.MeasureID === 1383)
+        .map(item => item.DisplayValue);
+        
+        document.getElementById('cdFail').innerHTML = failed + '%'
+        
         // Label rat activity high, low, or moderate, and print to page
         var ratActivity;
         if (failed > 20) {
@@ -421,14 +440,14 @@ function printCDData(data) {
         } else {
             ratActivity = 'moderate'
         }
-    
+        
         document.getElementById('activityValue').innerHTML = ratActivity
         const ratClass = ratActivity + '-activity'
         document.getElementById('activityValue').classList.add(ratClass)
-
+        
     })
     .catch(error => console.error("Error fetching time periods:", error));
-
+    
     /* Metadata
     "MeasureID": 1381,
     "MeasureName": "Rat inspections, Percent of properties inspected",
@@ -447,20 +466,20 @@ function printPropertyData(data) {
     console.log("- printing property data")
     document.getElementById('propertyOutput').classList.remove('hide')
     document.getElementById('noOutput').classList.add('hide')
-
+    
     // convert date
     data.forEach(property => {
         property.approved_date = new Date(property.approved_date);
     });
-
+    
     // filter for last 5 years
     const fiveYearsAgo = new Date();
     fiveYearsAgo.setFullYear(fiveYearsAgo.getFullYear() - 5);
     const recentInspections = propertyData.filter(property => property.approved_date >= fiveYearsAgo);
     console.log(recentInspections);
-
+    
     document.getElementById('numOfInspections').innerHTML = recentInspections.length + ' time' + (recentInspections.length != 1 ? 's' : '')
-
+    
     // Get most recent inspection
     const mostRecentInspection = propertyData.reduce((latest, property) => {
         return property.approved_date > latest.approved_date ? property : latest;
@@ -470,7 +489,7 @@ function printPropertyData(data) {
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
     const mostRecentDate = mostRecentInspection.approved_date.toLocaleDateString('en-US', options)
     document.getElementById('mostRecentInspection').innerHTML = mostRecentDate
-
+    
     // Print result
     const resultClass = (mostRecentInspection.result === 'Passed' ? 'passed-fill' : 'failed-fill')
     document.getElementById('result').classList.add(resultClass)
@@ -513,11 +532,11 @@ function getGeoJSON(x) {
 function swapFirstAndSecond(arrays) {
     // Iterate over each sub-array
     return arrays.map(subArray => {
-      // Swap the first and second elements
-      return [subArray[1], subArray[0]];
+        // Swap the first and second elements
+        return [subArray[1], subArray[0]];
     });
-  }
-  
+}
+
 
 
 
