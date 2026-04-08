@@ -12,6 +12,7 @@ let selectedTableTimes = [];
 let selectedTableGeography = [];
 let aboutMeasures;
 let dataSources;
+let dataSourceLink;
 
 let measureAbout = ``;
 let measureSources = ``;
@@ -283,7 +284,17 @@ const renderAboutSources = (about, sources) => {
     }
 
     aboutMeasures.innerHTML = about;
-    
+
+    const dataSourceLinks = indicator?.DataSourceLink;
+    if (Array.isArray(dataSourceLinks) && dataSourceLinks.length) {
+        dataSourceLink.innerHTML = dataSourceLinks
+            .map(({label, url}) => `<a href="${url}" target="_blank" rel="noopener noreferrer">${label} </a>`)
+            // <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            .join(' | ');
+    } else {
+        dataSourceLink.innerHTML = '';
+    }
+
 }
 
 // ----------------------------------------------------------------------- //

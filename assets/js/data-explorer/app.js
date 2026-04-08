@@ -81,6 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     aboutMeasures = document.querySelector('.indicator-measures');
     dataSources = document.querySelector('.indicator-sources');
+    dataSourceLink = document.querySelector('.indicator-datasource-link');
 
 });
 

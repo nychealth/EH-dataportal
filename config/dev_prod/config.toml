@@ -1,6 +1,6 @@
 baseURL = "https://gcappbesp307.health.dohmh.nycnet/dev-prod/"
 [params]
-    data_branch = "production"
+    data_branch = "feature-opendata-links"
 
 [caches]
     [caches.getresource]
