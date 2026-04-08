@@ -104,7 +104,7 @@
 
     <div class="row">
         <div class="col-md-11 col-sm-12 mx-auto my-1">
-            <h3 class="h2 cp-sticky-header px-2">Results from Environmental Justice sites</h2>
+            <h3 class="h3 cp-sticky-header px-2">Results from Environmental Justice sites</h3>
         </div>
     </div>
 
@@ -117,6 +117,62 @@
                     {{ partial "cp-chart.html" . }}
                 </div>
 
+
+                <!-- trying out without cards --> 
+                <div class="row m-4"> 
+                    <div class="col-md-10 mx-auto col-sm-12">
+                        <div class="row p-2 border-top border-bottom">
+                            <div class="col-md-6 border-right">
+                                <h3 class="h5">Looking closer at daytime traffic patterns</h3>
+                                <p>Total traffic on the Major Deegan was on average 7% lower in 2025 compared to 2024. Truck traffic was 9% lower. PM2.5 levels on the Major Deegan decreased by 26% after tolling began.​<​</p>
+                                <div style="display:inline;" class="fs-md"><strong> Changes from congestion tolling:
+                                    <span style="color:#00dca6;font-weight:normal">Morning rush</span>, <span style="color:#18a1cd;font-weight:normal">mid-day</span>, <span style="color:#15607a;font-weight:normal">evening rush</span> and <span style="color:#009076;font-weight:normal">overnight</span></strong>
+                                    </div> 
+                                  <div class="row">
+                                    <div class="col-6 my-1">
+                                        <div style="min-height:251px" id="datawrapper-vis-WxfJB"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/WxfJB/embed.js" charset="utf-8" data-target="#datawrapper-vis-WxfJB"></script><noscript><img src="https://datawrapper.dwcdn.net/WxfJB/full.png" alt="Line chart" /></noscript></div>
+                                    </div>
+                                    <div class="col-6 my-1">
+                                        <div style="min-height:301px" id="datawrapper-vis-0jrLJ"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/0jrLJ/embed.js" charset="utf-8" data-target="#datawrapper-vis-0jrLJ"></script><noscript><img src="https://datawrapper.dwcdn.net/0jrLJ/full.png" alt="Line chart" /></noscript></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <h3 class="h5">How did traffic and PM2.5 near the highways change?</h3>
+                                <p>Traffic and truck-related pollutants (PM2.5, BC) decreased after CRZ tolling began during all periods of the day. While traffic was highest during morning rush hours, PM2.5 levels varied slightly over the day due to the influence of other sources like heating systems in buildings, restaurant cooking and construction.​</p>
+                                <div style="display:inline;" class="fs-md"><strong> Changes from congestion tolling:
+                                    <span style="color:#00dca6;font-weight:normal">Morning rush</span>, <span style="color:#18a1cd;font-weight:normal">mid-day</span>, <span style="color:#15607a;font-weight:normal">evening rush</span> and <span style="color:#009076;font-weight:normal">overnight</span></strong>
+                                    </div> 
+                                
+            <!-- note that these numbers do not line up so make sure the new/real data matches these claims --> 
+              <div class="row justify-content-between">
+                <div class="col-4 my-3">
+                    <div style="min-height:157px" id="datawrapper-vis-uKU2j"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/uKU2j/embed.js" charset="utf-8" data-target="#datawrapper-vis-uKU2j"></script><noscript><img src="https://datawrapper.dwcdn.net/uKU2j/full.png" alt="Arrow Plot" /></noscript></div>
+                </div>
+                <div class="col-4 my-3">
+                    <div style="min-height:127px" id="datawrapper-vis-kzIZl"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/kzIZl/embed.js" charset="utf-8" data-target="#datawrapper-vis-kzIZl"></script><noscript><img src="https://datawrapper.dwcdn.net/kzIZl/full.png" alt="Arrow Plot" /></noscript></div>
+                </div>
+                <div class="col-4 my-3">
+                    <div style="min-height:110px" id="datawrapper-vis-vEUVy"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/vEUVy/embed.js" charset="utf-8" data-target="#datawrapper-vis-vEUVy"></script><noscript><img src="https://datawrapper.dwcdn.net/vEUVy/full.png" alt="Arrow Plot" /></noscript></div>
+                </div>
+            </div>
+        </div>
+                            
+
+
+                      </div>
+                    </div>
+                  </div> 
+                </div>
+                </div>
+        
+        
+            <!-- divider -->
+        
+            </div>
+            
+                <!-- with cards
         <div class="row m-4"> 
             <div class="col-md-6 col-sm-12">
             <div class="card card-left-border shadow-sm mb-2 fs-sm">
@@ -141,7 +197,6 @@
             <div class="card card-left-border shadow-sm mb-2 fs-sm">
               <div class="card-body">
               <p class="card-text"><h3 class="h5">How did traffic and PM2.5 near the highways change?</h3> Total traffic on the Major Deegan was on average 7% lower in 2025 compared to 2024. Truck traffic was 9% lower. PM2.5 levels on the Major Deegan decreased by 26% after tolling began.​</p><br>
-              <!-- note that these numbers do not line up so make sure the new/real data matches these claims --> 
               <div class="row justify-content-between">
                 <div class="col-4 my-3">
                     <div style="min-height:157px" id="datawrapper-vis-uKU2j"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/uKU2j/embed.js" charset="utf-8" data-target="#datawrapper-vis-uKU2j"></script><noscript><img src="https://datawrapper.dwcdn.net/uKU2j/full.png" alt="Arrow Plot" /></noscript></div>
@@ -157,12 +212,11 @@
             </div>
           </div> 
         </div>
-        </div>
+
+    -->
 
 
     <!-- divider -->
-
-    </div>
 
     <div class="row">
         <div class="col-10 mx-auto">
