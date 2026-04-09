@@ -2,17 +2,17 @@
 <!-- via dict, cats is the host page's frontmatter categories -->
 {{- $cats := $.content.Params.categories -}}
 
-<!-- range through the section passed into this partial (key-topics) -->
-{{- range  (where $.content.Site.RegularPages "Section" "key-topics") -}}
+<!-- collect matching key-topic pages into a slice first -->
+{{- $matches := slice -}}
+{{- range (where $.content.Site.RegularPages "Section" "key-topics") -}}
+  {{- if intersect $cats .Params.categories | len | lt 0 -}}
+    {{- $matches = $matches | append . -}}
+  {{- end -}}
+{{- end -}}
 
-    {{- $has_common_cats := intersect $cats .Params.categories | len | lt 0 -}}
-        {{- if  $has_common_cats -}}
-
-          <a class="text-black" href="{{ .RelPermalink }}">
-            {{ .Title }}
-          </a>
-          <hr class="my-2">
-
-        {{- end -}}
-
+{{- range $i, $page := $matches -}}
+  <a class="text-black" href="{{ $page.RelPermalink }}">
+    {{ $page.Title }}
+  </a>
+  {{ if lt (add $i 1) (len $matches) }}<hr class="my-2">{{ end }}
 {{- end -}}
