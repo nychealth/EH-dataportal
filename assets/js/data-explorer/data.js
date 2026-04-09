@@ -1029,7 +1029,8 @@ function draw311Buttons(indicator_id) {
             for (let i = 0; i < filteredCrosswalk.length; i ++ ) {
                 let title = filteredCrosswalk[i].topic
                 let destination = filteredCrosswalk[i].kaLink
-                let btn = `<a href="https://portal.311.nyc.gov/article/?kanumber=${destination}" class="mr-1" target="_blank" rel="noopener noreferrer">${title}</a>| `
+                let divider = i < filteredCrosswalk.length - 1 ? '| ' : ''
+                let btn = `<a href="https://portal.311.nyc.gov/article/?kanumber=${destination}" class="mr-1" target="_blank" rel="noopener noreferrer">${title}</a>${divider}`
                 dest.forEach(element => element.innerHTML += btn)
             }
     })
