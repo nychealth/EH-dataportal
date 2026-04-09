@@ -10,38 +10,38 @@
 // function to load indicator metadata
 // ----------------------------------------------------------------------- //
 
-const loadIndicator = async (this_indicatorId, dont_add_to_history) => {
+const loadIndicator = async (this_IndicatorID, dont_add_to_history) => {
 
-    console.log("* loadIndicator:", parseFloat(this_indicatorId));
+    console.log("* loadIndicator:", parseFloat(this_IndicatorID));
 
     // console.log("indicators [loadIndicator]", indicators);
 
     currentHash = window.location.hash;
 
-    // if indicatorId isn't given, use the first indicator from the dropdown list
+    // if IndicatorID isn't given, use the first indicator from the dropdown list
     //  (which is populated by Hugo reading the content frontmatter).
 
     // const firstIndicatorId = document.querySelectorAll('#indicator-dropdown button')[0].getAttribute('data-indicator-id');
 
-    indicatorId = this_indicatorId ? parseFloat(this_indicatorId) : parseFloat(firstIndicatorId);
+    IndicatorID = this_IndicatorID ? parseFloat(this_IndicatorID) : parseFloat(firstIndicatorId);
 
     // remove active class from every list element
     // $(".indicator-dropdown-item").removeClass("active");
     // $(".indicator-dropdown-item").attr('aria-selected', false);
 
     // $(".indicator-arrows").addClass("hide");
-    // document.getElementById(`arrow-${indicatorId}`).classList.remove('hide')
+    // document.getElementById(`arrow-${IndicatorID}`).classList.remove('hide')
 
     // get the list element for this indicator (in buttons and dropdowns)
-    // const thisIndicatorEl = document.querySelectorAll(`button[data-indicator-id='${indicatorId}']`)
+    // const thisIndicatorEl = document.querySelectorAll(`button[data-indicator-id='${IndicatorID}']`)
 
     // set this element as active & selected
     // $(thisIndicatorEl).addClass("active");
     // $(thisIndicatorEl).attr('aria-selected', true);
 
-    // indicatorId comes in as  a string, so "find" uses '==' instead of '==='
+    // IndicatorID comes in as  a string, so "find" uses '==' instead of '==='
 
-    indicator = indicators.find(indicator => indicator.IndicatorID == indicatorId);
+    indicator = indicators.find(indicator => indicator.IndicatorID == IndicatorID);
     indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : '';
     indicatorDesc = indicator?.IndicatorDescription ? indicator.IndicatorDescription : '';
     indicatorShortName = indicator?.IndicatorShortname ? indicator.IndicatorShortname : indicatorName;
@@ -71,24 +71,24 @@ const loadIndicator = async (this_indicatorId, dont_add_to_history) => {
     // this prevents loadIndicator from setting new history entries when it's called
     //  on a popstate event, i.e. when the user is traversing the history stack
 
-    // dont_add_to_history catches the pop state case, state.id != indicatorId catches the location change case
+    // dont_add_to_history catches the pop state case, state.id != IndicatorID catches the location change case
     // we don't want to add to the history stack if we've landed on this page by way of the history stack
 
-    url.searchParams.set('id', parseFloat(indicatorId));
+    url.searchParams.set('id', parseFloat(IndicatorID));
 
-    if (!dont_add_to_history && (window.history.state === null || state === null || window.history.state.id != indicatorId)) {
+    if (!dont_add_to_history && (window.history.state === null || state === null || window.history.state.id != IndicatorID)) {
 
         if (!url.hash) {
 
             // if loadIndicator is being called without a hash (like when a topic page is loaded), then show the first ID and table
 
             url.hash = "display=summary";
-            window.history.replaceState({ id: indicatorId, hash: url.hash}, '', url);
+            window.history.replaceState({ id: IndicatorID, hash: url.hash}, '', url);
 
         } else {
 
             url.hash = currentHash;
-            window.history.pushState({ id: indicatorId, hash: url.hash }, '', url);
+            window.history.pushState({ id: IndicatorID, hash: url.hash }, '', url);
 
         }
 
@@ -113,7 +113,7 @@ const loadIndicator = async (this_indicatorId, dont_add_to_history) => {
         // fetch_comparisons();
     }
 
-    await loadData(indicatorId);
+    await loadData(IndicatorID);
 
 }
 
@@ -121,11 +121,11 @@ const loadIndicator = async (this_indicatorId, dont_add_to_history) => {
 // function to Load indicator data and create Arquero data frame
 // ----------------------------------------------------------------------- //
 
-const loadData = async (this_indicatorId) => {
+const loadData = async (this_IndicatorID) => {
 
     console.log("* loadData");
 
-    await fetch(`${data_repo}${data_branch}/indicators/data/${this_indicatorId}.json`)
+    await fetch(`${data_repo}${data_branch}/indicators/data/${this_IndicatorID}.json`)
         .then(response => response.json())
         .then(async data => {
 
@@ -152,7 +152,7 @@ const loadData = async (this_indicatorId) => {
             
         })
 
-    draw311Buttons(this_indicatorId)
+    draw311Buttons(this_IndicatorID)
 
 }
 

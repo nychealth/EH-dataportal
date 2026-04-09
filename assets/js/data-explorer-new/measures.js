@@ -8,7 +8,7 @@
 // tab default measure functions
 // ----------------------------------------------------------------------- //
 
-// ===== map ================================================== //
+// ===== map ================================================== app//
 
 const setDefaultMapMeasure = (visArray) => {
 
@@ -720,7 +720,7 @@ const updateComparisonTrendData = (e) => {
         .join(timeTable, [["TimePeriodID"], ["TimePeriodID"]])
 
         // put host indicator first, so it gets the black line
-        .orderby(aq.desc(aq.escape(d => d.IndicatorID == indicatorId)))
+        .orderby(aq.desc(aq.escape(d => d.IndicatorID == IndicatorID)))
     
     // show only last 3 years of DWQ measures with quarterly data
 
@@ -2076,7 +2076,7 @@ const renderMeasures = async () => {
                 .join(timeTable, [["TimePeriodID"], ["TimePeriodID"]])
 
                 // put host indicator first (then measure), so it gets the black line
-                .orderby(aq.desc(aq.escape(d => d.IndicatorID == indicatorId)), d => d.MeasureID)
+                .orderby(aq.desc(aq.escape(d => d.IndicatorID == IndicatorID)), d => d.MeasureID)
 
 
             // console.log(">>>> aqFilteredComparisonData [showComparisonTrend 1]");
@@ -2432,7 +2432,7 @@ const renderMeasures = async () => {
             // replace history stack entry
 
             // url.hash = "display=summary";
-            // window.history.replaceState({ id: indicatorId, hash: url.hash}, '', url);
+            // window.history.replaceState({ id: IndicatorID, hash: url.hash}, '', url);
 
         }
 
@@ -2461,7 +2461,7 @@ const renderMeasures = async () => {
         //     // replace history stack entry
 
         //     url.hash = "display=summary";
-        //     window.history.replaceState({ id: indicatorId, hash: url.hash}, '', url);
+        //     window.history.replaceState({ id: IndicatorID, hash: url.hash}, '', url);
 
         // }
 
@@ -2492,7 +2492,7 @@ const renderMeasures = async () => {
     //         // replace history stack entry
 
     //         // url.hash = "display=summary";
-    //         // window.history.replaceState({ id: indicatorId, hash: url.hash}, '', url);
+    //         // window.history.replaceState({ id: IndicatorID, hash: url.hash}, '', url);
 
     //     }
 

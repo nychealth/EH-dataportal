@@ -44,6 +44,7 @@ const ensureIndicatorsLoaded = async (topic) => {
 
 }
 
+
 // --------------------------------------------------------
 // When a topic is selected, show indicator menu modal, and print indicators
 // --------------------------------------------------------
@@ -190,7 +191,7 @@ const checkURL = async () => {
 // Print basic indicator info from metadata to page 
 // --------------------------------------------------------
 
-const printIndicatorInfo = async (indicatorId) => {
+const printIndicatorInfo = async (IndicatorID) => {
 
     console.log("* printIndicatorInfo");
     
@@ -198,15 +199,15 @@ const printIndicatorInfo = async (indicatorId) => {
     const data = await ensureIndicatorsLoaded('printing to page');
     // console.log("Indicators ready to print to page!");
     
-    // Find the indicator object where IndicatorID matches indicatorId
-    const indicator = data.find(d => d.IndicatorID === indicatorId);
+    // Find the indicator object where IndicatorID matches IndicatorID
+    const indicator = data.find(d => d.IndicatorID === IndicatorID);
     
     console.log('This indicator:');
     console.log(indicator)
     
     if (!indicator) {
 
-        console.warn("No indicator found for ID:", indicatorId);
+        console.warn("No indicator found for ID:", IndicatorID);
         $('#indicatorSelector').modal('show'); // fire Indicator Selection Modal
         return;
 
@@ -265,31 +266,5 @@ const printIndicatorInfo = async (indicatorId) => {
     });
     
     
-}
-
-
-// --------------------------------------------------------
-// Simple copy citation function
-// --------------------------------------------------------
-
-const copyCitation = () => {
-
-    console.log("* copyCitation");
-
-    const citeText = document.getElementById('citeText').innerText;
-    
-    // Create temporary textarea
-    const temp = document.createElement('textarea');
-    temp.value = citeText;
-    document.body.appendChild(temp);
-    temp.select();
-    temp.setSelectionRange(0, 99999);
-    
-    navigator.clipboard.writeText(temp.value).then(() => {
-        const btn = document.getElementById('citeButton');
-        btn.innerHTML = `<i class="fas fa-copy mr-1" aria-hidden="true"></i>Copied!`;
-    });
-    
-    document.body.removeChild(temp); // clean up
 }
 

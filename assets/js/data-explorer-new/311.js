@@ -8,7 +8,7 @@
 
 //------- call function
 
-// draw311Buttons(this_indicatorId)
+// draw311Buttons(this_IndicatorID)
 
 //------- function to draw 311 buttons
 

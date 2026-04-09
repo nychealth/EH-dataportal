@@ -8,8 +8,6 @@
 // top scope variables
 // ----------------------------------------------------------------------- //
 
-let globalID;
-
 let selectedTableTimes = [];
 let selectedTableGeography = [];
 let aboutMeasures;
@@ -37,7 +35,6 @@ let indicatorDesc;
 let indicatorLabel;
 let indicatorShortName;
 let indicatorMeasures;
-let indicatorId;
 let primaryIndicatorName;
 let secondaryIndicatorName;
 
@@ -132,15 +129,41 @@ let chartType;
 let currentHash;
 let state;
 
+let IndicatorID;
+let MeasureID;
+let GeoTypeID;
+let TimePeriodID;
+let overlay; 
+
 // const btnToggleDisparities = document.querySelector('.btn-toggle-disparities');
 
 // modifying the measure dropdown innerHTML removes the event listeners from the dropdown list. So, i added it to the HTML, and we can remove it when we call renderTrendChart, if necessary
 
-const url = new URL(window.location);
 
-// hash change event, for firing on hash switch in renderMeasures
+// --------------------------------------------------------
+// Simple copy citation function
+// --------------------------------------------------------
 
-let hashchange = new Event('hashchange');
+const copyCitation = () => {
+
+    console.log("* copyCitation");
+
+    const citeText = document.getElementById('citeText').innerText;
+    
+    // Create temporary textarea
+    const temp = document.createElement('textarea');
+    temp.value = citeText;
+    document.body.appendChild(temp);
+    temp.select();
+    temp.setSelectionRange(0, 99999);
+    
+    navigator.clipboard.writeText(temp.value).then(() => {
+        const btn = document.getElementById('citeButton');
+        btn.innerHTML = `<i class="fas fa-copy mr-1" aria-hidden="true"></i>Copied!`;
+    });
+    
+    document.body.removeChild(temp); // clean up
+}
 
 
 // ----------------------------------------------------------------------- //

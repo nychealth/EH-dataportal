@@ -8,6 +8,17 @@
 // history traversal
 // ----------------------------------------------------------------------- //
 
+const url = new URL(window.location);
+
+// hash change event, for firing on hash switch in renderMeasures
+
+let hashchange = new Event('hashchange');
+
+
+// ----------------------------------------------------------------------- //
+// history traversal
+// ----------------------------------------------------------------------- //
+
 // clicking on the indicator dropdown calls loadIndicator with that IndicatorID
 
 // call loadindicator when traversing through the history
@@ -15,16 +26,23 @@
 window.onpopstate = function (event) {
 
     const new_url = new URL(window.location);
-    let new_indicatorId = parseFloat(new_url.searchParams.get('id'));
+    let new_IndicatorID = parseFloat(new_url.searchParams.get('id'));
 
-    if (new_indicatorId != indicatorId) {
+    if (new_IndicatorID != IndicatorID) {
 
-        loadIndicator(new_indicatorId, true)
+        loadIndicator(new_IndicatorID, true)
 
     }
 };
 
+
+// ----------------------------------------------------------------------- //
+// history traversal
+// ----------------------------------------------------------------------- //
+
 window.addEventListener("hashchange", () => {
+
+    console.log("hashchange: ", location.hash);
 
     const hash = window.location.hash.replace('#', "");
 
@@ -179,7 +197,7 @@ $('#tab-btn-02-b').on('click', e => {
 
 $('#indicatorButtons').on('click', e => {
 
-    let IndicatorID = e.target.dataset.indicatorId;
+    let IndicatorID = e.target.dataset.IndicatorID;
 
     // run the indicator loading function
 
