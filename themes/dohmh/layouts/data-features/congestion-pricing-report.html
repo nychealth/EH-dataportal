@@ -177,15 +177,23 @@
     </div>
 
     <div class="row">
+        <div class="col-md-8 col-sm-12 mx-auto my-1">
+            <h3 class="h3 cp-sticky-header px-2">Results from inside the CRZ and outside NYC</h3>
+        </div>
+    </div>
+    
+    <div class="row">
+
+
 
         <div class="col-md-8 col-sm-12 mx-auto mb-2">
             <h3 class="h4 cp-sticky-header cp-sticky-only">Air pollution inside of the CRZ</h3>
             <div class="row">
-                <div class="col-6">
+                <div class="col-4">
 <!--                    <img src="{{ .Params.fullurl }}images/map3.png" alt="" class="img-fluid" /> -->
-    <div style="min-height:540px" id="datawrapper-vis-YFkVt"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/YFkVt/embed.js" charset="utf-8" data-target="#datawrapper-vis-YFkVt"></script><noscript><img src="https://datawrapper.dwcdn.net/YFkVt/full.png" alt="Locator map" /></noscript></div>
+<div style="min: height 250px;" id="datawrapper-vis-YFkVt"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/YFkVt/embed.js" charset="utf-8" data-target="#datawrapper-vis-YFkVt"></script><noscript><img src="https://datawrapper.dwcdn.net/YFkVt/full.png" alt="Locator map" /></noscript></div>
                 </div>
-                <div class="col-6">
+                <div class="col-8">
                     {{- with .Resources.GetMatch "aq-inside-crz.md" -}}
                         {{ .Content }}
                     {{- end -}}
@@ -210,24 +218,6 @@
         </div>
     </div>
 
-      <!-- <div class="col-md-8 mx-auto col-sm-12">
-            <div class="l-green-border px-1 mb-4">
-                <div class="row justify-content-between">
-                    <div class="col-3">
-                        <div style="min-height:109px" id="datawrapper-vis-3F9Bw"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/3F9Bw/embed.js" charset="utf-8" data-target="#datawrapper-vis-3F9Bw"></script><noscript><img src="https://datawrapper.dwcdn.net/3F9Bw/full.png" alt="Arrow Plot" /></noscript></div>
-                    </div>
-                    <div class="col-3">
-                        <div style="min-height:109px" id="datawrapper-vis-3F9Bw"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/3F9Bw/embed.js" charset="utf-8" data-target="#datawrapper-vis-3F9Bw"></script><noscript><img src="https://datawrapper.dwcdn.net/3F9Bw/full.png" alt="Arrow Plot" /></noscript></div>
-                    </div>
-                    <div class="col-3">
-                        <div style="min-height:109px" id="datawrapper-vis-3F9Bw"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/3F9Bw/embed.js" charset="utf-8" data-target="#datawrapper-vis-3F9Bw"></script><noscript><img src="https://datawrapper.dwcdn.net/3F9Bw/full.png" alt="Arrow Plot" /></noscript></div>
-                    </div>
-                </div>
-
-
-            </div>
-        </div> -->
-
         <div class="row">
 
             <div class="col-md-8 col-sm-12 mx-auto mb-2">
@@ -246,7 +236,7 @@
             <div class="col-10 mx-auto">
                 <div class="row">
                     <div class="col-10 mx-auto">
-                        <hr class="my-2 px-4" />
+                        <hr class="my-2 px-6" />
                     </div>
                 </div>
             </div>
