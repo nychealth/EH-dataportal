@@ -209,7 +209,7 @@ const renderTable = (tableData) => {
                                     data-group-level="${lvl}">
                                     ${group}
                                 </td>
-                             </tr>`
+                            </tr>`
                         );
 
                         last = group;
@@ -220,6 +220,65 @@ const renderTable = (tableData) => {
 
             createGroupRow(groupColumnTime, 0);
             createGroupRow(groupColumnGeo, 1);
+
+            // ✅ THIS is what you were missing
+            handleToggle();
         }
+    });
+};
+
+const handleToggle = () => {
+
+    $('body').off('click', '#summary-table tr.group td');
+
+    $('body').on('click', '#summary-table tr.group td', (e) => {
+
+        const td = $(e.target);
+        const tr = td.parent();
+        const group = td.data('group');
+        const groupLevel = td.data('group-level');
+
+        const handleGroupToggle = () => {
+
+            const subGroupToggle = $(`td[data-time="${group}"][data-group-level="1"]`);
+            const subGroupRow = $(`tr[data-time="${group}"]`);
+
+            if (subGroupToggle.css('display') === 'none') {
+
+                subGroupToggle.show().removeClass('hidden');
+                subGroupRow.show().removeClass('hidden');
+                td.removeClass('hidden');
+
+            } else {
+
+                subGroupToggle.hide().addClass('hidden');
+                subGroupRow.hide().addClass('hidden');
+                td.addClass('hidden');
+            }
+        };
+
+        const handleSubGroupToggle = () => {
+
+            const subDataGroup = tr.next('tr').data('group');
+            const subGroupRow = $(`tr[data-group="${subDataGroup}"]`);
+
+            if (subGroupRow.css('display') === 'none') {
+
+                subGroupRow.show().removeClass('hidden');
+                td.removeClass('hidden');
+
+            } else {
+
+                subGroupRow.hide().addClass('hidden');
+                td.addClass('hidden');
+            }
+        };
+
+        if (groupLevel === 0) {
+            handleGroupToggle();
+        } else {
+            handleSubGroupToggle();
+        }
+
     });
 };
