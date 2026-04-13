@@ -1,18 +1,3 @@
-<style>
-    .dropdown {
-    width: 100%;
-}
-
-.dropdown button {
-    width: 300px; /* Adjust this value to your desired width */
-}
-
-.dropdown span:first-child {
-    width: 70px; /* Adjust this value to fit your longest label */
-    flex-shrink: 0;
-}
-</style>
-
 <!-- Upper left indicator detail box -->
 <div class="position-absolute  de-main-details">
 
@@ -101,12 +86,12 @@
         </div>
 
         <div>
-        <!-- Dropdown 1 -->
+            <!-- Dropdown 1 -->
             <div class="card">
                 <div class="card-header pb-0">
-                    <div class="dropdown fs-sm d-flex align-items-center">
-                        <span class="font-weight-bold text-primary mr-1" style="min-width: fit-content;">Measure:</span>
-                        <button class="btn fs-sm d-flex align-items-center flex-grow-1 text-left bg-white font-weight-normal" type="button" id="measureOptionsDropdownButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <div class="dropdown fs-sm">
+                        <div class="font-weight-bold mr-2 text-primary fs-sm mb-1">Measure: </div>
+                        <button class="btn fs-sm d-flex align-items-center w-100 text-left bg-white font-weight-normal" type="button" id="measureOptionsDropdownButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span class="flex-grow-1 measure-name">Change measure</span>
                             <i class="fas fa-chevron-down ml-auto text-primary"></i>
                         </button>
@@ -122,9 +107,9 @@
             <!-- Dropdown 2 -->
             <div class="card">
                 <div class="card-header pb-0">
-                    <div class="dropdown fs-sm d-flex align-items-center">
-                        <span class="font-weight-bold text-primary mr-1" style="min-width: fit-content;">Boundary:</span>
-                        <button class="btn fs-sm d-flex align-items-center flex-grow-1 text-left bg-white font-weight-normal" type="button" id="geoOptionsDropdownButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <div class="dropdown fs-sm">
+                        <div class="font-weight-bold mr-2 text-primary fs-sm mb-1">Boundary: </div>
+                        <button class="btn fs-sm d-flex align-items-center w-100 text-left bg-white font-weight-normal" type="button" id="geoOptionsDropdownButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span class="flex-grow-1 geo-name">Unchanged</span>
                             <i class="fas fa-chevron-down ml-auto text-primary"></i>
                         </button>
@@ -138,11 +123,11 @@
             </div>
 
             <!-- Dropdown 3 -->
-            <div class="card mb-1">
-                <div class="card-header pb-2">
-                    <div class="dropdown fs-sm d-flex align-items-center">
-                        <span class="font-weight-bold text-primary mr-1" style="min-width: fit-content;">Year:</span>
-                        <button class="btn fs-sm d-flex align-items-center flex-grow-1 text-left bg-white font-weight-normal" type="button" id="timeOptionsDropdownButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <div class="card">
+                <div class="card-header pb-0">
+                    <div class="dropdown fs-sm">
+                        <div class="font-weight-bold mr-2 text-primary fs-sm mb-1">Year: </div>
+                        <button class="btn fs-sm d-flex align-items-center w-100 text-left bg-white font-weight-normal mb-2" type="button" id="timeOptionsDropdownButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span class="flex-grow-1 time-name">Change time</span>
                             <i class="fas fa-chevron-down ml-auto text-primary"></i>
                         </button>
