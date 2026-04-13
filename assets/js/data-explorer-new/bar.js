@@ -45,6 +45,8 @@ const renderBar = (
     let isPercent;
     let topoFile = '';
     let barDisplay = [];
+    let setHeight = 500;
+    let setCircleSize = 250
 
 
 
@@ -103,7 +105,7 @@ const renderBar = (
                 {
                     "mark": {
                         "type": "circle",
-                        "size": 100,
+                        "size": setCircleSize,
                         "tooltip": true,
                         "stroke": "#161616"
                     },
@@ -184,7 +186,7 @@ const renderBar = (
             // If data has CIs, then show dots with a gray bar for the CIs
             barDisplay = [
                 {
-                    "height": 500,
+                    "height": setHeight,
                     "width": "container",
                     "config": {"axisY": {"labelAngle": 0, "labelFontSize": 13}},
                     "mark": {"type": "bar", "tooltip": true, "stroke": "#161616"},
@@ -241,12 +243,12 @@ const renderBar = (
                     }
                 },
                 {
-                    "height": 500,
+                    "height": setHeight,
                     "width": "container",
                     "config": {"axisY": {"labelAngle": 0, "labelFontSize": 13}},
                     "mark": {
                         "type": "circle",
-                        "size": 300,
+                        "size": setCircleSize,
                         "tooltip": true,
                         "stroke": "#161616"
                     },
@@ -416,7 +418,7 @@ const renderBar = (
             "as": "CInoParens"
             }
         ],
-        "height": 500,
+        "height": setHeight,
         "width": "container",
         "layer": barDisplay
     }
