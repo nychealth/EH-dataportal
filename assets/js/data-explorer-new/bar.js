@@ -92,14 +92,9 @@ const renderBar = (
                                 "axis": {"labelAngle": 0, "labelFontSize": 11, "tickCount": 3}
                             },
                             "tooltip": [
-                                {
-                                    "field": "Geography", 
-                                    "title": "Neighborhood"
-                                },
-                                {
-                                    "field": "TimePeriod",
-                                    "title": "Time period"
-                                }
+                                {"field": "Geography", "title": "Neighborhood"},
+                                {"field": "valueLabel", "title": metadata[0].MeasureName},
+                                {"field": "TimePeriod", "title": 'Time period'}
                             ],
                             "y": {"field": "GeoID", "sort": "-x", "axis": null},
                             "color": {"value": "#f1f1f1"}
@@ -128,7 +123,7 @@ const renderBar = (
                         "tooltip": [
                             {"field": "Geography", "title": "Neighborhood"},
                             {"field": "valueLabel", "title": metadata[0].MeasureName},
-                            {"field": "TimePeriodID", "title": 'TimePeriodID'}
+                            {"field": "TimePeriod", "title": 'Time period'}
                         ],
                         "y": {"field": "GeoID", "sort": "-x", "axis": null},
                         "color": {
@@ -322,7 +317,7 @@ const renderBar = (
                         "tooltip": [
                             {"field": "Geography", "title": "Neighborhood"},
                             {"field": "valueLabel", "title": metadata[0].MeasureName},
-                            {"field": "TimePeriodID", "title": 'TimePeriodID'}
+                            {"field": "TimePeriod", "title": 'Time period'}
                         ],
                         "y": {"field": "GeoID", "sort": "x", "axis": null},
                         "color": {
