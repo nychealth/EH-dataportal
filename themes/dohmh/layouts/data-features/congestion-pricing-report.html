@@ -65,7 +65,7 @@
             </div>
 
             <div class="row">
-                <div class="col-10 mx-auto">
+                <div class="col-12 mx-auto">
                     <hr class="my-2 px-6" />
                 </div>
             </div>
@@ -190,14 +190,26 @@
         </div>
     </div>
 
+    <div class="row">
+        <div class="col-10 mx-auto">
+            <div class="row">
+                <div class="col-10 mx-auto">
+                    <hr class="my-2 px-6" />
+                </div>
+            </div>
+        </div>
+    </div>
+
         <div class="row">
 
-            <div class="col-md-8 col-sm-12 mx-auto mb-2">
+            <div class="col-md-8 col-sm-12 mx-auto mb-2 px-2">
                 <h2></h2>
                 <img src="{{ .Params.fullurl }}images/map5.png" alt="" align="right" width="500px" class="" />
+                <div class="col-6">
                 {{- with .Resources.GetMatch "aq-outside-crz.md" -}}
                     {{ .Content }}
                 {{- end -}}
+            </div>
 
             </div>
         </div>
@@ -205,7 +217,7 @@
 
 
         <div class="row">
-            <div class="col-10 mx-auto">
+            <div class="col-12 mx-auto">
                 <div class="row">
                     <div class="col-10 mx-auto">
                         <hr class="my-2 px-6" />
@@ -226,7 +238,7 @@
         </div>
 
         <div class="row">
-            <div class="col-8 mx-auto">
+            <div class="col-10 mx-auto">
                 <div class="row">
                     <div class="col-10 mx-auto">
                         <hr class="my-2 px-6" />
