@@ -261,8 +261,8 @@ const renderMap = (
     // --- Find the min and max values in your dataset ---
 
     const values = data.map(d => d.Value).filter(v => v != null);
-    const minValue = Math.min(...values);
-    const maxValue = Math.max(...values);
+    const minValue = Math.min(...values).toFixed(2);
+    const maxValue = Math.max(...values).toFixed(2);
 
     document.getElementById('minVal').innerHTML = minValue
     document.getElementById('maxVal').innerHTML = maxValue
@@ -333,7 +333,7 @@ const renderMap = (
             <div class="popup-content">
             <strong>${properties.Geography}</strong>
             <hr class="my-1">
-            <em>${indicator.IndicatorName}</em>: <strong>${properties.Value}</strong> ${metadata[0].DisplayType.toLowerCase()} (${properties.TimePeriod || 'Unknown'})
+            <em>${indicator.IndicatorName}</em>: <strong>${properties.Value.toFixed(2)}</strong> ${metadata[0].DisplayType.toLowerCase()} (${properties.TimePeriod || 'Unknown'})
             <span style="font-size:12px">${properties.Note.length > 1 ? `<hr><em>Note:</em> ${properties.Note}` : ''}</span>
             </div>
         `;
@@ -349,7 +349,7 @@ const renderMap = (
 
         // Update legend text
         document.getElementById('hoveredGeo').textContent = props.Geography || 'Unknown';
-        document.getElementById('hoveredValue').textContent = props.Value ?? '—';
+        document.getElementById('hoveredValue').textContent = props.Value.toFixed(2) ?? '—';
         document.getElementById('hoveredUnits').textContent = metadata[0].DisplayType.toLowerCase();
         
         // Show legend tick
