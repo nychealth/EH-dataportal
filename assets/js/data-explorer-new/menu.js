@@ -130,11 +130,11 @@ const updateAllMenus = (indicator) => {
 
     }
 
-// NOW RENDER MENU
-styleAndPrintMenu(geos, '.geo-holder', 'geo');
+    // NOW RENDER MENU
+    styleAndPrintMenu(geos, '.geo-holder', 'geo');
 
-// THEN UPDATE LABEL
-setDropdownLabel('geo', currentState.geoType);
+    // THEN UPDATE LABEL
+    setDropdownLabel('geo', currentState.geoType);
 
     // ---------------------------
     // TIME MENU
