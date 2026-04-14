@@ -1,7 +1,8 @@
 ---
 title: "Outdoor Air and Health"
 categories: ["airquality", "childhealth", "publicspace", "neighborhoods"]
-layout: topiclanding
+layout: nr-topic-spa
+content_yml: Outdoor_Air_and_Health
 seo_title: "Outdoor Air and Health in NYC"
 urlExtension: "/outdoor_air_and_health/"
 

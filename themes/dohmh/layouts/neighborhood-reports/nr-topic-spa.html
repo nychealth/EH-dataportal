@@ -1,93 +1,258 @@
 {{- define "main" -}}
 
-{{/* 
-  Topic-centric Neighborhood Reports prototype layout.
+{{/*
+  Topic-centric Neighborhood Reports layout (Phase 2).
   - Used by the main topic markdown files (Active Design, Asthma, etc.).
   - Reads all report_topics from the NR_content YAML for this topic.
   - Builds an EHDP-data JSON URL per report_topic and passes them to a JS app.
-  - The JS renders indicator rows for a selected neighborhood (no charts yet).
-  - A small topic mini-menu at the top lets users switch between topic pages.
+  - Indicator rows are accordion-expandable, showing description, comparisons,
+    a Vega choropleth map + bar chart, and data source on expand.
+  - A topic mini-menu lets users switch between topics; the selected
+    neighborhood persists via URL query parameter.
 */}}
 
 {{/* Look up all report_topics for this Neighborhood Report content key */}}
 {{- $contentKey := .Params.content_yml -}}
 {{- $reportTopics := (index (index .Site.Data.globals.NR_content $contentKey) "report_topics") -}}
 
+{{/* Styles matching the existing NR accordion in nr-output/single.html */}}
+<style>
+  .card-header {
+    padding: 0.5rem 0.5rem;
+    background: white!important;
+  }
+
+  .card-header a {
+      color: black;
+      text-decoration: none;
+  }
+
+  .report-section {
+      border-top: 5px solid #008939!important;
+  }
+
+  .card-header:hover {
+      background-color: #EFFAF4 !important;
+      text-decoration: none;
+  }
+  .card-header .btn:hover {
+    text-decoration: none;
+  }
+  .nr-card-header {
+    padding: 0.5rem 0.5rem;
+    background: white !important;
+    cursor: pointer;
+  }
+  .nr-card-header:hover {
+    background-color: #EFFAF4 !important;
+  }
+  .nr-card-header a {
+    color: black;
+    text-decoration: none;
+  }
+  .nr-card-header .btn {
+    text-decoration: none;
+  }
+  .nr-card-header .btn:hover {
+    text-decoration: none;
+  }
+  .nr-indicator-card .collapse:not(.show) {
+    display: none;
+  }
+  .nr-indicator-card .collapse.show {
+    display: block;
+  }
+  .comp-good::before {
+    content: "\2705 ";
+  }
+  .comp-bad::before {
+    content: "\203C\FE0F ";
+  }
+  .comp-null::before {
+    content: "\26AA ";
+  }
+  .nr-map-container {
+    min-height: 350px;
+  }
+  .card-body-no-top {
+    padding-top: 0 !important;
+    padding-left: 12px !important;
+  }
+  .leading-sm {
+    line-height: 105%;
+    font-size: small;
+  }
+  #nr-map:hover {
+    cursor: pointer;
+  }
+</style>
+
 <section class="container-fluid" id="skip-header-target">
   <div class="row">
     <div class="col-lg-10 mx-auto col-12">
+
+      {{/* Breadcrumbs */}}
+      <nav aria-label="breadcrumb" class="mt-2 mb-3 d-print-none">
+        <ul class="breadcrumb">
+          <li class="breadcrumb-item d-none d-sm-block"><a href="{{ relURL "" }}">Home</a></li>
+          <li class="breadcrumb-item"><a href="{{ relURL "neighborhood-reports" }}">Neighborhood Reports</a></li>
+          <li class="breadcrumb-item active d-none d-sm-block" aria-current="page">{{ .Params.title }}</li>
+        </ul>
+      </nav>
+
+      {{/* Mobile title (visible below md breakpoint) */}}
+      <div class="row d-md-none">
+        <div class="col-12 mb-2">
+          <h1 class="h2" id="nr-mobile-title" style="display:none;">
+            {{ .Params.title }} <span style="font-weight:normal">in</span>
+          </h1>
+          <span class="h2 sub-title text-primary" id="nr-mobile-neighborhood"></span>
+        </div>
+      </div>
+
       <div class="row">
 
-        {{/* Left column: breadcrumbs, topic title, neighborhood selector, and body copy */}}
-        <div class="col-md-4 mb-4">
-          <nav aria-label="breadcrumb" class="mt-2 mb-3 d-print-none">
-            <ul class="breadcrumb">
-              <li class="breadcrumb-item d-none d-sm-block"><a href="{{ relURL "" }}">Home</a></li>
-              <li class="breadcrumb-item"><a href="{{ relURL "neighborhood-reports" }}">Neighborhood Reports</a></li>
-              <li class="breadcrumb-item active d-none d-sm-block" aria-current="page">{{ .Params.title }}</li>
-            </ul>
-          </nav>
+        {{/* Left column: map, demographics */}}
+        <div class="col-md-4 mb-4 d-print-none">
 
-          <h1 class="h3 mb-3">
-            {{ .Params.title }}
-          </h1>
-
-          <p class="fs-sm text-muted">
-            Prototype topic view for Neighborhood Reports. Choose a neighborhood to see indicator values.
-          </p>
-
-          {{/* 
-            Neighborhood switcher. The option values must match the "neighborhood"
-            field in the EHDP-data JSON exactly. For the prototype we hard-code two;
-            later this would be populated from uhflist.js for all 42 UHF neighborhoods.
+          {{/*
+            Interactive Leaflet map for neighborhood selection.
+            Loads UHF42 GeoJSON from static/geojson/. Clicking a neighborhood
+            updates the SPA data in place (no page navigation).
           */}}
-          <div class="form-group">
-            <label for="nr-topic-neighborhood" class="font-weight-bold">Neighborhood</label>
-            <select id="nr-topic-neighborhood" class="form-control">
-              <option value="Upper West Side">Upper West Side</option>
-              <option value="East Harlem">East Harlem</option>
-            </select>
+          <div id="nr-map" class="border" style="height: 450px; width: 100%;"></div>
+
+          <div class="fs-md my-1" id="nr-zip-codes" style="display:none;">
+            <span style="font-weight:bold;color:darkslategrey">ZIP Codes:</span>
+            <span id="nr-zip-list"></span>
           </div>
 
-          <div class="mt-3">
-            {{ .Content }}
+          {{/* Demographics table — populated by JS from uhflist.js */}}
+          <div id="nr-demographics" class="report-section card-body-no-top my-2" style="display:none;">
+            <table class="table fs-sm" style="color:darkslategrey">
+              <thead class="sr-only">
+                <tr><th>Metric</th><th>Value</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>Population</strong></td><td id="nr-pop" class="text-right"></td></tr>
+                <tr><td><strong>Over age 65</strong></td><td id="nr-old" class="text-right"></td></tr>
+                <tr><td><strong>Under age 18</strong></td><td id="nr-young" class="text-right"></td></tr>
+                <tr><td><strong>Poverty</strong></td><td id="nr-pov" class="text-right"></td></tr>
+                <tr><td><strong>Graduated high school</strong></td><td id="nr-grad" class="text-right"></td></tr>
+                <tr><td><strong>Limited English</strong></td><td id="nr-eng" class="text-right"></td></tr>
+                <tr><td><strong>Owner-occupied homes</strong></td><td id="nr-own" class="text-right"></td></tr>
+                <tr><td><strong>Rent-burdened households</strong></td><td id="nr-rent" class="text-right"></td></tr>
+              </tbody>
+            </table>
+            <span class="fs-xs" style="color:darkslategray;"><strong>Source:</strong> American Community Survey (2019-2023)</span>
           </div>
+
+          <hr class="my-2">
+          <div class="asidebox m-2 pxy-2 text-muted">
+            <strong>Indicator rankings</strong>
+            <p class="leading-sm">For each dataset, we divide neighborhoods up into <strong>tertiles</strong>, or thirds. This provides a rough comparison of this neighborhood, to all other NYC neighborhoods, for this indicator.</p>
+            <div class="row no-gutters">
+              <div class="col-4 mr-auto fs-xs" style="line-height: 100%">
+                <strong>Lower</strong>: for that dataset, the neighborhood is in the lowest third of all neighborhoods.
+              </div>
+              <div class="col-4 ml-auto fs-xs" style="line-height: 100%;">
+                <strong>Higher</strong>: for that dataset, the neighborhood is in the upper third of all neighborhoods.
+              </div>
+            </div>
+            <img class="my-1" src="{{ .Site.BaseURL }}images/edited_tertile.jpg" style="width:100%" alt="An example bar chart. The one-third of neighborhoods with the lowest values are labelled Lower. The one-third of neighborhoods with the highest values are labelled Higher.">
+            <p class="leading-sm"><span class="fs-xs">These are only based on the distribution of data values, not the range. The absolute values of indicators in different categories may not be all that different.</span></p>
+          </div>
+
         </div>
 
-        {{/* Right column: topic mini-menu + all report_topic sections */}}
+        {{/* Right column: topic buttons + report header + sections */}}
         <div class="col-md-8">
 
-          {{/* 
-            Topic mini-menu: lets users switch between topic pages.
-            The active class is applied based on which content_yml matches
-            the current page, so highlighting works automatically.
+          {{/*
+            Topic mini-menu: row of buttons matching the production layout.
+            The "nr-topic-link" class is used by the JS to rewrite hrefs
+            with the current ?neighborhood= param for persistence.
           */}}
-          <nav class="nav nav-pills mb-3" aria-label="Report topics">
-            <a class="nav-link{{ if eq $contentKey "Active_Design_Physical_Activity_and_Health" }} active{{ end }}"
-               href="{{ relURL "neighborhood-reports/Active_Design_Physical_Activity_and_Health/" }}">
-              Active Design
-            </a>
-            <a class="nav-link{{ if eq $contentKey "Asthma_and_the_Environment" }} active{{ end }}"
-               href="{{ relURL "neighborhood-reports/Asthma_and_the_Environment/" }}">
-              Asthma
-            </a>
-          </nav>
+          <div class="row no-gutters d-print-none mb-2">
+            <div class="col-sm mb-2 mr-1 mb-lg-0">
+              <a class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 nr-topic-link{{ if eq $contentKey "Active_Design_Physical_Activity_and_Health" }} active{{ end }}"
+                 href="{{ relURL "neighborhood-reports/Active_Design_Physical_Activity_and_Health/" }}">
+                Active Design
+              </a>
+            </div>
+            <div class="col-sm mb-2 mr-1 mb-lg-0">
+              <a class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 nr-topic-link{{ if eq $contentKey "Asthma_and_the_Environment" }} active{{ end }}"
+                 href="{{ relURL "neighborhood-reports/Asthma_and_the_Environment/" }}">
+                Asthma
+              </a>
+            </div>
+            <div class="col-sm mb-2 mr-1 mb-lg-0">
+              <a class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 nr-topic-link{{ if eq $contentKey "Climate_and_Health" }} active{{ end }}"
+                 href="{{ relURL "neighborhood-reports/Climate_and_Health/" }}">
+                Climate
+              </a>
+            </div>
+            <div class="col-sm mb-2 mr-1 mb-lg-0">
+              <a class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 nr-topic-link{{ if eq $contentKey "Housing_and_Health" }} active{{ end }}"
+                 href="{{ relURL "neighborhood-reports/Housing_and_Health/" }}">
+                Housing
+              </a>
+            </div>
+            <div class="col-sm mb-2 mr-1 mb-lg-0">
+              <a class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 nr-topic-link{{ if eq $contentKey "Outdoor_Air_and_Health" }} active{{ end }}"
+                 href="{{ relURL "neighborhood-reports/Outdoor_Air_and_Health/" }}">
+                Outdoor Air
+              </a>
+            </div>
+          </div>
 
-          {{/* 
+          {{/*
+            Report header: title + neighborhood name + intro copy + buttons.
+            The neighborhood name span is updated dynamically by the JS.
+            Hidden until a neighborhood is selected.
+          */}}
+          <div id="nr-report-header" style="display:none;">
+            <div class="d-none d-md-block mb-">
+              <h1 class="h2 mt-3">{{ .Params.title }} <span style="font-weight:normal">in</span></h1>
+              <span class="h2 sub-title text-primary" id="nr-header-neighborhood"></span>
+            </div>
+
+            <div class="d-md-none my-1">
+              <strong>{{ .Params.title }}</strong>
+            </div>
+
+            <hr class="mb-2 mt-1">
+            <div class="mb-2">
+              {{ .Content }}
+            </div>
+
+            <div class="d-print-none">
+              <button onclick="window.print()" class="btn btn-sm btn-report mt-2"><i class="fas fa-print mr-1"></i>Print</button>
+              <button onclick="window.nrDownloadCSV()" class="btn btn-sm btn-report mt-2"><i class="fa fa-download mr-1"></i>Download <span class="sr-only">(opens in a new tab)</span></button>
+            </div>
+          </div>
+
+          {{/*
             Loop over every report_topic from the NR_content YAML.
-            For each one, render a heading, description, and an empty
-            container div. The div id (e.g. "nr-section-injury-and-health")
-            must match the containerId in the JS config below so the JS
-            knows where to inject indicator rows.
+            Each section is wrapped in the production accordion container
+            with the green top border and border styling.
           */}}
           {{- range $i, $rt := $reportTopics -}}
-            {{- $sectionId := $rt.report_topic | urlize -}}
-            <div class="mb-4">
-              <h2 class="h4 mb-2">{{ $rt.report_topic }}</h2>
-              <p class="fs-sm text-muted mb-3">
-                {{ $rt.report_topic_description }}
-              </p>
-              <div id="nr-section-{{ $sectionId }}" class="list-group">
+            {{/*
+              Use the range index for DOM ids (nr-accordion-N / nr-section-N), not urlized titles.
+              Topic titles can urlize to strings that are awkward for CSS selectors or can drift
+              between Hugo versions; mismatched id vs NR_TOPIC_SPA_CONFIG leaves sections empty.
+            */}}
+            <div class="accordion my-4 report-section pt-2 border-left border-right border-bottom" id="nr-accordion-{{ $i }}">
+              <div class="px-2 pb-2">
+                <h3 class="h4 fs-rg">
+                  {{ $rt.report_topic }}
+                </h3>
+                <p class="fs-sm">
+                  {{ $rt.report_topic_description }}
+                </p>
+              </div>
+              <div id="nr-section-{{ $i }}">
               </div>
             </div>
           {{- end -}}
@@ -98,38 +263,35 @@
   </div>
 </section>
 
-{{/* 
+{{/*
   Pass configuration to the JS module.
-  - sections: array of report_topic objects, each with its own EHDP-data URL and container id.
-  - neighborhoods: initial prototype list; can be expanded later.
+  - sections: array of report_topic objects with EHDP-data URLs and container IDs.
+  - vizUrl: combined viz dataset URL for map/chart rendering.
+  - dataRepo / dataBranch: used by the JS to construct geography TopoJSON URLs.
+  - geojsonUrl: local UHF42 GeoJSON for the Leaflet map.
+  - reportName: page title for CSV download filenames.
 */}}
-{{/* Load nr-topic-spa.js through Hugo Pipes for fingerprinting and SRI */}}
 {{- $nrTopicJS := resources.Get "js/nr-topic-spa.js" | partial "short-fingerprint.html" -}}
 
-{{/* 
-  Build the config object that the JS module reads on load.
-  We loop over report_topics again to create a sections array where each entry has:
-    - id: URL-safe slug used as the key in the JS data store
-    - containerId: matches the div id rendered above so JS knows where to put rows
-    - reportUrl: full EHDP-data URL built from data_repo + data_branch + content key + topic name
-  
-  The URL convention matches the file naming in EHDP-data, e.g.:
-    <data_repo><data_branch>/neighborhood-reports/data/report/<content_yml> <report_topic>.json
-
-  Colons are stripped from topic names because EHDP-data filenames don't include them.
-*/}}
+{{- $vizUrl := print $.Site.Params.data_repo $.Site.Params.data_branch "/neighborhood-reports/data/viz/" $contentKey ".json" -}}
 <script>
   window.NR_TOPIC_SPA_CONFIG = {
-    neighborhoods: ["Upper West Side", "East Harlem"],
+    reportName: "{{ .Params.title }}",
+    geojsonUrl: "{{ relURL "geojson/UHF42.geojson" }}",
+    vizUrl: "{{ $vizUrl }}",
+    dataRepo: "{{ $.Site.Params.data_repo }}",
+    dataBranch: "{{ $.Site.Params.data_branch }}",
     sections: [
       {{- range $i, $rt := $reportTopics -}}
         {{- $cleanTopic := replace $rt.report_topic ":" "" -}}
-        {{- $url := print $.Site.Params.data_repo $.Site.Params.data_branch "/neighborhood-reports/data/report/" $contentKey " " $cleanTopic ".json" -}}
-        {{- $sectionId := $rt.report_topic | urlize -}}
+        {{/* Spaces in the filename must be %20 for reliable fetch() (e.g. "...Health Physical Activity.json"). */}}
+        {{- $reportFile := print $contentKey " " $cleanTopic ".json" -}}
+        {{- $reportFileEncoded := replace $reportFile " " "%20" -}}
+        {{- $url := print $.Site.Params.data_repo $.Site.Params.data_branch "/neighborhood-reports/data/report/" $reportFileEncoded -}}
         {{- if $i }},{{ end -}}
         {
-          "id": "{{ $sectionId }}",
-          "containerId": "nr-section-{{ $sectionId }}",
+          "id": "{{ $i }}",
+          "containerId": "nr-section-{{ $i }}",
           "reportUrl": "{{ $url }}"
         }
       {{- end -}}
@@ -137,7 +299,6 @@
   };
 </script>
 
-{{/* Load the external JS after the config so window.NR_TOPIC_SPA_CONFIG is ready */}}
 <script src="{{ $nrTopicJS.RelPermalink }}" integrity="{{ $nrTopicJS.Data.Integrity }}" crossorigin="anonymous"></script>
 
 {{- end -}}
