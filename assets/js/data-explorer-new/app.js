@@ -30,9 +30,86 @@ window.onpopstate = function (event) {
 
     if (new_IndicatorID != IndicatorID) {
 
-        loadIndicator(new_IndicatorID, true)
+       loadIndicator(new_IndicatorID, true)
 
     }
+};
+
+
+// ----------------------------------------------------------------------- //
+// search params listener
+// ----------------------------------------------------------------------- //
+
+function handleSearchParams() {
+
+    const params = new URLSearchParams(window.location.search);
+
+    console.log("Processing search parameters:", params.toString());
+
+
+
+    // TEST GLOBAL VARIABLES HERE, AND CALL DIFFERENT THINGS DEPENDING ON WHAT'S CHANGED
+    // COMPARE NEW PARAMS TO CURRENT GLOBAL VARIABLE VALUES
+
+    // global vars defined in global.js
+
+    IndicatorID;
+    MeasureID;
+    GeoTypeID;
+    TimePeriodID;
+    overlay; 
+
+
+    // Perform API calls or DOM updates here
+
+}
+
+// handle multiple quick changes
+
+function debounce(func, delay) {
+
+    let timeoutId;
+
+    return (...args) => {
+
+        clearTimeout(timeoutId);
+
+        timeoutId = setTimeout(() => {
+
+            func.apply(this, args);
+
+        }, delay);
+
+    };
+
+}
+
+// Wrap the handler in the debounce function
+
+const debouncedHandler = debounce(handleSearchParams, 300);
+
+// Use debouncedHandler instead of handleSearchParams in your listeners
+
+window.addEventListener('popstate', debouncedHandler);
+
+// Override history handlers with custom wrappers
+
+const originalPushState = history.pushState;
+
+history.pushState = function(...args) {
+
+    originalPushState.apply(this, args);
+    debouncedHandler();
+
+};
+
+const originalReplaceState = history.replaceState;
+
+history.replaceState = function(...args) {
+
+    originalReplaceState.apply(this, args);
+    debouncedHandler();
+
 };
 
 
@@ -48,39 +125,39 @@ window.addEventListener("hashchange", () => {
 
     switch (hash) {
 
-        // using fallthrough
+       // using fallthrough
 
-        case 'display=summary':
-        case 'tab-table':
-            currentHash = 'display=summary';
-            $('#tab-btn-table').tab('show');
-            showTable();
-            break;
+       case 'display=summary':
+       case 'tab-table':
+          currentHash = 'display=summary';
+          $('#tab-btn-table').tab('show');
+          showTable();
+          break;
 
-        case 'display=map':
-        case 'tab-map':
-            currentHash = 'display=map';
-            $('#tab-btn-map').tab('show');
-            showMap();
-            break;
+       case 'display=map':
+       case 'tab-map':
+          currentHash = 'display=map';
+          $('#tab-btn-map').tab('show');
+          showMap();
+          break;
 
-        case 'display=trend':
-        case 'tab-trend':
-            currentHash = 'display=trend';
-            $('#tab-btn-trend').tab('show');
-            showTrend();
-            break;
+       case 'display=trend':
+       case 'tab-trend':
+          currentHash = 'display=trend';
+          $('#tab-btn-trend').tab('show');
+          showTrend();
+          break;
 
-        case 'display=links':
-        case 'tab-links':
-            currentHash = 'display=links';
-            $('#tab-btn-links').tab('show');
-            showLinks();
-            break;
+       case 'display=links':
+       case 'tab-links':
+          currentHash = 'display=links';
+          $('#tab-btn-links').tab('show');
+          showLinks();
+          break;
 
-        default:
-            currentHash = 'display=summary';
-            break;
+       default:
+          currentHash = 'display=summary';
+          break;
     }
 
     state = window.history.state;
@@ -124,7 +201,7 @@ $('#tab-btn-table').on('click', e => {
     $(e.currentTarget).tab('show');
     window.location.hash = 'display=summary';
     gtag('event', 'click_tab', {
-        tab: "table"
+       tab: "table"
     });
 });
 
@@ -134,7 +211,7 @@ $('#tab-btn-map').on('click', e => {
     $(e.currentTarget).tab('show');
     window.location.hash = 'display=map';
     gtag('event', 'click_tab', {
-        tab: "map"
+       tab: "map"
     });
 });
 
@@ -144,7 +221,7 @@ $('#tab-btn-trend').on('click', e => {
     $(e.currentTarget).tab('show');
     window.location.hash = 'display=trend';
     gtag('event', 'click_tab', {
-        tab: "trend"
+       tab: "trend"
     });
 });
 
@@ -154,7 +231,7 @@ $('#tab-btn-links').on('click', e => {
     $(e.currentTarget).tab('show');
     window.location.hash = 'display=links';
     gtag('event', 'click_tab', {
-        tab: "links"
+       tab: "links"
     });
 });
 
@@ -206,7 +283,7 @@ $('#indicatorButtons').on('click', e => {
     // record google analytics event
 
     gtag('event', 'click_indicator', {
-        IndicatorID: IndicatorID
+       IndicatorID: IndicatorID
     });
 
 });
