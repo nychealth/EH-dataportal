@@ -46,21 +46,72 @@ function handleSearchParams() {
 
     console.log("Processing search parameters:", params.toString());
 
+    // Extract parameter values from URL
+    const urlValues = {
+        IndicatorID: params.get('IndicatorID') ? parseFloat(params.get('IndicatorID')) : null,
+        MeasureID: params.get('MeasureID') ? parseFloat(params.get('MeasureID')) : null,
+        GeoTypeID: params.get('GeoTypeID') ? parseFloat(params.get('MeasureID')) : null,
+        TimePeriodID: params.get('TimePeriodID') ? parseFloat(params.get('TimePeriodID')) : null,
+        overlay: params.get('overlay') ? params.get('overlay') : null
+    };
 
+    console.log("URL values extracted:", urlValues);
 
-    // TEST GLOBAL VARIABLES HERE, AND CALL DIFFERENT THINGS DEPENDING ON WHAT'S CHANGED
-    // COMPARE NEW PARAMS TO CURRENT GLOBAL VARIABLE VALUES
+    // Track which parameters have changed
+    const changes = {
+        IndicatorID: urlValues.IndicatorID !== null && urlValues.IndicatorID !== IndicatorID,
+        MeasureID: urlValues.MeasureID !== null && urlValues.MeasureID !== MeasureID,
+        GeoTypeID: urlValues.GeoTypeID !== null && urlValues.GeoTypeID !== GeoTypeID,
+        TimePeriodID: urlValues.TimePeriodID !== null && urlValues.TimePeriodID !== TimePeriodID,
+        overlay: urlValues.overlay !== null && urlValues.overlay !== overlay
+    };
 
-    // global vars defined in global.js
+    console.log("Changes detected:", changes);
 
-    IndicatorID;
-    MeasureID;
-    GeoTypeID;
-    TimePeriodID;
-    overlay; 
+    // Handle IndicatorID change first (cascades to other selections)
+    if (changes.IndicatorID) {
+        console.log("IndicatorID changed:", IndicatorID, "->", urlValues.IndicatorID);
+        loadIndicator(urlValues.IndicatorID, true);
+    }
 
+    // Handle MeasureID change
+    if (changes.MeasureID) {
+        console.log("MeasureID changed:", MeasureID, "->", urlValues.MeasureID);
+        if (typeof handleSelection === 'function') {
+            handleSelection('measure', urlValues.MeasureID);
+        }
+    }
 
-    // Perform API calls or DOM updates here
+    // Handle GeoTypeID change
+    if (changes.GeoTypeID) {
+        console.log("GeoTypeID changed:", GeoTypeID, "->", urlValues.GeoTypeID);
+        if (typeof handleSelection === 'function') {
+            handleSelection('geo', urlValues.GeoTypeID);
+        }
+    }
+
+    // Handle TimePeriodID change
+    if (changes.TimePeriodID) {
+        console.log("TimePeriodID changed:", TimePeriodID, "->", urlValues.TimePeriodID);
+        if (typeof handleSelection === 'function') {
+            handleSelection('time', urlValues.TimePeriodID);
+        }
+    }
+
+    // Handle overlay change
+    if (changes.overlay) {
+        console.log("overlay changed:", overlay, "->", urlValues.overlay);
+        // TODO: Implement overlay toggle/update logic
+    }
+
+    // Update global variables to match URL
+    if (urlValues.IndicatorID !== null) IndicatorID = urlValues.IndicatorID;
+    if (urlValues.MeasureID !== null) MeasureID = urlValues.MeasureID;
+    if (urlValues.GeoTypeID !== null) GeoTypeID = urlValues.GeoTypeID;
+    if (urlValues.TimePeriodID !== null) TimePeriodID = urlValues.TimePeriodID;
+    if (urlValues.overlay !== null) overlay = urlValues.overlay;
+
+    console.log("Global variables updated:", { IndicatorID, MeasureID, GeoTypeID, TimePeriodID, overlay });
 
 }
 
