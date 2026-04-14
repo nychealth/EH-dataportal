@@ -15,6 +15,7 @@ let currentState = {
     timePeriodID: null
 };
 
+
 // ----------------------------------------------------------------------- //
 // HELPERS
 // ----------------------------------------------------------------------- //
@@ -48,6 +49,7 @@ const getDefaultMeasure = (indicator) => {
     return matchedMeasure;
 };
 
+
 // Repalce TimePeriodIDs with Time Periods
 const getTimeLabel = (id) => {
     if (!timeTable) return id; // fallback
@@ -63,6 +65,7 @@ const setDropdownLabel = (type, value) => {
         span.textContent = value;
     });
 }
+
 
 // ----------------------------------------------------------------------- //
 // INIT
@@ -84,6 +87,7 @@ const printMenus = async (indicatorID) => {
 
     updateAllMenus(indicator);
 };
+
 
 // ----------------------------------------------------------------------- //
 // CORE UPDATE FUNCTION
@@ -158,6 +162,7 @@ const updateAllMenus = (indicator) => {
     setDropdownLabel('time', currentState.timePeriodID);
 };
 
+
 // ----------------------------------------------------------------------- //
 // MENU RENDERER
 // ----------------------------------------------------------------------- //
@@ -192,6 +197,7 @@ const styleAndPrintMenu = (items, destination, type) => {
     });
 };
 
+
 // ----------------------------------------------------------------------- //
 // SELECTION HANDLER
 // ----------------------------------------------------------------------- //
@@ -223,6 +229,7 @@ const handleSelection = (type, value) => {
 
     updateAllMenus(indicator);
 };
+
 
 // ----------------------------------------------------------------------- //
 // EXISTING FUNCTION (UNCHANGED)
