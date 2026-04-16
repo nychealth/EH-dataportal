@@ -370,40 +370,10 @@
 
 
 $(document).ready(function() {
-    const displayMap = {
-        'v-pills-bar': 'bar',
-        'v-pills-trends': 'trend',
-        'v-pills-correlate': 'correlate',
-        'v-pills-table': 'table',
-        'v-pills-ds': 'source'
-    };
-    
-    // When a tab becomes active, update the hash
-    $('.nav-link[data-toggle="pill"]').on('shown.bs.tab', function (e) {
-        const targetId = $(e.target).attr('href').replace('#', '');
-        const displayValue = displayMap[targetId];
-        if (displayValue) {
-            history.replaceState(null, '', `#display=${displayValue}`);
-        }
-    });
-    
-    // On page load, open the correct tab if hash exists. Currently has sizing issues.
-    /*
-    const hash = window.location.hash;
-    if (hash.startsWith('#display=')) {
-        const value = hash.replace('#display=', '');
-        const match = Object.entries(displayMap).find(([id, val]) => val === value);
-        if (match) {
-            const [panelId] = match;
-            const $tab = $(`.nav-link[href="#${panelId}"]`);
-            if ($tab.length) {
-                $tab.tab('show');
-                updateChartPlotSize()
-            }
-        }
-    }
-    */
-    
+
+    // Tab display is now managed via the `overlay` URL search param in app.js.
+    // No hash fragment logic needed here.
+
 });
 
 </script>

@@ -12,7 +12,7 @@
 
 const loadIndicator = async (this_IndicatorID, dont_add_to_history) => {
 
-    console.log("* loadIndicator:", parseFloat(this_IndicatorID));
+    console.log("* loadIndicator:", this_IndicatorID, typeof this_IndicatorID);
 
     // console.log("indicators [loadIndicator]", indicators);
 
@@ -25,7 +25,7 @@ const loadIndicator = async (this_IndicatorID, dont_add_to_history) => {
 
     // const firstIndicatorId = document.querySelectorAll('#indicator-dropdown button')[0].getAttribute('data-indicator-id');
 
-    IndicatorID = this_IndicatorID ? parseFloat(this_IndicatorID) : parseFloat(firstIndicatorId);
+    IndicatorID = parseFloat(this_IndicatorID);
 
     // remove active class from every list element
     // $(".indicator-dropdown-item").removeClass("active");

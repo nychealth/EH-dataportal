@@ -105,10 +105,18 @@ const updateAllMenus = (indicator) => {
     // GEO MENU
     // ---------------------------
 
-    const geos = measure.VisOptions[0].Map.map(d => ({
-        label: d.GeoType,
-        value: d.GeoType
-    }));
+    // Prettify and deduplicate geo types (e.g., NTA2010 + NTA2020 → one "NTA" entry)
+
+    const seenGeos = new Set();
+    const geos = [];
+
+    measure.VisOptions[0].Map.forEach(d => {
+        const pretty = prettifyGeoType(d.GeoType);
+        if (!seenGeos.has(pretty)) {
+            seenGeos.add(pretty);
+            geos.push({ label: pretty, value: pretty });
+        }
+    });
 
     const availableGeoValues = geos.map(g => g.value);
 
@@ -129,7 +137,9 @@ const updateAllMenus = (indicator) => {
     // TIME MENU
     // ---------------------------
 
-    const geoObj = measure.VisOptions[0].Map.find(d => d.GeoType === GeoTypeID);
+    // Find the metadata entry whose raw GeoType prettifies to our GeoTypeID
+
+    const geoObj = measure.VisOptions[0].Map.find(d => prettifyGeoType(d.GeoType) === GeoTypeID);
 
     // Look up labels and sort by end_period descending (most recent first)
 

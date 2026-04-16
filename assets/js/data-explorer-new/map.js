@@ -7,6 +7,31 @@
 let currentMap = null;
 let currentGeojsonLayer = null;
 
+// Initialize the base tile layer early so it loads in the background
+
+const initBaseMap = () => {
+
+    if (currentMap) return; // already initialized
+
+    currentMap = L.map('map', {
+        zoomControl: false
+    }).setView([40.700142, -73.921546], 11);
+
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}' + (L.Browser.retina ? '@2x.png' : '.png'), {
+        attribution:'&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, &copy; <a href="https://carto.com/attributions">CARTO</a>',
+        subdomains: 'abcd',
+        maxZoom: 20,
+        minZoom: 0
+    }).addTo(currentMap);
+
+    console.log("* initBaseMap: tile layer ready");
+
+};
+
+// Fire immediately
+
+initBaseMap();
+
 const renderMap = (
     data, 
     metadata
@@ -118,24 +143,9 @@ const renderMap = (
     // define spec
     // ----------------------------------------------------------------------- //
     
-    // Initialize the map if it doesn't exist yet, otherwise reuse it
+    // Ensure base map is ready (no-op if already initialized)
 
-    if (!currentMap) {
-
-        currentMap = L.map('map', {
-            zoomControl: false
-        }).setView([40.700142, -73.921546], 11);
-
-        // Add a basemap (only once)
-
-        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}' + (L.Browser.retina ? '@2x.png' : '.png'), {
-            attribution:'&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, &copy; <a href="https://carto.com/attributions">CARTO</a>',
-            subdomains: 'abcd',
-            maxZoom: 20,
-            minZoom: 0
-        }).addTo(currentMap);
-
-    }
+    initBaseMap();
 
     // Remove previous data layer if it exists
 

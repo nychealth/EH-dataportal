@@ -70,12 +70,10 @@ const assignGeoRank = (GeoType) => {
             return 0;
         case 'Borough':
             return 1;
+        case 'NYCKIDS':
         case 'NYCKIDS2017':
-            return 2;
         case 'NYCKIDS2019':
-            return 2;
         case 'NYCKIDS2021':
-            return 2;
         case 'NYCKIDS2023':
             return 2;
         case 'UHF34':
@@ -86,14 +84,15 @@ const assignGeoRank = (GeoType) => {
             return 5;
         case 'CD':
             return 6;
+        case 'CDTA':
         case 'CDTA2020':
             return 7;
+        case 'PUMA':
         case 'PUMA2010':
-            return 8;
         case 'PUMA2020':
             return 8;
+        case 'NTA':
         case 'NTA2010':
-            return 9;
         case 'NTA2020':
             return 10;
         case 'NYHarbor':

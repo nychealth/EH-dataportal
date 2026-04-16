@@ -113,7 +113,7 @@ const printIndicators = async (indList, destination) => {
                 <div class="indicator-card mb-1">
                     <div class="border p-2 border-gray-300 rounded">
                         <div class="d-flex justify-content-between align-items-start">
-                            <a class='h6' href='${destination}?id=${indicator.IndicatorID}'>${indicator.IndicatorName}</a>
+                            <button class='h6 btn btn-link text-left p-0' onclick='selectIndicator(${indicator.IndicatorID})'>${indicator.IndicatorName}</button>
                         </div>
                         <p class="mb-0" style="font-size: 14px;">${indicator.IndicatorDescription}</p>
                     </div>
@@ -138,6 +138,46 @@ const printIndicators = async (indList, destination) => {
 
 
 // --------------------------------------------------------
+// Dismiss the indicator selector modal (works before or after Bootstrap loads)
+// --------------------------------------------------------
+
+const dismissIndicatorModal = () => {
+
+    // By the time a user can interact with the modal, Bootstrap is loaded
+    $('#indicatorSelector').modal('hide');
+
+};
+
+
+// --------------------------------------------------------
+// Select an indicator from the modal (SPA-style, no page reload)
+// --------------------------------------------------------
+
+const selectIndicator = async (id) => {
+
+    console.log("* selectIndicator:", id);
+
+    // Dismiss the modal
+
+    dismissIndicatorModal();
+
+    // Run the full load pipeline
+
+    printIndicatorInfo(id);
+    draw311Buttons(id);
+
+    await ensureIndicatorsLoaded('selectIndicator');
+    await loadIndicator(id);
+    await printMenus(id);
+    await renderMeasures();
+
+    pushSelectionToURL();
+    renderCurrentView();
+
+};
+
+
+// --------------------------------------------------------
 // Check for URL parameter (?id=XXXX) and load indicator metadata 
 // --------------------------------------------------------
 
@@ -155,6 +195,14 @@ const checkURL = async () => {
     console.log(paramsObj);
     
     const chosenIndicator = Number(paramsObj.id);
+
+    // No indicator in URL — wait for Bootstrap to finish loading, then open the modal
+
+    if (!paramsObj.id || isNaN(chosenIndicator)) {
+        console.log("No indicator ID in URL, opening indicator selector.");
+        window.addEventListener('load', () => $('#indicatorSelector').modal('show'), { once: true });
+        return;
+    }
 
     // seed globals from URL params (if present) before menus build
 
@@ -177,6 +225,10 @@ const checkURL = async () => {
     await printMenus(chosenIndicator);
 
     await renderMeasures();
+
+    // sync full state to URL (fills in defaults the user didn't specify)
+
+    pushSelectionToURL();
 
     // show the active tab (or default to map)
 
