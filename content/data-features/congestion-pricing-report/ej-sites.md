@@ -47,7 +47,7 @@ Because the Van Wyck Expressway did not experience changes in traffic due to CRZ
 
   <div class="card border border-info">
       <a class="card-header font-weight-bold collapse collapsed" id="acc-button-2c" data-toggle="collapse" href="#panel-acc-button-2c"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-2c">
-        <span class="title" role="heading" aria-level="3"> The FDR </span>
+        <span class="title" role="heading" aria-level="3"> The FDR Drive  </span>
       </a>
 
 <div class="collapse" id="panel-acc-button-2c" role="tabpanel" aria-labelledby="acc-button-2c" data-parent="#accordion-02">
@@ -62,7 +62,7 @@ Because the Van Wyck Expressway did not experience changes in traffic due to CRZ
 
   <div class="card border border-info">
       <a class="card-header font-weight-bold collapse collapsed" id="acc-button-2d" data-toggle="collapse" href="#panel-acc-button-2d"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-2d">
-        <span class="title" role="heading" aria-level="3"> The Robert F. Kennedy Bridge</span>
+        <span class="title" role="heading" aria-level="3"> The Major Deegan Expressway</span>
       </a>
 
 <div class="collapse" id="panel-acc-button-2d" role="tabpanel" aria-labelledby="acc-button-2d" data-parent="#accordion-02">
@@ -104,7 +104,7 @@ and connecting links in the Bronx, Manhattan, and Queens –Hunts Point (Hunts P
 
   <div class="card border border-info">
       <a class="card-header font-weight-bold collapse collapsed" id="acc-button-2g" data-toggle="collapse" href="#panel-acc-button-2g"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-2g">
-        <span class="title" role="heading" aria-level="3">Van Wyck Expressway</span>
+        <span class="title" role="heading" aria-level="3"> The Van Wyck Expressway</span>
       </a>
 
 <div class="collapse" id="panel-acc-button-2g" role="tabpanel" aria-labelledby="acc-button-2g" data-parent="#accordion-02">
