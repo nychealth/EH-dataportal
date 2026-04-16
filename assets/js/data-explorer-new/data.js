@@ -78,7 +78,7 @@ const loadIndicator = async (this_IndicatorID, dont_add_to_history) => {
 
     // clear any leftover hash fragment from the URL object
 
-    url.hash = '';
+    // url.hash = '';
     url.searchParams.set('id', parseFloat(IndicatorID));
 
     if (!dont_add_to_history && (window.history.state === null || state === null || window.history.state.id != IndicatorID)) {
@@ -196,6 +196,13 @@ const loadTime = async () => {
         .then(async (data) => {
 
             timeTable = await data;
+
+            // Build a plain JS lookup keyed by TimePeriodID
+
+            timeLookup = {};
+            timeTable.objects().forEach(t => {
+                timeLookup[t.TimePeriodID] = t;
+            });
 
             // console.log("timeTable [loadTime]");
             // timeTable.print()

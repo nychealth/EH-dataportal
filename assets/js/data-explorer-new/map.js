@@ -4,6 +4,9 @@
 
 // console.log(">> map.js");
 
+let currentMap = null;
+let currentGeojsonLayer = null;
+
 const renderMap = (
     data, 
     metadata
@@ -115,21 +118,33 @@ const renderMap = (
     // define spec
     // ----------------------------------------------------------------------- //
     
-    // Initialize the map
+    // Initialize the map if it doesn't exist yet, otherwise reuse it
 
-    const map = L.map('map', {
-        zoomControl: false
-    }).setView([40.700142, -73.921546], 11);
+    if (!currentMap) {
 
+        currentMap = L.map('map', {
+            zoomControl: false
+        }).setView([40.700142, -73.921546], 11);
 
-    // Add a basemap
+        // Add a basemap (only once)
 
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}' + (L.Browser.retina ? '@2x.png' : '.png'), {
-        attribution:'&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, &copy; <a href="https://carto.com/attributions">CARTO</a>',
-        subdomains: 'abcd',
-        maxZoom: 20,
-        minZoom: 0
-    }).addTo(map);
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}' + (L.Browser.retina ? '@2x.png' : '.png'), {
+            attribution:'&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, &copy; <a href="https://carto.com/attributions">CARTO</a>',
+            subdomains: 'abcd',
+            maxZoom: 20,
+            minZoom: 0
+        }).addTo(currentMap);
+
+    }
+
+    // Remove previous data layer if it exists
+
+    if (currentGeojsonLayer) {
+        currentMap.removeLayer(currentGeojsonLayer);
+        currentGeojsonLayer = null;
+    }
+
+    let map = currentMap;
 
 
     fetch(`${data_repo}${data_branch}/geography/${topoFile}`)
@@ -244,6 +259,8 @@ const renderMap = (
                 }
             }).addTo(map);
 
+            currentGeojsonLayer = geojsonLayer;
+
             window.mapInterop = {
                 geoIDtoLayer,
                 geojsonLayer,
@@ -333,7 +350,7 @@ const renderMap = (
             <div class="popup-content">
             <strong>${properties.Geography}</strong>
             <hr class="my-1">
-            <em>${indicator.IndicatorName}</em>: <strong>${properties.Value.toFixed(2)}</strong> ${metadata[0].DisplayType.toLowerCase()} (${properties.TimePeriod || 'Unknown'})
+            <em>${indicator.IndicatorName}</em>: <strong>${properties.Value != null ? properties.Value.toFixed(2) : '—'}</strong> ${metadata[0].DisplayType.toLowerCase()} (${properties.TimePeriod || 'Unknown'})
             <span style="font-size:12px">${properties.Note.length > 1 ? `<hr><em>Note:</em> ${properties.Note}` : ''}</span>
             </div>
         `;
@@ -349,7 +366,7 @@ const renderMap = (
 
         // Update legend text
         document.getElementById('hoveredGeo').textContent = props.Geography || 'Unknown';
-        document.getElementById('hoveredValue').textContent = props.Value.toFixed(2) ?? '—';
+        document.getElementById('hoveredValue').textContent = props.Value != null ? props.Value.toFixed(2) : '—';
         document.getElementById('hoveredUnits').textContent = metadata[0].DisplayType.toLowerCase();
         
         // Show legend tick

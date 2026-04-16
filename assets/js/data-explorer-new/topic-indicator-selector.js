@@ -163,16 +163,18 @@ const checkURL = async () => {
     if (paramsObj.TimePeriodID) TimePeriodID = parseFloat(paramsObj.TimePeriodID);
     if (paramsObj.overlay)      overlay      = paramsObj.overlay;
 
-    // fire indicator info, menus, and data load
+    // fire indicator info and 311 buttons
 
     printIndicatorInfo(chosenIndicator);
     draw311Buttons(chosenIndicator);
 
-    await printMenus(chosenIndicator);
+    // load data first so timeLookup is populated before menus build
 
     const _indicators = await ensureIndicatorsLoaded('printing measure menu');
 
     await loadIndicator(chosenIndicator);
+
+    await printMenus(chosenIndicator);
 
     await renderMeasures();
 

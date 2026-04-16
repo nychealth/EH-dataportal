@@ -17,6 +17,7 @@ let measureAbout = ``;
 let measureSources = ``;
 let geoTable;
 let timeTable;
+let timeLookup = {};
 let unreliabilityNotes;
 let aqIndicatorData;
 let joinedAqData;

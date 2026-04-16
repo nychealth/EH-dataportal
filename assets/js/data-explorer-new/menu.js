@@ -41,9 +41,7 @@ const getDefaultMeasure = (indicator) => {
 
 // Replace TimePeriodIDs with Time Periods
 const getTimeLabel = (id) => {
-    if (!timeTable) return id; // fallback
-    const tp = timeTable.find(t => t.TimePeriodID === id);
-    return tp ? tp.TimePeriod : id;
+    return timeLookup[id]?.TimePeriod || id;
 };
 
 
@@ -133,20 +131,28 @@ const updateAllMenus = (indicator) => {
 
     const geoObj = measure.VisOptions[0].Map.find(d => d.GeoType === GeoTypeID);
 
-    const times = (geoObj?.TimePeriodID || []).map(t => ({
-        label: t,
-        value: t
-    }));
+    // Look up labels and sort by end_period descending (most recent first)
 
-    // default to latest time if current is invalid
+    const times = (geoObj?.TimePeriodID || [])
+        .map(id => {
+            const tp = timeLookup[id];
+            return {
+                label: tp?.TimePeriod || id,
+                value: id,
+                endPeriod: tp?.end_period || ''
+            };
+        })
+        .sort((a, b) => b.endPeriod - a.endPeriod);
+
+    // Default to most recent time if current is invalid
 
     if (!TimePeriodID || !times.find(t => t.value === TimePeriodID)) {
-        TimePeriodID = times.length ? times[times.length - 1].value : null;
+        TimePeriodID = times.length ? times[0].value : null;
     }
 
     styleAndPrintMenu(times, '.time-holder', 'time');
 
-    setDropdownLabel('time', TimePeriodID);
+    setDropdownLabel('time', getTimeLabel(TimePeriodID));
 };
 
 
