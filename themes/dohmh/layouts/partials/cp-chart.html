@@ -203,6 +203,7 @@
         return spec;
     }
     
+    
     async function draw(site) {
 
         const el = document.getElementById(cp_container_id);
@@ -262,6 +263,18 @@
         });
     }
     
+    function addAccordionlisteners() {
+        const map = document.getElementById("congestionMap").contentWindow.map;
+        const accordions = document.querySelectorAll(".collapse");
+        console.log("accordions", accordions);
+        accordions.forEach((accordion) => {
+          accordion.addEventListener("click", (e) => {
+          console.log("clicked", e.target);
+            e.target.parentElement.classList.add("active");
+          });
+        });
+      }
+      
     document.addEventListener("DOMContentLoaded", async () => {
         const el = document.getElementById(cp_container_id);
         if (!el) return;
@@ -273,6 +286,7 @@
         }
     
         renderButtons();
+        addAccordionlisteners();
         await draw(currentSite);
     });
 </script>
