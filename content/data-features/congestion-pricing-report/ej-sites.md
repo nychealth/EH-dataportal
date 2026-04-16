@@ -67,7 +67,7 @@ Because the Van Wyck Expressway did not experience changes in traffic due to CRZ
 
 <div class="collapse" id="panel-acc-button-2d" role="tabpanel" aria-labelledby="acc-button-2d" data-parent="#accordion-02">
     <div class="card-body  fs-md"><p>
-and connecting links in the Bronx, Manhattan, and Queens –Hunts Point (Hunts Point-Mott Haven community). ​ <br><br>
+and connecting links in the South Bronx – Mott Haven (Hunts Point-Mott Haven community). ​ <br><br>
             </div></p>
 </div>
 <!-- .collapse -->
