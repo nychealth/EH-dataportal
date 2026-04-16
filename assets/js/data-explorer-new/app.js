@@ -5,216 +5,123 @@
 // console.log(">> app.js");
 
 // ----------------------------------------------------------------------- //
-// history traversal
+// URL object (shared across files)
 // ----------------------------------------------------------------------- //
 
 const url = new URL(window.location);
 
-// hash change event, for firing on hash switch in renderMeasures
 
-let hashchange = new Event('hashchange');
+// ----------------------------------------------------------------------- //
+// write current globals to URL and push history
+// ----------------------------------------------------------------------- //
+
+// call this after any dropdown change to sync the URL
+
+const pushSelectionToURL = () => {
+
+    const url = new URL(window.location);
+
+    // always write the current globals
+
+    url.searchParams.set('id', IndicatorID);
+
+    if (MeasureID)    url.searchParams.set('MeasureID', MeasureID);
+    if (GeoTypeID)    url.searchParams.set('GeoTypeID', GeoTypeID);
+    if (TimePeriodID) url.searchParams.set('TimePeriodID', TimePeriodID);
+    if (overlay)      url.searchParams.set('overlay', overlay);
+
+    window.history.pushState(
+        { id: IndicatorID, MeasureID, GeoTypeID, TimePeriodID, overlay },
+        '',
+        url
+    );
+
+    console.log("pushState →", url.search);
+};
 
 
 // ----------------------------------------------------------------------- //
-// history traversal
+// render the active tab with current globals
 // ----------------------------------------------------------------------- //
 
-// clicking on the indicator dropdown calls loadIndicator with that IndicatorID
+const renderCurrentView = () => {
 
-// call loadindicator when traversing through the history
+    console.log("* renderCurrentView", { MeasureID, GeoTypeID, TimePeriodID, overlay });
 
-window.onpopstate = function (event) {
+    switch (overlay) {
 
-    const new_url = new URL(window.location);
-    let new_IndicatorID = parseFloat(new_url.searchParams.get('id'));
+        case 'table':
+            if (typeof showTable === 'function') showTable();
+            break;
 
-    if (new_IndicatorID != IndicatorID) {
+        case 'map':
+            if (typeof showMap === 'function') showMap();
+            break;
 
-       loadIndicator(new_IndicatorID, true)
+        case 'trend':
+            if (typeof showTrend === 'function') showTrend();
+            break;
 
+        case 'links':
+            if (typeof showLinks === 'function') showLinks();
+            break;
+
+        default:
+            if (typeof showMap === 'function') showMap();
+            break;
     }
 };
 
 
 // ----------------------------------------------------------------------- //
-// search params listener
+// popstate — browser back / forward
 // ----------------------------------------------------------------------- //
 
-function handleSearchParams() {
+window.addEventListener('popstate', async (event) => {
+
+    console.log("popstate →", window.location.search, window.location.hash);
 
     const params = new URLSearchParams(window.location.search);
 
-    console.log("Processing search parameters:", params.toString());
+    const urlID           = params.get('id')          ? parseFloat(params.get('id'))          : null;
+    const urlMeasureID    = params.get('MeasureID')   ? parseFloat(params.get('MeasureID'))   : null;
+    const urlGeoTypeID    = params.get('GeoTypeID')   ? params.get('GeoTypeID')               : null;
+    const urlTimePeriodID = params.get('TimePeriodID') ? parseFloat(params.get('TimePeriodID')) : null;
+    const urlOverlay      = params.get('overlay')     || null;
 
-    // Extract parameter values from URL
-    const urlValues = {
-        IndicatorID: params.get('IndicatorID') ? parseFloat(params.get('IndicatorID')) : null,
-        MeasureID: params.get('MeasureID') ? parseFloat(params.get('MeasureID')) : null,
-        GeoTypeID: params.get('GeoTypeID') ? parseFloat(params.get('MeasureID')) : null,
-        TimePeriodID: params.get('TimePeriodID') ? parseFloat(params.get('TimePeriodID')) : null,
-        overlay: params.get('overlay') ? params.get('overlay') : null
-    };
+    // restore overlay
 
-    console.log("URL values extracted:", urlValues);
+    if (urlOverlay) overlay = urlOverlay;
 
-    // Track which parameters have changed
-    const changes = {
-        IndicatorID: urlValues.IndicatorID !== null && urlValues.IndicatorID !== IndicatorID,
-        MeasureID: urlValues.MeasureID !== null && urlValues.MeasureID !== MeasureID,
-        GeoTypeID: urlValues.GeoTypeID !== null && urlValues.GeoTypeID !== GeoTypeID,
-        TimePeriodID: urlValues.TimePeriodID !== null && urlValues.TimePeriodID !== TimePeriodID,
-        overlay: urlValues.overlay !== null && urlValues.overlay !== overlay
-    };
+    // indicator changed → full reload
 
-    console.log("Changes detected:", changes);
+    if (urlID && urlID !== IndicatorID) {
 
-    // Handle IndicatorID change first (cascades to other selections)
-    if (changes.IndicatorID) {
-        console.log("IndicatorID changed:", IndicatorID, "->", urlValues.IndicatorID);
-        loadIndicator(urlValues.IndicatorID, true);
+        await loadIndicator(urlID, true);
+        printIndicatorInfo(urlID);
+        printMenus(urlID);
+        await renderMeasures();
+        renderCurrentView();
+        return;
     }
 
-    // Handle MeasureID change
-    if (changes.MeasureID) {
-        console.log("MeasureID changed:", MeasureID, "->", urlValues.MeasureID);
-        if (typeof handleSelection === 'function') {
-            handleSelection('measure', urlValues.MeasureID);
-        }
-    }
+    // sub-indicator params changed → update globals, sync menus, re-render
 
-    // Handle GeoTypeID change
-    if (changes.GeoTypeID) {
-        console.log("GeoTypeID changed:", GeoTypeID, "->", urlValues.GeoTypeID);
-        if (typeof handleSelection === 'function') {
-            handleSelection('geo', urlValues.GeoTypeID);
-        }
-    }
+    if (urlMeasureID)    MeasureID    = urlMeasureID;
+    if (urlGeoTypeID)    GeoTypeID    = urlGeoTypeID;
+    if (urlTimePeriodID) TimePeriodID = urlTimePeriodID;
 
-    // Handle TimePeriodID change
-    if (changes.TimePeriodID) {
-        console.log("TimePeriodID changed:", TimePeriodID, "->", urlValues.TimePeriodID);
-        if (typeof handleSelection === 'function') {
-            handleSelection('time', urlValues.TimePeriodID);
-        }
-    }
+    // sync the dropdown menus to match the restored globals
 
-    // Handle overlay change
-    if (changes.overlay) {
-        console.log("overlay changed:", overlay, "->", urlValues.overlay);
-        // TODO: Implement overlay toggle/update logic
-    }
+    const ind = indicators?.find(d => d.IndicatorID === Number(IndicatorID));
 
-    // Update global variables to match URL
-    if (urlValues.IndicatorID !== null) IndicatorID = urlValues.IndicatorID;
-    if (urlValues.MeasureID !== null) MeasureID = urlValues.MeasureID;
-    if (urlValues.GeoTypeID !== null) GeoTypeID = urlValues.GeoTypeID;
-    if (urlValues.TimePeriodID !== null) TimePeriodID = urlValues.TimePeriodID;
-    if (urlValues.overlay !== null) overlay = urlValues.overlay;
+    if (ind) updateAllMenus(ind);
 
-    console.log("Global variables updated:", { IndicatorID, MeasureID, GeoTypeID, TimePeriodID, overlay });
-
-}
-
-// handle multiple quick changes
-
-function debounce(func, delay) {
-
-    let timeoutId;
-
-    return (...args) => {
-
-        clearTimeout(timeoutId);
-
-        timeoutId = setTimeout(() => {
-
-            func.apply(this, args);
-
-        }, delay);
-
-    };
-
-}
-
-// Wrap the handler in the debounce function
-
-const debouncedHandler = debounce(handleSearchParams, 300);
-
-// Use debouncedHandler instead of handleSearchParams in your listeners
-
-window.addEventListener('popstate', debouncedHandler);
-
-// Override history handlers with custom wrappers
-
-const originalPushState = history.pushState;
-
-history.pushState = function(...args) {
-
-    originalPushState.apply(this, args);
-    debouncedHandler();
-
-};
-
-const originalReplaceState = history.replaceState;
-
-history.replaceState = function(...args) {
-
-    originalReplaceState.apply(this, args);
-    debouncedHandler();
-
-};
-
-
-// ----------------------------------------------------------------------- //
-// history traversal
-// ----------------------------------------------------------------------- //
-
-window.addEventListener("hashchange", () => {
-
-    console.log("hashchange: ", location.hash);
-
-    const hash = window.location.hash.replace('#', "");
-
-    switch (hash) {
-
-       // using fallthrough
-
-       case 'display=summary':
-       case 'tab-table':
-          currentHash = 'display=summary';
-          $('#tab-btn-table').tab('show');
-          showTable();
-          break;
-
-       case 'display=map':
-       case 'tab-map':
-          currentHash = 'display=map';
-          $('#tab-btn-map').tab('show');
-          showMap();
-          break;
-
-       case 'display=trend':
-       case 'tab-trend':
-          currentHash = 'display=trend';
-          $('#tab-btn-trend').tab('show');
-          showTrend();
-          break;
-
-       case 'display=links':
-       case 'tab-links':
-          currentHash = 'display=links';
-          $('#tab-btn-links').tab('show');
-          showLinks();
-          break;
-
-       default:
-          currentHash = 'display=summary';
-          break;
-    }
-
-    state = window.history.state;
-
-
+    renderCurrentView();
 });
+
+
+
 
 // ----------------------------------------------------------------------- //
 // tab event listeners
@@ -222,13 +129,38 @@ window.addEventListener("hashchange", () => {
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    tabTable = document.querySelector('#tab-btn-table');
-    tabMap = document.querySelector('#tab-btn-map');
-    tabTrend = document.querySelector('#tab-btn-trend');
-    tabLinks = document.querySelector('#tab-btn-links');
+    tabBar       = document.querySelector('#v-pills-bar-tab');
+    tabTrends    = document.querySelector('#v-pills-trends-tab');
+    tabCorrelate = document.querySelector('#v-pills-correlate-tab');
+    tabTable     = document.querySelector('#v-pills-table-tab');
 
     aboutMeasures = document.querySelector('.indicator-measures');
     dataSources = document.querySelector('.indicator-sources');
+    btnToggleDisparities = document.querySelector('.btn-toggle-disparities');
+
+    // tab clicks → set overlay, push URL, render
+
+    const tabMap = {
+        '#v-pills-bar-tab':       'map',
+        '#v-pills-trends-tab':    'trend',
+        '#v-pills-correlate-tab': 'links',
+        '#v-pills-table-tab':     'table'
+    };
+
+    Object.entries(tabMap).forEach(([selector, value]) => {
+
+        const el = document.querySelector(selector);
+        if (!el) return;
+
+        el.addEventListener('click', () => {
+
+            overlay = value;
+            pushSelectionToURL();
+            renderCurrentView();
+
+            gtag('event', 'click_tab', { tab: value });
+        });
+    });
 
 });
 
@@ -242,79 +174,20 @@ function reveal() {
     document.getElementById('contenttoggle').innerHTML = `Show less... <i class="fas fa-caret-square-up" aria-hidden="true"></i>`;
 }
 
-// ----------------------------------------------------------------------- //
-// add listeners to tabs
-// ----------------------------------------------------------------------- //
-
-// ===== table ===== /
-
-$('#tab-btn-table').on('click', e => {
-    $(e.currentTarget).tab('show');
-    window.location.hash = 'display=summary';
-    gtag('event', 'click_tab', {
-       tab: "table"
-    });
-});
-
-// ===== map ===== /
-
-$('#tab-btn-map').on('click', e => {
-    $(e.currentTarget).tab('show');
-    window.location.hash = 'display=map';
-    gtag('event', 'click_tab', {
-       tab: "map"
-    });
-});
-
-// ===== trend ===== /
-
-$('#tab-btn-trend').on('click', e => {
-    $(e.currentTarget).tab('show');
-    window.location.hash = 'display=trend';
-    gtag('event', 'click_tab', {
-       tab: "trend"
-    });
-});
-
-// ===== links ===== /
-
-$('#tab-btn-links').on('click', e => {
-    $(e.currentTarget).tab('show');
-    window.location.hash = 'display=links';
-    gtag('event', 'click_tab', {
-       tab: "links"
-    });
-});
-
 
 // ----------------------------------------------------------------------- //
 // add listeners to metadata buttons
 // ----------------------------------------------------------------------- //
 
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-// how calculated
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-
 $('#howCalcButton').on('click', e => {
-    // console.log("click_how_caclulated");
-    gtag('event', 'click_how_caclulated');
+    gtag('event', 'click_how_calculated');
 });
 
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-// how calculated
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-
 $('#citeButton').on('click', e => {
-    // console.log("click_citation");
     gtag('event', 'click_citation');
 });
 
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-// measure about
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-
-$('#tab-btn-02-b').on('click', e => {
-    // console.log("click_about");
+$('#v-pills-ds-tab').on('click', e => {
     gtag('event', 'click_about');
 });
 

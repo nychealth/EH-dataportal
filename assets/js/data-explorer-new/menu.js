@@ -4,17 +4,6 @@
 
 // console.log(">> menu.js");
 
-// ----------------------------------------------------------------------- //
-// STATE
-// ----------------------------------------------------------------------- //
-
-let currentState = {
-    indicatorID: null,
-    measureID: null,
-    geoType: null,
-    timePeriodID: null
-};
-
 
 // ----------------------------------------------------------------------- //
 // HELPERS
@@ -50,7 +39,7 @@ const getDefaultMeasure = (indicator) => {
 };
 
 
-// Repalce TimePeriodIDs with Time Periods
+// Replace TimePeriodIDs with Time Periods
 const getTimeLabel = (id) => {
     if (!timeTable) return id; // fallback
     const tp = timeTable.find(t => t.TimePeriodID === id);
@@ -68,7 +57,7 @@ const setDropdownLabel = (type, value) => {
 
 
 // ----------------------------------------------------------------------- //
-// INIT
+// INIT — set default measure, then build all menus
 // ----------------------------------------------------------------------- //
 
 const printMenus = async (indicatorID) => {
@@ -79,26 +68,27 @@ const printMenus = async (indicatorID) => {
 
     const indicator = indicators.find(d => d.IndicatorID === Number(indicatorID));
 
-    currentState.indicatorID = indicatorID;
+    // set default measure if one isn't already set from URL
 
-    // DEFAULT MEASURE (priority-based)
-    const defaultMeasure = getDefaultMeasure(indicator);
-    currentState.measureID = defaultMeasure.MeasureID;
+    if (!MeasureID) {
+        const defaultMeasure = getDefaultMeasure(indicator);
+        MeasureID = defaultMeasure.MeasureID;
+    }
 
     updateAllMenus(indicator);
 };
 
 
 // ----------------------------------------------------------------------- //
-// CORE UPDATE FUNCTION
+// CORE UPDATE — rebuild all three dropdowns from globals
 // ----------------------------------------------------------------------- //
 
 const updateAllMenus = (indicator) => {
 
     console.log('* updateAllMenus');
-    console.log('Current state:', currentState);
+    console.log('Globals:', { MeasureID, GeoTypeID, TimePeriodID });
 
-    const measure = indicator.Measures.find(m => m.MeasureID === currentState.measureID);
+    const measure = indicator.Measures.find(m => m.MeasureID === MeasureID);
 
     // ---------------------------
     // MEASURES MENU
@@ -111,7 +101,6 @@ const updateAllMenus = (indicator) => {
 
     styleAndPrintMenu(measures, '.measures-holder', 'measure');
 
-    // SET MEASURE LABEL (AFTER BUILDING MEASURES)
     setDropdownLabel('measure', measure.MeasurementType);
 
     // ---------------------------
@@ -123,43 +112,41 @@ const updateAllMenus = (indicator) => {
         value: d.GeoType
     }));
 
-    // SET DEFAULT GEO (USING assignGeoRank)
     const availableGeoValues = geos.map(g => g.value);
 
-    if (!currentState.geoType || !availableGeoValues.includes(currentState.geoType)) {
+    // pick finest available geo if current is invalid
 
-        currentState.geoType = availableGeoValues.reduce((best, current) => {
+    if (!GeoTypeID || !availableGeoValues.includes(GeoTypeID)) {
+
+        GeoTypeID = availableGeoValues.reduce((best, current) => {
             return assignGeoRank(current) > assignGeoRank(best) ? current : best;
         });
-
     }
 
-    // NOW RENDER MENU
     styleAndPrintMenu(geos, '.geo-holder', 'geo');
 
-    // THEN UPDATE LABEL
-    setDropdownLabel('geo', currentState.geoType);
+    setDropdownLabel('geo', GeoTypeID);
 
     // ---------------------------
     // TIME MENU
     // ---------------------------
 
-    const geoObj = measure.VisOptions[0].Map.find(d => d.GeoType === currentState.geoType);
+    const geoObj = measure.VisOptions[0].Map.find(d => d.GeoType === GeoTypeID);
 
     const times = (geoObj?.TimePeriodID || []).map(t => ({
         label: t,
         value: t
     }));
 
-    // Ensure valid time (default = latest)
-    if (!currentState.timePeriodID || !times.find(t => t.value === currentState.timePeriodID)) {
-        currentState.timePeriodID = times.length ? times[times.length - 1].value : null;
+    // default to latest time if current is invalid
+
+    if (!TimePeriodID || !times.find(t => t.value === TimePeriodID)) {
+        TimePeriodID = times.length ? times[times.length - 1].value : null;
     }
 
     styleAndPrintMenu(times, '.time-holder', 'time');
 
-    // SET TIME LABEL (AFTER SETTING TIME)
-    setDropdownLabel('time', currentState.timePeriodID);
+    setDropdownLabel('time', TimePeriodID);
 };
 
 
@@ -183,7 +170,7 @@ const styleAndPrintMenu = (items, destination, type) => {
             button.className = 'dropdown-item';
             button.type = 'button';
 
-            // Keep your existing behavior
+            // keep existing dropdown-close behavior
             button.setAttribute('onclick', 'updateDropdownText(this)');
 
             button.addEventListener('click', () => {
@@ -199,35 +186,53 @@ const styleAndPrintMenu = (items, destination, type) => {
 
 
 // ----------------------------------------------------------------------- //
-// SELECTION HANDLER
+// SELECTION HANDLER — update globals, push URL, rebuild menus, re-render
 // ----------------------------------------------------------------------- //
 
 const handleSelection = (type, value) => {
 
-    console.log(`change - ${type}: ${value}`);
+    console.log(`* handleSelection — ${type}: ${value}`);
+
+    // update globals with cascading resets
 
     if (type === 'measure') {
-        currentState.measureID = value;
+        MeasureID = value;
 
-        // 🔑 force geo + time to reset when measure changes
-        currentState.geoType = null;
-        currentState.timePeriodID = null;
+        // force geo + time to reset when measure changes
+        GeoTypeID = null;
+        TimePeriodID = null;
     }
 
     if (type === 'geo') {
-        currentState.geoType = value;
+        GeoTypeID = value;
 
         // reset time when geo changes
-        currentState.timePeriodID = null;
+        TimePeriodID = null;
     }
 
     if (type === 'time') {
-        currentState.timePeriodID = value;
+        TimePeriodID = value;
     }
 
-    const indicator = indicators.find(d => d.IndicatorID === Number(currentState.indicatorID));
+    // rebuild menus (fills in cascaded defaults for nulled-out values)
 
-    updateAllMenus(indicator);
+    const ind = indicators.find(d => d.IndicatorID === Number(IndicatorID));
+
+    updateAllMenus(ind);
+
+    // push full state to URL
+
+    pushSelectionToURL();
+
+    // Google Analytics
+
+    if (typeof gtag === 'function') {
+        gtag('event', 'click_option', { option: type });
+    }
+
+    // re-render the active tab
+
+    renderCurrentView();
 };
 
 

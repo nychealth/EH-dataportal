@@ -101,10 +101,10 @@ let trendMeasures = [];
 let linksMeasures = [];
 let disparitiesMeasures = [];
 
+let tabBar;
+let tabTrends;
+let tabCorrelate;
 let tabTable;
-let tabMap;
-let tabTrend;
-let tabLinks;
 
 let showTable;
 let showMap;
@@ -125,8 +125,6 @@ let vizSource;
 let vizSourceSecond;
 let chartType;
 
-// store hash, so display knows where it just was
-let currentHash;
 let state;
 
 let IndicatorID;
@@ -135,7 +133,7 @@ let GeoTypeID;
 let TimePeriodID;
 let overlay; 
 
-// const btnToggleDisparities = document.querySelector('.btn-toggle-disparities');
+let btnToggleDisparities;
 
 // modifying the measure dropdown innerHTML removes the event listeners from the dropdown list. So, i added it to the HTML, and we can remove it when we call renderTrendChart, if necessary
 
@@ -185,22 +183,22 @@ const copyCitation = () => {
 
 // Renders copy for the About the measures and the Data sources sections
 
-// const renderAboutSources = (about, sources) => {
+const renderAboutSources = (about, sources) => {
 
-//     console.log("**** renderAboutSources");
-//     dataSources.innerHTML = ''
+    console.log("**** renderAboutSources");
+    dataSources.innerHTML = '';
 
-//     // de-dupe data sources
-//     let type = typeof sources
+    // de-dupe data sources
+    let type = typeof sources;
 
-//     if (type === 'object') {
-//         let singleSource;
-//         singleSource = sources.every( (val, i, arr) => val === arr[0] )  
-//         singleSource === true ? dataSources.innerHTML = sources[0] : dataSources.innerHTML = sources
-//     } else {
-//         dataSources.innerHTML = sources
-//     }
+    if (type === 'object') {
+        let singleSource;
+        singleSource = sources.every((val, i, arr) => val === arr[0]);
+        singleSource === true ? dataSources.innerHTML = sources[0] : dataSources.innerHTML = sources;
+    } else {
+        dataSources.innerHTML = sources;
+    }
 
-//     aboutMeasures.innerHTML = about;
-    
-// }
+    aboutMeasures.innerHTML = about;
+
+};

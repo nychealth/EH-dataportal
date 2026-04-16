@@ -145,45 +145,41 @@ const checkURL = async () => {
 
     console.log("* checkURL");
 
-    // console.log("indicators [checkURL]", indicators);
-
     const urlParams = new URLSearchParams(window.location.search);
     
-    // URL Format Expected: .../TOPIC/?id=2133&measure=239&geo=CDTA
+    // URL Format: .../TOPIC/?id=2133&MeasureID=239&GeoTypeID=CDTA&TimePeriodID=123
     
-    // Convert to a plain object:
     const paramsObj = Object.fromEntries(urlParams.entries());
     
-    console.log('URL Parameters:')
-    console.log(paramsObj); // Outputs URL Parameters in json
+    console.log('URL Parameters:');
+    console.log(paramsObj);
     
     const chosenIndicator = Number(paramsObj.id);
-    
-    // Send for Indicator Functions
+
+    // seed globals from URL params (if present) before menus build
+
+    if (paramsObj.MeasureID)    MeasureID    = parseFloat(paramsObj.MeasureID);
+    if (paramsObj.GeoTypeID)    GeoTypeID    = paramsObj.GeoTypeID;
+    if (paramsObj.TimePeriodID) TimePeriodID = parseFloat(paramsObj.TimePeriodID);
+    if (paramsObj.overlay)      overlay      = paramsObj.overlay;
+
+    // fire indicator info, menus, and data load
+
     printIndicatorInfo(chosenIndicator);
     draw311Buttons(chosenIndicator);
-    printMenus(chosenIndicator);
+
+    await printMenus(chosenIndicator);
 
     const _indicators = await ensureIndicatorsLoaded('printing measure menu');
-
-    // console.log(">> indicators [checkURL]", _indicators);
 
     await loadIndicator(chosenIndicator);
 
     await renderMeasures();
 
-    // await loadData(chosenIndicator);
-    
-    // run renderBar()
-    // renderMap(filteredMapData, defaultMapMetadata);
-    showMap();
-    // renderBar(filteredMapData, defaultMapMetadata);
-    // renderTrendChart(filteredTrendData, defaultTrendMetadata);
-    // renderCorrelate(joinedLinksDataObjects, defaultLinksMetadata);
-    
-    // Run selections for Measure, Geography, and TimePeriod
-    
-    
+    // show the active tab (or default to map)
+
+    renderCurrentView();
+
 }
 
 

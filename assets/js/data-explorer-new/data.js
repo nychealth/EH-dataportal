@@ -16,7 +16,9 @@ const loadIndicator = async (this_IndicatorID, dont_add_to_history) => {
 
     // console.log("indicators [loadIndicator]", indicators);
 
-    currentHash = window.location.hash;
+    // preserve current tab; default to map on first load
+
+    if (!overlay) overlay = 'map';
 
     // if IndicatorID isn't given, use the first indicator from the dropdown list
     //  (which is populated by Hugo reading the content frontmatter).
@@ -74,21 +76,24 @@ const loadIndicator = async (this_IndicatorID, dont_add_to_history) => {
     // dont_add_to_history catches the pop state case, state.id != IndicatorID catches the location change case
     // we don't want to add to the history stack if we've landed on this page by way of the history stack
 
+    // clear any leftover hash fragment from the URL object
+
+    url.hash = '';
     url.searchParams.set('id', parseFloat(IndicatorID));
 
     if (!dont_add_to_history && (window.history.state === null || state === null || window.history.state.id != IndicatorID)) {
 
-        if (!url.hash) {
+        if (window.history.state === null || state === null) {
 
-            // if loadIndicator is being called without a hash (like when a topic page is loaded), then show the first ID and table
+            // first load — replace the initial history entry
 
-            url.hash = "display=summary";
-            window.history.replaceState({ id: IndicatorID, hash: url.hash}, '', url);
+            window.history.replaceState({ id: IndicatorID }, '', url);
 
         } else {
 
-            url.hash = currentHash;
-            window.history.pushState({ id: IndicatorID, hash: url.hash }, '', url);
+            // indicator changed — push new history entry
+
+            window.history.pushState({ id: IndicatorID }, '', url);
 
         }
 
