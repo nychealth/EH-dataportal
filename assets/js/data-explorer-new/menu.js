@@ -186,6 +186,17 @@ const styleAndPrintMenu = (items, destination, type) => {
             button.className = 'dropdown-item';
             button.type = 'button';
 
+            // Subtly highlight the currently selected value in each dropdown.
+            const isSelected =
+                (type === 'measure' && Number(item.value) === Number(MeasureID)) ||
+                (type === 'geo' && item.value === GeoTypeID) ||
+                (type === 'time' && Number(item.value) === Number(TimePeriodID));
+
+            if (isSelected) {
+                button.classList.add('is-selected');
+                button.setAttribute('aria-current', 'true');
+            }
+
             // keep existing dropdown-close behavior
             button.setAttribute('onclick', 'updateDropdownText(this)');
 

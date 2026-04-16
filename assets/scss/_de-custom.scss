@@ -258,6 +258,19 @@ $color-data-explorer: #0A408A;
     padding-left: 1rem;
     margin-right: auto;
     margin-left: auto;
+
+}
+
+// Data Explorer dropdown: subtly indicate the current selection.
+.dropdown-menu .dropdown-item.is-selected {
+  background-color: rgba(10, 64, 138, 0.08);
+  color: #0A408A;
+  font-weight: 600;
+}
+
+.dropdown-menu .dropdown-item.is-selected:hover,
+.dropdown-menu .dropdown-item.is-selected:focus {
+  background-color: rgba(10, 64, 138, 0.12);
 }
 @media (min-width: 480px) {
   .container-to-large {
