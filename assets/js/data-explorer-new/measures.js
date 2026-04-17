@@ -529,13 +529,15 @@ const renderMeasures = async () => {
     };
 
 
-    // ===== map ================================================== //
+    // ===== map (Leaflet — always visible) ======================== //
 
-    showMap = (e) => {
+    // showMap updates the Leaflet map with current dropdown selections.
+    // It is called on every render, regardless of which overlay tab is active,
+    // because the map is always visible on the left side of the page.
+
+    showMap = () => {
 
         console.log("* showMap");
-
-        overlay = 'bar';
 
         // --- resolve metadata for the current MeasureID --- //
 
@@ -554,9 +556,33 @@ const renderMeasures = async () => {
         console.log("filteredMapData:", filteredMapData.length, "rows",
             { MeasureID, GeoType, TimePeriodID });
 
-        // --- render --- //
+        // --- render the Leaflet map only --- //
 
         renderMap(filteredMapData, metadata);
+
+    };
+
+
+    // ===== bar chart (right overlay pane) ======================= //
+
+    // showBar renders the bar chart in the overlay pane.
+    // The Leaflet map is handled separately by showMap above.
+
+    showBar = (e) => {
+
+        console.log("* showBar");
+
+        overlay = 'bar';
+
+        // --- resolve metadata for the bar chart --- //
+
+        let metadata = mapMeasures.filter(m => m.MeasureID == MeasureID);
+
+        if (!metadata.length) metadata = defaultMapMetadata;
+
+        // --- render the bar chart using the already-filtered map data --- //
+
+        renderBar(filteredMapData, metadata, GeoType);
 
     };
 

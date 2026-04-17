@@ -215,7 +215,7 @@ const styleAndPrintMenu = (items, destination, type) => {
             }
 
             // keep existing dropdown-close behavior
-            button.setAttribute('onclick', 'updateDropdownText(this)');
+            button.addEventListener('click', () => updateDropdownText(button));
 
             button.addEventListener('click', () => {
                 handleSelection(type, item.value);
@@ -237,26 +237,12 @@ const handleSelection = (type, value) => {
 
     console.log(`* handleSelection — ${type}: ${value}`);
 
-    // update globals with cascading resets
+    // update globals — preserve sibling values if they're still valid for the new selection;
+    // updateAllMenus will reset any that no longer apply
 
-    if (type === 'measure') {
-        MeasureID = value;
-
-        // force geo + time to reset when measure changes
-        GeoType = null;
-        TimePeriodID = null;
-    }
-
-    if (type === 'geo') {
-        GeoType = value;
-
-        // reset time when geo changes
-        TimePeriodID = null;
-    }
-
-    if (type === 'time') {
-        TimePeriodID = value;
-    }
+    if (type === 'measure') MeasureID = value;
+    if (type === 'geo')     GeoType   = value;
+    if (type === 'time')    TimePeriodID = value;
 
     // rebuild menus (fills in cascaded defaults for nulled-out values)
 
@@ -274,9 +260,9 @@ const handleSelection = (type, value) => {
         gtag('event', 'click_option', { option: type });
     }
 
-    // re-render the active tab
+    // re-render the active tab, and update the Leaflet map for the new selection
 
-    renderCurrentView();
+    renderCurrentView(true);
 };
 
 

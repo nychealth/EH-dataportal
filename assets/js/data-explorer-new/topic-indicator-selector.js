@@ -176,7 +176,7 @@ const selectIndicator = async (id) => {
     await renderMeasures();
 
     pushSelectionToURL();
-    renderCurrentView();
+    renderCurrentView(true);
 
 };
 
@@ -242,9 +242,9 @@ const checkURL = async () => {
 
     pushSelectionToURL();
 
-    // show the active tab (or default to map)
+    // render active overlay pane and update the Leaflet map
 
-    renderCurrentView();
+    renderCurrentView(true);
 
 }
 

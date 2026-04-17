@@ -108,6 +108,7 @@ let tabCorrelate;
 let tabTable;
 
 let showTable;
+let showBar;
 let showMap;
 let showTrend;
 let showBoroughTrend;

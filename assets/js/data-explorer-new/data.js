@@ -16,9 +16,9 @@ const loadIndicator = async (this_IndicatorID, dont_add_to_history) => {
 
     // console.log("indicators [loadIndicator]", indicators);
 
-    // preserve current tab; default to bar on first load
+    // preserve current tab; default to none (no overlay open) on first load
 
-    if (!overlay) overlay = 'bar';
+    if (!overlay) overlay = 'none';
 
     // if IndicatorID isn't given, use the first indicator from the dropdown list
     //  (which is populated by Hugo reading the content frontmatter).

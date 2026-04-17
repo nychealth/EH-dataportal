@@ -138,9 +138,16 @@ const normalizeLegacyOverlayURL = () => {
 // render the active tab with current globals
 // ----------------------------------------------------------------------- //
 
-const renderCurrentView = () => {
+// updateMap controls whether the Leaflet map is re-rendered.
+// Pass true from dropdown changes, initial load, and indicator changes.
+// Tab clicks pass false (default) — the map doesn't need to redraw just because
+// the overlay pane switches.
 
-    console.log("* renderCurrentView", { MeasureID, GeoType, TimePeriodID, overlay });
+const renderCurrentView = (updateMap = false) => {
+
+    console.log("* renderCurrentView", { MeasureID, GeoType, TimePeriodID, overlay, updateMap });
+
+    if (updateMap && typeof showMap === 'function') showMap();
 
     switch (overlay) {
 
@@ -159,7 +166,7 @@ const renderCurrentView = () => {
         }
 
         case 'bar':
-            if (typeof showMap === 'function') showMap();
+            if (typeof showBar === 'function') showBar();
             break;
 
         case 'table':
@@ -167,7 +174,7 @@ const renderCurrentView = () => {
             break;
 
         case 'map':
-            if (typeof showMap === 'function') showMap();
+            if (typeof showBar === 'function') showBar();
             break;
 
         case 'trend':
@@ -179,7 +186,7 @@ const renderCurrentView = () => {
             break;
 
         default:
-            if (typeof showMap === 'function') showMap();
+            if (typeof showBar === 'function') showBar();
             break;
     }
 };
@@ -221,7 +228,7 @@ window.addEventListener('popstate', async (event) => {
         printIndicatorInfo(urlID);
         printMenus(urlID);
         await renderMeasures();
-        renderCurrentView();
+        renderCurrentView(true);
         return;
     }
 
@@ -237,7 +244,7 @@ window.addEventListener('popstate', async (event) => {
 
     if (ind) updateAllMenus(ind);
 
-    renderCurrentView();
+    renderCurrentView(true);
 });
 
 

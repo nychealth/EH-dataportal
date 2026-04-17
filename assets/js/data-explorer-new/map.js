@@ -137,8 +137,6 @@ const renderMap = (
 
     topoFile = getGeoFile(mapGeoType)
 
-    renderBar(data, metadata, mapGeoType)
-
     // ----------------------------------------------------------------------- //
     // define spec
     // ----------------------------------------------------------------------- //
