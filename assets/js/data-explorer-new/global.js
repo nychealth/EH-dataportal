@@ -130,7 +130,7 @@ let state;
 
 let IndicatorID;
 let MeasureID;
-let GeoTypeID;
+let GeoType;
 let TimePeriodID;
 let overlay; 
 

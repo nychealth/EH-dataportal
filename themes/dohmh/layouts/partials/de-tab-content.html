@@ -364,7 +364,9 @@
             });
         });
 
-        // No initial check - class should only be added on user interaction
+        // Apply the initial expanded state on first load.
+        // This keeps the right overlay pane fully open when the page first renders.
+        updateHasOpenPanelClass();
     });
 
 

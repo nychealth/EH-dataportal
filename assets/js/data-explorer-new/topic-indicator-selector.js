@@ -161,6 +161,10 @@ const selectIndicator = async (id) => {
 
     dismissIndicatorModal();
 
+    // Clear stale sub-selection params so the new indicator starts clean.
+
+    resetSelectionForNewIndicator(id);
+
     // Run the full load pipeline
 
     printIndicatorInfo(id);
@@ -187,12 +191,18 @@ const checkURL = async () => {
 
     const urlParams = new URLSearchParams(window.location.search);
     
-    // URL Format: .../TOPIC/?id=2133&MeasureID=239&GeoTypeID=CDTA&TimePeriodID=123
+    // URL Format: .../TOPIC/?id=2133&MeasureID=239&GeoType=CDTA&TimePeriodID=123
+    // Compatibility/confusion alias: GeoTypeID also accepted on read
     
     const paramsObj = Object.fromEntries(urlParams.entries());
     
     console.log('URL Parameters:');
     console.log(paramsObj);
+
+    if (paramsObj.GeoTypeID && !paramsObj.GeoType) {
+        normalizeLegacyGeoTypeURL();
+        paramsObj.GeoType = paramsObj.GeoTypeID;
+    }
     
     const chosenIndicator = Number(paramsObj.id);
 
@@ -207,7 +217,9 @@ const checkURL = async () => {
     // seed globals from URL params (if present) before menus build
 
     if (paramsObj.MeasureID)    MeasureID    = parseFloat(paramsObj.MeasureID);
-    if (paramsObj.GeoTypeID)    GeoTypeID    = paramsObj.GeoTypeID;
+    if (paramsObj.GeoType || paramsObj.GeoTypeID) {
+        GeoType = paramsObj.GeoType || paramsObj.GeoTypeID;
+    }
     if (paramsObj.TimePeriodID) TimePeriodID = parseFloat(paramsObj.TimePeriodID);
     if (paramsObj.overlay)      overlay      = paramsObj.overlay;
 

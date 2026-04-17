@@ -66,9 +66,16 @@ const printMenus = async (indicatorID) => {
 
     const indicator = indicators.find(d => d.IndicatorID === Number(indicatorID));
 
-    // set default measure if one isn't already set from URL
+    if (!indicator || !indicator.Measures?.length) {
+        console.warn('printMenus: no indicator or measures found for', indicatorID);
+        return;
+    }
 
-    if (!MeasureID) {
+    const selectedMeasure = indicator.Measures.find(m => m.MeasureID === MeasureID);
+
+    // Set a valid default measure if the current one is missing or stale.
+
+    if (!MeasureID || !selectedMeasure) {
         const defaultMeasure = getDefaultMeasure(indicator);
         MeasureID = defaultMeasure.MeasureID;
     }
@@ -84,9 +91,19 @@ const printMenus = async (indicatorID) => {
 const updateAllMenus = (indicator) => {
 
     console.log('* updateAllMenus');
-    console.log('Globals:', { MeasureID, GeoTypeID, TimePeriodID });
+    console.log('Globals:', { MeasureID, GeoType, TimePeriodID });
 
-    const measure = indicator.Measures.find(m => m.MeasureID === MeasureID);
+    if (!indicator || !indicator.Measures?.length) {
+        console.warn('updateAllMenus: no indicator or measures available');
+        return;
+    }
+
+    let measure = indicator.Measures.find(m => m.MeasureID === MeasureID);
+
+    if (!measure) {
+        measure = getDefaultMeasure(indicator);
+        MeasureID = measure.MeasureID;
+    }
 
     // ---------------------------
     // MEASURES MENU
@@ -122,24 +139,24 @@ const updateAllMenus = (indicator) => {
 
     // pick finest available geo if current is invalid
 
-    if (!GeoTypeID || !availableGeoValues.includes(GeoTypeID)) {
+    if (!GeoType || !availableGeoValues.includes(GeoType)) {
 
-        GeoTypeID = availableGeoValues.reduce((best, current) => {
+        GeoType = availableGeoValues.reduce((best, current) => {
             return assignGeoRank(current) > assignGeoRank(best) ? current : best;
         });
     }
 
     styleAndPrintMenu(geos, '.geo-holder', 'geo');
 
-    setDropdownLabel('geo', GeoTypeID);
+    setDropdownLabel('geo', GeoType);
 
     // ---------------------------
     // TIME MENU
     // ---------------------------
 
-    // Find the metadata entry whose raw GeoType prettifies to our GeoTypeID
+    // Find the metadata entry whose raw GeoType prettifies to our selected GeoType
 
-    const geoObj = measure.VisOptions[0].Map.find(d => prettifyGeoType(d.GeoType) === GeoTypeID);
+    const geoObj = measure.VisOptions[0].Map.find(d => prettifyGeoType(d.GeoType) === GeoType);
 
     // Look up labels and sort by end_period descending (most recent first)
 
@@ -189,7 +206,7 @@ const styleAndPrintMenu = (items, destination, type) => {
             // Subtly highlight the currently selected value in each dropdown.
             const isSelected =
                 (type === 'measure' && Number(item.value) === Number(MeasureID)) ||
-                (type === 'geo' && item.value === GeoTypeID) ||
+                (type === 'geo' && item.value === GeoType) ||
                 (type === 'time' && Number(item.value) === Number(TimePeriodID));
 
             if (isSelected) {
@@ -226,12 +243,12 @@ const handleSelection = (type, value) => {
         MeasureID = value;
 
         // force geo + time to reset when measure changes
-        GeoTypeID = null;
+        GeoType = null;
         TimePeriodID = null;
     }
 
     if (type === 'geo') {
-        GeoTypeID = value;
+        GeoType = value;
 
         // reset time when geo changes
         TimePeriodID = null;

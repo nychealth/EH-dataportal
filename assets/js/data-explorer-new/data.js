@@ -76,10 +76,10 @@ const loadIndicator = async (this_IndicatorID, dont_add_to_history) => {
     // dont_add_to_history catches the pop state case, state.id != IndicatorID catches the location change case
     // we don't want to add to the history stack if we've landed on this page by way of the history stack
 
-    // clear any leftover hash fragment from the URL object
+    // Use a fresh URL snapshot so we don't accidentally restore stale params.
 
-    // url.hash = '';
-    url.searchParams.set('id', parseFloat(IndicatorID));
+    const nextURL = new URL(window.location);
+    nextURL.searchParams.set('id', parseFloat(IndicatorID));
 
     if (!dont_add_to_history && (window.history.state === null || state === null || window.history.state.id != IndicatorID)) {
 
@@ -87,13 +87,13 @@ const loadIndicator = async (this_IndicatorID, dont_add_to_history) => {
 
             // first load — replace the initial history entry
 
-            window.history.replaceState({ id: IndicatorID }, '', url);
+            window.history.replaceState({ id: IndicatorID }, '', nextURL);
 
         } else {
 
             // indicator changed — push new history entry
 
-            window.history.pushState({ id: IndicatorID }, '', url);
+            window.history.pushState({ id: IndicatorID }, '', nextURL);
 
         }
 

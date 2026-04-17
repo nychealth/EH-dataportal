@@ -5,38 +5,111 @@
 // console.log(">> app.js");
 
 // ----------------------------------------------------------------------- //
-// URL object (shared across files)
-// ----------------------------------------------------------------------- //
-
-const url = new URL(window.location);
-
-
-// ----------------------------------------------------------------------- //
 // write current globals to URL and push history
 // ----------------------------------------------------------------------- //
 
 // call this after any dropdown change to sync the URL
 
+const buildCanonicalSearchParams = () => {
+
+    const params = new URLSearchParams();
+
+    params.set('id', IndicatorID);
+
+    if (MeasureID)    params.set('MeasureID', MeasureID);
+    if (GeoType)      params.set('GeoType', GeoType);
+    if (TimePeriodID) params.set('TimePeriodID', TimePeriodID);
+    if (overlay)      params.set('overlay', overlay);
+
+    return params;
+
+};
+
+
+const resetSelectionForNewIndicator = (nextIndicatorID) => {
+
+    MeasureID = null;
+    GeoType = null;
+    TimePeriodID = null;
+    overlay = null;
+
+    const nextURL = new URL(window.location);
+    nextURL.search = new URLSearchParams({ id: Number(nextIndicatorID) }).toString();
+
+    window.history.replaceState(
+        { id: Number(nextIndicatorID) },
+        '',
+        nextURL
+    );
+
+    console.log("replaceState →", nextURL.search);
+
+};
+
 const pushSelectionToURL = () => {
 
     const url = new URL(window.location);
 
-    // always write the current globals
+    // Rebuild the explorer params in a stable order and drop legacy aliases.
 
-    url.searchParams.set('id', IndicatorID);
-
-    if (MeasureID)    url.searchParams.set('MeasureID', MeasureID);
-    if (GeoTypeID)    url.searchParams.set('GeoTypeID', GeoTypeID);
-    if (TimePeriodID) url.searchParams.set('TimePeriodID', TimePeriodID);
-    if (overlay)      url.searchParams.set('overlay', overlay);
+    url.search = buildCanonicalSearchParams().toString();
 
     window.history.pushState(
-        { id: IndicatorID, MeasureID, GeoTypeID, TimePeriodID, overlay },
+        { id: IndicatorID, MeasureID, GeoType, TimePeriodID, overlay },
         '',
         url
     );
 
     console.log("pushState →", url.search);
+};
+
+
+const normalizeLegacyGeoTypeURL = () => {
+
+    const nextURL = new URL(window.location.href);
+    const rawSearch = nextURL.search.replace(/^\?/, '');
+
+    if (!rawSearch) {
+        return;
+    }
+
+    const searchParts = rawSearch.split('&').filter(Boolean);
+    const hasCanonicalGeoType = searchParts.some(part => part.split('=')[0] === 'GeoType');
+    let didChange = false;
+    let renamedGeoType = null;
+
+    const normalizedParts = searchParts.flatMap(part => {
+        const [key, ...rest] = part.split('=');
+        const value = rest.join('=');
+
+        if (key !== 'GeoTypeID') {
+            return [part];
+        }
+
+        didChange = true;
+        renamedGeoType = renamedGeoType ?? decodeURIComponent(value || '');
+
+        if (hasCanonicalGeoType) {
+            return [];
+        }
+
+        return [`GeoType=${value}`];
+    });
+
+    if (!didChange) {
+        return;
+    }
+
+    nextURL.search = normalizedParts.join('&');
+
+    window.history.replaceState(
+        { id: IndicatorID, MeasureID, GeoType: GeoType || renamedGeoType, TimePeriodID, overlay },
+        '',
+        nextURL
+    );
+
+    console.log("replaceState →", nextURL.search);
+
 };
 
 
@@ -46,7 +119,7 @@ const pushSelectionToURL = () => {
 
 const renderCurrentView = () => {
 
-    console.log("* renderCurrentView", { MeasureID, GeoTypeID, TimePeriodID, overlay });
+    console.log("* renderCurrentView", { MeasureID, GeoType, TimePeriodID, overlay });
 
     switch (overlay) {
 
@@ -85,9 +158,13 @@ window.addEventListener('popstate', async (event) => {
 
     const urlID           = params.get('id')          ? parseFloat(params.get('id'))          : null;
     const urlMeasureID    = params.get('MeasureID')   ? parseFloat(params.get('MeasureID'))   : null;
-    const urlGeoTypeID    = params.get('GeoTypeID')   ? params.get('GeoTypeID')               : null;
+    const urlGeoType      = params.get('GeoType') || params.get('GeoTypeID') || null;
     const urlTimePeriodID = params.get('TimePeriodID') ? parseFloat(params.get('TimePeriodID')) : null;
     const urlOverlay      = params.get('overlay')     || null;
+
+    if (params.get('GeoTypeID') && !params.get('GeoType')) {
+        normalizeLegacyGeoTypeURL();
+    }
 
     // restore overlay
 
@@ -108,7 +185,7 @@ window.addEventListener('popstate', async (event) => {
     // sub-indicator params changed → update globals, sync menus, re-render
 
     if (urlMeasureID)    MeasureID    = urlMeasureID;
-    if (urlGeoTypeID)    GeoTypeID    = urlGeoTypeID;
+    if (urlGeoType)      GeoType      = urlGeoType;
     if (urlTimePeriodID) TimePeriodID = urlTimePeriodID;
 
     // sync the dropdown menus to match the restored globals
@@ -202,6 +279,7 @@ $('#indicatorButtons').on('click', e => {
 
     // run the indicator loading function
 
+    resetSelectionForNewIndicator(IndicatorID);
     loadIndicator(IndicatorID);
 
     // record google analytics event

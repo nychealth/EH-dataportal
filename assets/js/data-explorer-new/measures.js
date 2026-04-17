@@ -548,11 +548,11 @@ const renderMeasures = async () => {
         filteredMapData = mapData.filter(obj =>
             obj.MeasureID == MeasureID &&
             obj.TimePeriodID == TimePeriodID &&
-            prettifyGeoType(obj.GeoType) == GeoTypeID
+            prettifyGeoType(obj.GeoType) == GeoType
         );
 
         console.log("filteredMapData:", filteredMapData.length, "rows",
-            { MeasureID, GeoTypeID, TimePeriodID });
+            { MeasureID, GeoType, TimePeriodID });
 
         // --- render --- //
 
