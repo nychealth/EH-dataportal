@@ -67,10 +67,9 @@ hugo145-server-help.txt
 .vscode/
 
 # improvement analysis documents
-improvements-auto.md
-improvements-haiku-4.5.md
-improvements-gemini-3.1-pro.md
-improvements-grok-code-fast-1.md
-improvements-opus-4.6.md
-improvements-gpt-5.4.md
-
+documents/improvements-auto.md
+documents/improvements-haiku-4.5.md
+documents/improvements-gemini-3.1-pro.md
+documents/improvements-grok-code-fast-1.md
+documents/improvements-opus-4.6.md
+documents/improvements-gpt-5.4.md
