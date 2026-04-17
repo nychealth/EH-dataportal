@@ -196,7 +196,7 @@
                 // Check if this tab is already active
                 if (this.classList.contains('active') && targetPane.classList.contains('show')) {
                     e.preventDefault();
-                    e.stopPropagation();
+                    e.stopImmediatePropagation();
 
                     // Remove active state from this tab
                     this.classList.remove('active');
@@ -210,6 +210,10 @@
                     if (tabContent) {
                         tabContent.style.display = 'none';
                     }
+
+                    // Persist the closed state in the URL
+                    overlay = 'none';
+                    if (typeof pushSelectionToURL === 'function') pushSelectionToURL();
                 }
             });
         });
@@ -251,6 +255,10 @@
             if (tabContent) {
                 tabContent.style.display = 'none';
             }
+
+            // Persist the closed state in the URL
+            overlay = 'none';
+            if (typeof pushSelectionToURL === 'function') pushSelectionToURL();
         }
     }
 

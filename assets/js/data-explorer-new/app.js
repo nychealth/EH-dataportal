@@ -31,7 +31,7 @@ const resetSelectionForNewIndicator = (nextIndicatorID) => {
     MeasureID = null;
     GeoType = null;
     TimePeriodID = null;
-    overlay = null;
+    // overlay is intentionally preserved across indicator selection
 
     const nextURL = new URL(window.location);
     nextURL.search = new URLSearchParams({ id: Number(nextIndicatorID) }).toString();
@@ -113,6 +113,27 @@ const normalizeLegacyGeoTypeURL = () => {
 };
 
 
+const normalizeLegacyOverlayURL = () => {
+
+    const nextURL = new URL(window.location.href);
+
+    if (nextURL.searchParams.get('overlay') !== 'map') {
+        return;
+    }
+
+    nextURL.searchParams.set('overlay', 'bar');
+
+    window.history.replaceState(
+        { id: IndicatorID, MeasureID, GeoType, TimePeriodID, overlay: 'bar' },
+        '',
+        nextURL
+    );
+
+    console.log("replaceState →", nextURL.search);
+
+};
+
+
 // ----------------------------------------------------------------------- //
 // render the active tab with current globals
 // ----------------------------------------------------------------------- //
@@ -122,6 +143,24 @@ const renderCurrentView = () => {
     console.log("* renderCurrentView", { MeasureID, GeoType, TimePeriodID, overlay });
 
     switch (overlay) {
+
+        case 'none': {
+            // close all overlay panes without rendering a chart
+            document.querySelectorAll('.nav-link[data-toggle="pill"]').forEach(tab => {
+                tab.classList.remove('active');
+                tab.setAttribute('aria-selected', 'false');
+            });
+            document.querySelectorAll('#v-pills-tabContent .tab-pane').forEach(pane => {
+                pane.classList.remove('show', 'active');
+            });
+            const tabContent = document.querySelector('#v-pills-tabContent');
+            if (tabContent) tabContent.style.display = 'none';
+            break;
+        }
+
+        case 'bar':
+            if (typeof showMap === 'function') showMap();
+            break;
 
         case 'table':
             if (typeof showTable === 'function') showTable();
@@ -166,9 +205,13 @@ window.addEventListener('popstate', async (event) => {
         normalizeLegacyGeoTypeURL();
     }
 
+    if (urlOverlay === 'map') {
+        normalizeLegacyOverlayURL();
+    }
+
     // restore overlay
 
-    if (urlOverlay) overlay = urlOverlay;
+    if (urlOverlay) overlay = urlOverlay === 'map' ? 'bar' : urlOverlay;
 
     // indicator changed → full reload
 
@@ -218,7 +261,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // tab clicks → set overlay, push URL, render
 
     const tabMap = {
-        '#v-pills-bar-tab':       'map',
+        '#v-pills-bar-tab':       'bar',
         '#v-pills-trends-tab':    'trend',
         '#v-pills-correlate-tab': 'links',
         '#v-pills-table-tab':     'table'

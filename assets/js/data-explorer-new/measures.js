@@ -535,7 +535,7 @@ const renderMeasures = async () => {
 
         console.log("* showMap");
 
-        overlay = 'map';
+        overlay = 'bar';
 
         // --- resolve metadata for the current MeasureID --- //
 
@@ -847,14 +847,17 @@ const renderMeasures = async () => {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
     const tabSelector = {
+        'bar':   '#v-pills-bar-tab',
         'map':   '#v-pills-bar-tab',
         'trend': '#v-pills-trends-tab',
         'links': '#v-pills-correlate-tab',
         'table': '#v-pills-table-tab'
     };
 
-    const target = tabSelector[overlay] || '#v-pills-bar-tab';
-    $(target).tab('show');
+    if (overlay !== 'none') {
+        const target = tabSelector[overlay] || '#v-pills-bar-tab';
+        $(target).tab('show');
+    }
 
 }
 
