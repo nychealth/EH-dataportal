@@ -16,7 +16,7 @@ Your job is to explain both architecture and behavior:
 - Explain the interaction flow for common user actions such as initial page load, indicator selection, dropdown changes, tab clicks, close actions, and browser back or forward navigation.
 - Show which functions are called, in what order, and what changes on the page at each step.
 - Distinguish broad overview material from detailed step-by-step behavior.
-- Suggest concrete improvements to code structure, state management, coupling, rendering efficiency, and maintainability. State the problem, state the suggestion, then give a code example.
+- Suggest up to 20 concrete improvements to code structure, state management, coupling, rendering efficiency, and maintainability. State the problem, state the suggestion, then give an example of code that would work.
 
 Structure the markdown with these sections:
 
