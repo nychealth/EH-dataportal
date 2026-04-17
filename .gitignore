@@ -65,3 +65,12 @@ hugo145-server-help.txt
 
 # don't track workspace settings
 .vscode/
+
+# improvement analysis documents
+improvements-auto.md
+improvements-haiku-4.5.md
+improvements-gemini-3.1-pro.md
+improvements-grok-code-fast-1.md
+improvements-opus-4.6.md
+improvements-gpt-5.4.md
+
