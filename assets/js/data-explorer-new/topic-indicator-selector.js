@@ -8,7 +8,15 @@
 // all indicator metadata as global variable
 // --------------------------------------------------------
 
-let indicators = null; 
+let indicators = null;
+
+// Destination URL set by printIndicators; used by selectIndicator on pages
+// that don't load app.js (e.g. section.html) to navigate instead of SPA-load.
+let indicatorSelectDestination = null;
+
+// Last topic selection data (indicator list + destination URL). Section.html
+// stores this in history.state so back/forward can replay the indicator modal.
+let lastTopicData = null;
 
 // --------------------------------------------------------
 // Immediately start loading metadata.json
@@ -52,21 +60,23 @@ const ensureIndicatorsLoaded = async (topic) => {
 const getIndicatorsForTopic = (title, indicatorsJSON, dest) => {
 
     console.log("* getIndicatorsForTopic");
-    
+
     const indicators = JSON.parse(indicatorsJSON);
-    
-    // Close topic selector modal
+
+    // Stash for section.html's history state
+    lastTopicData = { indicators, destination: dest };
+
+    // Wait for topic modal to fully hide before showing indicator modal.
+    // Sequencing avoids double-backdrop issues with Bootstrap 4.
+
+    $('#topicSelector').one('hidden.bs.modal', () => {
+        $('#indicatorSelector').modal('show');
+    });
+
     $('#topicSelector').modal('hide');
-    
-    // Open Indicator Selector modal
-    $('#indicatorSelector').modal('show');
-    
-    // set destination
-    // console.log('destination:', dest)
-    
-    // pass indicator json to print function
-    printIndicators(indicators, dest)
-    
+
+    printIndicators(indicators, dest);
+
 }
 
 
@@ -77,6 +87,10 @@ const getIndicatorsForTopic = (title, indicatorsJSON, dest) => {
 const printIndicators = async (indList, destination) => {
 
     console.log("* printIndicators");
+
+    // Store destination so selectIndicator can use it for navigation
+    // (needed on section.html where app.js is not loaded)
+    indicatorSelectDestination = destination;
     
     // Destination
     const indicatorDestination = document.getElementById("indicatorDestination");
@@ -157,11 +171,17 @@ const selectIndicator = async (id) => {
 
     console.log("* selectIndicator:", id);
 
-    // Dismiss the modal
+    // On pages without the full app (e.g. section.html), navigate directly.
+    // Skip dismissing the modal so the back-to-topics handler doesn't fire.
+
+    if (typeof resetSelectionForNewIndicator !== 'function') {
+        window.location.href = indicatorSelectDestination + '?id=' + Number(id);
+        return;
+    }
+
+    // SPA path — dismiss modal and reload in place
 
     dismissIndicatorModal();
-
-    // Clear stale sub-selection params so the new indicator starts clean.
 
     resetSelectionForNewIndicator(id);
 

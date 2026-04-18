@@ -40,36 +40,122 @@
 <script>
     $(document).ready(function() {
 
-        // hide the topic modal when indicator modal opens. might have to manually remove 'show' class
-        // screen gets extra dark when indicator modal pops open
+        console.log("* section.html [document.ready]");
 
-        console.log("* fire selector modals [document.ready]");
+        // ---------------------------------------------------------------
+        // Hash-based modal navigation
+        //
+        //   #topics     → topic selector modal
+        //   #indicators → indicator selector modal
+        //
+        // Selecting an indicator navigates to the topic page (full load).
+        // Back / forward traverse modal states via popstate.
+        // Topic data is stored in history.state so the indicator list
+        // can be replayed after a full page reload (back from topic page).
+        // ---------------------------------------------------------------
 
-        // Add ?home=true to URL (same as before)
-        const url = new URL(window.location.href);
+        const state = window.history.state;
 
+        // If arriving with #indicators and valid state, replay the indicator
+        // list so the modal has content when it opens.
 
-        {{/*  what does this do, exactly?  */}}
+        if (window.location.hash === '#indicators' && state && state.indicators) {
 
-        url.searchParams.set('home', 'true');
+            printIndicators(state.indicators, state.destination);
 
-        window.history.replaceState({}, '', url);
-        
-        // Fire both modals on page load
-        $('#topicSelector').modal('show');
-        
-        // Reopen each if closed or dismissed
-        $('#topicSelector').on('hidden.bs.modal', function () {
-            console.log("* topicSelector [again]");
-            // $('#topicSelector').modal('show');
+        } else {
+
+            // Fresh visit or missing state — start at topic selection.
+
+            window.history.replaceState(null, '', '#topics');
+
+        }
+
+        // Track whether a popstate handler is driving the modal transition.
+        // When true, the hidden.bs.modal handler must NOT call history.back()
+        // since the history stack already moved.
+
+        let navigatingByHistory = false;
+
+        // Show the correct modal for the current hash. Sequences hide → show
+        // to avoid Bootstrap 4 double-backdrop issues.
+
+        const syncModalsToHash = () => {
+
+            navigatingByHistory = true;
+
+            if (window.location.hash === '#indicators') {
+
+                // Want indicator modal open
+
+                if (!$('#indicatorSelector').hasClass('show')) {
+
+                    if ($('#topicSelector').hasClass('show')) {
+                        $('#topicSelector').one('hidden.bs.modal', () => {
+                            $('#indicatorSelector').modal('show');
+                        });
+                        $('#topicSelector').modal('hide');
+                    } else {
+                        $('#indicatorSelector').modal('show');
+                    }
+
+                }
+
+            } else {
+
+                // Want topic modal open (#topics or anything else)
+
+                if (!$('#topicSelector').hasClass('show')) {
+
+                    if ($('#indicatorSelector').hasClass('show')) {
+                        $('#indicatorSelector').one('hidden.bs.modal', () => {
+                            navigatingByHistory = false;
+                            $('#topicSelector').modal('show');
+                        });
+                        $('#indicatorSelector').modal('hide');
+                    } else {
+                        navigatingByHistory = false;
+                        $('#topicSelector').modal('show');
+                    }
+
+                } else {
+                    navigatingByHistory = false;
+                }
+
+            }
+
+        };
+
+        // When the indicator modal opens from a topic click, push
+        // #indicators with the topic data so back/forward can replay it.
+        // Guard: skip if hash is already #indicators (popstate replay).
+
+        $('#indicatorSelector').on('shown.bs.modal', () => {
+            if (window.location.hash !== '#indicators') {
+                window.history.pushState(lastTopicData, '', '#indicators');
+            }
+            navigatingByHistory = false;
         });
-        
-        $('#indicatorSelector').on('hidden.bs.modal', function () {
-            {{/*  don't fire this on topic selection  */}}
-            {{/*  topic selector is still open when this opens  */}}
-            console.log("* indicatorSelector [again]");
-            // $('#indicatorSelector').modal('show');
+
+        // When the indicator modal is dismissed by the user (X / backdrop),
+        // go back in history so #topics is restored and the topic modal
+        // reopens via popstate. Skip when the hide was triggered by
+        // back/forward navigation (syncModalsToHash already moved history).
+
+        $('#indicatorSelector').on('hidden.bs.modal', () => {
+            if (!navigatingByHistory && window.location.hash === '#indicators') {
+                window.history.back();
+            }
         });
+
+        // Back / forward button → sync modals to the new hash
+
+        window.addEventListener('popstate', syncModalsToHash);
+
+        // Initial open
+
+        syncModalsToHash();
+
     });
 </script>
 
