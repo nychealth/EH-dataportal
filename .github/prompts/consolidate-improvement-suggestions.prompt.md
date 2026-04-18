@@ -8,12 +8,12 @@ This prompt automates a two-step code review workflow.
 
 ## Step 1 — Collect independent reviews
 
-Send the following review prompt **independently** to each of these four models. Run each as a separate subagent so the reviews do not influence each other.
+Send the following review prompt **independently** to each of these four models. If the model names don't match exactly, choose the one that is the closest match. Run each in parallel as a separate subagent so the reviews do not influence each other. Replace all existing documents without consulting them.
 
-- Gemini 3.1 Pro
-- GPT-5.4
-- Haiku 4.5
-- Opus 4.6
+- Gemini 3.1 Pro (Preview) (copilot)
+- GPT-5.4 (copilot)
+- Claude Haiku 4.5 (copilot)
+- Claude Opus 4.6 (copilot)
 
 If a model is unavailable, skip it and proceed with the others.
 
@@ -42,7 +42,7 @@ If a model is unavailable, skip it and proceed with the others.
 
 Replace `{target}` with the user's argument. If no argument was provided, default to `assets/js/data-explorer-new/`.
 
-Save each model's output as `improvements-{model-slug}.md` at the repository root, where `{model-slug}` is a lowercase kebab-case version of the model name (e.g., `improvements-gemini-3.1-pro.md`).
+Save each model's output as `improvements-{model-slug}.md` in the documents folder, where `{model-slug}` is a lowercase kebab-case version of the model name (e.g., `improvements-gemini-3.1-pro.md`).
 
 
 ## Step 2 — Consolidate
