@@ -9,7 +9,6 @@
 // HELPERS
 // ----------------------------------------------------------------------- //
 
-// Priority-based default measure
 // Selects the default measure using the project's priority order.
 const getDefaultMeasure = (indicator) => {
 
@@ -41,14 +40,12 @@ const getDefaultMeasure = (indicator) => {
 };
 
 
-// Replace TimePeriodIDs with Time Periods
 // Converts a TimePeriodID into its display label for dropdown text.
 const getTimeLabel = (id) => {
     return timeLookup[id]?.TimePeriod || id;
 };
 
 
-// Update dropdown button label text
 // Updates every cloned dropdown trigger for the given menu type.
 const setDropdownLabel = (type, value) => {
     let cls = type + '-name';  // measure-name, geo-name, time-name
@@ -62,7 +59,6 @@ const setDropdownLabel = (type, value) => {
 // INIT — set default measure, then build all menus
 // ----------------------------------------------------------------------- //
 
-// Initializes the three dropdown menus for the current indicator.
 const printMenus = async (indicatorID) => {
 
     console.log('* printMenus');
@@ -78,8 +74,6 @@ const printMenus = async (indicatorID) => {
 
     const selectedMeasure = indicator.Measures.find(m => m.MeasureID === MeasureID);
 
-    // Set a valid default measure if the current one is missing or stale.
-
     // Fall back to the preferred default when the URL or globals point to an invalid measure.
     if (!MeasureID || !selectedMeasure) {
         const defaultMeasure = getDefaultMeasure(indicator);
@@ -94,7 +88,6 @@ const printMenus = async (indicatorID) => {
 // CORE UPDATE — rebuild all three dropdowns from globals
 // ----------------------------------------------------------------------- //
 
-// Rebuilds measure, geography, and time dropdowns from the current globals.
 const updateAllMenus = (indicator) => {
 
     console.log('* updateAllMenus');
@@ -145,9 +138,7 @@ const updateAllMenus = (indicator) => {
 
     const availableGeoValues = geos.map(g => g.value);
 
-    // pick finest available geo if current is invalid
-
-    // Default to the finest available geography when the current one is missing or invalid.
+    // default to the finest available geography when the current one is missing or invalid
     if (!GeoType || !availableGeoValues.includes(GeoType)) {
 
         GeoType = availableGeoValues.reduce((best, current) => {
@@ -180,9 +171,7 @@ const updateAllMenus = (indicator) => {
         })
         .sort((a, b) => b.endPeriod - a.endPeriod);
 
-    // Default to most recent time if current is invalid
-
-    // Default to the most recent available time period when the current one is stale.
+    // default to the most recent available time period when the current one is stale
     if (!TimePeriodID || !times.find(t => t.value === TimePeriodID)) {
         TimePeriodID = times.length ? times[0].value : null;
     }
@@ -248,15 +237,11 @@ const styleAndPrintMenu = (items, destination, type) => {
 // SELECTION HANDLER — update globals, push URL, rebuild menus, re-render
 // ----------------------------------------------------------------------- //
 
-// Applies a dropdown selection, syncs the URL, and re-renders the active view.
 const handleSelection = (type, value) => {
 
     console.log(`* handleSelection — ${type}: ${value}`);
 
-    // update globals — preserve sibling values if they're still valid for the new selection;
-    // updateAllMenus will reset any that no longer apply
-
-    // Update exactly one global based on which dropdown the user changed.
+    // update exactly one global — updateAllMenus will cascade-reset siblings that no longer apply
     if (type === 'measure') MeasureID = value;
     if (type === 'geo')     GeoType   = value;
     if (type === 'time')    TimePeriodID = value;
@@ -285,7 +270,7 @@ const handleSelection = (type, value) => {
 
 
 // ----------------------------------------------------------------------- //
-// EXISTING FUNCTION (UNCHANGED)
+// DROPDOWN UI
 // ----------------------------------------------------------------------- //
 
 // Reflects the clicked option text back into the visible dropdown trigger.

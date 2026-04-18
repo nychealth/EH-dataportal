@@ -163,15 +163,13 @@ const normalizeLegacyOverlayURL = () => {
 // Tab clicks pass false (default) — the map doesn't need to redraw just because
 // the overlay pane switches.
 
-// Dispatches rendering to the active overlay using the current globals.
 const renderCurrentView = (updateMap = false) => {
 
     console.log("* renderCurrentView", { MeasureID, GeoType, TimePeriodID, overlay, updateMap });
 
     if (updateMap) showMap();
 
-    // dispatch to the correct render function based on the active overlay value
-    // Route the current overlay value to the matching show* renderer.
+    // route the current overlay value to the matching show* renderer
     switch (overlay) {
 
         case 'none': {
@@ -275,8 +273,6 @@ window.addEventListener('popstate', async (event) => {
 
     renderCurrentView(true);
 });
-
-
 
 
 // ----------------------------------------------------------------------- //

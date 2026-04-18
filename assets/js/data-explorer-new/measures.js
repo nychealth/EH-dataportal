@@ -437,6 +437,23 @@ const clickLinksToggle = (e) => {
 
 
 // ----------------------------------------------------------------------- //
+// tab enable / disable helpers
+// ----------------------------------------------------------------------- //
+
+// Marks a Bootstrap tab as disabled when that view has no usable data.
+const disableTab = (el) => {
+    el.classList.add('disabled');
+    el.setAttribute('aria-disabled', true);
+};
+
+// Re-enables a Bootstrap tab when the current indicator supports that view.
+const enableTab = (el) => {
+    el.classList.remove('disabled');
+    el.setAttribute('aria-disabled', false);
+};
+
+
+// ----------------------------------------------------------------------- //
 // function to render the measures
 // ----------------------------------------------------------------------- //
 
@@ -549,11 +566,7 @@ const renderMeasures = async () => {
 
     // ===== map (Leaflet — always visible) ======================== //
 
-    // showMap updates the Leaflet map with current dropdown selections.
-    // It is called on every render, regardless of which overlay tab is active,
-    // because the map is always visible on the left side of the page.
-
-    // Filters map rows to the current selection and redraws the Leaflet layer.
+    // Redraws the Leaflet map (always visible on the left) with the current selection.
     showMap = () => {
 
         console.log("* showMap");
@@ -585,10 +598,7 @@ const renderMeasures = async () => {
 
     // ===== bar chart (right overlay pane) ======================= //
 
-    // showBar renders the bar chart in the overlay pane.
-    // The Leaflet map is handled separately by showMap above.
-
-    // Renders the right-side bar overlay from the same filtered rows used by the map.
+    // Renders the right-side bar overlay from the filtered map rows.
     showBar = (e) => {
 
         console.log("* showBar");
@@ -766,8 +776,6 @@ const renderMeasures = async () => {
 
     // ===== links ================================================== //
 
-    // define function
-
     // Renders the links view, or falls back to disparities when links are unavailable.
     showLinks = (e) => {
 
@@ -861,18 +869,6 @@ const renderMeasures = async () => {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
     // disable tabs when no data is available
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-
-    // Marks a Bootstrap tab as disabled when that view has no usable data.
-    const disableTab = (el) => {
-        el.classList.add('disabled');
-        el.setAttribute('aria-disabled', true);
-    };
-
-    // Re-enables a Bootstrap tab when the current indicator supports that view.
-    const enableTab = (el) => {
-        el.classList.remove('disabled');
-        el.setAttribute('aria-disabled', false);
-    };
 
     // map
 

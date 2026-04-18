@@ -2,12 +2,6 @@
 // bar.js
 // ======================================================================= //
 
-/*
-    STATUS:
-        - Geo is not filtered, in data. We need something like 'selected Geography' coming in from Map; we can filter in this spec.
-
-*/
-
 // console.log(">> bar.js");
 
 // Builds and renders the Vega-Lite bar chart for the active geography slice.
@@ -20,23 +14,21 @@ const renderBar = (
 
     console.log("** renderBar");
 
-    // // document.getElementById('viewDescription').innerHTML = 'Hover over the map or chart for more information.'
-
     console.log("data [renderBar]", data);
     console.log("metadata [renderBar]", metadata);
     console.log("geo [renderBar]", geography);
 
-    // // ----------------------------------------------------------------------- //
-    // // get unique time in data
-    // // ----------------------------------------------------------------------- //
+    // ----------------------------------------------------------------------- //
+    // get unique time in data
+    // ----------------------------------------------------------------------- //
     
     const barTimes =  [...new Set(data.map(item => item.TimePeriod))];
 
     console.log("barTimes [bar.js]", barTimes);
 
-    // // ----------------------------------------------------------------------- //
-    // // set metadata
-    // // ----------------------------------------------------------------------- //
+    // ----------------------------------------------------------------------- //
+    // set metadata
+    // ----------------------------------------------------------------------- //
 
     let barGeoType            = data[0]?.GeoType;
     let barMeasurementType    = metadata[0]?.MeasurementType;
@@ -51,9 +43,9 @@ const renderBar = (
 
 
 
-    // // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-    // // Determine data parameters that inform bar style
-    // // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // Determine data parameters that inform bar style
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
     const hasCI = data.some(d => /\(.*\)/.test(d.CI)); // looks to see if there are parentheses in the CI field, if yes, true
     console.log('has CI [bar.js]', hasCI)
@@ -138,9 +130,6 @@ const renderBar = (
                             "scale": {"scheme": {"name": "viridis", "extent": [1, 0]}},
                             "legend": false
                         },
-                        // "stroke": {
-                        //     "value": "transparent"
-                        // },
                         "stroke": {
                             "condition": [
                                 {"param": "highlight", "empty": false, "value": "black"},
@@ -332,9 +321,6 @@ const renderBar = (
                             "scale": {"scheme": {"name": "viridis", "extent": [1, 0]}},
                             "legend": false
                         },
-                        // "stroke": {
-                        //     "value": "transparent"
-                        // },
                         "stroke": {
                             "condition": [
                                 {"param": "highlight", "empty": false, "value": "black"},
@@ -376,9 +362,9 @@ const renderBar = (
         }
 
 
-    // // ----------------------------------------------------------------------- //
-    // // define spec
-    // // ----------------------------------------------------------------------- //
+    // ----------------------------------------------------------------------- //
+    // define spec
+    // ----------------------------------------------------------------------- //
     
     var barSpec = {
         "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
@@ -427,9 +413,9 @@ const renderBar = (
     }
 
     
-    // // ----------------------------------------------------------------------- //
-    // // render chart
-    // // ----------------------------------------------------------------------- //
+    // ----------------------------------------------------------------------- //
+    // render chart
+    // ----------------------------------------------------------------------- //
 
     console.log('vega-lite spec:')
     console.log(barSpec)
@@ -503,29 +489,5 @@ const renderBar = (
         });
         
     });
-
-    // // send info for printing
-    // vizYear = barTime;
-    // vizGeography = barGeoType;
-    // // vizSource = metadata[0].Sources;
-    // // printSpec = barspec;
-    // chartType = 'bar';
-
-    // // console.log(barspec);
-
-    // // ----------------------------------------------------------------------- //
-    // // Send chart data to download
-    // // ----------------------------------------------------------------------- //
-
-    // // let dataForDownload = [...barspec.data.values] // create a copy
-
-    // // let downloadTable = aq.from(dataForDownload)
-    // //     .derive({Indicator: `'${indicatorName}: ${barMeasurementType}${displayType && ` (${displayType})`}'`}) // add indicator name and type column
-    // //     .select(aq.not('GeoRank', "end_period", "start_period", "ban_summary_flag", "GeoTypeShortDesc", "MeasureID", "DisplayValue")) // remove excess columns
-    
-    // // console.log("downloadTable [renderBar]");
-    // // downloadTable.print()
-
-    // // CSVforDownload = downloadTable.toCSV()
 
 }

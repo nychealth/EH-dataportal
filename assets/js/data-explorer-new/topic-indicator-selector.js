@@ -32,8 +32,6 @@ const indicatorsPromise = fetch(`${data_repo}${data_branch}/indicators/metadata/
     })
     .catch(error => console.error("# Error loading metadata.json:", error));
 
-// Waits for indicators to be ready
-
 // Waits for metadata.json to finish loading before any indicator UI reads it.
 const ensureIndicatorsLoaded = async (topic) => {
 
@@ -87,7 +85,6 @@ const getIndicatorsForTopic = (title, indicatorsJSON, dest) => {
 // Print chosen topic's indicators to indicator selection modal 
 // ----------------------------------------------------------------------- //
 
-// Renders the topic's indicator cards into the indicator selection modal.
 const printIndicators = async (indList, destination) => {
 
     console.log("* printIndicators");
@@ -162,13 +159,98 @@ const printIndicators = async (indList, destination) => {
 // Dismiss the indicator selector modal (works before or after Bootstrap loads)
 // ----------------------------------------------------------------------- //
 
-// Hides the indicator modal without assuming anything about page context.
 const dismissIndicatorModal = () => {
 
     // By the time a user can interact with the modal, Bootstrap is loaded
     $('#indicatorSelector').modal('hide');
 
 };
+
+
+// ----------------------------------------------------------------------- //
+// Print basic indicator info from metadata to page 
+// ----------------------------------------------------------------------- //
+
+const printIndicatorInfo = async (IndicatorID) => {
+
+    console.log("* printIndicatorInfo");
+    
+    // Ensure metadata are loaded
+    const data = await ensureIndicatorsLoaded('printing to page');
+    // console.log("Indicators ready to print to page!");
+    
+    // Find the indicator object where IndicatorID matches IndicatorID
+    const indicator = data.find(d => d.IndicatorID === IndicatorID);
+    
+    console.log('This indicator:');
+    console.log(indicator)
+    
+    // Reopen the chooser if the requested indicator is missing from metadata.
+    if (!indicator) {
+
+        console.warn("No indicator found for ID:", IndicatorID);
+        $('#indicatorSelector').modal('show'); // fire Indicator Selection Modal
+        return;
+
+    }
+    
+    // Query holders
+    const nameHolders = document.querySelectorAll('.indicator-name');
+    const descriptionHolders = document.querySelectorAll('.indicator-description');
+    
+    // Fill name fields
+    // Keep desktop and mobile indicator titles in sync.
+    nameHolders.forEach(el => {
+        el.textContent = indicator.IndicatorName ?? "";
+    });
+    
+    // Fill description fields
+    // Keep all description placeholders aligned with the chosen indicator.
+    descriptionHolders.forEach(el => {
+        el.textContent = indicator.IndicatorDescription ?? "";
+    });
+    
+    // Handle Data Source and How Calculated
+    const howCalculatedEl = document.getElementById('howCalculated');
+    const dataSourcesEl = document.getElementById('dataSources');
+    
+    // Clear previous content
+    howCalculatedEl.innerHTML = '';
+    dataSourcesEl.innerHTML = '';
+    
+    // To store unique sources
+    const uniqueSources = new Set();
+    
+    // Loop through Measures
+    // Collect one About paragraph and one unique source entry per measure.
+    indicator.Measures.forEach(measure => {
+
+        // Append MeasurementType and how_calculated
+
+        const p = document.createElement('p');
+        p.innerHTML = `<strong>${measure.MeasurementType}:</strong> ${measure.how_calculated}`;
+        howCalculatedEl.appendChild(p);
+        
+        // Collect sources
+
+        if (measure.Sources) {
+            uniqueSources.add(measure.Sources);
+        }
+
+    });
+    
+    // Display unique sources
+
+    uniqueSources.forEach(source => {
+
+        const p = document.createElement('p');
+        p.textContent = source;
+        dataSourcesEl.appendChild(p);
+
+    });
+    
+    
+}
 
 
 // ----------------------------------------------------------------------- //
@@ -278,92 +360,5 @@ const checkURL = async () => {
 
     renderCurrentView(true);
 
-}
-
-
-// ----------------------------------------------------------------------- //
-// Print basic indicator info from metadata to page 
-// ----------------------------------------------------------------------- //
-
-// Writes the current indicator name, description, methods, and sources to the page.
-const printIndicatorInfo = async (IndicatorID) => {
-
-    console.log("* printIndicatorInfo");
-    
-    // Ensure metadata are loaded
-    const data = await ensureIndicatorsLoaded('printing to page');
-    // console.log("Indicators ready to print to page!");
-    
-    // Find the indicator object where IndicatorID matches IndicatorID
-    const indicator = data.find(d => d.IndicatorID === IndicatorID);
-    
-    console.log('This indicator:');
-    console.log(indicator)
-    
-    // Reopen the chooser if the requested indicator is missing from metadata.
-    if (!indicator) {
-
-        console.warn("No indicator found for ID:", IndicatorID);
-        $('#indicatorSelector').modal('show'); // fire Indicator Selection Modal
-        return;
-
-    }
-    
-    // Query holders
-    const nameHolders = document.querySelectorAll('.indicator-name');
-    const descriptionHolders = document.querySelectorAll('.indicator-description');
-    
-    // Fill name fields
-    // Keep desktop and mobile indicator titles in sync.
-    nameHolders.forEach(el => {
-        el.textContent = indicator.IndicatorName ?? "";
-    });
-    
-    // Fill description fields
-    // Keep all description placeholders aligned with the chosen indicator.
-    descriptionHolders.forEach(el => {
-        el.textContent = indicator.IndicatorDescription ?? "";
-    });
-    
-    // Handle Data Source and How Calculated
-    const howCalculatedEl = document.getElementById('howCalculated');
-    const dataSourcesEl = document.getElementById('dataSources');
-    
-    // Clear previous content
-    howCalculatedEl.innerHTML = '';
-    dataSourcesEl.innerHTML = '';
-    
-    // To store unique sources
-    const uniqueSources = new Set();
-    
-    // Loop through Measures
-    // Collect one About paragraph and one unique source entry per measure.
-    indicator.Measures.forEach(measure => {
-
-        // Append MeasurementType and how_calculated
-
-        const p = document.createElement('p');
-        p.innerHTML = `<strong>${measure.MeasurementType}:</strong> ${measure.how_calculated}`;
-        howCalculatedEl.appendChild(p);
-        
-        // Collect sources
-
-        if (measure.Sources) {
-            uniqueSources.add(measure.Sources);
-        }
-
-    });
-    
-    // Display unique sources
-
-    uniqueSources.forEach(source => {
-
-        const p = document.createElement('p');
-        p.textContent = source;
-        dataSourcesEl.appendChild(p);
-
-    });
-    
-    
 }
 
