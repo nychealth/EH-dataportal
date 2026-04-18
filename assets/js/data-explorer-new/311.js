@@ -12,6 +12,7 @@
 
 //------- function to draw 311 buttons
 
+// Loads 311 crosswalk links and prints the matching action buttons for one indicator.
 const draw311Buttons = (indicator_id) => {
 
     console.log("* draw311Buttons");
@@ -41,6 +42,7 @@ const draw311Buttons = (indicator_id) => {
 
             // Creates label if there are 311 links
 
+            // Show or hide the 311 heading and containers based on whether links exist.
             if (filteredCrosswalk.length > 0) {
 
                 document.getElementById('311label').innerHTML = 'Contact 311 about:'
@@ -54,10 +56,12 @@ const draw311Buttons = (indicator_id) => {
             };
 
             // draws 311 buttons
+            // Render one outbound 311 article link per matching crosswalk record.
             for (let i = 0; i < filteredCrosswalk.length; i ++ ) {
 
                 let title = filteredCrosswalk[i].topic
                 let destination = filteredCrosswalk[i].kaLink
+                // kanumber is the 311 knowledge article ID from the crosswalk CSV
                 let btn = `<a href="https://portal.311.nyc.gov/article/?kanumber=${destination}" class="mr-1" target="_blank" rel="noopener noreferrer">${title}</a>| `
                 
                 dest.forEach(element => element.innerHTML += btn)

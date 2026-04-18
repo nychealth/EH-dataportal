@@ -2,9 +2,16 @@
 // table.js
 // ======================================================================= //
 
+// builds and renders the Arquero-backed summary data table
+
 // console.log('>> table.js')
 
 
+// ----------------------------------------------------------------------- //
+// render table
+// ----------------------------------------------------------------------- //
+
+// Builds the summary table HTML and activates the DataTables wrapper around it.
 const renderTable = (tableData) => {
 
     console.log("** renderTable");
@@ -15,6 +22,7 @@ const renderTable = (tableData) => {
 
     const filteredTableData = tableData;
 
+    // Clear the table shell entirely when no rows are available for the current indicator.
     if (!filteredTableData || filteredTableData.length === 0) {
         document.getElementById('summary-table').innerHTML = '';
         return;
@@ -29,6 +37,7 @@ const renderTable = (tableData) => {
     document.querySelector("#table-unreliability").innerHTML = "<span class='fs-xs'><strong>Notes:</strong></span> "
     document.getElementById("table-unreliability").classList.add('hide')
 
+    // Print each distinct unreliability note once above the table.
     table_unreliability.forEach(element => {
         document.querySelector("#table-unreliability").innerHTML += "<div class='fs-xs'>" + element + "</div>";
         document.getElementById('table-unreliability').classList.remove('hide')
@@ -50,8 +59,10 @@ const renderTable = (tableData) => {
     const filteredTableAqData = aq.from(filteredTableData)
         .groupby("TimePeriod", "GeoTypeDesc", "GeoID", "GeoRank", "BoroID", "Borough", "Geography")
         .pivot("MeasurementDisplay", "DisplayCI", {sort: false})
+        // Build a grouped Area label that optionally appends borough context for nested geographies.
         .derive({
             Area: aq.escape(d => {
+                // Append borough context only for non-borough rows that have it.
                 if (d.Borough && d.GeoTypeDesc != 'Borough') {
                     return `${d.Geography} xx ${d.Borough} yy`;
                 } else {
@@ -152,6 +163,7 @@ const renderTable = (tableData) => {
             {
                 targets: 8,
                 render: function (data, type) {
+                    // Strip formatting so numeric sorts use the raw number rather than display text.
                     if (type === 'sort' || type === 'type') {
                         const cleaned = data.replace(/,/g, '');
                         const num = parseFloat(cleaned);
@@ -163,6 +175,7 @@ const renderTable = (tableData) => {
             {
                 targets: 7,
                 render: function (data, type) {
+                    // Inject line breaks only for display mode so sorting/searching sees plain text.
                     if (type === 'display') {
                         return data.replace(/xx/g, '<br><span style="font-size:.65rem; color: #434343;">')
                                    .replace(/yy/g, '</span>');
@@ -178,6 +191,7 @@ const renderTable = (tableData) => {
         createdRow: function (row, data) {
             const time = data[0];
             const GeoTypeDesc = data[1];
+            // Store grouping metadata on each row so drawCallback can rebuild collapsible headers.
             if (time && GeoTypeDesc) {
                 row.setAttribute(`data-group`, `${time}-${GeoTypeDesc}`);
                 row.setAttribute(`data-time`, `${time}`);
@@ -193,12 +207,14 @@ const renderTable = (tableData) => {
             let last = null;
             let lastTime = null;
 
+            // Inserts one synthetic group header row whenever the grouping value changes.
             const createGroupRow = (groupColumn, lvl) => {
 
                 api.column(groupColumn, {page:'current'}).data().each(function (group, i) {
 
                     const time = data[i][0];
 
+                    // Start a new group header each time the group label or time bucket changes.
                     if (last !== group || lastTime !== time) {
 
                         $(rows).eq(i).before(
@@ -227,6 +243,7 @@ const renderTable = (tableData) => {
     });
 };
 
+// Binds click handlers that expand and collapse grouped summary-table rows.
 const handleToggle = () => {
 
     $('body').off('click', '#summary-table tr.group td');
@@ -238,11 +255,13 @@ const handleToggle = () => {
         const group = td.data('group');
         const groupLevel = td.data('group-level');
 
+        // Toggles an entire top-level time group and all of its subgroup rows.
         const handleGroupToggle = () => {
 
             const subGroupToggle = $(`td[data-time="${group}"][data-group-level="1"]`);
             const subGroupRow = $(`tr[data-time="${group}"]`);
 
+            // Show or hide every subgroup row that belongs to the clicked time header.
             if (subGroupToggle.css('display') === 'none') {
 
                 subGroupToggle.show().removeClass('hidden');
@@ -257,11 +276,13 @@ const handleToggle = () => {
             }
         };
 
+        // Toggles the data rows that sit under one geography subgroup header.
         const handleSubGroupToggle = () => {
 
             const subDataGroup = tr.next('tr').data('group');
             const subGroupRow = $(`tr[data-group="${subDataGroup}"]`);
 
+            // Show or hide only the rows nested under the clicked subgroup header.
             if (subGroupRow.css('display') === 'none') {
 
                 subGroupRow.show().removeClass('hidden');
@@ -274,6 +295,7 @@ const handleToggle = () => {
             }
         };
 
+        // Route clicks to either the time-level or subgroup-level toggle behavior.
         if (groupLevel === 0) {
             handleGroupToggle();
         } else {

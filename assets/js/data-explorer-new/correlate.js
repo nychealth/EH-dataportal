@@ -4,6 +4,7 @@
 
 // console.log(">> correlate.js");
 
+// Placeholder correlate renderer for the not-yet-implemented links chart.
 const renderCorrelate = (
     data
     // primaryMetadata,   // metadata.json for primary indicator

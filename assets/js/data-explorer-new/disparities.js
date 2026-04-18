@@ -1,9 +1,10 @@
 // ======================================================================= //
-// links.js
+// disparities.js
 // ======================================================================= //
 
 // console.log(">> disparities.js");
 
+// Placeholder disparities renderer for the not-yet-implemented disparities chart.
 const renderDisparitiesChart = (
     data
     // primaryMetadata,   // metadata.json for primary indicator

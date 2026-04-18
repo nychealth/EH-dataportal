@@ -4,9 +4,9 @@
 
 // console.log(">> topic-indicator-selector.js");
 
-// --------------------------------------------------------
+// ----------------------------------------------------------------------- //
 // all indicator metadata as global variable
-// --------------------------------------------------------
+// ----------------------------------------------------------------------- //
 
 let indicators = null;
 
@@ -18,9 +18,9 @@ let indicatorSelectDestination = null;
 // stores this in history.state so back/forward can replay the indicator modal.
 let lastTopicData = null;
 
-// --------------------------------------------------------
+// ----------------------------------------------------------------------- //
 // Immediately start loading metadata.json
-// --------------------------------------------------------
+// ----------------------------------------------------------------------- //
 
 const indicatorsPromise = fetch(`${data_repo}${data_branch}/indicators/metadata/metadata.json`)
     .then(response => response.json())
@@ -34,10 +34,12 @@ const indicatorsPromise = fetch(`${data_repo}${data_branch}/indicators/metadata/
 
 // Waits for indicators to be ready
 
+// Waits for metadata.json to finish loading before any indicator UI reads it.
 const ensureIndicatorsLoaded = async (topic) => {
 
     // console.log("* ensureIndicatorsLoaded (", topic, ")");
 
+    // Reuse the already-loaded metadata instead of awaiting the fetch again.
     if (indicators) {
 
         return indicators; 
@@ -53,10 +55,11 @@ const ensureIndicatorsLoaded = async (topic) => {
 }
 
 
-// --------------------------------------------------------
+// ----------------------------------------------------------------------- //
 // When a topic is selected, show indicator menu modal, and print indicators
-// --------------------------------------------------------
+// ----------------------------------------------------------------------- //
 
+// Opens the indicator modal for the selected topic and remembers its state.
 const getIndicatorsForTopic = (title, indicatorsJSON, dest) => {
 
     console.log("* getIndicatorsForTopic");
@@ -80,10 +83,11 @@ const getIndicatorsForTopic = (title, indicatorsJSON, dest) => {
 }
 
 
-// --------------------------------------------------------
+// ----------------------------------------------------------------------- //
 // Print chosen topic's indicators to indicator selection modal 
-// --------------------------------------------------------
+// ----------------------------------------------------------------------- //
 
+// Renders the topic's indicator cards into the indicator selection modal.
 const printIndicators = async (indList, destination) => {
 
     console.log("* printIndicators");
@@ -94,6 +98,7 @@ const printIndicators = async (indList, destination) => {
     
     // Destination
     const indicatorDestination = document.getElementById("indicatorDestination");
+    // Stop early if the section template is missing the modal content target.
     if (!indicatorDestination) {
         console.error("Error: No element with id 'indicatorDestination' found.");
         return;
@@ -106,6 +111,7 @@ const printIndicators = async (indList, destination) => {
     // Clear existing content
     indicatorDestination.innerHTML = '';
     
+    // Render each indicator section block in the order defined by Hugo front matter.
     indList.forEach(section => {
         // Only proceed if there are indicators
         if (!section.indicators || section.indicators.length === 0) return;
@@ -123,6 +129,7 @@ const printIndicators = async (indList, destination) => {
                 return ''; // skip if not found
             }
             
+            // inline onclick: buttons are injected via innerHTML, so addEventListener would not survive DOM replacement
             return `
                 <div class="indicator-card mb-1">
                     <div class="border p-2 border-gray-300 rounded">
@@ -151,10 +158,11 @@ const printIndicators = async (indList, destination) => {
 }
 
 
-// --------------------------------------------------------
+// ----------------------------------------------------------------------- //
 // Dismiss the indicator selector modal (works before or after Bootstrap loads)
-// --------------------------------------------------------
+// ----------------------------------------------------------------------- //
 
+// Hides the indicator modal without assuming anything about page context.
 const dismissIndicatorModal = () => {
 
     // By the time a user can interact with the modal, Bootstrap is loaded
@@ -163,10 +171,11 @@ const dismissIndicatorModal = () => {
 };
 
 
-// --------------------------------------------------------
+// ----------------------------------------------------------------------- //
 // Select an indicator from the modal (SPA-style, no page reload)
-// --------------------------------------------------------
+// ----------------------------------------------------------------------- //
 
+// Loads the chosen indicator either via SPA flow or full-page navigation.
 const selectIndicator = async (id) => {
 
     console.log("* selectIndicator:", id);
@@ -174,6 +183,7 @@ const selectIndicator = async (id) => {
     // On pages without the full app (e.g. section.html), navigate directly.
     // Skip dismissing the modal so the back-to-topics handler doesn't fire.
 
+    // Fall back to plain navigation on pages that do not load the SPA app.js helpers.
     if (typeof resetSelectionForNewIndicator !== 'function') {
         window.location.href = indicatorSelectDestination + '?id=' + Number(id);
         return;
@@ -201,10 +211,11 @@ const selectIndicator = async (id) => {
 };
 
 
-// --------------------------------------------------------
+// ----------------------------------------------------------------------- //
 // Check for URL parameter (?id=XXXX) and load indicator metadata 
-// --------------------------------------------------------
+// ----------------------------------------------------------------------- //
 
+// Boots the explorer from URL params or opens the chooser when none are present.
 const checkURL = async () => {
 
     console.log("* checkURL");
@@ -228,6 +239,7 @@ const checkURL = async () => {
 
     // No indicator in URL — wait for Bootstrap to finish loading, then open the modal
 
+    // Open the chooser modal when the URL does not point to a valid indicator.
     if (!paramsObj.id || isNaN(chosenIndicator)) {
         console.log("No indicator ID in URL, opening indicator selector.");
         window.addEventListener('load', () => $('#indicatorSelector').modal('show'), { once: true });
@@ -269,10 +281,11 @@ const checkURL = async () => {
 }
 
 
-// --------------------------------------------------------
+// ----------------------------------------------------------------------- //
 // Print basic indicator info from metadata to page 
-// --------------------------------------------------------
+// ----------------------------------------------------------------------- //
 
+// Writes the current indicator name, description, methods, and sources to the page.
 const printIndicatorInfo = async (IndicatorID) => {
 
     console.log("* printIndicatorInfo");
@@ -287,6 +300,7 @@ const printIndicatorInfo = async (IndicatorID) => {
     console.log('This indicator:');
     console.log(indicator)
     
+    // Reopen the chooser if the requested indicator is missing from metadata.
     if (!indicator) {
 
         console.warn("No indicator found for ID:", IndicatorID);
@@ -300,11 +314,13 @@ const printIndicatorInfo = async (IndicatorID) => {
     const descriptionHolders = document.querySelectorAll('.indicator-description');
     
     // Fill name fields
+    // Keep desktop and mobile indicator titles in sync.
     nameHolders.forEach(el => {
         el.textContent = indicator.IndicatorName ?? "";
     });
     
     // Fill description fields
+    // Keep all description placeholders aligned with the chosen indicator.
     descriptionHolders.forEach(el => {
         el.textContent = indicator.IndicatorDescription ?? "";
     });
@@ -321,6 +337,7 @@ const printIndicatorInfo = async (IndicatorID) => {
     const uniqueSources = new Set();
     
     // Loop through Measures
+    // Collect one About paragraph and one unique source entry per measure.
     indicator.Measures.forEach(measure => {
 
         // Append MeasurementType and how_calculated

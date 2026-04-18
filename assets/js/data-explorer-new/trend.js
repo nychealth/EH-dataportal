@@ -5,6 +5,7 @@
 // console.log('>> trend.js')
 
 
+// Placeholder trend renderer for the not-yet-implemented trend chart.
 const renderTrendChart = (
     data, 
     metadata

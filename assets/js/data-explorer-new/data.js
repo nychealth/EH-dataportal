@@ -10,6 +10,7 @@
 // function to load indicator metadata
 // ----------------------------------------------------------------------- //
 
+// Loads one indicator's metadata state and starts the downstream data pipeline.
 const loadIndicator = async (this_IndicatorID, dont_add_to_history) => {
 
     console.log("* loadIndicator:", this_IndicatorID, typeof this_IndicatorID);
@@ -18,6 +19,7 @@ const loadIndicator = async (this_IndicatorID, dont_add_to_history) => {
 
     // preserve current tab; default to none (no overlay open) on first load
 
+    // Default to no overlay until a tab is explicitly chosen or restored.
     if (!overlay) overlay = 'none';
 
     // if IndicatorID isn't given, use the first indicator from the dropdown list
@@ -25,6 +27,7 @@ const loadIndicator = async (this_IndicatorID, dont_add_to_history) => {
 
     // const firstIndicatorId = document.querySelectorAll('#indicator-dropdown button')[0].getAttribute('data-indicator-id');
 
+    // coerce to float; HTML data attributes are strings, but IndicatorID comparisons use == throughout
     IndicatorID = parseFloat(this_IndicatorID);
 
     // remove active class from every list element
@@ -81,6 +84,7 @@ const loadIndicator = async (this_IndicatorID, dont_add_to_history) => {
     const nextURL = new URL(window.location);
     nextURL.searchParams.set('id', parseFloat(IndicatorID));
 
+    // Replace the first entry or push a new one only when this load is not history-driven.
     if (!dont_add_to_history && (window.history.state === null || state === null || window.history.state.id != IndicatorID)) {
 
         if (window.history.state === null || state === null) {
@@ -126,6 +130,7 @@ const loadIndicator = async (this_IndicatorID, dont_add_to_history) => {
 // function to Load indicator data and create Arquero data frame
 // ----------------------------------------------------------------------- //
 
+// Fetches indicator rows and prepares the shared Arquero tables used by all views.
 const loadData = async (this_IndicatorID) => {
 
     console.log("* loadData");
@@ -145,6 +150,7 @@ const loadData = async (this_IndicatorID) => {
 
             // call the geo file and time file loading functions
             
+            // Load time and geography metadata in parallel before joining anything.
             await Promise.all([
                 loadTime(),
                 loadGeo()
@@ -157,6 +163,7 @@ const loadData = async (this_IndicatorID) => {
             
         })
 
+    // trigger 311 button render after all data fetches and joins have resolved
     draw311Buttons(this_IndicatorID)
 
 }
@@ -165,6 +172,7 @@ const loadData = async (this_IndicatorID) => {
 // function to load geographic data
 // ----------------------------------------------------------------------- //
 
+// Loads the geography lookup table used to decorate indicator rows.
 const loadGeo = async () => {
 
     console.log("* loadGeo");
@@ -186,6 +194,7 @@ const loadGeo = async () => {
 // function to load time period data
 // ----------------------------------------------------------------------- //
 
+// Loads time-period metadata and rebuilds the TimePeriodID lookup object.
 const loadTime = async () => {
 
     console.log("* loadTime");
@@ -200,6 +209,7 @@ const loadTime = async () => {
             // Build a plain JS lookup keyed by TimePeriodID
 
             timeLookup = {};
+            // Mirror the Arquero time table into a plain object for fast menu lookups.
             timeTable.objects().forEach(t => {
                 timeLookup[t.TimePeriodID] = t;
             });
@@ -215,6 +225,7 @@ const loadTime = async () => {
 // function to join indicator data and geo data
 // ----------------------------------------------------------------------- //
 
+// Joins indicator rows with geography and time metadata for every downstream view.
 const joinData = async () => {
 
     console.log("* joinData");
@@ -232,6 +243,7 @@ const joinData = async () => {
     let MeasurementType = [];
     let DisplayType = [];
 
+    // Extract display metadata into a lightweight table that can be joined onto view data.
     indicatorMeasures.forEach(
 
         (measure, i) => {
@@ -265,6 +277,7 @@ const joinData = async () => {
     let mapTimesGeos = [];
     let trendTimesGeos = [];
 
+    // Expand each measure's Table, Map, and Trend metadata into explicit time-by-geo combinations.
     indicatorMeasures.map(
 
         // map over measures
@@ -277,6 +290,7 @@ const joinData = async () => {
 
             let aqTableTimesGeosMeasureArray =
 
+                // Expand every table geography into one row per allowed time period.
                 measure.VisOptions[0].Table.map(
 
                     // map over table geotypes
@@ -326,6 +340,7 @@ const joinData = async () => {
 
             let aqMapTimesGeosMeasureArray =
 
+                // Expand every map geography into one row per allowed time period.
                 measure.VisOptions[0].Map.map(
 
                     // map over map geotypes
@@ -372,6 +387,7 @@ const joinData = async () => {
 
             let aqTrendTimesGeosMeasureArray =
 
+                // Expand every trend geography into one row per allowed time period.
                 measure.VisOptions[0].Trend.map(
 
                     // map over trend geotypes
@@ -464,6 +480,7 @@ const joinData = async () => {
 
     // console.log(">>>> joinedAqData [joinData]");
 
+    // Build one fully decorated dataset first, then derive view-specific slices from it.
     joinedAqData = aqIndicatorData
         // join the additional geo info
         .join_left(geoTable, [["GeoID", "GeoType"], ["GeoID", "GeoType"]])
@@ -484,6 +501,7 @@ const joinData = async () => {
         .join_left(aqMeasureDisplay, "MeasureID")
         // filter to keep only times and geos we want in the table
         .semijoin(aqTableTimesGeos, [["MeasureID", "TimePeriodID", "GeoType"], ["MeasureID", "TimePeriodID", "GeoType"]])
+        // MeasurementDisplay: column header string; DisplayCI: data value joined with confidence interval for each cell
         .derive({
             MeasurementDisplay: d => op.trim(op.join([d.MeasurementType, d.DisplayType], " ")),
             DisplayCI: d => op.trim(op.join([d.DisplayValue, d.CI], " "))
@@ -526,6 +544,7 @@ const joinData = async () => {
 
     // console.log(">>> linksData [joinData]");
 
+    // Keep only non-citywide, non-borough rows for links and disparities comparisons.
     linksData = joinedAqData
         .select(aq.not("BoroID", "Borough"))
         .filter(d => !op.match(d.GeoType, /Citywide|Borough/)) // remove Citywide and Boro
@@ -546,6 +565,7 @@ const joinData = async () => {
 
 // WHAT'S THE MOST RECENT YEAR WHERE PRIMARY AND SECONDARY SHARE A GEOGRAPHY?
 
+// Aligns primary and secondary measures on shared geography and closest available time.
 const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
 
     let returnData;
@@ -579,6 +599,7 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
 
     // if no secondary measure ID is given, set it to the first in the primary measure's links list
 
+    // Default the secondary measure to the first linked measure in metadata.
     if (typeof secondaryMeasureId == "undefined") {
         secondaryMeasureId = primaryMeasureMetadata[0].VisOptions[0].Links[0]?.Measures[0]?.MeasureID;
     }
@@ -679,6 +700,7 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
     //  (fetches run asynchronously by default, but we need this data to do other things, so we have to 
     //  `await` the result before continuing)
 
+    // Load the secondary indicator data only after the shared-geo primary slice is known.
     await fetch(`${data_repo}${data_branch}/indicators/data/${secondaryIndicatorId}.json`)
         .then(response => response.json())
         .then(async data => {
@@ -717,6 +739,7 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
 
             // get the secondary end time closest to most recent primary end time
 
+            // Choose the secondary time period whose end date is closest to the primary measure's latest end date.
             const closestSecondaryTime = filteredSecondaryMeasureTimesDataObjects.reduce((prev, curr) => {
 
                 return (Math.abs(curr.end_period - mostRecentPrimaryMeasureEndTime) < Math.abs(prev.end_period - mostRecentPrimaryMeasureEndTime) ? curr : prev);

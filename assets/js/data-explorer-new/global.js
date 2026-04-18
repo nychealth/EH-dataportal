@@ -2,6 +2,8 @@
 // global.js
 // ======================================================================= //
 
+// top-scope shared state and utility functions available to all modules
+
 // console.log(">> global.js");
 
 // ----------------------------------------------------------------------- //
@@ -17,6 +19,7 @@ let measureAbout = ``;
 let measureSources = ``;
 let geoTable;
 let timeTable;
+// keyed by TimePeriodID; rebuilt on each indicator load for fast label lookup
 let timeLookup = {};
 let unreliabilityNotes;
 let aqIndicatorData;
@@ -27,6 +30,7 @@ let tableData;
 let mapData;
 let trendData;
 let linksData;
+// joined primary + secondary measure data for the correlate/links chart
 let joinedLinksDataObjects;
 let disparityData; // used by disparities.js
 
@@ -133,6 +137,7 @@ let IndicatorID;
 let MeasureID;
 let GeoType;
 let TimePeriodID;
+// tracks the active overlay tab: 'bar', 'table', 'trend', 'links', or 'none'
 let overlay; 
 
 let btnToggleDisparities;
@@ -140,10 +145,11 @@ let btnToggleDisparities;
 // modifying the measure dropdown innerHTML removes the event listeners from the dropdown list. So, i added it to the HTML, and we can remove it when we call renderTrendChart, if necessary
 
 
-// --------------------------------------------------------
-// Simple copy citation function
-// --------------------------------------------------------
+// ----------------------------------------------------------------------- //
+// copy citation
+// ----------------------------------------------------------------------- //
 
+// Copies the current citation text to the clipboard and updates button feedback.
 const copyCitation = () => {
 
     console.log("* copyCitation");
@@ -185,6 +191,7 @@ const copyCitation = () => {
 
 // Renders copy for the About the measures and the Data sources sections
 
+// Writes About and Sources content while de-duplicating repeated source text.
 const renderAboutSources = (about, sources) => {
 
     console.log("**** renderAboutSources");
@@ -193,6 +200,7 @@ const renderAboutSources = (about, sources) => {
     // de-dupe data sources
     let type = typeof sources;
 
+    // Collapse repeated source arrays to one string before printing.
     if (type === 'object') {
         let singleSource;
         singleSource = sources.every((val, i, arr) => val === arr[0]);

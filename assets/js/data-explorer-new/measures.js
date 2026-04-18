@@ -8,8 +8,9 @@
 // tab default measure functions
 // ----------------------------------------------------------------------- //
 
-// ===== map ================================================== app//
+// ===== map ================================================== //
 
+// Chooses the default measure for map and bar rendering.
 const setDefaultMapMeasure = (visArray) => {
 
     console.log("* setDefaultMapMeasure");
@@ -43,6 +44,7 @@ const setDefaultMapMeasure = (visArray) => {
         measure.MeasurementType.includes('Density')
     )
 
+    // Apply the shared preference order from age-adjusted rates down to the first available measure.
     if (hasAgeAdjustedRate.length) {
 
         const hasAgeAdjustedRateTotal = hasAgeAdjustedRate.filter(measure =>
@@ -89,6 +91,7 @@ const setDefaultMapMeasure = (visArray) => {
 
 // ===== trend ================================================== //
 
+// Chooses the default measure for the trend tab.
 const setDefaultTrendMeasure = (visArray) => {
 
     // console.log("* setDefaultTrendMeasure");
@@ -125,6 +128,7 @@ const setDefaultTrendMeasure = (visArray) => {
         )
 
 
+        // Apply the shared preference order from age-adjusted rates down to the first available measure.
         if (hasAgeAdjustedRate.length) {
 
             const hasAgeAdjustedRateTotal = hasAgeAdjustedRate.filter(measure =>
@@ -172,6 +176,7 @@ const setDefaultTrendMeasure = (visArray) => {
 
 // ===== links ================================================== //
 
+// Chooses the default linked measure pair and fetches the joined comparison data.
 const setDefaultLinksMeasure = async (visArray) => {
 
     console.log("* setDefaultLinksMeasure");
@@ -208,6 +213,7 @@ const setDefaultLinksMeasure = async (visArray) => {
         )
 
 
+        // Apply the shared preference order from age-adjusted rates down to the first available measure.
         if (hasAgeAdjustedRate.length) {
 
             const hasAgeAdjustedRateTotal = hasAgeAdjustedRate.filter(measure =>
@@ -280,6 +286,7 @@ const setDefaultLinksMeasure = async (visArray) => {
 
 // ===== disparities ================================================== //
 
+// Chooses the default measure for the disparities tab.
 const setDefaultDisparitiesMeasure = (visArray) => {
 
     console.log("* setDefaultDisparitiesMeasure");
@@ -313,6 +320,7 @@ const setDefaultDisparitiesMeasure = (visArray) => {
         )
 
 
+        // Apply the shared preference order from age-adjusted rates down to the first available measure.
         if (hasAgeAdjustedRate.length) {
 
             const hasAgeAdjustedRateTotal = hasAgeAdjustedRate.filter(measure =>
@@ -372,6 +380,7 @@ const setDefaultDisparitiesMeasure = (visArray) => {
 // function to toggle links / disparities
 // ----------------------------------------------------------------------- //
 
+// Binds the Links versus Disparities toggle without stacking duplicate handlers.
 const clickLinksToggle = (e) => {
 
     // turn off click listener
@@ -389,6 +398,7 @@ const clickLinksToggle = (e) => {
 
         // determine which function to call
 
+        // Route the toggle click to the correct correlate or disparities renderer.
         if (
             e.target && 
             !e.target.classList.contains("active") && 
@@ -430,6 +440,7 @@ const clickLinksToggle = (e) => {
 // function to render the measures
 // ----------------------------------------------------------------------- //
 
+// Prepares per-tab measure metadata and defines the active show* render functions.
 const renderMeasures = async () => {
 
     console.log("* renderMeasures");
@@ -452,8 +463,10 @@ const renderMeasures = async () => {
 
     // ===== table defaults ================================================== //
 
+    // collect unique time period labels available in the data for the table tab
     const tableTimes = [...new Set(aqTableTimesGeos.array("TimePeriod"))];
 
+    // Seed the table with the most recent available time period by default.
     tableTimes.forEach((time, index) => {
         if (index === 0) {
             selectedTableTimes = [time];
@@ -466,8 +479,10 @@ const renderMeasures = async () => {
     // create geo dropdown for table (using pretty geotypes, keeping georank order)
 
     const tableGeoTypes = [...new Set(aqTableTimesGeos.array("GeoType").map(gt => prettifyGeoType(gt)))];
+    // filtering through geoTypes preserves canonical rank order instead of data insertion order
     const dropdownTableGeoTypes = geoTypes.filter(g => tableGeoTypes.includes(g));
 
+    // Seed the table with every available prettified geography in rank order.
     dropdownTableGeoTypes.forEach(geo => {
         selectedTableGeography.push(geo);
     });
@@ -475,6 +490,7 @@ const renderMeasures = async () => {
 
     // ===== populate per-tab measure arrays ================================================== //
 
+    // Sort each measure into the tabs where its metadata says data exists.
     indicatorMeasures.map((measure, index) => {
 
         // check which viz types exist for this measure
@@ -482,6 +498,7 @@ const renderMeasures = async () => {
         const map         = aqMapTimesGeos   && aqMapTimesGeos.filter(`d => d.MeasureID === ${measure.MeasureID}`).numRows() > 0;
         const trend       = aqTrendTimesGeos && aqTrendTimesGeos.filter(`d => d.MeasureID === ${measure.MeasureID}`).numRows() > 0;
         const links       = measure.VisOptions[0].Links && measure.VisOptions[0].Links[0].Measures[0]?.MeasureID;
+        // Disparities == 1 in metadata signals this measure supports the disparities chart
         const disparities = measure.VisOptions[0].Links[0].Disparities == 1;
 
         if (map)         mapMeasures.push(measure);
@@ -514,6 +531,7 @@ const renderMeasures = async () => {
 
     // ===== table ================================================== //
 
+    // Refreshes the summary table layout after it becomes the active overlay.
     showTable = (e) => {
 
         console.log("* showTable");
@@ -535,6 +553,7 @@ const renderMeasures = async () => {
     // It is called on every render, regardless of which overlay tab is active,
     // because the map is always visible on the left side of the page.
 
+    // Filters map rows to the current selection and redraws the Leaflet layer.
     showMap = () => {
 
         console.log("* showMap");
@@ -543,6 +562,7 @@ const renderMeasures = async () => {
 
         let metadata = mapMeasures.filter(m => m.MeasureID == MeasureID);
 
+        // Fall back to the default map measure when the current MeasureID is unavailable here.
         if (!metadata.length) metadata = defaultMapMetadata;
 
         // --- filter data by current globals --- //
@@ -568,6 +588,7 @@ const renderMeasures = async () => {
     // showBar renders the bar chart in the overlay pane.
     // The Leaflet map is handled separately by showMap above.
 
+    // Renders the right-side bar overlay from the same filtered rows used by the map.
     showBar = (e) => {
 
         console.log("* showBar");
@@ -589,12 +610,14 @@ const renderMeasures = async () => {
 
     // ===== trend ================================================== //
 
+    // Chooses between borough trend mode and comparison trend mode.
     showTrend = (e) => {
 
         console.log("* showTrend");
 
         overlay = 'trend';
 
+        // Use comparison mode when no borough trend data exists or comparison mode is already active.
         if (trendMeasures.length === 0 || showingComparisonTrend) {
             showComparisonTrend();
         } else {
@@ -605,6 +628,7 @@ const renderMeasures = async () => {
 
     // ----- show the normal trend chart --------------------------------------------------- //
 
+    // Renders the standard borough trend chart for the selected measure.
     showBoroughTrend = (e) => {
 
         console.log("** showBoroughTrend");
@@ -635,6 +659,7 @@ const renderMeasures = async () => {
 
         // --- handle special time-period subsets --- //
 
+        // Restrict special air-quality measures to the season or annual slices they expect.
         if (measureIdsAnnualAvg.includes(trendMeasureId)) {
 
             aqFilteredTrendData = aq.from(
@@ -665,10 +690,12 @@ const renderMeasures = async () => {
 
     // ----- show the trend comparison chart --------------------------------------------------- //
 
+    // Renders the multi-indicator comparison trend chart when comparison metadata exists.
     showComparisonTrend = (e) => {
 
         console.log("** showComparisonTrend");
 
+        // Build the comparison metadata and data only once, then reuse it on later renders.
         if (!selectedComparison) {
 
             const comparisonId = parseInt(comparisonMetadata[0].ComparisonID);
@@ -678,6 +705,7 @@ const renderMeasures = async () => {
             selectedComparisonAbout = [];
             selectedComparisonSources = [];
 
+            // Combine about text and sources across every indicator in the comparison set.
             aqComparisonIndicatorsMetadata.objects().forEach(m => {
                 selectedComparisonAbout +=
                     `<p><strong>${m.IndicatorName} - ${m.MeasurementType}:</strong> ${m.how_calculated}</p>`;
@@ -703,6 +731,7 @@ const renderMeasures = async () => {
 
             let hasQuarters = [858, 859, 860, 861, 862, 863];
 
+            // Trim quarterly DWQ comparisons to the last three years to keep the chart readable.
             if (aqFilteredComparisonMetadata.array("MeasureID").some(m => hasQuarters.includes(m))) {
                 aqFilteredComparisonData = aqFilteredComparisonData
                     .derive({"year": d => op.year(d.end_period)})
@@ -739,12 +768,14 @@ const renderMeasures = async () => {
 
     // define function
 
+    // Renders the links view, or falls back to disparities when links are unavailable.
     showLinks = (e) => {
 
         console.log("* showLinks");
 
         overlay = 'links';
 
+        // Fall back to disparities when metadata offers no linked secondary measure.
         if (linksMeasures.length === 0) {
 
             // no links available
@@ -757,6 +788,7 @@ const renderMeasures = async () => {
 
             // has links
 
+            // Build default linked metadata only on the first links render for this indicator.
             if (!selectedLinksMeasure) {
 
                 // first load — compute defaults
@@ -830,11 +862,13 @@ const renderMeasures = async () => {
     // disable tabs when no data is available
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
+    // Marks a Bootstrap tab as disabled when that view has no usable data.
     const disableTab = (el) => {
         el.classList.add('disabled');
         el.setAttribute('aria-disabled', true);
     };
 
+    // Re-enables a Bootstrap tab when the current indicator supports that view.
     const enableTab = (el) => {
         el.classList.remove('disabled');
         el.setAttribute('aria-disabled', false);
@@ -842,6 +876,7 @@ const renderMeasures = async () => {
 
     // map
 
+    // Disable the bar tab when there is no map-compatible measure metadata.
     if (mapMeasures.length === 0) {
         disableTab(tabBar);
     } else {
@@ -852,6 +887,7 @@ const renderMeasures = async () => {
 
     const onlyOneTime = trendMeasures.every(m => m.VisOptions[0].Trend[0]?.TimePeriodID.length <= 1);
 
+    // Disable the trend tab when there is neither a meaningful trend nor a comparison fallback.
     if ((trendMeasures.length === 0 || onlyOneTime) && (typeof comparisonMetadata === 'undefined' || comparisonMetadata.length === 0)) {
         disableTab(tabTrends);
     } else {
@@ -860,6 +896,7 @@ const renderMeasures = async () => {
 
     // links + disparities
 
+    // Disable the correlate tab only when both links and disparities are unavailable.
     if (linksMeasures.length === 0 && disparitiesMeasures.length === 0) {
         disableTab(tabCorrelate);
     } else {
@@ -880,6 +917,7 @@ const renderMeasures = async () => {
         'table': '#v-pills-table-tab'
     };
 
+    // Re-open the tab that matches the restored overlay after menus are rebuilt.
     if (overlay !== 'none') {
         const target = tabSelector[overlay] || '#v-pills-bar-tab';
         $(target).tab('show');

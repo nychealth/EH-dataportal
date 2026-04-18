@@ -1,9 +1,10 @@
+// ======================================================================= //
+// _bar.js
+// ======================================================================= //
+
 // console.log('>> _bar.js')
 
-// ======================================================================= //
-// bar.js
-// ======================================================================= //
-
+// Legacy prototype bar renderer kept for reference alongside the active bar.js.
 const renderBar = (
     data, 
     metadata
@@ -134,11 +135,14 @@ const renderBar = (
         
         let lastHighlightedLayer = null;
         
+        // Mirror chart hover into the prototype map globals used by this older file.
         result.view.addEventListener('mouseover', (event, item) => {
+            // Ignore Vega events that do not point to a concrete geography row.
             if (item && item.datum && item.datum.GeoID) {
                 const geoID = item.datum.GeoID;
                 const layer = geoIDtoLayer[geoID];
                 
+                // Reset any prior highlight before emphasizing the new geography.
                 if (layer && layer !== lastHighlightedLayer) {
                     
                     // Reset previously highlighted layer
@@ -156,6 +160,7 @@ const renderBar = (
             }
         });
         
+        // Clear the linked prototype map highlight when the cursor leaves the chart.
         result.view.addEventListener('mouseout', () => {
             if (lastHighlightedLayer) {
                 geojsonLayer.resetStyle(lastHighlightedLayer);

@@ -8,8 +8,9 @@
 
 */
 
-console.log(">> bar.js");
+// console.log(">> bar.js");
 
+// Builds and renders the Vega-Lite bar chart for the active geography slice.
 const renderBar = (
     data, 
     metadata,
@@ -57,6 +58,7 @@ const renderBar = (
     const hasCI = data.some(d => /\(.*\)/.test(d.CI)); // looks to see if there are parentheses in the CI field, if yes, true
     console.log('has CI [bar.js]', hasCI)
 
+    // Switch units and subtitle formatting when the measure is percentage-based.
     if (barMeasurementType.includes('Percent') || barMeasurementType.includes('percent') && !barMeasurementType.includes('percentile')) {
         isPercent = true;
         displayType = '%';
@@ -79,6 +81,7 @@ const renderBar = (
     // -----------------------------------------------------------------------  */
 
     
+        // Choose the visual layer recipe based on whether the measure is a mean, has CIs, or is a plain bar.
         if (barMeasurementType.includes('Mean') || barMeasurementType.includes('mean') ) {
             
             // For means, show a dot against a light bar
@@ -458,7 +461,9 @@ const renderBar = (
         
         let lastHighlightedLayer = null;
 
+        // Mirror bar hover into the map by looking up the matching Leaflet layer by GeoID.
         result.view.addEventListener('mouseover', (event, item) => {
+            // Ignore Vega events that do not map to a concrete geography row.
             if (item && item.datum && item.datum.GeoID) {
                 const geoID = item.datum.GeoID;
 
@@ -467,6 +472,7 @@ const renderBar = (
 
                 const layer = mapAPI.geoIDtoLayer[geoID];
 
+                // Reset the previous highlight before moving focus to the new geography.
                 if (layer && layer !== lastHighlightedLayer) {
 
                     // Reset previous
@@ -483,6 +489,7 @@ const renderBar = (
             }
         });
 
+        // Clear the linked map highlight when the cursor leaves the chart.
         result.view.addEventListener('mouseout', () => {
             const mapAPI = window.mapInterop;
             if (!mapAPI) return;

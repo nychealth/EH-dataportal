@@ -69,6 +69,7 @@ const colorScale = d3.scaleSequential()
 
 // --- Define style functions ---
 
+// Returns the choropleth style object for one prototype geography feature.
 const styleFeature = (feature) => {
 
     // console.log("* styleFeature");
@@ -85,6 +86,7 @@ const styleFeature = (feature) => {
 }
 
 
+// Emphasizes a hovered geography in the prototype choropleth.
 const highlightFeature = (e) => {
 
     // console.log("* highlightFeature");
@@ -96,12 +98,14 @@ const highlightFeature = (e) => {
         fillOpacity: 0.9
     });
     
+    // Bring the active polygon above its neighbors when the browser supports it.
     if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
         layer.bringToFront();
     }
 
 }
 
+// Restores the prototype choropleth style after hover ends.
 const resetHighlight = (e) => {
 
     // console.log("* resetHighlight");
@@ -113,6 +117,7 @@ const resetHighlight = (e) => {
 
 // add parameters for names
 
+// Builds the prototype popup markup for a joined geography feature.
 const createPopupContent = (properties) => {
 
     // console.log("* createPopupContent");
@@ -127,6 +132,7 @@ const createPopupContent = (properties) => {
   `;
 }
 
+// Updates the prototype legend readout during map hover.
 const updateHoverUI = (props) => {
 
     // console.log("* updateHoverUI");
@@ -145,6 +151,7 @@ const updateHoverUI = (props) => {
 
 }
 
+// Resets the prototype legend readout after hover ends.
 const clearHoverUI = () => {
 
     // console.log("* clearHoverUI");
@@ -165,6 +172,7 @@ const geoIDtoLayer = {};   // <--- ADD THIS
 
 // --- Add the GeoJSON to the map ---
 
+// Renders the prototype GeoJSON layer and binds map-to-chart interaction handlers.
 const geojsonLayer = L.geoJson(geojson, {
 
     style: styleFeature,
@@ -173,6 +181,7 @@ const geojsonLayer = L.geoJson(geojson, {
         // Store reference so we can highlight later using GeoID from chart
         
         const geoID = feature.properties.GeoID || feature.properties.GEOCODE;
+        // Store a GeoID lookup so the paired bar chart can find the matching map layer.
         if (geoID) {
             geoIDtoLayer[geoID] = layer;
         }
@@ -185,6 +194,7 @@ const geojsonLayer = L.geoJson(geojson, {
 
             console.log("** click", feature.properties);
 
+            // Forward map clicks into the Vega signal when the chart has been initialized.
             if (window.myVegaView) {
                 window.myVegaView.signal("selectedGeo", props.GeoID).run();
             }
@@ -200,6 +210,7 @@ const geojsonLayer = L.geoJson(geojson, {
             updateHoverUI(props);
             highlightFeature(e); 
             
+            // Forward map hover into the Vega signal when the chart has been initialized.
             if (window.myVegaView) {
                 window.myVegaView.signal("selectedGeo", props.GeoID).run();
             }
@@ -215,6 +226,7 @@ const geojsonLayer = L.geoJson(geojson, {
             updateHoverUI(props);
             highlightFeature(e); 
             
+            // Clear the Vega hover signal when the map hover ends.
             if (window.myVegaView) {
                 window.myVegaView.signal("selectedGeo", props.GeoID).run();
             }
@@ -238,6 +250,7 @@ const geojsonLayer = L.geoJson(geojson, {
 }).addTo(map);
 
 
+// Converts a prototype map value into a legend tick percentage.
 const calculatePercent = (x) => {
     const range = maxValue - minValue;
     const placement = x - minValue;

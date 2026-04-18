@@ -1,13 +1,21 @@
+// ======================================================================= //
+// utilities.js
+// ======================================================================= //
+
+// shared geography helpers: geo file lookup, geo ranks, and geo type normalization
+
 // console.log('>> utilities.js')
 
 // ----------------------------------------------------------------------- //
 // geo file
 // ----------------------------------------------------------------------- //
 
+// Maps a backend GeoType value to the corresponding TopoJSON filename.
 function getGeoFile(mapGeoType) {
 
     console.log("*** getGeoFile");
 
+    // Return the matching geography file for the requested map geography.
     if (mapGeoType === "NTA2010") {
         return 'NTA_2010.topo.json';
 
@@ -64,7 +72,9 @@ function getGeoFile(mapGeoType) {
 
 // define georank function at top scope, so we can use it later
 
+// Assigns a sortable rank so geographies can be ordered from broad to fine.
 const assignGeoRank = (GeoType) => {
+    // Normalize multiple backend variants into one numeric sort order.
     switch (GeoType) {
         case 'Citywide':
             return 0;
@@ -127,8 +137,10 @@ const geoTypes = [
 //  while keeping them generic on the front-end. We use this function to convert
 //  versioned geotypes in the data into generic geotypes.
 
+// Collapses versioned backend geotypes into the generic labels shown in the UI.
 const prettifyGeoType = (GeoType) => {
 
+    // Group backend-specific geography versions under one front-end label.
     switch (GeoType) {
 
         case 'NYCKIDS2017':
@@ -168,6 +180,7 @@ const prettifyGeoType = (GeoType) => {
 // chart resize
 // ----------------------------------------------------------------------- //
 
+// Nudges Vega and DataTables layouts to recompute after tab or panel changes.
 const updateChartPlotSize = () => {
 
     console.log("* updateChartPlotSize");
@@ -178,8 +191,10 @@ const updateChartPlotSize = () => {
 
 }
 
+// Placeholder for legacy time-period label replacement behavior.
 function replaceTimePeriodID() {
 
 }
 
+// Placeholder for future logic that picks the finest available geography.
 function getFinestGeography() {}

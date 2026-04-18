@@ -2,6 +2,8 @@
 // app.js
 // ======================================================================= //
 
+// URL management, view rendering, tab listeners, and popstate handler
+
 // console.log(">> app.js");
 
 // ----------------------------------------------------------------------- //
@@ -26,8 +28,10 @@ const buildCanonicalSearchParams = () => {
 };
 
 
+// Resets sub-selections before loading a different indicator.
 const resetSelectionForNewIndicator = (nextIndicatorID) => {
 
+    // drop sub-selections so the new indicator starts with a clean slate
     MeasureID = null;
     GeoType = null;
     TimePeriodID = null;
@@ -46,6 +50,7 @@ const resetSelectionForNewIndicator = (nextIndicatorID) => {
 
 };
 
+// Pushes the current explorer state into the URL and history stack.
 const pushSelectionToURL = () => {
 
     const url = new URL(window.location);
@@ -64,35 +69,48 @@ const pushSelectionToURL = () => {
 };
 
 
+// ----------------------------------------------------------------------- //
+// rewrite legacy URL aliases to canonical params
+// ----------------------------------------------------------------------- //
+
+// Renames legacy GeoTypeID params to the canonical GeoType param.
 const normalizeLegacyGeoTypeURL = () => {
 
     const nextURL = new URL(window.location.href);
     const rawSearch = nextURL.search.replace(/^\?/, '');
 
+    // Exit early when there is no query string to normalize.
     if (!rawSearch) {
         return;
     }
 
+    // split into individual key=value pairs, dropping empty strings
     const searchParts = rawSearch.split('&').filter(Boolean);
+    // true if a canonical GeoType param is already present
     const hasCanonicalGeoType = searchParts.some(part => part.split('=')[0] === 'GeoType');
     let didChange = false;
     let renamedGeoType = null;
 
+    // Rewrite each key=value pair while preserving everything unrelated to GeoType.
     const normalizedParts = searchParts.flatMap(part => {
         const [key, ...rest] = part.split('=');
         const value = rest.join('=');
 
+        // pass non-GeoTypeID params through unchanged
         if (key !== 'GeoTypeID') {
             return [part];
         }
 
         didChange = true;
+        // capture the first GeoTypeID value for the history state
         renamedGeoType = renamedGeoType ?? decodeURIComponent(value || '');
 
+        // if GeoType already exists, drop the duplicate GeoTypeID param
         if (hasCanonicalGeoType) {
             return [];
         }
 
+        // otherwise rename GeoTypeID → GeoType
         return [`GeoType=${value}`];
     });
 
@@ -113,10 +131,12 @@ const normalizeLegacyGeoTypeURL = () => {
 };
 
 
+// Rewrites the legacy overlay=map value to the current overlay=bar alias.
 const normalizeLegacyOverlayURL = () => {
 
     const nextURL = new URL(window.location.href);
 
+    // 'map' was an old overlay value; 'bar' is its current equivalent
     if (nextURL.searchParams.get('overlay') !== 'map') {
         return;
     }
@@ -143,12 +163,15 @@ const normalizeLegacyOverlayURL = () => {
 // Tab clicks pass false (default) — the map doesn't need to redraw just because
 // the overlay pane switches.
 
+// Dispatches rendering to the active overlay using the current globals.
 const renderCurrentView = (updateMap = false) => {
 
     console.log("* renderCurrentView", { MeasureID, GeoType, TimePeriodID, overlay, updateMap });
 
-    if (updateMap && typeof showMap === 'function') showMap();
+    if (updateMap) showMap();
 
+    // dispatch to the correct render function based on the active overlay value
+    // Route the current overlay value to the matching show* renderer.
     switch (overlay) {
 
         case 'none': {
@@ -166,27 +189,29 @@ const renderCurrentView = (updateMap = false) => {
         }
 
         case 'bar':
-            if (typeof showBar === 'function') showBar();
+            showBar();
             break;
 
         case 'table':
-            if (typeof showTable === 'function') showTable();
+            showTable();
             break;
 
         case 'map':
-            if (typeof showBar === 'function') showBar();
+            // 'map' is treated as an alias for 'bar' (bar chart with geo context)
+            showBar();
             break;
 
         case 'trend':
-            if (typeof showTrend === 'function') showTrend();
+            showTrend();
             break;
 
         case 'links':
-            if (typeof showLinks === 'function') showLinks();
+            showLinks();
             break;
 
         default:
-            if (typeof showBar === 'function') showBar();
+            // fall back to bar chart if overlay value is unrecognized
+            showBar();
             break;
     }
 };
@@ -196,12 +221,14 @@ const renderCurrentView = (updateMap = false) => {
 // popstate — browser back / forward
 // ----------------------------------------------------------------------- //
 
+// Restores explorer state when the user navigates browser history.
 window.addEventListener('popstate', async (event) => {
 
     console.log("popstate →", window.location.search, window.location.hash);
 
     const params = new URLSearchParams(window.location.search);
 
+    // parse each URL param, coercing numeric fields to floats
     const urlID           = params.get('id')          ? parseFloat(params.get('id'))          : null;
     const urlMeasureID    = params.get('MeasureID')   ? parseFloat(params.get('MeasureID'))   : null;
     const urlGeoType      = params.get('GeoType') || params.get('GeoTypeID') || null;
@@ -209,6 +236,7 @@ window.addEventListener('popstate', async (event) => {
     const urlOverlay      = params.get('overlay')     || null;
 
     if (params.get('GeoTypeID') && !params.get('GeoType')) {
+        // rewrite GeoTypeID alias before reading it into globals
         normalizeLegacyGeoTypeURL();
     }
 
@@ -222,6 +250,7 @@ window.addEventListener('popstate', async (event) => {
 
     // indicator changed → full reload
 
+    // Reload the full indicator pipeline when history points to a different indicator.
     if (urlID && urlID !== IndicatorID) {
 
         await loadIndicator(urlID, true);
@@ -254,6 +283,7 @@ window.addEventListener('popstate', async (event) => {
 // tab event listeners
 // ----------------------------------------------------------------------- //
 
+// Wires tab clicks and shared DOM references after the page shell exists.
 document.addEventListener("DOMContentLoaded", () => {
 
     tabBar       = document.querySelector('#v-pills-bar-tab');
@@ -261,12 +291,14 @@ document.addEventListener("DOMContentLoaded", () => {
     tabCorrelate = document.querySelector('#v-pills-correlate-tab');
     tabTable     = document.querySelector('#v-pills-table-tab');
 
+    // grab DOM nodes for the measure-info and source sections
     aboutMeasures = document.querySelector('.indicator-measures');
     dataSources = document.querySelector('.indicator-sources');
     btnToggleDisparities = document.querySelector('.btn-toggle-disparities');
 
     // tab clicks → set overlay, push URL, render
 
+    // maps each tab selector to its overlay string value
     const tabMap = {
         '#v-pills-bar-tab':       'bar',
         '#v-pills-trends-tab':    'trend',
@@ -274,6 +306,7 @@ document.addEventListener("DOMContentLoaded", () => {
         '#v-pills-table-tab':     'table'
     };
 
+    // Bind each Bootstrap tab to the overlay value it should activate.
     Object.entries(tabMap).forEach(([selector, value]) => {
 
         const el = document.querySelector(selector);
@@ -295,7 +328,9 @@ document.addEventListener("DOMContentLoaded", () => {
 // content truncation
 // ----------------------------------------------------------------------- //
 
+// Expands the full metadata description after the user clicks Show more.
 function reveal() {
+    // toggle the truncated / full description blocks
     document.getElementById('truncate').classList.toggle('hide');
     document.getElementById('full').classList.toggle('show');
     document.getElementById('contenttoggle').innerHTML = `Show less... <i class="fas fa-caret-square-up" aria-hidden="true"></i>`;
@@ -323,6 +358,7 @@ $('#v-pills-ds-tab').on('click', e => {
 // add event listener to indicator links
 // ----------------------------------------------------------------------- //
 
+// Handles clicks on the indicator list and starts the indicator reload pipeline.
 $('#indicatorButtons').on('click', e => {
 
     let IndicatorID = e.target.dataset.IndicatorID;

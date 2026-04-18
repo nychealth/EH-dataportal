@@ -2,15 +2,27 @@
 // map.js
 // ======================================================================= //
 
+// Leaflet choropleth map: initialization, data join, color scale, and tooltips
+
 // console.log(">> map.js");
+
+// ----------------------------------------------------------------------- //
+// module-level state
+// ----------------------------------------------------------------------- //
 
 let currentMap = null;
 let currentGeojsonLayer = null;
 
+// ----------------------------------------------------------------------- //
+// base map initialization (fires immediately on script load)
+// ----------------------------------------------------------------------- //
+
 // Initialize the base tile layer early so it loads in the background
 
+// Creates the shared Leaflet base map once and reuses it across renders.
 const initBaseMap = () => {
 
+    // Skip re-initialization when the base Leaflet instance already exists.
     if (currentMap) return; // already initialized
 
     currentMap = L.map('map', {
@@ -32,6 +44,7 @@ const initBaseMap = () => {
 
 initBaseMap();
 
+// Joins filtered data onto geography features and renders the choropleth layer.
 const renderMap = (
     data, 
     metadata
@@ -107,6 +120,7 @@ const renderMap = (
 
     // --- Create a lookup for data and attributes ---
     const dataLookup = {};
+    // Index rows by GeoID so each feature lookup stays O(1) during attachment.
     data.forEach(item => {
         dataLookup[item.GeoID] = item;  // store the full record
     });
@@ -147,6 +161,7 @@ const renderMap = (
 
     // Remove previous data layer if it exists
 
+    // Remove the previous thematic layer before drawing the next one.
     if (currentGeojsonLayer) {
         currentMap.removeLayer(currentGeojsonLayer);
         currentGeojsonLayer = null;
@@ -167,6 +182,7 @@ const renderMap = (
 
             // --- Attach data to each feature ---
 
+            // Merge the filtered indicator row onto each matching geography feature.
             geojson.features.forEach((feature, i) => {
 
                 if (i == 0) {
@@ -176,6 +192,7 @@ const renderMap = (
                 const geoID = feature.properties.GEOCODE;
                 const matchedData = dataLookup[geoID];
 
+                // Preserve original geometry props and append joined indicator attributes when found.
                 if (matchedData) {
 
                     feature.properties = {
@@ -215,6 +232,7 @@ const renderMap = (
                     // Store reference so we can highlight later using GeoID from chart
                     
                     const geoID = feature.properties.GeoID || feature.properties.GEOCODE;
+                    // Keep a direct GeoID-to-layer map for bar-to-map hover interop.
                     if (geoID) {
                         geoIDtoLayer[geoID] = layer;
                     }
@@ -240,6 +258,7 @@ const renderMap = (
                         const props = feature.properties;
 
                         // 🔥 HARD RESET: clear ALL highlights
+                        // Clear any previous highlight before applying the current hover state.
                         geojsonLayer.eachLayer((l) => {
                             geojsonLayer.resetStyle(l);
                         });
@@ -269,6 +288,7 @@ const renderMap = (
 
             currentGeojsonLayer = geojsonLayer;
 
+            // exposes map functions globally for chart-to-map hover cross-linking
             window.mapInterop = {
                 geoIDtoLayer,
                 geojsonLayer,
@@ -296,12 +316,14 @@ const renderMap = (
     // --- Create the color scale ---
 
     const colorScale = d3.scaleSequential()
+        // domain inverted: high values map to the dark end of viridis, low to light
         .domain([maxValue, minValue]) 
         .interpolator(d3.interpolateViridis);
 
 
     // --- Define style functions ---
 
+    // Returns the choropleth style object for one geography feature.
     const styleFeature = (feature) => {
 
         // console.log("* styleFeature");
@@ -318,6 +340,7 @@ const renderMap = (
     }
 
 
+    // Emphasizes the hovered geography with a thicker outline.
     const highlightFeature = (e) => {
 
         // console.log("* highlightFeature");
@@ -330,11 +353,13 @@ const renderMap = (
         });
         
         if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+            // bring to front so the highlighted border renders above neighboring polygons
             layer.bringToFront();
         }
 
     }
 
+    // Restores a feature's default style after hover or chart interop clears it.
     const resetHighlight = (layer, e) => {
 
         // console.log("* resetHighlight");
@@ -347,11 +372,13 @@ const renderMap = (
 
     // add parameters for names
 
+    // Builds the HTML popup shown when a geography is clicked.
     const createPopupContent = (properties) => {
 
         // console.log("* createPopupContent");
         // console.log("properties [createPopupContent]", properties);
 
+        // Only render a popup when the feature has joined indicator metadata.
         if (properties.GeoRank) {
             
             return `
@@ -368,6 +395,7 @@ const renderMap = (
         }
     }
 
+    // Updates the legend readout so map hover matches the active geography.
     const updateHoverUI = (props) => {
 
         // console.log("* updateHoverUI");
@@ -386,6 +414,7 @@ const renderMap = (
 
     }
 
+    // Resets the legend readout back to its idle placeholder state.
     const clearHoverUI = () => {
 
         // console.log("* clearHoverUI");
@@ -397,6 +426,7 @@ const renderMap = (
 
     }
 
+    // Converts a raw map value into a legend tick percentage.
     const calculatePercent = (x) => {
         const range = maxValue - minValue;
         const placement = x - minValue;
