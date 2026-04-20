@@ -350,7 +350,7 @@ function runFinal() {
 
   // Message: Hot and No AC
   if (maxTemp >= 85 && hasAC === 'No') {
-    msg = `<p>💡 Air conditioning is the best way to stay safe when it's this hot. Since you don't have AC, <a href='https://:finder.nyc.gov/coolingcenters/'>visit a cool public place</a>, or a friend or family member who has AC. Taking a cool shower can also help temporarily. If you can't leave your home, keep your windows open if it's hotter inside than outside. Make sure to drink lots of water and try to avoid alcohol and caffeine. <a href="https://www.nyc.gov/site/doh/health/emergency-preparedness/emergencies-extreme-weather-heat.page">Get more information on hot weather and health</a>.</p>`
+    msg = `<p>💡 Air conditioning is the best way to stay safe when it's this hot. Since you don't have AC, <a href='https://:finder.nyc.gov/coolingcenters/'>visit a cool public place</a>, or a friend or family member who has AC. Taking a cool shower can also help temporarily. If you can't leave your home, keep your windows open if it's hotter inside than outside. Make sure to drink lots of water and avoid alcohol, caffeine, and very sugary drinks. <a href="https://www.nyc.gov/site/doh/health/emergency-preparedness/emergencies-extreme-weather-heat.page">Get more information on hot weather and health</a>.</p>`
     finalMessageText.innerHTML+= msg + '<hr class="my-2">'
   }
 
@@ -378,7 +378,7 @@ function runFinal() {
   }
 
   if (aqi === 3 && sensitiveGroup === 'Yes') {
-    msg = `<p>‼️ The air quality is unhealthy for people more sensitive to air pollution. Air pollution can harm health. Limit strenuous and prolonged (over an hour) outdoor activities. Consider wearing a mask outside if you are experiencing symptoms, like coughing or throat or eye irritation. <a href="https://www.nyc.gov/site/doh/health/health-topics/air-quality-fire-smoke-and-effect-on-air-quality.page">Learn more about wearing masks</a>.</p>`
+    msg = `<p>‼️ The air quality is unhealthy for people more sensitive to air pollution. Air pollution can harm health. Limit strenuous and prolonged (over an hour) outdoor activities. Consider wearing a mask outside if you are experiencing symptoms, like coughing or throat or eye irritation. No one under two should wear a mask. <a href="https://www.nyc.gov/site/doh/health/health-topics/air-quality-fire-smoke-and-effect-on-air-quality.page">Learn more about wearing masks</a>.</p>`
     finalMessageText.innerHTML+= msg + '<hr class="my-2">'
   }
 

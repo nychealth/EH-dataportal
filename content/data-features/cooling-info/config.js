@@ -25,7 +25,7 @@ var content = [
             {   
                 "optionID": 2,
                 "copy": "No",
-                "message": "Great. Let's move on.",
+                "message": "Alright. Let's move on.",
                 "setVariable": "sensitive('No')",
                 "goTo": 2
             },
@@ -52,7 +52,7 @@ var content = [
             {   
                 "optionID": 2,
                 "copy": "No",
-                "message": "Great. Let's move on.",
+                "message": "Alright. Let's move on.",
                 "setVariable": "eme('No')",
                 "goTo": 3
             }
@@ -65,7 +65,7 @@ var content = [
 
     {
         "id": 3,
-        "text": "Do you have pets or live with animals?",
+        "text": "Do you live with pets or service animals?",
         "prompt": "Animals are also vulnerable to heat and air quality.",
         "image": "Parrot_pet.svg",
         "options": [
@@ -79,7 +79,7 @@ var content = [
             {
                 "optionID": 2,
                 "copy": "No",
-                "message": "Great, let's move on.",
+                "message": "Alright, let's move on.",
                 "setVariable": "animal('No')",
                 "goTo": 4
             }
@@ -98,7 +98,7 @@ var content = [
             {
                 "optionID": 1,
                 "copy": "Yes",
-                "message": "Great! You have an air conditioner. If you don't have AC in every room, put your AC in the room you spend the most time in.",
+                "message": "Great! You have an air conditioner. If you don't have AC in every room, and if you are able to, put your AC in the room you spend the most time in.",
                 "setVariable": "ac('Yes')",
                 "goTo": 5
             },
@@ -133,7 +133,7 @@ var content = [
             {   
                 "optionID": 2,
                 "copy": "No",
-                "message": "Great, let's move on to the next question.",
+                "message": "Alright, let's move on to the next question.",
                 "setVariable": "limitAC('No')",
                 "goTo": 6
             }
@@ -147,13 +147,13 @@ var content = [
     {
         "id": 6,
         "text": "Do you have a fan?",
-        "prompt": "Fans can help cool you down. But, fans do not cool the air.", 
+        "prompt": "Fans can help cool you down a little bit, but they're not enough on hot days.", 
         "image": "Fan.svg",
         "options": [
             {
                 "optionID": 1,
                 "copy": "Yes",
-                "message": "Great, you have a fan. Fans can help cool you down when the air outside is cooler than the air inside. When it's hot, a fan alone is not enough. You can visit a cool place when it is hot outside.",
+                "message": "Alright, you have a fan. Fans can help cool you down when the air outside is cooler than the air inside, but because they do not cool the air, a fan alone is not enough when it is very hot out. In fact, a fan can make you even warmer. A lot of people have gotten severely ill while using a fan without AC during hot weather. You can visit a cool place when it is hot outside.",
                 "setVariable": "fan('Yes')",
                 "goTo": 99
             },
