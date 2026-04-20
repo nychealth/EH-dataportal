@@ -338,7 +338,7 @@ function runFinal() {
 
   // Message: no AC
   if (hasAC === 'No') {
-    msg = `<p>💡 About 9% of NYC households don't have an AC - but it's the best way to stay safe when it's hot. Find out if you're eligible for the <a href="https://portal.311.nyc.gov/article/?kanumber=KA-02529">Home Energy Assistance Program</a> which can help <strong>make air conditioning your home more affordable</strong>.</p>`
+    msg = `<p>💡 About 9% of NYC households don't have an AC - but it's the best way to stay safe when it's hot. Find out if you're eligible for the <a href="https://portal.311.nyc.gov/article/?kanumber=KA-02529">Home Energy Assistance Program</a> which can help <strong>make air conditioning your home more affordable</strong>.You may be eligible for a <a href='https://info.nystateofhealth.ny.gov/CoolingProgram'>free AC unit if your health insurance is on the Essential Plan.</a></p>`
     finalMessageText.innerHTML+= msg + '<hr class="my-2">'
   }
 
