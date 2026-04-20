@@ -18,7 +18,7 @@
                 <span style="color: #ac22ae"><strong>Traffic counter</strong></span>
                 <iframe src={{ relURL "congestion_pricing/embeds/congestion_pricing_monitoring.html" }} frameborder="no" style="width: 100%; height: 450px" id="congestionMap"></iframe> 
             </div>
-            <div id="EJ_text" id="EJ-text-${id}" class="col-3 p-1"><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam es. </p>
+            <div id="EJ_text" id="EJ-text-${id}" class="col-4 p-1"><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam es. </p>
             </div>
         </div>
         <h3 class="h4 my-2">How did air quality change?</h3>
@@ -94,13 +94,13 @@
     
     // Site-specific text content
     const siteText = {
-        "Mott Haven": "<h3 class='h5'>The air quality in Mott Haven...</h3><p>MOTT HAVEN TEST</p>",
-        "Cross Bronx Expwy": "<p>The Cross Bronx Expressway is a major highway corridor. Monitoring at this location shows substantial reductions in traffic-related pollutants.</p>",
-        "BQE": "<p>BQE TEST.</p>",
-        "Van Wyck": "<p>TEST2.</p>",
-        "Staten Island": "<p>TEST - STATEN ISLAND</p>",
-        "FDR": "<p>FDR TEST</p>",
-        "Hamilton Bridge": "<p>HAM BRIDGE TEST</p>"
+        "Mott Haven": "<h3 class='h5'>The air quality in Mott Haven...</h3><p style='display:inline;''>MOTT HAVEN TEST</p>",
+        "Cross Bronx Expwy": "<h3 class='h5'>The air quality in Cross Bronx Expwy...</h3><p style='display:inline;''>TEST TEXT</p>",
+        "BQE": "<h3 class='h5'>The air quality in BQE...</h3><p style='display:inline;'>BQE TEST.</p>",
+        "Van Wyck": "<h3 class='h5'>The air quality near the Van Wyck...</h3><p style='display:inline;'>TEST2.</p>",
+        "Staten Island": "<h3 class='h5'>The air quality in Staten Island...</h3><p style='display:inline;'>TEST - STATEN ISLAND</p>",
+        "FDR": "<h3 class='h5'>The air quality near the FDR is...</h3><p style='display:inline;'>FDR TEST</p>",
+        "Hamilton Bridge": "<h3 class='h5'>The air quality near the Hamilton Bridge...</h3><p style='display:inline;'>HAM BRIDGE TEST</p>"
     };
     
     // Default selection
