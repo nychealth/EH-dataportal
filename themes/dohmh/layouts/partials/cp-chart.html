@@ -16,9 +16,9 @@
                 <span style="color:#007153"><strong>Integrated monitor</strong></span> | 
                 <span style="color: #ae3400"><strong>PM2.5 Real-time monitor</strong></span> | 
                 <span style="color: #ac22ae"><strong>Traffic counter</strong></span>
-                <iframe src={{ relURL "congestion_pricing/embeds/congestion_pricing_monitoring.html" }} frameborder="no" style="width: 100%; height: 450px"></iframe> 
+                <iframe src={{ relURL "congestion_pricing/embeds/congestion_pricing_monitoring.html" }} frameborder="no" style="width: 100%; height: 450px" id="congestionMap"></iframe> 
             </div>
-            <div class="col-3 p-1"><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam es. </p>
+            <div id="EJ_text" id="EJ-text-${id}" class="col-3 p-1"><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam es. </p>
             </div>
         </div>
         <h3 class="h4 my-2">How did air quality change?</h3>
@@ -79,6 +79,7 @@
 
 <script>
     const cp_container_id = "cpVis";
+    const text_container_id = "EJ_text"
     
     // Buttons for sites
     const site_names = [
@@ -90,6 +91,17 @@
         "FDR",
         "Hamilton Bridge",
     ];
+    
+    // Site-specific text content
+    const siteText = {
+        "Mott Haven": "<h3 class='h5'>The air quality in Mott Haven...</h3><p>MOTT HAVEN TEST</p>",
+        "Cross Bronx Expwy": "<p>The Cross Bronx Expressway is a major highway corridor. Monitoring at this location shows substantial reductions in traffic-related pollutants.</p>",
+        "BQE": "<p>BQE TEST.</p>",
+        "Van Wyck": "<p>TEST2.</p>",
+        "Staten Island": "<p>TEST - STATEN ISLAND</p>",
+        "FDR": "<p>FDR TEST</p>",
+        "Hamilton Bridge": "<p>HAM BRIDGE TEST</p>"
+    };
     
     // Default selection
     let currentSite = "Mott Haven";
@@ -256,6 +268,27 @@
                 );
                 btn.classList.add("active");
                 
+                // Zoom map to the site location
+                try {
+                    const iframeElement = document.getElementById("congestionMap");
+                    console.log("Button clicked for site:", site);
+                    console.log("Iframe element:", iframeElement);
+                    if (iframeElement && iframeElement.contentWindow) {
+                        console.log("Sending zoom message to iframe");
+                        iframeElement.contentWindow.postMessage({ action: 'zoomToSite', siteName: site }, '*');
+                    } else {
+                        console.error("Iframe element or contentWindow not found");
+                    }
+                } catch (err) {
+                    console.error("Error zooming map:", err);
+                }
+                
+                // Update text content for the site
+                const textElement = document.getElementById(text_container_id);
+                if (textElement && siteText[site]) {
+                    textElement.innerHTML = siteText[site];
+                }
+                
                 await draw(site);
             });
             
@@ -279,12 +312,21 @@
         const el = document.getElementById(cp_container_id);
         if (!el) return;
     
+        const info = document.getElementById
+        (text_container_id);
+        if (!el) return;
+
         // wait for vegaEmbed to be available
         if (typeof vegaEmbed !== "function") {
             console.error("vegaEmbed not available. Are the Vega scripts loaded above this script?");
             return;
         }
     
+        // Set initial text for default site
+        if (info && siteText[currentSite]) {
+            info.innerHTML = siteText[currentSite];
+        }
+        
         renderButtons();
         addAccordionlisteners();
         await draw(currentSite);
