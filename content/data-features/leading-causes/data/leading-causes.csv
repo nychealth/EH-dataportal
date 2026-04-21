@@ -461,219 +461,223 @@ ED,0,All ages,291524,3490.4585316,,3,,Musculoskeletal system and connective tiss
 ED,0,All ages,432095,5173.5411277,,2,"Injury, poisoning and other consequences
 of external causes","Injury, poisoning and other consequences of external causes"
 ED,0,All ages,530956,6357.2193685,,1,,"Symptoms, signs and abnormal clinical and laboratory findings"
-Death,0,All ages,5523,66.12375319,,1,,Heart disease
-Death,0,All ages,3859,46.20840261,,2,,Malignant neoplasms
-Death,0,All ages,2743,32.842368723,,3,,COVID-19
-Death,0,All ages,1885,22.569400307,,4,,Other natural causes
-Death,0,All ages,1318,15.776629428,,5,Injury,Injury: Unintentional
-Death,0,All ages,716,8.576771222,,6,,Cerebrovascular disease
-Death,0,All ages,571,6.840663506,,7,,Diabetes
-Death,0,All ages,543,6.4974330151,,8,,Influenza and pneumonia
-Death,0,All ages,460,5.5036610122,,9,,Chronic lower respiratory diseases
-Death,0,All ages,429,5.1404752601,,10,,Other diseases of nervous system
-Death,1,All ages,898,10.74790363,,1,Unintentional,Poisoning
-Death,1,All ages,201,2.406604489,,2,Unintentional,Fall
-Death,1,All ages,112,1.3449845983,,3,Homicide,Firearm
-Death,1,All ages,98,1.1693783006,,4,Unintentional,Motor vehicle traffic
-Death,1,All ages,66,0.7902283397,,5,Suicide,Suffocation
-Death,1,All ages,58,0.6944430864,,6,Undetermined,Unknown mechanism
-Death,1,All ages,42,0.506863632,,7,Unintentional,Suffocation
-Death,1,All ages,40,0.4789262665,,8,Suicide,Fall
-Death,1,All ages,31,0.3671768043,,9,Suicide,Poisoning
-Death,1,All ages,25,0.3033199688,,10,Homicide,Cut or pierce
-Death,1,<1,5,5.2052933682,*,1,Undetermined,Unknown mechanism
-Death,1,<1,2,1.7350977894,*,2,Unintentional,Suffocation
-Death,1,<1,2,1.7350977894,*,3,Homicide,Unknown mechanism
-Death,1,<1,,,^,4,,
-Death,1,<1,,,^,5,,
+Death,0,All ages,16380,196.12030612,,1,,Heart disease
+Death,0,All ages,11429,136.84519854,,2,,Malignant neoplasms
+Death,0,All ages,5804,69.492201264,,3,,Other natural causes
+Death,0,All ages,4491,53.767455515,,4,,COVID-19
+Death,0,All ages,4251,50.893897917,,5,Injury,Injury: Unintentional
+Death,0,All ages,2175,26.037624687,,6,,Cerebrovascular disease
+Death,0,All ages,1700,20.358357377,,7,,Diabetes
+Death,0,All ages,1556,18.630231766,,8,,Influenza and pneumonia
+Death,0,All ages,1428,17.097667713,,9,,Chronic lower respiratory diseases
+Death,0,All ages,1283,15.365551049,,10,,Other diseases of nervous system
+Death,1,All ages,2944,35.248973212,,1,Unintentional,Poisoning
+Death,1,All ages,608,7.2756881981,,2,Unintentional,Fall
+Death,1,All ages,282,3.3764301786,,3,Unintentional,Motor vehicle traffic
+Death,1,All ages,266,3.184859672,,4,Homicide,Firearm
+Death,1,All ages,202,2.4225686979,,5,Suicide,Suffocation
+Death,1,All ages,165,1.9795619014,,6,Undetermined,Unknown mechanism
+Death,1,All ages,152,1.8239108648,,7,Unintentional,Suffocation
+Death,1,All ages,122,1.4647161649,,8,Suicide,Fall
+Death,1,All ages,95,1.1374498829,,9,Homicide,Cut or pierce
+Death,1,All ages,89,1.0696019951,,10,Suicide,Poisoning
+Death,1,<1,16,16.656938778,,1,Undetermined,Unknown mechanism
+Death,1,<1,7,6.9403911575,,2,Unintentional,Suffocation
+Death,1,<1,2,2.0821173473,*,3,Homicide,Unknown mechanism
+Death,1,<1,,,*,4,,
+Death,1,<1,,,*,5,,
 Death,1,<1,,,^,6,,
 Death,1,<1,,,^,7,,
 Death,1,<1,,,^,8,,
 Death,1,<1,,,^,9,,
 Death,1,<1,,,^,10,,
-Death,1,1 - 4,,,^,1,,
-Death,1,1 - 4,,,^,2,,
-Death,1,1 - 4,,,^,3,,
-Death,1,1 - 4,,,^,4,,
-Death,1,1 - 4,,,^,5,,
-Death,1,1 - 4,,,^,6,,
-Death,1,1 - 4,,,^,7,,
-Death,1,1 - 4,,,^,8,,
+Death,1,1 - 4,3,0.7165159958,*,1,Homicide,Poisoning
+Death,1,1 - 4,2,0.6269514963,*,2,Unintentional,Motor vehicle traffic
+Death,1,1 - 4,2,0.5373869968,*,3,Undetermined,Unknown mechanism
+Death,1,1 - 4,2,0.5373869968,*,4,Unintentional,Drowning
+Death,1,1 - 4,2,0.5373869968,*,5,Unintentional,Suffocation
+Death,1,1 - 4,2,0.4478224974,*,6,Unintentional,Fire or burn
+Death,1,1 - 4,2,0.4478224974,*,7,Unintentional,Fall
+Death,1,1 - 4,,,*,8,,
 Death,1,1 - 4,,,^,9,,
 Death,1,1 - 4,,,^,10,,
-Death,1,5 - 9,2,0.350574346,*,1,Unintentional,Fire or burn
-Death,1,5 - 9,,,^,2,,
+Death,1,5 - 9,6,1.1919527762,,1,Unintentional,Fire or burn
+Death,1,5 - 9,3,0.6310338227,*,2,Unintentional,Motor vehicle traffic
 Death,1,5 - 9,,,^,3,,
 Death,1,5 - 9,,,^,4,,
 Death,1,5 - 9,,,^,5,,
 Death,1,5 - 9,,,^,6,,
 Death,1,5 - 9,,,^,7,,
 Death,1,5 - 9,,,^,8,,
-Death,1,10 - 14,2,0.3580166736,*,1,Suicide,Suffocation
-Death,1,10 - 14,,,^,2,,
-Death,1,10 - 14,,,^,3,,
-Death,1,10 - 14,,,^,4,,
-Death,1,10 - 14,,,^,5,,
-Death,1,10 - 14,,,^,6,,
+Death,1,5 - 9,,,^,9,,
+Death,1,5 - 9,,,^,10,,
+Death,1,10 - 14,3,0.6444300124,*,1,Homicide,Firearm
+Death,1,10 - 14,3,0.6444300124,*,2,Suicide,Suffocation
+Death,1,10 - 14,3,0.5728266777,*,3,Unintentional,Fire or burn
+Death,1,10 - 14,2,0.4296200083,*,4,Unintentional,Drowning
+Death,1,10 - 14,2,0.3580166736,*,5,Homicide,Cut or pierce
+Death,1,10 - 14,,,*,6,,
 Death,1,10 - 14,,,^,7,,
 Death,1,10 - 14,,,^,8,,
-Death,1,15 - 24,34,3.6316697113,,1,Homicide,Firearm
-Death,1,15 - 24,27,2.8207143389,,2,Unintentional,Poisoning
-Death,1,15 - 24,14,1.5161339571,,3,Unintentional,Motor vehicle traffic
-Death,1,15 - 24,6,0.599401797,,4,Suicide,Fall
-Death,1,15 - 24,5,0.5288839385,*,5,Suicide,Suffocation
-Death,1,15 - 24,5,0.5288839385,*,6,Suicide,Poisoning
-Death,1,15 - 24,3,0.3173303631,*,7,Undetermined,Unknown mechanism
-Death,1,15 - 24,2,0.2115535754,*,8,Homicide,Cut or pierce
-Death,1,15 - 24,,,*,9,,
-Death,1,15 - 24,,,*,10,,
-Death,1,25 - 34,136,9.8143759921,,1,Unintentional,Poisoning
-Death,1,25 - 34,48,3.463897409,,2,Homicide,Firearm
-Death,1,25 - 34,18,1.3230163715,,3,Unintentional,Motor vehicle traffic
-Death,1,25 - 34,17,1.226796999,,4,Suicide,Suffocation
-Death,1,25 - 34,8,0.5773162348,,5,Suicide,Fall
-Death,1,25 - 34,8,0.5773162348,,6,Homicide,Cut or pierce
-Death,1,25 - 34,7,0.4810968624,,7,Suicide,Poisoning
-Death,1,25 - 34,5,0.3367678037,*,8,Undetermined,Unknown mechanism
-Death,1,25 - 34,5,0.3367678037,*,9,Unintentional,Fall
-Death,1,25 - 34,4,0.2646032743,*,10,Unintentional,Suffocation
-Death,1,35 - 44,194,16.726326778,,1,Unintentional,Poisoning
-Death,1,35 - 44,19,1.6697537919,,2,Homicide,Firearm
-Death,1,35 - 44,16,1.3530763486,,3,Unintentional,Motor vehicle traffic
-Death,1,35 - 44,15,1.2667097732,,4,Undetermined,Unknown mechanism
-Death,1,35 - 44,12,1.0076100469,,5,Suicide,Suffocation
-Death,1,35 - 44,7,0.5757771696,,6,Suicide,Fall
-Death,1,35 - 44,7,0.5757771696,,7,Homicide,Cut or pierce
-Death,1,35 - 44,6,0.5181994527,,8,Unintentional,Fall
-Death,1,35 - 44,4,0.3454663018,*,9,Suicide,Poisoning
-Death,1,35 - 44,3,0.2878885848,*,10,Unintentional,Other pedestrian
-Death,1,45 - 54,197,19.259842935,,1,Unintentional,Poisoning
-Death,1,45 - 54,11,1.106139628,,2,Unintentional,Motor vehicle traffic
-Death,1,45 - 54,10,0.9760055541,,3,Unintentional,Fall
-Death,1,45 - 54,7,0.6832038879,,4,Suicide,Poisoning
-Death,1,45 - 54,7,0.6832038879,,5,Suicide,Fall
-Death,1,45 - 54,7,0.6506703694,,6,Undetermined,Unknown mechanism
-Death,1,45 - 54,7,0.6506703694,,7,Suicide,Suffocation
-Death,1,45 - 54,7,0.6506703694,,8,Homicide,Firearm
-Death,1,45 - 54,4,0.3904022216,*,9,Suicide,Other mechanism
-Death,1,45 - 54,4,0.3904022216,*,10,Suicide,Firearm
-Death,1,55 - 64,271,26.234457215,,1,Unintentional,Poisoning
-Death,1,55 - 64,26,2.5523671428,,2,Unintentional,Fall
-Death,1,55 - 64,13,1.2277209041,,3,Suicide,Suffocation
-Death,1,55 - 64,12,1.1307955696,,4,Undetermined,Unknown mechanism
-Death,1,55 - 64,11,1.0338702351,,5,Unintentional,Motor vehicle traffic
-Death,1,55 - 64,5,0.5169351175,*,6,Unintentional,Suffocation
-Death,1,55 - 64,5,0.5169351175,*,7,Suicide,Fall
-Death,1,55 - 64,4,0.3877013382,*,8,Suicide,Poisoning
-Death,1,55 - 64,4,0.3553928933,*,9,Unintentional,Natural or environmental
-Death,1,55 - 64,3,0.2907760036,*,10,Unintentional,Unknown mechanism
-Death,1,65+,152,10.875942701,,1,Unintentional,Fall
-Death,1,65+,73,5.2471653382,,2,Unintentional,Poisoning
-Death,1,65+,27,1.908060123,,3,Unintentional,Suffocation
-Death,1,65+,25,1.7649556138,,4,Unintentional,Motor vehicle traffic
-Death,1,65+,11,0.8109255523,,5,Suicide,Suffocation
-Death,1,65+,11,0.8109255523,,6,Unintentional,Fire or burn
-Death,1,65+,11,0.7632240492,,7,Undetermined,Unknown mechanism
-Death,1,65+,8,0.5724180369,,8,Unintentional,Unknown mechanism
-Death,1,65+,7,0.4770150307,,9,Suicide,Fall
-Death,1,65+,5,0.3339105215,*,10,Unintentional,Natural or environmental
-Death,0,<1,33,34.35493623,,1,,Perinatal conditions
-Death,0,<1,27,28.455603746,,2,,Congenital anomalies
-Death,0,<1,23,23.944349494,,3,,Short gestation/low birth weight
-Death,0,<1,9,9.3695280627,,4,,Other natural causes
-Death,0,<1,8,8.3284693891,,5,,SIDS
-Death,0,<1,5,5.2052933682,*,6,Injury,Injury: Undetermined intent
-Death,0,<1,5,4.8582738103,*,7,,Other infective/parasitic diseases
-Death,0,<1,4,4.5112542524,*,8,,Newborn respiratory distress
-Death,0,<1,4,4.1642346945,*,9,,Other diseases of nervous system
-Death,0,<1,4,4.1642346945,*,10,,Newborn bacterial sepsis
-Death,0,1 - 4,6,1.522596491,,1,Injury,Injury: Unintentional
-Death,0,1 - 4,4,0.9852094942,*,2,,Congenital anomalies
-Death,0,1 - 4,3,0.7165159958,*,3,,Other natural causes
-Death,0,1 - 4,2,0.6269514963,*,4,Injury,Injury: Homicide
-Death,0,1 - 4,2,0.5373869968,*,5,,Other infective/parasitic diseases
-Death,0,1 - 4,2,0.4478224974,*,6,,Other diseases of nervous system
-Death,0,1 - 4,,,*,7,,
-Death,0,1 - 4,,,*,8,,
-Death,0,1 - 4,,,*,9,,
-Death,0,1 - 4,,,^,10,,
-Death,0,5 - 9,4,0.9114932995,*,1,,Malignant neoplasms
-Death,0,5 - 9,4,0.7712635611,*,2,Injury,Injury: Unintentional
-Death,0,5 - 9,2,0.4206892151,*,3,,Congenital anomalies
-Death,0,5 - 9,2,0.350574346,*,4,,Other infective/parasitic diseases
-Death,0,5 - 9,2,0.350574346,*,5,,Other diseases of nervous system
-Death,0,5 - 9,2,0.350574346,*,6,,Chronic lower respiratory diseases
-Death,0,5 - 9,2,0.350574346,*,7,,Other natural causes
-Death,0,5 - 9,,,^,8,,
-Death,0,5 - 9,,,^,9,,
-Death,0,5 - 9,,,^,10,,
-Death,0,10 - 14,4,0.8592400165,*,1,,Malignant neoplasms
-Death,0,10 - 14,2,0.501223343,*,2,Injury,Injury: Suicide
-Death,0,10 - 14,2,0.4296200083,*,3,,Other natural causes
-Death,0,10 - 14,2,0.3580166736,*,4,,Congenital anomalies
-Death,0,10 - 14,,,^,5,,
-Death,0,10 - 14,,,^,6,,
-Death,0,10 - 14,,,^,7,,
-Death,0,10 - 14,,,^,8,,
-Death,0,10 - 14,,,^,9,,
-Death,0,10 - 14,,,^,10,,
-Death,0,15 - 24,45,4.7599554468,,1,Injury,Injury: Unintentional
-Death,0,15 - 24,38,3.9842590036,,2,Injury,Injury: Homicide
-Death,0,15 - 24,19,2.0450178957,,3,Injury,Injury: Suicide
-Death,0,15 - 24,18,1.939241108,,4,,Malignant neoplasms
-Death,0,15 - 24,11,1.1635446648,,5,,Other natural causes
-Death,0,15 - 24,8,0.8462143017,,6,,Other diseases of nervous system
-Death,0,15 - 24,4,0.4583660801,*,7,Injury,Injury: Undetermined intent
-Death,0,15 - 24,4,0.3878482216,*,8,,COVID-19
-Death,0,15 - 24,3,0.3525892924,*,9,,Congenital anomalies
-Death,0,15 - 24,3,0.3173303631,*,10,,Heart disease
-Death,0,25 - 34,171,12.340134519,,1,Injury,Injury: Unintentional
-Death,0,25 - 34,60,4.3058169181,,2,Injury,Injury: Homicide
-Death,0,25 - 34,41,2.9828005466,,3,Injury,Injury: Suicide
-Death,0,25 - 34,37,2.6941424292,,4,,Malignant neoplasms
-Death,0,25 - 34,26,1.9003326063,,5,,Heart disease
-Death,0,25 - 34,26,1.8522229201,,6,,COVID-19
-Death,0,25 - 34,24,1.7319487045,,7,,Other natural causes
-Death,0,25 - 34,12,0.8659743522,,8,Injury,Injury: Undetermined intent
-Death,0,25 - 34,12,0.8419195091,,9,,Other diseases of nervous system
-Death,0,25 - 34,9,0.6735356073,,10,,Mental/behavioral disorder due to alcohol
-Death,0,35 - 44,229,19.749156918,,1,Injury,Injury: Unintentional
-Death,0,35 - 44,97,8.4063466766,,2,,Malignant neoplasms
-Death,0,35 - 44,87,7.4851032052,,3,,Heart disease
-Death,0,35 - 44,71,6.1032379981,,4,,COVID-19
-Death,0,35 - 44,52,4.4910619231,,5,,Other natural causes
-Death,0,35 - 44,30,2.5909972633,,6,Injury,Injury: Homicide
-Death,0,35 - 44,30,2.5909972633,,7,Injury,Injury: Suicide
-Death,0,35 - 44,29,2.4758418294,,8,,Chronic liver disease/cirrhosis
-Death,0,35 - 44,24,2.1015866691,,9,,Mental/behavioral disorder due to alcohol
-Death,0,35 - 44,19,1.6697537919,,10,Injury,Injury: Undetermined intent
-Death,0,45 - 54,270,26.38468348,,1,,Malignant neoplasms
-Death,0,45 - 54,254,24.758007556,,2,,Heart disease
-Death,0,45 - 54,230,22.448127745,,3,Injury,Injury: Unintentional
-Death,0,45 - 54,165,16.104091643,,4,,COVID-19
-Death,0,45 - 54,88,8.6213823947,,5,,Other natural causes
-Death,0,45 - 54,44,4.3269579566,,6,,Chronic liver disease/cirrhosis
-Death,0,45 - 54,38,3.7413546241,,7,,Diabetes
-Death,0,45 - 54,35,3.4160194394,,8,,Mental/behavioral disorder due to alcohol
-Death,0,45 - 54,32,3.1557512917,,9,Injury,Injury: Suicide
-Death,0,45 - 54,30,2.8954831439,,10,,Cerebrovascular disease
-Death,0,55 - 64,701,67.976967956,,1,,Malignant neoplasms
-Death,0,55 - 64,669,64.843048806,,2,,Heart disease
-Death,0,55 - 64,411,39.836312495,,3,,COVID-19
-Death,0,55 - 64,325,31.500733725,,4,Injury,Injury: Unintentional
-Death,0,55 - 64,207,20.031235804,,5,,Other natural causes
-Death,0,55 - 64,93,8.9817476672,,6,,Diabetes
-Death,0,55 - 64,80,7.7863352079,,7,,Cerebrovascular disease
-Death,0,55 - 64,60,5.7832116274,,8,,Influenza and pneumonia
-Death,0,55 - 64,59,5.6862862929,,9,,Chronic lower respiratory diseases
-Death,0,55 - 64,54,5.2662765099,,10,,Chronic liver disease/cirrhosis
-Death,0,65+,4479,320.45869765,,1,,Heart disease
-Death,0,65+,2724,194.90834156,,2,,Malignant neoplasms
-Death,0,65+,2065,147.75540577,,3,,COVID-19
-Death,0,65+,1488,106.44590411,,4,,Other natural causes
-Death,0,65+,585,41.881919699,,5,,Cerebrovascular disease
-Death,0,65+,451,32.246216078,,6,,Influenza and pneumonia
-Death,0,65+,415,29.670334912,,7,,Diabetes
-Death,0,65+,374,26.784393976,,8,,Chronic lower respiratory diseases
-Death,0,65+,370,26.474334206,,9,,Alzheimer's disease
-Death,0,65+,362,25.878065418,,10,,Hypertension
+Death,1,10 - 14,,,^,9,,
+Death,1,10 - 14,,,^,10,,
+Death,1,15 - 24,89,9.3788751767,,1,Unintentional,Poisoning
+Death,1,15 - 24,76,8.074294795,,2,Homicide,Firearm
+Death,1,15 - 24,43,4.5836608006,,3,Unintentional,Motor vehicle traffic
+Death,1,15 - 24,20,2.1155357541,,4,Suicide,Suffocation
+Death,1,15 - 24,15,1.5513928864,,5,Suicide,Fall
+Death,1,15 - 24,13,1.3750982402,,6,Homicide,Cut or pierce
+Death,1,15 - 24,12,1.2693214525,,7,Suicide,Poisoning
+Death,1,15 - 24,7,0.7051785847,,8,Undetermined,Unknown mechanism
+Death,1,15 - 24,6,0.6699196555,,9,Suicide,Firearm
+Death,1,15 - 24,5,0.4936250093,*,10,Unintentional,Fire or burn
+Death,1,25 - 34,439,31.656173543,,1,Unintentional,Poisoning
+Death,1,25 - 34,101,7.2645626216,,2,Homicide,Firearm
+Death,1,25 - 34,50,3.6322813108,,3,Unintentional,Motor vehicle traffic
+Death,1,25 - 34,44,3.1752392916,,4,Suicide,Suffocation
+Death,1,25 - 34,27,1.9484422926,,5,Suicide,Fall
+Death,1,25 - 34,24,1.7560035476,,6,Homicide,Cut or pierce
+Death,1,25 - 34,22,1.5876196458,,7,Undetermined,Unknown mechanism
+Death,1,25 - 34,20,1.419235744,,8,Suicide,Poisoning
+Death,1,25 - 34,13,0.9140840385,,9,Unintentional,Fall
+Death,1,25 - 34,10,0.6975904504,,10,Suicide,Firearm
+Death,1,35 - 44,630,54.41094253,,1,Unintentional,Poisoning
+Death,1,35 - 44,55,4.7501616494,,2,Homicide,Firearm
+Death,1,35 - 44,42,3.6273961687,,3,Unintentional,Motor vehicle traffic
+Death,1,35 - 44,36,3.0804078575,,4,Suicide,Suffocation
+Death,1,35 - 44,33,2.8213081312,,5,Undetermined,Unknown mechanism
+Death,1,35 - 44,23,1.9576423767,,6,Suicide,Fall
+Death,1,35 - 44,21,1.8424869428,,7,Homicide,Cut or pierce
+Death,1,35 - 44,18,1.5833872165,,8,Unintentional,Fall
+Death,1,35 - 44,16,1.3530763486,,9,Suicide,Poisoning
+Death,1,35 - 44,9,0.8060880375,,10,Unintentional,Other pedestrian
+Death,1,45 - 54,632,61.651017502,,1,Unintentional,Poisoning
+Death,1,45 - 54,34,3.2858853655,,2,Unintentional,Motor vehicle traffic
+Death,1,45 - 54,34,3.2858853655,,3,Unintentional,Fall
+Death,1,45 - 54,29,2.830416107,,4,Suicide,Suffocation
+Death,1,45 - 54,24,2.3749468484,,5,Undetermined,Unknown mechanism
+Death,1,45 - 54,19,1.8544105528,,6,Suicide,Fall
+Death,1,45 - 54,18,1.7568099974,,7,Homicide,Firearm
+Death,1,45 - 54,15,1.4314748127,,8,Homicide,Cut or pierce
+Death,1,45 - 54,13,1.2688072204,,9,Suicide,Poisoning
+Death,1,45 - 54,11,1.0736061095,,10,Suicide,Firearm
+Death,1,55 - 64,847,82.128066798,,1,Unintentional,Poisoning
+Death,1,55 - 64,65,6.3324551898,,2,Unintentional,Fall
+Death,1,55 - 64,39,3.7477796021,,3,Suicide,Suffocation
+Death,1,55 - 64,38,3.6508542676,,4,Unintentional,Motor vehicle traffic
+Death,1,55 - 64,29,2.7785262568,,5,Undetermined,Unknown mechanism
+Death,1,55 - 64,20,1.9385066908,,6,Unintentional,Suffocation
+Death,1,55 - 64,18,1.7769644665,,7,Suicide,Fall
+Death,1,55 - 64,14,1.3892631284,,8,Suicide,Poisoning
+Death,1,55 - 64,14,1.3246462387,,9,Unintentional,Natural or environmental
+Death,1,55 - 64,12,1.1954124593,,10,Homicide,Cut or pierce
+Death,1,65+,471,33.701111922,,1,Unintentional,Fall
+Death,1,65+,306,21.87113916,,2,Unintentional,Poisoning
+Death,1,65+,102,7.3221807219,,3,Unintentional,Suffocation
+Death,1,65+,68,4.8894040651,,4,Unintentional,Motor vehicle traffic
+Death,1,65+,32,2.2896721476,,5,Undetermined,Unknown mechanism
+Death,1,65+,32,2.2896721476,,6,Suicide,Suffocation
+Death,1,65+,31,2.2419706445,,7,Unintentional,Fire or burn
+Death,1,65+,29,2.0511646322,,8,Unintentional,Unknown mechanism
+Death,1,65+,20,1.4310450922,,9,Suicide,Fall
+Death,1,65+,16,1.1448360738,,10,Unintentional,Natural or environmental
+Death,0,<1,112,116.59857145,,1,,Perinatal conditions
+Death,0,<1,100,104.45288692,,2,,Congenital anomalies
+Death,0,<1,56,57.952266166,,3,,Short gestation/low birth weight
+Death,0,<1,25,25.679447283,,4,,Other natural causes
+Death,0,<1,24,25.332427725,,5,,SIDS
+Death,0,<1,16,16.656938778,,6,Injury,Injury: Undetermined intent
+Death,0,<1,13,13.533762757,,7,,Other infective/parasitic diseases
+Death,0,<1,12,12.492704084,,8,,Newborn respiratory distress
+Death,0,<1,10,10.410586736,,9,,Other diseases of nervous system
+Death,0,<1,10,10.410586736,,10,,Newborn bacterial sepsis
+Death,0,1 - 4,13,3.4930154794,,1,,Congenital anomalies
+Death,0,1 - 4,11,2.9556284825,,2,Injury,Injury: Unintentional
+Death,0,1 - 4,10,2.5973704847,,3,,Other natural causes
+Death,0,1 - 4,7,1.8808544889,,4,Injury,Injury: Homicide
+Death,0,1 - 4,6,1.6121609905,,5,,Malignant neoplasms
+Death,0,1 - 4,4,1.1643384931,*,6,,Other infective/parasitic diseases
+Death,0,1 - 4,4,0.9852094942,*,7,,Other diseases of nervous system
+Death,0,1 - 4,3,0.8060804952,*,8,,COVID-19
+Death,0,1 - 4,3,0.7165159958,*,9,,Heart disease
+Death,0,1 - 4,3,0.7165159958,*,10,Injury,Injury: Undetermined intent
+Death,0,5 - 9,14,2.944824506,,1,,Malignant neoplasms
+Death,0,5 - 9,13,2.7344798984,,2,Injury,Injury: Unintentional
+Death,0,5 - 9,6,1.2620676454,,3,,Other natural causes
+Death,0,5 - 9,5,1.121837907,*,4,,Congenital anomalies
+Death,0,5 - 9,5,1.0517230379,*,5,,Other infective/parasitic diseases
+Death,0,5 - 9,4,0.7712635611,*,6,Injury,Injury: Homicide
+Death,0,5 - 9,3,0.7011486919,*,7,,Other diseases of nervous system
+Death,0,5 - 9,3,0.7011486919,*,8,,Chronic lower respiratory diseases
+Death,0,5 - 9,2,0.4908040843,*,9,,Heart disease
+Death,0,5 - 9,2,0.350574346,*,10,Injury,Injury: Complications of care
+Death,0,10 - 14,14,3.0789433926,,1,,Malignant neoplasms
+Death,0,10 - 14,9,1.8616867025,,2,Injury,Injury: Unintentional
+Death,0,10 - 14,8,1.7184800331,,3,,Other diseases of nervous system
+Death,0,10 - 14,6,1.2888600248,,4,,Other natural causes
+Death,0,10 - 14,6,1.2172566901,,5,Injury,Injury: Homicide
+Death,0,10 - 14,5,1.1456533554,*,6,,Congenital anomalies
+Death,0,10 - 14,5,1.0740500207,*,7,Injury,Injury: Suicide
+Death,0,10 - 14,4,0.7876366818,*,8,,Heart disease
+Death,0,10 - 14,3,0.5728266777,*,9,,Other infective/parasitic diseases
+Death,0,10 - 14,3,0.5728266777,*,10,,Chronic lower respiratory diseases
+Death,0,15 - 24,156,16.501178882,,1,Injury,Injury: Unintentional
+Death,0,15 - 24,93,9.8372412568,,2,Injury,Injury: Homicide
+Death,0,15 - 24,64,6.8049733425,,3,Injury,Injury: Suicide
+Death,0,15 - 24,52,5.4651340315,,4,,Malignant neoplasms
+Death,0,15 - 24,34,3.6316697113,,5,,Other natural causes
+Death,0,15 - 24,20,2.1155357541,,6,,Other diseases of nervous system
+Death,0,15 - 24,13,1.4103571694,,7,,Heart disease
+Death,0,15 - 24,12,1.3045803817,,8,Injury,Injury: Undetermined intent
+Death,0,15 - 24,10,1.0225089478,,9,,Congenital anomalies
+Death,0,15 - 24,8,0.8814732309,,10,,COVID-19
+Death,0,25 - 34,537,38.752352263,,1,Injury,Injury: Unintentional
+Death,0,25 - 34,137,9.8624856783,,2,Injury,Injury: Homicide
+Death,0,25 - 34,123,8.8762371105,,3,Injury,Injury: Suicide
+Death,0,25 - 34,102,7.3848368372,,4,,Malignant neoplasms
+Death,0,25 - 34,78,5.6528881327,,5,,Other natural causes
+Death,0,25 - 34,74,5.3161203291,,6,,Heart disease
+Death,0,25 - 34,42,3.0068553897,,7,Injury,Injury: Undetermined intent
+Death,0,25 - 34,37,2.6941424292,,8,,COVID-19
+Death,0,25 - 34,35,2.5498133705,,9,,Other diseases of nervous system
+Death,0,25 - 34,29,2.1168261944,,10,,Mental/behavioral disorder due to alcohol
+Death,0,35 - 44,727,62.817289207,,1,Injury,Injury: Unintentional
+Death,0,35 - 44,280,24.153852266,,2,,Malignant neoplasms
+Death,0,35 - 44,254,21.937110163,,3,,Heart disease
+Death,0,35 - 44,174,15.027784127,,4,,Other natural causes
+Death,0,35 - 44,104,9.0109127047,,5,Injury,Injury: Suicide
+Death,0,35 - 44,96,8.2911912427,,6,,COVID-19
+Death,0,35 - 44,87,7.5138920637,,7,Injury,Injury: Homicide
+Death,0,35 - 44,80,6.9093260355,,8,,Mental/behavioral disorder due to alcohol
+Death,0,35 - 44,78,6.7365928847,,9,,Chronic liver disease/cirrhosis
+Death,0,35 - 44,51,4.4046953477,,10,,Diabetes
+Death,0,45 - 54,780,76.16096674,,1,,Malignant neoplasms
+Death,0,45 - 54,736,71.866542302,,2,Injury,Injury: Unintentional
+Death,0,45 - 54,713,69.55666249,,3,,Heart disease
+Death,0,45 - 54,259,25.278543852,,4,,Other natural causes
+Death,0,45 - 54,230,22.480661263,,5,,COVID-19
+Death,0,45 - 54,129,12.55793813,,6,,Chronic liver disease/cirrhosis
+Death,0,45 - 54,112,10.963795725,,7,,Diabetes
+Death,0,45 - 54,109,10.670994058,,8,,Mental/behavioral disorder due to alcohol
+Death,0,45 - 54,104,10.150457763,,9,,Cerebrovascular disease
+Death,0,45 - 54,86,8.3936477655,,10,Injury,Injury: Suicide
+Death,0,55 - 64,2058,199.50464692,,1,,Malignant neoplasms
+Death,0,55 - 64,1981,192.04139616,,2,,Heart disease
+Death,0,55 - 64,1013,98.185363887,,3,Injury,Injury: Unintentional
+Death,0,55 - 64,599,58.025966943,,4,,Other natural causes
+Death,0,55 - 64,578,55.990534918,,5,,COVID-19
+Death,0,55 - 64,267,25.911372766,,6,,Diabetes
+Death,0,55 - 64,223,21.646658047,,7,,Cerebrovascular disease
+Death,0,55 - 64,161,15.604978861,,8,,Influenza and pneumonia
+Death,0,55 - 64,155,15.055735298,,9,,Chronic lower respiratory diseases
+Death,0,55 - 64,154,14.958809964,,10,,Chronic liver disease/cirrhosis
+Death,0,65+,13329,953.74385247,,1,,Heart disease
+Death,0,65+,8121,581.09971045,,2,,Malignant neoplasms
+Death,0,65+,4613,330.09440127,,3,,Other natural causes
+Death,0,65+,3534,252.8656678,,4,,COVID-19
+Death,0,65+,1777,127.14835644,,5,,Cerebrovascular disease
+Death,0,65+,1289,92.254706946,,6,,Influenza and pneumonia
+Death,0,65+,1240,88.74864647,,7,,Diabetes
+Death,0,65+,1184,84.71786946,,8,,Chronic lower respiratory diseases
+Death,0,65+,1079,77.181031974,,9,,Hypertension
+Death,0,65+,1040,74.390494044,,10,Injury,Injury: Unintentional
