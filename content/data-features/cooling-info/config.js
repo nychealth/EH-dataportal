@@ -126,7 +126,7 @@ var content = [
             {
                 "optionID": 1,
                 "copy": "Yes",
-                "message": "Setting your air conditioner to 78F or Low Cool can keep you safe, comfortable, and save money. Visit the <a href='https://www.nyc.gov/site/hra/help/energy-assistance.page'>Home Energy Assistance Program</a> and <a href='https://www.coned.com/en/accounts-billing/payment-plans-assistance/help-paying-your-bill'>CON ED's Energy Affordability Program</a> to see if your'e eligible for help cooling your home.",
+                "message": "Setting your air conditioner to 78F or Low Cool can keep you safe, comfortable, and save money. Visit the <a href='https://www.nyc.gov/site/hra/help/energy-assistance.page'>Home Energy Assistance Program</a> and <a href='https://www.coned.com/en/accounts-billing/payment-plans-assistance/help-paying-your-bill'>CON ED's Energy Affordability Program</a> to see if you're eligible for help cooling your home.",
                 "setVariable": "limitAC('Yes')",
                 "goTo": 6
             },
