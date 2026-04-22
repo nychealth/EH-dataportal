@@ -2,6 +2,7 @@
 
 When generating or editing code in this repository:
 
+- Start response by identifying the model being used.
 - Use 4 spaces for indentation.
 - Prefer generous vertical whitespace so logic is visually separated into small, readable blocks.
 - Add frequent short clarifying comments where intent is not immediately obvious.
